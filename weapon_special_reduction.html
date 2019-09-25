@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>武器特殊攻击修正 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">武器特殊攻击修正</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h2>什么是特殊攻击修正?</h2>
+
+<p>部分武器因为能够<strong>攻击多个目标</strong>或<strong>单次攻击产生多次判定</strong>，其特殊攻击的触发概率或效果会被降低，以平衡游戏。</p>
+
+<blockquote>
+<p><strong>常见误解：</strong>「9星及以下武器会被修正，10星以上不会」—— 这是错误的。</p>
+<p><strong>实际规则：</strong>修正与否取决于武器的十六进制编号分组（hex group 02/03/04/05/08/09），与星级无关。例如 Zero Divide（10星）和 Asteron Belt（10星）同样受到修正。</p>
+</blockquote>
+
+<h3>不受修正的情况:</h3>
+<ul>
+<li><strong>祭系特殊</strong>（Charge / Spirit / Berserk）不受修正</li>
+<li><strong>元素伤害</strong>（火属性 / 雷属性）不受修正</li>
+<li><strong>单目标武器</strong>与 <strong>S 武器</strong>的特殊攻击不受修正</li>
+</ul>
+
+<hr>
+
+<h2>修正倍率一览</h2>
+
+<table>
+<thead><tr>
+<th>武器类型</th>
+<th>修正倍率</th>
+<th>说明</th>
+</tr></thead>
+<tbody>
+<tr><td>大剑系 Sword</td><td>50%</td><td>3目标横扫</td></tr>
+<tr><td>匕首系 Dagger</td><td>50%</td><td>多段判定</td></tr>
+<tr><td>长刀系 Partisan</td><td>50%</td><td>多目标攻击</td></tr>
+<tr><td>投刃系 Slicer</td><td>33%</td><td>4目标远程</td></tr>
+<tr><td>机枪系 Mechgun</td><td>33%</td><td>多段射击</td></tr>
+<tr><td>散弹系 Shot</td><td>33%</td><td>5目标散射</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>大剑系 (50%修正)</h2>
+
+<table>
+<thead><tr><th>#</th><th>武器</th><th>中文名</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Sword</td><td>大剑</td></tr>
+<tr><td>2</td><td>Gigush</td><td>宽刃大剑</td></tr>
+<tr><td>3</td><td>Breaker</td><td>双刃大剑</td></tr>
+<tr><td>4</td><td>Claymore</td><td>利刃大剑</td></tr>
+<tr><td>5</td><td>Calibur</td><td>勇者大剑</td></tr>
+<tr><td>6</td><td>Last Survivor</td><td>最后幸存者</td></tr>
+</tbody>
+</table>
+
+<h2>匕首系 (50%修正)</h2>
+
+<table>
+<thead><tr><th>#</th><th>武器</th><th>中文名</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Dagger</td><td>匕首</td></tr>
+<tr><td>2</td><td>Knife</td><td>锋利匕首</td></tr>
+<tr><td>3</td><td>Blade</td><td>突刺匕首</td></tr>
+<tr><td>4</td><td>Edge</td><td>弧光匕首</td></tr>
+<tr><td>5</td><td>Ripper</td><td>暗杀匕首</td></tr>
+<tr><td>6</td><td>Blade Dance</td><td>剑之舞</td></tr>
+<tr><td>7</td><td>Bloody Art</td><td>血之艺</td></tr>
+<tr><td>8</td><td>Zero Divide ⭐10星</td><td>零度切刃</td></tr>
+</tbody>
+</table>
+
+<h2>长刀系 (50%修正)</h2>
+
+<table>
+<thead><tr><th>#</th><th>武器</th><th>中文名</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Partisan</td><td>长刀</td></tr>
+<tr><td>2</td><td>Halbert</td><td>护卫长刀</td></tr>
+<tr><td>3</td><td>Glaive</td><td>骑士长刀</td></tr>
+<tr><td>4</td><td>Berdys</td><td>将军长刀</td></tr>
+<tr><td>5</td><td>Gungnir</td><td>战神长刀</td></tr>
+<tr><td>6</td><td>Brionac</td><td>纯正长刀</td></tr>
+<tr><td>7</td><td>Gae Bolg</td><td>战斗长刀</td></tr>
+<tr><td>8</td><td>Asteron Belt ⭐10星</td><td>十文字枪</td></tr>
+</tbody>
+</table>
+
+<h2>投刃系 (33%修正)</h2>
+
+<table>
+<thead><tr><th>#</th><th>武器</th><th>中文名</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Slicer</td><td>投刃</td></tr>
+<tr><td>2</td><td>Spinner</td><td>弹射投刃</td></tr>
+<tr><td>3</td><td>Cutter</td><td>回旋投刃</td></tr>
+<tr><td>4</td><td>Sawcer</td><td>飞碟投刃</td></tr>
+<tr><td>5</td><td>Diska</td><td>彗星投刃</td></tr>
+<tr><td>6</td><td>Slicer of Assassin</td><td>暗杀者投刃</td></tr>
+<tr><td>7</td><td>Diska of Liberator</td><td>解放者飞碟</td></tr>
+</tbody>
+</table>
+
+<h2>机枪系 (33%修正)</h2>
+
+<table>
+<thead><tr><th>#</th><th>武器</th><th>中文名</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Mechgun</td><td>机枪</td></tr>
+<tr><td>2</td><td>Assault</td><td>扫射机枪</td></tr>
+<tr><td>3</td><td>Repeater</td><td>高射机枪</td></tr>
+<tr><td>4</td><td>Gatling</td><td>格林机枪</td></tr>
+<tr><td>5</td><td>Vulcan</td><td>音速机枪</td></tr>
+<tr><td>6</td><td>H&amp;S25 Justice</td><td>正义制裁</td></tr>
+<tr><td>7</td><td>L&amp;K14 Combat</td><td>战场之狼</td></tr>
+</tbody>
+</table>
+
+<h2>散弹系 (33%修正)</h2>
+
+<table>
+<thead><tr><th>#</th><th>武器</th><th>中文名</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Shot</td><td>散弹枪</td></tr>
+<tr><td>2</td><td>Spread</td><td>重型散弹枪</td></tr>
+<tr><td>3</td><td>Cannon</td><td>加农散弹枪</td></tr>
+<tr><td>4</td><td>Launcher</td><td>强袭散弹枪</td></tr>
+<tr><td>5</td><td>Arms</td><td>军用散弹枪</td></tr>
+<tr><td>6</td><td>Crush Bullet</td><td>碎弹枪</td></tr>
+<tr><td>7</td><td>Meteor Smash</td><td>陨石枪</td></tr>
+<tr><td>8</td><td>Final Impact</td><td>最后冲击</td></tr>
+</tbody>
+</table>
+
+    </div>
+</body>
+
+</html>

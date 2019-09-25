@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>QQ群: 956652396 | ["PSOBB Wiki For Ephinea Server"]</title>
+    <script src="static/jquery.min.js?v=1"></script>
+    <script src="static/index.js?v=1"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #1a2332;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('static/img/lobby_overlook_contrast.png') center center;
+            background-size: cover;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(0, 212, 255, 0.08), transparent 60%),
+                        radial-gradient(circle at bottom left, rgba(138, 43, 226, 0.08), transparent 60%);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        #project_title {
+            color: #00d4ff;
+            font-size: 2.8em;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5),
+                         0 0 40px rgba(0, 212, 255, 0.3);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        body > a[href*="qq.com"] {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d4ff, #00a0ff);
+            color: #0a0e27;
+            padding: 14px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 700;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+            margin-bottom: 35px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        body > a[href*="qq.com"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+            background: linear-gradient(135deg, #00e4ff, #00b0ff);
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .container::after {
+            content: "";
+            width: 100%;
+            height: 0;
+            display: block;
+        }
+
+        .section {
+            flex-basis: calc(33.333% - 20px);
+            flex-grow: 1;
+            min-width: 300px;
+            background: rgba(26, 35, 50, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.25);
+        }
+
+        .section h2 {
+            color: #00d4ff;
+            font-size: 1.3em;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            font-weight: 600;
+        }
+
+        .section a {
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            color: #e2e8f0;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 6px;
+            display: block;
+            margin-bottom: 6px;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid transparent;
+        }
+
+        .section a:hover, .section a:focus {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            border-left-color: #00d4ff;
+            transform: translateX(8px);
+            text-decoration: none;
+        }
+
+        #network-time {
+            background: rgba(30, 40, 60, 0.8);
+            border-color: rgba(251, 191, 36, 0.35);
+        }
+
+        #network-time:hover {
+            border-color: rgba(251, 191, 36, 0.6);
+        }
+
+        #network-time h2 {
+            color: #fbbf24;
+        }
+
+        #swatchTime {
+            display: block;
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #fbbf24;
+            text-align: center;
+            padding: 18px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+        }
+
+        #beat_even_period {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #beat_even_period li {
+            padding: 10px 14px;
+            margin: 6px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            color: #fde68a;
+            border-left: 3px solid #fbbf24;
+            list-style: none;
+            font-size: 14px;
+        }
+
+        #beat_even_period li:first-child {
+            margin-top: 0;
+        }
+
+        #galatine_even_period {
+            font-size: 1.2em;
+            color: #fde68a;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            list-style: none;
+        }
+
+        #galatine_even_period li {
+            list-style: none;
+        }
+
+        .info-wrapper {
+            flex-basis: calc(50% - 20px);
+            flex-grow: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-wrapper .section {
+            margin: 0;
+        }
+
+        #galatine {
+            background: rgba(30, 40, 60, 0.8);
+            border-color: rgba(236, 72, 153, 0.35);
+        }
+
+        #galatine:hover {
+            border-color: rgba(236, 72, 153, 0.6);
+        }
+
+        #galatine h2 {
+            color: #f472b6;
+        }
+
+        #buf {
+            background: rgba(30, 40, 60, 0.8);
+            border-color: rgba(59, 130, 246, 0.35);
+        }
+
+        #buf:hover {
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        #buf h2 {
+            color: #60a5fa;
+        }
+
+        #week-buf {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #week-buf li {
+            padding: 12px 14px;
+            margin: 8px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            color: #bfdbfe;
+            font-weight: 500;
+            border-left: 3px solid #60a5fa;
+            list-style: none;
+            font-size: 14px;
+        }
+
+        #week-buf li:first-child {
+            margin-top: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .section {
+                flex-basis: calc(50% - 20px);
+            }
+
+            .info-wrapper {
+                flex-basis: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .section {
+                flex-basis: 100%;
+                min-width: unset;
+            }
+
+            .info-wrapper {
+                flex-basis: 100%;
+                min-width: unset;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1 id="project_title">Ephinea PSOBB 相关信息</h1>
+</header>
+
+<a href="https://qm.qq.com/q/iK2hVbSs3S" target="_blank">点击加QQ群: 956652396</a>
+
+<div class="container">
+    <div class="section" id="network-time">
+        <h2>网络时间(.beat):</h2>
+        <span id="swatchTime"></span>
+        <ul id="beat_even_period"></ul>
+    </div>
+
+    <div class="info-wrapper">
+        <div class="section" id="galatine">
+            <h2>太阳之剑攻击力:(E服固定3x攻击)</h2>
+            <div id="galatine_even_period"></div>
+        </div>
+
+        <div id="buf" class="section">
+            <h2>RBS周轮替增益系统:</h2>
+            <ul id="week-buf">
+                <li id="3">掉物率(DAR) +25%</li>
+                <li id="0">稀有怪率(RER) +50%</li>
+                <li id="1">掉宝率(RDR) +25%</li>
+                <li id="2">经验(EXP) +50%</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>基本信息:</h2>
+        <a href="/ephinea.html" target="_blank">ℹ️EPHINEA介绍</a>
+        <a href="/command.html" target="_blank">💻命令介绍</a>
+        <a href="/ephinea_rules.html" target="_blank">📜论坛和服务器规则</a>
+        <a href="/anguish.html" target="_blank">💀苦痛难度</a>
+    </div>
+
+    <div class="section">
+        <h2>掉落表相关:</h2>
+        <a href="/droptable/cn/CUltimate.html" target="_blank">📋E服「中文」掉落表</a>
+        <a href="/droptable/en/Ultimate.html" target="_blank">📋E服「英文」掉落表</a>
+        <a href="/prizelist.html" target="_blank">🎰科伦赌博的奖品列表</a>
+        <a href="/bdp.html" target="_blank">📕黑页掉落表</a>
+        <a href="/droptable/ngc/u.html" target="_blank">📋NGC掉落表</a>
+        <a href="/droptable/dc/u.html" target="_blank">📋DC掉落表</a>
+        <a href="/en2chinese.html" target="_blank">📖中英文对照表</a>
+    </div>
+
+    <div class="section">
+        <h2>任务相关:</h2>
+        <a href="/monsters.html" target="_blank">👾刷怪表</a>
+        <a href="/quest.html" target="_blank">📝任务列表</a>
+        <a href="/gallons_roulette.html" target="_blank">🎰幻界幸运轮盘抽</a>
+        <a href="/ep1ch.html" target="_blank">🏆挑战模式 EP1</a>
+        <a href="/ep2ch.html" target="_blank">🏆挑战模式 EP2</a>
+        <a href="/static/pw/index.html" target="_blank">🛠️任务编辑器</a>
+        <!--        <a href="/event/event.html" target="_blank">圣诞大乱斗</a>-->
+    </div>
+
+    <div class="section">
+        <h2>道具属性相关:</h2>
+        <a href="/drop_roll.html" target="_blank">⚔️武器属性相关</a>
+        <a href="/itempt.html" target="_blank">📦非稀有掉落相关</a>
+        <a href="/weapon_special_reduction.html" target="_blank">🏪武器特殊攻击修正</a>
+        <a href="/WSBoost.html" target="_blank">🪄法杖技能加成</a>
+        <a href="/enemy_weapon_hit.html" target="_blank">🔧尸块改造与加命中</a>
+    </div>
+
+    <div class="section">
+        <h2>公式相关:</h2>
+        <a href="./id.html" target="_blank">🧮Section Id 计算器</a>
+        <a href="./chartable.html" target="_blank">💪全等级人物能力</a>
+        <a href="./200.html" target="_blank">💪LV200基础能力</a>
+        <a href="/equipment.html" target="_blank">🛡⚔️全人物终级装备推荐</a>
+        <a href="./materialplan.html" target="_blank">🔷全人物配点</a>
+        <a href="/status.htm" target="_blank">🔷配点计算器</a>
+        <a href="/mechanics.html" target="_blank">⚔️伤害计算公式</a>
+        <a href="/cc.html" target="_blank">⚔️伤害计算器</a>
+        <a href="/v50x.html" target="_blank">🎲S武EX成功率相关</a>
+        <a href="/aim.html" target="_blank">🎯武器瞄准机制</a>
+        <a href="/survial_hp.html" target="_blank">🩸血线</a>
+        <a href="/mag.html" target="_blank"><img src="/static/img/mag.png" alt="Mag" style="width:1em;height:1em;vertical-align:middle">Mag相关</a>
+    </div>
+
+    <div class="section">
+        <h2>客户端相关:</h2>
+        <a href="/errorcode.html" target="_blank">❌错误代码</a>
+        <a href="/register.html" target="_blank">📝账号注册</a>
+        <a href="https://files.pioneer2.net/Ephinea_PSOBB_Installer.exe">⬇️客户端下载地址</a>
+        <a href="/ime.html" target="_blank">⌨️中文输入法</a>
+        <a href="/saveaccount.html" target="_blank">💾游戏账号保存</a>
+        <a href="/localized.html" target="_blank">🇨🇳汉化</a>
+        <a href="/crash.html" target="_blank">⚡关于闪退</a>
+        <a href="/timezone.html" target="_blank">🌐时区问题</a>
+        <a href="/discord.html" target="_blank">💬Discord</a>
+        <a href="/acronym.html" target="_blank">🔤常见英文缩写词</a>
+    </div>
+
+</div>
+</body>
+
+</html>
