@@ -226,11 +226,11 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 #### – 夺回
 
-* Lost SHOCK GUNGNIR – by GuardianGirth/Lee
-* Lost RIOT RAYGUN – by GuardianGirth/Lee
-* Lost DEVIL’S SCEPTER – by GuardianGirth/Lee
-* Lost CHAOS CALIBUR – by GuardianGirth/Yata
-* Lost HEART BREAKER – by GuardianGirth/Yata
+* ~~Lost SHOCK GUNGNIR – by GuardianGirth/Lee~~
+* ~~Lost RIOT RAYGUN – by GuardianGirth/Lee~~
+* ~~Lost DEVIL’S SCEPTER – by GuardianGirth/Lee~~
+* ~~Lost CHAOS CALIBUR – by GuardianGirth/Yata~~
+* ~~Lost HEART BREAKER – by GuardianGirth/Yata~~
 * Revisiting Darkness – by Ilitsa/RikaPSO
 
 #### – 塔
@@ -257,7 +257,7 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 ### Episode 4
 #### – 夺回
 
-*  Lost MASTER’S BLASTER – by GuardianGirth/Yata
+* ~~Lost MASTER’S BLASTER – by GuardianGirth/Yata~~
 
 #### – 活动
 
