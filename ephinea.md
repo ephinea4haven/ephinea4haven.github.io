@@ -252,7 +252,7 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 #### – 单人
 
 * A New Hope – by Cry0
-* Knight of Coral Advent – by Namakemono</li>
+* Knight of Coral Advent – by Namakemono
 
 ### Episode 4
 #### – 夺回
