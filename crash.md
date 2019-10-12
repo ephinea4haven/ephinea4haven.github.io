@@ -31,7 +31,7 @@
 
 # 全屏游戏神器
 使用游戏本身自带的全屏设置时，经常会被其他程序弹出的小窗口意外丢失渲染而crash。
-这里推荐一款全屏神器`BorderlessGaming` ![BorderlessGaming](https://github.com/Codeusa/Borderless-Gaming/releases/download/9.5.6/BorderlessGaming9.5.6_admin_setup.exe)
+这里推荐一款全屏神器[BorderlessGaming](https://github.com/Codeusa/Borderless-Gaming/releases/download/9.5.6/BorderlessGaming9.5.6_admin_setup.exe)
 此程序完全修复了上面的问题!
 
 
