@@ -3,4 +3,7 @@
 
 ![验证码](./static/img/ephinea_reg.png)
   [微软邮箱注册地址](https://signup.live.com/?lic=1)  
+  地址：https://signup.live.com/?lic=1  
+  注册个微软邮箱有那么难么...  
+  温馨提示: 记得注册完，打开邮箱  
   `推荐使用微软邮箱，申请完邮箱需登录一次，否者可能收不到邮件。请注意邀请邮件缺省识别为垃圾邮件。`  
