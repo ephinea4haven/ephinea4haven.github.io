@@ -103,7 +103,10 @@ function getBeatPeriod(start, end, even) {
     raw = pad0(start, 100) + ' ~ ' + pad0(end, 100) + ' : ' + raw;
 
     if (even) {
+        $('#hp-span').css('color', 'green')
         return '<span style="color: #47a447; ">' + raw + '</span>'
+    }else{
+        $('#hp-span').css('color', '')
     }
 
     return raw;
