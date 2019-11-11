@@ -46,7 +46,7 @@ function GetInternetTime() {
         }
         beats = '<span style="color: #47a447; font-weight: bolder">' + '@' + beats + '</span>'
 
-        $('#hp-span').css('color', 'green');
+        $('#hp-span').css({'color':'green','font-weight': 'bold'});
     } else {
         beats = '<span style="font-weight: bolder">@' + beats + '</span>'
 
