@@ -1,43 +1,279 @@
-Rambling May, Guardianna, Holy Ray, and Asteron Belt were temporarily made more common in exchange for having variable hit instead of a static 50 Hit, and Daylight Scar was made 30 Hit while retaining its rarity.
+**2018年圣诞任务**
 
-About eight hours later, Rambling May, Guardianna, Holy Ray, and Asteron Belt have all been reverted to being 50 hit guaranteed in exchange for being slightly rarer than they previously were. Daylight Scar remains at 30 hit, but is now more common than it previously was.
+**则规:**
 
-This is how the Present list should remain for the rest of the event, but it still mostly lies outside of my control. I offer my deepest apologies to anybody who opened Presents in the timeframe that the old nerf was in effect.
+基本同2017。
 
-You may find posts related to this here:
-Initial nerf post
-Reversion post
-------------------------------------------------------------------------------
-Hey all. Matt isn't around to make a proper thread yet, so here's a filler thread! Matt can either kill it and make a proper one later or he can just hijack this one. YOUR CHOICE MATT
+**变化的内容如下:**
 
-Welcome to Christmas 2018! This time, I personally ruined it. Many of the mechanics are similar to 2017, so if you want to brush up on that, check out our thread from last year: https://www.pioneer2.net/community/threads/ephinea-christmas-2017.9136/
+- 圣诞礼品更加丰富了，但为PSO社区的稳定健康的发展，暂时不会透露太多的稀有掉落，所以不废话，大家一起去找吧。
 
-There are some changes this year, though:
+- 可堆叠的圣诞礼品，如:光子微晶，可一次掉落一坨(Photon Drop * 3)，所以煤炭(Coal)更有价值。
+  如果玩累了**活动任务「Christmas Fiasco」**，可以试试收集煤炭(Coal)。
 
-- The item list is a bit (lot) larger now, in an attempt to avoid printing too many powerful items and totally tank the economy. There's a mixture of old and new items to find, so.. go find things! Yeah!!!!! HELP I DIDN'T PLAN THIS OP OUT
-- Stackable items, such as Photon Drops, can drop in larger stacks than just one at a time, so if you get lucky on a roll you could get multiple Photon Drops at a time. Because of this, Coal from presents is far more valuable, so you don't have to exclusively play Fiasco if you don't want to!
-- Many presents now come with a variable chance of hit instead of being a static amount of hit, so you could hit it big and get something with upwards of 60 hit!
+- 很多圣诞礼品有多个H而不是固定的，所以运气好的话，可以获得H60+的。。。
 
-Anyway, here's a partial list of presents that will be filled out as needed. As you find items, the list will be filled out so everyone knows what's available!
-If something drops in multiple difficulties, it will be filled out for all difficulties it drops in.
-Items with variable hit will be denoted as such, items with static hit will have their specific hit listed.
-Stackable items will be shown ahead of time in order to prevent tragedy. I have NO IDEA what metric was used to show other things so its going to be really barren at first!!!!
+PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡笔可以。
 
+**普通:**
 
-Remember that presents do not drop from Rappies that are scared away, nor do they drop from boxes. Rappies that are defeated normally will still drop presents, though.
+**Common:**
 
-Normal:
-Spoiler
-Hard:
-Spoiler
-Very Hard:
-Spoiler
-Ultimate:
-Spoiler
+Coal
 
-HAVE FUN
+HP Material
 
-sorry for ruining christmas
+TP Material
 
+Lollipop
 
-send help
+Disk Vol. 20 `[The Party Must Go On]`
+
+Bunny Ears
+
+Cat Ears
+
+**Fairly Common:**
+
+Christmas Present (mag cell box)
+
+**Uncommon:**
+
+Photon Drop
+
+**困难:**
+
+Common
+
+Coal x3
+
+HP Material
+
+TP Material
+
+Lollipop
+
+Disk Vol. 20 [The Party Must Go On]
+
+Bunny Ears
+
+Cat Ears
+
+Fairly Common
+
+Photon Drop
+
+Christmas Present (mag cell box)
+
+Toy Hammer
+
+Samba Maracas
+
+Chameleon Scythe
+
+Harisen Battle Fan
+
+Crazy Tune
+
+???(2018年没有找到。。。)
+
+Akiko's Wok
+
+Broom
+
+**极难:**
+
+**Common:**
+
+Coal x5
+
+HP Material
+
+TP Material
+
+Luck Material
+
+Lollipop
+
+Disk Vol. 20 [The Party Must Go On]
+
+Bunny Ears
+
+Cat Ears
+
+**Fairly Common:**
+
+Photon Drop
+
+Christmas Present (mag cell box)
+
+Samba Maracas
+
+Toy Hammer
+
+Chameleon Scythe
+
+Harisen Battle Fan
+
+Crazy Tune
+
+???(2018年没有找到。。。)
+
+Akiko's Wok
+
+Broom
+
+**Uncommon**
+
+HP Material x2
+
+TP Material x2
+
+Luck Material x2
+
+Photon Crystal
+
+Item Ticket
+
+Daisy Chain
+
+**Rare**
+
+Last Swan
+
+Master Raven
+
+**极限:**
+
+**Common**
+
+Coal x10
+
+Photon Drop
+
+HP Material x2
+
+TP Material x2
+
+Luck Material
+
+**Uncommon**
+
+HP Material x5
+
+TP Material x3
+
+Luck Material x3
+
+Frozen Shooter [多种H]
+
+Monkey King Bar [多种H]
+
+Spread Needle [多种H]
+
+Tyrell's Parasol [多种H]
+
+Girasole [多种H]
+
+Slicer of Fanatic [多种H]
+
+Daisy Chain [多种H]
+
+Crazy Tune [多种H]
+
+Samba Maracas [多种H]
+
+Toy Hammer [多种H]
+
+Item Ticket
+
+Halloween Cookie
+
+Photon Drop x3
+
+Photon Crystal
+
+Magic Stone "Iritista"
+
+Charge Type/GU Hand [40 Hit]
+
+Charge TypeGU/Mech [35 Hit]
+
+Charge TypeME/Mech [40 Hit]
+
+Charge TypeSH/Shot [40 Hit]
+
+Laconium Axe [60 hit]
+
+M&A60 Vise [50 Hit]
+
+Anti-Light Ring
+
+Spirit TypeSW/J-Sword [30 Hit]
+
+Berserk TypeKN/Claw [50 Hit]
+
+**Fairly Rare:**
+
+Luck Material x10
+
+Last Swan
+
+Master Raven
+
+Yasha [多种H]
+
+Pan Arm's Blade [40 Hit]
+
+G-Assassin's Sabers [40 Hit]
+
+S-Beat's Blade, [40 Hit]
+
+Anti-Dark Ring
+
+**Rare:**
+
+Rambling May [50 Hit]
+
+Guardianna [50 Hit]
+
+Holy Ray [50 Hit]
+
+Asteron Belt [50 Hit]
+
+Lavis Cannon [多种H]
+
+Hell Striker [85 Hit]
+
+Demon's Club [85 Hit]
+
+Charge Scepter [85 Hit]
+
+Limiter
+
+Photon Sphere
+
+Bringer's Rifle [50 Hit]
+
+Baranz Launcher [50 Hit]
+
+V502
+
+Daylight Scar [30 hit]
+
+**Very Rare:**
+
+Photon Sphere x3
+
+Vjaya [75 hit]
+
+Lame d'Argent [30 hit]
+
+Heaven Striker [30 hit]
+
+Charge Vulcan [75 hit]
+
+Charge Calibur [75 hit]
+
+Berserk Arms [75 hit]
+
