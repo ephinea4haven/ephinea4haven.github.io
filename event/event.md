@@ -6,4 +6,4 @@
 
 [2016圣诞活动](/event/christmas2016.html)
 
-[2016圣诞活动](/event/christmas2015.html)
+[2015圣诞活动](/event/christmas2015.html)
