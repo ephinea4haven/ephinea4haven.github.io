@@ -17,7 +17,7 @@ PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡�
 
 **普通难度:**
 
-**Common:**
+**普通:**
 
 Coal
 
@@ -33,17 +33,17 @@ Bunny Ears
 
 Cat Ears
 
-**Fairly Common:**
+**稍微普通:**
 
 Christmas Present (mag cell box)
 
-**Uncommon:**
+**不常见:**
 
 Photon Drop
 
 **困难难度:**
 
-Common
+**普通**
 
 Coal x3
 
@@ -59,7 +59,7 @@ Bunny Ears
 
 Cat Ears
 
-Fairly Common
+**稍微普通**
 
 Photon Drop
 
@@ -83,7 +83,7 @@ Broom
 
 **极难难度:**
 
-**Common:**
+**普通:**
 
 Coal x5
 
@@ -101,7 +101,7 @@ Bunny Ears
 
 Cat Ears
 
-**Fairly Common:**
+**稍微普通:**
 
 Photon Drop
 
@@ -123,7 +123,7 @@ Akiko's Wok
 
 Broom
 
-**Uncommon**
+**不常见**
 
 HP Material x2
 
@@ -137,7 +137,7 @@ Item Ticket
 
 Daisy Chain
 
-**Rare**
+**稀有**
 
 Last Swan
 
@@ -145,7 +145,7 @@ Master Raven
 
 **极限难度:**
 
-**Common**
+**普通**
 
 Coal x10
 
@@ -157,7 +157,7 @@ TP Material x2
 
 Luck Material
 
-**Uncommon**
+**不常见**
 
 HP Material x5
 
@@ -213,7 +213,7 @@ Spirit TypeSW/J-Sword [30 Hit]
 
 Berserk TypeKN/Claw [50 Hit]
 
-**Fairly Rare:**
+**稍微稀有:**
 
 Luck Material x10
 
@@ -231,7 +231,7 @@ S-Beat's Blade, [40 Hit]
 
 Anti-Dark Ring
 
-**Rare:**
+**稀有:**
 
 Rambling May [50 Hit]
 
@@ -261,7 +261,7 @@ V502
 
 Daylight Scar [30 hit]
 
-**Very Rare:**
+**非常稀有:**
 
 Photon Sphere x3
 
