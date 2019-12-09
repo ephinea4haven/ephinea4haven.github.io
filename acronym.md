@@ -52,7 +52,7 @@ BM - Battle Mode 对战模式
 OPM - One Person Mode 单人模式  
 HC - Hardcore 硬核  
 SB - Sandbox Mode 沙盒模式  
-RER - Rare Enemy Rate 稀有怪出现率  
+RER - Rare Enemy Rate 稀有怪率  
 TA - Time Attack 缩时  
 WC - Water Closet 去洗手间  
 cc = change character 换角色  
