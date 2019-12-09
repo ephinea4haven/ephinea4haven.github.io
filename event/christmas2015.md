@@ -22,7 +22,7 @@ PS: 注意掉率**不受HBR和幸运值**影响.
 
 **普通难度:**
 
-Photon Drop
+光子微晶
 
 Photon Crystal
 
@@ -40,33 +40,33 @@ Disk Vol.12 "Fight inside the Spaceship"
 
 **困难难度:**
 
-Lollipop
+棒棒糖
 
-Flower Bouquet
+花束
 
-Chameleon Scythe
+变色龙之杖
 
-Samba Maracas
+桑巴沙锤
 
-Three Seals
+封印之盾
 
 ---
 
 **极难难度:**
 
-[败家] Mechgun `(0/0/0/0|60)`
+[败家] 机枪 `(0/0/0/0|60)`
 
-[败家] Autogun `(0/0/0/0|55)`
+[败家] 智能光枪 `(0/0/0/0|55)`
 
-[败家] Cutter `(0/0/0/0|55)`
+[败家] 回旋投刃 `(0/0/0/0|55)`
 
-[败家] Launcher `(0/0/0/0|50)`
+[败家] 强袭散弹枪 `(0/0/0/0|50)`
 
-M&A60 Vise `(0/0/0/0|50)`
+Ｍ＆Ａ６０ 老虎钳 `(0/0/0/0|50)`
 
-Dress Plate
+女装金属铠
 
-Wedding Dress
+婚纱礼服
 
 Item Ticket
 
@@ -74,51 +74,51 @@ Item Ticket
 
 **极限难度:**
 
-Zanba `(0/0/0/0|30)`
+斩马刀 `(0/0/0/0|30)`
 
-Monkey King Bar `(0/0/0/0|30)`
+如意金箍棒 `(0/0/0/0|30)`
 
-Frozen Shooter `(0/0/0/0|30)`
+极冻枪 `(0/0/0/0|30)`
 
-Slicer of Fanatic `(0/0/0/0|30)`
+狂信者的投刃 `(0/0/0/0|30)`
 
-Galatine `(0/0/0/0|0)`
+太阳之剑 `(0/0/0/0|0)`
 
 V502
 
 V801
 
-Red Merge
+火系增幅盾
 
-Resta Merge
+圣泉增幅盾
 
-Magic Stone "Iritistia"
+魔石「伊利提斯塔」
 
-Syncesta
+真空波石
 
-Rambling May `(0/0/0/0|0)`
+漫步少女 `(0/0/0/0|0)`
 
-Amitie's Memo
+艾米提的笔记
 
-Anti-Dark Ring
+御魔指环
 
-Anti-Light Ring
+御圣指环
 
 ---
 
 **稀有道具(限极限):**
 
-Lavis Cannon `(0/0/0/0|0)`
+圣剑「拉维斯·迦农」 `(0/0/0/0|0)`
 
-Heaven Punisher `(0/0/0/0|0)`
+圣枪「天罚」 `(0/0/0/0|0)`
 
-Sealed J-Sword `(0/0/0/0|0)`
+封印野太刀 `(0/0/0/0|0)`
 
-Handgun: Guld `(0/0/0/0|0)`
+小枪「伽尔德」 `(0/0/0/0|0)`
 
-Psycho Wand` (0/0/0/0|0)`
+圣杖「意念」` (0/0/0/0|0)`
 
-Prophets of Motav `(0/0/0/0|0)`
+魔法预言书 `(0/0/0/0|0)`
 
 
 PS: 以上所有掉落除了**稀有道具**之外都是相同的概率。
@@ -131,44 +131,44 @@ PS: 以上所有掉落除了**稀有道具**之外都是相同的概率。
 
 **奖励如下:**
 
-Photon Sphere
+光子结晶
 
-Dress Plate 4 Slot
+女装金属铠 4 Slot
 
-Wedding Dress 4 Slot
+婚纱礼服4 Slot
 
-Zanba 40 Hit
+斩马刀 40 Hit
 
-Monkey King Bar 40 Hit
+如意金箍棒 40 Hit
 
-Frozen Shooter 40 Hit
+极冻枪 40 Hit
 
-Slicer of Fanatic 40 Hit
+狂信者的投刃 40 Hit
 
-Galatine 40 Hit
+太阳之剑 40 Hit
 
 V502
 
 V801
 
-Red Merge
+火系增幅盾
 
-Resta Merge
+圣泉增幅盾
 
-Magic Stone "Iritista"
+魔石「伊利提斯塔」
 
-Syncesta
+真空波石
 
-Rambling May 40 Hit
+漫步少女 40 Hit
 
-Amitie's Memo
+艾米提的笔记
 
-Liberta Kit
+浮游炮细胞
 
-Anti-Dark Ring
+御魔指环
 
-Anti-Light Ring
+御圣指环
 
-Present
+圣诞礼品
 
 还有, 任何人排行版榜上有名的话, 不考虑排名, 都会获得**摩洛星人的心细胞**.

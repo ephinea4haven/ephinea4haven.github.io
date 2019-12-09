@@ -162,7 +162,7 @@ Heart of Morolian 摩洛星人的心
 Rappy's Beak 拉比鸟的嘴  
 Yahoo!'s engine Ｙａｈｏｏ！细胞  
 D-Photon Core Ｄ型因子核心  
-Liberta Kit 能量解放装置  
+Liberta Kit 浮游炮细胞  
 Cell of MAG 0503 玛古因子第０５０３  
 Cell of MAG 0504 玛古因子第０５０４  
 Cell of MAG 0505 玛古因子第０５０５  
