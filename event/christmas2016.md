@@ -35,7 +35,8 @@ PS: 注意掉率**不受HBR和幸运值**影响.
 桑巴沙锤 `(0/0/0/0|0)`
 
 
-困难:
+**困难:**
+
 <span style="color:red">圣泉增幅盾</span>
 
 <span style="color:red">道具票</span>
