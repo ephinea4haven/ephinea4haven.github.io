@@ -42,17 +42,39 @@ PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡�
 
     1煤炭.
 
-- 颜色: [绿]Green, [蓝]Blue, [紫]Purple, [红]Red, [黄]Yellow
-- 类型: [光剑]Saber, [光枪]Handgun, [匕首]Dagger, [步枪]Rifle, [投刃]Slicer, [散弹枪]Shot, [长刀]Partisan, [机枪]Mechgun
-- EX: [败血]BERSERK, [败魔]SPIRIT, [败家]CHARGE, [嗜血]GUSH, [魄之]GEIST, [全麻痹]ARREST, [混沌]CHAOS, [恶魔]DEMON'S, [地狱]HELL
+- 颜色: 
+    - [绿]Green
+    - [蓝]Blue
+    - [紫]Purple
+    - [红]Red
+    - [黄]Yellow
+- 类型: 
+    - [光剑]Saber
+    - [光枪]Handgun
+    - [匕首]Dagger
+    - [步枪]Rifle
+    - [投刃]Slicer
+    - [散弹枪]Shot
+    - [长刀]Partisan
+    - [机枪]Mechgun
+- EX: 
+    - [败血]BERSERK
+    - [败魔]SPIRIT
+    - [败家]CHARGE
+    - [嗜血]GUSH
+    - [魄之]GEIST
+    - [全麻痹]ARREST
+    - [混沌]CHAOS
+    - [恶魔]DEMON'S
+    - [地狱]HELL
 
 H概率`(55H/60H)`
 
-率: 60%/30%
-蓝: 40%/20%
-紫: 20%/10%
-红: 10%/5%
-黄: 4%/1%
+   - 绿: 60%/30%
+   - 蓝: 40%/20%
+   - 紫: 20%/10%
+   - 红: 10%/5%
+   - 黄: 4%/1%
 
 --- 
 
