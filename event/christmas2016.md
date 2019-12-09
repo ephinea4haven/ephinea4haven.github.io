@@ -24,59 +24,39 @@ PS: 注意掉率**不受HBR和幸运值**影响.
 
 **普通难度:**
 
-<span style="color:red">光子微晶</span>
-
-<span style="color:red">光子水晶</span>
-
-<span style="color:red">HP药</span>
-
-<span style="color:red">TP药</span>
-
-桑巴沙锤 `(0/0/0/0|0)`
+- <span style="color:red">光子微晶</span>
+- <span style="color:red">光子水晶</span>
+- <span style="color:red">HP药</span>
+- <span style="color:red">TP药</span>
+- 桑巴沙锤 `(0/0/0/0|0)`
 
 ---
 
 **困难难度:**
 
-<span style="color:red">圣泉增幅盾</span>
-
-<span style="color:red">道具票</span>
-
-<span style="color:red">艾欧诺亚细胞</span>
-
-封印之盾
-
-中冰增幅盾
-
-棒棒糖 `(0/0/0/0|39)`
+- <span style="color:red">圣泉增幅盾</span>
+- <span style="color:red">道具票</span>
+- <span style="color:red">艾欧诺亚细胞</span>
+- 封印之盾
+- 中冰增幅盾
+- 棒棒糖 `(0/0/0/0|39)`
 
 ---
 
 **极难难度:**
 
-<span style="color:red">[地狱]Handgun `(0/0/0/0|55)`</span>
-
-<span style="color:red">[暴雪]Autogun `(0/0/0/0|60)`</span>
-
-<span style="color:red">[败家]Cannon `(0/0/0/0|55)`</span>
-
-<span style="color:red">[败家]Sawcer `(0/0/0/0|55)`</span>
-
-<span style="color:red">女装金属铠</span>
-
-<span style="color:red">婚纱礼服</span>
-
-<span style="color:red">中雷增幅盾</span>
-
-巨芋叶 `(0/0/0/0|50)`
-
-拉克尼姆战斧 `(0/0/0/0|60)`
-
-消音枪 `(0/0/0/0|60)`
-
-十手 `(0/0/0/0|0)`
-
-[败家]TypeSL/Slicer` (0/0/0/0|25)` * 注意这个武器并没有投掷的效果?.
+- <span style="color:red">[地狱]Handgun `(0/0/0/0|55)`</span>
+- <span style="color:red">[暴雪]Autogun `(0/0/0/0|60)`</span>
+- <span style="color:red">[败家]Cannon `(0/0/0/0|55)`</span>
+- <span style="color:red">[败家]Sawcer `(0/0/0/0|55)`</span>
+- <span style="color:red">女装金属铠</span>
+- <span style="color:red">婚纱礼服</span>
+- <span style="color:red">中雷增幅盾</span>
+- 巨芋叶 `(0/0/0/0|50)`
+- 拉克尼姆战斧 `(0/0/0/0|60)`
+- 消音枪 `(0/0/0/0|60)`
+- 十手 `(0/0/0/0|0)`
+- [败家]TypeSL/Slicer` (0/0/0/0|25)` * 注意这个武器并没有投掷的效果?.
 
 ---
 
@@ -86,50 +66,31 @@ PS: 注意掉率**不受HBR和幸运值**影响.
 
 [败家] Assault `(0/0/0/0|60)`
 
-极冻枪`(0/0/0/0|30)`
-
-零度切刃 `(0/0/0/0|30)`
-
-维维安双刃 `(0/0/0/0|30)`
-
-十文字枪 `(0/0/0/0|30)`
-
-小枪「米拉」`(0/0/0/40|10)`
-
-飞镖 `(0/0/0/0|0)`
-
-源平
-
-V101
-
-限幅器
-
-真空波石
-
-艾米提的笔记
-
-摩洛星人的心
-
-[败家]  TypeGU/Hand `(0/0/0/0|40)`
-
-[败家]  TypeGU/Mechgun `(0/0/0/0|35)`
-
-[败家]  TypeME/Mechgun `(0/0/0/0|40)`
-
-[败家]  TypeSH/Shot `(0/0/0/0|40)`
-
-[魔鬼]  TypeDS/Rod `(0/0/0/0|30)`
+- 极冻枪`(0/0/0/0|30)`
+- 零度切刃 `(0/0/0/0|30)`
+- 维维安双刃 `(0/0/0/0|30)`
+- 十文字枪 `(0/0/0/0|30)`
+- 小枪「米拉」`(0/0/0/40|10)`
+- 飞镖 `(0/0/0/0|0)`
+- 源平
+- V101
+- 限幅器
+- 真空波石
+- 艾米提的笔记
+- 摩洛星人的心
+- [败家]  TypeGU/Hand `(0/0/0/0|40)`
+- [败家]  TypeGU/Mechgun `(0/0/0/0|35)`
+- [败家]  TypeME/Mechgun `(0/0/0/0|40)`
+- [败家]  TypeSH/Shot `(0/0/0/0|40)`
+- [魔鬼]  TypeDS/Rod `(0/0/0/0|30)`
 
 ---
 
 **稀有道具(限极限):**
 
-天堂冲击 `(0/0/0/0|20)`
-
-银月之剑 `(0/0/0/0|20)`
-
-晓之刻印 `(0/0/0/0|20)`
-
-光子结晶
+- 天堂冲击 `(0/0/0/0|20)`
+- 银月之剑 `(0/0/0/0|20)`
+- 晓之刻印 `(0/0/0/0|20)`
+- 光子结晶
 
 PS: 以上所有掉落除了**稀有道具**之外都是相同的概率。
