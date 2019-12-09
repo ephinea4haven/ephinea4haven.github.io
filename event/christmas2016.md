@@ -17,7 +17,7 @@ PS: 注意掉率**不受HBR和幸运值**影响.
 
 <span style="color:red">红色道具</span>会在**当前难度及更高难度**掉落.
 
-### <span style="color:red">圣诞活动礼品/span>
+### <span style="color:red">圣诞活动礼品</span>
 
 **普通难度:**
 
