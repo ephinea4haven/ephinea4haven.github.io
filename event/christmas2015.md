@@ -24,7 +24,7 @@ PS: 注意掉率**不受HBR和幸运值**影响.
 
 光子微晶
 
-Photon Crystal
+光子水晶
 
 Disk Vol.8 "Heart to Heart"
 
@@ -68,7 +68,7 @@ Disk Vol.12 "Fight inside the Spaceship"
 
 婚纱礼服
 
-Item Ticket
+道具票
 
 ---
 
