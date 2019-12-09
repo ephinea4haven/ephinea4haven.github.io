@@ -9,6 +9,8 @@ PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡�
 * 圣诞节期间经验、掉物率、掉宝率、稀有怪概率都会提升。
 * 煤炭和万圣节饼干全难度掉落。
 
+---
+
 **相关Buff时间:**
 
 * 2017-12-08 - 2017-12-09: +100% 经验
@@ -22,6 +24,8 @@ PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡�
 
 <span style="color:red">2017-12-24 - 2017-12-30: +100% 礼品掉率. `1/750`</span>
 
+--- 
+
 **煤炭`(Coal)`:**
 
 **活动任务「Christmas Fiasco」** 煤炭`(Coal)` 概率如下`(N / H / VH / U)`:
@@ -30,15 +34,17 @@ PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡�
 * Episode 2: 1 / 2 / 3 / 6
 * Episode 4: 1 / 1 / 2 / 4
 
+---
+
 **圣诞活动商店**
 
-**乞丐:**
+#### 乞丐:
 
-1煤炭.
+    1煤炭.
 
-颜色: [绿]Green, [蓝]Blue, [紫]Purple, [红]Red, [黄]Yellow
-类型: [光剑]Saber, [光枪]Handgun, [匕首]Dagger, [步枪]Rifle, [投刃]Slicer, [散弹枪]Shot, [长刀]Partisan, [机枪]Mechgun
-EX: [败血]BERSERK, [败魔]SPIRIT, [败家]CHARGE, [嗜血]GUSH, [魄之]GEIST, [全麻痹]ARREST, [混沌]CHAOS, [恶魔]DEMON'S, [地狱]HELL
+- 颜色: [绿]Green, [蓝]Blue, [紫]Purple, [红]Red, [黄]Yellow
+- 类型: [光剑]Saber, [光枪]Handgun, [匕首]Dagger, [步枪]Rifle, [投刃]Slicer, [散弹枪]Shot, [长刀]Partisan, [机枪]Mechgun
+- EX: [败血]BERSERK, [败魔]SPIRIT, [败家]CHARGE, [嗜血]GUSH, [魄之]GEIST, [全麻痹]ARREST, [混沌]CHAOS, [恶魔]DEMON'S, [地狱]HELL
 
 H概率`(55H/60H)`
 
@@ -48,9 +54,11 @@ H概率`(55H/60H)`
 红: 10%/5%
 黄: 4%/1%
 
-**猎人:**
+--- 
 
-煤炭换圣诞礼物。
+#### 猎人:
+
+    煤炭换圣诞礼物。
 
 **兑换规则:**
 
