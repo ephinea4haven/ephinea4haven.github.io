@@ -195,13 +195,13 @@ Photon Crystal
 
 Magic Stone "Iritista"
 
-Charge Type/GU Hand [40 Hit]
+[败家] Type/GU Hand [40 Hit]
 
-Charge TypeGU/Mech [35 Hit]
+[败家] TypeGU/Mech [35 Hit]
 
-Charge TypeME/Mech [40 Hit]
+[败家] TypeME/Mech [40 Hit]
 
-Charge TypeSH/Shot [40 Hit]
+[败家] TypeSH/Shot [40 Hit]
 
 Laconium Axe [60 hit]
 
@@ -209,9 +209,9 @@ M&A60 Vise [50 Hit]
 
 Anti-Light Ring
 
-Spirit TypeSW/J-Sword [30 Hit]
+[败魔] TypeSW/J-Sword [30 Hit]
 
-Berserk TypeKN/Claw [50 Hit]
+[败血] TypeKN/Claw [50 Hit]
 
 **稍微稀有:**
 
@@ -245,9 +245,9 @@ Lavis Cannon [多种H]
 
 Hell Striker [85 Hit]
 
-Demon's Club [85 Hit]
+[恶魔] Club [85 Hit]
 
-Charge Scepter [85 Hit]
+[败家] Scepter [85 Hit]
 
 Limiter
 
@@ -271,9 +271,9 @@ Lame d'Argent [30 hit]
 
 Heaven Striker [30 hit]
 
-Charge Vulcan [75 hit]
+[败家] Vulcan [75 hit]
 
-Charge Calibur [75 hit]
+[败家] Calibur [75 hit]
 
-Berserk Arms [75 hit]
+[败血] Arms [75 hit]
 

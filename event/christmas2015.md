@@ -54,13 +54,13 @@ Three Seals
 
 **极难难度:**
 
-Charge Mechgun `(0/0/0/0|60)`
+[败家] Mechgun `(0/0/0/0|60)`
 
-Charge Autogun `(0/0/0/0|55)`
+[败家] Autogun `(0/0/0/0|55)`
 
-Charge Cutter `(0/0/0/0|55)`
+[败家] Cutter `(0/0/0/0|55)`
 
-Charge Launcher `(0/0/0/0|50)`
+[败家] Launcher `(0/0/0/0|50)`
 
 M&A60 Vise `(0/0/0/0|50)`
 

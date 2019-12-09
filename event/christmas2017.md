@@ -40,7 +40,7 @@ Using Coal, you'll be able to trade for items in the new Christmas Event Shop, l
 
 颜色: Green, Blue, Purple, Red, Yellow
 类型: Saber, Handgun, Dagger, Rifle, Slicer, Shot, Partisan, Mechgun
-EX: Berserk, Spirit, Charge, Gush, Geist, Arrest, Chaos, Demon's, Hell
+EX: [败血], [败魔], [败家], Gush, Geist, Arrest, Chaos, Demon's, Hell
 
 H概率`(55H/60H)`
 
@@ -103,13 +103,13 @@ Chameleon Scythe
 
 Item Ticket
 
-Charge Assault `(0/0/0/0|60)`
+[败家] Assault `(0/0/0/0|60)`
 
-Charge Cutter `(0/0/0/0|55)`
+[败家] Cutter `(0/0/0/0|55)`
 
-Charge Launcher `(0/0/0/0|50)`
+[败家] Launcher `(0/0/0/0|50)`
 
-Charge Raygun `(0/0/0/0|50)`
+[败家] Raygun `(0/0/0/0|50)`
 
 Jitte
 
@@ -119,7 +119,7 @@ Heavenly/HP
 
 Valkyrie `(0/0/0/0|50)`
 
-Charge TypeSL/Slicer `(0/0/0/0|25)`
+[败家] TypeSL/Slicer `(0/0/0/0|25)`
 
 Daisy Chain `(0/0/0/0|30)`
 
@@ -169,13 +169,13 @@ Swordsman Lore
 
 Magic Stone "Iritista"
 
-Charge TypeGU/Hand `(0/0/0/0|40)`
+[败家] TypeGU/Hand `(0/0/0/0|40)`
 
-Charge TypeGU/Mechgun `(0/0/0/0|35)`
+[败家] TypeGU/Mechgun `(0/0/0/0|35)`
 
-Charge TypeME/Mechgun `(0/0/0/0|40)`
+[败家] TypeME/Mechgun `(0/0/0/0|40)`
 
-Charge TypeSH/Shot `(0/0/0/0|40)`
+[败家] TypeSH/Shot `(0/0/0/0|40)`
 
 Devil's TypeDS/Rod `(0/0/0/0|30)`
 
@@ -189,8 +189,8 @@ Photon Sphere
 
 **非常稀有**
 
-Charge Calibur `(0/0/0/0|75)`
+[败家] Calibur `(0/0/0/0|75)`
 
-Spirit Diska `(0/0/0/0|75)`
+[败魔] Diska `(0/0/0/0|75)`
 
-Berserk Arms `(0/0/0/0|75)`
+[败血] Arms `(0/0/0/0|75)`
