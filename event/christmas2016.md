@@ -1,85 +1,84 @@
-Ephinea's Christmas Event for 2016 has begun! This event will last from now (6/12/2016) to 9th Jan (9/1/2017).
+2016年圣诞活动从(2016-12-6)到(2017-1-9)结束.
 
-For the duration of this event, the quests "Christmas Fiasco" and Christmas Present drops will be making a return, similar to the event of last year, although the Presents now contain different items, some of them unique to this event.
+期间 **活动任务「Christmas Fiasco」**会掉落「Christmas Present」圣诞礼物，还有一些圣诞专属掉落
 
-The Christmas Presents will be dropping from all enemies, regardless of episode, quest or difficulty (free-roam is also able to drop Presents). The Presents will contain many desired items, but it's up to the community to discover what these items are by hunting for them and posting their findings here.
+所有的怪物、章节和难度都会掉落圣诞礼物，但箱子不会掉落。
 
-Note that presents will not drop from boxes.
-
-The drop rate for the presents are as follows:
+掉率如下:
 
 1P: 1/1500
 2P: 1/1770
 3P: 1/2088
 4P: 1/2463
 
-Please note that the rates are not affected by HBR or Luck boosts.
+注意掉率不受HBR和幸运值影响.
 
-Unlike last year, some items will be unique to their difficulty, meaning you won't be obtaining some of the junk Normal ~ Very Hard items in Ultimate anymore, although some items will be obtainable in the base difficulty and above.
+与2015年圣诞活动不同的是, 部分道具是限定难度的.
 
-Items in red will be obtainable from the difficulty it drops in and all above (i.e. if it drops in Hard, it will also drop in Very Hard and Ultimate).
+红色道具会在当前难度及更高难度掉落.
 
-The current findings are as follows:
+当前的圣诞奖品如下:
 
-Normal
-Photon Drop
-Photon Crystal
-HP Material
-TP Material
-Samba Maracas (0/0/0/0|0)
-Hard
-Resta Merge
-Item Ticket
-Heart of YN-0117
-Three Seals
-Gibarta Merge
-Lollipop (0/0/0/0|39)
-Very Hard
-Hell Handgun (0/0/0/0|55)
-Blizzard Autogun (0/0/0/0|60)
-Charge Cannon (0/0/0/0|55)
-Charge Sawcer (0/0/0/0|55)
-Dress Plate
-Wedding Dress
-Gizonde Merge
-Fatsia (0/0/0/0|50
-Laconium Axe (0/0/0/0|60)
-Supressed Gun (0/0/0/0|60)
-Jitte (0/0/0/0|0)
-Charge TypeSL/Slicer (0/0/0/0|25) * Please note that this weapon does not fire projectiles.
-Ultimate
-Gifoie Merge
-Charge Assault (0/0/0/0|60)
-Frozen Shooter (0/0/0/0|30)
-Zero Divide (0/0/0/0|30)
-Vivienne (0/0/0/0|30)
-Asteron Belt (0/0/0/0|30)
-Handgun: Milla (0/0/0/40|10)
-Kunai (0/0/0/0|0)
-Genpei
+普通:
+<span color=red>光子微晶</span>
+
+<span color=red>光子水晶</span>
+
+<span color=red>HP药</span>
+
+<span color=red>TP药</span>
+
+桑巴沙锤(0/0/0/0|0)
+
+
+困难:
+<span color=red>圣泉增幅盾</span>
+<span color=red>道具票</span>
+<span color=red>艾欧诺亚细胞</span>
+封印之盾
+中冰增幅盾
+棒棒糖 (0/0/0/0|39)
+
+
+极难:
+<span color=red>[地狱]Handgun (0/0/0/0|55)</span>
+<span color=red>[暴雪]Autogun (0/0/0/0|60)</span>
+<span color=red>[败家]Cannon (0/0/0/0|55)</span>
+<span color=red>[败家]Sawcer (0/0/0/0|55)</span>
+<span color=red>女装金属铠</span>
+<span color=red>婚纱礼服</span>
+<span color=red>中雷增幅盾</span>
+巨芋叶 (0/0/0/0|50
+拉克尼姆战斧 (0/0/0/0|60)
+消音枪 (0/0/0/0|60)
+十手 (0/0/0/0|0)
+[败家]TypeSL/Slicer(0/0/0/0|25) * 注意这个武器并没有投掷的效果?.
+
+极限:
+中火增幅盾
+[败家] Assault (0/0/0/0|60)
+极冻枪(0/0/0/0|30)
+零度切刃 (0/0/0/0|30)
+维维安双刃 (0/0/0/0|30)
+十文字枪 (0/0/0/0|30)
+小枪「米拉」(0/0/0/40|10)
+飞镖 (0/0/0/0|0)
+源平
 V101
-Limiter
-Syncesta
-Amitie's Memo
-Heart of Morolian
-Charge TypeGU/Hand (0/0/0/0|40)
-Charge TypeGU/Mechgun (0/0/0/0|35)
-Charge TypeME/Mechgun (0/0/0/0|40)
-Charge TypeSH/Shot (0/0/0/0|40)
-Devil's TypeDS/Rod (0/0/0/0|30)
-Special (you'll know when you get one of these -- Ultimate only)
-Heaven Striker (0/0/0/0|20)
-Lame D'argent (0/0/0/0|20)
-Daylight Scar (0/0/0/0|20)
-Photon Sphere
-All items have the same rate of being found, apart from items in the Special category.
+限幅器
+真空波石
+艾米提的笔记
+摩洛星人的心
+[败家]  TypeGU/Hand (0/0/0/0|40)
+[败家]  TypeGU/Mechgun (0/0/0/0|35)
+[败家]  TypeME/Mechgun (0/0/0/0|40)
+[败家]  TypeSH/Shot (0/0/0/0|40)
+[魔鬼]  TypeDS/Rod (0/0/0/0|30)
 
-When reporting your findings, I will fill in the difficulty for you incase it's one of the lower difficulty items.
+稀有道具(限极限)
+天堂冲击 (0/0/0/0|20)
+银月之剑 (0/0/0/0|20)
+晓之刻印 (0/0/0/0|20)
+光子结晶
 
----
-
-There's no kill counters or stretch goals in this event, everything is obtainable right now, so get hunting and find those precious items!
-
-If you have any questions, please don't hesitate to ask.
-
-Thanks for playing, and Happy Holidays!
+以上所有掉落除了稀有道具之外都是相同的概率。

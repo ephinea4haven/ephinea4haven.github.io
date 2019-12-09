@@ -157,7 +157,7 @@ Unused Item0 未使用Item01
 Dragon Scale 龙鳞  
 Heaven Striker Coat 天堂冲击的涂膜  
 Pioneer Parts 先驱者的部件  
-Amitie's Memo 艾米提的备忘录  
+Amitie's Memo 艾米提的笔记    
 Heart of Morolian 摩洛星人的心  
 Rappy's Beak 拉比鸟的嘴  
 Yahoo!'s engine Ｙａｈｏｏ！细胞  
@@ -881,15 +881,6 @@ UNION GUARD 公会盾
 UNION GUARD 公会盾  
 STINK SHIELD 腥臭盾  
 Black Gauntlet 黑色手套  
-GENPEI 源平  
-GENPEI 源平  
-GENPEI 源平  
-GENPEI 源平  
-GENPEI 源平  
-GENPEI 源平  
-GENPEI 源平  
-GENPEI 源平  
-GENPEI 源平  
 GENPEI 源平  
 Knight/Power 骑士级/攻击  
 General/Power 将军级/攻击  
