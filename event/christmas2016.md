@@ -1,6 +1,6 @@
 2016年圣诞活动从(2016-12-6)到(2017-1-9)结束.
 
-期间 **活动任务「Christmas Fiasco」**会掉落「Christmas Present」圣诞礼物，还有一些圣诞专属掉落
+期间 **活动任务「Christmas Fiasco」**会掉落「Christmas Present」圣诞礼物。
 
 所有的怪物、章节和难度都会掉落圣诞礼物，但箱子不会掉落。
 
@@ -32,9 +32,9 @@
 
 
 困难:
-<span color=red>圣泉增幅盾</span>
-<span color=red>道具票</span>
-<span color=red>艾欧诺亚细胞</span>
+<span style="color:red">圣泉增幅盾</span>
+<span style="color:red">道具票</span>
+<span style="color:red">艾欧诺亚细胞</span>
 封印之盾
 中冰增幅盾
 棒棒糖 (0/0/0/0|39)
