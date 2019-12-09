@@ -17,7 +17,7 @@ PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡�
 
 ---
 
-### <span style="color:red">圣诞活动礼品/span>
+### <span style="color:red">圣诞活动礼品</span>
 
 **普通难度:**
 
