@@ -21,13 +21,13 @@
 
 **普通:**
 
-<span color=red>光子微晶</span>
+<span style="color:red">光子微晶</span>
 
-<span color=red>光子水晶</span>
+<span style="color:red">光子水晶</span>
 
-<span color=red>HP药</span>
+<span style="color:red">HP药</span>
 
-<span color=red>TP药</span>
+<span style="color:red">TP药</span>
 
 桑巴沙锤 `(0/0/0/0|0)`
 
@@ -48,19 +48,19 @@
 
 **极难:**
 
-<span color=red>[地狱]Handgun `(0/0/0/0|55)`</span>
+<span style="color:red">[地狱]Handgun `(0/0/0/0|55)`</span>
 
-<span color=red>[暴雪]Autogun `(0/0/0/0|60)`</span>
+<span style="color:red">[暴雪]Autogun `(0/0/0/0|60)`</span>
 
-<span color=red>[败家]Cannon `(0/0/0/0|55)`</span>
+<span style="color:red">[败家]Cannon `(0/0/0/0|55)`</span>
 
-<span color=red>[败家]Sawcer `(0/0/0/0|55)`</span>
+<span style="color:red">[败家]Sawcer `(0/0/0/0|55)`</span>
 
-<span color=red>女装金属铠</span>
+<span style="color:red">女装金属铠</span>
 
-<span color=red>婚纱礼服</span>
+<span style="color:red">婚纱礼服</span>
 
-<span color=red>中雷增幅盾</span>
+<span style="color:red">中雷增幅盾</span>
 
 巨芋叶 `(0/0/0/0|50)`
 
