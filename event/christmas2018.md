@@ -15,7 +15,7 @@
 
 PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡笔可以。
 
-**普通:**
+**普通难度:**
 
 **Common:**
 
@@ -41,7 +41,7 @@ Christmas Present (mag cell box)
 
 Photon Drop
 
-**困难:**
+**困难难度:**
 
 Common
 
@@ -81,7 +81,7 @@ Akiko's Wok
 
 Broom
 
-**极难:**
+**极难难度:**
 
 **Common:**
 
@@ -143,7 +143,7 @@ Last Swan
 
 Master Raven
 
-**极限:**
+**极限难度:**
 
 **Common**
 
