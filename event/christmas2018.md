@@ -21,27 +21,27 @@ PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡�
 
 **普通:**
 
-Coal
+煤炭
 
-HP Material
+ＨＰ药
 
-TP Material
+ＴＰ药 
 
-Lollipop
+棒棒糖
 
 Disk Vol. 20 `[The Party Must Go On]`
 
-Bunny Ears
+兔耳发饰
 
-Cat Ears
+猫耳发饰
 
 **稍微普通:**
 
-Christmas Present (mag cell box)
+圣诞礼品(mag细胞)
 
 **不常见:**
 
-Photon Drop
+光子微晶
 
 ---
 
@@ -49,41 +49,41 @@ Photon Drop
 
 **普通**
 
-Coal x3
+煤炭 x3
 
-HP Material
+ＨＰ药
 
-TP Material
+ＴＰ药 
 
-Lollipop
+棒棒糖
 
 Disk Vol. 20 [The Party Must Go On]
 
-Bunny Ears
+兔耳发饰
 
-Cat Ears
+猫耳发饰
 
 **稍微普通**
 
-Photon Drop
+光子微晶
 
-Christmas Present (mag cell box)
+圣诞礼品(mag细胞)
 
-Toy Hammer
+玩具锤
 
-Samba Maracas
+桑巴沙锤
 
-Chameleon Scythe
+变色龙之杖
 
-Harisen Battle Fan
+纸扇
 
-Crazy Tune
+疯狂旋律
 
 ???(2018年没有找到。。。)
 
-Akiko's Wok
+秋子婶婶的中华锅
 
-Broom
+扫帚
 
 ---
 
@@ -91,63 +91,63 @@ Broom
 
 **普通:**
 
-Coal x5
+煤炭 x5
 
-HP Material
+ＨＰ药
 
-TP Material
+ＴＰ药 
 
-Luck Material
+运之药
 
-Lollipop
+棒棒糖
 
 Disk Vol. 20 [The Party Must Go On]
 
-Bunny Ears
+兔耳发饰
 
-Cat Ears
+猫耳发饰
 
 **稍微普通:**
 
-Photon Drop
+光子微晶
 
-Christmas Present (mag cell box)
+圣诞礼品(mag细胞)
 
-Samba Maracas
+桑巴沙锤
 
-Toy Hammer
+玩具锤
 
-Chameleon Scythe
+变色龙之杖
 
-Harisen Battle Fan
+纸扇
 
-Crazy Tune
+疯狂旋律
 
 ???(2018年没有找到。。。)
 
-Akiko's Wok
+秋子婶婶的中华锅
 
-Broom
+扫帚
 
 **不常见**
 
-HP Material x2
+ＨＰ药 x2
 
-TP Material x2
+ＴＰ药  x2
 
-Luck Material x2
+运之药 x2
 
-Photon Crystal
+光子水晶
 
-Item Ticket
+道具票
 
-Daisy Chain
+雏菊之剑
 
 **稀有**
 
-Last Swan
+白鸟
 
-Master Raven
+乌鸦
 
 ---
 
@@ -155,53 +155,53 @@ Master Raven
 
 **普通**
 
-Coal x10
+煤炭 x10
 
-Photon Drop
+光子微晶
 
-HP Material x2
+ＨＰ药 x2
 
-TP Material x2
+ＴＰ药  x2
 
-Luck Material
+运之药
 
 **不常见**
 
-HP Material x5
+ＨＰ药 x5
 
-TP Material x3
+ＴＰ药  x3
 
-Luck Material x3
+运之药 x3
 
-Frozen Shooter [多种H]
+极冻枪 [多种H]
 
-Monkey King Bar [多种H]
+如意金箍棒 [多种H]
 
-Spread Needle [多种H]
+魔弹弓 [多种H]
 
-Tyrell's Parasol [多种H]
+总督赠送的遮阳伞 [多种H]
 
-Girasole [多种H]
+向日葵 [多种H]
 
 Slicer of Fanatic [多种H]
 
-Daisy Chain [多种H]
+雏菊之剑 [多种H]
 
-Crazy Tune [多种H]
+疯狂旋律 [多种H]
 
-Samba Maracas [多种H]
+桑巴沙锤 [多种H]
 
-Toy Hammer [多种H]
+玩具锤 [多种H]
 
-Item Ticket
+道具票
 
-Halloween Cookie
+万圣节饼干
 
-Photon Drop x3
+光子微晶 x3
 
-Photon Crystal
+光子水晶
 
-Magic Stone "Iritista"
+魔石「伊利提斯塔」
 
 [败家] Type/GU Hand [40 Hit]
 
@@ -211,11 +211,11 @@ Magic Stone "Iritista"
 
 [败家] TypeSH/Shot [40 Hit]
 
-Laconium Axe [60 hit]
+拉克尼姆战斧 [60 hit]
 
-M&A60 Vise [50 Hit]
+Ｍ＆Ａ６０ 老虎钳 [50 Hit]
 
-Anti-Light Ring
+御魔指环
 
 [败魔] TypeSW/J-Sword [30 Hit]
 
@@ -223,65 +223,65 @@ Anti-Light Ring
 
 **稍微稀有:**
 
-Luck Material x10
+运之药 x10
 
-Last Swan
+白鸟
 
-Master Raven
+乌鸦
 
-Yasha [多种H]
+夜叉 [多种H]
 
-Pan Arm's Blade [40 Hit]
+合体怪双刃 [40 Hit]
 
-G-Assassin's Sabers [40 Hit]
+巨螳螂双刀 [40 Hit]
 
-S-Beat's Blade, [40 Hit]
+蓝忍双刃[40 Hit]
 
-Anti-Dark Ring
+御魔指环
 
 **稀有:**
 
-Rambling May [50 Hit]
+漫步少女 [50 Hit]
 
-Guardianna [50 Hit]
+守护之扇 [50 Hit]
 
-Holy Ray [50 Hit]
+圣光枪 [50 Hit]
 
-Asteron Belt [50 Hit]
+十文字枪 [50 Hit]
 
-Lavis Cannon [多种H]
+圣剑「拉维斯·迦农」 [多种H]
 
-Hell Striker [85 Hit]
+[地狱] 贤者长杖 [85 Hit]
 
-[恶魔] Club [85 Hit]
+[恶魔] 权杖 [85 Hit]
 
-[败家] Scepter [85 Hit]
+[败家] 魔息杖 [85 Hit]
 
-Limiter
+限幅器
 
-Photon Sphere
+光子结晶
 
-Bringer's Rifle [50 Hit]
+人马来复枪 [50 Hit]
 
-Baranz Launcher [50 Hit]
+机甲堡垒导弹枪 [50 Hit]
 
 V502
 
-Daylight Scar [30 hit]
+晓之刻印 [30 hit]
 
 **非常稀有:**
 
-Photon Sphere x3
+光子结晶 x3
 
-Vjaya [75 hit]
+富豪长刀 [75 hit]
 
-Lame d'Argent [30 hit]
+银月之剑 [30 hit]
 
-Heaven Striker [30 hit]
+天堂冲击 [30 hit]
 
-[败家] Vulcan [75 hit]
+[败家] 音速机枪 [75 hit]
 
-[败家] Calibur [75 hit]
+[败家] 勇者大剑 [75 hit]
 
-[败血] Arms [75 hit]
+[败血] 军用散弹枪 [75 hit]
 

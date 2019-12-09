@@ -68,15 +68,15 @@ H概率`(55H/60H)`
 
 **普通**
 
-Photon Drop
+光子微晶
 
-Photon Crystal
+光子结晶
 
-HP Material
+ＨＰ药
 
-TP Material
+ＴＰ药
 
-Samba Maracas
+桑巴沙锤
 
 ---
 
@@ -84,19 +84,19 @@ Samba Maracas
 
 **普通**
 
-Photon Drop
+光子微晶
 
-Photon Crystal
+光子结晶
 
-Resta Merge
+圣泉增幅盾
 
-Item Ticket
+道具票
 
-Lollipop
+棒棒糖
 
-Flower Bouquet
+花束
 
-Chameleon Scythe
+变色龙之杖
 
 ---
 
@@ -104,35 +104,35 @@ Chameleon Scythe
 
 **普通**
 
-Item Ticket
+道具票
 
-[败家] Assault `(0/0/0/0|60)`
+[败家] Assault 扫射机枪 `(0/0/0/0|60)`
 
-[败家] Cutter `(0/0/0/0|55)`
+[败家] Cutter 回旋投刃`(0/0/0/0|55)`
 
-[败家] Launcher `(0/0/0/0|50)`
+[败家] Launcher 强袭散弹枪`(0/0/0/0|50)`
 
-[败家] Raygun `(0/0/0/0|50)`
+[败家] Raygun 原子光枪`(0/0/0/0|50)`
 
-Jitte
+十手 
 
-Heavenly/HP
+天堂级/ＨＰ
 
 **不常见**
 
-Valkyrie `(0/0/0/0|50)`
+瓦尔基里 `(0/0/0/0|50)`
 
 [败家] TypeSL/Slicer `(0/0/0/0|25)`
 
-Daisy Chain `(0/0/0/0|30)`
+雏菊之剑 `(0/0/0/0|30)`
 
-Rafoie Merge
+炎狱增幅盾
 
-M&A60 Vise `(0/0/0/0|50)`
+Ｍ＆Ａ６０ 老虎钳 `(0/0/0/0|50)`
 
-Laconium Axe `(0/0/0/0|60)`
+拉克尼姆战斧 `(0/0/0/0|60)`
 
-Kan'ei Tsu'ho
+宽永通宝
 
 ---
 
@@ -140,39 +140,39 @@ Kan'ei Tsu'ho
 
 **普通**
 
-Frozen Shooter `(0/0/0/0|30)`
+极冻枪 `(0/0/0/0|30)`
 
-Vivienne `(0/0/0/0|30)`
+维维安双刃 `(0/0/0/0|30)`
 
-Zanba `(0/0/0/0|30)`
+斩马刀 `(0/0/0/0|30)`
 
-Slicer of Fanatic `(0/0/0/0|30)`
+狂信者的投刃 `(0/0/0/0|30)`
 
-Zero Divide `(0/0/0/0|30)`
+零度切刃 `(0/0/0/0|30)`
 
-Kunai `(0/0/0/0|30)`
+飞镖 `(0/0/0/0|30)`
 
-Shouren `(0/0/0/0|30)`
+青莲 `(0/0/0/0|30)`
 
-Rabarta Merge
+极冰增幅盾
 
-Genpei
+源平
 
 V801
 
-Amitie's Memo
+艾米提的笔记
 
-Heart of Morolian
+摩洛星人的心
 
-Fatsia `(0/0/0/0|50)`
+巨芋叶 `(0/0/0/0|50)`
 
-Item Ticket
+道具票
 
 **不常见**
 
-Swordsman Lore
+剑士的心得
 
-Magic Stone "Iritista"
+魔石「伊利提斯塔」
 
 [败家] TypeGU/Hand `(0/0/0/0|40)`
 
@@ -182,20 +182,20 @@ Magic Stone "Iritista"
 
 [败家] TypeSH/Shot `(0/0/0/0|40)`
 
-Devil's TypeDS/Rod `(0/0/0/0|30)`
+[魔鬼] TypeDS/Rod `(0/0/0/0|30)`
 
 **稀有**
 
-Lavis Cannon `(0/0/0/0|30)`
+圣剑「拉维斯·迦农」 `(0/0/0/0|30)`
 
-Daylight Scar `(0/0/0/0|30)`
+晓之刻印 `(0/0/0/0|30)`
 
-Photon Sphere
+光子结晶
 
 **非常稀有**
 
-[败家] Calibur `(0/0/0/0|75)`
+[败家] 勇者大剑 `(0/0/0/0|75)`
 
-[败魔] Diska `(0/0/0/0|75)`
+[败魔] 彗星投刃 `(0/0/0/0|75)`
 
-[败血] Arms `(0/0/0/0|75)`
+[败血] 军用散弹枪 `(0/0/0/0|75)`
