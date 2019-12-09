@@ -1,6 +1,7 @@
 **2017年圣诞活动从`(2016-12-8)`到`(2017-1-8)`结束.**
 
 **所有的怪物、章节和难度都会掉落圣诞礼物，但箱子不会掉落， 掉率固定为`1/1,500`**
+
 PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡笔可以。
 
 * 期间 **活动任务「Christmas Fiasco」**会掉落「Christmas Present」圣诞礼物。
@@ -23,9 +24,6 @@ PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡�
 
 **煤炭`(Coal)`:**
 
-Coal is a Christmas-exclusive currency obtainable from clearing Christmas Fiasco and also obtainable as a common item from presents. 
-Using Coal, you'll be able to trade for items in the new Christmas Event Shop, located in Episode 1's Shop category.
-
 **活动任务「Christmas Fiasco」** 煤炭`(Coal)` 概率如下`(N / H / VH / U)`:
 
 * Episode 1: 1 / 1 / 2 / 4
@@ -38,9 +36,9 @@ Using Coal, you'll be able to trade for items in the new Christmas Event Shop, l
 
 1煤炭.
 
-颜色: Green, Blue, Purple, Red, Yellow
-类型: Saber, Handgun, Dagger, Rifle, Slicer, Shot, Partisan, Mechgun
-EX: [败血], [败魔], [败家], Gush, Geist, Arrest, Chaos, Demon's, Hell
+颜色: [绿]Green, [蓝]Blue, [紫]Purple, [红]Red, [黄]Yellow
+类型: [光剑]Saber, [光枪]Handgun, [匕首]Dagger, [步枪]Rifle, [投刃]Slicer, [散弹枪]Shot, [长刀]Partisan, [机枪]Mechgun
+EX: [败血]BERSERK, [败魔]SPIRIT, [败家]CHARGE, [嗜血]GUSH, [魄之]GEIST, [全麻痹]ARREST, [混沌]CHAOS, [恶魔]DEMON'S, [地狱]HELL
 
 H概率`(55H/60H)`
 
@@ -56,14 +54,13 @@ H概率`(55H/60H)`
 
 **兑换规则:**
 
-普通难度-礼品: 5 Coal
+普通难度-礼品: 5煤炭
 
-困难难度-礼品: 8 Coal
+困难难度-礼品: 8煤炭
 
-极难难度-礼品: 12 Coal
+极难难度-礼品: 12煤炭
 
-极限难度-礼品: 40 Coal
-
+极限难度-礼品: 40煤炭
 
 **普通难度:**
 
