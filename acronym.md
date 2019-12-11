@@ -155,7 +155,7 @@ VA:Lafu - Virus Armor: Lafuteria  寄生铠
 SSS - Standstill Shield 叹息之墙  
 3S - Three Seals 33盾 
 HU/RA/FO Wall - Hunter/Ranger/Force Wall 职业盾  
-ALR - Anti-Light Ring  御圣手镯
+ALR - Anti-Light Ring  御圣手镯  
 ADR - Anti-Dark Ring  御魔手镯  
 RR - Red Ring 红手镯
   
