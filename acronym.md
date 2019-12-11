@@ -157,6 +157,7 @@ SSS - Standstill Shield 叹息之墙
 HU/RA/FO Wall - Hunter/Ranger/Force Wall 职业盾  
 ALR - Anti-Light Ring  御圣手镯
 ADR - Anti-Dark Ring  御魔手镯
+RR - Red Ring 红手镯
   
 ## Units: 插件  
 G/[*] = God/[*] (* is the type of unit) 天神级插件  
