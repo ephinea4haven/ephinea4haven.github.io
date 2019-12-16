@@ -46,7 +46,7 @@
 
 --- 
 
-#### <span style color=red>极限难度-独占掉落</span>
+#### <span style="color=red">极限难度-独占掉落</span>
 
 ##### 普通
 * ???
