@@ -11,6 +11,13 @@ function buff() {
         var id = $(this).attr("id");
         if (offset == id) {
             $(this).css({'color': 'red','font-weight': 'bolder'});
+
+            var current = now.getTime();
+            var christEventEndDate = new Date(2020, 1 - 1, 13);
+            if (current <= christEventEndDate) {
+                var matches = $(this).val().match(/\d+/g);
+                $(this).val($(this).val().replace(/\d+/,(+matches[0]) * 2));
+            }
         }
         if ((+offset + 1) % 4 == id) {
             $(this).css({'color': 'green','font-weight': 'bolder'});
