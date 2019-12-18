@@ -76,9 +76,9 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 **没什么好解释的。**
 
 
-    经验值: 100%  
-    掉宝率: 100%  
-    稀有怪率: 100%  
+* 经验值: 100%  
+* 掉宝率: 100%  
+* 稀有怪率: 100%  
 
 ---
 
@@ -88,9 +88,9 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 娃娃相对来说非常珍贵，此模式掉落有buff，具体参数如下:**
 
 
-    经验值: 200%  
-    掉宝率: 130%  
-    稀有怪率: 200%
+* 经验值: 200%  
+* 掉宝率: 130%  
+* 稀有怪率: 200%
     
 
 ---    
@@ -101,14 +101,14 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 **命令:**
 
-    /addmeseta – 提款机  
-    /item – 造物  
-    /levelup – 升级  
-    /redbox – 红盒模式  
-    /srank – 获取cm模式的s武  
-    /warpall – 队长带大家飞到任意区域  
-    /warpme – 自己飞到任意区域  
-    /wipecmode – 清理cm模式数据  
+* /addmeseta – 提款机  
+* /item – 造物  
+* /levelup – 升级  
+* /redbox – 红盒模式  
+* /srank – 获取cm模式的s武  
+* /warpall – 队长带大家飞到任意区域  
+* /warpme – 自己飞到任意区域  
+* /wipecmode – 清理cm模式数据  
 
 ---
 
