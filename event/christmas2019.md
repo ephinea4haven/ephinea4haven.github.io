@@ -5,6 +5,9 @@
        href="//shang.qq.com/wpa/qunwpa?idkey=95996b984b761d905d2d05e0ce765fa9ff720cfa9e6dbcde50fd179cd8867808">点击加QQ群: 956652396</a>
 </div>
 
+[Ephinea介绍](https://ephinea4haven.github.io/ephinea.html)
+[Ephinea国内wiki](https://ephinea4haven.github.io)
+
 ### 2019年圣诞任务从`(2019-12-16)`到`(2020-01-13)`结束
 
 **国内活动开始时间为: <span style="color:green">2019-12-18T02:30:00</span>**
