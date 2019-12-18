@@ -4,7 +4,7 @@
 
 **国内活动开始时间为: <span style="color:green">2019-12-18T02:30:00</span>**
 
-- 圣诞礼品掉率`1/1500`
+- 圣诞礼品掉率: `1/1500`
 - <span style="color:red">活动期间`煤炭`双倍(圣诞活动延迟补偿)。</span>
 - <span style="color:red">活动期间`RBS(周提升系统)`双倍。</span>
 
