@@ -14,7 +14,7 @@ function buff() {
 
             var current = now.getTime();
             var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
-            if (current <= christEventEndDate) {
+            if (+current <= +christEventEndDate) {
                 var matches = $(this).text().match(/\d+/g);
                 $(this).val($(this).text().replace(/\d+/,(+matches[0]) * 2));
             }
