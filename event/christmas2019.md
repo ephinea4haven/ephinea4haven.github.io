@@ -153,6 +153,7 @@
 * ???
 
 ### <span style="color:red">圣诞活动商店</span>
+`商店坐标: EP1 -> Shop -> Christmas Event Shop`
 
 #### 乞丐:
 
