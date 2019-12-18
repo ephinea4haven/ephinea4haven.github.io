@@ -13,9 +13,9 @@
 
 **国内活动开始时间为: <span style="color:green">2019-12-18T02:30:00</span>**
 
-- 圣诞礼品掉率: `1/1500`
-- <span style="color:red">活动期间`煤炭`双倍(圣诞活动延迟补偿)。</span>
-- <span style="color:red">活动期间`RBS(周提升系统)`双倍。</span>
+- <span style="font-weight: bolder;color:red">圣诞礼品掉率: `1/1500` </span>
+- <span style="font-weight: bolder;color:red">活动期间`煤炭`双倍(圣诞活动延迟补偿)。</span>
+- <span style="font-weight: bolder;color:red">活动期间`RBS(周提升系统)`双倍。</span>
 
 稀有礼品相比于去年**更难...掉落**，此次活动也增加了一些**新的礼品**, 
 整体概率相比去年**容易的更容易、难的不说了。。。**，不废话，刷吧！
