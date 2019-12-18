@@ -1,8 +1,12 @@
 [账号注册](https://ephinea.pioneer2.net/register)
 
+** 邮箱推荐使用: 微软的outlook,gmail等国际邮箱。** 
+
 注册过程中存在**reCAPTCHA**，需要有科学上网才能看到!!!
 
 ![验证码](./static/img/ephinea_reg.png)
+
+---
 
   * [邮箱注册地址](https://signup.live.com)  
     
