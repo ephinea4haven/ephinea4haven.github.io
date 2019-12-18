@@ -28,7 +28,7 @@ PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡�
 
 **煤炭`(Coal)`:**
 
-**活动任务「Christmas Fiasco」** 煤炭`(Coal)` 概率如下`(N / H / VH / U)`:
+**活动任务「Christmas Fiasco」** 煤炭`(Coal)` 分难度赠送`(N / H / VH / U)`:
 
 * Episode 1: 1 / 1 / 2 / 4
 * Episode 2: 1 / 2 / 3 / 6
