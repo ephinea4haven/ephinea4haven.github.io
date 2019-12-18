@@ -206,7 +206,7 @@
 
 ---
 
-[官方活动地址](https://dwz.cn/FJTi6s8V)
+[官方活动地址](https://www.pioneer2.net/community/threads/ephinea-christmas-2019.16501/)
 
 
 
