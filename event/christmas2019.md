@@ -172,7 +172,7 @@
 
    煤炭换圣诞礼物。
    
-   [煤炭兑换菜单](../static/img/coalexchange.png)
+   ![煤炭兑换菜单](../static/img/coalexchange.png)
 
 **兑换规则:**
 
