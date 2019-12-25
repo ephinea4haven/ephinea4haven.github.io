@@ -66,9 +66,9 @@
 
 * 摩洛星人的心
 * 御圣手镯
-* [地狱] Striker [85 hit]
-* [恶魔] Club [85 hit]
-* [削金] Scepter [85 hit]
+* [地狱] Striker(贤者长杖) [85 hit]
+* [恶魔] Club(权杖) [85 hit]
+* [削金] Scepter(魔息杖) [85 hit]
 * [削金] TypeGU/Hand [40 hit]
 * [削金] TypeGU/Mech [35 hit]
 * [削金] TypeSH/Shot [40 hit]
