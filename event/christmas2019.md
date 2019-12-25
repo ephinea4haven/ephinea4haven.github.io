@@ -21,7 +21,7 @@
 整体概率相比去年**容易的更容易、难的不说了。。。**，不废话，刷吧！
 
 ### 奖品列表
- `???` 圣诞礼品需要猎人们一起寻找!
+ `???` 圣诞礼品需要猎人们一起挖掘，然后去[圣诞活动贴子](https://www.pioneer2.net/community/threads/ephinea-christmas-2019.16501)上报!
  
 #### 全难度普通礼品
  多种H: 最低15，最高60
@@ -189,7 +189,7 @@
 
 ---
 
-[官方活动地址](https://www.pioneer2.net/community/threads/ephinea-christmas-2019.16501/)
+
 
 
 
