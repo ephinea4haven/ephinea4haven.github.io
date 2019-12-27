@@ -71,6 +71,7 @@
 * [削金] Scepter(魔息杖) [85 hit]
 * [削金] TypeGU/Hand [40 hit]
 * [削金] TypeGU/Mech [35 hit]
+* [削金] TypeME/Mech [35 hit]
 * [削金] TypeSH/Shot [40 hit]
 * [魔鬼] TypeDS/Rod [30 hit]
 * [销魂] TypeSW/J-Sword [30 hit]
