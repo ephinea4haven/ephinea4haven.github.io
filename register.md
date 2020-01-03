@@ -14,7 +14,7 @@
     
     ![邮箱地址](./static/img/email.png)
     
-  * [邮箱登录地址](https://login.live.com)
+  * [邮箱登录地址](https://mail.msn.com/)
   
 <span style="color:green">温馨提示: 记得注册完，<span style="color:red">**打开邮箱**</span></span>  
   
