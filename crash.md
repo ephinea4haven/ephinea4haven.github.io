@@ -27,7 +27,7 @@
 
 # 设置用户账户控制(UAC)
 ![uac](./static/img/uac.jpg)  
-设置到这个级别之后，打开其他带有`执行保护窗口`的程序时，psobb游戏不会丢失渲染而crash  
+设置到这个级别之后，打开其他带有`执行保护窗口`的程序时，psobb游戏不会丢失渲染而crash。  
 ![prompt](./static/img/prompt.png)。
 
 # 全屏游戏神器
