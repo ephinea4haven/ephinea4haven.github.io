@@ -26,8 +26,9 @@
 选择高分辨率不一定卡，选择低分辨率不一定不卡，哈哈哈......
 
 # 设置用户账户控制(UAC)
-![uac](./static/img/uac.jpg)
-设置到这个级别之后，打开其他带有`执行保护窗口`![prompt](./static/img/prompt.png)的程序时，psobb游戏不会丢失渲染而crash。
+![uac](./static/img/uac.jpg)  
+设置到这个级别之后，打开其他带有`执行保护窗口`的程序时，psobb游戏不会丢失渲染而crash  
+![prompt](./static/img/prompt.png)。
 
 # 全屏游戏神器
 使用游戏本身自带的全屏设置时，经常会被其他程序弹出的小窗口意外丢失渲染而crash。
