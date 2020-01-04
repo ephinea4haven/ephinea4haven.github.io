@@ -31,6 +31,7 @@
 ![prompt](./static/img/prompt.png)。
 
 # 添加游戏目录为杀毒软件**白名单**
+遇到游戏窗口左下角有`DLL ERROR`和`Error 916`等错误，需设置杀毒软件白名单。
 
 1. Window开始菜单输入 `sec`，打开  
 ![sec](./static/img/sec.png)  
