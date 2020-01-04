@@ -30,6 +30,27 @@
 设置到这个级别之后，打开其他带有`执行保护窗口`的程序时，psobb游戏不会丢失渲染而crash。  
 ![prompt](./static/img/prompt.png)。
 
+# 添加游戏目录为杀毒软件**白名单**
+
+1. Window开始菜单输入 `sec`，打开  
+![sec](./static/img/sec.png)  
+
+2. 选择`病毒和威胁保护`  
+![vp](./static/img/vp.png) 
+ 
+3. 打开`管理设置`
+![vpmanage](./static/img/vpmanage.png)  
+
+4. 打开`添加或删除排除项`
+![vpexclusive](./static/img/vpexclusive.png)  
+
+5. 添加游戏根目录
+![vpexcludeephinea](./static/img/vpexcludeephinea.png)  
+![vprootfolder](./static/img/vprootfolder.png)  
+
+至此，游戏目录添加杀毒软件白名单完成。
+
+
 # 全屏游戏神器
 使用游戏本身自带的全屏设置时，经常会被其他程序弹出的小窗口意外丢失渲染而crash。
 这里推荐一款全屏神器[BorderlessGaming](https://github.com/Codeusa/Borderless-Gaming/releases/download/9.5.6/BorderlessGaming9.5.6_admin_setup.exe)
