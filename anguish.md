@@ -86,8 +86,7 @@ Later areas are defined as: Mines, Ruins, CCA, Seabed, Tower and Desert
 
 For the curious, here are the percent patterns:
 
-![compat](./static/img/percent patterns.jpg)
-
+![compat](./static/img/percent_patterns.jpg)
 
 **The chance to find a Photon Drop increases by 0.15% for each Anguish level.**
 Anguish Lv. 1 -> 0.95%  
