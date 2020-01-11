@@ -59,7 +59,7 @@
 
 <h3>可调整的颜色ID</h3>
 
-在角色创建后，你可以调整颜色ID，每3个月一次机会
+在角色创建后，你可以调整颜色ID，每3个月一次机会，ID不区分大小写！
 VIRIDIA, GREENILL, SKYLY, BLUEFULL, PURPLENUM  
 PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
@@ -73,7 +73,7 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 * **Normal(常规)**
 
-**没什么好解释的。**
+**养老院模式。**
 
 
 * 经验值: 100%  
@@ -84,7 +84,7 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 * **Hardcore(硬核)**
 
-**死亡惩罚模式，如果没有娃娃死亡会清空角色身上和银行所有道具，但不影响共享银行，
+**不要命模式，如果没有娃娃死亡会清空角色身上和银行所有道具，但不影响共享银行，
 娃娃相对来说非常珍贵，此模式掉落有buff，具体参数如下:**
 
 
@@ -116,7 +116,6 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 **算不上是一种账号模式, 在游戏中输入`/purist` 会进入此模式, 此模式的房间没有任何掉落加成。**
 
-
 ---
 
 <h3>每日幸运系统DLS</h3>
@@ -124,11 +123,11 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 每天特定职业、种族和性别可以获得不同的强化掉落。<br/>
 
 * 白色 - 未匹配任何条件
-* 浅黄 - 匹配一个条件
-* 黄色 - 匹配两个个条件
-* 金黄 - 匹配三个条件
+* 浅黄 - 匹配一个条件(单人dar提升:1%,多人dar提升:1%)
+* 黄色 - 匹配两个个条件(单人dar提升:2%,多人dar提升:3%)
+* 金黄 - 匹配三个条件(单人dar提升:3%,多人dar提升:5%)
 
-<h3>掉落强化任务HBR</h3>
+<h3>掉落提升任务HBR</h3>
 
 每月会有一组特殊的任务可以用来提升掉落，按活动任务参与`最低`次数的计算，6分排名D，12分排名C，30分排名B，54分排名A，72排名S，156分排名SS。
 
