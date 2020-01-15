@@ -28,3 +28,61 @@
 |                    |    From the Depths	  |     **Shop**	              |    AOL CUP -Sunset Base-|
 |                    |    Central Dome Fire Swirl|	Christmas Event Shop|    Knight of Coral|
 |                    |                           |    Anniversary Badge Shop|	|
+
+
+
+
+
+|**Story Quests**|	**Guild Quests**||	
+|:---:|:---:|:---:|
+|**Government**	|**Event**	|**Maximum Attack**|
+|5-1:Test/VR Temple 1|	Christmas Fiasco	       | MAXIMUM ATTACK 2 Ver2|
+|5-2:Test/VR Temple 2|	Maximum Attack E: Temple|	Maximum Attack 4th Stage -2A-|
+|5-3:Test/VR Temple 3|	Maximum Attack E: Spaceship|	Maximum Attack 4th Stage -2B-|
+|5-4:Test/VR Temple 4|	Maximum Attack E: CCA	   | Maximum Attack 4th Stage -2C-|
+|5-5:Test/VR Temple 5|	Maximum Attack E: Seabed|	Maximum Attack 4th Stage -2R-|
+|6-1:Test/Spaceship 1|	Maximum Attack E: Tower	   | Maximum Attack E: VR|
+|6-2:Test/Spaceship 2|	**Extermination**	       | Maximum Attack E: Gal Da Val|
+|6-3:Test/Spaceship 3|	Phantasmal World #1	       | Maximum Attack S|
+|6-4:Test/Spaceship 4|	Phantasmal World #2	       |  Random Attack Xrd Stage|
+|6-5:Test/Spaceship 5|	Phantasmal World #3	        | **Shop**|
+|7-1:From the Past	 |   Phantasmal World #4	     |   Gallon's Shop|
+|7-2:Seeking Clues	 |   Gal Da Val's Darkness	     |   Item Present|
+|7-3:Silent Beach	 |   CAL's Clock Challenge	     |   Singing by the Beach|
+|7-4:Central Control|	**Retrieval**	             |   Beach Laughter|
+|7-5:Isle of Mutants|	Dream Messenger	             |   To The Deepest Blue -MA4 Venue-|
+|8-1:Below the Waves|	Revisiting Darkness	         |   TA Reward Shop|
+|8-2:Desire's End	 |   Dolmolm Research	         |   The Egg Shop|
+|8-3:Purple Lamplight|	**Tower**	                 |   **VR**|
+|**Side Story**	     |   The East Tower	             |       Reach for the Dream|
+|Seat of the Heart	 |   The West Tower	             |       Respective Tomorrow|
+|Blue Star Memories	 |   Raid on Central Tower	     |       **Solo Only**|
+|	                 |   The Military Strikes Back	 |      Knight of Coral Advent|
+|	                 |   **Halloween**	             |      A New Hope|
+|	                 |   Hollow Phantasm: Seabed	||
+
+
+
+
+
+
+|**Story Quests**|	**Guild Quests**||	
+|:---:|:---:|:---:|
+|**Government**	                |**Event**	              | **Halloween**|
+|9-1:Missing Research	        |Christmas Fiasco	      | Hollow Wasteland: Wilderness|
+|9-2:Data Retrieval	            |Maximum Attack E: Crater |	**Maximum Attack**|
+|9-3:Reality & Truth	        |Maximum Attack E: Desert |	MAXIMUM ATTACK 3 Ver2|
+|9-4:Pursuit	                |**Extermination**	      | Maximum Attack 4th Stage -4A-|
+|9-5:The Chosen (1/2)	        |Point of Disaster	      | Maximum Attack 4th Stage -4B-|
+|9-6:The Chosen (2/2)	        |The Robots' Reckoning	  | Maximum Attack 4th Stage -4C-|
+|9-7:Sacred Ground	            |War of Limits 1	      | Maximum Attack 4th Stage -4R-|
+|9-8:The Final Cycle	        |War of Limits 2	      |Maximum Attack E: Episode 4|
+|**Side Story**	                |War of Limits 3	      |Maximum Attack S|
+|Warrior's Pride	            |War of Limits 4	      |**Shop**|
+|The Restless Lion	            |War of Limits 5	      |Claire's Deal 5|
+|Pioneer Spirit	                |New Mop-Up Operation #1  |The Beak's Cafe Ver.2|
+|荒野の果てに	                    |New Mop-Up Operation #2  |**VR**|
+|Black Paper's Dangerous Deal	|New Mop-Up Operation #3  |Beyond the Horizon|
+|Black Paper's Dangerous Deal 2	|New Mop-Up Operation #4  |LOGiN presents 勇場のマッチレース|
+	                            |New Mop-Up Operation #5  |	
+		
