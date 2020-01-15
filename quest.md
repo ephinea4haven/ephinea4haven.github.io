@@ -84,5 +84,5 @@
 |荒野の果てに	                    |New Mop-Up Operation #2  |**VR**|
 |Black Paper's Dangerous Deal	|New Mop-Up Operation #3  |Beyond the Horizon|
 |Black Paper's Dangerous Deal 2	|New Mop-Up Operation #4  |LOGiN presents 勇場のマッチレース|
-	                            |New Mop-Up Operation #5  |	
+	                            |New Mop-Up Operation #5  |	|
 		
