@@ -1,4 +1,4 @@
-|**Story Quests**|**Guild Quests**|
+|**Story Quests**||**Guild Quests**||
 |:---:|:---:|:---:|:---:|      
 |**Government**|**Side Story**|**Extermination**|**Event**|
 |1-1:Planet Ragol	 |   Battle Training	  |     Christmas Fiasco	  |    Mop-up Operation #1|
