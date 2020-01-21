@@ -1,6 +1,11 @@
 # 关于Ephinea
 此页面用于说明`Ephinea`是什么，给玩家提供了什么，希望这篇文档能够说明清楚。
 
+# GMs
+主GM: Sodaboy, Tofuman and Matt
+辅GM: anime, CARNAGE, MewPlushie 和 Ryan
+一般的问题咨询辅GM足够了，对于ban号申述需联系主GM。
+
 ## 概述
 
 `Ephinea`是一个PSOBB的服务器，目标是复刻SEGA官方的游戏体验，与此同时也添加了一些有益的变化，给游戏带来更多现代化的感觉。<br/>
