@@ -157,7 +157,7 @@ Length of each impairment effect per Anguish level accurate as of Ephinea v1140.
 * Anguish Lv. 9 -> 1% Activation chance  
 * Anguish Lv. 10 -> 1% Activation chance  
 
-All chance increases only affect monsters and NOT boxes.
+**All chance increases only affect monsters and NOT boxes.**
 
 When I mention "Area chance" up there, it simply means the normal chance for Ultimate mode 
 based on the current party leader's section ID and the current floor of the area 
