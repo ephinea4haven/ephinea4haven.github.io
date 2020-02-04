@@ -830,7 +830,7 @@ Simulator.prototype.SetClass = function(s) {
         $("#lv option").remove();
         var b = [];
         for (var c in this.chardata[s].lv) {
-            b.push('<option value="' + c + '">' + c + '</option>')
+            b.push('"' + c + '",')
         }
         $(b.join('\n')).appendTo($("#lv"));
         if (a == "-") {
@@ -840,7 +840,7 @@ Simulator.prototype.SetClass = function(s) {
         }
     } else {
         $("#lv option").remove();
-        $('<option value="-">-</option>').appendTo($("#lv"));
+        $('"-",').appendTo($("#lv"));
         this.minATP = 0;
         this.minDFP = 0;
         this.minMST = 0;
@@ -909,7 +909,7 @@ function InitSelectOption(a, b) {
     }
     d.sort();
     for (var i = 0; i < d.length; i++) {
-        c.push('<option value="' + d[i] + '">' + b[d[i]][0] + '</option>')
+        c.push('"' + d[i] + '",')
     }
     $(c.join('\n')).appendTo($(a))
 }
@@ -1029,6 +1029,20 @@ function init() {
         }
     }
 }
+
+var clazz = ["humar",
+"hunewearl",
+"hucast",
+"hucaseal",
+"ramar",
+"ramarl",
+"racast",
+"racaseal",
+"fomar",
+"fomarl",
+"fonewm",
+"fonewearl"];
+
 $(document).ready(function() {
     InitSelectOption("#armor", sim.itemdata.armors);
     InitSelectOption("#shield", sim.itemdata.shields);
