@@ -830,7 +830,7 @@ Simulator.prototype.SetClass = function(s) {
         $("#lv option").remove();
         var b = [];
         for (var c in this.chardata[s].lv) {
-            b.push('"' + c + '",')
+            b.push('<option value="' + c + '">' + c + '</option>')
         }
         $(b.join('\n')).appendTo($("#lv"));
         if (a == "-") {
@@ -909,11 +909,10 @@ function InitSelectOption(a, b) {
     }
     d.sort();
     for (var i = 0; i < d.length; i++) {
-        c.push('"' + d[i] + '",')
+        c.push('<option value="' + d[i] + '">' + b[d[i]][0] + '</option>')
     }
     $(c.join('\n')).appendTo($(a))
 }
-
 function init() {
     var a = document.location.search.substring(1).split('&');
     for (var i = 0; i < a.length; i++) {
@@ -1030,30 +1029,8 @@ function init() {
     }
 }
 
-var clazz = ["humar",
-"hunewearl",
-"hucast",
-"hucaseal",
-"ramar",
-"ramarl",
-"racast",
-"racaseal",
-"fomar",
-"fomarl",
-"fonewm",
-"fonewearl"];
-
-function InitClass(){
-    var d = '';
-    clazz.forEach(function (val,idx) {
-        d += '<option>' +val+'</option>';
-    });
-    $('#class').append(d);
-}
-
-
 $(document).ready(function() {
-    InitClass();
+    InitSelectOption("#class", sim.itemdata.clazz);
     InitSelectOption("#armor", sim.itemdata.armors);
     InitSelectOption("#shield", sim.itemdata.shields);
     InitSelectOption(".unit", sim.itemdata.units);
