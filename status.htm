@@ -1444,7 +1444,7 @@
     <div class="clear"></div>
 
     <div class="clear"></div>
-
+    <div id="output"></div>
     <div class="clear"></div>
 </div>
 <script src="static/jquery.min.js"></script>
@@ -1455,13 +1455,13 @@
 
     $(document).ready(function() {
         $('select#class').find('option').each(function (idx, val){
-            if (val.value == 'ramarl') {
+            if (val.value === 'ramarl') {
                $(this).attr('selected', 'selected')
             }
         });
 
         $('select#lv').find('option').each(function (idx, val){
-            if (val.value == '200') {
+            if (val.value === '200') {
                 $(this).attr('selected', 'selected')
             }
         });
