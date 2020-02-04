@@ -1463,7 +1463,7 @@
         $('select#lv').find('option').each(function (idx, val){
             if (val.value === '200') {
                 $(this).attr('selected', 'selected')
-                $(this).select();
+                $(this).change();
             }
         });
     })
