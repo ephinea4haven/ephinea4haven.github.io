@@ -1456,15 +1456,13 @@
     $(document).ready(function() {
         $('select#class').find('option').each(function (idx, val){
             if (val.value === 'ramarl') {
-                $(this)
-                    .attr('selected', 'selected')
-                    .change();
+                $(this).attr('selected', 'selected');
             }
         });
 
         $('select#lv').find('option').each(function (idx, val){
             if (val.value === '200') {
-                $(this).attr('selected', 'selected');
+                $(this).attr('selected', 'selected').change();
             }
         });
     })
