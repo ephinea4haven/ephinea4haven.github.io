@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Psobb Status Simulator for SCHTServ</title>
+    <title>Psobb Status Simulator</title>
 
     <link href="static/style.css" rel="stylesheet" type="text/css">
 </head>
@@ -15,7 +15,7 @@
                 <tr>
                     <td class="td_head1">Class</td>
                     <td><select id="class">
-                        <option value="-">-</option>
+<!--                        <option value="-">-</option>-->
                         <option value="humar">HUmar</option>
                         <option value="hunewearl">HUnewearl</option>
                         <option value="hucast">HUcast</option>
@@ -1457,7 +1457,6 @@
         $('select#class').find('option').each(function (idx, val){
             if (val.value === 'ramarl') {
                 $(this).attr('selected', 'selected');
-                $(this).select();
             }
         });
 
