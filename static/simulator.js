@@ -1030,7 +1030,7 @@ function init() {
 }
 
 $(document).ready(function() {
-    InitSelectOption("#class", sim.itemdata.clazz);
+    InitSelectOption("#class", sim.chardata.clazz);
     InitSelectOption("#armor", sim.itemdata.armors);
     InitSelectOption("#shield", sim.itemdata.shields);
     InitSelectOption(".unit", sim.itemdata.units);

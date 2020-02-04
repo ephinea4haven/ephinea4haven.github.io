@@ -1,4 +1,18 @@
 function CharData() {
+    this.clazz = {
+        "humar": ["HUmar"],
+        "hunewearl": ["HUnewearl"],
+        "hucast": ["HUcast"],
+        "hucaseal": ["HUcaseal"],
+        "ramar": ["RAmar"],
+        "ramarl": ["RAmarl"],
+        "racast": ["RAcast"],
+        "racaseal": ["RAcaseal"],
+        "fomar": ["FOmar"],
+        "fomarl": ["FOmarl"],
+        "fonewm": ["FOnewm"],
+        "fonewearl": ["FOnewearl"]
+    };
     this.humar = {
         min: [10, 0, 0, 650, 0, 0],
         max: [1397, 579, 732, 2000, 756, 100],

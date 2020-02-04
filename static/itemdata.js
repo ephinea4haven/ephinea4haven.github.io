@@ -1,18 +1,5 @@
 function ItemData() {
-    this.clazz = {
-        "humar": ["HUmar"],
-        "hunewearl": ["HUnewearl"],
-        "hucast": ["HUcast"],
-        "hucaseal": ["HUcaseal"],
-        "ramar": ["RAmar"],
-        "ramarl": ["RAmarl"],
-        "racast": ["RAcast"],
-        "racaseal": ["RAcaseal"],
-        "fomar": ["FOmar"],
-        "fomarl": ["FOmarl"],
-        "fonewm": ["FOnewm"],
-        "fonewearl": ["FOnewearl"]
-    };
+
     this.armors = {
         "00": ["Frame", 5, 0, 0, 5, 0, 0, [1, 1, 1, 1, 1, 1, 1, 1]],
         "01": ["Armor", 0, 5, 0, 0, 0, 0, [1, 1, 0, 1, 1, 1, 1, 1]],
