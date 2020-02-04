@@ -1043,7 +1043,17 @@ var clazz = ["humar",
 "fonewm",
 "fonewearl"];
 
+function InitClass(){
+    var d = '';
+    clazz.forEach(function (val,idx) {
+        d += '<option>' +val+'</option>';
+    });
+    $('#class').append(d);
+}
+
+
 $(document).ready(function() {
+    InitClass();
     InitSelectOption("#armor", sim.itemdata.armors);
     InitSelectOption("#shield", sim.itemdata.shields);
     InitSelectOption(".unit", sim.itemdata.units);
