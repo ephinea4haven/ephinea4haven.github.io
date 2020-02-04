@@ -21,7 +21,7 @@
                         <option value="hucast">HUcast</option>
                         <option value="hucaseal">HUcaseal</option>
                         <option value="ramar">RAmar</option>
-                        <option value="ramarl">RAmarl</option>
+                        <option value="ramarl" selected="selected">RAmarl</option>
                         <option value="racast">RAcast</option>
                         <option value="racaseal">RAcaseal</option>
                         <option value="fomar">FOmar</option>
@@ -1454,11 +1454,11 @@
 <script type="application/javascript">
 
     $(document).ready(function() {
-        $('select#class').find('option').each(function (idx, val){
+    /*    $('select#class').find('option').each(function (idx, val){
             if (val.value === 'ramarl') {
                 $(this).attr('selected', 'selected');
             }
-        });
+        });*/
 
         /*$('select#lv').find('option').each(function (idx, val){
             if (val.value === '200') {
