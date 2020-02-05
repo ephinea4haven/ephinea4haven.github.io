@@ -103,7 +103,7 @@ var Simulator = function() {
     this.trapvision = false
 };
 Simulator.prototype.ArmorEquipable = function(a) {
-    if (this.currentClass != "-") {
+    if (this.currentClass !== "-") {
         if (typeof(this.itemdata.armors[a]) != "undefined") {
             if (typeof(this.itemdata.armors[a][this.currentClass]) == "undefined") {
                 this.itemdata.armors[a]["humar"] = this.itemdata.armors[a][7][0] > 0 && this.itemdata.armors[a][7][3] > 0 && this.itemdata.armors[a][7][6] > 0;
@@ -125,7 +125,7 @@ Simulator.prototype.ArmorEquipable = function(a) {
     return false
 };
 Simulator.prototype.ShieldEquipable = function(a) {
-    if (this.currentClass != "-") {
+    if (this.currentClass !== "-") {
         if (typeof(this.itemdata.shields[a]) != "undefined") {
             if (typeof(this.itemdata.shields[a][this.currentClass]) == "undefined") {
                 this.itemdata.shields[a]["humar"] = this.itemdata.shields[a][7][0] > 0 && this.itemdata.shields[a][7][3] > 0 && this.itemdata.shields[a][7][6] > 0;
@@ -147,7 +147,7 @@ Simulator.prototype.ShieldEquipable = function(a) {
     return false
 };
 Simulator.prototype.UnitEquipable = function(a) {
-    if (this.currentClass != "-") {
+    if (this.currentClass !== "-") {
         if (typeof(this.itemdata.units[a]) != "undefined") {
             if (typeof(this.itemdata.units[a][this.currentClass]) == "undefined") {
                 this.itemdata.units[a]["humar"] = this.itemdata.units[a][15][0] > 0 && this.itemdata.units[a][15][3] > 0 && this.itemdata.units[a][15][6] > 0;
@@ -196,9 +196,9 @@ Simulator.prototype.Calc = function() {
     this.curefreeze = false;
     this.cureshock = false;
     this.trapvision = false;
-    if (this.currentClass != "-") {
+    if (this.currentClass !== "-") {
         var a = $("#lv option:selected").text();
-        if (a != "-") {
+        if (a !== "-") {
             a = Number(a);
             this.baseATP = this.chardata[this.currentClass].lv[a][0];
             this.baseDFP = this.chardata[this.currentClass].lv[a][1];
