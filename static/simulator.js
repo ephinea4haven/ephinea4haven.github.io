@@ -1031,17 +1031,17 @@ function init() {
 
 $(document).ready(function() {
     InitSelectOption("#class", sim.chardata.clazz);
+    $('#class  option[value="humar"]').attr("selected", "selected");
     InitSelectOption("#armor", sim.itemdata.armors);
     InitSelectOption("#shield", sim.itemdata.shields);
     InitSelectOption(".unit", sim.itemdata.units);
-    $("#class").change(OnClassChange).keyup(OnClassChange);
+    $("#class").change(OnClassChange).keyup(OnClassChange).change();
     $("#magReset").click(OnMagReset);
     $("#matReset").click(OnMatReset);
     $("#equipReset").click(OnEquipReset);
     $("#unitReset").click(OnUnitReset);
     $("#lv, #armor, #shield, #unit1, #unit2, #unit3, #unit4").change(calc).keyup(calc);
     $("#magDef, #magPow, #magDex, #magMind, #matHP, #matTP, #matPow, #matDef, #matMind, #matEva, #matLck").keyup(calc);
-    $("#class, #lv").val("-");
     init();
     calc()
 });
