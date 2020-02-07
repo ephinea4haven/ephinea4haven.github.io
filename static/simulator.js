@@ -673,15 +673,15 @@ Simulator.prototype.ShowResult = function() {
     $("#attackspeed").text(this.attackspeed);
     $("#techspeed").text(this.techspeed ? "V801" : "-");
     $("#techlv").text(this.techlv);
-    $("#smartlink").text(this.smartlink ? "有" : "-");
+    $("#smartlink").text(this.smartlink ? "E" : "-");
     $("#v50x").text((this.v50x == 2) ? "V502" : ((this.v50x == 1) ? "V501" : "-"));
-    $("#curepoison").text(this.curepoison ? "有" : "-");
-    $("#cureparalysis").text(this.cureparalysis ? "有" : "-");
-    $("#cureslow").text(this.cureslow ? "有" : "-");
-    $("#cureconfuse").text(this.cureconfuse ? "有" : "-");
-    $("#curefreeze").text(this.curefreeze ? "有" : "-");
-    $("#cureshock").text(this.cureshock ? "有" : "-");
-    $("#trapvision").text(this.trapvision ? "有" : "-");
+    $("#curepoison").text(this.curepoison ? "E" : "-");
+    $("#cureparalysis").text(this.cureparalysis ? "E" : "-");
+    $("#cureslow").text(this.cureslow ? "E" : "-");
+    $("#cureconfuse").text(this.cureconfuse ? "E" : "-");
+    $("#curefreeze").text(this.curefreeze ? "E" : "-");
+    $("#cureshock").text(this.cureshock ? "E" : "-");
+    $("#trapvision").text(this.trapvision ? "E" : "-");
     var b = [];
     var c = [];
     if (this.currentClass != "-") {
