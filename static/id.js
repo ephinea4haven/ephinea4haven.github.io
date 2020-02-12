@@ -71,7 +71,7 @@ document.querySelector('#name').addEventListener('input', function(){
     } else {
         document.querySelector('#tf0').textContent = "N/A";
 
-        document.getElementById("img0").src = 'img/Impossible.png';
+        document.getElementById("img0").src = 'static/img/Impossible.png';
     }
 
     if ((inputElement.value.length !== 0) && (inputElement.value.length <= 10)) {
@@ -83,7 +83,7 @@ document.querySelector('#name').addEventListener('input', function(){
     } else {
         for (var i = 1; i <= 12; i++) {
             document.querySelector(textFieldList[i]).textContent = 'N/A';
-            document.getElementById(img[i]).src = 'img/Impossible.png';
+            document.getElementById(img[i]).src = 'static/img/Impossible.png';
         }
 
     }
