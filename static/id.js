@@ -1,4 +1,4 @@
-var imgDirectory = "img/";
+var imgDirectory = "static/img/";
 var pngExtension = ".png";
 var sectionIdList = ['Viridia', 'Greenill', 'Skyly', 'Bluefull',
           'Purplenum', 'Pinkal', 'Redria', 'Oran',
