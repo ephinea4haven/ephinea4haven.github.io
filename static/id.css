@@ -1,0 +1,92 @@
+@font-face {
+  font-family: 'Aldrich';
+  src: url('font/Aldrich-Regular-webfont.eot'); /* IE9 Compat Modes */
+  src: url('font/Aldrich-Regular-webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('font/Aldrich-Regular-webfont.woff2') format('woff2'), /* Super Modern Browsers */
+       url('font/Aldrich-Regular-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('font/Aldrich-Regular-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('font/Aldrich-Regular-webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+body {
+  font-family: "Aldrich", Fallback, sans-serif;
+  font-size: 14px;
+  color: white;
+  background-color: rgb(20, 20, 20);
+}
+
+input[type=text], select {
+  text-align: center;
+  width: 38%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8px;
+  padding: 5px 8px;
+  display: block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+p {
+  text-align: center;
+  margin: 0;
+}
+
+.bot-14 {
+  margin-bottom: 14px;
+}
+
+.bot-10 {
+  margin-bottom: 10px;
+}
+
+.bot-8 {
+  margin-bottom: 8px;
+}
+
+.img-big {
+  width: 15%;
+}
+
+.img-small {
+  width: 40%;
+}
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+#HU_column > div, #RA_column > div, #FO_column > div, #Col_head_bb{
+  background : rgb(60, 67, 110);
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+#classic, #tf0 {
+  background : rgb(255, 94, 0);
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.column {
+  column-count: 4;
+  column-gap: 8px;
+}
+
+/*
+.txt_hu {
+  color: rgb(249, 60, 39);
+}
+
+.txt_ra {
+  color: rgb(53, 176, 54);
+}
+
+.txt_fo {
+  color: rgb(63, 93, 204);
+}
+*/
