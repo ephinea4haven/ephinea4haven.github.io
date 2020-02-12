@@ -1,13 +1,13 @@
 var imgDirectory = "static/img/";
 var pngExtension = ".png";
 var sectionIdList = ['Viridia', 'Greenill', 'Skyly', 'Bluefull',
-          'Purplenum', 'Pinkal', 'Redria', 'Oran',
-          'Yellowboze', 'Whitill'];
+    'Purplenum', 'Pinkal', 'Redria', 'Oran',
+    'Yellowboze', 'Whitill'];
 var textFieldList = ['#tf0', '#tf1', '#tf2', '#tf3', '#tf4', '#tf5',
-         '#tf6', '#tf7', '#tf8', '#tf9', '#tf10', '#tf11', '#tf12'];
+    '#tf6', '#tf7', '#tf8', '#tf9', '#tf10', '#tf11', '#tf12'];
 
 var img = ['img0', 'img1', 'img2', 'img3', 'img4', 'img5',
-         'img6', 'img7', 'img8', 'img9', 'img10', 'img11', 'img12'];
+    'img6', 'img7', 'img8', 'img9', 'img10', 'img11', 'img12'];
 
 var magicNumberList = [0, 1, 2, 9, 3, 11, 4, 5, 10, 6, 7, 8];
 
@@ -22,7 +22,7 @@ function processName() {
     for (var i = 0; i < inputName.value.length; i++) {
         sectionIdValue += inputName.value.charCodeAt(i);
         if (inputName.value.charCodeAt(i) >= unicodeLetterAMacron &&
-        inputName.value.charCodeAt(i) < unicodeHalfwidthFullstop) {
+            inputName.value.charCodeAt(i) < unicodeHalfwidthFullstop) {
             if (flag != 2) {
                 flag = 2;
                 sectionIdValue += 83;
@@ -48,6 +48,16 @@ function isStrAscii(str) {
         }
     }
     return true;
+}
+
+function openCalcMode(modeName,elmnt) {
+    var i, calc;
+    calc = document.getElementsByClassName("calc");
+    for (i = 0; i < calc.length; i++) {
+        calc[i].style.display = "none";
+    }
+
+    document.getElementById(modeName).style.display = "block";
 }
 
 document.querySelector('#name').addEventListener('input', function(){
@@ -78,3 +88,6 @@ document.querySelector('#name').addEventListener('input', function(){
 
     }
 });
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();

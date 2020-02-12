@@ -1,78 +1,117 @@
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>"Sif" The Section ID Finder</title>
-        <meta name="viewport" content="width = device-width, initial-scale = 1">
-        <link rel="stylesheet" href="static/id.css">
-    </head>
-    <body>
-        <div class="bot-8"><input type="text" id="name" placeholder="Name" autofocus maxlength="12"></div>
-        
-    	<div ><p id="classic" class="txt-medium">- DC / PC / GC / XB -</p></div>
-    	<img alt="" class="img-center img-big" src="static/img/Blank.png" id="img0" >
-    	<div class="bot-14"><p id="tf0">N/A</p></div>
-    	
-        <div class="bot-8" id="Col_head_bb"><p id="bb" class="txt-medium">- BB -</p></div>
-        <div class="bot-14"> 
-            <div class="column" id="HU_column">
-        		<div><p>HUmar</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img1" >
-                <div><p id="tf1">N/A</p></div>
-        	
-        		<div><p>HUnewearl</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img2" >
-                <div><p id="tf2">N/A</p></div>
-        	
-        		<div><p>HUcast</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img3" >
-                <div><p id="tf3">N/A</p></div>
-        	
-        		<div><p>HUcaseal</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img4" >
-                <div><p id="tf4">N/A</p></div>
-        	</div>
-        </div>
 
-        <div class="bot-14">
-            <div class="column"  id="RA_column">
-                <div><p>RAmar</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img5" >
-                <div><p id="tf5">N/A</p></div>
-            
-                <div><p>RAmarl</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img6" >
-                <div><p id="tf6">N/A</p></div>
-            
-                <div><p>RAcast</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img7" >
-                <div><p id="tf7">N/A</p></div>
-            
-                <div><p>RAcaseal</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img8" >
-                <div><p id="tf8">N/A</p></div>
-            </div>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <title>"Sif" The Section ID Finder</title>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="static/id.css">
+</head>
 
-        <div class="">
-            <div class="column"  id="FO_column">
-                <div><p>FOmar</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img9" >
-                <div><p id="tf9">N/A</p></div>
-            
-                <div><p>FOmarl</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img10" >
-                <div><p id="tf10">N/A</p></div>
-            
-                <div><p>FOnewm</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img11" >
-                <div><p id="tf11">N/A</p></div>
-            
-                <div><p>FOnewearl</p></div>
-                <img alt="" class="img-center img-small" src="static/img/Blank.png" id="img12" >
-                <div><p id="tf12">N/A</p></div>
-            </div>
+<body>
+<div class="w3-center">
+    <button class="tablink" onclick="openCalcMode('BB', this)" id="defaultOpen">BlueBurst</button>
+    <button class="tablink" onclick="openCalcMode('Legacy', this)">DC/PC/GC/XB</button>
+</div>
+
+<div class="w3-row w3-section">
+    <div class="w3-col l5 m4 s4">&nbsp;</div>
+    <div class="w3-col l2 m4 s4 w3-center">
+        <input type="text" id="name" placeholder="Name" autofocus maxlength="12" class="w3-input w3-center">
+    </div>
+    <div class="w3-col l5 m4 s4">&nbsp;</div>
+</div>
+
+<div id="BB" class="calc">
+    <div class="w3-row w3-section">
+        <div class="w3-col l3 m3 s3 w3-red w3-center w3-border w3-border-black">
+            <p>HUmar</p>
+            <img id="img1" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf1">N/A</p>
         </div>
-        <script src="static/id.js"></script>
-    </body>
+        <div class="w3-col l3 m3 s3 w3-red w3-center w3-border w3-border-black">
+            <p>HUnewearl</p>
+            <img id="img2" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf2">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-red w3-center w3-border w3-border-black">
+            <p>HUcast</p>
+            <img id="img3" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf3">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-red w3-center w3-border w3-border-black">
+            <p>HUcaseal</p>
+            <img id="img4" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf4">N/A</p>
+        </div>
+    </div>
+
+    <div class="w3-row w3-section">
+        <div class="w3-col l3 m3 s3 w3-green w3-center w3-border w3-border-black">
+            <p>RAmar</p>
+            <img id="img5" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf5">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-green w3-center w3-border w3-border-black">
+            <p>RAmarl</p>
+            <img id="img6" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf6">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-green w3-center w3-border w3-border-black">
+            <p>RAcast</p>
+            <img id="img7" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf7">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-green w3-center w3-border w3-border-black">
+            <p>RAcaseal</p>
+            <img id="img8" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf8">N/A</p>
+        </div>
+    </div>
+
+    <div class="w3-row w3-section">
+        <div class="w3-col l3 m3 s3 w3-indigo w3-center w3-border w3-border-black">
+            <p>FOmar</p>
+            <img id="img9" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf9">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-indigo w3-center w3-border w3-border-black">
+            <p>FOmarl</p>
+            <img id="img10" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf10">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-indigo w3-center w3-border w3-border-black">
+            <p>FOnewm</p>
+            <img id="img11" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf11">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-indigo w3-center w3-border w3-border-black">
+            <p>FOnewearl</p>
+            <img id="img12" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf12">N/A</p>
+        </div>
+    </div>
+</div>
+
+<div id="Legacy" class="calc" style="display:none">
+    <div class="w3-row w3-section">
+        <div class="w3-col l4 m4 s4">
+            &nbsp;
+        </div>
+        <div class="w3-col l4 m4 s4 w3-orange w3-center">
+            <p>All Classes</p>
+            <img id="img0" src="static/img/Impossible.png" style="width:100%">
+            <p id="tf0">N/A</p>
+        </div>
+        <div class="w3-col l4 m4 s4">
+            &nbsp;
+        </div>
+    </div>
+</div>
+
+<script src="static/id.js"></script>
+</body>
+
 </html>
