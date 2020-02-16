@@ -13,14 +13,14 @@
 怪物强化:
   
 * 伤害提升 (固定伤害增加40%)  
-* 攻击力 (ATP) increases  
-* 名字提升 (ATA) increases  
-* 防御 (DFP) increases  
-* 回避 (EVP) increases  
+* 攻击力 (ATP) 提升  
+* 命中 (ATA) 提升  
+* 防御 (DFP) 提升  
+* 回避 (EVP) 提升  
 * 暴击 (LCK) increaes  
-* 暗抗 (EDK) increases  
-* EX抗性 (ESP) increases  
-* 移动速度 increases  
+* 暗抗 (EDK) 提升  
+* EX抗性 (ESP) 提升  
+* 移动速度 提升  
 * 一些怪物会释放更高级的魔法.  
 
 痛苦游戏等级可以在创建U难度游戏时在大厅柜台设置。  
