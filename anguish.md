@@ -1,168 +1,158 @@
-It's gone through several changes since being introduced and has been asked about a few times, so I figured I'd make bullet point list on what Ephinea's Anguish mode is. So, yeah, here goes!
+什么是痛苦模式?
 
-What is Anguish?
+ 它既不是替代U难度，也不是U难度的发展，它只是一种自我挑战的方式，同时也能提升挖掘常规武器乐趣。
+ 当你增加痛苦难度的等级，那么怪物和奖励也会相应的提升和加强:
 
- It is NOT a replacement for the Ultimate difficulty nor is it a progression from the Ultimate difficulty.
-Anguish is simply provided as a way to challenge yourself but also have some fun hunting common weapons.
+奖励提升:
 
- As you the increase in Anguish level setting, the monsters also become stronger in the following ways:
+* 掉落武器命中提升  
+* 经验提升  
+* RDR提升  
+* MST提升
 
-* Hitpoints increase  
-* Experience gained increases  
-* Rare item drop chance increases  
-* Meseta dropped increases  
-* Damage increases (Fixed damage increases by 40% of the displayed value)  
-* Attack power (ATP) increases  
-* Accuracy (ATA) increases  
-* Defense (DFP) increases  
-* Evasion (EVP) increases  
-* Critical hit chance (LCK) increaes  
-* Resistance to Megid and Hell (EDK) increases  
-* Resistance to impairing effects (ESP) increases  
-* Movement speed increases  
-* Some monsters cast higher level techniques.  
+怪物强化:
+  
+* 伤害提升 (固定伤害增加40%)  
+* 攻击力 (ATP) increases  
+* 名字提升 (ATA) increases  
+* 防御 (DFP) increases  
+* 回避 (EVP) increases  
+* 暴击 (LCK) increaes  
+* 暗抗 (EDK) increases  
+* EX抗性 (ESP) increases  
+* 移动速度 increases  
+* 一些怪物会释放更高级的魔法.  
 
-Anguish level can be set at the lobby counter just before creating a game on Ultimate mode.
+痛苦游戏等级可以在创建U难度游戏时在大厅柜台设置。  
+对于每个痛苦难度等级，你可以在大厅柜台按TAB键看到怪物、掉落和经验等提升的描述。
+- 每章前面区域和后面区域的怪物能力能力基本一致。
 
-For each Anguish level, you can see specifics for monster increases at the lobby counter by pressing TAB.
+- 每个痛苦难度DAR提升1%:
+痛苦 Lv. 1 -> + 1%  
+痛苦 Lv. 2 -> + 2%  
+痛苦 Lv. 3 -> + 3%  
+痛苦 Lv. 4 -> + 4%  
+痛苦 Lv. 5 -> + 5%  
+痛苦 Lv. 6 -> + 6%  
+痛苦 Lv. 7 -> + 7%  
+痛苦 Lv. 8 -> + 8%  
+痛苦 Lv. 9 -> + 9%  
+痛苦 Lv. 10 -> + 10%  
 
-- The monsters in the earlier areas of each Episode become almost as strong as the later areas.
+- 每个痛苦难度对于颜色ID特产常规武器提升2%:
 
-- The drop anything rate increases by 1% for each Anguish level:
-Anguish Lv. 1 -> + 1%  
-Anguish Lv. 2 -> + 2%  
-Anguish Lv. 3 -> + 3%  
-Anguish Lv. 4 -> + 4%  
-Anguish Lv. 5 -> + 5%  
-Anguish Lv. 6 -> + 6%  
-Anguish Lv. 7 -> + 7%  
-Anguish Lv. 8 -> + 8%  
-Anguish Lv. 9 -> + 9%  
-Anguish Lv. 10 -> + 10%  
+* 痛苦 Lv. 1 -> Area chance + 2%  
+* 痛苦 Lv. 2 -> Area chance + 4%  
+* 痛苦 Lv. 3 -> Area chance + 6%  
+* 痛苦 Lv. 4 -> Area chance + 8%  
+* 痛苦 Lv. 5 -> Area chance + 10%  
+* 痛苦 Lv. 6 -> Area chance + 12%  
+* 痛苦 Lv. 7 -> Area chance + 14%  
+* 痛苦 Lv. 8 -> Area chance + 16%  
+* 痛苦 Lv. 9 -> Area chance + 18%  
+* 痛苦 Lv. 10 -> Area chance + 20%  
 
-- The chance to find a common weapon of your section ID's weapon type 
-increases by 2% for each Anguish level:
+**颜色ID特产如下:**
 
-* Anguish Lv. 1 -> Area chance + 2%  
-* Anguish Lv. 2 -> Area chance + 4%  
-* Anguish Lv. 3 -> Area chance + 6%  
-* Anguish Lv. 4 -> Area chance + 8%  
-* Anguish Lv. 5 -> Area chance + 10%  
-* Anguish Lv. 6 -> Area chance + 12%  
-* Anguish Lv. 7 -> Area chance + 14%  
-* Anguish Lv. 8 -> Area chance + 16%  
-* Anguish Lv. 9 -> Area chance + 18%  
-* Anguish Lv. 10 -> Area chance + 20%  
+* 镉绿 -> 散弹  
+* 翠绿 -> 步枪  
+* 天清 -> 大剑  
+* 纯蓝 -> 长刀  
+* 淡紫 -> 机枪  
+* 粉红 -> Wands  
+* 真红 -> 单手剑/Canes (各50)  
+* 橙黄 -> 匕首  
+* 金黄 -> 手枪/Rods (各50)  
+* 羽白 -> 投刃  
 
-**Weapon types assigned to each section ID are as follows:**
+**每个痛苦掉落未鉴定常规武器的概率增加7%,但上限是95%:**
 
-* Viridia -> Shots  
-* Greenill -> Rifles  
-* Skyly -> Swords  
-* Bluefull -> Partisans  
-* Purplenum -> Mechguns  
-* Pinkal -> Wands  
-* Redria -> Sabers/Canes (Split 50/50)  
-* Oran -> Daggers  
-* Yellowboze -> Handguns/Rods (Split 50/50)  
-* Whitill -> Slicers  
+* 痛苦 Lv. 1 -> 属性 + 7%  
+* 痛苦 Lv. 2 -> 属性 + 14%  
+* 痛苦 Lv. 3 -> 属性 + 21%  
+* 痛苦 Lv. 4 -> 属性 + 28%  
+* 痛苦 Lv. 5 -> 属性 + 35%  
+* 痛苦 Lv. 6 -> 属性 + 42%  
+* 痛苦 Lv. 7 -> 属性 + 49%  
+* 痛苦 Lv. 8 -> 属性 + 56%  
+* 痛苦 Lv. 9 -> 属性 + 63%  
+* 痛苦 Lv. 10 -> 属性 + 70%  
 
-**The chance to find an untekked common weapon increases by 7% for each Anguish level, but caps at 95%:**
+常规武器属性Pattern3是对应前面区域，4是对应后面区域。(1、2暂时废弃)  
+前面区域: 森林Forest, 洞窟Caves, 神殿VR Temple, 宇宙船VR Spaceship, 和陨石坑Crater  
+后面区域: 坑道Mines, 遗迹Ruins, 中央管理区CCA, 海底Seabed, 塔Tower和沙漠Desert
 
-* Anguish Lv. 1 -> Area chance + 7%  
-* Anguish Lv. 2 -> Area chance + 14%  
-* Anguish Lv. 3 -> Area chance + 21%  
-* Anguish Lv. 4 -> Area chance + 28%  
-* Anguish Lv. 5 -> Area chance + 35%  
-* Anguish Lv. 6 -> Area chance + 42%  
-* Anguish Lv. 7 -> Area chance + 49%  
-* Anguish Lv. 8 -> Area chance + 56%  
-* Anguish Lv. 9 -> Area chance + 63%  
-* Anguish Lv. 10 -> Area chance + 70%  
-
-The percent pattern for common weapons is set at 3 for earlier areas but 4 for the later areas.
-Earlier areas are defined as: Forest, Caves, VR Temple, VR Spaceship, and Crater
-Later areas are defined as: Mines, Ruins, CCA, Seabed, Tower and Desert
-
-For the curious, here are the percent patterns:
+**下图是属性概率分布:**
 
 ![compat](./static/img/percent_patterns.jpg)
 
-**The chance to find a Photon Drop increases by 0.15% for each Anguish level.**
-Anguish Lv. 1 -> 0.95%  
-Anguish Lv. 2 -> 1.1%  
-Anguish Lv. 3 -> 1.25%  
-Anguish Lv. 4 -> 1.4%  
-Anguish Lv. 5 -> 1.55%  
-Anguish Lv. 6 -> 1.7%  
-Anguish Lv. 7 -> 1.85%  
-Anguish Lv. 8 -> 2%  
-Anguish Lv. 9 -> 2.15%  
-Anguish Lv. 10 -> 2.3%  
+**每个痛苦难度PD掉落概率提升0.15%**
+痛苦 Lv. 1 -> 0.95%  
+痛苦 Lv. 2 -> 1.1%  
+痛苦 Lv. 3 -> 1.25%  
+痛苦 Lv. 4 -> 1.4%  
+痛苦 Lv. 5 -> 1.55%  
+痛苦 Lv. 6 -> 1.7%  
+痛苦 Lv. 7 -> 1.85%  
+痛苦 Lv. 8 -> 2%  
+痛苦 Lv. 9 -> 2.15%  
+痛苦 Lv. 10 -> 2.3%  
 
-**Monster impairment effect duration is shortened for each Anguish level:**
+**每个痛苦难度降低怪物状态效果时长:**
 
-**Confusion:**
+**混乱:**
 
-* Anguish Lv. 1 -> 8 seconds length  
-* Anguish Lv. 2 -> 6.154 seconds length  
-* Anguish Lv. 3 -> 5 seconds length  
-* Anguish Lv. 4 -> 4 seconds length  
-* Anguish Lv. 5 -> 3.333 seconds length  
-* Anguish Lv. 6 -> 2.857 seconds length  
-* Anguish Lv. 7 -> 2.5 seconds length  
-* Anguish Lv. 8 -> 2.105 seconds length  
-* Anguish Lv. 9 -> 1.86 seconds length  
-* Anguish Lv. 10 -> 1.667 seconds length  
+* 痛苦 Lv. 1 -> 8 秒  
+* 痛苦 Lv. 2 -> 6.154 秒  
+* 痛苦 Lv. 3 -> 5 秒  
+* 痛苦 Lv. 4 -> 4 秒  
+* 痛苦 Lv. 5 -> 3.333 秒  
+* 痛苦 Lv. 6 -> 2.857 秒  
+* 痛苦 Lv. 7 -> 2.5 秒  
+* 痛苦 Lv. 8 -> 2.105 秒  
+* 痛苦 Lv. 9 -> 1.86 秒  
+* 痛苦 Lv. 10 -> 1.667 秒  
 
-**Freeze:**
+**冰冻:**
 
-* Anguish Lv. 1 -> 4 seconds length  
-* Anguish Lv. 2 -> 3.077 seconds length  
-* Anguish Lv. 3 -> 2.5 seconds length  
-* Anguish Lv. 4 -> 2 seconds length  
-* Anguish Lv. 5 -> 1.667 seconds length  
-* Anguish Lv. 6 -> 1.429 seconds length
-* Anguish Lv. 7 -> 1.25 seconds length  
-* Anguish Lv. 8 -> 1.053 seconds length  
-* Anguish Lv. 9 -> 0.93 seconds length  
-* Anguish Lv. 10 -> 0.833 seconds length  
+* 痛苦 Lv. 1 -> 4 秒  
+* 痛苦 Lv. 2 -> 3.077 秒  
+* 痛苦 Lv. 3 -> 2.5 秒  
+* 痛苦 Lv. 4 -> 2 秒  
+* 痛苦 Lv. 5 -> 1.667 秒  
+* 痛苦 Lv. 6 -> 1.429 秒
+* 痛苦 Lv. 7 -> 1.25 秒  
+* 痛苦 Lv. 8 -> 1.053 秒  
+* 痛苦 Lv. 9 -> 0.93 秒  
+* 痛苦 Lv. 10 -> 0.833 秒  
 
-**Arrest:**
+**麻痹:**
 
-* Anguish Lv. 1 -> 5.6 seconds length  
-* Anguish Lv. 2 -> 4.308 seconds length  
-* Anguish Lv. 3 -> 3.5 seconds length  
-* Anguish Lv. 4 -> 2.8 seconds length  
-* Anguish Lv. 5 -> 2.333 seconds length  
-* Anguish Lv. 6 -> 2 seconds length  
-* Anguish Lv. 7 -> 1.75 seconds length  
-* Anguish Lv. 8 -> 1.474 seconds length  
-* Anguish Lv. 9 -> 1.302 seconds length  
-* Anguish Lv. 10 -> 1.167 seconds length  
+* 痛苦 Lv. 1 -> 5.6 秒  
+* 痛苦 Lv. 2 -> 4.308 秒  
+* 痛苦 Lv. 3 -> 3.5 秒  
+* 痛苦 Lv. 4 -> 2.8 秒  
+* 痛苦 Lv. 5 -> 2.333 秒  
+* 痛苦 Lv. 6 -> 2 秒  
+* 痛苦 Lv. 7 -> 1.75 秒  
+* 痛苦 Lv. 8 -> 1.474 秒  
+* 痛苦 Lv. 9 -> 1.302 秒  
+* 痛苦 Lv. 10 -> 1.167 秒  
 
-Length of each impairment effect per Anguish level accurate as of Ephinea v1140.
+Length of each impairment effect per 痛苦 level accurate as of Ephinea v1140.
 
 
-**Demon's activation chance is lowered for each Anguish level:**
+**每个痛苦难度降低了恶魔系激活率:**
 
-* Anguish Lv. 1 -> 44% Activation chance  
-* Anguish Lv. 2 -> 35% Activation chance  
-* Anguish Lv. 3 -> 26% Activation chance  
-* Anguish Lv. 4 -> 14% Activation chance  
-* Anguish Lv. 5 -> 2% Activation chance  
-* Anguish Lv. 6 -> 1% Activation chance  
-* Anguish Lv. 7 -> 1% Activation chance  
-* Anguish Lv. 8 -> 1% Activation chance  
-* Anguish Lv. 9 -> 1% Activation chance  
-* Anguish Lv. 10 -> 1% Activation chance  
+* 痛苦 Lv. 1 -> 44% 激活  
+* 痛苦 Lv. 2 -> 35% 激活  
+* 痛苦 Lv. 3 -> 26% 激活  
+* 痛苦 Lv. 4 -> 14% 激活  
+* 痛苦 Lv. 5 -> 2% 激活  
+* 痛苦 Lv. 6 -> 1% 激活  
+* 痛苦 Lv. 7 -> 1% 激活  
+* 痛苦 Lv. 8 -> 1% 激活  
+* 痛苦 Lv. 9 -> 1% 激活  
+* 痛苦 Lv. 10 -> 1% 激活  
 
-**All chance increases only affect monsters and NOT boxes.**
-
-When I mention "Area chance" up there, it simply means the normal chance for Ultimate mode 
-based on the current party leader's section ID and the current floor of the area 
-you're at. (E.g. Bluefull Ruins 2's chance in Ultimate mode would be an area chance.)
-
-... I think that covers just about everything. If I missed something or 
-if something changes in the future, I'll be sure to go back and 
-edit this post.
+**所有的概率提升仅仅提升怪物不包含箱子.**
