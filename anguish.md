@@ -1,6 +1,6 @@
 什么是痛苦模式?
 
- 它既不是替代U难度，也不是U难度的发展，它只是一种自我挑战的方式，同时也能提升挖掘常规武器乐趣。
+ 它既不是替代U难度，也不是U难度的发展，它只是一种自我挑战的方式，同时也能提升挖掘常规武器乐趣。  
  当你增加痛苦难度的等级，那么怪物和奖励也会相应的提升和加强:
 
 奖励提升:
@@ -28,29 +28,30 @@
 - 每章前面区域和后面区域的怪物能力能力基本一致。
 
 - 每个痛苦难度DAR提升1%:
-痛苦 Lv. 1 -> + 1%  
-痛苦 Lv. 2 -> + 2%  
-痛苦 Lv. 3 -> + 3%  
-痛苦 Lv. 4 -> + 4%  
-痛苦 Lv. 5 -> + 5%  
-痛苦 Lv. 6 -> + 6%  
-痛苦 Lv. 7 -> + 7%  
-痛苦 Lv. 8 -> + 8%  
-痛苦 Lv. 9 -> + 9%  
-痛苦 Lv. 10 -> + 10%  
+
+    痛苦 Lv. 1 -> + 1%  
+    痛苦 Lv. 2 -> + 2%  
+    痛苦 Lv. 3 -> + 3%  
+    痛苦 Lv. 4 -> + 4%  
+    痛苦 Lv. 5 -> + 5%  
+    痛苦 Lv. 6 -> + 6%  
+    痛苦 Lv. 7 -> + 7%  
+    痛苦 Lv. 8 -> + 8%  
+    痛苦 Lv. 9 -> + 9%  
+    痛苦 Lv. 10 -> + 10%  
 
 - 每个痛苦难度对于颜色ID特产常规武器提升2%:
 
-* 痛苦 Lv. 1 -> Area chance + 2%  
-* 痛苦 Lv. 2 -> Area chance + 4%  
-* 痛苦 Lv. 3 -> Area chance + 6%  
-* 痛苦 Lv. 4 -> Area chance + 8%  
-* 痛苦 Lv. 5 -> Area chance + 10%  
-* 痛苦 Lv. 6 -> Area chance + 12%  
-* 痛苦 Lv. 7 -> Area chance + 14%  
-* 痛苦 Lv. 8 -> Area chance + 16%  
-* 痛苦 Lv. 9 -> Area chance + 18%  
-* 痛苦 Lv. 10 -> Area chance + 20%  
+    * 痛苦 Lv. 1 -> Area chance + 2%  
+    * 痛苦 Lv. 2 -> Area chance + 4%  
+    * 痛苦 Lv. 3 -> Area chance + 6%  
+    * 痛苦 Lv. 4 -> Area chance + 8%  
+    * 痛苦 Lv. 5 -> Area chance + 10%  
+    * 痛苦 Lv. 6 -> Area chance + 12%  
+    * 痛苦 Lv. 7 -> Area chance + 14%  
+    * 痛苦 Lv. 8 -> Area chance + 16%  
+    * 痛苦 Lv. 9 -> Area chance + 18%  
+    * 痛苦 Lv. 10 -> Area chance + 20%  
 
 **颜色ID特产如下:**
 
@@ -138,9 +139,6 @@
 * 痛苦 Lv. 8 -> 1.474 秒  
 * 痛苦 Lv. 9 -> 1.302 秒  
 * 痛苦 Lv. 10 -> 1.167 秒  
-
-Length of each impairment effect per 痛苦 level accurate as of Ephinea v1140.
-
 
 **每个痛苦难度降低了恶魔系激活率:**
 
