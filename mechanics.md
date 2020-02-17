@@ -33,33 +33,27 @@ ATP = BA + EA + SA
 [(ATP - DFP)/5] x 0.9 = Weak/Base  
 [(基础伤害结果 - 怪物防御)/5] x 0.9 = 普通攻击|基础攻击
 
-重攻击: 普通攻击 x 1.89
-败系攻击: 普通攻击 x 3.32
-富豪: 普通攻击 x 5.56
+重攻击: 普通攻击 x 1.89  
+败系攻击: 普通攻击 x 3.32  
+富豪: 普通攻击 x 5.56  
 暴击: 攻击结果 x 1.5
 
-Accuracy
-Effective ATA = (Total ATA) * (Attack Type modifier) * (Combo Step modifier)
+# 命中计算公式
+角色有效命中 = 最终命中(括号外) * (攻击类型修正) * (连击段修正)
 
-Attack Type modifier is 1.0 for Weak Attack, 0.7 for Heavy Attack, 0.5 for Special Attack
-Combo Step modifier is 1.0 for first button press in combo, 1.3 for second, 1.69 for third.
+* 攻击类型修正: 1.0:普通攻击, 0.7:重攻击, 0.5:特殊攻击  
+* 连击段修正: 1.0:一段, 1.3:第二段, 1.69:第三段
 
-Effective EVP = (Enemy EVP) * (Status Effect modifier)
+怪物有效回避 = 怪物回避 * 怪物状态修正
 
-Status Effect modifier is 0.85 if Paralyzed or Shocked, 0.7 if Frozen.
+* 怪物状态修正: 0.85:麻痹|感电, 0.7:冰冻
 
-
-Accuracy = Effective ATA - (Effective EVP) * 0.2
-
-Accuracy is further reduced by Distance*0.33 if it's a Hunter/Force without Smartlink.
-Accuracy is further reduced by manual evasion, but the exact influence is unclear.
-
-
+**RA最终命中 = 有效命中 - 怪物有效回避 * 0.2**  
+**非RA最终命中 = 有效命中 - 怪物有效回避 * 0.2 -怪物距离 * 2/3**
 
 # 技能伤害公式
 
-{[(MST + TBP)/5] x (1.0 + CB + WB + MB)} x (1 - RES)  
-{[(角色精神力 + 技能基础伤害)/5] x (1.0 + 职业天赋 + 武器增益 + 增幅盾增益)} x (1 - 抗性)  
+(((角色精神力 + 技能基础伤害)/5) x (1.0 + 职业天赋 + 武器增益 + 增幅盾增益)} x (1 - 抗性)  
 
 TBP: 技能基础伤害  
 CB: 职业天赋  
