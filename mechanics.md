@@ -1,0 +1,91 @@
+# 游戏伤害计算公式:
+
+### 0.角色基础伤害
+
+BA = 角色基础伤害(括号内) 
+
+### 1.装备伤害
+
+EA = [WA + AA + ShA + Grind x 2] x [ATR + 1.0]
+
+EA = 装备`合计`伤害  
+WA = 武器基础伤害  
+AA = 铠甲攻击增益  
+ShA = 盾牌共计增益  
+ATR = 武器属性%
+
+### 2.Shifta加攻魔法辅助伤害
+
+SA = [BA x Shifta] + [(MWA - MinWA) x Shifta]
+
+SA = Shifta加攻魔法`合计`伤害   
+Shifta = Shifta加攻魔法基础伤害  
+MWA = 武器最低伤害  
+MinWA = 武器最高伤害
+
+## 基础伤害结果:
+ATP = BA + EA + SA  
+基础伤害结果 = 角色基础伤害 + 装备伤害 + 加攻增幅
+
+
+## 最终伤害结果:
+
+[(ATP - DFP)/5] x 0.9 = Weak/Base  
+[(基础伤害结果 - 怪物防御)/5] x 0.9 = 普通攻击|基础攻击
+
+重攻击: 普通攻击 x 1.89
+败系攻击: 普通攻击 x 3.32
+富豪: 普通攻击 x 5.56
+暴击: 攻击结果 x 1.5
+
+Accuracy
+Effective ATA = (Total ATA) * (Attack Type modifier) * (Combo Step modifier)
+
+Attack Type modifier is 1.0 for Weak Attack, 0.7 for Heavy Attack, 0.5 for Special Attack
+Combo Step modifier is 1.0 for first button press in combo, 1.3 for second, 1.69 for third.
+
+Effective EVP = (Enemy EVP) * (Status Effect modifier)
+
+Status Effect modifier is 0.85 if Paralyzed or Shocked, 0.7 if Frozen.
+
+
+Accuracy = Effective ATA - (Effective EVP) * 0.2
+
+Accuracy is further reduced by Distance*0.33 if it's a Hunter/Force without Smartlink.
+Accuracy is further reduced by manual evasion, but the exact influence is unclear.
+
+
+
+# 技能伤害公式
+
+{[(MST + TBP)/5] x (1.0 + CB + WB + MB)} x (1 - RES)  
+{[(角色精神力 + 技能基础伤害)/5] x (1.0 + 职业天赋 + 武器增益 + 增幅盾增益)} x (1 - 抗性)  
+
+TBP: 技能基础伤害  
+CB: 职业天赋  
+WB: 武器增益  
+MB: 增幅盾增益  
+RES: 抗性
+
+
+|技能|基础伤害公式|魔法消耗公式|
+|:---:|:---:|:---:|
+|Foie火球术|Lv.1-15: [50 * (TLv - 1)] + 100<br/>Lv.16-30: [65 * (TLv - 1)] - 85|[1.3 * (TLv - 1)] + 5|
+|Gifoie火墙术|Lv.1-15: [26 * (TLv - 1)] + 260<br/>Lv.16-30: [42 * (TLv - 1)] + 30|[0.37 x (TLv - 1)] + 20|
+|RaFoie炎狱术|Lv.1-15: [22 * (TLv - 1)] + 350<br/>Lv.16-30: [21 * (TLv - 1)] + 370|[0.25 * (TLv - 1)] + 30|
+|Barta冻气术|Lv.1-15: [50 * (TLv - 1)] + 50<br/>Lv.16-30: [63 * (TLv - 1)] - 125|[1.2 * (TLv - 1)] + 4|
+|Gibarta冰箭术|Lv.1-15: [24 * (TLv - 1)] + 230<br/>Lv.16: 600<br/>Lv.17-30: [40 * (TLv - 1)]|[0.5 * (TLv - 1)] + 25|
+|Rabarta极冰术|Lv.1-15: [19 * (TLv - 1)] + 400<br/>Lv.16-30: [15 * (TLv - 1)] + 470|[0.2 * (TLv - 1)] + 35|
+|Zonde闪电术|Lv.1-15: [50 * (TLv - 1)] + 80<br/>Lv.16-30: [55 * (TLv - 1)] + 5|[1.1 * (TLv - 1)] + 6|
+|Gizonde群雷术|Lv.1-15: [22 * (TLv - 1)] + 200<br/>Lv.16-30: [38 * (TLv - 1)] - 30|[0.6 * (TLv - 1)] + 25|
+|Razonde雷暴术|Lv.1-15: [16 * (TLv - 1)] + 450<br/>Lv.16-30: [8 * (TLv - 1)] + 565 -> 579|[0.3 * (TLv - 1)] + 35|
+|Grants圣光术|Lv.1-15: [75 * (TLv - 1)] + 1180<br/>Lv.16-30: [60 * (TLv - 1)] - 1400|[1.1 * (TLv - 1)] + 45|
+|Megid死咒术|Lv.1-15: [3 * (TLv - 1)] + 27<br/>Lv.16-30: [2 * (TLv - 1)] + 42|[1.05 * (TLv - 1)] + 30|
+|Shifta攻术|Lv.1-30: [1.3 * (TLv - 1)] + 10<br/>Duration: [10 * (TLv - 1)] + 30|[1.2 * (TLv - 1)] + 15|
+|Deband强体术|Lv.1-30: [1.3 * (TLv - 1)] + 10<br/>Duration: [10 * (TLv - 1)] + 30|[(TLv - 1)] + 10|
+|Jellen降攻术|Lv.1-30: [1.3 * (TLv - 1)] + 10<br/>Duration: [10 * (TLv - 1)] + 30|[(TLv - 1)] + 10|
+|Zalure降防术|Lv.1-30: [1.3 * (TLv - 1)] + 10<br/>Duration: [10 * (TLv - 1)] + 30|[0.5 * (TLv - 1)] + 10|
+|Anti状态术|	-	|[0.5 * (TLv - 1)] + 10|
+|Resta圣泉术|Lv.1-30: [5 * (TLv - 1)] + 50|[1.2 * (TLv - 1)] + 15|
+|Ryuker瞬移术|	-|	10|
+|Reverser回魂术|	-|	20|
