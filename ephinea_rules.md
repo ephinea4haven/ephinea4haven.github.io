@@ -1,27 +1,25 @@
-Game and Forum Rules
+# 游戏和论坛规则
 
-Your use of the forums and game server is governed by the globally-applicable rules found in this post. Ignorance of, or neglecting to read the rules will not excuse them from being applied to you. You are responsible for reading and understanding the rules. Questions about the rules can be brought forward to staff members for clarification.
+您对论坛和游戏服务器的使用受本文中全球适用规则的约束。不了解或忽视阅读这些规则，都不能成为它们适用于你的借口。  
+你负责阅读和理解规则。有关规则的问题可提交工作人员澄清。
 
-By using the forums and game server, you agree to the following:
+使用论坛和游戏服务器，那么您已同意以下内容：
 
-1. No harassment, intentionally offensive content, or hate speech.
-Publicly name-calling, slandering, or demeaning other users will not be tolerated. Posting content solely to irritate or offend other users is also not allowed. Stalking, sexually harassing, or using any form of discriminatory hate speech another player will result in immediate action against your account.
-2. No illegal content.
-Don't post links to, or discuss, things that should not belong on these boards. This includes, but is not limited to, distribution of illegal files such as ROMs, ISOs, cracks and warez.
-3. No spamming.
-Obnoxious spamming, whether ingame or on the forum, will result in action being taken against your account. Keep the forums readable and edit your posts when necessary instead of making new posts.
-4. No cheating ingame.
-If you are found to be cheating ingame outside of Sandbox Mode, you will be given an immediate permanent ban. If we believe you are exploiting a system you shouldn't be, a staff member will warn you first, and continuing to exploit will result in action being taken against your account.
-5. No multiboxing for extra drops
-Multiboxing (using multiple computers) to abuse the PSO2 drop system for extra drops is not allowed. If you need to use multiple computers, please play using the Classic drop style if you wish not to risk a ban.
-6. No scanning other players' inventories.
-Usage of any tools that allow a player to look at other players' inventories is not allowed. Any evidence that you are doing this will result in an immediate ban.
-7. No discussion of RMT (Real Money Trading), nor any public RMT.
-Discussion of any RMT will result in action being taken against your account. You are not allowed to RMT with other users or discuss doing so or having done so, nor talking about other players allegedly participating in RMT. Action will be taken against your account.
-8. The staff have the final verdict on rules.
-If a staff member says you should stop doing something, you should stop doing it. Claiming we are suppressing your free speech or the offense is not listed in these rules is a fast-track way to action being taken against your account. Furthermore, ignoring a warning given by a staff member will also result in action against your account.
-9. Bans are not a matter of public discussion.
-If you believe a member of staff has injustly warned you or banned you, please take it up with that member of staff. If you don't wish to talk to the member of staff responsible, feel free to talk to another member of staff as we are all kept up to speed. Discussing the issue publicly will result in further action being taken against your account. Note that other users' bans are not a matter of discussion for other users. They are a matter for staff only.
-Please note that using the forum is a privilege, not a right. Just because something is not written in these rules does not make it acceptable. In extreme cases, your account may be suspended indefinitely without warning.
+无骚扰、故意冒犯内容或仇恨言论。不允许公开点名、诽谤或贬低其他用户。也不允许仅仅为了激怒或冒犯其他用户而发布内容。  
+跟踪，性骚扰，或使用任何形式的歧视性仇恨言论，另一个玩家将立即对你的帐户采取行动。  
+禁止非法内容。不要张贴链接，或讨论，不应属于这些董事会的东西。这包括但不限于分发非法文件，如ROMs、ISOs、cracks和warez。  
+禁止垃圾邮件。讨厌的垃圾邮件，不管是在论坛上还是在论坛上，都会导致你的账户被起诉。保持论坛的可读性，必要时编辑你的帖子，而不是发表新的帖子。  
+不要欺骗我。如果你被发现在沙盒模式外欺骗ingame，你将被立即永久禁止。如果我们认为您正在利用一个不应该利用的系统，工作人员将首先警告您，继续利用将导致对您的帐户采取行动。  
+禁止多开多掉落（使用多台电脑）滥用PSO2下降系统额外的下降是不允许的。如果你需要使用多台电脑，请使用经典的下降风格，如果你不想冒险禁令。  
+不扫描其他玩家的库存。不允许使用任何允许玩家查看其他玩家库存的工具。任何你这样做的证据都会立即被禁止。
 
-That is all!
+禁止讨论RMT（真实货币交易），也禁止任何公开的RMT。讨论任何RMT都将导致对您的帐户采取行动。您不允许与其他用户进行RMT，  
+也不允许与其他用户讨论这样做或已经这样做，也不允许谈论其他据称参与RMT的玩家。将对您的帐户采取行动。
+工作人员对规则有最终决定权。如果一个工作人员说你应该停止做某事，你应该停止做。声称我们正在压制你的言论自由，  
+或者这些规则中禁止列出违法行为，是对你的帐户采取行动的一种快速途径。此外，忽略工作人员发出的警告也会导致对您的帐户采取行动。
+
+禁令不是公开讨论的问题。如果你认为某位员工不公正地警告你或禁止你，请向该员工投诉。如果您不想与负责的员工交谈，请随时与另一位员工交谈，  
+因为我们都在跟上进度。公开讨论这个问题将导致对你的帐户采取进一步的行动。请注意，其他用户的禁令不是其他用户讨论的问题。这只是工作人员的事。  
+请注意，使用论坛是一种特权，而不是一种权利。仅仅因为这些规则中禁止写一些东西，就不能让它被接受。在极端情况下，您的帐户可能会被无限期暂停，而不会发出警告。
+
+就这些！
