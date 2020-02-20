@@ -8,13 +8,14 @@
 
 ---
 
-  * [邮箱注册地址](https://signup.live.com)  
+  * [微软邮箱注册地址](https://signup.live.com)  
     
     注册好的邮箱地址如何查看:
     
     ![邮箱地址](./static/img/email.png)
     
-  * [邮箱登录地址](https://login.live.com/login.srf)
+  * [微软邮箱登录地址](https://login.live.com/login.srf)
+  * [谷歌邮箱登录地址](https://mail.google.com)
   
 <span style="color:green">温馨提示: 记得注册完，<span style="color:red">**打开邮箱**</span></span>  
   
