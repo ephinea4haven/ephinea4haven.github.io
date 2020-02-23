@@ -36,7 +36,7 @@
 | Yellow Merge 雷系增幅盾 |Storm Wand: Indra 雷杖-因陀罗 | = |
 | 20%雷系魔法加成 | 20%雷系魔法加成 | 40%雷系魔法加成|Weapons
      
-                                    
+    武器:                               
     Club of Laconium - Foie +40%
     Mace of Adaman - Barta +40%
     Club of Zumiuran - Zonde +40%
@@ -67,8 +67,8 @@
     Clio - Grants +10%, Zalure +100%
     Glide Divine - Jellen, Zalure +100%
     Siren Glass Hammer - Gibarta +50%
-    Armours
     
+    铠甲:
     Ignition Cloak - Foie, Gifoie, Rafoie +10%
     Congeal Cloak - Barta, Gibarta, Rabarta +10%
     Tempest Cloak - Zonde, Gizonde, Razonde +10%
@@ -77,8 +77,8 @@
     Dirty Lifejacket - Megid Pierce
     Mother Garb - Randomly boosts Grants by 10%
     Mother Garb+ - Randomly boosts Grants by 30%
-    Shields
     
+    盾牌:
     Resta Merge - Resta +100%
     Anti Merge - Anti +100%
     Shifta Merge - Shifta +100%
