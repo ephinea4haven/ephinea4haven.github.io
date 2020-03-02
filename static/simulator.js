@@ -1038,7 +1038,7 @@ $(document).ready(function() {
     $('#class  option[value="humar"]').attr("selected", "selected");
     $("#class").change(OnClassChange).keyup(OnClassChange).change();
 
-    $("#magReset").click(OnMagReset);
+    $("#magReset").click(OnMagReset).click();
     $("#matReset").click(OnMatReset);
     $("#equipReset").click(OnEquipReset);
     $("#unitReset").click(OnUnitReset);
