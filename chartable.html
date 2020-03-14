@@ -8,28 +8,294 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="static/bootstrap.min.css"/>
 
-    <title>Hello, world!</title>
+    <style type="text/css">
+        thead {
+            text-align: center;
+        }
+
+        .btns {
+            position: fixed;
+            right: 20%;
+            left: 23%;
+            font-weight: bold;
+            display: inline-block;
+            width: 70px;
+            height: 25px;
+            border: #5fb878;
+            background: #030604;
+            /*font-size: 1.4em;*/
+            text-align: center;
+            color: white;
+        }
+
+        a:hover {
+            color: #FFFFFF
+        }
+
+        div {
+            text-align: center;
+        }
+
+        div table{
+            display: inline-block;
+        }
+    </style>
+
+    <title>char stat table</title>
 </head>
+
 <body>
 
-<table class="table table-striped table-hover" id="humar">
-    <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
-    <thead>
-    <tr>
-        <th scope="col">等级</th>
-        <th scope="col">攻击力</th>
-        <th scope="col">防御力</th>
-        <th scope="col">精神力</th>
-        <th scope="col">命中</th>
-        <th scope="col">回避力</th>
-        <th scope="col">暴击率</th>
-        <th scope="col">HP</th>
-    </tr>
-    </thead>
-</table>
+<div>
+    <h2 id="race">职业</h2>
+    <a href="#humar">废材</a>|
+    <a href="#hunewearl">花瓶</a>|
+    <a href="#hucast">男战</a>|
+    <a href="#hucaseal">女忍</a><br/>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <a href="#ramar">军哥</a>|
+    <a href="#ramarl">军嫂</a>|
+    <a href="#racast">坦克</a>|
+    <a href="#racaseal">女仆</a><br/>
+
+    <a href="#fomar">爆法</a>|
+    <a href="#fomarl">人妻</a>|
+    <a href="#fonewm">猴子</a>|
+    <a href="#fonewearl">萝莉</a><br/>
+</div>
+
+<div>
+    <table class="table table-striped table-hover" style="width: 23%;" id="humar">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">废材</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+    <table class="table table-striped table-hover" style="width: 23%;" id="hunewearl">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">花瓶</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+
+    <table class="table table-striped table-hover" style="width: 23%;" id="hucast">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">男战</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+    <table class="table table-striped table-hover" style="width: 23%;" id="hucaseal">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">女忍</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+
+
+    <table class="table table-striped table-hover" style="width: 23%;" id="ramar">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">军哥</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+    <table class="table table-striped table-hover" style="width: 23%;" id="ramarl">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">军嫂</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+
+    <table class="table table-striped table-hover" style="width: 23%;" id="racast">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">坦克</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+    <table class="table table-striped table-hover" style="width: 23%;" id="racaseal">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">女仆</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+
+
+    <table class="table table-striped table-hover" style="width: 23%;" id="fomar">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">爆法</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+    <table class="table table-striped table-hover" style="width: 23%;" id="fomarl">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">人妻</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+
+    <table class="table table-striped table-hover" style="width: 23%;" id="fonewm">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">猴子</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+    <table class="table table-striped table-hover" style="width: 23%;" id="fonewearl">
+        <!-- ATP, DFP, MST, ATA, EVP, LCK, HP -->
+        <thead>
+        <tr>
+            <th colspan="7">萝莉</th>
+        </tr>
+        <tr>
+            <th scope="col">等级</th>
+            <th scope="col">攻击力</th>
+            <th scope="col">防御力</th>
+            <th scope="col">精神力</th>
+            <th scope="col">命中</th>
+            <th scope="col">回避力</th>
+            <th scope="col">暴击率</th>
+            <th scope="col">HP</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+<div style="overflow: hidden;position: fixed;right: 10px;bottom: 20px;z-index: 10;">
+    <div style="padding-top:20px;padding-right:50px;padding-bottom:50px">
+        <a href="#" style="float: right;" class="btns">回到顶部</a>
+    </div>
+</div>
+
 <script src="static/jquery-3.4.1.slim.min.js"></script>
 <script src="static/popper.min.js"></script>
 <script src="static/bootstrap.min.js"></script>
