@@ -1,3 +1,4 @@
+// javascript-obfuscator index.js index.js.map --output  index.min.js
 function buff() {
     // 2019-09-22 rare rate()
     var epoch = new Date(2019, 9 - 1, 22)
