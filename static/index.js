@@ -13,8 +13,17 @@ function buff() {
             $(this).css({'color': 'red','font-weight': 'bolder'});
 
             var current = now.getTime();
+
+            // 2020 圣诞
             var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
             if (+current <= +christEventEndDate) {
+                var matches = $(this).text().match(/\d+/g);
+                $(this).text($(this).text().replace(/\d+/,(+matches[0]) * 2));
+            }
+
+            // 2020 复活节
+            var easterEventEndDate = new Date(2020, 5 - 1, 13).getTime();
+            if (+current <= +easterEventEndDate) {
                 var matches = $(this).text().match(/\d+/g);
                 $(this).text($(this).text().replace(/\d+/,(+matches[0]) * 2));
             }
