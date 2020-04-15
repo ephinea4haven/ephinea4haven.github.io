@@ -10,8 +10,8 @@ function buff() {
 
     $('#buf li').each(function (idx, val) {
         var id = $(this).attr("id");
-        if (offset == id) {
-            $(this).css({'color': 'red','font-weight': 'bolder'});
+        if (offset === id) {
+            $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
             var current = now.getTime();
 
@@ -19,18 +19,18 @@ function buff() {
             var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
             if (+current <= +christEventEndDate) {
                 var matches = $(this).text().match(/\d+/g);
-                $(this).text($(this).text().replace(/\d+/,(+matches[0]) * 2));
+                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
             }
 
             // 2020 复活节
-            var easterEventEndDate = new Date(2020, 5 - 1, 13).getTime();
+            var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
             if (+current <= +easterEventEndDate) {
                 var matches = $(this).text().match(/\d+/g);
-                $(this).text($(this).text().replace(/\d+/,(+matches[0]) * 2));
+                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
             }
         }
-        if ((+offset + 1) % 4 == id) {
-            $(this).css({'color': 'green','font-weight': 'bolder'});
+        if ((+offset + 1) % 4 === id) {
+            $(this).css({'color': 'green', 'font-weight': 'bolder'});
         }
     })
 }
@@ -54,7 +54,8 @@ function GetInternetTime() {
 
     // calculate beats to two decimal places
     // var beats = parseInt(timeInSeconds / secondsInABeat);
-    var beats = Math.abs(timeInSeconds / secondsInABeat).toFixed(2);;
+    var beats = Math.abs(timeInSeconds / secondsInABeat).toFixed(2);
+    ;
 
     if (parseInt(beats / 100) % 2 == 0) {
         var len = beats.toString().length;
@@ -63,7 +64,7 @@ function GetInternetTime() {
         }
         beats = '<span style="color: #47a447; font-weight: bolder">' + '@' + beats + '</span>'
 
-        $('#hp-span').css({'color':'green','font-weight': 'bold'});
+        $('#hp-span').css({'color': 'green', 'font-weight': 'bold'});
     } else {
         beats = '<span style="font-weight: bolder">@' + beats + '</span>'
 
