@@ -10,7 +10,7 @@ function buff() {
 
     $('#buf li').each(function (idx, val) {
         var id = $(this).attr("id");
-        if (offset === id) {
+        if (offset == id) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
             var current = now.getTime();
@@ -29,7 +29,7 @@ function buff() {
                 $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
             }
         }
-        if ((+offset + 1) % 4 === id) {
+        if ((+offset + 1) % 4 == id) {
             $(this).css({'color': 'green', 'font-weight': 'bolder'});
         }
     })
