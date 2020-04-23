@@ -1,6 +1,6 @@
 # MAXR任务介绍
 
-感谢<<肥宅快乐茶(Vita)>>的精彩解说
+**感谢<<肥宅快乐茶(Vita)>>的精彩解说**
 
 就是当玩家开启EP1，EP2，EP4三个章节的普通or单人模式时的这个任务
  
@@ -18,7 +18,7 @@ MAXR任务的路线选择
 EP1和EP4都找桃花
 ![selectquest](../static/strategy/img/maxr/router.png)
  
-EP2则是找小秘书
+EP2则是找小秘书Elly
 ![selectquest](../static/strategy/img/maxr/router2.png) 
 两位都会问你“是否要切换路线”。
 这里要特别注意，任何人都不要去游戏地图，都在城里等着，任何一个玩家进入野外区域都会将路线变成“完全随机”，如果有人跑太快，NPC就会提示你
