@@ -15,10 +15,10 @@
 MAXR任务的路线选择
 这个任务有个有趣的地方是野外地图区域是随机拼接的，也有是说有可能上半张地图是A路线，下半张地图是B或C路线，有的时候最后有boss站，有的时候则没有……造成了很多人的迷茫和ID选择纠结，教大家如何选路线：
 
-EP1和EP4都找桃花
+EP1和EP4都找桃花(Momoka)
 ![selectquest](../static/strategy/img/maxr/router.png)
  
-EP2则是找小秘书Elly
+EP2则是找小秘书(Elly)
 ![selectquest](../static/strategy/img/maxr/router2.png) 
 两位都会问你“是否要切换路线”。
 这里要特别注意，任何人都不要去游戏地图，都在城里等着，任何一个玩家进入野外区域都会将路线变成“完全随机”，如果有人跑太快，NPC就会提示你
