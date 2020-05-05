@@ -1,4 +1,4 @@
-var Simulator = function() {
+var Simulator = function () {
     var a = document.location;
     this.loc = a.protocol + "//" + a.host + a.pathname;
     this.stars = ['<span class="rare1">☆☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★★☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★★★☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★★★★</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★★★★</span><span class="rare2">★☆☆</span>', '<span class="rare1">★★★★★★★★★</span><span class="rare2">★★☆</span>', '<span class="rare1">★★★★★★★★★</span><span class="rare2">★★★</span>'];
@@ -102,10 +102,10 @@ var Simulator = function() {
     this.cureshock = false;
     this.trapvision = false
 };
-Simulator.prototype.ArmorEquipable = function(a) {
+Simulator.prototype.ArmorEquipable = function (a) {
     if (this.currentClass !== "-") {
-        if (typeof(this.itemdata.armors[a]) != "undefined") {
-            if (typeof(this.itemdata.armors[a][this.currentClass]) == "undefined") {
+        if (typeof (this.itemdata.armors[a]) != "undefined") {
+            if (typeof (this.itemdata.armors[a][this.currentClass]) == "undefined") {
                 this.itemdata.armors[a]["humar"] = this.itemdata.armors[a][7][0] > 0 && this.itemdata.armors[a][7][3] > 0 && this.itemdata.armors[a][7][6] > 0;
                 this.itemdata.armors[a]["hunewearl"] = this.itemdata.armors[a][7][0] > 0 && this.itemdata.armors[a][7][5] > 0 && this.itemdata.armors[a][7][7] > 0;
                 this.itemdata.armors[a]["hucast"] = this.itemdata.armors[a][7][0] > 0 && this.itemdata.armors[a][7][4] > 0 && this.itemdata.armors[a][7][6] > 0;
@@ -124,10 +124,10 @@ Simulator.prototype.ArmorEquipable = function(a) {
     }
     return false
 };
-Simulator.prototype.ShieldEquipable = function(a) {
+Simulator.prototype.ShieldEquipable = function (a) {
     if (this.currentClass !== "-") {
-        if (typeof(this.itemdata.shields[a]) != "undefined") {
-            if (typeof(this.itemdata.shields[a][this.currentClass]) == "undefined") {
+        if (typeof (this.itemdata.shields[a]) != "undefined") {
+            if (typeof (this.itemdata.shields[a][this.currentClass]) == "undefined") {
                 this.itemdata.shields[a]["humar"] = this.itemdata.shields[a][7][0] > 0 && this.itemdata.shields[a][7][3] > 0 && this.itemdata.shields[a][7][6] > 0;
                 this.itemdata.shields[a]["hunewearl"] = this.itemdata.shields[a][7][0] > 0 && this.itemdata.shields[a][7][5] > 0 && this.itemdata.shields[a][7][7] > 0;
                 this.itemdata.shields[a]["hucast"] = this.itemdata.shields[a][7][0] > 0 && this.itemdata.shields[a][7][4] > 0 && this.itemdata.shields[a][7][6] > 0;
@@ -146,10 +146,10 @@ Simulator.prototype.ShieldEquipable = function(a) {
     }
     return false
 };
-Simulator.prototype.UnitEquipable = function(a) {
+Simulator.prototype.UnitEquipable = function (a) {
     if (this.currentClass !== "-") {
-        if (typeof(this.itemdata.units[a]) != "undefined") {
-            if (typeof(this.itemdata.units[a][this.currentClass]) == "undefined") {
+        if (typeof (this.itemdata.units[a]) != "undefined") {
+            if (typeof (this.itemdata.units[a][this.currentClass]) == "undefined") {
                 this.itemdata.units[a]["humar"] = this.itemdata.units[a][15][0] > 0 && this.itemdata.units[a][15][3] > 0 && this.itemdata.units[a][15][6] > 0;
                 this.itemdata.units[a]["hunewearl"] = this.itemdata.units[a][15][0] > 0 && this.itemdata.units[a][15][5] > 0 && this.itemdata.units[a][15][7] > 0;
                 this.itemdata.units[a]["hucast"] = this.itemdata.units[a][15][0] > 0 && this.itemdata.units[a][15][4] > 0 && this.itemdata.units[a][15][6] > 0;
@@ -168,7 +168,7 @@ Simulator.prototype.UnitEquipable = function(a) {
     }
     return false
 };
-Simulator.prototype.Calc = function() {
+Simulator.prototype.Calc = function () {
     this.baseATP = 0;
     this.baseDFP = 0;
     this.baseMST = 0;
@@ -242,7 +242,7 @@ Simulator.prototype.Calc = function() {
     var c = this.ArmorEquipable(b);
     var d = $("#shield option:selected").val();
     var e = this.ShieldEquipable(d);
-    if (typeof(this.itemdata.armors[b]) != "undefined") {
+    if (typeof (this.itemdata.armors[b]) != "undefined") {
         if (c) {
             this.EFR += this.itemdata.armors[b][1];
             this.EIC += this.itemdata.armors[b][2];
@@ -252,7 +252,7 @@ Simulator.prototype.Calc = function() {
         }
         this.armorstar = this.itemdata.armors[b][6]
     }
-    if (typeof(this.itemdata.shields[d]) != "undefined") {
+    if (typeof (this.itemdata.shields[d]) != "undefined") {
         if (e) {
             this.EFR += this.itemdata.shields[d][1];
             this.EIC += this.itemdata.shields[d][2];
@@ -341,7 +341,7 @@ Simulator.prototype.Calc = function() {
     for (var i = 1; i <= 4; i++) {
         var f = $("#unit" + i + " option:selected").val();
         var g = this.UnitEquipable(f);
-        if (typeof(this.itemdata.units[f]) != "undefined") {
+        if (typeof (this.itemdata.units[f]) != "undefined") {
             if (g) {
                 this.HPbyUnit += this.itemdata.units[f][1];
                 this.TPbyUnit += this.itemdata.units[f][2];
@@ -504,7 +504,7 @@ Simulator.prototype.Calc = function() {
     this.diffEVP = this.curEVP - this.maxEVP;
     this.diffLCK = this.curLCK - this.maxLCK
 };
-Simulator.prototype.GetATAStr = function(a) {
+Simulator.prototype.GetATAStr = function (a) {
     if (a % 5 == 0) {
         return a / 10
     }
@@ -515,12 +515,12 @@ Simulator.prototype.GetATAStr = function(a) {
     }
     return "(" + a / 10 + ")"
 };
-Simulator.prototype.SetAttackSpeed = function(a) {
+Simulator.prototype.SetAttackSpeed = function (a) {
     if (this.attackspeed < a) {
         this.attackspeed = a
     }
 };
-Simulator.prototype.ShowResult = function() {
+Simulator.prototype.ShowResult = function () {
     $("#armorstar").html(this.stars[this.armorstar]);
     $("#shieldstar").html(this.stars[this.shieldstar]);
     $("#unit1star").html(this.stars[this.unit1star]);
@@ -753,7 +753,7 @@ Simulator.prototype.ShowResult = function() {
         b.push("Shield:" + (m ? "" : "[×] <s>") + l + (m ? "" : "</s>"))
     }
     var n = [];
-    $(".unit option:selected").each(function(e) {
+    $(".unit option:selected").each(function (e) {
         var t = $(this).text();
         var a = sim.UnitEquipable($(this).val());
         if (t != "-") {
@@ -808,7 +808,7 @@ Simulator.prototype.ShowResult = function() {
     }
     $("#output").html(b.join("<br />"))
 };
-Simulator.prototype.SetClass = function(s) {
+Simulator.prototype.SetClass = function (s) {
     this.currentClass = s;
     if (s != "-") {
         this.minATP = this.chardata[s].min[0];
@@ -901,18 +901,22 @@ function OnUnitReset() {
     calc()
 }
 
-function InitSelectOption(a, b) {
+function InitSelectOption(a, b, g) {
     var c = [];
     var d = [];
     for (var e in b) {
         d.push(e)
     }
-    // d.sort();
+
+    if (!g) {
+        d.sort();
+    }
     for (var i = 0; i < d.length; i++) {
         c.push('<option value="' + d[i] + '">' + b[d[i]][0] + '</option>')
     }
     $(c.join('\n')).appendTo($(a))
 }
+
 function init() {
     var a = document.location.search.substring(1).split('&');
     for (var i = 0; i < a.length; i++) {
@@ -1029,8 +1033,8 @@ function init() {
     }
 }
 
-$(document).ready(function() {
-    InitSelectOption("#class", sim.chardata.clazz);
+$(document).ready(function () {
+    InitSelectOption("#class", sim.chardata.clazz, true);
     InitSelectOption("#armor", sim.itemdata.armors);
     InitSelectOption("#shield", sim.itemdata.shields);
     InitSelectOption(".unit", sim.itemdata.units);
