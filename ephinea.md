@@ -197,6 +197,13 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 * Forsaken Friends – by Heloise/Aleron Ives/Lee
 * Rescue from Ragol – by Tofuman
 
+#### – 歼灭
+
+* Sweep-Up Operation #1 (Forest) - by Ender
+* Sweep-Up Operation #2 (Cave) - by Ender
+* Sweep-Up Operation #3 (Mine) - by Ender
+* Sweep-Up Operation #4 (Ruin) - by Ender
+
 #### - VR
 
 * Mine Offensive – by RikaPSO
@@ -224,6 +231,11 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 #### – 歼灭
 
 * Gal Da Val’s Darkness – by RikaPSO
+* Sweep-Up Operation #5 (VR Temple) - by Ender
+* Sweep-Up Operation #6 (VR Spaceship) - by Ender
+* Sweep-Up Operation #7 (CCA) - by Ender
+* Sweep-Up Operation #8 (Seabed) - by Ender
+* Sweep-Up Operation #9 (Tower) - by Ender
 * ~~Malicious Uprising #1 – by GuardianGirth/Yata~~
 * ~~Malicious Uprising #2 – by GuardianGirth/Yata~~
 * ~~Malicious Uprising #3 – by GuardianGirth/Yata~~
@@ -234,7 +246,8 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 * ~~Villainous Rift #2 – by GuardianGirth/Yata~~
 
 #### – 夺回
-
+* Lost SHOCK RIFLE (VR Temple) - by Ender
+* Lost BIND ASSAULT (VR Spaceship) - by Ender
 * ~~Lost SHOCK GUNGNIR – by GuardianGirth/Lee~~
 * ~~Lost RIOT RAYGUN – by GuardianGirth/Lee~~
 * ~~Lost DEVIL’S SCEPTER – by GuardianGirth/Lee~~
@@ -274,3 +287,11 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 * Christmas Fiasco – by Heloise/Lee (Event Only)
 * Maximum Attack E: Crater – by Matt (Event Only)
 * Maximum Attack E: Desert – by Matt (Event Only)
+
+#### - 歼灭
+
+* Sweep-Up Operation #10 (Crater Exterior) - by Ender
+* Sweep-Up Operation #11 (Crater Interior) - by Ender
+* Sweep-Up Operation #12 (Sub. Desert 1) - by Ender
+* Sweep-Up Operation #13 (Sub. Desert 2) - by Ender
+* Sweep-Up Operation #14 (Sub. Desert 3) - by Ender
