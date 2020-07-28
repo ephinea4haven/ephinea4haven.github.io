@@ -55,7 +55,6 @@ function GetInternetTime() {
     // calculate beats to two decimal places
     // var beats = parseInt(timeInSeconds / secondsInABeat);
     var beats = Math.abs(timeInSeconds / secondsInABeat).toFixed(2);
-    ;
 
     if (parseInt(beats / 100) % 2 == 0) {
         var len = beats.toString().length;

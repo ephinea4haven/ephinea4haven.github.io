@@ -97,7 +97,7 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 * **Sandbox(沙盘)**
 
-**不要脸模式**
+**造物模式**
 
 **命令:**
 
