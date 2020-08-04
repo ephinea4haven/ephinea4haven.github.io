@@ -280,6 +280,7 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 #### – 夺回
 
 * ~~Lost MASTER’S BLASTER – by GuardianGirth/Yata~~
+* Lost BERSERK BATON (Crater)- By Ender
 
 #### – 活动
 
