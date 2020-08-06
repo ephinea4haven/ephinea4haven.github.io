@@ -90,7 +90,7 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 * 经验值: 200%  
 * 掉宝率: 130%  
-* 稀有怪率: 200%
+* 稀有怪率: 100%
     
 
 ---    
