@@ -6,6 +6,7 @@ function buff() {
     epoch.setTime(epoch.getTime() /*+ epoch.getTimezoneOffset() * 60 * 1000*/)
 
     var now = new Date();
+    var current = now.getTime();
     var offset = parseInt(((now.getTime() - epoch.getTime()) / (24 * 60 * 60 * 1000)) / 7 % 4)
 
     $('#buf li').each(function (idx, val) {
@@ -20,8 +21,6 @@ function buff() {
         } else {
             if (offset == id) {
                 $(this).css({'color': 'red', 'font-weight': 'bolder'});
-
-                var current = now.getTime();
 
                 // 2020 圣诞
                 var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
