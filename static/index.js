@@ -10,27 +10,37 @@ function buff() {
 
     $('#buf li').each(function (idx, val) {
         var id = $(this).attr("id");
-        if (offset == id) {
+
+        // 2020 周年
+        var anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
+        if (+current <= +anniversaryEventEndDate) {
+            // var matches = $(this).text().match(/\d+/g);
+            // $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
+        } else {
+            if (offset == id) {
+                $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
-            var current = now.getTime();
+                var current = now.getTime();
 
-            // 2020 圣诞
-            var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
-            if (+current <= +christEventEndDate) {
-                var matches = $(this).text().match(/\d+/g);
-                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+                // 2020 圣诞
+                var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
+                if (+current <= +christEventEndDate) {
+                    var matches = $(this).text().match(/\d+/g);
+                    $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+                }
+
+                // 2020 复活节
+                var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
+                if (+current <= +easterEventEndDate) {
+                    var matches = $(this).text().match(/\d+/g);
+                    $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+                }
             }
 
-            // 2020 复活节
-            var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
-            if (+current <= +easterEventEndDate) {
-                var matches = $(this).text().match(/\d+/g);
-                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+            if ((+offset + 1) % 4 == id) {
+                $(this).css({'color': 'green', 'font-weight': 'bolder'});
             }
-        }
-        if ((+offset + 1) % 4 == id) {
-            $(this).css({'color': 'green', 'font-weight': 'bolder'});
         }
     })
 }
