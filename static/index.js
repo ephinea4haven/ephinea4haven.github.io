@@ -19,6 +19,7 @@ function buff() {
             // $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
             if(id == 3 || id == 0){
+                var matches = $(this).text().match(/\d+/g);
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
             }
         } else {
