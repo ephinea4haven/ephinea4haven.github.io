@@ -15,12 +15,14 @@ function buff() {
         // 2020 周年
         var anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
         if (+current <= +anniversaryEventEndDate) {
-            // var matches = $(this).text().match(/\d+/g);
-            // $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
-            if(id == 3 || id == 0){
+            if(id == 3 || id == 1 || id == 0){
                 var matches = $(this).text().match(/\d+/g);
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
+            }
+            if (id == 2) {
+                var matches = $(this).text().match(/\d+/g);
+                $(this).text($(this).text().replace(/\d+/, +matches[0] + 50));
             }
         } else {
             if (offset == id) {
