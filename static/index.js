@@ -1,20 +1,20 @@
 // javascript-obfuscator index.js index.js.map --output  index.min.js
 function buff() {
     // 2019-09-22 rare rate()
-    var epoch = new Date(2019, 9 - 1, 22)
+    const epoch = new Date(2019, 9 - 1, 22)
     epoch.setHours(8, 0, 0, 0);
     epoch.setTime(epoch.getTime() /*+ epoch.getTimezoneOffset() * 60 * 1000*/)
 
-    var now = new Date();
-    var current = now.getTime();
-    var offset = parseInt(((now.getTime() - epoch.getTime()) / (24 * 60 * 60 * 1000)) / 7 % 4)
+    const now = new Date();
+    let current = now.getTime();
+    let offset = parseInt(((now.getTime() - epoch.getTime()) / (24 * 60 * 60 * 1000)) / 7 % 4)
 
     $('#buf li').each(function (idx, val) {
-        var id = $(this).attr("id");
-        var matches = $(this).text().match(/\d+/g);
+        const id = $(this).attr("id");
+        const matches = $(this).text().match(/\d+/g);
 
         // 2020 周年
-        var anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
+        const anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
         if (+current <= +anniversaryEventEndDate) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
             if(id === "1" || id === "0"){
