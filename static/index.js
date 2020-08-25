@@ -16,9 +16,13 @@ function buff() {
         var anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
         if (+current <= +anniversaryEventEndDate) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
-            if(id == 3 || id == 1 || id == 0){
+            if(id == 1 || id == 0){
                 var matches = $(this).text().match(/\d+/g);
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
+            }
+            if(id == 3 ){
+                var matches = $(this).text().match(/\d+/g);
+                $(this).text($(this).text().replace(/\d+/, +matches[0] + 20));
             }
             if (id == 2) {
                 var matches = $(this).text().match(/\d+/g);
