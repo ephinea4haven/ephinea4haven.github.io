@@ -11,43 +11,40 @@ function buff() {
 
     $('#buf li').each(function (idx, val) {
         var id = $(this).attr("id");
+        var matches = $(this).text().match(/\d+/g);
 
         // 2020 周年
         var anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
         if (+current <= +anniversaryEventEndDate) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
-            if(id == 1 || id == 0){
-                var matches = $(this).text().match(/\d+/g);
+            if(id === "1" || id === "0"){
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
             }
-            if(id == 3 ){
-                var matches = $(this).text().match(/\d+/g);
+            if(id === "3" ){
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 20));
             }
-            if (id == 2) {
-                var matches = $(this).text().match(/\d+/g);
+            if (id === "2") {
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 50));
             }
         } else {
-            if (offset == id) {
+            if (offset === parseInt(id)) {
                 $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
                 // 2020 圣诞
                 var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
                 if (+current <= +christEventEndDate) {
-                    var matches = $(this).text().match(/\d+/g);
+
                     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
                 }
 
                 // 2020 复活节
                 var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
                 if (+current <= +easterEventEndDate) {
-                    var matches = $(this).text().match(/\d+/g);
                     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
                 }
             }
 
-            if ((+offset + 1) % 4 == id) {
+            if ((+offset + 1) % 4 === parseInt(id)) {
                 $(this).css({'color': 'green', 'font-weight': 'bolder'});
             }
         }
@@ -63,7 +60,7 @@ function GetInternetTime() {
     var seconds = date.getUTCSeconds();
 
     // add hour to get time in Switzerland
-    hours = (hours == 23) ? 0 : hours + 1;
+    hours = (hours === 23) ? 0 : hours + 1;
 
     // time in seconds
     var timeInSeconds = (((hours * 60) + minutes) * 60) + seconds;
@@ -75,7 +72,7 @@ function GetInternetTime() {
     // var beats = parseInt(timeInSeconds / secondsInABeat);
     var beats = Math.abs(timeInSeconds / secondsInABeat).toFixed(2);
 
-    if (parseInt(beats / 100) % 2 == 0) {
+    if (parseInt(beats / 100) % 2 === 0) {
         var len = beats.toString().length;
         while (len++ < 3) {
             beats = '0' + beats;
@@ -98,12 +95,12 @@ function pad0(unit, base) {
         base = 10;
     }
 
-    if (base == 10) {
+    if (base === 10) {
         if (unit < 10) {
             unit = '0' + unit;
         }
-    } else if (base == 100) {
-        if (unit == 0) {
+    } else if (base === 100) {
+        if (unit === 0) {
             unit = '000'
         } else if (unit < 10) {
             unit = '00' + unit;
