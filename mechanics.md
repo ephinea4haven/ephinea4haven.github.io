@@ -12,7 +12,7 @@ EA = [WA + AA + ShA + Grind x 2] x [ATR + 1.0]
 EA = 装备`合计`伤害  
 WA = 武器基础伤害  
 AA = 铠甲攻击增益  
-ShA = 盾牌共计增益  
+ShA = 盾牌攻击增益  
 ATR = 武器属性%  
 Grind = 武器打磨
 
@@ -22,8 +22,8 @@ SA = [BA x Shifta] + [(MWA - MinWA) x Shifta]
 
 SA = Shifta加攻魔法`合计`伤害   
 Shifta = Shifta加攻魔法基础伤害  
-MWA = 武器最低伤害  
-MinWA = 武器最高伤害
+MWA = 武器浮动的最高伤害  
+MinWA = 武器浮动的最低伤害
 
 ### 3.基础伤害结果:
 ATP = BA + EA + SA  
