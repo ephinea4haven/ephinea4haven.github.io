@@ -14,7 +14,7 @@ function buff() {
         const matches = $(this).text().match(/\d+/g);
 
         // 2020 周年
-        const anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
+   /*     const anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
         if (+current <= +anniversaryEventEndDate) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
             if(id === "1" || id === "0"){
@@ -26,28 +26,34 @@ function buff() {
             if (id === "2") {
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 50));
             }
-        } else {
+        } else {*/
             if (offset === parseInt(id)) {
                 $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
-                // 2020 圣诞
-                var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
+                // 2021 圣诞
+                var christEventEndDate = new Date(2021, 1 - 1, 9).getTime();
                 if (+current <= +christEventEndDate) {
-
                     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
                 }
+
+                // 2020 圣诞
+                // var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
+                // if (+current <= +christEventEndDate) {
+                //
+                //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+                // }
 
                 // 2020 复活节
-                var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
-                if (+current <= +easterEventEndDate) {
-                    $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-                }
+                // var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
+                // if (+current <= +easterEventEndDate) {
+                //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+                // }
             }
 
             if ((+offset + 1) % 4 === parseInt(id)) {
                 $(this).css({'color': 'green', 'font-weight': 'bolder'});
             }
-        }
+        /*}*/
     })
 }
 
