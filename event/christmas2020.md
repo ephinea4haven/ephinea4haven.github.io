@@ -220,7 +220,7 @@ Christmas Eve, Christmas Day, New Year's Eve and New Year's Day
 
    煤炭换圣诞礼物。
    
-   ![煤炭兑换菜单](../static/img/煤炭exchange.png)
+   ![煤炭兑换菜单](../static/img/coalexchange.png)
 
 **兑换规则:**
 
