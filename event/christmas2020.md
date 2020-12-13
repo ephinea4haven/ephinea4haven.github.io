@@ -18,7 +18,7 @@
 
 
 ### 奖品列表
- `???` 圣诞礼品需要猎人们一起挖掘，然后去[圣诞活动贴子](https://www.pioneer2.net/community/threads/ephinea-christmas-2020-event-thread.19752/#post-158950)上报!
+ `???` 圣诞礼品需要猎人们一起挖掘，然后去[圣诞活动贴子](https://www.pioneer2.net/community/threads/ephinea-christmas-2020-event-thread.19752)上报!
  
 #### 全难度普通礼品
  多种H: 最低15，最高60
