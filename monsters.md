@@ -708,11 +708,17 @@
 * [主线] 9-5 (25) 
 
 **暗黑魔眼巨花**   
-* [E][限定活动] Maximum Attack E: Desert (6) 
+* [E][夺回] 被夺走的销魂魔息杖 (20~21)
+* [E][限时活动] Christmas Fiasco (18)
+* [E][限定活动] Maximum Attack E: Desert (6)
+* [E][歼灭] 扑杀作战 第十四号 (7)
+* [E][歼灭] 扑杀作战 第十三号 (6)
+* [歼灭] 新扫荡作战 第五号 三个房间或全程 (1/4)
 * [E][Maximum Attack] Maximum Attack 4th Stage -4C- (6) 
 * [歼灭] 新扫荡作战 第五号 第三个房间或全程 (1/4) 
 * [歼灭] 极幻战火5 (4) 
-* [歼灭] 极幻战火4 (3) 
+* [歼灭] 极幻战火4 (3)
+* [单人] 先驱者精神 (3)
 * [Maximum Attack] Maximum Attack 4th Stage -4B- (3) 
 
 **圣魔龙**   
