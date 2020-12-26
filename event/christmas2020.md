@@ -175,16 +175,16 @@
     - [散弹枪]Shot
     - [长刀]Partisan
     - [机枪]Mechgun
-- EX: 
-    - [败血][销血]
-    - [败魔][销魂]
-    - [败家][销金]
-    - [嗜血]GUSH
-    - [魄之]GEIST
-    - [全麻痹][全麻痹]
-    - [混沌]CHAOS
-    - [恶魔]DEMON'S
-    - [地狱][地狱]
+- EX:
+  - [败血]BERSERK
+  - [败魔]SPIRIT
+  - [败家]CHARGE
+  - [嗜血]GUSH
+  - [魄之]GEIST
+  - [全麻痹]ARREST
+  - [混沌]CHAOS
+  - [恶魔]DEMON'S
+  - [地狱]HELL
 
 - H概率(55H/60H)：
 
