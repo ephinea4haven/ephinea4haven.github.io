@@ -120,7 +120,7 @@
 * 艾欧诺亚细胞
 * 艾米提的笔记
 * ＴＰ药 x10
-* Raikiri
+* 雷切
 * 光子微晶 x10
 * [败家] Mechgun 70H
 * ???
@@ -200,7 +200,7 @@
 
    煤炭换圣诞礼物。
    
-   ![煤炭兑换菜单](../static/img/煤炭exchange.png)
+   ![煤炭兑换菜单](../static/img/coalexchange.png)
 
 **兑换规则:**
 
