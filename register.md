@@ -1,6 +1,6 @@
 [账号注册](https://ephinea.pioneer2.net/register)
 
-**可用户注册的邮箱: 微软的outlook、live、hotmail,谷歌的gmail等国际邮箱。** 
+**可以注册的邮箱: 微软的outlook、live、hotmail,谷歌的gmail等国际邮箱。** 
 
 注册过程中存在**reCAPTCHA**，需要有科学上网才能看到!!!
 
