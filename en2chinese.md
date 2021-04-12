@@ -1161,8 +1161,8 @@ Epsigard 厄普西盾
 Astark 异甲巨螳螂  
 Yowie 砂岩蜥蜴  
 Satellite Lizard 沙暴蜥蜴  
-Merissa A 媚影沙魔-Ａ  
-Merissa AA 媚影沙魔-ＡＡ  
+Merissa A 媚影沙魔A  
+Merissa AA 媚影沙魔AA   
 Girtablulu 暗黑魔眼巨花  
 Zu 巨型火犀鸟  
 Pazuzu 变异羚角鸟  
