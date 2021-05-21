@@ -6,7 +6,8 @@
 | Fire Scepter: Agni 炎杖-阿耆尼 | 火系伤害提升20% |
 | Ice Staff: Dagon 冰杖-达贡 | 冰系伤害提升20% |
 | Storm Wand: Indra 雷杖-因陀罗 | 雷系伤害提升20% |
-| Caduceus 羽毛杖 | 光伤害提升10% |
+| Caduceus 羽毛杖 | 光伤害提升20% |
+| Mercurius Rod 大天使之杖 | 光伤害提升30% |
 | Magical Piece 心心杖 | 中级魔法伤害提升 30% |
 | Summit Moon 辉月之杖 | 初级魔法伤害提升30% |
 | Evil Curst 恶魔之眼 | 死咒Lv1～12级波动魔法缓慢减少 |
