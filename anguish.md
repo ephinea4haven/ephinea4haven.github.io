@@ -16,7 +16,7 @@
 * 命中 (ATA) 提升  
 * 防御 (DFP) 提升  
 * 回避 (EVP) 提升  
-* 暴击 (LCK) increaes  
+* 暴击 (LCK) 提升  
 * 暗抗 (EDK) 提升  
 * EX抗性 (ESP) 提升  
 * 移动速度 提升  
