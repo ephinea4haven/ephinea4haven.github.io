@@ -77,7 +77,7 @@
 * 痛苦 Lv. 9 -> 掉率 + 63%  
 * 痛苦 Lv. 10 -> 掉率 + 70%  
 
-常规武器掉率Pattern3是对应前面区域，4是对应后面区域。(0、1、2暂时废弃,5对应红盒)  
+常规武器掉率3是对应前面区域，4是对应后面区域。(0、1、2暂时废弃,5对应红盒)  
 前面区域: 森林Forest, 洞窟Caves, 神殿VR Temple, 宇宙船VR Spaceship, 和陨石坑Crater  
 后面区域: 坑道Mines, 遗迹Ruins, 中央管理区CCA, 海底Seabed, 塔Tower和沙漠Desert。
 
