@@ -99,16 +99,6 @@ function GetBeatTime() {
     return Math.abs(timeInSeconds / secondsInABeat).toFixed(2);
 }
 
-// Galatine has a base ATP of 330-420 which is multiplied depending on the beat time.
-// 9 grinders =18atp
-// 000-124: 0.33x (110-140)
-// 125-249: 0.5x (165-210)
-// 250-374: 1x (330-420)
-// 375-499: 2x (660-840)
-// 500-624: 3x (990-1260)
-// 652-749: 2x (660-840)
-// 750-874: 1x (660-840)
-// 875-999: 0.5x (165-210)
 function GetCSTByBeatTime(beattime) {
     var c = new Date()
     c.setHours(0)
@@ -147,7 +137,9 @@ function pad0(unit, base) {
 將原來的一天24小時劃分為1000個等份，各等份稱為一個「.Beat」（拍／角刻），因此一個Beat相當於86.4秒（=1分26.4秒）。另有一輔助單位「.cBeat」（分拍／毫刻），為Beat的1/100，即0.864秒。
 一天的起始時間（UTC+1時間的午夜0:00）記為「@000」，結束時間為「@999」，且皆以BMT為準，不像傳統時制有時區之別。因此除了傳統上與BMT同時區的地區之外，各地傳統的午夜0:00都不是@000。
  */
-function getBeatPeriod(start, end, even) {
+function getBeatPeriod(start, end) {
+    var beats = GetBeatTime();
+
     var d1 = new Date();
     d1.setHours(0, 0, 0, 0);
     d1.setTime(d1.getTime() + start * 86400 + 7 * 60 * 60 * 1000);
@@ -160,13 +152,11 @@ function getBeatPeriod(start, end, even) {
     var raw = pad0(d1.getHours()) + ':' + pad0(d1.getMinutes()) + ':' + pad0(d1.getSeconds())
         + ' ~ ' + pad0(d2.getHours()) + ':' + pad0(d2.getMinutes()) + ':' + pad0(d2.getSeconds())
 
-    if (even === undefined) {
-        even = true;
-    }
 
     raw = pad0(start, 100) + ' ~ ' + pad0(end, 100) + ' : ' + raw;
 
-    if (even) {
+    //
+    if (beats >= start && beats <= end) {
         return '<span style="color: #47a447; ">' + raw + '</span>'
     }
 
@@ -181,28 +171,28 @@ $(function () {
 
     var beat_even_period = "<ul>";
     beat_even_period += "<li>" + getBeatPeriod(0, 99);
-    beat_even_period += "<li>" + getBeatPeriod(100, 199, false);
+    beat_even_period += "<li>" + getBeatPeriod(100, 199);
     beat_even_period += "<li>" + getBeatPeriod(200, 299);
-    beat_even_period += "<li>" + getBeatPeriod(300, 399, false);
+    beat_even_period += "<li>" + getBeatPeriod(300, 399);
     beat_even_period += "<li>" + getBeatPeriod(400, 499);
-    beat_even_period += "<li>" + getBeatPeriod(500, 599, false);
+    beat_even_period += "<li>" + getBeatPeriod(500, 599);
     beat_even_period += "<li>" + getBeatPeriod(600, 699);
-    beat_even_period += "<li>" + getBeatPeriod(700, 799, false);
+    beat_even_period += "<li>" + getBeatPeriod(700, 799);
     beat_even_period += "<li>" + getBeatPeriod(800, 899);
-    beat_even_period += "<li>" + getBeatPeriod(900, 999, false);
+    beat_even_period += "<li>" + getBeatPeriod(900, 999);
     beat_even_period += "</ul>";
 
     $('#beat_even_period').html(beat_even_period);
 
     var galatine_even_period = "<ul>";
     galatine_even_period += "<li>" + getBeatPeriod(0, 124) + " - 0.33x (110-140)";
-    galatine_even_period += "<li>" + getBeatPeriod(125, 249, false) + " - 0.5x (165-210)";
+    galatine_even_period += "<li>" + getBeatPeriod(125, 249) + " - 0.5x (165-210)";
     galatine_even_period += "<li>" + getBeatPeriod(250, 374) + " - 1x (330-420)";
-    galatine_even_period += "<li>" + getBeatPeriod(375, 499, false) + " - 2x (660-840)";
+    galatine_even_period += "<li>" + getBeatPeriod(375, 499) + " - 2x (660-840)";
     galatine_even_period += "<li>" + getBeatPeriod(500, 624) + " - 3x (990-1260)";
-    galatine_even_period += "<li>" + getBeatPeriod(625, 749, false) + " - 2x (660-840)";
+    galatine_even_period += "<li>" + getBeatPeriod(625, 749) + " - 2x (660-840)";
     galatine_even_period += "<li>" + getBeatPeriod(750, 874) + " - 1x (330-420)";
-    galatine_even_period += "<li>" + getBeatPeriod(875, 999, false) + " - 0.5x (165-210)";
+    galatine_even_period += "<li>" + getBeatPeriod(875, 999) + " - 0.5x (165-210)";
     galatine_even_period += "</ul>";
 
     $('#galatine_even_period').html(galatine_even_period);
