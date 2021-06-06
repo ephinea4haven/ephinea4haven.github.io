@@ -14,69 +14,51 @@ function buff() {
         const matches = $(this).text().match(/\d+/g);
 
         // 2020 周年
-   /*     const anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
-        if (+current <= +anniversaryEventEndDate) {
+        /*     const anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
+             if (+current <= +anniversaryEventEndDate) {
+                 $(this).css({'color': 'red', 'font-weight': 'bolder'});
+                 if(id === "1" || id === "0"){
+                     $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
+                 }
+                 if(id === "3" ){
+                     $(this).text($(this).text().replace(/\d+/, +matches[0] + 20));
+                 }
+                 if (id === "2") {
+                     $(this).text($(this).text().replace(/\d+/, +matches[0] + 50));
+                 }
+             } else {*/
+        if (offset === parseInt(id)) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
-            if(id === "1" || id === "0"){
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
-            }
-            if(id === "3" ){
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 20));
-            }
-            if (id === "2") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 50));
-            }
-        } else {*/
-            if (offset === parseInt(id)) {
-                $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
-                // 2021 圣诞
-                var christEventEndDate = new Date(2021, 1 - 1, 9).getTime();
-                if (+current <= +christEventEndDate) {
-                    $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-                }
-
-                // 2020 圣诞
-                // var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
-                // if (+current <= +christEventEndDate) {
-                //
-                //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-                // }
-
-                // 2020 复活节
-                // var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
-                // if (+current <= +easterEventEndDate) {
-                //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-                // }
+            // 2021 圣诞
+            var christEventEndDate = new Date(2021, 1 - 1, 9).getTime();
+            if (+current <= +christEventEndDate) {
+                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
             }
 
-            if ((+offset + 1) % 4 === parseInt(id)) {
-                $(this).css({'color': 'green', 'font-weight': 'bolder'});
-            }
+            // 2020 圣诞
+            // var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
+            // if (+current <= +christEventEndDate) {
+            //
+            //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+            // }
+
+            // 2020 复活节
+            // var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
+            // if (+current <= +easterEventEndDate) {
+            //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+            // }
+        }
+
+        if ((+offset + 1) % 4 === parseInt(id)) {
+            $(this).css({'color': 'green', 'font-weight': 'bolder'});
+        }
         /*}*/
     })
 }
 
-// calculate the time of the future
 function GetInternetTime() {
-    // get date in UTC/GMT
-    var date = new Date();
-    var hours = date.getUTCHours();
-    var minutes = date.getUTCMinutes();
-    var seconds = date.getUTCSeconds();
-
-    // add hour to get time in Switzerland
-    hours = (hours === 23) ? 0 : hours + 1;
-
-    // time in seconds
-    var timeInSeconds = (((hours * 60) + minutes) * 60) + seconds;
-
-    // there are 86.4 seconds in a beat
-    var secondsInABeat = 86.4;
-
-    // calculate beats to two decimal places
-    // var beats = parseInt(timeInSeconds / secondsInABeat);
-    var beats = Math.abs(timeInSeconds / secondsInABeat).toFixed(2);
+    var beats = GetBeatTime();
 
     if (parseInt(beats / 100) % 2 === 0) {
         var len = beats.toString().length;
@@ -94,6 +76,45 @@ function GetInternetTime() {
 
     // update page
     $('#swatchTime').html(beats);
+}
+
+function GetBeatTime() {
+    // get date in UTC/GMT
+    var date = new Date();
+    var hours = date.getUTCHours();
+    var minutes = date.getUTCMinutes();
+    var seconds = date.getUTCSeconds();
+
+    // add hour to get time in Switzerland
+    hours = (hours === 23) ? 0 : hours + 1;
+
+    // time in seconds
+    var timeInSeconds = (((hours * 60) + minutes) * 60) + seconds;
+
+    // there are 86.4 seconds in a beat
+    var secondsInABeat = 86.4;
+
+    // calculate beats to two decimal places
+    // var beats = parseInt(timeInSeconds / secondsInABeat);
+    return Math.abs(timeInSeconds / secondsInABeat).toFixed(2);
+}
+
+// Galatine has a base ATP of 330-420 which is multiplied depending on the beat time.
+// 9 grinders =18atp
+// 000-124: 0.33x (110-140)
+// 125-249: 0.5x (165-210)
+// 250-374: 1x (330-420)
+// 375-499: 2x (660-840)
+// 500-624: 3x (990-1260)
+// 652-749: 2x (660-840)
+// 750-874: 1x (660-840)
+// 875-999: 0.5x (165-210)
+function GetCSTByBeatTime(beattime) {
+    var c = new Date()
+    c.setHours(0)
+    c.setMinutes(0)
+    c.setSeconds(0)
+    return new Date(c.getTime() + beattime * 86.4 * 1000 + 3600 * 1000 * 7)
 }
 
 function pad0(unit, base) {
@@ -172,4 +193,17 @@ $(function () {
     beat_even_period += "</ul>";
 
     $('#beat_even_period').html(beat_even_period);
+
+    var galatine_even_period = "<ul>";
+    galatine_even_period += "<li>" + getBeatPeriod(0, 124) + " 0.33x (110-140)";
+    galatine_even_period += "<li>" + getBeatPeriod(125, 249, false) + " 0.5x (165-210)";
+    galatine_even_period += "<li>" + getBeatPeriod(250, 374) + " 1x (330-420)";
+    galatine_even_period += "<li>" + getBeatPeriod(375, 499, false) + " 2x (660-840)";
+    galatine_even_period += "<li>" + getBeatPeriod(500, 624) + " 3x (990-1260)";
+    galatine_even_period += "<li>" + getBeatPeriod(625, 749, false) + " 2x (660-840)";
+    galatine_even_period += "<li>" + getBeatPeriod(750, 874) + " 1x (330-420)";
+    galatine_even_period += "<li>" + getBeatPeriod(875, 999, false) + " 0.5x (165-210)";
+    galatine_even_period += "</ul>";
+
+    $('#galatine_even_period').html(galatine_even_period);
 });
