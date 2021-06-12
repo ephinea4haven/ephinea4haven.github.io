@@ -65,11 +65,11 @@ function GetInternetTime() {
         while (len++ < 3) {
             beats = '0' + beats;
         }
-        beats = '<span style="color: #47a447; font-weight: bolder">' + '@' + beats + '</span>'
+        beats = '<span style="color: #47a447; font-weight: bolder">@' + beats + '</span>'
 
         $('#hp-span').css({'color': 'green', 'font-weight': 'bold'});
     } else {
-        beats = '<span style="font-weight: bolder">@' + beats + '</span>'
+        beats = '<span style="color: #a49047; font-weight: bolder">@' + beats + '</span>'
 
         $('#hp-span').css('color', '')
     }
