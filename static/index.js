@@ -157,7 +157,9 @@ function getBeatPeriod(start, end) {
 
     //
     if (beats >= start && beats <= end) {
-        return '<span style="color: #47a447; font-weight: bold">' + raw + '</span>'
+        if (parseInt(beats / 100) % 2 === 0) {
+            return '<span style="color: #47a447; font-weight: bold">' + raw + '</span>'
+        }
     }
 
     return raw;
