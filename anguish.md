@@ -16,7 +16,7 @@
 * 命中 (ATA) 提升  
 * 防御 (DFP) 提升  
 * 回避 (EVP) 提升  
-* 暴击 (LCK) increaes  
+* 暴击 (LCK) 提升  
 * 暗抗 (EDK) 提升  
 * EX抗性 (ESP) 提升  
 * 移动速度 提升  
@@ -77,7 +77,7 @@
 * 痛苦 Lv. 9 -> 掉率 + 63%  
 * 痛苦 Lv. 10 -> 掉率 + 70%  
 
-常规武器掉率Pattern3是对应前面区域，4是对应后面区域。(1、2暂时废弃,0对应普通模式,5对应红盒)  
+常规武器掉率3是对应前面区域，4是对应后面区域。(0、1、2暂时废弃,5对应红盒)  
 前面区域: 森林Forest, 洞窟Caves, 神殿VR Temple, 宇宙船VR Spaceship, 和陨石坑Crater  
 后面区域: 坑道Mines, 遗迹Ruins, 中央管理区CCA, 海底Seabed, 塔Tower和沙漠Desert。
 

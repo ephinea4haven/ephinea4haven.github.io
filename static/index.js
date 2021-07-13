@@ -14,51 +14,71 @@ function buff() {
         const matches = $(this).text().match(/\d+/g);
 
         // 2020 周年
-   /*     const anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
-        if (+current <= +anniversaryEventEndDate) {
+        /*     const anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
+             if (+current <= +anniversaryEventEndDate) {
+                 $(this).css({'color': 'red', 'font-weight': 'bolder'});
+                 if(id === "1" || id === "0"){
+                     $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
+                 }
+                 if(id === "3" ){
+                     $(this).text($(this).text().replace(/\d+/, +matches[0] + 20));
+                 }
+                 if (id === "2") {
+                     $(this).text($(this).text().replace(/\d+/, +matches[0] + 50));
+                 }
+             } else {*/
+        if (offset === parseInt(id)) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
-            if(id === "1" || id === "0"){
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
-            }
-            if(id === "3" ){
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 20));
-            }
-            if (id === "2") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 50));
-            }
-        } else {*/
-            if (offset === parseInt(id)) {
-                $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
-                // 2021 圣诞
-                var christEventEndDate = new Date(2021, 1 - 1, 9).getTime();
-                if (+current <= +christEventEndDate) {
-                    $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-                }
-
-                // 2020 圣诞
-                // var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
-                // if (+current <= +christEventEndDate) {
-                //
-                //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-                // }
-
-                // 2020 复活节
-                // var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
-                // if (+current <= +easterEventEndDate) {
-                //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-                // }
+            // 2021 圣诞
+            var christEventEndDate = new Date(2021, 1 - 1, 9).getTime();
+            if (+current <= +christEventEndDate) {
+                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
             }
 
-            if ((+offset + 1) % 4 === parseInt(id)) {
-                $(this).css({'color': 'green', 'font-weight': 'bolder'});
-            }
+            // 2020 圣诞
+            // var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
+            // if (+current <= +christEventEndDate) {
+            //
+            //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+            // }
+
+            // 2020 复活节
+            // var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
+            // if (+current <= +easterEventEndDate) {
+            //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+            // }
+        }
+
+        if ((+offset + 1) % 4 === parseInt(id)) {
+            $(this).css({'color': 'green', 'font-weight': 'bolder'});
+        }
         /*}*/
     })
 }
 
-// calculate the time of the future
 function GetInternetTime() {
+    var beats = GetBeatTime();
+
+    if (parseInt(beats / 100) % 2 === 0) {
+        var len = beats.toString().length;
+        while (len++ < 3) {
+            beats = '0' + beats;
+        }
+        beats = '<span style="color: #47a447; font-weight: bolder; font-size: larger">@' + beats + '</span>'
+
+        $('#hp-span').css({'color': 'green', 'font-weight': 'bold'});
+    } else {
+        beats = '<span style="color: #a49047; font-weight: bolder">@' + beats + '</span>'
+
+        $('#hp-span').css('color', '')
+    }
+
+    // update page
+    $('#swatchTime').html(beats);
+}
+
+function GetBeatTime() {
     // get date in UTC/GMT
     var date = new Date();
     var hours = date.getUTCHours();
@@ -76,24 +96,15 @@ function GetInternetTime() {
 
     // calculate beats to two decimal places
     // var beats = parseInt(timeInSeconds / secondsInABeat);
-    var beats = Math.abs(timeInSeconds / secondsInABeat).toFixed(2);
+    return Math.abs(timeInSeconds / secondsInABeat).toFixed(2);
+}
 
-    if (parseInt(beats / 100) % 2 === 0) {
-        var len = beats.toString().length;
-        while (len++ < 3) {
-            beats = '0' + beats;
-        }
-        beats = '<span style="color: #47a447; font-weight: bolder">' + '@' + beats + '</span>'
-
-        $('#hp-span').css({'color': 'green', 'font-weight': 'bold'});
-    } else {
-        beats = '<span style="font-weight: bolder">@' + beats + '</span>'
-
-        $('#hp-span').css('color', '')
-    }
-
-    // update page
-    $('#swatchTime').html(beats);
+function GetCSTByBeatTime(beattime) {
+    var c = new Date()
+    c.setHours(0)
+    c.setMinutes(0)
+    c.setSeconds(0)
+    return new Date(c.getTime() + beattime * 86.4 * 1000 + 3600 * 1000 * 7)
 }
 
 function pad0(unit, base) {
@@ -126,7 +137,9 @@ function pad0(unit, base) {
 將原來的一天24小時劃分為1000個等份，各等份稱為一個「.Beat」（拍／角刻），因此一個Beat相當於86.4秒（=1分26.4秒）。另有一輔助單位「.cBeat」（分拍／毫刻），為Beat的1/100，即0.864秒。
 一天的起始時間（UTC+1時間的午夜0:00）記為「@000」，結束時間為「@999」，且皆以BMT為準，不像傳統時制有時區之別。因此除了傳統上與BMT同時區的地區之外，各地傳統的午夜0:00都不是@000。
  */
-function getBeatPeriod(start, end, even) {
+function getBeatPeriod(start, end) {
+    var beats = GetBeatTime();
+
     var d1 = new Date();
     d1.setHours(0, 0, 0, 0);
     d1.setTime(d1.getTime() + start * 86400 + 7 * 60 * 60 * 1000);
@@ -139,14 +152,16 @@ function getBeatPeriod(start, end, even) {
     var raw = pad0(d1.getHours()) + ':' + pad0(d1.getMinutes()) + ':' + pad0(d1.getSeconds())
         + ' ~ ' + pad0(d2.getHours()) + ':' + pad0(d2.getMinutes()) + ':' + pad0(d2.getSeconds())
 
-    if (even === undefined) {
-        even = true;
-    }
 
     raw = pad0(start, 100) + ' ~ ' + pad0(end, 100) + ' : ' + raw;
 
-    if (even) {
-        return '<span style="color: #47a447; ">' + raw + '</span>'
+    //
+    if (beats >= start && beats <= end) {
+        if (parseInt(beats / 100) % 2 === 0) {
+            return '<span style="color: #47a447; font-weight: bold">' + raw + '</span>'
+        } else{
+            return '<span style="color: #a49047; font-weight: bold">' + raw + '</span>'
+        }
     }
 
     return raw;
@@ -160,16 +175,29 @@ $(function () {
 
     var beat_even_period = "<ul>";
     beat_even_period += "<li>" + getBeatPeriod(0, 99);
-    beat_even_period += "<li>" + getBeatPeriod(100, 199, false);
+    beat_even_period += "<li>" + getBeatPeriod(100, 199);
     beat_even_period += "<li>" + getBeatPeriod(200, 299);
-    beat_even_period += "<li>" + getBeatPeriod(300, 399, false);
+    beat_even_period += "<li>" + getBeatPeriod(300, 399);
     beat_even_period += "<li>" + getBeatPeriod(400, 499);
-    beat_even_period += "<li>" + getBeatPeriod(500, 599, false);
+    beat_even_period += "<li>" + getBeatPeriod(500, 599);
     beat_even_period += "<li>" + getBeatPeriod(600, 699);
-    beat_even_period += "<li>" + getBeatPeriod(700, 799, false);
+    beat_even_period += "<li>" + getBeatPeriod(700, 799);
     beat_even_period += "<li>" + getBeatPeriod(800, 899);
-    beat_even_period += "<li>" + getBeatPeriod(900, 999, false);
+    beat_even_period += "<li>" + getBeatPeriod(900, 999);
     beat_even_period += "</ul>";
 
     $('#beat_even_period').html(beat_even_period);
+
+    var galatine_even_period = "<ul>";
+    galatine_even_period += "<li>" + getBeatPeriod(0, 124) + " - 0.33x (110-140)";
+    galatine_even_period += "<li>" + getBeatPeriod(125, 249) + " - 0.5x (165-210)";
+    galatine_even_period += "<li>" + getBeatPeriod(250, 374) + " - 1x (330-420)";
+    galatine_even_period += "<li>" + getBeatPeriod(375, 499) + " - 2x (660-840)";
+    galatine_even_period += "<li>" + getBeatPeriod(500, 624) + " - 3x (990-1260)";
+    galatine_even_period += "<li>" + getBeatPeriod(625, 749) + " - 2x (660-840)";
+    galatine_even_period += "<li>" + getBeatPeriod(750, 874) + " - 1x (330-420)";
+    galatine_even_period += "<li>" + getBeatPeriod(875, 999) + " - 0.5x (165-210)";
+    galatine_even_period += "</ul>";
+
+    $('#galatine_even_period').html(galatine_even_period);
 });
