@@ -13,21 +13,20 @@ function buff() {
         const id = $(this).attr("id");
         const matches = $(this).text().match(/\d+/g);
 
-        // 2020 周年
-        /*     const anniversaryEventEndDate = new Date(2020, 9 - 1, 14).getTime();
-             if (+current <= +anniversaryEventEndDate) {
-                 $(this).css({'color': 'red', 'font-weight': 'bolder'});
-                 if(id === "1" || id === "0"){
-                     $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
-                 }
-                 if(id === "3" ){
-                     $(this).text($(this).text().replace(/\d+/, +matches[0] + 20));
-                 }
-                 if (id === "2") {
-                     $(this).text($(this).text().replace(/\d+/, +matches[0] + 50));
-                 }
-             } else {*/
-        if (offset === parseInt(id)) {
+        // 2021 周年
+        const anniversaryEventEndDate = new Date(2021, 9 - 1, 4).getTime();
+        if (+current <= +anniversaryEventEndDate) {
+            $(this).css({'color': 'red', 'font-weight': 'bolder'});
+            if (id === "1" || id === "0") {
+                $(this).text($(this).text().replace(/\d+/, +matches[0]));
+            }
+            if (id === "3") {
+                $(this).text($(this).text().replace(/\d+/, +matches[0]));
+            }
+            if (id === "2") {
+                $(this).text($(this).text().replace(/\d+/, +matches[0]));
+            }
+        } /*else if (offset === parseInt(id)) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
             // 2021 圣诞
@@ -52,8 +51,7 @@ function buff() {
 
         if ((+offset + 1) % 4 === parseInt(id)) {
             $(this).css({'color': 'green', 'font-weight': 'bolder'});
-        }
-        /*}*/
+        }*/
     })
 }
 
@@ -159,7 +157,7 @@ function getBeatPeriod(start, end) {
     if (beats >= start && beats <= end) {
         if (parseInt(beats / 100) % 2 === 0) {
             return '<span style="color: #47a447; font-weight: bold">' + raw + '</span>'
-        } else{
+        } else {
             return '<span style="color: #a49047; font-weight: bold">' + raw + '</span>'
         }
     }
