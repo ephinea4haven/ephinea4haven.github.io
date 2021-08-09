@@ -17,11 +17,14 @@ function buff() {
         const anniversaryEventEndDate = new Date(2021, 9 - 1, 4).getTime();
         if (+current <= +anniversaryEventEndDate) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
-            if (id === "1" || id === "0") {
+            if (id === "0") {
+                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
+            }
+            if (id === "1") {
                 $(this).text($(this).text().replace(/\d+/, +matches[0]));
             }
             if (id === "3") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0]));
+                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
             }
             if (id === "2") {
                 $(this).text($(this).text().replace(/\d+/, +matches[0]));
