@@ -21,13 +21,13 @@ function buff() {
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
             }
             if (id === "1") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0]));
+                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
             }
             if (id === "3") {
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
             }
             if (id === "2") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0]));
+                $(this).text($(this).text().replace(/\d+/, +matches[0] +50));
             }
         } /*else if (offset === parseInt(id)) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
