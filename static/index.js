@@ -18,7 +18,7 @@ function buff() {
         if (+current <= +anniversaryEventEndDate) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
             if (id === "0") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
+                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10 + 15));
             }
             if (id === "1") {
                 $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
