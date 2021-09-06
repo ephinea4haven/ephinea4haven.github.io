@@ -29,7 +29,7 @@ function buff() {
             if (id === "2") {
                 $(this).text($(this).text().replace(/\d+/, +matches[0] +50));
             }
-        } /*else if (offset === parseInt(id)) {
+        } else if (offset === parseInt(id)) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
             // 2021 圣诞
@@ -39,22 +39,22 @@ function buff() {
             }
 
             // 2020 圣诞
-            // var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
-            // if (+current <= +christEventEndDate) {
-            //
-            //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-            // }
+            var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
+            if (+current <= +christEventEndDate) {
+
+                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+            }
 
             // 2020 复活节
-            // var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
-            // if (+current <= +easterEventEndDate) {
-            //     $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-            // }
+            var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
+            if (+current <= +easterEventEndDate) {
+                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
+            }
         }
 
         if ((+offset + 1) % 4 === parseInt(id)) {
             $(this).css({'color': 'green', 'font-weight': 'bolder'});
-        }*/
+        }
     })
 }
 
