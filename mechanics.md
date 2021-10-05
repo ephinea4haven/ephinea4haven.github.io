@@ -22,8 +22,8 @@ SA = [BA x Shifta] + [(MWA - MinWA) x Shifta]
 
 SA = Shifta加攻魔法`合计`伤害   
 Shifta = Shifta加攻魔法基础伤害  
-MWA = 武器浮动的最高伤害  
-MinWA = 武器浮动的最低伤害
+MWA = 每次(Roll)最高的伤害  
+MinWA = 每(Roll)次最低的伤害
 
 ### 3.基础伤害结果:
 ATP = BA + EA + SA  
