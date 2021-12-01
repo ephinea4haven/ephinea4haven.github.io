@@ -9,7 +9,7 @@
 
 [Ephinea国内WIKI](https://ephinea4haven.github.io)
 
-### 2020年圣诞任务从`(2019-12-12)`到`(2020-01-09)`结束
+### 2020年圣诞任务从`(2020-12-12)`到`(2021-01-09)`结束
 
 - <span style="font-weight: bolder;color:red">圣诞礼品掉率: `1/1500`,圣诞前夜、圣诞、元旦前夜、元旦: `1/750`</span>
 - <span style="font-weight: bolder;color:red">活动期间`RBS(周提升系统)`双倍。</span>
