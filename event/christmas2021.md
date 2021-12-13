@@ -152,20 +152,20 @@
    1煤炭.
 
 - 颜色: 
-    - [绿]Green
-    - [蓝]Blue
-    - [紫]Purple
-    - [红]Red
-    - [黄]Yellow
+  - [绿]Green
+  - [蓝]Blue
+  - [紫]Purple
+  - [红]Red
+  - [黄]Yellow
 - 类型: 
-    - [光剑]Saber
-    - [光枪]Handgun
-    - [匕首]Dagger
-    - [步枪]Rifle
-    - [投刃]Slicer
-    - [散弹枪]Shot
-    - [长刀]Partisan
-    - [机枪]Mechgun
+  - [光剑]Saber
+  - [光枪]Handgun
+  - [匕首]Dagger
+  - [步枪]Rifle
+  - [投刃]Slicer
+  - [散弹枪]Shot
+  - [长刀]Partisan
+  - [机枪]Mechgun
 - EX:
   - [败血]BERSERK
   - [败魔]SPIRIT
