@@ -20,37 +20,37 @@
 #### 全难度普通礼品
  多种H: 最低15，最高60
 
-* *
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
+*
+*
+*
+*
+*
+* Photon Crystal x3
+*
+*
+*
+*
+* HP Material x3
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+* Harisen Battle Fan [variable hit]
+*
+*
+*
+*
+*
+*
+*
+*
 
 --- 
 
@@ -58,73 +58,77 @@
 
 ##### <span style="color:red">普通</span>
 
-* *
-* * 
-* * 
-* * 
-* * 
-* * 
+* Photon Drop x1
+* Photon Crystal x1
+* TP Material x1
+* Coal x3
+* AddSlot
+* Halloween Cookie
 
 ##### <span style="color:red">常见</span>
 
-* *
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
+* Photon Drop x2
+* Coal x5
+*
+* Photon Crystal x2
+* Coal x10
+* TP Material x3
+*
+*
+*
+* Spirit TypeGU/Hand 40H
+*
+* Berserk TypeGU/Hand 40H
+* Berserk TypeGU/Mech 35H
+*
+* Blizzard TypeSW/Slicer 30H
+* Arrest TypeDS/Wand 30H
 
 ##### <span style="color:red">不常见</span>
 
-* *
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
+* Charge TypeME/Mech 40H
+*
+* Spirit TypeME/Mech 40H
+* Spirit TypeSH/Shot 40H
+*
+*
+* Devil's TypeDS/Rod 30H
+* Spirit TypeSW/J-Sword 30H
+*
+* Coal x20
+* Stealth Kit
+* Blue Paint
+*
+* Yellow Paint
+* Purple Paint
+*
+* Black Paint
 
 ##### <span style="color:red">稀有</span> 
 
-* *
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
-* * 
+*
+*
+* Heart of Plantain Huge Fan
+* Heart of Suppressed Gun
+*
+*
+* Heart of Lollipop
+*
+* Photon Drop x10
+* Charge Mechgun 70H
+* Charge Repeater 65H
+*
+*
+*
+*
+* Demon's Sniper 70H
+* Charge Assault 65H
+*
+*
+*
+*
+* Photon Booster
+*
  
 
 ##### <span style="color:red">非常稀有</span>
