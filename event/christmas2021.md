@@ -132,7 +132,7 @@
 
 ##### <span style="color:red">非常稀有</span>
 
-* *
+* * 
 * * 
 * * 
 * * 
