@@ -1,12 +1,15 @@
+* [战士](#hu)
+* [枪手](#ra)
+* [法师](#fo)
 
-## 战士  
-![dep](./static/img/HU-MAG.gif)  
+## <a name="hu"></a>战士  
+![hu](./static/img/HU-MAG.gif)  
 
-## 枪手  
-![dep](./static/img/RA-MAG.gif)  
+## <a name="ra"></a>枪手  
+![ra](./static/img/RA-MAG.gif)  
 
-## 法师  
-![dep](./static/img/FO-MAG.gif)  
+## <a name="fo"></a>法师  
+![fo](./static/img/FO-MAG.gif)  
 
 ## 食谱
 
