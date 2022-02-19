@@ -1,6 +1,4 @@
-* [战士](#hu)
-* [枪手](#ra)
-* [法师](#fo)
+[战士](#hu) [枪手](#ra) [法师](#fo)
 
 ## <a name="hu"></a>战士  
 ![hu](./static/img/HU-MAG.gif)  
