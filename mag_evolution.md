@@ -1,4 +1,6 @@
-[战士](#hu) [枪手](#ra) [法师](#fo)
+进化图谱: [战士](#hu) [枪手](#ra) [法师](#fo)
+
+食谱: [0](#recipe1) [1](#recipe2) [2](#recipe3) [3](#recipe4) [4](#recipe5) [5](#recipe6) [6](#recipe7) [7](#recipe8)
 
 ## <a name="hu"></a>战士  
 ![hu](./static/img/HU-MAG.gif)  
@@ -9,9 +11,9 @@
 ## <a name="fo"></a>法师  
 ![fo](./static/img/FO-MAG.gif)  
 
-## 食谱
+## <a name="recipe"></a>食谱
 
-Table 0
+<a name="recipe1"></a>Table 0
 
 Stage 0: Mag
 
@@ -30,7 +32,7 @@ Stage 0: Mag
 | Star Atomizer |  25 |  25 |  25 |  25  |    6    |  5  |
 
 
-Table 1
+<a name="recipe2"></a>Table 1
 
 Stage 1: Kalki, Varuna, Vrita
 
@@ -48,7 +50,7 @@ Stage 1: Kalki, Varuna, Vrita
 | Moon Atomizer |  9  |  0  |  9  |  11  |    3    | −2  |
 | Star Atomizer |  14 |  9  |  18 |  11  |    4    |  3  |
 
-Table 2
+<a name="recipe3"></a>Table 2
 
 Stage 2: Ashvinau, Namuci, Marutah, Rudra, Sumba
 
@@ -66,7 +68,7 @@ Stage 2: Ashvinau, Namuci, Marutah, Rudra, Sumba
 | Moon Atomizer |  4  |  −5 |  0  |  11  |    −1   |  1  |
 | Star Atomizer |  7  |  8  |  6  |   9  |    4    |  2  |
 
-Table 3
+<a name="recipe4"></a>Table 3
 
 Stage 2: Mitra, Tapas, Surya
 
@@ -84,7 +86,8 @@ Stage 2: Mitra, Tapas, Surya
 | Moon Atomizer |  8  |  5  |  −8 |   7  |    −2   |  2  |
 | Star Atomizer |  7  |  7  |  7  |   7  |    3    |  2  |
 
-Table 4
+
+<a name="recipe5"></a>Table 4
 
 Stage 2: Vayu
 
@@ -104,7 +107,8 @@ Stage 3: Asparas, Bhirava, Kaitabha, Kama, Kumara, Ushasu, Varaha
 | Moon Atomizer |  −5 | −20 |  5  |  21  |    3    |  0  |
 | Star Atomizer |  4  |  6  |  8  |   5  |    3    |  2  |
 
-Table 5
+
+<a name="recipe6"></a>Table 5
 
 Stage 3: Durga, Garuda, Ila, Nandin, Ribhava, Sita, Soma, Yaksa
 
@@ -124,7 +128,7 @@ Stage 4: Deva, Rukmin, Sato
 | Moon Atomizer | −10 | −15 |  5  |  21  |    2    |  0  |
 | Star Atomizer |  2  |  8  |  3  |   6  |    3    |  2  |
 
-Table 6
+<a name="recipe7"></a>Table 6
 
 Stage 3: Andhaka, Bana, Kabanda, Madhu, Marica, Naga, Naraka, Ravana
 
@@ -144,7 +148,7 @@ Stage 4: Bhima, Pushan, Rati
 | Moon Atomizer |  −5 |  20 |  5  |  −20 |    0    |  2  |
 | Star Atomizer |  0  |  11 |  0  |  11  |    3    |  2  |
 
-Table 7
+<a name="recipe8"></a>Table 7
 
 Stage 4: Cell Mags, Diwari, Nidra, Savitri
 
