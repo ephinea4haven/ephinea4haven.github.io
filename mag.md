@@ -9,13 +9,47 @@
 ![ra](./static/img/RA-MAG.gif)  
 
 ## <a name="fo"></a>法师  
-![fo](./static/img/FO-MAG.gif)  
+![fo](./static/img/FO-MAG.gif)
 
+## 同步率:
+
+影响攻击类PB伤害,最大值120%，死一次减5%
+
+### Mag同步率规则:
+
+* +: 基础值+阶梯增幅
+* -: 只有阶梯增幅
+* 无: 忽略同步率(如果mag技能没有+-，可忽略此项,可参考 [Mags](https://wiki.pioneer2.net/index.php?title=Mags) )
+
+|同步率|概率加成|
+|:---:|:---:|
+|0-30%|	+0%|
+|31-60%| +15%|
+|61-80%| +25%|
+|81-100%| +30%|
+|101-120%| +35%|
+
+---
+
+## 智力:
+
+影响SD、加血类Resta魔法等级，加血是IQ/40下取整等级，双子是IQ/10, 基础1级，4连81级，PB不满的情况下有30就够了，
+影响SD等级的是IQ值，如果是200(mag的IQ值),捐一次10%，捐一次就是2级(200*10%/10=2), 最多3次, 按PB联协数量的倍数
+贡献SD, 例如3连PB(一定有双子), 61 + 6 * 3次 = 79级, 2连PB(一定有双子), 41 + 6 * 2次(单人) = 53级,
+2连PB(一定有双子), 41 + 6 * 2次(单人) * 2(人)  = 65级, 1PB双子,3捐 21 + 6 * 1 * 3 = 39级,
+,2捐 21 + 6 * 1 * 2 = 33级,,1捐 21 + 6 * 1 * 1 = 27级
+
+--- 
+
+## 激活条件
+玛古濒死激活条件: 角色HP瞬间扣去20%以上并且最终值处于10%以下。
+
+---
 ## <a name="recipe"></a>食谱
 
-<a name="recipe1"></a>Table 0
+<a name="recipe1"></a>表0
 
-Stage 0: Mag
+阶段0: Mag
 
 |      Item     | DEF | POW | DEX | MIND | Synchro | IQ  |
 |:---:|:---:|:---:|:---:|:----:|:---:|:---:|
@@ -32,9 +66,9 @@ Stage 0: Mag
 | Star Atomizer |  25 |  25 |  25 |  25  |    6    |  5  |
 
 
-<a name="recipe2"></a>Table 1
+<a name="recipe2"></a>表1
 
-Stage 1: Kalki, Varuna, Vrita
+阶段1: Kalki, Varuna, Vrita
 
 |      Item     | DEF | POW | DEX | MIND | Synchro | IQ  |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -50,9 +84,9 @@ Stage 1: Kalki, Varuna, Vrita
 | Moon Atomizer |  9  |  0  |  9  |  11  |    3    | −2  |
 | Star Atomizer |  14 |  9  |  18 |  11  |    4    |  3  |
 
-<a name="recipe3"></a>Table 2
+<a name="recipe3"></a>表2
 
-Stage 2: Ashvinau, Namuci, Marutah, Rudra, Sumba
+阶段2: Ashvinau, Namuci, Marutah, Rudra, Sumba
 
 |      Item     | DEF | POW | DEX | MIND | Synchro | IQ  |
 |:-------------:|:---:|:---:|:---:|:----:|:-------:|:---:|
@@ -68,9 +102,9 @@ Stage 2: Ashvinau, Namuci, Marutah, Rudra, Sumba
 | Moon Atomizer |  4  |  −5 |  0  |  11  |    −1   |  1  |
 | Star Atomizer |  7  |  8  |  6  |   9  |    4    |  2  |
 
-<a name="recipe4"></a>Table 3
+<a name="recipe4"></a>表3
 
-Stage 2: Mitra, Tapas, Surya
+阶段2: Mitra, Tapas, Surya
 
 |      Item     | DEF | POW | DEX | MIND | Synchro | IQ  |
 |:-------------:|:---:|:---:|:---:|:----:|:-------:|:---:|
@@ -87,11 +121,11 @@ Stage 2: Mitra, Tapas, Surya
 | Star Atomizer |  7  |  7  |  7  |   7  |    3    |  2  |
 
 
-<a name="recipe5"></a>Table 4
+<a name="recipe5"></a>表4
 
-Stage 2: Vayu
+阶段2: Vayu
 
-Stage 3: Asparas, Bhirava, Kaitabha, Kama, Kumara, Ushasu, Varaha
+阶段3: Asparas, Bhirava, Kaitabha, Kama, Kumara, Ushasu, Varaha
 
 |      Item     | DEF | POW | DEX | MIND | Synchro | IQ  |
 |:-------------:|:---:|:---:|:---:|:----:|:-------:|:---:|
@@ -108,11 +142,11 @@ Stage 3: Asparas, Bhirava, Kaitabha, Kama, Kumara, Ushasu, Varaha
 | Star Atomizer |  4  |  6  |  8  |   5  |    3    |  2  |
 
 
-<a name="recipe6"></a>Table 5
+<a name="recipe6"></a>表5
 
-Stage 3: Durga, Garuda, Ila, Nandin, Ribhava, Sita, Soma, Yaksa
+表3: Durga, Garuda, Ila, Nandin, Ribhava, Sita, Soma, Yaksa
 
-Stage 4: Deva, Rukmin, Sato
+表4: Deva, Rukmin, Sato
 
 |      Item     | DEF | POW | DEX | MIND | Synchro | IQ  |
 |:-------------:|:---:|:---:|:---:|:----:|:-------:|:---:|
@@ -128,11 +162,11 @@ Stage 4: Deva, Rukmin, Sato
 | Moon Atomizer | −10 | −15 |  5  |  21  |    2    |  0  |
 | Star Atomizer |  2  |  8  |  3  |   6  |    3    |  2  |
 
-<a name="recipe7"></a>Table 6
+<a name="recipe7"></a>表6
 
-Stage 3: Andhaka, Bana, Kabanda, Madhu, Marica, Naga, Naraka, Ravana
+阶段3: Andhaka, Bana, Kabanda, Madhu, Marica, Naga, Naraka, Ravana
 
-Stage 4: Bhima, Pushan, Rati
+阶段4: Bhima, Pushan, Rati
 
 |      Item     | DEF | POW | DEX | MIND | Synchro | IQ  |
 |:-------------:|:---:|:---:|:---:|:----:|:-------:|:---:|
@@ -148,9 +182,9 @@ Stage 4: Bhima, Pushan, Rati
 | Moon Atomizer |  −5 |  20 |  5  |  −20 |    0    |  2  |
 | Star Atomizer |  0  |  11 |  0  |  11  |    3    |  2  |
 
-<a name="recipe8"></a>Table 7
+<a name="recipe8"></a>表7
 
-Stage 4: Cell Mags, Diwari, Nidra, Savitri
+阶段4: Cell Mags, Diwari, Nidra, Savitri
 
 |      Item     | DEF | POW | DEX | MIND | Synchro | IQ  |
 |:---:|:---:|:---:|:---:|:----:|:-------:|:---:|
