@@ -161,6 +161,14 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 每年特定时间点会开启相应的活动，活动都是独一无二的， 相应的活动可更容易的获取道具。
 
+* 情人节(Valentine's Day) - 2.14
+* 白色情人节(White Day) - 3.14
+* 复活节(Easter) - 3月~4月
+* 夏季拾荒(Summer Scavenger Hunt) - 6月
+* 周年(Anniversary) - 8月
+* 万圣节(Halloween) - 10月~11月
+* 圣诞节(Christmas) - 12月
+
 <h3>大厅点唱机</h3>
 
 大厅柜台增加了点唱机，可以调整大厅音乐。
