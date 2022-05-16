@@ -154,3 +154,307 @@
 * 苦痛 Lv. 10 -> 1% 激活  
 
 #### **所有的概率提升仅仅提升怪物不包含箱子.**
+
+
+### A1:
+* HP: +60%
+* XP: +80%
+* ATP: +60%
+* DFP: No boost
+* MST: +60%
+* ATA: +20%
+* EVP: +4%
+* LCK: +8%
+* EFR, EIC, ETH, ELT: +11%
+* EDK: +24%
+* ESP: +28%
+* Damage: +100%
+* Fixed damage: +40%
+
+EX激活率也被削弱:
+* Freeze: 2.5 seconds
+* Paralysis: 3.5 seconds
+* Confusion: 5 seconds
+* HP Cut: 26% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +3%
+* Rare Drop Rate (RDR): +6%
+* Meseta quantity dropped: +62%
+* ID-specific common weapon rate: +3%
+* Untekked common weapon rate: +3%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +0.45%
+
+### A2:
+* HP: +38%
+* XP: +50%
+* ATP: +38%
+* DFP: No boost
+* MST: +38%
+* ATA: +13%
+* EVP: +3%
+* LCK: +5%
+* EFR, EIC, ETH, ELT: +7%
+* EDK: +15%
+* ESP: +18%
+* Damage: +63%
+* Fixed damage: +25%
+
+EX激活率也被削弱:
+* Freeze: 3.077 seconds
+* Paralysis: 4.308 seconds
+* Confusion: 6.154 seconds
+* HP Cut: 35% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +2%
+* Rare Drop Rate (RDR): +4%
+* Meseta quantity dropped: +39%
+* ID-specific common weapon rate: +2%
+* Untekked common weapon rate: +2%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +0.3%
+
+### A3:
+
+* HP: +60%
+* XP: +80%
+* ATP: +60%
+* DFP: No boost
+* MST: +60%
+* ATA: +20%
+* EVP: +4%
+* LCK: +8%
+* EFR, EIC, ETH, ELT: +11%
+* EDK: +24%
+* ESP: +28%
+* Damage: +100%
+* Fixed damage: +40%
+
+EX激活率也被削弱:
+* Freeze: 2.5 seconds
+* Paralysis: 3.5 seconds
+* Confusion: 5 seconds
+* HP Cut: 26% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +3%
+* Rare Drop Rate (RDR): +6%
+* Meseta quantity dropped: +62%
+* ID-specific common weapon rate: +3%
+* Untekked common weapon rate: +3%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +0.45%
+
+### A4:
+
+* HP: +90%
+* XP: +120%
+* ATP: +90%
+* DFP: No boost
+* MST: +90%
+* ATA: +30%
+* EVP: +6%
+* LCK: +12%
+* EFR, EIC, ETH, ELT: +16%
+* EDK: +36%
+* ESP: +42%
+* Damage: +150%
+* Fixed damage: +60%
+
+EX激活率也被削弱:
+* Freeze: 2 seconds
+* Paralysis: 2.8 seconds
+* Confusion: 4 seconds
+* HP Cut: 14% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +4%
+* Rare Drop Rate (RDR): +8%
+* Meseta quantity dropped: +93%
+* ID-specific common weapon rate: +4%
+* Untekked common weapon rate: +4%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +0.6%
+
+### A5
+* HP: +120%
+* XP: +160%
+* ATP: +120%
+* DFP: No boost
+* MST: +120%
+* ATA: +40%
+* EVP: +8%
+* LCK: +16%
+* EFR, EIC, ETH, ELT: +21%
+* EDK: +48%
+* ESP: +56%
+* Damage: +200%
+* Fixed damage: +80%
+
+EX激活率也被削弱:
+* Freeze: 1.667 seconds
+* Paralysis: 2.333 seconds
+* Confusion: 3.333 seconds
+* HP Cut: 2% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +5%
+* Rare Drop Rate (RDR): +11%
+* Meseta quantity dropped: +124%
+* ID-specific common weapon rate: +5%
+* Untekked common weapon rate: +5%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +0.75%
+
+### A6
+* HP: +150%
+* XP: +200%
+* ATP: +150%
+* DFP: No boost
+* MST: +150%
+* ATA: +50%
+* EVP: +10%
+* LCK: +20%
+* EFR, EIC, ETH, ELT: +27%
+* EDK: +60%
+* ESP: +70%
+* Damage: +250%
+* Fixed damage: +100%
+
+EX激活率也被削弱:
+* Freeze: 1.429 seconds
+* Paralysis: 2 seconds
+* Confusion: 2.857 seconds
+* HP Cut: 1% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +6%
+* Rare Drop Rate (RDR): +14%
+* Meseta quantity dropped: +155%
+* ID-specific common weapon rate: +6%
+* Untekked common weapon rate: +6%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +0.9%
+
+### A7
+* HP: +180%
+* XP: +225%
+* ATP: +180%
+* DFP: No boost
+* MST: +180%
+* ATA: +60%
+* EVP: +12%
+* LCK: +24%
+* EFR, EIC, ETH, ELT: +32%
+* EDK: +72%
+* ESP: +84%
+* Damage: +300%
+* Fixed damage: +120%
+
+EX激活率也被削弱:
+* Freeze: 1.25 seconds
+* Paralysis: 1.75 seconds
+* Confusion: 2.5 seconds
+* HP Cut: 1% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +7%
+* Rare Drop Rate (RDR): +18%
+* Meseta quantity dropped: +186%
+* ID-specific common weapon rate: +7%
+* Untekked common weapon rate: +7%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +1.05%
+
+### A8
+* HP: +225%
+* XP: +250%
+* ATP: +225%
+* DFP: No boost
+* MST: +225%
+* ATA: +75%
+* EVP: +15%
+* LCK: +30%
+* EFR, EIC, ETH, ELT: +39%
+* EDK: +90%
+* ESP: +105%
+* Damage: +375%
+* Fixed damage: +150%
+
+EX激活率也被削弱:
+* Freeze: 1.053 seconds
+* Paralysis: 1.474 seconds
+* Confusion: 2.105 seconds
+* HP Cut: 1% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +8%
+* Rare Drop Rate (RDR): +23%
+* Meseta quantity dropped: +233%
+* ID-specific common weapon rate: +8%
+* Untekked common weapon rate: +8%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +1.2%
+
+
+### A9:
+* HP: +263%
+* XP: +275%
+* ATP: +263%
+* DFP: No boost
+* MST: +263%
+* ATA: +88%
+* EVP: +18%
+* LCK: +35%
+* EFR, EIC, ETH, ELT: +46%
+* EDK: +105%
+* ESP: +122%
+* Damage: +438%
+* Fixed damage: +175%
+
+EX激活率也被削弱:
+* Freeze: 0.93 seconds
+* Paralysis: 1.302 seconds
+* Confusion: 1.86 seconds
+* HP Cut: 1% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +9%
+* Rare Drop Rate (RDR): +28%
+* Meseta quantity dropped: +272%
+* ID-specific common weapon rate: +9%
+* Untekked common weapon rate: +9%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +1.35%
+
+### A10:
+* HP: +300%
+* XP: +300%
+* ATP: +300%
+* DFP: No boost
+* MST: +300%
+* ATA: +100%
+* EVP: +20%
+* LCK: +40%
+* EFR, EIC, ETH, ELT: +53%
+* EDK: +120%
+* ESP: +140%
+* Damage: +500%
+* Fixed damage: +200%
+
+EX激活率也被削弱:
+* Freeze: 0.833 seconds
+* Paralysis: 1.167 seconds
+* Confusion: 1.667 seconds
+* HP Cut: 1% activation chance
+
+此外，A模式下掉率有小幅度提升:
+* Drop Anything Rate (DAR): +10%
+* Rare Drop Rate (RDR): +34%
+* Meseta quantity dropped: +311%
+* ID-specific common weapon rate: +10%
+* Untekked common weapon rate: +10%
+* Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
+* Photon Drop rate: +1.5%
