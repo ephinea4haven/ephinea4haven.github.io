@@ -28,7 +28,7 @@
 | 8%  |   Vjaya(富豪)    | Meteor Smash      | Ice Staff: Dagon      |
 | 5%  |    Gae Bolg    | Final Impact      | Storm Wand: Indra     |
 
-获得的未鉴定武器H的概率如下:
+获得的未鉴定`随机武器`H命中概率如下:
 
 | 概率  |  H  |
 |:---:|:---:|
