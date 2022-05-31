@@ -157,34 +157,34 @@
 
 
 ### A1:
-* HP: +60%
-* XP: +80%
-* ATP: +60%
+* HP: +15%
+* XP: +20%
+* ATP: +15%
 * DFP: No boost
-* MST: +60%
-* ATA: +20%
-* EVP: +4%
-* LCK: +8%
-* EFR, EIC, ETH, ELT: +11%
-* EDK: +24%
-* ESP: +28%
-* Damage: +100%
-* Fixed damage: +40%
+* MST: +15%
+* ATA: +5%
+* EVP: +1%
+* LCK: +2%
+* EFR, EIC, ETH, ELT: +3%
+* EDK: +6%
+* ESP: +7%
+* Damage: +25%
+* Fixed damage: +10%
 
 EX激活率也被削弱:
-* Freeze: 2.5 seconds
-* Paralysis: 3.5 seconds
-* Confusion: 5 seconds
-* HP Cut: 26% activation chance
+* Freeze: 4 seconds
+* Paralysis: 5.6 seconds
+* Confusion: 8 seconds
+* HP Cut: 44% activation chance
 
 此外，A模式下掉率有小幅度提升:
-* Drop Anything Rate (DAR): +3%
-* Rare Drop Rate (RDR): +6%
-* Meseta quantity dropped: +62%
-* ID-specific common weapon rate: +3%
-* Untekked common weapon rate: +3%
+* Drop Anything Rate (DAR): +1%
+* Rare Drop Rate (RDR): +2%
+* Meseta quantity dropped: +16%
+* ID-specific common weapon rate: +1%
+* Untekked common weapon rate: +1%
 * Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)
-* Photon Drop rate: +0.45%
+* Photon Drop rate: +0.15%
 
 ### A2:
 * HP: +38%
