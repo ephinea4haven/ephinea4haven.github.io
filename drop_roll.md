@@ -75,7 +75,7 @@
 |  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     30%/29%     |          4★          |
 |          |                      |                 |                 |                      |
 
-### 区域信息
+### Patterns信息
 
 #### N
 
