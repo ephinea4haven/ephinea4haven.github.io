@@ -1,7 +1,7 @@
 ### 属性值信息
 
-* 非Anguish苦痛模式会使用Pattern0-4,Pattern5为红盒
-* Anguish苦痛模式低级区域使用Pattern3，高级区域使用Pattern4，红盒仍为Pattern5
+* 普通模式会使用Pattern0-4,Pattern5为红盒
+* 苦痛模式(Anguish)低级区域使用Pattern3，高级区域使用Pattern4，红盒仍为Pattern5
 
 #### EP1&2&4
 
