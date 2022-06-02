@@ -9,12 +9,14 @@
 
 #### 未鉴定和EX信息
 
+镉绿、翠绿、天青、纯蓝和淡紫ID在一些区域掉落未鉴定武器概率稍微提升
+
 #### N
 
-|          |         Area         |                 | Untekked Chance | Maximum Special Rarity |
+|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
 |:--------:|:--------------------:|:---------------:|:---------------:|:----------------------:|
-| Forest 1 |     Temple Alpha     |        -        |       None      |           N/A          |
-| Forest 2 |      Temple Beta     |        -        |       None      |           N/A          |
+| Forest 1 |     Temple Alpha     |        -        |       无      |           N/A          |
+| Forest 2 |      Temple Beta     |        -        |       无      |           N/A          |
 |  Caves 1 |    Spaceship Alpha   |   Crater East   |     17%/17%     |           1★           |
 |  Caves 2 |    Spaceship Beta    |   Crater West   |     18%/17%     |           1★           |
 |  Caves 3 |     Jungle North     |   Crater South  |     20%/19%     |           1★           |
@@ -27,7 +29,7 @@
 
 #### H
 
-|          |         Area         |                 | Untekked Chance | Maximum Special Rank |
+|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
 |:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
 | Forest 1 |     Temple Alpha     |        -        |     21%/20%     |          2★          |
 | Forest 2 |     Temple Beta      |        -        |     21%/20%     |          2★          |
@@ -43,7 +45,7 @@
 
 #### VH
 
-|          |         Area         |                 | Untekked Chance | Maximum Special Rank |
+|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
 |:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
 | Forest 1 |     Temple Alpha     |        -        |     21%/21%     |          2★          |
 | Forest 2 |      Temple Beta     |        -        |     21%/21%     |          3★          |
@@ -59,7 +61,7 @@
 
 #### U
 
-|          |         Area         |                 | Untekked Chance | Maximum Special Rank |
+|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
 |:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
 | Forest 1 |     Temple Alpha     |        -        |     22%/21%     |          4★          |
 | Forest 2 |      Temple Beta     |        -        |     22%/21%     |          4★          |
@@ -77,7 +79,7 @@
 
 #### N
 
-|                  |         Area         |                 | Patterns |
+|                  |         区域         |                 | Patterns |
 |:----------------:|:--------------------:|:---------------:|:--------:|
 |     Forest 1     |     Temple Alpha     |        -        |   0 N N  |
 |     Forest 2     |      Temple Beta     |        -        |   0 N N  |
@@ -93,7 +95,7 @@
 
 #### H
 
-|                  |         Area         |                 | Patterns |
+|                  |         区域         |                 | Patterns |
 |:----------------:|:--------------------:|:---------------:|:--------:|
 |     Forest 1     |     Temple Alpha     |        -        |   1 0 N  |
 |     Forest 2     |      Temple Beta     |        -        |   1 0 N  |
@@ -109,7 +111,7 @@
 
 #### VH
 
-|                  |         Area         |                 | Patterns |
+|                  |         区域         |                 | Patterns |
 |:----------------:|:--------------------:|:---------------:|:--------:|
 |     Forest 1     |     Temple Alpha     |        -        |   2 1 1  |
 |     Forest 2     |      Temple Beta     |        -        |   2 2 2  |
@@ -125,7 +127,7 @@
 
 #### U
 
-|                  |         Area         |                 | Patterns |
+|                  |         区域         |                 | Patterns |
 |:----------------:|:--------------------:|:---------------:|:--------:|
 |     Forest 1     |     Temple Alpha     |        -        |   2 1 0  |
 |     Forest 2     |      Temple Beta     |        -        |   2 1 0  |
