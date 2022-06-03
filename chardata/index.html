@@ -36,13 +36,14 @@
 </div>
 <div class="settings">
     <div class="volume" id="volume">
-        <img id="volume_img" src="./resources/images/icon/volume/volume_off.png">
+        <img alt="turn off volume" id="volume_img" src="./resources/images/icon/volume/volume_off.png">
         <input id="volume_range" max="0.6" min="0" name="volume_range" onClick=clicVolumeSlider(value) step="0.3"
                type="range" value="0">
     </div>
     <div class="theme">
-        <input checked name="themes" onClick=clickChangeTheme(value) type="radio" value="classic">Classic-theme
-        <input name="themes" onClick=clickChangeTheme(value) type="radio" value="tapiocamilktea">Tapioca milktea-theme
+        <input name="themes" onClick=clickChangeTheme(value) type="radio" value="classic">Classic-theme
+        <input checked name="themes" onClick=clickChangeTheme(value) type="radio" value="tapiocamilktea">Tapioca
+        milktea-theme
     </div>
 </div>
 
