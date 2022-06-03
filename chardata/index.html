@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<head>
+    <title>PSOBB Character Item Viewer</title>
+    <meta charset="UTF-8" content="text/html" http-equiv="content-type">
+    <meta content="PSO,PSOBB,Ephinea,tool,ツール,便利ツール,Emulator server,エミュ鯖,viewer" name="keywords">
+    <meta content="PSOBBの所有キャラクターとアイテムを閲覧できます。 View characters and items owned by PSOBB." name="description">
+    <link href="./css/classic.css" id="stylesheet" rel="stylesheet">
+    <link href="./resources/images/favicon/redria.ico" rel="shortcut icon">
+    <link href="./resources/images/favicon/redria.ico" rel="icon" type="image/x-icon">
+    <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap'); */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+        /* @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8V1ELJ4Z95"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-8V1ELJ4Z95');
+    </script>
+</head>
+
+<body>
+<div class="header" id="header">
+    <div class="title">
+        <h1>PSOBB CHARACTER ITEM VIEWER <span class="subTitle">in Ephinea</span></h1>
+    </div>
+</div>
+<div class="settings">
+    <div class="volume" id="volume">
+        <img id="volume_img" src="./resources/images/icon/volume/volume_off.png">
+        <input id="volume_range" max="0.6" min="0" name="volume_range" onClick=clicVolumeSlider(value) step="0.3"
+               type="range" value="0">
+    </div>
+    <div class="theme">
+        <input checked name="themes" onClick=clickChangeTheme(value) type="radio" value="classic">Classic-theme
+        <input name="themes" onClick=clickChangeTheme(value) type="radio" value="tapiocamilktea">Tapioca milktea-theme
+    </div>
+</div>
+
+<div class="contents">
+    <div class="notification_wrap">
+        <div class="notification_left"></div>
+        <div class="notification notification_body" id="notification"></div>
+        <div class="notification_right"></div>
+    </div>
+
+    <div class="input">
+        <div class="input_bg_wrap">
+            <div class="input_bg_left"></div>
+            <div class="desc input_bg_body" id="desc">
+                <div class="input_text_wrap">
+                    <div class="input_text_btn">
+                        <input class="inputb" id="inputb" multiple name="file[]" onchange=clickInput(event) type="file">
+                    </div>
+                    <div class="input_text">
+                        <span class="br">First, <a class="download" href="https://ephinea.pioneer2.net/download-data/"
+                                                   target="_blank">Download</a> your character data. </span>
+                        Next, Press Browse button to Input this Extracted files (.psochar and .psobank).</br>
+                        <span class="br">最初に、あなたのキャラクターデータを<a class="download"
+                                                              href="https://ephinea.pioneer2.net/download-data/"
+                                                              target="_blank">ダウンロード</a>してください。</span>
+                        次に、ファイル選択ボタンを押して展開したファイル(.psocharと.psobank)を入力してください。
+                    </div>
+                </div>
+            </div>
+            <div class="input_bg_right"></div>
+        </div>
+        <!-- <div class="input_bg_under"></div> -->
+    </div>
+
+    <div class="sticky" id="sticky">
+        <div class="data_window">
+            <div class="data_header"></div>
+            <div class="data_body sticky_indent">
+                <div class="lang" id="radio">
+                    <button class="itemcodeb" id="itemcodeb" onClick=clickDisplayItemCodes(event) type="button">ITEM
+                        CODES
+                    </button>
+                    <input checked name="lang" onClick=clickChangeLang(value) type="radio" value="EN">English
+                    <input name="lang" onClick=clickChangeLang(value) type="radio" value="JA">日本語
+                </div>
+                <div id="afterEnterd">
+                    <div ,class="pager" id="pager"></div>
+                    <div class="search" id="search">
+                        <div class="types">
+                            <button class="reset" id="reset" onClick=clickReset(event) type="button"></button>
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="1:rare">Rare
+                            Weapons
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox"
+                                   value="1:common">Common Weapons
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="2">Frames
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="3">Barriers
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="4">Units
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="5">Mags
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="6">Disks
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="7">Tools
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="8">S-Ranks
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="9">Other
+                            <input class="type" name="types" onClick=clickSearch(event) type="checkbox" value="10">Meseta
+                        </div>
+                        <div class="wordsearch" id="wordsearch">
+                            <div class="sep"><input class="word" name="word" placeholder="Input item name" type="text">
+                            </div>
+                            <div class="sep"><input class="element" name="element"
+                                                    placeholder="special attack (element)" type="text"></div>
+                            <div class="sep"><input class="att" name="hit" placeholder="HIT value" type="text"></div>
+                            <div class="sep"><input class="openbtn" name="unTekked" onClick=clickSearch(event)
+                                                    type="checkbox">only unTekked(未鑑定のみ)
+                            </div>
+                        </div>
+                        <button class="download" id="download" onClick='clickDownload()'>Getting as Text File</button>
+                    </div>
+                </div>
+            </div>
+            <div class="data_footer"></div>
+        </div>
+    </div>
+    <div ,class="data" id="data"></div>
+</div>
+
+</body>
+<script src="./js/util/CommonUtil.js" type="text/javascript"></script>
+<script src="./js/model/item/Item.js" type="text/javascript"></script>
+<script src="./js/config/item_codes.js" type="text/javascript"></script>
+<script src="./js/config/item_codes_ja.js" type="text/javascript"></script>
+<script src="./js/config/Config.js" type="text/javascript"></script>
+<script src="./js/model/character/Abstract.js" type="text/javascript"></script>
+<script src="./js/model/character/Character.js" type="text/javascript"></script>
+<script src="./js/model/character/ShareBank.js" type="text/javascript"></script>
+<script src="./js/notification/notification.js" type="text/javascript"></script>
+<script src="./js/view/event/changelang.js" type="text/javascript"></script>
+<script src="./js/view/event/download.js" type="text/javascript"></script>
+<script src="./js/view/event/input.js" type="text/javascript"></script>
+<script src="./js/view/event/itemcode.js" type="text/javascript"></script>
+<script src="./js/view/event/page.js" type="text/javascript"></script>
+<script src="./js/view/event/search.js" type="text/javascript"></script>
+<script src="./js/view/event/changetheme.js" type="text/javascript"></script>
+<script src="./js/view/event/volume.js" type="text/javascript"></script>
+<script src="./js/view/display.js" type="text/javascript"></script>
+<script src="./js/view/initial.js" type="text/javascript"></script>
+<script src="./js/view/common.js" type="text/javascript"></script>
+<script src="./js/main.js" type="text/javascript"></script>
+<script src="./js/lib/zlib/zip.min.js" type="text/javascript"></script>
