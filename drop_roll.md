@@ -1,79 +1,23 @@
-### 属性值信息
+### 属性生成顺序
 
-* 普通模式会使用Pattern0-4,Pattern5为红盒
-* 苦痛模式(Anguish)低级区域使用Pattern3，高级区域使用Pattern4，红盒仍为Pattern5
+属性`概率` -> 属性`模式`(pattern) -> 属性`值`
 
-#### EP1&2&4
+### 属性概率信息
 
-![pp](./static/img/percent_patterns.jpg)
+在PSO中当武器随机掉落时，它最多可以3个属性(银月和太刀最多两个属性)，对于每个属性，游戏会在1到100之间随机一个数值，
+用于确定武器获得哪个属性，如果同样的属性随机到了两次，那么这个会被设置为`无属性
 
-#### 商店武器未鉴定和EX信息
+#### EP1
 
-镉绿、翠绿、天青、纯蓝和淡紫ID在一些区域掉落未鉴定武器概率稍微提升
+![ar1](./static/img/ar1.png)
 
-#### N
+#### EP2
 
-|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
-|:--------:|:--------------------:|:---------------:|:---------------:|:----------------------:|
-| Forest 1 |     Temple Alpha     |        -        |       无      |           N/A          |
-| Forest 2 |      Temple Beta     |        -        |       无      |           N/A          |
-|  Caves 1 |    Spaceship Alpha   |   Crater East   |     17%/17%     |           1★           |
-|  Caves 2 |    Spaceship Beta    |   Crater West   |     18%/17%     |           1★           |
-|  Caves 3 |     Jungle North     |   Crater South  |     20%/19%     |           1★           |
-|  Mines 1 |      Jungle East     |   Crater North  |     19%/18%     |           1★           |
-|  Mines 2 |       Mountain       | Crater Interior |     20%/20%     |           1★           |
-|  Ruins 1 |     Seaside & CCA    |   Sub Desert 1  |     16%/16%     |           2★           |
-|  Ruins 2 |     Seabed Upper     |   Sub Desert 2  |     18%/17%     |           2★           |
-|  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     20%/19%     |           2★           |
-|          |                      |                 |                 |                        |
+![ar2](./static/img/ar2.png)
 
-#### H
+#### EP4
 
-|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
-|:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
-| Forest 1 |     Temple Alpha     |        -        |     21%/20%     |          2★          |
-| Forest 2 |     Temple Beta      |        -        |     21%/20%     |          2★          |
-| Caves 1  |   Spaceship Alpha    |   Crater East   |     17%/17%     |          2★          |
-| Caves 2  |    Spaceship Beta    |   Crater West   |     18%/18%     |          3★          |
-| Caves 3  |     Jungle North     |   Crater South  |     20%/19%     |          2★          |
-| Mines 1  |     Jungle East      |   Crater North  |     19%/19%     |          3★          |
-| Mines 2  |       Mountain       | Crater Interior |     24%/23%     |          3★          |
-| Ruins 1  |    Seaside & CCA     |   Sub Desert 1  |     19%/18%     |          3★          |
-| Ruins 2  |     Seabed Upper     |   Sub Desert 2  |     19%/18%     |          3★          |
-| Ruins 3  | Seabed Lower & Tower |   Sub Desert 3  |     19%/18%     |          3★          |
-|          |                      |                 |                 |                      |
-
-#### VH
-
-|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
-|:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
-| Forest 1 |     Temple Alpha     |        -        |     21%/21%     |          2★          |
-| Forest 2 |      Temple Beta     |        -        |     21%/21%     |          3★          |
-|  Caves 1 |    Spaceship Alpha   |   Crater East   |     22%/22%     |          3★          |
-|  Caves 2 |    Spaceship Beta    |   Crater West   |     21%/21%     |          3★          |
-|  Caves 3 |     Jungle North     |   Crater South  |     22%/22%     |          4★          |
-|  Mines 1 |      Jungle East     |   Crater North  |     22%/22%     |          4★          |
-|  Mines 2 |       Mountain       | Crater Interior |     22%/22%     |          4★          |
-|  Ruins 1 |     Seaside & CCA    |   Sub Desert 1  |     23%/23%     |          4★          |
-|  Ruins 2 |     Seabed Upper     |   Sub Desert 2  |     23%/23%     |          4★          |
-|  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     23%/23%     |          4★          |
-|          |                      |                 |                 |                      |
-
-#### U
-
-|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
-|:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
-| Forest 1 |     Temple Alpha     |        -        |     22%/21%     |          4★          |
-| Forest 2 |      Temple Beta     |        -        |     22%/21%     |          4★          |
-|  Caves 1 |    Spaceship Alpha   |   Crater East   |     25%/24%     |          4★          |
-|  Caves 2 |    Spaceship Beta    |   Crater West   |     25%/24%     |          4★          |
-|  Caves 3 |     Jungle North     |   Crater South  |     25%/24%     |          4★          |
-|  Mines 1 |      Jungle East     |   Crater North  |     28%/27%     |          4★          |
-|  Mines 2 |       Mountain       | Crater Interior |     28%/27%     |          4★          |
-|  Ruins 1 |     Seaside & CCA    |   Sub Desert 1  |     28%/27%     |          4★          |
-|  Ruins 2 |     Seabed Upper     |   Sub Desert 2  |     30%/29%     |          4★          |
-|  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     30%/29%     |          4★          |
-|          |                      |                 |                 |                      |
+![ar3](./static/img/ar3.png)
 
 ### Patterns信息
 
@@ -141,16 +85,79 @@
 |      Ruins 3     | Seabed Lower & Tower |   Sub Desert 3  |   4 4 4  |
 | Rares (Anywhere) |                      |                 |   5 5 5  |
 
-### 属性信息
+#### 属性值信息
 
-#### EP1
+* 普通模式会使用Pattern0-4,Pattern5为红盒
+* 苦痛模式(Anguish)低级区域使用Pattern3，高级区域使用Pattern4，红盒仍为Pattern5
 
-![ar1](./static/img/ar1.png)
+#### EP1&2&4
 
-#### EP2
+![pp](./static/img/percent_patterns.jpg)
 
-![ar2](./static/img/ar2.png)
+#### 商店武器未鉴定和EX信息
 
-#### EP4
+镉绿、翠绿、天青、纯蓝和淡紫ID(前5个ID稍微提升，后5个ID保持基础值)在一些区域掉落未鉴定武器概率稍微提升
 
-![ar3](./static/img/ar3.png)
+#### N
+
+|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
+|:--------:|:--------------------:|:---------------:|:---------------:|:----------------------:|
+| Forest 1 |     Temple Alpha     |        -        |       无      |           N/A          |
+| Forest 2 |      Temple Beta     |        -        |       无      |           N/A          |
+|  Caves 1 |    Spaceship Alpha   |   Crater East   |     17%/17%     |           1★           |
+|  Caves 2 |    Spaceship Beta    |   Crater West   |     18%/17%     |           1★           |
+|  Caves 3 |     Jungle North     |   Crater South  |     20%/19%     |           1★           |
+|  Mines 1 |      Jungle East     |   Crater North  |     19%/18%     |           1★           |
+|  Mines 2 |       Mountain       | Crater Interior |     20%/20%     |           1★           |
+|  Ruins 1 |     Seaside & CCA    |   Sub Desert 1  |     16%/16%     |           2★           |
+|  Ruins 2 |     Seabed Upper     |   Sub Desert 2  |     18%/17%     |           2★           |
+|  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     20%/19%     |           2★           |
+|          |                      |                 |                 |                        |
+
+#### H
+
+|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
+|:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
+| Forest 1 |     Temple Alpha     |        -        |     21%/20%     |          2★          |
+| Forest 2 |     Temple Beta      |        -        |     21%/20%     |          2★          |
+| Caves 1  |   Spaceship Alpha    |   Crater East   |     17%/17%     |          2★          |
+| Caves 2  |    Spaceship Beta    |   Crater West   |     18%/18%     |          3★          |
+| Caves 3  |     Jungle North     |   Crater South  |     20%/19%     |          2★          |
+| Mines 1  |     Jungle East      |   Crater North  |     19%/19%     |          3★          |
+| Mines 2  |       Mountain       | Crater Interior |     24%/23%     |          3★          |
+| Ruins 1  |    Seaside & CCA     |   Sub Desert 1  |     19%/18%     |          3★          |
+| Ruins 2  |     Seabed Upper     |   Sub Desert 2  |     19%/18%     |          3★          |
+| Ruins 3  | Seabed Lower & Tower |   Sub Desert 3  |     19%/18%     |          3★          |
+|          |                      |                 |                 |                      |
+
+#### VH
+
+|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
+|:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
+| Forest 1 |     Temple Alpha     |        -        |     21%/21%     |          2★          |
+| Forest 2 |      Temple Beta     |        -        |     21%/21%     |          3★          |
+|  Caves 1 |    Spaceship Alpha   |   Crater East   |     22%/22%     |          3★          |
+|  Caves 2 |    Spaceship Beta    |   Crater West   |     21%/21%     |          3★          |
+|  Caves 3 |     Jungle North     |   Crater South  |     22%/22%     |          4★          |
+|  Mines 1 |      Jungle East     |   Crater North  |     22%/22%     |          4★          |
+|  Mines 2 |       Mountain       | Crater Interior |     22%/22%     |          4★          |
+|  Ruins 1 |     Seaside & CCA    |   Sub Desert 1  |     23%/23%     |          4★          |
+|  Ruins 2 |     Seabed Upper     |   Sub Desert 2  |     23%/23%     |          4★          |
+|  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     23%/23%     |          4★          |
+|          |                      |                 |                 |                      |
+
+#### U
+
+|          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
+|:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
+| Forest 1 |     Temple Alpha     |        -        |     22%/21%     |          4★          |
+| Forest 2 |      Temple Beta     |        -        |     22%/21%     |          4★          |
+|  Caves 1 |    Spaceship Alpha   |   Crater East   |     25%/24%     |          4★          |
+|  Caves 2 |    Spaceship Beta    |   Crater West   |     25%/24%     |          4★          |
+|  Caves 3 |     Jungle North     |   Crater South  |     25%/24%     |          4★          |
+|  Mines 1 |      Jungle East     |   Crater North  |     28%/27%     |          4★          |
+|  Mines 2 |       Mountain       | Crater Interior |     28%/27%     |          4★          |
+|  Ruins 1 |     Seaside & CCA    |   Sub Desert 1  |     28%/27%     |          4★          |
+|  Ruins 2 |     Seabed Upper     |   Sub Desert 2  |     30%/29%     |          4★          |
+|  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     30%/29%     |          4★          |
+|          |                      |                 |                 |                      |
