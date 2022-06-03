@@ -27,64 +27,64 @@ Pattern N表示不会随机属性
 
 |                  |         区域         |                 | Patterns |
 |:----------------:|:--------------------:|:---------------:|:--------:|
-|     Forest 1     |     Temple Alpha     |        -        |   0 N N  |
-|     Forest 2     |      Temple Beta     |        -        |   0 N N  |
-|      Caves 1     |    Spaceship Alpha   |   Crater East   |   0 N N  |
-|      Caves 2     |    Spaceship Beta    |   Crater West   |   1 0 N  |
-|      Caves 3     |     Jungle North     |   Crater South  |   1 0 N  |
-|      Mines 1     |      Jungle East     |   Crater North  |   1 0 N  |
-|      Mines 2     |       Mountain       | Crater Interior |   1 0 N  |
-|      Ruins 1     |     Seaside & CCA    |   Sub Desert 1  |   2 1 N  |
-|      Ruins 2     |     Seabed Upper     |   Sub Desert 2  |   2 1 N  |
-|      Ruins 3     | Seabed Lower & Tower |   Sub Desert 3  |   2 1 0  |
+|     森林1     |     神殿Alpha     |        -        |   0 N N  |
+|     森林2     |      神殿Beta     |        -        |   0 N N  |
+|      洞窟1     |    宇宙船Alpha   |   陨石坑东   |   0 N N  |
+|      洞窟2     |    宇宙船Beta    |   陨石坑西   |   1 0 N  |
+|      洞窟3     |     密林北     |   陨石坑南  |   1 0 N  |
+|      坑道1     |      密林东     |   陨石坑北  |   1 0 N  |
+|      坑道2     |       山区       | 陨石坑内部 |   1 0 N  |
+|      遗迹1     |     海边 & CCA    |   地下沙漠1  |   2 1 N  |
+|      遗迹2     |     海底上层     |   地下沙漠2  |   2 1 N  |
+|      遗迹3     | 海底下层 & 塔 |   地下沙漠3  |   2 1 0  |
 | Rares (Anywhere) |                      |                 |   5 5 5  |
 
 #### H
 
 |                  |         区域         |                 | Patterns |
 |:----------------:|:--------------------:|:---------------:|:--------:|
-|     Forest 1     |     Temple Alpha     |        -        |   1 0 N  |
-|     Forest 2     |      Temple Beta     |        -        |   1 0 N  |
-|      Caves 1     |    Spaceship Alpha   |   Crater East   |   1 1 N  |
-|      Caves 2     |    Spaceship Beta    |   Crater West   |   2 1 N  |
-|      Caves 3     |     Jungle North     |   Crater South  |   2 1 1  |
-|      Mines 1     |      Jungle East     |   Crater North  |   2 1 1  |
-|      Mines 2     |       Mountain       | Crater Interior |   2 2 1  |
-|      Ruins 1     |     Seaside & CCA    |   Sub Desert 1  |   3 2 1  |
-|      Ruins 2     |     Seabed Upper     |   Sub Desert 2  |   3 2 1  |
-|      Ruins 3     | Seabed Lower & Tower |   Sub Desert 3  |   3 3 2  |
+|     森林1     |     神殿Alpha     |        -        |   1 0 N  |
+|     森林2     |      神殿Beta     |        -        |   1 0 N  |
+|      洞窟1     |    宇宙船Alpha   |   陨石坑东   |   1 1 N  |
+|      洞窟2     |    宇宙船Beta    |   陨石坑西   |   2 1 N  |
+|      洞窟3     |     密林北     |   陨石坑南  |   2 1 1  |
+|      坑道1     |      密林东     |   陨石坑北  |   2 1 1  |
+|      坑道2     |       山区       | 陨石坑内部 |   2 2 1  |
+|      遗迹1     |     海边 & CCA    |   地下沙漠1  |   3 2 1  |
+|      遗迹2     |     海底上层     |   地下沙漠2  |   3 2 1  |
+|      遗迹3     | 海底下层 & 塔 |   地下沙漠3  |   3 3 2  |
 | Rares (Anywhere) |                      |                 |   5 5 5  |
 
 #### VH
 
 |                  |         区域         |                 | Patterns |
 |:----------------:|:--------------------:|:---------------:|:--------:|
-|     Forest 1     |     Temple Alpha     |        -        |   2 1 1  |
-|     Forest 2     |      Temple Beta     |        -        |   2 2 2  |
-|      Caves 1     |    Spaceship Alpha   |   Crater East   |   2 2 2  |
-|      Caves 2     |    Spaceship Beta    |   Crater West   |   3 2 2  |
-|      Caves 3     |     Jungle North     |   Crater South  |   3 3 2  |
-|      Mines 1     |      Jungle East     |   Crater North  |   3 3 3  |
-|      Mines 2     |       Mountain       | Crater Interior |   3 3 3  |
-|      Ruins 1     |     Seaside & CCA    |   Sub Desert 1  |   4 3 3  |
-|      Ruins 2     |     Seabed Upper     |   Sub Desert 2  |   4 4 3  |
-|      Ruins 3     | Seabed Lower & Tower |   Sub Desert 3  |   4 4 4  |
+|     森林1     |     神殿Alpha     |        -        |   2 1 1  |
+|     森林2     |      神殿Beta     |        -        |   2 2 2  |
+|      洞窟1     |    宇宙船Alpha   |   陨石坑东   |   2 2 2  |
+|      洞窟2     |    宇宙船Beta    |   陨石坑西   |   3 2 2  |
+|      洞窟3     |     密林北     |   陨石坑南  |   3 3 2  |
+|      坑道1     |      密林东     |   陨石坑北  |   3 3 3  |
+|      坑道2     |       山区       | 陨石坑内部 |   3 3 3  |
+|      遗迹1     |     海边 & CCA    |   地下沙漠1  |   4 3 3  |
+|      遗迹2     |     海底上层     |   地下沙漠2  |   4 4 3  |
+|      遗迹3     | 海底下层 & 塔 |   地下沙漠3  |   4 4 4  |
 | Rares (Anywhere) |                      |                 |   5 5 5  |
 
 #### U
 
 |                  |         区域         |                 | Patterns |
 |:----------------:|:--------------------:|:---------------:|:--------:|
-|     Forest 1     |     Temple Alpha     |        -        |   2 1 0  |
-|     Forest 2     |      Temple Beta     |        -        |   2 1 0  |
-|      Caves 1     |    Spaceship Alpha   |   Crater East   |   2 2 1  |
-|      Caves 2     |    Spaceship Beta    |   Crater West   |   3 2 1  |
-|      Caves 3     |     Jungle North     |   Crater South  |   3 3 2  |
-|      Mines 1     |      Jungle East     |   Crater North  |   3 3 2  |
-|      Mines 2     |       Mountain       | Crater Interior |   3 3 3  |
-|      Ruins 1     |     Seaside & CCA    |   Sub Desert 1  |   4 3 3  |
-|      Ruins 2     |     Seabed Upper     |   Sub Desert 2  |   4 4 3  |
-|      Ruins 3     | Seabed Lower & Tower |   Sub Desert 3  |   4 4 4  |
+|     森林1     |     神殿Alpha     |        -        |   2 1 0  |
+|     森林2     |      神殿Beta     |        -        |   2 1 0  |
+|      洞窟1     |    宇宙船Alpha   |   陨石坑东   |   2 2 1  |
+|      洞窟2     |    宇宙船Beta    |   陨石坑西   |   3 2 1  |
+|      洞窟3     |     密林北     |   陨石坑南  |   3 3 2  |
+|      坑道1     |      密林东     |   陨石坑北  |   3 3 2  |
+|      坑道2     |       山区       | 陨石坑内部 |   3 3 3  |
+|      遗迹1     |     海边 & CCA    |   地下沙漠1  |   4 3 3  |
+|      遗迹2     |     海底上层     |   地下沙漠2  |   4 4 3  |
+|      遗迹3     | 海底下层 & 塔 |   地下沙漠3  |   4 4 4  |
 | Rares (Anywhere) |                      |                 |   5 5 5  |
 
 #### 属性值信息
@@ -104,62 +104,62 @@ Pattern N表示不会随机属性
 
 |          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
 |:--------:|:--------------------:|:---------------:|:---------------:|:----------------------:|
-| Forest 1 |     Temple Alpha     |        -        |       无      |           N/A          |
-| Forest 2 |      Temple Beta     |        -        |       无      |           N/A          |
-|  Caves 1 |    Spaceship Alpha   |   Crater East   |     17%/17%     |           1★           |
-|  Caves 2 |    Spaceship Beta    |   Crater West   |     18%/17%     |           1★           |
-|  Caves 3 |     Jungle North     |   Crater South  |     20%/19%     |           1★           |
-|  Mines 1 |      Jungle East     |   Crater North  |     19%/18%     |           1★           |
-|  Mines 2 |       Mountain       | Crater Interior |     20%/20%     |           1★           |
-|  Ruins 1 |     Seaside & CCA    |   Sub Desert 1  |     16%/16%     |           2★           |
-|  Ruins 2 |     Seabed Upper     |   Sub Desert 2  |     18%/17%     |           2★           |
-|  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     20%/19%     |           2★           |
+| 森林1 |     神殿Alpha     |        -        |       无      |           N/A          |
+| 森林2 |      神殿Beta     |        -        |       无      |           N/A          |
+|  洞窟1 |    宇宙船Alpha   |   陨石坑东   |     17%/17%     |           1★           |
+|  洞窟2 |    宇宙船Beta    |   陨石坑西   |     18%/17%     |           1★           |
+|  洞窟3 |     密林北     |   陨石坑南  |     20%/19%     |           1★           |
+|  坑道1 |      密林东     |   陨石坑北  |     19%/18%     |           1★           |
+|  坑道2 |       山区       | 陨石坑内部 |     20%/20%     |           1★           |
+|  遗迹1 |     海边 & CCA    |   地下沙漠1  |     16%/16%     |           2★           |
+|  遗迹2 |     海底上层     |   地下沙漠2  |     18%/17%     |           2★           |
+|  遗迹3 | 海底下层 & 塔 |   地下沙漠3  |     20%/19%     |           2★           |
 |          |                      |                 |                 |                        |
 
 #### H
 
 |          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
 |:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
-| Forest 1 |     Temple Alpha     |        -        |     21%/20%     |          2★          |
-| Forest 2 |     Temple Beta      |        -        |     21%/20%     |          2★          |
-| Caves 1  |   Spaceship Alpha    |   Crater East   |     17%/17%     |          2★          |
-| Caves 2  |    Spaceship Beta    |   Crater West   |     18%/18%     |          3★          |
-| Caves 3  |     Jungle North     |   Crater South  |     20%/19%     |          2★          |
-| Mines 1  |     Jungle East      |   Crater North  |     19%/19%     |          3★          |
-| Mines 2  |       Mountain       | Crater Interior |     24%/23%     |          3★          |
-| Ruins 1  |    Seaside & CCA     |   Sub Desert 1  |     19%/18%     |          3★          |
-| Ruins 2  |     Seabed Upper     |   Sub Desert 2  |     19%/18%     |          3★          |
-| Ruins 3  | Seabed Lower & Tower |   Sub Desert 3  |     19%/18%     |          3★          |
+| 森林1 |     神殿Alpha     |        -        |     21%/20%     |          2★          |
+| 森林2 |     神殿Beta      |        -        |     21%/20%     |          2★          |
+| 洞窟1  |   宇宙船Alpha    |   陨石坑东   |     17%/17%     |          2★          |
+| 洞窟2  |    宇宙船Beta    |   陨石坑西   |     18%/18%     |          3★          |
+| 洞窟3  |     密林北     |   陨石坑南  |     20%/19%     |          2★          |
+| 坑道1  |     密林东      |   陨石坑北  |     19%/19%     |          3★          |
+| 坑道2  |       山区       | 陨石坑内部 |     24%/23%     |          3★          |
+| 遗迹1  |    海边 & CCA     |   地下沙漠1  |     19%/18%     |          3★          |
+| 遗迹2  |     海底上层     |   地下沙漠2  |     19%/18%     |          3★          |
+| 遗迹3  | 海底下层 & 塔 |   地下沙漠3  |     19%/18%     |          3★          |
 |          |                      |                 |                 |                      |
 
 #### VH
 
 |          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
 |:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
-| Forest 1 |     Temple Alpha     |        -        |     21%/21%     |          2★          |
-| Forest 2 |      Temple Beta     |        -        |     21%/21%     |          3★          |
-|  Caves 1 |    Spaceship Alpha   |   Crater East   |     22%/22%     |          3★          |
-|  Caves 2 |    Spaceship Beta    |   Crater West   |     21%/21%     |          3★          |
-|  Caves 3 |     Jungle North     |   Crater South  |     22%/22%     |          4★          |
-|  Mines 1 |      Jungle East     |   Crater North  |     22%/22%     |          4★          |
-|  Mines 2 |       Mountain       | Crater Interior |     22%/22%     |          4★          |
-|  Ruins 1 |     Seaside & CCA    |   Sub Desert 1  |     23%/23%     |          4★          |
-|  Ruins 2 |     Seabed Upper     |   Sub Desert 2  |     23%/23%     |          4★          |
-|  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     23%/23%     |          4★          |
+| 森林1 |     神殿Alpha     |        -        |     21%/21%     |          2★          |
+| 森林2 |      神殿Beta     |        -        |     21%/21%     |          3★          |
+|  洞窟1 |    宇宙船Alpha   |   陨石坑东   |     22%/22%     |          3★          |
+|  洞窟2 |    宇宙船Beta    |   陨石坑西   |     21%/21%     |          3★          |
+|  洞窟3 |     密林北     |   陨石坑南  |     22%/22%     |          4★          |
+|  坑道1 |      密林东     |   陨石坑北  |     22%/22%     |          4★          |
+|  坑道2 |       山区       | 陨石坑内部 |     22%/22%     |          4★          |
+|  遗迹1 |     海边 & CCA    |   地下沙漠1  |     23%/23%     |          4★          |
+|  遗迹2 |     海底上层     |   地下沙漠2  |     23%/23%     |          4★          |
+|  遗迹3 | 海底下层 & 塔 |   地下沙漠3  |     23%/23%     |          4★          |
 |          |                      |                 |                 |                      |
 
 #### U
 
 |          |         区域         |                 | 未鉴定概率 | 最高稀有度 |
 |:--------:|:--------------------:|:---------------:|:---------------:|:--------------------:|
-| Forest 1 |     Temple Alpha     |        -        |     22%/21%     |          4★          |
-| Forest 2 |      Temple Beta     |        -        |     22%/21%     |          4★          |
-|  Caves 1 |    Spaceship Alpha   |   Crater East   |     25%/24%     |          4★          |
-|  Caves 2 |    Spaceship Beta    |   Crater West   |     25%/24%     |          4★          |
-|  Caves 3 |     Jungle North     |   Crater South  |     25%/24%     |          4★          |
-|  Mines 1 |      Jungle East     |   Crater North  |     28%/27%     |          4★          |
-|  Mines 2 |       Mountain       | Crater Interior |     28%/27%     |          4★          |
-|  Ruins 1 |     Seaside & CCA    |   Sub Desert 1  |     28%/27%     |          4★          |
-|  Ruins 2 |     Seabed Upper     |   Sub Desert 2  |     30%/29%     |          4★          |
-|  Ruins 3 | Seabed Lower & Tower |   Sub Desert 3  |     30%/29%     |          4★          |
+| 森林1 |     神殿Alpha     |        -        |     22%/21%     |          4★          |
+| 森林2 |      神殿Beta     |        -        |     22%/21%     |          4★          |
+|  洞窟1 |    宇宙船Alpha   |   陨石坑东   |     25%/24%     |          4★          |
+|  洞窟2 |    宇宙船Beta    |   陨石坑西   |     25%/24%     |          4★          |
+|  洞窟3 |     密林北     |   陨石坑南  |     25%/24%     |          4★          |
+|  坑道1 |      密林东     |   陨石坑北  |     28%/27%     |          4★          |
+|  坑道2 |       山区       | 陨石坑内部 |     28%/27%     |          4★          |
+|  遗迹1 |     海边 & CCA    |   地下沙漠1  |     28%/27%     |          4★          |
+|  遗迹2 |     海底上层     |   地下沙漠2  |     30%/29%     |          4★          |
+|  遗迹3 | 海底下层 & 塔 |   地下沙漠3  |     30%/29%     |          4★          |
 |          |                      |                 |                 |                      |
