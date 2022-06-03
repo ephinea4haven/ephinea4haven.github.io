@@ -21,6 +21,8 @@
 
 ### Patterns信息
 
+Pattern N表示不会随机属性
+
 #### N
 
 |                  |         区域         |                 | Patterns |
