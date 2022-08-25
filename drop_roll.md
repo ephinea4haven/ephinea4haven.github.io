@@ -89,7 +89,7 @@ Pattern N表示不会随机属性
 
 ### 属性值信息
 
-* 普通模式会使用Pattern0-4,Pattern5为红盒
+* 普通道具会使用Pattern0-4,Pattern5为红盒
 * 苦痛模式(Anguish)低级区域使用Pattern3，高级区域使用Pattern4，红盒仍为Pattern5
 
 #### EP1&2&4
