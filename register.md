@@ -36,7 +36,7 @@
   ![邮箱地址](./static/img/email.png)
 
 * [微软邮箱登录地址](https://login.live.com/login.srf)
-  * [谷歌邮箱登录地址](https://mail.google.com)
+* [谷歌邮箱登录地址](https://mail.google.com)
   
 <span style="color:green">温馨提示: 记得注册完，<span style="color:red">**打开邮箱**</span></span>  
   
