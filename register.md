@@ -2,14 +2,14 @@
 
 **可以注册的邮箱: 微软的outlook、live、hotmail,谷歌的gmail等国际邮箱。**
 
-注册过程中存在**reCAPTCHA**，需要有科学上网才能看到!!!
+注册过程中存在**reCAPTCHA**，需要有科学上网才能看到!
 ![验证码](./static/img/ephinea_reg.png)
 
 **如果没有科学上网环境，可以按照如下方式处理:**
 
-由于国内无法访问Google服务，所以导致页面无法正常加载和运行，如注册和登录等。
-目前解决的方案是通过在浏览器中安装相关扩展，将对Google reCAPTCHA相关地址
-的访问重定向到国内可以访问的另一reCAPTCHA服务地址
+由于国内无法访问`Google`服务，所以导致页面无法正常加载和运行，如注册和登录等。
+目前解决的方案是通过在浏览器中安装相关扩展，将对国外`reCAPTCHA`地址重定向到
+国内`reCAPTCHA`服务器地址。
 
 国外reCAPTCHA的JS地址:
 `https://www.google.com/recaptcha/api.js`
