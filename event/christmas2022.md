@@ -9,7 +9,7 @@
 
 [Ephinea国内WIKI](https://ephinea4haven.github.io)
 
-### 2020年圣诞任务从`(2021-12-10)`到`(2022-01-07)`结束
+### 2020年圣诞任务从`(2022-12-10)`到`(2022-01-07)`结束
 
 - <span style="font-weight: bolder;color:red">Christmas Fiasco[124]过关奖励4、6、6煤炭</span>
 
