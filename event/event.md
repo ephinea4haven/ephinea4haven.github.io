@@ -1,5 +1,7 @@
 活动内容尽量简单明了，没用的废话都删除掉！
 
+[2022圣诞活动](/event/christmas2022.html)
+
 [2021圣诞活动](/event/christmas2021.html)
 
 [2020圣诞活动](/event/christmas2020.html)
