@@ -5,10 +5,6 @@
        href="//shang.qq.com/wpa/qunwpa?idkey=95996b984b761d905d2d05e0ce765fa9ff720cfa9e6dbcde50fd179cd8867808">点击加QQ群: 956652396</a>
 </div>
 
-[Ephinea介绍](https://ephinea4haven.github.io/ephinea.html)
-
-[Ephinea国内WIKI](https://ephinea4haven.github.io)
-
 ### 2022年圣诞任务从`(2022-12-10)`到`(2023-01-07)`结束
 
 - <span style="font-weight: bolder;color:red">Christmas Fiasco[124]过关奖励4、6、6煤炭</span>
