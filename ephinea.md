@@ -79,7 +79,7 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 ---
 
-* **Hardcore(硬核)**
+~~* **Hardcore(硬核)**
 
 **不要命模式，如果没有娃娃死亡会清空角色身上和银行所有道具，但不影响共享银行，
 娃娃相对来说非常珍贵，此模式掉落有buff，具体参数如下:**
@@ -87,7 +87,7 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 * 经验值: 200%  
 * 掉宝率: 130%  
-* 稀有怪率: 100%
+* 稀有怪率: 100%~~
     
 
 ---    
@@ -115,14 +115,14 @@ PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
 
 ---
 
-<h3>每日幸运系统DLS</h3>
+~~<h3>每日幸运系统DLS</h3>
 
 每天特定职业、种族和性别可以获得不同的强化掉落。<br/>
 
 * 白色 - 未匹配任何条件
 * 浅黄 - 匹配一个条件(单人dar提升:1%,多人dar提升:1%)
 * 黄色 - 匹配两个个条件(单人dar提升:2%,多人dar提升:3%)
-* 金黄 - 匹配三个条件(单人dar提升:3%,多人dar提升:5%)
+* 金黄 - 匹配三个条件(单人dar提升:3%,多人dar提升:5%)~~
 
 <h3>掉落提升任务HBR</h3>
 
