@@ -56,9 +56,7 @@
 
 <h3>可调整的颜色ID</h3>
 
-在角色创建后，你可以调整颜色ID，每3个月一次机会，ID不区分大小写！  
-VIRIDIA, GREENILL, SKYLY, BLUEFULL, PURPLENUM  
-PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL
+修改角色的颜色ID,仅可以在20级之前使用。
 
 <h3>稀有掉落通知</h3>
 
