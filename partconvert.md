@@ -2,13 +2,14 @@
 ### 尸快改造
 1. 选择`单人模式` solo mode
 2. 选择 `支线任务` side quest
-3. 完成4个任务
+3. 完成5个任务
    
     * 战争的基石/Battle Training/戦いのいしずえ
     * 拉古奥尔的地主/Claiming a Stake/ラグオルの大地主
     * 钢之心/Magnitude Of Metal/鋼の心
     * 秘密货物/Secret Delivery/ ヒミツの届け物(需要完成前3个任务才可以选择)
-    
+    * 博士的秘密欲望/Doc''s Secret Plan/博士の密かな欲望(需要完成前3个任务才可以选择)
+
 4. 改造尸快
    
    选择任务: `奥斯多博士的研究/Dr.Osto's Reserch/ オスト博士の研究`
