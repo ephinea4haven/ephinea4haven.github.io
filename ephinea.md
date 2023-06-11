@@ -186,11 +186,11 @@
 * Mag没有职业限制。
 * 兔耳和猫耳没有职业限制。
 * `花瓶`可以使用`史神克莱奥之杖`。
-* 吸经验装备被限制只能吸收固定经验。
+* 吸经验装备仅仅能吸收固定经验。
 
 # GMs
-主GM: Sodaboy, Tofuman and Matt  
-辅GM: anime, CARNAGE, MewPlushie 和 Ryan  
+主GM: Sodaboy, Tofuman, Ender和Matt  
+辅GM: anime, CARNAGE, MewPlushie, Ryan和Gori  
 一般的问题咨询辅GM足够了，对于ban号申述需联系主GM。
 
 ## 原创任务
