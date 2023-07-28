@@ -23,11 +23,11 @@ Ephinea服务器可以在游戏中输入命令来个性化游戏体验，完成�
 * 掉落率(Drop Rate)
 * 稀有怪率(Rare Enemy Rate)
 
-**/hbr**  
-在游戏屏幕顶部显示一个滚动公告，显示HBR的分数、掉率奖励DAR(但不显示RDR)和HBR排名。
+**/rbr**  
+在游戏屏幕顶部显示一个滚动公告，显示RBR周任务。
 
 **/luck**  
-显示当前的幸运等级。四个等级 Normal(普通), Good(好), Lucky(幸运) and Incredible(牛
+显示当前的幸运等级。四个等级 Normal(普通), Good(好), Lucky(幸运) and Incredible(牛X)
 
 **/forecast**  
 显示当前幸
