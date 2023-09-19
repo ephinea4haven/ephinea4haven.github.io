@@ -32,24 +32,11 @@ function buff() {
         } else if (offset === parseInt(id)) {
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
 
-            // 2021 圣诞
+/*            // 2021 圣诞
             var christEventEndDate = new Date(2021, 1 - 1, 9).getTime();
             if (+current <= +christEventEndDate) {
                 $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-            }
-
-            // 2020 圣诞
-            var christEventEndDate = new Date(2020, 1 - 1, 13).getTime();
-            if (+current <= +christEventEndDate) {
-
-                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-            }
-
-            // 2020 复活节
-            var easterEventEndDate = new Date(2020, 5 - 1, 10).getTime();
-            if (+current <= +easterEventEndDate) {
-                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-            }
+            }*/
         }
 
         if ((+offset + 1) % 4 === parseInt(id)) {
@@ -168,6 +155,17 @@ function getBeatPeriod(start, end) {
     return raw;
 }
 
+function rbr_quests(){
+    fetch('static/hbr.json')
+        .then((response) => response.json())
+        .then((r) => {
+            // $('#rbr-quest')
+            r.forEach(function (val, idx) {
+                $('#rbr-quest').append("<li>" + val + "</li>")
+            })
+        })
+}
+
 $(function () {
     GetInternetTime();
     setInterval(GetInternetTime, 1000);
@@ -201,4 +199,6 @@ $(function () {
     // galatine_even_period += "</ul>";
     //
     // $('#galatine_even_period').html(galatine_even_period);
+
+    rbr_quests()
 });
