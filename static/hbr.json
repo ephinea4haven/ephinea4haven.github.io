@@ -1,5 +1,14 @@
 [
-  "Mop-up Operation #4",
-  "Sweep-up Operation #7",
-  "Sweep-up Operation #13"
+  {
+    "quest": "Mop-up Operation #4",
+    "episode": "EP1"
+  },
+  {
+    "quest": "Sweep-up Operation #7",
+    "episode": "EP2"
+  },
+  {
+    "quest": "Sweep-up Operation #13",
+    "episode": "EP4"
+  }
 ]

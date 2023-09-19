@@ -159,9 +159,9 @@ function rbr_quests(){
     fetch('static/hbr.json')
         .then((response) => response.json())
         .then((r) => {
-            // $('#rbr-quest')
             r.forEach(function (val, idx) {
-                $('#rbr-quest').append("<li>" + val + "</li>")
+                let quest_name = val.quest.padStart(25, '')
+                $('#rbr-quest').append("<li>" + quest_name + " - " + val.episode + "</li>")
             })
         })
 }
