@@ -24,6 +24,18 @@
             color: red;
             font-weight: bold;
         }
+
+        #rbr-quest, label[for="rbr-quest"] {
+            margin: 0;
+        }
+
+        #beat_even_period, label[for="beat_even_period"] {
+            margin: 0;
+        }
+
+        div{
+            margin: 10px;
+        }
     </style>
 </head>
 
@@ -49,12 +61,8 @@
         </div>
 
         <div>
-            网络时间(.beat): <span id="swatchTime"></span>
-            <div id="hp-span">天罚时间为绿色</div>
-        </div>
-
-        <div>
-            <div id="beat_even_period"></div>
+            <label for="beat_even_period" id="hp-span">网络时间(.beat): <span id="swatchTime"></span></label>
+            <ul id="beat_even_period"></ul>
         </div>
 
 <!--        <div>

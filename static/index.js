@@ -172,8 +172,7 @@ $(function () {
 
     buff();
 
-    var beat_even_period = "<ul>";
-    beat_even_period += "<li>" + getBeatPeriod(0, 99);
+    let beat_even_period = "<li>" + getBeatPeriod(0, 99);
     beat_even_period += "<li>" + getBeatPeriod(100, 199);
     beat_even_period += "<li>" + getBeatPeriod(200, 299);
     beat_even_period += "<li>" + getBeatPeriod(300, 399);
@@ -183,7 +182,6 @@ $(function () {
     beat_even_period += "<li>" + getBeatPeriod(700, 799);
     beat_even_period += "<li>" + getBeatPeriod(800, 899);
     beat_even_period += "<li>" + getBeatPeriod(900, 999);
-    beat_even_period += "</ul>";
 
     $('#beat_even_period').html(beat_even_period);
 
