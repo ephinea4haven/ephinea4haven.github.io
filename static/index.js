@@ -198,5 +198,5 @@ $(function () {
     //
     // $('#galatine_even_period').html(galatine_even_period);
 
-    rbr_quests()
+    // rbr_quests()
 });
