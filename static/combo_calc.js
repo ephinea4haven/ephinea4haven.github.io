@@ -1029,6 +1029,7 @@ function createMonsterRow(
         a3Type: comboInput.a3Type,
         a3Damage: comboDamage.a3Damage,
         a3Accuracy: accuracyResult.a3Accuracy,
+        baseAta: base_ata
     }
 }
 
@@ -1198,7 +1199,7 @@ function appendMosterRow(rowEntry) {
         }))))
         .append($('<td/>', {
             'data-label': 'accuracy',
-            'text': rowEntry.overallAccuracy.toFixed(2) + '%',
+            'text': rowEntry.overallAccuracy.toFixed(2) + '%('+  rowEntry.baseAta+ ')',
             'style': rowEntry.overallAccuracy >= 100.0 ? 'background: rgba(150,255,150,0.1)' : 'background: rgba(255,150,150,0.1)'
         }))
         .append($('<td/>', {
