@@ -19,30 +19,20 @@
 #### N、H和VH难度普通礼品
 
 
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
+* 
 
 --- 
 
@@ -50,11 +40,11 @@
 
 ##### <span style="color:red">普通</span>
 
-*
-*
-*
-*
-*
+* 
+* 
+* 
+* 
+* 
 
 ##### <span style="color:red">常见</span>
 
@@ -62,31 +52,31 @@
 *
 *
 *
-*
+* 
 
 ##### <span style="color:red">不常见</span>
 
-*
-*
-*
-*
-*
+* 
+* 
+* 
+* 
+*  
 
 ##### <span style="color:red">稀有</span> 
 
-*
-*
-*
-*
-*
+* 
+* 
+* 
+* 
+* 
 
 ##### <span style="color:red">非常稀有</span>
 
-*
-*
-*
-*
-*
+* 
+* 
+* 
+* 
+* 
 
 ### <span style="color:red">圣诞活动商店</span>
    商店坐标: EP1 -> Shop -> Christmas Event Shop
