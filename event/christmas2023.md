@@ -7,7 +7,7 @@
 
 ### 2023年圣诞任务从`(2023-12-12)`到`(2024-01-09)`结束
 
-- <span style="font-weight: bolder;color:red">Christmas Fiasco[124]过关奖励4、6、6煤炭</span>
+- <span style="font-weight: bolder;color:red">Christmas Fiasco[124]通关奖励4、6、6煤炭</span>
 
 
 ### 奖品列表
