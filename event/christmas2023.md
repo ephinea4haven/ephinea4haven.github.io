@@ -87,7 +87,7 @@
 * \[削血\] TypeGU/Mechgun (0/0/0/0|35)
 * \[削血\] TypeKN/Claw (0/0/0/0|50)
 * 
-* ##### <span style="color:red">不常见</span>
+##### <span style="color:red">不常见</span>
 * 
 * \[削金\] TypeME/Mechgun (0/0/0/0|40)
 * \[削金\] TypeSH/Shot (0/0/0/0|40)
