@@ -50,19 +50,19 @@
 * Luck药 x3
 * 道具票
 * 
-* Daisy Chain (可变H)
-* Crazy Tune (可变H)
-* Samba Maracas (可变H)
+* 雏菊之剑 (可变H)
+* 疯狂旋律 (可变H)
+* 桑巴沙锤 (可变H)
 * 
 * 
 * 
 * 
-* Rocket Punch (可变H)
+* 火箭铁拳 (可变H)
 * 
 * 
 * 
-* Syringe (可变H)
-* Heart of Morolian
+* 注射器 (可变H)
+* 摩洛星人的心
 * 
 
 --- 
