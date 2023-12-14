@@ -26,8 +26,6 @@
 
 
 ### 奖品列表
- 
-
 
 **可变H: \[15，60\]**
 
@@ -88,7 +86,7 @@
 * \[削血\] TypeKN/Claw (0/0/0/0|50)
 * 
 ##### <span style="color:red">不常见</span>
-* 
+
 * \[削金\] TypeME/Mechgun (0/0/0/0|40)
 * \[削金\] TypeSH/Shot (0/0/0/0|40)
 * \[削血\] TypeME/Mechgun (0/0/0/0|40)
