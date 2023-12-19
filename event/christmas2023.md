@@ -78,23 +78,23 @@
 * 光子水晶 x2
 * 光子微晶 x3
 * 万圣节饼干
-* \[削金\] TypeGU/Handgun (0/0/0/0\|40)
-* \[削金\] TypeGU/Mechgun (0/0/0/0\|35)
-* \[削金\] TypeGU/Handgun (0/0/0/0\|40)
-* \[削血\] TypeGU/Mechgun (0/0/0/0\|35)
-* \[削血\] TypeKN/Claw (0/0/0/0\|50)
+* \[削金\] 光枪TypeGU/Handgun (0/0/0/0\|40)
+* \[削金\] 机枪光枪TypeGU/Mechgun (0/0/0/0\|35)
+* \[削金\] 光枪TypeGU/Handgun (0/0/0/0\|40)
+* \[削血\] 机枪光枪TypeGU/Mechgun (0/0/0/0\|35)
+* \[削血\] 爪TypeKN/Claw (0/0/0/0\|50)
 
 ##### <span style="color:red">不常见</span>
 
-* \[削金\] TypeME/Mechgun (0/0/0/0\|40)
-* \[削金\] TypeSH/Shot (0/0/0/0\|40)
-* \[削血\] TypeME/Mechgun (0/0/0/0\|40)
-* \[削血\] TypeSH/Shot (0/0/0/0\|40)
-* \[魔鬼\] TypeDS/Rod (0/0/0/0\|30)
+* \[削金\] 机枪TypeME/Mechgun (0/0/0/0\|40)
+* \[削金\] 散弹TypeSH/Shot (0/0/0/0\|40)
+* \[削血\] 机枪TypeME/Mechgun (0/0/0/0\|40)
+* \[削血\] 散弹TypeSH/Shot (0/0/0/0\|40)
+* \[魔鬼\] 长杖双头TypeDS/Rod (0/0/0/0\|30)
 * 光子微晶 x5
 * 隐身Mag细胞
 * 源平
-* \[削魔\] TypeSW/J-Sword (0/0/0/0\|30)
+* \[削魔\] 大剑TypeSW/J-Sword (0/0/0/0\|30)
 * 艾米提的笔记
 * Ｙａｈｏｏ！细胞
 * 火墙增幅盾
@@ -103,8 +103,8 @@
 
 * 光子微晶 x10
 * 
-* \[地狱\] TypeGU/Mechgun (0/0/0/0\|35)
-* \[地狱\] TypeRI/Rifle (0/0/0/0\|40)
+* \[地狱\] 机枪光枪TypeGU/Mechgun (0/0/0/0\|35)
+* \[地狱\] 步枪TypeRI/Rifle (0/0/0/0\|40)
 * 光子滤镜
 * 
 * 绿色涂膜
