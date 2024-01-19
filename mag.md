@@ -1,7 +1,6 @@
 进化图谱: | [战士](#hu) | [枪手](#ra) | [法师](#fo)
 
-食谱: | [0](#recipe1) | [1](#recipe2) | [2](#recipe3) | [3](#recipe4) | [4](#recipe5) | [5](#recipe6) | [6](#recipe7)
-| [7](#recipe8)
+食谱: | [0](#recipe1) | [1](#recipe2) | [2](#recipe3) | [3](#recipe4) | [4](#recipe5) | [5](#recipe6) | [6](#recipe7)| [7](#recipe8)
 
 杂项: | [同步率](#sync) | [智力](#iq) | [PB激活条件](#trigger)
 
