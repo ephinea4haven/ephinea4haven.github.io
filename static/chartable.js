@@ -25,7 +25,7 @@ $(function () {
                 "<td>" + stat[0] + "</td>" +
                 "<td>" + stat[1] + "</td>" +
                 "<td>" + stat[2] + "</td>" +
-                "<td>" + stat[3] + "</td>" +
+                "<td>" + stat[3]/10 + "</td>" +
                 "<td>" + stat[4] + "</td>" +
                 "<td>" + stat[5] + "</td>" +
                 "<td>" + stat[6] + "</td>" +
