@@ -1,6 +1,6 @@
 [账号注册](https://ephinea.pioneer2.net/register)
 
-**可以使用的邮箱: 微软的Outlook、Live、Hotmail,GMail等国际邮箱。**
+**可以使用的邮箱: 微软的Outlook、Live、Hotmail等国际邮箱。**
 
 注册过程中存在**reCAPTCHA**，需要有科学上网才能看到!
 ![验证码](./static/img/ephinea_reg.png)
