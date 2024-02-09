@@ -78,7 +78,7 @@ PS:温馨提示，公共仓库只有一个,所有32个角色共享。
 修改角色名字, 最多10字符, 不会重新计算颜色ID，无限制。
 
 **/modsecid x**
-修改角色的颜色ID,仅可以在20级之前使用。  
+修改角色的颜色ID,仅可以在20级之前使用一次。  
 合法的x值:
 
 **VIRIDIA, GREENILL, SKYLY, BLUEFULL, PURPLENUM,  
