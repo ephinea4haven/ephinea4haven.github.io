@@ -17,12 +17,12 @@ function buff() {
             $(this).append(" - ").append("<span style='color: red; font-weight: bolder'>本周</span>")
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
         }else{
-            $(this).css({'color': 'grey'});
+            $(this).css({'color': 'grey', 'font-weight': 'bolder'});
         }
 
         if ((+offset + 1) % 4 === parseInt(id)) {
-            $(this).append(" - ").append("<span style='color: green; font-weight: bolder'>下周</span>")
-            $(this).css({'color': 'green', 'font-weight': 'bolder'});
+            $(this).append(" - ").append("<span style='color: grey; font-weight: bolder'>下周</span>")
+            $(this).css({'color': 'grey', 'font-weight': 'bolder'});
         }
     })
 }
