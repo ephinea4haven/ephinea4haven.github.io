@@ -167,18 +167,18 @@ $(function () {
 
     $('#beat_even_period').html(beat_even_period);
 
-    // var galatine_even_period = "<ul>";
-    // galatine_even_period += "<li>" + getBeatPeriod(0, 124) + " - 0.33x (110-140)";
-    // galatine_even_period += "<li>" + getBeatPeriod(125, 249) + " - 0.5x (165-210)";
-    // galatine_even_period += "<li>" + getBeatPeriod(250, 374) + " - 1x (330-420)";
-    // galatine_even_period += "<li>" + getBeatPeriod(375, 499) + " - 2x (660-840)";
-    // galatine_even_period += "<li>" + getBeatPeriod(500, 624) + " - 3x (990-1260)";
-    // galatine_even_period += "<li>" + getBeatPeriod(625, 749) + " - 2x (660-840)";
-    // galatine_even_period += "<li>" + getBeatPeriod(750, 874) + " - 1x (330-420)";
-    // galatine_even_period += "<li>" + getBeatPeriod(875, 999) + " - 0.5x (165-210)";
-    // galatine_even_period += "</ul>";
-    //
-    // $('#galatine_even_period').html(galatine_even_period);
+    var galatine_even_period = "<ul>";
+    galatine_even_period += "<li>" + getBeatPeriod(0, 124) + " - 0.33x (110-140)";
+    galatine_even_period += "<li>" + getBeatPeriod(125, 249) + " - 0.5x (165-210)";
+    galatine_even_period += "<li>" + getBeatPeriod(250, 374) + " - 1x (330-420)";
+    galatine_even_period += "<li>" + getBeatPeriod(375, 499) + " - 2x (660-840)";
+    galatine_even_period += "<li>" + getBeatPeriod(500, 624) + " - 3x (990-1260)";
+    galatine_even_period += "<li>" + getBeatPeriod(625, 749) + " - 2x (660-840)";
+    galatine_even_period += "<li>" + getBeatPeriod(750, 874) + " - 1x (330-420)";
+    galatine_even_period += "<li>" + getBeatPeriod(875, 999) + " - 0.5x (165-210)";
+    galatine_even_period += "</ul>";
+
+    $('#galatine_even_period').html(galatine_even_period);
 
     // rbr_quests()
 });
