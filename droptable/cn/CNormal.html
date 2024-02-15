@@ -21,6 +21,31 @@
             background: none !important;
             padding: 0 !important;
         }
+        .drop-charts-list {
+            list-style-type: none; /* 移除默认的列表项符号 */
+            padding: 0; /* 移除默认的填充 */
+            margin: 0; /* 移除默认的外边距 */
+            width: 100%; /* 可以根据需要调整宽度 */
+            display: flex; /* 启用Flexbox */
+            flex-direction: column; /* 列方向排列 */
+            align-items: center; /* 水平居中 */
+        }
+
+        .drop-charts-list li {
+            margin: 10px 0; /* 添加一些垂直间距 */
+        }
+
+        .drop-charts-list li div {
+            display: flex; /* 启用Flexbox */
+            flex-direction: row; /* 行方向排列 */
+            justify-content: center; /* 水平居中对齐子元素 */
+            flex-wrap: wrap; /* 允许子元素换行 */
+            gap: 10px; /* 子元素之间的间距 */
+        }
+
+        #qq-link,.page-header{
+            text-align: center;
+        }
     </style>
     <link href="../../static/main.min.css" rel="stylesheet">
     <link href="../../static/font-awesome.css" rel="stylesheet">
@@ -48,27 +73,27 @@
 
                 <li>
                     <div>
-                        <a href="CHard.html" style="display: block;">困难</a> <a href="CHard.html#mobepisode1">Ep1</a> <a href="CHard.html#mobepisode2">Ep2</a> <a href="CHard.html#mobepisode4">Ep4</a> <a href="CHard.html#boxes">箱子</a>
+                        <a href="CHard.html" style="display: block;">困难</a> <a href="./CHard.html#mobepisode1">Ep1</a> <a href="CHard.html#mobepisode2">Ep2</a> <a href="CHard.html#mobepisode4">Ep4</a> <a href="CHard.html#boxes">箱子</a>
                     </div>
                 </li>
 
 
                 <li>
                     <div>
-                        <a href="./CVeryHard.html" style="display: block;">极难</a> <a href="CVeryHard.html#mobepisode1">Ep1</a> <a href="CVeryHard.html#mobepisode2">Ep2</a> <a href="CVeryHard.html#mobepisode4">Ep4</a> <a href="CVeryHard.html#boxes">箱子</a>
+                        <a href="./CVeryHard.html" style="display: block;">极难</a> <a href="./CVeryHard.html#mobepisode1">Ep1</a> <a href="CVeryHard.html#mobepisode2">Ep2</a> <a href="CVeryHard.html#mobepisode4">Ep4</a> <a href="CVeryHard.html#boxes">箱子</a>
                     </div>
                 </li>
 
 
                 <li>
                     <div>
-                        <a href="CUltimate.html" style="display: block;">极限</a> <a href="CUltimate.html#mobepisode1">Ep1</a> <a href="CUltimate.html#mobepisode2">Ep2</a> <a href="CUltimate.html#mobepisode4">Ep4</a> <a href="CUltimate.html#boxes">箱子</a>
+                        <a href="CUltimate.html" style="display: block;">极限</a> <a href="./CUltimate.html#mobepisode1">Ep1</a> <a href="CUltimate.html#mobepisode2">Ep2</a> <a href="CUltimate.html#mobepisode4">Ep4</a> <a href="CUltimate.html#boxes">箱子</a>
                     </div>
                 </li>
             </ul>
 
 
-            <div>
+            <div id="qq-link">
                 <a href="//shang.qq.com/wpa/qunwpa?idkey=95996b984b761d905d2d05e0ce765fa9ff720cfa9e6dbcde50fd179cd8867808" target="_blank">点击加QQ群: 956652396</a>
             </div>
 
