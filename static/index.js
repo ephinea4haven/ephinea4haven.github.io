@@ -13,33 +13,15 @@ function buff() {
         const id = $(this).attr("id");
         const matches = $(this).text().match(/\d+/g);
 
-        // 2021 周年
-        const anniversaryEventEndDate = new Date(2021, 9 - 1, 4).getTime();
-        if (+current <= +anniversaryEventEndDate) {
+        if (offset === parseInt(id)) {
+            $(this).append(" - ").append("<span style='color: red; font-weight: bolder'>本周</span>")
             $(this).css({'color': 'red', 'font-weight': 'bolder'});
-            if (id === "0") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10 + 15));
-            }
-            if (id === "1") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
-            }
-            if (id === "3") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0] + 10));
-            }
-            if (id === "2") {
-                $(this).text($(this).text().replace(/\d+/, +matches[0] +50));
-            }
-        } else if (offset === parseInt(id)) {
-            $(this).css({'color': 'red', 'font-weight': 'bolder'});
-
-/*            // 2021 圣诞
-            var christEventEndDate = new Date(2021, 1 - 1, 9).getTime();
-            if (+current <= +christEventEndDate) {
-                $(this).text($(this).text().replace(/\d+/, (+matches[0]) * 2));
-            }*/
+        }else{
+            $(this).css({'color': 'grey'});
         }
 
         if ((+offset + 1) % 4 === parseInt(id)) {
+            $(this).append(" - ").append("<span style='color: green; font-weight: bolder'>下周</span>")
             $(this).css({'color': 'green', 'font-weight': 'bolder'});
         }
     })
