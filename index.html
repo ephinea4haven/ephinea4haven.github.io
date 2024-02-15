@@ -4,188 +4,158 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,maximum-scale=2">
-    <link rel="stylesheet" type="text/css" media="screen"
-          href="/assets/css/style.css?v=96b5963558efc119b519239894c95c6b7977a118">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
     <title>QQ群: 956652396 | [“PSOBB Wiki For Ephinea Server”]</title>
-    <meta property="og:title" content="QQ群: 956652396"/>
-    <meta property="og:locale" content="en_US"/>
-    <link rel="canonical" href="https://ephinea4haven.github.io/psobbwiki.html"/>
-    <meta property="og:site_name" content="[“PSOBB Wiki For Ephinea Server”]"/>
     <script type="text/javascript" src="static/jquery.min.js?v=1"></script>
-<!--    <script type="text/javascript" src="static/index.min.js?v=202100906001"></script>-->
-    <script type="text/javascript" src="static/index.js?v=20230919001"></script>
+    <script type="text/javascript" src="static/index.js?v=1"></script>
     <style type="text/css">
-        ul#rbr-quest li {
-            color: red;
-        }
-
-        label[for="rbr-quest"] {
-            color: red;
-            font-weight: bold;
-        }
-
-        label[for="beat_even_period"] {
-            font-weight: bold;
-        }
-
-        #rbr-quest, label[for="rbr-quest"] {
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            /*background-image: url("static/img/rune_gray.png");background-repeat: no-repeat;z-index: -100;*/
         }
 
-        #beat_even_period, label[for="beat_even_period"] {
-            margin: 0;
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* 允许子元素换行 */
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
         }
 
-        #week-buf, label[for="week-buf-label"] {
-            margin: 0;
+        .container::after {
+            content: "";
+            width: 100%; /* 强制占满一行的宽度 */
+            height: 0;
+            display: block; /* 确保它被视为块级元素 */
         }
 
-        div{
-            margin: 10px;
+        .section {
+            flex-basis: calc(50% - 20px); /* 调整flex-basis来适应容器宽度，20px是假设的间隙大小 */
+            flex-grow: 1;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            box-sizing: border-box; /* 确保边框和填充包含在宽度内 */
+        }
+
+        a {
+            font-family: 'Arial', sans-serif; /* 指定字体 */
+            font-size: 20px; /* 字体大小 */
+            font-weight: bolder; /* 字体加粗 */
+            color: #007bff; /* 链接默认颜色 */
+            text-decoration: none; /* 去除下划线 */
+            padding: 5px; /* 添加一些内边距 */
+            border-radius: 4px; /* 轻微圆角 */
+            display: block; /* 让padding生效 */
+            margin-bottom: 10px; /* 链接之间的间距 */
+            transition: background-color 0.3s, color 0.3s; /* 平滑过渡效果 */
+        }
+
+        a:hover, a:focus {
+            background-color: #e8f4fc; /* 悬停时的背景颜色 */
+            color: #0056b3; /* 悬停时的文字颜色 */
+            text-decoration: underline; /* 添加下划线以提高可识别性 */
         }
     </style>
 </head>
 
 <body>
+<header>
+    <h1 id="project_title">Ephinea PSOBB 相关信息</h1>
+</header>
 
-<!-- HEADER -->
-<div id="header_wrap" class="outer">
-    <header class="inner">
-        <h1 id="project_title">PSOBB Wiki</h1>
-    </header>
-</div>
+<a href="//shang.qq.com/wpa/qunwpa?idkey=95996b984b761d905d2d05e0ce765fa9ff720cfa9e6dbcde50fd179cd8867808"
+   target="_blank">点击加QQ群: 956652396</a>
 
-<!-- MAIN CONTENT -->
-<div id="main_content_wrap" class="outer">
-    <section class="inner" id="main_content">
-        <div>
-            <a href="//shang.qq.com/wpa/qunwpa?idkey=95996b984b761d905d2d05e0ce765fa9ff720cfa9e6dbcde50fd179cd8867808" target="_blank">点击加QQ群: 956652396</a>
-        </div>
+<div class="container">
+    <div class="section" id="network-time">
+        <h2>网络时间(.beat)</h2>
+        <span id="swatchTime"></span>
+        <ul id="beat_even_period"></ul>
+    </div>
 
-<!--
-        <div>
-            <label for="rbr-quest">本周RBR:</label>
-            <ul id="rbr-quest"></ul>
-        </div>
--->
+    <div id="buf" class="section">
+        <h2>RBS周轮替增益系统:</h2>
+        <ul id="week-buf">
+            <li id="3">掉物率(DAR) +25%</li>
+            <li id="0">稀有怪率(RER) +50%</li>
+            <li id="1">掉宝率(RDR) +25%</li>
+            <li id="2">经验(EXP) +50%</li>
+        </ul>
+    </div>
 
-        <div>
-            <label for="beat_even_period" id="hp-label">网络时间(.beat): <span id="swatchTime"></span></label>
-            <ul id="beat_even_period"></ul>
-        </div>
+    <div class="section">
+        <h2>基本信息:</h2>
+        <a href="/ephinea.html" target="_blank">EPHINEA介绍</a>
+        <a href="/command.html" target="_blank">命令介绍</a>
+        <a href="/ephinea_rules.html" target="_blank">论坛和服务器规则</a>
+        <a href="/anguish.html" target="_blank">苦痛难度</a>
+    </div>
 
-<!--
-        <div>
-            <span>太阳之剑攻击与时间的关系:</span>
-            <div id="galatine_even_period"></div>
-        </div
+    <div class="section">
+        <h2>掉落表相关:</h2>
+        <a href="/droptable/cn/CUltimate.html" target="_blank">E服「中文」掉落表</a>
+        <a href="/droptable/en/Ultimate.html" target="_blank">E服「英文」掉落表</a>
+        <a href="/prizelist.html" target="_blank">科伦赌博的奖品列表</a>
+        <a href="/bdp.html" target="_blank">黑页掉落表</a>
+        <a href="/droptable/ngc/u.html" target="_blank">NGC掉落表</a>
+        <a href="/droptable/dc/u.html" target="_blank">DC掉落表</a>
+    </div>
 
-        -->
+    <div class="section">
+        <h2>任务相关:</h2>
+        <a href="/monsters.html" target="_blank">刷怪表</a>
+        <a href="/quest.html" target="_blank">任务列表</a>
+        <a href="/gallons_roulette.html" target="_blank">幻界幸运轮盘抽</a>
+        <a href="/ep1ch.html" target="_blank">挑战模式 EP1</a>
+        <a href="/ep2ch.html" target="_blank">挑战模式 EP2</a>
+    </div>
 
-        <div id="buf">
-            <label for="week-buf" id="week-buf-label" style="color:black;font-weight: bolder">RBS周轮替增益系统:</label>
-            <ul id="week-buf">
-                <li id="3">掉物率(DAR) +25%</li>
-                <li id="0">稀有怪率(RER) +50%</li>
-                <li id="1">掉宝率(RDR) +25%</li>
-                <li id="2">经验(EXP) +50%</li>
-            </ul>
-        </div>
+    <div class="section">
+        <h2>道具属性相关:</h2>
+        <a href="/drop_roll.html" target="_blank">武器属性相关</a>
+        <a href="/itempt" target="_blank">非稀有掉落相关</a>
+        <a href="/weapon_nerf" target="_blank">商店武器修正</a>
+        <a href="/WSBoost.html" target="_blank">法杖技能加成</a>
+        <a href="chardata/index.html" target="_blank">账号数据查看</a>
+        <a href="/en2chinese.html" target="_blank">中英文对照表</a>
+        <a href="/partconvert" target="_blank">尸块改造</a>
+    </div>
 
-        <div>
-       <!--     <h2 id="EPHINEA 活动"><a href="/event/event.html" target="_blank"><span
-                    style="color: red">EPHINEA 圣诞活动</span></a></h2>-->
+    <div class="section">
+        <h2>公式相关:</h2>
+        <a href="./id.html" target="_blank">Section Id 计算器</a>
+        <a href="./chartable.html" target="_blank">全等级人物能力</a>
+        <a href="./materialplan" target="_blank">配点</a>
+        <a href="/status.htm" target="_blank">配点计算器</a>
+        <a href="/mechanics.html" target="_blank">伤害计算公式</a>
+        <a href="/cc.html" target="_blank">伤害计算器</a>
+        <a href="./200" target="_blank">LV200基础能力</a>
+        <a href="/v50x" target="_blank">S武EX成功率相关</a>
+        <a href="/survial_hp.html" target="_blank">血线</a>
+        <a href="/mag" target="_blank">Mag相关</a>
+    </div>
 
-            <h2 id="Ephinea介绍"><a href="/ephinea.html" target="_blank">EPHINEA介绍</a></h2>
+    <div class="section">
+        <h2>客户端相关:</h2>
+        <a href="/errorcode" target="_blank">错误代码</a>
+        <a href="/register.html" target="_blank">账号注册</a>
+        <a href="http://files.pioneer2.net/Ephinea_PSOBB_Installer.exe">客户端下载地址</a>
+        <a href="/ime.html" target="_blank">中文输入法</a>
+        <a href="/saveaccount.html" target="_blank">游戏账号保存</a>
+        <a href="/chinesify.html" target="_blank">汉化</a>
+        <a href="/crash.html" target="_blank">关于闪退</a>
+        <a href="/timezone.html" target="_blank">时区问题</a>
+        <a href="/discord.html" target="_blank">Discord</a>
+        <a href="/acronym.html" target="_blank">常见英文缩写词</a>
+    </div>
 
-            <h2 id="Ephinea规则"><a href="/ephinea_rules.html" target="_blank">论坛和服务器规则</a></h2>
-
-            <h2 id="苦痛难度"><a href="/anguish.html" target="_blank">苦痛难度</a></h2>
-
-            <h2 id="武器属性相关"><a href="/drop_roll.html" target="_blank">武器属性相关</a></h2>
-
-            <h2 id="非稀有掉落相关"><a href="/itempt" target="_blank">非稀有掉落相关</a></h2>
-
-            <h2 id="E服BB中文掉落表"><a href="/droptable/cn/CUltimate.html" target="_blank">E服「中文」掉落表</a></h2>
-
-            <h2 id="E服BB英文掉落表"><a href="/droptable/en/Ultimate.html" target="_blank">E服「英文」掉落表</a></h2>
-
-            <h2 id="账号数据查看"><a href="chardata/index.html" target="_blank">账号数据查看</a></h2>
-
-<!--            <h2 id="HBR"><a href="/hbr.html" target="_blank">掉落强化任务HBR</a></h2>-->
-
-            <h2 id="服务器端命令"><a href="/command.html" target="_blank">服务器端命令</a></h2>
-
-            <h2 id="LV200基础能力"><a href="./200" target="_blank">LV200基础能力</a></h2>
-
-            <h2 id="Section Id 计算器"><a href="./id.html" target="_blank">Section Id 计算器</a></h2>
-
-            <h2 id="人物配点"><a href="./materialplan" target="_blank">配点</a></h2>
-
-            <h2 id="配点计算器"><a href="/status.htm" target="_blank">配点计算器</a></h2>
-
-            <h2 id="伤害计算公式"><a href="/mechanics.html" target="_blank">伤害计算公式</a></h2>
-
-            <h2 id="伤害计算器"><a href="/cc.html" target="_blank">伤害计算器</a></h2>
-
-            <h2 id="S武EX成功率相关"><a href="/v50x" target="_blank">S武EX成功率相关</a></h2>
-
-            <h2 id="Mag"><a href="/mag" target="_blank">Mag相关</a></h2>
-
-            <h2 id="血线"><a href="/survial_hp.html" target="_blank">血线</a></h2>
-
-            <h2 id="挑战模式-ep1"><a href="/ep1ch.html" target="_blank">挑战模式 EP1</a></h2>
-
-            <h2 id="挑战模式-ep2"><a href="/ep2ch.html" target="_blank">挑战模式 EP2</a></h2>
-
-            <h2 id="科伦赌博"><a href="/prizelist.html" target="_blank">科伦赌博的奖品列表</a></h2>
-
-            <h2 id="幻界幸运轮盘抽"><a href="/gallons_roulette.html" target="_blank">幻界幸运轮盘抽</a></h2>
-
-            <h2 id="任务列表"><a href="/quest.html" target="_blank">任务列表</a></h2>
-
-            <h2 id="黑页掉落表"><a href="/bdp.html" target="_blank">黑页掉落表</a></h2>
-
-            <h2 id="刷怪表"><a href="/monsters.html" target="_blank">刷怪表</a></h2>
-
-            <h2 id="NGC掉落表"><a href="/droptable/ngc/u.html" target="_blank">NGC掉落表</a></h2>
-
-            <h2 id="DC掉落表"><a href="/droptable/dc/u.html" target="_blank">DC掉落表</a></h2>
-
-            <h2 id="商店武器修正"><a href="/weapon_nerf" target="_blank">商店武器修正</a></h2>
-
-            <h2 id="法杖技能加成"><a href="/WSBoost.html" target="_blank">法杖技能加成</a></h2>
-
-            <h2 id="中英文对照表"><a href="/en2chinese.html" target="_blank">中英文对照表</a></h2>
-
-           <!-- <h2 id="价格检查"><a href="/pricecheck.html" target="_blank">价格检查</a></h2>-->
-
-            <h2 id="尸块改造"><a href="/partconvert" target="_blank">尸块改造</a></h2>
-
-            <h2 id="错误代码"><a href="/errorcode" target="_blank">错误代码</a></h2>
-
-            <h2 id="账号注册"><a href="/register.html" target="_blank">账号注册</a></h2>
-
-            <h2 id="客户端下载地址"><a href="http://files.pioneer2.net/Ephinea_PSOBB_Installer.exe">客户端下载地址</a></h2>
-
-            <h2 id="中文输入法"><a href="/ime.html" target="_blank">中文输入法</a></h2>
-
-            <h2 id="游戏账号保存"><a href="/saveaccount.html" target="_blank">游戏账号保存</a></h2>
-
-            <h2 id="汉化"><a href="/chinesify.html" target="_blank">汉化</a></h2>
-
-            <h2 id="关于闪退"><a href="/crash.html" target="_blank">关于闪退</a></h2>
-
-            <h2 id="时区问题"><a href="/timezone.html" target="_blank">时区问题</a></h2>
-
-            <h2 id="discord"><a href="/discord.html" target="_blank">Discord</a></h2>
-
-            <h2 id="全等级人物能力"><a href="./chartable.html" target="_blank">全等级人物能力</a></h2>
-
-            <h2 id="常见英文缩写词"><a href="/acronym.html" target="_blank">常见英文缩写词</a></h2>
-        </div>
-    </section>
 </div>
 </body>
+
 </html>
