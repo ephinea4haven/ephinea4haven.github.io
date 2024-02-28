@@ -59,7 +59,7 @@ TODO
 1目标(多段攻击): Vulcan(音速机枪)\[Charge销金, Berserk销血\], M&A60 Vise(老虎钳), Yasminkov 9000M(雅斯米诺科夫９０００Ｍ)
 
 #### 特殊攻击
-10目标: S-Scythe长刀\[Hell地狱\]   
+10目标: S-Scythe镰刀\[Hell地狱\]   
 5目标: S-Needle弹弓\[Arrest全麻痹, Hell地狱, Zalure降防\], ES Shot散弹\[Arrest全麻痹, Hell地狱, Zalure降防\], Spread Needle魔弹弓  
 4目标: S-Launcher(发射器)\[Hell地狱\]  
 1目标: Laser(脉冲步枪)/Raygun(原子光枪)\[Arrest全麻痹, Hell地狱\], S-Rifle(步枪)/S-Gun(光枪)\[Zalure降防\]  
