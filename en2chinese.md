@@ -478,7 +478,7 @@
 * GIGOBOOMA'S CLAW 红狂熊之爪  
 * RUBY BULLET 宝石枪  
 * AMORE ROSE 玫瑰之恋  
-* POWER MASER  
+* POWER MASER 强化雷光炮    
 * BURNING VISIT 强化火焰喷射器  
 * SNOW QUEEN 冰雪女皇  
 * IRON FAUST 强化导向穿甲弹  
@@ -489,7 +489,7 @@
 * AXE AXE  
 * SLICER OF FANATIC 狂信者的投刃  
 * LAME D'ARGENT 银月之剑  
-* EXCALIBUR 石中剑  
+* EXCALIBUR 王者之剑  
 * RAGE DE FEU 妖精之怒  
 * DAISY CHAIN 雏菊之剑  
 * OPHELIE SEIZE 神罚  
