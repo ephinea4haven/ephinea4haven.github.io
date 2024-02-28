@@ -1,37 +1,51 @@
 ## 全人物终级武器推荐
 
-## <a name="hu"></a>战士
+### <a name="hu"></a>战士
 [废材](#humar)| [花瓶](#hunewearl)| [旦那](#hucast)| [女忍](#hucaseal)
-## <a name="ra"></a>枪手
+### <a name="ra"></a>枪手
 [军哥](#ramar)| [军嫂](#ramarl)| [坦克](#racast)| [女仆](#racaseal)
-## <a name="fo"></a>法师  
+### <a name="fo"></a>法师  
 [农夫](#fomar)| [人妻](#fomarl)| [猴子](#fonewm)| [萝莉](#fonewearl)
 
-### 废材 <a name="humar"></a>
+-----
+
+## 废材 <a name="humar"></a>
 
 TODO
 
-### 花瓶 <a name="hunewearl"></a>
+-----
+
+## 花瓶 <a name="hunewearl"></a>
 
 TODO
 
-### 旦那 <a name="hucast"></a>
+-----
+
+## 旦那 <a name="hucast"></a>
 
 TODO
 
-### 女忍 <a name="hucaseal"></a>
+-----
+
+## 女忍 <a name="hucaseal"></a>
 
 TODO
 
-### 军哥 <a name="ramar"></a>
+-----
+
+## 军哥 <a name="ramar"></a>
 
 TODO
 
-### 军嫂 <a name="ramarl"></a>
+-----
+
+## 军嫂 <a name="ramarl"></a>
 
 TODO
 
-### 坦克 <a name="racast"></a>
+-----
+
+## 坦克 <a name="racast"></a>
 
 #### 近战
 3目标: Excalibur(王者之剑)  
@@ -67,22 +81,30 @@ Ranger Wall(枪手盾), Red Ring(红色手镯), Anti-Dark Ring(御魔手镯), Go
 #### 插件
 V101, V502
 
-### 女仆 <a name="racaseal"></a>
+## 女仆 <a name="racaseal"></a>
 
 TODO
 
-### 农夫 <a name="fomar"></a>
+-----
+
+## 农夫 <a name="fomar"></a>
 
 TODO
 
-### 人妻 <a name="fomarl"></a>
+-----
+
+## 人妻 <a name="fomarl"></a>
 
 TODO
 
-### 猴子 <a name="fonewm"></a>
+-----
+
+## 猴子 <a name="fonewm"></a>
 
 TODO
 
-### 萝莉 <a name="fonewearl"></a>
+-----
+
+## 萝莉 <a name="fonewearl"></a>
 
 TODO
