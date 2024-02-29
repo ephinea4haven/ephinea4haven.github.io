@@ -17,7 +17,7 @@
 ---
 ## <a name="recipe"></a>食谱
 
-<a name="recipe1"></a>表0
+### 表0 <a name="recipe1"></a>
 
 阶段0: Mag
 
@@ -36,7 +36,7 @@
 | Star Atomizer |  25 |  25 |  25 |  25  |    6    |  5  |
 
 
-<a name="recipe2"></a>表1
+### 表1 <a name="recipe2"></a>
 
 阶段1: Kalki, Varuna, Vrita
 
@@ -54,7 +54,7 @@
 | Moon Atomizer |  9  |  0  |  9  |  11  |    3    | −2  |
 | Star Atomizer |  14 |  9  |  18 |  11  |    4    |  3  |
 
-<a name="recipe3"></a>表2
+### 表2 <a name="recipe3"></a>
 
 阶段2: Ashvinau, Namuci, Marutah, Rudra, Sumba
 
@@ -72,7 +72,7 @@
 | Moon Atomizer |  4  |  −5 |  0  |  11  |    −1   |  1  |
 | Star Atomizer |  7  |  8  |  6  |   9  |    4    |  2  |
 
-<a name="recipe4"></a>表3
+### 表3 <a name="recipe4"></a>
 
 阶段2: Mitra, Tapas, Surya
 
@@ -91,7 +91,7 @@
 | Star Atomizer |  7  |  7  |  7  |   7  |    3    |  2  |
 
 
-<a name="recipe5"></a>表4
+### 表4 <a name="recipe5"></a>
 
 阶段2: Vayu
 
@@ -112,7 +112,7 @@
 | Star Atomizer |  4  |  6  |  8  |   5  |    3    |  2  |
 
 
-<a name="recipe6"></a>表5
+### 表5 <a name="recipe6"></a>
 
 表3: Durga, Garuda, Ila, Nandin, Ribhava, Sita, Soma, Yaksa
 
@@ -132,7 +132,7 @@
 | Moon Atomizer | −10 | −15 |  5  |  21  |    2    |  0  |
 | Star Atomizer |  2  |  8  |  3  |   6  |    3    |  2  |
 
-<a name="recipe7"></a>表6
+### 表6 <a name="recipe7"></a>
 
 阶段3: Andhaka, Bana, Kabanda, Madhu, Marica, Naga, Naraka, Ravana
 
@@ -152,7 +152,7 @@
 | Moon Atomizer |  −5 |  20 |  5  |  −20 |    0    |  2  |
 | Star Atomizer |  0  |  11 |  0  |  11  |    3    |  2  |
 
-<a name="recipe8"></a>表7
+### 表7 <a name="recipe8"></a>
 
 阶段4: Cell Mags, Diwari, Nidra, Savitri
 
@@ -171,7 +171,7 @@
 | Star Atomizer |  3  |  7  |  3  |   3  |    4    |  2  |
 
 ---
-## <a name="sync"></a>同步率
+##同步率 <a name="sync"></a>
 
 影响攻击类PB伤害,最大值120%，死一次减5%
 
@@ -191,7 +191,7 @@
 
 ---
 
-## <a name="iq"></a>智力
+## 智力 <a name="iq"></a>
 
 1. 加血等级，加血是IQ/40下取整等级
 2. SD等级，双子是IQ/10, 基础1级，4连81级，PB不满的情况下有%30(60)就够了，200(mag的IQ值), 捐一次10%，捐一次就是2级(200*10%/10=2), 最多3次, 按PB联协数量的倍数贡献SD， 例如:
@@ -202,7 +202,7 @@
 
 --- 
 
-## <a name="trigger"></a>激活条件
+## 激活条件 <a name="trigger"></a>
 
 * 玛古1/10HP激活条件: 角色HP瞬间扣去20%以上(狮鹫羽毛ex21%)并且最终值处于10%以下
 * Boss房激活无需解释
