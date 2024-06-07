@@ -399,11 +399,11 @@ Solferino
 
 #### 铠甲
 
-Thirteen, Ignition Cloak, Sweetheart, Brightness Circle
+Thirteen, Ignition Cloak, Sweetheart, Brightness Circle  
 
 #### 盾牌
 
-Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge, Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear, Safety Heart
+Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge, Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear, Safety Heart  
 
 #### 插件
 
@@ -415,14 +415,14 @@ V101, V502, Smartlink, V801, Adept
 
 #### 核爆
 
-Psycho Wand, Prophets of Motav
-Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon
-Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman
+Psycho Wand, Prophets of Motav  
+Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon  
+Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman  
 Mercurius Rod
 
 #### 支持
 
-Striker of Chao
+Striker of Chao  
 Glide Divine
 
 #### 近战
@@ -431,19 +431,19 @@ Glide Divine
 
 #### 远程
 
-**4目标:** Diska of Braveman
-**1目标:** Multi-Hit: Vulcan (Charge, Berserk, Spirit), M&A60 Vise
+**4目标:** Diska of Braveman  
+**1目标:** Multi-Hit: Vulcan (Charge, Berserk, Spirit), M&A60 Vise  
 
 #### 特殊攻击
 
-**4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)
-**3目标:** Slicer of Fanatic
-**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
-**1目标(多段攻击):** ES Mechgun (Demon's)
+**4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)  
+**3目标:** Slicer of Fanatic  
+**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray  
+**1目标(多段攻击):** ES Mechgun (Demon's)  
 
 #### 特殊目的
 
-Gal Wind, Girasole
+Gal Wind, Girasole  
 Demonic Fork
 
 #### 铠甲
@@ -464,15 +464,15 @@ V101, V502, Smartlink, V801, Adept
 
 #### 核爆
 
-Psycho Wand, Prophets of Motav
-Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon
-Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman
-Mercurius Rod
+Psycho Wand, Prophets of Motav  
+Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon  
+Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman  
+Mercurius Rod  
 
 
 #### 支持
 
-Tyrell's Parasol
+Tyrell's Parasol  
 Glide Divine
 
 #### 近战
@@ -485,13 +485,13 @@ Glide Divine
 
 #### 特殊攻击
 
-**3目标:** Slicer of Fanatic
-**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
-**1目标 Multi-Hit:** ES Mechgun (Hell, Demon's)
+**3目标:** Slicer of Fanatic  
+**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray  
+**1目标 Multi-Hit:** ES Mechgun (Hell, Demon's)  
 
 #### 特殊目的
 
-Gal Wind, Girasole
+Gal Wind, Girasole  
 Red Saber
 
 #### 铠甲
