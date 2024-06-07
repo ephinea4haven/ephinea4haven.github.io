@@ -310,41 +310,41 @@ V101, V502
 
 #### 核爆
 
-Psycho Wand, Prophets of Motav
-Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon
-Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman
+Psycho Wand, Prophets of Motav  
+Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon  
+Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman  
 Mercurius Rod
 
 #### 支持
 
-Striker of Chao
+Striker of Chao  
 Glide Divine
 
 #### 近战
 
-**3目标:** Excalibur
+**3目标:** Excalibur  
 **1目标:** Galatine
 
 #### 远程
 
-**4目标**: Diska of Braveman
-**1目标:** Guardianna
+**4目标**: Diska of Braveman  
+**1目标:** Guardianna  
 **1目标(多段攻击):** Vulcan (Charge, Berserk, Spirit), M&A60 Vise
 
 #### 特殊攻击
 
-**4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)
-**3目标:** Slicer of Fanatic
+**4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)  
+**3目标:** Slicer of Fanatic  
 **1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
 
 #### 特殊目的
 
-Gal Wind, Girasole
+Gal Wind, Girasole  
 Demonic Fork
 
 #### 铠甲
 
-Thirteen, Ignition Cloak, Dress Plate
+Thirteen, Ignition Cloak, Dress Plate  
 
 #### 盾牌
 
@@ -360,41 +360,41 @@ V101, V502, Smartlink, V801, Adept
 
 #### 核爆
 
-Psycho Wand, Prophets of Motav
-Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon
-Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman
+Psycho Wand, Prophets of Motav  
+Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon  
+Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman  
 Mercurius Rod
 
 #### 支持
 
-Tyrell's Parasol
-Madam's Parasol
-Madam's Umbrella
-Marina's Bag
-Glide Divine
+Tyrell's Parasol  
+Madam's Parasol  
+Madam's Umbrella  
+Marina's Bag  
+Glide Divine  
 
 #### 近战
 
-**10目标:** Tyrell's Parasol, Soul Banish
-**3目标:** Excalibur
-**1目标(多段攻击):** Vivienne
+**10目标:** Tyrell's Parasol, Soul Banish  
+**3目标:** Excalibur  
+**1目标(多段攻击):** Vivienne  
 
 #### 远程
 
-**4目标:** Diska of Braveman
-**1目标:** Guardianna
-**1目标(多段攻击):** Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan
+**4目标:** Diska of Braveman  
+**1目标:** Guardianna  
+**1目标(多段攻击):** Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan  
 
 #### 特殊攻击
 
-**4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)
-**3目标:** Slicer of Fanatic
-**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
+**4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)  
+**3目标:** Slicer of Fanatic  
+**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray  
 
 #### 特殊目的
 
-Gal Wind, Girasole
-Demonic Fork
+Gal Wind, Girasole  
+Demonic Fork  
 Solferino
 
 #### 铠甲
