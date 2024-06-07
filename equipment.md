@@ -310,25 +310,25 @@ V101, V502
 
 #### 核爆
 
-Psycho Wand, Prophets of Motav  
-Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon  
-Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman  
-Mercurius Rod
+Psycho Wand(圣杖「意念」), Prophets of Motav(魔法预言书)  
+Magical Piece(心心杖), Fire Scepter: Agni(炎杖「阿耆尼」), Storm Wand: Indra(雷杖「因陀罗」), Ice Staff: Dagon(冰杖「达贡」)  
+Summit Moon(辉月之杖), Club of Laconium(拉克尼姆金属杖), Club of Zumiuran(业障石杖), Mace of Adaman(金刚石杖)  
+Mercurius Rod(神使之杖)
 
 #### 支持
 
-Striker of Chao  
-Glide Divine
+Striker of Chao(查欧杖)  
+Glide Divine(逝神)
 
 #### 近战
 
 **3目标:** Excalibur  
-**1目标:** Galatine
+**1目标:** Galatine(太阳之剑)
 
 #### 远程
 
 **4目标**: Diska of Braveman  
-**1目标:** Guardianna  
+**1目标:** Guardianna(守护之扇)  
 **1目标(复数攻击):** Vulcan (Charge, Berserk, Spirit), M&A60 Vise
 
 #### 特殊攻击
@@ -339,20 +339,20 @@ Glide Divine
 
 #### 特殊目的
 
-Gal Wind, Girasole  
-Demonic Fork
+Gal Wind(加尔之风), Girasole  
+Demonic Fork(恶魔之叉)
 
 #### 铠甲
 
-Thirteen, Ignition Cloak, Dress Plate  
+Thirteen, Ignition Cloak(灼热披风), Dress Plate  
 
 #### 盾牌
 
-Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge, Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear
+Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾), Anti-Dark Ring, Resta Merge(圣泉增幅盾), God's Shield "Kouryu", Three Seals(封印之盾), Combat Gear
 
 #### 插件
 
-V101, V502, Smartlink, V801, Adept
+V101, V502, Smartlink, V801, Adept(超能增幅器)
 
 -----
 
@@ -360,10 +360,10 @@ V101, V502, Smartlink, V801, Adept
 
 #### 核爆
 
-Psycho Wand, Prophets of Motav  
-Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon  
-Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman  
-Mercurius Rod
+Psycho Wand(圣杖「意念」), Prophets of Motav(魔法预言书)  
+Magical Piece(心心杖), Fire Scepter: Agni(炎杖「阿耆尼」), Storm Wand: Indra(雷杖「因陀罗」), Ice Staff: Dagon(冰杖「达贡」)  
+Summit Moon(辉月之杖), Club of Laconium(拉克尼姆金属杖), Club of Zumiuran(业障石杖), Mace of Adaman(金刚石杖)  
+Mercurius Rod(神使之杖)
 
 #### 支持
 
@@ -371,7 +371,7 @@ Tyrell's Parasol
 Madam's Parasol  
 Madam's Umbrella  
 Marina's Bag  
-Glide Divine  
+Glide Divine(逝神)  
 
 #### 近战
 
@@ -382,7 +382,7 @@ Glide Divine
 #### 远程
 
 **4目标:** Diska of Braveman  
-**1目标:** Guardianna  
+**1目标:** Guardianna(守护之扇)  
 **1目标:()** Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan  
 
 #### 特殊攻击
@@ -393,21 +393,21 @@ Glide Divine
 
 #### 特殊目的
 
-Gal Wind, Girasole  
-Demonic Fork  
-Solferino
+Gal Wind(加尔之风), Girasole  
+Demonic Fork(恶魔之叉)  
+Solferino(烈阳光子杖)
 
 #### 铠甲
 
-Thirteen, Ignition Cloak, Sweetheart, Brightness Circle  
+Thirteen, Ignition Cloak(灼热披风), Sweetheart, Brightness Circle  
 
 #### 盾牌
 
-Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge, Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear, Safety Heart  
+Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾), Anti-Dark Ring, Resta Merge(圣泉增幅盾), God's Shield "Kouryu", Three Seals(封印之盾), Combat Gear, Safety Heart  
 
 #### 插件
 
-V101, V502, Smartlink, V801, Adept
+V101, V502, Smartlink, V801, Adept(超能增幅器)
 
 -----
 
@@ -415,15 +415,15 @@ V101, V502, Smartlink, V801, Adept
 
 #### 核爆
 
-Psycho Wand, Prophets of Motav  
-Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon  
-Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman  
-Mercurius Rod
+Psycho Wand(圣杖「意念」), Prophets of Motav(魔法预言书)  
+Magical Piece(心心杖), Fire Scepter: Agni(炎杖「阿耆尼」), Storm Wand: Indra(雷杖「因陀罗」), Ice Staff: Dagon(冰杖「达贡」)  
+Summit Moon(辉月之杖), Club of Laconium(拉克尼姆金属杖), Club of Zumiuran(业障石杖), Mace of Adaman(金刚石杖)  
+Mercurius Rod(神使之杖)
 
 #### 支持
 
-Striker of Chao  
-Glide Divine
+Striker of Chao(查欧杖)  
+Glide Divine(逝神)
 
 #### 近战
 
@@ -443,20 +443,20 @@ Glide Divine
 
 #### 特殊目的
 
-Gal Wind, Girasole  
-Demonic Fork
+Gal Wind(加尔之风), Girasole  
+Demonic Fork(恶魔之叉)
 
 #### 铠甲
 
-Thirteen, Ignition Cloak, Mother Garb+, Dress Plate
+Thirteen, Ignition Cloak(灼热披风), Mother Garb+(母亲的外套＋), Dress Plate
 
 #### 盾牌
 
-Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge, Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear
+Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾), Anti-Dark Ring, Resta Merge(圣泉增幅盾), God's Shield "Kouryu", Three Seals(封印之盾), Combat Gear
 
 #### 插件
 
-V101, V502, Smartlink, V801, Adept
+V101, V502, Smartlink, V801, Adept(超能增幅器)
 
 -----
 
@@ -464,16 +464,16 @@ V101, V502, Smartlink, V801, Adept
 
 #### 核爆
 
-Psycho Wand, Prophets of Motav  
-Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon  
-Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman  
-Mercurius Rod  
+Psycho Wand(圣杖「意念」), Prophets of Motav(魔法预言书)  
+Magical Piece(心心杖), Fire Scepter: Agni(炎杖「阿耆尼」), Storm Wand: Indra(雷杖「因陀罗」), Ice Staff: Dagon(冰杖「达贡」)  
+Summit Moon(辉月之杖), Club of Laconium(拉克尼姆金属杖), Club of Zumiuran(业障石杖), Mace of Adaman(金刚石杖)  
+Mercurius Rod(神使之杖)  
 
 
 #### 支持
 
 Tyrell's Parasol  
-Glide Divine
+Glide Divine(逝神)
 
 #### 近战
 
@@ -491,17 +491,17 @@ Glide Divine
 
 #### 特殊目的
 
-Gal Wind, Girasole  
-Red Saber
+Gal Wind(加尔之风), Girasole  
+Red Saber(红色光剑)
 
 #### 铠甲
 
-Ignition Cloak, Crimson Coat, Brightness Circle
+Ignition Cloak(灼热披风), Crimson Coat(真红外套), Brightness Circle
 
 #### 盾牌
 
-Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge, Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear
+Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾), Anti-Dark Ring, Resta Merge(圣泉增幅盾), God's Shield "Kouryu", Three Seals(封印之盾), Combat Gear
 
 #### 插件
 
-V101, V502, Smartlink, V801, Adept
+V101, V502, Smartlink, V801, Adept(超能增幅器)
