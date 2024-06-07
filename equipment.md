@@ -11,25 +11,145 @@
 
 ## 废材 <a name="humar"></a>
 
-TODO
+#### 近战
+10目标: Vjaya(富豪长刀), Yunchang(云长), Zanba(斩马刀), Tsumikiri J-Sword(罪切), Red Sword(红色大剑), Dark Flow(暗黑弗罗文) (不能连击)  
+3目标: Excalibur(王者之剑)   
+1目标(多段攻击): Black King Bar(苍黑如意棒), Daylight Scar(晓之刻印), Jizai(自在), Double Cannon(圣剑「双切·迦农」), Musashi(武藏)
+
+#### 远程
+4目标: Diska of Braveman(勇者的飞碟), Charge Diska(销金-彗星投刃)  
+1目标: Charge|Berserk Raygun(销金|销血-原子光枪)  
+1目标(多段攻击): Charge|Berserk|Spirit Vulcan(销金|销血|销魂-音速机枪), M&A60 Vise(老虎钳), L&K38 Combat(Ｌ＆Ｋ３８ 战场之狼) (不能连击)
+
+#### 特殊攻击
+4目标: ES J-Cutter / ES Slicer\[Arrest全麻痹, Hell地狱, Demon's恶魔\]
+3目标: Slicer of Fanatic(狂信者的投刃)  
+1目标: HOLY RAY(圣光枪), Raygun(原子光枪)\[Arrest全麻痹, Hell地狱, Demon's恶魔\], S-Gun(光枪)\[Zalure降防\]    
+1目标(多段攻击): ES Mechgun机枪\[Demon's恶魔\], ES Twin双头剑\[Demon's恶魔\]
+
+#### 特殊目的
+Lavis Blade(圣剑「双刃·拉维斯」), Girasole(向日葵)  
+S-Red's Blade(红忍双刃)  
+Tsumikiri J-Sword(罪切)  
+Twin Blaze(火流星)  
+
+#### 铠甲
+Thirteen(暗杀者的迷彩服), Dress Plate(女装金属铠), Blue Odoshi Violet Nimaidou(蓝系威紫涂桶侧二枚胴), Stealth Suit(隐身铠)
+
+#### 盾牌
+Combat Gear(格斗盾), Kasami Bracer(忍者手甲), Red Ring(红色手镯), Anti-Dark Ring(御魔手镯), God's Shield "Kouryu"(四神盾「黄龙」)
+
+#### 插件
+V101, V502, Smartlink(灵感之环),V801, Proof of Sword-Saint(剑圣之证)
 
 -----
 
 ## 花瓶 <a name="hunewearl"></a>
 
-TODO
+#### 近战
+10目标: Vjaya(富豪长刀), Yunchang(云长), Flowen's Sword 3084(弗罗文大剑), Tsumikiri J-Sword(罪切), Red Sword(红色大剑), Dark Flow(暗黑弗罗文) (不能连击)  
+3目标: Excalibur(王者之剑)   
+1目标(多段攻击): Black King Bar(苍黑如意棒), Daylight Scar(晓之刻印), Jizai(自在), Vivienne(维维安双刃), Double Cannon(圣剑「双切·迦农」), Musashi(武藏)
+
+#### 远程
+4目标: Diska of Braveman(勇者的飞碟), Charge|Spirit Diska(销金|销魂-彗星投刃)  
+1目标: Charge|Berserk|Spirit Raygun(销金|销血|销魂-原子光枪)  
+1目标(多段攻击): Charge|Berserk|Spirit Vulcan(销金|销血|销魂-音速机枪), M&A60 Vise(老虎钳), Last Swan(白鸟)  
+
+#### 特殊攻击
+4目标: ES J-Cutter / ES Slicer\[Arrest全麻痹, Hell地狱, Demon's恶魔\]
+3目标: Slicer of Fanatic(狂信者的投刃)  
+1目标: HOLY RAY(圣光枪), Raygun(原子光枪)\[Arrest全麻痹, Hell地狱, Demon's恶魔\]
+1目标(多段攻击): ES Mechgun机枪\[Demon's恶魔\], ES Twin双头剑\[Demon's恶魔\]
+
+#### 特殊目的
+Lavis Blade(圣剑「双刃·拉维斯」), Girasole(向日葵)  
+Clio(史神克莱奥之杖)  
+Tyrell's Parasol(总督赠送的遮阳伞)  
+Tsumikiri J-Sword(罪切)  
+Twin Blaze(火流星)  
+Nei's Claw(妮之爪)  
+
+#### 铠甲
+Thirteen(暗杀者的迷彩服), Sweetheart(甜心铠), Blue Odoshi Violet Nimaidou(蓝系威紫涂桶侧二枚胴), Stealth Suit(隐身铠)
+
+#### 盾牌
+Combat Gear(格斗盾), Kasami Bracer(忍者手甲), Yata Mirror(八咫镜), Red Ring(红色手镯), Anti-Dark Ring(御魔手镯), God's Shield "Kouryu"(四神盾「黄龙」)
+
+#### 插件
+V101, V502, Smartlink(灵感之环),V801, Proof of Sword-Saint(剑圣之证)
 
 -----
 
 ## 旦那 <a name="hucast"></a>
 
-TODO
+#### 近战
+10目标: Vjaya(富豪长刀), Yunchang(云长), Zanba(斩马刀), Tsumikiri J-Sword(罪切), Red Sword(红色大剑), Dark Flow(暗黑弗罗文) (不能连击)  
+3目标: Excalibur(王者之剑)   
+1目标(多段攻击): Black King Bar(苍黑如意棒), Daylight Scar(晓之刻印), Jizai(自在), Double Cannon(圣剑「双切·迦农」), Musashi(武藏)  
+
+#### 远程
+4目标: Diska of Braveman(勇者的飞碟), Charge Diska(销金-彗星投刃)  
+1目标: Charge|Berserk Raygun(销金|销血-原子光枪)  
+1目标(多段攻击): Charge|Berserk Vulcan(销金|销血-音速机枪), M&A60 Vise(老虎钳), L&K38 Combat(Ｌ＆Ｋ３８ 战场之狼) (不能连击)  
+
+#### 特殊攻击
+4目标: ES J-Cutter / ES Slicer\[Arrest全麻痹, Hell地狱\]
+3目标: Slicer of Fanatic(狂信者的投刃)  
+1目标: Raygun(原子光枪)\[Arrest全麻痹, Hell地狱\], S-Gun(光枪)\[Zalure降防\]    
+1目标(多段攻击): ES Mechgun机枪\[Demon's恶魔\]  
+
+#### 特殊目的
+Lavis Blade(圣剑「双刃·拉维斯」), Girasole(向日葵)  
+S-Red's Blade(红忍双刃)  
+Tsumikiri J-Sword(罪切), Berdysh(破坏者之斧)  
+Twin Blaze(火流星)  
+Drill Launcher(钻头火箭炮)    
+
+#### 铠甲
+Thirteen(暗杀者的迷彩服), D-Parts ver1.01(Ｄ组件 ver1.01), Dress Plate(女装金属铠), Blue Odoshi Violet Nimaidou(蓝系威紫涂桶侧二枚胴), Stealth Suit(隐身铠)  
+
+#### 盾牌
+S-Parts ver2.01(Ｓ组件 ver2.01), Red Ring(红色手镯), Anti-Dark Ring(御魔手镯), God's Shield "Kouryu"(四神盾「黄龙」)  
+
+#### 插件
+V101, V502, Smartlink(灵感之环), Proof of Sword-Saint(剑圣之证)  
 
 -----
 
 ## 女忍 <a name="hucaseal"></a>
 
-TODO
+#### 近战
+10目标: Vjaya(富豪长刀), Yunchang(云长), Tsumikiri J-Sword(罪切), Red Sword(红色大剑), Dark Flow(暗黑弗罗文) (不能连击)  
+3目标: Excalibur(王者之剑)   
+1目标(多段攻击): Black King Bar(苍黑如意棒), Daylight Scar(晓之刻印), Jizai(自在), Vivienne(维维安双刃), Double Cannon(圣剑「双切·迦农」), Musashi(武藏)
+
+#### 远程
+4目标: Diska of Braveman(勇者的飞碟), Charge Diska(销金-彗星投刃)  
+1目标: Charge|Berserk Raygun(销金|销血-原子光枪)  
+1目标(多段攻击): Charge|Berserk Vulcan(销金|销血-音速机枪), M&A60 Vise(老虎钳), LAST SWAN(白鸟), Dual Bird(双鸟)  
+
+#### 特殊攻击
+4目标: ES Scythe\[Hell地狱\]
+4目标: ES J-Cutter / ES Slicer\[Arrest全麻痹, Hell地狱\]
+3目标: Slicer of Fanatic(狂信者的投刃)  
+1目标: Raygun(原子光枪)\[Arrest全麻痹, Hell地狱\], S-Gun(光枪)\[Zalure降防\]    
+1目标(多段攻击): ES Mechgun机枪\[[Hell地狱, Demon's恶魔\]
+
+#### 特殊目的
+Lavis Blade(圣剑「双刃·拉维斯」), Girasole(向日葵)  
+S-Red's Blade(红忍双刃)  
+Tsumikiri J-Sword(罪切), Berdysh(破坏者之斧)  
+Twin Blaze(火流星)
+
+#### 铠甲
+Thirteen(暗杀者的迷彩服), D-Parts ver1.01(Ｄ组件 ver1.01), Sweetheart(甜心铠), Blue Odoshi Violet Nimaidou(蓝系威紫涂桶侧二枚胴), Stealth Suit(隐身铠)
+
+#### 盾牌
+S-Parts ver2.01(Ｓ组件 ver2.01), Red Ring(红色手镯), Anti-Dark Ring(御魔手镯), God's Shield "Kouryu"(四神盾「黄龙」)
+
+#### 插件
+V101, V502, Smartlink(灵感之环), Proof of Sword-Saint(剑圣之证)
 
 -----
 
