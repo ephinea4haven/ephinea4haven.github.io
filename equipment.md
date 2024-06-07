@@ -383,7 +383,7 @@ Glide Divine
 
 **4目标:** Diska of Braveman  
 **1目标:** Guardianna  
-**1目标(多段攻击):** Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan  
+**1目标:()** Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan  
 
 #### 特殊攻击
 
@@ -432,7 +432,7 @@ Glide Divine
 #### 远程
 
 **4目标:** Diska of Braveman  
-**1目标:** Multi-Hit: Vulcan (Charge, Berserk, Spirit), M&A60 Vise  
+**1目标(多段攻击)):** Vulcan (Charge, Berserk, Spirit), M&A60 Vise  
 
 #### 特殊攻击
 
@@ -478,7 +478,7 @@ Glide Divine
 #### 近战
 
 
-**1目标:(多段攻击)** Vivienne
+**1目标(多段攻击):** Vivienne
 
 #### 远程
 无
@@ -487,7 +487,7 @@ Glide Divine
 
 **3目标:** Slicer of Fanatic  
 **1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray  
-**1目标 Multi-Hit:** ES Mechgun (Hell, Demon's)  
+**1目标(多段攻击):** ES Mechgun (Hell, Demon's)  
 
 #### 特殊目的
 
