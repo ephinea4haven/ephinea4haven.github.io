@@ -308,13 +308,106 @@ V101, V502
 
 ## 农夫 <a name="fomar"></a>
 
-TODO
+#### 核爆
+
+Psycho Wand, Prophets of Motav
+Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon
+Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman
+Mercurius Rod
+
+#### 支持
+
+Striker of Chao
+Glide Divine
+
+#### 近战
+
+3 Targets: Excalibur
+1 Target: Galatine
+
+#### 远程
+
+4 Targets: Diska of Braveman
+1 Target: Guardianna
+1 Target Multi-Hit: Vulcan (Charge, Berserk, Spirit), M&A60 Vise
+
+#### 特殊攻击
+
+4 Targets: ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)
+3 Targets: Slicer of Fanatic
+1 Target: Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
+
+#### 特殊目的
+
+Gal Wind, Girasole
+Demonic Fork
+
+#### 铠甲
+
+Thirteen, Ignition Cloak, Dress Plate
+
+#### 盾牌
+
+Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge, Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear
+
+#### 插件
+
+V101, V502, Smartlink, V801, Adept
 
 -----
 
 ## 人妻 <a name="fomarl"></a>
 
-TODO
+#### 核爆
+
+Psycho Wand, Prophets of Motav
+Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon
+Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman
+Mercurius Rod
+
+#### 支持
+
+Tyrell's Parasol
+Madam's Parasol
+Madam's Umbrella
+Marina's Bag
+Glide Divine
+
+#### 近战
+
+10 Targets: Tyrell's Parasol, Soul Banish
+3 Targets: Excalibur
+1 Target Multi-Hit: Vivienne
+
+#### 远程
+
+4 Targets: Diska of Braveman
+1 Target: Guardianna
+1 Target Multi-Hit: Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan
+
+#### 特殊攻击
+
+4 Targets: ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)
+3 Targets: Slicer of Fanatic
+1 Target: Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
+
+#### 特殊目的
+
+Gal Wind, Girasole
+Demonic Fork
+Solferino
+
+#### 铠甲
+
+Thirteen, Ignition Cloak, Sweetheart, Brightness Circle
+
+#### 盾牌
+
+Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge, Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear, Safety Heart
+
+#### 插件
+
+V101, V502, Smartlink, V801, Adept
 
 -----
 
