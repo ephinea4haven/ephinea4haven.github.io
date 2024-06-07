@@ -383,7 +383,7 @@ Glide Divine(逝神)
 
 **4目标:** Diska of Braveman  
 **1目标:** Guardianna(守护之扇)  
-**1目标:()** Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan  
+**1目标:(复数攻击)** Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan  
 
 #### 特殊攻击
 
