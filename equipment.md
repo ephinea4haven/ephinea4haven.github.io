@@ -370,7 +370,7 @@ Mercurius Rod(神使之杖)
 Tyrell's Parasol  
 Madam's Parasol  
 Madam's Umbrella  
-Marina's Bag  
+Marina's Bag(玛丽娜的急救包)  
 Glide Divine(逝神)  
 
 #### 近战
