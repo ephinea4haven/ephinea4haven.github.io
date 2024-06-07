@@ -186,7 +186,7 @@ Stealth Suit(隐身铠), Dress Plate(女装金属铠)
 Ranger Wall(枪手盾), Red Ring(红色手镯), Anti-Dark Ring(御魔手镯), Yata Mirror(八咫镜), God's Shield "Kouryu"(四神盾「黄龙」), Shifta Merge(强攻增幅盾)/Rupika(露芘卡)    
 
 #### 插件
-V101, V502
+V101, V502, V801
 
 -----
 
