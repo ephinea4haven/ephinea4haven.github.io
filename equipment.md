@@ -322,20 +322,20 @@ Glide Divine
 
 #### 近战
 
-3 Targets: Excalibur
-1 Target: Galatine
+**3目标:** Excalibur
+**1目标:** Galatine
 
 #### 远程
 
-4 Targets: Diska of Braveman
-1 Target: Guardianna
-1 Target Multi-Hit: Vulcan (Charge, Berserk, Spirit), M&A60 Vise
+**4目标**: Diska of Braveman
+**1目标:** Guardianna
+**1目标(多段攻击):** Vulcan (Charge, Berserk, Spirit), M&A60 Vise
 
 #### 特殊攻击
 
-4 Targets: ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)
-3 Targets: Slicer of Fanatic
-1 Target: Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
+**4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)
+**3目标:** Slicer of Fanatic
+**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
 
 #### 特殊目的
 
@@ -375,21 +375,21 @@ Glide Divine
 
 #### 近战
 
-10 Targets: Tyrell's Parasol, Soul Banish
-3 Targets: Excalibur
-1 Target Multi-Hit: Vivienne
+**10目标:** Tyrell's Parasol, Soul Banish
+**3目标:** Excalibur
+**1目标(多段攻击):** Vivienne
 
 #### 远程
 
-4 Targets: Diska of Braveman
-1 Target: Guardianna
-1 Target Multi-Hit: Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan
+**4目标:** Diska of Braveman
+**1目标:** Guardianna
+**1目标(多段攻击):** Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan
 
 #### 特殊攻击
 
-4 Targets: ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)
-3 Targets: Slicer of Fanatic
-1 Target: Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
+**4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)
+**3目标:** Slicer of Fanatic
+**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
 
 #### 特殊目的
 
