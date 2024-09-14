@@ -522,7 +522,15 @@ const weapons = {
     },
 
     "Laser": {name: "Laser", animation: "Rifle", minAtp: 200, maxAtp: 210, ata: 50, grind: 25},
-    "Spread Needle": {name: "Spread Needle", animation: "Rifle", minAtp: 1, maxAtp: 110, ata: 40, grind: 40, special: "Seize"},
+    "Spread Needle": {
+        name: "Spread Needle",
+        animation: "Rifle",
+        minAtp: 1,
+        maxAtp: 110,
+        ata: 40,
+        grind: 40,
+        special: "Seize"
+    },
     "Bringer's Rifle": {
         name: "Bringer's Rifle",
         animation: "Rifle",
@@ -533,7 +541,15 @@ const weapons = {
         special: "Demon's",
         maxHit: 50
     },
-    "Frozen Shooter": {name: "Frozen Shooter", animation: "Rifle", minAtp: 240, maxAtp: 250, ata: 60, grind: 9, special: "Lavis"},
+    "Frozen Shooter": {
+        name: "Frozen Shooter",
+        animation: "Rifle",
+        minAtp: 240,
+        maxAtp: 250,
+        ata: 60,
+        grind: 9,
+        special: "Lavis"
+    },
     "Snow Queen": {
         name: "Snow Queen",
         animation: "Rifle",
@@ -1194,17 +1210,17 @@ function appendMosterRow(rowEntry) {
             'style': 'background: rgba(255,150,150,0.1)'
         }).append($('<div>', {
             'style': 'background: ' + damageBgColor + '; padding: 0.78571429em 0.78571429em; width: ' + rowEntry.percentDamage + '%',
-            'text': rowEntry.comboDamage.toFixed(0),
-            'title': rowEntry.comboDamage.toFixed(0) + '/' + rowEntry.hp
+            'text': rowEntry.comboDamage.toFixed(0) + '/' + rowEntry.hp,
+            // 'title': rowEntry.comboDamage.toFixed(0) + '/' + rowEntry.hp
         }))))
         .append($('<td/>', {
             'data-label': 'accuracy',
-            'text': rowEntry.overallAccuracy.toFixed(2) + '%('+  rowEntry.baseAta+ ')',
+            'text': rowEntry.overallAccuracy.toFixed(2) + '%(' + rowEntry.baseAta + ')',
             'style': rowEntry.overallAccuracy >= 100.0 ? 'background: rgba(150,255,150,0.1)' : 'background: rgba(255,150,150,0.1)'
         }))
         .append($('<td/>', {
             'data-label': 'a1-accuracy',
-            'text': rowEntry.a1Damage.toFixed(0) + ' (' + rowEntry.a1Accuracy.toFixed(0) + '%)',
+            'text': rowEntry.a1Damage.toFixed(0) + ' (' + rowEntry.a1Accuracy.toFixed(0) + '%)' + '#' + (rowEntry.comboDamage * rowEntry.overallAccuracy * 0.01).toFixed(0),
             'style': rowEntry.a1Type === 'NONE' ? 'color: rgba(255,255,255,0.3)' : 'color: rgba(255,255,255,0.9)'
         }))
         .append($('<td/>', {
