@@ -1210,8 +1210,7 @@ function appendMosterRow(rowEntry) {
             'style': 'background: rgba(255,150,150,0.1)'
         }).append($('<div>', {
             'style': 'background: ' + damageBgColor + '; padding: 0.78571429em 0.78571429em; width: ' + rowEntry.percentDamage + '%',
-            'text': rowEntry.comboDamage.toFixed(0) + '/' + rowEntry.hp,
-            // 'title': rowEntry.comboDamage.toFixed(0) + '/' + rowEntry.hp
+            'text': (rowEntry.comboDamage * rowEntry.overallAccuracy * 0.01).toFixed(0) + '(' + rowEntry.hp + ')',
         }))))
         .append($('<td/>', {
             'data-label': 'accuracy',
@@ -1220,7 +1219,7 @@ function appendMosterRow(rowEntry) {
         }))
         .append($('<td/>', {
             'data-label': 'a1-accuracy',
-            'text': rowEntry.a1Damage.toFixed(0) + ' (' + rowEntry.a1Accuracy.toFixed(0) + '%)' + '#' + (rowEntry.comboDamage * rowEntry.overallAccuracy * 0.01).toFixed(0),
+            'text': rowEntry.a1Damage.toFixed(0) + ' (' + rowEntry.a1Accuracy.toFixed(0) + '%)',
             'style': rowEntry.a1Type === 'NONE' ? 'color: rgba(255,255,255,0.3)' : 'color: rgba(255,255,255,0.9)'
         }))
         .append($('<td/>', {
