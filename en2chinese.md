@@ -1347,3 +1347,4 @@
 * Anti  状态术   
 * Resta 圣泉术 
 * Photon Filter 光子滤镜
+* Anti-Dark Ring 御魔手镯

@@ -220,6 +220,7 @@ Clio(史神克莱奥之杖)
 Twin Blaze(火流星)
 
 #### 铠甲
+
 Sweetheart(甜心铠), Stealth Suit(隐身铠), Brightness Circle(圣光环)
 
 #### 盾牌
@@ -329,13 +330,14 @@ Glide Divine(逝神)
 
 **4目标**: Diska of Braveman  
 **1目标:** Guardianna(守护之扇)  
-**1目标(复数攻击):** Vulcan (Charge, Berserk, Spirit), M&A60 Vise
+**1目标(复数攻击):** Vulcan(音速机枪) (Charge, Berserk, Spirit), M&A60 Vise
 
 #### 特殊攻击
 
 **4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)  
-**3目标:** Slicer of Fanatic  
-**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray
+**3目标:** Slicer of Fanatic(狂信者的投刃)  
+**1目标:** Bringer's Rifle(混沌骑士枪), Raygun(原子光枪) (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray(
+圣光枪)
 
 #### 特殊目的
 
@@ -344,15 +346,17 @@ Demonic Fork(恶魔之叉)
 
 #### 铠甲
 
-Thirteen, Ignition Cloak(灼热披风), Dress Plate  
+Thirteen, Ignition Cloak(灼热披风), Dress Plate(女装金属铠)
 
 #### 盾牌
 
-Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾), Anti-Dark Ring, Resta Merge(圣泉增幅盾), God's Shield "Kouryu", Three Seals(封印之盾), Combat Gear
+Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾),
+Anti-Dark Ring(御魔手镯), Resta Merge(圣泉增幅盾), God's Shield "Kouryu"(四神盾「黄龙」), Three Seals(封印之盾), Combat
+Gear(格斗盾)
 
 #### 插件
 
-V101, V502, Smartlink, V801, Adept(超能增幅器)
+V101, V502, Smartlink(灵感之环), V801, Adept(超能增幅器)
 
 -----
 
@@ -383,31 +387,34 @@ Glide Divine(逝神)
 
 **4目标:** Diska of Braveman  
 **1目标:** Guardianna(守护之扇)  
-**1目标:(复数攻击)** Rambling May, Vulcan (Charge, Berserk, Spirit), M&A60 Vise, Last Swan  
+**1目标:(复数攻击)** Rambling May, Vulcan(音速机枪) (Charge, Berserk, Spirit), M&A60 Vise, Last Swan
 
 #### 特殊攻击
 
 **4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)  
-**3目标:** Slicer of Fanatic  
-**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray  
+**3目标:** Slicer of Fanatic(狂信者的投刃)  
+**1目标:** Bringer's Rifle(混沌骑士枪), Raygun(原子光枪) (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray(
+圣光枪)
 
 #### 特殊目的
 
-Gal Wind(加尔之风), Girasole  
+Gal Wind(加尔之风), Girasole(向日葵)    
 Demonic Fork(恶魔之叉)  
 Solferino(烈阳光子杖)
 
 #### 铠甲
 
-Thirteen, Ignition Cloak(灼热披风), Sweetheart, Brightness Circle  
+Thirteen, Ignition Cloak(灼热披风), Sweetheart, Brightness Circle(圣光环)
 
 #### 盾牌
 
-Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾), Anti-Dark Ring, Resta Merge(圣泉增幅盾), God's Shield "Kouryu", Three Seals(封印之盾), Combat Gear, Safety Heart  
+Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾),
+Anti-Dark Ring(御魔手镯), Resta Merge(圣泉增幅盾), God's Shield "Kouryu"(四神盾「黄龙」), Three Seals(封印之盾), Combat
+Gear(格斗盾), Safety Heart
 
 #### 插件
 
-V101, V502, Smartlink, V801, Adept(超能增幅器)
+V101, V502, Smartlink(灵感之环), V801, Adept(超能增幅器)
 
 -----
 
@@ -432,31 +439,34 @@ Glide Divine(逝神)
 #### 远程
 
 **4目标:** Diska of Braveman  
-**1目标(复数攻击)):** Vulcan (Charge, Berserk, Spirit), M&A60 Vise  
+**1目标(复数攻击)):** Vulcan(音速机枪) (Charge, Berserk, Spirit), M&A60 Vise
 
 #### 特殊攻击
 
 **4目标:** ES J-Cutter / ES Slicer (Arrest, Hell, Demon's)  
-**3目标:** Slicer of Fanatic  
-**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray  
+**3目标:** Slicer of Fanatic(狂信者的投刃)  
+**1目标:** Bringer's Rifle(混沌骑士枪), Raygun(原子光枪) (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray(
+圣光枪)  
 **1目标(复数攻击):** ES Mechgun (Demon's)  
 
 #### 特殊目的
 
-Gal Wind(加尔之风), Girasole  
+Gal Wind(加尔之风), Girasole(向日葵)    
 Demonic Fork(恶魔之叉)
 
 #### 铠甲
 
-Thirteen, Ignition Cloak(灼热披风), Mother Garb+(母亲的外套＋), Dress Plate
+Thirteen, Ignition Cloak(灼热披风), Mother Garb+(母亲的外套＋), Dress Plate(女装金属铠)
 
 #### 盾牌
 
-Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾), Anti-Dark Ring, Resta Merge(圣泉增幅盾), God's Shield "Kouryu", Three Seals(封印之盾), Combat Gear
+Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾),
+Anti-Dark Ring(御魔手镯), Resta Merge(圣泉增幅盾), God's Shield "Kouryu"(四神盾「黄龙」), Three Seals(封印之盾), Combat
+Gear(格斗盾)
 
 #### 插件
 
-V101, V502, Smartlink, V801, Adept(超能增幅器)
+V101, V502, Smartlink(灵感之环), V801, Adept(超能增幅器)
 
 -----
 
@@ -485,23 +495,26 @@ Glide Divine(逝神)
 
 #### 特殊攻击
 
-**3目标:** Slicer of Fanatic  
-**1目标:** Bringer's Rifle, Raygun (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray  
+**3目标:** Slicer of Fanatic(狂信者的投刃)  
+**1目标:** Bringer's Rifle(混沌骑士枪), Raygun(原子光枪) (Arrest, Hell, Demon's), ES Cards (Hell, Demon's), Holy Ray(
+圣光枪)    
 **1目标(复数攻击):** ES Mechgun (Hell, Demon's)  
 
 #### 特殊目的
 
-Gal Wind(加尔之风), Girasole  
+Gal Wind(加尔之风), Girasole(向日葵)    
 Red Saber(红色光剑)
 
 #### 铠甲
 
-Ignition Cloak(灼热披风), Crimson Coat(真红外套), Brightness Circle
+Ignition Cloak(灼热披风), Crimson Coat(真红外套), Brightness Circle(圣光环)
 
 #### 盾牌
 
-Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾), Anti-Dark Ring, Resta Merge(圣泉增幅盾), God's Shield "Kouryu", Three Seals(封印之盾), Combat Gear
+Red Ring, Rafoie Merge(炎狱增幅盾), Gifoie Merge(火墙增幅盾), Gizonde Merge(群雷增幅盾), Rabarta Merge(极冰增幅盾),
+Anti-Dark Ring(御魔手镯), Resta Merge(圣泉增幅盾), God's Shield "Kouryu"(四神盾「黄龙」), Three Seals(封印之盾), Combat
+Gear(格斗盾)
 
 #### 插件
 
-V101, V502, Smartlink, V801, Adept(超能增幅器)
+V101, V502, Smartlink(灵感之环), V801, Adept(超能增幅器)
