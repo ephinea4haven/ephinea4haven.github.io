@@ -1,4 +1,4 @@
-## 全人物终级武器推荐
+## 全人物终级装备推荐
 
 ### <a name="hu"></a>战士
 [废材](#humar)| [花瓶](#hunewearl)| [旦那](#hucast)| [女忍](#hucaseal)
