@@ -212,7 +212,7 @@
 
 ---
 
-## E服Mag独占颜色 <a name='#ephinea_exclusive_mag_colors'></a>
+## E服Mag独占颜色 <a name='ephinea_exclusive_mag_colors'></a>
 
 <table>
   <tr>
@@ -220,62 +220,62 @@
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#7FFF00;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_chartreuse-0.png)</td>
+    <td><image src="static/img/Mag_chartreuse-0.png"></image></td>
     <td>Chartreuse</td><td>#7FFF00</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#007FFF;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_azure-0.png)</td>    
+    <td><image src="static/img/Mag_azure-0.png"></image></td>    
     <td>Azure</td><td>#007FFF</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#660066;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_royal_purple-0.png)</td>    
+    <td><image src="static/img/Mag_royal_purple-0.png"></image></td>    
     <td>Royal Purple</td><td>#660066</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#F90505;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_ruby-0.png)</td>
+    <td><image src="static/img/Mag_ruby-0.png"></image></td>
     <td>Ruby</td><td>#F90505</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#0A0AF2;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_sapphire-0.png)</td>
+    <td><image src="static/img/Mag_sapphire-0.png"></image></td>
     <td>Sapphire</td><td>#0A0AF2</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#007F00;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_emerald-0.png)</td>
+    <td><image src="static/img/Mag_emerald-0.png"></image></td>
     <td>Emerald</td><td>#007F00</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#9F7E3A;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_gold-0.png)</td>
+    <td><image src="static/img/Mag_gold-0.png"></image></td>
     <td>Gold</td><td>#9F7E3A</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#8D9BA6;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_silver-0.png)</td>
+    <td><image src="static/img/Mag_silver-0.png"></image></td>
     <td>Silver</td><td>#8D9BA6</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#A0654E;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_bronze-0.png)</td>
+    <td><image src="static/img/Mag_bronze-0.png"></image></td>
     <td>Bronze</td><td>#A0654E</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#7F337F;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_plum-0.png)</td> 
+    <td><image src="static/img/Mag_plum-0.png"></image></td> 
     <td>Plum</td><td>#7F337F</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#2B0757;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_violet-0.png)</td>
+    <td><image src="static/img/Mag_violet-0.png"></image></td>
     <td>Violet</td><td>#2B0757</td>
   </tr>
   <tr>
     <td><span style="display:inline-block;width:32px;height:16px;background:#F2A400;border:1px solid #ccc;"></span></td>
-    <td>![Mag_chartreuse-0.png](static/img/Mag_goldenrod-0.png)</td>
+    <td><image src="static/img/Mag_goldenrod-0.png"></image></td>
     <td>Goldenrod</td><td>#F2A400</td>
   </tr>
 </table>
