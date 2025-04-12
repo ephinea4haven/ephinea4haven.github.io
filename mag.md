@@ -247,61 +247,61 @@
   <tr>
     <td><span class="color-box" style="background:#7FFF00;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_chartreuse-0.png"></td>
-    <td>Chartreuse</td><td>#7FFF00</td>
+    <td>Chartreuse 亮黄绿色</td><td>#7FFF00</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#007FFF;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_azure-0.png"></td>
-    <td>Azure</td><td>#007FFF</td>
+    <td>Azure 天蓝色</td><td>#007FFF</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#660066;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_royal_purple-0.png"></td>
-    <td>Royal Purple</td><td>#660066</td>
+    <td>Royal_Purple 深紫色</td><td>#660066</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#F90505;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_ruby-0.png"></td>
-    <td>Ruby</td><td>#F90505</td>
+    <td>Ruby 鲜红色</td><td>#F90505</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#0A0AF2;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_sapphire-0.png"></td>
-    <td>Sapphire</td><td>#0A0AF2</td>
+    <td>Sapphire 深宝蓝</td><td>#0A0AF2</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#007F00;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_emerald-0.png"></td>
-    <td>Emerald</td><td>#007F00</td>
+    <td>Emerald 深绿色</td><td>#007F00</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#9F7E3A;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_gold-0.png"></td>
-    <td>Gold</td><td>#9F7E3A</td>
+    <td>Gold 暗金偏棕</td><td>#9F7E3A</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#8D9BA6;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_silver-0.png"></td>
-    <td>Silver</td><td>#8D9BA6</td>
+    <td>Silver 浅银灰</td><td>#8D9BA6</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#A0654E;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_bronze-0.png"></td>
-    <td>Bronze</td><td>#A0654E</td>
+    <td>Bronze 青铜色</td><td>#A0654E</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#7F337F;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_plum-0.png"></td>
-    <td>Plum</td><td>#7F337F</td>
+    <td>Plum 李子紫</td><td>#7F337F</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#2B0757;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_violet-0.png"></td>
-    <td>Violet</td><td>#2B0757</td>
+    <td>Violet 深紫色</td><td>#2B0757</td>
   </tr>
   <tr>
     <td><span class="color-box" style="background:#F2A400;"></span></td>
     <td><img class="mag-img" src="static/img/Mag_goldenrod-0.png"></td>
-    <td>Goldenrod</td><td>#F2A400</td>
+    <td>Goldenrod 金黄色</td><td>#F2A400</td>
   </tr>
 </table>
