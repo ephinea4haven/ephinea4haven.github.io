@@ -1194,7 +1194,7 @@ function generateAutoCombo(
     }
 }
 
-function appendMosterRow(rowEntry) {
+function appendMonsterRow(rowEntry) {
     let comboKill = rowEntry.comboDamage > rowEntry.hp;
     let damageBgColor = comboKill ? 'rgb(61,73,61)' : 'rgb(73,73,61)';
 
@@ -1370,7 +1370,7 @@ function updateDamageTable() {
     })
 
     for (let index in rows) {
-        tbody.append(appendMosterRow(rows[index]))
+        tbody.append(appendMonsterRow(rows[index]))
     }
 }
 

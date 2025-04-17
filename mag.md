@@ -2,7 +2,9 @@
 
 食谱: | [0](#recipe1) | [1](#recipe2) | [2](#recipe3) | [3](#recipe4) | [4](#recipe5) | [5](#recipe6) | [6](#recipe7)| [7](#recipe8)
 
-杂项: | [同步率](#sync) | [智力](#iq) | [PB激活条件](#trigger)
+杂项: | [同步率](#sync) | [智力](#iq) | [PB激活条件](#trigger) 
+
+[E服Mag独占颜色](#ephinea_exclusive_mag_colors)
 
 ## <a name="hu"></a>战士  
 ![hu](./static/img/HU-MAG.gif)  
@@ -208,3 +210,98 @@
 * Boss房激活无需解释
 * 100PB激活无需解释
 
+---
+
+## E服Mag独占颜色 <a name='ephinea_exclusive_mag_colors'></a>
+
+<style>
+  table.color-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    font-size: 14px;
+    text-align: center;
+  }
+  .color-table th, .color-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    vertical-align: middle;
+  }
+  .color-box {
+    display: inline-block;
+    width: 32px;
+    height: 16px;
+    border: 1px solid #ccc;
+  }
+  .mag-img {
+    width: 100px;
+    border-radius: 4px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+  }
+</style>
+
+<table class="color-table">
+  <tr>
+    <th>颜色块</th><th>截图</th><th>名称</th><th>Hex值</th>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#7FFF00;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_chartreuse-0.png"></td>
+    <td>Chartreuse 亮黄绿色</td><td>#7FFF00</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#007FFF;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_azure-0.png"></td>
+    <td>Azure 天蓝色</td><td>#007FFF</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#660066;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_royal_purple-0.png"></td>
+    <td>Royal_Purple 深紫色</td><td>#660066</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#F90505;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_ruby-0.png"></td>
+    <td>Ruby 鲜红色</td><td>#F90505</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#0A0AF2;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_sapphire-0.png"></td>
+    <td>Sapphire 深宝蓝</td><td>#0A0AF2</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#007F00;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_emerald-0.png"></td>
+    <td>Emerald 深绿色</td><td>#007F00</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#9F7E3A;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_gold-0.png"></td>
+    <td>Gold 暗金偏棕</td><td>#9F7E3A</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#8D9BA6;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_silver-0.png"></td>
+    <td>Silver 浅银灰</td><td>#8D9BA6</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#A0654E;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_bronze-0.png"></td>
+    <td>Bronze 青铜色</td><td>#A0654E</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#7F337F;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_plum-0.png"></td>
+    <td>Plum 李子紫</td><td>#7F337F</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#2B0757;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_violet-0.png"></td>
+    <td>Violet 深紫色</td><td>#2B0757</td>
+  </tr>
+  <tr>
+    <td><span class="color-box" style="background:#F2A400;"></span></td>
+    <td><img class="mag-img" src="static/img/Mag_goldenrod-0.png"></td>
+    <td>Goldenrod 金黄色</td><td>#F2A400</td>
+  </tr>
+</table>
