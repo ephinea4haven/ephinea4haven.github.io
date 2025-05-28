@@ -21,8 +21,8 @@
 
 1. 安装插件
 
-   安装Header Editor插件这款插件，Firefox从[这里](./static/headedit_4.1.1.crx)
-   安装，Chrome从[这里](./static/HeaderEditor-4.1.1.xpi)安装
+   安装Header Editor插件这款插件，Firefox从[这里](./static/HeaderEditor-4.1.1.xpi)
+   安装，Chrome从[这里](./static/headedit_4.1.1.crx)安装
 
 2. 配置规则
 
