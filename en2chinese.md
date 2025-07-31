@@ -116,6 +116,7 @@
 * Photon Drop 光子微晶  
 * Photon Sphere 光子结晶  
 * Photon Crystal 光子水晶  
+* Photon Hoard 光子合晶
 * Secret Ticket 秘密点券  
 * Photon Booster 光子加速器  
 * Present 礼物  
