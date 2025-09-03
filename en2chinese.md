@@ -87,7 +87,7 @@
 * Heart of Chu Chu 啾啾之心  
 * Parts of EGG BLASTER 爆蛋枪的零件  
 * Heart of Angel 天使之心  
-* Heart of Devil 恶魔之心  
+* Heart of Devil 魔鬼之心
 * Kit of Hamburger 汉堡包细胞  
 * Panther's Spirit 豹尾细胞  
 * Kit of MARK3 ＭＡＲＫ３组件  
@@ -716,14 +716,14 @@
 * SELECT CLOAK 圣洁披风  
 * SPIRIT CUIRASS 安神护甲  
 * REVIVAL CUIRASS 回生护甲  
-* ALLIANCE UNIFORM 联盟亲卫队军服  
-* OFFICER UNIFORM 联盟亲卫队上等兵军服  
-* COMMANDER UNIFORM 联盟亲卫队指挥官军服  
+* ALLIANCE UNIFORM 亲卫队军服
+* OFFICER UNIFORM 亲卫队军官军服
+* COMMANDER UNIFORM 亲卫队指挥官军服
 * CRIMSON COAT 真红外套  
-* INFANTRY GEAR 空间机动步兵第３２分队上等兵军服  
-* LIEUTENANT GEAR 空间机动步兵第３２分队中尉军服  
+* INFANTRY GEAR 空间机动军官军服
+* LIEUTENANT GEAR 空间机动中尉军服
 * INFANTRY MANTLE 空间机动歩兵外套  
-* LIEUTENANT MANTLE 空间机动歩兵中尉外套  
+* LIEUTENANT MANTLE 空间机动中尉外套
 * UNION FIELD 公会铠  
 * SAMURAI ARMOR 浅黄丝威褄取铠  
 * STEALTH SUIT 隐身铠  
@@ -944,10 +944,10 @@
 * PB/Generate ＰＢ/再生  
 * PB/Create ＰＢ/重生  
 * Wizard/Technique 巫师级/魔法  
-* Devil/Technique 恶魔级/魔法  
+* Devil/Technique 魔鬼级/魔法
 * God/Technique 天神级/魔法  
 * General/Battle 将军级/战斗  
-* Devil/Battle 恶魔级/战斗  
+* Devil/Battle 魔鬼级/战斗
 * God/Battle 天神级/战斗  
 * Cure/Poison 中毒回复  
 * Cure/Paralysis 麻痹回复  
@@ -1036,7 +1036,7 @@
 * CHU CHU 啾啾  
 * KAPU KAPU 卡普卡普  
 * ANGEL'S WING 天使之翼  
-* DEVIL'S WING 恶魔之翼  
+* DEVIL'S WING 魔鬼之翼
 * ELENOR 艾尔诺亚  
 * MARK3 ＭＡＲＫ３  
 * MASTER SYSTEM MASTER SYSTEM  
@@ -1045,7 +1045,7 @@
 * DREAMCAST ＤＲＥＡＭＣＡＳＴ  
 * HAMBURGER 汉堡包  
 * PANZER'S TAIL 豹尾  
-* DEVIL'S TAIL 恶魔之尾  
+* DEVIL'S TAIL 魔鬼之尾
 * Deva 提婆  
 * Rati 拉提  
 * Savitri 莎维奇  
