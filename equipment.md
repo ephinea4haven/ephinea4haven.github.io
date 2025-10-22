@@ -27,7 +27,7 @@
 ### 🔫 远程
 
 * **🔷4目标:** Diska of Braveman(勇者的飞碟), Charge Diska(销金-彗星投刃)
-* **🔸1目标:** Charge/Berserk Raygun(销金/销血-原子光枪)
+* **🔸1目标:** Charge/Berserk Raygun(销金/销血-原子光枪), Master Raven(乌鸦)
 * **🔹1目标(复数攻击):** Charge/Berserk/Spirit Vulcan(销金/销血/销魂-音速机枪), M\&A60 Vise(老虎钳), L\&K38 Combat(
   战场之狼) *(❌不能连击)*
 
@@ -67,7 +67,7 @@
 ### 🔫 远程
 
 * **🔷4目标:** Diska of Braveman, Charge/Spirit Diska
-* **🔸1目标:** Charge/Berserk/Spirit Raygun
+* **🔸1目标:** Charge/Berserk/Spirit Raygun, Last Swan(白鸟)
 * **🔹1目标(复数攻击):** Charge/Berserk/Spirit Vulcan, M\&A60 Vise, 🦢 Last Swan
 
 ### 💥 特殊攻击
@@ -106,7 +106,7 @@
 ### 🔫 远程
 
 * **🔷4目标:** Diska of Braveman, Charge Diska
-* **🔸1目标:** Charge/Berserk Raygun
+* **🔸1目标:** Charge/Berserk Raygun, Master Raven(乌鸦)
 * **🔹1目标(复数攻击):** Charge/Berserk Vulcan, M\&A60 Vise, L\&K38 Combat *(❌不能连击)*
 
 ### 💥 特殊攻击
@@ -145,7 +145,7 @@
 ### 🔫 远程
 
 * **🔷4目标:** Diska of Braveman, Charge Diska
-* **🔸1目标:** Charge/Berserk Raygun
+* **🔸1目标:** Charge/Berserk Raygun, Last Swan(白鸟)
 * **🔹1目标(复数攻击):** Charge/Berserk Vulcan, M\&A60 Vise, 🦢 Last Swan, 🐦 Dual Bird
 
 ### 💥 特殊攻击
