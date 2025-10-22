@@ -67,7 +67,7 @@
 ### 🔫 远程
 
 * **🔷4目标:** Diska of Braveman, Charge/Spirit Diska
-* **🔸1目标:** Charge/Berserk/Spirit Raygun, Last Swan(白鸟)
+* **🔸1目标:** Charge/Berserk/Spirit Raygun
 * **🔹1目标(复数攻击):** Charge/Berserk/Spirit Vulcan, M\&A60 Vise, 🦢 Last Swan
 
 ### 💥 特殊攻击
@@ -145,7 +145,7 @@
 ### 🔫 远程
 
 * **🔷4目标:** Diska of Braveman, Charge Diska
-* **🔸1目标:** Charge/Berserk Raygun, Last Swan(白鸟)
+* **🔸1目标:** Charge/Berserk Raygun
 * **🔹1目标(复数攻击):** Charge/Berserk Vulcan, M\&A60 Vise, 🦢 Last Swan, 🐦 Dual Bird
 
 ### 💥 特殊攻击
