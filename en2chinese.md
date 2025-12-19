@@ -1056,6 +1056,8 @@
 * Bhima 比玛  
 * Nidra 尼德拉  
 * Geung-si 僵尸  
+* Present* 礼品  
+* Saraswati 辩才天/萨拉斯瓦蒂      
 * ??? 未使用Mag01  
 * Tellusis 特拉西斯  
 * Striker Unit 冲击部件  
