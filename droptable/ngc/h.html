@@ -96,57 +96,57 @@
 
         .VIRIDIA {
             background: rgba(50, 205, 50, 0.2);
-            color: #ffffff;
+            color: #86efac;
         }
 
         .GREENNILL {
             background: rgba(144, 238, 144, 0.2);
-            color: #ffffff;
+            color: #86efac;
         }
 
         .SKYLY {
             background: rgba(135, 206, 250, 0.2);
-            color: #ffffff;
+            color: #7dd3fc;
         }
 
         .BRUEFULL {
             background: rgba(100, 100, 255, 0.2);
-            color: #ffffff;
+            color: #93c5fd;
         }
 
         .PURPLENUM {
             background: rgba(218, 112, 214, 0.2);
-            color: #ffffff;
+            color: #e9d5ff;
         }
 
         .PINKAL {
             background: rgba(255, 192, 203, 0.2);
-            color: #ffffff;
+            color: #fda4af;
         }
 
         .REDRIA {
             background: rgba(255, 100, 100, 0.2);
-            color: #ffffff;
+            color: #fca5a5;
         }
 
         .ORAN {
             background: rgba(255, 165, 0, 0.2);
-            color: #ffffff;
+            color: #fdba74;
         }
 
         .YELLOWBOZE {
             background: rgba(255, 255, 100, 0.2);
-            color: #ffffff;
+            color: #fde047;
         }
 
         .WHITILL {
             background: rgba(255, 255, 255, 0.15);
-            color: #ffffff;
+            color: #e2e8f0;
         }
 
         .normal {
             background: rgba(50, 50, 50, 0.5);
-            color: #ffffff;
+            color: #94a3b8;
             font-size: 0.75em;
             padding: 2px 6px;
             border-radius: 4px;
@@ -178,22 +178,22 @@
 
         .per {
             text-align: right;
-            color: #ffffff;
+            color: #64748b;
             background: rgba(100, 116, 139, 0.3);
         }
 
         .claw, .dagger, .jsword, .knuckle, .musashi, .partisan, .saber, .slicer, .sword, .twin,
         .handgun, .launcher, .mechgun, .rifle, .shot,
         .card, .cane, .rod, .wand {
-            color: #ffffff;
+            color: #fb923c;
         }
 
         .armor, .shield, .unit {
-            color: #ffffff;
+            color: #60a5fa;
         }
 
         .processing, .material, .recovery, .enemyparts {
-            color: #ffffff;
+            color: #86efac;
         }
 
         .spacer {
@@ -312,18 +312,32 @@
             const bodyWidth = window.innerWidth - 20;
 
             tables.forEach(function(table) {
+                // Create or get wrapper
+                let wrapper = table.parentElement;
+                if (!wrapper || !wrapper.classList.contains('table-wrapper')) {
+                    wrapper = document.createElement('div');
+                    wrapper.className = 'table-wrapper';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+
                 // Reset styles
                 table.style.transform = '';
                 table.style.width = '';
+                wrapper.style.height = '';
                 table.style.marginBottom = '30px';
 
                 const tableWidth = table.scrollWidth;
+                const tableHeight = table.offsetHeight;
 
                 if (tableWidth > bodyWidth) {
                     const scale = bodyWidth / tableWidth;
                     table.style.transform = 'scale(' + scale + ')';
                     table.style.transformOrigin = 'top left';
                     table.style.width = (100 / scale) + '%';
+                    wrapper.style.height = (tableHeight * scale + 30) + 'px';
+                } else {
+                    wrapper.style.height = 'auto';
                 }
             });
         }

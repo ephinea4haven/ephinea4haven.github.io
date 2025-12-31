@@ -337,12 +337,23 @@
             const table = document.querySelector('table');
             if (!table) return;
 
+            // Create or get wrapper
+            let wrapper = table.parentElement;
+            if (!wrapper || !wrapper.classList.contains('table-wrapper')) {
+                wrapper = document.createElement('div');
+                wrapper.className = 'table-wrapper';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+            }
+
             // Reset styles
             table.style.transform = '';
             table.style.width = '';
+            wrapper.style.height = '';
             table.style.marginBottom = '30px';
 
             const tableWidth = table.scrollWidth;
+            const tableHeight = table.offsetHeight;
             const bodyWidth = window.innerWidth - 20;
 
             if (tableWidth > bodyWidth) {
@@ -350,6 +361,9 @@
                 table.style.transform = 'scale(' + scale + ')';
                 table.style.transformOrigin = 'top left';
                 table.style.width = (100 / scale) + '%';
+                wrapper.style.height = (tableHeight * scale + 30) + 'px';
+            } else {
+                wrapper.style.height = 'auto';
             }
         }
     </script>
