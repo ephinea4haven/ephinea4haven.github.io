@@ -1,61 +1,83 @@
-# 设置windows dep
+# 设置 Windows DEP
 
-![dep](./static/img/windows%20dep.jpg)  
+![dep](./static/img/windows%20dep.jpg)
 
-右键单击桌面上的“计算机”图标，选择“属性”，在打开的“系统”窗口中点击  
-“高级系统设置”链接  打开“系统属性”面板。在“高级”选项卡页面中的  
-“性能”下点击“设置”打开“性能选项”面板。  点击“数据执行保护”选项卡，  
-在该页面中我们可确认自己  计算机的处理器是否支持DEP。  如果支持会在底部的一行显示    
-“你的计算机处理器支持基于硬件的DEP。”，反之会显示“你的计算机处理器  
-不支持基于硬件的DEP，不过,Windows能使用DEP软件防止一些类型的攻击。”
+1. 右键桌面上的 **计算机** 图标，选择 **属性**。
+2. 在打开的 **系统** 窗口中点击 **高级系统设置**。
+3. 在 **系统属性** → **高级** → **性能** 区域中点击 **设置**。
+4. 在 **性能选项** 中切换到 **数据执行保护** 标签页。
+
+在这里可以确认处理器是否支持 DEP：
+
+* 若支持，会显示：**你的计算机处理器支持基于硬件的 DEP。**
+* 若不支持，会显示：**你的计算机处理器不支持基于硬件的 DEP，不过 Windows 仍可使用 DEP 软件防止部分攻击类型。**
+
+---
 
 # 设置兼容性
 
 ![compat](./static/img/compat.png)
 
-右键游戏快捷方式，切换到``兼容性选项卡`,  
-勾选\[√\] Run this programe in compatibility mode for:  
-并选择 Windows XP(Service Pack2)
+1. 右键游戏快捷方式，选择 **属性**。
+2. 切换到 **兼容性** 标签页。
+3. 勾选 **Run this program in compatibility mode for:**
+4. 选择 **Windows XP (Service Pack 2)**。
 
+---
 
-# 设置登录器的分辨率
+# 设置登录器分辨率
+
 ![resolution](./static/img/resolution.png)
 
-若前两步都设置之后还是出现闪退的情况，请调整`分辨率`,  
-根据当前电脑显卡和显示器的情况选择合适的分辨率，根据以往经验，  
-选择高分辨率不一定卡，选择低分辨率不一定不卡，哈哈哈......
+如果前两步完成后仍然出现闪退，请尝试调整 **分辨率**。
+根据显卡与显示器情况选择合适分辨率即可：
 
-# 设置用户账户控制(UAC)
-![uac](./static/img/uac.jpg)  
-设置到这个级别之后，打开其他带有`执行保护窗口`的程序时，psobb游戏不会丢失渲染而crash。  
-![prompt](./static/img/prompt.png)。
+> 选择高分辨率不一定卡，选择低分辨率也不一定不卡——按实际效果为准。
 
-# 添加游戏目录为杀毒软件**白名单**
-遇到游戏窗口左下角有`DLL ERROR`等错误时，需设置杀毒软件白名单。
+---
 
-1. Window开始菜单输入 `sec`，打开  
-![sec](./static/img/sec.png)  
+# 设置用户账户控制（UAC）
 
-2. 选择`病毒和威胁保护`  
-![vp](./static/img/vp.png) 
- 
-3. 打开`管理设置`
-![vpmanage](./static/img/vpmanage.png)  
+![uac](./static/img/uac.jpg)
 
-4. 打开`添加或删除排除项`
-![vpexclusive](./static/img/vpexclusive.png)  
+将 UAC 调整到下图所示级别后，当其他程序弹出“执行保护”窗口时，
+PSOBB 不会丢失渲染而导致崩溃。
 
-5. 添加游戏根目录
-![vpexcludeephinea](./static/img/vpexcludeephinea.png)  
-![vprootfolder](./static/img/vprootfolder.png)  
+![prompt](./static/img/prompt.png)
 
-至此，游戏目录添加杀毒软件白名单完成。
+---
 
+# 将游戏目录添加到杀毒软件白名单
 
-# 全屏游戏神器
-使用游戏本身自带的全屏设置时，经常会被其他程序弹出的小窗口意外丢失渲染而crash。
-这里推荐一款全屏神器[BorderlessGaming](https://github.com/Codeusa/Borderless-Gaming/releases/download/9.5.6/BorderlessGaming9.5.6_admin_setup.exe)
-此程序完全修复了上面的问题!
+遇到游戏左下角提示 `DLL ERROR` 等问题时，请按以下步骤操作：
 
+1. 在开始菜单输入 **sec** 并打开
+   ![sec](./static/img/sec.png)
 
+2. 进入 **病毒和威胁防护**
+   ![vp](./static/img/vp.png)
 
+3. 打开 **管理设置**
+   ![vpmanage](./static/img/vpmanage.png)
+
+4. 点击 **添加或删除排除项**
+   ![vpexclusive](./static/img/vpexclusive.png)
+
+5. 将 **游戏根目录** 添加为排除项
+   ![vpexcludeephinea](./static/img/vpexcludeephinea.png)
+   ![vprootfolder](./static/img/vprootfolder.png)
+
+至此，游戏目录白名单配置完成。
+
+---
+
+# 全屏游戏推荐工具
+
+使用游戏自带全屏模式时，可能因其他程序弹窗导致渲染丢失并 crash。
+
+推荐使用 **Borderless Gaming**：
+
+> 无边框窗口化全屏，能有效避免上述问题。
+
+下载地址：
+[BorderlessGaming 9.5.6](https://github.com/Codeusa/Borderless-Gaming/releases/download/9.5.6/BorderlessGaming9.5.6_admin_setup.exe)
