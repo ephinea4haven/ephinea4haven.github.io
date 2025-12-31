@@ -9,57 +9,290 @@
     <script type="text/javascript" src="static/jquery.min.js?v=1"></script>
     <script type="text/javascript" src="static/index.js?v=1"></script>
     <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
             margin: 0;
             padding: 20px;
-            font-family: Arial, sans-serif;
-            /*background-image: url("static/img/rune_gray.png");background-repeat: no-repeat;z-index: -100;*/
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        body > a[href*="qq.com"] {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 35px;
+        }
+
+        body > a[href*="qq.com"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
         }
 
         .container {
             display: flex;
-            flex-wrap: wrap; /* 允许子元素换行 */
+            flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            max-width: 1300px;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 10px;
         }
 
         .container::after {
             content: "";
-            width: 100%; /* 强制占满一行的宽度 */
+            width: 100%;
             height: 0;
-            display: block; /* 确保它被视为块级元素 */
+            display: block;
         }
 
         .section {
             flex-basis: calc(33.333% - 20px);
             flex-grow: 1;
-            border: 1px solid #ddd;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .section h2 {
+            color: #6366f1;
+            font-size: 1.3em;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+            font-weight: 600;
+        }
+
+        .section a {
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            color: #1f2937;
+            text-decoration: none;
+            padding: 10px 12px;
+            border-radius: 6px;
+            display: block;
+            margin-bottom: 6px;
+            transition: all 0.25s ease;
+            background: #f8fafc;
+            border-left: 3px solid transparent;
+        }
+
+        .section a:hover, .section a:focus {
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            color: #4f46e5;
+            border-left-color: #6366f1;
+            transform: translateX(8px);
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+        }
+
+        #network-time {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        #network-time:hover {
+            border-color: rgba(251, 191, 36, 0.5);
+        }
+
+        #network-time h2 {
+            color: #d97706;
+        }
+
+        #swatchTime {
+            display: block;
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #92400e;
+            text-align: center;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        #beat_even_period {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #beat_even_period li {
             padding: 10px;
-            border-radius: 5px;
-            box-sizing: border-box; /* 确保边框和填充包含在宽度内 */
+            margin: 6px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 6px;
+            color: #78350f;
+            border-left: 3px solid #f59e0b;
+            list-style: none;
         }
 
-        a {
-            font-family: 'Arial', sans-serif; /* 指定字体 */
-            font-size: 20px; /* 字体大小 */
-            font-weight: bolder; /* 字体加粗 */
-            color: #007bff; /* 链接默认颜色 */
-            text-decoration: none; /* 去除下划线 */
-            padding: 5px; /* 添加一些内边距 */
-            border-radius: 4px; /* 轻微圆角 */
-            display: block; /* 让padding生效 */
-            margin-bottom: 10px; /* 链接之间的间距 */
-            transition: background-color 0.3s, color 0.3s; /* 平滑过渡效果 */
+        #beat_even_period li:first-child {
+            margin-top: 0;
         }
 
-        a:hover, a:focus {
-            background-color: #e8f4fc; /* 悬停时的背景颜色 */
-            color: #0056b3; /* 悬停时的文字颜色 */
-            text-decoration: underline; /* 添加下划线以提高可识别性 */
+        #galatine_even_period {
+            font-size: 1.2em;
+            color: #78350f;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .info-wrapper {
+            flex-basis: calc(50% - 20px);
+            flex-grow: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-wrapper .section {
+            margin: 0;
+        }
+
+        #galatine {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        #galatine:hover {
+            border-color: rgba(236, 72, 153, 0.5);
+        }
+
+        #galatine h2 {
+            color: #be185d;
+        }
+
+        #buf {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        #buf:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        #buf h2 {
+            color: #1d4ed8;
+        }
+
+        #week-buf {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #week-buf li {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 6px;
+            color: #1e40af;
+            font-weight: 500;
+            border-left: 3px solid #3b82f6;
+            list-style: none;
+        }
+
+        #week-buf li:first-child {
+            margin-top: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .section {
+                flex-basis: calc(50% - 20px);
+            }
+
+            .info-wrapper {
+                flex-basis: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .section {
+                flex-basis: 100%;
+                min-width: unset;
+            }
+
+            .info-wrapper {
+                flex-basis: 100%;
+                min-width: unset;
+            }
+
+            body {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -79,19 +312,21 @@
         <ul id="beat_even_period"></ul>
     </div>
 
-    <div class="section" >
-        <h2>太阳之剑攻击力:(E服固定3x攻击)</h2>
-        <div id="galatine_even_period"></div>
-    </div>
+    <div class="info-wrapper">
+        <div class="section" id="galatine">
+            <h2>太阳之剑攻击力:(E服固定3x攻击)</h2>
+            <div id="galatine_even_period"></div>
+        </div>
 
-    <div id="buf" class="section">
-        <h2>RBS周轮替增益系统:</h2>
-        <ul id="week-buf">
-            <li id="3">掉物率(DAR) +25%</li>
-            <li id="0">稀有怪率(RER) +50%</li>
-            <li id="1">掉宝率(RDR) +25%</li>
-            <li id="2">经验(EXP) +50%</li>
-        </ul>
+        <div id="buf" class="section">
+            <h2>RBS周轮替增益系统:</h2>
+            <ul id="week-buf">
+                <li id="3">掉物率(DAR) +25%</li>
+                <li id="0">稀有怪率(RER) +50%</li>
+                <li id="1">掉宝率(RDR) +25%</li>
+                <li id="2">经验(EXP) +50%</li>
+            </ul>
+        </div>
     </div>
 
     <div class="section">
