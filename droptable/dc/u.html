@@ -17,7 +17,8 @@
             color: #e2e8f0;
             position: relative;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -51,12 +52,21 @@
         }
 
         .container {
-            min-width: fit-content;
+            width: 100%;
+            max-width: 100vw;
             margin: 0 auto;
+            overflow: visible;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: visible;
         }
 
         table {
-            width: 100%;
+            width: max-content;
+            min-width: 100%;
             background: rgba(26, 35, 50, 0.85);
             backdrop-filter: blur(12px);
             border: 2px solid rgba(0, 212, 255, 0.25);
@@ -65,12 +75,15 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
             border-collapse: collapse;
             margin-bottom: 30px;
+            font-size: 0.85rem;
+            transform-origin: top left;
         }
 
         th, td {
-            font-size: 0.85em;
-            padding: 12px;
+            font-size: 1em;
+            padding: 8px;
             border: 1px solid rgba(0, 212, 255, 0.15);
+            white-space: nowrap;
         }
 
         th {
@@ -89,6 +102,12 @@
 
         td {
             text-align: center;
+            color: #000000;
+            font-weight: 600;
+        }
+
+        td font {
+            color: #000000 !important;
         }
 
         /* Section ID colors */
@@ -142,6 +161,23 @@
         th[bgcolor="#F4F4F4"] {
             background: rgba(255, 255, 255, 0.15);
             color: #e2e8f0;
+        }
+
+        /* Fix background colors for better readability with black text */
+        td[bgcolor="#FFD070"] {
+            background: rgba(255, 208, 112, 0.95) !important;
+        }
+
+        td[bgcolor="#C5FFC5"] {
+            background: rgba(197, 255, 197, 0.95) !important;
+        }
+
+        td[bgcolor="#00F0FF"] {
+            background: rgba(0, 240, 255, 0.9) !important;
+        }
+
+        td[bgcolor="#FFFFFF"] {
+            background: rgba(255, 255, 255, 0.9) !important;
         }
 
         #nav {
@@ -218,11 +254,46 @@
 
         @media (max-width: 768px) {
             th, td {
-                padding: 8px;
-                font-size: 0.75em;
+                padding: 6px;
+            }
+            .back-to-top {
+                right: 15px;
+                bottom: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
             }
         }
     </style>
+    <script>
+        window.addEventListener('load', function() {
+            scaleTable();
+        });
+
+        window.addEventListener('resize', function() {
+            scaleTable();
+        });
+
+        function scaleTable() {
+            const table = document.querySelector('table');
+            const container = document.querySelector('.container');
+            if (!table || !container) return;
+
+            // Reset scale
+            table.style.transform = 'scale(1)';
+            table.style.transformOrigin = 'top left';
+
+            // Calculate scale
+            const tableWidth = table.offsetWidth;
+            const containerWidth = container.offsetWidth;
+
+            if (tableWidth > containerWidth) {
+                const scale = containerWidth / tableWidth * 0.98; // 98% to add some padding
+                table.style.transform = `scale(${scale})`;
+                table.style.marginBottom = `${table.offsetHeight * (scale - 1)}px`;
+            }
+        }
+    </script>
 </head>
 
 <body>
