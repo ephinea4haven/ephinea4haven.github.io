@@ -1,72 +1,29 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="zh-CN">
 
 <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,maximum-scale=2">
-    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=68be26cbbcd68a55b9352457e3dc98378a2892da">
-    <!-- Begin Jekyll SEO tag v2.5.0 -->
-    <title>方案 | [“PSOBB Wiki For Ephinea Server”]</title>
-    <meta name="generator" content="Jekyll v3.7.4"/>
-    <meta property="og:title" content="方案"/>
-    <meta property="og:locale" content="en_US"/>
-    <meta name="description" content="[“仅限内部交流使用”]"/>
-    <meta property="og:description" content="[“仅限内部交流使用”]"/>
-    <link rel="canonical" href="https://ephinea4haven.github.io/materialplan.html"/>
-    <meta property="og:url" content="https://ephinea4haven.github.io/materialplan.html"/>
-    <meta property="og:site_name" content="[“PSOBB Wiki For Ephinea Server”]"/>
-    <script type="application/ld+json">
-        {
-            "@type": "WebPage",
-            "headline": "方案",
-            "url": "https://ephinea4haven.github.io/materialplan.html",
-            "description": "[“仅限内部交流使用”]",
-            "@context": "http://schema.org"
-        }</script>
-    <!-- End Jekyll SEO tag -->
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <title>材料方案 | Ephinea PSOBB</title>
 
     <style>
-        table {
-            border-collapse: collapse;
+        .content-container table {
             width: auto;
         }
-
-        th {
-            background-color: #8892a0;
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
-            vertical-align: middle;
-        }
-
-        td {
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 8px;
-            vertical-align: middle;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-
     </style>
 
 </head>
 
 <body>
-
-<!-- HEADER -->
-<div id="header_wrap" class="outer">
-    <header class="inner">
-        <h1 id="project_title">PSOBB Wiki For Ephinea Server</h1>
+    <header>
+        <h1 id="project_title">材料方案</h1>
     </header>
-</div>
 
-<!-- MAIN CONTENT -->
-<div id="main_content_wrap" class="outer">
-    <section id="main_content" class="inner">
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
         <h2 id="方案">方案</h2>
 
         <h3>重要能力优先</h3>
@@ -969,17 +926,29 @@
         <a href="#race">Top</a>
 
 
-    </section>
-</div>
+    </div>
 
-<!-- FOOTER  -->
-<div id="footer_wrap" class="outer">
-    <footer class="inner">
+    <!-- Back to Top Button -->
+    <button id="backToTop" title="回到顶部">↑</button>
 
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-    </footer>
-</div>
+    <script>
+        // Back to Top functionality
+        const backToTopBtn = document.getElementById('backToTop');
 
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
 
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
