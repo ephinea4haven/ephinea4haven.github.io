@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>weapon_nerf | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">weapon_nerf</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h2>武器修正（重点概念）</h2>
+
+<p>一个常见误解是：<strong>9 星及以下武器会被修正，10 星以上不会被修正</strong>。</p>
+<p>事实上并非如此：</p>
+
+<p>> <strong>实际规则：</strong></p>
+<p>> 只要武器的十六进制编号在 <strong>「光子爪」之前</strong>，就会被修正（注意：此处的 EX 不是“败系”）。</p>
+<p>> 且仅在以下情况触发修正：</p>
+<p>></p>
+<p>> * 同一动作（3 连中的任一段）出现 <strong>多次攻击判定</strong>，或</p>
+<p>> * 攻击 <strong>命中多个目标</strong></p>
+<p>></p>
+<p>> 其他情况下 <strong>不进行修正</strong>；</p>
+<p>> 同时，<strong>单目标武器与 S 武器的 EX 不受影响</strong>。</p>
+
+<hr>
+
+<h3>修正倍率一览</h3>
+
+<table>
+<thead><tr>
+<th>武器系统</th>
+<th>修正</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>大剑系</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>匕首系</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>长刀系</td>
+<td>33%</td>
+</tr>
+<tr>
+<td>投刃系</td>
+<td>33%</td>
+</tr>
+<tr>
+<td>散弹枪系</td>
+<td>33%</td>
+</tr>
+<tr>
+<td>机枪系</td>
+<td>33%</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>大剑系</h2>
+
+<ul>
+<li>Sword 大剑</li>
+<li>Gigush 宽刃大剑</li>
+<li>Breaker 双刃大剑</li>
+<li>Claymore 利刃大剑</li>
+<li>Calibur 勇者大剑</li>
+<li><strong>Last Survivor</strong> 最后幸存者</li>
+<li><strong>Dragon Slayer</strong> 斩龙剑</li>
+</ul>
+
+<hr>
+
+<h2>匕首系</h2>
+
+<ul>
+<li>Dagger 匕首</li>
+<li>Knife 锋利匕首</li>
+<li>Blade 突刺匕首</li>
+<li>Edge 弧光匕首</li>
+<li>Ripper 暗杀匕首</li>
+<li><strong>Blade Dance</strong> 剑之舞</li>
+<li><strong>Bloody Art</strong> 血之艺</li>
+<li><strong>Cross Scar</strong> 十字疤</li>
+<li><strong>Zero Divide</strong> 零度切刃</li>
+</ul>
+
+<hr>
+
+<h2>长刀系</h2>
+
+<ul>
+<li>Partisan 长刀</li>
+<li>Halbert 护卫长刀</li>
+<li>Glaive 骑士长刀</li>
+<li>Berdys 将军长刀</li>
+<li>Gungnir 战神长刀</li>
+<li><strong>Brionac</strong> 纯正长刀</li>
+<li><strong>Gae Bolg</strong> 战斗长刀</li>
+<li><strong>Asteron Belt</strong> 十文字枪</li>
+</ul>
+
+<hr>
+
+<h2>投刃系</h2>
+
+<ul>
+<li>Slicer 投刃</li>
+<li>Spinner 弹射投刃</li>
+<li>Cutter 回旋投刃</li>
+<li>Sawcer 飞碟投刃</li>
+<li>Diska 彗星投刃</li>
+<li><strong>Slicer of Assassin</strong> 暗杀者投刃</li>
+<li><strong>Diska of Liberator</strong> 解放者飞碟</li>
+</ul>
+
+<hr>
+
+<h2>机枪系</h2>
+
+<ul>
+<li>Mechgun 机枪</li>
+<li>Assault 扫射机枪</li>
+<li>Repeater 高射机枪</li>
+<li>Gatling 格林机枪</li>
+<li>Vulcan 音速机枪</li>
+<li><strong>H&S25 Justice</strong> 正义制裁</li>
+<li><strong>L&K14 Combat</strong> 战场之狼</li>
+</ul>
+
+<hr>
+
+<h2>散弹系</h2>
+
+<ul>
+<li>Shot 散弹枪</li>
+<li>Spread 重型散弹枪</li>
+<li>Cannon 加农散弹枪</li>
+<li>Launcher 强袭散弹枪</li>
+<li>Arms 军用散弹枪</li>
+<li><strong>Crush Bullet</strong> 碎弹枪</li>
+<li><strong>Meteor Smash</strong> 陨石枪</li>
+<li><strong>Final Impact</strong> 最后冲击</li>
+</ul>
+
+    </div>
+</body>
+
+</html>

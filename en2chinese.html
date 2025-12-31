@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>en2chinese | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">en2chinese</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <ul>
+<li>Monomate 小ＨＰ回复液</li>
+<li>Dimate 中ＨＰ回复液</li>
+<li>Trimate 大ＨＰ回复液</li>
+<li>Monofluid 小ＴＰ回复液</li>
+<li>Difluid 中ＴＰ回复液</li>
+<li>Trifluid 大ＴＰ回复液</li>
+<li>Antidote 解毒剂</li>
+<li>Antiparalysis 解痉剂</li>
+<li>Sol Atomizer 魂之粉</li>
+<li>Moon Atomizer 月之粉</li>
+<li>Star Atomizer 星之粉</li>
+<li>Telepipe 传送门</li>
+<li>Trap Vision 陷阱探测器</li>
+<li>Monogrinder 小打磨石</li>
+<li>Digrinder 中打磨石</li>
+<li>Trigrinder 大打磨石</li>
+<li>Power Material 攻击力药</li>
+<li>Mind Material 精神力药</li>
+<li>Evade Material 回避力药</li>
+<li>HP Material ＨＰ药</li>
+<li>TP Material ＴＰ药</li>
+<li>Def Material 防御力药</li>
+<li>Hit Material 命中率药</li>
+<li>Luck Material 运之药</li>
+<li>Scape Doll 替身人偶</li>
+<li>disk 【光盘】</li>
+<li>Cell of MAG 502 玛古细胞５０２</li>
+<li>Cell of MAG 213 玛古细胞２１３</li>
+<li>Parts of RoboChao 机械查欧的部件</li>
+<li>Heart of Opa Opa 欧帕欧帕之心</li>
+<li>Heart of Pian 皮安之心</li>
+<li>Heart of Chao 查欧之心</li>
+<li>Sorcerer's Right Arm 混沌法师的右手</li>
+<li>S-beat's Arms 蓝机忍的双手</li>
+<li>P-arm's Arms 合体怪的双手</li>
+<li>Delsaber's Right Arm 剑魔的右手</li>
+<li>Bringer's Right Arm 混沌骑士的右手</li>
+<li>Delsaber's Left Arm 剑魔的左手</li>
+<li>Book of KATANA1 四天之书【壹】</li>
+<li>Book of KATANA2 四天之书【贰】</li>
+<li>Book of KATANA3 四天之书【参】</li>
+<li>S-red's Arms 红机忍的双手</li>
+<li>Dragon's Claw 龙之爪</li>
+<li>Hildebear's Head 狂暴巨猿的头</li>
+<li>Hildeblue's Head 狂暴白猿的头</li>
+<li>Parts of Baranz 机甲堡垒的零件</li>
+<li>Belra's Right Arm 巨神像的右手</li>
+<li>Bronze Weapons Badge ＷＥＡＰＯＮＳ铜制徽章</li>
+<li>Silver Weapons Badge ＷＥＡＰＯＮＳ银制徽章</li>
+<li>Gold Weapons Badge ＷＥＡＰＯＮＳ金制徽章</li>
+<li>Crystal Weapons Badge ＷＥＡＰＯＮＳ水晶徽章</li>
+<li>Steel Weapons Badge ＷＥＡＰＯＮＳ铁制徽章</li>
+<li>Aluminum Weapons Badge ＷＥＡＰＯＮＳ铝制徽章</li>
+<li>Leather Weapons Badge ＷＥＡＰＯＮＳ皮制徽章</li>
+<li>Bone Weapons Badge ＷＥＡＰＯＮＳ骨头徽章</li>
+<li>Letter of appreciation 感谢信</li>
+<li>Item Exchange Ticket 道具交换点券</li>
+<li>Valentine's Chocolate 情人节巧克力</li>
+<li>New Year's Card 贺年卡</li>
+<li>Christmas Card 圣诞节贺卡</li>
+<li>Birthday Card 生日贺卡</li>
+<li>Proof of Sonic Team 索尼克小队的证书</li>
+<li>Special Event Ticket 特殊入场券</li>
+<li>Flower Bouquet 花束</li>
+<li>Cake 蛋糕</li>
+<li>Accessories 小饰物</li>
+<li>Mr.Naka's Business Card 中社长的名片</li>
+<li>Gi Gue's body 姬蜂后的腹部</li>
+<li>Sinow Berill's Arms 森隐雷藏的双手</li>
+<li>Grass Assassin's Arms 巨螳螂的双手</li>
+<li>Booma's Right Arm 棕狂熊的右手</li>
+<li>Gobooma's Right Arm 黄狂熊的右手</li>
+<li>Gigobooma's Right Arm 红狂熊的右手</li>
+<li>Gal Gryphon's Wing 加尔狮鹫的羽毛</li>
+<li>Rappy's Wing 拉比鸟的羽毛</li>
+<li>Berill Photon 机忍光子</li>
+<li>Parasitic gene "Flow" 侵蚀遗传因子「弗罗文」</li>
+<li>Magic Stone "Iritista" 魔石「伊利提斯塔」</li>
+<li>Blue-black stone 苍黑石</li>
+<li>Syncesta 真空波石</li>
+<li>Magic Water 魔神水</li>
+<li>Parasitic cell Type D Ｄ型寄生细胞</li>
+<li>magic rock "Heart Key" 魔石「心键」</li>
+<li>magic rock "Moola" 辉石「月晖」</li>
+<li>Star Amplifier 星型增幅器</li>
+<li>Book of HITOGATA 真瑚经书</li>
+<li>Heart of Chu Chu 啾啾之心</li>
+<li>Parts of EGG BLASTER 爆蛋枪的零件</li>
+<li>Heart of Angel 天使之心</li>
+<li>Heart of Devil 魔鬼之心</li>
+<li>Kit of Hamburger 汉堡包细胞</li>
+<li>Panther's Spirit 豹尾细胞</li>
+<li>Kit of MARK3 ＭＡＲＫ３组件</li>
+<li>Kit of MASTER SYSTEM ＭＡＳＴＥＲ ＳＹＳＴＥＭ组件</li>
+<li>Kit of GENESIS ＭＥＧＡ ＤＲＩＶＥ组件</li>
+<li>Kit of SEGA SATURN ＳＥＧＡ ＳＡＴＵＲＮ组件</li>
+<li>Kit of DREAMCAST ＤＲＥＡＭＣＡＳＴ组件</li>
+<li>Amplifier of Resta 圣泉增幅器</li>
+<li>Amplifier of Anti 状态增幅器</li>
+<li>Amplifier of Shifta 强攻增幅器</li>
+<li>Amplifier of Deband 强体增幅器</li>
+<li>Amplifier of Foie 火球增幅器</li>
+<li>Amplifier of Gifoie 火墙增幅器</li>
+<li>Amplifier of Rafoie 炎狱增幅器</li>
+<li>Amplifier of Barta 冻气增幅器</li>
+<li>Amplifier of Gibarta 冰箭增幅器</li>
+<li>Amplifier of Rabarta 极冰增幅器</li>
+<li>Amplifier of Zonde 闪电增幅器</li>
+<li>Amplifier of Gizonde 群雷增幅器</li>
+<li>Amplifier of Razonde 雷爆增幅器</li>
+<li>Amplifier of Red 炎系增幅器</li>
+<li>Amplifier of Blue 冰系增幅器</li>
+<li>Amplifier of Yellow 雷系增幅器</li>
+<li>Heart of KAPU KAPU 卡普卡普之心</li>
+<li>AddSlot 扩展插槽</li>
+<li>Photon Drop 光子微晶</li>
+<li>Photon Sphere 光子结晶</li>
+<li>Photon Crystal 光子水晶</li>
+<li>Photon Hoard 光子合晶</li>
+<li>Secret Ticket 秘密点券</li>
+<li>Photon Booster 光子加速器</li>
+<li>Present 礼物</li>
+<li>Chocolate 巧克力</li>
+<li>Candy 糖果</li>
+<li>Cake 蛋糕</li>
+<li>Bronze Badge 铜制勋章</li>
+<li>Silver Badge 银制勋章</li>
+<li>Gold Badge 金制勋章</li>
+<li>Crystal Badge 水晶勋章</li>
+<li>Steel Badge 铁制勋章</li>
+<li>Aluminum Badge 铝制勋章</li>
+<li>Leather Badge 皮制勋章</li>
+<li>Bone Badge 骨头勋章</li>
+<li>Bouquet 花束</li>
+<li>Decoction 调和药</li>
+<li>Christmas Present 圣诞节礼物</li>
+<li>Easter Egg 复活节彩蛋</li>
+<li>Jack-O'-Lantern 南瓜</li>
+<li>DISK Vol.1 "Wedding March" 音乐ＣＤ「结婚进行曲」</li>
+<li>DISK Vol.2 "Day Light" 音乐ＣＤ「Day Light」</li>
+<li>DISK Vol.3 "Burning Rangers" 音乐ＣＤ「Burning ANGEL」</li>
+<li>DISK Vol.4 "Open Your Heart" 音乐ＣＤ「 Open Your Heart」</li>
+<li>DISK Vol.5 "Live & Learn" 音乐ＣＤ「Live and Learn」</li>
+<li>DISK Vol.6 "NiGHTS" 音乐ＣＤ「Dreams Dreams」</li>
+<li>DISK Vol.7 "Ending Theme (Piano ver.)" 音乐ＣＤ「Can Still See the Light」</li>
+<li>DISK Vol.8 "Heart to Heart" 音乐ＣＤ「Heart 2 Heart」</li>
+<li>DISK Vol.9 "Strange Blue" 音乐ＣＤ「Strange Blue」</li>
+<li>DISK Vol.10 "Reunion System" 音乐ＣＤ「Reunion System」</li>
+<li>DISK Vol.11 "Pinnacles" 音乐ＣＤ「Pinnacles」</li>
+<li>DISK Vol.12 "Fight inside the Spaceship" 音乐ＣＤ「宇宙船内の戦い」</li>
+<li>Hunters Report 猎人报告书</li>
+<li>Hunters Report 猎人报告书</li>
+<li>Hunters Report 猎人报告书</li>
+<li>Hunters Report 猎人报告书</li>
+<li>Hunters Report 猎人报告书</li>
+<li>Tablet 牌位</li>
+<li>Unused Item0 未使用Item01</li>
+<li>Dragon Scale 龙鳞</li>
+<li>Heaven Striker Coat 天堂冲击的涂膜</li>
+<li>Pioneer Parts 先驱者的部件</li>
+<li>Amitie's Memo 艾米提的笔记</li>
+<li>Heart of Morolian 摩洛星人的心</li>
+<li>Rappy's Beak 拉比鸟的嘴</li>
+<li>Yahoo!'s engine Ｙａｈｏｏ！细胞</li>
+<li>D-Photon Core Ｄ型因子核心</li>
+<li>Liberta Kit 浮游炮细胞</li>
+<li>Cell of MAG 0503 玛古因子第０５０３</li>
+<li>Cell of MAG 0504 玛古因子第０５０４</li>
+<li>Cell of MAG 0505 玛古因子第０５０５</li>
+<li>Cell of MAG 0506 玛古因子第０５０６</li>
+<li>Cell of MAG 0507 玛古因子第０５０７</li>
+<li>Bronze Pen 公会点数５００</li>
+<li>Silver Pen 公会点数１０００</li>
+<li>Gold Pen 公会点数５０００</li>
+<li>Platinum Pen 公会点数１００００</li>
+<li>Photon Ticket 光子奖券</li>
+<li>Cladding of Epsilon 厄普西隆的装甲</li>
+<li>De Rol Le Shell 迪-洛尔-雷的壳</li>
+<li>Saber 光剑</li>
+<li>Brand 强化光剑</li>
+<li>Buster 烙印光剑</li>
+<li>Pallasch 荣耀光剑</li>
+<li>Gladius 决斗光剑</li>
+<li>DB'S SABER ＤＢ之剑</li>
+<li>KALADBOLG 冰之剑</li>
+<li>DURANDAL 骑士之剑</li>
+<li>Sword 大剑</li>
+<li>Gigush 宽刃大剑</li>
+<li>Breaker 双刃大剑</li>
+<li>Claymore 利刃大剑</li>
+<li>Calibur 勇者大剑</li>
+<li>FLOWEN'S SWORD 弗罗文大剑</li>
+<li>LAST SURVIVOR 最后的生还者</li>
+<li>DRAGON SLAYER 斩龙剑</li>
+<li>Dagger 匕首</li>
+<li>Knife 锋利匕首</li>
+<li>Blade 突刺匕首</li>
+<li>Edge 弧光匕首</li>
+<li>Ripper 暗杀匕首</li>
+<li>BLADE DANCE 剑之舞</li>
+<li>BLOODY ART 血之艺</li>
+<li>CROSS SCAR 十字疤</li>
+<li>Partisan 长刀</li>
+<li>Halbert 护卫长刀</li>
+<li>Glaive 骑士长刀</li>
+<li>Berdys 将军长刀</li>
+<li>Gungnir 战神长刀</li>
+<li>BRIONAC 纯正长刀</li>
+<li>VJAYA 富豪长刀</li>
+<li>GAE BOLG 战斗长刀</li>
+<li>Slicer 投刃</li>
+<li>Spinner 弹射投刃</li>
+<li>Cutter 回旋投刃</li>
+<li>Sawcer 飞碟投刃</li>
+<li>Diska 彗星投刃</li>
+<li>SLICER OF ASSASSIN 暗杀者的投刃</li>
+<li>DISKA OF LIBERATOR 解放者的飞碟</li>
+<li>DISKA OF BRAVEMAN 勇者的飞碟</li>
+<li>Handgun 光枪</li>
+<li>Autogun 智能光枪</li>
+<li>Lockgun 放射光枪</li>
+<li>Railgun 磁电光枪</li>
+<li>Raygun 原子光枪</li>
+<li>VARISTA 麻醉枪</li>
+<li>CUSTOM RAY ver.OO 军用光枪 ver.00</li>
+<li>BRAVACE 军用电击枪</li>
+<li>Mechgun 机枪</li>
+<li>Assault 扫射机枪</li>
+<li>Repeater 高射机枪</li>
+<li>Gatling 格林机枪</li>
+<li>Vulcan 音速机枪</li>
+<li>M&A60 VISE Ｍ＆Ａ６０ 老虎钳</li>
+<li>H&S25 JUSTICE Ｈ＆Ｓ２５ 正义制裁</li>
+<li>L&K14 COMBAT Ｌ＆Ｋ１４ 战场之狼</li>
+<li>Shot 散弹枪</li>
+<li>Spread 重型散弹枪</li>
+<li>Cannon 加农散弹枪</li>
+<li>Launcher 强袭散弹枪</li>
+<li>Arms 军用散弹枪</li>
+<li>CRUSH BULLET 碎弹枪</li>
+<li>METEOR SMASH 陨石枪</li>
+<li>FINAL IMPACT 最后的冲击</li>
+<li>Rifle 步枪</li>
+<li>Sniper 突击步枪</li>
+<li>Blaster 狙击步枪</li>
+<li>Beam 激光步枪</li>
+<li>Laser 脉冲步枪</li>
+<li>VISK-235W 威斯克－２３５Ｗ</li>
+<li>WALS-MK2 瓦尔斯－ＭＫ２</li>
+<li>JUSTY-23ST 伽斯帝－２３ＳＴ</li>
+<li>Cane 手杖</li>
+<li>Stick 球杖</li>
+<li>Mace 法杖</li>
+<li>Club 权杖</li>
+<li>CLUB OF LACONIUM 拉克尼姆金属杖</li>
+<li>MACE OF ADAMAN 金刚石杖</li>
+<li>CLUB OF ZUMIURAN 业障石杖</li>
+<li>Rod 长杖</li>
+<li>Pole 法师长杖</li>
+<li>Pillar 祭司长杖</li>
+<li>Striker 贤者长杖</li>
+<li>BATTLE VERGE 战斗杖</li>
+<li>BRAVE HAMMER 勇者之锤</li>
+<li>ALIVE AQHU 生命壶</li>
+<li>Wand 魔杖</li>
+<li>Staff 魔导杖</li>
+<li>Baton 魔击杖</li>
+<li>Scepter 魔息杖</li>
+<li>FIRE SCEPTER:AGNI 炎杖「阿耆尼」</li>
+<li>ICE STAFF:DAGON 冰杖「达贡」</li>
+<li>STORM WAND:INDRA 雷杖「因陀罗」</li>
+<li>PHOTON CLAW 光子爪</li>
+<li>SILENCE CLAW 沉默爪</li>
+<li>NEI'S CLAW 妮之爪</li>
+<li>DOUBLE SABER 双头剑</li>
+<li>STAG CUTLERY 雄风之剑</li>
+<li>TWIN BRAND 双烙印</li>
+<li>BRAVE KNUCKLE 勇者之拳</li>
+<li>ANGRY FIST 愤怒之拳</li>
+<li>GOD HAND 上帝之手</li>
+<li>SONIC KNUCKLE 索尼克拳套</li>
+<li>OROTIAGITO 大蛇腭</li>
+<li>AGITO 腭刀「１９７５」</li>
+<li>AGITO 腭刀「１９８３」</li>
+<li>AGITO 腭刀「２００１」</li>
+<li>AGITO 腭刀「１９９１」</li>
+<li>AGITO 腭刀「１９７７」</li>
+<li>AGITO 腭刀「１９８０」</li>
+<li>SANGE 散华</li>
+<li>YASHA 夜叉</li>
+<li>KAMUI 神威</li>
+<li>SOUL EATER 噬魂者</li>
+<li>SOUL BANISH 诫魂者</li>
+<li>SPREAD NEEDLE 魔弹弓</li>
+<li>HOLY RAY 圣光枪</li>
+<li>INFERNO BAZOOKA 地狱火箭炮</li>
+<li>FLAME VISIT 火焰喷射器</li>
+<li>AKIKO'S FRYING PAN 秋子婶婶的平底锅</li>
+<li>SORCERER'S CANE 混沌法师之杖</li>
+<li>S-BEAT'S BLADE 蓝忍双刃</li>
+<li>P-ARMS'S BLADE 合体怪双刃</li>
+<li>DELSABER'S BUSTER 剑魔之剑</li>
+<li>BRINGER'S RIFLE 混沌骑士枪</li>
+<li>EGG BLASTER 爆蛋枪</li>
+<li>VICTOR AXE 胜利者之斧</li>
+<li>CHAIN SWORD 电锯</li>
+<li>CADUCEUS 羽毛杖</li>
+<li>STING TIP 蜂尾杖</li>
+<li>MAGICAL PIECE 心心杖</li>
+<li>TECHNICAL CROZIER 异能魔杖</li>
+<li>PSYCHO WAND 圣杖「意念」</li>
+<li>HEAVEN PUNISHER 圣枪「天罚」</li>
+<li>LAVIS CANNON 圣剑「拉维斯·迦农」</li>
+<li>LAVIS BLADE 圣剑「双刃·拉维斯」</li>
+<li>DOUBLE CANNON 圣剑「双切·迦农」</li>
+<li>SUPPRESSED GUN 消音枪</li>
+<li>ANCIENT SABER 古代剑</li>
+<li>HARISEN BATTLE FAN 纸扇</li>
+<li>YAMIGARASU 妖刀-暗鸦</li>
+<li>AKIKO'S WOK 秋子婶婶的中华锅</li>
+<li>TOY HAMMER 玩具锤</li>
+<li>ELYSION 魔法剑</li>
+<li>RED SABER 红色光剑</li>
+<li>METEOR CUDGEL 流星棍</li>
+<li>MONKEY KING BAR 如意金箍棒</li>
+<li>HUGE BATTLE FAN 艺之道</li>
+<li>TSUMIKIRI J-SWORD 罪切</li>
+<li>SEALED J-SWORD 封印野太刀</li>
+<li>RED SWORD 红色大剑</li>
+<li>CRAZY TUNE 疯狂旋律</li>
+<li>TWIN CHAKRAM 回旋双光轮</li>
+<li>WOK OF AKIKO'S SHOP 秋子饭店的中华锅</li>
+<li>RED DAGGER 红色双刃</li>
+<li>MADAM'S PARASOL 女士阳伞</li>
+<li>MADAM'S UMBRELLA 女士雨伞</li>
+<li>IMPERIAL PICK 皇家之戟</li>
+<li>BERDYSH 破坏者之斧</li>
+<li>RED PARTISAN 红色长刀</li>
+<li>FLIGHT CUTTER 手里剑</li>
+<li>FLIGHT FAN 扇舞</li>
+<li>RED SLICER 红色投刃</li>
+<li>HANDGUN:GULD 小枪「伽尔德」</li>
+<li>HANDGUN:MILLA 小枪「米拉」</li>
+<li>RED HANDGUN 红色手枪</li>
+<li>FROZEN SHOOTER 极冻枪</li>
+<li>ANTI ANDROID RIFLE 对机器人专用来复枪</li>
+<li>ROCKET PUNCH 火箭铁拳</li>
+<li>SAMBA MARACAS 桑巴沙锤</li>
+<li>TWIN PSYCHOGUN 意念双枪</li>
+<li>DRILL LAUNCHER 钻头火箭炮</li>
+<li>GULD MILLA 伽尔德-米拉</li>
+<li>RED MECHGUN 红色机枪</li>
+<li>BELRA CANNON 巨神像加农炮</li>
+<li>PANZER FAUST 导向穿甲弹</li>
+<li>SUMMIT MOON 辉月之杖</li>
+<li>WINDMILL 风车杖</li>
+<li>EVIL CURST 恶魔之眼</li>
+<li>FLOWER CANE 花杖</li>
+<li>HILDEBEAR'S CANE 狂暴巨猿头杖</li>
+<li>HILDEBLUE'S CANE</li>
+<li>RABBIT WAND 兔子杖</li>
+<li>PLANTAIN LEAF 大叶子</li>
+<li>DEMONIC FORK 恶魔之叉</li>
+<li>STRIKER OF CHAO 查欧杖</li>
+<li>BROOM 扫帚</li>
+<li>PROPHETS OF MOTAV 魔法预言书</li>
+<li>THE SIGH OF GOD 神之吐息</li>
+<li>TWINKLE STAR 星星杖</li>
+<li>PLANTAIN FAN 魔蕉扇</li>
+<li>TWIN BLAZE 火流星</li>
+<li>MARINA'S BAG 玛丽娜的急救包</li>
+<li>DRAGON'S CLAW 龙之爪</li>
+<li>PANTHER'S CLAW 豹爪</li>
+<li>S-RED'S BLADE 红忍双刃</li>
+<li>PLANTAIN HUGE FAN 芭蕉扇</li>
+<li>CHAMELEON SCYTHE 变色龙之杖</li>
+<li>YASMINKOV 3000R 雅斯米诺科夫３０００Ｒ</li>
+<li>ANO RIFLE 阿诺来复枪</li>
+<li>BARANZ LAUNCHER 机甲堡垒导弹枪</li>
+<li>BRANCH OF PAKUPAKU 夹夹杖</li>
+<li>HEART OF POUMN 幻爪「波姆之心」</li>
+<li>YASMINKOV 2000H 雅斯米诺科夫２０００Ｈ</li>
+<li>YASMINKOV 7000V 雅斯米诺科夫７０００Ｖ</li>
+<li>YASMINKOV 9000M 雅斯米诺科夫９０００Ｍ</li>
+<li>MASER BEAM 雷光炮</li>
+<li>GAME MAGAZNE ＦＡＭＩ通</li>
+<li>FLOWER BOUQUET 花束</li>
+<li>SABER 光剑</li>
+<li>SWORD 大剑</li>
+<li>BLADE 匕首</li>
+<li>PARTISAN 长刀</li>
+<li>SLICER 投刃</li>
+<li>GUN 手枪</li>
+<li>RIFLE 步枪</li>
+<li>MECHGUN 机枪</li>
+<li>SHOT 散弹枪</li>
+<li>CANE 手杖</li>
+<li>ROD 长杖</li>
+<li>WAND 魔杖</li>
+<li>TWIN 双头剑</li>
+<li>CLAW 光子爪</li>
+<li>BAZOOKA 火箭炮</li>
+<li>NEEDLE 弹弓</li>
+<li>SCYTHE 镰刀</li>
+<li>HAMMER 锤子</li>
+<li>MOON 辉月杖</li>
+<li>PSYCHOGUN 意念双枪</li>
+<li>PUNCH 拳套</li>
+<li>WINDMILL 风车杖</li>
+<li>HARISEN 纸扇</li>
+<li>KATANA 日本刀</li>
+<li>J-CUTTER 手里剑</li>
+<li>SPECIAL WEAPON 特殊武器</li>
+<li>MUSASHI 武藏</li>
+<li>YAMATO 大和</li>
+<li>ASUKA 飞鸟</li>
+<li>SANGE 散华</li>
+<li>YASHA 夜叉</li>
+<li>PHOTON LAUNCHER 光子发射器</li>
+<li>GUILTY LIGHT 罪恶之光</li>
+<li>RED SCORPIO 红蝎子</li>
+<li>TALIS 咒卡</li>
+<li>MAHU 咒符</li>
+<li>HITOGATA 式神</li>
+<li>NUG2000-BAZOOKA Ｎｕｇ２０００火箭炮</li>
+<li>S-BERILL'S HANDS #0 森隐雷藏拳套０型</li>
+<li>FLOWEN'S SWORD 弗罗文大剑「３０６０」</li>
+<li>FLOWEN'S SWORD 弗罗文大剑「３０６４」</li>
+<li>FLOWEN'S SWORD 弗罗文大剑「３０６７」</li>
+<li>FLOWEN'S SWORD 弗罗文大剑「３０７３」</li>
+<li>FLOWEN'S SWORD 弗罗文大剑「３０７７」</li>
+<li>FLOWEN'S SWORD 弗罗文大剑「３０８２」</li>
+<li>FLOWEN'S SWORD 弗罗文大剑「３０８３」</li>
+<li>FLOWEN'S SWORD 弗罗文大剑「３０８４」</li>
+<li>FLOWEN'S SWORD 弗罗文大剑「３０７９」</li>
+<li>DB'S SABER ＤＢ之剑「３０６２」</li>
+<li>DB'S SABER ＤＢ之剑「３０６７」</li>
+<li>DB'S SABER ＤＢ之剑「３０６９」</li>
+<li>DB'S SABER ＤＢ之剑「３０６４」</li>
+<li>DB'S SABER ＤＢ之剑「３０６９」</li>
+<li>DB'S SABER ＤＢ之剑「３０７３」</li>
+<li>DB'S SABER ＤＢ之剑「３０７０」</li>
+<li>DB'S SABER ＤＢ之剑「３０７５」</li>
+<li>DB'S SABER ＤＢ之剑「３０７７」</li>
+<li>GI GUE BAZOOKA 姬蜂后火箭炮</li>
+<li>GUARDIANNA 守护之扇</li>
+<li>VIRIDIA CARD 铬绿卡片</li>
+<li>GREENILL CARD 翠绿卡片</li>
+<li>SKYLY CARD 天青卡片</li>
+<li>BLUEFULL CARD 纯蓝卡片</li>
+<li>PURPLENUM CARD 淡紫卡片</li>
+<li>PINKAL CARD 粉红卡片</li>
+<li>REDRIA CARD 真红卡片</li>
+<li>ORAN CARD 橙黄卡片</li>
+<li>YELLOWBOZE CARD 金黄卡片</li>
+<li>WHITILL CARD 羽白卡片</li>
+<li>BLACK KING BAR 苍黑如意棒</li>
+<li>FATSIA 巨芋叶</li>
+<li>SANGE & YASHA 散华夜叉</li>
+<li>KAMUI 神威</li>
+<li>DANCING HITOGATA 式神「瑚式」</li>
+<li>S-BERILL'S HANDS #1 森隐雷藏拳套１型</li>
+<li>MORNING GLORY 晨曦之荣光</li>
+<li>PARTISAN of LIGHTNING 迅雷</li>
+<li>GAL WIND 加尔之风</li>
+<li>ZANBA 斩马刀</li>
+<li>RIKA'S CLAW 里卡之爪</li>
+<li>ANGEL HARP 天使之琴</li>
+<li>DEMOLITION COMET 破坏彗星</li>
+<li>NEI'S CLAW 真-妮之爪</li>
+<li>RAINBOW BATON 彩虹旋刃</li>
+<li>DARK FLOW 暗黑弗罗文大剑</li>
+<li>DARK METEOR 暗黑陨石</li>
+<li>DARK BRIDGE 暗黑使者杖</li>
+<li>G-ASSASSIN'S SABERS 巨螳螂双刀</li>
+<li>RAPPY'S FAN 拉比羽扇</li>
+<li>BOOMA'S CLAW 棕狂熊之爪</li>
+<li>GOBOOMA'S CLAW 黄狂熊之爪</li>
+<li>GIGOBOOMA'S CLAW 红狂熊之爪</li>
+<li>RUBY BULLET 宝石枪</li>
+<li>AMORE ROSE 玫瑰之恋</li>
+<li>POWER MASER 强化雷光炮</li>
+<li>BURNING VISIT 强化火焰喷射器</li>
+<li>SNOW QUEEN 冰雪女皇</li>
+<li>IRON FAUST 强化导向穿甲弹</li>
+<li>SWORDS 双刀</li>
+<li>LAUNCHER 发射器</li>
+<li>CARDS 卡片</li>
+<li>KNUCKLE 拳套</li>
+<li>AXE 斧头</li>
+<li>SLICER OF FANATIC 狂信者的投刃</li>
+<li>LAME D'ARGENT 银月之剑</li>
+<li>EXCALIBUR 王者之剑</li>
+<li>RAGE DE FEU 妖精之怒</li>
+<li>DAISY CHAIN 雏菊之剑</li>
+<li>OPHELIE SEIZE 神罚</li>
+<li>MILLE MARTEAUX 天国呼啸</li>
+<li>LE COGNEUR 雷奥尼亚</li>
+<li>COMMANDER BLADE 统帅指挥刀</li>
+<li>VIVIENNE 维维安双刃</li>
+<li>KUSANAGI 草薙</li>
+<li>SACRED DUSTER 神圣粉碎者</li>
+<li>GUREN 红莲</li>
+<li>SHOUREN 青莲</li>
+<li>JIZAI 自在</li>
+<li>FLAMBERGE 波纹剑</li>
+<li>YUNCHANG 云长</li>
+<li>SNAKE SPIRE 蛇矛</li>
+<li>FLAPJACK FLAPPER 红粉少女</li>
+<li>GETSUGASAN 月牙铲</li>
+<li>MAGUWA 神冰铁</li>
+<li>HEAVEN STRIKER 天堂冲击</li>
+<li>CANNON ROUGE 赤红加农</li>
+<li>METEOR ROUGE 赤红陨石</li>
+<li>SOLFERINO 烈阳光子杖</li>
+<li>CLIO 史神克莱奥之杖</li>
+<li>SIREN GLASS HAMMER 绿宝石之杖</li>
+<li>GLIDE DIVINE 逝神</li>
+<li>SHICHISHITO 七支刀</li>
+<li>MURASAME 村雨</li>
+<li>DAYLIGHT SCAR 晓之刻印</li>
+<li>DECALOG 十戒石板</li>
+<li>5TH ANNIV. BLADE ＰＳＯ五周年纪念感恩刀</li>
+<li>PRINCIPAL'S GIFT PARASOL 总督赠送的遮阳伞</li>
+<li>AKIKO'S CLEAVER 秋子婶婶的菜刀</li>
+<li>TANEGASHIMA 种子岛</li>
+<li>TREE CLIPPERS 园艺修剪器</li>
+<li>NICE SHOT 高尔夫球棍</li>
+<li>Unused Weapon38 未使用Weapon38</li>
+<li>Unused Weapon39 未使用Weapon39</li>
+<li>ANO BAZOOKA 阿诺火箭炮</li>
+<li>SYNTHESIZER 冷酷音符</li>
+<li>BAMBOO SPEAR 竹枪</li>
+<li>KAN'EI TSUHO 宽永通宝</li>
+<li>JITTE 十手</li>
+<li>BUTTERFLY NET 捕虫网</li>
+<li>SYRINGE 注射器</li>
+<li>BATTLEDORE 羽子板</li>
+<li>RACKET 球拍</li>
+<li>HAMMER 金槌</li>
+<li>GREAT BOUQUET 华丽花束</li>
+<li>MERCURIUS ROD 神使之杖</li>
+<li>RAMBLING MAY 漫步少女</li>
+<li>GALATINE 太阳之剑</li>
+<li>ZERO DIVIDE 零度切刃</li>
+<li>MASTER RAVEN 乌鸦</li>
+<li>LAST SWAN 白鸟</li>
+<li>DUAL BIRD 双鸟</li>
+<li>ASTERON BELT 十文字枪</li>
+<li>PHOENIX CLAW 灼炎凤牙</li>
+<li>GIRASOLE 向日葵</li>
+<li>RIANOV 303SNR 莱阿诺夫３０３ＳＮＲ</li>
+<li>RIANOV 303SNR-1 莱阿诺夫３０３ＳＮＲ－１</li>
+<li>RIANOV 303SNR-2 莱阿诺夫３０３ＳＮＲ－２</li>
+<li>RIANOV 303SNR-3 莱阿诺夫３０３ＳＮＲ－３</li>
+<li>RIANOV 303SNR-4 莱阿诺夫３０３ＳＮＲ－４</li>
+<li>RIANOV 303SNR-5 莱阿诺夫３０３ＳＮＲ－５</li>
+<li>L&K38 COMBAT Ｌ＆Ｋ３８ 战场之狼</li>
+<li>PHONON MASER 光子微波激射器</li>
+<li>LACONIUM AXE 拉克尼姆战斧</li>
+<li>EARTH WAND BROWNIE 土杖「布拉乌尼」</li>
+<li>IZMAELA 依兹玛艾拉</li>
+<li>KUNAI 飞镖</li>
+<li>TENSION BLASTER 压力波动枪</li>
+<li>LOLLIPOP 棒棒糖</li>
+<li>RAIKIRI 雷切</li>
+<li>STAR'S WEEP ELEGY 星哭挽歌</li>
+<li>LOGiN ＬＯＧｉＮ</li>
+<li>TWO KAMUI 二连神威</li>
+<li>VALKYRIE 瓦尔基里</li>
+<li>TypeSA/SABER 白-光剑/光剑</li>
+<li>TypeN-SL/SABER 白-投刃/光剑</li>
+<li>TypeN-SL/SLICER 白-投刃/投刃</li>
+<li>TypeN-SL/CLAW 白-投刃/光子爪</li>
+<li>TypeN-SL/J-SWORD 白-投刃/日本刀</li>
+<li>TypeJS/SABER 白-日本刀/光剑</li>
+<li>TypeJS/SLICER 白-日本刀/投刃</li>
+<li>TypeJS/J-SWORD 白-日本刀/日本刀</li>
+<li>TypeSW/SWORD 白-大剑/大剑</li>
+<li>TypeSW/SLICER 白-大剑/投刃</li>
+<li>TypeSW/J-SWORD 白-大剑/日本刀</li>
+<li>TypeRO/SWORD 白-长杖/大剑</li>
+<li>TypeRO/HALBERT 白-长杖/长刀</li>
+<li>TypeRO/ROD 白-长杖/长杖</li>
+<li>TypeBL/BLADE 白-匕首/匕首</li>
+<li>TypeKN/BLADE 白-拳套/匕首</li>
+<li>TypeKN/CLAW 白-拳套/光子爪</li>
+<li>TypeHA/HALBERT 白-锤子/长刀</li>
+<li>TypeHA/ROD 白-锤子/长杖</li>
+<li>TypeDS/D.SABER 白-双头剑/双头剑</li>
+<li>TypeDS/ROD 白-双头剑/长杖</li>
+<li>TypeDS/WAND 白- 双头剑/魔杖</li>
+<li>TypeCL/CLAW 白- 光子爪/光子爪</li>
+<li>TypeSS/SWORDS 白-双刀/双刀</li>
+<li>TypeGU/HANDGUN 白-光枪/光枪</li>
+<li>TypeGU/MECHGUN 白-光枪/机枪</li>
+<li>TypeRI/RIFLE 白-步枪/步枪</li>
+<li>TypeME/MECHGUN 白-机枪/机枪</li>
+<li>TypeSH/SHOT 白-散弹枪/散弹枪</li>
+<li>TypeWA/WAND 白-魔杖/魔杖</li>
+<li>Draw 吸血</li>
+<li>Drain 饮血</li>
+<li>Fill 噬血</li>
+<li>Gush 嗜血</li>
+<li>Heart 心之</li>
+<li>Mind 智之</li>
+<li>Soul 魂之</li>
+<li>Geist 魄之</li>
+<li>Master's 将之</li>
+<li>Lord's 相之</li>
+<li>King's 王之</li>
+<li>Charge 销金</li>
+<li>Spirit 销魂</li>
+<li>Berserk 销血</li>
+<li>Ice 冰晶</li>
+<li>Frost 冰霜</li>
+<li>Freeze 冰冻</li>
+<li>Blizzard 冰暴</li>
+<li>Bind 小麻痹</li>
+<li>Hold 中麻痹</li>
+<li>Seize 强麻痹</li>
+<li>Arrest 全麻痹</li>
+<li>Heat 高热</li>
+<li>Fire 火热</li>
+<li>Flame 灼热</li>
+<li>Burning 炽热</li>
+<li>Shock 雷鸣</li>
+<li>Thunder 雷击</li>
+<li>Storm 雷暴</li>
+<li>Tempest 雷霆</li>
+<li>Dim 暗淡</li>
+<li>Shadow 暗影</li>
+<li>Dark 暗黑</li>
+<li>Hell 地狱</li>
+<li>Panic 混乱</li>
+<li>Riot 暴动</li>
+<li>Havoc 浩劫</li>
+<li>Chaos 混沌</li>
+<li>Devil's 魔鬼</li>
+<li>Demon's 恶魔</li>
+<li>???? ？？？？</li>
+<li>Frame 铠甲</li>
+<li>Armor 装甲</li>
+<li>Psy Armor 经济装甲</li>
+<li>Giga Frame 轻便铠甲</li>
+<li>Soul Frame 魂之铠甲</li>
+<li>Cross Armor 十字装甲</li>
+<li>Solid Frame 坚固铠甲</li>
+<li>Brave Armor 勇者装甲</li>
+<li>Hyper Frame 高级铠甲</li>
+<li>Grand Armor 豪华装甲</li>
+<li>Shock Frame 富丽铠甲</li>
+<li>King's Frame 皇家铠甲</li>
+<li>Dragon Frame 龙之铠甲</li>
+<li>Absorb Armor 负重装甲</li>
+<li>Protect Frame 护心铠甲</li>
+<li>General Armor 将军装甲</li>
+<li>Perfect Frame 完美铠甲</li>
+<li>Valiant Frame 英勇铠甲</li>
+<li>Imperial Armor 王者装甲</li>
+<li>Holiness Armor 神圣装甲</li>
+<li>Guardian Armor 守护装甲</li>
+<li>Divinity Armor 圣灵装甲</li>
+<li>Ultimate Frame 终极铠甲</li>
+<li>Celestial Armor 天国装甲</li>
+<li>HUNTER FIELD 战士服</li>
+<li>RANGER FIELD 枪手服</li>
+<li>FORCE FIELD 魔导服</li>
+<li>REVIVAL GARMENT 回生衣</li>
+<li>SPIRIT GARMENT 安神衣</li>
+<li>STINK FRAME 腥臭铠</li>
+<li>D-PARTS ver1.01 Ｄ组件 ver1.01</li>
+<li>D-PARTS ver2.10 Ｄ组件 ver2.10</li>
+<li>PARASITE WEAR:De Rol 寄生防具「迪-洛尔」</li>
+<li>PARASITE WEAR:Nelgal 寄生防具「内加尔」</li>
+<li>PARASITE WEAR:Vajulla 寄生防具「瓦究拉」</li>
+<li>SENSE PLATE 灵感铠</li>
+<li>GRAVITON PLATE 重力铠</li>
+<li>ATTRIBUTE PLATE 六芒星铠</li>
+<li>FLOWEN'S FRAME 弗罗文之铠</li>
+<li>CUSTOM FRAME ver.OO 军用铠 ver.00</li>
+<li>DB'S ARMOR ＤＢ之铠</li>
+<li>GUARD WAVE 波动护甲</li>
+<li>DF FIELD ＤＦ领域</li>
+<li>LUMINOUS FIELD 冰光服</li>
+<li>CHU CHU FEVER 啾啾发烧友</li>
+<li>LOVE HEART 心心铠</li>
+<li>FLAME GARMENT 火光铠</li>
+<li>VIRUS ARMOR:Lafuteria 细菌防具「拉夫特利亚」</li>
+<li>BRIGHTNESS CIRCLE 圣光环</li>
+<li>AURA FIELD 奥拉领域</li>
+<li>ELECTRO FRAME 电子铠</li>
+<li>SACRED CLOTH 圣衣</li>
+<li>SMOKING PLATE 烟幕铠</li>
+<li>STAR CUIRASS 星之护甲</li>
+<li>BLACK HOUND CUIRASS 黑色猎犬胸甲</li>
+<li>MORNING PRAYER 黎明祈求</li>
+<li>BLACK ODOSHI DOMARU 魔鬼战衣</li>
+<li>RED ODOSHI DOMARU 将军战衣</li>
+<li>BLACK ODOSHI RED NIMAIDOU 天神战衣</li>
+<li>BLUE ODOSHI VIOLET NIMAIDOU 天堂战衣</li>
+<li>DIRTY LIFEJACKET 污浊的救生衣</li>
+<li>KROE'S SWEATER 克罗艾的毛衣</li>
+<li>WEDDING DRESS 婚纱礼服</li>
+<li>SONICTEAM ARMOR 索尼克小队的制服</li>
+<li>RED COAT 红色外套</li>
+<li>THIRTEEN 暗杀者的迷彩服</li>
+<li>MOTHER GARB 母亲的外套</li>
+<li>MOTHER GARB+ 母亲的外套＋</li>
+<li>DRESS PLATE 女装金属铠</li>
+<li>SWEETHEART 甜心铠</li>
+<li>IGNITION CLOAK 灼热披风</li>
+<li>CONGEAL CLOAK 冰暴披风</li>
+<li>TEMPEST CLOAK 感电披风</li>
+<li>CURSED CLOAK 咒之披风</li>
+<li>SELECT CLOAK 圣洁披风</li>
+<li>SPIRIT CUIRASS 安神护甲</li>
+<li>REVIVAL CUIRASS 回生护甲</li>
+<li>ALLIANCE UNIFORM 亲卫队军服</li>
+<li>OFFICER UNIFORM 亲卫队军官军服</li>
+<li>COMMANDER UNIFORM 亲卫队指挥官军服</li>
+<li>CRIMSON COAT 真红外套</li>
+<li>INFANTRY GEAR 空间机动军官军服</li>
+<li>LIEUTENANT GEAR 空间机动中尉军服</li>
+<li>INFANTRY MANTLE 空间机动歩兵外套</li>
+<li>LIEUTENANT MANTLE 空间机动中尉外套</li>
+<li>UNION FIELD 公会铠</li>
+<li>SAMURAI ARMOR 浅黄丝威褄取铠</li>
+<li>STEALTH SUIT 隐身铠</li>
+<li>Barrier 盾</li>
+<li>Shield 机械盾</li>
+<li>Core Shield 核机械盾</li>
+<li>Giga Shield 轻便机械盾</li>
+<li>Soul Barrier 魂之盾</li>
+<li>Hard Shield 硬机械盾</li>
+<li>Brave Barrier 勇者盾</li>
+<li>Solid Shield 坚固机械盾</li>
+<li>Flame Barrier 火焰盾</li>
+<li>Plasma Barrier 雷电盾</li>
+<li>Freeze Barrier 寒冰盾</li>
+<li>Psychic Barrier 经济盾</li>
+<li>General Shield 将军机械盾</li>
+<li>Protect Barrier 护心盾</li>
+<li>Glorious Shield 光荣机械盾</li>
+<li>Imperial Barrier 王者盾</li>
+<li>Guardian Shield 守护机械盾</li>
+<li>Divinity Barrier 圣灵盾</li>
+<li>Ultimate Shield 终极机械盾</li>
+<li>Spiritual Shield 灵魂机械盾</li>
+<li>Celestial Shield 天国机械盾</li>
+<li>INVISIBLE GUARD 透明盾</li>
+<li>SACRED GUARD 圣光盾</li>
+<li>S-PARTS ver1.16 Ｓ组件 ver1.16</li>
+<li>S-PARTS ver2.01 Ｓ组件 ver2.01</li>
+<li>LIGHT RELIEF 浮光盾</li>
+<li>SHIELD OF DELSABER 剑魔之盾</li>
+<li>FORCE WALL 魔导盾</li>
+<li>RANGER WALL 枪手盾</li>
+<li>HUNTER WALL 战士盾</li>
+<li>ATTRIBUTE WALL 六芒星盾</li>
+<li>SECRET GEAR 机密盾</li>
+<li>COMBAT GEAR 格斗盾</li>
+<li>PROTO REGENE GEAR 试作型再生机能盾</li>
+<li>REGENERATE GEAR 再生机能盾</li>
+<li>REGENE GEAR ADV. 改进型再生机能盾</li>
+<li>FLOWEN'S SHIELD 弗罗文之盾</li>
+<li>CUSTOM BARRIER ver.OO 军用盾 ver.00</li>
+<li>DB'S SHIELD ＤＢ之盾</li>
+<li>RED RING 红色手镯</li>
+<li>TRIPOLIC SHIELD 硅钢盾</li>
+<li>STANDSTILL SHIELD 叹息之墙</li>
+<li>SAFETY HEART 心心盾</li>
+<li>KASAMI BRACER 忍者手甲</li>
+<li>GODS SHIELD SUZAKU 四神盾「朱雀」</li>
+<li>GODS SHIELD GENBU 四神盾「玄武」</li>
+<li>GODS SHIELD BYAKKO 四神盾「白虎」</li>
+<li>GODS SHIELD SEIRYU 四神盾「青龙」</li>
+<li>HUNTER'S SHELL 猎人之壳</li>
+<li>RICO'S GLASSES 莉可的眼镜</li>
+<li>RICO'S EARRING 莉可的耳环</li>
+<li>BLUE RING 蓝色手镯</li>
+<li>YELLOW RING 黄色手镯</li>
+<li>SECURE FEET 千里足</li>
+<li>PURPLE RING 紫色手镯</li>
+<li>GREEN RING 绿色手镯</li>
+<li>BLACK RING 黑色手镯</li>
+<li>WHITE RING 白色手镯</li>
+<li>RESTA MERGE 圣泉增幅盾</li>
+<li>ANTI MERGE 状态增幅盾</li>
+<li>SHIFTA MERGE 强攻增幅盾</li>
+<li>DEBAND MERGE 强体增幅盾</li>
+<li>FOIE MERGE 火球增幅盾</li>
+<li>GIFOIE MERGE 火墙增幅盾</li>
+<li>RAFOIE MERGE 炎狱增幅盾</li>
+<li>RED MERGE 炎系增幅盾</li>
+<li>BARTA MERGE 冻气增幅盾</li>
+<li>GIBARTA MERGE 冰箭增幅盾</li>
+<li>RABARTA MERGE 极冰增幅盾</li>
+<li>BLUE MERGE 冰系增幅盾</li>
+<li>ZONDE MERGE 闪电增幅盾</li>
+<li>GIZONDE MERGE 群雷增幅盾</li>
+<li>RAZONDE MERGE 雷爆增幅盾</li>
+<li>YELLOW MERGE 雷系增幅盾</li>
+<li>RECOVERY BARRIER 回复系强化盾</li>
+<li>ASSIST BARRIER 辅助系强化盾</li>
+<li>RED BARRIER 炎系强化盾</li>
+<li>BLUE BARRIER 冰系强化盾</li>
+<li>YELLOW BARRIER 雷系强化盾</li>
+<li>WEAPONS GOLD SHIELD ＷＥＡＰＯＮＳ金盾</li>
+<li>BLACK GEAR 黑色机能盾</li>
+<li>WORKS GUARD ＷＯＲＫＳ盾</li>
+<li>RAGOL RING 拉古奥尔手镯</li>
+<li>BLUE RING 蓝色手镯</li>
+<li>BLUE RING 蓝色手镯</li>
+<li>BLUE RING 蓝色手镯</li>
+<li>BLUE RING 蓝色手镯</li>
+<li>BLUE RING 蓝色手镯</li>
+<li>BLUE RING 蓝色手镯</li>
+<li>BLUE RING 蓝色手镯</li>
+<li>BLUE RING 蓝色手镯</li>
+<li>GREEN RING 绿色手镯</li>
+<li>GREEN RING 绿色手镯</li>
+<li>GREEN RING 绿色手镯</li>
+<li>GREEN RING 绿色手镯</li>
+<li>GREEN RING 绿色手镯</li>
+<li>GREEN RING 绿色手镯</li>
+<li>GREEN RING 绿色手镯</li>
+<li>GREEN RING 绿色手镯</li>
+<li>YELLOW RING 黄色手镯</li>
+<li>YELLOW RING 黄色手镯</li>
+<li>YELLOW RING 黄色手镯</li>
+<li>YELLOW RING 黄色手镯</li>
+<li>YELLOW RING 黄色手镯</li>
+<li>YELLOW RING 黄色手镯</li>
+<li>YELLOW RING 黄色手镯</li>
+<li>YELLOW RING 黄色手镯</li>
+<li>PURPLE RING 紫色手镯</li>
+<li>PURPLE RING 紫色手镯</li>
+<li>PURPLE RING 紫色手镯</li>
+<li>PURPLE RING 紫色手镯</li>
+<li>PURPLE RING 紫色手镯</li>
+<li>PURPLE RING 紫色手镯</li>
+<li>PURPLE RING 紫色手镯</li>
+<li>PURPLE RING 紫色手镯</li>
+<li>WHITE RING 御魔手镯</li>
+<li>WHITE RING 白色手镯</li>
+<li>WHITE RING 白色手镯</li>
+<li>WHITE RING 白色手镯</li>
+<li>WHITE RING 白色手镯</li>
+<li>WHITE RING 白色手镯</li>
+<li>WHITE RING 白色手镯</li>
+<li>WHITE RING 白色手镯</li>
+<li>BLACK RING 御圣手镯</li>
+<li>BLACK RING 黑色手镯</li>
+<li>BLACK RING 黑色手镯</li>
+<li>BLACK RING 黑色手镯</li>
+<li>BLACK RING 黑色手镯</li>
+<li>BLACK RING 黑色手镯</li>
+<li>BLACK RING 黑色手镯</li>
+<li>BLACK RING 黑色手镯</li>
+<li>WEAPONS SILVER SHIELD ＷＥＡＰＯＮＳ银盾</li>
+<li>WEAPONS COPPER SHIELD ＷＥＡＰＯＮＳ铜盾</li>
+<li>GRATIA 优雅盾</li>
+<li>TRIPOLIC REFLECTOR 硅钢反射盾</li>
+<li>STRIKER PLUS 冲击强化盾</li>
+<li>REGENERATE GEAR B.P. 再生机能盾Ｂ．Ｐ</li>
+<li>RUPIKA 露芘卡</li>
+<li>YATA MIRROR 八咫镜</li>
+<li>BUNNY EARS 兔耳发饰</li>
+<li>CAT EARS 猫耳发饰</li>
+<li>THREE SEALS 封印之盾</li>
+<li>GOD'S SHIELD "KOURYU" 四神盾「黄龙」</li>
+<li>DF SHIELD ＤＦ之盾</li>
+<li>FROM THE DEPTHS 深渊来客</li>
+<li>DE ROL LE SHIELD 迪-洛尔-雷之盾</li>
+<li>HONEYCOMB REFLECTOR 蜂窝反射盾</li>
+<li>EPSIGUARD 厄普西隆之盾</li>
+<li>ANGEL RING 天使圆环</li>
+<li>UNION GUARD 公会盾</li>
+<li>UNION GUARD 公会盾</li>
+<li>UNION GUARD 公会盾</li>
+<li>UNION GUARD 公会盾</li>
+<li>STINK SHIELD 腥臭盾</li>
+<li>Black Gauntlet 黑色手套</li>
+<li>GENPEI 源平</li>
+<li>Knight/Power 骑士级/攻击</li>
+<li>General/Power 将军级/攻击</li>
+<li>Ogre/Power 巨人级/攻击</li>
+<li>God/Power 天神级/攻击</li>
+<li>Priest/Mind 祭司级/精神</li>
+<li>General/Mind 将军级/精神</li>
+<li>Angel/Mind 天使级/精神</li>
+<li>God/Mind 天神级/精神</li>
+<li>Marksman/Arm 射手级/命中</li>
+<li>General/Arm 将军级/命中</li>
+<li>Elf/Arm 妖精级/命中</li>
+<li>God/Arm 天神级/命中</li>
+<li>Thief/Legs 盗贼级/回避</li>
+<li>General/Legs 将军级/回避</li>
+<li>Elf/Legs 妖精级/回避</li>
+<li>God/Legs 天神级/回避</li>
+<li>Digger/HP 地鬼级/ＨＰ</li>
+<li>General/HP 将军级/ＨＰ</li>
+<li>Dragon/HP 巨龙级/ＨＰ</li>
+<li>God/HP 天神级/ＨＰ</li>
+<li>Magician/TP 法师级/ＴＰ</li>
+<li>General/TP 将军级/ＴＰ</li>
+<li>Angel/TP 天使级/ＴＰ</li>
+<li>God/TP 天神级/ＴＰ</li>
+<li>Warrior/Body 武士级/防御</li>
+<li>General/Body 将军级/防御</li>
+<li>Metal/Body 金属级/防御</li>
+<li>God/Body 天神级/防御</li>
+<li>Angel/Luck 天使级/运</li>
+<li>God/Luck 天神级/运</li>
+<li>Master/Ability 大师级/全能力</li>
+<li>Hero/Ability 英雄级/全能力</li>
+<li>God/Ability 天神级/全能力</li>
+<li>Resist/Fire 抗性/火热</li>
+<li>Resist/Flame 抗性/灼热</li>
+<li>Resist/Burning 抗性/炽热</li>
+<li>Resist/Cold 抗性/冰霜</li>
+<li>Resist/Freeze 抗性/冰冻</li>
+<li>Resist/Blizzard 抗性/冰暴</li>
+<li>Resist/Shock 抗性/电击</li>
+<li>Resist/Thunder 抗性/雷电</li>
+<li>Resist/Storm 抗性/雷暴</li>
+<li>Resist/Light 抗性/光明</li>
+<li>Resist/Saint 抗性/神圣</li>
+<li>Resist/Holy 抗性/圣洁</li>
+<li>Resist/Dark 抗性/暗黑</li>
+<li>Resist/Evil 抗性/邪魔</li>
+<li>Resist/Devil 抗性/魔鬼</li>
+<li>All/Resist 全部/抗性</li>
+<li>Super/Resist 超级/抗性</li>
+<li>Perfect/Resist 完美/抗性</li>
+<li>HP/Restorate ＨＰ/回复</li>
+<li>HP/Generate ＨＰ/再生</li>
+<li>HP/Revival ＨＰ/重生</li>
+<li>TP/Restorate ＴＰ/回复</li>
+<li>TP/Generate ＴＰ/再生</li>
+<li>TP/Revival ＴＰ/重生</li>
+<li>PB/Amplifier ＰＢ/回复</li>
+<li>PB/Generate ＰＢ/再生</li>
+<li>PB/Create ＰＢ/重生</li>
+<li>Wizard/Technique 巫师级/魔法</li>
+<li>Devil/Technique 魔鬼级/魔法</li>
+<li>God/Technique 天神级/魔法</li>
+<li>General/Battle 将军级/战斗</li>
+<li>Devil/Battle 魔鬼级/战斗</li>
+<li>God/Battle 天神级/战斗</li>
+<li>Cure/Poison 中毒回复</li>
+<li>Cure/Paralysis 麻痹回复</li>
+<li>Cure/Slow 迟缓回复</li>
+<li>Cure/Confuse 混乱回复</li>
+<li>Cure/Freeze 冻结回复</li>
+<li>Cure/Shock 感电回复</li>
+<li>YASAKANI MAGATAMA 八坂琼勾玉</li>
+<li>V101 Ｖ１０１</li>
+<li>V501 Ｖ５０１</li>
+<li>V502 Ｖ５０２</li>
+<li>V801 Ｖ８０１</li>
+<li>LIMITER 限幅器</li>
+<li>ADEPT 超能增幅器</li>
+<li>SWORDSMAN LORE 剑士的心得</li>
+<li>PROOF OF SWORD-SAINT 剑圣之证</li>
+<li>SMARTLINK 灵感之环</li>
+<li>DIVINE PROTECTION 神圣守护</li>
+<li>Heavenly/Battle 天堂级/战斗</li>
+<li>Heavenly/Power 天堂级/攻击</li>
+<li>Heavenly/Mind 天堂级/精神</li>
+<li>Heavenly/Arms 天堂级/命中</li>
+<li>Heavenly/Legs 天堂级/回避</li>
+<li>Heavenly/Body 天堂级/防御</li>
+<li>Heavenly/Luck 天堂级/运</li>
+<li>Heavenly/Ability 天堂级/全能力</li>
+<li>Centurion/Ability 百人长/全能力</li>
+<li>Friend Ring 友情戒指</li>
+<li>Heavenly/HP 天堂级/ＨＰ</li>
+<li>Heavenly/TP 天堂级/ＴＰ</li>
+<li>Heavenly/Resist 天堂级/抗性</li>
+<li>Heavenly/Technique 天堂级/魔法</li>
+<li>HP/Ressurection ＨＰ/超生</li>
+<li>TP/Ressurection ＴＰ/超生</li>
+<li>PB/Increase ＰＢ/超生</li>
+<li>Protist 原生</li>
+<li>A=Beast 变异</li>
+<li>Machine 机械</li>
+<li>DarkFalz 暗黑</li>
+<li>Hit 命中</li>
+<li>??? ？？？</li>
+<li>Mag 玛古</li>
+<li>Varuna 伐楼那</li>
+<li>Mitra 密多罗</li>
+<li>Surya 苏利耶</li>
+<li>Vayu 伐由</li>
+<li>Varaha 伐罗珂</li>
+<li>Kama 迦摩</li>
+<li>Ushasu 乌莎斯</li>
+<li>Apsaras 飞天</li>
+<li>Kumara 鸠摩罗</li>
+<li>Kaitabha 乾达婆</li>
+<li>Tapas 塔帕斯</li>
+<li>Bhirava 伐罗婆</li>
+<li>Kalki 迦尔吉</li>
+<li>Rudra 楼陀罗</li>
+<li>Marutah 摩娄陀</li>
+<li>Yaksa 夜叉</li>
+<li>Sita 悉多</li>
+<li>Garuda 迦娄罗</li>
+<li>Nandin 天竺</li>
+<li>Ashvinau 亚希文</li>
+<li>Ribhava 梨舞</li>
+<li>Soma 苏摩</li>
+<li>Ila 翼罗</li>
+<li>Durga 杜尔迦</li>
+<li>Vritra 布利陀罗</li>
+<li>Namuci 那牟西</li>
+<li>Sumba 修姆巴</li>
+<li>Naga 那迦</li>
+<li>Pitri 卑帝利</li>
+<li>Kabanda 迦般达</li>
+<li>Ravana 罗伐那</li>
+<li>Marica 摩利支天</li>
+<li>Soniti 音速兔子</li>
+<li>Preta 薛荔多</li>
+<li>Andhaka 暗陀迦</li>
+<li>Bana 伐那</li>
+<li>Naraka 奈落迦</li>
+<li>Madhu 犸度</li>
+<li>Churel 丘利尔</li>
+<li>ROBOCHAO 机械查欧</li>
+<li>OPA-OPA 欧帕欧帕</li>
+<li>PIAN 皮安</li>
+<li>CHAO 查欧</li>
+<li>CHU CHU 啾啾</li>
+<li>KAPU KAPU 卡普卡普</li>
+<li>ANGEL'S WING 天使之翼</li>
+<li>DEVIL'S WING 魔鬼之翼</li>
+<li>ELENOR 艾尔诺亚</li>
+<li>MARK3 ＭＡＲＫ３</li>
+<li>MASTER SYSTEM MASTER SYSTEM</li>
+<li>GENESIS ＭＥＧＡ ＤＲＩＶＥ</li>
+<li>SEGA SATURN ＳＥＧＡ ＳＡＴＵＲＮ</li>
+<li>DREAMCAST ＤＲＥＡＭＣＡＳＴ</li>
+<li>HAMBURGER 汉堡包</li>
+<li>PANZER'S TAIL 豹尾</li>
+<li>DEVIL'S TAIL 魔鬼之尾</li>
+<li>Deva 提婆</li>
+<li>Rati 拉提</li>
+<li>Savitri 莎维奇</li>
+<li>Rukmin 露珂敏</li>
+<li>Pushan 普善</li>
+<li>Diwari 帝瓦利</li>
+<li>Sato 娑陀</li>
+<li>Bhima 比玛</li>
+<li>Nidra 尼德拉</li>
+<li>Geung-si 僵尸</li>
+<li>Present* 礼品</li>
+<li>Saraswati 辩才天/萨拉斯瓦蒂</li>
+<li>??? 未使用Mag01</li>
+<li>Tellusis 特拉西斯</li>
+<li>Striker Unit 冲击部件</li>
+<li>Pioneer 先驱者</li>
+<li>Puyo 噗呦</li>
+<li>Moro 莫罗</li>
+<li>Rappy 拉比</li>
+<li>Yahoo! Ｙａｈｏｏ！</li>
+<li>Gael Giel 堕天灵＆怵天灵</li>
+<li>Agastya 阿迦萨达</li>
+<li>Cell of MAG 0503 玛古０５０３</li>
+<li>Cell of MAG 0504 玛古０５０４</li>
+<li>Cell of MAG 0505 玛古０５０５</li>
+<li>Cell of MAG 0506 玛古０５０６</li>
+<li>Cell of MAG 0507 玛古０５０７</li>
+<li>Unknown 不确定名</li>
+<li>Hildebear 狂暴巨猿</li>
+<li>Hildeblue 狂暴白猿</li>
+<li>Mothmant 吸血巨蚊</li>
+<li>Monest 吸血巨蚊巢</li>
+<li>Rag Rappy 黄拉比鸟</li>
+<li>Al Rappy 蓝拉比鸟</li>
+<li>Savage Wolf 狂狼</li>
+<li>Barbarous Wolf 狂狼王</li>
+<li>Booma 棕狂熊</li>
+<li>Gobooma 黄狂熊</li>
+<li>Gigobooma 红狂熊</li>
+<li>Grass Assassin 巨螳螂</li>
+<li>Poison Lily 毒铃兰</li>
+<li>Nar Lily 红铃兰</li>
+<li>Nano Dragon 翼龙</li>
+<li>Evil Shark 绿鲨魔</li>
+<li>Pal Shark 紫鲨魔</li>
+<li>Guil Shark 狂鲨魔</li>
+<li>Pofuilly Slime 冰史莱姆</li>
+<li>Pouilly Slime 炎史莱姆</li>
+<li>Pan Arms 合体怪</li>
+<li>Migium 冰剑怪</li>
+<li>Hidoom 火剑怪</li>
+<li>Dubchic 傀儡机兵</li>
+<li>Garanz 机甲堡垒</li>
+<li>Sinow Beat 蓝机忍</li>
+<li>Sinow Gold 金机忍</li>
+<li>Canadine 电爪</li>
+<li>Canane 核心电爪</li>
+<li>Delsaber 剑魔</li>
+<li>Chaos Sorcerer 混沌法师</li>
+<li>Bee R 暗之水晶</li>
+<li>Bee L 圣之水晶</li>
+<li>Dark Gunner 暗黑炮台</li>
+<li>Death Gunner 死亡炮台</li>
+<li>Chaos Bringer 混沌骑士</li>
+<li>Dark Belra 暗黑巨神像</li>
+<li>Claw 爪虫</li>
+<li>Bulk 合体爪虫</li>
+<li>Bulclaw 合体爪魔</li>
+<li>Dimenian 刀魔兵</li>
+<li>La Dimenian 刀魔将</li>
+<li>So Dimenian 刀魔王</li>
+<li>Dragon 赤焰巨龙</li>
+<li>De Rol Le 迪-洛尔-雷</li>
+<li>Vol Opt 波鲁欧普</li>
+<li>Dark Falz 暗黑佛</li>
+<li>Container 禁锢之钟</li>
+<li>Dubwitch 傀儡操纵器</li>
+<li>Gillchic 步行机兵</li>
+<li>Love Rappy 爱之拉比</li>
+<li>Merillia 毒梅兰</li>
+<li>Meriltas 狂梅兰</li>
+<li>Gee 姬蜂</li>
+<li>Gi Gue 姬蜂后</li>
+<li>Mericarol 红蝎花</li>
+<li>Merikle 蓝蝎花</li>
+<li>Mericus 绿蝎花</li>
+<li>Ul Gibbon 幽猿</li>
+<li>Zol Gibbon 泽猿</li>
+<li>Gibbles 蛮甲猿</li>
+<li>Sinow Berill 森隐雷藏</li>
+<li>Sinow Spigell 雾隐雷藏</li>
+<li>Dolmolm 青鱿</li>
+<li>Dolmdarl 赤鱿</li>
+<li>Morfos 暗腐蝶</li>
+<li>Recobox 爆防魔箱</li>
+<li>Recon 爆防机</li>
+<li>Sinow Zoa 湛蓝光武</li>
+<li>Sinow Zele 绯红光武</li>
+<li>Deldepth 暗黑魔精</li>
+<li>Delbiter 暗黑麒麟</li>
+<li>Barba Ray 巴尔巴雷</li>
+<li>Pig Ray 碧涟虫</li>
+<li>Ul Ray 幽涟虫</li>
+<li>Gol Dragon 数码暴龙</li>
+<li>Gal Gryphon 加尔狮鹫</li>
+<li>Olga Flow 奥迦-弗罗文</li>
+<li>St Rappy 圣诞拉比</li>
+<li>Hallo Rappy 南瓜拉比</li>
+<li>Egg Rappy 彩蛋拉比</li>
+<li>Ill Gill 恶镰死神</li>
+<li>Del Lily 暗铃兰</li>
+<li>Epsilon 厄普西隆</li>
+<li>Gael 堕天灵</li>
+<li>Giel 怵天灵</li>
+<li>Epsigard 厄普西盾</li>
+<li>Astark 异甲巨螳螂</li>
+<li>Yowie 砂岩蜥蜴</li>
+<li>Satellite Lizard 沙暴蜥蜴</li>
+<li>Merissa A 媚影沙魔A</li>
+<li>Merissa AA 媚影沙魔AA</li>
+<li>Girtablulu 暗黑魔眼巨花</li>
+<li>Zu 巨型火犀鸟</li>
+<li>Pazuzu 变异羚角鸟</li>
+<li>Boota 变异猪</li>
+<li>Ze Boota 狂影变异猪</li>
+<li>Ba Boota 巨角变异猪</li>
+<li>Dorphon 铁甲战车象</li>
+<li>Dorphon Eclair 白垩战车象</li>
+<li>Goran 暗黑刀魔</li>
+<li>Goran Detonator 暗黑巨魔王</li>
+<li>Pyro Goran 暗黑狂刀魔</li>
+<li>Sand Rappy 沙地拉比鸟</li>
+<li>Del Rappy 暗黑拉比鸟</li>
+<li>Saint-Milion 圣魔龙</li>
+<li>Shambertin 沙柏龙</li>
+<li>Kondrieu 空间龙</li>
+<li>Unknown 不确定名</li>
+<li>Hildelt 雷暴巨猿</li>
+<li>Hildetorr 暗黑巨猿</li>
+<li>Mothvert 嗜血巨蚊</li>
+<li>Mothvist 嗜血巨蚊巢</li>
+<li>El Rappy 白拉比鸟</li>
+<li>Pal Rappy 彩虹拉比鸟</li>
+<li>Gulgus 角狼</li>
+<li>Gulgus-gue 角狼王</li>
+<li>Bartle 紫魔龟</li>
+<li>Barble 蓝魔龟</li>
+<li>Tollaw 魔螳螂</li>
+<li>Crimson Assassin 嗜血巨螳螂</li>
+<li>Ob Lily 变种铃兰</li>
+<li>Mil Lily 异种铃兰</li>
+<li>Nano Dragon 翼龙</li>
+<li>Vulmer 紫鲨熊</li>
+<li>Govulmer 蓝鲨熊</li>
+<li>Melqueek 变种鲨熊</li>
+<li>Pofuilly Slime 冰史莱姆</li>
+<li>Pouilly Slime 炎史莱姆</li>
+<li>Pan Arms 合体怪</li>
+<li>Migium 冰剑怪</li>
+<li>Hidoom 火剑怪</li>
+<li>Dubchich 傀儡机将</li>
+<li>Baranz 机甲堡垒-改</li>
+<li>Sinow Blue 紫机忍</li>
+<li>Sinow Red 红机忍</li>
+<li>Canabin 强化电爪</li>
+<li>Canune 强化核心电爪</li>
+<li>Delsaber 剑魔</li>
+<li>Gran Sorcerer 毁灭法师</li>
+<li>Gee R 暗之水晶</li>
+<li>Gee L 圣之水晶</li>
+<li>Dark Gunner 暗黑炮台</li>
+<li>Death Gunner 死亡炮台</li>
+<li>Dark Bringer 暗黑骑士</li>
+<li>Indi Belra 远古巨神像</li>
+<li>Claw 爪虫</li>
+<li>Bulk 合体爪虫</li>
+<li>Bulclaw 合体爪魔</li>
+<li>Arlan 异魔兵</li>
+<li>Merlan 异魔将</li>
+<li>Del-D 异魔王</li>
+<li>Sil Dragon 冰霜巨龙</li>
+<li>Dal Ra Lie 达尔-拉-利</li>
+<li>Vol Opt ver.2 波鲁欧普-改</li>
+<li>Dark Falz 暗黑佛</li>
+<li>Container 禁锢之钟</li>
+<li>Duvuik 傀儡操纵器</li>
+<li>Gillchich 浮游机将</li>
+<li>Love Rappy 爱之拉比</li>
+<li>Merillia 毒梅兰</li>
+<li>Meriltas 狂梅兰</li>
+<li>Gee 姬蜂</li>
+<li>Gi Gue 姬蜂后</li>
+<li>Mericarol 红蝎花</li>
+<li>Merikle 蓝蝎花</li>
+<li>Mericus 绿蝎花</li>
+<li>Ul Gibbon 幽猿</li>
+<li>Zol Gibbon 泽猿</li>
+<li>Gibbles 蛮甲猿</li>
+<li>Sinow Berill 森隐雷藏</li>
+<li>Sinow Spigell 雾隐雷藏</li>
+<li>Dolmolm 青鱿</li>
+<li>Dolmdarl 赤鱿</li>
+<li>Morfos 暗腐蝶</li>
+<li>Recobox 爆防魔箱</li>
+<li>Recon 爆防机</li>
+<li>Sinow Zoa 湛蓝光武</li>
+<li>Sinow Zele 绯红光武</li>
+<li>Deldepth 暗黑魔精</li>
+<li>Delbiter 暗黑麒麟</li>
+<li>Barba Ray 巴尔巴雷</li>
+<li>Pig Ray 碧涟虫</li>
+<li>Ul Ray 幽涟虫</li>
+<li>Gol Dragon 数码冰龙</li>
+<li>Gal Gryphon 加尔狮鹫</li>
+<li>Olga Flow 奥迦-弗罗文</li>
+<li>St Rappy 圣诞拉比</li>
+<li>Hallo Rappy 南瓜拉比</li>
+<li>Egg Rappy 彩蛋拉比</li>
+<li>Ill Gill 恶镰死神</li>
+<li>Del Lily 暗铃兰</li>
+<li>Epsilon 厄普西隆</li>
+<li>Gael 堕天灵</li>
+<li>Giel 怵天灵</li>
+<li>Epsigard 厄普西盾</li>
+<li>Astark 异甲巨螳螂</li>
+<li>Yowie 砂岩蜥蜴</li>
+<li>Satellite Lizard 沙暴蜥蜴</li>
+<li>Merissa A 媚影沙魔-Ａ</li>
+<li>Merissa AA 媚影沙魔-ＡＡ</li>
+<li>Girtablulu 暗黑魔眼巨花</li>
+<li>Zu 巨型火犀鸟</li>
+<li>Pazuzu 变异羚角鸟</li>
+<li>Boota 变异猪</li>
+<li>Ze Boota 狂影变异猪</li>
+<li>Ba Boota 巨角变异猪</li>
+<li>Dorphon 铁甲战车象</li>
+<li>Dorphon Eclair 白垩战车象</li>
+<li>Goran 暗黑刀魔</li>
+<li>Goran Detonator 暗黑巨魔王</li>
+<li>Pyro Goran 暗黑狂刀魔</li>
+<li>Sand Rappy 沙地拉比鸟</li>
+<li>Del Rappy 暗黑拉比鸟</li>
+<li>Saint-Milion 圣魔龙</li>
+<li>Shambertin 沙柏龙</li>
+<li>Kondrieu 空间龙</li>
+</ul>
+<p>* </p>
+<ul>
+<li>DRAW  吸血</li>
+<li>DRAIN  饮血</li>
+<li>FILL  嗜血</li>
+<li>GUSH  噬血</li>
+<li>HEART  心之</li>
+<li>MIND  智之</li>
+<li>SOUL  魂之</li>
+<li>GEIST  魄之</li>
+<li>MASTER'S 将之</li>
+<li>LORD'S   相之</li>
+<li>KING'S   王之</li>
+<li>CHARGE   销金</li>
+<li>SPIRIT   销魂</li>
+<li>BERSERK  销血</li>
+<li>ICE 冰晶</li>
+<li>FROST  冰霜</li>
+<li>FREEZE   冰冻</li>
+<li>BLIZZARD 冰暴</li>
+<li>BIND  小麻痹</li>
+<li>HOLD 中麻痹</li>
+<li>SEIZE  强麻痹</li>
+<li>ARREST  全麻痹</li>
+<li>HEAT  高热</li>
+<li>FIRE   火热</li>
+<li>FLAME 灼热</li>
+<li>BURNING  炽热</li>
+<li>SHOCK  雷电</li>
+<li>THUNDER  雷击</li>
+<li>STORM  雷暴</li>
+<li>TEMPEST  雷霆</li>
+<li>DIM 暗淡</li>
+<li>SHADOW   暗影</li>
+<li>DARK 暗黑</li>
+<li>HELL 地狱</li>
+<li>PANIC  混乱</li>
+<li>RIOT  暴动</li>
+<li>HAVOC  浩劫</li>
+<li>CHAOS  混沌</li>
+<li>DEVIL'S  魔鬼</li>
+<li>DEMON'S 恶魔</li>
+<li>Foie  火球术</li>
+<li>Gifoie 火墙术</li>
+<li>Rafoie 炎狱术</li>
+<li>Barta  冻气术</li>
+<li>Gibarta 冰箭术</li>
+<li>Rabarta极冰术</li>
+<li>Zonde  闪电术</li>
+<li>Gizonde 群雷术</li>
+<li>Razonde 雷暴术</li>
+<li>Grants 圣光术</li>
+<li>Megid  死咒术</li>
+<li>Shifta 强攻术</li>
+<li>Deband 强体术</li>
+<li>Jellen 降攻术</li>
+<li>Zalure 降防术</li>
+<li>Anti  状态术</li>
+<li>Resta 圣泉术</li>
+<li>Photon Filter 光子滤镜</li>
+<li>Anti-Dark Ring 御魔手镯</li>
+</ul>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>什么是苦痛模式? | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">什么是苦痛模式?</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h1>什么是苦痛模式?</h1>
+
+<p>它既不是替代U难度，也不是U难度的推进一种形式，它只是一种自我挑战的方式(类似于暗黑3的Torment模式，U难度相当于A0，苦痛共10个等级[A1-A10]), 可以增加收集常规武器乐趣。</p>
+<p>当你提升苦痛难度的等级，那么怪物和奖励也会相应的提升和加强:</p>
+
+<h3>奖励提升:</h3>
+
+<ul>
+<li>掉落武器命中提升</li>
+<li>经验提升</li>
+<li>RDR提升</li>
+<li>MST提升</li>
+</ul>
+
+<h3>怪物强化:</h3>
+
+<ul>
+<li>伤害提升 (固定伤害增加40%)</li>
+<li>攻击力 (ATP) 提升</li>
+<li>命中 (ATA) 提升</li>
+<li>防御 (DFP) 提升</li>
+<li>回避 (EVP) 提升</li>
+<li>暴击 (LCK) 提升</li>
+<li>暗抗 (EDK) 提升</li>
+<li>EX抗性 (ESP) 提升</li>
+<li>移动速度 提升</li>
+<li>一些怪物会释放更高级的魔法.</li>
+</ul>
+
+<p><strong>苦痛游戏等级可以在创建U难度游戏时在大厅柜台设置。对于每个苦痛难度等级，你可以在大厅柜台按TAB键看到怪物、掉落和经验等提升的描述。</strong></p>
+
+<ul>
+<li>每章前面区域和后面区域的怪物能力能力基本一致。</li>
+<li>每个苦痛难度DAR提升1%:</li>
+</ul>
+
+<ul>
+<li>苦痛 Lv. 1 -> + 1%</li>
+<li>苦痛 Lv. 2 -> + 2%</li>
+<li>苦痛 Lv. 3 -> + 3%</li>
+<li>苦痛 Lv. 4 -> + 4%</li>
+<li>苦痛 Lv. 5 -> + 5%</li>
+<li>苦痛 Lv. 6 -> + 6%</li>
+<li>苦痛 Lv. 7 -> + 7%</li>
+<li>苦痛 Lv. 8 -> + 8%</li>
+<li>苦痛 Lv. 9 -> + 9%</li>
+<li>苦痛 Lv. 10 -> + 10%</li>
+</ul>
+
+<ul>
+<li>每个苦痛难度对于颜色ID特产常规武器提升2%:</li>
+</ul>
+
+<ul>
+<li>苦痛 Lv. 1 -> 掉率 + 2%</li>
+<li>苦痛 Lv. 2 -> 掉率 + 4%</li>
+<li>苦痛 Lv. 3 -> 掉率 + 6%</li>
+<li>苦痛 Lv. 4 -> 掉率 + 8%</li>
+<li>苦痛 Lv. 5 -> 掉率 + 10%</li>
+<li>苦痛 Lv. 6 -> 掉率 + 12%</li>
+<li>苦痛 Lv. 7 -> 掉率 + 14%</li>
+<li>苦痛 Lv. 8 -> 掉率 + 16%</li>
+<li>苦痛 Lv. 9 -> 掉率 + 18%</li>
+<li>苦痛 Lv. 10 -> 掉率 + 20%</li>
+</ul>
+
+<h3>**颜色ID特产如下:**</h3>
+
+<ul>
+<li>镉绿 -> 散弹</li>
+<li>翠绿 -> 步枪</li>
+<li>天清 -> 大剑</li>
+<li>纯蓝 -> 长刀</li>
+<li>淡紫 -> 机枪</li>
+<li>粉红 -> 魔杖</li>
+<li>真红 -> 单手剑/手杖 (各50)</li>
+<li>橙黄 -> 匕首</li>
+<li>金黄 -> 手枪/长杖 (各50)</li>
+<li>羽白 -> 投刃</li>
+</ul>
+
+<h3>**每个苦痛难度掉落未鉴定常规武器的概率增加7%,但上限是95%(应该是服务各种活动的buff叠加到一起最多就是95%):**</h3>
+
+<ul>
+<li>苦痛 Lv. 1 -> 掉率 + 7%</li>
+<li>苦痛 Lv. 2 -> 掉率 + 14%</li>
+<li>苦痛 Lv. 3 -> 掉率 + 21%</li>
+<li>苦痛 Lv. 4 -> 掉率 + 28%</li>
+<li>苦痛 Lv. 5 -> 掉率 + 35%</li>
+<li>苦痛 Lv. 6 -> 掉率 + 42%</li>
+<li>苦痛 Lv. 7 -> 掉率 + 49%</li>
+<li>苦痛 Lv. 8 -> 掉率 + 56%</li>
+<li>苦痛 Lv. 9 -> 掉率 + 63%</li>
+<li>苦痛 Lv. 10 -> 掉率 + 70%</li>
+</ul>
+
+<p>常规武器掉率<strong>3是对应低级区域</strong>，<strong>4是对应高级区域</strong>，<strong>5对应红盒</strong>。(0、1、2、3、4在普通模式都覆盖、5只是针对红盒)  </p>
+<p>低级区域: 森林Forest, 洞窟Caves, 神殿VR Temple, 宇宙船VR Spaceship, 和陨石坑Crater  </p>
+<p>高级区域: 坑道Mines, 遗迹Ruins, 中央管理区CCA, 海底Seabed, 塔Tower和沙漠Desert。</p>
+
+<h3>**下图是掉率概率分布:**</h3>
+
+<p><img src="/static/img/percent_patterns.jpg" alt="compat" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<h3>**每个苦痛难度PD掉落概率提升0.15%**</h3>
+
+<ul>
+<li>苦痛 Lv. 1 -> 0.95%</li>
+<li>苦痛 Lv. 2 -> 1.1%</li>
+<li>苦痛 Lv. 3 -> 1.25%</li>
+<li>苦痛 Lv. 4 -> 1.4%</li>
+<li>苦痛 Lv. 5 -> 1.55%</li>
+<li>苦痛 Lv. 6 -> 1.7%</li>
+<li>苦痛 Lv. 7 -> 1.85%</li>
+<li>苦痛 Lv. 8 -> 2%</li>
+<li>苦痛 Lv. 9 -> 2.15%</li>
+<li>苦痛 Lv. 10 -> 2.3%</li>
+</ul>
+
+<h3>**苦痛难度降低怪物状态效果时长:**</h3>
+
+<h4>**混乱:**</h4>
+
+<ul>
+<li>苦痛 Lv. 1 -> 8 秒</li>
+<li>苦痛 Lv. 2 -> 6.154 秒</li>
+<li>苦痛 Lv. 3 -> 5 秒</li>
+<li>苦痛 Lv. 4 -> 4 秒</li>
+<li>苦痛 Lv. 5 -> 3.333 秒</li>
+<li>苦痛 Lv. 6 -> 2.857 秒</li>
+<li>苦痛 Lv. 7 -> 2.5 秒</li>
+<li>苦痛 Lv. 8 -> 2.105 秒</li>
+<li>苦痛 Lv. 9 -> 1.86 秒</li>
+<li>苦痛 Lv. 10 -> 1.667 秒</li>
+</ul>
+
+<h4>**冰冻:**</h4>
+
+<ul>
+<li>苦痛 Lv. 1 -> 4 秒</li>
+<li>苦痛 Lv. 2 -> 3.077 秒</li>
+<li>苦痛 Lv. 3 -> 2.5 秒</li>
+<li>苦痛 Lv. 4 -> 2 秒</li>
+<li>苦痛 Lv. 5 -> 1.667 秒</li>
+<li>苦痛 Lv. 6 -> 1.429 秒</li>
+<li>苦痛 Lv. 7 -> 1.25 秒</li>
+<li>苦痛 Lv. 8 -> 1.053 秒</li>
+<li>苦痛 Lv. 9 -> 0.93 秒</li>
+<li>苦痛 Lv. 10 -> 0.833 秒</li>
+</ul>
+
+<h4>**麻痹:**</h4>
+
+<ul>
+<li>苦痛 Lv. 1 -> 5.6 秒</li>
+<li>苦痛 Lv. 2 -> 4.308 秒</li>
+<li>苦痛 Lv. 3 -> 3.5 秒</li>
+<li>苦痛 Lv. 4 -> 2.8 秒</li>
+<li>苦痛 Lv. 5 -> 2.333 秒</li>
+<li>苦痛 Lv. 6 -> 2 秒</li>
+<li>苦痛 Lv. 7 -> 1.75 秒</li>
+<li>苦痛 Lv. 8 -> 1.474 秒</li>
+<li>苦痛 Lv. 9 -> 1.302 秒</li>
+<li>苦痛 Lv. 10 -> 1.167 秒</li>
+</ul>
+
+<h4>**苦痛难度降低了恶魔系激活率:**</h4>
+
+<ul>
+<li>苦痛 Lv. 1 -> 44% 激活</li>
+<li>苦痛 Lv. 2 -> 35% 激活</li>
+<li>苦痛 Lv. 3 -> 26% 激活</li>
+<li>苦痛 Lv. 4 -> 14% 激活</li>
+<li>苦痛 Lv. 5 -> 2% 激活</li>
+<li>苦痛 Lv. 6 -> 1% 激活</li>
+<li>苦痛 Lv. 7 -> 1% 激活</li>
+<li>苦痛 Lv. 8 -> 1% 激活</li>
+<li>苦痛 Lv. 9 -> 1% 激活</li>
+<li>苦痛 Lv. 10 -> 1% 激活</li>
+</ul>
+
+<h4>**所有的概率提升仅仅提升怪物不包含箱子.**</h4>
+
+
+<h3>A1:</h3>
+<ul>
+<li>HP: +15%</li>
+<li>XP: +20%</li>
+<li>ATP: +15%</li>
+<li>DFP: No boost</li>
+<li>MST: +15%</li>
+<li>ATA: +5%</li>
+<li>EVP: +1%</li>
+<li>LCK: +2%</li>
+<li>EFR, EIC, ETH, ELT: +3%</li>
+<li>EDK: +6%</li>
+<li>ESP: +7%</li>
+<li>Damage: +25%</li>
+<li>Fixed damage: +10%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 4 seconds</li>
+<li>Paralysis: 5.6 seconds</li>
+<li>Confusion: 8 seconds</li>
+<li>HP Cut: 44% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +1%</li>
+<li>Rare Drop Rate (RDR): +2%</li>
+<li>Meseta quantity dropped: +16%</li>
+<li>ID-specific common weapon rate: +1%</li>
+<li>Untekked common weapon rate: +1%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +0.15%</li>
+</ul>
+
+<h3>A2:</h3>
+<ul>
+<li>HP: +38%</li>
+<li>XP: +50%</li>
+<li>ATP: +38%</li>
+<li>DFP: No boost</li>
+<li>MST: +38%</li>
+<li>ATA: +13%</li>
+<li>EVP: +3%</li>
+<li>LCK: +5%</li>
+<li>EFR, EIC, ETH, ELT: +7%</li>
+<li>EDK: +15%</li>
+<li>ESP: +18%</li>
+<li>Damage: +63%</li>
+<li>Fixed damage: +25%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 3.077 seconds</li>
+<li>Paralysis: 4.308 seconds</li>
+<li>Confusion: 6.154 seconds</li>
+<li>HP Cut: 35% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +2%</li>
+<li>Rare Drop Rate (RDR): +4%</li>
+<li>Meseta quantity dropped: +39%</li>
+<li>ID-specific common weapon rate: +2%</li>
+<li>Untekked common weapon rate: +2%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +0.3%</li>
+</ul>
+
+<h3>A3:</h3>
+
+<ul>
+<li>HP: +60%</li>
+<li>XP: +80%</li>
+<li>ATP: +60%</li>
+<li>DFP: No boost</li>
+<li>MST: +60%</li>
+<li>ATA: +20%</li>
+<li>EVP: +4%</li>
+<li>LCK: +8%</li>
+<li>EFR, EIC, ETH, ELT: +11%</li>
+<li>EDK: +24%</li>
+<li>ESP: +28%</li>
+<li>Damage: +100%</li>
+<li>Fixed damage: +40%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 2.5 seconds</li>
+<li>Paralysis: 3.5 seconds</li>
+<li>Confusion: 5 seconds</li>
+<li>HP Cut: 26% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +3%</li>
+<li>Rare Drop Rate (RDR): +6%</li>
+<li>Meseta quantity dropped: +62%</li>
+<li>ID-specific common weapon rate: +3%</li>
+<li>Untekked common weapon rate: +3%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +0.45%</li>
+</ul>
+
+<h3>A4:</h3>
+
+<ul>
+<li>HP: +90%</li>
+<li>XP: +120%</li>
+<li>ATP: +90%</li>
+<li>DFP: No boost</li>
+<li>MST: +90%</li>
+<li>ATA: +30%</li>
+<li>EVP: +6%</li>
+<li>LCK: +12%</li>
+<li>EFR, EIC, ETH, ELT: +16%</li>
+<li>EDK: +36%</li>
+<li>ESP: +42%</li>
+<li>Damage: +150%</li>
+<li>Fixed damage: +60%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 2 seconds</li>
+<li>Paralysis: 2.8 seconds</li>
+<li>Confusion: 4 seconds</li>
+<li>HP Cut: 14% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +4%</li>
+<li>Rare Drop Rate (RDR): +8%</li>
+<li>Meseta quantity dropped: +93%</li>
+<li>ID-specific common weapon rate: +4%</li>
+<li>Untekked common weapon rate: +4%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +0.6%</li>
+</ul>
+
+<h3>A5</h3>
+<ul>
+<li>HP: +120%</li>
+<li>XP: +160%</li>
+<li>ATP: +120%</li>
+<li>DFP: No boost</li>
+<li>MST: +120%</li>
+<li>ATA: +40%</li>
+<li>EVP: +8%</li>
+<li>LCK: +16%</li>
+<li>EFR, EIC, ETH, ELT: +21%</li>
+<li>EDK: +48%</li>
+<li>ESP: +56%</li>
+<li>Damage: +200%</li>
+<li>Fixed damage: +80%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 1.667 seconds</li>
+<li>Paralysis: 2.333 seconds</li>
+<li>Confusion: 3.333 seconds</li>
+<li>HP Cut: 2% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +5%</li>
+<li>Rare Drop Rate (RDR): +11%</li>
+<li>Meseta quantity dropped: +124%</li>
+<li>ID-specific common weapon rate: +5%</li>
+<li>Untekked common weapon rate: +5%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +0.75%</li>
+</ul>
+
+<h3>A6</h3>
+<ul>
+<li>HP: +150%</li>
+<li>XP: +200%</li>
+<li>ATP: +150%</li>
+<li>DFP: No boost</li>
+<li>MST: +150%</li>
+<li>ATA: +50%</li>
+<li>EVP: +10%</li>
+<li>LCK: +20%</li>
+<li>EFR, EIC, ETH, ELT: +27%</li>
+<li>EDK: +60%</li>
+<li>ESP: +70%</li>
+<li>Damage: +250%</li>
+<li>Fixed damage: +100%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 1.429 seconds</li>
+<li>Paralysis: 2 seconds</li>
+<li>Confusion: 2.857 seconds</li>
+<li>HP Cut: 1% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +6%</li>
+<li>Rare Drop Rate (RDR): +14%</li>
+<li>Meseta quantity dropped: +155%</li>
+<li>ID-specific common weapon rate: +6%</li>
+<li>Untekked common weapon rate: +6%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +0.9%</li>
+</ul>
+
+<h3>A7</h3>
+<ul>
+<li>HP: +180%</li>
+<li>XP: +225%</li>
+<li>ATP: +180%</li>
+<li>DFP: No boost</li>
+<li>MST: +180%</li>
+<li>ATA: +60%</li>
+<li>EVP: +12%</li>
+<li>LCK: +24%</li>
+<li>EFR, EIC, ETH, ELT: +32%</li>
+<li>EDK: +72%</li>
+<li>ESP: +84%</li>
+<li>Damage: +300%</li>
+<li>Fixed damage: +120%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 1.25 seconds</li>
+<li>Paralysis: 1.75 seconds</li>
+<li>Confusion: 2.5 seconds</li>
+<li>HP Cut: 1% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +7%</li>
+<li>Rare Drop Rate (RDR): +18%</li>
+<li>Meseta quantity dropped: +186%</li>
+<li>ID-specific common weapon rate: +7%</li>
+<li>Untekked common weapon rate: +7%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +1.05%</li>
+</ul>
+
+<h3>A8</h3>
+<ul>
+<li>HP: +225%</li>
+<li>XP: +250%</li>
+<li>ATP: +225%</li>
+<li>DFP: No boost</li>
+<li>MST: +225%</li>
+<li>ATA: +75%</li>
+<li>EVP: +15%</li>
+<li>LCK: +30%</li>
+<li>EFR, EIC, ETH, ELT: +39%</li>
+<li>EDK: +90%</li>
+<li>ESP: +105%</li>
+<li>Damage: +375%</li>
+<li>Fixed damage: +150%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 1.053 seconds</li>
+<li>Paralysis: 1.474 seconds</li>
+<li>Confusion: 2.105 seconds</li>
+<li>HP Cut: 1% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +8%</li>
+<li>Rare Drop Rate (RDR): +23%</li>
+<li>Meseta quantity dropped: +233%</li>
+<li>ID-specific common weapon rate: +8%</li>
+<li>Untekked common weapon rate: +8%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +1.2%</li>
+</ul>
+
+
+<h3>A9:</h3>
+<ul>
+<li>HP: +263%</li>
+<li>XP: +275%</li>
+<li>ATP: +263%</li>
+<li>DFP: No boost</li>
+<li>MST: +263%</li>
+<li>ATA: +88%</li>
+<li>EVP: +18%</li>
+<li>LCK: +35%</li>
+<li>EFR, EIC, ETH, ELT: +46%</li>
+<li>EDK: +105%</li>
+<li>ESP: +122%</li>
+<li>Damage: +438%</li>
+<li>Fixed damage: +175%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 0.93 seconds</li>
+<li>Paralysis: 1.302 seconds</li>
+<li>Confusion: 1.86 seconds</li>
+<li>HP Cut: 1% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +9%</li>
+<li>Rare Drop Rate (RDR): +28%</li>
+<li>Meseta quantity dropped: +272%</li>
+<li>ID-specific common weapon rate: +9%</li>
+<li>Untekked common weapon rate: +9%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +1.35%</li>
+</ul>
+
+<h3>A10:</h3>
+<ul>
+<li>HP: +300%</li>
+<li>XP: +300%</li>
+<li>ATP: +300%</li>
+<li>DFP: No boost</li>
+<li>MST: +300%</li>
+<li>ATA: +100%</li>
+<li>EVP: +20%</li>
+<li>LCK: +40%</li>
+<li>EFR, EIC, ETH, ELT: +53%</li>
+<li>EDK: +120%</li>
+<li>ESP: +140%</li>
+<li>Damage: +500%</li>
+<li>Fixed damage: +200%</li>
+</ul>
+
+<p>EX激活率也被削弱:</p>
+<ul>
+<li>Freeze: 0.833 seconds</li>
+<li>Paralysis: 1.167 seconds</li>
+<li>Confusion: 1.667 seconds</li>
+<li>HP Cut: 1% activation chance</li>
+</ul>
+
+<p>此外，A模式下掉率有小幅度提升:</p>
+<ul>
+<li>Drop Anything Rate (DAR): +10%</li>
+<li>Rare Drop Rate (RDR): +34%</li>
+<li>Meseta quantity dropped: +311%</li>
+<li>ID-specific common weapon rate: +10%</li>
+<li>Untekked common weapon rate: +10%</li>
+<li>Weapon percentage patterns set to 3 for early areas (Forest, Cave, VR Temple, VR Spaceship, Crater) and 4 for later areas (Mine, Ruins, Central Control Area, Seabed, Control Tower, Subterranean Desert)</li>
+<li>Photon Drop rate: +1.5%</li>
+</ul>
+    </div>
+</body>
+
+</html>

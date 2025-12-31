@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>TODO | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">TODO</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <p>ItemPT（可能指“Item Pattern Table”的缩写）定义了游戏中的物品掉落规则。这不涉及任何稀有掉落模式，</p>
+<p>而是指所有掉落物品都遵循同一种类别。本文重点介绍普通掉落物品的规则，包括橙色、绿色、蓝色物品和梅塞塔。</p>
+<p>至于稀有物品的掉落，请参考掉落表即可。</p>
+
+<p><strong>ItemPT主要掉落分为3大类，分别是：消耗品Tool、固定模式掉落和梅塞塔</strong></p>
+
+<p><strong>消耗品掉落(包括26种):</strong></p>
+<p><img src="/static/img/tool.png" alt="消耗品Tool" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<ul>
+<li>Monomate 小ＨＰ回复液</li>
+<li>Dimate 中ＨＰ回复液</li>
+<li>Trimate 大ＨＰ回复液</li>
+<li>Monofluid 小ＴＰ回复液</li>
+<li>Difluid 中ＴＰ回复液</li>
+<li>Trifluid 大ＴＰ回复液</li>
+<li>Antidote 解毒剂</li>
+<li>Antiparalysis 解痉剂</li>
+<li>Sol Atomizer 魂之粉</li>
+<li>Moon Atomizer 月之粉</li>
+<li>Star Atomizer 星之粉</li>
+<li>Telepipe 传送门</li>
+<li>Trap Vision 陷阱探测器</li>
+<li>Monogrinder 小打磨石</li>
+<li>Digrinder 中打磨石</li>
+<li>Trigrinder 大打磨石</li>
+<li>Power Material 攻击力药</li>
+<li>Mind Material 精神力药</li>
+<li>Evade Material 回避力药</li>
+<li>HP Material ＨＰ药</li>
+<li>TP Material ＴＰ药</li>
+<li>Def Material 防御力药</li>
+<li>Hit Material 命中率药</li>
+<li>Luck Material 运之药</li>
+<li>Scape Doll 替身人偶</li>
+<li>Technique Disk 魔法书</li>
+<li>Photon Drop 光子水晶</li>
+</ul>
+
+
+
+<p><strong>固定掉落(包括5大类):</strong></p>
+<ul>
+<li>武器</li>
+<li>防具</li>
+<li>盾牌</li>
+<li>插件</li>
+<li>空气</li>
+</ul>
+
+<p><img src="/static/img/set.png" alt="固定模式掉落" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+
+<h1>TODO</h1>
+<p>待码字。。。</p>
+    </div>
+</body>
+
+</html>

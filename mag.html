@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>mag | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">mag</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <p>进化图谱: | <a href="#hu">战士</a> | <a href="#ra">枪手</a> | <a href="#fo">法师</a></p>
+
+<p>食谱: | <a href="#recipe1">0</a> | <a href="#recipe2">1</a> | <a href="#recipe3">2</a> | <a href="#recipe4">3</a> | <a href="#recipe5">4</a> | <a href="#recipe6">5</a> | <a href="#recipe7">6</a>| <a href="#recipe8">7</a></p>
+
+<p>杂项: | <a href="#sync">同步率</a> | <a href="#iq">智力</a> | <a href="#trigger">PB激活条件</a> </p>
+
+<p><a href="#ephinea_exclusive_mag_colors">E服Mag独占颜色</a></p>
+
+<h2>&lt;a name=&quot;hu&quot;&gt;&lt;/a&gt;战士</h2>
+<p><img src="/static/img/HU-MAG.gif" alt="hu" style="max-width: 100%; height: auto; margin: 10px 0;">  </p>
+
+<h2>&lt;a name=&quot;ra&quot;&gt;&lt;/a&gt;枪手</h2>
+<p><img src="/static/img/RA-MAG.gif" alt="ra" style="max-width: 100%; height: auto; margin: 10px 0;">  </p>
+
+<h2>&lt;a name=&quot;fo&quot;&gt;&lt;/a&gt;法师</h2>
+<p><img src="/static/img/FO-MAG.gif" alt="fo" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+
+<hr>
+<h2>&lt;a name=&quot;recipe&quot;&gt;&lt;/a&gt;食谱</h2>
+
+<h3>表0 &lt;a name=&quot;recipe1&quot;&gt;&lt;/a&gt;</h3>
+
+<p>阶段0: Mag</p>
+
+<table>
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Monomate</td>
+<td>5</td>
+<td>40</td>
+<td>5</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Dimate</td>
+<td>10</td>
+<td>45</td>
+<td>5</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Trimate</td>
+<td>15</td>
+<td>50</td>
+<td>10</td>
+<td>0</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Monofluid</td>
+<td>5</td>
+<td>0</td>
+<td>5</td>
+<td>40</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Difluid</td>
+<td>10</td>
+<td>0</td>
+<td>5</td>
+<td>45</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Trifluid</td>
+<td>15</td>
+<td>0</td>
+<td>10</td>
+<td>50</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Antidote</td>
+<td>5</td>
+<td>10</td>
+<td>40</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Antiparalysis</td>
+<td>5</td>
+<td>0</td>
+<td>44</td>
+<td>10</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Sol Atomizer</td>
+<td>15</td>
+<td>30</td>
+<td>15</td>
+<td>25</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Moon Atomizer</td>
+<td>15</td>
+<td>25</td>
+<td>15</td>
+<td>30</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Star Atomizer</td>
+<td>25</td>
+<td>25</td>
+<td>25</td>
+<td>25</td>
+<td>6</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>表1 &lt;a name=&quot;recipe2&quot;&gt;&lt;/a&gt;</h3>
+
+<p>阶段1: Kalki, Varuna, Vrita</p>
+
+<table>
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Monomate</td>
+<td>5</td>
+<td>10</td>
+<td>0</td>
+<td>−1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dimate</td>
+<td>6</td>
+<td>15</td>
+<td>3</td>
+<td>−3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Trimate</td>
+<td>12</td>
+<td>21</td>
+<td>4</td>
+<td>−7</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Monofluid</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Difluid</td>
+<td>7</td>
+<td>0</td>
+<td>3</td>
+<td>13</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Trifluid</td>
+<td>7</td>
+<td>−7</td>
+<td>6</td>
+<td>19</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Antidote</td>
+<td>0</td>
+<td>5</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Antiparalysis</td>
+<td>−1</td>
+<td>0</td>
+<td>14</td>
+<td>5</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Sol Atomizer</td>
+<td>10</td>
+<td>11</td>
+<td>8</td>
+<td>0</td>
+<td>−2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Moon Atomizer</td>
+<td>9</td>
+<td>0</td>
+<td>9</td>
+<td>11</td>
+<td>3</td>
+<td>−2</td>
+</tr>
+<tr>
+<td>Star Atomizer</td>
+<td>14</td>
+<td>9</td>
+<td>18</td>
+<td>11</td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+<h3>表2 &lt;a name=&quot;recipe3&quot;&gt;&lt;/a&gt;</h3>
+
+<p>阶段2: Ashvinau, Namuci, Marutah, Rudra, Sumba</p>
+
+<table>
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Monomate</td>
+<td>1</td>
+<td>9</td>
+<td>0</td>
+<td>−5</td>
+<td>0</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Dimate</td>
+<td>1</td>
+<td>13</td>
+<td>0</td>
+<td>−10</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Trimate</td>
+<td>8</td>
+<td>16</td>
+<td>2</td>
+<td>−15</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Monofluid</td>
+<td>0</td>
+<td>−5</td>
+<td>0</td>
+<td>9</td>
+<td>0</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Difluid</td>
+<td>4</td>
+<td>−10</td>
+<td>0</td>
+<td>13</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Trifluid</td>
+<td>6</td>
+<td>−15</td>
+<td>5</td>
+<td>17</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Antidote</td>
+<td>−5</td>
+<td>4</td>
+<td>12</td>
+<td>−5</td>
+<td>−1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Antiparalysis</td>
+<td>−5</td>
+<td>−6</td>
+<td>11</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Sol Atomizer</td>
+<td>0</td>
+<td>11</td>
+<td>3</td>
+<td>−5</td>
+<td>4</td>
+<td>−2</td>
+</tr>
+<tr>
+<td>Moon Atomizer</td>
+<td>4</td>
+<td>−5</td>
+<td>0</td>
+<td>11</td>
+<td>−1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Star Atomizer</td>
+<td>7</td>
+<td>8</td>
+<td>6</td>
+<td>9</td>
+<td>4</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<h3>表3 &lt;a name=&quot;recipe4&quot;&gt;&lt;/a&gt;</h3>
+
+<p>阶段2: Mitra, Tapas, Surya</p>
+
+<table>
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Monomate</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Dimate</td>
+<td>5</td>
+<td>7</td>
+<td>0</td>
+<td>−5</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Trimate</td>
+<td>4</td>
+<td>14</td>
+<td>6</td>
+<td>−10</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Monofluid</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Difluid</td>
+<td>4</td>
+<td>−5</td>
+<td>0</td>
+<td>8</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Trifluid</td>
+<td>4</td>
+<td>−10</td>
+<td>3</td>
+<td>15</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Antidote</td>
+<td>0</td>
+<td>0</td>
+<td>7</td>
+<td>0</td>
+<td>−3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Antiparalysis</td>
+<td>−4</td>
+<td>−5</td>
+<td>20</td>
+<td>−5</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Sol Atomizer</td>
+<td>−10</td>
+<td>9</td>
+<td>6</td>
+<td>9</td>
+<td>3</td>
+<td>−2</td>
+</tr>
+<tr>
+<td>Moon Atomizer</td>
+<td>8</td>
+<td>5</td>
+<td>−8</td>
+<td>7</td>
+<td>−2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Star Atomizer</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+<td>7</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>表4 &lt;a name=&quot;recipe5&quot;&gt;&lt;/a&gt;</h3>
+
+<p>阶段2: Vayu</p>
+
+<p>阶段3: Asparas, Bhirava, Kaitabha, Kama, Kumara, Ushasu, Varaha</p>
+
+<table>
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Monomate</td>
+<td>−5</td>
+<td>9</td>
+<td>−5</td>
+<td>0</td>
+<td>2</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Dimate</td>
+<td>0</td>
+<td>11</td>
+<td>0</td>
+<td>−10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Trimate</td>
+<td>4</td>
+<td>14</td>
+<td>0</td>
+<td>−15</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Monofluid</td>
+<td>−5</td>
+<td>0</td>
+<td>−6</td>
+<td>10</td>
+<td>2</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Difluid</td>
+<td>0</td>
+<td>−10</td>
+<td>0</td>
+<td>11</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Trifluid</td>
+<td>4</td>
+<td>−15</td>
+<td>0</td>
+<td>15</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Antidote</td>
+<td>−5</td>
+<td>−5</td>
+<td>16</td>
+<td>−5</td>
+<td>2</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Antiparalysis</td>
+<td>7</td>
+<td>−3</td>
+<td>0</td>
+<td>−3</td>
+<td>−2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Sol Atomizer</td>
+<td>5</td>
+<td>21</td>
+<td>−5</td>
+<td>−20</td>
+<td>4</td>
+<td>−2</td>
+</tr>
+<tr>
+<td>Moon Atomizer</td>
+<td>−5</td>
+<td>−20</td>
+<td>5</td>
+<td>21</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Star Atomizer</td>
+<td>4</td>
+<td>6</td>
+<td>8</td>
+<td>5</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+
+<h3>表5 &lt;a name=&quot;recipe6&quot;&gt;&lt;/a&gt;</h3>
+
+<p>表3: Durga, Garuda, Ila, Nandin, Ribhava, Sita, Soma, Yaksa</p>
+
+<p>表4: Deva, Rukmin, Sato</p>
+
+<table>
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Monomate</td>
+<td>−4</td>
+<td>13</td>
+<td>−5</td>
+<td>−5</td>
+<td>2</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Dimate</td>
+<td>0</td>
+<td>16</td>
+<td>0</td>
+<td>−15</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Trimate</td>
+<td>3</td>
+<td>19</td>
+<td>−2</td>
+<td>−18</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Monofluid</td>
+<td>−4</td>
+<td>−5</td>
+<td>−5</td>
+<td>13</td>
+<td>2</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Difluid</td>
+<td>0</td>
+<td>−15</td>
+<td>0</td>
+<td>16</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Trifluid</td>
+<td>3</td>
+<td>−20</td>
+<td>0</td>
+<td>19</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Antidote</td>
+<td>5</td>
+<td>−6</td>
+<td>6</td>
+<td>−5</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Antiparalysis</td>
+<td>0</td>
+<td>−4</td>
+<td>14</td>
+<td>−10</td>
+<td>−1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Sol Atomizer</td>
+<td>4</td>
+<td>17</td>
+<td>−5</td>
+<td>−15</td>
+<td>4</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Moon Atomizer</td>
+<td>−10</td>
+<td>−15</td>
+<td>5</td>
+<td>21</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Star Atomizer</td>
+<td>2</td>
+<td>8</td>
+<td>3</td>
+<td>6</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<h3>表6 &lt;a name=&quot;recipe7&quot;&gt;&lt;/a&gt;</h3>
+
+<p>阶段3: Andhaka, Bana, Kabanda, Madhu, Marica, Naga, Naraka, Ravana</p>
+
+<p>阶段4: Bhima, Pushan, Rati</p>
+
+<table>
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Monomate</td>
+<td>−3</td>
+<td>9</td>
+<td>−3</td>
+<td>−4</td>
+<td>−1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Dimate</td>
+<td>0</td>
+<td>11</td>
+<td>0</td>
+<td>−10</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Trimate</td>
+<td>2</td>
+<td>15</td>
+<td>0</td>
+<td>−16</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Monofluid</td>
+<td>−3</td>
+<td>−4</td>
+<td>−3</td>
+<td>9</td>
+<td>−1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Difluid</td>
+<td>0</td>
+<td>−10</td>
+<td>0</td>
+<td>11</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Trifluid</td>
+<td>−2</td>
+<td>−15</td>
+<td>0</td>
+<td>19</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Antidote</td>
+<td>0</td>
+<td>6</td>
+<td>9</td>
+<td>−15</td>
+<td>2</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Antiparalysis</td>
+<td>0</td>
+<td>−15</td>
+<td>9</td>
+<td>6</td>
+<td>−2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Sol Atomizer</td>
+<td>9</td>
+<td>−20</td>
+<td>−5</td>
+<td>17</td>
+<td>3</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Moon Atomizer</td>
+<td>−5</td>
+<td>20</td>
+<td>5</td>
+<td>−20</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Star Atomizer</td>
+<td>0</td>
+<td>11</td>
+<td>0</td>
+<td>11</td>
+<td>3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<h3>表7 &lt;a name=&quot;recipe8&quot;&gt;&lt;/a&gt;</h3>
+
+<p>阶段4: Cell Mags, Diwari, Nidra, Savitri</p>
+
+<table>
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Monomate</td>
+<td>−4</td>
+<td>21</td>
+<td>−15</td>
+<td>−5</td>
+<td>−1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Dimate</td>
+<td>−1</td>
+<td>27</td>
+<td>−10</td>
+<td>−16</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Trimate</td>
+<td>5</td>
+<td>29</td>
+<td>−7</td>
+<td>−25</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Monofluid</td>
+<td>−10</td>
+<td>−5</td>
+<td>−10</td>
+<td>21</td>
+<td>−1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Difluid</td>
+<td>−5</td>
+<td>−16</td>
+<td>−5</td>
+<td>25</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Trifluid</td>
+<td>−7</td>
+<td>−25</td>
+<td>6</td>
+<td>29</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Antidote</td>
+<td>−10</td>
+<td>−10</td>
+<td>28</td>
+<td>−10</td>
+<td>−1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Antiparalysis</td>
+<td>9</td>
+<td>−18</td>
+<td>25</td>
+<td>−15</td>
+<td>2</td>
+<td>−1</td>
+</tr>
+<tr>
+<td>Sol Atomizer</td>
+<td>19</td>
+<td>18</td>
+<td>−15</td>
+<td>−20</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Moon Atomizer</td>
+<td>−15</td>
+<td>−20</td>
+<td>19</td>
+<td>18</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Star Atomizer</td>
+<td>3</td>
+<td>7</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+<h2>同步率 &lt;a name=&quot;sync&quot;&gt;&lt;/a&gt;</h2>
+
+<p>影响攻击类PB伤害,最大值120%，死一次减5%</p>
+
+<h3>Mag同步率规则</h3>
+
+<ul>
+<li>+: 基础值+阶梯增幅</li>
+<li>-: 只有阶梯增幅</li>
+<li>无: 忽略同步率(如果mag技能没有+-，可忽略此项,可参考 <a href="https://wiki.pioneer2.net/index.php?title=Mags">Mags</a> )</li>
+</ul>
+
+<table>
+<thead><tr>
+<th>同步率</th>
+<th>概率加成</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>0-30%</td>
+<td>+0%</td>
+</tr>
+<tr>
+<td>31-60%</td>
+<td>+15%</td>
+</tr>
+<tr>
+<td>61-80%</td>
+<td>+25%</td>
+</tr>
+<tr>
+<td>81-100%</td>
+<td>+30%</td>
+</tr>
+<tr>
+<td>101-120%</td>
+<td>+35%</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>智力 &lt;a name=&quot;iq&quot;&gt;&lt;/a&gt;</h2>
+
+<p>1. 加血等级，加血是IQ/40下取整等级</p>
+<p>2. SD等级，双子是IQ/10, 基础1级，4连81级，PB不满的情况下有%30(60)就够了，200(mag的IQ值), 捐一次10%，捐一次就是2级(200*10%/10=2), 最多3次, 按PB联协数量的倍数贡献SD， 例如:</p>
+
+<ul>
+<li>3连PB(一定有双子), 61 + 6 <em> 3次(单人) = 79级, 61 + 6 </em> 3次(单人) * 0(人) = 61级</li>
+<li>2连PB(一定有双子), 41 + 6 <em> 2次(单人) </em> 2(人)  = 65级，41 + 6 <em> 2次(单人) </em> 1(人) = 53级</li>
+<li>1PB双子,3捐 21 + 6 <em> 1次(单人) </em> 3 = 39级,2捐 21 + 6 <em> 1次(单人) </em> 2 = 33级,1捐 21 + 6 <em> 1次(单人) </em> 1 = 27级</li>
+</ul>
+
+<hr>
+
+<h2>激活条件 &lt;a name=&quot;trigger&quot;&gt;&lt;/a&gt;</h2>
+
+<ul>
+<li>玛古1/10HP激活条件: 角色HP瞬间扣去20%以上(狮鹫羽毛ex21%)并且最终值处于10%以下</li>
+<li>Boss房激活无需解释</li>
+<li>100PB激活无需解释</li>
+</ul>
+
+<hr>
+
+<h2>E服Mag独占颜色 &lt;a name=&#x27;ephinea_exclusive_mag_colors&#x27;&gt;&lt;/a&gt;</h2>
+
+<p><style></p>
+<p>  table.color-table {</p>
+<p>    width: 100%;</p>
+<p>    border-collapse: collapse;</p>
+<p>    font-family: sans-serif;</p>
+<p>    font-size: 14px;</p>
+<p>    text-align: center;</p>
+<p>  }</p>
+<p>  .color-table th, .color-table td {</p>
+<p>    border: 1px solid #ccc;</p>
+<p>    padding: 8px;</p>
+<p>    vertical-align: middle;</p>
+<p>  }</p>
+<p>  .color-box {</p>
+<p>    display: inline-block;</p>
+<p>    width: 32px;</p>
+<p>    height: 16px;</p>
+<p>    border: 1px solid #ccc;</p>
+<p>  }</p>
+<p>  .mag-img {</p>
+<p>    width: 100px;</p>
+<p>    border-radius: 4px;</p>
+<p>    box-shadow: 0 0 4px rgba(0,0,0,0.1);</p>
+<p>  }</p>
+<p></style></p>
+
+<p><table class="color-table"></p>
+<p>  <tr></p>
+<p>    <th>颜色块</th><th>截图</th><th>名称</th><th>Hex值</th></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#7FFF00;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_chartreuse-0.png"></td></p>
+<p>    <td>Chartreuse 亮黄绿色</td><td>#7FFF00</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#007FFF;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_azure-0.png"></td></p>
+<p>    <td>Azure 天蓝色</td><td>#007FFF</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#660066;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_royal_purple-0.png"></td></p>
+<p>    <td>Royal_Purple 深紫色</td><td>#660066</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#F90505;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_ruby-0.png"></td></p>
+<p>    <td>Ruby 鲜红色</td><td>#F90505</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#0A0AF2;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_sapphire-0.png"></td></p>
+<p>    <td>Sapphire 深宝蓝</td><td>#0A0AF2</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#007F00;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_emerald-0.png"></td></p>
+<p>    <td>Emerald 深绿色</td><td>#007F00</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#9F7E3A;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_gold-0.png"></td></p>
+<p>    <td>Gold 暗金偏棕</td><td>#9F7E3A</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#8D9BA6;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_silver-0.png"></td></p>
+<p>    <td>Silver 浅银灰</td><td>#8D9BA6</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#A0654E;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_bronze-0.png"></td></p>
+<p>    <td>Bronze 青铜色</td><td>#A0654E</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#7F337F;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_plum-0.png"></td></p>
+<p>    <td>Plum 李子紫</td><td>#7F337F</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#2B0757;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_violet-0.png"></td></p>
+<p>    <td>Violet 深紫色</td><td>#2B0757</td></p>
+<p>  </tr></p>
+<p>  <tr></p>
+<p>    <td><span class="color-box" style="background:#F2A400;"></span></td></p>
+<p>    <td><img class="mag-img" src="static/img/Mag_goldenrod-0.png"></td></p>
+<p>    <td>Goldenrod 金黄色</td><td>#F2A400</td></p>
+<p>  </tr></p>
+<p></table></p>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>**游戏和论坛规则** | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">**游戏和论坛规则**</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h1>**游戏和论坛规则**</h1>
+
+<p>您对论坛和游戏服务器的使用受本文中全球适用规则的约束。不了解或忽视阅读这些规则，都不能成为它们适用于你的借口。</p>
+<p>你负责阅读和理解规则。有关规则的问题可提交工作人员澄清。</p>
+
+<h3>使用论坛和游戏服务器，那么您已同意以下内容：</h3>
+
+<p><strong>禁止</strong>骚扰、故意冒犯内容或仇恨言论。不允许公开点名、诽谤或贬低其他用户。也不允许仅仅为了激怒或冒犯其他用户而发布内容。</p>
+<p>跟踪，性骚扰，或使用任何形式的歧视性仇恨言论对其他玩家将立即对你的帐户采取措施。</p>
+
+<p><strong>禁止</strong>非法内容。不要张贴链接，或讨论，不应属于当前版块的东西，这包括但不限于分发非法文件，如ROMs、ISOs、Cracks和Warez。</p>
+
+<p><strong>禁止</strong>垃圾邮件。不管是在论坛上还是在论坛上发布垃圾信息等，都会导致你的账户被处理。保持论坛的可读性，必要时编辑你的帖子，而不是发表新的帖子。</p>
+<p>不要作弊。如果你被发现在沙盒模式外作弊，你将被立即永久<strong>封杀</strong>。如果我们认为您正在使用一个不和谐的系统，工作人员将首先警告您，继续使用将导致对您的帐户采取措施。</p>
+
+<p><strong>禁止</strong>多开多掉落（使用多台电脑）滥用PSO2掉落系统额外的掉落是不允许的。如果你需要使用多台电脑，请使用经典的掉落风格，如果你不想冒险禁令。</p>
+<p>不允许扫描其他玩家的库存，不允许使用任何允许玩家查看其他玩家库存的工具，任何你这样做的证据都会立即被<strong>封杀</strong>。</p>
+
+<p><strong>禁止</strong>讨论RMT（真实货币交易），也<strong>禁止</strong>任何公开的RMT。讨论任何RMT都将导致对您的帐户采取措施。您不允许与其他用户进行RMT，</p>
+<p>也不允许与其他用户讨论这样做或已经这样做，也不允许谈论其他据称参与RMT的玩家。将对您的帐户采取措施。</p>
+<p>工作人员对规则有最终决定权。如果一个工作人员说你应该停止做某事，你应该停止做。声称我们正在压制你的言论自由，</p>
+<p>或者这些规则中<strong>禁止</strong>列出违法行为，是对你的帐户采取措施的一种快速途径。此外，忽略工作人员发出的警告也会导致对您的帐户采取措施。</p>
+
+<p>以上谈到的相关的问题不可以公开讨论。如果你认为某位GM不公正地<strong>警告</strong>你或<strong>封杀</strong>你，请向该员工投诉。如果您不想与某GM，请随时与另一位GM沟通。</p>
+<p>公开讨论这个问题将导致对你的帐户采取进一步的措施。请注意，玩家违规问题不是其他用户讨论的事项，这只是GM的事。</p>
+<p>请注意，使用论坛是一种特权，而不是一种权利。在极端情况下，您的帐户可能会被无限期<strong>封杀</strong>，并且不会发出警告。</p>
+
+<p><strong>就这些！</strong></p>
+    </div>
+</body>
+
+</html>

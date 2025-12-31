@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>christmas2021 | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('../static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">christmas2021</h1>
+    </header>
+
+    <a href="../event.html" class="back-link">← 返回圣诞活动页</a>
+
+    <div class="content-container">
+        <h2>&lt;span style=&quot;color:red&quot;&gt;圣诞节日活动(CF)&lt;/span&gt;</h2>
+
+<p><div></p>
+<p>    <a target="_blank"</p>
+<p>       href="//shang.qq.com/wpa/qunwpa?idkey=95996b984b761d905d2d05e0ce765fa9ff720cfa9e6dbcde50fd179cd8867808">点击加QQ群: 956652396</a></p>
+<p></div></p>
+
+<p><a href="https://ephinea4haven.github.io/ephinea.html">Ephinea介绍</a></p>
+
+<p><a href="https://ephinea4haven.github.io">Ephinea国内WIKI</a></p>
+
+<h3>2021年圣诞任务从`(2021-12-11)`到`(2022-01-08)`结束</h3>
+
+<ul>
+<li><span style="font-weight: bolder;color:red">Christmas Fiasco[124]过关奖励4、6、6煤炭</span></li>
+</ul>
+
+
+<h3>奖品列表</h3>
+<p> <code>???</code> 圣诞礼品需要猎人们一起挖掘，然后去 <a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2021-event-thread.22085">圣诞活动贴子</a> 上报!</p>
+
+<h4>全难度普通礼品</h4>
+<p> 多种H: 最低15，最高60</p>
+
+<p>* </p>
+<p>* </p>
+<p>*  </p>
+<p>*  </p>
+<p>* </p>
+<ul>
+<li>Photon Crystal x3</li>
+</ul>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<ul>
+<li>HP Material x3</li>
+</ul>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<ul>
+<li>Harisen Battle Fan [variable hit]</li>
+</ul>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+
+<hr>
+
+<h4>&lt;span style=&quot;color:red&quot;&gt;极限难度-独占掉落&lt;/span&gt;</h4>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;普通&lt;/span&gt;</h5>
+
+<ul>
+<li>Photon Drop x1</li>
+<li>Photon Crystal x1</li>
+<li>TP Material x1</li>
+<li>Coal x3</li>
+<li>AddSlot</li>
+<li>Halloween Cookie</li>
+</ul>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;常见&lt;/span&gt;</h5>
+
+<ul>
+<li>Photon Drop x2</li>
+<li>Coal x5</li>
+</ul>
+<p>* </p>
+<ul>
+<li>Photon Crystal x2</li>
+<li>Coal x10</li>
+<li>TP Material x3</li>
+</ul>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<ul>
+<li>Spirit TypeGU/Hand 40H</li>
+</ul>
+<p>* </p>
+<ul>
+<li>Berserk TypeGU/Hand 40H</li>
+<li>Berserk TypeGU/Mech 35H</li>
+</ul>
+<p>* </p>
+<ul>
+<li>Blizzard TypeSW/Slicer 30H</li>
+<li>Arrest TypeDS/Wand 30H</li>
+</ul>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;不常见&lt;/span&gt;</h5>
+
+<ul>
+<li>Charge TypeME/Mech 40H</li>
+</ul>
+<p>* </p>
+<ul>
+<li>Spirit TypeME/Mech 40H</li>
+<li>Spirit TypeSH/Shot 40H</li>
+</ul>
+<p>* </p>
+<p>* </p>
+<ul>
+<li>Devil's TypeDS/Rod 30H</li>
+<li>Spirit TypeSW/J-Sword 30H</li>
+</ul>
+<p>* </p>
+<ul>
+<li>Coal x20</li>
+<li>Stealth Kit</li>
+<li>Blue Paint</li>
+</ul>
+<p>* </p>
+<ul>
+<li>Yellow Paint</li>
+<li>Purple Paint</li>
+</ul>
+<p>* </p>
+<ul>
+<li>Black Paint</li>
+</ul>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;稀有&lt;/span&gt;</h5>
+
+<p>* </p>
+<p>* </p>
+<ul>
+<li>Heart of Plantain Huge Fan</li>
+<li>Heart of Suppressed Gun</li>
+</ul>
+<p>* </p>
+<p>* </p>
+<ul>
+<li>Heart of Lollipop</li>
+</ul>
+<p>* </p>
+<ul>
+<li>Photon Drop x10</li>
+<li>Charge Mechgun 70H</li>
+<li>Charge Repeater 65H</li>
+</ul>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<ul>
+<li>Demon's Sniper 70H</li>
+<li>Charge Assault 65H</li>
+</ul>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<p>* </p>
+<ul>
+<li>Photon Booster</li>
+</ul>
+<p>* </p>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;非常稀有&lt;/span&gt;</h5>
+
+<ul>
+<li>*</li>
+<li>*</li>
+<li>*</li>
+<li>*</li>
+<li>*</li>
+<li>*</li>
+<li>*</li>
+<li>*</li>
+<li>*</li>
+<li>*</li>
+<li>*</li>
+</ul>
+
+<h3>&lt;span style=&quot;color:red&quot;&gt;圣诞活动商店&lt;/span&gt;</h3>
+<p>   商店坐标: EP1 -> Shop -> Christmas Event Shop</p>
+
+<h4>特殊武器鉴定师(商店门口，银行左侧):</h4>
+
+<p>   1煤炭.</p>
+
+<ul>
+<li>颜色:</li>
+<li>[绿]Green</li>
+<li>[蓝]Blue</li>
+<li>[紫]Purple</li>
+<li>[红]Red</li>
+<li>[黄]Yellow</li>
+<li>类型:</li>
+<li>[光剑]Saber</li>
+<li>[光枪]Handgun</li>
+<li>[匕首]Dagger</li>
+<li>[步枪]Rifle</li>
+<li>[投刃]Slicer</li>
+<li>[散弹枪]Shot</li>
+<li>[长刀]Partisan</li>
+<li>[机枪]Mechgun</li>
+<li>EX:</li>
+<li>[败血]BERSERK</li>
+<li>[败魔]SPIRIT</li>
+<li>[败家]CHARGE</li>
+<li>[嗜血]GUSH</li>
+<li>[魄之]GEIST</li>
+<li>[全麻痹]ARREST</li>
+<li>[混沌]CHAOS</li>
+<li>[恶魔]DEMON'S</li>
+<li>[地狱]HELL</li>
+</ul>
+
+<ul>
+<li>H概率(55H/60H)：</li>
+</ul>
+
+<ul>
+<li>绿: 60%/30%</li>
+<li>蓝: 40%/20%</li>
+<li>紫: 20%/10%</li>
+<li>红: 10%/5%</li>
+<li>黄: 4%/1%</li>
+</ul>
+
+<hr>
+
+<h4>胖胖坦克(银行右侧):</h4>
+
+<p>   煤炭换圣诞礼物。</p>
+
+<p>   <img src="../static/img/coalexchange.png" alt="煤炭兑换菜单" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p><strong>兑换规则:</strong></p>
+
+<ul>
+<li>普通-礼品: 8煤炭</li>
+<li>极限限定-礼品: 40煤炭</li>
+</ul>
+
+
+    </div>
+</body>
+
+</html>

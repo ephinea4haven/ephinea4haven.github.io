@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>刷怪表 | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">刷怪表</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h1>刷怪表</h1>
+<p><a href="http://pso.ffsky.cn/monster_count_ep1.htm">参考天幻网刷怪表</a>  </p>
+
+<h2>EP1</h2>
+<h2>森林</h2>
+
+<p><strong>棕狂熊 / 紫魔龟</strong>    </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 1 Ver2 （以起点方向为准）进入光栅门清理掉两波棕狂熊后返回→</li>
+</ul>
+<p>进入最接近起点的门清理完撤退 (43)   </p>
+<ul>
+<li>[E][Maximum Attack] Maximum Attack E: Episode 1 森林全程 (32)</li>
+<li>[主线] 1-1 (40)</li>
+</ul>
+
+<p><strong>黄狂熊 / 蓝魔龟</strong>  </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 1 Ver2 （以起点方向为准）进入光栅门清理掉两波黄狂熊后返回→</li>
+</ul>
+<p>进入远端靠左的门→传送至中央圆顶清理第一个房间后撤退   </p>
+<ul>
+<li>[主线] 1-3 (30)</li>
+<li>[歼灭] 无尽的恶梦1 (29)</li>
+</ul>
+
+<p><strong>红狂熊 / 魔螳螂</strong>  </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 1 Ver2 （以起点方向为准）进入光栅门清理掉两波红狂熊后返回→</li>
+</ul>
+<p>再进入远端靠右的门，最后在有踩踏开关的房间里清理掉两波红狂熊后撤退 (38)</p>
+<ul>
+<li>[夺回] 被夺走的高热大剑 到有蚊子巢的房间前或森林1全程 (33/43)</li>
+<li>[E][限定活动] Maximum Attack E: Forest (37)</li>
+<li>[歼灭] 扫荡作战 第一号 森林全程 (36)</li>
+</ul>
+
+<p><strong>狂狼 / 角狼</strong>  </p>
+<ul>
+<li>[主线] 1-1 (36)</li>
+<li>[Maximum Attack] Maximum Attack 1 Ver2 （以起点方向为准）进入远端靠左的房间，</li>
+</ul>
+<p>清理后撤退或森林全程 (21/25) </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Forest (25)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Episode 1 森林全程 (21)</li>
+<li>[单人] 匠之魂 森林全程 (29)</li>
+</ul>
+
+<p><strong>狂狼王 / 角狼王</strong>  </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 1 Ver2 （以起点方向为准）进入远端靠右的门→</li>
+</ul>
+<p>传送至中央圆顶清理第一个房间后撤退 (18) </p>
+<ul>
+<li>[夺回] 拉比的假日 参加小鸡赛跑，拿到S或SS级，再把胖拉比周围的怪物打倒 (8)</li>
+<li>[E][夺回] Rescue From Ragol，区域1 \| 区域2 (8\|12)</li>
+<li>[E][VR] Simulator 2.0 清理3-4波 (5)</li>
+<li>[歼灭] 无尽的恶梦1 (34)</li>
+</ul>
+
+<p><strong>黄拉比鸟 / 白拉比鸟</strong>  </p>
+<ul>
+<li>[单人] 黄色的伪装 (47)</li>
+<li>[E][VR] Tyrell's Ego 第一波或第一个房间或森林全程 (5/9/28)</li>
+<li>[E][限定活动] Maximum Attack E: Forest (16)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Episode 1 森林部分 (12)</li>
+<li>[E][夺回] Rescue From Ragol 区域1 (7)</li>
+</ul>
+
+<p><strong>狂暴巨猿 / 雷暴巨猿</strong>   </p>
+<ul>
+<li>[S][活动] 总督最后的希望 (37)</li>
+<li>[E][限定活动] Maximum Attack E: Forest (32)</li>
+<li>[E][VR] Tyrell's Ego 森林部分 (52)</li>
+<li>[单人] 恸哭的森林 (16)</li>
+<li>[夺回] 拉比的假日 森林2部分 (75)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Episode 1 森林部分 (17)</li>
+<li>[E][VR] Simulator 2.0 森林部分 (10)</li>
+</ul>
+
+<p><strong>吸血巨蚊巢 / 嗜血巨蚊巢</strong>   </p>
+<ul>
+<li>[E][VR] Tyrells Ego 第一个房间有3个，第二个房间有6个，第一个侧边房间有7个</li>
+<li>[主线] 1-3 (10)</li>
+</ul>
+
+<p><strong>赤焰巨龙 / 冰霜巨龙</strong>   </p>
+<ul>
+<li>[VR] 迎向未来 打完撤退 (1)</li>
+</ul>
+
+<p>注：Maximum Attack 撤退的方法是打开菜单（道具盒→任务板→第二个，选择“是”）</p>
+
+
+
+
+<h2>洞窟</h2>
+
+<p><strong>绿鲨魔 / 紫鲨熊</strong>   </p>
+<ul>
+<li>[歼灭] 无尽的恶梦2 洞窟1 (111)</li>
+<li>[单人] 恶魔的食物 洞窟1 (91)</li>
+<li>[主线] 2-2 洞窟1或全程 (83/144)</li>
+<li>[单人] 匠之魂 洞窟部分 (122)</li>
+<li>[S][活动] SCHTHACK的请求 最初的岔路往左 (24)</li>
+<li>[歼灭] 扫荡作战 第二号 (72)</li>
+<li>[VR] Maximum Attack 4th Stage -A- (43)</li>
+</ul>
+
+<p><strong>紫鲨魔 / 蓝鲨熊</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Caves (42)</li>
+<li>[VR] Maximum Attack 4th Stage -B- or -C- 洞窟部分 (41)</li>
+<li>[S][活动] SCHTHACK的请求 最初的岔路往左 (24)</li>
+<li>[E][万圣节] Hallow Battlefield: Caves (35)</li>
+<li>[主线] 2-3 洞窟2或全程 (23/42)</li>
+<li>[单人] 匠之魂 洞窟部分 (42)</li>
+</ul>
+
+<p><strong>狂鲨魔 / 变种鲨熊</strong>   </p>
+<ul>
+<li>[歼灭] 明日的代价 最初岔路往左，到洞窟3第一个房间为止或全程 (17/47)</li>
+<li>[夺回] 被夺走的冰晶投刃 洞窟1或全程 (49/125)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -A- (28)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -B- or -C- (32)</li>
+<li>[S][活动] SCHTHACK的请求 最初的岔路往左 (24)</li>
+<li>[单人] 匠之魂 洞窟部分 (25)</li>
+</ul>
+
+<p><strong>毒铃兰 / 变种铃兰</strong>   </p>
+<ul>
+<li>[E][万圣节] Hallow Battlefield: Caves (70)</li>
+<li>[VR] Maximum Attack 4th Stage -A- 洞窟部分 (63)</li>
+<li>[VR] Maximum Attack 4th Stage -B- or -C- 洞窟部分 (62)</li>
+<li>[S][活动] SCHTHACK的请求 最初的岔路往左杀完12只为止</li>
+<li>[歼灭] 明日的代价 最初的岔路往右侧房间 (9) →继续左侧 (3)</li>
+<li>[VR] 迎向未来 杀到12只为止</li>
+<li>[主线] 2-2 洞窟1或全程 (19/57)</li>
+</ul>
+
+<p><strong>冰史莱姆</strong>  </p>
+<ul>
+<li>[S][活动] SCHTHACK的请求 最初的岔路往右 (4) 再往左 (3)</li>
+<li>[主线] 2-3 洞窟2到地图北侧第六个房间（开关前）为止 (5)</li>
+<li>[VR] Maximum Attack 4th Stage -A- (16)</li>
+<li>[VR] Maximum Attack 4th Stage -B- or -C- (14)</li>
+<li>[歼灭] 明日的代价 最初的岔路往左 (2)</li>
+<li>[VR] 迎向未来 洞窟部分 (5)</li>
+<li>[单人] Knight of Coral 洞窟部分 (9)</li>
+</ul>
+
+<p><strong>合体怪</strong>   </p>
+<ul>
+<li>[E][Maximum Attack] Random Attack Xrd 清理两个房间及过道里的三只巨螳螂之后，如果是北门开，则清理两个房间 (2) 然后/lobby；如果是东门开，先清理两个房间 (累计5)，下一扇如果开的是东门，就/lobby，如果开的是北门，就清理一个房间 (累计8) 再进传送清掉下一个房间 (累计9)</li>
+<li>[VR] 迎向未来 洞窟第一和最后一个房间 (4)</li>
+<li>[S][活动] SCHTHACK的请求 (4)</li>
+<li>[主线] 2-3 (12)</li>
+</ul>
+
+<p><strong>巨螳螂 / 嗜血巨螳螂</strong>   </p>
+<ul>
+<li>[VR] Maximum Attack 4th Stage -A- 洞窟部分 (25)</li>
+<li>[VR] Maximum Attack 4th Stage -B- or -C- 洞窟部分 (28)</li>
+<li>[E][限定活动] Maximum Attack E: Caves (23)</li>
+<li>[E][单人] Knights Of Coral 洞窟部分 (21)</li>
+<li>[夺回] 被夺走的冰晶投刃 洞窟1 (20)</li>
+<li>[歼灭] 无尽的梦魇2 (20)</li>
+<li>[主线] 2-2 (19)</li>
+</ul>
+
+<p><strong>翼龙</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Caves (30)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -B- or -C- 洞窟部分 (22)</li>
+<li>[歼灭] 扫荡作战 第二号 (18)</li>
+<li>[主线] 2-4 (18)</li>
+<li>[单人] 恶魔的食物 第一个房间 (2) 或杀到第8匹为止</li>
+</ul>
+
+<p><strong>迪·洛尔·雷 / 达尔·拉·利</strong>   </p>
+<ul>
+<li>[VR] 迎向未来 打完撤退 (1)</li>
+</ul>
+
+
+
+
+<h2>坑道</h2>
+
+<p><strong>步行机兵 / 浮游机将</strong>   </p>
+<ul>
+<li>[主线] 3-1 (118)</li>
+<li>[夺回] 被夺走的魂之匕首 坑道1 (60)</li>
+<li>[歼灭] 无尽的恶梦3 (104)</li>
+<li>[歼灭] 扫荡作战 第三号 (58)</li>
+</ul>
+
+<p><strong>傀儡机兵 / 傀儡机将</strong>   </p>
+<ul>
+<li>[E][单人] Knight of Coral 清理东面一房间或三房间 (18/22)，以及西面4房间 (13)</li>
+<li>[歼灭] 无尽的恶梦3 第一个房间 (12)</li>
+</ul>
+
+<p><strong>电爪 / 强化电爪</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Mines (65+32)</li>
+<li>[E][单人] Knight of Coral 东面三房间，西面一房间或二房间 (44\|11/19)</li>
+<li>[歼灭] 扫荡作战 第三号 清理完第一房间的电爪为止或全程 (10/55)</li>
+<li>[歼灭] 无尽的恶梦3 (79)</li>
+<li>[夺回] 被夺走的魂之匕首 (110)</li>
+<li>[主线] 清理三个房间或全任务 (16/91)</li>
+</ul>
+
+<p>**核心电爪 / 强化核心电爪 </p>
+<ul>
+<li>[E][单人] Knight of Coral 西面一或二个房间，东面3个房间 (1/2\|3)</li>
+<li>[歼灭] 扫荡作战 第三号 打倒第一个电爪群撤退 (1)</li>
+<li>[E][VR] Mines Offensive 清理两个房间 (2)</li>
+<li>[E][限定活动] Maximum Attack E: Mines (4)</li>
+</ul>
+
+<p><strong>蓝机忍 / 紫机忍</strong>   </p>
+<ul>
+<li>[夺回] 被夺走的魂之匕首 坑道1或全程 (46/69)</li>
+<li>[E][限定活动] Maximum Attack E: Mines (21)</li>
+<li>[E][单人] Knight of Coral 东面二房间，西面四房间 (10\|7)</li>
+<li>[E][S][夺回] 被遗忘的朋友 清理两个房间或坑道全程 (7/25)</li>
+<li>[歼灭] 无尽的恶梦3 敌无视直接前往小黑屋，清理完撤退，或坑道全程 (5/43)</li>
+<li>[VR] 迎向未来 打完12个</li>
+</ul>
+
+<p><strong>金机忍 / 红机忍</strong>   </p>
+<ul>
+<li>[夺回] 被夺走的魂之匕首 坑道1或全程 (16/37)</li>
+<li>[E][限定活动] Maximum Attack E: Mines (13)</li>
+<li>[歼灭] 无尽的恶梦3 到第2个房间为止或全程 (3/14)</li>
+</ul>
+
+<p><strong>机甲堡垒 / 机甲堡垒·改</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Mines (19)</li>
+<li>[E][VR] Mines Offensive 第一个房间或打完坑道1或打完坑道2 (3/21/50)</li>
+<li>[E][S][夺回] 被遗忘的朋友 坑道2 (22)</li>
+<li>[E][单人] Knight of Coral 往西往东皆可 (8\|5)</li>
+<li>[夺回] 被夺走的魂之匕首 (26)</li>
+<li>[歼灭] 无尽的恶梦3 第一个房间的一匹 (1)</li>
+</ul>
+
+<p><strong>波鲁欧普 / 波鲁欧普·改</strong>   </p>
+<p>[VR] 迎向未来 打完撤退 (1) </p>
+
+
+
+
+
+<h2>遗迹</h2>
+
+<p><strong>爪虫</strong>   </p>
+<ul>
+<li>[歼灭] 无尽的恶梦4 前两个房间 (26)</li>
+<li>[歼灭] 扫荡作战 第四号 第一个房间 (19)</li>
+<li>[E][限定活动] Maximum Attack E: Ruins (24)</li>
+<li>[夺回] 记忆的碎片 遗迹1 (57)</li>
+</ul>
+
+<p><strong>合体爪魔</strong>   </p>
+<ul>
+<li>[夺回] 记忆的碎片 遗迹1 (32)</li>
+<li>[夺回] 被夺走的地狱荣耀光剑 1P和2P路线遗迹1 (23)</li>
+</ul>
+
+<p><strong>刀魔兵 / 异魔兵</strong>   </p>
+<ul>
+<li>[夺回] 记忆的碎片 遗迹1 (74)</li>
+<li>[E][万圣节] Hallow Battlefield: Ruins (38)</li>
+<li>[歼灭] 无尽的恶梦4 遗迹1 (34)</li>
+<li>[E][限定活动] Maximum Attack E: Ruins (32)</li>
+<li>[单人] 博士的秘密欲望 到第三个房间为止 (28)</li>
+</ul>
+
+<p><strong>刀魔将 / 异魔将</strong>   </p>
+<ul>
+<li>[夺回] 记忆的碎片 收集到光球后直下遗迹2并打完 (75)</li>
+<li>[E][万圣节] Hallow Battlefield: Ruins (37)</li>
+<li>[歼灭] 无尽的恶梦4 遗迹1 (37)</li>
+<li>[E][限定活动] Maximum Attack E: Ruins (33)</li>
+</ul>
+
+<p><strong>刀魔王 / 异魔王</strong>   </p>
+<ul>
+<li>[歼灭] 无尽的恶梦4 遗迹1 (37)</li>
+<li>[E][万圣节] Hallow Battlefield: Ruins (32)</li>
+</ul>
+
+<p><strong>暗黑炮台 / 死亡炮台</strong>   </p>
+<ul>
+<li>[E][夺回] Dark Research 2.0 往东走两个房间，再往西南，清理一个房间 (18) 再清光遗迹2 [区域1] (累计35) 遗迹3 [区域2] (累计94)</li>
+<li>[主线] 4-2 最初的岔路往左，杀掉5只后撤退或全程 (5/18)</li>
+<li>[歼灭] 无尽的恶梦4 (18)</li>
+</ul>
+
+<p><strong>剑魔</strong>   </p>
+<ul>
+<li>[E][夺回] Dark Research 2.0 往东走两个房间，再往西南，清理三个房间 (24)</li>
+<li>[夺回] 被夺走的地狱荣耀光剑 1P和2P路线前三个房间 (8)</li>
+<li>[单人] 博士的秘密欲望 第一个房间 (5)</li>
+<li>[夺回] 记忆的碎片 遗迹1 (41)</li>
+<li>[歼灭] 无尽的恶梦4 (38~42)</li>
+</ul>
+
+<p><strong>暗黑巨神像 / 远古巨神像</strong>   </p>
+<ul>
+<li>[E][万圣节] Hallow Battlefield: Ruins (15)</li>
+<li>[E][限定活动] Maximum Attack E: Ruins (12)</li>
+<li>[歼灭] 无尽的恶梦4 遗迹1 (27)</li>
+<li>[夺回] 记忆的碎片 遗迹1 (21)</li>
+</ul>
+
+<p><strong>混沌法师 / 毁灭法师</strong>   </p>
+<ul>
+<li>[夺回] 记忆的碎片 遗迹1 (38)</li>
+<li>[E][万圣节] Hallow Battlefield: Ruins (14)</li>
+<li>[E][限定活动] Maximum Attack E: Ruins (11)</li>
+</ul>
+
+<p><strong>混沌骑士 / 毁灭骑士</strong>   </p>
+<ul>
+<li>[E][夺回] Dark Research 2.0 往东走两个房间，再往西南，清理三个房间，或者清完遗迹2 [区域1] 为止 (19/67)</li>
+<li>[E][万圣节] Hallow Battlefield: Ruins (18)</li>
+<li>[E][限定活动] Maximum Attack E: Ruins (15)</li>
+<li>[E][单人] Knights of Coral 清理四个房间或全程 (6/11)</li>
+<li>[歼灭] 无尽的恶梦4 (13)</li>
+<li>[主线] 4-4 (10)</li>
+</ul>
+
+<p><strong>暗黑佛</strong>   </p>
+<ul>
+<li>[VR] 迎向未来 (1)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -C- (1)</li>
+</ul>
+
+
+
+
+<h2>箱子</h2>
+
+<p><strong>森林1箱子</strong>   </p>
+<ul>
+<li>[单人] 大地的呼声 敌无视或全程 (42+金箱3/53+金箱3)</li>
+<li>[单人] 恸哭的森林 (51)</li>
+<li>[单人] 黄色的伪装 (49)</li>
+</ul>
+
+<p><strong>森林2箱子</strong>   </p>
+<ul>
+<li>[单人] 大地的呼声 直走下森林2 敌无视 (38)</li>
+<li>[夺回] 无尽的恶梦1 (62)</li>
+<li>[夺回] 被夺走的高热大剑 (59)</li>
+<li>[单人] 疾风号 (53)</li>
+</ul>
+
+<p><strong>洞窟1箱子</strong>   </p>
+<ul>
+<li>[单人] 恶魔的食物 (60)</li>
+<li>[单人] 秘密货物 (56)</li>
+<li>[单人] 格雷夫家的管家 (56)</li>
+</ul>
+
+<p><strong>洞窟2箱子</strong>   </p>
+<ul>
+<li>[单人] 格雷夫家的管家 (54)</li>
+<li>[单人] 恶魔的食物 (51)</li>
+<li>[主线] 2-3 (50)</li>
+</ul>
+
+<p><strong>洞窟3箱子</strong>   </p>
+<ul>
+<li>[E][商店] Anniversary Badge Shop 隐形玛古组件可获取时 (??)</li>
+<li>[单人] 匠之魂 (61)</li>
+<li>[单人] 恶魔的食物 (51)</li>
+<li>[单人] 黑页 (51)</li>
+</ul>
+
+<p><strong>坑道1箱子</strong>   </p>
+<ul>
+<li>[主线] 3-3 (60)</li>
+<li>[单人] 心的形状 (56)</li>
+<li>[歼灭] 扫荡作战 第三号 (54)</li>
+</ul>
+
+<p><strong>坑道2箱子</strong>   </p>
+<ul>
+<li>[主线] 4-1 (69)</li>
+<li>[单人] 奥斯特博士的研究 (50)</li>
+<li>[歼灭] 无尽的恶梦 (33)</li>
+</ul>
+
+<p><strong>遗迹1箱子</strong>   </p>
+<ul>
+<li>[单人] 猎人的右臂 (68)</li>
+</ul>
+
+<p><strong>遗迹2箱子</strong>   </p>
+<ul>
+<li>[单人] 猎人的右臂 (70)</li>
+<li>[主线] 4-2 (56)</li>
+</ul>
+
+<p><strong>遗迹3箱子</strong>   </p>
+<ul>
+<li>[主线] 4-4 (49)</li>
+<li>[单人] 隐居的猎人 (34)</li>
+<li>[单人] 来自深渊 (22)</li>
+<li>[单人] 钢之魂 (17)</li>
+</ul>
+
+
+
+<h1>EP2</h1>
+<h2>神殿</h2>
+
+<p><strong>刀魔兵 / 异魔兵</strong>   </p>
+<ul>
+<li>[主线] 5-5 神殿α部分 (20)</li>
+</ul>
+
+<p><strong>刀魔将 / 异魔将</strong>   </p>
+<ul>
+<li>[主线] 5-1 (33)</li>
+<li>[E][Maximum Attack] Maximum Attack E: VR 神殿部分 (25)</li>
+<li>[E][限定活动] Maximum Attack E: Temple 神殿部分 (25)</li>
+</ul>
+
+<p><strong>刀魔王 / 异魔王</strong>   </p>
+<ul>
+<li>[E][Maximum Attack] Maximum Attack E: VR 神殿部分(28)</li>
+<li>[E][限定活动] Maximum Attack E: Temple 神殿部分 (28)</li>
+<li>[Maximum Attack] Maximum Attack 2nd Ver2“被选中的人”路线 (22)</li>
+</ul>
+
+<p><strong>黄拉比鸟 / 爱之拉比</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Temple 神殿部分 (22)</li>
+<li>[E][Maximum Attack] Maximum Attack E: VR 神殿部分 (17)</li>
+<li>[主线] 5-2 <em>具体方法已无法查阅</em> (12)</li>
+</ul>
+<p>·先野战，因地图不同，会有5个或7个出现，打完再接 [主线] 5-1 杀7个 </p>
+<ul>
+<li>[VR] 各自的明天 神殿α部分 (10)</li>
+</ul>
+
+<p><strong>毒铃兰 / 变种铃兰</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Temple 神殿部分 (43)</li>
+<li>[Maximum Attack] Maximum Attack 2nd Ver2 以房间为单位，首→南×3→东→北×2→东→南→北×2→接“被选中的人”路线 (30)</li>
+<li>[E][S][控制塔] A New Hope 神殿部分 (?)</li>
+<li>[E][Maximum Attack] Maximum Attack E: VR 神殿部分 (31)</li>
+<li>[E][夺回] Revisiting Darkness 虚拟神殿 β (25)</li>
+</ul>
+
+<p><strong>狂暴巨猿 / 雷暴巨猿</strong>   </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 2nd Ver2 首房间等门开→往南三房间→往西接“传说的开端”路线 (15)</li>
+<li>[E][限定活动] Maximum Attack E: Temple 神殿部分 (22)</li>
+<li>[E][Maximum Attack] Maximum Attack E: VR 神殿部分 (21)</li>
+</ul>
+
+<p><strong>巨螳螂 / 嗜血巨螳螂</strong>   </p>
+<ul>
+<li>[E][Maximum Attack] Maximum Attack E: VR 神殿部分 (20)</li>
+<li>[E][限定活动] Maximum Attack E: Temple 神殿部分 (20)</li>
+<li>[主线] 5-1 (16)</li>
+</ul>
+
+<p><strong>暗黑巨神像 / 远古巨神像</strong>   </p>
+<ul>
+<li>[E][Maximum Attack] Maximum Attack E: VR 神殿部分 (17)</li>
+<li>[E][限定活动] Maximum Attack E: Temple 神殿部分 (17)</li>
+<li>[Maximum Attack] Maximum Attack 2nd Ver2 南×3→东×3→北→东→“禁断之道”路线 (10)</li>
+</ul>
+
+<p><strong>吸血巨蚊巢 / 嗜血巨蚊巢</strong>   </p>
+<ul>
+<li>[E][夺回] Revisiting Darkness (22)</li>
+</ul>
+
+<p><strong>巴尔巴雷</strong>  </p>
+<p>[VR] 各自的明天 打完撤退 (1)</p>
+
+
+
+
+
+<h2>宇宙船</h2>
+
+<p><strong>步行机兵 / 浮游机将</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Spaceship (61)</li>
+<li>[主线] 6-1 宇宙船α部分 (54)</li>
+<li>[主线] 6-5 宇宙船α部分或全程 (51/92)</li>
+<li>[E][歼灭] Gal Da Val Darkness 宇宙船部分 (41)</li>
+</ul>
+
+<p><strong>傀儡机兵 / 傀儡机将</strong>   </p>
+<ul>
+<li>[主线] 6-3 第二个房间为止 (7)</li>
+<li>[E][单人] Knights of Coral Advent 宇宙船部分的四个房间或全程 (28/36)</li>
+<li>[VR] 各自的明天 宇宙船部分 (28)</li>
+<li>[E][歼灭] Gal Da Val Darkness 宇宙船部分 (19)</li>
+</ul>
+
+<p><strong>狂狼 / 角狼</strong>   </p>
+<ul>
+<li>[主线] 6-5 宇宙船α部分 (34)</li>
+<li>[主线] 6-1 宇宙船α部分 (32)</li>
+<li>[主线] 6-4 宇宙船α部分 (32)</li>
+</ul>
+
+<p><strong>狂狼王 / 角狼王</strong>   </p>
+<ul>
+<li>[主线] 6-1 (24)</li>
+<li>[E][限定活动] Maximum Attack E: Spaceship (20)</li>
+<li>[E][歼灭] Gal Da Val Darkness 宇宙船部分 (16)</li>
+</ul>
+
+<p><strong>剑魔</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Spaceship (29)</li>
+<li>[E][歼灭] Gal Da Val Darkness 宇宙船部分 (28)</li>
+<li>[主线] 6-3 (26)</li>
+<li>[E][单人] Knights of Coral Advent 宇宙船部分 (23)</li>
+</ul>
+
+<p><strong>合体怪</strong>   </p>
+<ul>
+<li>[E][歼灭] Gal Da Val Darkness 宇宙船部分 (18)</li>
+<li>[E][单人] Knights of Coral Advent 宇宙船部分 (13)</li>
+<li>[主线] 6-3 杀到4只或8只或12只撤退，全程15只亦可</li>
+<li>[E][限定活动] Maximum Attack E: Spaceship (8)</li>
+</ul>
+
+<p><strong>混沌法师 / 毁灭法师</strong>   </p>
+<ul>
+<li>[E][单人] Knights of Coral Advent 宇宙船部分 (21)</li>
+<li>[主线] 6-4 宇宙船β部分 (11)</li>
+<li>[主线] 6-5 宇宙船β部分 (11)</li>
+</ul>
+
+<p><strong>机甲堡垒</strong>   </p>
+<ul>
+<li>[E][歼灭] Gal Da Val Darkness 宇宙船部分 (31)</li>
+<li>[E][限定活动] Maximum Attack E: Spaceship (21)</li>
+<li>[主线] 6-1 (7)</li>
+</ul>
+
+<p><strong>数码冰龙</strong>   </p>
+<ul>
+<li>[VR] 各自的明天 打完撤退 (1)</li>
+</ul>
+
+
+
+
+
+<h2>中央管理区&amp;控制塔</h2>
+<p><strong>毒梅兰</strong>   </p>
+<ul>
+<li>[歼灭] 幻界的尽头1 密林地区 (58)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2B- 中央管理区部分 (52)</li>
+</ul>
+
+<p><strong>狂梅兰</strong>   </p>
+<ul>
+<li>[控制塔] 东天之塔 第一个房间 (11)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2B- (42)</li>
+</ul>
+
+<p><strong>幽猿</strong>   </p>
+<ul>
+<li>[歼灭] 幻界的尽头2 高山地区 \| 中央管理区 (53\|61)</li>
+</ul>
+
+<p><strong>泽猿</strong>   </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 4th Stage 三路线皆可 第一个房间 (16)</li>
+</ul>
+
+<p><strong>姬蜂</strong>   </p>
+<ul>
+<li>[E][S][单人] A NEW HOPE 第一个房间或海岸地区 (64)</li>
+<li>[E][S][控制塔] The Military Strikes Back (同上)</li>
+<li>[主线] 7-5 海岸地区 (102)</li>
+<li>[VR] Maximum Attack 4th Stage 三路线皆可 第二个房间 (22)</li>
+<li>[歼灭] 幻界的尽头1 密林地区 \| 海岸地区 (75\|68)</li>
+<li>[夺回] 梦之使者 (42)</li>
+</ul>
+
+<p><strong>森隐雷藏</strong>   </p>
+<ul>
+<li>[主线] 7-4 到第二个传送点为止 (9)</li>
+<li>[VR] Maximum Attack 4th Stage -2C- 中央管理区 (22)</li>
+<li>[VR] Maximum Attack 4th Stage -2B- 中央管理区 (25，难度比上一个高)</li>
+<li>[E][单人] Knights of Coral Advent 中央管理区 (19)</li>
+<li>[歼灭] 幻界的尽头1 密林地区，到第一个传送点为止 (7)</li>
+</ul>
+
+<p><strong>雾隐雷藏</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: CCA (18)</li>
+<li>[VR] Maximum Attack 4th Stage -2C- 中央管理区 (14)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Gal Da Val (13)</li>
+<li>[主线] 7-4 到第二个传送点为止 (4)</li>
+</ul>
+
+<p><strong>姬蜂后</strong>   </p>
+<ul>
+<li>[歼灭] 幻界的尽头4 2F为止 (5)</li>
+<li>[E][控制塔] Raid On Control Tower 9F/11F/17F/控制塔全程 (15/18/25/31)</li>
+<li>[E][S][单人] A NEW HOPE 海岸地区 (10)</li>
+<li>[E][S][控制塔] The Military Strikes Back (同上)</li>
+<li>[歼灭] 幻界的尽头1 海岸地区 (16)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Gal Da Val 中央管理区 (5)</li>
+<li>[E][限定活动] Maximum Attack E: CCA (5)</li>
+</ul>
+
+<p><strong>红蝎花</strong>   </p>
+<ul>
+<li>[E][Maximum Attack] Maximum Attack E: Gal Da Val 头两个房间 (7)</li>
+<li>[E][限定活动] Maximum Attack E: CCA (14)</li>
+<li>[E][限定活动] Maximum Attack E: Towers (7)</li>
+<li>[E][控制塔] Raid On Control Tower 到这些楼层为止 3F/4F/6F/9F/13F/16F/控制塔全程 (1/2/5/10/14/28/35)</li>
+<li>[歼灭] 幻界的尽头4 4F/6F (3/5)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2B- 中央管理区 (6)</li>
+</ul>
+
+<p><strong>蓝蝎花</strong>   </p>
+<ul>
+<li>[E][控制塔] Raid On Control Tower 3F/7F/11F/16F/控制塔全程 (1/2/6/14/18)</li>
+<li>[E][限定活动] Maximum Attack E: Towers (7)</li>
+<li>[E][限定活动] Maximum Attack E: CCA (2)</li>
+<li>[歼灭] 幻界的尽头4 4F为止 (1)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Gal Da Val (1)</li>
+</ul>
+
+<p><strong>绿蝎花</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Towers (6)</li>
+<li>[歼灭] 幻界的尽头4 4F为止 (3)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Gal Da Val 中央管理区 (2)</li>
+<li>[E][控制塔] Raid On Control Tower 4F/9F/13F/控制塔全程 (1/3/8/13)</li>
+<li>[E][限定活动] Maximum Attack E: CCA (2)</li>
+</ul>
+
+<p><strong>蛮甲猿</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: CCA (15)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Gal Da Val 中央管理区 (10)</li>
+<li>[E][限定活动] Maximum Attack E: Towers (9)</li>
+<li>[歼灭] 幻界的尽头4 1F为止 (3)</li>
+<li>[歼灭] 幻界的尽头2 高山部分 (9)</li>
+</ul>
+
+<p><strong>暗黑麒麟</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Seabed (18)</li>
+<li>[E][万圣节] Halloween Phantasm: Seabed (14)</li>
+<li>[E][控制塔] Raid On Control Tower 1F/3F/9F/16F/控制塔全程 (2/4/15/23/32）</li>
+<li>[E][限定活动] Maximum Attack E: Towers (8)</li>
+<li>[控制塔] 西天之塔 (14)</li>
+<li>[E][单人] Knights of Coral Advent (11)</li>
+<li>[E][夺回] Dolmolm Research (同上)</li>
+<li>[歼灭] 幻界的尽头4 8F为止 (7)</li>
+</ul>
+
+<p><strong>恶镰死神</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Towers (19)</li>
+<li>[歼灭] 幻界的尽头4 1F/5F/7F/9F/10F/全程 (1/6/10/12/23/72)</li>
+</ul>
+
+<p><strong>暗铃兰</strong>   </p>
+<ul>
+<li>[歼灭] 幻界的尽头4 1F/5F/7F/9F/10F/全程 (1/8/13/17/27/56)</li>
+<li>[E][控制塔] Raid On Control Tower 2F/6F/9F/14F/控制塔全程 (8/16/34/46/60)</li>
+</ul>
+
+<p><strong>厄普西隆</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Towers (4)</li>
+<li>[E][控制塔] Raid On Control Tower 4F/7F/10F/14F/控制塔全程 (1/3/6/12/21)</li>
+<li>[歼灭] 幻界的尽头4 东天之塔部分 (6)</li>
+</ul>
+
+<p><strong>加尔狮鹫</strong>   </p>
+<ul>
+<li>[VR] 各自的明天 海岸部分 (1)</li>
+<li>[E][S][单人] A New Hope 密林部分 (1)</li>
+<li>[E][S][控制塔] The Military Strikes Back (同上)</li>
+</ul>
+
+
+
+
+
+
+<h2>海底</h2>
+
+<p><strong>青鱿</strong>   </p>
+<ul>
+<li>[E][万圣节] Halloween Phantasm: Seabed (39)</li>
+<li>[E][限定活动] Maximum Attack E: Seabed (27)</li>
+<li>[限定活动] 海滨的庆典 传送到海岸区域后，说出暗语"beach"，然后说"monster"唤出青鱿，唤出5批后杀完说"door"撤退 (15)</li>
+<li>[控制塔] 西天之塔 清理西面的一个房间 (10)</li>
+<li>[歼灭] 幻界的尽头3 上层 \| 下层 (59\|38)</li>
+<li>[E][单人] Knights of Coral Advent (41)</li>
+<li>[E][夺回] Dolmolm Research (同上)</li>
+</ul>
+
+<p><strong>赤鱿</strong>   </p>
+<ul>
+<li>[E][万圣节] Halloween Phantasm: Seabed (38)</li>
+<li>[E][限定活动] Maximum Attack E: Seabed (25)</li>
+<li>[控制塔] 西天之塔 下楼并往南清理一个房间 (10)</li>
+<li>[歼灭] 幻界的尽头3 海底上层或全程 (31/57)</li>
+<li>[E][单人] Knights of Coral Advent (25)</li>
+<li>[E][夺回] Dolmolm Research (同上)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2A- 海底部分 (55)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2B- 海底部分 (53)</li>
+</ul>
+
+<p><strong>爆防魔箱</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Seabed (26)</li>
+<li>[控制塔] 西天之塔 第一个房间 (6)</li>
+</ul>
+
+<p><strong>湛蓝光武</strong>   </p>
+<ul>
+<li>[控制塔] 西天之塔 海底上层 (7)</li>
+<li>[E][万圣节] Halloween Phantasm: Seabed (21)</li>
+<li>[E][限定活动] Maximum Attack E: Seabed (17)</li>
+<li>[E][单人] Knights of Coral Advent 四个房间加走廊 (9)</li>
+<li>[E][夺回] Dolmolm Research (同上)</li>
+<li>[歼灭] 幻界的尽头3 海底上层或全程 (16/33)</li>
+<li>[主线] 8-3 海底上层或全程 (20/39)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2C- 海底部分 (18)</li>
+</ul>
+
+<p><strong>绯红光武</strong>   </p>
+<ul>
+<li>[控制塔] 西天之塔 下楼，往南两个房间并开启过道的开关 (4)</li>
+<li>[E][万圣节] Halloween Phantasm: Seabed (17)</li>
+<li>[E][限定活动] Maximum Attack E: Seabed (14)</li>
+<li>[E][单人] Knights of Coral Advent 海底部分 (20)</li>
+<li>[E][夺回] Dolmolm Research (同上)</li>
+<li>[歼灭] 幻界的尽头3 海底上层或全程 (7/22)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2C- 海底部分 (18)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2B- 海底部分 (19)</li>
+</ul>
+
+<p><strong>暗黑魔精</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Seabed (17)</li>
+<li>[歼灭] 幻界的尽头3，需进入海底下层最北面的房间 (31)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2B- 海底部分 (25)</li>
+</ul>
+
+<p><strong>暗腐蝶</strong>   </p>
+<ul>
+<li>[E][万圣节] Halloween Phantasm: Seabed (14)</li>
+<li>[E][限定活动] Maximum Attack E: Seabed (12)</li>
+<li>[主线] 8-3 最初的岔路向右第一个房间 (3)</li>
+<li>[歼灭] 幻界的尽头3 岔路先右边有1只，再左边有2只，过箱子群还有4只，海底上层全程是17只。</li>
+<li>[E][单人] Knights of Coral Advent 海底部分 (13)</li>
+<li>[E][夺回] Dolmolm Research (同上)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -2B- 海底部分 (38)</li>
+</ul>
+
+<p><strong>奥迦·弗罗文</strong>   </p>
+<ul>
+<li>[VR] 各自的明天 (1)</li>
+</ul>
+
+
+
+
+
+<h2>箱子</h2>
+
+<p><strong>虚拟神殿α箱子</strong>   </p>
+<ul>
+<li>[单人] 心之座 (22)</li>
+<li>[主线] 5-5 (42)</li>
+</ul>
+
+<p><strong>虚拟神殿β箱子</strong>   </p>
+<ul>
+<li>[主线] 5-2 (40)</li>
+<li>[单人] 心之座 (24)</li>
+</ul>
+
+<p><strong>虚拟宇宙船α箱子</strong>   </p>
+<p>暂无 </p>
+
+<p><strong>虚拟宇宙船β箱子</strong>   </p>
+<p>暂无 </p>
+
+<p><strong>密林北箱子</strong>   </p>
+<p>暂无 </p>
+
+<p><strong>密林东箱子</strong>   </p>
+<p>暂无 </p>
+
+<p><strong>高山箱子</strong>   </p>
+<p>暂无 </p>
+
+<p><strong>海岸及中央管理区箱子</strong>  </p>
+<p>[夺回] 幻界的尽头1 海岸部分 (23) </p>
+
+<p><strong>海底上层箱子</strong>   </p>
+<ul>
+<li>[歼灭] 幻界的尽头3 最初的岔路向左→直走，至有大量箱子的房间为止 (44)</li>
+</ul>
+
+<p><strong>海底下层箱子</strong>   </p>
+<ul>
+<li>[主线] 8-3 (??)</li>
+</ul>
+
+
+<h1>EP4</h1>
+<h2>陨石坑周边 &amp; 内部</h2>
+
+<p><strong>沙地拉比鸟</strong>   </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 4th Stage 任意路线 两波 (12)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Episode 4 一波 (8)</li>
+<li>[E][限定活动] Maximum Attack E: Crater 一波 (8)</li>
+</ul>
+
+<p><strong>砂岩蜥蜴</strong>   </p>
+<ul>
+<li>[歼灭] 极幻战火2 (92)</li>
+<li>[歼灭] 新扫荡作战 第三号 (73)</li>
+</ul>
+
+<p><strong>沙暴蜥蜴</strong>   </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 4th Stage 任意路线 陨石坑内部 至栅栏前或传送点前 (12/24)</li>
+<li>[歼灭] 新扫荡作战 第三号 (41)</li>
+</ul>
+
+<p><strong>巨型火犀鸟</strong>   </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 4th Stage -4B- 陨石坑内部或全程 (26/48)</li>
+<li>[E][万圣节] Hallow Wasteland: Crater (20)</li>
+<li>[E][限定活动] Maximum Attack E: Desert (6)</li>
+<li>[商店] 克莱尔的交易 (15)</li>
+<li>[单人] 战士的骄傲 (29)</li>
+</ul>
+
+<p><strong>狂暴变异猪</strong>   </p>
+<ul>
+<li>[主线] 9-1 (65)</li>
+</ul>
+
+<p><strong>蛮甲变异猪</strong>   </p>
+<ul>
+<li>[歼灭] 极幻战火2 (74)</li>
+</ul>
+
+<p><strong>巨角变异猪</strong>   </p>
+<ul>
+<li>[主线] 9-3 (50)</li>
+</ul>
+
+<p><strong>异甲巨螳螂</strong>   </p>
+<ul>
+<li>[歼灭] 极幻战火1 (42)</li>
+<li>[单人] 战士的骄傲 陨石坑内部或全程 (33/46)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -4C- 杀完6只或12只或16只</li>
+<li>[歼灭] 新扫荡作战 第一号 (22)</li>
+</ul>
+
+<p><strong>铁甲巨象</strong>   </p>
+<ul>
+<li>[E][万圣节] Hallow Wasteland: Crater (15)</li>
+<li>[E][限定活动] Maximum Attack E: Crater (14)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -4C- 陨石坑内部 (13)</li>
+<li>[商店] 克莱尔的交易 (10)</li>
+<li>[E][Maximum Attack] Maximum Attack E: Episode 4 陨石坑内部 (9)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage-C- (13)</li>
+<li>[单人] 战士的骄傲 阿修路线 (9)</li>
+</ul>
+
+<p>注：单人任务战士的骄傲有NPC阿修和巴尼援护，中途战士和枪手补给大HP，法师补给大TP，难度较低。</p>
+
+
+
+
+
+<h2>地下沙漠</h2>
+
+<p><strong>暗黑刀魔</strong>   </p>
+<ul>
+<li>[歼灭] 新扫荡作战 第三号 (106)</li>
+<li>[歼灭] 极幻战火3 到第三个温泉传送点为止或全程 (76/87)</li>
+</ul>
+
+<p><strong>暗黑狂刀魔</strong>   </p>
+<ul>
+<li>[歼灭] 新扫荡作战 第三号 到第三个传送点为止或全程 (44/59)</li>
+<li>[歼灭] 新扫荡作战 第四号 到第三个开关为止或全部 (29/40)</li>
+<li>[歼灭] 极幻战火4 (36)</li>
+</ul>
+
+<p><strong>暗黑巨魔王</strong>   </p>
+<ul>
+<li>[E][限定活动] Maximum Attack E: Desert (19)</li>
+<li>[歼灭] 新扫荡作战 第三号 到第二个房间为止或全程 (5/16)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -4B- (19)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -4C- (18)</li>
+<li>[歼灭] 极幻战火4 (16)</li>
+</ul>
+
+<p><strong>魅影沙魔·A</strong>   </p>
+<ul>
+<li>[Maximum Attack] Maximum Attack 4th Stage -4A- (58)</li>
+<li>[E][限定活动] Maximum Attack E: Desert (22)</li>
+<li>[主线] 9-5 (25)</li>
+</ul>
+
+<p><strong>暗黑魔眼巨花</strong>   </p>
+<ul>
+<li>[E][夺回] 被夺走的销魂魔息杖 (20~21)</li>
+<li>[E][限时活动] Christmas Fiasco (18)</li>
+<li>[E][限定活动] Maximum Attack E: Desert (6)</li>
+<li>[E][歼灭] 扑杀作战 第十四号 (7)</li>
+<li>[E][歼灭] 扑杀作战 第十三号 (6)</li>
+<li>[歼灭] 新扫荡作战 第五号 三个房间或全程 (1/4)</li>
+<li>[E][Maximum Attack] Maximum Attack 4th Stage -4C- (6)</li>
+<li>[歼灭] 新扫荡作战 第五号 第三个房间或全程 (1/4)</li>
+<li>[歼灭] 极幻战火5 (4)</li>
+<li>[歼灭] 极幻战火4 (3)</li>
+<li>[单人] 先驱者精神 (3)</li>
+<li>[Maximum Attack] Maximum Attack 4th Stage -4B- (3)</li>
+</ul>
+
+<p><strong>圣魔龙</strong>   </p>
+<ul>
+<li>[主线] 9-8 (1)</li>
+<li>野战 (1)</li>
+</ul>
+
+<p><strong>沙柏龙</strong>   </p>
+<ul>
+<li>[歼灭] 灾祸的中心 (1)</li>
+</ul>
+
+
+
+
+
+<h2>箱子</h2>
+
+<p><strong>陨石坑箱子</strong>   </p>
+<ul>
+<li>野战 陨石坑周边 北部路线 最初有两个桥的地图 (190)</li>
+<li>[主线] 9-5 注意搜寻角落 (29)</li>
+</ul>
+
+<p><strong>地下沙漠箱子</strong>   </p>
+<ul>
+<li>[歼灭] 极幻战火4 到最初的传送点为止或全部 (39/94)</li>
+<li>野战 地下沙漠1 (37\|48\|56)</li>
+</ul>
+
+<p><strong>陨石落下地点箱子</strong>   </p>
+<ul>
+<li>[歼灭] 灾祸的中心 (24)</li>
+</ul>
+    </div>
+</body>
+
+</html>

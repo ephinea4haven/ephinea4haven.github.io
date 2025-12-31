@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>设置 Windows DEP | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">设置 Windows DEP</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h1>设置 Windows DEP</h1>
+
+<p><img src="/static/img/windows%20dep.jpg" alt="dep" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>1. 右键桌面上的 <strong>计算机</strong> 图标，选择 <strong>属性</strong>。</p>
+<p>2. 在打开的 <strong>系统</strong> 窗口中点击 <strong>高级系统设置</strong>。</p>
+<p>3. 在 <strong>系统属性</strong> → <strong>高级</strong> → <strong>性能</strong> 区域中点击 <strong>设置</strong>。</p>
+<p>4. 在 <strong>性能选项</strong> 中切换到 <strong>数据执行保护</strong> 标签页。</p>
+
+<p>在这里可以确认处理器是否支持 DEP：</p>
+
+<ul>
+<li>若支持，会显示：<strong>你的计算机处理器支持基于硬件的 DEP。</strong></li>
+<li>若不支持，会显示：<strong>你的计算机处理器不支持基于硬件的 DEP，不过 Windows 仍可使用 DEP 软件防止部分攻击类型。</strong></li>
+</ul>
+
+<hr>
+
+<h1>设置兼容性</h1>
+
+<p><img src="/static/img/compat.png" alt="compat" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>1. 右键游戏快捷方式，选择 <strong>属性</strong>。</p>
+<p>2. 切换到 <strong>兼容性</strong> 标签页。</p>
+<p>3. 勾选 <strong>Run this program in compatibility mode for:</strong></p>
+<p>4. 选择 <strong>Windows XP (Service Pack 2)</strong>。</p>
+
+<hr>
+
+<h1>设置登录器分辨率</h1>
+
+<p><img src="/static/img/resolution.png" alt="resolution" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>如果前两步完成后仍然出现闪退，请尝试调整 <strong>分辨率</strong>。</p>
+<p>根据显卡与显示器情况选择合适分辨率即可：</p>
+
+<p>> 选择高分辨率不一定卡，选择低分辨率也不一定不卡——按实际效果为准。</p>
+
+<hr>
+
+<h1>设置用户账户控制（UAC）</h1>
+
+<p><img src="/static/img/uac.jpg" alt="uac" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>将 UAC 调整到下图所示级别后，当其他程序弹出“执行保护”窗口时，</p>
+<p>PSOBB 不会丢失渲染而导致崩溃。</p>
+
+<p><img src="/static/img/prompt.png" alt="prompt" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<hr>
+
+<h1>将游戏目录添加到杀毒软件白名单</h1>
+
+<p>遇到游戏左下角提示 <code>DLL ERROR</code> 等问题时，请按以下步骤操作：</p>
+
+<p>1. 在开始菜单输入 <strong>sec</strong> 并打开</p>
+<p>   <img src="/static/img/sec.png" alt="sec" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>2. 进入 <strong>病毒和威胁防护</strong></p>
+<p>   <img src="/static/img/vp.png" alt="vp" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>3. 打开 <strong>管理设置</strong></p>
+<p>   <img src="/static/img/vpmanage.png" alt="vpmanage" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>4. 点击 <strong>添加或删除排除项</strong></p>
+<p>   <img src="/static/img/vpexclusive.png" alt="vpexclusive" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>5. 将 <strong>游戏根目录</strong> 添加为排除项</p>
+<p>   <img src="/static/img/vpexcludeephinea.png" alt="vpexcludeephinea" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p>   <img src="/static/img/vprootfolder.png" alt="vprootfolder" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>至此，游戏目录白名单配置完成。</p>
+
+<hr>
+
+<h1>全屏游戏推荐工具</h1>
+
+<p>使用游戏自带全屏模式时，可能因其他程序弹窗导致渲染丢失并 crash。</p>
+
+<p>推荐使用 <strong>Borderless Gaming</strong>：</p>
+
+<p>> 无边框窗口化全屏，能有效避免上述问题。</p>
+
+<p>下载地址：</p>
+<p><a href="https://github.com/Codeusa/Borderless-Gaming/releases/download/9.5.6/BorderlessGaming9.5.6_admin_setup.exe">BorderlessGaming 9.5.6</a></p>
+
+    </div>
+</body>
+
+</html>

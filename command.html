@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>服务端命令 | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">服务端命令</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h1>服务端命令</h1>
+
+<p>Ephinea服务器可以在游戏中输入命令来个性化游戏体验，完成特定的功能。</p>
+
+<h2>命令列表 ##</h2>
+
+<p><strong>/lang x</strong>  </p>
+<p>设置任务的语言，1为英语， 2为日语。</p>
+
+<p><strong>/setname x</strong>  </p>
+<p>设置房间(party)的名字，最多12个字符。</p>
+
+<p><strong>/setpass x</strong>  </p>
+<p>设置房间(party)的密码，最多16字符。</p>
+
+<p><strong>/partyinfo</strong>  </p>
+<p>显示当前房间(party)的信息:</p>
+
+<ul>
+<li>经验(Experience Rate)</li>
+<li>经验共享设置(Experience Share Settings)</li>
+<li>房间ID(Section ID)</li>
+<li>掉落风格(Drop Style)</li>
+<li>掉落率(Drop Rate)</li>
+<li>稀有怪率(Rare Enemy Rate)</li>
+</ul>
+
+<p><strong>/rbr</strong>  </p>
+<p>在游戏屏幕顶部显示一个滚动公告，显示RBR周任务。</p>
+
+<p><strong>/luck</strong>  </p>
+<p>显示当前的幸运等级。四个等级 Normal(普通), Good(好), Lucky(幸运) and Incredible(牛X)</p>
+
+<p><strong>/forecast</strong>  </p>
+<p>显示当前幸</p>
+
+<p><strong>/noluck</strong>  </p>
+<p>关闭当前角色所有的掉落buf。</p>
+
+<p><strong>/purist</strong>  </p>
+<p>在游戏中输入<code>/purist</code>会开启<code>贤者模式</code>, 此模式算不上是一种账号的模式(Normal, Sandbox)。</p>
+<p><code>Ephinea</code>服务器会周期性给用户提升掉落，如果您希望采用原始掉落的话，可以使用<code>贤者模式</code>的基础掉落模式。</p>
+<p>请注意，在<code>贤者模式</code>期间，加入其它稀有怪掉落提升的游戏房间，仍然享有稀有怪掉落加成，但加入你的房间的，就不能获得任何掉落提升。</p>
+
+<p><strong>/bank</strong>  </p>
+<p>在登录期间切换角色和公共银行。PS:温馨提示，公共仓库只有一个,所有32个角色共享。</p>
+
+<p><strong>/lobby</strong>  </p>
+<p>退出到大厅。</p>
+
+<p><strong>/showwep</strong>  </p>
+<p>是否显示<b>特殊武器</b>拾取信息，包括道具栏武器的显示。</p>
+
+<p><strong>/matcount</strong>  </p>
+<p>显示当前角色的能力药使用数据，显示在游戏顶部公告栏。</p>
+
+<p><strong>/matreset</strong></p>
+<p>重置当前角色的能力药使用数据，<em>不包括HP和TP药</em>,</p>
+<p>仅可以在大厅中使用，并且需要输入两次加以确认。</p>
+
+<p><strong>/killcount</strong></p>
+<p>显示所有的解封数量，包括银月，野太刀，限幅器，剑士心得等，显示在游戏顶部公告栏。</p>
+
+<p><strong>/wipecmode</strong></p>
+<p>清除当前角色的CH数据。</p>
+
+<p><strong>/modname x</strong></p>
+<p>修改角色名字, 最多10字符, 不会重新计算颜色ID，无限制。</p>
+
+<p><strong>/modsecid x</strong></p>
+<p>修改角色的颜色ID,仅可以在20级之前使用一次。  </p>
+<p>合法的x值:</p>
+
+<p>**VIRIDIA, GREENILL, SKYLY, BLUEFULL, PURPLENUM,  </p>
+<p>PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL**</p>
+
+<p><strong>/ping</strong>  </p>
+<p>ping服务器，用于检测服务器延迟。由于pso的运行机制，最小ping值为66ms。</p>
+
+<p><strong>/time</strong>  </p>
+<p>显示服务器当前时间 (世界标准时间-0时区 中国需要增加8个小时)。</p>
+
+<p><strong>/sfx 0-10</strong>  </p>
+<p>使用/sfx 0-10用于调整音效。</p>
+
+<p><strong>/bgm 0-10</strong>  </p>
+<p>使用/bgm 0-10用于调整背景音乐音量。</p>
+
+<p><strong>/cam</strong>  </p>
+<p>打开或者关闭PSO默认的视角处理行为，关闭时鼠标左键向前移动，鼠标右键为原地任意角度查看视角。</p>
+
+<p><strong>/map</strong>  </p>
+<p>在屏幕中央打开或者关闭大地图。</p>
+
+<p><strong>/gamefilter</strong>  </p>
+<p>显示能够加入的房间。</p>
+
+<p><strong>/slowburst</strong>  </p>
+<p>当前房间将为所有玩家启用加载屏幕（仅限房主操作）。</p>
+
+<p><strong>/burstpref</strong>  </p>
+<p>为玩家在游戏大厅及其创建的队伍中启用所有加载屏幕。</p>
+
+<p><strong>/mobhp</strong>  </p>
+<p>打开或者关闭怪物血槽。</p>
+
+<p><strong>/resetmobhp</strong>  </p>
+<p>重置怪物血槽相关参数。</p>
+
+<p><strong>/mobhpfilled</strong>  </p>
+<p>设置怪物全量血槽颜色。</p>
+
+<p><strong>/mobhpfilling</strong>  </p>
+<p>设置怪物剩余血槽颜色。</p>
+
+<p><strong>/mobhpdamage</strong>  </p>
+<p>设置怪物损失血槽颜色。</p>
+
+<p><strong>/starttimer x</strong>   </p>
+<p>立即启动一个简单的定时器. "x" 是一个可选的秒数, 定时器从x倒计时到0，若不提供则从0递增.</p>
+
+<p><strong>/freezetimer</strong>  </p>
+<p>停止当前的定时器. 一般停止就不能启动了.</p>
+
+<p><strong>/killtimer</strong>  </p>
+<p>销毁当前的定时器.</p>
+
+<p><strong>/revealtimer</strong></p>
+<p>显示意外隐藏的定时器......</p>
+
+<p><strong>/registertimer x,y,z</strong>  </p>
+<p>立即创建一个定时器等待y值被设置,当z值被设置定时器会自动停止,如果设置了x，定时器会从x倒计时到0。</p>
+
+<p><strong>/zonetimer x,y,z,r</strong>    </p>
+<p>立即启动一个定时器等待清理y层z区域，如果r设置了，定时器在倒计时前会等待r值的设置，如果设置了x，定时器会从x倒计时到0。</p>
+
+<p><strong>/pb</strong>  </p>
+<p>设置当前角色的PB为100(沙盒)</p>
+
+<p><strong>/sd</strong>  </p>
+<p>设定当前角色sd等级，最高81级(沙盒)</p>
+
+<p><strong>/sdall</strong>  </p>
+<p>房主设定房间内所有玩家的sd等级，最高81级(沙盒)</p>
+
+<p><strong>/sethp</strong>  </p>
+<p>设置角色hp值(沙盒)</p>
+    </div>
+</body>
+
+</html>

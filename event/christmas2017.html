@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>christmas2017 | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('../static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">christmas2017</h1>
+    </header>
+
+    <a href="../event.html" class="back-link">← 返回圣诞活动页</a>
+
+    <div class="content-container">
+        <p><strong>2017年圣诞活动从<code>(2017-12-8)</code>到<code>(2018-1-8)</code>结束</strong></p>
+
+<p><strong>所有的怪物、章节和难度都会掉落圣诞礼物，但箱子不会掉落， 掉率固定为<code>1/1,500</code></strong></p>
+
+<p>PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡笔可以。</p>
+
+<ul>
+<li>期间 <strong>活动任务「Christmas Fiasco」</strong>会掉落「Christmas Present」圣诞礼物。</li>
+<li>煤炭<code>(Coal)</code>可以交换道具.</li>
+<li>圣诞节期间经验、掉物率、掉宝率、稀有怪概率都会提升。</li>
+<li>煤炭和万圣节饼干全难度掉落。</li>
+</ul>
+
+<hr>
+
+<p><strong>相关Buff时间:</strong></p>
+
+<ul>
+<li>2017-12-08 - 2017-12-09: +100% 经验</li>
+<li>2017-12-10 - 2017-12-16: +50%  掉物率</li>
+<li>2017-12-17 - 2017-12-23: +100% 稀有怪率</li>
+<li><span style="color:red">2017-12-24 - 2017-12-30: +50%  掉宝率</span></li>
+<li>2017-12-31 - 2018-01-06: +100% 经验</li>
+<li>2018-01-07 - 2018-01-08: +50%  掉物率</li>
+</ul>
+
+<p><strong>礼品掉率Buff:</strong></p>
+
+<p><span style="color:red">2017-12-24 - 2017-12-30: +100% 礼品掉率. <code>1/750</code></span></p>
+
+<hr>
+
+<p><strong>煤炭<code>(Coal)</code>:</strong></p>
+
+<p><strong>活动任务「Christmas Fiasco」</strong> 煤炭<code>(Coal)</code> 分难度赠送<code>(N / H / VH / U)</code>:</p>
+
+<ul>
+<li>Episode 1: 1 / 1 / 2 / 4</li>
+<li>Episode 2: 1 / 2 / 3 / 6</li>
+<li>Episode 4: 1 / 1 / 2 / 4</li>
+</ul>
+
+<hr>
+
+<h3>&lt;span style=&quot;color:red&quot;&gt;圣诞活动商店&lt;/span&gt;</h3>
+
+<h4>乞丐:</h4>
+
+<p>   1煤炭.</p>
+
+<ul>
+<li>颜色:</li>
+<li>[绿]Green</li>
+<li>[蓝]Blue</li>
+<li>[紫]Purple</li>
+<li>[红]Red</li>
+<li>[黄]Yellow</li>
+<li>类型:</li>
+<li>[光剑]Saber</li>
+<li>[光枪]Handgun</li>
+<li>[匕首]Dagger</li>
+<li>[步枪]Rifle</li>
+<li>[投刃]Slicer</li>
+<li>[散弹枪]Shot</li>
+<li>[长刀]Partisan</li>
+<li>[机枪]Mechgun</li>
+<li>EX:</li>
+<li>[败血]BERSERK</li>
+<li>[败魔]SPIRIT</li>
+<li>[败家]CHARGE</li>
+<li>[嗜血]GUSH</li>
+<li>[魄之]GEIST</li>
+<li>[全麻痹]ARREST</li>
+<li>[混沌]CHAOS</li>
+<li>[恶魔]DEMON'S</li>
+<li>[地狱]HELL</li>
+</ul>
+
+<ul>
+<li>H概率(55H/60H)：</li>
+</ul>
+
+<ul>
+<li>绿: 60%/30%</li>
+<li>蓝: 40%/20%</li>
+<li>紫: 20%/10%</li>
+<li>红: 10%/5%</li>
+<li>黄: 4%/1%</li>
+</ul>
+
+<hr>
+
+<h4>猎人:</h4>
+
+<p>   煤炭换圣诞礼物。</p>
+
+<p><strong>兑换规则:</strong></p>
+
+<ul>
+<li>普通难度-礼品: 5煤炭</li>
+</ul>
+
+<ul>
+<li>困难难度-礼品: 8煤炭</li>
+</ul>
+
+<ul>
+<li>极难难度-礼品: 12煤炭</li>
+</ul>
+
+<ul>
+<li>极限难度-礼品: 40煤炭</li>
+</ul>
+
+<hr>
+
+<h3>&lt;span style=&quot;color:red&quot;&gt;圣诞活动礼品&lt;/span&gt;</h3>
+
+<p><strong>普通难度:</strong></p>
+
+<p><strong>普通</strong></p>
+
+<ul>
+<li>光子微晶</li>
+<li>光子结晶</li>
+<li>ＨＰ药</li>
+<li>ＴＰ药</li>
+<li>桑巴沙锤</li>
+</ul>
+
+<hr>
+
+<p><strong>困难难度:</strong></p>
+
+<p><strong>普通</strong></p>
+
+<ul>
+<li>光子微晶</li>
+<li>光子结晶</li>
+<li>圣泉增幅盾</li>
+<li>道具票</li>
+<li>棒棒糖</li>
+<li>花束</li>
+<li>变色龙之杖</li>
+</ul>
+
+<hr>
+
+<p><strong>极难难度:</strong></p>
+
+<p><strong>普通</strong></p>
+
+<ul>
+<li>道具票</li>
+<li>[败家] Assault 扫射机枪 <code>(0/0/0/0|60)</code></li>
+<li>[败家] Cutter 回旋投刃<code>(0/0/0/0|55)</code></li>
+<li>[败家] Launcher 强袭散弹枪<code>(0/0/0/0|50)</code></li>
+<li>[败家] Raygun 原子光枪<code>(0/0/0/0|50)</code></li>
+<li>十手</li>
+<li>天堂级/ＨＰ</li>
+</ul>
+
+<p><strong>不常见</strong></p>
+
+<ul>
+<li>瓦尔基里 <code>(0/0/0/0|50)</code></li>
+<li>[败家] TypeSL/Slicer <code>(0/0/0/0|25)</code></li>
+<li>雏菊之剑 <code>(0/0/0/0|30)</code></li>
+<li>炎狱增幅盾</li>
+<li>Ｍ＆Ａ６０ 老虎钳 <code>(0/0/0/0|50)</code></li>
+<li>拉克尼姆战斧 <code>(0/0/0/0|60)</code></li>
+<li>宽永通宝</li>
+</ul>
+
+<hr>
+
+<p><strong>极限难度:</strong></p>
+
+<p><strong>普通</strong></p>
+
+<ul>
+<li>极冻枪 <code>(0/0/0/0|30)</code></li>
+<li>维维安双刃 <code>(0/0/0/0|30)</code></li>
+<li>斩马刀 <code>(0/0/0/0|30)</code></li>
+<li>狂信者的投刃 <code>(0/0/0/0|30)</code></li>
+<li>零度切刃 <code>(0/0/0/0|30)</code></li>
+<li>飞镖 <code>(0/0/0/0|30)</code></li>
+<li>青莲 <code>(0/0/0/0|30)</code></li>
+<li>极冰增幅盾</li>
+<li>源平</li>
+<li>V801</li>
+<li>艾米提的笔记</li>
+<li>摩洛星人的心</li>
+<li>巨芋叶 <code>(0/0/0/0|50)</code></li>
+<li>道具票</li>
+</ul>
+
+<p><strong>不常见</strong></p>
+
+<ul>
+<li>剑士的心得</li>
+<li>魔石「伊利提斯塔」</li>
+<li>[败家] TypeGU/Hand <code>(0/0/0/0|40)</code></li>
+<li>[败家] TypeGU/Mechgun <code>(0/0/0/0|35)</code></li>
+<li>[败家] TypeME/Mechgun <code>(0/0/0/0|40)</code></li>
+<li>[败家] TypeSH/Shot <code>(0/0/0/0|40)</code></li>
+<li>[魔鬼] TypeDS/Rod <code>(0/0/0/0|30)</code></li>
+</ul>
+
+<p><strong>稀有</strong></p>
+
+<ul>
+<li>圣剑「拉维斯·迦农」 <code>(0/0/0/0|30)</code></li>
+<li>晓之刻印 <code>(0/0/0/0|30)</code></li>
+<li>光子结晶</li>
+</ul>
+
+<p><strong>非常稀有</strong></p>
+
+<ul>
+<li>[败家] 勇者大剑 <code>(0/0/0/0|75)</code></li>
+<li>[败魔] 彗星投刃 <code>(0/0/0/0|75)</code></li>
+<li>[败血] 军用散弹枪 <code>(0/0/0/0|75)</code></li>
+</ul>
+
+    </div>
+</body>
+
+</html>

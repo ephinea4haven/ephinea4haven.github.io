@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>WSBoost | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">WSBoost</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h2>法杖 / 武器效果一览</h2>
+
+<table>
+<thead><tr>
+<th>武器</th>
+<th>提升效果</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Club of Laconium 拉克尼姆金属杖</td>
+<td>火球术伤害 +40%</td>
+</tr>
+<tr>
+<td>Mace of Adaman 金刚石杖</td>
+<td>冻气术伤害 +40%</td>
+</tr>
+<tr>
+<td>Club of Zumiuran 业障石杖</td>
+<td>闪电术伤害 +40%</td>
+</tr>
+<tr>
+<td>Fire Scepter: Agni 炎杖-阿耆尼</td>
+<td>火系伤害 +20%</td>
+</tr>
+<tr>
+<td>Ice Staff: Dagon 冰杖-达贡</td>
+<td>冰系伤害 +20%</td>
+</tr>
+<tr>
+<td>Storm Wand: Indra 雷杖-因陀罗</td>
+<td>雷系伤害 +20%</td>
+</tr>
+<tr>
+<td>Caduceus 羽毛杖</td>
+<td>Grants 光伤害 +20%</td>
+</tr>
+<tr>
+<td>Mercurius Rod 大天使之杖</td>
+<td>Grants 光伤害 +30%</td>
+</tr>
+<tr>
+<td>Magical Piece 心心杖</td>
+<td>中级魔法伤害 +30%</td>
+</tr>
+<tr>
+<td>Summit Moon 辉月之杖</td>
+<td>初级魔法伤害 +30%</td>
+</tr>
+<tr>
+<td>Evil Curst 恶魔之眼</td>
+<td>Megid Lv1–12 波动缓慢减少</td>
+</tr>
+<tr>
+<td>Hildebear’s Cane 狂暴巨猿头杖</td>
+<td>Foie +30%</td>
+</tr>
+<tr>
+<td>Hildeblue’s Cane 狂暴白猿头杖</td>
+<td>Barta +30%</td>
+</tr>
+<tr>
+<td>Sorcerer’s Cane 混沌法师之杖</td>
+<td>中级魔法 +20%，魔法消耗 −10%</td>
+</tr>
+<tr>
+<td>Psycho Wand 圣杖-意念</td>
+<td>高级魔法 +30%，魔法消耗减半</td>
+</tr>
+<tr>
+<td>The Sigh of God 神之吐息</td>
+<td>Zonde +30%</td>
+</tr>
+<tr>
+<td>Madam’s Umbrella 女士雨伞</td>
+<td>Shifta / Deband 范围 ×2</td>
+</tr>
+<tr>
+<td>Madam’s Parasol 女士阳伞</td>
+<td>Resta 范围 ×2</td>
+</tr>
+<tr>
+<td>Twinkle Star 星星杖</td>
+<td>初级魔法 +20%</td>
+</tr>
+<tr>
+<td>Striker of Chao 查欧杖</td>
+<td>Shifta / Deband 范围 ×2</td>
+</tr>
+<tr>
+<td>Prophet’s of Motav 魔法预言书</td>
+<td>高级魔法 +20%</td>
+</tr>
+<tr>
+<td>Dark Bridge 暗黑使者杖</td>
+<td>Grants +10%，Megid 贯穿，魔法消耗减半</td>
+</tr>
+<tr>
+<td>Marina’s Bag 玛丽娜急救包</td>
+<td>Resta 范围 ×2</td>
+</tr>
+<tr>
+<td>Nei’s Claw 真-妮之爪</td>
+<td>初级魔法 +20%</td>
+</tr>
+<tr>
+<td>Rika’s Claw 里卡之爪</td>
+<td>中级魔法 +20%</td>
+</tr>
+<tr>
+<td>Demonic Fork 恶魔之叉</td>
+<td>Megid 贯穿</td>
+</tr>
+<tr>
+<td>Glide Divine 逝神</td>
+<td>Jellen/ Zalure 范围 ×2，抗性 +15，10 分钟恢复一次 TP</td>
+</tr>
+<tr>
+<td>Solferino 烈阳光子杖</td>
+<td>Resta 范围 ×2</td>
+</tr>
+<tr>
+<td>Siren Glass Hammer 绿宝石之杖</td>
+<td>Gibarta +50%，魔法缓慢减少</td>
+</tr>
+<tr>
+<td>Principal’s Gift Parasol 总督遮阳伞</td>
+<td>Shifta / Deband / Resta 范围 ×2</td>
+</tr>
+<tr>
+<td>IZMAELA 依兹玛艾拉</td>
+<td>Foie→Barta→Zonde→Grants 依次循环</td>
+</tr>
+<tr>
+<td>Two Kamui 二连神威</td>
+<td>Lv5 Jellen/Zalure（范围略短于 150）</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>Merge（增幅盾）叠加原则示例</h2>
+
+<table>
+<thead><tr>
+<th>Merge</th>
+<th>武器</th>
+<th>叠加结果</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Yellow Merge（雷系 +20%）</td>
+<td>Storm Wand: Indra（雷系 +20%）</td>
+<td><strong>雷系 +40%（叠加）</strong></td>
+</tr>
+</tbody>
+</table>
+
+<p>> 规律提示：</p>
+<p>> <strong>同系魔法的武器增幅 + Merge 增幅会叠加</strong>（除非道具有特殊说明）。</p>
+
+<hr>
+
+<h2>完整增幅索引（对照速查）</h2>
+
+<p>下面整理成 <strong>武器 / 铠甲 / 盾牌</strong> 三个分组，方便查询。</p>
+
+<h3>1）武器</h3>
+
+<table>
+<thead><tr>
+<th>武器</th>
+<th>增幅内容</th>
+<th>额外效果</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Club of Laconium</td>
+<td>Foie +40%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Mace of Adaman</td>
+<td>Barta +40%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Club of Zumiuran</td>
+<td>Zonde +40%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Fire Scepter: Agni</td>
+<td>Foie / Gifoie / Rafoie +20%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Ice Staff: Dagon</td>
+<td>Barta / Gibarta / Rabarta +20%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Storm Wand: Indra</td>
+<td>Zonde / Gizonde / Razonde +20%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Twinkle Star</td>
+<td>初级魔法 +20%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Summit Moon</td>
+<td>初级魔法 +30%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Sorcerer’s Cane</td>
+<td>中级魔法 +20%</td>
+<td>消耗 −10%</td>
+</tr>
+<tr>
+<td>Magical Piece</td>
+<td>中级魔法 +30%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Prophets of Motav</td>
+<td>高级魔法 +20%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Psycho Wand</td>
+<td>高级魔法 +30%</td>
+<td>消耗减半</td>
+</tr>
+<tr>
+<td>Caduceus</td>
+<td>Grants +20%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Mercurius Rod</td>
+<td>Grants +30%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Dark Bridge</td>
+<td>Grants +20%</td>
+<td>Megid 贯穿，消耗减半</td>
+</tr>
+<tr>
+<td>Hildebear’s Cane</td>
+<td>Foie +30%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Hildeblue’s Cane</td>
+<td>Barta +30%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>The Sigh of a God</td>
+<td>Zonde +30%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Demonic Fork</td>
+<td>—</td>
+<td>Megid 贯穿</td>
+</tr>
+<tr>
+<td>Striker of Chao</td>
+<td>Shifta / Deband +100%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Madam’s Parasol</td>
+<td>Resta / Anti +100%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Madam’s Umbrella</td>
+<td>Shifta / Deband +100%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Tyrell’s Parasol</td>
+<td>Shifta / Deband / Resta +100%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Marina’s Bag</td>
+<td>Resta / Anti +100%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Rika’s Claw</td>
+<td>中级魔法 +20%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Nei’s Claw</td>
+<td>初级魔法 +20%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Solferino</td>
+<td>Resta +30%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Clio</td>
+<td>Grants +10%</td>
+<td>Zalure +100%</td>
+</tr>
+<tr>
+<td>Glide Divine</td>
+<td>—</td>
+<td>Jellen / Zalure +100%</td>
+</tr>
+<tr>
+<td>Siren Glass Hammer</td>
+<td>Gibarta +50%</td>
+<td>魔法缓慢减少</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h3>2）铠甲（Cloak 系）</h3>
+
+<table>
+<thead><tr>
+<th>铠甲</th>
+<th>效果</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Ignition Cloak</td>
+<td>火系 +10%</td>
+</tr>
+<tr>
+<td>Congeal Cloak</td>
+<td>冰系 +10%</td>
+</tr>
+<tr>
+<td>Tempest Cloak</td>
+<td>雷系 +10%</td>
+</tr>
+<tr>
+<td>Select Cloak</td>
+<td>Grants +10%</td>
+</tr>
+<tr>
+<td>Cursed Cloak</td>
+<td>Megid 贯穿</td>
+</tr>
+<tr>
+<td>Dirty Lifejacket</td>
+<td>Megid 贯穿</td>
+</tr>
+<tr>
+<td>Mother Garb</td>
+<td>随机 Grants +10%</td>
+</tr>
+<tr>
+<td>Mother Garb+</td>
+<td>随机 Grants +30%</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h3>3）盾牌（Merge 系）</h3>
+
+<table>
+<thead><tr>
+<th>盾牌</th>
+<th>效果</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Resta Merge</td>
+<td>Resta +100%</td>
+</tr>
+<tr>
+<td>Anti Merge</td>
+<td>Anti +100%</td>
+</tr>
+<tr>
+<td>Shifta Merge</td>
+<td>Shifta +100%</td>
+</tr>
+<tr>
+<td>Deband Merge</td>
+<td>Deband +100%</td>
+</tr>
+<tr>
+<td>Foie/Gifoie/Rafoie Merge</td>
+<td>+30%</td>
+</tr>
+<tr>
+<td>Red Merge</td>
+<td>火系 +20%</td>
+</tr>
+<tr>
+<td>Barta/Gibarta/Rabarta Merge</td>
+<td>+30%</td>
+</tr>
+<tr>
+<td>Blue Merge</td>
+<td>冰系 +20%</td>
+</tr>
+<tr>
+<td>Zonde/Gizonde/Razonde Merge</td>
+<td>+30%</td>
+</tr>
+<tr>
+<td>Yellow Merge</td>
+<td>雷系 +20%</td>
+</tr>
+<tr>
+<td>Rupika</td>
+<td>Shifta +100%</td>
+</tr>
+<tr>
+<td>Yata Mirror</td>
+<td>Foie +30%</td>
+</tr>
+<tr>
+<td>Three Seals</td>
+<td>Razonde +30%</td>
+</tr>
+<tr>
+<td>Black Gauntlets</td>
+<td>Megid 贯穿</td>
+</tr>
+</tbody>
+</table>
+
+
+    </div>
+</body>
+
+</html>

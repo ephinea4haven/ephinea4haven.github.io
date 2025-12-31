@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>gallons_roulette | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">gallons_roulette</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h2>幻界幸运轮盘抽</h2>
+<ul>
+<li>位置: <code>嘉龙商店</code>左下角终端</li>
+<li>代价: 幻界幸运币，每个人物最多<code>100</code>枚，超过不再累加</li>
+</ul>
+
+<table>
+<thead><tr>
+<th>概率</th>
+<th>NPC</th>
+<th>获得的物品</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>40%</td>
+<td>男孩儿</td>
+<td>50% # 星粉, 50% # 魂粉</td>
+</tr>
+<tr>
+<td>30%</td>
+<td>老女人</td>
+<td>50% # TP药, 50% # HP药</td>
+</tr>
+<tr>
+<td>12%</td>
+<td>护士</td>
+<td># 娃娃</td>
+</tr>
+<tr>
+<td>10%</td>
+<td>帕加尼尼</td>
+<td># 神盾 "Seiryu" (一次) # 神盾 "Genbu" (一次) # PD</td>
+</tr>
+<tr>
+<td>5%</td>
+<td>嘉龙</td>
+<td># 小HP</td>
+</tr>
+<tr>
+<td>3%</td>
+<td>Nol</td>
+<td>###随机武器</td>
+</tr>
+</tbody>
+</table>
+
+<p><code>随机武器</code>抽取依赖于当前玩家的职业:</p>
+
+<table>
+<thead><tr>
+<th>概率</th>
+<th>HU</th>
+<th>RA</th>
+<th>FO</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>12%</td>
+<td>DB's Saber</td>
+<td>Varista</td>
+<td>Slicer of Assassin</td>
+</tr>
+<tr>
+<td>8%</td>
+<td>Kaladbolg</td>
+<td>Custom Ray ver.OO</td>
+<td>Diska of Liberator</td>
+</tr>
+<tr>
+<td>5%</td>
+<td>Durandal</td>
+<td>Bravace</td>
+<td><strong>Diska of Braveman(勇者)</strong></td>
+</tr>
+<tr>
+<td>12%</td>
+<td>Flowen's Sword</td>
+<td>Visk-235W</td>
+<td>Club of Laconium</td>
+</tr>
+<tr>
+<td>8%</td>
+<td>Last Survivor</td>
+<td>Wals-MK2</td>
+<td>Mace of Adaman</td>
+</tr>
+<tr>
+<td>5%</td>
+<td>Dragon Slayer</td>
+<td>Justy-23ST</td>
+<td>Club of Zumiuran</td>
+</tr>
+<tr>
+<td>12%</td>
+<td>Blade Dance</td>
+<td><strong>M&A60 Vise(吹风机)</strong></td>
+<td>Battle Verge</td>
+</tr>
+<tr>
+<td>8%</td>
+<td>Bloody Art</td>
+<td>H&S25 Justice</td>
+<td>Brave Hammer</td>
+</tr>
+<tr>
+<td>5%</td>
+<td>Cross Scar</td>
+<td>L&K14 Combat</td>
+<td>Alive Aqhu</td>
+</tr>
+<tr>
+<td>12%</td>
+<td>Brionac</td>
+<td>Crush Bullet</td>
+<td>Fire Scepter: Agni</td>
+</tr>
+<tr>
+<td>8%</td>
+<td><strong>Vjaya(富豪)</strong></td>
+<td>Meteor Smash</td>
+<td>Ice Staff: Dagon</td>
+</tr>
+<tr>
+<td>5%</td>
+<td>Gae Bolg</td>
+<td>Final Impact</td>
+<td>Storm Wand: Indra</td>
+</tr>
+</tbody>
+</table>
+
+<p>获得的未鉴定<code>随机武器</code>H命中概率如下:</p>
+
+<table>
+<thead><tr>
+<th>概率</th>
+<th>H</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>10%</td>
+<td>0</td>
+</tr>
+<tr>
+<td>35%</td>
+<td>10</td>
+</tr>
+<tr>
+<td>35%</td>
+<td>20</td>
+</tr>
+<tr>
+<td>10%</td>
+<td>30</td>
+</tr>
+<tr>
+<td>7%</td>
+<td>40</td>
+</tr>
+<tr>
+<td>3%</td>
+<td>50</td>
+</tr>
+</tbody>
+</table>
+
+<h3>各职业50H目标武器概率:</h3>
+<ul>
+<li>HU获得50H未鉴定<code>Vjaya(富豪)</code>的概率为: 3% <em> 8% </em> 3% = 72/1000000 = 0.000072 = 0.0072%</li>
+<li>RA获得50H未鉴定<code>M&A60 Vise(吹风机)</code>的概率为: 3% <em> 12% </em> 3% = 108/1000000 = 0.000108 = 0.0108%</li>
+<li>FO获得50H未鉴定<code>Diska of Braveman(勇者</code>)的概率为: 3% <em> 5% </em> 3% = 45/1000000 = 0.000045 = 0.0045%</li>
+</ul>
+    </div>
+</body>
+
+</html>

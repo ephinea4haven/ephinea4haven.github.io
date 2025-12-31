@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>survial_hp | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">survial_hp</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h2>温馨提示：Anguish 模式固定伤害加成</h2>
+
+<table>
+<thead><tr>
+<th>等级</th>
+<th>固定伤害提升</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td>+10%</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>+25%</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>+40%</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>+60%</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>+80%</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>+100%</td>
+</tr>
+<tr>
+<td>A7</td>
+<td>+120%</td>
+</tr>
+<tr>
+<td>A8</td>
+<td>+150%</td>
+</tr>
+<tr>
+<td>A9</td>
+<td>+175%</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>+200%</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>EP1 固定伤害一览</h2>
+
+<table>
+<thead><tr>
+<th>伤害</th>
+<th>技能 / 行为</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>5HP</td>
+<td>猩猩天降</td>
+</tr>
+<tr>
+<td>300HP</td>
+<td>猩猩大跳</td>
+</tr>
+<tr>
+<td>136HP</td>
+<td>猩猩中雷</td>
+</tr>
+<tr>
+<td>121HP</td>
+<td>洞窟粉碎机</td>
+</tr>
+<tr>
+<td>360HP</td>
+<td>翼龙炮</td>
+</tr>
+<tr>
+<td>400HP</td>
+<td>翼龙激光</td>
+</tr>
+<tr>
+<td>279HP</td>
+<td>史莱姆口水</td>
+</tr>
+<tr>
+<td>420HP</td>
+<td>合体怪红色攻击</td>
+</tr>
+<tr>
+<td>400HP</td>
+<td>合体怪蓝色攻击</td>
+</tr>
+<tr>
+<td>420HP</td>
+<td>火箭怪突刺</td>
+</tr>
+<tr>
+<td>380HP</td>
+<td>核心电爪雷击</td>
+</tr>
+<tr>
+<td>360HP</td>
+<td>电爪雷击</td>
+</tr>
+<tr>
+<td>400HP</td>
+<td>傀儡机兵激光</td>
+</tr>
+<tr>
+<td>420HP</td>
+<td>步行机兵激光</td>
+</tr>
+<tr>
+<td>400HP</td>
+<td>死亡炮台激光</td>
+</tr>
+<tr>
+<td>250HP</td>
+<td>鸡煲导弹 1</td>
+</tr>
+<tr>
+<td>480HP</td>
+<td>鸡煲导弹 2</td>
+</tr>
+<tr>
+<td>700HP</td>
+<td>人马冲击</td>
+</tr>
+<tr>
+<td>700 / 1050 / 1400HP</td>
+<td>人马炮（依赖吸 TP）</td>
+</tr>
+<tr>
+<td>826HP</td>
+<td>暗黑大法师光魔法</td>
+</tr>
+<tr>
+<td>400HP</td>
+<td>死亡炮台激光</td>
+</tr>
+<tr>
+<td>278HP</td>
+<td>暗黑佛死灵灯</td>
+</tr>
+<tr>
+<td>660HP</td>
+<td>暗黑佛 1 阶段天罚</td>
+</tr>
+<tr>
+<td>414HP</td>
+<td>暗黑佛 1 阶段大火</td>
+</tr>
+<tr>
+<td>406HP</td>
+<td>暗黑佛 1 阶段大冰</td>
+</tr>
+<tr>
+<td>690HP</td>
+<td>暗黑佛 2 阶段天罚</td>
+</tr>
+<tr>
+<td>444HP</td>
+<td>暗黑佛 2 阶段大火</td>
+</tr>
+<tr>
+<td>436HP</td>
+<td>暗黑佛 2 阶段大冰</td>
+</tr>
+<tr>
+<td>710 / 525HP</td>
+<td>暗黑佛 2 阶段吸血</td>
+</tr>
+<tr>
+<td>812 / 696HP</td>
+<td>暗黑佛 3 阶段斩杀</td>
+</tr>
+<tr>
+<td>700 / 610HP</td>
+<td>暗黑佛 3 阶段导弹</td>
+</tr>
+<tr>
+<td>611 / 546HP</td>
+<td>暗黑佛 3 阶段圣光</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>EP2 固定伤害一览</h2>
+
+<table>
+<thead><tr>
+<th>伤害</th>
+<th>技能 / 行为</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>5HP</td>
+<td>猩猩天降</td>
+</tr>
+<tr>
+<td>300HP</td>
+<td>猩猩大跳</td>
+</tr>
+<tr>
+<td>136HP</td>
+<td>猩猩中雷</td>
+</tr>
+<tr>
+<td>300HP</td>
+<td>神殿粉碎机</td>
+</tr>
+<tr>
+<td>360HP</td>
+<td>宇宙船粉碎机</td>
+</tr>
+<tr>
+<td>700HP</td>
+<td>蛮甲猿大跳</td>
+</tr>
+<tr>
+<td>1000HP</td>
+<td>蛮甲猿蓄力拳</td>
+</tr>
+<tr>
+<td>662HP</td>
+<td>麒麟激光</td>
+</tr>
+<tr>
+<td>720HP</td>
+<td>麒麟冲击</td>
+</tr>
+<tr>
+<td>900HP</td>
+<td>蜂后反击炸弹</td>
+</tr>
+<tr>
+<td>360HP</td>
+<td>海底电锯</td>
+</tr>
+<tr>
+<td>720HP</td>
+<td>RT 海底电锯</td>
+</tr>
+<tr>
+<td>300HP</td>
+<td>管理区电锯</td>
+</tr>
+<tr>
+<td>480HP</td>
+<td>塔电锯</td>
+</tr>
+<tr>
+<td>420HP</td>
+<td>暗弗碟激光</td>
+</tr>
+<tr>
+<td>500HP</td>
+<td>爆防机炸弹</td>
+</tr>
+<tr>
+<td>300HP</td>
+<td>爆防机电锯</td>
+</tr>
+<tr>
+<td>300HP</td>
+<td>爆防机电锯</td>
+</tr>
+<tr>
+<td>330HP</td>
+<td>湛蓝光武大冰</td>
+</tr>
+<tr>
+<td>434HP</td>
+<td>绯红光武大冰</td>
+</tr>
+<tr>
+<td>157HP</td>
+<td>暗黑魔精大冰</td>
+</tr>
+<tr>
+<td>剩 1HP</td>
+<td>暗铃兰吸血咆哮</td>
+</tr>
+<tr>
+<td>822HP</td>
+<td>暗铃兰自杀</td>
+</tr>
+<tr>
+<td>1465HP</td>
+<td>厄普西隆大火（火炕有效）</td>
+</tr>
+<tr>
+<td>3xx–5xxHP</td>
+<td>数码冰龙踩踏</td>
+</tr>
+<tr>
+<td>640HP</td>
+<td>加尔狮鹫落雷</td>
+</tr>
+<tr>
+<td>12xxHP</td>
+<td>加尔狮鹫冲击波</td>
+</tr>
+<tr>
+<td>900HP</td>
+<td>大叔天罚（最多 3 次）</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2>EP4 固定伤害一览</h2>
+
+<table>
+<thead><tr>
+<th>伤害</th>
+<th>技能 / 行为</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>5HP</td>
+<td>异甲巨螳螂天降</td>
+</tr>
+<tr>
+<td>397HP</td>
+<td>异甲巨螳螂大跳</td>
+</tr>
+<tr>
+<td>720HP</td>
+<td>铁甲战车象冲撞</td>
+</tr>
+<tr>
+<td>421HP</td>
+<td>巨型火犀鸟激光</td>
+</tr>
+<tr>
+<td>464HP</td>
+<td>巨型火犀鸟冲撞</td>
+</tr>
+<tr>
+<td>526HP</td>
+<td>变异羚角鸟激光</td>
+</tr>
+<tr>
+<td>557HP</td>
+<td>变异羚角鸟冲撞</td>
+</tr>
+<tr>
+<td>556HP</td>
+<td>媚影沙魔 A 大跳</td>
+</tr>
+<tr>
+<td>840HP</td>
+<td>圣魔龙激光</td>
+</tr>
+<tr>
+<td>480HP</td>
+<td>沙柏龙龙卷风</td>
+</tr>
+<tr>
+<td>?HP</td>
+<td>圣魔龙激光</td>
+</tr>
+<tr>
+<td>882HP</td>
+<td>沙柏龙激光</td>
+</tr>
+<tr>
+<td>838HP</td>
+<td>空间龙激光</td>
+</tr>
+</tbody>
+</table>
+    </div>
+</body>
+
+</html>

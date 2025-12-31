@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>christmas2018 | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('../static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">christmas2018</h1>
+    </header>
+
+    <a href="../event.html" class="back-link">← 返回圣诞活动页</a>
+
+    <div class="content-container">
+        <p><strong>2018年圣诞任务从<code>(2018-12-15)</code>到<code>(2019-1-12)</code>结束</strong></p>
+
+<p><strong>规则:</strong></p>
+
+<p>基本同2017。</p>
+
+<p><strong>变化的内容如下:</strong></p>
+
+<ul>
+<li>圣诞礼品更加丰富了，但为PSO社区的稳定健康的发展，暂时不会透露太多的稀有掉落，所以不废话，大家一起去找吧。</li>
+</ul>
+
+<ul>
+<li>可堆叠的圣诞礼品，如:光子微晶，可一次掉落一坨(Photon Drop x 3)，所以煤炭(Coal)也很有价值，</li>
+</ul>
+<p>  如果玩累了<strong>活动任务「Christmas Fiasco」</strong>，可以试试收集煤炭(Coal)。</p>
+
+<ul>
+<li>很多圣诞礼品有多个H而不是固定的，所以运气好的话，可以获得H60+的。。。</li>
+</ul>
+
+<p>PS: 受惊的蜡笔和箱子是不会掉落圣诞礼品的，正常放倒的蜡笔可以。</p>
+
+<hr>
+
+<h3>&lt;span style=&quot;color:red&quot;&gt;圣诞活动礼品&lt;/span&gt;</h3>
+
+<p><strong>普通难度:</strong></p>
+
+<p><strong>普通:</strong></p>
+
+<ul>
+<li>煤炭</li>
+<li>ＨＰ药</li>
+<li>ＴＰ药</li>
+<li>棒棒糖</li>
+<li>Disk Vol. 20 <code>[The Party Must Go On]</code></li>
+<li>兔耳发饰</li>
+<li>猫耳发饰</li>
+</ul>
+
+<p><strong>稍微普通:</strong></p>
+
+<ul>
+<li>圣诞礼品(mag细胞)</li>
+</ul>
+
+<p><strong>不常见:</strong></p>
+
+<ul>
+<li>光子微晶</li>
+</ul>
+
+<hr>
+
+<p><strong>困难难度:</strong></p>
+
+<p><strong>普通</strong></p>
+
+<ul>
+<li>煤炭 x3</li>
+<li>ＨＰ药</li>
+<li>ＴＰ药</li>
+<li>棒棒糖</li>
+<li>Disk Vol. 20 [The Party Must Go On]</li>
+<li>兔耳发饰</li>
+<li>猫耳发饰</li>
+</ul>
+
+<p><strong>稍微普通</strong></p>
+
+<ul>
+<li>光子微晶</li>
+<li>圣诞礼品(mag细胞)</li>
+<li>玩具锤</li>
+<li>桑巴沙锤</li>
+<li>变色龙之杖</li>
+<li>纸扇</li>
+<li>疯狂旋律</li>
+<li>???(2018年没有找到。。。)</li>
+<li>秋子婶婶的中华锅</li>
+<li>扫帚</li>
+</ul>
+
+<hr>
+
+<p><strong>极难难度:</strong></p>
+
+<p><strong>普通:</strong></p>
+
+<ul>
+<li>煤炭 x5</li>
+<li>ＨＰ药</li>
+<li>ＴＰ药</li>
+<li>运之药</li>
+<li>棒棒糖</li>
+<li>Disk Vol. 20 [The Party Must Go On]</li>
+<li>兔耳发饰</li>
+<li>猫耳发饰</li>
+</ul>
+
+<p><strong>稍微普通:</strong></p>
+
+<ul>
+<li>光子微晶</li>
+<li>圣诞礼品(mag细胞)</li>
+<li>桑巴沙锤</li>
+<li>玩具锤</li>
+<li>变色龙之杖</li>
+<li>纸扇</li>
+<li>疯狂旋律</li>
+<li>???(2018年没有找到。。。)</li>
+<li>秋子婶婶的中华锅</li>
+<li>扫帚</li>
+</ul>
+
+<p><strong>不常见</strong></p>
+
+<ul>
+<li>ＨＰ药 x2</li>
+<li>ＴＰ药  x2</li>
+<li>运之药 x2</li>
+<li>光子水晶</li>
+<li>道具票</li>
+<li>雏菊之剑</li>
+</ul>
+
+<p><strong>稀有</strong></p>
+
+<ul>
+<li>白鸟</li>
+<li>乌鸦</li>
+</ul>
+
+<hr>
+
+<p><strong>极限难度:</strong></p>
+
+<p><strong>普通</strong></p>
+
+<ul>
+<li>煤炭 x10</li>
+<li>光子微晶</li>
+<li>ＨＰ药 x2</li>
+<li>ＴＰ药  x2</li>
+<li>运之药</li>
+</ul>
+
+<p><strong>不常见</strong></p>
+
+<ul>
+<li>ＨＰ药 x5</li>
+<li>ＴＰ药  x3</li>
+<li>运之药 x3</li>
+<li>极冻枪 [多种H]</li>
+<li>如意金箍棒 [多种H]</li>
+<li>魔弹弓 [多种H]</li>
+<li>总督赠送的遮阳伞 [多种H]</li>
+<li>向日葵 [多种H]</li>
+<li>Slicer of Fanatic [多种H]</li>
+<li>雏菊之剑 [多种H]</li>
+<li>疯狂旋律 [多种H]</li>
+<li>桑巴沙锤 [多种H]</li>
+<li>玩具锤 [多种H]</li>
+<li>道具票</li>
+<li>万圣节饼干</li>
+<li>光子微晶 x3</li>
+<li>光子水晶</li>
+<li>魔石「伊利提斯塔」</li>
+<li>[败家] Type/GU Hand [40 Hit]</li>
+<li>[败家] TypeGU/Mech [35 Hit]</li>
+<li>[败家] TypeME/Mech [40 Hit]</li>
+<li>[败家] TypeSH/Shot [40 Hit]</li>
+<li>拉克尼姆战斧 [60 hit]</li>
+<li>Ｍ＆Ａ６０ 老虎钳 [50 Hit]</li>
+<li>御魔手镯</li>
+<li>[败魔] TypeSW/J-Sword [30 Hit]</li>
+<li>[败血] TypeKN/Claw [50 Hit]</li>
+</ul>
+
+<p><strong>稍微稀有:</strong></p>
+
+<ul>
+<li>运之药 x10</li>
+<li>白鸟</li>
+<li>乌鸦</li>
+<li>夜叉 [多种H]</li>
+<li>合体怪双刃 [40 Hit]</li>
+<li>巨螳螂双刀 [40 Hit]</li>
+<li>蓝忍双刃[40 Hit]</li>
+<li>御魔手镯</li>
+</ul>
+
+<p><strong>稀有:</strong></p>
+
+<ul>
+<li>漫步少女 [50 Hit]</li>
+<li>守护之扇 [50 Hit]</li>
+<li>圣光枪 [50 Hit]</li>
+<li>十文字枪 [50 Hit]</li>
+<li>圣剑「拉维斯·迦农」 [多种H]</li>
+<li>[地狱] 贤者长杖 [85 Hit]</li>
+<li>[恶魔] 权杖 [85 Hit]</li>
+<li>[败家] 魔息杖 [85 Hit]</li>
+<li>限幅器</li>
+<li>光子结晶</li>
+<li>混沌骑士枪 [50 Hit]</li>
+<li>机甲堡垒导弹枪 [50 Hit]</li>
+<li>V502</li>
+<li>晓之刻印 [30 hit]</li>
+</ul>
+
+<p><strong>非常稀有:</strong></p>
+
+<ul>
+<li>光子结晶 x3</li>
+<li>富豪长刀 [75 hit]</li>
+<li>银月之剑 [30 hit]</li>
+<li>天堂冲击 [30 hit]</li>
+<li>[败家] 音速机枪 [75 hit]</li>
+<li>[败家] 勇者大剑 [75 hit]</li>
+<li>[败血] 军用散弹枪 [75 hit]</li>
+</ul>
+
+
+    </div>
+</body>
+
+</html>

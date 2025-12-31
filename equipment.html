@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>equipment | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">equipment</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h2>全人物终级装备推荐</h2>
+
+<h3>🗡️ &lt;a name=&quot;hu&quot;&gt;&lt;/a&gt;战士 Warrior</h3>
+
+<p>🧝‍♂️ <a href="#humar">废材</a> ｜ 💃 <a href="#hunewearl">花瓶</a> ｜ 🤖 <a href="#hucast">旦那</a> ｜ 🥷 <a href="#hucaseal">女忍</a></p>
+
+<h3>🎯 &lt;a name=&quot;ra&quot;&gt;&lt;/a&gt;枪手 Ranger</h3>
+
+<p>🧔‍♂️ <a href="#ramar">军哥</a> ｜ 👩‍🦰 <a href="#ramarl">军嫂</a> ｜ 🛡️ <a href="#racast">坦克</a> ｜ 🤖 <a href="#racaseal">女仆</a></p>
+
+<h3>🔮 &lt;a name=&quot;fo&quot;&gt;&lt;/a&gt;法师 Force</h3>
+
+<p>🧙‍♂️ <a href="#fomar">农夫</a> ｜ 👰 <a href="#fomarl">人妻</a> ｜ 🐒 <a href="#fonewm">猴子</a> ｜ 🧝‍♀️ <a href="#fonewearl">萝莉</a></p>
+
+<hr>
+
+<h2>🧝‍♂️ 废材 &lt;a name=&quot;humar&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔟目标:</strong> Vjaya(富豪长刀), Yunchang(云长), Zanba(斩马刀), Tsumikiri J-Sword(罪切), Red Sword(红色大剑), Dark Flow(</li>
+</ul>
+<p>  暗黑弗罗文) <em>(❌不能连击)</em></p>
+<ul>
+<li><strong>🔺3目标:</strong> Excalibur(王者之剑)</li>
+<li><strong>🔹1目标(复数攻击):</strong> Black King Bar(苍黑如意棒), Daylight Scar(晓之刻印), Jizai(自在), Double Cannon(</li>
+</ul>
+<p>  圣剑「双切·迦农」), Musashi(武藏)</p>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> Diska of Braveman(勇者的飞碟), Charge Diska(销金-彗星投刃)</li>
+<li><strong>🔸1目标:</strong> Charge/Berserk Raygun(销金/销血-原子光枪), Master Raven(乌鸦)</li>
+<li><strong>🔹1目标(复数攻击):</strong> Charge/Berserk/Spirit Vulcan(销金/销血/销魂-音速机枪), M\&A60 Vise(老虎钳), L\&K38 Combat(</li>
+</ul>
+<p>  战场之狼) <em>(❌不能连击)</em></p>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer \[💤Arrest, ☠️Hell, 😈Demon's]</li>
+<li><strong>🔺3目标:</strong> Slicer of Fanatic(狂信者的投刃)</li>
+<li><strong>🔸1目标:</strong> HOLY RAY(圣光枪), Raygun \[💤Arrest, ☠️Hell, 😈Demon's], S-Gun \[⬇️Zalure]</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun \[😈Demon's], ES Twin \[😈Demon's]</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>🗡️ Lavis Blade, 🌻 Girasole, 🟥 S-Red's Blade, ⚔️ Tsumikiri J-Sword, 🔥 Twin Blaze</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🖤 Thirteen, 👗 Dress Plate, 💙 Blue Odoshi Violet Nimaidou, 🕵️‍♂️ Stealth Suit</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🛡️ Combat Gear, 🥷 Kasami Bracer, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 🥋 Proof of Sword-Saint</p>
+
+<hr>
+
+<h2>💃 花瓶 &lt;a name=&quot;hunewearl&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔟目标:</strong> Vjaya, Yunchang, Flowen's Sword 3084, Tsumikiri J-Sword, Red Sword, Dark Flow <em>(❌不能连击)</em></li>
+<li><strong>🔺3目标:</strong> Excalibur</li>
+<li><strong>🔹1目标(复数攻击):</strong> Black King Bar, Daylight Scar, Jizai, Vivienne, Double Cannon, Musashi</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> Diska of Braveman, Charge/Spirit Diska</li>
+<li><strong>🔸1目标:</strong> Charge/Berserk/Spirit Raygun</li>
+<li><strong>🔹1目标(复数攻击):</strong> Charge/Berserk/Spirit Vulcan, M\&A60 Vise, 🦢 Last Swan</li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer \[💤Arrest, ☠️Hell, 😈Demon's]</li>
+<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
+<li><strong>🔸1目标:</strong> HOLY RAY, Raygun \[💤Arrest, ☠️Hell, 😈Demon's]</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun, ES Twin \[😈Demon's]</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>🗡️ Lavis Blade, 🌻 Girasole, 📚 Clio, ☂️ Tyrell's Parasol, ⚔️ Tsumikiri J-Sword, 🔥 Twin Blaze, 🐾 Nei's Claw</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🖤 Thirteen, 💗 Sweetheart, 💙 Blue Odoshi Violet Nimaidou, 🕵️‍♀️ Stealth Suit</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🛡️ Combat Gear, 🥷 Kasami Bracer, 🪞 Yata Mirror, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 🥋 Proof of Sword-Saint</p>
+
+<hr>
+
+<h2>🤖 旦那 &lt;a name=&quot;hucast&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔟目标:</strong> Vjaya, Yunchang, Zanba, Tsumikiri J-Sword, Red Sword, Dark Flow <em>(❌不能连击)</em></li>
+<li><strong>🔺3目标:</strong> Excalibur</li>
+<li><strong>🔹1目标(复数攻击):</strong> Black King Bar, Daylight Scar, Jizai, Double Cannon, Musashi</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> Diska of Braveman, Charge Diska</li>
+<li><strong>🔸1目标:</strong> Charge/Berserk Raygun, Master Raven(乌鸦)</li>
+<li><strong>🔹1目标(复数攻击):</strong> Charge/Berserk Vulcan, M\&A60 Vise, L\&K38 Combat <em>(❌不能连击)</em></li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer \[💤Arrest, ☠️Hell]</li>
+<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
+<li><strong>🔸1目标:</strong> Raygun \[💤Arrest, ☠️Hell], S-Gun \[⬇️Zalure]</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun \[😈Demon's]</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>🗡️ Lavis Blade, 🌻 Girasole, 🟥 S-Red's Blade, ⚔️ Tsumikiri J-Sword, 🔨 Berdysh, 🔥 Twin Blaze, 🔩 Drill Launcher</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🖤 Thirteen, 🧩 D-Parts v1.01, 👗 Dress Plate, 💙 Blue Odoshi Violet Nimaidou, 🕵️‍♂️ Stealth Suit</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🛡️ S-Parts v2.01, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🥋 Proof of Sword-Saint</p>
+
+<hr>
+
+<h2>🥷 女忍 &lt;a name=&quot;hucaseal&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔟目标:</strong> Vjaya, Yunchang, Tsumikiri J-Sword, Red Sword, Dark Flow <em>(❌不能连击)</em></li>
+<li><strong>🔺3目标:</strong> Excalibur</li>
+<li><strong>🔹1目标(复数攻击):</strong> Black King Bar, Daylight Scar, Jizai, Vivienne, Double Cannon, Musashi</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> Diska of Braveman, Charge Diska</li>
+<li><strong>🔸1目标:</strong> Charge/Berserk Raygun</li>
+<li><strong>🔹1目标(复数攻击):</strong> Charge/Berserk Vulcan, M\&A60 Vise, 🦢 Last Swan, 🐦 Dual Bird</li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> ES Scythe \[☠️Hell], ES J-Cutter / ES Slicer \[💤Arrest, ☠️Hell]</li>
+<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
+<li><strong>🔸1目标:</strong> Raygun \[💤Arrest, ☠️Hell], S-Gun \[⬇️Zalure]</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun \[☠️Hell, 😈Demon's]</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>🗡️ Lavis Blade, 🌻 Girasole, 🟥 S-Red's Blade, ⚔️ Tsumikiri J-Sword, 🔨 Berdysh, 🔥 Twin Blaze</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🖤 Thirteen, 🧩 D-Parts v1.01, 💗 Sweetheart, 💙 Blue Odoshi Violet Nimaidou, 🕵️‍♀️ Stealth Suit</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🛡️ S-Parts v2.01, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🥋 Proof of Sword-Saint</p>
+
+<hr>
+
+<h2>🎯 军哥 &lt;a name=&quot;ramar&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔺3目标:</strong> Excalibur(王者之剑)</li>
+<li><strong>🔹1目标(复数攻击):</strong> Daylight Scar(晓之刻印)</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> Cannon Rouge(赤红加农)</li>
+<li><strong>🖐️5目标:</strong> Arms(军用散弹枪)\[💰Charge, 💉Berserk], S-Needle弹弓\[💉Berserk]</li>
+<li><strong>🔷4目标:</strong> Baranz Launcher(机甲堡垒导弹枪), S-Launcher(Berserk)</li>
+<li><strong>🎯1目标:</strong> Heaven Striker(天堂冲击)</li>
+<li><strong>🔹1目标(复数攻击):</strong> Vulcan(音速机枪)\[💰Charge, 💉Berserk], M\&A60 Vise(老虎钳), Yasminkov 9000M(雅斯米诺科夫9000M)</li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> S-Scythe镰刀\[☠️Hell]</li>
+<li><strong>🖐️5目标:</strong> S-Needle弹弓 / ES Shot 散弹\[💤Arrest, ☠️Hell, ⬇️Zalure, 😈Demon's]</li>
+<li><strong>🔷4目标:</strong> S-Launcher\[☠️Hell, 😈Demon's]</li>
+<li><strong>🎯1目标:</strong> Laser / Raygun \[💤Arrest, ☠️Hell, 😈Demon's], S-Rifle / S-Gun \[⬇️Zalure], Bringer's Rifle(混沌骑士枪)</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun\[☠️Hell, 😈Demon's], S-Beat's Blade(蓝忍双刃)</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>❄️ Frozen Shooter, 👑 Snow Queen</p>
+<p>🌻 Girasole, 🌑 Dark Meteor, 🔥 Twin Blaze</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🕵️‍♂️ Stealth Suit, 👗 Dress Plate</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🛡️ Ranger Wall, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🪞 Yata Mirror, 🐉 God's Shield "Kouryu", 💥 Shifta Merge / ✨ Rupika</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎶 V801</p>
+
+<hr>
+
+<h2>🎯 军嫂 &lt;a name=&quot;ramarl&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> Tyrell's Parasol(总督遮阳伞)</li>
+<li><strong>🔺3目标:</strong> Excalibur</li>
+<li><strong>🔹1目标(复数攻击):</strong> Daylight Scar, Vivienne</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> Cannon Rouge</li>
+<li><strong>🖐️5目标:</strong> Arms\[💰Charge, 💉Berserk], S-Needle\[💉Berserk]</li>
+<li><strong>🔷4目标:</strong> Baranz Launcher</li>
+<li><strong>🎯1目标:</strong> Heaven Striker</li>
+<li><strong>🔹1目标(复数攻击):</strong> Vulcan\[💰Charge, 💉Berserk], M\&A60 Vise, Yasminkov 9000M, 🦢 Last Swan</li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> S-Scythe\[☠️Hell]</li>
+<li><strong>🖐️5目标:</strong> S-Needle / ES Shot\[💤Arrest, ☠️Hell, 😈Demon's]</li>
+<li><strong>🔷4目标:</strong> S-Launcher\[☠️Hell, 😈Demon's]</li>
+<li><strong>🎯1目标:</strong> Laser / Raygun \[💤Arrest, ☠️Hell, 😈Demon's], Bringer's Rifle</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun\[☠️Hell, 😈Demon's], S-Beat's Blade</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>❄️ Frozen Shooter, 👑 Snow Queen</p>
+<p>🌻 Girasole, 🌑 Dark Meteor, ☂️ Tyrell's Parasol, 📚 Clio, 🔥 Twin Blaze</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>💗 Sweetheart, 🕵️‍♀️ Stealth Suit, 🔆 Brightness Circle</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🛡️ Ranger Wall, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎶 V801</p>
+
+<hr>
+
+<h2>🛡️ 坦克 &lt;a name=&quot;racast&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔺3目标:</strong> Excalibur</li>
+<li><strong>🔹1目标(复数攻击):</strong> Daylight Scar</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> Cannon Rouge</li>
+<li><strong>🖐️5目标:</strong> Arms\[💰Charge, 💉Berserk], S-Needle\[💉Berserk]</li>
+<li><strong>🔷4目标:</strong> Baranz Launcher, S-Launcher(Berserk)</li>
+<li><strong>🎯1目标:</strong> Heaven Striker</li>
+<li><strong>🔹1目标(复数攻击):</strong> Vulcan\[💰Charge, 💉Berserk], M\&A60 Vise, Yasminkov 9000M</li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> S-Scythe\[☠️Hell]</li>
+<li><strong>🖐️5目标:</strong> S-Needle / ES Shot / Spread Needle\[💤Arrest, ☠️Hell, ⬇️Zalure]</li>
+<li><strong>🔷4目标:</strong> S-Launcher\[☠️Hell]</li>
+<li><strong>🎯1目标:</strong> Laser / Raygun \[💤Arrest, ☠️Hell], S-Rifle / S-Gun \[⬇️Zalure]</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun\[☠️Hell, 😈Demon's], S-Beat's Blade</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>❄️ Frozen Shooter, 👑 Snow Queen</p>
+<p>🌻 Girasole, ⚡ Power Maser, 🌑 Dark Meteor, 🔥 Twin Blaze</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🧩 D-Parts v1.01, 🕵️‍♂️ Stealth Suit, 👗 Dress Plate, 🐺 Black Hound Cuirass</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🛡️ Ranger Wall, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502</p>
+
+<hr>
+
+<h2>🤖 女仆 &lt;a name=&quot;racaseal&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔺3目标:</strong> Excalibur</li>
+<li><strong>🔹1目标(复数攻击):</strong> Daylight Scar, Vivienne</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> Cannon Rouge</li>
+<li><strong>🖐️5目标:</strong> Arms\[💰Charge, 💉Berserk], S-Needle\[💉Berserk]</li>
+<li><strong>🔷4目标:</strong> Baranz Launcher, Diska of Braveman, S-Launcher(Berserk)</li>
+<li><strong>🎯1目标:</strong> Heaven Striker</li>
+<li><strong>🔹1目标(复数攻击):</strong> Vulcan\[💰Charge, 💉Berserk], M\&A60 Vise, Yasminkov 9000M, 🦢 Last Swan</li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> S-Scythe\[☠️Hell]</li>
+<li><strong>🖐️5目标:</strong> S-Needle / ES Shot / Spread Needle\[💤Arrest, ☠️Hell, ⬇️Zalure]</li>
+<li><strong>🔷4目标:</strong> S-Launcher\[☠️Hell]</li>
+<li><strong>🎯1目标:</strong> Laser / Raygun \[💤Arrest, ☠️Hell], S-Rifle / S-Gun \[⬇️Zalure]</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun\[☠️Hell, 😈Demon's], S-Beat's Blade</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>❄️ Frozen Shooter, 👑 Snow Queen</p>
+<p>🌻 Girasole, ⚡ Power Maser, 🌑 Dark Meteor, 🔥 Twin Blaze</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🧩 D-Parts v1.01, 💗 Sweetheart, 🕵️‍♀️ Stealth Suit, 🖤 Thirteen</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🛡️ Ranger Wall, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502</p>
+
+<hr>
+
+<h2>🧙‍♂️ 农夫 &lt;a name=&quot;fomar&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>💣 核爆</h3>
+
+<p>🌀 Psycho Wand, 📖 Prophets of Motav</p>
+<p>💗 Magical Piece, 🔥 Fire Scepter: Agni, ⚡ Storm Wand: Indra, ❄️ Ice Staff: Dagon</p>
+<p>🌕 Summit Moon, 🪙 Club of Laconium, 🧿 Club of Zumiuran, 💎 Mace of Adaman</p>
+<p>👼 Mercurius Rod</p>
+
+<h3>✨ 支持</h3>
+
+<p>🐇 Striker of Chao, 🕊️ Glide Divine</p>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔺3目标:</strong> Excalibur</li>
+<li><strong>🎯1目标:</strong> Galatine</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> Diska of Braveman</li>
+<li><strong>🎯1目标:</strong> Guardianna</li>
+<li><strong>🔹1目标(复数攻击):</strong> Vulcan (💰Charge, 💉Berserk, 🧠Spirit), M\&A60 Vise</li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer \[💤Arrest, ☠️Hell, 😈Demon's]</li>
+<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
+<li><strong>🎯1目标:</strong> Bringer's Rifle, Raygun \[💤Arrest, ☠️Hell, 😈Demon's], ES Cards \[☠️Hell, 😈Demon's], Holy Ray</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun \[😈Demon's]</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>🌪️ Gal Wind, 🌻 Girasole, 🔱 Demonic Fork</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🖤 Thirteen, 🔥 Ignition Cloak, 👗 Dress Plate</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🟥 Red Ring, 🔺 Rafoie Merge, 🔰 Gifoie Merge, ⚡ Gizonde Merge, ❄️ Rabarta Merge</p>
+<p>🧿 Anti-Dark Ring, 💧 Resta Merge, 🐉 God's Shield "Kouryu", 🔒 Three Seals, 🥊 Combat Gear</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 💠 Adept</p>
+
+<hr>
+
+<h2>👰 人妻 &lt;a name=&quot;fomarl&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>💣 核爆</h3>
+
+<p>🌀 Psycho Wand, 📖 Prophets of Motav</p>
+<p>💗 Magical Piece, 🔥 Fire Scepter: Agni, ⚡ Storm Wand: Indra, ❄️ Ice Staff: Dagon</p>
+<p>🌕 Summit Moon, 🪙 Club of Laconium, 🧿 Club of Zumiuran, 💎 Mace of Adaman</p>
+<p>👼 Mercurius Rod</p>
+
+<h3>✨ 支持</h3>
+
+<p>☂️ Tyrell's Parasol, 👒 Madam's Parasol, ☔ Madam's Umbrella, 👜 Marina's Bag, 🕊️ Glide Divine</p>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔟10目标:</strong> Tyrell's Parasol, ☠️ Soul Banish</li>
+<li><strong>🔺3目标:</strong> Excalibur</li>
+<li><strong>🔹1目标(复数攻击):</strong> Vivienne</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> Diska of Braveman</li>
+<li><strong>🎯1目标:</strong> Guardianna</li>
+<li><strong>🔹1目标(复数攻击):</strong> Rambling May, Vulcan (💰Charge, 💉Berserk, 🧠Spirit), M\&A60 Vise, 🦢 Last Swan</li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer \[💤Arrest, ☠️Hell, 😈Demon's]</li>
+<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
+<li><strong>🎯1目标:</strong> Bringer's Rifle, Raygun \[💤Arrest, ☠️Hell, 😈Demon's], ES Cards \[☠️Hell, 😈Demon's], Holy Ray</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun \[☠️Hell, 😈Demon's], S-Beat's Blade</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>🌪️ Gal Wind, 🌻 Girasole, 🔱 Demonic Fork, 🌞 Solferino</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🖤 Thirteen, 🔥 Ignition Cloak, 💗 Sweetheart, 🔆 Brightness Circle</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🟥 Red Ring, 🔺 Rafoie Merge, 🔰 Gifoie Merge, ⚡ Gizonde Merge, ❄️ Rabarta Merge</p>
+<p>🧿 Anti-Dark Ring, 💧 Resta Merge, 🐉 God's Shield "Kouryu", 🔒 Three Seals, 🥊 Combat Gear, 💓 Safety Heart</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 💠 Adept</p>
+
+<hr>
+
+<h2>🐒 猴子 &lt;a name=&quot;fonewm&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>💣 核爆</h3>
+
+<p>🌀 Psycho Wand, 📖 Prophets of Motav</p>
+<p>💗 Magical Piece, 🔥 Fire Scepter: Agni, ⚡ Storm Wand: Indra, ❄️ Ice Staff: Dagon</p>
+<p>🌕 Summit Moon, 🪙 Club of Laconium, 🧿 Club of Zumiuran, 💎 Mace of Adaman</p>
+<p>👼 Mercurius Rod</p>
+
+<h3>✨ 支持</h3>
+
+<p>🐇 Striker of Chao, 🕊️ Glide Divine</p>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔺3目标:</strong> Excalibur</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> Diska of Braveman</li>
+<li><strong>🔹1目标(复数攻击):</strong> Vulcan (💰Charge, 💉Berserk, 🧠Spirit), M\&A60 Vise</li>
+</ul>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer \[💤Arrest, ☠️Hell, 😈Demon's]</li>
+<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
+<li><strong>🎯1目标:</strong> Bringer's Rifle, Raygun \[💤Arrest, ☠️Hell, 😈Demon's], ES Cards \[☠️Hell, 😈Demon's], Holy Ray</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun \[😈Demon's]</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>🌪️ Gal Wind, 🌻 Girasole, 🔱 Demonic Fork</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🖤 Thirteen, 🔥 Ignition Cloak, 👘 Mother Garb+, 👗 Dress Plate</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🟥 Red Ring, 🔺 Rafoie Merge, 🔰 Gifoie Merge, ⚡ Gizonde Merge, ❄️ Rabarta Merge</p>
+<p>🧿 Anti-Dark Ring, 💧 Resta Merge, 🐉 God's Shield "Kouryu", 🔒 Three Seals, 🥊 Combat Gear</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 💠 Adept</p>
+
+<hr>
+
+<h2>🧝‍♀️ 萝莉 &lt;a name=&quot;fonewearl&quot;&gt;&lt;/a&gt;</h2>
+
+<h3>💣 核爆</h3>
+
+<p>🌀 Psycho Wand, 📖 Prophets of Motav</p>
+<p>💗 Magical Piece, 🔥 Fire Scepter: Agni, ⚡ Storm Wand: Indra, ❄️ Ice Staff: Dagon</p>
+<p>🌕 Summit Moon, 🪙 Club of Laconium, 🧿 Club of Zumiuran, 💎 Mace of Adaman</p>
+<p>👼 Mercurius Rod</p>
+
+<h3>✨ 支持</h3>
+
+<p>☂️ Tyrell's Parasol, 🕊️ Glide Divine</p>
+
+<h3>⚔️ 近战</h3>
+
+<ul>
+<li><strong>🔹1目标(复数攻击):</strong> Vivienne</li>
+</ul>
+
+<h3>🔫 远程</h3>
+
+<p>🚫 无</p>
+
+<h3>💥 特殊攻击</h3>
+
+<ul>
+<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
+<li><strong>🎯1目标:</strong> Bringer's Rifle, Raygun \[💤Arrest, ☠️Hell, 😈Demon's], ES Cards \[☠️Hell, 😈Demon's], Holy Ray</li>
+<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun \[☠️Hell, 😈Demon's]</li>
+</ul>
+
+<h3>🎯 特殊目的</h3>
+
+<p>🌪️ Gal Wind, 🌻 Girasole, 🟥 Red Saber</p>
+
+<h3>🛡️ 铠甲</h3>
+
+<p>🔥 Ignition Cloak, ❤️ Crimson Coat, 🔆 Brightness Circle</p>
+
+<h3>🧷 盾牌</h3>
+
+<p>🟥 Red Ring, 🔺 Rafoie Merge, 🔰 Gifoie Merge, ⚡ Gizonde Merge, ❄️ Rabarta Merge</p>
+<p>🧿 Anti-Dark Ring, 💧 Resta Merge, 🐉 God's Shield "Kouryu", 🔒 Three Seals, 🥊 Combat Gear</p>
+
+<h3>🧩 插件</h3>
+
+<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 💠 Adept</p>
+
+<hr>
+
+
+    </div>
+</body>
+
+</html>

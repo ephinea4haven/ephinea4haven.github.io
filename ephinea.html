@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>关于Ephinea | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">关于Ephinea</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h1>关于Ephinea</h1>
+<p>此页面用于说明<code>Ephinea</code>是什么，给玩家提供了什么，希望这篇文档能够说明清楚。</p>
+
+<h2>概述</h2>
+
+<p><code>Ephinea</code>是一个PSOBB服务器，目标愿景是复刻SEGA官方的游戏体验，与此同时也添加了一些提升玩家体验的优化，为游戏带来更多现代化的体验。<br></p>
+
+<ul>
+<li>经验维持不变。</li>
+<li>掉率维持不变。</li>
+<li>稀有怪率维持不变。</li>
+<li>角色能力值维持不变。</li>
+<li>道具参数维持不变，有几个特例。</li>
+<li>没有增加任何装备。</li>
+</ul>
+
+<p>掉落表来自于<code>SEGA</code>官方。EP1是一致的，EP2&4有一些平衡性调整。<br></p>
+<p>但是那些具有标志性ID掉落，如：天青的<code>封印野太刀</code> 、 金黄的 <code>佛罗文大剑(3084)</code> 是没有任何调整的。<br></p>
+<p><br></p>
+<p><code>Ephinea</code>没有计划调整游戏的核心的东西，并希望提供给玩家一个无论何时都能体验到原汁原味游戏体验的环境。</p>
+
+<p><h2>平衡性调整和新特性</h2></p>
+
+<p><h3>独立的掉落系统</h3></p>
+
+<p>当前玩家可以选择现代化的掉落系统，每位玩家的掉落物品都是独立存在的，代替了之前的共享的掉落模式。<br></p>
+
+<p><h3>共享经验系统</h3></p>
+
+<p>玩家创建房间的时候，可以选择现代化的共享经验系统，只要玩家在一个区域不用摸怪就可以获得到经验。<br></p>
+
+<p><h3>32个角色</h3></p>
+
+<p><code>Ephinea</code>的每个游戏账号可以创建32个角色(8个slot)，而非标准的4个。如何在这8个slot之间切换呢？<br></p>
+
+<ul>
+<li>登录器的右上角的slot下拉菜单</li>
+<li>在游戏中可以输入 /cbank [1-8]</li>
+</ul>
+
+<p><h3>完整的服装间</h3></p>
+
+<p><code>Ephinea</code>提供了完整的服装间，需要工会使用PT购买该权限，便可调整角色外观效果，注意不能在服装间内修改名字。<br></p>
+
+<p><h3>公共仓库</h3></p>
+
+<p>每个游戏账号的32个角色(8个slot，每个slot4个角色)有一个公共仓库。可以在游戏中使用/bank命令在角色仓库和共享仓库之间切换。<br></p>
+
+<p><h3>仓库MST上限调整</h3></p>
+
+<p>仓库的MST上限已经调整为999,999,999(10亿-1) 梅塞塔.<br></p>
+
+<p><h3>普通物品的<code>堆叠</code></h3></p>
+
+<p>能力药和打磨石可以在道具和仓库里堆叠到99。<br></p>
+
+<p><h3>功能完整的挑战模式和战斗模式</h3></p>
+
+<p>完美实现了<code>挑战模式</code>和<code>战斗模式</code>，基本没有bug存在。<br></p>
+
+<p><h3>可调整的颜色ID</h3></p>
+
+<p>修改角色的颜色ID,仅可以在20级之前使用。</p>
+
+<p><h3>稀有掉落通知</h3></p>
+
+<p>当红盒掉落时，能够听到特殊音效，并且在mini地图上用红点标注了。</p>
+
+<p><h3>多种游戏账号模式</h3></p>
+
+<p><code>Ephinea</code>支持多种游戏体验模式，如 Normal(常规)、Hardcore(硬核)、Sandbox(沙盘)、Purist Mode(传统)。<br></p>
+
+<ul>
+<li><strong>Normal(常规)</strong></li>
+</ul>
+
+<p><strong>养老院模式。</strong></p>
+
+
+<ul>
+<li>经验值: 100%</li>
+<li>掉宝率: 100%</li>
+<li>稀有怪率: 100%</li>
+</ul>
+
+<hr>
+
+<p><del><strong>Hardcore(硬核)</strong></del></p>
+
+<p>~~**不要命模式，如果没有娃娃死亡会清空角色身上和银行所有道具，但不影响共享银行，</p>
+<p>娃娃相对来说非常珍贵，此模式掉落有buff，具体参数如下:**~~</p>
+
+
+<p><del>* 经验值: 200%</del>  </p>
+<p><del>* 掉宝率: 130%</del>   </p>
+<p><del>* 稀有怪率: 100%</del>  </p>
+
+<hr>
+
+<p><strong>Sandbox(沙盘)</strong></p>
+
+<p><strong>造物模式</strong></p>
+
+<p><strong>命令:</strong></p>
+
+<ul>
+<li>/addmeseta – 提款机</li>
+<li>/item – 造物</li>
+<li>/levelup – 升级</li>
+<li>/redbox – 红盒模式</li>
+<li>/srank – 获取cm模式的s武</li>
+<li>/warpall – 队长带大家飞到任意区域</li>
+<li>/warpme – 自己飞到任意区域</li>
+<li>/wipecmode – 清理cm模式数据</li>
+</ul>
+
+<hr>
+
+<p><strong>Purist Mode(传统)</strong></p>
+
+<p><strong>算不上是一种账号模式, 在游戏中输入<code>/purist</code> 会进入此模式, 此模式的房间没有任何掉落加成。</strong></p>
+
+<hr>
+
+<p><strong>猎人逐梦之路 - HBR</strong></p>
+
+<p>是一项每周更新，选择的任务提供基础 19% 的掉落率、稀有率和经验加成，并从第 2 名玩家起按人数叠加 boost，每增加 1 名玩家额外 +2%，所有加成统一计算，最高叠加至 25% 后不再增长的狩猎增益机制。。</p>
+
+<hr>
+
+<p><h3>排行榜</h3></p>
+
+<p>官方网站有达人排行榜，了解下大神成绩。。。</p>
+
+<hr>
+
+<p><h3>原创任务</h3></p>
+
+<p>服务器增加了一系列的原创任务，有些是独占的。</p>
+
+<hr>
+
+<p><h3>周提升系统RBS</h3></p>
+
+<p>每周特定掉率会被提升，包括掉率、稀有怪率、稀有掉率和经验，如果你不是特别感冒，  </p>
+<p>可以使用<code>存粹模式</code>(如果感觉自己很牛逼，完全不需要享有服务器掉落加成，可通过输入<code>/purist</code>开启)。</p>
+<p>实际的<code>掉率(DR)</code>= <code>掉物率(DAR)</code> * <code>掉宝率(RDR)</code></p>
+
+<ul>
+<li>第1周: 掉物率(DAR) +25%</li>
+<li>第2周: 稀有怪出现率 +50%</li>
+<li>第3周: 掉宝率(RDR) +25%</li>
+<li>第4周: 经验 +50%</li>
+</ul>
+
+<hr>
+<p><h3>每日运势系统(Daily Forecast)</h3></p>
+
+<p>Ephinea服特有的机制，通过每日随机选出的角色特征（职业、种族、性别），为符合条件的角色提供稀有掉率加成，鼓励玩家根据运势选择角色进行周回。</p>
+
+<table>
+<thead><tr>
+<th>所在队伍类型</th>
+<th>满足 1 项特征</th>
+<th>满足 2 项特征</th>
+<th>满足 3 项特征</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>单人模式（One Person）</td>
+<td>+1%</td>
+<td>+2%</td>
+<td>+3%</td>
+</tr>
+<tr>
+<td>联机模式（Multiplayer）</td>
+<td>+3%</td>
+<td>+5%</td>
+<td>（无进一步加成）</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<p><h3>稳定的药物商店</h3></p>
+<p>药物商店显示全部的药物，小hp、小tp、魂之粉、星之粉等，也就是说不需要刷商店了就可以购买到。</p>
+
+<hr>
+
+<p><h3>SOLO模式畅玩多人任务</h3></p>
+
+<p>在任务地图中以往需要多人配合才能打开的，现在不需要了，solo当然没问题了。</p>
+
+<hr>
+
+<p><h3>丰富的活动</h3></p>
+
+<p>每年特定时间点会开启相应的活动，活动都是独一无二的， 相应的活动可更容易的获取道具。</p>
+
+<ul>
+<li>情人节(Valentine's Day) - 2.14</li>
+<li>白色情人节(White Day) - 3.14</li>
+<li>复活节(Easter) - 3月~4月</li>
+<li>夏季拾荒(Summer Scavenger Hunt) - 6月</li>
+<li>周年(Anniversary) - 8月</li>
+<li>万圣节(Halloween) - 10月~11月</li>
+<li>圣诞节(Christmas) - 12月</li>
+</ul>
+
+<hr>
+
+<p><h3>大厅点唱机</h3></p>
+
+<p>大厅柜台增加了点唱机，可以调整大厅音乐。</p>
+
+<p><h3>可调节的背景音乐和特效音量</h3></p>
+
+<p>背景音乐和特效音量可在大厅中调节，可以替代游戏启动器相关的配置。</p>
+
+<hr>
+
+<p><h3>可下载的角色数据</h3></p>
+
+<p>如果你担心服务器挂掉丢失数据的话，不要担心，你可以随时下载角色数据，这些数据可以直接运行在任意的T端服务器上。</p>
+
+<hr>
+
+<p><h2>装备条件变化</h2></p>
+
+<ul>
+<li>Mag没有职业限制。</li>
+<li>兔耳和猫耳没有职业限制。</li>
+<li><code>花瓶</code>可以使用<code>史神克莱奥之杖</code>。</li>
+<li>吸经验装备仅仅能吸收固定经验。</li>
+</ul>
+
+<hr>
+
+<h1>GMs</h1>
+<p>主GM: Sodaboy, Tofuman, Ender和Matt  </p>
+<p>辅GM: anime, CARNAGE, MewPlushie, Ryan和Gori  </p>
+<p>一般的问题咨询辅GM足够了，对于ban号申述需联系主GM。</p>
+
+<hr>
+
+<h2>原创任务</h2>
+<h3>Episode 1</h3>
+<h4>– 夺回</h4>
+
+<ul>
+<li>Lost Heat Sword - Sega</li>
+<li>Lost Ice Spinner - Sega</li>
+<li>Lost Soul Blade - Sega</li>
+<li>Lost Hell Pallasch - Sega</li>
+<li>Dark Research – by Namakemono</li>
+<li>Forsaken Friends – by Heloise/Aleron Ives/Lee</li>
+<li>Rescue from Ragol – by Tofuman</li>
+</ul>
+
+<h4>– 歼灭</h4>
+
+<ul>
+<li>Sweep-Up Operation #1 (Forest) - by Ender</li>
+<li>Sweep-Up Operation #2 (Cave) - by Ender</li>
+<li>Sweep-Up Operation #3 (Mine) - by Ender</li>
+<li>Sweep-Up Operation #4 (Ruin) - by Ender</li>
+</ul>
+
+<h4>- VR</h4>
+
+<ul>
+<li>Mine Offensive – by RikaPSO</li>
+<li>Random Attack Xrd Stage – by Namakemono</li>
+<li>Simulator – by RikaPSO</li>
+<li>Tyrell’s Ego (Eden’s Saviour) – by Tofuman</li>
+</ul>
+
+
+<h4>- 活动</h4>
+
+<ul>
+<li>Maximum Attack E: Episode 1 – by Matt</li>
+<li>Christmas Fiasco – by Heloise/Lee (Event Only)</li>
+<li>Maximum Attack E: Forest – by Matt (Event Only)</li>
+<li>Maximum Attack E: Caves – by Matt (Event Only)</li>
+<li>Maximum Attack E: Mines – by Matt (Event Only)</li>
+<li>Maximum Attack E: Ruins – by Matt (Event Only)</li>
+</ul>
+
+<h4>– 单人</h4>
+
+<ul>
+<li>Knight of Coral – by Namakemono</li>
+<li>Rescue from Ragol – by Tofuman</li>
+</ul>
+
+<h3>Episode 2</h3>
+
+<h4>– 歼灭</h4>
+
+<ul>
+<li>Gal Da Val’s Darkness – by RikaPSO</li>
+<li>Sweep-Up Operation #5 (VR Temple) - by Ender</li>
+<li>Sweep-Up Operation #6 (VR Spaceship) - by Ender</li>
+<li>Sweep-Up Operation #7 (CCA) - by Ender</li>
+<li>Sweep-Up Operation #8 (Seabed) - by Ender</li>
+<li>Sweep-Up Operation #9 (Tower) - by Ender</li>
+<li><del>Malicious Uprising #1 – by GuardianGirth/Yata</del></li>
+<li><del>Malicious Uprising #2 – by GuardianGirth/Yata</del></li>
+<li><del>Malicious Uprising #3 – by GuardianGirth/Yata</del></li>
+<li><del>Malicious Uprising #4 – by GuardianGirth/Yata</del></li>
+<li><del>Malicious Uprising #5 – by GuardianGirth/Yata</del></li>
+<li>Random Attack Xrd Stage – by Namakemono</li>
+<li><del>Villainous Rift #1 – by GuardianGirth/Yata</del></li>
+<li><del>Villainous Rift #2 – by GuardianGirth/Yata</del></li>
+</ul>
+
+<h4>– 夺回</h4>
+<ul>
+<li>Lost SHOCK RIFLE (VR Temple) - by Ender</li>
+<li>Lost BIND ASSAULT (VR Spaceship) - by Ender</li>
+<li><del>Lost SHOCK GUNGNIR – by GuardianGirth/Lee</del></li>
+<li><del>Lost RIOT RAYGUN – by GuardianGirth/Lee</del></li>
+<li><del>Lost DEVIL’S SCEPTER – by GuardianGirth/Lee</del></li>
+<li><del>Lost CHAOS CALIBUR – by GuardianGirth/Yata</del></li>
+<li><del>Lost HEART BREAKER – by GuardianGirth/Yata</del></li>
+<li>Revisiting Darkness – by Ilitsa/RikaPSO</li>
+</ul>
+
+<h4>– 塔</h4>
+
+<ul>
+<li>Military Strikes Back – by Cry0</li>
+<li>Raid on Central Tower – by RikaPSO</li>
+</ul>
+
+<h4>– 活动</h4>
+
+<ul>
+<li>Maximum Attack E: VR – by Matt</li>
+<li>Maximum Attack E: Gal Da Val – by Matt</li>
+<li>Christmas Fiasco – by Heloise/Lee (Event Only)</li>
+<li>Maximum Attack E: Temple – by Matt (Event Only)</li>
+<li>Maximum Attack E: Spaceship – by Matt (Event Only)</li>
+<li>Maximum Attack E: CCA – by Matt (Event Only)</li>
+<li>Maximum Attack E: Seabed – by Matt (Event Only)</li>
+<li>Maximum Attack E: Tower – by Matt (Event Only)</li>
+</ul>
+
+<h4>– 单人</h4>
+
+<ul>
+<li>A New Hope – by Cry0</li>
+<li>Knight of Coral Advent – by Namakemono</li>
+</ul>
+
+<h3>Episode 4</h3>
+<h4>– 夺回</h4>
+
+<ul>
+<li><del>Lost MASTER’S BLASTER – by GuardianGirth/Yata</del></li>
+<li>Lost BERSERK BATON (Crater)- By Ender</li>
+</ul>
+
+<h4>– 活动</h4>
+
+<ul>
+<li>Maximum Attack E: Episode 4 – by Matt</li>
+<li>Christmas Fiasco – by Heloise/Lee (Event Only)</li>
+<li>Maximum Attack E: Crater – by Matt (Event Only)</li>
+<li>Maximum Attack E: Desert – by Matt (Event Only)</li>
+</ul>
+
+<h4>- 歼灭</h4>
+
+<ul>
+<li>Sweep-Up Operation #10 (Crater Exterior) - by Ender</li>
+<li>Sweep-Up Operation #11 (Crater Interior) - by Ender</li>
+<li>Sweep-Up Operation #12 (Sub. Desert 1) - by Ender</li>
+<li>Sweep-Up Operation #13 (Sub. Desert 2) - by Ender</li>
+<li>Sweep-Up Operation #14 (Sub. Desert 3) - by Ender</li>
+</ul>
+
+    </div>
+</body>
+
+</html>

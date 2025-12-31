@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>christmas2023 | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('../static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">christmas2023</h1>
+    </header>
+
+    <a href="../event.html" class="back-link">← 返回圣诞活动页</a>
+
+    <div class="content-container">
+        <h2>&lt;span style=&quot;color:red&quot;&gt;圣诞节日活动(CF)&lt;/span&gt;</h2>
+
+<p><div></p>
+<p>    <a target="_blank"</p>
+<p>       href="//shang.qq.com/wpa/qunwpa?idkey=95996b984b761d905d2d05e0ce765fa9ff720cfa9e6dbcde50fd179cd8867808">点击加QQ群: 956652396</a></p>
+<p></div></p>
+
+<h3>2023年圣诞任务从`(2023-12-12)`到`(2024-01-09)`结束</h3>
+
+<p>欢迎参加2023年圣诞活动！活动机制与往年相同，所有普通、困难和非常困难难度的礼物都包含<strong>相同</strong>的物品列表，被称为普通礼物。然而，并非所有N、H和VH难度的物品都在U难度礼物中。<strong>与往常一样，今年的礼物列表有所不同</strong>。</p>
+
+<p><strong>对于首次参加我们的圣诞活动的新玩家，有几点需要注意：</strong></p>
+
+<p>1. 活动期间，所有每周加成双倍。</p>
+<p>2. CF任务在活动期间的每个章节都将解锁。这些任务是非常IMBA、怪物非常密集，覆盖多个区域。完成这些任务将获得煤炭奖励。煤炭不会随机掉落，但可以从普通礼物中获得少量煤炭。</p>
+<p>3. CF任务分别在第1章、第2章和第4章奖励4、6和6块煤炭。</p>
+<p>4. 煤炭可以用来从第1章的圣诞商店任务中银行旁的<strong>胖胖坦克</strong>处购买礼物。</p>
+<p>5. 礼物可以在任何难度的任何敌人身上掉落。终极模式的礼物比其他模式更好。</p>
+<p>6. 稀有的圣诞拉比会在第2章的VR神殿中出现，并掉落它们特有的圣诞礼物。这些包含多种Mag细胞，包括E服独有的Mag套件，Varuna套件，Kalki套件和Vritra套件。活动期间这些拉比将取代爱之拉比。</p>
+<p>7. 礼物中的物品由社区报告。管理员会定期更新此帖子。</p>
+<p>8. 当您报告一个物品时，请说明它是在哪个难度\<a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2023-event-thread.27468/">N、H、VH&U\]掉落的礼物，可以去 [圣诞活动贴子</a> 分享情报!!!</p>
+<p>9. 圣诞礼品掉率: 1/1500, 圣诞前夜、圣诞、元旦前夜、元旦: 1/750</p>
+
+<p>请记住，吓跑的拉比不会掉落礼物，箱子里也不会掉落礼物。正常击杀的拉比仍然会掉落礼物。礼物掉落率不受DAR影响，因此礼物有相同的掉落几率，不受任何日常或每周DAR或RDR提升，其它活动同理。</p>
+
+
+<h3>奖品列表</h3>
+
+<p><strong>可变H: \[15，60\]</strong></p>
+
+<h4>N、H和VH难度普通礼品</h4>
+
+<ul>
+<li>光子微晶 x1</li>
+<li>光子微晶 x2</li>
+<li>光子微晶 x3</li>
+<li>光子水晶 x1</li>
+<li>光子水晶 x2</li>
+<li>光子水晶 x3</li>
+<li>煤炭 x10</li>
+<li>HP药 x2</li>
+<li>HP药 x3</li>
+<li>TP药 x2</li>
+<li>TP药 x3</li>
+<li>运药 x1</li>
+<li>运药 x2</li>
+<li>运药 x3</li>
+<li>道具票</li>
+</ul>
+<p>* </p>
+<ul>
+<li>雏菊之剑 (可变H)</li>
+<li>疯狂旋律 (可变H)</li>
+<li>桑巴沙锤 (可变H)</li>
+<li>玩具锤 (可变H)</li>
+<li>高尔夫球棍 (可变H)</li>
+<li>纸扇 (可变H)</li>
+<li>秋子婶婶的菜刀 (可变H)</li>
+<li>火箭铁拳 (可变H)</li>
+<li>雷奥尼亚 (可变H)</li>
+<li>棒棒糖 (可变H)</li>
+<li>花杖 (可变H)</li>
+<li>注射器 (可变H)</li>
+<li>ＦＡＭＩ通 (可变H)</li>
+<li>艾欧诺阿之心</li>
+<li>摩洛星人的心</li>
+</ul>
+
+<hr>
+
+<h4>&lt;span style=&quot;color:red&quot;&gt;极限难度-独占掉落&lt;/span&gt;</h4>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;普通&lt;/span&gt;</h5>
+
+<ul>
+<li>光子微晶 x1</li>
+<li>扩展插槽</li>
+</ul>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;常见&lt;/span&gt;</h5>
+
+<ul>
+<li>光子水晶 x1</li>
+<li>光子微晶 x2</li>
+<li>光子水晶 x2</li>
+<li>光子微晶 x3</li>
+<li>万圣节饼干</li>
+<li>\[削金\] 光枪TypeGU/Handgun (0/0/0/0\|40)</li>
+<li>\[削金\] 机枪光枪TypeGU/Mechgun (0/0/0/0\|35)</li>
+<li>\[削金\] 光枪TypeGU/Handgun (0/0/0/0\|40)</li>
+<li>\[削血\] 机枪光枪TypeGU/Mechgun (0/0/0/0\|35)</li>
+<li>\[削血\] 爪TypeKN/Claw (0/0/0/0\|50)</li>
+</ul>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;不常见&lt;/span&gt;</h5>
+
+<ul>
+<li>\[削金\] 机枪TypeME/Mechgun (0/0/0/0\|40)</li>
+<li>\[削金\] 散弹TypeSH/Shot (0/0/0/0\|40)</li>
+<li>\[削血\] 机枪TypeME/Mechgun (0/0/0/0\|40)</li>
+<li>\[削血\] 散弹TypeSH/Shot (0/0/0/0\|40)</li>
+<li>\[魔鬼\] 长杖双头TypeDS/Rod (0/0/0/0\|30)</li>
+<li>光子微晶 x5</li>
+<li>隐身Mag细胞</li>
+<li>源平</li>
+<li>\[削魔\] 大剑TypeSW/J-Sword (0/0/0/0\|30)</li>
+<li>艾米提的笔记</li>
+<li>Ｙａｈｏｏ！细胞</li>
+<li>火墙增幅盾</li>
+</ul>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;稀有&lt;/span&gt;</h5>
+
+<ul>
+<li>光子微晶 x10</li>
+<li>\[地狱\] 手枪光枪TypeGU/Handgun (0/0/0/0\|40)</li>
+<li>\[地狱\] 机枪光枪TypeGU/Mechgun (0/0/0/0\|35)</li>
+<li>\[地狱\] 步枪TypeRI/Rifle (0/0/0/0\|40)</li>
+<li>光子滤镜</li>
+<li>蓝色涂膜</li>
+<li>绿色涂膜</li>
+<li>黄色涂膜</li>
+<li>紫色涂膜</li>
+<li>白色涂膜</li>
+<li>黑色涂膜</li>
+<li>浅黄涂膜</li>
+<li>蓝绿涂膜</li>
+<li>玛瑙黑涂膜</li>
+<li>橘色涂膜</li>
+<li>玫瑰涂膜</li>
+<li>群青涂膜</li>
+<li>蓝紫涂膜</li>
+<li>压力波动强</li>
+<li>依兹玛艾拉</li>
+<li>TP药 x30</li>
+<li>光子加速器</li>
+<li>魔石「心键」</li>
+<li>苍黑石</li>
+</ul>
+<p>* </p>
+<ul>
+<li>\[削金\] 重型散弹枪Spread (0/0/0/0\|65)</li>
+<li>\[恶魔\] 步枪Rifle (0/0/0/0\|70)</li>
+</ul>
+<p>* </p>
+<ul>
+<li>\[恶魔\] 狙击步枪Blaster (0/0/0/0\|65)</li>
+<li>\[地狱\] 步枪Rifle (0/0/0/0\|70)</li>
+<li>\[地狱\] 突击步枪 Sniper (0/0/0/0\|65)</li>
+<li>\[地狱\] 狙击步枪Blaster (0/0/0/0\|65)</li>
+<li>\[全麻痹\] 光枪Handgun (0/0/0/0\|65)</li>
+<li>\[全麻痹\] 智能光枪Autogun (0/0/0/0\|65)</li>
+<li>\[全麻痹\] 放射光枪Lockgun (0/0/0/0\|65)</li>
+<li>\[地狱\] 光枪Handgun (0/0/0/0\|65)</li>
+<li>\[地狱\] 智能光枪Autogun (0/0/0/0\|65)</li>
+<li>\[地狱\] 放射光枪Lockgun (0/0/0/0\|65)</li>
+<li>\[削金\] 机枪Mechgun (0/0/0/0\|70)</li>
+<li>\[削金\] 扫射机枪Assault (0/0/0/0\|65)</li>
+<li>\[削金\] 高射机枪Repeater (0/0/0/0\|65)</li>
+</ul>
+
+<h5>&lt;span style=&quot;color:red&quot;&gt;非常稀有&lt;/span&gt;</h5>
+
+<ul>
+<li>\[削金\] 加农散弹枪Cannon (0/0/0/0\|65)</li>
+</ul>
+<p>* </p>
+<ul>
+<li>PH x1</li>
+<li>太阳之剑 (0/0/0/0\|30)</li>
+<li>晓之刻印 (0/0/0/0\|30)</li>
+<li>Ｍ＆Ａ６０ 老虎钳 (0/0/0/0\|60)</li>
+</ul>
+<p>* </p>
+<ul>
+<li>PS x3</li>
+</ul>
+<p>* </p>
+<p>* </p>
+<ul>
+<li>勇者大剑Calibur (0/0/0/0\|75)</li>
+</ul>
+<p>* </p>
+<ul>
+<li>自在Jizai (0/0/0/0\|40)</li>
+</ul>
+
+<hr>
+
+<h3>&lt;span style=&quot;color:red&quot;&gt;圣诞活动商店&lt;/span&gt;</h3>
+
+<p>   商店坐标: EP1 -> Shop -> Christmas Event Shop</p>
+
+<hr>
+
+<h4>胖胖坦克(银行右侧):</h4>
+
+<p>   煤炭换圣诞礼物。</p>
+
+<p>   <img src="../static/img/coalexchange.png" alt="煤炭兑换菜单" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p><strong>兑换规则:</strong></p>
+
+<ul>
+<li><strong>普通-礼品: 8煤炭</strong></li>
+<li><strong>极限-礼品: 40煤炭</strong></li>
+</ul>
+
+
+    </div>
+</body>
+
+</html>

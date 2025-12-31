@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>EP1 挑战模式 | Ephinea PSOBB</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .content-container table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">EP1 挑战模式</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h1>EP1 挑战模式</h1>
+
+<h2>C1</h2>
+<p>没什么好说的，只要严格按照HUC对每个怪的打法来打，并且不要陷入包围，不要重复打怪，过C1是绝对没有问题的。  </p>
+<p><img src="/ch/ep1/area_01.gif" alt="C1" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_02.gif" alt="C1" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<h2>C2</h2>
+<p>HUC的miss地狱，初期为N-DN-DH，后期可以采用NHH。翼龙和螳螂优先考虑，最好有专门的HUC负责翼龙。有FO在的话，花就交给FO了，  </p>
+<p>HUC绝对不要打，除非FO离花很远并且你已经空闲。HUC的全部替身娃娃都给FO。回收由最弱的HUC去做，大剑回收那里3过1留，应该让FO和1个HUC先过进下一区，  </p>
+<p>留下一个HUC踩机关让最后一个HUC过，因为FO的攻击力强过HUC。在最后一个区有鬼火出现在房间，FO在门前用火攻击6次就可开门。TA的话只回收+10剑，+5大剑和盾，其他箱子无视。  </p>
+<p><img src="/ch/ep1/area_04.gif" alt="C2" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_05.gif" alt="C2" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_06.gif" alt="C2" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_07.gif" alt="C2" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_08.gif" alt="C2" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<h2>C3</h2>
+<p>HUC终于可以用大剑了，标准攻击方式NNH，后期或在怪背后时可以考虑NHH，捡到印剑后可用NHH，绿魔鲨可以3连毙命。翼龙还是要有专人负责，  </p>
+<p>史莱姆交给有印剑的队友，只有大剑时最好看准时机第1下挥空，第2下用H，不然miss3次就会分裂，浪费时间。新人不熟悉地图的不要乱碰机关，  </p>
+<p>不然会扣HP的。第9区大型机关那里1踩3过。FO从这一关开始要给队友加攻。</p>
+<p><img src="/ch/ep1/area_09.gif" alt="C3" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_10.gif" alt="C3" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_11.gif" alt="C3" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_12.gif" alt="C3" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_13.gif" alt="C3" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<h2>C4</h2>
+<p>关于机关，图已经讲得很明白了，就不罗嗦了，怪物的基本打法和C3相同。2：2分队时FO跟攻击力强的HUC。BOSS蜈蚣用大剑砍，站位要分开，  </p>
+<p>避免一击打多人，未爬上来时站在船边可以用大剑砍到船侧面的蜈蚣，有多余的替身娃娃和HP恢复药可以扔在地上供队员急用。</p>
+<p><img src="/ch/ep1/area_14.gif" alt="C4" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_15.gif" alt="C4" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_16.gif" alt="C4" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_17.gif" alt="C4" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_18.gif" alt="C4" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<h2>C5</h2>
+<p>机忍要群欧，单挑的话很容易被反击，假如捡到高属性的剑就爽了，一下3连就能砍死机忍。FO优先攻击机忍和空中的电爪。  </p>
+<p>回收一般最弱的HUC去，FO要随队对付机忍和电爪。黑房间由FO去开灯，有陷阱的机关那里由HUC来。</p>
+<p><img src="/ch/ep1/area_20.gif" alt="C5" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_21.gif" alt="C5" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_22.gif" alt="C5" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_23.gif" alt="C5" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_24.gif" alt="C5" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<h2>C6</h2>
+<p>不TA的话绕机堡，注意陷阱的位置，不然，药怕是不够的。FO还是要随队对付机忍和电爪，所以回收还是由HUC去吧。大型机关那里3人没人负责相临的2-3个机关，  </p>
+<p>1人进去开。养MAG的HUC到后期可以用机枪，用来对付BOSS的柱子很好用，不过屏幕还是无视，打完6个柱子BOSS就任你宰割了。</p>
+<p><img src="/ch/ep1/area_25.gif" alt="C6" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_26.gif" alt="C6" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_27.gif" alt="C6" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_28.gif" alt="C6" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_29.gif" alt="C6" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<h2>C7</h2>
+<p>出现了头号危险敌人：法师，不优先消灭会让你们吃尽苦头，HUC在C7时命中还不高，推荐用NHH。FO从这关开始可以用圣泉同伴加HP了。HUC砍剑魔参考HUC打怪心得。  </p>
+<p>新手最好不要乱碰机关，不然不是害了队友就是自己迷路。崂山术那里是靠空手3连的最后一下后退挤进石头的，所以刚开始的方向要与墙壁或石头成45度角，  </p>
+<p>利用最后一击挤一下，然后调整好方向再3连，再挤，一般3次就可穿过，实在不行的话还是规规矩矩地走远路吧。不TA的32区通过有时间限制的门进传送后走光栅内侧，  </p>
+<p>也就是箱子的那一测，千万不要从电脑前面经过，不然回收的同志就惨了。</p>
+<p><img src="/ch/ep1/area_31.gif" alt="C7" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_32.gif" alt="C7" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_33.gif" alt="C7" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_34.gif" alt="C7" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_35.gif" alt="C7" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<h2>C8</h2>
+<p>基本上没什么棘手的怪物，用4HUC要比3HUC+FO感觉要快一点。前2个房间只要集齐3个武器就可以在第2个房间走左边抄近路了，  </p>
+<p>最后一个通过4武器机关的人可以利用网络延迟在进门的瞬间拿回武器顺利脱出。新人还是不要乱进传送，跟老手走。  </p>
+<p>40区在A区时3：1分队，强力HUC去右边，3人进左边后再2：1分队，然后4人分别开a,b,c,d4个机关A区的红门就打开了。</p>
+<p><img src="/ch/ep1/area_36.gif" alt="C8" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_37.gif" alt="C8" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_38.gif" alt="C8" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_39.gif" alt="C8" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_40.gif" alt="C8" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<h2>C9</h2>
+<p>讨厌的法师再度回归，HUC用HHH。想走45区的捷径，8武器和8盾必须，要做好回收工作。最后一个区是无法开灯了，摸黑战斗吧。BOSS战时，  </p>
+<p>HUC自己只留一个娃娃，其他的都给FO。FO要做好降防工作，然后帮忙队友回复HP。</p>
+<p><img src="/ch/ep1/area_41.gif" alt="C9" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_42.gif" alt="C9" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_43.gif" alt="C9" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_44.gif" alt="C9" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p><img src="/ch/ep1/area_45.gif" alt="C9" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+    </div>
+</body>
+
+</html>
