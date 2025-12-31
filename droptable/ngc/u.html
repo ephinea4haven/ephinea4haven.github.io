@@ -16,7 +16,8 @@
             color: #e2e8f0;
             position: relative;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -61,8 +62,8 @@
         }
 
         .itemtable {
-            width: 100%;
-            max-width: 1600px;
+            width: max-content;
+            min-width: 100%;
             margin: 0 auto 30px;
             background: rgba(26, 35, 50, 0.85);
             backdrop-filter: blur(12px);
@@ -71,6 +72,7 @@
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
             border-collapse: collapse;
+            transform-origin: top center;
         }
 
         td {
@@ -79,6 +81,8 @@
             padding: 12px;
             border: 1px solid rgba(0, 212, 255, 0.15);
             line-height: 1.6;
+            color: #000000;
+            font-weight: 600;
         }
 
         td:first-line {
@@ -309,6 +313,33 @@
             if (k === 39) {
                 document.body.scrollLeft += document.body.clientWidth / 10;
             }
+        }
+
+        window.addEventListener('load', function() {
+            scaleTables();
+        });
+
+        window.addEventListener('resize', function() {
+            scaleTables();
+        });
+
+        function scaleTables() {
+            const tables = document.querySelectorAll('.itemtable');
+            const bodyWidth = document.body.clientWidth - 20; // Account for padding
+
+            tables.forEach(function(table) {
+                // Reset scale
+                table.style.transform = 'scale(1)';
+
+                // Calculate scale
+                const tableWidth = table.offsetWidth;
+
+                if (tableWidth > bodyWidth) {
+                    const scale = bodyWidth / tableWidth * 0.98; // 98% to add some padding
+                    table.style.transform = 'scale(' + scale + ')';
+                    table.style.marginBottom = (table.offsetHeight * (scale - 1)) + 'px';
+                }
+            });
         }
 
         //-->

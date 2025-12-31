@@ -4,11 +4,20 @@
     <title>phantasy star online Ep1＆2 : enemy table</title>
     <style type="text/css">
         <!--
+        body {
+            overflow-x: hidden;
+            margin: 0;
+            padding: 10px;
+        }
+
         .itemtable {
             margin: auto;
             padding: 0;
             border: 0;
             text-align: center;
+            width: max-content;
+            min-width: 100%;
+            transform-origin: top center;
         }
 
         td {
@@ -165,6 +174,30 @@
             if (k == 39) {
                 document.body.scrollLeft += document.body.clientWidth / 10;
             }
+        }
+
+        window.addEventListener('load', function() {
+            scaleTables();
+        });
+
+        window.addEventListener('resize', function() {
+            scaleTables();
+        });
+
+        function scaleTables() {
+            const tables = document.querySelectorAll('.itemtable');
+            const bodyWidth = document.body.clientWidth - 20;
+
+            tables.forEach(function(table) {
+                table.style.transform = 'scale(1)';
+                const tableWidth = table.offsetWidth;
+
+                if (tableWidth > bodyWidth) {
+                    const scale = bodyWidth / tableWidth * 0.98;
+                    table.style.transform = 'scale(' + scale + ')';
+                    table.style.marginBottom = (table.offsetHeight * (scale - 1)) + 'px';
+                }
+            });
         }
 
         //-->
