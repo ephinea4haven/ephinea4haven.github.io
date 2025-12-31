@@ -55,18 +55,10 @@
             width: 100%;
             max-width: 100vw;
             margin: 0 auto;
-            overflow: visible;
-        }
-
-        .table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            overflow-y: visible;
         }
 
         table {
-            width: max-content;
-            min-width: 100%;
+            width: 100%;
             background: rgba(26, 35, 50, 0.85);
             backdrop-filter: blur(12px);
             border: 2px solid rgba(0, 212, 255, 0.25);
@@ -80,10 +72,10 @@
         }
 
         th, td {
-            font-size: 1em;
-            padding: 8px;
+            font-size: 0.85em;
+            padding: 12px;
             border: 1px solid rgba(0, 212, 255, 0.15);
-            white-space: nowrap;
+            line-height: 1.6;
         }
 
         th {
@@ -102,12 +94,7 @@
 
         td {
             text-align: center;
-            color: #000000;
-            font-weight: 600;
-        }
-
-        td font {
-            color: #000000 !important;
+            vertical-align: top;
         }
 
         /* Section ID colors */
@@ -163,21 +150,93 @@
             color: #e2e8f0;
         }
 
-        /* Fix background colors for better readability with black text */
+        /* Unified background colors for all cells - dark theme */
         td[bgcolor="#FFD070"] {
-            background: rgba(255, 208, 112, 0.95) !important;
+            background: rgba(40, 50, 70, 0.6) !important;
+            color: #ffffff;
         }
 
         td[bgcolor="#C5FFC5"] {
-            background: rgba(197, 255, 197, 0.95) !important;
+            background: rgba(40, 50, 70, 0.6) !important;
+            color: #ffffff;
         }
 
         td[bgcolor="#00F0FF"] {
-            background: rgba(0, 240, 255, 0.9) !important;
+            background: rgba(40, 50, 70, 0.6) !important;
+            color: #ffffff;
         }
 
         td[bgcolor="#FFFFFF"] {
-            background: rgba(255, 255, 255, 0.9) !important;
+            background: rgba(40, 50, 70, 0.6) !important;
+            color: #ffffff;
+        }
+
+        /* Unified background for alternating rows */
+        tr[bgcolor="#D0F0D0"] {
+            background: rgba(40, 50, 70, 0.4) !important;
+        }
+
+        tr[bgcolor="#D0D0D0"] {
+            background: rgba(40, 50, 70, 0.4) !important;
+        }
+
+        tr[bgcolor="#F0D0D0"] {
+            background: rgba(40, 50, 70, 0.4) !important;
+        }
+
+        tr[bgcolor="#C0D0F0"] {
+            background: rgba(40, 50, 70, 0.4) !important;
+        }
+
+        /* Section ID colors for each column */
+        tr[bgcolor] td:nth-child(2),
+        tr[bgcolor] td:nth-child(2) font {
+            color: #86efac !important; /* VIRIDIA */
+        }
+
+        tr[bgcolor] td:nth-child(3),
+        tr[bgcolor] td:nth-child(3) font {
+            color: #86efac !important; /* GREENNILL */
+        }
+
+        tr[bgcolor] td:nth-child(4),
+        tr[bgcolor] td:nth-child(4) font {
+            color: #7dd3fc !important; /* SKYLY */
+        }
+
+        tr[bgcolor] td:nth-child(5),
+        tr[bgcolor] td:nth-child(5) font {
+            color: #93c5fd !important; /* BRUEFULL */
+        }
+
+        tr[bgcolor] td:nth-child(6),
+        tr[bgcolor] td:nth-child(6) font {
+            color: #e9d5ff !important; /* PURPLENUM */
+        }
+
+        tr[bgcolor] td:nth-child(7),
+        tr[bgcolor] td:nth-child(7) font {
+            color: #fda4af !important; /* PINKAL */
+        }
+
+        tr[bgcolor] td:nth-child(8),
+        tr[bgcolor] td:nth-child(8) font {
+            color: #fca5a5 !important; /* REDRIA */
+        }
+
+        tr[bgcolor] td:nth-child(9),
+        tr[bgcolor] td:nth-child(9) font {
+            color: #fdba74 !important; /* ORAN */
+        }
+
+        tr[bgcolor] td:nth-child(10),
+        tr[bgcolor] td:nth-child(10) font {
+            color: #fde047 !important; /* YELLOWBOZE */
+        }
+
+        tr[bgcolor] td:nth-child(11),
+        tr[bgcolor] td:nth-child(11) font {
+            color: #e2e8f0 !important; /* WHITILL */
         }
 
         #nav {
@@ -276,21 +335,21 @@
 
         function scaleTable() {
             const table = document.querySelector('table');
-            const container = document.querySelector('.container');
-            if (!table || !container) return;
+            if (!table) return;
 
-            // Reset scale
-            table.style.transform = 'scale(1)';
-            table.style.transformOrigin = 'top left';
+            // Reset styles
+            table.style.transform = '';
+            table.style.width = '';
+            table.style.marginBottom = '30px';
 
-            // Calculate scale
-            const tableWidth = table.offsetWidth;
-            const containerWidth = container.offsetWidth;
+            const tableWidth = table.scrollWidth;
+            const bodyWidth = window.innerWidth - 20;
 
-            if (tableWidth > containerWidth) {
-                const scale = containerWidth / tableWidth * 0.98; // 98% to add some padding
-                table.style.transform = `scale(${scale})`;
-                table.style.marginBottom = `${table.offsetHeight * (scale - 1)}px`;
+            if (tableWidth > bodyWidth) {
+                const scale = bodyWidth / tableWidth;
+                table.style.transform = 'scale(' + scale + ')';
+                table.style.transformOrigin = 'top left';
+                table.style.width = (100 / scale) + '%';
             }
         }
     </script>

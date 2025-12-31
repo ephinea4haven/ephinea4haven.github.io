@@ -62,8 +62,7 @@
         }
 
         .itemtable {
-            width: max-content;
-            min-width: 100%;
+            width: 100%;
             margin: 0 auto 30px;
             background: rgba(26, 35, 50, 0.85);
             backdrop-filter: blur(12px);
@@ -72,7 +71,7 @@
             overflow: hidden;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
             border-collapse: collapse;
-            transform-origin: top center;
+            transform-origin: top left;
         }
 
         td {
@@ -81,7 +80,6 @@
             padding: 12px;
             border: 1px solid rgba(0, 212, 255, 0.15);
             line-height: 1.6;
-            color: #000000;
             font-weight: 600;
         }
 
@@ -325,19 +323,21 @@
 
         function scaleTables() {
             const tables = document.querySelectorAll('.itemtable');
-            const bodyWidth = document.body.clientWidth - 20; // Account for padding
+            const bodyWidth = window.innerWidth - 20;
 
             tables.forEach(function(table) {
-                // Reset scale
-                table.style.transform = 'scale(1)';
+                // Reset styles
+                table.style.transform = '';
+                table.style.width = '';
+                table.style.marginBottom = '30px';
 
-                // Calculate scale
-                const tableWidth = table.offsetWidth;
+                const tableWidth = table.scrollWidth;
 
                 if (tableWidth > bodyWidth) {
-                    const scale = bodyWidth / tableWidth * 0.98; // 98% to add some padding
+                    const scale = bodyWidth / tableWidth;
                     table.style.transform = 'scale(' + scale + ')';
-                    table.style.marginBottom = (table.offsetHeight * (scale - 1)) + 'px';
+                    table.style.transformOrigin = 'top left';
+                    table.style.width = (100 / scale) + '%';
                 }
             });
         }
@@ -345,7 +345,7 @@
         //-->
     </script>
 </head>
-<body style="background:#ffffff;margin:0;padding:0;border:0;" onkeydown="kp()">
+<body onkeydown="kp()">
 
 <div id="nav">
     <ul>
@@ -359,11 +359,7 @@
 
 <table cellspacing="0" cellpadding="0" class="itemtable" width="100%">
     <tbody>
-    <tr>
-        <td colspan="13" class="spacer">
-            Forest
-        </td>
-    </tr>
+
     <tr>
         <th class="enemy" nowrap="">Enemy</th>
         <th class="VIRIDIA enemy" nowrap="">VIRIDIA</th>
@@ -1281,11 +1277,7 @@
         </td>
         <th class="ep1">森</th>
     </tr>
-    <tr>
-        <td colspan="13" class="spacer">
-            Cave
-        </td>
-    </tr>
+
     <tr>
         <th class="normal">
             <nobr>Vulmer</nobr>
@@ -2352,11 +2344,7 @@
         </td>
         <th class="ep1">洞窟</th>
     </tr>
-    <tr>
-        <td colspan="13" class="spacer">
-            Mine
-        </td>
-    </tr>
+
     <tr>
         <th class="normal">
             <nobr>Gillchich</nobr>
@@ -3013,11 +3001,7 @@
         </td>
         <th class="ep1">坑道</th>
     </tr>
-    <tr>
-        <td colspan="13" class="spacer">
-            Ruin
-        </td>
-    </tr>
+
     <tr>
         <th class="normal">
             <nobr>Claw</nobr>
@@ -3920,11 +3904,7 @@
         </td>
         <th class="ep1">遺跡</th>
     </tr>
-    <tr>
-        <td colspan="13" class="spacer">
-            Temple
-        </td>
-    </tr>
+
     <tr>
         <th class="normal">
             <nobr>Arlan</nobr>
@@ -4991,11 +4971,7 @@
         </td>
         <th class="ep2">神殿</th>
     </tr>
-    <tr>
-        <td colspan="13" class="spacer">
-            Spaceship
-        </td>
-    </tr>
+
     <tr>
         <th class="normal">
             <nobr>Gillchich</nobr>
@@ -5898,11 +5874,7 @@
         </td>
         <th class="ep2">宇宙船</th>
     </tr>
-    <tr>
-        <td colspan="13" class="spacer">
-            Central Control Area
-        </td>
-    </tr>
+
     <tr>
         <th class="normal">
             <nobr>Ul Gibbon</nobr>
@@ -6969,11 +6941,7 @@
         </td>
         <th class="ep2">管理区</th>
     </tr>
-    <tr>
-        <td colspan="13" class="spacer">
-            Seabed
-        </td>
-    </tr>
+
     <tr>
         <th class="normal">
             <nobr>Dolmolm</nobr>
@@ -7712,11 +7680,7 @@
         </td>
         <th class="ep2">海底</th>
     </tr>
-    <tr>
-        <td colspan="13" class="spacer">
-            Central Control Tower
-        </td>
-    </tr>
+
     <tr>
         <th class="normal">
             <nobr>Ill Gill</nobr>
