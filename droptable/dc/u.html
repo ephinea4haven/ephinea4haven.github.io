@@ -1,32 +1,232 @@
-<html lang="utf-8">
+<html lang="zh-CN">
 
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DC掉落表 - PSOBB Wiki</title>
     <style type="text/css">
-        table {
-            margin: auto;
+        * {
+            margin: 0;
             padding: 0;
-            border: 0px;
-            text-align: center;
-            white-space: nowrap;
+            box-sizing: border-box;
         }
 
-        #nav li {
-            width: 60px;
-            floag: left;
-            list-style: none;
-            display: inline;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #1a2332;
+            color: #e2e8f0;
+            position: relative;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../../static/img/lobby_overlook_contrast.png') center center;
+            background-size: cover;
+            opacity: 0.25;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(0, 212, 255, 0.08), transparent 60%),
+                        radial-gradient(circle at bottom left, rgba(138, 43, 226, 0.08), transparent 60%);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            min-width: fit-content;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            background: rgba(26, 35, 50, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(0, 212, 255, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            font-size: 0.85em;
+            padding: 12px;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+        }
+
+        th {
+            font-weight: 700;
+            background: rgba(40, 50, 70, 0.8);
+            color: #e2e8f0;
+        }
+
+        th[colspan="12"] {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(0, 160, 255, 0.3));
+            color: #00d4ff;
+            font-size: 1.5em;
+            padding: 20px;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        td {
+            text-align: center;
+        }
+
+        /* Section ID colors */
+        th[bgcolor="#00C080"],
+        th[bgcolor="#00C080"] font {
+            background: rgba(50, 205, 50, 0.2) !important;
+            color: #86efac !important;
+        }
+
+        th[bgcolor="#00FF00"] {
+            background: rgba(144, 238, 144, 0.2);
+            color: #86efac;
+        }
+
+        th[bgcolor="#00FFFF"] {
+            background: rgba(135, 206, 250, 0.2);
+            color: #7dd3fc;
+        }
+
+        th[bgcolor="#0000FF"],
+        th[bgcolor="#0000FF"] font {
+            background: rgba(100, 100, 255, 0.2) !important;
+            color: #93c5fd !important;
+        }
+
+        th[bgcolor="#FF00FF"] {
+            background: rgba(218, 112, 214, 0.2);
+            color: #e9d5ff;
+        }
+
+        th[bgcolor="#FF80C0"] {
+            background: rgba(255, 192, 203, 0.2);
+            color: #fda4af;
+        }
+
+        th[bgcolor="#FF0000"] {
+            background: rgba(255, 100, 100, 0.2);
+            color: #fca5a5;
+        }
+
+        th[bgcolor="#FFC000"] {
+            background: rgba(255, 165, 0, 0.2);
+            color: #fdba74;
+        }
+
+        th[bgcolor="#FFFF00"] {
+            background: rgba(255, 255, 100, 0.2);
+            color: #fde047;
+        }
+
+        th[bgcolor="#F4F4F4"] {
+            background: rgba(255, 255, 255, 0.15);
+            color: #e2e8f0;
         }
 
         #nav {
+            width: 100%;
             text-align: center;
+            background: rgba(26, 35, 50, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            margin-bottom: 30px;
+        }
+
+        #nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #nav li {
+            list-style: none;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        #nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        #nav a:hover {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            border-color: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #00a0ff);
+            color: #0a0e27;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 24px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            z-index: 100;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+            background: linear-gradient(135deg, #00e4ff, #00b0ff);
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                padding: 8px;
+                font-size: 0.75em;
+            }
         }
     </style>
-    <title>【DC PSO ver.2 Rare Item List】</title>
 </head>
 
 <body>
+<div class="container">
 <div id="nav">
     <ul>
         <li><a href="./n.html">Normal</a></li>
@@ -2155,6 +2355,10 @@
     </tr>
     </tbody>
 </table>
+</div>
+
+<a href="#" class="back-to-top">↑</a>
+
 </body>
 
 </html>

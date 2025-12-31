@@ -1,14 +1,174 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en-US"
-      prefix="og: http://ogp.me/ns#">
+<html lang="en-US">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Black Paper's Deals | Ephinea PSOBB</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet"
-          href="static/googlefonts.css">
+    <title>黑页危险交易掉落表 - PSOBB Wiki</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #1a2332;
+            color: #e2e8f0;
+            position: relative;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('static/img/lobby_overlook_contrast.png') center center;
+            background-size: cover;
+            opacity: 0.25;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(0, 212, 255, 0.08), transparent 60%),
+                        radial-gradient(circle at bottom left, rgba(138, 43, 226, 0.08), transparent 60%);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            color: #00d4ff;
+            font-size: 2.5em;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5),
+                         0 0 40px rgba(0, 212, 255, 0.3);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        table {
+            width: 90%;
+            margin: 30px auto;
+            background: rgba(26, 35, 50, 0.85);
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(0, 212, 255, 0.25);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        table td {
+            padding: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            line-height: 1.8;
+        }
+
+        table tr:first-child td {
+            background: linear-gradient(135deg, rgba(196, 84, 84, 0.8), rgba(180, 70, 70, 0.8));
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1em;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        table tr:not(:first-child) td:first-child {
+            background: rgba(247, 247, 21, 0.2);
+            color: #92400e;
+            font-weight: 700;
+        }
+
+        table tr:not(:first-child) td:not(:first-child) {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        table tr:hover td {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        table td[style*="background-color:#CC00FF"] {
+            background: rgba(204, 0, 255, 0.3) !important;
+            color: #ffffff !important;
+        }
+
+        table td[style*="background-color:#59F9F9"] {
+            background: rgba(89, 249, 249, 0.3) !important;
+            color: #0a0e27 !important;
+        }
+
+        table td[style*="background-color:#000000"] {
+            background: rgba(0, 0, 0, 0.8) !important;
+            color: #ffffff !important;
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #00a0ff);
+            color: #0a0e27;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 24px;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            z-index: 100;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+            background: linear-gradient(135deg, #00e4ff, #00b0ff);
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8em;
+            }
+
+            table {
+                width: 100%;
+            }
+
+            table td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body class="page page-id-496 black-papers-deal-drop-charts">
 
@@ -291,6 +451,7 @@
     </div><!-- /.content -->
 </div><!-- /.wrap -->
 
+<a href="#" class="back-to-top">↑</a>
 
 </body>
 </html>
