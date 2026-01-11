@@ -164,15 +164,24 @@ header {
     color: white;
 }
 
+.content-container table thead th {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
 .content-container table th {
     padding: 12px 15px;
     text-align: left;
     font-weight: 600;
+    border: 1px solid rgba(139, 92, 246, 0.8);
+}
+
+.content-container table th[colspan] {
+    text-align: center;
 }
 
 .content-container table td {
     padding: 12px 15px;
-    border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.5);
 }
 
 .content-container table tr:hover {
