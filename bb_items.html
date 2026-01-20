@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, maximum-scale=2">
+    <title>BB Items - /makeitem 命令 | Ephinea PSOBB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4ff url('static/img/background3.png') center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        #project_title {
+            color: #1e3a8a;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(59, 130, 246, 0.2);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            line-height: 1.8;
+        }
+
+        .content-container h1 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .content-container h2 {
+            color: #6366f1;
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .content-container h3 {
+            color: #8b5cf6;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content-container h4 {
+            color: #a78bfa;
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-container p {
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+
+        .content-container ul, .content-container ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #1f2937;
+        }
+
+        .content-container li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .content-container a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .content-container a:hover {
+            color: #4f46e5;
+            border-bottom-color: #6366f1;
+        }
+
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-container table thead {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+
+        .content-container table th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .content-container table td {
+            padding: 8px 15px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            font-size: 0.95em;
+        }
+
+        .content-container table tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .content-container code {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #4f46e5;
+            font-size: 0.9em;
+        }
+
+        .content-container pre {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+
+        .content-container pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .content-container blockquote {
+            border-left: 4px solid #6366f1;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .content-container hr {
+            border: none;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin: 30px 0;
+        }
+
+        .content-container strong {
+            color: #1e3a8a;
+            font-weight: 600;
+        }
+
+        .toc {
+            background: rgba(99, 102, 241, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .toc h3 {
+            color: #6366f1;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .toc a:hover {
+            color: #4f46e5;
+            text-decoration: underline;
+        }
+
+        .compact-table td {
+            padding: 4px 10px;
+            font-size: 0.9em;
+        }
+
+        .two-column-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .two-column-table table {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            #project_title {
+                font-size: 2em;
+            }
+
+            .content-container {
+                padding: 25px;
+            }
+
+            body {
+                padding: 15px;
+            }
+
+            .two-column-table {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">BB Items - /makeitem 命令</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+        <h1>BB Items - /makeitem 命令完整参考</h1>
+
+        <p>列表更新于 07/09/2008，来自 Corey 的分享 :)</p>
+        <p>本指南提供了使用 /makeitem 命令在 PSO 中创建武器、防具、道具、单位、技能等的完整信息。</p>
+
+        <div class="toc">
+            <h3>快速导航</h3>
+            <ul>
+                <li><a href="#weapons">武器 (Weapons)</a></li>
+                <li><a href="#armors">防具/盾牌 (Armors/Shields)</a></li>
+                <li><a href="#mags">Mag</a></li>
+                <li><a href="#items">道具 (Items)</a></li>
+                <li><a href="#units">单位 (Units)</a></li>
+                <li><a href="#techniques">技能 (Techniques)</a></li>
+                <li><a href="#meseta">梅塞塔 (Meseta)</a></li>
+                <li><a href="#weapon-values">武器代码列表</a></li>
+                <li><a href="#armor-values">防具代码列表</a></li>
+                <li><a href="#shield-values">盾牌代码列表</a></li>
+                <li><a href="#item-values">道具代码列表</a></li>
+                <li><a href="#unit-values">单位代码列表</a></li>
+            </ul>
+        </div>
+
+        <h2 id="weapons">武器 (Weapons)</h2>
+
+        <pre><code>/makeitem VVVVVVGG,SS00PPPP,PPPPPPPP,,</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>参数</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>V</strong></td>
+                    <td>武器 ID（十六进制）</td>
+                </tr>
+                <tr>
+                    <td><strong>G</strong></td>
+                    <td>研磨值（十六进制）</td>
+                </tr>
+                <tr>
+                    <td><strong>S</strong></td>
+                    <td>武器特殊属性</td>
+                </tr>
+                <tr>
+                    <td><strong>P</strong></td>
+                    <td>武器百分比（十六进制，不要超过 127%）</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>武器特殊属性 (Weapon Specials)</h3>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>属性名称</th>
+                    <th>代码</th>
+                    <th>属性名称</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>00</code></td><td>未改变/无</td><td><code>15</code></td><td>Seize</td></tr>
+                <tr><td><code>01</code></td><td>Draw</td><td><code>16</code></td><td>Arrest</td></tr>
+                <tr><td><code>02</code></td><td>Drain</td><td><code>17</code></td><td>Heat</td></tr>
+                <tr><td><code>03</code></td><td>Fill</td><td><code>18</code></td><td>Fire</td></tr>
+                <tr><td><code>04</code></td><td>Gush</td><td><code>19</code></td><td>Flame</td></tr>
+                <tr><td><code>05</code></td><td>Heart</td><td><code>1A</code></td><td>Burning</td></tr>
+                <tr><td><code>06</code></td><td>Mind</td><td><code>1B</code></td><td>Shock</td></tr>
+                <tr><td><code>07</code></td><td>Soul</td><td><code>1C</code></td><td>Thunder</td></tr>
+                <tr><td><code>08</code></td><td>Geist</td><td><code>1D</code></td><td>Storm</td></tr>
+                <tr><td><code>09</code></td><td>Master's</td><td><code>1E</code></td><td>Tempest</td></tr>
+                <tr><td><code>0A</code></td><td>Lord's</td><td><code>1F</code></td><td>Dim</td></tr>
+                <tr><td><code>0B</code></td><td>King's</td><td><code>20</code></td><td>Shadow</td></tr>
+                <tr><td><code>0C</code></td><td>Charge</td><td><code>21</code></td><td>Dark</td></tr>
+                <tr><td><code>0D</code></td><td>Spirit</td><td><code>22</code></td><td>Hell</td></tr>
+                <tr><td><code>0E</code></td><td>Berserk</td><td><code>23</code></td><td>Panic</td></tr>
+                <tr><td><code>0F</code></td><td>Ice</td><td><code>24</code></td><td>Riot</td></tr>
+                <tr><td><code>10</code></td><td>Frost</td><td><code>25</code></td><td>Havoc</td></tr>
+                <tr><td><code>11</code></td><td>Freeze</td><td><code>26</code></td><td>Chaos</td></tr>
+                <tr><td><code>12</code></td><td>Blizzard</td><td><code>27</code></td><td>Devil's</td></tr>
+                <tr><td><code>13</code></td><td>Bind</td><td><code>28</code></td><td>Demon's</td></tr>
+                <tr><td><code>14</code></td><td>Hold</td><td><code>50</code></td><td>包装道具（礼盒）</td></tr>
+                <tr><td><code>FF</code></td><td>包装 & 未鉴定</td><td><code>AA</code></td><td>未鉴定</td></tr>
+            </tbody>
+        </table>
+
+        <h3>武器百分比 (Weapon Percents)</h3>
+
+        <p><strong>四位百分比代码 (PSPS) 的第一字节：</strong></p>
+        <ul>
+            <li><code>01</code> = Native (森林)</li>
+            <li><code>02</code> = A-Beast (洞窟)</li>
+            <li><code>03</code> = Machine (矿山)</li>
+            <li><code>04</code> = Dark (遗迹)</li>
+            <li><code>05</code> = Hit</li>
+        </ul>
+
+        <p><strong>四位百分比代码 (PSPS) 的第二字节：</strong></p>
+        <ul>
+            <li><code>00</code> = 0% | <code>0A</code> = 10% | <code>14</code> = 20%</li>
+            <li><code>32</code> = 50% | <code>3C</code> = 60% | <code>64</code> = 100% | <code>7F</code> = 127%</li>
+        </ul>
+
+        <h3>S-Rank 特殊属性</h3>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>属性</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>01</code></td><td>Jellen</td><td>降低敌人攻击</td></tr>
+                <tr><td><code>02</code></td><td>Zalure</td><td>降低敌人防御</td></tr>
+                <tr><td><code>05</code></td><td>Burning</td><td>火属性</td></tr>
+                <tr><td><code>06</code></td><td>Tempest</td><td>雷属性</td></tr>
+                <tr><td><code>07</code></td><td>Blizzard</td><td>冰属性</td></tr>
+                <tr><td><code>08</code></td><td>Arrest</td><td>麻痹</td></tr>
+                <tr><td><code>09</code></td><td>Chaos</td><td>混乱</td></tr>
+                <tr><td><code>10</code></td><td>Kings</td><td>吸取敌人经验</td></tr>
+                <tr><td><code>0A</code></td><td>Hell</td><td>一击必杀</td></tr>
+                <tr><td><code>0B</code></td><td>Spirit</td><td>消耗10%总TP造成双倍伤害</td></tr>
+                <tr><td><code>0C</code></td><td>Berserk</td><td>消耗10%总HP造成双倍伤害</td></tr>
+                <tr><td><code>0D</code></td><td>Demon's</td><td>将HP降至1/4</td></tr>
+                <tr><td><code>0E</code></td><td>Gush</td><td>吸取敌人HP</td></tr>
+                <tr><td><code>0F</code></td><td>Geist</td><td>吸取敌人TP</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2 id="armors">防具/盾牌 (Armors/Shields)</h2>
+
+        <pre><code>/makeitem VVVVVV00,000SDDDD,EEEE0000,,</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>参数</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>V</strong></td><td>防具 ID（十六进制）</td></tr>
+                <tr><td><strong>S</strong></td><td>槽位数量</td></tr>
+                <tr><td><strong>D</strong></td><td>防具防御加成（不能超过最大值）</td></tr>
+                <tr><td><strong>E</strong></td><td>防具闪避加成（不能超过最大值）</td></tr>
+            </tbody>
+        </table>
+
+        <h3>防具槽位</h3>
+        <ul>
+            <li><code>1</code> = 1个槽位 | <code>2</code> = 2个槽位 | <code>3</code> = 3个槽位 | <code>4</code> = 4个槽位</li>
+        </ul>
+
+        <hr>
+
+        <h2 id="mags">Mag</h2>
+
+        <p>使用 <code>magmaker.exe</code></p>
+
+        <blockquote>
+            <strong>magmaker.exe 输出示例：</strong><br>
+            <code>78C80710</code><br>
+            <code>0A271DAF</code><br>
+            <code>257F0257</code><br>
+            <code>D3C83F02</code>
+        </blockquote>
+
+        <p>在 PSO 中输入：</p>
+        <pre><code>/makeitem 023FC8D3,57027F25,AF1D270A,78C80710</code></pre>
+
+        <hr>
+
+        <h2 id="items">道具 (Items)</h2>
+
+        <pre><code>/makeitem VVVVVV00,00AA0000,,,</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>参数</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>V</strong></td><td>道具 ID（十六进制）</td></tr>
+                <tr><td><strong>A</strong></td><td>道具数量（十六进制）</td></tr>
+            </tbody>
+        </table>
+
+        <blockquote>
+            注意：$setitem4 应设为 00000000，或在 $setitem2 和 $setitem3 之前使用 $resetitem 重置所有。
+        </blockquote>
+
+        <hr>
+
+        <h2 id="units">单位 (Units)</h2>
+
+        <pre><code>/makeitem VVVVVV00,000000SS,SS000000</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>参数</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>V</strong></td><td>单位 ID（十六进制）</td></tr>
+                <tr><td><strong>S</strong></td><td>后缀（十六进制）</td></tr>
+            </tbody>
+        </table>
+
+        <h3>单位后缀</h3>
+        <ul>
+            <li><code>0100</code> = + | <code>0300</code> = ++ | <code>FFFF</code> = - | <code>FEFF</code> = --</li>
+        </ul>
+
+        <hr>
+
+        <h2 id="techniques">技能 (Techniques)</h2>
+
+        <pre><code>/makeitem 0302LL00,VV000000,,,</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>参数</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>V</strong></td><td>技能值</td></tr>
+                <tr><td><strong>L</strong></td><td>技能等级（十六进制）</td></tr>
+            </tbody>
+        </table>
+
+        <h3>技能值</h3>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>HEX</th>
+                    <th>十进制</th>
+                    <th>技能</th>
+                    <th>HEX</th>
+                    <th>十进制</th>
+                    <th>技能</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>00</code></td><td>00</td><td>Foie</td><td><code>0A</code></td><td>10</td><td>Deband</td></tr>
+                <tr><td><code>01</code></td><td>01</td><td>Gifoie</td><td><code>0B</code></td><td>11</td><td>Jellen</td></tr>
+                <tr><td><code>02</code></td><td>02</td><td>Rafoie</td><td><code>0C</code></td><td>12</td><td>Zalure</td></tr>
+                <tr><td><code>03</code></td><td>03</td><td>Barta</td><td><code>0D</code></td><td>13</td><td>Shifta</td></tr>
+                <tr><td><code>04</code></td><td>04</td><td>Gibarta</td><td><code>0E</code></td><td>14</td><td>Ryuker</td></tr>
+                <tr><td><code>05</code></td><td>05</td><td>Rabarta</td><td><code>0F</code></td><td>15</td><td>Resta</td></tr>
+                <tr><td><code>06</code></td><td>06</td><td>Zonde</td><td><code>10</code></td><td>16</td><td>Anti</td></tr>
+                <tr><td><code>07</code></td><td>07</td><td>Gizonde</td><td><code>11</code></td><td>17</td><td>Reverser</td></tr>
+                <tr><td><code>08</code></td><td>08</td><td>Razonde</td><td><code>12</code></td><td>18</td><td>Megid</td></tr>
+                <tr><td><code>09</code></td><td>09</td><td>Grants</td><td colspan="3"></td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2 id="meseta">梅塞塔 (Meseta)</h2>
+
+        <pre><code>/makeitem 04000000,,,VVVVVV00</code></pre>
+
+        <hr>
+
+        <h2 id="weapon-values">武器代码完整列表</h2>
+
+        <p>以下是所有武器的完整代码列表。使用这些代码配合上面的武器格式创建武器。</p>
+
+        <p><strong>提示：</strong>按 Ctrl+F 可快速搜索特定武器名称。</p>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>代码</th>
+                    <th>武器名称</th>
+                    <th>代码</th>
+                    <th>武器名称</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>000100</code></td><td>Saber</td><td><code>000101</code></td><td>Brand</td></tr>
+                <tr><td><code>000102</code></td><td>Buster</td><td><code>000103</code></td><td>Pallasch</td></tr>
+                <tr><td><code>000104</code></td><td>Gladius</td><td><code>000105</code></td><td>DB's SABER</td></tr>
+                <tr><td><code>000106</code></td><td>KALADGOLG</td><td><code>000107</code></td><td>DURANDAL</td></tr>
+                <tr><td><code>000108</code></td><td>GALATINE</td><td><code>000200</code></td><td>Sword</td></tr>
+                <tr><td><code>000201</code></td><td>Gigush</td><td><code>000202</code></td><td>Breaker</td></tr>
+                <tr><td><code>000203</code></td><td>Claymore</td><td><code>000204</code></td><td>Calibur</td></tr>
+                <tr><td><code>000205</code></td><td>FLOWEN'S SWORD</td><td><code>000206</code></td><td>LAST SURVIVOR</td></tr>
+                <tr><td><code>000207</code></td><td>DRAGON SLAYER</td><td><code>000300</code></td><td>Dagger</td></tr>
+                <tr><td><code>000301</code></td><td>Knife</td><td><code>000302</code></td><td>Blade</td></tr>
+                <tr><td><code>000303</code></td><td>Edge</td><td><code>000304</code></td><td>Ripper</td></tr>
+                <tr><td><code>000305</code></td><td>BLADE DANCE</td><td><code>000306</code></td><td>BLOODY ART</td></tr>
+                <tr><td><code>000307</code></td><td>CROSS SCAR</td><td><code>000308</code></td><td>ZERO DIVIDE</td></tr>
+                <tr><td><code>000309</code></td><td>TWIN KAMUI*</td><td><code>000400</code></td><td>Partisan</td></tr>
+                <tr><td><code>000401</code></td><td>Halbert</td><td><code>000402</code></td><td>Glaive</td></tr>
+                <tr><td><code>000403</code></td><td>Berdys</td><td><code>000404</code></td><td>Gungnir</td></tr>
+                <tr><td><code>000405</code></td><td>BRIONAC</td><td><code>000406</code></td><td>VJAYA</td></tr>
+                <tr><td><code>000407</code></td><td>GAE BOLG</td><td><code>000408</code></td><td>ASTERON BELT</td></tr>
+                <tr><td><code>000500</code></td><td>Slicer</td><td><code>000501</code></td><td>Spinner</td></tr>
+                <tr><td><code>000502</code></td><td>Cutter</td><td><code>000503</code></td><td>Sawcer</td></tr>
+                <tr><td><code>000504</code></td><td>Diska</td><td><code>000505</code></td><td>SLICER OF ASSASSIN</td></tr>
+                <tr><td><code>000506</code></td><td>DISKA OF LIBERATOR</td><td><code>000507</code></td><td>DISKA OF BRAVEMEN</td></tr>
+                <tr><td><code>000508</code></td><td>IZMAELA</td><td><code>000600</code></td><td>Handgun</td></tr>
+                <tr><td><code>000601</code></td><td>Autogun</td><td><code>000602</code></td><td>Lockgun</td></tr>
+                <tr><td><code>000603</code></td><td>Railgun</td><td><code>000604</code></td><td>Raygun</td></tr>
+                <tr><td><code>000605</code></td><td>VARISTA</td><td><code>000606</code></td><td>CUSTOM RAY Ver.00</td></tr>
+                <tr><td><code>000607</code></td><td>BRAVACE</td><td><code>000608</code></td><td>TENSION BLASTER</td></tr>
+                <tr><td><code>000700</code></td><td>Rifle</td><td><code>000701</code></td><td>Sniper</td></tr>
+                <tr><td><code>000702</code></td><td>Blaster</td><td><code>000703</code></td><td>Beam</td></tr>
+                <tr><td><code>000704</code></td><td>Laser</td><td><code>000705</code></td><td>VISK'235W</td></tr>
+                <tr><td><code>000706</code></td><td>WALS'MK2</td><td><code>000707</code></td><td>JUSTY'23ST</td></tr>
+                <tr><td><code>000708</code></td><td>RIANOV 303SNR*</td><td><code>000709</code></td><td>RIANOV 303SNR-1</td></tr>
+                <tr><td><code>00070A</code></td><td>RIANOV 303SNR-2</td><td><code>00070B</code></td><td>RIANOV 303SNR-3</td></tr>
+                <tr><td><code>00070C</code></td><td>RIANOV 303SNR-4</td><td><code>00070D</code></td><td>RIANOV 303SNR-5</td></tr>
+                <tr><td><code>000800</code></td><td>Mechgun</td><td><code>000801</code></td><td>Assault</td></tr>
+                <tr><td><code>000802</code></td><td>Repeater</td><td><code>000803</code></td><td>Gatling</td></tr>
+                <tr><td><code>000804</code></td><td>Vulcan</td><td><code>000805</code></td><td>M&A60 VISE</td></tr>
+                <tr><td><code>000806</code></td><td>H&S25 JUSTICE</td><td><code>000807</code></td><td>L&K14 COMBAT</td></tr>
+                <tr><td><code>000900</code></td><td>Shot</td><td><code>000901</code></td><td>Spread</td></tr>
+                <tr><td><code>000902</code></td><td>Cannon</td><td><code>000903</code></td><td>Launcher</td></tr>
+                <tr><td><code>000904</code></td><td>Arms</td><td><code>000905</code></td><td>CRUSH BULLET</td></tr>
+                <tr><td><code>000906</code></td><td>METEOR SMASH</td><td><code>000907</code></td><td>FINAL IMPACT</td></tr>
+                <tr><td><code>000A00</code></td><td>Cane</td><td><code>000A01</code></td><td>Stick</td></tr>
+                <tr><td><code>000A02</code></td><td>Mace</td><td><code>000A03</code></td><td>Club</td></tr>
+                <tr><td><code>000A04</code></td><td>CLUB OF LACONIUM</td><td><code>000A05</code></td><td>MACE OF ADAMAN</td></tr>
+                <tr><td><code>000A06</code></td><td>CLUB OF ZUMIURAN</td><td><code>000A07</code></td><td>LOLIPOP*</td></tr>
+                <tr><td><code>000B00</code></td><td>Rod</td><td><code>000B01</code></td><td>Pole</td></tr>
+                <tr><td><code>000B02</code></td><td>Pillar</td><td><code>000B03</code></td><td>Striker</td></tr>
+                <tr><td><code>000B04</code></td><td>BATTLE VERGE</td><td><code>000B05</code></td><td>BRAVE HAMMER</td></tr>
+                <tr><td><code>000B06</code></td><td>ALIVE AQHU</td><td><code>000B07</code></td><td>VALKYRIE*</td></tr>
+                <tr><td><code>000C00</code></td><td>Wand</td><td><code>000C01</code></td><td>Staff</td></tr>
+                <tr><td><code>000C02</code></td><td>Baton</td><td><code>000C03</code></td><td>Scepter</td></tr>
+                <tr><td><code>000C04</code></td><td>FIRE SCEPTER:AGNI</td><td><code>000C05</code></td><td>ICE STAFF:DAGON</td></tr>
+                <tr><td><code>000C06</code></td><td>STORM VAND:INDRA</td><td><code>000C07</code></td><td>EARTH WAND BROWNIE</td></tr>
+                <tr><td><code>000D00</code></td><td>PHOTON CLAW</td><td><code>000D01</code></td><td>SILENCE CLAW</td></tr>
+                <tr><td><code>000D02</code></td><td>NEI'S CLAW</td><td><code>000D03</code></td><td>PHOENIX CLAW*</td></tr>
+                <tr><td><code>000E00</code></td><td>DOUBLE SABER</td><td><code>000E01</code></td><td>STAG CUTLERY</td></tr>
+                <tr><td><code>000E02</code></td><td>TWIN BRAND</td><td><code>000F00</code></td><td>BRAVE KNUCKLE</td></tr>
+                <tr><td><code>000F01</code></td><td>ANGRY FIST</td><td><code>000F02</code></td><td>GOD HAND</td></tr>
+                <tr><td><code>000F03</code></td><td>SONIC KNUCKLE</td><td><code>001000</code></td><td>OROTIAGITO</td></tr>
+                <tr><td><code>001001</code></td><td>AGITO (1975)</td><td><code>001002</code></td><td>AGITO (1983)</td></tr>
+                <tr><td><code>001003</code></td><td>AGITO (2001)</td><td><code>001004</code></td><td>AGITO (1991)</td></tr>
+                <tr><td><code>001005</code></td><td>AGITO (1977)</td><td><code>001006</code></td><td>AGITO (1980)</td></tr>
+                <tr><td><code>001007</code></td><td>RAIKIRI</td><td><code>001100</code></td><td>SOUL EATER</td></tr>
+                <tr><td><code>001101</code></td><td>SOUL BANISH</td><td><code>001200</code></td><td>SPREAD NEEDLE</td></tr>
+                <tr><td><code>001300</code></td><td>HOLY RAY</td><td><code>001400</code></td><td>INFERNO BAZOOKA</td></tr>
+                <tr><td><code>001401</code></td><td>RAMBLING MAY*</td><td><code>001402</code></td><td>L&K38 COMBAT</td></tr>
+                <tr><td><code>001500</code></td><td>FLAME VISIT</td><td><code>001501</code></td><td>BURNING VISIT</td></tr>
+                <tr><td><code>001600</code></td><td>AKIKO'S FRYING PAN</td><td><code>001700</code></td><td>SORCERER'S CANE</td></tr>
+                <tr><td><code>001800</code></td><td>S-BEAT'S BLADE</td><td><code>001900</code></td><td>P-ARMS'S BLADE</td></tr>
+                <tr><td><code>001A00</code></td><td>DELSABER'S BUSTER</td><td><code>001B00</code></td><td>BRINGER'S RIFLE</td></tr>
+                <tr><td><code>001C00</code></td><td>EGG BLASTER</td><td><code>001D00</code></td><td>PSYCHO WAND</td></tr>
+                <tr><td><code>001E00</code></td><td>HEAVEN PUNISHER</td><td><code>001F00</code></td><td>LAVIS CANNON</td></tr>
+                <tr><td><code>002000</code></td><td>VICTOR AXE</td><td><code>002001</code></td><td>LACONIUM AXE*</td></tr>
+                <tr><td><code>002100</code></td><td>CHAIN SAWD</td><td><code>002200</code></td><td>CADUCEUS</td></tr>
+                <tr><td><code>002201</code></td><td>MERCURIUS ROD</td><td><code>002300</code></td><td>STING TIP</td></tr>
+                <tr><td><code>002400</code></td><td>MAGICAL PIECE</td><td><code>002500</code></td><td>TECHNICAL CROZIER</td></tr>
+                <tr><td><code>002600</code></td><td>SUPPRESSED GUN</td><td><code>002700</code></td><td>ANCIENT SABER</td></tr>
+                <tr><td><code>002800</code></td><td>HARISEN BATTLE FAN</td><td><code>002900</code></td><td>YAMIGARASU</td></tr>
+                <tr><td><code>002A00</code></td><td>AKIKO'S WOK</td><td><code>002B00</code></td><td>TOY HAMMER</td></tr>
+                <tr><td><code>002C00</code></td><td>ELYSION</td><td><code>002D00</code></td><td>RED SABER</td></tr>
+                <tr><td><code>002E00</code></td><td>METEOR CUDGEL</td><td><code>002F00</code></td><td>MONKEY KING BAR</td></tr>
+                <tr><td><code>002F01</code></td><td>BLACK KING BAR</td><td><code>003000</code></td><td>DOUBLE CANNON</td></tr>
+                <tr><td><code>003001</code></td><td>GIRASOLE</td><td><code>003100</code></td><td>HUGE BATTLE FAN</td></tr>
+                <tr><td><code>003200</code></td><td>TSUMIKIRI J-SWORD</td><td><code>003300</code></td><td>SEALED J-SWORD</td></tr>
+                <tr><td><code>003400</code></td><td>RED SWORD</td><td><code>003500</code></td><td>CRAZY TUNE</td></tr>
+                <tr><td><code>003600</code></td><td>TWIN CHAKRAM</td><td><code>003700</code></td><td>WOK OF AKIKO'S SHOP</td></tr>
+                <tr><td><code>003800</code></td><td>LAVIS BLADE</td><td><code>003900</code></td><td>RED DAGGER</td></tr>
+                <tr><td><code>003A00</code></td><td>MADAM'S PARASOL</td><td><code>003B00</code></td><td>MADAM'S UMBRELLA</td></tr>
+                <tr><td><code>003C00</code></td><td>IMPERIAL PICK</td><td><code>003D00</code></td><td>BERDYSH</td></tr>
+                <tr><td><code>003E00</code></td><td>RED PARTISAN</td><td><code>003F00</code></td><td>FLIGHT CUTTER</td></tr>
+                <tr><td><code>004000</code></td><td>FLIGHT FAN</td><td><code>004100</code></td><td>RED SLICER</td></tr>
+                <tr><td><code>004200</code></td><td>HANDGUN:GULD</td><td><code>004201</code></td><td>MASTER RAVEN</td></tr>
+                <tr><td><code>004300</code></td><td>HANDGUN:MILLA</td><td><code>004301</code></td><td>LAST SWAN</td></tr>
+                <tr><td><code>004400</code></td><td>RED HANDGUN</td><td><code>004500</code></td><td>FROZEN SHOOTER</td></tr>
+                <tr><td><code>004501</code></td><td>SNOW QUEEN</td><td><code>004600</code></td><td>ANTI ANDROID RIFLE</td></tr>
+                <tr><td><code>004700</code></td><td>ROCKET PUNCH</td><td><code>004800</code></td><td>SAMBA MARACAS</td></tr>
+                <tr><td><code>004900</code></td><td>TWIN PSYCHOGUN</td><td><code>004A00</code></td><td>DRILL LAUNCHER</td></tr>
+                <tr><td><code>004B00</code></td><td>GULD MILLA</td><td><code>004B01</code></td><td>DUAL BIRD*</td></tr>
+                <tr><td><code>004C00</code></td><td>RED MECHGUN</td><td><code>004D00</code></td><td>BELRA CANNON</td></tr>
+                <tr><td><code>004E00</code></td><td>PANZER FAUST</td><td><code>004E01</code></td><td>IRON FAUST</td></tr>
+                <tr><td><code>004F00</code></td><td>SUMMIT MOON</td><td><code>005000</code></td><td>WINDMILL</td></tr>
+                <tr><td><code>005100</code></td><td>EVIL CURST</td><td><code>005200</code></td><td>FLOWER CANE</td></tr>
+                <tr><td><code>005300</code></td><td>HILDEBEAR'S CANE</td><td><code>005400</code></td><td>HILDEBLUE'S CANE</td></tr>
+                <tr><td><code>005500</code></td><td>RABBIT WAND</td><td><code>005600</code></td><td>PLANTAIN LEAF</td></tr>
+                <tr><td><code>005601</code></td><td>FATSIA</td><td><code>005700</code></td><td>DEMONIC FORK</td></tr>
+                <tr><td><code>005800</code></td><td>STRIKER OF CHAO</td><td><code>005900</code></td><td>BROOM</td></tr>
+                <tr><td><code>005A00</code></td><td>PROPHETS OF MOTAV</td><td><code>005B00</code></td><td>THE SIGH OF A GOD</td></tr>
+                <tr><td><code>005C00</code></td><td>TWINKLE STAR</td><td><code>005D00</code></td><td>PLANTAIN FAN</td></tr>
+                <tr><td><code>005E00</code></td><td>TWIN BLAZE</td><td><code>005F00</code></td><td>MARINA'S BAG</td></tr>
+                <tr><td><code>006000</code></td><td>DRAGON'S CLAW</td><td><code>006100</code></td><td>PANTHER'S CLAW</td></tr>
+                <tr><td><code>006200</code></td><td>S-RED'S BLADE</td><td><code>006300</code></td><td>PLANTAIN HUGE FAN</td></tr>
+                <tr><td><code>006400</code></td><td>CHAMELEON SCYTHE</td><td><code>006500</code></td><td>YASMINKOV 3000R</td></tr>
+                <tr><td><code>006600</code></td><td>ANO RIFLE</td><td><code>006700</code></td><td>BARANZ LAUNCHER</td></tr>
+                <tr><td><code>006800</code></td><td>BRANCH OF PAKUPAKU</td><td><code>006900</code></td><td>HEART OF POUMN</td></tr>
+                <tr><td><code>006A00</code></td><td>YASMINKOV 2000H</td><td><code>006B00</code></td><td>YASMINKOV 7000V</td></tr>
+                <tr><td><code>006C00</code></td><td>YASMINKOV 9000M</td><td><code>006D00</code></td><td>MASER BEAM</td></tr>
+                <tr><td><code>006D01</code></td><td>POWER MASER</td><td><code>006F00</code></td><td>FLOWER BOUQUET</td></tr>
+                <tr><td><code>007000</code></td><td>(S-Rank) SABER - FA</td><td><code>007100</code></td><td>(S-Rank) SWORD - FA</td></tr>
+                <tr><td><code>007200</code></td><td>(S-Rank) BLADE - C8</td><td><code>007300</code></td><td>(S-Rank) PARTISAN - C8</td></tr>
+                <tr><td><code>007400</code></td><td>(S-Rank) SLICER - 8C</td><td><code>007500</code></td><td>(S-Rank) GUN - FA</td></tr>
+                <tr><td><code>007600</code></td><td>(S-Rank) RIFLE - DC</td><td><code>007700</code></td><td>(S-Rank) MECHGUN - 32</td></tr>
+                <tr><td><code>007800</code></td><td>(S-Rank) SHOT - 7D</td><td><code>007900</code></td><td>(S-Rank) CANE - 78</td></tr>
+                <tr><td><code>007A00</code></td><td>(S-Rank) ROD - B4</td><td><code>007B00</code></td><td>(S-Rank) WAND</td></tr>
+                <tr><td><code>007C00</code></td><td>(S-Rank) TWIN</td><td><code>007D00</code></td><td>(S-Rank) CLAW</td></tr>
+                <tr><td><code>007E00</code></td><td>(S-Rank) BAZOOKA</td><td><code>007F00</code></td><td>(S-Rank) NEEDLE</td></tr>
+                <tr><td><code>008000</code></td><td>(S-Rank) SCYTHE</td><td><code>008100</code></td><td>(S-Rank) HAMMER</td></tr>
+                <tr><td><code>008200</code></td><td>(S-Rank) MOON</td><td><code>008300</code></td><td>(S-Rank) PSYCHOGUN</td></tr>
+                <tr><td><code>008400</code></td><td>(S-Rank) PUNCH</td><td><code>008500</code></td><td>(S-Rank) WINDMILL</td></tr>
+                <tr><td><code>008600</code></td><td>(S-Rank) HARISEN</td><td><code>008700</code></td><td>(S-Rank) KATANA</td></tr>
+                <tr><td><code>008800</code></td><td>(S-Rank) J-CUTTER</td><td><code>008900</code></td><td>MUSASHI</td></tr>
+                <tr><td><code>008901</code></td><td>YAMATO</td><td><code>008902</code></td><td>ASUKA</td></tr>
+                <tr><td><code>008903</code></td><td>SANGE & YASHA</td><td><code>008A00</code></td><td>SANGE</td></tr>
+                <tr><td><code>008A01</code></td><td>YASHA</td><td><code>008A02</code></td><td>KAMUI</td></tr>
+                <tr><td><code>008B00</code></td><td>PHOTON LAUNCHER</td><td><code>008B01</code></td><td>GUILTY LIGHT</td></tr>
+                <tr><td><code>008B02</code></td><td>RED SCORPIO</td><td><code>008B03</code></td><td>PHONON MASER*</td></tr>
+                <tr><td><code>008C00</code></td><td>TALIS</td><td><code>008C01</code></td><td>MAHU</td></tr>
+                <tr><td><code>008C02</code></td><td>HITOGATA</td><td><code>008C03</code></td><td>DANCING HITOGATA</td></tr>
+                <tr><td><code>008C04</code></td><td>KUNAI</td><td><code>008D00</code></td><td>NUG-2000 BAZOOKA</td></tr>
+                <tr><td><code>008E00</code></td><td>S-BERILL'S HAND #0</td><td><code>008E01</code></td><td>S-BERILL'S HAND #1</td></tr>
+                <tr><td><code>008F00</code></td><td>FLOWEN'S SWORD 3060</td><td><code>008F01</code></td><td>FLOWEN'S SWORD 3064</td></tr>
+                <tr><td><code>008F02</code></td><td>FLOWEN'S SWORD 3067</td><td><code>008F03</code></td><td>FLOWEN'S SWORD 3073</td></tr>
+                <tr><td><code>008F04</code></td><td>FLOWEN'S SWORD 3077</td><td><code>008F05</code></td><td>FLOWEN'S SWORD 3082</td></tr>
+                <tr><td><code>008F06</code></td><td>FLOWEN'S SWORD 3083</td><td><code>008F07</code></td><td>FLOWEN'S SWORD 3084</td></tr>
+                <tr><td><code>008F08</code></td><td>FLOWEN'S SWORD 3079</td><td><code>009000</code></td><td>DB'S SWORD 3062</td></tr>
+                <tr><td><code>009001</code></td><td>DB'S SWORD 3067</td><td><code>009002</code></td><td>DB'S SWORD 3069</td></tr>
+                <tr><td><code>009003</code></td><td>DB'S SWORD 3064</td><td><code>009004</code></td><td>DB'S SWORD 3069</td></tr>
+                <tr><td><code>009005</code></td><td>DB'S SWORD 3073</td><td><code>009006</code></td><td>DB'S SWORD 3070</td></tr>
+                <tr><td><code>009007</code></td><td>DB'S SWORD 3075</td><td><code>009008</code></td><td>DB'S SWORD 3077</td></tr>
+                <tr><td><code>009100</code></td><td>GIGUE BAZOOKA</td><td><code>009200</code></td><td>GUARDIANNA</td></tr>
+                <tr><td><code>009300</code></td><td>VIRIDIA CARD</td><td><code>009301</code></td><td>GREENILL CARD</td></tr>
+                <tr><td><code>009302</code></td><td>SKYLY CARD</td><td><code>009303</code></td><td>BLUEFULL CARD</td></tr>
+                <tr><td><code>009304</code></td><td>PURPLENUM CARD</td><td><code>009305</code></td><td>PINKAL CARD</td></tr>
+                <tr><td><code>009306</code></td><td>REDRIA CARD</td><td><code>009307</code></td><td>ORAN CARD</td></tr>
+                <tr><td><code>009308</code></td><td>YELLOWBOZE CARD</td><td><code>009309</code></td><td>WHITILL CARD</td></tr>
+                <tr><td><code>009400</code></td><td>MORNING GLORY</td><td><code>009500</code></td><td>PARTISAN OF LIGHTING</td></tr>
+                <tr><td><code>009600</code></td><td>GAL WIND</td><td><code>009700</code></td><td>ZANBA</td></tr>
+                <tr><td><code>009800</code></td><td>RIKA'S CLAW</td><td><code>009900</code></td><td>ANGEL HARP</td></tr>
+                <tr><td><code>009A00</code></td><td>DEMOLITION COMET</td><td><code>009B00</code></td><td>NEI'S CLAW</td></tr>
+                <tr><td><code>009C00</code></td><td>RAINBOW BATON</td><td><code>009D00</code></td><td>DARK FLOW</td></tr>
+                <tr><td><code>009E00</code></td><td>DARK METEOR</td><td><code>009F00</code></td><td>DARK BRIDGE</td></tr>
+                <tr><td><code>00A000</code></td><td>G-ASSASIN'S SABERS</td><td><code>00A100</code></td><td>RAPPY'S FAN</td></tr>
+                <tr><td><code>00A200</code></td><td>BOOMA'S CLAW</td><td><code>00A201</code></td><td>GOBOOMA'S CLAW</td></tr>
+                <tr><td><code>00A202</code></td><td>GIGOBOOMA'S CLAW</td><td><code>00A300</code></td><td>RUBY BULLET</td></tr>
+                <tr><td><code>00A400</code></td><td>AMORE ROSE</td><td><code>00A500</code></td><td>(S-Rank) SWORDS</td></tr>
+                <tr><td><code>00A600</code></td><td>(S-Rank) LAUNCHER</td><td><code>00A700</code></td><td>(S-Rank) CARD</td></tr>
+                <tr><td><code>00A800</code></td><td>(S-Rank) KNUCKLE</td><td><code>00A900</code></td><td>(S-Rank) AXE</td></tr>
+                <tr><td><code>00AA00</code></td><td>SLICER OF FANATIC</td><td><code>00AB00</code></td><td>LAME D'ARGENT</td></tr>
+                <tr><td><code>00AC00</code></td><td>EXCALIBUR</td><td><code>00AD03</code></td><td>RAGE DE FEU</td></tr>
+                <tr><td><code>00AE00</code></td><td>DAISY CHAIN</td><td><code>00AF00</code></td><td>OPHELIE SEIZE</td></tr>
+                <tr><td><code>00B000</code></td><td>MILLE MARTEAUX</td><td><code>00B100</code></td><td>LE COGNEUR</td></tr>
+                <tr><td><code>00B200</code></td><td>COMMANDER BLADE</td><td><code>00B300</code></td><td>VIVIENNE</td></tr>
+                <tr><td><code>00B400</code></td><td>KUSANAGI</td><td><code>00B500</code></td><td>SACRED DUSTER</td></tr>
+                <tr><td><code>00B600</code></td><td>GUREN</td><td><code>00B700</code></td><td>SHOUREN</td></tr>
+                <tr><td><code>00B800</code></td><td>JIZAI</td><td><code>00B900</code></td><td>FLAMBERGE</td></tr>
+                <tr><td><code>00BA00</code></td><td>YUNCHANG</td><td><code>00BB00</code></td><td>SNAKE SPIRE</td></tr>
+                <tr><td><code>00BC00</code></td><td>FLAPJACK FLAPPER</td><td><code>00BD00</code></td><td>GETSUGASAN</td></tr>
+                <tr><td><code>00BE00</code></td><td>MAGUWA</td><td><code>00BF00</code></td><td>HEAVEN STRIKER</td></tr>
+                <tr><td><code>00C000</code></td><td>CANNON ROUGE</td><td><code>00C100</code></td><td>METEOR ROUGE</td></tr>
+                <tr><td><code>00C200</code></td><td>SOLFERINO</td><td><code>00C300</code></td><td>CLIO</td></tr>
+                <tr><td><code>00C400</code></td><td>SIREN GLASS HAMMER</td><td><code>00C500</code></td><td>GLIDE DIVINE</td></tr>
+                <tr><td><code>00C600</code></td><td>SHICHISHITO</td><td><code>00C700</code></td><td>MURASAME</td></tr>
+                <tr><td><code>00C800</code></td><td>DAYLIGHT SCAR</td><td><code>00C900</code></td><td>DECALOG</td></tr>
+                <tr><td><code>00CA00</code></td><td>5TH ANNIV. BLADE</td><td><code>00CB00</code></td><td>PRINCIPAL'S PARASOL</td></tr>
+                <tr><td><code>00CC00</code></td><td>AKIKO'S CLEAVER</td><td><code>00CD00</code></td><td>TANEGASHIMA</td></tr>
+                <tr><td><code>00CE00</code></td><td>TREE CLIPPERS</td><td><code>00CF00</code></td><td>NICE SHOT</td></tr>
+                <tr><td><code>00D200</code></td><td>ANO BAZOOKA</td><td><code>00D300</code></td><td>SYNTHESIZER</td></tr>
+                <tr><td><code>00D400</code></td><td>BAMBOO SPEAR</td><td><code>00D500</code></td><td>KAN'EI TSUHO</td></tr>
+                <tr><td><code>00D600</code></td><td>JITTE</td><td><code>00D700</code></td><td>BUTTERFLY NET</td></tr>
+                <tr><td><code>00D800</code></td><td>SYRINGE</td><td><code>00D900</code></td><td>BATTLEDORE</td></tr>
+                <tr><td><code>00DA00</code></td><td>RACKET</td><td><code>00DB00</code></td><td>HAMMER</td></tr>
+                <tr><td><code>00DC00</code></td><td>GREAT BOUQUET</td><td><code>00DD00</code></td><td>TypeSA/Saber</td></tr>
+                <tr><td><code>00DE00</code></td><td>TypeSL/Saber</td><td><code>00DE01</code></td><td>TypeSL/Slicer</td></tr>
+                <tr><td><code>00DE02</code></td><td>TypeSL/Claw</td><td><code>00DE03</code></td><td>TypeSL/Katana</td></tr>
+                <tr><td><code>00DF00</code></td><td>TypeJS/Saber</td><td><code>00DF01</code></td><td>TypeJS/Slicer</td></tr>
+                <tr><td><code>00DF02</code></td><td>TypeJS/J-Sword</td><td><code>00E000</code></td><td>TypeSW/Sword</td></tr>
+                <tr><td><code>00E001</code></td><td>TypeSW/Slicer</td><td><code>00E002</code></td><td>TypeSW/J-Sword</td></tr>
+                <tr><td><code>00E100</code></td><td>TypeRO/Sword</td><td><code>00E101</code></td><td>TypeRO/Halbert</td></tr>
+                <tr><td><code>00E102</code></td><td>TypeRO/Rod</td><td><code>00E200</code></td><td>TypeBL/BLADE</td></tr>
+                <tr><td><code>00E300</code></td><td>TypeKN/Blade</td><td><code>00E301</code></td><td>TypeKN/Claw</td></tr>
+                <tr><td><code>00E400</code></td><td>TypeHA/HALBERT</td><td><code>00E401</code></td><td>TypeHA/Rod</td></tr>
+                <tr><td><code>00E500</code></td><td>TypeDS/D.SABER</td><td><code>00E501</code></td><td>TypeDS/Rod</td></tr>
+                <tr><td><code>00E502</code></td><td>TypeDS</td><td><code>00E600</code></td><td>TypeCL/CLAW</td></tr>
+                <tr><td><code>00E700</code></td><td>TypeSS/SW</td><td><code>00E800</code></td><td>TypeGU/HANDGUN</td></tr>
+                <tr><td><code>00E801</code></td><td>TypeGU/MECHGUN</td><td><code>00E900</code></td><td>TypeRI/RIFLE</td></tr>
+                <tr><td><code>00EA00</code></td><td>TypeME/MECHGUN</td><td><code>00EB00</code></td><td>TypeSH/SHOT</td></tr>
+                <tr><td><code>00EC00</code></td><td>TypeWA/WAND</td><td colspan="2"></td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin-top: 30px;"><em>由于完整列表过长，防具、盾牌、道具和单位的详细代码列表请参考原始 bb_items.txt 文件，或使用浏览器搜索功能（Ctrl+F）查找特定道具名称。</em></p>
+
+    </div>
+</body>
+
+</html>
