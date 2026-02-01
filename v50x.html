@@ -10,275 +10,275 @@
 </head>
 
 <body>
-    <header>
-        <h1 id="project_title">EX 激活率与 V50X 插件</h1>
-    </header>
+<header>
+    <h1 id="project_title">EX 激活率与 V50X 插件</h1>
+</header>
 
-    <a href="/index.html" class="back-link">← 返回首页</a>
+<a href="/index.html" class="back-link">← 返回首页</a>
 
-    <div class="content-container">
-        <h1>EX 激活率与 V50X 插件</h1>
+<div class="content-container">
+    <h1>EX 激活率与 V50X 插件</h1>
 
-<p>> 讨论 EX 的前提是：<strong>必须命中</strong>（未命中不会判定 EX）</p>
+    <p> 讨论 EX 的前提是：<strong>必须命中</strong>（未命中不会判定 EX）</p>
 
-<hr>
+    <hr>
 
-<h2>一、基于暗抗（EDK）的即死系 EX</h2>
+    <h2>一、基于暗抗（EDK）的即死系 EX</h2>
 
-<p><strong>公式：</strong></p>
+    <p><strong>公式：</strong></p>
 
-<pre><code>
+    <pre><code>
 (激活率 - 怪物暗抗) × 修正
 </code></pre>
 
-<p>即死系基础激活率：</p>
+    <p>即死系基础激活率：</p>
 
-<ul>
-<li>Dim: 48%</li>
-<li>Shadow: 66%</li>
-<li>Dark: 78%</li>
-<li>Hell: 93%</li>
-<li>即死魔法：100%</li>
-</ul>
+    <ul>
+        <li>Dim: 48%</li>
+        <li>Shadow: 66%</li>
+        <li>Dark: 78%</li>
+        <li>Hell: 93%</li>
+        <li>即死魔法：100%</li>
+    </ul>
 
-<p>> 机器人（U 难度）对 ESP 的 EX 额外 <strong>+30% 加成</strong></p>
+    <p> 机器人（U 难度）对 ESP 的 EX 额外 <strong>+30% 加成</strong></p>
 
-<hr>
+    <hr>
 
-<h2>二、与怪物 ESP 相关的 EX</h2>
+    <h2>二、与怪物 ESP 相关的 EX</h2>
 
-<p><strong>公式：</strong></p>
+    <p><strong>公式：</strong></p>
 
-<pre><code>
+    <pre><code>
 (机器人加成 + 激活率 - 怪物 EX 抗性) × 修正
 </code></pre>
 
-<p>> 机器人：U 难度下额外 +30%</p>
+    <p> 机器人：U 难度下额外 +30%</p>
 
-<h3>1）混乱系（持续 8 秒，可叠加）</h3>
+    <h3>1）混乱系（持续 8 秒，可叠加）</h3>
 
-<ul>
-<li>Panic: 29%</li>
-<li>Riot: 44%</li>
-<li>Havoc: 60%</li>
-<li>Chaos: 76%</li>
-</ul>
+    <ul>
+        <li>Panic: 29%</li>
+        <li>Riot: 44%</li>
+        <li>Havoc: 60%</li>
+        <li>Chaos: 76%</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h3>2）冰冻系（持续 4 秒，不能叠加）</h3>
+    <h3>2）冰冻系（持续 4 秒，不能叠加）</h3>
 
-<ul>
-<li>Ice: 32%</li>
-<li>Frost: 48%</li>
-<li>Freeze: 64%</li>
-<li>Blizzard: 取 <strong>min(激活率, 40)</strong></li>
-</ul>
+    <ul>
+        <li>Ice: 32%</li>
+        <li>Frost: 48%</li>
+        <li>Freeze: 64%</li>
+        <li>Blizzard: 取 <strong>min(激活率, 40)</strong></li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h3>3）麻痹系（持续 6 秒，可叠加）</h3>
+    <h3>3）麻痹系（持续 6 秒，可叠加）</h3>
 
-<ul>
-<li>Bind: 32%</li>
-<li>Hold: 48%</li>
-<li>Seize: 64%</li>
-<li>Arrest: 80%</li>
-</ul>
+    <ul>
+        <li>Bind: 32%</li>
+        <li>Hold: 48%</li>
+        <li>Seize: 64%</li>
+        <li>Arrest: 80%</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>三、V50X 的影响（在“修正”之后再计算）</h2>
+    <h2>三、V50X 的影响（在“修正”之后再计算）</h2>
 
-<p><code>V50X</code> 需在 <strong>修正后的激活率</strong> 基础上应用。</p>
+    <p><code>V50X</code> 需在 <strong>修正后的激活率</strong> 基础上应用。</p>
 
-<h3>V501</h3>
+    <h3>V501</h3>
 
-<ul>
-<li>即死类 × <strong>1.5</strong></li>
-<li>混乱 / 冰冻 / 麻痹：<strong>持续时间 × 1.5</strong></li>
-</ul>
+    <ul>
+        <li>即死类 × <strong>1.5</strong></li>
+        <li>混乱 / 冰冻 / 麻痹：<strong>持续时间 × 1.5</strong></li>
+    </ul>
 
-<h3>V502</h3>
+    <h3>V502</h3>
 
-<ul>
-<li>即死类 × <strong>2</strong></li>
-<li>混乱 / 冰冻 / 麻痹：<strong>持续时间 × 1.5</strong></li>
-</ul>
+    <ul>
+        <li>即死类 × <strong>2</strong></li>
+        <li>混乱 / 冰冻 / 麻痹：<strong>持续时间 × 1.5</strong></li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>四、修正规则（非常关键）</h2>
+    <h2>四、修正规则（非常关键）</h2>
 
-<h3>商店武器修正</h3>
+    <h3>商店武器修正</h3>
 
-<ul>
-<li>机枪、散弹、投刃：<strong>EX = 原始 × 1/3</strong></li>
-<li>长刀、大剑、匕首、双头、双刀、发射器：<strong>EX = 原始 × 1/2</strong></li>
-</ul>
+    <ul>
+        <li>机枪、散弹、投刃：<strong>EX = 原始 × 1/3</strong></li>
+        <li>长刀、大剑、匕首、双头、双刀、发射器：<strong>EX = 原始 × 1/2</strong></li>
+    </ul>
 
-<p>商店武器（十六进制代码在“光子爪”之前的）被修正：</p>
+    <p>商店武器（十六进制代码在“光子爪”之前的）被修正：</p>
 
-<ul>
-<li>3 连击中 <strong>每一段动作</strong> 可能多次判定</li>
-<li>多目标不受额外修正</li>
-<li><strong>S 武器与单目标武器不受该修正</strong></li>
-</ul>
+    <ul>
+        <li>3 连击中 <strong>每一段动作</strong> 可能多次判定</li>
+        <li>多目标不受额外修正</li>
+        <li><strong>S 武器与单目标武器不受该修正</strong></li>
+    </ul>
 
-<p>> 说明：这些被修正的只是“商店系 EX”，并非“败系”。</p>
+    <p> 说明：这些被修正的只是“商店系 EX”，并非“败系”。</p>
 
-<hr>
+    <hr>
 
-<h2>五、恶魔系激活率（基础 50%）</h2>
+    <h2>五、恶魔系激活率（基础 50%）</h2>
 
-<ul>
-<li>Devil’s：减半（剩 1/2 HP）</li>
-<li>Demon’s：四分之一（剩 1/4 HP）</li>
-</ul>
+    <ul>
+        <li>Devil’s：减半（剩 1/2 HP）</li>
+        <li>Demon’s：四分之一（剩 1/4 HP）</li>
+    </ul>
 
-<p><strong>机器人（U 难度 +30%）时：</strong></p>
+    <p><strong>机器人（U 难度 +30%）时：</strong></p>
 
-<ul>
-<li>Devil’s：剩 4/5 HP</li>
-<li>Demon’s：剩 11/20 HP</li>
-</ul>
+    <ul>
+        <li>Devil’s：剩 4/5 HP</li>
+        <li>Demon’s：剩 11/20 HP</li>
+    </ul>
 
-<p>机器人在 U 难度下实际修正为：</p>
+    <p>机器人在 U 难度下实际修正为：</p>
 
-<ul>
-<li>Devil’s：<strong>20%</strong></li>
-<li>Demon’s：<strong>45%</strong></li>
-</ul>
+    <ul>
+        <li>Devil’s：<strong>20%</strong></li>
+        <li>Demon’s：<strong>45%</strong></li>
+    </ul>
 
-<p>> 除（混乱 / 冰冻 / 麻痹 / 地狱 / 恶魔）外，其余 EX：</p>
-<p>> <strong>命中后 = 100% 触发</strong></p>
+    <p> 除（混乱 / 冰冻 / 麻痹 / 地狱 / 恶魔）外，其余 EX：</p>
+    <p><strong>命中后 = 100% 触发</strong></p>
 
-<hr>
+    <hr>
 
-<h2>六、吸取类 EX</h2>
+    <h2>六、吸取类 EX</h2>
 
-<h3>1）吸 HP（上限 120 HP）</h3>
+    <h3>1）吸 HP（上限 120 HP）</h3>
 
-<ul>
-<li>Draw: 5%</li>
-<li>Drain: 9%</li>
-<li>Fill: 13%</li>
-<li>Gush: 17%</li>
-</ul>
+    <ul>
+        <li>Draw: 5%</li>
+        <li>Drain: 9%</li>
+        <li>Fill: 13%</li>
+        <li>Gush: 17%</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h3>2）吸 TP（上限 100 TP）</h3>
+    <h3>2）吸 TP（上限 100 TP）</h3>
 
-<ul>
-<li>Heart: 3%</li>
-<li>Mind: 4%</li>
-<li>Soul: 5%</li>
-<li>Geist: 6%</li>
-</ul>
+    <ul>
+        <li>Heart: 3%</li>
+        <li>Mind: 4%</li>
+        <li>Soul: 5%</li>
+        <li>Geist: 6%</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h3>3）吸经验（上限 80 EXP，机器人 U 难度 +30%）</h3>
+    <h3>3）吸经验（上限 80 EXP，机器人 U 难度 +30%）</h3>
 
-<ul>
-<li>Master's: 8%</li>
-<li>Lord's: 10%</li>
-<li>King's: 12%</li>
-</ul>
+    <ul>
+        <li>Master's: 8%</li>
+        <li>Lord's: 10%</li>
+        <li>King's: 12%</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>七、火系伤害</h2>
+    <h2>七、火系伤害</h2>
 
-<pre><code>
+    <pre><code>
 基础伤害 = (角色等级 - 1) / ? + ??
 最终伤害 = 基础伤害 × [1 − 怪物火抗 × 0.01]
 </code></pre>
 
-<ul>
-<li>Heat: 等级 / 4 + 40</li>
-<li>Fire: 等级 / 3 + 60</li>
-<li>Flame: 等级 / 2 + 80</li>
-<li>Burning: 等级 + 100</li>
-</ul>
+    <ul>
+        <li>Heat: 等级 / 4 + 40</li>
+        <li>Fire: 等级 / 3 + 60</li>
+        <li>Flame: 等级 / 2 + 80</li>
+        <li>Burning: 等级 + 100</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>八、冰系激活率（公式形式）</h2>
+    <h2>八、冰系激活率（公式形式）</h2>
 
-<pre><code>
+    <pre><code>
 激活率 = EX − 怪 EX 抗性（ESP）
 </code></pre>
 
-<ul>
-<li>Ice: 32%</li>
-<li>Frost: 48%</li>
-<li>Freeze: 64%</li>
-<li>Blizzard: 80%</li>
-</ul>
+    <ul>
+        <li>Ice: 32%</li>
+        <li>Frost: 48%</li>
+        <li>Freeze: 64%</li>
+        <li>Blizzard: 80%</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>九、雷系伤害</h2>
+    <h2>九、雷系伤害</h2>
 
-<pre><code>
+    <pre><code>
 基础伤害 = (角色等级 − 1) / ? + ??
 最终伤害 = 基础伤害 × [1 − 怪物雷抗 × 0.01]
 </code></pre>
 
-<ul>
-<li>Shock: 等级 / 4 + 40</li>
-<li>Thunder: 等级 / 3 + 60</li>
-<li>Storm: 等级 / 2 + 80</li>
-<li>Tempest: 等级 + 100</li>
-</ul>
+    <ul>
+        <li>Shock: 等级 / 4 + 40</li>
+        <li>Thunder: 等级 / 3 + 60</li>
+        <li>Storm: 等级 / 2 + 80</li>
+        <li>Tempest: 等级 + 100</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>十、败系（代价伤害）</h2>
+    <h2>十、败系（代价伤害）</h2>
 
-<ul>
-<li>Charge：每次判定消耗 200 美塞塔（不足则 MISS）</li>
-<li>Spirit：每次判定消耗 <strong>TP 的 20%</strong>（TP<10 则 MISS）</li>
-<li>Berserk：每次判定消耗 <strong>HP 的 25%</strong>（HP<3 则 MISS）</li>
-</ul>
+    <ul>
+        <li>Charge：每次判定消耗 200 美塞塔（不足则 MISS）</li>
+        <li>Spirit：每次判定消耗 <strong>TP 的 20%</strong>（TP<10 则 MISS）</li>
+        <li>Berserk：每次判定消耗 <strong>HP 的 25%</strong>（HP<3 则 MISS）</li>
+    </ul>
 
-<hr>
+    <hr>
 
-<h2>十一、特殊武器（EX 与命中）</h2>
+    <h2>十一、特殊武器（EX 与命中）</h2>
 
-<h3>EX 采用“重攻击命中率”，且可增加 PB</h3>
+    <h3>EX 采用“重攻击命中率”，且可增加 PB</h3>
 
-<ul>
-<li>暗黑弗洛文</li>
-<li>富豪</li>
-<li>风车</li>
-<li>冷射</li>
-<li>女皇</li>
-</ul>
+    <ul>
+        <li>暗黑弗洛文</li>
+        <li>富豪</li>
+        <li>风车</li>
+        <li>冷射</li>
+        <li>女皇</li>
+    </ul>
 
-<h3>波动攻击（EX 100% 命中）</h3>
+    <h3>波动攻击（EX 100% 命中）</h3>
 
-<ul>
-<li>破坏者之斧（近距离 360° 弱攻击判定）</li>
-<li>罪切（远距离 360° 重攻击判定）</li>
-</ul>
+    <ul>
+        <li>破坏者之斧（近距离 360° 弱攻击判定）</li>
+        <li>罪切（远距离 360° 重攻击判定）</li>
+    </ul>
 
-<h3>魔法 EX（100% 命中）</h3>
+    <h3>魔法 EX（100% 命中）</h3>
 
-<p>火：羽毛杖、狂暴巨猿头杖</p>
-<p>冰：异能魔杖、狂暴白猿头杖</p>
-<p>雷：心心杖、神之叹息、雷光炮（含强化）</p>
-<p>其他：</p>
+    <p>火：羽毛杖、狂暴巨猿头杖</p>
+    <p>冰：异能魔杖、狂暴白猿头杖</p>
+    <p>雷：心心杖、神之叹息、雷光炮（含强化）</p>
+    <p>其他：</p>
 
-<ul>
-<li>戒魂者（即死）</li>
-<li>天罚（圣光，12 段判定）</li>
-<li>降攻 / 降防 S 武器</li>
-</ul>
+    <ul>
+        <li>戒魂者（即死）</li>
+        <li>天罚（圣光，12 段判定）</li>
+        <li>降攻 / 降防 S 武器</li>
+    </ul>
 
-    </div>
+</div>
 </body>
 
 </html>
