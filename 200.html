@@ -12,32 +12,69 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #1a2332;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('static/img/lobby_overlook_contrast.png') center center;
+            background-size: cover;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(0, 212, 255, 0.08), transparent 60%),
+                        radial-gradient(circle at bottom left, rgba(138, 43, 226, 0.08), transparent 60%);
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(26, 35, 50, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 212, 255, 0.25);
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
         }
 
         h1 {
-            color: #4f46e5;
+            color: #00d4ff;
             text-align: center;
             margin-bottom: 20px;
             font-size: 2em;
+            font-weight: 800;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5),
+                         0 0 40px rgba(0, 212, 255, 0.3);
         }
 
         .legend {
             text-align: center;
             margin-bottom: 20px;
             font-size: 16px;
+            color: #e2e8f0;
         }
 
         .legend span {
@@ -45,6 +82,10 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+        }
+
+        .legend strong {
+            color: #e2e8f0;
         }
 
         .legend .color-box {
@@ -55,11 +96,11 @@
         }
 
         .max-color {
-            background-color: #ccad00;
+            background-color: #fbbf24;
         }
 
         .min-color {
-            background-color: red;
+            background-color: #f87171;
         }
 
         .table-wrapper {
@@ -67,56 +108,57 @@
             -webkit-overflow-scrolling: touch;
             margin: 20px 0;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
+            background: rgba(26, 35, 50, 0.6);
             min-width: 800px;
         }
 
         th, td {
             padding: 12px 10px;
             text-align: center;
-            border: 1px solid #e5e7eb;
+            border: 1px solid rgba(0, 212, 255, 0.1);
         }
 
         th {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(138, 43, 226, 0.3));
+            color: #e2e8f0;
             font-weight: 600;
             position: sticky;
             top: 0;
             z-index: 10;
+            border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
         td {
-            color: #1f2937;
+            color: #e2e8f0;
         }
 
         tr:nth-child(even) {
-            background-color: #f9fafb;
+            background-color: rgba(0, 212, 255, 0.03);
         }
 
         tr:hover {
-            background-color: #f3f4f6;
+            background-color: rgba(0, 212, 255, 0.08);
         }
 
         td:first-child {
             font-weight: 600;
-            color: #4f46e5;
-            background-color: #eef2ff;
+            color: #00d4ff;
+            background-color: rgba(0, 212, 255, 0.08);
         }
 
         .max {
-            color: #ccad00;
+            color: #fbbf24;
             font-weight: 600;
         }
 
         .min {
-            color: red;
+            color: #f87171;
             font-weight: 600;
         }
 
@@ -159,7 +201,7 @@
 
             .scroll-hint {
                 text-align: center;
-                color: #6b7280;
+                color: #94a3b8;
                 font-size: 12px;
                 margin-top: 10px;
             }
