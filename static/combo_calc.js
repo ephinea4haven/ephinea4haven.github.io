@@ -30,7 +30,7 @@ const weapons = {
         maxAtp: 750,
         ata: 54,
         grind: 0,
-        special: "Lavis"
+        special: "Lavis Cannon"
     },
     "Excalibur": {
         name: "Excalibur",
@@ -238,7 +238,7 @@ const weapons = {
         maxAtp: 450,
         ata: 40,
         grind: 0,
-        combo: {"attack1Hits": 2, "attack2Hits": 2, "attack3Hits": 2}, special: "Lavis"
+        combo: {"attack1Hits": 2, "attack2Hits": 2, "attack3Hits": 2}, special: "Lavis Blade"
     },
     "Daylight Scar": {
         name: "Daylight Scar",
@@ -342,7 +342,7 @@ const weapons = {
         ata: 50,
         grind: 0,
         maxHit: 0,
-        combo: {"attack1Hits": 2, "attack2Hits": 1, "attack3Hits": 3}, special: "Lavis"
+        combo: {"attack1Hits": 2, "attack2Hits": 1, "attack3Hits": 3}
     },
     "Twin Blaze": {
         name: "Twin Blaze",
@@ -387,8 +387,7 @@ const weapons = {
         maxAtp: 650,
         ata: 45,
         grind: 0,
-        combo: {"attack1Hits": 2, "attack2Hits": 1, "attack3Hits": 3},
-        special: "Lavis"
+        combo: {"attack1Hits": 2, "attack2Hits": 1, "attack3Hits": 3}
     },
     "ES Twin": {
         name: "ES Twin",
@@ -411,7 +410,7 @@ const weapons = {
         ata: 55,
         grind: 0,
         maxHit: 0,
-        special: "Lavis"
+        special: "Orotiagito"
     },
 
     "Musashi": {
@@ -548,7 +547,7 @@ const weapons = {
         maxAtp: 250,
         ata: 60,
         grind: 9,
-        special: "Lavis"
+        special: "Frozen Shooter"
     },
     "Snow Queen": {
         name: "Snow Queen",
@@ -557,7 +556,7 @@ const weapons = {
         maxAtp: 350,
         ata: 60,
         grind: 18,
-        combo: {"attack2": "NONE", "attack3": "NONE"}, special: "Lavis"
+        combo: {"attack2": "NONE", "attack3": "NONE"}, special: "Frozen Shooter"
     },
     "Holy Ray": {name: "Holy Ray", animation: "Rifle", minAtp: 290, maxAtp: 300, ata: 70, grind: 40, special: "Arrest"},
     "ES Rifle": {
@@ -673,7 +672,8 @@ const weapons = {
         maxAtp: 220,
         ata: 45,
         grind: 12,
-        combo: {"attack1Hits": 3, "attack2Hits": 3, "attack3Hits": 3}
+        combo: {"attack1Hits": 3, "attack2Hits": 3, "attack3Hits": 3},
+        special: "Mille Marteaux"
     },
     "Dual Bird": {
         name: "Dual Bird",
@@ -834,28 +834,28 @@ const barriers = {
     "Black Ring (3)": {atp: 150, ata: 0},
 }
 const classStats = {
-    HUmar: {animation: "male", atp: 1397, ata: 200},
-    HUnewearl: {animation: "female", atp: 1237, ata: 199},
-    HUcast: {animation: "male", atp: 1639, ata: 191},
-    HUcaseal: {animation: "female", atp: 1301, ata: 218},
-    RAmar: {animation: "male", atp: 1260, ata: 249},
-    RAmarl: {animation: "female", atp: 1145, ata: 241},
-    RAcast: {animation: "male", atp: 1350, ata: 224},
-    RAcaseal: {animation: "female", atp: 1175, ata: 231},
-    FOmar: {animation: "male", atp: 1002, ata: 163},
-    FOmarl: {animation: "female", atp: 872, ata: 170},
-    FOnewm: {animation: "male", atp: 814, ata: 180},
-    FOnewearl: {animation: "female", atp: 583, ata: 186}
+    HUmar: {animation: "male", maxShifta: 3, minAtp: 1392, maxAtp: 1397, ata: 200},
+    HUnewearl: {animation: "female", maxShifta: 20, minAtp: 1232, maxAtp: 1237, ata: 199},
+    HUcast: {animation: "male", maxShifta: 3, minAtp: 1634, maxAtp: 1639, ata: 191},
+    HUcaseal: {animation: "female", maxShifta: 3, minAtp: 1296, maxAtp: 1301, ata: 218},
+    RAmar: {animation: "male", maxShifta: 15, minAtp: 1256, maxAtp: 1260, ata: 249},
+    RAmarl: {animation: "female", maxShifta: 20, minAtp: 1141, maxAtp: 1145, ata: 241},
+    RAcast: {animation: "male", maxShifta: 0, minAtp: 1346, maxAtp: 1350, ata: 224},
+    RAcaseal: {animation: "female", maxShifta: 0, minAtp: 1171, maxAtp: 1175, ata: 231},
+    FOmar: {animation: "male", maxShifta: 30, minAtp: 1000, maxAtp: 1002, ata: 163},
+    FOmarl: {animation: "female", maxShifta: 30, minAtp: 870, maxAtp: 872, ata: 170},
+    FOnewm: {animation: "male", maxShifta: 30, minAtp: 812, maxAtp: 814, ata: 180},
+    FOnewearl: {animation: "female", maxShifta: 30, minAtp: 581, maxAtp: 583, ata: 186}
 };
 const frames = {
-    NONE: {atp: 0, ata: 0},
-    THIRTEEN: {atp: 0, ata: 0},
-    D_PARTS101: {atp: 35, ata: 0},
-    SAMURAI: {atp: 0, ata: 0},
-    CRIMSON_COAT: {atp: 0, ata: 0},
-    SWEETHEART1: {atp: 0, ata: 0},
-    SWEETHEART2: {atp: 0, ata: 0},
-    SWEETHEART3: {atp: 0, ata: 0},
+    "None": {atp: 0, ata: 0},
+    "Thirteen": {atp: 0, ata: 0},
+    "D-Parts ver1.01": {atp: 35, ata: 0},
+    "Samurai Armor": {atp: 0, ata: 0},
+    "Crimson Coat": {atp: 0, ata: 0},
+    "Sweetheart (1)": {atp: 0, ata: 0},
+    "Sweetheart (2)": {atp: 0, ata: 0},
+    "Sweetheart (3)": {atp: 0, ata: 0},
 }
 
 const possWeapons = [
@@ -969,7 +969,7 @@ function accuracyModifierForAttackType(attackType, special) {
 }
 
 function getSpecialAccuracyModifier(special) {
-    if (special === 'Vjaya' || special === "Dark Flow" || special === "Lavis") {
+    if (special === 'Vjaya' || special === "Dark Flow" || special === "Frozen Shooter") {
         return 0.7;
     } else {
         return 0.5;
@@ -978,9 +978,9 @@ function getSpecialAccuracyModifier(special) {
 
 function getDamageModifierForAttackType(attackType, special) {
     if (attackType === 'NORMAL') {
-        return 1.0;
+        return 0.9;
     } else if (attackType === 'HEAVY') {
-        return 1.89;
+        return 1.7;
     } else if (attackType === 'SPECIAL') {
         return getSpecialDamageModifier(special);
     } else if (attackType === 'NONE') {
@@ -989,12 +989,26 @@ function getDamageModifierForAttackType(attackType, special) {
 }
 
 function getSpecialDamageModifier(special) {
-    if (special === 'Charge' || special === 'Spirit' || special === 'Berserk') {
-        return 3.32;
+    if (special === 'Arrest') {
+        return 0.5;
+    } else if (special === 'Raikiri') {
+        return 0.875;
+    } else if (special === 'Lavis Cannon') {
+        return 0.5;
+    } else if (special === 'Lavis Blade') {
+        return 0.583;
+    } else if (special === 'Dark Flow'
+        || special === 'TJS'
+        || special === "Frozen Shooter"
+        || special === "Mille Marteaux"
+    ) {
+        return 1.7;
+    } else if (special === 'Orotiagito') {
+        return 1.75;
+    } else if (special === 'Charge' || special === 'Spirit' || special === 'Berserk') {
+        return 3.0;
     } else if (special === 'Vjaya') {
-        return 5.56;
-    } else if (special === 'Dark Flow' || special === 'Lavis' || special === 'TJS') {
-        return 1.89;
+        return 5.1;
     } else {
         return 0;
     }
@@ -1003,29 +1017,42 @@ function getSpecialDamageModifier(special) {
 function getEvpModifier(frozen, paralyzed) {
     let modifier = 1.0;
     if (frozen) {
-        modifier *= 0.7;
+        modifier -= 0.3;
     }
     if (paralyzed) {
-        modifier *= 0.85;
+        modifier -= 0.15;
     }
     return modifier;
 }
 
+// 0 if range does not apply (smartlink checked, melee weapon, class is RA)
+function getRange() {
+    const smartlink = $('#smartlinkInput').is(":checked");
+    if (smartlink) {
+        return 0;
+    }
+    let className = $('#class-select').val();
+    if (className.startsWith("RA")) {
+        return 0;
+    }
+    return selectedWeapon.horizontalDistance || 0;
+}
+
 function createMonsterRow(
     special, autoCombo, weapon, enemy,
-    evpModifier, base_ata, snGlitch, atpInput, comboInput
+    evpModifier, base_ata, snGlitch, atpInput, comboInput, range
 ) {
     let modified_evp = enemy.evp * evpModifier;
 
     let baseDamage = calculateBaseDamage(atpInput, enemy);
     let damageToUse = atpInput.useMaxDamageRoll ? baseDamage.nMax : baseDamage.nMin;
     if (autoCombo) {
-        return generateAutoCombo(special, weapon, enemy, modified_evp, base_ata, snGlitch, damageToUse, atpInput, comboInput)
+        return generateAutoCombo(special, weapon, enemy, modified_evp, base_ata, snGlitch, damageToUse, atpInput, comboInput, range)
     }
 
-    let accuracyResult = getAccuracyForCombo(base_ata, comboInput, special, modified_evp, snGlitch);
+    let accuracyResult = getAccuracyForCombo(base_ata, comboInput, special, modified_evp, snGlitch, range);
     let comboDamage = getDamageForCombo(enemy.hp, atpInput, comboInput, special, damageToUse);
-    let percentDamage = 100 * (comboDamage.total / enemy.hp);
+    let percentDamage = Math.floor(100 * (comboDamage.total / enemy.hp));
     if (percentDamage > 100) {
         percentDamage = 100;
     }
@@ -1033,43 +1060,64 @@ function createMonsterRow(
     return {
         name: enemy.name,
         hp: enemy.hp,
+        type: enemy.type.replaceAll(".", ""),
         percentDamage: percentDamage,
         comboDamage: comboDamage.total,
         overallAccuracy: accuracyResult.overallAccuracy,
+        overallMinAccuracy: accuracyResult.overallMinAccuracy,
         a1Damage: comboDamage.a1Damage,
         a1Type: comboInput.a1Type,
         a1Accuracy: accuracyResult.a1Accuracy,
+        a1MinAccuracy: accuracyResult.a1MinAccuracy,
         a2Type: comboInput.a2Type,
         a2Damage: comboDamage.a2Damage,
         a2Accuracy: accuracyResult.a2Accuracy,
+        a2MinAccuracy: accuracyResult.a2MinAccuracy,
         a3Type: comboInput.a3Type,
         a3Damage: comboDamage.a3Damage,
         a3Accuracy: accuracyResult.a3Accuracy,
+        a3MinAccuracy: accuracyResult.a3MinAccuracy,
         baseAta: base_ata
     }
 }
 
-function getAccuracyForCombo(base_ata, comboInput, special, modified_evp, snGlitch) {
+function getAccuracyForCombo(base_ata, comboInput, special, modified_evp, snGlitch, range) {
     let a1Accuracy = calculateAccuracy(base_ata, comboInput.a1Type, special, 1.0, modified_evp);
     let a2Accuracy = calculateAccuracy(base_ata, comboInput.a2Type, special, 1.3, modified_evp);
     let a3Accuracy = calculateAccuracy(base_ata, comboInput.a3Type, special, 1.69, modified_evp);
+    let a1MinAccuracy = a1Accuracy;
+    let a2MinAccuracy = a2Accuracy;
+    let a3MinAccuracy = a3Accuracy;
+    if (range > 0) {
+        a1MinAccuracy = calculateAccuracy(base_ata, comboInput.a1Type, special, 1.0, modified_evp, range);
+        a2MinAccuracy = calculateAccuracy(base_ata, comboInput.a2Type, special, 1.3, modified_evp, range);
+        a3MinAccuracy = calculateAccuracy(base_ata, comboInput.a3Type, special, 1.69, modified_evp, range);
+    }
 
     // Account for SN glitch - I'm assuming optimistic case where they're able to glitch
     // if the accuracy is better but not if it's worse
     let glitchedA1Accuracy = a1Accuracy;
+    let glitchedA1MinAccuracy = a1MinAccuracy;
     if (snGlitch && a2Accuracy > a1Accuracy && comboInput.a2Type !== 'NONE') {
         glitchedA1Accuracy = a2Accuracy;
+        glitchedA1MinAccuracy = a2MinAccuracy;
     }
 
     let glitchedA2Accuracy = a2Accuracy;
+    let glitchedA2MinAccuracy = a2MinAccuracy;
     if (snGlitch && a3Accuracy > a2Accuracy && comboInput.a3Type !== 'NONE') {
         glitchedA2Accuracy = a3Accuracy;
+        glitchedA2MinAccuracy = a3MinAccuracy;
     }
     let overallAccuracy = Math.pow((glitchedA1Accuracy * 0.01), comboInput.a1Hits)
         * Math.pow((glitchedA2Accuracy * 0.01), comboInput.a2Hits)
         * Math.pow((a3Accuracy * 0.01), comboInput.a3Hits);
+    let minOverallAccuracy = (Math.pow((glitchedA1MinAccuracy * 0.01), comboInput.a1Hits)
+        * Math.pow((glitchedA2MinAccuracy * 0.01), comboInput.a2Hits)
+        * Math.pow((a3MinAccuracy * 0.01), comboInput.a3Hits)) * 100;
     overallAccuracy *= 100;
-    return {overallAccuracy, a1Accuracy, a2Accuracy, a3Accuracy};
+    return {overallAccuracy, a1Accuracy, a2Accuracy, a3Accuracy,
+        overallMinAccuracy: minOverallAccuracy, a1MinAccuracy, a2MinAccuracy, a3MinAccuracy};
 }
 
 function getDamageForCombo(enemyHp, atpInput, comboInput, special, baseDamage) {
@@ -1077,32 +1125,32 @@ function getDamageForCombo(enemyHp, atpInput, comboInput, special, baseDamage) {
     let a1Damage = 0;
     let a2Damage = 0;
     let a3Damage = 0;
-    let demonsMultiplier = getDemonsModifier(atpInput.playerClass);
-    if (comboInput.a1Type === "SPECIAL" && special === "Demon's") {
+    let hpCutModifier = special === "Devil's" ? getDevilsModifier(atpInput.playerClass) : getDemonsModifier(atpInput.playerClass);
+    if (comboInput.a1Type === "SPECIAL" && ["Demon's", "Devil's"].includes(special)) {
         for (let i = 0; i < comboInput.a1Hits; i++) {
-            a1Damage = (enemyHp - total) * demonsMultiplier;
+            a1Damage = Math.floor((enemyHp - total) * hpCutModifier);
             total += a1Damage;
         }
     } else {
-        a1Damage = getDamageModifierForAttackType(comboInput.a1Type, special) * baseDamage;
+        a1Damage = Math.floor(getDamageModifierForAttackType(comboInput.a1Type, special) * baseDamage);
         total += a1Damage * comboInput.a1Hits;
     }
-    if (comboInput.a2Type === "SPECIAL" && special === "Demon's") {
+    if (comboInput.a2Type === "SPECIAL" && ["Demon's", "Devil's"].includes(special)) {
         for (let i = 0; i < comboInput.a2Hits; i++) {
-            a2Damage = (enemyHp - total) * demonsMultiplier;
+            a2Damage = Math.floor((enemyHp - total) * hpCutModifier);
             total += a2Damage;
         }
     } else {
-        a2Damage = getDamageModifierForAttackType(comboInput.a2Type, special) * baseDamage;
+        a2Damage = Math.floor(getDamageModifierForAttackType(comboInput.a2Type, special) * baseDamage);
         total += a2Damage * comboInput.a2Hits;
     }
-    if (comboInput.a3Type === "SPECIAL" && special === "Demon's") {
+    if (comboInput.a3Type === "SPECIAL" && ["Demon's", "Devil's"].includes(special)) {
         for (let i = 0; i < comboInput.a3Hits; i++) {
-            a3Damage = (enemyHp - total) * demonsMultiplier;
+            a3Damage = Math.floor((enemyHp - total) * hpCutModifier);
             total += a3Damage;
         }
     } else {
-        a3Damage = getDamageModifierForAttackType(comboInput.a3Type, special) * baseDamage;
+        a3Damage = Math.floor(getDamageModifierForAttackType(comboInput.a3Type, special) * baseDamage);
         total += a3Damage * comboInput.a3Hits;
     }
 
@@ -1121,8 +1169,20 @@ function getDemonsModifier(playerClass) {
     }
 }
 
+function getDevilsModifier(playerClass) {
+    switch (playerClass) {
+        case "HUcast":
+        case "HUcaseal":
+        case "RAcast":
+        case "RAcaseal":
+            return 0.20;
+        default:
+            return 0.50;
+    }
+}
+
 function generateAutoCombo(
-    special, weapon, enemy, modified_evp, base_ata, snGlitch, baseDamage, atpInput, comboInput
+    special, weapon, enemy, modified_evp, base_ata, snGlitch, baseDamage, atpInput, comboInput, range
 ) {
     let className = $('#class-select').val();
     let frameData = getFrameDataForWeapon(weapon, className);
@@ -1145,7 +1205,7 @@ function generateAutoCombo(
                 comboInput.a2Type = attacks[a2];
                 comboInput.a3Type = attacks[a3];
                 let frames = getFramesForCombo(attacks[a1], attacks[a2], attacks[a3], frameData.animationFrameData)
-                let accuracyResult = getAccuracyForCombo(base_ata, comboInput, special, modified_evp, snGlitch);
+                let accuracyResult = getAccuracyForCombo(base_ata, comboInput, special, modified_evp, snGlitch, range);
                 let comboDamage = getDamageForCombo(enemy.hp, atpInput, comboInput, special, baseDamage);
                 if (accuracyResult.overallAccuracy < 100 && bestCombo != null) {
                     continue;
@@ -1167,7 +1227,7 @@ function generateAutoCombo(
         }
     }
 
-    let percentDamage = 100 * (bestComboDamage.total / enemy.hp);
+    let percentDamage = Math.floor(100 * (bestComboDamage.total / enemy.hp));
     if (percentDamage > 100) {
         percentDamage = 100;
     }
@@ -1179,29 +1239,52 @@ function generateAutoCombo(
     return {
         name: enemy.name + " (" + comboName + " " + bestComboFrames + "f)",
         hp: enemy.hp,
+        type: enemy.type.replaceAll(".", ""),
         percentDamage: percentDamage,
         comboDamage: bestComboDamage.total,
         overallAccuracy: bestComboAccuracy.overallAccuracy,
+        overallMinAccuracy: bestComboAccuracy.overallMinAccuracy,
         a1Damage: bestComboDamage.a1Damage,
         a1Type: bestCombo[0],
         a1Accuracy: bestComboAccuracy.a1Accuracy,
+        a1MinAccuracy: bestComboAccuracy.a1MinAccuracy,
         a2Type: bestCombo[1],
         a2Damage: bestComboDamage.a2Damage,
         a2Accuracy: bestComboAccuracy.a2Accuracy,
+        a2MinAccuracy: bestComboAccuracy.a2MinAccuracy,
         a3Type: bestCombo[2],
         a3Damage: bestComboDamage.a3Damage,
         a3Accuracy: bestComboAccuracy.a3Accuracy,
+        a3MinAccuracy: bestComboAccuracy.a3MinAccuracy,
     }
 }
 
-function appendMonsterRow(rowEntry) {
+function formatAccuracy(num) {
+    return Math.floor(num * 100) / 100;
+}
+
+function formatAccuracyText(accuracy, minAccuracy, showAccuracyRange) {
+    if (showAccuracyRange) {
+        return `${formatAccuracy(minAccuracy)}% - ${formatAccuracy(accuracy)}%`;
+    } else {
+        return `${formatAccuracy(accuracy)}%`;
+    }
+}
+
+function appendMonsterRow(rowEntry, showAccuracyRange) {
     let comboKill = rowEntry.comboDamage > rowEntry.hp;
     let damageBgColor = comboKill ? 'rgb(61,73,61)' : 'rgb(73,73,61)';
+    let expectedDamage = (rowEntry.comboDamage * rowEntry.overallAccuracy * 0.01).toFixed(0);
+
+    let a1Text = `${rowEntry.a1Damage.toFixed(0)} (${formatAccuracyText(rowEntry.a1Accuracy, rowEntry.a1MinAccuracy, showAccuracyRange)})`;
+    let a2Text = `${rowEntry.a2Damage.toFixed(0)} (${formatAccuracyText(rowEntry.a2Accuracy, rowEntry.a2MinAccuracy, showAccuracyRange)})`;
+    let a3Text = `${rowEntry.a3Damage.toFixed(0)} (${formatAccuracyText(rowEntry.a3Accuracy, rowEntry.a3MinAccuracy, showAccuracyRange)})`;
 
     return $('<tr/>')
         .append($('<th/>', {
             'colspan': 2,
             'data-label': 'monster',
+            'class': `monster-title-${rowEntry.type}`,
             'text': rowEntry.name
         }))
         .append($('<td/>', {
@@ -1209,27 +1292,28 @@ function appendMonsterRow(rowEntry) {
         }).append($('<div>', {
             'style': 'background: rgba(255,150,150,0.1)'
         }).append($('<div>', {
-            'style': 'background: ' + damageBgColor + '; padding: 0.78571429em 0.78571429em; width: ' + rowEntry.percentDamage + '%',
-            'text': (rowEntry.comboDamage * rowEntry.overallAccuracy * 0.01).toFixed(0) + '(' + rowEntry.hp + ')',
+            'style': `overflow: visible; white-space: nowrap; background: ${damageBgColor}; padding: 0.78571429em 0.78571429em; width: ${rowEntry.percentDamage}%`,
+            'text': expectedDamage + '(' + rowEntry.hp + ')',
+            'title': rowEntry.comboDamage.toFixed(0) + '/' + rowEntry.hp
         }))))
         .append($('<td/>', {
             'data-label': 'accuracy',
-            'text': rowEntry.overallAccuracy.toFixed(2) + '%(' + rowEntry.baseAta + ')',
+            'text': formatAccuracyText(rowEntry.overallAccuracy, rowEntry.overallMinAccuracy, showAccuracyRange),
             'style': rowEntry.overallAccuracy >= 100.0 ? 'background: rgba(150,255,150,0.1)' : 'background: rgba(255,150,150,0.1)'
         }))
         .append($('<td/>', {
             'data-label': 'a1-accuracy',
-            'text': rowEntry.a1Damage.toFixed(0) + ' (' + rowEntry.a1Accuracy.toFixed(0) + '%)',
+            'text': a1Text,
             'style': rowEntry.a1Type === 'NONE' ? 'color: rgba(255,255,255,0.3)' : 'color: rgba(255,255,255,0.9)'
         }))
         .append($('<td/>', {
             'data-label': 'a2-accuracy',
-            'text': rowEntry.a2Damage.toFixed(0) + ' (' + rowEntry.a2Accuracy.toFixed(0) + '%)',
+            'text': a2Text,
             'style': rowEntry.a2Type === 'NONE' ? 'color: rgba(255,255,255,0.3)' : 'color: rgba(255,255,255,0.9)'
         }))
         .append($('<td/>', {
             'data-label': 'a3-accuracy',
-            'text': rowEntry.a3Damage.toFixed(0) + ' (' + rowEntry.a3Accuracy.toFixed(0) + '%)',
+            'text': a3Text,
             'style': rowEntry.a3Type === 'NONE' ? 'color: rgba(255,255,255,0.3)' : 'color: rgba(255,255,255,0.9)'
         }));
 }
@@ -1246,19 +1330,19 @@ function calculateBaseDamage(atpInput, enemy) {
     if (atpInput.zalure > 0) {
         zalureModifier = ((1.3 * (atpInput.zalure - 1)) + 10) * 0.01;
     }
-    let minShiftaAtp = shiftaModifier * atpInput.baseAtp;
-    let maxShiftaAtp = (shiftaModifier * atpInput.baseAtp) + ((atpInput.maxAtp - atpInput.minAtp) * shiftaModifier);
+    let minShiftaAtp = shiftaModifier * atpInput.classMinAtp;
+    let maxShiftaAtp = (shiftaModifier * atpInput.classMaxAtp) + (((atpInput.maxAtp - atpInput.minAtp) + (atpInput.classMaxAtp - atpInput.classMinAtp)) * shiftaModifier);
 
-    let effectiveMinAtp = atpInput.baseAtp + minWeaponAtp + minShiftaAtp;
-    let effectiveMaxAtp = atpInput.baseAtp + maxWeaponAtp + maxShiftaAtp;
+    let effectiveMinAtp = atpInput.classMinAtp + minWeaponAtp + minShiftaAtp;
+    let effectiveMaxAtp = atpInput.classMaxAtp + maxWeaponAtp + maxShiftaAtp;
 
     let effectiveDfp = enemy.dfp * (1.0 - zalureModifier);
 
-    let nMin = ((effectiveMinAtp - effectiveDfp) / 5) * 0.9;
+    let nMin = ((effectiveMinAtp - effectiveDfp) / 5);
     if (nMin < 0) {
         nMin = 0;
     }
-    let nMax = ((effectiveMaxAtp - effectiveDfp) / 5) * 0.9;
+    let nMax = ((effectiveMaxAtp - effectiveDfp) / 5);
     if (nMax < 0) {
         nMax = 0;
     }
@@ -1268,7 +1352,7 @@ function calculateBaseDamage(atpInput, enemy) {
     };
 }
 
-function calculateAccuracy(baseAta, attackType, special, comboModifier, totalEvp) {
+function calculateAccuracy(baseAta, attackType, special, comboModifier, totalEvp, range = 0) {
     if (attackType === 'NONE') {
         return 100;
     }
@@ -1277,6 +1361,8 @@ function calculateAccuracy(baseAta, attackType, special, comboModifier, totalEvp
     }
     let effectiveAta = baseAta * accuracyModifierForAttackType(attackType, special) * comboModifier;
     let accuracy = effectiveAta - (totalEvp * 0.2);
+    let rangePenalty = 0.33 * range;
+    accuracy = accuracy - rangePenalty;
     if (accuracy > 100) {
         accuracy = 100;
     }
@@ -1309,11 +1395,11 @@ function updateDamageTable() {
     let base_ata = Number($('#ataInput').val());
     let evpModifier = getEvpModifier(frozen, paralyzed);
     let autoCombo = $('#autoCombo').is(":checked")
-    // let opm = $('#opm_checkbox').is(":checked");
 
     let atpInput = {
         playerClass: $('#class-select').val(),
-        baseAtp: Number($('#atpInput').val()),
+        classMinAtp: Number($('#classMinAtpInput').val()),
+        classMaxAtp: Number($('#classMaxAtpInput').val()),
         minAtp: Number($('#minAtpInput').val()),
         maxAtp: Number($('#maxAtpInput').val()),
         areaPercent: Number($('#sphereInput').val()),
@@ -1321,7 +1407,7 @@ function updateDamageTable() {
         shifta: Number($('#shiftaInput').val()),
         zalure: Number($('#zalureInput').val()),
     };
-
+    let range = getRange();
     let comboInput = {
         a1Type: $('#attack1').val(),
         a1Hits: Number($('#hits1').val()),
@@ -1336,10 +1422,10 @@ function updateDamageTable() {
     tbody.empty();
     let rows = [];
     for (let index in selectedEnemies) {
-        let enemy = enemies[selectedEnemies[index]];
+        let enemy = selectedEnemies[index];
         let row = createMonsterRow(
             special, autoCombo, selectedWeapon, enemy,
-            evpModifier, base_ata, snGlitch, atpInput, comboInput
+            evpModifier, base_ata, snGlitch, atpInput, comboInput, range
         );
         rows.push(row);
     }
@@ -1370,30 +1456,30 @@ function updateDamageTable() {
     })
 
     for (let index in rows) {
-        tbody.append(appendMonsterRow(rows[index]))
+        tbody.append(appendMonsterRow(rows[index], range > 0));
     }
 }
 
 function getSetEffectAtp(weapon, frameName, barrierName) {
     let atpBonus = 0;
-    if (frameName === "THIRTEEN" && weapon.name === "Diska of Braveman") {
+    if (frameName === "Thirteen" && weapon.name === "Diska of Braveman") {
         atpBonus += (weapon.minAtp + (2 * weapon.grind)) * 0.5
     }
-    if (frameName === "CRIMSON_COAT" && (
+    if (frameName === "Crimson Coat" && (
         weapon.name === "Red Slicer" || weapon.name === "Red Dagger" || weapon.name === "Red Saber"
     )) {
         atpBonus += (weapon.minAtp + (2 * weapon.grind)) * 0.5
     }
-    if (frameName === "SAMURAI" && weapon.name === "Orotiagito") {
+    if (frameName === "Samurai Armor" && weapon.name === "Orotiagito") {
         atpBonus += (weapon.minAtp + (2 * weapon.grind)) * 0.3
     }
-    if (frameName === "SWEETHEART1") {
+    if (frameName === "Sweetheart (1)") {
         atpBonus += (weapon.minAtp + (2 * weapon.grind)) * 0.15
     }
-    if (frameName === "SWEETHEART2") {
+    if (frameName === "Sweetheart (2)") {
         atpBonus += (weapon.minAtp + (2 * weapon.grind)) * 0.2
     }
-    if (frameName === "SWEETHEART3") {
+    if (frameName === "Sweetheart (3)") {
         atpBonus += (weapon.minAtp + (2 * weapon.grind)) * 0.25
     }
     return atpBonus;
@@ -1404,15 +1490,15 @@ function getSetEffectAta(weapon, frameName, barrierName, unitName) {
     if (barrierName === "Safety Heart" && weapon.name === "Rambling May") {
         ataBonus += 30;
     }
-    if (frameName === "THIRTEEN" && weapon.name === "Diska of Braveman") {
+    if (frameName === "Thirteen" && weapon.name === "Diska of Braveman") {
         ataBonus += 30
     }
-    if (frameName === "CRIMSON_COAT" && (
+    if (frameName === "Crimson Coat" && (
         weapon.name === "Red Slicer" || weapon.name === "Red Dagger" || weapon.name === "Red Saber"
     )) {
         ataBonus += 22
     }
-    if (frameName === "SAMURAI" && weapon.name === "Orotiagito") {
+    if (frameName === "Samurai Armor" && weapon.name === "Orotiagito") {
         ataBonus += 20
     }
     if (unitName === "POSS1" && possWeapons.includes(weapon.name)) {
