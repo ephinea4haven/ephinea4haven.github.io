@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="PSOBB Section ID 查找器">
+    <title>"Sif" The Section ID Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/css/w3.css">
+    <link rel="stylesheet" href="../assets/css/id.css?v=1">
+</head>
+
+<body>
+<div class="w3-center">
+    <button class="tablink" onclick="openCalcMode('BB', this)" id="defaultOpen">BlueBurst</button>
+    <button class="tablink" onclick="openCalcMode('Legacy', this)">DC/PC/GC/XB</button>
+</div>
+
+<div class="w3-row w3-section">
+    <div class="w3-col l5 m4 s4">&nbsp;</div>
+    <div class="w3-col l2 m4 s4 w3-center">
+        <input type="text" id="name" placeholder="Name" autofocus maxlength="12" class="w3-input w3-center">
+    </div>
+    <div class="w3-col l5 m4 s4">&nbsp;</div>
+</div>
+
+<div id="BB" class="calc">
+    <div class="w3-row w3-section">
+        <div class="w3-col l3 m3 s3 w3-red w3-center w3-border w3-border-black">
+            <p>HUmar</p>
+            <img id="img1" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf1">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-red w3-center w3-border w3-border-black">
+            <p>HUnewearl</p>
+            <img id="img2" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf2">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-red w3-center w3-border w3-border-black">
+            <p>HUcast</p>
+            <img id="img3" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf3">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-red w3-center w3-border w3-border-black">
+            <p>HUcaseal</p>
+            <img id="img4" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf4">N/A</p>
+        </div>
+    </div>
+
+    <div class="w3-row w3-section">
+        <div class="w3-col l3 m3 s3 w3-green w3-center w3-border w3-border-black">
+            <p>RAmar</p>
+            <img id="img5" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf5">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-green w3-center w3-border w3-border-black">
+            <p>RAmarl</p>
+            <img id="img6" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf6">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-green w3-center w3-border w3-border-black">
+            <p>RAcast</p>
+            <img id="img7" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf7">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-green w3-center w3-border w3-border-black">
+            <p>RAcaseal</p>
+            <img id="img8" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf8">N/A</p>
+        </div>
+    </div>
+
+    <div class="w3-row w3-section">
+        <div class="w3-col l3 m3 s3 w3-indigo w3-center w3-border w3-border-black">
+            <p>FOmar</p>
+            <img id="img9" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf9">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-indigo w3-center w3-border w3-border-black">
+            <p>FOmarl</p>
+            <img id="img10" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf10">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-indigo w3-center w3-border w3-border-black">
+            <p>FOnewm</p>
+            <img id="img11" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf11">N/A</p>
+        </div>
+        <div class="w3-col l3 m3 s3 w3-indigo w3-center w3-border w3-border-black">
+            <p>FOnewearl</p>
+            <img id="img12" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf12">N/A</p>
+        </div>
+    </div>
+</div>
+
+<div id="Legacy" class="calc" style="display:none">
+    <div class="w3-row w3-section">
+        <div class="w3-col l4 m4 s4">
+            &nbsp;
+        </div>
+        <div class="w3-col l4 m4 s4 w3-orange w3-center">
+            <p>All Classes</p>
+            <img id="img0" src="../assets/img/section/Impossible.png" alt="Section ID" style="width:100%">
+            <p id="tf0">N/A</p>
+        </div>
+        <div class="w3-col l4 m4 s4">
+            &nbsp;
+        </div>
+    </div>
+</div>
+
+<script src="../assets/js/id.js?v=1"></script>
+</body>
+
+</html>
