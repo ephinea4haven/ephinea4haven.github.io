@@ -42,8 +42,8 @@ window.I18N = {
       entries: "{diff} \u2014 {total} \u4ef6"
     },
     zh: {
-      title: "Ephinea PSOBB \u638c\u843d\u8868",
-      subtitle: "\u68a6\u5e7b\u4e4b\u661fOnline Blue Burst\uff08Ephinea\u670d\u52a1\u5668\uff09\u602a\u7269\u638c\u843d\u56fe\u8868",
+      title: "Ephinea PSOBB \u6389\u843d\u8868",
+      subtitle: "\u68a6\u5e7b\u4e4b\u661fOnline Blue Burst\uff08Ephinea\u670d\u52a1\u5668\uff09\u602a\u7269\u6389\u843d\u56fe\u8868",
       difficulty: "\u96be\u5ea6",
       type: "\u7c7b\u578b",
       monsters: "\u602a\u7269",
@@ -86,8 +86,8 @@ window.I18N = {
       entries: "{diff} \u2014 {total} \u4ef6"
     },
     zh: {
-      title: "Ephinea DC \u638c\u843d\u8868",
-      subtitle: "Dreamcast\u7248\u602a\u7269\u638c\u843d\u56fe\u8868\uff08Ephinea\u670d\u52a1\u5668\uff09",
+      title: "Ephinea DC \u6389\u843d\u8868",
+      subtitle: "Dreamcast\u7248\u602a\u7269\u6389\u843d\u56fe\u8868\uff08Ephinea\u670d\u52a1\u5668\uff09",
       difficulty: "\u96be\u5ea6",
       search: "\u641c\u7d22",
       lang: "\u8bed\u8a00",
@@ -125,8 +125,8 @@ window.I18N = {
       entries: "{diff} \u2014 {total} \u4ef6"
     },
     zh: {
-      title: "Ephinea NGC \u638c\u843d\u8868",
-      subtitle: "GameCube\u7248\u602a\u7269\u638c\u843d\u56fe\u8868\uff08Ephinea\u670d\u52a1\u5668\uff09",
+      title: "Ephinea NGC \u6389\u843d\u8868",
+      subtitle: "GameCube\u7248\u602a\u7269\u6389\u843d\u56fe\u8868\uff08Ephinea\u670d\u52a1\u5668\uff09",
       difficulty: "\u96be\u5ea6",
       episode: "\u7ae0\u8282",
       all: "\u5168\u90e8",
