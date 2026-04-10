@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>页面未找到 - PSO Haven</title>
+<script>
+  const REDIRECTS = {
+    '/droptable/cn/CNormal.html':   '/data/droptable/bb/index.html?lang=zh&diff=Normal',
+    '/droptable/cn/CHard.html':     '/data/droptable/bb/index.html?lang=zh&diff=Hard',
+    '/droptable/cn/CVeryHard.html': '/data/droptable/bb/index.html?lang=zh&diff=VeryHard',
+    '/droptable/cn/CUltimate.html': '/data/droptable/bb/index.html?lang=zh&diff=Ultimate',
+    '/droptable/en/Normal.html':    '/data/droptable/bb/index.html?lang=en&diff=Normal',
+    '/droptable/en/Hard.html':      '/data/droptable/bb/index.html?lang=en&diff=Hard',
+    '/droptable/en/VeryHard.html':  '/data/droptable/bb/index.html?lang=en&diff=VeryHard',
+    '/droptable/en/Ultimate.html':  '/data/droptable/bb/index.html?lang=en&diff=Ultimate',
+  };
+
+  const target = REDIRECTS[location.pathname];
+  if (target) location.replace(target);
+</script>
+</head>
+<body>
+<h1>404 - 页面未找到</h1>
+<p>您访问的页面不存在，<a href="/">返回首页</a></p>
+</body>
+</html>
