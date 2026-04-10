@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ephinea PSOBB Drop Charts</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --bg2: #16213e;
+  --bg3: #0f3460;
+  --text: #e0e0e0;
+  --text2: #a0a0a0;
+  --accent: #e94560;
+  --border: #333;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+.header {
+  background: var(--bg2);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid var(--accent);
+}
+.header h1 { font-size: 1.8em; color: #fff; margin-bottom: 5px; }
+.header p { color: var(--text2); font-size: 0.9em; }
+
+.controls {
+  background: var(--bg2);
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.control-group { display: flex; align-items: center; gap: 8px; }
+.control-group label { color: var(--text2); font-size: 0.85em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.btn-group { display: flex; gap: 2px; }
+.btn {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.85em;
+  transition: all 0.15s;
+  border-radius: 0;
+}
+.btn:first-child { border-radius: 4px 0 0 4px; }
+.btn:last-child { border-radius: 0 4px 4px 0; }
+.btn:only-child { border-radius: 4px; }
+.btn:hover { background: var(--bg3); }
+.btn.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
+.search-box {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.85em;
+  border-radius: 4px;
+  width: 200px;
+}
+.search-box::placeholder { color: #666; }
+.search-box:focus { outline: none; border-color: var(--accent); }
+
+.content { padding: 20px; max-width: 1600px; margin: 0 auto; }
+.episode-section { margin-bottom: 30px; }
+.episode-title {
+  font-size: 1.2em;
+  color: #fff;
+  background: var(--bg3);
+  padding: 10px 15px;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid var(--border);
+  border-bottom: none;
+}
+.drop-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  border: 1px solid var(--border);
+  table-layout: fixed;
+}
+.drop-table th, .drop-table td {
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  text-align: center;
+  vertical-align: middle;
+}
+.drop-table th {
+  font-weight: 700;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.drop-table th.monster-col {
+  background: #555;
+  color: #fff;
+  width: 160px;
+  text-align: left;
+}
+.drop-table td.monster-name {
+  background: #444;
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  font-size: 0.9em;
+}
+.drop-table td.monster-name .mob-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.drop-table td.monster-name .drop-rate-tag {
+  color: #f0c040;
+  font-size: 0.8em;
+  font-weight: 400;
+}
+.drop-table td.drop-cell {
+  font-size: 0.85em;
+  line-height: 1.3;
+}
+.drop-cell .item-name {
+  font-weight: 600;
+  display: block;
+}
+.drop-cell .drop-rate {
+  color: var(--text2);
+  font-size: 0.85em;
+}
+.drop-cell.empty { color: #555; }
+.drop-table tr:hover td { background-color: rgba(233, 69, 96, 0.1); }
+.drop-table tr:hover td.monster-name { background-color: rgba(233, 69, 96, 0.2); }
+
+.section-header { color: #000 !important; font-weight: 700 !important; }
+.table-wrap { overflow-x: auto; }
+.stats {
+  text-align: center;
+  padding: 8px;
+  color: var(--text2);
+  font-size: 0.8em;
+}
+.highlight { background: rgba(233, 69, 96, 0.3) !important; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1 id="pageTitle"></h1>
+  <p id="pageSubtitle"></p>
+</div>
+
+<div class="controls">
+  <div class="control-group">
+    <label id="lblLang"></label>
+    <div class="btn-group" id="langBtns"></div>
+  </div>
+  <div class="control-group">
+    <label id="lblDifficulty"></label>
+    <div class="btn-group" id="difficultyBtns"></div>
+  </div>
+  <div class="control-group">
+    <label id="lblType"></label>
+    <div class="btn-group" id="typeBtns"></div>
+  </div>
+  <div class="control-group">
+    <label id="lblEpisode"></label>
+    <div class="btn-group" id="episodeBtns"></div>
+  </div>
+  <div class="control-group">
+    <label id="lblRate"></label>
+    <div class="btn-group" id="rateBtns"></div>
+  </div>
+  <div class="control-group">
+    <label id="lblSearch"></label>
+    <input type="text" class="search-box" id="searchBox" oninput="onSearch()">
+  </div>
+</div>
+
+<div class="stats" id="stats"></div>
+<div class="content" id="content"></div>
+
+<!-- Data files -->
+<script src="data/en.js"></script>
+<script src="data/ja.js"></script>
+<script src="data/zh.js"></script>
+<script src="i18n.js"></script>
+
+<script>
+// All game data keyed by language code
+const DATA_MAP = {
+  en: window.DROP_DATA_EN,
+  ja: window.DROP_DATA_JA,
+  zh: window.DROP_DATA_ZH,
+};
+
+const I18N = window.I18N;
+
+// State
+let lang = 'en';
+let currentDifficulty = 'Normal';
+let currentType = 'monsters';
+let currentEpisode = 'all';
+let searchTerm = '';
+let rateFormat = 'percent';
+
+// Helpers
+function t(key) { return (I18N[lang] || I18N.en)[key] || key; }
+
+function fmtRate(fractionStr) {
+  if (!fractionStr) return '';
+  if (rateFormat === 'fraction') return fractionStr;
+  const parts = fractionStr.split('/');
+  if (parts.length !== 2) return fractionStr;
+  const pct = (parseFloat(parts[0]) / parseFloat(parts[1])) * 100;
+  if (pct >= 100) return '100%';
+  if (pct >= 10) return pct.toFixed(1) + '%';
+  if (pct >= 1) return pct.toFixed(2) + '%';
+  if (pct >= 0.1) return pct.toFixed(3) + '%';
+  return pct.toFixed(4) + '%';
+}
+
+function D() { return DATA_MAP[lang] || DATA_MAP.en; }
+
+// Build controls
+function buildControls() {
+  // Language buttons
+  const langContainer = document.getElementById('langBtns');
+  langContainer.innerHTML = '';
+  const langLabels = { en: 'EN', ja: '日本語', zh: '中文' };
+  // zh uses en data with zh UI
+  for (const code of Object.keys(I18N)) {
+    const btn = document.createElement('button');
+    btn.className = 'btn' + (code === lang ? ' active' : '');
+    btn.dataset.lang = code;
+    btn.textContent = langLabels[code] || code.toUpperCase();
+    btn.onclick = () => setLang(code);
+    langContainer.appendChild(btn);
+  }
+
+  // Difficulty buttons
+  const diffContainer = document.getElementById('difficultyBtns');
+  diffContainer.innerHTML = '';
+  const diffs = Object.keys(D().data);
+  diffs.forEach(d => {
+    const btn = document.createElement('button');
+    btn.className = 'btn' + (d === currentDifficulty ? ' active' : '');
+    btn.dataset.diff = d;
+    btn.textContent = d;
+    btn.onclick = () => setDifficulty(d);
+    diffContainer.appendChild(btn);
+  });
+
+  // Type buttons
+  document.getElementById('typeBtns').innerHTML =
+    `<button class="btn${currentType==='monsters'?' active':''}" data-type="monsters" onclick="setType('monsters')">${t('monsters')}</button>` +
+    `<button class="btn${currentType==='boxes'?' active':''}" data-type="boxes" onclick="setType('boxes')">${t('boxes')}</button>`;
+
+  // Episode buttons
+  document.getElementById('episodeBtns').innerHTML =
+    `<button class="btn${currentEpisode==='all'?' active':''}" data-ep="all" onclick="setEpisode('all')">${t('all')}</button>` +
+    `<button class="btn${currentEpisode==='Episode 1'?' active':''}" data-ep="Episode 1" onclick="setEpisode('Episode 1')">Ep.1</button>` +
+    `<button class="btn${currentEpisode==='Episode 2'?' active':''}" data-ep="Episode 2" onclick="setEpisode('Episode 2')">Ep.2</button>` +
+    `<button class="btn${currentEpisode==='Episode 4'?' active':''}" data-ep="Episode 4" onclick="setEpisode('Episode 4')">Ep.4</button>`;
+
+  // Rate buttons
+  document.getElementById('rateBtns').innerHTML =
+    `<button class="btn${rateFormat==='percent'?' active':''}" data-fmt="percent" onclick="setRateFormat('percent')">${t('percent')}</button>` +
+    `<button class="btn${rateFormat==='fraction'?' active':''}" data-fmt="fraction" onclick="setRateFormat('fraction')">${t('fraction')}</button>`;
+
+  // Labels
+  document.getElementById('lblLang').textContent = t('lang');
+  document.getElementById('lblDifficulty').textContent = t('difficulty');
+  document.getElementById('lblType').textContent = t('type');
+  document.getElementById('lblEpisode').textContent = t('episode');
+  document.getElementById('lblRate').textContent = t('rate');
+  document.getElementById('lblSearch').textContent = t('search');
+  document.getElementById('searchBox').placeholder = t('searchPlaceholder');
+
+  // Header
+  document.getElementById('pageTitle').textContent = t('title');
+  document.getElementById('pageSubtitle').textContent = t('subtitle');
+  document.title = t('title');
+}
+
+// Setters
+function setLang(code) {
+  lang = code;
+  buildControls();
+  render();
+}
+
+function setDifficulty(d) {
+  currentDifficulty = d;
+  document.querySelectorAll('#difficultyBtns .btn').forEach(b => b.classList.toggle('active', b.dataset.diff === d));
+  render();
+}
+
+function setType(tp) {
+  currentType = tp;
+  document.querySelectorAll('#typeBtns .btn').forEach(b => b.classList.toggle('active', b.dataset.type === tp));
+  render();
+}
+
+function setEpisode(ep) {
+  currentEpisode = ep;
+  document.querySelectorAll('#episodeBtns .btn').forEach(b => b.classList.toggle('active', b.dataset.ep === ep));
+  render();
+}
+
+function setRateFormat(fmt) {
+  rateFormat = fmt;
+  document.querySelectorAll('#rateBtns .btn').forEach(b => b.classList.toggle('active', b.dataset.fmt === fmt));
+  render();
+}
+
+function onSearch() {
+  searchTerm = document.getElementById('searchBox').value.toLowerCase().trim();
+  render();
+}
+
+// Render
+function render() {
+  const data = D();
+  const diffData = data.data[currentDifficulty];
+  if (!diffData) return;
+
+  const typeData = diffData[currentType] || {};
+  const container = document.getElementById('content');
+  let html = '';
+  let totalEntries = 0;
+  let shownEntries = 0;
+
+  const episodes = currentEpisode === 'all' ? Object.keys(typeData) : [currentEpisode];
+
+  for (const ep of episodes) {
+    const entries = typeData[ep];
+    if (!entries || entries.length === 0) continue;
+
+    totalEntries += entries.length;
+
+    const filtered = entries.filter(e => {
+      if (!searchTerm) return true;
+      if (e.name.toLowerCase().includes(searchTerm)) return true;
+      return e.drops.some(d => d.item && d.item.toLowerCase().includes(searchTerm));
+    });
+
+    if (filtered.length === 0) continue;
+    shownEntries += filtered.length;
+
+    const label = currentType === 'monsters' ? ep : `${ep} - ${t('boxes')}`;
+    html += `<div class="episode-section">`;
+    html += `<div class="episode-title">${label}</div>`;
+    html += `<div class="table-wrap">`;
+    html += `<table class="drop-table">`;
+
+    html += `<thead><tr><th class="monster-col">${currentType === 'monsters' ? t('monster') : t('location')}</th>`;
+    data.sectionIds.forEach((sid, i) => {
+      html += `<th class="section-header" style="background-color:${data.sectionColors[i]}">${sid}</th>`;
+    });
+    html += `</tr></thead>`;
+
+    html += `<tbody>`;
+    for (const entry of filtered) {
+      html += `<tr>`;
+      const drTag = entry.dropRate ? `<br><span class="drop-rate-tag">(${fmtRate(entry.dropRate)})</span>` : '';
+      html += `<td class="monster-name" title="${entry.name}"><span class="mob-name">${entry.name}</span>${drTag}</td>`;
+      entry.drops.forEach((drop, i) => {
+        const isHL = searchTerm && drop.item && drop.item.toLowerCase().includes(searchTerm);
+        if (drop.item) {
+          html += `<td class="drop-cell${isHL ? ' highlight' : ''}">`;
+          html += `<span class="item-name">${drop.item}</span>`;
+          if (drop.rate) html += `<span class="drop-rate">${fmtRate(drop.rate)}</span>`;
+          html += `</td>`;
+        } else {
+          html += `<td class="drop-cell empty">—</td>`;
+        }
+      });
+      html += `</tr>`;
+    }
+    html += `</tbody></table></div></div>`;
+  }
+
+  container.innerHTML = html || '<div style="text-align:center;padding:40px;color:#666">No results</div>';
+
+  const statsEl = document.getElementById('stats');
+  if (searchTerm) {
+    statsEl.textContent = t('showing').replace('{shown}', shownEntries).replace('{total}', totalEntries).replace('{term}', searchTerm);
+  } else {
+    statsEl.textContent = t('entries').replace('{diff}', currentDifficulty).replace('{total}', totalEntries);
+  }
+}
+
+// Read URL params
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const diffParam = params.get('diff');
+  if (diffParam && DATA_MAP[lang] && DATA_MAP[lang].data[diffParam]) {
+    currentDifficulty = diffParam;
+  }
+  const langParam = params.get('lang');
+  if (langParam && I18N[langParam]) {
+    lang = langParam;
+  }
+})();
+
+// Init
+buildControls();
+render();
+</script>
+</body>
+</html>
