@@ -1,5 +1,39 @@
 /* Dark Unified Styling for Ephinea PSOBB Pages */
 
+:root {
+    --bg-primary: #1a2332;
+    --bg-secondary: #243447;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #00d4ff;
+    --accent-hover: #00b8d4;
+    --accent-alt: #00a0ff;
+    --accent-dark: #0a0e27;
+    --heading-h1: #00d4ff;
+    --heading-h2: #00d4ff;
+    --heading-h3: #60a5fa;
+    --heading-h4: #a78bfa;
+    --link-color: #60a5fa;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --accent-glow: rgba(0, 212, 255, 0.08);
+    --accent-purple: rgba(138, 43, 226, 0.08);
+    --accent-5: rgba(0, 212, 255, 0.05);
+    --accent-10: rgba(0, 212, 255, 0.1);
+    --accent-15: rgba(0, 212, 255, 0.15);
+    --accent-20: rgba(0, 212, 255, 0.2);
+    --accent-25: rgba(0, 212, 255, 0.25);
+    --accent-30: rgba(0, 212, 255, 0.3);
+    --accent-40: rgba(0, 212, 255, 0.4);
+    --accent-50: rgba(0, 212, 255, 0.5);
+    --accent-60: rgba(0, 212, 255, 0.6);
+    --bg-primary-75: rgba(26, 35, 50, 0.75);
+    --bg-primary-80: rgba(26, 35, 50, 0.8);
+    --bg-primary-60: rgba(26, 35, 50, 0.6);
+    --table-header-bg: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(138, 43, 226, 0.3));
+    --shadow-color: rgba(0, 0, 0, 0.25);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +48,7 @@ body {
     margin: 0;
     padding: 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    background: #1a2332;
+    background: var(--bg-primary);
     position: relative;
 }
 
@@ -25,7 +59,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/static/img/lobby_overlook_contrast.png') center center;
+    background: url('/assets/img/bg/lobby_overlook_contrast.png') center center;
     background-size: cover;
     opacity: 0.35;
     z-index: 0;
@@ -38,8 +72,8 @@ body::after {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at top right, rgba(0, 212, 255, 0.08), transparent 60%),
-                radial-gradient(circle at bottom left, rgba(138, 43, 226, 0.08), transparent 60%);
+    background: radial-gradient(circle at top right, var(--accent-glow), transparent 60%),
+                radial-gradient(circle at bottom left, var(--accent-purple), transparent 60%);
     z-index: 0;
 }
 
@@ -55,69 +89,69 @@ header {
 }
 
 #project_title {
-    color: #00d4ff;
+    color: var(--heading-h1);
     font-size: 2.8em;
     font-weight: 800;
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5),
-                 0 0 40px rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 20px var(--accent-50),
+                 0 0 40px var(--accent-30);
     margin-bottom: 10px;
     letter-spacing: 2px;
 }
 
 .back-link {
     display: inline-block;
-    background: linear-gradient(135deg, #00d4ff, #00a0ff);
-    color: #0a0e27;
+    background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+    color: var(--accent-dark);
     padding: 14px 40px;
     border-radius: 50px;
     text-decoration: none;
     font-size: 17px;
     font-weight: 700;
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+    box-shadow: 0 0 30px var(--accent-40);
     transition: all 0.3s ease;
     margin-bottom: 35px;
-    border: 2px solid rgba(0, 212, 255, 0.3);
+    border: 2px solid var(--accent-30);
 }
 
 .back-link:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
-    background: linear-gradient(135deg, #00e4ff, #00b0ff);
+    box-shadow: 0 0 40px var(--accent-60);
+    background: linear-gradient(135deg, var(--accent-hover), var(--accent-alt));
 }
 
 .content-container {
     max-width: 1200px;
     width: 100%;
-    background: rgba(26, 35, 50, 0.75);
+    background: var(--bg-primary-75);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 212, 255, 0.25);
+    border: 1px solid var(--accent-25);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px var(--shadow-color);
     line-height: 1.8;
 }
 
 .content-container h1 {
-    color: #00d4ff;
+    color: var(--heading-h1);
     font-size: 2.2em;
     font-weight: 700;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 3px solid rgba(0, 212, 255, 0.3);
+    border-bottom: 3px solid var(--accent-30);
 }
 
 .content-container h2 {
-    color: #00d4ff;
+    color: var(--heading-h2);
     font-size: 1.8em;
     font-weight: 600;
     margin-top: 35px;
     margin-bottom: 18px;
     padding-bottom: 10px;
-    border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+    border-bottom: 2px solid var(--accent-20);
 }
 
 .content-container h3 {
-    color: #60a5fa;
+    color: var(--heading-h3);
     font-size: 1.4em;
     font-weight: 600;
     margin-top: 25px;
@@ -125,7 +159,7 @@ header {
 }
 
 .content-container h4 {
-    color: #a78bfa;
+    color: var(--heading-h4);
     font-size: 1.2em;
     font-weight: 600;
     margin-top: 20px;
@@ -133,7 +167,7 @@ header {
 }
 
 .content-container p {
-    color: #e2e8f0;
+    color: var(--text-primary);
     margin-bottom: 15px;
     text-align: justify;
 }
@@ -141,7 +175,7 @@ header {
 .content-container ul, .content-container ol {
     margin-left: 25px;
     margin-bottom: 15px;
-    color: #e2e8f0;
+    color: var(--text-primary);
 }
 
 .content-container li {
@@ -150,7 +184,7 @@ header {
 }
 
 .content-container a {
-    color: #60a5fa;
+    color: var(--link-color);
     text-decoration: none;
     font-weight: 500;
     border-bottom: 1px solid transparent;
@@ -158,35 +192,35 @@ header {
 }
 
 .content-container a:hover {
-    color: #00d4ff;
-    border-bottom-color: #00d4ff;
+    color: var(--accent);
+    border-bottom-color: var(--accent);
 }
 
 .content-container table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    background: rgba(26, 35, 50, 0.6);
+    background: var(--bg-primary-60);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .content-container table thead {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(138, 43, 226, 0.3));
-    color: #e2e8f0;
+    background: var(--table-header-bg);
+    color: var(--text-primary);
 }
 
 .content-container table thead th {
-    border: 1px solid rgba(0, 212, 255, 0.3);
+    border: 1px solid var(--accent-30);
 }
 
 .content-container table th {
     padding: 12px 15px;
     text-align: left;
     font-weight: 600;
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    color: #e2e8f0;
+    border: 1px solid var(--accent-20);
+    color: var(--text-primary);
 }
 
 .content-container table th[colspan] {
@@ -195,20 +229,20 @@ header {
 
 .content-container table td {
     padding: 12px 15px;
-    border: 1px solid rgba(0, 212, 255, 0.1);
-    color: #e2e8f0;
+    border: 1px solid var(--accent-10);
+    color: var(--text-primary);
 }
 
 .content-container table tr:hover {
-    background: rgba(0, 212, 255, 0.05);
+    background: var(--accent-5);
 }
 
 .content-container code {
-    background: rgba(0, 212, 255, 0.1);
+    background: var(--accent-10);
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
-    color: #00d4ff;
+    color: var(--accent);
     font-size: 0.9em;
 }
 
@@ -218,7 +252,7 @@ header {
     border-radius: 8px;
     overflow-x: auto;
     margin-bottom: 15px;
-    border: 1px solid rgba(0, 212, 255, 0.15);
+    border: 1px solid var(--accent-15);
 }
 
 .content-container pre code {
@@ -227,26 +261,26 @@ header {
 }
 
 .content-container blockquote {
-    border-left: 4px solid #00d4ff;
+    border-left: 4px solid var(--accent);
     padding-left: 20px;
     margin: 20px 0;
-    color: #94a3b8;
+    color: var(--text-secondary);
     font-style: italic;
 }
 
 .content-container hr {
     border: none;
-    border-top: 2px solid rgba(0, 212, 255, 0.2);
+    border-top: 2px solid var(--accent-20);
     margin: 30px 0;
 }
 
 .content-container strong {
-    color: #00d4ff;
+    color: var(--accent);
     font-weight: 600;
 }
 
 .content-container del {
-    color: #64748b;
+    color: var(--text-muted);
 }
 
 .content-container img {
@@ -257,12 +291,12 @@ header {
 
 /* Navigation Menu Styles */
 .nav-container {
-    background: rgba(26, 35, 50, 0.8);
-    border: 1px solid rgba(0, 212, 255, 0.25);
+    background: var(--bg-primary-80);
+    border: 1px solid var(--accent-25);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px var(--shadow-color);
     backdrop-filter: blur(12px);
 }
 
@@ -275,12 +309,12 @@ header {
 }
 
 .nav-title {
-    color: #00d4ff;
+    color: var(--accent);
     font-weight: 600;
     font-size: 16px;
     margin-right: 12px;
     display: inline-block;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    text-shadow: 0 0 10px var(--accent-30);
 }
 
 .nav-links {
@@ -291,8 +325,8 @@ header {
 }
 
 .nav-link {
-    background: rgba(0, 212, 255, 0.1);
-    color: #e2e8f0;
+    background: var(--accent-10);
+    color: var(--text-primary);
     padding: 6px 16px;
     border-radius: 20px;
     text-decoration: none;
@@ -300,12 +334,12 @@ header {
     font-weight: 500;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    border: 1px solid var(--accent-20);
 }
 
 .nav-link:hover {
-    background: rgba(0, 212, 255, 0.2);
-    color: #00d4ff;
+    background: var(--accent-20);
+    color: var(--accent);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -328,8 +362,8 @@ html {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background: linear-gradient(135deg, #00d4ff, #00a0ff);
-    color: #0a0e27;
+    background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+    color: var(--accent-dark);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -339,14 +373,14 @@ html {
     display: none;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    box-shadow: 0 0 20px var(--accent-40);
     transition: all 0.3s ease;
     z-index: 1000;
 }
 
 #backToTop:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+    box-shadow: 0 0 30px var(--accent-60);
 }
 
 #backToTop.show {
