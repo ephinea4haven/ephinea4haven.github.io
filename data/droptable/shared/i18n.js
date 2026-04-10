@@ -64,8 +64,8 @@ window.I18N = {
   },
   dc: {
     en: {
-      title: "Ephinea DC Drop Charts",
-      subtitle: "Dreamcast version monster drop charts (Ephinea Server)",
+      title: "PSO DC Drop Charts",
+      subtitle: "Dreamcast version monster drop charts",
       difficulty: "Difficulty",
       search: "Search",
       lang: "Lang",
@@ -75,8 +75,8 @@ window.I18N = {
       entries: "{diff} \u2014 {total} entries"
     },
     ja: {
-      title: "Ephinea DC \u30c9\u30ed\u30c3\u30d7\u30c1\u30e3\u30fc\u30c8",
-      subtitle: "\u30c9\u30ea\u30fc\u30e0\u30ad\u30e3\u30b9\u30c8\u7248\u30e2\u30f3\u30b9\u30bf\u30fc\u30c9\u30ed\u30c3\u30d7\u8868\uff08Ephinea\u30b5\u30fc\u30d0\u30fc\uff09",
+      title: "PSO DC \u30c9\u30ed\u30c3\u30d7\u30c1\u30e3\u30fc\u30c8",
+      subtitle: "\u30c9\u30ea\u30fc\u30e0\u30ad\u30e3\u30b9\u30c8\u7248\u30e2\u30f3\u30b9\u30bf\u30fc\u30c9\u30ed\u30c3\u30d7\u8868",
       difficulty: "\u96e3\u6613\u5ea6",
       search: "\u691c\u7d22",
       lang: "\u8a00\u8a9e",
@@ -86,8 +86,8 @@ window.I18N = {
       entries: "{diff} \u2014 {total} \u4ef6"
     },
     zh: {
-      title: "Ephinea DC \u6389\u843d\u8868",
-      subtitle: "Dreamcast\u7248\u602a\u7269\u6389\u843d\u56fe\u8868\uff08Ephinea\u670d\u52a1\u5668\uff09",
+      title: "PSO DC \u6389\u843d\u8868",
+      subtitle: "Dreamcast\u7248\u602a\u7269\u6389\u843d\u56fe\u8868",
       difficulty: "\u96be\u5ea6",
       search: "\u641c\u7d22",
       lang: "\u8bed\u8a00",
@@ -99,8 +99,8 @@ window.I18N = {
   },
   ngc: {
     en: {
-      title: "Ephinea NGC Drop Charts",
-      subtitle: "GameCube version monster drop charts (Ephinea Server)",
+      title: "PSO NGC Drop Charts",
+      subtitle: "GameCube version monster drop charts",
       difficulty: "Difficulty",
       episode: "Episode",
       all: "All",
@@ -112,8 +112,8 @@ window.I18N = {
       entries: "{diff} \u2014 {total} entries"
     },
     ja: {
-      title: "Ephinea NGC \u30c9\u30ed\u30c3\u30d7\u30c1\u30e3\u30fc\u30c8",
-      subtitle: "\u30b2\u30fc\u30e0\u30ad\u30e5\u30fc\u30d6\u7248\u30e2\u30f3\u30b9\u30bf\u30fc\u30c9\u30ed\u30c3\u30d7\u8868\uff08Ephinea\u30b5\u30fc\u30d0\u30fc\uff09",
+      title: "PSO NGC \u30c9\u30ed\u30c3\u30d7\u30c1\u30e3\u30fc\u30c8",
+      subtitle: "\u30b2\u30fc\u30e0\u30ad\u30e5\u30fc\u30d6\u7248\u30e2\u30f3\u30b9\u30bf\u30fc\u30c9\u30ed\u30c3\u30d7\u8868",
       difficulty: "\u96e3\u6613\u5ea6",
       episode: "\u30a8\u30d4\u30bd\u30fc\u30c9",
       all: "\u5168\u3066",
@@ -125,8 +125,8 @@ window.I18N = {
       entries: "{diff} \u2014 {total} \u4ef6"
     },
     zh: {
-      title: "Ephinea NGC \u6389\u843d\u8868",
-      subtitle: "GameCube\u7248\u602a\u7269\u6389\u843d\u56fe\u8868\uff08Ephinea\u670d\u52a1\u5668\uff09",
+      title: "PSO NGC \u6389\u843d\u8868",
+      subtitle: "GameCube\u7248\u602a\u7269\u6389\u843d\u56fe\u8868",
       difficulty: "\u96be\u5ea6",
       episode: "\u7ae0\u8282",
       all: "\u5168\u90e8",
