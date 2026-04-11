@@ -22,7 +22,7 @@
             box-shadow: none;
             background: transparent;
             margin: 10px;
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .content-container table tr:hover {
@@ -31,7 +31,7 @@
 
         .content-container table td {
             padding: 4px 6px;
-            border: 1px solid rgba(255,255,255,0.12);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             font-size: 13px;
             color: #e0e0e0;
         }
@@ -54,7 +54,7 @@
         }
 
         .td_head2 {
-            background: rgba(255,255,255,0.06) !important;
+            background: rgba(255, 255, 255, 0.06) !important;
             color: #b0c4de !important;
             font-weight: 600;
         }
@@ -62,13 +62,30 @@
         .content-container select {
             background: #2a3a4e !important;
             color: #e0e0e0 !important;
-            border: 1px solid rgba(255,255,255,0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
             padding: 3px 6px !important;
             border-radius: 3px;
             min-height: 24px;
             font-size: 13px;
             appearance: auto;
             -webkit-appearance: menulist;
+            width: auto !important;
+            max-width: none;
+            box-sizing: content-box;
+        }
+
+        .content-container #class {
+            width: 110px !important;
+        }
+
+        .content-container #lv {
+            width: 70px !important;
+        }
+
+        .content-container #armor,
+        .content-container #shield,
+        .content-container .unit {
+            width: 180px !important;
         }
 
         .content-container select option {
@@ -77,7 +94,7 @@
         }
 
         .content-container input[type="text"] {
-            border: 1px solid rgba(255,255,255,0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.4) !important;
             text-align: right;
             background: #2a3a4e !important;
             color: #e0e0e0 !important;
@@ -138,8 +155,8 @@
         }
 
         #output {
-            border: 1px solid rgba(255,255,255,0.15);
-            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 6px;
             padding: 15px;
             margin-top: 10px;
@@ -173,417 +190,447 @@
             display: none;
         }
 
-        #langToggle {
-            position: fixed;
-            top: 15px;
-            right: 20px;
-            background: rgba(0, 212, 255, 0.15);
-            color: #00d4ff;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            border-radius: 20px;
-            padding: 6px 16px;
+        header {
+            position: relative;
+        }
+
+        #langSwitch {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        #langSwitch .lang-btn {
+            background: transparent;
+            color: #6a85a0;
+            border: none;
+            padding: 6px 14px;
             cursor: pointer;
             font-size: 13px;
             font-weight: 600;
-            z-index: 1000;
-            transition: all 0.3s ease;
+            transition: color 0.25s ease, text-shadow 0.25s ease;
+            font-family: inherit;
+            letter-spacing: 0.8px;
+            position: relative;
         }
 
-        #langToggle:hover {
-            background: rgba(0, 212, 255, 0.25);
+        #langSwitch .lang-btn + .lang-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 30%;
+            bottom: 30%;
+            width: 1px;
+            background: rgba(159, 180, 200, 0.25);
+        }
+
+        #langSwitch .lang-btn:hover {
+            color: #9fd4ff;
+        }
+
+        #langSwitch .lang-btn.active {
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+        }
+
+        @media (max-width: 640px) {
+            #langSwitch {
+                position: static;
+                transform: none;
+                justify-content: center;
+                margin-top: 8px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1 id="project_title">角色属性模拟器</h1>
-    </header>
-
-    <button id="langToggle" onclick="toggleLang()">中文 / EN</button>
-    <a href="/index.html" class="back-link">← 返回首页</a>
-
-    <div class="content-container">
-<div id="main">
-    <div class="boxcontainer">
-        <table>
-            <tbody>
-            <tr>
-                <td class="td_head1" data-en="Class" data-zh="职业">Class</td>
-                <td><select id="class">
-                    <option value="-">-</option>
-                </select></td>
-            </tr>
-            </tbody>
-        </table>
-        <table>
-            <tbody>
-            <tr>
-                <td class="td_head1" data-en="LV" data-zh="等级">LV</td>
-                <td><select id="lv">
-                    <option value="-">-</option>
-                </select>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <table>
-            <tbody>
-            <tr>
-                <td class="td_head1" colspan="2" data-en="Mag" data-zh="玛古" data-has-btn="magReset">Mag <input type="button" id="magReset" value="Reset" data-en="Reset" data-zh="重置"></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="LV" data-zh="等级">LV</td>
-                <td><input type="text" id="magLV" size="4" value="5" readonly="readonly"> / 200</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="DEF" data-zh="防御">DEF</td>
-                <td><input type="text" id="magDef" size="3" maxlength="3" value="5"> × 1</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="POW" data-zh="力量">POW</td>
-                <td><input type="text" id="magPow" size="3" maxlength="3" value="0"> × 2</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="DEX" data-zh="敏捷">DEX</td>
-                <td><input type="text" id="magDex" size="3" maxlength="3" value="0"> ÷ 2</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="MIND" data-zh="精神">MIND</td>
-                <td><input type="text" id="magMind" size="3" maxlength="3" value="0"> × 2</td>
-            </tr>
-            </tbody>
-        </table>
+<header>
+    <h1 id="project_title">角色属性模拟器</h1>
+    <div id="langSwitch">
+        <button type="button" class="lang-btn" data-lang="zh">中</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="ja">日</button>
     </div>
-    <div class="boxcontainer">
-        <table>
-            <tbody>
-            <tr>
-                <td class="td_head1" colspan="3" data-en="Materials" data-zh="素材" data-has-btn="matReset">Materials <input type="button" id="matReset" value="Reset" data-en="Reset" data-zh="重置"></td>
-            </tr>
-            <tr>
-                <td class="td_head2">HP</td>
-                <td><input type="text" id="matHP" size="3" maxlength="3" value="0"></td>
-                <td><input type="text" id="matHPcur" size="4" value="0" readonly="readonly"> / <input type="text" id="matHPMax" size="3" value="0" readonly="readonly"></td>
-            </tr>
-            <tr>
-                <td class="td_head2">TP</td>
-                <td><input type="text" id="matTP" size="3" maxlength="3" value="0"></td>
-                <td><input type="text" id="matTPcur" size="4" value="0" readonly="readonly"> / <input type="text" id="matTPMax" size="3" value="0" readonly="readonly"></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Power" data-zh="力量">Power</td>
-                <td><input type="text" id="matPow" size="3" maxlength="3" value="0"></td>
-                <td rowspan="5"><input type="text" id="matTotal" size="4" value="0" readonly="readonly"> / <input type="text" id="matMax" size="3" value="0" readonly="readonly"></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Def" data-zh="防御">Def</td>
-                <td><input type="text" id="matDef" size="3" maxlength="3" value="0"></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Mind" data-zh="精神">Mind</td>
-                <td><input type="text" id="matMind" size="3" maxlength="3" value="0"></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Evade" data-zh="回避">Evade</td>
-                <td><input type="text" id="matEva" size="3" maxlength="3" value="0"></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Luck" data-zh="幸运">Luck</td>
-                <td><input type="text" id="matLck" size="3" maxlength="3" value="0"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="boxcontainer">
-        <table>
-            <tbody>
-            <tr>
-                <td class="td_head1" colspan="2" data-en="Equipments" data-zh="装备" data-has-btn="equipReset">Equipments <input type="button" id="equipReset" value="Reset" data-en="Reset" data-zh="重置"></td>
-                <td class="td_head1" data-en="Stars" data-zh="星级">Stars</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Armor" data-zh="铠甲">Armor</td>
-                <td><select id="armor">
-                    <option value="-">-</option>
-                </select></td>
-                <td id="armorstar"><span class="rare1">☆☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Shield" data-zh="盾牌">Shield</td>
-                <td><select id="shield">
-                    <option value="-">-</option>
-                </select></td>
-                <td id="shieldstar"><span class="rare1">★★★★★★★★★</span><span class="rare2">★★☆</span></td>
-            </tr>
-            </tbody>
-        </table>
-        <table>
-            <tbody>
-            <tr>
-                <td class="td_head1" colspan="2" data-en="Units" data-zh="插件" data-has-btn="unitReset">Units <input type="button" id="unitReset" value="Reset" data-en="Reset" data-zh="重置"></td>
-                <td class="td_head1" data-en="Stars" data-zh="星级">Stars</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Slot 1" data-zh="槽位 1">Slot 1</td>
-                <td><select id="unit1" class="unit">
-                    <option value="-">-</option>
-                </select></td>
-                <td id="unit1star"><span class="rare1">★★★★★★★★★</span><span class="rare2">★★☆</span></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Slot 2" data-zh="槽位 2">Slot 2</td>
-                <td><select id="unit2" class="unit">
-                    <option value="-">-</option>
-                </select></td>
-                <td id="unit2star"><span class="rare1">★★★★★★★★★</span><span class="rare2">★★☆</span></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Slot 3" data-zh="槽位 3">Slot 3</td>
-                <td><select id="unit3" class="unit">
-                    <option value="-" selected="selected">-</option>
-                </select></td>
-                <td id="unit3star"><span class="rare1">☆☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span></td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Slot 4" data-zh="槽位 4">Slot 4</td>
-                <td><select id="unit4" class="unit">
-                    <option value="-" selected="selected">-</option>
-                </select></td>
-                <td id="unit4star"><span class="rare1">☆☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span></td>
-            </tr>
-            </tbody>
-        </table>
+</header>
+
+<a href="/index.html" class="back-link">← 返回首页</a>
+
+<div class="content-container">
+    <div id="main">
+        <div class="boxcontainer">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="td_head1" data-en="Class" data-ja="クラス" data-zh="职业">职业</td>
+                    <td><select id="class">
+                        <option value="-">-</option>
+                    </select></td>
+                </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                <tr>
+                    <td class="td_head1" data-en="LV" data-ja="Lv" data-zh="等级">等级</td>
+                    <td><select id="lv">
+                        <option value="-">-</option>
+                    </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                <tr>
+                    <td class="td_head1" colspan="2" data-en="Mag" data-ja="マグ" data-zh="玛古"
+                        data-has-btn="magReset">玛古 <input type="button" id="magReset" value="重置" data-en="Reset"
+                                                            data-ja="リセット" data-zh="重置"></td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="LV" data-ja="Lv" data-zh="等级">等级</td>
+                    <td><input type="text" id="magLV" size="4" value="5" readonly="readonly"> / 200</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="DEF" data-ja="DEF" data-zh="防御">防御</td>
+                    <td><input type="text" id="magDef" size="3" maxlength="3" value="5"> × 1</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="POW" data-ja="POW" data-zh="力量">力量</td>
+                    <td><input type="text" id="magPow" size="3" maxlength="3" value="0"> × 2</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="DEX" data-ja="DEX" data-zh="敏捷">敏捷</td>
+                    <td><input type="text" id="magDex" size="3" maxlength="3" value="0"> ÷ 2</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="MIND" data-ja="MIND" data-zh="精神">精神</td>
+                    <td><input type="text" id="magMind" size="3" maxlength="3" value="0"> × 2</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="boxcontainer">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="td_head1" colspan="3" data-en="Materials" data-ja="素材" data-zh="素材"
+                        data-has-btn="matReset">素材 <input type="button" id="matReset" value="重置" data-en="Reset"
+                                                            data-ja="リセット" data-zh="重置"></td>
+                </tr>
+                <tr>
+                    <td class="td_head2">HP</td>
+                    <td><input type="text" id="matHP" size="3" maxlength="3" value="0"></td>
+                    <td><input type="text" id="matHPcur" size="4" value="0" readonly="readonly"> / <input type="text"
+                                                                                                          id="matHPMax"
+                                                                                                          size="3"
+                                                                                                          value="0"
+                                                                                                          readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td_head2">TP</td>
+                    <td><input type="text" id="matTP" size="3" maxlength="3" value="0"></td>
+                    <td><input type="text" id="matTPcur" size="4" value="0" readonly="readonly"> / <input type="text"
+                                                                                                          id="matTPMax"
+                                                                                                          size="3"
+                                                                                                          value="0"
+                                                                                                          readonly="readonly">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Power" data-ja="パワー" data-zh="力量">力量</td>
+                    <td><input type="text" id="matPow" size="3" maxlength="3" value="0"></td>
+                    <td rowspan="5"><input type="text" id="matTotal" size="4" value="0" readonly="readonly"> / <input
+                            type="text" id="matMax" size="3" value="0" readonly="readonly"></td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Def" data-ja="ディフェンス" data-zh="防御">防御</td>
+                    <td><input type="text" id="matDef" size="3" maxlength="3" value="0"></td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Mind" data-ja="マインド" data-zh="精神">精神</td>
+                    <td><input type="text" id="matMind" size="3" maxlength="3" value="0"></td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Evade" data-ja="エヴェイド" data-zh="回避">回避</td>
+                    <td><input type="text" id="matEva" size="3" maxlength="3" value="0"></td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Luck" data-ja="ラック" data-zh="幸运">幸运</td>
+                    <td><input type="text" id="matLck" size="3" maxlength="3" value="0"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="boxcontainer">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="td_head1" colspan="2" data-en="Equipments" data-ja="装備" data-zh="装备"
+                        data-has-btn="equipReset">装备 <input type="button" id="equipReset" value="重置" data-en="Reset"
+                                                              data-ja="リセット" data-zh="重置"></td>
+                    <td class="td_head1" data-en="Stars" data-ja="星" data-zh="星级">星级</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Armor" data-ja="アーマー" data-zh="铠甲">铠甲</td>
+                    <td><select id="armor">
+                        <option value="-">-</option>
+                    </select></td>
+                    <td id="armorstar"><span class="rare1">☆☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span></td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Shield" data-ja="シールド" data-zh="盾牌">盾牌</td>
+                    <td><select id="shield">
+                        <option value="-">-</option>
+                    </select></td>
+                    <td id="shieldstar"><span class="rare1">★★★★★★★★★</span><span class="rare2">★★☆</span></td>
+                </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                <tr>
+                    <td class="td_head1" colspan="2" data-en="Units" data-ja="ユニット" data-zh="插件"
+                        data-has-btn="unitReset">插件 <input type="button" id="unitReset" value="重置" data-en="Reset"
+                                                             data-ja="リセット" data-zh="重置"></td>
+                    <td class="td_head1" data-en="Stars" data-ja="星" data-zh="星级">星级</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Slot 1" data-ja="スロット1" data-zh="槽位 1">槽位 1</td>
+                    <td><select id="unit1" class="unit">
+                        <option value="-">-</option>
+                    </select></td>
+                    <td id="unit1star"><span class="rare1">★★★★★★★★★</span><span class="rare2">★★☆</span></td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Slot 2" data-ja="スロット2" data-zh="槽位 2">槽位 2</td>
+                    <td><select id="unit2" class="unit">
+                        <option value="-">-</option>
+                    </select></td>
+                    <td id="unit2star"><span class="rare1">★★★★★★★★★</span><span class="rare2">★★☆</span></td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Slot 3" data-ja="スロット3" data-zh="槽位 3">槽位 3</td>
+                    <td><select id="unit3" class="unit">
+                        <option value="-" selected="selected">-</option>
+                    </select></td>
+                    <td id="unit3star"><span class="rare1">☆☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span></td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Slot 4" data-ja="スロット4" data-zh="槽位 4">槽位 4</td>
+                    <td><select id="unit4" class="unit">
+                        <option value="-" selected="selected">-</option>
+                    </select></td>
+                    <td id="unit4star"><span class="rare1">☆☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="clear"></div>
+        <div class="boxcontainer">
+            <table class="output">
+                <tbody>
+                <tr>
+                    <td class="td_head1" data-en="Status" data-ja="ステータス" data-zh="属性">属性</td>
+                    <td class="td_head1" data-en="Base" data-ja="基本" data-zh="基础">基础</td>
+                    <td class="td_head1" data-en="Mats" data-ja="素材" data-zh="素材">素材</td>
+                    <td class="td_head1" data-en="Mag" data-ja="マグ" data-zh="玛古">玛古</td>
+                    <td class="td_head1" data-en="Equips" data-ja="装備" data-zh="装备">装备</td>
+                    <td class="td_head1" data-en="Units" data-ja="ユニット" data-zh="插件">插件</td>
+                    <td class="td_head1" data-en="Current" data-ja="現在" data-zh="当前">当前</td>
+                    <td class="td_head1" data-en="Maximum" data-ja="最大" data-zh="上限">上限</td>
+                    <td class="td_head1" data-en="Cur. to Max." data-ja="現在→最大" data-zh="差值">差值</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">HP</td>
+                    <td id="baseHP">1762</td>
+                    <td id="HPbyMat">0</td>
+                    <td></td>
+                    <td></td>
+                    <td id="HPbyUnit">0</td>
+                    <td id="curHP">1762</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="td_head2">TP</td>
+                    <td id="baseTP">0</td>
+                    <td id="TPbyMat">0</td>
+                    <td></td>
+                    <td></td>
+                    <td id="TPbyUnit">0</td>
+                    <td id="curTP">0</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="td_head2">ATP</td>
+                    <td id="baseATP">1146</td>
+                    <td id="ATPbyMat">170</td>
+                    <td id="ATPbyMag">278</td>
+                    <td></td>
+                    <td id="ATPbyUnit">45</td>
+                    <td id="curATP" class="maxed">1639</td>
+                    <td id="maxATP">1639</td>
+                    <td id="diffATP">0</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">DFP</td>
+                    <td id="baseDFP">501</td>
+                    <td id="DFPbyMat">50</td>
+                    <td id="DFPbyMag">5</td>
+                    <td></td>
+                    <td id="DFPbyUnit">45</td>
+                    <td id="curDFP" class="maxed">601</td>
+                    <td id="maxDFP">601</td>
+                    <td id="diffDFP">0</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">MST</td>
+                    <td id="baseMST">0</td>
+                    <td id="MSTbyMat">0</td>
+                    <td id="MSTbyMag">0</td>
+                    <td id="MSTbyEquip">20</td>
+                    <td id="MSTbyUnit">45</td>
+                    <td id="curMST" class="maxed">0</td>
+                    <td id="maxMST">0</td>
+                    <td id="diffMST" class="exceeded2">65</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">ATA</td>
+                    <td id="baseATA">158.5 <small>(158.7)</small></td>
+                    <td></td>
+                    <td id="ATAbyMag">28</td>
+                    <td></td>
+                    <td id="ATAbyUnit">4.5</td>
+                    <td id="curATA" class="maxed">191</td>
+                    <td id="maxATA">191</td>
+                    <td id="diffATA" class="exceeded2">0 <small>(0.2)</small></td>
+                </tr>
+                <tr>
+                    <td class="td_head2">EVP</td>
+                    <td id="baseEVP">585</td>
+                    <td id="EVPbyMat">30</td>
+                    <td></td>
+                    <td></td>
+                    <td id="EVPbyUnit">45</td>
+                    <td id="curEVP" class="maxed">660</td>
+                    <td id="maxEVP">660</td>
+                    <td id="diffEVP">0</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">LCK</td>
+                    <td id="baseLCK">10</td>
+                    <td id="LCKbyMat">26</td>
+                    <td></td>
+                    <td id="LCKbyEquip">20</td>
+                    <td id="LCKbyUnit">45</td>
+                    <td id="curLCK" class="maxed">100</td>
+                    <td id="maxLCK">100</td>
+                    <td id="diffLCK" class="exceeded2">1</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="boxcontainer">
+            <table class="output">
+                <tbody>
+                <tr>
+                    <td class="td_head1" colspan="2" data-en="Resist" data-ja="耐性" data-zh="抗性">抗性</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">EFR</td>
+                    <td id="EFR">30</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">EIC</td>
+                    <td id="EIC">30</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">ETH</td>
+                    <td id="ETH">30</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">EDK</td>
+                    <td id="EDK">5</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">ELT</td>
+                    <td id="ELT">5</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="boxcontainer">
+            <table class="output">
+                <tbody>
+                <tr>
+                    <td class="td_head1" colspan="5" data-en="Misc" data-ja="その他" data-zh="其他">其他</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Non Base ATP" data-ja="ベース外ATP" data-zh="非基础ATP">非基础ATP</td>
+                    <td id="nbatp">20</td>
+                    <td rowspan="7"></td>
+                    <td class="td_head2" data-en="Cure/Poison" data-ja="毒回復" data-zh="治愈/中毒">治愈/中毒</td>
+                    <td id="curepoison">-</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Non Base ATA" data-ja="ベース外ATA" data-zh="非基础ATA">非基础ATA</td>
+                    <td id="nbata">20</td>
+                    <td class="td_head2" data-en="Cure/Paralysis" data-ja="麻痺回復" data-zh="治愈/麻痹">治愈/麻痹</td>
+                    <td id="cureparalysis">-</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Attack Speed" data-ja="攻撃速度" data-zh="攻击速度">攻击速度</td>
+                    <td id="attackspeed">40</td>
+                    <td class="td_head2" data-en="Cure/Slow" data-ja="スロー回復" data-zh="治愈/减速">治愈/减速</td>
+                    <td id="cureslow">-</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Tech Speed" data-ja="テク速度" data-zh="法术速度">法术速度</td>
+                    <td id="techspeed">-</td>
+                    <td class="td_head2" data-en="Cure/Confuse" data-ja="混乱回復" data-zh="治愈/混乱">治愈/混乱</td>
+                    <td id="cureconfuse">-</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Tech LV" data-ja="テクLv" data-zh="法术等级">法术等级</td>
+                    <td id="techlv">0</td>
+                    <td class="td_head2" data-en="Cure/Freeze" data-ja="凍結回復" data-zh="治愈/冰冻">治愈/冰冻</td>
+                    <td id="curefreeze">-</td>
+                </tr>
+                <tr>
+                    <td class="td_head2" data-en="Smartlink" data-ja="スマートリンク" data-zh="灵感之环">灵感之环</td>
+                    <td id="smartlink">-</td>
+                    <td class="td_head2" data-en="Cure/Shock" data-ja="感電回復" data-zh="治愈/感电">治愈/感电</td>
+                    <td id="cureshock">-</td>
+                </tr>
+                <tr>
+                    <td class="td_head2">V50?</td>
+                    <td id="v50x">-</td>
+                    <td class="td_head2" data-en="Trap Vision" data-ja="トラップ視認" data-zh="陷阱透视">陷阱透视</td>
+                    <td id="trapvision">-</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="clear"></div>
     </div>
     <div class="clear"></div>
-    <div class="boxcontainer">
-        <table class="output">
-            <tbody>
-            <tr>
-                <td class="td_head1" data-en="Status" data-zh="属性">Status</td>
-                <td class="td_head1" data-en="Base" data-zh="基础">Base</td>
-                <td class="td_head1" data-en="Mats" data-zh="素材">Mats</td>
-                <td class="td_head1" data-en="Mag" data-zh="玛古">Mag</td>
-                <td class="td_head1" data-en="Equips" data-zh="装备">Equips</td>
-                <td class="td_head1" data-en="Units" data-zh="插件">Units</td>
-                <td class="td_head1" data-en="Current" data-zh="当前">Current</td>
-                <td class="td_head1" data-en="Maximum" data-zh="上限">Maximum</td>
-                <td class="td_head1" data-en="Cur. to Max." data-zh="差值">Cur. to Max.</td>
-            </tr>
-            <tr>
-                <td class="td_head2">HP</td>
-                <td id="baseHP">1762</td>
-                <td id="HPbyMat">0</td>
-                <td></td>
-                <td></td>
-                <td id="HPbyUnit">0</td>
-                <td id="curHP">1762</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="td_head2">TP</td>
-                <td id="baseTP">0</td>
-                <td id="TPbyMat">0</td>
-                <td></td>
-                <td></td>
-                <td id="TPbyUnit">0</td>
-                <td id="curTP">0</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="td_head2">ATP</td>
-                <td id="baseATP">1146</td>
-                <td id="ATPbyMat">170</td>
-                <td id="ATPbyMag">278</td>
-                <td></td>
-                <td id="ATPbyUnit">45</td>
-                <td id="curATP" class="maxed">1639</td>
-                <td id="maxATP">1639</td>
-                <td id="diffATP">0</td>
-            </tr>
-            <tr>
-                <td class="td_head2">DFP</td>
-                <td id="baseDFP">501</td>
-                <td id="DFPbyMat">50</td>
-                <td id="DFPbyMag">5</td>
-                <td></td>
-                <td id="DFPbyUnit">45</td>
-                <td id="curDFP" class="maxed">601</td>
-                <td id="maxDFP">601</td>
-                <td id="diffDFP">0</td>
-            </tr>
-            <tr>
-                <td class="td_head2">MST</td>
-                <td id="baseMST">0</td>
-                <td id="MSTbyMat">0</td>
-                <td id="MSTbyMag">0</td>
-                <td id="MSTbyEquip">20</td>
-                <td id="MSTbyUnit">45</td>
-                <td id="curMST" class="maxed">0</td>
-                <td id="maxMST">0</td>
-                <td id="diffMST" class="exceeded2">65</td>
-            </tr>
-            <tr>
-                <td class="td_head2">ATA</td>
-                <td id="baseATA">158.5 <small>(158.7)</small></td>
-                <td></td>
-                <td id="ATAbyMag">28</td>
-                <td></td>
-                <td id="ATAbyUnit">4.5</td>
-                <td id="curATA" class="maxed">191</td>
-                <td id="maxATA">191</td>
-                <td id="diffATA" class="exceeded2">0 <small>(0.2)</small></td>
-            </tr>
-            <tr>
-                <td class="td_head2">EVP</td>
-                <td id="baseEVP">585</td>
-                <td id="EVPbyMat">30</td>
-                <td></td>
-                <td></td>
-                <td id="EVPbyUnit">45</td>
-                <td id="curEVP" class="maxed">660</td>
-                <td id="maxEVP">660</td>
-                <td id="diffEVP">0</td>
-            </tr>
-            <tr>
-                <td class="td_head2">LCK</td>
-                <td id="baseLCK">10</td>
-                <td id="LCKbyMat">26</td>
-                <td></td>
-                <td id="LCKbyEquip">20</td>
-                <td id="LCKbyUnit">45</td>
-                <td id="curLCK" class="maxed">100</td>
-                <td id="maxLCK">100</td>
-                <td id="diffLCK" class="exceeded2">1</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="boxcontainer">
-        <table class="output">
-            <tbody>
-            <tr>
-                <td class="td_head1" colspan="2" data-en="Resist" data-zh="抗性">Resist</td>
-            </tr>
-            <tr>
-                <td class="td_head2">EFR</td>
-                <td id="EFR">30</td>
-            </tr>
-            <tr>
-                <td class="td_head2">EIC</td>
-                <td id="EIC">30</td>
-            </tr>
-            <tr>
-                <td class="td_head2">ETH</td>
-                <td id="ETH">30</td>
-            </tr>
-            <tr>
-                <td class="td_head2">EDK</td>
-                <td id="EDK">5</td>
-            </tr>
-            <tr>
-                <td class="td_head2">ELT</td>
-                <td id="ELT">5</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="boxcontainer">
-        <table class="output">
-            <tbody>
-            <tr>
-                <td class="td_head1" colspan="5" data-en="Misc" data-zh="其他">Misc</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Non Base ATP" data-zh="非基础ATP">Non Base ATP</td>
-                <td id="nbatp">20</td>
-                <td rowspan="7"></td>
-                <td class="td_head2" data-en="Cure/Posion" data-zh="治愈/中毒">Cure/Posion</td>
-                <td id="curepoison">-</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Non Base ATA" data-zh="非基础ATA">Non Base ATA</td>
-                <td id="nbata">20</td>
-                <td class="td_head2" data-en="Cure/Paralysis" data-zh="治愈/麻痹">Cure/Paralysis</td>
-                <td id="cureparalysis">-</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Attack Speed" data-zh="攻击速度">Attack Speed</td>
-                <td id="attackspeed">40</td>
-                <td class="td_head2" data-en="Cure/Slow" data-zh="治愈/减速">Cure/Slow</td>
-                <td id="cureslow">-</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Tech Speed" data-zh="法术速度">Tech Speed</td>
-                <td id="techspeed">-</td>
-                <td class="td_head2" data-en="Cure/Confuse" data-zh="治愈/混乱">Cure/Confuse</td>
-                <td id="cureconfuse">-</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Tech LV" data-zh="法术等级">Tech LV</td>
-                <td id="techlv">0</td>
-                <td class="td_head2" data-en="Cure/Freeze" data-zh="治愈/冰冻">Cure/Freeze</td>
-                <td id="curefreeze">-</td>
-            </tr>
-            <tr>
-                <td class="td_head2" data-en="Smartlink" data-zh="灵感之环">Smartlink</td>
-                <td id="smartlink">-</td>
-                <td class="td_head2" data-en="Cure/Shock" data-zh="治愈/感电">Cure/Shock</td>
-                <td id="cureshock">-</td>
-            </tr>
-            <tr>
-                <td class="td_head2">V50?</td>
-                <td id="v50x">-</td>
-                <td class="td_head2" data-en="Trap Vision" data-zh="陷阱透视">Trap Vision</td>
-                <td id="trapvision">-</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    <div id="output"></div>
     <div class="clear"></div>
+
 </div>
-<div class="clear"></div>
-<div id="output"></div>
-<div class="clear"></div>
-
-    </div>
 
 <script src="/assets/js/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/itemdata.js"></script>
 <script type="text/javascript" src="/assets/js/chardata.js"></script>
 <script type="text/javascript" src="/assets/js/simulator.js"></script>
-<script>
-var currentLang = 'en';
-function toggleLang() {
-    currentLang = currentLang === 'en' ? 'zh' : 'en';
-    document.querySelectorAll('[data-en][data-zh]').forEach(function(el) {
-        if (el.tagName === 'INPUT') {
-            el.value = el.getAttribute('data-' + currentLang);
-        } else {
-            var btn = el.querySelector('input[type="button"]');
-            if (btn) {
-                el.firstChild.textContent = el.getAttribute('data-' + currentLang) + ' ';
-                if (btn.hasAttribute('data-' + currentLang)) {
-                    btn.value = btn.getAttribute('data-' + currentLang);
-                }
-            } else {
-                el.textContent = el.getAttribute('data-' + currentLang);
-            }
-        }
-    });
-    var title = document.getElementById('project_title');
-    var backLink = document.querySelector('.back-link');
-    if (currentLang === 'zh') {
-        title.textContent = '角色属性模拟器';
-        backLink.textContent = '← 返回首页';
-    } else {
-        title.textContent = 'Status Simulator';
-        backLink.textContent = '← Back to Home';
-    }
-}
-</script>
+<script type="text/javascript" src="/assets/js/i18n/status_i18n.js"></script>
 </body>
 
 </html>
