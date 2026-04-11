@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="PSOBB ItemPMT 物品主参数表详解">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ItemPMT 物品主参数表 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .content-container h2 {
+            color: #00d4ff;
+            margin: 32px 0 12px;
+            padding-top: 12px;
+            font-size: 22px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.25);
+            padding-bottom: 6px;
+        }
+        .content-container h3 {
+            color: #8ab4d6;
+            margin: 20px 0 10px;
+            font-size: 17px;
+        }
+        .content-container .card {
+            background: rgba(0, 212, 255, 0.06);
+            border-left: 3px solid rgba(0, 212, 255, 0.5);
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 12px 0;
+            color: #cbd5e1;
+        }
+        .content-container code {
+            background: rgba(0, 0, 0, 0.35);
+            color: #88e5ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        .content-container ul { margin: 10px 0 10px 22px; }
+        .content-container li { margin: 4px 0; }
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .content-container table th,
+        .content-container table td {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 7px 10px;
+            text-align: left;
+        }
+        .content-container table th {
+            background: rgba(0, 212, 255, 0.14);
+            color: #00d4ff;
+            font-weight: 700;
+        }
+        .content-container table tr:hover td { background: rgba(0, 212, 255, 0.05); }
+        .content-container .nav-item-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 10px 0 20px;
+        }
+        .content-container .nav-item-links a {
+            padding: 6px 14px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .content-container .nav-item-links a:hover {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1 id="project_title">ItemPMT 物品主参数表</h1>
+</header>
+
+<a href="/index.html" class="back-link">← 返回首页</a>
+
+<div class="content-container">
+    <p class="card">
+        <strong>ItemPMT</strong>（Item Parameter Table）是 PSO 客户端和服务器共享的「物品属性表」。
+        游戏里每一件武器、铠甲、盾牌、插件、mag、消耗品的<strong>基础属性、名称索引、装备要求、描述文本、外观模型</strong>全部定义在这张表里。
+        掉落分布（ItemPT）和稀有池（ItemRT）都不管「物品长什么样」，它们只管「什么时候、以什么概率掉」，最终要去 ItemPMT 里查这件物品的所有详细参数。
+    </p>
+
+    <div class="nav-item-links">
+        <a href="#overview">总览</a>
+        <a href="#format">文件与版本</a>
+        <a href="#weapon">武器</a>
+        <a href="#armor-shield">铠甲 &amp; 盾牌</a>
+        <a href="#unit">插件</a>
+        <a href="#mag">Mag</a>
+        <a href="#tool">消耗品</a>
+        <a href="#special">特殊能力表</a>
+        <a href="#other-tables">其他子表</a>
+        <a href="#struct">数据结构</a>
+    </div>
+
+    <h2 id="overview">总览</h2>
+    <p>ItemPMT 可以理解为游戏的「物品字典」。任意物品 ID 拿到手，去 ItemPMT 查一次就能得到：</p>
+    <ul>
+        <li>物品的显示名称（对应文本档 TextEnglish/TextJapanese 里的名字索引）</li>
+        <li>外观模型（Model）和贴图（Texture）</li>
+        <li>物品类别（武器 / 铠甲 / 盾牌 / 插件 / mag / 消耗品 / 技能 / 光子微晶 …）</li>
+        <li>基础数值（武器 ATP/ATA、铠甲 DFP/EVP、盾牌抗性 …）</li>
+        <li>装备限制（职业 flag、所需 ATP/MST/ATA、所需等级）</li>
+        <li>磨石上限、稀有度（星级）、是否可以在店铺出售、基础售价</li>
+    </ul>
+    <p>每次客户端把物品读到存档、每次玩家查看物品详情、每次服务器判定能否装备，都依赖这张表。</p>
+
+    <h2 id="format">文件与版本</h2>
+    <p>ItemPMT 是一个用 PRS 压缩封装的二进制文件，不同版本的 PSO 各有一份：</p>
+    <ul>
+        <li><code>ItemPMT-bb-v4.prs</code> — PSOBB 正式服 / Ephinea 使用</li>
+        <li><code>ItemPMT-gc-v3.prs</code> — GameCube 版（Episode I &amp; II）</li>
+        <li><code>ItemPMT-gc-ep3.prs</code> — Episode III 卡片版</li>
+        <li><code>ItemPMT-xb-v3.prs</code> — Xbox 版</li>
+        <li><code>ItemPMT-pc-v2.prs</code> — PC v2 版</li>
+        <li><code>ItemPMT-dc-v1.prs</code> / <code>ItemPMT-dc-v2.prs</code> — Dreamcast v1/v2 版</li>
+        <li>还有若干 NTE（Network Trial Edition）和 11/2000 prototype 版本</li>
+    </ul>
+
+    <h2 id="weapon">武器（Weapon）</h2>
+    <p>武器条目保存的字段大致分三类：</p>
+    <h3>分类字段</h3>
+    <ul>
+        <li><strong>ID</strong>：物品唯一编号，同时决定文本档里的名称索引</li>
+        <li><strong>Model / Texture</strong>：3D 模型与贴图</li>
+        <li><strong>Type / Subtype</strong>：「剑类 × Saber/Brand/Buster/…」的父类 + 子类编号</li>
+        <li><strong>Class Flags</strong>：能装备该武器的职业组合（HUmar/HUnewearl/HUcast/… 12 职业各一 bit）</li>
+    </ul>
+    <h3>战斗相关字段</h3>
+    <ul>
+        <li><strong>ATP Min / ATP Max</strong>：武器的基础攻击力范围（实际值会在此区间随机）</li>
+        <li><strong>ATA</strong>：命中率加成</li>
+        <li><strong>Max Grind</strong>：可磨石的上限（<code>+9</code> 就是 9）</li>
+        <li><strong>Photon</strong>：光子类型（决定是近战 / 远程 / 技能武器，以及连击模式）</li>
+        <li><strong>Special</strong>：默认的特殊能力编号（指向<a href="#special">特殊能力表</a>）</li>
+    </ul>
+    <h3>装备限制字段</h3>
+    <ul>
+        <li><strong>ATP Required</strong>：装备所需的最低 ATP</li>
+        <li><strong>MST Required</strong>：装备所需的最低 MST</li>
+        <li><strong>ATA Required</strong>：装备所需的最低 ATA</li>
+    </ul>
+
+    <h2 id="armor-shield">铠甲（Armor / Frame）与盾牌（Shield / Barrier）</h2>
+    <p>铠甲和盾牌使用相同的数据结构，只是分别存放在两张不同的子表里。每个条目包含：</p>
+    <ul>
+        <li><strong>DFP / EVP</strong>：基础防御力和回避力（武器同理，也有一个 <code>min–max</code> 范围，实际装备时随机）</li>
+        <li><strong>Class Flags</strong>：可装备的职业组合</li>
+        <li><strong>所需等级</strong>：必须达到多少级才能穿</li>
+        <li><strong>DFP 上限 / EVP 上限</strong>：通过精炼（升铠甲）能加到多少（铠甲 <code>+N</code>）</li>
+        <li><strong>插件槽数</strong>：盾牌永远为 0；铠甲为 0–4（稀有铠甲的槽数由 ItemPT 决定，不是固定的）</li>
+        <li><strong>5 种属性抗性</strong>：EFR / EIC / ETH / EDK / ELT（火/冰/雷/暗/光抗）</li>
+    </ul>
+
+    <h2 id="unit">插件（Unit）</h2>
+    <p>插件是一个相对简单的条目：</p>
+    <ul>
+        <li><strong>Class Flags</strong>：可装备的职业</li>
+        <li><strong>Stat Bonus</strong>：加什么属性、加多少（HP、TP、ATP、DFP、ATA、EVP、LCK、MST…）</li>
+        <li><strong>Plus/Minus 阈值</strong>：带有 <code>/</code> 符号的插件（如 <code>HP/Restorate</code>、<code>HP/Resurrect</code>）的触发概率或冷却值</li>
+        <li><strong>星级</strong>：决定是普通插件还是稀有插件</li>
+    </ul>
+    <p class="card">
+        某些插件是「<strong>判定型</strong>」而不是「数值型」，比如 <code>Smartlink</code>（灵感之环）、<code>V501</code>/<code>V502</code>、<code>Trap Vision</code>。
+        它们在 ItemPMT 里并没有数值字段，而是被游戏代码按 ID 硬编码识别，触发特殊效果。
+    </p>
+
+    <h2 id="mag">Mag</h2>
+    <p>Mag 的参数表是 ItemPMT 里最特别的一块。每个 Mag 条目包含：</p>
+    <ul>
+        <li><strong>Model ID</strong>：进化后的外观（取决于 DEF/POW/DEX/MIND 四维和主人的职业阵营）</li>
+        <li><strong>光子点 Cost</strong>（feed table）：吃不同道具（肉、药、流体…）会加什么属性、加多少</li>
+        <li><strong>触发 Photon Blast 的阵营组合</strong>：三个槽分别可以存哪些 PB</li>
+    </ul>
+    <p>Mag 的「喂养规则」（feed table）在 ItemPMT 里是一张巨大的表：<strong>Mag 型号 × 29 种食物</strong>，每格决定吃这个食物时 DEF/POW/DEX/MIND/SYNC/IQ 怎么变。</p>
+
+    <h2 id="tool">消耗品（Tool）</h2>
+    <p>消耗品条目最简单，基本只有：</p>
+    <ul>
+        <li><strong>ID</strong> 和<strong>名称索引</strong></li>
+        <li><strong>使用效果</strong>编号（游戏代码按 ID 处理回血、解状态、传送等具体逻辑）</li>
+        <li><strong>堆叠上限</strong>（Stack Max）：一格最多叠几个（例如药水最多 10，魂之粉最多 10，Photon Drop 最多 99）</li>
+        <li><strong>是否可出售</strong> / <strong>基础售价</strong></li>
+        <li><strong>星级</strong>：例如 Addslot（扩展插槽）虽然是消耗品但有星级</li>
+    </ul>
+    <p>魔法书（Technique Disk）虽然归在「Tool」大类，但结构不太一样：它是一个「技能编号 + 等级」的小结构，堆叠上限固定为 1。</p>
+
+    <h2 id="special">特殊能力表（Special Table）</h2>
+    <p>武器的特殊能力（Charge / Spirit / Berserk / Geist / Hell / Demon's / Arrest / Chaos / Blizzard / Burning…）
+        是一张独立的表，ItemPMT 内部用编号引用它。每个特殊能力包含：</p>
+    <ul>
+        <li><strong>名称索引</strong>（"Charge"、"Berserk" 等）</li>
+        <li><strong>星级</strong>：生成普通武器的 special 时会随机「几星」，星级决定实际分配哪个能力</li>
+        <li><strong>触发属性</strong>：发动概率、消耗（MST/HP/等）、额外伤害</li>
+    </ul>
+    <p class="card">
+        <strong>普通武器的 special 是怎么来的？</strong><br>
+        不是从 ItemPMT 直接读 Special 字段，而是由 ItemPT 根据区域生成一个「星级」（0–5 星），然后去 ItemPMT 的特殊能力表里挑一个对应星级的能力。
+        所以你在坑道捡到的 Gush 可能带 1 星的 Charge，在遗迹捡到的同型号可能带 3 星的 Berserk — 同一把武器，不同区域出来的 special 池不一样。
+    </p>
+
+    <h2 id="other-tables">其他子表</h2>
+    <p>除了上面几大类物品条目外，ItemPMT 顶层还挂着若干小一些的「辅助表」，给游戏代码在各种场景下查：</p>
+    <h3>合成 / 升级（Item Combination Table）</h3>
+    <p>存的是一组「<strong>用哪件道具 × 对哪件已装备物品 × 得到什么</strong>」的配方记录，附加一些约束条件：</p>
+    <ul>
+        <li>所需 Mag 等级、武器磨石数、角色等级、角色职业</li>
+        <li>典型用途：Photon Drop 合成 Photon Sphere；特定道具把某件武器升级成进化版本</li>
+    </ul>
+    <p class="card">
+        注意这张表<strong>不是</strong>连击表 —— PSO 的 N-N-H / N-H-H 攻击序列修正是客户端<strong>硬编码</strong>的，不在 ItemPMT 里；
+        ItemPMT 里和连击有关的只有每件武器一个字节的 <code>behavior_flags</code>，其中一个 bit 表示「此武器不能参与连击」（例如某些特殊武器同一招只能用一次）。
+    </p>
+
+    <h3>Tech Boost Table</h3>
+    <p>法杖对特定技能的伤害/等级加成。典型例子：<strong>Psycho Wand</strong> 降 Simple/Mid 攻击技能等级上限、<strong>Glide Divine</strong> 对 Grants 的加成等。武器条目里有一个 <code>tech_boost</code> 字段指向这张表。</p>
+
+    <h3>Special Data / Weapon Effect / Shield Effect</h3>
+    <ul>
+        <li><strong>Special Data Table</strong>：所有特殊能力（Charge/Berserk/Hell/Demon's…）的参数（见上一节）。</li>
+        <li><strong>Weapon Effect Table</strong>：某些武器装备时触发的被动效果（如吸 HP、属性抵抗等）。</li>
+        <li><strong>Shield Effect Table</strong>：盾牌类装备的被动效果（再生铠、部分稀有盾的额外效果）。</li>
+        <li><strong>Ranged Special Table</strong>：远程武器的特殊能力行为（某些 special 在远程武器上表现不同）。</li>
+    </ul>
+
+    <h3>Stat Boost Table</h3>
+    <p>插件条目引用的实际加成数据 —— 插件本体只存一个 boost ID，去这张表才能拿到「加哪个属性、加几点」。</p>
+
+    <h3>Max Tech Level Table</h3>
+    <p>每个职业每种技能的学习上限（例如 FO 系可以学到 Lv30 Rafoie，而 HU 系只能学到 Lv15）。角色尝试使用超过上限的技能书时游戏会拒绝。</p>
+
+    <h3>Photon Color / Weapon Range / Star Value</h3>
+    <ul>
+        <li><strong>Photon Color Table</strong>：武器光子剑的刀身颜色（每种 photon 对应一个 RGB 组合）。</li>
+        <li><strong>Weapon Range Table</strong>：武器挥砍/攻击的距离判定参数。</li>
+        <li><strong>Star Value Table</strong>：把每件物品的 ID 映射到它的「星级」，显示在物品名称前面的 ☆ 数量就是查这张表。</li>
+    </ul>
+
+    <h3>Unsealable / Unwrap</h3>
+    <ul>
+        <li><strong>Unsealable Table</strong>：封印系列武器（<strong>Sealed J-Sword</strong>、<strong>Lame d'Argent</strong> 等）解封后变成哪一件武器。</li>
+        <li><strong>Unwrap Table</strong>：礼物盒（节日活动 Christmas Present / Easter Egg 等）拆开后可以得到哪些物品。</li>
+    </ul>
+
+    <h3>Sale Divisor / V1 Replacement</h3>
+    <ul>
+        <li><strong>Weapon Sale Divisor / Non-Weapon Sale Divisor</strong>：店铺卖价计算用的除数，每件物品有自己的除数。</li>
+        <li><strong>V1 Replacement Table</strong>：当 BB 客户端遇到 PSO v1 时代的老物品 ID 时，替换为 BB 对应的新物品。</li>
+    </ul>
+
+    <h2 id="struct">数据结构</h2>
+    <p>以下结构体描述的是 PSOBB (V4) 的 ItemPMT 二进制格式。其它版本（V1/V2/V3、DC/GC/XB）结构略有不同但语义一致。偏移量以 16 进制字节表示。</p>
+
+    <h3>顶层偏移表 <code>TableOffsetsV3V4</code></h3>
+    <p>ItemPMT 文件解压后的顶端就是这张表，每个字段都是一个指向子表的 4 字节偏移指针。BB 客户端启动时会读取它来定位所有其它子表。</p>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>weapon_table</td><td>u32</td><td>武器表指针 → [{count, offset → [WeaponV4]}](0xED 项)</td></tr>
+            <tr><td>0x04</td><td>armor_table</td><td>u32</td><td>铠甲/盾牌表指针（两组：armors, shields）</td></tr>
+            <tr><td>0x08</td><td>unit_table</td><td>u32</td><td>插件表指针 → [UnitV4]</td></tr>
+            <tr><td>0x0C</td><td>tool_table</td><td>u32</td><td>消耗品表指针 → [{count, offset → [ToolV4]}](0x1A 项)</td></tr>
+            <tr><td>0x10</td><td>mag_table</td><td>u32</td><td>Mag 表指针 → [MagV4]</td></tr>
+            <tr><td>0x14</td><td>v1_replacement_table</td><td>u32</td><td>PSO v1 老 ID → BB 新 ID 的替换表</td></tr>
+            <tr><td>0x18</td><td>photon_color_table</td><td>u32</td><td>光子颜色表（0x20 种，每项 0x24 字节）</td></tr>
+            <tr><td>0x1C</td><td>weapon_range_table</td><td>u32</td><td>武器射程/判定范围表</td></tr>
+            <tr><td>0x20</td><td>weapon_sale_divisor_table</td><td>u32</td><td>武器售价除数 → [float]</td></tr>
+            <tr><td>0x24</td><td>sale_divisor_table</td><td>u32</td><td>非武器售价除数</td></tr>
+            <tr><td>0x28</td><td>mag_feed_table</td><td>u32</td><td>Mag 喂食表</td></tr>
+            <tr><td>0x2C</td><td>star_value_table</td><td>u32</td><td>物品 ID → 星级 (☆ 数量)，0x330 项</td></tr>
+            <tr><td>0x30</td><td>special_data_table</td><td>u32</td><td>特殊能力定义表 → [Special]</td></tr>
+            <tr><td>0x34</td><td>weapon_effect_table</td><td>u32</td><td>武器被动效果表（每项 0x10 字节）</td></tr>
+            <tr><td>0x38</td><td>stat_boost_table</td><td>u32</td><td>插件加成数据 → [StatBoost]</td></tr>
+            <tr><td>0x3C</td><td>shield_effect_table</td><td>u32</td><td>盾牌被动效果表（每项 8 字节）</td></tr>
+            <tr><td>0x40</td><td>max_tech_level_table</td><td>u32</td><td>每职业每技能的学习上限</td></tr>
+            <tr><td>0x44</td><td>combination_table</td><td>u32</td><td>合成/升级配方 → [ItemCombination]</td></tr>
+            <tr><td>0x48</td><td>unknown_a1</td><td>u32</td><td>未解析</td></tr>
+            <tr><td>0x4C</td><td>tech_boost_table</td><td>u32</td><td>法杖对技能的加成 → [TechniqueBoost × 3]</td></tr>
+            <tr><td>0x50</td><td>unwrap_table</td><td>u32</td><td>礼物盒拆包结果</td></tr>
+            <tr><td>0x54</td><td>unsealable_table</td><td>u32</td><td>封印武器解封结果</td></tr>
+            <tr><td>0x58</td><td>ranged_special_table</td><td>u32</td><td>远程武器的特殊能力行为</td></tr>
+        </tbody>
+    </table>
+
+    <h3>物品基础结构 <code>ItemBaseV4</code></h3>
+    <p>所有具体物品条目（武器/铠甲/插件/Mag/消耗品）的前 12 字节都是这张共用基础头部：</p>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>id</td><td>u32</td><td>物品 ID（同时也是名称文本档里的字符串索引）</td></tr>
+            <tr><td>0x04</td><td>type</td><td>u16</td><td>模型编号（对应客户端 .nj 模型 ID）</td></tr>
+            <tr><td>0x06</td><td>skin</td><td>u16</td><td>贴图编号</td></tr>
+            <tr><td>0x08</td><td>team_points</td><td>u32</td><td>队伍点数价格（团战相关）</td></tr>
+        </tbody>
+    </table>
+
+    <h3>武器 <code>WeaponV4</code>（0x2C 字节）</h3>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>基础头部（0x0C 字节）</td></tr>
+            <tr><td>0x0C</td><td>class_flags</td><td>u16</td><td>12 职业可装备位图（默认 0x00FF 全开）</td></tr>
+            <tr><td>0x0E</td><td>atp_min</td><td>u16</td><td>基础攻击力下限</td></tr>
+            <tr><td>0x10</td><td>atp_max</td><td>u16</td><td>基础攻击力上限（实际值在 min–max 之间随机）</td></tr>
+            <tr><td>0x12</td><td>atp_required</td><td>u16</td><td>装备所需最低 ATP</td></tr>
+            <tr><td>0x14</td><td>mst_required</td><td>u16</td><td>装备所需最低 MST</td></tr>
+            <tr><td>0x16</td><td>ata_required</td><td>u16</td><td>装备所需最低 ATA</td></tr>
+            <tr><td>0x18</td><td>mst</td><td>u16</td><td>武器自带的 MST 加成</td></tr>
+            <tr><td>0x1A</td><td>max_grind</td><td>u8</td><td>磨石上限（<code>+9</code> 就是 9）</td></tr>
+            <tr><td>0x1B</td><td>photon</td><td>u8</td><td>光子类型（决定近战/远程/技能系）</td></tr>
+            <tr><td>0x1C</td><td>special</td><td>u8</td><td>默认特殊能力编号（索引 special_data_table）</td></tr>
+            <tr><td>0x1D</td><td>ata</td><td>u8</td><td>命中加成</td></tr>
+            <tr><td>0x1E</td><td>stat_boost_entry_index</td><td>u8</td><td>指向 stat_boost_table 的索引</td></tr>
+            <tr><td>0x1F</td><td>projectile</td><td>u8</td><td>远程武器的投射物 ID</td></tr>
+            <tr><td>0x20</td><td>trail1_x / y</td><td>i8×2</td><td>武器光迹起点偏移</td></tr>
+            <tr><td>0x22</td><td>trail2_x / y</td><td>i8×2</td><td>武器光迹终点偏移</td></tr>
+            <tr><td>0x24</td><td>color</td><td>i8</td><td>颜色索引（进入 photon_color_table）</td></tr>
+            <tr><td>0x25</td><td>unknown_a1</td><td>u8×3</td><td>未解析</td></tr>
+            <tr><td>0x2A</td><td>tech_boost</td><td>u8</td><td>技能加成索引（进入 tech_boost_table）</td></tr>
+            <tr><td>0x2B</td><td>behavior_flags</td><td>u8</td><td>行为位：<code>0x01</code> 禁止连击 / <code>0x08</code> 不能带属性</td></tr>
+        </tbody>
+    </table>
+
+    <h3>铠甲 &amp; 盾牌 <code>ArmorOrShieldV4</code>（0x20 字节）</h3>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>基础头部</td></tr>
+            <tr><td>0x0C</td><td>dfp</td><td>u16</td><td>基础防御力</td></tr>
+            <tr><td>0x0E</td><td>evp</td><td>u16</td><td>基础回避力</td></tr>
+            <tr><td>0x10</td><td>block_particle</td><td>u8</td><td>格挡粒子特效 ID</td></tr>
+            <tr><td>0x11</td><td>block_effect</td><td>u8</td><td>格挡效果 ID</td></tr>
+            <tr><td>0x12</td><td>class_flags</td><td>u16</td><td>可装备职业位图</td></tr>
+            <tr><td>0x14</td><td>required_level</td><td>u8</td><td>所需等级</td></tr>
+            <tr><td>0x15</td><td>efr</td><td>u8</td><td>火抗</td></tr>
+            <tr><td>0x16</td><td>eth</td><td>u8</td><td>雷抗</td></tr>
+            <tr><td>0x17</td><td>eic</td><td>u8</td><td>冰抗</td></tr>
+            <tr><td>0x18</td><td>edk</td><td>u8</td><td>暗抗</td></tr>
+            <tr><td>0x19</td><td>elt</td><td>u8</td><td>光抗</td></tr>
+            <tr><td>0x1A</td><td>dfp_range</td><td>u8</td><td>精炼 DFP 上限（+N 能加的最大值）</td></tr>
+            <tr><td>0x1B</td><td>evp_range</td><td>u8</td><td>精炼 EVP 上限</td></tr>
+            <tr><td>0x1C</td><td>stat_boost_entry_index</td><td>u8</td><td>stat_boost_table 索引</td></tr>
+            <tr><td>0x1D</td><td>tech_boost</td><td>u8</td><td>技能加成（用于 Psycho Wand 类的铠甲配对）</td></tr>
+            <tr><td>0x1E</td><td>flags_type</td><td>u8</td><td>行为标志（铠甲 0x01 / 盾牌 0x01 / 0x02 / 0x03 等）</td></tr>
+        </tbody>
+    </table>
+
+    <h3>插件 <code>UnitV4</code>（0x14 字节）</h3>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>基础头部</td></tr>
+            <tr><td>0x0C</td><td>stat</td><td>u16</td><td>主 stat 类型（对应 StatBoost 的 01–0F 编码，如 01=ATP）</td></tr>
+            <tr><td>0x0E</td><td>stat_amount</td><td>u16</td><td>主 stat 加成数值</td></tr>
+            <tr><td>0x10</td><td>modifier_amount</td><td>i16</td><td>触发型插件的阈值或冷却（如 HP/Restorate）</td></tr>
+            <tr><td>0x12</td><td>unused</td><td>u8×2</td><td>填充</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Mag <code>MagV4</code>（0x1C 字节）</h3>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>基础头部</td></tr>
+            <tr><td>0x0C</td><td>feed_table</td><td>u16</td><td>喂食反应表索引（进入 mag_feed_table）</td></tr>
+            <tr><td>0x0E</td><td>photon_blast</td><td>u8</td><td>默认 Photon Blast ID</td></tr>
+            <tr><td>0x0F</td><td>activation</td><td>u8</td><td>事件触发基础概率</td></tr>
+            <tr><td>0x10</td><td>on_pb_full</td><td>u8</td><td>PB 满时触发的事件 ID</td></tr>
+            <tr><td>0x11</td><td>on_low_hp</td><td>u8</td><td>低 HP 时触发的事件 ID</td></tr>
+            <tr><td>0x12</td><td>on_death</td><td>u8</td><td>死亡时触发的事件 ID</td></tr>
+            <tr><td>0x13</td><td>on_boss</td><td>u8</td><td>进入 BOSS 房时触发的事件 ID</td></tr>
+            <tr><td>0x14</td><td>on_pb_full_flag</td><td>u8</td><td>0–4 决定上面概率的计算方式（和 synchro 结合）</td></tr>
+            <tr><td>0x15</td><td>on_low_hp_flag</td><td>u8</td><td>同上</td></tr>
+            <tr><td>0x16</td><td>on_death_flag</td><td>u8</td><td>同上</td></tr>
+            <tr><td>0x17</td><td>on_boss_flag</td><td>u8</td><td>同上</td></tr>
+            <tr><td>0x18</td><td>class_flags</td><td>u16</td><td>可装备职业位图</td></tr>
+            <tr><td>0x1A</td><td>unused</td><td>u8×2</td><td>填充</td></tr>
+        </tbody>
+    </table>
+    <p class="card">
+        Mag 事件触发概率计算：先根据 synchro 值算出 <code>step_synchro</code>（0/15/25/30/35…分档），然后按 flag 值决定实际概率 ——
+        <code>flag=0</code> 取 activation、<code>flag=1</code> 取 activation+step_synchro、<code>flag=2</code> 取 step_synchro…
+    </p>
+
+    <h3>消耗品 <code>ToolV4</code>（0x18 字节）</h3>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>基础头部</td></tr>
+            <tr><td>0x0C</td><td>amount</td><td>u16</td><td>数量/效果值（对 mate 类是回血量，对技能书是技能等级）</td></tr>
+            <tr><td>0x0E</td><td>tech</td><td>u16</td><td>技能类 tool 的技能编号</td></tr>
+            <tr><td>0x10</td><td>cost</td><td>i32</td><td>商店价格</td></tr>
+            <tr><td>0x14</td><td>item_flags</td><td>u32</td><td>位标志：<code>0x01</code> 可使用 / <code>0x08</code> Android 可用 / <code>0x10</code> 市镇可用 / <code>0x20</code> BOSS 房可用 / <code>0x40</code> 挑战模式可用 / <code>0x80</code> 稀有</td></tr>
+        </tbody>
+    </table>
+
+    <h3>特殊能力 <code>Special</code>（4 字节）</h3>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>type</td><td>u16</td><td>能力类型编号（Charge / Spirit / Berserk / Hell…）</td></tr>
+            <tr><td>0x02</td><td>amount</td><td>u16</td><td>能力强度值（发动概率、额外伤害等）</td></tr>
+        </tbody>
+    </table>
+
+    <h3>属性加成 <code>StatBoost</code>（6 字节）</h3>
+    <p>插件和武器/铠甲都通过 <code>stat_boost_entry_index</code> 引用本表的一条记录。每条记录最多能同时加两项属性（但 DC 11/2000 之后 Sega 把循环改成只遍历一项，所以实际只第一项生效）。</p>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>stats[0..1]</td><td>u8×2</td><td>两个 stat 类型编号（见下）</td></tr>
+            <tr><td>0x02</td><td>amounts[0..1]</td><td>u16×2</td><td>对应的加成数值</td></tr>
+        </tbody>
+    </table>
+    <p>Stat 类型编号：</p>
+    <table>
+        <thead><tr><th>值</th><th>含义</th><th>值</th><th>含义</th></tr></thead>
+        <tbody>
+            <tr><td>0x01</td><td>ATP+</td><td>0x09</td><td>ATP−</td></tr>
+            <tr><td>0x02</td><td>ATA+</td><td>0x0A</td><td>ATA−</td></tr>
+            <tr><td>0x03</td><td>EVP+</td><td>0x0B</td><td>EVP−</td></tr>
+            <tr><td>0x04</td><td>DFP+</td><td>0x0C</td><td>DFP−</td></tr>
+            <tr><td>0x05</td><td>MST+</td><td>0x0D</td><td>MST−</td></tr>
+            <tr><td>0x06</td><td>HP+</td><td>0x0E</td><td>HP−</td></tr>
+            <tr><td>0x07</td><td>LCK+</td><td>0x0F</td><td>LCK−</td></tr>
+            <tr><td>0x08</td><td>所有 +（HP 除外）</td><td>0x10</td><td>所有 −（HP 除外）</td></tr>
+        </tbody>
+    </table>
+
+    <h3>合成配方 <code>ItemCombination</code>（0x10 字节）</h3>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>used_item</td><td>u8×3</td><td>使用的道具 ID（data1[0..2]）</td></tr>
+            <tr><td>0x03</td><td>equipped_item</td><td>u8×3</td><td>已装备的目标物品 ID</td></tr>
+            <tr><td>0x06</td><td>result_item</td><td>u8×3</td><td>合成结果物品 ID</td></tr>
+            <tr><td>0x09</td><td>mag_level</td><td>u8</td><td>所需 Mag 总等级</td></tr>
+            <tr><td>0x0A</td><td>grind</td><td>u8</td><td>目标武器所需磨石数</td></tr>
+            <tr><td>0x0B</td><td>level</td><td>u8</td><td>所需角色等级</td></tr>
+            <tr><td>0x0C</td><td>char_class</td><td>u8</td><td>职业限制</td></tr>
+            <tr><td>0x0D</td><td>unused</td><td>u8×3</td><td>填充</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Mag 喂食结果 <code>MagFeedResult</code>（8 字节）</h3>
+    <p>喂食表按「Mag 型号 × 食物种类（11 种）」组织，每个格子是一条 MagFeedResult：</p>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>def</td><td>i8</td><td>DEF 增减</td></tr>
+            <tr><td>0x01</td><td>pow</td><td>i8</td><td>POW 增减</td></tr>
+            <tr><td>0x02</td><td>dex</td><td>i8</td><td>DEX 增减</td></tr>
+            <tr><td>0x03</td><td>mind</td><td>i8</td><td>MIND 增减</td></tr>
+            <tr><td>0x04</td><td>iq</td><td>i8</td><td>IQ 增减</td></tr>
+            <tr><td>0x05</td><td>synchro</td><td>i8</td><td>同调率增减</td></tr>
+            <tr><td>0x06</td><td>unused</td><td>u8×2</td><td>填充</td></tr>
+        </tbody>
+    </table>
+
+    <h2>相关页面</h2>
+    <ul>
+        <li><a href="/data/itempt.html">ItemPT — 普通掉落规则</a>：掉什么物品、什么 bonus、什么 special。</li>
+        <li><a href="/data/itemrt.html">ItemRT — 稀有掉落表</a>：Rare 掉落的概率和物品池。</li>
+        <li><a href="/data/bb_items.html">物品代码表</a>：/makeitem 命令完整参考。</li>
+        <li><a href="/data/weapon_special_reduction.html">武器特殊攻击修正</a>：特殊能力在不同武器上的修正。</li>
+    </ul>
+</div>
+
+</body>
+</html>

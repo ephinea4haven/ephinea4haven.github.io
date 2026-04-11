@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="PSOBB 网络协议命令参考 — Protocol / Subcommand / Chat Command">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>协议命令参考 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .content-container { max-width: 1400px; }
+
+        .proto-layout {
+            display: grid;
+            grid-template-columns: 240px minmax(0, 1fr);
+            gap: 32px;
+        }
+
+        #toc {
+            position: sticky;
+            top: 20px;
+            align-self: start;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            padding: 16px 12px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        #toc h3 {
+            margin: 0 0 10px;
+            color: #00d4ff;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        #toc .toc-tab {
+            display: block;
+            padding: 8px 10px;
+            margin: 4px 0;
+            color: #cbd5e1;
+            text-decoration: none;
+            border-radius: 5px;
+            border-left: 3px solid transparent;
+            transition: all 0.15s ease;
+            font-weight: 600;
+        }
+
+        #toc .toc-tab:hover {
+            background: rgba(0, 212, 255, 0.08);
+            color: #00d4ff;
+        }
+
+        #toc .toc-tab.active {
+            background: rgba(0, 212, 255, 0.15);
+            color: #00d4ff;
+            border-left-color: #00d4ff;
+        }
+
+        #toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 14px 10px;
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        #toc li { margin: 0; }
+
+        #toc ul a {
+            display: block;
+            padding: 4px 10px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 12px;
+            line-height: 1.4;
+            border-left: 2px solid transparent;
+            transition: all 0.15s ease;
+        }
+
+        #toc ul a:hover {
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        #toc ul a.active {
+            color: #00d4ff;
+            border-left-color: #00d4ff;
+            background: rgba(0, 212, 255, 0.08);
+        }
+
+        #proto-content {
+            min-width: 0;
+            line-height: 1.7;
+        }
+
+        #proto-content section { display: none; }
+        #proto-content section.active { display: block; }
+
+        #proto-content h1 {
+            color: #00d4ff;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.25);
+            padding-bottom: 8px;
+            margin: 0 0 20px;
+        }
+
+        #proto-content h2 {
+            color: #00d4ff;
+            margin: 32px 0 12px;
+            padding-top: 12px;
+            scroll-margin-top: 20px;
+            font-size: 22px;
+        }
+
+        #proto-content h3 {
+            color: #8ab4d6;
+            margin: 24px 0 10px;
+            scroll-margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #proto-content h4 {
+            color: #9fb4c8;
+            margin: 18px 0 8px;
+            font-size: 15px;
+        }
+
+        #proto-content p { margin: 10px 0; color: #e2e8f0; }
+
+        #proto-content ul, #proto-content ol {
+            margin: 10px 0 10px 22px;
+            color: #d0d8e0;
+        }
+
+        #proto-content li { margin: 4px 0; }
+
+        #proto-content strong { color: #ffd580; }
+
+        #proto-content code {
+            background: rgba(0, 0, 0, 0.35);
+            color: #88e5ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+        }
+
+        #proto-content pre {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(0, 212, 255, 0.18);
+            border-radius: 6px;
+            padding: 14px 16px;
+            overflow-x: auto;
+            margin: 14px 0;
+        }
+
+        #proto-content pre code {
+            background: transparent;
+            padding: 0;
+            color: #cbd5e1;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        #proto-content blockquote {
+            border-left: 3px solid #00d4ff;
+            background: rgba(0, 212, 255, 0.05);
+            padding: 10px 16px;
+            margin: 12px 0;
+            color: #cbd5e1;
+        }
+
+        #proto-content hr {
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 30px 0;
+        }
+
+        #proto-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0;
+            font-size: 13px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        #proto-content table th,
+        #proto-content table td {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 8px 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        #proto-content table th {
+            background: rgba(0, 212, 255, 0.14);
+            color: #00d4ff;
+            font-weight: 700;
+            text-transform: none;
+            position: sticky;
+            top: 0;
+        }
+
+        #proto-content table tr:hover td {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        #proto-content table code {
+            white-space: nowrap;
+        }
+
+        .loading, .error {
+            padding: 40px;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .error { color: #ff8080; }
+
+        .source-note {
+            margin: 10px 0 24px;
+            padding: 10px 14px;
+            background: rgba(0, 212, 255, 0.06);
+            border-left: 3px solid rgba(0, 212, 255, 0.5);
+            border-radius: 4px;
+            color: #9fb4c8;
+            font-size: 13px;
+        }
+
+        .source-note a { color: #00d4ff; }
+
+        header { position: relative; }
+
+        #langSwitch {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        #langSwitch .lang-btn {
+            background: transparent;
+            color: #6a85a0;
+            border: none;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: color 0.25s ease, text-shadow 0.25s ease;
+            font-family: inherit;
+            letter-spacing: 0.8px;
+            position: relative;
+        }
+
+        #langSwitch .lang-btn + .lang-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 30%;
+            bottom: 30%;
+            width: 1px;
+            background: rgba(159, 180, 200, 0.25);
+        }
+
+        #langSwitch .lang-btn:hover { color: #9fd4ff; }
+
+        #langSwitch .lang-btn.active {
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+        }
+
+        @media (max-width: 900px) {
+            .proto-layout { grid-template-columns: 1fr; }
+            #toc {
+                position: static;
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            #langSwitch {
+                position: static;
+                transform: none;
+                justify-content: center;
+                margin-top: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1 id="project_title">协议命令参考</h1>
+    <div id="langSwitch">
+        <button type="button" class="lang-btn" data-lang="zh">中</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+    </div>
+</header>
+
+<a href="/index.html" class="back-link">← 返回首页</a>
+
+<div class="content-container">
+    <div class="source-note" id="sourceNote"></div>
+
+    <div class="proto-layout">
+        <nav id="toc" aria-label="Table of Contents">
+            <h3 id="tocDocsHead">文档</h3>
+            <div id="tab-list"></div>
+            <h3 id="tocSectionsHead" style="margin-top: 20px;">章节</h3>
+            <div id="section-list"></div>
+        </nav>
+
+        <main id="proto-content">
+            <div class="loading">正在加载文档…</div>
+        </main>
+    </div>
+</div>
+
+<script src="/assets/js/marked.min.js"></script>
+<script src="/assets/js/i18n/lang_switch.js"></script>
+<script>
+(function () {
+    var I18N = {
+        zh: {
+            pageTitle: '协议命令参考',
+            back: '← 返回首页',
+            sourceNote: '本页内容整理自 <a href="https://github.com/fuzziqersoftware/newserv" target="_blank">newserv</a> 项目的 <code>docs/</code> 目录，覆盖 PSOBB 客户端与服务器之间的网络协议及游戏内子命令（0x60/0x62/0x6C/0x6D 载荷）两部分。操作码与处理函数名保持英文，以便与源码/抓包记录对照。',
+            tocDocs: '文档',
+            tocSections: '章节',
+            loading: '正在加载文档…',
+            error: '加载失败：',
+            tabs: {
+                protocol:    '协议命令',
+                subcommands: '子命令'
+            }
+        },
+        en: {
+            pageTitle: 'Protocol Reference',
+            back: '← Back to Home',
+            sourceNote: 'This page is compiled from the <code>docs/</code> directory of <a href="https://github.com/fuzziqersoftware/newserv" target="_blank">newserv</a>. It covers the PSOBB network protocol between the client and server and in-game subcommands (0x60/0x62/0x6C/0x6D payloads). Opcodes and handler names are kept in English to match source code and packet captures.',
+            tocDocs: 'Documents',
+            tocSections: 'Sections',
+            loading: 'Loading documents…',
+            error: 'Failed to load: ',
+            tabs: {
+                protocol:    'Protocol',
+                subcommands: 'Subcommands'
+            }
+        }
+    };
+
+    var DOCS = [
+        { id: 'protocol',    fileEn: 'protocol-commands.md', fileZh: 'protocol-commands.zh.md', hint: 'Protocol' },
+        { id: 'subcommands', fileEn: 'subcommands.md',        fileZh: 'subcommands.zh.md',       hint: '0x60/0x62' }
+    ];
+
+    var content = document.getElementById('proto-content');
+    var tabList = document.getElementById('tab-list');
+    var sectionList = document.getElementById('section-list');
+    var currentTabId = null;
+    var docsLoaded = false;
+
+    function t() {
+        var lang = window.pageLang || 'zh';
+        // This page only defines zh and en. Visitors arriving with siteLang === 'ja'
+        // from another page get the English version as the most universal fallback.
+        return I18N[lang] || I18N.en;
+    }
+
+    function slugify(s) {
+        return s.toLowerCase()
+            .replace(/[^\w\u4e00-\u9fff]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+    }
+
+    function renderTabs() {
+        var labels = t().tabs;
+        tabList.innerHTML = '';
+        DOCS.forEach(function (d) {
+            var a = document.createElement('a');
+            a.className = 'toc-tab';
+            a.href = '#' + d.id;
+            a.dataset.tab = d.id;
+            a.innerHTML = labels[d.id] + '<span style="float:right;color:#64748b;font-size:11px;font-weight:400;">' + d.hint + '</span>';
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                showTab(d.id);
+                history.replaceState(null, '', '#' + d.id);
+            });
+            tabList.appendChild(a);
+        });
+        // Re-apply active highlight
+        if (currentTabId) {
+            document.querySelectorAll('#tab-list .toc-tab').forEach(function (a) {
+                a.classList.toggle('active', a.dataset.tab === currentTabId);
+            });
+        }
+    }
+
+    function buildSectionList(sectionEl) {
+        sectionList.innerHTML = '';
+        var ul = document.createElement('ul');
+        sectionEl.querySelectorAll('h2').forEach(function (h) {
+            if (!h.id) h.id = slugify(h.textContent);
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent;
+            a.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById(h.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.replaceState(null, '', '#' + h.id);
+            });
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+        sectionList.appendChild(ul);
+    }
+
+    function docLang() {
+        return (window.pageLang === 'zh') ? 'zh' : 'en';
+    }
+
+    function showContent() {
+        var lang = docLang();
+        document.querySelectorAll('#proto-content section').forEach(function (s) {
+            s.classList.toggle('active', s.dataset.tab === currentTabId && s.dataset.lang === lang);
+        });
+        document.querySelectorAll('#tab-list .toc-tab').forEach(function (a) {
+            a.classList.toggle('active', a.dataset.tab === currentTabId);
+        });
+        var active = document.querySelector('#proto-content section.active');
+        if (active) buildSectionList(active);
+    }
+
+    function showTab(tabId) {
+        currentTabId = tabId;
+        showContent();
+        window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+
+    function applyChromeI18n() {
+        var L = t();
+        document.title = L.pageTitle + ' | Ephinea PSOBB';
+        var title = document.getElementById('project_title');
+        if (title) title.textContent = L.pageTitle;
+        var back = document.querySelector('.back-link');
+        if (back) back.textContent = L.back;
+        var note = document.getElementById('sourceNote');
+        if (note) note.innerHTML = L.sourceNote;
+        var docsHead = document.getElementById('tocDocsHead');
+        if (docsHead) docsHead.textContent = L.tocDocs;
+        var secHead = document.getElementById('tocSectionsHead');
+        if (secHead) secHead.textContent = L.tocSections;
+        if (docsLoaded) {
+            renderTabs();
+            showContent();
+        } else {
+            content.innerHTML = '<div class="loading">' + L.loading + '</div>';
+        }
+    }
+
+    function handleInitialHash() {
+        var hash = location.hash.slice(1);
+        var tab = DOCS.find(function (d) { return d.id === hash; });
+        showTab(tab ? tab.id : DOCS[0].id);
+    }
+
+    var fetches = [];
+    DOCS.forEach(function (d) {
+        [['en', d.fileEn], ['zh', d.fileZh]].forEach(function (pair) {
+            var lang = pair[0], file = pair[1];
+            fetches.push(
+                fetch(file).then(function (r) {
+                    if (!r.ok) throw new Error(file + ': ' + r.status);
+                    return r.text();
+                }).then(function (md) { return { id: d.id, lang: lang, html: marked.parse(md) }; })
+            );
+        });
+    });
+
+    Promise.all(fetches).then(function (results) {
+        content.innerHTML = '';
+        results.forEach(function (r) {
+            var section = document.createElement('section');
+            section.dataset.tab = r.id;
+            section.dataset.lang = r.lang;
+            section.innerHTML = r.html;
+            content.appendChild(section);
+        });
+        docsLoaded = true;
+        renderTabs();
+        handleInitialHash();
+    }).catch(function (e) {
+        content.innerHTML = '<div class="error">' + t().error + e.message + '</div>';
+        console.error(e);
+    });
+
+    // Hook into the shared language switcher. It fires immediately with
+    // the current language and again on every change.
+    if (typeof window.onLangChange === 'function') {
+        window.onLangChange(applyChromeI18n);
+    } else {
+        applyChromeI18n();
+    }
+})();
+</script>
+</body>
+</html>
