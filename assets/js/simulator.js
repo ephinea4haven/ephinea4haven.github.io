@@ -740,17 +740,21 @@ Simulator.prototype.ShowResult = function () {
         b.push('URL: <a href="' + h + '">' + h + '</a>');
         b.push('')
     }
-    b.push($("#class option:selected").text() + " @ " + $("#lv option:selected").text() + " LV");
+    var T = (typeof window !== 'undefined' && typeof window.simT === 'function') ? window.simT : function (k) {
+        var fallback = { outArmor: 'Armor', outShield: 'Shield', outUnits: 'Units', outMag: 'Mag', outMats: 'Mats', outLv: 'LV', outPower: 'Power', outDef: 'Def', outMind: 'Mind', outEvade: 'Evade', outLuck: 'Luck', outAllExcept: 'All stats maxed out except:', outAllMaxed: 'All stats maxed', outMatsLeft: function (n) { return n + ' left'; }, outMatsExceed: function (mx, ov) { return 'exceed: ' + mx + ' by: ' + ov; } };
+        return fallback[k];
+    };
+    b.push($("#class option:selected").text() + " @ " + $("#lv option:selected").text() + " " + T('outLv'));
     b.push("--------------------------------");
     var j = $("#armor option:selected").text();
     var k = this.ArmorEquipable($("#armor option:selected").val());
     if (j != "-") {
-        b.push("Armor:" + (k ? "" : "[×] <s>") + j + (k ? "" : "</s>"))
+        b.push(T('outArmor') + ": " + (k ? "" : "[×] <s>") + j + (k ? "" : "</s>"))
     }
     var l = $("#shield option:selected").text();
     var m = this.ShieldEquipable($("#shield option:selected").val());
     if (l != "-") {
-        b.push("Shield:" + (m ? "" : "[×] <s>") + l + (m ? "" : "</s>"))
+        b.push(T('outShield') + ": " + (m ? "" : "[×] <s>") + l + (m ? "" : "</s>"))
     }
     var n = [];
     $(".unit option:selected").each(function (e) {
@@ -761,29 +765,35 @@ Simulator.prototype.ShowResult = function () {
         }
     });
     if (n.length > 0) {
-        b.push("Units:" + n.join(", "))
+        b.push(T('outUnits') + ": " + n.join(", "))
     }
-    b.push("Mag:" + this.MagDef + "/" + this.MagPow + "/" + this.MagDex + "/" + this.MagMind + " @ " + this.MagLV + " LV");
-    b.push("Mats:" + (this.TotalMat <= this.MaxMat ? " " + (this.MaxMat - this.TotalMat) + " left" : (this.TotalMat > this.MaxMat ? " exceed: " + this.MaxMat + " by: " + (this.TotalMat - this.MaxMat) : "")));
+    b.push(T('outMag') + ": " + this.MagDef + "/" + this.MagPow + "/" + this.MagDex + "/" + this.MagMind + " @ " + this.MagLV + " " + T('outLv'));
+    var matsLine = T('outMats') + ": ";
+    if (this.TotalMat <= this.MaxMat) {
+        matsLine += T('outMatsLeft')(this.MaxMat - this.TotalMat);
+    } else {
+        matsLine += T('outMatsExceed')(this.MaxMat, this.TotalMat - this.MaxMat);
+    }
+    b.push(matsLine);
     if (this.PowMat > 0) {
-        b.push("- " + this.PowMat + " Power")
+        b.push("- " + this.PowMat + " " + T('outPower'))
     }
     if (this.DefMat > 0) {
-        b.push("- " + this.DefMat + " Def")
+        b.push("- " + this.DefMat + " " + T('outDef'))
     }
     if (this.MindMat > 0) {
-        b.push("- " + this.MindMat + " Mind")
+        b.push("- " + this.MindMat + " " + T('outMind'))
     }
     if (this.EvaMat > 0) {
-        b.push("- " + this.EvaMat + " Evade")
+        b.push("- " + this.EvaMat + " " + T('outEvade'))
     }
     if (this.LckMat > 0) {
-        b.push("- " + this.LckMat + " Luck")
+        b.push("- " + this.LckMat + " " + T('outLuck'))
     }
     if (this.currentClass != "-") {
         b.push("--------------------------------");
         if (this.diffATP < 0 || this.diffDFP < 0 || this.diffMST < 0 || this.diffATA < 0 || this.diffEVP < 0 || this.diffLCK < 0) {
-            b.push("All stats maxed out except:");
+            b.push(T('outAllExcept'));
             if (this.diffATP < 0) {
                 b.push("ATP:" + this.diffATP)
             }
@@ -803,7 +813,7 @@ Simulator.prototype.ShowResult = function () {
                 b.push("LCK:" + this.diffLCK)
             }
         } else if (this.diffATP >= 0 && this.diffDFP >= 0 && this.diffMST >= 0 && this.diffATA >= 0 && this.diffEVP >= 0 && this.diffLCK >= 0) {
-            b.push("All stats maxed")
+            b.push(T('outAllMaxed'))
         }
     }
     $("#output").html(b.join("<br />"))
