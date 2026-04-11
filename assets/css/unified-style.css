@@ -227,6 +227,47 @@ header {
     text-align: center;
 }
 
+/* Diagonal split corner header: 右上/左下 两段文字 */
+.content-container table th.diagonal-split {
+    position: relative;
+    min-width: 80px;
+    min-height: 52px;
+    padding: 4px;
+    overflow: hidden;
+}
+
+.content-container table th.diagonal-split::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent calc(50% - 1.5px),
+        rgba(255, 255, 255, 0.35),
+        transparent calc(50% + 1.5px)
+    );
+    pointer-events: none;
+}
+
+.content-container table th.diagonal-split .ds-top {
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    font-size: 0.82em;
+    line-height: 1;
+}
+
+.content-container table th.diagonal-split .ds-bot {
+    position: absolute;
+    bottom: 5px;
+    right: 7px;
+    font-size: 0.82em;
+    line-height: 1;
+}
+
 .content-container table td {
     padding: 12px 15px;
     border: 1px solid var(--accent-10);
