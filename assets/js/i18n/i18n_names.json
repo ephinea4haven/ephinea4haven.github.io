@@ -1,0 +1,3367 @@
+{
+  "monsters": {
+    "Al Rappy": {
+      "ja": "アル・ラッピー",
+      "zh": "蓝拉比鸟"
+    },
+    "Arlan": {
+      "ja": "アラン",
+      "zh": "异魔兵"
+    },
+    "Astark": {
+      "ja": "アスターク",
+      "zh": "异甲巨螳螂"
+    },
+    "Ba Boota": {
+      "ja": "バ・ブータ",
+      "zh": "巨角变异猪"
+    },
+    "Baranz": {
+      "ja": "バランゾ",
+      "zh": "机甲堡垒·改"
+    },
+    "Barba Ray": {
+      "ja": "バルバレイ",
+      "zh": "巴尔巴雷"
+    },
+    "Barbarous Wolf": {
+      "ja": "バーベラスウルフ",
+      "zh": "狂狼王"
+    },
+    "Barble": {
+      "ja": "バーブル",
+      "zh": "蓝魔龟"
+    },
+    "Bartle": {
+      "ja": "バートル",
+      "zh": "紫魔龟"
+    },
+    "Booma": {
+      "ja": "ブーマ",
+      "zh": "棕狂熊"
+    },
+    "Boota": {
+      "ja": "ブータ",
+      "zh": "变异猪"
+    },
+    "Bulclaw": {
+      "ja": "バルクロー",
+      "zh": "合体爪魔"
+    },
+    "Bulk": {
+      "ja": "バルク",
+      "zh": "合体爪虫"
+    },
+    "Canabin": {
+      "ja": "カナバイン",
+      "zh": "强化电爪"
+    },
+    "Canadine": {
+      "ja": "カナディン",
+      "zh": "电爪"
+    },
+    "Canane": {
+      "ja": "カナン",
+      "zh": "核心电爪"
+    },
+    "Canune": {
+      "ja": "カヌーン",
+      "zh": "强化核心电爪"
+    },
+    "Chaos Bringer": {
+      "ja": "カオスブリンガー",
+      "zh": "混沌骑士"
+    },
+    "Chaos Sorcerer": {
+      "ja": "カオスソーサラー",
+      "zh": "混沌法师"
+    },
+    "Claw": {
+      "ja": "クロー",
+      "zh": "爪虫"
+    },
+    "Crimson Assassin": {
+      "ja": "クリムゾンアサシン",
+      "zh": "嗜血巨螳螂"
+    },
+    "Dal Ral Lie": {
+      "ja": "ダル・ラ・リー",
+      "zh": "达尔-拉-利"
+    },
+    "Dark Belra": {
+      "ja": "ダークベルラ",
+      "zh": "暗黑巨神像"
+    },
+    "Dark Bringer": {
+      "ja": "ダークブリンガー",
+      "zh": "暗黑骑士"
+    },
+    "Dark Falz": {
+      "ja": "ダークファルス",
+      "zh": "暗黑佛"
+    },
+    "Dark Gunner": {
+      "ja": "ダークガンナー",
+      "zh": "暗黑炮台"
+    },
+    "De Rol Le": {
+      "ja": "デ・ロル・レ",
+      "zh": "迪·洛尔·雷"
+    },
+    "Death Gunner": {
+      "ja": "デスガンナー",
+      "zh": "死亡炮台"
+    },
+    "Del Lily": {
+      "ja": "デルリリー",
+      "zh": "暗铃兰"
+    },
+    "Del Rappy": {
+      "ja": "デル・ラッピー",
+      "zh": "暗黑拉比鸟"
+    },
+    "Del-D": {
+      "ja": "デルディー",
+      "zh": "异魔王"
+    },
+    "Delbiter": {
+      "ja": "デルバイツァ",
+      "zh": "暗黑麒麟"
+    },
+    "Deldepth": {
+      "ja": "デルデプス",
+      "zh": "暗黑魔精"
+    },
+    "Delsaber": {
+      "ja": "デルセイバー",
+      "zh": "剑魔"
+    },
+    "Dimenian": {
+      "ja": "ディメニアン",
+      "zh": "刀魔兵"
+    },
+    "Dolmdarl": {
+      "ja": "ドルムダール",
+      "zh": "赤鱿"
+    },
+    "Dolmolm": {
+      "ja": "ドルムオルム",
+      "zh": "青鱿"
+    },
+    "Dorphon": {
+      "ja": "ドルフォン",
+      "zh": "铁甲战车象"
+    },
+    "Dorphon Eclair": {
+      "ja": "ドルフォン・エクレール",
+      "zh": "白垩战车象"
+    },
+    "Dragon": {
+      "ja": "ドラゴン",
+      "zh": "赤焰巨龙"
+    },
+    "Dubchic": {
+      "ja": "ダブチック",
+      "zh": "傀儡机兵"
+    },
+    "Dubchich": {
+      "ja": "ダブチッチ",
+      "zh": "傀儡机将"
+    },
+    "Egg Rappy": {
+      "ja": "エグ・ラッピー",
+      "zh": "彩蛋拉比"
+    },
+    "El Rappy": {
+      "ja": "エル・ラッピー",
+      "zh": "白拉比鸟"
+    },
+    "Epsilon": {
+      "ja": "イプシロン",
+      "zh": "伊普西龙"
+    },
+    "Evil Shark": {
+      "ja": "エビルシャーク",
+      "zh": "绿鲨魔"
+    },
+    "Gal Gryphon": {
+      "ja": "ガル・グリフォン",
+      "zh": "加尔狮鹫"
+    },
+    "Garanz": {
+      "ja": "ギャランゾ",
+      "zh": "机甲堡垒"
+    },
+    "Gee": {
+      "ja": "ギー",
+      "zh": "姬蜂"
+    },
+    "Gi Gue": {
+      "ja": "ギ・グー",
+      "zh": "姬蜂后"
+    },
+    "Gibbles": {
+      "ja": "ギブルス",
+      "zh": "蛮甲猿"
+    },
+    "Gigobooma": {
+      "ja": "ジゴブーマ",
+      "zh": "红狂熊"
+    },
+    "Gilchic": {
+      "ja": "ギルチック",
+      "zh": "步行机兵"
+    },
+    "Gilchich": {
+      "ja": "ギルチッチ",
+      "zh": "浮游机将"
+    },
+    "Gillchich": {
+      "zh": "浮游机将"
+    },
+    "Girtablulu": {
+      "ja": "ギルタブリル",
+      "zh": "暗黑魔眼巨花"
+    },
+    "Gobooma": {
+      "ja": "ゴブーマ",
+      "zh": "黄狂熊"
+    },
+    "Gol Dragon": {
+      "ja": "ゴル　ドラゴン",
+      "zh": "数码冰龙"
+    },
+    "Goran": {
+      "ja": "ゴラン",
+      "zh": "暗黑刀魔"
+    },
+    "Goran Detonator": {
+      "ja": "ゴラン・デトナータ",
+      "zh": "暗黑巨魔王"
+    },
+    "Govulmer": {
+      "ja": "ゴバルマ",
+      "zh": "蓝鲨熊"
+    },
+    "Gran Sorcerer": {
+      "ja": "グランソーサラー",
+      "zh": "毁灭法师"
+    },
+    "Grass Assassin": {
+      "ja": "グラスアサッシン",
+      "zh": "巨螳螂"
+    },
+    "Guil Shark": {
+      "ja": "ギルシャーク",
+      "zh": "狂鲨魔"
+    },
+    "Gulgus": {
+      "ja": "グルグス",
+      "zh": "角狼"
+    },
+    "Gulgus-Gue": {
+      "ja": "グルグス・グー",
+      "zh": "角狼王"
+    },
+    "Halo Rappy": {
+      "ja": "ハロ・ラッピー",
+      "zh": "Halo Rappy"
+    },
+    "Hidelt": {
+      "zh": "",
+      "ja": "ヒデルト"
+    },
+    "Hidoom": {
+      "ja": "ヒドゥーム",
+      "zh": "火剑怪"
+    },
+    "Hildebear": {
+      "ja": "ヒルデベア",
+      "zh": "狂暴巨猿"
+    },
+    "Hildeblue": {
+      "ja": "ヒルデブルー",
+      "zh": "狂暴白猿"
+    },
+    "Hildelt": {
+      "ja": "ヒルデルト",
+      "zh": "雷暴巨猿"
+    },
+    "Hildetor": {
+      "zh": "",
+      "ja": "ヒルデトゥール"
+    },
+    "Hildetorr": {
+      "ja": "ヒルデトゥール",
+      "zh": "暗黑巨猿"
+    },
+    "Ill Gill": {
+      "ja": "イルギル",
+      "zh": "恶镰死神"
+    },
+    "Indi Belra": {
+      "ja": "インディベルラ",
+      "zh": "远古巨神像"
+    },
+    "Kondrieu": {
+      "ja": "コンドリュー",
+      "zh": "空间龙"
+    },
+    "La Dimenian": {
+      "ja": "ラ・ディメニアン",
+      "zh": "刀魔将"
+    },
+    "Love Rappy": {
+      "ja": "ラブ・ラッピー",
+      "zh": "爱之拉比"
+    },
+    "Melqueek": {
+      "ja": "メルクィーク",
+      "zh": "变种鲨熊"
+    },
+    "Mericarol": {
+      "ja": "メリカロル",
+      "zh": "红蝎花"
+    },
+    "Mericus": {
+      "ja": "メリキュス",
+      "zh": "绿蝎花"
+    },
+    "Merikle": {
+      "ja": "メリクル",
+      "zh": "蓝蝎花"
+    },
+    "Merillia": {
+      "ja": "メリルリア",
+      "zh": "毒梅兰"
+    },
+    "Meriltas": {
+      "ja": "メリルタス",
+      "zh": "狂梅兰"
+    },
+    "Merissa A": {
+      "ja": "メリッサ・エー",
+      "zh": "媚影沙魔·Ａ"
+    },
+    "Merissa AA": {
+      "ja": "メリッサ・エー・エー",
+      "zh": "媚影沙魔·ＡＡ"
+    },
+    "Merlan": {
+      "ja": "メラン",
+      "zh": "异魔将"
+    },
+    "Migium": {
+      "ja": "ミギウム",
+      "zh": "冰剑怪"
+    },
+    "Mil Lily": {
+      "ja": "ミルリリー",
+      "zh": "异种铃兰"
+    },
+    "Monest": {
+      "ja": "モネスト",
+      "zh": "吸血巨蚊巢"
+    },
+    "Morfos": {
+      "ja": "モルフォス",
+      "zh": "暗腐蝶"
+    },
+    "Mothmant": {
+      "ja": "モスマント",
+      "zh": "吸血巨蚊"
+    },
+    "Mothvert": {
+      "ja": "モスバートン",
+      "zh": "嗜血巨蚊"
+    },
+    "Mothvist": {
+      "ja": "モスビスト",
+      "zh": "嗜血巨蚊巢"
+    },
+    "Nano Dragon": {
+      "ja": "ナノノドラゴ",
+      "zh": "翼龙"
+    },
+    "Nar Lily": {
+      "ja": "ナルリリー",
+      "zh": "红铃兰"
+    },
+    "Ob Lily": {
+      "ja": "オブリリー",
+      "zh": "变种铃兰"
+    },
+    "Olga Flow": {
+      "ja": "オルガ・フロウ",
+      "zh": "奥迦·弗罗文"
+    },
+    "Pal Rappy": {
+      "ja": "パル・ラッピー",
+      "zh": "彩虹拉比鸟"
+    },
+    "Pal Shark": {
+      "ja": "パルシャーク",
+      "zh": "紫鲨魔"
+    },
+    "Pan Arms": {
+      "ja": "パンアームズ",
+      "zh": "合体怪"
+    },
+    "Pazuzu": {
+      "ja": "パズズ",
+      "zh": "变异羚角鸟"
+    },
+    "Pofuilly Slime": {
+      "ja": "プフィスライム",
+      "zh": "冰史莱姆"
+    },
+    "Poison Lily": {
+      "ja": "ポイゾナスリリー",
+      "zh": "毒铃兰"
+    },
+    "Pouifully Slime": {
+      "zh": "",
+      "ja": "プイィフリースライム"
+    },
+    "Pouilly Slime": {
+      "ja": "プイィスライム",
+      "zh": "炎史莱姆"
+    },
+    "Pyro Goran": {
+      "ja": "ピロ・ゴラン",
+      "zh": "暗黑狂刀魔"
+    },
+    "Rag Rappy": {
+      "ja": "ラグ・ラッピー",
+      "zh": "黄拉比鸟"
+    },
+    "Recon": {
+      "ja": "レコン",
+      "zh": "爆防机"
+    },
+    "Saint Million": {
+      "ja": "サンテミリオン",
+      "zh": "Saint Million"
+    },
+    "Sand Rappy": {
+      "ja": "サンド・ラッピー",
+      "zh": "沙地拉比鸟"
+    },
+    "Satellite Lizard": {
+      "ja": "サテライト・リザード",
+      "zh": "沙暴蜥蜴"
+    },
+    "Savage Wolf": {
+      "ja": "サベージウルフ",
+      "zh": "狂狼"
+    },
+    "Shambertin": {
+      "ja": "シャンベルタン",
+      "zh": "沙柏龙"
+    },
+    "Sil Dragon": {
+      "ja": "シル　ドラゴン",
+      "zh": "冰霜巨龙"
+    },
+    "Sinow Beat": {
+      "ja": "シノワビート",
+      "zh": "蓝机忍"
+    },
+    "Sinow Berill": {
+      "ja": "シノワベリル",
+      "zh": "森隐雷藏"
+    },
+    "Sinow Blue": {
+      "ja": "シノワブルー",
+      "zh": "紫机忍"
+    },
+    "Sinow Gold": {
+      "ja": "シノワゴールド",
+      "zh": "金机忍"
+    },
+    "Sinow Red": {
+      "ja": "シノワレッド",
+      "zh": "红机忍"
+    },
+    "Sinow Spigell": {
+      "ja": "シノワスピゲル",
+      "zh": "雾隐雷藏"
+    },
+    "Sinow Zele": {
+      "ja": "シノワゼレ",
+      "zh": "绯红光武"
+    },
+    "Sinow Zoa": {
+      "ja": "シノワゾア",
+      "zh": "湛蓝光武"
+    },
+    "So Dimenian": {
+      "ja": "ソ・ディメニアン",
+      "zh": "刀魔王"
+    },
+    "St. Rappy": {
+      "ja": "セント・ラッピー",
+      "zh": "St. Rappy"
+    },
+    "Tollaw": {
+      "ja": "トーロウ",
+      "zh": "魔螳螂"
+    },
+    "Ul Gibbon": {
+      "ja": "ウル・ギボン",
+      "zh": "幽猿"
+    },
+    "Vol Opt": {
+      "ja": "ボルオプト",
+      "zh": "波鲁欧普"
+    },
+    "Vol Opt ver. 2": {
+      "ja": "ボルオプト ver.2",
+      "zh": "Vol Opt ver. 2"
+    },
+    "Vol Opt ver.2": {
+      "zh": "波鲁欧普-改",
+      "ja": "ボルオプト ver.2"
+    },
+    "Vulmer": {
+      "ja": "バルマー",
+      "zh": "紫鲨熊"
+    },
+    "Yowie": {
+      "ja": "ヨーウィ",
+      "zh": "砂岩蜥蜴"
+    },
+    "Ze Boota": {
+      "ja": "ゼ・ブータ",
+      "zh": "狂影变异猪"
+    },
+    "Zol Gibbon": {
+      "ja": "ゾル・ギボン",
+      "zh": "泽猿"
+    },
+    "Zu": {
+      "ja": "ズー",
+      "zh": "巨型火犀鸟"
+    },
+    "GoVulmer": {
+      "ja": "ゴバルマー",
+      "zh": ""
+    },
+    "JUSTY'23ST": {
+      "ja": "ジャスティ-23ST",
+      "zh": "伽斯帝-23ST"
+    },
+    "VISK'235W": {
+      "ja": "ヴィスク235W",
+      "zh": "威斯克-235W"
+    },
+    "WALS'MK2": {
+      "ja": "ウォルス-MK2",
+      "zh": "瓦尔斯-MK2"
+    }
+  },
+  "items": {
+    "1975ドウセツ": {
+      "ja": "アギト",
+      "zh": "腭刀「1975」道雪"
+    },
+    "1977ジョウウン[偽]": {
+      "ja": "アギト",
+      "zh": "腭刀「1977」乗雲[伪]"
+    },
+    "1980テンガイ[偽]": {
+      "ja": "アギト",
+      "zh": "腭刀「1980」天凱[伪]"
+    },
+    "1983ドウセツ[偽]": {
+      "ja": "アギト",
+      "zh": "腭刀「1983」道雪[伪]"
+    },
+    "1991キコク[偽]": {
+      "ja": "アギト",
+      "zh": "腭刀「1991」鬼哭[伪]"
+    },
+    "1991キコク[偽])(AGITO 1991 Kikoku[fake]": {
+      "ja": "アギト",
+      "zh": "腭刀「1991」鬼哭[伪]"
+    },
+    "2001キコク[偽])(AGITO 2001 Kikoku[fake]": {
+      "ja": "アギト",
+      "zh": "腭刀「2001」鬼哭[伪]"
+    },
+    "ADD SLOT": {
+      "ja": "アドスロット",
+      "zh": "扩展插槽"
+    },
+    "AGITO 1975": {
+      "zh": "腭刀「１９７５」"
+    },
+    "AGITO 1977": {
+      "zh": "腭刀「１９７７」"
+    },
+    "AGITO 1980": {
+      "zh": "腭刀「１９８０」"
+    },
+    "AGITO 1983": {
+      "zh": "腭刀「１９８３」"
+    },
+    "AGITO 1991": {
+      "zh": "腭刀「１９９１」"
+    },
+    "AGITO 2001": {
+      "zh": "腭刀「２００１」"
+    },
+    "AKIKO'S FRYING PAN": {
+      "zh": "秋子婶婶的平底锅"
+    },
+    "AKIKO'S WOK": {
+      "zh": "秋子婶婶的中华锅"
+    },
+    "ANGLE HARP": {
+      "ja": "エンジェルハープ",
+      "zh": "天使之琴"
+    },
+    "AddSlot": {
+      "ja": "アドスロット",
+      "zh": "扩展插槽"
+    },
+    "Agito (1975)": {
+      "ja": "アギト",
+      "zh": "腭刀「１９７５」"
+    },
+    "Agito (1977)": {
+      "ja": "アギト",
+      "zh": "腭刀「１９７７」"
+    },
+    "Agito (1980)": {
+      "ja": "アギト",
+      "zh": "腭刀「１９８０」"
+    },
+    "Agito (1983)": {
+      "ja": "アギト",
+      "zh": "腭刀「１９８３」"
+    },
+    "Agito (1991)": {
+      "ja": "アギト",
+      "zh": "腭刀「１９９１」"
+    },
+    "Agito (2001)": {
+      "ja": "アギト",
+      "zh": "腭刀「２００１」"
+    },
+    "Alive Aqhu": {
+      "ja": "アライブアクゥー",
+      "zh": "生命壶"
+    },
+    "Alliance Uniform": {
+      "ja": "連盟親衛隊軍服",
+      "zh": "亲卫队军服"
+    },
+    "Amitie's Memo": {
+      "ja": "アミティのメモ",
+      "zh": "艾米提的日记"
+    },
+    "Amplifier of Anti": {
+      "ja": "アンティアンプ",
+      "zh": "状态增幅器"
+    },
+    "Amplifier of Barta": {
+      "ja": "バータアンプ",
+      "zh": "冻气增幅器"
+    },
+    "Amplifier of Blue": {
+      "ja": "ブルーアンプ",
+      "zh": "冰系增幅器"
+    },
+    "Amplifier of Deband": {
+      "ja": "デバンドアンプ",
+      "zh": "强体增幅器"
+    },
+    "Amplifier of Foie": {
+      "ja": "フォイエアンプ",
+      "zh": "火球增幅器"
+    },
+    "Amplifier of Gibarta": {
+      "ja": "ギバータアンプ",
+      "zh": "冰箭增幅器"
+    },
+    "Amplifier of Gifoie": {
+      "ja": "ギフォイエアンプ",
+      "zh": "火墙增幅器"
+    },
+    "Amplifier of Gizonde": {
+      "ja": "ギゾンデアンプ",
+      "zh": "群雷增幅器"
+    },
+    "Amplifier of Rabarta": {
+      "ja": "ラバータアンプ",
+      "zh": "极冰增幅器"
+    },
+    "Amplifier of Rafoie": {
+      "ja": "ラフォイエアンプ",
+      "zh": "炎狱增幅器"
+    },
+    "Amplifier of Razonde": {
+      "ja": "ラゾンデアンプ",
+      "zh": "雷爆增幅器"
+    },
+    "Amplifier of Red": {
+      "ja": "レッドアンプ",
+      "zh": "炎系增幅器"
+    },
+    "Amplifier of Resta": {
+      "ja": "レスタアンプ",
+      "zh": "圣泉增幅器"
+    },
+    "Amplifier of Shifta": {
+      "ja": "シフタアンプ",
+      "zh": "强攻增幅器"
+    },
+    "Amplifier of Yellow": {
+      "ja": "イエローアンプ",
+      "zh": "雷系增幅器"
+    },
+    "Amplifier of Zonde": {
+      "ja": "ゾンデアンプ",
+      "zh": "闪电增幅器"
+    },
+    "Ancient Saber": {
+      "ja": "アンシエントセイバー",
+      "zh": "古代剑"
+    },
+    "Angel Harp": {
+      "ja": "エンジェルハープ",
+      "zh": "天使之琴"
+    },
+    "Angel/Luck": {
+      "ja": "エンジェル/ラック",
+      "zh": "天使级/运"
+    },
+    "Angel/Mind": {
+      "ja": "エンジェル/マインド",
+      "zh": "天使级/精神"
+    },
+    "Angel/TP": {
+      "zh": "天使级/ＴＰ"
+    },
+    "Angry Fist": {
+      "ja": "アングルフィスト",
+      "zh": "愤怒之拳"
+    },
+    "Ano Bazooka": {
+      "ja": "アノバズーカ",
+      "zh": "阿诺火箭炮"
+    },
+    "Ano Rifle": {
+      "ja": "アノライフル",
+      "zh": "阿诺来复枪"
+    },
+    "Anti Android Rifle": {
+      "ja": "対アンドロイド用ライフル",
+      "zh": "对机器人专用来复枪"
+    },
+    "Anti-Light Ring": {
+      "ja": "アンチライトリング",
+      "zh": "御圣手镯"
+    },
+    "Antidote": {
+      "zh": "解毒剂"
+    },
+    "Antiparalysis": {
+      "zh": "解痉剂"
+    },
+    "Arms": {
+      "ja": "アームズ",
+      "zh": "军用散弹枪"
+    },
+    "Assist Barrier": {
+      "ja": "アシストバリア",
+      "zh": "辅助系强化盾"
+    },
+    "Asteron Belt": {
+      "ja": "アステロンベルト",
+      "zh": "十文字枪"
+    },
+    "Asuka": {
+      "ja": "アスカ",
+      "zh": "飞鸟"
+    },
+    "Attribute Plate": {
+      "ja": "アトリビュートプレート",
+      "zh": "六芒星铠"
+    },
+    "Attribute Wall": {
+      "ja": "アトリビュートウォル",
+      "zh": "六芒星盾"
+    },
+    "Aura Field": {
+      "ja": "オーラフィールド",
+      "zh": "奥拉领域"
+    },
+    "BARANZ LAUNCHER": {
+      "zh": "机甲堡垒导弹枪"
+    },
+    "BOOMA'S CLAW": {
+      "zh": "棕狂熊之爪"
+    },
+    "BOOMA'S RIGHT ARMS": {
+      "ja": "ブーマの右手",
+      "zh": "棕狂熊的右手"
+    },
+    "BRUEFULL CARD": {
+      "ja": "ブルーフルカード",
+      "zh": "纯蓝卡片"
+    },
+    "Baton": {
+      "ja": "バトン",
+      "zh": "魔击杖"
+    },
+    "Battle Verge": {
+      "ja": "バトルバージ",
+      "zh": "战斗杖"
+    },
+    "Beam": {
+      "ja": "ビーム",
+      "zh": "脉冲步枪"
+    },
+    "Belra's Right Arm": {
+      "ja": "ベルラの右手",
+      "zh": "巨神像的右手"
+    },
+    "Belra's Right Arms": {
+      "ja": "ベルラの右手",
+      "zh": "巨神像的右手"
+    },
+    "Berdys": {
+      "ja": "バルディス",
+      "zh": "将军长刀"
+    },
+    "Berdysh": {
+      "ja": "バルディッシュ",
+      "zh": "破坏者之斧"
+    },
+    "Berill Photon": {
+      "ja": "ベリルフォトン",
+      "zh": "机忍光子"
+    },
+    "Black Hound Cuirass": {
+      "ja": "ブラックハウンドキュイラス",
+      "zh": "黑色猎犬胸甲"
+    },
+    "Black Odoshi Domaru": {
+      "ja": "黒糸威胴丸",
+      "zh": "魔鬼战衣"
+    },
+    "Black Odoshi Red Nimaidou": {
+      "ja": "黒糸威朱塗桶側二枚胴",
+      "zh": "天神战衣"
+    },
+    "Blade": {
+      "ja": "ブレイド",
+      "zh": "突刺匕首"
+    },
+    "Blade Dance": {
+      "ja": "ブレイドダンス",
+      "zh": "剑之舞"
+    },
+    "Blaster": {
+      "ja": "ブラスター",
+      "zh": "爆能步枪"
+    },
+    "Bloody Art": {
+      "ja": "ブラッディアート",
+      "zh": "血之艺"
+    },
+    "Blue Barrier": {
+      "ja": "ブルーバリア",
+      "zh": "冰系强化盾"
+    },
+    "Blue Odoshi Violet Nimaidou": {
+      "ja": "紺糸威紫塗桶側二枚胴",
+      "zh": "天堂战衣"
+    },
+    "Bluefull Card": {
+      "ja": "ブルーフルカード",
+      "zh": "纯蓝卡片"
+    },
+    "Book of Hitogata": {
+      "ja": "真瑚経書",
+      "zh": "真瑚经书"
+    },
+    "Book of KATANA1": {
+      "zh": "四天之书【壹】"
+    },
+    "Book of KATANA2": {
+      "zh": "四天之书【贰】"
+    },
+    "Book of KATANA3": {
+      "zh": "四天之书【参】"
+    },
+    "Booma's Right Arm": {
+      "ja": "ブーマの右腕",
+      "zh": "棕狂熊的右手"
+    },
+    "Boss": {
+      "ja": "隕石落下地点",
+      "zh": "Boss"
+    },
+    "Branch of Pakupaku": {
+      "ja": "パクパクのエダ",
+      "zh": "夹夹杖"
+    },
+    "Bravace": {
+      "ja": "ブレイバス",
+      "zh": "军用电击枪"
+    },
+    "Brave Hammer": {
+      "ja": "ブレイブハンマー",
+      "zh": "勇者之锤"
+    },
+    "Brave Knuckle": {
+      "ja": "ブレイブナックル",
+      "zh": "勇者之拳"
+    },
+    "Breaker": {
+      "ja": "ブレイカー",
+      "zh": "双刃大剑"
+    },
+    "Brightness Circle": {
+      "ja": "ブライトネスサークル",
+      "zh": "圣光环"
+    },
+    "Bringer's Right Arm": {
+      "ja": "ブリンガーの右手",
+      "zh": "混沌骑士的右手"
+    },
+    "Brionac": {
+      "ja": "ブリューナク",
+      "zh": "纯正长刀"
+    },
+    "C-bringer's Right Arm": {
+      "ja": "ブリンガーの右手",
+      "zh": "混沌骑士的右手"
+    },
+    "CCA": {
+      "ja": "中央管理区",
+      "zh": "CCA"
+    },
+    "CHAIN SWORD": {
+      "zh": "电锯",
+      "ja": "チェインソード"
+    },
+    "CRAZY TUNE": {
+      "zh": "疯狂旋律",
+      "ja": "クレイジーチューン"
+    },
+    "CURE CONFUSION": {
+      "ja": "キュア/コンフューズ",
+      "zh": "混乱回复"
+    },
+    "CURE FROZEN": {
+      "ja": "キュア/フリーズ",
+      "zh": "冻结回复"
+    },
+    "CURE PARALYSIS": {
+      "ja": "キュア/パラライズ",
+      "zh": "麻痹回复"
+    },
+    "CURE POISON": {
+      "ja": "キュア/ポイズン",
+      "zh": "中毒回复"
+    },
+    "CURE SHOCK": {
+      "ja": "キュア/ショック",
+      "zh": "感电回复"
+    },
+    "CURE SLOW": {
+      "ja": "キュア/スロー",
+      "zh": "迟缓回复"
+    },
+    "CUSTOM BARRIER Ver.00": {
+      "ja": "カスタムバリア Ver.00",
+      "zh": "军用盾 ver.00"
+    },
+    "CUSTOM FRAME Ver.00": {
+      "ja": "カスタムフレーム Ver.00",
+      "zh": "军用铠 ver.00"
+    },
+    "CUSTOM RAY Ver.00": {
+      "ja": "カスタムレイVer.00",
+      "zh": "军用光枪 ver.00"
+    },
+    "Caduceus": {
+      "ja": "カジューシース",
+      "zh": "羽毛杖"
+    },
+    "Calibur": {
+      "ja": "キャリバー",
+      "zh": "勇者大剑"
+    },
+    "Cannon": {
+      "ja": "キャノン",
+      "zh": "加农散弹枪"
+    },
+    "Cannon Rouge": {
+      "ja": "カノンルージュ",
+      "zh": "赤红加农"
+    },
+    "Cave 1": {
+      "ja": "洞窟エリア１",
+      "zh": "Cave 1"
+    },
+    "Cave 2": {
+      "ja": "洞窟エリア２",
+      "zh": "Cave 2"
+    },
+    "Cave 3": {
+      "ja": "洞窟エリア３",
+      "zh": "Cave 3"
+    },
+    "Celestial Armor": {
+      "ja": "セレスティアルアーマー",
+      "zh": "天国装甲"
+    },
+    "Celestial Shield": {
+      "zh": "天国机械盾",
+      "ja": "セレスティアルシールド"
+    },
+    "Cell of MAG 213": {
+      "zh": "玛古细胞２１３"
+    },
+    "Cell of MAG 502": {
+      "zh": "玛古细胞５０２"
+    },
+    "Centurion/Ability": {
+      "ja": "センチュリオン/アビリティ",
+      "zh": "百人长/全能力"
+    },
+    "Chain Sawd": {
+      "ja": "チェインソード",
+      "zh": "电锯"
+    },
+    "Christmas Present": {
+      "ja": "クリスマスプレゼント",
+      "zh": "圣诞节礼物"
+    },
+    "Cladding of Epsilon": {
+      "ja": "イプシロンの外装",
+      "zh": "伊普西龙的装甲"
+    },
+    "Claymore": {
+      "ja": "クレイモア",
+      "zh": "利刃大剑"
+    },
+    "Clio": {
+      "ja": "クレイオー",
+      "zh": "史神克莱奥之杖"
+    },
+    "Club of Laconium": {
+      "ja": "ラコニウムの杖",
+      "zh": "拉克尼姆金属杖"
+    },
+    "Club of Zumiuran": {
+      "ja": "ズミウランの杖",
+      "zh": "业障石杖"
+    },
+    "Combat Gear": {
+      "ja": "コンバットギア",
+      "zh": "格斗盾"
+    },
+    "Commander Uniform": {
+      "ja": "連盟親衛隊指揮官軍服",
+      "zh": "亲卫队指挥官军服"
+    },
+    "Congeal Cloak": {
+      "ja": "カンギールクローク",
+      "zh": "冰暴披风"
+    },
+    "Crater East": {
+      "ja": "クレーター周辺（東ルート）",
+      "zh": "Crater East"
+    },
+    "Crater Int.": {
+      "ja": "クレーター内部",
+      "zh": "Crater Int."
+    },
+    "Crater North": {
+      "ja": "クレーター周辺（北ルート）",
+      "zh": "Crater North"
+    },
+    "Crater South": {
+      "ja": "クレーター周辺（南ルート）",
+      "zh": "Crater South"
+    },
+    "Crater West": {
+      "ja": "クレーター周辺（西ルート）",
+      "zh": "Crater West"
+    },
+    "Crimson Coat": {
+      "ja": "クリムゾンコート",
+      "zh": "真红外套"
+    },
+    "Cross Scar": {
+      "ja": "クロススケア",
+      "zh": "十字疤"
+    },
+    "Crush Bullet": {
+      "ja": "クラッシュバレット",
+      "zh": "碎弹枪"
+    },
+    "Cure/Confuse": {
+      "ja": "キュア/コンフューズ",
+      "zh": "混乱预防"
+    },
+    "Cure/Freeze": {
+      "ja": "キュア/フリーズ",
+      "zh": "冰冻预防"
+    },
+    "Cure/Paralysis": {
+      "ja": "キュア/パラライズ",
+      "zh": "麻痹预防"
+    },
+    "Cure/Poison": {
+      "ja": "キュア/ポイズン",
+      "zh": "中毒预防"
+    },
+    "Cure/Shock": {
+      "ja": "キュア/ショック",
+      "zh": "感电预防"
+    },
+    "Cure/Slow": {
+      "ja": "キュア/スロー",
+      "zh": "缓慢预防"
+    },
+    "Cursed Cloak": {
+      "ja": "カースクローク",
+      "zh": "咒之披风"
+    },
+    "Custom Barrier ver.OO": {
+      "ja": "カスタムバリア ver.OO",
+      "zh": "军用盾ver.OO"
+    },
+    "Custom Frame ver.OO": {
+      "ja": "カスタムフレーム ver.OO",
+      "zh": "军用铠ver.OO"
+    },
+    "Custom Ray ver.OO": {
+      "ja": "カスタムレイ ver.OO",
+      "zh": "军用光枪ver.OO"
+    },
+    "Cutter": {
+      "ja": "カッター",
+      "zh": "回旋投刃"
+    },
+    "D-Parts ver1.01": {
+      "ja": "Ｄパーツ ver1.01",
+      "zh": "Ｄ组件ver1.01"
+    },
+    "D-Parts ver2.10": {
+      "ja": "Ｄパーツ ver2.10",
+      "zh": "Ｄ组件ver2.10"
+    },
+    "D-Photon Core": {
+      "ja": "Ｄフォトンコア",
+      "zh": "Ｄ型因子核心"
+    },
+    "DB'S SABER 3062": {
+      "zh": "ＤＢ之剑「３０６２」"
+    },
+    "DB'S SWORD": {
+      "ja": "DBの剣[3062]",
+      "zh": "ＤＢ之剑"
+    },
+    "DB's Armor": {
+      "ja": "ＤＢの鎧",
+      "zh": "ＤＢ之铠"
+    },
+    "DB's Saber": {
+      "ja": "ＤＢの剣",
+      "zh": "ＤＢ之剑"
+    },
+    "DB's Saber (3062)": {
+      "ja": "ＤＢの剣(3062)",
+      "zh": "ＤＢ之剑「３０６２」"
+    },
+    "DB's Saber (3064)": {
+      "ja": "ＤＢの剣(3064)",
+      "zh": "ＤＢ之剑「３０６４」"
+    },
+    "DB's Saber (3067)": {
+      "ja": "ＤＢの剣(3067)",
+      "zh": "ＤＢ之剑「３０６７」"
+    },
+    "DB's Saber (3069 Chris)": {
+      "ja": "ＤＢの剣(3069・クリス社)",
+      "zh": "ＤＢ之剑「３０６９」"
+    },
+    "DB's Saber (3069 Torato)": {
+      "ja": "ＤＢの剣(3069・トラト社)",
+      "zh": "ＤＢ之剑「３０６９」"
+    },
+    "DB's Saber (3070)": {
+      "ja": "ＤＢの剣(3070)",
+      "zh": "ＤＢ之剑「３０７０」"
+    },
+    "DB's Saber (3073)": {
+      "ja": "ＤＢの剣(3073)",
+      "zh": "ＤＢ之剑「３０７３」"
+    },
+    "DB's Saber (3075)": {
+      "ja": "ＤＢの剣(3075)",
+      "zh": "ＤＢ之剑「３０７５」"
+    },
+    "DB's Saber (3077)": {
+      "ja": "ＤＢの剣(3077)",
+      "zh": "ＤＢ之剑「３０７７」"
+    },
+    "DB's Shield": {
+      "ja": "ＤＢの盾",
+      "zh": "ＤＢ之盾"
+    },
+    "DF Field": {
+      "ja": "ＤＦフィールド",
+      "zh": "ＤＦ领域"
+    },
+    "DF Shield": {
+      "ja": "ＤＦの盾",
+      "zh": "ＤＦ之盾"
+    },
+    "DISKA OF BRAVEMEN": {
+      "ja": "勇者のディスカ",
+      "zh": "勇者的飞碟"
+    },
+    "Dal Ra Lie": {
+      "zh": "达尔-拉-利"
+    },
+    "Daylight Scar": {
+      "ja": "デイライトスカー",
+      "zh": "晓之刻印"
+    },
+    "De Rol Le Shell": {
+      "ja": "デ・ロル・レの殻",
+      "zh": "迪·洛尔·雷的壳"
+    },
+    "Def Material": {
+      "ja": "ディフェンスマテリアル",
+      "zh": "防御力药"
+    },
+    "Delsaber's Left Arm": {
+      "ja": "デルセイバーの左手",
+      "zh": "剑魔的左手"
+    },
+    "Delsaber's Right Arm": {
+      "ja": "デルセイバーの右手",
+      "zh": "剑魔的右手"
+    },
+    "Delsabre's Left Arm": {
+      "ja": "デルセイバーの左手",
+      "zh": "剑魔的左手"
+    },
+    "Delsabre's Right Arm": {
+      "ja": "デルセイバーの右手",
+      "zh": "剑魔的右手"
+    },
+    "Demolition Comet": {
+      "ja": "デモリションコメット",
+      "zh": "破坏彗星"
+    },
+    "Demonic Fork": {
+      "ja": "デモニックフォーク",
+      "zh": "恶魔之叉"
+    },
+    "Desert 1": {
+      "ja": "地下砂漠１",
+      "zh": "Desert 1"
+    },
+    "Desert 2": {
+      "ja": "地下砂漠２",
+      "zh": "Desert 2"
+    },
+    "Desert 3": {
+      "ja": "地下砂漠３",
+      "zh": "Desert 3"
+    },
+    "Devil/Battle": {
+      "ja": "デビル/バトル",
+      "zh": "魔鬼级/战斗"
+    },
+    "Devil/Technique": {
+      "ja": "デビル/テクニック",
+      "zh": "魔鬼级/魔法"
+    },
+    "Difluid": {
+      "zh": "中ＴＰ回复液"
+    },
+    "Digrinder": {
+      "zh": "中打磨石"
+    },
+    "Dimate": {
+      "zh": "中ＨＰ回复液"
+    },
+    "Diska": {
+      "ja": "ディスカ",
+      "zh": "彗星投刃"
+    },
+    "Diska of Braveman": {
+      "ja": "勇者のディスカ",
+      "zh": "勇者的飞碟"
+    },
+    "Diska of Liberator": {
+      "ja": "解放者のディスカ",
+      "zh": "解放者的飞碟"
+    },
+    "Divine Protection": {
+      "ja": "ディヴァインプロテクション",
+      "zh": "神圣守护"
+    },
+    "Divinity Armor": {
+      "ja": "ディビニティアーマー",
+      "zh": "圣灵装甲"
+    },
+    "Divinity Barrier": {
+      "zh": "圣灵盾"
+    },
+    "Double Saber": {
+      "ja": "ダブルセイバー",
+      "zh": "双头剑"
+    },
+    "Dragon Frame": {
+      "zh": "龙之铠甲"
+    },
+    "Dragon Scale": {
+      "ja": "龍の鱗",
+      "zh": "龙鳞"
+    },
+    "Dragon Slayer": {
+      "ja": "ドラゴンスレイヤー",
+      "zh": "斩龙剑"
+    },
+    "Dragon's Claw": {
+      "ja": "ドラゴンのツメ",
+      "zh": "龙之爪"
+    },
+    "Dragon/HP": {
+      "ja": "ドラゴン/ＨＰ",
+      "zh": "巨龙级/ＨＰ"
+    },
+    "Dress Plate": {
+      "ja": "トランスヴェスタイトプレート",
+      "zh": "礼服铠"
+    },
+    "Durandal": {
+      "ja": "デュランダル",
+      "zh": "骑士之剑"
+    },
+    "Earth Wand: Brownie": {
+      "ja": "土杖「ブラウニー」",
+      "zh": "土杖「布拉乌尼」"
+    },
+    "Easter Egg": {
+      "ja": "イースターエッグ",
+      "zh": "复活节彩蛋"
+    },
+    "Edge": {
+      "ja": "エッジ",
+      "zh": "弧光匕首"
+    },
+    "Electro Frame": {
+      "ja": "エレクトロフレーム",
+      "zh": "电子铠"
+    },
+    "Elysion": {
+      "ja": "エリュシオン",
+      "zh": "魔法剑"
+    },
+    "Evade Material": {
+      "ja": "イベイドマテリアル",
+      "zh": "回避力药"
+    },
+    "Evil Curst": {
+      "ja": "エビルカースト",
+      "zh": "恶魔之眼"
+    },
+    "FIRE SCEPTER:AGNI": {
+      "ja": "炎杖「アグニ」",
+      "zh": "炎杖「阿耆尼」"
+    },
+    "FLOWER CANE": {
+      "zh": "花杖",
+      "ja": "フラワーケイン"
+    },
+    "FORCE FIELD": {
+      "zh": "魔导服"
+    },
+    "FORCE WALL": {
+      "zh": "魔导盾"
+    },
+    "Fatsia": {
+      "ja": "ヤツデ",
+      "zh": "巨芋叶"
+    },
+    "Final Impact": {
+      "ja": "ファイナルインパクト",
+      "zh": "最后的冲击"
+    },
+    "Fire Scepter: Agni": {
+      "ja": "炎杖「アグニ」",
+      "zh": "炎杖「阿耆尼」"
+    },
+    "Flamberge": {
+      "ja": "フランベルジュ",
+      "zh": "波纹剑"
+    },
+    "Flame Garment": {
+      "ja": "フレイムガーメント",
+      "zh": "火光铠"
+    },
+    "Flame Visit": {
+      "ja": "フレイムビジット",
+      "zh": "火焰喷射器"
+    },
+    "Flapjack Flapper": {
+      "ja": "フラップジャックフラッパー",
+      "zh": "红粉少女"
+    },
+    "Flight Cutter": {
+      "ja": "フライトカッター",
+      "zh": "手里剑"
+    },
+    "Flight Fan": {
+      "ja": "扇舞",
+      "zh": "扇舞"
+    },
+    "Flowen's Frame": {
+      "ja": "フロウウェンの鎧",
+      "zh": "弗罗文之铠"
+    },
+    "Flowen's Shield": {
+      "ja": "フロウウェンの盾",
+      "zh": "弗罗文之盾"
+    },
+    "Flowen's Sword": {
+      "ja": "フロウウェンの大剣",
+      "zh": "弗罗文大剑"
+    },
+    "Flowen's Sword (3060)": {
+      "ja": "フロウウェンの大剣(3060)",
+      "zh": "弗罗文大剑「３０６０」"
+    },
+    "Flowen's Sword (3064)": {
+      "ja": "フロウウェンの大剣(3064)",
+      "zh": "弗罗文大剑「３０６４」"
+    },
+    "Flowen's Sword (3067)": {
+      "ja": "フロウウェンの大剣(3067)",
+      "zh": "弗罗文大剑「３０６７」"
+    },
+    "Flowen's Sword (3073)": {
+      "ja": "フロウウェンの大剣(3073)",
+      "zh": "弗罗文大剑「３０７３」"
+    },
+    "Flowen's Sword (3077)": {
+      "ja": "フロウウェンの大剣(3077)",
+      "zh": "弗罗文大剑「３０７７」"
+    },
+    "Flowen's Sword (3079)": {
+      "ja": "フロウウェンの大剣(3079)",
+      "zh": "弗罗文大剑「３０７９」"
+    },
+    "Flowen's Sword (3082)": {
+      "ja": "フロウウェンの大剣(3082)",
+      "zh": "弗罗文大剑「３０８２」"
+    },
+    "Flowen's Sword (3083)": {
+      "ja": "フロウウェンの大剣(3083)",
+      "zh": "弗罗文大剑「３０８３」"
+    },
+    "Flowen's Sword (3084)": {
+      "ja": "フロウウェンの大剣(3084)",
+      "zh": "弗罗文大剑「３０８４」"
+    },
+    "Forest 1": {
+      "ja": "森エリア１",
+      "zh": "Forest 1"
+    },
+    "Forest 2": {
+      "ja": "森エリア２",
+      "zh": "Forest 2"
+    },
+    "Frozen Shooter": {
+      "ja": "フローズンシューター",
+      "zh": "冷射枪"
+    },
+    "G-ASSASIN'S ARMS": {
+      "ja": "グラスアサッシンの両手",
+      "zh": "巨螳螂的双手"
+    },
+    "G-ASSASSIN'S SABERS": {
+      "zh": "巨螳螂双刀"
+    },
+    "GIGOBOOMA'S CLAW": {
+      "zh": "红狂熊之爪"
+    },
+    "GIGOBOOMA'S RIGHT ARMS": {
+      "ja": "ジゴブーマの右手",
+      "zh": "红狂熊的右手"
+    },
+    "GIGUE'S ARMS": {
+      "ja": "ギ・グーの腹部",
+      "zh": "姬蜂后的腹部"
+    },
+    "GOBOOMA'S CLAW": {
+      "zh": "黄狂熊之爪"
+    },
+    "GOBOOMA'S RIGHT ARMS": {
+      "ja": "ゴブーマの右手",
+      "zh": "黄狂熊的右手"
+    },
+    "GODS SHIELD BYAKKO": {
+      "zh": "四神盾「白虎」"
+    },
+    "GODS SHIELD GENBU": {
+      "zh": "四神盾「玄武」"
+    },
+    "GODS SHIELD SEIRYU": {
+      "zh": "四神盾「青龙」"
+    },
+    "GODS SHIELD SUZAKU": {
+      "zh": "四神盾「朱雀」"
+    },
+    "GREENNILL CARD": {
+      "ja": "グリーニルカード",
+      "zh": "翠绿卡片"
+    },
+    "GULD MILLA": {
+      "zh": "伽尔德-米拉"
+    },
+    "Gae Bolg": {
+      "ja": "ガエボルグ",
+      "zh": "战斗长刀"
+    },
+    "Gal Gryphon Wing": {
+      "ja": "ガルグリフォンのハネ",
+      "zh": "加尔狮鹫的羽毛"
+    },
+    "Gal Gryphon's Wing": {
+      "ja": "ガル・グリフォンのハネ",
+      "zh": "加尔狮鹫的羽毛"
+    },
+    "Galatine": {
+      "ja": "ガラティーン",
+      "zh": "太阳之剑"
+    },
+    "Gatling": {
+      "ja": "ガトリング",
+      "zh": "格林机枪"
+    },
+    "General/Arm": {
+      "ja": "ジェネラル/アーム",
+      "zh": "将军级/命中"
+    },
+    "General/Legs": {
+      "ja": "ジェネラル/レグス",
+      "zh": "将军级/回避"
+    },
+    "General/Mind": {
+      "ja": "ジェネラル/マインド",
+      "zh": "将军级/精神"
+    },
+    "General/Power": {
+      "ja": "ジェネラル/パワー",
+      "zh": "将军级/攻击"
+    },
+    "Gi Gue's Body": {
+      "ja": "ギ・グーの腹部",
+      "zh": "姬蜂后的腹部"
+    },
+    "Gigobooma's Right Arm": {
+      "ja": "ジゴブーマの右腕",
+      "zh": "红狂熊的右手"
+    },
+    "Gillchic": {
+      "zh": "步行机兵"
+    },
+    "Girasole": {
+      "ja": "ジラソーレ",
+      "zh": "向日葵"
+    },
+    "Glaive": {
+      "ja": "グレイブ",
+      "zh": "骑士长刀"
+    },
+    "Glide Divine": {
+      "ja": "グライドディヴァイン",
+      "zh": "逝神"
+    },
+    "Gobooma's Right Arm": {
+      "ja": "ゴブーマの右腕",
+      "zh": "黄狂熊的右手"
+    },
+    "God Hand": {
+      "ja": "ゴッドハンド",
+      "zh": "上帝之手"
+    },
+    "God/Ability": {
+      "ja": "ゴッド/アビリティ",
+      "zh": "天神级/全能力"
+    },
+    "God/Arm": {
+      "ja": "ゴッド/アーム",
+      "zh": "天神级/命中"
+    },
+    "God/Battle": {
+      "ja": "ゴッド/バトル",
+      "zh": "天神级/战斗"
+    },
+    "God/Body": {
+      "ja": "ゴッド/ボディ",
+      "zh": "天神级/防御"
+    },
+    "God/HP": {
+      "ja": "ゴッド/ＨＰ",
+      "zh": "天神级/ＨＰ"
+    },
+    "God/Legs": {
+      "ja": "ゴッド/レグス",
+      "zh": "天神级/回避"
+    },
+    "God/Luck": {
+      "ja": "ゴッド/ラック",
+      "zh": "天神级/运"
+    },
+    "God/Mind": {
+      "ja": "ゴッド/マインド",
+      "zh": "天神级/精神"
+    },
+    "God/Power": {
+      "ja": "ゴッド/パワー",
+      "zh": "天神级/攻击"
+    },
+    "God/TP": {
+      "ja": "ゴッド/ＴＰ",
+      "zh": "天神级/ＴＰ"
+    },
+    "God/Technique": {
+      "ja": "ゴッド/テクニック",
+      "zh": "天神级/魔法"
+    },
+    "Grass Assassin's Arms": {
+      "ja": "グラスアサッシンの両手",
+      "zh": "巨螳螂的双手"
+    },
+    "Gratia": {
+      "ja": "ガラシア",
+      "zh": "优雅盾"
+    },
+    "Graviton Plate": {
+      "ja": "グラビトンプレート",
+      "zh": "重力铠"
+    },
+    "Greenill Card": {
+      "ja": "グリーニルカード",
+      "zh": "翠绿卡片"
+    },
+    "Guard Wave": {
+      "ja": "ガードウェイブ",
+      "zh": "波动护甲"
+    },
+    "Guardianna": {
+      "ja": "ガディアンナ",
+      "zh": "守护之扇"
+    },
+    "Guilty Light": {
+      "ja": "ギルティライト",
+      "zh": "罪恶之光"
+    },
+    "Gungnir": {
+      "ja": "グングニル",
+      "zh": "战神长刀"
+    },
+    "Guren": {
+      "ja": "紅蓮",
+      "zh": "红莲"
+    },
+    "H&S25 Justice": {
+      "ja": "Ｈ＆Ｓ２５ ジャスティス",
+      "zh": "Ｈ＆Ｓ２５正义制裁"
+    },
+    "HANDGUN:GULD": {
+      "ja": "短銃「ガルド」",
+      "zh": "小枪「伽尔德」"
+    },
+    "HANDGUN:MILLA": {
+      "ja": "短銃「ミラ」",
+      "zh": "小枪「米拉」"
+    },
+    "HARISEN BATTLE FAN": {
+      "zh": "纸扇",
+      "ja": "ハリセンバトルファン"
+    },
+    "HILDEBEAR'S CANE": {
+      "zh": "狂暴巨猿头杖"
+    },
+    "HP Material": {
+      "ja": "ＨＰマテリアル",
+      "zh": "ＨＰ药"
+    },
+    "HP/Generate": {
+      "zh": "ＨＰ/再生"
+    },
+    "HP/Restorate": {
+      "ja": "ＨＰ/リストレイト",
+      "zh": "ＨＰ/回复"
+    },
+    "HP/Revival": {
+      "ja": "ＨＰ/リバイバル",
+      "zh": "ＨＰ/重生"
+    },
+    "HUGE BATTLE FAN": {
+      "zh": "艺之道",
+      "ja": "ヒュージバトルファン"
+    },
+    "HUNTER FIELD": {
+      "zh": "战士服"
+    },
+    "HUNTER WALL": {
+      "zh": "战士盾"
+    },
+    "Handgun: Guld": {
+      "ja": "短銃「ガルド」",
+      "zh": "小枪「伽尔德」"
+    },
+    "Handgun: Milla": {
+      "ja": "短銃「ミラ」",
+      "zh": "小枪「米拉」"
+    },
+    "Heart of Ancient Saber": {
+      "ja": "アンシエントセイバーの心",
+      "zh": "古代剑之心"
+    },
+    "Heart of Angel": {
+      "zh": "天使之心"
+    },
+    "Heart of Angel Harp": {
+      "ja": "エンジェルハープの心",
+      "zh": "天使之琴涂之心"
+    },
+    "Heart of Blade Dance": {
+      "ja": "ブレイドダンスの心",
+      "zh": "剑舞之心"
+    },
+    "Heart of Chameleon Scythe": {
+      "ja": "カメレオンサイズの心",
+      "zh": "变色龙之杖之心"
+    },
+    "Heart of Chao": {
+      "zh": "查欧之心"
+    },
+    "Heart of Chu Chu": {
+      "zh": "啾啾之心"
+    },
+    "Heart of Crazy Tune": {
+      "ja": "クレイジーチューンの心",
+      "zh": "疯狂的旋律之心"
+    },
+    "Heart of DB's Saber": {
+      "ja": "ＤＢの剣の心",
+      "zh": "ＤＢ之剑之心"
+    },
+    "Heart of Daisy Chain": {
+      "ja": "デイジーチェインの心",
+      "zh": "雏菊剑之心"
+    },
+    "Heart of Delsaber's Buster": {
+      "ja": "デルセイバーの剣の心",
+      "zh": "剑魔之剑之心"
+    },
+    "Heart of Devil": {
+      "zh": "魔鬼之心"
+    },
+    "Heart of Diska of Liberator": {
+      "ja": "解放者のディスカの心",
+      "zh": "解放者的飞碟之心"
+    },
+    "Heart of Egg Blaster": {
+      "ja": "エッグブラスターの心",
+      "zh": "爆蛋枪之心"
+    },
+    "Heart of Flamberge": {
+      "ja": "フランベルジュの心",
+      "zh": "波纹剑之心"
+    },
+    "Heart of Izmaela": {
+      "ja": "イズマエラの心",
+      "zh": "依兹玛艾拉之心"
+    },
+    "Heart of Laconium Axe": {
+      "ja": "ラコニウムアクスの心",
+      "zh": "拉克尼姆之心"
+    },
+    "Heart of Lollipop": {
+      "ja": "ロリポップの心",
+      "zh": "棒棒糖之心"
+    },
+    "Heart of Morolian": {
+      "ja": "モロ星人の心",
+      "zh": "摩洛星人的心"
+    },
+    "Heart of Opa Opa": {
+      "zh": "欧帕欧帕之心",
+      "ja": "オパオパの心"
+    },
+    "Heart of Partisan of Lightning": {
+      "ja": "迅雷の心",
+      "zh": "迅雷之心"
+    },
+    "Heart of Pian": {
+      "zh": "皮安之心"
+    },
+    "Heart of Plantain Huge Fan": {
+      "ja": "バショウセンの心",
+      "zh": "芭蕉扇之心"
+    },
+    "Heart of Poumn": {
+      "ja": "ハート・オブ・ポウム",
+      "zh": "幻爪「波姆之心」"
+    },
+    "Heart of Rabbit Wand": {
+      "ja": "ラビットウォンドの心",
+      "zh": "兔子魔杖之心"
+    },
+    "Heart of Rianov 303SNR": {
+      "ja": "ライアーノフ303SNRの心",
+      "zh": "莱阿诺夫303SNR之心"
+    },
+    "Heart of Ruby Bullet": {
+      "ja": "ルビーバレットの心",
+      "zh": "宝石枪之心"
+    },
+    "Heart of Samba Maracas": {
+      "ja": "サンバマラカスの心",
+      "zh": "桑巴沙锤之心"
+    },
+    "Heart of Sorcerer's Cane": {
+      "ja": "ソーサラーの杖の心",
+      "zh": "混沌法师杖之心"
+    },
+    "Heart of Soul Banish": {
+      "ja": "ソウルバニッシュの心",
+      "zh": "诫魂者之心"
+    },
+    "Heart of Suppressed Gun": {
+      "ja": "サプレストガンの心",
+      "zh": "消音枪之心"
+    },
+    "Heart of Tension Blaster": {
+      "ja": "テンションブラスターの心",
+      "zh": "舞拉拉压力波动枪之心"
+    },
+    "Heart of The Sigh of a God": {
+      "ja": "神の吐息の心",
+      "zh": "神之吐息之心"
+    },
+    "Heart of Twin Chakram": {
+      "ja": "ツインチャクラムの心",
+      "zh": "回旋双光轮之心"
+    },
+    "Heart of TypeDS/D.Saber": {
+      "ja": "TypeDS/D.Saberの心",
+      "zh": "白·双头剑/双头剑之心"
+    },
+    "Heart of TypeSS/Swords": {
+      "ja": "TypeSS/Swordsの心",
+      "zh": "白·双刀/双刀之心"
+    },
+    "Heart of Wok of Akiko's Shop": {
+      "ja": "秋子飯店の中華鍋の心",
+      "zh": "秋子饭店的中华锅之心"
+    },
+    "Heart of Yasminkov 9000M": {
+      "ja": "ヤスミノコフ9000Mの心",
+      "zh": "雅斯米诺科夫9000M之心"
+    },
+    "Heaven Punisher": {
+      "ja": "ヘブンパニッシャー",
+      "zh": "圣枪「天罚」"
+    },
+    "Heaven Striker": {
+      "ja": "ヘブンストライカー",
+      "zh": "天堂冲击"
+    },
+    "Heaven Striker Coat": {
+      "ja": "ヘブンストライカーの塗膜",
+      "zh": "天堂冲击的涂膜"
+    },
+    "Heavenly/Ability": {
+      "ja": "ヘヴンリー/アビリティ",
+      "zh": "天堂级/全能力"
+    },
+    "Heavenly/Arms": {
+      "ja": "ヘヴンリー/アーム",
+      "zh": "天堂级/命中"
+    },
+    "Heavenly/Battle": {
+      "ja": "ヘヴンリー/バトル",
+      "zh": "天堂级/战斗"
+    },
+    "Heavenly/Body": {
+      "ja": "ヘヴンリー/ボディ",
+      "zh": "天堂级/防御"
+    },
+    "Heavenly/HP": {
+      "ja": "ヘヴンリー/ＨＰ",
+      "zh": "天堂级/ＨＰ"
+    },
+    "Heavenly/Legs": {
+      "ja": "ヘヴンリー/レグス",
+      "zh": "天堂级/回避"
+    },
+    "Heavenly/Luck": {
+      "ja": "ヘヴンリー/ラック",
+      "zh": "天堂级/运"
+    },
+    "Heavenly/Mind": {
+      "ja": "ヘヴンリー/マインド",
+      "zh": "天堂级/精神"
+    },
+    "Heavenly/Power": {
+      "ja": "ヘヴンリー/パワー",
+      "zh": "天堂级/攻击"
+    },
+    "Heavenly/Resist": {
+      "ja": "ヘヴンリー/レジスト",
+      "zh": "天堂级/抗性"
+    },
+    "Heavenly/TP": {
+      "ja": "ヘヴンリー/ＴＰ",
+      "zh": "天堂级/ＴＰ"
+    },
+    "Hero/Ability": {
+      "ja": "ヒーロー/アビリティ",
+      "zh": "英雄级/全能力"
+    },
+    "Hildebear's Head": {
+      "ja": "ヒルデベアの頭",
+      "zh": "狂暴巨猿的头"
+    },
+    "Hildeblue's Head": {
+      "ja": "ヒルデブルーの頭",
+      "zh": "狂暴白猿的头"
+    },
+    "Hit Material": {
+      "zh": "命中率药"
+    },
+    "Hitogata": {
+      "ja": "ヒトガタ",
+      "zh": "式神"
+    },
+    "Holy Ray": {
+      "ja": "ホーリーレイ",
+      "zh": "圣光枪"
+    },
+    "ICE STAFF:DAGON": {
+      "ja": "氷杖「ダゴン」",
+      "zh": "冰杖「达贡」"
+    },
+    "Ice Staff: Dagon": {
+      "ja": "氷杖「ダゴン」",
+      "zh": "冰杖「达冈」"
+    },
+    "Ignition Cloak": {
+      "ja": "イグニションクローク",
+      "zh": "灼热披风"
+    },
+    "Imperial Pick": {
+      "ja": "インペリアルピック",
+      "zh": "皇家之戟"
+    },
+    "Infantry Gear": {
+      "ja": "空間機動歩兵第３２分隊上等兵軍服",
+      "zh": "空间机动军官军服"
+    },
+    "Infantry Mantle": {
+      "ja": "空間機動歩兵外套",
+      "zh": "空间机动歩兵外套"
+    },
+    "Inferno Bazooka": {
+      "ja": "インフェルノバズーカ",
+      "zh": "地狱火箭炮"
+    },
+    "Invisible Guard": {
+      "ja": "インビジブルガード",
+      "zh": "透明盾"
+    },
+    "Jack-O'-Lantern": {
+      "ja": "カボチャ",
+      "zh": "南瓜"
+    },
+    "Joint Parts": {
+      "zh": "连接零件",
+      "ja": "ジョイントパーツ"
+    },
+    "Jungle East": {
+      "ja": "密林地区 東",
+      "zh": "Jungle East"
+    },
+    "Jungle North": {
+      "ja": "密林地区 北",
+      "zh": "Jungle North"
+    },
+    "Justy-23ST": {
+      "ja": "ジャスティ－２３ＳＴ",
+      "zh": "伽斯帝－２３ＳＴ"
+    },
+    "KALADGOLG": {
+      "ja": "カラドボルグ",
+      "zh": "冰之剑"
+    },
+    "Kaladbolg": {
+      "ja": "カラドボルグ",
+      "zh": "冰之剑"
+    },
+    "Kamui": {
+      "ja": "カムイ",
+      "zh": "神威"
+    },
+    "Kasami Bracer": {
+      "ja": "カザミノコテ",
+      "zh": "忍者手甲"
+    },
+    "Kunai": {
+      "ja": "クナイ",
+      "zh": "飞镖"
+    },
+    "Kusanagi": {
+      "ja": "草薙",
+      "zh": "草薙"
+    },
+    "L&K14 Combat": {
+      "ja": "Ｌ＆Ｋ１４ コンバット",
+      "zh": "Ｌ＆Ｋ１４战场之狼"
+    },
+    "L&K15 COMBAT": {
+      "ja": "L&K15コンバット",
+      "zh": ""
+    },
+    "L&K38 Combat": {
+      "ja": "Ｌ＆Ｋ３８ コンバット",
+      "zh": "Ｌ＆Ｋ３８ 战场之狼"
+    },
+    "LAVIS BLADE": {
+      "zh": "圣剑「双刃·拉维斯」",
+      "ja": "ラヴィス＝ブレイド"
+    },
+    "Laconium Axe": {
+      "ja": "ラコニウムアクス",
+      "zh": "拉克尼姆战斧"
+    },
+    "Lame d'Argent": {
+      "ja": "ラムダージャン",
+      "zh": "银月之剑"
+    },
+    "Laser": {
+      "ja": "レーザー",
+      "zh": "激光步枪"
+    },
+    "Last Survivor": {
+      "ja": "ラストサバイバー",
+      "zh": "最后的生还者"
+    },
+    "Launcher": {
+      "ja": "ランチャー",
+      "zh": "强袭散弹枪"
+    },
+    "Lavis Cannon": {
+      "ja": "ラヴィス＝カノン",
+      "zh": "圣剑「拉维斯·迦农」"
+    },
+    "Liberta Kit": {
+      "ja": "リベルタユニット",
+      "zh": "浮游炮零件"
+    },
+    "Lieutenant Gear": {
+      "ja": "空間機動歩兵第３２分隊中尉軍服",
+      "zh": "空间机动中尉军服"
+    },
+    "Lieutenant Mantle": {
+      "ja": "空間機動歩兵中尉外套",
+      "zh": "空间机动中尉外套"
+    },
+    "Light Relief": {
+      "ja": "ライトリリーフ",
+      "zh": "浮光盾"
+    },
+    "Limiter": {
+      "ja": "リミッター",
+      "zh": "限幅器"
+    },
+    "Luck Material": {
+      "ja": "ラックマテリアル",
+      "zh": "运之药"
+    },
+    "Luminous Field": {
+      "ja": "ルミナスフィールド",
+      "zh": "冰光服"
+    },
+    "M&A60 Vise": {
+      "ja": "Ｍ＆Ａ６０ ヴァイス",
+      "zh": "Ｍ＆Ａ６０老虎钳"
+    },
+    "MAGIC ROCK MOOLA": {
+      "ja": "魔石「ムーラ」",
+      "zh": "辉石「月晖」"
+    },
+    "MAGICAL PIECE": {
+      "zh": "心心杖"
+    },
+    "MAGICSTONE IRITISTA": {
+      "ja": "魔石「イリティスタ」",
+      "zh": "魔石「伊利提斯塔」"
+    },
+    "Mace of Adaman": {
+      "ja": "アダマンの杖",
+      "zh": "金刚石杖"
+    },
+    "Madam's Parasol": {
+      "ja": "マダムノヒガサ",
+      "zh": "女士阳伞"
+    },
+    "Madam's Umbrella": {
+      "ja": "マダムノアマガサ",
+      "zh": "女士雨伞"
+    },
+    "Mag": {
+      "ja": "マグ",
+      "zh": "玛古"
+    },
+    "Magic Rock \"Moola\"": {
+      "ja": "輝石「ムーラ」",
+      "zh": "辉石「月晖」"
+    },
+    "Magic Stone \"Iritista\"": {
+      "ja": "魔石「イリティスタ」",
+      "zh": "魔石「伊利提斯塔」"
+    },
+    "Maguwa": {
+      "ja": "神氷鉄",
+      "zh": "神冰铁"
+    },
+    "Mahu": {
+      "ja": "マフ",
+      "zh": "咒符"
+    },
+    "Maser Beam": {
+      "ja": "メーザービーム",
+      "zh": "雷光炮"
+    },
+    "Master/Ability": {
+      "ja": "マスター/アビリティ",
+      "zh": "大师级/全能力"
+    },
+    "Meteor Cudgel": {
+      "ja": "流星棍",
+      "zh": "流星棍"
+    },
+    "Meteor Smash": {
+      "ja": "メテオスマッシュ",
+      "zh": "陨石枪"
+    },
+    "Mind Material": {
+      "ja": "マインドマテリアル",
+      "zh": "精神力药"
+    },
+    "Mine 1": {
+      "ja": "坑道エリア１",
+      "zh": "Mine 1"
+    },
+    "Mine 2": {
+      "ja": "坑道エリア２",
+      "zh": "Mine 2"
+    },
+    "Modem": {
+      "zh": "调制解调器",
+      "ja": "モデム"
+    },
+    "Monkey King Bar": {
+      "ja": "ニョイボウ",
+      "zh": "如意金箍棒"
+    },
+    "Monofluid": {
+      "zh": "小ＴＰ回复液"
+    },
+    "Monogrinder": {
+      "ja": "モノグラインダー",
+      "zh": "小打磨石"
+    },
+    "Monomate": {
+      "zh": "小ＨＰ回复液"
+    },
+    "Moon Atomizer": {
+      "zh": "月之粉"
+    },
+    "Morning Glory": {
+      "ja": "モーニンググローリー",
+      "zh": "晨曦之荣光"
+    },
+    "Morning Prayer": {
+      "ja": "モーニングプレイヤー",
+      "zh": "黎明祈求"
+    },
+    "Mother Garb": {
+      "ja": "マザーガーブ",
+      "zh": "母亲的外套"
+    },
+    "Mother Garb+": {
+      "ja": "マザーガーブ＋",
+      "zh": "母亲的外套＋"
+    },
+    "Mountain": {
+      "ja": "高山地区",
+      "zh": "Mountain"
+    },
+    "Musashi": {
+      "ja": "ムサシ",
+      "zh": "武藏"
+    },
+    "NUG-2000 BAZOOKA": {
+      "ja": "Nug2000バズーカ",
+      "zh": "Nug2000火箭炮"
+    },
+    "NUG2000-Bazooka": {
+      "ja": "Nug2000バズーカ",
+      "zh": "NUG-导弹发射器"
+    },
+    "Nei's Claw": {
+      "ja": "ネイクロー",
+      "zh": "真·妮之爪"
+    },
+    "OROTIAGITO": {
+      "zh": "大蛇腭"
+    },
+    "Officer Uniform": {
+      "ja": "連盟親衛隊上等兵軍服",
+      "zh": "亲卫队军官军服"
+    },
+    "Ophelie Seize": {
+      "ja": "オフェリセーズ",
+      "zh": "神罚"
+    },
+    "Oran Card": {
+      "ja": "オランカード",
+      "zh": "橙黄卡片"
+    },
+    "P-arm's Arms": {
+      "ja": "パンアームズの両手",
+      "zh": "合体怪的双手"
+    },
+    "PANTHER'S CLAW": {
+      "zh": "豹爪",
+      "ja": "パンサークロー"
+    },
+    "PARASITE WEAR:De Rol": {
+      "zh": "寄生防具「迪-洛尔」"
+    },
+    "PARASITE WEAR:Nelgal": {
+      "zh": "寄生防具「内加尔」"
+    },
+    "PARASITE WEAR:Vajulla": {
+      "zh": "寄生防具「瓦究拉」"
+    },
+    "PARASITIC GENE FLOW": {
+      "ja": "浸食遺伝子「フロウ」",
+      "zh": "侵蚀遗传因子「弗罗文」"
+    },
+    "PART OF EGG BLASTER": {
+      "ja": "エッグパーツ",
+      "zh": "爆蛋枪的零件"
+    },
+    "PARTISAN OF LIGHTING": {
+      "ja": "迅雷",
+      "zh": "迅雷"
+    },
+    "PB/Create": {
+      "ja": "ＰＢ/クリエイト",
+      "zh": "ＰＢ/重生"
+    },
+    "PROTON LAUNCHER": {
+      "ja": "フォトンランチャー",
+      "zh": "光子发射器"
+    },
+    "Panzer Faust": {
+      "ja": "パンツァーファースト",
+      "zh": "导向穿甲弹"
+    },
+    "Parasitic Gene \"Flow\"": {
+      "ja": "侵食遺伝子「フロウ」",
+      "zh": "侵蚀遗传因子「弗罗文」"
+    },
+    "Partisan of Lightning": {
+      "ja": "迅雷",
+      "zh": "迅雷"
+    },
+    "Parts of Baranz": {
+      "ja": "バランゾの部品",
+      "zh": "机甲堡垒的零件"
+    },
+    "Parts of Egg Blaster": {
+      "ja": "エッグパーツ",
+      "zh": "爆蛋枪的零件"
+    },
+    "Parts of RoboChao": {
+      "zh": "机械查欧的部件",
+      "ja": "オモチャオのパーツ"
+    },
+    "Perfect/Resist": {
+      "ja": "パーフェクト/レジスト",
+      "zh": "完美/抗性"
+    },
+    "Phoenix Claw": {
+      "ja": "灼炎鳳牙",
+      "zh": "灼炎凤牙"
+    },
+    "Phonon Maser": {
+      "ja": "フォノンメーザー",
+      "zh": "光子微波激射器"
+    },
+    "Photon Booster": {
+      "zh": "光子加速器"
+    },
+    "Photon Claw": {
+      "ja": "フォトンクロー",
+      "zh": "光子爪"
+    },
+    "Photon Crystal": {
+      "ja": "フォトンクリスタル",
+      "zh": "光子水晶ＰＣ"
+    },
+    "Photon Drop": {
+      "zh": "光子微晶"
+    },
+    "Photon Filter": {
+      "ja": "フォトンフィルター",
+      "zh": "光子滤波器"
+    },
+    "Photon Launcher": {
+      "ja": "フォトンランチャー",
+      "zh": "光子发射器"
+    },
+    "Photon Sphere": {
+      "zh": "光子结晶"
+    },
+    "Pinkal Card": {
+      "ja": "ピンカルカード",
+      "zh": "粉红卡片"
+    },
+    "Pioneer Parts": {
+      "ja": "パイオニアのパーツ",
+      "zh": "先驱者的部件"
+    },
+    "Plantain Leaf": {
+      "ja": "ハッパ",
+      "zh": "大叶子"
+    },
+    "Power Material": {
+      "ja": "パワーマテリアル",
+      "zh": "攻击力药"
+    },
+    "Power VR": {
+      "zh": "PowerVR显卡",
+      "ja": "パワーVR"
+    },
+    "Prophets of Motav": {
+      "ja": "モタブの予言書",
+      "zh": "魔法预言书"
+    },
+    "Proto Regene Gear": {
+      "ja": "リジェネレイトギア試",
+      "zh": "试作型再生机能盾"
+    },
+    "Psychic Barrier": {
+      "zh": "经济盾"
+    },
+    "Psycho Wand": {
+      "ja": "サイコウォンド",
+      "zh": "圣杖「意念」"
+    },
+    "Purplenum Card": {
+      "ja": "パープルナムカード",
+      "zh": "淡紫卡片"
+    },
+    "RANGER FIELD": {
+      "zh": "枪手服"
+    },
+    "RANGER WALL": {
+      "zh": "枪手盾"
+    },
+    "ROCKET PUNCH": {
+      "zh": "火箭铁拳",
+      "ja": "ロケットパンチ"
+    },
+    "Rabbit Wand": {
+      "ja": "ラビットウォンド",
+      "zh": "兔子杖"
+    },
+    "Rage d'Ame": {
+      "ja": "ラジュ・ダム",
+      "zh": "妖精之怒"
+    },
+    "Rage de Feu": {
+      "ja": "ラジュ・デ・フェ",
+      "zh": "妖精之怒"
+    },
+    "Rage de Foudre": {
+      "ja": "ラジュ・デ・フォドル",
+      "zh": "妖精之怒"
+    },
+    "Rage de Glace": {
+      "ja": "ラジュ・デ・グラス",
+      "zh": "妖精之怒"
+    },
+    "Rambling May": {
+      "ja": "ランブリングメイ",
+      "zh": "漫步少女"
+    },
+    "Rappy's Beak": {
+      "ja": "ラッピーのくちばし",
+      "zh": "拉比鸟嘴"
+    },
+    "Rappy's Wing": {
+      "ja": "ラッピーのハネ",
+      "zh": "拉比的羽毛"
+    },
+    "Recovery Barrier": {
+      "ja": "リカバリバリア",
+      "zh": "回复系强化盾"
+    },
+    "Red Barrier": {
+      "ja": "レッドバリア",
+      "zh": "炎系强化盾"
+    },
+    "Red Coat": {
+      "ja": "レッドコート",
+      "zh": "红色外套"
+    },
+    "Red Dagger": {
+      "ja": "赤のダガー",
+      "zh": "红色双刃"
+    },
+    "Red Handgun": {
+      "ja": "赤のハンドガン",
+      "zh": "红色手枪"
+    },
+    "Red Mechgun": {
+      "ja": "赤のマシンガン",
+      "zh": "红色机枪"
+    },
+    "Red Odoshi Domaru": {
+      "ja": "赤糸威胴丸",
+      "zh": "将军战衣"
+    },
+    "Red Partisan": {
+      "ja": "赤のパルチザン",
+      "zh": "红色长刀"
+    },
+    "Red Ring": {
+      "ja": "レッドリング",
+      "zh": "红色手镯"
+    },
+    "Red Saber": {
+      "ja": "赤のセイバー",
+      "zh": "红色光剑"
+    },
+    "Red Scorpio": {
+      "ja": "レッドスコルピオ",
+      "zh": "红蝎子"
+    },
+    "Red Slicer": {
+      "ja": "赤のスライサー",
+      "zh": "红色投刃"
+    },
+    "Red Sword": {
+      "ja": "赤のソード",
+      "zh": "红色大剑"
+    },
+    "Redria Card": {
+      "ja": "レッドリアカード",
+      "zh": "真红卡片"
+    },
+    "Regene Gear Adv.": {
+      "ja": "リジェネレイトギア改",
+      "zh": "改进型再生机能盾"
+    },
+    "Regenerate Gear": {
+      "ja": "リジェネレイトギア",
+      "zh": "再生机能盾"
+    },
+    "Regenerate Gear B.P.": {
+      "ja": "リジェネレイトギアＢ．Ｐ",
+      "zh": "再生机能盾Ｂ．Ｐ"
+    },
+    "Repeater": {
+      "ja": "リピーター",
+      "zh": "连射机枪"
+    },
+    "Resist/Fire": {
+      "ja": "レジスト/ファイア",
+      "zh": "抗性/火热"
+    },
+    "Resist/Flame": {
+      "ja": "レジスト/フレイム",
+      "zh": "抗性/灼热"
+    },
+    "Resist/Freeze": {
+      "ja": "レジスト/フリーズ",
+      "zh": "抗性/冰冻"
+    },
+    "Resist/Light": {
+      "ja": "レジスト/ライト",
+      "zh": "抗性/光明"
+    },
+    "Resist/Thunder": {
+      "ja": "レジスト/サンダー",
+      "zh": "抗性/雷电"
+    },
+    "Revival Cuirass": {
+      "ja": "リバイバルキュイラス",
+      "zh": "回生护甲"
+    },
+    "Revival Garment": {
+      "ja": "リバイバルガーメント",
+      "zh": "回生衣"
+    },
+    "Rianov 303SNR": {
+      "ja": "ライアーノフ303SNR",
+      "zh": "莱阿诺夫３０３ＳＮＲ"
+    },
+    "Rianov 303SNR-1": {
+      "ja": "ライアーノフ303SNR-1",
+      "zh": "莱阿诺夫３０３ＳＮＲ－１"
+    },
+    "Rianov 303SNR-2": {
+      "ja": "ライアーノフ303SNR-2",
+      "zh": "莱阿诺夫３０３ＳＮＲ－２"
+    },
+    "Rianov 303SNR-3": {
+      "ja": "ライアーノフ303SNR-3",
+      "zh": "莱阿诺夫３０３ＳＮＲ－３"
+    },
+    "Rianov 303SNR-4": {
+      "ja": "ライアーノフ303SNR-4",
+      "zh": "莱阿诺夫３０３ＳＮＲ－４"
+    },
+    "Rianov 303SNR-5": {
+      "ja": "ライアーノフ303SNR-5",
+      "zh": "莱阿诺夫３０３ＳＮＲ－５"
+    },
+    "Rico's Earring": {
+      "ja": "リコのイヤリング",
+      "zh": "莉可的耳环"
+    },
+    "Rico's Glasses": {
+      "ja": "リコのメガネ",
+      "zh": "莉可的眼镜"
+    },
+    "Rika's Claw": {
+      "ja": "ファルクロー",
+      "zh": "里卡之爪"
+    },
+    "Ripper": {
+      "ja": "リッパー",
+      "zh": "暗杀匕首"
+    },
+    "Ruby Bullet": {
+      "ja": "ルビーバレット",
+      "zh": "宝石枪"
+    },
+    "Ruins 1": {
+      "ja": "遺跡エリア１",
+      "zh": "Ruins 1"
+    },
+    "Ruins 2": {
+      "ja": "遺跡エリア２",
+      "zh": "Ruins 2"
+    },
+    "Ruins 3": {
+      "ja": "遺跡エリア３",
+      "zh": "Ruins 3"
+    },
+    "Rupika": {
+      "ja": "ルピカ",
+      "zh": "露芘卡"
+    },
+    "S-BERILL'S ARMS": {
+      "ja": "シノワベリルの両手",
+      "zh": "森隐雷藏的双手"
+    },
+    "S-BERILL'S HANDS #0": {
+      "zh": "森隐雷藏拳套０型"
+    },
+    "S-Parts ver1.16": {
+      "ja": "Ｓパーツ ver1.16",
+      "zh": "Ｓ组件ver1.16"
+    },
+    "S-Parts ver2.01": {
+      "ja": "Ｓパーツ ver2.01",
+      "zh": "Ｓ组件ver2.01"
+    },
+    "S-beat's Arms": {
+      "ja": "シノワビートの両手",
+      "zh": "蓝色机甲忍者的双手"
+    },
+    "S-red's Arms": {
+      "ja": "シノワレッドの両手",
+      "zh": "红色机甲忍者的双手"
+    },
+    "SOUL EATER": {
+      "zh": "噬魂者"
+    },
+    "STORM VAND:INDRA": {
+      "ja": "雷杖「インドラ」",
+      "zh": "雷杖「因陀罗」"
+    },
+    "STORM WAND:INDRA": {
+      "zh": "雷杖「因陀罗」"
+    },
+    "SUMMIT MOON": {
+      "zh": "辉月之杖"
+    },
+    "Sacred Cloth": {
+      "ja": "セイクリッドクロス",
+      "zh": "圣衣"
+    },
+    "Sacred Duster": {
+      "ja": "セイクリッドダスター",
+      "zh": "神圣粉碎者"
+    },
+    "Sacred Guard": {
+      "ja": "セイクリッドガード",
+      "zh": "圣光盾"
+    },
+    "Sange": {
+      "ja": "サンゲ",
+      "zh": "散华"
+    },
+    "Sawcer": {
+      "ja": "ソーサー",
+      "zh": "飞碟投刃"
+    },
+    "Scape Doll": {
+      "ja": "スケープドール",
+      "zh": "替身人偶"
+    },
+    "Scepter": {
+      "ja": "セプター",
+      "zh": "魔息杖"
+    },
+    "Seabed: Lower Levels": {
+      "ja": "プラント 下層部",
+      "zh": "Seabed: Lower Levels"
+    },
+    "Seabed: Upper Levels": {
+      "ja": "プラント 上層部",
+      "zh": "Seabed: Upper Levels"
+    },
+    "Sealed J-Sword": {
+      "ja": "封印ノダチ",
+      "zh": "封印野太刀"
+    },
+    "Seaside": {
+      "ja": "海岸地区",
+      "zh": "Seaside"
+    },
+    "Secret Gear": {
+      "ja": "シークレットギア",
+      "zh": "机密盾"
+    },
+    "Secure Feet": {
+      "ja": "セキュアフット",
+      "zh": "千里足"
+    },
+    "Select Cloak": {
+      "ja": "セレクトクローク",
+      "zh": "圣洁披风"
+    },
+    "Sense Plate": {
+      "ja": "センスプレート",
+      "zh": "灵感铠"
+    },
+    "Shouren": {
+      "ja": "青蓮",
+      "zh": "青莲"
+    },
+    "Silence Claw": {
+      "ja": "サイレンスクロー",
+      "zh": "沉默爪"
+    },
+    "Sinow Berill's Arms": {
+      "ja": "シノワベリルの両手",
+      "zh": "森隐雷藏的双手"
+    },
+    "Siren Glass Hammer": {
+      "ja": "セイレーングラスハンマー",
+      "zh": "绿宝石之杖"
+    },
+    "Skyly Card": {
+      "ja": "スカイリーカード",
+      "zh": "天青卡片"
+    },
+    "Slicer of Assassin": {
+      "ja": "暗殺者のスライサー",
+      "zh": "暗杀者的投刃"
+    },
+    "Slicer of Fanatic": {
+      "ja": "狂信者のスライサー",
+      "zh": "狂信者的投刃"
+    },
+    "Smartlink": {
+      "ja": "スマートリンク",
+      "zh": "灵感之环"
+    },
+    "Smoking Plate": {
+      "ja": "スモーキングプレート",
+      "zh": "烟幕铠"
+    },
+    "Snake Spire": {
+      "ja": "蛇矛",
+      "zh": "蛇矛"
+    },
+    "Sol Atomizer": {
+      "ja": "ソルアトマイザー",
+      "zh": "阳之粉"
+    },
+    "Solferino": {
+      "ja": "ソルフェリーノ",
+      "zh": "烈阳光子杖"
+    },
+    "Sorcerer's Right Arm": {
+      "ja": "ソーサラーの右手",
+      "zh": "混沌法师的右手"
+    },
+    "Soul Banish": {
+      "ja": "ソウルバニッシュ",
+      "zh": "诫魂者"
+    },
+    "Sourd Source FM": {
+      "zh": "FM音源",
+      "ja": "サウルドソースFM"
+    },
+    "Spirit Cuirass": {
+      "ja": "スピリットキュイラス",
+      "zh": "安神护甲"
+    },
+    "Spirit Garment": {
+      "ja": "スピリットガーメント",
+      "zh": "安神衣"
+    },
+    "Spread Needle": {
+      "ja": "スプレッドニードル",
+      "zh": "魔弹弓"
+    },
+    "Staff": {
+      "ja": "スタッフ",
+      "zh": "魔导杖"
+    },
+    "Stag Cutlery": {
+      "ja": "スタッグカットラリ",
+      "zh": "雄风之剑"
+    },
+    "Standstill Shield": {
+      "ja": "スタンドスティル",
+      "zh": "叹息之墙"
+    },
+    "Star Amplifier": {
+      "ja": "スターアンプ",
+      "zh": "星型增幅器"
+    },
+    "Star Atomizer": {
+      "ja": "スターアトマイザー",
+      "zh": "星之粉"
+    },
+    "Star Cuirass": {
+      "ja": "スターキュイラス",
+      "zh": "星之护甲"
+    },
+    "Sting Tip": {
+      "ja": "スティングティップ",
+      "zh": "蜂尾杖"
+    },
+    "Stink Frame": {
+      "ja": "匂う鎧",
+      "zh": "腥臭铠"
+    },
+    "Stink Shield": {
+      "ja": "匂う盾",
+      "zh": "腥臭盾"
+    },
+    "Storm Wand: Indra": {
+      "ja": "雷杖「インドラ」",
+      "zh": "雷杖「因陀罗」"
+    },
+    "Striker Plus": {
+      "ja": "ストライカープラス",
+      "zh": "冲击强化盾"
+    },
+    "Suppressed Gun": {
+      "ja": "サプレストガン",
+      "zh": "消音枪"
+    },
+    "Swordsman Lore": {
+      "ja": "剣士の心得",
+      "zh": "剑士的心得"
+    },
+    "Syncesta": {
+      "ja": "シンセスタ",
+      "zh": "真空波石"
+    },
+    "TP Material": {
+      "zh": "ＴＰ药"
+    },
+    "TP/Generate": {
+      "zh": "ＴＰ/再生"
+    },
+    "TP/Restorate": {
+      "ja": "ＴＰ/リストレイト",
+      "zh": "ＴＰ/回复"
+    },
+    "TP/Revival": {
+      "ja": "ＴＰ/リバイバル",
+      "zh": "ＴＰ/重生"
+    },
+    "TWINKLE STAR": {
+      "zh": "星星杖",
+      "ja": "トゥインクルスター"
+    },
+    "Talis": {
+      "ja": "タリス",
+      "zh": "咒卡"
+    },
+    "Tanegashima": {
+      "ja": "種子島",
+      "zh": "种子岛"
+    },
+    "Technical Crozier": {
+      "ja": "テクニカルクローサー",
+      "zh": "异能魔杖"
+    },
+    "Telepipe": {
+      "zh": "传送门"
+    },
+    "Tempest Cloak": {
+      "ja": "テンペストクローク",
+      "zh": "感电披风"
+    },
+    "The Sigh of a God": {
+      "ja": "神の吐息",
+      "zh": "神之吐息"
+    },
+    "Thirteen": {
+      "ja": "サーティーン",
+      "zh": "暗杀者的迷彩服"
+    },
+    "Trap Vision": {
+      "zh": "陷阱探测器"
+    },
+    "Trifluid": {
+      "zh": "大ＴＰ回复液"
+    },
+    "Trigrinder": {
+      "ja": "トリグラインダー",
+      "zh": "大打磨石"
+    },
+    "Trimate": {
+      "ja": "トリメイト",
+      "zh": "大ＨＰ回复液"
+    },
+    "Tripolic Reflector": {
+      "ja": "トリポリックリフレクター",
+      "zh": "硅钢反射盾"
+    },
+    "Tripolic Shield": {
+      "ja": "トリポリックシールド",
+      "zh": "硅钢盾"
+    },
+    "Twin Blaze": {
+      "ja": "ツインブレイズ",
+      "zh": "火流星"
+    },
+    "Twin Brand": {
+      "ja": "ツインブランド",
+      "zh": "双烙印"
+    },
+    "Twin Chakram": {
+      "ja": "ツインチャクラム",
+      "zh": "回旋双光轮"
+    },
+    "Twin Psychogun": {
+      "ja": "ツインサイコガン",
+      "zh": "意念双枪"
+    },
+    "Tyrell's Parasol": {
+      "ja": "総督恩賜パラソル",
+      "zh": "总督恩赐的阳伞"
+    },
+    "Ultimate Frame": {
+      "ja": "アルティメットフレーム",
+      "zh": "终极铠甲"
+    },
+    "Ultimate Shield": {
+      "zh": "终极机械盾",
+      "ja": "アルティメットシールド"
+    },
+    "V101": {
+      "ja": "Ｖ１０１",
+      "zh": "Ｖ１０１"
+    },
+    "V501": {
+      "ja": "Ｖ５０１",
+      "zh": "Ｖ５０１"
+    },
+    "V502": {
+      "ja": "Ｖ５０２",
+      "zh": "Ｖ５０２"
+    },
+    "V801": {
+      "ja": "Ｖ８０１",
+      "zh": "Ｖ８０１"
+    },
+    "VIRUS ARMOR:Lafuteria": {
+      "zh": "细菌防具「拉夫特利亚」"
+    },
+    "VR Spaceship: Alpha": {
+      "ja": "VR 宇宙船 α",
+      "zh": "VR Spaceship: Alpha"
+    },
+    "VR Spaceship: Beta": {
+      "ja": "VR 宇宙船 β",
+      "zh": "VR Spaceship: Beta"
+    },
+    "VR Temple: Alpha": {
+      "ja": "VR 神殿 α",
+      "zh": "VR Temple: Alpha"
+    },
+    "VR Temple: Beta": {
+      "ja": "VR 神殿 β",
+      "zh": "VR Temple: Beta"
+    },
+    "Valkyrie": {
+      "ja": "ワルキューレ",
+      "zh": "瓦尔基里"
+    },
+    "Varista": {
+      "ja": "ヴァリスタ",
+      "zh": "麻醉枪"
+    },
+    "Victor Axe": {
+      "ja": "ヴィクターアクス",
+      "zh": "胜利者之斧"
+    },
+    "Viridia Card": {
+      "ja": "ヴィリディアカード",
+      "zh": "铬绿卡片"
+    },
+    "Visk-235W": {
+      "ja": "ヴィスク－２３５Ｗ",
+      "zh": "威斯克－２３５Ｗ"
+    },
+    "Vivienne": {
+      "ja": "ヴィヴィアン",
+      "zh": "维维安双刃"
+    },
+    "Vjaya": {
+      "ja": "ヴィジャヤ",
+      "zh": "富豪长刀"
+    },
+    "Vulcan": {
+      "ja": "バルカン",
+      "zh": "音速机枪"
+    },
+    "Wals-MK2": {
+      "ja": "ウォルス－ＭＫ２",
+      "zh": "瓦尔斯－ＭＫ２"
+    },
+    "Wedding Dress": {
+      "ja": "ウェディングドレス",
+      "zh": "婚纱礼服"
+    },
+    "Whitill Card": {
+      "ja": "ホワイティルカード",
+      "zh": "羽白卡片"
+    },
+    "Windmill": {
+      "ja": "ウィンドミル",
+      "zh": "风车杖"
+    },
+    "Yahoo!'s engine": {
+      "ja": "Ｙａｈｏｏ！エンジン",
+      "zh": "雅虎！细胞"
+    },
+    "Yamato": {
+      "ja": "ヤマト",
+      "zh": "大和"
+    },
+    "Yamigarasu": {
+      "ja": "ヤミガラス",
+      "zh": "妖刀·暗鸦"
+    },
+    "Yasakani Magatama": {
+      "ja": "八坂瓊曲玉",
+      "zh": "八坂琼勾玉"
+    },
+    "Yasha": {
+      "ja": "ヤシャ",
+      "zh": "夜叉"
+    },
+    "Yasminkov 2000H": {
+      "ja": "ヤスミノコフ2000H",
+      "zh": "雅斯米诺科夫２０００Ｈ"
+    },
+    "Yasminkov 3000R": {
+      "ja": "ヤスミノコフ3000R",
+      "zh": "雅斯米诺科夫３０００Ｒ"
+    },
+    "Yasminkov 7000V": {
+      "ja": "ヤスミノコフ7000V",
+      "zh": "雅斯米诺科夫７０００Ｖ"
+    },
+    "Yasminkov 9000M": {
+      "ja": "ヤスミノコフ9000M",
+      "zh": "雅斯米诺科夫９０００Ｍ"
+    },
+    "Yata Mirror": {
+      "ja": "八咫鏡",
+      "zh": "八咫镜"
+    },
+    "Yellow Barrier": {
+      "ja": "イエローバリア",
+      "zh": "雷系强化盾"
+    },
+    "Yellowboze Card": {
+      "ja": "イエローブーズカード",
+      "zh": "金黄卡片"
+    },
+    "Yunchang": {
+      "ja": "雲長",
+      "zh": "云长"
+    },
+    "Zanba": {
+      "ja": "ザンバ",
+      "zh": "斩马刀"
+    },
+    "Zero Divide": {
+      "ja": "ゼロディバイド",
+      "zh": "零度切刃"
+    },
+    "Dark Falz?": {
+      "ja": "ダークファルス?",
+      "zh": "暗黑佛?"
+    },
+    "Olga Flow?": {
+      "ja": "オルガ・フロウ?",
+      "zh": "奥迦-弗罗文?"
+    },
+    "アギト(1975)": {
+      "ja": "",
+      "zh": "腭刀「1975」"
+    },
+    "アギト(1975)(※1)": {
+      "ja": "",
+      "zh": "腭刀「1975」(※1)"
+    },
+    "アギト(1977)": {
+      "ja": "",
+      "zh": "腭刀「1977」"
+    },
+    "アギト(1977))": {
+      "ja": "",
+      "zh": "腭刀「1977」"
+    },
+    "アギト(1980)": {
+      "ja": "",
+      "zh": "腭刀「1980」"
+    },
+    "アギト(1983": {
+      "ja": "",
+      "zh": "腭刀「1983」"
+    },
+    "アギト(1983)": {
+      "ja": "",
+      "zh": "腭刀「1983」"
+    },
+    "アギト(1983))": {
+      "ja": "",
+      "zh": "腭刀「1983」"
+    },
+    "アギト(1991)": {
+      "ja": "",
+      "zh": "腭刀「1991」"
+    },
+    "アギト(1991))": {
+      "ja": "",
+      "zh": "腭刀「1991」"
+    },
+    "アギト(2001)": {
+      "ja": "",
+      "zh": "腭刀「2001」"
+    },
+    "アギト(2001))": {
+      "ja": "",
+      "zh": "腭刀「2001」"
+    },
+    "ウィジャヤ": {
+      "ja": "",
+      "zh": "富豪长刀"
+    },
+    "カラドボルグ": {
+      "ja": "",
+      "zh": "冰之剑"
+    },
+    "クラブ": {
+      "ja": "",
+      "zh": "权杖"
+    },
+    "グレイヴ": {
+      "ja": "",
+      "zh": "骑士长刀"
+    },
+    "パラッシュ": {
+      "ja": "",
+      "zh": "荣耀光剑"
+    },
+    "サイキックバリア": {
+      "ja": "",
+      "zh": "经济盾"
+    },
+    "セレスティアルシールド": {
+      "ja": "",
+      "zh": "天国机械盾"
+    },
+    "ディグラインダー": {
+      "ja": "",
+      "zh": "中打磨石"
+    },
+    "ディヴィニティアーマー": {
+      "ja": "",
+      "zh": "圣灵装甲"
+    },
+    "ハンターウォル": {
+      "ja": "",
+      "zh": "战士盾"
+    },
+    "ハンターフィールド": {
+      "ja": "",
+      "zh": "战士服"
+    },
+    "フォースウォル": {
+      "ja": "",
+      "zh": "魔导盾"
+    },
+    "フォースフィールド": {
+      "ja": "",
+      "zh": "魔导服"
+    },
+    "レンジャーウォル": {
+      "ja": "",
+      "zh": "枪手盾"
+    },
+    "レンジャーフールド": {
+      "ja": "",
+      "zh": "枪手服"
+    },
+    "フロウウウェンの盾": {
+      "ja": "",
+      "zh": "弗罗文之盾"
+    },
+    "Dragonフレーム": {
+      "ja": "",
+      "zh": "龙之铠甲"
+    },
+    "エンジェル/ＴＰ": {
+      "ja": "",
+      "zh": "天使级/TP"
+    },
+    "ＨＰ/ジェネレイト": {
+      "ja": "",
+      "zh": "HP/再生"
+    },
+    "ＴＰ/ジェネレイト": {
+      "ja": "",
+      "zh": "TP/再生"
+    },
+    "キュア/ポイズン": {
+      "ja": "",
+      "zh": "中毒回复"
+    },
+    "マグ細胞２１３": {
+      "ja": "",
+      "zh": "玛古细胞213"
+    },
+    "マグ細胞５０２": {
+      "ja": "",
+      "zh": "玛古细胞502"
+    },
+    "オパオパの心": {
+      "ja": "",
+      "zh": "欧帕欧帕之心"
+    },
+    "オモチャオのパーツ": {
+      "ja": "",
+      "zh": "机械查欧的部件"
+    },
+    "チャオの心": {
+      "ja": "",
+      "zh": "查欧之心"
+    },
+    "ピアンの心": {
+      "ja": "",
+      "zh": "皮安之心"
+    },
+    "マジカルピース": {
+      "ja": "",
+      "zh": "心心杖"
+    },
+    "レールガン": {
+      "ja": "",
+      "zh": "磁电光枪"
+    },
+    "ロックガン": {
+      "ja": "",
+      "zh": "放射光枪"
+    },
+    "四天　壱の巻": {
+      "ja": "",
+      "zh": "四天之书【壹】"
+    },
+    "四天　弐の巻": {
+      "ja": "",
+      "zh": "四天之书【贰】"
+    },
+    "四天　参の巻": {
+      "ja": "",
+      "zh": "四天之书【参】"
+    },
+    "四神盾「朱雀」": {
+      "ja": "",
+      "zh": "四神盾「朱雀」"
+    },
+    "四神盾「玄武」": {
+      "ja": "",
+      "zh": "四神盾「玄武」"
+    },
+    "四神盾「白虎」": {
+      "ja": "",
+      "zh": "四神盾「白虎」"
+    },
+    "四神盾「青龍」": {
+      "ja": "",
+      "zh": "四神盾「青龙」"
+    },
+    "寄生防具「デ・ロル」": {
+      "ja": "",
+      "zh": "寄生防具「迪-洛尔」"
+    },
+    "寄生防具「ネルガル」": {
+      "ja": "",
+      "zh": "寄生防具「内加尔」"
+    },
+    "寄生防具「ヴァジュラ」": {
+      "ja": "",
+      "zh": "寄生防具「瓦究拉」"
+    },
+    "細菌防具「ラフテリア」": {
+      "ja": "",
+      "zh": "细菌防具「拉夫特利亚」"
+    },
+    "秋子おばさんの中華鍋": {
+      "ja": "",
+      "zh": "秋子婶婶的中华锅"
+    },
+    "雷杖「インドラ」": {
+      "ja": "",
+      "zh": "雷杖「因陀罗」"
+    },
+    "高位マグ細胞「エノ」": {
+      "ja": "",
+      "zh": "高位玛古细胞「艾诺」"
+    },
+    "高位マグ装甲「ウル」": {
+      "ja": "",
+      "zh": "高位玛古装甲「乌尔」"
+    },
+    "６８０００": {
+      "ja": "",
+      "zh": "68000"
+    },
+    "ＳＨ２": {
+      "ja": "",
+      "zh": "SH2"
+    },
+    "ＳＨ４": {
+      "ja": "",
+      "zh": "SH4"
+    },
+    "Chaos Bringerの右手": {
+      "ja": "",
+      "zh": "混沌骑士的右手"
+    },
+    "Chaos Sorcererの右手": {
+      "ja": "",
+      "zh": "混沌法师的右手"
+    },
+    "Delsaberの右手": {
+      "ja": "",
+      "zh": "剑魔的右手"
+    },
+    "Delsaberの左手": {
+      "ja": "",
+      "zh": "剑魔的左手"
+    },
+    "Hildebearの頭": {
+      "ja": "",
+      "zh": "狂暴巨猿的头"
+    },
+    "Hildeblueの頭": {
+      "ja": "",
+      "zh": "狂暴白猿的头"
+    },
+    "Pan Armsの両手": {
+      "ja": "",
+      "zh": "合体怪的双手"
+    },
+    "Sinow Beatの両手": {
+      "ja": "",
+      "zh": "蓝机忍的双手"
+    },
+    "Sinow Redの両手": {
+      "ja": "",
+      "zh": "红机忍的双手"
+    },
+    "METEOR CUDGE": {
+      "ja": "メテオカジェル",
+      "zh": "流星棍"
+    },
+    "ゴルドラゴン": {
+      "ja": "ゴルドラゴン",
+      "zh": "数码暴龙"
+    },
+    "ダークファルス?": {
+      "ja": "",
+      "zh": "暗黑佛?"
+    },
+    "オルガ・フロウ?": {
+      "ja": "",
+      "zh": "奥迦-弗罗文?"
+    },
+    "68000": {
+      "ja": "６８０００",
+      "zh": "68000"
+    },
+    "SH2": {
+      "ja": "ＳＨ２",
+      "zh": "SH2"
+    },
+    "SH4": {
+      "ja": "ＳＨ４",
+      "zh": "SH4"
+    }
+  }
+}
