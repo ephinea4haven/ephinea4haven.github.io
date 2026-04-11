@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="PSOBB ItemRT 稀有掉落表详解">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ItemRT 稀有掉落表 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .content-container h2 {
+            color: #00d4ff;
+            margin: 32px 0 12px;
+            padding-top: 12px;
+            font-size: 22px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.25);
+            padding-bottom: 6px;
+        }
+        .content-container h3 {
+            color: #8ab4d6;
+            margin: 20px 0 10px;
+            font-size: 17px;
+        }
+        .content-container .card {
+            background: rgba(0, 212, 255, 0.06);
+            border-left: 3px solid rgba(0, 212, 255, 0.5);
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 12px 0;
+            color: #cbd5e1;
+        }
+        .content-container code {
+            background: rgba(0, 0, 0, 0.35);
+            color: #88e5ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        .content-container ul, .content-container ol { margin: 10px 0 10px 22px; }
+        .content-container li { margin: 4px 0; }
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .content-container table th,
+        .content-container table td {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 7px 10px;
+            text-align: left;
+        }
+        .content-container table th {
+            background: rgba(0, 212, 255, 0.14);
+            color: #00d4ff;
+            font-weight: 700;
+        }
+        .content-container table tr:hover td { background: rgba(0, 212, 255, 0.05); }
+        .content-container .nav-item-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 10px 0 20px;
+        }
+        .content-container .nav-item-links a {
+            padding: 6px 14px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .content-container .nav-item-links a:hover {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1 id="project_title">ItemRT 稀有掉落表</h1>
+</header>
+
+<a href="/index.html" class="back-link">← 返回首页</a>
+
+<div class="content-container">
+    <p class="card">
+        <strong>ItemRT</strong>（Item Rare Table）是 PSO 的「稀有掉落表」。它决定了每种怪物、每种箱子在掉出<strong>稀有物品</strong>时，
+        会掉哪一件、概率多少。本页掉落表里看到的「Dragon Slayer 1/456」「Tyrell's Parasol 1/3660」这些具体数字，就是来自 ItemRT。
+        配合 <a href="/data/itempt.html">ItemPT</a>（掉不掉 / 掉什么大类） 和 <a href="/data/itempmt.html">ItemPMT</a>（物品本身的属性）三者一起，才构成 PSO 完整的掉落系统。
+    </p>
+
+    <div class="nav-item-links">
+        <a href="#overview">总览</a>
+        <a href="#structure">文件结构</a>
+        <a href="#flow">生成流程</a>
+        <a href="#probability">概率的表示</a>
+        <a href="#sectionid">Section ID 对应</a>
+        <a href="#boxes">箱子与怪物</a>
+        <a href="#rates">掉率修正</a>
+        <a href="#struct">数据结构</a>
+    </div>
+
+    <h2 id="overview">总览</h2>
+    <p>在 PSO 的「掉落判定」流程里，稀有判定是<strong>独立于</strong>普通掉落的。一次怪物死亡或箱子破坏时，游戏会先做一次稀有判定：</p>
+    <ol>
+        <li>查 ItemRT 里这只怪物（或这种箱子）对应的稀有池。</li>
+        <li>对池子里每一个候选稀有物品，单独做一次「概率掷骰」。</li>
+        <li>如果任何一项骰中了，这次掉落就固定为该稀有物品，<strong>绕过 ItemPT 的普通流程</strong>。</li>
+        <li>如果全部没中，再回到 ItemPT 的流程走普通掉落。</li>
+    </ol>
+    <p>这意味着同一只怪，「掉什么普通货」和「掉什么稀有货」是两条独立的路径。稀有掉率再低，也不会因为普通货多而降低。</p>
+
+    <h2 id="structure">文件结构</h2>
+    <p>ItemRT 按「<strong>难度 × Section ID</strong>」为单位存放多份子表，一共 <code>4 × 10 = 40</code> 份（EP4 不参与，因为 EP4 的 Episode 独立一份）。
+        每一份子表又分成两段：</p>
+    <ul>
+        <li><strong>怪物稀有池</strong>（Monster Rares）：按怪物类型索引。每只怪最多对应 <strong>1 个稀有物品</strong>（加 1 个概率）。</li>
+        <li><strong>箱子稀有池</strong>（Box Rares）：按区域索引。一个区域的箱子通常对应多个稀有候选（例如 Ruins 3 箱有近十种可能的稀有）。</li>
+    </ul>
+    <p class="card">
+        文件层面上，PSOBB 用两个独立文件：<code>ItemRT.gsl</code>（Ep1 &amp; Ep2）和 <code>ItemRT_Ep4.gsl</code>。
+        GSL 是 Sega 自己的小型归档格式（GStreamLib），里面每个 entry 对应一份子表。
+    </p>
+
+    <h2 id="flow">一次稀有判定的生成流程</h2>
+    <ol>
+        <li><strong>定位子表</strong>：按当前难度和本局游戏的 Section ID 选中对应的那份 ItemRT 子表。</li>
+        <li><strong>查找候选</strong>：
+            <ul>
+                <li>怪物稀有：按怪物类型索引，拿到 <code>(物品 ID, 概率值)</code>。</li>
+                <li>箱子稀有：按区域索引，拿到一个候选列表。</li>
+            </ul>
+        </li>
+        <li><strong>掷骰</strong>：对每个候选做一次 32 位整数随机，和候选的概率值比较。命中则此次稀有判定成功。</li>
+        <li><strong>命中后</strong>：该物品立刻被「构造」出来。如果是武器，还要根据当前区域走一遍 ItemPT 的 bonus/special 生成；如果是铠甲/盾，还要决定槽数；最后交给 <a href="/data/itempmt.html">ItemPMT</a> 填充名称和模型。</li>
+    </ol>
+
+    <h2 id="probability">概率的表示：为什么是「压缩格式」</h2>
+    <p>PSOBB 的 ItemRT 文件里，每个稀有物品的概率<strong>不是直接存一个分数</strong>，而是用一个 <code>uint8</code>（1 字节）压缩存储。
+        原因是 Sega 想在一个很小的文件里塞下几百条稀有记录。这个 1 字节按 <code>SSSSS VVV</code> 的格式解读：</p>
+    <ul>
+        <li>高 5 位是位移（shift），低 3 位是基值（value）</li>
+        <li>展开公式大致是 <code>(2 &lt;&lt; shift) × (value + 7)</code>，得到一个 32 位概率值</li>
+        <li>最终掉率 = 这个 32 位值 / <code>0xFFFFFFFF</code>（即 4,294,967,295）</li>
+    </ul>
+    <p>举两个例子便于理解：</p>
+    <ul>
+        <li><code>0x40000000</code>：最终掉率 = 25%（<code>0x40000000 / 0xFFFFFFFF ≈ 1/4</code>）</li>
+        <li><code>0x00FFFFFF</code>：最终掉率 ≈ 1/256</li>
+    </ul>
+    <p class="card">
+        因为压缩格式只有 256 个可选值，ItemRT 的概率不是任意精确的 — 所以社区常见的数值如 <code>1/456</code>、<code>1/3660</code>、<code>1/11702</code> 等看起来「不太圆整」。
+        它们都是压缩格式能精确表示的「合法值」中最接近的那一个。
+    </p>
+
+    <h2 id="sectionid">Section ID 是怎么进来的</h2>
+    <p>每个 PSOBB 角色都有一个固定的 Section ID（10 种颜色 ID），这个 ID 在角色创建时由名字的 hash 决定，一旦确定不可更改。Section ID 的作用是：</p>
+    <ul>
+        <li>决定你这只角色在所有难度下访问的 ItemRT 子表。</li>
+        <li>不同 ID 的稀有池完全不同 — 某些稀有只在特定 ID 下能掉。</li>
+        <li>例如 <strong>Dark Flow</strong> 只在 <strong>Oran</strong> 玩家杀 Olga Flow 时有机会掉（U 难度）。</li>
+    </ul>
+    <p>这就是为什么 PSO 有「刷 ID」的文化：特定稀有物品必须用特定 ID 刷。可以用 <a href="/tools/id.html">Section ID 计算器</a> 反推能掉某件稀有的名字。</p>
+
+    <h2 id="boxes">怪物稀有 vs 箱子稀有</h2>
+    <h3>怪物稀有（Monster Rares）</h3>
+    <ul>
+        <li>按 <strong>rt_index</strong>（怪物类型枚举）索引，每种怪一条记录</li>
+        <li>每条记录是 <code>(物品 ID, 压缩概率)</code>，固定长度</li>
+        <li>所以「一只怪最多对应一个稀有」是天花板 — 如果同一怪物在不同 ID 下对应多个稀有（比如 Hildebear 能掉多种剑），是通过选 Section ID 来切换子表达成的，不是一只怪同时判定多个</li>
+    </ul>
+
+    <h3>箱子稀有（Box Rares）</h3>
+    <ul>
+        <li>按<strong>区域</strong>索引，每个区域可以有多个稀有候选</li>
+        <li>通常一个区域有 1–30 个稀有候选，每个都有独立概率</li>
+        <li>游戏对整个候选列表<strong>逐一判定</strong>，每个都有机会命中</li>
+        <li>正因为这个机制，高区的红盒（Ruins 3 / 遗迹3 / CCA / Tower / 地下沙漠3）才这么「富」</li>
+    </ul>
+
+    <h2 id="rates">稀有掉率修正</h2>
+    <p>ItemRT 的原始概率是 Sega 设定的「基准值」。实际服务器通常会再乘一个<strong>全局掉率倍数</strong>：</p>
+    <ul>
+        <li><strong>Ephinea</strong> 默认是 <code>1x</code>（基准）。周年活动里程碑会开更高的倍率。</li>
+        <li>全局倍数作用于所有稀有物品的概率。</li>
+    </ul>
+
+    <h2 id="struct">数据结构</h2>
+    <p>ItemRT 的原始二进制文件使用固定长度的「压缩概率 + 物品代码」作为最小存储单元。一份子表（对应一个「难度 × ID」组合）的顶部是下面这张偏移头。</p>
+
+    <h3>子表顶部偏移 <code>Offsets</code>（0x10 字节）</h3>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>monster_rares_offset</td><td>u32</td><td>怪物稀有池指针 → <code>PackedDrop[0x65]</code>（v1 只有 0x33 项）。按 rt_index 索引。</td></tr>
+            <tr><td>0x04</td><td>box_count</td><td>u32</td><td>箱子稀有条目总数，通常固定为 30（0x1E）。</td></tr>
+            <tr><td>0x08</td><td>box_areas_offset</td><td>u32</td><td>箱子所属区域数组 → <code>u8[box_count]</code>。第 <em>i</em> 项告诉你第 <em>i</em> 个稀有条目位于哪个区域。</td></tr>
+            <tr><td>0x0C</td><td>box_rares_offset</td><td>u32</td><td>箱子稀有池指针 → <code>PackedDrop[box_count]</code>，和 box_areas 一一对应。</td></tr>
+        </tbody>
+    </table>
+
+    <h3>压缩概率条目 <code>PackedDrop</code>（4 字节）</h3>
+    <p>每一条稀有物品记录都是 4 字节，这是 ItemRT 的最小单元。怪物稀有池和箱子稀有池都用同一种结构。</p>
+    <table>
+        <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>0x00</td><td>probability</td><td>u8</td><td>压缩概率值（<code>SSSSS VVV</code> 位格式）。</td></tr>
+            <tr><td>0x01</td><td>item_code</td><td>u8×3</td><td>物品代码 <code>data1[0..2]</code>，例如 <code>00 01 00</code> 表示 Saber。</td></tr>
+        </tbody>
+    </table>
+
+    <h3>概率压缩与展开</h3>
+    <p>1 字节的 <code>probability</code> 被当成 <code>SSSSS VVV</code> 解读：</p>
+    <ul>
+        <li>高 5 位 <code>S</code> 决定 shift：<code>shift = S − 4</code>，范围 [−4, 27]，负值按 0 算</li>
+        <li>低 3 位 <code>V</code> 决定 value：<code>value = V + 7</code>，范围 [7, 14]</li>
+        <li>展开后的 32 位概率 = <code>(2 &lt;&lt; shift) × value</code>，这个值作为「出该稀有物品」的分子，分母是 <code>0xFFFFFFFF</code>（全 32 位）</li>
+        <li>最终掉率 = 展开值 / <code>0xFFFFFFFF</code></li>
+    </ul>
+    <p>举例：</p>
+    <table>
+        <thead><tr><th>packed（16 进制）</th><th>shift</th><th>value</th><th>expanded</th><th>约等于</th></tr></thead>
+        <tbody>
+            <tr><td>0xFF</td><td>27</td><td>14</td><td>0xE0000000</td><td>87.5%</td></tr>
+            <tr><td>0xC0</td><td>20</td><td>7</td><td>0x01C00000</td><td>约 1/152</td></tr>
+            <tr><td>0x80</td><td>12</td><td>7</td><td>0x0001C000</td><td>约 1/38836</td></tr>
+            <tr><td>0x00</td><td>0</td><td>7</td><td>0x0000000E</td><td>极小 (&lt; 1/3 亿)</td></tr>
+        </tbody>
+    </table>
+    <p class="card">
+        因为只有 256 个可选值，掉率不是任意精确的 —— 社区看到的 <code>1/456</code>、<code>1/3660</code>、<code>1/11702</code> 这些「不圆整」的数字都是压缩表能精确表达的有效值中最接近的那一个。不可能写出例如恰好 <code>1/500</code> 这种精确掉率。
+    </p>
+
+    <h3>展开后结构 <code>ExpandedDrop</code></h3>
+    <p>newserv 在内存里把每条 <code>PackedDrop</code> 展开成一个便于计算的结构体，交互和序列化都用它：</p>
+    <table>
+        <thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>probability</td><td>u32</td><td>32 位展开概率（分子，分母固定 0xFFFFFFFF）</td></tr>
+            <tr><td>data</td><td>ItemData</td><td>完整的物品数据（含 data1/data2，不止 3 字节 ID）</td></tr>
+        </tbody>
+    </table>
+
+    <h3>箱子稀有 <code>BoxRare</code></h3>
+    <p>因为箱子稀有记录不按区域索引，而是把区域编号嵌在记录本身里：</p>
+    <table>
+        <thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr><td>area_norm_plus_1</td><td>u8</td><td>区域编号 +1（0 保留做未使用标记）</td></tr>
+            <tr><td>drop</td><td>ExpandedDrop</td><td>概率 + 物品数据</td></tr>
+        </tbody>
+    </table>
+
+    <h3>完整子表 <code>SpecCollection</code></h3>
+    <p>顶层的每一份子表对应一个「难度 × Section ID」键，展开后包含：</p>
+    <table>
+        <thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr>
+                <td>enemy_specs</td>
+                <td>map⟨Enemy, ExpandedDrop[]⟩</td>
+                <td>每种怪物对应的稀有池。</td>
+            </tr>
+            <tr>
+                <td>box_specs</td>
+                <td>ExpandedDrop[][]</td>
+                <td>按 area_norm 索引的外层数组，每个区域内是一个稀有候选列表（内层数组里每一项都是独立判定的）。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>完整掉落判定流程</h3>
+    <p>一次掉落事件的入口是「怪物死亡」或「箱子破坏」，两条路径独立，都先做稀有判定、失败后再走 ItemPT 的普通流程。</p>
+
+    <h4>怪物掉落</h4>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.2);border-radius:6px;padding:14px;overflow-x:auto;color:#cbd5e1;line-height:1.6;font-family:'Fira Code','Consolas',monospace;font-size:13px"><code>// ① 前置判定：这只怪到底会不会掉东西
+type_drop_prob = pt.enemy_type_drop_probs[enemy_type]   // 0–100
+if rand(0..99) &gt;= type_drop_prob:
+    return nothing                                       // 什么都不掉
+
+// ② 稀有判定（Stacking 算法 — 一次随机判定所有 spec）
+specs = rare_item_set.get_enemy_specs(mode, episode, difficulty, section_id, enemy_type)
+det = rand(0, 0x100000000)                               // 32 位 + 1
+for spec in specs:
+    det -= spec.probability                              // 按顺序减
+    if det &lt; 0:
+        return create_rare_item(spec.data, area)          // 命中稀有，流程结束
+
+// ③ 走 ItemPT 的普通流程，先决定大类
+determinant = allow_meseta ? rand(0..2) : rand(0..1) + 1
+switch determinant:
+    case 0: item_class = 5 (梅塞塔)
+    case 1: item_class = 4 (消耗品)
+    case 2: item_class = pt.enemy_type_item_classes[enemy_type]   // 0..3 即 武器/铠甲/盾/插件
+
+// ④ 按大类生成具体物品（权重表、磨石、bonus、special…）
+generate_common_item_variances(item, area)</code></pre>
+
+    <h4>箱子掉落</h4>
+    <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.2);border-radius:6px;padding:14px;overflow-x:auto;color:#cbd5e1;line-height:1.6;font-family:'Fira Code','Consolas',monospace;font-size:13px"><code>// ① 稀有判定（和怪物同一套 stacking 算法）
+table_index = table_index_for_area(area)
+specs = rare_item_set.get_box_specs(mode, episode, difficulty, section_id, table_index)
+det = rand(0, 0x100000000)
+for spec in specs:
+    det -= spec.probability
+    if det &lt; 0:
+        return create_rare_item(spec.data, area)
+
+// ② 没中稀有 → 从 box_item_class_prob_table 按权重抽一个大类
+item_class = weighted_pick(pt.box_item_class_prob_table, table_index)
+    // 0=武器 1=铠甲 2=盾 3=插件 4=消耗品 5=梅塞塔 6=空
+
+// ③ 若 item_class &lt; 6 则生成具体物品
+if item_class &lt; 6:
+    generate_common_item_variances(item, area)</code></pre>
+
+    <p class="card">
+        <strong>关于 stacking 的一个重要提醒：</strong><br>
+        stacking 的写法是「初始 det，逐个 spec 从 det 里减去概率，减到负数时命中」，等价于<strong>一次随机决定所有 spec 的命中</strong>，spec 的顺序不影响最终分布。<br>
+        而 Sega 原版客户端对每个 spec <strong>独立</strong>掷一次 <code>rand(0, 0xFFFFFFFF)</code> 然后和 spec.probability 比较 —— 这会让「后面的 spec 实际稀有度更高」（因为前一个 spec 命中后流程就结束了）。对只有一个 spec 的怪物没影响，但对候选多达十几项的箱子列表，原版的计算结果和 stacking 不完全一致。newserv 作者在注释里说明了这点。
+    </p>
+
+    <h2>相关页面</h2>
+    <ul>
+        <li><a href="/data/droptable/bb/index.html?diff=Ultimate">实际掉落表</a>：按 ID / 难度 / 怪 查具体稀有掉落。</li>
+        <li><a href="/data/itempt.html">ItemPT — 普通掉落规则</a>：稀有判定失败后走的普通流程。</li>
+        <li><a href="/data/itempmt.html">ItemPMT — 物品主参数表</a>：每件稀有物品的基础属性和装备要求。</li>
+        <li><a href="/tools/id.html">Section ID 计算器</a>：反推名字 → ID。</li>
+        <li><a href="/data/prizelist/">科伦赌博奖品</a> &nbsp;/&nbsp; <a href="/data/bdp/">黑页危险交易</a>：非掉落来源的稀有获取。</li>
+    </ul>
+</div>
+
+</body>
+</html>

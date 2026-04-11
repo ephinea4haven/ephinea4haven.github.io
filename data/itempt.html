@@ -1,79 +1,513 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="PSOBB 物品掉落规则详解">
+    <meta name="description" content="PSOBB ItemPT 普通掉落规则 / 武器属性生成详解">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>物品掉落规则 | Ephinea PSOBB</title>
+    <title>ItemPT 普通掉落规则 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .content-container h2 {
+            color: #00d4ff;
+            margin: 32px 0 12px;
+            padding-top: 12px;
+            font-size: 22px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.25);
+            padding-bottom: 6px;
+        }
+        .content-container h3 {
+            color: #8ab4d6;
+            margin: 20px 0 10px;
+            font-size: 17px;
+        }
+        .content-container h4 {
+            color: #9fb4c8;
+            margin: 14px 0 8px;
+            font-size: 15px;
+        }
+        .content-container .card {
+            background: rgba(0, 212, 255, 0.06);
+            border-left: 3px solid rgba(0, 212, 255, 0.5);
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin: 12px 0;
+            color: #cbd5e1;
+        }
+        .content-container code {
+            background: rgba(0, 0, 0, 0.35);
+            color: #88e5ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        .content-container ul { margin: 10px 0 10px 22px; }
+        .content-container li { margin: 4px 0; }
+        .content-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 13px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        .content-container table th,
+        .content-container table td {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 7px 10px;
+            text-align: left;
+        }
+        .content-container table th {
+            background: rgba(0, 212, 255, 0.14);
+            color: #00d4ff;
+            font-weight: 700;
+        }
+        .content-container table tr:hover td {
+            background: rgba(0, 212, 255, 0.05);
+        }
+        .content-container .nav-item-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 10px 0 20px;
+        }
+        .content-container .nav-item-links a {
+            padding: 6px 14px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+        .content-container .nav-item-links a:hover {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+        .content-container img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
 </head>
-
 <body>
-    <header>
-        <h1 id="project_title">物品掉落规则</h1>
-    </header>
+<header>
+    <h1 id="project_title">ItemPT 普通掉落规则</h1>
+</header>
 
-    <a href="/index.html" class="back-link">← 返回首页</a>
+<a href="/index.html" class="back-link">← 返回首页</a>
 
-    <div class="content-container">
-        <p>ItemPT（可能指“Item Pattern Table”的缩写）定义了游戏中的物品掉落规则。这不涉及任何稀有掉落模式，</p>
-<p>而是指所有掉落物品都遵循同一种类别。本文重点介绍普通掉落物品的规则，包括橙色、绿色、蓝色物品和梅塞塔。</p>
-<p>至于稀有物品的掉落，请参考掉落表即可。</p>
+<div class="content-container">
+    <p class="card">
+        <strong>ItemPT</strong>（Item Pattern Table）是 PSO 的「普通掉落规则表」。
+        它决定了当怪物或箱子掉落<strong>非稀有</strong>物品时，物品的类型、属性、磨石、特殊能力、梅塞塔金额如何生成。
+        稀有物品（Rare）由 <a href="/data/itemrt.html">ItemRT</a> 控制；每件物品的基础属性（ATP、ATA、需求等级等）由
+        <a href="/data/itempmt.html">ItemPMT</a> 定义；ItemPT 只管「这次掉什么、掉出来长什么样」。
+    </p>
 
-<p><strong>ItemPT主要掉落分为3大类，分别是：消耗品Tool、固定模式掉落和梅塞塔</strong></p>
-
-<p><strong>消耗品掉落(包括26种):</strong></p>
-<p><img src="/assets/img/icons/tool.png" alt="消耗品Tool" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
-
-<ul>
-<li>Monomate 小ＨＰ回复液</li>
-<li>Dimate 中ＨＰ回复液</li>
-<li>Trimate 大ＨＰ回复液</li>
-<li>Monofluid 小ＴＰ回复液</li>
-<li>Difluid 中ＴＰ回复液</li>
-<li>Trifluid 大ＴＰ回复液</li>
-<li>Antidote 解毒剂</li>
-<li>Antiparalysis 解痉剂</li>
-<li>Sol Atomizer 魂之粉</li>
-<li>Moon Atomizer 月之粉</li>
-<li>Star Atomizer 星之粉</li>
-<li>Telepipe 传送门</li>
-<li>Trap Vision 陷阱探测器</li>
-<li>Monogrinder 小打磨石</li>
-<li>Digrinder 中打磨石</li>
-<li>Trigrinder 大打磨石</li>
-<li>Power Material 攻击力药</li>
-<li>Mind Material 精神力药</li>
-<li>Evade Material 回避力药</li>
-<li>HP Material ＨＰ药</li>
-<li>TP Material ＴＰ药</li>
-<li>Def Material 防御力药</li>
-<li>Hit Material 命中率药</li>
-<li>Luck Material 运之药</li>
-<li>Scape Doll 替身人偶</li>
-<li>Technique Disk 魔法书</li>
-<li>Photon Drop 光子水晶</li>
-</ul>
-
-
-
-<p><strong>固定掉落(包括5大类):</strong></p>
-<ul>
-<li>武器</li>
-<li>防具</li>
-<li>盾牌</li>
-<li>插件</li>
-<li>空气</li>
-</ul>
-
-<p><img src="/assets/img/icons/set.png" alt="固定模式掉落" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
-
-
-<h1>TODO</h1>
-<p>待码字。。。</p>
+    <div class="nav-item-links">
+        <a href="#overview">总览</a>
+        <a href="#tools">消耗品</a>
+        <a href="#fixed">固定模式</a>
+        <a href="#weapon-attrs">武器属性生成</a>
+        <a href="#patterns">Pattern 表</a>
+        <a href="#percent">属性值概率</a>
+        <a href="#unid">未鉴定武器</a>
+        <a href="#meseta">梅塞塔</a>
+        <a href="#struct">数据结构</a>
     </div>
-</body>
 
+    <h2 id="overview">总览</h2>
+    <p>一次「普通掉落」事件的生成流程大致如下：</p>
+    <ol>
+        <li><strong>判定是否掉落</strong>：每种怪物都有一个掉落概率（由怪物类型决定，0–100%）。先根据此概率决定这次打击会不会产生掉落。</li>
+        <li><strong>判定物品大类</strong>：再根据怪物/箱子所在区域的物品类别表决定这次掉的是 <code>武器</code>/<code>铠甲</code>/<code>盾牌</code>/<code>插件</code>/<code>消耗品</code>/<code>梅塞塔</code> 哪一类。</li>
+        <li><strong>判定具体物品</strong>：根据大类的子表生成具体物品（如消耗品 26 种概率表、武器类型-亚种概率表等）。</li>
+        <li><strong>判定附加属性</strong>：如果是武器，再决定磨石 (+0 ~ +9)、属性 bonus（Native/A.Beast/Machine/Dark/Hit）、特殊能力（Charge/Spirit/Berserk…）。</li>
+    </ol>
+    <p>整张 ItemPT 按「<strong>难度 × 区域</strong>」为单位存放多份子表，所以不同难度、不同区域出的物品分布完全不同。玩家熟知的「坑道容易出机枪、遗迹容易出高属性」就是这张表决定的。</p>
+
+    <h2 id="tools">消耗品（Tools）</h2>
+    <p>ItemPT 的「消耗品类」包含以下 <strong>26 种</strong> 常见道具。每个区域有自己的 26 项概率分布，决定这次掉的是哪一种：</p>
+    <p><img src="/assets/img/icons/tool.png" alt="Tool 类物品"></p>
+    <ul>
+        <li>Monomate 小 HP 回复液</li>
+        <li>Dimate 中 HP 回复液</li>
+        <li>Trimate 大 HP 回复液</li>
+        <li>Monofluid 小 TP 回复液</li>
+        <li>Difluid 中 TP 回复液</li>
+        <li>Trifluid 大 TP 回复液</li>
+        <li>Antidote 解毒剂</li>
+        <li>Antiparalysis 解痉剂</li>
+        <li>Sol Atomizer 魂之粉</li>
+        <li>Moon Atomizer 月之粉</li>
+        <li>Star Atomizer 星之粉</li>
+        <li>Telepipe 传送门</li>
+        <li>Trap Vision 陷阱探测器</li>
+        <li>Monogrinder 小打磨石</li>
+        <li>Digrinder 中打磨石</li>
+        <li>Trigrinder 大打磨石</li>
+        <li>Power Material 攻击力药</li>
+        <li>Mind Material 精神力药</li>
+        <li>Evade Material 回避力药</li>
+        <li>HP Material HP 药</li>
+        <li>TP Material TP 药</li>
+        <li>Def Material 防御力药</li>
+        <li>Hit Material 命中率药</li>
+        <li>Luck Material 运之药</li>
+        <li>Scape Doll 替身人偶</li>
+        <li>Technique Disk 魔法书</li>
+        <li>Photon Drop 光子水晶</li>
+    </ul>
+    <p class="card">
+        魔法书（Technique Disk）掉落时，还会再走一张「技能 × 等级」的二级表，决定是哪种技能、几级。
+        高等级的技能书只会在对应区域和难度出现（比如 Lv30 的 Rafoie 只会在 U 难度遗迹出）。
+    </p>
+
+    <h2 id="fixed">固定模式（类别式）掉落</h2>
+    <p>除去消耗品，ItemPT 还管理以下几大类的「非稀有」版掉落：</p>
+    <ul>
+        <li><strong>武器</strong>（Weapon）：按类型（剑/手枪/机枪/盾/…）× 亚种表决定。所在区域决定了亚种的范围。</li>
+        <li><strong>铠甲</strong>（Armor / Frame）：等级由「区域 + 上浮概率表 + 类型偏移」共同决定。</li>
+        <li><strong>盾牌</strong>（Shield / Barrier）：规则同铠甲。</li>
+        <li><strong>插件</strong>（Unit）：由区域决定最大星级（<code>unit_max_stars_table</code>）。</li>
+        <li><strong>空</strong>：某些区域对某些怪物标记了「不掉」，结果就是什么都没有。</li>
+    </ul>
+    <p><img src="/assets/img/icons/set.png" alt="固定模式掉落"></p>
+    <p class="card">
+        所有非稀有物品的「基础值」（比如铠甲的 DFP/EVP、武器的 ATP 范围）都取自 <a href="/data/itempmt.html">ItemPMT</a>，
+        ItemPT 只负责挑出「这次掉哪一件」。
+    </p>
+
+    <h2 id="weapon-attrs">武器属性生成（Bonus）</h2>
+    <p>当 ItemPT 决定这次掉的是<strong>普通武器</strong>时，紧接着会走属性生成流程，决定这件武器带 0~3 条 bonus。</p>
+    <h3>生成顺序</h3>
+    <p>属性生成按 <strong>区域概率 → 模式(Pattern) → 属性值</strong> 的三步走：</p>
+    <ol>
+        <li><strong>区域概率</strong>：由当前区域决定「可以掉 Native / A.Beast / Machine / Dark / Hit 这 5 种 bonus 的几率」。</li>
+        <li><strong>Pattern</strong>：决定这件武器会带几条属性、每条落在哪个档位。</li>
+        <li><strong>属性值</strong>：按 Pattern 查对应的百分比表，得到每条 bonus 的具体数值（可正可负）。</li>
+    </ol>
+    <p>一件普通武器最多 <strong>3 条属性</strong>（银月 / 太刀这类双属性武器最多 2 条）。同一种属性在本次生成中出现两次的话，第二次会被判为 <code>无属性</code>，所以极品武器需要 3 条都是不同种类的有效 bonus。</p>
+
+    <h3>区域属性出现概率</h3>
+    <h4>EP1</h4>
+    <p><img src="/assets/img/icons/ar1.png" alt="EP1 attribute probability by area"></p>
+    <h4>EP2</h4>
+    <p><img src="/assets/img/icons/ar2.png" alt="EP2 attribute probability by area"></p>
+    <h4>EP4</h4>
+    <p><img src="/assets/img/icons/ar3.png" alt="EP4 attribute probability by area"></p>
+    <p class="card">
+        <strong>Hit 概率参考</strong>：U/VH/H/N 难度下 Hit 词条的出现概率约为 <strong>5% / 3% / 2% / 1%</strong>，并且集中在高区（遗迹类）。
+    </p>
+
+    <h2 id="patterns">Pattern 表</h2>
+    <p>Pattern 是一个三元组 <code>a b c</code>，表示 3 条属性的档位。档位 <code>N</code> 代表「不出这条属性」。
+        档位数字越高，属性基础值越高（后面的<a href="#percent">属性值</a>一节有对应百分比）。</p>
+
+    <h3>Normal 难度</h3>
+    <table>
+        <thead><tr><th>EP1 区域</th><th>EP2 区域</th><th>EP4 区域</th><th>Pattern</th></tr></thead>
+        <tbody>
+            <tr><td>森林1</td><td>神殿 Alpha</td><td>—</td><td>0 N N</td></tr>
+            <tr><td>森林2</td><td>神殿 Beta</td><td>—</td><td>0 N N</td></tr>
+            <tr><td>洞窟1</td><td>宇宙船 Alpha</td><td>陨石坑东</td><td>0 N N</td></tr>
+            <tr><td>洞窟2</td><td>宇宙船 Beta</td><td>陨石坑西</td><td>1 0 N</td></tr>
+            <tr><td>洞窟3</td><td>密林北</td><td>陨石坑南</td><td>1 0 N</td></tr>
+            <tr><td>坑道1</td><td>密林东</td><td>陨石坑北</td><td>1 0 N</td></tr>
+            <tr><td>坑道2</td><td>山区</td><td>陨石坑内部</td><td>1 0 N</td></tr>
+            <tr><td>遗迹1</td><td>海边 &amp; CCA</td><td>地下沙漠1</td><td>2 1 N</td></tr>
+            <tr><td>遗迹2</td><td>海底上层</td><td>地下沙漠2</td><td>2 1 N</td></tr>
+            <tr><td>遗迹3</td><td>海底下层 &amp; 塔</td><td>地下沙漠3</td><td>2 1 0</td></tr>
+            <tr><td>红盒</td><td></td><td></td><td>5 5 5</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Hard 难度</h3>
+    <table>
+        <thead><tr><th>EP1 区域</th><th>EP2 区域</th><th>EP4 区域</th><th>Pattern</th></tr></thead>
+        <tbody>
+            <tr><td>森林1</td><td>神殿 Alpha</td><td>—</td><td>1 0 N</td></tr>
+            <tr><td>森林2</td><td>神殿 Beta</td><td>—</td><td>1 0 N</td></tr>
+            <tr><td>洞窟1</td><td>宇宙船 Alpha</td><td>陨石坑东</td><td>1 1 N</td></tr>
+            <tr><td>洞窟2</td><td>宇宙船 Beta</td><td>陨石坑西</td><td>2 1 N</td></tr>
+            <tr><td>洞窟3</td><td>密林北</td><td>陨石坑南</td><td>2 1 1</td></tr>
+            <tr><td>坑道1</td><td>密林东</td><td>陨石坑北</td><td>2 1 1</td></tr>
+            <tr><td>坑道2</td><td>山区</td><td>陨石坑内部</td><td>2 2 1</td></tr>
+            <tr><td>遗迹1</td><td>海边 &amp; CCA</td><td>地下沙漠1</td><td>3 2 1</td></tr>
+            <tr><td>遗迹2</td><td>海底上层</td><td>地下沙漠2</td><td>3 2 1</td></tr>
+            <tr><td>遗迹3</td><td>海底下层 &amp; 塔</td><td>地下沙漠3</td><td>3 3 2</td></tr>
+            <tr><td>红盒</td><td></td><td></td><td>5 5 5</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Very Hard 难度</h3>
+    <table>
+        <thead><tr><th>EP1 区域</th><th>EP2 区域</th><th>EP4 区域</th><th>Pattern</th></tr></thead>
+        <tbody>
+            <tr><td>森林1</td><td>神殿 Alpha</td><td>—</td><td>2 1 1</td></tr>
+            <tr><td>森林2</td><td>神殿 Beta</td><td>—</td><td>2 2 2</td></tr>
+            <tr><td>洞窟1</td><td>宇宙船 Alpha</td><td>陨石坑东</td><td>2 2 2</td></tr>
+            <tr><td>洞窟2</td><td>宇宙船 Beta</td><td>陨石坑西</td><td>3 2 2</td></tr>
+            <tr><td>洞窟3</td><td>密林北</td><td>陨石坑南</td><td>3 3 2</td></tr>
+            <tr><td>坑道1</td><td>密林东</td><td>陨石坑北</td><td>3 3 3</td></tr>
+            <tr><td>坑道2</td><td>山区</td><td>陨石坑内部</td><td>3 3 3</td></tr>
+            <tr><td>遗迹1</td><td>海边 &amp; CCA</td><td>地下沙漠1</td><td>4 3 3</td></tr>
+            <tr><td>遗迹2</td><td>海底上层</td><td>地下沙漠2</td><td>4 4 3</td></tr>
+            <tr><td>遗迹3</td><td>海底下层 &amp; 塔</td><td>地下沙漠3</td><td>4 4 4</td></tr>
+            <tr><td>红盒</td><td></td><td></td><td>5 5 5</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Ultimate 难度</h3>
+    <table>
+        <thead><tr><th>EP1 区域</th><th>EP2 区域</th><th>EP4 区域</th><th>Pattern</th></tr></thead>
+        <tbody>
+            <tr><td>森林1</td><td>神殿 Alpha</td><td>—</td><td>2 1 0</td></tr>
+            <tr><td>森林2</td><td>神殿 Beta</td><td>—</td><td>2 1 0</td></tr>
+            <tr><td>洞窟1</td><td>宇宙船 Alpha</td><td>陨石坑东</td><td>2 2 1</td></tr>
+            <tr><td>洞窟2</td><td>宇宙船 Beta</td><td>陨石坑西</td><td>3 2 1</td></tr>
+            <tr><td>洞窟3</td><td>密林北</td><td>陨石坑南</td><td>3 3 2</td></tr>
+            <tr><td>坑道1</td><td>密林东</td><td>陨石坑北</td><td>3 3 2</td></tr>
+            <tr><td>坑道2</td><td>山区</td><td>陨石坑内部</td><td>3 3 3</td></tr>
+            <tr><td>遗迹1</td><td>海边 &amp; CCA</td><td>地下沙漠1</td><td>4 3 3</td></tr>
+            <tr><td>遗迹2</td><td>海底上层</td><td>地下沙漠2</td><td>4 4 3</td></tr>
+            <tr><td>遗迹3</td><td>海底下层 &amp; 塔</td><td>地下沙漠3</td><td>4 4 4</td></tr>
+            <tr><td>红盒</td><td></td><td></td><td>5 5 5</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="percent">属性值概率</h2>
+    <ul>
+        <li>普通模式使用 <code>Pattern 0~4</code>，<code>Pattern 5</code> 固定保留给<strong>红盒</strong>。</li>
+        <li>苦痛模式（Anguish）下，低等级区域使用 <code>Pattern 3</code>，高等级区域使用 <code>Pattern 4</code>，红盒仍为 <code>Pattern 5</code>。</li>
+    </ul>
+    <h4>EP1 / EP2 / EP4 通用</h4>
+    <p><img src="/assets/img/icons/percent_patterns.jpg" alt="percent patterns"></p>
+
+    <h2 id="unid">商店武器未鉴定与 EX 信息</h2>
+    <p>Section ID 为 <strong>镉绿、翠绿、天青、纯蓝、淡紫</strong> 的角色，以及<strong>粉、红、橙、黄、白</strong>的角色，
+        在某些区域有额外概率掉出<strong>未鉴定武器</strong>（需要读取仪鉴定后才能看到属性和特殊能力）。
+        下表中「未鉴定概率」列的两个百分比分别对应这两组 ID（前 5 个 ID 概率略高，后 5 个略低）。</p>
+
+    <h3>Normal 难度</h3>
+    <table>
+        <thead><tr><th>EP1 区域</th><th>EP2 区域</th><th>EP4 区域</th><th>未鉴定概率</th><th>最高稀有度</th></tr></thead>
+        <tbody>
+            <tr><td>森林1</td><td>神殿 Alpha</td><td>—</td><td>无</td><td>N/A</td></tr>
+            <tr><td>森林2</td><td>神殿 Beta</td><td>—</td><td>无</td><td>N/A</td></tr>
+            <tr><td>洞窟1</td><td>宇宙船 Alpha</td><td>陨石坑东</td><td>17% / 17%</td><td>1★</td></tr>
+            <tr><td>洞窟2</td><td>宇宙船 Beta</td><td>陨石坑西</td><td>18% / 17%</td><td>1★</td></tr>
+            <tr><td>洞窟3</td><td>密林北</td><td>陨石坑南</td><td>20% / 19%</td><td>1★</td></tr>
+            <tr><td>坑道1</td><td>密林东</td><td>陨石坑北</td><td>19% / 18%</td><td>1★</td></tr>
+            <tr><td>坑道2</td><td>山区</td><td>陨石坑内部</td><td>20% / 20%</td><td>1★</td></tr>
+            <tr><td>遗迹1</td><td>海边 &amp; CCA</td><td>地下沙漠1</td><td>16% / 16%</td><td>2★</td></tr>
+            <tr><td>遗迹2</td><td>海底上层</td><td>地下沙漠2</td><td>18% / 17%</td><td>2★</td></tr>
+            <tr><td>遗迹3</td><td>海底下层 &amp; 塔</td><td>地下沙漠3</td><td>20% / 19%</td><td>2★</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Hard 难度</h3>
+    <table>
+        <thead><tr><th>EP1 区域</th><th>EP2 区域</th><th>EP4 区域</th><th>未鉴定概率</th><th>最高稀有度</th></tr></thead>
+        <tbody>
+            <tr><td>森林1</td><td>神殿 Alpha</td><td>—</td><td>21% / 20%</td><td>2★</td></tr>
+            <tr><td>森林2</td><td>神殿 Beta</td><td>—</td><td>21% / 20%</td><td>2★</td></tr>
+            <tr><td>洞窟1</td><td>宇宙船 Alpha</td><td>陨石坑东</td><td>17% / 17%</td><td>2★</td></tr>
+            <tr><td>洞窟2</td><td>宇宙船 Beta</td><td>陨石坑西</td><td>18% / 18%</td><td>3★</td></tr>
+            <tr><td>洞窟3</td><td>密林北</td><td>陨石坑南</td><td>20% / 19%</td><td>2★</td></tr>
+            <tr><td>坑道1</td><td>密林东</td><td>陨石坑北</td><td>19% / 19%</td><td>3★</td></tr>
+            <tr><td>坑道2</td><td>山区</td><td>陨石坑内部</td><td>24% / 23%</td><td>3★</td></tr>
+            <tr><td>遗迹1</td><td>海边 &amp; CCA</td><td>地下沙漠1</td><td>19% / 18%</td><td>3★</td></tr>
+            <tr><td>遗迹2</td><td>海底上层</td><td>地下沙漠2</td><td>19% / 18%</td><td>3★</td></tr>
+            <tr><td>遗迹3</td><td>海底下层 &amp; 塔</td><td>地下沙漠3</td><td>19% / 18%</td><td>3★</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Very Hard 难度</h3>
+    <table>
+        <thead><tr><th>EP1 区域</th><th>EP2 区域</th><th>EP4 区域</th><th>未鉴定概率</th><th>最高稀有度</th></tr></thead>
+        <tbody>
+            <tr><td>森林1</td><td>神殿 Alpha</td><td>—</td><td>21% / 21%</td><td>2★</td></tr>
+            <tr><td>森林2</td><td>神殿 Beta</td><td>—</td><td>21% / 21%</td><td>3★</td></tr>
+            <tr><td>洞窟1</td><td>宇宙船 Alpha</td><td>陨石坑东</td><td>22% / 22%</td><td>3★</td></tr>
+            <tr><td>洞窟2</td><td>宇宙船 Beta</td><td>陨石坑西</td><td>21% / 21%</td><td>3★</td></tr>
+            <tr><td>洞窟3</td><td>密林北</td><td>陨石坑南</td><td>22% / 22%</td><td>4★</td></tr>
+            <tr><td>坑道1</td><td>密林东</td><td>陨石坑北</td><td>22% / 22%</td><td>4★</td></tr>
+            <tr><td>坑道2</td><td>山区</td><td>陨石坑内部</td><td>22% / 22%</td><td>4★</td></tr>
+            <tr><td>遗迹1</td><td>海边 &amp; CCA</td><td>地下沙漠1</td><td>23% / 23%</td><td>4★</td></tr>
+            <tr><td>遗迹2</td><td>海底上层</td><td>地下沙漠2</td><td>23% / 23%</td><td>4★</td></tr>
+            <tr><td>遗迹3</td><td>海底下层 &amp; 塔</td><td>地下沙漠3</td><td>23% / 23%</td><td>4★</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Ultimate 难度</h3>
+    <table>
+        <thead><tr><th>EP1 区域</th><th>EP2 区域</th><th>EP4 区域</th><th>未鉴定概率</th><th>最高稀有度</th></tr></thead>
+        <tbody>
+            <tr><td>森林1</td><td>神殿 Alpha</td><td>—</td><td>22% / 21%</td><td>4★</td></tr>
+            <tr><td>森林2</td><td>神殿 Beta</td><td>—</td><td>22% / 21%</td><td>4★</td></tr>
+            <tr><td>洞窟1</td><td>宇宙船 Alpha</td><td>陨石坑东</td><td>25% / 24%</td><td>4★</td></tr>
+            <tr><td>洞窟2</td><td>宇宙船 Beta</td><td>陨石坑西</td><td>25% / 24%</td><td>4★</td></tr>
+            <tr><td>洞窟3</td><td>密林北</td><td>陨石坑南</td><td>25% / 24%</td><td>4★</td></tr>
+            <tr><td>坑道1</td><td>密林东</td><td>陨石坑北</td><td>28% / 27%</td><td>4★</td></tr>
+            <tr><td>坑道2</td><td>山区</td><td>陨石坑内部</td><td>28% / 27%</td><td>4★</td></tr>
+            <tr><td>遗迹1</td><td>海边 &amp; CCA</td><td>地下沙漠1</td><td>28% / 27%</td><td>4★</td></tr>
+            <tr><td>遗迹2</td><td>海底上层</td><td>地下沙漠2</td><td>30% / 29%</td><td>4★</td></tr>
+            <tr><td>遗迹3</td><td>海底下层 &amp; 塔</td><td>地下沙漠3</td><td>30% / 29%</td><td>4★</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="meseta">梅塞塔（Meseta）</h2>
+    <p>梅塞塔的掉落同样由 ItemPT 管理，但使用的是独立的子表：</p>
+    <ul>
+        <li>从<strong>怪物</strong>掉出的梅塞塔范围按怪种决定（每种怪物都有一个 <code>min ~ max</code> 区间，在此区间内随机）。</li>
+        <li>从<strong>箱子</strong>掉出的梅塞塔范围按区域决定（每个区域有一个独立的 <code>min ~ max</code>）。</li>
+        <li>梅塞塔掉落和「是否掉物品」是两个独立判定。一次事件要么掉物品，要么掉梅塞塔，要么什么都不掉。</li>
+    </ul>
+
+    <h2 id="struct">数据结构</h2>
+    <p>ItemPT 原始二进制文件按「Episode × 难度 × 区域 × 可变参数」嵌套组织，每一份子表（对应一个难度-区域组合）是下面这张大结构。所有「index probability table」都不要求各项之和等于 100，游戏运行时把所有项相加再取随机余数，所以是「<strong>相对权重</strong>」。</p>
+
+    <h3>子表字段一览</h3>
+    <table>
+        <thead><tr><th>字段</th><th>类型（尺寸）</th><th>说明</th></tr></thead>
+        <tbody>
+            <tr>
+                <td><code>base_weapon_type_prob_table</code></td>
+                <td>u8[0x0C]</td>
+                <td>非稀有武器类型概率表，12 项对应 12 种基础武器类型（Saber–Wand）。</td>
+            </tr>
+            <tr>
+                <td><code>subtype_base_table</code></td>
+                <td>i8[0x0C]</td>
+                <td>每种武器类型的基础子类编号。负值表示「前 N 个区域完全不能出」；非负值表示任何区域都能出。</td>
+            </tr>
+            <tr>
+                <td><code>subtype_area_length_table</code></td>
+                <td>u8[0x0C]</td>
+                <td>每种武器亚种在多少个连续区域内可以出现。例：Sword 从 -2 开始、长度 4 → 可在 C1–M1 出现；之后切到下一亚种（Gigush）。</td>
+            </tr>
+            <tr>
+                <td><code>grind_prob_table</code></td>
+                <td>u8[9][4]</td>
+                <td>磨石值概率表，按 <code>[磨石数][亚种所在区域偏移]</code> 索引。亚种偏移是「当前区域减亚种首现区域」，截断到 0–3。</td>
+            </tr>
+            <tr>
+                <td><code>armor_shield_type_index_prob_table</code></td>
+                <td>u8[0x05]</td>
+                <td>铠甲/盾牌升档概率。最终铠甲类型 = <code>max(area_norm + (本表采样) + bias − 3, 0)</code>。</td>
+            </tr>
+            <tr>
+                <td><code>armor_slot_count_prob_table</code></td>
+                <td>u8[0x05]</td>
+                <td>铠甲插槽数量概率。例：[77, 17, 5, 1, 0] 即 77% 0 槽 / 17% 1 槽 / 5% 2 槽 / 1% 3 槽 / 0% 4 槽。</td>
+            </tr>
+            <tr>
+                <td><code>enemy_type_meseta_ranges</code></td>
+                <td>map⟨Enemy, Range⟨u16⟩⟩</td>
+                <td>怪物掉落的梅塞塔 min/max 区间，按怪物类型索引。</td>
+            </tr>
+            <tr>
+                <td><code>enemy_type_drop_probs</code></td>
+                <td>map⟨Enemy, u8⟩</td>
+                <td>怪物掉落任意物品的总概率（0–100）。和稀有判定是独立的。</td>
+            </tr>
+            <tr>
+                <td><code>enemy_type_item_classes</code></td>
+                <td>map⟨Enemy, u8⟩</td>
+                <td>怪物掉出什么大类：<code>00</code>=武器 / <code>01</code>=铠甲 / <code>02</code>=盾 / <code>03</code>=插件 / <code>04</code>=消耗品 / <code>05</code>=梅塞塔 / 其他=空。</td>
+            </tr>
+            <tr>
+                <td><code>box_meseta_ranges</code></td>
+                <td>Range⟨u16⟩[0x0A]</td>
+                <td>每个区域箱子掉落梅塞塔的区间，按 area_norm 索引（10 个区域）。</td>
+            </tr>
+            <tr>
+                <td><code>box_item_class_prob_table</code></td>
+                <td>u8[7][10]</td>
+                <td>箱子物品大类概率，按 <code>[item_class][area_norm]</code> 索引。</td>
+            </tr>
+            <tr>
+                <td><code>bonus_value_prob_table</code></td>
+                <td>u16[6][0x17]</td>
+                <td>武器 bonus 值概率。第 1 维是 spec（0–5），第 2 维是 bonus 值档位（从 −10% 到 +100%，每 5% 一档，共 23 档）。</td>
+            </tr>
+            <tr>
+                <td><code>nonrare_bonus_prob_spec</code></td>
+                <td>u8[3][10]</td>
+                <td>非稀有武器 bonus 的 spec 查表，按 <code>[bonus_index][area − 1]</code> 直接索引（不是概率表）。<code>0xFF</code> 表示该槽位无 bonus。稀有武器的 spec 始终为 5。</td>
+            </tr>
+            <tr>
+                <td><code>bonus_type_prob_table</code></td>
+                <td>u8[6][10]</td>
+                <td>武器 bonus 类型概率。6 行对应 <code>None / Native / A.Beast / Machine / Dark / Hit</code>；10 列对应 area − 1。稀有武器改用 <code>[0, 9]</code> 的随机值代替 area − 1。</td>
+            </tr>
+            <tr>
+                <td><code>special_mult</code></td>
+                <td>u8[0x0A]</td>
+                <td>特殊能力生成参数 1：如果采样值为 0 则不带 special；否则随机 <code>[0, special_mult]</code> 并截断成整数 W，W&gt;3 则不带 special，否则分配 (W+1) 星的 special。</td>
+            </tr>
+            <tr>
+                <td><code>special_percent</code></td>
+                <td>u8[0x0A]</td>
+                <td>非稀有武器带上 special 的整体概率，按 area − 1 索引。</td>
+            </tr>
+            <tr>
+                <td><code>tool_class_prob_table</code></td>
+                <td>u16[0x1C][0x0A]</td>
+                <td>消耗品概率表，28 种消耗品 × 10 个区域。可以看到每种药/素材在哪个区域容易出。</td>
+            </tr>
+            <tr>
+                <td><code>technique_index_prob_table</code></td>
+                <td>u8[0x13][0x0A]</td>
+                <td>技能书的技能种类概率，19 种技能 × 10 个区域。</td>
+            </tr>
+            <tr>
+                <td><code>technique_level_ranges</code></td>
+                <td>Range⟨u8⟩[0x13][0x0A]</td>
+                <td>每种技能在每个区域掉出的等级范围。比如 Rafoie 在 U 难度遗迹才会出现 Lv30 的上限。</td>
+            </tr>
+            <tr>
+                <td><code>armor_or_shield_type_bias</code></td>
+                <td>u8</td>
+                <td>铠甲升档公式中的 bias 项，和 <code>armor_shield_type_index_prob_table</code> 配套使用。</td>
+            </tr>
+            <tr>
+                <td><code>unit_max_stars_table</code></td>
+                <td>u8[0x0A]</td>
+                <td>每个区域可以掉出的插件最大星级。</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>典型示例</h3>
+    <p class="card">
+        下面是 <code>bonus_type_prob_table</code> 的一份 EP1 U 难度示例数据，每行是一种 bonus 类型，每列对应 F1–R3 十个区域：
+    </p>
+    <table>
+        <thead><tr><th>bonus</th><th>F1</th><th>F2</th><th>C1</th><th>C2</th><th>C3</th><th>M1</th><th>M2</th><th>R1</th><th>R2</th><th>R3</th></tr></thead>
+        <tbody>
+            <tr><td>None</td><td>0x46</td><td>0x46</td><td>0x3F</td><td>0x3E</td><td>0x3E</td><td>0x3D</td><td>0x3C</td><td>0x3C</td><td>0x3A</td><td>0x3A</td></tr>
+            <tr><td>Native</td><td>0x14</td><td>0x14</td><td>0x0A</td><td>0x0A</td><td>0x09</td><td>0x02</td><td>0x02</td><td>0x04</td><td>0x05</td><td>0x05</td></tr>
+            <tr><td>A.Beast</td><td>0x0A</td><td>0x0A</td><td>0x12</td><td>0x11</td><td>0x11</td><td>0x09</td><td>0x09</td><td>0x08</td><td>0x08</td><td>0x08</td></tr>
+            <tr><td>Machine</td><td>0x00</td><td>0x00</td><td>0x09</td><td>0x0A</td><td>0x0B</td><td>0x13</td><td>0x12</td><td>0x08</td><td>0x09</td><td>0x09</td></tr>
+            <tr><td>Dark</td><td>0x00</td><td>0x00</td><td>0x00</td><td>0x01</td><td>0x01</td><td>0x08</td><td>0x0A</td><td>0x13</td><td>0x13</td><td>0x13</td></tr>
+            <tr><td>Hit</td><td>0x00</td><td>0x00</td><td>0x00</td><td>0x00</td><td>0x00</td><td>0x01</td><td>0x01</td><td>0x01</td><td>0x01</td><td>0x01</td></tr>
+        </tbody>
+    </table>
+    <p>各列相加得到本列总权重，然后「None」占大头（约 60%+），A.Beast / Machine 在对应区域（C / M）权重明显升高，Dark 集中在 R 区，Hit 全区域都只是 1 点权重 —— 这就是为什么 Hit 极其稀有。</p>
+
+    <h2>相关页面</h2>
+    <ul>
+        <li><a href="/data/itempmt.html">ItemPMT — 物品主参数表</a>：每件物品的基础属性、需求等级、名称等。</li>
+        <li><a href="/data/itemrt.html">ItemRT — 稀有掉落表</a>：Rare 掉落的概率和物品池。</li>
+        <li><a href="/data/droptable/bb/index.html?diff=Ultimate">掉落表</a>：按难度 / 怪 / ID 查具体掉落物。</li>
+    </ul>
+</div>
+
+</body>
 </html>

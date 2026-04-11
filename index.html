@@ -7,21 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>QQ群: 956652396 | ["PSOBB Wiki For Ephinea Server"]</title>
-    <script src="assets/js/index.js?v=1"></script>
+    <script src="assets/js/index.js?v=2"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+            padding: 28px 20px 48px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             background: #1a2332;
             position: relative;
@@ -30,12 +25,8 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('/assets/img/bg/lobby_overlook_contrast.png') center center;
-            background-size: cover;
+            inset: 0;
+            background: url('/assets/img/bg/lobby_overlook_contrast.png') center center / cover;
             opacity: 0.35;
             z-index: 0;
         }
@@ -43,382 +34,376 @@
         body::after {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at top right, rgba(0, 212, 255, 0.08), transparent 60%),
-                        radial-gradient(circle at bottom left, rgba(138, 43, 226, 0.08), transparent 60%);
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 50% at 85% 5%,  rgba(0, 212, 255, 0.13),  transparent),
+                radial-gradient(ellipse 60% 50% at 15% 95%, rgba(138, 43, 226, 0.11), transparent),
+                radial-gradient(ellipse at center, transparent 30%, rgba(0, 4, 20, 0.6) 100%);
             z-index: 0;
         }
 
-        body > * {
-            position: relative;
-            z-index: 1;
-        }
+        body > * { position: relative; z-index: 1; }
 
+        /* ── Header ── */
         header {
-            margin-bottom: 25px;
             text-align: center;
+            margin-bottom: 24px;
         }
 
         #project_title {
             color: #00d4ff;
-            font-size: 2.8em;
+            font-size: 2.6em;
             font-weight: 800;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5),
-                         0 0 40px rgba(0, 212, 255, 0.3);
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.25);
+            margin-bottom: 18px;
         }
 
-        body > a[href*="qq.com"] {
+
+        .qq-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #00d4ff, #00a0ff);
-            color: #0a0e27;
-            padding: 14px 40px;
-            border-radius: 50px;
+            padding: 8px 26px;
+            border-radius: 20px;
+            background: rgba(0, 212, 255, 0.07);
+            border: 1px solid rgba(0, 212, 255, 0.22);
+            border-top-color: rgba(0, 212, 255, 0.35);
+            color: #7dd3fc;
+            font-size: 13px;
+            font-weight: 600;
             text-decoration: none;
-            font-size: 17px;
-            font-weight: 700;
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
-            transition: all 0.3s ease;
-            margin-bottom: 35px;
-            border: 2px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.2s ease;
+            letter-spacing: 0.4px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(0, 212, 255, 0.12);
         }
 
-        body > a[href*="qq.com"]:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
-            background: linear-gradient(135deg, #00e4ff, #00b0ff);
+        .qq-btn:hover {
+            background: rgba(0, 212, 255, 0.14);
+            border-color: rgba(0, 212, 255, 0.45);
+            color: #00d4ff;
         }
 
+        /* ── Container ── */
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
             max-width: 1400px;
             width: 100%;
-            padding: 0 10px;
         }
 
-        .container::after {
-            content: "";
-            width: 100%;
-            height: 0;
-            display: block;
-        }
-
-        .section {
-            flex-basis: calc(33.333% - 20px);
-            flex-grow: 1;
-            min-width: 300px;
-            background: rgba(26, 35, 50, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 212, 255, 0.25);
-            padding: 24px;
+        /* ── Info bar ── */
+        .info-bar {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: linear-gradient(160deg, rgba(30, 41, 60, 0.93) 0%, rgba(14, 21, 36, 0.97) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-top-color: rgba(255, 255, 255, 0.16);
             border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-            transition: all 0.3s ease;
+            overflow: hidden;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 2px 8px  rgba(0, 0, 0, 0.35),
+                0 16px 48px rgba(0, 0, 0, 0.5);
         }
 
-        .section:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.6);
-            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.25);
+        .info-cell {
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            min-height: 130px;
         }
 
-        .section h2 {
-            color: #00d4ff;
-            font-size: 1.3em;
-            margin-bottom: 18px;
+        .info-cell + .info-cell {
+            border-left: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .info-cell h2 {
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
             padding-bottom: 10px;
-            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
-            font-weight: 600;
+            margin-bottom: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
         }
 
-        .section a {
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 500;
-            color: #e2e8f0;
-            text-decoration: none;
-            padding: 10px 14px;
-            border-radius: 6px;
-            display: block;
-            margin-bottom: 6px;
-            transition: all 0.2s ease;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 3px solid transparent;
-        }
+        #network-time h2 { color: #fbbf24; }
+        #galatine     h2 { color: #f472b6; }
+        #buf          h2 { color: #60a5fa; }
 
-        .section a:hover, .section a:focus {
-            background: rgba(0, 212, 255, 0.1);
-            color: #00d4ff;
-            border-left-color: #00d4ff;
-            transform: translateX(8px);
-            text-decoration: none;
-        }
-
-        #network-time {
-            background: rgba(30, 40, 60, 0.8);
-            border-color: rgba(251, 191, 36, 0.35);
-        }
-
-        #network-time:hover {
-            border-color: rgba(251, 191, 36, 0.6);
-        }
-
-        #network-time h2 {
-            color: #fbbf24;
+        /* shared value slot — expands to fill cell height, centers its content */
+        .info-val {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            line-height: 1.2;
         }
 
         #swatchTime {
-            display: block;
-            font-size: 2.2em;
-            font-weight: 700;
+            font-size: 2.4em;
             color: #fbbf24;
+            letter-spacing: 2px;
+            text-shadow: 0 0 18px rgba(251, 191, 36, 0.45);
+            transition: color 0.5s, text-shadow 0.5s;
+        }
+
+        #galatine-atp {
+            font-size: 1.35em;
+            color: #fde68a;
+        }
+
+        #buf-current {
+            font-size: 1.05em;
+            color: #93c5fd;
+        }
+
+        .info-note {
+            font-size: 12px;
+            color: #94a3b8;
             text-align: center;
-            padding: 18px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 2px solid rgba(251, 191, 36, 0.3);
-            text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+            padding-top: 8px;
+            letter-spacing: 0.3px;
         }
 
-        #beat_even_period {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        /* ── Nav panel ── */
+        .nav-panel {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: linear-gradient(160deg, rgba(30, 41, 60, 0.93) 0%, rgba(14, 21, 36, 0.97) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-top-color: rgba(255, 255, 255, 0.16);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                0 2px 8px  rgba(0, 0, 0, 0.35),
+                0 16px 48px rgba(0, 0, 0, 0.5);
         }
 
-        #beat_even_period li {
-            padding: 10px 14px;
-            margin: 6px 0;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 6px;
-            color: #fde68a;
-            border-left: 3px solid #fbbf24;
-            list-style: none;
-            font-size: 14px;
+        .nav-col:first-child {
+            border-right: 1px solid rgba(255, 255, 255, 0.09);
         }
 
-        #beat_even_period li:first-child {
-            margin-top: 0;
+        .nav-cat {
+            padding: 16px 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: background 0.15s ease;
         }
 
-        #galatine_even_period {
-            font-size: 1.2em;
-            color: #fde68a;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            text-align: left;
-            font-weight: 600;
-            border: 2px solid rgba(251, 191, 36, 0.3);
-            list-style: none;
+        .nav-col .nav-cat:last-child { border-bottom: none; }
+
+        .nav-cat:hover { background: rgba(0, 212, 255, 0.05); }
+
+        .nav-cat h3 {
+            color: #94a3b8;
+            font-size: 10.5px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
         }
 
-        #galatine_even_period li {
-            list-style: none;
-        }
+        /* Per-category accent colors */
+        .nav-col:first-child .nav-cat:nth-child(1) h3 { color: #fbbf24; }
+        .nav-col:first-child .nav-cat:nth-child(2) h3 { color: #4ade80; }
+        .nav-col:first-child .nav-cat:nth-child(3) h3 { color: #c084fc; }
+        .nav-col:first-child .nav-cat:nth-child(4) h3 { color: #a78bfa; }
+        .nav-col:last-child  .nav-cat:nth-child(1) h3 { color: #fb923c; }
+        .nav-col:last-child  .nav-cat:nth-child(2) h3 { color: #38bdf8; }
+        .nav-col:last-child  .nav-cat:nth-child(3) h3 { color: #34d399; }
 
-        .info-wrapper {
-            flex-basis: calc(50% - 20px);
-            flex-grow: 1;
-            min-width: 300px;
+        .tag-links {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 6px;
         }
 
-        .info-wrapper .section {
-            margin: 0;
+        .tag-links a {
+            display: inline-block;
+            padding: 5px 13px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top-color: rgba(255, 255, 255, 0.13);
+            font-size: 13px;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            font-family: inherit;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        #galatine {
-            background: rgba(30, 40, 60, 0.8);
-            border-color: rgba(236, 72, 153, 0.35);
+        .tag-links a:hover {
+            background: rgba(0, 212, 255, 0.12);
+            border-color: rgba(0, 212, 255, 0.3);
+            border-top-color: rgba(0, 212, 255, 0.5);
+            color: #00d4ff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.22), 0 2px 4px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(0, 212, 255, 0.18);
         }
 
-        #galatine:hover {
-            border-color: rgba(236, 72, 153, 0.6);
+        /* ── Footer ── */
+        footer {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 11px;
+            color: #334155;
+            letter-spacing: 0.6px;
         }
 
-        #galatine h2 {
-            color: #f472b6;
-        }
-
-        #buf {
-            background: rgba(30, 40, 60, 0.8);
-            border-color: rgba(59, 130, 246, 0.35);
-        }
-
-        #buf:hover {
-            border-color: rgba(59, 130, 246, 0.6);
-        }
-
-        #buf h2 {
-            color: #60a5fa;
-        }
-
-        #week-buf {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #week-buf li {
-            padding: 12px 14px;
-            margin: 8px 0;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 6px;
-            color: #bfdbfe;
-            font-weight: 500;
-            border-left: 3px solid #60a5fa;
-            list-style: none;
-            font-size: 14px;
-        }
-
-        #week-buf li:first-child {
-            margin-top: 0;
-        }
-
-        @media (max-width: 1024px) {
-            .section {
-                flex-basis: calc(50% - 20px);
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .info-bar    { grid-template-columns: 1fr; }
+            .info-cell + .info-cell {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.06);
             }
-
-            .info-wrapper {
-                flex-basis: calc(50% - 20px);
+            .nav-panel   { grid-template-columns: 1fr; }
+            .nav-col:first-child {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             }
         }
 
-        @media (max-width: 768px) {
-            #project_title {
-                font-size: 2em;
-            }
-
-            .section {
-                flex-basis: 100%;
-                min-width: unset;
-            }
-
-            .info-wrapper {
-                flex-basis: 100%;
-                min-width: unset;
-            }
-
-            body {
-                padding: 15px;
-            }
+        @media (max-width: 600px) {
+            #project_title { font-size: 1.9em; letter-spacing: 1px; }
+            body { padding: 16px 12px 32px; }
+            .container { gap: 10px; }
         }
     </style>
 </head>
 
 <body>
+
 <header>
-    <h1 id="project_title">Ephinea PSOBB 相关信息</h1>
+    <h1 id="project_title">Ephinea PSOBB</h1>
+
+    <a href="https://qm.qq.com/q/iK2hVbSs3S" target="_blank" class="qq-btn">💬 加入QQ群 956652396</a>
 </header>
 
-<a href="https://qm.qq.com/q/iK2hVbSs3S" target="_blank">点击加QQ群: 956652396</a>
-
 <div class="container">
-    <div class="section" id="network-time">
-        <h2>网络时间(.beat):</h2>
-        <span id="swatchTime"></span>
-        <ul id="beat_even_period"></ul>
-    </div>
 
-    <div class="info-wrapper">
-        <div class="section" id="galatine">
-            <h2>太阳之剑攻击力:(E服固定3x攻击)</h2>
-            <div id="galatine_even_period"></div>
+    <!-- ── 实时信息 ── -->
+    <div class="info-bar">
+        <div class="info-cell" id="network-time">
+            <h2>网络时间 .beat</h2>
+            <span id="swatchTime" class="info-val"></span>
+            <span id="beat-period-label" class="info-note"></span>
         </div>
-
-        <div id="buf" class="section">
-            <h2>RBS周轮替增益系统:</h2>
-            <ul id="week-buf">
-                <li id="3">掉物率(DAR) +25%</li>
-                <li id="0">稀有怪率(RER) +50%</li>
-                <li id="1">掉宝率(RDR) +25%</li>
-                <li id="2">经验(EXP) +50%</li>
-            </ul>
+        <div class="info-cell" id="galatine">
+            <h2>太阳之剑 ATP</h2>
+            <span id="galatine-atp" class="info-val"></span>
+            <span id="galatine-period" class="info-note"></span>
+        </div>
+        <div class="info-cell" id="buf">
+            <h2>RBS 周轮替增益</h2>
+            <span id="buf-current" class="info-val"></span>
+            <span id="buf-next" class="info-note"></span>
         </div>
     </div>
 
-    <div class="section">
-        <h2>基本信息:</h2>
-        <a href="/guide/ephinea.html" target="_blank">ℹ️EPHINEA介绍</a>
-        <a href="/guide/command.html" target="_blank">💻命令介绍</a>
-        <a href="/guide/ephinea_rules.html" target="_blank">📜论坛和服务器规则</a>
-        <a href="/guide/anguish.html" target="_blank">💀苦痛难度</a>
-    </div>
+    <!-- ── 导航面板 ── -->
+    <div class="nav-panel">
+        <div class="nav-col">
+            <div class="nav-cat">
+                <h3>掉落与奖励</h3>
+                <div class="tag-links">
+                    <a href="/data/droptable/bb/index.html?lang=zh&diff=Ultimate" target="_blank">E服掉落表</a>
+                    <a href="/data/droptable/ngc/index.html?lang=zh&diff=Ultimate" target="_blank">NGC掉落表</a>
+                    <a href="/data/droptable/dc/index.html?lang=zh&diff=Ultimate" target="_blank">DC掉落表</a>
+                    <a href="/data/bdp/" target="_blank">黑页掉落表</a>
+                    <a href="/data/prizelist/" target="_blank">科伦赌博奖品</a>
+                    <a href="/data/gallons_roulette.html" target="_blank">幻界幸运轮盘</a>
+                </div>
+            </div>
+            <div class="nav-cat">
+                <h3>任务与地图</h3>
+                <div class="tag-links">
+                    <a href="/data/quest.html" target="_blank">任务列表</a>
+                    <a href="/data/monsters.html" target="_blank">刷怪表</a>
+                    <a href="/guide/ep1ch.html" target="_blank">挑战模式 EP1</a>
+                    <a href="/guide/ep2ch.html" target="_blank">挑战模式 EP2</a>
+                    <a href="/tools/pw/index.html" target="_blank">任务编辑器</a>
+                </div>
+            </div>
+            <div class="nav-cat">
+                <h3>道具数据</h3>
+                <div class="tag-links">
+                    <a href="/data/itempmt.html" target="_blank">ItemPMT</a>
+                    <a href="/data/itempt.html" target="_blank">ItemPT</a>
+                    <a href="/data/itemrt.html" target="_blank">ItemRT</a>
+                    <a href="/data/bb_items.html" target="_blank">物品代码表</a>
+                    <a href="/data/en2chinese.html" target="_blank">中英文对照表</a>
+                    <a href="/data/protocol/" target="_blank">协议命令参考</a>
+                </div>
+            </div>
+            <div class="nav-cat">
+                <h3>入门指南</h3>
+                <div class="tag-links">
+                    <a href="/guide/ephinea.html" target="_blank">EPHINEA介绍</a>
+                    <a href="/guide/ephinea_rules.html" target="_blank">论坛规则</a>
+                    <a href="/guide/anguish.html" target="_blank">苦痛难度</a>
+                    <a href="/guide/command.html" target="_blank">游戏内命令</a>
+                    <a href="/guide/acronym.html" target="_blank">常见英文缩写</a>
+                    <a href="/guide/discord.html" target="_blank">Discord</a>
+                </div>
+            </div>
+        </div>
 
-    <div class="section">
-        <h2>掉落表相关:</h2>
-        <a href="/data/droptable/bb/index.html?lang=zh&diff=Ultimate" target="_blank">📋E服掉落表</a>
-        <a href="/data/droptable/ngc/index.html?lang=zh&diff=Ultimate" target="_blank">📋NGC掉落表</a>
-        <a href="/data/droptable/dc/index.html?lang=zh&diff=Ultimate" target="_blank">📋DC掉落表</a>
-        <a href="/data/prizelist/" target="_blank">🎰科伦赌博的奖品列表</a>
-        <a href="/data/bdp/" target="_blank">📕黑页掉落表</a>
-        <a href="/data/en2chinese.html" target="_blank">📖中英文对照表</a>
-    </div>
-
-    <div class="section">
-        <h2>任务相关:</h2>
-        <a href="/data/monsters.html" target="_blank">👾刷怪表</a>
-        <a href="/data/quest.html" target="_blank">📝任务列表</a>
-        <a href="/data/gallons_roulette.html" target="_blank">🎰幻界幸运轮盘抽</a>
-        <a href="/guide/ep1ch.html" target="_blank">🏆挑战模式 EP1</a>
-        <a href="/guide/ep2ch.html" target="_blank">🏆挑战模式 EP2</a>
-        <a href="/tools/pw/index.html" target="_blank">🛠️任务编辑器</a>
-        <!--        <a href="/event/event.html" target="_blank">圣诞大乱斗</a>-->
-    </div>
-
-    <div class="section">
-        <h2>道具属性相关:</h2>
-        <a href="/data/drop_roll.html" target="_blank">⚔️武器属性相关</a>
-        <a href="/data/itempt.html" target="_blank">📦非稀有掉落相关</a>
-        <a href="/data/weapon_special_reduction.html" target="_blank">🏪武器特殊攻击修正</a>
-        <a href="/data/WSBoost.html" target="_blank">🪄法杖技能加成</a>
-        <a href="/data/enemy_weapon_hit.html" target="_blank">🔧尸块改造与加命中</a>
-        <a href="/data/bb_items.html" target="_blank">📋物品代码表</a>
-    </div>
-
-    <div class="section">
-        <h2>公式相关:</h2>
-        <a href="/tools/id.html" target="_blank">🧮Section Id 计算器</a>
-        <a href="/tools/chartable.html" target="_blank">💪全等级人物能力</a>
-        <a href="/tools/200.html" target="_blank">💪LV200基础能力</a>
-        <a href="/tools/equipment.html" target="_blank">🛡⚔️全人物终级装备推荐</a>
-        <a href="/tools/materialplan.html" target="_blank">🔷全人物配点</a>
-        <a href="/tools/status.htm" target="_blank">🔷配点计算器</a>
-        <a href="/tools/mechanics.html" target="_blank">⚔️伤害计算公式</a>
-        <a href="/tools/cc.html" target="_blank">⚔️伤害计算器</a>
-        <a href="/tools/v50x.html" target="_blank">🎲S武EX成功率相关</a>
-        <a href="/tools/aim.html" target="_blank">🎯武器瞄准机制</a>
-        <a href="/tools/survial_hp.html" target="_blank">🩸血线</a>
-        <a href="/tools/mag.html" target="_blank"><img src="/assets/img/mag/mag.png" alt="Mag" style="width:1em;height:1em;vertical-align:middle">Mag相关</a>
-    </div>
-
-    <div class="section">
-        <h2>客户端相关:</h2>
-        <a href="/guide/errorcode.html" target="_blank">❌错误代码</a>
-        <a href="/guide/register.html" target="_blank">📝账号注册</a>
-        <a href="https://files.pioneer2.net/Ephinea_PSOBB_Installer.exe">⬇️客户端下载地址</a>
-        <a href="/guide/ime.html" target="_blank">⌨️中文输入法</a>
-        <a href="/guide/saveaccount.html" target="_blank">💾游戏账号保存</a>
-        <a href="/guide/localized.html" target="_blank">🇨🇳汉化</a>
-        <a href="/guide/crash.html" target="_blank">⚡关于闪退</a>
-        <a href="/guide/timezone.html" target="_blank">🌐时区问题</a>
-        <a href="/guide/discord.html" target="_blank">💬Discord</a>
-        <a href="/guide/acronym.html" target="_blank">🔤常见英文缩写词</a>
+        <div class="nav-col">
+            <div class="nav-cat">
+                <h3>游戏机制</h3>
+                <div class="tag-links">
+                    <a href="/tools/mechanics.html" target="_blank">伤害计算公式</a>
+                    <a href="/tools/cc.html" target="_blank">伤害计算器</a>
+                    <a href="/data/weapon_special_reduction.html" target="_blank">武器特殊攻击修正</a>
+                    <a href="/data/WSBoost.html" target="_blank">法杖技能加成</a>
+                    <a href="/tools/aim.html" target="_blank">武器瞄准机制</a>
+                    <a href="/tools/v50x.html" target="_blank">S武EX成功率</a>
+                    <a href="/tools/survial_hp.html" target="_blank">血线</a>
+                    <a href="/data/enemy_weapon_hit.html" target="_blank">尸块改造与加命中</a>
+                </div>
+            </div>
+            <div class="nav-cat">
+                <h3>角色培养</h3>
+                <div class="tag-links">
+                    <a href="/tools/id.html" target="_blank">Section ID 计算器</a>
+                    <a href="/tools/chartable.html" target="_blank">全等级人物能力</a>
+                    <a href="/tools/200.html" target="_blank">LV200基础能力</a>
+                    <a href="/tools/materialplan.html" target="_blank">全人物配点</a>
+                    <a href="/tools/status.htm" target="_blank">配点计算器</a>
+                    <a href="/tools/equipment.html" target="_blank">终极装备推荐</a>
+                    <a href="/tools/mag.html" target="_blank">Mag相关</a>
+                </div>
+            </div>
+            <div class="nav-cat">
+                <h3>下载与设置</h3>
+                <div class="tag-links">
+                    <a href="https://files.pioneer2.net/Ephinea_PSOBB_Installer.exe">客户端下载</a>
+                    <a href="/guide/register.html" target="_blank">账号注册</a>
+                    <a href="/guide/localized.html" target="_blank">汉化</a>
+                    <a href="/guide/ime.html" target="_blank">中文输入法</a>
+                    <a href="/guide/saveaccount.html" target="_blank">游戏账号保存</a>
+                    <a href="/guide/errorcode.html" target="_blank">错误代码</a>
+                    <a href="/guide/crash.html" target="_blank">关于闪退</a>
+                    <a href="/guide/timezone.html" target="_blank">时区问题</a>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
+
+<footer>Ephinea PSOBB 中文维基 · 非官方 · 社区维护</footer>
+
 </body>
 
 </html>
