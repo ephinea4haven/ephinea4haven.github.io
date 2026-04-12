@@ -27,6 +27,38 @@
   var rateFormat = 'percent';
 
   var DATA_MAP = {};
+  var IMG_MAP = null;  // item name -> image filename
+
+  // --- tooltip ---
+
+  function initTooltip() {
+    var tip = document.createElement('img');
+    tip.id = 'item-tooltip';
+    document.body.appendChild(tip);
+
+    document.addEventListener('mouseover', function (e) {
+      var cell = e.target.closest('.drop-cell');
+      if (!cell) { tip.style.display = 'none'; return; }
+      var img = cell.querySelector('.item-tooltip-img');
+      if (!img) { tip.style.display = 'none'; return; }
+      tip.src = img.src;
+      tip.style.display = 'block';
+    });
+
+    document.addEventListener('mousemove', function (e) {
+      if (tip.style.display === 'block') {
+        tip.style.left = (e.clientX + 12) + 'px';
+        tip.style.top = (e.clientY - 90) + 'px';
+      }
+    });
+
+    document.addEventListener('mouseout', function (e) {
+      var cell = e.target.closest('.drop-cell');
+      if (cell && !cell.contains(e.relatedTarget)) {
+        tip.style.display = 'none';
+      }
+    });
+  }
 
   // --- helpers ---
 
@@ -225,6 +257,7 @@
       data.sectionIds.forEach(function (sid, i) {
         html += '<th class="section-header" style="background-color:' + data.sectionColors[i] + '">' + sid + '</th>';
       });
+      html += '<th class="monster-col">' + colLabel + '</th>';
       html += '</tr></thead>';
 
       html += '<tbody>';
@@ -232,19 +265,24 @@
         var entry = filtered[fi];
         html += '<tr>';
         var drTag = entry.dropRate ? '<br><span class="drop-rate-tag">(' + fmtRate(entry.dropRate) + ')</span>' : '';
-        html += '<td class="monster-name" title="' + entry.name + '"><span class="mob-name">' + entry.name + '</span>' + drTag + '</td>';
+        var displayName = entry.name.replace(/\//g, '<br>');
+        html += '<td class="monster-name" title="' + entry.name + '"><span class="mob-name">' + displayName + '</span>' + drTag + '</td>';
         for (var di = 0; di < entry.drops.length; di++) {
           var drop = entry.drops[di];
           var isHL = searchTerm && drop.item && drop.item.toLowerCase().indexOf(searchTerm) !== -1;
+          var cellColor = 'background-color:' + data.sectionColors[di];
           if (drop.item) {
-            html += '<td class="drop-cell' + (isHL ? ' highlight' : '') + '">';
+            html += '<td class="drop-cell' + (isHL ? ' highlight' : '') + '" style="' + cellColor + '">';
             html += '<span class="item-name">' + drop.item + '</span>';
+            var imgFile = IMG_MAP && IMG_MAP[drop.item];
+            if (imgFile) html += '<img class="item-tooltip-img" src="../shared/images/' + encodeURIComponent(imgFile) + '" alt="" loading="lazy">';
             if (drop.rate) html += '<span class="drop-rate">' + fmtRate(drop.rate) + '</span>';
             html += '</td>';
           } else {
-            html += '<td class="drop-cell empty">\u2014</td>';
+            html += '<td class="drop-cell empty" style="' + cellColor + '">\u2014</td>';
           }
         }
+        html += '<td class="monster-name" title="' + entry.name + '"><span class="mob-name">' + displayName + '</span>' + drTag + '</td>';
         html += '</tr>';
       }
       html += '</tbody></table></div></div>';
@@ -283,6 +321,17 @@
       lang = langParam;
     }
 
+    // Load image mapping
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '../shared/images/_mapping.json', true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try { IMG_MAP = JSON.parse(xhr.responseText); } catch (e) {}
+        render();
+      }
+    };
+    xhr.send();
+
     // Expose setters for inline onclick handlers
     window._viewer = {
       setType: setType,
@@ -291,6 +340,7 @@
     };
     window.onSearch = onSearch;
 
+    initTooltip();
     buildControls();
     render();
   };

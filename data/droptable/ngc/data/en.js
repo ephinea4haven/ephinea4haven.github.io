@@ -6956,7 +6956,7 @@ window.DROP_DATA_EN = {
                 "rate": "2.734375%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "2.734375%"
               },
               {
@@ -9119,7 +9119,7 @@ window.DROP_DATA_EN = {
                 "rate": "2.734375%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "2.734375%"
               },
               {
@@ -9575,11 +9575,11 @@ window.DROP_DATA_EN = {
                 "rate": "2.734375%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "2.734375%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "2.734375%"
               },
               {
@@ -10035,11 +10035,11 @@ window.DROP_DATA_EN = {
                 "rate": "2.734375%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "2.734375%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "2.734375%"
               },
               {
@@ -10358,7 +10358,7 @@ window.DROP_DATA_EN = {
                 "rate": "87.5%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "87.5%"
               },
               {
@@ -10450,11 +10450,11 @@ window.DROP_DATA_EN = {
                 "rate": "87.5%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "87.5%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "87.5%"
               },
               {
@@ -10592,7 +10592,7 @@ window.DROP_DATA_EN = {
                 "rate": "87.5%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "87.5%"
               },
               {
@@ -10654,7 +10654,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -11002,7 +11002,7 @@ window.DROP_DATA_EN = {
                 "rate": "2.734375%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "2.734375%"
               },
               {
@@ -11140,7 +11140,7 @@ window.DROP_DATA_EN = {
                 "rate": "2.734375%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "2.734375%"
               },
               {
@@ -11512,7 +11512,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -12016,7 +12016,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -12032,7 +12032,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -12195,7 +12195,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -12240,11 +12240,11 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -12256,11 +12256,11 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ]
@@ -12289,7 +12289,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -12337,7 +12337,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -12475,7 +12475,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -12491,7 +12491,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -12663,7 +12663,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "0.3173828125%"
               },
               {
@@ -12797,11 +12797,11 @@ window.DROP_DATA_EN = {
                 "rate": "2.734375%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "20.3125%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "20.3125%"
               },
               {
@@ -12847,7 +12847,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -13027,11 +13027,11 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -13303,7 +13303,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -13353,7 +13353,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.1953125%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -13461,7 +13461,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -13537,7 +13537,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.09765625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -13779,7 +13779,7 @@ window.DROP_DATA_EN = {
                 "rate": "20.3125%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "20.3125%"
               },
               {
@@ -13905,7 +13905,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -14366,7 +14366,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -14454,11 +14454,11 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "0.3173828125%"
               },
               {
@@ -14474,7 +14474,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               }
             ],
@@ -14730,11 +14730,11 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -14868,7 +14868,7 @@ window.DROP_DATA_EN = {
                 "rate": "20.3125%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "20.3125%"
               },
               {
@@ -14914,7 +14914,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -14934,7 +14934,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -14960,11 +14960,11 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -15006,11 +15006,11 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -15072,7 +15072,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.1953125%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -15102,7 +15102,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -15286,7 +15286,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -15528,11 +15528,11 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -15604,7 +15604,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               },
               {
@@ -16016,7 +16016,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -16032,7 +16032,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -16066,7 +16066,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.009918212890625%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "1.5625%"
               },
               {
@@ -16154,11 +16154,11 @@ window.DROP_DATA_EN = {
                 "rate": "0.1953125%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               },
               {
-                "item": "STORM VAND:INDRA",
+                "item": "Storm Wand: Indra",
                 "rate": "0.3173828125%"
               },
               {
@@ -16174,7 +16174,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "L&K15 COMBAT",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               }
             ],
