@@ -212,11 +212,13 @@
 
   function render() {
     var data = D();
+    var enData = DATA_MAP.en;
     var diffData = data.data[currentDifficulty];
     if (!diffData) return;
 
     var typeKey = CFG.hasTypes ? currentType : 'monsters';
     var typeData = diffData[typeKey] || {};
+    var enTypeData = (enData.data[currentDifficulty] || {})[typeKey] || {};
     var container = document.getElementById('content');
     var html = '';
     var totalEntries = 0;
@@ -232,17 +234,20 @@
     for (var ei = 0; ei < episodes.length; ei++) {
       var ep = episodes[ei];
       var entries = typeData[ep];
+      var enEntries = enTypeData[ep] || [];
       if (!entries || entries.length === 0) continue;
 
       totalEntries += entries.length;
 
-      var filtered = entries.filter(function (e) {
-        if (!searchTerm) return true;
-        if (e.name.toLowerCase().indexOf(searchTerm) !== -1) return true;
-        return e.drops.some(function (d) {
-          return d.item && d.item.toLowerCase().indexOf(searchTerm) !== -1;
-        });
+      var filteredWithIdx = [];
+      entries.forEach(function (e, idx) {
+        if (!searchTerm) { filteredWithIdx.push({ entry: e, idx: idx }); return; }
+        if (e.name.toLowerCase().indexOf(searchTerm) !== -1) { filteredWithIdx.push({ entry: e, idx: idx }); return; }
+        if (e.drops.some(function (d) { return d.item && d.item.toLowerCase().indexOf(searchTerm) !== -1; })) {
+          filteredWithIdx.push({ entry: e, idx: idx });
+        }
       });
+      var filtered = filteredWithIdx.map(function (o) { return o.entry; });
 
       if (filtered.length === 0) continue;
       shownEntries += filtered.length;
@@ -262,20 +267,22 @@
       html += '</tr></thead>';
 
       html += '<tbody>';
-      for (var fi = 0; fi < filtered.length; fi++) {
-        var entry = filtered[fi];
+      for (var fi = 0; fi < filteredWithIdx.length; fi++) {
+        var entry = filteredWithIdx[fi].entry;
+        var enEntry = enEntries[filteredWithIdx[fi].idx];
         html += '<tr>';
         var drTag = entry.dropRate ? '<br><span class="drop-rate-tag">(' + fmtRate(entry.dropRate) + ')</span>' : '';
         var displayName = entry.name.replace(/\//g, '<br>');
         html += '<td class="monster-name" title="' + entry.name + '"><span class="mob-name">' + displayName + '</span>' + drTag + '</td>';
         for (var di = 0; di < entry.drops.length; di++) {
           var drop = entry.drops[di];
+          var enItem = enEntry && enEntry.drops[di] ? enEntry.drops[di].item : null;
           var isHL = searchTerm && drop.item && drop.item.toLowerCase().indexOf(searchTerm) !== -1;
           var cellColor = 'background-color:' + data.sectionColors[di];
           if (drop.item) {
             html += '<td class="drop-cell' + (isHL ? ' highlight' : '') + '" style="' + cellColor + '">';
             html += '<span class="item-name">' + drop.item + '</span>';
-            var imgFile = IMG_MAP && IMG_MAP[drop.item];
+            var imgFile = IMG_MAP && (IMG_MAP[drop.item] || (enItem && IMG_MAP[enItem]));
             if (imgFile) html += '<img class="item-tooltip-img" src="../shared/images/' + encodeURIComponent(imgFile) + '" alt="" loading="lazy">';
             if (drop.rate) html += '<span class="drop-rate">' + fmtRate(drop.rate) + '</span>';
             html += '</td>';
