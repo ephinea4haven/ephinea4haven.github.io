@@ -324,7 +324,7 @@
 
     // Load image mapping
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '../shared/images/_mapping.json', true);
+    xhr.open('GET', '../shared/images/mapping.json', true);
     xhr.onload = function () {
       if (xhr.status === 200) {
         try { IMG_MAP = JSON.parse(xhr.responseText); } catch (e) {}
