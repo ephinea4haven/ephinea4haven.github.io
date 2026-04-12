@@ -217,43 +217,43 @@ window.DROP_DATA_EN = {
             "name": "Al Rappy",
             "drops": [
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "87.500000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "87.500000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "87.500000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "87.500000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "87.500000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "87.500000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "87.500000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "87.500000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "87.500000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "87.500000%"
               }
             ],
@@ -493,43 +493,43 @@ window.DROP_DATA_EN = {
             "name": "Dragon",
             "drops": [
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               },
               {
-                "item": "Star atomizer",
+                "item": "Star Atomizer",
                 "rate": "50.000000%"
               }
             ],
@@ -1091,43 +1091,43 @@ window.DROP_DATA_EN = {
             "name": "De Rol Le",
             "drops": [
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               },
               {
-                "item": "Scape doll",
+                "item": "Scape Doll",
                 "rate": "50.000000%"
               }
             ],
@@ -1229,27 +1229,27 @@ window.DROP_DATA_EN = {
             "name": "Canadine",
             "drops": [
               {
-                "item": "Psychic Barrier",
+                "item": "Hunter's Shell",
                 "rate": "0.001144%"
               },
               {
-                "item": "Psychic Barrier",
+                "item": "Hunter's Shell",
                 "rate": "0.001144%"
               },
               {
-                "item": "Psychic Barrier",
+                "item": "Hunter's Shell",
                 "rate": "0.001144%"
               },
               {
-                "item": "Psychic Barrier",
+                "item": "Hunter's Shell",
                 "rate": "0.001144%"
               },
               {
-                "item": "Psychic Barrier",
+                "item": "Hunter's Shell",
                 "rate": "0.001144%"
               },
               {
-                "item": "Psychic Barrier",
+                "item": "Hunter's Shell",
                 "rate": "0.001144%"
               },
               {
@@ -1257,15 +1257,15 @@ window.DROP_DATA_EN = {
                 "rate": "0.001144%"
               },
               {
-                "item": "Psychic Barrier",
+                "item": "Hunter's Shell",
                 "rate": "0.001144%"
               },
               {
-                "item": "Psychic Barrier",
+                "item": "Hunter's Shell",
                 "rate": "0.001144%"
               },
               {
-                "item": "Psychic Barrier",
+                "item": "Hunter's Shell",
                 "rate": "0.001144%"
               }
             ],
@@ -1579,7 +1579,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.122070%"
               },
               {
-                "item": "Lock Gun",
+                "item": "Railgun",
                 "rate": "0.122070%"
               },
               {
@@ -3168,43 +3168,43 @@ window.DROP_DATA_EN = {
             "name": "De Rol Le",
             "drops": [
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "43.750000%"
               }
             ],
@@ -3444,43 +3444,43 @@ window.DROP_DATA_EN = {
             "name": "Sinow Gold",
             "drops": [
               {
-                "item": "HP/Generate",
+                "item": "HP/Revival",
                 "rate": "0.219727%"
               },
               {
-                "item": "HP/Generate",
+                "item": "HP/Revival",
                 "rate": "0.219727%"
               },
               {
-                "item": "HP/Generate",
+                "item": "HP/Revival",
                 "rate": "0.219727%"
               },
               {
-                "item": "HP/Generate",
+                "item": "HP/Revival",
                 "rate": "0.219727%"
               },
               {
-                "item": "HP/Generate",
+                "item": "HP/Revival",
                 "rate": "0.219727%"
               },
               {
-                "item": "TP/Generate",
+                "item": "TP/Revival",
                 "rate": "0.219727%"
               },
               {
-                "item": "TP/Generate",
+                "item": "TP/Revival",
                 "rate": "0.219727%"
               },
               {
-                "item": "TP/Generate",
+                "item": "TP/Revival",
                 "rate": "0.219727%"
               },
               {
-                "item": "TP/Generate",
+                "item": "TP/Revival",
                 "rate": "0.219727%"
               },
               {
-                "item": "TP/Generate",
+                "item": "TP/Revival",
                 "rate": "0.219727%"
               }
             ],
@@ -3610,7 +3610,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.001144%"
               },
               {
-                "item": "HP/Generate",
+                "item": "HP/Revival",
                 "rate": "0.001144%"
               },
               {
@@ -3790,7 +3790,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.030518%"
               },
               {
-                "item": "Nergal Shield",
+                "item": "Parasite Wear: Nelgal",
                 "rate": "0.030518%"
               },
               {
@@ -4211,7 +4211,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.074219%"
               },
               {
-                "item": "Nergal Shield",
+                "item": "Parasite Wear: Nelgal",
                 "rate": "0.170898%"
               },
               {
@@ -4233,43 +4233,43 @@ window.DROP_DATA_EN = {
             "name": "Gobooma",
             "drops": [
               {
-                "item": "Mag Cell 502",
+                "item": "Cell of MAG 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "Mag Cell 213",
+                "item": "Cell of MAG 213",
                 "rate": "0.013733%"
               },
               {
-                "item": "Mag Cell 502",
+                "item": "Cell of MAG 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "Mag Cell 213",
+                "item": "Cell of MAG 213",
                 "rate": "0.013733%"
               },
               {
-                "item": "Mag Cell 502",
+                "item": "Cell of MAG 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "Mag Cell 213",
+                "item": "Cell of MAG 213",
                 "rate": "0.013733%"
               },
               {
-                "item": "Mag Cell 502",
+                "item": "Cell of MAG 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "Mag Cell 213",
+                "item": "Cell of MAG 213",
                 "rate": "0.013733%"
               },
               {
-                "item": "Mag Cell 502",
+                "item": "Cell of MAG 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "Mag Cell 213",
+                "item": "Cell of MAG 213",
                 "rate": "0.013733%"
               }
             ],
@@ -4863,11 +4863,11 @@ window.DROP_DATA_EN = {
                 "rate": "0.122070%"
               },
               {
-                "item": "Nergal Shield",
+                "item": "Parasite Wear: Nelgal",
                 "rate": "0.122070%"
               },
               {
-                "item": "Nergal Shield",
+                "item": "Parasite Wear: Nelgal",
                 "rate": "0.122070%"
               }
             ],
@@ -5245,43 +5245,43 @@ window.DROP_DATA_EN = {
             "name": "De Rol Le",
             "drops": [
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               },
               {
-                "item": "De Rol Le Shield",
+                "item": "Parasite Wear: De Rol",
                 "rate": "37.500000%"
               }
             ],
@@ -5683,7 +5683,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.079346%"
               },
               {
-                "item": "Vajra Shield",
+                "item": "Parasite Wear: Vajulla",
                 "rate": "0.079346%"
               },
               {
@@ -6448,43 +6448,43 @@ window.DROP_DATA_EN = {
             "name": "Pal Rappy",
             "drops": [
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               },
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               },
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               },
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               },
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               },
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               },
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               },
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               },
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               },
               {
-                "item": "Sourd Source FM",
+                "item": "Sound Source FM",
                 "rate": "21.875000%"
               }
             ],
@@ -6586,43 +6586,43 @@ window.DROP_DATA_EN = {
             "name": "Gulgus-Gue",
             "drops": [
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.001335%"
               }
             ],
@@ -7138,43 +7138,43 @@ window.DROP_DATA_EN = {
             "name": "Pouilly Slime",
             "drops": [
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "0.878906%"
               },
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "0.878906%"
               },
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "0.878906%"
               },
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "0.878906%"
               },
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "0.878906%"
               },
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "0.878906%"
               },
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "0.878906%"
               },
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "1.074219%"
               },
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "0.878906%"
               },
               {
-                "item": "Twin blaze",
+                "item": "Twin Blaze",
                 "rate": "0.878906%"
               }
             ],
@@ -7276,7 +7276,7 @@ window.DROP_DATA_EN = {
             "name": "Hidoom",
             "drops": [
               {
-                "item": "Wok of Akiko's Shop",
+                "item": "Akiko's Wok",
                 "rate": "0.015259%"
               },
               {
@@ -7284,7 +7284,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "Wok of Akiko's Shop",
+                "item": "Akiko's Wok",
                 "rate": "0.015259%"
               },
               {
@@ -7292,7 +7292,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "Wok of Akiko's Shop",
+                "item": "Akiko's Wok",
                 "rate": "0.015259%"
               },
               {
@@ -7300,7 +7300,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "Wok of Akiko's Shop",
+                "item": "Akiko's Wok",
                 "rate": "0.015259%"
               },
               {
@@ -7308,7 +7308,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "Wok of Akiko's Shop",
+                "item": "Akiko's Wok",
                 "rate": "0.015259%"
               },
               {
@@ -7560,7 +7560,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000119%"
               },
               {
-                "item": "High-level Mag Cell, Eno",
+                "item": "Eno",
                 "rate": "0.001144%"
               },
               {
@@ -7568,7 +7568,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000119%"
               },
               {
-                "item": "High-level Mag Armor, Uru",
+                "item": "Uru",
                 "rate": "0.001144%"
               },
               {
@@ -7580,7 +7580,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000119%"
               },
               {
-                "item": "Parasitic gene \"Flow\"",
+                "item": "Special Gene Flou",
                 "rate": "0.001144%"
               },
               {
@@ -7782,43 +7782,43 @@ window.DROP_DATA_EN = {
             "name": "Merlan",
             "drops": [
               {
-                "item": "Imperial pick",
+                "item": "Imperial Pick",
                 "rate": "6.250000%"
               },
               {
-                "item": "Imperial pick",
+                "item": "Imperial Pick",
                 "rate": "6.250000%"
               },
               {
-                "item": "Imperial pick",
+                "item": "Imperial Pick",
                 "rate": "6.250000%"
               },
               {
-                "item": "Imperial pick",
+                "item": "Imperial Pick",
                 "rate": "6.250000%"
               },
               {
-                "item": "Imperial pick",
+                "item": "Imperial Pick",
                 "rate": "6.250000%"
               },
               {
-                "item": "Imperial pick",
+                "item": "Imperial Pick",
                 "rate": "6.250000%"
               },
               {
-                "item": "Lafteria Shield",
+                "item": "Virus Armor: Lafuteria",
                 "rate": "0.000620%"
               },
               {
-                "item": "Imperial pick",
+                "item": "Imperial Pick",
                 "rate": "6.250000%"
               },
               {
-                "item": "Imperial pick",
+                "item": "Imperial Pick",
                 "rate": "6.250000%"
               },
               {
-                "item": "Imperial pick",
+                "item": "Imperial Pick",
                 "rate": "6.250000%"
               }
             ],
@@ -7898,7 +7898,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.683594%"
               },
               {
-                "item": "Flame visit",
+                "item": "Flame Visit",
                 "rate": "0.683594%"
               },
               {
@@ -7940,7 +7940,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.085449%"
               },
               {
-                "item": "Demonic fork",
+                "item": "Demonic Fork",
                 "rate": "0.009918%"
               },
               {
@@ -8012,15 +8012,15 @@ window.DROP_DATA_EN = {
             "name": "Bulclaw",
             "drops": [
               {
-                "item": "Red Barrier",
+                "item": "God's Shield Suzaku",
                 "rate": "0.000262%"
               },
               {
-                "item": "Blue Barrier",
+                "item": "God's Shield Genbu",
                 "rate": "0.000262%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.000262%"
               },
               {
@@ -8028,27 +8028,27 @@ window.DROP_DATA_EN = {
                 "rate": "0.000334%"
               },
               {
-                "item": "Red Barrier",
+                "item": "God's Shield Suzaku",
                 "rate": "0.000262%"
               },
               {
-                "item": "Yellow Barrier",
+                "item": "God's Shield Byakko",
                 "rate": "0.000262%"
               },
               {
-                "item": "Red Barrier",
+                "item": "God's Shield Suzaku",
                 "rate": "0.000262%"
               },
               {
-                "item": "Green Barrier",
+                "item": "God's Shield Seiryu",
                 "rate": "0.000262%"
               },
               {
-                "item": "Green Barrier",
+                "item": "God's Shield Seiryu",
                 "rate": "0.000262%"
               },
               {
-                "item": "Blue Barrier",
+                "item": "God's Shield Genbu",
                 "rate": "0.000262%"
               }
             ],
@@ -8200,7 +8200,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000429%"
               },
               {
-                "item": "Demonic fork",
+                "item": "Demonic Fork",
                 "rate": "0.015259%"
               },
               {
@@ -8208,7 +8208,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000429%"
               },
               {
-                "item": "Demonic fork",
+                "item": "Demonic Fork",
                 "rate": "0.015259%"
               },
               {
@@ -8220,7 +8220,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000215%"
               },
               {
-                "item": "Demonic fork",
+                "item": "Demonic Fork",
                 "rate": "0.015259%"
               },
               {
@@ -8228,7 +8228,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000429%"
               },
               {
-                "item": "Demonic fork",
+                "item": "Demonic Fork",
                 "rate": "0.015259%"
               },
               {
