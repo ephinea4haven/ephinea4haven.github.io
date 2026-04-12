@@ -133,7 +133,6 @@ body {
 .drop-table td.drop-cell {
   font-size: 0.85em;
   line-height: 1.3;
-  color: #000;
 }
 #item-tooltip {
   display: none;
@@ -155,17 +154,15 @@ body {
 .drop-cell .item-name {
   font-weight: 600;
   display: block;
-  color: #000;
 }
 .drop-cell .drop-rate {
-  color: #333;
   font-size: 0.85em;
 }
 .drop-cell.empty { color: #555; }
 .drop-table tr:hover td { background-color: rgba(233, 69, 96, 0.1); }
 .drop-table tr:hover td.monster-name { background-color: rgba(233, 69, 96, 0.2); }
 
-.section-header { color: #000 !important; font-weight: 700 !important; }
+.section-header { font-weight: 700 !important; }
 .table-wrap { overflow-x: auto; }
 .stats {
   text-align: center;
@@ -173,7 +170,13 @@ body {
   color: var(--text2);
   font-size: 0.8em;
 }
-.highlight { background: rgba(233, 69, 96, 0.3) !important; }
+.highlight {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+  position: relative;
+  z-index: 1;
+}
+.highlight .item-name { font-weight: 800 !important; text-decoration: underline; }
 
 /* tablet */
 @media (max-width: 1024px) {

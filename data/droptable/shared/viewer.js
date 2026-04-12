@@ -203,6 +203,26 @@
     render();
   }
 
+  /** Return '#000' or '#fff' for best contrast against a hex background. */
+  function contrastText(hex) {
+    hex = hex.replace('#', '');
+    var r = parseInt(hex.substring(0, 2), 16);
+    var g = parseInt(hex.substring(2, 4), 16);
+    var b = parseInt(hex.substring(4, 6), 16);
+    // W3C relative luminance
+    var L = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return L > 0.5 ? '#000' : '#fff';
+  }
+
+  function contrastSub(hex) {
+    hex = hex.replace('#', '');
+    var r = parseInt(hex.substring(0, 2), 16);
+    var g = parseInt(hex.substring(2, 4), 16);
+    var b = parseInt(hex.substring(4, 6), 16);
+    var L = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return L > 0.5 ? '#555' : '#eee';
+  }
+
   function fuzzyMatch(text, term) {
     text = text.toLowerCase();
     var ti = 0;
@@ -272,7 +292,7 @@
       var colLabel = (CFG.hasTypes && currentType === 'boxes') ? t('location') : t('monster');
       html += '<thead><tr><th class="monster-col">' + colLabel + '</th>';
       data.sectionIds.forEach(function (sid, i) {
-        html += '<th class="section-header" style="background-color:' + data.sectionColors[i] + '">' + sid + '</th>';
+        html += '<th class="section-header" style="background-color:' + data.sectionColors[i] + ';color:' + contrastText(data.sectionColors[i]) + '">' + sid + '</th>';
       });
       html += '<th class="monster-col">' + colLabel + '</th>';
       html += '</tr></thead>';
@@ -289,16 +309,19 @@
           var drop = entry.drops[di];
           var enItem = enEntry && enEntry.drops[di] ? enEntry.drops[di].item : null;
           var isHL = searchTerm && drop.item && fuzzyMatch(drop.item, searchTerm);
-          var cellColor = 'background-color:' + data.sectionColors[di];
+          var bg = data.sectionColors[di];
+          var txtColor = contrastText(bg);
+          var subColor = contrastSub(bg);
+          var cellStyle = 'background-color:' + bg + ';color:' + txtColor;
           if (drop.item) {
-            html += '<td class="drop-cell' + (isHL ? ' highlight' : '') + '" style="' + cellColor + '">';
+            html += '<td class="drop-cell' + (isHL ? ' highlight' : '') + '" style="' + cellStyle + '">';
             html += '<span class="item-name">' + drop.item + '</span>';
             var imgFile = IMG_MAP && (IMG_MAP[drop.item] || (enItem && IMG_MAP[enItem]));
             if (imgFile) html += '<img class="item-tooltip-img" src="../shared/images/' + encodeURIComponent(imgFile) + '" alt="" loading="lazy">';
-            if (drop.rate) html += '<span class="drop-rate">' + fmtRate(drop.rate) + '</span>';
+            if (drop.rate) html += '<span class="drop-rate" style="color:' + subColor + '">' + fmtRate(drop.rate) + '</span>';
             html += '</td>';
           } else {
-            html += '<td class="drop-cell empty" style="' + cellColor + '">\u2014</td>';
+            html += '<td class="drop-cell empty" style="' + cellStyle + '">\u2014</td>';
           }
         }
         html += '<td class="monster-name" title="' + entry.name + '"><span class="mob-name">' + displayName + '</span>' + drTag + '</td>';
