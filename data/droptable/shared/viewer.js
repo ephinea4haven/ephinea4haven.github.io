@@ -35,28 +35,29 @@
     var tip = document.createElement('img');
     tip.id = 'item-tooltip';
     document.body.appendChild(tip);
-
-    document.addEventListener('mouseover', function (e) {
-      var cell = e.target.closest('.drop-cell');
-      if (!cell) { tip.style.display = 'none'; return; }
-      var img = cell.querySelector('.item-tooltip-img');
-      if (!img) { tip.style.display = 'none'; return; }
-      tip.src = img.src;
-      tip.style.display = 'block';
-    });
+    var lastCell = null;
 
     document.addEventListener('mousemove', function (e) {
-      if (tip.style.display === 'block') {
-        tip.style.left = (e.clientX + 12) + 'px';
-        tip.style.top = (e.clientY - 90) + 'px';
-      }
-    });
-
-    document.addEventListener('mouseout', function (e) {
       var cell = e.target.closest('.drop-cell');
-      if (cell && !cell.contains(e.relatedTarget)) {
-        tip.style.display = 'none';
+      if (cell) {
+        var img = cell.querySelector('.item-tooltip-img');
+        if (img) {
+          if (cell !== lastCell) {
+            tip.src = img.src;
+            lastCell = cell;
+          }
+          tip.style.display = 'block';
+          var x = e.clientX + 12;
+          var y = e.clientY - 90;
+          if (y < 4) y = e.clientY + 16;
+          if (x + 90 > window.innerWidth) x = e.clientX - 92;
+          tip.style.left = x + 'px';
+          tip.style.top = y + 'px';
+          return;
+        }
       }
+      tip.style.display = 'none';
+      lastCell = null;
     });
   }
 
