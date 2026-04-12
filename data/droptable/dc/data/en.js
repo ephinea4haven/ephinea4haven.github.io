@@ -7276,7 +7276,7 @@ window.DROP_DATA_EN = {
             "name": "Hidoom",
             "drops": [
               {
-                "item": "Akiko's Wok",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7284,7 +7284,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "Akiko's Wok",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7292,7 +7292,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "Akiko's Wok",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7300,7 +7300,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "Akiko's Wok",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7308,7 +7308,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "Akiko's Wok",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7560,7 +7560,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000119%"
               },
               {
-                "item": "Eno",
+                "item": "High-level Mag Cell, Eno",
                 "rate": "0.001144%"
               },
               {
@@ -7568,7 +7568,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000119%"
               },
               {
-                "item": "Uru",
+                "item": "High-level Mag Armor, Uru",
                 "rate": "0.001144%"
               },
               {
