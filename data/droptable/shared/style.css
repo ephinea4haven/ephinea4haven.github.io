@@ -23,6 +23,11 @@ body {
 .header h1 { font-size: 1.8em; color: #fff; margin-bottom: 5px; }
 .header p { color: var(--text2); font-size: 0.9em; }
 
+.sticky-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 .controls {
   background: var(--bg2);
   padding: 15px 20px;
@@ -32,9 +37,6 @@ body {
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
 }
 .control-group { display: flex; align-items: center; gap: 8px; }
 .control-group label { color: var(--text2); font-size: 0.85em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -55,14 +57,24 @@ body {
 .btn:hover { background: var(--bg3); }
 .btn.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
 
+.search-bar {
+  background: var(--bg2);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.search-bar label { color: var(--text2); font-size: 0.85em; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 .search-box {
   padding: 6px 12px;
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--text);
-  font-size: 0.85em;
+  font-size: 0.9em;
   border-radius: 4px;
-  width: 200px;
+  width: 320px;
 }
 .search-box::placeholder { color: #666; }
 .search-box:focus { outline: none; border-color: var(--accent); }

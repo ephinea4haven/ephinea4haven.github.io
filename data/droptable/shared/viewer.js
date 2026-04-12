@@ -203,6 +203,17 @@
     render();
   }
 
+  function fuzzyMatch(text, term) {
+    text = text.toLowerCase();
+    var ti = 0;
+    for (var i = 0; i < term.length; i++) {
+      ti = text.indexOf(term[i], ti);
+      if (ti === -1) return false;
+      ti++;
+    }
+    return true;
+  }
+
   function onSearch() {
     searchTerm = document.getElementById('searchBox').value.toLowerCase().trim();
     render();
@@ -242,8 +253,8 @@
       var filteredWithIdx = [];
       entries.forEach(function (e, idx) {
         if (!searchTerm) { filteredWithIdx.push({ entry: e, idx: idx }); return; }
-        if (e.name.toLowerCase().indexOf(searchTerm) !== -1) { filteredWithIdx.push({ entry: e, idx: idx }); return; }
-        if (e.drops.some(function (d) { return d.item && d.item.toLowerCase().indexOf(searchTerm) !== -1; })) {
+        if (fuzzyMatch(e.name, searchTerm)) { filteredWithIdx.push({ entry: e, idx: idx }); return; }
+        if (e.drops.some(function (d) { return d.item && fuzzyMatch(d.item, searchTerm); })) {
           filteredWithIdx.push({ entry: e, idx: idx });
         }
       });
@@ -277,7 +288,7 @@
         for (var di = 0; di < entry.drops.length; di++) {
           var drop = entry.drops[di];
           var enItem = enEntry && enEntry.drops[di] ? enEntry.drops[di].item : null;
-          var isHL = searchTerm && drop.item && drop.item.toLowerCase().indexOf(searchTerm) !== -1;
+          var isHL = searchTerm && drop.item && fuzzyMatch(drop.item, searchTerm);
           var cellColor = 'background-color:' + data.sectionColors[di];
           if (drop.item) {
             html += '<td class="drop-cell' + (isHL ? ' highlight' : '') + '" style="' + cellColor + '">';
