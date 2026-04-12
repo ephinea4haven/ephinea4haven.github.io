@@ -5923,7 +5923,7 @@ window.DROP_DATA_EN = {
             "name": "カオスブリンガー",
             "drops": [
               {
-                "item": "2001キコク[偽])(AGITO 2001 Kikoku[fake]",
+                "item": "Agito (2001)",
                 "rate": "1.5625%"
               },
               {
@@ -7992,7 +7992,7 @@ window.DROP_DATA_EN = {
             "name": "デルバイツァ",
             "drops": [
               {
-                "item": "1991キコク[偽])(AGITO 1991 Kikoku[fake]",
+                "item": "Agito (1991)",
                 "rate": "2.734375%"
               },
               {
@@ -9513,11 +9513,11 @@ window.DROP_DATA_EN = {
             "name": "シノワゴールド",
             "drops": [
               {
-                "item": "2001キコク[偽])(AGITO 2001 Kikoku[fake]",
+                "item": "Agito (2001)",
                 "rate": "1.5625%"
               },
               {
-                "item": "2001キコク[偽])(AGITO 2001 Kikoku[fake]",
+                "item": "Agito (2001)",
                 "rate": "1.5625%"
               },
               {
@@ -9533,7 +9533,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "2001キコク[偽])(AGITO 2001 Kikoku[fake]",
+                "item": "Agito (2001)",
                 "rate": "1.5625%"
               },
               {
@@ -9545,7 +9545,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "2001キコク[偽])(AGITO 2001 Kikoku[fake]",
+                "item": "Agito (2001)",
                 "rate": "1.5625%"
               },
               {
@@ -11608,7 +11608,7 @@ window.DROP_DATA_EN = {
                 "rate": "2.734375%"
               },
               {
-                "item": "1991キコク[偽])(AGITO 1991 Kikoku[fake]",
+                "item": "Agito (1991)",
                 "rate": "2.734375%"
               },
               {
@@ -11950,7 +11950,7 @@ window.DROP_DATA_EN = {
             "name": "シノワゾア",
             "drops": [
               {
-                "item": "1991キコク[偽])(AGITO 1991 Kikoku[fake]",
+                "item": "Agito (1991)",
                 "rate": "1.5625%"
               },
               {
@@ -12012,7 +12012,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "1991キコク[偽])(AGITO 1991 Kikoku[fake]",
+                "item": "Agito (1991)",
                 "rate": "1.5625%"
               },
               {
@@ -12413,7 +12413,7 @@ window.DROP_DATA_EN = {
             "name": "Tollaw",
             "drops": [
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "0.009918212890625%"
               },
               {
@@ -12425,7 +12425,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.09765625%"
               },
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "0.009918212890625%"
               },
               {
@@ -12445,7 +12445,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "0.009918212890625%"
               },
               {
@@ -12617,7 +12617,7 @@ window.DROP_DATA_EN = {
                 "rate": "50.0%"
               },
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "4.6875%"
               },
               {
@@ -13093,7 +13093,7 @@ window.DROP_DATA_EN = {
                 "rate": "50.0%"
               },
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "4.6875%"
               }
             ],
@@ -13131,7 +13131,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "0.009918212890625%"
               },
               {
@@ -13679,7 +13679,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.00095367431640625%"
               },
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "AGITO"
               },
               {
@@ -14027,7 +14027,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.48828125%"
               },
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "0.009918212890625%"
               },
               {
@@ -14530,7 +14530,7 @@ window.DROP_DATA_EN = {
             "name": "Love Rappy",
             "drops": [
               {
-                "item": "1980テンガイ[偽]",
+                "item": "Agito (1980)",
                 "rate": "50.0%"
               },
               {
@@ -14608,7 +14608,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "1977ジョウウン[偽]",
+                "item": "Agito (1977)",
                 "rate": "0.3173828125%"
               },
               {
@@ -14626,7 +14626,7 @@ window.DROP_DATA_EN = {
                 "rate": "50.0%"
               },
               {
-                "item": "1983ドウセツ[偽]",
+                "item": "Agito (1983)",
                 "rate": "87.5%"
               },
               {
@@ -15014,7 +15014,7 @@ window.DROP_DATA_EN = {
                 "rate": "1.5625%"
               },
               {
-                "item": "1977ジョウウン[偽]",
+                "item": "Agito (1977)",
                 "rate": "0.3173828125%"
               },
               {
@@ -15060,7 +15060,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.1953125%"
               },
               {
-                "item": "1980テンガイ[偽]",
+                "item": "Agito (1980)",
                 "rate": "0.3173828125%"
               },
               {
@@ -15136,7 +15136,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "0.009918212890625%"
               },
               {
@@ -15266,7 +15266,7 @@ window.DROP_DATA_EN = {
             "name": "Delsaber",
             "drops": [
               {
-                "item": "1977ジョウウン[偽]",
+                "item": "Agito (1977)",
                 "rate": "0.3173828125%"
               },
               {
@@ -15282,7 +15282,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "1980テンガイ[偽]",
+                "item": "Agito (1980)",
                 "rate": "0.3173828125%"
               },
               {
@@ -15462,11 +15462,11 @@ window.DROP_DATA_EN = {
                 "rate": "0.1953125%"
               },
               {
-                "item": "1983ドウセツ[偽]",
+                "item": "Agito (1983)",
                 "rate": "0.3173828125%"
               },
               {
-                "item": "1983ドウセツ[偽]",
+                "item": "Agito (1983)",
                 "rate": "0.3173828125%"
               },
               {
@@ -15520,7 +15520,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.009918212890625%"
               },
               {
-                "item": "1991キコク[偽]",
+                "item": "Agito (1991)",
                 "rate": "0.3173828125%"
               },
               {
@@ -15680,7 +15680,7 @@ window.DROP_DATA_EN = {
             "name": "Sinow Spigell",
             "drops": [
               {
-                "item": "1983ドウセツ[偽]",
+                "item": "Agito (1983)",
                 "rate": "0.3173828125%"
               },
               {
@@ -15833,7 +15833,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "1975ドウセツ",
+                "item": "Agito (1975)",
                 "rate": "0.09765625%"
               },
               {
@@ -16184,7 +16184,7 @@ window.DROP_DATA_EN = {
             "name": "Sinow Zoa",
             "drops": [
               {
-                "item": "1991キコク[偽]",
+                "item": "Agito (1991)",
                 "rate": "0.3173828125%"
               },
               {
@@ -16200,7 +16200,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.09765625%"
               },
               {
-                "item": "1991キコク[偽]",
+                "item": "Agito (1991)",
                 "rate": "0.3173828125%"
               },
               {
@@ -16515,7 +16515,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "1980テンガイ[偽]",
+                "item": "Agito (1980)",
                 "rate": "0.3173828125%"
               },
               {
