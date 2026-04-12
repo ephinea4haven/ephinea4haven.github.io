@@ -7560,7 +7560,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000119%"
               },
               {
-                "item": "Heart of Eno",
+                "item": "High-level Mag Cell, Eno",
                 "rate": "0.001144%"
               },
               {
@@ -7568,7 +7568,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000119%"
               },
               {
-                "item": "Heart of Uru",
+                "item": "High-level Mag Armor, Uru",
                 "rate": "0.001144%"
               },
               {
