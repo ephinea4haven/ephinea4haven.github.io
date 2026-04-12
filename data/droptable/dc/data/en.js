@@ -1137,43 +1137,43 @@ window.DROP_DATA_EN = {
             "name": "Gilchic",
             "drops": [
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               },
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               },
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               },
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               },
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               },
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               },
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               },
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               },
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               },
               {
-                "item": "ディグラインダー",
+                "item": "Digrinder",
                 "rate": "0.537109%"
               }
             ],
@@ -1183,43 +1183,43 @@ window.DROP_DATA_EN = {
             "name": "Dubchic",
             "drops": [
               {
-                "item": "パラッシュ",
+                "item": "Pallasch",
                 "rate": "0.122070%"
               },
               {
-                "item": "クラブ",
+                "item": "Club",
                 "rate": "0.122070%"
               },
               {
-                "item": "レールガン",
+                "item": "Railgun",
                 "rate": "0.122070%"
               },
               {
-                "item": "レールガン",
+                "item": "Railgun",
                 "rate": "0.122070%"
               },
               {
-                "item": "クラブ",
+                "item": "Club",
                 "rate": "0.122070%"
               },
               {
-                "item": "パラッシュ",
+                "item": "Pallasch",
                 "rate": "0.122070%"
               },
               {
-                "item": "レールガン",
+                "item": "Railgun",
                 "rate": "0.122070%"
               },
               {
-                "item": "クラブ",
+                "item": "Club",
                 "rate": "0.122070%"
               },
               {
-                "item": "レールガン",
+                "item": "Railgun",
                 "rate": "0.122070%"
               },
               {
-                "item": "パラッシュ",
+                "item": "Pallasch",
                 "rate": "0.122070%"
               }
             ],
@@ -1229,43 +1229,43 @@ window.DROP_DATA_EN = {
             "name": "Canadine",
             "drops": [
               {
-                "item": "サイキックバリア",
+                "item": "Psychic Barrier",
                 "rate": "0.001144%"
               },
               {
-                "item": "サイキックバリア",
+                "item": "Psychic Barrier",
                 "rate": "0.001144%"
               },
               {
-                "item": "サイキックバリア",
+                "item": "Psychic Barrier",
                 "rate": "0.001144%"
               },
               {
-                "item": "サイキックバリア",
+                "item": "Psychic Barrier",
                 "rate": "0.001144%"
               },
               {
-                "item": "サイキックバリア",
+                "item": "Psychic Barrier",
                 "rate": "0.001144%"
               },
               {
-                "item": "サイキックバリア",
+                "item": "Psychic Barrier",
                 "rate": "0.001144%"
               },
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.001144%"
               },
               {
-                "item": "サイキックバリア",
+                "item": "Psychic Barrier",
                 "rate": "0.001144%"
               },
               {
-                "item": "サイキックバリア",
+                "item": "Psychic Barrier",
                 "rate": "0.001144%"
               },
               {
-                "item": "サイキックバリア",
+                "item": "Psychic Barrier",
                 "rate": "0.001144%"
               }
             ],
@@ -1275,43 +1275,43 @@ window.DROP_DATA_EN = {
             "name": "Canane",
             "drops": [
               {
-                "item": "ハンターフィールド",
+                "item": "Hunter Field",
                 "rate": "0.012207%"
               },
               {
-                "item": "レンジャーフールド",
+                "item": "Ranger Field",
                 "rate": "0.012207%"
               },
               {
-                "item": "フォースフィールド",
+                "item": "Force Field",
                 "rate": "0.012207%"
               },
               {
-                "item": "ハンターフィールド",
+                "item": "Hunter Field",
                 "rate": "0.012207%"
               },
               {
-                "item": "レンジャーフールド",
+                "item": "Ranger Field",
                 "rate": "0.012207%"
               },
               {
-                "item": "フォースフィールド",
+                "item": "Force Field",
                 "rate": "0.012207%"
               },
               {
-                "item": "ハンターフィールド",
+                "item": "Hunter Field",
                 "rate": "0.012207%"
               },
               {
-                "item": "レンジャーフールド",
+                "item": "Ranger Field",
                 "rate": "0.012207%"
               },
               {
-                "item": "フォースフィールド",
+                "item": "Force Field",
                 "rate": "0.012207%"
               },
               {
-                "item": "ハンターフィールド",
+                "item": "Hunter Field",
                 "rate": "0.012207%"
               }
             ],
@@ -1321,43 +1321,43 @@ window.DROP_DATA_EN = {
             "name": "Sinow Beat",
             "drops": [
               {
-                "item": "四天　弐の巻",
+                "item": "Book of Katana 2",
                 "rate": "0.244141%"
               },
               {
-                "item": "四天　参の巻",
+                "item": "Book of Katana 3",
                 "rate": "0.244141%"
               },
               {
-                "item": "四天　壱の巻",
+                "item": "Book of Katana 1",
                 "rate": "0.244141%"
               },
               {
-                "item": "四天　弐の巻",
+                "item": "Book of Katana 2",
                 "rate": "0.244141%"
               },
               {
-                "item": "四天　参の巻",
+                "item": "Book of Katana 3",
                 "rate": "0.244141%"
               },
               {
-                "item": "四天　壱の巻",
+                "item": "Book of Katana 1",
                 "rate": "0.244141%"
               },
               {
-                "item": "四天　弐の巻",
+                "item": "Book of Katana 2",
                 "rate": "0.244141%"
               },
               {
-                "item": "四天　参の巻",
+                "item": "Book of Katana 3",
                 "rate": "0.244141%"
               },
               {
-                "item": "四天　壱の巻",
+                "item": "Book of Katana 1",
                 "rate": "0.244141%"
               },
               {
-                "item": "四天　壱の巻",
+                "item": "Book of Katana 1",
                 "rate": "0.244141%"
               }
             ],
@@ -1367,43 +1367,43 @@ window.DROP_DATA_EN = {
             "name": "Sinow Gold",
             "drops": [
               {
-                "item": "Dragon/ＨＰ",
+                "item": "Dragon/HP",
                 "rate": "0.146484%"
               },
               {
-                "item": "エンジェル/ＴＰ",
+                "item": "Angel/TP",
                 "rate": "0.146484%"
               },
               {
-                "item": "エンジェル/ＴＰ",
+                "item": "Angel/TP",
                 "rate": "0.146484%"
               },
               {
-                "item": "Dragon/ＨＰ",
+                "item": "Dragon/HP",
                 "rate": "0.146484%"
               },
               {
-                "item": "エンジェル/ＴＰ",
+                "item": "Angel/TP",
                 "rate": "0.146484%"
               },
               {
-                "item": "エンジェル/ＴＰ",
+                "item": "Angel/TP",
                 "rate": "0.146484%"
               },
               {
-                "item": "Dragon/ＨＰ",
+                "item": "Dragon/HP",
                 "rate": "0.146484%"
               },
               {
-                "item": "Dragon/ＨＰ",
+                "item": "Dragon/HP",
                 "rate": "0.146484%"
               },
               {
-                "item": "エンジェル/ＴＰ",
+                "item": "Angel/TP",
                 "rate": "0.146484%"
               },
               {
-                "item": "Dragon/ＨＰ",
+                "item": "Dragon/HP",
                 "rate": "0.146484%"
               }
             ],
@@ -1413,43 +1413,43 @@ window.DROP_DATA_EN = {
             "name": "Garanz",
             "drops": [
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.001240%"
               }
             ],
@@ -1459,43 +1459,43 @@ window.DROP_DATA_EN = {
             "name": "Vol Opt",
             "drops": [
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               },
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               },
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               },
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               },
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               },
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               },
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               },
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               },
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               },
               {
-                "item": "マグ",
+                "item": "Mag",
                 "rate": "62.500000%"
               }
             ],
@@ -1551,43 +1551,43 @@ window.DROP_DATA_EN = {
             "name": "La Dimenian",
             "drops": [
               {
-                "item": "キャノン",
+                "item": "Cannon",
                 "rate": "0.122070%"
               },
               {
-                "item": "ブラスター",
+                "item": "Blaster",
                 "rate": "0.122070%"
               },
               {
-                "item": "ブレイカー",
+                "item": "Breaker",
                 "rate": "0.122070%"
               },
               {
-                "item": "グレイヴ",
+                "item": "Glaive",
                 "rate": "0.122070%"
               },
               {
-                "item": "リピーター",
+                "item": "Repeater",
                 "rate": "0.122070%"
               },
               {
-                "item": "バトン",
+                "item": "Baton",
                 "rate": "0.122070%"
               },
               {
-                "item": "Dragonフレーム",
+                "item": "Flowen's Frame",
                 "rate": "0.122070%"
               },
               {
-                "item": "ロックガン",
+                "item": "Lock Gun",
                 "rate": "0.122070%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "0.122070%"
               },
               {
-                "item": "カッター",
+                "item": "Cutter",
                 "rate": "0.122070%"
               }
             ],
@@ -1597,43 +1597,43 @@ window.DROP_DATA_EN = {
             "name": "So Dimenian",
             "drops": [
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               }
             ],
@@ -1643,43 +1643,43 @@ window.DROP_DATA_EN = {
             "name": "Delsaber",
             "drops": [
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.367188%"
               }
             ],
@@ -1689,43 +1689,43 @@ window.DROP_DATA_EN = {
             "name": "Claw",
             "drops": [
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.085449%"
               },
               {
-                "item": "ヴァリスタ",
+                "item": "Varista",
                 "rate": "0.085449%"
               },
               {
-                "item": "ヴァリスタ",
+                "item": "Varista",
                 "rate": "0.085449%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.085449%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.085449%"
               },
               {
-                "item": "ラコニウムの杖",
+                "item": "Club of Laconium",
                 "rate": "0.085449%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.085449%"
               },
               {
-                "item": "ラコニウムの杖",
+                "item": "Club of Laconium",
                 "rate": "0.085449%"
               },
               {
-                "item": "ヴァリスタ",
+                "item": "Varista",
                 "rate": "0.085449%"
               },
               {
-                "item": "ラコニウムの杖",
+                "item": "Club of Laconium",
                 "rate": "0.085449%"
               }
             ],
@@ -1781,7 +1781,7 @@ window.DROP_DATA_EN = {
             "name": "Bulclaw",
             "drops": [
               {
-                "item": "キュア/ポイズン",
+                "item": "Cure/Poison",
                 "rate": "0.122070%"
               },
               {
@@ -1789,7 +1789,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.122070%"
               },
               {
-                "item": "キュア/ポイズン",
+                "item": "Cure/Poison",
                 "rate": "0.122070%"
               },
               {
@@ -1797,7 +1797,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.122070%"
               },
               {
-                "item": "キュア/ポイズン",
+                "item": "Cure/Poison",
                 "rate": "0.122070%"
               },
               {
@@ -1805,7 +1805,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.122070%"
               },
               {
-                "item": "キュア/ポイズン",
+                "item": "Cure/Poison",
                 "rate": "0.122070%"
               },
               {
@@ -1813,7 +1813,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.122070%"
               },
               {
-                "item": "キュア/ポイズン",
+                "item": "Cure/Poison",
                 "rate": "0.122070%"
               },
               {
@@ -1827,43 +1827,43 @@ window.DROP_DATA_EN = {
             "name": "Dark Belra",
             "drops": [
               {
-                "item": "アギト(1991)",
+                "item": "Agito (1991)",
                 "rate": "0.781250%"
               },
               {
-                "item": "アギト(1977)",
+                "item": "Agito (1977)",
                 "rate": "0.781250%"
               },
               {
-                "item": "アギト(1980)",
+                "item": "Agito (1980)",
                 "rate": "0.781250%"
               },
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.781250%"
               },
               {
-                "item": "アギト(2001)",
+                "item": "Agito (2001)",
                 "rate": "0.781250%"
               },
               {
-                "item": "アギト(1991)",
+                "item": "Agito (1991)",
                 "rate": "0.781250%"
               },
               {
-                "item": "アギト(1977)",
+                "item": "Agito (1977)",
                 "rate": "0.781250%"
               },
               {
-                "item": "アギト(1980)",
+                "item": "Agito (1980)",
                 "rate": "0.781250%"
               },
               {
-                "item": "アギト(1983",
+                "item": "Agito (1983)",
                 "rate": "0.781250%)"
               },
               {
-                "item": "アギト(2001)",
+                "item": "Agito (2001)",
                 "rate": "0.781250%"
               }
             ],
@@ -1873,43 +1873,43 @@ window.DROP_DATA_EN = {
             "name": "Dark Gunner",
             "drops": [
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.219727%"
               }
             ],
@@ -1965,23 +1965,23 @@ window.DROP_DATA_EN = {
             "name": "Chaos Sorcerer",
             "drops": [
               {
-                "item": "炎杖「アグニ」",
+                "item": "Fire Scepter: Agni",
                 "rate": "0.033569%"
               },
               {
-                "item": "炎杖「アグニ」",
+                "item": "Fire Scepter: Agni",
                 "rate": "0.033569%"
               },
               {
-                "item": "炎杖「アグニ」",
+                "item": "Fire Scepter: Agni",
                 "rate": "0.033569%"
               },
               {
-                "item": "氷杖「ダゴン」",
+                "item": "Ice Staff: Dagon",
                 "rate": "0.033569%"
               },
               {
-                "item": "氷杖「ダゴン」",
+                "item": "Ice Staff: Dagon",
                 "rate": "0.033569%"
               },
               {
@@ -1989,19 +1989,19 @@ window.DROP_DATA_EN = {
                 "rate": "0.000143%"
               },
               {
-                "item": "雷杖「インドラ」",
+                "item": "Storm Wand: Indra",
                 "rate": "0.033569%"
               },
               {
-                "item": "雷杖「インドラ」",
+                "item": "Storm Wand: Indra",
                 "rate": "0.033569%"
               },
               {
-                "item": "雷杖「インドラ」",
+                "item": "Storm Wand: Indra",
                 "rate": "0.039673%"
               },
               {
-                "item": "雷杖「インドラ」",
+                "item": "Storm Wand: Indra",
                 "rate": "0.039673%"
               }
             ],
@@ -2031,23 +2031,23 @@ window.DROP_DATA_EN = {
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               }
             ],
@@ -2110,7 +2110,7 @@ window.DROP_DATA_EN = {
             "name": "Booma",
             "drops": [
               {
-                "item": "ラコニウムの杖",
+                "item": "Club of Laconium",
                 "rate": "0.012207%"
               },
               {
@@ -2118,7 +2118,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "アダマンの杖",
+                "item": "Mace of Adaman",
                 "rate": "0.012207%"
               },
               {
@@ -2126,15 +2126,15 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "アダマンの杖",
+                "item": "Mace of Adaman",
                 "rate": "0.012207%"
               },
               {
-                "item": "アダマンの杖",
+                "item": "Mace of Adaman",
                 "rate": "0.012207%"
               },
               {
-                "item": "アダマンの杖",
+                "item": "Mace of Adaman",
                 "rate": "0.012207%"
               },
               {
@@ -2142,7 +2142,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ズミウランの杖",
+                "item": "Club of Zumiuran",
                 "rate": "0.012207%"
               },
               {
@@ -2160,7 +2160,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ラコニウムの杖",
+                "item": "Club of Laconium",
                 "rate": "0.012207%"
               },
               {
@@ -2168,7 +2168,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ズミウランの杖",
+                "item": "Club of Zumiuran",
                 "rate": "0.012207%"
               },
               {
@@ -2176,7 +2176,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ズミウランの杖",
+                "item": "Club of Zumiuran",
                 "rate": "0.012207%"
               },
               {
@@ -2184,7 +2184,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "アダマンの杖",
+                "item": "Mace of Adaman",
                 "rate": "0.012207%"
               },
               {
@@ -2192,7 +2192,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ラコニウムの杖",
+                "item": "Club of Laconium",
                 "rate": "0.012207%"
               }
             ],
@@ -2294,43 +2294,43 @@ window.DROP_DATA_EN = {
             "name": "Al Rappy",
             "drops": [
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "56.250000%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "62.500000%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "62.500000%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "62.500000%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "56.250000%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "62.500000%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "75.000000%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "62.500000%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "62.500000%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "62.500000%"
               }
             ],
@@ -2390,7 +2390,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ディヴィニティアーマー",
+                "item": "Divinity Armor",
                 "rate": "0.122070%"
               },
               {
@@ -2398,7 +2398,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ディヴィニティアーマー",
+                "item": "Divinity Armor",
                 "rate": "0.122070%"
               },
               {
@@ -2406,15 +2406,15 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ディヴィニティアーマー",
+                "item": "Divinity Armor",
                 "rate": "0.122070%"
               },
               {
-                "item": "ディヴィニティアーマー",
+                "item": "Divinity Armor",
                 "rate": "0.122070%"
               },
               {
-                "item": "ディヴィニティアーマー",
+                "item": "Divinity Armor",
                 "rate": "0.122070%"
               },
               {
@@ -2422,7 +2422,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ディヴィニティアーマー",
+                "item": "Divinity Armor",
                 "rate": "0.122070%"
               }
             ],
@@ -2432,7 +2432,7 @@ window.DROP_DATA_EN = {
             "name": "Barbarous Wolf",
             "drops": [
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.158691%"
               },
               {
@@ -2440,7 +2440,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.158691%"
               },
               {
@@ -2448,7 +2448,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.158691%"
               },
               {
@@ -2456,7 +2456,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.158691%"
               },
               {
@@ -2464,7 +2464,7 @@ window.DROP_DATA_EN = {
                 "rate": ""
               },
               {
-                "item": "ライトリリーフ",
+                "item": "Light Relief",
                 "rate": "0.158691%"
               },
               {
@@ -2478,43 +2478,43 @@ window.DROP_DATA_EN = {
             "name": "Hildebear",
             "drops": [
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "0.122070%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "0.122070%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "0.122070%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.122070%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.122070%"
               },
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "0.122070%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.122070%"
               },
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "0.122070%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.122070%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "0.122070%"
               }
             ],
@@ -2524,43 +2524,43 @@ window.DROP_DATA_EN = {
             "name": "Hildeblue",
             "drops": [
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "87.500000%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "87.500000%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "87.500000%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "87.500000%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "87.500000%"
               },
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "87.500000%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "87.500000%"
               },
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "87.500000%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "87.500000%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "87.500000%"
               }
             ],
@@ -2616,43 +2616,43 @@ window.DROP_DATA_EN = {
             "name": "Evil Shark",
             "drops": [
               {
-                "item": "バトルバージ",
+                "item": "Battle Verge",
                 "rate": "0.054932%"
               },
               {
-                "item": "アライブアクゥー",
+                "item": "Alive Aqhu",
                 "rate": "0.054932%"
               },
               {
-                "item": "バトルバージ",
+                "item": "Battle Verge",
                 "rate": "0.054932%"
               },
               {
-                "item": "アライブアクゥー",
+                "item": "Alive Aqhu",
                 "rate": "0.054932%"
               },
               {
-                "item": "バトルバージ",
+                "item": "Battle Verge",
                 "rate": "0.054932%"
               },
               {
-                "item": "ブレイブハンマー",
+                "item": "Brave Hammer",
                 "rate": "0.054932%"
               },
               {
-                "item": "ブレイブハンマー",
+                "item": "Brave Hammer",
                 "rate": "0.054932%"
               },
               {
-                "item": "ブレイブハンマー",
+                "item": "Brave Hammer",
                 "rate": "0.054932%"
               },
               {
-                "item": "アライブアクゥー",
+                "item": "Alive Aqhu",
                 "rate": "0.054932%"
               },
               {
-                "item": "アライブアクゥー",
+                "item": "Alive Aqhu",
                 "rate": "0.054932%"
               }
             ],
@@ -2662,43 +2662,43 @@ window.DROP_DATA_EN = {
             "name": "Pal Shark",
             "drops": [
               {
-                "item": "ブレイバス",
+                "item": "Bravace",
                 "rate": "0.097656%"
               },
               {
-                "item": "カスタムレイ ver.OO",
+                "item": "Custom Ray ver.OO",
                 "rate": "0.097656%"
               },
               {
-                "item": "ブレイバス",
+                "item": "Bravace",
                 "rate": "0.097656%"
               },
               {
-                "item": "ブレイブハンマー",
+                "item": "Brave Hammer",
                 "rate": "0.097656%"
               },
               {
-                "item": "ヴァリスタ",
+                "item": "Varista",
                 "rate": "0.097656%"
               },
               {
-                "item": "ヴァリスタ",
+                "item": "Varista",
                 "rate": "0.097656%"
               },
               {
-                "item": "ヴァリスタ",
+                "item": "Varista",
                 "rate": "0.097656%"
               },
               {
-                "item": "ヴァリスタ",
+                "item": "Varista",
                 "rate": "0.097656%"
               },
               {
-                "item": "カスタムレイ ver.OO",
+                "item": "Custom Ray ver.OO",
                 "rate": "0.097656%"
               },
               {
-                "item": "ブレイバス",
+                "item": "Bravace",
                 "rate": "0.097656%"
               }
             ],
@@ -2708,43 +2708,43 @@ window.DROP_DATA_EN = {
             "name": "Guil Shark",
             "drops": [
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(2001)",
+                "item": "Agito (2001)",
                 "rate": "0.002670%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(1991)",
+                "item": "Agito (1991)",
                 "rate": "0.002670%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(1977)",
+                "item": "Agito (1977)",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(1980)",
+                "item": "Agito (1980)",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.002670%"
               }
             ],
@@ -2754,43 +2754,43 @@ window.DROP_DATA_EN = {
             "name": "Poison Lily",
             "drops": [
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(2001)",
+                "item": "Agito (2001)",
                 "rate": "0.002670%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(1991)",
+                "item": "Agito (1991)",
                 "rate": "0.002670%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(1977)",
+                "item": "Agito (1977)",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(1980)",
+                "item": "Agito (1980)",
                 "rate": "0.002670%"
               },
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.002670%"
               }
             ],
@@ -2800,43 +2800,43 @@ window.DROP_DATA_EN = {
             "name": "Nar Lily",
             "drops": [
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "62.500000%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "56.250000%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "62.500000%<"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "62.500000%<"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "62.500000%<"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "62.500000%<"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "62.500000%<"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "62.500000%<"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "62.500000%<"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "62.500000%<"
               }
             ],
@@ -2846,43 +2846,43 @@ window.DROP_DATA_EN = {
             "name": "Grass Assassin",
             "drops": [
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.170898%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.170898%"
               },
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "0.170898%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "0.170898%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "0.170898%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "0.170898%"
               },
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "0.085449%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.170898%"
               },
               {
-                "item": "カラドボルグ",
+                "item": "Kaladbolg",
                 "rate": "0.170898%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.170898%"
               }
             ],
@@ -2892,43 +2892,43 @@ window.DROP_DATA_EN = {
             "name": "Nano Dragon",
             "drops": [
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.085449%"
               }
             ],
@@ -2938,43 +2938,43 @@ window.DROP_DATA_EN = {
             "name": "Pofuilly Slime",
             "drops": [
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "0.006866%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "0.006866%"
               },
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "0.006866%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "0.006866%"
               },
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "0.006866%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "0.006866%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "0.006866%"
               },
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "0.006866%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "0.006866%"
               },
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "0.006866%"
               }
             ],
@@ -2984,43 +2984,43 @@ window.DROP_DATA_EN = {
             "name": "Pouilly Slime",
             "drops": [
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "40.625000%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "40.625000%"
               },
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "40.625000%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "40.625000%"
               },
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "40.625000%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "40.625000%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "40.625000%"
               },
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "40.625000%"
               },
               {
-                "item": "デビル/バトル",
+                "item": "Devil/Battle",
                 "rate": "40.625000%"
               },
               {
-                "item": "デビル/テクニック",
+                "item": "Devil/Technique",
                 "rate": "40.625000%"
               }
             ],
@@ -3030,7 +3030,7 @@ window.DROP_DATA_EN = {
             "name": "Pan Arms",
             "drops": [
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.016785%"
               },
               {
@@ -3038,7 +3038,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.016785%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.016785%"
               },
               {
@@ -3046,7 +3046,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.016785%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.016785%"
               },
               {
@@ -3054,7 +3054,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.016785%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.039673%"
               },
               {
@@ -3062,7 +3062,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.016785%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.016785%"
               },
               {
@@ -3168,43 +3168,43 @@ window.DROP_DATA_EN = {
             "name": "De Rol Le",
             "drops": [
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "43.750000%"
               }
             ],
@@ -3214,43 +3214,43 @@ window.DROP_DATA_EN = {
             "name": "Gilchic",
             "drops": [
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.085449%"
               }
             ],
@@ -3260,35 +3260,35 @@ window.DROP_DATA_EN = {
             "name": "Dubchic",
             "drops": [
               {
-                "item": "クラッシュバレット",
+                "item": "Crush Bullet",
                 "rate": "0.039673%"
               },
               {
-                "item": "ヴィスク－２３５Ｗ",
+                "item": "Visk-235W",
                 "rate": "0.039673%"
               },
               {
-                "item": "ラストサバイバー",
+                "item": "Last Survivor",
                 "rate": "0.039673%"
               },
               {
-                "item": "ブリューナク",
+                "item": "Brionac",
                 "rate": "0.039673%"
               },
               {
-                "item": "Ｍ＆Ａ６０ ヴァイス",
+                "item": "M&A60 Vise",
                 "rate": "0.039673%"
               },
               {
-                "item": "炎杖「アグニ」",
+                "item": "Fire Scepter: Agni",
                 "rate": "0.039673%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.039673%"
               },
               {
-                "item": "ブレイドダンス",
+                "item": "Blade Dance",
                 "rate": "0.039673%"
               },
               {
@@ -3296,7 +3296,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.039673%"
               },
               {
-                "item": "暗殺者のスライサー",
+                "item": "Slicer of Assassin",
                 "rate": "0.039673%"
               }
             ],
@@ -3306,43 +3306,43 @@ window.DROP_DATA_EN = {
             "name": "Canadine",
             "drops": [
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.219727%"
               },
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.219727%"
               },
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.219727%"
               },
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.219727%"
               },
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.219727%"
               },
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.219727%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.219727%"
               },
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.219727%"
               },
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.219727%"
               },
               {
-                "item": "リジェネレイトギア試",
+                "item": "Proto Regene Gear",
                 "rate": "0.219727%"
               }
             ],
@@ -3352,43 +3352,43 @@ window.DROP_DATA_EN = {
             "name": "Canane",
             "drops": [
               {
-                "item": "センスプレート",
+                "item": "Sense Plate",
                 "rate": "0.030518%"
               },
               {
-                "item": "センスプレート",
+                "item": "Sense Plate",
                 "rate": "0.030518%"
               },
               {
-                "item": "センスプレート",
+                "item": "Sense Plate",
                 "rate": "0.030518%"
               },
               {
-                "item": "グラビトンプレート",
+                "item": "Graviton Plate",
                 "rate": "0.030518%"
               },
               {
-                "item": "グラビトンプレート",
+                "item": "Graviton Plate",
                 "rate": "0.030518%"
               },
               {
-                "item": "グラビトンプレート",
+                "item": "Graviton Plate",
                 "rate": "0.030518%"
               },
               {
-                "item": "アトリビュートプレート",
+                "item": "Attribute Plate",
                 "rate": "0.030518%"
               },
               {
-                "item": "アトリビュートプレート",
+                "item": "Attribute Plate",
                 "rate": "0.030518%"
               },
               {
-                "item": "アトリビュートプレート",
+                "item": "Attribute Plate",
                 "rate": "0.030518%"
               },
               {
-                "item": "アトリビュートプレート",
+                "item": "Attribute Plate",
                 "rate": "0.030518%"
               }
             ],
@@ -3398,43 +3398,43 @@ window.DROP_DATA_EN = {
             "name": "Sinow Beat",
             "drops": [
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               },
               {
-                "item": "四天　参の巻",
+                "item": "Book of Katana 3",
                 "rate": "1.171875%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               }
             ],
@@ -3444,43 +3444,43 @@ window.DROP_DATA_EN = {
             "name": "Sinow Gold",
             "drops": [
               {
-                "item": "ＨＰ/ジェネレイト",
+                "item": "HP/Generate",
                 "rate": "0.219727%"
               },
               {
-                "item": "ＨＰ/ジェネレイト",
+                "item": "HP/Generate",
                 "rate": "0.219727%"
               },
               {
-                "item": "ＨＰ/ジェネレイト",
+                "item": "HP/Generate",
                 "rate": "0.219727%"
               },
               {
-                "item": "ＨＰ/ジェネレイト",
+                "item": "HP/Generate",
                 "rate": "0.219727%"
               },
               {
-                "item": "ＨＰ/ジェネレイト",
+                "item": "HP/Generate",
                 "rate": "0.219727%"
               },
               {
-                "item": "ＴＰ/ジェネレイト",
+                "item": "TP/Generate",
                 "rate": "0.219727%"
               },
               {
-                "item": "ＴＰ/ジェネレイト",
+                "item": "TP/Generate",
                 "rate": "0.219727%"
               },
               {
-                "item": "ＴＰ/ジェネレイト",
+                "item": "TP/Generate",
                 "rate": "0.219727%"
               },
               {
-                "item": "ＴＰ/ジェネレイト",
+                "item": "TP/Generate",
                 "rate": "0.219727%"
               },
               {
-                "item": "ＴＰ/ジェネレイト",
+                "item": "TP/Generate",
                 "rate": "0.219727%"
               }
             ],
@@ -3490,15 +3490,11 @@ window.DROP_DATA_EN = {
             "name": "Garanz",
             "drops": [
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.953125%"
               },
               {
-                "item": "ダブルセイバー",
-                "rate": "1.953125%"
-              },
-              {
-                "item": "Photon Claw",
+                "item": "Double Saber",
                 "rate": "1.953125%"
               },
               {
@@ -3518,15 +3514,19 @@ window.DROP_DATA_EN = {
                 "rate": "1.953125%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Photon Claw",
                 "rate": "1.953125%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.953125%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
+                "rate": "1.953125%"
+              },
+              {
+                "item": "Double Saber",
                 "rate": "1.953125%"
               }
             ],
@@ -3582,43 +3582,43 @@ window.DROP_DATA_EN = {
             "name": "Dimenian",
             "drops": [
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ＨＰ/ジェネレイト",
+                "item": "HP/Generate",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "0.001144%"
               }
             ],
@@ -3628,43 +3628,43 @@ window.DROP_DATA_EN = {
             "name": "La Dimenian",
             "drops": [
               {
-                "item": "メテオスマッシュ",
+                "item": "Meteor Smash",
                 "rate": "0.030518%"
               },
               {
-                "item": "ジャスティ－２３ＳＴ",
+                "item": "Justy-23ST",
                 "rate": "0.030518%"
               },
               {
-                "item": "フロウウェンの大剣",
+                "item": "Flowen's Sword",
                 "rate": "0.030518%"
               },
               {
-                "item": "ウィジャヤ",
+                "item": "Vjaya",
                 "rate": "0.030518%"
               },
               {
-                "item": "Ｌ＆Ｋ１４ コンバット",
+                "item": "L&K14 Combat",
                 "rate": "0.030518%"
               },
               {
-                "item": "氷杖「ダゴン」",
+                "item": "Ice Staff: Dagon",
                 "rate": "0.030518%"
               },
               {
-                "item": "スピリットガーメント",
+                "item": "Spirit Garment",
                 "rate": "0.030518%"
               },
               {
-                "item": "ブラッディアート",
+                "item": "Bloody Art",
                 "rate": "0.030518%"
               },
               {
-                "item": "アライブアクゥー",
+                "item": "Alive Aqhu",
                 "rate": "0.030518%"
               },
               {
-                "item": "解放者のディスカ",
+                "item": "Diska of Liberator",
                 "rate": "0.030518%"
               }
             ],
@@ -3678,7 +3678,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.008392%"
               },
               {
-                "item": "スタッグカットラリ",
+                "item": "Stag Cutlery",
                 "rate": "0.008392%"
               },
               {
@@ -3690,7 +3690,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.008392%"
               },
               {
-                "item": "スタッグカットラリ",
+                "item": "Stag Cutlery",
                 "rate": "0.008392%"
               },
               {
@@ -3698,11 +3698,11 @@ window.DROP_DATA_EN = {
                 "rate": "0.008392%"
               },
               {
-                "item": "スタッグカットラリ",
+                "item": "Stag Cutlery",
                 "rate": "0.008392%"
               },
               {
-                "item": "スタッグカットラリ",
+                "item": "Stag Cutlery",
                 "rate": "0.008392%"
               },
               {
@@ -3710,7 +3710,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.008392%"
               },
               {
-                "item": "スタッグカットラリ",
+                "item": "Stag Cutlery",
                 "rate": "0.008392%"
               }
             ],
@@ -3720,43 +3720,43 @@ window.DROP_DATA_EN = {
             "name": "Delsaber",
             "drops": [
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.562500%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.562500%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.562500%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.562500%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.562500%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.562500%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.562500%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.562500%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "1.074219%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "1.562500%"
               }
             ],
@@ -3766,11 +3766,11 @@ window.DROP_DATA_EN = {
             "name": "Claw",
             "drops": [
               {
-                "item": "ファイナルインパクト",
+                "item": "Final Impact",
                 "rate": "0.030518%"
               },
               {
-                "item": "ウォルス－ＭＫ２",
+                "item": "Wals-MK2",
                 "rate": "0.030518%"
               },
               {
@@ -3778,31 +3778,31 @@ window.DROP_DATA_EN = {
                 "rate": "0.030518%"
               },
               {
-                "item": "ガエボルグ",
+                "item": "Gae Bolg",
                 "rate": "0.030518%"
               },
               {
-                "item": "Ｈ＆Ｓ２５ ジャスティス",
+                "item": "H&S25 Justice",
                 "rate": "0.030518%"
               },
               {
-                "item": "雷杖「インドラ」",
+                "item": "Storm Wand: Indra",
                 "rate": "0.030518%"
               },
               {
-                "item": "寄生防具「ネルガル」",
+                "item": "Nergal Shield",
                 "rate": "0.030518%"
               },
               {
-                "item": "クロススケア",
+                "item": "Cross Scar",
                 "rate": "0.030518%"
               },
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "0.030518%"
               },
               {
-                "item": "勇者のディスカ",
+                "item": "Diska of Braveman",
                 "rate": "0.030518%"
               }
             ],
@@ -3858,43 +3858,43 @@ window.DROP_DATA_EN = {
             "name": "Bulclaw",
             "drops": [
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               },
               {
-                "item": "ヒーロー/アビリティ",
+                "item": "Hero/Ability",
                 "rate": "0.012207%"
               }
             ],
@@ -3904,43 +3904,43 @@ window.DROP_DATA_EN = {
             "name": "Dark Belra",
             "drops": [
               {
-                "item": "アギト(2001)",
+                "item": "Agito (2001)",
                 "rate": "0.292969%"
               },
               {
-                "item": "アギト(1991)",
+                "item": "Agito (1991)",
                 "rate": "0.976563%"
               },
               {
-                "item": "アギト(1977)",
+                "item": "Agito (1977)",
                 "rate": "0.292969%"
               },
               {
-                "item": "アギト(1980)",
+                "item": "Agito (1980)",
                 "rate": "0.976563%"
               },
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.292969%"
               },
               {
-                "item": "アギト(2001)",
+                "item": "Agito (2001)",
                 "rate": "0.976563%"
               },
               {
-                "item": "アギト(1991)",
+                "item": "Agito (1991)",
                 "rate": "0.292969%"
               },
               {
-                "item": "アギト(1977)",
+                "item": "Agito (1977)",
                 "rate": "0.976563%"
               },
               {
-                "item": "アギト(1980)",
+                "item": "Agito (1980)",
                 "rate": "0.292969%"
               },
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.976563%"
               }
             ],
@@ -3950,43 +3950,43 @@ window.DROP_DATA_EN = {
             "name": "Dark Gunner",
             "drops": [
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.039673%"
               },
               {
-                "item": "カスタムバリア ver.OO",
+                "item": "Custom Barrier ver.OO",
                 "rate": "0.039673%"
               },
               {
-                "item": "ＤＢの鎧",
+                "item": "DB's Armor",
                 "rate": "0.039673%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.039673%"
               },
               {
-                "item": "カスタムバリア ver.OO",
+                "item": "Custom Barrier ver.OO",
                 "rate": "0.039673%"
               },
               {
-                "item": "ＤＢの鎧",
+                "item": "DB's Armor",
                 "rate": "0.039673%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.039673%"
               },
               {
-                "item": "カスタムバリア ver.OO",
+                "item": "Custom Barrier ver.OO",
                 "rate": "0.039673%"
               },
               {
-                "item": "ＤＢの鎧",
+                "item": "DB's Armor",
                 "rate": "0.039673%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.039673%"
               }
             ],
@@ -4062,23 +4062,23 @@ window.DROP_DATA_EN = {
                 "rate": "0.016785%"
               },
               {
-                "item": "スティングティップ",
+                "item": "Sting Tip",
                 "rate": "0.016785%"
               },
               {
-                "item": "スティングティップ",
+                "item": "Sting Tip",
                 "rate": "0.016785%"
               },
               {
-                "item": "スティングティップ",
+                "item": "Sting Tip",
                 "rate": "0.016785%"
               },
               {
-                "item": "スティングティップ",
+                "item": "Sting Tip",
                 "rate": "0.016785%"
               },
               {
-                "item": "スティングティップ",
+                "item": "Sting Tip",
                 "rate": "0.016785%"
               }
             ],
@@ -4088,43 +4088,43 @@ window.DROP_DATA_EN = {
             "name": "Chaos Bringer",
             "drops": [
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.001240%"
               },
               {
-                "item": "ホーリーレイ",
+                "item": "Holy Ray",
                 "rate": "0.001240%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.001240%"
               },
               {
-                "item": "ホーリーレイ",
+                "item": "Holy Ray",
                 "rate": "0.001240%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.001240%"
               },
               {
-                "item": "ホーリーレイ",
+                "item": "Holy Ray",
                 "rate": "0.001240%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.001240%"
               },
               {
-                "item": "ホーリーレイ",
+                "item": "Holy Ray",
                 "rate": "0.001240%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.001240%"
               },
               {
-                "item": "ホーリーレイ",
+                "item": "Holy Ray",
                 "rate": "0.001240%"
               }
             ],
@@ -4187,43 +4187,43 @@ window.DROP_DATA_EN = {
             "name": "Booma",
             "drops": [
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "1.074219%"
               },
               {
-                "item": "オパオパの心",
+                "item": "Heart of Opa Opa",
                 "rate": "0.000334%"
               },
               {
-                "item": "アギト(1975)(※1)",
+                "item": "Agito (1975)",
                 "rate": "0.000002%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "1.074219%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "1.074219%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "1.074219%"
               },
               {
-                "item": "寄生防具「ネルガル」",
+                "item": "Nergal Shield",
                 "rate": "0.170898%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "1.074219%"
               },
               {
-                "item": "ブレイブナックル",
+                "item": "Brave Knuckle",
                 "rate": "1.074219%"
               },
               {
-                "item": "オパオパの心",
+                "item": "Heart of Opa Opa",
                 "rate": "0.000334%"
               }
             ],
@@ -4233,43 +4233,43 @@ window.DROP_DATA_EN = {
             "name": "Gobooma",
             "drops": [
               {
-                "item": "マグ細胞５０２",
+                "item": "Mag Cell 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "マグ細胞２１３",
+                "item": "Mag Cell 213",
                 "rate": "0.013733%"
               },
               {
-                "item": "マグ細胞５０２",
+                "item": "Mag Cell 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "マグ細胞２１３",
+                "item": "Mag Cell 213",
                 "rate": "0.013733%"
               },
               {
-                "item": "マグ細胞５０２",
+                "item": "Mag Cell 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "マグ細胞２１３",
+                "item": "Mag Cell 213",
                 "rate": "0.013733%"
               },
               {
-                "item": "マグ細胞５０２",
+                "item": "Mag Cell 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "マグ細胞２１３",
+                "item": "Mag Cell 213",
                 "rate": "0.013733%"
               },
               {
-                "item": "マグ細胞５０２",
+                "item": "Mag Cell 502",
                 "rate": "0.013733%"
               },
               {
-                "item": "マグ細胞２１３",
+                "item": "Mag Cell 213",
                 "rate": "0.013733%"
               }
             ],
@@ -4279,43 +4279,43 @@ window.DROP_DATA_EN = {
             "name": "Gigobooma",
             "drops": [
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.122070%"
               },
               {
-                "item": "ＤＢの盾",
+                "item": "DB's Shield",
                 "rate": "0.122070%"
               },
               {
-                "item": "ＤＢの鎧",
+                "item": "DB's Armor",
                 "rate": "0.122070%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.122070%"
               },
               {
-                "item": "ＤＢの盾",
+                "item": "DB's Shield",
                 "rate": "0.122070%"
               },
               {
-                "item": "ＤＢの盾",
+                "item": "DB's Shield",
                 "rate": "0.122070%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.122070%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.122070%"
               },
               {
-                "item": "ＤＢの盾",
+                "item": "DB's Shield",
                 "rate": "0.122070%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.122070%"
               }
             ],
@@ -4325,43 +4325,43 @@ window.DROP_DATA_EN = {
             "name": "Rag Rappy",
             "drops": [
               {
-                "item": "レンジャーフールド",
+                "item": "Ranger Field",
                 "rate": "0.390625%"
               },
               {
-                "item": "レンジャーフールド",
+                "item": "Ranger Field",
                 "rate": "0.390625%"
               },
               {
-                "item": "ハンターフィールド",
+                "item": "Hunter Field",
                 "rate": "0.390625%"
               },
               {
-                "item": "ハンターフィールド",
+                "item": "Hunter Field",
                 "rate": "0.390625%"
               },
               {
-                "item": "フォースフィールド",
+                "item": "Force Field",
                 "rate": "0.390625%"
               },
               {
-                "item": "フォースフィールド",
+                "item": "Force Field",
                 "rate": "0.390625%"
               },
               {
-                "item": "レンジャーフールド",
+                "item": "Ranger Field",
                 "rate": "0.585938%"
               },
               {
-                "item": "フォースフィールド",
+                "item": "Force Field",
                 "rate": "0.390625%"
               },
               {
-                "item": "ハンターフィールド",
+                "item": "Hunter Field",
                 "rate": "0.390625%"
               },
               {
-                "item": "レンジャーフールド",
+                "item": "Ranger Field",
                 "rate": "0.390625%"
               }
             ],
@@ -4371,43 +4371,43 @@ window.DROP_DATA_EN = {
             "name": "Al Rappy",
             "drops": [
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "43.750000%"
               }
             ],
@@ -4417,43 +4417,43 @@ window.DROP_DATA_EN = {
             "name": "Mothmant",
             "drops": [
               {
-                "item": "ＤＢの鎧",
+                "item": "DB's Armor",
                 "rate": "0.085449%"
               },
               {
-                "item": "フロウウェンの鎧",
+                "item": "Flowen's Frame",
                 "rate": "0.085449%"
               },
               {
-                "item": "フロウウェンの鎧",
+                "item": "Flowen's Frame",
                 "rate": "0.085449%"
               },
               {
-                "item": "ＤＢの鎧",
+                "item": "DB's Armor",
                 "rate": "0.085449%"
               },
               {
-                "item": "フロウウェンの鎧",
+                "item": "Flowen's Frame",
                 "rate": "0.085449%"
               },
               {
-                "item": "フロウウェンの鎧",
+                "item": "Flowen's Frame",
                 "rate": "0.085449%"
               },
               {
-                "item": "ＤＢの鎧",
+                "item": "DB's Armor",
                 "rate": "0.146484%"
               },
               {
-                "item": "ＤＢの鎧",
+                "item": "DB's Armor",
                 "rate": "0.085449%"
               },
               {
-                "item": "フロウウェンの鎧",
+                "item": "Flowen's Frame",
                 "rate": "0.085449%"
               },
               {
-                "item": "ＤＢの鎧",
+                "item": "DB's Armor",
                 "rate": "0.085449%"
               }
             ],
@@ -4463,43 +4463,43 @@ window.DROP_DATA_EN = {
             "name": "Savage Wolf",
             "drops": [
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.878906%"
               },
               {
-                "item": "アギト(2001)",
+                "item": "Agito (2001)",
                 "rate": "0.097656%"
               },
               {
-                "item": "アギト(1991))",
+                "item": "Agito (1991)",
                 "rate": "0.878906%"
               },
               {
-                "item": "アギト(1991)",
+                "item": "Agito (1991)",
                 "rate": "0.097656%<"
               },
               {
-                "item": "アギト(1977))",
+                "item": "Agito (1977)",
                 "rate": "0.878906%"
               },
               {
-                "item": "アギト(1980)",
+                "item": "Agito (1980)",
                 "rate": "0.097656%<"
               },
               {
-                "item": "アギト(1983))",
+                "item": "Agito (1983)",
                 "rate": "0.878906%"
               },
               {
-                "item": "アギト(1991)",
+                "item": "Agito (1991)",
                 "rate": "0.097656%<"
               },
               {
-                "item": "アギト(2001))",
+                "item": "Agito (2001)",
                 "rate": "0.878906%"
               },
               {
-                "item": "アギト(1991)",
+                "item": "Agito (1991)",
                 "rate": "0.097656%<"
               }
             ],
@@ -4509,43 +4509,43 @@ window.DROP_DATA_EN = {
             "name": "Barbarous Wolf",
             "drops": [
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.000429%"
               },
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.000429%"
               },
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.000429%"
               },
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.000429%"
               },
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.000429%"
               },
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.000429%"
               },
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.003052%"
               },
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.000429%"
               },
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.000429%"
               },
               {
-                "item": "セレスティアルシールド",
+                "item": "Celestial Shield",
                 "rate": "0.000429%"
               }
             ],
@@ -4555,43 +4555,43 @@ window.DROP_DATA_EN = {
             "name": "Hildebear",
             "drops": [
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               },
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               },
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               },
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               },
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               },
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               },
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               },
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               },
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               },
               {
-                "item": "Hildebearの頭",
+                "item": "Hildebear's Head",
                 "rate": "0.027466%"
               }
             ],
@@ -4601,43 +4601,43 @@ window.DROP_DATA_EN = {
             "name": "Hildeblue",
             "drops": [
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               },
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               },
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               },
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               },
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               },
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               },
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               },
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               },
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               },
               {
-                "item": "Hildeblueの頭",
+                "item": "Hildeblue's Head",
                 "rate": "0.195313%"
               }
             ],
@@ -4693,43 +4693,43 @@ window.DROP_DATA_EN = {
             "name": "Evil Shark",
             "drops": [
               {
-                "item": "四天　参の巻",
+                "item": "Book of Katana 3",
                 "rate": "0.158691%"
               },
               {
-                "item": "四天　壱の巻",
+                "item": "Book of Katana 1",
                 "rate": "0.158691%"
               },
               {
-                "item": "四天　弐の巻",
+                "item": "Book of Katana 2",
                 "rate": "0.158691%"
               },
               {
-                "item": "四天　参の巻",
+                "item": "Book of Katana 3",
                 "rate": "0.158691%"
               },
               {
-                "item": "四天　壱の巻",
+                "item": "Book of Katana 1",
                 "rate": "0.158691%"
               },
               {
-                "item": "四天　弐の巻",
+                "item": "Book of Katana 2",
                 "rate": "0.158691%"
               },
               {
-                "item": "四天　弐の巻",
+                "item": "Book of Katana 2",
                 "rate": "0.158691%"
               },
               {
-                "item": "四天　参の巻",
+                "item": "Book of Katana 3",
                 "rate": "0.158691%"
               },
               {
-                "item": "四天　壱の巻",
+                "item": "Book of Katana 1",
                 "rate": "0.158691%"
               },
               {
-                "item": "四天　壱の巻",
+                "item": "Book of Katana 1",
                 "rate": "0.158691%"
               }
             ],
@@ -4739,23 +4739,23 @@ window.DROP_DATA_EN = {
             "name": "Pal Shark",
             "drops": [
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.074219%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.074219%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.074219%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.074219%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.074219%"
               },
               {
@@ -4785,43 +4785,43 @@ window.DROP_DATA_EN = {
             "name": "Guil Shark",
             "drops": [
               {
-                "item": "カスタムレイ ver.OO",
+                "item": "Custom Ray ver.OO",
                 "rate": "1.074219%"
               },
               {
-                "item": "ピアンの心",
+                "item": "Heart of Pian",
                 "rate": "0.010681%"
               },
               {
-                "item": "アギト(1980)",
+                "item": "Agito (1980)",
                 "rate": "1.074219%"
               },
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "1.074219%"
               },
               {
-                "item": "フロウウェンの大剣",
+                "item": "Flowen's Sword",
                 "rate": "0.085449%"
               },
               {
-                "item": "カスタムレイ ver.OO",
+                "item": "Custom Ray ver.OO",
                 "rate": "1.074219%"
               },
               {
-                "item": "ＤＢの剣",
+                "item": "DB's Saber",
                 "rate": "1.074219%"
               },
               {
-                "item": "アギト(1977)",
+                "item": "Agito (1977)",
                 "rate": "1.074219%"
               },
               {
-                "item": "フロウウェンの大剣",
+                "item": "Flowen's Sword",
                 "rate": "0.085449%"
               },
               {
-                "item": "ピアンの心",
+                "item": "Heart of Pian",
                 "rate": "0.010681%"
               }
             ],
@@ -4831,43 +4831,43 @@ window.DROP_DATA_EN = {
             "name": "Poison Lily",
             "drops": [
               {
-                "item": "匂う鎧",
+                "item": "Stink Frame",
                 "rate": "0.122070%"
               },
               {
-                "item": "匂う鎧",
+                "item": "Stink Frame",
                 "rate": "0.122070%"
               },
               {
-                "item": "スピリットガーメント",
+                "item": "Spirit Garment",
                 "rate": "0.122070%"
               },
               {
-                "item": "スピリットガーメント",
+                "item": "Spirit Garment",
                 "rate": "0.122070%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.109863%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.122070%"
               },
               {
-                "item": "カスタムフレーム ver.OO",
+                "item": "Custom Frame ver.OO",
                 "rate": "0.122070%"
               },
               {
-                "item": "カスタムフレーム ver.OO",
+                "item": "Custom Frame ver.OO",
                 "rate": "0.122070%"
               },
               {
-                "item": "寄生防具「ネルガル」",
+                "item": "Nergal Shield",
                 "rate": "0.122070%"
               },
               {
-                "item": "寄生防具「ネルガル」",
+                "item": "Nergal Shield",
                 "rate": "0.122070%"
               }
             ],
@@ -4877,43 +4877,43 @@ window.DROP_DATA_EN = {
             "name": "Nar Lily",
             "drops": [
               {
-                "item": "ゴッド/アビリティ",
+                "item": "God/Ability",
                 "rate": "3.125000%"
               },
               {
-                "item": "ゴッド/バトル",
+                "item": "God/Battle",
                 "rate": "3.125000%"
               },
               {
-                "item": "ゴッド/テクニック",
+                "item": "God/Technique",
                 "rate": "3.125000%"
               },
               {
-                "item": "ＨＰ/リバイバル",
+                "item": "HP/Revival",
                 "rate": "3.125000%"
               },
               {
-                "item": "ＴＰ/リバイバル",
+                "item": "TP/Revival",
                 "rate": "3.125000%"
               },
               {
-                "item": "ＴＰ/リバイバル",
+                "item": "TP/Revival",
                 "rate": "3.125000%"
               },
               {
-                "item": "ＨＰ/リバイバル",
+                "item": "HP/Revival",
                 "rate": "5.468750%"
               },
               {
-                "item": "ゴッド/テクニック",
+                "item": "God/Technique",
                 "rate": "3.125000%"
               },
               {
-                "item": "ゴッド/バトル",
+                "item": "God/Battle",
                 "rate": "3.125000%"
               },
               {
-                "item": "ゴッド/アビリティ",
+                "item": "God/Ability",
                 "rate": "3.125000%"
               }
             ],
@@ -4923,43 +4923,43 @@ window.DROP_DATA_EN = {
             "name": "Grass Assassin",
             "drops": [
               {
-                "item": "メテオスマッシュ",
+                "item": "Meteor Smash",
                 "rate": "0.170898%"
               },
               {
-                "item": "ウォルス－ＭＫ２",
+                "item": "Wals-MK2",
                 "rate": "0.170898%"
               },
               {
-                "item": "フロウウェンの大剣",
+                "item": "Flowen's Sword",
                 "rate": "0.170898%"
               },
               {
-                "item": "ウィジャヤ",
+                "item": "Vjaya",
                 "rate": "0.170898%"
               },
               {
-                "item": "Ｈ＆Ｓ２５ ジャスティス",
+                "item": "H&S25 Justice",
                 "rate": "0.170898%"
               },
               {
-                "item": "氷杖「ダゴン」",
+                "item": "Ice Staff: Dagon",
                 "rate": "0.170898%"
               },
               {
-                "item": "ブレイブハンマー",
+                "item": "Brave Hammer",
                 "rate": "0.170898%"
               },
               {
-                "item": "ブラッディアート",
+                "item": "Bloody Art",
                 "rate": "0.170898%"
               },
               {
-                "item": "アライブアクゥー",
+                "item": "Alive Aqhu",
                 "rate": "0.170898%"
               },
               {
-                "item": "解放者のディスカ",
+                "item": "Diska of Liberator",
                 "rate": "0.170898%"
               }
             ],
@@ -4969,23 +4969,23 @@ window.DROP_DATA_EN = {
             "name": "Nano Dragon",
             "drops": [
               {
-                "item": "コンバットギア",
+                "item": "Combat Gear",
                 "rate": "0.122070%"
               },
               {
-                "item": "シークレットギア",
+                "item": "Secret Gear",
                 "rate": "0.122070%"
               },
               {
-                "item": "シークレットギア",
+                "item": "Secret Gear",
                 "rate": "0.122070%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.341797%"
               },
               {
-                "item": "インビジブルガード",
+                "item": "Invisible Guard",
                 "rate": "0.341797%"
               },
               {
@@ -4997,15 +4997,15 @@ window.DROP_DATA_EN = {
                 "rate": "0.219727%"
               },
               {
-                "item": "カスタムバリア ver.OO",
+                "item": "Custom Barrier ver.OO",
                 "rate": "0.219727%"
               },
               {
-                "item": "カスタムバリア ver.OO",
+                "item": "Custom Barrier ver.OO",
                 "rate": "0.219727%"
               },
               {
-                "item": "コンバットギア",
+                "item": "Combat Gear",
                 "rate": "0.122070%"
               }
             ],
@@ -5015,43 +5015,43 @@ window.DROP_DATA_EN = {
             "name": "Pofuilly Slime",
             "drops": [
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.683594%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.683594%"
               },
               {
-                "item": "フローズンシューター",
+                "item": "Frozen Shooter",
                 "rate": "0.000191%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.683594%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.683594%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.683594%"
               },
               {
-                "item": "Ｄパーツ ver2.10",
+                "item": "D-Parts ver2.10",
                 "rate": "0.085449%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.683594%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.683594%"
               },
               {
-                "item": "Ｄパーツ ver1.01",
+                "item": "D-Parts ver1.01",
                 "rate": "0.683594%"
               }
             ],
@@ -5061,43 +5061,43 @@ window.DROP_DATA_EN = {
             "name": "Pouilly Slime",
             "drops": [
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "81.250000%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "81.250000%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "81.250000%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "87.500000%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "81.250000%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "81.250000%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "81.250000%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "81.250000%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "87.500000%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "87.500000%"
               }
             ],
@@ -5107,43 +5107,43 @@ window.DROP_DATA_EN = {
             "name": "Pan Arms",
             "drops": [
               {
-                "item": "ズミウランの杖",
+                "item": "Club of Zumiuran",
                 "rate": "0.976563%"
               },
               {
-                "item": "ズミウランの杖",
+                "item": "Club of Zumiuran",
                 "rate": "0.976563%"
               },
               {
-                "item": "Pan Armsの両手",
+                "item": "P-arm's Arms",
                 "rate": "0.000215%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.976563%"
               },
               {
-                "item": "Pan Armsの両手",
+                "item": "P-arm's Arms",
                 "rate": "0.000429%"
               },
               {
-                "item": "Pan Armsの両手",
+                "item": "P-arm's Arms",
                 "rate": "0.000215%"
               },
               {
-                "item": "ブレイバス",
+                "item": "Bravace",
                 "rate": "0.976563%"
               },
               {
-                "item": "Pan Armsの両手",
+                "item": "P-arm's Arms",
                 "rate": "0.000215%"
               },
               {
-                "item": "Pan Armsの両手",
+                "item": "P-arm's Arms",
                 "rate": "0.000429%"
               },
               {
-                "item": "ブレイバス",
+                "item": "Bravace",
                 "rate": "0.976563%"
               }
             ],
@@ -5153,43 +5153,43 @@ window.DROP_DATA_EN = {
             "name": "Migium",
             "drops": [
               {
-                "item": "ゴッド/バトル",
+                "item": "God/Battle",
                 "rate": "0.134277%"
               },
               {
-                "item": "ゴッド/テクニック",
+                "item": "God/Technique",
                 "rate": "0.134277%"
               },
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.976563%"
               },
               {
-                "item": "ＴＰ/リバイバル",
+                "item": "TP/Revival",
                 "rate": "0.134277%"
               },
               {
-                "item": "ゴッド/アビリティ",
+                "item": "God/Ability",
                 "rate": "0.134277%"
               },
               {
-                "item": "ＨＰ/リバイバル",
+                "item": "HP/Revival",
                 "rate": "0.134277%"
               },
               {
-                "item": "ゴッド/テクニック",
+                "item": "God/Technique",
                 "rate": "0.134277%"
               },
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.976563%"
               },
               {
-                "item": "ゴッド/バトル",
+                "item": "God/Battle",
                 "rate": "0.134277%"
               },
               {
-                "item": "ＴＰ/リバイバル",
+                "item": "TP/Revival",
                 "rate": "0.134277%"
               }
             ],
@@ -5199,43 +5199,43 @@ window.DROP_DATA_EN = {
             "name": "Hidoom",
             "drops": [
               {
-                "item": "ＴＰ/リバイバル",
+                "item": "TP/Revival",
                 "rate": "0.134277%"
               },
               {
-                "item": "ゴッド/バトル",
+                "item": "God/Battle",
                 "rate": "0.134277%"
               },
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.976563%"
               },
               {
-                "item": "ゴッド/テクニック",
+                "item": "God/Technique",
                 "rate": "0.134277%"
               },
               {
-                "item": "ＴＰ/リバイバル",
+                "item": "TP/Revival",
                 "rate": "0.134277%"
               },
               {
-                "item": "ゴッド/アビリティ",
+                "item": "God/Ability",
                 "rate": "0.134277%"
               },
               {
-                "item": "ＨＰ/リバイバル",
+                "item": "HP/Revival",
                 "rate": "0.134277%"
               },
               {
-                "item": "アギト(1983)",
+                "item": "Agito (1983)",
                 "rate": "0.976563%"
               },
               {
-                "item": "ゴッド/テクニック",
+                "item": "God/Technique",
                 "rate": "0.134277%"
               },
               {
-                "item": "ゴッド/バトル",
+                "item": "God/Battle",
                 "rate": "0.134277%"
               }
             ],
@@ -5245,43 +5245,43 @@ window.DROP_DATA_EN = {
             "name": "De Rol Le",
             "drops": [
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               },
               {
-                "item": "寄生防具「デ・ロル」",
+                "item": "De Rol Le Shield",
                 "rate": "37.500000%"
               }
             ],
@@ -5311,23 +5311,23 @@ window.DROP_DATA_EN = {
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               },
               {
-                "item": "ダブルセイバー",
+                "item": "Double Saber",
                 "rate": "1.269531%"
               }
             ],
@@ -5337,43 +5337,43 @@ window.DROP_DATA_EN = {
             "name": "Dubchic",
             "drops": [
               {
-                "item": "ヤスミノコフ9000M",
+                "item": "Yasminkov 9000M",
                 "rate": "0.000191%"
               },
               {
-                "item": "ジャスティ－２３ＳＴ",
+                "item": "Justy-23ST",
                 "rate": "0.042725%"
               },
               {
-                "item": "ラストサバイバー",
+                "item": "Last Survivor",
                 "rate": "0.042725%"
               },
               {
-                "item": "ガエボルグ",
+                "item": "Gae Bolg",
                 "rate": "0.042725%"
               },
               {
-                "item": "Ｌ＆Ｋ１４ コンバット",
+                "item": "L&K14 Combat",
                 "rate": "0.042725%"
               },
               {
-                "item": "雷杖「インドラ」",
+                "item": "Storm Wand: Indra",
                 "rate": "0.042725%"
               },
               {
-                "item": "フロウウェンの大剣",
+                "item": "Flowen's Sword",
                 "rate": "0.042725%"
               },
               {
-                "item": "クロススケア",
+                "item": "Cross Scar",
                 "rate": "0.042725%"
               },
               {
-                "item": "デュランダル",
+                "item": "Durandal",
                 "rate": "0.042725%"
               },
               {
-                "item": "勇者のディスカ",
+                "item": "Diska of Braveman",
                 "rate": "0.027466%"
               }
             ],
@@ -5383,43 +5383,43 @@ window.DROP_DATA_EN = {
             "name": "Canadine",
             "drops": [
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.002480%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.002480%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.002480%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.002480%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.002480%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.002480%"
               },
               {
-                "item": "リジェネレイトギア改",
+                "item": "Regene Gear Adv.",
                 "rate": "0.002480%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.002480%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.002480%"
               },
               {
-                "item": "リジェネレイトギア",
+                "item": "Regenerate Gear",
                 "rate": "0.002480%"
               }
             ],
@@ -5429,43 +5429,43 @@ window.DROP_DATA_EN = {
             "name": "Canane",
             "drops": [
               {
-                "item": "センスプレート",
+                "item": "Sense Plate",
                 "rate": "0.042725%"
               },
               {
-                "item": "グラビトンプレート",
+                "item": "Graviton Plate",
                 "rate": "0.042725%"
               },
               {
-                "item": "アトリビュートプレート",
+                "item": "Attribute Plate",
                 "rate": "0.042725%"
               },
               {
-                "item": "センスプレート",
+                "item": "Sense Plate",
                 "rate": "0.042725%"
               },
               {
-                "item": "センスプレート",
+                "item": "Sense Plate",
                 "rate": "0.042725%"
               },
               {
-                "item": "グラビトンプレート",
+                "item": "Graviton Plate",
                 "rate": "0.042725%"
               },
               {
-                "item": "アトリビュートプレート",
+                "item": "Attribute Plate",
                 "rate": "0.042725%"
               },
               {
-                "item": "センスプレート",
+                "item": "Sense Plate",
                 "rate": "0.042725%"
               },
               {
-                "item": "グラビトンプレート",
+                "item": "Graviton Plate",
                 "rate": "0.042725%"
               },
               {
-                "item": "アトリビュートプレート",
+                "item": "Attribute Plate",
                 "rate": "0.042725%"
               }
             ],
@@ -5475,43 +5475,43 @@ window.DROP_DATA_EN = {
             "name": "Sinow Beat",
             "drops": [
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "0.000215%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "0.000215%"
               },
               {
-                "item": "アギト(2001)",
+                "item": "Agito (2001)",
                 "rate": "0.976563%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "0.000215%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "0.000429%"
               },
               {
-                "item": "バトルバージ",
+                "item": "Battle Verge",
                 "rate": "0.042725%"
               },
               {
-                "item": "アダマンの杖",
+                "item": "Mace of Adaman",
                 "rate": "0.097656%"
               },
               {
-                "item": "アギト(2001)",
+                "item": "Agito (2001)",
                 "rate": "1.074219%"
               },
               {
-                "item": "Sinow Beatの両手",
+                "item": "S-beat's Arms",
                 "rate": "0.000429%"
               },
               {
-                "item": "暗殺者のスライサー",
+                "item": "Slicer of Assassin",
                 "rate": "0.042725%"
               }
             ],
@@ -5521,43 +5521,43 @@ window.DROP_DATA_EN = {
             "name": "Sinow Gold",
             "drops": [
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000131%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000131%"
               },
               {
-                "item": "ピアンの心",
+                "item": "Heart of Pian",
                 "rate": "0.000131%"
               },
               {
-                "item": "チャオの心",
+                "item": "Heart of Chao",
                 "rate": "0.000131%"
               },
               {
-                "item": "ピアンの心",
+                "item": "Heart of Pian",
                 "rate": "0.000131%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000131%"
               },
               {
-                "item": "オパオパの心",
+                "item": "Heart of Opa Opa",
                 "rate": "0.000131%"
               },
               {
-                "item": "オパオパの心",
+                "item": "Heart of Opa Opa",
                 "rate": "0.000131%"
               },
               {
-                "item": "チャオの心",
+                "item": "Heart of Chao",
                 "rate": "0.000131%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000131%"
               }
             ],
@@ -5567,43 +5567,43 @@ window.DROP_DATA_EN = {
             "name": "Garanz",
             "drops": [
               {
-                "item": "インフェルノバズーカ",
+                "item": "Inferno Bazooka",
                 "rate": "0.122070%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.122070%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.122070%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.122070%"
               },
               {
-                "item": "インフェルノバズーカ",
+                "item": "Inferno Bazooka",
                 "rate": "0.122070%"
               },
               {
-                "item": "インフェルノバズーカ",
+                "item": "Inferno Bazooka",
                 "rate": "0.122070%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.122070%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.122070%"
               },
               {
-                "item": "インフェルノバズーカ",
+                "item": "Inferno Bazooka",
                 "rate": "0.134277%"
               },
               {
-                "item": "インフェルノバズーカ",
+                "item": "Inferno Bazooka",
                 "rate": "0.122070%"
               }
             ],
@@ -5613,43 +5613,43 @@ window.DROP_DATA_EN = {
             "name": "Vol Opt",
             "drops": [
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               },
               {
-                "item": "オモチャオのパーツ",
+                "item": "Parts of RoboChao",
                 "rate": "0.000286%"
               }
             ],
@@ -5659,39 +5659,39 @@ window.DROP_DATA_EN = {
             "name": "Dimenian",
             "drops": [
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.079346%"
               },
               {
-                "item": "フレイムビジット",
+                "item": "Flame Visit",
                 "rate": "0.079346%"
               },
               {
-                "item": "チェインソード",
+                "item": "Chain Sawd",
                 "rate": "0.079346%"
               },
               {
-                "item": "ソウルバニッシュ",
+                "item": "Soul Banish",
                 "rate": "0.079346%"
               },
               {
-                "item": "インフェルノバズーカ",
+                "item": "Inferno Bazooka",
                 "rate": "0.079346%"
               },
               {
-                "item": "マジカルピース",
+                "item": "Magical Piece",
                 "rate": "0.079346%"
               },
               {
-                "item": "寄生防具「ヴァジュラ」",
+                "item": "Vajra Shield",
                 "rate": "0.079346%"
               },
               {
-                "item": "ツインブランド",
+                "item": "Twin Brand",
                 "rate": "0.079346%"
               },
               {
-                "item": "スティングティップ",
+                "item": "Sting Tip",
                 "rate": "0.079346%"
               },
               {
@@ -5705,43 +5705,43 @@ window.DROP_DATA_EN = {
             "name": "La Dimenian",
             "drops": [
               {
-                "item": "マジカルピース",
+                "item": "Magical Piece",
                 "rate": "0.024414%"
               },
               {
-                "item": "カジューシース",
+                "item": "Caduceus",
                 "rate": "0.024414%"
               },
               {
-                "item": "マジカルピース",
+                "item": "Magical Piece",
                 "rate": "0.024414%"
               },
               {
-                "item": "カジューシース",
+                "item": "Caduceus",
                 "rate": "0.024414%"
               },
               {
-                "item": "マジカルピース",
+                "item": "Magical Piece",
                 "rate": "0.024414%"
               },
               {
-                "item": "カジューシース",
+                "item": "Caduceus",
                 "rate": "0.024414%"
               },
               {
-                "item": "マジカルピース",
+                "item": "Magical Piece",
                 "rate": "0.024414%"
               },
               {
-                "item": "カジューシース",
+                "item": "Caduceus",
                 "rate": "0.024414%"
               },
               {
-                "item": "マジカルピース",
+                "item": "Magical Piece",
                 "rate": "0.024414%"
               },
               {
-                "item": "カジューシース",
+                "item": "Caduceus",
                 "rate": "0.024414%"
               }
             ],
@@ -5751,43 +5751,43 @@ window.DROP_DATA_EN = {
             "name": "So Dimenian",
             "drops": [
               {
-                "item": "ツインブランド",
+                "item": "Twin Brand",
                 "rate": "0.013733%"
               },
               {
-                "item": "チャオの心",
+                "item": "Heart of Chao",
                 "rate": "0.000131%"
               },
               {
-                "item": "ツインブランド",
+                "item": "Twin Brand",
                 "rate": "0.013733%"
               },
               {
-                "item": "ツインブランド",
+                "item": "Twin Brand",
                 "rate": "0.013733%"
               },
               {
-                "item": "チェインソード",
+                "item": "Chain Sawd",
                 "rate": "0.013733%"
               },
               {
-                "item": "チェインソード",
+                "item": "Chain Sawd",
                 "rate": "0.013733%"
               },
               {
-                "item": "チェインソード",
+                "item": "Chain Sawd",
                 "rate": "0.013733%"
               },
               {
-                "item": "ニョイボウ",
+                "item": "Monkey King Bar",
                 "rate": "0.000191%"
               },
               {
-                "item": "チェインソード",
+                "item": "Chain Sawd",
                 "rate": "0.013733%"
               },
               {
-                "item": "チャオの心",
+                "item": "Heart of Chao",
                 "rate": "0.000131%"
               }
             ],
@@ -5797,43 +5797,43 @@ window.DROP_DATA_EN = {
             "name": "Delsaber",
             "drops": [
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "0.976563%"
               },
               {
-                "item": "封印ノダチ",
+                "item": "Sealed J-Sword",
                 "rate": "0.000191%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "0.976563%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "0.976563%"
               },
               {
-                "item": "Chaos Bringerの右手",
+                "item": "C-bringer's Right Arm",
                 "rate": "0.073242%"
               },
               {
-                "item": "Delsaberの右手",
+                "item": "Delsaber's Right Arm",
                 "rate": "0.976563%"
               },
               {
-                "item": "Chaos Bringerの右手",
+                "item": "C-bringer's Right Arm",
                 "rate": "0.073242%"
               },
               {
-                "item": "Chaos Bringerの右手",
+                "item": "C-bringer's Right Arm",
                 "rate": "0.073242%"
               },
               {
-                "item": "Chaos Bringerの右手",
+                "item": "C-bringer's Right Arm",
                 "rate": "0.073242%"
               },
               {
-                "item": "Chaos Bringerの右手",
+                "item": "C-bringer's Right Arm",
                 "rate": "0.073242%"
               }
             ],
@@ -5843,43 +5843,43 @@ window.DROP_DATA_EN = {
             "name": "Claw",
             "drops": [
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.003052%"
               },
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.003052%"
               },
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.003052%"
               },
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.003052%"
               },
               {
-                "item": "バルディッシュ",
+                "item": "Berdysh",
                 "rate": "0.000191%"
               },
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.003052%"
               },
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.003052%"
               },
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.003052%"
               },
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.003052%"
               },
               {
-                "item": "スプレッドニードル",
+                "item": "Spread Needle",
                 "rate": "0.003052%"
               }
             ],
@@ -5889,43 +5889,43 @@ window.DROP_DATA_EN = {
             "name": "Bulk",
             "drops": [
               {
-                "item": "クラッシュバレット",
+                "item": "Crush Bullet",
                 "rate": "0.244141%"
               },
               {
-                "item": "ツインブランド",
+                "item": "Twin Brand",
                 "rate": "0.013733%"
               },
               {
-                "item": "アギト(1977)",
+                "item": "Agito (1977)",
                 "rate": "0.976563%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.244141%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.244141%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.244141%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.244141%"
               },
               {
-                "item": "アギト(1977)",
+                "item": "Agito (1977)",
                 "rate": "0.976563%"
               },
               {
-                "item": "サプレストガン",
+                "item": "Suppressed Gun",
                 "rate": "0.244141%"
               },
               {
-                "item": "チェインソード",
+                "item": "Chain Sawd",
                 "rate": "0.013733%"
               }
             ],
@@ -5935,43 +5935,43 @@ window.DROP_DATA_EN = {
             "name": "Bulclaw",
             "drops": [
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               },
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               },
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               },
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               },
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               },
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               },
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               },
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               },
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               },
               {
-                "item": "ゴッドハンド",
+                "item": "God Hand",
                 "rate": "0.001144%"
               }
             ],
@@ -5981,43 +5981,43 @@ window.DROP_DATA_EN = {
             "name": "Dark Belra",
             "drops": [
               {
-                "item": "セレスティアルアーマー",
+                "item": "Celestial Armor",
                 "rate": "0.000429%"
               },
               {
-                "item": "セレスティアルアーマー",
+                "item": "Celestial Armor",
                 "rate": ""
               },
               {
-                "item": "アギト(1975)",
+                "item": "Agito (1975)",
                 "rate": "0.000131%"
               },
               {
-                "item": "セレスティアルアーマー",
+                "item": "Celestial Armor",
                 "rate": ""
               },
               {
-                "item": "セレスティアルアーマー",
+                "item": "Celestial Armor",
                 "rate": ""
               },
               {
-                "item": "セレスティアルアーマー",
+                "item": "Celestial Armor",
                 "rate": ""
               },
               {
-                "item": "セレスティアルアーマー",
+                "item": "Celestial Armor",
                 "rate": "0.003052%"
               },
               {
-                "item": "アギト(1975)",
+                "item": "Agito (1975)",
                 "rate": "0.000131%"
               },
               {
-                "item": "セレスティアルアーマー",
+                "item": "Celestial Armor",
                 "rate": ""
               },
               {
-                "item": "セレスティアルアーマー",
+                "item": "Celestial Armor",
                 "rate": ""
               }
             ],
@@ -6027,43 +6027,43 @@ window.DROP_DATA_EN = {
             "name": "Dark Gunner",
             "drops": [
               {
-                "item": "フォースウォル",
+                "item": "Force Wall",
                 "rate": "0.013733%"
               },
               {
-                "item": "レンジャーウォル",
+                "item": "Ranger Wall",
                 "rate": "0.013733%"
               },
               {
-                "item": "ハンターウォル",
+                "item": "Hunter Wall",
                 "rate": "0.013733%"
               },
               {
-                "item": "アトリビュートウォル",
+                "item": "Attribute Wall",
                 "rate": "0.013733%"
               },
               {
-                "item": "フォースウォル",
+                "item": "Force Wall",
                 "rate": "0.013733%"
               },
               {
-                "item": "レンジャーウォル",
+                "item": "Ranger Wall",
                 "rate": "0.013733%"
               },
               {
-                "item": "ツインサイコガン",
+                "item": "Twin Psychogun",
                 "rate": "0.000191%"
               },
               {
-                "item": "アトリビュートウォル",
+                "item": "Attribute Wall",
                 "rate": "0.013733%"
               },
               {
-                "item": "ハンターウォル",
+                "item": "Hunter Wall",
                 "rate": "0.013733%"
               },
               {
-                "item": "ハンターウォル",
+                "item": "Hunter Wall",
                 "rate": "0.013733%"
               }
             ],
@@ -6073,43 +6073,43 @@ window.DROP_DATA_EN = {
             "name": "Death gunner",
             "drops": [
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.042725%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.042725%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.042725%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.042725%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.042725%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.042725%"
               },
               {
-                "item": "Ｓパーツ ver2.01",
+                "item": "S-Parts ver2.01",
                 "rate": "0.042725%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.042725%"
               },
               {
-                "item": "フローズンシューター",
+                "item": "Frozen Shooter",
                 "rate": ">0.000191%"
               },
               {
-                "item": "Ｓパーツ ver1.16",
+                "item": "S-Parts ver1.16",
                 "rate": "0.042725%"
               }
             ],
@@ -6119,7 +6119,7 @@ window.DROP_DATA_EN = {
             "name": "Chaos Sorcerer",
             "drops": [
               {
-                "item": "サイコウォンド",
+                "item": "Psycho Wand",
                 "rate": "0.000191%"
               },
               {
@@ -6131,19 +6131,19 @@ window.DROP_DATA_EN = {
                 "rate": "0.012207%"
               },
               {
-                "item": "エビルカースト",
+                "item": "Evil Curst",
                 "rate": "0.000191%"
               },
               {
-                "item": "Chaos Sorcererの右手",
+                "item": "Sorcerer's Right Arm",
                 "rate": "0.000429%"
               },
               {
-                "item": "サイコウォンド",
+                "item": "Psycho Wand",
                 "rate": "0.000191%"
               },
               {
-                "item": "Chaos Sorcererの右手",
+                "item": "Sorcerer's Right Arm",
                 "rate": "0.000215%"
               },
               {
@@ -6151,11 +6151,11 @@ window.DROP_DATA_EN = {
                 "rate": "0.012207%"
               },
               {
-                "item": "Chaos Sorcererの右手",
+                "item": "Sorcerer's Right Arm",
                 "rate": "0.000429%"
               },
               {
-                "item": "ラビットウォンド",
+                "item": "Rabbit Wand",
                 "rate": "0.000191%"
               }
             ],
@@ -6165,43 +6165,43 @@ window.DROP_DATA_EN = {
             "name": "Chaos Bringer",
             "drops": [
               {
-                "item": "ホーリーレイ",
+                "item": "Holy Ray",
                 "rate": "0.005341%"
               },
               {
-                "item": "ヘブンパニッシャー",
+                "item": "Heaven Punisher",
                 "rate": "0.000191%"
               },
               {
-                "item": "アギト(1975)",
+                "item": "Agito (1975)",
                 "rate": "0.000131%"
               },
               {
-                "item": "ラヴィス＝カノン",
+                "item": "Lavis Cannon",
                 "rate": "0.000191%"
               },
               {
-                "item": "Delsaberの左手",
+                "item": "Delsaber's Left Arm",
                 "rate": "0.000191%"
               },
               {
-                "item": "パンツァーファースト",
+                "item": "Panzer Faust",
                 "rate": "0.000191%"
               },
               {
-                "item": "ヘブンパニッシャー",
+                "item": "Heaven Punisher",
                 "rate": "0.000191%"
               },
               {
-                "item": "アギト(1975)",
+                "item": "Agito (1975)",
                 "rate": "0.000131%"
               },
               {
-                "item": "Delsaberの左手",
+                "item": "Delsaber's Left Arm",
                 "rate": "0.000191%"
               },
               {
-                "item": "ラヴィス＝カノン",
+                "item": "Lavis Cannon",
                 "rate": "0.000191%"
               }
             ],
@@ -6586,43 +6586,43 @@ window.DROP_DATA_EN = {
             "name": "Gulgus-Gue",
             "drops": [
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.001335%"
               }
             ],
@@ -6632,23 +6632,23 @@ window.DROP_DATA_EN = {
             "name": "Hildelt",
             "drops": [
               {
-                "item": "神の吐息",
+                "item": "The Sigh of a God",
                 "rate": "0.002289%"
               },
               {
-                "item": "神の吐息",
+                "item": "The Sigh of a God",
                 "rate": "0.002289%"
               },
               {
-                "item": "フォースフィールド",
+                "item": "Force Field",
                 "rate": "0.683594%"
               },
               {
-                "item": "神の吐息",
+                "item": "The Sigh of a God",
                 "rate": "0.002289%"
               },
               {
-                "item": "神の吐息",
+                "item": "The Sigh of a God",
                 "rate": "0.002289%"
               },
               {
@@ -7036,7 +7036,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.195313%"
               },
               {
-                "item": "フライトカッター",
+                "item": "Flight Cutter",
                 "rate": "0.000262%"
               }
             ],
@@ -7046,43 +7046,43 @@ window.DROP_DATA_EN = {
             "name": "Nano Dragon",
             "drops": [
               {
-                "item": "ＳＨ２",
+                "item": "SH2",
                 "rate": "0.008392%"
               },
               {
-                "item": "ＳＨ２",
+                "item": "SH2",
                 "rate": "0.008392%"
               },
               {
-                "item": "ＳＨ２",
+                "item": "SH2",
                 "rate": "0.008392%"
               },
               {
-                "item": "ＳＨ２",
+                "item": "SH2",
                 "rate": "0.008392%"
               },
               {
-                "item": "ＳＨ２",
+                "item": "SH2",
                 "rate": "0.008392%"
               },
               {
-                "item": "６８０００",
+                "item": "68000",
                 "rate": "0.036621%"
               },
               {
-                "item": "６８０００",
+                "item": "68000",
                 "rate": "0.036621%"
               },
               {
-                "item": "６８０００",
+                "item": "68000",
                 "rate": "0.036621%"
               },
               {
-                "item": "６８０００",
+                "item": "68000",
                 "rate": "0.036621%"
               },
               {
-                "item": "６８０００",
+                "item": "68000",
                 "rate": "0.036621%"
               }
             ],
@@ -7266,7 +7266,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "フォースウォル",
+                "item": "Force Wall",
                 "rate": "0.683594%"
               }
             ],
@@ -7276,7 +7276,7 @@ window.DROP_DATA_EN = {
             "name": "Hidoom",
             "drops": [
               {
-                "item": "秋子おばさんの中華鍋",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7284,7 +7284,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "秋子おばさんの中華鍋",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7292,7 +7292,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "秋子おばさんの中華鍋",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7300,7 +7300,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "秋子おばさんの中華鍋",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7308,7 +7308,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000477%"
               },
               {
-                "item": "秋子おばさんの中華鍋",
+                "item": "Wok of Akiko's Shop",
                 "rate": "0.015259%"
               },
               {
@@ -7322,43 +7322,43 @@ window.DROP_DATA_EN = {
             "name": "Dal Ral Lie",
             "drops": [
               {
-                "item": "ピアンの心",
+                "item": "Heart of Pian",
                 "rate": "0.109863%"
               },
               {
-                "item": "チャオの心",
+                "item": "Heart of Chao",
                 "rate": "0.109863%"
               },
               {
-                "item": "ピアンの心",
+                "item": "Heart of Pian",
                 "rate": "0.109863%"
               },
               {
-                "item": "チャオの心",
+                "item": "Heart of Chao",
                 "rate": "0.109863%"
               },
               {
-                "item": "ピアンの心",
+                "item": "Heart of Pian",
                 "rate": "0.109863%"
               },
               {
-                "item": "チャオの心",
+                "item": "Heart of Chao",
                 "rate": "0.109863%"
               },
               {
-                "item": "ピアンの心",
+                "item": "Heart of Pian",
                 "rate": "0.109863%"
               },
               {
-                "item": "チャオの心",
+                "item": "Heart of Chao",
                 "rate": "0.109863%"
               },
               {
-                "item": "ピアンの心",
+                "item": "Heart of Pian",
                 "rate": "0.109863%"
               },
               {
-                "item": "チャオの心",
+                "item": "Heart of Chao",
                 "rate": "0.109863%"
               }
             ],
@@ -7392,7 +7392,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.009918%"
               },
               {
-                "item": "フロウウウェンの盾",
+                "item": "Flowen's Shield",
                 "rate": "0.683594%"
               },
               {
@@ -7468,7 +7468,7 @@ window.DROP_DATA_EN = {
                 "rate": "3.515625%"
               },
               {
-                "item": "リバイバルガーメント",
+                "item": "Revival Garment",
                 "rate": "0.683594%"
               },
               {
@@ -7560,7 +7560,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000119%"
               },
               {
-                "item": "高位マグ細胞「エノ」",
+                "item": "Heart of Eno",
                 "rate": "0.001144%"
               },
               {
@@ -7568,7 +7568,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000119%"
               },
               {
-                "item": "高位マグ装甲「ウル」",
+                "item": "Heart of Uru",
                 "rate": "0.001144%"
               },
               {
@@ -7606,7 +7606,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.005341%"
               },
               {
-                "item": "Sinow Redの両手",
+                "item": "S-red's Arms",
                 "rate": "0.000167%"
               },
               {
@@ -7626,11 +7626,11 @@ window.DROP_DATA_EN = {
                 "rate": "0.005341%"
               },
               {
-                "item": "Sinow Redの両手",
+                "item": "S-red's Arms",
                 "rate": "0.000167%"
               },
               {
-                "item": "Sinow Redの両手",
+                "item": "S-red's Arms",
                 "rate": "0.000167%"
               },
               {
@@ -7652,11 +7652,11 @@ window.DROP_DATA_EN = {
                 "rate": "0.683594%"
               },
               {
-                "item": "ＳＨ４",
+                "item": "SH4",
                 "rate": "0.000668%"
               },
               {
-                "item": "ＳＨ４",
+                "item": "SH4",
                 "rate": "0.000668%"
               },
               {
@@ -7668,7 +7668,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.054932%"
               },
               {
-                "item": "ＳＨ４",
+                "item": "SH4",
                 "rate": "0.000668%"
               },
               {
@@ -7676,11 +7676,11 @@ window.DROP_DATA_EN = {
                 "rate": "0.054932%"
               },
               {
-                "item": "ＳＨ４",
+                "item": "SH4",
                 "rate": "0.000668%"
               },
               {
-                "item": "ＳＨ４",
+                "item": "SH4",
                 "rate": "0.000668%"
               }
             ],
@@ -7806,7 +7806,7 @@ window.DROP_DATA_EN = {
                 "rate": "6.250000%"
               },
               {
-                "item": "細菌防具「ラフテリア」",
+                "item": "Lafteria Shield",
                 "rate": "0.000620%"
               },
               {
@@ -8012,15 +8012,15 @@ window.DROP_DATA_EN = {
             "name": "Bulclaw",
             "drops": [
               {
-                "item": "四神盾「朱雀」",
+                "item": "Red Barrier",
                 "rate": "0.000262%"
               },
               {
-                "item": "四神盾「玄武」",
+                "item": "Blue Barrier",
                 "rate": "0.000262%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.000262%"
               },
               {
@@ -8028,27 +8028,27 @@ window.DROP_DATA_EN = {
                 "rate": "0.000334%"
               },
               {
-                "item": "四神盾「朱雀」",
+                "item": "Red Barrier",
                 "rate": "0.000262%"
               },
               {
-                "item": "四神盾「白虎」",
+                "item": "Yellow Barrier",
                 "rate": "0.000262%"
               },
               {
-                "item": "四神盾「朱雀」",
+                "item": "Red Barrier",
                 "rate": "0.000262%"
               },
               {
-                "item": "四神盾「青龍」",
+                "item": "Green Barrier",
                 "rate": "0.000262%"
               },
               {
-                "item": "四神盾「青龍」",
+                "item": "Green Barrier",
                 "rate": "0.000262%"
               },
               {
-                "item": "四神盾「玄武」",
+                "item": "Blue Barrier",
                 "rate": "0.000262%"
               }
             ],
@@ -8216,7 +8216,7 @@ window.DROP_DATA_EN = {
                 "rate": "0.000429%"
               },
               {
-                "item": "モタブの予言書",
+                "item": "Prophets of Motav",
                 "rate": "0.000215%"
               },
               {
