@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="PSOBB Vol Opt 第一形态 Monitor 伤害 Bug 与 Gizonde 定身策略">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vol Opt Monitor 伤害 Bug | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .tab-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            margin-bottom: 0;
+        }
+        .tab-bar + .tab-bar { margin-top: 4px; }
+        .tab-bar button {
+            padding: 8px 16px;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .tab-bar button:first-child { border-radius: 6px 0 0 6px; }
+        .tab-bar button:last-child { border-radius: 0 6px 6px 0; }
+        .tab-bar button.active {
+            background: rgba(0, 212, 255, 0.25);
+            color: #e2e8f0;
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+        .tab-bar button:hover:not(.active) {
+            background: rgba(0, 212, 255, 0.15);
+            color: #cbd5e1;
+        }
+        .tab-bar button.disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+        .tab-group { margin-bottom: 12px; }
+        .tab-group:last-of-type { margin-bottom: 20px; }
+
+        #cast-table { font-size: 14px; }
+        #cast-table th, #cast-table td {
+            padding: 8px 6px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        #cast-table th:first-child, #cast-table td:first-child {
+            text-align: left;
+            padding-left: 12px;
+            min-width: 180px;
+        }
+        #cast-table td.has-val { color: #e2e8f0; font-weight: 600; }
+        #cast-table td.no-val { color: #334155; }
+        .weapon-sword { color: #fbbf24; }
+        .weapon-fist { color: #60a5fa; }
+        .set-name { color: #c084fc; }
+
+        .intro-note {
+            background: rgba(0, 212, 255, 0.06);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        .intro-note a { color: #60a5fa; }
+
+        .source-link { font-size: 13px; color: #64748b; margin-top: 16px; text-align: right; }
+        .source-link a { color: #60a5fa; }
+
+        @media (max-width: 768px) {
+            #cast-table { font-size: 12px; }
+            #cast-table th:first-child, #cast-table td:first-child { min-width: 120px; }
+            .content-container { padding: 20px; overflow-x: auto; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">Vol Opt 第一形态 Monitor 伤害</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+
+        <h2>Vol Opt 第一形态 Monitor 伤害 Bug</h2>
+
+        <div class="intro-note">
+            <p>Vol Opt 第一形态存在一个<strong>伤害传递 Bug</strong>：当对 Monitor（显示器）使用攻击性魔法（Megid 除外）或物理攻击时，伤害会以异常方式传递到核心。传递公式为：</p>
+            <p style="margin-top:8px"><code>伤害 = (ATP - DFP) / 5</code></p>
+            <p style="margin-top:8px">这个公式中：</p>
+            <ul style="margin-top:4px; margin-bottom:0">
+                <li>武器的 <strong>Machine %</strong> 会正常计入有效 ATP</li>
+                <li>全局伤害系数 0.9 <strong>不会</strong>被应用</li>
+                <li>属性抗性、法杖增幅、魔法威力<strong>均无关</strong></li>
+            </ul>
+            <p style="margin-top:12px">利用这个 Bug，装备高 ATP 武器并施放 <strong>Gizonde（中雷）</strong>定身 Vol Opt，可以非常高效地击败第一形态。Gizonde 命中后会造成短暂硬直（stun），反复施放即可使 BOSS 持续处于无法行动的状态（<strong>Gizonde Stunlock / 雷锁</strong>）。</p>
+        </div>
+
+        <h3>武器选择说明</h3>
+        <p>表中列出了几种常见的武器组合，表中数据假设角色 ATP 已满、装备 Combat Gear 格斗盾（+35 ATP）：</p>
+        <ul>
+            <li><span class="weapon-sword">&#9876;</span> <strong>Excalibur 王者之剑</strong>和 <strong>Galatine 太阳之剑</strong>——高 ATP 剑类，最常用</li>
+            <li><span class="weapon-fist">&#9733;</span> <strong>Sacred Duster 神圣粉碎者</strong>和 <strong>Angry Fist 愤怒之拳</strong>——拳类武器，男性角色空手施法动画最快，更容易维持定身节奏</li>
+            <li><span class="set-name">&#9670;</span> <strong>Red Saber 红色光剑 + Crimson Coat 真红外套（CC）</strong>以及 <strong>Orotiagito 大蛇腭 + Samurai Armor 浅黄丝威褄取铠（SA）</strong>——利用<a href="/data/WSBoost.html">套装效果</a>获得额外 ATP 加成</li>
+            <li><span class="weapon-sword">&#9876;</span> <strong>Vivienne 维维安双刃</strong>——FOnewearl 可用的选择</li>
+        </ul>
+
+        <hr>
+
+        <h2>Gizonde 施放次数表</h2>
+
+        <div class="tab-group">
+            <div class="tab-bar" id="mode-tabs">
+                <button class="active" data-mode="normal">多人房间</button>
+                <button data-mode="one_person">单人房间</button>
+            </div>
+        </div>
+
+        <div class="tab-group">
+            <div class="tab-bar" id="class-tabs">
+                <button class="active" data-class="humar">HUmar 废材</button>
+                <button data-class="hunewearl">HUnewearl 花瓶</button>
+                <button data-class="ramar">RAmar 军哥</button>
+                <button data-class="ramarl">RAmarl 军嫂</button>
+                <button data-class="fomar">FOmar 农夫</button>
+                <button data-class="fomarl">FOmarl 人妻</button>
+                <button data-class="fonewm">FOnewm 猴子</button>
+                <button data-class="fonewearl">FOnewearl 萝莉</button>
+            </div>
+        </div>
+
+        <div class="tab-group">
+            <div class="tab-bar" id="shifta-tabs"></div>
+        </div>
+
+        <div style="overflow-x:auto;">
+            <table id="cast-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2">武器</th>
+                        <th colspan="19" style="color:#fbbf24;">Machine 百分比 [%]</th>
+                    </tr>
+                    <tr id="pct-header"></tr>
+                </thead>
+                <tbody id="cast-body"></tbody>
+            </table>
+        </div>
+
+        <p id="no-data-msg" style="display:none; color:#94a3b8; text-align:center; padding:20px 0;">
+            该组合暂无数据
+        </p>
+
+        <hr>
+
+        <h3>补充说明</h3>
+        <ul>
+            <li><strong>Machine %</strong> 是武器的机械属性百分比，会被计入有效 ATP，从而影响每次 Gizonde 通过 Bug 传递的伤害量。百分比越高，所需施放次数越少。</li>
+            <li><strong>Shifta 等级</strong>（S3/S15/S20/S30）影响物理攻击力加成。不同职业在 Ultimate 难度下可学习的最高 Shifta 等级不同。</li>
+            <li><strong>Normal</strong> 为多人房间数据，<strong>One person</strong> 为单人房间数据（怪物 HP 不同）。</li>
+            <li>由于延迟问题，在线游戏中定身核心可能不稳定。此时可考虑使用拳类武器，因为男性角色空手施法动画是所有角色中最快的。</li>
+        </ul>
+
+        <div class="source-link">
+            数据来源: <a href="https://wiki.pioneer2.net/w/Vol_Opt" target="_blank">wiki.pioneer2.net/w/Vol_Opt</a>
+        </div>
+
+    </div>
+
+    <script src="/assets/js/volopt_data.js"></script>
+    <script>
+    (function() {
+        var PCTS = [0,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100];
+
+        var WEAPON_DISPLAY = {
+            "Excalibur":                    {icon:"\u2694", cls:"weapon-sword", zh:"王者之剑"},
+            "Galatine":                     {icon:"\u2694", cls:"weapon-sword", zh:"太阳之剑"},
+            "Sacred Duster":                {icon:"\u2605", cls:"weapon-fist", zh:"神圣粉碎者"},
+            "Angry Fist":                   {icon:"\u2605", cls:"weapon-fist", zh:"愤怒之拳"},
+            "Red Saber + Crimson Coat":     {icon:"\u25C6", cls:"set-name",  zh:"红色光剑 + 真红外套"},
+            "Orotiagito + Samurai Armor":   {icon:"\u25C6", cls:"set-name",  zh:"大蛇腭 + 浅黄丝威褄取铠"},
+            "Vivienne":                     {icon:"\u2694", cls:"weapon-sword", zh:"维维安双刃"}
+        };
+
+        var state = {mode:"normal", cls:"humar", shifta:null};
+
+        function getShiftaLevels() {
+            var modeData = DATA[state.mode];
+            var classData = modeData && modeData[state.cls];
+            if (!classData) return [];
+            return Object.keys(classData).sort(function(a, b) {
+                return parseInt(a.slice(1)) - parseInt(b.slice(1));
+            });
+        }
+
+        function rebuildShiftaTabs() {
+            var bar = document.getElementById("shifta-tabs");
+            var levels = getShiftaLevels();
+            bar.innerHTML = "";
+            levels.forEach(function(lv, i) {
+                var btn = document.createElement("button");
+                btn.textContent = lv.toUpperCase();
+                btn.dataset.shifta = lv;
+                if (i === 0) btn.className = "active";
+                bar.appendChild(btn);
+            });
+            state.shifta = levels[0] || null;
+
+            bar.onclick = function(e) {
+                var btn = e.target.closest("button");
+                if (!btn || !btn.dataset.shifta) return;
+                var prev = bar.querySelector(".active");
+                if (prev) prev.classList.remove("active");
+                btn.classList.add("active");
+                state.shifta = btn.dataset.shifta;
+                render();
+            };
+        }
+
+        function initTabs() {
+            ["mode-tabs", "class-tabs"].forEach(function(id) {
+                document.getElementById(id).addEventListener("click", function(e) {
+                    var btn = e.target.closest("button");
+                    if (!btn) return;
+                    var prev = e.currentTarget.querySelector(".active");
+                    if (prev) prev.classList.remove("active");
+                    btn.classList.add("active");
+                    if (btn.dataset.mode) state.mode = btn.dataset.mode;
+                    if (btn.dataset["class"]) state.cls = btn.dataset["class"];
+                    rebuildShiftaTabs();
+                    render();
+                });
+            });
+        }
+
+        function render() {
+            var headerRow = document.getElementById("pct-header");
+            headerRow.innerHTML = PCTS.map(function(p){ return "<th>"+p+"</th>"; }).join("");
+
+            var tbody = document.getElementById("cast-body");
+            var noData = document.getElementById("no-data-msg");
+            var table = document.getElementById("cast-table");
+
+            var modeData = DATA[state.mode];
+            var classData = modeData && modeData[state.cls];
+            var weapons = classData && state.shifta && classData[state.shifta];
+
+            if (!weapons || Object.keys(weapons).length === 0) {
+                tbody.innerHTML = "";
+                table.style.display = "none";
+                noData.style.display = "block";
+                return;
+            }
+
+            table.style.display = "";
+            noData.style.display = "none";
+
+            var rows = [];
+            for (var wname in weapons) {
+                var wdata = weapons[wname];
+                var disp = WEAPON_DISPLAY[wname] || {icon:"", cls:""};
+                var label = disp.zh ? wname + ' ' + disp.zh : wname;
+                var cells = '<td><span class="'+disp.cls+'">'+disp.icon+' </span>'+label+'</td>';
+                PCTS.forEach(function(p) {
+                    var v = wdata[p];
+                    if (v !== undefined) {
+                        cells += '<td class="has-val">'+v+'</td>';
+                    } else {
+                        cells += '<td class="no-val">-</td>';
+                    }
+                });
+                rows.push("<tr>"+cells+"</tr>");
+            }
+            tbody.innerHTML = rows.join("");
+        }
+
+        initTabs();
+        rebuildShiftaTabs();
+        render();
+    })();
+    </script>
+
+</body>
+</html>

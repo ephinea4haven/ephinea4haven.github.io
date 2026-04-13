@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ephinea PSOBB 物品价格参考表">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>物品价格参考 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .price-notice {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-bottom: 24px;
+            color: #fbbf24;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Search & filter */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .filter-bar input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            background: rgba(0, 212, 255, 0.06);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .filter-bar input[type="text"]:focus {
+            border-color: rgba(0, 212, 255, 0.6);
+        }
+        .filter-bar input::placeholder { color: #64748b; }
+
+        /* Section nav */
+        .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 24px;
+        }
+        .section-nav button {
+            padding: 6px 14px;
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: inherit;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .section-nav button:hover { background: rgba(0, 212, 255, 0.15); color: #cbd5e1; }
+        .section-nav button.active {
+            background: rgba(0, 212, 255, 0.25);
+            color: #e2e8f0;
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+
+        /* Tables */
+        .price-section { margin-bottom: 30px; }
+        .price-section h3 {
+            color: #60a5fa;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        }
+        .price-table {
+            font-size: 13px;
+            width: 100%;
+        }
+        .price-table th, .price-table td {
+            padding: 6px 8px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .price-table th:first-child, .price-table td:first-child {
+            text-align: left;
+            white-space: normal;
+            min-width: 120px;
+        }
+        .price-table td:first-child { color: #fbbf24; font-weight: 500; }
+        .price-table .val-inest { color: #f472b6; font-style: italic; font-size: 12px; }
+        .price-table .val-na { color: #475569; }
+        .price-table .val-zero { color: #64748b; }
+
+        .table-scroll { overflow-x: auto; margin-bottom: 8px; }
+
+        .match-count { color: #94a3b8; font-size: 14px; margin-bottom: 12px; }
+
+        .source-link {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 16px;
+            text-align: right;
+        }
+        .source-link a { color: #60a5fa; }
+
+        @media (max-width: 768px) {
+            .price-table { font-size: 12px; }
+            .filter-bar input[type="text"] { min-width: 150px; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">物品价格参考</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+
+        <h2>Ephinea 物品价格参考表</h2>
+
+        <div class="price-notice">
+            本表仅供参考。物品价格会根据供需关系波动，实际交易价格可能与表中数值不同。所有价格单位为 <strong>PD（Photon Drop）</strong>。<br>
+            "Inestimable" 表示该物品稀有度极高，建议通过拍卖确定价格。
+        </div>
+
+        <div class="filter-bar">
+            <input type="text" id="search-input" placeholder="搜索物品名称...">
+        </div>
+
+        <div class="section-nav" id="section-nav"></div>
+
+        <div id="match-count" class="match-count"></div>
+
+        <div id="price-content"></div>
+
+        <div class="source-link">
+            数据来源: <a href="https://wiki.pioneer2.net/w/Price_guide" target="_blank">wiki.pioneer2.net/w/Price_guide</a>
+        </div>
+
+    </div>
+
+    <script src="/assets/js/price_guide_data.js"></script>
+    <script>
+    var I18N_ITEMS = {};
+    // Load i18n names then render
+    fetch("/assets/js/i18n/i18n_names.json").then(function(r){ return r.json(); }).then(function(data){
+        if (data && data.items) I18N_ITEMS = data.items;
+    }).catch(function(){}).finally(function(){ if(window._priceRender) window._priceRender(); });
+    </script>
+    <script>
+    (function() {
+        var activeCat = "all";
+        var searchTerm = "";
+
+        // Group sections by top-level category
+        function getCategory(title) {
+            var dash = title.indexOf(" - ");
+            return dash > 0 ? title.substring(0, dash) : title;
+        }
+
+        var categories = [];
+        var catSet = {};
+        PRICE_DATA.forEach(function(s) {
+            var cat = getCategory(s.section);
+            if (!catSet[cat]) {
+                catSet[cat] = true;
+                categories.push(cat);
+            }
+        });
+
+        // Build section nav
+        var nav = document.getElementById("section-nav");
+        var allBtn = document.createElement("button");
+        allBtn.textContent = "全部";
+        allBtn.className = "active";
+        allBtn.dataset.cat = "all";
+        nav.appendChild(allBtn);
+
+        categories.forEach(function(cat) {
+            var btn = document.createElement("button");
+            btn.textContent = cat;
+            btn.dataset.cat = cat;
+            nav.appendChild(btn);
+        });
+
+        nav.addEventListener("click", function(e) {
+            var btn = e.target.closest("button");
+            if (!btn) return;
+            nav.querySelector(".active").classList.remove("active");
+            btn.classList.add("active");
+            activeCat = btn.dataset.cat;
+            render();
+        });
+
+        // Search
+        var searchInput = document.getElementById("search-input");
+        var searchTimer = null;
+        searchInput.addEventListener("input", function() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(function() {
+                searchTerm = searchInput.value.trim().toLowerCase();
+                render();
+            }, 200);
+        });
+
+        // Name column keys (first column is typically the item name)
+        var NAME_KEYS = ["Item Name", "Weapon Type", "Item", "Name"];
+
+        function getNameKey(headers) {
+            for (var i = 0; i < NAME_KEYS.length; i++) {
+                if (headers.indexOf(NAME_KEYS[i]) >= 0) return NAME_KEYS[i];
+            }
+            return headers[0];
+        }
+
+        function zhName(en) {
+            if (!en || !I18N_ITEMS[en]) return "";
+            return I18N_ITEMS[en].zh || "";
+        }
+
+        function formatCell(val, isName) {
+            if (val === null || val === undefined) return '<span class="val-na">-</span>';
+            if (val === "0") return '<span class="val-zero">0</span>';
+            if (val === "N/A") return '<span class="val-na">N/A</span>';
+            var lower = val.toLowerCase();
+            if (lower === "inestimable" || lower.indexOf("inestimable") >= 0) {
+                return '<span class="val-inest">' + val + '</span>';
+            }
+            if (isName) {
+                var zh = zhName(val);
+                if (zh) return val + ' <span style="color:#94a3b8;font-size:12px">' + zh + '</span>';
+            }
+            return val;
+        }
+
+        function render() {
+            var container = document.getElementById("price-content");
+            var countEl = document.getElementById("match-count");
+            var html = "";
+            var totalItems = 0;
+            var matchedItems = 0;
+
+            PRICE_DATA.forEach(function(section) {
+                var cat = getCategory(section.section);
+                if (activeCat !== "all" && cat !== activeCat) return;
+
+                var headers = section.headers;
+                var rows = section.data;
+                var nameKey = getNameKey(headers);
+
+                // Filter by search (also match Chinese names)
+                var filtered = rows;
+                if (searchTerm) {
+                    filtered = rows.filter(function(row) {
+                        var match = Object.values(row).some(function(v) {
+                            return v && v.toLowerCase().indexOf(searchTerm) >= 0;
+                        });
+                        if (!match && row[nameKey]) {
+                            var zh = zhName(row[nameKey]);
+                            if (zh) match = zh.indexOf(searchTerm) >= 0;
+                        }
+                        return match;
+                    });
+                }
+
+                totalItems += rows.length;
+                matchedItems += filtered.length;
+
+                if (filtered.length === 0) return;
+
+                html += '<div class="price-section">';
+                html += '<h3>' + section.section + '</h3>';
+                html += '<div class="table-scroll"><table class="price-table"><thead><tr>';
+                headers.forEach(function(h) {
+                    html += '<th>' + h + '</th>';
+                });
+                html += '</tr></thead><tbody>';
+
+                filtered.forEach(function(row) {
+                    html += '<tr>';
+                    headers.forEach(function(h) {
+                        html += '<td>' + formatCell(row[h], h === nameKey) + '</td>';
+                    });
+                    html += '</tr>';
+                });
+
+                html += '</tbody></table></div></div>';
+            });
+
+            container.innerHTML = html || '<p style="color:#94a3b8;text-align:center;padding:40px 0;">未找到匹配的物品</p>';
+
+            if (searchTerm) {
+                countEl.textContent = "找到 " + matchedItems + " / " + totalItems + " 项";
+            } else {
+                countEl.textContent = "";
+            }
+        }
+
+        window._priceRender = render;
+        render();
+    })();
+    </script>
+
+</body>
+</html>
