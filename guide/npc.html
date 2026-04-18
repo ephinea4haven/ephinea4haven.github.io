@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="PSOBB Pioneer 1 / Pioneer 2 主要 NPC 人物志与关系图">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NPC 人物志 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .intro-note {
+            background: rgba(0, 212, 255, 0.06);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            line-height: 1.75;
+        }
+        .intro-note a { color: #60a5fa; }
+
+        /* ── 阵营标题 ── */
+        .faction-block { margin-bottom: 36px; }
+        .faction-head {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin: 8px 0 16px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.18);
+        }
+        .faction-head h2 {
+            margin: 0;
+            font-size: 22px;
+            color: #00d4ff;
+        }
+        .faction-head .tag {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        /* ── NPC 卡片网格 ── */
+        .npc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 14px;
+        }
+
+        .npc-card {
+            display: flex;
+            gap: 14px;
+            padding: 14px;
+            background: rgba(26, 35, 50, 0.55);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            transition: border-color .2s, transform .2s;
+        }
+        .npc-card:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* 头像：默认是首字母占位，图片加载成功后覆盖其上 */
+        .npc-avatar {
+            position: relative;
+            flex: 0 0 72px;
+            width: 72px;
+            height: 72px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', 'Share Tech Mono', monospace;
+            font-weight: 700;
+            font-size: 22px;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 1px;
+            text-shadow: 0 1px 2px rgba(0,0,0,.4);
+            background: linear-gradient(135deg, var(--c1, #00d4ff), var(--c2, #7c3aed));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .npc-avatar img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        /* 不同阵营的渐变配色 */
+        .npc-avatar.gov      { --c1:#fbbf24; --c2:#f43f5e; }
+        .npc-avatar.scientist{ --c1:#c084fc; --c2:#4338ca; }
+        .npc-avatar.hero     { --c1:#f472b6; --c2:#ef4444; }
+        .npc-avatar.bp       { --c1:#1f2937; --c2:#6b21a8; }
+        .npc-avatar.guild    { --c1:#2dd4bf; --c2:#0284c7; }
+        .npc-avatar.boss     { --c1:#b91c1c; --c2:#0f172a; }
+
+        .npc-body { flex: 1; min-width: 0; }
+        .npc-name {
+            font-weight: 700;
+            font-size: 15.5px;
+            color: #e2e8f0;
+            line-height: 1.25;
+        }
+        .npc-name .en {
+            display: block;
+            font-weight: 400;
+            font-size: 12px;
+            color: #64748b;
+            letter-spacing: 0.3px;
+            margin-top: 2px;
+        }
+        .npc-meta {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .npc-meta .chip {
+            display: inline-block;
+            padding: 1px 7px;
+            border-radius: 10px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            margin-right: 4px;
+            color: #7dd3fc;
+            font-size: 11px;
+        }
+        .npc-meta .chip.warn { background: rgba(239, 68, 68, 0.12); border-color: rgba(239, 68, 68, 0.3); color: #fca5a5; }
+        .npc-meta .chip.alt  { background: rgba(192, 132, 252, 0.12); border-color: rgba(192, 132, 252, 0.3); color: #d8b4fe; }
+        .npc-meta .chip.acc  { background: rgba(251, 191, 36, 0.12); border-color: rgba(251, 191, 36, 0.35); color: #fcd34d; }
+
+        .npc-desc {
+            margin-top: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+        .npc-desc strong { color: #f8fafc; }
+
+        /* ── 关系网（SVG 单图） ── */
+        .rel-wrap {
+            margin-top: 8px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0,212,255,0.08), transparent 60%),
+                        linear-gradient(180deg, #0a0e27 0%, #05070f 100%);
+            border: 1px solid rgba(0, 212, 255, 0.28);
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 8px 28px rgba(0,0,0,.5);
+            overflow-x: auto;
+        }
+        .rel-svg {
+            width: 100%;
+            min-width: 900px;
+            height: auto;
+            display: block;
+        }
+        .rel-svg .node circle.av-bg {
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,.6));
+            transition: transform .15s;
+        }
+        .rel-svg .node circle.av-ring {
+            fill: none;
+            stroke-width: 2.5;
+        }
+        .rel-svg .node text {
+            font-family: 'Noto Sans SC', 'Segoe UI', sans-serif;
+            pointer-events: none;
+        }
+        .rel-svg .node text.label {
+            fill: #f1f5f9;
+            font-weight: 600;
+            font-size: 13px;
+            text-anchor: middle;
+            paint-order: stroke;
+            stroke: #05070f;
+            stroke-width: 3px;
+        }
+        .rel-svg .node text.initials {
+            fill: #fff;
+            font-weight: 800;
+            font-size: 18px;
+            text-anchor: middle;
+            dominant-baseline: central;
+            letter-spacing: 0.5px;
+        }
+        .rel-svg .node:hover circle.av-ring { stroke-width: 4; }
+
+        .rel-svg .node.gov   circle.av-ring { stroke: #fbbf24; }
+        .rel-svg .node.hero  circle.av-ring { stroke: #f472b6; }
+        .rel-svg .node.sci   circle.av-ring { stroke: #c084fc; }
+        .rel-svg .node.bp    circle.av-ring { stroke: #a855f7; }
+        .rel-svg .node.guild circle.av-ring { stroke: #2dd4bf; }
+        .rel-svg .node.boss  circle.av-ring { stroke: #f87171; }
+        .rel-svg .node.alt   circle.av-ring { stroke: #a78bfa; }
+        .rel-svg .node.muted circle.av-ring { stroke: #94a3b8; }
+
+        .rel-svg .edge path { fill: none; stroke: #7dd3fc; stroke-width: 1.4; opacity: .55; }
+        .rel-svg .edge.family path   { stroke: #fbbf24; }
+        .rel-svg .edge.mentor path   { stroke: #fde68a; stroke-dasharray: 6 4; }
+        .rel-svg .edge.hostile path  { stroke: #f87171; opacity: .75; }
+        .rel-svg .edge.fusion path   { stroke: #a78bfa; stroke-width: 2; }
+        .rel-svg .edge.work path     { stroke: #7dd3fc; }
+        .rel-svg .edge.covert path   { stroke: #c084fc; stroke-dasharray: 3 4; opacity: .7; }
+        .rel-svg .edge text {
+            fill: #cbd5e1;
+            font-family: 'Noto Sans SC', sans-serif;
+            font-size: 11.5px;
+            font-weight: 500;
+            text-anchor: middle;
+            paint-order: stroke;
+            stroke: #05070f;
+            stroke-width: 3px;
+        }
+        .rel-svg .edge.family text  { fill: #fcd34d; }
+        .rel-svg .edge.mentor text  { fill: #fde68a; }
+        .rel-svg .edge.hostile text { fill: #fca5a5; }
+        .rel-svg .edge.fusion text  { fill: #c4b5fd; }
+        .rel-svg .edge.covert text  { fill: #d8b4fe; }
+
+        .rel-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 12px 4px 2px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .rel-legend .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .rel-legend .sw {
+            width: 22px;
+            height: 3px;
+            border-radius: 2px;
+            background: #7dd3fc;
+        }
+        .rel-legend .sw.family { background:#fbbf24; }
+        .rel-legend .sw.mentor { background: repeating-linear-gradient(90deg,#fde68a 0 6px,transparent 6px 10px); }
+        .rel-legend .sw.hostile{ background:#f87171; }
+        .rel-legend .sw.fusion { background:#a78bfa; height: 4px; }
+        .rel-legend .sw.covert { background: repeating-linear-gradient(90deg,#c084fc 0 3px,transparent 3px 7px); }
+
+        /* ── 时间线 ── */
+        .timeline {
+            margin-top: 8px;
+            padding-left: 18px;
+            border-left: 2px solid rgba(0, 212, 255, 0.25);
+        }
+        .timeline-entry {
+            position: relative;
+            padding: 6px 0 14px 16px;
+        }
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 12px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00d4ff;
+            box-shadow: 0 0 6px rgba(0, 212, 255, 0.6);
+        }
+        .timeline-entry h4 {
+            margin: 0 0 4px;
+            font-size: 15px;
+            color: #60a5fa;
+        }
+        .timeline-entry p {
+            margin: 0;
+            font-size: 13.5px;
+            line-height: 1.65;
+            color: #cbd5e1;
+        }
+
+        .source-link { font-size: 13px; color: #64748b; margin-top: 24px; text-align: right; }
+        .source-link a { color: #60a5fa; }
+
+        @media (max-width: 640px) {
+            .content-container { padding: 20px; }
+            .npc-grid { grid-template-columns: 1fr; }
+            .relation-box pre { font-size: 11.5px; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">NPC 人物志</h1>
+    </header>
+
+    <a href="/index.html" class="back-link">← 返回首页</a>
+
+    <div class="content-container">
+
+        <div class="intro-note">
+            <p>本页整理 PSO（PSO2 之前）主线涉及的主要 NPC，按阵营分组，并给出他们之间的关系脉络。</p>
+            <p style="margin-top:8px"><strong>世界观速览：</strong>母星 <em>Coral</em> 濒临崩溃，人类派出移民船 <strong>Pioneer 1</strong> 登陆 <em>Ragol</em> 先遣探查。随后 <strong>Pioneer 2</strong> 载约 3 万殖民者启程，但在接收到 Pioneer 1 「成功着陆」的信号后不久，地面发生了<strong>巨大爆炸</strong>，一切通讯中断。Pioneer 2 在 Ragol 轨道展开调查任务，这就是玩家所扮演的 Hunter 们的舞台。</p>
+        </div>
+
+        <!-- ═══ 政府 ═══ -->
+        <section class="faction-block">
+            <div class="faction-head">
+                <h2>🏛️ Pioneer 2 政府</h2>
+                <span class="tag">GOVERNMENT</span>
+            </div>
+            <div class="npc-grid">
+
+                <div class="npc-card">
+                    <div class="npc-avatar gov">
+                        <span>CT</span>
+                        <img src="/assets/img/npc/tyrell.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">主席 Tyrell<span class="en">Colin Tyrell · Principal / Governor</span></div>
+                        <div class="npc-meta"><span class="chip">人类男</span><span class="chip acc">最高首长</span></div>
+                        <div class="npc-desc">Pioneer 2 的行政与军事最高负责人，正直、严厉、深受殖民者爱戴。丧偶，为唯一的女儿 <strong>Red Ring Rico</strong> 日夜忧心。与 <strong>Flowen</strong> 是多年挚友。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar gov">
+                        <span>IR</span>
+                        <img src="/assets/img/npc/irene.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Irene<span class="en">Tyrell&apos;s Secretary</span></div>
+                        <div class="npc-meta"><span class="chip">人类女</span><span class="chip">秘书</span></div>
+                        <div class="npc-desc">主席府秘书，Ep1 前期由她替 Tyrell 发布任务、向 Hunter 透露「主席的女儿在 Pioneer 1 上」这一情报。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar gov">
+                        <span>NM</span>
+                        <img src="/assets/img/npc/natasha.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Natasha Milarose<span class="en">Lab General Chief</span></div>
+                        <div class="npc-meta"><span class="chip">人类女</span><span class="chip acc">Lab 首席</span></div>
+                        <div class="npc-desc">Pioneer 2 中央研究所总负责人。Ep2 主线任务的派发者；Ep4 中对 <strong>Paganini</strong> 的研究方向持批评态度。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar gov">
+                        <span>PG</span>
+                        <img src="/assets/img/npc/paganini.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Paganini<span class="en">Crater Research Lead</span></div>
+                        <div class="npc-meta"><span class="chip">人类</span><span class="chip alt">Ep4 研究员</span></div>
+                        <div class="npc-desc">Ep4 在陨石坑展开研究的首席科学家。对玩家身份守口如瓶，研究项目引起上级 Natasha 的强烈不满。</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══ Pioneer 1 英雄 ═══ -->
+        <section class="faction-block">
+            <div class="faction-head">
+                <h2>🗡️ Pioneer 1 英雄</h2>
+                <span class="tag">HEROES OF PIONEER 1</span>
+            </div>
+            <div class="npc-grid">
+
+                <div class="npc-card">
+                    <div class="npc-avatar hero">
+                        <span>RR</span>
+                        <img src="/assets/img/npc/rico.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Red Ring Rico（Rico Tyrell）<span class="en">HUnewearl · Pioneer 1 Hero</span></div>
+                        <div class="npc-meta"><span class="chip">HUnewearl</span><span class="chip acc">主席之女</span><span class="chip warn">Ep1 BOSS 宿主</span></div>
+                        <div class="npc-desc">传奇猎人兼科学家，因左手标志性的红色臂环得名「红环 Rico」。<strong>Tyrell</strong> 的女儿、<strong>Flowen</strong> 的徒弟——她的 <em>Red Ring / Red</em> 系列装备均为师父所赠。Ragol 大爆炸后留下多段全息记录，最终被 <strong>Dark Falz</strong> 附身成为 Ep1 的最终 BOSS；玩家击败 DF 后她的灵魂才得以解脱。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar hero">
+                        <span>HF</span>
+                        <img src="/assets/img/npc/flowen.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Heathcliff Flowen<span class="en">Pioneer 1 Deputy Commander</span></div>
+                        <div class="npc-meta"><span class="chip">人类男</span><span class="chip acc">副司令</span><span class="chip warn">Ep2 BOSS 本体</span></div>
+                        <div class="npc-desc">Pioneer 1 军队副司令，剑圣，Rico 的师父，与 <strong>Tyrell</strong> 是老友。身上的 <em>Flowen&apos;s Sword</em> 是他的代表武器。在与 Rico 并肩作战时感染 Flow 寄生基因；Ep2 中他的躯体被研究者强行与 <strong>D-Photon Core</strong> 融合，异变为 Episode 2 的最终 BOSS <strong>Olga Flow</strong>。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar hero">
+                        <span>EN</span>
+                        <img src="/assets/img/npc/endu.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Endu<span class="en">Fusion of Rico &amp; Flowen</span></div>
+                        <div class="npc-meta"><span class="chip alt">Ep3 桥梁</span></div>
+                        <div class="npc-desc">Rico 与 Flowen 的意识在迫使 Dark Falz 与 Olga Flow 共鸣时「融合」所生的新生命，象征两大寄生体的被封印，并为 Episode 3 的剧情衔接奠基。</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══ 科学家 ═══ -->
+        <section class="faction-block">
+            <div class="faction-head">
+                <h2>🔬 科学家与 Lab</h2>
+                <span class="tag">SCIENTISTS</span>
+            </div>
+            <div class="npc-grid">
+
+                <div class="npc-card">
+                    <div class="npc-avatar scientist">
+                        <span>OH</span>
+                        <img src="/assets/img/npc/osto.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Dr. Osto Hyle<span class="en">Pioneer 1 Lab Chief</span></div>
+                        <div class="npc-meta"><span class="chip">人类男</span><span class="chip acc">Pioneer 1 首席</span></div>
+                        <div class="npc-desc">遗传工程与电学权威，Pioneer 1 研究团队首席。与 <strong>Montague</strong> 共同开发 <em>Mag</em> 并发起「<strong>MOTHER 计划</strong>」。痴迷 Ragol 的未知生命（D 因子），在出发前秘密向 Coral 母星回报，前往 Ragol 后下落不明。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar scientist">
+                        <span>JM</span>
+                        <img src="/assets/img/npc/montague.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Dr. Jean Carlo Montague<span class="en">FOnewm · Eccentric Scientist</span></div>
+                        <div class="npc-meta"><span class="chip">FOnewm</span><span class="chip alt">MOTHER 计划</span></div>
+                        <div class="npc-desc">Pioneer 2 天才科学家，生物力学与光子工程权威。态度古怪但并非恶人。<strong>Osto</strong> 的搭档，<strong>Elenor</strong> 的创造者；Osto 随 Pioneer 1 离开后，他大幅改动了 MOTHER 计划的方向。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar scientist">
+                        <span>EC</span>
+                        <img src="/assets/img/npc/elenor.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Elenor Camuel<span class="en">RAcaseal · Montague&apos;s Creation</span></div>
+                        <div class="npc-meta"><span class="chip">RAcaseal</span><span class="chip alt">Mag 语通译</span></div>
+                        <div class="npc-desc">由 Montague 一手打造的女性机器人，天赋异禀能理解 Mag 的「话语」。忠于创造者，但内心渴望脱离实验室，拥有真正的朋友与普通人生。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar scientist">
+                        <span>CA</span>
+                        <img src="/assets/img/npc/calus.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Calus<span class="en">Central Control Tower AI</span></div>
+                        <div class="npc-meta"><span class="chip alt">AI</span><span class="chip warn">失控</span></div>
+                        <div class="npc-desc">寄居在中央控制塔的人工智能。玩家与 Elly 协助其构筑实体时发生异常，Calus 开始向未知生命体方向进化；任务中 <strong>Kireek</strong> 反常地加入玩家一侧以求终止其失控。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar scientist">
+                        <span>AB</span>
+                        <img src="/assets/img/npc/alicia.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Alicia Baz<span class="en">FOmarl · Lab Assistant</span></div>
+                        <div class="npc-meta"><span class="chip">FOmarl</span></div>
+                        <div class="npc-desc">实验室研究助理。对政府分配的室内研究感到厌倦，辞职后立志亲身走进 Ragol 研究本土生物。</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══ Black Paper ═══ -->
+        <section class="faction-block">
+            <div class="faction-head">
+                <h2>🕶️ Black Paper 暗部</h2>
+                <span class="tag">BLACK PAPER</span>
+            </div>
+            <div class="intro-note" style="margin-bottom:16px">表面上是 Pioneer 2 恶名昭著的地下犯罪组织，实际上是政府直属的秘密暗杀部门。</div>
+            <div class="npc-grid">
+
+                <div class="npc-card">
+                    <div class="npc-avatar bp">
+                        <span>KR</span>
+                        <img src="/assets/img/npc/kireek.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Kireek<span class="en">HUcast · &quot;Black Hound&quot;</span></div>
+                        <div class="npc-meta"><span class="chip">HUcast</span><span class="chip warn">处刑人</span></div>
+                        <div class="npc-desc">Black Paper 高层执行者，人称「黑犬」。冷酷、纯逻辑派，爱剑 <em>Soul Eater</em>。在 Calus 事件中罕见地与玩家并肩作战。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar bp">
+                        <span>SU</span>
+                        <img src="/assets/img/npc/sue.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Sue<span class="en">HUnewearl · Mole inside Black Paper</span></div>
+                        <div class="npc-meta"><span class="chip">HUnewearl</span><span class="chip alt">潜伏调查</span></div>
+                        <div class="npc-desc">常与 Kireek 搭档，但她加入 Black Paper 的真正动机是挖掘 <strong>MOTHER 计划</strong>的真相。感性、重义气，是 Kireek 冷硬逻辑的反面映照。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar bp">
+                        <span>TB</span>
+                        <img src="/assets/img/npc/tobokke.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Tobokke / Tonzlar / Gekigasky<span class="en">Black Paper Operatives</span></div>
+                        <div class="npc-meta"><span class="chip">HUmar / RAmar</span></div>
+                        <div class="npc-desc">在「Black Paper」任务线中出现的其他成员，主要承担执行与对抗玩家的戏份。</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══ Hunter's Guild 与独立 NPC ═══ -->
+        <section class="faction-block">
+            <div class="faction-head">
+                <h2>🏹 Hunter&apos;s Guild 与独立 NPC</h2>
+                <span class="tag">GUILD &amp; WANDERERS</span>
+            </div>
+            <div class="npc-grid">
+
+                <div class="npc-card">
+                    <div class="npc-avatar guild">
+                        <span>NR</span>
+                        <img src="/assets/img/npc/nol.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Nol Rinale<span class="en">HUnewearl · Journalist</span></div>
+                        <div class="npc-meta"><span class="chip">HUnewearl</span><span class="chip alt">记者</span></div>
+                        <div class="npc-desc">Ep1 任务《Journalistic Pursuit》中追查 Ragol 真相的女记者；Ep2 回归，在 Lab 担任 Natasha 麾下的临时研究员，替她发布 Ep2 主线任务。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar guild">
+                        <span>MM</span>
+                        <img src="/assets/img/npc/momoka.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Momoka<span class="en">Ep4 Story NPC</span></div>
+                        <div class="npc-meta"><span class="chip">女</span><span class="chip alt">Ep4 派发者</span></div>
+                        <div class="npc-desc">Blue Burst 独占 Episode 4 的主线发布人。陨石坠落后，由她将陨石坑的任务交给 Hunter。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar guild">
+                        <span>AS</span>
+                        <img src="/assets/img/npc/ash.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Ash<span class="en">HUmar · Rookie Hunter</span></div>
+                        <div class="npc-meta"><span class="chip">HUmar</span></div>
+                        <div class="npc-desc">刚出道的菜鸟 Hunter。在「Battle Training」中被玩家搭救，之后任务也多由他那位有钱舅舅替他善后。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar guild">
+                        <span>BR</span>
+                        <img src="/assets/img/npc/bernie.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Bernie<span class="en">RAmar · Pioneer 1 Investigator</span></div>
+                        <div class="npc-meta"><span class="chip">RAmar</span><span class="chip warn">殉职</span></div>
+                        <div class="npc-desc">调查 Pioneer 1 遗迹的自由调查员，与剑客 <strong>Zoke Miyama</strong> 结伴深入 Ruins，双双被怪物吞噬。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar guild">
+                        <span>ZM</span>
+                        <img src="/assets/img/npc/zoke.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Zoke Miyama<span class="en">The Great Sword</span></div>
+                        <div class="npc-meta"><span class="chip">剑客</span><span class="chip warn">重伤</span></div>
+                        <div class="npc-desc">人称「大剑客」的浪人剑士，RAcaseal <strong>Shino</strong> 的主人。《Seek my Master》中被 Shino 在 Ruins 深处找到时已奄奄一息。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar guild">
+                        <span>SH</span>
+                        <img src="/assets/img/npc/shino.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Shino<span class="en">RAcaseal</span></div>
+                        <div class="npc-meta"><span class="chip">RAcaseal</span></div>
+                        <div class="npc-desc">为寻找失踪的主人 Zoke Miyama 请求 Hunter&apos;s Guild 协助的女性机器人。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar guild">
+                        <span>RP</span>
+                        <img src="/assets/img/npc/rupika.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Rupika<span class="en">FOnewearl · Survivor</span></div>
+                        <div class="npc-meta"><span class="chip">FOnewearl</span></div>
+                        <div class="npc-desc">《Gran Squall》中被玩家救下的幸存者，是所有 FOnewearl 模板 NPC 里唯一有正式名字的角色。</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══ 终极威胁 ═══ -->
+        <section class="faction-block">
+            <div class="faction-head">
+                <h2>👹 终极威胁</h2>
+                <span class="tag">ULTIMATE THREATS</span>
+            </div>
+            <div class="npc-grid">
+
+                <div class="npc-card">
+                    <div class="npc-avatar boss">
+                        <span>DF</span>
+                        <img src="/assets/img/npc/darkfalz.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Dark Falz<span class="en">God of Darkness</span></div>
+                        <div class="npc-meta"><span class="chip warn">Ep1 终 BOSS</span></div>
+                        <div class="npc-desc">Pioneer 1 解封 Ragol 三根封印之柱时觉醒的暗之神，附身在被寄生的 Rico 身上。拥有自复活能力。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar boss">
+                        <span>OF</span>
+                        <img src="/assets/img/npc/olga.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Olga Flow<span class="en">D-Photon Core Hybrid</span></div>
+                        <div class="npc-meta"><span class="chip warn">Ep2 终 BOSS</span></div>
+                        <div class="npc-desc">Flowen 被 Flow 基因感染后的躯体，与研究人员强行植入的 D-Photon Core 融合成的巨兽，被封存在海底深渊。</div>
+                    </div>
+                </div>
+
+                <div class="npc-card">
+                    <div class="npc-avatar boss">
+                        <span>MT</span>
+                        <img src="/assets/img/npc/mother.webp" alt="" onerror="this.remove()">
+                    </div>
+                    <div class="npc-body">
+                        <div class="npc-name">Mother Trinity<span class="en">Coral Lunar AI</span></div>
+                        <div class="npc-meta"><span class="chip alt">远景设定</span></div>
+                        <div class="npc-desc">Coral 卫星 Arca 上的人工智能。在 Pioneer 计划彻底失败后被母星启动，最终判定人类为「行星之害」，向 Coral 投放热核灾难——这也是 Phantasy Star 后续作品废土世界的起点。</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- ═══ 关系图（单图） ═══ -->
+        <h2 style="color:#00d4ff;margin-top:28px">🕸️ 核心关系脉络</h2>
+        <div class="rel-wrap">
+            <svg class="rel-svg" viewBox="0 0 1400 960" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <linearGradient id="gradGov" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#b45309"/><stop offset="100%" stop-color="#831843"/>
+                    </linearGradient>
+                    <linearGradient id="gradHero" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#be185d"/><stop offset="100%" stop-color="#7f1d1d"/>
+                    </linearGradient>
+                    <linearGradient id="gradSci" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#6d28d9"/><stop offset="100%" stop-color="#3730a3"/>
+                    </linearGradient>
+                    <linearGradient id="gradBp" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#18181b"/><stop offset="100%" stop-color="#581c87"/>
+                    </linearGradient>
+                    <linearGradient id="gradGuild" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#0d9488"/><stop offset="100%" stop-color="#1d4ed8"/>
+                    </linearGradient>
+                    <linearGradient id="gradBoss" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#991b1b"/><stop offset="100%" stop-color="#0f172a"/>
+                    </linearGradient>
+                    <linearGradient id="gradAlt" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#1e3a8a"/>
+                    </linearGradient>
+
+                    <marker id="arrow-default" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd3fc"/>
+                    </marker>
+                    <marker id="arrow-hostile" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#f87171"/>
+                    </marker>
+                    <marker id="arrow-fusion" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#a78bfa"/>
+                    </marker>
+                    <marker id="arrow-covert" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#c084fc"/>
+                    </marker>
+                    <marker id="arrow-mentor" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#fde68a"/>
+                    </marker>
+
+                    <!-- NPC 头像 pattern（circle 用 fill=url(#pat-slug)） -->
+                    <pattern id="pat-tyrell"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/tyrell.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-natasha"  width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/natasha.webp"  width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-rico"     width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/rico.webp"     width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-flowen"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/flowen.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-endu"     width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/endu.webp"     width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-montague" width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/montague.webp" width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-elenor"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/elenor.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-alicia"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/alicia.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-kireek"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/kireek.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-sue"      width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/sue.webp"      width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-darkfalz" width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/darkfalz.webp" width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-olga"     width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/olga.webp"     width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-mother"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/mother.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-nol"      width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/nol.webp"      width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-bernie"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/bernie.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-shino"    width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/shino.webp"    width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-rupika"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/rupika.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-momoka"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/momoka.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-calus"    width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/calus.webp"    width="1" height="1" preserveAspectRatio="xMidYMid slice"/></pattern>
+                    <pattern id="pat-zoke"     width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/zoke.webp"     width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-ash"      width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/ash.webp"      width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-tobokke"  width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/tobokke.webp"  width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-paganini" width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/paganini.webp" width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                    <pattern id="pat-irene"    width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/irene.webp"    width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
+                </defs>
+
+                <!-- ─── 边（先画，位于节点下方） ─── -->
+                <!-- 家族/友谊 -->
+                <g class="edge family"><path d="M 325 80 L 550 80"/><text x="437" y="70">老友</text></g>
+                <g class="edge family"><path d="M 316 102 Q 360 170 438 220"/><text x="335" y="160">父女</text></g>
+                <g class="edge family"><path d="M 267 91 Q 200 115 150 140"/><text x="200" y="105">辅佐</text></g>
+
+                <!-- 师承 -->
+                <g class="edge mentor"><path d="M 562 104 Q 520 170 480 218"/><text x="535" y="160">师徒</text></g>
+                <g class="edge mentor"><path d="M 840 730 L 940 730"/><text x="890" y="718">师徒</text></g>
+
+                <!-- 敌对/感染 -->
+                <g class="edge hostile"><path d="M 437 260 Q 390 310 337 352" marker-end="url(#arrow-hostile)"/><text x="355" y="312">被附身</text></g>
+                <g class="edge hostile"><path d="M 580 110 Q 620 240 580 340" marker-end="url(#arrow-hostile)"/><text x="620" y="230">被改造</text></g>
+
+                <!-- 融合 -->
+                <g class="edge fusion"><path d="M 329 393 Q 370 450 420 508" marker-end="url(#arrow-fusion)"/><text x="340" y="460">融合</text></g>
+                <g class="edge fusion"><path d="M 560 393 Q 520 450 460 508" marker-end="url(#arrow-fusion)"/><text x="555" y="460">融合</text></g>
+                <text x="440" y="485" fill="#a78bfa" font-size="11" text-anchor="middle" style="paint-order:stroke;stroke:#05070f;stroke-width:3px">意识融合</text>
+
+                <!-- 工作/指派 -->
+                <g class="edge work"><path d="M 830 80 L 950 80" marker-end="url(#arrow-default)"/><text x="890" y="70">搭档·MOTHER</text></g>
+                <g class="edge work"><path d="M 1010 80 L 1235 80" marker-end="url(#arrow-default)"/><text x="1122" y="70">造物</text></g>
+                <g class="edge work"><path d="M 1005 100 Q 1100 165 1238 210"/><text x="1130" y="158">同事</text></g>
+                <g class="edge work"><path d="M 130 322 L 130 378"/><text x="165" y="354">上下级</text></g>
+                <g class="edge work"><path d="M 105 305 Q 110 500 175 672" marker-end="url(#arrow-default)"/><text x="85" y="500">指派</text></g>
+                <g class="edge work"><path d="M 155 305 Q 230 500 325 672" marker-end="url(#arrow-default)"/><text x="218" y="500">指派</text></g>
+
+                <!-- Black Paper -->
+                <g class="edge work"><path d="M 930 390 L 1050 390"/><text x="990" y="378">搭档·理念对立</text></g>
+                <g class="edge covert"><path d="M 1071 362 Q 1080 240 989 109" marker-end="url(#arrow-covert)"/><text x="1120" y="235">暗查 MOTHER</text></g>
+                <g class="edge covert"><path d="M 870 400 Q 500 470 165 410" marker-end="url(#arrow-covert)"/><text x="500" y="460">幕后雇主 ⟵ 政府</text></g>
+
+                <!-- Calus / Kireek -->
+                <g class="edge hostile"><path d="M 1230 372 Q 1100 430 930 388" marker-end="url(#arrow-hostile)"/><text x="1080" y="425">失控·介入</text></g>
+
+                <!-- Pioneer 1 失联 -->
+                <g class="edge covert"><path d="M 800 110 L 770 220" marker-end="url(#arrow-covert)"/><text x="800" y="175">Pioneer 1 失联</text></g>
+
+                <!-- 公会/独立 -->
+                <g class="edge work"><path d="M 680 730 L 780 730"/><text x="730" y="718">调查搭档</text></g>
+                <g class="edge family"><path d="M 500 730 Q 525 780 540 818"/><text x="555" y="778">亲戚</text></g>
+                <g class="edge covert"><path d="M 1100 730 Q 900 860 740 878" marker-end="url(#arrow-covert)"/><text x="960" y="855">被救援 ← Hunter（玩家）</text></g>
+
+                <!-- Mother Trinity far arrow -->
+                <g class="edge hostile"><path d="M 680 885 Q 400 820 290 400" marker-end="url(#arrow-hostile)" stroke-dasharray="4 4"/><text x="400" y="810">远景：毁灭文明</text></g>
+
+                <!-- ─── 节点（头像圆 + 外环 + 下方名字） ─── -->
+                <!-- GOV -->
+                <g class="node gov"><circle class="av-bg" cx="295" cy="80" r="30" fill="url(#pat-tyrell)"/><circle class="av-ring" cx="295" cy="80" r="30"/><text class="label" x="295" y="130">Tyrell</text></g>
+                <g class="node gov"><circle class="av-bg" cx="120" cy="150" r="30" fill="url(#pat-irene)"/><circle class="av-ring" cx="120" cy="150" r="30"/><text class="label" x="120" y="200">Irene</text></g>
+                <g class="node gov"><circle class="av-bg" cx="130" cy="290" r="30" fill="url(#pat-natasha)"/><circle class="av-ring" cx="130" cy="290" r="30"/><text class="label" x="130" y="340">Natasha</text></g>
+                <g class="node gov"><circle class="av-bg" cx="130" cy="410" r="30" fill="url(#pat-paganini)"/><circle class="av-ring" cx="130" cy="410" r="30"/><text class="label" x="130" y="460">Paganini</text></g>
+
+                <!-- HERO -->
+                <g class="node hero"><circle class="av-bg" cx="580" cy="80" r="30" fill="url(#pat-flowen)"/><circle class="av-ring" cx="580" cy="80" r="30"/><text class="label" x="580" y="130">Flowen</text></g>
+                <g class="node hero"><circle class="av-bg" cx="460" cy="240" r="30" fill="url(#pat-rico)"/><circle class="av-ring" cx="460" cy="240" r="30"/><text class="label" x="460" y="290">Red Ring Rico</text></g>
+                <g class="node alt"><circle class="av-bg" cx="440" cy="530" r="30" fill="url(#pat-endu)"/><circle class="av-ring" cx="440" cy="530" r="30"/><text class="label" x="440" y="580">Endu</text></g>
+
+                <!-- BOSS -->
+                <g class="node boss"><circle class="av-bg" cx="310" cy="370" r="30" fill="url(#pat-darkfalz)"/><circle class="av-ring" cx="310" cy="370" r="30"/><text class="label" x="310" y="420">Dark Falz</text></g>
+                <g class="node boss"><circle class="av-bg" cx="580" cy="370" r="30" fill="url(#pat-olga)"/><circle class="av-ring" cx="580" cy="370" r="30"/><text class="label" x="580" y="420">Olga Flow</text></g>
+                <g class="node boss"><circle class="av-bg" cx="710" cy="885" r="30" fill="url(#pat-mother)"/><circle class="av-ring" cx="710" cy="885" r="30"/><text class="label" x="710" y="935">Mother Trinity</text></g>
+
+                <!-- SCIENTISTS -->
+                <g class="node sci"><circle class="av-bg" cx="800" cy="80" r="30" fill="url(#gradSci)"/><circle class="av-ring" cx="800" cy="80" r="30"/><text class="initials" x="800" y="80">OH</text><text class="label" x="800" y="130">Dr. Osto</text></g>
+                <g class="node sci"><circle class="av-bg" cx="980" cy="80" r="30" fill="url(#pat-montague)"/><circle class="av-ring" cx="980" cy="80" r="30"/><text class="label" x="980" y="130">Dr. Montague</text></g>
+                <g class="node sci"><circle class="av-bg" cx="1265" cy="80" r="30" fill="url(#pat-elenor)"/><circle class="av-ring" cx="1265" cy="80" r="30"/><text class="label" x="1265" y="130">Elenor</text></g>
+                <g class="node sci"><circle class="av-bg" cx="1265" cy="220" r="30" fill="url(#pat-alicia)"/><circle class="av-ring" cx="1265" cy="220" r="30"/><text class="label" x="1265" y="270">Alicia Baz</text></g>
+                <g class="node alt"><circle class="av-bg" cx="1260" cy="370" r="30" fill="url(#pat-calus)"/><circle class="av-ring" cx="1260" cy="370" r="30"/><text class="label" x="1260" y="420">Calus</text></g>
+
+                <!-- BLACK PAPER -->
+                <g class="node bp"><circle class="av-bg" cx="900" cy="390" r="30" fill="url(#pat-kireek)"/><circle class="av-ring" cx="900" cy="390" r="30"/><text class="label" x="900" y="440">Kireek</text></g>
+                <g class="node bp"><circle class="av-bg" cx="1080" cy="390" r="30" fill="url(#pat-sue)"/><circle class="av-ring" cx="1080" cy="390" r="30"/><text class="label" x="1080" y="440">Sue</text></g>
+                <g class="node bp"><circle class="av-bg" cx="930" cy="500" r="28" fill="url(#pat-tobokke)"/><circle class="av-ring" cx="930" cy="500" r="28"/><text class="label" x="930" y="546" style="font-size:12px">Tobokke / Tonzlar</text></g>
+
+                <!-- GUILD bottom row -->
+                <g class="node guild"><circle class="av-bg" cx="200" cy="700" r="30" fill="url(#pat-nol)"/><circle class="av-ring" cx="200" cy="700" r="30"/><text class="label" x="200" y="750">Nol Rinale</text></g>
+                <g class="node guild"><circle class="av-bg" cx="350" cy="700" r="30" fill="url(#pat-momoka)"/><circle class="av-ring" cx="350" cy="700" r="30"/><text class="label" x="350" y="750">Momoka</text></g>
+                <g class="node guild"><circle class="av-bg" cx="500" cy="700" r="30" fill="url(#pat-ash)"/><circle class="av-ring" cx="500" cy="700" r="30"/><text class="label" x="500" y="750">Ash</text></g>
+                <g class="node guild"><circle class="av-bg" cx="650" cy="730" r="30" fill="url(#pat-bernie)"/><circle class="av-ring" cx="650" cy="730" r="30"/><text class="label" x="650" y="780">Bernie</text></g>
+                <g class="node guild"><circle class="av-bg" cx="810" cy="730" r="30" fill="url(#pat-zoke)"/><circle class="av-ring" cx="810" cy="730" r="30"/><text class="label" x="810" y="780">Zoke Miyama</text></g>
+                <g class="node guild"><circle class="av-bg" cx="970" cy="730" r="30" fill="url(#pat-shino)"/><circle class="av-ring" cx="970" cy="730" r="30"/><text class="label" x="970" y="780">Shino</text></g>
+                <g class="node guild"><circle class="av-bg" cx="1130" cy="700" r="30" fill="url(#pat-rupika)"/><circle class="av-ring" cx="1130" cy="700" r="30"/><text class="label" x="1130" y="750">Rupika</text></g>
+
+                <!-- 富舅舅 -->
+                <g class="node muted"><circle class="av-bg" cx="550" cy="840" r="24" fill="#334155"/><circle class="av-ring" cx="550" cy="840" r="24" style="stroke-width:1.5"/><text class="initials" x="550" y="840" style="font-size:13px">叔</text><text class="label" x="550" y="880" style="font-size:12px">富舅舅</text></g>
+            </svg>
+
+            <div class="rel-legend">
+                <span class="chip"><span class="sw family"></span>家族 / 挚友</span>
+                <span class="chip"><span class="sw mentor"></span>师承</span>
+                <span class="chip"><span class="sw"></span>工作 / 指派</span>
+                <span class="chip"><span class="sw hostile"></span>感染 / 敌对</span>
+                <span class="chip"><span class="sw fusion"></span>融合 / 继承</span>
+                <span class="chip"><span class="sw covert"></span>暗中 / 失联</span>
+            </div>
+        </div>
+
+        <!-- ═══ 时间线 ═══ -->
+        <h2 style="color:#00d4ff;margin-top:32px">🕰️ 剧情时间线</h2>
+        <div class="timeline">
+            <div class="timeline-entry">
+                <h4>Pioneer 1 着陆</h4>
+                <p>Pioneer 1 先遣队登陆 Ragol，发回「成功着陆」信号后不久发生巨大爆炸，通讯中断。Rico、Flowen、Osto、Bernie、Zoke 等人都随该船前往。</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Episode 1 · Forest → Ruins</h4>
+                <p>Pioneer 2 抵达 Ragol 轨道，派 Hunter 下地调查。玩家一路追随 Rico 留下的全息记录揭开真相：她在解封封印之柱时被 <strong>Dark Falz</strong> 附身。Hunter 击败 DF，Rico 灵魂解脱。</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Episode 2 · VR → Seabed</h4>
+                <p>Natasha 派出 Nol 引导，玩家深入 Pioneer 1 遗弃的海底实验室，查到 Flowen 被植入 D-Photon Core 异变为 <strong>Olga Flow</strong>。最终 Rico 与 Flowen 的意识融合迫使两大寄生体共鸣，诞生新生命 <strong>Endu</strong>。</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Episode 4 · Crater → Subterranean Desert</h4>
+                <p>一颗陨石坠落 Ragol 表面形成陨石坑。Momoka 召集 Hunter 调查，科学家 Paganini 暗中推进的研究与 Natasha 的态度形成冲突，揭示政府对「新型生命」一贯的失控倾向。</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>Episode 3（C.A.R.D.）· Blue Star Memories</h4>
+                <p>Episode 3 以卡牌战役形式续写故事，Endu、Break 等角色承接 Ep1/Ep2 的遗产。</p>
+            </div>
+            <div class="timeline-entry">
+                <h4>远景：Mother Trinity 之灾</h4>
+                <p>Pioneer 计划失败后，Coral 政府启用月球 AI Mother Trinity；它认定人类为星球之害，对 Coral 投下热核打击——这一事件成为整个 Phantasy Star 世界观的转折。</p>
+            </div>
+        </div>
+
+        <div class="source-link">
+            资料来源综合：
+            <a href="https://phantasystar.fandom.com/wiki/Rico_Tyrell" target="_blank">Phantasy Star Wiki</a> ·
+            <a href="http://www.pscave.com/pspages/pso/psonpcs.html" target="_blank">Phantasy Star Cave</a> ·
+            <a href="https://www.pioneer2.net/community/threads/phantasy-star-online-lore-and-story.10015/" target="_blank">Pioneer2 Lore Thread</a> ·
+            <a href="https://tvtropes.org/pmwiki/pmwiki.php/Characters/PhantasyStarOnline" target="_blank">TV Tropes</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
