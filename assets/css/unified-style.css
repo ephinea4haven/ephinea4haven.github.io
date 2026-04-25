@@ -52,19 +52,6 @@ body {
     position: relative;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('/assets/img/bg/lobby_overlook_contrast.png') center center;
-    background-size: cover;
-    opacity: 0.35;
-    z-index: 0;
-}
-
 body::after {
     content: '';
     position: fixed;
@@ -72,9 +59,19 @@ body::after {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at top right, var(--accent-glow), transparent 60%),
-                radial-gradient(circle at bottom left, var(--accent-purple), transparent 60%);
+    background:
+        radial-gradient(ellipse 80% 55% at 95% -5%, rgba(0, 212, 255, 0.22), transparent 60%),
+        radial-gradient(ellipse 65% 55% at -5% 105%, rgba(138, 43, 226, 0.20), transparent 60%),
+        radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.75) 100%),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.08) 2px,
+            rgba(0, 0, 0, 0.08) 3px
+        );
     z-index: 0;
+    pointer-events: none;
 }
 
 body > * {
