@@ -19,9 +19,12 @@
   - References `/static/`, `/ch/`, `/misc/` which no longer exist.
   - Actual current structure: `assets/`, `data/`, `event/`, `guide/`, `scripts/`, `tools/`.
   - Rewrite the "Architecture" and "Directory Layout" sections.
-- [ ] **Decide where `tools/pw/` data should live**
-  - 85 fragmented JS data files (see ARCHITECTURE.md item #1).
-  - After consolidating into a single JSON, choose between `tools/pw/data.json` and `assets/data/pw.json`.
+- [ ] **Decouple `tools/pw/` (Kotlin Multiplatform sub-project)**
+  - `pw` is a separate Kotlin KMP project (Three.js + Monaco + Golden Layout + LP solver) whose Gradle build output is currently copied into `tools/pw/`.
+  - Mixing a Kotlin/Gradle codebase with a vanilla static site creates 341MB of bloat in this repo and makes the two build chains awkward to coexist.
+  - **Recommended path**: deploy pw to its own GitHub Pages site at `pw.psohaven.com`; redirect `tools/pw/` here.
+  - **Alternative**: cross-repo CI — pw's GitHub Actions builds with Gradle and pushes the dist into this repo via deploy key; `tools/pw/` is gitignored.
+  - ARCHITECTURE.md item #1 (consolidating 85 JS chunks) is irrelevant — those are webpack code-split chunks from Kotlin/JS, not hand-authored files.
 - [ ] **Audit the `data/` vs `tools/` boundary**
   - `data/` is currently mixed: drop tables, price guide, BDP table, prize list — all read-only/lookup pages.
   - `tools/` holds calculators (status sim, mag, materialplan, combo).
@@ -32,7 +35,7 @@
 
 ## ARCHITECTURE.md High-Priority Items (cross-referenced)
 
-- [ ] Consolidate `tools/pw/` 85 JS files into one JSON (High)
+- [ ] ~~Consolidate `tools/pw/` 85 JS files into one JSON~~ — superseded; see "Decouple `tools/pw/`" above (those are Kotlin/JS webpack chunks, not hand-written files)
 - [ ] Deduplicate drop table language files — expected ~50% data size reduction (High)
 - [ ] Extract `index.html` inline CSS (Medium)
 - [ ] Shared nav/header injection mechanism (Medium)
