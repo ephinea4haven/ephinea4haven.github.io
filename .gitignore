@@ -7,3 +7,7 @@ package-lock.json
 node_modules/
 dist/
 .vite/
+
+# pw build output: pre-compressed files are useless on GitHub Pages
+tools/pw/*.br
+tools/pw/*.gz
