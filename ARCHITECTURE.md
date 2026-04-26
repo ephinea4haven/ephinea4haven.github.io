@@ -1,6 +1,6 @@
 # Architecture & Optimization Notes
 
-> Last updated: 2026-04-10
+> Last updated: 2026-04-26
 
 ## Overview
 
@@ -16,9 +16,10 @@ Pure static site — no build system, no package manager — served directly via
 /data/                ← Misc data pages (14 HTML files)
 /event/               ← Event pages, e.g. Christmas (12 HTML files)
 /guide/               ← Guides (14 HTML files)
-/tools/               ← Tool pages (13 HTML + pw/ subdirectory)
-/tools/pw/            ← 85 individual JS files + index.html
+/tools/               ← Tool pages (13 HTML)
 ```
+
+> Note: the quest editor (`pw`) is deployed separately at `pw.psohaven.com` from its own Kotlin Multiplatform repo; it is no longer part of this codebase. The landing page links out to it.
 
 ### Core JS Files
 
@@ -44,15 +45,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ## Issues & Recommendations
 
-### 1. `tools/pw/` — 85 Fragmented JS Files (High)
-
-**Problem:** 85 individual JS files (`174.js`, `9906.js`, etc.) each loaded separately, generating a large number of HTTP requests on every page load.
-
-**Fix:** Consolidate all data into a single JSON file loaded once by `index.html`.
-
----
-
-### 2. Drop Table Language Files Are Nearly Identical (High)
+### 1. Drop Table Language Files Are Nearly Identical (High)
 
 **Problem:** `en.js` and `zh.js` are both 27,362 lines with almost identical structure — differing only in item names.
 
@@ -63,7 +56,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 3. Inline CSS on Landing Page (Medium)
+### 2. Inline CSS on Landing Page (Medium)
 
 **Problem:** `index.html` has a large `<style>` block while all other pages use `unified-style.css`, creating inconsistency.
 
@@ -71,7 +64,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 4. No Shared HTML Template — Nav/Header Duplicated Everywhere (Medium)
+### 3. No Shared HTML Template — Nav/Header Duplicated Everywhere (Medium)
 
 **Problem:** Every HTML page independently manages its `<head>`, back link, and header. Changing navigation requires editing dozens of files.
 
@@ -79,7 +72,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 5. Game Data and Logic Mixed in JS Files (Medium)
+### 4. Game Data and Logic Mixed in JS Files (Medium)
 
 **Problem:** Static game data is hardcoded directly inside `chardata.js` and `combo_calc.js`, tightly coupling data with calculation logic.
 
@@ -87,7 +80,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 6. Manual Cache-Busting Version Numbers (Low)
+### 5. Manual Cache-Busting Version Numbers (Low)
 
 **Problem:** `<script src="assets/js/index.js?v=1">` requires manual version bumps, which are easy to forget.
 
@@ -95,7 +88,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 7. Christmas Event Pages Created Annually (Low)
+### 6. Christmas Event Pages Created Annually (Low)
 
 **Problem:** `event/christmas20xx.html` is duplicated every year — 12 files so far, all nearly identical in structure.
 
@@ -107,7 +100,6 @@ Pure static site — no build system, no package manager — served directly via
 
 | Priority | Item | Expected Benefit |
 |----------|------|-----------------|
-| High | Consolidate `tools/pw/` 85 JS files into one JSON | Fewer HTTP requests, faster load |
 | High | Deduplicate drop table language files | ~50% reduction in data size |
 | Medium | Extract landing page inline CSS | Code consistency |
 | Medium | Shared nav injection via JS | Lower maintenance cost |

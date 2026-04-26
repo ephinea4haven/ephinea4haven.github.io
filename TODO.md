@@ -19,12 +19,6 @@
   - References `/static/`, `/ch/`, `/misc/` which no longer exist.
   - Actual current structure: `assets/`, `data/`, `event/`, `guide/`, `scripts/`, `tools/`.
   - Rewrite the "Architecture" and "Directory Layout" sections.
-- [ ] **Decouple `tools/pw/` (Kotlin Multiplatform sub-project)**
-  - `pw` is a separate Kotlin KMP project (Three.js + Monaco + Golden Layout + LP solver) whose Gradle build output is currently copied into `tools/pw/`.
-  - Mixing a Kotlin/Gradle codebase with a vanilla static site creates 341MB of bloat in this repo and makes the two build chains awkward to coexist.
-  - **Recommended path**: deploy pw to its own GitHub Pages site at `pw.psohaven.com`; redirect `tools/pw/` here.
-  - **Alternative**: cross-repo CI — pw's GitHub Actions builds with Gradle and pushes the dist into this repo via deploy key; `tools/pw/` is gitignored.
-  - ARCHITECTURE.md item #1 (consolidating 85 JS chunks) is irrelevant — those are webpack code-split chunks from Kotlin/JS, not hand-authored files.
 - [ ] **Audit the `data/` vs `tools/` boundary**
   - `data/` is currently mixed: drop tables, price guide, BDP table, prize list — all read-only/lookup pages.
   - `tools/` holds calculators (status sim, mag, materialplan, combo).
@@ -35,7 +29,6 @@
 
 ## ARCHITECTURE.md High-Priority Items (cross-referenced)
 
-- [ ] ~~Consolidate `tools/pw/` 85 JS files into one JSON~~ — superseded; see "Decouple `tools/pw/`" above (those are Kotlin/JS webpack chunks, not hand-written files)
 - [ ] Deduplicate drop table language files — expected ~50% data size reduction (High)
 - [ ] Extract `index.html` inline CSS (Medium)
 - [ ] Shared nav/header injection mechanism (Medium)
@@ -44,13 +37,17 @@
 
 ## Vite Tooling
 
-- [ ] **Configure production build (`npm run build`)**
-  - Add MPA entries to `vite.config.js` (auto-glob all HTML files).
-  - Add a GitHub Actions workflow: build → deploy `dist/` to GitHub Pages.
-  - Benefits: filename hashing eliminates cache issues permanently; CSS/JS auto-minification.
+**Decision (2026-04-26): Vite stays dev-only.** Deployment remains `push to master` → GitHub Pages serving the repo as-is. No `vite build`, no `dist/`, no structural reshuffle. Vite's role is HMR + dev-time cache busting; the project layout makes no concession to it.
+
+Rationale:
+- Production build would require registering ~60 HTML pages as MPA entries, separating `assets/js/` vendor libs (jquery/bootstrap/vue) from self-authored code, and migrating those libs to npm.
+- Cost of full migration today >> benefit, given the site is otherwise stable static HTML.
+
+Revisit when: cache-busting via `?v=N` query strings becomes painful enough to justify hashing.
+
 - [ ] **Image optimization**
   - `assets/img/bg/lobby_overlook_contrast.png` is 7MB; converting to WebP would bring it to ~200KB.
-  - Use `vite-plugin-image-optimizer` to handle this automatically at build time.
+  - One-shot manual conversion (no Vite plugin needed).
 
 ## Long-term (optional)
 
