@@ -16,18 +16,6 @@
 
 ## Optional follow-ups
 
-- [ ] **Unify item translation sources + i18n the status simulator dropdowns** (Medium)
-  - Translation data is currently split across three sources, with mixed structure:
-    - `assets/js/i18n/items_i18n.js` — 250 entries, zh/en/ja, used by BDP & prize list pages.
-    - `data/en2chinese.html` — 946 hand-curated en→zh pairs as static `<li>` entries (no Japanese), serves as the public lookup table.
-    - `data/droptable/<region>/data/<lang>.js` — per-difficulty item names embedded in drop-table data; structured by difficulty so not directly reusable as a flat map. Off-limits for editing (see Scope exclusions); could be _read_ to fill gaps if needed.
-    - Overlap between the first two: only 38 items → combined unique coverage from those two ~1158 items.
-  - `tools/status.html` armor / shield / unit dropdowns show raw English names from `itemdata.js` (~276 entries); the i18n framework on the page (`status_i18n.js`) translates labels but not option text. Status doesn't care about difficulty, so it needs a single flat en→zh/en/ja lookup.
-  - Combined refactor:
-    1. Merge `en2chinese.html` data into `items_i18n.js` (or a shared JSON) and resolve any conflicting zh translations. Japanese can fall back to English for entries that don't have it yet. (Optionally pull missing entries from droptable read-only as a one-shot to maximize coverage.)
-    2. Refactor `data/en2chinese.html` to render the table dynamically from the merged source (page becomes ~30 lines + a tiny render script).
-    3. Wire `tools/status.html` dropdown options to look up the translation by English name (fallback to English when missing).
-  - Out of scope: dropdowns in other tools (mag, materialplan, etc.) — may have similar gaps but not flagged yet.
 - [ ] **Extend `<page-chrome>` to support an inline langSwitch widget**
   - Two multilingual pages (`tools/status.html`, `data/protocol/index.html`) were skipped during the chrome-injection migration because their `<header>` carries an inline `#langSwitch` button row. To migrate them, extend `<page-chrome>` to either accept a `lang-switch="zh,en,ja"` attribute or render slot content inside the header.
   - Low priority — only 2 pages affected, current inline chrome works.
