@@ -8,9 +8,6 @@
   - `data/` is currently mixed: drop tables, price guide, BDP table, prize list — all read-only/lookup pages.
   - `tools/` holds calculators (status sim, mag, materialplan, combo).
   - `tools/200.html` is a static stat lookup table, more naturally a `data/` page — consider moving.
-- [ ] **Decide on `scripts/` (Python tooling)**
-  - Is `convert_md_to_html.py` still actively used? It will be obsolete if Astro migration happens.
-  - If kept, add a short README documenting each script's purpose.
 
 ## ARCHITECTURE.md High-Priority Items (cross-referenced)
 
@@ -33,7 +30,6 @@ Revisit when: cache-busting via `?v=N` query strings becomes painful enough to j
 
 - [ ] **Consider migrating to Astro**
   - Split HTML into reusable `Layout` / `Header` / `Nav` components (resolves ARCHITECTURE.md "No Shared HTML Template").
-  - Replace `convert_md_to_html.py` with Astro's native markdown handling.
   - Zero-JS by default → significantly better page performance.
 - [ ] **Consider TypeScript**
   - Convert `chardata.js` (2500 LOC) and `combo_calc.js` (1583 LOC) to `.ts`; types help guard calculation correctness.
