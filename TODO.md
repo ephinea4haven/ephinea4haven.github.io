@@ -24,7 +24,7 @@ Revisit when: cache-busting via `?v=N` query strings becomes painful enough to j
   - Split HTML into reusable `Layout` / `Header` / `Nav` components (resolves ARCHITECTURE.md "No Shared HTML Template").
   - Zero-JS by default → significantly better page performance.
 - [ ] **Consider TypeScript**
-  - Convert `chardata.js` (2500 LOC) and `combo_calc.js` (1583 LOC) to `.ts`; types help guard calculation correctness.
+  - Convert `chardata.js` (2500 LOC) to `.ts`; types help guard calculation correctness. (`combo_calc.js` is excluded — third-party sync, see ARCHITECTURE.md scope note.)
 
 ## Design follow-ups
 

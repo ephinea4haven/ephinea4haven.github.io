@@ -1,7 +1,9 @@
 # Architecture & Optimization Notes
 
 > Last updated: 2026-04-26
-> Note: `data/droptable/` is intentionally outside the refactor/cleanup scope per user direction. Do not propose changes to its structure or data files.
+> The following are intentionally outside the refactor/cleanup scope per user direction (don't propose changes):
+> - `data/droptable/` — opt-out by user
+> - `assets/js/combo_calc.js`, `tools/cc.html`, `tools/ccopm.html` — third-party combo calculator, sync'd from upstream
 
 ## Overview
 
@@ -54,11 +56,13 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 2. Game Data and Logic Mixed in JS Files (Medium)
+### 2. Game Data and Logic Mixed in chardata.js (Medium)
 
-**Problem:** Static game data is hardcoded directly inside `chardata.js` and `combo_calc.js`, tightly coupling data with calculation logic.
+**Problem:** Static game data is hardcoded directly inside `chardata.js`, tightly coupling data with calculation logic.
 
-**Fix:** Extract static data to JSON files; keep JS files focused on computation only.
+**Fix:** Extract static data to JSON files; keep `chardata.js` focused on computation only.
+
+(`combo_calc.js` has the same problem but is excluded — see top-of-file scope note.)
 
 ---
 
