@@ -4,12 +4,9 @@
 
 ## Refactor / Cleanup
 
-- [ ] **Migrate 5 standalone pages to `unified-style.css`**
-  - `tools/200.html` / `tools/chartable.html` / `tools/status.html` / `data/bdp/index.html` / `data/prizelist/index.html`
-  - These pages don't link `unified-style.css`; each duplicates the body / glass-container / decoration rules inline.
-  - Pain point: today's background redesign had to be applied in 5 places instead of 1, and any future change repeats the cost.
 - [ ] **Extract large inline `<style>` blocks from `data/bdp/` and `data/prizelist/`**
-  - Each carries 100+ lines of inline CSS — move to dedicated files under `assets/css/`.
+  - Each still carries ~150 lines of page-specific inline CSS (header/title/back-link/table styling) — move to dedicated files under `assets/css/`.
+  - `tools/200.html` and `tools/chartable.html` likewise carry page-specific inline blocks; consider extracting at the same time.
 
 ## Project Layout
 
