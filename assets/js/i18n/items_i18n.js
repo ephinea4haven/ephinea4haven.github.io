@@ -36,7 +36,8 @@ window.ITEMS_I18N = {
   },
   "adept": {
     "en": "ADEPT",
-    "zh": "超能增幅器"
+    "zh": "超能增幅器",
+    "ja": "アデプト"
   },
   "agastya": {
     "en": "Agastya",
@@ -235,7 +236,8 @@ window.ITEMS_I18N = {
   },
   "angel_ring": {
     "en": "ANGEL RING",
-    "zh": "天使圆环"
+    "zh": "天使圆环",
+    "ja": "円環天使"
   },
   "angel_s_wing": {
     "en": "ANGEL'S WING",
@@ -288,7 +290,8 @@ window.ITEMS_I18N = {
   },
   "anti_merge": {
     "en": "ANTI MERGE",
-    "zh": "状态增幅盾"
+    "zh": "状态增幅盾",
+    "ja": "アンティマージ"
   },
   "antidote": {
     "en": "Antidote",
@@ -415,7 +418,8 @@ window.ITEMS_I18N = {
   },
   "barta_merge": {
     "en": "BARTA MERGE",
-    "zh": "冻气增幅盾"
+    "zh": "冻气增幅盾",
+    "ja": "バータマージ"
   },
   "bartle": {
     "en": "Bartle",
@@ -507,7 +511,8 @@ window.ITEMS_I18N = {
   },
   "black_gear": {
     "en": "BLACK GEAR",
-    "zh": "黑色机能盾"
+    "zh": "黑色机能盾",
+    "ja": "ブラックギア"
   },
   "black_hound_cuirass": {
     "zh": "黑色猎犬胸甲",
@@ -573,7 +578,8 @@ window.ITEMS_I18N = {
   },
   "blue_merge": {
     "en": "BLUE MERGE",
-    "zh": "冰系增幅盾"
+    "zh": "冰系增幅盾",
+    "ja": "ブルーマージ"
   },
   "blue_odoshi_violet_nimaidou_2": {
     "en": "Blue Odoshi Violet Nimaidou",
@@ -582,7 +588,8 @@ window.ITEMS_I18N = {
   },
   "blue_ring": {
     "en": "BLUE RING",
-    "zh": "蓝色手镯"
+    "zh": "蓝色手镯",
+    "ja": "ブルーリング"
   },
   "bluefull_card": {
     "zh": "纯蓝卡片",
@@ -926,7 +933,8 @@ window.ITEMS_I18N = {
   },
   "chu_chu_fever": {
     "en": "CHU CHU FEVER",
-    "zh": "啾啾发烧友"
+    "zh": "啾啾发烧友",
+    "ja": "チューチューフィーバー"
   },
   "churel": {
     "en": "Churel",
@@ -1310,7 +1318,8 @@ window.ITEMS_I18N = {
   },
   "de_rol_le_shield": {
     "en": "DE ROL LE SHIELD",
-    "zh": "迪-洛尔-雷之盾"
+    "zh": "迪-洛尔-雷之盾",
+    "ja": "デ・ロル・レ・シールド"
   },
   "death_gunner": {
     "en": "Death Gunner",
@@ -1322,7 +1331,8 @@ window.ITEMS_I18N = {
   },
   "deband_merge": {
     "en": "DEBAND MERGE",
-    "zh": "强体增幅盾"
+    "zh": "强体增幅盾",
+    "ja": "デバンドマージ"
   },
   "decalog": {
     "zh": "十戒石板",
@@ -1464,7 +1474,8 @@ window.ITEMS_I18N = {
   },
   "dirty_lifejacket": {
     "en": "DIRTY LIFEJACKET",
-    "zh": "污浊的救生衣"
+    "zh": "污浊的救生衣",
+    "ja": "汚染された救命胴衣"
   },
   "disk": {
     "en": "disk",
@@ -1723,7 +1734,8 @@ window.ITEMS_I18N = {
   },
   "epsiguard": {
     "en": "EPSIGUARD",
-    "zh": "厄普西隆之盾"
+    "zh": "厄普西隆之盾",
+    "ja": "イプシガード"
   },
   "epsilon": {
     "en": "Epsilon",
@@ -1895,7 +1907,8 @@ window.ITEMS_I18N = {
   },
   "foie_merge": {
     "en": "FOIE MERGE",
-    "zh": "火球增幅盾"
+    "zh": "火球增幅盾",
+    "ja": "フォイエマージ"
   },
   "force_field_2": {
     "en": "Force Field",
@@ -1918,7 +1931,8 @@ window.ITEMS_I18N = {
   },
   "freeze_barrier": {
     "en": "Freeze Barrier",
-    "zh": "寒冰盾"
+    "zh": "寒冰盾",
+    "ja": "フリーズバリア"
   },
   "friend_ring": {
     "en": "Friend Ring",
@@ -1927,7 +1941,8 @@ window.ITEMS_I18N = {
   },
   "from_the_depths": {
     "en": "FROM THE DEPTHS",
-    "zh": "深渊来客"
+    "zh": "深渊来客",
+    "ja": "淵ヨリ来ルモノ"
   },
   "frost": {
     "en": "Frost",
@@ -2072,7 +2087,8 @@ window.ITEMS_I18N = {
   },
   "genpei": {
     "en": "GENPEI",
-    "zh": "源平"
+    "zh": "源平",
+    "ja": "源平"
   },
   "getsugasan": {
     "en": "GETSUGASAN",
@@ -2101,7 +2117,8 @@ window.ITEMS_I18N = {
   },
   "gibarta_merge": {
     "en": "GIBARTA MERGE",
-    "zh": "冰箭增幅盾"
+    "zh": "冰箭增幅盾",
+    "ja": "ギバータマージ"
   },
   "gibbles": {
     "en": "Gibbles",
@@ -2118,7 +2135,8 @@ window.ITEMS_I18N = {
   },
   "gifoie_merge": {
     "en": "GIFOIE MERGE",
-    "zh": "火墙增幅盾"
+    "zh": "火墙增幅盾",
+    "ja": "ギフォイエマージ"
   },
   "giga_frame": {
     "en": "Giga Frame",
@@ -2182,7 +2200,8 @@ window.ITEMS_I18N = {
   },
   "gizonde_merge": {
     "en": "GIZONDE MERGE",
-    "zh": "群雷增幅盾"
+    "zh": "群雷增幅盾",
+    "ja": "ギゾンデマージ"
   },
   "gladius": {
     "en": "Gladius",
@@ -2284,7 +2303,8 @@ window.ITEMS_I18N = {
   },
   "god_s_shield_kouryu": {
     "en": "GOD'S SHIELD \"KOURYU\"",
-    "zh": "四神盾「黄龙」"
+    "zh": "四神盾「黄龙」",
+    "ja": "四神盾「黄龍」"
   },
   "god_s_shield_seiryu": {
     "en": "God's Shield Seiryu",
@@ -2308,19 +2328,23 @@ window.ITEMS_I18N = {
   },
   "gods_shield_byakko": {
     "en": "GODS SHIELD BYAKKO",
-    "zh": "四神盾「白虎」"
+    "zh": "四神盾「白虎」",
+    "ja": "四神盾「白虎」"
   },
   "gods_shield_genbu": {
     "en": "GODS SHIELD GENBU",
-    "zh": "四神盾「玄武」"
+    "zh": "四神盾「玄武」",
+    "ja": "四神盾「玄武」"
   },
   "gods_shield_seiryu": {
     "en": "GODS SHIELD SEIRYU",
-    "zh": "四神盾「青龙」"
+    "zh": "四神盾「青龙」",
+    "ja": "四神盾「青龍」"
   },
   "gods_shield_suzaku": {
     "en": "GODS SHIELD SUZAKU",
-    "zh": "四神盾「朱雀」"
+    "zh": "四神盾「朱雀」",
+    "ja": "四神盾「朱雀」"
   },
   "gol_dragon": {
     "en": "Gol Dragon",
@@ -2388,7 +2412,8 @@ window.ITEMS_I18N = {
   },
   "green_ring": {
     "en": "GREEN RING",
-    "zh": "绿色手镯"
+    "zh": "绿色手镯",
+    "ja": "グリーンリング"
   },
   "greenill_card": {
     "zh": "翠绿卡片",
@@ -2412,7 +2437,8 @@ window.ITEMS_I18N = {
   },
   "guardian_shield": {
     "en": "Guardian Shield",
-    "zh": "守护机械盾"
+    "zh": "守护机械盾",
+    "ja": "ガーディアンシールド"
   },
   "guardianna": {
     "zh": "守护之扇",
@@ -2506,7 +2532,8 @@ window.ITEMS_I18N = {
   },
   "hard_shield": {
     "en": "Hard Shield",
-    "zh": "硬机械盾"
+    "zh": "硬机械盾",
+    "ja": "ハードシールド"
   },
   "harisen": {
     "en": "HARISEN",
@@ -2787,7 +2814,8 @@ window.ITEMS_I18N = {
   },
   "heavenly_technique": {
     "en": "Heavenly/Technique",
-    "zh": "天堂级/魔法"
+    "zh": "天堂级/魔法",
+    "ja": "ヘブンリー/テクニック"
   },
   "heavenly_tp": {
     "en": "Heavenly/TP",
@@ -2881,7 +2909,8 @@ window.ITEMS_I18N = {
   },
   "hp_generate": {
     "en": "HP/Generate",
-    "zh": "ＨＰ/再生"
+    "zh": "ＨＰ/再生",
+    "ja": "HP/ジェネレイト"
   },
   "hp_material": {
     "en": "HP Material",
@@ -2890,7 +2919,8 @@ window.ITEMS_I18N = {
   },
   "hp_ressurection": {
     "en": "HP/Ressurection",
-    "zh": "ＨＰ/超生"
+    "zh": "ＨＰ/超生",
+    "ja": "HP/リザレクション"
   },
   "hp_restorate": {
     "en": "HP/Restorate",
@@ -2960,7 +2990,8 @@ window.ITEMS_I18N = {
   },
   "imperial_armor": {
     "en": "Imperial Armor",
-    "zh": "王者装甲"
+    "zh": "王者装甲",
+    "ja": "インペリアルアーマー"
   },
   "imperial_barrier": {
     "en": "Imperial Barrier",
@@ -3098,7 +3129,8 @@ window.ITEMS_I18N = {
   },
   "king_s_frame": {
     "en": "King's Frame",
-    "zh": "皇家铠甲"
+    "zh": "皇家铠甲",
+    "ja": "キングスフレーム"
   },
   "kit_of_dreamcast": {
     "en": "Kit of DREAMCAST",
@@ -3131,7 +3163,8 @@ window.ITEMS_I18N = {
   },
   "knight_power": {
     "en": "Knight/Power",
-    "zh": "骑士级/攻击"
+    "zh": "骑士级/攻击",
+    "ja": "ナイト/パワー"
   },
   "knuckle": {
     "en": "KNUCKLE",
@@ -3272,7 +3305,8 @@ window.ITEMS_I18N = {
   },
   "love_heart": {
     "en": "LOVE HEART",
-    "zh": "心心铠"
+    "zh": "心心铠",
+    "ja": "ラブハート"
   },
   "love_rappy": {
     "en": "Love Rappy",
@@ -3365,7 +3399,8 @@ window.ITEMS_I18N = {
   },
   "magician_tp": {
     "en": "Magician/TP",
-    "zh": "法师级/ＴＰ"
+    "zh": "法师级/ＴＰ",
+    "ja": "マジシャン/TP"
   },
   "magicstone_iritista": {
     "en": "MAGICSTONE IRITISTA",
@@ -3749,7 +3784,8 @@ window.ITEMS_I18N = {
   },
   "parasite_wear_de_rol": {
     "en": "PARASITE WEAR:De Rol",
-    "zh": "寄生防具「迪-洛尔」"
+    "zh": "寄生防具「迪-洛尔」",
+    "ja": "寄生防具「デ・ロル」"
   },
   "parasite_wear_de_rol_2": {
     "en": "Parasite Wear: De Rol",
@@ -3758,7 +3794,8 @@ window.ITEMS_I18N = {
   },
   "parasite_wear_nelgal": {
     "en": "PARASITE WEAR:Nelgal",
-    "zh": "寄生防具「内加尔」"
+    "zh": "寄生防具「内加尔」",
+    "ja": "寄生防具「ネルガル」"
   },
   "parasite_wear_nelgal_2": {
     "en": "Parasite Wear: Nelgal",
@@ -3767,7 +3804,8 @@ window.ITEMS_I18N = {
   },
   "parasite_wear_vajulla": {
     "en": "PARASITE WEAR:Vajulla",
-    "zh": "寄生防具「瓦究拉」"
+    "zh": "寄生防具「瓦究拉」",
+    "ja": "寄生防具「ヴァジュラ」"
   },
   "parasite_wear_vajulla_2": {
     "en": "Parasite Wear: Vajulla",
@@ -3829,7 +3867,8 @@ window.ITEMS_I18N = {
   },
   "pb_amplifier": {
     "en": "PB/Amplifier",
-    "zh": "ＰＢ/回复"
+    "zh": "ＰＢ/回复",
+    "ja": "PB/アンプリファー"
   },
   "pb_create": {
     "zh": "PB/速生",
@@ -3844,6 +3883,11 @@ window.ITEMS_I18N = {
   "pb_increase": {
     "en": "PB/Increase",
     "zh": "ＰＢ/超生"
+  },
+  "pb_ressurection": {
+    "en": "PB/Ressurection",
+    "zh": "PB/超生",
+    "ja": "PB/リザレクション"
   },
   "perfect_frame": {
     "en": "Perfect Frame",
@@ -3952,7 +3996,8 @@ window.ITEMS_I18N = {
   },
   "plasma_barrier": {
     "en": "Plasma Barrier",
-    "zh": "雷电盾"
+    "zh": "雷电盾",
+    "ja": "プラズマバリア"
   },
   "platinum_pen": {
     "en": "Platinum Pen",
@@ -4016,7 +4061,8 @@ window.ITEMS_I18N = {
   },
   "proof_of_sword_saint": {
     "en": "PROOF OF SWORD-SAINT",
-    "zh": "剑圣之证"
+    "zh": "剑圣之证",
+    "ja": "剣聖の証"
   },
   "prophets_of_motav_2": {
     "en": "Prophets of Motav",
@@ -4030,7 +4076,8 @@ window.ITEMS_I18N = {
   },
   "protect_frame": {
     "en": "Protect Frame",
-    "zh": "护心铠甲"
+    "zh": "护心铠甲",
+    "ja": "プロテクトフレーム"
   },
   "protist": {
     "en": "Protist",
@@ -4071,7 +4118,8 @@ window.ITEMS_I18N = {
   },
   "purple_ring": {
     "en": "PURPLE RING",
-    "zh": "紫色手镯"
+    "zh": "紫色手镯",
+    "ja": "パープルリング"
   },
   "purplenum_card": {
     "zh": "淡紫卡片",
@@ -4092,7 +4140,8 @@ window.ITEMS_I18N = {
   },
   "rabarta_merge": {
     "en": "RABARTA MERGE",
-    "zh": "极冰增幅盾"
+    "zh": "极冰增幅盾",
+    "ja": "ラバータマージ"
   },
   "rabbit_wand": {
     "zh": "兔子杖",
@@ -4109,7 +4158,8 @@ window.ITEMS_I18N = {
   },
   "rafoie_merge": {
     "en": "RAFOIE MERGE",
-    "zh": "炎狱增幅盾"
+    "zh": "炎狱增幅盾",
+    "ja": "ラフォイエマージ"
   },
   "rag_rappy": {
     "en": "Rag Rappy",
@@ -4137,7 +4187,8 @@ window.ITEMS_I18N = {
   },
   "ragol_ring": {
     "en": "RAGOL RING",
-    "zh": "拉古奥尔手镯"
+    "zh": "拉古奥尔手镯",
+    "ja": "ラグオルリング"
   },
   "raikiri": {
     "zh": "雷切",
@@ -4210,7 +4261,8 @@ window.ITEMS_I18N = {
   },
   "razonde_merge": {
     "en": "RAZONDE MERGE",
-    "zh": "雷爆增幅盾"
+    "zh": "雷爆增幅盾",
+    "ja": "ラゾンデマージ"
   },
   "recobox": {
     "en": "Recobox",
@@ -4252,7 +4304,8 @@ window.ITEMS_I18N = {
   },
   "red_merge": {
     "en": "RED MERGE",
-    "zh": "炎系增幅盾"
+    "zh": "炎系增幅盾",
+    "ja": "レッドマージ"
   },
   "red_odoshi_domaru_2": {
     "en": "Red Odoshi Domaru",
@@ -4326,7 +4379,8 @@ window.ITEMS_I18N = {
   },
   "resist_cold": {
     "en": "Resist/Cold",
-    "zh": "抗性/冰霜"
+    "zh": "抗性/冰霜",
+    "ja": "レジスト/コールド"
   },
   "resist_dark": {
     "en": "Resist/Dark",
@@ -4375,7 +4429,8 @@ window.ITEMS_I18N = {
   },
   "resist_shock": {
     "en": "Resist/Shock",
-    "zh": "抗性/电击"
+    "zh": "抗性/电击",
+    "ja": "レジスト/ショック"
   },
   "resist_storm": {
     "zh": "抗性/雷暴",
@@ -4393,7 +4448,8 @@ window.ITEMS_I18N = {
   },
   "resta_merge": {
     "en": "RESTA MERGE",
-    "zh": "圣泉增幅盾"
+    "zh": "圣泉增幅盾",
+    "ja": "レスタマージ"
   },
   "revival_cuirass": {
     "zh": "回生护甲",
@@ -4561,7 +4617,8 @@ window.ITEMS_I18N = {
   },
   "safety_heart": {
     "en": "SAFETY HEART",
-    "zh": "心心盾"
+    "zh": "心心盾",
+    "ja": "セーフティーハート"
   },
   "saint_milion": {
     "en": "Saint-Milion",
@@ -4573,7 +4630,8 @@ window.ITEMS_I18N = {
   },
   "samurai_armor": {
     "en": "SAMURAI ARMOR",
-    "zh": "浅黄丝威褄取铠"
+    "zh": "浅黄丝威褄取铠",
+    "ja": "浅黄絲威褄取鎧"
   },
   "sand_rappy": {
     "en": "Sand Rappy",
@@ -4691,7 +4749,8 @@ window.ITEMS_I18N = {
   },
   "shield_of_delsaber": {
     "en": "SHIELD OF DELSABER",
-    "zh": "剑魔之盾"
+    "zh": "剑魔之盾",
+    "ja": "デルセイバーの盾"
   },
   "shifta": {
     "en": "Shifta",
@@ -4699,7 +4758,8 @@ window.ITEMS_I18N = {
   },
   "shifta_merge": {
     "en": "SHIFTA MERGE",
-    "zh": "强攻增幅盾"
+    "zh": "强攻增幅盾",
+    "ja": "シフタマージ"
   },
   "shock": {
     "en": "Shock",
@@ -4850,7 +4910,8 @@ window.ITEMS_I18N = {
   },
   "solid_shield": {
     "en": "Solid Shield",
-    "zh": "坚固机械盾"
+    "zh": "坚固机械盾",
+    "ja": "ソリッドシールド"
   },
   "soma": {
     "en": "Soma",
@@ -4888,7 +4949,8 @@ window.ITEMS_I18N = {
   },
   "soul_barrier": {
     "en": "Soul Barrier",
-    "zh": "魂之盾"
+    "zh": "魂之盾",
+    "ja": "ソウルバリア"
   },
   "soul_eater": {
     "en": "SOUL EATER",
@@ -4896,7 +4958,8 @@ window.ITEMS_I18N = {
   },
   "soul_frame": {
     "en": "Soul Frame",
-    "zh": "魂之铠甲"
+    "zh": "魂之铠甲",
+    "ja": "ソウルフレーム"
   },
   "sound_source_fm": {
     "en": "Sound Source FM",
@@ -4936,7 +4999,8 @@ window.ITEMS_I18N = {
   },
   "spiritual_shield": {
     "en": "Spiritual Shield",
-    "zh": "灵魂机械盾"
+    "zh": "灵魂机械盾",
+    "ja": "スピリチュアルシールド"
   },
   "spread": {
     "en": "Spread",
@@ -4987,7 +5051,8 @@ window.ITEMS_I18N = {
   },
   "stealth_suit": {
     "en": "STEALTH SUIT",
-    "zh": "隐身铠"
+    "zh": "隐身铠",
+    "ja": "ステルススーツ"
   },
   "steel_badge": {
     "en": "Steel Badge",
@@ -5058,7 +5123,8 @@ window.ITEMS_I18N = {
   },
   "super_resist": {
     "en": "Super/Resist",
-    "zh": "超级/抗性"
+    "zh": "超级/抗性",
+    "ja": "スーパー/レジスト"
   },
   "suppressed_gun": {
     "zh": "消音枪",
@@ -5071,7 +5137,8 @@ window.ITEMS_I18N = {
   },
   "sweetheart": {
     "en": "SWEETHEART",
-    "zh": "甜心铠"
+    "zh": "甜心铠",
+    "ja": "スウィートハート"
   },
   "sword": {
     "en": "Sword",
@@ -5156,7 +5223,8 @@ window.ITEMS_I18N = {
   },
   "thief_legs": {
     "en": "Thief/Legs",
-    "zh": "盗贼级/回避"
+    "zh": "盗贼级/回避",
+    "ja": "シーフ/レグス"
   },
   "thirteen": {
     "zh": "暗杀者的迷彩服",
@@ -5182,7 +5250,8 @@ window.ITEMS_I18N = {
   },
   "tp_generate": {
     "en": "TP/Generate",
-    "zh": "ＴＰ/再生"
+    "zh": "ＴＰ/再生",
+    "ja": "TP/ジェネレイト"
   },
   "tp_material": {
     "en": "TP Material",
@@ -5190,7 +5259,8 @@ window.ITEMS_I18N = {
   },
   "tp_ressurection": {
     "en": "TP/Ressurection",
-    "zh": "ＴＰ/超生"
+    "zh": "ＴＰ/超生",
+    "ja": "TP/リザレクション"
   },
   "tp_restorate": {
     "en": "TP/Restorate",
@@ -5421,11 +5491,13 @@ window.ITEMS_I18N = {
   },
   "union_field": {
     "en": "UNION FIELD",
-    "zh": "公会铠"
+    "zh": "公会铠",
+    "ja": "ユニオンフィールド"
   },
   "union_guard": {
     "en": "UNION GUARD",
-    "zh": "公会盾"
+    "zh": "公会盾",
+    "ja": "ユニオンガード"
   },
   "unknown": {
     "en": "Unknown",
@@ -5510,7 +5582,8 @@ window.ITEMS_I18N = {
   },
   "virus_armor_lafuteria": {
     "en": "VIRUS ARMOR:Lafuteria",
-    "zh": "细菌防具「拉夫特利亚」"
+    "zh": "细菌防具「拉夫特利亚」",
+    "ja": "細菌防具「ラフテリア」"
   },
   "virus_armor_lafuteria_2": {
     "en": "Virus Armor: Lafuteria",
@@ -5575,19 +5648,23 @@ window.ITEMS_I18N = {
   },
   "warrior_body": {
     "en": "Warrior/Body",
-    "zh": "武士级/防御"
+    "zh": "武士级/防御",
+    "ja": "ウォリアー/ボディ"
   },
   "weapons_copper_shield": {
     "en": "WEAPONS COPPER SHIELD",
-    "zh": "ＷＥＡＰＯＮＳ铜盾"
+    "zh": "ＷＥＡＰＯＮＳ铜盾",
+    "ja": "ウェポンズシールド銅"
   },
   "weapons_gold_shield": {
     "en": "WEAPONS GOLD SHIELD",
-    "zh": "ＷＥＡＰＯＮＳ金盾"
+    "zh": "ＷＥＡＰＯＮＳ金盾",
+    "ja": "ウェポンズシールド金"
   },
   "weapons_silver_shield": {
     "en": "WEAPONS SILVER SHIELD",
-    "zh": "ＷＥＡＰＯＮＳ银盾"
+    "zh": "ＷＥＡＰＯＮＳ银盾",
+    "ja": "ウェポンズシールド銀"
   },
   "wedding_dress_2": {
     "en": "Wedding Dress",
@@ -5596,7 +5673,8 @@ window.ITEMS_I18N = {
   },
   "white_ring": {
     "en": "WHITE RING",
-    "zh": "白色手镯"
+    "zh": "白色手镯",
+    "ja": "ホワイトリング"
   },
   "whitill_card": {
     "zh": "羽白卡片",
@@ -5610,7 +5688,8 @@ window.ITEMS_I18N = {
   },
   "wizard_technique": {
     "en": "Wizard/Technique",
-    "zh": "巫师级/魔法"
+    "zh": "巫师级/魔法",
+    "ja": "ウィザード/テクニック"
   },
   "wok_of_akiko_s_shop_2": {
     "en": "Wok of Akiko's Shop",
@@ -5619,7 +5698,8 @@ window.ITEMS_I18N = {
   },
   "works_guard": {
     "en": "WORKS GUARD",
-    "zh": "ＷＯＲＫＳ盾"
+    "zh": "ＷＯＲＫＳ盾",
+    "ja": "WORKSガード"
   },
   "yahoo": {
     "en": "Yahoo!",
@@ -5686,11 +5766,13 @@ window.ITEMS_I18N = {
   },
   "yellow_merge": {
     "en": "YELLOW MERGE",
-    "zh": "雷系增幅盾"
+    "zh": "雷系增幅盾",
+    "ja": "イエローマージ"
   },
   "yellow_ring": {
     "en": "YELLOW RING",
-    "zh": "黄色手镯"
+    "zh": "黄色手镯",
+    "ja": "イエローリング"
   },
   "yellowboze_card": {
     "zh": "金黄卡片",
@@ -5735,7 +5817,8 @@ window.ITEMS_I18N = {
   },
   "zonde_merge": {
     "en": "ZONDE MERGE",
-    "zh": "闪电增幅盾"
+    "zh": "闪电增幅盾",
+    "ja": "ゾンデマージ"
   },
   "zu": {
     "zh": "巨型火犀鸟",
