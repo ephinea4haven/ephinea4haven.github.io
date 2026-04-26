@@ -17,7 +17,8 @@ window.ITEMS_I18N = {
   },
   "absorb_armor": {
     "en": "Absorb Armor",
-    "zh": "负重装甲"
+    "zh": "负重装甲",
+    "ja": "アブソーブアーマー"
   },
   "accessories": {
     "en": "Accessories",
@@ -103,7 +104,8 @@ window.ITEMS_I18N = {
   },
   "all_resist": {
     "en": "All/Resist",
-    "zh": "全部/抗性"
+    "zh": "全部/抗性",
+    "ja": "オール/レジスト"
   },
   "alliance_uniform_2": {
     "en": "Alliance Uniform",
@@ -266,7 +268,8 @@ window.ITEMS_I18N = {
   },
   "anti": {
     "en": "Anti",
-    "zh": "状态术"
+    "zh": "状态术",
+    "ja": "アンティ"
   },
   "anti_android_rifle_2": {
     "en": "Anti Android Rifle",
@@ -275,7 +278,8 @@ window.ITEMS_I18N = {
   },
   "anti_dark_ring": {
     "en": "Anti-Dark Ring",
-    "zh": "御魔手镯"
+    "zh": "御魔手镯",
+    "ja": "アンチダークリング"
   },
   "anti_light_ring": {
     "en": "Anti-Light Ring",
@@ -304,7 +308,8 @@ window.ITEMS_I18N = {
   },
   "armor": {
     "en": "Armor",
-    "zh": "装甲"
+    "zh": "装甲",
+    "ja": "アーマー"
   },
   "arms": {
     "en": "Arms",
@@ -321,7 +326,8 @@ window.ITEMS_I18N = {
   },
   "assault": {
     "en": "Assault",
-    "zh": "扫射机枪"
+    "zh": "扫射机枪",
+    "ja": "アサルト"
   },
   "assist_barrier_2": {
     "en": "Assist Barrier",
@@ -359,7 +365,8 @@ window.ITEMS_I18N = {
   },
   "autogun": {
     "en": "Autogun",
-    "zh": "智能光枪"
+    "zh": "智能光枪",
+    "ja": "オートガン"
   },
   "axe": {
     "en": "AXE",
@@ -399,7 +406,8 @@ window.ITEMS_I18N = {
   },
   "barrier": {
     "en": "Barrier",
-    "zh": "盾"
+    "zh": "盾",
+    "ja": "バリア"
   },
   "barta": {
     "en": "Barta",
@@ -654,7 +662,8 @@ window.ITEMS_I18N = {
   },
   "brand": {
     "en": "Brand",
-    "zh": "强化光剑"
+    "zh": "强化光剑",
+    "ja": "ブランド"
   },
   "bravace": {
     "zh": "军用电击枪",
@@ -663,11 +672,13 @@ window.ITEMS_I18N = {
   },
   "brave_armor": {
     "en": "Brave Armor",
-    "zh": "勇者装甲"
+    "zh": "勇者装甲",
+    "ja": "ブレイブアーマー"
   },
   "brave_barrier": {
     "en": "Brave Barrier",
-    "zh": "勇者盾"
+    "zh": "勇者盾",
+    "ja": "ブレイブバリア"
   },
   "brave_hammer": {
     "zh": "勇者之锤",
@@ -747,7 +758,8 @@ window.ITEMS_I18N = {
   },
   "buster": {
     "en": "Buster",
-    "zh": "烙印光剑"
+    "zh": "烙印光剑",
+    "ja": "バスター"
   },
   "butterfly_net": {
     "en": "BUTTERFLY NET",
@@ -790,7 +802,8 @@ window.ITEMS_I18N = {
   },
   "cane": {
     "en": "Cane",
-    "zh": "手杖"
+    "zh": "手杖",
+    "ja": "ケイン"
   },
   "cannon": {
     "en": "Cannon",
@@ -978,7 +991,8 @@ window.ITEMS_I18N = {
   },
   "core_shield": {
     "en": "Core Shield",
-    "zh": "核机械盾"
+    "zh": "核机械盾",
+    "ja": "コアシールド"
   },
   "crazy_tune": {
     "en": "CRAZY TUNE",
@@ -996,7 +1010,8 @@ window.ITEMS_I18N = {
   },
   "cross_armor": {
     "en": "Cross Armor",
-    "zh": "十字装甲"
+    "zh": "十字装甲",
+    "ja": "クロスアーマー"
   },
   "cross_scar": {
     "zh": "十字疤",
@@ -1133,7 +1148,8 @@ window.ITEMS_I18N = {
   },
   "dagger": {
     "en": "Dagger",
-    "zh": "匕首"
+    "zh": "匕首",
+    "ja": "ダガー"
   },
   "daisy_chain": {
     "en": "DAISY CHAIN",
@@ -1426,7 +1442,8 @@ window.ITEMS_I18N = {
   },
   "digger_hp": {
     "en": "Digger/HP",
-    "zh": "地鬼级/ＨＰ"
+    "zh": "地鬼级/ＨＰ",
+    "ja": "ディガー/HP"
   },
   "digrinder": {
     "en": "Digrinder",
@@ -1533,7 +1550,8 @@ window.ITEMS_I18N = {
   },
   "divinity_barrier": {
     "en": "Divinity Barrier",
-    "zh": "圣灵盾"
+    "zh": "圣灵盾",
+    "ja": "ディビニティバリア"
   },
   "diwari": {
     "en": "Diwari",
@@ -1571,7 +1589,8 @@ window.ITEMS_I18N = {
   },
   "dragon_frame": {
     "en": "Dragon Frame",
-    "zh": "龙之铠甲"
+    "zh": "龙之铠甲",
+    "ja": "ドラゴンフレーム"
   },
   "dragon_hp": {
     "en": "Dragon/HP",
@@ -1685,11 +1704,13 @@ window.ITEMS_I18N = {
   },
   "elf_arm": {
     "en": "Elf/Arm",
-    "zh": "妖精级/命中"
+    "zh": "妖精级/命中",
+    "ja": "エルフ/アーム"
   },
   "elf_legs": {
     "en": "Elf/Legs",
-    "zh": "妖精级/回避"
+    "zh": "妖精级/回避",
+    "ja": "エルフ/レグス"
   },
   "elysion": {
     "zh": "魔法剑",
@@ -1765,7 +1786,8 @@ window.ITEMS_I18N = {
   },
   "flame_barrier": {
     "en": "Flame Barrier",
-    "zh": "火焰盾"
+    "zh": "火焰盾",
+    "ja": "フレイムバリア"
   },
   "flame_garment": {
     "zh": "火光铠",
@@ -1868,7 +1890,8 @@ window.ITEMS_I18N = {
   },
   "foie": {
     "en": "Foie",
-    "zh": "火球术"
+    "zh": "火球术",
+    "ja": "フォイエ"
   },
   "foie_merge": {
     "en": "FOIE MERGE",
@@ -1886,7 +1909,8 @@ window.ITEMS_I18N = {
   },
   "frame": {
     "en": "Frame",
-    "zh": "铠甲"
+    "zh": "铠甲",
+    "ja": "フレーム"
   },
   "freeze": {
     "en": "Freeze",
@@ -1898,7 +1922,8 @@ window.ITEMS_I18N = {
   },
   "friend_ring": {
     "en": "Friend Ring",
-    "zh": "友情戒指"
+    "zh": "友情戒指",
+    "ja": "友達の輪"
   },
   "from_the_depths": {
     "en": "FROM THE DEPTHS",
@@ -1998,19 +2023,23 @@ window.ITEMS_I18N = {
   },
   "general_armor": {
     "en": "General Armor",
-    "zh": "将军装甲"
+    "zh": "将军装甲",
+    "ja": "ジェネラルアーマー"
   },
   "general_battle": {
     "en": "General/Battle",
-    "zh": "将军级/战斗"
+    "zh": "将军级/战斗",
+    "ja": "ジェネラル/バトル"
   },
   "general_body": {
     "en": "General/Body",
-    "zh": "将军级/防御"
+    "zh": "将军级/防御",
+    "ja": "ジェネラル/ボディ"
   },
   "general_hp": {
     "en": "General/HP",
-    "zh": "将军级/ＨＰ"
+    "zh": "将军级/ＨＰ",
+    "ja": "ジェネラル/HP"
   },
   "general_legs": {
     "en": "General/Legs",
@@ -2029,11 +2058,13 @@ window.ITEMS_I18N = {
   },
   "general_shield": {
     "en": "General Shield",
-    "zh": "将军机械盾"
+    "zh": "将军机械盾",
+    "ja": "ジェネラルシールド"
   },
   "general_tp": {
     "en": "General/TP",
-    "zh": "将军级/ＴＰ"
+    "zh": "将军级/ＴＰ",
+    "ja": "ジェネラル/TP"
   },
   "genesis": {
     "en": "GENESIS",
@@ -2082,7 +2113,8 @@ window.ITEMS_I18N = {
   },
   "gifoie": {
     "en": "Gifoie",
-    "zh": "火墙术"
+    "zh": "火墙术",
+    "ja": "ギフォイエ"
   },
   "gifoie_merge": {
     "en": "GIFOIE MERGE",
@@ -2090,11 +2122,13 @@ window.ITEMS_I18N = {
   },
   "giga_frame": {
     "en": "Giga Frame",
-    "zh": "轻便铠甲"
+    "zh": "轻便铠甲",
+    "ja": "ギガフレーム"
   },
   "giga_shield": {
     "en": "Giga Shield",
-    "zh": "轻便机械盾"
+    "zh": "轻便机械盾",
+    "ja": "ギガシールド"
   },
   "gigobooma": {
     "en": "Gigobooma",
@@ -2121,7 +2155,8 @@ window.ITEMS_I18N = {
   },
   "gigush": {
     "en": "Gigush",
-    "zh": "宽刃大剑"
+    "zh": "宽刃大剑",
+    "ja": "ギガッシュ"
   },
   "gillchic": {
     "en": "Gillchic",
@@ -2142,7 +2177,8 @@ window.ITEMS_I18N = {
   },
   "gizonde": {
     "en": "Gizonde",
-    "zh": "群雷术"
+    "zh": "群雷术",
+    "ja": "ギゾンデ"
   },
   "gizonde_merge": {
     "en": "GIZONDE MERGE",
@@ -2150,7 +2186,8 @@ window.ITEMS_I18N = {
   },
   "gladius": {
     "en": "Gladius",
-    "zh": "决斗光剑"
+    "zh": "决斗光剑",
+    "ja": "グラディウス"
   },
   "glaive": {
     "en": "Glaive",
@@ -2164,7 +2201,8 @@ window.ITEMS_I18N = {
   },
   "glorious_shield": {
     "en": "Glorious Shield",
-    "zh": "光荣机械盾"
+    "zh": "光荣机械盾",
+    "ja": "グロリアスシールド"
   },
   "gobooma": {
     "en": "Gobooma",
@@ -2318,7 +2356,8 @@ window.ITEMS_I18N = {
   },
   "grand_armor": {
     "en": "Grand Armor",
-    "zh": "豪华装甲"
+    "zh": "豪华装甲",
+    "ja": "グランドアーマー"
   },
   "grants": {
     "en": "Grants",
@@ -2368,7 +2407,8 @@ window.ITEMS_I18N = {
   },
   "guardian_armor": {
     "en": "Guardian Armor",
-    "zh": "守护装甲"
+    "zh": "守护装甲",
+    "ja": "ガーディアンアーマー"
   },
   "guardian_shield": {
     "en": "Guardian Shield",
@@ -2425,7 +2465,8 @@ window.ITEMS_I18N = {
   },
   "halbert": {
     "en": "Halbert",
-    "zh": "护卫长刀"
+    "zh": "护卫长刀",
+    "ja": "ハルベルト"
   },
   "hallo_rappy": {
     "en": "Hallo Rappy",
@@ -2825,7 +2866,8 @@ window.ITEMS_I18N = {
   },
   "holiness_armor": {
     "en": "Holiness Armor",
-    "zh": "神圣装甲"
+    "zh": "神圣装甲",
+    "ja": "ホーリーネスアーマー"
   },
   "holy_ray": {
     "zh": "圣光枪",
@@ -2886,7 +2928,8 @@ window.ITEMS_I18N = {
   },
   "hyper_frame": {
     "en": "Hyper Frame",
-    "zh": "高级铠甲"
+    "zh": "高级铠甲",
+    "ja": "ハイパーフレーム"
   },
   "ice": {
     "en": "Ice",
@@ -2921,7 +2964,8 @@ window.ITEMS_I18N = {
   },
   "imperial_barrier": {
     "en": "Imperial Barrier",
-    "zh": "王者盾"
+    "zh": "王者盾",
+    "ja": "インペリアルバリア"
   },
   "imperial_pick_2": {
     "en": "Imperial Pick",
@@ -3082,7 +3126,8 @@ window.ITEMS_I18N = {
   },
   "knife": {
     "en": "Knife",
-    "zh": "锋利匕首"
+    "zh": "锋利匕首",
+    "ja": "ナイフ"
   },
   "knight_power": {
     "en": "Knight/Power",
@@ -3351,7 +3396,8 @@ window.ITEMS_I18N = {
   },
   "marksman_arm": {
     "en": "Marksman/Arm",
-    "zh": "射手级/命中"
+    "zh": "射手级/命中",
+    "ja": "マークスマン/アーム"
   },
   "marutah": {
     "en": "Marutah",
@@ -3426,7 +3472,8 @@ window.ITEMS_I18N = {
   },
   "metal_body": {
     "en": "Metal/Body",
-    "zh": "金属级/防御"
+    "zh": "金属级/防御",
+    "ja": "メタル/ボディ"
   },
   "meteor_cudge": {
     "en": "METEOR CUDGE",
@@ -3627,7 +3674,8 @@ window.ITEMS_I18N = {
   },
   "ogre_power": {
     "en": "Ogre/Power",
-    "zh": "巨人级/攻击"
+    "zh": "巨人级/攻击",
+    "ja": "オウガ/パワー"
   },
   "olga_flow": {
     "en": "Olga Flow",
@@ -3747,7 +3795,8 @@ window.ITEMS_I18N = {
   },
   "partisan": {
     "en": "Partisan",
-    "zh": "长刀"
+    "zh": "长刀",
+    "ja": "パルチザン"
   },
   "partisan_of_lighting": {
     "en": "PARTISAN OF LIGHTING",
@@ -3789,7 +3838,8 @@ window.ITEMS_I18N = {
   },
   "pb_generate": {
     "en": "PB/Generate",
-    "zh": "ＰＢ/再生"
+    "zh": "ＰＢ/再生",
+    "ja": "PB/ジェネレイト"
   },
   "pb_increase": {
     "en": "PB/Increase",
@@ -3797,7 +3847,8 @@ window.ITEMS_I18N = {
   },
   "perfect_frame": {
     "en": "Perfect Frame",
-    "zh": "完美铠甲"
+    "zh": "完美铠甲",
+    "ja": "パーフェクトフレーム"
   },
   "perfect_resist": {
     "en": "Perfect/Resist",
@@ -3865,7 +3916,8 @@ window.ITEMS_I18N = {
   },
   "pillar": {
     "en": "Pillar",
-    "zh": "祭司长杖"
+    "zh": "祭司长杖",
+    "ja": "パイラー"
   },
   "pinkal_card": {
     "zh": "粉红卡片",
@@ -3951,7 +4003,8 @@ window.ITEMS_I18N = {
   },
   "priest_mind": {
     "en": "Priest/Mind",
-    "zh": "祭司级/精神"
+    "zh": "祭司级/精神",
+    "ja": "プリースト/マインド"
   },
   "principal_s_gift_parasol": {
     "en": "PRINCIPAL'S GIFT PARASOL",
@@ -3972,7 +4025,8 @@ window.ITEMS_I18N = {
   },
   "protect_barrier": {
     "en": "Protect Barrier",
-    "zh": "护心盾"
+    "zh": "护心盾",
+    "ja": "プロテクトバリア"
   },
   "protect_frame": {
     "en": "Protect Frame",
@@ -3994,11 +4048,13 @@ window.ITEMS_I18N = {
   },
   "psy_armor": {
     "en": "Psy Armor",
-    "zh": "经济装甲"
+    "zh": "经济装甲",
+    "ja": "サイアーマー"
   },
   "psychic_barrier": {
     "en": "Psychic Barrier",
-    "zh": "经济盾"
+    "zh": "经济盾",
+    "ja": "サイキックバリア"
   },
   "psycho_wand_2": {
     "en": "Psycho Wand",
@@ -4274,7 +4330,8 @@ window.ITEMS_I18N = {
   },
   "resist_dark": {
     "en": "Resist/Dark",
-    "zh": "抗性/暗黑"
+    "zh": "抗性/暗黑",
+    "ja": "レジスト/ダーク"
   },
   "resist_devil": {
     "zh": "抗性/魔鬼",
@@ -4283,7 +4340,8 @@ window.ITEMS_I18N = {
   },
   "resist_evil": {
     "en": "Resist/Evil",
-    "zh": "抗性/邪魔"
+    "zh": "抗性/邪魔",
+    "ja": "レジスト/エビル"
   },
   "resist_fire": {
     "en": "Resist/Fire",
@@ -4312,7 +4370,8 @@ window.ITEMS_I18N = {
   },
   "resist_saint": {
     "en": "Resist/Saint",
-    "zh": "抗性/神圣"
+    "zh": "抗性/神圣",
+    "ja": "レジスト/セイント"
   },
   "resist_shock": {
     "en": "Resist/Shock",
@@ -4419,7 +4478,8 @@ window.ITEMS_I18N = {
   },
   "rod": {
     "en": "Rod",
-    "zh": "长杖"
+    "zh": "长杖",
+    "ja": "ロッド"
   },
   "ruby_bullet": {
     "zh": "宝石枪",
@@ -4626,7 +4686,8 @@ window.ITEMS_I18N = {
   },
   "shield": {
     "en": "Shield",
-    "zh": "机械盾"
+    "zh": "机械盾",
+    "ja": "シールド"
   },
   "shield_of_delsaber": {
     "en": "SHIELD OF DELSABER",
@@ -4646,7 +4707,8 @@ window.ITEMS_I18N = {
   },
   "shock_frame": {
     "en": "Shock Frame",
-    "zh": "富丽铠甲"
+    "zh": "富丽铠甲",
+    "ja": "ショックフレーム"
   },
   "shot": {
     "en": "Shot",
@@ -4731,7 +4793,8 @@ window.ITEMS_I18N = {
   },
   "slicer": {
     "en": "Slicer",
-    "zh": "投刃"
+    "zh": "投刃",
+    "ja": "スライサー"
   },
   "slicer_of_assassin": {
     "zh": "暗杀者的投刃",
@@ -4782,7 +4845,8 @@ window.ITEMS_I18N = {
   },
   "solid_frame": {
     "en": "Solid Frame",
-    "zh": "坚固铠甲"
+    "zh": "坚固铠甲",
+    "ja": "ソリッドフレーム"
   },
   "solid_shield": {
     "en": "Solid Shield",
@@ -4935,7 +4999,8 @@ window.ITEMS_I18N = {
   },
   "stick": {
     "en": "Stick",
-    "zh": "球杖"
+    "zh": "球杖",
+    "ja": "ステッキ"
   },
   "sting_tip": {
     "zh": "蜂尾杖",
@@ -5060,7 +5125,8 @@ window.ITEMS_I18N = {
   },
   "telepipe": {
     "en": "Telepipe",
-    "zh": "传送门"
+    "zh": "传送门",
+    "ja": "テレパイプ"
   },
   "tellusis": {
     "en": "Tellusis",
@@ -5407,7 +5473,8 @@ window.ITEMS_I18N = {
   },
   "valiant_frame": {
     "en": "Valiant Frame",
-    "zh": "英勇铠甲"
+    "zh": "英勇铠甲",
+    "ja": "ヴァリアントフレーム"
   },
   "valkyrie_2": {
     "en": "Valkyrie",
@@ -5503,7 +5570,8 @@ window.ITEMS_I18N = {
   },
   "wand": {
     "en": "Wand",
-    "zh": "魔杖"
+    "zh": "魔杖",
+    "ja": "ウォンド"
   },
   "warrior_body": {
     "en": "Warrior/Body",
@@ -5662,7 +5730,8 @@ window.ITEMS_I18N = {
   },
   "zonde": {
     "en": "Zonde",
-    "zh": "闪电术"
+    "zh": "闪电术",
+    "ja": "ゾンデ"
   },
   "zonde_merge": {
     "en": "ZONDE MERGE",
