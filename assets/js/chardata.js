@@ -15,4 +15,12 @@ window.charDataReady = fetch('/assets/js/chardata.json?v=1')
     .then(function (d) {
         window.CHAR_DATA = d;
         return d;
+    })
+    .catch(function (err) {
+        console.error('Failed to load chardata.json:', err);
+        var msg = document.createElement('div');
+        msg.style.cssText = 'background:#7f1d1d;color:#fff;padding:14px 20px;margin:12px;border-radius:6px;font-family:sans-serif;text-align:center';
+        msg.textContent = 'Failed to load character data. Please refresh the page.';
+        document.body && document.body.insertBefore(msg, document.body.firstChild);
+        throw err;
     });

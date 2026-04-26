@@ -94,7 +94,14 @@
                 window.setSimLang(b.getAttribute('data-lang'));
             });
         });
-        applyLang();
+        // Wait for chardata to load — simulator.js gates dropdown creation on
+        // the same Promise, so applying language before then would miss the
+        // <option> elements that need translating.
+        if (window.charDataReady && typeof window.charDataReady.then === 'function') {
+            window.charDataReady.then(applyLang);
+        } else {
+            applyLang();
+        }
     }
 
     if (window.jQuery) {
