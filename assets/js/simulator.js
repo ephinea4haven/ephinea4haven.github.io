@@ -3,7 +3,7 @@ var Simulator = function () {
     this.loc = a.protocol + "//" + a.host + a.pathname;
     this.stars = ['<span class="rare1">☆☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★☆☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★☆☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★☆☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★☆☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★☆☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★☆☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★★☆☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★★★☆</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★★★★</span><span class="rare2">☆☆☆</span>', '<span class="rare1">★★★★★★★★★</span><span class="rare2">★☆☆</span>', '<span class="rare1">★★★★★★★★★</span><span class="rare2">★★☆</span>', '<span class="rare1">★★★★★★★★★</span><span class="rare2">★★★</span>'];
     this.itemdata = new ItemData();
-    this.chardata = new CharData();
+    this.chardata = window.CHAR_DATA;
     this.currentClass = "-";
     this.EFR = 0;
     this.EIC = 0;
@@ -868,7 +868,10 @@ Simulator.prototype.SetClass = function (s) {
         this.MaxMat = 0
     }
 };
-var sim = new Simulator();
+
+// `sim` is created inside the charDataReady promise below — it depends
+// on window.CHAR_DATA, which loads asynchronously from chardata.json.
+var sim;
 
 function calc() {
     sim.Calc();
@@ -1103,24 +1106,28 @@ function init() {
 }
 
 $(document).ready(function () {
-    InitSelectOption("#class", sim.chardata.clazz, true);
-    InitSelectOption("#armor", sim.itemdata.armors);
-    InitSelectOption("#shield", sim.itemdata.shields);
-    InitSelectOption(".unit", sim.itemdata.units);
+    window.charDataReady.then(function () {
+        sim = new Simulator();
 
-    $('#class  option[value="humar"]').attr("selected", "selected");
-    $("#class").change(OnClassChange).keyup(OnClassChange).change();
+        InitSelectOption("#class", sim.chardata.clazz, true);
+        InitSelectOption("#armor", sim.itemdata.armors);
+        InitSelectOption("#shield", sim.itemdata.shields);
+        InitSelectOption(".unit", sim.itemdata.units);
 
-    $("#magReset").click(OnMagReset);
-    $("#matReset").click(OnMatReset);
-    $("#equipReset").click(OnEquipReset);
-    $("#unitReset").click(OnUnitReset);
+        $('#class  option[value="humar"]').attr("selected", "selected");
+        $("#class").change(OnClassChange).keyup(OnClassChange).change();
 
-    $("#lv, #armor, #shield, #unit1, #unit2, #unit3, #unit4").change(calc).keyup(calc);
+        $("#magReset").click(OnMagReset);
+        $("#matReset").click(OnMatReset);
+        $("#equipReset").click(OnEquipReset);
+        $("#unitReset").click(OnUnitReset);
 
-    $("#magDef, #magPow, #magDex, #magMind, #matHP, #matTP, #matPow, #matDef, #matMind, #matEva, #matLck").keyup(calc);
+        $("#lv, #armor, #shield, #unit1, #unit2, #unit3, #unit4").change(calc).keyup(calc);
 
-    init();
+        $("#magDef, #magPow, #magDex, #magMind, #matHP, #matTP, #matPow, #matDef, #matMind, #matEva, #matLck").keyup(calc);
 
-    calc()
+        init();
+
+        calc();
+    });
 });

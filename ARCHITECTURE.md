@@ -28,7 +28,8 @@ Pure static site — no build system, no package manager — served directly via
 
 | File | Lines | Purpose |
 |------|-------|---------|
-| `assets/js/chardata.js` | 2500 | Character class definitions and stat data |
+| `assets/js/chardata.json` | 2500 | Per-class stat tables (pure JSON, fetched at load) |
+| `assets/js/chardata.js` | 18 | Loader; sets `window.charDataReady` Promise |
 | `assets/js/combo_calc.js` | 1583 | Weapon combo and damage calculation engine (third-party sync) |
 | `assets/js/simulator.js` | 1066 | Character damage simulator |
 | `data/droptable/shared/viewer.js` | 390 | Shared drop table rendering logic |
@@ -51,17 +52,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ## Issues & Recommendations
 
-### 1. Game Data and Logic Mixed in chardata.js (Medium)
-
-**Problem:** Static game data is hardcoded directly inside `chardata.js`, tightly coupling data with calculation logic.
-
-**Fix:** Extract static data to JSON files; keep `chardata.js` focused on computation only.
-
-(`combo_calc.js` has the same problem but is excluded — see top-of-file scope note.)
-
----
-
-### 2. Manual Cache-Busting Version Numbers (Low)
+### 1. Manual Cache-Busting Version Numbers (Low)
 
 **Problem:** `<script src="assets/js/index.js?v=1">` requires manual version bumps, which are easy to forget.
 
@@ -73,5 +64,4 @@ Pure static site — no build system, no package manager — served directly via
 
 | Priority | Item | Expected Benefit |
 |----------|------|-----------------|
-| Medium | Decouple game data from JS logic | Improved maintainability |
 | Low | Automated cache-busting | Prevent stale cache issues |

@@ -4,15 +4,10 @@
 
 ## Active
 
-- [ ] **Decouple game data from `chardata.js`** (Medium)
-  - Static class/stat data is hardcoded inside `chardata.js` (~2500 LOC). Extract to JSON; keep `chardata.js` focused on computation.
-  - Audit consumers first (`simulator.js`, `tools/chartable.html`) to nail the data shape before splitting.
-  - `combo_calc.js` has the same issue but is excluded — third-party sync, see Scope exclusions below.
-  - Cross-ref: ARCHITECTURE.md issue #1.
 - [ ] **Automated cache-busting** (Low)
   - Replace manual `?v=N` query strings on `<script>` / `<link>` tags with content-hash strings (e.g. md5 of file).
   - Could be a small Python script run pre-deploy, or a git pre-commit hook.
-  - Cross-ref: ARCHITECTURE.md issue #2.
+  - Cross-ref: ARCHITECTURE.md issue #1.
 
 ## Optional follow-ups
 
