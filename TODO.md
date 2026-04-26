@@ -2,13 +2,6 @@
 
 > Long-term architecture issues are tracked in [`ARCHITECTURE.md`](./ARCHITECTURE.md). This file tracks near-term, actionable work.
 
-## Project Layout
-
-- [ ] **Audit the `data/` vs `tools/` boundary**
-  - `data/` is currently mixed: drop tables, price guide, BDP table, prize list — all read-only/lookup pages.
-  - `tools/` holds calculators (status sim, mag, materialplan, combo).
-  - `tools/200.html` is a static stat lookup table, more naturally a `data/` page — consider moving.
-
 ## ARCHITECTURE.md High-Priority Items (cross-referenced)
 
 - [ ] Extract `index.html` inline CSS (Medium)
