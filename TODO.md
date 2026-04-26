@@ -2,12 +2,6 @@
 
 > Long-term architecture issues are tracked in [`ARCHITECTURE.md`](./ARCHITECTURE.md). This file tracks near-term, actionable work.
 
-## Refactor / Cleanup
-
-- [ ] **Extract large inline `<style>` blocks from `data/bdp/` and `data/prizelist/`**
-  - Each still carries ~150 lines of page-specific inline CSS (header/title/back-link/table styling) — move to dedicated files under `assets/css/`.
-  - `tools/200.html` and `tools/chartable.html` likewise carry page-specific inline blocks; consider extracting at the same time.
-
 ## Project Layout
 
 - [ ] **Audit the `data/` vs `tools/` boundary**

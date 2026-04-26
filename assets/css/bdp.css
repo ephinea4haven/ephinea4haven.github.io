@@ -1,0 +1,53 @@
+#bdpContainer { margin-top: 20px; }
+
+.bdp-table {
+    width: 80%;
+    margin: 30px auto;
+    background: rgba(26, 35, 50, 0.85);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: center;
+}
+
+.bdp-table td {
+    padding: 15px;
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    line-height: 1.8;
+    vertical-align: top;
+}
+
+.bdp-table tr.bdp-head td {
+    background: linear-gradient(135deg, rgba(196, 84, 84, 0.85), rgba(180, 70, 70, 0.85));
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1em;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    vertical-align: middle;
+}
+
+.bdp-table td.monster-label {
+    background: rgba(247, 247, 21, 0.2);
+    color: #f1d676;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+/* Distinct tint per monster row so sections are easy to scan */
+.bdp-row-0 td.monster-label { background: rgba(247, 247, 21, 0.22); color: #f1d676; }
+.bdp-row-1 td.monster-label { background: rgba(204, 0, 255, 0.28); color: #f0c8ff; }
+.bdp-row-2 td.monster-label { background: rgba(89, 249, 249, 0.25); color: #b4f7f7; }
+.bdp-row-3 td.monster-label { background: rgba(0, 0, 0, 0.75); color: #ffffff; }
+
+.bdp-table tr:hover td { background: rgba(0, 212, 255, 0.08); }
+.bdp-table tr.bdp-head:hover td { background: linear-gradient(135deg, rgba(196, 84, 84, 0.85), rgba(180, 70, 70, 0.85)); }
+
+@media (max-width: 768px) {
+    .bdp-table { width: 100%; }
+    .bdp-table td { padding: 10px; font-size: 0.9em; }
+}

@@ -1,0 +1,175 @@
+/* Page-specific styles for tools/200.html (LV200 base stats lookup table). */
+
+body {
+    display: block;
+    background: #1a2332;
+    color: #e2e8f0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(26, 35, 50, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+h1 {
+    color: #00d4ff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: 800;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5),
+                 0 0 40px rgba(0, 212, 255, 0.3);
+}
+
+.legend {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #e2e8f0;
+}
+
+.legend span {
+    margin: 0 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend strong {
+    color: #e2e8f0;
+}
+
+.legend .color-box {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.max-color {
+    background-color: #fbbf24;
+}
+
+.min-color {
+    background-color: #f87171;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(26, 35, 50, 0.6);
+    min-width: 800px;
+}
+
+th, td {
+    padding: 12px 10px;
+    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+th {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(138, 43, 226, 0.3));
+    color: #e2e8f0;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+td {
+    color: #e2e8f0;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(0, 212, 255, 0.03);
+}
+
+tr:hover {
+    background-color: rgba(0, 212, 255, 0.08);
+}
+
+td:first-child {
+    font-weight: 600;
+    color: #00d4ff;
+    background-color: rgba(0, 212, 255, 0.08);
+}
+
+.max {
+    color: #fbbf24;
+    font-weight: 600;
+}
+
+.min {
+    color: #f87171;
+    font-weight: 600;
+}
+
+/* 手机端优化 */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .legend {
+        font-size: 14px;
+    }
+
+    .legend span {
+        margin: 5px 10px;
+    }
+
+    table {
+        min-width: 700px;
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px 6px;
+    }
+
+    .table-wrapper {
+        margin: 15px -15px;
+        border-radius: 0;
+    }
+
+    .scroll-hint {
+        text-align: center;
+        color: #94a3b8;
+        font-size: 12px;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    table {
+        font-size: 11px;
+    }
+
+    th, td {
+        padding: 6px 4px;
+    }
+}
