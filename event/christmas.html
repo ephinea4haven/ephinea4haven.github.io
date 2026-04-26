@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ephinea PSOBB 圣诞活动 (2015-2026)">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="page-title">圣诞活动 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .year-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .year-nav a,
+        .year-nav .year-current {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--accent-25);
+            transition: all 0.2s ease;
+        }
+
+        .year-nav a {
+            background: var(--accent-10);
+            color: var(--text-primary);
+        }
+
+        .year-nav a:hover {
+            background: var(--accent-25);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .year-nav .year-current {
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            color: var(--accent-dark);
+            border-color: var(--accent);
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="project_title">圣诞活动</h1>
+    </header>
+
+    <a href="./event.html" class="back-link">← 返回活动页</a>
+
+    <nav id="yearNav" class="year-nav"></nav>
+
+    <div class="content-container" id="content">
+        <p>载入中…</p>
+    </div>
+
+    <script>
+        const YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
+
+        const params = new URLSearchParams(location.search);
+        const requested = parseInt(params.get('year'), 10);
+        const selected = YEARS.includes(requested) ? requested : YEARS[0];
+
+        document.title = `${selected}圣诞活动 | Ephinea PSOBB`;
+        document.getElementById('page-title').textContent = document.title;
+        document.getElementById('project_title').textContent = `christmas${selected}`;
+
+        document.getElementById('yearNav').innerHTML = YEARS.map(y =>
+            y === selected
+                ? `<span class="year-current">${y}</span>`
+                : `<a href="?year=${y}">${y}</a>`
+        ).join('');
+
+        fetch(`./christmas/${selected}.html`)
+            .then(r => {
+                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                return r.text();
+            })
+            .then(html => {
+                document.getElementById('content').innerHTML = html;
+            })
+            .catch(() => {
+                document.getElementById('content').innerHTML =
+                    `<p>未能加载 ${selected} 年圣诞活动内容。</p>`;
+            });
+    </script>
+</body>
+
+</html>

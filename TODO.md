@@ -6,7 +6,6 @@
 
 - [ ] Shared nav/header injection mechanism (Medium)
 - [ ] Decouple game data from calculation JS files (Medium)
-- [ ] Convert Christmas event pages to data-driven single page (Low)
 
 ## Vite Tooling
 

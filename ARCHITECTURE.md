@@ -17,7 +17,7 @@ Pure static site — no build system, no package manager — served directly via
 /assets/css/          ← Stylesheets (~7 CSS files)
 /data/droptable/      ← Drop tables (bb/dc/ngc/cn/en variants)
 /data/                ← Misc data pages (14 HTML files)
-/event/               ← Event pages, e.g. Christmas (12 HTML files)
+/event/               ← Event pages — `event.html` index, `christmas.html` data-driven template, `christmas/` per-year fragments
 /guide/               ← Guides (14 HTML files)
 /tools/               ← Tool pages (13 HTML)
 ```
@@ -74,14 +74,6 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 4. Christmas Event Pages Created Annually (Low)
-
-**Problem:** `event/christmas20xx.html` is duplicated every year — 12 files so far, all nearly identical in structure.
-
-**Fix:** Single data-driven page with year selection via URL parameter (`?year=2025`).
-
----
-
 ## Priority Summary
 
 | Priority | Item | Expected Benefit |
@@ -89,4 +81,3 @@ Pure static site — no build system, no package manager — served directly via
 | Medium | Shared nav injection via JS | Lower maintenance cost |
 | Medium | Decouple game data from JS logic | Improved maintainability |
 | Low | Automated cache-busting | Prevent stale cache issues |
-| Low | Data-driven Christmas event page | Eliminate annual file duplication |
