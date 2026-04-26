@@ -3627,14 +3627,6 @@ window.ITEMS_I18N = {
     "en": "IRON FAUST",
     "zh": "强化导向穿甲弹"
   },
-  "item": {
-    "en": "????",
-    "zh": "？？？？"
-  },
-  "item_2": {
-    "en": "???",
-    "zh": "？？？"
-  },
   "item_exchange_ticket": {
     "en": "Item Exchange Ticket",
     "zh": "道具交换点券"

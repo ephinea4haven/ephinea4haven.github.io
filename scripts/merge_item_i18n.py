@@ -37,6 +37,17 @@ def slugify(name: str) -> str:
     return s.strip('_') or 'item'
 
 
+def is_placeholder(s: str | None) -> bool:
+    """True if s is empty/whitespace or made up entirely of placeholder
+    glyphs the upstream uses for unidentified items (`?`, `？`, `-`)."""
+    if not s:
+        return True
+    stripped = s.strip()
+    if not stripped:
+        return True
+    return all(c in '?？-' for c in stripped)
+
+
 def load_items_i18n() -> dict:
     js = ITEMS_I18N.read_text(encoding='utf-8')
     m = re.search(r"window\.ITEMS_I18N\s*=\s*(\{.*?\});", js, re.DOTALL)
@@ -55,8 +66,9 @@ def load_en2chinese() -> dict:
         m2 = re.match(r'^([^一-鿿＀-￯　-〿]+?)\s+([一-鿿＀-￯　-〿].*)$', line)
         if m2:
             en, zh = m2.group(1).strip(), m2.group(2).strip()
-            if en and zh and en != zh:
-                pairs.setdefault(en, zh)
+            if is_placeholder(en) or is_placeholder(zh) or en == zh:
+                continue
+            pairs.setdefault(en, zh)
     return pairs
 
 
@@ -108,11 +120,11 @@ def load_droptable_pairs() -> tuple[dict, dict]:
             en = en.strip()
             zh = (zh or '').strip()
             ja = (ja or '').strip()
-            if not en:
+            if is_placeholder(en):
                 continue
-            if zh and zh != en:
+            if zh and not is_placeholder(zh) and zh != en:
                 en_to_zh.setdefault(en, zh)
-            if ja and ja != en:
+            if ja and not is_placeholder(ja) and ja != en:
                 en_to_ja.setdefault(en, ja)
     return en_to_zh, en_to_ja
 
@@ -123,6 +135,14 @@ def merge(items_i18n, en2cn, dt_zh, dt_ja):
 
     Returns: (merged_dict, stats)
     """
+    # Drop any existing placeholder entries (?? / ??? / -- etc.) before merging.
+    placeholder_slugs = [
+        slug for slug, entry in items_i18n.items()
+        if is_placeholder(entry.get('en')) or is_placeholder(entry.get('zh'))
+    ]
+    for slug in placeholder_slugs:
+        del items_i18n[slug]
+
     # Start with existing items_i18n; index by EN name for lookup.
     by_en = {}
     for slug, entry in items_i18n.items():
@@ -131,7 +151,8 @@ def merge(items_i18n, en2cn, dt_zh, dt_ja):
             by_en[en] = (slug, dict(entry))  # dict copy
 
     stats = {
-        'pre_existing': len(items_i18n),
+        'pre_existing': len(items_i18n) + len(placeholder_slugs),
+        'placeholders_pruned': len(placeholder_slugs),
         'added_from_en2chinese': 0,
         'added_from_droptable': 0,
         'zh_filled': 0,
