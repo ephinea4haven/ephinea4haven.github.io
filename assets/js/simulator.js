@@ -925,7 +925,7 @@ function InitSelectOption(a, b, g) {
     for (var i = 0; i < d.length; i++) {
         var en = b[d[i]][0];
         if (byEn) {
-            var entry = byEn[en] || {};
+            var entry = byEn[en.toLowerCase()] || {};
             var zh = entry.zh || en;
             var ja = entry.ja || en;
             c.push(
@@ -948,8 +948,11 @@ function __itemsI18nByEn() {
     __itemsI18nIndex = {};
     var dict = window.ITEMS_I18N || {};
     for (var slug in dict) {
-        if (dict[slug] && dict[slug].en) {
-            __itemsI18nIndex[dict[slug].en] = dict[slug];
+        var entry = dict[slug];
+        if (entry && entry.en) {
+            // Case-insensitive: itemdata.js uses mixed casing (e.g. "ADEPT")
+            // while items_i18n.js stores canonical Title Case ("Adept").
+            __itemsI18nIndex[entry.en.toLowerCase()] = entry;
         }
     }
     return __itemsI18nIndex;

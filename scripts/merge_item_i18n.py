@@ -143,16 +143,43 @@ def merge(items_i18n, en2cn, dt_zh, dt_ja):
     for slug in placeholder_slugs:
         del items_i18n[slug]
 
-    # Start with existing items_i18n; index by EN name for lookup.
+    # Collapse case-insensitive duplicates (e.g. "Adept" and "ADEPT" → one entry).
+    # When duplicates exist, keep the slug whose en is NOT all-caps (so we
+    # preserve the more natural Title Case form), merging missing fields in.
+    by_lower: dict[str, list[str]] = {}
+    for slug, entry in items_i18n.items():
+        en = entry.get('en') or ''
+        if en:
+            by_lower.setdefault(en.lower(), []).append(slug)
+    case_dupes_collapsed = 0
+    for lower, slugs in by_lower.items():
+        if len(slugs) <= 1:
+            continue
+        # Pick canonical: prefer not-all-uppercase, then first encountered
+        slugs_sorted = sorted(slugs, key=lambda s: (items_i18n[s].get('en', '').isupper(), s))
+        keep = slugs_sorted[0]
+        keep_entry = items_i18n[keep]
+        for s in slugs_sorted[1:]:
+            other = items_i18n[s]
+            for field in ('zh', 'en', 'ja'):
+                if not keep_entry.get(field) and other.get(field):
+                    keep_entry[field] = other[field]
+            del items_i18n[s]
+            case_dupes_collapsed += 1
+
+    # Start with existing items_i18n; index by EN name (and lowercased EN) for lookup.
     by_en = {}
+    by_en_lower = {}
     for slug, entry in items_i18n.items():
         en = entry.get('en')
         if en:
-            by_en[en] = (slug, dict(entry))  # dict copy
+            by_en[en] = (slug, dict(entry))
+            by_en_lower[en.lower()] = (slug, by_en[en][1])
 
     stats = {
-        'pre_existing': len(items_i18n) + len(placeholder_slugs),
+        'pre_existing': len(items_i18n) + len(placeholder_slugs) + case_dupes_collapsed,
         'placeholders_pruned': len(placeholder_slugs),
+        'case_dupes_collapsed': case_dupes_collapsed,
         'added_from_en2chinese': 0,
         'added_from_droptable': 0,
         'zh_filled': 0,
@@ -163,8 +190,17 @@ def merge(items_i18n, en2cn, dt_zh, dt_ja):
     def upsert(en: str, zh: str | None, ja: str | None):
         if not en:
             return
-        if en in by_en:
-            slug, entry = by_en[en]
+        # Match case-insensitively to avoid creating duplicate entries that
+        # differ only in case (Title Case vs UPPERCASE).
+        existing_key = en if en in by_en else None
+        if not existing_key:
+            existing_key_lower = en.lower()
+            if existing_key_lower in by_en_lower:
+                # Use the canonical (lowercased) match's slug
+                slug, entry = by_en_lower[existing_key_lower]
+                existing_key = entry.get('en')
+        if existing_key:
+            slug, entry = by_en[existing_key]
             # Don't overwrite hand-edited zh
             if zh and entry.get('zh') and entry['zh'] != zh:
                 stats['zh_conflicts_kept_existing'] += 1
@@ -193,6 +229,7 @@ def merge(items_i18n, en2cn, dt_zh, dt_ja):
                 entry['ja'] = ja
             items_i18n[slug] = entry
             by_en[en] = (slug, entry)
+            by_en_lower[en.lower()] = (slug, entry)
 
     # Apply en2chinese (en -> zh, no ja)
     for en, zh in en2cn.items():
