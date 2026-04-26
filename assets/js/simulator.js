@@ -925,15 +925,13 @@ function InitSelectOption(a, b, g) {
     for (var i = 0; i < d.length; i++) {
         var en = b[d[i]][0];
         if (byEn) {
-            var entry = byEn[en.toLowerCase()] || {};
-            var zh = entry.zh || en;
-            var ja = entry.ja || en;
+            var t = __lookupTranslation(en, byEn);
             c.push(
                 '<option value="' + d[i] +
                 '" data-en="' + __escAttr(en) +
-                '" data-zh="' + __escAttr(zh) +
-                '" data-ja="' + __escAttr(ja) +
-                '">' + zh + '</option>'
+                '" data-zh="' + __escAttr(t.zh) +
+                '" data-ja="' + __escAttr(t.ja) +
+                '">' + t.zh + '</option>'
             );
         } else {
             c.push('<option value="' + d[i] + '">' + en + '</option>');
@@ -962,6 +960,30 @@ function __escAttr(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
+}
+
+// Look up zh/ja for an English item name, falling back through:
+// 1. Direct case-insensitive match.
+// 2. PSO unit grade suffixes (++/+/-/--) — strip the suffix, look up the
+//    base, then re-append the modifier to the translated text. This avoids
+//    needing 5 separate dictionary entries per gradable unit family.
+// 3. English fallback when no translation exists.
+function __lookupTranslation(en, byEn) {
+    var entry = byEn[en.toLowerCase()];
+    if (entry) {
+        return { zh: entry.zh || en, ja: entry.ja || en };
+    }
+    var m = en.match(/^(.*?)([+\-]{1,2})$/);
+    if (m) {
+        var baseEntry = byEn[m[1].toLowerCase()];
+        if (baseEntry) {
+            return {
+                zh: (baseEntry.zh || m[1]) + m[2],
+                ja: (baseEntry.ja || m[1]) + m[2]
+            };
+        }
+    }
+    return { zh: en, ja: en };
 }
 
 function init() {
