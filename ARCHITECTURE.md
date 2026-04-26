@@ -29,11 +29,14 @@ Pure static site — no build system, no package manager — served directly via
 | File | Lines | Purpose |
 |------|-------|---------|
 | `assets/js/chardata.js` | 2500 | Character class definitions and stat data |
-| `assets/js/combo_calc.js` | 1583 | Weapon combo and damage calculation engine |
-| `assets/js/simulator.js` | 1056 | Character damage simulator |
+| `assets/js/combo_calc.js` | 1583 | Weapon combo and damage calculation engine (third-party sync) |
+| `assets/js/simulator.js` | 1066 | Character damage simulator |
+| `data/droptable/shared/viewer.js` | 390 | Shared drop table rendering logic |
 | `assets/js/itemdata.js` | 359 | Weapon/armor/item database |
-| `assets/js/index.js` | 121 | Landing page logic (Swatch time, RBS rotation, event tracking) |
-| `data/droptable/shared/viewer.js` | 298 | Shared drop table rendering logic |
+| `assets/js/id.js` | 82 | Section ID calculator |
+| `assets/js/index.js` | 77 | Landing page logic (Swatch time, RBS rotation, event tracking) |
+| `assets/js/page-chrome.js` | 30 | `<page-chrome>` custom element — injects standard subpage header + back-link |
+| `assets/js/chartable.js` | 27 | Per-class stat table jump logic |
 
 ### Drop Table Data Files
 
