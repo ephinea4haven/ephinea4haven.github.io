@@ -46,15 +46,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ## Issues & Recommendations
 
-### 1. Inline CSS on Landing Page (Medium)
-
-**Problem:** `index.html` has a large `<style>` block while all other pages use `unified-style.css`, creating inconsistency.
-
-**Fix:** Move landing page styles into `unified-style.css` or a dedicated `index.css`.
-
----
-
-### 2. No Shared HTML Template — Nav/Header Duplicated Everywhere (Medium)
+### 1. No Shared HTML Template — Nav/Header Duplicated Everywhere (Medium)
 
 **Problem:** Every HTML page independently manages its `<head>`, back link, and header. Changing navigation requires editing dozens of files.
 
@@ -62,7 +54,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 3. Game Data and Logic Mixed in JS Files (Medium)
+### 2. Game Data and Logic Mixed in JS Files (Medium)
 
 **Problem:** Static game data is hardcoded directly inside `chardata.js` and `combo_calc.js`, tightly coupling data with calculation logic.
 
@@ -70,7 +62,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 4. Manual Cache-Busting Version Numbers (Low)
+### 3. Manual Cache-Busting Version Numbers (Low)
 
 **Problem:** `<script src="assets/js/index.js?v=1">` requires manual version bumps, which are easy to forget.
 
@@ -78,7 +70,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 5. Christmas Event Pages Created Annually (Low)
+### 4. Christmas Event Pages Created Annually (Low)
 
 **Problem:** `event/christmas20xx.html` is duplicated every year — 12 files so far, all nearly identical in structure.
 
@@ -90,7 +82,6 @@ Pure static site — no build system, no package manager — served directly via
 
 | Priority | Item | Expected Benefit |
 |----------|------|-----------------|
-| Medium | Extract landing page inline CSS | Code consistency |
 | Medium | Shared nav injection via JS | Lower maintenance cost |
 | Medium | Decouple game data from JS logic | Improved maintainability |
 | Low | Automated cache-busting | Prevent stale cache issues |

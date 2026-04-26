@@ -4,7 +4,6 @@
 
 ## ARCHITECTURE.md High-Priority Items (cross-referenced)
 
-- [ ] Extract `index.html` inline CSS (Medium)
 - [ ] Shared nav/header injection mechanism (Medium)
 - [ ] Decouple game data from calculation JS files (Medium)
 - [ ] Convert Christmas event pages to data-driven single page (Low)
