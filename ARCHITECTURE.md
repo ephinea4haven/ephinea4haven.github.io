@@ -1,6 +1,7 @@
 # Architecture & Optimization Notes
 
 > Last updated: 2026-04-26
+> Note: `data/droptable/` is intentionally outside the refactor/cleanup scope per user direction. Do not propose changes to its structure or data files.
 
 ## Overview
 
@@ -45,18 +46,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ## Issues & Recommendations
 
-### 1. Drop Table Language Files Are Nearly Identical (High)
-
-**Problem:** `en.js` and `zh.js` are both 27,362 lines with almost identical structure — differing only in item names.
-
-**Fix:**
-- Extract shared base data (drop rates, enemies, areas) into one file
-- Language packs store only name mappings: `{ item_id: "Item Name" }`
-- Expected reduction: ~50% in total data size
-
----
-
-### 2. Inline CSS on Landing Page (Medium)
+### 1. Inline CSS on Landing Page (Medium)
 
 **Problem:** `index.html` has a large `<style>` block while all other pages use `unified-style.css`, creating inconsistency.
 
@@ -64,7 +54,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 3. No Shared HTML Template — Nav/Header Duplicated Everywhere (Medium)
+### 2. No Shared HTML Template — Nav/Header Duplicated Everywhere (Medium)
 
 **Problem:** Every HTML page independently manages its `<head>`, back link, and header. Changing navigation requires editing dozens of files.
 
@@ -72,7 +62,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 4. Game Data and Logic Mixed in JS Files (Medium)
+### 3. Game Data and Logic Mixed in JS Files (Medium)
 
 **Problem:** Static game data is hardcoded directly inside `chardata.js` and `combo_calc.js`, tightly coupling data with calculation logic.
 
@@ -80,7 +70,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 5. Manual Cache-Busting Version Numbers (Low)
+### 4. Manual Cache-Busting Version Numbers (Low)
 
 **Problem:** `<script src="assets/js/index.js?v=1">` requires manual version bumps, which are easy to forget.
 
@@ -88,7 +78,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 6. Christmas Event Pages Created Annually (Low)
+### 5. Christmas Event Pages Created Annually (Low)
 
 **Problem:** `event/christmas20xx.html` is duplicated every year — 12 files so far, all nearly identical in structure.
 
@@ -100,7 +90,6 @@ Pure static site — no build system, no package manager — served directly via
 
 | Priority | Item | Expected Benefit |
 |----------|------|-----------------|
-| High | Deduplicate drop table language files | ~50% reduction in data size |
 | Medium | Extract landing page inline CSS | Code consistency |
 | Medium | Shared nav injection via JS | Lower maintenance cost |
 | Medium | Decouple game data from JS logic | Improved maintainability |

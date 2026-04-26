@@ -20,7 +20,6 @@
 
 ## ARCHITECTURE.md High-Priority Items (cross-referenced)
 
-- [ ] Deduplicate drop table language files — expected ~50% data size reduction (High)
 - [ ] Extract `index.html` inline CSS (Medium)
 - [ ] Shared nav/header injection mechanism (Medium)
 - [ ] Decouple game data from calculation JS files (Medium)
@@ -39,7 +38,7 @@ Revisit when: cache-busting via `?v=N` query strings becomes painful enough to j
 ## Long-term (optional)
 
 - [ ] **Consider migrating to Astro**
-  - Split HTML into reusable `Layout` / `Header` / `Nav` components (resolves ARCHITECTURE.md #4).
+  - Split HTML into reusable `Layout` / `Header` / `Nav` components (resolves ARCHITECTURE.md "No Shared HTML Template").
   - Replace `convert_md_to_html.py` with Astro's native markdown handling.
   - Zero-JS by default → significantly better page performance.
 - [ ] **Consider TypeScript**
