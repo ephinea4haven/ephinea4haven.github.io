@@ -921,10 +921,44 @@ function InitSelectOption(a, b, g) {
     if (!g) {
         d.sort();
     }
+    var byEn = (g || !window.ITEMS_I18N) ? null : __itemsI18nByEn();
     for (var i = 0; i < d.length; i++) {
-        c.push('<option value="' + d[i] + '">' + b[d[i]][0] + '</option>')
+        var en = b[d[i]][0];
+        if (byEn) {
+            var entry = byEn[en] || {};
+            var zh = entry.zh || en;
+            var ja = entry.ja || en;
+            c.push(
+                '<option value="' + d[i] +
+                '" data-en="' + __escAttr(en) +
+                '" data-zh="' + __escAttr(zh) +
+                '" data-ja="' + __escAttr(ja) +
+                '">' + zh + '</option>'
+            );
+        } else {
+            c.push('<option value="' + d[i] + '">' + en + '</option>');
+        }
     }
     $(c.join('\n')).appendTo($(a))
+}
+
+var __itemsI18nIndex = null;
+function __itemsI18nByEn() {
+    if (__itemsI18nIndex) return __itemsI18nIndex;
+    __itemsI18nIndex = {};
+    var dict = window.ITEMS_I18N || {};
+    for (var slug in dict) {
+        if (dict[slug] && dict[slug].en) {
+            __itemsI18nIndex[dict[slug].en] = dict[slug];
+        }
+    }
+    return __itemsI18nIndex;
+}
+
+function __escAttr(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
 }
 
 function init() {
