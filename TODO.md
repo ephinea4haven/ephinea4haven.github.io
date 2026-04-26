@@ -4,7 +4,6 @@
 
 ## ARCHITECTURE.md High-Priority Items (cross-referenced)
 
-- [ ] Shared nav/header injection mechanism (Medium)
 - [ ] Decouple game data from calculation JS files (Medium)
 
 ## Vite Tooling

@@ -48,15 +48,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ## Issues & Recommendations
 
-### 1. No Shared HTML Template — Nav/Header Duplicated Everywhere (Medium)
-
-**Problem:** Every HTML page independently manages its `<head>`, back link, and header. Changing navigation requires editing dozens of files.
-
-**Fix:** Inject shared nav/header via JS, or introduce a lightweight SSG (e.g. Eleventy).
-
----
-
-### 2. Game Data and Logic Mixed in chardata.js (Medium)
+### 1. Game Data and Logic Mixed in chardata.js (Medium)
 
 **Problem:** Static game data is hardcoded directly inside `chardata.js`, tightly coupling data with calculation logic.
 
@@ -66,7 +58,7 @@ Pure static site — no build system, no package manager — served directly via
 
 ---
 
-### 3. Manual Cache-Busting Version Numbers (Low)
+### 2. Manual Cache-Busting Version Numbers (Low)
 
 **Problem:** `<script src="assets/js/index.js?v=1">` requires manual version bumps, which are easy to forget.
 
@@ -78,6 +70,5 @@ Pure static site — no build system, no package manager — served directly via
 
 | Priority | Item | Expected Benefit |
 |----------|------|-----------------|
-| Medium | Shared nav injection via JS | Lower maintenance cost |
 | Medium | Decouple game data from JS logic | Improved maintainability |
 | Low | Automated cache-busting | Prevent stale cache issues |
