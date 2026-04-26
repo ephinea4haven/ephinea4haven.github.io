@@ -5,20 +5,14 @@
 ## Refactor / Cleanup
 
 - [ ] **Migrate 5 standalone pages to `unified-style.css`**
-  - `tools/200.html` / `tools/chartable.html` / `tools/status.htm` / `data/bdp/index.html` / `data/prizelist/index.html`
+  - `tools/200.html` / `tools/chartable.html` / `tools/status.html` / `data/bdp/index.html` / `data/prizelist/index.html`
   - These pages don't link `unified-style.css`; each duplicates the body / glass-container / decoration rules inline.
   - Pain point: today's background redesign had to be applied in 5 places instead of 1, and any future change repeats the cost.
-- [ ] **Rename `tools/status.htm` → `tools/status.html`**
-  - The only `.htm` file in the repo; align with the rest of the site.
 - [ ] **Extract large inline `<style>` blocks from `data/bdp/` and `data/prizelist/`**
   - Each carries 100+ lines of inline CSS — move to dedicated files under `assets/css/`.
 
 ## Project Layout
 
-- [ ] **`CLAUDE.md` is out of date**
-  - References `/static/`, `/ch/`, `/misc/` which no longer exist.
-  - Actual current structure: `assets/`, `data/`, `event/`, `guide/`, `scripts/`, `tools/`.
-  - Rewrite the "Architecture" and "Directory Layout" sections.
 - [ ] **Audit the `data/` vs `tools/` boundary**
   - `data/` is currently mixed: drop tables, price guide, BDP table, prize list — all read-only/lookup pages.
   - `tools/` holds calculators (status sim, mag, materialplan, combo).
@@ -44,10 +38,6 @@ Rationale:
 - Cost of full migration today >> benefit, given the site is otherwise stable static HTML.
 
 Revisit when: cache-busting via `?v=N` query strings becomes painful enough to justify hashing.
-
-- [ ] **Image optimization**
-  - `assets/img/bg/lobby_overlook_contrast.png` is 7MB; converting to WebP would bring it to ~200KB.
-  - One-shot manual conversion (no Vite plugin needed).
 
 ## Long-term (optional)
 
