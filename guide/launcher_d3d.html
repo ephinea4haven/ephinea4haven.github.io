@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ephinea PSOBB 登陆器选项解读: 渲染后端、抗锯齿、dgVoodoo Model、环境光遮蔽、Extra/Shaders">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登陆器选项解读 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <script src="/assets/js/page-chrome.js"></script>
+</head>
+
+<body>
+    <page-chrome title="登陆器选项解读"></page-chrome>
+
+    <div class="content-container">
+        <h1>登陆器选项解读</h1>
+
+<p>本页解读 Ephinea 登陆器中和画面/渲染相关的各项设置。涵盖:</p>
+<ul>
+<li><a href="#overview">总览关系图</a></li>
+<li><a href="#backend">渲染后端 (D3D / Vulkan)</a></li>
+<li><a href="#aa">抗锯齿 (Anti-Aliasing)</a></li>
+<li><a href="#swap">dgVoodoo Model (交换链模式)</a></li>
+<li><a href="#ao">环境光遮蔽 (Ambient Occlusion)</a></li>
+<li><a href="#extra">Extra (额外功能)</a></li>
+<li><a href="#shaders">Shaders (着色器)</a></li>
+<li><a href="#recommend">怎么选?</a></li>
+<li><a href="#faq">常见问题</a></li>
+</ul>
+
+<hr>
+
+<h2 id="overview">总览关系图</h2>
+
+<p>一张图看清各项设置之间的依赖关系: <strong>渲染后端的选择决定了下方哪些画质选项会真正生效</strong>。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 800" role="img" aria-label="PSOBB 登陆器选项关系图" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/>
+    </marker>
+  </defs>
+  <style>
+    .lvl1{fill:rgba(0,212,255,0.12);stroke:#00d4ff;stroke-width:2}
+    .lvl2{fill:rgba(96,165,250,0.10);stroke:#60a5fa;stroke-width:2}
+    .lvl3{fill:rgba(167,139,250,0.10);stroke:#a78bfa;stroke-width:2}
+    .extra{fill:rgba(255,255,255,0.04);stroke:rgba(255,255,255,0.30);stroke-width:2;stroke-dasharray:6 4}
+    .t{fill:#e2e8f0;font-size:14px}
+    .th-cyan{fill:#00d4ff;font-size:16px;font-weight:700}
+    .th-blue{fill:#60a5fa;font-size:16px;font-weight:700}
+    .th-purple{fill:#a78bfa;font-size:16px;font-weight:700}
+    .th-mute{fill:#cbd5e1;font-size:14px;font-weight:700}
+    .tm{fill:#94a3b8;font-size:12px}
+    .arrow{stroke:#00d4ff;stroke-width:2;fill:none}
+  </style>
+
+  <!-- 引擎 -->
+  <rect class="lvl1" x="320" y="10" width="280" height="55" rx="10" ry="10"/>
+  <text class="th-cyan" x="460" y="35" text-anchor="middle">PSOBB 引擎</text>
+  <text class="tm" x="460" y="54" text-anchor="middle">原生 Direct3D 8 调用</text>
+
+  <line class="arrow" x1="460" y1="65" x2="460" y2="93" marker-end="url(#arr)"/>
+
+  <!-- 后端选择 -->
+  <rect class="lvl1" x="280" y="98" width="360" height="55" rx="10" ry="10"/>
+  <text class="th-cyan" x="460" y="123" text-anchor="middle">渲染后端 (Backend)</text>
+  <text class="tm" x="460" y="142" text-anchor="middle">此处的选择决定下方哪些选项会生效</text>
+
+  <!-- 分叉到两条路径 -->
+  <line class="arrow" x1="380" y1="153" x2="220" y2="183" marker-end="url(#arr)"/>
+  <line class="arrow" x1="540" y1="153" x2="700" y2="183" marker-end="url(#arr)"/>
+
+  <!-- 原生路径 -->
+  <rect class="lvl2" x="40" y="185" width="360" height="140" rx="10" ry="10"/>
+  <text class="th-blue" x="220" y="210" text-anchor="middle">原生路径</text>
+  <text class="t" x="60" y="237">• Direct3D 8 — 不经翻译,原版渲染</text>
+  <text class="t" x="60" y="260">• Direct3D 9 — 轻包装,稳定性 ↑</text>
+  <text class="t" x="60" y="283">• Direct3D 9on12 — 微软 D3D9→D3D12</text>
+  <text class="tm" x="220" y="312" text-anchor="middle">AA / SSAO / Shaders / dgVoodoo Model 不生效</text>
+
+  <!-- 翻译层路径 -->
+  <rect class="lvl2" x="520" y="185" width="360" height="140" rx="10" ry="10"/>
+  <text class="th-blue" x="700" y="210" text-anchor="middle">翻译层路径</text>
+  <text class="t" x="540" y="237">• D3D 11 / 12 — 经 dgVoodoo (2.79.3 / 2.87.1)</text>
+  <text class="t" x="540" y="260">• Vulkan — 经 DXVK (2.3.1 / 2.7.1)</text>
+  <text class="t" x="540" y="283">• (Custom) — 用户自带 dll</text>
+  <text class="tm" x="700" y="312" text-anchor="middle">↓ 下方画质选项才会生效 ↓</text>
+
+  <!-- 翻译层 → 画质选项 -->
+  <line class="arrow" x1="700" y1="325" x2="700" y2="348" marker-end="url(#arr)"/>
+
+  <!-- 画质选项面板 -->
+  <rect class="lvl3" x="520" y="350" width="360" height="180" rx="10" ry="10"/>
+  <text class="th-purple" x="700" y="375" text-anchor="middle">翻译层启用的画质选项</text>
+  <text class="t" x="540" y="403">• 抗锯齿 — MSAA / SSAA / SMAA / HSAA / 组合</text>
+  <text class="t" x="540" y="428">• dgVoodoo Model — 交换链 (仅 D3D11/12)</text>
+  <text class="t" x="540" y="453">• 环境光遮蔽 — Low / Medium / High</text>
+  <text class="t" x="540" y="478">• Shaders — Bloom / DoF / Cel / Tonemapping</text>
+  <text class="tm" x="700" y="510" text-anchor="middle">原生路径下,这些设置会被忽略</text>
+
+  <!-- 汇合: 原生路径 (向下再右拐到合流点) -->
+  <polyline class="arrow" points="220,325 220,605 460,605" />
+  <!-- 汇合: 翻译路径 (向下再左拐到合流点) -->
+  <polyline class="arrow" points="700,530 700,605 460,605" />
+  <!-- 合流点 -> 输出 -->
+  <line class="arrow" x1="460" y1="605" x2="460" y2="638" marker-end="url(#arr)"/>
+
+  <!-- 最终输出 -->
+  <rect class="lvl1" x="320" y="645" width="280" height="55" rx="10" ry="10"/>
+  <text class="th-cyan" x="460" y="678" text-anchor="middle">最终画面 → 屏幕显示</text>
+
+  <!-- Extra 旁挂条 -->
+  <rect class="extra" x="40" y="730" width="840" height="60" rx="10" ry="10"/>
+  <text class="th-mute" x="60" y="755">Extra (与渲染解耦 · 任何后端都生效)</text>
+  <text class="t" x="60" y="779">FAST STARTUP · CLEAN CAPTURE · MOTION BLUR · RARE DROP SFX · BANK SHORTCUTS · LARGE BANK WINDOW</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">青框 = 主流程 · 蓝框 = 后端分支 · 紫框 = 翻译层启用后的画质选项 · 虚线框 = 与渲染解耦</figcaption>
+</figure>
+
+<p>看图记一句话: <strong>选 D3D 8 / 9 / 9on12 时,抗锯齿、SSAO、Shaders、dgVoodoo Model 这四组设置都不会生效</strong>;只有切到 D3D 11/12 或 Vulkan,下方的画质开关才有意义。Extra 那一组与渲染无关,随时可开。</p>
+
+<hr>
+
+<h2 id="backend">渲染后端 (D3D / Vulkan)</h2>
+
+<p>PSOBB 原生使用 <strong>Direct3D 8</strong> 渲染。Ephinea 登陆器提供了多种"渲染后端",通过翻译层把游戏的 D3D8 调用映射到现代图形 API,以提升兼容性、稳定性和窗口/全屏行为。</p>
+
+<p>下拉菜单中括号内的数字,是该后端使用的<strong>翻译层版本号</strong>:</p>
+<ul>
+<li><code>2.79.3</code> / <code>2.87.1</code> — <a href="http://dege.freeweb.hu/dgVoodoo2/dgVoodoo2/" target="_blank">dgVoodoo2</a> 版本(把旧 D3D 转 D3D11/12)</li>
+<li><code>2.3.1</code> / <code>2.7.1</code> — <a href="https://github.com/doitsujin/dxvk" target="_blank">DXVK</a> 版本(把 D3D 转 Vulkan)</li>
+</ul>
+
+<h3>各后端含义</h3>
+
+<h3>Direct3D 8</h3>
+<p>游戏的<strong>原版渲染</strong>。不经过任何翻译层,直接调用系统 D3D8。最接近 2003 年原版表现。</p>
+<ul>
+<li>✅ 老硬件/老系统(Win XP / Win 7)兼容性最好</li>
+<li>⚠ 在 Win10/11 + 高刷新率 + 多显示器下,容易出现闪退、撕裂、Alt-Tab 黑屏</li>
+<li>⚠ 部分新显卡驱动已经不再优化 D3D8 路径</li>
+</ul>
+
+<h3>Direct3D 9</h3>
+<p>用一个轻量包装把 D3D8 调用转成 <strong>D3D9</strong>。开销极小,行为接近原版,稳定性略好于纯 D3D8。</p>
+<ul>
+<li>✅ 兼容性广,几乎所有支持 D3D9 的显卡都能跑</li>
+<li>✅ 闪退倾向比 D3D8 低</li>
+<li>⚠ 仍依赖系统的 D3D9 驱动质量</li>
+</ul>
+
+<h3>Direct3D 9on12</h3>
+<p>微软官方的 <strong>D3D9-on-D3D12</strong> 转译层。先把 D3D8 调用走 D3D9,再由 Windows 内置的 <code>d3d9on12.dll</code> 转译为 D3D12 提交给显卡。</p>
+<ul>
+<li>✅ 在没有原生 D3D9 驱动的环境(部分 ARM Windows、云游戏机、虚拟机)能跑</li>
+<li>⚠ 性能通常比直接 D3D9 略差,一般情况下没必要</li>
+<li>⚠ 需要 Windows 10 1803 及以上</li>
+</ul>
+
+<h3>Direct3D 11 (2.79.3 / 2.87.1)</h3>
+<p>使用 <strong>dgVoodoo2</strong> 把 D3D8 转译到 <strong>D3D11</strong>。dgVoodoo 是著名的老游戏图形包装器,对 PSOBB 兼容性成熟。</p>
+<ul>
+<li>✅ 修复了原版在窗口/无边框/高分辨率下的多数渲染问题</li>
+<li>✅ 在 N 卡 / A 卡 / Intel 上表现都比较一致</li>
+<li>✅ Alt-Tab、Win 键不易丢失渲染上下文</li>
+<li>📌 <strong>2.79.3</strong> 是较老的稳定版,<strong>2.87.1</strong> 是较新的版本,功能更全但偶有新 bug</li>
+</ul>
+
+<h3>Direct3D 12 (2.79.3 / 2.87.1)</h3>
+<p>同上,但 dgVoodoo2 输出到更现代的 <strong>D3D12</strong>。</p>
+<ul>
+<li>✅ 在新显卡上 CPU 开销略低,帧时间更平滑</li>
+<li>⚠ 极个别旧显卡(GTX 700 系及更早)不支持 D3D12,会启动失败</li>
+<li>⚠ 部分驱动版本下可能比 D3D11 更不稳定,出问题时优先回退到 D3D11</li>
+</ul>
+
+<h3>Vulkan (2.3.1 / 2.7.1)</h3>
+<p>使用 <strong>DXVK</strong> 把 D3D 调用转译到 <strong>Vulkan</strong>。DXVK 是 Linux 上 Steam Proton 跑 Windows 游戏的核心组件,在 Windows 上同样可用。</p>
+<ul>
+<li>✅ 多线程命令提交,CPU 占用低</li>
+<li>✅ 对 A 卡 / 部分 Intel 新驱动友好</li>
+<li>⚠ 首次加载着色器时会有短暂卡顿(着色器编译缓存,之后不再卡)</li>
+<li>⚠ 极少数 N 卡老驱动(<470)Vulkan 支持不完整</li>
+<li>📌 <strong>2.3.1</strong> 是较老的稳定版,<strong>2.7.1</strong> 是较新版本</li>
+</ul>
+
+<h3>Direct3D 11 / 12 / Vulkan (Custom)</h3>
+<p>使用<strong>用户自定义</strong>的 dgVoodoo 或 DXVK 版本。登陆器会从游戏目录中指定的文件夹读取你自己放进去的 <code>.dll</code>(<code>D3D8.dll</code> / <code>d3d9.dll</code> / <code>dxgi.dll</code> 等)。</p>
+<ul>
+<li>需要自己下载并放置正确版本的文件,适合高级用户测试新版翻译层</li>
+<li>放置错误会导致启动黑屏或闪退</li>
+</ul>
+
+<hr>
+
+<h2 id="aa">抗锯齿 (Anti-Aliasing)</h2>
+
+<p>用来消除画面边缘的锯齿。PSOBB 是低多边形老游戏,锯齿在高分屏下尤其明显。下拉菜单里有四种基础算法和它们的组合:</p>
+
+<h3>基础算法</h3>
+<ul>
+<li><strong>None</strong> — 关闭抗锯齿。性能最好,边缘最锐利但有齿。</li>
+<li><strong>MSAA 2x / 4x</strong> — Multi-Sample AA。<strong>仅对几何边缘</strong>多次采样,GPU 硬件加速。开销小,效果只覆盖物体轮廓,不影响纹理/透明像素。</li>
+<li><strong>SSAA 2x / 4x</strong> — Super-Sample AA。先把整个画面渲染到 2x/4x 倍分辨率再缩回来。<strong>全画面</strong>抗锯齿,效果最好,但开销最大(4x SSAA ≈ 4 倍像素)。</li>
+<li><strong>SMAA Low / Medium / High / Ultra</strong> — Subpixel Morphological AA。<strong>后期处理</strong>抗锯齿,在已渲染的画面上识别边缘并平滑,几乎不耗 GPU。Low → Ultra 是 SMAA 自带的质量预设。代价是画面会略微变软。</li>
+<li><strong>HSAA 2x / 4x</strong> — Hybrid AA。MSAA + SSAA 混合,质量介于二者之间。</li>
+</ul>
+
+<h3>组合 (X + SMAA)</h3>
+<p>把硬件采样型(MSAA / SSAA / HSAA)和后期处理型(SMAA)叠加,补偿各自的短板:</p>
+<ul>
+<li><strong>MSAA + SMAA</strong> — 几何边缘走 MSAA 硬件采样,其余靠 SMAA 后处理。性价比高,默认推荐。</li>
+<li><strong>SSAA + SMAA</strong> — 最高画质,但 4x SSAA + SMAA 开销很大,核显或老卡谨慎。</li>
+<li><strong>HSAA + SMAA</strong> — 折中方案。</li>
+</ul>
+
+<h3>选择建议</h3>
+<table>
+<thead><tr><th>需求</th><th>推荐</th></tr></thead>
+<tbody>
+<tr><td>性能优先 / 核显</td><td><strong>SMAA Medium</strong> 或 <strong>MSAA 2x</strong></td></tr>
+<tr><td>画质均衡(默认推荐)</td><td><strong>MSAA 4x + SMAA</strong></td></tr>
+<tr><td>画质优先</td><td><strong>SSAA 2x + SMAA</strong></td></tr>
+<tr><td>画质拉满,性能无忧</td><td><strong>SSAA 4x + SMAA</strong></td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2 id="swap">dgVoodoo Model (交换链模式)</h2>
+
+<p>这一项只在选择了 <strong>Direct3D 11 / 12</strong> 后端 (即走 dgVoodoo) 时生效,控制 dgVoodoo 使用的 <strong>DXGI 交换链(Swap Chain)模式</strong>。简单说就是"画面是怎么从显卡送到屏幕的"。</p>
+
+<ul>
+<li><strong>Auto</strong> — 由 dgVoodoo 根据后端和窗口模式自动选,默认推荐。</li>
+<li><strong>Discard</strong> — 传统 BitBlt 模型,显示新一帧时<strong>丢弃</strong>旧帧。Win 7 / 旧驱动兼容性最好,但不能利用 Win10+ 的 DWM 优化路径。</li>
+<li><strong>Sequential</strong> — 传统 BitBlt 模型,但保留之前几帧。一般用得很少。</li>
+<li><strong>Flip Discard</strong> — 现代 Flip 模型 + 丢弃旧帧。Win10/11 上<strong>开销最低、延迟最小</strong>,DWM 直接 Flip 显示。</li>
+<li><strong>Flip Sequential</strong> — Flip 模型,但保留旧帧。比 Flip Discard 多一点开销。</li>
+</ul>
+
+<p><strong>建议:</strong></p>
+<ul>
+<li>大多数情况选 <strong>Auto</strong> 即可</li>
+<li>Win10/11 想要最低延迟,可手动选 <strong>Flip Discard</strong></li>
+<li>切到 Flip 后录屏 / 直播软件捕获不到画面,改回 <strong>Discard</strong></li>
+<li>Alt-Tab 后画面异常,试 <strong>Discard</strong></li>
+</ul>
+
+<hr>
+
+<h2 id="ao">环境光遮蔽 (Ambient Occlusion)</h2>
+
+<p>SSAO (Screen-Space Ambient Occlusion) 是一种<strong>后期处理</strong>效果,在物体接缝、墙角、角色脚下等被遮挡的区域加上柔和阴影,让画面更有体积感。原版 PSOBB 没有这个效果。</p>
+
+<ul>
+<li><strong>Disabled</strong> — 关闭。最接近原版观感,性能最好。</li>
+<li><strong>Low</strong> — 低采样数,阴影较粗糙,几乎没有性能影响。</li>
+<li><strong>Medium</strong> — 中等采样,效果和性能均衡。</li>
+<li><strong>High</strong> — 高采样,阴影更细腻平滑,推荐配置。</li>
+</ul>
+
+<p><strong>建议:</strong>现代显卡直接 <strong>High</strong>;核显或想完全保留原版味道选 <strong>Disabled</strong>。</p>
+
+<hr>
+
+<h2 id="extra">Extra (额外功能)</h2>
+
+<p>这组是 Ephinea 在原版基础上增加的<strong>体验类开关</strong>,与画质无关,绿色 = 开启,灰色 = 关闭。</p>
+
+<ul>
+<li><strong>FAST STARTUP</strong> — 跳过游戏启动时的 SEGA / Sonic Team / SOFTDEC 等 logo 动画,直接进登录界面。</li>
+<li><strong>CLEAN CAPTURE</strong> — 录屏 / 直播友好模式,隐藏登陆器自身可能叠加在画面上的水印、调试覆盖层等,只保留游戏画面本身。</li>
+<li><strong>MOTION BLUR</strong> — 运动模糊。攻击挥刀、技能位移时画面有拖影。原版没有,启用后视觉更"现代",对动晕敏感者建议关闭。</li>
+<li><strong>RARE DROP SFX</strong> — 稀有掉落提示音效。掉到稀有物品时播放额外提示音,刷宝时不易漏掉。</li>
+<li><strong>BANK SHORTCUTS</strong> — 仓库快捷键。开启后可在仓库界面用键盘快速存取/翻页,效率显著提升。</li>
+<li><strong>LARGE BANK WINDOW</strong> — 加大仓库窗口。一次显示更多物品,减少翻页次数。</li>
+</ul>
+
+<hr>
+
+<h2 id="shaders">Shaders (着色器)</h2>
+
+<p>这组是<strong>画面后期效果开关</strong>,绿色 = 开启,灰色 = 关闭。开启都会有一定 GPU 开销。</p>
+
+<ul>
+<li><strong>BLOOM</strong> — 泛光。让高亮区域(技能特效、亮面金属)向外溢出柔光。开启后画面更"亮",但部分场景会糊。</li>
+<li><strong>DEPTH OF FIELD</strong> — 景深。镜头焦点外的画面虚化,营造电影感。PSO 视角较远,效果不如近距离游戏明显。</li>
+<li><strong>CEL SHADING</strong> — 卡通描边 / 赛璐珞着色。给角色和物体边缘加深色描边,呈现卡通风格。开启后整体观感会偏向漫画/动画。</li>
+<li><strong>TONEMAPPING</strong> — 色调映射。把渲染产生的高动态范围色彩压回显示器可表现的范围,通常会让画面对比度和色彩更"现代",原版老电视感会减弱。</li>
+</ul>
+
+<p><strong>原版党</strong>建议四项都关;追求<strong>现代化观感</strong>可同时开 <strong>BLOOM + TONEMAPPING</strong>;喜欢<strong>动画风格</strong>再加 <strong>CEL SHADING</strong>。</p>
+
+<hr>
+
+<h2 id="recommend">怎么选?</h2>
+
+<p>没有"绝对最好"的选项,以下是常见的选择思路:</p>
+
+<h3>渲染后端</h3>
+<table>
+<thead>
+<tr><th>场景</th><th>推荐</th></tr>
+</thead>
+<tbody>
+<tr><td>不知道选什么 / 第一次玩</td><td><strong>Direct3D 11 (2.87.1)</strong></td></tr>
+<tr><td>新显卡 (RTX 30/40 系、RX 6000/7000 系)</td><td><strong>Direct3D 12 (2.87.1)</strong> 或 <strong>Vulkan (2.7.1)</strong></td></tr>
+<tr><td>A 卡 / Intel 核显 / Intel Arc</td><td><strong>Vulkan (2.7.1)</strong></td></tr>
+<tr><td>老显卡 (GTX 600/700 系或更早)</td><td><strong>Direct3D 11 (2.79.3)</strong> 或 <strong>Direct3D 9</strong></td></tr>
+<tr><td>Win 7 / 极老硬件</td><td><strong>Direct3D 8</strong> 或 <strong>Direct3D 9</strong></td></tr>
+<tr><td>启动黑屏 / 闪退</td><td>从最新版往下逐项试 (12 → 11 → 9 → 8)</td></tr>
+<tr><td>录屏 / 直播软件捕获不到画面</td><td>切到 <strong>Direct3D 11/12</strong> 后端,改用"窗口捕获"</td></tr>
+</tbody>
+</table>
+
+<h3>一套省事配置 (现代显卡 + 平衡画质)</h3>
+<ul>
+<li>渲染后端: <strong>Direct3D 12 (2.87.1)</strong></li>
+<li>抗锯齿: <strong>MSAA 4x + SMAA</strong></li>
+<li>dgVoodoo Model: <strong>Auto</strong></li>
+<li>环境光遮蔽: <strong>High</strong></li>
+<li>Extra: 全开 (除非要原版味道,关 MOTION BLUR)</li>
+<li>Shaders: <strong>BLOOM + TONEMAPPING</strong>,其余按口味</li>
+</ul>
+
+<h3>一套保守配置 (老硬件 / 兼容性优先)</h3>
+<ul>
+<li>渲染后端: <strong>Direct3D 11 (2.79.3)</strong> 或 <strong>Direct3D 9</strong></li>
+<li>抗锯齿: <strong>SMAA Medium</strong></li>
+<li>dgVoodoo Model: <strong>Auto</strong> (黑屏改 <strong>Discard</strong>)</li>
+<li>环境光遮蔽: <strong>Low</strong> 或 <strong>Disabled</strong></li>
+<li>Shaders: 全关</li>
+</ul>
+
+<hr>
+
+<h2 id="faq">常见问题</h2>
+
+<p><strong>Q: 切换后游戏黑屏 / 闪退怎么办?</strong><br>
+A: 重新打开登陆器,换回 <code>Direct3D 9</code> 或 <code>Direct3D 11 (2.79.3)</code> 这类保守选项即可。设置只影响渲染,不会损坏角色数据。</p>
+
+<p><strong>Q: 为什么有两套版本号 (2.79.3 / 2.87.1)?</strong><br>
+A: 不同版本的 dgVoodoo / DXVK 修复和回归问题不同。保留旧版作为回退,新版尝鲜。遇到新版的 bug 可以临时切回旧版。</p>
+
+<p><strong>Q: 改了选项后帧数没变化?</strong><br>
+A: PSOBB 原生帧率上限是 30 FPS,翻译层不会突破游戏内部锁帧。换后端主要是为了<strong>稳定性</strong>和<strong>兼容性</strong>,不是为了高帧。</p>
+
+<p><strong>Q: 还是闪退,跟渲染无关?</strong><br>
+A: 参考 <a href="/guide/crash.html">关于闪退</a> 检查 DEP、兼容性、UAC、杀软白名单等系统层设置。</p>
+
+<p><strong>Q: 抗锯齿开了为什么不生效 / 没区别?</strong><br>
+A: 抗锯齿由 dgVoodoo / DXVK 翻译层负责,只在选了 <strong>Direct3D 11 / 12 / Vulkan</strong> 后端时生效。选 <strong>Direct3D 8 / 9</strong> 走原生路径时,抗锯齿设置会被忽略。</p>
+
+<p><strong>Q: 开了 Shaders 之后画面糊 / 颜色变了?</strong><br>
+A: 这是后期处理本身的特性,不是 bug。最常见的"罪魁"是 <strong>BLOOM</strong> (糊) 和 <strong>TONEMAPPING</strong> (颜色变深变饱和)。逐项关掉定位不喜欢的那一项即可。</p>
+
+<p><strong>Q: CLEAN CAPTURE 和 dgVoodoo Model = Discard 有什么联系?</strong><br>
+A: 二者都和"录屏 / 直播能不能正常捕获画面"有关。优先开 <strong>CLEAN CAPTURE</strong>,如果 OBS 仍然捕不到,再把 <strong>dgVoodoo Model</strong> 从 Flip 类切回 <strong>Discard</strong>。</p>
+
+    </div>
+</body>
+
+</html>
