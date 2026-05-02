@@ -1,20 +1,21 @@
 /* Page-specific styles for data/200.html (LV200 base stats lookup table). */
 
+/* body 背景 / body::after / body > * z-index 由 unified-style.css 统一处理，
+   这里只保留 lv200 特有的 display:block（覆盖 unified 的 flex 布局）。 */
 body {
     display: block;
-    background: #1a2332;
-    color: #e2e8f0;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    background: rgba(26, 35, 50, 0.75);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 212, 255, 0.25);
+    background: rgba(12, 24, 56, 0.45);
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(0, 212, 255, 0.35);
     border-radius: 12px;
     padding: 30px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 0 0 1px rgba(0, 130, 255, 0.08);
 }
 
 h1 {
@@ -71,7 +72,7 @@ h1 {
 table {
     width: 100%;
     border-collapse: collapse;
-    background: rgba(26, 35, 50, 0.6);
+    background: rgba(12, 24, 56, 0.4);
     min-width: 800px;
 }
 

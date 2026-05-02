@@ -1,7 +1,7 @@
 .notes {
-    background: rgba(26, 35, 50, 0.85);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 212, 255, 0.25);
+    background: rgba(12, 24, 56, 0.55);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
     border-radius: 12px;
     padding: 20px 24px;
     margin: 0 auto 20px;
@@ -43,12 +43,12 @@
 .prize-table {
     width: 90%;
     margin: 30px auto;
-    background: rgba(26, 35, 50, 0.85);
-    backdrop-filter: blur(12px);
-    border: 2px solid rgba(0, 212, 255, 0.25);
+    background: rgba(12, 24, 56, 0.55);
+    backdrop-filter: blur(3px);
+    border: 2px solid rgba(0, 212, 255, 0.3);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     border-collapse: separate;
     border-spacing: 0;
 }

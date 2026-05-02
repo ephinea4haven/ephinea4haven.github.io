@@ -2,10 +2,9 @@
    .wrap container + header + #pageTitle + #langSwitch + back-link.
    Loaded after unified-style.css; overrides unified's flex body layout. */
 
+/* body 背景由 unified-style.css 统一处理。这里仅覆盖 unified 的 flex 布局。 */
 body {
     display: block;
-    background: #1a2332;
-    color: #e2e8f0;
 }
 
 .wrap { max-width: 1400px; margin: 0 auto; }

@@ -1,9 +1,8 @@
 /* Page-specific styles for tools/chartable.html (per-class stat table). */
 
+/* body 背景由 unified-style.css 统一处理。这里仅覆盖 unified 的 flex 布局。 */
 body {
     display: block;
-    background: #1a2332;
-    color: #e2e8f0;
 }
 
 .page-title {
@@ -20,12 +19,12 @@ body {
 .nav-container {
     text-align: center;
     margin-bottom: 40px;
-    background: rgba(26, 35, 50, 0.75);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 212, 255, 0.25);
+    background: rgba(12, 24, 56, 0.55);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
     border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .class-group {
@@ -77,9 +76,9 @@ table {
     width: 100% !important;
     max-width: 1200px;
     margin: 0 auto;
-    background: rgba(26, 35, 50, 0.75) !important;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 212, 255, 0.25) !important;
+    background: rgba(12, 24, 56, 0.55) !important;
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(0, 212, 255, 0.3) !important;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
@@ -169,13 +168,13 @@ tbody td {
 }
 
 .jump-container {
-    background: rgba(26, 35, 50, 0.85);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 212, 255, 0.25);
+    background: rgba(12, 24, 56, 0.55);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 40px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     text-align: center;
 }
 

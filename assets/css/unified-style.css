@@ -1,8 +1,8 @@
 /* Dark Unified Styling for Ephinea PSOBB Pages */
 
 :root {
-    --bg-primary: #1a2332;
-    --bg-secondary: #243447;
+    --bg-primary: #0c1838;
+    --bg-secondary: #1a2a4f;
     --text-primary: #e2e8f0;
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
@@ -27,9 +27,11 @@
     --accent-40: rgba(0, 212, 255, 0.4);
     --accent-50: rgba(0, 212, 255, 0.5);
     --accent-60: rgba(0, 212, 255, 0.6);
-    --bg-primary-75: rgba(26, 35, 50, 0.75);
-    --bg-primary-80: rgba(26, 35, 50, 0.8);
-    --bg-primary-60: rgba(26, 35, 50, 0.6);
+    /* 容器半透明色：从老主题 #1a2332 改成 PSO 蓝 #0c1838，
+       并整体降低不透明度让 body 的 PSO bg.png 透出来。 */
+    --bg-primary-75: rgba(12, 24, 56, 0.55);
+    --bg-primary-80: rgba(12, 24, 56, 0.65);
+    --bg-primary-60: rgba(12, 24, 56, 0.45);
     --table-header-bg: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(138, 43, 226, 0.3));
     --shadow-color: rgba(0, 0, 0, 0.25);
 }
@@ -48,10 +50,15 @@ body {
     margin: 0;
     padding: 20px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    background: var(--bg-primary);
+    color: var(--text-primary);
+    background-color: #000044;
+    background-image: url('/assets/img/bg/pso_isao_bg.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
     position: relative;
 }
 
+/* 主页同款柔和角落 glow + 3px 软扫描线，无中央 vignette，让 PSO bg.png 显出来。 */
 body::after {
     content: '';
     position: fixed;
@@ -60,15 +67,14 @@ body::after {
     right: 0;
     bottom: 0;
     background:
-        radial-gradient(ellipse 80% 55% at 95% -5%, rgba(0, 212, 255, 0.22), transparent 60%),
-        radial-gradient(ellipse 65% 55% at -5% 105%, rgba(138, 43, 226, 0.20), transparent 60%),
-        radial-gradient(ellipse at 50% 50%, transparent 30%, rgba(0, 0, 0, 0.75) 100%),
+        radial-gradient(ellipse 80% 55% at 95% -5%,  rgba(0, 212, 255, 0.13), transparent 55%),
+        radial-gradient(ellipse 65% 55% at -5% 105%, rgba(110, 40, 210, 0.11), transparent 55%),
         repeating-linear-gradient(
             0deg,
             transparent,
-            transparent 2px,
-            rgba(0, 0, 0, 0.08) 2px,
-            rgba(0, 0, 0, 0.08) 3px
+            transparent 3px,
+            rgba(0, 0, 0, 0.045) 3px,
+            rgba(0, 0, 0, 0.045) 4px
         );
     z-index: 0;
     pointer-events: none;
@@ -120,11 +126,12 @@ header {
     max-width: 1200px;
     width: 100%;
     background: var(--bg-primary-75);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--accent-25);
+    backdrop-filter: blur(3px);
+    border: 1px solid var(--accent-30);
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 8px 32px var(--shadow-color);
+    box-shadow: 0 8px 32px var(--shadow-color),
+                inset 0 0 0 1px rgba(0, 130, 255, 0.06);
     line-height: 1.8;
 }
 
