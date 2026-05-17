@@ -11,6 +11,14 @@ const GALATINE_RANGES = [
     [875, 999, '0.5×',  '165–210'],
 ];
 
+const GALATINE_STYLE = {
+    '0.33×': { color: '#7a6a3a', shadow: 'none',                                                                              noteColor: 'rgba(122, 106, 58, 0.55)' },
+    '0.5×':  { color: '#b89548', shadow: 'none',                                                                              noteColor: 'rgba(184, 149, 72, 0.6)'  },
+    '1×':    { color: '#fde68a', shadow: '0 0 8px rgba(253, 230, 138, 0.25)',                                                 noteColor: 'rgba(253, 230, 138, 0.65)' },
+    '2×':    { color: '#fff3b0', shadow: '0 0 16px rgba(253, 230, 138, 0.55)',                                                noteColor: 'rgba(255, 243, 176, 0.8)' },
+    '3×':    { color: '#ffffff', shadow: '0 0 24px rgba(253, 230, 138, 0.9), 0 0 48px rgba(253, 230, 138, 0.4)',              noteColor: 'rgba(255, 255, 255, 0.95)' },
+};
+
 const BUF_LABELS = [
     '稀有怪率 (RER)  +50%',  // offset 0
     '掉宝率 (RDR)  +25%',    // offset 1
@@ -54,8 +62,16 @@ function tick() {
     const atpEl = document.getElementById('galatine-atp');
     const perEl = document.getElementById('galatine-period');
     if (range) {
-        if (atpEl) atpEl.textContent = range[2] + ' · ATP ' + range[3];
-        if (perEl) perEl.textContent = 'beat ' + range[0] + '–' + range[1];
+        const style = GALATINE_STYLE[range[2]];
+        if (atpEl) {
+            atpEl.textContent      = range[2] + ' · ATP ' + range[3];
+            atpEl.style.color      = style.color;
+            atpEl.style.textShadow = style.shadow;
+        }
+        if (perEl) {
+            perEl.textContent = 'beat ' + range[0] + '–' + range[1];
+            perEl.style.color = style.noteColor;
+        }
     }
 }
 

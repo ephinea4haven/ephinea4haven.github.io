@@ -23,7 +23,7 @@ body {
     min-height: 100vh;
     padding: 44px 20px 72px;
     font-family: 'Noto Sans SC', 'Segoe UI', system-ui, sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     background: #060d1a;
     position: relative;
     overflow-x: hidden;
@@ -71,6 +71,7 @@ header {
 
 .header-eyebrow {
     font-family: 'Share Tech Mono', monospace;
+    font-weight: 400;
     font-size: 10.5px;
     letter-spacing: 4.5px;
     color: rgba(0, 212, 255, 0.45);
@@ -88,6 +89,7 @@ header {
 
 .title-bracket {
     font-family: 'Share Tech Mono', monospace;
+    font-weight: 400;
     font-size: 2.2em;
     color: var(--cyan);
     opacity: 0.35;
@@ -110,6 +112,7 @@ header {
 
 .title-sub {
     font-family: 'Share Tech Mono', monospace;
+    font-weight: 400;
     font-size: 10.5px;
     letter-spacing: 3px;
     color: rgba(148, 163, 184, 0.5);
@@ -257,7 +260,7 @@ header {
 #buf-current {
     font-family: 'Noto Sans SC', sans-serif;
     font-size: 0.98em;
-    font-weight: 500;
+    font-weight: 700;
     color: #93c5fd;
     text-align: center;
     line-height: 1.5;
@@ -265,12 +268,15 @@ header {
 
 .info-note {
     font-size: 11px;
+    font-weight: 400;
     color: rgba(148, 163, 184, 0.5);
     text-align: center;
     padding-top: 8px;
     letter-spacing: 0.3px;
     font-family: 'Share Tech Mono', monospace;
 }
+
+#buf-next { color: rgba(147, 197, 253, 0.65); }
 
 /* ── Nav panel ── */
 .nav-panel {
@@ -326,10 +332,11 @@ header {
     align-items: center;
     gap: 10px;
     font-family: 'Noto Sans SC', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     margin-bottom: 14px;
-    letter-spacing: 1.5px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
 }
 
 .nav-cat h3::before {
@@ -359,9 +366,9 @@ header {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.07);
     font-size: 12.5px;
-    color: #8899b4;
+    color: #e2e8f0;
     font-family: 'Noto Sans SC', sans-serif;
-    font-weight: 400;
+    font-weight: 700;
     text-decoration: none;
     letter-spacing: 0.3px;
     white-space: nowrap;
@@ -383,6 +390,7 @@ footer {
     align-items: center;
     gap: 18px;
     font-family: 'Share Tech Mono', monospace;
+    font-weight: 400;
     font-size: 10.5px;
     color: rgba(51, 65, 85, 0.7);
     letter-spacing: 1.5px;
