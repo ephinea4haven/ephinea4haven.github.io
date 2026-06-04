@@ -20583,7 +20583,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/204.8"
+                "rate": "1/204.8",
+                "ss": true
               },
               {
                 "item": "冷射枪",
@@ -21108,7 +21109,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/190650.2"
+                "rate": "1/190650.2",
+                "ss": true
               },
               {
                 "item": "青莲",
@@ -21184,7 +21186,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/204.8"
+                "rate": "1/204.8",
+                "ss": true
               },
               {
                 "item": "天堂级/命中",
@@ -21230,7 +21233,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "淡紫卡片",
-                "rate": "1/18331.8"
+                "rate": "1/18331.8",
+                "ss": true
               },
               {
                 "item": "罪恶之光",
@@ -21352,7 +21356,8 @@ window.DROP_DATA_ZH = {
             "drops": [
               {
                 "item": "夜叉",
-                "rate": "1/67216.4"
+                "rate": "1/67216.4",
+                "ss": true
               },
               {
                 "item": "破坏彗星",
@@ -21702,7 +21707,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "橙黄卡片",
-                "rate": "1/33608.2"
+                "rate": "1/33608.2",
+                "ss": true
               },
               {
                 "item": "感电预防",
@@ -21848,7 +21854,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/174762.7"
+                "rate": "1/174762.7",
+                "ss": true
               }
             ],
             "dropRate": "1/1.7"
@@ -21858,7 +21865,8 @@ window.DROP_DATA_ZH = {
             "drops": [
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/190650.2"
+                "rate": "1/190650.2",
+                "ss": true
               },
               {
                 "item": "NUG-导弹发射器",
@@ -21878,7 +21886,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/190650.2"
+                "rate": "1/190650.2",
+                "ss": true
               },
               {
                 "item": "腭刀「１９７５」",
@@ -22092,11 +22101,13 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "混沌法师的右手",
@@ -22112,7 +22123,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "真瑚经书",
@@ -22124,7 +22136,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "小枪「伽尔德」",
-                "rate": "1/28807.0"
+                "rate": "1/28807.0",
+                "ss": true
               }
             ],
             "dropRate": "1/2.9"
@@ -22142,7 +22155,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "天青卡片",
-                "rate": "1/22405.5"
+                "rate": "1/22405.5",
+                "ss": true
               },
               {
                 "item": "红色投刃",
@@ -22188,7 +22202,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "天青卡片",
-                "rate": "1/22405.5"
+                "rate": "1/22405.5",
+                "ss": true
               },
               {
                 "item": "红色投刃",
@@ -22254,7 +22269,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "魔法预言书",
-                "rate": "1/11457.3"
+                "rate": "1/11457.3",
+                "ss": true
               },
               {
                 "item": "混沌骑士的右手",
@@ -22384,7 +22400,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "恶魔之眼",
-                "rate": "1/28807.0"
+                "rate": "1/28807.0",
+                "ss": true
               },
               {
                 "item": "天神级/魔法",
@@ -22396,7 +22413,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "ＤＦ领域",
@@ -22430,7 +22448,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "恶魔之眼",
-                "rate": "1/22405.5"
+                "rate": "1/22405.5",
+                "ss": true
               },
               {
                 "item": "天神级/魔法",
@@ -22442,7 +22461,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/233016.9"
+                "rate": "1/233016.9",
+                "ss": true
               },
               {
                 "item": "ＤＦ领域",
@@ -23063,7 +23083,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "夜叉",
-                "rate": "1/28807.0"
+                "rate": "1/28807.0",
+                "ss": true
               },
               {
                 "item": "摩洛星人的心",
@@ -23795,7 +23816,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "小枪「伽尔德」",
-                "rate": "1/40329.8"
+                "rate": "1/40329.8",
+                "ss": true
               },
               {
                 "item": "红莲",
@@ -23841,7 +23863,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "翠绿卡片",
-                "rate": "1/40329.8"
+                "rate": "1/40329.8",
+                "ss": true
               },
               {
                 "item": "混沌法师的右手",
@@ -23857,11 +23880,13 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "魔法预言书",
-                "rate": "1/40329.8"
+                "rate": "1/40329.8",
+                "ss": true
               },
               {
                 "item": "真红卡片",
-                "rate": "1/40329.8"
+                "rate": "1/40329.8",
+                "ss": true
               },
               {
                 "item": "红莲",
@@ -23949,7 +23974,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "粉红卡片",
-                "rate": "1/33608.2"
+                "rate": "1/33608.2",
+                "ss": true
               },
               {
                 "item": "麻痹预防",
@@ -24075,7 +24101,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "封印野太刀",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "逝神",
@@ -24129,7 +24156,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "飞鸟",
@@ -24241,7 +24269,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "小枪「伽尔德」",
-                "rate": "1/20480"
+                "rate": "1/20480",
+                "ss": true
               }
             ],
             "dropRate": "1/1.2"
@@ -24263,7 +24292,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "纯蓝卡片",
-                "rate": "1/33608.2"
+                "rate": "1/33608.2",
+                "ss": true
               },
               {
                 "item": "Ｍ＆Ａ６０老虎钳",
@@ -24343,7 +24373,8 @@ window.DROP_DATA_ZH = {
             "drops": [
               {
                 "item": "女士阳伞",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "天使之琴",
@@ -24371,7 +24402,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "圣剑「拉维斯·迦农」",
@@ -24443,7 +24475,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/22405.5"
+                "rate": "1/22405.5",
+                "ss": true
               },
               {
                 "item": "电子铠",
@@ -24777,11 +24810,13 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "斩马刀",
@@ -24835,7 +24870,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "金黄卡片",
-                "rate": "1/25206.2"
+                "rate": "1/25206.2",
+                "ss": true
               },
               {
                 "item": "真红外套",
@@ -24849,11 +24885,13 @@ window.DROP_DATA_ZH = {
             "drops": [
               {
                 "item": "圣杖「意念」",
-                "rate": "1/131072"
+                "rate": "1/131072",
+                "ss": true
               },
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/131072"
+                "rate": "1/131072",
+                "ss": true
               },
               {
                 "item": "诫魂者",
@@ -24861,7 +24899,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "神之吐息",
@@ -24877,7 +24916,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣枪「天罚」",
-                "rate": "1/131072"
+                "rate": "1/131072",
+                "ss": true
               },
               {
                 "item": "女士雨伞",
@@ -24941,7 +24981,8 @@ window.DROP_DATA_ZH = {
             "drops": [
               {
                 "item": "真·妮之爪",
-                "rate": "1/25206.2"
+                "rate": "1/25206.2",
+                "ss": true
               },
               {
                 "item": "火光铠",
@@ -25023,7 +25064,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "圣杖「意念」",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               }
             ],
             "dropRate": "1/2.9"
@@ -25875,7 +25917,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "真·妮之爪",
-                "rate": "1/8192"
+                "rate": "1/8192",
+                "ss": true
               },
               {
                 "item": "光子微波激射器",

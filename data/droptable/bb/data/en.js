@@ -20583,7 +20583,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "1/204.8"
+                "rate": "1/204.8",
+                "ss": true
               },
               {
                 "item": "Frozen Shooter",
@@ -21108,7 +21109,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "1/190650.2"
+                "rate": "1/190650.2",
+                "ss": true
               },
               {
                 "item": "Shouren",
@@ -21184,7 +21186,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/204.8"
+                "rate": "1/204.8",
+                "ss": true
               },
               {
                 "item": "Heavenly/Arms",
@@ -21230,7 +21233,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Purplenum Card",
-                "rate": "1/18331.8"
+                "rate": "1/18331.8",
+                "ss": true
               },
               {
                 "item": "Guilty Light",
@@ -21352,7 +21356,8 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "Yasha",
-                "rate": "1/67216.4"
+                "rate": "1/67216.4",
+                "ss": true
               },
               {
                 "item": "Demolition Comet",
@@ -21702,7 +21707,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Oran Card",
-                "rate": "1/33608.2"
+                "rate": "1/33608.2",
+                "ss": true
               },
               {
                 "item": "Cure/Shock",
@@ -21848,7 +21854,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "1/174762.7"
+                "rate": "1/174762.7",
+                "ss": true
               }
             ],
             "dropRate": "1/1.7"
@@ -21858,7 +21865,8 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "Heaven Punisher",
-                "rate": "1/190650.2"
+                "rate": "1/190650.2",
+                "ss": true
               },
               {
                 "item": "NUG2000-Bazooka",
@@ -21878,7 +21886,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "1/190650.2"
+                "rate": "1/190650.2",
+                "ss": true
               },
               {
                 "item": "Agito (1975)",
@@ -22092,11 +22101,13 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "Sorcerer's Right Arm",
@@ -22112,7 +22123,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "Book of Hitogata",
@@ -22124,7 +22136,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Handgun: Guld",
-                "rate": "1/28807.0"
+                "rate": "1/28807.0",
+                "ss": true
               }
             ],
             "dropRate": "1/2.9"
@@ -22142,7 +22155,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Skyly Card",
-                "rate": "1/22405.5"
+                "rate": "1/22405.5",
+                "ss": true
               },
               {
                 "item": "Red Slicer",
@@ -22188,7 +22202,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Skyly Card",
-                "rate": "1/22405.5"
+                "rate": "1/22405.5",
+                "ss": true
               },
               {
                 "item": "Red Slicer",
@@ -22254,7 +22269,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Prophets of Motav",
-                "rate": "1/11457.3"
+                "rate": "1/11457.3",
+                "ss": true
               },
               {
                 "item": "Bringer's Right Arm",
@@ -22384,7 +22400,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Evil Curst",
-                "rate": "1/28807.0"
+                "rate": "1/28807.0",
+                "ss": true
               },
               {
                 "item": "God/Technique",
@@ -22396,7 +22413,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "DF Field",
@@ -22430,7 +22448,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Evil Curst",
-                "rate": "1/22405.5"
+                "rate": "1/22405.5",
+                "ss": true
               },
               {
                 "item": "God/Technique",
@@ -22442,7 +22461,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/233016.9"
+                "rate": "1/233016.9",
+                "ss": true
               },
               {
                 "item": "DF Field",
@@ -23063,7 +23083,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Yasha",
-                "rate": "1/28807.0"
+                "rate": "1/28807.0",
+                "ss": true
               },
               {
                 "item": "Heart of Morolian",
@@ -23795,7 +23816,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Handgun: Guld",
-                "rate": "1/40329.8"
+                "rate": "1/40329.8",
+                "ss": true
               },
               {
                 "item": "Guren",
@@ -23841,7 +23863,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Greenill Card",
-                "rate": "1/40329.8"
+                "rate": "1/40329.8",
+                "ss": true
               },
               {
                 "item": "Sorcerer's Right Arm",
@@ -23857,11 +23880,13 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Prophets of Motav",
-                "rate": "1/40329.8"
+                "rate": "1/40329.8",
+                "ss": true
               },
               {
                 "item": "Redria Card",
-                "rate": "1/40329.8"
+                "rate": "1/40329.8",
+                "ss": true
               },
               {
                 "item": "Guren",
@@ -23949,7 +23974,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Pinkal Card",
-                "rate": "1/33608.2"
+                "rate": "1/33608.2",
+                "ss": true
               },
               {
                 "item": "Cure/Paralysis",
@@ -24075,7 +24101,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Sealed J-Sword",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "Glide Divine",
@@ -24129,7 +24156,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "Asuka",
@@ -24241,7 +24269,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Handgun: Guld",
-                "rate": "1/20480"
+                "rate": "1/20480",
+                "ss": true
               }
             ],
             "dropRate": "1/1.2"
@@ -24263,7 +24292,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Bluefull Card",
-                "rate": "1/33608.2"
+                "rate": "1/33608.2",
+                "ss": true
               },
               {
                 "item": "M&A60 Vise",
@@ -24343,7 +24373,8 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "Madam's Parasol",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "Angel Harp",
@@ -24371,7 +24402,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "Lavis Cannon",
@@ -24443,7 +24475,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "1/22405.5"
+                "rate": "1/22405.5",
+                "ss": true
               },
               {
                 "item": "Electro Frame",
@@ -24777,11 +24810,13 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
                 "item": "Zanba",
@@ -24835,7 +24870,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Yellowboze Card",
-                "rate": "1/25206.2"
+                "rate": "1/25206.2",
+                "ss": true
               },
               {
                 "item": "Crimson Coat",
@@ -24849,11 +24885,13 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "Psycho Wand",
-                "rate": "1/131072"
+                "rate": "1/131072",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "1/131072"
+                "rate": "1/131072",
+                "ss": true
               },
               {
                 "item": "Soul Banish",
@@ -24861,7 +24899,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/12603.1"
+                "rate": "1/12603.1",
+                "ss": true
               },
               {
                 "item": "The Sigh of a God",
@@ -24877,7 +24916,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "1/131072"
+                "rate": "1/131072",
+                "ss": true
               },
               {
                 "item": "Madam's Umbrella",
@@ -24941,7 +24981,8 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "Nei's Claw",
-                "rate": "1/25206.2"
+                "rate": "1/25206.2",
+                "ss": true
               },
               {
                 "item": "Flame Garment",
@@ -25023,7 +25064,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "1/299593.1"
+                "rate": "1/299593.1",
+                "ss": true
               }
             ],
             "dropRate": "1/2.9"
@@ -25875,7 +25917,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Nei's Claw",
-                "rate": "1/8192"
+                "rate": "1/8192",
+                "ss": true
               },
               {
                 "item": "Phonon Maser",

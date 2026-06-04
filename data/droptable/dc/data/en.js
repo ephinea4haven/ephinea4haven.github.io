@@ -5802,7 +5802,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Sealed J-Sword",
-                "rate": "0.000191%"
+                "rate": "0.000191%",
+                "ss": true
               },
               {
                 "item": "Delsaber's Right Arm",
@@ -6120,7 +6121,8 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "Psycho Wand",
-                "rate": "0.000191%"
+                "rate": "0.000191%",
+                "ss": true
               },
               {
                 "item": "Technical Crozier",
@@ -6132,7 +6134,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Evil Curst",
-                "rate": "0.000191%"
+                "rate": "0.000191%",
+                "ss": true
               },
               {
                 "item": "Sorcerer's Right Arm",
@@ -6140,7 +6143,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Psycho Wand",
-                "rate": "0.000191%"
+                "rate": "0.000191%",
+                "ss": true
               },
               {
                 "item": "Sorcerer's Right Arm",
@@ -6170,7 +6174,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000191%"
+                "rate": "0.000191%",
+                "ss": true
               },
               {
                 "item": "Agito (1975)",
@@ -6190,7 +6195,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000191%"
+                "rate": "0.000191%",
+                "ss": true
               },
               {
                 "item": "Agito (1975)",
@@ -8105,43 +8111,53 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               },
               {
                 "item": "Heaven Punisher",
-                "rate": "0.000310%"
+                "rate": "0.000310%",
+                "ss": true
               }
             ],
             "dropRate": "45%"
@@ -8217,7 +8233,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Prophets of Motav",
-                "rate": "0.000215%"
+                "rate": "0.000215%",
+                "ss": true
               },
               {
                 "item": "Demonic Fork",

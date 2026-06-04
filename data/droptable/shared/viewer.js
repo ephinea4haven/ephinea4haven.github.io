@@ -28,43 +28,6 @@
 
   var DATA_MAP = {};
   var IMG_MAP = null;  // item name -> image filename
-  var SS_RARE_ITEM_NAMES = {
-    // FFSKY SS tier, using project zh names and canonical en names where known.
-    '封印野太刀': true,
-    'Sealed J-Sword': true,
-    '女士阳伞': true,
-    "Madam's Parasol": true,
-    '夜叉': true,
-    'Yasha': true,
-    '真·妮之爪': true,
-    "Nei's Claw": true,
-    '小枪「伽尔德」': true,
-    'Handgun: Guld': true,
-    '圣枪「天罚」': true,
-    'Heaven Punisher': true,
-    '恶魔之眼': true,
-    'Evil Curst': true,
-    '圣杖「意念」': true,
-    'Psycho Wand': true,
-    '魔法预言书': true,
-    'Prophets of Motav': true,
-    'Greenill Card': true,
-    '翠绿卡片': true,
-    'Skyly Card': true,
-    '天青卡片': true,
-    'Bluefull Card': true,
-    '纯蓝卡片': true,
-    'Purplenum Card': true,
-    '淡紫卡片': true,
-    'Pinkal Card': true,
-    '粉红卡片': true,
-    'Redria Card': true,
-    '真红卡片': true,
-    'Oran Card': true,
-    '橙黄卡片': true,
-    'Yellowboze Card': true,
-    '金黄卡片': true
-  };
 
   // --- tooltip ---
 
@@ -276,10 +239,6 @@
     render();
   }
 
-  function isSsRareItem(item, enItem) {
-    return !!(SS_RARE_ITEM_NAMES[item] || (enItem && SS_RARE_ITEM_NAMES[enItem]));
-  }
-
   // --- render ---
 
   function render() {
@@ -350,7 +309,7 @@
           var drop = entry.drops[di];
           var enItem = enEntry && enEntry.drops[di] ? enEntry.drops[di].item : null;
           var isHL = searchTerm && drop.item && fuzzyMatch(drop.item, searchTerm);
-          var isSsRare = drop.item && isSsRareItem(drop.item, enItem);
+          var isSsRare = !!drop.ss;
           var bg = data.sectionColors[di];
           var txtColor = contrastText(bg);
           var subColor = contrastSub(bg);
