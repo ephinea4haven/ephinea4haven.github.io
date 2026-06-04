@@ -30,372 +30,6 @@ window.DROP_DATA_EN = {
       "monsters": {
         "Episode 1": [
           {
-            "name": "Hildebear/Hildelt",
-            "drops": [
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Hildeblue/Hildetorr",
-            "drops": [
-              {
-                "item": "Resist/Fire",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Power Material",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Resist/Fire",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "General/Mind",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "General/Legs",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Resist/Flame",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Resist/Light",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "General/Mind",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Resist/Fire",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "General/Legs",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Mothmant/Mothvert",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
-          },
-          {
-            "name": "Monest/Mothvist",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
-          },
-          {
-            "name": "Rag Rappy/El Rappy",
-            "drops": [
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/7281.8"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Al Rappy/Pal Rappy",
-            "drops": [
-              {
-                "item": "Mind Material",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Mind Material",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Mind Material",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "HP Material",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Mind Material",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "HP Material",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/1.8"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Savage Wolf/Gulgus",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Recovery Barrier",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Barbarous Wolf/Gulgus-Gue",
-            "drops": [
-              {
-                "item": "Scape Doll",
-                "rate": "1/758.5"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/758.5"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/758.5"
-              },
-              {
-                "item": "Scape Doll",
-                "rate": "1/10402.5"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/758.5"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/758.5"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/758.5"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/758.5"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/758.5"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/758.5"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
             "name": "Booma/Bartle",
             "drops": [
               {
@@ -534,10 +168,72 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "Dragon/Sil Dragon",
+            "name": "Rag Rappy/El Rappy",
             "drops": [
               {
-                "item": "Star Atomizer",
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/7281.8"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Al Rappy/Pal Rappy",
+            "drops": [
+              {
+                "item": "Mind Material",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Mind Material",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Mind Material",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "HP Material",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Mind Material",
                 "rate": "1/1.1"
               },
               {
@@ -545,32 +241,16 @@ window.DROP_DATA_EN = {
                 "rate": "1/1.1"
               },
               {
-                "item": "Star Atomizer",
+                "item": "Trimate",
                 "rate": "1/1.1"
               },
               {
-                "item": "Star Atomizer",
+                "item": "HP Material",
                 "rate": "1/1.1"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/1.1"
+                "item": "Trimate",
+                "rate": "1/1.8"
               },
               {
                 "item": "Star Atomizer",
@@ -580,53 +260,7 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
-            "name": "Grass Assassin/Crimson Assassin",
-            "drops": [
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/10082.5"
-              }
-            ],
-            "dropRate": "1/2"
-          },
-          {
-            "name": "Poison Lily/Ob Lily",
+            "name": "Mothmant/Mothvert",
             "drops": [
               {
                 "item": "",
@@ -671,22 +305,205 @@ window.DROP_DATA_EN = {
             ]
           },
           {
-            "name": "Nar Lily/Mil Lily",
+            "name": "Monest/Mothvist",
             "drops": [
               {
-                "item": "General/Mind",
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ]
+          },
+          {
+            "name": "Savage Wolf/Gulgus",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Recovery Barrier",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Barbarous Wolf/Gulgus-Gue",
+            "drops": [
+              {
+                "item": "Scape Doll",
+                "rate": "1/758.5"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/758.5"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/758.5"
+              },
+              {
+                "item": "Scape Doll",
+                "rate": "1/10402.5"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/758.5"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/758.5"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/758.5"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/758.5"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/758.5"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/758.5"
+              }
+            ],
+            "dropRate": "1/2.2"
+          },
+          {
+            "name": "Hildebear/Hildelt",
+            "drops": [
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
+            "name": "Hildeblue/Hildetorr",
+            "drops": [
+              {
+                "item": "Resist/Fire",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Power Material",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Resist/Fire",
                 "rate": "1/1.1"
               },
               {
                 "item": "General/Mind",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "General/Mind",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Dragon/HP",
                 "rate": "1/1.1"
               },
               {
@@ -694,73 +511,73 @@ window.DROP_DATA_EN = {
                 "rate": "1/1.1"
               },
               {
-                "item": "Angel/Mind",
+                "item": "Resist/Flame",
                 "rate": "1/1.1"
               },
               {
-                "item": "Angel/Mind",
+                "item": "Resist/Light",
                 "rate": "1/1.1"
               },
               {
-                "item": "Dragon/HP",
+                "item": "General/Mind",
                 "rate": "1/1.1"
               },
               {
-                "item": "Dragon/HP",
+                "item": "Resist/Fire",
                 "rate": "1/1.1"
               },
               {
-                "item": "Angel/Mind",
+                "item": "General/Legs",
                 "rate": "1/1.1"
               }
             ],
             "dropRate": "1/1"
           },
           {
-            "name": "Nano Dragon/Nano Dragon",
+            "name": "Dragon/Sil Dragon",
             "drops": [
               {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               },
               {
-                "item": "Trimate",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               },
               {
-                "item": "Trimate",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               },
               {
-                "item": "Trimate",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               },
               {
-                "item": "Trimate",
-                "rate": "1/3.6"
+                "item": "Star Atomizer",
+                "rate": "1/1.1"
               }
             ],
-            "dropRate": "1/2"
+            "dropRate": "1/1"
           },
           {
             "name": "Evil Shark/Vulmer",
@@ -899,6 +716,189 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/6.7"
+          },
+          {
+            "name": "Poison Lily/Ob Lily",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ]
+          },
+          {
+            "name": "Nar Lily/Mil Lily",
+            "drops": [
+              {
+                "item": "General/Mind",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "General/Mind",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "General/Mind",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Dragon/HP",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "General/Legs",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Mind",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Mind",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Dragon/HP",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Dragon/HP",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Mind",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Grass Assassin/Crimson Assassin",
+            "drops": [
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/10082.5"
+              }
+            ],
+            "dropRate": "1/2"
+          },
+          {
+            "name": "Nano Dragon/Nano Dragon",
+            "drops": [
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/3.6"
+              }
+            ],
+            "dropRate": "1/2"
           },
           {
             "name": "Pofuilly Slime/Pofuilly Slime",
@@ -1177,52 +1177,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
-            "name": "Dubchic/Dubchich",
-            "drops": [
-              {
-                "item": "HP/Restorate",
-                "rate": "1/6501.6"
-              },
-              {
-                "item": "General/Arm",
-                "rate": "1/6501.6"
-              },
-              {
-                "item": "HP/Restorate",
-                "rate": "1/6501.6"
-              },
-              {
-                "item": "TP/Restorate",
-                "rate": "1/6501.6"
-              },
-              {
-                "item": "Dragon/HP",
-                "rate": "1/6501.6"
-              },
-              {
-                "item": "TP/Restorate",
-                "rate": "1/6501.6"
-              },
-              {
-                "item": "TP/Restorate",
-                "rate": "1/6501.6"
-              },
-              {
-                "item": "TP/Restorate",
-                "rate": "1/6501.6"
-              },
-              {
-                "item": "HP/Restorate",
-                "rate": "1/6501.6"
-              },
-              {
-                "item": "TP/Restorate",
-                "rate": "1/6501.6"
-              }
-            ],
-            "dropRate": "1/3.6"
-          },
-          {
             "name": "Gilchic/Gilchich",
             "drops": [
               {
@@ -1269,142 +1223,50 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.6"
           },
           {
-            "name": "Garanz/Baranz",
+            "name": "Dubchic/Dubchich",
             "drops": [
               {
-                "item": "Trimate",
-                "rate": "1/2.2"
+                "item": "HP/Restorate",
+                "rate": "1/6501.6"
               },
               {
-                "item": "Trimate",
-                "rate": "1/2.2"
+                "item": "General/Arm",
+                "rate": "1/6501.6"
               },
               {
-                "item": "Trimate",
-                "rate": "1/2.2"
+                "item": "HP/Restorate",
+                "rate": "1/6501.6"
               },
               {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.2"
+                "item": "TP/Restorate",
+                "rate": "1/6501.6"
               },
               {
                 "item": "Dragon/HP",
-                "rate": "1/11702.9"
+                "rate": "1/6501.6"
               },
               {
-                "item": "Trimate",
-                "rate": "1/2.2"
+                "item": "TP/Restorate",
+                "rate": "1/6501.6"
               },
               {
-                "item": "Trimate",
-                "rate": "1/2.2"
+                "item": "TP/Restorate",
+                "rate": "1/6501.6"
               },
               {
-                "item": "Trimate",
-                "rate": "1/2.2"
+                "item": "TP/Restorate",
+                "rate": "1/6501.6"
+              },
+              {
+                "item": "HP/Restorate",
+                "rate": "1/6501.6"
+              },
+              {
+                "item": "TP/Restorate",
+                "rate": "1/6501.6"
               }
             ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Sinow Beat/Sinow Blue",
-            "drops": [
-              {
-                "item": "Monogrinder",
-                "rate": "1/744.7"
-              },
-              {
-                "item": "Scape Doll",
-                "rate": "1/8511.2"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/744.7"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/744.7"
-              },
-              {
-                "item": "Evade Material",
-                "rate": "1/744.7"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/744.7"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/744.7"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/744.7"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/744.7"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/744.7"
-              }
-            ],
-            "dropRate": "1/1.8"
-          },
-          {
-            "name": "Sinow Gold/Sinow Red",
-            "drops": [
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/9.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/3.6"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/3.6"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/3.6"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/3.6"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/5461.3"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/3.6"
-              }
-            ],
-            "dropRate": "1/2"
+            "dropRate": "1/3.6"
           },
           {
             "name": "Canadine/Canabin",
@@ -1499,6 +1361,144 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.0"
           },
           {
+            "name": "Sinow Beat/Sinow Blue",
+            "drops": [
+              {
+                "item": "Monogrinder",
+                "rate": "1/744.7"
+              },
+              {
+                "item": "Scape Doll",
+                "rate": "1/8511.2"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/744.7"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/744.7"
+              },
+              {
+                "item": "Evade Material",
+                "rate": "1/744.7"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/744.7"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/744.7"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/744.7"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/744.7"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/744.7"
+              }
+            ],
+            "dropRate": "1/1.8"
+          },
+          {
+            "name": "Sinow Gold/Sinow Red",
+            "drops": [
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/9.1"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/5461.3"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/3.6"
+              }
+            ],
+            "dropRate": "1/2"
+          },
+          {
+            "name": "Garanz/Baranz",
+            "drops": [
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Dragon/HP",
+                "rate": "1/11702.9"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.2"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
             "name": "Vol Opt/Vol Opt ver. 2",
             "drops": [
               {
@@ -1545,6 +1545,144 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
+            "name": "Dimenian/Arlan",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Blue Barrier",
+                "rate": "1/6501.6"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ],
+            "dropRate": "1/3.6"
+          },
+          {
+            "name": "La Dimenian/Merlan",
+            "drops": [
+              {
+                "item": "Scape Doll",
+                "rate": "1/15100.5"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/1201.2"
+              },
+              {
+                "item": "Scape Doll",
+                "rate": "1/15100.5"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/1201.2"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/1201.2"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/1201.2"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/1201.2"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/1201.2"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/1201.2"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/1201.2"
+              }
+            ],
+            "dropRate": "1/3.2"
+          },
+          {
+            "name": "So Dimenian/Del-D",
+            "drops": [
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.4"
+              }
+            ],
+            "dropRate": "1/3.0"
+          },
+          {
             "name": "Delsaber/Delsaber",
             "drops": [
               {
@@ -1586,236 +1724,6 @@ window.DROP_DATA_EN = {
               {
                 "item": "Delsaber's Right Arm",
                 "rate": "1/5851.4"
-              }
-            ],
-            "dropRate": "1/2.5"
-          },
-          {
-            "name": "Chaos Sorcerer/Gran Sorcerer",
-            "drops": [
-              {
-                "item": "Mind Material",
-                "rate": "1/5.9"
-              },
-              {
-                "item": "Evade Material",
-                "rate": "1/3.8"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/5.9"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/5.9"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/5.9"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/5.9"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/5.9"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/5.9"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/5.9"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/5.9"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Dark Gunner/Dark Gunner",
-            "drops": [
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/18204.4"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/18204.4"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "S-Parts ver2.01",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/18204.4"
-              }
-            ],
-            "dropRate": "1/2.5"
-          },
-          {
-            "name": "Death Gunner/Death Gunner",
-            "drops": [
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/18204.4"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/18204.4"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "S-Parts ver2.01",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Invisible Guard",
-                "rate": "1/7447.3"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/18204.4"
-              }
-            ],
-            "dropRate": "1/2.5"
-          },
-          {
-            "name": "Chaos Bringer/Dark Bringer",
-            "drops": [
-              {
-                "item": "Trimate",
-                "rate": "1/2.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.1"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/2.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.1"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/2.1"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Dark Belra/Indi Belra",
-            "drops": [
-              {
-                "item": "Def Material",
-                "rate": "1/4.4"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/4.4"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/4.4"
-              },
-              {
-                "item": "Sol Atomizer",
-                "rate": "1/4.4"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/4.4"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/4.4"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/4.4"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/4.4"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/4.4"
-              },
-              {
-                "item": "Trimate",
-                "rate": "1/4.4"
               }
             ],
             "dropRate": "1/2.5"
@@ -1959,142 +1867,234 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.5"
           },
           {
-            "name": "Dimenian/Arlan",
+            "name": "Dark Belra/Indi Belra",
             "drops": [
               {
-                "item": "",
-                "rate": ""
+                "item": "Def Material",
+                "rate": "1/4.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Sol Atomizer",
+                "rate": "1/4.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Sol Atomizer",
+                "rate": "1/4.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Sol Atomizer",
+                "rate": "1/4.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Trimate",
+                "rate": "1/4.4"
               },
               {
-                "item": "Blue Barrier",
-                "rate": "1/6501.6"
+                "item": "Trimate",
+                "rate": "1/4.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Trimate",
+                "rate": "1/4.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Trimate",
+                "rate": "1/4.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Trimate",
+                "rate": "1/4.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Trimate",
+                "rate": "1/4.4"
               }
             ],
-            "dropRate": "1/3.6"
+            "dropRate": "1/2.5"
           },
           {
-            "name": "La Dimenian/Merlan",
+            "name": "Dark Gunner/Dark Gunner",
             "drops": [
               {
-                "item": "Scape Doll",
-                "rate": "1/15100.5"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1201.2"
+                "item": "Visk-235W",
+                "rate": "1/18204.4"
               },
               {
-                "item": "Scape Doll",
-                "rate": "1/15100.5"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1201.2"
+                "item": "Brionac",
+                "rate": "1/18204.4"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1201.2"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1201.2"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1201.2"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1201.2"
+                "item": "S-Parts ver2.01",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1201.2"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1201.2"
+                "item": "Slicer of Assassin",
+                "rate": "1/18204.4"
               }
             ],
-            "dropRate": "1/3.2"
+            "dropRate": "1/2.5"
           },
           {
-            "name": "So Dimenian/Del-D",
+            "name": "Death Gunner/Death Gunner",
             "drops": [
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "Visk-235W",
+                "rate": "1/18204.4"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "Brionac",
+                "rate": "1/18204.4"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "S-Parts ver2.01",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "Invisible Guard",
+                "rate": "1/7447.3"
               },
               {
-                "item": "Sol Atomizer",
-                "rate": "1/5.4"
+                "item": "Slicer of Assassin",
+                "rate": "1/18204.4"
               }
             ],
-            "dropRate": "1/3.0"
+            "dropRate": "1/2.5"
+          },
+          {
+            "name": "Chaos Sorcerer/Gran Sorcerer",
+            "drops": [
+              {
+                "item": "Mind Material",
+                "rate": "1/5.9"
+              },
+              {
+                "item": "Evade Material",
+                "rate": "1/3.8"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.9"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/5.9"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/5.9"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/5.9"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/5.9"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/5.9"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/5.9"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/5.9"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Chaos Bringer/Dark Bringer",
+            "drops": [
+              {
+                "item": "Trimate",
+                "rate": "1/2.1"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.1"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.1"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.1"
+              },
+              {
+                "item": "Sol Atomizer",
+                "rate": "1/2.1"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.1"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.1"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.1"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.1"
+              },
+              {
+                "item": "Trimate",
+                "rate": "1/2.1"
+              }
+            ],
+            "dropRate": "1/1.2"
           },
           {
             "name": "Dark Falz/Dark Falz",
@@ -2143,6 +2143,374 @@ window.DROP_DATA_EN = {
           }
         ],
         "Episode 2": [
+          {
+            "name": "Dimenian/Arlan",
+            "drops": [
+              {
+                "item": "Power Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "HP Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "Power Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Power Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "Mind Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "La Dimenian/Merlan",
+            "drops": [
+              {
+                "item": "Mind Material",
+                "rate": "1/2402.3"
+              },
+              {
+                "item": "Luck Material",
+                "rate": "1/5872.4"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/5872.4"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/5872.4"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/5872.4"
+              },
+              {
+                "item": "Mind Material",
+                "rate": "1/2402.3"
+              },
+              {
+                "item": "Mind Material",
+                "rate": "1/2402.3"
+              },
+              {
+                "item": "Def Material",
+                "rate": "1/2402.3"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ],
+            "dropRate": "1/3.2"
+          },
+          {
+            "name": "So Dimenian/Del-D",
+            "drops": [
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Power Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "Mind Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "Def Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "Power Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "Def Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "Luck Material",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Rag Rappy/El Rappy",
+            "drops": [
+              {
+                "item": "Monogrinder",
+                "rate": "1/1820.4"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/1820.4"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/1820.4"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/1820.4"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/1820.4"
+              },
+              {
+                "item": "Mind Material",
+                "rate": "1/744.7"
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Love Rappy/Love Rappy",
+            "drops": [
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Egg Rappy/Egg Rappy",
+            "drops": [
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Halo Rappy/Halo Rappy",
+            "drops": [
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "St. Rappy/St. Rappy",
+            "drops": [
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
           {
             "name": "Hildebear/Hildelt",
             "drops": [
@@ -2325,98 +2693,6 @@ window.DROP_DATA_EN = {
                 "rate": ""
               }
             ]
-          },
-          {
-            "name": "Rag Rappy/El Rappy",
-            "drops": [
-              {
-                "item": "Monogrinder",
-                "rate": "1/1820.4"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/1820.4"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/1820.4"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/1820.4"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/1820.4"
-              },
-              {
-                "item": "Mind Material",
-                "rate": "1/744.7"
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Love Rappy/Love Rappy",
-            "drops": [
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
           },
           {
             "name": "Grass Assassin/Crimson Assassin",
@@ -2603,144 +2879,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "Dimenian/Arlan",
-            "drops": [
-              {
-                "item": "Power Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "HP Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Power Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Power Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Mind Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "La Dimenian/Merlan",
-            "drops": [
-              {
-                "item": "Mind Material",
-                "rate": "1/2402.3"
-              },
-              {
-                "item": "Luck Material",
-                "rate": "1/5872.4"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/5872.4"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/5872.4"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/5872.4"
-              },
-              {
-                "item": "Mind Material",
-                "rate": "1/2402.3"
-              },
-              {
-                "item": "Mind Material",
-                "rate": "1/2402.3"
-              },
-              {
-                "item": "Def Material",
-                "rate": "1/2402.3"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ],
-            "dropRate": "1/3.2"
-          },
-          {
-            "name": "So Dimenian/Del-D",
-            "drops": [
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Power Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Mind Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Def Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Power Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Def Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Luck Material",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
             "name": "Barba Ray/Barba Ray",
             "drops": [
               {
@@ -2787,142 +2925,141 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
-            "name": "St. Rappy/St. Rappy",
+            "name": "Dubchic/Dubchich",
             "drops": [
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Evade Material",
+                "rate": "1/2482.4"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "HP Material",
+                "rate": "1/2482.4"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "HP Material",
+                "rate": "1/2482.4"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Scape Doll",
+                "rate": "1/15603.8"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Def Material",
+                "rate": "1/2482.4"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Def Material",
+                "rate": "1/2482.4"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
               }
             ],
-            "dropRate": "1/1"
+            "dropRate": "1/3.3"
           },
           {
-            "name": "Halo Rappy/Halo Rappy",
+            "name": "Gilchic/Gilchich",
             "drops": [
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               }
             ],
-            "dropRate": "1/1"
+            "dropRate": "1/3.3"
           },
           {
-            "name": "Egg Rappy/Egg Rappy",
+            "name": "Recon/Recon",
             "drops": [
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               }
-            ],
-            "dropRate": "1/1"
+            ]
           },
           {
             "name": "Savage Wolf/Gulgus",
@@ -3155,98 +3292,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.2"
           },
           {
-            "name": "Dubchic/Dubchich",
-            "drops": [
-              {
-                "item": "Evade Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "HP Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "HP Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Scape Doll",
-                "rate": "1/15603.8"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Def Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Def Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Gilchic/Gilchich",
-            "drops": [
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
             "name": "Garanz/Baranz",
             "drops": [
               {
@@ -3431,6 +3476,98 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
+            "name": "Ul Gibbon/Ul Gibbon",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Mind Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/9102.2"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Def Material",
+                "rate": "1/2482.4"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/6068.1"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Zol Gibbon/Zol Gibbon",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/7801.9"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/3343.7"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/5201.3"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Luck Material",
+                "rate": "1/5201.3"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/5201.3"
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
             "name": "Merillia/Merillia",
             "drops": [
               {
@@ -3569,50 +3706,96 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.3"
           },
           {
-            "name": "Gi Gue/Gi Gue",
+            "name": "Sinow Berill/Sinow Berill",
             "drops": [
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "Crush Bullet",
+                "rate": "1/1861.8"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "Power Material",
+                "rate": "1/1861.8"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "Scape Doll",
+                "rate": "1/11702.9"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "Monogrinder",
+                "rate": "1/4551.1"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "Monogrinder",
+                "rate": "1/4551.1"
               },
               {
-                "item": "Star Atomizer",
-                "rate": "1/1.4"
+                "item": "Monogrinder",
+                "rate": "1/4551.1"
               }
             ],
-            "dropRate": "1/1.2"
+            "dropRate": "1/2.5"
+          },
+          {
+            "name": "Sinow Spigell/Sinow Spigell",
+            "drops": [
+              {
+                "item": "Monogrinder",
+                "rate": "1/4045.4"
+              },
+              {
+                "item": "Scape Doll",
+                "rate": "1/10402.5"
+              },
+              {
+                "item": "Dragon/HP",
+                "rate": "1/4045.4"
+              },
+              {
+                "item": "Scape Doll",
+                "rate": "1/10402.5"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/4045.4"
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "Scape Doll",
+                "rate": "1/10402.5"
+              }
+            ],
+            "dropRate": "1/2.2"
           },
           {
             "name": "Mericarol/Mericarol",
@@ -3753,98 +3936,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1.2"
           },
           {
-            "name": "Ul Gibbon/Ul Gibbon",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Mind Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/9102.2"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Def Material",
-                "rate": "1/2482.4"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/6068.1"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Zol Gibbon/Zol Gibbon",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/7801.9"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/3343.7"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/5201.3"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Luck Material",
-                "rate": "1/5201.3"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/5201.3"
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ],
-            "dropRate": "1/2.9"
-          },
-          {
             "name": "Gibbles/Gibbles",
             "drops": [
               {
@@ -3891,96 +3982,50 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1.2"
           },
           {
-            "name": "Sinow Berill/Sinow Berill",
+            "name": "Gi Gue/Gi Gue",
             "drops": [
               {
-                "item": "Crush Bullet",
-                "rate": "1/1861.8"
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               },
               {
-                "item": "Power Material",
-                "rate": "1/1861.8"
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               },
               {
-                "item": "Scape Doll",
-                "rate": "1/11702.9"
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               },
               {
-                "item": "",
-                "rate": ""
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               },
               {
-                "item": "Monogrinder",
-                "rate": "1/4551.1"
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               },
               {
-                "item": "Monogrinder",
-                "rate": "1/4551.1"
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               },
               {
-                "item": "Monogrinder",
-                "rate": "1/4551.1"
+                "item": "Star Atomizer",
+                "rate": "1/1.4"
               }
             ],
-            "dropRate": "1/2.5"
-          },
-          {
-            "name": "Sinow Spigell/Sinow Spigell",
-            "drops": [
-              {
-                "item": "Monogrinder",
-                "rate": "1/4045.4"
-              },
-              {
-                "item": "Scape Doll",
-                "rate": "1/10402.5"
-              },
-              {
-                "item": "Dragon/HP",
-                "rate": "1/4045.4"
-              },
-              {
-                "item": "Scape Doll",
-                "rate": "1/10402.5"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/4045.4"
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "Scape Doll",
-                "rate": "1/10402.5"
-              }
-            ],
-            "dropRate": "1/2.2"
+            "dropRate": "1/1.2"
           },
           {
             "name": "Gal Gryphon/Gal Gryphon",
@@ -4165,51 +4210,6 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/2.5"
-          },
-          {
-            "name": "Recon/Recon",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
           },
           {
             "name": "Sinow Zoa/Sinow Zoa",
@@ -4716,98 +4716,6 @@ window.DROP_DATA_EN = {
             ]
           },
           {
-            "name": "Dorphon",
-            "drops": [
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/256"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Dorphon Eclair",
-            "drops": [
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
             "name": "Sand Rappy",
             "drops": [
               {
@@ -5124,6 +5032,98 @@ window.DROP_DATA_EN = {
                 "rate": ""
               }
             ]
+          },
+          {
+            "name": "Dorphon",
+            "drops": [
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/256"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
+            "name": "Dorphon Eclair",
+            "drops": [
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              }
+            ],
+            "dropRate": "1/1"
           },
           {
             "name": "Goran",
@@ -6851,372 +6851,6 @@ window.DROP_DATA_EN = {
       "monsters": {
         "Episode 1": [
           {
-            "name": "Hildebear/Hildelt",
-            "drops": [
-              {
-                "item": "Crush Bullet",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/45.7"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Hildeblue/Hildetorr",
-            "drops": [
-              {
-                "item": "Meteor Smash",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Vjaya",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Ice Staff: Dagon",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Kaladbolg",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Mothmant/Mothvert",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
-          },
-          {
-            "name": "Monest/Mothvist",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
-          },
-          {
-            "name": "Rag Rappy/El Rappy",
-            "drops": [
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Al Rappy/Pal Rappy",
-            "drops": [
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Branch of Pakupaku",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Branch of Pakupaku",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Mace of Adaman",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Savage Wolf/Gulgus",
-            "drops": [
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Barbarous Wolf/Gulgus-Gue",
-            "drops": [
-              {
-                "item": "Varista",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Custom Ray ver.OO",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Kaladbolg",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Mace of Adaman",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/284.4"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
             "name": "Booma/Bartle",
             "drops": [
               {
@@ -7355,6 +6989,372 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
+            "name": "Rag Rappy/El Rappy",
+            "drops": [
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Al Rappy/Pal Rappy",
+            "drops": [
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Branch of Pakupaku",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Branch of Pakupaku",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Mace of Adaman",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Mothmant/Mothvert",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ]
+          },
+          {
+            "name": "Monest/Mothvist",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ]
+          },
+          {
+            "name": "Savage Wolf/Gulgus",
+            "drops": [
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Barbarous Wolf/Gulgus-Gue",
+            "drops": [
+              {
+                "item": "Varista",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Custom Ray ver.OO",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Kaladbolg",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Mace of Adaman",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/284.4"
+              }
+            ],
+            "dropRate": "1/2.2"
+          },
+          {
+            "name": "Hildebear/Hildelt",
+            "drops": [
+              {
+                "item": "Crush Bullet",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Visk-235W",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/45.7"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
+            "name": "Hildeblue/Hildetorr",
+            "drops": [
+              {
+                "item": "Meteor Smash",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Vjaya",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Ice Staff: Dagon",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Kaladbolg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
             "name": "Dragon/Sil Dragon",
             "drops": [
               {
@@ -7399,190 +7399,6 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/1"
-          },
-          {
-            "name": "Grass Assassin/Crimson Assassin",
-            "drops": [
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/128"
-              }
-            ],
-            "dropRate": "1/2"
-          },
-          {
-            "name": "Poison Lily/Ob Lily",
-            "drops": [
-              {
-                "item": "Varista",
-                "rate": "1/512"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/512"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/512"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/512"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/512"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/512"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/512"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/512"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/512"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/512"
-              }
-            ],
-            "dropRate": "1/4"
-          },
-          {
-            "name": "Nar Lily/Mil Lily",
-            "drops": [
-              {
-                "item": "Vjaya",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Vjaya",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Ice Staff: Dagon",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Custom Ray ver.OO",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Nano Dragon/Nano Dragon",
-            "drops": [
-              {
-                "item": "Brionac",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Battle Verge",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/73.1"
-              }
-            ],
-            "dropRate": "1/2"
           },
           {
             "name": "Evil Shark/Vulmer",
@@ -7721,6 +7537,190 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/6.7"
+          },
+          {
+            "name": "Poison Lily/Ob Lily",
+            "drops": [
+              {
+                "item": "Varista",
+                "rate": "1/512"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/512"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/512"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/512"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/512"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/512"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/512"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/512"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/512"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/512"
+              }
+            ],
+            "dropRate": "1/4"
+          },
+          {
+            "name": "Nar Lily/Mil Lily",
+            "drops": [
+              {
+                "item": "Vjaya",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Vjaya",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Ice Staff: Dagon",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Custom Ray ver.OO",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Grass Assassin/Crimson Assassin",
+            "drops": [
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/128"
+              }
+            ],
+            "dropRate": "1/2"
+          },
+          {
+            "name": "Nano Dragon/Nano Dragon",
+            "drops": [
+              {
+                "item": "Brionac",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Battle Verge",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/73.1"
+              }
+            ],
+            "dropRate": "1/2"
           },
           {
             "name": "Pofuilly Slime/Pofuilly Slime",
@@ -7999,52 +7999,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
-            "name": "Dubchic/Dubchich",
-            "drops": [
-              {
-                "item": "DB's Saber",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/457.1"
-              }
-            ],
-            "dropRate": "1/3.6"
-          },
-          {
             "name": "Gilchic/Gilchich",
             "drops": [
               {
@@ -8091,142 +8045,50 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.6"
           },
           {
-            "name": "Garanz/Baranz",
+            "name": "Dubchic/Dubchich",
             "drops": [
               {
-                "item": "Photon Claw",
-                "rate": "1/80"
+                "item": "DB's Saber",
+                "rate": "1/457.1"
               },
-              {
-                "item": "Double Saber",
-                "rate": "1/80"
-              },
-              {
-                "item": "Double Saber",
-                "rate": "1/80"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/80"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/80"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/80"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/80"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/80"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/80"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Sinow Beat/Sinow Blue",
-            "drops": [
               {
                 "item": "Varista",
-                "rate": "1/256"
-              },
-              {
-                "item": "Custom Ray ver.OO",
-                "rate": "1/256"
-              },
-              {
-                "item": "Kaladbolg",
-                "rate": "1/256"
+                "rate": "1/457.1"
               },
               {
                 "item": "DB's Saber",
-                "rate": "1/256"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/256"
-              },
-              {
-                "item": "Mace of Adaman",
-                "rate": "1/256"
+                "rate": "1/457.1"
               },
               {
                 "item": "DB's Saber",
-                "rate": "1/256"
+                "rate": "1/457.1"
               },
               {
-                "item": "Varista",
-                "rate": "1/256"
+                "item": "Club of Laconium",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/457.1"
               },
               {
                 "item": "DB's Saber",
-                "rate": "1/256"
+                "rate": "1/457.1"
               },
               {
                 "item": "Varista",
-                "rate": "1/256"
+                "rate": "1/457.1"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/457.1"
               }
             ],
-            "dropRate": "1/2"
-          },
-          {
-            "name": "Sinow Gold/Sinow Red",
-            "drops": [
-              {
-                "item": "Crush Bullet",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/73.1"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/73.1"
-              }
-            ],
-            "dropRate": "1/2"
+            "dropRate": "1/3.6"
           },
           {
             "name": "Canadine/Canabin",
@@ -8321,6 +8183,144 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.2"
           },
           {
+            "name": "Sinow Beat/Sinow Blue",
+            "drops": [
+              {
+                "item": "Varista",
+                "rate": "1/256"
+              },
+              {
+                "item": "Custom Ray ver.OO",
+                "rate": "1/256"
+              },
+              {
+                "item": "Kaladbolg",
+                "rate": "1/256"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/256"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/256"
+              },
+              {
+                "item": "Mace of Adaman",
+                "rate": "1/256"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/256"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/256"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/256"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/256"
+              }
+            ],
+            "dropRate": "1/2"
+          },
+          {
+            "name": "Sinow Gold/Sinow Red",
+            "drops": [
+              {
+                "item": "Crush Bullet",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/73.1"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/73.1"
+              }
+            ],
+            "dropRate": "1/2"
+          },
+          {
+            "name": "Garanz/Baranz",
+            "drops": [
+              {
+                "item": "Photon Claw",
+                "rate": "1/80"
+              },
+              {
+                "item": "Double Saber",
+                "rate": "1/80"
+              },
+              {
+                "item": "Double Saber",
+                "rate": "1/80"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/80"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/80"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/80"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/80"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/80"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/80"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
             "name": "Vol Opt/Vol Opt ver. 2",
             "drops": [
               {
@@ -8365,420 +8365,6 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/1"
-          },
-          {
-            "name": "Delsaber/Delsaber",
-            "drops": [
-              {
-                "item": "Delsaber's Left Arm",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Delsaber's Left Arm",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Delsaber's Left Arm",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Delsaber's Left Arm",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Delsaber's Left Arm",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Delsaber's Left Arm",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Delsaber's Left Arm",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Delsaber's Left Arm",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Monogrinder",
-                "rate": "1/182.9"
-              }
-            ],
-            "dropRate": "1/2.9"
-          },
-          {
-            "name": "Chaos Sorcerer/Gran Sorcerer",
-            "drops": [
-              {
-                "item": "Crush Bullet",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Battle Verge",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Crush Bullet",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Crush Bullet",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/91.4"
-              }
-            ],
-            "dropRate": "1/2.5"
-          },
-          {
-            "name": "Dark Gunner/Dark Gunner",
-            "drops": [
-              {
-                "item": "Sense Plate",
-                "rate": "1/9929.7"
-              },
-              {
-                "item": "Graviton Plate",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Graviton Plate",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Graviton Plate",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Sense Plate",
-                "rate": "1/9929.7"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Sense Plate",
-                "rate": "1/9929.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Sense Plate",
-                "rate": "1/9929.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Death Gunner/Death Gunner",
-            "drops": [
-              {
-                "item": "Sense Plate",
-                "rate": "1/9929.7"
-              },
-              {
-                "item": "Graviton Plate",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Graviton Plate",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Graviton Plate",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Sense Plate",
-                "rate": "1/9929.7"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Sense Plate",
-                "rate": "1/9929.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Sense Plate",
-                "rate": "1/9929.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Chaos Bringer/Dark Bringer",
-            "drops": [
-              {
-                "item": "Agito (2001)",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Brave Knuckle",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Branch of Pakupaku",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/75.3"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Dark Belra/Indi Belra",
-            "drops": [
-              {
-                "item": "Crush Bullet",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/91.4"
-              }
-            ],
-            "dropRate": "1/2.5"
-          },
-          {
-            "name": "Claw/Claw",
-            "drops": [
-              {
-                "item": "Varista",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/457.1"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/457.1"
-              }
-            ],
-            "dropRate": "1/3.6"
-          },
-          {
-            "name": "Bulk/Bulk",
-            "drops": [
-              {
-                "item": "Crush Bullet",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Bulclaw/Bulclaw",
-            "drops": [
-              {
-                "item": "Crush Bullet",
-                "rate": "1/320"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/320"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/320"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/320"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/320"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/320"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/160"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/320"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/320"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/320"
-              }
-            ],
-            "dropRate": "1/2.5"
           },
           {
             "name": "Dimenian/Arlan",
@@ -8919,6 +8505,420 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.0"
           },
           {
+            "name": "Delsaber/Delsaber",
+            "drops": [
+              {
+                "item": "Delsaber's Left Arm",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Delsaber's Left Arm",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Delsaber's Left Arm",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Delsaber's Left Arm",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Delsaber's Left Arm",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Delsaber's Left Arm",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Delsaber's Left Arm",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Delsaber's Left Arm",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Monogrinder",
+                "rate": "1/182.9"
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
+            "name": "Claw/Claw",
+            "drops": [
+              {
+                "item": "Varista",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/457.1"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/457.1"
+              }
+            ],
+            "dropRate": "1/3.6"
+          },
+          {
+            "name": "Bulk/Bulk",
+            "drops": [
+              {
+                "item": "Crush Bullet",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "D-Parts ver1.01",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "D-Parts ver1.01",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "D-Parts ver1.01",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "D-Parts ver1.01",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Bulclaw/Bulclaw",
+            "drops": [
+              {
+                "item": "Crush Bullet",
+                "rate": "1/320"
+              },
+              {
+                "item": "D-Parts ver1.01",
+                "rate": "1/320"
+              },
+              {
+                "item": "D-Parts ver1.01",
+                "rate": "1/320"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/320"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/320"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/320"
+              },
+              {
+                "item": "D-Parts ver1.01",
+                "rate": "1/160"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/320"
+              },
+              {
+                "item": "D-Parts ver1.01",
+                "rate": "1/320"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/320"
+              }
+            ],
+            "dropRate": "1/2.5"
+          },
+          {
+            "name": "Dark Belra/Indi Belra",
+            "drops": [
+              {
+                "item": "Crush Bullet",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Visk-235W",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Visk-235W",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/91.4"
+              }
+            ],
+            "dropRate": "1/2.5"
+          },
+          {
+            "name": "Dark Gunner/Dark Gunner",
+            "drops": [
+              {
+                "item": "Sense Plate",
+                "rate": "1/9929.7"
+              },
+              {
+                "item": "Graviton Plate",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Graviton Plate",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Graviton Plate",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Sense Plate",
+                "rate": "1/9929.7"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Sense Plate",
+                "rate": "1/9929.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Sense Plate",
+                "rate": "1/9929.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Death Gunner/Death Gunner",
+            "drops": [
+              {
+                "item": "Sense Plate",
+                "rate": "1/9929.7"
+              },
+              {
+                "item": "Graviton Plate",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Graviton Plate",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Graviton Plate",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Sense Plate",
+                "rate": "1/9929.7"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Sense Plate",
+                "rate": "1/9929.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Sense Plate",
+                "rate": "1/9929.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Chaos Sorcerer/Gran Sorcerer",
+            "drops": [
+              {
+                "item": "Crush Bullet",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Visk-235W",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Battle Verge",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Crush Bullet",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Crush Bullet",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/91.4"
+              }
+            ],
+            "dropRate": "1/2.5"
+          },
+          {
+            "name": "Chaos Bringer/Dark Bringer",
+            "drops": [
+              {
+                "item": "Agito (2001)",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Brave Knuckle",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Branch of Pakupaku",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/75.3"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
             "name": "Dark Falz/Dark Falz",
             "drops": [
               {
@@ -8965,6 +8965,374 @@ window.DROP_DATA_EN = {
           }
         ],
         "Episode 2": [
+          {
+            "name": "Dimenian/Arlan",
+            "drops": [
+              {
+                "item": "Varista",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "La Dimenian/Merlan",
+            "drops": [
+              {
+                "item": "DB's Saber",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/412.9"
+              }
+            ],
+            "dropRate": "1/3.2"
+          },
+          {
+            "name": "So Dimenian/Del-D",
+            "drops": [
+              {
+                "item": "Brionac",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Visk-235W",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Crush Bullet",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Rag Rappy/El Rappy",
+            "drops": [
+              {
+                "item": "Varista",
+                "rate": "1/128"
+              },
+              {
+                "item": "Custom Ray ver.OO",
+                "rate": "1/128"
+              },
+              {
+                "item": "Kaladbolg",
+                "rate": "1/128"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/128"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/128"
+              },
+              {
+                "item": "Mace of Adaman",
+                "rate": "1/128"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/128"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/128"
+              },
+              {
+                "item": "DB's Saber",
+                "rate": "1/128"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/128"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Love Rappy/Love Rappy",
+            "drops": [
+              {
+                "item": "Victor Axe",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Sting Tip",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Sting Tip",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Suppressed Gun",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Twin Psychogun",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Sting Tip",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Suppressed Gun",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Sting Tip",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Angel/Luck",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Egg Rappy/Egg Rappy",
+            "drops": [
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Halo Rappy/Halo Rappy",
+            "drops": [
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "St. Rappy/St. Rappy",
+            "drops": [
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
           {
             "name": "Hildebear/Hildelt",
             "drops": [
@@ -9146,98 +9514,6 @@ window.DROP_DATA_EN = {
                 "rate": ""
               }
             ]
-          },
-          {
-            "name": "Rag Rappy/El Rappy",
-            "drops": [
-              {
-                "item": "Varista",
-                "rate": "1/128"
-              },
-              {
-                "item": "Custom Ray ver.OO",
-                "rate": "1/128"
-              },
-              {
-                "item": "Kaladbolg",
-                "rate": "1/128"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/128"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/128"
-              },
-              {
-                "item": "Mace of Adaman",
-                "rate": "1/128"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/128"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/128"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/128"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/128"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Love Rappy/Love Rappy",
-            "drops": [
-              {
-                "item": "Victor Axe",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Sting Tip",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Sting Tip",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Suppressed Gun",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Twin Psychogun",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Sting Tip",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Suppressed Gun",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Sting Tip",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Angel/Luck",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
           },
           {
             "name": "Grass Assassin/Crimson Assassin",
@@ -9424,144 +9700,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "Dimenian/Arlan",
-            "drops": [
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "La Dimenian/Merlan",
-            "drops": [
-              {
-                "item": "DB's Saber",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/412.9"
-              }
-            ],
-            "dropRate": "1/3.2"
-          },
-          {
-            "name": "So Dimenian/Del-D",
-            "drops": [
-              {
-                "item": "Brionac",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Crush Bullet",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
             "name": "Barba Ray/Barba Ray",
             "drops": [
               {
@@ -9608,142 +9746,141 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
-            "name": "St. Rappy/St. Rappy",
+            "name": "Dubchic/Dubchich",
             "drops": [
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Crush Bullet",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Visk-235W",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Flowen's Sword",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Brionac",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "M&A60 Vise",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Fire Scepter: Agni",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Slicer of Assassin",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Blade Dance",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Slicer of Assassin",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Slicer of Assassin",
+                "rate": "1/213.3"
               }
             ],
-            "dropRate": "1/1"
+            "dropRate": "1/3.3"
           },
           {
-            "name": "Halo Rappy/Halo Rappy",
+            "name": "Gilchic/Gilchich",
             "drops": [
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "DB's Saber",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Varista",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "DB's Saber",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "DB's Saber",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Varista",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Varista",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "DB's Saber",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Varista",
+                "rate": "1/426.7"
               }
             ],
-            "dropRate": "1/1"
+            "dropRate": "1/3.3"
           },
           {
-            "name": "Egg Rappy/Egg Rappy",
+            "name": "Recon/Recon",
             "drops": [
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               }
-            ],
-            "dropRate": "1/1"
+            ]
           },
           {
             "name": "Savage Wolf/Gulgus",
@@ -9976,98 +10113,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.2"
           },
           {
-            "name": "Dubchic/Dubchich",
-            "drops": [
-              {
-                "item": "Crush Bullet",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/213.3"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Gilchic/Gilchich",
-            "drops": [
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "DB's Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
             "name": "Garanz/Baranz",
             "drops": [
               {
@@ -10252,6 +10297,98 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
+            "name": "Ul Gibbon/Ul Gibbon",
+            "drops": [
+              {
+                "item": "Varista",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Kaladbolg",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Attribute Wall",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Club of Laconium",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Zol Gibbon/Zol Gibbon",
+            "drops": [
+              {
+                "item": "Crush Bullet",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Visk-235W",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Visk-235W",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/365.7"
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
             "name": "Merillia/Merillia",
             "drops": [
               {
@@ -10390,50 +10527,96 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.3"
           },
           {
-            "name": "Gi Gue/Gi Gue",
+            "name": "Sinow Berill/Sinow Berill",
             "drops": [
               {
-                "item": "Meteor Smash",
-                "rate": "1/45.7"
+                "item": "DB's Saber",
+                "rate": "1/320"
               },
               {
-                "item": "Wals-MK2",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/320"
               },
               {
-                "item": "Last Survivor",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/320"
               },
               {
-                "item": "Vjaya",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/320"
               },
               {
-                "item": "H&S25 Justice",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/320"
               },
               {
-                "item": "Ice Staff: Dagon",
-                "rate": "1/45.7"
+                "item": "Mace of Adaman",
+                "rate": "1/320"
               },
               {
-                "item": "Diska of Liberator",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/320"
               },
               {
-                "item": "Bloody Art",
-                "rate": "1/45.7"
+                "item": "Monogrinder",
+                "rate": "1/320"
               },
               {
-                "item": "Custom Ray ver.OO",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/320"
               },
               {
-                "item": "Diska of Liberator",
-                "rate": "1/45.7"
+                "item": "Monogrinder",
+                "rate": "1/320"
               }
             ],
-            "dropRate": "1/1.2"
+            "dropRate": "1/2.5"
+          },
+          {
+            "name": "Sinow Spigell/Sinow Spigell",
+            "drops": [
+              {
+                "item": "Brionac",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Visk-235W",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Battle Verge",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Crush Bullet",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Battle Verge",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/284.4"
+              }
+            ],
+            "dropRate": "1/2.2"
           },
           {
             "name": "Mericarol/Mericarol",
@@ -10574,98 +10757,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1.2"
           },
           {
-            "name": "Ul Gibbon/Ul Gibbon",
-            "drops": [
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Kaladbolg",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Attribute Wall",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Club of Laconium",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Zol Gibbon/Zol Gibbon",
-            "drops": [
-              {
-                "item": "Crush Bullet",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/365.7"
-              }
-            ],
-            "dropRate": "1/2.9"
-          },
-          {
             "name": "Gibbles/Gibbles",
             "drops": [
               {
@@ -10712,96 +10803,50 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1.2"
           },
           {
-            "name": "Sinow Berill/Sinow Berill",
+            "name": "Gi Gue/Gi Gue",
             "drops": [
               {
-                "item": "DB's Saber",
-                "rate": "1/320"
+                "item": "Meteor Smash",
+                "rate": "1/45.7"
               },
               {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/320"
+                "item": "Wals-MK2",
+                "rate": "1/45.7"
               },
               {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/320"
+                "item": "Last Survivor",
+                "rate": "1/45.7"
               },
               {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/320"
+                "item": "Vjaya",
+                "rate": "1/45.7"
               },
               {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/320"
+                "item": "H&S25 Justice",
+                "rate": "1/45.7"
               },
               {
-                "item": "Mace of Adaman",
-                "rate": "1/320"
+                "item": "Ice Staff: Dagon",
+                "rate": "1/45.7"
               },
               {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/320"
+                "item": "Diska of Liberator",
+                "rate": "1/45.7"
               },
               {
-                "item": "Monogrinder",
-                "rate": "1/320"
+                "item": "Bloody Art",
+                "rate": "1/45.7"
               },
               {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/320"
+                "item": "Custom Ray ver.OO",
+                "rate": "1/45.7"
               },
               {
-                "item": "Monogrinder",
-                "rate": "1/320"
+                "item": "Diska of Liberator",
+                "rate": "1/45.7"
               }
             ],
-            "dropRate": "1/2.5"
-          },
-          {
-            "name": "Sinow Spigell/Sinow Spigell",
-            "drops": [
-              {
-                "item": "Brionac",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Visk-235W",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Battle Verge",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Crush Bullet",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Battle Verge",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/284.4"
-              }
-            ],
-            "dropRate": "1/2.2"
+            "dropRate": "1/1.2"
           },
           {
             "name": "Gal Gryphon/Gal Gryphon",
@@ -10986,51 +11031,6 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/2.5"
-          },
-          {
-            "name": "Recon/Recon",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
           },
           {
             "name": "Sinow Zoa/Sinow Zoa",
@@ -11540,98 +11540,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "Dorphon",
-            "drops": [
-              {
-                "item": "Meteor Smash",
-                "rate": "1/49.2"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/98.5"
-              },
-              {
-                "item": "Stag Cutlery",
-                "rate": "1/64"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/98.5"
-              },
-              {
-                "item": "Stag Cutlery",
-                "rate": "1/64"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/91.4"
-              },
-              {
-                "item": "Bravace",
-                "rate": "1/80"
-              },
-              {
-                "item": "Meteor Smash",
-                "rate": "1/49.2"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Dorphon Eclair",
-            "drops": [
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
             "name": "Sand Rappy",
             "drops": [
               {
@@ -11952,6 +11860,98 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/1.2"
+          },
+          {
+            "name": "Dorphon",
+            "drops": [
+              {
+                "item": "Meteor Smash",
+                "rate": "1/49.2"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/98.5"
+              },
+              {
+                "item": "Stag Cutlery",
+                "rate": "1/64"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/98.5"
+              },
+              {
+                "item": "Stag Cutlery",
+                "rate": "1/64"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/91.4"
+              },
+              {
+                "item": "Bravace",
+                "rate": "1/80"
+              },
+              {
+                "item": "Meteor Smash",
+                "rate": "1/49.2"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
+            "name": "Dorphon Eclair",
+            "drops": [
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              }
+            ],
+            "dropRate": "1/1"
           },
           {
             "name": "Goran",
@@ -13685,372 +13685,6 @@ window.DROP_DATA_EN = {
       "monsters": {
         "Episode 1": [
           {
-            "name": "Hildebear/Hildelt",
-            "drops": [
-              {
-                "item": "Hildebear's Head",
-                "rate": "1/43.0"
-              },
-              {
-                "item": "Hildebear's Head",
-                "rate": "1/43.0"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/43.0"
-              },
-              {
-                "item": "Hildebear's Head",
-                "rate": "1/43.0"
-              },
-              {
-                "item": "Hildebear's Head",
-                "rate": "1/43.0"
-              },
-              {
-                "item": "Hildebear's Head",
-                "rate": "1/43.0"
-              },
-              {
-                "item": "Custom Frame ver.OO",
-                "rate": "1/43.0"
-              },
-              {
-                "item": "Hildebear's Head",
-                "rate": "1/43.0"
-              },
-              {
-                "item": "Hildebear's Head",
-                "rate": "1/43.0"
-              },
-              {
-                "item": "Varista",
-                "rate": "1/43.0"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Hildeblue/Hildetorr",
-            "drops": [
-              {
-                "item": "Final Impact",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "God/Arm",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Hildeblue's Head",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Hildeblue's Head",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Hildeblue's Head",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Cure/Shock",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Hildeblue's Head",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Hildeblue's Head",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Mothmant/Mothvert",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
-          },
-          {
-            "name": "Monest/Mothvist",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
-          },
-          {
-            "name": "Rag Rappy/El Rappy",
-            "drops": [
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              },
-              {
-                "item": "Rappy's Wing",
-                "rate": "1/128"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Al Rappy/Pal Rappy",
-            "drops": [
-              {
-                "item": "Bravace",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Justy-23ST",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Branch of Pakupaku",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Savage Wolf/Gulgus",
-            "drops": [
-              {
-                "item": "Crush Bullet",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Battle Verge",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Fire Scepter: Agni",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Crush Bullet",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Flowen's Sword",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Meteor Smash",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Slicer of Assassin",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Barbarous Wolf/Gulgus-Gue",
-            "drops": [
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Photon Claw",
-                "rate": "1/284.4"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
             "name": "Booma/Bartle",
             "drops": [
               {
@@ -14189,6 +13823,372 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
+            "name": "Rag Rappy/El Rappy",
+            "drops": [
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              },
+              {
+                "item": "Rappy's Wing",
+                "rate": "1/128"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Al Rappy/Pal Rappy",
+            "drops": [
+              {
+                "item": "Bravace",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Justy-23ST",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Branch of Pakupaku",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Mothmant/Mothvert",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ]
+          },
+          {
+            "name": "Monest/Mothvist",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ]
+          },
+          {
+            "name": "Savage Wolf/Gulgus",
+            "drops": [
+              {
+                "item": "Crush Bullet",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Battle Verge",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Fire Scepter: Agni",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Crush Bullet",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Flowen's Sword",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Meteor Smash",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Slicer of Assassin",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Barbarous Wolf/Gulgus-Gue",
+            "drops": [
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Photon Claw",
+                "rate": "1/284.4"
+              }
+            ],
+            "dropRate": "1/2.2"
+          },
+          {
+            "name": "Hildebear/Hildelt",
+            "drops": [
+              {
+                "item": "Hildebear's Head",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Hildebear's Head",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Hildebear's Head",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Hildebear's Head",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Hildebear's Head",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Custom Frame ver.OO",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Hildebear's Head",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Hildebear's Head",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Varista",
+                "rate": "1/43.0"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
+            "name": "Hildeblue/Hildetorr",
+            "drops": [
+              {
+                "item": "Final Impact",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "God/Arm",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Hildeblue's Head",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Hildeblue's Head",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Hildeblue's Head",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Cure/Shock",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Hildeblue's Head",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Hildeblue's Head",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
             "name": "Dragon/Sil Dragon",
             "drops": [
               {
@@ -14233,190 +14233,6 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/1"
-          },
-          {
-            "name": "Grass Assassin/Crimson Assassin",
-            "drops": [
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Grass Assassin's Arms",
-                "rate": "1/116.4"
-              }
-            ],
-            "dropRate": "1/1.8"
-          },
-          {
-            "name": "Poison Lily/Ob Lily",
-            "drops": [
-              {
-                "item": "Vjaya",
-                "rate": "1/512"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/512"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/512"
-              },
-              {
-                "item": "Kaladbolg",
-                "rate": "1/512"
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/512"
-              },
-              {
-                "item": "Brionac",
-                "rate": "1/512"
-              },
-              {
-                "item": "Magic Rock \"Moola\"",
-                "rate": "1/512"
-              },
-              {
-                "item": "Blade Dance",
-                "rate": "1/512"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/512"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/512"
-              }
-            ],
-            "dropRate": "1/4"
-          },
-          {
-            "name": "Nar Lily/Mil Lily",
-            "drops": [
-              {
-                "item": "Devil/Battle",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Hero/Ability",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "God/HP",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Cure/Confuse",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "God/Mind",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "God/Mind",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "God/Body",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "HP/Revival",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Cure/Confuse",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Perfect/Resist",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Nano Dragon/Nano Dragon",
-            "drops": [
-              {
-                "item": "Meteor Smash",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Double Saber",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Double Saber",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Vjaya",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Double Saber",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Double Saber",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Double Saber",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/116.4"
-              }
-            ],
-            "dropRate": "1/1.8"
           },
           {
             "name": "Evil Shark/Vulmer",
@@ -14555,6 +14371,190 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/6.7"
+          },
+          {
+            "name": "Poison Lily/Ob Lily",
+            "drops": [
+              {
+                "item": "Vjaya",
+                "rate": "1/512"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/512"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/512"
+              },
+              {
+                "item": "Kaladbolg",
+                "rate": "1/512"
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/512"
+              },
+              {
+                "item": "Brionac",
+                "rate": "1/512"
+              },
+              {
+                "item": "Magic Rock \"Moola\"",
+                "rate": "1/512"
+              },
+              {
+                "item": "Blade Dance",
+                "rate": "1/512"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/512"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/512"
+              }
+            ],
+            "dropRate": "1/4"
+          },
+          {
+            "name": "Nar Lily/Mil Lily",
+            "drops": [
+              {
+                "item": "Devil/Battle",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Hero/Ability",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "God/HP",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Cure/Confuse",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "God/Mind",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "God/Mind",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "God/Body",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "HP/Revival",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Cure/Confuse",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Perfect/Resist",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Grass Assassin/Crimson Assassin",
+            "drops": [
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Grass Assassin's Arms",
+                "rate": "1/116.4"
+              }
+            ],
+            "dropRate": "1/1.8"
+          },
+          {
+            "name": "Nano Dragon/Nano Dragon",
+            "drops": [
+              {
+                "item": "Meteor Smash",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Double Saber",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Double Saber",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Vjaya",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Double Saber",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Double Saber",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Double Saber",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/116.4"
+              }
+            ],
+            "dropRate": "1/1.8"
           },
           {
             "name": "Pofuilly Slime/Pofuilly Slime",
@@ -14833,52 +14833,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
-            "name": "Dubchic/Dubchich",
-            "drops": [
-              {
-                "item": "God/Body",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "God/Arm",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "God/Arm",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Devil/Battle",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "God/Arm",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "TP/Revival",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Cure/Paralysis",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "God/TP",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Devil/Battle",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "PB/Create",
-                "rate": "1/213.3"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
             "name": "Gilchic/Gilchich",
             "drops": [
               {
@@ -14925,142 +14879,50 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.3"
           },
           {
-            "name": "Garanz/Baranz",
+            "name": "Dubchic/Dubchich",
             "drops": [
               {
-                "item": "Final Impact",
-                "rate": "1/43.0"
+                "item": "God/Body",
+                "rate": "1/213.3"
               },
               {
-                "item": "Justy-23ST",
-                "rate": "1/43.0"
+                "item": "God/Arm",
+                "rate": "1/213.3"
               },
               {
-                "item": "Dragon Slayer",
-                "rate": "1/43.0"
+                "item": "God/Arm",
+                "rate": "1/213.3"
               },
               {
-                "item": "Gae Bolg",
-                "rate": "1/43.0"
+                "item": "Devil/Battle",
+                "rate": "1/213.3"
               },
               {
-                "item": "L&K14 Combat",
-                "rate": "1/43.0"
+                "item": "God/Arm",
+                "rate": "1/213.3"
               },
               {
-                "item": "Storm Wand: Indra",
-                "rate": "1/43.0"
+                "item": "TP/Revival",
+                "rate": "1/213.3"
               },
               {
-                "item": "Diska of Braveman",
-                "rate": "1/43.0"
+                "item": "Cure/Paralysis",
+                "rate": "1/213.3"
               },
               {
-                "item": "Cross Scar",
-                "rate": "1/43.0"
+                "item": "God/TP",
+                "rate": "1/213.3"
               },
               {
-                "item": "AddSlot",
-                "rate": "1/43.0"
+                "item": "Devil/Battle",
+                "rate": "1/213.3"
               },
               {
-                "item": "Diska of Braveman",
-                "rate": "1/43.0"
+                "item": "PB/Create",
+                "rate": "1/213.3"
               }
             ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Sinow Beat/Sinow Blue",
-            "drops": [
-              {
-                "item": "S-beat's Arms",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "S-beat's Arms",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "S-beat's Arms",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "S-beat's Arms",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "S-beat's Arms",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "S-beat's Arms",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "S-beat's Arms",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "S-beat's Arms",
-                "rate": "1/106.7"
-              },
-              {
-                "item": "Trigrinder",
-                "rate": "1/106.7"
-              }
-            ],
-            "dropRate": "1/1.7"
-          },
-          {
-            "name": "Sinow Gold/Sinow Red",
-            "drops": [
-              {
-                "item": "Agito (2001)",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Agito (2001)",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Agito (2001)",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Meteor Smash",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Agito (2001)",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "AddSlot",
-                "rate": "1/116.4"
-              }
-            ],
-            "dropRate": "1/1.8"
+            "dropRate": "1/3.3"
           },
           {
             "name": "Canadine/Canabin",
@@ -15155,6 +15017,144 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
+            "name": "Sinow Beat/Sinow Blue",
+            "drops": [
+              {
+                "item": "S-beat's Arms",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "S-beat's Arms",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "S-beat's Arms",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "S-beat's Arms",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "S-beat's Arms",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "S-beat's Arms",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "S-beat's Arms",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "S-beat's Arms",
+                "rate": "1/106.7"
+              },
+              {
+                "item": "Trigrinder",
+                "rate": "1/106.7"
+              }
+            ],
+            "dropRate": "1/1.7"
+          },
+          {
+            "name": "Sinow Gold/Sinow Red",
+            "drops": [
+              {
+                "item": "Agito (2001)",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Agito (2001)",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Agito (2001)",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Meteor Smash",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Agito (2001)",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/116.4"
+              }
+            ],
+            "dropRate": "1/1.8"
+          },
+          {
+            "name": "Garanz/Baranz",
+            "drops": [
+              {
+                "item": "Final Impact",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Justy-23ST",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "L&K14 Combat",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Storm Wand: Indra",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "AddSlot",
+                "rate": "1/43.0"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/43.0"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
             "name": "Vol Opt/Vol Opt ver. 2",
             "drops": [
               {
@@ -15201,6 +15201,144 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
+            "name": "Dimenian/Arlan",
+            "drops": [
+              {
+                "item": "Brionac",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Vjaya",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Meteor Smash",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "La Dimenian/Merlan",
+            "drops": [
+              {
+                "item": "Vjaya",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Star Atomizer",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/365.7"
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
+            "name": "So Dimenian/Del-D",
+            "drops": [
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Caduceus",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Caduceus",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Caduceus",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Caduceus",
+                "rate": "1/365.7"
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
             "name": "Delsaber/Delsaber",
             "drops": [
               {
@@ -15242,236 +15380,6 @@ window.DROP_DATA_EN = {
               {
                 "item": "Delsaber's Right Arm",
                 "rate": "1/142.2"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
-            "name": "Chaos Sorcerer/Gran Sorcerer",
-            "drops": [
-              {
-                "item": "Talis",
-                "rate": "1/104.5"
-              },
-              {
-                "item": "Talis",
-                "rate": "1/104.5"
-              },
-              {
-                "item": "Talis",
-                "rate": "1/104.5"
-              },
-              {
-                "item": "Mahu",
-                "rate": "1/104.5"
-              },
-              {
-                "item": "Talis",
-                "rate": "1/104.5"
-              },
-              {
-                "item": "Mahu",
-                "rate": "1/104.5"
-              },
-              {
-                "item": "Talis",
-                "rate": "1/104.5"
-              },
-              {
-                "item": "Mahu",
-                "rate": "1/104.5"
-              },
-              {
-                "item": "Talis",
-                "rate": "1/104.5"
-              },
-              {
-                "item": "Talis",
-                "rate": "1/104.5"
-              }
-            ],
-            "dropRate": "1/2.9"
-          },
-          {
-            "name": "Dark Gunner/Dark Gunner",
-            "drops": [
-              {
-                "item": "Custom Frame ver.OO",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Stink Frame",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Custom Frame ver.OO",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Stink Frame",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "DB's Shield",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "DB's Armor",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Stink Frame",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Custom Frame ver.OO",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Stink Frame",
-                "rate": "1/284.4"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
-            "name": "Death Gunner/Death Gunner",
-            "drops": [
-              {
-                "item": "Custom Frame ver.OO",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "D-Parts ver1.01",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Stink Frame",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Custom Frame ver.OO",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Stink Frame",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "DB's Shield",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "DB's Armor",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Stink Frame",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Custom Frame ver.OO",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Stink Frame",
-                "rate": "1/284.4"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
-            "name": "Chaos Bringer/Dark Bringer",
-            "drops": [
-              {
-                "item": "Final Impact",
-                "rate": "1/41.6"
-              },
-              {
-                "item": "Star Atomizer",
-                "rate": "1/41.6"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/41.6"
-              },
-              {
-                "item": "Gae Bolg",
-                "rate": "1/41.6"
-              },
-              {
-                "item": "L&K14 Combat",
-                "rate": "1/41.6"
-              },
-              {
-                "item": "Storm Wand: Indra",
-                "rate": "1/41.6"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/41.6"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/41.6"
-              },
-              {
-                "item": "Brave Hammer",
-                "rate": "1/41.6"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/41.6"
-              }
-            ],
-            "dropRate": "1/1.1"
-          },
-          {
-            "name": "Dark Belra/Indi Belra",
-            "drops": [
-              {
-                "item": "Custom Ray ver.OO",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Power Material",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Brave Hammer",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Mace of Adaman",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Mace of Adaman",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "DB's Shield",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "DB's Shield",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Heart of DB's Saber",
-                "rate": "1/6619.8"
               }
             ],
             "dropRate": "1/2.2"
@@ -15615,142 +15523,234 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.2"
           },
           {
-            "name": "Dimenian/Arlan",
+            "name": "Dark Belra/Indi Belra",
             "drops": [
               {
-                "item": "Brionac",
-                "rate": "1/426.7"
+                "item": "Custom Ray ver.OO",
+                "rate": "1/142.2"
               },
               {
                 "item": "Wals-MK2",
-                "rate": "1/426.7"
+                "rate": "1/142.2"
               },
               {
-                "item": "Wals-MK2",
-                "rate": "1/426.7"
+                "item": "Power Material",
+                "rate": "1/142.2"
               },
               {
-                "item": "Gae Bolg",
-                "rate": "1/426.7"
+                "item": "Brave Hammer",
+                "rate": "1/142.2"
               },
               {
-                "item": "Bloody Art",
-                "rate": "1/426.7"
+                "item": "Mace of Adaman",
+                "rate": "1/142.2"
               },
               {
-                "item": "Vjaya",
-                "rate": "1/426.7"
+                "item": "Mace of Adaman",
+                "rate": "1/142.2"
               },
               {
-                "item": "Meteor Smash",
-                "rate": "1/426.7"
+                "item": "DB's Shield",
+                "rate": "1/142.2"
               },
               {
-                "item": "Bloody Art",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/426.7"
+                "item": "DB's Shield",
+                "rate": "1/142.2"
               },
               {
                 "item": "Diska of Liberator",
-                "rate": "1/426.7"
+                "rate": "1/142.2"
+              },
+              {
+                "item": "Heart of DB's Saber",
+                "rate": "1/6619.8"
               }
             ],
-            "dropRate": "1/3.3"
+            "dropRate": "1/2.2"
           },
           {
-            "name": "La Dimenian/Merlan",
+            "name": "Dark Gunner/Dark Gunner",
             "drops": [
               {
-                "item": "Vjaya",
-                "rate": "1/365.7"
+                "item": "Custom Frame ver.OO",
+                "rate": "1/284.4"
               },
               {
-                "item": "Inferno Bazooka",
-                "rate": "1/365.7"
+                "item": "D-Parts ver1.01",
+                "rate": "1/284.4"
               },
               {
-                "item": "Last Survivor",
-                "rate": "1/365.7"
+                "item": "Stink Frame",
+                "rate": "1/284.4"
               },
               {
-                "item": "Gae Bolg",
-                "rate": "1/365.7"
+                "item": "Custom Frame ver.OO",
+                "rate": "1/284.4"
               },
               {
-                "item": "H&S25 Justice",
-                "rate": "1/365.7"
+                "item": "Stink Frame",
+                "rate": "1/284.4"
               },
               {
-                "item": "Inferno Bazooka",
-                "rate": "1/365.7"
+                "item": "DB's Shield",
+                "rate": "1/284.4"
               },
               {
-                "item": "Diska of Liberator",
-                "rate": "1/365.7"
+                "item": "DB's Armor",
+                "rate": "1/284.4"
               },
               {
-                "item": "Bloody Art",
-                "rate": "1/365.7"
+                "item": "Stink Frame",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Custom Frame ver.OO",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Stink Frame",
+                "rate": "1/284.4"
+              }
+            ],
+            "dropRate": "1/2.2"
+          },
+          {
+            "name": "Death Gunner/Death Gunner",
+            "drops": [
+              {
+                "item": "Custom Frame ver.OO",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "D-Parts ver1.01",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Stink Frame",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Custom Frame ver.OO",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Stink Frame",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "DB's Shield",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "DB's Armor",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Stink Frame",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Custom Frame ver.OO",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Stink Frame",
+                "rate": "1/284.4"
+              }
+            ],
+            "dropRate": "1/2.2"
+          },
+          {
+            "name": "Chaos Sorcerer/Gran Sorcerer",
+            "drops": [
+              {
+                "item": "Talis",
+                "rate": "1/104.5"
+              },
+              {
+                "item": "Talis",
+                "rate": "1/104.5"
+              },
+              {
+                "item": "Talis",
+                "rate": "1/104.5"
+              },
+              {
+                "item": "Mahu",
+                "rate": "1/104.5"
+              },
+              {
+                "item": "Talis",
+                "rate": "1/104.5"
+              },
+              {
+                "item": "Mahu",
+                "rate": "1/104.5"
+              },
+              {
+                "item": "Talis",
+                "rate": "1/104.5"
+              },
+              {
+                "item": "Mahu",
+                "rate": "1/104.5"
+              },
+              {
+                "item": "Talis",
+                "rate": "1/104.5"
+              },
+              {
+                "item": "Talis",
+                "rate": "1/104.5"
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
+            "name": "Chaos Bringer/Dark Bringer",
+            "drops": [
+              {
+                "item": "Final Impact",
+                "rate": "1/41.6"
               },
               {
                 "item": "Star Atomizer",
-                "rate": "1/365.7"
+                "rate": "1/41.6"
               },
               {
-                "item": "Inferno Bazooka",
-                "rate": "1/365.7"
+                "item": "Dragon Slayer",
+                "rate": "1/41.6"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/41.6"
+              },
+              {
+                "item": "L&K14 Combat",
+                "rate": "1/41.6"
+              },
+              {
+                "item": "Storm Wand: Indra",
+                "rate": "1/41.6"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/41.6"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/41.6"
+              },
+              {
+                "item": "Brave Hammer",
+                "rate": "1/41.6"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/41.6"
               }
             ],
-            "dropRate": "1/2.9"
-          },
-          {
-            "name": "So Dimenian/Del-D",
-            "drops": [
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Caduceus",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Caduceus",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Caduceus",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Caduceus",
-                "rate": "1/365.7"
-              }
-            ],
-            "dropRate": "1/2.9"
+            "dropRate": "1/1.1"
           },
           {
             "name": "Dark Falz/Dark Falz",
@@ -15799,6 +15799,374 @@ window.DROP_DATA_EN = {
           }
         ],
         "Episode 2": [
+          {
+            "name": "Dimenian/Arlan",
+            "drops": [
+              {
+                "item": "Meteor Smash",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Vjaya",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Ice Staff: Dagon",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Meteor Smash",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Brave Hammer",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "La Dimenian/Merlan",
+            "drops": [
+              {
+                "item": "Vjaya",
+                "rate": "1/206.4"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Brave Hammer",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Double Saber",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Ice Staff: Dagon",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Meteor Smash",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "Custom Barrier ver.OO",
+                "rate": "1/412.9"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/412.9"
+              }
+            ],
+            "dropRate": "1/3.2"
+          },
+          {
+            "name": "So Dimenian/Del-D",
+            "drops": [
+              {
+                "item": "Double Saber",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Flowen's Shield",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Silence Claw",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Spirit Garment",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Flowen's Shield",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "God/Power",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Regenerate Gear",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Silence Claw",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Rag Rappy/El Rappy",
+            "drops": [
+              {
+                "item": "Stink Frame",
+                "rate": "1/128"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/128"
+              },
+              {
+                "item": "Combat Gear",
+                "rate": "1/128"
+              },
+              {
+                "item": "Custom Barrier ver.OO",
+                "rate": "1/128"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/128"
+              },
+              {
+                "item": "Ice Staff: Dagon",
+                "rate": "1/128"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/128"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/128"
+              },
+              {
+                "item": "Vjaya",
+                "rate": "1/128"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/128"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Love Rappy/Love Rappy",
+            "drops": [
+              {
+                "item": "Final Impact",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Justy-23ST",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "L&K14 Combat",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Sting Tip",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "God/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Light Relief",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Meteor Smash",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Regenerate Gear",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Egg Rappy/Egg Rappy",
+            "drops": [
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Halo Rappy/Halo Rappy",
+            "drops": [
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "St. Rappy/St. Rappy",
+            "drops": [
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
           {
             "name": "Hildebear/Hildelt",
             "drops": [
@@ -15980,98 +16348,6 @@ window.DROP_DATA_EN = {
                 "rate": ""
               }
             ]
-          },
-          {
-            "name": "Rag Rappy/El Rappy",
-            "drops": [
-              {
-                "item": "Stink Frame",
-                "rate": "1/128"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/128"
-              },
-              {
-                "item": "Combat Gear",
-                "rate": "1/128"
-              },
-              {
-                "item": "Custom Barrier ver.OO",
-                "rate": "1/128"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/128"
-              },
-              {
-                "item": "Ice Staff: Dagon",
-                "rate": "1/128"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/128"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/128"
-              },
-              {
-                "item": "Vjaya",
-                "rate": "1/128"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/128"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Love Rappy/Love Rappy",
-            "drops": [
-              {
-                "item": "Final Impact",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Justy-23ST",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Gae Bolg",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "L&K14 Combat",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Sting Tip",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "God/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Light Relief",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Meteor Smash",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Regenerate Gear",
-                "rate": "1/1.1"
-              }
-            ],
-            "dropRate": "1/1"
           },
           {
             "name": "Grass Assassin/Crimson Assassin",
@@ -16258,144 +16534,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "Dimenian/Arlan",
-            "drops": [
-              {
-                "item": "Meteor Smash",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Vjaya",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Ice Staff: Dagon",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Meteor Smash",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Brave Hammer",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "La Dimenian/Merlan",
-            "drops": [
-              {
-                "item": "Vjaya",
-                "rate": "1/206.4"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Brave Hammer",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Double Saber",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Ice Staff: Dagon",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Meteor Smash",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "Custom Barrier ver.OO",
-                "rate": "1/412.9"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/412.9"
-              }
-            ],
-            "dropRate": "1/3.2"
-          },
-          {
-            "name": "So Dimenian/Del-D",
-            "drops": [
-              {
-                "item": "Double Saber",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Flowen's Shield",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Silence Claw",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Spirit Garment",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Flowen's Shield",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "God/Power",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Regenerate Gear",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Silence Claw",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
             "name": "Barba Ray/Barba Ray",
             "drops": [
               {
@@ -16442,142 +16580,141 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
-            "name": "St. Rappy/St. Rappy",
+            "name": "Dubchic/Dubchich",
             "drops": [
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Vjaya",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Justy-23ST",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Last Survivor",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Vjaya",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "H&S25 Justice",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Brave Knuckle",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Magic Rock \"Moola\"",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Bloody Art",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Diska of Liberator",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Twin Psychogun",
+                "rate": "1/213.3"
               }
             ],
-            "dropRate": "1/1"
+            "dropRate": "1/3.3"
           },
           {
-            "name": "Halo Rappy/Halo Rappy",
+            "name": "Gilchic/Gilchich",
             "drops": [
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Brave Knuckle",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Wals-MK2",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Last Survivor",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Vjaya",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "H&S25 Justice",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Ice Staff: Dagon",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Diska of Liberator",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Bloody Art",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Wals-MK2",
+                "rate": "1/426.7"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "H&S25 Justice",
+                "rate": "1/426.7"
               }
             ],
-            "dropRate": "1/1"
+            "dropRate": "1/3.3"
           },
           {
-            "name": "Egg Rappy/Egg Rappy",
+            "name": "Recon/Recon",
             "drops": [
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "",
+                "rate": ""
               }
-            ],
-            "dropRate": "1/1"
+            ]
           },
           {
             "name": "Savage Wolf/Gulgus",
@@ -16810,98 +16947,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.2"
           },
           {
-            "name": "Dubchic/Dubchich",
-            "drops": [
-              {
-                "item": "Vjaya",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Justy-23ST",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Vjaya",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Brave Knuckle",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Magic Rock \"Moola\"",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Twin Psychogun",
-                "rate": "1/213.3"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Gilchic/Gilchich",
-            "drops": [
-              {
-                "item": "Brave Knuckle",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Vjaya",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Ice Staff: Dagon",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
             "name": "Garanz/Baranz",
             "drops": [
               {
@@ -17086,6 +17131,98 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
+            "name": "Ul Gibbon/Ul Gibbon",
+            "drops": [
+              {
+                "item": "Meteor Smash",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Brave Hammer",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Ice Staff: Dagon",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Mace of Adaman",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/426.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Zol Gibbon/Zol Gibbon",
+            "drops": [
+              {
+                "item": "Attribute Plate",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Vjaya",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "H&S25 Justice",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Ice Staff: Dagon",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Meteor Smash",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/365.7"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/365.7"
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
             "name": "Merillia/Merillia",
             "drops": [
               {
@@ -17224,50 +17361,96 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.3"
           },
           {
-            "name": "Gi Gue/Gi Gue",
+            "name": "Sinow Berill/Sinow Berill",
             "drops": [
               {
-                "item": "Fatsia",
-                "rate": "1/45.7"
+                "item": "Meteor Smash",
+                "rate": "1/160"
               },
               {
-                "item": "Stink Frame",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/160"
               },
               {
-                "item": "Custom Barrier ver.OO",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/160"
               },
               {
-                "item": "Gae Bolg",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/160"
               },
               {
-                "item": "Attribute Wall",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/160"
               },
               {
-                "item": "Fatsia",
-                "rate": "1/45.7"
+                "item": "Sinow Berill's Arms",
+                "rate": "1/160"
+              },
+              {
+                "item": "Sinow Berill's Arms",
+                "rate": "1/160"
+              },
+              {
+                "item": "Bloody Art",
+                "rate": "1/160"
+              },
+              {
+                "item": "Sinow Berill's Arms",
+                "rate": "1/160"
+              },
+              {
+                "item": "Diska of Liberator",
+                "rate": "1/160"
+              }
+            ],
+            "dropRate": "1/2.5"
+          },
+          {
+            "name": "Sinow Spigell/Sinow Spigell",
+            "drops": [
+              {
+                "item": "Meteor Smash",
+                "rate": "1/142.2"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/142.2"
+              },
+              {
+                "item": "Wals-MK2",
+                "rate": "1/142.2"
               },
               {
                 "item": "Plantain Leaf",
-                "rate": "1/45.7"
+                "rate": "1/142.2"
               },
               {
-                "item": "Double Saber",
-                "rate": "1/45.7"
+                "item": "Custom Barrier ver.OO",
+                "rate": "1/142.2"
+              },
+              {
+                "item": "Storm Wand: Indra",
+                "rate": "1/142.2"
+              },
+              {
+                "item": "Final Impact",
+                "rate": "1/142.2"
+              },
+              {
+                "item": "Last Survivor",
+                "rate": "1/142.2"
+              },
+              {
+                "item": "Custom Ray ver.OO",
+                "rate": "1/142.2"
               },
               {
                 "item": "Mahu",
-                "rate": "1/45.7"
-              },
-              {
-                "item": "Attribute Plate",
-                "rate": "1/45.7"
+                "rate": "1/142.2"
               }
             ],
-            "dropRate": "1/1.2"
+            "dropRate": "1/2.2"
           },
           {
             "name": "Mericarol/Mericarol",
@@ -17408,98 +17591,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1.2"
           },
           {
-            "name": "Ul Gibbon/Ul Gibbon",
-            "drops": [
-              {
-                "item": "Meteor Smash",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Brave Hammer",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Ice Staff: Dagon",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Mace of Adaman",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/426.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Zol Gibbon/Zol Gibbon",
-            "drops": [
-              {
-                "item": "Attribute Plate",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Vjaya",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "H&S25 Justice",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Ice Staff: Dagon",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Meteor Smash",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Last Survivor",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/365.7"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/365.7"
-              }
-            ],
-            "dropRate": "1/2.9"
-          },
-          {
             "name": "Gibbles/Gibbles",
             "drops": [
               {
@@ -17546,96 +17637,50 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1.2"
           },
           {
-            "name": "Sinow Berill/Sinow Berill",
+            "name": "Gi Gue/Gi Gue",
             "drops": [
               {
-                "item": "Meteor Smash",
-                "rate": "1/160"
+                "item": "Fatsia",
+                "rate": "1/45.7"
               },
               {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/160"
-              },
-              {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/160"
-              },
-              {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/160"
-              },
-              {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/160"
-              },
-              {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/160"
-              },
-              {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/160"
-              },
-              {
-                "item": "Bloody Art",
-                "rate": "1/160"
-              },
-              {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/160"
-              },
-              {
-                "item": "Diska of Liberator",
-                "rate": "1/160"
-              }
-            ],
-            "dropRate": "1/2.5"
-          },
-          {
-            "name": "Sinow Spigell/Sinow Spigell",
-            "drops": [
-              {
-                "item": "Meteor Smash",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Wals-MK2",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Plantain Leaf",
-                "rate": "1/142.2"
+                "item": "Stink Frame",
+                "rate": "1/45.7"
               },
               {
                 "item": "Custom Barrier ver.OO",
-                "rate": "1/142.2"
+                "rate": "1/45.7"
               },
               {
-                "item": "Storm Wand: Indra",
-                "rate": "1/142.2"
+                "item": "Gae Bolg",
+                "rate": "1/45.7"
               },
               {
-                "item": "Final Impact",
-                "rate": "1/142.2"
+                "item": "Attribute Wall",
+                "rate": "1/45.7"
               },
               {
-                "item": "Last Survivor",
-                "rate": "1/142.2"
+                "item": "Fatsia",
+                "rate": "1/45.7"
               },
               {
-                "item": "Custom Ray ver.OO",
-                "rate": "1/142.2"
+                "item": "Plantain Leaf",
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Double Saber",
+                "rate": "1/45.7"
               },
               {
                 "item": "Mahu",
-                "rate": "1/142.2"
+                "rate": "1/45.7"
+              },
+              {
+                "item": "Attribute Plate",
+                "rate": "1/45.7"
               }
             ],
-            "dropRate": "1/2.2"
+            "dropRate": "1/1.2"
           },
           {
             "name": "Gal Gryphon/Gal Gryphon",
@@ -17820,51 +17865,6 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/2.5"
-          },
-          {
-            "name": "Recon/Recon",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
           },
           {
             "name": "Sinow Zoa/Sinow Zoa",
@@ -18374,98 +18374,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "Dorphon",
-            "drops": [
-              {
-                "item": "Red Scorpio",
-                "rate": "1/393.9"
-              },
-              {
-                "item": "Guilty Light",
-                "rate": "1/49.2"
-              },
-              {
-                "item": "Cursed Cloak",
-                "rate": "1/1861.8"
-              },
-              {
-                "item": "Select Cloak",
-                "rate": "1/1861.8"
-              },
-              {
-                "item": "Select Cloak",
-                "rate": "1/1861.8"
-              },
-              {
-                "item": "Cursed Cloak",
-                "rate": "1/1861.8"
-              },
-              {
-                "item": "Cursed Cloak",
-                "rate": "1/1861.8"
-              },
-              {
-                "item": "Select Cloak",
-                "rate": "1/1861.8"
-              },
-              {
-                "item": "Tempest Cloak",
-                "rate": "1/1861.8"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/196.9"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Dorphon Eclair",
-            "drops": [
-              {
-                "item": "God/Battle",
-                "rate": "1/2"
-              },
-              {
-                "item": "Holy Ray",
-                "rate": "1/2"
-              },
-              {
-                "item": "Chain Sawd",
-                "rate": "1/2"
-              },
-              {
-                "item": "Cure/Confuse",
-                "rate": "1/2"
-              },
-              {
-                "item": "Heavenly/Power",
-                "rate": "1/2"
-              },
-              {
-                "item": "Heavenly/Mind",
-                "rate": "1/2"
-              },
-              {
-                "item": "Heart of Diska of Liberator",
-                "rate": "1/9.8"
-              },
-              {
-                "item": "Photon Crystal",
-                "rate": "1/2"
-              },
-              {
-                "item": "Congeal Cloak",
-                "rate": "1/6.4"
-              },
-              {
-                "item": "Heavenly/Body",
-                "rate": "1/2"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
             "name": "Sand Rappy",
             "drops": [
               {
@@ -18786,6 +18694,98 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/1.2"
+          },
+          {
+            "name": "Dorphon",
+            "drops": [
+              {
+                "item": "Red Scorpio",
+                "rate": "1/393.9"
+              },
+              {
+                "item": "Guilty Light",
+                "rate": "1/49.2"
+              },
+              {
+                "item": "Cursed Cloak",
+                "rate": "1/1861.8"
+              },
+              {
+                "item": "Select Cloak",
+                "rate": "1/1861.8"
+              },
+              {
+                "item": "Select Cloak",
+                "rate": "1/1861.8"
+              },
+              {
+                "item": "Cursed Cloak",
+                "rate": "1/1861.8"
+              },
+              {
+                "item": "Cursed Cloak",
+                "rate": "1/1861.8"
+              },
+              {
+                "item": "Select Cloak",
+                "rate": "1/1861.8"
+              },
+              {
+                "item": "Tempest Cloak",
+                "rate": "1/1861.8"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/196.9"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
+            "name": "Dorphon Eclair",
+            "drops": [
+              {
+                "item": "God/Battle",
+                "rate": "1/2"
+              },
+              {
+                "item": "Holy Ray",
+                "rate": "1/2"
+              },
+              {
+                "item": "Chain Sawd",
+                "rate": "1/2"
+              },
+              {
+                "item": "Cure/Confuse",
+                "rate": "1/2"
+              },
+              {
+                "item": "Heavenly/Power",
+                "rate": "1/2"
+              },
+              {
+                "item": "Heavenly/Mind",
+                "rate": "1/2"
+              },
+              {
+                "item": "Heart of Diska of Liberator",
+                "rate": "1/9.8"
+              },
+              {
+                "item": "Photon Crystal",
+                "rate": "1/2"
+              },
+              {
+                "item": "Congeal Cloak",
+                "rate": "1/6.4"
+              },
+              {
+                "item": "Heavenly/Body",
+                "rate": "1/2"
+              }
+            ],
+            "dropRate": "1/1"
           },
           {
             "name": "Goran",
@@ -20521,374 +20521,6 @@ window.DROP_DATA_EN = {
       "monsters": {
         "Episode 1": [
           {
-            "name": "Hildebear/Hildelt",
-            "drops": [
-              {
-                "item": "Star Amplifier",
-                "rate": "1/370.7"
-              },
-              {
-                "item": "Star Amplifier",
-                "rate": "1/370.7"
-              },
-              {
-                "item": "Flowen's Sword (3064)",
-                "rate": "1/75.3"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/370.7"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/370.7"
-              },
-              {
-                "item": "Smartlink",
-                "rate": "1/1204.7"
-              },
-              {
-                "item": "Heavenly/Battle",
-                "rate": "1/370.7"
-              },
-              {
-                "item": "Elysion",
-                "rate": "1/370.7"
-              },
-              {
-                "item": "Luminous Field",
-                "rate": "1/1204.7"
-              },
-              {
-                "item": "Red Saber",
-                "rate": "1/370.7"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Hildeblue/Hildetorr",
-            "drops": [
-              {
-                "item": "Red Saber",
-                "rate": "1/2"
-              },
-              {
-                "item": "Frozen Shooter",
-                "rate": "1/2"
-              },
-              {
-                "item": "Red Saber",
-                "rate": "1/2"
-              },
-              {
-                "item": "Heaven Punisher",
-                "rate": "1/204.8",
-                "ss": true
-              },
-              {
-                "item": "Frozen Shooter",
-                "rate": "1/2"
-              },
-              {
-                "item": "Star Amplifier",
-                "rate": "1/2"
-              },
-              {
-                "item": "Magic Stone \"Iritista\"",
-                "rate": "1/21.3"
-              },
-              {
-                "item": "Syncesta",
-                "rate": "1/21.3"
-              },
-              {
-                "item": "Frozen Shooter",
-                "rate": "1/2"
-              },
-              {
-                "item": "Frozen Shooter",
-                "rate": "1/2"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Mothmant/Mothvert",
-            "drops": [
-              {
-                "item": "Gae Bolg",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Mahu",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Gae Bolg",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Storm Wand: Indra",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Mahu",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/1260.3"
-              }
-            ],
-            "dropRate": "1/4"
-          },
-          {
-            "name": "Monest/Mothvist",
-            "drops": [
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              },
-              {
-                "item": "",
-                "rate": ""
-              }
-            ]
-          },
-          {
-            "name": "Rag Rappy/El Rappy",
-            "drops": [
-              {
-                "item": "Angry Fist",
-                "rate": "1/64"
-              },
-              {
-                "item": "Angry Fist",
-                "rate": "1/64"
-              },
-              {
-                "item": "Angry Fist",
-                "rate": "1/64"
-              },
-              {
-                "item": "Angry Fist",
-                "rate": "1/64"
-              },
-              {
-                "item": "Red Handgun",
-                "rate": "1/315.1"
-              },
-              {
-                "item": "Stag Cutlery",
-                "rate": "1/64"
-              },
-              {
-                "item": "Sacred Cloth",
-                "rate": "1/512"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/64"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/64"
-              },
-              {
-                "item": "Flowen's Sword (3079)",
-                "rate": "1/64"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Al Rappy/Pal Rappy",
-            "drops": [
-              {
-                "item": "Red Scorpio",
-                "rate": "1/2"
-              },
-              {
-                "item": "Guard Wave",
-                "rate": "1/2"
-              },
-              {
-                "item": "Angel Harp",
-                "rate": "1/21.3"
-              },
-              {
-                "item": "HP/Revival",
-                "rate": "1/2"
-              },
-              {
-                "item": "Sacred Cloth",
-                "rate": "1/2"
-              },
-              {
-                "item": "Agito (1975)",
-                "rate": "1/21.3"
-              },
-              {
-                "item": "Red Handgun",
-                "rate": "1/2"
-              },
-              {
-                "item": "Star Amplifier",
-                "rate": "1/2"
-              },
-              {
-                "item": "Hero/Ability",
-                "rate": "1/2"
-              },
-              {
-                "item": "Red Partisan",
-                "rate": "1/2"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Savage Wolf/Gulgus",
-            "drops": [
-              {
-                "item": "Custom Frame ver.OO",
-                "rate": "1/682.7"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Stag Cutlery",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Alive Aqhu",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "L&K14 Combat",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Heart of Angel Harp",
-                "rate": "1/13653.3"
-              },
-              {
-                "item": "Flowen's Frame",
-                "rate": "1/682.7"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Storm Wand: Indra",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Yamato",
-                "rate": "1/213.3"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Barbarous Wolf/Gulgus-Gue",
-            "drops": [
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Inferno Bazooka",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Heavenly/Arms",
-                "rate": "1/1137.8"
-              },
-              {
-                "item": "Imperial Pick",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Heavenly/Arms",
-                "rate": "1/1137.8"
-              },
-              {
-                "item": "God/Mind",
-                "rate": "1/1137.8"
-              },
-              {
-                "item": "Heart of Twin Chakram",
-                "rate": "1/14563.6"
-              },
-              {
-                "item": "Flowen's Sword (3083)",
-                "rate": "1/142.2"
-              },
-              {
-                "item": "Cure/Confuse",
-                "rate": "1/1137.8"
-              },
-              {
-                "item": "Cure/Freeze",
-                "rate": "1/1137.8"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
             "name": "Booma/Bartle",
             "drops": [
               {
@@ -21027,6 +20659,374 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
+            "name": "Rag Rappy/El Rappy",
+            "drops": [
+              {
+                "item": "Angry Fist",
+                "rate": "1/64"
+              },
+              {
+                "item": "Angry Fist",
+                "rate": "1/64"
+              },
+              {
+                "item": "Angry Fist",
+                "rate": "1/64"
+              },
+              {
+                "item": "Angry Fist",
+                "rate": "1/64"
+              },
+              {
+                "item": "Red Handgun",
+                "rate": "1/315.1"
+              },
+              {
+                "item": "Stag Cutlery",
+                "rate": "1/64"
+              },
+              {
+                "item": "Sacred Cloth",
+                "rate": "1/512"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/64"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/64"
+              },
+              {
+                "item": "Flowen's Sword (3079)",
+                "rate": "1/64"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Al Rappy/Pal Rappy",
+            "drops": [
+              {
+                "item": "Red Scorpio",
+                "rate": "1/2"
+              },
+              {
+                "item": "Guard Wave",
+                "rate": "1/2"
+              },
+              {
+                "item": "Angel Harp",
+                "rate": "1/21.3"
+              },
+              {
+                "item": "HP/Revival",
+                "rate": "1/2"
+              },
+              {
+                "item": "Sacred Cloth",
+                "rate": "1/2"
+              },
+              {
+                "item": "Agito (1975)",
+                "rate": "1/21.3"
+              },
+              {
+                "item": "Red Handgun",
+                "rate": "1/2"
+              },
+              {
+                "item": "Star Amplifier",
+                "rate": "1/2"
+              },
+              {
+                "item": "Hero/Ability",
+                "rate": "1/2"
+              },
+              {
+                "item": "Red Partisan",
+                "rate": "1/2"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Mothmant/Mothvert",
+            "drops": [
+              {
+                "item": "Gae Bolg",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Mahu",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Storm Wand: Indra",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Mahu",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/1260.3"
+              }
+            ],
+            "dropRate": "1/4"
+          },
+          {
+            "name": "Monest/Mothvist",
+            "drops": [
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              },
+              {
+                "item": "",
+                "rate": ""
+              }
+            ]
+          },
+          {
+            "name": "Savage Wolf/Gulgus",
+            "drops": [
+              {
+                "item": "Custom Frame ver.OO",
+                "rate": "1/682.7"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Stag Cutlery",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Alive Aqhu",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "L&K14 Combat",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Heart of Angel Harp",
+                "rate": "1/13653.3"
+              },
+              {
+                "item": "Flowen's Frame",
+                "rate": "1/682.7"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Storm Wand: Indra",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Yamato",
+                "rate": "1/213.3"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Barbarous Wolf/Gulgus-Gue",
+            "drops": [
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Inferno Bazooka",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Heavenly/Arms",
+                "rate": "1/1137.8"
+              },
+              {
+                "item": "Imperial Pick",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Heavenly/Arms",
+                "rate": "1/1137.8"
+              },
+              {
+                "item": "God/Mind",
+                "rate": "1/1137.8"
+              },
+              {
+                "item": "Heart of Twin Chakram",
+                "rate": "1/14563.6"
+              },
+              {
+                "item": "Flowen's Sword (3083)",
+                "rate": "1/142.2"
+              },
+              {
+                "item": "Cure/Confuse",
+                "rate": "1/1137.8"
+              },
+              {
+                "item": "Cure/Freeze",
+                "rate": "1/1137.8"
+              }
+            ],
+            "dropRate": "1/2.2"
+          },
+          {
+            "name": "Hildebear/Hildelt",
+            "drops": [
+              {
+                "item": "Star Amplifier",
+                "rate": "1/370.7"
+              },
+              {
+                "item": "Star Amplifier",
+                "rate": "1/370.7"
+              },
+              {
+                "item": "Flowen's Sword (3064)",
+                "rate": "1/75.3"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/370.7"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/370.7"
+              },
+              {
+                "item": "Smartlink",
+                "rate": "1/1204.7"
+              },
+              {
+                "item": "Heavenly/Battle",
+                "rate": "1/370.7"
+              },
+              {
+                "item": "Elysion",
+                "rate": "1/370.7"
+              },
+              {
+                "item": "Luminous Field",
+                "rate": "1/1204.7"
+              },
+              {
+                "item": "Red Saber",
+                "rate": "1/370.7"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
+            "name": "Hildeblue/Hildetorr",
+            "drops": [
+              {
+                "item": "Red Saber",
+                "rate": "1/2"
+              },
+              {
+                "item": "Frozen Shooter",
+                "rate": "1/2"
+              },
+              {
+                "item": "Red Saber",
+                "rate": "1/2"
+              },
+              {
+                "item": "Heaven Punisher",
+                "rate": "1/204.8",
+                "ss": true
+              },
+              {
+                "item": "Frozen Shooter",
+                "rate": "1/2"
+              },
+              {
+                "item": "Star Amplifier",
+                "rate": "1/2"
+              },
+              {
+                "item": "Magic Stone \"Iritista\"",
+                "rate": "1/21.3"
+              },
+              {
+                "item": "Syncesta",
+                "rate": "1/21.3"
+              },
+              {
+                "item": "Frozen Shooter",
+                "rate": "1/2"
+              },
+              {
+                "item": "Frozen Shooter",
+                "rate": "1/2"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
             "name": "Dragon/Sil Dragon",
             "drops": [
               {
@@ -21071,193 +21071,6 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/1"
-          },
-          {
-            "name": "Grass Assassin/Crimson Assassin",
-            "drops": [
-              {
-                "item": "V101",
-                "rate": "1/2291.5"
-              },
-              {
-                "item": "Shouren",
-                "rate": "1/1241.2"
-              },
-              {
-                "item": "Red Dagger",
-                "rate": "1/572.9"
-              },
-              {
-                "item": "Red Partisan",
-                "rate": "1/572.9"
-              },
-              {
-                "item": "Smoking Plate",
-                "rate": "1/1861.8"
-              },
-              {
-                "item": "Technical Crozier",
-                "rate": "1/572.9"
-              },
-              {
-                "item": "Asuka",
-                "rate": "1/572.9"
-              },
-              {
-                "item": "Red Partisan",
-                "rate": "1/572.9"
-              },
-              {
-                "item": "Heaven Punisher",
-                "rate": "1/190650.2",
-                "ss": true
-              },
-              {
-                "item": "Shouren",
-                "rate": "1/1241.2"
-              }
-            ],
-            "dropRate": "1/1.8"
-          },
-          {
-            "name": "Poison Lily/Ob Lily",
-            "drops": [
-              {
-                "item": "Final Impact",
-                "rate": "1/256"
-              },
-              {
-                "item": "Justy-23ST",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Guilty Light",
-                "rate": "1/256"
-              },
-              {
-                "item": "Gae Bolg",
-                "rate": "1/256"
-              },
-              {
-                "item": "L&K14 Combat",
-                "rate": "1/256"
-              },
-              {
-                "item": "Storm Wand: Indra",
-                "rate": "1/256"
-              },
-              {
-                "item": "Cure/Poison",
-                "rate": "1/1260.3"
-              },
-              {
-                "item": "Angry Fist",
-                "rate": "1/256"
-              },
-              {
-                "item": "Guard Wave",
-                "rate": "1/4096"
-              },
-              {
-                "item": "Red Handgun",
-                "rate": "1/1260.3"
-              }
-            ],
-            "dropRate": "1/4"
-          },
-          {
-            "name": "Nar Lily/Mil Lily",
-            "drops": [
-              {
-                "item": "Heavenly/Power",
-                "rate": "1/2"
-              },
-              {
-                "item": "DB's Saber (3062)",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Sange",
-                "rate": "1/2"
-              },
-              {
-                "item": "Demolition Comet",
-                "rate": "1/2"
-              },
-              {
-                "item": "Psycho Wand",
-                "rate": "1/204.8",
-                "ss": true
-              },
-              {
-                "item": "Heavenly/Arms",
-                "rate": "1/3.2"
-              },
-              {
-                "item": "Demolition Comet",
-                "rate": "1/2"
-              },
-              {
-                "item": "Sense Plate",
-                "rate": "1/2"
-              },
-              {
-                "item": "Sange",
-                "rate": "1/2"
-              },
-              {
-                "item": "Agito (1975)",
-                "rate": "1/21.3"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Nano Dragon/Nano Dragon",
-            "drops": [
-              {
-                "item": "Red Sword",
-                "rate": "1/572.9"
-              },
-              {
-                "item": "God/Arm",
-                "rate": "1/930.9"
-              },
-              {
-                "item": "Red Slicer",
-                "rate": "1/572.9"
-              },
-              {
-                "item": "Kasami Bracer",
-                "rate": "1/1861.8"
-              },
-              {
-                "item": "Purplenum Card",
-                "rate": "1/18331.8",
-                "ss": true
-              },
-              {
-                "item": "Guilty Light",
-                "rate": "1/116.4"
-              },
-              {
-                "item": "Red Slicer",
-                "rate": "1/572.9"
-              },
-              {
-                "item": "Agito (1975)",
-                "rate": "1/18331.8"
-              },
-              {
-                "item": "Red Scorpio",
-                "rate": "1/572.9"
-              },
-              {
-                "item": "Flight Fan",
-                "rate": "1/572.9"
-              }
-            ],
-            "dropRate": "1/1.8"
           },
           {
             "name": "Evil Shark/Vulmer",
@@ -21397,6 +21210,193 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/6.7"
+          },
+          {
+            "name": "Poison Lily/Ob Lily",
+            "drops": [
+              {
+                "item": "Final Impact",
+                "rate": "1/256"
+              },
+              {
+                "item": "Justy-23ST",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Guilty Light",
+                "rate": "1/256"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/256"
+              },
+              {
+                "item": "L&K14 Combat",
+                "rate": "1/256"
+              },
+              {
+                "item": "Storm Wand: Indra",
+                "rate": "1/256"
+              },
+              {
+                "item": "Cure/Poison",
+                "rate": "1/1260.3"
+              },
+              {
+                "item": "Angry Fist",
+                "rate": "1/256"
+              },
+              {
+                "item": "Guard Wave",
+                "rate": "1/4096"
+              },
+              {
+                "item": "Red Handgun",
+                "rate": "1/1260.3"
+              }
+            ],
+            "dropRate": "1/4"
+          },
+          {
+            "name": "Nar Lily/Mil Lily",
+            "drops": [
+              {
+                "item": "Heavenly/Power",
+                "rate": "1/2"
+              },
+              {
+                "item": "DB's Saber (3062)",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Sange",
+                "rate": "1/2"
+              },
+              {
+                "item": "Demolition Comet",
+                "rate": "1/2"
+              },
+              {
+                "item": "Psycho Wand",
+                "rate": "1/204.8",
+                "ss": true
+              },
+              {
+                "item": "Heavenly/Arms",
+                "rate": "1/3.2"
+              },
+              {
+                "item": "Demolition Comet",
+                "rate": "1/2"
+              },
+              {
+                "item": "Sense Plate",
+                "rate": "1/2"
+              },
+              {
+                "item": "Sange",
+                "rate": "1/2"
+              },
+              {
+                "item": "Agito (1975)",
+                "rate": "1/21.3"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Grass Assassin/Crimson Assassin",
+            "drops": [
+              {
+                "item": "V101",
+                "rate": "1/2291.5"
+              },
+              {
+                "item": "Shouren",
+                "rate": "1/1241.2"
+              },
+              {
+                "item": "Red Dagger",
+                "rate": "1/572.9"
+              },
+              {
+                "item": "Red Partisan",
+                "rate": "1/572.9"
+              },
+              {
+                "item": "Smoking Plate",
+                "rate": "1/1861.8"
+              },
+              {
+                "item": "Technical Crozier",
+                "rate": "1/572.9"
+              },
+              {
+                "item": "Asuka",
+                "rate": "1/572.9"
+              },
+              {
+                "item": "Red Partisan",
+                "rate": "1/572.9"
+              },
+              {
+                "item": "Heaven Punisher",
+                "rate": "1/190650.2",
+                "ss": true
+              },
+              {
+                "item": "Shouren",
+                "rate": "1/1241.2"
+              }
+            ],
+            "dropRate": "1/1.8"
+          },
+          {
+            "name": "Nano Dragon/Nano Dragon",
+            "drops": [
+              {
+                "item": "Red Sword",
+                "rate": "1/572.9"
+              },
+              {
+                "item": "God/Arm",
+                "rate": "1/930.9"
+              },
+              {
+                "item": "Red Slicer",
+                "rate": "1/572.9"
+              },
+              {
+                "item": "Kasami Bracer",
+                "rate": "1/1861.8"
+              },
+              {
+                "item": "Purplenum Card",
+                "rate": "1/18331.8",
+                "ss": true
+              },
+              {
+                "item": "Guilty Light",
+                "rate": "1/116.4"
+              },
+              {
+                "item": "Red Slicer",
+                "rate": "1/572.9"
+              },
+              {
+                "item": "Agito (1975)",
+                "rate": "1/18331.8"
+              },
+              {
+                "item": "Red Scorpio",
+                "rate": "1/572.9"
+              },
+              {
+                "item": "Flight Fan",
+                "rate": "1/572.9"
+              }
+            ],
+            "dropRate": "1/1.8"
           },
           {
             "name": "Pofuilly Slime/Pofuilly Slime",
@@ -21675,6 +21675,52 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
+            "name": "Gilchic/Gilchich",
+            "drops": [
+              {
+                "item": "Final Impact",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Yasminkov 3000R",
+                "rate": "1/1050.3"
+              },
+              {
+                "item": "Justy-23ST",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Vjaya",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Flowen's Sword (3073)",
+                "rate": "1/33608.2"
+              },
+              {
+                "item": "Heart of Izmaela",
+                "rate": "1/9102.2"
+              },
+              {
+                "item": "Heart of Sorcerer's Cane",
+                "rate": "1/9102.2"
+              },
+              {
+                "item": "S-Parts ver2.01",
+                "rate": "1/10922.7"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "L&K14 Combat",
+                "rate": "1/213.3"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
             "name": "Dubchic/Dubchich",
             "drops": [
               {
@@ -21722,96 +21768,96 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.3"
           },
           {
-            "name": "Gilchic/Gilchich",
+            "name": "Canadine/Canabin",
             "drops": [
               {
-                "item": "Final Impact",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Yasminkov 3000R",
-                "rate": "1/1050.3"
+                "item": "Viridia Card",
+                "rate": "1/28807.0"
               },
               {
                 "item": "Justy-23ST",
-                "rate": "1/213.3"
+                "rate": "1/182.9"
               },
               {
-                "item": "Vjaya",
-                "rate": "1/213.3"
+                "item": "Dragon Slayer",
+                "rate": "1/182.9"
               },
               {
-                "item": "Flowen's Sword (3073)",
-                "rate": "1/33608.2"
+                "item": "Alive Aqhu",
+                "rate": "1/182.9"
               },
               {
-                "item": "Heart of Izmaela",
-                "rate": "1/9102.2"
+                "item": "M&A60 Vise",
+                "rate": "1/182.9"
               },
               {
-                "item": "Heart of Sorcerer's Cane",
-                "rate": "1/9102.2"
+                "item": "Storm Wand: Indra",
+                "rate": "1/182.9"
               },
               {
-                "item": "S-Parts ver2.01",
-                "rate": "1/10922.7"
+                "item": "DB's Saber (3073)",
+                "rate": "1/182.9"
               },
               {
-                "item": "Gae Bolg",
-                "rate": "1/213.3"
+                "item": "Dragon Slayer",
+                "rate": "1/182.9"
               },
               {
-                "item": "L&K14 Combat",
-                "rate": "1/213.3"
+                "item": "NUG2000-Bazooka",
+                "rate": "1/28807.0"
+              },
+              {
+                "item": "Whitill Card",
+                "rate": "1/28807.0"
               }
             ],
-            "dropRate": "1/3.3"
+            "dropRate": "1/2.9"
           },
           {
-            "name": "Garanz/Baranz",
+            "name": "Canane/Canune",
             "drops": [
               {
-                "item": "Parts of Baranz",
-                "rate": "1/370.7"
+                "item": "DB's Shield",
+                "rate": "1/585.1"
               },
               {
-                "item": "Parts of Baranz",
-                "rate": "1/370.7"
+                "item": "Kasami Bracer",
+                "rate": "1/2925.7"
               },
               {
-                "item": "Syncesta",
-                "rate": "1/11861.7"
+                "item": "Asuka",
+                "rate": "1/900.2"
               },
               {
-                "item": "Silence Claw",
-                "rate": "1/75.3"
+                "item": "Sacred Guard",
+                "rate": "1/2925.7"
               },
               {
-                "item": "Parts of Baranz",
-                "rate": "1/370.7"
+                "item": "Yasminkov 9000M",
+                "rate": "1/900.2"
               },
               {
-                "item": "Parts of Baranz",
-                "rate": "1/370.7"
+                "item": "Smoking Plate",
+                "rate": "1/2925.7"
               },
               {
-                "item": "Red Scorpio",
-                "rate": "1/370.7"
+                "item": "Magic Rock \"Moola\"",
+                "rate": "1/900.2"
               },
               {
-                "item": "Parts of Baranz",
-                "rate": "1/370.7"
+                "item": "Asuka",
+                "rate": "1/900.2"
               },
               {
-                "item": "V101",
-                "rate": "1/2965.4"
+                "item": "Magic Rock \"Moola\"",
+                "rate": "1/900.2"
               },
               {
-                "item": "Parts of Baranz",
-                "rate": "1/370.7"
+                "item": "Yahoo!'s engine",
+                "rate": "1/585.1"
               }
             ],
-            "dropRate": "1/1.2"
+            "dropRate": "1/2.9"
           },
           {
             "name": "Sinow Beat/Sinow Blue",
@@ -21909,96 +21955,50 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1.8"
           },
           {
-            "name": "Canadine/Canabin",
+            "name": "Garanz/Baranz",
             "drops": [
               {
-                "item": "Viridia Card",
-                "rate": "1/28807.0"
+                "item": "Parts of Baranz",
+                "rate": "1/370.7"
               },
               {
-                "item": "Justy-23ST",
-                "rate": "1/182.9"
+                "item": "Parts of Baranz",
+                "rate": "1/370.7"
               },
               {
-                "item": "Dragon Slayer",
-                "rate": "1/182.9"
+                "item": "Syncesta",
+                "rate": "1/11861.7"
               },
               {
-                "item": "Alive Aqhu",
-                "rate": "1/182.9"
+                "item": "Silence Claw",
+                "rate": "1/75.3"
               },
               {
-                "item": "M&A60 Vise",
-                "rate": "1/182.9"
+                "item": "Parts of Baranz",
+                "rate": "1/370.7"
               },
               {
-                "item": "Storm Wand: Indra",
-                "rate": "1/182.9"
+                "item": "Parts of Baranz",
+                "rate": "1/370.7"
               },
               {
-                "item": "DB's Saber (3073)",
-                "rate": "1/182.9"
+                "item": "Red Scorpio",
+                "rate": "1/370.7"
               },
               {
-                "item": "Dragon Slayer",
-                "rate": "1/182.9"
+                "item": "Parts of Baranz",
+                "rate": "1/370.7"
               },
               {
-                "item": "NUG2000-Bazooka",
-                "rate": "1/28807.0"
+                "item": "V101",
+                "rate": "1/2965.4"
               },
               {
-                "item": "Whitill Card",
-                "rate": "1/28807.0"
+                "item": "Parts of Baranz",
+                "rate": "1/370.7"
               }
             ],
-            "dropRate": "1/2.9"
-          },
-          {
-            "name": "Canane/Canune",
-            "drops": [
-              {
-                "item": "DB's Shield",
-                "rate": "1/585.1"
-              },
-              {
-                "item": "Kasami Bracer",
-                "rate": "1/2925.7"
-              },
-              {
-                "item": "Asuka",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Sacred Guard",
-                "rate": "1/2925.7"
-              },
-              {
-                "item": "Yasminkov 9000M",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Smoking Plate",
-                "rate": "1/2925.7"
-              },
-              {
-                "item": "Magic Rock \"Moola\"",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Asuka",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Magic Rock \"Moola\"",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Yahoo!'s engine",
-                "rate": "1/585.1"
-              }
-            ],
-            "dropRate": "1/2.9"
+            "dropRate": "1/1.2"
           },
           {
             "name": "Vol Opt/Vol Opt ver. 2",
@@ -22047,6 +22047,144 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
+            "name": "Dimenian/Arlan",
+            "drops": [
+              {
+                "item": "Gae Bolg",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Red Scorpio",
+                "rate": "1/1050.3"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "DB's Saber (3069 Chris)",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Guardianna",
+                "rate": "1/1050.3"
+              },
+              {
+                "item": "Storm Wand: Indra",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Musashi",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Smoking Plate",
+                "rate": "1/3413.3"
+              },
+              {
+                "item": "Meteor Cudgel",
+                "rate": "1/1050.3"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "La Dimenian/Merlan",
+            "drops": [
+              {
+                "item": "Flame Visit",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Spread Needle",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "God/Body",
+                "rate": "1/1462.9"
+              },
+              {
+                "item": "Guardianna",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Spread Needle",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "DB's Saber (3069 Torato)",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "DF Field",
+                "rate": "1/1462.9"
+              },
+              {
+                "item": "Red Mechgun",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Spread Needle",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Red Mechgun",
+                "rate": "1/900.2"
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
+            "name": "So Dimenian/Del-D",
+            "drops": [
+              {
+                "item": "Red Scorpio",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "DF Field",
+                "rate": "1/2925.7"
+              },
+              {
+                "item": "Lavis Cannon",
+                "rate": "1/28807.0"
+              },
+              {
+                "item": "Heaven Striker",
+                "rate": "1/4255.6"
+              },
+              {
+                "item": "Red Mechgun",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "DF Field",
+                "rate": "1/2925.7"
+              },
+              {
+                "item": "Red Mechgun",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Heavenly/Battle",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Meteor Cudgel",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Rico's Glasses",
+                "rate": "1/1462.9"
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
             "name": "Delsaber/Delsaber",
             "drops": [
               {
@@ -22087,243 +22225,6 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "Morning Glory",
-                "rate": "1/700.2"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
-            "name": "Chaos Sorcerer/Gran Sorcerer",
-            "drops": [
-              {
-                "item": "Lavis Cannon",
-                "rate": "1/28807.0"
-              },
-              {
-                "item": "Psycho Wand",
-                "rate": "1/299593.1",
-                "ss": true
-              },
-              {
-                "item": "Psycho Wand",
-                "rate": "1/299593.1",
-                "ss": true
-              },
-              {
-                "item": "Sorcerer's Right Arm",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Book of Hitogata",
-                "rate": "1/28807.0"
-              },
-              {
-                "item": "Sorcerer's Right Arm",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Psycho Wand",
-                "rate": "1/299593.1",
-                "ss": true
-              },
-              {
-                "item": "Book of Hitogata",
-                "rate": "1/28807.0"
-              },
-              {
-                "item": "Sorcerer's Right Arm",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Handgun: Guld",
-                "rate": "1/28807.0",
-                "ss": true
-              }
-            ],
-            "dropRate": "1/2.9"
-          },
-          {
-            "name": "Dark Gunner/Dark Gunner",
-            "drops": [
-              {
-                "item": "Luminous Field",
-                "rate": "1/2275.6"
-              },
-              {
-                "item": "Red Mechgun",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Skyly Card",
-                "rate": "1/22405.5",
-                "ss": true
-              },
-              {
-                "item": "Red Slicer",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Sacred Guard",
-                "rate": "1/2275.6"
-              },
-              {
-                "item": "Morning Glory",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Smoking Plate",
-                "rate": "1/1137.8"
-              },
-              {
-                "item": "Heart of Partisan of Lightning",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Guardianna",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Red Slicer",
-                "rate": "1/700.2"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
-            "name": "Death Gunner/Death Gunner",
-            "drops": [
-              {
-                "item": "Luminous Field",
-                "rate": "1/2275.6"
-              },
-              {
-                "item": "Red Mechgun",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Skyly Card",
-                "rate": "1/22405.5",
-                "ss": true
-              },
-              {
-                "item": "Red Slicer",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Sacred Guard",
-                "rate": "1/2275.6"
-              },
-              {
-                "item": "Morning Glory",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Smoking Plate",
-                "rate": "1/1137.8"
-              },
-              {
-                "item": "Heart of Partisan of Lightning",
-                "rate": "1/6068.1"
-              },
-              {
-                "item": "Guardianna",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Red Slicer",
-                "rate": "1/700.2"
-              }
-            ],
-            "dropRate": "1/2.2"
-          },
-          {
-            "name": "Chaos Bringer/Dark Bringer",
-            "drops": [
-              {
-                "item": "Bringer's Right Arm",
-                "rate": "1/358.0"
-              },
-              {
-                "item": "Monkey King Bar",
-                "rate": "1/358.0"
-              },
-              {
-                "item": "Meteor Cudgel",
-                "rate": "1/358.0"
-              },
-              {
-                "item": "Monkey King Bar",
-                "rate": "1/358.0"
-              },
-              {
-                "item": "Bringer's Right Arm",
-                "rate": "1/358.0"
-              },
-              {
-                "item": "Bringer's Right Arm",
-                "rate": "1/358.0"
-              },
-              {
-                "item": "Spread Needle",
-                "rate": "1/358.0"
-              },
-              {
-                "item": "Prophets of Motav",
-                "rate": "1/11457.3",
-                "ss": true
-              },
-              {
-                "item": "Bringer's Right Arm",
-                "rate": "1/358.0"
-              },
-              {
-                "item": "Rico's Earring",
-                "rate": "1/581.8"
-              }
-            ],
-            "dropRate": "1/1.1"
-          },
-          {
-            "name": "Dark Belra/Indi Belra",
-            "drops": [
-              {
-                "item": "Belra's Right Arm",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Heavenly/Arms",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Sacred Cloth",
-                "rate": "1/2275.6"
-              },
-              {
-                "item": "Book of Hitogata",
-                "rate": "1/22405.5"
-              },
-              {
-                "item": "Heavenly/Arms",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Guardianna",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Meteor Cudgel",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Guardianna",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Heavenly/Arms",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Belra's Right Arm",
                 "rate": "1/700.2"
               }
             ],
@@ -22472,142 +22373,241 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.2"
           },
           {
-            "name": "Dimenian/Arlan",
+            "name": "Dark Belra/Indi Belra",
             "drops": [
               {
-                "item": "Gae Bolg",
-                "rate": "1/213.3"
+                "item": "Belra's Right Arm",
+                "rate": "1/700.2"
               },
               {
-                "item": "Red Scorpio",
-                "rate": "1/1050.3"
+                "item": "Heavenly/Arms",
+                "rate": "1/700.2"
               },
               {
-                "item": "Dragon Slayer",
-                "rate": "1/213.3"
+                "item": "Sacred Cloth",
+                "rate": "1/2275.6"
               },
               {
-                "item": "DB's Saber (3069 Chris)",
-                "rate": "1/213.3"
+                "item": "Book of Hitogata",
+                "rate": "1/22405.5"
+              },
+              {
+                "item": "Heavenly/Arms",
+                "rate": "1/700.2"
               },
               {
                 "item": "Guardianna",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Storm Wand: Indra",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Musashi",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Smoking Plate",
-                "rate": "1/3413.3"
+                "rate": "1/700.2"
               },
               {
                 "item": "Meteor Cudgel",
-                "rate": "1/1050.3"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "La Dimenian/Merlan",
-            "drops": [
-              {
-                "item": "Flame Visit",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Spread Needle",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "God/Body",
-                "rate": "1/1462.9"
+                "rate": "1/700.2"
               },
               {
                 "item": "Guardianna",
-                "rate": "1/900.2"
+                "rate": "1/700.2"
               },
               {
-                "item": "Spread Needle",
-                "rate": "1/900.2"
+                "item": "Heavenly/Arms",
+                "rate": "1/700.2"
               },
               {
-                "item": "DB's Saber (3069 Torato)",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "DF Field",
-                "rate": "1/1462.9"
-              },
-              {
-                "item": "Red Mechgun",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Spread Needle",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Red Mechgun",
-                "rate": "1/900.2"
+                "item": "Belra's Right Arm",
+                "rate": "1/700.2"
               }
             ],
-            "dropRate": "1/2.9"
+            "dropRate": "1/2.2"
           },
           {
-            "name": "So Dimenian/Del-D",
+            "name": "Dark Gunner/Dark Gunner",
             "drops": [
               {
-                "item": "Red Scorpio",
-                "rate": "1/900.2"
+                "item": "Luminous Field",
+                "rate": "1/2275.6"
               },
               {
-                "item": "DF Field",
-                "rate": "1/2925.7"
+                "item": "Red Mechgun",
+                "rate": "1/700.2"
               },
+              {
+                "item": "Skyly Card",
+                "rate": "1/22405.5",
+                "ss": true
+              },
+              {
+                "item": "Red Slicer",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Sacred Guard",
+                "rate": "1/2275.6"
+              },
+              {
+                "item": "Morning Glory",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Smoking Plate",
+                "rate": "1/1137.8"
+              },
+              {
+                "item": "Heart of Partisan of Lightning",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Guardianna",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Red Slicer",
+                "rate": "1/700.2"
+              }
+            ],
+            "dropRate": "1/2.2"
+          },
+          {
+            "name": "Death Gunner/Death Gunner",
+            "drops": [
+              {
+                "item": "Luminous Field",
+                "rate": "1/2275.6"
+              },
+              {
+                "item": "Red Mechgun",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Skyly Card",
+                "rate": "1/22405.5",
+                "ss": true
+              },
+              {
+                "item": "Red Slicer",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Sacred Guard",
+                "rate": "1/2275.6"
+              },
+              {
+                "item": "Morning Glory",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Smoking Plate",
+                "rate": "1/1137.8"
+              },
+              {
+                "item": "Heart of Partisan of Lightning",
+                "rate": "1/6068.1"
+              },
+              {
+                "item": "Guardianna",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Red Slicer",
+                "rate": "1/700.2"
+              }
+            ],
+            "dropRate": "1/2.2"
+          },
+          {
+            "name": "Chaos Sorcerer/Gran Sorcerer",
+            "drops": [
               {
                 "item": "Lavis Cannon",
                 "rate": "1/28807.0"
               },
               {
-                "item": "Heaven Striker",
-                "rate": "1/4255.6"
+                "item": "Psycho Wand",
+                "rate": "1/299593.1",
+                "ss": true
               },
               {
-                "item": "Red Mechgun",
+                "item": "Psycho Wand",
+                "rate": "1/299593.1",
+                "ss": true
+              },
+              {
+                "item": "Sorcerer's Right Arm",
                 "rate": "1/900.2"
               },
               {
-                "item": "DF Field",
-                "rate": "1/2925.7"
+                "item": "Book of Hitogata",
+                "rate": "1/28807.0"
               },
               {
-                "item": "Red Mechgun",
+                "item": "Sorcerer's Right Arm",
                 "rate": "1/900.2"
               },
               {
-                "item": "Heavenly/Battle",
+                "item": "Psycho Wand",
+                "rate": "1/299593.1",
+                "ss": true
+              },
+              {
+                "item": "Book of Hitogata",
+                "rate": "1/28807.0"
+              },
+              {
+                "item": "Sorcerer's Right Arm",
                 "rate": "1/900.2"
               },
               {
-                "item": "Meteor Cudgel",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Rico's Glasses",
-                "rate": "1/1462.9"
+                "item": "Handgun: Guld",
+                "rate": "1/28807.0",
+                "ss": true
               }
             ],
             "dropRate": "1/2.9"
+          },
+          {
+            "name": "Chaos Bringer/Dark Bringer",
+            "drops": [
+              {
+                "item": "Bringer's Right Arm",
+                "rate": "1/358.0"
+              },
+              {
+                "item": "Monkey King Bar",
+                "rate": "1/358.0"
+              },
+              {
+                "item": "Meteor Cudgel",
+                "rate": "1/358.0"
+              },
+              {
+                "item": "Monkey King Bar",
+                "rate": "1/358.0"
+              },
+              {
+                "item": "Bringer's Right Arm",
+                "rate": "1/358.0"
+              },
+              {
+                "item": "Bringer's Right Arm",
+                "rate": "1/358.0"
+              },
+              {
+                "item": "Spread Needle",
+                "rate": "1/358.0"
+              },
+              {
+                "item": "Prophets of Motav",
+                "rate": "1/11457.3",
+                "ss": true
+              },
+              {
+                "item": "Bringer's Right Arm",
+                "rate": "1/358.0"
+              },
+              {
+                "item": "Rico's Earring",
+                "rate": "1/581.8"
+              }
+            ],
+            "dropRate": "1/1.1"
           },
           {
             "name": "Dark Falz/Dark Falz",
@@ -22657,6 +22657,374 @@ window.DROP_DATA_EN = {
           }
         ],
         "Episode 2": [
+          {
+            "name": "Dimenian/Arlan",
+            "drops": [
+              {
+                "item": "Gae Bolg",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Justy-23ST",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Devil/Technique",
+                "rate": "1/1050.3"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Gae Bolg",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/213.3"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "La Dimenian/Merlan",
+            "drops": [
+              {
+                "item": "Ancient Saber",
+                "rate": "1/1016.4"
+              },
+              {
+                "item": "Standstill Shield",
+                "rate": "1/3303.2"
+              },
+              {
+                "item": "Flowen's Shield",
+                "rate": "1/1016.4"
+              },
+              {
+                "item": "Vjaya",
+                "rate": "1/206.4"
+              },
+              {
+                "item": "Anti Android Rifle",
+                "rate": "1/1016.4"
+              },
+              {
+                "item": "God/TP",
+                "rate": "1/1016.4"
+              },
+              {
+                "item": "God/Legs",
+                "rate": "1/1016.4"
+              },
+              {
+                "item": "God/HP",
+                "rate": "1/1016.4"
+              },
+              {
+                "item": "Custom Barrier ver.OO",
+                "rate": "1/1016.4"
+              },
+              {
+                "item": "Silence Claw",
+                "rate": "1/206.4"
+              }
+            ],
+            "dropRate": "1/3.2"
+          },
+          {
+            "name": "So Dimenian/Del-D",
+            "drops": [
+              {
+                "item": "Flame Visit",
+                "rate": "1/1050.3"
+              },
+              {
+                "item": "Yasminkov 2000H",
+                "rate": "1/1050.3"
+              },
+              {
+                "item": "Mahu",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Silence Claw",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Heart of Suppressed Gun",
+                "rate": "1/9102.2"
+              },
+              {
+                "item": "Aura Field",
+                "rate": "1/3413.3"
+              },
+              {
+                "item": "Cure/Slow",
+                "rate": "1/1050.3"
+              },
+              {
+                "item": "Brightness Circle",
+                "rate": "1/3413.3"
+              },
+              {
+                "item": "Silence Claw",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "God/Ability",
+                "rate": "1/1706.7"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Rag Rappy/El Rappy",
+            "drops": [
+              {
+                "item": "Windmill",
+                "rate": "1/315.1"
+              },
+              {
+                "item": "Suppressed Gun",
+                "rate": "1/315.1"
+              },
+              {
+                "item": "Parts of Egg Blaster",
+                "rate": "1/315.1"
+              },
+              {
+                "item": "Suppressed Gun",
+                "rate": "1/315.1"
+              },
+              {
+                "item": "Suppressed Gun",
+                "rate": "1/315.1"
+              },
+              {
+                "item": "Parts of Egg Blaster",
+                "rate": "1/315.1"
+              },
+              {
+                "item": "Suppressed Gun",
+                "rate": "1/315.1"
+              },
+              {
+                "item": "DB's Saber (3070)",
+                "rate": "1/315.1"
+              },
+              {
+                "item": "Cross Scar",
+                "rate": "1/64"
+              },
+              {
+                "item": "DB's Saber (3077)",
+                "rate": "1/10082.5"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Love Rappy/Love Rappy",
+            "drops": [
+              {
+                "item": "Rabbit Wand",
+                "rate": "1/2"
+              },
+              {
+                "item": "God/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Vivienne",
+                "rate": "1/2"
+              },
+              {
+                "item": "Rabbit Wand",
+                "rate": "1/2"
+              },
+              {
+                "item": "God/Luck",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Vivienne",
+                "rate": "1/2"
+              },
+              {
+                "item": "Rambling May",
+                "rate": "1/2"
+              },
+              {
+                "item": "The Sigh of a God",
+                "rate": "1/2"
+              },
+              {
+                "item": "The Sigh of a God",
+                "rate": "1/2"
+              },
+              {
+                "item": "Rambling May",
+                "rate": "1/2"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Egg Rappy/Egg Rappy",
+            "drops": [
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Easter Egg",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "Halo Rappy/Halo Rappy",
+            "drops": [
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Jack-O'-Lantern",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
+          {
+            "name": "St. Rappy/St. Rappy",
+            "drops": [
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              },
+              {
+                "item": "Christmas Present",
+                "rate": "1/1.1"
+              }
+            ],
+            "dropRate": "1/1"
+          },
           {
             "name": "Hildebear/Hildelt",
             "drops": [
@@ -22839,98 +23207,6 @@ window.DROP_DATA_EN = {
                 "rate": ""
               }
             ]
-          },
-          {
-            "name": "Rag Rappy/El Rappy",
-            "drops": [
-              {
-                "item": "Windmill",
-                "rate": "1/315.1"
-              },
-              {
-                "item": "Suppressed Gun",
-                "rate": "1/315.1"
-              },
-              {
-                "item": "Parts of Egg Blaster",
-                "rate": "1/315.1"
-              },
-              {
-                "item": "Suppressed Gun",
-                "rate": "1/315.1"
-              },
-              {
-                "item": "Suppressed Gun",
-                "rate": "1/315.1"
-              },
-              {
-                "item": "Parts of Egg Blaster",
-                "rate": "1/315.1"
-              },
-              {
-                "item": "Suppressed Gun",
-                "rate": "1/315.1"
-              },
-              {
-                "item": "DB's Saber (3070)",
-                "rate": "1/315.1"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/64"
-              },
-              {
-                "item": "DB's Saber (3077)",
-                "rate": "1/10082.5"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
-            "name": "Love Rappy/Love Rappy",
-            "drops": [
-              {
-                "item": "Rabbit Wand",
-                "rate": "1/2"
-              },
-              {
-                "item": "God/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Vivienne",
-                "rate": "1/2"
-              },
-              {
-                "item": "Rabbit Wand",
-                "rate": "1/2"
-              },
-              {
-                "item": "God/Luck",
-                "rate": "1/1.1"
-              },
-              {
-                "item": "Vivienne",
-                "rate": "1/2"
-              },
-              {
-                "item": "Rambling May",
-                "rate": "1/2"
-              },
-              {
-                "item": "The Sigh of a God",
-                "rate": "1/2"
-              },
-              {
-                "item": "The Sigh of a God",
-                "rate": "1/2"
-              },
-              {
-                "item": "Rambling May",
-                "rate": "1/2"
-              }
-            ],
-            "dropRate": "1/1"
           },
           {
             "name": "Grass Assassin/Crimson Assassin",
@@ -23118,144 +23394,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "Dimenian/Arlan",
-            "drops": [
-              {
-                "item": "Gae Bolg",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Justy-23ST",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Devil/Technique",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Gae Bolg",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Gae Bolg",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/213.3"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "La Dimenian/Merlan",
-            "drops": [
-              {
-                "item": "Ancient Saber",
-                "rate": "1/1016.4"
-              },
-              {
-                "item": "Standstill Shield",
-                "rate": "1/3303.2"
-              },
-              {
-                "item": "Flowen's Shield",
-                "rate": "1/1016.4"
-              },
-              {
-                "item": "Vjaya",
-                "rate": "1/206.4"
-              },
-              {
-                "item": "Anti Android Rifle",
-                "rate": "1/1016.4"
-              },
-              {
-                "item": "God/TP",
-                "rate": "1/1016.4"
-              },
-              {
-                "item": "God/Legs",
-                "rate": "1/1016.4"
-              },
-              {
-                "item": "God/HP",
-                "rate": "1/1016.4"
-              },
-              {
-                "item": "Custom Barrier ver.OO",
-                "rate": "1/1016.4"
-              },
-              {
-                "item": "Silence Claw",
-                "rate": "1/206.4"
-              }
-            ],
-            "dropRate": "1/3.2"
-          },
-          {
-            "name": "So Dimenian/Del-D",
-            "drops": [
-              {
-                "item": "Flame Visit",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Yasminkov 2000H",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Mahu",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Silence Claw",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Heart of Suppressed Gun",
-                "rate": "1/9102.2"
-              },
-              {
-                "item": "Aura Field",
-                "rate": "1/3413.3"
-              },
-              {
-                "item": "Cure/Slow",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Brightness Circle",
-                "rate": "1/3413.3"
-              },
-              {
-                "item": "Silence Claw",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "God/Ability",
-                "rate": "1/1706.7"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
             "name": "Barba Ray/Barba Ray",
             "drops": [
               {
@@ -23302,142 +23440,142 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
-            "name": "St. Rappy/St. Rappy",
+            "name": "Dubchic/Dubchich",
             "drops": [
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Electro Frame",
+                "rate": "1/1050.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Anti Android Rifle",
+                "rate": "1/1050.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Chain Sawd",
+                "rate": "1/1050.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Regenerate Gear B.P.",
+                "rate": "1/1050.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Agito (1980)",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Sting Tip",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Photon Filter",
+                "rate": "1/3900.9"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Anti Android Rifle",
+                "rate": "1/1050.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Dragon Slayer",
+                "rate": "1/213.3"
               },
               {
-                "item": "Christmas Present",
-                "rate": "1/1.1"
+                "item": "Diska of Braveman",
+                "rate": "1/213.3"
               }
             ],
-            "dropRate": "1/1"
+            "dropRate": "1/3.3"
           },
           {
-            "name": "Halo Rappy/Halo Rappy",
+            "name": "Gilchic/Gilchich",
             "drops": [
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Heavenly/Power",
+                "rate": "1/1050.3"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Cross Scar",
+                "rate": "1/213.3"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Agito (1975)",
+                "rate": "1/33608.2"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Guilty Light",
+                "rate": "1/213.3"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Anti Android Rifle",
+                "rate": "1/1050.3"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Liberta Kit",
+                "rate": "1/4201.0"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Electro Frame",
+                "rate": "1/1050.3"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Sting Tip",
+                "rate": "1/213.3"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Gae Bolg",
+                "rate": "1/213.3"
               },
               {
-                "item": "Jack-O'-Lantern",
-                "rate": "1/1.1"
+                "item": "Electro Frame",
+                "rate": "1/1050.3"
               }
             ],
-            "dropRate": "1/1"
+            "dropRate": "1/3.3"
           },
           {
-            "name": "Egg Rappy/Egg Rappy",
+            "name": "Recon/Recon",
             "drops": [
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "Maser Beam",
+                "rate": "1/3150.8"
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "Justy-23ST",
+                "rate": "1/640"
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "Guilty Light",
+                "rate": "1/640"
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "Twin Brand",
+                "rate": "1/3150.8"
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "L&K14 Combat",
+                "rate": "1/640"
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "Storm Wand: Indra",
+                "rate": "1/640"
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "Stag Cutlery",
+                "rate": "1/640"
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "Cross Scar",
+                "rate": "1/640"
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "Guilty Light",
+                "rate": "1/640"
               },
               {
-                "item": "Easter Egg",
-                "rate": "1/1.1"
+                "item": "L&K14 Combat",
+                "rate": "1/640"
               }
             ],
-            "dropRate": "1/1"
+            "dropRate": "1/10"
           },
           {
             "name": "Savage Wolf/Gulgus",
@@ -23670,98 +23808,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.2"
           },
           {
-            "name": "Dubchic/Dubchich",
-            "drops": [
-              {
-                "item": "Electro Frame",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Anti Android Rifle",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Chain Sawd",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Regenerate Gear B.P.",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Agito (1980)",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Sting Tip",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Photon Filter",
-                "rate": "1/3900.9"
-              },
-              {
-                "item": "Anti Android Rifle",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/213.3"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Gilchic/Gilchich",
-            "drops": [
-              {
-                "item": "Heavenly/Power",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Agito (1975)",
-                "rate": "1/33608.2"
-              },
-              {
-                "item": "Guilty Light",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Anti Android Rifle",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Liberta Kit",
-                "rate": "1/4201.0"
-              },
-              {
-                "item": "Electro Frame",
-                "rate": "1/1050.3"
-              },
-              {
-                "item": "Sting Tip",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Gae Bolg",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Electro Frame",
-                "rate": "1/1050.3"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
             "name": "Garanz/Baranz",
             "drops": [
               {
@@ -23950,6 +23996,99 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1"
           },
           {
+            "name": "Ul Gibbon/Ul Gibbon",
+            "drops": [
+              {
+                "item": "Final Impact",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Anti-Light Ring",
+                "rate": "1/1706.7"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Bluefull Card",
+                "rate": "1/33608.2",
+                "ss": true
+              },
+              {
+                "item": "M&A60 Vise",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Lame d'Argent",
+                "rate": "1/4201.0"
+              },
+              {
+                "item": "Stag Cutlery",
+                "rate": "1/213.3"
+              },
+              {
+                "item": "Anti-Light Ring",
+                "rate": "1/1706.7"
+              },
+              {
+                "item": "PB/Create",
+                "rate": "1/1706.7"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/213.3"
+              }
+            ],
+            "dropRate": "1/3.3"
+          },
+          {
+            "name": "Zol Gibbon/Zol Gibbon",
+            "drops": [
+              {
+                "item": "Madam's Umbrella",
+                "rate": "1/2925.7"
+              },
+              {
+                "item": "Secure Feet",
+                "rate": "1/2925.7"
+              },
+              {
+                "item": "HP/Revival",
+                "rate": "1/1462.9"
+              },
+              {
+                "item": "Agito (1983)",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Agito (1983)",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Brightness Circle",
+                "rate": "1/2127.8"
+              },
+              {
+                "item": "Dragon Slayer",
+                "rate": "1/182.9"
+              },
+              {
+                "item": "Spirit Garment",
+                "rate": "1/900.2"
+              },
+              {
+                "item": "Diska of Braveman",
+                "rate": "1/182.9"
+              }
+            ],
+            "dropRate": "1/2.9"
+          },
+          {
             "name": "Merillia/Merillia",
             "drops": [
               {
@@ -24089,51 +24228,97 @@ window.DROP_DATA_EN = {
             "dropRate": "1/3.3"
           },
           {
-            "name": "Gi Gue/Gi Gue",
+            "name": "Sinow Berill/Sinow Berill",
             "drops": [
               {
-                "item": "Gi Gue's Body",
-                "rate": "1/393.9"
+                "item": "V501",
+                "rate": "1/1024"
               },
               {
-                "item": "Gi Gue's Body",
-                "rate": "1/393.9"
+                "item": "Dress Plate",
+                "rate": "1/2048"
               },
               {
-                "item": "Sealed J-Sword",
-                "rate": "1/12603.1",
+                "item": "Sinow Berill's Arms",
+                "rate": "1/787.7"
+              },
+              {
+                "item": "V501",
+                "rate": "1/1024"
+              },
+              {
+                "item": "Dress Plate",
+                "rate": "1/2048"
+              },
+              {
+                "item": "Sinow Berill's Arms",
+                "rate": "1/787.7"
+              },
+              {
+                "item": "Flowen's Sword (3082)",
+                "rate": "1/787.7"
+              },
+              {
+                "item": "Wedding Dress",
+                "rate": "1/787.7"
+              },
+              {
+                "item": "Sinow Berill's Arms",
+                "rate": "1/787.7"
+              },
+              {
+                "item": "Wedding Dress",
+                "rate": "1/787.7"
+              }
+            ],
+            "dropRate": "1/2.5"
+          },
+          {
+            "name": "Sinow Spigell/Sinow Spigell",
+            "drops": [
+              {
+                "item": "Agito (1983)",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Yasminkov 3000R",
+                "rate": "1/700.2"
+              },
+              {
+                "item": "Heaven Punisher",
+                "rate": "1/22405.5",
                 "ss": true
               },
               {
-                "item": "Glide Divine",
-                "rate": "1/393.9"
+                "item": "Electro Frame",
+                "rate": "1/2275.6"
               },
               {
-                "item": "Glide Divine",
-                "rate": "1/393.9"
+                "item": "V501",
+                "rate": "1/1011.4"
               },
               {
-                "item": "Glide Divine",
-                "rate": "1/393.9"
+                "item": "Soul Banish",
+                "rate": "1/700.2"
               },
               {
-                "item": "Gi Gue's Body",
-                "rate": "1/393.9"
+                "item": "Soul Banish",
+                "rate": "1/700.2"
               },
               {
-                "item": "Gi Gue's Body",
-                "rate": "1/393.9"
+                "item": "Berill Photon",
+                "rate": "1/2275.6"
               },
               {
-                "item": "Gi Gue's Body",
-                "rate": "1/393.9"
+                "item": "V501",
+                "rate": "1/1011.4"
               },
               {
-                "item": "Gi Gue's Body",
-                "rate": "1/393.9"
+                "item": "Berill Photon",
+                "rate": "1/2275.6"
               }
             ],
-            "dropRate": "1/1.2"
+            "dropRate": "1/2.2"
           },
           {
             "name": "Mericarol/Mericarol",
@@ -24276,99 +24461,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1.2"
           },
           {
-            "name": "Ul Gibbon/Ul Gibbon",
-            "drops": [
-              {
-                "item": "Final Impact",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Anti-Light Ring",
-                "rate": "1/1706.7"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Bluefull Card",
-                "rate": "1/33608.2",
-                "ss": true
-              },
-              {
-                "item": "M&A60 Vise",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Lame d'Argent",
-                "rate": "1/4201.0"
-              },
-              {
-                "item": "Stag Cutlery",
-                "rate": "1/213.3"
-              },
-              {
-                "item": "Anti-Light Ring",
-                "rate": "1/1706.7"
-              },
-              {
-                "item": "PB/Create",
-                "rate": "1/1706.7"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/213.3"
-              }
-            ],
-            "dropRate": "1/3.3"
-          },
-          {
-            "name": "Zol Gibbon/Zol Gibbon",
-            "drops": [
-              {
-                "item": "Madam's Umbrella",
-                "rate": "1/2925.7"
-              },
-              {
-                "item": "Secure Feet",
-                "rate": "1/2925.7"
-              },
-              {
-                "item": "HP/Revival",
-                "rate": "1/1462.9"
-              },
-              {
-                "item": "Agito (1983)",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Agito (1983)",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Brightness Circle",
-                "rate": "1/2127.8"
-              },
-              {
-                "item": "Dragon Slayer",
-                "rate": "1/182.9"
-              },
-              {
-                "item": "Spirit Garment",
-                "rate": "1/900.2"
-              },
-              {
-                "item": "Diska of Braveman",
-                "rate": "1/182.9"
-              }
-            ],
-            "dropRate": "1/2.9"
-          },
-          {
             "name": "Gibbles/Gibbles",
             "drops": [
               {
@@ -24417,97 +24509,51 @@ window.DROP_DATA_EN = {
             "dropRate": "1/1.2"
           },
           {
-            "name": "Sinow Berill/Sinow Berill",
+            "name": "Gi Gue/Gi Gue",
             "drops": [
               {
-                "item": "V501",
-                "rate": "1/1024"
+                "item": "Gi Gue's Body",
+                "rate": "1/393.9"
               },
               {
-                "item": "Dress Plate",
-                "rate": "1/2048"
+                "item": "Gi Gue's Body",
+                "rate": "1/393.9"
               },
               {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/787.7"
-              },
-              {
-                "item": "V501",
-                "rate": "1/1024"
-              },
-              {
-                "item": "Dress Plate",
-                "rate": "1/2048"
-              },
-              {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/787.7"
-              },
-              {
-                "item": "Flowen's Sword (3082)",
-                "rate": "1/787.7"
-              },
-              {
-                "item": "Wedding Dress",
-                "rate": "1/787.7"
-              },
-              {
-                "item": "Sinow Berill's Arms",
-                "rate": "1/787.7"
-              },
-              {
-                "item": "Wedding Dress",
-                "rate": "1/787.7"
-              }
-            ],
-            "dropRate": "1/2.5"
-          },
-          {
-            "name": "Sinow Spigell/Sinow Spigell",
-            "drops": [
-              {
-                "item": "Agito (1983)",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Yasminkov 3000R",
-                "rate": "1/700.2"
-              },
-              {
-                "item": "Heaven Punisher",
-                "rate": "1/22405.5",
+                "item": "Sealed J-Sword",
+                "rate": "1/12603.1",
                 "ss": true
               },
               {
-                "item": "Electro Frame",
-                "rate": "1/2275.6"
+                "item": "Glide Divine",
+                "rate": "1/393.9"
               },
               {
-                "item": "V501",
-                "rate": "1/1011.4"
+                "item": "Glide Divine",
+                "rate": "1/393.9"
               },
               {
-                "item": "Soul Banish",
-                "rate": "1/700.2"
+                "item": "Glide Divine",
+                "rate": "1/393.9"
               },
               {
-                "item": "Soul Banish",
-                "rate": "1/700.2"
+                "item": "Gi Gue's Body",
+                "rate": "1/393.9"
               },
               {
-                "item": "Berill Photon",
-                "rate": "1/2275.6"
+                "item": "Gi Gue's Body",
+                "rate": "1/393.9"
               },
               {
-                "item": "V501",
-                "rate": "1/1011.4"
+                "item": "Gi Gue's Body",
+                "rate": "1/393.9"
               },
               {
-                "item": "Berill Photon",
-                "rate": "1/2275.6"
+                "item": "Gi Gue's Body",
+                "rate": "1/393.9"
               }
             ],
-            "dropRate": "1/2.2"
+            "dropRate": "1/1.2"
           },
           {
             "name": "Gal Gryphon/Gal Gryphon",
@@ -24692,52 +24738,6 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/2.5"
-          },
-          {
-            "name": "Recon/Recon",
-            "drops": [
-              {
-                "item": "Maser Beam",
-                "rate": "1/3150.8"
-              },
-              {
-                "item": "Justy-23ST",
-                "rate": "1/640"
-              },
-              {
-                "item": "Guilty Light",
-                "rate": "1/640"
-              },
-              {
-                "item": "Twin Brand",
-                "rate": "1/3150.8"
-              },
-              {
-                "item": "L&K14 Combat",
-                "rate": "1/640"
-              },
-              {
-                "item": "Storm Wand: Indra",
-                "rate": "1/640"
-              },
-              {
-                "item": "Stag Cutlery",
-                "rate": "1/640"
-              },
-              {
-                "item": "Cross Scar",
-                "rate": "1/640"
-              },
-              {
-                "item": "Guilty Light",
-                "rate": "1/640"
-              },
-              {
-                "item": "L&K14 Combat",
-                "rate": "1/640"
-              }
-            ],
-            "dropRate": "1/10"
           },
           {
             "name": "Sinow Zoa/Sinow Zoa",
@@ -25257,98 +25257,6 @@ window.DROP_DATA_EN = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "Dorphon",
-            "drops": [
-              {
-                "item": "Gratia",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Black Hound Cuirass",
-                "rate": "1/320"
-              },
-              {
-                "item": "Electro Frame",
-                "rate": "1/1024"
-              },
-              {
-                "item": "Heavenly/HP",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Heavenly/Battle",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Heavenly/HP",
-                "rate": "1/426.7"
-              },
-              {
-                "item": "Heavenly/Battle",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Heavenly/Battle",
-                "rate": "1/284.4"
-              },
-              {
-                "item": "Black Hound Cuirass",
-                "rate": "1/320"
-              },
-              {
-                "item": "Black Hound Cuirass",
-                "rate": "1/320"
-              }
-            ],
-            "dropRate": "1/1.2"
-          },
-          {
-            "name": "Dorphon Eclair",
-            "drops": [
-              {
-                "item": "Lame d'Argent",
-                "rate": "1/3.2"
-              },
-              {
-                "item": "Cannon Rouge",
-                "rate": "1/2"
-              },
-              {
-                "item": "Liberta Kit",
-                "rate": "1/4"
-              },
-              {
-                "item": "Asteron Belt",
-                "rate": "1/2"
-              },
-              {
-                "item": "Rage de Feu",
-                "rate": "1/2"
-              },
-              {
-                "item": "Clio",
-                "rate": "1/2"
-              },
-              {
-                "item": "Crimson Coat",
-                "rate": "1/2"
-              },
-              {
-                "item": "Blue Odoshi Violet Nimaidou",
-                "rate": "1/2"
-              },
-              {
-                "item": "Cannon Rouge",
-                "rate": "1/2"
-              },
-              {
-                "item": "Liberta Kit",
-                "rate": "1/4"
-              }
-            ],
-            "dropRate": "1/1"
-          },
-          {
             "name": "Sand Rappy",
             "drops": [
               {
@@ -25669,6 +25577,98 @@ window.DROP_DATA_EN = {
               }
             ],
             "dropRate": "1/1.2"
+          },
+          {
+            "name": "Dorphon",
+            "drops": [
+              {
+                "item": "Gratia",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Black Hound Cuirass",
+                "rate": "1/320"
+              },
+              {
+                "item": "Electro Frame",
+                "rate": "1/1024"
+              },
+              {
+                "item": "Heavenly/HP",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Heavenly/Battle",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Heavenly/HP",
+                "rate": "1/426.7"
+              },
+              {
+                "item": "Heavenly/Battle",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Heavenly/Battle",
+                "rate": "1/284.4"
+              },
+              {
+                "item": "Black Hound Cuirass",
+                "rate": "1/320"
+              },
+              {
+                "item": "Black Hound Cuirass",
+                "rate": "1/320"
+              }
+            ],
+            "dropRate": "1/1.2"
+          },
+          {
+            "name": "Dorphon Eclair",
+            "drops": [
+              {
+                "item": "Lame d'Argent",
+                "rate": "1/3.2"
+              },
+              {
+                "item": "Cannon Rouge",
+                "rate": "1/2"
+              },
+              {
+                "item": "Liberta Kit",
+                "rate": "1/4"
+              },
+              {
+                "item": "Asteron Belt",
+                "rate": "1/2"
+              },
+              {
+                "item": "Rage de Feu",
+                "rate": "1/2"
+              },
+              {
+                "item": "Clio",
+                "rate": "1/2"
+              },
+              {
+                "item": "Crimson Coat",
+                "rate": "1/2"
+              },
+              {
+                "item": "Blue Odoshi Violet Nimaidou",
+                "rate": "1/2"
+              },
+              {
+                "item": "Cannon Rouge",
+                "rate": "1/2"
+              },
+              {
+                "item": "Liberta Kit",
+                "rate": "1/4"
+              }
+            ],
+            "dropRate": "1/1"
           },
           {
             "name": "Goran",
