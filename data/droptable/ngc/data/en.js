@@ -12748,7 +12748,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.48828125%"
+                "rate": "0.48828125%",
+                "ss": true
               },
               {
                 "item": "FROZEN SHOOTER",
@@ -12920,7 +12921,8 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "YASHA",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "DEMOLITION COMET",
@@ -12998,7 +13000,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "SACRED GUARD",
@@ -13074,7 +13077,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.48828125%"
+                "rate": "0.48828125%",
+                "ss": true
               },
               {
                 "item": "CADUCEUS",
@@ -13120,7 +13124,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PURPLENUM CARD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "GUILTY LIGHT",
@@ -13500,7 +13505,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "ORAN CARD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "CURE FROZEN",
@@ -13646,7 +13652,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               }
             ],
             "dropRate": "60%"
@@ -13656,7 +13663,8 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "NUG-2000 BAZOOKA",
@@ -13676,7 +13684,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "Agito (1975)",
@@ -13860,7 +13869,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "EVIL CURST",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "God/Technique",
@@ -13872,7 +13882,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "DF FIELD",
@@ -14074,11 +14085,13 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "Sorcerer's Right Arm",
@@ -14094,7 +14107,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "Sorcerer's Right Arm",
@@ -14106,7 +14120,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HANDGUN:GULD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               }
             ],
             "dropRate": "35%"
@@ -14124,7 +14139,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "SKYLY CARD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "RED SLICER",
@@ -14190,7 +14206,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PROPHETS OF MOTAV",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "C-bringer's Right Arm",
@@ -14815,7 +14832,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "YASHA",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "ANGRY FIST",
@@ -15271,7 +15289,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HANDGUN:GULD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "FLIGHT CUTTER",
@@ -15317,7 +15336,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "GREENNILL CARD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "MAHU",
@@ -15337,7 +15357,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "REDRIA CARD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "RABBIT WAND",
@@ -15417,7 +15438,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "BRUEFULL CARD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "CROSS SCAR",
@@ -15517,7 +15539,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PINKAL CARD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "Agito (1991)",
@@ -15689,7 +15712,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "ELECTRO FRAME",
@@ -15743,7 +15767,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "ASUKA",
@@ -15863,7 +15888,8 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "MADAM'S PARASOL",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "ANGLE HARP",
@@ -15891,7 +15917,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "LAVIS CANNON",
@@ -15917,7 +15944,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "SEALED J-SWORD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "PLANTAIN LEAF",
@@ -16251,11 +16279,13 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "ZANBA",
@@ -16309,7 +16339,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "YELLOWBOZE CARD",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "GUILTY LIGHT",
@@ -16323,11 +16354,13 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "SOUL BANISH",
@@ -16335,7 +16368,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "THE SIGH OF A GOD",
@@ -16351,7 +16385,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HEAVEN PUNISHER",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               },
               {
                 "item": "MADAM'S UMBRELLA",
@@ -16414,7 +16449,8 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "NEI'S CLAW",
-                "rate": "0.009918212890625%"
+                "rate": "0.009918212890625%",
+                "ss": true
               },
               {
                 "item": "FLAME GARMENT",
@@ -16495,7 +16531,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "PSYCHO WAND",
-                "rate": "0.00095367431640625%"
+                "rate": "0.00095367431640625%",
+                "ss": true
               }
             ]
           },

@@ -6877,7 +6877,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "恶魔之眼",
-                "rate": "0.000429%"
+                "rate": "0.000429%",
+                "ss": true
               },
               {
                 "item": "兔子杖",
@@ -6885,7 +6886,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "恶魔之眼",
-                "rate": "0.000429%"
+                "rate": "0.000429%",
+                "ss": true
               },
               {
                 "item": "兔子杖",
@@ -6901,7 +6903,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "恶魔之眼",
-                "rate": "0.000429%"
+                "rate": "0.000429%",
+                "ss": true
               },
               {
                 "item": "兔子杖",
@@ -7881,11 +7884,13 @@ window.DROP_DATA_ZH = {
             "drops": [
               {
                 "item": "封印野太刀",
-                "rate": "0.002480%"
+                "rate": "0.002480%",
+                "ss": true
               },
               {
                 "item": "封印野太刀",
-                "rate": "0.002480%"
+                "rate": "0.002480%",
+                "ss": true
               },
               {
                 "item": "艺之道",
@@ -7893,7 +7898,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "封印野太刀",
-                "rate": "0.002480%"
+                "rate": "0.002480%",
+                "ss": true
               },
               {
                 "item": "心心杖",
@@ -7917,7 +7923,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "封印野太刀",
-                "rate": "0.002480%"
+                "rate": "0.002480%",
+                "ss": true
               }
             ],
             "dropRate": "45%"
@@ -8031,7 +8038,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "女士阳伞",
-                "rate": "0.000334%"
+                "rate": "0.000334%",
+                "ss": true
               },
               {
                 "item": "四神盾「朱雀」",
@@ -8276,7 +8284,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "小枪「伽尔德」",
-                "rate": "0.000167%"
+                "rate": "0.000167%",
+                "ss": true
               },
               {
                 "item": "夹夹杖",
@@ -8284,7 +8293,8 @@ window.DROP_DATA_ZH = {
               },
               {
                 "item": "小枪「伽尔德」",
-                "rate": "0.000167%"
+                "rate": "0.000167%",
+                "ss": true
               },
               {
                 "item": "圣剑「双刃·拉维斯」",

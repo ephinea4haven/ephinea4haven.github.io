@@ -6877,7 +6877,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "EVIL CURST",
-                "rate": "0.000429%"
+                "rate": "0.000429%",
+                "ss": true
               },
               {
                 "item": "Rabbit Wand",
@@ -6885,7 +6886,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "EVIL CURST",
-                "rate": "0.000429%"
+                "rate": "0.000429%",
+                "ss": true
               },
               {
                 "item": "Rabbit Wand",
@@ -6901,7 +6903,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "EVIL CURST",
-                "rate": "0.000429%"
+                "rate": "0.000429%",
+                "ss": true
               },
               {
                 "item": "Rabbit Wand",
@@ -7881,11 +7884,13 @@ window.DROP_DATA_EN = {
             "drops": [
               {
                 "item": "SEALED J-SWORD",
-                "rate": "0.002480%"
+                "rate": "0.002480%",
+                "ss": true
               },
               {
                 "item": "SEALED J-SWORD",
-                "rate": "0.002480%"
+                "rate": "0.002480%",
+                "ss": true
               },
               {
                 "item": "HUGE BATTLE FAN",
@@ -7893,7 +7898,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "SEALED J-SWORD",
-                "rate": "0.002480%"
+                "rate": "0.002480%",
+                "ss": true
               },
               {
                 "item": "Magical Piece",
@@ -7917,7 +7923,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "SEALED J-SWORD",
-                "rate": "0.002480%"
+                "rate": "0.002480%",
+                "ss": true
               }
             ],
             "dropRate": "45%"
@@ -8031,7 +8038,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "MADAM'S PARASOL",
-                "rate": "0.000334%"
+                "rate": "0.000334%",
+                "ss": true
               },
               {
                 "item": "God's Shield Suzaku",
@@ -8276,7 +8284,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HANDGUN:GULD",
-                "rate": "0.000167%"
+                "rate": "0.000167%",
+                "ss": true
               },
               {
                 "item": "BRANCH OF PAKUPAKU",
@@ -8284,7 +8293,8 @@ window.DROP_DATA_EN = {
               },
               {
                 "item": "HANDGUN:GULD",
-                "rate": "0.000167%"
+                "rate": "0.000167%",
+                "ss": true
               },
               {
                 "item": "LAVIS BLADE",
