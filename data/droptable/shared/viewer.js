@@ -29,6 +29,54 @@
   var DATA_MAP = {};
   var IMG_MAP = null;  // item name -> image filename
 
+  // Area (layer) groupings within each episode, in canonical order.
+  // Keyed by the monster's English pre-'/' name. BB uses Normal-tier names;
+  // DC/NGC use difficulty-specific (Ultimate-tier) names, so each area also
+  // lists those English variants. A divider row is drawn whenever the area
+  // changes down a table. (NGC's non-Ultimate en data is Japanese, a
+  // pre-existing data gap, so it simply shows no dividers there.)
+  var AREAS = {
+    "Episode 1": [
+      { name: "Forest", keys: ["Booma", "Gobooma", "Gigobooma", "Rag Rappy", "Al Rappy", "Mothmant", "Monest", "Savage Wolf", "Barbarous Wolf", "Hildebear", "Hildeblue", "Dragon",
+        "Bartle", "Barble", "Tollaw", "El Rappy", "Pal Rappy", "Mothvert", "Gulgus", "Gulgus-Gue", "Gulgus-gue", "Hildelt", "Hildetorr", "Hidelt", "Hildetor", "Sil Dragon"] },
+      { name: "Cave", keys: ["Evil Shark", "Pal Shark", "Guil Shark", "Poison Lily", "Nar Lily", "Grass Assassin", "Nano Dragon", "Pofuilly Slime", "Pouilly Slime", "Pan Arms", "Migium", "Hidoom", "De Rol Le",
+        "Vulmer", "Govulmer", "GoVulmer", "Melqueek", "Ob Lily", "Mil Lily", "Crimson Assassin", "Pouifully Slime", "Dal Ral Lie"] },
+      { name: "Mine", keys: ["Gilchic", "Dubchic", "Canadine", "Canane", "Sinow Beat", "Sinow Gold", "Garanz", "Vol Opt",
+        "Gilchich", "Dubchich", "Gillchich", "Canabin", "Canune", "Sinow Blue", "Sinow Red", "Baranz", "Vol Opt ver.2"] },
+      { name: "Ruins", keys: ["Dimenian", "La Dimenian", "So Dimenian", "Delsaber", "Claw", "Bulk", "Bulclaw", "Dark Belra", "Dark Gunner", "Death Gunner", "Chaos Sorcerer", "Chaos Bringer", "Dark Falz",
+        "Arlan", "Merlan", "Del-D", "Indi Belra", "Dark Bringer", "Gran Sorcerer"] }
+    ],
+    "Episode 2": [
+      { name: "VR Temple", keys: ["Dimenian", "La Dimenian", "So Dimenian", "Rag Rappy", "Love Rappy", "Egg Rappy", "Halo Rappy", "St. Rappy", "Hildebear", "Hildeblue", "Mothmant", "Monest", "Grass Assassin", "Poison Lily", "Nar Lily", "Dark Belra", "Barba Ray",
+        "Arlan", "Merlan", "Del-D", "Mothvert", "El Rappy", "Hidelt", "Hildetor", "Crimson Assassin", "Ob Lily", "Mil Lily", "Indi Belra"] },
+      { name: "VR Spaceship", keys: ["Dubchic", "Gilchic", "Recon", "Savage Wolf", "Barbarous Wolf", "Pan Arms", "Migium", "Hidoom", "Garanz", "Delsaber", "Chaos Sorcerer", "Gol Dragon",
+        "Dubchich", "Gilchich", "Gillchich", "Gulgus", "Gulgus-gue", "Baranz", "Gran Sorcerer"] },
+      { name: "Central Control Area", keys: ["Ul Gibbon", "Zol Gibbon", "Merillia", "Meriltas", "Gee", "Sinow Berill", "Sinow Spigell", "Mericarol", "Merikle", "Mericus", "Gibbles", "Gi Gue", "Gal Gryphon"] },
+      { name: "Seabed", keys: ["Dolmolm", "Dolmdarl", "Morfos", "Sinow Zoa", "Sinow Zele", "Deldepth", "Delbiter", "Olga Flow"] },
+      { name: "Tower", keys: ["Ill Gill", "Del Lily", "Epsilon"] }
+    ],
+    "Episode 4": [
+      { name: "Crater", keys: ["Boota", "Ze Boota", "Ba Boota", "Sand Rappy", "Del Rappy", "Satellite Lizard", "Yowie", "Zu", "Pazuzu", "Astark", "Dorphon", "Dorphon Eclair"] },
+      { name: "Subterranean Desert", keys: ["Goran", "Pyro Goran", "Goran Detonator", "Merissa A", "Merissa AA", "Girtablulu", "Saint Million", "Shambertin", "Kondrieu"] }
+    ]
+  };
+
+  // episode -> { prekey(lowercased) : areaName }, built lazily.
+  var AREA_LOOKUP = {};
+  function areaFor(ep, englishName) {
+    var groups = AREAS[ep];
+    if (!groups) return null;
+    var map = AREA_LOOKUP[ep];
+    if (!map) {
+      map = AREA_LOOKUP[ep] = {};
+      groups.forEach(function (g) {
+        g.keys.forEach(function (k) { map[k.toLowerCase()] = g.name; });
+      });
+    }
+    if (!englishName) return null;
+    return map[englishName.split('/')[0].trim().toLowerCase()] || null;
+  }
+
   // --- tooltip ---
 
   function initTooltip() {
@@ -298,9 +346,17 @@
       html += '</tr></thead>';
 
       html += '<tbody>';
+      var lastArea = null;
+      var colCount = data.sectionIds.length + 2;
       for (var fi = 0; fi < filteredWithIdx.length; fi++) {
         var entry = filteredWithIdx[fi].entry;
         var enEntry = enEntries[filteredWithIdx[fi].idx];
+        var area = areaFor(ep, enEntry ? enEntry.name : entry.name);
+        if (area && area !== lastArea) {
+          html += '<tr class="area-gap' + (lastArea === null ? ' first' : '') + '">' +
+                  '<td colspan="' + colCount + '">' + area + '</td></tr>';
+          lastArea = area;
+        }
         html += '<tr>';
         var drTag = entry.dropRate ? '<br><span class="drop-rate-tag">(' + fmtRate(entry.dropRate) + ')</span>' : '';
         var displayName = entry.name.replace(/\//g, '<br>');

@@ -134,6 +134,23 @@ body {
   font-size: 0.85em;
   line-height: 1.3;
 }
+/* Area (layer) separator: an obvious blank break between forest/cave/mine/ruins. */
+.drop-table tr.area-gap td {
+  background: transparent;
+  border: none;
+  border-left: none;
+  border-right: none;
+  padding: 18px 4px 6px;
+  text-align: center;
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.drop-table tr.area-gap.first td {
+  padding-top: 6px;
+}
 #item-tooltip {
   display: none;
   position: fixed;
