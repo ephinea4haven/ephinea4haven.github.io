@@ -10,36 +10,154 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
     <script src="/assets/js/page-chrome.js"></script>
     <script src="/assets/js/i18n/items_i18n.js"></script>
+    <style>
+        /* Search bar — matches price_guide.html convention */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+            align-items: center;
+        }
+        .filter-bar input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            background: rgba(0, 212, 255, 0.06);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .filter-bar input[type="text"]:focus {
+            border-color: rgba(0, 212, 255, 0.6);
+        }
+        .filter-bar input::placeholder { color: #64748b; }
+
+        #result-count {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        /* Three-column lookup table */
+        #lookup-table td:nth-child(1) {
+            width: 40%;
+            font-family: 'Segoe UI', 'Courier New', monospace;
+            letter-spacing: 0.3px;
+        }
+        #lookup-table td:nth-child(2) { width: 30%; }
+        #lookup-table td:nth-child(3) { width: 30%; }
+        #lookup-table td.empty { color: var(--text-muted); }
+        #no-results {
+            padding: 24px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+    </style>
 </head>
 
 <body>
     <page-chrome title="游戏物品中英对照"></page-chrome>
 
     <div class="content-container">
-        <ul id="lookup"></ul>
+        <div class="filter-bar">
+            <input type="text" id="search-input" placeholder="搜索英文 / 中文 / 日文物品名…">
+        </div>
+        <div id="result-count"></div>
+
+        <table id="lookup-table">
+            <thead>
+                <tr>
+                    <th>英文 / English</th>
+                    <th>中文</th>
+                    <th>日本語</th>
+                </tr>
+            </thead>
+            <tbody id="lookup"></tbody>
+        </table>
+        <div id="no-results" style="display:none;">没有匹配的物品</div>
     </div>
 
     <script>
         (function () {
-            var ul = document.getElementById('lookup');
+            var tbody = document.getElementById('lookup');
+            var countEl = document.getElementById('result-count');
+            var noResults = document.getElementById('no-results');
+            var table = document.getElementById('lookup-table');
             var dict = window.ITEMS_I18N || {};
+
             var rows = [];
             for (var slug in dict) {
                 var entry = dict[slug];
                 if (entry && entry.en && entry.zh) {
-                    rows.push([entry.en, entry.zh]);
+                    rows.push({ en: entry.en, zh: entry.zh, ja: entry.ja || '' });
                 }
             }
             rows.sort(function (a, b) {
-                return a[0].toLowerCase().localeCompare(b[0].toLowerCase());
+                return a.en.toLowerCase().localeCompare(b.en.toLowerCase());
             });
-            var frag = document.createDocumentFragment();
+
+            // Build all rows once; filtering toggles display.
             for (var i = 0; i < rows.length; i++) {
-                var li = document.createElement('li');
-                li.textContent = rows[i][0] + ' ' + rows[i][1];
-                frag.appendChild(li);
+                var tr = document.createElement('tr');
+                var tdEn = document.createElement('td');
+                var tdZh = document.createElement('td');
+                var tdJa = document.createElement('td');
+                tdEn.textContent = rows[i].en;
+                tdZh.textContent = rows[i].zh;
+                if (rows[i].ja) {
+                    tdJa.textContent = rows[i].ja;
+                } else {
+                    tdJa.textContent = '—';
+                    tdJa.className = 'empty';
+                }
+                tr.appendChild(tdEn);
+                tr.appendChild(tdZh);
+                tr.appendChild(tdJa);
+                tbody.appendChild(tr);
+                rows[i].node = tr;
+                rows[i].enLower = rows[i].en.toLowerCase();
             }
-            ul.appendChild(frag);
+
+            var total = rows.length;
+
+            function render(term) {
+                var shown = 0;
+                for (var i = 0; i < rows.length; i++) {
+                    var r = rows[i];
+                    var match = !term ||
+                        r.enLower.indexOf(term) >= 0 ||
+                        r.zh.indexOf(term) >= 0 ||
+                        (r.ja && r.ja.indexOf(term) >= 0);
+                    r.node.style.display = match ? '' : 'none';
+                    if (match) shown++;
+                }
+                if (shown === 0) {
+                    table.style.display = 'none';
+                    noResults.style.display = '';
+                } else {
+                    table.style.display = '';
+                    noResults.style.display = 'none';
+                }
+                countEl.textContent = term
+                    ? ('匹配 ' + shown + ' / ' + total + ' 项')
+                    : ('共 ' + total + ' 项');
+            }
+
+            var input = document.getElementById('search-input');
+            var timer = null;
+            input.addEventListener('input', function () {
+                clearTimeout(timer);
+                timer = setTimeout(function () {
+                    render(input.value.trim().toLowerCase());
+                }, 120);
+            });
+
+            render('');
         })();
     </script>
 </body>
