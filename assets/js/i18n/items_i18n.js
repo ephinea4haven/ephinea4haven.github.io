@@ -487,7 +487,7 @@ window.ITEMS_I18N = {
   },
   "berserk": {
     "en": "Berserk",
-    "zh": "销血"
+    "zh": "血祭"
   },
   "bhima": {
     "en": "Bhima",
@@ -846,24 +846,24 @@ window.ITEMS_I18N = {
     "ja": "セレスティアルシールド"
   },
   "cell_of_mag_0503": {
-    "en": "Cell of MAG 0503",
-    "zh": "玛古因子第０５０３"
+    "en": "Cell of MAG 503",
+    "zh": "玛古因子５０３"
   },
   "cell_of_mag_0504": {
-    "en": "Cell of MAG 0504",
-    "zh": "玛古因子第０５０４"
+    "en": "Cell of MAG 504",
+    "zh": "玛古因子５０４"
   },
   "cell_of_mag_0505": {
-    "en": "Cell of MAG 0505",
-    "zh": "玛古因子第０５０５"
+    "en": "Cell of MAG 505",
+    "zh": "玛古因子５０５"
   },
   "cell_of_mag_0506": {
-    "en": "Cell of MAG 0506",
-    "zh": "玛古因子第０５０６"
+    "en": "Cell of MAG 506",
+    "zh": "玛古因子５０６"
   },
   "cell_of_mag_0507": {
-    "en": "Cell of MAG 0507",
-    "zh": "玛古因子第０５０７"
+    "en": "Cell of MAG 507",
+    "zh": "玛古因子５０７"
   },
   "cell_of_mag_213": {
     "en": "Cell of MAG 213",
@@ -912,7 +912,7 @@ window.ITEMS_I18N = {
   },
   "charge": {
     "en": "Charge",
-    "zh": "销金"
+    "zh": "金祭"
   },
   "chocolate": {
     "en": "Chocolate",
@@ -4985,7 +4985,7 @@ window.ITEMS_I18N = {
   },
   "spirit": {
     "en": "Spirit",
-    "zh": "销魂"
+    "zh": "灵祭"
   },
   "spirit_cuirass_2": {
     "en": "Spirit Cuirass",
