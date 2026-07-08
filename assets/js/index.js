@@ -53,7 +53,7 @@ function tick() {
             : '0 0 20px rgba(200,162,58,0.5)';
     }
     if (note) {
-        note.textContent = '天罚时间';
+        note.textContent = isEven ? '当前：天罚时段' : '当前：普通时段';
         note.style.color = isEven ? '#4ade80' : '#94a3b8';
     }
 
@@ -69,7 +69,7 @@ function tick() {
             atpEl.style.textShadow = style.shadow;
         }
         if (perEl) {
-            perEl.textContent = 'beat ' + range[0] + '–' + range[1];
+            perEl.textContent = '当前区间：beat ' + range[0] + '–' + range[1];
             perEl.style.color = style.noteColor;
         }
     }
@@ -83,7 +83,7 @@ function initBuf() {
     const cur = document.getElementById('buf-current');
     const nxt = document.getElementById('buf-next');
     if (cur) cur.textContent = BUF_LABELS[offset];
-    if (nxt) nxt.textContent = '下周：' + BUF_LABELS[(offset + 1) % 4];
+    if (nxt) nxt.textContent = '下周轮替：' + BUF_LABELS[(offset + 1) % 4];
 }
 
 document.addEventListener('DOMContentLoaded', () => {
