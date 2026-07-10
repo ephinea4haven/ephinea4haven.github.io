@@ -17,45 +17,14 @@
 <body>
     <page-chrome title="玛古进化图谱"></page-chrome>
 
-    <div class="nav-container">
-        <div class="nav-section">
-            <span class="nav-title">进化图谱:</span>
-            <div class="nav-links">
-                <a href="#hu" class="nav-link">战士</a>
-                <a href="#ra" class="nav-link">枪手</a>
-                <a href="#fo" class="nav-link">法师</a>
-            </div>
-        </div>
-
-        <div class="nav-section">
-            <span class="nav-title">食谱:</span>
-            <div class="nav-links">
-                <a href="#recipe1" class="nav-link">0</a>
-                <a href="#recipe2" class="nav-link">1</a>
-                <a href="#recipe3" class="nav-link">2</a>
-                <a href="#recipe4" class="nav-link">3</a>
-                <a href="#recipe5" class="nav-link">4</a>
-                <a href="#recipe6" class="nav-link">5</a>
-                <a href="#recipe7" class="nav-link">6</a>
-                <a href="#recipe8" class="nav-link">7</a>
-            </div>
-        </div>
-
-        <div class="nav-section">
-            <span class="nav-title">杂项:</span>
-            <div class="nav-links">
-                <a href="#sync" class="nav-link">同步率</a>
-                <a href="#iq" class="nav-link">智力</a>
-                <a href="#trigger" class="nav-link">PB激活条件</a>
-            </div>
-        </div>
-
-        <div class="nav-section">
-            <div class="nav-links">
-                <a href="#ephinea_exclusive_mag_colors" class="nav-link">E服Mag独占颜色</a>
-            </div>
-        </div>
-    </div>
+    <nav class="mag-nav" aria-label="页面导航" data-section-nav>
+        <a href="#chart">进化图谱</a>
+        <a href="#recipe">喂食表</a>
+        <a href="#sync">同步率</a>
+        <a href="#iq">智力</a>
+        <a href="#trigger">PB 激活条件</a>
+        <a href="#colors">E服独占颜色</a>
+    </nav>
 
     <div class="content-container">
 
@@ -72,12 +41,12 @@
   <div><b>死亡触发在 Blue Burst 中已禁用</b>，故本图不列。数据取自 <a href="https://wiki.pioneer2.net/w/Mags">Ephinea Wiki</a>。</div>
 </div>
 
-<h2>进化图谱</h2>
+<h2 id="chart" class="mag-anchor">进化图谱</h2>
 
 <div class="mag-tabs" role="tablist" aria-label="职业" data-mag-tabs>
-  <button class="mag-tab" role="tab" id="hu" data-mag-tab="HU" aria-controls="panel-hu" aria-selected="true">战士 <span>Hunters</span></button>
-  <button class="mag-tab" role="tab" id="ra" data-mag-tab="RA" aria-controls="panel-ra" aria-selected="false">枪手 <span>Rangers</span></button>
-  <button class="mag-tab" role="tab" id="fo" data-mag-tab="FO" aria-controls="panel-fo" aria-selected="false">法师 <span>Forces</span></button>
+  <button class="mag-tab" role="tab" id="hu" aria-controls="panel-hu" aria-selected="true">战士 <span>Hunters</span></button>
+  <button class="mag-tab" role="tab" id="ra" aria-controls="panel-ra" aria-selected="false">枪手 <span>Rangers</span></button>
+  <button class="mag-tab" role="tab" id="fo" aria-controls="panel-fo" aria-selected="false">法师 <span>Forces</span></button>
 </div>
 
 <div id="panel-hu" role="tabpanel" aria-labelledby="hu" data-mag-chart="HU"></div>
@@ -86,12 +55,23 @@
 
 
 <hr>
-<h2><a id="recipe" class="section-anchor"></a>食谱</h2>
+<h2 id="recipe" class="mag-anchor">喂食表</h2>
 
-<h3>表0 <a id="recipe1" class="section-anchor"></a></h3>
+<p>每次喂食按当前 mag 所处的喂食表结算。同一只 mag 在不同阶段可能换表。</p>
 
-<p>阶段0: Mag</p>
+<div class="mag-tabs mag-tabs--compact" role="tablist" aria-label="喂食表" data-mag-tabs>
+  <button class="mag-tab" role="tab" id="recipe1" aria-controls="panel-recipe1" aria-selected="true">表0 <span>初始</span></button>
+  <button class="mag-tab" role="tab" id="recipe2" aria-controls="panel-recipe2" aria-selected="false">表1 <span>一阶</span></button>
+  <button class="mag-tab" role="tab" id="recipe3" aria-controls="panel-recipe3" aria-selected="false">表2 <span>二阶</span></button>
+  <button class="mag-tab" role="tab" id="recipe4" aria-controls="panel-recipe4" aria-selected="false">表3 <span>二阶</span></button>
+  <button class="mag-tab" role="tab" id="recipe5" aria-controls="panel-recipe5" aria-selected="false">表4 <span>二·三阶</span></button>
+  <button class="mag-tab" role="tab" id="recipe6" aria-controls="panel-recipe6" aria-selected="false">表5 <span>三·四阶</span></button>
+  <button class="mag-tab" role="tab" id="recipe7" aria-controls="panel-recipe7" aria-selected="false">表6 <span>三·四阶</span></button>
+  <button class="mag-tab" role="tab" id="recipe8" aria-controls="panel-recipe8" aria-selected="false">表7 <span>四阶</span></button>
+</div>
 
+<div id="panel-recipe1" role="tabpanel" aria-labelledby="recipe1">
+<p class="mag-recipe__mags"><b>阶段0:</b>Mag</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -204,12 +184,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 
-
-<h3>表1 <a id="recipe2" class="section-anchor"></a></h3>
-
-<p>阶段1: Kalki, Varuna, Vrita</p>
-
+<div id="panel-recipe2" role="tabpanel" aria-labelledby="recipe2" hidden>
+<p class="mag-recipe__mags"><b>阶段1:</b>Kalki, Varuna, Vritra</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -322,11 +300,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 
-<h3>表2 <a id="recipe3" class="section-anchor"></a></h3>
-
-<p>阶段2: Ashvinau, Namuci, Marutah, Rudra, Sumba</p>
-
+<div id="panel-recipe3" role="tabpanel" aria-labelledby="recipe3" hidden>
+<p class="mag-recipe__mags"><b>阶段2:</b>Ashvinau, Namuci, Marutah, Rudra, Sumba</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -439,11 +416,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 
-<h3>表3 <a id="recipe4" class="section-anchor"></a></h3>
-
-<p>阶段2: Mitra, Tapas, Surya</p>
-
+<div id="panel-recipe4" role="tabpanel" aria-labelledby="recipe4" hidden>
+<p class="mag-recipe__mags"><b>阶段2:</b>Mitra, Tapas, Surya</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -556,14 +532,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 
-
-<h3>表4 <a id="recipe5" class="section-anchor"></a></h3>
-
-<p>阶段2: Vayu</p>
-
-<p>阶段3: Asparas, Bhirava, Kaitabha, Kama, Kumara, Ushasu, Varaha</p>
-
+<div id="panel-recipe5" role="tabpanel" aria-labelledby="recipe5" hidden>
+<p class="mag-recipe__mags"><b>阶段2:</b>Vayu<br><b>阶段3:</b>Apsaras, Bhirava, Kaitabha, Kama, Kumara, Ushasu, Varaha</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -676,14 +648,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 
-
-<h3>表5 <a id="recipe6" class="section-anchor"></a></h3>
-
-<p>表3: Durga, Garuda, Ila, Nandin, Ribhava, Sita, Soma, Yaksa</p>
-
-<p>表4: Deva, Rukmin, Sato</p>
-
+<div id="panel-recipe6" role="tabpanel" aria-labelledby="recipe6" hidden>
+<p class="mag-recipe__mags"><b>阶段3:</b>Durga, Garuda, Ila, Nandin, Ribhava, Sita, Soma, Yaksa<br><b>阶段4:</b>Deva, Rukmin, Sato</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -796,13 +764,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 
-<h3>表6 <a id="recipe7" class="section-anchor"></a></h3>
-
-<p>阶段3: Andhaka, Bana, Kabanda, Madhu, Marica, Naga, Naraka, Ravana</p>
-
-<p>阶段4: Bhima, Pushan, Rati</p>
-
+<div id="panel-recipe7" role="tabpanel" aria-labelledby="recipe7" hidden>
+<p class="mag-recipe__mags"><b>阶段3:</b>Andhaka, Bana, Kabanda, Madhu, Marica, Naga, Naraka, Ravana<br><b>阶段4:</b>Bhima, Pushan, Rati</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -915,11 +880,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 
-<h3>表7 <a id="recipe8" class="section-anchor"></a></h3>
-
-<p>阶段4: Cell Mags, Diwari, Nidra, Savitri</p>
-
+<div id="panel-recipe8" role="tabpanel" aria-labelledby="recipe8" hidden>
+<p class="mag-recipe__mags"><b>阶段4:</b>Cell Mags, Diwari, Nidra, Savitri</p>
 <table>
 <thead><tr>
 <th>Item</th>
@@ -1032,9 +996,10 @@
 </tr>
 </tbody>
 </table>
+</div>
 
 <hr>
-<h2><a id="sync" class="section-anchor"></a>同步率</h2>
+<h2 id="sync" class="mag-anchor">同步率</h2>
 
 <p>影响攻击类PB伤害,最大值120%，死一次减5%</p>
 
@@ -1077,7 +1042,7 @@
 
 <hr>
 
-<h2><a id="iq" class="section-anchor"></a>智力</h2>
+<h2 id="iq" class="mag-anchor">智力</h2>
 
 <p>1. 加血等级，加血是IQ/40下取整等级</p>
 <p>2. SD等级，双子是IQ/10, 基础1级，4连81级，PB不满的情况下有%30(60)就够了，200(mag的IQ值), 捐一次10%，捐一次就是2级(200*10%/10=2), 最多3次, 按PB联协数量的倍数贡献SD， 例如:</p>
@@ -1090,7 +1055,7 @@
 
 <hr>
 
-<h2><a id="trigger" class="section-anchor"></a>激活条件</h2>
+<h2 id="trigger" class="mag-anchor">激活条件</h2>
 
 <ul>
 <li>玛古10% HP可能触发条件: 角色在一帧内损失超过20%最大HP，并且扣血后当前HP低于10%最大HP（例如狮鹫羽毛EX为21%）。</li>
@@ -1100,7 +1065,8 @@
 
 <hr>
 
-<h2><a id="ephinea_exclusive_mag_colors" class="section-anchor"></a>E服Mag独占颜色</h2>
+<a id="ephinea_exclusive_mag_colors" class="mag-anchor"></a>
+<h2 id="colors" class="mag-anchor">E服Mag独占颜色</h2>
 
 <style>
   table.color-table {

@@ -178,30 +178,36 @@
     }
 
     /* ---------- tabs ----------
-     * Three full charts on one page is a punishing scroll, so only one class is
-     * visible at a time. The location hash drives selection, which keeps the
-     * existing #hu / #ra / #fo deep links (and the page's own nav bar) working.
+     * Three full charts (or eight feeding tables) stacked on one page is a
+     * punishing scroll, so only one panel shows at a time.
+     *
+     * A tab's own element id is its hash, and it points at its panel through
+     * aria-controls. So #hu and #recipe1 keep working as deep links, and a
+     * click and a deep link travel the same code path.
+     *
+     * Several tablists coexist on the page, so each one only reacts to hashes
+     * it owns — otherwise navigating to #sync would silently reset the chart
+     * back to HU.
      */
 
     function initTabs(root) {
-        const tabs = [...root.querySelectorAll('[data-mag-tab]')];
-        const panel = (key) => document.getElementById(`panel-${key.toLowerCase()}`);
+        const tabs = [...root.querySelectorAll('[role="tab"]')];
+        if (!tabs.length) return;
+        const panelOf = (t) => document.getElementById(t.getAttribute('aria-controls'));
+        const owns = (hash) => tabs.some((t) => t.id === hash);
 
-        function select(key, focus) {
+        function select(id, focus) {
             tabs.forEach((t) => {
-                const on = t.dataset.magTab === key;
+                const on = t.id === id;
                 t.setAttribute('aria-selected', String(on));
                 t.tabIndex = on ? 0 : -1;
-                panel(t.dataset.magTab).hidden = !on;
+                const p = panelOf(t);
+                if (p) p.hidden = !on;
                 if (on && focus) t.focus();
             });
         }
 
-        tabs.forEach((t) => t.addEventListener('click', () => {
-            // Let the hash change drive selection, so a click and a deep link
-            // travel the same path.
-            location.hash = t.dataset.magTab.toLowerCase();
-        }));
+        tabs.forEach((t) => t.addEventListener('click', () => { location.hash = t.id; }));
 
         root.addEventListener('keydown', (e) => {
             const i = tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true');
@@ -209,17 +215,46 @@
             if (next === undefined) return;
             e.preventDefault();
             const t = tabs[(next + tabs.length) % tabs.length];
-            location.hash = t.dataset.magTab.toLowerCase();
-            select(t.dataset.magTab, true);
+            location.hash = t.id;
+            select(t.id, true);
         });
 
-        function fromHash() {
-            const key = location.hash.slice(1).toUpperCase();
-            select(tabs.some((t) => t.dataset.magTab === key) ? key : tabs[0].dataset.magTab);
+        function fromHash(initial) {
+            const hash = decodeURIComponent(location.hash.slice(1));
+            if (owns(hash)) select(hash, false);
+            else if (initial) select(tabs[0].id, false);
         }
 
-        window.addEventListener('hashchange', fromHash);
-        fromHash();
+        window.addEventListener('hashchange', () => fromHash(false));
+        fromHash(true);
+    }
+
+    /* ---------- sticky section nav ----------
+     * Highlights whichever section is currently on screen. The page is long
+     * even with tabs, so a nav you cannot orient yourself in is dead weight.
+     */
+
+    function initSectionNav(nav) {
+        const links = [...nav.querySelectorAll('a[href^="#"]')];
+        const targets = links
+            .map((a) => ({ a, el: document.getElementById(a.hash.slice(1)) }))
+            .filter((t) => t.el);
+        if (!targets.length) return;
+
+        const seen = new Map();
+        const mark = () => {
+            const visible = targets.filter((t) => seen.get(t.el));
+            const current = visible[0] || null;
+            links.forEach((a) => a.removeAttribute('aria-current'));
+            if (current) current.a.setAttribute('aria-current', 'true');
+        };
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((e) => seen.set(e.target, e.isIntersecting));
+            mark();
+        }, { rootMargin: '-72px 0px -55% 0px' });
+
+        targets.forEach((t) => io.observe(t.el));
     }
 
     window.renderMagChart = renderMagChart;
@@ -229,5 +264,6 @@
             renderMagChart(el, el.dataset.magChart);
         });
         document.querySelectorAll('[data-mag-tabs]').forEach(initTabs);
+        document.querySelectorAll('[data-section-nav]').forEach(initSectionNav);
     });
 })();
