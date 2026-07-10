@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import argparse
-import importlib.util
+import re
 import subprocess
 from pathlib import Path
 from urllib.parse import quote
@@ -11,33 +11,18 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CHARTS_PATH = ROOT / "scripts" / "redraw_mag_charts.py"
+DATA_PATH = ROOT / "assets" / "js" / "mag-evolution.js"
 OUT_DIR = ROOT / "assets" / "img" / "mag" / "wiki"
 
 
-def load_chart_module():
-    spec = importlib.util.spec_from_file_location("redraw_mag_charts", CHARTS_PATH)
-    if spec is None or spec.loader is None:
-        raise RuntimeError(f"cannot load {CHARTS_PATH}")
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
-
-
 def chart_mag_names() -> list[str]:
-    module = load_chart_module()
-    names = {"Mag"}
-    for cfg in module.CHARTS:
-        for key in ("lv10", "lv35", "left", "right", "special"):
-            items = cfg.get(key, [])
-            if key == "lv10":
-                items = [items]
-            for item in items:
-                if item:
-                    names.add(module.image_key(item[0]))
-        for column in cfg["rare_columns"]:
-            for item in column["items"]:
-                names.add(module.image_key(item[0]))
+    """Sprite names come from the generated chart data, which is the sole
+    source of truth for which mags the charts draw."""
+    src = DATA_PATH.read_text(encoding="utf-8")
+    names = set(re.findall(r'"name":\s*"([A-Za-z&; ]+)"', src))
+    if not names:
+        raise RuntimeError(f"no mag names found in {DATA_PATH}")
+    names.add("Mag")
     return sorted(names)
 
 
