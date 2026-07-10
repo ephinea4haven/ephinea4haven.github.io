@@ -4,6 +4,12 @@
 
 ## Active
 
+- [ ] **Mag 模拟器** (planned)
+  - 在 `tools/mag.html` 的进化图谱之外，补一个喂养/进化模拟器：输入当前 mag、Section ID、角色职业与性别，模拟喂食并预测各级进化结果。
+  - 参考实现：`git@github.com:Aether89/Magatama.git`
+  - 依赖：`assets/js/mag-evolution.js`（进化规则，2026-07 从 Ephinea wiki 重新生成）与 `tools/mag.html` 里已有的 8 张喂食表——两者都需要先抽成结构化数据。
+  - 前置：Mag 进化图谱重构（HU/RA/FO）完成。
+
 - [ ] **Automated cache-busting** (Low)
   - Replace manual `?v=N` query strings on `<script>` / `<link>` tags with content-hash strings (e.g. md5 of file).
   - Could be a small Python script run pre-deploy, or a git pre-commit hook.
