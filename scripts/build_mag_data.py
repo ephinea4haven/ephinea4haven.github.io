@@ -90,6 +90,20 @@ def load_zh_names() -> dict[str, str]:
     return {k: v["zh"] for k, v in data.items() if "zh" in v}
 
 
+TIE_BREAK = re.compile(
+    r"\{\{Mag\|(\w+)\}\} follows <code>\{\{(\w+)\}\} > Others</code>"
+)
+
+
+def tie_breaks(raw: str) -> dict[str, str]:
+    """When two stats tie for highest at Lv.35, the first-evolution form decides
+    which one wins. Parsed from the prose so it stays honest."""
+    found = {src: stat.upper() for src, stat in TIE_BREAK.findall(raw)}
+    if len(found) != 3:
+        sys.exit(f"expected 3 tie-break rules, parsed {found}")
+    return found
+
+
 def section(text: str, title: str) -> str:
     start = text.index(f"==={title}===")
     rest = text[start + 3:]
@@ -114,6 +128,32 @@ def parse_trigger(cell: str) -> dict | None:
     if effect not in EFFECTS:
         sys.exit(f"unknown trigger effect {effect!r} in cell {cell!r}")
     return {"effect": effect, "rate": rate.replace("-", "–")}
+
+
+# Every condition line the wiki states must end up somewhere in the output.
+# A parser that only recognises `HU {{TypeA}} ...` silently drops any branch
+# written another way — which is exactly how the old chart lost Marica. Anything
+# not matched here is a branch we would be dropping, so the build fails.
+KNOWN_CONDS = [
+    re.compile(p) for p in (
+        r"^(HU|RA|FO) evolves Mag$",                    # Lv.10
+        r"^(POW|DEX|MIND) > Others$",                   # Lv.35 stat
+        r"^Evolves from (Varuna|Kalki|Vritra)$",        # Lv.35 source form
+        r"^(HU|RA|FO) \{\{Type[AB]\}\} .+$",            # Lv.50 by ID group
+        r"^(HU|RA|FO)$",                                # FO's all-ID rows wrap
+        r"^\(All IDs?\) DEF ≥ 45, .+$",                 # Lv.50 FO special
+        r"^(Male|Female) (HU|RA|FO) \{\{Type[123]\}\} .+$",  # Lv.100
+    )
+]
+
+
+def audit_conds(rows: dict[str, dict], label: str) -> None:
+    lost = [(mag, ln) for mag, rec in rows.items() for ln in rec["cond_lines"]
+            if not any(p.match(ln) for p in KNOWN_CONDS)]
+    if lost:
+        for mag, ln in lost:
+            print(f"  UNRECOGNISED {label} condition on {mag}: {ln!r}", file=sys.stderr)
+        sys.exit(f"{label}: {len(lost)} condition line(s) would be dropped")
 
 
 def parse_rows(text: str, has_pb: bool) -> dict[str, dict]:
@@ -177,11 +217,16 @@ def build() -> tuple[dict, set]:
 
     raw = fetch_wikitext(args.offline)
     zh = load_zh_names()
+    ties = tie_breaks(raw)
 
     first = parse_rows(section(raw, "First evolution Mags"), True)
     second = parse_rows(section(raw, "Second evolution Mags"), True)
     third = parse_rows(section(raw, "Third evolution Mags"), True)
     fourth = parse_rows(section(raw, "Fourth evolution Mags"), False)
+
+    for label, rows in (("Lv.10", first), ("Lv.35", second),
+                        ("Lv.50", third), ("Lv.100", fourth)):
+        audit_conds(rows, label)
 
     # ---- ground truth extracted straight from the wikitext, for the self-check
     truth: set[tuple[str, str, str, str]] = set()
@@ -198,13 +243,16 @@ def build() -> tuple[dict, set]:
                        if any(ln.startswith(cls) for ln in r["cond_lines"]))
         stage1 = node(s1_name, zh, [f"{cls} 职业"], first[s1_name])
 
-        # stage 2 — "POW > Others" etc., keyed by the stage-1 mag it evolves from
+        # stage 2 — "POW > Others" etc., keyed by the stage-1 mag it evolves from.
+        # Class is irrelevant at Lv.35; the source mag and highest stat decide.
         stage2 = []
         for stat in ("POW", "DEX", "MIND"):
             hit = next(n for n, r in second.items()
                        if f"{stat} > Others" in " ".join(r["cond_lines"])
                        and f"Evolves from {s1_name}" in " ".join(r["cond_lines"]))
-            stage2.append(node(hit, zh, [f"{stat} 最大"], second[hit]))
+            n = node(hit, zh, [f"{stat} 最大"], second[hit])
+            n["from"] = s1_name
+            stage2.append(n)
 
         # stage 3 — group A / B, plus FO's all-ID DEF>=45 branch
         stage3: dict = {"special": None, "A": [], "B": []}
@@ -249,8 +297,11 @@ def build() -> tuple[dict, set]:
                                    fourth[hit], with_pb=False)
             stage4.append(row)
 
-        classes[cls] = {"label": label, "en": en, "stage1": stage1,
-                        "stage2": stage2, "stage3": stage3, "stage4": stage4}
+        if s1_name not in ties:
+            sys.exit(f"no tie-break rule for {s1_name}")
+        classes[cls] = {"label": label, "en": en, "tieBreak": ties[s1_name],
+                        "stage1": stage1, "stage2": stage2,
+                        "stage3": stage3, "stage4": stage4}
 
     data = {
         "meta": {"idGroups": ID_GROUPS, "idColors": ID_COLORS,

@@ -71,6 +71,7 @@ window.MAG_EVOLUTION = {
     "HU": {
       "label": "战士",
       "en": "Hunters",
+      "tieBreak": "POW",
       "stage1": {
         "name": "Varuna",
         "zh": "伐楼那",
@@ -110,7 +111,8 @@ window.MAG_EVOLUTION = {
               "effect": "S&D",
               "rate": "50%"
             }
-          }
+          },
+          "from": "Varuna"
         },
         {
           "name": "Marutah",
@@ -128,7 +130,8 @@ window.MAG_EVOLUTION = {
               "effect": "S&D",
               "rate": "0–35%"
             }
-          }
+          },
+          "from": "Varuna"
         },
         {
           "name": "Vayu",
@@ -150,7 +153,8 @@ window.MAG_EVOLUTION = {
               "effect": "Resta",
               "rate": "45%"
             }
-          }
+          },
+          "from": "Varuna"
         }
       ],
       "stage3": {
@@ -562,6 +566,7 @@ window.MAG_EVOLUTION = {
     "RA": {
       "label": "枪手",
       "en": "Rangers",
+      "tieBreak": "DEX",
       "stage1": {
         "name": "Kalki",
         "zh": "迦尔吉",
@@ -601,7 +606,8 @@ window.MAG_EVOLUTION = {
               "effect": "S&D",
               "rate": "50%"
             }
-          }
+          },
+          "from": "Kalki"
         },
         {
           "name": "Mitra",
@@ -619,7 +625,8 @@ window.MAG_EVOLUTION = {
               "effect": "S&D",
               "rate": "0–35%"
             }
-          }
+          },
+          "from": "Kalki"
         },
         {
           "name": "Tapas",
@@ -641,7 +648,8 @@ window.MAG_EVOLUTION = {
               "effect": "Resta",
               "rate": "45%"
             }
-          }
+          },
+          "from": "Kalki"
         }
       ],
       "stage3": {
@@ -994,6 +1002,7 @@ window.MAG_EVOLUTION = {
     "FO": {
       "label": "法师",
       "en": "Forces",
+      "tieBreak": "MIND",
       "stage1": {
         "name": "Vritra",
         "zh": "布利陀罗",
@@ -1033,7 +1042,8 @@ window.MAG_EVOLUTION = {
               "effect": "S&D",
               "rate": "50%"
             }
-          }
+          },
+          "from": "Vritra"
         },
         {
           "name": "Ashvinau",
@@ -1051,7 +1061,8 @@ window.MAG_EVOLUTION = {
               "effect": "S&D",
               "rate": "0–35%"
             }
-          }
+          },
+          "from": "Vritra"
         },
         {
           "name": "Namuci",
@@ -1073,7 +1084,8 @@ window.MAG_EVOLUTION = {
               "effect": "Resta",
               "rate": "45%"
             }
-          }
+          },
+          "from": "Vritra"
         }
       ],
       "stage3": {

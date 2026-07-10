@@ -94,26 +94,37 @@
         return `<div class="mag-arrow">${esc(label)}</div>`;
     }
 
-    function renderStage1(c, meta, key) {
-        /* Lv.35 is a gate in front of a three-way branch, not another sideways
-         * step, so it reads as a full-width divider rather than a trailing
-         * arrow pointing off the end of the row. */
+    /* The main line is Lv.10 -> 35 -> 50 -> 100, and each gate reads a
+     * different thing. Lv.10 reads only the class; Lv.35 reads the Lv.10 form
+     * and the highest stat, and ignores the class entirely. */
+
+    function renderLv10(c, meta, key) {
         const flow = `<div class="mag-flow">
       ${starterCard()}
       ${arrow(`${key} 职业`)}
       ${card(c.stage1, meta)}
-    </div>
-    <div class="mag-gate">
+    </div>`;
+        return stage('LV.10', '一阶 · 只看职业', flow,
+            `进化结果<b>仅</b>取决于把 Mag 喂到 Lv.10 的角色职业，与属性完全无关。`);
+    }
+
+    function renderLv35(c, meta) {
+        const tie = c.stage2.find((m) => m.cond[0].startsWith(c.tieBreak));
+        const body = `<div class="mag-gate">
       <span class="mag-gate__label">达到 Lv.35 · 比较 ${colorize('POW / DEX / MIND')} 最大值</span>
     </div>
     <div class="mag-branch">${c.stage2.map((m) => card(m, meta)).join('')}</div>`;
-        return stage('STEP 1', 'Lv.1 → Lv.35 基础进化', flow);
+        return stage('LV.35', '二阶 · 看一阶形态 + 最高属性', body,
+            `此处<b>与职业无关</b>：由 ${esc(c.stage1.zh)} ${esc(c.stage1.name)} 出发，只比最高属性。`
+            + `若最高属性并列，则按一阶形态的优先属性裁决 —— ${esc(c.stage1.zh)} 认 `
+            + `${colorize(c.tieBreak)}，进化为 ${esc(tie ? tie.zh : '')}。`);
     }
 
     function renderFunnel() {
         return `<div class="mag-funnel">
-      <strong>Lv.50 起的进化结果只取决于 Section ID 与属性排序，与 Lv.35 变成了什么无关。</strong>
-      三个阶段之间没有连线并非疏漏 —— 这样的映射并不存在。
+      <strong>Lv.50 起，进化结果只取决于 Section ID 与属性排序，与二阶形态无关。</strong>
+      注意这个不对称：Lv.35 是要看一阶形态的（所以上面那根箭头有意义），Lv.50 不看二阶形态。
+      因此下方与上方之间没有连线 —— 这样的映射并不存在，并非疏漏。
     </div>`;
     }
 
@@ -140,8 +151,10 @@
       ${renderColumn(c, meta, 'A', prefix)}
       ${renderColumn(c, meta, 'B', prefix)}
     </div>`;
-        return stage('STEP 2', 'Lv.50 按 Section ID + 属性排序分支', special + cols,
-            '两列各自独立成表：同一条属性排序在 A 组与 B 组会给出不同的 mag。');
+        return stage('LV.50', '三阶 · 看 Section ID + 属性排序', special + cols,
+            '两列各自独立成表：同一条属性排序在 A 组与 B 组会给出不同的 mag。'
+            + '<b>Lv.50 之后每 5 级还可再次进化</b>（55、60、65…），前提是满足另一组进化条件，'
+            + '例如把 Mag 转给另一个角色去喂。');
     }
 
     function renderStage4(c, meta) {
@@ -158,8 +171,10 @@
       <div class="mag-lv100__head"><span>男性角色</span><span>数值公式 + Section ID</span><span>女性角色</span></div>
       ${rows}
     </div>`;
-        return stage('STEP 3', 'Lv.100 按公式 + Section ID + 性别分支', body,
-            'Lv.100 起每逢 10 的倍数判定一次：公式、Section ID 与角色性别必须同时满足。四阶不会新增 PB。');
+        return stage('LV.100', '四阶 · 看数值公式 + Section ID + 性别', body,
+            'Lv.100 起每逢 10 的倍数判定一次（110、120…）：公式、Section ID 与角色性别必须同时满足，'
+            + '且<b>只能由三阶 Mag 进化</b>。四阶不保证达成 —— 若过了 100 级仍未进化，可转给条件吻合的角色再喂一次。'
+            + '<b>一旦进化为四阶，便不再进化，也不再学习新的 PB。</b>');
     }
 
     function renderMagChart(mount, key) {
@@ -171,7 +186,8 @@
 
         mount.classList.add('mag-chart');
         mount.innerHTML =
-            renderStage1(c, meta, key) +
+            renderLv10(c, meta, key) +
+            renderLv35(c, meta) +
             renderFunnel() +
             renderStage3(c, meta) +
             renderStage4(c, meta);

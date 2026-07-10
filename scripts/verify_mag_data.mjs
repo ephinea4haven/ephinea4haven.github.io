@@ -94,6 +94,18 @@ check('Andhaka 条件', conds(special, 'Andhaka').join() === 'POW > Others');
 check('Bana 两条件', conds(special, 'Bana').join() === 'DEX ≥ POW,MIND ≥ POW');
 check('特殊分支已提出 DEF ≥ 45', special.every((m) => m.cond.every((c) => !c.includes('DEF'))));
 
+// ---- 主线四阶：Lv.10 只看职业；Lv.35 看一阶形态 + 最高属性（职业无关）。
+// 最高属性并列时由一阶形态裁决，规则从 wiki 正文解析而非手写。
+check('tieBreak HU=POW', D.classes.HU.tieBreak === 'POW');
+check('tieBreak RA=DEX', D.classes.RA.tieBreak === 'DEX');
+check('tieBreak FO=MIND', D.classes.FO.tieBreak === 'MIND');
+check('一阶 Varuna/Kalki/Vritra',
+    ['HU', 'RA', 'FO'].map((k) => D.classes[k].stage1.name).join() === 'Varuna,Kalki,Vritra');
+check('二阶均标注来源一阶', Object.values(D.classes).every(
+    (c) => c.stage2.every((m) => m.from === c.stage1.name)));
+check('二阶三分支为 POW/DEX/MIND 最大', Object.values(D.classes).every(
+    (c) => c.stage2.map((m) => m.cond[0]).join() === 'POW 最大,DEX 最大,MIND 最大'));
+
 // ---- 每职业规模。一只 mag 满足多条件时合并为一张卡，故 RA A 是 4 张
 // （Kama 独占 POW>DEX≥MIND / DEX≥MIND≥POW / POW=MIND>DEX 三条）。
 check('HU A/B 各 6', D.classes.HU.stage3.A.length === 6 && D.classes.HU.stage3.B.length === 6);
