@@ -8,7 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>玛古进化图谱 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/mag-chart.css">
     <script src="/assets/js/page-chrome.js"></script>
+    <script src="/assets/js/mag-evolution.js" defer></script>
+    <script src="/assets/js/mag-chart.js" defer></script>
 </head>
 
 <body>
@@ -56,14 +59,30 @@
 
     <div class="content-container">
 
-<h2><a id="hu" class="section-anchor"></a>战士</h2>
-<p><img src="/assets/img/mag/HU-MAG.png" alt="hu" style="max-width: 100%; height: auto; margin: 10px 0;">  </p>
+<div class="mag-legend">
+  <div class="mag-legend__stats">
+    <span><b>属性配色</b>（三张图恒定）</span>
+    <span class="stat--pow">POW 攻击</span>
+    <span class="stat--dex">DEX 命中</span>
+    <span class="stat--mind">MIND 精神</span>
+    <span class="stat--def">DEF 防御</span>
+  </div>
+  <div>每张卡片底部为触发表，三列依次是<b>事件 · 效果 · 触发概率</b>；缺行表示该 mag 没有此触发。</div>
+  <div>效果：<b>无敌</b>（30 秒无敌）· <b>圣泉术</b>（Resta）· <b>强攻·强体</b>（Shifta &amp; Deband）。</div>
+  <div><b>死亡触发在 Blue Burst 中已禁用</b>，故本图不列。数据取自 <a href="https://wiki.pioneer2.net/w/Mags">Ephinea Wiki</a>。</div>
+</div>
 
-<h2><a id="ra" class="section-anchor"></a>枪手</h2>
-<p><img src="/assets/img/mag/RA-MAG.png" alt="ra" style="max-width: 100%; height: auto; margin: 10px 0;">  </p>
+<h2>进化图谱</h2>
 
-<h2><a id="fo" class="section-anchor"></a>法师</h2>
-<p><img src="/assets/img/mag/FO-MAG.png" alt="fo" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<div class="mag-tabs" role="tablist" aria-label="职业" data-mag-tabs>
+  <button class="mag-tab" role="tab" id="hu" data-mag-tab="HU" aria-controls="panel-hu" aria-selected="true">战士 <span>Hunters</span></button>
+  <button class="mag-tab" role="tab" id="ra" data-mag-tab="RA" aria-controls="panel-ra" aria-selected="false">枪手 <span>Rangers</span></button>
+  <button class="mag-tab" role="tab" id="fo" data-mag-tab="FO" aria-controls="panel-fo" aria-selected="false">法师 <span>Forces</span></button>
+</div>
+
+<div id="panel-hu" role="tabpanel" aria-labelledby="hu" data-mag-chart="HU"></div>
+<div id="panel-ra" role="tabpanel" aria-labelledby="ra" data-mag-chart="RA" hidden></div>
+<div id="panel-fo" role="tabpanel" aria-labelledby="fo" data-mag-chart="FO" hidden></div>
 
 
 <hr>

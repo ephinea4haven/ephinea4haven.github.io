@@ -219,11 +219,17 @@ def build() -> tuple[dict, set]:
             ordered = sorted(buckets.items(), key=lambda kv: cond_rank(sort_conds(kv[1])[0]))
             stage3[grp] = [node(n, zh, sort_conds(c), third[n]) for n, c in ordered]
         if cls == "FO":
+            # These rows wrap as  '''FO'''<br>(All IDs) DEF >= 45, POW > Others
+            # so the class sits on its own line and the rule on the next. Match
+            # the rule, not the class. The DEF >= 45 part is hoisted into the
+            # band heading, so each card carries only its distinguishing clause.
             special = []
             for name in ("Andhaka", "Bana"):
-                conds = [re.sub(r"^FO\s*", "", ln).strip()
-                         for ln in third[name]["cond_lines"] if ln.startswith("FO")]
+                conds = [ln for ln in third[name]["cond_lines"] if "DEF ≥ 45" in ln]
                 conds = [re.sub(r"^\(All IDs?\)\s*", "", c) for c in conds]
+                conds = [re.sub(r"^DEF ≥ 45,\s*", "", c) for c in conds]
+                if not conds:
+                    sys.exit(f"no DEF>=45 condition parsed for {name}")
                 special.append(node(name, zh, conds, third[name]))
             stage3["special"] = special
 

@@ -1082,7 +1082,7 @@ window.MAG_EVOLUTION = {
             "name": "Andhaka",
             "zh": "暗陀迦",
             "cond": [
-              ""
+              "POW > Others"
             ],
             "pb": "Estlla",
             "triggers": {
@@ -1104,8 +1104,8 @@ window.MAG_EVOLUTION = {
             "name": "Bana",
             "zh": "伐那",
             "cond": [
-              "",
-              ""
+              "DEX ≥ POW",
+              "MIND ≥ POW"
             ],
             "pb": "Estlla",
             "triggers": {

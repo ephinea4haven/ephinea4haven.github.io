@@ -1,0 +1,466 @@
+/* Mag evolution chart — see assets/js/mag-chart.js
+ *
+ * Colour carries exactly three meanings here:
+ *   --accent            structure (stage rails, dividers)
+ *   --pow/dex/mind/def  the four stats, constant across all three charts
+ *   Section ID swatches the in-game ID colours
+ * PB and trigger names are spelled out rather than colour-coded, which is why
+ * this chart needs no legend for them.
+ */
+
+/* Tokens live on :root, not on .mag-chart — the legend and the tab bar sit
+ * outside any chart and need them too. */
+:root {
+    --pow: #fb7185;
+    --dex: #fbbf24;
+    --mind: #a78bfa;
+    --def: #34d399;
+    --card-bg: rgba(255, 255, 255, .035);
+    --card-br: rgba(255, 255, 255, .10);
+    --rail: var(--accent);
+}
+
+.mag-chart {
+    margin: 24px 0 40px;
+}
+
+.stat--pow { color: var(--pow); }
+.stat--dex { color: var(--dex); }
+.stat--mind { color: var(--mind); }
+.stat--def { color: var(--def); }
+
+/* ---------- class tabs ---------- */
+
+.mag-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mag-tab {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 7px;
+    padding: 8px 20px;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--accent-5);
+    border: 1px solid var(--accent-20);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: color .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.mag-tab span {
+    font-size: 12px;
+    font-weight: 500;
+    opacity: .7;
+}
+
+.mag-tab:hover {
+    color: var(--accent);
+    background: var(--accent-10);
+}
+
+.mag-tab[aria-selected='true'] {
+    color: var(--accent-dark);
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.mag-tab:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ---------- Lv.35 gate ---------- */
+
+.mag-gate {
+    display: grid;
+    justify-items: center;
+    margin: 16px 0 4px;
+}
+
+.mag-gate__label {
+    padding: 7px 18px;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    border: 1px solid var(--card-br);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, .02);
+}
+
+.mag-gate::after {
+    content: '↓';
+    margin-top: 4px;
+    font-size: 17px;
+    line-height: 1;
+    color: var(--rail);
+}
+
+/* ---------- stage headings ---------- */
+
+.mag-stage {
+    margin-top: 34px;
+}
+
+.mag-stage__title {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mag-stage__step {
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--accent-dark);
+    background: var(--rail);
+}
+
+.mag-stage__note {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: left;
+}
+
+/* ---------- the funnel note between Lv.35 and Lv.50 ---------- */
+
+.mag-funnel {
+    margin: 30px 0 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    border-left: 3px solid var(--rail);
+    border-radius: 0 6px 6px 0;
+    background: linear-gradient(90deg, var(--accent-10), transparent 85%);
+}
+
+.mag-funnel strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ---------- cards ---------- */
+
+.mag-card {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-br);
+    border-radius: 10px;
+    transition: border-color .18s ease, background .18s ease;
+}
+
+.mag-card:hover {
+    border-color: var(--accent-30);
+    background: rgba(255, 255, 255, .055);
+}
+
+/* 64x64 sprites drawn at 80px: bilinear scaling turns them to mush. */
+.mag-card__sprite {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    align-self: start;
+}
+
+.mag-card__name {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
+}
+
+.mag-card__en {
+    margin-left: 7px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+}
+
+.mag-card__cond {
+    margin-top: 3px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+}
+
+.mag-card__or {
+    margin: 0 6px;
+    color: var(--text-muted);
+}
+
+.mag-card__pb {
+    margin-top: 7px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.mag-card__pb b {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mag-card__label {
+    margin-right: 6px;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* ---------- trigger table ---------- */
+
+.mag-trig {
+    display: grid;
+    gap: 3px;
+    margin-top: 9px;
+    padding-top: 9px;
+    border-top: 1px solid var(--card-br);
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.mag-trig__row {
+    display: grid;
+    grid-template-columns: 54px minmax(0, 1fr) auto;
+    gap: 10px;
+    font-variant-numeric: tabular-nums;
+}
+
+.mag-trig__event {
+    color: var(--text-secondary);
+}
+
+.mag-trig__rate {
+    text-align: right;
+}
+
+/* ---------- Lv.1 → Lv.35 flow ---------- */
+
+.mag-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.mag-flow .mag-card {
+    flex: 1 1 260px;
+}
+
+.mag-arrow {
+    flex: 0 0 auto;
+    display: grid;
+    justify-items: center;
+    gap: 2px;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.mag-arrow::after {
+    content: '→';
+    font-size: 17px;
+    line-height: 1;
+    color: var(--rail);
+}
+
+.mag-branch {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 14px;
+}
+
+/* ---------- Lv.50 two independent columns ---------- */
+
+.mag-cols {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.mag-col {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+}
+
+.mag-col__head {
+    padding: 10px 12px;
+    border-left: 3px solid var(--rail);
+    border-radius: 0 6px 6px 0;
+    background: var(--bg-primary-60);
+}
+
+.mag-col__title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mag-idset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 12px;
+    margin-top: 7px;
+}
+
+.mag-id {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.mag-id::before {
+    content: '';
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--id-color);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .35);
+}
+
+/* FO's DEF >= 45 branch applies to every Section ID, so it spans both columns. */
+.mag-special {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1px dashed var(--card-br);
+    border-radius: 10px;
+}
+
+.mag-special__title {
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mag-special__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+/* ---------- Lv.100 grid ---------- */
+
+.mag-lv100 {
+    display: grid;
+    gap: 16px;
+}
+
+.mag-lv100__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 260px) minmax(0, 1fr);
+    gap: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.mag-lv100__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 260px) minmax(0, 1fr);
+    gap: 16px;
+    align-items: center;
+}
+
+.mag-lv100__formula {
+    padding: 14px 12px;
+    text-align: center;
+    border: 1px dashed var(--card-br);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .02);
+}
+
+.mag-lv100__expr {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- legend ---------- */
+
+.mag-legend {
+    display: grid;
+    gap: 6px;
+    margin: 16px 0 8px;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    border: 1px solid var(--card-br);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .02);
+}
+
+.mag-legend b {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.mag-legend__stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 16px;
+}
+
+.mag-legend__stats [class^='stat--'] {
+    font-weight: 600;
+}
+
+/* ---------- narrow screens ---------- */
+
+@media (max-width: 720px) {
+
+    .mag-cols,
+    .mag-branch,
+    .mag-special__cards,
+    .mag-lv100__row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mag-lv100__head {
+        display: none;
+    }
+
+    .mag-flow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mag-arrow::after {
+        content: '↓';
+    }
+
+    .mag-card {
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .mag-card__sprite {
+        width: 64px;
+        height: 64px;
+    }
+}
