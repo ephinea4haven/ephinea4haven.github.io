@@ -273,6 +273,46 @@
         targets.forEach((t) => io.observe(t.el));
     }
 
+    /* ---------- click-to-copy ----------
+     * navigator.clipboard needs a secure context AND the clipboard-write
+     * permission; it rejects on plain http and in some embedded views. Fall
+     * back to a throwaway selection, and report whether anything was copied so
+     * the button never claims success it did not achieve.
+     */
+
+    function legacyCopy(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch { ok = false; }
+        ta.remove();
+        return ok;
+    }
+
+    async function copyText(text) {
+        if (navigator.clipboard?.writeText) {
+            try {
+                await navigator.clipboard.writeText(text);
+                return true;
+            } catch { /* permission denied or insecure context — fall through */ }
+        }
+        return legacyCopy(text);
+    }
+
+    function initCopy(btn) {
+        let timer;
+        btn.addEventListener('click', async () => {
+            if (!(await copyText(btn.dataset.copy))) return;
+            btn.dataset.copied = '1';
+            clearTimeout(timer);
+            timer = setTimeout(() => { delete btn.dataset.copied; }, 1200);
+        });
+    }
+
     window.renderMagChart = renderMagChart;
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -281,5 +321,6 @@
         });
         document.querySelectorAll('[data-mag-tabs]').forEach(initTabs);
         document.querySelectorAll('[data-section-nav]').forEach(initSectionNav);
+        document.querySelectorAll('[data-copy]').forEach(initCopy);
     });
 })();
