@@ -95,6 +95,41 @@ TIE_BREAK = re.compile(
 )
 
 
+def mag_colors(raw: str) -> list[dict]:
+    """The 30 in-game mag colours. A mag's colour is random / costume-based and
+    constant across every evolution, so the chart offers them as a global tint
+    rather than assigning one per species.
+
+    The two colour tables use different cell separators — Original uses inline
+    `||`, Ephinea-exclusive uses newline `|` — so parse each `|-` block by
+    content: the hex from its `background:` swatch, and the one alphabetic cell
+    that is the colour name.
+    """
+    out = []
+    for section, exclusive in (("Original colors", False), ("Ephinea-exclusive colors", True)):
+        body = section_between(raw, section)
+        for row in body.split("\n|-"):
+            m = re.search(r"background:(#[0-9A-Fa-f]{6})", row)
+            if not m:
+                continue
+            hexval = m.group(1).upper()
+            names = re.findall(r"(?:\|\||\n\|)\s*([A-Z][A-Za-z][A-Za-z ]*?)\s*(?=\|\||\n\||$)", row)
+            name = next((n.strip() for n in names if not n.strip().startswith("#")), None)
+            if not name:
+                sys.exit(f"no name for colour {hexval} in {section}")
+            out.append({"name": name, "hex": hexval, "exclusive": exclusive})
+    if len(out) != 30:
+        sys.exit(f"expected 30 mag colours, parsed {len(out)}")
+    return out
+
+
+def section_between(raw: str, title: str) -> str:
+    start = raw.index(f"==={title}===")
+    rest = raw[start + 3:]
+    end = rest.find("\n==")
+    return rest[:end if end != -1 else len(rest)]
+
+
 def tie_breaks(raw: str) -> dict[str, str]:
     """When two stats tie for highest at Lv.35, the first-evolution form decides
     which one wins. Parsed from the prose so it stays honest."""
@@ -200,6 +235,35 @@ def sort_conds(conds: list[str]) -> list[str]:
     return sorted(conds, key=cond_rank)
 
 
+def rule_rows(col_a: list[dict], col_b: list[dict]) -> list[str]:
+    """Order the Lv.50 rules so both ID columns can sit either side of a single
+    shared rule column.
+
+    Both columns always cover the *same* rule set — they differ only in how many
+    mags they need to cover it (RA's Kama alone answers three rules, which the
+    B column splits between Madhu and Varaha). Taking the order from column A,
+    every mag in column B lands on a contiguous run of rows, so each card can
+    span its rules with `grid-row: span N`. Assert both facts: if either breaks,
+    the shared rule column would be a lie.
+    """
+    rules = [r for m in col_a for r in m["cond"]]
+    if len(rules) != len(set(rules)):
+        sys.exit("Lv.50: column A repeats a rule")
+    if set(rules) != {r for m in col_b for r in m["cond"]}:
+        only_a = sorted(set(rules) - {r for m in col_b for r in m["cond"]})
+        only_b = sorted({r for m in col_b for r in m["cond"]} - set(rules))
+        sys.exit(f"Lv.50: columns cover different rules — only A: {only_a}, only B: {only_b}")
+
+    index = {r: i for i, r in enumerate(rules)}
+    for side, col in (("A", col_a), ("B", col_b)):
+        for m in col:
+            rows = sorted(index[r] for r in m["cond"])
+            if rows != list(range(rows[0], rows[0] + len(rows))):
+                sys.exit(f"Lv.50 column {side}: {m['name']} spans non-contiguous rows {rows}")
+            m["span"] = [rows[0], len(rows)]
+    return rules
+
+
 def node(name: str, zh: dict[str, str], conds: list[str], rec: dict, with_pb=True) -> dict:
     if name.lower() not in zh:
         sys.exit(f"no Chinese name for {name!r} in items_i18n.js")
@@ -266,6 +330,7 @@ def build() -> tuple[dict, set]:
             # the original charts read: POW-first, then DEX-first, then MIND.
             ordered = sorted(buckets.items(), key=lambda kv: cond_rank(sort_conds(kv[1])[0]))
             stage3[grp] = [node(n, zh, sort_conds(c), third[n]) for n, c in ordered]
+        stage3["rules"] = rule_rows(stage3["A"], stage3["B"])
         if cls == "FO":
             # These rows wrap as  '''FO'''<br>(All IDs) DEF >= 45, POW > Others
             # so the class sits on its own line and the rule on the next. Match
@@ -305,7 +370,8 @@ def build() -> tuple[dict, set]:
 
     data = {
         "meta": {"idGroups": ID_GROUPS, "idColors": ID_COLORS,
-                 "pbNames": PB_NAMES, "effects": EFFECTS, "events": EVENTS},
+                 "pbNames": PB_NAMES, "effects": EFFECTS, "events": EVENTS,
+                 "colors": mag_colors(raw)},
         "classes": classes,
     }
     return data, truth

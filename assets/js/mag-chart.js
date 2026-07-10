@@ -28,6 +28,82 @@
         return `${SPRITE_DIR}${encodeURIComponent(name)}.png`;
     }
 
+    /* ---------- sprite recolour ----------
+     * The wiki sprites are a single cyan hue — faithful, since a mag's colour
+     * is random / costume-based, not a property of its species, and stays
+     * constant across every evolution. So the tint is global: pick one colour
+     * and every sprite on the page takes it.
+     *
+     * Multiply tint: scale the chosen colour by each pixel's luma, so shadows
+     * and highlights survive. Validated against the 12 real in-game screenshots
+     * — recoloured hue matched every one.
+     */
+    const REC = { hex: null, cache: new Map(), sources: new Map() };
+
+    function tintDataUrl(imgData, hex) {
+        const T = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+        const d = imgData.data;
+        // luma range over opaque pixels, to normalise contrast per sprite
+        let lo = 1, hi = 0;
+        for (let i = 0; i < d.length; i += 4) {
+            if (d[i + 3] < 8) continue;
+            const y = (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255;
+            if (y < lo) lo = y;
+            if (y > hi) hi = y;
+        }
+        const span = hi - lo || 1;
+        for (let i = 0; i < d.length; i += 4) {
+            if (d[i + 3] === 0) continue;
+            const y = (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255;
+            const k = 0.25 + 1.35 * ((y - lo) / span);
+            d[i] = Math.min(255, T[0] * k);
+            d[i + 1] = Math.min(255, T[1] * k);
+            d[i + 2] = Math.min(255, T[2] * k);
+        }
+        return d;
+    }
+
+    function recolorImg(img, hex) {
+        if (!hex) { img.src = sprite(img.dataset.mag); return; }
+        const key = `${img.dataset.mag}|${hex}`;
+        const cached = REC.cache.get(key);
+        if (cached) { img.src = cached; return; }
+        const src = REC.sources.get(img.dataset.mag);
+        if (!src || !src.complete || !src.naturalWidth) return;
+        const cv = document.createElement('canvas');
+        cv.width = src.naturalWidth;
+        cv.height = src.naturalHeight;
+        const cx = cv.getContext('2d');
+        cx.drawImage(src, 0, 0);
+        let data;
+        try { data = cx.getImageData(0, 0, cv.width, cv.height); }
+        catch { return; }  // canvas tainted — leave sprite as-is
+        tintDataUrl(data, hex);
+        cx.putImageData(data, 0, 0);
+        const url = cv.toDataURL('image/png');
+        REC.cache.set(key, url);
+        img.src = url;
+    }
+
+    function applyRecolor(hex) {
+        REC.hex = hex;
+        document.querySelectorAll('.mag-card__sprite[data-mag]').forEach((img) => {
+            const raw = REC.sources.get(img.dataset.mag);
+            if (raw && raw.complete && raw.naturalWidth) recolorImg(img, hex);
+            else if (raw) raw.addEventListener('load', () => recolorImg(img, hex), { once: true });
+        });
+    }
+
+    /* Keep one clean off-DOM copy of each sprite to tint from, so repeated
+     * picks never compound. */
+    function trackSprite(img) {
+        const name = img.dataset.mag;
+        if (REC.sources.has(name)) return;
+        const raw = new Image();
+        raw.src = sprite(name);
+        REC.sources.set(name, raw);
+    }
+
     function triggerRows(mag, meta) {
         const rows = meta.events
             .filter((e) => e in mag.triggers)
@@ -54,10 +130,14 @@
             .join('<span class="mag-card__or">或</span>');
     }
 
-    function card(mag, meta) {
-        return `<div class="mag-card">
-      <img class="mag-card__sprite" src="${sprite(mag.name)}" alt="${esc(mag.name)}" loading="lazy">
-      <div>
+    /* `place` positions a card in the Lv.50 grid. The rule text stays in the
+     * card markup but is hidden on wide screens, where the shared middle column
+     * carries it; below the breakpoint that column is dropped and the card's
+     * own copy comes back. */
+    function card(mag, meta, place = '') {
+        return `<div class="mag-card"${place}>
+      <img class="mag-card__sprite" src="${sprite(mag.name)}" alt="${esc(mag.name)}" loading="lazy" data-mag="${esc(mag.name)}">
+      <div class="mag-card__body">
         <div class="mag-card__name">${esc(mag.zh)}<span class="mag-card__en">${esc(mag.name)}</span></div>
         <div class="mag-card__cond">${condLine(mag)}</div>
         ${pbLine(mag, meta)}
@@ -74,15 +154,15 @@
     </section>`;
     }
 
-    function idSet(ids, meta) {
+    function idSet(ids) {
         return `<div class="mag-idset">${ids
-            .map((id) => `<span class="mag-id" style="--id-color:${esc(meta.idColors[id])}">${esc(id)}</span>`)
+            .map((id) => `<span class="mag-id"><img src="/assets/img/section/sm/${encodeURIComponent(id)}.png" alt="" width="18" height="18" loading="lazy">${esc(id)}</span>`)
             .join('')}</div>`;
     }
 
     function starterCard() {
         return `<div class="mag-card">
-      <img class="mag-card__sprite" src="${sprite('Mag')}" alt="Mag" loading="lazy">
+      <img class="mag-card__sprite" src="${sprite('Mag')}" alt="Mag" loading="lazy" data-mag="Mag">
       <div>
         <div class="mag-card__name">玛古<span class="mag-card__en">Mag</span></div>
         <div class="mag-card__cond">初始形态</div>
@@ -128,17 +208,17 @@
     </div>`;
     }
 
-    function renderColumn(c, meta, grp, prefix) {
-        const label = grp === 'A' ? 'A 组' : 'B 组';
-        return `<div class="mag-col">
-      <div class="mag-col__head">
-        <div class="mag-col__title">${esc(prefix + label)}</div>
-        ${idSet(meta.idGroups[grp], meta)}
-      </div>
-      ${c.stage3[grp].map((m) => card(m, meta)).join('')}
+    function idHead(label, ids) {
+        return `<div class="mag-col__head">
+      <div class="mag-col__title">${esc(label)}</div>
+      ${idSet(ids)}
     </div>`;
     }
 
+    /* Both ID columns cover the same rule set, so the rules live once in a
+     * shared middle column and each card spans its rules via grid-row. The card
+     * markup still carries its own rule line (hidden on wide screens) for the
+     * single-column fallback. Rows are 1-based and offset by 1 for the header. */
     function renderStage3(c, meta) {
         const special = c.stage3.special
             ? `<div class="mag-special">
@@ -147,12 +227,26 @@
          </div>`
             : '';
         const prefix = c.stage3.special ? 'DEF < 45 · ' : '';
-        const cols = `<div class="mag-cols">
-      ${renderColumn(c, meta, 'A', prefix)}
-      ${renderColumn(c, meta, 'B', prefix)}
+        const at = (m, col) => ` style="grid-column:${col};grid-row:${m.span[0] + 2}/span ${m.span[1]}"`;
+
+        const rules = c.stage3.rules.map((r, i) =>
+            `<div class="mag-rule" style="grid-row:${i + 2}">${colorize(r)}</div>`).join('');
+
+        // DOM order = mobile stacking order: A head, A cards, spine, B head, B
+        // cards. On wide screens explicit grid placement overrides this; the
+        // three headers auto-place into row 1 regardless. The spine is hidden
+        // on mobile, where each card shows its own rule line instead.
+        const grid = `<div class="mag-grid">
+      ${idHead(prefix + 'A 组', meta.idGroups.A)}
+      ${c.stage3.A.map((m) => card(m, meta, at(m, 1))).join('')}
+      <div class="mag-grid__rulehead">进化条件</div>
+      ${rules}
+      ${idHead(prefix + 'B 组', meta.idGroups.B)}
+      ${c.stage3.B.map((m) => card(m, meta, at(m, 3))).join('')}
     </div>`;
-        return stage('LV.50', '三阶 · 看 Section ID + 属性排序', special + cols,
-            '两列各自独立成表：同一条属性排序在 A 组与 B 组会给出不同的 mag。'
+
+        return stage('LV.50', '三阶 · 看 Section ID + 进化条件', special + grid,
+            '中间列是进化条件（属性比较），左右是 A 组 / B 组满足该条件时得到的 mag —— 同一条件在两组给出不同结果。'
             + '<b>Lv.50 之后每 5 级还可再次进化</b>（55、60、65…），前提是满足另一组进化条件，'
             + '例如把 Mag 转给另一个角色去喂。');
     }
@@ -162,7 +256,7 @@
       ${card(r.male, meta)}
       <div class="mag-lv100__formula">
         <div class="mag-lv100__expr">${colorize(r.formula)}</div>
-        ${idSet(meta.idGroups[r.group], meta)}
+        ${idSet(meta.idGroups[r.group])}
       </div>
       ${card(r.female, meta)}
     </div>`).join('');
@@ -313,6 +407,29 @@
         });
     }
 
+    /* ---------- colour picker ---------- */
+
+    function initColorPicker(mount) {
+        const colors = window.MAG_EVOLUTION?.meta?.colors || [];
+        if (!colors.length) return;
+
+        const swatch = (c) =>
+            `<button class="mag-swatch" type="button" title="${esc(c.name)}${c.exclusive ? '（E 服独占）' : ''}"
+        data-hex="${esc(c.hex)}" style="--sw:${esc(c.hex)}"><span class="sr-only">${esc(c.name)}</span></button>`;
+
+        mount.innerHTML = `<span class="mag-picker__label">Mag 颜色</span>
+      <button class="mag-swatch mag-swatch--reset is-on" type="button" title="原始（无色）" data-hex="">原色</button>
+      ${colors.map(swatch).join('')}`;
+
+        mount.addEventListener('click', (e) => {
+            const btn = e.target.closest('[data-hex]');
+            if (!btn) return;
+            mount.querySelectorAll('[data-hex]').forEach((b) => b.classList.remove('is-on'));
+            btn.classList.add('is-on');
+            applyRecolor(btn.dataset.hex || null);
+        });
+    }
+
     window.renderMagChart = renderMagChart;
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -322,5 +439,10 @@
         document.querySelectorAll('[data-mag-tabs]').forEach(initTabs);
         document.querySelectorAll('[data-section-nav]').forEach(initSectionNav);
         document.querySelectorAll('[data-copy]').forEach(initCopy);
+        document.querySelectorAll('[data-mag-colorpicker]').forEach(initColorPicker);
+        document.querySelectorAll('.mag-card__sprite[data-mag]').forEach(trackSprite);
+        // Re-tint sprites that mount later (hidden tab panels render eagerly, but
+        // their images may still be decoding).
+        if (REC.hex) applyRecolor(REC.hex);
     });
 })();

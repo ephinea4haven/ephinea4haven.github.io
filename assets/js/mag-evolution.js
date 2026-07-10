@@ -65,6 +65,158 @@ window.MAG_EVOLUTION = {
       "100PB",
       "10%HP",
       "BOSS"
+    ],
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FF3319",
+        "exclusive": false
+      },
+      {
+        "name": "Blue",
+        "hex": "#3333FF",
+        "exclusive": false
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFE619",
+        "exclusive": false
+      },
+      {
+        "name": "Green",
+        "hex": "#19FF19",
+        "exclusive": false
+      },
+      {
+        "name": "Purple",
+        "hex": "#CC19FF",
+        "exclusive": false
+      },
+      {
+        "name": "Black",
+        "hex": "#191933",
+        "exclusive": false
+      },
+      {
+        "name": "White",
+        "hex": "#E6FFFF",
+        "exclusive": false
+      },
+      {
+        "name": "Cyan",
+        "hex": "#19E6FF",
+        "exclusive": false
+      },
+      {
+        "name": "Brown",
+        "hex": "#804C33",
+        "exclusive": false
+      },
+      {
+        "name": "Orange",
+        "hex": "#FF6600",
+        "exclusive": false
+      },
+      {
+        "name": "Slate Blue",
+        "hex": "#808BF9",
+        "exclusive": false
+      },
+      {
+        "name": "Olive",
+        "hex": "#808000",
+        "exclusive": false
+      },
+      {
+        "name": "Turquoise",
+        "hex": "#00F0B6",
+        "exclusive": false
+      },
+      {
+        "name": "Fuchsia",
+        "hex": "#CC1964",
+        "exclusive": false
+      },
+      {
+        "name": "Gray",
+        "hex": "#7F7F7F",
+        "exclusive": false
+      },
+      {
+        "name": "Cream",
+        "hex": "#FEFED5",
+        "exclusive": false
+      },
+      {
+        "name": "Pink",
+        "hex": "#FE7FC8",
+        "exclusive": false
+      },
+      {
+        "name": "Dark Green",
+        "hex": "#007F52",
+        "exclusive": false
+      },
+      {
+        "name": "Chartreuse",
+        "hex": "#7FFF00",
+        "exclusive": true
+      },
+      {
+        "name": "Azure",
+        "hex": "#007FFF",
+        "exclusive": true
+      },
+      {
+        "name": "Royal Purple",
+        "hex": "#660066",
+        "exclusive": true
+      },
+      {
+        "name": "Ruby",
+        "hex": "#F90505",
+        "exclusive": true
+      },
+      {
+        "name": "Sapphire",
+        "hex": "#0A0AFF",
+        "exclusive": true
+      },
+      {
+        "name": "Emerald",
+        "hex": "#007F00",
+        "exclusive": true
+      },
+      {
+        "name": "Gold",
+        "hex": "#9F7E3A",
+        "exclusive": true
+      },
+      {
+        "name": "Silver",
+        "hex": "#8D9BA6",
+        "exclusive": true
+      },
+      {
+        "name": "Bronze",
+        "hex": "#A0654E",
+        "exclusive": true
+      },
+      {
+        "name": "Plum",
+        "hex": "#7F337F",
+        "exclusive": true
+      },
+      {
+        "name": "Violet",
+        "hex": "#2B0757",
+        "exclusive": true
+      },
+      {
+        "name": "Goldenrod",
+        "hex": "#F2A400",
+        "exclusive": true
+      }
     ]
   },
   "classes": {
@@ -181,7 +333,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "30–65%"
               }
-            }
+            },
+            "span": [
+              0,
+              2
+            ]
           },
           {
             "name": "Bhirava",
@@ -203,7 +359,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "30–65%"
               }
-            }
+            },
+            "span": [
+              2,
+              1
+            ]
           },
           {
             "name": "Ila",
@@ -221,7 +381,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "25–60%"
               }
-            }
+            },
+            "span": [
+              3,
+              1
+            ]
           },
           {
             "name": "Nandin",
@@ -243,7 +407,11 @@ window.MAG_EVOLUTION = {
                 "effect": "Invincibility",
                 "rate": "0–35%"
               }
-            }
+            },
+            "span": [
+              4,
+              1
+            ]
           },
           {
             "name": "Kabanda",
@@ -265,7 +433,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "25–60%"
               }
-            }
+            },
+            "span": [
+              5,
+              1
+            ]
           },
           {
             "name": "Ushasu",
@@ -287,7 +459,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "35–70%"
               }
-            }
+            },
+            "span": [
+              6,
+              1
+            ]
           }
         ],
         "B": [
@@ -308,7 +484,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "25–60%"
               }
-            }
+            },
+            "span": [
+              0,
+              2
+            ]
           },
           {
             "name": "Apsaras",
@@ -330,7 +510,11 @@ window.MAG_EVOLUTION = {
                 "effect": "Invincibility",
                 "rate": "0–35%"
               }
-            }
+            },
+            "span": [
+              2,
+              1
+            ]
           },
           {
             "name": "Garuda",
@@ -352,7 +536,11 @@ window.MAG_EVOLUTION = {
                 "effect": "Resta",
                 "rate": "30%"
               }
-            }
+            },
+            "span": [
+              3,
+              1
+            ]
           },
           {
             "name": "Yaksa",
@@ -374,7 +562,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "35–70%"
               }
-            }
+            },
+            "span": [
+              4,
+              1
+            ]
           },
           {
             "name": "Bana",
@@ -396,7 +588,11 @@ window.MAG_EVOLUTION = {
                 "effect": "Invincibility",
                 "rate": "0–35%"
               }
-            }
+            },
+            "span": [
+              5,
+              1
+            ]
           },
           {
             "name": "Soma",
@@ -418,8 +614,21 @@ window.MAG_EVOLUTION = {
                 "effect": "Invincibility",
                 "rate": "0–35%"
               }
-            }
+            },
+            "span": [
+              6,
+              1
+            ]
           }
+        ],
+        "rules": [
+          "POW ≥ DEX ≥ MIND",
+          "DEX = MIND > POW",
+          "POW ≥ MIND > DEX",
+          "DEX > POW > MIND",
+          "DEX > MIND ≥ POW",
+          "MIND > POW ≥ DEX",
+          "MIND > DEX > POW"
         ]
       },
       "stage4": [
@@ -673,7 +882,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "25–60%"
               }
-            }
+            },
+            "span": [
+              0,
+              3
+            ]
           },
           {
             "name": "Bhirava",
@@ -696,7 +909,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "30–65%"
               }
-            }
+            },
+            "span": [
+              3,
+              2
+            ]
           },
           {
             "name": "Varaha",
@@ -718,7 +935,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "30–65%"
               }
-            }
+            },
+            "span": [
+              5,
+              1
+            ]
           },
           {
             "name": "Apsaras",
@@ -740,7 +961,11 @@ window.MAG_EVOLUTION = {
                 "effect": "Invincibility",
                 "rate": "0–35%"
               }
-            }
+            },
+            "span": [
+              6,
+              1
+            ]
           }
         ],
         "B": [
@@ -764,7 +989,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "20–55%"
               }
-            }
+            },
+            "span": [
+              0,
+              1
+            ]
           },
           {
             "name": "Kaitabha",
@@ -787,7 +1016,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "30–65%"
               }
-            }
+            },
+            "span": [
+              3,
+              2
+            ]
           },
           {
             "name": "Varaha",
@@ -810,7 +1043,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "30–65%"
               }
-            }
+            },
+            "span": [
+              1,
+              2
+            ]
           },
           {
             "name": "Kabanda",
@@ -832,7 +1069,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "25–60%"
               }
-            }
+            },
+            "span": [
+              5,
+              1
+            ]
           },
           {
             "name": "Durga",
@@ -854,8 +1095,21 @@ window.MAG_EVOLUTION = {
                 "effect": "Invincibility",
                 "rate": "0–35%"
               }
-            }
+            },
+            "span": [
+              6,
+              1
+            ]
           }
+        ],
+        "rules": [
+          "POW > DEX ≥ MIND",
+          "DEX ≥ MIND ≥ POW",
+          "POW = MIND > DEX",
+          "POW > MIND > DEX",
+          "DEX ≥ POW > MIND",
+          "MIND > POW ≥ DEX",
+          "MIND > DEX > POW"
         ]
       },
       "stage4": [
@@ -1157,7 +1411,11 @@ window.MAG_EVOLUTION = {
                 "effect": "Resta",
                 "rate": "30%"
               }
-            }
+            },
+            "span": [
+              0,
+              1
+            ]
           },
           {
             "name": "Ravana",
@@ -1179,7 +1437,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "25–60%"
               }
-            }
+            },
+            "span": [
+              1,
+              1
+            ]
           },
           {
             "name": "Ribhava",
@@ -1201,7 +1463,11 @@ window.MAG_EVOLUTION = {
                 "effect": "Invincibility",
                 "rate": "0–35%"
               }
-            }
+            },
+            "span": [
+              2,
+              1
+            ]
           },
           {
             "name": "Sita",
@@ -1223,7 +1489,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "30–65%"
               }
-            }
+            },
+            "span": [
+              3,
+              1
+            ]
           },
           {
             "name": "Naga",
@@ -1242,7 +1512,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "20–55%"
               }
-            }
+            },
+            "span": [
+              4,
+              2
+            ]
           },
           {
             "name": "Kabanda",
@@ -1264,7 +1538,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "25–60%"
               }
-            }
+            },
+            "span": [
+              6,
+              1
+            ]
           }
         ],
         "B": [
@@ -1288,7 +1566,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "30–65%"
               }
-            }
+            },
+            "span": [
+              0,
+              1
+            ]
           },
           {
             "name": "Naga",
@@ -1306,7 +1588,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "20–55%"
               }
-            }
+            },
+            "span": [
+              1,
+              1
+            ]
           },
           {
             "name": "Garuda",
@@ -1328,7 +1614,11 @@ window.MAG_EVOLUTION = {
                 "effect": "Resta",
                 "rate": "30%"
               }
-            }
+            },
+            "span": [
+              2,
+              1
+            ]
           },
           {
             "name": "Bhirava",
@@ -1350,7 +1640,11 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "30–65%"
               }
-            }
+            },
+            "span": [
+              3,
+              1
+            ]
           },
           {
             "name": "Kumara",
@@ -1373,7 +1667,11 @@ window.MAG_EVOLUTION = {
                 "effect": "Resta",
                 "rate": "35%"
               }
-            }
+            },
+            "span": [
+              4,
+              2
+            ]
           },
           {
             "name": "Ila",
@@ -1391,8 +1689,21 @@ window.MAG_EVOLUTION = {
                 "effect": "S&D",
                 "rate": "25–60%"
               }
-            }
+            },
+            "span": [
+              6,
+              1
+            ]
           }
+        ],
+        "rules": [
+          "POW > DEX ≥ MIND",
+          "POW > MIND > DEX",
+          "DEX > POW > MIND",
+          "DEX > MIND ≥ POW",
+          "MIND ≥ POW ≥ DEX",
+          "POW = DEX > MIND",
+          "MIND ≥ DEX > POW"
         ]
       },
       "stage4": [

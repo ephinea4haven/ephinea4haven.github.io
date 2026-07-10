@@ -87,6 +87,64 @@
     scroll-margin-top: 84px;
 }
 
+/* ---------- colour picker ---------- */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.mag-picker {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 4px 0 18px;
+}
+
+.mag-picker__label {
+    margin-right: 4px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.mag-swatch {
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    font: inherit;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 6px;
+    background: var(--sw);
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.mag-swatch:hover {
+    transform: translateY(-2px);
+}
+
+.mag-swatch.is-on {
+    box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--accent);
+}
+
+.mag-swatch--reset {
+    width: auto;
+    padding: 0 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--accent-5);
+}
+
+.mag-swatch--reset.is-on {
+    color: var(--accent);
+}
+
 /* ---------- class tabs ---------- */
 
 .mag-tabs {
@@ -373,18 +431,21 @@
     margin-top: 14px;
 }
 
-/* ---------- Lv.50 two independent columns ---------- */
+/* ---------- Lv.50 shared-rule grid ----------
+ * Three columns: A-group cards, the shared rule spine, B-group cards. Both
+ * groups cover the same rules, so a card spans grid-rows to sit beside its
+ * rule(s); connector lines tie each rule to the cards either side.
+ */
 
-.mag-cols {
+.mag-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 210px) minmax(0, 1fr);
+    gap: 12px 0;
+    align-items: stretch;
 }
 
-.mag-col {
-    display: grid;
-    gap: 12px;
-    align-content: start;
+.mag-grid .mag-card {
+    margin: 0 14px;
 }
 
 .mag-col__head {
@@ -394,10 +455,72 @@
     background: var(--bg-primary-60);
 }
 
+.mag-col__head:last-of-type {
+    border-left: none;
+    border-right: 3px solid var(--rail);
+    border-radius: 6px 0 0 6px;
+}
+
 .mag-col__title {
     font-size: 13px;
     font-weight: 600;
     color: var(--text-primary);
+}
+
+.mag-grid__rulehead {
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* The rule spine. Each rule connects left and right with a hairline that runs
+ * to the column edge; the card's own margin closes the last 14px to its border. */
+.mag-rule {
+    grid-column: 2;
+    /* Plain block, not grid/flex: those make each stat span its own line.
+     * Inline flow keeps "POW ≥ DEX ≥ MIND" on one line. */
+    display: block;
+    align-self: center;
+    padding: 9px 10px;
+    font-size: 12.5px;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    white-space: nowrap;
+    background: var(--card-bg);
+    border: 1px solid var(--card-br);
+    border-radius: 8px;
+    position: relative;
+}
+
+.mag-rule .stat--pow,
+.mag-rule .stat--dex,
+.mag-rule .stat--mind {
+    font-weight: 600;
+}
+
+.mag-rule::before,
+.mag-rule::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 1px;
+    background: var(--accent-30);
+}
+
+.mag-rule::before {
+    right: 100%;
+}
+
+.mag-rule::after {
+    left: 100%;
+}
+
+/* On wide screens the spine owns the rule text, so hide the copy inside cards. */
+.mag-grid .mag-card__cond {
+    display: none;
 }
 
 .mag-idset {
@@ -415,13 +538,10 @@
     color: var(--text-secondary);
 }
 
-.mag-id::before {
-    content: '';
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--id-color);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, .35);
+.mag-id img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
 }
 
 /* FO's DEF >= 45 branch applies to every Section ID, so it spans both columns. */
@@ -619,7 +739,44 @@
     color: var(--accent);
 }
 
-/* ---------- narrow screens ---------- */
+/* ---------- narrow screens ----------
+ * Below 900px the shared-rule spine cannot hold three columns, so the Lv.50
+ * grid collapses to a plain stack. The inline grid-row/grid-column on each card
+ * needs !important to unset, and the per-card rule line (hidden while the spine
+ * owned it) comes back.
+ */
+
+@media (max-width: 900px) {
+
+    .mag-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .mag-grid .mag-card {
+        grid-column: 1 / -1 !important;
+        grid-row: auto !important;
+        margin: 0;
+    }
+
+    .mag-grid .mag-card__cond {
+        display: block;
+    }
+
+    /* Each card now shows its own rule, so the shared spine is redundant. */
+    .mag-rule,
+    .mag-grid__rulehead {
+        display: none;
+    }
+
+    /* Both A/B headers are full-width section labels on the left rail. */
+    .mag-col__head:last-of-type {
+        border-left: 3px solid var(--rail);
+        border-right: none;
+        border-radius: 0 6px 6px 0;
+    }
+}
 
 @media (max-width: 720px) {
 
@@ -640,7 +797,6 @@
         flex: 0 0 auto;
     }
 
-    .mag-cols,
     .mag-branch,
     .mag-special__cards,
     .mag-lv100__row {
