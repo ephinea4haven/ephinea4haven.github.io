@@ -145,6 +145,200 @@ def parse_mag_tables(page: str) -> dict:
     return out
 
 
+# --- stage4 reference chart + mag cells (Task 4) ---------------------------
+# The three stat-balance formulas, in the column order the reference chart
+# prints them. A group's single fourth-evolution mag sits under exactly the
+# column matching its Section ID Type (Type1→[1], Type2→[2], Type3→[0]); this
+# is the same mapping build()'s stage4 uses.
+FORMULAS = ["DEF+POW=DEX+MIND", "DEF+DEX=POW+MIND", "DEF+MIND=POW+DEX"]
+
+# Cells whose result can itself re-evolve via another cell (the game's
+# MagCellsExclusion whitelist — e.g. Devil's Wing → Devil's Tail with a second
+# Heart of Devil, or the System mags' Mark III → … → Dreamcast progression).
+RE_EVO_WHITELIST = {"Heart of Devil", "Kit of Master System", "Kit of Genesis",
+                    "Kit of Sega Saturn", "Kit of Dreamcast", "Tablet", "Amitie's Memo"}
+
+_CLASS_KEY = {"Hunter": "HU", "Ranger": "RA", "Force": "FO"}
+_GENDER_KEY = {"Male": "M", "Female": "F"}
+
+
+def section_slice(text: str, title: str) -> str:
+    """Slice a `==== title ====` (any level) section up to the next heading.
+
+    Unlike section()/section_between() this matches the heading *line*, so a
+    bare mention of the title in prose (e.g. the '[[#List of Mag cells|…]]'
+    link) is not mistaken for the section start."""
+    m = re.search(rf"^=+\s*{re.escape(title)}\s*=+\s*$", text, re.M)
+    if not m:
+        sys.exit(f"section_slice: heading {title!r} not found")
+    start = m.end()
+    nxt = re.search(r"^==+", text[start:], re.M)
+    return text[start: start + nxt.start() if nxt else len(text)]
+
+
+def _split_cells(rowtext: str) -> list[str]:
+    """Split one wikitable row (text between `|-` markers) into its `!`/`|`
+    cells. Every cell in the tables we parse begins its own line, so a line
+    opening with `!` or `|` starts a new cell and following lines belong to it."""
+    cells: list[str] = []
+    cur: str | None = None
+    for line in rowtext.split("\n"):
+        s = line.lstrip()
+        if s[:1] in ("!", "|") and not s.startswith("|-") and not s.startswith("|}"):
+            if cur is not None:
+                cells.append(cur)
+            cur = line
+        elif cur is not None:
+            cur += "\n" + line
+    if cur is not None:
+        cells.append(cur)
+    return cells
+
+
+def _cell(cell: str) -> tuple[str, int, str]:
+    """Return (marker, colspan, content) for a raw cell string.
+
+    Strips a leading `attr="v" …|` prefix (colspan/rowspan/class/style) — those
+    attributes always quote their values, so `{{Mag|rare|X}}` and a bare `-`,
+    which carry no `key="v"|`, are left intact as content."""
+    body = cell.lstrip()
+    marker = body[0]
+    body = body[1:]
+    colspan = 1
+    m = re.match(r'\s*((?:[\w-]+\s*=\s*"[^"]*"\s*)+)\|(.*)$', body, re.S)
+    if m:
+        attrs, body = m.group(1), m.group(2)
+        cm = re.search(r'colspan\s*=\s*"(\d+)"', attrs)
+        if cm:
+            colspan = int(cm.group(1))
+    return marker, colspan, body.strip()
+
+
+def _mag_name(params: str) -> str:
+    """Canonical mag name from the inside of a `{{Mag|…}}` template. Drops the
+    rare/attributes prefix and any `nolink=…`, and prefers the display override
+    of a `[[Page|Display]]`-style call (so `Rappy (Mag)|Rappy` → 'Rappy')."""
+    parts = [p.strip() for p in params.split("|")]
+    parts = [p for p in parts if p and not p.startswith("nolink")]
+    if parts and parts[0] in ("rare", "attributes"):
+        parts = parts[1:]
+    return parts[-1] if parts else ""
+
+
+def parse_stage4_chart(page: str) -> dict:
+    """Parse the '==== Fourth evolution reference chart ====' wikitable into
+    stage4[class][gender][TypeN][formula] = magName | None.
+
+    The table is a colspan/rowspan grid of 5 columns (Character, Section ID,
+    then the 3 formula columns). Each Character header spans 3 rows (its 3
+    Types); Type2/Type3 rows inherit the Character via that rowspan, so we only
+    map the `|` *data* cells to formulas and carry (class, gender) forward. A
+    `| -` is a null formula; `|colspan="2"| -` is two consecutive nulls."""
+    body = section_slice(page, "Fourth evolution reference chart")
+    table = body[body.index("{|"): body.index("|}")]
+    out: dict = {}
+    cls = gender = None
+    for rowtext in table.split("\n|-"):
+        row_type = None
+        data: list[tuple[int, str | None]] = []
+        for cell in _split_cells(rowtext):
+            if not cell.lstrip() or cell.lstrip()[0] not in "!|":
+                continue
+            marker, colspan, content = _cell(cell)
+            if marker == "!":
+                cm = re.match(r"(Hunter|Ranger|Force),\s*(?:<br>)?\s*(Male|Female)",
+                              content)
+                tm = re.match(r"\{\{Type([123])\}\}", content)
+                if cm:
+                    cls, gender = _CLASS_KEY[cm.group(1)], _GENDER_KEY[cm.group(2)]
+                elif tm:
+                    row_type = tm.group(1)
+                # other `!` cells (Character/Section ID/formula headers) skipped
+            else:
+                mm = re.search(r"\{\{Mag\|([^{}]*)\}\}", content)
+                data.append((colspan, _mag_name(mm.group(1)) if mm else None))
+        if row_type is None:
+            continue
+        slots: list[str | None] = []
+        for span, val in data:
+            slots.extend([val] * span)
+        if len(slots) != 3:
+            sys.exit(f"stage4 {cls}/{gender}/Type{row_type}: "
+                     f"got {len(slots)} formula cells, expected 3")
+        out.setdefault(cls, {}).setdefault(gender, {})[f"Type{row_type}"] = {
+            FORMULAS[i]: slots[i] for i in range(3)
+        }
+    groups = [(c, g) for c in out for g in out[c]]
+    if len(groups) != 6 or any(len(out[c][g]) != 3 for c, g in groups):
+        sys.exit(f"stage4: expected 6 class/gender groups of 3 Types, got {out.keys()}")
+    return out
+
+
+def _parse_req(cond: str) -> dict:
+    """Structure one 'Evolution Conditions' cell: min character/mag level,
+    the source mag species it must evolve from, and any Section ID (Type A/B)
+    restriction, plus a readable `raw` fallback."""
+    req: dict = {}
+    lm = re.search(r"Level (\d+)\+", cond)
+    if lm:
+        req["minLevel"] = int(lm.group(1))
+    mags = [_mag_name(m.group(1)) for m in re.finditer(r"\{\{Mag\|([^{}]*)\}\}", cond)]
+    if mags:
+        req["requiresMag"] = mags if len(mags) > 1 else mags[0]
+    rm = re.search(r"\{\{Type([AB])\}\}", cond)
+    if rm:
+        req["race"] = rm.group(1)
+    raw = re.sub(r"\{\{Mag\|([^{}]*)\}\}", lambda m: _mag_name(m.group(1)), cond)
+    raw = re.sub(r"\{\{Type([AB])\}\}", r"Type\1", raw)
+    raw = re.sub(r"\s+", " ", raw.replace("<br>", " ").replace("'''", "")).strip()
+    req["raw"] = raw
+    return req
+
+
+def parse_mag_cells(page: str) -> dict:
+    """'====List of Mag cells====' (cell → target mag(s)) merged with the
+    per-mag requirements from '====List of cell Mags===='."""
+    # requirements keyed by the (display) mag name
+    reqs: dict[str, dict] = {}
+    for block in section_slice(page, "List of cell Mags").split("\n|-"):
+        fm = re.search(r"\[\[File:[^\]]*\]\]\s*<br>\s*\[\[([^\]]+)\]\]", block)
+        if not fm:
+            continue
+        mag = fm.group(1).split("|")[-1].strip()
+        cells = [_cell(c)[2] for c in _split_cells(block)]
+        if len(cells) >= 3:
+            reqs[mag] = _parse_req(cells[2])
+
+    out: dict[str, dict] = {}
+    for block in section_slice(page, "List of Mag cells").split("\n|-"):
+        tm = re.search(r"\{\{Tool\|rare\|([^}]+)\}\}", block)
+        if not tm:
+            continue
+        cell = tm.group(1).strip()
+        assoc = block[tm.end():]
+        targets = [_mag_name(m.group(1))
+                   for m in re.finditer(r"\{\{Mag\|([^{}]*)\}\}", assoc)]
+        if not targets:
+            sys.exit(f"mag cell {cell!r}: no associated mag parsed")
+        out[cell] = {
+            "target": targets if len(targets) > 1 else targets[0],
+            "requires": {t: reqs.get(t, {}) for t in targets},
+            "reEvoWhitelist": cell in RE_EVO_WHITELIST,
+        }
+    return out
+
+
+def add_cell_mags(mags: dict, magcells: dict) -> None:
+    """Cell mags are never named on the feeding-tables page, so mags has no
+    entry for them. Every cell mag uses feeding table 7 and is a fourth
+    evolution, so register any missing target under {feedTableId:'7', stage:4}
+    (without clobbering a mag that is already listed)."""
+    for info in magcells.values():
+        tgt = info["target"]
+        for t in (tgt if isinstance(tgt, list) else [tgt]):
+            mags.setdefault(t, {"feedTableId": "7", "stage": 4})
+
+
 def load_zh_names() -> dict[str, str]:
     src = I18N.read_text(encoding="utf-8")
     body = src[src.index("{"): src.rindex("}") + 1]
@@ -428,7 +622,7 @@ def build_evolution_std(classes: dict) -> dict:
     }
 
 
-def build() -> tuple[dict, set]:
+def build() -> tuple[dict, set, str]:
     ap = argparse.ArgumentParser()
     ap.add_argument("--offline", type=Path)
     args = ap.parse_args()
@@ -528,7 +722,7 @@ def build() -> tuple[dict, set]:
                  "colors": mag_colors(raw)},
         "classes": classes,
     }
-    return data, truth
+    return data, truth, raw
 
 
 def self_check(data: dict, truth: set) -> None:
@@ -550,7 +744,7 @@ def self_check(data: dict, truth: set) -> None:
 
 
 def main() -> None:
-    data, truth = build()
+    data, truth, raw = build()
     self_check(data, truth)
 
     blob = json.dumps(data, ensure_ascii=False, indent=2)
@@ -565,11 +759,14 @@ def main() -> None:
     n = sum(len(c["stage3"]["A"]) + len(c["stage3"]["B"]) for c in data["classes"].values())
     print(f"wrote {OUT.relative_to(ROOT)} — {n} Lv.50 mags across 3 classes")
 
-    # TODO(mag-sim task 4): grows beyond feedTables/mags/evolution as tasks land.
     feed = parse_feed_tables(fetch_raw(FEED_URL))
     mags = parse_mag_tables(fetch_raw(FEED_PAGE_URL))
+    magcells = parse_mag_cells(raw)
+    add_cell_mags(mags, magcells)  # register cell targets on feeding table 7
+    evolution = build_evolution_std(data["classes"])
+    evolution["stage4"] = parse_stage4_chart(raw)
     sim = {"feedTables": feed, "mags": mags,
-           "evolution": build_evolution_std(data["classes"])}
+           "evolution": evolution, "magCells": magcells}
     SIM_OUT.write_text(
         "/* Generated by scripts/build_mag_data.py — do not edit by hand. */\n"
         "window.MAG_SIM = " + json.dumps(sim, ensure_ascii=False, indent=2) + ";\n",

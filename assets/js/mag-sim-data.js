@@ -902,6 +902,154 @@ window.MAG_SIM = {
     "Savitri": {
       "feedTableId": "7",
       "stage": 4
+    },
+    "Puyo": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Churel": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Preta": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Pitri": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Soniti": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Gael Giel": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Tellusis": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Angel's Wing": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Chao": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Chu Chu": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Devil's Tail": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Devil's Wing": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Kapu Kapu": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Moro": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Opa-Opa": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Pian": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Elenor": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Striker Unit": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Kalki*": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Dreamcast": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Genesis": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Hamburger": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Mark III": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Master System": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Sega Saturn": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Agastya": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Mag*": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Panzer's Tail": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Robochao": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Pioneer": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Rappy": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Sonic": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Stealth": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Geung-si": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Varuna*": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Vritra*": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Yahoo!": {
+      "feedTableId": "7",
+      "stage": 4
     }
   },
   "evolution": {
@@ -1011,6 +1159,491 @@ window.MAG_SIM = {
       "HU": "POW",
       "RA": "DEX",
       "FO": "MIND"
+    },
+    "stage4": {
+      "HU": {
+        "M": {
+          "Type1": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": "Deva",
+            "DEF+MIND=POW+DEX": null
+          },
+          "Type2": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": "Rati"
+          },
+          "Type3": {
+            "DEF+POW=DEX+MIND": "Rati",
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": null
+          }
+        },
+        "F": {
+          "Type1": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": "Savitri",
+            "DEF+MIND=POW+DEX": null
+          },
+          "Type2": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": "Savitri"
+          },
+          "Type3": {
+            "DEF+POW=DEX+MIND": "Savitri",
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": null
+          }
+        }
+      },
+      "RA": {
+        "M": {
+          "Type1": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": "Pushan",
+            "DEF+MIND=POW+DEX": null
+          },
+          "Type2": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": "Pushan"
+          },
+          "Type3": {
+            "DEF+POW=DEX+MIND": "Pushan",
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": null
+          }
+        },
+        "F": {
+          "Type1": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": "Rukmin",
+            "DEF+MIND=POW+DEX": null
+          },
+          "Type2": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": "Rukmin"
+          },
+          "Type3": {
+            "DEF+POW=DEX+MIND": "Diwari",
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": null
+          }
+        }
+      },
+      "FO": {
+        "M": {
+          "Type1": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": "Nidra",
+            "DEF+MIND=POW+DEX": null
+          },
+          "Type2": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": "Nidra"
+          },
+          "Type3": {
+            "DEF+POW=DEX+MIND": "Nidra",
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": null
+          }
+        },
+        "F": {
+          "Type1": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": "Sato",
+            "DEF+MIND=POW+DEX": null
+          },
+          "Type2": {
+            "DEF+POW=DEX+MIND": null,
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": "Bhima"
+          },
+          "Type3": {
+            "DEF+POW=DEX+MIND": "Bhima",
+            "DEF+DEX=POW+MIND": null,
+            "DEF+MIND=POW+DEX": null
+          }
+        }
+      }
+    }
+  },
+  "magCells": {
+    "Amitie's Memo": {
+      "target": "Puyo",
+      "requires": {
+        "Puyo": {
+          "requiresMag": "Chu Chu",
+          "raw": "Any Chu Chu"
+        }
+      },
+      "reEvoWhitelist": true
+    },
+    "Cell of Mag 213": {
+      "target": [
+        "Churel",
+        "Preta"
+      ],
+      "requires": {
+        "Churel": {
+          "minLevel": 100,
+          "race": "A",
+          "raw": "Level 100+ third evolution Mag and TypeA character"
+        },
+        "Preta": {
+          "minLevel": 100,
+          "race": "B",
+          "raw": "Level 100+ third evolution Mag and TypeB character"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Cell of Mag 502": {
+      "target": [
+        "Pitri",
+        "Soniti"
+      ],
+      "requires": {
+        "Pitri": {
+          "minLevel": 100,
+          "race": "B",
+          "raw": "Level 100+ third evolution Mag and TypeB character"
+        },
+        "Soniti": {
+          "minLevel": 100,
+          "race": "A",
+          "raw": "Level 100+ third evolution Mag and TypeA character"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "D-Photon Core": {
+      "target": "Gael Giel",
+      "requires": {
+        "Gael Giel": {
+          "minLevel": 100,
+          "requiresMag": "Kama",
+          "raw": "Level 100+ Kama"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Dragon Scale": {
+      "target": "Tellusis",
+      "requires": {
+        "Tellusis": {
+          "requiresMag": "Kama",
+          "raw": "Any Kama"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Heart of Angel": {
+      "target": "Angel's Wing",
+      "requires": {
+        "Angel's Wing": {
+          "minLevel": 100,
+          "raw": "Level 100+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Heart of Chao": {
+      "target": "Chao",
+      "requires": {
+        "Chao": {
+          "minLevel": 140,
+          "raw": "Level 140+ third evolution Mag 35+ in all Mag stats"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Heart of Chu Chu": {
+      "target": "Chu Chu",
+      "requires": {
+        "Chu Chu": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Heart of Devil": {
+      "target": [
+        "Devil's Tail",
+        "Devil's Wing"
+      ],
+      "requires": {
+        "Devil's Tail": {
+          "requiresMag": "Devil's Wing",
+          "raw": "Any Devil's Wing"
+        },
+        "Devil's Wing": {
+          "minLevel": 100,
+          "raw": "Level 100+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": true
+    },
+    "Heart of Kapu Kapu": {
+      "target": "Kapu Kapu",
+      "requires": {
+        "Kapu Kapu": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Heart of Morolian": {
+      "target": "Moro",
+      "requires": {
+        "Moro": {
+          "requiresMag": "Kumara",
+          "raw": "Any Kumara"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Heart of Opa Opa": {
+      "target": "Opa-Opa",
+      "requires": {
+        "Opa-Opa": {
+          "minLevel": 100,
+          "raw": "Level 100+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Heart of Pian": {
+      "target": "Pian",
+      "requires": {
+        "Pian": {
+          "minLevel": 120,
+          "raw": "Level 120+ third evolution Mag with 120% Synchro and 180+ IQ"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Heart of YN-0117": {
+      "target": "Elenor",
+      "requires": {
+        "Elenor": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Heaven Striker Coat": {
+      "target": "Striker Unit",
+      "requires": {
+        "Striker Unit": {
+          "requiresMag": "Garuda",
+          "raw": "Any Garuda"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Kalki Kit": {
+      "target": "Kalki*",
+      "requires": {
+        "Kalki*": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Kit of Dreamcast": {
+      "target": "Dreamcast",
+      "requires": {
+        "Dreamcast": {
+          "minLevel": 100,
+          "requiresMag": "Sega Saturn",
+          "raw": "Level 100+ character and Level 100+ Sega Saturn"
+        }
+      },
+      "reEvoWhitelist": true
+    },
+    "Kit of Genesis": {
+      "target": "Genesis",
+      "requires": {
+        "Genesis": {
+          "minLevel": 80,
+          "requiresMag": "Master System",
+          "raw": "Level 80+ character and Level 70+ Master System"
+        }
+      },
+      "reEvoWhitelist": true
+    },
+    "Kit of Hamburger": {
+      "target": "Hamburger",
+      "requires": {
+        "Hamburger": {
+          "minLevel": 50,
+          "requiresMag": "Kaitabha",
+          "raw": "Level 50+ Kaitabha"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Kit of Mark III": {
+      "target": "Mark III",
+      "requires": {
+        "Mark III": {
+          "minLevel": 60,
+          "requiresMag": "Mag",
+          "raw": "Level 60+ character and any basic Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Kit of Master System": {
+      "target": "Master System",
+      "requires": {
+        "Master System": {
+          "minLevel": 70,
+          "requiresMag": "Mark III",
+          "raw": "Level 70+ character and Level 60+ Mark III"
+        }
+      },
+      "reEvoWhitelist": true
+    },
+    "Kit of Sega Saturn": {
+      "target": "Sega Saturn",
+      "requires": {
+        "Sega Saturn": {
+          "minLevel": 90,
+          "requiresMag": "Genesis",
+          "raw": "Level 90+ character and Level 90+ Genesis"
+        }
+      },
+      "reEvoWhitelist": true
+    },
+    "Liberta Kit": {
+      "target": "Agastya",
+      "requires": {
+        "Agastya": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Mag Kit": {
+      "target": "Mag*",
+      "requires": {
+        "Mag*": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Panther's Spirit": {
+      "target": "Panzer's Tail",
+      "requires": {
+        "Panzer's Tail": {
+          "minLevel": 50,
+          "requiresMag": "Naga",
+          "raw": "Level 50+ Naga"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Parts of RoboChao": {
+      "target": "Robochao",
+      "requires": {
+        "Robochao": {
+          "minLevel": 145,
+          "raw": "Level 145+ third evolution Mag 70+ in two Mag stats"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Pioneer Parts": {
+      "target": "Pioneer",
+      "requires": {
+        "Pioneer": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Rappy's Beak": {
+      "target": "Rappy",
+      "requires": {
+        "Rappy": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Sonic Doll": {
+      "target": "Sonic",
+      "requires": {
+        "Sonic": {
+          "minLevel": 100,
+          "raw": "Level 100+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Stealth Kit": {
+      "target": "Stealth",
+      "requires": {
+        "Stealth": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Tablet": {
+      "target": "Geung-si",
+      "requires": {
+        "Geung-si": {
+          "requiresMag": "Rukmin",
+          "raw": "Any Rukmin"
+        }
+      },
+      "reEvoWhitelist": true
+    },
+    "Varuna Kit": {
+      "target": "Varuna*",
+      "requires": {
+        "Varuna*": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Vritra Kit": {
+      "target": "Vritra*",
+      "requires": {
+        "Vritra*": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
+    "Yahoo!'s engine": {
+      "target": "Yahoo!",
+      "requires": {
+        "Yahoo!": {
+          "minLevel": 50,
+          "raw": "Level 50+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
     }
   }
 };

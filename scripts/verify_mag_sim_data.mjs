@@ -51,5 +51,44 @@ check('stage3 Kalki DEX>MIND>POW → A=Kama,B=Varaha',
     D.evolution.stage3.Kalki['DEX>MIND>POW'].A === 'Kama'
     && D.evolution.stage3.Kalki['DEX>MIND>POW'].B === 'Varaha');
 
+// ---- stage4 reference chart + mag cells (Task 4) --------------------------
+// Type→formula mapping is fixed by both the wikitable and build()'s stage4:
+//   Type1 → DEF+DEX=POW+MIND,  Type2 → DEF+MIND=POW+DEX,  Type3 → DEF+POW=DEX+MIND
+// (Each group's single mag sits in exactly the column matching its Type.)
+check('stage4 HU/M/Type1 DEF+DEX=POW+MIND → Deva',
+    D.evolution.stage4.HU.M.Type1['DEF+DEX=POW+MIND'] === 'Deva');
+check('stage4 HU/M/Type1 其余等式为 null',
+    D.evolution.stage4.HU.M.Type1['DEF+POW=DEX+MIND'] === null
+    && D.evolution.stage4.HU.M.Type1['DEF+MIND=POW+DEX'] === null);
+// Brief Step-1 wrote FO/F/Type2 under 'DEF+DEX=POW+MIND' (Type1's key) by
+// copy-paste; the wiki puts Bhima under Type2's column DEF+MIND=POW+DEX.
+check('stage4 FO/F/Type2 DEF+MIND=POW+DEX → Bhima',
+    D.evolution.stage4.FO.F.Type2['DEF+MIND=POW+DEX'] === 'Bhima');
+check('stage4 FO/F/Type2 DEF+DEX=POW+MIND 为 null',
+    D.evolution.stage4.FO.F.Type2['DEF+DEX=POW+MIND'] === null);
+// table walk generalizes beyond HU: one RA mag and one FO mag
+check('stage4 RA/M/Type1 → Pushan',
+    D.evolution.stage4.RA.M.Type1['DEF+DEX=POW+MIND'] === 'Pushan');
+check('stage4 FO/M/Type3 → Nidra',
+    D.evolution.stage4.FO.M.Type3['DEF+POW=DEX+MIND'] === 'Nidra');
+// a colspan '-' null cell (Type3's mag is in col0, so col1/col2 are null)
+check('stage4 RA/F/Type3 DEF+DEX=POW+MIND 为 null (colspan -)',
+    D.evolution.stage4.RA.F.Type3['DEF+DEX=POW+MIND'] === null);
+
+check('magCells 收录 Heart of Devil',
+    !!D.magCells['Heart of Devil']);
+check('Heart of Devil 目标含 Devil Tail + Devil Wing',
+    Array.isArray(D.magCells['Heart of Devil'].target)
+    && D.magCells['Heart of Devil'].target.includes("Devil's Tail")
+    && D.magCells['Heart of Devil'].target.includes("Devil's Wing"));
+check('Heart of Devil 可再进化（白名单）',
+    D.magCells['Heart of Devil'].reEvoWhitelist === true);
+check('普通 cell 非白名单 (Dragon Scale)',
+    D.magCells['Dragon Scale'] && D.magCells['Dragon Scale'].reEvoWhitelist === false);
+// carry-forward: every cell-target mag lands in mags on feeding table 7 / stage 4
+check('cell mag Gael Giel → Table7 stage4',
+    D.mags['Gael Giel'] && D.mags['Gael Giel'].feedTableId === '7'
+    && D.mags['Gael Giel'].stage === 4);
+
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
 process.exit(failed ? 1 : 0);
