@@ -21,7 +21,60 @@
 }
 
 .mag-chart {
+    position: relative;
     margin: 24px 0 40px;
+}
+
+/* ---------- SVG connector layer ----------
+ * One <svg> per chart, absolutely covering it, painted behind the content. It
+ * draws the evolution flow as lines: the Lv.35 fan (one form → three by highest
+ * stat), and, at Lv.50/100, each condition/formula tied to the A/B (or
+ * male/female) result either side. There is deliberately no line across the
+ * Lv.35 → Lv.50 gap — that mapping does not exist (see .mag-funnel).
+ *
+ * Paths are recomputed in JS from element geometry, so they survive reflow,
+ * font loading and tab switches. Below 720px the layout is a single column and
+ * the lines would be meaningless, so the layer is hidden.
+ */
+.mag-wire {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: visible;
+    pointer-events: none;
+}
+
+/* Content sits above the wires so a line reads as running into a card's edge,
+ * not across its face. */
+.mag-chart > *:not(.mag-wire) {
+    position: relative;
+    z-index: 1;
+}
+
+.mag-wire__path {
+    fill: none;
+    stroke: var(--rail);
+    stroke-width: 1.75;
+    stroke-opacity: .6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Stat tag riding a Lv.35 branch line: a page-coloured pill (so the stroke
+ * reads as passing behind it) with the stat name in its own colour. */
+.mag-wire__chip {
+    fill: var(--bg-primary);
+    stroke: var(--card-br);
+    stroke-width: 1;
+}
+
+.mag-wire__tag {
+    fill: currentColor;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .02em;
 }
 
 .stat--pow { color: var(--pow); }
@@ -226,7 +279,10 @@
 .mag-gate {
     display: grid;
     justify-items: center;
-    margin: 16px 0 4px;
+    /* Extra bottom room: the SVG fan (gate → three stat-max cards) and its
+     * per-branch stat tags are drawn in this gap; the drops need to be long
+     * enough not to feel cramped under the tags. */
+    margin: 16px 0 66px;
 }
 
 .mag-gate__label {
@@ -236,14 +292,6 @@
     border: 1px solid var(--card-br);
     border-radius: 20px;
     background: rgba(255, 255, 255, .02);
-}
-
-.mag-gate::after {
-    content: '↓';
-    margin-top: 4px;
-    font-size: 17px;
-    line-height: 1;
-    color: var(--rail);
 }
 
 /* ---------- stage headings ---------- */
@@ -299,14 +347,17 @@
 
 /* ---------- cards ---------- */
 
+/* Slimmed so the flow — and the SVG lines between cards — carries the eye, not
+ * the card chrome. Height comes from the body (name / cond / PB / triggers), so
+ * the savings are in tighter type and spacing, not just a smaller sprite. */
 .mag-card {
     display: grid;
-    grid-template-columns: 80px minmax(0, 1fr);
-    gap: 14px;
-    padding: 14px 16px;
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 11px;
+    padding: 10px 12px;
     background: var(--card-bg);
     border: 1px solid var(--card-br);
-    border-radius: 10px;
+    border-radius: 9px;
     transition: border-color .18s ease, background .18s ease;
 }
 
@@ -315,45 +366,48 @@
     background: rgba(255, 255, 255, .055);
 }
 
-/* 64x64 sprites drawn at 80px: bilinear scaling turns them to mush. */
+/* 64x64 sprites: bilinear scaling turns them to mush, so keep it pixelated. */
 .mag-card__sprite {
-    width: 80px;
-    height: 80px;
+    width: 56px;
+    height: 56px;
     object-fit: contain;
     image-rendering: pixelated;
     align-self: start;
 }
 
 .mag-card__name {
-    font-size: 16px;
+    font-size: 14.5px;
     font-weight: 600;
     color: var(--text-primary);
-    line-height: 1.35;
+    line-height: 1.25;
 }
 
 .mag-card__en {
-    margin-left: 7px;
-    font-size: 13px;
+    margin-left: 6px;
+    font-size: 12px;
     font-weight: 400;
     color: var(--text-secondary);
 }
 
 .mag-card__cond {
-    margin-top: 3px;
-    font-size: 13px;
-    line-height: 1.6;
+    margin-top: 2px;
+    font-size: 12px;
+    line-height: 1.4;
     color: var(--text-secondary);
     font-variant-numeric: tabular-nums;
 }
 
 .mag-card__or {
-    margin: 0 6px;
+    margin: 0 5px;
     color: var(--text-muted);
 }
 
 .mag-card__pb {
-    margin-top: 7px;
-    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+    font-size: 11.5px;
     color: var(--text-secondary);
 }
 
@@ -362,9 +416,22 @@
     color: var(--text-primary);
 }
 
+/* The Photon Blast badge — the real hexagonal icon from the wiki. Downscaled
+ * from 50x43, so smooth (not pixelated) rendering, and a hair of inset so the
+ * black hexagon does not butt against the label. */
+.mag-card__pb-icon {
+    flex: none;
+    width: 20px;
+    height: 17px;
+    object-fit: contain;
+}
+
+.mag-card__pb-en {
+    color: var(--text-secondary);
+}
+
 .mag-card__label {
-    margin-right: 6px;
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--text-muted);
 }
 
@@ -372,18 +439,18 @@
 
 .mag-trig {
     display: grid;
-    gap: 3px;
-    margin-top: 9px;
-    padding-top: 9px;
+    gap: 2px;
+    margin-top: 6px;
+    padding-top: 6px;
     border-top: 1px solid var(--card-br);
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--text-muted);
 }
 
 .mag-trig__row {
     display: grid;
-    grid-template-columns: 54px minmax(0, 1fr) auto;
-    gap: 10px;
+    grid-template-columns: 50px minmax(0, 1fr) auto;
+    gap: 8px;
     font-variant-numeric: tabular-nums;
 }
 
@@ -404,24 +471,35 @@
     gap: 12px;
 }
 
+/* Cards sit at the two ends sized to content; the slack goes to the middle,
+ * where the SVG draws a labelled connector — so the gap reads as "Mag, fed as
+ * this class, becomes this form", not as dead space inside an over-wide card. */
 .mag-flow .mag-card {
-    flex: 1 1 260px;
+    flex: 0 1 auto;
+    max-width: 100%;
 }
 
 .mag-arrow {
-    flex: 0 0 auto;
+    flex: 1 1 90px;
     display: grid;
     justify-items: center;
-    gap: 2px;
-    font-size: 11px;
-    color: var(--text-muted);
+    min-width: 90px;
 }
 
+/* The label rides on the connector line, so give it the page background to
+ * punch a clean gap through the stroke. */
+.mag-arrow span {
+    padding: 3px 10px;
+    font-size: 11.5px;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border-radius: 12px;
+}
+
+/* On wide screens the SVG draws the arrow; only the stacked narrow layout needs
+ * a glyph, added in the 720px block. */
 .mag-arrow::after {
-    content: '→';
-    font-size: 17px;
-    line-height: 1;
-    color: var(--rail);
+    content: '';
 }
 
 .mag-branch {
@@ -429,6 +507,15 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
     margin-top: 14px;
+}
+
+/* Moderate, equal width, centred in each column — so the three nodes read as
+ * one set and the fan lines have room to breathe, rather than each card
+ * stretching full-width with a dead zone on its right. */
+.mag-branch .mag-card {
+    justify-self: center;
+    width: 100%;
+    max-width: 340px;
 }
 
 /* ---------- Lv.50 shared-rule grid ----------
@@ -444,8 +531,21 @@
     align-items: stretch;
 }
 
+/* Moderate width, sitting under their own group header (A to the outer left, B
+ * to the outer right, matching the coloured rails), so the width freed up
+ * becomes the connector gap to the central rule. The A/B split is read off the
+ * inline grid-column the renderer sets. */
 .mag-grid .mag-card {
-    margin: 0 14px;
+    width: 100%;
+    max-width: 360px;
+}
+
+.mag-grid .mag-card[style*="grid-column:1"] {
+    justify-self: start;
+}
+
+.mag-grid .mag-card[style*="grid-column:3"] {
+    justify-self: end;
 }
 
 .mag-col__head {
@@ -475,8 +575,9 @@
     color: var(--text-muted);
 }
 
-/* The rule spine. Each rule connects left and right with a hairline that runs
- * to the column edge; the card's own margin closes the last 14px to its border. */
+/* The rule spine. Each rule ties to the A/B card either side; those connectors
+ * are drawn by the SVG layer, running from the rule's edge across the card's
+ * 14px margin to its border. */
 .mag-rule {
     grid-column: 2;
     /* Plain block, not grid/flex: those make each stat span its own line.
@@ -498,24 +599,6 @@
 .mag-rule .stat--dex,
 .mag-rule .stat--mind {
     font-weight: 600;
-}
-
-.mag-rule::before,
-.mag-rule::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 14px;
-    height: 1px;
-    background: var(--accent-30);
-}
-
-.mag-rule::before {
-    right: 100%;
-}
-
-.mag-rule::after {
-    left: 100%;
 }
 
 /* On wide screens the spine owns the rule text, so hide the copy inside cards. */
@@ -553,7 +636,8 @@
 }
 
 .mag-special__title {
-    margin-bottom: 12px;
+    /* Room below for the two SVG drops from the banner into each card. */
+    margin-bottom: 26px;
     font-size: 13px;
     font-weight: 600;
     color: var(--text-primary);
@@ -587,6 +671,14 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 260px) minmax(0, 1fr);
     gap: 16px;
     align-items: center;
+}
+
+/* Moderate cards centred under their centred "男性 / 女性" headers, the
+ * connector reaching in to the central formula. */
+.mag-lv100__row .mag-card {
+    width: 100%;
+    max-width: 360px;
+    justify-self: center;
 }
 
 .mag-lv100__formula {
@@ -643,14 +735,16 @@
 
 .mag-colors {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
     margin: 20px 0;
 }
 
+/* Flex column, not grid: a grid item's stretch overrides the image's fixed
+ * height and the card grows to the full screenshot. */
 .mag-color {
-    display: grid;
-    gap: 0;
+    display: flex;
+    flex-direction: column;
     margin: 0;
     overflow: hidden;
     background: var(--card-bg);
@@ -664,34 +758,40 @@
     transform: translateY(-2px);
 }
 
-/* The screenshots are baked onto the Forest ground, so a tint of the colour
- * behind them keeps the card reading as one object. */
+/* Screenshots are baked onto the Forest ground, so a tint of the colour behind
+ * them keeps the card reading as one object. Capped and cropped — at full
+ * 205:162 the image made the card too tall. */
 .mag-color__shot {
     display: block;
+    flex: none;
+    min-height: 0;  /* flex min-height:auto + the img's width/height attrs (→ aspect-ratio) otherwise win over height */
     width: 100%;
-    height: auto;
-    aspect-ratio: 205 / 162;
+    height: 88px;
+    aspect-ratio: auto;
     object-fit: cover;
+    object-position: center 42%;
     background: color-mix(in srgb, var(--swatch) 18%, transparent);
 }
 
+/* Fixed three-part stack (en / zh / hex) so every card is the same height
+ * regardless of name length — no more 2-vs-3-line drift. */
 .mag-color__meta {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 6px 10px;
-    padding: 11px 13px;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px;
 }
 
 .mag-color__name {
-    display: grid;
+    display: block;
     font-size: 13.5px;
     font-weight: 600;
+    line-height: 1.3;
     color: var(--text-primary);
 }
 
 .mag-color__name em {
+    display: block;
     font-size: 11.5px;
     font-weight: 400;
     font-style: normal;
@@ -699,10 +799,13 @@
 }
 
 .mag-color__hex {
-    display: inline-flex;
+    position: relative;
+    display: flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 9px;
+    width: 100%;
+    margin-top: 6px;
+    padding: 5px 9px;
     font: inherit;
     font-size: 11.5px;
     font-variant-numeric: tabular-nums;
@@ -719,6 +822,7 @@
     content: '';
     width: 10px;
     height: 10px;
+    flex: none;
     border-radius: 3px;
     background: var(--swatch);
     box-shadow: 0 0 0 1px rgba(0, 0, 0, .4);
@@ -734,9 +838,19 @@
     outline-offset: 2px;
 }
 
+/* Copied feedback overlays the button — absolute, so it never reflows the
+ * card when it appears. */
 .mag-color__hex[data-copied]::after {
     content: '已复制';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
     color: var(--accent);
+    background: var(--bg-secondary);
+    border-radius: 5px;
 }
 
 /* ---------- narrow screens ----------
@@ -803,6 +917,9 @@
         grid-template-columns: minmax(0, 1fr);
     }
 
+    /* Single column: the connector lines would have nothing meaningful to link,
+     * so drop the whole SVG layer. */
+    .mag-wire,
     .mag-lv100__head {
         display: none;
     }
@@ -814,15 +931,5 @@
 
     .mag-arrow::after {
         content: '↓';
-    }
-
-    .mag-card {
-        grid-template-columns: 64px minmax(0, 1fr);
-        gap: 12px;
-    }
-
-    .mag-card__sprite {
-        width: 64px;
-        height: 64px;
     }
 }

@@ -121,7 +121,12 @@
     function pbLine(mag, meta) {
         if (!mag.pb) return '';
         const zh = meta.pbNames[mag.pb] || '';
-        return `<div class="mag-card__pb"><span class="mag-card__label">PB</span><b>${esc(zh)}</b> ${esc(mag.pb)}</div>`;
+        // Slug the file name — "Mylla & Youlla" as a raw <img src> (spaces + &)
+        // fails to load in-page even though the encoded URL resolves directly.
+        const icon = `/assets/img/mag/pb/${mag.pb.replace(/[^A-Za-z0-9]+/g, '_')}.png`;
+        return `<div class="mag-card__pb"><span class="mag-card__label">PB</span>`
+            + `<img class="mag-card__pb-icon" src="${icon}" alt="" loading="lazy" width="20" height="17">`
+            + `<b>${esc(zh)}</b><span class="mag-card__pb-en">${esc(mag.pb)}</span></div>`;
     }
 
     function condLine(mag) {
@@ -171,7 +176,7 @@
     }
 
     function arrow(label) {
-        return `<div class="mag-arrow">${esc(label)}</div>`;
+        return `<div class="mag-arrow"><span>${esc(label)}</span></div>`;
     }
 
     /* The main line is Lv.10 -> 35 -> 50 -> 100, and each gate reads a
@@ -285,6 +290,170 @@
             renderFunnel() +
             renderStage3(c, meta) +
             renderStage4(c, meta);
+        mount.insertAdjacentHTML('afterbegin',
+            '<svg class="mag-wire" aria-hidden="true"><path class="mag-wire__path" d=""></path></svg>');
+    }
+
+    /* ---------- SVG connector layer ----------
+     * The evolution flow drawn as lines, recomputed from live geometry so it
+     * survives reflow, font loading and tab switches. One <path> per chart holds
+     * every segment as an independent M…L subpath.
+     *
+     * A segment is a plain polyline in the chart's own pixel space (the <svg>
+     * has no viewBox, so user units are CSS px). Anchors come from
+     * getBoundingClientRect minus the svg's own rect.
+     */
+
+    function drawWires(chart) {
+        const svg = chart.querySelector(':scope > svg.mag-wire');
+        if (!svg) return;
+        // Hidden tab panel / narrow layout: the svg has no box, so bail rather
+        // than draw everything anchored at (0,0).
+        if (!svg.getClientRects().length) { svg.innerHTML = '<path class="mag-wire__path" d=""></path>'; return; }
+
+        const base = svg.getBoundingClientRect();
+        const rel = (el) => {
+            const r = el.getBoundingClientRect();
+            return {
+                l: r.left - base.left, r: r.right - base.left,
+                t: r.top - base.top, b: r.bottom - base.top,
+                cx: (r.left + r.right) / 2 - base.left,
+                cy: (r.top + r.bottom) / 2 - base.top,
+                w: r.width,
+            };
+        };
+        const seg = [];
+        const labels = [];
+        const vline = (x, y1, y2) => seg.push(`M ${x} ${y1} L ${x} ${y2}`);
+        const hline = (x1, x2, y) => seg.push(`M ${x1} ${y} L ${x2} ${y}`);
+        // Small chevron arrowheads, tip at (x, y), by pointing direction.
+        const headR = (x, y) => seg.push(`M ${x - 6} ${y - 4} L ${x} ${y} L ${x - 6} ${y + 4}`);
+        const headL = (x, y) => seg.push(`M ${x + 6} ${y - 4} L ${x} ${y} L ${x + 6} ${y + 4}`);
+        const headD = (x, y) => seg.push(`M ${x - 4} ${y - 6} L ${x} ${y} L ${x + 4} ${y - 6}`);
+
+        // Connect a rule to a card that may span several rules (so the rule's
+        // own y can fall outside the card's box): land the arrow clamped inside
+        // the card, with an elbow when the straight line would miss it. dir −1
+        // points left into an A card, +1 right into a B card.
+        const elbowInto = (fromX, box, cy, dir) => {
+            const edgeX = dir < 0 ? box.r : box.l;
+            const y = Math.max(box.t + 12, Math.min(box.b - 12, cy));
+            if (Math.abs(y - cy) < 1.5) {
+                hline(fromX, edgeX, cy);
+            } else {
+                const midX = fromX + (edgeX - fromX) * 0.45;
+                seg.push(`M ${fromX} ${cy} L ${midX} ${cy} L ${midX} ${y} L ${edgeX} ${y}`);
+            }
+            if (dir < 0) headL(edgeX, y); else headR(edgeX, y);
+        };
+
+        // Lv.10: the starter card → the first-evolution card, a horizontal
+        // connector across the gap, arrow into the result. The "<class> 职业"
+        // label chip rides the line's middle.
+        const flow = chart.querySelector('.mag-flow');
+        if (flow) {
+            const cards = [...flow.querySelectorAll(':scope > .mag-card')];
+            if (cards.length >= 2) {
+                const a = rel(cards[0]);
+                const b = rel(cards[cards.length - 1]);
+                const y = (a.cy + b.cy) / 2;
+                hline(a.r, b.l, y);
+                headR(b.l, y);
+            }
+        }
+
+        // Lv.35: gate → the three stat-max cards. Each drop is tagged with the
+        // stat (POW/DEX/MIND) that routes to it, coloured to match its card, so
+        // which line leads where reads off the diagram — not only off the cards.
+        const gate = chart.querySelector('.mag-gate');
+        const branch = [...chart.querySelectorAll('.mag-branch > .mag-card')];
+        if (gate && branch.length) {
+            const s = rel(gate);
+            const kids = branch.map(rel);
+            // Short stem off the gate, then a bus, then a long drop into each
+            // card with an arrowhead. The stat tag rides the upper third of the
+            // drop, leaving clear line above and below it.
+            const busY = s.b + 16;
+            vline(s.cx, s.b, busY);
+            hline(Math.min(...kids.map((x) => x.cx)), Math.max(...kids.map((x) => x.cx)), busY);
+            kids.forEach((k, i) => {
+                vline(k.cx, busY, k.t);
+                headD(k.cx, k.t);
+                const statEl = branch[i].querySelector('[class*="stat--"]');
+                if (!statEl) return;
+                const cls = [...statEl.classList].find((c) => c.startsWith('stat--')) || '';
+                const y = busY + 16;
+                labels.push(`<rect class="mag-wire__chip" x="${k.cx - 22}" y="${y - 9}" width="44" height="18" rx="9"></rect>`
+                    + `<text class="mag-wire__tag ${cls}" x="${k.cx}" y="${y + 0.5}" text-anchor="middle" dominant-baseline="central">${esc(statEl.textContent.trim())}</text>`);
+            });
+        }
+
+        // Lv.50 special (FO's DEF ≥ 45): the full-width banner feeds straight
+        // down into each card — a simple drop per card, no centre stem (which
+        // would point at the empty middle of the left-aligned banner).
+        const special = chart.querySelector('.mag-special');
+        if (special) {
+            const title = special.querySelector('.mag-special__title');
+            const cards = [...special.querySelectorAll('.mag-card')];
+            if (title && cards.length) {
+                const t = rel(title);
+                cards.forEach((cardEl) => {
+                    const k = rel(cardEl);
+                    vline(k.cx, t.b + 5, k.t);
+                    headD(k.cx, k.t);
+                });
+            }
+        }
+
+        // Lv.50 rules → the A card left and B card right for that rule. Matched
+        // by the renderer's own grid-row spans (not by pixels), so a card that
+        // covers several rules links to each — and the arrow lands clamped
+        // inside that card even when it is shorter than the rows it spans.
+        // Skip rules with no box (hidden below 900px).
+        const grid = chart.querySelector('.mag-grid');
+        if (grid) {
+            const rowOf = (el) => {
+                const m = /grid-row:\s*(\d+)(?:\s*\/\s*span\s*(\d+))?/.exec(el.getAttribute('style') || '');
+                if (!m) return null;
+                const start = +m[1];
+                return { start, end: start + (m[2] ? +m[2] : 1) - 1 };
+            };
+            const gcards = [...grid.querySelectorAll('.mag-card')]
+                .map((el) => ({ col: /grid-column:\s*1/.test(el.getAttribute('style') || '') ? 1 : 3, row: rowOf(el), box: rel(el) }))
+                .filter((c) => c.row);
+            grid.querySelectorAll('.mag-rule').forEach((ruleEl) => {
+                const R = rel(ruleEl);
+                if (R.w < 1) return;
+                const rr = rowOf(ruleEl);
+                if (!rr) return;
+                const covers = (c) => c.row.start <= rr.start && c.row.end >= rr.start;
+                const a = gcards.find((c) => c.col === 1 && covers(c));
+                const b = gcards.find((c) => c.col === 3 && covers(c));
+                if (a) elbowInto(R.l, a.box, R.cy, -1);
+                if (b) elbowInto(R.r, b.box, R.cy, +1);
+            });
+        }
+
+        // Lv.100: each formula → the male card left, the female card right.
+        chart.querySelectorAll('.mag-lv100__row').forEach((row) => {
+            const f = row.querySelector('.mag-lv100__formula');
+            const cards = [...row.querySelectorAll('.mag-card')];
+            if (!f || cards.length < 2) return;
+            const F = rel(f);
+            elbowInto(F.l, rel(cards[0]), F.cy, -1);
+            elbowInto(F.r, rel(cards[1]), F.cy, +1);
+        });
+
+        svg.innerHTML = `<path class="mag-wire__path" d="${seg.join(' ')}"></path>${labels.join('')}`;
+    }
+
+    let wireRaf = 0;
+    function redrawWires() {
+        if (wireRaf) return;
+        wireRaf = requestAnimationFrame(() => {
+            wireRaf = 0;
+            document.querySelectorAll('.mag-chart').forEach(drawWires);
+        });
     }
 
     /* ---------- tabs ----------
@@ -315,6 +484,9 @@
                 if (p) p.hidden = !on;
                 if (on && focus) t.focus();
             });
+            // A chart panel just became visible; its wires measured 0 while
+            // hidden, so redraw now that it has a box.
+            redrawWires();
         }
 
         tabs.forEach((t) => t.addEventListener('click', () => { location.hash = t.id; }));
@@ -444,5 +616,19 @@
         // Re-tint sprites that mount later (hidden tab panels render eagerly, but
         // their images may still be decoding).
         if (REC.hex) applyRecolor(REC.hex);
+
+        // Connector layer: draw once, then keep it in sync with anything that
+        // shifts card geometry — container resize, late web fonts, image decode.
+        const charts = [...document.querySelectorAll('.mag-chart')];
+        if (charts.length) {
+            redrawWires();
+            if (typeof ResizeObserver === 'function') {
+                const ro = new ResizeObserver(() => redrawWires());
+                charts.forEach((c) => ro.observe(c));
+            }
+            window.addEventListener('resize', redrawWires);
+            window.addEventListener('load', redrawWires);
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(redrawWires);
+        }
     });
 })();
