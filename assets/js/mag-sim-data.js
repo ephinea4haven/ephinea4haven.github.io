@@ -721,5 +721,187 @@ window.MAG_SIM = {
         2
       ]
     }
+  },
+  "mags": {
+    "Mag": {
+      "feedTableId": "0",
+      "stage": 0
+    },
+    "Kalki": {
+      "feedTableId": "1",
+      "stage": 1
+    },
+    "Varuna": {
+      "feedTableId": "1",
+      "stage": 1
+    },
+    "Vritra": {
+      "feedTableId": "1",
+      "stage": 1
+    },
+    "Ashvinau": {
+      "feedTableId": "2",
+      "stage": 2
+    },
+    "Namuci": {
+      "feedTableId": "2",
+      "stage": 2
+    },
+    "Marutah": {
+      "feedTableId": "2",
+      "stage": 2
+    },
+    "Rudra": {
+      "feedTableId": "2",
+      "stage": 2
+    },
+    "Sumba": {
+      "feedTableId": "2",
+      "stage": 2
+    },
+    "Mitra": {
+      "feedTableId": "3",
+      "stage": 2
+    },
+    "Tapas": {
+      "feedTableId": "3",
+      "stage": 2
+    },
+    "Surya": {
+      "feedTableId": "3",
+      "stage": 2
+    },
+    "Vayu": {
+      "feedTableId": "4",
+      "stage": 2
+    },
+    "Apsaras": {
+      "feedTableId": "4",
+      "stage": 3
+    },
+    "Bhirava": {
+      "feedTableId": "4",
+      "stage": 3
+    },
+    "Kaitabha": {
+      "feedTableId": "4",
+      "stage": 3
+    },
+    "Kama": {
+      "feedTableId": "4",
+      "stage": 3
+    },
+    "Kumara": {
+      "feedTableId": "4",
+      "stage": 3
+    },
+    "Ushasu": {
+      "feedTableId": "4",
+      "stage": 3
+    },
+    "Varaha": {
+      "feedTableId": "4",
+      "stage": 3
+    },
+    "Durga": {
+      "feedTableId": "5",
+      "stage": 3
+    },
+    "Garuda": {
+      "feedTableId": "5",
+      "stage": 3
+    },
+    "Ila": {
+      "feedTableId": "5",
+      "stage": 3
+    },
+    "Nandin": {
+      "feedTableId": "5",
+      "stage": 3
+    },
+    "Ribhava": {
+      "feedTableId": "5",
+      "stage": 3
+    },
+    "Sita": {
+      "feedTableId": "5",
+      "stage": 3
+    },
+    "Soma": {
+      "feedTableId": "5",
+      "stage": 3
+    },
+    "Yaksa": {
+      "feedTableId": "5",
+      "stage": 3
+    },
+    "Deva": {
+      "feedTableId": "5",
+      "stage": 4
+    },
+    "Rukmin": {
+      "feedTableId": "5",
+      "stage": 4
+    },
+    "Sato": {
+      "feedTableId": "5",
+      "stage": 4
+    },
+    "Andhaka": {
+      "feedTableId": "6",
+      "stage": 3
+    },
+    "Bana": {
+      "feedTableId": "6",
+      "stage": 3
+    },
+    "Kabanda": {
+      "feedTableId": "6",
+      "stage": 3
+    },
+    "Madhu": {
+      "feedTableId": "6",
+      "stage": 3
+    },
+    "Marica": {
+      "feedTableId": "6",
+      "stage": 3
+    },
+    "Naga": {
+      "feedTableId": "6",
+      "stage": 3
+    },
+    "Naraka": {
+      "feedTableId": "6",
+      "stage": 3
+    },
+    "Ravana": {
+      "feedTableId": "6",
+      "stage": 3
+    },
+    "Bhima": {
+      "feedTableId": "6",
+      "stage": 4
+    },
+    "Pushan": {
+      "feedTableId": "6",
+      "stage": 4
+    },
+    "Rati": {
+      "feedTableId": "6",
+      "stage": 4
+    },
+    "Diwari": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Nidra": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Savitri": {
+      "feedTableId": "7",
+      "stage": 4
+    }
   }
 };
