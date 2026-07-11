@@ -903,5 +903,114 @@ window.MAG_SIM = {
       "feedTableId": "7",
       "stage": 4
     }
+  },
+  "evolution": {
+    "stage1": {
+      "HU": "Varuna",
+      "RA": "Kalki",
+      "FO": "Vritra"
+    },
+    "stage2": {
+      "Varuna": {
+        "POW": "Rudra",
+        "DEX": "Marutah",
+        "MIND": "Vayu"
+      },
+      "Kalki": {
+        "POW": "Surya",
+        "DEX": "Mitra",
+        "MIND": "Tapas"
+      },
+      "Vritra": {
+        "POW": "Sumba",
+        "DEX": "Ashvinau",
+        "MIND": "Namuci"
+      }
+    },
+    "stage3": {
+      "Varuna": {
+        "POW>DEX>MIND": {
+          "A": "Varaha",
+          "B": "Kama"
+        },
+        "POW>MIND>DEX": {
+          "A": "Bhirava",
+          "B": "Apsaras"
+        },
+        "DEX>POW>MIND": {
+          "A": "Ila",
+          "B": "Garuda"
+        },
+        "DEX>MIND>POW": {
+          "A": "Nandin",
+          "B": "Yaksa"
+        },
+        "MIND>POW>DEX": {
+          "A": "Kabanda",
+          "B": "Bana"
+        },
+        "MIND>DEX>POW": {
+          "A": "Ushasu",
+          "B": "Soma"
+        }
+      },
+      "Kalki": {
+        "POW>DEX>MIND": {
+          "A": "Kama",
+          "B": "Madhu"
+        },
+        "DEX>MIND>POW": {
+          "A": "Kama",
+          "B": "Varaha"
+        },
+        "POW>MIND>DEX": {
+          "A": "Bhirava",
+          "B": "Kaitabha"
+        },
+        "DEX>POW>MIND": {
+          "A": "Bhirava",
+          "B": "Kaitabha"
+        },
+        "MIND>POW>DEX": {
+          "A": "Varaha",
+          "B": "Kabanda"
+        },
+        "MIND>DEX>POW": {
+          "A": "Apsaras",
+          "B": "Durga"
+        }
+      },
+      "Vritra": {
+        "POW>DEX>MIND": {
+          "A": "Naraka",
+          "B": "Marica"
+        },
+        "POW>MIND>DEX": {
+          "A": "Ravana",
+          "B": "Naga"
+        },
+        "DEX>POW>MIND": {
+          "A": "Ribhava",
+          "B": "Garuda"
+        },
+        "DEX>MIND>POW": {
+          "A": "Sita",
+          "B": "Bhirava"
+        },
+        "MIND>POW>DEX": {
+          "A": "Naga",
+          "B": "Kumara"
+        },
+        "MIND>DEX>POW": {
+          "A": "Kabanda",
+          "B": "Ila"
+        }
+      }
+    },
+    "tieBreak": {
+      "HU": "POW",
+      "RA": "DEX",
+      "FO": "MIND"
+    }
   }
 };

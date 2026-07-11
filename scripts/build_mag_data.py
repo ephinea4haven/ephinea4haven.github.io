@@ -17,6 +17,7 @@ Usage:  python3 scripts/build_mag_data.py [--offline path/to/mags.wiki]
 from __future__ import annotations
 
 import argparse
+import itertools
 import json
 import re
 import subprocess
@@ -335,6 +336,98 @@ def node(name: str, zh: dict[str, str], conds: list[str], rec: dict, with_pb=Tru
     return n
 
 
+# --- machine-evaluable evolution predicates (Task 3) -----------------------
+# stage1/stage2 are fixed lineage facts; they are cross-checked against the
+# in-memory MAG_EVOLUTION structure in build_evolution_std so they cannot drift.
+STAGE1 = {"HU": "Varuna", "RA": "Kalki", "FO": "Vritra"}
+STAGE2 = {
+    "Varuna": {"POW": "Rudra", "DEX": "Marutah", "MIND": "Vayu"},
+    "Kalki":  {"POW": "Surya", "DEX": "Mitra",   "MIND": "Tapas"},
+    "Vritra": {"POW": "Sumba", "DEX": "Ashvinau", "MIND": "Namuci"},
+}
+
+# The 6 strict orderings of the three stats, high -> low.
+ALL_PERMS = [">".join(p) for p in itertools.permutations(("POW", "DEX", "MIND"))]
+
+
+def _eval_cond(cond: str, rank: dict) -> bool:
+    """Does a strict stat ordering satisfy one Lv.50 rule string?
+
+    `rank` maps each stat to a distinct value (bigger = higher). A rule is a
+    chain like 'POW ≥ DEX ≥ MIND' or 'DEX = MIND > POW'. For a *strict* ordering
+    (all ranks distinct) '≥' coincides with '>' and '=' can never hold, so the
+    '=' tie-rules never fire on their own — they only ever share a mag with an
+    accompanying '≥'/'>' rule, which is what keeps the 6-way partition clean.
+    """
+    tok = cond.split()
+    for i in range(0, len(tok) - 2, 2):
+        left, op, right = tok[i], tok[i + 1], tok[i + 2]
+        lv, rv = rank[left], rank[right]
+        ok = (lv > rv) if op == ">" else (lv >= rv) if op == "≥" else \
+             (lv == rv) if op == "=" else None
+        if ok is None:
+            sys.exit(f"perms_from_cond: unknown operator {op!r} in {cond!r}")
+        if not ok:
+            return False
+    return True
+
+
+def perms_from_cond(conds: list[str]) -> list[str]:
+    """Expand a mag's Lv.50 conditions into the strict stat orderings it wins.
+
+    Returns canonical perm keys ('POW>DEX>MIND' etc.) — every ordering for which
+    at least one of `conds` holds."""
+    out = []
+    for perm in ALL_PERMS:
+        stats = perm.split(">")
+        rank = {s: len(stats) - i for i, s in enumerate(stats)}
+        if any(_eval_cond(c, rank) for c in conds):
+            out.append(perm)
+    return out
+
+
+def build_evolution_std(classes: dict) -> dict:
+    """Transform the in-memory MAG_EVOLUTION classes into machine keys a
+    simulator can execute: stage1/stage2 lineage maps and a stage3 lookup of
+    `{firstEvoMag: {perm: {"A": name, "B": name}}}` over the 6 stat orderings,
+    plus the per-class tie-break stat. Fails loudly if any of the 6 perms is
+    left uncovered or claimed by two mags in the same ID group."""
+    stage3: dict = {}
+    for c in ("HU", "RA", "FO"):
+        s3 = classes[c]["stage3"]
+        first = STAGE1[c]
+        # cross-check the fixed lineage facts against the derived structure
+        if classes[c]["stage1"]["name"] != first:
+            sys.exit(f"stage1 mismatch for {c}: {classes[c]['stage1']['name']} != {first}")
+        derived2 = {m["cond"][0].split()[0]: m["name"] for m in classes[c]["stage2"]}
+        if derived2 != STAGE2[first]:
+            sys.exit(f"stage2 mismatch for {first}: {derived2} != {STAGE2[first]}")
+
+        lineage: dict = {}
+        for grp in ("A", "B"):
+            for entry in s3[grp]:
+                for perm in perms_from_cond(entry["cond"]):
+                    slot = lineage.setdefault(perm, {})
+                    if grp in slot:
+                        sys.exit(f"stage3 {first} {perm} group {grp}: "
+                                 f"{slot[grp]} and {entry['name']} both claim it")
+                    slot[grp] = entry["name"]
+        for perm in ALL_PERMS:
+            slot = lineage.get(perm)
+            if not slot or "A" not in slot or "B" not in slot:
+                sys.exit(f"stage3 {first} {perm}: incomplete mapping {slot}")
+        if len(lineage) != 6:
+            sys.exit(f"stage3 {first}: expected 6 perms, got {len(lineage)}")
+        stage3[first] = lineage
+
+    return {
+        "stage1": STAGE1,
+        "stage2": STAGE2,
+        "stage3": stage3,
+        "tieBreak": {c: classes[c]["tieBreak"] for c in ("HU", "RA", "FO")},
+    }
+
+
 def build() -> tuple[dict, set]:
     ap = argparse.ArgumentParser()
     ap.add_argument("--offline", type=Path)
@@ -472,10 +565,11 @@ def main() -> None:
     n = sum(len(c["stage3"]["A"]) + len(c["stage3"]["B"]) for c in data["classes"].values())
     print(f"wrote {OUT.relative_to(ROOT)} — {n} Lv.50 mags across 3 classes")
 
-    # TODO(mag-sim task 3+): grows beyond feedTables/mags as later tasks land.
+    # TODO(mag-sim task 4): grows beyond feedTables/mags/evolution as tasks land.
     feed = parse_feed_tables(fetch_raw(FEED_URL))
     mags = parse_mag_tables(fetch_raw(FEED_PAGE_URL))
-    sim = {"feedTables": feed, "mags": mags}
+    sim = {"feedTables": feed, "mags": mags,
+           "evolution": build_evolution_std(data["classes"])}
     SIM_OUT.write_text(
         "/* Generated by scripts/build_mag_data.py — do not edit by hand. */\n"
         "window.MAG_SIM = " + json.dumps(sim, ensure_ascii=False, indent=2) + ";\n",
