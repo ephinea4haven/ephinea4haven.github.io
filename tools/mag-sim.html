@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/mag-chart.css">
     <script src="/assets/js/page-chrome.js"></script>
     <script src="/assets/js/mag-sim-data.js" defer></script>
+    <script src="/assets/js/mag-evolution.js" defer></script>
     <script type="module" src="/assets/js/mag-sim-engine.js"></script>
     <script type="module" src="/assets/js/mag-sim-ui.js"></script>
     <style>
@@ -182,6 +183,86 @@
         .mag-id-chip:focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
+        }
+
+        /* ---------- live Mag card (Task 13) ---------- */
+
+        .mag-sim-card__head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .mag-sim-card__sprite {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            image-rendering: pixelated;
+            flex: none;
+        }
+
+        .mag-sim-card__level {
+            margin-top: 2px;
+            font-size: 12.5px;
+            font-variant-numeric: tabular-nums;
+            color: var(--text-secondary);
+        }
+
+        .mag-sim-card__stats {
+            display: grid;
+            gap: 6px;
+            margin: 10px 0 12px;
+        }
+
+        .mag-sim-card__stat {
+            display: grid;
+            grid-template-columns: 42px minmax(0, 1fr) 64px;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mag-sim-card__stat-label {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .mag-sim-card__stat-track {
+            height: 8px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--card-br);
+            border-radius: 5px;
+        }
+
+        .mag-sim-card__stat-fill {
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .mag-sim-card__stat-fill--pow { background: var(--pow); }
+        .mag-sim-card__stat-fill--dex { background: var(--dex); }
+        .mag-sim-card__stat-fill--mind { background: var(--mind); }
+        .mag-sim-card__stat-fill--def { background: var(--def); }
+
+        .mag-sim-card__stat-value {
+            font-size: 11.5px;
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+            color: var(--text-secondary);
+        }
+
+        .mag-sim-card__next {
+            margin-top: 10px;
+            padding-top: 8px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--card-br);
+        }
+
+        .mag-sim-card__next b {
+            color: var(--text-primary);
+            font-weight: 600;
         }
     </style>
 </head>

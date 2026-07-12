@@ -151,7 +151,132 @@ function renderSetup() {
     });
 }
 
-function renderCard() {}
+// ---------- Task 13: live Mag card ----------
+
+const SPRITE_DIR = '/assets/img/mag/wiki/';
+function sprite(name) { return `${SPRITE_DIR}${encodeURIComponent(name)}.png`; }
+
+function esc(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    }[c]));
+}
+
+const STAT_DEFS = [
+    { key: 'def', label: 'DEF', cls: 'def' },
+    { key: 'pow', label: 'POW', cls: 'pow' },
+    { key: 'dex', label: 'DEX', cls: 'dex' },
+    { key: 'mind', label: 'MIND', cls: 'mind' },
+];
+
+const NEXT_EVO_HINT = {
+    0: 'Lv 10 → 一阶',
+    1: 'Lv 35 → 二阶',
+    2: (s) => `Lv ${s.window.stage3} → 三阶`,
+    3: (s) => `Lv ${s.window.stage4} → 四阶（或用 Mag Cell）`,
+    4: '已达四阶（可用 Mag Cell 转稀有）',
+};
+
+// Flat name -> {name, zh, pb, triggers} lookup over window.MAG_EVOLUTION's
+// evolution tree, built once on first use (not at module load, since
+// mag-evolution.js — a separate deferred script — may not have run yet).
+// Absent from the lookup = a node the standard tree doesn't know about (cell
+// mags like Gael Giel): renderCard degrades to the bare English name.
+let magInfoCache = null;
+function getMagInfo() {
+    if (magInfoCache) return magInfoCache;
+    magInfoCache = Object.create(null);
+    const data = window.MAG_EVOLUTION;
+    if (!data || !data.classes) return magInfoCache;
+    const add = (node) => { if (node && node.name) magInfoCache[node.name] = node; };
+    Object.values(data.classes).forEach((c) => {
+        add(c.stage1);
+        (c.stage2 || []).forEach(add);
+        const s3 = c.stage3 || {};
+        (s3.special || []).forEach(add);
+        (s3.A || []).forEach(add);
+        (s3.B || []).forEach(add);
+        (c.stage4 || []).forEach((r) => { add(r.male); add(r.female); });
+    });
+    return magInfoCache;
+}
+
+function statBarHtml(stat) {
+    const value = state[stat.key];
+    const progress = state.progress[stat.key];
+    const pct = Math.min(100, Math.max(0, (value / 200) * 100));
+    return `<div class="mag-sim-card__stat">
+        <span class="mag-sim-card__stat-label stat--${stat.cls}">${stat.label}</span>
+        <div class="mag-sim-card__stat-track">
+            <div class="mag-sim-card__stat-fill mag-sim-card__stat-fill--${stat.cls}" style="width:${pct}%"></div>
+        </div>
+        <span class="mag-sim-card__stat-value">${value}·${progress}%</span>
+    </div>`;
+}
+
+function pbHtml(info, meta) {
+    if (!info || !info.pb || !meta) return '';
+    const zh = meta.pbNames[info.pb] || '';
+    // Slug the file name — "Mylla & Youlla" as a raw src (spaces + &) fails to
+    // load in-page even though the encoded URL resolves directly.
+    const icon = `/assets/img/mag/pb/${info.pb.replace(/[^A-Za-z0-9]+/g, '_')}.png`;
+    return `<div class="mag-card__pb"><span class="mag-card__label">PB</span>`
+        + `<img class="mag-card__pb-icon" src="${icon}" alt="" loading="lazy" width="20" height="17">`
+        + `<b>${esc(zh)}</b><span class="mag-card__pb-en">${esc(info.pb)}</span></div>`;
+}
+
+function triggersHtml(info, meta) {
+    if (!info || !info.triggers || !meta) return '';
+    const rows = (meta.events || [])
+        .filter((e) => e in info.triggers)
+        .map((e) => {
+            const t = info.triggers[e];
+            return `<div class="mag-trig__row">
+                <span class="mag-trig__event">${esc(e)}</span>
+                <span>${esc(meta.effects[t.effect] || t.effect)}</span>
+                <span class="mag-trig__rate">${esc(t.rate)}</span>
+            </div>`;
+        });
+    return rows.length ? `<div class="mag-trig">${rows.join('')}</div>` : '';
+}
+
+function nextEvoHint() {
+    const stage = DATA.mags[state.magId]?.stage ?? 0;
+    const hint = NEXT_EVO_HINT[stage];
+    if (!hint) return '';
+    return typeof hint === 'function' ? hint(state) : hint;
+}
+
+function renderCard() {
+    const root = document.querySelector('[data-sim-card]');
+    if (!root) return;
+
+    const info = getMagInfo()[state.magId];
+    const meta = window.MAG_EVOLUTION?.meta;
+    const nameHtml = info?.zh
+        ? `${esc(info.zh)}<span class="mag-card__en">${esc(state.magId)}</span>`
+        : esc(state.magId);
+    const level = E.magLevel(state);
+
+    root.innerHTML = `
+        <h2>当前 Mag</h2>
+        <div class="mag-sim-card__head">
+            <img class="mag-sim-card__sprite" src="${sprite(state.magId)}" alt="${esc(state.magId)}"
+                loading="lazy" onerror="this.remove()">
+            <div>
+                <div class="mag-card__name">${nameHtml}</div>
+                <div class="mag-sim-card__level">Lv ${level} / 200 · 同步率 ${state.synchro} / 120 · IQ ${state.iq} / 200</div>
+            </div>
+        </div>
+        <div class="mag-sim-card__stats">
+            ${STAT_DEFS.map(statBarHtml).join('')}
+        </div>
+        ${pbHtml(info, meta)}
+        ${triggersHtml(info, meta)}
+        <div class="mag-sim-card__next">下次进化：<b>${esc(nextEvoHint())}</b></div>
+    `;
+}
+
 function renderFeed() {}
 function renderLog() {}
 
