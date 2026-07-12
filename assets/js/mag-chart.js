@@ -635,11 +635,22 @@
     window.renderMagChart = renderMagChart;
 
     document.addEventListener('DOMContentLoaded', () => {
+        // Each mount is rendered independently: a data or markup failure in one
+        // (e.g. mag-evolution.js failing to load) must not abort the loop and
+        // take down the rest of the page's charts/tables with it.
         document.querySelectorAll('[data-mag-chart]').forEach((el) => {
-            renderMagChart(el, el.dataset.magChart);
+            try {
+                renderMagChart(el, el.dataset.magChart);
+            } catch (err) {
+                console.error('mag-chart: failed to render chart', el.dataset.magChart, err);
+            }
         });
         document.querySelectorAll('[data-feed-table]').forEach((el) => {
-            renderFeedTable(el, el.dataset.feedTable);
+            try {
+                renderFeedTable(el, el.dataset.feedTable);
+            } catch (err) {
+                console.error('mag-chart: failed to render feed table', el.dataset.feedTable, err);
+            }
         });
         document.querySelectorAll('[data-mag-tabs]').forEach(initTabs);
         document.querySelectorAll('[data-section-nav]').forEach(initSectionNav);
