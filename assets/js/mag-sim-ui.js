@@ -1,6 +1,7 @@
 // assets/js/mag-sim-ui.js
-// Bootstrap (Task 11) + Setup panel (Task 12). renderCard/renderFeed/renderLog
-// are filled in by Tasks 13-15.
+// The whole simulator page: setup panel, live Mag card, feed bar, history log
+// and the undo/reset/export/share controls. All rules live in the (DOM-free)
+// engine; this file only renders `state` and feeds events back into it.
 import * as E from '/assets/js/mag-sim-engine.js';
 
 const DATA = window.MAG_SIM;
@@ -151,7 +152,7 @@ function renderSetup() {
     });
 }
 
-// ---------- Task 13: live Mag card ----------
+// ---------- live Mag card ----------
 
 const SPRITE_DIR = '/assets/img/mag/wiki/';
 function sprite(name) { return `${SPRITE_DIR}${encodeURIComponent(name)}.png`; }
@@ -277,10 +278,10 @@ function renderCard() {
     `;
 }
 
-// ---------- Task 14: feed bar + Feed-All + log ----------
+// ---------- feed bar + Feed-All + log ----------
 
 // Per-item feed quantities the user has dialled in. UI-only — not part of
-// `state`/`history`, so undo/redo (Task 15) and re-renders never touch these;
+// `state`/`history`, so undo/redo and re-renders never touch these;
 // they persist across feeds until the user changes them.
 const feedQty = Object.fromEntries(DATA.itemOrder.map((it) => [it, 1]));
 
@@ -291,7 +292,7 @@ function countOf(item) {
 }
 
 // Feeds `item` `qty` times, pushing one undo snapshot per feed *before* it
-// is applied (Task 15 pops these). feedOnce() itself appends to state.log,
+// is applied (undo() pops these). feedOnce() itself appends to state.log,
 // so renderLog() picks the new entries up for free on the render() below.
 function doFeed(item, qty) {
     for (let i = 0; i < qty; i += 1) {
@@ -323,6 +324,26 @@ function feedRowHtml(item) {
 // brief's estimate for "how long will this take".
 const SECONDS_PER_CYCLE = 210;
 
+// Which Mag Cell the dropdown is showing. Kept outside the render (renderFeed
+// rebuilds its innerHTML on every feed) so the choice — and the requirement
+// text under it — survive a re-render.
+let selectedCell = Object.keys(DATA.magCells)[0];
+
+// The cell's evolution conditions, straight from the wiki (`requires[t].raw`),
+// one line per possible target. The engine enforces exactly these, so showing
+// them is the only way a rejected cell reads as a rule rather than a bug.
+function cellReqHtml(cellName) {
+    const cell = DATA.magCells[cellName];
+    if (!cell) return '';
+    const targets = Array.isArray(cell.target) ? cell.target : [cell.target];
+    return targets.map((t) => {
+        const raw = ((cell.requires || {})[t] || {}).raw || '—';
+        return `<div class="mag-sim-feed__cell-req">
+            <b>→ ${esc(t)}</b><span>${esc(raw)}</span>
+        </div>`;
+    }).join('');
+}
+
 function renderFeed() {
     const root = document.querySelector('[data-sim-feed]');
     if (!root) return;
@@ -341,11 +362,13 @@ function renderFeed() {
             <button type="button" class="mag-sim-feed__all" data-feed-all>一键喂食（Feed All）</button>
             <div class="mag-sim-feed__cells">
                 <select data-cell-select>
-                    ${Object.keys(DATA.magCells).map((c) => `<option value="${esc(c)}">${esc(c)}</option>`).join('')}
+                    ${Object.keys(DATA.magCells).map((c) =>
+                        `<option value="${esc(c)}"${c === selectedCell ? ' selected' : ''}>${esc(c)}</option>`).join('')}
                 </select>
                 <button type="button" class="mag-sim-feed__cell-btn" data-feed-cell>喂 Cell</button>
             </div>
         </div>
+        <div class="mag-sim-feed__cell-reqs" data-cell-req>${cellReqHtml(selectedCell)}</div>
         <div class="mag-sim-feed__totals">
             <span>总道具数：<b>${totalItems}</b></span>
             <span>总花费：<b>${totalCost.toLocaleString()}</b> meseta</span>
@@ -364,6 +387,13 @@ function renderFeed() {
         if (!inp) return;
         feedQty[inp.dataset.qty] = Number(inp.value) || 0;
     });
+    root.addEventListener('change', (e) => {
+        const sel = e.target.closest('[data-cell-select]');
+        if (!sel) return;
+        selectedCell = sel.value;
+        const box = root.querySelector('[data-cell-req]');
+        if (box) box.innerHTML = cellReqHtml(selectedCell);
+    });
     root.addEventListener('click', (e) => {
         const feedBtn = e.target.closest('[data-feed-item]');
         if (feedBtn) {
@@ -371,10 +401,7 @@ function renderFeed() {
             return;
         }
         if (e.target.closest('[data-feed-all]')) { feedAll(); return; }
-        if (e.target.closest('[data-feed-cell]')) {
-            const sel = root.querySelector('[data-cell-select]');
-            if (sel && sel.value) doFeed(sel.value, 1);
-        }
+        if (e.target.closest('[data-feed-cell]') && selectedCell) doFeed(selectedCell, 1);
     });
 }
 
@@ -398,7 +425,7 @@ function logLineHtml(entry) {
     return feedItemLogLine(entry);
 }
 
-// Renders `state.log` verbatim — undo (Task 15) restores an older `state`
+// Renders `state.log` verbatim — undo() restores an older `state`
 // (via structuredClone, which deep-copies state.log too), so re-rendering
 // after an undo shows the right history automatically with no extra work here.
 function renderLog() {
@@ -414,7 +441,7 @@ function renderLog() {
     if (list) list.scrollTop = list.scrollHeight; // newest entry at the bottom
 }
 
-// ---------- Task 15: undo / reset / export / share ----------
+// ---------- undo / reset / export / share ----------
 
 // Pops the most recent pre-feed snapshot doFeed() pushed. No-op (not an
 // error) on an empty stack, since the Undo button is also disabled then.
@@ -497,10 +524,17 @@ function flashShareStatus(msg) {
     shareStatusTimer = setTimeout(() => { el.textContent = ''; }, 4000);
 }
 
+// The Clipboard API is absent on every non-secure origin, and `?.writeText()`
+// would then short-circuit to a resolved `undefined` — reporting a copy that
+// never happened. Branch on it explicitly instead.
 async function shareURL() {
     location.hash = 'r=' + encodeSession(E.exportSession(state));
+    if (!navigator.clipboard) {
+        flashShareStatus('链接已生成，当前环境不支持自动复制，请手动复制地址栏');
+        return;
+    }
     try {
-        await navigator.clipboard?.writeText(location.href);
+        await navigator.clipboard.writeText(location.href);
         flashShareStatus('链接已复制到剪贴板');
     } catch {
         flashShareStatus('链接已生成，但复制失败，请手动复制地址栏');
