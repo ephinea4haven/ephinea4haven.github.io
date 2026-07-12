@@ -26,7 +26,7 @@ check('Vayu 在 Table4（stage2 与 stage3 混表）',
 check('cell mag Deva→Table7 stage4',
     D.mags.Deva && D.mags.Deva.feedTableId === '5' && D.mags.Deva.stage === 4);
 
-// ---- evolution predicates (Task 3) ----------------------------------------
+// ---- evolution predicates --------------------------------------------------
 check('stage1 by class', D.evolution.stage1.HU === 'Varuna'
     && D.evolution.stage1.RA === 'Kalki' && D.evolution.stage1.FO === 'Vritra');
 check('stage2 Varuna+POW→Rudra', D.evolution.stage2.Varuna.POW === 'Rudra');
@@ -51,7 +51,7 @@ check('stage3 Kalki DEX>MIND>POW → A=Kama,B=Varaha',
     D.evolution.stage3.Kalki['DEX>MIND>POW'].A === 'Kama'
     && D.evolution.stage3.Kalki['DEX>MIND>POW'].B === 'Varaha');
 
-// ---- stage4 reference chart + mag cells (Task 4) --------------------------
+// ---- stage4 reference chart + mag cells ------------------------------------
 // Type→formula mapping is fixed by both the wikitable and build()'s stage4:
 //   Type1 → DEF+DEX=POW+MIND,  Type2 → DEF+MIND=POW+DEX,  Type3 → DEF+POW=DEX+MIND
 // (Each group's single mag sits in exactly the column matching its Type.)
@@ -90,7 +90,52 @@ check('cell mag Gael Giel → Table7 stage4',
     D.mags['Gael Giel'] && D.mags['Gael Giel'].feedTableId === '7'
     && D.mags['Gael Giel'].stage === 4);
 
-// ---- constants (Task 5) ----------------------------------------------------
+// ---- structured mag-cell requirements (review I2) ---------------------------
+// The character level and the MAG level are separate gates: the old parser
+// grabbed the first "Level N+" in the text, so the System chain stored the
+// character level and lost the mag level entirely.
+{
+    const r = D.magCells['Kit of Genesis'].requires.Genesis;
+    check('Kit of Genesis 拆分 minCharLevel 80 / minMagLevel 70',
+        r.minCharLevel === 80 && r.minMagLevel === 70 && r.requiresMag === 'Master System');
+    check('minLevel 键已废弃', r.minLevel === undefined);
+}
+check('Panther\'s Spirit minMagLevel 50 + requiresMag Naga',
+    D.magCells["Panther's Spirit"].requires["Panzer's Tail"].minMagLevel === 50
+    && D.magCells["Panther's Spirit"].requires["Panzer's Tail"].requiresMag === 'Naga');
+// "third evolution Mag" → requiredStage 3；"any basic Mag" → requiredStage 0
+check('Heart of Chu Chu requiredStage 3',
+    D.magCells['Heart of Chu Chu'].requires['Chu Chu'].requiredStage === 3);
+check('Kit of Mark III requiredStage 0（基础 Mag）',
+    D.magCells['Kit of Mark III'].requires['Mark III'].requiredStage === 0);
+check('Any-<species> cell 无 requiredStage（Heart of Devil → Devil\'s Tail）',
+    D.magCells['Heart of Devil'].requires["Devil's Tail"].requiredStage === undefined
+    && D.magCells['Heart of Devil'].requires["Devil's Tail"].requiresMag === "Devil's Wing");
+check('Heart of Pian minSynchro 120 / minIQ 180 / minMagLevel 120',
+    D.magCells['Heart of Pian'].requires.Pian.minSynchro === 120
+    && D.magCells['Heart of Pian'].requires.Pian.minIQ === 180
+    && D.magCells['Heart of Pian'].requires.Pian.minMagLevel === 120);
+check('Heart of Chao statThreshold 35/all',
+    D.magCells['Heart of Chao'].requires.Chao.statThreshold.value === 35
+    && D.magCells['Heart of Chao'].requires.Chao.statThreshold.count === 'all');
+check('Parts of RoboChao statThreshold 70/2',
+    D.magCells['Parts of RoboChao'].requires.Robochao.statThreshold.value === 70
+    && D.magCells['Parts of RoboChao'].requires.Robochao.statThreshold.count === 2);
+check('Cell of Mag 213 Churel = A 组 + 三段 + Lv100',
+    D.magCells['Cell of Mag 213'].requires.Churel.race === 'A'
+    && D.magCells['Cell of Mag 213'].requires.Churel.requiredStage === 3
+    && D.magCells['Cell of Mag 213'].requires.Churel.minMagLevel === 100);
+// every requirement keeps its raw wiki text and gates on something checkable
+{
+    const reqs = Object.values(D.magCells).flatMap((c) => Object.values(c.requires));
+    check('34 个 cell 的每条 requires 都带 raw 原文',
+        Object.keys(D.magCells).length === 34
+        && reqs.length > 0 && reqs.every((r) => typeof r.raw === 'string' && r.raw));
+    check('每条 requires 至少有 requiresMag 或 requiredStage',
+        reqs.every((r) => r.requiresMag !== undefined || r.requiredStage !== undefined));
+}
+
+// ---- constants -------------------------------------------------------------
 check('itemOrder 11 项且以 Monomate 开头 Star Atomizer 结尾',
     D.itemOrder.length === 11 && D.itemOrder[0] === 'Monomate'
     && D.itemOrder[10] === 'Star Atomizer');
@@ -98,7 +143,7 @@ check('costs.Trimate = 2000', D.costs.Trimate === 2000);
 check('freshMag = DEF5 Synchro20', D.freshMag.def === 5 && D.freshMag.synchro === 20);
 check('idGroups.Type1 含 Viridia', D.idGroups.Type1.includes('Viridia'));
 
-// ---- stage3 tie-cases + FO special (Task 8a) --------------------------------
+// ---- stage3 tie-cases + FO special -----------------------------------------
 check('stage3Ties HU DEX=MIND>POW → Varaha/Kama',
     D.evolution.stage3Ties.HU.A === 'Varaha' && D.evolution.stage3Ties.HU.B === 'Kama'
     && D.evolution.stage3Ties.HU.eq.join() === 'DEX,MIND' && D.evolution.stage3Ties.HU.lt === 'POW');

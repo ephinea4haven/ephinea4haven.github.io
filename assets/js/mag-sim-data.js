@@ -1326,12 +1326,14 @@ window.MAG_SIM = {
       ],
       "requires": {
         "Churel": {
-          "minLevel": 100,
+          "minMagLevel": 100,
+          "requiredStage": 3,
           "race": "A",
           "raw": "Level 100+ third evolution Mag and TypeA character"
         },
         "Preta": {
-          "minLevel": 100,
+          "minMagLevel": 100,
+          "requiredStage": 3,
           "race": "B",
           "raw": "Level 100+ third evolution Mag and TypeB character"
         }
@@ -1345,12 +1347,14 @@ window.MAG_SIM = {
       ],
       "requires": {
         "Pitri": {
-          "minLevel": 100,
+          "minMagLevel": 100,
+          "requiredStage": 3,
           "race": "B",
           "raw": "Level 100+ third evolution Mag and TypeB character"
         },
         "Soniti": {
-          "minLevel": 100,
+          "minMagLevel": 100,
+          "requiredStage": 3,
           "race": "A",
           "raw": "Level 100+ third evolution Mag and TypeA character"
         }
@@ -1361,7 +1365,7 @@ window.MAG_SIM = {
       "target": "Gael Giel",
       "requires": {
         "Gael Giel": {
-          "minLevel": 100,
+          "minMagLevel": 100,
           "requiresMag": "Kama",
           "raw": "Level 100+ Kama"
         }
@@ -1382,7 +1386,8 @@ window.MAG_SIM = {
       "target": "Angel's Wing",
       "requires": {
         "Angel's Wing": {
-          "minLevel": 100,
+          "minMagLevel": 100,
+          "requiredStage": 3,
           "raw": "Level 100+ third evolution Mag"
         }
       },
@@ -1392,7 +1397,12 @@ window.MAG_SIM = {
       "target": "Chao",
       "requires": {
         "Chao": {
-          "minLevel": 140,
+          "minMagLevel": 140,
+          "requiredStage": 3,
+          "statThreshold": {
+            "value": 35,
+            "count": "all"
+          },
           "raw": "Level 140+ third evolution Mag 35+ in all Mag stats"
         }
       },
@@ -1402,7 +1412,8 @@ window.MAG_SIM = {
       "target": "Chu Chu",
       "requires": {
         "Chu Chu": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1419,7 +1430,8 @@ window.MAG_SIM = {
           "raw": "Any Devil's Wing"
         },
         "Devil's Wing": {
-          "minLevel": 100,
+          "minMagLevel": 100,
+          "requiredStage": 3,
           "raw": "Level 100+ third evolution Mag"
         }
       },
@@ -1429,7 +1441,8 @@ window.MAG_SIM = {
       "target": "Kapu Kapu",
       "requires": {
         "Kapu Kapu": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1449,7 +1462,8 @@ window.MAG_SIM = {
       "target": "Opa-Opa",
       "requires": {
         "Opa-Opa": {
-          "minLevel": 100,
+          "minMagLevel": 100,
+          "requiredStage": 3,
           "raw": "Level 100+ third evolution Mag"
         }
       },
@@ -1459,7 +1473,10 @@ window.MAG_SIM = {
       "target": "Pian",
       "requires": {
         "Pian": {
-          "minLevel": 120,
+          "minMagLevel": 120,
+          "requiredStage": 3,
+          "minSynchro": 120,
+          "minIQ": 180,
           "raw": "Level 120+ third evolution Mag with 120% Synchro and 180+ IQ"
         }
       },
@@ -1469,7 +1486,8 @@ window.MAG_SIM = {
       "target": "Elenor",
       "requires": {
         "Elenor": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1489,7 +1507,8 @@ window.MAG_SIM = {
       "target": "Kalki*",
       "requires": {
         "Kalki*": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1499,7 +1518,8 @@ window.MAG_SIM = {
       "target": "Dreamcast",
       "requires": {
         "Dreamcast": {
-          "minLevel": 100,
+          "minCharLevel": 100,
+          "minMagLevel": 100,
           "requiresMag": "Sega Saturn",
           "raw": "Level 100+ character and Level 100+ Sega Saturn"
         }
@@ -1510,7 +1530,8 @@ window.MAG_SIM = {
       "target": "Genesis",
       "requires": {
         "Genesis": {
-          "minLevel": 80,
+          "minCharLevel": 80,
+          "minMagLevel": 70,
           "requiresMag": "Master System",
           "raw": "Level 80+ character and Level 70+ Master System"
         }
@@ -1521,7 +1542,7 @@ window.MAG_SIM = {
       "target": "Hamburger",
       "requires": {
         "Hamburger": {
-          "minLevel": 50,
+          "minMagLevel": 50,
           "requiresMag": "Kaitabha",
           "raw": "Level 50+ Kaitabha"
         }
@@ -1532,7 +1553,8 @@ window.MAG_SIM = {
       "target": "Mark III",
       "requires": {
         "Mark III": {
-          "minLevel": 60,
+          "minCharLevel": 60,
+          "requiredStage": 0,
           "requiresMag": "Mag",
           "raw": "Level 60+ character and any basic Mag"
         }
@@ -1543,7 +1565,8 @@ window.MAG_SIM = {
       "target": "Master System",
       "requires": {
         "Master System": {
-          "minLevel": 70,
+          "minCharLevel": 70,
+          "minMagLevel": 60,
           "requiresMag": "Mark III",
           "raw": "Level 70+ character and Level 60+ Mark III"
         }
@@ -1554,7 +1577,8 @@ window.MAG_SIM = {
       "target": "Sega Saturn",
       "requires": {
         "Sega Saturn": {
-          "minLevel": 90,
+          "minCharLevel": 90,
+          "minMagLevel": 90,
           "requiresMag": "Genesis",
           "raw": "Level 90+ character and Level 90+ Genesis"
         }
@@ -1565,7 +1589,8 @@ window.MAG_SIM = {
       "target": "Agastya",
       "requires": {
         "Agastya": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1575,7 +1600,8 @@ window.MAG_SIM = {
       "target": "Mag*",
       "requires": {
         "Mag*": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1585,7 +1611,7 @@ window.MAG_SIM = {
       "target": "Panzer's Tail",
       "requires": {
         "Panzer's Tail": {
-          "minLevel": 50,
+          "minMagLevel": 50,
           "requiresMag": "Naga",
           "raw": "Level 50+ Naga"
         }
@@ -1596,7 +1622,12 @@ window.MAG_SIM = {
       "target": "Robochao",
       "requires": {
         "Robochao": {
-          "minLevel": 145,
+          "minMagLevel": 145,
+          "requiredStage": 3,
+          "statThreshold": {
+            "value": 70,
+            "count": 2
+          },
           "raw": "Level 145+ third evolution Mag 70+ in two Mag stats"
         }
       },
@@ -1606,7 +1637,8 @@ window.MAG_SIM = {
       "target": "Pioneer",
       "requires": {
         "Pioneer": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1616,7 +1648,8 @@ window.MAG_SIM = {
       "target": "Rappy",
       "requires": {
         "Rappy": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1626,7 +1659,8 @@ window.MAG_SIM = {
       "target": "Sonic",
       "requires": {
         "Sonic": {
-          "minLevel": 100,
+          "minMagLevel": 100,
+          "requiredStage": 3,
           "raw": "Level 100+ third evolution Mag"
         }
       },
@@ -1636,7 +1670,8 @@ window.MAG_SIM = {
       "target": "Stealth",
       "requires": {
         "Stealth": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1656,7 +1691,8 @@ window.MAG_SIM = {
       "target": "Varuna*",
       "requires": {
         "Varuna*": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1666,7 +1702,8 @@ window.MAG_SIM = {
       "target": "Vritra*",
       "requires": {
         "Vritra*": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },
@@ -1676,7 +1713,8 @@ window.MAG_SIM = {
       "target": "Yahoo!",
       "requires": {
         "Yahoo!": {
-          "minLevel": 50,
+          "minMagLevel": 50,
+          "requiredStage": 3,
           "raw": "Level 50+ third evolution Mag"
         }
       },

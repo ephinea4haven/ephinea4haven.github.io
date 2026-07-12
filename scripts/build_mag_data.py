@@ -12,7 +12,12 @@ Sources
 The wiki's own trigger table has three columns (100 PB / 10% HP / Boss Room).
 The death trigger is disabled in Blue Burst and is deliberately absent here.
 
-Usage:  python3 scripts/build_mag_data.py [--offline path/to/mags.wiki]
+Both output files are built and audited in memory, then written together, so a
+failed fetch or audit can never leave one regenerated and the other stale.
+
+Usage:  python3 scripts/build_mag_data.py
+        python3 scripts/build_mag_data.py --offline mags.wiki \
+            --offline-feed magfeedtable.wiki --offline-feed-page feedtables.wiki
 """
 from __future__ import annotations
 
@@ -59,7 +64,7 @@ PB_NAMES = {
 
 EFFECTS = {"Invincibility": "无敌", "Resta": "圣泉术", "S&D": "强攻·强体"}
 
-# --- simulator constants (Task 5) -------------------------------------------
+# --- simulator constants -----------------------------------------------------
 # Feeding-item gil costs and canonical feed order, from the Ephinea shop /
 # mag feeding tables. A freshly-bought Mag always starts DEF 5 / Synchro 20,
 # every other stat 0.
@@ -88,23 +93,25 @@ def row_re(cells: int) -> re.Pattern:
     )
 
 
-def fetch_wikitext(offline: Path | None) -> str:
+def fetch_raw(url: str, offline: Path | None, must_contain: str) -> str:
+    """One page of wikitext, from an offline fixture if one was given.
+
+    Every fetch goes through here so `--offline` really means offline: the
+    three source pages each take their own fixture path and the build never
+    silently reaches for the network behind one of them."""
     if offline:
-        return offline.read_text(encoding="utf-8")
-    out = subprocess.run(
-        ["curl", "-sL", "--max-time", "30", WIKI_URL],
-        capture_output=True, check=True,
-    ).stdout.decode("utf-8")
-    if "Third evolution Mags" not in out:
-        sys.exit("wiki fetch failed: unexpected content")
-    return out
-
-
-def fetch_raw(url: str) -> str:
-    return subprocess.run(
-        ["curl", "-sL", "--max-time", "30", url],
-        capture_output=True, check=True,
-    ).stdout.decode("utf-8")
+        if not offline.is_file():
+            sys.exit(f"offline fixture not found: {offline}")
+        text = offline.read_text(encoding="utf-8")
+    else:
+        text = subprocess.run(
+            ["curl", "-sL", "--max-time", "30", url],
+            capture_output=True, check=True,
+        ).stdout.decode("utf-8")
+    if must_contain not in text:
+        src = offline if offline else url
+        sys.exit(f"wiki fetch failed: {src} does not contain {must_contain!r}")
+    return text
 
 
 FEED_ITEM_RE = re.compile(
@@ -158,7 +165,7 @@ def parse_mag_tables(page: str) -> dict:
     return out
 
 
-# --- stage4 reference chart + mag cells (Task 4) ---------------------------
+# --- stage4 reference chart + mag cells --------------------------------------
 # The three stat-balance formulas, in the column order the reference chart
 # prints them. A group's single fourth-evolution mag sits under exactly the
 # column matching its Section ID Type (Type1→[1], Type2→[2], Type3→[0]); this
@@ -287,23 +294,74 @@ def parse_stage4_chart(page: str) -> dict:
     return out
 
 
+# Every shape the 'Evolution Conditions' column actually uses. A cell whose
+# text matches none of them is a wiki change _parse_req would silently mis-gate
+# (the old parser did exactly that: it read the *character* level out of
+# "Level 80+ character and Level 70+ Master System" and called it the mag
+# level), so an unknown shape fails the build instead of shipping a wrong gate.
+_REQ_SHAPES = [
+    re.compile(r"^Level \d+\+ third evolution Mag$"),
+    re.compile(r"^Level \d+\+ third evolution Mag and Type[AB] character$"),
+    re.compile(r"^Level \d+\+ third evolution Mag \d+\+ in (?:all|two|three) Mag stats$"),
+    re.compile(r"^Level \d+\+ third evolution Mag with \d+% Synchro and \d+\+ IQ$"),
+    re.compile(r"^Any \S.*$"),
+    re.compile(r"^Level \d+\+ character and any basic Mag$"),
+    re.compile(r"^Level \d+\+ character and Level \d+\+ \S.*$"),
+    re.compile(r"^Level \d+\+ (?!character\b)\S.*$"),
+]
+
+_STAT_COUNT = {"all": "all", "two": 2, "three": 3}
+
+
 def _parse_req(cond: str) -> dict:
-    """Structure one 'Evolution Conditions' cell: min character/mag level,
-    the source mag species it must evolve from, and any Section ID (Type A/B)
-    restriction, plus a readable `raw` fallback."""
+    """Structure one 'Evolution Conditions' cell.
+
+    The character level and the *mag* level are separate gates and must not be
+    confused: the simulator models the mag only, so it enforces `minMagLevel`
+    and merely records `minCharLevel`. Also emitted, when the text states them:
+      requiredStage  3 ("third evolution Mag") / 0 ("any basic Mag")
+      requiresMag    the species the mag must already be
+      race           Section ID group A/B of the character
+      minSynchro / minIQ / statThreshold   the Pian / Chao / RoboChao gates
+    `raw` (the readable original) is always kept.
+    """
     req: dict = {}
-    lm = re.search(r"Level (\d+)\+", cond)
+    flat = re.sub(r"\s+", " ", cond.replace("<br>", " ").replace("'''", "")).strip()
+
+    cm = re.search(r"Level (\d+)\+ character", flat)
+    if cm:
+        req["minCharLevel"] = int(cm.group(1))
+    # a mag-level phrase is "Level N+ <species template>" or "Level N+ third evolution Mag"
+    lm = re.search(r"Level (\d+)\+ (?:third evolution Mag|\{\{Mag\|)", flat)
     if lm:
-        req["minLevel"] = int(lm.group(1))
-    mags = [_mag_name(m.group(1)) for m in re.finditer(r"\{\{Mag\|([^{}]*)\}\}", cond)]
+        req["minMagLevel"] = int(lm.group(1))
+    if "third evolution Mag" in flat:
+        req["requiredStage"] = 3
+    elif "any basic" in flat:
+        req["requiredStage"] = 0
+
+    mags = [_mag_name(m.group(1)) for m in re.finditer(r"\{\{Mag\|([^{}]*)\}\}", flat)]
     if mags:
         req["requiresMag"] = mags if len(mags) > 1 else mags[0]
-    rm = re.search(r"\{\{Type([AB])\}\}", cond)
+    rm = re.search(r"\{\{Type([AB])\}\}", flat)
     if rm:
         req["race"] = rm.group(1)
-    raw = re.sub(r"\{\{Mag\|([^{}]*)\}\}", lambda m: _mag_name(m.group(1)), cond)
+    sy = re.search(r"(\d+)% Synchro", flat)
+    if sy:
+        req["minSynchro"] = int(sy.group(1))
+    iq = re.search(r"(\d+)\+ IQ", flat)
+    if iq:
+        req["minIQ"] = int(iq.group(1))
+    st = re.search(r"(\d+)\+ in (all|two|three) Mag stats", flat)
+    if st:
+        req["statThreshold"] = {"value": int(st.group(1)),
+                                "count": _STAT_COUNT[st.group(2)]}
+
+    raw = re.sub(r"\{\{Mag\|([^{}]*)\}\}", lambda m: _mag_name(m.group(1)), flat)
     raw = re.sub(r"\{\{Type([AB])\}\}", r"Type\1", raw)
-    raw = re.sub(r"\s+", " ", raw.replace("<br>", " ").replace("'''", "")).strip()
+    raw = re.sub(r"\s+", " ", raw).strip()
+    if not any(p.match(raw) for p in _REQ_SHAPES):
+        sys.exit(f"_parse_req: unrecognised evolution condition {raw!r}")
     req["raw"] = raw
     return req
 
@@ -449,13 +507,21 @@ def audit_sim(sim: dict) -> None:
             if tgt not in known:
                 sys.exit(f"audit_sim: mag cell {cell!r} target {tgt} unknown mag")
         for req_mag, req in info["requires"].items():
-            rm = req.get("requiresMag")
-            if rm is None:
-                continue
-            for r in (rm if isinstance(rm, list) else [rm]):
-                if r not in known:
-                    sys.exit(f"audit_sim: mag cell {cell!r} requires[{req_mag!r}]"
-                             f".requiresMag {r} unknown mag")
+            where = f"mag cell {cell!r} requires[{req_mag!r}]"
+            if "raw" not in req:
+                sys.exit(f"audit_sim: {where} has no raw condition text")
+            # every cell must gate on *something* the engine can check, or it
+            # would evolve any mag at any level.
+            if "requiresMag" not in req and "requiredStage" not in req:
+                sys.exit(f"audit_sim: {where} gates on neither requiresMag "
+                         f"nor requiredStage — raw {req['raw']!r}")
+            if req.get("requiredStage") not in (None, 0, 3):
+                sys.exit(f"audit_sim: {where}.requiredStage "
+                         f"{req['requiredStage']!r} is neither 0 nor 3")
+            for rm in (req.get("requiresMag") if isinstance(req.get("requiresMag"), list)
+                       else [req.get("requiresMag")]):
+                if rm is not None and rm not in known:
+                    sys.exit(f"audit_sim: {where}.requiresMag {rm} unknown mag")
 
 
 def load_zh_names() -> dict[str, str]:
@@ -649,7 +715,7 @@ def node(name: str, zh: dict[str, str], conds: list[str], rec: dict, with_pb=Tru
     return n
 
 
-# --- machine-evaluable evolution predicates (Task 3) -----------------------
+# --- machine-evaluable evolution predicates ----------------------------------
 # stage1/stage2 are fixed lineage facts; they are cross-checked against the
 # in-memory MAG_EVOLUTION structure in build_evolution_std so they cannot drift.
 STAGE1 = {"HU": "Varuna", "RA": "Kalki", "FO": "Vritra"}
@@ -794,12 +860,7 @@ def build_stage3_extras(classes: dict) -> dict:
     return {"stage3Ties": ties, "stage3SpecialFO": special_fo}
 
 
-def build() -> tuple[dict, set, str]:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--offline", type=Path)
-    args = ap.parse_args()
-
-    raw = fetch_wikitext(args.offline)
+def build(raw: str) -> tuple[dict, set]:
     zh = load_zh_names()
     ties = tie_breaks(raw)
 
@@ -894,7 +955,7 @@ def build() -> tuple[dict, set, str]:
                  "colors": mag_colors(raw)},
         "classes": classes,
     }
-    return data, truth, raw
+    return data, truth
 
 
 def self_check(data: dict, truth: set) -> None:
@@ -916,23 +977,33 @@ def self_check(data: dict, truth: set) -> None:
 
 
 def main() -> None:
-    data, truth, raw = build()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--offline", type=Path, metavar="MAGS_WIKI",
+                    help="offline fixture for the Mags page (raw wikitext)")
+    ap.add_argument("--offline-feed", type=Path, metavar="MAGFEEDTABLE_WIKI",
+                    help="offline fixture for Template:MagFeedTable")
+    ap.add_argument("--offline-feed-page", type=Path, metavar="FEEDING_TABLES_WIKI",
+                    help="offline fixture for Mag_feeding_tables")
+    args = ap.parse_args()
+    given = [args.offline, args.offline_feed, args.offline_feed_page]
+    # all-or-nothing: a partial --offline would still hit the network, which is
+    # exactly the lie this flag used to tell.
+    if any(given) and not all(given):
+        ap.error("--offline, --offline-feed and --offline-feed-page must be "
+                 "given together (all three pages, or none)")
+
+    raw = fetch_raw(WIKI_URL, args.offline, "Third evolution Mags")
+    feed_tpl = fetch_raw(FEED_URL, args.offline_feed, "#switch")
+    feed_page = fetch_raw(FEED_PAGE_URL, args.offline_feed_page, "===Table 1===")
+
+    # Everything is built and audited in memory before a single byte is written:
+    # tools/mag.html loads both blobs together, so a half-written pair (network
+    # hiccup / failed audit between the two writes) would let them drift apart.
+    data, truth = build(raw)
     self_check(data, truth)
 
-    blob = json.dumps(data, ensure_ascii=False, indent=2)
-    OUT.write_text(
-        "/* Generated by scripts/build_mag_data.py from wiki.pioneer2.net/w/Mags\n"
-        " * Chinese names sourced from assets/js/i18n/items_i18n.js\n"
-        " * Regenerate:  python3 scripts/build_mag_data.py\n"
-        " * Do not edit by hand. */\n"
-        f"window.MAG_EVOLUTION = {blob};\n",
-        encoding="utf-8",
-    )
-    n = sum(len(c["stage3"]["A"]) + len(c["stage3"]["B"]) for c in data["classes"].values())
-    print(f"wrote {OUT.relative_to(ROOT)} — {n} Lv.50 mags across 3 classes")
-
-    feed = parse_feed_tables(fetch_raw(FEED_URL))
-    mags = parse_mag_tables(fetch_raw(FEED_PAGE_URL))
+    feed = parse_feed_tables(feed_tpl)
+    mags = parse_mag_tables(feed_page)
     magcells = parse_mag_cells(raw)
     add_cell_mags(mags, magcells)  # register cell targets on feeding table 7
     evolution = build_evolution_std(data["classes"])
@@ -943,7 +1014,17 @@ def main() -> None:
                idGroups=sim_id_groups(data["meta"]["idGroups"]))
     audit_sim(sim)
 
+    blob = json.dumps(data, ensure_ascii=False, indent=2)
     sim_blob = json.dumps(sim, ensure_ascii=False, indent=2)
+
+    OUT.write_text(
+        "/* Generated by scripts/build_mag_data.py from wiki.pioneer2.net/w/Mags\n"
+        " * Chinese names sourced from assets/js/i18n/items_i18n.js\n"
+        " * Regenerate:  python3 scripts/build_mag_data.py\n"
+        " * Do not edit by hand. */\n"
+        f"window.MAG_EVOLUTION = {blob};\n",
+        encoding="utf-8",
+    )
     SIM_OUT.write_text(
         "/* Generated by scripts/build_mag_data.py from wiki.pioneer2.net/w/Mags\n"
         " * and Template:MagFeedTable / Mag_feeding_tables.\n"
@@ -952,7 +1033,10 @@ def main() -> None:
         f"window.MAG_SIM = {sim_blob};\n",
         encoding="utf-8",
     )
-    print(f"wrote {SIM_OUT.relative_to(ROOT)} — {len(feed)} feed tables, {len(mags)} mags")
+    n = sum(len(c["stage3"]["A"]) + len(c["stage3"]["B"]) for c in data["classes"].values())
+    print(f"wrote {OUT.relative_to(ROOT)} — {n} Lv.50 mags across 3 classes")
+    print(f"wrote {SIM_OUT.relative_to(ROOT)} — {len(feed)} feed tables, "
+          f"{len(mags)} mags, {len(magcells)} mag cells")
 
 
 if __name__ == "__main__":

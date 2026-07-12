@@ -18,4 +18,14 @@ python3 scripts/scrape_price_guide.py > assets/js/price_guide_data.js
 python3 scripts/build_mag_data.py
 ```
 
-No external dependencies — both use only Python's stdlib (`urllib`, `html.parser`).
+No external dependencies — every script uses only Python's stdlib (`urllib`,
+`html.parser`, `subprocess`+`curl`).
+
+`build_mag_data.py` writes both of its output files only after every parse and
+audit has passed, so a failed run never leaves the two data blobs out of sync.
+It can also run fully offline against raw-wikitext fixtures:
+
+```bash
+python3 scripts/build_mag_data.py --offline mags.wiki \
+    --offline-feed magfeedtable.wiki --offline-feed-page feedtables.wiki
+```
