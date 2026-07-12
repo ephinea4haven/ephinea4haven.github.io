@@ -59,6 +59,19 @@ PB_NAMES = {
 
 EFFECTS = {"Invincibility": "无敌", "Resta": "圣泉术", "S&D": "强攻·强体"}
 
+# --- simulator constants (Task 5) -------------------------------------------
+# Feeding-item gil costs and canonical feed order, from the Ephinea shop /
+# mag feeding tables. A freshly-bought Mag always starts DEF 5 / Synchro 20,
+# every other stat 0.
+COSTS = {"Monomate": 50, "Dimate": 300, "Trimate": 2000, "Monofluid": 100,
+         "Difluid": 500, "Trifluid": 3600, "Antidote": 60, "Antiparalysis": 60,
+         "Sol Atomizer": 300, "Moon Atomizer": 500, "Star Atomizer": 5000}
+ITEM_ORDER = ["Monomate", "Dimate", "Trimate", "Monofluid", "Difluid", "Trifluid",
+              "Antidote", "Antiparalysis", "Sol Atomizer", "Moon Atomizer",
+              "Star Atomizer"]
+FRESH_MAG = {"magId": "Mag", "def": 5, "pow": 0, "dex": 0, "mind": 0,
+             "synchro": 20, "iq": 0}
+
 CLASS_META = {
     "HU": ("战士", "Hunters"), "RA": ("枪手", "Rangers"), "FO": ("法师", "Forces"),
 }
@@ -337,6 +350,100 @@ def add_cell_mags(mags: dict, magcells: dict) -> None:
         tgt = info["target"]
         for t in (tgt if isinstance(tgt, list) else [tgt]):
             mags.setdefault(t, {"feedTableId": "7", "stage": 4})
+
+
+def sim_id_groups(id_groups: dict) -> dict:
+    """Reshape ID_GROUPS (meta.idGroups, keyed 'A'/'B'/'1'/'2'/'3') into the
+    simulator's naming, keyed 'A'/'B'/'Type1'/'Type2'/'Type3' — matching the
+    TypeN keys already used throughout evolution['stage4']."""
+    return {
+        "A": id_groups["A"], "B": id_groups["B"],
+        "Type1": id_groups["1"], "Type2": id_groups["2"], "Type3": id_groups["3"],
+    }
+
+
+def audit_sim(sim: dict) -> None:
+    """Fail the build loudly if the structured sim data has gaps.
+
+    parse_mag_tables() and parse_mag_cells() have no fail-loud count guards of
+    their own (unlike parse_feed_tables()/parse_stage4_chart()), so a wiki
+    markup change that silently drops rows would otherwise pass through
+    unnoticed. This is the safety net that catches that: every feed table
+    reference, and every evolution/mag-cell target, must resolve to a mag
+    actually present in sim['mags']; and the mags/magCells dicts themselves
+    must not have silently shrunk below a sane floor.
+    """
+    if len(sim["feedTables"]) != 8:
+        sys.exit(f"audit_sim: expected 8 feed tables, got {len(sim['feedTables'])}")
+
+    known = set(sim["mags"])
+    if len(known) < 70:
+        sys.exit(f"audit_sim: only {len(known)} mags parsed (expected ~80+) "
+                 "— parse_mag_tables may have silently dropped rows")
+    if "Mag" not in known:
+        sys.exit("audit_sim: base 'Mag' missing from mags")
+    if len(sim["magCells"]) < 25:
+        sys.exit(f"audit_sim: only {len(sim['magCells'])} mag cells parsed "
+                 "(expected ~30+) — parse_mag_cells may have silently dropped rows")
+
+    for mag, info in sim["mags"].items():
+        tid = info["feedTableId"]
+        if tid not in sim["feedTables"]:
+            sys.exit(f"audit_sim: {mag} references missing feed table {tid}")
+
+    ev = sim["evolution"]
+
+    # stage1: class -> mag
+    for c, tgt in ev["stage1"].items():
+        if tgt not in known:
+            sys.exit(f"audit_sim: stage1 {c}->{tgt} unknown mag")
+
+    # stage2: source mag -> stat -> mag
+    for src, by_stat in ev["stage2"].items():
+        if src not in known:
+            sys.exit(f"audit_sim: stage2 source {src!r} unknown mag")
+        for stat, tgt in by_stat.items():
+            if tgt not in known:
+                sys.exit(f"audit_sim: stage2 {src}.{stat}->{tgt} unknown mag")
+
+    # stage3: source mag -> perm -> {A, B} -> mag
+    for src, by_perm in ev["stage3"].items():
+        if src not in known:
+            sys.exit(f"audit_sim: stage3 source {src!r} unknown mag")
+        for perm, groups in by_perm.items():
+            for grp, tgt in groups.items():
+                if tgt not in known:
+                    sys.exit(f"audit_sim: stage3 {src}.{perm}.{grp}->{tgt} unknown mag")
+
+    # stage4: class -> gender -> TypeN -> formula -> mag | null
+    for cls, by_gender in ev["stage4"].items():
+        for gender, by_type in by_gender.items():
+            for typ, by_formula in by_type.items():
+                for formula, tgt in by_formula.items():
+                    if tgt is not None and tgt not in known:
+                        sys.exit(f"audit_sim: stage4 {cls}.{gender}.{typ}."
+                                 f"{formula}->{tgt} unknown mag")
+
+    # tieBreak: class -> stat name (sanity-check the value, not a mag ref)
+    for c, stat in ev["tieBreak"].items():
+        if stat not in ("POW", "DEX", "MIND"):
+            sys.exit(f"audit_sim: tieBreak {c}->{stat!r} not a known stat")
+
+    # magCells: cell -> {target: mag | [mag, ...], requires: {mag: {...}}}
+    for cell, info in sim["magCells"].items():
+        targets = info["target"]
+        targets = targets if isinstance(targets, list) else [targets]
+        for tgt in targets:
+            if tgt not in known:
+                sys.exit(f"audit_sim: mag cell {cell!r} target {tgt} unknown mag")
+        for req_mag, req in info["requires"].items():
+            rm = req.get("requiresMag")
+            if rm is None:
+                continue
+            for r in (rm if isinstance(rm, list) else [rm]):
+                if r not in known:
+                    sys.exit(f"audit_sim: mag cell {cell!r} requires[{req_mag!r}]"
+                             f".requiresMag {r} unknown mag")
 
 
 def load_zh_names() -> dict[str, str]:
@@ -765,11 +872,18 @@ def main() -> None:
     add_cell_mags(mags, magcells)  # register cell targets on feeding table 7
     evolution = build_evolution_std(data["classes"])
     evolution["stage4"] = parse_stage4_chart(raw)
-    sim = {"feedTables": feed, "mags": mags,
-           "evolution": evolution, "magCells": magcells}
+    sim = {"feedTables": feed, "mags": mags, "evolution": evolution, "magCells": magcells}
+    sim.update(costs=COSTS, itemOrder=ITEM_ORDER, freshMag=FRESH_MAG,
+               idGroups=sim_id_groups(data["meta"]["idGroups"]))
+    audit_sim(sim)
+
+    sim_blob = json.dumps(sim, ensure_ascii=False, indent=2)
     SIM_OUT.write_text(
-        "/* Generated by scripts/build_mag_data.py — do not edit by hand. */\n"
-        "window.MAG_SIM = " + json.dumps(sim, ensure_ascii=False, indent=2) + ";\n",
+        "/* Generated by scripts/build_mag_data.py from wiki.pioneer2.net/w/Mags\n"
+        " * and Template:MagFeedTable / Mag_feeding_tables.\n"
+        " * Regenerate:  python3 scripts/build_mag_data.py\n"
+        " * Do not edit by hand. */\n"
+        f"window.MAG_SIM = {sim_blob};\n",
         encoding="utf-8",
     )
     print(f"wrote {SIM_OUT.relative_to(ROOT)} — {len(feed)} feed tables, {len(mags)} mags")

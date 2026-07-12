@@ -90,5 +90,13 @@ check('cell mag Gael Giel → Table7 stage4',
     D.mags['Gael Giel'] && D.mags['Gael Giel'].feedTableId === '7'
     && D.mags['Gael Giel'].stage === 4);
 
+// ---- constants (Task 5) ----------------------------------------------------
+check('itemOrder 11 项且以 Monomate 开头 Star Atomizer 结尾',
+    D.itemOrder.length === 11 && D.itemOrder[0] === 'Monomate'
+    && D.itemOrder[10] === 'Star Atomizer');
+check('costs.Trimate = 2000', D.costs.Trimate === 2000);
+check('freshMag = DEF5 Synchro20', D.freshMag.def === 5 && D.freshMag.synchro === 20);
+check('idGroups.Type1 含 Viridia', D.idGroups.Type1.includes('Viridia'));
+
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
 process.exit(failed ? 1 : 0);
