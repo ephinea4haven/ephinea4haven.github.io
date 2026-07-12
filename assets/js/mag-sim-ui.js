@@ -277,8 +277,142 @@ function renderCard() {
     `;
 }
 
-function renderFeed() {}
-function renderLog() {}
+// ---------- Task 14: feed bar + Feed-All + log ----------
+
+// Per-item feed quantities the user has dialled in. UI-only — not part of
+// `state`/`history`, so undo/redo (Task 15) and re-renders never touch these;
+// they persist across feeds until the user changes them.
+const feedQty = Object.fromEntries(DATA.itemOrder.map((it) => [it, 1]));
+
+// "已喂计数" for an item/cell — every state.log entry (feed or feedCell)
+// carries `item`, so this is just a count over the whole history.
+function countOf(item) {
+    return state.log.reduce((n, e) => n + (e.item === item ? 1 : 0), 0);
+}
+
+// Feeds `item` `qty` times, pushing one undo snapshot per feed *before* it
+// is applied (Task 15 pops these). feedOnce() itself appends to state.log,
+// so renderLog() picks the new entries up for free on the render() below.
+function doFeed(item, qty) {
+    for (let i = 0; i < qty; i += 1) {
+        history.push(structuredClone(state));
+        E.feedOnce(DATA, state, item);
+    }
+    render();
+}
+
+// Feeds every item with qty > 0, in DATA.itemOrder sequence.
+function feedAll() {
+    DATA.itemOrder.forEach((it) => {
+        const q = Number(feedQty[it]) || 0;
+        if (q > 0) doFeed(it, q);
+    });
+}
+
+function feedRowHtml(item) {
+    const qty = feedQty[item] ?? 1;
+    return `<div class="mag-sim-feed__row">
+        <button type="button" class="mag-sim-feed__btn" data-feed-item="${esc(item)}">喂 ${esc(item)}</button>
+        <input type="number" class="mag-sim-feed__qty" data-qty="${esc(item)}" value="${qty}" min="0" step="1">
+        <span class="mag-sim-feed__count">已喂 ${countOf(item)}</span>
+        <span class="mag-sim-feed__cost">${DATA.costs[item].toLocaleString()} meseta</span>
+    </div>`;
+}
+
+// 3 feeds per real-time cycle (server tick), ~210s/cycle — matches the
+// brief's estimate for "how long will this take".
+const SECONDS_PER_CYCLE = 210;
+
+function renderFeed() {
+    const root = document.querySelector('[data-sim-feed]');
+    if (!root) return;
+
+    const totalItems = DATA.itemOrder.reduce((n, it) => n + countOf(it), 0);
+    const totalCost = DATA.itemOrder.reduce((n, it) => n + countOf(it) * DATA.costs[it], 0);
+    const cycles = Math.ceil(totalItems / 3);
+    const minutes = (cycles * SECONDS_PER_CYCLE) / 60;
+
+    root.innerHTML = `
+        <h2>喂食</h2>
+        <div class="mag-sim-feed__list">
+            ${DATA.itemOrder.map(feedRowHtml).join('')}
+        </div>
+        <div class="mag-sim-feed__actions">
+            <button type="button" class="mag-sim-feed__all" data-feed-all>一键喂食（Feed All）</button>
+            <div class="mag-sim-feed__cells">
+                <select data-cell-select>
+                    ${Object.keys(DATA.magCells).map((c) => `<option value="${esc(c)}">${esc(c)}</option>`).join('')}
+                </select>
+                <button type="button" class="mag-sim-feed__cell-btn" data-feed-cell>喂 Cell</button>
+            </div>
+        </div>
+        <div class="mag-sim-feed__totals">
+            <span>总道具数：<b>${totalItems}</b></span>
+            <span>总花费：<b>${totalCost.toLocaleString()}</b> meseta</span>
+            <span>周期数：<b>${cycles}</b></span>
+            <span>预计时间：<b>${minutes.toFixed(1)}</b> 分钟</span>
+        </div>
+    `;
+
+    // Bind delegated listeners once — renderFeed() re-runs on every render(),
+    // but `root` itself is stable, so re-adding listeners each time would
+    // stack duplicate handlers (each click firing doFeed() N times).
+    if (root._bound) return;
+    root._bound = true;
+    root.addEventListener('input', (e) => {
+        const inp = e.target.closest('[data-qty]');
+        if (!inp) return;
+        feedQty[inp.dataset.qty] = Number(inp.value) || 0;
+    });
+    root.addEventListener('click', (e) => {
+        const feedBtn = e.target.closest('[data-feed-item]');
+        if (feedBtn) {
+            doFeed(feedBtn.dataset.feedItem, Number(feedQty[feedBtn.dataset.feedItem]) || 0);
+            return;
+        }
+        if (e.target.closest('[data-feed-all]')) { feedAll(); return; }
+        if (e.target.closest('[data-feed-cell]')) {
+            const sel = root.querySelector('[data-cell-select]');
+            if (sel && sel.value) doFeed(sel.value, 1);
+        }
+    });
+}
+
+function feedItemLogLine(entry) {
+    return `<div class="mag-sim-log__line mag-sim-log__line--feed">喂食：${esc(entry.item)}</div>`;
+}
+
+function feedCellLogLine(entry) {
+    return `<div class="mag-sim-log__line ${entry.ok ? 'mag-sim-log__line--ok' : 'mag-sim-log__line--reject'}">
+        <span class="mag-sim-log__mark">${entry.ok ? '✓' : '✗'}</span> 喂食 Cell：${esc(entry.item)}${entry.ok ? '' : '（未生效）'}
+    </div>`;
+}
+
+function evolveLogLine(entry) {
+    return `<div class="mag-sim-log__line mag-sim-log__line--evolve">→ 进化：${esc(entry.from)} → <b>${esc(entry.to)}</b>（Lv ${entry.level}）</div>`;
+}
+
+function logLineHtml(entry) {
+    if (entry.kind === 'evolve') return evolveLogLine(entry);
+    if (entry.kind === 'feedCell') return feedCellLogLine(entry);
+    return feedItemLogLine(entry);
+}
+
+// Renders `state.log` verbatim — undo (Task 15) restores an older `state`
+// (via structuredClone, which deep-copies state.log too), so re-rendering
+// after an undo shows the right history automatically with no extra work here.
+function renderLog() {
+    const root = document.querySelector('[data-sim-log]');
+    if (!root) return;
+    root.innerHTML = `
+        <h2>历史记录</h2>
+        <div class="mag-sim-log__list" data-log-list>
+            ${state.log.length ? state.log.map(logLineHtml).join('') : '<div class="mag-sim-log__empty">尚未喂食</div>'}
+        </div>
+    `;
+    const list = root.querySelector('[data-log-list]');
+    if (list) list.scrollTop = list.scrollHeight; // newest entry at the bottom
+}
 
 function render() {
     renderCard();
