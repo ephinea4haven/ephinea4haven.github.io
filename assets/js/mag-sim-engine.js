@@ -209,7 +209,7 @@ export function exportSession(state) {
     return {
         start: state._start,               // createState 时存下的 start 参数
         feeds: state.log.filter((e) => e.kind === 'feed' || e.kind === 'feedCell')
-                        .map((e) => ({ item: e.item, feeder: e.feeder })),
+                        .map((e) => ({ item: e.item, feeder: { ...e.feeder } })),
         final: { magId: state.magId, def: state.def, pow: state.pow,
                  dex: state.dex, mind: state.mind, synchro: state.synchro,
                  iq: state.iq, level: magLevel(state) },
@@ -217,7 +217,7 @@ export function exportSession(state) {
 }
 export function replaySession(data, session) {
     const s = createState(data, { start: session.start });
-    for (const f of session.feeds) { s.feeder = f.feeder; feedOnce(data, s, f.item); }
+    for (const f of session.feeds) { s.feeder = { ...f.feeder }; feedOnce(data, s, f.item); }
     return s;
 }
 

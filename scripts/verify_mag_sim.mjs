@@ -201,5 +201,38 @@ check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
     JSON.stringify(replayed.progress) === JSON.stringify(t.progress));
 }
 
+// mid-session feeder swap: export/replay must survive the feeder object being
+// reassigned in place mid-session (the UI idiom), proving exportSession /
+// replaySession don't alias the live `state.feeder` (Task 10 review fix).
+{
+  const t = createState(DATA, { start: { mode: 'fresh' } });
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia', race: 'Human' };
+  ['Monomate', 'Trimate'].forEach((it) => feedOnce(DATA, t, it));
+  t.feeder = { class: 'RA', gender: 'F', sectionId: 'Skyly', race: 'Human' };
+  ['Antidote', 'Trimate', 'Monomate'].forEach((it) => feedOnce(DATA, t, it));
+
+  const session = exportSession(t);
+  const replayed = replaySession(DATA, session);
+  check('中途换 feeder 后回放 magId 一致', replayed.magId === t.magId);
+  check('中途换 feeder 后回放四维一致',
+    replayed.def === t.def && replayed.pow === t.pow
+    && replayed.dex === t.dex && replayed.mind === t.mind);
+  check('中途换 feeder 后回放 progress 一致',
+    JSON.stringify(replayed.progress) === JSON.stringify(t.progress));
+  check('中途换 feeder 后回放 synchro 一致', replayed.synchro === t.synchro);
+  check('中途换 feeder 后回放 iq 一致', replayed.iq === t.iq);
+
+  // Anti-aliasing: mutating the replayed state's feeder in place (the Phase 3
+  // UI idiom, e.g. `state.feeder.sectionId = ...`) must NOT reach back into
+  // the exported session snapshot or the original run's log — they must be
+  // independent objects, not shared references.
+  replayed.feeder.sectionId = 'MUTATED';
+  check('回放态 feeder 被原地修改不会污染 exportSession 快照',
+    session.feeds[session.feeds.length - 1].feeder.sectionId !== 'MUTATED');
+  check('回放态 feeder 被原地修改不会污染原始 run 的 log',
+    t.log.filter((e) => e.kind === 'feed' || e.kind === 'feedCell')
+         .slice(-1)[0].feeder.sectionId !== 'MUTATED');
+}
+
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
 process.exit(failed ? 1 : 0);
