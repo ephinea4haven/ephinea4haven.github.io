@@ -10,8 +10,7 @@ export function createState(data, { start }) {
         progress: { def: 0, pow: 0, dex: 0, mind: 0 },
         synchro: src.synchro, iq: src.iq,
         window: { stage3: 50, stage4: 100 },
-        feeder: { class: 'HU', gender: 'M', sectionId: 'Viridia', race: 'Human' },
-        racialRestriction: true,
+        feeder: { class: 'HU', gender: 'M', sectionId: 'Viridia' },
         log: [],
     };
     s._start = start;   // 供 exportSession / 重置复用
@@ -23,9 +22,13 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
 export function feedOnce(data, state, itemName) {
     if (data.magCells[itemName]) {
+        // logged BEFORE the cell runs, so a resulting `evolve` entry lands
+        // after its own feed line (the order checkEvolution's feeds produce).
+        const entry = { kind: 'feedCell', item: itemName,
+                        feeder: { ...state.feeder }, ok: false };
+        state.log.push(entry);
         const events = checkCellEvolution(data, state, itemName);
-        state.log.push({ kind: 'feedCell', item: itemName, feeder: { ...state.feeder },
-                         ok: events.some((e) => e.type === 'evolved') });
+        entry.ok = events.some((e) => e.type === 'evolve');
         return events;   // cells don't apply stat deltas
     }
     const events = [];
@@ -61,7 +64,7 @@ export function feedOnce(data, state, itemName) {
     return events;
 }
 
-// --- Evolution engine (Task 8) ---------------------------------------------
+// --- Evolution engine --------------------------------------------------------
 // Lineage = the first-evolution form (Varuna/Kalki/Vritra), fixed at the Lv10
 // evolution. Only stage1 & stage4 branch on the *feeder* class; stage2 & stage3
 // branch on the *lineage*.
@@ -145,63 +148,90 @@ export function checkEvolution(data, state) {
     };
 
     const stage = stageOf(state.magId);
-    // stage1: Lv10-14, only from a fresh (stage 0) mag; by FEEDER class.
-    if (stage === 0 && level >= 10 && level <= 14) {
+    // Every gate below is a RANGE, never an exact level: ONE feed can raise the
+    // level by up to +4 (all four stats crossing a progress boundary at once),
+    // so an `=== window` test is jumped clean over — Lv49 -> Lv51 used to lose
+    // the Lv50 evolution outright.
+    //
+    // stage1: Lv10+, only from a fresh (stage 0) mag; by FEEDER class. No upper
+    // bound, or a custom-start base Mag above Lv14 would be stuck at stage 0.
+    if (stage === 0 && level >= 10) {
         evolve(ev.stage1[f.class], 1);
     }
-    // stage2: Lv35-39, from stage 0 or 1; by LINEAGE + max stat (lineage tie).
-    else if ((stage === 0 || stage === 1) && level >= 35 && level <= 39) {
+    // stage2: Lv35+, from stage 0 or 1; by LINEAGE + max stat (lineage tie).
+    else if (stage <= 1 && level >= 35) {
         const branch = ev.stage2[state.magId];
         if (branch) {
             const tie = ev.tieBreak[LINEAGE_CLASS[state.magId]];
             evolve(branch[argmaxStat(state, tie)], 2);
         }
     }
-    // stage3: exact window (50, 55, 60, ...); from stage 2; by LINEAGE + Section ID.
-    else if (stage === 2 && level === state.window.stage3) {
+    // stage3: the 5-wide window at 50, 55, 60, ...; from stage 2; by LINEAGE + Section ID.
+    else if (stage === 2 && level >= state.window.stage3 && level < state.window.stage3 + 5) {
         evolve(stage3Next(data, state, f), 3);
     }
-    // stage4: exact window (100, 110, ...); from stage 3; by FEEDER class/gender/Type.
-    else if (stage === 3 && level === state.window.stage4) {
+    // stage4: the 10-wide window at 100, 110, ...; from stage 3; by FEEDER class/gender/Type.
+    else if (stage === 3 && level >= state.window.stage4 && level < state.window.stage4 + 10) {
         const leaf = ((ev.stage4[f.class] || {})[f.gender] || {})[idType(data, f.sectionId)];
         const form = stage4Formula(state);
         evolve(form && leaf ? leaf[form] : null, 4);
     }
 
-    // windows slide once past (the "evolve every 5th / 10th level" mechanic).
-    if (level > state.window.stage3) state.window.stage3 += 5;
-    if (level > state.window.stage4) state.window.stage4 += 10;
+    // Windows slide once fully passed (the "evolve every 5th / 10th level"
+    // mechanic). `while`, not `if`: a single feed can clear a whole window, and
+    // a window left behind the level can never be reached again.
+    while (level >= state.window.stage3 + 5) state.window.stage3 += 5;
+    while (level >= state.window.stage4 + 10) state.window.stage4 += 10;
     return events;
 }
 
-// --- Mag Cells (Task 9) -----------------------------------------------------
+// --- Mag Cells ---------------------------------------------------------------
 // Mag Cells force an evolution directly (no stat feed, no level window) once
 // their target-specific gates pass. A cell may list one or two possible
 // targets; the first target whose gates pass wins.
+//
+// Every gate below is a key the generator parses out of the wiki's "Evolution
+// Conditions" column (and keeps verbatim in `req.raw`). `minCharLevel` is the
+// one gate deliberately NOT enforced: the sim models the mag, not the
+// character, so it is carried in the data for display only.
+
+// "35+ in all Mag stats" / "70+ in two Mag stats" — DEF/POW/DEX/MIND only.
+function statThresholdOk(state, { value, count }) {
+    const n = STAT_KEYS.filter((k) => state[k] >= value).length;
+    return count === 'all' ? n === STAT_KEYS.length : n >= count;
+}
+
 export function checkCellEvolution(data, state, cellName) {
     const cell = data.magCells[cellName];
     const lvl = magLevel(state);
     const cur = data.mags[state.magId]?.stage;
+    const reject = (reason) => [{ type: 'magCellRejected', cell: cellName, reason }];
     // A stage-4 rare mag can only re-evolve via a whitelisted cell.
-    if (cur === 4 && !cell.reEvoWhitelist)
-        return [{ type: 'magCellRejected', cell: cellName, reason: '稀有 mag 无法再进化' }];
+    if (cur === 4 && !cell.reEvoWhitelist) return reject('稀有 mag 无法再进化');
+
     const targets = Array.isArray(cell.target) ? cell.target : [cell.target];
     for (const tgt of targets) {
         const req = (cell.requires && cell.requires[tgt]) || {};
-        if (req.requiresMag && state.magId !== req.requiresMag) continue;            // species gate
+        const species = req.requiresMag
+            && (Array.isArray(req.requiresMag) ? req.requiresMag : [req.requiresMag]);
+        if (species && !species.includes(state.magId)) continue;                        // species gate
+        if (req.requiredStage !== undefined && cur !== req.requiredStage) continue;     // "third evolution Mag"
+        if (req.minMagLevel && lvl < req.minMagLevel) continue;                         // mag-level gate
         if (req.race && idGroupAB(data, state.feeder.sectionId) !== req.race) continue; // Section-ID group gate
-        // minLevel is the MAG level for "Level N+ third evolution Mag" cells (no requiresMag).
-        // When requiresMag is present (e.g. the System chain) minLevel is the CHARACTER level,
-        // which this sim doesn't model — so gate on species only, not minLevel, in that case.
-        if (req.minLevel && !req.requiresMag && lvl < req.minLevel) continue;         // mag-level gate
+        if (req.minSynchro && state.synchro < req.minSynchro) continue;
+        if (req.minIQ && state.iq < req.minIQ) continue;
+        if (req.statThreshold && !statThresholdOk(state, req.statThreshold)) continue;
+
         const from = state.magId;
         state.magId = tgt;
-        return [{ type: 'evolved', from, to: tgt, level: lvl, viaCell: cellName }];
+        const stage = data.mags[tgt]?.stage;
+        state.log.push({ kind: 'evolve', from, to: tgt, stage, level: lvl, viaCell: cellName });
+        return [{ type: 'evolve', from, to: tgt, stage, level: lvl, viaCell: cellName }];
     }
-    return [{ type: 'magCellRejected', cell: cellName, reason: '未满足该 cell 的进化条件' }];
+    return reject('未满足该 cell 的进化条件');
 }
 
-// --- Session export / replay (Task 10) --------------------------------------
+// --- Session export / replay --------------------------------------------------
 // Exports the ordered feed/feedCell log (each entry carrying the feeder
 // snapshot at the moment of that feed) plus the original start config, so a
 // session can be losslessly reconstructed from data + this record alone.

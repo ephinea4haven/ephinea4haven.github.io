@@ -11,7 +11,7 @@ const DATA = win.MAG_SIM;
 let failed = 0;
 const check = (n, c) => { if (c) console.log(`  ok   ${n}`); else { console.error(`  FAIL ${n}`); failed++; } };
 
-// --- Task 6
+// --- createState
 const s = createState(DATA, { start: { mode: 'fresh' } });
 check('fresh 起始 level 5', magLevel(s) === 5);
 check('fresh DEF 5 其余 0', s.def === 5 && s.pow === 0 && s.mind === 0);
@@ -19,7 +19,7 @@ check('fresh synchro 20 iq 0', s.synchro === 20 && s.iq === 0);
 check('fresh magId=Mag', s.magId === 'Mag');
 check('窗口初始 50/100', s.window.stage3 === 50 && s.window.stage4 === 100);
 
-// --- Task 7
+// --- feedOnce: stat progress, carry, caps
 {
   const t = createState(DATA, { start: { mode: 'fresh' } }); // DEF5
   feedOnce(DATA, t, 'Monomate'); // Table0: DEF+5 POW+40 DEX+5 MIND0 Sync+3 IQ+3
@@ -38,7 +38,7 @@ check('窗口初始 50/100', s.window.stage3 === 50 && s.window.stage4 === 100);
   check('synchro 封顶 120', t.synchro === 120);
 }
 
-// --- Task 8: evolution engine
+// --- evolution engine
 // checkEvolution export exists
 check('checkEvolution 已导出', typeof checkEvolution === 'function');
 
@@ -51,14 +51,14 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
 // stage1 by FEEDER class: HU -> Varuna
 {
   const t = createState(DATA, { start: { mode: 'fresh' } });
-  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia', race: 'Human' };
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
   feedN(t, 'Trimate', 10);
   check('Lv10 stage1 HU -> Varuna', t.magId === 'Varuna' && DATA.mags[t.magId].stage === 1);
 }
 // stage1 by feeder class FO -> Vritra (proves stage1 keys on feeder.class)
 {
   const t = createState(DATA, { start: { mode: 'fresh' } });
-  t.feeder = { class: 'FO', gender: 'M', sectionId: 'Viridia', race: 'Newman' };
+  t.feeder = { class: 'FO', gender: 'M', sectionId: 'Viridia' };
   feedN(t, 'Trimate', 10);
   check('Lv10 stage1 FO -> Vritra', t.magId === 'Vritra');
 }
@@ -98,6 +98,47 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   feedOnce(DATA, t, 'Star Atomizer'); // 55 == 55 -> evolve
   check('evolves at slid window 55 -> stage3', DATA.mags[t.magId].stage === 3);
 }
+// --- evolution windows are RANGES, not exact levels (review I1) -------------
+// One feed can raise the level by up to +4 (all four stats crossing a progress
+// boundary at once), so an `=== window` gate can be jumped clean over.
+// (a) stage3: Rudra at Lv49 with two stats at progress 99 -> one feed -> Lv51.
+{
+  const t = cs({ magId: 'Rudra', def: 47, pow: 2, dex: 0, mind: 0 }); // level 49
+  t.progress.def = 99; t.progress.pow = 99;
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };      // group A
+  feedOnce(DATA, t, 'Star Atomizer'); // def+1 pow+1 -> level 51, overshoots 50
+  check('Lv49 -> 51 overshoot still evolves at stage3',
+    magLevel(t) === 51 && DATA.mags[t.magId].stage === 3);
+}
+// (b) stage4: a Lv99 stage-3 mag gaining +3 in one feed overshoots the Lv100
+// window; with an `=== window` gate the window slid to 110 and the evolution
+// was lost forever.
+{
+  const t = cs({ magId: 'Varaha', def: 40, pow: 30, dex: 9, mind: 20 }); // level 99
+  t.progress.def = 99; t.progress.pow = 99; t.progress.dex = 99;
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' }; // Type1
+  feedOnce(DATA, t, 'Star Atomizer'); // -> 41/31/10/20 = Lv102, DEF+DEX=POW+MIND
+  check('Lv99 -> 102 overshoot still evolves at stage4 -> Deva',
+    magLevel(t) === 102 && t.magId === 'Deva' && DATA.mags[t.magId].stage === 4);
+}
+// (c) a custom-start base Mag above Lv14 (the setup dropdown offers exactly
+// this) must still take its stage1 evolution, not be stuck at stage 0 forever.
+{
+  const t = cs({ magId: 'Mag', def: 50, pow: 0, dex: 0, mind: 0 }); // level 50
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('custom Mag at Lv50 evolves (stage1 has no upper bound)', t.magId === 'Varuna');
+}
+// windows never lag behind the level: a stage-3 mag created at Lv121 slides
+// its stage4 window 100 -> 110 -> 120 in ONE feed (a single `+= 10` left it at
+// 110 and, on an odd-level mag, it could never catch up).
+{
+  const t = cs({ magId: 'Varaha', def: 121, pow: 0, dex: 0, mind: 0 }); // level 121
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('stage4 window slides all the way to 120 in one feed', t.window.stage4 === 120);
+}
+
 // stage3 tie case (non-FO): Rudra HU, DEX==MIND > POW -> tie mag Varaha (A),
 // NOT strict-perm Nandin (DEX>MIND>POW/A).
 {
@@ -154,7 +195,7 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   check('negative MIND feed borrows down', t.mind === 4 && t.progress.mind === 85);
 }
 
-// --- Task 9: mag cell evolution
+// --- mag cell evolution
 check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
 
 // level gate: Chu Chu needs Lv50+ mag
@@ -169,13 +210,88 @@ check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
 { const t = createState(DATA, { start: { mode: 'custom', magId: 'Rudra', def: 70, pow: 30, dex: 0, mind: 0, synchro: 20, iq: 0 } });
   check('D-Photon Core on non-Kama → rejected',
         feedOnce(DATA, t, 'D-Photon Core').some(e => e.type === 'magCellRejected') && t.magId === 'Rudra'); }
-// multi-target by Section-ID group: Cell of Mag 213 A→Churel, B→Preta
-{ const t = createState(DATA, { start: { mode: 'custom', magId: 'Rudra', def: 100, pow: 50, dex: 25, mind: 25, synchro: 20, iq: 0 } }); // level 200
+// multi-target by Section-ID group: Cell of Mag 213 A→Churel, B→Preta.
+// Both need a *third evolution* mag (Varaha), not the stage-2 Rudra this test
+// used to pass with — the wiki forbids that (review I2b).
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 50, dex: 25, mind: 25 }); // level 200, stage3
   t.feeder.sectionId = 'Viridia'; // group A
   feedOnce(DATA, t, 'Cell of Mag 213'); check('Cell213 TypeA → Churel', t.magId === 'Churel'); }
-{ const t = createState(DATA, { start: { mode: 'custom', magId: 'Rudra', def: 100, pow: 50, dex: 25, mind: 25, synchro: 20, iq: 0 } });
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 50, dex: 25, mind: 25 });
   t.feeder.sectionId = 'Greenill'; // group B
   feedOnce(DATA, t, 'Cell of Mag 213'); check('Cell213 TypeB → Preta', t.magId === 'Preta'); }
+{ const t = cs({ magId: 'Rudra', def: 100, pow: 50, dex: 25, mind: 25 }); // stage2
+  check('Cell213 on a stage-2 mag → rejected (needs third evolution)',
+    feedOnce(DATA, t, 'Cell of Mag 213').some(e => e.type === 'magCellRejected')
+    && t.magId === 'Rudra'); }
+
+// --- mag-cell gates the engine used to skip entirely (review I2) ------------
+// (a) minMagLevel must hold even when requiresMag matches. The generator used
+// to store the *character* level of the System chain as `minLevel` and the
+// engine skipped minLevel whenever requiresMag was present.
+{ const t = cs({ magId: 'Kama', def: 10, pow: 10, dex: 10, mind: 10 }); // level 40, stage3
+  check('D-Photon Core on a Lv40 Kama → rejected (needs Lv100+)',
+    feedOnce(DATA, t, 'D-Photon Core').some(e => e.type === 'magCellRejected')
+    && t.magId === 'Kama'); }
+{ const t = cs({ magId: 'Naga', def: 10, pow: 0, dex: 0, mind: 0 }); // level 10, stage3
+  check("Panther's Spirit on a Lv10 Naga → rejected (needs Lv50+)",
+    feedOnce(DATA, t, "Panther's Spirit").some(e => e.type === 'magCellRejected')
+    && t.magId === 'Naga'); }
+{ const t = cs({ magId: 'Naga', def: 50, pow: 0, dex: 0, mind: 0 }); // level 50
+  feedOnce(DATA, t, "Panther's Spirit");
+  check("Panther's Spirit on a Lv50 Naga → Panzer's Tail", t.magId === "Panzer's Tail"); }
+// (b) the "third evolution Mag" precondition (requiredStage)
+{ const t = cs({ magId: 'Mitra', def: 50, pow: 0, dex: 0, mind: 0 }); // level 50, stage2
+  check('Heart of Chu Chu on a stage-2 Mitra → rejected (needs third evolution)',
+    feedOnce(DATA, t, 'Heart of Chu Chu').some(e => e.type === 'magCellRejected')
+    && t.magId === 'Mitra'); }
+{ const t = cs({ magId: 'Kama', def: 50, pow: 0, dex: 0, mind: 0 }); // level 50, stage3
+  feedOnce(DATA, t, 'Heart of Chu Chu');
+  check('Heart of Chu Chu on a Lv50 stage-3 Kama → Chu Chu', t.magId === 'Chu Chu'); }
+// (c) synchro / IQ / stat-threshold conditions
+{ const t = cs({ magId: 'Varaha', def: 120, pow: 0, dex: 0, mind: 0 }); // level 120, sync 20, iq 0
+  check('Heart of Pian without 120% synchro / 180 IQ → rejected',
+    feedOnce(DATA, t, 'Heart of Pian').some(e => e.type === 'magCellRejected')); }
+{ const t = cs({ magId: 'Varaha', def: 120, pow: 0, dex: 0, mind: 0, synchro: 120, iq: 179 });
+  check('Heart of Pian with IQ 179 → rejected (needs 180+)',
+    feedOnce(DATA, t, 'Heart of Pian').some(e => e.type === 'magCellRejected')); }
+{ const t = cs({ magId: 'Varaha', def: 120, pow: 0, dex: 0, mind: 0, synchro: 120, iq: 180 });
+  feedOnce(DATA, t, 'Heart of Pian');
+  check('Heart of Pian at Lv120 / 120% synchro / 180 IQ → Pian', t.magId === 'Pian'); }
+{ const t = cs({ magId: 'Varaha', def: 140, pow: 0, dex: 0, mind: 0 }); // level 140
+  check('Heart of Chao without 35+ in all stats → rejected',
+    feedOnce(DATA, t, 'Heart of Chao').some(e => e.type === 'magCellRejected')); }
+{ const t = cs({ magId: 'Varaha', def: 35, pow: 35, dex: 35, mind: 35 }); // level 140
+  feedOnce(DATA, t, 'Heart of Chao');
+  check('Heart of Chao with 35+ in all stats → Chao', t.magId === 'Chao'); }
+{ const t = cs({ magId: 'Varaha', def: 145, pow: 0, dex: 0, mind: 0 }); // level 145
+  check('Parts of RoboChao with only one 70+ stat → rejected',
+    feedOnce(DATA, t, 'Parts of RoboChao').some(e => e.type === 'magCellRejected')); }
+{ const t = cs({ magId: 'Varaha', def: 75, pow: 70, dex: 0, mind: 0 }); // level 145
+  feedOnce(DATA, t, 'Parts of RoboChao');
+  check('Parts of RoboChao with two 70+ stats → Robochao', t.magId === 'Robochao'); }
+// species multi-target: Heart of Devil on a Devil's Wing (stage4, whitelisted)
+// takes the FIRST target whose gates pass -> Devil's Tail.
+{ const t = cs({ magId: "Devil's Wing", def: 100, pow: 0, dex: 0, mind: 0 });
+  feedOnce(DATA, t, 'Heart of Devil');
+  check("Heart of Devil on a Devil's Wing → Devil's Tail", t.magId === "Devil's Tail"); }
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 }); // stage3 Lv100
+  feedOnce(DATA, t, 'Heart of Devil');
+  check("Heart of Devil on a stage-3 mag → Devil's Wing", t.magId === "Devil's Wing"); }
+// (d) a cell evolution is logged like any other evolution, so it survives export
+{ const t = cs({ magId: 'Kama', def: 70, pow: 30, dex: 0, mind: 0 }); // level 100, stage3
+  const ev = feedOnce(DATA, t, 'D-Photon Core');
+  check('cell evolution emits an evolve event', ev.some(e => e.type === 'evolve'));
+  const logged = t.log.filter((e) => e.kind === 'evolve');
+  check('cell evolution pushes an evolve log entry',
+    logged.length === 1 && logged[0].to === 'Gael Giel' && logged[0].viaCell === 'D-Photon Core');
+  check('feedCell log entry precedes its evolve entry and is marked ok',
+    t.log[0].kind === 'feedCell' && t.log[0].ok === true && t.log[1].kind === 'evolve');
+  const session = exportSession(t);
+  check('exportSession records the cell feed + resulting mag',
+    session.feeds.length === 1 && session.feeds[0].item === 'D-Photon Core'
+    && session.final.magId === 'Gael Giel');
+  check('replaying the cell session reproduces the mag',
+    replaySession(DATA, session).magId === 'Gael Giel'); }
 // re-evo whitelist: stage4 rare + non-whitelisted cell rejected
 { const t = createState(DATA, { start: { mode: 'custom', magId: 'Deva', def: 50, pow: 50, dex: 50, mind: 50, synchro: 20, iq: 0 } }); // stage4
   check('stage4 + non-whitelist cell rejected',
@@ -185,7 +301,7 @@ check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
   const p = { ...t.progress }; feedOnce(DATA, t, 'D-Photon Core');
   check('cell feed applied no stat progress', JSON.stringify(t.progress) === JSON.stringify(p)); }
 
-// --- Task 10
+// --- session export / replay
 {
   const t = createState(DATA, { start:{mode:'fresh'} });
   t.feeder = { class:'RA', gender:'F', sectionId:'Skyly' };
@@ -203,12 +319,12 @@ check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
 
 // mid-session feeder swap: export/replay must survive the feeder object being
 // reassigned in place mid-session (the UI idiom), proving exportSession /
-// replaySession don't alias the live `state.feeder` (Task 10 review fix).
+// replaySession don't alias the live `state.feeder` .
 {
   const t = createState(DATA, { start: { mode: 'fresh' } });
-  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia', race: 'Human' };
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
   ['Monomate', 'Trimate'].forEach((it) => feedOnce(DATA, t, it));
-  t.feeder = { class: 'RA', gender: 'F', sectionId: 'Skyly', race: 'Human' };
+  t.feeder = { class: 'RA', gender: 'F', sectionId: 'Skyly' };
   ['Antidote', 'Trimate', 'Monomate'].forEach((it) => feedOnce(DATA, t, it));
 
   const session = exportSession(t);
