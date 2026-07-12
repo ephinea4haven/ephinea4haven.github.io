@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="PSOBB 玛古模拟器">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>玛古模拟器 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/mag-chart.css">
+    <script src="/assets/js/page-chrome.js"></script>
+    <script src="/assets/js/mag-sim-data.js" defer></script>
+    <script type="module" src="/assets/js/mag-sim-engine.js"></script>
+    <script type="module" src="/assets/js/mag-sim-ui.js"></script>
+    <style>
+        .mag-sim__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .mag-sim__setup,
+        .mag-sim__card,
+        .mag-sim__feed,
+        .mag-sim__log {
+            min-height: 4rem;
+        }
+
+        .mag-sim__log {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 720px) {
+            .mag-sim__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <page-chrome title="玛古模拟器"></page-chrome>
+
+    <div class="content-container">
+
+        <p><a href="mag.html">← 进化图谱</a></p>
+
+        <div class="mag-sim__grid">
+            <section class="mag-sim__setup" data-sim-setup></section>
+            <section class="mag-sim__card" data-sim-card></section>
+            <section class="mag-sim__feed" data-sim-feed></section>
+            <section class="mag-sim__log" data-sim-log></section>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
