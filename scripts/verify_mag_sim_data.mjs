@@ -98,5 +98,18 @@ check('costs.Trimate = 2000', D.costs.Trimate === 2000);
 check('freshMag = DEF5 Synchro20', D.freshMag.def === 5 && D.freshMag.synchro === 20);
 check('idGroups.Type1 含 Viridia', D.idGroups.Type1.includes('Viridia'));
 
+// ---- stage3 tie-cases + FO special (Task 8a) --------------------------------
+check('stage3Ties HU DEX=MIND>POW → Varaha/Kama',
+    D.evolution.stage3Ties.HU.A === 'Varaha' && D.evolution.stage3Ties.HU.B === 'Kama'
+    && D.evolution.stage3Ties.HU.eq.join() === 'DEX,MIND' && D.evolution.stage3Ties.HU.lt === 'POW');
+check('stage3Ties RA POW=MIND>DEX → Kama/Varaha',
+    D.evolution.stage3Ties.RA.A === 'Kama' && D.evolution.stage3Ties.RA.B === 'Varaha');
+check('stage3Ties FO POW=DEX>MIND → Naga/Kumara',
+    D.evolution.stage3Ties.FO.A === 'Naga' && D.evolution.stage3Ties.FO.B === 'Kumara');
+check('stage3SpecialFO Andhaka/Bana minDef 45',
+    D.evolution.stage3SpecialFO.powMax === 'Andhaka'
+    && D.evolution.stage3SpecialFO.other === 'Bana'
+    && D.evolution.stage3SpecialFO.minDef === 45);
+
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
 process.exit(failed ? 1 : 0);

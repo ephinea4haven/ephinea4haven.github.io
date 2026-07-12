@@ -429,6 +429,18 @@ def audit_sim(sim: dict) -> None:
         if stat not in ("POW", "DEX", "MIND"):
             sys.exit(f"audit_sim: tieBreak {c}->{stat!r} not a known stat")
 
+    # stage3Ties: class -> {eq, lt, A, B} (A/B are mag refs)
+    for c, tie in ev["stage3Ties"].items():
+        for grp in ("A", "B"):
+            if tie[grp] not in known:
+                sys.exit(f"audit_sim: stage3Ties {c}.{grp}->{tie[grp]} unknown mag")
+
+    # stage3SpecialFO: {minDef, powMax, other} (powMax/other are mag refs)
+    for key in ("powMax", "other"):
+        tgt = ev["stage3SpecialFO"][key]
+        if tgt not in known:
+            sys.exit(f"audit_sim: stage3SpecialFO.{key}->{tgt} unknown mag")
+
     # magCells: cell -> {target: mag | [mag, ...], requires: {mag: {...}}}
     for cell, info in sim["magCells"].items():
         targets = info["target"]
@@ -729,6 +741,59 @@ def build_evolution_std(classes: dict) -> dict:
     }
 
 
+TIE_COND_RE = re.compile(r"^(POW|DEX|MIND) = (POW|DEX|MIND) > (POW|DEX|MIND)$")
+
+
+def build_stage3_extras(classes: dict) -> dict:
+    """Derive the two stage3 mechanics build_evolution_std() deliberately
+    drops: the exact-tie rule (one per lineage, the single `=`-cond shared by
+    an A mag and a B mag) and FO's DEF>=45 special override.
+
+    Both are read straight from the in-memory `classes[C].stage3` structure
+    (same data as mag-evolution.js), not re-derived from wikitext, and each
+    is assert-checked against the shape the wiki actually encodes so a future
+    wiki change fails loudly here rather than silently drifting."""
+    ties: dict = {}
+    for c in ("HU", "RA", "FO"):
+        s3 = classes[c]["stage3"]
+        found: list[tuple[str, str, str]] = []  # (group, mag name, cond)
+        for grp in ("A", "B"):
+            for entry in s3[grp]:
+                for cond in entry["cond"]:
+                    if "=" in cond:
+                        found.append((grp, entry["name"], cond))
+        conds = {cond for _, _, cond in found}
+        if len(conds) != 1:
+            sys.exit(f"build_stage3_extras: expected exactly one '=' cond for "
+                     f"{c}, got {conds}")
+        cond = next(iter(conds))
+        m = TIE_COND_RE.match(cond)
+        if not m:
+            sys.exit(f"build_stage3_extras: unrecognised tie cond {cond!r} for {c}")
+        s1, s2, lt = m.group(1), m.group(2), m.group(3)
+        by_grp = {grp: name for grp, name, _ in found}
+        if set(by_grp) != {"A", "B"}:
+            sys.exit(f"build_stage3_extras: tie cond {cond!r} for {c} not "
+                     f"carried by both A and B groups, got {by_grp}")
+        ties[c] = {"eq": [s1, s2], "lt": lt, "A": by_grp["A"], "B": by_grp["B"]}
+
+    special = classes["FO"]["stage3"]["special"]
+    if not special or len(special) != 2:
+        sys.exit(f"build_stage3_extras: expected 2-entry FO stage3 special, "
+                 f"got {special}")
+    names = {entry["name"] for entry in special}
+    if names != {"Andhaka", "Bana"}:
+        sys.exit(f"build_stage3_extras: expected FO special {{Andhaka, Bana}}, "
+                 f"got {names}")
+    andhaka = next(e for e in special if e["name"] == "Andhaka")
+    if andhaka["cond"] != ["POW > Others"]:
+        sys.exit(f"build_stage3_extras: unexpected Andhaka special cond "
+                 f"{andhaka['cond']}")
+    special_fo = {"minDef": 45, "powMax": "Andhaka", "other": "Bana"}
+
+    return {"stage3Ties": ties, "stage3SpecialFO": special_fo}
+
+
 def build() -> tuple[dict, set, str]:
     ap = argparse.ArgumentParser()
     ap.add_argument("--offline", type=Path)
@@ -872,6 +937,7 @@ def main() -> None:
     add_cell_mags(mags, magcells)  # register cell targets on feeding table 7
     evolution = build_evolution_std(data["classes"])
     evolution["stage4"] = parse_stage4_chart(raw)
+    evolution.update(build_stage3_extras(data["classes"]))
     sim = {"feedTables": feed, "mags": mags, "evolution": evolution, "magCells": magcells}
     sim.update(costs=COSTS, itemOrder=ITEM_ORDER, freshMag=FRESH_MAG,
                idGroups=sim_id_groups(data["meta"]["idGroups"]))

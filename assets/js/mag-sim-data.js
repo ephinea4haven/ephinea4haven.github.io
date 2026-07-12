@@ -1272,6 +1272,40 @@ window.MAG_SIM = {
           }
         }
       }
+    },
+    "stage3Ties": {
+      "HU": {
+        "eq": [
+          "DEX",
+          "MIND"
+        ],
+        "lt": "POW",
+        "A": "Varaha",
+        "B": "Kama"
+      },
+      "RA": {
+        "eq": [
+          "POW",
+          "MIND"
+        ],
+        "lt": "DEX",
+        "A": "Kama",
+        "B": "Varaha"
+      },
+      "FO": {
+        "eq": [
+          "POW",
+          "DEX"
+        ],
+        "lt": "MIND",
+        "A": "Naga",
+        "B": "Kumara"
+      }
+    },
+    "stage3SpecialFO": {
+      "minDef": 45,
+      "powMax": "Andhaka",
+      "other": "Bana"
     }
   },
   "magCells": {
