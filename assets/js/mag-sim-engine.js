@@ -22,6 +22,12 @@ const STAT_KEYS = ['def', 'pow', 'dex', 'mind'];
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
 export function feedOnce(data, state, itemName) {
+    if (data.magCells[itemName]) {
+        const events = checkCellEvolution(data, state, itemName);
+        state.log.push({ kind: 'feedCell', item: itemName,
+                         ok: events.some((e) => e.type === 'evolved') });
+        return events;   // cells don't apply stat deltas
+    }
     const events = [];
     const table = data.feedTables[data.mags[state.magId].feedTableId];
     const row = table[itemName]; // [DEF,POW,DEX,MIND,Sync,IQ]
@@ -168,6 +174,33 @@ export function checkEvolution(data, state) {
     return events;
 }
 
+// --- Mag Cells (Task 9) -----------------------------------------------------
+// Mag Cells force an evolution directly (no stat feed, no level window) once
+// their target-specific gates pass. A cell may list one or two possible
+// targets; the first target whose gates pass wins.
+export function checkCellEvolution(data, state, cellName) {
+    const cell = data.magCells[cellName];
+    const lvl = magLevel(state);
+    const cur = data.mags[state.magId]?.stage;
+    // A stage-4 rare mag can only re-evolve via a whitelisted cell.
+    if (cur === 4 && !cell.reEvoWhitelist)
+        return [{ type: 'magCellRejected', cell: cellName, reason: '稀有 mag 无法再进化' }];
+    const targets = Array.isArray(cell.target) ? cell.target : [cell.target];
+    for (const tgt of targets) {
+        const req = (cell.requires && cell.requires[tgt]) || {};
+        if (req.requiresMag && state.magId !== req.requiresMag) continue;            // species gate
+        if (req.race && idGroupAB(data, state.feeder.sectionId) !== req.race) continue; // Section-ID group gate
+        // minLevel is the MAG level for "Level N+ third evolution Mag" cells (no requiresMag).
+        // When requiresMag is present (e.g. the System chain) minLevel is the CHARACTER level,
+        // which this sim doesn't model — so gate on species only, not minLevel, in that case.
+        if (req.minLevel && !req.requiresMag && lvl < req.minLevel) continue;         // mag-level gate
+        const from = state.magId;
+        state.magId = tgt;
+        return [{ type: 'evolved', from, to: tgt, level: lvl, viaCell: cellName }];
+    }
+    return [{ type: 'magCellRejected', cell: cellName, reason: '未满足该 cell 的进化条件' }];
+}
+
 // Forward-declared for later tasks (exportSession / replaySession). Stubs
 // exist only so verify_mag_sim.mjs's ES module import line — which names the
 // full Phase 2 surface up front per the plan — can link under Node's strict
@@ -178,5 +211,5 @@ export function replaySession() { throw new Error('replaySession: not implemente
 
 // browser (non-module) global
 if (typeof window !== 'undefined') {
-    window.MagSimEngine = { magLevel, createState, feedOnce, checkEvolution, exportSession, replaySession };
+    window.MagSimEngine = { magLevel, createState, feedOnce, checkEvolution, checkCellEvolution, exportSession, replaySession };
 }

@@ -1,6 +1,6 @@
 /* Engine unit tests. Run: node scripts/verify_mag_sim.mjs */
 import { readFileSync } from 'node:fs';
-import { createState, magLevel, feedOnce, checkEvolution, exportSession, replaySession }
+import { createState, magLevel, feedOnce, checkEvolution, checkCellEvolution, exportSession, replaySession }
     from '../assets/js/mag-sim-engine.js';
 
 const src = readFileSync('assets/js/mag-sim-data.js', 'utf8');
@@ -153,6 +153,37 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   feedOnce(DATA, t, 'Trimate'); // table2 Trimate MIND -15 -> borrow one point
   check('negative MIND feed borrows down', t.mind === 4 && t.progress.mind === 85);
 }
+
+// --- Task 9: mag cell evolution
+check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
+
+// level gate: Chu Chu needs Lv50+ mag
+{ const t = createState(DATA, { start: { mode: 'custom', magId: 'Kama', def: 10, pow: 10, dex: 10, mind: 10, synchro: 20, iq: 0 } }); // level 40
+  const ev = feedOnce(DATA, t, 'Heart of Chu Chu');
+  check('cell level too low → magCellRejected', ev.some(e => e.type === 'magCellRejected'));
+  check('rejected cell leaves magId', t.magId === 'Kama'); }
+// species gate: D-Photon Core needs current mag = Kama
+{ const t = createState(DATA, { start: { mode: 'custom', magId: 'Kama', def: 70, pow: 30, dex: 0, mind: 0, synchro: 20, iq: 0 } }); // level 100, stage3
+  const ev = feedOnce(DATA, t, 'D-Photon Core');
+  check('D-Photon Core on Kama Lv100 → Gael Giel', t.magId === 'Gael Giel'); }
+{ const t = createState(DATA, { start: { mode: 'custom', magId: 'Rudra', def: 70, pow: 30, dex: 0, mind: 0, synchro: 20, iq: 0 } });
+  check('D-Photon Core on non-Kama → rejected',
+        feedOnce(DATA, t, 'D-Photon Core').some(e => e.type === 'magCellRejected') && t.magId === 'Rudra'); }
+// multi-target by Section-ID group: Cell of Mag 213 A→Churel, B→Preta
+{ const t = createState(DATA, { start: { mode: 'custom', magId: 'Rudra', def: 100, pow: 50, dex: 25, mind: 25, synchro: 20, iq: 0 } }); // level 200
+  t.feeder.sectionId = 'Viridia'; // group A
+  feedOnce(DATA, t, 'Cell of Mag 213'); check('Cell213 TypeA → Churel', t.magId === 'Churel'); }
+{ const t = createState(DATA, { start: { mode: 'custom', magId: 'Rudra', def: 100, pow: 50, dex: 25, mind: 25, synchro: 20, iq: 0 } });
+  t.feeder.sectionId = 'Greenill'; // group B
+  feedOnce(DATA, t, 'Cell of Mag 213'); check('Cell213 TypeB → Preta', t.magId === 'Preta'); }
+// re-evo whitelist: stage4 rare + non-whitelisted cell rejected
+{ const t = createState(DATA, { start: { mode: 'custom', magId: 'Deva', def: 50, pow: 50, dex: 50, mind: 50, synchro: 20, iq: 0 } }); // stage4
+  check('stage4 + non-whitelist cell rejected',
+        feedOnce(DATA, t, 'Heart of Chu Chu').some(e => e.type === 'magCellRejected')); }
+// cell feed applies NO stat delta
+{ const t = createState(DATA, { start: { mode: 'custom', magId: 'Kama', def: 70, pow: 30, dex: 0, mind: 0, synchro: 20, iq: 0 } });
+  const p = { ...t.progress }; feedOnce(DATA, t, 'D-Photon Core');
+  check('cell feed applied no stat progress', JSON.stringify(t.progress) === JSON.stringify(p)); }
 
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
 process.exit(failed ? 1 : 0);
