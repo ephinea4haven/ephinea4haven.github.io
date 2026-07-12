@@ -414,13 +414,144 @@ function renderLog() {
     if (list) list.scrollTop = list.scrollHeight; // newest entry at the bottom
 }
 
+// ---------- Task 15: undo / reset / export / share ----------
+
+// Pops the most recent pre-feed snapshot doFeed() pushed. No-op (not an
+// error) on an empty stack, since the Undo button is also disabled then.
+function undo() {
+    if (!history.length) return;
+    state = history.pop();
+    render();
+}
+
+// Rebuilds from the *original* start config — applyStart() already clears
+// `history`, so this both reverts stats and wipes the log/undo stack.
+function reset() {
+    applyStart(state._start);
+}
+
+// Minimal Blob + object-URL download helper — no server, so this is the
+// only way to hand the user a file from a static page.
+function download(filename, text) {
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+}
+
+// Plain-text rendering of one log entry — mirrors logLineHtml() but without
+// markup, for the text export.
+function logLineText(entry) {
+    if (entry.kind === 'evolve') return `→ 进化：${entry.from} → ${entry.to}（Lv ${entry.level}）`;
+    if (entry.kind === 'feedCell') return `${entry.ok ? '✓' : '✗'} 喂食 Cell：${entry.item}${entry.ok ? '' : '（未生效）'}`;
+    return `喂食：${entry.item}`;
+}
+
+// Human-readable dump of the whole session: every log line, then a final
+// mag + stats summary (mirrors what's visible on-screen across the card
+// and log panels).
+function logToPlainText(log) {
+    const lines = log.length ? log.map(logLineText) : ['尚未喂食'];
+    const level = E.magLevel(state);
+    const summary = [
+        '',
+        '---- 最终 Mag ----',
+        `种类：${state.magId}`,
+        `等级：Lv ${level} / 200`,
+        `DEF ${state.def}｜POW ${state.pow}｜DEX ${state.dex}｜MIND ${state.mind}`,
+        `同步率：${state.synchro} / 120`,
+        `IQ：${state.iq} / 200`,
+    ];
+    return lines.concat(summary).join('\n');
+}
+
+function exportJSON() {
+    download('mag-session.json', JSON.stringify(E.exportSession(state), null, 2));
+}
+
+function exportText() {
+    download('mag-session.txt', logToPlainText(state.log));
+}
+
+// UTF-8-safe base64: escape()/unescape() route the string through a
+// Latin-1-safe byte representation so btoa()/atob() (which only handle
+// code points 0-255) can round-trip Chinese log text.
+function encodeSession(session) {
+    return btoa(unescape(encodeURIComponent(JSON.stringify(session))));
+}
+function decodeSession(encoded) {
+    return JSON.parse(decodeURIComponent(escape(atob(encoded))));
+}
+
+let shareStatusTimer = null;
+function flashShareStatus(msg) {
+    const el = document.querySelector('[data-share-status]');
+    if (!el) return;
+    el.textContent = msg;
+    clearTimeout(shareStatusTimer);
+    shareStatusTimer = setTimeout(() => { el.textContent = ''; }, 4000);
+}
+
+async function shareURL() {
+    location.hash = 'r=' + encodeSession(E.exportSession(state));
+    try {
+        await navigator.clipboard?.writeText(location.href);
+        flashShareStatus('链接已复制到剪贴板');
+    } catch {
+        flashShareStatus('链接已生成，但复制失败，请手动复制地址栏');
+    }
+}
+
+function renderControls() {
+    const root = document.querySelector('[data-sim-controls]');
+    if (!root) return;
+    root.innerHTML = `
+        <div class="mag-sim-controls__row">
+            <button type="button" class="mag-sim-controls__btn" data-undo${history.length ? '' : ' disabled'}>撤销</button>
+            <button type="button" class="mag-sim-controls__btn" data-reset>重置</button>
+            <button type="button" class="mag-sim-controls__btn" data-export-json>导出 JSON</button>
+            <button type="button" class="mag-sim-controls__btn" data-export-text>导出文本</button>
+            <button type="button" class="mag-sim-controls__btn mag-sim-controls__btn--accent" data-share>分享链接</button>
+            <span class="mag-sim-controls__status" data-share-status></span>
+        </div>
+    `;
+
+    if (root._bound) return;
+    root._bound = true;
+    root.addEventListener('click', (e) => {
+        if (e.target.closest('[data-undo]')) { undo(); return; }
+        if (e.target.closest('[data-reset]')) { reset(); return; }
+        if (e.target.closest('[data-export-json]')) { exportJSON(); return; }
+        if (e.target.closest('[data-export-text]')) { exportText(); return; }
+        if (e.target.closest('[data-share]')) { shareURL(); return; }
+    });
+}
+
 function render() {
     renderCard();
     renderFeed();
     renderLog();
+    renderControls();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Replay a shared session (#r=<base64 JSON>) before the first render, so
+    // the setup panel's initial selects (feeder class/gender/Section ID)
+    // already reflect the replayed state. A malformed hash must never break
+    // the page — fall back to a fresh state instead.
+    if (location.hash.startsWith('#r=')) {
+        try {
+            state = E.replaySession(DATA, decodeSession(location.hash.slice(3)));
+        } catch (err) {
+            console.warn('mag-sim: malformed share link, starting fresh', err);
+            state = E.createState(DATA, { start: { mode: 'fresh' } });
+        }
+    }
     renderSetup();
     render();
 });

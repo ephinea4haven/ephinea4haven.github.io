@@ -29,8 +29,13 @@
             min-height: 4rem;
         }
 
+        .mag-sim__controls,
         .mag-sim__log {
             grid-column: 1 / -1;
+        }
+
+        .mag-sim__controls {
+            min-height: 0;
         }
 
         @media (max-width: 720px) {
@@ -431,6 +436,50 @@
             color: var(--text-secondary);
             font-style: italic;
         }
+
+        /* ---------- undo/reset/export controls (Task 15) ---------- */
+
+        .mag-sim-controls__row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mag-sim-controls__btn {
+            padding: 7px 16px;
+            font: inherit;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            background: var(--card-bg);
+            border: 1px solid var(--card-br);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: color .2s ease, background .2s ease, border-color .2s ease;
+        }
+
+        .mag-sim-controls__btn:hover:not(:disabled) {
+            color: var(--accent);
+            background: var(--accent-10);
+            border-color: var(--accent-20);
+        }
+
+        .mag-sim-controls__btn:disabled {
+            cursor: not-allowed;
+            opacity: .5;
+        }
+
+        .mag-sim-controls__btn--accent {
+            color: var(--accent-dark);
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            border: none;
+        }
+
+        .mag-sim-controls__status {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 
@@ -445,6 +494,7 @@
             <section class="mag-sim__setup" data-sim-setup></section>
             <section class="mag-sim__card" data-sim-card></section>
             <section class="mag-sim__feed" data-sim-feed></section>
+            <section class="mag-sim__controls" data-sim-controls></section>
             <section class="mag-sim__log" data-sim-log></section>
         </div>
 
