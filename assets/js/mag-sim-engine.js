@@ -24,7 +24,7 @@ const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 export function feedOnce(data, state, itemName) {
     if (data.magCells[itemName]) {
         const events = checkCellEvolution(data, state, itemName);
-        state.log.push({ kind: 'feedCell', item: itemName,
+        state.log.push({ kind: 'feedCell', item: itemName, feeder: { ...state.feeder },
                          ok: events.some((e) => e.type === 'evolved') });
         return events;   // cells don't apply stat deltas
     }
@@ -56,7 +56,7 @@ export function feedOnce(data, state, itemName) {
     const after = magLevel(state);
     if (after > before) events.push({ type: 'levelUp', level: after });
 
-    state.log.push({ kind: 'feed', item: itemName });
+    state.log.push({ kind: 'feed', item: itemName, feeder: { ...state.feeder } });
     events.push(...checkEvolution(data, state));
     return events;
 }
@@ -201,13 +201,25 @@ export function checkCellEvolution(data, state, cellName) {
     return [{ type: 'magCellRejected', cell: cellName, reason: '未满足该 cell 的进化条件' }];
 }
 
-// Forward-declared for later tasks (exportSession / replaySession). Stubs
-// exist only so verify_mag_sim.mjs's ES module import line — which names the
-// full Phase 2 surface up front per the plan — can link under Node's strict
-// named-export resolution before those tasks land. Each stub is replaced by
-// its real implementation in its own task.
-export function exportSession() { throw new Error('exportSession: not implemented yet'); }
-export function replaySession() { throw new Error('replaySession: not implemented yet'); }
+// --- Session export / replay (Task 10) --------------------------------------
+// Exports the ordered feed/feedCell log (each entry carrying the feeder
+// snapshot at the moment of that feed) plus the original start config, so a
+// session can be losslessly reconstructed from data + this record alone.
+export function exportSession(state) {
+    return {
+        start: state._start,               // createState 时存下的 start 参数
+        feeds: state.log.filter((e) => e.kind === 'feed' || e.kind === 'feedCell')
+                        .map((e) => ({ item: e.item, feeder: e.feeder })),
+        final: { magId: state.magId, def: state.def, pow: state.pow,
+                 dex: state.dex, mind: state.mind, synchro: state.synchro,
+                 iq: state.iq, level: magLevel(state) },
+    };
+}
+export function replaySession(data, session) {
+    const s = createState(data, { start: session.start });
+    for (const f of session.feeds) { s.feeder = f.feeder; feedOnce(data, s, f.item); }
+    return s;
+}
 
 // browser (non-module) global
 if (typeof window !== 'undefined') {

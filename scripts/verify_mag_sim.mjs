@@ -185,5 +185,21 @@ check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
   const p = { ...t.progress }; feedOnce(DATA, t, 'D-Photon Core');
   check('cell feed applied no stat progress', JSON.stringify(t.progress) === JSON.stringify(p)); }
 
+// --- Task 10
+{
+  const t = createState(DATA, { start:{mode:'fresh'} });
+  t.feeder = { class:'RA', gender:'F', sectionId:'Skyly' };
+  const seq = ['Trimate','Trimate','Antidote','Monomate','Trimate'];
+  seq.forEach((it) => feedOnce(DATA, t, it));
+  const session = exportSession(t);
+  const replayed = replaySession(DATA, session);
+  check('回放后 magId 一致', replayed.magId === t.magId);
+  check('回放后四维一致',
+    replayed.def===t.def && replayed.pow===t.pow
+    && replayed.dex===t.dex && replayed.mind===t.mind);
+  check('回放后 progress 一致',
+    JSON.stringify(replayed.progress) === JSON.stringify(t.progress));
+}
+
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
 process.exit(failed ? 1 : 0);
