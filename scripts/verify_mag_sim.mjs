@@ -201,6 +201,38 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
 }
 
 
+// --- BUG 5: a third-evolution mag re-evolves every FIFTH level ---------------
+// Wiki (Mags#Evolution): "after level 50, Mags can evolve again every fifth
+// level if another evolution condition is met (e.g. the Mag is transferred to
+// and fed by a different character)" — "useful for the purposes of switching
+// feeding tables". The stage-3 branch used to be gated on `stage === 2`, so a
+// third-evolution mag could never change again and the sliding window was dead.
+{
+  const t = cs({ magId: 'Varaha', def: 53, pow: 2, dex: 0, mind: 0 }); // level 55, stage3
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' }; // B
+  feedOnce(DATA, t, 'Star Atomizer'); // window still 50, level 55 -> miss, slides to 55
+  check('三段 mag 的 stage3 窗口照常滑动到 55', t.window.stage3 === 55);
+  feedOnce(DATA, t, 'Star Atomizer'); // window 55 == level 55 -> re-evolve on the B table
+  check('Lv55 换 Section ID 组 → 三段 mag 重新进化 Varaha → Kama',
+    t.magId === 'Kama' && DATA.mags[t.magId].stage === 3);
+}
+{
+  // ...and switching the feeder's CLASS re-evolves it onto that class's table.
+  const t = cs({ magId: 'Varaha', def: 53, pow: 2, dex: 0, mind: 0 }); // level 55, stage3
+  t.feeder = { class: 'RA', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // A
+  feedOnce(DATA, t, 'Star Atomizer');
+  feedOnce(DATA, t, 'Star Atomizer'); // RA/A POW > DEX ≥ MIND -> Kama
+  check('Lv55 换喂食者职业 → 三段 mag 走 RA 表（Varaha → Kama）', t.magId === 'Kama');
+}
+{
+  // a FOURTH-evolution mag must NOT re-evolve through the stage-3 rules.
+  const t = cs({ magId: 'Deva', def: 53, pow: 2, dex: 0, mind: 0 }); // level 55, stage4
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('四段 mag 不会通过三段规则再进化', t.magId === 'Deva');
+}
+
 // cap boundary: feeding past level 200 caps at 200
 {
   const t = cs({ magId: 'Mag', def: 100, pow: 99, dex: 0, mind: 0 }); // level 199

@@ -184,7 +184,11 @@ export function checkEvolution(data, state) {
     // level by up to +4 (all four stats crossing a progress boundary at once),
     // so an `=== window` test is jumped clean over — Lv49 -> Lv51 used to lose
     // the Lv50 evolution outright.
-    //
+    const inStage3Window = () =>
+        level >= state.window.stage3 && level < state.window.stage3 + 5;
+    const inStage4Window = () =>
+        level >= state.window.stage4 && level < state.window.stage4 + 10;
+
     // stage1: Lv10+, only from a fresh (stage 0) mag; by FEEDER class. No upper
     // bound, or a custom-start base Mag above Lv14 would be stuck at stage 0.
     if (stage === 0 && level >= 10) {
@@ -197,15 +201,28 @@ export function checkEvolution(data, state) {
             const tie = ev.tieBreak[LINEAGE_CLASS[state.magId]];
             evolve(branch[argmaxStat(state, tie)], 2);
         }
-    }
-    // stage3: the 5-wide window at 50, 55, 60, ...; from stage 2; by LINEAGE + Section ID.
-    else if (stage === 2 && level >= state.window.stage3 && level < state.window.stage3 + 5) {
-        evolve(stage3Next(data, state, f), 3);
-    }
-    // stage4: the 10-wide window at 100, 110, ...; from stage 3; by FEEDER class/gender/Type.
-    else if (stage === 3 && level >= state.window.stage4 && level < state.window.stage4 + 10) {
-        const leaf = ((ev.stage4[f.class] || {})[f.gender] || {})[idType(data, f.sectionId)];
-        evolve(stage4Next(leaf, state), 4);
+    } else {
+        // stage4: the 10-wide window at 100, 110, ...; from stage 3; by FEEDER
+        // class/gender/Section-ID Type. Checked FIRST: at Lv100 both windows are
+        // open at once, and the fourth evolution is the terminal one.
+        if (stage === 3 && inStage4Window()) {
+            const leaf = ((ev.stage4[f.class] || {})[f.gender] || {})[idType(data, f.sectionId)];
+            evolve(stage4Next(leaf, state), 4);
+        }
+        // stage3: the 5-wide window at 50, 55, 60, ...; by FEEDER class + Section ID.
+        // Open to a stage-2 mag (its third evolution) AND to a stage-3 mag: the wiki
+        // says a Mag "can evolve again every fifth level if another evolution
+        // condition is met (e.g. the Mag is transferred to and fed by a different
+        // character)" — "useful for the purposes of switching feeding tables".
+        // Gating this on `stage === 2` made a third-evolution mag permanent and
+        // left the sliding window dead code.
+        //
+        // The stage is RE-READ, so a mag that just took its fourth evolution above
+        // is excluded — that one is terminal.
+        const st = stageOf(state.magId);
+        if ((st === 2 || st === 3) && inStage3Window()) {
+            evolve(stage3Next(data, state, f), 3);
+        }
     }
 
     // Windows slide once fully passed (the "evolve every 5th / 10th level"
