@@ -170,11 +170,13 @@ const STAT_DEFS = [
     { key: 'mind', label: 'MIND', cls: 'mind' },
 ];
 
+// Windows are ranges, not exact levels: stage 3 fires anywhere in [w, w+5),
+// stage 4 in [w, w+10). Show the span so the hint matches the actual gate.
 const NEXT_EVO_HINT = {
-    0: 'Lv 10 → 一阶',
-    1: 'Lv 35 → 二阶',
-    2: (s) => `Lv ${s.window.stage3} → 三阶`,
-    3: (s) => `Lv ${s.window.stage4} → 四阶（或用 Mag Cell）`,
+    0: 'Lv 10+ → 一阶',
+    1: 'Lv 35+ → 二阶',
+    2: (s) => `Lv ${s.window.stage3}–${s.window.stage3 + 4} → 三阶`,
+    3: (s) => `Lv ${s.window.stage4}–${s.window.stage4 + 9} → 四阶（或用 Mag Cell）`,
     4: '已达四阶（可用 Mag Cell 转稀有）',
 };
 
