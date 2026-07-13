@@ -376,6 +376,41 @@
             cursor: pointer;
         }
 
+        /* 存银行 (the bank / leave-game trick) — an action, but NOT a feed, so it
+           reads as its own control rather than another feed button. */
+        .mag-sim-feed__bank {
+            padding: 6px 14px;
+            font: inherit;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--dex);
+            background: rgba(251, 191, 36, .1);
+            border: 1px solid rgba(251, 191, 36, .35);
+            border-radius: 16px;
+            cursor: pointer;
+        }
+
+        .mag-sim-feed__bank-auto {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .mag-sim-feed__bank-hint {
+            margin: -4px 0 12px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .mag-sim-feed__bank-hint b {
+            color: var(--dex);
+            font-weight: 600;
+        }
+
         .mag-sim-feed__cells {
             display: flex;
             align-items: center;
@@ -463,6 +498,15 @@
 
         .mag-sim-log__line--ok { color: var(--def); }
         .mag-sim-log__line--reject { color: var(--pow); }
+
+        /* a bank is not a feed — dashed rule + DEX colour keeps it visually
+           outside the feed sequence it interleaves with */
+        .mag-sim-log__line--bank {
+            padding: 3px 10px;
+            color: var(--dex);
+            border-left: 3px dashed var(--dex);
+            border-radius: 4px;
+        }
 
         .mag-sim-log__line--evolve {
             margin: 4px 0;

@@ -83,6 +83,28 @@ export function feedOnce(data, state, itemName) {
     return events;
 }
 
+// --- The bank / leave-game trick ---------------------------------------------
+// Ephinea's own guide (Mags/Guide, "Advanced MIND Mag"):
+//   "The Mag's stats end up being either 15/0/0/185 or 13/0/0/187 with a
+//    time-consuming trick. […] When a Mag is put into the bank, any odd values
+//    will round down to even values. Since odd values of DEF are common, this
+//    can be used to lower how much total DEF the Mag has. If you bank after
+//    every Monofluid, you should be able to just barely reach 13/0/0/22 by
+//    Level 35."
+// Depositing (or leaving the game) writes the mag back with each stat's
+// FRACTIONAL progress — the hundredths, `state.progress` — rounded DOWN to the
+// nearest even value. So a Monofluid's +5 hundredths of DEF banks as +4, and
+// the shaved .01s add up to two whole DEF points by Lv200.
+//
+// It is NOT a feed: it touches `progress` only — never an integer stat, never
+// the level, synchro, IQ or the PBs — and it must therefore NOT run an
+// evolution check (a bank at Lv50 would otherwise evolve the mag for free).
+export function bankMag(data, state) {
+    STAT_KEYS.forEach((k) => { state.progress[k] -= state.progress[k] % 2; });
+    state.log.push({ kind: 'bank' });
+    return [{ type: 'banked' }];
+}
+
 // --- Evolution engine --------------------------------------------------------
 // Which stage keys on WHAT (from the wiki's own condition-line grammar):
 //   Lv.10  `HU evolves Mag`             -> the FEEDER's class
@@ -327,15 +349,24 @@ export function checkCellEvolution(data, state, cellName) {
 }
 
 // --- Session export / replay --------------------------------------------------
-// Exports the ordered feed/feedCell log (each entry carrying the feeder
-// snapshot at the moment of that feed) plus the original start config, so a
-// session can be losslessly reconstructed from data + this record alone.
+// Exports the ordered feed/feedCell/bank log (each feed entry carrying the
+// feeder snapshot at the moment of that feed) plus the original start config, so
+// a session can be losslessly reconstructed from data + this record alone.
+//
+// Banks are part of the ORDER, not a count: the whole point of the trick is
+// *when* you bank (after every Monofluid). A `feeds` list that dropped them
+// would replay a shared 13/0/0/187 plan as a 15/0/0/185 mag. They ride in the
+// same list as `{ action: 'bank' }`; an entry without `action` is a feed, which
+// is exactly what every link shared before this existed looks like.
 export function exportSession(state) {
+    const ACTIONS = { feed: 1, feedCell: 1, bank: 1 };
     return {
         start: state._start,               // createState 时存下的 start 参数
         racialRestriction: state.racialRestriction,
-        feeds: state.log.filter((e) => e.kind === 'feed' || e.kind === 'feedCell')
-                        .map((e) => ({ item: e.item, feeder: { ...e.feeder } })),
+        feeds: state.log.filter((e) => ACTIONS[e.kind])
+                        .map((e) => (e.kind === 'bank'
+                            ? { action: 'bank' }
+                            : { item: e.item, feeder: { ...e.feeder } })),
         final: { magId: state.magId, def: state.def, pow: state.pow,
                  dex: state.dex, mind: state.mind, synchro: state.synchro,
                  iq: state.iq, level: magLevel(state), pbs: [...state.pbs] },
@@ -345,11 +376,15 @@ export function replaySession(data, session) {
     const s = createState(data, { start: session.start });
     // absent in links shared before the toggle existed -> the default (on)
     if (session.racialRestriction !== undefined) s.racialRestriction = session.racialRestriction;
-    for (const f of session.feeds) { s.feeder = { ...f.feeder }; feedOnce(data, s, f.item); }
+    for (const f of session.feeds) {
+        if (f.action === 'bank') { bankMag(data, s); continue; }
+        s.feeder = { ...f.feeder };
+        feedOnce(data, s, f.item);
+    }
     return s;
 }
 
 // browser (non-module) global
 if (typeof window !== 'undefined') {
-    window.MagSimEngine = { magLevel, createState, feedOnce, checkEvolution, checkCellEvolution, evalStage3Rule, exportSession, replaySession };
+    window.MagSimEngine = { magLevel, createState, feedOnce, bankMag, checkEvolution, checkCellEvolution, evalStage3Rule, exportSession, replaySession };
 }

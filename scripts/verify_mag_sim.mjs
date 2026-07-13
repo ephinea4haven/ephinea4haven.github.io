@@ -1,6 +1,6 @@
 /* Engine unit tests. Run: node scripts/verify_mag_sim.mjs */
 import { readFileSync } from 'node:fs';
-import { createState, magLevel, feedOnce, checkEvolution, checkCellEvolution, exportSession, replaySession }
+import { createState, magLevel, feedOnce, bankMag, checkEvolution, checkCellEvolution, exportSession, replaySession }
     from '../assets/js/mag-sim-engine.js';
 
 const src = readFileSync('assets/js/mag-sim-data.js', 'utf8');
@@ -972,6 +972,98 @@ for (const [cls, expected] of [['HU', 'Yaksa'], ['RA', 'Varaha']]) {
     check('指南/四阶: MIND 四维 5/0/50/45 做不出 Diwari（指南原话）',
       t.magId !== 'Diwari' && DATA.mags[t.magId].stage !== 4);
   }
+}
+
+// --- bankMag: the bank / leave-game trick -----------------------------------
+// Unit level first: banking is NOT a feed. It rounds each stat's hundredths
+// DOWN to the nearest even value and touches nothing else — no integer stat, no
+// level, no synchro/IQ, no PB, and (critically) no evolution check.
+{
+  const t = createState(DATA, { start: { mode: 'custom', magId: 'Vayu',
+    def: 15, pow: 0, dex: 0, mind: 20, synchro: 40, iq: 30 } });
+  t.pbs = ['Farlla', 'Mylla & Youlla'];
+  t.progress = { def: 55, pow: 0, dex: 3, mind: 98 };
+  const before = JSON.parse(JSON.stringify({ magId: t.magId, def: t.def, pow: t.pow,
+    dex: t.dex, mind: t.mind, synchro: t.synchro, iq: t.iq, pbs: t.pbs,
+    level: magLevel(t), lastEvoLevel: t.lastEvoLevel }));
+  const events = bankMag(DATA, t);
+
+  check('存银行: 奇数百分位向下取偶（55->54, 3->2）',
+    t.progress.def === 54 && t.progress.dex === 2);
+  check('存银行: 偶数百分位不变（0->0, 98->98）',
+    t.progress.pow === 0 && t.progress.mind === 98);
+  check('存银行: 只减不增（每项 progress 不增加，且落点为偶数）',
+    [54, 0, 2, 98].every((v, i) => v <= [55, 0, 3, 98][i] && v % 2 === 0));
+  check('存银行: 四维/等级/同步率/IQ/PB/mag 种类全部不变',
+    t.magId === before.magId && t.def === before.def && t.pow === before.pow
+    && t.dex === before.dex && t.mind === before.mind && magLevel(t) === before.level
+    && t.synchro === before.synchro && t.iq === before.iq
+    && t.pbs.join() === before.pbs.join() && t.lastEvoLevel === before.lastEvoLevel);
+  check('存银行: 返回 banked 事件', events.length === 1 && events[0].type === 'banked');
+  check('存银行: 写入一条 kind=bank 的日志',
+    t.log.length === 1 && t.log[0].kind === 'bank');
+}
+// A bank must never trigger an evolution: a Lv50 stage-2 mag that is banked
+// (not fed) stays a stage-2 mag.
+{
+  const t = createState(DATA, { start: { mode: 'custom', magId: 'Rudra',
+    def: 20, pow: 10, dex: 10, mind: 10, synchro: 40, iq: 30 } });
+  t.feeder = { class: 'HU', gender: 'M', sectionId: GRP_B, race: 'Human' };
+  check('存银行前: Lv50 的二阶 Rudra', magLevel(t) === 50 && DATA.mags[t.magId].stage === 2);
+  bankMag(DATA, t);
+  check('存银行不触发进化：Lv50 存银行后仍是 Rudra（存银行不是喂食）',
+    t.magId === 'Rudra' && !t.log.some((e) => e.kind === 'evolve'));
+}
+
+// --- Guide: the bank/leave-game trick's two documented routes ----------------
+// Ephinea's guide, verbatim: "The Mag's stats end up being either 15/0/0/185 or
+// 13/0/0/187 with a time-consuming trick. […] If you bank after every Monofluid,
+// you should be able to just barely reach 13/0/0/22 by Level 35."
+// Same mag, same feeder (a TypeB Hunter), same single item (Monofluid) — the
+// ONLY difference is the bank between feeds, and it is worth exactly 2 DEF.
+{
+  const run = (bankEveryFeed) => {
+    const t = createState(DATA, { start: { mode: 'fresh' } });
+    t.feeder = { class: 'HU', gender: 'M', sectionId: GRP_B, race: 'Human' }; // TypeB Hunter
+    let at35 = null, at50 = null;
+    for (let i = 0; i < 20000 && magLevel(t) < 200; i++) {
+      feedOnce(DATA, t, 'Monofluid');
+      if (bankEveryFeed) bankMag(DATA, t);
+      if (!at35 && magLevel(t) >= 35) at35 = { stats: stats(t), level: magLevel(t) };
+      if (!at50 && magLevel(t) >= 50) at50 = { magId: t.magId };
+    }
+    return { t, at35, at50 };
+  };
+
+  const plain = run(false);
+  check('指南/存银行: 不存银行时 Lv35 恰为 15/0/0/20',
+    plain.at35.level === 35 && plain.at35.stats === '15/0/0/20');
+  check('指南/存银行: 不存银行时 Lv50 -> Bana', plain.at50.magId === 'Bana');
+  check('指南/存银行: 不存银行时 Lv200 终态恰为 15/0/0/185（指南原话）',
+    magLevel(plain.t) === 200 && stats(plain.t) === '15/0/0/185' && plain.t.magId === 'Bana');
+
+  const banked = run(true);
+  check('指南/存银行: 每次喂食后存银行时 Lv35 恰为 13/0/0/22（指南原话）',
+    banked.at35.level === 35 && banked.at35.stats === '13/0/0/22');
+  check('指南/存银行: 每次喂食后存银行时 Lv50 -> Bana', banked.at50.magId === 'Bana');
+  check('指南/存银行: 每次喂食后存银行时 Lv200 终态恰为 13/0/0/187（指南原话）',
+    magLevel(banked.t) === 200 && stats(banked.t) === '13/0/0/187' && banked.t.magId === 'Bana');
+  check('指南/存银行: 存银行整整省下 2 点 DEF（185 vs 187 MIND）',
+    plain.t.def - banked.t.def === 2 && banked.t.mind - plain.t.mind === 2);
+
+  // export -> replay must reproduce 13/0/0/187: banking is serialised IN ORDER
+  // relative to the feeds. If the banks were dropped (or hoisted), the very same
+  // link would replay as the un-banked 15/0/0/185 mag.
+  const session = exportSession(banked.t);
+  const replayed = replaySession(DATA, session);
+  check('指南/存银行: 导出的 feeds 里 bank 与 feed 交替（按顺序序列化）',
+    session.feeds.length === banked.t.log.filter((e) => e.kind === 'feed' || e.kind === 'bank').length
+    && session.feeds[0].item === 'Monofluid' && session.feeds[1].action === 'bank');
+  check('指南/存银行: 导出→回放仍是 13/0/0/187 的 Bana（存银行被按序回放）',
+    stats(replayed) === '13/0/0/187' && replayed.magId === 'Bana'
+    && magLevel(replayed) === 200);
+  check('指南/存银行: 回放后 progress 一致',
+    JSON.stringify(replayed.progress) === JSON.stringify(banked.t.progress));
 }
 
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');

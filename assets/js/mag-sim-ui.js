@@ -357,14 +357,34 @@ function countOf(item) {
     return state.log.reduce((n, e) => n + (e.item === item ? 1 : 0), 0);
 }
 
+// 每次喂食后自动存银行 — the guide's own instruction for the 13/0/0/187 route
+// ("If you bank after every Monofluid…"). OFF by default: it is a deliberate,
+// time-consuming trick, not the normal way to raise a mag. UI-only, like
+// feedQty — it is a habit of the player, not a property of the mag.
+let autoBank = false;
+
 // Feeds `item` `qty` times, pushing one undo snapshot per feed *before* it
 // is applied (undo() pops these). feedOnce() itself appends to state.log,
 // so renderLog() picks the new entries up for free on the render() below.
+//
+// The auto-bank runs INSIDE the loop, once per individual feed — banking once
+// per click instead would shave the fractions off only the last feed of a batch
+// and quietly produce a 15/0/0/185 mag from a 13/0/0/187 plan. The snapshot
+// still goes in only before the feed, so one undo steps back over the
+// feed+bank pair as the single action the user took.
 function doFeed(item, qty) {
     for (let i = 0; i < qty; i += 1) {
         history.push(structuredClone(state));
         E.feedOnce(DATA, state, item);
+        if (autoBank) E.bankMag(DATA, state);
     }
+    render();
+}
+
+// The 存银行 button: a bank on its own is one undoable action.
+function doBank() {
+    history.push(structuredClone(state));
+    E.bankMag(DATA, state);
     render();
 }
 
@@ -441,6 +461,11 @@ function renderFeed() {
         </div>
         <div class="mag-sim-feed__actions">
             <button type="button" class="mag-sim-feed__all" data-feed-all>一键喂食（Feed All）</button>
+            <button type="button" class="mag-sim-feed__bank" data-bank>存银行</button>
+            <label class="mag-sim-feed__bank-auto">
+                <input type="checkbox" data-auto-bank${autoBank ? ' checked' : ''}>
+                <span>每次喂食后自动存银行</span>
+            </label>
             <div class="mag-sim-feed__cells">
                 <select data-cell-select>
                     ${Object.keys(DATA.magCells).map((c) =>
@@ -448,6 +473,11 @@ function renderFeed() {
                 </select>
                 <button type="button" class="mag-sim-feed__cell-btn" data-feed-cell>喂 Cell</button>
             </div>
+        </div>
+        <div class="mag-sim-feed__bank-hint">
+            <b>存银行</b>：把 Mag 存入银行（或退出游戏）时，四维的小数进度（百分位）会<b>向下取整到偶数</b>——
+            例如 +5% DEF 只会记作 +4%。每喂一次 Monofluid 就存一次，可以把 DEF 从 15 压到 13
+            （指南的 13/0/0/187 路线）。不影响四维整数、等级、同步率、IQ 与 PB。
         </div>
         <div class="mag-sim-feed__cell-reqs" data-cell-req>${cellReqHtml(selectedCell)}</div>
         <div class="mag-sim-feed__totals">
@@ -469,6 +499,8 @@ function renderFeed() {
         feedQty[inp.dataset.qty] = Number(inp.value) || 0;
     });
     root.addEventListener('change', (e) => {
+        const auto = e.target.closest('[data-auto-bank]');
+        if (auto) { autoBank = auto.checked; return; }
         const sel = e.target.closest('[data-cell-select]');
         if (!sel) return;
         selectedCell = sel.value;
@@ -481,6 +513,7 @@ function renderFeed() {
             doFeed(feedBtn.dataset.feedItem, Number(feedQty[feedBtn.dataset.feedItem]) || 0);
             return;
         }
+        if (e.target.closest('[data-bank]')) { doBank(); return; }
         if (e.target.closest('[data-feed-all]')) { feedAll(); return; }
         if (e.target.closest('[data-feed-cell]') && selectedCell) doFeed(selectedCell, 1);
     });
@@ -501,9 +534,15 @@ function evolveLogLine(entry) {
     return `<div class="mag-sim-log__line mag-sim-log__line--evolve">→ 进化：${esc(entry.from)} → <b>${esc(entry.to)}</b>（Lv ${entry.level}）</div>`;
 }
 
+// A bank is not a feed — its own line, its own styling.
+function bankLogLine() {
+    return `<div class="mag-sim-log__line mag-sim-log__line--bank">存银行：小数进度向下取偶</div>`;
+}
+
 function logLineHtml(entry) {
     if (entry.kind === 'evolve') return evolveLogLine(entry);
     if (entry.kind === 'feedCell') return feedCellLogLine(entry);
+    if (entry.kind === 'bank') return bankLogLine(entry);
     return feedItemLogLine(entry);
 }
 
@@ -557,6 +596,7 @@ function download(filename, text) {
 // markup, for the text export.
 function logLineText(entry) {
     if (entry.kind === 'evolve') return `→ 进化：${entry.from} → ${entry.to}（Lv ${entry.level}）`;
+    if (entry.kind === 'bank') return '存银行：小数进度向下取偶';
     if (entry.kind === 'feedCell') {
         return `${entry.ok ? '✓' : '✗'} 喂食 Cell：${entry.item}`
             + (entry.ok ? '' : `（未生效：${entry.reason || '未满足条件'}）`);
