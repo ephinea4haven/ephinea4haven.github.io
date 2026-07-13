@@ -31,25 +31,47 @@ check('stage1 by class', D.evolution.stage1.HU === 'Varuna'
     && D.evolution.stage1.RA === 'Kalki' && D.evolution.stage1.FO === 'Vritra');
 check('stage2 Varuna+POW→Rudra', D.evolution.stage2.Varuna.POW === 'Rudra');
 check('stage2 Kalki+DEX→Mitra', D.evolution.stage2.Kalki.DEX === 'Mitra');
-check('stage3 有 6 种排列', Object.keys(Object.values(D.evolution.stage3)[0]).length === 6);
 check('tieBreak HU=POW', D.evolution.tieBreak.HU === 'POW');
 
-// every lineage must map all 6 strict stat orderings, each with an A and a B mag
-const PERMS = ['POW>DEX>MIND', 'POW>MIND>DEX', 'DEX>POW>MIND',
-    'DEX>MIND>POW', 'MIND>POW>DEX', 'MIND>DEX>POW'];
-for (const [first, map] of Object.entries(D.evolution.stage3)) {
-    check(`${first} 覆盖全部 6 排列且 A/B 齐全`,
-        Object.keys(map).length === 6
-        && PERMS.every((p) => map[p] && typeof map[p].A === 'string' && typeof map[p].B === 'string'));
+// ---- stage3Rules: the wiki's ORDERED Lv.50 rows, keyed by CLASS -------------
+// The old `stage3` map keyed 6 strict permutations by LINEAGE, plus one
+// hard-coded tie row. The wiki states SEVEN ordered `≥`/`>`/`=` rows per CLASS
+// and the first that holds wins — a partition the permutations cannot express.
+check('evolution.stage3（6 排列表）已删除', D.evolution.stage3 === undefined);
+check('evolution.stage3Ties 已删除', D.evolution.stage3Ties === undefined);
+check('stage3Rules 覆盖 HU/RA/FO 三职业',
+    ['HU', 'RA', 'FO'].every((c) => Array.isArray(D.evolution.stage3Rules[c])));
+for (const [cls, rows] of Object.entries(D.evolution.stage3Rules)) {
+    check(`stage3Rules ${cls} 为 7 行有序规则，每行 A/B 齐全`,
+        rows.length === 7
+        && rows.every((r) => typeof r.cond === 'string'
+            && typeof r.A === 'string' && typeof r.B === 'string'));
+    // every rule must be a STAT op STAT (op STAT)* chain the engine can evaluate
+    check(`stage3Rules ${cls} 每条规则语法合法`,
+        rows.every((r) => {
+            const tok = r.cond.split(' ');
+            return tok.length >= 3 && tok.length % 2 === 1
+                && tok.every((t, i) => (i % 2 === 0
+                    ? ['POW', 'DEX', 'MIND'].includes(t)
+                    : ['>', '≥', '='].includes(t)));
+        }));
 }
-// strict rule: HU POW>DEX>MIND resolves to Varaha (A) / Kama (B)
-check('stage3 Varuna POW>DEX>MIND → A=Varaha,B=Kama',
-    D.evolution.stage3.Varuna['POW>DEX>MIND'].A === 'Varaha'
-    && D.evolution.stage3.Varuna['POW>DEX>MIND'].B === 'Kama');
-// tie-derived rule: RA "DEX ≥ MIND ≥ POW" covers DEX>MIND>POW → Kama (A) / Varaha (B)
-check('stage3 Kalki DEX>MIND>POW → A=Kama,B=Varaha',
-    D.evolution.stage3.Kalki['DEX>MIND>POW'].A === 'Kama'
-    && D.evolution.stage3.Kalki['DEX>MIND>POW'].B === 'Varaha');
+// the rows are in WIKI ORDER — HU's first two rows, verbatim
+check('stage3Rules HU 首行 = "POW ≥ DEX ≥ MIND" → A=Varaha,B=Kama',
+    D.evolution.stage3Rules.HU[0].cond === 'POW ≥ DEX ≥ MIND'
+    && D.evolution.stage3Rules.HU[0].A === 'Varaha'
+    && D.evolution.stage3Rules.HU[0].B === 'Kama');
+check('stage3Rules HU 次行 = "DEX = MIND > POW"（等号行排在严格行之前）',
+    D.evolution.stage3Rules.HU[1].cond === 'DEX = MIND > POW');
+// the row BUG 3 was getting wrong: HU `DEX > MIND ≥ POW` → Nandin / Yaksa
+check('stage3Rules HU "DEX > MIND ≥ POW" → A=Nandin,B=Yaksa',
+    D.evolution.stage3Rules.HU.some((r) => r.cond === 'DEX > MIND ≥ POW'
+        && r.A === 'Nandin' && r.B === 'Yaksa'));
+check('stage3Rules RA 首行 = "POW > DEX ≥ MIND" → A=Kama,B=Madhu',
+    D.evolution.stage3Rules.RA[0].cond === 'POW > DEX ≥ MIND'
+    && D.evolution.stage3Rules.RA[0].A === 'Kama'
+    && D.evolution.stage3Rules.RA[0].B === 'Madhu');
+
 
 // ---- stage4 reference chart + mag cells ------------------------------------
 // Type→formula mapping is fixed by both the wikitable and build()'s stage4:
@@ -168,14 +190,7 @@ check('costs.Trimate = 2000', D.costs.Trimate === 2000);
 check('freshMag = DEF5 Synchro20', D.freshMag.def === 5 && D.freshMag.synchro === 20);
 check('idGroups.Type1 含 Viridia', D.idGroups.Type1.includes('Viridia'));
 
-// ---- stage3 tie-cases + FO special -----------------------------------------
-check('stage3Ties HU DEX=MIND>POW → Varaha/Kama',
-    D.evolution.stage3Ties.HU.A === 'Varaha' && D.evolution.stage3Ties.HU.B === 'Kama'
-    && D.evolution.stage3Ties.HU.eq.join() === 'DEX,MIND' && D.evolution.stage3Ties.HU.lt === 'POW');
-check('stage3Ties RA POW=MIND>DEX → Kama/Varaha',
-    D.evolution.stage3Ties.RA.A === 'Kama' && D.evolution.stage3Ties.RA.B === 'Varaha');
-check('stage3Ties FO POW=DEX>MIND → Naga/Kumara',
-    D.evolution.stage3Ties.FO.A === 'Naga' && D.evolution.stage3Ties.FO.B === 'Kumara');
+// ---- FO's Lv.50 DEF>=45 special (sits ahead of the rule rows) ---------------
 check('stage3SpecialFO Andhaka/Bana minDef 45',
     D.evolution.stage3SpecialFO.powMax === 'Andhaka'
     && D.evolution.stage3SpecialFO.other === 'Bana'

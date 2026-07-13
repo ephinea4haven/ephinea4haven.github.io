@@ -79,12 +79,12 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   check('Lv35 tie POW==DEX -> Rudra via lineage HU (not Marutah)', t.magId === 'Rudra');
 }
 
-// stage3 strict perm: Rudra (Varuna lineage), POW>DEX>MIND, sectionId A -> Varaha
+// stage3 by the wiki's ordered rules: Rudra, POW ≥ DEX ≥ MIND, HU feeder, ID A -> Varaha
 {
   const t = cs({ magId: 'Rudra', def: 48, pow: 2, dex: 0, mind: 0 }); // level 50
   t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' }; // group A
   feedOnce(DATA, t, 'Star Atomizer');
-  check('Lv50 stage3 Rudra strict POW>DEX>MIND/A -> Varaha',
+  check('Lv50 stage3 HU/A POW ≥ DEX ≥ MIND -> Varaha',
     t.magId === 'Varaha' && DATA.mags[t.magId].stage === 3);
 }
 // stage3 window SLIDE: stage2 mag created past 50 misses window, slides to 55,
@@ -156,13 +156,13 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   feedOnce(DATA, t, 'Star Atomizer');
   check('FO DEF>=45 POW-max -> Andhaka', t.magId === 'Andhaka');
 }
-// FO special beats TIE path: DEF>=45, POW==DEX (not strict max) -> other=Bana,
-// NOT stage3Ties[FO] mag Naga.
+// The FO special sits AHEAD of the rule rows: DEF>=45 with POW not strictly max
+// -> Bana, even though the rule rows would match `POW = DEX > MIND` -> Naga (A).
 {
   const t = cs({ magId: 'Namuci', def: 45, pow: 2, dex: 2, mind: 1 }); // level 50
   t.feeder = { class: 'FO', gender: 'M', sectionId: 'Viridia' };
   feedOnce(DATA, t, 'Star Atomizer');
-  check('FO special beats tie/strict (POW not strict) -> Bana', t.magId === 'Bana');
+  check('FO 特例优先于规则行（POW 非严格最大）-> Bana', t.magId === 'Bana');
 }
 
 // stage4 -> Deva: HU/M/Type1, DEF+DEX=POW+MIND (first-matching formula)
@@ -193,8 +193,8 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
 // on the item, but they cannot lose levels." The engine used to borrow a whole
 // point (mind 5 -> 4, progress 85), which drops the level. The loss now floors
 // at the bottom of the current point instead.
-// (This test asserted the borrow before; the borrow IS the bug, so the
-// expectation is inverted rather than the fix weakened to keep it green.)
+// (This test asserted the borrow before; the borrow is the bug, so it is
+// inverted rather than kept green.)
 {
   const t = cs({ magId: 'Rudra', def: 10, pow: 0, dex: 0, mind: 5 });
   feedOnce(DATA, t, 'Trimate'); // table2 Trimate MIND -15, progress 0 -> floors at 0
@@ -222,6 +222,69 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   feedOnce(DATA, t, 'Monomate');
   check('Lv200 满级 mag 喂 Monomate 后仍是 Lv200', magLevel(t) === 200);
 }
+
+// --- BUG 2: stage 3 keys on the FEEDER's class, not the mag's lineage --------
+// The wiki's Lv.50 condition lines read `HU {{TypeA}} …` — the class, not the
+// lineage. (Only Lv.35 is lineage-keyed: `Evolves from Varuna`.) Feeding a mag
+// with a different character is the documented way to switch evolution tables.
+{
+  // Namuci is a Vritra(FO)-line mag; fed by a HUNTER it must take the HU table.
+  // HU/A, POW ≥ DEX ≥ MIND -> Varaha. (The FO table would give Naraka.)
+  const t = cs({ magId: 'Namuci', def: 40, pow: 8, dex: 2, mind: 0 }); // level 50
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv50 Vritra 血统 + HU 喂食者 → 走 HU 表（Varaha，不是 Naraka）',
+    t.magId === 'Varaha');
+}
+{
+  // ...and the FO DEF>=45 special keys on the feeder too: an HU-line Rudra fed
+  // by a FORCE with DEF 45 and POW strictly max takes it.
+  const t = cs({ magId: 'Rudra', def: 45, pow: 5, dex: 0, mind: 0 }); // level 50
+  t.feeder = { class: 'FO', gender: 'M', race: 'Human', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv50 Varuna 血统 + FO 喂食者 DEF≥45 POW 最大 → Andhaka', t.magId === 'Andhaka');
+}
+{
+  // ...while an FO-line mag with DEF>=45 fed by a HUNTER must NOT take it.
+  const t = cs({ magId: 'Namuci', def: 45, pow: 5, dex: 0, mind: 0 }); // level 50
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv50 Vritra 血统 + HU 喂食者 DEF≥45 → 不触发 FO 特例（Varaha）',
+    t.magId === 'Varaha');
+}
+
+// --- BUG 3: stage 3 follows the wiki's ORDERED rows, not 6 strict permutations
+// The old engine ranked the three stats into one of 6 strict orderings, breaking
+// ties by a fixed POW>DEX>MIND priority. That cannot express the wiki's seven
+// ordered `≥`/`>`/`=` rows. Canonical counter-example: HU/A with DEX > MIND = POW
+// matches row 5 `DEX > MIND ≥ POW` -> Nandin, but the perm key 'DEX>POW>MIND'
+// (POW winning the tie) gave Ila.
+{
+  const t = cs({ magId: 'Rudra', def: 41, pow: 2, dex: 5, mind: 2 }); // level 50
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // A
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv50 HU/A DEX > MIND = POW → Nandin（有序规则，不是 Ila）',
+    t.magId === 'Nandin');
+}
+// the same state in ID group B -> Yaksa (the row's B mag)
+{
+  const t = cs({ magId: 'Rudra', def: 41, pow: 2, dex: 5, mind: 2 }); // level 50
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' }; // B
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv50 HU/B DEX > MIND = POW → Yaksa', t.magId === 'Yaksa');
+}
+// rule ORDER matters: RA row 1 `POW > DEX ≥ MIND` must win over row 4
+// `POW > MIND > DEX` for a state that only the first can match.
+{
+  const t = cs({ magId: 'Surya', def: 40, pow: 8, dex: 2, mind: 0 }); // level 50
+  t.feeder = { class: 'RA', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // A
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv50 RA/A POW > DEX ≥ MIND → Kama（首个命中的规则行获胜）',
+    t.magId === 'Kama');
+}
+// the superseded structures are gone from the data
+check('evolution.stage3（6 排列表）已删除', DATA.evolution.stage3 === undefined);
+check('evolution.stage3Ties 已删除', DATA.evolution.stage3Ties === undefined);
 
 // --- mag cell evolution
 check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
@@ -462,6 +525,72 @@ check('createState 默认开启种族限制', s.racialRestriction === true);
   check('回放态 feeder 被原地修改不会污染原始 run 的 log',
     t.log.filter((e) => e.kind === 'feed' || e.kind === 'feedCell')
          .slice(-1)[0].feeder.sectionId !== 'MUTATED');
+}
+
+// --- exhaustive sweeps against the verbatim wiki data ------------------------
+// mag-sim-data.js is a RESTRUCTURING of window.MAG_EVOLUTION (the wiki's rules,
+// kept verbatim). These two sweeps re-derive every Lv.50 and Lv.100 outcome
+// straight from MAG_EVOLUTION — an independent path — and compare it with what
+// the engine actually does, over every reachable stat split. A single
+// disagreement is a rule the restructure or the engine got wrong.
+{
+  const evoSrc = readFileSync('assets/js/mag-evolution.js', 'utf8');
+  const w2 = {};
+  new Function('window', evoSrc)(w2);
+  const EVO = w2.MAG_EVOLUTION;
+  const CLASSES = ['HU', 'RA', 'FO'];
+  const OPS = { '>': (a, b) => a > b, '≥': (a, b) => a >= b, '=': (a, b) => a === b };
+
+  // an independent evaluator of one wiki rule chain (not the engine's)
+  const holds = (cond, st) => {
+    const v = { POW: st.pow, DEX: st.dex, MIND: st.mind };
+    const tok = cond.split(' ');
+    for (let i = 0; i + 2 < tok.length; i += 2) {
+      if (!OPS[tok[i + 1]](v[tok[i]], v[tok[i + 2]])) return false;
+    }
+    return true;
+  };
+  // what the WIKI says a Lv.50 mag becomes, from MAG_EVOLUTION alone
+  const wikiStage3 = (cls, grp, st) => {
+    const s3 = EVO.classes[cls].stage3;
+    if (cls === 'FO' && st.def >= 45) {                    // the all-IDs special
+      const max = Math.max(st.pow, st.dex, st.mind);
+      return (st.pow === max && st.dex < max && st.mind < max) ? 'Andhaka' : 'Bana';
+    }
+    for (const rule of s3.rules) {                          // first row that holds
+      if (!holds(rule, st)) continue;
+      const hit = s3[grp].find((m) => m.cond.includes(rule));
+      return hit ? hit.name : null;
+    }
+    return null;
+  };
+
+  const A_ID = 'Viridia', B_ID = 'Greenill';
+  let n3 = 0, bad3 = 0, firstBad3 = null;
+  for (const cls of CLASSES) {
+    for (const [grp, sectionId] of [['A', A_ID], ['B', B_ID]]) {
+      for (let pow = 0; pow <= 50; pow++) {
+        for (let dex = 0; dex + pow <= 50; dex++) {
+          for (let mind = 0; mind + dex + pow <= 50; mind++) {
+            const def = 50 - pow - dex - mind;
+            const t = cs({ magId: 'Rudra', def, pow, dex, mind });   // stage2, Lv50
+            t.feeder = { class: cls, gender: 'M', race: 'Human', sectionId };
+            checkEvolution(DATA, t);
+            const want = wikiStage3(cls, grp, { def, pow, dex, mind });
+            n3++;
+            if (t.magId !== (want || 'Rudra')) {
+              bad3++;
+              firstBad3 = firstBad3 || `${cls}/${grp} ${def}/${pow}/${dex}/${mind}: `
+                + `engine ${t.magId}, wiki ${want}`;
+            }
+          }
+        }
+      }
+    }
+  }
+  check(`Lv50 三段全量遍历：${n3} 个状态全部与 wiki 规则一致（${bad3} 个不一致）`
+    + (firstBad3 ? ` — 首个：${firstBad3}` : ''), bad3 === 0);
+
 }
 
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');

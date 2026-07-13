@@ -75,11 +75,14 @@ export function feedOnce(data, state, itemName) {
 }
 
 // --- Evolution engine --------------------------------------------------------
-// Lineage = the first-evolution form (Varuna/Kalki/Vritra), fixed at the Lv10
-// evolution. Only stage1 & stage4 branch on the *feeder* class; stage2 & stage3
-// branch on the *lineage*.
+// Which stage keys on WHAT (from the wiki's own condition-line grammar):
+//   Lv.10  `HU evolves Mag`             -> the FEEDER's class
+//   Lv.35  `Evolves from Varuna`        -> the mag's LINEAGE (the only one)
+//   Lv.50  `HU {{TypeA}} POW ≥ DEX ...` -> the FEEDER's class + Section-ID group
+//   Lv.100 `Male HU {{Type1}} ...`      -> the FEEDER's class/gender/Section-ID Type
+// Lineage = the first-evolution form (Varuna/Kalki/Vritra), fixed at Lv10, and
+// used ONLY for the Lv.35 branch and its tie-break.
 const LINEAGE_CLASS = { Varuna: 'HU', Kalki: 'RA', Vritra: 'FO' };
-const PERM_ORDER = { POW: 0, DEX: 1, MIND: 2 };
 
 // strictly-max of POW/DEX/MIND; on a tie for max, return `tie`.
 function argmaxStat(state, tie) {
@@ -87,14 +90,6 @@ function argmaxStat(state, tie) {
     const max = Math.max(v.POW, v.DEX, v.MIND);
     const top = ['POW', 'DEX', 'MIND'].filter(k => v[k] === max);
     return top.length === 1 ? top[0] : tie;
-}
-
-// e.g. 'POW>DEX>MIND': sort POW/DEX/MIND descending, ties broken by fixed order.
-function permKey(state) {
-    const v = { POW: state.pow, DEX: state.dex, MIND: state.mind };
-    return ['POW', 'DEX', 'MIND']
-        .sort((a, b) => (v[b] - v[a]) || (PERM_ORDER[a] - PERM_ORDER[b]))
-        .join('>');
 }
 
 function idGroupAB(data, id) { return data.idGroups.A.includes(id) ? 'A' : 'B'; }
@@ -114,33 +109,48 @@ function stage4Formula(state) {
     return null;
 }
 
-// stage2 mag -> its stage1 ancestor; a stage1 mag maps to itself.
-function firstEvoOf(data, magId) {
-    if (data.evolution.stage2[magId]) return magId; // already a first-evo form
-    for (const [first, branch] of Object.entries(data.evolution.stage2)) {
-        for (const child of Object.values(branch)) {
-            if (child === magId) return first;
-        }
+// --- stage 3: the wiki's ordered Lv.50 rows -----------------------------------
+// Each class has SEVEN ordered rules; the FIRST one that holds wins, and the
+// feeder's Section-ID group (A/B) picks the mag. The rules are `≥`/`>`/`=`
+// chains over POW/DEX/MIND, evaluated left-to-right — a 5-token chain like
+// `DEX = MIND > POW` asserts BOTH `DEX == MIND` and `MIND > POW`.
+//
+// The old 6-strict-permutation map plus one hard-coded tie row could not
+// express this: it ranked the stats and broke ties by a fixed POW>DEX>MIND
+// priority, so e.g. HU `DEX > MIND = POW` landed on 'DEX>POW>MIND' (Ila) when
+// the wiki's row `DEX > MIND ≥ POW` says Nandin.
+const RULE_OPS = {
+    '>': (a, b) => a > b,
+    '≥': (a, b) => a >= b,
+    '=': (a, b) => a === b,
+};
+
+export function evalStage3Rule(cond, state) {
+    const v = { POW: state.pow, DEX: state.dex, MIND: state.mind };
+    const tok = cond.split(' ');
+    for (let i = 0; i + 2 < tok.length; i += 2) {
+        const op = RULE_OPS[tok[i + 1]];
+        if (!op) throw new Error(`stage3 rule ${cond}: unknown operator ${tok[i + 1]}`);
+        if (!op(v[tok[i]], v[tok[i + 2]])) return false;
     }
-    return magId;
+    return true;
 }
 
+// Keyed on the FEEDER's class (`f.class`), never on the mag's lineage — a
+// Vritra-line mag fed by a Hunter takes the HU table. That is what makes
+// "transfer the mag to another character" a real strategy.
 function stage3Next(data, state, f) {
     const ev = data.evolution;
-    const lineage = firstEvoOf(data, state.magId);
-    const lc = LINEAGE_CLASS[lineage];
     const grp = idGroupAB(data, f.sectionId);
-    // 1. FO special override (DEF >= minDef)
-    if (lc === 'FO' && state.def >= ev.stage3SpecialFO.minDef) {
+    // 1. FO's all-IDs DEF >= 45 override sits ahead of the rule rows — and it,
+    //    too, keys on the feeder being a Force.
+    if (f.class === 'FO' && state.def >= ev.stage3SpecialFO.minDef) {
         return argmaxStat(state, null) === 'POW'
             ? ev.stage3SpecialFO.powMax : ev.stage3SpecialFO.other;
     }
-    // 2. tie case
-    const tie = ev.stage3Ties[lc];
-    const s = { POW: state.pow, DEX: state.dex, MIND: state.mind };
-    if (s[tie.eq[0]] === s[tie.eq[1]] && s[tie.eq[0]] > s[tie.lt]) return tie[grp];
-    // 3. strict perm
-    return ((ev.stage3[lineage] || {})[permKey(state)] || {})[grp];
+    // 2. the ordered rule rows: first match wins.
+    const row = (ev.stage3Rules[f.class] || []).find((r) => evalStage3Rule(r.cond, state));
+    return row ? row[grp] : null;
 }
 
 export function checkEvolution(data, state) {
@@ -288,5 +298,5 @@ export function replaySession(data, session) {
 
 // browser (non-module) global
 if (typeof window !== 'undefined') {
-    window.MagSimEngine = { magLevel, createState, feedOnce, checkEvolution, checkCellEvolution, exportSession, replaySession };
+    window.MagSimEngine = { magLevel, createState, feedOnce, checkEvolution, checkCellEvolution, evalStage3Rule, exportSession, replaySession };
 }

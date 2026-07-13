@@ -1078,85 +1078,118 @@ window.MAG_SIM = {
         "MIND": "Namuci"
       }
     },
-    "stage3": {
-      "Varuna": {
-        "POW>DEX>MIND": {
+    "stage3Rules": {
+      "HU": [
+        {
+          "cond": "POW ≥ DEX ≥ MIND",
           "A": "Varaha",
           "B": "Kama"
         },
-        "POW>MIND>DEX": {
+        {
+          "cond": "DEX = MIND > POW",
+          "A": "Varaha",
+          "B": "Kama"
+        },
+        {
+          "cond": "POW ≥ MIND > DEX",
           "A": "Bhirava",
           "B": "Apsaras"
         },
-        "DEX>POW>MIND": {
+        {
+          "cond": "DEX > POW > MIND",
           "A": "Ila",
           "B": "Garuda"
         },
-        "DEX>MIND>POW": {
+        {
+          "cond": "DEX > MIND ≥ POW",
           "A": "Nandin",
           "B": "Yaksa"
         },
-        "MIND>POW>DEX": {
+        {
+          "cond": "MIND > POW ≥ DEX",
           "A": "Kabanda",
           "B": "Bana"
         },
-        "MIND>DEX>POW": {
+        {
+          "cond": "MIND > DEX > POW",
           "A": "Ushasu",
           "B": "Soma"
         }
-      },
-      "Kalki": {
-        "POW>DEX>MIND": {
+      ],
+      "RA": [
+        {
+          "cond": "POW > DEX ≥ MIND",
           "A": "Kama",
           "B": "Madhu"
         },
-        "DEX>MIND>POW": {
+        {
+          "cond": "DEX ≥ MIND ≥ POW",
           "A": "Kama",
           "B": "Varaha"
         },
-        "POW>MIND>DEX": {
+        {
+          "cond": "POW = MIND > DEX",
+          "A": "Kama",
+          "B": "Varaha"
+        },
+        {
+          "cond": "POW > MIND > DEX",
           "A": "Bhirava",
           "B": "Kaitabha"
         },
-        "DEX>POW>MIND": {
+        {
+          "cond": "DEX ≥ POW > MIND",
           "A": "Bhirava",
           "B": "Kaitabha"
         },
-        "MIND>POW>DEX": {
+        {
+          "cond": "MIND > POW ≥ DEX",
           "A": "Varaha",
           "B": "Kabanda"
         },
-        "MIND>DEX>POW": {
+        {
+          "cond": "MIND > DEX > POW",
           "A": "Apsaras",
           "B": "Durga"
         }
-      },
-      "Vritra": {
-        "POW>DEX>MIND": {
+      ],
+      "FO": [
+        {
+          "cond": "POW > DEX ≥ MIND",
           "A": "Naraka",
           "B": "Marica"
         },
-        "POW>MIND>DEX": {
+        {
+          "cond": "POW > MIND > DEX",
           "A": "Ravana",
           "B": "Naga"
         },
-        "DEX>POW>MIND": {
+        {
+          "cond": "DEX > POW > MIND",
           "A": "Ribhava",
           "B": "Garuda"
         },
-        "DEX>MIND>POW": {
+        {
+          "cond": "DEX > MIND ≥ POW",
           "A": "Sita",
           "B": "Bhirava"
         },
-        "MIND>POW>DEX": {
+        {
+          "cond": "MIND ≥ POW ≥ DEX",
           "A": "Naga",
           "B": "Kumara"
         },
-        "MIND>DEX>POW": {
+        {
+          "cond": "POW = DEX > MIND",
+          "A": "Naga",
+          "B": "Kumara"
+        },
+        {
+          "cond": "MIND ≥ DEX > POW",
           "A": "Kabanda",
           "B": "Ila"
         }
-      }
+      ]
     },
     "tieBreak": {
       "HU": "POW",
@@ -1271,35 +1304,6 @@ window.MAG_SIM = {
             "DEF+MIND=POW+DEX": null
           }
         }
-      }
-    },
-    "stage3Ties": {
-      "HU": {
-        "eq": [
-          "DEX",
-          "MIND"
-        ],
-        "lt": "POW",
-        "A": "Varaha",
-        "B": "Kama"
-      },
-      "RA": {
-        "eq": [
-          "POW",
-          "MIND"
-        ],
-        "lt": "DEX",
-        "A": "Kama",
-        "B": "Varaha"
-      },
-      "FO": {
-        "eq": [
-          "POW",
-          "DEX"
-        ],
-        "lt": "MIND",
-        "A": "Naga",
-        "B": "Kumara"
       }
     },
     "stage3SpecialFO": {

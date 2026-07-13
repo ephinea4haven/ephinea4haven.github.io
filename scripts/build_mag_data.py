@@ -22,7 +22,6 @@ Usage:  python3 scripts/build_mag_data.py
 from __future__ import annotations
 
 import argparse
-import itertools
 import json
 import re
 import subprocess
@@ -482,14 +481,19 @@ def audit_sim(sim: dict) -> None:
             if tgt not in known:
                 sys.exit(f"audit_sim: stage2 {src}.{stat}->{tgt} unknown mag")
 
-    # stage3: source mag -> perm -> {A, B} -> mag
-    for src, by_perm in ev["stage3"].items():
-        if src not in known:
-            sys.exit(f"audit_sim: stage3 source {src!r} unknown mag")
-        for perm, groups in by_perm.items():
-            for grp, tgt in groups.items():
-                if tgt not in known:
-                    sys.exit(f"audit_sim: stage3 {src}.{perm}.{grp}->{tgt} unknown mag")
+    # stage3Rules: class -> ordered [{cond, A, B}] (the wiki's Lv.50 rows).
+    # Every rule must resolve BOTH an A mag and a B mag, or a feeder in the
+    # unresolved ID group would fall through the row and take a later, wrong one.
+    for cls in ("HU", "RA", "FO"):
+        rows = ev["stage3Rules"].get(cls)
+        if not rows:
+            sys.exit(f"audit_sim: stage3Rules has no rows for {cls}")
+        for row in rows:
+            check_rule_syntax(row["cond"])
+            for grp in ("A", "B"):
+                if row.get(grp) not in known:
+                    sys.exit(f"audit_sim: stage3Rules {cls} {row['cond']!r} "
+                             f"group {grp} -> {row.get(grp)!r} unknown mag")
 
     # stage4: class -> gender -> TypeN -> formula -> mag | null
     for cls, by_gender in ev["stage4"].items():
@@ -504,12 +508,6 @@ def audit_sim(sim: dict) -> None:
     for c, stat in ev["tieBreak"].items():
         if stat not in ("POW", "DEX", "MIND"):
             sys.exit(f"audit_sim: tieBreak {c}->{stat!r} not a known stat")
-
-    # stage3Ties: class -> {eq, lt, A, B} (A/B are mag refs)
-    for c, tie in ev["stage3Ties"].items():
-        for grp in ("A", "B"):
-            if tie[grp] not in known:
-                sys.exit(f"audit_sim: stage3Ties {c}.{grp}->{tie[grp]} unknown mag")
 
     # stage3SpecialFO: {minDef, powMax, other} (powMax/other are mag refs)
     for key in ("powMax", "other"):
@@ -750,55 +748,70 @@ STAGE2 = {
     "Vritra": {"POW": "Sumba", "DEX": "Ashvinau", "MIND": "Namuci"},
 }
 
-# The 6 strict orderings of the three stats, high -> low.
-ALL_PERMS = [">".join(p) for p in itertools.permutations(("POW", "DEX", "MIND"))]
+# Every operator the Lv.50 rule chains use, as a 2-arg predicate.
+RULE_OPS = {
+    ">": lambda a, b: a > b,
+    "≥": lambda a, b: a >= b,
+    "=": lambda a, b: a == b,
+}
 
 
-def _eval_cond(cond: str, rank: dict) -> bool:
-    """Does a strict stat ordering satisfy one Lv.50 rule string?
+def check_rule_syntax(cond: str) -> None:
+    """A Lv.50 rule is an odd-length chain `STAT op STAT (op STAT)*`.
 
-    `rank` maps each stat to a distinct value (bigger = higher). A rule is a
-    chain like 'POW ≥ DEX ≥ MIND' or 'DEX = MIND > POW'. For a *strict* ordering
-    (all ranks distinct) '≥' coincides with '>' and '=' can never hold, so the
-    '=' tie-rules never fire on their own — they only ever share a mag with an
-    accompanying '≥'/'>' rule, which is what keeps the 6-way partition clean.
-    """
+    The engine evaluates these strings verbatim, so anything it could not parse
+    must fail the build here rather than silently never matching (a rule that
+    never matches falls through to the next row and quietly produces the wrong
+    mag)."""
     tok = cond.split()
-    for i in range(0, len(tok) - 2, 2):
-        left, op, right = tok[i], tok[i + 1], tok[i + 2]
-        lv, rv = rank[left], rank[right]
-        ok = (lv > rv) if op == ">" else (lv >= rv) if op == "≥" else \
-             (lv == rv) if op == "=" else None
-        if ok is None:
-            sys.exit(f"perms_from_cond: unknown operator {op!r} in {cond!r}")
-        if not ok:
-            return False
-    return True
+    if len(tok) < 3 or len(tok) % 2 == 0:
+        sys.exit(f"stage3 rule {cond!r}: not a STAT op STAT (op STAT)* chain")
+    for i, t in enumerate(tok):
+        if i % 2 == 0 and t not in STAT_ORDER:
+            sys.exit(f"stage3 rule {cond!r}: {t!r} is not a stat")
+        if i % 2 == 1 and t not in RULE_OPS:
+            sys.exit(f"stage3 rule {cond!r}: unknown operator {t!r}")
 
 
-def perms_from_cond(conds: list[str]) -> list[str]:
-    """Expand a mag's Lv.50 conditions into the strict stat orderings it wins.
+def build_stage3_rules(classes: dict) -> dict:
+    """The Lv.50 table as the wiki actually states it: an ORDERED list of rules
+    per CLASS, each resolving an A mag and a B mag.
 
-    Returns canonical perm keys ('POW>DEX>MIND' etc.) — every ordering for which
-    at least one of `conds` holds."""
-    out = []
-    for perm in ALL_PERMS:
-        stats = perm.split(">")
-        rank = {s: len(stats) - i for i, s in enumerate(stats)}
-        if any(_eval_cond(c, rank) for c in conds):
-            out.append(perm)
+    This replaces the old `{lineage: {perm: {A, B}}}` map, which could only
+    express the 6 strict stat orderings plus one hard-coded tie row. The wiki
+    states SEVEN ordered rows per class using `≥`/`>`/`=`, and the first row
+    that holds wins — a partition the 6 strict permutations cannot represent
+    (e.g. HU `DEX > MIND ≥ POW` and `DEX > POW > MIND` are different rows, but
+    `DEX > MIND = POW` collapses onto whichever permutation a tie-break picks).
+
+    Keyed by CLASS, not lineage: the wiki's Lv.50 condition lines read
+    `HU {{TypeA}} …`, i.e. the FEEDER's class. (Only Lv.35 is lineage-keyed.)
+    """
+    out: dict = {}
+    for c in ("HU", "RA", "FO"):
+        s3 = classes[c]["stage3"]
+        rows = []
+        for rule in s3["rules"]:
+            check_rule_syntax(rule)
+            row = {"cond": rule}
+            for grp in ("A", "B"):
+                hits = [e["name"] for e in s3[grp] if rule in e["cond"]]
+                if len(hits) != 1:
+                    sys.exit(f"stage3Rules {c} group {grp} rule {rule!r}: "
+                             f"expected exactly one mag, got {hits}")
+                row[grp] = hits[0]
+            rows.append(row)
+        if len(rows) != len(s3["rules"]):
+            sys.exit(f"stage3Rules {c}: lost a rule row")
+        out[c] = rows
     return out
 
 
 def build_evolution_std(classes: dict) -> dict:
     """Transform the in-memory MAG_EVOLUTION classes into machine keys a
-    simulator can execute: stage1/stage2 lineage maps and a stage3 lookup of
-    `{firstEvoMag: {perm: {"A": name, "B": name}}}` over the 6 stat orderings,
-    plus the per-class tie-break stat. Fails loudly if any of the 6 perms is
-    left uncovered or claimed by two mags in the same ID group."""
-    stage3: dict = {}
+    simulator can execute: the stage1/stage2 lineage maps, the ordered stage3
+    rule rows, and the per-class Lv.35 tie-break stat."""
     for c in ("HU", "RA", "FO"):
-        s3 = classes[c]["stage3"]
         first = STAGE1[c]
         # cross-check the fixed lineage facts against the derived structure
         if classes[c]["stage1"]["name"] != first:
@@ -807,67 +820,21 @@ def build_evolution_std(classes: dict) -> dict:
         if derived2 != STAGE2[first]:
             sys.exit(f"stage2 mismatch for {first}: {derived2} != {STAGE2[first]}")
 
-        lineage: dict = {}
-        for grp in ("A", "B"):
-            for entry in s3[grp]:
-                for perm in perms_from_cond(entry["cond"]):
-                    slot = lineage.setdefault(perm, {})
-                    if grp in slot:
-                        sys.exit(f"stage3 {first} {perm} group {grp}: "
-                                 f"{slot[grp]} and {entry['name']} both claim it")
-                    slot[grp] = entry["name"]
-        for perm in ALL_PERMS:
-            slot = lineage.get(perm)
-            if not slot or "A" not in slot or "B" not in slot:
-                sys.exit(f"stage3 {first} {perm}: incomplete mapping {slot}")
-        if len(lineage) != 6:
-            sys.exit(f"stage3 {first}: expected 6 perms, got {len(lineage)}")
-        stage3[first] = lineage
-
     return {
         "stage1": STAGE1,
         "stage2": STAGE2,
-        "stage3": stage3,
+        "stage3Rules": build_stage3_rules(classes),
         "tieBreak": {c: classes[c]["tieBreak"] for c in ("HU", "RA", "FO")},
     }
 
 
-TIE_COND_RE = re.compile(r"^(POW|DEX|MIND) = (POW|DEX|MIND) > (POW|DEX|MIND)$")
-
-
 def build_stage3_extras(classes: dict) -> dict:
-    """Derive the two stage3 mechanics build_evolution_std() deliberately
-    drops: the exact-tie rule (one per lineage, the single `=`-cond shared by
-    an A mag and a B mag) and FO's DEF>=45 special override.
+    """FO's Lv.50 DEF>=45 special override, which sits ahead of the rule rows.
 
-    Both are read straight from the in-memory `classes[C].stage3` structure
-    (same data as mag-evolution.js), not re-derived from wikitext, and each
-    is assert-checked against the shape the wiki actually encodes so a future
-    wiki change fails loudly here rather than silently drifting."""
-    ties: dict = {}
-    for c in ("HU", "RA", "FO"):
-        s3 = classes[c]["stage3"]
-        found: list[tuple[str, str, str]] = []  # (group, mag name, cond)
-        for grp in ("A", "B"):
-            for entry in s3[grp]:
-                for cond in entry["cond"]:
-                    if "=" in cond:
-                        found.append((grp, entry["name"], cond))
-        conds = {cond for _, _, cond in found}
-        if len(conds) != 1:
-            sys.exit(f"build_stage3_extras: expected exactly one '=' cond for "
-                     f"{c}, got {conds}")
-        cond = next(iter(conds))
-        m = TIE_COND_RE.match(cond)
-        if not m:
-            sys.exit(f"build_stage3_extras: unrecognised tie cond {cond!r} for {c}")
-        s1, s2, lt = m.group(1), m.group(2), m.group(3)
-        by_grp = {grp: name for grp, name, _ in found}
-        if set(by_grp) != {"A", "B"}:
-            sys.exit(f"build_stage3_extras: tie cond {cond!r} for {c} not "
-                     f"carried by both A and B groups, got {by_grp}")
-        ties[c] = {"eq": [s1, s2], "lt": lt, "A": by_grp["A"], "B": by_grp["B"]}
-
+    Read straight from the in-memory `classes.FO.stage3.special` structure (the
+    same data as mag-evolution.js), not re-derived from wikitext, and
+    assert-checked against the shape the wiki actually encodes so a future wiki
+    change fails loudly here rather than silently drifting."""
     special = classes["FO"]["stage3"]["special"]
     if not special or len(special) != 2:
         sys.exit(f"build_stage3_extras: expected 2-entry FO stage3 special, "
@@ -880,9 +847,8 @@ def build_stage3_extras(classes: dict) -> dict:
     if andhaka["cond"] != ["POW > Others"]:
         sys.exit(f"build_stage3_extras: unexpected Andhaka special cond "
                  f"{andhaka['cond']}")
-    special_fo = {"minDef": 45, "powMax": "Andhaka", "other": "Bana"}
+    return {"stage3SpecialFO": {"minDef": 45, "powMax": "Andhaka", "other": "Bana"}}
 
-    return {"stage3Ties": ties, "stage3SpecialFO": special_fo}
 
 
 def build(raw: str) -> tuple[dict, set]:
