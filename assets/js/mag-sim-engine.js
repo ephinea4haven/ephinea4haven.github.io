@@ -9,7 +9,12 @@ export function createState(data, { start }) {
         def: src.def, pow: src.pow, dex: src.dex, mind: src.mind,
         progress: { def: 0, pow: 0, dex: 0, mind: 0 },
         synchro: src.synchro, iq: src.iq,
-        window: { stage3: 50, stage4: 100 },
+        // The level of the last stat-driven third/fourth evolution. The wiki:
+        // "a Mag can evolve again with ONE feed during an evolution level" — so
+        // one evolution per evolution level, no more. Without this latch a Lv50
+        // stage-3 mag re-evolved on EVERY feed (ping-ponging Yaksa <-> Varaha by
+        // alternating the feeder) and collected Photon Blasts it never earns.
+        lastEvoLevel: null,
         // The feeder is one of the 12 PSO classes; the class alone fixes the
         // class line, the gender AND the race (HUmar = HU/M/Human, HUcast =
         // HU/M/Android, …). Race only matters for the mag-cell race rules.
@@ -191,19 +196,27 @@ export function checkEvolution(data, state) {
         const from = state.magId;
         state.magId = next;
         inheritPB(data, state);
+        // Only the level-gated evolutions (3rd/4th) latch: stages 1 and 2 have no
+        // "every N levels" rule, so they must never lock a later evolution level.
+        if (stage >= 3) state.lastEvoLevel = level;
         state.log.push({ kind: 'evolve', from, to: next, stage, level });
         events.push({ type: 'evolve', from, to: next, stage, level });
     };
 
     const stage = stageOf(state.magId);
-    // Every gate below is a RANGE, never an exact level: ONE feed can raise the
-    // level by up to +4 (all four stats crossing a progress boundary at once),
-    // so an `=== window` test is jumped clean over — Lv49 -> Lv51 used to lose
-    // the Lv50 evolution outright.
-    const inStage3Window = () =>
-        level >= state.window.stage3 && level < state.window.stage3 + 5;
-    const inStage4Window = () =>
-        level >= state.window.stage4 && level < state.window.stage4 + 10;
+    // Evolution LEVELS are discrete, not ranges. Wiki (Mags):
+    //   "Third evolution Mags occur at level 50, and every five levels after that"
+    //   "Fourth evolution Mags can occur beginning first at level 100, and every
+    //    ten levels after that (110, 120, 130, etc.)"
+    // A mag that overshoots one (49 -> 51 in a single feed) simply MISSES it and
+    // waits for the next — which is exactly why the guide tells players to plan
+    // "the level 49 -> 50 feed". The old 5-/10-wide sliding windows evolved at
+    // levels 51/52/53/54 and, because the window slid only AFTER the check, never
+    // fired at any boundary past the first (55, 60, 110, ...).
+    const isStage3Level = level >= 50 && level % 5 === 0;
+    const isStage4Level = level >= 100 && level % 10 === 0;
+    // "evolve again with ONE feed during an evolution level" — at most once per level.
+    const unlatched = () => state.lastEvoLevel !== level;
 
     // stage1: Lv10+, only from a fresh (stage 0) mag; by FEEDER class. No upper
     // bound, or a custom-start base Mag above Lv14 would be stuck at stage 0.
@@ -218,34 +231,29 @@ export function checkEvolution(data, state) {
             evolve(branch[argmaxStat(state, tie)], 2);
         }
     } else {
-        // stage4: the 10-wide window at 100, 110, ...; from stage 3; by FEEDER
-        // class/gender/Section-ID Type. Checked FIRST: at Lv100 both windows are
-        // open at once, and the fourth evolution is the terminal one.
-        if (stage === 3 && inStage4Window()) {
+        // stage4: at 100, 110, 120, ...; from stage 3; by FEEDER class/gender/
+        // Section-ID Type. Checked FIRST: level 100 is both a third- and a
+        // fourth-evolution level, and the fourth evolution is the terminal one
+        // (a mag that misses its stage-4 condition retries at 110, 120, ...).
+        if (stage === 3 && isStage4Level && unlatched()) {
             const leaf = ((ev.stage4[f.class] || {})[f.gender] || {})[idType(data, f.sectionId)];
             evolve(stage4Next(leaf, state), 4);
         }
-        // stage3: the 5-wide window at 50, 55, 60, ...; by FEEDER class + Section ID.
-        // Open to a stage-2 mag (its third evolution) AND to a stage-3 mag: the wiki
-        // says a Mag "can evolve again every fifth level if another evolution
-        // condition is met (e.g. the Mag is transferred to and fed by a different
+        // stage3: at 50, 55, 60, ...; by FEEDER class + Section ID. Open to a
+        // stage-2 mag (its third evolution) AND to a stage-3 mag: the wiki says a
+        // Mag "can evolve again every fifth level if another evolution condition
+        // is met (e.g. the Mag is transferred to and fed by a different
         // character)" — "useful for the purposes of switching feeding tables".
-        // Gating this on `stage === 2` made a third-evolution mag permanent and
-        // left the sliding window dead code.
         //
-        // The stage is RE-READ, so a mag that just took its fourth evolution above
-        // is excluded — that one is terminal.
+        // The stage and the latch are RE-READ, so a mag that just took its fourth
+        // evolution above is excluded twice over: stage 4 is terminal, and the
+        // latch is now set to this level.
         const st = stageOf(state.magId);
-        if ((st === 2 || st === 3) && inStage3Window()) {
+        if ((st === 2 || st === 3) && isStage3Level && unlatched()) {
             evolve(stage3Next(data, state, f), 3);
         }
     }
 
-    // Windows slide once fully passed (the "evolve every 5th / 10th level"
-    // mechanic). `while`, not `if`: a single feed can clear a whole window, and
-    // a window left behind the level can never be reached again.
-    while (level >= state.window.stage3 + 5) state.window.stage3 += 5;
-    while (level >= state.window.stage4 + 10) state.window.stage4 += 10;
     return events;
 }
 

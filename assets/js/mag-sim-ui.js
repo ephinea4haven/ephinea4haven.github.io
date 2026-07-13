@@ -215,13 +215,19 @@ const STAT_DEFS = [
     { key: 'mind', label: 'MIND', cls: 'mind' },
 ];
 
-// Windows are ranges, not exact levels: stage 3 fires anywhere in [w, w+5),
-// stage 4 in [w, w+10). Show the span so the hint matches the actual gate.
+// Evolution LEVELS are discrete, not ranges — the wiki: third evolutions at
+// "level 50, and every five levels after that", fourth at "level 100, and every
+// ten levels after that (110, 120, 130)". Overshoot one and you simply wait for
+// the next, so the hint must name the exact level the player is feeding toward.
+const nextEvoLevel = (level, first, step) =>
+    (level <= first ? first : Math.ceil(level / step) * step);
+
 const NEXT_EVO_HINT = {
     0: 'Lv 10+ → 一阶',
     1: 'Lv 35+ → 二阶',
-    2: (s) => `Lv ${s.window.stage3}–${s.window.stage3 + 4} → 三阶`,
-    3: (s) => `Lv ${s.window.stage4}–${s.window.stage4 + 9} → 四阶（或用 Mag Cell）`,
+    2: (s) => `Lv ${nextEvoLevel(E.magLevel(s), 50, 5)} → 三阶`,
+    3: (s) => `Lv ${nextEvoLevel(E.magLevel(s), 100, 10)} → 四阶`
+        + `（或 Lv ${nextEvoLevel(E.magLevel(s), 50, 5)} 换喂食者再进化）`,
     4: '已达四阶（可用 Mag Cell 转稀有）',
 };
 
