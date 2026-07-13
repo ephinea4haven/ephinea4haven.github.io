@@ -387,6 +387,22 @@ check('createState 默认开启种族限制', s.racialRestriction === true);
     JSON.stringify(replayed.progress) === JSON.stringify(t.progress));
 }
 
+// The 种族限制 toggle must survive export/replay. An Android feeder with the
+// toggle OFF can use Heart of Angel; if the toggle didn't round-trip, the replay
+// would re-apply the deny rule and reproduce a DIFFERENT mag from the same link.
+{
+  const t = createState(DATA, { start:{mode:'custom', magId:'Varaha',
+    def:40, pow:30, dex:10, mind:20, synchro:20, iq:0} });
+  t.feeder = { class:'HU', gender:'M', sectionId:'Viridia', race:'Android' };
+  t.racialRestriction = false;
+  feedOnce(DATA, t, 'Heart of Angel');
+  check('关闭种族限制:机器人喂 Heart of Angel 成功', t.magId === "Angel's Wing");
+  const replayed = replaySession(DATA, exportSession(t));
+  check('回放保留 racialRestriction=false', replayed.racialRestriction === false);
+  check('回放后仍是 Angel\'s Wing（deny 规则未被重新套用）',
+    replayed.magId === t.magId);
+}
+
 // mid-session feeder swap: export/replay must survive the feeder object being
 // reassigned in place mid-session (the UI idiom), proving exportSession /
 // replaySession don't alias the live `state.feeder` .
