@@ -188,11 +188,39 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   feedN(t, 'Trimate', 5);
   check('level caps at 200', magLevel(t) === 200);
 }
-// borrow boundary: a negative-MIND feed borrows the stat down
+// --- BUG 1: a negative feed must never cost the mag a LEVEL ------------------
+// Wiki (Mags#Raising): "Mags may also lose experience in their stats depending
+// on the item, but they cannot lose levels." The engine used to borrow a whole
+// point (mind 5 -> 4, progress 85), which drops the level. The loss now floors
+// at the bottom of the current point instead.
+// (This test asserted the borrow before; the borrow IS the bug, so the
+// expectation is inverted rather than the fix weakened to keep it green.)
 {
   const t = cs({ magId: 'Rudra', def: 10, pow: 0, dex: 0, mind: 5 });
-  feedOnce(DATA, t, 'Trimate'); // table2 Trimate MIND -15 -> borrow one point
-  check('negative MIND feed borrows down', t.mind === 4 && t.progress.mind === 85);
+  feedOnce(DATA, t, 'Trimate'); // table2 Trimate MIND -15, progress 0 -> floors at 0
+  check('负值喂食不借位：MIND 保持 5，progress 归零',
+    t.mind === 5 && t.progress.mind === 0);
+}
+// partial loss WITHIN the current point is still applied (80 -> 65)
+{
+  const t = cs({ magId: 'Rudra', def: 10, pow: 0, dex: 0, mind: 5 });
+  t.progress.mind = 80;
+  feedOnce(DATA, t, 'Trimate'); // MIND -15
+  check('负值喂食在当前点内扣减 progress（80 -> 65）',
+    t.mind === 5 && t.progress.mind === 65);
+}
+// the reported repro: a Diwari (table 7) at 20/20/20/20 = Lv80 fed one Monomate
+// ([-4,+21,-15,-5]) used to drop to Lv77.
+{
+  const t = cs({ magId: 'Diwari', def: 20, pow: 20, dex: 20, mind: 20 }); // level 80
+  feedOnce(DATA, t, 'Monomate');
+  check('Diwari Lv80 喂 Monomate 后仍是 Lv80（不掉级）', magLevel(t) === 80);
+}
+// even a capped Lv200 mag must not be knocked back down to 198
+{
+  const t = cs({ magId: 'Diwari', def: 50, pow: 50, dex: 50, mind: 50 }); // level 200
+  feedOnce(DATA, t, 'Monomate');
+  check('Lv200 满级 mag 喂 Monomate 后仍是 Lv200', magLevel(t) === 200);
 }
 
 // --- mag cell evolution

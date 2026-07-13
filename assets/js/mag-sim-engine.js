@@ -49,7 +49,7 @@ export function feedOnce(data, state, itemName) {
     state.iq = clamp(state.iq + row[5], 0, 200);
 
     const before = magLevel(state);
-    // primary stats: progress accumulator with carry/borrow, respect 200 cap
+    // primary stats: progress accumulator with carry, respect 200 cap
     STAT_KEYS.forEach((k, i) => {
         state.progress[k] += row[i];
         while (state.progress[k] >= 100) {
@@ -59,10 +59,12 @@ export function feedOnce(data, state, itemName) {
             }
             state[k] += 1; state.progress[k] -= 100;
         }
-        while (state.progress[k] < 0) {
-            if (state[k] <= 0) { state.progress[k] = 0; break; }
-            state[k] -= 1; state.progress[k] += 100;
-        }
+        // A negative feed can only eat into the CURRENT point's hundredths
+        // (80 -> 65); it never borrows from the integer stat. The wiki is
+        // explicit: "Mags may also lose experience in their stats depending on
+        // the item, but they cannot lose levels." Borrowing here dropped a
+        // Lv200 mag to Lv198 on a single Monomate.
+        if (state.progress[k] < 0) state.progress[k] = 0;
     });
     const after = magLevel(state);
     if (after > before) events.push({ type: 'levelUp', level: after });
