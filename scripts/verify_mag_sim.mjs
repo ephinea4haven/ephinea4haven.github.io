@@ -913,39 +913,64 @@ for (const [cls, expected] of [['HU', 'Yaksa'], ['RA', 'Varaha']]) {
     t.magId === expected);
 }
 
-// --- Guide: the nine fourth-evolution rare Mags, each keyed by
-//     (class, gender, Section-ID type). Build a Lv100 third-evo mag that
-//     satisfies that type's stat formula, feed once, and expect the guide's mag.
+// --- Guide: the nine fourth-evolution rare Mags -----------------------------
+// The guide walks a player to a Lv100 third-evolution mag with one of exactly
+// FOUR stat lines, quoted verbatim:
+//   Simple POW Mag:  "Your Mag's stats will now be either 5/50/45/0, or
+//                     5/45/50/0, depending on which of the above Mags you chose."
+//   Simple MIND Mag: "Your Mag's stats will now be either 5/0/45/50, or
+//                     5/0/50/45, depending on which of the above Mags you chose."
+// …then names, per rare Mag, the character to transfer it to. Each line sums to
+// exactly 100, i.e. it IS the level-100 evolution state.
+//
+// This test used to read the formula out of DATA.evolution.stage4[cls][gender]
+// [type] — THE VERY TABLE IT IS TESTING — and then search for stats satisfying
+// it, which made it tautological: a formula<->Type mis-mapping was invisible to
+// it. Now every stat line is HARD-CODED from the guide, and the only thing the
+// engine is asked for is the mag's name. Which of the four lines belongs to
+// which recipe is decided by the guide too (the POW gallery lists Rati/Diwari
+// under {{Type3}} and Bhima under {{Type3}}; the MIND gallery lists Rati/Bhima
+// under {{Type2}} and says Diwari "cannot be made with these stats"), so the
+// POW lines drive the Type1/Type3 recipes and the MIND line drives Bhima.
 {
-  const TYPE_OF = { [GRP_A]: 'Type1', [GRP_B]: 'Type2', [TYPE3]: 'Type3' };
+  const POW_A = { def: 5, pow: 50, dex: 45, mind: 0 };   // guide, Simple POW Mag
+  const POW_B = { def: 5, pow: 45, dex: 50, mind: 0 };   // guide, Simple POW Mag
+  const MIND_B = { def: 5, pow: 0, dex: 50, mind: 45 };  // guide, Simple MIND Mag
+  // [expected mag, class, gender, section ID, the guide's stat line]
   const RECIPES = [
-    ['Deva', 'HU', 'M', GRP_A], ['Savitri', 'HU', 'F', GRP_A], ['Rati', 'HU', 'M', TYPE3],
-    ['Pushan', 'RA', 'M', GRP_A], ['Rukmin', 'RA', 'F', GRP_A], ['Diwari', 'RA', 'F', TYPE3],
-    ['Nidra', 'FO', 'M', GRP_A], ['Sato', 'FO', 'F', GRP_A], ['Bhima', 'FO', 'F', GRP_B],
+    ['Deva',    'HU', 'M', GRP_A, POW_A],   // Type1 male Hunter
+    ['Savitri', 'HU', 'F', GRP_A, POW_A],   // Type1 female Hunter
+    ['Rati',    'HU', 'M', TYPE3, POW_B],   // Type3 male Hunter
+    ['Pushan',  'RA', 'M', GRP_A, POW_A],   // Type1 male Ranger
+    ['Rukmin',  'RA', 'F', GRP_A, POW_A],   // Type1 female Ranger
+    ['Diwari',  'RA', 'F', TYPE3, POW_B],   // Type3 female Ranger
+    ['Nidra',   'FO', 'M', GRP_A, POW_A],   // Type1 male Force
+    ['Sato',    'FO', 'F', GRP_A, POW_A],   // Type1 female Force
+    ['Bhima',   'FO', 'F', GRP_B, MIND_B],  // Type2 female Force (MIND guide)
   ];
-  const holds = (f, s) =>
-    f === 'DEF+POW=DEX+MIND' ? s.def + s.pow === s.dex + s.mind
-      : f === 'DEF+DEX=POW+MIND' ? s.def + s.dex === s.pow + s.mind
-        : s.def + s.mind === s.pow + s.dex;
-  for (const [expected, cls, gender, id] of RECIPES) {
-    const leaf = DATA.evolution.stage4[cls][gender][TYPE_OF[id]];
-    const formula = Object.keys(leaf).find((k) => leaf[k]);
-    let found = null;
-    for (let def = 1; def <= 100 && !found; def++) {
-      for (let pow = 0; pow <= 100 - def && !found; pow++) {
-        for (let dex = 0; dex <= 100 - def - pow && !found; dex++) {
-          const mind = 100 - def - pow - dex;
-          if (mind >= 0 && holds(formula, { def, pow, dex, mind })) found = { def, pow, dex, mind };
-        }
-      }
-    }
+  const TYPE_OF = { [GRP_A]: 'Type1', [GRP_B]: 'Type2', [TYPE3]: 'Type3' };
+  for (const [expected, cls, gender, id, st] of RECIPES) {
+    check(`指南/四阶: ${expected} 的指南四维 ${st.def}/${st.pow}/${st.dex}/${st.mind} 恰为 Lv100`,
+      st.def + st.pow + st.dex + st.mind === 100);
     const t = createState(DATA, {
-      start: { mode: 'custom', magId: 'Varaha', ...found, synchro: 20, iq: 0 },
+      start: { mode: 'custom', magId: 'Varaha', ...st, synchro: 20, iq: 0 },
     });
     t.feeder = { class: cls, gender, sectionId: id, race: 'Human' };
     feedOnce(DATA, t, 'Star Atomizer');
-    check(`指南/四阶: ${cls} ${gender === 'M' ? '男' : '女'} + ${TYPE_OF[id]} -> ${expected}`,
-      t.magId === expected);
+    check(`指南/四阶: ${cls} ${gender === 'M' ? '男' : '女'} + ${TYPE_OF[id]}`
+      + ` + 指南四维 ${st.def}/${st.pow}/${st.dex}/${st.mind} -> ${expected}`,
+      t.magId === expected && DATA.mags[t.magId].stage === 4);
+  }
+  // ...and the guide's own negative: with the MIND Mag's stats, Diwari
+  // "cannot be made" — a Type3 female Ranger fed 5/0/50/45 must NOT get one.
+  {
+    const t = createState(DATA, {
+      start: { mode: 'custom', magId: 'Varaha', ...MIND_B, synchro: 20, iq: 0 },
+    });
+    t.feeder = { class: 'RA', gender: 'F', sectionId: TYPE3, race: 'Human' };
+    feedOnce(DATA, t, 'Star Atomizer');
+    check('指南/四阶: MIND 四维 5/0/50/45 做不出 Diwari（指南原话）',
+      t.magId !== 'Diwari' && DATA.mags[t.magId].stage !== 4);
   }
 }
 
