@@ -737,5 +737,98 @@ check('createState 默认开启种族限制', s.racialRestriction === true);
     + (firstBad4 ? ` — 首个：${firstBad4}` : ''), bad4 === 0);
 }
 
+// ===========================================================================
+// GOLDEN PATHS — Ephinea's own player guide (wiki.pioneer2.net/w/Mags/Guide)
+//
+// An EXTERNAL oracle: the guide is written for players, was never used as a
+// data source for this simulator, and states its outcomes (mag, exact stats,
+// Photon Blasts) in prose. Reproducing it end-to-end exercises the whole
+// chain at once — feed tables, carry, evolution windows, stage-3-by-feeder-
+// class, the wiki's ordered `>=` rules, and PB inheritance.
+// ===========================================================================
+const GRP_A = 'Viridia';        // section-ID group A  (also Type1)
+const GRP_B = 'Greenill';       // section-ID group B  (also Type2)
+const TYPE3 = 'Skyly';
+const stats = (t) => `${t.def}/${t.pow}/${t.dex}/${t.mind}`;
+const feedUntil = (t, item, stop, cap = 5000) => {
+  for (let i = 0; i < cap && !stop(t); i++) feedOnce(DATA, t, item);
+};
+
+// --- Guide: "Advanced MIND Mag" (the most precise recipe — it quotes stats)
+//     HU + Monofluid -> Lv10 Varuna (PB Farlla) -> Lv35 Vayu (PB Mylla & Youlla)
+//     at exactly 15/0/0/20 -> transfer to a TypeB Hunter, feed Moon Atomizer +
+//     Monofluid -> Lv50 Bana (PB Estlla).
+{
+  const t = createState(DATA, { start: { mode: 'fresh' } });
+  t.feeder = { class: 'HU', gender: 'M', sectionId: GRP_A, race: 'Human' };
+  let atTen = null;
+  feedUntil(t, 'Monofluid', (s) => {
+    if (!atTen && DATA.mags[s.magId].stage === 1) atTen = { id: s.magId, pbs: [...s.pbs] };
+    return magLevel(s) >= 35;
+  });
+  check('指南/进阶MIND: Lv10 -> Varuna, PB Farlla',
+    atTen && atTen.id === 'Varuna' && atTen.pbs.join() === 'Farlla');
+  check('指南/进阶MIND: Lv35 -> Vayu', t.magId === 'Vayu');
+  check('指南/进阶MIND: Lv35 时四维恰为 15/0/0/20', stats(t) === '15/0/0/20');
+  check('指南/进阶MIND: Lv35 时 PB = [Farlla, Mylla & Youlla]',
+    t.pbs.join() === 'Farlla,Mylla & Youlla');
+
+  t.feeder = { class: 'HU', gender: 'M', sectionId: GRP_B, race: 'Human' }; // TypeB Hunter
+  let i = 0;
+  feedUntil(t, 'Monofluid', (s) => DATA.mags[s.magId].stage >= 3 || i++ > 900);
+  check('指南/进阶MIND: TypeB 的 HU 喂到 Lv50 -> Bana', t.magId === 'Bana');
+  check('指南/进阶MIND: Lv50 时 PB 三槽含 Estlla',
+    t.pbs.length === 3 && t.pbs.includes('Estlla'));
+}
+
+// --- Guide: "Simple MIND Mag" — the sharpest proof that stage 3 keys on the
+//     FEEDER's class: same mag, same stats, same TypeB section ID, only the
+//     class differs. The guide: "It will turn into Yaksa (on HU) or Varaha (on RA)".
+for (const [cls, expected] of [['HU', 'Yaksa'], ['RA', 'Varaha']]) {
+  const t = createState(DATA, { start: { mode: 'fresh' } });
+  t.feeder = { class: cls, gender: 'M', sectionId: GRP_A, race: 'Human' };
+  feedUntil(t, 'Antiparalysis', (s) => magLevel(s) >= 49, 3000);
+  t.feeder = { class: cls, gender: 'M', sectionId: GRP_B, race: 'Human' }; // transfer: TypeB
+  feedUntil(t, 'Antiparalysis', (s) => DATA.mags[s.magId].stage >= 3, 800);
+  check(`指南/简易MIND: TypeB + ${cls} -> ${expected}（同 mag 同 ID，只换职业）`,
+    t.magId === expected);
+}
+
+// --- Guide: the nine fourth-evolution rare Mags, each keyed by
+//     (class, gender, Section-ID type). Build a Lv100 third-evo mag that
+//     satisfies that type's stat formula, feed once, and expect the guide's mag.
+{
+  const TYPE_OF = { [GRP_A]: 'Type1', [GRP_B]: 'Type2', [TYPE3]: 'Type3' };
+  const RECIPES = [
+    ['Deva', 'HU', 'M', GRP_A], ['Savitri', 'HU', 'F', GRP_A], ['Rati', 'HU', 'M', TYPE3],
+    ['Pushan', 'RA', 'M', GRP_A], ['Rukmin', 'RA', 'F', GRP_A], ['Diwari', 'RA', 'F', TYPE3],
+    ['Nidra', 'FO', 'M', GRP_A], ['Sato', 'FO', 'F', GRP_A], ['Bhima', 'FO', 'F', GRP_B],
+  ];
+  const holds = (f, s) =>
+    f === 'DEF+POW=DEX+MIND' ? s.def + s.pow === s.dex + s.mind
+      : f === 'DEF+DEX=POW+MIND' ? s.def + s.dex === s.pow + s.mind
+        : s.def + s.mind === s.pow + s.dex;
+  for (const [expected, cls, gender, id] of RECIPES) {
+    const leaf = DATA.evolution.stage4[cls][gender][TYPE_OF[id]];
+    const formula = Object.keys(leaf).find((k) => leaf[k]);
+    let found = null;
+    for (let def = 1; def <= 100 && !found; def++) {
+      for (let pow = 0; pow <= 100 - def && !found; pow++) {
+        for (let dex = 0; dex <= 100 - def - pow && !found; dex++) {
+          const mind = 100 - def - pow - dex;
+          if (mind >= 0 && holds(formula, { def, pow, dex, mind })) found = { def, pow, dex, mind };
+        }
+      }
+    }
+    const t = createState(DATA, {
+      start: { mode: 'custom', magId: 'Varaha', ...found, synchro: 20, iq: 0 },
+    });
+    t.feeder = { class: cls, gender, sectionId: id, race: 'Human' };
+    feedOnce(DATA, t, 'Star Atomizer');
+    check(`指南/四阶: ${cls} ${gender === 'M' ? '男' : '女'} + ${TYPE_OF[id]} -> ${expected}`,
+      t.magId === expected);
+  }
+}
+
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
 process.exit(failed ? 1 : 0);
