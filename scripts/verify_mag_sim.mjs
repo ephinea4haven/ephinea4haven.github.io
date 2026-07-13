@@ -17,7 +17,11 @@ check('fresh 起始 level 5', magLevel(s) === 5);
 check('fresh DEF 5 其余 0', s.def === 5 && s.pow === 0 && s.mind === 0);
 check('fresh synchro 20 iq 0', s.synchro === 20 && s.iq === 0);
 check('fresh magId=Mag', s.magId === 'Mag');
-check('窗口初始 50/100', s.window.stage3 === 50 && s.window.stage4 === 100);
+// There is no sliding "evolution window" any more — evolution LEVELS are
+// discrete (50/55/60… and 100/110/120…). All that is carried on the state is a
+// latch recording the level of the last stat-driven 3rd/4th evolution.
+check('fresh lastEvoLevel 为 null（无进化窗口）', s.lastEvoLevel === null);
+check('state 上不再有 window 字段', s.window === undefined);
 
 // --- feedOnce: stat progress, carry, caps
 {
@@ -87,56 +91,144 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   check('Lv50 stage3 HU/A POW ≥ DEX ≥ MIND -> Varaha',
     t.magId === 'Varaha' && DATA.mags[t.magId].stage === 3);
 }
-// stage3 window SLIDE: stage2 mag created past 50 misses window, slides to 55,
-// then evolves on the next feed at 55.
+// === EVOLUTION LEVELS ARE DISCRETE ==========================================
+// Wiki (Mags#Third evolution Mags): "Third evolution Mags occur at level 50,
+// and every five levels after that". (Mags#Fourth evolution Mags): "Fourth
+// evolution Mags can occur beginning first at level 100, and every ten levels
+// after that (110, 120, 130, etc.)". And: "a Mag can evolve again with ONE feed
+// during an evolution level (e.g. the Mag is currently level 50, 55, 75, etc.)".
+//
+// These tests are the ones whose ABSENCE let the sliding-window bug ship: every
+// evolution assertion in this suite used to sit at exactly Lv50 or Lv100 — the
+// only two levels at which the (wrong) 5-/10-wide sliding windows happened to
+// agree with the wiki. Nothing ever fed a mag through 55, 60 or 110.
+
+// A stage-2 mag that arrives at Lv55 evolves on the FIRST feed at 55 — 55 is an
+// evolution level in its own right, there is no window to "slide" to it.
 {
   const t = cs({ magId: 'Rudra', def: 53, pow: 2, dex: 0, mind: 0 }); // level 55
   t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
-  feedOnce(DATA, t, 'Star Atomizer'); // 55 != 50 -> no evolve, slide to 55
-  check('window slides 50 -> 55 on miss (still stage2)',
-    t.window.stage3 === 55 && DATA.mags[t.magId].stage === 2);
-  feedOnce(DATA, t, 'Star Atomizer'); // 55 == 55 -> evolve
-  check('evolves at slid window 55 -> stage3', DATA.mags[t.magId].stage === 3);
+  feedOnce(DATA, t, 'Star Atomizer'); // 55 % 5 === 0 -> evolves right here
+  check('Lv55 是进化等级：二段 mag 首次喂食即三段进化',
+    magLevel(t) === 55 && t.magId === 'Varaha' && DATA.mags[t.magId].stage === 3);
 }
-// --- evolution windows are RANGES, not exact levels (review I1) -------------
-// One feed can raise the level by up to +4 (all four stats crossing a progress
-// boundary at once), so an `=== window` gate can be jumped clean over.
-// (a) stage3: Rudra at Lv49 with two stats at progress 99 -> one feed -> Lv51.
+// ...and so is Lv60.
+{
+  const t = cs({ magId: 'Rudra', def: 58, pow: 2, dex: 0, mind: 0 }); // level 60
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv60 是进化等级：二段 mag 首次喂食即三段进化',
+    magLevel(t) === 60 && DATA.mags[t.magId].stage === 3);
+}
+// (a) OVERSHOOT: a mag that jumps 49 -> 51 in one feed MISSES level 50 and does
+// NOT evolve — that is exactly why the guide tells players to plan the 49 -> 50
+// feed. It then evolves when it later LANDS on 55.
+// (The old suite asserted the opposite — "Lv49 -> 51 overshoot still evolves at
+// stage3" — because the broken window covered the whole range 50..54.)
 {
   const t = cs({ magId: 'Rudra', def: 47, pow: 2, dex: 0, mind: 0 }); // level 49
   t.progress.def = 99; t.progress.pow = 99;
   t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };      // group A
-  feedOnce(DATA, t, 'Star Atomizer'); // def+1 pow+1 -> level 51, overshoots 50
-  check('Lv49 -> 51 overshoot still evolves at stage3',
-    magLevel(t) === 51 && DATA.mags[t.magId].stage === 3);
+  feedOnce(DATA, t, 'Star Atomizer'); // def+1 pow+1 -> level 51, jumps clean over 50
+  check('Lv49 -> 51 跳过 50：不进化（仍是二段 Rudra）',
+    magLevel(t) === 51 && t.magId === 'Rudra' && DATA.mags[t.magId].stage === 2);
+  // keep feeding: 52, 53, 54 are NOT evolution levels either.
+  for (let i = 0; i < 200 && magLevel(t) < 55; i++) {
+    feedOnce(DATA, t, 'Star Atomizer');
+    if (magLevel(t) < 55) {
+      check(`Lv${magLevel(t)} 不是进化等级：仍是二段`,
+        DATA.mags[t.magId].stage === 2);
+    }
+  }
+  check('错过 50 的 mag 在 Lv55 进化', magLevel(t) === 55 && t.magId === 'Varaha');
 }
-// (b) stage4: a Lv99 stage-3 mag gaining +3 in one feed overshoots the Lv100
-// window; with an `=== window` gate the window slid to 110 and the evolution
-// was lost forever.
+// (b) the same for the fourth evolution: a Lv99 stage-3 mag that jumps to 102
+// misses the Lv100 evolution and stays a third-evolution mag.
 {
   const t = cs({ magId: 'Varaha', def: 40, pow: 30, dex: 9, mind: 20 }); // level 99
   t.progress.def = 99; t.progress.pow = 99; t.progress.dex = 99;
   t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' }; // Type1
-  feedOnce(DATA, t, 'Star Atomizer'); // -> 41/31/10/20 = Lv102, DEF+DEX=POW+MIND
-  check('Lv99 -> 102 overshoot still evolves at stage4 -> Deva',
-    magLevel(t) === 102 && t.magId === 'Deva' && DATA.mags[t.magId].stage === 4);
+  feedOnce(DATA, t, 'Star Atomizer'); // -> 41/31/10/20 = Lv102 (DEF+DEX=POW+MIND holds)
+  check('Lv99 -> 102 跳过 100：不四段进化（公式成立也没用）',
+    magLevel(t) === 102 && t.magId === 'Varaha' && DATA.mags[t.magId].stage === 3);
 }
-// (c) a custom-start base Mag above Lv14 (the setup dropdown offers exactly
+// (c) the Lv110 LANDING feed: a stage-3 mag that satisfies its Type's stage-4
+// formula evolves on the feed that lands it on 110 — not one feed later, and not
+// never (the old sliding window fired only at 100 and could never reach 110).
+{
+  const t = cs({ magId: 'Varaha', def: 44, pow: 30, dex: 10, mind: 25 }); // level 109
+  t.progress.def = 99;
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' }; // Type1
+  feedOnce(DATA, t, 'Star Atomizer'); // def 44 -> 45: 45/30/10/25 = Lv110, DEF+DEX=POW+MIND (55=55)
+  check('Lv110 落地喂食：HU/M/Type1 公式成立 → Deva（就在这一喂）',
+    magLevel(t) === 110 && t.magId === 'Deva' && DATA.mags[t.magId].stage === 4);
+}
+// (d) non-evolution levels never evolve anything: 51-54 (stage2 mag) and
+// 101/105 (stage3 mag whose Type formula DOES hold, so only the LEVEL can stop it).
+for (const lvl of [51, 52, 53, 54]) {
+  const t = cs({ magId: 'Rudra', def: lvl - 2, pow: 2, dex: 0, mind: 0 });
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  check(`Lv${lvl} 不是三段进化等级 → 不进化`,
+    magLevel(t) === lvl && t.magId === 'Rudra');
+}
+// 101 / 102 / 105 are not FOURTH-evolution levels. All three states below have
+// POW ≥ DEX ≥ MIND, so the HU/A third-evolution rule maps Varaha back onto
+// Varaha — the stage-3 path is a guaranteed no-op and ONLY a stage-4 evolution
+// could change the mag. (105 *is* a third-evolution level; that is the point.)
+// Lv102 additionally satisfies Type1's DEF+DEX = POW+MIND (51 = 51), so there
+// the level gate is the ONLY thing standing between it and Deva.
+for (const [lvl, st] of [[101, { def: 20, pow: 40, dex: 30, mind: 11 }],
+                         [102, { def: 21, pow: 40, dex: 30, mind: 11 }],
+                         [105, { def: 24, pow: 40, dex: 30, mind: 11 }]]) {
+  const t = cs({ magId: 'Varaha', ...st });
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' }; // Type1
+  feedOnce(DATA, t, 'Star Atomizer');
+  check(`Lv${lvl} 不是四段进化等级 → 不进化（仍是三段 Varaha）`,
+    magLevel(t) === lvl && t.magId === 'Varaha' && DATA.mags[t.magId].stage === 3);
+}
+check('Lv102 的构造确实满足 Type1 公式 DEF+DEX = POW+MIND（51 = 51）',
+  21 + 30 === 40 + 11);
+// (e) a custom-start base Mag above Lv14 (the setup dropdown offers exactly
 // this) must still take its stage1 evolution, not be stuck at stage 0 forever.
+// Stages 1 and 2 have NO "every N levels" rule — they are plain `level >=` gates.
 {
   const t = cs({ magId: 'Mag', def: 50, pow: 0, dex: 0, mind: 0 }); // level 50
   t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
   feedOnce(DATA, t, 'Star Atomizer');
   check('custom Mag at Lv50 evolves (stage1 has no upper bound)', t.magId === 'Varuna');
 }
-// windows never lag behind the level: a stage-3 mag created at Lv121 slides
-// its stage4 window 100 -> 110 -> 120 in ONE feed (a single `+= 10` left it at
-// 110 and, on an odd-level mag, it could never catch up).
+{
+  const t = cs({ magId: 'Mag', def: 51, pow: 0, dex: 0, mind: 0 }); // level 51 — NOT an evo level
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv51 的 stage0 mag 照样一段进化（一/二段无“每 N 级”规则）',
+    t.magId === 'Varuna');
+}
+// (f) a stage-3 mag sitting on a NON-evolution level (121) never evolves, no
+// matter how many times it is fed.
 {
   const t = cs({ magId: 'Varaha', def: 121, pow: 0, dex: 0, mind: 0 }); // level 121
   t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' };
-  feedOnce(DATA, t, 'Star Atomizer');
-  check('stage4 window slides all the way to 120 in one feed', t.window.stage4 === 120);
+  feedN(t, 'Star Atomizer', 3);
+  check('Lv121 三段 mag 反复喂食也不进化', t.magId === 'Varaha');
+}
+// (g) ONE evolution per evolution level: feeding repeatedly at Lv50 while
+// alternating the feeder's class must produce EXACTLY ONE evolution — not a
+// Yaksa <-> Varaha ping-pong — and must not hand out extra Photon Blasts.
+{
+  const t = cs({ magId: 'Rudra', def: 41, pow: 2, dex: 5, mind: 2 }); // level 50
+  const evolves = [];
+  for (let i = 0; i < 4; i++) {
+    // HU/B -> Yaksa, RA/B -> ... : alternating feeders both have a stage-3 answer
+    t.feeder = { class: i % 2 === 0 ? 'HU' : 'RA', gender: 'M', race: 'Human',
+                 sectionId: 'Greenill' };
+    evolves.push(...feedOnce(DATA, t, 'Star Atomizer').filter((e) => e.type === 'evolve'));
+  }
+  check('Lv50 反复喂食 + 交替职业 → 只进化一次（不会来回横跳）',
+    evolves.length === 1 && magLevel(t) === 50);
+  check('Lv50 只进化一次 → 只吃到一个新 PB', t.pbs.length === 1);
+  check('lastEvoLevel 锁在 50', t.lastEvoLevel === 50);
 }
 
 // stage3 tie case (non-FO): Rudra HU, DEX==MIND > POW -> tie mag Varaha (A),
@@ -206,30 +298,40 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
 // and fed by a different character)" — "useful for the purposes of switching
 // feeding tables". The stage-3 branch used to be gated on `stage === 2`, so a
 // third-evolution mag could never change again and the sliding window was dead.
+// It re-evolves on the FIRST feed at the evolution level — 55 is an evolution
+// level, there is no window that has to catch up to it.
 {
   const t = cs({ magId: 'Varaha', def: 53, pow: 2, dex: 0, mind: 0 }); // level 55, stage3
   t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' }; // B
-  feedOnce(DATA, t, 'Star Atomizer'); // window still 50, level 55 -> miss, slides to 55
-  check('三段 mag 的 stage3 窗口照常滑动到 55', t.window.stage3 === 55);
-  feedOnce(DATA, t, 'Star Atomizer'); // window 55 == level 55 -> re-evolve on the B table
-  check('Lv55 换 Section ID 组 → 三段 mag 重新进化 Varaha → Kama',
-    t.magId === 'Kama' && DATA.mags[t.magId].stage === 3);
+  feedOnce(DATA, t, 'Star Atomizer'); // 55 is an evolution level -> re-evolve on the B table
+  check('Lv55 换 Section ID 组 → 三段 mag 首喂即重新进化 Varaha → Kama',
+    magLevel(t) === 55 && t.magId === 'Kama' && DATA.mags[t.magId].stage === 3);
 }
 {
   // ...and switching the feeder's CLASS re-evolves it onto that class's table.
   const t = cs({ magId: 'Varaha', def: 53, pow: 2, dex: 0, mind: 0 }); // level 55, stage3
   t.feeder = { class: 'RA', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // A
-  feedOnce(DATA, t, 'Star Atomizer');
   feedOnce(DATA, t, 'Star Atomizer'); // RA/A POW > DEX ≥ MIND -> Kama
-  check('Lv55 换喂食者职业 → 三段 mag 走 RA 表（Varaha → Kama）', t.magId === 'Kama');
+  check('Lv55 换喂食者职业 → 三段 mag 走 RA 表（Varaha → Kama）',
+    magLevel(t) === 55 && t.magId === 'Kama');
 }
 {
-  // a FOURTH-evolution mag must NOT re-evolve through the stage-3 rules.
-  const t = cs({ magId: 'Deva', def: 53, pow: 2, dex: 0, mind: 0 }); // level 55, stage4
-  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' };
+  // ...and it works at Lv60 too (the old sliding window could never reach it).
+  const t = cs({ magId: 'Varaha', def: 58, pow: 2, dex: 0, mind: 0 }); // level 60, stage3
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' }; // B
   feedOnce(DATA, t, 'Star Atomizer');
-  feedOnce(DATA, t, 'Star Atomizer');
-  check('四段 mag 不会通过三段规则再进化', t.magId === 'Deva');
+  check('Lv60 换 Section ID 组 → 三段 mag 重新进化 Varaha → Kama',
+    magLevel(t) === 60 && t.magId === 'Kama');
+}
+{
+  // a FOURTH-evolution mag must NOT re-evolve through the stage-3 rules — at a
+  // stage-3 evolution level (55) or at a level that is BOTH (100, 110).
+  for (const def of [53, 98, 108]) {   // levels 55, 100, 110
+    const t = cs({ magId: 'Deva', def, pow: 2, dex: 0, mind: 0 });
+    t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' };
+    feedN(t, 'Star Atomizer', 3);
+    check(`四段 mag 在 Lv${def + 2} 不会通过三段规则再进化`, t.magId === 'Deva');
+  }
 }
 
 // --- BUG 6: Photon Blast inheritance (up to 3 slots) ------------------------
@@ -261,9 +363,8 @@ check('createState 的 pbs 起始为空', Array.isArray(s.pbs) && s.pbs.length =
     t.magId === 'Bhirava' && pbs(t) === JSON.stringify(['Farlla', 'Golla', 'Pilla']));
 
   // slots are FULL: a stage-3 re-evolution at Lv55 to Nandin (Estlla) adds nothing
-  at({ def: 45, pow: 0, dex: 8, mind: 2 });          // Lv55, DEX > MIND ≥ POW
-  feedOnce(DATA, t, 'Star Atomizer');                // window slides 50 -> 55
-  feedOnce(DATA, t, 'Star Atomizer');                // re-evolves
+  at({ def: 45, pow: 0, dex: 8, mind: 2 });          // Lv55 — an evolution level
+  feedOnce(DATA, t, 'Star Atomizer');                // DEX > MIND ≥ POW -> re-evolves at once
   check('三格满后再进化 Nandin(Estlla) 不再入槽',
     t.magId === 'Nandin' && pbs(t) === JSON.stringify(['Farlla', 'Golla', 'Pilla']));
 }
@@ -634,12 +735,24 @@ check('createState 默认开启种族限制', s.racialRestriction === true);
          .slice(-1)[0].feeder.sectionId !== 'MUTATED');
 }
 
-// --- exhaustive sweeps against the verbatim wiki data ------------------------
-// mag-sim-data.js is a RESTRUCTURING of window.MAG_EVOLUTION (the wiki's rules,
-// kept verbatim). These two sweeps re-derive every Lv.50 and Lv.100 outcome
-// straight from MAG_EVOLUTION — an independent path — and compare it with what
-// the engine actually does, over every reachable stat split. A single
-// disagreement is a rule the restructure or the engine got wrong.
+// --- exhaustive sweeps: a CONSISTENCY CHECK, *not* an independent oracle -----
+// mag-sim-data.js is a RESTRUCTURING of window.MAG_EVOLUTION. These two sweeps
+// re-derive every Lv.50 and Lv.100 outcome straight from MAG_EVOLUTION and
+// compare it with what the engine actually does, over every reachable stat split.
+//
+// READ THIS BEFORE TRUSTING THEM: mag-evolution.js and mag-sim-data.js are
+// emitted by the SAME generator (scripts/build_mag_data.py) from the same wiki
+// scrape. MAG_EVOLUTION is therefore NOT an independent source of truth — if the
+// generator misreads the wiki, both files are wrong together and these sweeps
+// stay green. What they DO catch is drift between the two representations and
+// between the data and the engine's rule evaluator (the ordered `≥`/`>`/`=`
+// chains, the FO DEF≥45 special, the per-Type stage-4 formula). The genuinely
+// external oracles in this file are the GOLDEN PATHS below, taken from Ephinea's
+// player guide (prose, never used as a data source).
+//
+// Neither sweep says anything about WHEN an evolution may happen: they pin the
+// mag at exactly Lv50 / Lv100 and call checkEvolution once. The evolution-LEVEL
+// rules are covered by the discrete-level block near the top of this file.
 {
   const evoSrc = readFileSync('assets/js/mag-evolution.js', 'utf8');
   const w2 = {};
@@ -718,14 +831,20 @@ check('createState 默认开启种族限制', s.racialRestriction === true);
               const st = { def, pow, dex, mind };
               const t = cs({ magId: 'Varaha', ...st });               // stage3, Lv100
               t.feeder = { class: cls, gender, race: 'Human', sectionId };
-              t.window.stage3 = 200;   // isolate the stage-4 decision from BUG-5 re-evo
               checkEvolution(DATA, t);
+              // Lv100 is BOTH a third- and a fourth-evolution level, so when the
+              // Type's formula does not hold the mag may still re-evolve along
+              // the stage-3 path (Varaha -> some other third-evo mag). That is
+              // correct behaviour and none of this sweep's business: collapse any
+              // non-fourth outcome back to "no fourth evolution" so the stage-4
+              // decision is isolated without touching the engine's state.
+              const got = DATA.mags[t.magId].stage === 4 ? t.magId : 'Varaha';
               const want = F[row.formula](st) ? row[key].name : 'Varaha';
               n4++;
-              if (t.magId !== want) {
+              if (got !== want) {
                 bad4++;
                 firstBad4 = firstBad4 || `${cls}/${gender}/Type${row.group} `
-                  + `${def}/${pow}/${dex}/${mind}: engine ${t.magId}, wiki ${want}`;
+                  + `${def}/${pow}/${dex}/${mind}: engine ${got}, wiki ${want}`;
               }
             }
           }
