@@ -135,6 +135,31 @@ check('Cell of Mag 213 Churel = A 组 + 三段 + Lv100',
         reqs.every((r) => r.requiresMag !== undefined || r.requiredStage !== undefined));
 }
 
+// ---- racial restrictions (hand-maintained CELL_RACE_RULES) ------------------
+// The wiki carries no race data for cells; the generator mirrors Magatama's
+// MagCellsError.xml. Exactly three cells carry a raceRule, and no others.
+check("Heart of Angel raceRule deny=[Android]",
+    JSON.stringify(D.magCells['Heart of Angel'].raceRule) === '{"deny":["Android"]}');
+check("Heart of Devil raceRule deny=[Android]",
+    JSON.stringify(D.magCells['Heart of Devil'].raceRule) === '{"deny":["Android"]}');
+check("Heart of YN-0117 raceRule only=[Android]",
+    JSON.stringify(D.magCells['Heart of YN-0117'].raceRule) === '{"only":["Android"]}');
+{
+    const withRule = Object.keys(D.magCells).filter((c) => D.magCells[c].raceRule);
+    check('只有这 3 个 cell 带 raceRule，其余 31 个不带',
+        withRule.length === 3 && Object.keys(D.magCells).length === 34
+        && withRule.join() === ['Heart of Angel', 'Heart of Devil', 'Heart of YN-0117'].sort().join());
+    const RACES = ['Human', 'Newman', 'Android'];
+    check('raceRule 结构合法（deny/only 二选一，值为已知种族）',
+        withRule.every((c) => {
+            const r = D.magCells[c].raceRule;
+            const keys = Object.keys(r);
+            return keys.length === 1 && (keys[0] === 'deny' || keys[0] === 'only')
+                && Array.isArray(r[keys[0]]) && r[keys[0]].length > 0
+                && r[keys[0]].every((x) => RACES.includes(x));
+        }));
+}
+
 // ---- constants -------------------------------------------------------------
 check('itemOrder 11 项且以 Monomate 开头 Star Atomizer 结尾',
     D.itemOrder.length === 11 && D.itemOrder[0] === 'Monomate'

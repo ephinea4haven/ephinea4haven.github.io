@@ -178,6 +178,22 @@ FORMULAS = ["DEF+POW=DEX+MIND", "DEF+DEX=POW+MIND", "DEF+MIND=POW+DEX"]
 RE_EVO_WHITELIST = {"Heart of Devil", "Kit of Master System", "Kit of Genesis",
                     "Kit of Sega Saturn", "Kit of Dreamcast", "Tablet", "Amitie's Memo"}
 
+# Per-cell RACIAL restrictions. The wiki exposes NO race / Android data for mag
+# cells anywhere (verified) — the reference implementation (Magatama) doesn't
+# scrape it either, it hard-codes the rules in Data/List/MagCellsError.xml and
+# derives the feeder's race from the character's class name. So this is a
+# hand-maintained mirror of exactly those three rules; audit_sim() fails the
+# build if a key here stops matching a real cell (a wiki rename must not
+# silently drop a rule).
+#   {"deny": [...]} — those races cannot use the cell
+#   {"only": [...]} — ONLY those races can use it
+# Races are the three PSO races: Human / Newman / Android.
+CELL_RACE_RULES = {
+    "Heart of Angel":   {"deny": ["Android"]},   # → Angel's Wing
+    "Heart of Devil":   {"deny": ["Android"]},   # → Devil's Wing / Devil's Tail
+    "Heart of YN-0117": {"only": ["Android"]},   # → Elenor
+}
+
 _CLASS_KEY = {"Hunter": "HU", "Ranger": "RA", "Force": "FO"}
 _GENDER_KEY = {"Male": "M", "Female": "F"}
 
@@ -396,6 +412,8 @@ def parse_mag_cells(page: str) -> dict:
             "requires": {t: reqs.get(t, {}) for t in targets},
             "reEvoWhitelist": cell in RE_EVO_WHITELIST,
         }
+        if cell in CELL_RACE_RULES:            # omitted entirely for the rest
+            out[cell]["raceRule"] = CELL_RACE_RULES[cell]
     return out
 
 
@@ -498,6 +516,13 @@ def audit_sim(sim: dict) -> None:
         tgt = ev["stage3SpecialFO"][key]
         if tgt not in known:
             sys.exit(f"audit_sim: stage3SpecialFO.{key}->{tgt} unknown mag")
+
+    # CELL_RACE_RULES is hand-maintained (the wiki has no race data), so a wiki
+    # rename would otherwise drop a rule with no signal at all.
+    for cell in CELL_RACE_RULES:
+        if cell not in sim["magCells"]:
+            sys.exit(f"audit_sim: CELL_RACE_RULES names {cell!r}, which is not a "
+                     "parsed mag cell — was it renamed on the wiki?")
 
     # magCells: cell -> {target: mag | [mag, ...], requires: {mag: {...}}}
     for cell, info in sim["magCells"].items():

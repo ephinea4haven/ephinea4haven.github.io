@@ -1391,7 +1391,12 @@ window.MAG_SIM = {
           "raw": "Level 100+ third evolution Mag"
         }
       },
-      "reEvoWhitelist": false
+      "reEvoWhitelist": false,
+      "raceRule": {
+        "deny": [
+          "Android"
+        ]
+      }
     },
     "Heart of Chao": {
       "target": "Chao",
@@ -1435,7 +1440,12 @@ window.MAG_SIM = {
           "raw": "Level 100+ third evolution Mag"
         }
       },
-      "reEvoWhitelist": true
+      "reEvoWhitelist": true,
+      "raceRule": {
+        "deny": [
+          "Android"
+        ]
+      }
     },
     "Heart of Kapu Kapu": {
       "target": "Kapu Kapu",
@@ -1491,7 +1501,12 @@ window.MAG_SIM = {
           "raw": "Level 50+ third evolution Mag"
         }
       },
-      "reEvoWhitelist": false
+      "reEvoWhitelist": false,
+      "raceRule": {
+        "only": [
+          "Android"
+        ]
+      }
     },
     "Heaven Striker Coat": {
       "target": "Striker Unit",
