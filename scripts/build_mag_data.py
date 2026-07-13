@@ -509,6 +509,11 @@ def audit_sim(sim: dict) -> None:
         if stat not in ("POW", "DEX", "MIND"):
             sys.exit(f"audit_sim: tieBreak {c}->{stat!r} not a known stat")
 
+    # every mag's PB must be one the wiki names (the engine shows them by name)
+    for mag, info in sim["mags"].items():
+        if "pb" in info and info["pb"] not in PB_NAMES:
+            sys.exit(f"audit_sim: {mag} has unknown PB {info['pb']!r}")
+
     # stage3SpecialFO: {minDef, powMax, other} (powMax/other are mag refs)
     for key in ("powMax", "other"):
         tgt = ev["stage3SpecialFO"][key]
@@ -850,6 +855,30 @@ def build_stage3_extras(classes: dict) -> dict:
     return {"stage3SpecialFO": {"minDef": 45, "powMax": "Andhaka", "other": "Bana"}}
 
 
+def mag_pbs(classes: dict) -> dict[str, str]:
+    """{mag name: Photon Blast} over every mag that learns one.
+
+    A mag carries up to three PBs, inherited across its first three evolutions,
+    so the simulator needs each mag's own PB — not just the current form's.
+    Only the first three evolutions teach a PB (the wiki's fourth-evolution rows
+    have no 'PB Learned' column at all), and the base Mag learns none.
+
+    The same mag can appear under several classes/ID groups (RA and HU both
+    reach Varaha); the wiki gives it one PB in every one of them, so a conflict
+    here means the wiki changed and the flat lookup would be a lie.
+    """
+    out: dict[str, str] = {}
+    for c in classes.values():
+        nodes = [c["stage1"], *c["stage2"], *c["stage3"]["A"], *c["stage3"]["B"],
+                 *(c["stage3"]["special"] or [])]
+        for n in nodes:
+            if not n.get("pb"):
+                sys.exit(f"mag_pbs: {n['name']} has no PB (stages 1-3 all learn one)")
+            if out.setdefault(n["name"], n["pb"]) != n["pb"]:
+                sys.exit(f"mag_pbs: {n['name']} has two different PBs "
+                         f"({out[n['name']]!r} and {n['pb']!r})")
+    return out
+
 
 def build(raw: str) -> tuple[dict, set]:
     zh = load_zh_names()
@@ -1000,6 +1029,12 @@ def main() -> None:
     evolution = build_evolution_std(data["classes"])
     evolution["stage4"] = parse_stage4_chart(raw)
     evolution.update(build_stage3_extras(data["classes"]))
+    # Each mag's own Photon Blast, so the engine can accumulate the (up to 3)
+    # PBs a mag inherits across its first three evolutions.
+    for name, pb in mag_pbs(data["classes"]).items():
+        if name not in mags:
+            sys.exit(f"mag_pbs: {name} learns a PB but is not a known mag")
+        mags[name]["pb"] = pb
     sim = {"feedTables": feed, "mags": mags, "evolution": evolution, "magCells": magcells}
     sim.update(costs=COSTS, itemOrder=ITEM_ORDER, freshMag=FRESH_MAG,
                idGroups=sim_id_groups(data["meta"]["idGroups"]))

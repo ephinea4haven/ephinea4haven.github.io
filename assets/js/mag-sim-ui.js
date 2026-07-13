@@ -262,15 +262,28 @@ function statBarHtml(stat) {
     </div>`;
 }
 
-function pbHtml(info, meta) {
-    if (!info || !info.pb || !meta) return '';
-    const zh = meta.pbNames[info.pb] || '';
-    // Slug the file name — "Mylla & Youlla" as a raw src (spaces + &) fails to
-    // load in-page even though the encoded URL resolves directly.
-    const icon = `/assets/img/mag/pb/${info.pb.replace(/[^A-Za-z0-9]+/g, '_')}.png`;
-    return `<div class="mag-card__pb"><span class="mag-card__label">PB</span>`
-        + `<img class="mag-card__pb-icon" src="${icon}" alt="" loading="lazy" width="20" height="17">`
-        + `<b>${esc(zh)}</b><span class="mag-card__pb-en">${esc(info.pb)}</span></div>`;
+// A mag carries up to THREE Photon Blasts, inherited across its first three
+// evolutions (engine: state.pbs) — not just the PB of its current form. Feeding
+// for a specific PB set is a real goal, so show every slot the mag holds.
+// Falls back to the current form's own PB for a state with no `pbs` (an old
+// share link replayed by an older engine build would have none).
+function pbHtml(state, info, meta) {
+    if (!meta) return '';
+    const held = (state.pbs && state.pbs.length) ? state.pbs
+        : (info && info.pb ? [info.pb] : []);
+    if (!held.length) return '';
+    const slot = (pb) => {
+        const zh = meta.pbNames[pb] || '';
+        // Slug the file name — "Mylla & Youlla" as a raw src (spaces + &) fails
+        // to load in-page even though the encoded URL resolves directly.
+        const icon = `/assets/img/mag/pb/${pb.replace(/[^A-Za-z0-9]+/g, '_')}.png`;
+        return `<span class="mag-card__pb-slot">`
+            + `<img class="mag-card__pb-icon" src="${icon}" alt="" loading="lazy" width="20" height="17">`
+            + `<b>${esc(zh)}</b><span class="mag-card__pb-en">${esc(pb)}</span></span>`;
+    };
+    return `<div class="mag-card__pb">`
+        + `<span class="mag-card__label">PB ${held.length}/3</span>`
+        + held.map(slot).join('') + `</div>`;
 }
 
 function triggersHtml(info, meta) {
@@ -319,7 +332,7 @@ function renderCard() {
         <div class="mag-sim-card__stats">
             ${STAT_DEFS.map(statBarHtml).join('')}
         </div>
-        ${pbHtml(info, meta)}
+        ${pbHtml(state, info, meta)}
         ${triggersHtml(info, meta)}
         <div class="mag-sim-card__next">下次进化：<b>${esc(nextEvoHint())}</b></div>
     `;

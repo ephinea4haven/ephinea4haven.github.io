@@ -17,6 +17,10 @@ export function createState(data, { start }) {
         // Magatama's blnMagRacialRestriction: when off, the mag-cell race rules
         // are not enforced at all.
         racialRestriction: true,
+        // Photon Blasts, up to 3, accumulated across the mag's evolutions (see
+        // inheritPB). A mag starts with none and keeps every PB it has learned,
+        // so the set a player is feeding *for* is visible at any point.
+        pbs: [],
         log: [],
     };
     s._start = start;   // 供 exportSession / 重置复用
@@ -165,6 +169,17 @@ function stage3Next(data, state, f) {
     return row ? row[grp] : null;
 }
 
+// A mag keeps every Photon Blast it learns, up to three: the first evolution
+// fills slot 1, the second slot 2, the third slot 3 — but only if that PB is
+// not already held. Magatama accumulates them the same way. (Fourth evolutions
+// teach no PB at all — the wiki's Lv.100 rows have no 'PB Learned' column — so
+// `mags[x].pb` is simply absent for them and this is a no-op.)
+function inheritPB(data, state) {
+    const pb = data.mags[state.magId] && data.mags[state.magId].pb;
+    if (!pb || state.pbs.includes(pb) || state.pbs.length >= 3) return;
+    state.pbs.push(pb);
+}
+
 export function checkEvolution(data, state) {
     const events = [];
     const ev = data.evolution;
@@ -175,6 +190,7 @@ export function checkEvolution(data, state) {
         if (!next || next === state.magId) return;
         const from = state.magId;
         state.magId = next;
+        inheritPB(data, state);
         state.log.push({ kind: 'evolve', from, to: next, stage, level });
         events.push({ type: 'evolve', from, to: next, stage, level });
     };
@@ -294,6 +310,7 @@ export function checkCellEvolution(data, state, cellName) {
 
         const from = state.magId;
         state.magId = tgt;
+        inheritPB(data, state);   // cell mags are 4th evolutions and teach no PB
         const stage = data.mags[tgt]?.stage;
         state.log.push({ kind: 'evolve', from, to: tgt, stage, level: lvl, viaCell: cellName });
         return [{ type: 'evolve', from, to: tgt, stage, level: lvl, viaCell: cellName }];
@@ -313,7 +330,7 @@ export function exportSession(state) {
                         .map((e) => ({ item: e.item, feeder: { ...e.feeder } })),
         final: { magId: state.magId, def: state.def, pow: state.pow,
                  dex: state.dex, mind: state.mind, synchro: state.synchro,
-                 iq: state.iq, level: magLevel(state) },
+                 iq: state.iq, level: magLevel(state), pbs: [...state.pbs] },
     };
 }
 export function replaySession(data, session) {

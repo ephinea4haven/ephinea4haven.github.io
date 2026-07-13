@@ -732,111 +732,138 @@ window.MAG_SIM = {
     },
     "Kalki": {
       "feedTableId": "1",
-      "stage": 1
+      "stage": 1,
+      "pb": "Estlla"
     },
     "Varuna": {
       "feedTableId": "1",
-      "stage": 1
+      "stage": 1,
+      "pb": "Farlla"
     },
     "Vritra": {
       "feedTableId": "1",
-      "stage": 1
+      "stage": 1,
+      "pb": "Leilla"
     },
     "Ashvinau": {
       "feedTableId": "2",
-      "stage": 2
+      "stage": 2,
+      "pb": "Pilla"
     },
     "Namuci": {
       "feedTableId": "2",
-      "stage": 2
+      "stage": 2,
+      "pb": "Mylla & Youlla"
     },
     "Marutah": {
       "feedTableId": "2",
-      "stage": 2
+      "stage": 2,
+      "pb": "Pilla"
     },
     "Rudra": {
       "feedTableId": "2",
-      "stage": 2
+      "stage": 2,
+      "pb": "Golla"
     },
     "Sumba": {
       "feedTableId": "2",
-      "stage": 2
+      "stage": 2,
+      "pb": "Golla"
     },
     "Mitra": {
       "feedTableId": "3",
-      "stage": 2
+      "stage": 2,
+      "pb": "Pilla"
     },
     "Tapas": {
       "feedTableId": "3",
-      "stage": 2
+      "stage": 2,
+      "pb": "Mylla & Youlla"
     },
     "Surya": {
       "feedTableId": "3",
-      "stage": 2
+      "stage": 2,
+      "pb": "Golla"
     },
     "Vayu": {
       "feedTableId": "4",
-      "stage": 2
+      "stage": 2,
+      "pb": "Mylla & Youlla"
     },
     "Apsaras": {
       "feedTableId": "4",
-      "stage": 3
+      "stage": 3,
+      "pb": "Estlla"
     },
     "Bhirava": {
       "feedTableId": "4",
-      "stage": 3
+      "stage": 3,
+      "pb": "Pilla"
     },
     "Kaitabha": {
       "feedTableId": "4",
-      "stage": 3
+      "stage": 3,
+      "pb": "Mylla & Youlla"
     },
     "Kama": {
       "feedTableId": "4",
-      "stage": 3
+      "stage": 3,
+      "pb": "Pilla"
     },
     "Kumara": {
       "feedTableId": "4",
-      "stage": 3
+      "stage": 3,
+      "pb": "Golla"
     },
     "Ushasu": {
       "feedTableId": "4",
-      "stage": 3
+      "stage": 3,
+      "pb": "Golla"
     },
     "Varaha": {
       "feedTableId": "4",
-      "stage": 3
+      "stage": 3,
+      "pb": "Golla"
     },
     "Durga": {
       "feedTableId": "5",
-      "stage": 3
+      "stage": 3,
+      "pb": "Estlla"
     },
     "Garuda": {
       "feedTableId": "5",
-      "stage": 3
+      "stage": 3,
+      "pb": "Pilla"
     },
     "Ila": {
       "feedTableId": "5",
-      "stage": 3
+      "stage": 3,
+      "pb": "Mylla & Youlla"
     },
     "Nandin": {
       "feedTableId": "5",
-      "stage": 3
+      "stage": 3,
+      "pb": "Estlla"
     },
     "Ribhava": {
       "feedTableId": "5",
-      "stage": 3
+      "stage": 3,
+      "pb": "Farlla"
     },
     "Sita": {
       "feedTableId": "5",
-      "stage": 3
+      "stage": 3,
+      "pb": "Pilla"
     },
     "Soma": {
       "feedTableId": "5",
-      "stage": 3
+      "stage": 3,
+      "pb": "Estlla"
     },
     "Yaksa": {
       "feedTableId": "5",
-      "stage": 3
+      "stage": 3,
+      "pb": "Golla"
     },
     "Deva": {
       "feedTableId": "5",
@@ -852,35 +879,43 @@ window.MAG_SIM = {
     },
     "Andhaka": {
       "feedTableId": "6",
-      "stage": 3
+      "stage": 3,
+      "pb": "Estlla"
     },
     "Bana": {
       "feedTableId": "6",
-      "stage": 3
+      "stage": 3,
+      "pb": "Estlla"
     },
     "Kabanda": {
       "feedTableId": "6",
-      "stage": 3
+      "stage": 3,
+      "pb": "Mylla & Youlla"
     },
     "Madhu": {
       "feedTableId": "6",
-      "stage": 3
+      "stage": 3,
+      "pb": "Mylla & Youlla"
     },
     "Marica": {
       "feedTableId": "6",
-      "stage": 3
+      "stage": 3,
+      "pb": "Pilla"
     },
     "Naga": {
       "feedTableId": "6",
-      "stage": 3
+      "stage": 3,
+      "pb": "Mylla & Youlla"
     },
     "Naraka": {
       "feedTableId": "6",
-      "stage": 3
+      "stage": 3,
+      "pb": "Golla"
     },
     "Ravana": {
       "feedTableId": "6",
-      "stage": 3
+      "stage": 3,
+      "pb": "Farlla"
     },
     "Bhima": {
       "feedTableId": "6",

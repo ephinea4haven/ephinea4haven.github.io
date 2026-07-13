@@ -72,6 +72,28 @@ check('stage3Rules RA 首行 = "POW > DEX ≥ MIND" → A=Kama,B=Madhu',
     && D.evolution.stage3Rules.RA[0].A === 'Kama'
     && D.evolution.stage3Rules.RA[0].B === 'Madhu');
 
+// ---- per-mag Photon Blast ---------------------------------------------------
+// Stages 1-3 each teach a PB; the mag inherits up to three. Fourth evolutions
+// teach none, so their `pb` is absent.
+check('mags.Varuna.pb = Farlla', D.mags.Varuna.pb === 'Farlla');
+check('mags.Rudra.pb = Golla', D.mags.Rudra.pb === 'Golla');
+check('mags.Varaha.pb = Golla（与 Rudra 同 PB，用于去重测试）',
+    D.mags.Varaha.pb === 'Golla');
+check('mags.Bhirava.pb = Pilla', D.mags.Bhirava.pb === 'Pilla');
+check('四段 mag 无 PB（Deva / Gael Giel）',
+    D.mags.Deva.pb === undefined && D.mags['Gael Giel'].pb === undefined);
+check('基础 Mag 无 PB', D.mags.Mag.pb === undefined);
+{
+    const PB_NAMES = ['Golla', 'Pilla', 'Estlla', 'Farlla', 'Leilla', 'Mylla & Youlla'];
+    const withPb = Object.entries(D.mags).filter(([, m]) => m.pb);
+    check('每个带 PB 的 mag 都是 1-3 段，且 PB 是 6 种之一',
+        withPb.length > 0
+        && withPb.every(([, m]) => m.stage >= 1 && m.stage <= 3 && PB_NAMES.includes(m.pb)));
+    // every stage 1-3 mag reachable by evolution learns a PB
+    const noPb = Object.entries(D.mags)
+        .filter(([, m]) => m.stage >= 1 && m.stage <= 3 && !m.pb).map(([n]) => n);
+    check(`所有 1-3 段 mag 均有 PB（缺失：${noPb.join(', ') || '无'}）`, noPb.length === 0);
+}
 
 // ---- stage4 reference chart + mag cells ------------------------------------
 // Type→formula mapping is fixed by both the wikitable and build()'s stage4:

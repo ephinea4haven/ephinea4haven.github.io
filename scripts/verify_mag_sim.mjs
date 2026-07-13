@@ -200,7 +200,6 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
     t.magId === 'Varaha' && DATA.mags[t.magId].stage === 3);
 }
 
-
 // --- BUG 5: a third-evolution mag re-evolves every FIFTH level ---------------
 // Wiki (Mags#Evolution): "after level 50, Mags can evolve again every fifth
 // level if another evolution condition is met (e.g. the Mag is transferred to
@@ -231,6 +230,63 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   feedOnce(DATA, t, 'Star Atomizer');
   feedOnce(DATA, t, 'Star Atomizer');
   check('四段 mag 不会通过三段规则再进化', t.magId === 'Deva');
+}
+
+// --- BUG 6: Photon Blast inheritance (up to 3 slots) ------------------------
+// A mag keeps every PB it learns: the 1st/2nd/3rd evolutions fill slots 1-3,
+// skipping a PB it already holds. Only the current form's single PB used to be
+// shown, so a player feeding for a PB set had no answer at all.
+const pbs = (t) => JSON.stringify(t.pbs);
+check('createState 的 pbs 起始为空', Array.isArray(s.pbs) && s.pbs.length === 0);
+{
+  // a fresh Mag fed through stages 1 -> 2 -> 3, PBs accumulating in order.
+  // Varuna(Farlla) -> Rudra(Golla) -> Bhirava(Pilla) = three distinct PBs.
+  const t = createState(DATA, { start: { mode: 'fresh' } });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // A
+  const at = (o) => { Object.assign(t, o); t.progress = { def: 0, pow: 0, dex: 0, mind: 0 }; };
+
+  at({ def: 10, pow: 0, dex: 0, mind: 0 });          // Lv10
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('一段 Varuna → PB 槽1 Farlla',
+    t.magId === 'Varuna' && pbs(t) === JSON.stringify(['Farlla']));
+
+  at({ def: 30, pow: 5, dex: 0, mind: 0 });          // Lv35, POW max
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('二段 Rudra → PB 槽2 Golla',
+    t.magId === 'Rudra' && pbs(t) === JSON.stringify(['Farlla', 'Golla']));
+
+  at({ def: 40, pow: 8, dex: 0, mind: 2 });          // Lv50, POW ≥ MIND > DEX
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('三段 Bhirava → PB 槽3 Pilla（三格集齐）',
+    t.magId === 'Bhirava' && pbs(t) === JSON.stringify(['Farlla', 'Golla', 'Pilla']));
+
+  // slots are FULL: a stage-3 re-evolution at Lv55 to Nandin (Estlla) adds nothing
+  at({ def: 45, pow: 0, dex: 8, mind: 2 });          // Lv55, DEX > MIND ≥ POW
+  feedOnce(DATA, t, 'Star Atomizer');                // window slides 50 -> 55
+  feedOnce(DATA, t, 'Star Atomizer');                // re-evolves
+  check('三格满后再进化 Nandin(Estlla) 不再入槽',
+    t.magId === 'Nandin' && pbs(t) === JSON.stringify(['Farlla', 'Golla', 'Pilla']));
+}
+{
+  // no duplicates: Rudra(Golla) -> Varaha(Golla) must not fill a second slot.
+  const t = createState(DATA, { start: { mode: 'fresh' } });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' };
+  const at = (o) => { Object.assign(t, o); t.progress = { def: 0, pow: 0, dex: 0, mind: 0 }; };
+  at({ def: 10, pow: 0, dex: 0, mind: 0 }); feedOnce(DATA, t, 'Star Atomizer'); // Varuna
+  at({ def: 30, pow: 5, dex: 0, mind: 0 }); feedOnce(DATA, t, 'Star Atomizer'); // Rudra  (Golla)
+  at({ def: 40, pow: 8, dex: 2, mind: 0 }); feedOnce(DATA, t, 'Star Atomizer'); // Varaha (Golla)
+  check('已持有的 PB 不重复入槽（Rudra/Varaha 同为 Golla）',
+    t.magId === 'Varaha' && pbs(t) === JSON.stringify(['Farlla', 'Golla']));
+}
+{
+  // PBs survive export -> replay (replay re-runs feedOnce, so it recomputes them)
+  const t = createState(DATA, { start: { mode: 'fresh' } });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' };
+  feedN(t, 'Trimate', 40);
+  const session = exportSession(t);
+  check('exportSession 带上 pbs', Array.isArray(session.final.pbs));
+  check('回放后 pbs 一致', pbs(replaySession(DATA, session)) === pbs(t));
+  check('回放后 pbs 非空（确实进化过）', Array.isArray(t.pbs) && t.pbs.length > 0);
 }
 
 // cap boundary: feeding past level 200 caps at 200
@@ -679,7 +735,6 @@ check('createState 默认开启种族限制', s.racialRestriction === true);
   }
   check(`Lv100 四段全量遍历：${n4} 个状态全部与 wiki 规则一致（${bad4} 个不一致）`
     + (firstBad4 ? ` — 首个：${firstBad4}` : ''), bad4 === 0);
-
 }
 
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
