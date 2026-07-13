@@ -100,13 +100,25 @@ function idType(data, id) {
     return 'Type3';
 }
 
-// first equality that holds, in fixed order; else null.
-function stage4Formula(state) {
-    const { def: d, pow: p, dex: x, mind: m } = state;
-    if (d + p === x + m) return 'DEF+POW=DEX+MIND';
-    if (d + x === p + m) return 'DEF+DEX=POW+MIND';
-    if (d + m === p + x) return 'DEF+MIND=POW+DEX';
-    return null;
+// The single non-null formula on the Section-ID Type's leaf is the ONE equality
+// that decides this evolution — the formula is a property of the Type, not of
+// the stats. Testing "the first equality that holds globally" instead and then
+// indexing the leaf with it silently SKIPPED the evolution whenever two
+// equalities held at once (30/20/20/30 satisfies two) and the global winner was
+// not the Type's own formula: the lookup returned null and nothing happened.
+const FORMULA_TEST = {
+    'DEF+POW=DEX+MIND': (s) => s.def + s.pow === s.dex + s.mind,
+    'DEF+DEX=POW+MIND': (s) => s.def + s.dex === s.pow + s.mind,
+    'DEF+MIND=POW+DEX': (s) => s.def + s.mind === s.pow + s.dex,
+};
+
+function stage4Next(leaf, state) {
+    if (!leaf) return null;
+    const formula = Object.keys(leaf).find((k) => leaf[k] !== null);
+    if (!formula) return null;
+    const test = FORMULA_TEST[formula];
+    if (!test) throw new Error(`stage4: unknown formula ${formula}`);
+    return test(state) ? leaf[formula] : null;
 }
 
 // --- stage 3: the wiki's ordered Lv.50 rows -----------------------------------
@@ -193,8 +205,7 @@ export function checkEvolution(data, state) {
     // stage4: the 10-wide window at 100, 110, ...; from stage 3; by FEEDER class/gender/Type.
     else if (stage === 3 && level >= state.window.stage4 && level < state.window.stage4 + 10) {
         const leaf = ((ev.stage4[f.class] || {})[f.gender] || {})[idType(data, f.sectionId)];
-        const form = stage4Formula(state);
-        evolve(form && leaf ? leaf[form] : null, 4);
+        evolve(stage4Next(leaf, state), 4);
     }
 
     // Windows slide once fully passed (the "evolve every 5th / 10th level"

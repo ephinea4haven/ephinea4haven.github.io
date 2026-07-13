@@ -165,7 +165,7 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   check('FO 特例优先于规则行（POW 非严格最大）-> Bana', t.magId === 'Bana');
 }
 
-// stage4 -> Deva: HU/M/Type1, DEF+DEX=POW+MIND (first-matching formula)
+// stage4 -> Deva: HU/M/Type1, whose one formula is DEF+DEX=POW+MIND
 {
   const t = cs({ magId: 'Varaha', def: 40, pow: 30, dex: 10, mind: 20 }); // level 100
   t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' }; // Type1
@@ -173,14 +173,33 @@ function feedN(state, item, n) { for (let i = 0; i < n; i++) feedOnce(DATA, stat
   check('Lv100 HU/M/Type1 DEF+DEX=POW+MIND -> Deva',
     t.magId === 'Deva' && DATA.mags[t.magId].stage === 4);
 }
-// stage4 NULL combo leaves mag at stage3: HU/M/Type1, DEF+POW=DEX+MIND -> null
+
+// --- BUG 4: the stage-4 formula comes FROM the Section-ID Type's leaf --------
+// Each leaf carries exactly ONE non-null formula. The engine used to pick the
+// first equality that held GLOBALLY and then index the leaf with it — so when
+// two equalities held at once and the global winner was not the Type's own
+// formula, the lookup returned null and the evolution was silently skipped.
+// 30/20/20/30 satisfies BOTH DEF+POW=DEX+MIND (50=50, the global first) and
+// Type1's DEF+DEX=POW+MIND (50=50). The wiki says Deva; we used to give nothing.
 {
-  const t = cs({ magId: 'Varaha', def: 25, pow: 25, dex: 25, mind: 25 }); // level 100
-  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' }; // Type1 -> null
+  const t = cs({ magId: 'Varaha', def: 30, pow: 20, dex: 20, mind: 30 }); // level 100
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // Type1
   feedOnce(DATA, t, 'Star Atomizer');
-  check('Lv100 null stage4 combo stays stage3 Varaha',
+  check('Lv100 HUmar/Viridia 30/20/20/30 → Deva（公式取自 Type 的槽位）',
+    t.magId === 'Deva' && DATA.mags[t.magId].stage === 4);
+}
+// ...and the Type's formula genuinely NOT holding still leaves the mag at stage3.
+// (This test used to feed 25/25/25/25 and assert "no evolution" — but Type1's
+// formula DOES hold there, so it was asserting the bug. It now uses a state
+// where DEF+DEX (75) != POW+MIND (25).)
+{
+  const t = cs({ magId: 'Varaha', def: 50, pow: 25, dex: 25, mind: 0 }); // level 100
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // Type1
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv100 Type1 公式不成立 → 仍是三段 Varaha',
     t.magId === 'Varaha' && DATA.mags[t.magId].stage === 3);
 }
+
 
 // cap boundary: feeding past level 200 caps at 200
 {
@@ -590,6 +609,44 @@ check('createState 默认开启种族限制', s.racialRestriction === true);
   }
   check(`Lv50 三段全量遍历：${n3} 个状态全部与 wiki 规则一致（${bad3} 个不一致）`
     + (firstBad3 ? ` — 首个：${firstBad3}` : ''), bad3 === 0);
+
+  // Lv.100: MAG_EVOLUTION's stage4 rows give (formula, Section-ID group, male,
+  // female) per class — the Type's own formula is the only one that decides.
+  const F = {
+    'DEF + POW = DEX + MIND': (s) => s.def + s.pow === s.dex + s.mind,
+    'DEF + DEX = POW + MIND': (s) => s.def + s.dex === s.pow + s.mind,
+    'DEF + MIND = POW + DEX': (s) => s.def + s.mind === s.pow + s.dex,
+  };
+  const TYPE_ID = { 1: 'Viridia', 2: 'Greenill', 3: 'Skyly' };
+  let n4 = 0, bad4 = 0, firstBad4 = null;
+  for (const cls of CLASSES) {
+    for (const row of EVO.classes[cls].stage4) {
+      const sectionId = TYPE_ID[row.group];
+      for (const [gender, key] of [['M', 'male'], ['F', 'female']]) {
+        for (let pow = 0; pow <= 100; pow++) {
+          for (let dex = 0; dex + pow <= 100; dex++) {
+            for (let mind = 0; mind + dex + pow <= 100; mind++) {
+              const def = 100 - pow - dex - mind;
+              const st = { def, pow, dex, mind };
+              const t = cs({ magId: 'Varaha', ...st });               // stage3, Lv100
+              t.feeder = { class: cls, gender, race: 'Human', sectionId };
+              t.window.stage3 = 200;   // isolate the stage-4 decision from BUG-5 re-evo
+              checkEvolution(DATA, t);
+              const want = F[row.formula](st) ? row[key].name : 'Varaha';
+              n4++;
+              if (t.magId !== want) {
+                bad4++;
+                firstBad4 = firstBad4 || `${cls}/${gender}/Type${row.group} `
+                  + `${def}/${pow}/${dex}/${mind}: engine ${t.magId}, wiki ${want}`;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  check(`Lv100 四段全量遍历：${n4} 个状态全部与 wiki 规则一致（${bad4} 个不一致）`
+    + (firstBad4 ? ` — 首个：${firstBad4}` : ''), bad4 === 0);
 
 }
 
