@@ -10,7 +10,13 @@ export function createState(data, { start }) {
         progress: { def: 0, pow: 0, dex: 0, mind: 0 },
         synchro: src.synchro, iq: src.iq,
         window: { stage3: 50, stage4: 100 },
-        feeder: { class: 'HU', gender: 'M', sectionId: 'Viridia' },
+        // The feeder is one of the 12 PSO classes; the class alone fixes the
+        // class line, the gender AND the race (HUmar = HU/M/Human, HUcast =
+        // HU/M/Android, …). Race only matters for the mag-cell race rules.
+        feeder: { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' },
+        // Magatama's blnMagRacialRestriction: when off, the mag-cell race rules
+        // are not enforced at all.
+        racialRestriction: true,
         log: [],
     };
     s._start = start;   // 供 exportSession / 重置复用
@@ -29,6 +35,8 @@ export function feedOnce(data, state, itemName) {
         state.log.push(entry);
         const events = checkCellEvolution(data, state, itemName);
         entry.ok = events.some((e) => e.type === 'evolve');
+        const rejected = events.find((e) => e.type === 'magCellRejected');
+        if (rejected) entry.reason = rejected.reason;   // shown in the history log
         return events;   // cells don't apply stat deltas
     }
     const events = [];
@@ -201,6 +209,26 @@ function statThresholdOk(state, { value, count }) {
     return count === 'all' ? n === STAT_KEYS.length : n >= count;
 }
 
+// The cell's racial restriction (magCells[cell].raceRule — only three cells
+// carry one). INDEPENDENT of every other gate: it keys on the *feeder's race*,
+// not on the mag, so it is checked once, up front, for the whole cell.
+// A feeder with no `race` (an old share link, a hand-built state) is never
+// blocked by a `deny` rule — it can only fail an `only` rule.
+// Returns a rejection reason, or null when the cell is allowed.
+function raceRejection(cell, state) {
+    const rule = cell.raceRule;
+    if (!rule || !state.racialRestriction) return null;
+    const race = state.feeder.race;
+    if (rule.deny && race && rule.deny.includes(race)) {
+        return `${RACE_ZH[race] || race}无法使用该 cell`;
+    }
+    if (rule.only && !rule.only.includes(race)) {
+        return `仅${rule.only.map((r) => RACE_ZH[r] || r).join('/')}可使用该 cell`;
+    }
+    return null;
+}
+const RACE_ZH = { Human: '人类', Newman: '新人类', Android: '机器人' };
+
 export function checkCellEvolution(data, state, cellName) {
     const cell = data.magCells[cellName];
     const lvl = magLevel(state);
@@ -208,6 +236,8 @@ export function checkCellEvolution(data, state, cellName) {
     const reject = (reason) => [{ type: 'magCellRejected', cell: cellName, reason }];
     // A stage-4 rare mag can only re-evolve via a whitelisted cell.
     if (cur === 4 && !cell.reEvoWhitelist) return reject('稀有 mag 无法再进化');
+    const raceReason = raceRejection(cell, state);
+    if (raceReason) return reject(raceReason);
 
     const targets = Array.isArray(cell.target) ? cell.target : [cell.target];
     for (const tgt of targets) {
@@ -238,6 +268,7 @@ export function checkCellEvolution(data, state, cellName) {
 export function exportSession(state) {
     return {
         start: state._start,               // createState 时存下的 start 参数
+        racialRestriction: state.racialRestriction,
         feeds: state.log.filter((e) => e.kind === 'feed' || e.kind === 'feedCell')
                         .map((e) => ({ item: e.item, feeder: { ...e.feeder } })),
         final: { magId: state.magId, def: state.def, pow: state.pow,
@@ -247,6 +278,8 @@ export function exportSession(state) {
 }
 export function replaySession(data, session) {
     const s = createState(data, { start: session.start });
+    // absent in links shared before the toggle existed -> the default (on)
+    if (session.racialRestriction !== undefined) s.racialRestriction = session.racialRestriction;
     for (const f of session.feeds) { s.feeder = { ...f.feeder }; feedOnce(data, s, f.item); }
     return s;
 }

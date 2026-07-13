@@ -12,12 +12,52 @@ const history = []; // undo snapshot stack (Tasks 12-15)
 const SECTION_IDS = ['Viridia', 'Skyly', 'Purplenum', 'Redria', 'Yellowboze',
     'Greenill', 'Bluefull', 'Pinkal', 'Oran', 'Whitill'];
 const STAGE_LABEL = { 0: '初始 (Lv.0)', 1: '一段 (Lv.10)', 2: '二段 (Lv.35)', 3: '三段 (Lv.50)', 4: '四段 (Lv.100)' };
-const CLASS_LABEL = { HU: 'HU（战士）', RA: 'RA（枪手）', FO: 'FO（法师）' };
+const LINE_LABEL = { HU: '战士', RA: '枪手', FO: '法师' };
+const GENDER_LABEL = { M: '男', F: '女' };
+const RACE_LABEL = { Human: '人类', Newman: '新人类', Android: '机器人' };
+
+// The 12 PSO classes. Each one uniquely fixes the class LINE (which drives the
+// stage1/stage4 evolution branches), the GENDER (stage4) and the RACE (the mag
+// cell racial restrictions) — so one picker replaces the old 职业 + 性别 pair
+// and is the only way the sim can know the feeder's race at all.
+const CLASSES = [
+    { name: 'HUmar',     line: 'HU', gender: 'M', race: 'Human' },
+    { name: 'HUnewearl', line: 'HU', gender: 'F', race: 'Newman' },
+    { name: 'HUcast',    line: 'HU', gender: 'M', race: 'Android' },
+    { name: 'HUcaseal',  line: 'HU', gender: 'F', race: 'Android' },
+    { name: 'RAmar',     line: 'RA', gender: 'M', race: 'Human' },
+    { name: 'RAmarl',    line: 'RA', gender: 'F', race: 'Human' },
+    { name: 'RAcast',    line: 'RA', gender: 'M', race: 'Android' },
+    { name: 'RAcaseal',  line: 'RA', gender: 'F', race: 'Android' },
+    { name: 'FOmar',     line: 'FO', gender: 'M', race: 'Human' },
+    { name: 'FOmarl',    line: 'FO', gender: 'F', race: 'Human' },
+    { name: 'FOnewm',    line: 'FO', gender: 'M', race: 'Newman' },
+    { name: 'FOnewearl', line: 'FO', gender: 'F', race: 'Newman' },
+];
+
+// (line, gender, race) -> class: the mapping is a bijection, so the picker's
+// selection can always be recovered from state.feeder alone (e.g. after a
+// shared session is replayed) — feeder carries no redundant class name.
+function classOf(feeder) {
+    return CLASSES.find((c) => c.line === feeder.class && c.gender === feeder.gender
+        && c.race === feeder.race) || CLASSES[0];
+}
+
+function feederSummary(feeder) {
+    const c = classOf(feeder);
+    return `${c.line}（${LINE_LABEL[c.line]}）· ${GENDER_LABEL[c.gender]} · ${RACE_LABEL[c.race]}`;
+}
 
 // Rebuilds `state` from scratch (start mode / custom stats changed) and
 // discards any feed history, since the mag itself is a different object now.
+// The feeder and the 种族限制 toggle are properties of the *player*, not of the
+// mag, so they survive a restart — otherwise they would silently snap back to
+// the engine defaults while the setup panel still showed the old picks.
 function applyStart(start) {
+    const { feeder, racialRestriction } = state;
     state = E.createState(DATA, { start });
+    state.feeder = { ...feeder };
+    state.racialRestriction = racialRestriction;
     history.length = 0;
     render();
 }
@@ -78,16 +118,20 @@ function renderSetup() {
             <div class="mag-sim-setup__row">
                 <label class="mag-sim-setup__field">
                     <span>职业</span>
-                    <select data-feeder="class">
-                        ${Object.entries(CLASS_LABEL).map(([v, label]) =>
-                            `<option value="${v}"${v === state.feeder.class ? ' selected' : ''}>${label}</option>`).join('')}
+                    <select data-feeder-class>
+                        ${['HU', 'RA', 'FO'].map((line) => `
+                            <optgroup label="${line}（${LINE_LABEL[line]}）">
+                                ${CLASSES.filter((c) => c.line === line).map((c) =>
+                                    `<option value="${c.name}"${c.name === classOf(state.feeder).name ? ' selected' : ''}>${c.name}</option>`).join('')}
+                            </optgroup>`).join('')}
                     </select>
                 </label>
-                <div class="mag-tabs" role="tablist" data-feeder-gender>
-                    <button type="button" class="mag-tab" role="tab" data-gender="M" aria-selected="${state.feeder.gender === 'M'}">男</button>
-                    <button type="button" class="mag-tab" role="tab" data-gender="F" aria-selected="${state.feeder.gender === 'F'}">女</button>
-                </div>
+                <label class="mag-sim-setup__check">
+                    <input type="checkbox" data-racial-restriction${state.racialRestriction ? ' checked' : ''}>
+                    <span>种族限制</span>
+                </label>
             </div>
+            <div class="mag-sim-setup__derived" data-feeder-summary>${esc(feederSummary(state.feeder))}</div>
             <div class="mag-sim-setup__label">Section ID</div>
             <div class="mag-idset mag-idset--picker" data-feeder-section role="tablist">
                 ${SECTION_IDS.map((id) => `
@@ -131,16 +175,17 @@ function renderSetup() {
     });
 
     // ---- feeder ----
-    root.querySelector('[data-feeder="class"]').addEventListener('change', (e) => {
-        setFeeder({ class: e.target.value });
+    // One 12-class picker drives class line + gender + race at once.
+    const summary = root.querySelector('[data-feeder-summary]');
+    root.querySelector('[data-feeder-class]').addEventListener('change', (e) => {
+        const c = CLASSES.find((x) => x.name === e.target.value) || CLASSES[0];
+        setFeeder({ class: c.line, gender: c.gender, race: c.race });
+        summary.textContent = feederSummary(state.feeder);
     });
 
-    const genderTabs = root.querySelector('[data-feeder-gender]');
-    genderTabs.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-gender]');
-        if (!btn) return;
-        genderTabs.querySelectorAll('[data-gender]').forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
-        setFeeder({ gender: btn.dataset.gender });
+    root.querySelector('[data-racial-restriction]').addEventListener('change', (e) => {
+        state.racialRestriction = e.target.checked;
+        render();
     });
 
     const idPicker = root.querySelector('[data-feeder-section]');
@@ -334,11 +379,26 @@ let selectedCell = Object.keys(DATA.magCells)[0];
 // The cell's evolution conditions, straight from the wiki (`requires[t].raw`),
 // one line per possible target. The engine enforces exactly these, so showing
 // them is the only way a rejected cell reads as a rule rather than a bug.
+// The cell's racial restriction, as a human sentence. Not on the wiki (it comes
+// from the generator's hand-maintained CELL_RACE_RULES), so without this the
+// rejection would read as a bug rather than a rule.
+function raceRuleText(cell) {
+    const r = cell.raceRule;
+    if (!r) return '';
+    const names = (list) => list.map((x) => RACE_LABEL[x] || x).join('/');
+    return r.only ? `仅${names(r.only)}可用` : `${names(r.deny)}不可用`;
+}
+
 function cellReqHtml(cellName) {
     const cell = DATA.magCells[cellName];
     if (!cell) return '';
     const targets = Array.isArray(cell.target) ? cell.target : [cell.target];
-    return targets.map((t) => {
+    const race = raceRuleText(cell);
+    const raceLine = race
+        ? `<div class="mag-sim-feed__cell-req mag-sim-feed__cell-req--race">
+            <b>种族</b><span>${esc(race)}${state.racialRestriction ? '' : '（种族限制已关闭）'}</span>
+        </div>` : '';
+    return raceLine + targets.map((t) => {
         const raw = ((cell.requires || {})[t] || {}).raw || '—';
         return `<div class="mag-sim-feed__cell-req">
             <b>→ ${esc(t)}</b><span>${esc(raw)}</span>
@@ -412,8 +472,9 @@ function feedItemLogLine(entry) {
 }
 
 function feedCellLogLine(entry) {
+    const why = entry.ok ? '' : `（未生效：${esc(entry.reason || '未满足条件')}）`;
     return `<div class="mag-sim-log__line ${entry.ok ? 'mag-sim-log__line--ok' : 'mag-sim-log__line--reject'}">
-        <span class="mag-sim-log__mark">${entry.ok ? '✓' : '✗'}</span> 喂食 Cell：${esc(entry.item)}${entry.ok ? '' : '（未生效）'}
+        <span class="mag-sim-log__mark">${entry.ok ? '✓' : '✗'}</span> 喂食 Cell：${esc(entry.item)}${why}
     </div>`;
 }
 
@@ -477,7 +538,10 @@ function download(filename, text) {
 // markup, for the text export.
 function logLineText(entry) {
     if (entry.kind === 'evolve') return `→ 进化：${entry.from} → ${entry.to}（Lv ${entry.level}）`;
-    if (entry.kind === 'feedCell') return `${entry.ok ? '✓' : '✗'} 喂食 Cell：${entry.item}${entry.ok ? '' : '（未生效）'}`;
+    if (entry.kind === 'feedCell') {
+        return `${entry.ok ? '✓' : '✗'} 喂食 Cell：${entry.item}`
+            + (entry.ok ? '' : `（未生效：${entry.reason || '未满足条件'}）`);
+    }
     return `喂食：${entry.item}`;
 }
 

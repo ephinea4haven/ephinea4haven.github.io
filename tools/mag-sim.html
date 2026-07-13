@@ -81,6 +81,30 @@
             color: var(--text-secondary);
         }
 
+        .mag-sim-setup__check {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 6px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .mag-sim-setup__check input {
+            width: 14px;
+            height: 14px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .mag-sim-setup__derived {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
         .mag-sim-setup__custom {
             margin-top: 10px;
         }
@@ -398,6 +422,10 @@
         .mag-sim-feed__cell-req b {
             color: var(--mind);
             font-weight: 600;
+        }
+
+        .mag-sim-feed__cell-req--race b {
+            color: var(--pow);
         }
 
         .mag-sim-feed__totals {

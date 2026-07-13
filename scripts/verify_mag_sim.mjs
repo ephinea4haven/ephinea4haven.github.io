@@ -301,6 +301,76 @@ check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
   const p = { ...t.progress }; feedOnce(DATA, t, 'D-Photon Core');
   check('cell feed applied no stat progress', JSON.stringify(t.progress) === JSON.stringify(p)); }
 
+// --- racial restriction (mag cells) -----------------------------------------
+// The wiki has no race data; the rules live in the generator's CELL_RACE_RULES
+// (mirroring Magatama's MagCellsError.xml) and reach the engine as
+// magCells[cell].raceRule. Gated on state.racialRestriction (Magatama's toggle).
+check('createState 默认 feeder.race=Human', s.feeder.race === 'Human');
+check('createState 默认开启种族限制', s.racialRestriction === true);
+
+// deny: Android — Heart of Angel / Heart of Devil
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 }); // Lv100 stage3
+  t.feeder = { class: 'HU', gender: 'M', race: 'Android', sectionId: 'Viridia' }; // HUcast
+  const ev = feedOnce(DATA, t, 'Heart of Angel');
+  check('Heart of Angel + 机器人 → 拒绝',
+    ev.some((e) => e.type === 'magCellRejected' && /机器人/.test(e.reason))
+    && t.magId === 'Varaha'); }
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // HUmar
+  feedOnce(DATA, t, 'Heart of Angel');
+  check("Heart of Angel + 人类 → Angel's Wing", t.magId === "Angel's Wing"); }
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
+  t.feeder = { class: 'HU', gender: 'F', race: 'Newman', sectionId: 'Viridia' }; // HUnewearl
+  feedOnce(DATA, t, 'Heart of Angel');
+  check("Heart of Angel + 新人类 → Angel's Wing", t.magId === "Angel's Wing"); }
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
+  t.feeder = { class: 'RA', gender: 'F', race: 'Android', sectionId: 'Viridia' }; // RAcaseal
+  check('Heart of Devil + 机器人 → 拒绝',
+    feedOnce(DATA, t, 'Heart of Devil').some((e) => e.type === 'magCellRejected')
+    && t.magId === 'Varaha'); }
+
+// only: Android — Heart of YN-0117
+{ const t = cs({ magId: 'Varaha', def: 50, pow: 0, dex: 0, mind: 0 }); // Lv50 stage3
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' };
+  const ev = feedOnce(DATA, t, 'Heart of YN-0117');
+  check('Heart of YN-0117 + 人类 → 拒绝',
+    ev.some((e) => e.type === 'magCellRejected' && /仅机器人/.test(e.reason))
+    && t.magId === 'Varaha'); }
+{ const t = cs({ magId: 'Varaha', def: 50, pow: 0, dex: 0, mind: 0 });
+  t.feeder = { class: 'FO', gender: 'F', race: 'Newman', sectionId: 'Viridia' }; // FOnewearl
+  check('Heart of YN-0117 + 新人类 → 拒绝',
+    feedOnce(DATA, t, 'Heart of YN-0117').some((e) => e.type === 'magCellRejected')
+    && t.magId === 'Varaha'); }
+{ const t = cs({ magId: 'Varaha', def: 50, pow: 0, dex: 0, mind: 0 });
+  t.feeder = { class: 'RA', gender: 'M', race: 'Android', sectionId: 'Viridia' }; // RAcast
+  feedOnce(DATA, t, 'Heart of YN-0117');
+  check('Heart of YN-0117 + 机器人 → Elenor', t.magId === 'Elenor'); }
+
+// the toggle: racialRestriction=false skips the race gate entirely (both ways)
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Android', sectionId: 'Viridia' };
+  t.racialRestriction = false;
+  feedOnce(DATA, t, 'Heart of Angel');
+  check("关闭种族限制后机器人可用 Heart of Angel", t.magId === "Angel's Wing"); }
+{ const t = cs({ magId: 'Varaha', def: 50, pow: 0, dex: 0, mind: 0 });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' };
+  t.racialRestriction = false;
+  feedOnce(DATA, t, 'Heart of YN-0117');
+  check('关闭种族限制后人类可用 Heart of YN-0117', t.magId === 'Elenor'); }
+
+// a cell WITHOUT a raceRule is never race-gated
+{ const t = cs({ magId: 'Kama', def: 50, pow: 0, dex: 0, mind: 0 }); // Lv50 stage3
+  t.feeder = { class: 'HU', gender: 'M', race: 'Android', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Heart of Chu Chu');
+  check('无 raceRule 的 cell 不受种族影响（机器人 → Chu Chu）', t.magId === 'Chu Chu'); }
+
+// legacy feeder objects (no `race` key — every pre-existing test and any old
+// share link) must not be blocked by a deny rule.
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
+  t.feeder = { class: 'HU', gender: 'M', sectionId: 'Viridia' }; // no race
+  feedOnce(DATA, t, 'Heart of Angel');
+  check("无 race 字段的 feeder 不被 deny 规则拦截", t.magId === "Angel's Wing"); }
+
 // --- session export / replay
 {
   const t = createState(DATA, { start:{mode:'fresh'} });
