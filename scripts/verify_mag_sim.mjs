@@ -587,25 +587,65 @@ check('createState 的 pbs 起始为空', Array.isArray(s.pbs) && s.pbs.length =
   feedN(t, 'Trimate', 5);
   check('level caps at 200', magLevel(t) === 200);
 }
-// --- BUG 1: a negative feed must never cost the mag a LEVEL ------------------
-// Wiki (Mags#Raising): "Mags may also lose experience in their stats depending
-// on the item, but they cannot lose levels." The engine used to borrow a whole
-// point (mind 5 -> 4, progress 85), which drops the level. The loss now floors
-// at the bottom of the current point instead.
-// (This test asserted the borrow before; the borrow is the bug, so it is
-// inverted rather than kept green.)
+// --- BUG 1: a negative feed is ALL-OR-NOTHING, never floored -----------------
+// A reduction that would take the hundredths bar below zero DOES NOT APPLY AT
+// ALL — the bar keeps its current value. It is NOT clamped to 0, and it never
+// borrows from the integer stat (mags cannot level down).
+//
+// Aleron Ives (pioneer2.net, "Mag feeding problem"), on a player's in-game
+// observation: "That is indeed how it works. If the bar has 1-14 points in it, a
+// reduction of 15 has no effect. Stats only go down if the bar is filled far
+// enough for the subtraction to take place without causing a negative result,
+// since Mags can't 'level down'." Corroborated by tofuman ("attributes not
+// reducing if the attribute reduction would make it below 0"); Sodaboy confirms
+// mag levelling is client-side, so this is the game binary's own rule.
+//
+// THE DISCRIMINATING REGION IS 0 < bar < |reduction| — and the suite used to be
+// blind to it: every negative-feed test started from bar 0 (0-15 -> 0 under BOTH
+// models) or bar 80 (80-15 = 65 under BOTH). The floor-at-zero bug shipped
+// because nothing here could tell the two models apart. These do.
 {
+  // THE repro: a Marutah (table 2, Trimate MIND -15) with 3 hundredths of MIND.
+  // Floor-at-zero says 0 and burns the bar; the game leaves the 3 alone.
+  const t = cs({ magId: 'Marutah', def: 20, pow: 10, dex: 5, mind: 5 });
+  t.progress.mind = 3;
+  feedOnce(DATA, t, 'Trimate'); // [8, 16, 2, -15]
+  check('负值喂食：进度条 3 < |-15| → 减法完全不生效，仍是 3（不是归零）',
+    t.progress.mind === 3 && t.mind === 5);
+  // ...and the same feed's POSITIVE deltas still land — it is per-stat, not
+  // per-feed: only the reduction that would go negative is skipped.
+  check('负值喂食：同一次喂食的正值增量照常生效（DEF/POW/DEX）',
+    t.progress.def === 8 && t.progress.pow === 16 && t.progress.dex === 2);
+}
+{
+  // bar one less than |delta| -> the reduction does NOT apply.
+  const t = cs({ magId: 'Marutah', def: 20, pow: 10, dex: 5, mind: 5 });
+  t.progress.mind = 14;
+  feedOnce(DATA, t, 'Trimate'); // MIND -15
+  check('负值喂食：进度条 14 = |-15| - 1 → 减法不生效，仍是 14', t.progress.mind === 14);
+}
+{
+  // bar EXACTLY |delta| -> the reduction DOES apply, and the bar lands on 0.
+  const t = cs({ magId: 'Marutah', def: 20, pow: 10, dex: 5, mind: 5 });
+  t.progress.mind = 15;
+  feedOnce(DATA, t, 'Trimate'); // MIND -15
+  check('负值喂食：进度条 15 = |-15| → 减法生效，归零（0 不是负数）',
+    t.progress.mind === 0 && t.mind === 5);
+}
+{
+  // bar 0: nothing to take, so nothing happens (this is the case the OLD suite
+  // tested — it passes under both models and proves nothing on its own).
   const t = cs({ magId: 'Rudra', def: 10, pow: 0, dex: 0, mind: 5 });
-  feedOnce(DATA, t, 'Trimate'); // table2 Trimate MIND -15, progress 0 -> floors at 0
-  check('负值喂食不借位：MIND 保持 5，progress 归零',
+  feedOnce(DATA, t, 'Trimate'); // MIND -15 against an empty bar
+  check('负值喂食：空进度条不借位，MIND 保持 5、进度仍是 0',
     t.mind === 5 && t.progress.mind === 0);
 }
-// partial loss WITHIN the current point is still applied (80 -> 65)
+// a reduction the bar CAN absorb is applied in full (80 -> 65)
 {
   const t = cs({ magId: 'Rudra', def: 10, pow: 0, dex: 0, mind: 5 });
   t.progress.mind = 80;
   feedOnce(DATA, t, 'Trimate'); // MIND -15
-  check('负值喂食在当前点内扣减 progress（80 -> 65）',
+  check('负值喂食：进度条够扣时照常扣减（80 -> 65）',
     t.mind === 5 && t.progress.mind === 65);
 }
 // the reported repro: a Diwari (table 7) at 20/20/20/20 = Lv80 fed one Monomate

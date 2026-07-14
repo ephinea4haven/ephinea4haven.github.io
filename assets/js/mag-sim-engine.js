@@ -71,7 +71,25 @@ export function feedOnce(data, state, itemName) {
     const before = magLevel(state);
     // primary stats: progress accumulator with carry, respect 200 cap
     STAT_KEYS.forEach((k, i) => {
-        state.progress[k] += row[i];
+        const d = row[i];
+        // A negative feed is ALL-OR-NOTHING. A reduction that would take the
+        // hundredths bar below zero does not apply AT ALL — the bar is NOT
+        // floored at zero, it is left exactly where it was. Aleron Ives
+        // (pioneer2.net, "Mag feeding problem"), on a player's in-game
+        // observation: "That is indeed how it works. If the bar has 1-14 points
+        // in it, a reduction of 15 has no effect. Stats only go down if the bar
+        // is filled far enough for the subtraction to take place without causing
+        // a negative result, since Mags can't 'level down'." Corroborated by
+        // tofuman ("attributes not reducing if the attribute reduction would
+        // make it below 0"); Sodaboy confirms mag levelling/morphing is
+        // client-side, so this is the game binary's own rule.
+        //
+        // So a Marutah with progress.mind = 3 fed a Trimate (MIND -15) keeps its
+        // 3 — it does not burn the bar down to 0. There is no borrowing either:
+        // mags never lose a level. (Flooring at zero is what the third-party
+        // planner Magatama does; it is not what the game does.)
+        if (d < 0 && state.progress[k] + d < 0) return;
+        state.progress[k] += d;
         while (state.progress[k] >= 100) {
             if (magLevel(state) >= 200 || state[k] >= 200) { // capped
                 state.progress[k] = 99; events.push({ type: 'capped', stat: k });
@@ -79,12 +97,6 @@ export function feedOnce(data, state, itemName) {
             }
             state[k] += 1; state.progress[k] -= 100;
         }
-        // A negative feed can only eat into the CURRENT point's hundredths
-        // (80 -> 65); it never borrows from the integer stat. The wiki is
-        // explicit: "Mags may also lose experience in their stats depending on
-        // the item, but they cannot lose levels." Borrowing here dropped a
-        // Lv200 mag to Lv198 on a single Monomate.
-        if (state.progress[k] < 0) state.progress[k] = 0;
     });
     const after = magLevel(state);
     if (after > before) events.push({ type: 'levelUp', level: after });
@@ -146,6 +158,7 @@ export function bankMag(data, state) {
 // exactly this reason.
 //
 // Walks the ORDERED log, because that is the only place the interleaving lives.
+//
 export function feedCycles(log) {
     let cycles = 0;
     let inCycle = 0;                       // feeds used out of this cycle's 3
