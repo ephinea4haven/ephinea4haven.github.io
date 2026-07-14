@@ -1045,6 +1045,10 @@ window.MAG_SIM = {
       "feedTableId": "7",
       "stage": 4
     },
+    "Present*": {
+      "feedTableId": "7",
+      "stage": 4
+    },
     "Mag*": {
       "feedTableId": "7",
       "stage": 4
@@ -1062,6 +1066,10 @@ window.MAG_SIM = {
       "stage": 4
     },
     "Rappy": {
+      "feedTableId": "7",
+      "stage": 4
+    },
+    "Saraswati": {
       "feedTableId": "7",
       "stage": 4
     },
@@ -1650,6 +1658,17 @@ window.MAG_SIM = {
       },
       "reEvoWhitelist": false
     },
+    "Mag Gift Wrap": {
+      "target": "Present*",
+      "requires": {
+        "Present*": {
+          "minMagLevel": 100,
+          "requiredStage": 3,
+          "raw": "Level 100+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false
+    },
     "Mag Kit": {
       "target": "Mag*",
       "requires": {
@@ -1708,6 +1727,18 @@ window.MAG_SIM = {
         }
       },
       "reEvoWhitelist": false
+    },
+    "Seed Exchange Kit": {
+      "target": "Saraswati",
+      "requires": {
+        "Saraswati": {
+          "minMagLevel": 100,
+          "requiredStage": 3,
+          "raw": "Level 100+ third evolution Mag"
+        }
+      },
+      "reEvoWhitelist": false,
+      "unobtainable": true
     },
     "Sonic Doll": {
       "target": "Sonic",

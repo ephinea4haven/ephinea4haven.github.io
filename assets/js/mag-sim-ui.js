@@ -522,13 +522,20 @@ function cellReqHtml(cellName) {
     if (!cell) return '';
     const targets = Array.isArray(cell.target) ? cell.target : [cell.target];
     const race = raceRuleText(cell);
+    // The wiki's own Notes column ("Currently unavailable"). The cell is still
+    // simulated — the mag is real and the rules are known — but the player should
+    // not go hunting for an item the server does not currently hand out.
+    const gone = cell.unobtainable
+        ? `<div class="mag-sim-feed__cell-req mag-sim-feed__cell-req--race">
+            <b>获取</b><span>wiki 标注「Currently unavailable」：当前无法获得该 cell</span>
+        </div>` : '';
     const raceLine = race
         ? `<div class="mag-sim-feed__cell-req mag-sim-feed__cell-req--race">
             <b>种族</b><span>经典 PSO：${esc(race)}${state.racialRestriction
                 ? '（已按经典规则启用）'
                 : '　—　Ephinea 已于 2017-01-09 取消，当前不限制'}</span>
         </div>` : '';
-    return raceLine + targets.map((t) => {
+    return gone + raceLine + targets.map((t) => {
         const raw = ((cell.requires || {})[t] || {}).raw || '—';
         return `<div class="mag-sim-feed__cell-req">
             <b>→ ${esc(t)}</b><span>${esc(raw)}</span>
@@ -570,7 +577,8 @@ function renderFeed() {
             <div class="mag-sim-feed__cells">
                 <select data-cell-select>
                     ${Object.keys(DATA.magCells).map((c) =>
-                        `<option value="${esc(c)}"${c === selectedCell ? ' selected' : ''}>${esc(c)}</option>`).join('')}
+                        `<option value="${esc(c)}"${c === selectedCell ? ' selected' : ''}>${esc(c)}${
+                            DATA.magCells[c].unobtainable ? '（当前不可获得）' : ''}</option>`).join('')}
                 </select>
                 <button type="button" class="mag-sim-feed__cell-btn" data-feed-cell>喂 Cell</button>
             </div>

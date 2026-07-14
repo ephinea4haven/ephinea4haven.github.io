@@ -172,8 +172,8 @@ check('Cell of Mag 213 Churel = A 组 + 三段 + Lv100',
 // every requirement keeps its raw wiki text and gates on something checkable
 {
     const reqs = Object.values(D.magCells).flatMap((c) => Object.values(c.requires));
-    check('34 个 cell 的每条 requires 都带 raw 原文',
-        Object.keys(D.magCells).length === 34
+    check('36 个 cell 的每条 requires 都带 raw 原文',
+        Object.keys(D.magCells).length === 36
         && reqs.length > 0 && reqs.every((r) => typeof r.raw === 'string' && r.raw));
     check('每条 requires 至少有 requiresMag 或 requiredStage',
         reqs.every((r) => r.requiresMag !== undefined || r.requiredStage !== undefined));
@@ -190,8 +190,8 @@ check("Heart of YN-0117 raceRule only=[Android]",
     JSON.stringify(D.magCells['Heart of YN-0117'].raceRule) === '{"only":["Android"]}');
 {
     const withRule = Object.keys(D.magCells).filter((c) => D.magCells[c].raceRule);
-    check('只有这 3 个 cell 带 raceRule，其余 31 个不带',
-        withRule.length === 3 && Object.keys(D.magCells).length === 34
+    check('只有这 3 个 cell 带 raceRule，其余 33 个不带',
+        withRule.length === 3 && Object.keys(D.magCells).length === 36
         && withRule.join() === ['Heart of Angel', 'Heart of Devil', 'Heart of YN-0117'].sort().join());
     const RACES = ['Human', 'Newman', 'Android'];
     check('raceRule 结构合法（deny/only 二选一，值为已知种族）',
@@ -217,6 +217,41 @@ check('stage3SpecialFO Andhaka/Bana minDef 45',
     D.evolution.stage3SpecialFO.powMax === 'Andhaka'
     && D.evolution.stage3SpecialFO.other === 'Bana'
     && D.evolution.stage3SpecialFO.minDef === 45);
+
+// ---- the two cells the "List of Mag cells" table omits -----------------------
+// That table lists 34 cells; the "List of cell Mags" table lists 36 mags. Mag
+// Gift Wrap → Present* (an event item, currently obtainable) and Seed Exchange
+// Kit → Saraswati ("Currently unavailable") appear ONLY in the latter, so
+// scraping the former alone silently dropped both. Both are real cell mags with
+// real requirements, so the generator now takes the cell list from the cell-Mags
+// table too.
+check('Mag Gift Wrap → Present*（wiki 的 List of cell Mags 里有，List of Mag cells 里没有）',
+    D.magCells['Mag Gift Wrap']
+    && D.magCells['Mag Gift Wrap'].target === 'Present*');
+check('Mag Gift Wrap 的条件：Level 100+ third evolution Mag',
+    D.magCells['Mag Gift Wrap'].requires['Present*'].minMagLevel === 100
+    && D.magCells['Mag Gift Wrap'].requires['Present*'].requiredStage === 3);
+check('Present* 已登记为四段 mag（可被喂食表引用）',
+    D.mags['Present*'] && D.mags['Present*'].stage === 4);
+
+check('Seed Exchange Kit → Saraswati',
+    D.magCells['Seed Exchange Kit']
+    && D.magCells['Seed Exchange Kit'].target === 'Saraswati');
+check('Seed Exchange Kit 的条件：Level 100+ third evolution Mag',
+    D.magCells['Seed Exchange Kit'].requires.Saraswati.minMagLevel === 100
+    && D.magCells['Seed Exchange Kit'].requires.Saraswati.requiredStage === 3);
+check('Saraswati 已登记为四段 mag', D.mags.Saraswati && D.mags.Saraswati.stage === 4);
+// The wiki's Notes column says "Currently unavailable" for Saraswati and nothing
+// of the sort for Present*, so exactly one of the two is flagged.
+check('Seed Exchange Kit 标记为当前不可获得（wiki: "Currently unavailable"）',
+    D.magCells['Seed Exchange Kit'].unobtainable === true);
+check('Mag Gift Wrap 没有被标记为不可获得（活动道具，当前可获得）',
+    D.magCells['Mag Gift Wrap'].unobtainable === undefined);
+{
+    const flagged = Object.keys(D.magCells).filter((c) => D.magCells[c].unobtainable);
+    check('只有 Seed Exchange Kit 一个 cell 被标记为不可获得',
+        flagged.join() === 'Seed Exchange Kit');
+}
 
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
 process.exit(failed ? 1 : 0);

@@ -383,9 +383,18 @@ def _parse_req(cond: str) -> dict:
 
 def parse_mag_cells(page: str) -> dict:
     """'====List of Mag cells====' (cell → target mag(s)) merged with the
-    per-mag requirements from '====List of cell Mags===='."""
-    # requirements keyed by the (display) mag name
+    per-mag requirements from '====List of cell Mags===='.
+
+    The two tables do NOT agree: the cell list omits 'Mag Gift Wrap' (→ Present*)
+    and 'Seed Exchange Kit' (→ Saraswati), both of which the cell-*Mags* table
+    carries in full — cell, conditions, triggers and all. Scraping the cell list
+    alone silently dropped both, so the cell-Mags table is the wider source and
+    anything it names that the cell list missed is added from there.
+    """
+    # requirements + the cell that makes each mag, keyed by the (display) mag name
     reqs: dict[str, dict] = {}
+    cell_of: dict[str, str] = {}
+    unobtainable: set[str] = set()
     for block in section_slice(page, "List of cell Mags").split("\n|-"):
         fm = re.search(r"\[\[File:[^\]]*\]\]\s*<br>\s*\[\[([^\]]+)\]\]", block)
         if not fm:
@@ -394,6 +403,13 @@ def parse_mag_cells(page: str) -> dict:
         cells = [_cell(c)[2] for c in _split_cells(block)]
         if len(cells) >= 3:
             reqs[mag] = _parse_req(cells[2])
+        cm = re.search(r"\{\{Tool\|rare\|([^}]+)\}\}", cells[1] if len(cells) > 1 else "")
+        if cm:
+            cell_of[mag] = cm.group(1).strip()
+        # the Notes column — the wiki's own availability flag ("Currently
+        # unavailable" for Saraswati's Seed Exchange Kit)
+        if len(cells) >= 7 and "currently unavailable" in cells[6].lower():
+            unobtainable.add(mag)
 
     out: dict[str, dict] = {}
     for block in section_slice(page, "List of Mag cells").split("\n|-"):
@@ -406,14 +422,28 @@ def parse_mag_cells(page: str) -> dict:
                    for m in re.finditer(r"\{\{Mag\|([^{}]*)\}\}", assoc)]
         if not targets:
             sys.exit(f"mag cell {cell!r}: no associated mag parsed")
-        out[cell] = {
-            "target": targets if len(targets) > 1 else targets[0],
-            "requires": {t: reqs.get(t, {}) for t in targets},
-            "reEvoWhitelist": cell in RE_EVO_WHITELIST,
-        }
-        if cell in CELL_RACE_RULES:            # omitted entirely for the rest
-            out[cell]["raceRule"] = CELL_RACE_RULES[cell]
-    return out
+        out[cell] = _cell_entry(cell, targets, reqs, unobtainable)
+
+    # …and the cells the "List of Mag cells" table forgot.
+    listed = {c for c in out}
+    for mag, cell in cell_of.items():
+        if cell not in listed:
+            out[cell] = _cell_entry(cell, [mag], reqs, unobtainable)
+
+    return dict(sorted(out.items()))
+
+
+def _cell_entry(cell: str, targets: list[str], reqs: dict, unobtainable: set) -> dict:
+    entry = {
+        "target": targets if len(targets) > 1 else targets[0],
+        "requires": {t: reqs.get(t, {}) for t in targets},
+        "reEvoWhitelist": cell in RE_EVO_WHITELIST,
+    }
+    if cell in CELL_RACE_RULES:                # omitted entirely for the rest
+        entry["raceRule"] = CELL_RACE_RULES[cell]
+    if all(t in unobtainable for t in targets):  # wiki Notes: "Currently unavailable"
+        entry["unobtainable"] = True
+    return entry
 
 
 def add_cell_mags(mags: dict, magcells: dict) -> None:
