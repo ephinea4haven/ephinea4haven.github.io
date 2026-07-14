@@ -24,6 +24,11 @@ export function createState(data, { start }) {
         // toggle only; enforcing them by default told honest Ephinea players that
         // perfectly legal mags were impossible.
         racialRestriction: false,
+        // The value the session STARTED with. The live flag is a mutable player
+        // setting; every change made after the first action is recorded in `log`
+        // (see setRacialRestriction), so a replay needs the pre-session default
+        // here rather than a snapshot of wherever the toggle happened to end up.
+        _racial0: false,
         // Photon Blasts, up to 3, accumulated across the mag's evolutions (see
         // inheritPB). A mag starts with none and keeps every PB it has learned,
         // so the set a player is feeding *for* is visible at any point.
@@ -83,6 +88,24 @@ export function feedOnce(data, state, itemName) {
     state.log.push({ kind: 'feed', item: itemName, feeder: { ...state.feeder } });
     events.push(...checkEvolution(data, state));
     return events;
+}
+
+// --- The classic-PSO race-rule toggle ----------------------------------------
+// This is an ACTION, not a setting snapshot. exportSession used to write the
+// flag once, at export time, while the UI mutated it live — so a link shared
+// after the player had flipped it mid-run replayed a DIFFERENT mag: a cell that
+// was rejected live got accepted on replay (and vice versa). Banks were promoted
+// into the ordered action list for exactly this reason; the toggle was not.
+//
+// A change made BEFORE the first action is just the session's starting value
+// (`_racial0`) and needs no log entry; anything later is an ordered action.
+export function setRacialRestriction(state, on) {
+    const next = !!on;
+    if (state.racialRestriction === next) return [];
+    state.racialRestriction = next;
+    if (state.log.length === 0) state._racial0 = next;
+    else state.log.push({ kind: 'racial', on: next });
+    return [{ type: 'racialRestriction', on: next }];
 }
 
 // --- The bank / leave-game trick ---------------------------------------------
@@ -371,20 +394,26 @@ export function checkCellEvolution(data, state, cellName) {
 // feeder snapshot at the moment of that feed) plus the original start config, so
 // a session can be losslessly reconstructed from data + this record alone.
 //
-// Banks are part of the ORDER, not a count: the whole point of the trick is
-// *when* you bank (after every Monofluid). A `feeds` list that dropped them
-// would replay a shared 13/0/0/187 plan as a 15/0/0/185 mag. They ride in the
-// same list as `{ action: 'bank' }`; an entry without `action` is a feed, which
-// is exactly what every link shared before this existed looks like.
+// Banks and race-rule toggles are part of the ORDER, not a count/snapshot: the
+// whole point of the bank trick is *when* you bank (after every Monofluid), and
+// a toggle flipped mid-run decides which cell feeds were accepted. A `feeds`
+// list that dropped either would replay a shared 13/0/0/187 plan as a 15/0/0/185
+// mag, or accept a cell that was rejected live. They ride in the same list as
+// `{ action: 'bank' }` / `{ action: 'racial', on }`; an entry without `action`
+// is a feed, which is exactly what every link shared before this existed looks
+// like. `racialRestriction` stays as a top-level scalar — but it is the value the
+// session STARTED with, so old links (scalar only, no actions) still replay.
 export function exportSession(state) {
-    const ACTIONS = { feed: 1, feedCell: 1, bank: 1 };
+    const ACTIONS = { feed: 1, feedCell: 1, bank: 1, racial: 1 };
+    const action = (e) => {
+        if (e.kind === 'bank') return { action: 'bank' };
+        if (e.kind === 'racial') return { action: 'racial', on: e.on };
+        return { item: e.item, feeder: { ...e.feeder } };
+    };
     return {
         start: state._start,               // createState 时存下的 start 参数
-        racialRestriction: state.racialRestriction,
-        feeds: state.log.filter((e) => ACTIONS[e.kind])
-                        .map((e) => (e.kind === 'bank'
-                            ? { action: 'bank' }
-                            : { item: e.item, feeder: { ...e.feeder } })),
+        racialRestriction: state._racial0 ?? state.racialRestriction,
+        feeds: state.log.filter((e) => ACTIONS[e.kind]).map(action),
         final: { magId: state.magId, def: state.def, pow: state.pow,
                  dex: state.dex, mind: state.mind, synchro: state.synchro,
                  iq: state.iq, level: magLevel(state), pbs: [...state.pbs] },
@@ -392,10 +421,15 @@ export function exportSession(state) {
 }
 export function replaySession(data, session) {
     const s = createState(data, { start: session.start });
-    // absent in links shared before the toggle existed -> the default (on)
-    if (session.racialRestriction !== undefined) s.racialRestriction = session.racialRestriction;
+    // absent in links shared before the toggle existed -> the engine default
+    if (session.racialRestriction !== undefined) {
+        s.racialRestriction = s._racial0 = !!session.racialRestriction;
+    }
     for (const f of session.feeds) {
         if (f.action === 'bank') { bankMag(data, s); continue; }
+        // Applied IN ORDER, so the feeds before it see the old rule and the feeds
+        // after it see the new one — the whole point of logging the toggle.
+        if (f.action === 'racial') { setRacialRestriction(s, f.on); continue; }
         s.feeder = { ...f.feeder };
         feedOnce(data, s, f.item);
     }
@@ -404,5 +438,6 @@ export function replaySession(data, session) {
 
 // browser (non-module) global
 if (typeof window !== 'undefined') {
-    window.MagSimEngine = { magLevel, createState, feedOnce, bankMag, checkEvolution, checkCellEvolution, evalStage3Rule, exportSession, replaySession };
+    window.MagSimEngine = { magLevel, createState, feedOnce, bankMag, setRacialRestriction,
+        checkEvolution, checkCellEvolution, evalStage3Rule, exportSession, replaySession };
 }

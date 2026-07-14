@@ -1,6 +1,7 @@
 /* Engine unit tests. Run: node scripts/verify_mag_sim.mjs */
 import { readFileSync } from 'node:fs';
-import { createState, magLevel, feedOnce, bankMag, checkEvolution, checkCellEvolution, exportSession, replaySession }
+import { createState, magLevel, feedOnce, bankMag, checkEvolution, checkCellEvolution,
+         setRacialRestriction, exportSession, replaySession }
     from '../assets/js/mag-sim-engine.js';
 
 const src = readFileSync('assets/js/mag-sim-data.js', 'utf8');
@@ -839,13 +840,59 @@ check('createState 默认关闭种族限制（Ephinea 2017-01-09 取消了这条
   const t = createState(DATA, { start:{mode:'custom', magId:'Varaha',
     def:40, pow:30, dex:10, mind:20, synchro:20, iq:0} });
   t.feeder = { class:'HU', gender:'M', sectionId:'Viridia', race:'Android' };
-  t.racialRestriction = false;
   feedOnce(DATA, t, 'Heart of Angel');
-  check('关闭种族限制:机器人喂 Heart of Angel 成功', t.magId === "Angel's Wing");
+  check('默认（关闭种族限制）:机器人喂 Heart of Angel 成功', t.magId === "Angel's Wing");
   const replayed = replaySession(DATA, exportSession(t));
   check('回放保留 racialRestriction=false', replayed.racialRestriction === false);
   check('回放后仍是 Angel\'s Wing（deny 规则未被重新套用）',
     replayed.magId === t.magId);
+}
+
+// …and it must round-trip when it is toggled MID-SESSION. exportSession used to
+// write it as a single scalar snapshot taken at export time, while the UI mutates
+// it live — so a shared link replayed a DIFFERENT mag (a cell that was rejected
+// live got accepted on replay, and vice versa). Toggles are actions: they belong
+// in the ordered action log, exactly like a bank.
+{
+  const t = createState(DATA, { start:{mode:'custom', magId:'Varaha',
+    def:100, pow:0, dex:0, mind:0, synchro:20, iq:0} });   // Lv100 stage-3
+  t.feeder = { class:'HU', gender:'M', sectionId:'Viridia', race:'Android' }; // HUcast
+  setRacialRestriction(t, true);                     // pre-session default: classic rules
+  feedOnce(DATA, t, 'Heart of Angel');               // -> rejected (classic deny)
+  check('中途切换:开着经典限制时机器人被拒', t.magId === 'Varaha');
+  setRacialRestriction(t, false);                    // MID-SESSION: back to Ephinea rules
+  feedOnce(DATA, t, 'Heart of Angel');               // -> accepted
+  check('中途切换:关掉经典限制后同一个 cell 成功', t.magId === "Angel's Wing");
+
+  const session = exportSession(t);
+  check('中途切换:顶层标量记录的是「会话开始前」的值（true），不是导出时的值',
+    session.racialRestriction === true);
+  check('中途切换:切换本身作为一条有序 action 被导出',
+    session.feeds.some((f) => f.action === 'racial' && f.on === false));
+
+  const replayed = replaySession(DATA, session);
+  check('中途切换:回放得到同一只 mag', replayed.magId === t.magId);
+  check('中途切换:回放逐字节一致（第一次喂 cell 仍然是被拒绝的）',
+    JSON.stringify(replayed.log) === JSON.stringify(t.log));
+  check('中途切换:回放后 racialRestriction 停在 false', replayed.racialRestriction === false);
+  check('中途切换:回放后再导出仍然等价（幂等）',
+    JSON.stringify(exportSession(replayed)) === JSON.stringify(session));
+}
+
+// Old share links carry only the top-level scalar and no `racial` actions: they
+// must still replay under that constant rule.
+{
+  const legacy = {
+    start: { mode: 'custom', magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0,
+             synchro: 20, iq: 0 },
+    racialRestriction: true,
+    feeds: [{ item: 'Heart of Angel',
+              feeder: { class: 'HU', gender: 'M', sectionId: 'Viridia', race: 'Android' } }],
+  };
+  const replayed = replaySession(DATA, legacy);
+  check('旧分享链接（只有标量、没有 racial action）仍按该常量规则回放',
+    replayed.racialRestriction === true && replayed.magId === 'Varaha'
+    && replayed.log[0].kind === 'feedCell' && replayed.log[0].ok === false);
 }
 
 // mid-session feeder swap: export/replay must survive the feeder object being

@@ -57,7 +57,10 @@ function applyStart(start) {
     const { feeder, racialRestriction } = state;
     state = E.createState(DATA, { start });
     state.feeder = { ...feeder };
-    state.racialRestriction = racialRestriction;
+    // Through the engine, not by assignment: on a fresh state (empty log) this
+    // records the toggle as the session's STARTING value, which is what
+    // exportSession serialises. A bare assignment would leave `_racial0` stale.
+    E.setRacialRestriction(state, racialRestriction);
     history.length = 0;
     render();
 }
@@ -183,8 +186,17 @@ function renderSetup() {
         summary.textContent = feederSummary(state.feeder);
     });
 
+    // Flipping the toggle mid-session is an ACTION: it decides which cell feeds
+    // were accepted, so it goes into the ordered log (like a bank) and rides
+    // along in the shared link. An undo snapshot is pushed first, so the flip is
+    // undoable like every other action.
     root.querySelector('[data-racial-restriction]').addEventListener('change', (e) => {
-        state.racialRestriction = e.target.checked;
+        const snapshot = structuredClone(state);
+        const before = state.log.length;
+        E.setRacialRestriction(state, e.target.checked);
+        // A flip made before the first feed is just the session's starting value
+        // and writes no log entry — nothing to undo, so no snapshot is pushed.
+        if (state.log.length > before) history.push(snapshot);
         render();
     });
 
@@ -561,10 +573,17 @@ function bankLogLine() {
     return `<div class="mag-sim-log__line mag-sim-log__line--bank">存银行：小数进度向下取偶</div>`;
 }
 
+// A mid-session flip of the classic-rules toggle changes which cells are
+// accepted from here on, so it is part of the history, not a hidden setting.
+function racialLogLine(entry) {
+    return `<div class="mag-sim-log__line mag-sim-log__line--bank">规则切换：经典 PSO 种族限制${entry.on ? '开启' : '关闭'}</div>`;
+}
+
 function logLineHtml(entry) {
     if (entry.kind === 'evolve') return evolveLogLine(entry);
     if (entry.kind === 'feedCell') return feedCellLogLine(entry);
     if (entry.kind === 'bank') return bankLogLine(entry);
+    if (entry.kind === 'racial') return racialLogLine(entry);
     return feedItemLogLine(entry);
 }
 
@@ -619,6 +638,7 @@ function download(filename, text) {
 function logLineText(entry) {
     if (entry.kind === 'evolve') return `→ 进化：${entry.from} → ${entry.to}（Lv ${entry.level}）`;
     if (entry.kind === 'bank') return '存银行：小数进度向下取偶';
+    if (entry.kind === 'racial') return `规则切换：经典 PSO 种族限制${entry.on ? '开启' : '关闭'}`;
     if (entry.kind === 'feedCell') {
         return `${entry.ok ? '✓' : '✗'} 喂食 Cell：${entry.item}`
             + (entry.ok ? '' : `（未生效：${entry.reason || '未满足条件'}）`);
