@@ -13,9 +13,17 @@ export function createState(data, { start }) {
         // class line, the gender AND the race (HUmar = HU/M/Human, HUcast =
         // HU/M/Android, …). Race only matters for the mag-cell race rules.
         feeder: { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' },
-        // Magatama's blnMagRacialRestriction: when off, the mag-cell race rules
-        // are not enforced at all.
-        racialRestriction: true,
+        // The pre-2017 mag-cell race rules (Magatama's blnMagRacialRestriction).
+        // DEFAULT OFF: Ephinea does not enforce them. Straight from the wiki's mag
+        // pages — Elenor: "Originally, this Mag could only be equipped by android
+        // characters. This was changed in an Ephinea update on January 9, 2017.";
+        // Angel's Wing / Devil's Wing: "Originally, this Mag […] could not be
+        // equipped by Androids. This was changed on an Ephinea update on January 9,
+        // 2017." (And it was always a restriction on EQUIPPING the mag, never on
+        // using the cell.) The rules are kept as an opt-in classic/vanilla-PSO
+        // toggle only; enforcing them by default told honest Ephinea players that
+        // perfectly legal mags were impossible.
+        racialRestriction: false,
         // Photon Blasts, up to 3, accumulated across the mag's evolutions (see
         // inheritPB). A mag starts with none and keeps every PB it has learned,
         // so the set a player is feeding *for* is visible at any point.
@@ -304,8 +312,10 @@ function statThresholdOk(state, { value, count }) {
 }
 
 // The cell's racial restriction (magCells[cell].raceRule — only three cells
-// carry one). INDEPENDENT of every other gate: it keys on the *feeder's race*,
-// not on the mag, so it is checked once, up front, for the whole cell.
+// carry one). OFF unless the player opts into the classic/vanilla-PSO rules:
+// Ephinea dropped these on 2017-01-09 (see createState). INDEPENDENT of every
+// other gate: it keys on the *feeder's race*, not on the mag, so it is checked
+// once, up front, for the whole cell.
 // A feeder with no `race` (an old share link, a hand-built state) is never
 // blocked by a `deny` rule — it can only fail an `only` rule.
 // Returns a rejection reason, or null when the cell is allowed.

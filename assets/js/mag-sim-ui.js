@@ -126,9 +126,9 @@ function renderSetup() {
                             </optgroup>`).join('')}
                     </select>
                 </label>
-                <label class="mag-sim-setup__check">
+                <label class="mag-sim-setup__check" title="Ephinea 已于 2017-01-09 取消 mag cell 的种族限制（且当年限制的是「装备」该 mag，而非使用 cell）。勾选后按经典 PSO 规则模拟。">
                     <input type="checkbox" data-racial-restriction${state.racialRestriction ? ' checked' : ''}>
-                    <span>种族限制</span>
+                    <span>经典 PSO 种族限制<em class="mag-sim-setup__note">Ephinea 已于 2017-01-09 取消</em></span>
                 </label>
             </div>
             <div class="mag-sim-setup__derived" data-feeder-summary>${esc(feederSummary(state.feeder))}</div>
@@ -438,9 +438,9 @@ let selectedCell = Object.keys(DATA.magCells)[0];
 // The cell's evolution conditions, straight from the wiki (`requires[t].raw`),
 // one line per possible target. The engine enforces exactly these, so showing
 // them is the only way a rejected cell reads as a rule rather than a bug.
-// The cell's racial restriction, as a human sentence. Not on the wiki (it comes
-// from the generator's hand-maintained CELL_RACE_RULES), so without this the
-// rejection would read as a bug rather than a rule.
+// The cell's racial restriction, as a human sentence. This is the CLASSIC PSO
+// rule, which Ephinea removed on 2017-01-09 (wiki, Elenor / Angel's Wing /
+// Devil's Wing) — so it is only ever shown as an opt-in, never as the default.
 function raceRuleText(cell) {
     const r = cell.raceRule;
     if (!r) return '';
@@ -455,7 +455,9 @@ function cellReqHtml(cellName) {
     const race = raceRuleText(cell);
     const raceLine = race
         ? `<div class="mag-sim-feed__cell-req mag-sim-feed__cell-req--race">
-            <b>种族</b><span>${esc(race)}${state.racialRestriction ? '' : '（种族限制已关闭）'}</span>
+            <b>种族</b><span>经典 PSO：${esc(race)}${state.racialRestriction
+                ? '（已按经典规则启用）'
+                : '　—　Ephinea 已于 2017-01-09 取消，当前不限制'}</span>
         </div>` : '';
     return raceLine + targets.map((t) => {
         const raw = ((cell.requires || {})[t] || {}).raw || '—';

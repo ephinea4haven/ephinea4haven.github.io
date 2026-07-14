@@ -729,61 +729,79 @@ check('checkCellEvolution 已导出', typeof checkCellEvolution === 'function');
   check('cell feed applied no stat progress', JSON.stringify(t.progress) === JSON.stringify(p)); }
 
 // --- racial restriction (mag cells) -----------------------------------------
-// The wiki has no race data; the rules live in the generator's CELL_RACE_RULES
-// (mirroring Magatama's MagCellsError.xml) and reach the engine as
-// magCells[cell].raceRule. Gated on state.racialRestriction (Magatama's toggle).
+// EPHINEA DOES NOT ENFORCE THESE. The wiki's own mag pages:
+//   Elenor: "Originally, this Mag could only be equipped by android characters.
+//     This was changed in an Ephinea update on January 9, 2017."
+//   Angel's Wing / Devil's Wing: "Originally, this Mag […] could not be equipped
+//     by Androids. This was changed on an Ephinea update on January 9, 2017."
+// Note it was a restriction on EQUIPPING the mag, never on using the cell. The
+// rules survive as an OPT-IN classic/vanilla-PSO toggle (they were copied from
+// Magatama, which models vanilla PSO) — hence default OFF.
 check('createState 默认 feeder.race=Human', s.feeder.race === 'Human');
-check('createState 默认开启种族限制', s.racialRestriction === true);
+check('createState 默认关闭种族限制（Ephinea 2017-01-09 取消了这条规则）',
+  s.racialRestriction === false);
 
-// deny: Android — Heart of Angel / Heart of Devil
+// DEFAULT (Ephinea) behaviour: no cell is ever race-gated.
 { const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 }); // Lv100 stage3
   t.feeder = { class: 'HU', gender: 'M', race: 'Android', sectionId: 'Viridia' }; // HUcast
+  feedOnce(DATA, t, 'Heart of Angel');
+  check("默认（Ephinea）：机器人可用 Heart of Angel → Angel's Wing",
+    t.magId === "Angel's Wing"); }
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
+  t.feeder = { class: 'RA', gender: 'F', race: 'Android', sectionId: 'Viridia' }; // RAcaseal
+  feedOnce(DATA, t, 'Heart of Devil');
+  check('默认（Ephinea）：机器人可用 Heart of Devil',
+    DATA.mags[t.magId].stage === 4 && t.magId !== 'Varaha'); }
+{ const t = cs({ magId: 'Varaha', def: 50, pow: 0, dex: 0, mind: 0 }); // Lv50 stage3
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // HUmar
+  feedOnce(DATA, t, 'Heart of YN-0117');
+  check('默认（Ephinea）：人类可用 Heart of YN-0117 → Elenor', t.magId === 'Elenor'); }
+
+// OPT-IN classic PSO rule: racialRestriction = true re-applies the pre-2017 gates.
+// deny: Android — Heart of Angel / Heart of Devil
+{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 }); // Lv100 stage3
+  t.racialRestriction = true;
+  t.feeder = { class: 'HU', gender: 'M', race: 'Android', sectionId: 'Viridia' }; // HUcast
   const ev = feedOnce(DATA, t, 'Heart of Angel');
-  check('Heart of Angel + 机器人 → 拒绝',
+  check('经典规则开启：Heart of Angel + 机器人 → 拒绝',
     ev.some((e) => e.type === 'magCellRejected' && /机器人/.test(e.reason))
     && t.magId === 'Varaha'); }
 { const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
+  t.racialRestriction = true;
   t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // HUmar
   feedOnce(DATA, t, 'Heart of Angel');
-  check("Heart of Angel + 人类 → Angel's Wing", t.magId === "Angel's Wing"); }
+  check("经典规则开启：Heart of Angel + 人类 → Angel's Wing", t.magId === "Angel's Wing"); }
 { const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
+  t.racialRestriction = true;
   t.feeder = { class: 'HU', gender: 'F', race: 'Newman', sectionId: 'Viridia' }; // HUnewearl
   feedOnce(DATA, t, 'Heart of Angel');
-  check("Heart of Angel + 新人类 → Angel's Wing", t.magId === "Angel's Wing"); }
+  check("经典规则开启：Heart of Angel + 新人类 → Angel's Wing", t.magId === "Angel's Wing"); }
 { const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
+  t.racialRestriction = true;
   t.feeder = { class: 'RA', gender: 'F', race: 'Android', sectionId: 'Viridia' }; // RAcaseal
-  check('Heart of Devil + 机器人 → 拒绝',
+  check('经典规则开启：Heart of Devil + 机器人 → 拒绝',
     feedOnce(DATA, t, 'Heart of Devil').some((e) => e.type === 'magCellRejected')
     && t.magId === 'Varaha'); }
 
 // only: Android — Heart of YN-0117
 { const t = cs({ magId: 'Varaha', def: 50, pow: 0, dex: 0, mind: 0 }); // Lv50 stage3
+  t.racialRestriction = true;
   t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' };
   const ev = feedOnce(DATA, t, 'Heart of YN-0117');
-  check('Heart of YN-0117 + 人类 → 拒绝',
+  check('经典规则开启：Heart of YN-0117 + 人类 → 拒绝',
     ev.some((e) => e.type === 'magCellRejected' && /仅机器人/.test(e.reason))
     && t.magId === 'Varaha'); }
 { const t = cs({ magId: 'Varaha', def: 50, pow: 0, dex: 0, mind: 0 });
+  t.racialRestriction = true;
   t.feeder = { class: 'FO', gender: 'F', race: 'Newman', sectionId: 'Viridia' }; // FOnewearl
-  check('Heart of YN-0117 + 新人类 → 拒绝',
+  check('经典规则开启：Heart of YN-0117 + 新人类 → 拒绝',
     feedOnce(DATA, t, 'Heart of YN-0117').some((e) => e.type === 'magCellRejected')
     && t.magId === 'Varaha'); }
 { const t = cs({ magId: 'Varaha', def: 50, pow: 0, dex: 0, mind: 0 });
+  t.racialRestriction = true;
   t.feeder = { class: 'RA', gender: 'M', race: 'Android', sectionId: 'Viridia' }; // RAcast
   feedOnce(DATA, t, 'Heart of YN-0117');
-  check('Heart of YN-0117 + 机器人 → Elenor', t.magId === 'Elenor'); }
-
-// the toggle: racialRestriction=false skips the race gate entirely (both ways)
-{ const t = cs({ magId: 'Varaha', def: 100, pow: 0, dex: 0, mind: 0 });
-  t.feeder = { class: 'HU', gender: 'M', race: 'Android', sectionId: 'Viridia' };
-  t.racialRestriction = false;
-  feedOnce(DATA, t, 'Heart of Angel');
-  check("关闭种族限制后机器人可用 Heart of Angel", t.magId === "Angel's Wing"); }
-{ const t = cs({ magId: 'Varaha', def: 50, pow: 0, dex: 0, mind: 0 });
-  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' };
-  t.racialRestriction = false;
-  feedOnce(DATA, t, 'Heart of YN-0117');
-  check('关闭种族限制后人类可用 Heart of YN-0117', t.magId === 'Elenor'); }
+  check('经典规则开启：Heart of YN-0117 + 机器人 → Elenor', t.magId === 'Elenor'); }
 
 // a cell WITHOUT a raceRule is never race-gated
 { const t = cs({ magId: 'Kama', def: 50, pow: 0, dex: 0, mind: 0 }); // Lv50 stage3
