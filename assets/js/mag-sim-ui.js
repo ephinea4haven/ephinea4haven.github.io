@@ -490,8 +490,13 @@ function feedRowHtml(item) {
     </div>`;
 }
 
-// 3 feeds per real-time cycle (server tick), ~210s/cycle — matches the
-// brief's estimate for "how long will this take".
+// 3 feeds per real-time cycle (server tick), ~210s/cycle. But a bank RESTARTS the
+// feed timer — Miku: "quitting the game or depositing and withdrawing the mag …
+// will round down all fractional levels … However, it'll start the timer for
+// feeding the mag all over again so it may be time-consuming." — so the count is
+// walked out of the ordered log by E.feedCycles(), not divided out of a feed
+// total. The old ceil(totalItems / 3) priced the banked 13/0/0/187 route the same
+// as the plain 15/0/0/185 one; it really costs about three times the time.
 const SECONDS_PER_CYCLE = 210;
 
 // Which Mag Cell the dropdown is showing. Kept outside the render (renderFeed
@@ -537,8 +542,18 @@ function renderFeed() {
 
     const totalItems = DATA.itemOrder.reduce((n, it) => n + countOf(it), 0);
     const totalCost = DATA.itemOrder.reduce((n, it) => n + countOf(it) * DATA.costs[it], 0);
-    const cycles = Math.ceil(totalItems / 3);
+    const banks = state.log.reduce((n, e) => n + (e.kind === 'bank' ? 1 : 0), 0);
+    const cycles = E.feedCycles(state.log);
     const minutes = (cycles * SECONDS_PER_CYCLE) / 60;
+    // What the same feeds would have cost with no banking — the honest price tag
+    // on the trick, and the number this panel used to show for both routes.
+    const feeds = state.log.reduce(
+        (n, e) => n + (e.kind === 'feed' || e.kind === 'feedCell' ? 1 : 0), 0);
+    const unbanked = Math.ceil(feeds / 3);
+    const bankNote = banks && cycles > unbanked
+        ? `<span class="mag-sim-feed__bank-cost">存银行重置喂食计时器，多花 ${cycles - unbanked} 个周期
+             （不存银行只需 ${unbanked} 个）</span>`
+        : '';
 
     root.innerHTML = `
         <h2>喂食</h2>
@@ -569,8 +584,9 @@ function renderFeed() {
         <div class="mag-sim-feed__totals">
             <span>总道具数：<b>${totalItems}</b></span>
             <span>总花费：<b>${totalCost.toLocaleString()}</b> meseta</span>
-            <span>周期数：<b>${cycles}</b></span>
-            <span>预计时间：<b>${minutes.toFixed(1)}</b> 分钟</span>
+            <span>周期数：<b data-cycles>${cycles}</b></span>
+            <span>预计时间：<b data-eta>${minutes.toFixed(1)}</b> 分钟</span>
+            ${bankNote}
         </div>
     `;
 

@@ -134,6 +134,32 @@ export function bankMag(data, state) {
     return [{ type: 'banked' }];
 }
 
+// --- How long the plan really takes ------------------------------------------
+// A mag accepts 3 feeds per feeding cycle (~210s). But banking is not free:
+//   Miku: "quitting the game or depositing and withdrawing the mag […] will round
+//   down all fractional levels to the nearest 0.02. HOWEVER, IT'LL START THE
+//   TIMER FOR FEEDING THE MAG ALL OVER AGAIN so it may be time-consuming."
+// So a bank ENDS the current cycle wherever it stands, and the guide's
+// "bank after every Monofluid" route is 1 feed per cycle, not 3 — about three
+// times the wall-clock time. Pricing every route at ceil(feeds / 3) told the
+// player the 13/0/0/187 trick was free; the guide calls it "time-consuming" for
+// exactly this reason.
+//
+// Walks the ORDERED log, because that is the only place the interleaving lives.
+export function feedCycles(log) {
+    let cycles = 0;
+    let inCycle = 0;                       // feeds used out of this cycle's 3
+    for (const e of log) {
+        if (e.kind === 'feed' || e.kind === 'feedCell') {
+            if (inCycle === 0) cycles += 1;          // this feed opens a new cycle
+            inCycle = (inCycle + 1) % 3;
+        } else if (e.kind === 'bank') {
+            inCycle = 0;                             // the timer restarts
+        }
+    }
+    return cycles;
+}
+
 // --- Evolution engine --------------------------------------------------------
 // Which stage keys on WHAT (from the wiki's own condition-line grammar):
 //   Lv.10  `HU evolves Mag`             -> the FEEDER's class
@@ -443,5 +469,6 @@ export function replaySession(data, session) {
 // browser (non-module) global
 if (typeof window !== 'undefined') {
     window.MagSimEngine = { magLevel, createState, feedOnce, bankMag, setRacialRestriction,
-        checkEvolution, checkCellEvolution, evalStage3Rule, exportSession, replaySession };
+        feedCycles, checkEvolution, checkCellEvolution, evalStage3Rule,
+        exportSession, replaySession };
 }

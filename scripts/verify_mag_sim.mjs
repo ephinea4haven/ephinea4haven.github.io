@@ -1,7 +1,7 @@
 /* Engine unit tests. Run: node scripts/verify_mag_sim.mjs */
 import { readFileSync } from 'node:fs';
 import { createState, magLevel, feedOnce, bankMag, checkEvolution, checkCellEvolution,
-         setRacialRestriction, exportSession, replaySession }
+         setRacialRestriction, feedCycles, exportSession, replaySession }
     from '../assets/js/mag-sim-engine.js';
 
 const src = readFileSync('assets/js/mag-sim-data.js', 'utf8');
@@ -1319,6 +1319,55 @@ for (const [cls, expected] of [['HU', 'Yaksa'], ['RA', 'Varaha']]) {
     && magLevel(replayed) === 200);
   check('指南/存银行: 回放后 progress 一致',
     JSON.stringify(replayed.progress) === JSON.stringify(banked.t.progress));
+
+  // …AND IT COSTS TIME. Miku: "quitting the game or depositing and withdrawing
+  // the mag […] will round down all fractional levels to the nearest 0.02.
+  // However, it'll start the timer for feeding the mag all over again so it may
+  // be time-consuming." A mag takes 3 feeds per ~210s feeding cycle — but a bank
+  // ENDS the current cycle, so "bank after every Monofluid" is 1 feed per cycle,
+  // not 3. The UI used to price both routes at ceil(feeds / 3), telling the
+  // player 13/0/0/187 was free. It costs ~3x the real time; that is precisely why
+  // the guide calls the trick "time-consuming".
+  const plainFeeds = plain.t.log.filter((e) => e.kind === 'feed').length;
+  const bankedFeeds = banked.t.log.filter((e) => e.kind === 'feed').length;
+  const plainCycles = feedCycles(plain.t.log);
+  const bankedCycles = feedCycles(banked.t.log);
+  check('指南/存银行: 不存银行 → 每 3 次喂食一个周期', plainCycles === Math.ceil(plainFeeds / 3));
+  check('指南/存银行: 每喂一次就存银行 → 每 1 次喂食一个周期（存银行重置喂食计时器）',
+    bankedCycles === bankedFeeds);
+  // Slightly MORE than 3x: banking costs a whole cycle per feed (3x) *and* needs
+  // more feeds overall, because the shaved-off hundredths have to be re-fed.
+  // 2015 feeds / 672 cycles unbanked vs 2248 feeds / 2248 cycles banked ≈ 3.35x
+  // (~39 h vs ~131 h). The old ceil(items/3) called both routes 672 cycles.
+  check('指南/存银行: 存银行路线要多喂几口（被抹掉的百分位得重新喂回来）',
+    bankedFeeds > plainFeeds);
+  check('指南/存银行: 存银行路线的周期数是不存银行的 3 倍以上（指南所谓 time-consuming）',
+    bankedCycles / plainCycles > 3 && bankedCycles / plainCycles < 3.6);
+  check('指南/存银行: 旧算法 ceil(道具数/3) 会把两条路线报成几乎一样的时间（这正是 bug）',
+    Math.abs(Math.ceil(bankedFeeds / 3) - plainCycles) / plainCycles < 0.2
+    && bankedCycles > 2.9 * Math.ceil(bankedFeeds / 3));
+}
+
+// --- feedCycles: how long the plan really takes -------------------------------
+// 3 feeds per feeding cycle; a bank (or leaving the game) restarts the timer, so
+// it ends the current cycle wherever it stands.
+{
+  const log = (...kinds) => kinds.map((k) => ({ kind: k }));
+  check('周期: 空日志 → 0 个周期', feedCycles([]) === 0);
+  check('周期: 1 次喂食 → 1 个周期', feedCycles(log('feed')) === 1);
+  check('周期: 3 次喂食 → 1 个周期', feedCycles(log('feed', 'feed', 'feed')) === 1);
+  check('周期: 4 次喂食 → 2 个周期', feedCycles(log('feed', 'feed', 'feed', 'feed')) === 2);
+  check('周期: 喂食+存银行+喂食 → 2 个周期（存银行打断了周期）',
+    feedCycles(log('feed', 'bank', 'feed')) === 2);
+  check('周期: 喂,喂,存银行,喂 → 2 个周期（第一个周期只用掉 2 次喂食就被打断）',
+    feedCycles(log('feed', 'feed', 'bank', 'feed')) === 2);
+  check('周期: 喂,喂,喂,存银行,喂 → 2 个周期（周期正好满了再存银行，不额外花时间）',
+    feedCycles(log('feed', 'feed', 'feed', 'bank', 'feed')) === 2);
+  check('周期: 开头就存银行不算一个周期', feedCycles(log('bank', 'feed')) === 1);
+  check('周期: 连续存银行不额外计费', feedCycles(log('feed', 'bank', 'bank', 'feed')) === 2);
+  check('周期: 进化/规则切换等非喂食条目不计入',
+    feedCycles(log('feed', 'evolve', 'racial', 'feed', 'feed')) === 1);
+  check('周期: 喂 cell 也占一次喂食', feedCycles(log('feed', 'feedCell', 'feed', 'feed')) === 2);
 }
 
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');
