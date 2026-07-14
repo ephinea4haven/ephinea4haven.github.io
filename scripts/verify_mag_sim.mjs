@@ -25,6 +25,68 @@ check('state 上不再有 window 字段', s.window === undefined);
 check('state 上不再有 lastEvoLevel 字段（每次喂食都重新判定）',
   s.lastEvoLevel === undefined);
 
+check('fresh 起始没有 PB', Array.isArray(s.pbs) && s.pbs.length === 0);
+
+// --- createState: a CUSTOM start keeps its Photon Blasts -----------------------
+// A custom third-evolution mag has, in reality, already learned its PBs at levels
+// 10 / 35 / 50 — createState hard-coded `pbs: []` even for mode:'custom', so the
+// sim started such a mag with an empty rack and then promised it PBs the player's
+// real mag can never get (it would have to un-learn and re-learn them).
+{
+  const t = createState(DATA, { start: { mode: 'custom', magId: 'Bana',
+    def: 5, pow: 0, dex: 0, mind: 95, synchro: 20, iq: 0,
+    pbs: ['Farlla', 'Mylla & Youlla', 'Estlla'] } });
+  check('custom 起始保留 PB（三阶 mag 早就学会了 10/35/50 的 PB）',
+    t.pbs.join() === 'Farlla,Mylla & Youlla,Estlla');
+}
+{
+  const t = createState(DATA, { start: { mode: 'custom', magId: 'Bana',
+    def: 5, pow: 0, dex: 0, mind: 95, synchro: 20, iq: 0,
+    pbs: ['Farlla', 'Golla', 'Estlla', 'Pilla', 'Leilla'] } });
+  check('custom 起始最多只取前 3 个 PB', t.pbs.length === 3
+    && t.pbs.join() === 'Farlla,Golla,Estlla');
+}
+{
+  const t = createState(DATA, { start: { mode: 'custom', magId: 'Bana',
+    def: 5, pow: 0, dex: 0, mind: 95, synchro: 20, iq: 0 } });
+  check('custom 起始未给 PB → 空数组（不是 undefined）',
+    Array.isArray(t.pbs) && t.pbs.length === 0);
+}
+{
+  const t = createState(DATA, { start: { mode: 'custom', magId: 'Bana',
+    def: 5, pow: 0, dex: 0, mind: 95, synchro: 20, iq: 0, pbs: 'Farlla' } });
+  check('custom 起始 pbs 不是数组 → 忽略', Array.isArray(t.pbs) && t.pbs.length === 0);
+}
+// The start's array must not be ALIASED: feeding the mag must never mutate the
+// caller's start object (which the UI reuses for 重置 and exportSession).
+{
+  const start = { mode: 'custom', magId: 'Rudra', def: 41, pow: 2, dex: 5, mind: 2,
+    synchro: 20, iq: 0, pbs: ['Farlla'] };
+  const t = createState(DATA, { start });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' };
+  feedOnce(DATA, t, 'Star Atomizer');   // -> Yaksa, learns Golla
+  check('custom 起始的 pbs 数组被复制，不是引用（喂食不会污染 start）',
+    start.pbs.join() === 'Farlla' && t.pbs.join() === 'Farlla,Golla');
+}
+// …and a custom start with a full rack learns nothing more on re-evolution.
+{
+  const t = createState(DATA, { start: { mode: 'custom', magId: 'Rudra',
+    def: 41, pow: 2, dex: 5, mind: 2, synchro: 20, iq: 0,
+    pbs: ['Farlla', 'Mylla & Youlla', 'Estlla'] } });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' };
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('custom 起始 PB 已满 3 槽 → 三阶进化学不到新 PB',
+    t.magId === 'Yaksa' && t.pbs.join() === 'Farlla,Mylla & Youlla,Estlla');
+}
+// A custom start round-trips through export/replay with its PBs intact.
+{
+  const start = { mode: 'custom', magId: 'Bana', def: 5, pow: 0, dex: 0, mind: 95,
+    synchro: 20, iq: 0, pbs: ['Farlla', 'Estlla'] };
+  const t = createState(DATA, { start });
+  const replayed = replaySession(DATA, exportSession(t));
+  check('custom 起始的 PB 经导出→回放后仍在', replayed.pbs.join() === 'Farlla,Estlla');
+}
+
 // --- feedOnce: stat progress, carry, caps
 {
   const t = createState(DATA, { start: { mode: 'fresh' } }); // DEF5

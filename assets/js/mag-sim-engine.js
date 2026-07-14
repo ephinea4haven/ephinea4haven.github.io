@@ -30,9 +30,13 @@ export function createState(data, { start }) {
         // here rather than a snapshot of wherever the toggle happened to end up.
         _racial0: false,
         // Photon Blasts, up to 3, accumulated across the mag's evolutions (see
-        // inheritPB). A mag starts with none and keeps every PB it has learned,
-        // so the set a player is feeding *for* is visible at any point.
-        pbs: [],
+        // inheritPB). A FRESH mag starts with none; a CUSTOM start may already
+        // hold some, and must — a real third-evolution mag learned its PBs at
+        // levels 10/35/50 long before the player opened this simulator. Hard-
+        // coding [] here started it with an empty rack and then promised it PBs
+        // the player's actual mag can never get. Copied, never aliased: the start
+        // object is reused by 重置 / exportSession.
+        pbs: Array.isArray(src.pbs) ? [...src.pbs.slice(0, 3)] : [],
         log: [],
     };
     s._start = start;   // 供 exportSession / 重置复用

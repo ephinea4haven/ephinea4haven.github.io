@@ -9,6 +9,11 @@ const DATA = window.MAG_SIM;
 let state = E.createState(DATA, { start: { mode: 'fresh' } });
 const history = []; // undo snapshot stack (Tasks 12-15)
 
+// The custom start's Photon Blasts. Lives outside `state` for the same reason
+// feedQty does: it is a control the user dials in, read only when a custom start
+// is applied (renderSetup rebuilds its own innerHTML, so it cannot live in DOM).
+let customPBs = [];
+
 const SECTION_IDS = ['Viridia', 'Skyly', 'Purplenum', 'Redria', 'Yellowboze',
     'Greenill', 'Bluefull', 'Pinkal', 'Oran', 'Whitill'];
 const STAGE_LABEL = { 0: '初始 (Lv.0)', 1: '一段 (Lv.10)', 2: '二段 (Lv.35)', 3: '三段 (Lv.50)', 4: '四段 (Lv.100)' };
@@ -72,6 +77,33 @@ function setFeeder(patch) {
     render();
 }
 
+// The six Photon Blasts, in the game's own order. Taken from the mag data itself
+// (every mag that teaches a PB names it), so this list cannot drift from the
+// engine's; `window.MAG_EVOLUTION.meta.pbNames` only supplies the Chinese names
+// and the canonical order when that (deferred) script has run.
+function allPBs() {
+    const known = Object.values(DATA.mags).map((m) => m.pb).filter(Boolean);
+    const ordered = Object.keys(window.MAG_EVOLUTION?.meta?.pbNames || {});
+    const rest = [...new Set(known)].filter((pb) => !ordered.includes(pb)).sort();
+    return [...ordered.filter((pb) => known.includes(pb)), ...rest];
+}
+
+// A real third-evolution mag has already learned its Photon Blasts (at levels
+// 10 / 35 / 50), so a custom start has to be able to say which — otherwise the
+// sim starts it with an empty rack and then promises PBs the player's mag can
+// never get. Up to three, exactly as the mag can hold.
+const MAX_PBS = 3;
+function customPBsHtml(selected) {
+    return allPBs().map((pb) => {
+        const zh = window.MAG_EVOLUTION?.meta?.pbNames?.[pb] || '';
+        const on = selected.includes(pb);
+        return `<label class="mag-sim-setup__pb${on ? ' is-on' : ''}">
+            <input type="checkbox" data-custom-pb="${esc(pb)}"${on ? ' checked' : ''}>
+            <span>${esc(zh || pb)}<em>${esc(pb)}</em></span>
+        </label>`;
+    }).join('');
+}
+
 function speciesOptionsHtml() {
     const byStage = {};
     Object.entries(DATA.mags).forEach(([id, m]) => {
@@ -112,6 +144,8 @@ function renderSetup() {
                     <label>同步率<input type="number" data-custom="synchro" value="${fresh.synchro}" min="0" max="120" step="1"></label>
                     <label>IQ<input type="number" data-custom="iq" value="${fresh.iq}" min="0" max="200" step="1"></label>
                 </div>
+                <div class="mag-sim-setup__label">已学会的 Photon Blast（最多 3 个）</div>
+                <div class="mag-sim-setup__pbs" data-custom-pbs>${customPBsHtml(customPBs)}</div>
                 <button type="button" class="mag-sim-setup__apply" data-apply-custom>应用自定义设置</button>
             </div>
         </fieldset>
@@ -157,6 +191,7 @@ function renderSetup() {
             magId: magSelect.value,
             def: val('def'), pow: val('pow'), dex: val('dex'), mind: val('mind'),
             synchro: val('synchro'), iq: val('iq'),
+            pbs: [...customPBs],
         };
     }
 
@@ -166,6 +201,23 @@ function renderSetup() {
         startTabs.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
         customFields.hidden = btn.dataset.mode !== 'custom';
         applyStart(btn.dataset.mode === 'custom' ? currentCustomStart() : { mode: 'fresh' });
+    });
+
+    // The PB picker is capped at three (a mag holds three): a fourth tick is
+    // refused rather than silently dropped by the engine's slice().
+    const pbBox = root.querySelector('[data-custom-pbs]');
+    pbBox.addEventListener('change', (e) => {
+        const box = e.target.closest('[data-custom-pb]');
+        if (!box) return;
+        const pb = box.dataset.customPb;
+        if (box.checked && customPBs.length >= MAX_PBS) {
+            box.checked = false;                       // full rack — refuse the 4th
+            return;
+        }
+        customPBs = box.checked
+            ? [...customPBs, pb]
+            : customPBs.filter((x) => x !== pb);
+        box.closest('.mag-sim-setup__pb').classList.toggle('is-on', box.checked);
     });
 
     customFields.addEventListener('change', () => {
