@@ -9,12 +9,6 @@ export function createState(data, { start }) {
         def: src.def, pow: src.pow, dex: src.dex, mind: src.mind,
         progress: { def: 0, pow: 0, dex: 0, mind: 0 },
         synchro: src.synchro, iq: src.iq,
-        // The level of the last stat-driven third/fourth evolution. The wiki:
-        // "a Mag can evolve again with ONE feed during an evolution level" — so
-        // one evolution per evolution level, no more. Without this latch a Lv50
-        // stage-3 mag re-evolved on EVERY feed (ping-ponging Yaksa <-> Varaha by
-        // alternating the feeder) and collected Photon Blasts it never earns.
-        lastEvoLevel: null,
         // The feeder is one of the 12 PSO classes; the class alone fixes the
         // class line, the gender AND the race (HUmar = HU/M/Human, HUcast =
         // HU/M/Android, …). Race only matters for the mag-cell race rules.
@@ -214,13 +208,13 @@ export function checkEvolution(data, state) {
     const level = magLevel(state);
     const stageOf = (id) => data.mags[id].stage;
     const evolve = (next, stage) => {
+        // Re-evolving into the form it already has is not an event: this is what
+        // makes "check on every feed" quiet — feeding the SAME character over and
+        // over at Lv50 lands on the same mag and produces nothing at all.
         if (!next || next === state.magId) return;
         const from = state.magId;
         state.magId = next;
         inheritPB(data, state);
-        // Only the level-gated evolutions (3rd/4th) latch: stages 1 and 2 have no
-        // "every N levels" rule, so they must never lock a later evolution level.
-        if (stage >= 3) state.lastEvoLevel = level;
         state.log.push({ kind: 'evolve', from, to: next, stage, level });
         events.push({ type: 'evolve', from, to: next, stage, level });
     };
@@ -235,10 +229,25 @@ export function checkEvolution(data, state) {
     // "the level 49 -> 50 feed". The old 5-/10-wide sliding windows evolved at
     // levels 51/52/53/54 and, because the window slid only AFTER the check, never
     // fired at any boundary past the first (55, 60, 110, ...).
+    //
+    // There is NO "one evolution per evolution level" cap. This project invented
+    // one out of the wiki's "a Mag can evolve again WITH ONE FEED during an
+    // evolution level […] by transferring the Mag to a different character" —
+    // but that sentence describes the TRIGGER (a single feed suffices; you need
+    // not gain a level first), not a limit. Every primary source agrees:
+    //   Sodaboy (Ephinea server admin): "The only Mags with locked evolutions are
+    //     celled Mags and fourth evolutions."
+    //   Miku's mag-raising guide: "Any nonrare mag will still be able to transform
+    //     every time it is fed if its level is any multiple of 5."
+    //   Lemonilla/MagAi, decompiled from the game binary: the tier-3 gate is
+    //     `lvl >= 50 && lvl % 5 == 0`, with no latch of any kind.
+    // The latch also broke the recovery the wiki explicitly prescribes: "If a Mag
+    // is leveled past 100 without evolving into a fourth evolution Mag […] it is
+    // possible to transfer the Mag to another character that does have a fourth
+    // evolution and feed the Mag once to evolve it." With a latch, a Lv200 mag
+    // that had already re-evolved at 200 could never take that fourth evolution.
     const isStage3Level = level >= 50 && level % 5 === 0;
     const isStage4Level = level >= 100 && level % 10 === 0;
-    // "evolve again with ONE feed during an evolution level" — at most once per level.
-    const unlatched = () => state.lastEvoLevel !== level;
 
     // stage1: Lv10+, only from a fresh (stage 0) mag; by FEEDER class. No upper
     // bound, or a custom-start base Mag above Lv14 would be stuck at stage 0.
@@ -257,7 +266,7 @@ export function checkEvolution(data, state) {
         // Section-ID Type. Checked FIRST: level 100 is both a third- and a
         // fourth-evolution level, and the fourth evolution is the terminal one
         // (a mag that misses its stage-4 condition retries at 110, 120, ...).
-        if (stage === 3 && isStage4Level && unlatched()) {
+        if (stage === 3 && isStage4Level) {
             const leaf = ((ev.stage4[f.class] || {})[f.gender] || {})[idType(data, f.sectionId)];
             evolve(stage4Next(leaf, state), 4);
         }
@@ -267,11 +276,10 @@ export function checkEvolution(data, state) {
         // is met (e.g. the Mag is transferred to and fed by a different
         // character)" — "useful for the purposes of switching feeding tables".
         //
-        // The stage and the latch are RE-READ, so a mag that just took its fourth
-        // evolution above is excluded twice over: stage 4 is terminal, and the
-        // latch is now set to this level.
+        // The stage is RE-READ, so a mag that just took its fourth evolution above
+        // is excluded here: stage 4 is terminal.
         const st = stageOf(state.magId);
-        if ((st === 2 || st === 3) && isStage3Level && unlatched()) {
+        if ((st === 2 || st === 3) && isStage3Level) {
             evolve(stage3Next(data, state, f), 3);
         }
     }

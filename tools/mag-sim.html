@@ -293,6 +293,25 @@
             font-weight: 600;
         }
 
+        /* A third-evolution mag parked on an evolution level re-evolves on the
+           very next feed — the costliest endgame mistake there is, so it gets a
+           loud, unmissable banner rather than another muted hint line. */
+        .mag-sim-card__warn {
+            margin-top: 10px;
+            padding: 8px 10px;
+            font-size: 12.5px;
+            line-height: 1.6;
+            color: #f2c14e;
+            background: rgba(242, 193, 78, .10);
+            border: 1px solid rgba(242, 193, 78, .35);
+            border-radius: 6px;
+        }
+
+        .mag-sim-card__warn b {
+            color: #ffd97a;
+            font-weight: 600;
+        }
+
         /* ---------- feed bar ---------- */
 
         .mag-sim-feed__list {

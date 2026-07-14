@@ -17,11 +17,12 @@ check('fresh 起始 level 5', magLevel(s) === 5);
 check('fresh DEF 5 其余 0', s.def === 5 && s.pow === 0 && s.mind === 0);
 check('fresh synchro 20 iq 0', s.synchro === 20 && s.iq === 0);
 check('fresh magId=Mag', s.magId === 'Mag');
-// There is no sliding "evolution window" any more — evolution LEVELS are
-// discrete (50/55/60… and 100/110/120…). All that is carried on the state is a
-// latch recording the level of the last stat-driven 3rd/4th evolution.
-check('fresh lastEvoLevel 为 null（无进化窗口）', s.lastEvoLevel === null);
+// There is no sliding "evolution window", and no per-level latch either.
+// Evolution LEVELS are discrete (50/55/60… and 100/110/120…) and the check is
+// re-run on EVERY feed — the state carries nothing about past evolutions.
 check('state 上不再有 window 字段', s.window === undefined);
+check('state 上不再有 lastEvoLevel 字段（每次喂食都重新判定）',
+  s.lastEvoLevel === undefined);
 
 // --- feedOnce: stat progress, carry, caps
 {
@@ -213,22 +214,149 @@ check('Lv102 的构造确实满足 Type1 公式 DEF+DEX = POW+MIND（51 = 51）'
   feedN(t, 'Star Atomizer', 3);
   check('Lv121 三段 mag 反复喂食也不进化', t.magId === 'Varaha');
 }
-// (g) ONE evolution per evolution level: feeding repeatedly at Lv50 while
-// alternating the feeder's class must produce EXACTLY ONE evolution — not a
-// Yaksa <-> Varaha ping-pong — and must not hand out extra Photon Blasts.
+// (g) THE REAL RULE: a third-evolution mag re-evolves on EVERY feed taken while
+// it sits on an evolution level. There is NO "one evolution per evolution level"
+// cap — that rule was invented here out of the wiki's
+//   "a Mag can evolve again with ONE feed during an evolution level […] by
+//    transferring the Mag to a different character"
+// which describes the TRIGGER (one feed suffices; you need not level up again),
+// not a cap. Corroborated three ways:
+//   Sodaboy (Ephinea admin): "The only Mags with locked evolutions are celled
+//     Mags and fourth evolutions."
+//   Miku's guide: "Any nonrare mag will still be able to transform every time it
+//     is fed if its level is any multiple of 5."
+//   Lemonilla/MagAi (decompiled from the game binary): tier-3 gate is
+//     `lvl>=50 && lvl%5==0`, with no latch of any kind.
+// So: alternate the feeder at Lv50 and the mag flips form EVERY feed.
 {
   const t = cs({ magId: 'Rudra', def: 41, pow: 2, dex: 5, mind: 2 }); // level 50
   const evolves = [];
   for (let i = 0; i < 4; i++) {
-    // HU/B -> Yaksa, RA/B -> ... : alternating feeders both have a stage-3 answer
+    // HU/B -> Yaksa, RA/B -> Varaha: alternating feeders, each with its own answer
     t.feeder = { class: i % 2 === 0 ? 'HU' : 'RA', gender: 'M', race: 'Human',
                  sectionId: 'Greenill' };
     evolves.push(...feedOnce(DATA, t, 'Star Atomizer').filter((e) => e.type === 'evolve'));
   }
-  check('Lv50 反复喂食 + 交替职业 → 只进化一次（不会来回横跳）',
-    evolves.length === 1 && magLevel(t) === 50);
-  check('Lv50 只进化一次 → 只吃到一个新 PB', t.pbs.length === 1);
-  check('lastEvoLevel 锁在 50', t.lastEvoLevel === 50);
+  check('Lv50 反复喂食 + 交替职业 → 每一喂都重新进化（4 次喂食 4 次进化）',
+    evolves.length === 4 && magLevel(t) === 50);
+  check('Lv50 交替职业 → 在两种形态之间来回切换（HU=Yaksa / RA=Varaha）',
+    evolves.map((e) => e.to).join() === 'Yaksa,Varaha,Yaksa,Varaha');
+  check('state 上不再有 lastEvoLevel 闩锁', t.lastEvoLevel === undefined);
+}
+// …and feeding the SAME character produces no event at all: the mag re-runs the
+// check, lands on the form it already has, and evolve() early-returns.
+{
+  const t = cs({ magId: 'Rudra', def: 41, pow: 2, dex: 5, mind: 2 }); // level 50
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' };
+  const first = feedOnce(DATA, t, 'Star Atomizer').filter((e) => e.type === 'evolve');
+  const rest = [];
+  for (let i = 0; i < 3; i++) {
+    rest.push(...feedOnce(DATA, t, 'Star Atomizer').filter((e) => e.type === 'evolve'));
+  }
+  check('Lv50 同一角色反复喂食 → 只有第一次进化，之后没有任何事件',
+    first.length === 1 && first[0].to === 'Yaksa' && rest.length === 0
+    && t.magId === 'Yaksa');
+  check('Lv50 同一角色反复喂食 → 日志里只有一条 evolve',
+    t.log.filter((e) => e.kind === 'evolve').length === 1);
+}
+// A Lv200 third-evolution mag re-evolves on EVERY feed when the feeder changes.
+// (Level 200 is capped, so the stats never move — the ONLY variable is who feeds.)
+// 5/60/50/85 satisfies NONE of the three stat-balance formulas (DEF+POW=65,
+// DEF+DEX=55, DEF+MIND=90, and at Lv200 each would have to be 100), so no feeder
+// can end the run with a fourth evolution: the mag stays on the stage-3 carousel.
+{
+  const t = cs({ magId: 'Bana', def: 5, pow: 60, dex: 50, mind: 85 }); // level 200
+  const evolves = [];
+  for (const cls of ['RA', 'FO', 'HU', 'RA']) {   // Kabanda, Kumara, Bana, Kabanda
+    t.feeder = { class: cls, gender: 'M', race: 'Human', sectionId: 'Greenill' };
+    evolves.push(...feedOnce(DATA, t, 'Star Atomizer').filter((e) => e.type === 'evolve'));
+  }
+  check('Lv200 三阶 mag：每换一次喂食者就重新进化一次（200 不是终点）',
+    evolves.length === 4 && evolves.every((e) => e.level === 200 && e.stage === 3));
+  check('Lv200 三阶 mag：形态跟着喂食者走（Kabanda→Kumara→Bana→Kabanda）',
+    evolves.map((e) => e.to).join() === 'Kabanda,Kumara,Bana,Kabanda');
+  check('Lv200 三阶 mag 的四维在满级后不再变化（只有喂食者在变）',
+    `${t.def}/${t.pow}/${t.dex}/${t.mind}` === '5/60/50/85' && magLevel(t) === 200);
+}
+// The wiki's PRESCRIBED RECOVERY, which the invented latch made impossible:
+//   "If a Mag is leveled past 100 without evolving into a fourth evolution Mag
+//    (due to the character who performed the level 100 feed not having the
+//    correct formula), it is possible to transfer the Mag to another character
+//    that does have a fourth evolution and feed the Mag once to evolve it."
+// A Lv200 Bana 5/50/50/95 fed on HU/M/Viridia (Type1) fails the stage-4 formula
+// and merely re-evolves as a third-evolution mag. Transferring it to HU/M/Oran
+// (Type2, whose formula DOES hold) must still produce the fourth evolution.
+{
+  const t = cs({ magId: 'Bana', def: 5, pow: 50, dex: 50, mind: 95 }); // level 200
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // Type1
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv200 在“公式不成立”的角色上喂一口 → 仍是三阶（没有四阶）',
+    DATA.mags[t.magId].stage === 3);
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Oran' }; // Type2
+  feedOnce(DATA, t, 'Star Atomizer');
+  check('Lv200 转到“公式成立”的角色上再喂一口 → 四阶进化（wiki 明写的补救路线）',
+    DATA.mags[t.magId].stage === 4 && magLevel(t) === 200);
+}
+// A stage-3 re-evolution DOES pick up a new Photon Blast when a slot is free:
+//   "If the Mag does not learn a Photon Blast at level 50, it may learn another
+//    one if it evolves again into another Mag that has a Photon Blast not
+//    previously learned."
+{
+  const t = cs({ magId: 'Rudra', def: 41, pow: 2, dex: 5, mind: 2 }); // level 50
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' };
+  feedOnce(DATA, t, 'Star Atomizer');                       // -> Yaksa   (PB Golla)
+  const pbAfterFirst = [...t.pbs];
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' };
+  feedOnce(DATA, t, 'Star Atomizer');                       // -> Nandin  (PB Estlla)
+  check('三阶再进化：有空槽且新形态的 PB 未持有 → 学到新 PB',
+    t.magId === 'Nandin' && pbAfterFirst.join() === 'Golla'
+    && t.pbs.length === 2 && t.pbs.includes(DATA.mags['Nandin'].pb));
+  check('三阶再进化：旧 PB 不会被顶掉', pbAfterFirst.every((pb) => t.pbs.includes(pb)));
+}
+// …but a full PB rack (3) never grows, and PBs are never duplicated.
+{
+  const t = cs({ magId: 'Rudra', def: 41, pow: 2, dex: 5, mind: 2 }); // level 50
+  t.pbs = ['Farlla', 'Mylla & Youlla', 'Estlla'];
+  for (const cls of ['HU', 'RA', 'FO', 'HU']) {
+    t.feeder = { class: cls, gender: 'M', race: 'Human', sectionId: 'Greenill' };
+    feedOnce(DATA, t, 'Star Atomizer');
+  }
+  check('三阶反复再进化：PB 槽满 3 个后不再增加，也不重复',
+    t.pbs.length === 3 && new Set(t.pbs).size === 3);
+}
+// Stage 4 is still TERMINAL: a fourth-evolution mag sitting on an evolution
+// level never falls back onto the stage-3 path, no matter who feeds it.
+{
+  const t = cs({ magId: 'Deva', def: 40, pow: 30, dex: 10, mind: 20 }); // level 100, stage4
+  for (const cls of ['HU', 'RA', 'FO']) {
+    t.feeder = { class: cls, gender: 'M', race: 'Human', sectionId: 'Greenill' };
+    feedOnce(DATA, t, 'Star Atomizer');
+  }
+  check('四阶是终点：Lv100 的四阶 mag 换任何职业喂食都不会退回三阶路径',
+    t.magId === 'Deva' && !t.log.some((e) => e.kind === 'evolve'));
+}
+// Evolution-level coverage beyond 50/55/60/100/110: a stage-2 mag takes its
+// third evolution at 105, 150, 195 and 200 too (level >= 50 && level % 5 === 0).
+for (const lvl of [105, 150, 195, 200]) {
+  const t = cs({ magId: 'Rudra', def: lvl - 9, pow: 2, dex: 5, mind: 2 });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Greenill' };
+  check(`Lv${lvl} 构造正确`, magLevel(t) === lvl);
+  feedOnce(DATA, t, 'Star Atomizer');
+  check(`Lv${lvl} 是三段进化等级 → 二阶 Rudra 进化为 Yaksa`,
+    t.magId === 'Yaksa' && DATA.mags[t.magId].stage === 3);
+}
+// …and the fourth evolution really does fire at 150 and 200, not just 100/110.
+// (Type1's formula DEF+DEX = POW+MIND forces level = 2·(POW+MIND), so each stat
+// line is spelled out rather than derived from the level.)
+for (const [lvl, st] of [[150, { def: 40, pow: 40, dex: 35, mind: 35 }],
+                         [200, { def: 60, pow: 50, dex: 40, mind: 50 }]]) {
+  const t = cs({ magId: 'Varaha', ...st });
+  t.feeder = { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' }; // Type1
+  check(`Lv${lvl} 构造正确（DEF+DEX=POW+MIND 成立）`,
+    magLevel(t) === lvl && t.def + t.dex === t.pow + t.mind);
+  feedOnce(DATA, t, 'Star Atomizer');
+  check(`Lv${lvl} 是四段进化等级 → Deva`,
+    t.magId === 'Deva' && DATA.mags[t.magId].stage === 4);
 }
 
 // stage3 tie case (non-FO): Rudra HU, DEX==MIND > POW -> tie mag Varaha (A),
@@ -985,7 +1113,7 @@ for (const [cls, expected] of [['HU', 'Yaksa'], ['RA', 'Varaha']]) {
   t.progress = { def: 55, pow: 0, dex: 3, mind: 98 };
   const before = JSON.parse(JSON.stringify({ magId: t.magId, def: t.def, pow: t.pow,
     dex: t.dex, mind: t.mind, synchro: t.synchro, iq: t.iq, pbs: t.pbs,
-    level: magLevel(t), lastEvoLevel: t.lastEvoLevel }));
+    level: magLevel(t) }));
   const events = bankMag(DATA, t);
 
   check('存银行: 奇数百分位向下取偶（55->54, 3->2）',
@@ -998,7 +1126,7 @@ for (const [cls, expected] of [['HU', 'Yaksa'], ['RA', 'Varaha']]) {
     t.magId === before.magId && t.def === before.def && t.pow === before.pow
     && t.dex === before.dex && t.mind === before.mind && magLevel(t) === before.level
     && t.synchro === before.synchro && t.iq === before.iq
-    && t.pbs.join() === before.pbs.join() && t.lastEvoLevel === before.lastEvoLevel);
+    && t.pbs.join() === before.pbs.join());
   check('存银行: 返回 banked 事件', events.length === 1 && events[0].type === 'banked');
   check('存银行: 写入一条 kind=bank 的日志',
     t.log.length === 1 && t.log[0].kind === 'bank');

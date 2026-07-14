@@ -314,6 +314,25 @@ function nextEvoHint() {
     return typeof hint === 'function' ? hint(state) : hint;
 }
 
+// The single most expensive endgame mistake in the game. A third-evolution mag
+// PARKED on an evolution level (50, 55, … 195, 200) re-runs its evolution check
+// on *every* feed — Miku's guide: "Any nonrare mag will still be able to
+// transform every time it is fed if its level is any multiple of 5." So a
+// finished Lv200 mag changes form the moment someone with a different
+// class/Section ID feeds it. Only a character that reproduces its CURRENT form
+// is safe. (There is no lock: per Sodaboy, "the only Mags with locked evolutions
+// are celled Mags and fourth evolutions".)
+function evoWarningHtml() {
+    const stage = DATA.mags[state.magId]?.stage ?? 0;
+    const level = E.magLevel(state);
+    if (stage !== 3 || level < 50 || level % 5 !== 0) return '';
+    const at200 = level === 200 ? '已满级的 ' : '';
+    return `<div class="mag-sim-card__warn" data-evo-warn>
+        ⚠️ ${at200}三阶 mag 停在进化级（Lv ${level}）上：<b>下一口喂食就会重新判定形态</b>。
+        只用能喂出当前形态（${esc(state.magId)}）的角色喂它，否则它会当场变成别的 mag。
+    </div>`;
+}
+
 function renderCard() {
     const root = document.querySelector('[data-sim-card]');
     if (!root) return;
@@ -341,6 +360,7 @@ function renderCard() {
         ${pbHtml(state, info, meta)}
         ${triggersHtml(info, meta)}
         <div class="mag-sim-card__next">下次进化：<b>${esc(nextEvoHint())}</b></div>
+        ${evoWarningHtml()}
     `;
 }
 
