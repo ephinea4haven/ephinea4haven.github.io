@@ -245,7 +245,171 @@ export function evolutionChains(data, targetMagId) {
     return chains.map((steps) => ({ steps, targetStage: info.stage }));
 }
 
+// ===========================================================================
+// solveSegment — bounded exact per-segment four-stat solver
+// ===========================================================================
+//
+// Given ONE feed table, a starting four-stat vector and an EXACT integer delta
+// to add to each stat, find an ORDERED array of item names whose net integer
+// stat gains equal `targetDelta` exactly. Returns `null` if it cannot within
+// `maxItems` (or within its search budget — a hard case).
+//
+// This is pure stat arithmetic inside a single table: it does NOT check
+// evolution (the Task-3 assembler keeps each segment under the next evolution
+// level). Correctness is guaranteed by engine replay — the tests feed the
+// solver's output through mag-sim-engine.js `feedOnce` and assert the exact
+// resulting stats; the engine is ground truth.
+//
+// The stat model MUST match feedOnce bit-for-bit:
+//   * each item vector is `[ΔDEF,ΔPOW,ΔDEX,ΔMIND,ΔSync,ΔIQ]` in HUNDREDTHS;
+//   * a stat's integer level rises by 1 per 100 accumulated hundredths (carry),
+//     level is re-read on every carry step for the 200 cap;
+//   * NEGATIVE-FEED ALL-OR-NOTHING: a negative delta that would take a stat's
+//     hundredths bar below 0 does NOT apply at all (the bar is untouched, not
+//     floored). This is why Difluid=[0,-10,0,11] is pure-MIND when POW=0.
+//   * integer levels NEVER decrease — so a target with any negative component
+//     is unsolvable (returns null immediately).
+//
+// Algorithm: heuristic best-first bounded DFS over the state
+// (4 hundredths accumulators + 4 integer gains). Each item application follows
+// the engine's exact carry/negative-skip rules. Pruning: any stat's integer
+// gain exceeding its target is a dead branch (levels never come back down);
+// path length over `maxItems` is pruned; a `visited` set kills revisited
+// states; a global node budget guarantees termination (return null, never
+// hang). Candidates are ordered by remaining L1 hundredths-need so the search
+// dives straight at tractable single-/few-dominant-stat targets.
+//
+// What it reliably solves: single-dominant-stat targets and modest multi-stat
+// targets where near-pure items exist (the common planner cases). What it may
+// return null on: tightly-coupled multi-stat targets that need exact negative
+// interleaving, or anything whose search exceeds the node budget — by design,
+// the caller (Task 3) falls back to nearest-reachable for those.
+
+const SOLVE_STATS = ['def', 'pow', 'dex', 'mind'];
+const SOLVE_MAX_NODES = 600000;
+
+// Exact mirror of feedOnce's primary-stat block (mag-sim-engine.js lines
+// ~72-101), minus synchro/iq/evolution which do not affect integer stat gains.
+// `base` are the segment's starting integer stats (for the 200 cap and level).
+// Returns the next {gain, prog} or null if the item is a no-op (changes
+// nothing — every negative skipped and nothing carried), which the caller
+// discards to avoid cycles.
+function solveApply(state, vec, base) {
+    const gain = { ...state.gain };
+    const prog = { ...state.prog };
+    let changed = false;
+    for (let i = 0; i < SOLVE_STATS.length; i++) {
+        const k = SOLVE_STATS[i];
+        const d = vec[i];
+        if (d === 0) continue;
+        // negative all-or-nothing: skip entirely if it would go below 0
+        if (d < 0 && prog[k] + d < 0) continue;
+        prog[k] += d;
+        if (d !== 0) changed = true;
+        while (prog[k] >= 100) {
+            const level = base.def + base.pow + base.dex + base.mind
+                + gain.def + gain.pow + gain.dex + gain.mind;
+            const statVal = base[k] + gain[k];
+            if (level >= 200 || statVal >= 200) { prog[k] = 99; break; } // capped
+            gain[k] += 1; prog[k] -= 100;
+        }
+    }
+    return changed ? { gain, prog } : null;
+}
+
+function solveStatsOf(base, gain) {
+    return { def: base.def + gain.def, pow: base.pow + gain.pow,
+             dex: base.dex + gain.dex, mind: base.mind + gain.mind };
+}
+
+// Remaining hundredths-need to reach each stat's lower target bound. Zero for a
+// stat already at (or past) its target level. This is the greedy heuristic:
+// smaller = closer to done. `effProg[k] = 100*gain[k] + prog[k]`.
+function solveNeed(state, target) {
+    let sum = 0;
+    for (const k of SOLVE_STATS) {
+        const eff = 100 * state.gain[k] + state.prog[k];
+        const lo = 100 * target[k];
+        if (eff < lo) sum += lo - eff;
+    }
+    return sum;
+}
+
+export function solveSegment(data, opts) {
+    const { table, startStats, targetDelta, maxItems = 400, orderConstraint } = opts || {};
+    const rows = data.feedTables[table];
+    if (!rows) return null;
+
+    const base = { def: startStats.def | 0, pow: startStats.pow | 0,
+                   dex: startStats.dex | 0, mind: startStats.mind | 0 };
+    const target = { def: targetDelta.def | 0, pow: targetDelta.pow | 0,
+                     dex: targetDelta.dex | 0, mind: targetDelta.mind | 0 };
+    // Integer levels never decrease: any negative target component is
+    // unsolvable, and the whole segment must stay under the 200 cap.
+    for (const k of SOLVE_STATS) {
+        if (target[k] < 0) return null;
+        if (base[k] + target[k] > 200) return null;
+    }
+    if (base.def + base.pow + base.dex + base.mind
+        + target.def + target.pow + target.dex + target.mind > 200) return null;
+
+    const items = Object.entries(rows); // [name, vec]
+    const isGoal = (g) => SOLVE_STATS.every((k) => g[k] === target[k]);
+
+    // orderConstraint: an optional predicate over the integer stats
+    // ({def,pow,dex,mind}, base+gain) that must hold AFTER every feed
+    // (e.g. `(s) => s.dex <= s.pow` for "DEX must never exceed POW").
+    const orderOk = typeof orderConstraint === 'function'
+        ? (gain) => orderConstraint(solveStatsOf(base, gain))
+        : () => true;
+
+    const start = { gain: { def: 0, pow: 0, dex: 0, mind: 0 },
+                    prog: { def: 0, pow: 0, dex: 0, mind: 0 } };
+    if (isGoal(start.gain)) return [];
+    if (!orderOk(start.gain)) return null;
+
+    const key = (s) => `${s.gain.def},${s.gain.pow},${s.gain.dex},${s.gain.mind}|`
+        + `${s.prog.def},${s.prog.pow},${s.prog.dex},${s.prog.mind}`;
+    const visited = new Set([key(start)]);
+    const path = [];
+    let nodes = 0;
+    let budgetHit = false;
+
+    const dfs = (state) => {
+        if (nodes++ > SOLVE_MAX_NODES) { budgetHit = true; return false; }
+        if (path.length >= maxItems) return false;
+
+        const cands = [];
+        for (const [name, vec] of items) {
+            const ns = solveApply(state, vec, base);
+            if (!ns) continue;                                   // no-op item
+            let over = false;
+            for (const k of SOLVE_STATS) if (ns.gain[k] > target[k]) { over = true; break; }
+            if (over) continue;                                  // integer overshoot: dead
+            if (!orderOk(ns.gain)) continue;
+            const kk = key(ns);
+            if (visited.has(kk)) continue;
+            cands.push({ name, ns, kk, need: solveNeed(ns, target) });
+        }
+        // Heuristic: expand the candidate that leaves the least remaining need
+        // first, so tractable targets are reached with little/no backtracking.
+        cands.sort((a, b) => a.need - b.need);
+
+        for (const c of cands) {
+            if (isGoal(c.ns.gain)) { path.push(c.name); return true; }
+            visited.add(c.kk);
+            path.push(c.name);
+            if (dfs(c.ns)) return true;
+            path.pop();
+            if (budgetHit) return false;
+        }
+        return false;
+    };
+
+    return dfs(start) ? [...path] : null;
+}
+
 // browser (non-module) global — mirrors mag-sim-engine.js's window.MagSimEngine
 if (typeof window !== 'undefined') {
-    window.MagSimPlanner = { evolutionChains };
+    window.MagSimPlanner = { evolutionChains, solveSegment };
 }

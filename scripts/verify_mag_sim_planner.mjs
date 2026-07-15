@@ -1,6 +1,7 @@
 /* Planner unit tests. Run: node scripts/verify_mag_sim_planner.mjs */
 import { readFileSync } from 'node:fs';
-import { evolutionChains } from '../assets/js/mag-sim-planner.js';
+import { evolutionChains, solveSegment } from '../assets/js/mag-sim-planner.js';
+import { createState, feedOnce, magLevel } from '../assets/js/mag-sim-engine.js';
 
 const win = {};
 new Function('window', readFileSync('assets/js/mag-sim-data.js', 'utf8'))(win);
@@ -56,6 +57,54 @@ check('Andhaka 链末步 feeder 是 FO 且 condKey 提及 POW is max',
 // Unknown / stage-0 ids reverse-enumerate to nothing.
 check('未知 mag id 返回空数组', evolutionChains(DATA, 'NoSuchMag').length === 0);
 check('fresh Mag（stage0）返回空数组', evolutionChains(DATA, 'Mag').length === 0);
+
+// === solveSegment: single-段精确四维求解器 ===================================
+// 每个求解器测试都把输出交给真实引擎 feedOnce 回放裁决——引擎是 ground truth。
+
+// (1) 品牌案例：从 5/0/0/0 的 Vayu（表4，二阶）起，MIND 精确 +20 → level 25，
+// 安全落在下个进化级(Lv50)之前。表4 无"纯 MIND"道具，但 Difluid=[0,-10,0,11,..]
+// 在 POW=0 时其 -10 POW 被"整笔不生效"跳过，于是等效纯 MIND。solveSegment 无需
+// 知道这点——它搜出的序列由引擎回放裁决。
+{
+  const seq = solveSegment(DATA, { table:'4', startStats:{def:5,pow:0,dex:0,mind:0},
+      targetDelta:{def:0,pow:0,dex:0,mind:20}, maxItems:400 });
+  check('solveSegment 返回序列', Array.isArray(seq) && seq.length>0);
+  const t = createState(DATA,{start:{mode:'custom',magId:'Vayu',def:5,pow:0,dex:0,mind:0,synchro:20,iq:0}});
+  seq.forEach(it => feedOnce(DATA,t,it));
+  check('回放后 level 25（未跨 Lv50，无中途进化）', magLevel(t)===25);
+  check('回放后 MIND 恰 +20', t.mind===20 && t.magId==='Vayu');
+  check('回放后 DEF/POW/DEX 未变', t.def===5 && t.pow===0 && t.dex===0);
+}
+
+// (2) 负值跳过的单维案例：POW 精确 +10。表4 无纯 POW 道具，但 Dimate=[0,11,0,-10,..]
+// 在 MIND=0 时其 -10 MIND 整笔跳过 → 等效纯 POW。
+{
+  const seq = solveSegment(DATA, { table:'4', startStats:{def:5,pow:0,dex:0,mind:0},
+      targetDelta:{def:0,pow:10,dex:0,mind:0}, maxItems:400 });
+  check('solveSegment POW+10 返回序列', Array.isArray(seq) && seq.length>0);
+  const t = createState(DATA,{start:{mode:'custom',magId:'Vayu',def:5,pow:0,dex:0,mind:0,synchro:0,iq:0}});
+  seq.forEach(it => feedOnce(DATA,t,it));
+  check('POW+10 回放后 POW 恰 +10', t.pow===10 && t.magId==='Vayu');
+  check('POW+10 回放后 DEF/DEX/MIND 未变', t.def===5 && t.dex===0 && t.mind===0);
+}
+
+// (3) 双维精确案例：DEF 精确 +1 且 POW 精确 +3（其余不变）。需要多种道具交织，
+// 且不得让任一维越过目标整数级。
+{
+  const seq = solveSegment(DATA, { table:'4', startStats:{def:5,pow:0,dex:0,mind:0},
+      targetDelta:{def:1,pow:3,dex:0,mind:0}, maxItems:400 });
+  check('solveSegment DEF+1/POW+3 返回序列', Array.isArray(seq) && seq.length>0);
+  const t = createState(DATA,{start:{mode:'custom',magId:'Vayu',def:5,pow:0,dex:0,mind:0,synchro:0,iq:0}});
+  seq.forEach(it => feedOnce(DATA,t,it));
+  check('DEF+1/POW+3 回放后 DEF 恰 +1', t.def===6);
+  check('DEF+1/POW+3 回放后 POW 恰 +3', t.pow===3);
+  check('DEF+1/POW+3 回放后 DEX/MIND 未变', t.dex===0 && t.mind===0 && t.magId==='Vayu');
+}
+
+// (4) 无解/负目标：整数级永不下降，负增量目标必然 null（不崩、不挂）。
+check('负增量目标返回 null',
+  solveSegment(DATA, { table:'4', startStats:{def:5,pow:5,dex:5,mind:5},
+      targetDelta:{def:-1,pow:0,dex:0,mind:0}, maxItems:50 }) === null);
 
 console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed.');
 process.exit(failed ? 1 : 0);
