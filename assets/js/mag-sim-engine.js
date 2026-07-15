@@ -13,7 +13,8 @@ export function createState(data, { start }) {
         // class line, the gender AND the race (HUmar = HU/M/Human, HUcast =
         // HU/M/Android, …). Race only matters for the mag-cell race rules.
         feeder: { class: 'HU', gender: 'M', race: 'Human', sectionId: 'Viridia' },
-        // The pre-2017 mag-cell race rules (Magatama's blnMagRacialRestriction).
+        // The pre-2017 mag-cell race rules (blnMagRacialRestriction in Aether89's
+        // third-party planner Magatama).
         // DEFAULT OFF: Ephinea does not enforce them. Straight from the wiki's mag
         // pages — Elenor: "Originally, this Mag could only be equipped by android
         // characters. This was changed in an Ephinea update on January 9, 2017.";
@@ -317,12 +318,17 @@ export function checkEvolution(data, state) {
     // evolution level […] by transferring the Mag to a different character" —
     // but that sentence describes the TRIGGER (a single feed suffices; you need
     // not gain a level first), not a limit. Every primary source agrees:
-    //   Sodaboy (Ephinea server admin): "The only Mags with locked evolutions are
-    //     celled Mags and fourth evolutions."
-    //   Miku's mag-raising guide: "Any nonrare mag will still be able to transform
-    //     every time it is fed if its level is any multiple of 5."
-    //   Lemonilla/MagAi, decompiled from the game binary: the tier-3 gate is
-    //     `lvl >= 50 && lvl % 5 == 0`, with no latch of any kind.
+    //   Aleron Ives (pioneer2.net, "Mag Evolution (Mag Locking)"): "The only Mags
+    //     with locked evolutions are celled Mags and fourth evolutions. Even if
+    //     you hack the server to 'lock' your level 200 evolution in place, your
+    //     Mag will still evolve on the client when you feed it." (This line is
+    //     Ives's, not Sodaboy's — Sodaboy posts in the same thread, but about
+    //     server-vs-client packets.)
+    //   Miku's mag-raising guide (pioneer2.net): "Any nonrare mag will still be
+    //     able to transform every time it is fed if its level is any multiple of 5."
+    //   Lemonilla/MagAi (github.com/Lemonilla/MagAi, c/feed.c), reverse-engineered
+    //     from the game: the tier-3 gate is `lvl >= 50 && lvl % 5 == 0`, with no
+    //     latch of any kind.
     // The latch also broke the recovery the wiki explicitly prescribes: "If a Mag
     // is leveled past 100 without evolving into a fourth evolution Mag […] it is
     // possible to transfer the Mag to another character that does have a fourth
