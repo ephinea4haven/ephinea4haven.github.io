@@ -435,10 +435,15 @@ function renderCard() {
 // they persist across feeds until the user changes them.
 const feedQty = Object.fromEntries(DATA.itemOrder.map((it) => [it, 1]));
 
-// "已喂计数" for an item/cell — every state.log entry (feed or feedCell)
-// carries `item`, so this is just a count over the whole history.
+// "已喂计数" for an item/cell — every CONSUMED state.log entry (a feed, or a
+// feedCell the mag actually accepted) carries `item`, so this is a count over
+// the history filtered through the engine's `consumesFeed`.
+//
+// A REJECTED cell is not a purchase: the mag refuses it, so the item is still in
+// the player's inventory. Counting it here billed the player for a cell they
+// never spent — both in the "已喂" badge and in the meseta total below.
 function countOf(item) {
-    return state.log.reduce((n, e) => n + (e.item === item ? 1 : 0), 0);
+    return state.log.reduce((n, e) => n + (e.item === item && E.consumesFeed(e) ? 1 : 0), 0);
 }
 
 // 每次喂食后自动存银行 — the guide's own instruction for the 13/0/0/187 route
@@ -554,8 +559,7 @@ function renderFeed() {
     const minutes = (cycles * SECONDS_PER_CYCLE) / 60;
     // What the same feeds would have cost with no banking — the honest price tag
     // on the trick, and the number this panel used to show for both routes.
-    const feeds = state.log.reduce(
-        (n, e) => n + (e.kind === 'feed' || e.kind === 'feedCell' ? 1 : 0), 0);
+    const feeds = state.log.reduce((n, e) => n + (E.consumesFeed(e) ? 1 : 0), 0);
     const unbanked = Math.ceil(feeds / 3);
     const bankNote = banks && cycles > unbanked
         ? `<span class="mag-sim-feed__bank-cost">存银行重置喂食计时器，多花 ${cycles - unbanked} 个周期

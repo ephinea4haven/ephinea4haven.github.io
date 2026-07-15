@@ -1,7 +1,7 @@
 /* Engine unit tests. Run: node scripts/verify_mag_sim.mjs */
 import { readFileSync } from 'node:fs';
 import { createState, magLevel, feedOnce, bankMag, checkEvolution, checkCellEvolution,
-         setRacialRestriction, feedCycles, exportSession, replaySession }
+         setRacialRestriction, feedCycles, consumesFeed, exportSession, replaySession }
     from '../assets/js/mag-sim-engine.js';
 
 const src = readFileSync('assets/js/mag-sim-data.js', 'utf8');
@@ -1407,7 +1407,53 @@ for (const [cls, expected] of [['HU', 'Yaksa'], ['RA', 'Varaha']]) {
   check('周期: 连续存银行不额外计费', feedCycles(log('feed', 'bank', 'bank', 'feed')) === 2);
   check('周期: 进化/规则切换等非喂食条目不计入',
     feedCycles(log('feed', 'evolve', 'racial', 'feed', 'feed')) === 1);
-  check('周期: 喂 cell 也占一次喂食', feedCycles(log('feed', 'feedCell', 'feed', 'feed')) === 2);
+  // An ACCEPTED cell occupies a feed slot; a REJECTED one consumes nothing.
+  const cell = (ok) => ({ kind: 'feedCell', ok });
+  check('周期: 被接受的 cell 也占一次喂食',
+    feedCycles([...log('feed'), cell(true), ...log('feed', 'feed')]) === 2);
+  check('周期: 被拒绝的 cell 不占喂食位（不消耗任何东西）',
+    feedCycles([...log('feed'), cell(false), ...log('feed', 'feed')]) === 1);
+  check('周期: 一串被拒绝的 cell 完全不计入周期',
+    feedCycles([cell(false), cell(false), cell(false)]) === 0);
+}
+
+// --- BUG 2: a REJECTED mag cell is not a consumed feed ------------------------
+// feedOnce logs the feedCell entry BEFORE running the cell (so a resulting
+// `evolve` line lands after it) and leaves it `ok:false` on rejection. The entry
+// must stay in the log — the player wants to see WHY it failed — but it must not
+// be billed: a refused cell consumes no item, no feed slot and no meseta, so
+// feedCycles / the UI's countOf / the meseta total all filter on `consumesFeed`.
+{
+  const t = cs({ magId: 'Kama', def: 10, pow: 5, dex: 0, mind: 0 }); // Lv15, too low
+  const ev = feedOnce(DATA, t, 'D-Photon Core');
+  check('被拒绝的 cell：确实被拒绝', ev.some((e) => e.type === 'magCellRejected'));
+  check('被拒绝的 cell：仍然写进日志（要让玩家看到失败原因）',
+    t.log.length === 1 && t.log[0].kind === 'feedCell' && t.log[0].ok === false
+    && typeof t.log[0].reason === 'string' && t.log[0].reason.length > 0);
+  check('被拒绝的 cell：consumesFeed 为 false（不消耗道具/喂食位/meseta）',
+    consumesFeed(t.log[0]) === false);
+  check('被拒绝的 cell：不占用任何喂食周期', feedCycles(t.log) === 0);
+
+  // ...while the accepted one does consume a feed.
+  const u = cs({ magId: 'Kama', def: 70, pow: 30, dex: 0, mind: 0 }); // Lv100, passes
+  feedOnce(DATA, u, 'D-Photon Core');
+  const cellEntry = u.log.find((e) => e.kind === 'feedCell');
+  check('被接受的 cell：consumesFeed 为 true', consumesFeed(cellEntry) === true);
+  check('被接受的 cell：占用一个喂食周期', feedCycles(u.log) === 1);
+}
+{
+  // 15 rejected cells in a row are still 0 cycles and 0 consumed items — the UI
+  // prices the log with exactly this predicate, so this is the meseta bug too.
+  const t = cs({ magId: 'Kama', def: 10, pow: 5, dex: 0, mind: 0 });
+  for (let i = 0; i < 15; i += 1) feedOnce(DATA, t, 'D-Photon Core');
+  const consumed = t.log.filter(consumesFeed);
+  check('被拒绝的 cell 反复喂：0 次消耗、0 个周期，日志里 15 条失败记录',
+    consumed.length === 0 && feedCycles(t.log) === 0
+    && t.log.filter((e) => e.kind === 'feedCell' && e.ok === false).length === 15);
+  // a normal food item is always consumed
+  const u = cs({ magId: 'Rudra', def: 10, pow: 0, dex: 0, mind: 5 });
+  feedOnce(DATA, u, 'Monomate');
+  check('普通道具喂食始终计入消耗', consumesFeed(u.log[0]) === true);
 }
 
 console.log(failed ? `\n${failed} 项失败` : '\n全部通过');

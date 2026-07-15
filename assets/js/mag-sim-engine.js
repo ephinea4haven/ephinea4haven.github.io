@@ -159,11 +159,19 @@ export function bankMag(data, state) {
 //
 // Walks the ORDERED log, because that is the only place the interleaving lives.
 //
+// A REJECTED mag cell (`feedCell` with `ok:false`) consumes NOTHING: the mag
+// refuses it, so no item is spent, no feed slot is used and no meseta changes
+// hands. It stays in the log — the player still wants to see *why* it failed —
+// but it must not be billed. Everything that prices the log (feedCycles here,
+// the UI's item counts and meseta total) filters through this one predicate.
+export const consumesFeed = (e) =>
+    e.kind === 'feed' || (e.kind === 'feedCell' && e.ok === true);
+
 export function feedCycles(log) {
     let cycles = 0;
     let inCycle = 0;                       // feeds used out of this cycle's 3
     for (const e of log) {
-        if (e.kind === 'feed' || e.kind === 'feedCell') {
+        if (consumesFeed(e)) {
             if (inCycle === 0) cycles += 1;          // this feed opens a new cycle
             inCycle = (inCycle + 1) % 3;
         } else if (e.kind === 'bank') {
@@ -482,6 +490,6 @@ export function replaySession(data, session) {
 // browser (non-module) global
 if (typeof window !== 'undefined') {
     window.MagSimEngine = { magLevel, createState, feedOnce, bankMag, setRacialRestriction,
-        feedCycles, checkEvolution, checkCellEvolution, evalStage3Rule,
+        feedCycles, consumesFeed, checkEvolution, checkCellEvolution, evalStage3Rule,
         exportSession, replaySession };
 }
