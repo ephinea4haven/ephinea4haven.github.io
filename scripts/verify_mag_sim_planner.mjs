@@ -140,5 +140,34 @@ function replay(plan) {
   check('不可达目标返回 plan=null', plan === null);
 }
 
+// === Task 4: 最近可达 fallback ===============================================
+// 矛盾目标：Deva 5/50/40/0 —— DEF+DEX=45 ≠ POW+MIND=50，且 level 95 非四进化级，
+// 无精确解；但最近的可达 Deva（如 5/50/45/0，level100、公式成立）距目标 L1=5。
+// nearest 必须是「近似计划回放后的真实终态」，绝非算出来的猜测。
+{
+  const { plan, nearest } = planMag(DATA, { magId: 'Deva', def: 5, pow: 50, dex: 40, mind: 0 }, { budget: 2_000_000 });
+  check('无精确解 -> plan.approximate 或 null-with-nearest',
+      (plan && plan.approximate) || (!plan && nearest));
+  check('nearest 距目标>0 且种类可达', nearest && nearest.dist > 0);
+  if (nearest) {
+    const t = replay(plan);
+    check('approximate plan 回放种类 = Deva', t.magId === 'Deva');
+    check('nearest 四维 == 近似计划回放终态',
+        nearest.def === t.def && nearest.pow === t.pow && nearest.dex === t.dex && nearest.mind === t.mind);
+    check('nearest.dist == L1(回放终态, 目标)',
+        nearest.dist === Math.abs(t.def - 5) + Math.abs(t.pow - 50) + Math.abs(t.dex - 40) + Math.abs(t.mind - 0));
+  }
+}
+
+// 真正不可达（最近可达点在半径外）：Deva 5/0/0/190 —— 要成 Deva 需 DEF+DEX=POW+MIND，
+// 但 MIND=190 且整数级永不下降，最近可达 Deva 距此 185，远超最近可达半径 → 判不可达。
+{
+  const { plan, nearest, reason } = planMag(DATA, { magId: 'Deva', def: 5, pow: 0, dex: 0, mind: 190 }, { budget: 2_000_000 });
+  check('不可达四维 -> plan=null', plan === null);
+  check('不可达四维 -> nearest=null', nearest === null);
+  check('不可达四维 -> reason 说明进化冲突',
+      typeof reason === 'string' && /Deva/.test(reason) && /DEF\+DEX=POW\+MIND/.test(reason));
+}
+
 console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed.');
 process.exit(failed ? 1 : 0);

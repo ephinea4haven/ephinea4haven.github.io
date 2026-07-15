@@ -684,22 +684,17 @@ function replayPlan(data, plan) {
     return t;
 }
 
-export function planMag(data, target, opts = {}) {
-    const budget = opts.budget ?? 2_000_000;
-    const fail = (reason) => ({ plan: null, nearest: null, reason });
-    if (!target || !data.mags[target.magId]) return fail('unknown mag');
-
-    const fresh = data.freshMag;
-    const T = { magId: target.magId, def: target.def | 0, pow: target.pow | 0,
-                dex: target.dex | 0, mind: target.mind | 0 };
-    // Integer levels never fall, so every stat must start no lower than the fresh
-    // mag's, and the whole thing must fit under the 200 cap.
-    for (const k of P_STATS) if (T[k] < fresh[k]) return fail('stat below fresh mag');
-    if (T.def + T.pow + T.dex + T.mind > 200) return fail('level over cap');
-
-    // Candidate feeders: from the reverse chains, keep those whose Lv.100 formula
-    // the target satisfies, that use a single class from Lv.10 to Lv.100, and
-    // that actually map to the target mag. Dedup by class/gender/Section-Type.
+// Search for an EXACT, replay-validated plan landing on `T` (magId + four
+// stats). Returns the fewest-items such plan or null. Extracted from planMag so
+// Task-4's nearest fallback can re-run the identical exact machinery on nearby
+// target points without duplicating any of the feeder-selection / replay logic.
+//
+// Candidate feeders: from the reverse chains, keep those whose Lv.100 formula
+// the target satisfies, that use a single class from Lv.10 to Lv.100, and that
+// actually map to the target mag. Dedup by class/gender/Section-Type. maxNodes
+// per solveSegment is carved from `budget` so the whole search is bounded and
+// can never hang.
+function exactPlanFor(data, T, budget) {
     const chains = evolutionChains(data, T.magId);
     const feeders = [];
     const seen = new Set();
@@ -719,11 +714,8 @@ export function planMag(data, target, opts = {}) {
         seen.add(key);
         feeders.push(feeder);
     }
-    if (!feeders.length) return fail('no feeder satisfies the target formula');
+    if (!feeders.length) return null;
 
-    // Try each feeder × each checkpoint scheme, keep the fewest-items plan that
-    // REPLAYS to the target. maxNodes per solveSegment is carved from the caller's
-    // budget so the whole search is bounded and can never hang.
     const tryFeeders = feeders.slice(0, 6);
     const schemes = planSchemes(data, T).slice(0, 18);
     const attempts = Math.max(1, tryFeeders.length * schemes.length);
@@ -740,9 +732,151 @@ export function planMag(data, target, opts = {}) {
         }
         if (best) break;   // first feeder that yields any exact plan wins
     }
-    return best
-        ? { plan: best, nearest: null, reason: 'exact' }
-        : { plan: null, nearest: null, reason: 'no exact plan within budget' };
+    return best;
+}
+
+// ===========================================================================
+// nearest-reachable fallback — Task 4
+// ===========================================================================
+//
+// When no EXACT plan lands on the target, still return something useful: the
+// reachable four-stat vector CLOSEST (L1) to the target that genuinely evolves
+// into `target.magId`, plus an `approximate:true` plan reaching it.
+//
+// Relax-to-L1, done at the CHECKPOINT level (not inside solveSegment): the exact
+// engine can only land on a point that (a) sits at a valid 4th-evolution level
+// (100,110,…,200) and (b) satisfies the feeder's Lv.100 equality — otherwise the
+// engine never evolves it into the target mag. So the nearest search enumerates
+// exactly those structurally-valid points near the target, ordered by L1
+// distance, and re-runs the SAME exact machinery (exactPlanFor) on each. The
+// first that builds is the nearest reachable point. Because it flows through the
+// identical replay, the reported `nearest` stats are the ACTUAL replayed
+// terminal stats of the approximate plan — never a computed guess. This is the
+// promised "minimise L1 to the target instead of demanding equality": an
+// optimisation over reachable terminals rather than a single feasibility solve.
+
+// L1 radius that still counts as "near". Beyond it the mag is reported
+// unreachable-for-this-target (nearest:null + reason) rather than as a wildly
+// distant "nearest". 5/50/40/0's true nearest Deva is L1=5 (inside); a target
+// like 5/0/0/190 whose nearest Deva is L1=185 falls outside → reason path.
+const NEAREST_MAX_L1 = 40;
+const NEAREST_MAX_TRIES = 24;   // hard cap on exactPlanFor re-runs — keeps it bounded
+
+// Which Lv.100 equalities produce `magId` (a stage-4 mag can be the leaf of one
+// or more feeder Types). Drives both candidate generation and the reason string.
+function targetFormulas(data, magId) {
+    const set = new Set();
+    for (const step of stage4Predecessors(data, magId)) set.add(step.condKey);
+    return [...set];
+}
+
+// Each Lv.100 equality splits the four stats into two pairs that must sum-match;
+// at a valid (even) 4th-evolution level L each pair therefore sums to L/2.
+const NEAREST_PAIRS = {
+    'DEF+POW=DEX+MIND': [['def', 'pow'], ['dex', 'mind']],
+    'DEF+DEX=POW+MIND': [['def', 'dex'], ['pow', 'mind']],
+    'DEF+MIND=POW+DEX': [['def', 'mind'], ['pow', 'dex']],
+};
+
+// Structurally-valid target points within `radius` L1 of T: sitting on one of
+// `formulas`' planes, at a valid 4th-evolution level, every stat ≥ fresh and
+// ≤ 200. Deduped, sorted nearest-first. Emptiness ⇒ genuinely unreachable for
+// this target within the radius (the reason path).
+function nearCandidates(data, T, formulas, radius) {
+    const fresh = data.freshMag;
+    const floor = { def: fresh.def, pow: fresh.pow, dex: fresh.dex, mind: fresh.mind };
+    const l1 = (p) => Math.abs(p.def - T.def) + Math.abs(p.pow - T.pow)
+        + Math.abs(p.dex - T.dex) + Math.abs(p.mind - T.mind);
+    const out = new Map();
+    for (const f of formulas) {
+        const pairs = NEAREST_PAIRS[f];
+        if (!pairs) continue;
+        const [[a1, a2], [b1, b2]] = pairs;
+        for (let L = 100; L <= 200; L += 10) {
+            const half = L / 2;                       // integer: every valid L is even
+            for (let av = floor[a1]; av <= half - floor[a2]; av++) {
+                const a2v = half - av;
+                if (a2v > 200) continue;
+                const dA = Math.abs(av - T[a1]) + Math.abs(a2v - T[a2]);
+                if (dA > radius) continue;            // pair A alone already too far
+                for (let bv = floor[b1]; bv <= half - floor[b2]; bv++) {
+                    const b2v = half - bv;
+                    if (b2v > 200) continue;
+                    const p = {};
+                    p[a1] = av; p[a2] = a2v; p[b1] = bv; p[b2] = b2v;
+                    const d = l1(p);
+                    if (d === 0 || d > radius) continue;   // 0 == the (failed) exact target
+                    const key = `${p.def},${p.pow},${p.dex},${p.mind}`;
+                    const prev = out.get(key);
+                    if (!prev || prev.dist > d) out.set(key, { point: p, dist: d });
+                }
+            }
+        }
+    }
+    return [...out.values()].sort((x, y) => x.dist - y.dist);
+}
+
+// The fallback proper. Returns the {plan(approximate), nearest{…,dist}, reason}
+// near-shape, or the {plan:null, nearest:null, reason} unreachable-shape.
+function nearestFallback(data, T, budget) {
+    const noNear = (reason) => ({ plan: null, nearest: null, reason });
+    const info = data.mags[T.magId];
+    // planMag itself only assembles 4th-evolution targets, so the fallback is
+    // scoped the same — a lower-stage miss has no near plan to offer.
+    if (!info || info.stage !== 4) return noNear('目前仅支持第四进化目标的最近可达 fallback');
+
+    const formulas = targetFormulas(data, T.magId);
+    if (!formulas.length) return noNear(`没有任何 feeder 能产出 ${T.magId}`);
+
+    const cands = nearCandidates(data, T, formulas, NEAREST_MAX_L1);
+    if (!cands.length) {
+        // Nothing reachable within the radius ⇒ genuinely unreachable for these
+        // stats. Name the conflicting evolution rule (the Lv.100 equality).
+        return noNear(`此四维无法进化成 ${T.magId}：Lv100 需 ${formulas.join(' 或 ')}，当前不成立`);
+    }
+
+    // Try nearest-first; each candidate is a real target point run through the
+    // exact planner. First that builds wins (it is the closest reachable point).
+    const perBudget = Math.max(100000, Math.floor(budget / NEAREST_MAX_TRIES));
+    for (const { point } of cands.slice(0, NEAREST_MAX_TRIES)) {
+        const cand = { magId: T.magId, ...point };
+        const plan = exactPlanFor(data, cand, perBudget);
+        if (!plan) continue;
+        const t = replayPlan(data, plan);                       // replay is truth
+        if (t.magId !== T.magId) continue;
+        const dist = Math.abs(t.def - T.def) + Math.abs(t.pow - T.pow)
+            + Math.abs(t.dex - T.dex) + Math.abs(t.mind - T.mind);
+        if (dist === 0) continue;   // would be exact — already tried, keep dist>0
+        return {
+            plan: { ...plan, approximate: true },
+            nearest: { def: t.def, pow: t.pow, dex: t.dex, mind: t.mind, dist },
+            reason: `最近可达（L1=${dist}），无精确解`,
+        };
+    }
+    return noNear(`${T.magId} 附近存在可达点，但预算内未能构造近似计划`);
+}
+
+export function planMag(data, target, opts = {}) {
+    const budget = opts.budget ?? 2_000_000;
+    const fail = (reason) => ({ plan: null, nearest: null, reason });
+    if (!target || !data.mags[target.magId]) return fail('unknown mag');
+
+    const fresh = data.freshMag;
+    const T = { magId: target.magId, def: target.def | 0, pow: target.pow | 0,
+                dex: target.dex | 0, mind: target.mind | 0 };
+    // Integer levels never fall, so every stat must start no lower than the fresh
+    // mag's, and the whole thing must fit under the 200 cap. Both are hard
+    // impossibilities (no nearer reachable point can rescue them) → nearest:null.
+    for (const k of P_STATS) if (T[k] < fresh[k]) return fail('stat below fresh mag');
+    if (T.def + T.pow + T.dex + T.mind > 200) return fail('level over cap');
+
+    // 1) Exact plan — replay-guaranteed to end on exactly the target.
+    const plan = exactPlanFor(data, T, budget);
+    if (plan) return { plan, nearest: null, reason: 'exact' };
+
+    // 2) No exact plan — nearest-reachable fallback (approximate plan + nearest),
+    //    or an unreachable verdict with a reason.
+    return nearestFallback(data, T, budget);
 }
 
 // browser (non-module) global — mirrors mag-sim-engine.js's window.MagSimEngine
