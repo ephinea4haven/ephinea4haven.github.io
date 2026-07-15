@@ -1,7 +1,7 @@
 /* Planner unit tests. Run: node scripts/verify_mag_sim_planner.mjs */
 import { readFileSync } from 'node:fs';
-import { evolutionChains, solveSegment } from '../assets/js/mag-sim-planner.js';
-import { createState, feedOnce, magLevel } from '../assets/js/mag-sim-engine.js';
+import { evolutionChains, solveSegment, planMag } from '../assets/js/mag-sim-planner.js';
+import { createState, feedOnce, bankMag, magLevel } from '../assets/js/mag-sim-engine.js';
 
 const win = {};
 new Function('window', readFileSync('assets/js/mag-sim-data.js', 'utf8'))(win);
@@ -105,6 +105,40 @@ check('fresh Mag（stage0）返回空数组', evolutionChains(DATA, 'Mag').lengt
 check('负增量目标返回 null',
   solveSegment(DATA, { table:'4', startStats:{def:5,pow:5,dex:5,mind:5},
       targetDelta:{def:-1,pow:0,dex:0,mind:0}, maxItems:50 }) === null);
+
+// === planMag: 组装 + 引擎回放验证（对官方指南的黄金目标）====================
+// 把一份 plan 灌进真引擎，返回终态——所有断言以引擎回放为准（ground truth）。
+function replay(plan) {
+  const t = createState(DATA, { start: { mode: 'fresh' } });
+  for (const seg of plan.segments) {
+    t.feeder = { ...seg.feeder, race: 'Human' };
+    for (const step of seg.order) { step.bank ? bankMag(DATA, t) : feedOnce(DATA, t, step.item); }
+  }
+  return t;
+}
+
+// 官方指南: Deva 的一种配方是 5/50/45/0（HU/M/Type1，公式 DEF+DEX=POW+MIND）。
+{
+  const { plan } = planMag(DATA, { magId: 'Deva', def: 5, pow: 50, dex: 45, mind: 0 }, { budget: 2_000_000 });
+  check('Deva 5/50/45/0 有精确计划', !!plan);
+  if (plan) {
+    const t = replay(plan);
+    check('回放后种类 = Deva', t.magId === 'Deva');
+    check('回放后四维 = 5/50/45/0', t.def === 5 && t.pow === 50 && t.dex === 45 && t.mind === 0);
+    check('plan.totals 一致（items = order 步数之和）',
+      plan.totals.items === plan.segments.reduce((n, s) => n + s.order.length, 0));
+    check('plan 每段都标注 magFrom/magTo/evoLevel/feeder',
+      plan.segments.every((s) => s.magFrom && s.magTo && s.evoLevel && s.feeder && s.feeder.class));
+    check('nearest 本任务返回 null（留给 Task 4）',
+      (planMag(DATA, { magId: 'Deva', def: 5, pow: 50, dex: 45, mind: 0 }, { budget: 2_000_000 }).nearest) === null);
+  }
+}
+
+// 无解目标（负增量：整数级永不下降）→ plan 必为 null，绝不返回错误计划。
+{
+  const { plan } = planMag(DATA, { magId: 'Deva', def: 5, pow: 50, dex: 45, mind: -1 }, { budget: 200_000 });
+  check('不可达目标返回 plan=null', plan === null);
+}
 
 console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed.');
 process.exit(failed ? 1 : 0);
