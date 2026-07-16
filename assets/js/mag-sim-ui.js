@@ -343,6 +343,68 @@ function planCardsHtml(plan) {
         + `<div class="mag-plan-actions" data-planner-actions></div>`;
 }
 
+// Switches to the 模拟器 page tab by dispatching a real click on its tab
+// button — reuses initPageTabs()'s own delegated listener (aria-selected +
+// panel[hidden] bookkeeping) instead of duplicating it here.
+function switchToSimulatorTab() {
+    document.getElementById('page-tab-sim')?.click();
+}
+
+// Walks a plan's segments/order into the exact `{start, feeds}` shape
+// E.replaySession() consumes (the same shape exportSession() produces): a
+// FEED `{item, feeder}` or a BANK `{action:'bank'}`. Every step in a segment
+// shares that segment's feeder — buildPlanForFeeder() never records a race on
+// it (any feeder of that class+gender+Section-ID reproduces the same feed
+// table), so this defaults it to 'Human' exactly like replayPlan() does in
+// mag-sim-planner.js, the same engine call the planner validated the plan
+// against in the first place.
+function planToSession(plan) {
+    const feeds = [];
+    for (const seg of plan.segments) {
+        const feeder = { ...seg.feeder, race: seg.feeder.race || 'Human' };
+        for (const step of seg.order) {
+            feeds.push(step.bank ? { action: 'bank' } : { item: step.item, feeder });
+        }
+    }
+    return { start: { mode: 'fresh' }, feeds };
+}
+
+// The closed loop: replay the plan through the SAME engine planMag() itself
+// validated it against (replaySession, not a re-simulation of our own), swap
+// it in as the live `state`, wipe the undo stack (a different mag now), and
+// jump to the 模拟器 tab so the user immediately sees the finished mag + the
+// full history log — exact plans land exactly on the target; approximate
+// plans land on the nearest reachable point the banner already named.
+function importPlanIntoSimulator(plan) {
+    state = E.replaySession(window.MAG_SIM, planToSession(plan));
+    history.length = 0;
+    switchToSimulatorTab();
+    render();
+}
+
+// Shown for both exact and approximate plans (an approximate plan is still a
+// real, replayable sequence) — never for the unreachable case, which has no
+// `plan` object to import. The approximate label says explicitly that the
+// button lands on the nearest point, not the target, so it can't be mistaken
+// for a successful exact import.
+function planImportActionsHtml(plan) {
+    const label = plan.approximate ? '导入模拟器（最近可达点）' : '导入模拟器';
+    const note = plan.approximate
+        ? `<p class="mag-plan-actions__note">将回放到上方最接近目标的可达方案，而非精确目标。</p>` : '';
+    return `<button type="button" class="mag-sim-setup__apply" data-import-plan>${label}</button>${note}`;
+}
+
+// Binds the import button inside the `data-planner-actions` slot planCardsHtml
+// just rendered. A plain closure over `plan` (not a data-attribute) — the
+// plan object itself is what importPlanIntoSimulator() needs, not a
+// re-parsed copy of it.
+function bindPlanImportActions(box, plan) {
+    const actions = box.querySelector('[data-planner-actions]');
+    if (!actions) return;
+    actions.innerHTML = planImportActionsHtml(plan);
+    actions.querySelector('[data-import-plan]').addEventListener('click', () => importPlanIntoSimulator(plan));
+}
+
 // Reads `outcome` (planMag's `{plan, nearest, reason}`) rather than the
 // module-level `plannerResult`, and takes `magId` as the target that was
 // ACTUALLY solved (captured by solvePlanner before its setTimeout(0) yield) —
@@ -366,10 +428,12 @@ function renderPlannerResult(root, outcome, magId) {
     const { plan, nearest, reason } = outcome;
     if (plan && !plan.approximate) {
         box.innerHTML = `<p class="mag-sim-planner__ok">✅ 低喂食方案</p>${planCardsHtml(plan)}`;
+        bindPlanImportActions(box, plan);
     } else if (plan && plan.approximate && nearest) {
         box.innerHTML = `<div class="mag-sim-planner__warn">`
             + `⚠️ 无精确解，最接近可达 ${nearest.def}/${nearest.pow}/${nearest.dex}/${nearest.mind}`
             + `（距目标 ${nearest.dist}）</div>${planCardsHtml(plan)}`;
+        bindPlanImportActions(box, plan);
     } else {
         // nearestFallback's own formula-conflict reason already reads
         // "此四维无法进化成 <magId>：Lv100 需 …" — strip that exact prefix
