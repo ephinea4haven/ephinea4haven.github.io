@@ -161,7 +161,7 @@
 
     function idSet(ids) {
         return `<div class="mag-idset">${ids
-            .map((id) => `<span class="mag-id"><img src="/assets/img/section/sm/${encodeURIComponent(id)}.png" alt="" width="18" height="18" loading="lazy">${esc(id)}</span>`)
+            .map((id) => `<span class="mag-id"><img src="/assets/img/section/icon/${encodeURIComponent(id)}.png" alt="" width="18" height="18" loading="lazy">${esc(id)}</span>`)
             .join('')}</div>`;
     }
 

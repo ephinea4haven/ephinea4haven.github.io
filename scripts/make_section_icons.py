@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Downscale the Section ID icons for use as inline chips.
 
-The originals are 512x512 (~20KB each); the mag chart draws them at 18px, and
-ten of them per chart would ship 200KB to render 180px of pixels.
+The originals are 512x512 (~20KB each); the mag chart / simulator draw them at
+16-18px, and ten of them per chart would ship 200KB to render 180px of pixels.
+64px keeps them crisp up to ~3x-DPI displays for ~5-6KB each.
+
+Output goes to `section/icon/` (the full-size art in `section/` is used at
+100% width by the Section ID reference page and is left untouched).
 
 Usage:  python3 scripts/make_section_icons.py
 """
@@ -14,8 +18,8 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "assets" / "img" / "section"
-OUT = SRC / "sm"
-SIZE = 40
+OUT = SRC / "icon"
+SIZE = 64
 
 SECTION_IDS = [
     "Viridia", "Greenill", "Skyly", "Bluefull", "Purplenum",
