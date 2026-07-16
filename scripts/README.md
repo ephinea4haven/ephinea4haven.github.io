@@ -29,3 +29,24 @@ It can also run fully offline against raw-wikitext fixtures:
 python3 scripts/build_mag_data.py --offline mags.wiki \
     --offline-feed magfeedtable.wiki --offline-feed-page feedtables.wiki
 ```
+
+## Tests
+
+Node assertion scripts using this project's plain `check(name, cond)` convention
+(no test framework, no dependencies). Each verifies the shape/behaviour of one
+generated data file or JS module; run after regenerating data or touching the
+corresponding source.
+
+| Script | Verifies |
+|--------|----------|
+| `verify_mag_data.mjs` | `assets/js/mag-evolution.js` (evolution graph data) |
+| `verify_mag_sim_data.mjs` | `assets/js/mag-sim-data.js` (feed tables, mag cells) |
+| `verify_mag_sim.mjs` | `assets/js/mag-sim-engine.js` (feeding/evolution engine) |
+| `verify_mag_sim_planner.mjs` | `assets/js/mag-sim-planner.js` (reverse-search planner) |
+
+```bash
+node scripts/verify_mag_data.mjs
+node scripts/verify_mag_sim_data.mjs
+node scripts/verify_mag_sim.mjs
+node scripts/verify_mag_sim_planner.mjs
+```

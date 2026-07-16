@@ -9,6 +9,10 @@
   - Could be a small Python script run pre-deploy, or a git pre-commit hook.
   - Cross-ref: ARCHITECTURE.md issue #1.
 
+## Shipped
+
+- [x] **Mag 反向规划器** — `tools/mag-sim.html` 内的正向/反向双模式规划器：输入目标 mag 种类 + 精确四维，给出引擎校验过的分组喂食方案；精确解不可达时回退到最近可达四维，并支持一键导入正向模拟器继续喂养。
+
 ## Optional follow-ups
 
 - [ ] **Extend `<page-chrome>` to support an inline langSwitch widget**
