@@ -646,7 +646,7 @@
             color: var(--text-secondary);
         }
 
-        /* ---------- planner (Task 6: input only — result cards are Task 7) ---------- */
+        /* ---------- planner (Task 6: target input; Task 7: result rendering) ---------- */
 
         .mag-sim-planner__result {
             margin-top: 14px;
@@ -659,9 +659,108 @@
             font-style: italic;
         }
 
-        .mag-sim-planner__ok { color: var(--def); font-weight: 600; }
-        .mag-sim-planner__warn { color: var(--dex); font-weight: 600; }
-        .mag-sim-planner__fail { color: var(--pow); font-weight: 600; }
+        .mag-sim-planner__ok { margin: 0 0 4px; color: var(--def); font-weight: 600; }
+        .mag-sim-planner__fail { margin: 0; color: var(--pow); font-weight: 600; }
+
+        .mag-sim-planner__reason {
+            margin: 2px 0 0;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+        }
+
+        /* The "no exact solution" banner: same amber warning look as the live
+           card's re-evolution warning (.mag-sim-card__warn), reused here under
+           its own name so it can never be mistaken for the "✅ 低喂食方案"
+           result above it — the plan under this banner reaches the NEAREST
+           point, not the player's actual target. */
+        .mag-sim-planner__warn {
+            display: block;
+            margin: 0 0 10px;
+            padding: 8px 10px;
+            font-weight: 600;
+            line-height: 1.6;
+            color: #f2c14e;
+            background: rgba(242, 193, 78, .10);
+            border: 1px solid rgba(242, 193, 78, .35);
+            border-radius: 6px;
+        }
+
+        /* ---------- planner: step cards + totals (Task 7) ---------- */
+
+        .mag-plan-steps {
+            display: grid;
+            gap: 8px;
+            margin: 4px 0 10px;
+        }
+
+        .mag-plan-step {
+            padding: 10px 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-br);
+            border-radius: 9px;
+        }
+
+        .mag-plan-step__head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .mag-plan-step__no {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .mag-plan-step__feeder {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .mag-plan-step__feeds {
+            display: grid;
+            gap: 2px;
+            margin: 0 0 6px;
+            padding-left: 18px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+        }
+
+        .mag-plan-step__bank {
+            margin-bottom: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dex);
+        }
+
+        .mag-plan-step__evo {
+            padding-top: 6px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--card-br);
+        }
+
+        .mag-plan-step__evo b {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .mag-plan-totals {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 16px;
+            padding-top: 10px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--card-br);
+        }
+
+        .mag-plan-totals b {
+            color: var(--text-primary);
+        }
     </style>
 </head>
 

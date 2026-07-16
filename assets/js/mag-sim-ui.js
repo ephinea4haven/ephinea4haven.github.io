@@ -262,7 +262,7 @@ function renderSetup() {
     });
 }
 
-// ---------- planner tab (Task 6: target input only — result cards are Task 7) ----------
+// ---------- planner tab (target input: Task 6; result rendering: Task 7) ----------
 
 // The last outcome planMag() returned, `{plan, nearest, reason}` (or `null`
 // before the first solve). Kept outside the DOM — like `state` — so a future
@@ -278,21 +278,109 @@ function currentPlannerTarget(root) {
     };
 }
 
-// Minimal placeholder result line — the grouped step cards are Task 7. Reads
-// `outcome` (planMag's `{plan, nearest, reason}`) rather than the module-level
-// `plannerResult`, so a stale async response (see solvePlanner) can never be
-// rendered under a newer target's label.
-function renderPlannerResult(root, outcome) {
+// A plan segment's feeder is `{class, gender, sectionId}` only — no `race`
+// (buildPlanForFeeder in mag-sim-planner.js never records one: any feeder of
+// that class+gender+Section-ID reproduces the same feed table, so the plan
+// never needed to pin a race down). classOf()/feederSummary() key off
+// (line, gender, race) and would silently fall back to CLASSES[0] (HUmar) on
+// a segment feeder, so this reuses their LINE_LABEL/GENDER_LABEL tables
+// directly instead of the two lookup helpers themselves.
+function planFeederLabel(feeder) {
+    return `${feeder.class}（${LINE_LABEL[feeder.class] || feeder.class}）· ${GENDER_LABEL[feeder.gender] || feeder.gender}`;
+}
+
+// The same Section-ID chip markup mag-sim-ui already renders for the feeder
+// picker (setFeederPanel) and mag-chart.js renders for reverse-search cards —
+// reused verbatim (icon path + `.mag-id-chip` class) so a plan step reads as
+// the same kind of object as the picker the player just used.
+function sectionChipHtml(id) {
+    return `<span class="mag-id-chip" aria-hidden="true">`
+        + `<img src="/assets/img/section/icon/${encodeURIComponent(id)}.png" alt="" width="16" height="16" loading="lazy">${esc(id)}</span>`;
+}
+
+function planStepHtml(seg, i) {
+    const feedsHtml = seg.feeds
+        .map((f) => `<li>${esc(f.item)} ×${f.count}</li>`).join('');
+    const bankHtml = seg.banks
+        ? `<div class="mag-plan-step__bank">存银行 ×${seg.banks}</div>` : '';
+    return `<div class="mag-plan-step">
+        <div class="mag-plan-step__head">
+            <span class="mag-plan-step__no">第 ${i + 1} 段</span>
+            <span class="mag-plan-step__feeder">${esc(planFeederLabel(seg.feeder))}</span>
+            ${sectionChipHtml(seg.feeder.sectionId)}
+        </div>
+        <ul class="mag-plan-step__feeds">${feedsHtml}</ul>
+        ${bankHtml}
+        <div class="mag-plan-step__evo">${esc(seg.magFrom)} → 进化到 <b>${esc(seg.magTo)}</b>（Lv ${seg.evoLevel}）</div>
+    </div>`;
+}
+
+// Totals footer — same formula the feed bar's own totals use (feedCycles()
+// walked cycle count × SECONDS_PER_CYCLE), just fed from plan.totals instead
+// of the live state.log, so a plan cannot show a different "how long will
+// this take" number than actually feeding it out would.
+function planTotalsHtml(totals) {
+    const minutes = (totals.cycles * SECONDS_PER_CYCLE) / 60;
+    return `<div class="mag-plan-totals">
+        <span>总道具：<b>${totals.items}</b></span>
+        <span>花费：<b>${totals.meseta.toLocaleString()}</b> meseta</span>
+        <span>周期：<b>${totals.cycles}</b>（≈ ${minutes.toFixed(1)} 分钟）</span>
+        <span>存银行：<b>${totals.banks}</b> 次</span>
+    </div>`;
+}
+
+// The step cards + totals footer both an exact plan and an approximate plan
+// render identically — only the banner above them (renderPlannerResult)
+// tells the two apart, since the approximate plan's cards genuinely are the
+// steps to the nearest reachable point.
+//
+// `data-planner-actions` is an intentionally empty slot: Task 8 hangs its
+// "导入模拟器" button here without this task needing to know that button's
+// shape.
+function planCardsHtml(plan) {
+    return `<div class="mag-plan-steps">${plan.segments.map(planStepHtml).join('')}</div>`
+        + planTotalsHtml(plan.totals)
+        + `<div class="mag-plan-actions" data-planner-actions></div>`;
+}
+
+// Reads `outcome` (planMag's `{plan, nearest, reason}`) rather than the
+// module-level `plannerResult`, and takes `magId` as the target that was
+// ACTUALLY solved (captured by solvePlanner before its setTimeout(0) yield) —
+// not re-read from the live form — so a stale async response can never be
+// rendered under a newer target's label (see solvePlanner).
+//
+// Three modes:
+//   - exact plan: "✅ 低喂食方案" — never "保证最少". The solver is a bounded
+//     heuristic search (see mag-sim-planner.js), not an exhaustive one, so it
+//     can find A low-feed plan but never PROVES it is the fewest possible;
+//     claiming a guaranteed minimum would be a promise the code cannot back.
+//   - approximate plan (plan.approximate && nearest): a visually distinct
+//     amber banner naming the nearest reachable point, above the SAME step
+//     cards — those steps really do end there, they just don't reach target.
+//   - unreachable (plan === null): a fail line naming the target + the
+//     solver's own human-readable reason underneath, esc()'d (it can contain
+//     mag names / formulas straight from data, never trusted as safe HTML).
+function renderPlannerResult(root, outcome, magId) {
     const box = root.querySelector('[data-planner-result]');
     if (!box) return;
     const { plan, nearest, reason } = outcome;
     if (plan && !plan.approximate) {
-        box.innerHTML = `<p class="mag-sim-planner__ok">✅ 找到精确方案（${plan.segments.length} 步）</p>`;
+        box.innerHTML = `<p class="mag-sim-planner__ok">✅ 低喂食方案</p>${planCardsHtml(plan)}`;
     } else if (plan && plan.approximate && nearest) {
-        box.innerHTML = `<p class="mag-sim-planner__warn">⚠️ 无精确解，最近可达`
-            + ` DEF ${nearest.def} · POW ${nearest.pow} · DEX ${nearest.dex} · MIND ${nearest.mind}</p>`;
+        box.innerHTML = `<div class="mag-sim-planner__warn">`
+            + `⚠️ 无精确解，最接近可达 ${nearest.def}/${nearest.pow}/${nearest.dex}/${nearest.mind}`
+            + `（距目标 ${nearest.dist}）</div>${planCardsHtml(plan)}`;
     } else {
-        box.innerHTML = `<p class="mag-sim-planner__fail">✗ ${esc(reason || '未知原因')}</p>`;
+        // nearestFallback's own formula-conflict reason already reads
+        // "此四维无法进化成 <magId>：Lv100 需 …" — strip that exact prefix
+        // back off before showing it as the detail line, or the header above
+        // would repeat itself verbatim. Every OTHER fail reason (unknown mag,
+        // stat below fresh mag, …) doesn't carry the prefix and is shown
+        // in full underneath, unchanged.
+        const prefix = `此四维无法进化成 ${magId}：`;
+        const detail = reason && reason.startsWith(prefix) ? reason.slice(prefix.length) : (reason || '未知原因');
+        box.innerHTML = `<p class="mag-sim-planner__fail">✗ 此四维无法进化成 ${esc(magId)}</p>`
+            + `<p class="mag-sim-planner__reason">${esc(detail)}</p>`;
     }
 }
 
@@ -320,7 +408,7 @@ function solvePlanner(root) {
         }
         if (token !== plannerToken) return; // superseded by a later click
         plannerResult = outcome;
-        renderPlannerResult(root, outcome);
+        renderPlannerResult(root, outcome, target.magId);
         btn.disabled = false;
     }, 0);
 }
