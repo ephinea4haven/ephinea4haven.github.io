@@ -129,7 +129,7 @@ function replay(plan) {
       plan.totals.items === plan.segments.reduce((n, s) => n + s.order.length, 0));
     check('plan 每段都标注 magFrom/magTo/evoLevel/feeder',
       plan.segments.every((s) => s.magFrom && s.magTo && s.evoLevel && s.feeder && s.feeder.class));
-    check('nearest 本任务返回 null（留给 Task 4）',
+    check('nearest 此处返回 null（由 nearest-reachable fallback 处理）',
       (planMag(DATA, { magId: 'Deva', def: 5, pow: 50, dex: 45, mind: 0 }, { budget: 2_000_000 }).nearest) === null);
   }
 }
@@ -140,7 +140,7 @@ function replay(plan) {
   check('不可达目标返回 plan=null', plan === null);
 }
 
-// === Task 4: 最近可达 fallback ===============================================
+// === 最近可达 fallback ========================================================
 // 矛盾目标：Deva 5/50/40/0 —— DEF+DEX=45 ≠ POW+MIND=50，且 level 95 非四进化级，
 // 无精确解；但最近的可达 Deva（如 5/50/45/0，level100、公式成立）距目标 L1=5。
 // nearest 必须是「近似计划回放后的真实终态」，绝非算出来的猜测。
@@ -169,7 +169,7 @@ function replay(plan) {
       typeof reason === 'string' && /Deva/.test(reason) && /DEF\+DEX=POW\+MIND/.test(reason));
 }
 
-// === Task 5: 最少喂食次数择优 + 预算护栏 =====================================
+// === 最少喂食次数择优 + 预算护栏 =============================================
 
 // --- 择优：候选集里取 items 最小者，而非"第一个可行 feeder 就赢" ------------
 // Deva 5/50/45/0（官方指南金标准目标，budget 与 T3 测试一致）：回归护栏——已知
@@ -183,7 +183,7 @@ function replay(plan) {
 // HU/F/Type1(Viridia) 走 DEF+DEX=POW+MIND，HU/F/Type3(Skyly) 走
 // DEF+POW=DEX+MIND。用 evolutionChains 独立验证候选集确实 ≥2 个不同 feeder
 // （不依赖实现内部状态），确认这不是退化成单候选的场景。若实现退回"第一个可行
-// feeder 就赢"（Task 5 之前的行为），候选集顺序一变就可能锁定一个更差的
+// feeder 就赢"（择优逻辑引入前的行为），候选集顺序一变就可能锁定一个更差的
 // feeder；这里把已知的最优值（860，两个 feeder 实测打平）钉成回归上界。
 {
   const T = { magId: 'Savitri', def: 5, pow: 55, dex: 55, mind: 5 };

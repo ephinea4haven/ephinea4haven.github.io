@@ -262,12 +262,12 @@ function renderSetup() {
     });
 }
 
-// ---------- planner tab (target input: Task 6; result rendering: Task 7) ----------
+// ---------- planner tab ----------
 
 // The last outcome planMag() returned, `{plan, nearest, reason}` (or `null`
-// before the first solve). Kept outside the DOM — like `state` — so a future
-// task (the "import into simulator" button, Task 8) can read the winning plan
-// without re-parsing the placeholder text this task renders.
+// before the first solve). Kept outside the DOM — like `state` — so the
+// "import into simulator" button can read the winning plan without
+// re-parsing the placeholder text rendered here.
 let plannerResult = null;
 
 function currentPlannerTarget(root) {
@@ -334,9 +334,8 @@ function planTotalsHtml(totals) {
 // tells the two apart, since the approximate plan's cards genuinely are the
 // steps to the nearest reachable point.
 //
-// `data-planner-actions` is an intentionally empty slot: Task 8 hangs its
-// "导入模拟器" button here without this task needing to know that button's
-// shape.
+// `data-planner-actions` is an intentionally empty slot: the "导入模拟器"
+// button hangs here without this code needing to know that button's shape.
 function planCardsHtml(plan) {
     return `<div class="mag-plan-steps">${plan.segments.map(planStepHtml).join('')}</div>`
         + planTotalsHtml(plan.totals)

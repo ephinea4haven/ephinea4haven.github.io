@@ -290,7 +290,7 @@ export function evolutionChains(data, targetMagId) {
 // targets where near-pure items exist (the common planner cases). What it may
 // return null on: tightly-coupled multi-stat targets that need exact negative
 // interleaving, or anything whose search exceeds the node budget — by design,
-// the caller (Task 3) falls back to nearest-reachable for those.
+// the caller falls back to nearest-reachable for those.
 
 const SOLVE_STATS = ['def', 'pow', 'dex', 'mind'];
 const SOLVE_MAX_NODES = 600000;
@@ -357,7 +357,7 @@ export function solveSegment(data, opts) {
     // engine's `progress` CARRIES ACROSS an evolution (feedOnce never resets it),
     // so the assembler MUST hand the live carried bar here or the solver's model
     // drifts from the engine on the first feed. Defaults to a clean 0 bar, which
-    // is exactly the zero-progress contract Task 2's tests rely on.
+    // is exactly the zero-progress contract the test suite relies on.
     const prog0 = {
         def: (startProgress && startProgress.def) | 0,
         pow: (startProgress && startProgress.pow) | 0,
@@ -442,7 +442,8 @@ export function solveSegment(data, opts) {
 //
 // Given a target mag id + four stats, return { plan, nearest, reason } where a
 // non-null `plan` is GUARANTEED (by replay) to end at exactly that mag and those
-// stats. `nearest` is Task 4's job and is always null here.
+// stats. `nearest` is populated by the nearest-reachable fallback below and
+// is always null here.
 //
 // The crucial subtlety: the engine's hundredths `progress` CARRIES ACROSS an
 // evolution — feedOnce never resets it. So the plan is built by forward-
@@ -745,7 +746,7 @@ function exactPlanFor(data, T, budget, nodeFloor) {
 }
 
 // ===========================================================================
-// nearest-reachable fallback — Task 4
+// nearest-reachable fallback
 // ===========================================================================
 //
 // When no EXACT plan lands on the target, still return something useful: the
@@ -781,13 +782,13 @@ const NEAREST_MAX_L1 = 40;
 //   * maxTriesFor   — how many nearCandidates points nearestFallback re-runs.
 // A tiny budget collapses both to their MIN clamp (fast, never hangs). A
 // large budget (explicit, or opts.deep's bigger default) rises back to the
-// original Task-4 deep-search bounds — so "opts.deep=true" or "a large
+// original deep-search bounds — so "opts.deep=true" or "a large
 // opts.budget" are equivalent opt-ins into the old exhaustive behaviour; no
 // separate deep-mode branching is needed beyond picking the default budget.
 const NODE_FLOOR_MIN = 500;
-const NODE_FLOOR_DEEP = 50000;       // Task 4's original hardcoded floor
+const NODE_FLOOR_DEEP = 50000;       // the original hardcoded floor
 const NEAREST_TRIES_MIN = 2;
-const NEAREST_TRIES_DEEP = 24;       // Task 4's original hardcoded cap
+const NEAREST_TRIES_DEEP = 24;       // the original hardcoded cap
 
 function nodeFloorFor(budget) {
     return Math.max(NODE_FLOOR_MIN, Math.min(NODE_FLOOR_DEEP, Math.floor(budget / 40)));
