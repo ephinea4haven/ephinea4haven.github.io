@@ -264,12 +264,6 @@ function renderSetup() {
 
 // ---------- planner tab ----------
 
-// The last outcome planMag() returned, `{plan, nearest, reason}` (or `null`
-// before the first solve). Kept outside the DOM — like `state` — so the
-// "import into simulator" button can read the winning plan without
-// re-parsing the placeholder text rendered here.
-let plannerResult = null;
-
 function currentPlannerTarget(root) {
     const val = (name) => Number(root.querySelector(`[data-planner="${name}"]`).value) || 0;
     return {
@@ -354,13 +348,21 @@ function switchToSimulatorTab() {
 // FEED `{item, feeder}` or a BANK `{action:'bank'}`. Every step in a segment
 // shares that segment's feeder — buildPlanForFeeder() never records a race on
 // it (any feeder of that class+gender+Section-ID reproduces the same feed
-// table), so this defaults it to 'Human' exactly like replayPlan() does in
-// mag-sim-planner.js, the same engine call the planner validated the plan
-// against in the first place.
+// table: race only gates mag-cell racial rules, which default off) — but the
+// imported state IS shown in the setup panel, and classOf() keys off
+// (line, gender, race) as a bijection into the 12-class picker. Hard-coding
+// 'Human' the way replayPlan() does in mag-sim-planner.js (fine there — it
+// never renders a picker) would desync a HU/F segment from every HU/F class
+// (HUnewearl=Newman, HUcaseal=Android — there IS no HU/F/Human): classOf()
+// would find no match, fall back to CLASSES[0] (HUmar) and the panel would
+// show "HUmar / 男" for a feeder whose gender is actually 'F'. So look up the
+// one CLASSES entry that actually has this (line, gender) and borrow ITS race
+// — the canonical, and only correct, choice for the picker.
 function planToSession(plan) {
     const feeds = [];
     for (const seg of plan.segments) {
-        const feeder = { ...seg.feeder, race: seg.feeder.race || 'Human' };
+        const cls = CLASSES.find((c) => c.line === seg.feeder.class && c.gender === seg.feeder.gender);
+        const feeder = { ...seg.feeder, race: seg.feeder.race || (cls ? cls.race : 'Human') };
         for (const step of seg.order) {
             feeds.push(step.bank ? { action: 'bank' } : { item: step.item, feeder });
         }
@@ -409,8 +411,8 @@ function bindPlanImportActions(box, plan) {
     actions.querySelector('[data-import-plan]').addEventListener('click', () => importPlanIntoSimulator(plan));
 }
 
-// Reads `outcome` (planMag's `{plan, nearest, reason}`) rather than the
-// module-level `plannerResult`, and takes `magId` as the target that was
+// Reads `outcome` (planMag's `{plan, nearest, reason}`) straight from the
+// closure solvePlanner passes in, and takes `magId` as the target that was
 // ACTUALLY solved (captured by solvePlanner before its setTimeout(0) yield) —
 // not re-read from the live form — so a stale async response can never be
 // rendered under a newer target's label (see solvePlanner).
@@ -475,7 +477,6 @@ function solvePlanner(root) {
             outcome = { plan: null, nearest: null, reason: String(err && err.message || err) };
         }
         if (token !== plannerToken) return; // superseded by a later click
-        plannerResult = outcome;
         renderPlannerResult(root, outcome, target.magId);
         btn.disabled = false;
     }, 0);
@@ -708,15 +709,25 @@ function renderCard() {
 // they persist across feeds until the user changes them.
 const feedQty = Object.fromEntries(DATA.itemOrder.map((it) => [it, 1]));
 
-// "已喂计数" for an item/cell — every CONSUMED state.log entry (a feed, or a
-// feedCell the mag actually accepted) carries `item`, so this is a count over
-// the history filtered through the engine's `consumesFeed`.
+// "已喂计数" per item/cell, for the WHOLE session in one pass — every CONSUMED
+// state.log entry (a feed, or a feedCell the mag actually accepted) carries
+// `item`, filtered through the engine's own `consumesFeed`.
 //
 // A REJECTED cell is not a purchase: the mag refuses it, so the item is still in
 // the player's inventory. Counting it here billed the player for a cell they
 // never spent — both in the "已喂" badge and in the meseta total below.
-function countOf(item) {
-    return state.log.reduce((n, e) => n + (e.item === item && E.consumesFeed(e) ? 1 : 0), 0);
+//
+// Built ONCE per renderFeed() call instead of a fresh state.log.reduce() per
+// item (totalItems, totalCost, and one per feedRowHtml — ~2N scans of a
+// possibly-long log for N items, and doFeed()/feedAll() render per feed, so
+// this was quadratic on Feed-All). The map's keys are whatever was actually
+// fed, so it naturally includes mag cells too (see feedCountMap's callers).
+function feedCountMap() {
+    const counts = Object.create(null);
+    for (const e of state.log) {
+        if (E.consumesFeed(e)) counts[e.item] = (counts[e.item] || 0) + 1;
+    }
+    return counts;
 }
 
 // 每次喂食后自动存银行 — the guide's own instruction for the 13/0/0/187 route
@@ -734,13 +745,27 @@ let autoBank = false;
 // and quietly produce a 15/0/0/185 mag from a 13/0/0/187 plan. The snapshot
 // still goes in only before the feed, so one undo steps back over the
 // feed+bank pair as the single action the user took.
-function doFeed(item, qty) {
+//
+// A REJECTED mag cell consumes nothing (see E.consumesFeed) — no item, no
+// feed slot, no meseta — so auto-bank must not fire for it either: banking on
+// a no-op feed still shaves every stat's fractional progress down to even,
+// inserts a phantom 存银行 log line and restarts the feed-cycle timer, for a
+// feed the mag never actually took. Gated on the log entry feedOnce() just
+// pushed (the FIRST entry it appends this call — a resulting evolve, if any,
+// is pushed after), so a normal item feed and an ACCEPTED cell (both really
+// consumed) still auto-bank exactly as before.
+//
+// `render()` only fires when `shouldRender` — feedAll() feeds its whole batch
+// through this with it off and renders once itself, so a Feed-All click does
+// not repaint every panel once per item (up to 11×).
+function doFeed(item, qty, { render: shouldRender = true } = {}) {
     for (let i = 0; i < qty; i += 1) {
         history.push(structuredClone(state));
+        const idx = state.log.length;
         E.feedOnce(DATA, state, item);
-        if (autoBank) E.bankMag(DATA, state);
+        if (autoBank && E.consumesFeed(state.log[idx])) E.bankMag(DATA, state);
     }
-    render();
+    if (shouldRender) render();
 }
 
 // The 存银行 button: a bank on its own is one undoable action.
@@ -750,20 +775,23 @@ function doBank() {
     render();
 }
 
-// Feeds every item with qty > 0, in DATA.itemOrder sequence.
+// Feeds every item with qty > 0, in DATA.itemOrder sequence, then renders
+// once for the whole batch — undo still steps back one feed at a time (each
+// doFeed() call still pushes its own per-feed snapshots).
 function feedAll() {
     DATA.itemOrder.forEach((it) => {
         const q = Number(feedQty[it]) || 0;
-        if (q > 0) doFeed(it, q);
+        if (q > 0) doFeed(it, q, { render: false });
     });
+    render();
 }
 
-function feedRowHtml(item) {
+function feedRowHtml(item, counts) {
     const qty = feedQty[item] ?? 1;
     return `<div class="mag-sim-feed__row">
         <button type="button" class="mag-sim-feed__btn" data-feed-item="${esc(item)}">喂 ${esc(item)}</button>
         <input type="number" class="mag-sim-feed__qty" data-qty="${esc(item)}" value="${qty}" min="0" step="1">
-        <span class="mag-sim-feed__count">已喂 ${countOf(item)}</span>
+        <span class="mag-sim-feed__count">已喂 ${counts[item] || 0}</span>
         <span class="mag-sim-feed__cost">${DATA.costs[item].toLocaleString()} meseta</span>
     </div>`;
 }
@@ -825,15 +853,24 @@ function renderFeed() {
     const root = document.querySelector('[data-sim-feed]');
     if (!root) return;
 
-    const totalItems = DATA.itemOrder.reduce((n, it) => n + countOf(it), 0);
-    const totalCost = DATA.itemOrder.reduce((n, it) => n + countOf(it) * DATA.costs[it], 0);
+    // One pass over state.log for the whole render — totalItems/totalCost/每行
+    // 已喂 and 周期数 (E.feedCycles, below) all now agree on exactly the same
+    // predicate (E.consumesFeed): an accepted mag cell IS a feed the player
+    // performed (it just has no listed meseta cost, so it adds 0 to totalCost),
+    // and a rejected one is neither counted nor billed. Previously totalItems
+    // only walked DATA.itemOrder (which excludes cells entirely), so it read
+    // one lower than the 周期数 an accepted cell's feed count already included.
+    const counts = feedCountMap();
+    const totalItems = Object.values(counts).reduce((n, c) => n + c, 0);
+    const totalCost = Object.entries(counts)
+        .reduce((n, [it, c]) => n + c * (DATA.costs[it] || 0), 0);
     const banks = state.log.reduce((n, e) => n + (e.kind === 'bank' ? 1 : 0), 0);
     const cycles = E.feedCycles(state.log);
     const minutes = (cycles * SECONDS_PER_CYCLE) / 60;
     // What the same feeds would have cost with no banking — the honest price tag
     // on the trick, and the number this panel used to show for both routes.
-    const feeds = state.log.reduce((n, e) => n + (E.consumesFeed(e) ? 1 : 0), 0);
-    const unbanked = Math.ceil(feeds / 3);
+    // Same total as totalItems above (both sum every consumesFeed() entry).
+    const unbanked = Math.ceil(totalItems / 3);
     const bankNote = banks && cycles > unbanked
         ? `<span class="mag-sim-feed__bank-cost">存银行重置喂食计时器，多花 ${cycles - unbanked} 个周期
              （不存银行只需 ${unbanked} 个）</span>`
@@ -842,7 +879,7 @@ function renderFeed() {
     root.innerHTML = `
         <h2>喂食</h2>
         <div class="mag-sim-feed__list">
-            ${DATA.itemOrder.map(feedRowHtml).join('')}
+            ${DATA.itemOrder.map((it) => feedRowHtml(it, counts)).join('')}
         </div>
         <div class="mag-sim-feed__actions">
             <button type="button" class="mag-sim-feed__all" data-feed-all>一键喂食（Feed All）</button>
