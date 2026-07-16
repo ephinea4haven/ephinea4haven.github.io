@@ -693,8 +693,10 @@ function replayPlan(data, plan) {
 // the target satisfies, that use a single class from Lv.10 to Lv.100, and that
 // actually map to the target mag. Dedup by class/gender/Section-Type. maxNodes
 // per solveSegment is carved from `budget` so the whole search is bounded and
-// can never hang.
-function exactPlanFor(data, T, budget) {
+// can never hang. `nodeFloor` is the minimum maxNodes handed to solveSegment
+// per attempt — see the budget-guard block below planMag for why this is a
+// parameter rather than a hardcoded constant.
+function exactPlanFor(data, T, budget, nodeFloor) {
     const chains = evolutionChains(data, T.magId);
     const feeders = [];
     const seen = new Set();
@@ -719,7 +721,15 @@ function exactPlanFor(data, T, budget) {
     const tryFeeders = feeders.slice(0, 6);
     const schemes = planSchemes(data, T).slice(0, 18);
     const attempts = Math.max(1, tryFeeders.length * schemes.length);
-    const maxNodes = Math.min(SOLVE_MAX_NODES, Math.max(50000, Math.floor(budget / (attempts * 4))));
+    const maxNodes = Math.min(SOLVE_MAX_NODES, Math.max(nodeFloor, Math.floor(budget / (attempts * 4))));
+    // Evaluate EVERY (feeder, scheme) combination in this small bounded set —
+    // do not stop at the first feeder that yields any exact plan. solveSegment
+    // is a heuristic near-optimal solver (NOT a guaranteed global minimum per
+    // segment), so this is "pick the fewest-items candidate among those
+    // actually tried," not a minimality proof — but picking only the FIRST
+    // feeder to succeed (the prior behaviour) threw away strictly-cheaper
+    // plans from later feeders/schemes for no reason, since the set is already
+    // bounded (≤6 feeders × ≤18 schemes = ≤108 attempts) and cheap to finish.
     let best = null;
     for (const feeder of tryFeeders) {
         for (const cps of schemes) {
@@ -730,7 +740,6 @@ function exactPlanFor(data, T, budget) {
                 && t.dex === T.dex && t.mind === T.mind)) continue;   // reject silently
             if (!best || plan.totals.items < best.totals.items) best = plan;
         }
-        if (best) break;   // first feeder that yields any exact plan wins
     }
     return best;
 }
@@ -760,7 +769,39 @@ function exactPlanFor(data, T, budget) {
 // distant "nearest". 5/50/40/0's true nearest Deva is L1=5 (inside); a target
 // like 5/0/0/190 whose nearest Deva is L1=185 falls outside → reason path.
 const NEAREST_MAX_L1 = 40;
-const NEAREST_MAX_TRIES = 24;   // hard cap on exactPlanFor re-runs — keeps it bounded
+
+// --- budget guard -----------------------------------------------------------
+// A review of the nearest-fallback path found a ~29s worst case (e.g. Sato,
+// Nidra near-infeasible targets): up to NEAREST_TRIES_DEEP candidate points,
+// each re-running exactPlanFor's up-to-108 feeder/scheme attempts, each
+// segment solved with a maxNodes floor that used to be a HARDCODED 50000 —
+// so even `opts.budget:1` couldn't make it fast, because that floor ignored
+// the caller's budget entirely. Both knobs now derive from `budget` itself:
+//   * nodeFloorFor  — the minimum maxNodes handed to every solveSegment call.
+//   * maxTriesFor   — how many nearCandidates points nearestFallback re-runs.
+// A tiny budget collapses both to their MIN clamp (fast, never hangs). A
+// large budget (explicit, or opts.deep's bigger default) rises back to the
+// original Task-4 deep-search bounds — so "opts.deep=true" or "a large
+// opts.budget" are equivalent opt-ins into the old exhaustive behaviour; no
+// separate deep-mode branching is needed beyond picking the default budget.
+const NODE_FLOOR_MIN = 500;
+const NODE_FLOOR_DEEP = 50000;       // Task 4's original hardcoded floor
+const NEAREST_TRIES_MIN = 2;
+const NEAREST_TRIES_DEEP = 24;       // Task 4's original hardcoded cap
+
+function nodeFloorFor(budget) {
+    return Math.max(NODE_FLOOR_MIN, Math.min(NODE_FLOOR_DEEP, Math.floor(budget / 40)));
+}
+function maxTriesFor(budget) {
+    return Math.max(NEAREST_TRIES_MIN, Math.min(NEAREST_TRIES_DEEP, Math.floor(budget / 50000)));
+}
+
+// Default budgets when the caller doesn't pass opts.budget: a small one for
+// ordinary (interactive-UI) calls — keeps worst case to a few seconds — and a
+// much larger one opted into via opts.deep for callers who want the
+// exhaustive/slower search (e.g. an offline "solve me the best plan" tool).
+const INTERACTIVE_BUDGET = 150_000;
+const DEEP_BUDGET = 2_000_000;
 
 // Which Lv.100 equalities produce `magId` (a stage-4 mag can be the leaf of one
 // or more feeder Types). Drives both candidate generation and the reason string.
@@ -818,7 +859,10 @@ function nearCandidates(data, T, formulas, radius) {
 
 // The fallback proper. Returns the {plan(approximate), nearest{…,dist}, reason}
 // near-shape, or the {plan:null, nearest:null, reason} unreachable-shape.
-function nearestFallback(data, T, budget) {
+// `maxTries`/`nodeFloor` are the budget-guard knobs derived in planMag (see
+// the block above nearCandidates) — capped-fast for the interactive default,
+// wide-open for opts.deep / a large explicit opts.budget.
+function nearestFallback(data, T, budget, maxTries, nodeFloor) {
     const noNear = (reason) => ({ plan: null, nearest: null, reason });
     const info = data.mags[T.magId];
     // planMag itself only assembles 4th-evolution targets, so the fallback is
@@ -837,10 +881,14 @@ function nearestFallback(data, T, budget) {
 
     // Try nearest-first; each candidate is a real target point run through the
     // exact planner. First that builds wins (it is the closest reachable point).
-    const perBudget = Math.max(100000, Math.floor(budget / NEAREST_MAX_TRIES));
-    for (const { point } of cands.slice(0, NEAREST_MAX_TRIES)) {
+    // No extra floor on perBudget here — nodeFloor (passed straight through to
+    // exactPlanFor) is the real floor now, so a tiny top-level `budget` still
+    // shrinks maxNodes as far as nodeFloor allows instead of being masked by a
+    // second hardcoded minimum.
+    const perBudget = Math.max(1, Math.floor(budget / maxTries));
+    for (const { point } of cands.slice(0, maxTries)) {
         const cand = { magId: T.magId, ...point };
-        const plan = exactPlanFor(data, cand, perBudget);
+        const plan = exactPlanFor(data, cand, perBudget, nodeFloor);
         if (!plan) continue;
         const t = replayPlan(data, plan);                       // replay is truth
         if (t.magId !== T.magId) continue;
@@ -857,7 +905,16 @@ function nearestFallback(data, T, budget) {
 }
 
 export function planMag(data, target, opts = {}) {
-    const budget = opts.budget ?? 2_000_000;
+    // No explicit opts.budget → pick a small interactive default (fast, bounds
+    // worst case to a few seconds) unless opts.deep opts into the old
+    // exhaustive default. An explicit opts.budget always wins outright — a
+    // tiny one (even `{budget:1}`) must still return fast, and a large one is
+    // itself the "opt into exhaustive search" the brief asks for; see the
+    // budget-guard block above nearCandidates for how nodeFloorFor/maxTriesFor
+    // turn `budget` into actual search bounds.
+    const budget = opts.budget ?? (opts.deep ? DEEP_BUDGET : INTERACTIVE_BUDGET);
+    const nodeFloor = nodeFloorFor(budget);
+    const maxTries = maxTriesFor(budget);
     const fail = (reason) => ({ plan: null, nearest: null, reason });
     if (!target || !data.mags[target.magId]) return fail('unknown mag');
 
@@ -871,12 +928,12 @@ export function planMag(data, target, opts = {}) {
     if (T.def + T.pow + T.dex + T.mind > 200) return fail('level over cap');
 
     // 1) Exact plan — replay-guaranteed to end on exactly the target.
-    const plan = exactPlanFor(data, T, budget);
+    const plan = exactPlanFor(data, T, budget, nodeFloor);
     if (plan) return { plan, nearest: null, reason: 'exact' };
 
     // 2) No exact plan — nearest-reachable fallback (approximate plan + nearest),
     //    or an unreachable verdict with a reason.
-    return nearestFallback(data, T, budget);
+    return nearestFallback(data, T, budget, maxTries, nodeFloor);
 }
 
 // browser (non-module) global — mirrors mag-sim-engine.js's window.MagSimEngine

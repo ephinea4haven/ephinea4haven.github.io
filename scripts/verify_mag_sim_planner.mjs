@@ -169,5 +169,98 @@ function replay(plan) {
       typeof reason === 'string' && /Deva/.test(reason) && /DEF\+DEX=POW\+MIND/.test(reason));
 }
 
+// === Task 5: 最少喂食次数择优 + 预算护栏 =====================================
+
+// --- 择优：候选集里取 items 最小者，而非"第一个可行 feeder 就赢" ------------
+// Deva 5/50/45/0（官方指南金标准目标，budget 与 T3 测试一致）：回归护栏——已知
+// 上界（655 的实测值 + 余量）防止择优逻辑退化成随便选一个候选。
+{
+  const { plan } = planMag(DATA, { magId: 'Deva', def: 5, pow: 50, dex: 45, mind: 0 }, { budget: 2_000_000 });
+  check('Deva 5/50/45/0 items 不超过已知上界（回归护栏）', !!plan && plan.totals.items <= 700);
+}
+
+// Savitri 5/55/55/5：真正存在两个结构不同的 feeder 都满足该目标的 Lv100 公式——
+// HU/F/Type1(Viridia) 走 DEF+DEX=POW+MIND，HU/F/Type3(Skyly) 走
+// DEF+POW=DEX+MIND。用 evolutionChains 独立验证候选集确实 ≥2 个不同 feeder
+// （不依赖实现内部状态），确认这不是退化成单候选的场景。若实现退回"第一个可行
+// feeder 就赢"（Task 5 之前的行为），候选集顺序一变就可能锁定一个更差的
+// feeder；这里把已知的最优值（860，两个 feeder 实测打平）钉成回归上界。
+{
+  const T = { magId: 'Savitri', def: 5, pow: 55, dex: 55, mind: 5 };
+  const PLAN_FORMULA_LOCAL = {
+    'DEF+POW=DEX+MIND': (s) => s.def + s.pow === s.dex + s.mind,
+    'DEF+DEX=POW+MIND': (s) => s.def + s.dex === s.pow + s.mind,
+    'DEF+MIND=POW+DEX': (s) => s.def + s.mind === s.pow + s.dex,
+  };
+  const qualifying = new Set();
+  for (const chain of evolutionChains(DATA, 'Savitri')) {
+    const s4 = chain.steps.at(-1);
+    const formula = PLAN_FORMULA_LOCAL[s4.condKey];
+    if (formula && formula(T)) qualifying.add(`${s4.feeder.class}/${s4.feeder.gender}/${s4.feeder.sectionId}`);
+  }
+  check('Savitri 5/55/55/5 确实有 ≥2 个结构不同的候选 feeder（非退化场景）', qualifying.size >= 2);
+
+  const { plan, reason } = planMag(DATA, T, { deep: true });
+  check('Savitri 5/55/55/5 多 feeder 候选下仍有精确解', reason === 'exact' && !!plan);
+  if (plan) {
+    const t = replay(plan);
+    check('Savitri 回放种类=Savitri 且四维精确',
+        t.magId === 'Savitri' && t.def === 5 && t.pow === 55 && t.dex === 55 && t.mind === 5);
+    check('Savitri items 不超过已知上界（回归护栏）', plan.totals.items <= 900);
+  }
+}
+
+// --- 预算护栏 + 交互式默认值 -------------------------------------------------
+// 审查发现最近可达 fallback 最坏情形（如 Sato、Nidra 偏离公式平面的目标）旧实现
+// 下可达 ~29s（复测多个邻近点实测到 8~12s+），对交互式 UI 太慢。默认
+// planMag(data, target)（不传 opts.budget）现在必须用小得多的交互式预算，把
+// 这类慢目标的最坏情形收紧到几秒内。
+
+// 慢目标：不传 budget（默认交互式预算）必须几秒内返回，且返回结构良好。
+{
+  const slow = { magId: 'Nidra', def: 5, pow: 57, dex: 89, mind: 0 };
+  const t0 = Date.now();
+  const { plan, nearest, reason } = planMag(DATA, slow);
+  const dt = Date.now() - t0;
+  check('默认 budget（无 opts.budget）对慢目标在几秒内返回', dt < 6000);
+  check('默认 budget 结果形状良好（plan/nearest/reason 类型正确）',
+      (plan === null || typeof plan === 'object') && (nearest === null || typeof nearest === 'object')
+      && typeof reason === 'string');
+}
+
+// 极小 budget：绝不挂起，立即返回良好成形的结果（never hang 的直接证明）。
+{
+  const t0 = Date.now();
+  const { plan, nearest, reason } = planMag(
+      DATA, { magId: 'Nidra', def: 5, pow: 57, dex: 89, mind: 0 }, { budget: 1 });
+  const dt = Date.now() - t0;
+  check('opts.budget:1 立即返回（不挂起）', dt < 2000);
+  check('opts.budget:1 结果形状良好（plan=null, nearest=null, reason 是字符串）',
+      plan === null && nearest === null && typeof reason === 'string');
+}
+
+// T4 review 指出缺测的分支："可达但预算内未构造出 plan" → nearest:null。区别于
+// "半径外压根不可达"分支（reason 提及具体 Lv100 公式冲突）：这里候选点确实存在
+// （nearCandidates 非空），只是交互式预算太紧，没有任何候选在预算内建出 plan。
+{
+  const { plan, nearest, reason } = planMag(DATA, { magId: 'Nidra', def: 5, pow: 57, dex: 89, mind: 0 });
+  check('可达但预算内未构造出 plan -> plan=null', plan === null);
+  check('可达但预算内未构造出 plan -> nearest=null', nearest === null);
+  check('可达但预算内未构造出 plan -> reason 提及"预算内未能构造"（非半径外不可达的措辞）',
+      typeof reason === 'string' && /预算内未能构造/.test(reason) && !/Lv100 需/.test(reason));
+}
+
+// opts.deep=true 是穷尽搜索的显式 opt-in：同一个交互式预算下拿不到近似解的慢
+// 目标，deep 模式应该能找到（体现"更慢但更彻底"），且依然是有限时间、不挂起。
+{
+  const t0 = Date.now();
+  const { plan, nearest, reason } = planMag(
+      DATA, { magId: 'Nidra', def: 5, pow: 57, dex: 89, mind: 0 }, { deep: true });
+  const dt = Date.now() - t0;
+  check('opts.deep=true 仍在有限时间内返回（穷尽但不挂起）', dt < 60000);
+  check('opts.deep=true 找到了交互式默认预算下找不到的近似解',
+      !!plan && plan.approximate && nearest && nearest.dist > 0 && /最近可达/.test(reason));
+}
+
 console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed.');
 process.exit(failed ? 1 : 0);
