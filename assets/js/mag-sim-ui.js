@@ -379,6 +379,11 @@ function importPlanIntoSimulator(plan) {
     state = E.replaySession(window.MAG_SIM, planToSession(plan));
     history.length = 0;
     switchToSimulatorTab();
+    // Rebuild the setup panel too, not just the card/log: replaySession replaces
+    // `state` wholesale (new feeder / start), and only renderSetup() re-syncs the
+    // 职业 select, Section-ID chips, 种族限制 checkbox and start-mode tabs — same
+    // reason the #r= shared-link replay calls it before the first render().
+    renderSetup();
     render();
 }
 
