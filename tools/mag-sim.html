@@ -645,6 +645,23 @@
             font-size: 12px;
             color: var(--text-secondary);
         }
+
+        /* ---------- planner (Task 6: input only — result cards are Task 7) ---------- */
+
+        .mag-sim-planner__result {
+            margin-top: 14px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .mag-sim-planner__loading {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .mag-sim-planner__ok { color: var(--def); font-weight: 600; }
+        .mag-sim-planner__warn { color: var(--dex); font-weight: 600; }
+        .mag-sim-planner__fail { color: var(--pow); font-weight: 600; }
     </style>
 </head>
 
@@ -655,12 +672,23 @@
 
         <p><a href="mag.html">← 进化图谱</a></p>
 
-        <div class="mag-sim__grid">
-            <section class="mag-sim__setup" data-sim-setup></section>
-            <section class="mag-sim__card" data-sim-card></section>
-            <section class="mag-sim__feed" data-sim-feed></section>
-            <section class="mag-sim__controls" data-sim-controls></section>
-            <section class="mag-sim__log" data-sim-log></section>
+        <div class="mag-tabs" role="tablist" aria-label="模拟器 / 规划器" data-sim-page-tabs>
+            <button type="button" class="mag-tab" role="tab" id="page-tab-sim" aria-controls="page-panel-sim" aria-selected="true">模拟器</button>
+            <button type="button" class="mag-tab" role="tab" id="page-tab-planner" aria-controls="page-panel-planner" aria-selected="false">规划器</button>
+        </div>
+
+        <div id="page-panel-sim" role="tabpanel" aria-labelledby="page-tab-sim">
+            <div class="mag-sim__grid">
+                <section class="mag-sim__setup" data-sim-setup></section>
+                <section class="mag-sim__card" data-sim-card></section>
+                <section class="mag-sim__feed" data-sim-feed></section>
+                <section class="mag-sim__controls" data-sim-controls></section>
+                <section class="mag-sim__log" data-sim-log></section>
+            </div>
+        </div>
+
+        <div id="page-panel-planner" role="tabpanel" aria-labelledby="page-tab-planner" hidden>
+            <section data-planner></section>
         </div>
 
     </div>

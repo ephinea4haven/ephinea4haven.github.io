@@ -3,6 +3,7 @@
 // and the undo/reset/export/share controls. All rules live in the (DOM-free)
 // engine; this file only renders `state` and feeds events back into it.
 import * as E from '/assets/js/mag-sim-engine.js';
+import { planMag } from '/assets/js/mag-sim-planner.js';
 
 const DATA = window.MAG_SIM;
 
@@ -173,7 +174,7 @@ function renderSetup() {
             <div class="mag-idset mag-idset--picker" data-feeder-section role="tablist">
                 ${SECTION_IDS.map((id) => `
                     <button type="button" class="mag-id-chip" role="tab" data-id="${id}" aria-selected="${id === state.feeder.sectionId}">
-                        <img src="/assets/img/section/sm/${id}.png" alt="" width="16" height="16" loading="lazy">${id}
+                        <img src="/assets/img/section/icon/${id}.png" alt="" width="16" height="16" loading="lazy">${id}
                     </button>`).join('')}
             </div>
         </fieldset>
@@ -258,6 +259,122 @@ function renderSetup() {
         if (!btn) return;
         idPicker.querySelectorAll('[data-id]').forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
         setFeeder({ sectionId: btn.dataset.id });
+    });
+}
+
+// ---------- planner tab (Task 6: target input only — result cards are Task 7) ----------
+
+// The last outcome planMag() returned, `{plan, nearest, reason}` (or `null`
+// before the first solve). Kept outside the DOM — like `state` — so a future
+// task (the "import into simulator" button, Task 8) can read the winning plan
+// without re-parsing the placeholder text this task renders.
+let plannerResult = null;
+
+function currentPlannerTarget(root) {
+    const val = (name) => Number(root.querySelector(`[data-planner="${name}"]`).value) || 0;
+    return {
+        magId: root.querySelector('[data-planner="magId"]').value,
+        def: val('def'), pow: val('pow'), dex: val('dex'), mind: val('mind'),
+    };
+}
+
+// Minimal placeholder result line — the grouped step cards are Task 7. Reads
+// `outcome` (planMag's `{plan, nearest, reason}`) rather than the module-level
+// `plannerResult`, so a stale async response (see solvePlanner) can never be
+// rendered under a newer target's label.
+function renderPlannerResult(root, outcome) {
+    const box = root.querySelector('[data-planner-result]');
+    if (!box) return;
+    const { plan, nearest, reason } = outcome;
+    if (plan && !plan.approximate) {
+        box.innerHTML = `<p class="mag-sim-planner__ok">✅ 找到精确方案（${plan.segments.length} 步）</p>`;
+    } else if (plan && plan.approximate && nearest) {
+        box.innerHTML = `<p class="mag-sim-planner__warn">⚠️ 无精确解，最近可达`
+            + ` DEF ${nearest.def} · POW ${nearest.pow} · DEX ${nearest.dex} · MIND ${nearest.mind}</p>`;
+    } else {
+        box.innerHTML = `<p class="mag-sim-planner__fail">✗ ${esc(reason || '未知原因')}</p>`;
+    }
+}
+
+// planMag is a synchronous search that a review flagged can run a couple of
+// seconds on some targets, so it must never run on the click handler's own
+// tick — that would freeze the page with no loading state ever painted. The
+// setTimeout(0) yields to a paint first; `token` guards against a slower,
+// STALE solve finishing after a newer click and clobbering its result.
+let plannerToken = 0;
+function solvePlanner(root) {
+    const box = root.querySelector('[data-planner-result]');
+    const btn = root.querySelector('[data-planner-solve]');
+    const target = currentPlannerTarget(root);
+    const token = (plannerToken += 1);
+
+    btn.disabled = true;
+    box.innerHTML = '<p class="mag-sim-planner__loading">求解中…</p>';
+
+    setTimeout(() => {
+        let outcome;
+        try {
+            outcome = planMag(window.MAG_SIM, target);
+        } catch (err) {
+            outcome = { plan: null, nearest: null, reason: String(err && err.message || err) };
+        }
+        if (token !== plannerToken) return; // superseded by a later click
+        plannerResult = outcome;
+        renderPlannerResult(root, outcome);
+        btn.disabled = false;
+    }, 0);
+}
+
+function renderPlanner() {
+    const root = document.querySelector('[data-planner]');
+    if (!root) return;
+
+    const fresh = DATA.freshMag;
+    root.innerHTML = `
+        <h2>规划器</h2>
+        <fieldset class="mag-sim-setup__block">
+            <legend>目标 Mag</legend>
+            <div class="mag-sim-setup__row">
+                <label class="mag-sim-setup__field">
+                    <span>种类</span>
+                    <select data-planner="magId">${speciesOptionsHtml()}</select>
+                </label>
+            </div>
+            <div class="mag-sim-setup__stats">
+                <label>DEF<input type="number" data-planner="def" value="${fresh.def}" min="0" max="200" step="1"></label>
+                <label>POW<input type="number" data-planner="pow" value="${fresh.pow}" min="0" max="200" step="1"></label>
+                <label>DEX<input type="number" data-planner="dex" value="${fresh.dex}" min="0" max="200" step="1"></label>
+                <label>MIND<input type="number" data-planner="mind" value="${fresh.mind}" min="0" max="200" step="1"></label>
+            </div>
+            <button type="button" class="mag-sim-setup__apply" data-planner-solve>求解</button>
+        </fieldset>
+        <div class="mag-sim-planner__result" data-planner-result></div>
+    `;
+
+    if (root._bound) return;
+    root._bound = true;
+    root.addEventListener('click', (e) => {
+        if (e.target.closest('[data-planner-solve]')) solvePlanner(root);
+    });
+}
+
+// Top-level 模拟器/规划器 tabs. mag-chart.js's initTabs() (the [data-mag-tabs]
+// convention used on mag.html) also drives tab selection through location.hash
+// — but this page already owns the hash for share links (`#r=<base64>`), so
+// page-level switching here is plain click state, never touching the hash.
+function initPageTabs() {
+    const tabs = document.querySelector('[data-sim-page-tabs]');
+    if (!tabs) return;
+    const buttons = [...tabs.querySelectorAll('[role="tab"]')];
+    tabs.addEventListener('click', (e) => {
+        const btn = e.target.closest('[role="tab"]');
+        if (!btn) return;
+        buttons.forEach((b) => {
+            const on = b === btn;
+            b.setAttribute('aria-selected', String(on));
+            const panel = document.getElementById(b.getAttribute('aria-controls'));
+            if (panel) panel.hidden = !on;
+        });
     });
 }
 
@@ -833,6 +950,8 @@ document.addEventListener('DOMContentLoaded', () => {
             state = E.createState(DATA, { start: { mode: 'fresh' } });
         }
     }
+    initPageTabs();
     renderSetup();
+    renderPlanner();
     render();
 });
