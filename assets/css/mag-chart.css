@@ -405,10 +405,21 @@
 .mag-card__pb {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 5px;
     margin-top: 6px;
     font-size: 11.5px;
     color: var(--text-secondary);
+}
+
+/* The simulator's card lists every Photon Blast the Mag has inherited (up to
+ * three), so the row carries several icon+name groups; each stays glued
+ * together and the row wraps rather than squeezing them. The chart's cards
+ * render a single bare PB and are unaffected. */
+.mag-card__pb-slot {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .mag-card__pb b {

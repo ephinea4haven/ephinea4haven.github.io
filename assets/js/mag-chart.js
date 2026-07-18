@@ -161,7 +161,7 @@
 
     function idSet(ids) {
         return `<div class="mag-idset">${ids
-            .map((id) => `<span class="mag-id"><img src="/assets/img/section/sm/${encodeURIComponent(id)}.png" alt="" width="18" height="18" loading="lazy">${esc(id)}</span>`)
+            .map((id) => `<span class="mag-id"><img src="/assets/img/section/icon/${encodeURIComponent(id)}.png" alt="" width="18" height="18" loading="lazy">${esc(id)}</span>`)
             .join('')}</div>`;
     }
 
@@ -602,11 +602,55 @@
         });
     }
 
+    /* ---- Feeding tables ---------------------------------------------------
+     * Rendered from window.MAG_SIM (assets/js/mag-sim-data.js), the same
+     * generated data the simulator eats, so the chart page and the simulator
+     * cannot drift. Mount points are <table data-feed-table="0".."7"> with a
+     * hand-written <thead> and an empty <tbody> we fill here.
+     *
+     * Negatives render with U+2212 MINUS SIGN, matching the typography the
+     * page used when these tables were hand-written HTML. */
+    function fmtFeed(n) {
+        return n < 0 ? `−${-n}` : String(n);
+    }
+
+    function renderFeedTable(table, key) {
+        const SIM = window.MAG_SIM;
+        if (!SIM || !SIM.feedTables) return;
+        const rows = SIM.feedTables[key];
+        const order = SIM.itemOrder;
+        if (!rows || !order) return;
+
+        const tbody = table.querySelector('tbody');
+        if (!tbody) return;
+
+        tbody.innerHTML = order.map((item) => {
+            const v = rows[item];
+            if (!v) return '';
+            const cells = v.map((n) => `<td>${fmtFeed(n)}</td>`).join('');
+            return `<tr><td>${esc(item)}</td>${cells}</tr>`;
+        }).join('');
+    }
+
     window.renderMagChart = renderMagChart;
 
     document.addEventListener('DOMContentLoaded', () => {
+        // Each mount is rendered independently: a data or markup failure in one
+        // (e.g. mag-evolution.js failing to load) must not abort the loop and
+        // take down the rest of the page's charts/tables with it.
         document.querySelectorAll('[data-mag-chart]').forEach((el) => {
-            renderMagChart(el, el.dataset.magChart);
+            try {
+                renderMagChart(el, el.dataset.magChart);
+            } catch (err) {
+                console.error('mag-chart: failed to render chart', el.dataset.magChart, err);
+            }
+        });
+        document.querySelectorAll('[data-feed-table]').forEach((el) => {
+            try {
+                renderFeedTable(el, el.dataset.feedTable);
+            } catch (err) {
+                console.error('mag-chart: failed to render feed table', el.dataset.feedTable, err);
+            }
         });
         document.querySelectorAll('[data-mag-tabs]').forEach(initTabs);
         document.querySelectorAll('[data-section-nav]').forEach(initSectionNav);
