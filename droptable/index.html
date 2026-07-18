@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ephinea Drop Charts</title>
+<link rel="stylesheet" href="shared/style.css">
+<style>
+.nav-container {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.nav-container h1 {
+  font-size: 2em;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.nav-container p {
+  color: var(--text2);
+  margin-bottom: 40px;
+}
+.nav-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.nav-card {
+  display: block;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 30px 40px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+  flex: 1;
+  min-width: 200px;
+  max-width: 260px;
+}
+.nav-card:hover {
+  border-color: var(--accent);
+  background: var(--bg3);
+  transform: translateY(-2px);
+}
+.nav-card h2 {
+  color: #fff;
+  font-size: 1.4em;
+  margin-bottom: 8px;
+}
+.nav-card p {
+  color: var(--text2);
+  font-size: 0.9em;
+  margin-bottom: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="nav-container">
+  <h1>Ephinea Drop Charts</h1>
+  <p>Phantasy Star Online drop charts for the Ephinea server</p>
+
+  <div class="nav-cards">
+    <a href="bb/" class="nav-card">
+      <h2>PSOBB</h2>
+      <p>Blue Burst</p>
+    </a>
+    <a href="dc/" class="nav-card">
+      <h2>DC</h2>
+      <p>Dreamcast</p>
+    </a>
+    <a href="ngc/" class="nav-card">
+      <h2>NGC</h2>
+      <p>GameCube</p>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

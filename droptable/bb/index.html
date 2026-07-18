@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ephinea PSOBB Drop Charts</title>
+<link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+
+<div class="header">
+  <h1 id="pageTitle"></h1>
+  <p id="pageSubtitle"></p>
+</div>
+
+<div class="sticky-toolbar">
+  <div class="controls">
+    <div class="control-group">
+      <label id="lblLang"></label>
+      <div class="btn-group" id="langBtns"></div>
+    </div>
+    <div class="control-group">
+      <label id="lblDifficulty"></label>
+      <div class="btn-group" id="difficultyBtns"></div>
+    </div>
+    <div class="control-group" id="typeGroup">
+      <label id="lblType"></label>
+      <div class="btn-group" id="typeBtns"></div>
+    </div>
+    <div class="control-group" id="episodeGroup">
+      <label id="lblEpisode"></label>
+      <div class="btn-group" id="episodeBtns"></div>
+    </div>
+    <div class="control-group" id="rateGroup">
+      <label id="lblRate"></label>
+      <div class="btn-group" id="rateBtns"></div>
+    </div>
+  </div>
+  <div class="search-bar">
+    <label id="lblSearch"></label>
+    <input type="text" class="search-box" id="searchBox" oninput="onSearch()">
+  </div>
+</div>
+
+<div class="stats" id="stats"></div>
+<div class="content" id="content"></div>
+
+<script src="data/en.js"></script>
+<script src="data/ja.js"></script>
+<script src="data/zh.js"></script>
+<script src="../shared/i18n.js"></script>
+<script src="../shared/viewer.js"></script>
+<script>
+initViewer({
+  version: 'bb',
+  languages: ['en', 'ja', 'zh'],
+  episodes: ['Episode 1', 'Episode 2', 'Episode 4'],
+  hasTypes: true,
+  rateFormat: 'fraction',
+  hasRateToggle: true
+});
+</script>
+</body>
+</html>
