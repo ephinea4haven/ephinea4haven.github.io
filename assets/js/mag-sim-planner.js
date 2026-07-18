@@ -554,7 +554,29 @@ function distribute(level, g, floor, cap) {
 // replay adjudicate which one actually lands. DEF stays at the fresh value on
 // every intermediate checkpoint (integer levels never fall, so DEF must never
 // cross a whole level early — see the header note).
-function planSchemes(data, target) {
+function stage4Checkpoint(formula, floor, target, level) {
+    const pairs = {
+        'DEF+POW=DEX+MIND': [['def', 'pow'], ['dex', 'mind']],
+        'DEF+DEX=POW+MIND': [['def', 'dex'], ['pow', 'mind']],
+        'DEF+MIND=POW+DEX': [['def', 'mind'], ['pow', 'dex']],
+    }[formula];
+    if (!pairs || level % 2) return null;
+    const half = level / 2;
+    const point = {};
+    for (const [a, b] of pairs) {
+        const lo = Math.max(floor[a], half - target[b]);
+        const hi = Math.min(target[a], half - floor[b]);
+        if (lo > hi) return null;
+        // Stay as close as possible to the requested final value. If that
+        // value is above this evolution checkpoint's pair sum, clamping to hi
+        // naturally postpones the excess growth until after the Mag is locked.
+        point[a] = Math.max(lo, Math.min(hi, target[a]));
+        point[b] = half - point[a];
+    }
+    return point;
+}
+
+function planSchemes(data, target, stage4Formula = null) {
     const fresh = data.freshMag;
     const D0 = fresh.def;
     const stage = data.mags[target.magId].stage;
@@ -588,9 +610,9 @@ function planSchemes(data, target) {
     if (useCp0) head.push({ evoLevel: 10, stats: cp0 });
     if (useCp1) head.push({ evoLevel: 35, stats: cp1 });
 
-    // Below stage 4 (or a target that never reaches Lv.50) there is no Lv.50
+    // Below stage 3 (or a target that never reaches Lv.50) there is no Lv.50
     // split to vary — one scheme suffices.
-    if (stage < 4 || targetLevel <= 50) {
+    if (stage < 3 || targetLevel <= 50) {
         return [[...head, { evoLevel: targetLevel, stats: tgt }]];
     }
 
@@ -610,7 +632,23 @@ function planSchemes(data, target) {
             if (dex < floor2.dex || dex > tgt.dex) continue;
             if (pow < floor2.pow || pow > tgt.pow) continue;
             const cp2 = { def: D0, pow, dex, mind: mind2 };
-            schemes.push([...head, { evoLevel: 50, stats: cp2 }, { evoLevel: targetLevel, stats: tgt }]);
+            const prefix = [...head, { evoLevel: 50, stats: cp2 }];
+            if (stage !== 4 || !stage4Formula) {
+                schemes.push([...prefix, { evoLevel: targetLevel, stats: tgt }]);
+                continue;
+            }
+
+            // A fourth-evolution equality is a CHECKPOINT condition, not a
+            // final-stat condition. Find an Lv100/110/... point between the
+            // Lv50 state and the requested final stats where the equality
+            // holds; after that the rare Mag is locked and can be fed freely.
+            for (let level = 100; level <= targetLevel; level += 10) {
+                const evo = stage4Checkpoint(stage4Formula, cp2, tgt, level);
+                if (!evo) continue;
+                const tail = P_STATS.every((stat) => evo[stat] === tgt[stat])
+                    ? [] : [{ evoLevel: targetLevel, stats: tgt }];
+                schemes.push([...prefix, { evoLevel: level, stats: evo }, ...tail]);
+            }
         }
     }
     return schemes;
@@ -706,22 +744,22 @@ function exactPlanFor(data, T, budget, nodeFloor) {
         const s3 = steps.find((s) => s.stage === 3);
         const s1 = steps.find((s) => s.stage === 1);
         if (!s4 || !s1) continue;
-        if (!PLAN_FORMULA[s4.condKey] || !PLAN_FORMULA[s4.condKey](T)) continue;
+        if (!PLAN_FORMULA[s4.condKey]) continue;
         const cls = s4.feeder.class, gen = s4.feeder.gender, section = s4.feeder.sectionId;
         if (s1.feeder.class !== cls) continue;
         if (s3 && s3.feeder.class !== cls) continue;
         const key = `${cls}/${gen}/${idTypeOf(data, section)}`;
         if (seen.has(key)) continue;
-        const feeder = { class: cls, gender: gen, sectionId: section };
-        if (stage4MagFor(data, feeder, T) !== T.magId) continue;
+        const feeder = { class: cls, gender: gen, sectionId: section, formula: s4.condKey };
         seen.add(key);
         feeders.push(feeder);
     }
     if (!feeders.length) return null;
 
     const tryFeeders = feeders.slice(0, 6);
-    const schemes = planSchemes(data, T).slice(0, 18);
-    const attempts = Math.max(1, tryFeeders.length * schemes.length);
+    const schemeSets = tryFeeders.map((feeder) =>
+        planSchemes(data, T, feeder.formula).slice(0, 18));
+    const attempts = Math.max(1, schemeSets.reduce((n, schemes) => n + schemes.length, 0));
     const maxNodes = Math.min(SOLVE_MAX_NODES, Math.max(nodeFloor, Math.floor(budget / (attempts * 4))));
     // Evaluate EVERY (feeder, scheme) combination in this small bounded set —
     // do not stop at the first feeder that yields any exact plan. solveSegment
@@ -732,14 +770,204 @@ function exactPlanFor(data, T, budget, nodeFloor) {
     // plans from later feeders/schemes for no reason, since the set is already
     // bounded (≤6 feeders × ≤18 schemes = ≤108 attempts) and cheap to finish.
     let best = null;
-    for (const feeder of tryFeeders) {
-        for (const cps of schemes) {
+    for (let i = 0; i < tryFeeders.length; i++) {
+        const feeder = tryFeeders[i];
+        for (const cps of schemeSets[i]) {
             const plan = buildPlanForFeeder(data, T, feeder, cps, maxNodes);
             if (!plan) continue;
             const t = replayPlan(data, plan);           // non-negotiable replay
             if (!(t.magId === T.magId && t.def === T.def && t.pow === T.pow
                 && t.dex === T.dex && t.mind === T.mind)) continue;   // reject silently
             if (!best || plan.totals.items < best.totals.items) best = plan;
+        }
+    }
+    return best;
+}
+
+// Cell Mags are absent from the normal stage-4 formula table. Plan their
+// required predecessor first, preserving the requested final stats, then feed
+// the Cell as an explicit final segment and let the real engine validate every
+// requirement (species/stage/level/Section ID/synchro/IQ/stat thresholds).
+function cellRoutesTo(data, magId) {
+    const routes = [];
+    for (const [cellName, cell] of Object.entries(data.magCells || {})) {
+        const targets = Array.isArray(cell.target) ? cell.target : [cell.target];
+        if (!targets.includes(magId)) continue;
+        routes.push({ cellName, req: (cell.requires || {})[magId] || {} });
+    }
+    return routes;
+}
+
+function stage3FeederCandidates(data, T) {
+    const out = [];
+    const seen = new Set();
+    for (const { steps } of evolutionChains(data, T.magId)) {
+        const s1 = steps.find((s) => s.stage === 1);
+        const s3 = steps.find((s) => s.stage === 3);
+        if (!s1 || !s3 || s1.feeder.class !== s3.feeder.class) continue;
+        const feeder = {
+            class: s3.feeder.class,
+            gender: 'M',
+            sectionId: s3.feeder.sectionId,
+        };
+        if (stage3MagFor(data, feeder, T) !== T.magId) continue;
+        const key = `${feeder.class}/${idGroupABOf(data, feeder.sectionId)}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        out.push(feeder);
+    }
+    return out;
+}
+
+function exactStage3PlanFor(data, T, budget, nodeFloor) {
+    const feeders = stage3FeederCandidates(data, T).slice(0, 8);
+    if (!feeders.length) return null;
+    const schemes = planSchemes(data, T).slice(0, 18);
+    const attempts = Math.max(1, feeders.length * schemes.length);
+    const maxNodes = Math.min(
+        SOLVE_MAX_NODES,
+        Math.max(nodeFloor, Math.floor(budget / (attempts * 4))),
+    );
+    let best = null;
+    for (const feeder of feeders) {
+        for (const cps of schemes) {
+            const plan = buildPlanForFeeder(data, T, feeder, cps, maxNodes);
+            if (!plan) continue;
+            const state = replayPlan(data, plan);
+            if (state.magId !== T.magId
+                || !P_STATS.every((k) => state[k] === T[k])) continue;
+            if (!best || plan.totals.items < best.totals.items) best = plan;
+        }
+    }
+    return best;
+}
+
+function cellPredecessorTargets(data, T, magId, req) {
+    const fresh = data.freshMag;
+    const minLevel = Math.max(50, req.minMagLevel || 0);
+    const targetLevel = P_STATS.reduce((n, k) => n + T[k], 0);
+    if (minLevel > targetLevel) return [];
+    const growth = {
+        pow: T.pow - fresh.pow,
+        dex: T.dex - fresh.dex,
+        mind: T.mind - fresh.mind,
+    };
+    const point = distribute(
+        minLevel - fresh.def,
+        growth,
+        { def: fresh.def, pow: fresh.pow, dex: fresh.dex, mind: fresh.mind },
+        T,
+    );
+    delete point._lvl;
+    const out = [];
+    const add = (p) => {
+        if (!P_STATS.every((k) => p[k] >= fresh[k] && p[k] <= T[k])) return;
+        if (P_STATS.reduce((n, k) => n + p[k], 0) !== minLevel) return;
+        const key = P_STATS.map((k) => p[k]).join(',');
+        if (!out.some((x) => P_STATS.map((k) => x[k]).join(',') === key)) {
+            out.push({ ...p, magId });
+        }
+    };
+
+    // The planner's DEF-preserving Lv35 route naturally reaches roughly
+    // 5/11/19/0. Include the compatible Lv50 continuation first; a purely
+    // proportional Lv50 split (e.g. 5/34/11/0) can ask the impossible and
+    // "remove" DEX that was already gained before Lv35.
+    if (minLevel >= 50) {
+        const dex = Math.min(T.dex, 19);
+        const mind = fresh.mind;
+        const pow = minLevel - fresh.def - dex - mind;
+        add({ def: fresh.def, pow, dex, mind });
+    }
+    add(point);
+    return out;
+}
+
+function appendCellAndFinish(data, basePlan, cellName, T, maxNodes) {
+    const state = replayPlan(data, basePlan);
+    const feeder = { ...basePlan.segments.at(-1).feeder };
+    state.feeder = { ...feeder, race: 'Human' };
+    const from = state.magId;
+    feedOnce(data, state, cellName);
+    if (state.magId !== T.magId) return null;
+
+    const segments = [...basePlan.segments, {
+        feeder,
+        magFrom: from,
+        magTo: state.magId,
+        evoLevel: P_STATS.reduce((n, k) => n + state[k], 0),
+        feeds: [{ item: cellName, count: 1 }],
+        banks: 0,
+        order: [{ item: cellName }],
+        viaCell: cellName,
+    }];
+
+    if (!P_STATS.every((k) => state[k] === T[k])) {
+        const cur = Object.fromEntries(P_STATS.map((k) => [k, state[k]]));
+        const delta = Object.fromEntries(P_STATS.map((k) => [k, T[k] - state[k]]));
+        const seq = solveSegment(data, {
+            table: data.mags[T.magId].feedTableId,
+            startStats: cur,
+            targetDelta: delta,
+            startProgress: { ...state.progress },
+            maxItems: 1200,
+            maxNodes,
+        });
+        if (!seq) return null;
+        for (const item of seq) feedOnce(data, state, item);
+        if (state.magId !== T.magId || !P_STATS.every((k) => state[k] === T[k])) return null;
+        const counts = new Map();
+        for (const item of seq) counts.set(item, (counts.get(item) || 0) + 1);
+        segments.push({
+            feeder,
+            magFrom: T.magId,
+            magTo: T.magId,
+            evoLevel: P_STATS.reduce((n, k) => n + T[k], 0),
+            feeds: [...counts].map(([item, count]) => ({ item, count })),
+            banks: 0,
+            order: seq.map((item) => ({ item })),
+        });
+    }
+
+    const items = segments.reduce((n, segment) => n + segment.order.length, 0);
+    let meseta = 0;
+    for (const segment of segments) {
+        for (const step of segment.order) meseta += data.costs[step.item] || 0;
+    }
+    return {
+        segments,
+        totals: {
+            items,
+            meseta,
+            cycles: feedCycles(state.log),
+            banks: 0,
+        },
+    };
+}
+
+function exactCellPlanFor(data, T, budget, nodeFloor) {
+    const level = T.def + T.pow + T.dex + T.mind;
+    let best = null;
+    for (const route of cellRoutesTo(data, T.magId)) {
+        if (route.req.minMagLevel && level < route.req.minMagLevel) continue;
+        const named = route.req.requiresMag
+            ? (Array.isArray(route.req.requiresMag) ? route.req.requiresMag : [route.req.requiresMag])
+            : [];
+        const predecessors = named.length
+            ? named
+            : (route.req.requiredStage === 3 ? allStage3MagIds(data) : []);
+        for (const magId of predecessors) {
+            if (data.mags[magId]?.stage !== 3) continue;
+            for (const baseTarget of cellPredecessorTargets(data, T, magId, route.req)) {
+                const basePlan = exactStage3PlanFor(data, baseTarget, budget, nodeFloor);
+                if (!basePlan) continue;
+                const plan = appendCellAndFinish(data, basePlan, route.cellName, T, SOLVE_MAX_NODES);
+                if (!plan) continue;
+                const terminal = replayPlan(data, plan);
+                if (terminal.magId !== T.magId
+                    || !P_STATS.every((k) => terminal[k] === T[k])) continue;
+                if (!best || plan.totals.items < best.totals.items) best = plan;
+            }
         }
     }
     return best;
@@ -928,9 +1156,17 @@ export function planMag(data, target, opts = {}) {
     for (const k of P_STATS) if (T[k] < fresh[k]) return fail('stat below fresh mag');
     if (T.def + T.pow + T.dex + T.mind > 200) return fail('level over cap');
 
-    // 1) Exact plan — replay-guaranteed to end on exactly the target.
+    // 1) Exact plan — normal evolution or a Cell as the explicit final step;
+    // both are replay-guaranteed to end on exactly the requested target.
+    const cellPlan = exactCellPlanFor(data, T, budget, nodeFloor);
+    if (cellPlan) return { plan: cellPlan, nearest: null, reason: 'exact' };
     const plan = exactPlanFor(data, T, budget, nodeFloor);
     if (plan) return { plan, nearest: null, reason: 'exact' };
+
+    const cellRoutes = cellRoutesTo(data, T.magId);
+    if (cellRoutes.length && !targetFormulas(data, T.magId).length) {
+        return fail(`未能构造满足 ${cellRoutes.map((r) => r.cellName).join(' / ')} 前置条件的喂养方案`);
+    }
 
     // 2) No exact plan — nearest-reachable fallback (approximate plan + nearest),
     //    or an unreachable verdict with a reason.

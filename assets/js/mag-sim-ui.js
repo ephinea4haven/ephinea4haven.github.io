@@ -297,6 +297,9 @@ function planStepHtml(seg, i) {
         .map((f) => `<li>${esc(f.item)} ×${f.count}</li>`).join('');
     const bankHtml = seg.banks
         ? `<div class="mag-plan-step__bank">存银行 ×${seg.banks}</div>` : '';
+    const evolutionHtml = seg.viaCell
+        ? `${esc(seg.magFrom)} → 使用 Cell <b>${esc(seg.viaCell)}</b> → <b>${esc(seg.magTo)}</b>（Lv ${seg.evoLevel}）`
+        : `${esc(seg.magFrom)} → 进化到 <b>${esc(seg.magTo)}</b>（Lv ${seg.evoLevel}）`;
     return `<div class="mag-plan-step">
         <div class="mag-plan-step__head">
             <span class="mag-plan-step__no">第 ${i + 1} 段</span>
@@ -305,7 +308,7 @@ function planStepHtml(seg, i) {
         </div>
         <ul class="mag-plan-step__feeds">${feedsHtml}</ul>
         ${bankHtml}
-        <div class="mag-plan-step__evo">${esc(seg.magFrom)} → 进化到 <b>${esc(seg.magTo)}</b>（Lv ${seg.evoLevel}）</div>
+        <div class="mag-plan-step__evo">${evolutionHtml}</div>
     </div>`;
 }
 
@@ -596,10 +599,14 @@ function getMagInfo() {
 function statBarHtml(stat) {
     const value = state[stat.key];
     const progress = state.progress[stat.key];
-    const pct = Math.min(100, Math.max(0, (value / 200) * 100));
+    // Like Magatama, the coloured track shows progress toward this stat's
+    // next level. Using value / 200 here made the label change after feeding
+    // while the track appeared frozen until a whole stat level was gained.
+    const pct = Math.min(100, Math.max(0, progress));
     return `<div class="mag-sim-card__stat">
         <span class="mag-sim-card__stat-label stat--${stat.cls}">${stat.label}</span>
-        <div class="mag-sim-card__stat-track">
+        <div class="mag-sim-card__stat-track" role="progressbar"
+            aria-label="${stat.label} 升级进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pct}">
             <div class="mag-sim-card__stat-fill mag-sim-card__stat-fill--${stat.cls}" style="width:${pct}%"></div>
         </div>
         <span class="mag-sim-card__stat-value">${value}·${progress}%</span>

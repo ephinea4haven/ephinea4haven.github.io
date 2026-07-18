@@ -775,19 +775,288 @@
             font-size: 12px;
             color: #f2c14e;
         }
+
+        /* ---------- single-window desktop workbench ---------- */
+
+        .mag-sim-page {
+            height: 100vh;
+            min-height: 0;
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        .mag-sim-page header {
+            margin: 0 0 8px;
+        }
+
+        .mag-sim-page #project_title {
+            margin: 0;
+            font-size: 22px;
+            line-height: 32px;
+            letter-spacing: .04em;
+        }
+
+        .mag-sim-page > .back-link {
+            position: fixed;
+            top: 14px;
+            left: 18px;
+            z-index: 3;
+            margin: 0;
+            padding: 5px 12px;
+            font-size: 12px;
+            border-width: 1px;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+
+        .mag-sim-page .content-container {
+            display: flex;
+            flex-direction: column;
+            width: min(1600px, 100%);
+            max-width: none;
+            height: calc(100vh - 52px);
+            min-height: 0;
+            padding: 10px;
+            overflow: hidden;
+            line-height: 1.45;
+            background: rgba(5, 15, 38, .88);
+            border-radius: 10px;
+        }
+
+        .mag-sim__toolbar {
+            display: flex;
+            flex: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-height: 34px;
+            margin-bottom: 8px;
+            padding: 0 4px;
+        }
+
+        .mag-sim-page .mag-sim__toolbar p {
+            margin: 0;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .mag-sim-page .mag-sim__toolbar .mag-tabs {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .mag-sim-page [role="tabpanel"] {
+            flex: 1;
+            min-height: 0;
+        }
+
+        .mag-sim-page #page-panel-planner {
+            overflow: auto;
+        }
+
+        .mag-sim__grid {
+            grid-template-columns: minmax(200px, .9fr) minmax(300px, 1.25fr) minmax(210px, .9fr);
+            grid-template-rows: minmax(0, 1.05fr) minmax(0, .95fr) auto;
+            grid-template-areas:
+                "setup feed log"
+                "card  feed log"
+                "controls controls controls";
+            height: 100%;
+            min-height: 0;
+            gap: 8px;
+            margin-top: 0;
+        }
+
+        .mag-sim__setup { grid-area: setup; }
+        .mag-sim__card { grid-area: card; }
+        .mag-sim__feed { grid-area: feed; }
+        .mag-sim__log { grid-area: log; }
+        .mag-sim__controls { grid-area: controls; }
+
+        .mag-sim__setup,
+        .mag-sim__card,
+        .mag-sim__feed,
+        .mag-sim__log,
+        .mag-sim__controls {
+            min-width: 0;
+            min-height: 0;
+            padding: 10px 12px;
+            overflow: auto;
+            background: linear-gradient(155deg, rgba(20, 45, 76, .76), rgba(5, 17, 40, .9));
+            border: 1px solid var(--accent-20);
+            border-radius: 8px;
+            box-shadow: inset 0 1px rgba(255, 255, 255, .035);
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-30) transparent;
+        }
+
+        .mag-sim__feed {
+            border-top-color: var(--accent-50);
+        }
+
+        .mag-sim__controls {
+            overflow: visible;
+        }
+
+        .mag-sim-page .mag-sim__grid h2,
+        .mag-sim-page #page-panel-planner h2 {
+            margin: 0 0 8px;
+            padding: 0 0 6px;
+            font-size: 15px;
+            line-height: 1.2;
+            letter-spacing: .025em;
+            border-bottom-width: 1px;
+        }
+
+        .mag-sim-page .mag-sim-setup__block {
+            margin-bottom: 8px;
+            padding: 7px 9px 9px;
+            border-radius: 7px;
+        }
+
+        .mag-sim-page .mag-sim-setup__row {
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .mag-sim-page .mag-sim-setup__derived,
+        .mag-sim-page .mag-sim-setup__custom {
+            margin-top: 5px;
+        }
+
+        .mag-sim-page .mag-sim-setup__label {
+            margin-top: 6px;
+        }
+
+        .mag-sim-page .mag-idset--picker {
+            gap: 4px;
+        }
+
+        .mag-sim-page .mag-id-chip {
+            padding: 3px 7px 3px 5px;
+            font-size: 11px;
+        }
+
+        .mag-sim-page .mag-sim-card__head {
+            margin-bottom: 7px;
+        }
+
+        .mag-sim-page .mag-sim-card__sprite {
+            width: 46px;
+            height: 46px;
+        }
+
+        .mag-sim-page .mag-sim-card__stats {
+            gap: 4px;
+            margin: 6px 0 8px;
+        }
+
+        .mag-sim-page .mag-sim-feed__list {
+            gap: 4px;
+            margin: 6px 0 9px;
+        }
+
+        .mag-sim-page .mag-sim-feed__row {
+            gap: 7px;
+            padding: 1px 0;
+        }
+
+        .mag-sim-page .mag-sim-feed__actions {
+            gap: 7px;
+            margin: 8px 0;
+            padding: 8px 0;
+        }
+
+        .mag-sim-page .mag-sim-log__list {
+            height: calc(100% - 31px);
+            max-height: none;
+            margin-top: 0;
+        }
+
+        @media (max-width: 1000px) {
+            .mag-sim__setup,
+            .mag-sim__card,
+            .mag-sim__feed,
+            .mag-sim__log,
+            .mag-sim__controls {
+                padding: 8px;
+            }
+
+            .mag-sim-page .mag-sim-feed__row {
+                grid-template-columns: auto 3.5rem 1fr auto;
+                gap: 4px;
+            }
+
+            .mag-sim-page .mag-sim-feed__btn {
+                padding-inline: 9px;
+            }
+
+            .mag-sim-feed__cost {
+                min-width: 3.75rem;
+            }
+        }
+
+        @media (max-width: 719px) {
+            .mag-sim-page {
+                height: auto;
+                min-height: 100vh;
+                padding: 8px;
+                overflow: auto;
+            }
+
+            .mag-sim-page > .back-link {
+                position: static;
+                align-self: flex-start;
+                margin-bottom: 8px;
+            }
+
+            .mag-sim-page .content-container {
+                height: auto;
+                min-height: 0;
+                overflow: visible;
+            }
+
+            .mag-sim__toolbar {
+                align-items: flex-start;
+            }
+
+            .mag-sim__grid {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "setup"
+                    "card"
+                    "feed"
+                    "log"
+                    "controls";
+                height: auto;
+            }
+
+            .mag-sim__setup,
+            .mag-sim__card,
+            .mag-sim__feed,
+            .mag-sim__log {
+                overflow: visible;
+            }
+
+            .mag-sim-page .mag-sim-log__list {
+                height: auto;
+                max-height: 240px;
+            }
+        }
     </style>
 </head>
 
-<body>
+<body class="mag-sim-page">
     <page-chrome title="玛古模拟器"></page-chrome>
 
     <div class="content-container">
 
-        <p><a href="mag.html">← 进化图谱</a></p>
-
-        <div class="mag-tabs" role="tablist" aria-label="模拟器 / 规划器" data-sim-page-tabs>
-            <button type="button" class="mag-tab" role="tab" id="page-tab-sim" aria-controls="page-panel-sim" aria-selected="true">模拟器</button>
-            <button type="button" class="mag-tab" role="tab" id="page-tab-planner" aria-controls="page-panel-planner" aria-selected="false">规划器</button>
+        <div class="mag-sim__toolbar">
+            <p><a href="mag.html">← 进化图谱</a></p>
+            <div class="mag-tabs" role="tablist" aria-label="模拟器 / 规划器" data-sim-page-tabs>
+                <button type="button" class="mag-tab" role="tab" id="page-tab-sim" aria-controls="page-panel-sim" aria-selected="true">模拟器</button>
+                <button type="button" class="mag-tab" role="tab" id="page-tab-planner" aria-controls="page-panel-planner" aria-selected="false">规划器</button>
+            </div>
         </div>
 
         <div id="page-panel-sim" role="tabpanel" aria-labelledby="page-tab-sim">

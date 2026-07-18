@@ -134,6 +134,36 @@ function replay(plan) {
   }
 }
 
+// The fourth-evolution formula is a checkpoint gate, not a final-stat
+// invariant. Sato can evolve at 5/50/45/0 (Lv100), lock, then gain another
+// 100 POW without needing the formula to remain true at Lv200.
+{
+  const { plan, reason } = planMag(
+      DATA, { magId: 'Sato', def: 5, pow: 150, dex: 45, mind: 0 },
+      { budget: 2_000_000 });
+  check('Sato 5/150/45/0 可在 Lv100 进化后继续加 POW', reason === 'exact' && !!plan);
+  if (plan) {
+    const t = replay(plan);
+    check('Sato 后续成长回放终态精确',
+        t.magId === 'Sato' && t.def === 5 && t.pow === 150 && t.dex === 45 && t.mind === 0);
+  }
+}
+
+// Cell-only target: first make a Kama, feed Dragon Scale, then keep raising the
+// now-locked Tellusis to the requested Lv200 stats.
+{
+  const { plan, reason } = planMag(
+      DATA, { magId: 'Tellusis', def: 5, pow: 150, dex: 45, mind: 0 },
+      { budget: 2_000_000 });
+  check('Tellusis 规划包含 Dragon Scale Cell 步骤', reason === 'exact' && !!plan
+      && plan.segments.some((s) => s.viaCell === 'Dragon Scale'));
+  if (plan) {
+    const t = replay(plan);
+    check('Tellusis Cell 方案回放终态精确',
+        t.magId === 'Tellusis' && t.def === 5 && t.pow === 150 && t.dex === 45 && t.mind === 0);
+  }
+}
+
 // 无解目标（负增量：整数级永不下降）→ plan 必为 null，绝不返回错误计划。
 {
   const { plan } = planMag(DATA, { magId: 'Deva', def: 5, pow: 50, dex: 45, mind: -1 }, { budget: 200_000 });
@@ -211,10 +241,9 @@ function replay(plan) {
 }
 
 // --- 预算护栏 + 交互式默认值 -------------------------------------------------
-// 审查发现最近可达 fallback 最坏情形（如 Sato、Nidra 偏离公式平面的目标）旧实现
-// 下可达 ~29s（复测多个邻近点实测到 8~12s+），对交互式 UI 太慢。默认
-// planMag(data, target)（不传 opts.budget）现在必须用小得多的交互式预算，把
-// 这类慢目标的最坏情形收紧到几秒内。
+// Nidra 的最终四维不在进化公式平面上，但可在中间 checkpoint 进化后继续成长。
+// 这也是预算路径的回归目标：无论预算大小都必须及时返回良好结构，不能重新走
+// 已删除的“最终四维必须满足 Lv100 公式”错误 fallback。
 
 // 慢目标：不传 budget（默认交互式预算）必须几秒内返回，且返回结构良好。
 {
@@ -223,9 +252,8 @@ function replay(plan) {
   const { plan, nearest, reason } = planMag(DATA, slow);
   const dt = Date.now() - t0;
   check('默认 budget（无 opts.budget）对慢目标在几秒内返回', dt < 6000);
-  check('默认 budget 结果形状良好（plan/nearest/reason 类型正确）',
-      (plan === null || typeof plan === 'object') && (nearest === null || typeof nearest === 'object')
-      && typeof reason === 'string');
+  check('默认 budget 能用中间 checkpoint 构造 Nidra 精确计划',
+      !!plan && !plan.approximate && nearest === null && reason === 'exact');
 }
 
 // 极小 budget：绝不挂起，立即返回良好成形的结果（never hang 的直接证明）。
@@ -235,31 +263,20 @@ function replay(plan) {
       DATA, { magId: 'Nidra', def: 5, pow: 57, dex: 89, mind: 0 }, { budget: 1 });
   const dt = Date.now() - t0;
   check('opts.budget:1 立即返回（不挂起）', dt < 2000);
-  check('opts.budget:1 结果形状良好（plan=null, nearest=null, reason 是字符串）',
-      plan === null && nearest === null && typeof reason === 'string');
+  check('opts.budget:1 结果形状良好',
+      (plan === null || typeof plan === 'object') && (nearest === null || typeof nearest === 'object')
+      && typeof reason === 'string');
 }
 
-// T4 review 指出缺测的分支："可达但预算内未构造出 plan" → nearest:null。区别于
-// "半径外压根不可达"分支（reason 提及具体 Lv100 公式冲突）：这里候选点确实存在
-// （nearCandidates 非空），只是交互式预算太紧，没有任何候选在预算内建出 plan。
-{
-  const { plan, nearest, reason } = planMag(DATA, { magId: 'Nidra', def: 5, pow: 57, dex: 89, mind: 0 });
-  check('可达但预算内未构造出 plan -> plan=null', plan === null);
-  check('可达但预算内未构造出 plan -> nearest=null', nearest === null);
-  check('可达但预算内未构造出 plan -> reason 提及"预算内未能构造"（非半径外不可达的措辞）',
-      typeof reason === 'string' && /预算内未能构造/.test(reason) && !/Lv100 需/.test(reason));
-}
-
-// opts.deep=true 是穷尽搜索的显式 opt-in：同一个交互式预算下拿不到近似解的慢
-// 目标，deep 模式应该能找到（体现"更慢但更彻底"），且依然是有限时间、不挂起。
+// opts.deep=true 仍是更高预算的显式 opt-in；修复后该目标应保持精确解。
 {
   const t0 = Date.now();
   const { plan, nearest, reason } = planMag(
       DATA, { magId: 'Nidra', def: 5, pow: 57, dex: 89, mind: 0 }, { deep: true });
   const dt = Date.now() - t0;
   check('opts.deep=true 仍在有限时间内返回（穷尽但不挂起）', dt < 60000);
-  check('opts.deep=true 找到了交互式默认预算下找不到的近似解',
-      !!plan && plan.approximate && nearest && nearest.dist > 0 && /最近可达/.test(reason));
+  check('opts.deep=true 保持中间 checkpoint 精确解',
+      !!plan && !plan.approximate && nearest === null && reason === 'exact');
 }
 
 console.log(failed ? `\n${failed} check(s) FAILED` : '\nAll checks passed.');

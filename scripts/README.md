@@ -42,7 +42,7 @@ corresponding source.
 | `verify_mag_data.mjs` | `assets/js/mag-evolution.js` (evolution graph data) |
 | `verify_mag_sim_data.mjs` | `assets/js/mag-sim-data.js` (feed tables, mag cells) |
 | `verify_mag_sim.mjs` | `assets/js/mag-sim-engine.js` (feeding/evolution engine) |
-| `verify_mag_sim_planner.mjs` | `assets/js/mag-sim-planner.js` (reverse-search planner) |
+| `verify_mag_sim_planner.mjs` | `assets/js/mag-sim-planner.js` (reverse-search planner, intermediate fourth-evolution checkpoints, Cell evolution steps, and full engine replay) |
 
 ```bash
 node scripts/verify_mag_data.mjs
