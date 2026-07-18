@@ -81,17 +81,6 @@
             color: var(--text-secondary);
         }
 
-        .mag-sim-setup__check {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding-bottom: 6px;
-            font-size: 12.5px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            user-select: none;
-        }
-
         /* custom-start Photon Blast picker (up to 3) */
         .mag-sim-setup__pbs {
             display: flex;
@@ -131,22 +120,6 @@
             font-style: normal;
             font-size: 11px;
             opacity: .6;
-        }
-
-        /* the "Ephinea 已于 2017-01-09 取消" qualifier on the classic-rules toggle */
-        .mag-sim-setup__note {
-            display: block;
-            font-size: 11px;
-            font-style: normal;
-            color: var(--text-muted, var(--text-secondary));
-            opacity: .75;
-        }
-
-        .mag-sim-setup__check input {
-            width: 14px;
-            height: 14px;
-            accent-color: var(--accent);
-            cursor: pointer;
         }
 
         .mag-sim-setup__derived {
@@ -221,10 +194,6 @@
             background: var(--accent);
         }
 
-        .mag-idset--picker {
-            gap: 8px;
-        }
-
         .mag-id-chip {
             display: inline-flex;
             align-items: center;
@@ -261,6 +230,221 @@
         .mag-id-chip:focus-visible {
             outline: 2px solid var(--accent);
             outline-offset: 2px;
+        }
+
+        .mag-choice-picker {
+            position: relative;
+            width: max-content;
+        }
+
+        .mag-choice-picker__trigger {
+            text-align: left;
+        }
+
+        .mag-section-picker__trigger {
+            min-width: 9.5rem;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            border-color: var(--card-br);
+            text-align: left;
+        }
+
+        .mag-section-picker__trigger:hover,
+        .mag-section-picker__trigger[aria-expanded='true'] {
+            color: var(--accent);
+            background: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .mag-section-picker .mag-choice-picker__option {
+            background: transparent;
+        }
+
+        .mag-section-picker .mag-choice-picker__option:hover,
+        .mag-section-picker .mag-choice-picker__option[aria-selected='true'] {
+            color: var(--accent);
+            background: transparent;
+            border-color: var(--accent);
+        }
+
+        .mag-choice-picker__chevron {
+            margin-left: auto;
+            font-size: 14px;
+            line-height: 1;
+            transition: transform .15s ease;
+        }
+
+        .mag-choice-picker__trigger[aria-expanded='true'] .mag-choice-picker__chevron {
+            transform: rotate(180deg);
+        }
+
+        .mag-choice-picker__menu {
+            position: fixed;
+            z-index: 100;
+            display: grid;
+            max-height: min(20rem, 60vh);
+            gap: 4px;
+            padding: 8px;
+            overflow-y: auto;
+            background: var(--bg-primary);
+            border: 1px solid var(--card-br);
+            border-radius: 10px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .22), 0 2px 6px rgba(0, 0, 0, .18);
+        }
+
+        .mag-choice-picker__menu[hidden] {
+            display: none;
+        }
+
+        .mag-choice-picker__option {
+            width: 100%;
+        }
+
+        .mag-section-picker__menu {
+            width: 11rem;
+        }
+
+        .mag-class-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: 10rem;
+            min-height: 34px;
+            padding: 3px 10px 3px 6px;
+            font: inherit;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-align: left;
+            background: var(--bg-primary);
+            border: 1px solid var(--card-br);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mag-class-chip img {
+            width: 24px;
+            height: 28px;
+            object-fit: contain;
+            object-position: center bottom;
+        }
+
+        .mag-class-chip:hover,
+        .mag-class-chip[aria-selected='true'] {
+            color: var(--text-primary);
+            background: var(--accent-10);
+            border-color: var(--accent-30);
+        }
+
+        .mag-class-chip:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 1px;
+        }
+
+        .mag-class-picker__menu {
+            width: 11rem;
+        }
+
+        .mag-class-picker__group {
+            display: grid;
+            gap: 3px;
+        }
+
+        .mag-class-picker__group + .mag-class-picker__group {
+            margin-top: 4px;
+            padding-top: 4px;
+            border-top: 1px solid var(--card-br);
+        }
+
+        .mag-class-picker__group-label {
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: .04em;
+        }
+
+        .mag-rule-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: 10rem;
+            min-height: 34px;
+            padding: 3px 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            background: var(--bg-primary);
+            border: 1px solid var(--card-br);
+            border-radius: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .mag-rule-toggle:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-30);
+        }
+
+        .mag-rule-toggle input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .mag-rule-toggle__switch {
+            position: relative;
+            width: 26px;
+            height: 14px;
+            flex: none;
+            background: var(--card-br);
+            border-radius: 999px;
+            transition: background .15s ease;
+        }
+
+        .mag-rule-toggle__switch::after {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 10px;
+            height: 10px;
+            content: '';
+            background: var(--text-secondary);
+            border-radius: 50%;
+            transition: transform .15s ease, background .15s ease;
+        }
+
+        .mag-rule-toggle input:checked + .mag-rule-toggle__switch {
+            background: var(--accent-30);
+        }
+
+        .mag-rule-toggle input:checked + .mag-rule-toggle__switch::after {
+            background: var(--accent);
+            transform: translateX(12px);
+        }
+
+        .mag-rule-toggle input:focus-visible + .mag-rule-toggle__switch {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .mag-rule-toggle__name {
+            color: var(--text-primary);
+        }
+
+        .mag-rule-toggle__state {
+            margin-left: auto;
+            font-size: 11px;
+        }
+
+        .mag-rule-toggle__state::before {
+            content: '关闭';
+        }
+
+        .mag-rule-toggle input:checked ~ .mag-rule-toggle__state::before {
+            content: '开启';
+            color: var(--accent);
         }
 
         /* ---------- live Mag card ---------- */
@@ -928,13 +1112,35 @@
             margin-top: 6px;
         }
 
-        .mag-sim-page .mag-idset--picker {
-            gap: 4px;
-        }
-
         .mag-sim-page .mag-id-chip {
             padding: 3px 7px 3px 5px;
             font-size: 11px;
+        }
+
+        .mag-sim-page .mag-section-picker__trigger {
+            min-width: 8.5rem;
+        }
+
+        .mag-sim-page .mag-section-picker__menu {
+            width: 10rem;
+            padding: 6px;
+        }
+
+        .mag-sim-page .mag-class-chip {
+            width: 9rem;
+            min-height: 30px;
+            padding-block: 1px;
+        }
+
+        .mag-sim-page .mag-class-picker__menu {
+            width: 10rem;
+            padding: 6px;
+        }
+
+        .mag-sim-page .mag-rule-toggle {
+            width: 9rem;
+            min-height: 30px;
+            padding-block: 1px;
         }
 
         .mag-sim-page .mag-sim-card__head {

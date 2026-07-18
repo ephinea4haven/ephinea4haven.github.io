@@ -123,7 +123,14 @@ function renderSetup() {
     const root = document.querySelector('[data-sim-setup]');
     if (!root) return;
 
+    // renderSetup() can run again after importing/replaying a plan. Retire the
+    // previous document-level outside-click listener before replacing its DOM.
+    root._setupPickerAbort?.abort();
+    root._setupPickerAbort = new AbortController();
+
     const fresh = DATA.freshMag;
+    const sectionId = state.feeder.sectionId;
+    const feederClass = classOf(state.feeder);
     root.innerHTML = `
         <h2>起始设置</h2>
         <fieldset class="mag-sim-setup__block">
@@ -154,29 +161,63 @@ function renderSetup() {
         <fieldset class="mag-sim-setup__block">
             <legend>喂食者</legend>
             <div class="mag-sim-setup__row">
-                <label class="mag-sim-setup__field">
+                <div class="mag-sim-setup__field">
                     <span>职业</span>
-                    <select data-feeder-class>
-                        ${['HU', 'RA', 'FO'].map((line) => `
-                            <optgroup label="${line}（${LINE_LABEL[line]}）">
-                                ${CLASSES.filter((c) => c.line === line).map((c) =>
-                                    `<option value="${c.name}"${c.name === classOf(state.feeder).name ? ' selected' : ''}>${c.name}</option>`).join('')}
-                            </optgroup>`).join('')}
-                    </select>
-                </label>
-                <label class="mag-sim-setup__check" title="Ephinea 已于 2017-01-09 取消 mag cell 的种族限制（且当年限制的是「装备」该 mag，而非使用 cell）。勾选后按经典 PSO 规则模拟。">
-                    <input type="checkbox" data-racial-restriction${state.racialRestriction ? ' checked' : ''}>
-                    <span>经典 PSO 种族限制<em class="mag-sim-setup__note">Ephinea 已于 2017-01-09 取消</em></span>
-                </label>
+                    <div class="mag-choice-picker mag-class-picker" data-feeder-class-picker>
+                        <button type="button" class="mag-class-chip mag-choice-picker__trigger"
+                            data-picker-trigger aria-haspopup="listbox" aria-expanded="false"
+                            aria-controls="feeder-class-list">
+                            <img data-picker-icon src="/assets/img/class/${feederClass.name}.png" alt="" width="24" height="28">
+                            <span data-picker-label>${feederClass.name}</span>
+                            <span class="mag-choice-picker__chevron" aria-hidden="true">⌄</span>
+                        </button>
+                        <div class="mag-choice-picker__menu mag-class-picker__menu" id="feeder-class-list"
+                            role="listbox" aria-label="职业" hidden>
+                            ${['HU', 'RA', 'FO'].map((line) => `
+                                <div class="mag-class-picker__group" role="group" aria-label="${line}（${LINE_LABEL[line]}）">
+                                    <div class="mag-class-picker__group-label" aria-hidden="true">${line} · ${LINE_LABEL[line]}</div>
+                                    ${CLASSES.filter((c) => c.line === line).map((c) => `
+                                        <button type="button" class="mag-class-chip mag-choice-picker__option"
+                                            role="option" data-class="${c.name}" aria-selected="${c.name === feederClass.name}">
+                                            <img src="/assets/img/class/${c.name}.png" alt="" width="24" height="28" loading="lazy">
+                                            <span>${c.name}</span>
+                                        </button>`).join('')}
+                                </div>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="mag-sim-setup__field">
+                    <span>Section ID</span>
+                    <div class="mag-choice-picker mag-section-picker" data-feeder-section>
+                        <button type="button" class="mag-id-chip mag-choice-picker__trigger mag-section-picker__trigger"
+                            data-picker-trigger aria-haspopup="listbox" aria-expanded="false"
+                            aria-controls="feeder-section-list">
+                            <img data-picker-icon src="/assets/img/section/icon/${sectionId}.png" alt="" width="16" height="16">
+                            <span data-picker-label>${sectionId}</span>
+                            <span class="mag-choice-picker__chevron" aria-hidden="true">⌄</span>
+                        </button>
+                        <div class="mag-choice-picker__menu mag-section-picker__menu" id="feeder-section-list" role="listbox"
+                            aria-label="Section ID" hidden>
+                            ${SECTION_IDS.map((id) => `
+                                <button type="button" class="mag-id-chip mag-choice-picker__option"
+                                    role="option" data-id="${id}" aria-selected="${id === sectionId}">
+                                    <img src="/assets/img/section/icon/${id}.png" alt="" width="16" height="16" loading="lazy">${id}
+                                </button>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <div class="mag-sim-setup__field">
+                    <span>Mag Cell 种族限制</span>
+                    <label class="mag-rule-toggle"
+                        title="Ephinea 已于 2017-01-09 取消此限制。开启后按经典 PSO 规则模拟。">
+                        <input type="checkbox" data-racial-restriction${state.racialRestriction ? ' checked' : ''}>
+                        <span class="mag-rule-toggle__switch" aria-hidden="true"></span>
+                        <span class="mag-rule-toggle__name">经典规则</span>
+                        <span class="mag-rule-toggle__state" aria-hidden="true"></span>
+                    </label>
+                </div>
             </div>
             <div class="mag-sim-setup__derived" data-feeder-summary>${esc(feederSummary(state.feeder))}</div>
-            <div class="mag-sim-setup__label">Section ID</div>
-            <div class="mag-idset mag-idset--picker" data-feeder-section role="tablist">
-                ${SECTION_IDS.map((id) => `
-                    <button type="button" class="mag-id-chip" role="tab" data-id="${id}" aria-selected="${id === state.feeder.sectionId}">
-                        <img src="/assets/img/section/icon/${id}.png" alt="" width="16" height="16" loading="lazy">${id}
-                    </button>`).join('')}
-            </div>
         </fieldset>
     `;
 
@@ -231,13 +272,7 @@ function renderSetup() {
     });
 
     // ---- feeder ----
-    // One 12-class picker drives class line + gender + race at once.
     const summary = root.querySelector('[data-feeder-summary]');
-    root.querySelector('[data-feeder-class]').addEventListener('change', (e) => {
-        const c = CLASSES.find((x) => x.name === e.target.value) || CLASSES[0];
-        setFeeder({ class: c.line, gender: c.gender, race: c.race });
-        summary.textContent = feederSummary(state.feeder);
-    });
 
     // Flipping the toggle mid-session is an ACTION: it decides which cell feeds
     // were accepted, so it goes into the ordered log (like a bank) and rides
@@ -253,12 +288,110 @@ function renderSetup() {
         render();
     });
 
-    const idPicker = root.querySelector('[data-feeder-section]');
-    idPicker.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-id]');
-        if (!btn) return;
-        idPicker.querySelectorAll('[data-id]').forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
-        setFeeder({ sectionId: btn.dataset.id });
+    // A shared, accessible listbox controller for the class and Section ID
+    // pickers. The menu uses fixed positioning because the desktop workbench's
+    // setup panel is a scroll container; an absolute child would be clipped to
+    // a single visible row at the bottom of that panel.
+    function bindChoicePicker(picker, optionSelector, onChoose) {
+        const trigger = picker.querySelector('[data-picker-trigger]');
+        const menu = picker.querySelector('[role="listbox"]');
+        const options = [...menu.querySelectorAll(optionSelector)];
+
+        function positionMenu() {
+            const rect = trigger.getBoundingClientRect();
+            menu.style.visibility = 'hidden';
+            menu.hidden = false;
+            const menuHeight = menu.offsetHeight;
+            const menuWidth = menu.offsetWidth;
+            const below = rect.bottom + 4;
+            const top = below + menuHeight <= window.innerHeight - 8
+                ? below
+                : Math.max(8, rect.top - menuHeight - 4);
+            menu.style.top = `${top}px`;
+            menu.style.left = `${Math.min(rect.left, window.innerWidth - menuWidth - 8)}px`;
+            menu.style.visibility = '';
+        }
+
+        function setOpen(open, { focusSelected = false } = {}) {
+            if (open) positionMenu();
+            else menu.hidden = true;
+            trigger.setAttribute('aria-expanded', String(open));
+            if (open && focusSelected) {
+                (options.find((option) => option.getAttribute('aria-selected') === 'true') || options[0])?.focus();
+            }
+        }
+
+        function choose(option) {
+            options.forEach((item) => item.setAttribute('aria-selected', String(item === option)));
+            onChoose(option, trigger);
+            setOpen(false);
+            trigger.focus();
+        }
+
+        picker.addEventListener('click', (e) => {
+            const option = e.target.closest(optionSelector);
+            if (option) {
+                choose(option);
+                return;
+            }
+            if (e.target.closest('[data-picker-trigger]')) {
+                setOpen(trigger.getAttribute('aria-expanded') !== 'true');
+            }
+        });
+
+        picker.addEventListener('keydown', (e) => {
+            const option = e.target.closest(optionSelector);
+            if (e.target.closest('[data-picker-trigger]')) {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    setOpen(true, { focusSelected: true });
+                } else if (e.key === 'Escape') {
+                    setOpen(false);
+                }
+                return;
+            }
+            if (!option) return;
+
+            const index = options.indexOf(option);
+            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                const step = e.key === 'ArrowDown' ? 1 : -1;
+                options[(index + step + options.length) % options.length].focus();
+            } else if (e.key === 'Home' || e.key === 'End') {
+                e.preventDefault();
+                options[e.key === 'Home' ? 0 : options.length - 1].focus();
+            } else if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                choose(option);
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                setOpen(false);
+                trigger.focus();
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!picker.contains(e.target)) setOpen(false);
+        }, { signal: root._setupPickerAbort.signal });
+        window.addEventListener('resize', () => setOpen(false), { signal: root._setupPickerAbort.signal });
+        document.addEventListener('scroll', (e) => {
+            if (!picker.contains(e.target)) setOpen(false);
+        }, { capture: true, signal: root._setupPickerAbort.signal });
+    }
+
+    bindChoicePicker(root.querySelector('[data-feeder-class-picker]'), '[data-class]', (option, trigger) => {
+        const c = CLASSES.find((item) => item.name === option.dataset.class) || CLASSES[0];
+        trigger.querySelector('[data-picker-icon]').src = `/assets/img/class/${c.name}.png`;
+        trigger.querySelector('[data-picker-label]').textContent = c.name;
+        setFeeder({ class: c.line, gender: c.gender, race: c.race });
+        summary.textContent = feederSummary(state.feeder);
+    });
+
+    bindChoicePicker(root.querySelector('[data-feeder-section]'), '[data-id]', (option, trigger) => {
+        const id = option.dataset.id;
+        trigger.querySelector('[data-picker-icon]').src = `/assets/img/section/icon/${id}.png`;
+        trigger.querySelector('[data-picker-label]').textContent = id;
+        setFeeder({ sectionId: id });
     });
 }
 
