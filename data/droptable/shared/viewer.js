@@ -86,13 +86,13 @@
     var lastCell = null;
 
     document.addEventListener('mousemove', function (e) {
-      var cell = e.target.closest('.drop-cell');
-      if (cell) {
-        var img = cell.querySelector('.item-tooltip-img');
+      var option = e.target.closest('.drop-option');
+      if (option) {
+        var img = option.querySelector('.item-tooltip-img');
         if (img) {
-          if (cell !== lastCell) {
+          if (option !== lastCell) {
             tip.src = img.src;
-            lastCell = cell;
+            lastCell = option;
           }
           tip.style.display = 'block';
           var x = e.clientX + 12;
@@ -131,6 +131,10 @@
   }
 
   function D() { return DATA_MAP[lang] || DATA_MAP.en; }
+
+  function cellDrops(cell) {
+    return cell && Array.isArray(cell.items) ? cell.items : [cell];
+  }
 
   // --- controls ---
 
@@ -322,7 +326,11 @@
       entries.forEach(function (e, idx) {
         if (!searchTerm) { filteredWithIdx.push({ entry: e, idx: idx }); return; }
         if (fuzzyMatch(e.name, searchTerm)) { filteredWithIdx.push({ entry: e, idx: idx }); return; }
-        if (e.drops.some(function (d) { return d.item && fuzzyMatch(d.item, searchTerm); })) {
+        if (e.drops.some(function (cell) {
+          return cellDrops(cell).some(function (d) {
+            return d && d.item && fuzzyMatch(d.item, searchTerm);
+          });
+        })) {
           filteredWithIdx.push({ entry: e, idx: idx });
         }
       });
@@ -362,20 +370,28 @@
         var displayName = entry.name.replace(/\//g, '<br>');
         html += '<td class="monster-name" title="' + entry.name + '"><span class="mob-name">' + displayName + '</span>' + drTag + '</td>';
         for (var di = 0; di < entry.drops.length; di++) {
-          var drop = entry.drops[di];
-          var enItem = enEntry && enEntry.drops[di] ? enEntry.drops[di].item : null;
-          var isHL = searchTerm && drop.item && fuzzyMatch(drop.item, searchTerm);
-          var isSsRare = !!drop.ss;
+          var drops = cellDrops(entry.drops[di]).filter(Boolean);
+          var enDrops = enEntry && enEntry.drops[di] ? cellDrops(enEntry.drops[di]) : [];
+          var hasItem = drops.some(function (drop) { return !!drop.item; });
+          var isSsRare = drops.some(function (drop) { return !!drop.ss; });
           var bg = data.sectionColors[di];
           var txtColor = contrastText(bg);
           var subColor = contrastSub(bg);
           var cellStyle = 'background-color:' + bg + ';color:' + txtColor;
-          if (drop.item) {
-            html += '<td class="drop-cell' + (isHL ? ' highlight' : '') + (isSsRare ? ' ss-rare-cell' : '') + '" style="' + cellStyle + '">';
-            html += '<span class="item-name' + (isSsRare ? ' ss-rare-item' : '') + '">' + drop.item + '</span>';
-            var imgFile = IMG_MAP && (IMG_MAP[drop.item] || (enItem && IMG_MAP[enItem]));
-            if (imgFile) html += '<img class="item-tooltip-img" src="../shared/images/' + encodeURIComponent(imgFile) + '" alt="" loading="lazy">';
-            if (drop.rate) html += '<span class="drop-rate" style="color:' + subColor + '">' + fmtRate(drop.rate) + '</span>';
+          if (hasItem) {
+            html += '<td class="drop-cell' + (isSsRare ? ' ss-rare-cell' : '') + '" style="' + cellStyle + '">';
+            drops.forEach(function (drop, dropIndex) {
+              if (!drop.item) return;
+              var enItem = enDrops[dropIndex] ? enDrops[dropIndex].item : null;
+              var itemIsHL = searchTerm && fuzzyMatch(drop.item, searchTerm);
+              var itemIsSsRare = !!drop.ss;
+              html += '<span class="drop-option' + (itemIsHL ? ' highlight' : '') + '">';
+              html += '<span class="item-name' + (itemIsSsRare ? ' ss-rare-item' : '') + '">' + drop.item + '</span>';
+              var imgFile = IMG_MAP && (IMG_MAP[drop.item] || (enItem && IMG_MAP[enItem]));
+              if (imgFile) html += '<img class="item-tooltip-img" src="../shared/images/' + encodeURIComponent(imgFile) + '" alt="" loading="lazy">';
+              if (drop.rate) html += '<span class="drop-rate" style="color:' + subColor + '">' + fmtRate(drop.rate) + '</span>';
+              html += '</span>';
+            });
             html += '</td>';
           } else {
             html += '<td class="drop-cell empty" style="' + cellStyle + '">\u2014</td>';

@@ -168,6 +168,14 @@ body {
 .drop-cell .item-tooltip-img {
   display: none;
 }
+.drop-cell .drop-option {
+  display: block;
+}
+.drop-cell .drop-option + .drop-option {
+  border-top: 1px solid rgba(0, 0, 0, 0.22);
+  margin-top: 5px;
+  padding-top: 5px;
+}
 .drop-cell .item-name {
   font-weight: 600;
   display: block;
@@ -234,7 +242,10 @@ body {
   position: relative;
   z-index: 1;
 }
-.highlight .item-name { font-weight: 800 !important; text-decoration: underline; }
+.drop-option.highlight > .item-name {
+  font-weight: 800 !important;
+  text-decoration: underline;
+}
 
 /* tablet */
 @media (max-width: 1024px) {

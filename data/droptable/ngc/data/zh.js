@@ -9575,7 +9575,7 @@ window.DROP_DATA_ZH = {
                 "rate": "2.734375%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "2.734375%"
               },
               {
@@ -10035,7 +10035,7 @@ window.DROP_DATA_ZH = {
                 "rate": "2.734375%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "2.734375%"
               },
               {
@@ -10358,7 +10358,7 @@ window.DROP_DATA_ZH = {
                 "rate": "87.5%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "87.5%"
               },
               {
@@ -10450,7 +10450,7 @@ window.DROP_DATA_ZH = {
                 "rate": "87.5%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "87.5%"
               },
               {
@@ -10654,7 +10654,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -11002,7 +11002,7 @@ window.DROP_DATA_ZH = {
                 "rate": "2.734375%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "2.734375%"
               },
               {
@@ -11140,7 +11140,7 @@ window.DROP_DATA_ZH = {
                 "rate": "2.734375%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "2.734375%"
               },
               {
@@ -12032,7 +12032,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -12195,7 +12195,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -12240,7 +12240,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -12260,7 +12260,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ]
@@ -12337,7 +12337,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -12475,7 +12475,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -12798,7 +12798,7 @@ window.DROP_DATA_ZH = {
                 "rate": "2.734375%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "20.3125%"
               },
               {
@@ -13030,7 +13030,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -13308,7 +13308,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -13466,7 +13466,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -13788,7 +13788,7 @@ window.DROP_DATA_ZH = {
                 "rate": "20.3125%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "20.3125%"
               },
               {
@@ -14471,7 +14471,7 @@ window.DROP_DATA_ZH = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               },
               {
@@ -14491,7 +14491,7 @@ window.DROP_DATA_ZH = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               }
             ],
@@ -14747,7 +14747,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               },
               {
@@ -14886,7 +14886,7 @@ window.DROP_DATA_ZH = {
                 "rate": "20.3125%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "20.3125%"
               },
               {
@@ -14932,7 +14932,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -14952,7 +14952,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -14978,7 +14978,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -15024,7 +15024,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -15090,7 +15090,7 @@ window.DROP_DATA_ZH = {
                 "rate": "0.1953125%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -15555,7 +15555,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               }
             ],
@@ -15627,7 +15627,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               },
               {
@@ -16044,7 +16044,7 @@ window.DROP_DATA_ZH = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -16060,7 +16060,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1.5625%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "1.5625%"
               },
               {
@@ -16182,7 +16182,7 @@ window.DROP_DATA_ZH = {
                 "rate": "0.1953125%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               },
               {
@@ -16202,7 +16202,7 @@ window.DROP_DATA_ZH = {
                 "rate": "0.3173828125%"
               },
               {
-                "item": "",
+                "item": "L&K14 Combat",
                 "rate": "0.3173828125%"
               }
             ],
