@@ -4,6 +4,13 @@
 
 ## Active
 
+- [ ] **清点并选择性恢复 PSO FRAME slot3（Red-Wolf）资料** (Medium)
+  - 已确认旧站名称为 **PSO FRAME slot3**，管理者为 Red-Wolf；早期地址为 `http://www.red-wolf.ac/pso/`，之后迁移到 `http://www.red-wolf.sakura.ne.jp/pso/`。
+  - 两个旧域名目前均已无法解析；2016 年的 PSO 玩家讨论也已明确提到该攻略站消失。
+  - Internet Archive 仍保存了大量 2005–2010 年页面和图片，包括全物品表、武器分类、Section ID 掉落、任务、控制塔、挑战模式、角色与素材配置等；[2010-08-05 主页面存档](https://web.archive.org/web/20100805063421/http://www.red-wolf.sakura.ne.jp/pso/pso.html)已确认可下载。
+  - 下一步：导出 Wayback CDX 清单，下载并建立本地只读镜像；标注 GC / Episode I&II 的适用版本、原始来源和存档时间，再与本站现有资料去重，选择仍有独特价值的内容迁移。
+  - 调查依据：[2004 年链接记录](https://ropso.exblog.jp/544347/)、[旧站迁移记录](https://blankrune.sakura.ne.jp/changelog.html)、[2016 年关闭讨论](https://jbbs.shitaraba.net/bbs/read.cgi/netgame/14889/1473776762/)。
+
 - [ ] **Automated cache-busting** (Low)
   - Replace manual `?v=N` query strings on `<script>` / `<link>` tags with content-hash strings (e.g. md5 of file).
   - Could be a small Python script run pre-deploy, or a git pre-commit hook.
