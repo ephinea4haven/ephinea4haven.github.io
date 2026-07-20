@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "rbr": {
+    "source": "https://note.com/fine_yarrow878/n/nc42753d065c6",
+    "asOf": "2025-11",
+    "criteria": "高市场价值物品的刷取效率；A 以上推荐主动周回，B/C 按目标选择。",
+    "tiers": {
+      "S": [
+        "EN2",
+        "SR3",
+        "EN4",
+        "PW1",
+        "PW3",
+        "PS2",
+        "LCV",
+        "NMU4",
+        "WoL4"
+      ],
+      "A": [
+        "SU2",
+        "MU2",
+        "SU3",
+        "LHP",
+        "LBA"
+      ],
+      "B": [
+        "SR2",
+        "MU4",
+        "SA2",
+        "SU6",
+        "SU7",
+        "SU8",
+        "WoL2",
+        "SU13",
+        "SU14"
+      ],
+      "C": [
+        "LHS",
+        "MU1",
+        "LIS",
+        "MU3",
+        "EN3",
+        "SU4",
+        "SR4",
+        "PS1",
+        "LSR",
+        "PS3",
+        "PS4",
+        "PS5",
+        "PS6",
+        "NMU2",
+        "WoL3",
+        "SU12"
+      ],
+      "D": [
+        "SU1",
+        "EN1",
+        "SR1",
+        "SA1",
+        "SU5",
+        "LDR",
+        "TET",
+        "TWT",
+        "SU10",
+        "NMU1",
+        "WoL1",
+        "SU11",
+        "NMU5",
+        "WoL5",
+        "AO1",
+        "AO2",
+        "AO3",
+        "AO4",
+        "AO5"
+      ]
+    }
+  },
+  "nonRbr": {
+    "source": "https://note.com/fine_yarrow878/n/n4fce02fd1a3a",
+    "asOf": "2025-05",
+    "criteria": "整体周回与 PD 收益，并考虑 RBR 难以覆盖的稀有物品。",
+    "tiers": {
+      "SS": [
+        "MAE4"
+      ],
+      "S": [
+        "TS",
+        "MSB",
+        "PW2"
+      ],
+      "A": [
+        "TTF",
+        "RT",
+        "GDV"
+      ]
+    },
+    "rareEnemyWeek": [
+      "TE (Forest)",
+      "5-3",
+      "PoD",
+      "MA4B"
+    ],
+    "specialized": [
+      "Simulator 2.0",
+      "MA1C",
+      "GDVD",
+      "MA2A",
+      "NMU3"
+    ]
+  }
+}

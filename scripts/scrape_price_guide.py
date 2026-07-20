@@ -161,6 +161,29 @@ def build_expanded_grid(grid):
     return expanded
 
 
+def _repeated_note_text(row_data, headers, previous_item):
+    """Return a colspan note that was expanded into every value column."""
+    if not previous_item or len(headers) < 2:
+        return None
+
+    name_header = headers[0]
+    if row_data.get(name_header) != previous_item.get(name_header):
+        return None
+
+    values = [
+        row_data.get(header)
+        for header in headers[1:]
+        if row_data.get(header) is not None
+    ]
+    if len(values) < 3 or len(set(values)) != 1:
+        return None
+
+    note = values[0]
+    if not isinstance(note, str) or len(note) < 80:
+        return None
+    return note
+
+
 def process_table(title, grid):
     """Convert a raw grid into structured section data."""
     expanded = build_expanded_grid(grid)
@@ -231,6 +254,10 @@ def process_table(title, grid):
                 continue
             row_data[header] = text if text and text not in ("-", "—") else None
         if any(v is not None for v in row_data.values()):
+            note = _repeated_note_text(row_data, col_headers, items[-1] if items else None)
+            if note:
+                items[-1]["_note"] = note
+                continue
             items.append(row_data)
 
     if not items:

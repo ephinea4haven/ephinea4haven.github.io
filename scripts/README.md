@@ -9,6 +9,7 @@ data changes; commit the regenerated output alongside the script run.
 | `scrape_gizonde.py` | `assets/js/volopt_data.js` | Vol Opt Gizonde stunlock tables |
 | `scrape_price_guide.py` | `assets/js/price_guide_data.js` | Ephinea PSO price guide |
 | `build_mag_data.py` | `assets/js/mag-evolution.js`, `assets/js/mag-sim-data.js` | Mags wiki page + Mag feeding tables |
+| `build_rbr_data.py` | `data/rbr/source.json` | RBR candidate pool, current rotation, quest metadata, XP and enemy counts |
 
 ## Usage
 
@@ -16,6 +17,7 @@ data changes; commit the regenerated output alongside the script run.
 python3 scripts/scrape_gizonde.py > assets/js/volopt_data.js
 python3 scripts/scrape_price_guide.py > assets/js/price_guide_data.js
 python3 scripts/build_mag_data.py
+python3 scripts/build_rbr_data.py
 ```
 
 No external dependencies — every script uses only Python's stdlib (`urllib`,
@@ -43,10 +45,14 @@ corresponding source.
 | `verify_mag_sim_data.mjs` | `assets/js/mag-sim-data.js` (feed tables, mag cells) |
 | `verify_mag_sim.mjs` | `assets/js/mag-sim-engine.js` (feeding/evolution engine) |
 | `verify_mag_sim_planner.mjs` | `assets/js/mag-sim-planner.js` (reverse-search planner, intermediate fourth-evolution checkpoints, Cell evolution steps, and full engine replay) |
+| `test_build_rbr_data.py` | RBR wiki parsers, full-clear enemy totals and quest abbreviations |
+| `test_rbr_tiers.py` | Curated RBR Tier coverage: all 58 candidates exactly once |
 
 ```bash
 node scripts/verify_mag_data.mjs
 node scripts/verify_mag_sim_data.mjs
 node scripts/verify_mag_sim.mjs
 node scripts/verify_mag_sim_planner.mjs
+python3 -m unittest scripts/test_build_rbr_data.py
+python3 -m unittest scripts/test_rbr_tiers.py
 ```

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ephinea Ragol Boost Road（RBR）机制、任务 Tier 与非 RBR 周回建议">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ragol Boost Road（RBR）任务推荐 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .tier-figure {
+            margin: 24px auto 32px;
+            text-align: center;
+        }
+
+        .tier-figure--portrait {
+            width: 100%;
+            max-width: none;
+        }
+
+        .tier-figure--landscape {
+            max-width: 920px;
+        }
+
+        .tier-figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #17243c;
+            border: 2px solid rgba(96, 165, 250, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .tier-figure figcaption {
+            margin-top: 12px;
+            color: var(--text-secondary);
+            font-size: 0.92em;
+            line-height: 1.6;
+        }
+
+        .rbr-tracker-status {
+            margin: 16px 0;
+            padding: 14px 16px;
+            border: 1px solid rgba(96, 165, 250, 0.55);
+            border-left: 4px solid #60a5fa;
+            border-radius: 8px;
+            background: rgba(37, 99, 235, 0.1);
+            line-height: 1.7;
+        }
+
+        .rbr-tracker-status.is-ok {
+            border-color: rgba(74, 222, 128, 0.55);
+            border-left-color: #4ade80;
+            background: rgba(22, 163, 74, 0.1);
+        }
+
+        .rbr-tracker-status.is-warning {
+            border-color: rgba(250, 204, 21, 0.6);
+            border-left-color: #facc15;
+            background: rgba(202, 138, 4, 0.12);
+        }
+
+        .rbr-tracker-status.is-error {
+            border-color: rgba(248, 113, 113, 0.62);
+            border-left-color: #f87171;
+            background: rgba(220, 38, 38, 0.12);
+        }
+
+        .rbr-tracker-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            margin: 16px 0;
+        }
+
+        .rbr-tracker-legend span {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .rbr-tracker-legend i {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .rbr-tracker-legend .is-current {
+            background: hsl(142 69% 45%);
+        }
+
+        .rbr-tracker-legend .is-possible {
+            background: hsl(213 94% 68%);
+        }
+
+        .rbr-tracker-legend .is-unavailable {
+            background: hsl(215 16% 47%);
+        }
+
+        .rbr-tracker-episodes {
+            display: grid;
+            gap: 24px;
+            margin: 16px 0 32px;
+        }
+
+        .rbr-episode-card {
+            overflow: hidden;
+            border-radius: 8px;
+            background: hsl(217 33% 17%);
+            box-shadow:
+                0 4px 8px hsl(222 47% 6% / 0.2),
+                0 1px 2px hsl(222 47% 6% / 0.35);
+        }
+
+        .rbr-episode-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            align-items: baseline;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: hsl(217 33% 22%);
+        }
+
+        .rbr-episode-header h3 {
+            margin: 0;
+            color: hsl(210 40% 98%);
+            font-size: 18px;
+        }
+
+        .rbr-episode-summary {
+            color: hsl(215 20% 75%);
+            font-size: 14px;
+        }
+
+        .rbr-area-row {
+            display: grid;
+            grid-template-columns: 120px minmax(0, 1fr);
+            gap: 12px;
+            align-items: start;
+            padding: 12px 16px;
+        }
+
+        .rbr-area-row + .rbr-area-row {
+            border-top: 1px solid hsl(215 25% 27%);
+        }
+
+        .rbr-area-name {
+            padding-top: 8px;
+            color: hsl(215 20% 75%);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .rbr-area-quests {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+            gap: 8px;
+        }
+
+        .rbr-quest-cell {
+            position: relative;
+            min-height: 56px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            color: hsl(210 40% 98%);
+            background: hsl(215 25% 25%);
+            text-decoration: none;
+            transition:
+                transform 120ms ease,
+                filter 120ms ease;
+        }
+
+        .rbr-quest-cell:hover {
+            filter: brightness(1.12);
+            transform: translateY(-1px);
+        }
+
+        .rbr-quest-cell strong,
+        .rbr-quest-cell small {
+            display: block;
+        }
+
+        .rbr-quest-cell strong {
+            font-size: 16px;
+            letter-spacing: 0.02em;
+        }
+
+        .rbr-quest-cell small {
+            margin-top: 2px;
+            color: hsl(210 40% 96% / 0.82);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .rbr-quest-cell.is-current {
+            background: hsl(142 62% 32%);
+            box-shadow: inset 0 0 0 2px hsl(142 69% 58%);
+        }
+
+        .rbr-quest-cell.is-possible {
+            background: hsl(213 70% 38%);
+        }
+
+        .rbr-quest-cell.is-unavailable {
+            color: hsl(215 20% 72%);
+            background: hsl(215 22% 22%);
+        }
+
+        .rbr-quest-cell.is-unavailable small {
+            color: hsl(215 18% 58%);
+        }
+
+        @media (max-width: 760px) {
+            .rbr-area-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .rbr-area-name {
+                padding-top: 0;
+            }
+
+            .rbr-area-quests {
+                grid-template-columns: repeat(auto-fit, minmax(76px, 1fr));
+            }
+        }
+
+    </style>
+    <script src="/assets/js/page-chrome.js"></script>
+    <script src="/assets/js/rbr-tracker.js" defer></script>
+</head>
+
+<body>
+    <page-chrome title="Ragol Boost Road（RBR）"></page-chrome>
+
+    <div class="content-container">
+        <h1>RBR 任务与非 RBR 周回推荐</h1>
+
+        <blockquote>
+            <p>本页将みどり的两篇任务 Tier 文章整理为中文速查表。评价以刷取有市场价值的物品、整体收益和周回效率为主，属于作者的经验判断，不是服务器官方排名。</p>
+        </blockquote>
+
+        <p>
+            <strong>时效说明：</strong>RBR Tier 以原文标注的 2025 年 11 月为准；非 RBR Tier 以 2025 年 5 月为准。
+            掉落表、任务改版、物价和新路线都可能改变排名。选图前请结合当前
+            <a href="/data/droptable/bb/index.html?lang=zh&amp;diff=Ultimate">Ephinea 掉落表</a>复核。
+        </p>
+
+        <h2>RBR 是什么</h2>
+
+        <p>
+            Ragol Boost Road（RBR）每周从 Episode 1、2、4 的候选列表中各选一个任务。
+            轮换时间为每周日 00:00 UTC；可在大厅柜台的 <code>Statistics</code> 中查看，或在游戏内输入
+            <code>/rbr</code>。
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>队伍人数</th>
+                    <th>DAR / RDR / EXP 加成</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1 人</td><td>各 +15%</td></tr>
+                <tr><td>2 人</td><td>各 +20%</td></tr>
+                <tr><td>3–4 人</td><td>各 +25%</td></tr>
+            </tbody>
+        </table>
+
+        <ul>
+            <li>RBR 加成可与周轮替、活动等其他加成叠加。</li>
+            <li>RBR 本身<strong>不增加稀有怪出现率（RER）</strong>。</li>
+            <li>入选 RBR 后，任务原本的限时会被关闭。</li>
+            <li>同一 Episode 的候选任务会先轮过一遍才进入下一轮，因此跨轮时可能连续两周重复。</li>
+        </ul>
+
+        <p>
+            机制与最新候选列表以
+            <a href="https://wiki.pioneer2.net/w/Ragol_Boost_Road" target="_blank" rel="noopener noreferrer">Pioneer 2 Wiki：Ragol Boost Road</a>
+            为准。
+        </p>
+
+        <h2>本周 RBR 与候选追踪</h2>
+
+        <p>
+            下表按 Episode 和区域固定排列 Wiki 的 58 个合格任务。蓝色为下周仍可能抽到，
+            绿色为本周当前任务，灰色为本轮已经出现、下周暂不可能抽到的任务。
+            Tracker 是人工维护数据，页面会核对它是否与当前轮换模板一致，但游戏内 <code>/rbr</code> 仍是最终权威。
+        </p>
+
+        <div id="rbr-tracker-status" class="rbr-tracker-status" role="status" aria-live="polite">
+            正在读取 RBR Tracker……
+        </div>
+
+        <div class="rbr-tracker-legend" aria-label="Tracker 颜色说明">
+            <span><i class="is-current"></i>本周当前</span>
+            <span><i class="is-possible"></i>下周仍可能</span>
+            <span><i class="is-unavailable"></i>本轮已出现</span>
+        </div>
+
+        <div id="rbr-tracker-episodes" class="rbr-tracker-episodes"></div>
+
+        <h2>怎么使用这份表</h2>
+
+        <ul>
+            <li><strong>本周 RBR 有 S / A：</strong>通常值得优先刷。</li>
+            <li><strong>本周只有 B / C：</strong>看目标掉落和 Section ID 决定。</li>
+            <li><strong>本周 RBR 不合适：</strong>转刷非 RBR 的 MAE4，或按缺少的物品选择 S / A 任务。</li>
+            <li><strong>RER 周：</strong>RBR 不提供额外 RER，可改刷下方的稀有怪专用路线。</li>
+        </ul>
+
+        <p>
+            下文保留原文常用缩写；武器与任务全称可查
+            <a href="/guide/acronym.html">常见英文缩写</a>。颜色 ID 使用
+            Viridia（黄绿）、Greenill（深绿）、Skyly（天青）、Bluefull（蓝）、Purplenum（紫）、
+            Pinkal（粉）、Redria（红）、Oran（橙）、Yellowboze（黄）、Whitill（白）。
+        </p>
+
+        <h2>RBR 候选任务 Tier</h2>
+
+        <p>
+            评价重点是高价值物品的刷取效率。原作者认为 <strong>A 以上值得主动周回</strong>，
+            B–C 适合有明确目标时刷，D 通常不适合以稀有物品为目的反复周回。
+        </p>
+
+        <figure class="tier-figure tier-figure--portrait">
+            <img
+                src="/assets/img/guide/rbr/rbr-tier-high-contrast.webp?v=2"
+                width="967"
+                height="1627"
+                loading="lazy"
+                alt="RBR 候选任务 Tier 表：S、A、B、C、D 五档，格子底色表示推荐 Section ID">
+            <figcaption>
+                RBR Tier 表（高对比优化版；格子底色为推荐 Section ID）
+            </figcaption>
+        </figure>
+
+        <h3>S Tier：入选就值得刷</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>主要价值</th>
+                    <th>路线 / ID 建议</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>EN2</strong></td>
+                    <td>超过 150 只 Evil Shark，Vjaya 还可从箱子获取，周回效率极高。</td>
+                    <td>只刷 Area 1；多人分路约 5 分钟一轮。</td>
+                </tr>
+                <tr>
+                    <td><strong>SR3</strong></td>
+                    <td>改版后有 72 只 Sinow Red，Lame d'Argent 效率为全任务顶级，明显高于 PW2。</td>
+                    <td>以 Sinow Red 为核心规划路线。</td>
+                </tr>
+                <tr>
+                    <td><strong>EN4</strong></td>
+                    <td>末段怪潮适合刷 Merlan、Del-D、Delsaber 和 Dark Belra。</td>
+                    <td>只刷 Del-D 时可在 Area 1 收工；想要 D 属性 HS 时尤其合适。</td>
+                </tr>
+                <tr>
+                    <td><strong>PW1</strong></td>
+                    <td>100 只以上 Gee，DoB 效率遥遥领先；完成后还有 Lucky Coin。</td>
+                    <td>海岸与密林分队同时推进。</td>
+                </tr>
+                <tr>
+                    <td><strong>PW3</strong></td>
+                    <td>开场箱房非常优秀，高属性普通武器、Yunchang 和 Psycho Wand 的期待值很高；完成后有 Lucky Coin。</td>
+                    <td>可以只做箱跑，也可完整周回。</td>
+                </tr>
+                <tr>
+                    <td><strong>PS2</strong></td>
+                    <td>超过 600 只敌人，EXP 与 PD 收益高；Chaos Sorcerer 和 Delsaber 很多。</td>
+                    <td>Oran 极佳；α 区四个房间由四人各自负责。</td>
+                </tr>
+                <tr>
+                    <td><strong>LCV</strong></td>
+                    <td>Ill Gill、Mericarol、Delbiter 较多，V502 与 Heaven Punisher 效率顶级。</td>
+                    <td>Purplenum；利用 Blessing 装置在需要时取得短暂无敌。</td>
+                </tr>
+                <tr>
+                    <td><strong>NMU4 / WoL4</strong></td>
+                    <td>Pyro Goran 密集，Heaven Striker 效率顶级；EXP 与出售防具的收益也高。</td>
+                    <td>FO 或使用 Divine Punishment 的 RA 可开 Anguish 1 周回。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>A Tier：高效的明确目标图</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>主要价值</th>
+                    <th>路线 / ID 建议</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SU2</strong></td>
+                    <td>地图分支适合多人分工，可高效刷 Evil Shark、Poison Lily 和 Pan Arms；洞窟 3 还能找 Gifoie Merge 放大器与 Lv.30 Gibarta。</td>
+                    <td>熟练队伍可压到 4 分钟以内。</td>
+                </tr>
+                <tr>
+                    <td><strong>MU2</strong></td>
+                    <td>中段前约 70 只 Evil Shark，短跑效率高。</td>
+                    <td>在中段收工；熟悉复杂路线后约 3–4 分钟。</td>
+                </tr>
+                <tr>
+                    <td><strong>SU3</strong></td>
+                    <td>79 只 Canadine，是坑道刷 Charge Vulcan 的最佳候选之一；也可刷 Yasminkov 9000M、Syncesta 和 Lame d'Argent。</td>
+                    <td>按目标敌人决定是否完整清图。</td>
+                </tr>
+                <tr>
+                    <td><strong>LHP</strong></td>
+                    <td>开场 2:2 分队；Bulclaw、Delsaber、Chaos Sorcerer 等较少见的遗迹敌人很多。</td>
+                    <td>Skyly 刷 Swordsman Lore / Calibur，或 Whitill 刷 Guld；难度较高。</td>
+                </tr>
+                <tr>
+                    <td><strong>LBA</strong></td>
+                    <td>Delsaber 比 PS2 更多，整体敌量也高，VH 练级同样优秀。</td>
+                    <td>Oran 刷 Daylight Scar。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>B Tier：有目标就值得刷</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>推荐目标</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>SR2</strong></td><td>Pan Arms 相关外观变更道具（Skyly / Yellowboze）。</td></tr>
+                <tr><td><strong>MU4</strong></td><td>Heaven Striker（Bluefull）。</td></tr>
+                <tr><td><strong>SA2</strong></td><td>Heart of Tension Blaster、V101、Lame d'Argent（Yellowboze）。</td></tr>
+                <tr><td><strong>SU6</strong></td><td>Daylight Scar（Oran / Skyly）、Guren（Skyly）、PF（Redria，沿用原文缩写）。</td></tr>
+                <tr><td><strong>SU7</strong></td><td>Heaven Punisher、NODACHI（Skyly）。</td></tr>
+                <tr><td><strong>SU8</strong></td><td>Yunchang、Ano Rifle（Redria）。</td></tr>
+                <tr><td><strong>WoL2</strong></td><td>Slicer of Fanatic（Oran）、Cannon Rouge（Redria）、PF（Yellowboze）。</td></tr>
+                <tr><td><strong>SU13 / SU14</strong></td><td>Slicer of Fanatic、V801、Limiter（Pinkal）。</td></tr>
+            </tbody>
+        </table>
+
+        <h3>C Tier：用途较窄或有更好的替代图</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>推荐目标</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>LHS</strong></td><td>Milla（Whitill）。</td></tr>
+                <tr><td><strong>MU1</strong></td><td>Milla（Whitill）、Heart of Daisy Chain（Greenill）。</td></tr>
+                <tr><td><strong>LIS</strong></td><td>V101、Yasha、L&amp;K38 Combat（Greenill）、Heart of TypeSS/Swords（Oran）。</td></tr>
+                <tr><td><strong>MU3</strong></td><td>Charge Vulcan（Purplenum）。</td></tr>
+                <tr><td><strong>EN3</strong></td><td>V101、S-Parts（Oran）。</td></tr>
+                <tr><td><strong>SU4 / SR4</strong></td><td>Prophets of Motav（Oran）。</td></tr>
+                <tr><td><strong>PS1 / LSR</strong></td><td>Yasminkov 9000M、Heart of Suppressed Gun（Purplenum）。</td></tr>
+                <tr><td><strong>PS3</strong></td><td>NODACHI、Heaven Punisher（Skyly）。</td></tr>
+                <tr><td><strong>PS4</strong></td><td>Heaven Punisher、Charge Vulcan、Transvestite Plate（Purplenum）。</td></tr>
+                <tr><td><strong>PS5</strong></td><td>Heaven Striker（Whitill）。</td></tr>
+                <tr><td><strong>PS6</strong></td><td>NODACHI（Skyly）。</td></tr>
+                <tr><td><strong>NMU2</strong></td><td>Slicer of Fanatic（Oran）。</td></tr>
+                <tr><td><strong>WoL3</strong></td><td>Yasminkov 9000M（Purplenum）、Slicer of Fanatic（Whitill）。</td></tr>
+                <tr><td><strong>SU12</strong></td><td>Heaven Striker（Viridia / Redria）、Slicer of Fanatic 与 V801（Pinkal）。</td></tr>
+            </tbody>
+        </table>
+
+        <h3>D Tier：一般不建议为稀有物品反复周回</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>主要问题</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SU1 / EN1 / SR1 / SA1</strong></td>
+                    <td>森林整体收益较低；若想刷 Heart of Angel Harp，Pinkal 尚可考虑。</td>
+                </tr>
+                <tr>
+                    <td><strong>SU5</strong></td>
+                    <td>神殿迷路拖慢推进，敌量也不突出，通常可由 CCC 或 MAE:VR 替代。</td>
+                </tr>
+                <tr>
+                    <td><strong>LDR</strong></td>
+                    <td>部分敌人免疫 Hell，双倍 ATP 类 EX 对 Boss 无效；若要开发路线，可考虑只刷上层。</td>
+                </tr>
+                <tr>
+                    <td><strong>TET / TWT</strong></td>
+                    <td>敌人少、移动长；只适合利用开场刷特定敌人。</td>
+                </tr>
+                <tr>
+                    <td><strong>SU10 / NMU1 / WoL1</strong></td>
+                    <td>陨石坑东移动距离长，普通武器质量也较差。</td>
+                </tr>
+                <tr>
+                    <td><strong>SU11</strong></td>
+                    <td>Dorphon 数量优势没有转化为收益，容易成为 MA4C 的下位替代。</td>
+                </tr>
+                <tr>
+                    <td><strong>NMU5 / WoL5</strong></td>
+                    <td>地下沙漠 3 的流沙和 S 形通道难走，敌人强而数量不算多，风险与收益不匹配。</td>
+                </tr>
+                <tr>
+                    <td><strong>AO1–AO5</strong></td>
+                    <td>大部分敌人为随机刷出，位置和数量不稳定，不适合精确刷取。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>非 RBR 任务 Tier</h2>
+
+        <p>
+            “非 RBR”指不在 RBR 候选池中的任务。这张表更重视整体刷取效率、PD 回报，以及 RBR 难以覆盖的稀有物品。
+            它采用不同的评价尺度，<strong>不能把这里的 S 直接与上面的 RBR S 横向比较</strong>。
+        </p>
+
+        <figure class="tier-figure tier-figure--landscape">
+            <img
+                src="/assets/img/guide/rbr/non-rbr-tier-high-contrast.webp"
+                width="1452"
+                height="1083"
+                loading="lazy"
+                alt="非 RBR 任务 Tier 表：SS、S、A，以及稀有怪率加成周推荐任务">
+            <figcaption>
+                非 RBR Tier 表（高对比优化版）
+            </figcaption>
+        </figure>
+
+        <h3>SS Tier：不知道刷什么时的默认选择</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>为什么推荐</th>
+                    <th>重点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>MAE4</strong><br>Maximum Attack E: Episode 4</td>
+                    <td>敌群集中、EXP 高、完成后有 MA4 Ticket；可打 Shambertin，并有 1/10 概率变为 Kondrieu。</td>
+                    <td>
+                        RBR 难覆盖的 Galatine；Viridia 可刷 Pyro Goran 的 Heaven Striker。
+                        取消陨石坑路线时 Redria / Bluefull 有效；遇稀有 Boss 时可按 Melissa、Zu 等敌人换 ID。
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>S Tier：补 MAE4 不容易出的物品</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>主要价值</th>
+                    <th>注意事项</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>TS</strong><br>Twilight Sanctuary</td>
+                    <td>密林东加控制塔；Purplenum 刷 V502 与 Heaven Punisher，熟练队收益可能超过 LCV。任务奖励 7.5 万 Meseta，全程不倒地再加 30 万。</td>
+                    <td>服务器最高难度任务之一，建议满队；为提高 HP 期待值，目标是 25 分 30 秒内完成。</td>
+                </tr>
+                <tr>
+                    <td><strong>MSB</strong><br>打到 Gal Gryphon</td>
+                    <td>最快进入 Gal Gryphon 战，熟练后 7 分钟以内；Galatine 效率最高。Yellowboze 还可从 Mericarol 刷取 L&amp;K38 Combat。</td>
+                    <td>只剩一名玩家时任务会立刻结束；掉出重要物品时要让队友先留在房间。</td>
+                </tr>
+                <tr>
+                    <td><strong>PW2</strong></td>
+                    <td>114 只 Ul Gibbon；Pinkal 刷 Lame d'Argent，副产有 DoB、Principal's Parasol、Vjaya，完成后有 Lucky Coin。</td>
+                    <td>危险敌人少，多数可用 Hell 处理，难度低、保底收益好。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>A Tier：针对特定稀有物品</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>推荐理由</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>TTF</strong></td>
+                    <td>EP1 Boss Rush，Red Ring 效率最高；Greenill 可从 Dal Ra Lie 刷取 L&amp;K38 Combat。RER 周可用 Redria 刷 Pouilly Slime 的 Lavis Cannon。</td>
+                </tr>
+                <tr>
+                    <td><strong>RT</strong></td>
+                    <td>EP2 Boss Rush；Yellowboze 是同时刷 Galatine 与 PGF 的独特选择。杂兵段比 GDV 简单，RA 使用 Cannon Rouge 对宇宙船与 Gal Gryphon 段很有效。</td>
+                </tr>
+                <tr>
+                    <td><strong>GDV</strong></td>
+                    <td>CCA、Seabed、控制塔加 Olga Flow；敌群集中并有 MA4 Ticket。Purplenum 可同时考虑 V502、Heaven Punisher、PGF；中段恢复装置可补充陷阱。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>RER 周专用路线</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>稀有怪目标与打法</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>TE</strong><br>只刷森林</td>
+                    <td>52 只 Hildelt；确认不是 Hildetorr 时可跳过继续前进。Whitill / Purplenum 刷 Frozen Shooter，是经典 RER 路线。</td>
+                </tr>
+                <tr>
+                    <td><strong>5-3</strong><br>政府任务</td>
+                    <td>
+                        35 只 Ob Lily，路线短且允许中途加入，适合换 ID。
+                        可先用 Whitill 刷 DoB；出现 Mil Lily / Love Rappy 时换 Pinkal，出现 Hildetorr 时换 Greenill。
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>PoD</strong></td>
+                    <td>最快打 Shambertin，目标是稀有 Boss Kondrieu；可出 Heaven Striker、Lame d'Argent、Daylight Scar、Limiter。收益高但要同时赌稀有 Boss 与掉落。</td>
+                </tr>
+                <tr>
+                    <td><strong>MA4B</strong></td>
+                    <td>
+                        26 只 Zu，也适合找 Pazuzu。Pazuzu 可在 Purplenum 刷 V801、Greenill 刷 L&amp;K38 Combat、
+                        Bluefull / Whitill 刷 Ophelie Seize；配合换 ID，Zu 还可提供 V101 或 V801。
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>其他有鲜明用途的任务</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>任务</th>
+                    <th>用途</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Simulator 2.0</strong></td><td>51 只 Dark Bringer；陷阱与初见杀较多，熟悉后适合 Oran / Redria 周回。</td></tr>
+                <tr><td><strong>MA1C</strong></td><td>大量杂兵加 Dark Falz；Greenill / Redria 有效。</td></tr>
+                <tr><td><strong>GDVD</strong></td><td>可打 Gal Gryphon；宇宙船有大量 Baranz，Yellowboze 可刷 Daylight Scar，但整体难度较高。</td></tr>
+                <tr><td><strong>MA2A</strong></td><td>Whitill 同时刷 DoB 与 Heaven Striker；经过 Seabed 下层，适合找高属性普通武器。</td></tr>
+                <tr><td><strong>NMU3</strong></td><td>55 只 Pyro Goran，通常刷到热浪房前的 45 只更高效；可用 FO / Divine Punishment RA 开 Anguish 1，Redria 有效。</td></tr>
+            </tbody>
+        </table>
+
+        <h2>数据来源与自动化</h2>
+
+        <p>
+            RBR 的客观底表已经可以自动生成：
+            <a href="/data/rbr/source.json">RBR 源数据 JSON</a>包含 58 个候选任务、
+            Wiki revision、当前轮换、Tracker 状态、Ultimate EXP、完整刷怪数与条件数量注释；
+            两张人工评级表另存为<a href="/data/rbr/tiers.json">Tier 数据 JSON</a>。
+        </p>
+
+        <ul>
+            <li><strong>可自动：</strong>候选池、加成规则、Wiki 当前轮换、任务 EXP、敌人数、掉落率连接和基础期望值。</li>
+            <li><strong>只能半自动：</strong>推荐 ID、每轮 / 每小时 PD 价值，需要当前价格与实测周回时间。</li>
+            <li><strong>仍需人工：</strong>最终 Tier，因为路线、队伍配合、操作难度、失败风险与市场流动性无法从刷怪表直接推出。</li>
+        </ul>
+
+        <p>
+            游戏内 <code>/rbr</code> 才是服务器实际轮换的权威来源。Wiki 的当前周模板可自动抓取，
+            但可能更新较晚；生成器会同时核对日期、Tracker 的 58 项覆盖率、每个 Episode 的当前项，
+            以及 Tracker 与当前周模板的一致性，异常时写出 warning，不会静默当作最新数据。
+        </p>
+
+        <h2>原始资料</h2>
+
+        <ul>
+            <li>
+                みどり：
+                <a href="https://note.com/fine_yarrow878/n/nc42753d065c6?magazine_key=m2327647adbbf" target="_blank" rel="noopener noreferrer">RBR Tier 表（原文标注 2025/11）</a>
+            </li>
+            <li>
+                みどり：
+                <a href="https://note.com/fine_yarrow878/n/n4fce02fd1a3a?magazine_key=m2327647adbbf" target="_blank" rel="noopener noreferrer">非 RBR Tier 表（2025/5）</a>
+            </li>
+            <li>
+                <a href="https://wiki.pioneer2.net/w/Ragol_Boost_Road" target="_blank" rel="noopener noreferrer">Ephinea PSO Wiki：Ragol Boost Road</a>
+                （机制与候选任务）
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
