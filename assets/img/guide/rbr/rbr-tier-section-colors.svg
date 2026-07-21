@@ -1,0 +1,228 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="967" height="1264" viewBox="0 0 967 1264" role="img">
+<title>任务 Tier 表；任务格颜色和文字表示推荐 Section ID</title>
+<rect width="967" height="1264" fill="#1E2E46"/>
+<text x="14" y="28" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">格子颜色 = Section ID（与掉落表一致）</text>
+<rect x="4" y="40" width="191.8" height="28" fill="#00A562" stroke="#08101D" stroke-width="2"/>
+<text x="99.9" y="60" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Viridia</text>
+<rect x="195.8" y="40" width="191.8" height="28" fill="#76FE43" stroke="#08101D" stroke-width="2"/>
+<text x="291.7" y="60" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#000000">Greenill</text>
+<rect x="387.6" y="40" width="191.8" height="28" fill="#59F9F9" stroke="#08101D" stroke-width="2"/>
+<text x="483.5" y="60" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#000000">Skyly</text>
+<rect x="579.4" y="40" width="191.8" height="28" fill="#4488FF" stroke="#08101D" stroke-width="2"/>
+<text x="675.3" y="60" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#000000">Bluefull</text>
+<rect x="771.2" y="40" width="191.8" height="28" fill="#CC00FF" stroke="#08101D" stroke-width="2"/>
+<text x="867.1" y="60" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Purplenum</text>
+<rect x="4" y="72" width="191.8" height="28" fill="#FF87CB" stroke="#08101D" stroke-width="2"/>
+<text x="99.9" y="92" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#000000">Pinkal</text>
+<rect x="195.8" y="72" width="191.8" height="28" fill="#F70F0F" stroke="#08101D" stroke-width="2"/>
+<text x="291.7" y="92" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Redria</text>
+<rect x="387.6" y="72" width="191.8" height="28" fill="#F7830F" stroke="#08101D" stroke-width="2"/>
+<text x="483.5" y="92" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#000000">Oran</text>
+<rect x="579.4" y="72" width="191.8" height="28" fill="#F7F715" stroke="#08101D" stroke-width="2"/>
+<text x="675.3" y="92" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#000000">Yellowboze</text>
+<rect x="771.2" y="72" width="191.8" height="28" fill="#FFFFFF" stroke="#08101D" stroke-width="2"/>
+<text x="867.1" y="92" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#000000">Whitill</text>
+<rect x="4" y="112" width="150" height="208" fill="#FE8F29" stroke="#08101D" stroke-width="4"/>
+<text x="79" y="234" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800" fill="#000000">S</text>
+<rect x="154" y="112" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="159" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">EN2</text>
+<text x="211.786" y="188" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="269.571" y="112" width="115.571" height="104" fill="#F7F715" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="159" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SR3</text>
+<text x="327.357" y="188" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Yellowboze</text>
+<rect x="385.143" y="112" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="442.929" y="159" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">EN4</text>
+<text x="442.929" y="188" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="500.714" y="112" width="115.571" height="104" fill="#FFFFFF" stroke="#08101D" stroke-width="4"/>
+<text x="558.5" y="159" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">PW1</text>
+<text x="558.5" y="188" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Whitill</text>
+<rect x="616.286" y="112" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="674.071" y="159" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">PW3</text>
+<text x="674.071" y="188" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="731.857" y="112" width="115.571" height="104" fill="#F7830F" stroke="#08101D" stroke-width="4"/>
+<text x="789.643" y="159" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">PS2</text>
+<text x="789.643" y="188" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Oran</text>
+<rect x="847.429" y="112" width="115.571" height="104" fill="#CC00FF" stroke="#08101D" stroke-width="4"/>
+<text x="905.214" y="159" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">LCV</text>
+<text x="905.214" y="188" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Purplenum</text>
+<rect x="154" y="216" width="115.571" height="104" fill="#F70F0F" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="263" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">NMU4</text>
+<text x="211.786" y="292" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Redria</text>
+<rect x="269.571" y="216" width="115.571" height="104" fill="#F70F0F" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="263" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">WoL4</text>
+<text x="327.357" y="292" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Redria</text>
+<rect x="385.143" y="216" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="500.714" y="216" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="616.286" y="216" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="731.857" y="216" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="847.429" y="216" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="4" y="320" width="150" height="104" fill="#FED858" stroke="#08101D" stroke-width="4"/>
+<text x="79" y="390" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800" fill="#000000">A</text>
+<rect x="154" y="320" width="115.571" height="104" fill="#CC00FF" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="367" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">SU2</text>
+<text x="211.786" y="396" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Purplenum</text>
+<rect x="269.571" y="320" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="367" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">MU2</text>
+<text x="327.357" y="396" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="385.143" y="320" width="115.571" height="104" fill="#CC00FF" stroke="#08101D" stroke-width="4"/>
+<text x="442.929" y="367" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">SU3</text>
+<text x="442.929" y="396" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Purplenum</text>
+<rect x="500.714" y="320" width="115.571" height="104" fill="#59F9F9" stroke="#08101D" stroke-width="4"/>
+<text x="558.5" y="367" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">LHP</text>
+<text x="558.5" y="396" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Skyly</text>
+<rect x="616.286" y="320" width="115.571" height="104" fill="#F7830F" stroke="#08101D" stroke-width="4"/>
+<text x="674.071" y="367" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">LBA</text>
+<text x="674.071" y="396" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Oran</text>
+<rect x="731.857" y="320" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="847.429" y="320" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="4" y="424" width="150" height="208" fill="#95D65E" stroke="#08101D" stroke-width="4"/>
+<text x="79" y="546" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800" fill="#000000">B</text>
+<rect x="154" y="424" width="115.571" height="104" fill="#59F9F9" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SR2</text>
+<text x="211.786" y="500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Skyly</text>
+<rect x="269.571" y="424" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">MU4</text>
+<text x="327.357" y="500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="385.143" y="424" width="115.571" height="104" fill="#F7F715" stroke="#08101D" stroke-width="4"/>
+<text x="442.929" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SA2</text>
+<text x="442.929" y="500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Yellowboze</text>
+<rect x="500.714" y="424" width="115.571" height="104" fill="#F7830F" stroke="#08101D" stroke-width="4"/>
+<text x="558.5" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU6</text>
+<text x="558.5" y="500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Oran</text>
+<rect x="616.286" y="424" width="115.571" height="104" fill="#59F9F9" stroke="#08101D" stroke-width="4"/>
+<text x="674.071" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU7</text>
+<text x="674.071" y="500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Skyly</text>
+<rect x="731.857" y="424" width="115.571" height="104" fill="#F70F0F" stroke="#08101D" stroke-width="4"/>
+<text x="789.643" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">SU8</text>
+<text x="789.643" y="500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Redria</text>
+<rect x="847.429" y="424" width="115.571" height="104" fill="#F7830F" stroke="#08101D" stroke-width="4"/>
+<text x="905.214" y="471" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">WoL2</text>
+<text x="905.214" y="500" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Oran</text>
+<rect x="154" y="528" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="575" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU13</text>
+<text x="211.786" y="604" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
+<rect x="269.571" y="528" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="575" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU14</text>
+<text x="327.357" y="604" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
+<rect x="385.143" y="528" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="500.714" y="528" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="616.286" y="528" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="731.857" y="528" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="847.429" y="528" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="4" y="632" width="150" height="312" fill="#74B4F7" stroke="#08101D" stroke-width="4"/>
+<text x="79" y="806" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800" fill="#000000">C</text>
+<rect x="154" y="632" width="115.571" height="104" fill="#FFFFFF" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">LHS</text>
+<text x="211.786" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Whitill</text>
+<rect x="269.571" y="632" width="115.571" height="104" fill="#76FE43" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">LIS</text>
+<text x="327.357" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Greenill</text>
+<rect x="385.143" y="632" width="115.571" height="104" fill="#FFFFFF" stroke="#08101D" stroke-width="4"/>
+<text x="442.929" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">MU1</text>
+<text x="442.929" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Whitill</text>
+<rect x="500.714" y="632" width="115.571" height="104" fill="#CC00FF" stroke="#08101D" stroke-width="4"/>
+<text x="558.5" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">MU3</text>
+<text x="558.5" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Purplenum</text>
+<rect x="616.286" y="632" width="115.571" height="104" fill="#F7830F" stroke="#08101D" stroke-width="4"/>
+<text x="674.071" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">EN3</text>
+<text x="674.071" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Oran</text>
+<rect x="731.857" y="632" width="115.571" height="104" fill="#F7830F" stroke="#08101D" stroke-width="4"/>
+<text x="789.643" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU4</text>
+<text x="789.643" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Oran</text>
+<rect x="847.429" y="632" width="115.571" height="104" fill="#F7830F" stroke="#08101D" stroke-width="4"/>
+<text x="905.214" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SR4</text>
+<text x="905.214" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Oran</text>
+<rect x="154" y="736" width="115.571" height="104" fill="#CC00FF" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="783" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">PS1</text>
+<text x="211.786" y="812" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Purplenum</text>
+<rect x="269.571" y="736" width="115.571" height="104" fill="#59F9F9" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="783" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">PS3</text>
+<text x="327.357" y="812" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Skyly</text>
+<rect x="385.143" y="736" width="115.571" height="104" fill="#CC00FF" stroke="#08101D" stroke-width="4"/>
+<text x="442.929" y="783" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">PS4</text>
+<text x="442.929" y="812" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Purplenum</text>
+<rect x="500.714" y="736" width="115.571" height="104" fill="#FFFFFF" stroke="#08101D" stroke-width="4"/>
+<text x="558.5" y="783" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">PS5</text>
+<text x="558.5" y="812" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Whitill</text>
+<rect x="616.286" y="736" width="115.571" height="104" fill="#59F9F9" stroke="#08101D" stroke-width="4"/>
+<text x="674.071" y="783" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">PS6</text>
+<text x="674.071" y="812" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Skyly</text>
+<rect x="731.857" y="736" width="115.571" height="104" fill="#CC00FF" stroke="#08101D" stroke-width="4"/>
+<text x="789.643" y="783" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">LSR</text>
+<text x="789.643" y="812" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Purplenum</text>
+<rect x="847.429" y="736" width="115.571" height="104" fill="#F7830F" stroke="#08101D" stroke-width="4"/>
+<text x="905.214" y="783" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">NMU2</text>
+<text x="905.214" y="812" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Oran</text>
+<rect x="154" y="840" width="115.571" height="104" fill="#CC00FF" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="887" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">WoL3</text>
+<text x="211.786" y="916" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Purplenum</text>
+<rect x="269.571" y="840" width="115.571" height="104" fill="#F70F0F" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="887" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">SU12</text>
+<text x="327.357" y="916" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Redria</text>
+<rect x="385.143" y="840" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="500.714" y="840" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="616.286" y="840" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="731.857" y="840" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="847.429" y="840" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="4" y="944" width="150" height="312" fill="#B7A5F4" stroke="#08101D" stroke-width="4"/>
+<text x="79" y="1118" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="800" fill="#000000">D</text>
+<rect x="154" y="944" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU1</text>
+<text x="211.786" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
+<rect x="269.571" y="944" width="115.571" height="104" fill="#76FE43" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">EN1</text>
+<text x="327.357" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Greenill</text>
+<rect x="385.143" y="944" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
+<text x="442.929" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SR1</text>
+<text x="442.929" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
+<rect x="500.714" y="944" width="115.571" height="104" fill="#F70F0F" stroke="#08101D" stroke-width="4"/>
+<text x="558.5" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">SA1</text>
+<text x="558.5" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Redria</text>
+<rect x="616.286" y="944" width="115.571" height="104" fill="#F70F0F" stroke="#08101D" stroke-width="4"/>
+<text x="674.071" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">AO1</text>
+<text x="674.071" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Redria</text>
+<rect x="731.857" y="944" width="115.571" height="104" fill="#CC00FF" stroke="#08101D" stroke-width="4"/>
+<text x="789.643" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">AO2</text>
+<text x="789.643" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Purplenum</text>
+<rect x="847.429" y="944" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
+<text x="905.214" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU5</text>
+<text x="905.214" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
+<rect x="154" y="1048" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="1095" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">LDR</text>
+<text x="211.786" y="1124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="269.571" y="1048" width="115.571" height="104" fill="#FFFFFF" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="1095" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">TET</text>
+<text x="327.357" y="1124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Whitill</text>
+<rect x="385.143" y="1048" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="442.929" y="1095" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">TWT</text>
+<text x="442.929" y="1124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="500.714" y="1048" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
+<text x="558.5" y="1095" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">AO3</text>
+<text x="558.5" y="1124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
+<rect x="616.286" y="1048" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="674.071" y="1095" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">AO4</text>
+<text x="674.071" y="1124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="731.857" y="1048" width="115.571" height="104" fill="#FFFFFF" stroke="#08101D" stroke-width="4"/>
+<text x="789.643" y="1095" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">AO5</text>
+<text x="789.643" y="1124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Whitill</text>
+<rect x="847.429" y="1048" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="905.214" y="1095" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU10</text>
+<text x="905.214" y="1124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="154" y="1152" width="115.571" height="104" fill="#76FE43" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="1199" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU11</text>
+<text x="211.786" y="1228" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Greenill</text>
+<rect x="269.571" y="1152" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="1199" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">NMU1</text>
+<text x="327.357" y="1228" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="385.143" y="1152" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
+<text x="442.929" y="1199" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">NMU5</text>
+<text x="442.929" y="1228" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
+<rect x="500.714" y="1152" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
+<text x="558.5" y="1199" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">WoL1</text>
+<text x="558.5" y="1228" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
+<rect x="616.286" y="1152" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
+<text x="674.071" y="1199" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">WoL5</text>
+<text x="674.071" y="1228" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
+<rect x="731.857" y="1152" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+<rect x="847.429" y="1152" width="115.571" height="104" fill="#1E2E46" stroke="#08101D" stroke-width="4"/>
+</svg>
