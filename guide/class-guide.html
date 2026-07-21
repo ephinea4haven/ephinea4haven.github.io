@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="PSOBB Vanilla 与 Ephinea Hunter、Ranger、Force 三职业开荒、实战要点与装备路线">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>三职业实战指南 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <script src="/assets/js/page-chrome.js"></script>
+    <style>
+        .guide-lead,
+        .notice {
+            padding: 16px 18px;
+            border: 1px solid var(--accent-30);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            background: var(--accent-10);
+        }
+
+        .notice {
+            border-left-color: #facc15;
+            background: rgba(202, 138, 4, 0.12);
+        }
+
+        .jump-nav,
+        .role-grid,
+        .class-grid,
+        .loadout-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .jump-nav,
+        .role-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin: 22px 0;
+        }
+
+        .jump-nav button {
+            padding: 14px;
+            border: 1px solid var(--accent-30);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-align: center;
+            background: var(--bg-primary-60);
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .jump-nav button:hover,
+        .jump-nav button[aria-selected="true"] {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-15);
+            box-shadow: 0 0 18px var(--accent-20);
+        }
+
+        .profession-panel[hidden] {
+            display: none;
+        }
+
+        .common-guide {
+            margin: 18px 0 28px;
+            padding: 0 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary-60);
+        }
+
+        .common-guide summary {
+            padding: 14px 0;
+            color: var(--heading-h3);
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .class-card ul {
+            margin-bottom: 0;
+        }
+
+        .class-card .play-loop {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .role-card,
+        .class-card,
+        .loadout-card {
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary-60);
+        }
+
+        .role-card h3,
+        .class-card h4,
+        .loadout-card h4 {
+            margin-top: 0;
+        }
+
+        .class-grid,
+        .loadout-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin: 16px 0;
+        }
+
+        .checklist li::marker {
+            color: var(--accent);
+        }
+
+        .tag {
+            display: inline-block;
+            margin: 2px 4px 2px 0;
+            padding: 2px 8px;
+            border: 1px solid var(--accent-30);
+            border-radius: 999px;
+            color: var(--text-secondary);
+            font-size: 0.86em;
+        }
+
+        .source-list {
+            font-size: 0.94em;
+            color: var(--text-secondary);
+        }
+
+        .deep-guide {
+            margin: 26px 0;
+            padding: 20px;
+            border: 1px solid var(--accent-30);
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent-10), var(--bg-primary-60));
+        }
+
+        .deep-guide > h3 {
+            margin-top: 0;
+        }
+
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin: 16px 0;
+        }
+
+        .decision-card {
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary-60);
+        }
+
+        .decision-card h4 {
+            margin-top: 0;
+        }
+
+        .combat-flow {
+            counter-reset: combat-step;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .combat-flow li {
+            position: relative;
+            min-height: 38px;
+            margin: 10px 0;
+            padding-left: 48px;
+        }
+
+        .combat-flow li::before {
+            counter-increment: combat-step;
+            content: counter(combat-step);
+            position: absolute;
+            left: 0;
+            top: -2px;
+            display: grid;
+            width: 32px;
+            height: 32px;
+            place-items: center;
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .combo-code {
+            white-space: nowrap;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .character-handbook {
+            margin: 22px 0;
+        }
+
+        .character-handbook details {
+            margin: 10px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary-60);
+        }
+
+        .character-handbook summary {
+            padding: 15px 18px;
+            cursor: pointer;
+            color: var(--heading-h3);
+            font-weight: 700;
+        }
+
+        .character-handbook details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+            color: var(--accent);
+        }
+
+        .character-body {
+            padding: 4px 18px 18px;
+        }
+
+        .character-body h4 {
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 760px) {
+            .jump-nav,
+            .role-grid,
+            .class-grid,
+            .loadout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .decision-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <page-chrome title="三职业实战指南"></page-chrome>
+
+    <main class="content-container">
+        <h1>Hunter · Ranger · Force</h1>
+
+        <p class="guide-lead">
+            本文分为两层：先讲从 Normal 一路成长到 Ultimate 都适用的 <strong>Vanilla PSOBB 基础玩法</strong>，再整理 Ephinea 多人终局的装备与分工。
+            它不是固定配装答案；HU 抢关键目标，RA 控场并覆盖整波怪，FO 放大整队效率，但三者都必须根据手边装备、任务与队伍调整。
+        </p>
+
+        <nav class="jump-nav" role="tablist" aria-label="职业章节">
+            <button type="button" role="tab" id="tab-hunter" aria-controls="hunter" aria-selected="true" data-profession="hunter"><strong>HU · 战士</strong><br>近身爆发 / 精英处理</button>
+            <button type="button" role="tab" id="tab-ranger" aria-controls="ranger" aria-selected="false" data-profession="ranger"><strong>RA · 枪手</strong><br>远程控场 / 特殊攻击</button>
+            <button type="button" role="tab" id="tab-force" aria-controls="force" aria-selected="false" data-profession="force"><strong>FO · 法师</strong><br>支援 / 技能 / 补位</button>
+        </nav>
+
+        <details class="common-guide">
+        <summary>展开：Vanilla 定义、四档难度与三职业通用基本功</summary>
+        <h2>这里的 Vanilla 指什么</h2>
+
+        <p>
+            本文中的 Vanilla 指 PSO Blue Burst 原本的战斗框架：三段攻击、命中检定、武器属性与特殊攻击、Mag、材料、技能和四档难度。
+            它不等同于 Ephinea 的 <strong>Classic 模式</strong>：Classic 还会关闭 Episode 4 及相关物品，并采用官方 BB 的难度门槛。
+            下文所有“Vanilla 路线”都不依赖昂贵终局装备，也适合普通 Ephinea 角色开荒。
+        </p>
+
+        <h3>四档难度的学习重点</h3>
+        <table>
+            <thead>
+                <tr><th>阶段</th><th>主要目标</th><th>不要急着做的事</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Normal</td><td>试遍武器动作、养 Mag、学会 N/H/S 与敌人硬直</td><td>为短期装备投入大量 Grinder 或材料</td></tr>
+                <tr><td>Hard</td><td>开始保留 Hit 武器、补齐基础技能和范围武器</td><td>只看红盒星数，忽略绿色普通武器</td></tr>
+                <tr><td>Very Hard</td><td>形成“单体、范围、远程、控场”四类工具，准备 Ultimate</td><td>只堆伤害而不补 ATA、HP 和抗性</td></tr>
+                <tr><td>Ultimate</td><td>适应更快的敌人、更高 EVP / 抗性，按区域换武器与战术</td><td>继续用低 Hit 特殊攻击硬赌命中</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Vanilla 开荒的资源优先级</h3>
+        <ol class="checklist">
+            <li><strong>先养 Mag：</strong>HU / RA 先做 POW + DEX，简单成品可用 <code>5/145/50/0</code> 或 <code>5/150/45/0</code>；纯施法 FO 先做 MIND。DEF 通常不值得主动堆。</li>
+            <li><strong>Hit 比颜色重要：</strong>武器的 1% Hit 实际增加 1 ATA，适用于所有敌人。高 Hit 普通武器往往比无 Hit 红盒更实用。</li>
+            <li><strong>保留敌种属性：</strong>Native、A.Beast、Machine、Dark 会提高对相应敌人的物理伤害；进入新区域前换对属性，收益常高于一点面板 ATP。</li>
+            <li><strong>材料先按方案吃：</strong>人类共用材料上限 250，纽曼与机器人为 150；HP / TP Material 另算。没决定最终方案前，至少不要随意吃 DEF 和 EVP Material。</li>
+            <li><strong>普通武器就是主力：</strong>Sword / Partisan、Shot、Slicer、Mechgun 等范围或多段武器决定清图效率；稀有武器主要是补充特殊功能。</li>
+        </ol>
+
+        <p>
+            配套工具：<a href="/tools/mag-sim.html">Mag 模拟器</a> ·
+            <a href="/tools/materialplan.html">材料配点方案</a> ·
+            <a href="/tools/status.html">配点计算器</a> ·
+            <a href="/tools/equipment.html">终极装备参考</a> ·
+            <a href="/tools/mechanics.html">伤害机制</a>
+        </p>
+
+        <h2>先看结论：队伍里该做什么</h2>
+
+        <div class="role-grid">
+            <article class="role-card">
+                <h3>HU：解决最危险的怪</h3>
+                <p>提前站到刷怪点侧后方，用最高单体伤害优先击杀高血量、会冲锋或会打乱队形的敌人；不要只追着杂兵跑。</p>
+                <span class="tag">站位要求最高</span><span class="tag">近身风险高</span>
+            </article>
+            <article class="role-card">
+                <h3>RA：让整波怪失去威胁</h3>
+                <p>在能覆盖多数敌人的安全距离开火，以冻结、麻痹、Hell、Demon's 和范围火力切换处理不同波次。</p>
+                <span class="tag">工具箱最全</span><span class="tag">容错较高</span>
+            </article>
+            <article class="role-card">
+                <h3>FO：提高全队总输出</h3>
+                <p>维持 S/D，快速补上 J/Z、Resta、Anti；能提前叠 Gifoie 就抢节奏，武器或技能更合适时就及时切换。</p>
+                <span class="tag">观察全场</span><span class="tag">切装频繁</span>
+            </article>
+        </div>
+
+        <h2>三职业通用基本功</h2>
+
+        <ol class="checklist">
+            <li><strong>刷怪知识优先于装备：</strong>先记危险怪和大波次，再补齐普通波次；知道下一波出现在哪里，才能预站位、预攻击或预叠技能。</li>
+            <li><strong>不要重复处理同一目标：</strong>看懂队友走向并主动接管无人处理的区域。集中火力并非永远最快，合理分怪通常更有效。</li>
+            <li><strong>熟练快捷菜单：</strong>战斗中用快捷菜单切武器、吃药和施法；它比翻主菜单安全，也能让动作在可执行的第一帧排队。</li>
+            <li><strong>理解连段：</strong><code>N / H / S</code> 分别是普通、重击、特殊。根据怪物硬直和武器收招决定二段或三段，不要机械地打满。</li>
+            <li><strong>命中优先：</strong>无法稳定命中的理论伤害没有意义。高 Hit 武器、ATA、站位和 <code>SN glitch</code> 都是在解决同一个问题。</li>
+        </ol>
+
+        <p class="notice">
+            <strong>现行机制：</strong>Ephinea 已移除 Damage Cancel（DMC）。旧 Force 论坛帖中“不要攻击，以免覆盖队友伤害”的相关论述仅有历史参考价值；
+            现在仍应避免无意义攻击，但原因是站位、控场与分工，而不是 DMC。
+        </p>
+        </details>
+
+        <section id="hunter" class="profession-panel" role="tabpanel" aria-labelledby="tab-hunter">
+            <h2>HU · Hunter / 战士</h2>
+
+            <p>HU 的优势是最高级别的近身爆发，短板是有效范围有限。高效 HU 不是“见怪就砍”，而是提前判断哪只怪必须最快消失，再用正确的角度和连段完成 Combo Kill（一个连段内击杀）。</p>
+
+            <h3>Vanilla 成长路线</h3>
+            <table>
+                <thead><tr><th>时期</th><th>武器与打法</th><th>培养重点</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Normal–Hard</td>
+                        <td>Saber / Dagger 打单体，Sword / Partisan 扫聚团怪，Handgun 处理飞行、陷阱和不宜近身的目标。先用 <code>N-N-H</code> 或 <code>N-H-H</code> 保证命中。</td>
+                        <td>Mag 以 POW 为主、DEX 为辅；优先装备 Arm 类单位。学会绕背、二段收手和延迟第三击。</td>
+                    </tr>
+                    <tr>
+                        <td>Very Hard</td>
+                        <td>加入 Mechgun 处理单体，Slicer 处理分散敌人；开始保留高 Hit 的 Charge / Spirit / Berserk 普通武器。</td>
+                        <td>准备一把可靠远程武器和一把范围武器，不要所有场景都用 Sword。</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimate</td>
+                        <td>敌人更快且 EVP 更高，先冻、麻或诱导挥空再近身。攻击不中时宁可换高 Hit 低阶武器，也不要硬用无 Hit 稀有武器。</td>
+                        <td>按敌种准备属性武器，逐步加入 Arrest、Hell、Demon's 与高伤牺牲特殊。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Vanilla 关键习惯：</strong>不要把高 HP 当成站桩资本。HU 的防御来自距离、角度、硬直与击倒控制；面对包围时先拉成一条线或扇面，再挥范围武器。</p>
+
+            <h3>四个角色怎么选</h3>
+            <div class="class-grid">
+                <article class="class-card">
+                    <h4>HUmar</h4>
+                    <p>人类均衡型，近战能力稳定并可使用最高 Lv15 的攻击与恢复技能；不能使用 Shifta / Deband，组队更依赖 FO 支援。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>先以 Jellen 降低近战风险、Zalure 提升击杀线，再从侧后方用 Sword / Vjaya / Mechgun 爆发。</li>
+                        <li><strong>单刷：</strong>依靠 S-Red's Blade 或 Mylla &amp; Youlla 获得 S/D；没有陷阱，Arrest Slicer 与 Gifoie 是主要控场补丁。</li>
+                        <li><strong>误区：</strong>“均衡”不代表样样齐全；没有 S/D 与强控场，HUmar 实际更考验站位和装备。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>HUnewearl</h4>
+                    <p>HU 中最低 HP、较低 ATP，但拥有 Lv20 S/D/J/Z、Resta 与天然 TP 回复，单刷和自给自足能力最强。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>开波前维持 S/D，接近强敌先 J/Z；用 Rabarta / Gifoie 创造近身窗口，再用 Spirit、Berserk 或多段武器收尾。</li>
+                        <li><strong>定位：</strong>无 FO 队伍主动补支援；有 FO 时把 TP 留给控场、Resta 与远程补刀，专注 HU 的关键目标。</li>
+                        <li><strong>误区：</strong>不要因为会技能就当低配 FO；她的主输出仍是高 Hit 物理武器。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>HUcast</h4>
+                    <p>全职业最高 ATP，拥有冻结、混乱、伤害陷阱，是最直接的近身爆发选择；没有技能，命中与队伍支援尤其重要。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>刷怪点放 Freeze Trap 并立即打爆，趁冻结用 Sword / Vjaya 清群或 Dark Flow / Mechgun 处理高血目标。</li>
+                        <li><strong>陷阱：</strong>Freeze 留给危险精英和爆发窗口；普通密集怪优先 Confuse，让它们聚团互打；Damage 可秒 Slime 分裂体。</li>
+                        <li><strong>误区：</strong>高 ATP 不等于每次都打满三段；机器人回复品有限，二段安全收手通常更快。</li>
+                    </ul>
+                    <p><a href="#hucast-deep">跳到 HUcast 深度教程 ↓</a></p>
+                </article>
+                <article class="class-card">
+                    <h4>HUcaseal</h4>
+                    <p>机器人 HU 中 ATA、EVP 更高，动作性能和陷阱带来稳定控制；ATP 低于 HUcast，更偏灵活与精准。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>利用 HU 最高 ATA 更早稳定使用 Arrest / Hell；冻结后以快速 Dagger 动作或多段武器处理高 EVP 单体。</li>
+                        <li><strong>定位：</strong>陷阱控场优先于和 HUcast 比面板伤害；主动处理那些 HUcast 特殊攻击容易 Miss 的目标。</li>
+                        <li><strong>误区：</strong>高 EVP 不是可靠减伤，仍要用陷阱、绕背与硬直保持主动。</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="character-handbook" aria-label="Hunter 角色专项教程">
+                <h3>角色专项教程</h3>
+                <details id="humar-deep">
+                    <summary>HUmar · 无陷阱的均衡近战如何控场</summary>
+                    <div class="character-body">
+                        <p><strong>核心循环：</strong>进房维持安全距离 → 对近战威胁用 Jellen、对高血目标用 Zalure → Gifoie 拦第一轮冲锋 → 从侧后方用 Sword / Slicer 整形 → Mechgun、Vjaya 或 Excalibur 收高血目标。HUmar 的技术不是“什么都会一点”，而是在没有陷阱时用技能换出近战窗口。</p>
+                        <div class="decision-grid">
+                            <section class="decision-card"><h4>单刷</h4><p>S-Red's Blade 或 Mag PB 补 S/D；先 Jellen 再近身，Resta 留在脱离攻击动画后使用。对一群散怪先 Gifoie 或 Arrest Slicer，不要逐只追砍。</p></section>
+                            <section class="decision-card"><h4>组队</h4><p>FO 已经上好 J/Z 时不要重复施法，直接接危险目标。无 FO 时主动 Zalure 厚怪，但不必为普通杂兵逐只施法而丢失节奏。</p></section>
+                        </div>
+                        <ul><li><strong>武器优先：</strong>高 Hit Raygun、DoB、范围剑、Mechgun，再补 Demon's Mechgun 与 Zalure Gun。</li><li><strong>练习重点：</strong>Gifoie 出手后立刻切近战武器；练二段安全收手，弥补没有 Freeze Trap 的硬控空缺。</li><li><strong>常见失误：</strong>边被包围边 Resta；先退出攻击范围再治疗，通常比硬吃下一击更快。</li></ul>
+                    </div>
+                </details>
+                <details id="hunewearl-deep">
+                    <summary>HUnewearl · 支援、自保与物理输出的切换</summary>
+                    <div class="character-body">
+                        <p><strong>核心循环：</strong>转场补 S/D → 开波对关键怪 J/Z → Rabarta / Gifoie 制造窗口 → 用高 Hit 物理武器完成击杀。Lv20 支援让她单刷完整，但较低 ATP 意味着必须利用属性、特殊攻击和多段命中，而不是拿普通剑硬磨。</p>
+                        <ul><li><strong>TP 分配：</strong>普通怪只需一次 J/Z 或不施法；TP 优先留给 S/D、强敌 J/Z、Resta 与救场 Anti。天然 TP 回复适合安全转场停留，不适合战斗中原地等。</li><li><strong>伤害选择：</strong>弱怪用 DoB / Sword；厚怪先 Demon's，再以 Mechgun、Excalibur、Vivienne 收尾；敌人技术抗性低时用技能省去危险贴身。</li><li><strong>组队：</strong>有 FO 就退回 HU 职责，专打关键目标；无 FO 才承担全套支援。不要为了刷新还剩很久的 S/D 放弃刷怪点站位。</li><li><strong>生存：</strong>低 HP 要用 Jellen、侧后方和二段连击预防伤害，不能把 Resta 当作事后无限容错。</li></ul>
+                    </div>
+                </details>
+                <details id="hucaseal-deep">
+                    <summary>HUcaseal · 高 ATA 陷阱猎人的控制打法</summary>
+                    <div class="character-body">
+                        <p><strong>核心循环：</strong>先用 ATA 优势施加 Arrest / Hell → 对剩余威胁 Freeze → 利用快速 Dagger / Twin Sword 动作贴侧面收尾。她不是“小号 HUcast”，优势在更早稳定命中特殊攻击，并用精准控制减少队伍停顿。</p>
+                        <ul><li><strong>分散怪：</strong>Arrest J-Cutter / Slicer 先扫一轮，麻痹成功后再决定近战；比直接冲进散怪中心安全。</li><li><strong>高 EVP 单体：</strong>Freeze 降低 EVP 后用多段武器；第三段杀不掉就二段离开。</li><li><strong>陷阱预算：</strong>Freeze 增长少于 HUcast，不能照搬每个危险波都冻结的路线；可冻结的普通波交给 Arrest，真正会破阵的目标才花 Freeze。</li><li><strong>常见失误：</strong>依赖高 EVP 站桩。闪避是概率，不是控制；一旦被多个敌人从不同角度夹击，仍应先撤出包围。</li></ul>
+                    </div>
+                </details>
+            </div>
+
+            <article id="hucast-deep" class="deep-guide">
+                <h3>角色深度教程 · HUcast 怎么打</h3>
+                <p>
+                    HUcast 的强不是“面板高所以冲进去砍”，而是用刷怪知识把有限射程变成优势：<strong>提前占住危险目标的侧后方，用陷阱制造四秒窗口，再在窗口内完成 Combo Kill</strong>。
+                    初学时只练安全击杀；熟悉任务后，再练预埋陷阱、精确站位和低血 Dark Flow。
+                </p>
+
+                <h4>进房前：六个功能位，而不是六把最贵武器</h4>
+                <div class="decision-grid">
+                    <section class="decision-card">
+                        <h4>必须常驻</h4>
+                        <ul>
+                            <li><strong>Raygun：</strong>射爆头顶陷阱、远程补刀、拉单只怪。</li>
+                            <li><strong>Sword / Partisan：</strong>怪已聚成正面扇区时清群。</li>
+                            <li><strong>Slicer：</strong>怪分散、会移动，或无法安全贴身时使用。</li>
+                            <li><strong>Mechgun / Twin Sword：</strong>冻结后的高血单体。</li>
+                        </ul>
+                    </section>
+                    <section class="decision-card">
+                        <h4>按任务替换</h4>
+                        <ul>
+                            <li><strong>Arrest：</strong>Dorphon、Girtablulu 等不能冻结或更适合麻痹的目标。</li>
+                            <li><strong>Hell：</strong>Episode 2 中低暗抗、用物理伤害反而慢的敌人。</li>
+                            <li><strong>Twin Blaze：</strong>用残留 Gifoie 预设即时爆陷阱，也可挡冲锋。</li>
+                            <li><strong>Zalure ES：</strong>单刷 Boss 或队伍没有可靠 Zalure 时补位。</li>
+                        </ul>
+                    </section>
+                </div>
+                <p class="notice"><strong>快捷栏建议：</strong>Freeze Trap、Confuse Trap、Mate、Star Atomizer 放最顺手的位置；武器按“远程 → 范围 → 单体 → 特殊”固定排序。肌肉记忆比背包里多带一把相似武器更有价值。</p>
+
+                <h4>每一波怪的判断顺序</h4>
+                <ol class="combat-flow">
+                    <li><strong>先看危险目标：</strong>会冲锋、跳跃、远程控制或血量最高的怪优先。队友已经朝它移动，就接管另一侧，不要四个人追同一只。</li>
+                    <li><strong>再看形状：</strong>聚成线或扇面用 Sword；分散在宽角度用 Slicer；一至三只高血目标用 Mechgun、Twin Sword 或 Excalibur。</li>
+                    <li><strong>决定是否控制：</strong>目标能冻结且会破坏队形，放 Freeze；需要先让普通怪聚团可短暂等位；不能冻则尝试 Arrest。不要为了“省陷阱”让整队被冲散。</li>
+                    <li><strong>从侧后方开打：</strong>正面贴脸只会把最高 ATP 换成最高吃伤。先诱导一次挥空，再横移到侧后方，是无陷阱时最稳定的开局。</li>
+                    <li><strong>击杀线决定二段或三段：</strong>第三段杀不掉且收招会被打，就停在第二段、走位重置。第三段不是奖励键。</li>
+                </ol>
+
+                <h4>三种陷阱怎么用</h4>
+                <table>
+                    <thead><tr><th>陷阱</th><th>正确时机</th><th>引爆方式</th><th>常见错误</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Freeze</strong></td>
+                            <td>危险波、跳怪落点、高 EVP 目标、需要让全队安全爆发时。冻结约四秒，并降低敌人 30% EVP。</td>
+                            <td>临场用 Handgun 射爆；已知刷怪点可预埋；有 Twin Blaze 时先铺 Gifoie，再放陷阱即可自动爆。</td>
+                            <td>怪还没聚拢就立刻冻，导致 Sword / Vjaya 覆盖不到；或对不可冻结目标浪费。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Confuse</strong></td>
+                            <td>普通怪伤害很高、可让它们互打，或需要它们围到一起时；开荒缺伤害时价值更高。</td>
+                            <td>通常让陷阱自然触发，利用混乱期间调整站位或换范围武器。</td>
+                            <td>覆盖队友刚施加的 Freeze；Ultimate 乱放会让移动不可预测，反而破坏预定站位。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Damage</strong></td>
+                            <td>Ultimate 秒杀刚生成的 Slime、让 Rappy 倒地逃跑，或给低 EFR 小怪补伤害。</td>
+                            <td>刷怪点预埋最稳定；普通清怪不必把它当主要输出。</td>
+                            <td>把 Damage 当成弱版 Freeze 连续丢，既没控制也浪费动作时间。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>连段不是固定答案：先练这五组</h4>
+                <table>
+                    <thead><tr><th>输入</th><th>使用场景</th><th>判断标准</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="combo-code">N-H</span></td><td>不熟的近战目标、Sword 正面控群</td><td>两段后立即横移；不知道第三段是否安全，就默认不打。</td></tr>
+                        <tr><td><span class="combo-code">N-N-H</span></td><td>开荒、Hit 不够、需要稳定命中</td><td>刻意延迟第二与第三击，让每次硬直真正接续；连按会浪费硬直时间。</td></tr>
+                        <tr><td><span class="combo-code">N-H-H</span></td><td>冻结或已麻痹目标，普通伤害足够</td><td>第三击必须能击杀，或目标无法在收招时反击。</td></tr>
+                        <tr><td><span class="combo-code">S-N-S</span></td><td>Slicer 特殊攻击，如 DoB、Arrest、Hell</td><td>中距离利用 Accuracy Glitch 提高特殊攻击命中；距离和投刃返回时机会影响结果。</td></tr>
+                        <tr><td><span class="combo-code">S-S-S / S-H-H</span></td><td>冻结窗口内的 Vjaya、Berserk 或其他高风险特殊</td><td>只有命中率、HP/金钱成本和击杀线都明确时使用；否则换安全连段。</td></tr>
+                    </tbody>
+                </table>
+                <p><strong>延迟的含义：</strong>敌人正在后仰时再次命中，不会把后仰时间重新加满。正确做法是在连段允许的输入窗口内稍等，让上一段硬直接近结束再出下一段，而不是看到三段按钮就最快连按。</p>
+
+                <h4>典型局面：看到什么，就切什么</h4>
+                <div class="decision-grid">
+                    <section class="decision-card">
+                        <h4>一群普通怪向你走来</h4>
+                        <p>后退半步让它们叠成扇面 → Freeze → 从侧面用 Sword。若仍很散，改用 Slicer，不要追着第一只砍散整群。</p>
+                    </section>
+                    <section class="decision-card">
+                        <h4>一只高血怪带数只杂兵</h4>
+                        <p>队友能清杂兵时直取高血怪；没人接杂兵则先 Freeze 全波，再用 Excalibur / Vjaya 同时覆盖，或二段拉开重置。</p>
+                    </section>
+                    <section class="decision-card">
+                        <h4>Dorphon / Delbiter 冲锋</h4>
+                        <p>不要正面赌连段。预埋陷阱或 Twin Blaze 铺 Gifoie；不可冻的目标改 Arrest，控制成功后贴侧面爆发。</p>
+                    </section>
+                    <section class="decision-card">
+                        <h4>飞行或垂直高度目标</h4>
+                        <p>先用 Raygun 保持输出与诱导；熟练后用具有无限垂直高度的 TJS / Dark Flow 特殊处理对应刷怪点，避免在落点下盲等。</p>
+                    </section>
+                </div>
+
+                <h4>单刷与组队的职责差异</h4>
+                <table>
+                    <thead><tr><th>场景</th><th>你要主动承担</th><th>资源管理</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>单刷</strong></td><td>用 S-Red's Blade 补 Lv3 S/D、Zalure ES 处理 Boss/厚甲目标；多用门、墙角和 Confuse 聚怪。</td><td>记住补给点；每种 Mate 只有 10 个，先用站位省血，不要靠药硬换。</td></tr>
+                        <tr><td><strong>普通组队</strong></td><td>FO 上完 J/Z 后立即进入击杀位；Freeze 给整队创造共同窗口，优先处理队友慢打的高血目标。</td><td>Star Atomizer 用来救近身队友和保持节奏；看到队友已控场，不要用 Confuse 覆盖。</td></tr>
+                        <tr><td><strong>熟练速刷</strong></td><td>按地板标记预站位、预埋陷阱，争取敌人出现即进入击杀帧；通过队友走向分配目标。</td><td>按房间预算陷阱，不是全程省，也不是每波必放；把 Freeze 留给能明显缩短波次的刷怪点。</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>低血 Dark Flow：最后学，不是入门门槛</h4>
+                <p>
+                    Dark Flow 特殊需要 HP 低于最大值的 12.5%。贴住目标可让五道剑波重叠，形成极高单体爆发；但低血时任何站位错误都可能死亡。
+                    先学会用 <code>Monomate +200 HP</code>、<code>Dimate +500 HP</code> 调整血线，并记住固定伤害，再进入公开队伍练习。队友需要治疗时不要要求全队迁就你的低血玩法；切回普通高血连段仍然是合格 HUcast。
+                </p>
+
+                <h4>20 分钟练习法</h4>
+                <ol class="checklist">
+                    <li><strong>5 分钟：</strong>只拿 Sword，对同一种近战怪练“诱导挥空 → 侧移 → 延迟 N-N-H”，直到不吃反击。</li>
+                    <li><strong>5 分钟：</strong>同一房间分别用自然触发、Raygun 射爆、Twin Blaze 引爆 Freeze，比较自己剩余的有效攻击时间。</li>
+                    <li><strong>5 分钟：</strong>把每波先分成“聚团 / 分散 / 高血单体”，强制切对应武器，不允许一把 Sword 打到底。</li>
+                    <li><strong>5 分钟：</strong>复跑任务，只记三个最危险刷怪点的站位和陷阱时机；下一轮再补三个，不必一次背完整张图。</li>
+                </ol>
+            </article>
+
+            <h3>实战循环</h3>
+            <ol>
+                <li>进房间前确认下一波刷怪点和优先目标。</li>
+                <li>站在敌人侧面或背面，避免正面贴身；必要时以地板纹理作为固定站位标记。</li>
+                <li>分散敌人用 Slicer，聚团敌人用 Sword / Partisan，高血量单体用 Mechgun、Twin Sword 或 Dark Flow。</li>
+                <li>延迟第二、第三击维持硬直；收招不安全或第三击不能击杀时，只打两段。</li>
+                <li>用 Gifoie、Twin Blaze、冻结或 Arrest 阻止冲锋，再进入爆发位置。</li>
+            </ol>
+
+            <h3>HP 与低血玩法</h3>
+            <p>
+                HU 经常贴怪，也最常利用低血量 Mag 无敌触发和 Dark Flow 特殊攻击。先掌握固定伤害、药品回复量与安全站位，再练低血线；
+                <code>Monomate</code> 回复 200 HP、<code>Dimate</code> 回复 500 HP，可用来精确调整 Ultimate 下的血量。失败后复盘站位和连段，比盲目堆防御更有效。
+            </p>
+
+            <h3>武器路线</h3>
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <h4>先准备的通用工具</h4>
+                    <ul>
+                        <li><strong>Charge / Berserk Raygun：</strong>远距离补刀与打陷阱。</li>
+                        <li><strong>Charge / Berserk Vulcan：</strong>低成本单体爆发。</li>
+                        <li><strong>Red Sword / Chain Sawd：</strong>前期范围清怪。</li>
+                        <li><strong>Diska of Braveman + Thirteen：</strong>实用远程范围输出。</li>
+                        <li><strong>S-Parts ver2.01：</strong>机器人 Lv180 前重要的 +15 ATA 来源。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>关键 ES / S-Rank</h4>
+                    <ul>
+                        <li><strong>Arrest / Hell Slicer 或 J-Cutter：</strong>HU 的核心范围特殊武器，优先级最高。</li>
+                        <li><strong>Demon's Mechgun：</strong>人类 / 纽曼 HU 的高血量单体削血工具。</li>
+                        <li><strong>Zalure Gun：</strong>HUmar 与机器人在无 FO、Boss 或单刷时使用。</li>
+                        <li><strong>Hell Sword / Partisan / Scythe：</strong>敌人太近、Slicer 难以利用距离时补位。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>终局伤害武器</h4>
+                    <ul>
+                        <li><strong>Vjaya：</strong>高费用、高上限的多目标爆发。</li>
+                        <li><strong>Excalibur：</strong>最多三目标，适合冻结后的高血量敌人。</li>
+                        <li><strong>Tsumikiri J-Sword：</strong>环身、无限垂直高度的范围特殊。</li>
+                        <li><strong>Dark Flow：</strong>贴身叠五道剑波的最强单体刷怪点爆发。</li>
+                        <li><strong>Jizai：</strong>处理高 DFP / EVP 单体。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>防具与强化</h4>
+                    <ul>
+                        <li><strong>Red Ring：</strong>大多数场景首选，提供 ATP、ATA 与优秀防御。</li>
+                        <li><strong>Anti-Dark Ring：</strong>高 EDK 配装核心。</li>
+                        <li><strong>D-Parts ver1.01：</strong>机器人 +35 ATP。</li>
+                        <li><strong>球顺序参考：</strong>Dark Flow → TJS → DoB / Vjaya / Excalibur → Twin Sword → Twin Saber。</li>
+                        <li><strong>属性参考：</strong>Machine、Dark 优先；常用组合为 Native / A.Beast 与 Machine / Dark。</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="ranger" class="profession-panel" role="tabpanel" aria-labelledby="tab-ranger" hidden>
+            <h2>RA · Ranger / 枪手</h2>
+
+            <p>RA 拥有最高的 ATA、优秀射程和最完整的武器特殊工具箱。核心不是站得越远越好，而是找到“足够安全、又能让 Shot / Needle 覆盖最多目标”的距离和角度。</p>
+
+            <h3>Vanilla 成长路线</h3>
+            <table>
+                <thead><tr><th>时期</th><th>武器与打法</th><th>培养重点</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Normal–Hard</td>
+                        <td>Rifle 在怪物行动前远程点杀，Shot 对付正面扇形怪群，Handgun 用于移动战，Mechgun 留给已硬直或被控制的单体。被逼近时可用 Saber，不必拘泥“只能开枪”。</td>
+                        <td>Mag 以 POW 为主、DEX 为辅；学习用门口、墙角与冻结目标阻挡其他怪物路径。</td>
+                    </tr>
+                    <tr>
+                        <td>Very Hard</td>
+                        <td>以高 Hit Shot 清波、Mechgun 爆发、Rifle 控危险目标；开始测试 Arrest、Blizzard、Hell、Demon's 等特殊，而不是只打 Heavy。</td>
+                        <td>武器栏按“范围、单体、控制、Boss”分工，避免背包里全是同一种枪。</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimate</td>
+                        <td>Shot 仍是主轴，但必须重视 Hit；先冻结 / 麻痹精英再输出。Episode 2 的低 EDK 杂兵适合 Hell，高血目标适合 Demon's。</td>
+                        <td>先建立命中和控场，再追求伤害。机器人用陷阱弥补技能缺失，人类及时补自己的支援技能。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Vanilla 关键习惯：</strong>第一枪的价值常常不是伤害，而是让敌人停下、转向或排成 Shot 能覆盖的形状。RA 的安全距离是为队伍争取时间，不是躲在看不到整波怪的位置。</p>
+
+            <h3>四个角色怎么选</h3>
+            <div class="class-grid">
+                <article class="class-card">
+                    <h4>RAmar</h4>
+                    <p>全职业最高 ATA，拥有 Lv15 S/D，最容易跨过 Hit 命中阈值。适合想稳定使用各种特殊攻击的玩家。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>常驻 S/D，以最高 ATA 先手 Arrest / Hell / Demon's；精英削血后再用 Charge Arms、Mechgun 或 Heaven Striker 收尾。</li>
+                        <li><strong>单刷：</strong>射程、命中、Resta 和基础 S/D 组合完整，是最稳的万能单刷角色之一。</li>
+                        <li><strong>误区：</strong>最高 ATA 不代表无脑 S-S-S；特殊仍有较低命中修正，要根据距离使用 S-N-S、N-S-S 或 SN glitch。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>RAmarl</h4>
+                    <p>第二高 ATA，拥有 Lv20 S/D/J/Z，单刷和无 FO 队伍很舒服；高 EVP 也能组成闪避型配置。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>先用 J/Z 压低整波怪的攻防，再以 Arms / Needle 清群；高血目标用 Demon's，落单目标由 Heaven Striker 补掉。</li>
+                        <li><strong>组队：</strong>无 FO 时承担完整支援；有 FO 时减少重复施法，把优势转为更安全的远程控场。</li>
+                        <li><strong>误区：</strong>低 ATP 不应靠过度近战弥补；她的效率来自支援后持续覆盖整波怪。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>RAcast</h4>
+                    <p>RA 最高 ATP，拥有陷阱；冻结陷阱大幅弥补四名 RA 中最低的 ATA。适合追求范围伤害和爆发。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>Freeze Trap 固定高 EVP / 高威胁目标，再用 Baranz / Arms 扫场；单体用高属性 Mechgun 或 Heaven Striker。</li>
+                        <li><strong>组队：</strong>有高等级 Shifta 时伤害跃升最大；与 FO 配合，让低级 Gifoie 代为瞬爆陷阱。</li>
+                        <li><strong>误区：</strong>Ultimate 下机器人 Demon's 削血受罚，不能照搬人类 RA 的 Demon's 主轴。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>RAcaseal</h4>
+                    <p>全职业最高 DFP，ATA 略高于 RAcast，拥有陷阱和机器人麻痹加成，控场非常稳定。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>以 Spread / Arrest Needle 和陷阱连续控场，队友输出时负责漏怪与侧翼；安全后再接范围伤害。</li>
+                        <li><strong>取舍：</strong>比 RAcast 多出的 ATA 有利于特殊命中，但 ATP 与 Freeze Trap 数量较少，更适合控制优先的玩家。</li>
+                        <li><strong>误区：</strong>高 DFP 可能让多段攻击不触发击倒而连续吃伤，不能把“面板最硬”理解为可以站桩。</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="character-handbook" aria-label="Ranger 角色专项教程">
+                <h3>角色专项教程</h3>
+                <details id="ramar-deep">
+                    <summary>RAmar · 用最高 ATA 驾驭特殊攻击</summary>
+                    <div class="character-body">
+                        <p><strong>核心循环：</strong>维持 Lv15 S/D → Rifle / Needle 从远处先控危险怪 → Demon's 削高血目标 → Charge Arms 或 Mechgun 收尾。最高 ATA 的价值是让低命中修正的特殊攻击更可靠，不是让你站在门口持续 Heavy。</p>
+                        <ul><li><strong>Arrest：</strong>移动快、不能冻或一旦近身就危险的目标先麻痹；Spread Needle 射程短，必须在敌人真正进入覆盖扇面后开枪。</li><li><strong>Hell：</strong>先看 EDK，再决定 Rifle 点杀或 Needle / Shot 扫群；V502 提升效果，但仍要用合适连段和距离。</li><li><strong>Demon's：</strong>只负责快速削血，目标进入普通伤害击杀线就切 Charge / Heaven Striker，避免第三次特殊浪费时间。</li><li><strong>单刷：</strong>S/D、Resta 与高 ATA 已形成完整闭环；缺 J/Z 时靠 Zalure ES、控制和正确属性弥补。</li></ul>
+                    </div>
+                </details>
+                <details id="ramarl-deep">
+                    <summary>RAmarl · Lv20 全支援的远程节奏</summary>
+                    <div class="character-body">
+                        <p><strong>核心循环：</strong>转场 S/D → 新波一次 J/Z 覆盖关键区域 → 用 Needle / Arms 控制并输出 → Demon's 处理高血 → Resta / Anti 后立刻回到射线。RAmarl 的强项是让单刷和无 FO 队伍都保持完整增减益。</p>
+                        <ul><li><strong>施法站位：</strong>J/Z 要从能覆盖最多敌人的中距离施放，不要跑进怪群中心追求全覆盖；漏一只通常比被打断更便宜。</li><li><strong>输出：</strong>ATP 较低时先用 Zalure 和 Demon's 改变击杀线，再用多目标枪收尾；不要拿低伤 Shot 对厚怪连续三段。</li><li><strong>有 FO 队伍：</strong>让 Lv30 支援覆盖主力，自己只补漏怪、远端队友和紧急治疗，省下动作做 RA 的先手控场。</li><li><strong>练习重点：</strong>把支援剩余时间和下一波站位一起记，而不是等状态图标消失才在战斗中补。</li></ul>
+                    </div>
+                </details>
+                <details id="racast-deep" open>
+                    <summary>RAcast · 高 ATP 陷阱枪手完整打法</summary>
+                    <div class="character-body">
+                        <p>RAcast 的核心是<strong>先用陷阱或枪械特殊固定整波怪，再把最高 RA ATP 转化成四至五目标伤害</strong>。他在高等级 Shifta 的多人队伍里提升尤其明显；单刷没有稳定 Shifta，打法会更偏安全控制与特殊攻击。</p>
+
+                        <h4>逐波四步循环</h4>
+                        <ol class="combat-flow">
+                            <li><strong>读形状：</strong>五只以内且呈扇面，准备 Arms / Needle；四只排成线或聚在落点，准备 Baranz Launcher；一只高血怪则切 Mechgun / Heaven Striker。</li>
+                            <li><strong>先固定：</strong>能冻结的危险波用 Freeze Trap 或 Frozen Shooter；不能冻结的目标用 Arrest Needle / Raygun。不要在敌人仍横向散开时急着打伤害。</li>
+                            <li><strong>打主输出：</strong>安全时用 <span class="combo-code">N-S-S</span>、<span class="combo-code">S-S-S</span> 的 Charge / Berserk Arms 或 Baranz；命中不稳就先 N 起手，不能一套杀完则提前停手重置距离。</li>
+                            <li><strong>清漏怪：</strong>Heaven Striker / Rifle 点掉扇面外目标；下一波将出现时宁可提前走位，不要用 Shot 慢慢追一只残血。</li>
+                        </ol>
+
+                        <h4>武器什么时候切</h4>
+                        <table>
+                            <thead><tr><th>局面</th><th>首选</th><th>原因与后续</th></tr></thead>
+                            <tbody>
+                                <tr><td>普通五目标扇面</td><td>Charge Arms / Berserk Needle</td><td>覆盖多、动作直接；有 Shifta 和正确属性时优先追求一套清波。</td></tr>
+                                <tr><td>四只高血目标排线</td><td>Baranz Launcher</td><td>高伤但弹道和锁定需要站位；先冻结，避免目标移动导致落空。</td></tr>
+                                <tr><td>危险单体</td><td>Frozen Shooter → Mechgun / HS</td><td>先冻后打满多段；无须把 Frozen Shooter 当普通输出枪连续射。</td></tr>
+                                <tr><td>不可冻结目标</td><td>Arrest Needle / Raygun</td><td>机器人 Paralysis 特殊有加成；麻痹成功后再换伤害武器。</td></tr>
+                                <tr><td>Ep2 低 EDK 杂兵</td><td>V502 + Hell Needle / Shot / Rifle</td><td>按密度选择范围；单只目标用 Rifle，别为一个敌人挥霍整套 Shot 动画。</td></tr>
+                                <tr><td>高 HP / 高 DFP</td><td>物理爆发或队友 Demon's</td><td>机器人在 Ultimate 使用 Demon's 有减成，通常不要把它当主轴。</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>陷阱与队伍配合</h4>
+                        <ul><li><strong>Freeze：</strong>给 Baranz / Arms 创造完整射击窗口。若敌人会自然聚团，等半秒再冻往往比生成即冻覆盖更好。</li><li><strong>Confuse：</strong>单刷开荒让高伤怪互打、聚拢；多人 Ultimate 慎用，避免覆盖 Freeze 并打乱敌人路径。</li><li><strong>Damage：</strong>Slime、Rappy 和低 EFR 目标的专项工具，不是普通清怪主力。</li><li><strong>FO 配合：</strong>提前让 FO 用低级 Gifoie 或 Mercurius Rod 特殊铺火环，你放下陷阱即可瞬爆，省去举枪射陷阱的动作。</li></ul>
+
+                        <h4>单刷和组队的不同</h4>
+                        <div class="decision-grid">
+                            <section class="decision-card"><h4>单刷</h4><p>依靠 Mylla &amp; Youlla 取得临时 Shifta；输出不够时不要硬追组队击杀线，改为 Freeze → 安全三段 → 拉开。Hell 有效区域可绕过 ATP 不足。</p></section>
+                            <section class="decision-card"><h4>组队</h4><p>等 FO 的 Shifta / Zalure 落下再打牺牲特殊，伤害差距很大。你负责整波覆盖和陷阱，HU 贴住厚怪时不要用枪击退、转向它的目标。</p></section>
+                        </div>
+                        <p class="notice"><strong>最常见错误：</strong>因为 HP 和 DFP 高就站桩打满三段。远程职业的防御来自射程与硬直；当怪已进入 Shot 内圈并开始分散，应先 Freeze、换 Needle，或后撤重整射线。</p>
+                    </div>
+                </details>
+                <details id="racaseal-deep">
+                    <summary>RAcaseal · 控场优先的安卓枪手</summary>
+                    <div class="character-body">
+                        <p><strong>核心循环：</strong>Arrest / Freeze 固定第一批威胁 → Needle 看守漏怪和侧翼 → 队友开始输出后再用 Arms / Baranz 补范围伤害。她用比 RAcast 更高的 ATA 换取更稳定的特殊攻击，但击杀线更依赖 Shifta、Zalure 与武器属性。</p>
+                        <ul><li><strong>先控再打：</strong>一波怪只要有一只冲出覆盖范围，就先用 Raygun / Frozen Shooter 单控，不要为了保持 Shot 连段让它碰到 FO。</li><li><strong>陷阱：</strong>数量成长和 RAcast 不同，按任务规划 Freeze / Confuse；控住高 EVP 敌人后让 HU 接管高血单体。</li><li><strong>高 DFP 陷阱：</strong>防御太高时部分多段攻击可能连续命中而不触发击倒，必须仍然尊重固定伤害和属性攻击。</li><li><strong>输出补偿：</strong>正确敌种属性、Zalure 和 Charge 武器比单纯堆 ATP 单位更能改善清波速度。</li></ul>
+                    </div>
+                </details>
+            </div>
+
+            <h3>目标处理逻辑</h3>
+            <ul>
+                <li><strong>普通密集怪：</strong>Charge Arms 起步，后期换高 Hit Baranz Launcher；漏怪用 Heaven Striker 点掉。</li>
+                <li><strong>危险精英：</strong>先用 Frozen Shooter / Freeze Trap 控住，再用 Mechgun、Heaven Striker、Excalibur 或 Daylight Scar 爆发。</li>
+                <li><strong>不能冻结的怪：</strong>Dorphon、Girtablulu 等优先用 Spread / Arrest Needle 麻痹，再接 Demon's 或伤害武器。</li>
+                <li><strong>Episode 2 杂兵：</strong>大量敌人 EDK 较低，<code>V502 + Hell Rifle / Needle / Shot</code> 是核心路线。</li>
+                <li><strong>冲锋怪：</strong>Twin Blaze 的低级 Gifoie 可阻止 Dark Bringer、Delbiter、Dorphon 首次冲锋。</li>
+                <li><strong>机器人陷阱：</strong>密集强敌用 Freeze Trap；普通怪可用 Confuse Trap 让它们聚团；枪或范围攻击可即时引爆。</li>
+            </ul>
+
+            <h3>装备路线</h3>
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <h4>入门六件套</h4>
+                    <ul>
+                        <li><strong>50 Hit Charge Vulcan：</strong>单体爆发。</li>
+                        <li><strong>50 Hit Charge Arms：</strong>五目标主力。</li>
+                        <li><strong>Spread Needle：</strong>近中距离麻痹控场。</li>
+                        <li><strong>Frozen Shooter：</strong>必中概率冻结的长枪工具。</li>
+                        <li><strong>Heaven Striker：</strong>高 DFP 单体、Boss 与远距离补刀。</li>
+                        <li><strong>Cannon Rouge：</strong>龙系、De Rol Le、Barba Ray、Gal Gryphon 等 Boss。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>终局工具箱</h4>
+                    <ul>
+                        <li><strong>Baranz Launcher：</strong>四目标高伤主力。</li>
+                        <li><strong>Hell Needle / Shot：</strong>Episode 2 清杂核心。</li>
+                        <li><strong>Demon's Needle / Shot / Mechgun：</strong>人类 RA 的高血量削血工具。</li>
+                        <li><strong>Arrest Needle：</strong>RAmar / RAmarl 的稳定范围麻痹。</li>
+                        <li><strong>Excalibur / Daylight Scar：</strong>冻结后的近身高伤。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>单位与盾</h4>
+                    <ul>
+                        <li><strong>V101 / Heavenly Battle：</strong>攻击速度核心。</li>
+                        <li><strong>Heavenly Arms：</strong>ATA 未满前按需装备。</li>
+                        <li><strong>V501 / V502：</strong>提升状态 / Hell 触发，Ep2 常驻优先。</li>
+                        <li><strong>Red Ring：</strong>通用终局盾；机器人前期可用 S-Parts ver2.01。</li>
+                        <li><strong>Cure 单位：</strong>按任务切换 Freeze、Paralysis、Confuse、Shock。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>加球优先级</h4>
+                    <p><strong>Baranz Launcher → Heaven Striker → Excalibur → Cannon Rouge → Daylight Scar → Arms</strong></p>
+                    <p>不要给低 Hit、未来会替换的武器仓促加球。Baranz 常做 Native / Machine 与 A.Beast / Dark；Heaven Striker 常做 Native / Dark。</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="force" class="profession-panel" role="tabpanel" aria-labelledby="tab-force" hidden>
+            <h2>FO · Force / 法师</h2>
+
+            <p>FO 首先是全队效率放大器，其次才是“法术输出”。Lv30 支援技能能显著提高队伍伤害和生存；当前 Ephinea 没有 DMC，合适的技能轰炸、Gifoie 叠层和武器攻击都可以积极使用。</p>
+
+            <h3>Vanilla 成长路线</h3>
+            <table>
+                <thead><tr><th>时期</th><th>技能与打法</th><th>培养重点</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Normal–Hard</td>
+                        <td>用低 TP 的 Foie / Zonde / Barta 测敌人弱点，成群敌人再用 Gi / Ra 系；不要用昂贵范围技能轰单只残血怪。手杖主要看 MST 和技能增幅，不是拿来敲怪。</td>
+                        <td>优先 MIND Mag、Mind Material、Mind 单位和较高等级 Resta。随身带足 Fluid，纽曼可在安全转场静止回 TP。</td>
+                    </tr>
+                    <tr>
+                        <td>Very Hard</td>
+                        <td>组队优先维持 S/D，并对危险怪补 J/Z；用 Resta、Anti、Reverser 管理队伍。技能抗性高或 TP 紧张时，用 Handgun、Slicer 或带特殊的武器补位。</td>
+                        <td>收集不同元素增幅杖与 Merge，按区域切换；不要把四个单位槽全部锁死为 Mind。</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimate</td>
+                        <td>怪物元素抗性拉开差距，先看抗性再选技能。高血高抗目标改用 Demon's，低 EDK 目标用 Hell / Megid；Gifoie 预叠用于已知刷怪点。</td>
+                        <td>在 MST 之外补 HP、抗性和 ATA。纯施法、支援、武器补位三套思路要能随房间切换。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Vanilla 关键习惯：</strong>攻击技能看元素抗性而不是 DFP，也不会被 EVP 闪避。第一次打新区域时，小范围试招比固定只按 Rafoie 更可靠；支援技能从 Lv3 起才会覆盖附近队友。</p>
+
+            <h3>四个角色怎么选</h3>
+            <div class="class-grid">
+                <article class="class-card">
+                    <h4>FOmar</h4>
+                    <p>FO 最高 ATP，偏战斗法师；Gifoie / Gizonde / Gibarta +30%，Grants +50%，S/D 范围翻倍。ATA 全职业最低，武器 Hit 要求高。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>Ep1 / Ep4 以 Gifoie 预叠为轴；高抗性区域切 Excalibur、DoB 或 Demon's / Hell 工具，尽量用命中技巧弥补 ATA。</li>
+                        <li><strong>组队：</strong>用 Striker of Chao 扩大 S/D；Resta / Anti 天生范围较小，治疗前要主动靠近队伍。</li>
+                        <li><strong>误区：</strong>“战斗法师”不是全程近战；何时从技能切到武器才是 FOmar 的核心判断。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>FOmarl</h4>
+                    <p>支援取向，S/D/Resta/Anti 范围翻倍，Grants +50%；Slicer 的动作利于命中技巧，Rambling May 射击动作优秀。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>先用大范围支援稳住队伍，再按场景用 Rambling May 单体、SoF / DoB 范围削血或 Grants 点杀。</li>
+                        <li><strong>组队：</strong>最容易在分散队形中覆盖 S/D、Resta、Anti；应把“少跑位也能及时支援”转化为提前站下一波。</li>
+                        <li><strong>误区：</strong>MST 最低且缺少主流范围技能增伤，不适合不看抗性地持续技能轰炸。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>FOnewm</h4>
+                    <p>Gi 系与 Ra 系伤害均 +30%，是最强范围技能输出；ATA 也足够使用 Demon's Mechgun 等重要工具。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>预叠 Gifoie，开波后按弱点选择 Rafoie / Rabarta / Razonde；抗性高的精英换 Demon's Mechgun、Bringer's Rifle 或 Excalibur。</li>
+                        <li><strong>单刷：</strong>Ep1 / Ep4 技能覆盖极强，静止时天然回 TP；通过换增幅杖与 Merge 追求击杀阈值。</li>
+                        <li><strong>误区：</strong>最强 Nuker 也不等于只按 Ra 系；Ultimate Ep2 尤其需要武器特殊和支援。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>FOnewearl</h4>
+                    <p>最高 MST、TP 与 FO 最高 ATA，基础三系 +30%，Resta/Anti 范围翻倍，Megid 可贯穿；ATP 和 HP 很低，早期可用 Heavenly/HP 防止固定伤害秒杀。</p>
+                    <ul class="play-loop">
+                        <li><strong>打法：</strong>利用 Foie / Zonde / Barta 高单体效率点杀，直线怪群用 Barta 或贯穿 Megid；高血目标以高 ATA 的 Demon's / Hell 武器削血。</li>
+                        <li><strong>组队：</strong>强 Resta / Anti 与长范围让她能兼顾攻击和救场；优先保持安全距离，避免低 HP 被固定伤害秒杀。</li>
+                        <li><strong>误区：</strong>最高 MST 不代表范围清图一定强于 FOnewm；她更擅长基础系、Megid、治疗和武器特殊。</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="character-handbook" aria-label="Force 角色专项教程">
+                <h3>角色专项教程</h3>
+                <details id="fomar-deep">
+                    <summary>FOmar · 技能与武器混合的近中距离法师</summary>
+                    <div class="character-body">
+                        <p><strong>核心循环：</strong>Striker of Chao 扩 S/D → Glide Divine 补 J/Z → Gifoie 预叠并整形 → 技能抗性低的怪继续 Gi / Ra → 高抗厚怪切 Demon's、DoB 或 Excalibur。FOmar 的 ATP 是“遇到技能不合适时有第二答案”，不是要求全程近战。</p>
+                        <ul><li><strong>ATA 管理：</strong>全职业最低 ATA 使 Hit、Smartlink 和控制窗口非常关键；先用 Slicer 的命中技巧或 SoF 削血，再决定是否贴身。</li><li><strong>支援范围：</strong>S/D 有职业加成，Resta / Anti 没有；治疗必须主动靠近，而不是站远处看着短范围落空。</li><li><strong>技能：</strong>利用 Gifoie / Gizonde / Gibarta 加成处理合适抗性的怪；不要看到职业加成就忽略敌人元素抗性。</li><li><strong>练习重点：</strong>每波强制做一次“技能还是武器”的选择，并记录哪一种更快到击杀线。</li></ul>
+                    </div>
+                </details>
+                <details id="fomarl-deep">
+                    <summary>FOmarl · 大范围支援与稳定武器补位</summary>
+                    <div class="character-body">
+                        <p><strong>核心循环：</strong>在转场用扩大范围的 S/D 覆盖队伍 → 刷怪后 J/Z → 观察 HU/RA 是否需要 Resta / Anti → 空档用 Rambling May、SoF / DoB 或 Grants 清目标。她的强项是用更少跑位完成支援，把省出的时间转成稳定输出。</p>
+                        <ul><li><strong>站位：</strong>保持在队伍中后段，让扩大范围同时碰到前排与后排；不要为了追一只怪离开治疗覆盖中心。</li><li><strong>物理补位：</strong>Rambling May 处理单体，Slicer 动作适合特殊攻击；冻结或麻痹后再近身，较低 ATA 仍需高 Hit。</li><li><strong>Grants：</strong>职业加成很高，但只在光抗性与目标数量合适时使用；多只普通怪仍应比较范围技能或武器效率。</li><li><strong>误区：</strong>支援型不等于持续 Resta。队友安全时，提前走位、J/Z 和削血都比过量治疗更有价值。</li></ul>
+                    </div>
+                </details>
+                <details id="fonewm-deep" open>
+                    <summary>FOnewm · 范围法术输出完整打法</summary>
+                    <div class="character-body">
+                        <p>FOnewm 的 Gi / Ra 系自带 30% 伤害加成，擅长 Episode 1 与 4 的范围清图；但真正的进阶点是<strong>在技能、Demon's / Hell 和物理攻击之间快速切换</strong>。Ultimate Episode 2 大量目标技术抗性高，继续只按 Rafoie 会同时浪费 TP 和队伍时间。</p>
+
+                        <h4>开波前后的六步循环</h4>
+                        <ol class="combat-flow">
+                            <li><strong>转场：</strong>检查 S/D，不在战斗已经开始后才补。换 Striker of Chao 扩范围，施放完立即换回输出武器。</li>
+                            <li><strong>预判：</strong>已知刷怪点先空手快速叠 Gifoie；火环生成后再换 Magical Piece / Gifoie Merge，伤害按命中敌人时的装备计算。</li>
+                            <li><strong>开波：</strong>对高威胁目标补 J/Z；机器人正放陷阱时用低级 Gifoie 帮助瞬爆，但别用状态技能覆盖已冻结目标。</li>
+                            <li><strong>试抗性：</strong>不熟的区域先用一次合适元素观察伤害，再决定 Ra / Gi 连发；不要仅凭敌人颜色猜弱点。</li>
+                            <li><strong>切解法：</strong>技能伤害高就继续施法；高 HP / 高抗目标改 Demon's；低 EDK 敌人改 Hell / Megid；只剩单体残血则用基础系或武器补刀。</li>
+                            <li><strong>收波：</strong>队友安全且目标已有人处理，提前站下一刷怪点；FOnewm 最容易因“多补一发法术”错过预叠窗口。</li>
+                        </ol>
+
+                        <h4>技能选择不是“哪个范围大”</h4>
+                        <table>
+                            <thead><tr><th>技能</th><th>适合</th><th>不适合</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Gifoie</strong></td><td>固定刷怪点、连续多波、阻止首次冲锋、提供持续硬直</td><td>追着已散开的怪现放；未预判时施法启动慢</td></tr>
+                                <tr><td><strong>Rafoie</strong></td><td>火抗低、分布宽、需要即时全范围命中的杂兵</td><td>单只厚怪或火抗很高的 Ep2 目标</td></tr>
+                                <tr><td><strong>Rabarta</strong></td><td>缺少安卓 Freeze Trap 时尝试范围冻结和控群</td><td>依赖它稳定冻结关键精英；Ultimate 冻结率有限</td></tr>
+                                <tr><td><strong>Razonde / Gizonde</strong></td><td>雷抗低的机器、小怪、箱子与 Vol Opt 等专项局面</td><td>只因动画快就无视雷抗连续施放</td></tr>
+                                <tr><td><strong>基础三系</strong></td><td>单体残血、远距离点杀、精确控 TP 成本</td><td>大量聚团怪；FOnewm 没有 FOnewearl 的基础系职业加成</td></tr>
+                                <tr><td><strong>Megid</strong></td><td>低 EDK 且排成直线的目标；或无需范围技能伤害的场景</td><td>高 EDK 目标和需要稳定即时控制的危险波</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>四套快捷切装</h4>
+                        <div class="decision-grid">
+                            <section class="decision-card"><h4>支援套</h4><p>Striker of Chao 施 S/D，Glide Divine 施 J/Z；支援完成立刻换下，不要拿低输出支援杖打一整波。</p></section>
+                            <section class="decision-card"><h4>Gifoie 套</h4><p>Magical Piece + Gifoie Merge / Ignition Cloak。预叠时可先空手追求施法动作，再在火环命中前切回增幅。</p></section>
+                            <section class="decision-card"><h4>Ra 系套</h4><p>Psycho Wand 配对应 Merge；先确认减少 TP 消耗带来的 HP 成本可控，并按区域元素切盾。</p></section>
+                            <section class="decision-card"><h4>武器特殊套</h4><p>Smartlink + V502，携带 Demon's Mechgun / Bringer's Rifle、SoF、Hell J-Cutter。把高抗性目标视作另一种职业在处理。</p></section>
+                        </div>
+
+                        <h4>单刷与组队</h4>
+                        <ul><li><strong>单刷 Ep1 / Ep4：</strong>用门口、刷怪点和 Gifoie 预叠形成安全区；纽曼静止回 TP 只用于真正安全的转场。通过换杖和 Merge 追求少一发的击杀阈值，比盲堆 MST 更实际。</li><li><strong>组队：</strong>第一职责仍是 Lv30 S/D/J/Z 与救场。支援稳定后才以范围技能提高总输出；队友已能一套清波时，多打一发慢法术反而会让你错过下一波站位。</li><li><strong>Ep2：</strong>默认先怀疑技能效率，测试伤害后及时切 Hell、Demon's 或 Excalibur。FOnewm 180 ATA 足以使用重要特殊武器，但仍需要 Hit、Smartlink 和正确连段。</li><li><strong>Boss：</strong>按部位数与抗性选择技能或多段物理；不要把清杂用的 Ra 系配置原样带进所有 Boss。</li></ul>
+
+                        <h4>15 分钟练习法</h4>
+                        <ol class="checklist"><li>选一段熟悉任务，每个房间只记录“最省施法次数的元素”，建立区域抗性直觉。</li><li>练空手 Gifoie → 切 Magical Piece / Merge，让火环在装备切好后命中。</li><li>遇到第一只高抗厚怪，强制切 Demon's 削血再收尾，比较与纯法术的时间和 TP。</li><li>每波结束前停止追残血，由队友补刀，自己提前站下一波并刷新支援。</li></ol>
+                    </div>
+                </details>
+                <details id="fonewearl-deep">
+                    <summary>FOnewearl · 基础系、贯穿 Megid 与精准特殊</summary>
+                    <div class="character-body">
+                        <p><strong>核心循环：</strong>保持远距离支援 → 用带 30% 职业加成的 Foie / Zonde / Barta 精确点杀 → 直线低 EDK 怪用贯穿 Megid → 高 HP 高抗怪以较高 ATA 的 Demon's / Hell 武器处理。她是单体法术和精确工具专家，不是缩小版 FOnewm。</p>
+                        <ul><li><strong>基础系：</strong>单体、远距离、低 TP 成本时优先；Barta 可贯穿直线，站位能把单体技能变成多目标收益。</li><li><strong>Megid：</strong>FOnewearl 自带贯穿，先把怪拉成直线再施放；目标 EDK 高时立即换解法，不要靠连续赌概率拖延。</li><li><strong>生存：</strong>低 HP 是硬限制。按区域准备 HP / 抗性单位，先保证不会被固定伤害秒杀，再谈多一个 Mind 单位。</li><li><strong>组队：</strong>扩大 Resta / Anti 适合远距离救场；治疗后马上回到安全射线，不要跟着 HU 进入怪群。</li></ul>
+                    </div>
+                </details>
+            </div>
+
+            <h3>每波怪的优先顺序</h3>
+            <ol>
+                <li><strong>开波前：</strong>确认 S/D 剩余时间，移动到能快速覆盖队伍与刷怪点的位置。</li>
+                <li><strong>开波瞬间：</strong>对高威胁、高 DFP 敌人补 J/Z；机器队友放陷阱时可用低级 Gifoie 协助瞬爆。</li>
+                <li><strong>决定输出方式：</strong>可预判刷怪点就叠 Gifoie；密集怪用合适的 Ra/Gi 技能；高 HP / 高抗性目标换 Demon's、SoF 或物理武器。</li>
+                <li><strong>观察队伍：</strong>及时 Resta / Anti / Reverser，但别为了“看起来很忙”打乱冻怪和队友已安排好的分工。</li>
+                <li><strong>转场：</strong>当前波无需补位时，提前去下一波站位，这是 FO 最容易创造的隐形收益。</li>
+            </ol>
+
+            <h3>技能使用</h3>
+            <ul>
+                <li><strong>Gifoie：</strong>可在刷怪前叠加，伤害在火环碰到敌人时计算。可空手快速施放，敌人出现前再换 Magical Piece / Gifoie Merge 获取增伤。</li>
+                <li><strong>Rafoie / Razonde：</strong>用于广域清杂和硬直控场；尤其现行无 DMC 后，合适场景可放心输出。</li>
+                <li><strong>Rabarta：</strong>Pre-Ultimate 冻结率 40%，Ultimate 为 20%；缺少冻结陷阱时很有价值。</li>
+                <li><strong>Gizonde：</strong>施放速度快，可开箱、清小怪，并用于锁住 Vol Opt 第一阶段。</li>
+                <li><strong>Megid / Hell：</strong>Episode 2 低 EDK 杂兵和 Episode 4 特定敌人很有效；FOnewearl 的 Megid 自带贯穿。</li>
+                <li><strong>低级 Gifoie：</strong>Mercurius Rod 特殊可停止 Delbiter、Dark Bringer、Dorphon、Zu 的首次冲锋。</li>
+            </ul>
+
+            <h3>装备路线</h3>
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <h4>支援与技能增幅</h4>
+                    <ul>
+                        <li><strong>Striker of Chao：</strong>S/D 范围翻倍，常驻携带。</li>
+                        <li><strong>Glide Divine：</strong>J/Z 范围翻倍。</li>
+                        <li><strong>Magical Piece：</strong>Gi 系 +30%，Gifoie 核心。</li>
+                        <li><strong>Psycho Wand：</strong>Ra 系 +30%，单刷和技能输出配置更重要。</li>
+                        <li><strong>Mercurius Rod：</strong>Grants +30%，低级 Gifoie 特殊可拦冲锋。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>武器特殊与物理补位</h4>
+                    <ul>
+                        <li><strong>Slicer of Fanatic：</strong>三目标无衰减 Demon's。</li>
+                        <li><strong>Bringer's Rifle：</strong>长距离单体 Demon's。</li>
+                        <li><strong>Hell Raygun / ES J-Cutter：</strong>Episode 2 单体 / 范围即死。</li>
+                        <li><strong>Demon's ES Mechgun：</strong>FOnewm / FOnewearl 处理高血高防目标。</li>
+                        <li><strong>DoB + Thirteen / Excalibur：</strong>需要物理伤害时使用。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>核心单位</h4>
+                    <ul>
+                        <li><strong>V801：</strong>法术施放速度核心。</li>
+                        <li><strong>V101：</strong>武器攻击速度与综合属性。</li>
+                        <li><strong>Smartlink：</strong>消除非 RA 使用远程武器的距离命中惩罚。</li>
+                        <li><strong>V502：</strong>Episode 2 的 Hell / 状态特殊核心。</li>
+                        <li><strong>Technique 单位：</strong>技能盘未到 Lv30 时按需补级。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>铠甲与盾</h4>
+                    <ul>
+                        <li><strong>Ignition Cloak + Gifoie Merge：</strong>Gifoie 伤害核心组合。</li>
+                        <li><strong>Thirteen：</strong>使用 DoB 时切换。</li>
+                        <li><strong>Dress Plate / Anti-Dark Ring：</strong>高 EDK 配置。</li>
+                        <li><strong>Red Ring：</strong>武器型 FO 的 ATA 与综合属性终局选择。</li>
+                        <li><strong>各类 Merge：</strong>根据关卡主要技能切换，不要一件盾穿到底。</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <details class="common-guide">
+        <summary>展开：三职业养成速查、Vanilla / Ephinea 差异与资料来源</summary>
+        <h2>最短养成清单</h2>
+        <table>
+            <thead>
+                <tr><th>职业</th><th>先解决</th><th>随后补齐</th><th>终局方向</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>HU</td><td>Hit、远程手枪、范围武器</td><td>Arrest / Hell Slicer、DoB + Thirteen</td><td>DF、TJS、Vjaya、Excalibur 属性套</td></tr>
+                <tr><td>RA</td><td>50H Charge Arms / Vulcan</td><td>Frozen Shooter、Spread Needle、V502 + Hell</td><td>Baranz、HS、Excalibur 属性套</td></tr>
+                <tr><td>FO</td><td>Lv30 支援、V801、范围杖</td><td>Magical Piece、支援杖、Smartlink / V502</td><td>技能盾切换、Demon's / Hell 工具箱</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Vanilla 与 Ephinea 终局的分界</h2>
+        <table>
+            <thead><tr><th>系统</th><th>Vanilla 核心思路</th><th>Ephinea 页面后半的进阶用法</th></tr></thead>
+            <tbody>
+                <tr><td>掉落 / 经验</td><td>经典掉落为全队共享；传统经验需要对怪物造成命中或施加 J/Z 来取得经验资格</td><td>Ephinea 默认可用独立掉落与范围经验共享；Boss 仍需取得经验资格</td></tr>
+                <tr><td>装备</td><td>用当下掉落的高 Hit 普通武器建立完整工具栏</td><td>再以 ES 武器、套装、加球属性套提高效率</td></tr>
+                <tr><td>队伍输出</td><td>原版联机环境需考虑 DMC，避免多人同时覆盖同一目标</td><td>Ephinea 已移除 DMC，可以根据站位与分工共同集火</td></tr>
+                <tr><td>难度门槛</td><td>官方 BB / Ephinea Classic 的 Ep1 为 Lv20 / 50 / 90 进入 H / VH / U</td><td>Ephinea 标准角色为 Lv20 / 40 / 80</td></tr>
+            </tbody>
+        </table>
+
+        <h2>原文与时效</h2>
+        <ul class="source-list">
+            <li><a href="https://wiki.pioneer2.net/w/Hunter_guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Hunter guide</a>（页面于 2026-06-18 更新）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Ranger_guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Ranger guide</a></li>
+            <li><a href="https://www.pioneer2.net/community/threads/force-guide-wip.15075/" target="_blank" rel="noopener noreferrer">论坛：Force Guide (WIP)</a>（2019 发布、2020 最后编辑，部分机制已过时）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Force_guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki：现行 Force guide</a>（用于补充职业差异与当前机制，页面于 2026-02-21 更新）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Classes" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Classes</a>（用于交叉核对 12 个角色的种族与定位）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Damage_cancel" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Damage cancel</a>（确认该机制已从 Ephinea 移除）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Mags/Guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Simple Mag guide</a>（Vanilla POW / MIND Mag 起步路线）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Techniques" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Techniques</a>（技能分类、等级限制与增幅机制）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Weapon_attributes" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Weapon attributes</a>（敌种属性与 Hit）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Game_modes" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Game modes</a>（标准与 Classic 模式差异）</li>
+            <li><a href="https://strategywiki.org/wiki/Phantasy_Star_Online_Episode_I_%26_II/Character_Selection" target="_blank" rel="noopener noreferrer">StrategyWiki：Episode I &amp; II Character Selection</a>（原版职业定位参考）</li>
+            <li><a href="https://www.pso-world.com/sections.php?artid=2342&amp;op=viewarticle" target="_blank" rel="noopener noreferrer">PSO-World：Norvekh's Ranger Guide</a>（经典 RA 站位与团队职责参考）</li>
+            <li>角色专项 Wiki：<a href="https://wiki.pioneer2.net/w/HUmar/Guide" target="_blank" rel="noopener noreferrer">HUmar</a> · <a href="https://wiki.pioneer2.net/w/HUnewearl/Guide" target="_blank" rel="noopener noreferrer">HUnewearl</a> · <a href="https://wiki.pioneer2.net/w/HUcast/Guide" target="_blank" rel="noopener noreferrer">HUcast</a> · <a href="https://wiki.pioneer2.net/w/HUcaseal/Guide" target="_blank" rel="noopener noreferrer">HUcaseal</a></li>
+            <li>角色专项 Wiki：<a href="https://wiki.pioneer2.net/w/RAmar/Guide" target="_blank" rel="noopener noreferrer">RAmar</a> · <a href="https://wiki.pioneer2.net/w/RAmarl/Guide" target="_blank" rel="noopener noreferrer">RAmarl</a> · <a href="https://wiki.pioneer2.net/w/RAcast/Guide" target="_blank" rel="noopener noreferrer">RAcast</a> · <a href="https://wiki.pioneer2.net/w/RAcaseal/Guide" target="_blank" rel="noopener noreferrer">RAcaseal</a></li>
+            <li>角色专项 Wiki：<a href="https://wiki.pioneer2.net/w/FOmar/Guide" target="_blank" rel="noopener noreferrer">FOmar</a> · <a href="https://wiki.pioneer2.net/w/FOmarl/Guide" target="_blank" rel="noopener noreferrer">FOmarl</a> · <a href="https://wiki.pioneer2.net/w/FOnewm/Guide" target="_blank" rel="noopener noreferrer">FOnewm</a> · <a href="https://wiki.pioneer2.net/w/FOnewearl/Guide" target="_blank" rel="noopener noreferrer">FOnewearl</a></li>
+        </ul>
+
+        <p class="source-list">本文是中文整理与摘要；装备价值会随任务、队伍、角色动作、Hit 和属性百分比改变，请把清单当作决策框架，而不是唯一答案。</p>
+        </details>
+    </main>
+    <script>
+        (function () {
+            const names = ['hunter', 'ranger', 'force'];
+            const tabs = Array.from(document.querySelectorAll('[data-profession]'));
+            const panels = names.map((name) => document.getElementById(name));
+
+            function activate(name, updateUrl) {
+                if (!names.includes(name)) name = 'hunter';
+                tabs.forEach((tab) => {
+                    const active = tab.dataset.profession === name;
+                    tab.setAttribute('aria-selected', String(active));
+                    tab.tabIndex = active ? 0 : -1;
+                });
+                panels.forEach((panel) => {
+                    panel.hidden = panel.id !== name;
+                });
+                if (updateUrl) history.replaceState(null, '', '#' + name);
+            }
+
+            function activateFromHash() {
+                const hash = location.hash.slice(1);
+                const target = hash ? document.getElementById(hash) : null;
+                const panel = target && target.closest('.profession-panel');
+                activate(panel ? panel.id : hash, false);
+                if (target && target.tagName === 'DETAILS') target.open = true;
+                if (target && panel) requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+            }
+
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => activate(tab.dataset.profession, true));
+                tab.addEventListener('keydown', (event) => {
+                    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                    event.preventDefault();
+                    const offset = event.key === 'ArrowRight' ? 1 : -1;
+                    const next = tabs[(index + offset + tabs.length) % tabs.length];
+                    activate(next.dataset.profession, true);
+                    next.focus();
+                });
+            });
+
+            window.addEventListener('hashchange', activateFromHash);
+            activateFromHash();
+        })();
+    </script>
+</body>
+</html>

@@ -42,6 +42,46 @@
         .class-nav-label .en-name { color: #94a3b8; font-size: 11px; font-weight: 400; }
         .class-header { display: flex; align-items: center; gap: 12px; }
         .class-header img { width: 45px; height: 60px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,212,255,0.3)); }
+        .equipment-heading {
+            display: flex;
+            gap: 9px;
+            align-items: center;
+        }
+        .equipment-icon {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+            image-rendering: pixelated;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+        }
+        .target-badge {
+            display: inline-grid;
+            min-width: 2em;
+            height: 1.55em;
+            padding: 0 0.4em;
+            place-items: center;
+            border: 1px solid rgba(96, 165, 250, 0.55);
+            border-radius: 999px;
+            color: #bfdbfe;
+            background: rgba(37, 99, 235, 0.16);
+            font-size: 0.82em;
+            line-height: 1;
+        }
+        .special-tag {
+            display: inline-block;
+            margin: 1px 2px;
+            padding: 1px 6px;
+            border: 1px solid rgba(167, 139, 250, 0.45);
+            border-radius: 4px;
+            color: #ddd6fe;
+            background: rgba(124, 58, 237, 0.14);
+            font-size: 0.88em;
+            white-space: nowrap;
+        }
+        .equipment-note {
+            color: #fca5a5;
+            font-style: normal;
+        }
         @media (max-width: 600px) {
             .class-nav { grid-template-columns: repeat(3, 1fr); gap: 8px; }
             .class-nav a img { width: 40px; height: 53px; }
@@ -75,590 +115,590 @@
 
 <h2 id="humar"><span class="class-header"><img src="/assets/img/class/HUmar.png" alt="HUmar">废材 HUmar</span></h2>
 
-<h3>⚔️ 近战</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔟目标:</strong> Vjaya(富豪长刀), Yunchang(云长), Zanba(斩马刀), Tsumikiri J-Sword(罪切), Red Sword(红色大剑), Dark Flow(暗黑弗罗文) <em>(❌不能连击)</em></li>
-<li><strong>🔺3目标:</strong> Excalibur(王者之剑)</li>
-<li><strong>🔹1目标(复数攻击):</strong> Black King Bar(苍黑如意棒), Daylight Scar(晓之刻印), Jizai(自在), Double Cannon(圣剑「双切·迦农」), Musashi(武藏)</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Vjaya(富豪长刀), Yunchang(云长), Zanba(斩马刀), Tsumikiri J-Sword(罪切), Red Sword(红色大剑), Dark Flow(暗黑弗罗文) <em class="equipment-note">（不可连击）</em></li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur(王者之剑)</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Black King Bar(苍黑如意棒), Daylight Scar(晓之刻印), Jizai(自在), Double Cannon(圣剑「双切·迦农」), Musashi(武藏)</li>
 
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> Diska of Braveman(勇者的飞碟), Charge Diska(金祭-彗星投刃)</li>
-<li><strong>🔸1目标:</strong> Charge/Berserk Raygun(金祭/血祭-原子光枪), Master Raven(乌鸦)</li>
-<li><strong>🔹1目标(复数攻击):</strong> Charge/Berserk/Spirit Vulcan(金祭/血祭/灵祭-音速机枪), M&amp;A60 Vise(老虎钳), L&amp;K38 Combat(战场之狼) <em>(❌不能连击)</em></li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Diska of Braveman(勇者的飞碟), Charge Diska(金祭-彗星投刃)</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Charge/Berserk Raygun(金祭/血祭-原子光枪), Master Raven(乌鸦)</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Charge/Berserk/Spirit Vulcan(金祭/血祭/灵祭-音速机枪), M&amp;A60 Vise(老虎钳), L&amp;K38 Combat(战场之狼) <em class="equipment-note">（不可连击）</em></li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer [💤Arrest, ☠️Hell, 😈Demon's]</li>
-<li><strong>🔺3目标:</strong> Slicer of Fanatic(狂信者的投刃)</li>
-<li><strong>🔸1目标:</strong> HOLY RAY(圣光枪), Raygun [💤Arrest, ☠️Hell, 😈Demon's], S-Gun [⬇️Zalure]</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun [😈Demon's], ES Twin [😈Demon's]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> ES J-Cutter / ES Slicer [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Slicer of Fanatic(狂信者的投刃)</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> HOLY RAY(圣光枪), Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], S-Gun [<span class="special-tag">Zalure</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun [<span class="special-tag">Demon's</span>], ES Twin [<span class="special-tag">Demon's</span>]</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>🗡️ Lavis Blade, 🌻 Girasole, 🟥 S-Red's Blade, ⚔️ Tsumikiri J-Sword, 🔥 Twin Blaze</p>
+<p>Lavis Blade, Girasole, S-Red's Blade, Tsumikiri J-Sword, Twin Blaze</p>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🖤 Thirteen, 👗 Dress Plate, 💙 Blue Odoshi Violet Nimaidou, 🕵️‍♂️ Stealth Suit</p>
+<p>Thirteen, Dress Plate, Blue Odoshi Violet Nimaidou, Stealth Suit</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🛡️ Combat Gear, 🥷 Kasami Bracer, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+<p>Combat Gear, Kasami Bracer, Red Ring, Anti-Dark Ring, God's Shield "Kouryu"</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
 
-<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 🥋 Proof of Sword-Saint</p>
+<p>V101, V502, Smartlink, V801, Proof of Sword-Saint</p>
 
 <hr>
 
 <h2 id="hunewearl"><span class="class-header"><img src="/assets/img/class/HUnewearl.png" alt="HUnewearl">花瓶 HUnewearl</span></h2>
 
-<h3>⚔️ 近战</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔟目标:</strong> Vjaya, Yunchang, Flowen's Sword 3084, Tsumikiri J-Sword, Red Sword, Dark Flow <em>(❌不能连击)</em></li>
-<li><strong>🔺3目标:</strong> Excalibur</li>
-<li><strong>🔹1目标(复数攻击):</strong> Black King Bar, Daylight Scar, Jizai, Vivienne, Double Cannon, Musashi</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Vjaya, Yunchang, Flowen's Sword 3084, Tsumikiri J-Sword, Red Sword, Dark Flow <em class="equipment-note">（不可连击）</em></li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Black King Bar, Daylight Scar, Jizai, Vivienne, Double Cannon, Musashi</li>
 </ul>
 
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> Diska of Braveman, Charge/Spirit Diska</li>
-<li><strong>🔸1目标:</strong> Charge/Berserk/Spirit Raygun</li>
-<li><strong>🔹1目标(复数攻击):</strong> Charge/Berserk/Spirit Vulcan, M&amp;A60 Vise, 🦢 Last Swan</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Diska of Braveman, Charge/Spirit Diska</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Charge/Berserk/Spirit Raygun</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Charge/Berserk/Spirit Vulcan, M&amp;A60 Vise, Last Swan</li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer [💤Arrest, ☠️Hell, 😈Demon's]</li>
-<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
-<li><strong>🔸1目标:</strong> HOLY RAY, Raygun [💤Arrest, ☠️Hell, 😈Demon's]</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun, ES Twin [😈Demon's]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> ES J-Cutter / ES Slicer [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Slicer of Fanatic</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> HOLY RAY, Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun, ES Twin [<span class="special-tag">Demon's</span>]</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>🗡️ Lavis Blade, 🌻 Girasole, 📚 Clio, ☂️ Tyrell's Parasol, ⚔️ Tsumikiri J-Sword, 🔥 Twin Blaze, 🐾 Nei's Claw</p>
+<p>Lavis Blade, Girasole, Clio, Tyrell's Parasol, Tsumikiri J-Sword, Twin Blaze, Nei's Claw</p>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🖤 Thirteen, 💗 Sweetheart, 💙 Blue Odoshi Violet Nimaidou, 🕵️‍♀️ Stealth Suit</p>
+<p>Thirteen, Sweetheart, Blue Odoshi Violet Nimaidou, Stealth Suit</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🛡️ Combat Gear, 🥷 Kasami Bracer, 🪞 Yata Mirror, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+<p>Combat Gear, Kasami Bracer, Yata Mirror, Red Ring, Anti-Dark Ring, God's Shield "Kouryu"</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
 
-<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 🥋 Proof of Sword-Saint</p>
+<p>V101, V502, Smartlink, V801, Proof of Sword-Saint</p>
 
 <hr>
 
 <h2 id="hucast"><span class="class-header"><img src="/assets/img/class/HUcast.png" alt="HUcast">旦那 HUcast</span></h2>
 
-<h3>⚔️ 近战</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔟目标:</strong> Vjaya, Yunchang, Zanba, Tsumikiri J-Sword, Red Sword, Dark Flow <em>(❌不能连击)</em></li>
-<li><strong>🔺3目标:</strong> Excalibur</li>
-<li><strong>🔹1目标(复数攻击):</strong> Black King Bar, Daylight Scar, Jizai, Double Cannon, Musashi</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Vjaya, Yunchang, Zanba, Tsumikiri J-Sword, Red Sword, Dark Flow <em class="equipment-note">（不可连击）</em></li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Black King Bar, Daylight Scar, Jizai, Double Cannon, Musashi</li>
 </ul>
 
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> Diska of Braveman, Charge Diska</li>
-<li><strong>🔸1目标:</strong> Charge/Berserk Raygun, Master Raven(乌鸦)</li>
-<li><strong>🔹1目标(复数攻击):</strong> Charge/Berserk Vulcan, M&amp;A60 Vise, L&amp;K38 Combat <em>(❌不能连击)</em></li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Diska of Braveman, Charge Diska</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Charge/Berserk Raygun, Master Raven(乌鸦)</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Charge/Berserk Vulcan, M&amp;A60 Vise, L&amp;K38 Combat <em class="equipment-note">（不可连击）</em></li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer [💤Arrest, ☠️Hell]</li>
-<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
-<li><strong>🔸1目标:</strong> Raygun [💤Arrest, ☠️Hell], S-Gun [⬇️Zalure]</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun [😈Demon's]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> ES J-Cutter / ES Slicer [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>]</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Slicer of Fanatic</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>], S-Gun [<span class="special-tag">Zalure</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun [<span class="special-tag">Demon's</span>]</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>🗡️ Lavis Blade, 🌻 Girasole, 🟥 S-Red's Blade, ⚔️ Tsumikiri J-Sword, 🔨 Berdysh, 🔥 Twin Blaze, 🔩 Drill Launcher</p>
+<p>Lavis Blade, Girasole, S-Red's Blade, Tsumikiri J-Sword, Berdysh, Twin Blaze, Drill Launcher</p>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🖤 Thirteen, 🧩 D-Parts v1.01, 👗 Dress Plate, 💙 Blue Odoshi Violet Nimaidou, 🕵️‍♂️ Stealth Suit</p>
+<p>Thirteen, D-Parts v1.01, Dress Plate, Blue Odoshi Violet Nimaidou, Stealth Suit</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🛡️ S-Parts v2.01, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+<p>S-Parts v2.01, Red Ring, Anti-Dark Ring, God's Shield "Kouryu"</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
 
-<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🥋 Proof of Sword-Saint</p>
+<p>V101, V502, Smartlink, Proof of Sword-Saint</p>
 
 <hr>
 
 <h2 id="hucaseal"><span class="class-header"><img src="/assets/img/class/HUcaseal.png" alt="HUcaseal">女忍 HUcaseal</span></h2>
 
-<h3>⚔️ 近战</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔟目标:</strong> Vjaya, Yunchang, Tsumikiri J-Sword, Red Sword, Dark Flow <em>(❌不能连击)</em></li>
-<li><strong>🔺3目标:</strong> Excalibur</li>
-<li><strong>🔹1目标(复数攻击):</strong> Black King Bar, Daylight Scar, Jizai, Vivienne, Double Cannon, Musashi</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Vjaya, Yunchang, Tsumikiri J-Sword, Red Sword, Dark Flow <em class="equipment-note">（不可连击）</em></li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Black King Bar, Daylight Scar, Jizai, Vivienne, Double Cannon, Musashi</li>
 </ul>
 
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> Diska of Braveman, Charge Diska</li>
-<li><strong>🔸1目标:</strong> Charge/Berserk Raygun</li>
-<li><strong>🔹1目标(复数攻击):</strong> Charge/Berserk Vulcan, M&amp;A60 Vise, 🦢 Last Swan, 🐦 Dual Bird</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Diska of Braveman, Charge Diska</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Charge/Berserk Raygun</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Charge/Berserk Vulcan, M&amp;A60 Vise, Last Swan, Dual Bird</li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> ES Scythe [☠️Hell], ES J-Cutter / ES Slicer [💤Arrest, ☠️Hell]</li>
-<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
-<li><strong>🔸1目标:</strong> Raygun [💤Arrest, ☠️Hell], S-Gun [⬇️Zalure]</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun [☠️Hell, 😈Demon's]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> ES Scythe [<span class="special-tag">Hell</span>], ES J-Cutter / ES Slicer [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>]</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Slicer of Fanatic</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>], S-Gun [<span class="special-tag">Zalure</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun [<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>🗡️ Lavis Blade, 🌻 Girasole, 🟥 S-Red's Blade, ⚔️ Tsumikiri J-Sword, 🔨 Berdysh, 🔥 Twin Blaze</p>
+<p>Lavis Blade, Girasole, S-Red's Blade, Tsumikiri J-Sword, Berdysh, Twin Blaze</p>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🖤 Thirteen, 🧩 D-Parts v1.01, 💗 Sweetheart, 💙 Blue Odoshi Violet Nimaidou, 🕵️‍♀️ Stealth Suit</p>
+<p>Thirteen, D-Parts v1.01, Sweetheart, Blue Odoshi Violet Nimaidou, Stealth Suit</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🛡️ S-Parts v2.01, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+<p>S-Parts v2.01, Red Ring, Anti-Dark Ring, God's Shield "Kouryu"</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
 
-<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🥋 Proof of Sword-Saint</p>
+<p>V101, V502, Smartlink, Proof of Sword-Saint</p>
 
 <hr>
 
 <h2 id="ramar"><span class="class-header"><img src="/assets/img/class/RAmar.png" alt="RAmar">军哥 RAmar</span></h2>
 
-<h3>⚔️ 近战</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔺3目标:</strong> Excalibur(王者之剑)</li>
-<li><strong>🔹1目标(复数攻击):</strong> Daylight Scar(晓之刻印)</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur(王者之剑)</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Daylight Scar(晓之刻印)</li>
 </ul>
 
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔟10目标:</strong> Cannon Rouge(赤红加农)</li>
-<li><strong>🖐️5目标:</strong> Arms(军用散弹枪)[💰Charge, 💉Berserk], S-Needle弹弓[💉Berserk]</li>
-<li><strong>🔷4目标:</strong> Baranz Launcher(机甲堡垒导弹枪), S-Launcher(Berserk)</li>
-<li><strong>🎯1目标:</strong> Heaven Striker(天堂冲击)</li>
-<li><strong>🔹1目标(复数攻击):</strong> Vulcan(音速机枪)[💰Charge, 💉Berserk], M&amp;A60 Vise(老虎钳), Yasminkov 9000M(雅斯米诺科夫9000M)</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Cannon Rouge(赤红加农)</li>
+<li><strong><span class="target-badge">5</span> 目标：</strong> Arms(军用散弹枪)[<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>], S-Needle弹弓[<span class="special-tag">Berserk</span>]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Baranz Launcher(机甲堡垒导弹枪), S-Launcher(Berserk)</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Heaven Striker(天堂冲击)</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Vulcan(音速机枪)[<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>], M&amp;A60 Vise(老虎钳), Yasminkov 9000M(雅斯米诺科夫9000M)</li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
 <ul>
-<li><strong>🔟10目标:</strong> S-Scythe镰刀[☠️Hell]</li>
-<li><strong>🖐️5目标:</strong> S-Needle弹弓 / ES Shot 散弹[💤Arrest, ☠️Hell, ⬇️Zalure, 😈Demon's]</li>
-<li><strong>🔷4目标:</strong> S-Launcher[☠️Hell, 😈Demon's]</li>
-<li><strong>🎯1目标:</strong> Laser / Raygun [💤Arrest, ☠️Hell, 😈Demon's], S-Rifle / S-Gun [⬇️Zalure], Bringer's Rifle(混沌骑士枪)</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun[☠️Hell, 😈Demon's], S-Beat's Blade(蓝忍双刃)</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> S-Scythe镰刀[<span class="special-tag">Hell</span>]</li>
+<li><strong><span class="target-badge">5</span> 目标：</strong> S-Needle弹弓 / ES Shot 散弹[<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Zalure</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> S-Launcher[<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Laser / Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], S-Rifle / S-Gun [<span class="special-tag">Zalure</span>], Bringer's Rifle(混沌骑士枪)</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun[<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], S-Beat's Blade(蓝忍双刃)</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>❄️ Frozen Shooter, 👑 Snow Queen</p>
-<p>🌻 Girasole, 🌑 Dark Meteor, 🔥 Twin Blaze</p>
+<p>Frozen Shooter, Snow Queen</p>
+<p>Girasole, Dark Meteor, Twin Blaze</p>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🕵️‍♂️ Stealth Suit, 👗 Dress Plate</p>
+<p>Stealth Suit, Dress Plate</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🛡️ Ranger Wall, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🪞 Yata Mirror, 🐉 God's Shield "Kouryu", 💥 Shifta Merge / ✨ Rupika</p>
+<p>Ranger Wall, Red Ring, Anti-Dark Ring, Yata Mirror, God's Shield "Kouryu", Shifta Merge / Rupika</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
 
-<p>🧠 V101, ⚡ V502, 🎶 V801</p>
+<p>V101, V502, V801</p>
 
 <hr>
 
 <h2 id="ramarl"><span class="class-header"><img src="/assets/img/class/RAmarl.png" alt="RAmarl">军嫂 RAmarl</span></h2>
 
-<h3>⚔️ 近战</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔟10目标:</strong> Tyrell's Parasol(总督遮阳伞)</li>
-<li><strong>🔺3目标:</strong> Excalibur</li>
-<li><strong>🔹1目标(复数攻击):</strong> Daylight Scar, Vivienne</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Tyrell's Parasol(总督遮阳伞)</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Daylight Scar, Vivienne</li>
 </ul>
 
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔟10目标:</strong> Cannon Rouge</li>
-<li><strong>🖐️5目标:</strong> Arms[💰Charge, 💉Berserk], S-Needle[💉Berserk]</li>
-<li><strong>🔷4目标:</strong> Baranz Launcher</li>
-<li><strong>🎯1目标:</strong> Heaven Striker</li>
-<li><strong>🔹1目标(复数攻击):</strong> Vulcan[💰Charge, 💉Berserk], M&amp;A60 Vise, Yasminkov 9000M, 🦢 Last Swan</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Cannon Rouge</li>
+<li><strong><span class="target-badge">5</span> 目标：</strong> Arms[<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>], S-Needle[<span class="special-tag">Berserk</span>]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Baranz Launcher</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Heaven Striker</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Vulcan[<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>], M&amp;A60 Vise, Yasminkov 9000M, Last Swan</li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
 <ul>
-<li><strong>🔟10目标:</strong> S-Scythe[☠️Hell]</li>
-<li><strong>🖐️5目标:</strong> S-Needle / ES Shot[💤Arrest, ☠️Hell, 😈Demon's]</li>
-<li><strong>🔷4目标:</strong> S-Launcher[☠️Hell, 😈Demon's]</li>
-<li><strong>🎯1目标:</strong> Laser / Raygun [💤Arrest, ☠️Hell, 😈Demon's], Bringer's Rifle</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun[☠️Hell, 😈Demon's], S-Beat's Blade</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> S-Scythe[<span class="special-tag">Hell</span>]</li>
+<li><strong><span class="target-badge">5</span> 目标：</strong> S-Needle / ES Shot[<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> S-Launcher[<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Laser / Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], Bringer's Rifle</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun[<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], S-Beat's Blade</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>❄️ Frozen Shooter, 👑 Snow Queen</p>
-<p>🌻 Girasole, 🌑 Dark Meteor, ☂️ Tyrell's Parasol, 📚 Clio, 🔥 Twin Blaze</p>
+<p>Frozen Shooter, Snow Queen</p>
+<p>Girasole, Dark Meteor, Tyrell's Parasol, Clio, Twin Blaze</p>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>💗 Sweetheart, 🕵️‍♀️ Stealth Suit, 🔆 Brightness Circle</p>
+<p>Sweetheart, Stealth Suit, Brightness Circle</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🛡️ Ranger Wall, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+<p>Ranger Wall, Red Ring, Anti-Dark Ring, God's Shield "Kouryu"</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
 
-<p>🧠 V101, ⚡ V502, 🎶 V801</p>
+<p>V101, V502, V801</p>
 
 <hr>
 
 <h2 id="racast"><span class="class-header"><img src="/assets/img/class/RAcast.png" alt="RAcast">坦克 RAcast</span></h2>
 
-<h3>⚔️ 近战</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔺3目标:</strong> Excalibur</li>
-<li><strong>🔹1目标(复数攻击):</strong> Daylight Scar</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Daylight Scar</li>
 </ul>
 
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔟10目标:</strong> Cannon Rouge</li>
-<li><strong>🖐️5目标:</strong> Arms[💰Charge, 💉Berserk], S-Needle[💉Berserk]</li>
-<li><strong>🔷4目标:</strong> Baranz Launcher, S-Launcher(Berserk)</li>
-<li><strong>🎯1目标:</strong> Heaven Striker</li>
-<li><strong>🔹1目标(复数攻击):</strong> Vulcan[💰Charge, 💉Berserk], M&amp;A60 Vise, Yasminkov 9000M</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Cannon Rouge</li>
+<li><strong><span class="target-badge">5</span> 目标：</strong> Arms[<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>], S-Needle[<span class="special-tag">Berserk</span>]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Baranz Launcher, S-Launcher(Berserk)</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Heaven Striker</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Vulcan[<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>], M&amp;A60 Vise, Yasminkov 9000M</li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
 <ul>
-<li><strong>🔟10目标:</strong> S-Scythe[☠️Hell]</li>
-<li><strong>🖐️5目标:</strong> S-Needle / ES Shot / Spread Needle[💤Arrest, ☠️Hell, ⬇️Zalure]</li>
-<li><strong>🔷4目标:</strong> S-Launcher[☠️Hell]</li>
-<li><strong>🎯1目标:</strong> Laser / Raygun [💤Arrest, ☠️Hell], S-Rifle / S-Gun [⬇️Zalure]</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun[☠️Hell, 😈Demon's], S-Beat's Blade</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> S-Scythe[<span class="special-tag">Hell</span>]</li>
+<li><strong><span class="target-badge">5</span> 目标：</strong> S-Needle / ES Shot / Spread Needle[<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Zalure</span>]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> S-Launcher[<span class="special-tag">Hell</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Laser / Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>], S-Rifle / S-Gun [<span class="special-tag">Zalure</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun[<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], S-Beat's Blade</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>❄️ Frozen Shooter, 👑 Snow Queen</p>
-<p>🌻 Girasole, ⚡ Power Maser, 🌑 Dark Meteor, 🔥 Twin Blaze</p>
+<p>Frozen Shooter, Snow Queen</p>
+<p>Girasole, Power Maser, Dark Meteor, Twin Blaze</p>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🧩 D-Parts v1.01, 🕵️‍♂️ Stealth Suit, 👗 Dress Plate, 🐺 Black Hound Cuirass</p>
+<p>D-Parts v1.01, Stealth Suit, Dress Plate, Black Hound Cuirass</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🛡️ Ranger Wall, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+<p>Ranger Wall, Red Ring, Anti-Dark Ring, God's Shield "Kouryu"</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
 
-<p>🧠 V101, ⚡ V502</p>
+<p>V101, V502</p>
 
 <hr>
 
 <h2 id="racaseal"><span class="class-header"><img src="/assets/img/class/RAcaseal.png" alt="RAcaseal">女仆 RAcaseal</span></h2>
 
-<h3>⚔️ 近战</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔺3目标:</strong> Excalibur</li>
-<li><strong>🔹1目标(复数攻击):</strong> Daylight Scar, Vivienne</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Daylight Scar, Vivienne</li>
 </ul>
 
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔟10目标:</strong> Cannon Rouge</li>
-<li><strong>🖐️5目标:</strong> Arms[💰Charge, 💉Berserk], S-Needle[💉Berserk]</li>
-<li><strong>🔷4目标:</strong> Baranz Launcher, Diska of Braveman, S-Launcher(Berserk)</li>
-<li><strong>🎯1目标:</strong> Heaven Striker</li>
-<li><strong>🔹1目标(复数攻击):</strong> Vulcan[💰Charge, 💉Berserk], M&amp;A60 Vise, Yasminkov 9000M, 🦢 Last Swan</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Cannon Rouge</li>
+<li><strong><span class="target-badge">5</span> 目标：</strong> Arms[<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>], S-Needle[<span class="special-tag">Berserk</span>]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Baranz Launcher, Diska of Braveman, S-Launcher(Berserk)</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Heaven Striker</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Vulcan[<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>], M&amp;A60 Vise, Yasminkov 9000M, Last Swan</li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
 <ul>
-<li><strong>🔟10目标:</strong> S-Scythe[☠️Hell]</li>
-<li><strong>🖐️5目标:</strong> S-Needle / ES Shot / Spread Needle[💤Arrest, ☠️Hell, ⬇️Zalure]</li>
-<li><strong>🔷4目标:</strong> S-Launcher[☠️Hell]</li>
-<li><strong>🎯1目标:</strong> Laser / Raygun [💤Arrest, ☠️Hell], S-Rifle / S-Gun [⬇️Zalure]</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun[☠️Hell, 😈Demon's], S-Beat's Blade</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> S-Scythe[<span class="special-tag">Hell</span>]</li>
+<li><strong><span class="target-badge">5</span> 目标：</strong> S-Needle / ES Shot / Spread Needle[<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Zalure</span>]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> S-Launcher[<span class="special-tag">Hell</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Laser / Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>], S-Rifle / S-Gun [<span class="special-tag">Zalure</span>]</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun[<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], S-Beat's Blade</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>❄️ Frozen Shooter, 👑 Snow Queen</p>
-<p>🌻 Girasole, ⚡ Power Maser, 🌑 Dark Meteor, 🔥 Twin Blaze</p>
+<p>Frozen Shooter, Snow Queen</p>
+<p>Girasole, Power Maser, Dark Meteor, Twin Blaze</p>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🧩 D-Parts v1.01, 💗 Sweetheart, 🕵️‍♀️ Stealth Suit, 🖤 Thirteen</p>
+<p>D-Parts v1.01, Sweetheart, Stealth Suit, Thirteen</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🛡️ Ranger Wall, 🟥 Red Ring, 🧿 Anti-Dark Ring, 🐉 God's Shield "Kouryu"</p>
+<p>Ranger Wall, Red Ring, Anti-Dark Ring, God's Shield "Kouryu"</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
 
-<p>🧠 V101, ⚡ V502</p>
+<p>V101, V502</p>
 
 <hr>
 
 <h2 id="fomar"><span class="class-header"><img src="/assets/img/class/FOmar.png" alt="FOmar">农夫 FOmar</span></h2>
 
-<h3>💣 核爆</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/cane.png" alt="">技能输出</h3>
 
-<p>🌀 Psycho Wand, 📖 Prophets of Motav</p>
-<p>💗 Magical Piece, 🔥 Fire Scepter: Agni, ⚡ Storm Wand: Indra, ❄️ Ice Staff: Dagon</p>
-<p>🌕 Summit Moon, 🪙 Club of Laconium, 🧿 Club of Zumiuran, 💎 Mace of Adaman</p>
-<p>👼 Mercurius Rod</p>
+<p>Psycho Wand, Prophets of Motav</p>
+<p>Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon</p>
+<p>Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman</p>
+<p>Mercurius Rod</p>
 
-<h3>✨ 支持</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/disk.png" alt="">支援</h3>
 
-<p>🐇 Striker of Chao, 🕊️ Glide Divine</p>
+<p>Striker of Chao, Glide Divine</p>
 
-<h3>⚔️ 近战</h3>
-
-<ul>
-<li><strong>🔺3目标:</strong> Excalibur</li>
-<li><strong>🎯1目标:</strong> Galatine</li>
-</ul>
-
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> Diska of Braveman</li>
-<li><strong>🎯1目标:</strong> Guardianna</li>
-<li><strong>🔹1目标(复数攻击):</strong> Vulcan (💰Charge, 💉Berserk, 🧠Spirit), M&amp;A60 Vise</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Galatine</li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer [💤Arrest, ☠️Hell, 😈Demon's]</li>
-<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
-<li><strong>🎯1目标:</strong> Bringer's Rifle, Raygun [💤Arrest, ☠️Hell, 😈Demon's], ES Cards [☠️Hell, 😈Demon's], Holy Ray</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun [😈Demon's]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Diska of Braveman</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Guardianna</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Vulcan (<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>, <span class="special-tag">Spirit</span>), M&amp;A60 Vise</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
-<p>🌪️ Gal Wind, 🌻 Girasole, 🔱 Demonic Fork</p>
+<ul>
+<li><strong><span class="target-badge">4</span> 目标：</strong> ES J-Cutter / ES Slicer [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Slicer of Fanatic</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Bringer's Rifle, Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], ES Cards [<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], Holy Ray</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun [<span class="special-tag">Demon's</span>]</li>
+</ul>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>🖤 Thirteen, 🔥 Ignition Cloak, 👗 Dress Plate</p>
+<p>Gal Wind, Girasole, Demonic Fork</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🟥 Red Ring, 🔺 Rafoie Merge, 🔰 Gifoie Merge, ⚡ Gizonde Merge, ❄️ Rabarta Merge</p>
-<p>🧿 Anti-Dark Ring, 💧 Resta Merge, 🐉 God's Shield "Kouryu", 🔒 Three Seals, 🥊 Combat Gear</p>
+<p>Thirteen, Ignition Cloak, Dress Plate</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 💠 Adept</p>
+<p>Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge</p>
+<p>Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear</p>
+
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
+
+<p>V101, V502, Smartlink, V801, Adept</p>
 
 <hr>
 
 <h2 id="fomarl"><span class="class-header"><img src="/assets/img/class/FOmarl.png" alt="FOmarl">人妻 FOmarl</span></h2>
 
-<h3>💣 核爆</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/cane.png" alt="">技能输出</h3>
 
-<p>🌀 Psycho Wand, 📖 Prophets of Motav</p>
-<p>💗 Magical Piece, 🔥 Fire Scepter: Agni, ⚡ Storm Wand: Indra, ❄️ Ice Staff: Dagon</p>
-<p>🌕 Summit Moon, 🪙 Club of Laconium, 🧿 Club of Zumiuran, 💎 Mace of Adaman</p>
-<p>👼 Mercurius Rod</p>
+<p>Psycho Wand, Prophets of Motav</p>
+<p>Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon</p>
+<p>Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman</p>
+<p>Mercurius Rod</p>
 
-<h3>✨ 支持</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/disk.png" alt="">支援</h3>
 
-<p>☂️ Tyrell's Parasol, 👒 Madam's Parasol, ☔ Madam's Umbrella, 👜 Marina's Bag, 🕊️ Glide Divine</p>
+<p>Tyrell's Parasol, Madam's Parasol, Madam's Umbrella, Marina's Bag, Glide Divine</p>
 
-<h3>⚔️ 近战</h3>
-
-<ul>
-<li><strong>🔟10目标:</strong> Tyrell's Parasol, ☠️ Soul Banish</li>
-<li><strong>🔺3目标:</strong> Excalibur</li>
-<li><strong>🔹1目标(复数攻击):</strong> Vivienne</li>
-</ul>
-
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> Diska of Braveman</li>
-<li><strong>🎯1目标:</strong> Guardianna</li>
-<li><strong>🔹1目标(复数攻击):</strong> Rambling May, Vulcan (💰Charge, 💉Berserk, 🧠Spirit), M&amp;A60 Vise, 🦢 Last Swan</li>
+<li><strong><span class="target-badge">10</span> 目标：</strong> Tyrell's Parasol, Soul Banish</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Vivienne</li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer [💤Arrest, ☠️Hell, 😈Demon's]</li>
-<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
-<li><strong>🎯1目标:</strong> Bringer's Rifle, Raygun [💤Arrest, ☠️Hell, 😈Demon's], ES Cards [☠️Hell, 😈Demon's], Holy Ray</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun [☠️Hell, 😈Demon's], S-Beat's Blade</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Diska of Braveman</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Guardianna</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Rambling May, Vulcan (<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>, <span class="special-tag">Spirit</span>), M&amp;A60 Vise, Last Swan</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
-<p>🌪️ Gal Wind, 🌻 Girasole, 🔱 Demonic Fork, 🌞 Solferino</p>
+<ul>
+<li><strong><span class="target-badge">4</span> 目标：</strong> ES J-Cutter / ES Slicer [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Slicer of Fanatic</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Bringer's Rifle, Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], ES Cards [<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], Holy Ray</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun [<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], S-Beat's Blade</li>
+</ul>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>🖤 Thirteen, 🔥 Ignition Cloak, 💗 Sweetheart, 🔆 Brightness Circle</p>
+<p>Gal Wind, Girasole, Demonic Fork, Solferino</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🟥 Red Ring, 🔺 Rafoie Merge, 🔰 Gifoie Merge, ⚡ Gizonde Merge, ❄️ Rabarta Merge</p>
-<p>🧿 Anti-Dark Ring, 💧 Resta Merge, 🐉 God's Shield "Kouryu", 🔒 Three Seals, 🥊 Combat Gear, 💓 Safety Heart</p>
+<p>Thirteen, Ignition Cloak, Sweetheart, Brightness Circle</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 💠 Adept</p>
+<p>Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge</p>
+<p>Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear, Safety Heart</p>
+
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
+
+<p>V101, V502, Smartlink, V801, Adept</p>
 
 <hr>
 
 <h2 id="fonewm"><span class="class-header"><img src="/assets/img/class/FOnewm.png" alt="FOnewm">猴子 FOnewm</span></h2>
 
-<h3>💣 核爆</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/cane.png" alt="">技能输出</h3>
 
-<p>🌀 Psycho Wand, 📖 Prophets of Motav</p>
-<p>💗 Magical Piece, 🔥 Fire Scepter: Agni, ⚡ Storm Wand: Indra, ❄️ Ice Staff: Dagon</p>
-<p>🌕 Summit Moon, 🪙 Club of Laconium, 🧿 Club of Zumiuran, 💎 Mace of Adaman</p>
-<p>👼 Mercurius Rod</p>
+<p>Psycho Wand, Prophets of Motav</p>
+<p>Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon</p>
+<p>Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman</p>
+<p>Mercurius Rod</p>
 
-<h3>✨ 支持</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/disk.png" alt="">支援</h3>
 
-<p>🐇 Striker of Chao, 🕊️ Glide Divine</p>
+<p>Striker of Chao, Glide Divine</p>
 
-<h3>⚔️ 近战</h3>
-
-<ul>
-<li><strong>🔺3目标:</strong> Excalibur</li>
-</ul>
-
-<h3>🔫 远程</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> Diska of Braveman</li>
-<li><strong>🔹1目标(复数攻击):</strong> Vulcan (💰Charge, 💉Berserk, 🧠Spirit), M&amp;A60 Vise</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Excalibur</li>
 </ul>
 
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
 <ul>
-<li><strong>🔷4目标:</strong> ES J-Cutter / ES Slicer [💤Arrest, ☠️Hell, 😈Demon's]</li>
-<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
-<li><strong>🎯1目标:</strong> Bringer's Rifle, Raygun [💤Arrest, ☠️Hell, 😈Demon's], ES Cards [☠️Hell, 😈Demon's], Holy Ray</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun [😈Demon's]</li>
+<li><strong><span class="target-badge">4</span> 目标：</strong> Diska of Braveman</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Vulcan (<span class="special-tag">Charge</span>, <span class="special-tag">Berserk</span>, <span class="special-tag">Spirit</span>), M&amp;A60 Vise</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
-<p>🌪️ Gal Wind, 🌻 Girasole, 🔱 Demonic Fork</p>
+<ul>
+<li><strong><span class="target-badge">4</span> 目标：</strong> ES J-Cutter / ES Slicer [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Slicer of Fanatic</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Bringer's Rifle, Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], ES Cards [<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], Holy Ray</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun [<span class="special-tag">Demon's</span>]</li>
+</ul>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>🖤 Thirteen, 🔥 Ignition Cloak, 👘 Mother Garb+, 👗 Dress Plate</p>
+<p>Gal Wind, Girasole, Demonic Fork</p>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🟥 Red Ring, 🔺 Rafoie Merge, 🔰 Gifoie Merge, ⚡ Gizonde Merge, ❄️ Rabarta Merge</p>
-<p>🧿 Anti-Dark Ring, 💧 Resta Merge, 🐉 God's Shield "Kouryu", 🔒 Three Seals, 🥊 Combat Gear</p>
+<p>Thirteen, Ignition Cloak, Mother Garb+, Dress Plate</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
 
-<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 💠 Adept</p>
+<p>Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge</p>
+<p>Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear</p>
+
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
+
+<p>V101, V502, Smartlink, V801, Adept</p>
 
 <hr>
 
 <h2 id="fonewearl"><span class="class-header"><img src="/assets/img/class/FOnewearl.png" alt="FOnewearl">萝莉 FOnewearl</span></h2>
 
-<h3>💣 核爆</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/cane.png" alt="">技能输出</h3>
 
-<p>🌀 Psycho Wand, 📖 Prophets of Motav</p>
-<p>💗 Magical Piece, 🔥 Fire Scepter: Agni, ⚡ Storm Wand: Indra, ❄️ Ice Staff: Dagon</p>
-<p>🌕 Summit Moon, 🪙 Club of Laconium, 🧿 Club of Zumiuran, 💎 Mace of Adaman</p>
-<p>👼 Mercurius Rod</p>
+<p>Psycho Wand, Prophets of Motav</p>
+<p>Magical Piece, Fire Scepter: Agni, Storm Wand: Indra, Ice Staff: Dagon</p>
+<p>Summit Moon, Club of Laconium, Club of Zumiuran, Mace of Adaman</p>
+<p>Mercurius Rod</p>
 
-<h3>✨ 支持</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/disk.png" alt="">支援</h3>
 
-<p>☂️ Tyrell's Parasol, 🕊️ Glide Divine</p>
+<p>Tyrell's Parasol, Glide Divine</p>
 
-<h3>⚔️ 近战</h3>
-
-<ul>
-<li><strong>🔹1目标(复数攻击):</strong> Vivienne</li>
-</ul>
-
-<h3>🔫 远程</h3>
-
-<p>🚫 无</p>
-
-<h3>💥 特殊攻击</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/sword.png" alt="">近战</h3>
 
 <ul>
-<li><strong>🔺3目标:</strong> Slicer of Fanatic</li>
-<li><strong>🎯1目标:</strong> Bringer's Rifle, Raygun [💤Arrest, ☠️Hell, 😈Demon's], ES Cards [☠️Hell, 😈Demon's], Holy Ray</li>
-<li><strong>🔹1目标(复数攻击):</strong> ES Mechgun [☠️Hell, 😈Demon's]</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> Vivienne</li>
 </ul>
 
-<h3>🎯 特殊目的</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/gun.png" alt="">远程</h3>
 
-<p>🌪️ Gal Wind, 🌻 Girasole, 🟥 Red Saber</p>
+<p>无</p>
 
-<h3>🛡️ 铠甲</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊攻击</h3>
 
-<p>🔥 Ignition Cloak, ❤️ Crimson Coat, 🔆 Brightness Circle</p>
+<ul>
+<li><strong><span class="target-badge">3</span> 目标：</strong> Slicer of Fanatic</li>
+<li><strong><span class="target-badge">1</span> 目标：</strong> Bringer's Rifle, Raygun [<span class="special-tag">Arrest</span>, <span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], ES Cards [<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>], Holy Ray</li>
+<li><strong><span class="target-badge">1</span> 目标 · 多段：</strong> ES Mechgun [<span class="special-tag">Hell</span>, <span class="special-tag">Demon's</span>]</li>
+</ul>
 
-<h3>🧷 盾牌</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/tool.png" alt="">特殊用途</h3>
 
-<p>🟥 Red Ring, 🔺 Rafoie Merge, 🔰 Gifoie Merge, ⚡ Gizonde Merge, ❄️ Rabarta Merge</p>
-<p>🧿 Anti-Dark Ring, 💧 Resta Merge, 🐉 God's Shield "Kouryu", 🔒 Three Seals, 🥊 Combat Gear</p>
+<p>Gal Wind, Girasole, Red Saber</p>
 
-<h3>🧩 插件</h3>
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/frame.png" alt="">铠甲</h3>
 
-<p>🧠 V101, ⚡ V502, 🎯 Smartlink, 🎶 V801, 💠 Adept</p>
+<p>Ignition Cloak, Crimson Coat, Brightness Circle</p>
+
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/shield.png" alt="">盾牌</h3>
+
+<p>Red Ring, Rafoie Merge, Gifoie Merge, Gizonde Merge, Rabarta Merge</p>
+<p>Anti-Dark Ring, Resta Merge, God's Shield "Kouryu", Three Seals, Combat Gear</p>
+
+<h3 class="equipment-heading"><img class="equipment-icon" src="/assets/img/icons/equipment/unit.png" alt="">插件</h3>
+
+<p>V101, V502, Smartlink, V801, Adept</p>
 
 <hr>
 
