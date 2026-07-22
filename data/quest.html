@@ -3,17 +3,40 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="PSOBB 任务列表与刷怪数据">
+    <meta name="description" content="Ephinea PSOBB Episode 1、2、4 当前任务分类列表">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
     <title>任务列表 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
     <style>
-        .text-left { text-align: left; }
-        .text-center { text-align: center; }
-        .episode-title { font-size: xx-large; font-weight: bolder; }
-        .section-header { text-align: center; font-size: x-large; font-weight: bolder; }
-        .category-header { text-align: center; font-weight: bolder; }
+        .quest-lead { color: var(--text-secondary); }
+        .episode-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 28px; }
+        .episode-nav a {
+            padding: 8px 14px;
+            border: 1px solid var(--accent-30);
+            border-radius: 999px;
+            background: var(--accent-5);
+        }
+        .quest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            align-items: start;
+        }
+        .quest-category {
+            padding: 16px 18px;
+            border: 1px solid var(--accent-20);
+            border-radius: 10px;
+            background: var(--accent-5);
+        }
+        .quest-category h3 { margin-top: 0; }
+        .quest-list { margin-bottom: 0 !important; }
+        .quest-list li { margin-bottom: 4px; }
+        .mode-note {
+            padding: 14px 18px;
+            border-left: 3px solid var(--accent);
+            background: var(--accent-5);
+        }
     </style>
     <script src="/assets/js/page-chrome.js"></script>
 </head>
@@ -21,525 +44,187 @@
 <body>
     <page-chrome title="任务列表"></page-chrome>
 
-    <div class="content-container">
-        <span class="episode-title">Eposide 1</span>
-        <table>
-            <thead>
-            <tr>
-                <th class="text-center" COLSPAN="2"><strong>Story Quests</strong></th>
+    <main class="content-container">
+        <h1>Ephinea 任务列表</h1>
+        <p class="quest-lead">
+            按游戏内任务柜台的章节与分类整理。列表与 Ephinea PSO Wiki 的 Quests 页面同步；活动任务只在对应活动期间开放，Sandbox Only 任务只对 Sandbox 角色开放。
+        </p>
+        <nav class="episode-nav" aria-label="章节导航">
+            <a href="#episode-1">Episode 1</a>
+            <a href="#episode-2">Episode 2</a>
+            <a href="#episode-4">Episode 4</a>
+            <a href="https://wiki.pioneer2.net/w/Quests" target="_blank" rel="noopener noreferrer">Ephinea Wiki 原表</a>
+        </nav>
 
-                <th class="text-center" COLSPAN="2"><strong>Guild Quests</strong></th>
+        <h2 id="episode-1">Episode 1</h2>
+        <div class="quest-grid">
+            <section class="quest-category"><h3>Government</h3><ul class="quest-list">
+                <li>1-1:Planet Ragol</li><li>1-2:Torrential Woods</li><li>1-3:Subterranean Den</li>
+                <li>2-1:Infernal Cavern</li><li>2-2:Deep Within</li><li>2-3:The Mutation</li><li>2-4:Waterway Shadow</li>
+                <li>3-1:The Facility</li><li>3-2:Machines Attack</li><li>3-3:Central Control</li>
+                <li>4-1:The Lost Ruins</li><li>4-2:Buried Relics</li><li>4-3:Hero &amp; Daughter</li><li>4-4:The Tomb Stirs</li><li>4-5:Dark Inheritance</li>
+            </ul></section>
+            <section class="quest-category"><h3>Extermination</h3><ul class="quest-list">
+                <li>Mop-up Operation #1</li><li>Mop-up Operation #2</li><li>Mop-up Operation #3</li><li>Mop-up Operation #4</li>
+                <li>Sweep-up Operation #1</li><li>Sweep-up Operation #2</li><li>Sweep-up Operation #3</li><li>Sweep-up Operation #4</li>
+                <li>Endless Nightmare #1</li><li>Endless Nightmare #2</li><li>Endless Nightmare #3</li><li>Endless Nightmare #4</li>
+                <li>Today's Rate</li><li>Anomalous Ordeal #1</li><li>Anomalous Ordeal #2</li>
+                <li>Scarlet Realm #1</li><li>Scarlet Realm #2</li><li>Scarlet Realm #3</li><li>Scarlet Realm #4</li>
+                <li>Silent Afterimage #1</li><li>Silent Afterimage #2</li>
+                <li>Chronocide Trial #1</li><li>Chronocide Trial #2</li><li>Chronocide Trial #3</li><li>Chronocide Trial #4</li>
+                <li>Ruins Wreckage</li>
+            </ul></section>
+            <section class="quest-category"><h3>Maximum Attack</h3><ul class="quest-list">
+                <li>MAXIMUM ATTACK 1 Ver2</li><li>Maximum Attack 4th Stage -1A-</li><li>Maximum Attack 4th Stage -1B-</li>
+                <li>Maximum Attack 4th Stage -1C-</li><li>Maximum Attack 4th Stage -1R-</li><li>Random Attack Xrd Stage</li>
+                <li>Maximum Attack E: Episode 1</li><li>Random Attack Xrd REV 1</li>
+            </ul></section>
+            <section class="quest-category"><h3>Retrieval</h3><ul class="quest-list">
+                <li>The Missing Maracas</li><li>Lost HEAT SWORD</li><li>Lost ICE SPINNER</li><li>Lost SOUL BLADE</li><li>Lost HELL PALLASCH</li>
+                <li>Fragments of a Memory</li><li>Rappy's Holiday</li><li>Gallon's Treachery</li><li>Rescue from Ragol</li>
+                <li>Forsaken Friends</li><li>This Must Be The Place</li><li>Road To Nowhere</li><li>Lost Son Jim</li>
+                <li>Subterranean Patrol #1</li><li>Subterranean Patrol #2</li><li>Subterranean Patrol #3</li><li>Underworld Patrol #1</li>
+            </ul></section>
+            <section class="quest-category"><h3>Shop</h3><ul class="quest-list">
+                <li>Christmas Event Shop</li><li>Anniversary Badge Shop</li><li>The Forge</li>
+            </ul></section>
+            <section class="quest-category"><h3>VR</h3><ul class="quest-list">
+                <li>Towards the Future</li><li>Tyrell's Ego</li><li>Labyrinthine Trial</li><li>Sugoroku</li><li>Simulator 2.0</li>
+                <li>Mine Offensive</li><li>Endless: Episode 1</li><li>Virtual Limits 1</li><li>Virtual Limits 2</li>
+                <li>Virtual Vortex 1</li><li>Virtual Vortex 2</li>
+            </ul></section>
+            <section class="quest-category"><h3>Halloween</h3><ul class="quest-list">
+                <li>Hollow Battlefield: Forest</li><li>Hollow Battlefield: Cave</li><li>Hollow Battlefield: Mine</li><li>Hollow Battlefield: Ruins</li>
+            </ul></section>
+            <section class="quest-category"><h3>Side Story</h3><ul class="quest-list">
+                <li>Battle Training</li><li>Magnitude of Metal</li><li>Claiming a Stake</li><li>The Value of Money</li>
+                <li>Journalistic Pursuit</li><li>The Fake in Yellow</li><li>Native Research</li><li>Forest of Sorrow</li><li>Gran Squall</li>
+                <li>Addicting Food</li><li>The Lost Bride</li><li>Waterfall Tears</li><li>Black Paper</li><li>Secret Delivery</li>
+                <li>Soul of a Blacksmith</li><li>Letter from Lionel</li><li>The Grave's Butler</li><li>Knowing One's Heart</li>
+                <li>The Retired Hunter</li><li>Dr. Osto's Research</li><li>Unsealed Door</li><li>Soul of Steel</li>
+                <li>Doc's Secret Plan</li><li>Seek my Master</li><li>From the Depths</li><li>Central Dome Fire Swirl</li>
+            </ul></section>
+            <section class="quest-category"><h3>Solo Only</h3><ul class="quest-list">
+                <li>Gallon's Plan</li><li>Good Luck!</li><li>AOL CUP -Sunset Base-</li><li>Knight of Coral</li>
+            </ul></section>
+            <section class="quest-category"><h3>Event</h3><ul class="quest-list">
+                <li>Christmas Fiasco</li><li>Solstice Snafu</li><li>December Disaster #1</li><li>August Atrocity 1</li>
+            </ul></section>
+            <section class="quest-category"><h3>Sandbox Only</h3><ul class="quest-list">
+                <li>Maximum Attack E: Forest</li><li>Maximum Attack E: Cave</li><li>Maximum Attack E: Mine</li><li>Maximum Attack E: Ruins</li>
+            </ul></section>
+        </div>
 
-            </tr>
-            <tr>
-                <th class="text-center"><strong>Government</strong></th>
-                <th class="text-center"><strong>Side Story</strong></th>
-                <th class="text-center"><strong>Extermination</strong></th>
-                <th class="text-center"><strong>Event</strong></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="text-left">1-1:Planet Ragol</td>
-                <td class="text-left">Battle Training</td>
-                <td class="text-left"> Mop-up Operation #1</td>
-                <td class="text-left">Christmas Fiasco</td>
+        <h2 id="episode-2">Episode 2</h2>
+        <div class="quest-grid">
+            <section class="quest-category"><h3>Government</h3><ul class="quest-list">
+                <li>5-1:Test/VR Temple 1</li><li>5-2:Test/VR Temple 2</li><li>5-3:Test/VR Temple 3</li><li>5-4:Test/VR Temple 4</li><li>5-5:Test/VR Temple 5</li>
+                <li>6-1:Test/Spaceship 1</li><li>6-2:Test/Spaceship 2</li><li>6-3:Test/Spaceship 3</li><li>6-4:Test/Spaceship 4</li><li>6-5:Test/Spaceship 5</li>
+                <li>7-1:From the Past</li><li>7-2:Seeking Clues</li><li>7-3:Silent Beach</li><li>7-4:Central Control</li><li>7-5:Isle of Mutants</li>
+                <li>8-1:Below the Waves</li><li>8-2:Desire's End</li><li>8-3:Purple Lamplight</li>
+            </ul></section>
+            <section class="quest-category"><h3>Extermination</h3><ul class="quest-list">
+                <li>Phantasmal World #1</li><li>Phantasmal World #2</li><li>Phantasmal World #3</li><li>Phantasmal World #4</li>
+                <li>Sweep-up Operation #5</li><li>Sweep-up Operation #6</li><li>Sweep-up Operation #7</li><li>Sweep-up Operation #8</li><li>Sweep-up Operation #9</li>
+                <li>Penumbral Surge #1</li><li>Penumbral Surge #2</li><li>Penumbral Surge #3</li><li>Penumbral Surge #4</li><li>Penumbral Surge #5</li><li>Penumbral Surge #6</li>
+                <li>Anomalous Ordeal #3</li><li>Anomalous Ordeal #4</li><li>Anomalous Ordeal #5</li>
+                <li>Gal Da Val's Darkness</li><li>CAL's Clock Challenge</li>
+            </ul></section>
+            <section class="quest-category"><h3>Maximum Attack</h3><ul class="quest-list">
+                <li>MAXIMUM ATTACK 2 Ver2</li><li>Maximum Attack 4th Stage -2A-</li><li>Maximum Attack 4th Stage -2B-</li>
+                <li>Maximum Attack 4th Stage -2C-</li><li>Maximum Attack 4th Stage -2R-</li><li>Random Attack Xrd Stage</li>
+                <li>Maximum Attack E: VR</li><li>Maximum Attack E: Gal Da Val</li><li>Random Attack Xrd REV 2</li>
+            </ul></section>
+            <section class="quest-category"><h3>Retrieval</h3><ul class="quest-list">
+                <li>Lost SHOCK RIFLE</li><li>Lost BIND ASSAULT</li><li>Lost FILL CANNON</li><li>Lost DEMON'S RAILGUN</li>
+                <li>Lost CHARGE VULCAN</li><li>Dream Messenger</li><li>Revisiting Darkness</li><li>Dolmolm Research</li>
+            </ul></section>
+            <section class="quest-category"><h3>Shop</h3><ul class="quest-list">
+                <li>Gallon's Shop</li><li>Item Present</li><li>Singing by the Beach</li><li>Beach Laughter</li>
+                <li>To The Deepest Blue -MA4 Venue-</li><li>TA Reward Shop</li><li>The Egg Shop</li><li>Seasons Shop</li><li>My Career</li>
+            </ul></section>
+            <section class="quest-category"><h3>Tower</h3><ul class="quest-list">
+                <li>The East Tower</li><li>The West Tower</li><li>Raid on Central Tower</li><li>The Military Strikes Back</li><li>Twilight Sanctuary</li>
+            </ul></section>
+            <section class="quest-category"><h3>VR</h3><ul class="quest-list">
+                <li>Reach for the Dream</li><li>Respective Tomorrow</li><li>Endless: Episode 2</li>
+            </ul></section>
+            <section class="quest-category"><h3>Halloween</h3><ul class="quest-list">
+                <li>Hollow Reality: Temple</li><li>Hollow Reality: Spaceship</li><li>Hollow Phantasm: Jungle</li>
+                <li>Hollow Phantasm: Seabed</li><li>Hollow Phantasm: Tower</li>
+            </ul></section>
+            <section class="quest-category"><h3>Side Story</h3><ul class="quest-list">
+                <li>Seat of the Heart</li><li>Blue Star Memories</li>
+            </ul></section>
+            <section class="quest-category"><h3>Solo Only</h3><ul class="quest-list">
+                <li>Knight of Coral Advent</li><li>A New Hope</li>
+            </ul></section>
+            <section class="quest-category"><h3>Event</h3><ul class="quest-list">
+                <li>Festivity on the Beach</li><li>Christmas Fiasco</li><li>December Disaster #2</li><li>Pioneer Christmas</li>
+                <li>Pioneer Halloween</li><li>Rappy Halloween</li><li>August Atrocity 2</li>
+            </ul></section>
+            <section class="quest-category"><h3>Sandbox Only</h3><ul class="quest-list">
+                <li>Maximum Attack E: Temple</li><li>Maximum Attack E: Spaceship</li><li>Maximum Attack E: CCA</li>
+                <li>Maximum Attack E: Seabed</li><li>Maximum Attack E: Tower</li><li>The Gloom Spire</li>
+            </ul></section>
+        </div>
 
-            </tr>
-            <tr>
-                <td class="text-left">1-2:Torrential Woods</td>
-                <td class="text-left">Magnitude of Metal</td>
-                <td class="text-left">Mop-up Operation #2</td>
-                <td class="text-left">Maximum Attack E: Forest</td>
+        <h2 id="episode-4">Episode 4</h2>
+        <div class="quest-grid">
+            <section class="quest-category"><h3>Government</h3><ul class="quest-list">
+                <li>9-1:Missing Research</li><li>9-2:Data Retrieval</li><li>9-3:Reality &amp; Truth</li><li>9-4:Pursuit</li>
+                <li>9-5:The Chosen (1/2)</li><li>9-6:The Chosen (2/2)</li><li>9-7:Sacred Ground</li><li>9-8:The Final Cycle</li>
+            </ul></section>
+            <section class="quest-category"><h3>Extermination</h3><ul class="quest-list">
+                <li>Point of Disaster</li><li>The Robots' Reckoning</li>
+                <li>War of Limits #1</li><li>War of Limits #2</li><li>War of Limits #3</li><li>War of Limits #4</li><li>War of Limits #5</li>
+                <li>New Mop-Up Operation #1</li><li>New Mop-Up Operation #2</li><li>New Mop-Up Operation #3</li><li>New Mop-Up Operation #4</li><li>New Mop-Up Operation #5</li>
+                <li>Sweep-up Operation #10</li><li>Sweep-up Operation #11</li><li>Sweep-up Operation #12</li><li>Sweep-up Operation #13</li><li>Sweep-up Operation #14</li>
+            </ul></section>
+            <section class="quest-category"><h3>Retrieval</h3><ul class="quest-list">
+                <li>Lost BERSERK BATON</li><li>Lost SPIRIT STRIKER</li>
+            </ul></section>
+            <section class="quest-category"><h3>Maximum Attack</h3><ul class="quest-list">
+                <li>MAXIMUM ATTACK 3 Ver2</li><li>Maximum Attack 4th Stage -4A-</li><li>Maximum Attack 4th Stage -4B-</li>
+                <li>Maximum Attack 4th Stage -4C-</li><li>Maximum Attack 4th Stage -4R-</li><li>Maximum Attack E: Episode 4</li><li>Random Attack Xrd REV 4</li>
+            </ul></section>
+            <section class="quest-category"><h3>Shop</h3><ul class="quest-list">
+                <li>Claire's Deal 5</li><li>The Beak's Cafe Ver.2</li>
+            </ul></section>
+            <section class="quest-category"><h3>VR</h3><ul class="quest-list">
+                <li>Beyond the Horizon</li><li>LOGiN presents 勇場のマッチレース</li>
+            </ul></section>
+            <section class="quest-category"><h3>Halloween</h3><ul class="quest-list">
+                <li>Hollow Wasteland: Wilderness</li><li>Hollow Wasteland: Desert</li>
+            </ul></section>
+            <section class="quest-category"><h3>Side Story</h3><ul class="quest-list">
+                <li>Warrior's Pride</li><li>The Restless Lion</li><li>Pioneer Spirit</li><li>荒野の果てに</li>
+                <li>Black Paper's Dangerous Deal</li><li>Black Paper's Dangerous Deal 2</li>
+            </ul></section>
+            <section class="quest-category"><h3>Event</h3><ul class="quest-list">
+                <li>Christmas Fiasco</li>
+            </ul></section>
+            <section class="quest-category"><h3>Sandbox Only</h3><ul class="quest-list">
+                <li>Maximum Attack E: Crater</li><li>Maximum Attack E: Desert</li>
+            </ul></section>
+        </div>
 
-            </tr>
-            <tr>
-                <td class="text-left">1-3:Subterranean Den</td>
-                <td class="text-left">Claiming a Stake</td>
-                <td class="text-left">Mop-up Operation #3</td>
-                <td class="text-left">Maximum Attack E: Caves</td>
-            </tr>
-            <tr>
-                <td class="text-left">2-1:Infernal Cavern</td>
-                <td class="text-left">The Value of Money</td>
-                <td class="text-left">Mop-up Operation #4</td>
-                <td class="text-left">Maximum Attack E: Mines</td>
-            </tr>
-            <tr>
-                <td class="text-left">2-1:Infernal Cavern</td>
-                <td class="text-left">The Value of Money</td>
-                <td class="text-left">Mop-up Operation #4</td>
-                <td class="text-left">Maximum Attack E: Mines</td>
-            </tr>
-            <tr>
-                <td class="text-left">2-2:Deep Within</td>
-                <td class="text-left">Journalistic Pursuit</td>
-                <td class="text-left">Sweep-up Operation #1</td>
-                <td class="text-left">Maximum Attack E: Ruins</td>
-            </tr>
-            <tr>
-                <td class="text-left">2-3:The Mutation</td>
-                <td class="text-left">The Fake in Yellow</td>
-                <td class="text-left">Sweep-up Operation #2</td>
-                <td class="category-header">Maximum Attack</td>
-            </tr>
-            <tr>
-                <td class="text-left">2-4:Waterway Shadow</td>
-                <td class="text-left">Native Research</td>
-                <td class="text-left">Sweep-up Operation #3</td>
-                <td class="text-left">MAXIMUM ATTACK 1 Ver2</td>
-            </tr>
-            <tr>
-                <td class="text-left">3-1:The Facility</td>
-                <td class="text-left">Forest of Sorrow</td>
-                <td class="text-left">Sweep-up Operation #4</td>
-                <td class="text-left">Maximum Attack 4th Stage -1A-</td>
-            </tr>
-            <tr>
-                <td class="text-left">3-2:Machines Attack</td>
-                <td class="text-left">Gran Squall</td>
-                <td class="text-left">Endless Nightmare #1</td>
-                <td class="text-left">Maximum Attack 4th Stage -1B-</td>
-            </tr>
-            <tr>
-                <td class="text-left">3-3:Central Control</td>
-                <td class="text-left">Addicting Food</td>
-                <td class="text-left">Endless Nightmare #2</td>
-                <td class="text-left">Maximum Attack 4th Stage -1C-</td>
-            </tr>
-            <tr>
-                <td class="text-left">4-1:The Lost Ruins</td>
-                <td class="text-left">The Lost Bride</td>
-                <td class="text-left">Endless Nightmare #3</td>
-                <td class="text-left">Maximum Attack 4th Stage -1R-</td>
-            </tr>
-            <tr>
-                <td class="text-left">4-2:Buried Relics</td>
-                <td class="text-left">Waterfall Tears</td>
-                <td class="text-left">Endless Nightmare #4</td>
-                <td class="text-left">Maximum Attack S</td>
-            </tr>
-            <tr>
-                <td class="text-left">4-3:Hero & Daughter</td>
-                <td class="text-left">Black Paper</td>
-                <td class="text-left">Today's Rate</td>
-                <td class="text-left">Random Attack Xrd Stage</td>
-            </tr>
-            <tr>
-                <td class="text-left">4-4:The Tomb Stirs</td>
-                <td class="text-left">Secret Delivery</td>
-                <td class="category-header">Retrieval</td>
-                <td class="text-left">Maximum Attack E: Episode 1</td>
-            </tr>
-            <tr>
-                <td class="text-left">4-5:Dark Inheritance</td>
-                <td class="text-left">Soul of a Blacksmith</td>
-                <td class="text-left">Lost HEAT SWORD</td>
-                <td class="category-header">VR</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Letter from Lionel</td>
-                <td class="text-left">Lost ICE SPINNER</td>
-                <td class="text-left">Towards the Future</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">The Grave's Butler</td>
-                <td class="text-left">Lost SOUL BLADE</td>
-                <td class="text-left">Tyrell's Ego</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Knowing One's Heart</td>
-                <td class="text-left">Lost HELL PALLASCH</td>
-                <td class="text-left">Labyrinthine Trial</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">The Retired Hunter</td>
-                <td class="text-left">Fragments of a Memory</td>
-                <td class="text-left">Sugoroku</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Dr. Osto's Research</td>
-                <td class="text-left">Rappy's Holiday</td>
-                <td class="text-left">Simulator 2.0</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Unsealed Door</td>
-                <td class="text-left">Gallon's Treachery</td>
-                <td class="text-left">Mine Offensive</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Soul of Steel</td>
-                <td class="text-left">Rescue from Ragol</td>
-                <td class="category-header">Solo Only</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Doc's Secret Plan</td>
-                <td class="text-left">Forsaken Friends</td>
-                <td class="text-left">Gallon's Plan</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Seek my Master</td>
-                <td class="text-left">Dark Research 2.0</td>
-                <td class="text-left">Good Luck!</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">From the Depths</td>
-                <td class="category-header">Shop</td>
-                <td class="text-left">AOL CUP -Sunset Base-</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Central Dome Fire Swirl</td>
-                <td class="text-left">Christmas Event Shop</td>
-                <td class="text-left">Knight of Coral</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left"></td>
-                <td class="text-left">Anniversary Badge Shop</td>
-                <td class="text-left"></td>
-            </tr>
+        <p class="mode-note">
+            Government 任务只能在多人模式开始，并需要按顺序解锁；Side Story 与 Solo Only 通常只能在 One Person 模式开始。任务开始后，除 Government 任务外，其他玩家不能再加入当前房间。
+        </p>
 
-            </tbody>
-        </table>
+        <p>
+            来源：<a href="https://wiki.pioneer2.net/w/Quests" target="_blank" rel="noopener noreferrer">Ephinea PSO Wiki — Quests</a>。
+            Wiki 更新后，本站列表可能存在短暂延迟；若游戏内列表与本文不同，以服务器实际内容和 Wiki 为准。
+        </p>
+    </main>
 
-        <span class="episode-title">Eposide 2</span>
-        <table>
-            <thead>
-            <tr>
-                <th class="text-center"><strong>Story Quests</strong></th>
-
-                <th class="text-center" COLSPAN="2"><strong>Guild Quests</strong></th>
-
-            </tr>
-            <tr>
-                <th class="text-center"><strong>Government</strong></th>
-                <th class="text-center"><strong>Event</strong></th>
-                <th class="text-center"><strong>Maximum Attack</strong></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="text-left">5-1:Test/VR Temple 1</td>
-                <td class="text-left">Festivity On The Beach</td>
-                <td class="text-left">MAXIMUM ATTACK 2 Ver2</td>
-            </tr>
-            <tr>
-                <td class="text-left">5-2:Test/VR Temple 2</td>
-                <td class="text-left">Christmas Fiasco</td>
-                <td class="text-left">Maximum Attack 4th Stage -2A-</td>
-            </tr>
-            <tr>
-                <td class="text-left">5-2:Test/VR Temple 3</td>
-                <td class="text-left">Maximum Attack E: Temple</td>
-                <td class="text-left">Maximum Attack 4th Stage -2B-</td>
-            </tr>
-            <tr>
-                <td class="text-left">5-2:Test/VR Temple 4</td>
-                <td class="text-left">Maximum Attack E: Spaceship</td>
-                <td class="text-left">Maximum Attack 4th Stage -2C-</td>
-            </tr>
-            <tr>
-                <td class="text-left">5-2:Test/VR Temple 5</td>
-                <td class="text-left">Maximum Attack E: CCA</td>
-                <td class="text-left">Maximum Attack 4th Stage -2R-</td>
-            </tr>
-
-            <tr>
-                <td class="text-left">6-1:Test/Spaceship 1</td>
-                <td class="text-left">Maximum Attack E: Seabed</td>
-                <td class="text-left">Maximum Attack E: VR</td>
-            </tr>
-            <tr>
-                <td class="text-left">6-2:Test/Spaceship 2</td>
-                <td class="text-left">Maximum Attack E: Tower</td>
-                <td class="text-left">Maximum Attack E: Gal Da Val</td>
-            </tr>
-            <tr>
-                <td class="text-left">6-3:Test/Spaceship 3</td>
-                <td class="section-header">Extermination</td>
-                <td class="text-left">Maximum Attack S</td>
-            </tr>
-            <tr>
-                <td class="text-left">6-4:Test/Spaceship 4</td>
-                <td class="text-left">Phantasmal World #1</td>
-                <td class="text-left">Random Attack Xrd Stage</td>
-            </tr>
-            <tr>
-                <td class="text-left">6-5:Test/Spaceship 5</td>
-                <td class="text-left">Phantasmal World #2</td>
-                <td class="section-header">Shop</td>
-            </tr>
-
-            <tr>
-                <td class="text-left">7-1:From the Past</td>
-                <td class="text-left">Phantasmal World #3</td>
-                <td class="text-left">Gallon's Shop</td>
-            </tr>
-            <tr>
-                <td class="text-left">7-2:Seeking Clues</td>
-                <td class="text-left">Phantasmal World #4</td>
-                <td class="text-left">Item Present</td>
-            </tr>
-            <tr>
-                <td class="text-left">7-3:Silent Beach</td>
-                <td class="text-left">Sweep-up Operation #5</td>
-                <td class="text-left">Singing by the Beach</td>
-            </tr>
-            <tr>
-                <td class="text-left">7-4:Central Control</td>
-                <td class="text-left">Sweep-up Operation #6</td>
-                <td class="text-left">Beach Laughter</td>
-            </tr>
-            <tr>
-                <td class="text-left">7-5:Isle of Mutants</td>
-                <td class="text-left">Sweep-up Operation #7</td>
-                <td class="text-left">To The Deepest Blue -MA4 Venue-</td>
-            </tr>
-            <tr>
-                <td class="text-left">8-1:Below the Waves</td>
-                <td class="text-left">Sweep-up Operation #8</td>
-                <td class="text-left">TA Reward Shop</td>
-            </tr>
-            <tr>
-                <td class="text-left">8-2:Desire's End</td>
-                <td class="text-left">Sweep-up Operation #9</td>
-                <td class="text-left">The Egg Shop</td>
-            </tr>
-            <tr>
-                <td class="text-left">8-3:Purple Lamplight</td>
-                <td class="text-left">Gal Da Val's Darkness</td>
-                <td class="section-header">VR</td>
-            </tr>
-            <tr>
-                <td class="section-header">Side Story</td>
-                <td class="text-left">CAL's Clock Challenge</td>
-                <td class="text-left">Reach for the Dream</td>
-            </tr>
-            <tr>
-                <td class="text-left">Seat of the Heart</td>
-                <td class="section-header">Retrieval</td>
-                <td class="text-left">Respective Tomorrow</td>
-            </tr>
-            <tr>
-                <td class="text-left">Blue Star Memories</td>
-                <td class="text-left">Lost SHOCK RIFLE</td>
-                <td class="section-header">Solo Only</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Lost BIND ASSAULT</td>
-                <td class="text-left">Knight of Coral Advent</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Dream Messenger</td>
-                <td class="text-left">A New Hope</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Revisiting Darkness</td>
-                <td class="section-header">Halloween</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Dolmolm Research</td>
-                <td class="text-left">Hollow Phantasm: Seabed</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="section-header">Tower</td>
-                <td class="text-left"></td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">The East Tower</td>
-                <td class="text-left"></td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">The West Tower</td>
-                <td class="text-left"></td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Raid on Central Tower</td>
-                <td class="text-left"></td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">The Military Strikes Back</td>
-                <td class="text-left"></td>
-            </tr>
-            </tbody>
-        </table>
-
-
-        <span class="episode-title">Eposide 4</span>
-        <table>
-            <thead>
-            <tr>
-                <th class="text-center"><strong>Story Quests</strong></th>
-
-                <th class="text-center" COLSPAN="2"><strong>Guild Quests</strong></th>
-
-            </tr>
-            <tr>
-                <th class="text-center"><strong>Government</strong></th>
-                <th class="text-center"><strong>Event</strong></th>
-                <th class="text-center"><strong>Halloween</strong></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="text-left">9-1:Missing Research</td>
-                <td class="text-left">Christmas Fiasco</td>
-                <td class="text-left">Hollow Wasteland: Wilderness</td>
-            </tr>
-            <tr>
-                <td class="text-left">9-2:Data Retrieval</td>
-                <td class="text-left">Maximum Attack E: Crater</td>
-                <td class="section-header">Retrieval</td>
-            </tr>
-            <tr>
-                <td class="text-left">9-3:Reality & Truth</td>
-                <td class="text-left">Maximum Attack E: Desert</td>
-                <td class="text-left">Lost BERSERK BATON</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left"></td>
-                <td class="text-left">Lost SPIRIT STRIKER</td>
-            </tr>
-            <tr>
-                <td class="text-left">9-4:Pursuit</td>
-                <td class="section-header">Extermination</td>
-                <td class="section-header">Maximum Attack</td>
-            </tr>
-            <tr>
-                <td class="text-left">9-5:The Chosen (1/2)</td>
-                <td class="text-left">Point of Disaster</td>
-                <td class="text-left">MAXIMUM ATTACK 3 Ver2</td>
-            </tr>
-            <tr>
-                <td class="text-left">9-6:The Chosen (2/2)</td>
-                <td class="text-left">The Robots' Reckoning</td>
-                <td class="text-left">Maximum Attack 4th Stage -4A-</td>
-            </tr>
-            <tr>
-                <td class="text-left">9-7:Sacred Ground</td>
-                <td class="text-left">War of Limits 1</td>
-                <td class="text-left">Maximum Attack 4th Stage -4B-</td>
-            </tr>
-            <tr>
-                <td class="text-left">9-8:The Final Cycle</td>
-                <td class="text-left">War of Limits 2</td>
-                <td class="text-left">Maximum Attack 4th Stage -4C-</td>
-            </tr>
-
-            <tr>
-                <td class="section-header">Side Story</td>
-                <td class="text-left">War of Limits 3</td>
-                <td class="text-left">Maximum Attack 4th Stage -4R-</td>
-            </tr>
-            <tr>
-                <td class="text-left">Warrior's Pride</td>
-                <td class="text-left">War of Limits 4</td>
-                <td class="text-left">Maximum Attack E: Episode 4</td>
-            </tr>
-            <tr>
-                <td class="text-left">The Restless Lion</td>
-                <td class="text-left">War of Limits 5</td>
-                <td class="text-left">Maximum Attack S</td>
-            </tr>
-
-            <tr>
-                <td class="text-left">Pioneer Spirit</td>
-                <td class="text-left">New Mop-Up Operation #1</td>
-                <td class="section-header">Shop</td>
-            </tr>
-            <tr>
-                <td class="text-left">荒野の果てに</td>
-                <td class="text-left">New Mop-Up Operation #2</td>
-                <td class="text-left">Claire's Deal 5</td>
-            </tr>
-            <tr>
-                <td class="text-left">Black Paper's Dangerous Deal</td>
-                <td class="text-left">New Mop-Up Operation #3</td>
-                <td class="text-left">The Beak's Cafe Ver.2</td>
-            </tr>
-            <tr>
-                <td class="text-left">Black Paper's Dangerous Deal 2</td>
-                <td class="text-left">New Mop-Up Operation #4</td>
-                <td class="section-header">VR</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">New Mop-Up Operation #5</td>
-                <td class="text-left">Beyond the Horizon</td>
-            </tr>
-
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Sweep-up Operation #10</td>
-                <td class="text-left">LOGiN presents 勇場のマッチレース</td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Sweep-up Operation #11</td>
-                <td class="text-left"></td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Sweep-up Operation #12</td>
-                <td class="text-left"></td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Sweep-up Operation #13</td>
-                <td class="text-left"></td>
-            </tr>
-            <tr>
-                <td class="text-left"></td>
-                <td class="text-left">Sweep-up Operation #14</td>
-                <td class="text-left"></td>
-            </tr>
-            </tbody>
-        </table>
-
-    </div>
-
-    <!-- Back to Top Button -->
-    <button id="backToTop" title="回到顶部">↑</button>
-
+    <button id="backToTop" title="回到顶部" aria-label="回到顶部">↑</button>
     <script>
-        // Back to Top functionality
         const backToTopBtn = document.getElementById('backToTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+        window.addEventListener('scroll', () => backToTopBtn.classList.toggle('show', window.scrollY > 300));
+        backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 </body>
+
 </html>
