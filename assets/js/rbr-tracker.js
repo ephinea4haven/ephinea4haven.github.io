@@ -70,20 +70,18 @@
     function questCell(quest, status) {
         const link = document.createElement("a");
         const abbreviation = document.createElement("strong");
-        const state = document.createElement("small");
 
         link.className = `rbr-quest-cell is-${status}`;
         link.href = quest.wikiUrl;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-        link.title = quest.name;
+        link.title = `${quest.name} · ${STATUS_TEXT[status]}`;
         link.setAttribute(
             "aria-label",
             `${quest.abbreviation} ${quest.name}，${STATUS_TEXT[status]}`
         );
         abbreviation.textContent = quest.abbreviation;
-        state.textContent = STATUS_TEXT[status];
-        link.append(abbreviation, state);
+        link.append(abbreviation);
         return link;
     }
 
