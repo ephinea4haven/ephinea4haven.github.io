@@ -183,6 +183,86 @@
         );
     }
 
+    async function renderTierHighlights(data) {
+        const chart = byId("rbr-tier-chart");
+        const overlay = byId("rbr-tier-current-overlay");
+        const summary = byId("rbr-tier-current-summary");
+        if (!chart || !overlay || !summary) {
+            return;
+        }
+
+        const response = await fetch(chart.getAttribute("src"), {
+            cache: "force-cache",
+        });
+        if (!response.ok) {
+            throw new Error(`Tier chart HTTP ${response.status}`);
+        }
+
+        const documentRoot = new DOMParser().parseFromString(
+            await response.text(),
+            "image/svg+xml"
+        );
+        const svg = documentRoot.documentElement;
+        const viewBox = svg
+            .getAttribute("viewBox")
+            .split(/\s+/)
+            .map(Number);
+        const [, , viewBoxWidth, viewBoxHeight] = viewBox;
+        const current = data.current.quests.map((quest) => quest.abbreviation);
+
+        if (
+            viewBox.length !== 4 ||
+            !viewBox.every(Number.isFinite) ||
+            viewBoxWidth <= 0 ||
+            viewBoxHeight <= 0
+        ) {
+            throw new Error("Tier chart has an invalid viewBox");
+        }
+
+        overlay.replaceChildren();
+        current.forEach((abbreviation, index) => {
+            const label = Array.from(documentRoot.querySelectorAll("text")).find(
+                (element) => element.textContent.trim() === abbreviation
+            );
+            const cell = label?.previousElementSibling;
+            if (!cell || cell.tagName.toLowerCase() !== "rect") {
+                throw new Error(`Tier chart does not contain ${abbreviation}`);
+            }
+
+            const marker = document.createElement("div");
+            const corners = document.createElement("span");
+            const scan = document.createElement("i");
+            const name = document.createElement("strong");
+            const x = Number(cell.getAttribute("x"));
+            const y = Number(cell.getAttribute("y"));
+            const width = Number(cell.getAttribute("width"));
+            const height = Number(cell.getAttribute("height"));
+            if (![x, y, width, height].every(Number.isFinite)) {
+                throw new Error(`Tier chart cell ${abbreviation} is invalid`);
+            }
+
+            marker.className = "tier-current-marker";
+            corners.className = "tier-current-corners";
+            scan.className = "tier-current-scan";
+            name.className = "tier-current-name";
+            name.textContent = abbreviation;
+            marker.title = `本周 RBR：${abbreviation}`;
+            marker.style.setProperty("--marker-delay", `${index * 120}ms`);
+            marker.style.left = `${(x / viewBoxWidth) * 100}%`;
+            marker.style.top = `${(y / viewBoxHeight) * 100}%`;
+            marker.style.width = `${(width / viewBoxWidth) * 100}%`;
+            marker.style.height = `${(height / viewBoxHeight) * 100}%`;
+            marker.append(corners, scan, name);
+            overlay.append(marker);
+        });
+
+        const badge = document.createElement("span");
+        const quests = document.createElement("strong");
+        badge.textContent = "本周 RBR";
+        quests.textContent = `${current.join(" · ")}（${data.current.week}）`;
+        summary.replaceChildren(badge, quests);
+    }
+
     async function loadTracker() {
         const response = await fetch("/data/rbr/source.json", {
             cache: "no-cache",
@@ -204,6 +284,12 @@
         );
         renderSourceStatus(data);
         renderTracker(data, questsByAbbreviation);
+        renderTierHighlights(data).catch((error) => {
+            const summary = byId("rbr-tier-current-summary");
+            if (summary) {
+                summary.textContent = `本周 RBR 标记暂时无法显示（${error.message}）`;
+            }
+        });
     }
 
     loadTracker().catch((error) => {
