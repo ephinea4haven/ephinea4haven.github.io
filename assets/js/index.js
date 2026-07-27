@@ -86,8 +86,26 @@ function initBuf() {
     if (nxt) nxt.textContent = '下周轮替：' + BUF_LABELS[(offset + 1) % 4];
 }
 
+function initHolidayHighlight() {
+    const now = new Date();
+    const month = now.getMonth() + 1;
+    const monthDay = month * 100 + now.getDate();
+    const active = {
+        valentines: month === 2,
+        easter: monthDay >= 301 && monthDay <= 515,
+        anniversary: monthDay >= 801 && monthDay <= 915,
+        halloween: monthDay >= 1001 && monthDay <= 1110,
+        christmas: monthDay >= 1201 || monthDay <= 115,
+    };
+
+    document.querySelectorAll('[data-holiday]').forEach((link) => {
+        link.classList.toggle('holiday-active', active[link.dataset.holiday] === true);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     tick();
     setInterval(tick, 1000);
     initBuf();
+    initHolidayHighlight();
 });
