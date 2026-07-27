@@ -3,12 +3,293 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Ephinea PSOBB 圣诞活动 (2015-2026)">
+    <meta name="description" content="Ephinea PSOBB 圣诞活动 (2015-2025)">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title id="page-title">圣诞活动 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
     <style>
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        .event-masthead {
+            position: relative;
+            width: min(100%, 1120px);
+            max-width: 1120px;
+            margin: 0 auto 36px;
+            overflow: hidden;
+            border: 1px solid rgba(251, 191, 36, 0.28);
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at 82% 16%, rgba(255, 255, 255, 0.11), transparent 18%),
+                radial-gradient(circle at 8% 110%, rgba(22, 163, 74, 0.35), transparent 36%),
+                linear-gradient(132deg, #26080d 0%, #5e101b 58%, #1d0b12 100%);
+            box-shadow:
+                0 28px 70px rgba(0, 0, 0, 0.34),
+                inset 0 1px rgba(255, 255, 255, 0.08);
+            isolation: isolate;
+        }
+
+        .event-masthead::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-image:
+                radial-gradient(circle, rgba(255, 255, 255, 0.62) 0 1px, transparent 1.5px),
+                radial-gradient(circle, rgba(255, 255, 255, 0.34) 0 1.5px, transparent 2px);
+            background-position: 0 0, 24px 34px;
+            background-size: 58px 58px, 82px 82px;
+            mask-image: linear-gradient(to right, transparent, black 46%, black);
+            opacity: 0.52;
+        }
+
+        .event-masthead::after {
+            content: "";
+            position: absolute;
+            top: -120px;
+            right: 54px;
+            z-index: -1;
+            width: 250px;
+            height: 250px;
+            border: 1px solid rgba(251, 191, 36, 0.26);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 20px rgba(251, 191, 36, 0.02),
+                0 0 80px rgba(251, 191, 36, 0.12);
+        }
+
+        .masthead-main {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 240px;
+            align-items: center;
+            min-height: 300px;
+            padding: 34px 42px 26px;
+        }
+
+        .masthead-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            margin-bottom: 34px;
+            color: rgba(254, 226, 226, 0.72);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            transition: color 160ms ease, transform 160ms ease;
+        }
+
+        .masthead-back::before {
+            content: "←";
+            display: grid;
+            width: 28px;
+            height: 28px;
+            place-items: center;
+            border: 1px solid rgba(254, 226, 226, 0.24);
+            border-radius: 50%;
+        }
+
+        .masthead-back:hover {
+            color: #fde68a;
+            transform: translateX(-2px);
+        }
+
+        .masthead-kicker {
+            margin: 0 0 10px;
+            color: #86efac;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .masthead-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 10px 18px;
+            margin: 0;
+            color: #fff7ed;
+            font-size: clamp(42px, 7vw, 82px);
+            font-weight: 900;
+            letter-spacing: -0.055em;
+            line-height: 0.92;
+            text-shadow: none;
+        }
+
+        .event-masthead #project_title {
+            margin: 0;
+            color: #fff7ed;
+            font-size: clamp(42px, 6vw, 76px);
+            font-weight: 900;
+            letter-spacing: -0.055em;
+            text-shadow: none;
+        }
+
+        .masthead-title span {
+            color: #fff7ed;
+        }
+
+        .masthead-title strong {
+            color: #fde68a;
+            font: inherit;
+        }
+
+        .masthead-summary {
+            max-width: 620px;
+            margin: 18px 0 0;
+            color: rgba(254, 226, 226, 0.7);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .masthead-gift {
+            position: relative;
+            display: grid;
+            width: 170px;
+            height: 146px;
+            place-self: center end;
+            place-items: center;
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            border-radius: 16px 16px 24px 24px;
+            background:
+                linear-gradient(90deg, transparent 42%, rgba(253, 230, 138, 0.85) 42% 58%, transparent 58%),
+                linear-gradient(145deg, rgba(185, 28, 28, 0.96), rgba(127, 29, 29, 0.88));
+            box-shadow: 0 28px 50px rgba(0, 0, 0, 0.28);
+            transform: rotate(3deg);
+        }
+
+        .masthead-gift::before {
+            content: "";
+            position: absolute;
+            top: -26px;
+            left: -9px;
+            width: 186px;
+            height: 34px;
+            border: 1px solid rgba(251, 191, 36, 0.58);
+            border-radius: 10px;
+            background:
+                linear-gradient(90deg, transparent 42%, #fde68a 42% 58%, transparent 58%),
+                #991b1b;
+        }
+
+        .masthead-gift::after {
+            content: "✦";
+            position: absolute;
+            top: 32px;
+            color: #fde68a;
+            font-size: 58px;
+            text-shadow: 0 0 28px rgba(253, 230, 138, 0.58);
+        }
+
+        .gift-label {
+            position: absolute;
+            bottom: 20px;
+            color: #fff7ed;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+        }
+
+        .event-masthead .year-nav {
+            position: relative;
+            justify-content: flex-start;
+            gap: 8px;
+            margin: 0;
+            padding: 18px 42px 20px;
+            border-top: 1px solid rgba(254, 226, 226, 0.12);
+            background: rgba(28, 5, 10, 0.52);
+        }
+
+        .event-masthead .year-nav::before {
+            content: "YEAR";
+            align-self: center;
+            margin-right: 10px;
+            color: rgba(254, 226, 226, 0.48);
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+        }
+
+        .event-masthead .year-nav a,
+        .event-masthead .year-nav .year-current {
+            min-width: 52px;
+            padding: 7px 12px;
+            border-color: rgba(254, 226, 226, 0.2);
+            border-radius: 8px;
+            background: rgba(69, 10, 20, 0.62);
+            color: rgba(255, 247, 237, 0.78);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .event-masthead .year-nav a:hover {
+            border-color: rgba(134, 239, 172, 0.65);
+            background: rgba(22, 163, 74, 0.18);
+            color: #bbf7d0;
+            transform: translateY(-1px);
+        }
+
+        .event-masthead .year-nav .year-current {
+            border-color: #fde68a;
+            background: #fde68a;
+            color: #3f0b12;
+            box-shadow: 0 0 24px rgba(253, 230, 138, 0.22);
+        }
+
+        @media (max-width: 760px) {
+            .event-masthead {
+                border-radius: 18px;
+            }
+
+            .masthead-main {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding: 26px 24px 24px;
+            }
+
+            .masthead-back {
+                margin-bottom: 30px;
+            }
+
+            .masthead-gift {
+                display: none;
+            }
+
+            .masthead-title {
+                font-size: clamp(36px, 12vw, 50px);
+            }
+
+            .event-masthead #project_title {
+                font-size: clamp(36px, 12vw, 50px);
+            }
+
+            .event-masthead .year-nav {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding: 14px 20px 16px;
+                scrollbar-width: thin;
+            }
+
+            .event-masthead .year-nav::before {
+                position: sticky;
+                left: 0;
+                z-index: 1;
+                padding: 8px 9px 8px 0;
+                background: #310911;
+            }
+
+            .event-masthead .year-nav a,
+            .event-masthead .year-nav .year-current {
+                flex: 0 0 auto;
+            }
+        }
+
         .year-nav {
             display: flex;
             flex-wrap: wrap;
@@ -45,29 +326,1062 @@
             border-color: var(--accent);
             cursor: default;
         }
+
+        .year-hero {
+            margin-bottom: 24px;
+            padding: 22px;
+            border: 1px solid var(--accent-25);
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--accent-10), rgba(190, 34, 48, 0.08));
+        }
+
+        .year-hero h2 {
+            margin-top: 0;
+        }
+
+        .christmas-overview {
+            margin-bottom: 28px;
+        }
+
+        .christmas-overview h2 {
+            margin-top: 0;
+        }
+
+        .overview-lead {
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .event-flow,
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+            margin: 18px 0 24px;
+        }
+
+        .flow-card,
+        .feature-card {
+            padding: 16px;
+            border: 1px solid var(--accent-25);
+            border-radius: 12px;
+            background: var(--accent-10);
+        }
+
+        .flow-card strong,
+        .feature-card strong {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--accent);
+        }
+
+        .flow-step {
+            display: inline-grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            margin-right: 7px;
+            border-radius: 50%;
+            color: var(--accent-dark);
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+        }
+
+        .archive-title {
+            margin: 28px 0 14px;
+            text-align: center;
+        }
+
+        .item-bilingual {
+            white-space: nowrap;
+        }
+
+        .item-bilingual .item-zh {
+            color: var(--accent);
+            font-weight: 650;
+        }
+
+        .item-bilingual .item-en {
+            color: var(--text-secondary);
+            font-size: 0.88em;
+        }
+
+        .shop-table-wrap {
+            overflow-x: auto;
+            margin: 14px 0 22px;
+            border: 1px solid var(--accent-25);
+            border-radius: 12px;
+        }
+
+        .shop-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 560px;
+        }
+
+        .shop-table th,
+        .shop-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--accent-25);
+            text-align: left;
+        }
+
+        .shop-table th {
+            background: var(--accent-10);
+        }
+
+        .shop-table tbody tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .npc-card {
+            display: grid;
+            grid-template-columns: 92px 1fr;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .npc-thumbnail-button {
+            overflow: hidden;
+            width: 92px;
+            padding: 0;
+            border: 1px solid rgba(255, 211, 91, 0.5);
+            border-radius: 10px;
+            background: #202020;
+            cursor: zoom-in;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .npc-thumbnail-button:hover {
+            border-color: #ffe08a;
+            box-shadow: 0 0 18px rgba(255, 211, 91, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .npc-thumbnail-button img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
+
+        .npc-card-copy strong {
+            margin-bottom: 5px;
+        }
+
+        .npc-card-copy p {
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        .npc-card-copy small {
+            display: block;
+            margin-top: 7px;
+            color: var(--text-muted);
+        }
+
+        .npc-preview-popover {
+            position: fixed;
+            z-index: 1200;
+            width: min(260px, calc(100vw - 24px));
+            padding: 18px;
+            border: 1px solid rgba(255, 211, 91, 0.55);
+            border-radius: 14px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.62), 0 0 24px rgba(255, 211, 91, 0.14);
+        }
+
+        .npc-preview-popover[hidden] {
+            display: none;
+        }
+
+        .npc-preview-popover img {
+            display: block;
+            width: 100%;
+            max-height: min(52vh, 360px);
+            margin: 0 auto;
+            border-radius: 10px;
+            background: #202020;
+            object-fit: contain;
+            image-rendering: auto;
+        }
+
+        .npc-preview-popover p {
+            margin: 12px 40px 0;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .npc-preview-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 34px;
+            height: 34px;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.72);
+            color: #fff;
+            font-size: 24px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        .xmas-2025 {
+            --x-red: hsl(353 78% 60%);
+            --x-red-dark: hsl(350 66% 22%);
+            --x-gold: hsl(43 96% 64%);
+            --x-green: hsl(154 63% 53%);
+            --x-panel: hsl(229 56% 12% / 0.86);
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 48px;
+        }
+
+        .xmas-2025 > * {
+            min-width: 0;
+        }
+
+        .xmas-2025 .event-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 48px;
+            border: 1px solid hsl(43 96% 64% / 0.24);
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at 80% 18%, hsl(43 96% 64% / 0.22), transparent 26%),
+                radial-gradient(circle at 12% 90%, hsl(154 63% 53% / 0.16), transparent 30%),
+                linear-gradient(135deg, hsl(351 66% 19%), hsl(347 71% 27%) 52%, hsl(229 59% 15%));
+            box-shadow: 0 24px 70px hsl(350 85% 4% / 0.5);
+        }
+
+        .xmas-2025 .event-hero::before,
+        .xmas-2025 .event-hero::after {
+            position: absolute;
+            border-radius: 50%;
+            background: hsl(0 0% 100% / 0.84);
+            box-shadow:
+                56px 84px 0 hsl(0 0% 100% / 0.5),
+                -76px 142px 0 hsl(0 0% 100% / 0.42),
+                104px 194px 0 hsl(0 0% 100% / 0.62),
+                -24px 238px 0 hsl(0 0% 100% / 0.46);
+            content: "";
+        }
+
+        .xmas-2025 .event-hero::before {
+            top: 34px;
+            right: 74px;
+            width: 4px;
+            height: 4px;
+        }
+
+        .xmas-2025 .event-hero::after {
+            top: 4px;
+            right: 220px;
+            width: 3px;
+            height: 3px;
+            opacity: 0.65;
+        }
+
+        .xmas-2025 .hero-layout {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(270px, 0.75fr);
+            align-items: end;
+            gap: 42px;
+        }
+
+        .xmas-2025 .event-eyebrow,
+        .xmas-2025 .section-kicker {
+            color: var(--x-gold);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .xmas-2025 .event-hero h2 {
+            max-width: 10ch;
+            margin: 12px 0 18px;
+            color: #fff;
+            font-size: clamp(40px, 6vw, 70px);
+            line-height: 0.98;
+            letter-spacing: -0.045em;
+        }
+
+        .xmas-2025 .event-hero h2 span {
+            color: var(--x-gold);
+        }
+
+        .xmas-2025 .hero-copy {
+            max-width: 38em;
+            margin: 0;
+            color: hsl(20 35% 90%);
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .xmas-2025 .hero-ticket {
+            padding: 22px;
+            border: 1px dashed hsl(43 96% 64% / 0.55);
+            border-radius: 18px;
+            background: hsl(350 62% 14% / 0.72);
+            backdrop-filter: blur(8px);
+        }
+
+        .xmas-2025 .hero-ticket small {
+            color: hsl(20 28% 75%);
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .xmas-2025 .hero-ticket strong {
+            display: block;
+            margin: 7px 0 18px;
+            color: #fff;
+            font-size: 22px;
+        }
+
+        .xmas-2025 .coal-score {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .xmas-2025 .coal-score span {
+            padding: 11px 8px;
+            border-radius: 10px;
+            background: hsl(0 0% 100% / 0.07);
+            color: hsl(20 20% 82%);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .xmas-2025 .coal-score b {
+            display: block;
+            color: var(--x-gold);
+            font-size: 23px;
+        }
+
+        .xmas-2025 .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: -24px;
+            padding: 12px;
+            border: 1px solid hsl(353 78% 60% / 0.2);
+            border-radius: 16px;
+            background: hsl(229 56% 10% / 0.95);
+            box-shadow: 0 12px 34px hsl(350 80% 4% / 0.34);
+        }
+
+        .xmas-2025 .section-nav a {
+            padding: 8px 13px;
+            border-radius: 9px;
+            color: hsl(20 22% 78%);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .xmas-2025 .section-nav a:hover {
+            background: hsl(353 78% 60% / 0.12);
+            color: hsl(353 90% 76%);
+        }
+
+        .xmas-2025 .event-section {
+            scroll-margin-top: 24px;
+        }
+
+        .xmas-2025 .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .xmas-2025 .section-heading h3 {
+            margin: 5px 0 0;
+            color: #fff;
+            font-size: clamp(25px, 4vw, 34px);
+            letter-spacing: -0.025em;
+        }
+
+        .xmas-2025 .section-heading p {
+            max-width: 34em;
+            margin: 0;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .xmas-2025 .rule-cards,
+        .xmas-2025 .common-grid,
+        .xmas-2025 .rarity-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .xmas-2025 .rule-cards {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .xmas-2025 .rule-card-2025,
+        .xmas-2025 .loot-card,
+        .xmas-2025 .rarity-card,
+        .xmas-2025 .shop-panel {
+            padding: 20px;
+            border: 0;
+            border-radius: 16px;
+            background: var(--x-panel);
+            box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.06), 0 10px 28px hsl(350 80% 5% / 0.22);
+        }
+
+        .xmas-2025 .rule-card-2025 b {
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--x-red), hsl(345 72% 42%));
+            color: #fff;
+        }
+
+        .xmas-2025 .rule-card-2025 strong,
+        .xmas-2025 .loot-card strong,
+        .xmas-2025 .rarity-card strong,
+        .xmas-2025 .shop-panel strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .xmas-2025 .rule-card-2025 p,
+        .xmas-2025 .loot-card p,
+        .xmas-2025 .rarity-card p,
+        .xmas-2025 .shop-panel p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .xmas-2025 .double-days {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 16px;
+        }
+
+        .xmas-2025 .double-days span {
+            padding: 8px 12px;
+            border: 1px solid hsl(43 96% 64% / 0.24);
+            border-radius: 999px;
+            background: hsl(43 96% 64% / 0.08);
+            color: var(--x-gold);
+            font-size: 13px;
+            font-weight: 750;
+        }
+
+        .xmas-2025 .common-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .xmas-2025 .loot-card {
+            border-top: 3px solid var(--loot-color, var(--x-green));
+        }
+
+        .xmas-2025 .loot-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-top: 14px;
+        }
+
+        .xmas-2025 .loot-tags span {
+            padding: 6px 9px;
+            border-radius: 8px;
+            background: hsl(0 0% 100% / 0.06);
+            color: hsl(210 24% 83%);
+            font-size: 12px;
+        }
+
+        .xmas-2025 .rarity-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .xmas-2025 .rarity-card {
+            position: relative;
+            overflow: hidden;
+            border-left: 4px solid var(--rarity-color);
+        }
+
+        .xmas-2025 .rarity-card::after {
+            position: absolute;
+            top: -32px;
+            right: -24px;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: var(--rarity-color);
+            content: "";
+            opacity: 0.07;
+        }
+
+        .xmas-2025 .rarity-card strong {
+            color: var(--rarity-color);
+            font-size: 20px;
+        }
+
+        .xmas-2025 .rarity-card ul {
+            columns: 2 220px;
+            margin: 14px 0 0;
+            padding-left: 18px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .xmas-2025 .rarity-card li {
+            break-inside: avoid;
+            margin-bottom: 5px;
+        }
+
+        .xmas-2025 .shop-panel {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 24px;
+            padding: 28px;
+            border: 1px solid hsl(43 96% 64% / 0.22);
+            background:
+                linear-gradient(110deg, hsl(350 61% 20% / 0.88), hsl(229 56% 12% / 0.92)),
+                var(--x-panel);
+        }
+
+        .xmas-2025 .shop-panel strong {
+            color: var(--x-gold);
+            font-size: 24px;
+        }
+
+        .xmas-2025 .shop-npc {
+            display: grid;
+            grid-template-columns: 92px minmax(0, 1fr);
+            align-items: center;
+            gap: 16px;
+            min-width: 0;
+        }
+
+        .xmas-2025 .shop-npc .npc-thumbnail-button {
+            box-shadow: 0 0 28px hsl(43 96% 64% / 0.12);
+        }
+
+        .xmas-2025 .shop-npc p {
+            margin: 0;
+        }
+
+        .xmas-2025 .exchange-rate {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .xmas-2025 .exchange-rate span {
+            padding: 14px;
+            border-radius: 12px;
+            background: hsl(0 0% 100% / 0.07);
+            color: hsl(20 25% 82%);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .xmas-2025 .exchange-rate b {
+            display: block;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        body.christmas-2025-page > #content {
+            width: min(100%, 1120px);
+            max-width: 1120px;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        body.christmas-2025-page > .christmas-overview {
+            width: min(100%, 1120px);
+            max-width: 1120px;
+            padding: 38px 40px;
+            border: 1px solid hsl(43 96% 64% / 0.2);
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at 94% 4%, hsl(154 63% 53% / 0.13), transparent 24%),
+                radial-gradient(circle at 5% 100%, hsl(353 78% 60% / 0.12), transparent 30%),
+                linear-gradient(145deg, hsl(350 57% 14% / 0.92), hsl(229 56% 10% / 0.9));
+            box-shadow:
+                inset 0 1px 0 hsl(0 0% 100% / 0.06),
+                0 20px 52px hsl(350 85% 4% / 0.3);
+            backdrop-filter: blur(8px);
+        }
+
+        body.christmas-2025-page .christmas-overview h2 {
+            margin-bottom: 12px;
+            color: #fff7ed;
+            font-size: clamp(28px, 4vw, 38px);
+            letter-spacing: -0.03em;
+        }
+
+        body.christmas-2025-page .christmas-overview h2::before {
+            display: block;
+            margin-bottom: 7px;
+            color: hsl(43 96% 64%);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.18em;
+            content: "EVENT GUIDE";
+        }
+
+        body.christmas-2025-page .christmas-overview h3 {
+            margin-top: 34px;
+            color: hsl(43 96% 72%);
+            font-size: 21px;
+        }
+
+        body.christmas-2025-page .overview-lead,
+        body.christmas-2025-page .christmas-overview > p {
+            color: hsl(20 24% 82%);
+        }
+
+        body.christmas-2025-page .flow-card,
+        body.christmas-2025-page .feature-card {
+            border-color: hsl(43 96% 64% / 0.14);
+            background:
+                linear-gradient(145deg, hsl(350 55% 18% / 0.74), hsl(229 56% 12% / 0.84));
+            box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.04);
+            transition:
+                border-color 180ms ease,
+                box-shadow 180ms ease,
+                transform 180ms ease;
+        }
+
+        body.christmas-2025-page .flow-card:hover,
+        body.christmas-2025-page .feature-card:hover {
+            border-color: hsl(154 63% 53% / 0.4);
+            box-shadow: 0 14px 32px hsl(350 85% 4% / 0.28);
+            transform: translateY(-2px);
+        }
+
+        body.christmas-2025-page .flow-card strong,
+        body.christmas-2025-page .feature-card strong {
+            color: hsl(43 96% 72%);
+        }
+
+        body.christmas-2025-page .flow-step {
+            color: hsl(350 66% 16%);
+            background: hsl(43 96% 64%);
+        }
+
+        body.christmas-2025-page .christmas-overview .shop-table-wrap {
+            border-color: hsl(43 96% 64% / 0.18);
+            background: hsl(229 56% 9% / 0.56);
+        }
+
+        body.christmas-2025-page .christmas-overview .shop-table th {
+            background: hsl(350 55% 22%);
+            color: hsl(43 96% 82%);
+        }
+
+        body.christmas-2025-page > .archive-title {
+            width: min(100%, 1120px);
+            margin: 42px 0 18px;
+            padding-left: 18px;
+            border-left: 4px solid hsl(353 78% 60%);
+            color: #fff7ed;
+            font-size: clamp(26px, 4vw, 36px);
+            letter-spacing: -0.025em;
+            text-align: left;
+        }
+
+        .xmas-2025 .event-section {
+            position: relative;
+            padding: 28px;
+            border: 1px solid hsl(43 96% 64% / 0.13);
+            border-radius: 20px;
+            background:
+                radial-gradient(circle at 100% 0, hsl(154 63% 53% / 0.07), transparent 28%),
+                linear-gradient(145deg, hsl(350 57% 14% / 0.82), hsl(229 56% 10% / 0.82));
+            box-shadow:
+                inset 0 1px 0 hsl(0 0% 100% / 0.05),
+                0 18px 46px hsl(350 85% 4% / 0.24);
+        }
+
+        .xmas-2025 .section-heading {
+            padding-bottom: 18px;
+            border-bottom: 1px solid hsl(43 96% 64% / 0.12);
+        }
+
+        .xmas-2025 .rule-card-2025,
+        .xmas-2025 .loot-card,
+        .xmas-2025 .rarity-card {
+            border: 1px solid hsl(43 96% 64% / 0.1);
+            background:
+                linear-gradient(150deg, hsl(350 55% 18% / 0.76), hsl(229 56% 11% / 0.94));
+            transition:
+                border-color 180ms ease,
+                box-shadow 180ms ease,
+                transform 180ms ease;
+        }
+
+        .xmas-2025 .rule-card-2025:hover,
+        .xmas-2025 .loot-card:hover,
+        .xmas-2025 .rarity-card:hover {
+            border-color: hsl(154 63% 53% / 0.34);
+            box-shadow:
+                inset 0 1px 0 hsl(0 0% 100% / 0.08),
+                0 15px 34px hsl(350 85% 4% / 0.32),
+                0 0 26px hsl(154 63% 53% / 0.05);
+            transform: translateY(-2px);
+        }
+
+        .xmas-2025 .quest-menu-demo {
+            margin-top: 20px;
+            overflow: hidden;
+            border: 1px solid hsl(154 63% 53% / 0.36);
+            border-radius: 18px;
+            background:
+                linear-gradient(hsl(154 63% 53% / 0.035) 1px, transparent 1px),
+                hsl(164 50% 7% / 0.96);
+            background-size: 100% 4px;
+            box-shadow:
+                inset 0 0 28px hsl(154 63% 53% / 0.08),
+                0 18px 42px hsl(350 85% 4% / 0.34);
+        }
+
+        .xmas-2025 .quest-menu-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 16px 20px;
+            border-bottom: 1px solid hsl(154 63% 53% / 0.22);
+            background: linear-gradient(90deg, hsl(154 63% 53% / 0.12), hsl(353 78% 60% / 0.08));
+        }
+
+        .xmas-2025 .quest-menu-bar span {
+            display: block;
+            color: var(--x-green);
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+        }
+
+        .xmas-2025 .quest-menu-bar strong {
+            display: block;
+            margin-top: 3px;
+            color: #fff;
+            font-size: 17px;
+        }
+
+        .xmas-2025 .quest-menu-bar code {
+            color: var(--x-gold);
+            font-size: 11px;
+        }
+
+        .xmas-2025 .quest-menu-path {
+            padding: 18px 20px 10px;
+            color: hsl(35 28% 82%);
+            font-size: 13px;
+        }
+
+        .xmas-2025 .quest-menu-options {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
+            padding: 0 20px;
+        }
+
+        .xmas-2025 .quest-menu-row {
+            position: relative;
+            min-height: 72px;
+            padding: 12px 14px 12px 30px;
+            border: 1px solid hsl(154 63% 53% / 0.18);
+            border-radius: 8px;
+            background: hsl(164 46% 11% / 0.94);
+        }
+
+        .xmas-2025 .quest-menu-row::before {
+            position: absolute;
+            top: 14px;
+            left: 12px;
+            color: var(--x-gold);
+            content: "▶";
+        }
+
+        .xmas-2025 .quest-menu-row strong {
+            display: block;
+            margin: 0 0 4px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .xmas-2025 .quest-menu-row span {
+            color: hsl(43 70% 82%);
+            font-size: 12px;
+        }
+
+        .xmas-2025 .quest-menu-options button {
+            position: relative;
+            min-height: 46px;
+            padding: 10px 14px 10px 30px;
+            border: 1px solid hsl(154 63% 53% / 0.18);
+            border-radius: 8px;
+            background: hsl(164 46% 11% / 0.94);
+            color: hsl(145 24% 84%);
+            font: inherit;
+            font-size: 13px;
+            text-align: left;
+            cursor: pointer;
+            transition: border-color 140ms ease, background 140ms ease, color 140ms ease;
+        }
+
+        .xmas-2025 .quest-menu-options button::before {
+            position: absolute;
+            left: 12px;
+            color: transparent;
+            content: "▶";
+        }
+
+        .xmas-2025 .quest-menu-options button:hover,
+        .xmas-2025 .quest-menu-options button.is-active {
+            border-color: hsl(43 96% 64% / 0.5);
+            background: hsl(43 96% 64% / 0.1);
+            color: #fff;
+        }
+
+        .xmas-2025 .quest-menu-options button:hover::before,
+        .xmas-2025 .quest-menu-options button.is-active::before {
+            color: var(--x-gold);
+        }
+
+        .xmas-2025 .quest-menu-response {
+            min-height: 46px;
+            margin: 14px 20px 0;
+            padding: 11px 14px;
+            border-left: 3px solid var(--x-gold);
+            background: hsl(43 96% 64% / 0.07);
+            color: hsl(43 70% 86%);
+            font-size: 13px;
+        }
+
+        .xmas-2025 .quest-menu-source {
+            margin: 0;
+            padding: 10px 20px 16px;
+            color: hsl(150 14% 58%);
+            font-size: 11px;
+        }
+
+        @media (max-width: 520px) {
+            .npc-card {
+                grid-template-columns: 72px 1fr;
+            }
+
+            .npc-thumbnail-button {
+                width: 72px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .xmas-2025 {
+                gap: 36px;
+            }
+
+            body.christmas-2025-page > .christmas-overview {
+                padding: 28px 22px;
+                border-radius: 18px;
+            }
+
+            body.christmas-2025-page > .archive-title {
+                margin-top: 34px;
+                padding-left: 12px;
+            }
+
+            .xmas-2025 .event-section {
+                padding: 20px 18px;
+                border-radius: 18px;
+            }
+
+            .xmas-2025 .quest-menu-options {
+                grid-template-columns: 1fr;
+            }
+
+            .xmas-2025 .event-hero {
+                padding: 30px 22px;
+                border-radius: 18px;
+            }
+
+            .xmas-2025 .hero-layout,
+            .xmas-2025 .shop-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .xmas-2025 .shop-npc {
+                grid-template-columns: 72px minmax(0, 1fr);
+            }
+
+            .xmas-2025 .event-hero h2 {
+                font-size: 44px;
+            }
+
+            .xmas-2025 .section-nav {
+                margin-top: -18px;
+            }
+
+            .xmas-2025 .section-heading {
+                display: block;
+            }
+
+            .xmas-2025 .section-heading p {
+                margin-top: 10px;
+            }
+
+            .xmas-2025 .rule-cards,
+            .xmas-2025 .common-grid,
+            .xmas-2025 .rarity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .xmas-2025 .rarity-card ul {
+                columns: 1;
+            }
+        }
     </style>
     <script src="/assets/js/page-chrome.js"></script>
 </head>
 
 <body>
-    <page-chrome title="圣诞活动" back-href="./event.html" back-text="← 返回活动页"></page-chrome>
+    <section class="event-masthead christmas-masthead" aria-labelledby="project_title">
+        <div class="masthead-main">
+            <div class="masthead-copy">
+                <a class="masthead-back" href="./event.html">返回活动页</a>
+                <p class="masthead-kicker">Ephinea seasonal archive · holiday hunt</p>
+                <h1 id="project_title" class="masthead-title">
+                    <span>CHRISTMAS</span>
+                    <strong id="project_year">2025</strong>
+                </h1>
+                <p class="masthead-summary">年度礼物狩猎档案 · Present 奖池、Coal 兑换与活动任务完整收录</p>
+            </div>
+            <div class="masthead-gift" aria-hidden="true">
+                <span class="gift-label">PRESENT DROP</span>
+            </div>
+        </div>
+        <nav id="yearNav" class="year-nav" aria-label="圣诞活动年份"></nav>
+    </section>
 
-    <nav id="yearNav" class="year-nav"></nav>
+    <section class="content-container christmas-overview">
+        <h2>圣诞活动怎么玩</h2>
+        <p class="overview-lead">
+            Ephinea 圣诞活动通常持续约四周。核心循环是击倒敌人获得礼物、完成高密度活动任务收集煤炭，
+            再到 Christmas Event Shop 兑换更多礼物。不同年份的礼物奖池会重新调整。
+        </p>
+
+        <div class="event-flow">
+            <div class="flow-card"><strong><span class="flow-step">1</span>刷敌人与活动任务</strong>所有 Episode 和难度的正常击杀都有机会掉落 Present；箱子和被吓跑的 Rappy 不会掉落。</div>
+            <div class="flow-card"><strong><span class="flow-step">2</span>取得 Present / Coal</strong>Present 可直接使用并随机开出道具；Christmas Fiasco 等活动任务通关后奖励 Coal。</div>
+            <div class="flow-card"><strong><span class="flow-step">3</span>前往活动商店</strong>Episode 1 → Shop → Christmas Event Shop，用 Coal 向银行附近的 The Hunter 兑换更多礼物。</div>
+            <div class="flow-card"><strong><span class="flow-step">4</span>按掉落难度开礼物</strong>N / H / VH 为 Common Present；Ultimate 掉落 Ultimate Present，两者外观相同但奖池不同。</div>
+        </div>
+
+        <h3>活动期间会发生什么</h3>
+        <div class="feature-grid">
+            <div class="feature-card"><strong>每周加成翻倍</strong>四种轮换周加成在各自生效周提高为平时的两倍。</div>
+            <div class="feature-card"><strong>四天礼物掉率翻倍</strong>12 月 24、25、31 日和 1 月 1 日，Present 掉率翻倍。</div>
+            <div class="feature-card"><strong>St Rappy 登场</strong>Episode 2 的 VR Temple 中，St Rappy 取代 Love Rappy，并掉落包含 Mag Cell / Mag Kit 的 Christmas Present。</div>
+            <div class="feature-card"><strong>圣诞视觉主题</strong>Visual Lobby 与 Principal 区域切换为圣诞装饰和节日音乐。</div>
+        </div>
+
+        <h3>主要活动任务</h3>
+        <div class="shop-table-wrap">
+            <table class="shop-table">
+                <thead><tr><th>Episode</th><th>任务</th><th>主要区域 / 特点</th><th>主要用途</th></tr></thead>
+                <tbody>
+                    <tr><td>Episode 1</td><td>Christmas Fiasco (E1)</td><td>Cave 2、Mine 2、Ruins 3</td><td>高密度刷怪；通关获得 Coal</td></tr>
+                    <tr><td>Episode 1</td><td>December Disaster #1</td><td>Forest 2、Ruins 1–2；Omnispawn</td><td>更高强度的 Coal 任务</td></tr>
+                    <tr><td>Episode 1</td><td>Solstice Snafu</td><td>Ruins 1、Cave 3、Forest 2</td><td>较短的 Coal 路线</td></tr>
+                    <tr><td>Episode 2</td><td>Christmas Fiasco (E2)</td><td>Spaceship、CCA、Seabed</td><td>长流程、高密度；通常奖励较多 Coal</td></tr>
+                    <tr><td>Episode 2</td><td>December Disaster #2</td><td>Jungle、Mountain、Control Tower；Omnispawn</td><td>高难度 Coal 任务</td></tr>
+                    <tr><td>Episode 4</td><td>Christmas Fiasco (E4)</td><td>Crater、Desert 2–3</td><td>Episode 4 的主要 Coal 路线</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Christmas Event Shop</h3>
+        <div class="feature-grid">
+            <div class="feature-card npc-card">
+                <button class="npc-thumbnail-button" type="button"
+                        data-image="/assets/img/event/christmas/hunter-racast.png"
+                        data-caption="The Hunter（任务脚本名：RAdolph）"
+                        aria-label="查看 The Hunter 大图">
+                    <img src="/assets/img/event/christmas/hunter-racast.png" alt="The Hunter（RAcast）">
+                </button>
+                <div class="npc-card-copy">
+                    <strong>The Hunter（银行附近的 RAcast）</strong>
+                    <p>Common Present 需要 8 Coal；Ultimate Present 需要 40 Coal。</p>
+                    <small>官网使用 The Hunter；本地任务脚本中的自称是 RAdolph。</small>
+                </div>
+            </div>
+            <div class="feature-card npc-card">
+                <button class="npc-thumbnail-button" type="button"
+                        data-image="/assets/img/event/christmas/scavenger.png"
+                        data-caption="Scavenger（历史商店角色）"
+                        aria-label="查看 Scavenger 大图">
+                    <img src="/assets/img/event/christmas/scavenger.png" alt="Scavenger">
+                </button>
+                <div class="npc-card-copy">
+                    <strong>Scavenger（历史 / 脚本参考）</strong>
+                    <p>旧版活动中用 1 Coal 兑换带随机 Special 的颜色分级普通武器。</p>
+                    <small>当前官网商店只列 The Hunter；此角色不计入当前核心兑换。</small>
+                </div>
+            </div>
+        </div>
+        <p>Present 的自然掉率不受 DAR、RDR 或其他掉率加成影响；各年具体掉率、Coal 奖励和礼物内容请查看下方年度档案。</p>
+    </section>
+
+    <h2 class="archive-title">逐年活动档案与 Present 奖池</h2>
 
     <div class="content-container" id="content">
         <p>载入中…</p>
     </div>
 
+    <div id="npcPreviewPopover" class="npc-preview-popover" role="dialog"
+         aria-labelledby="npcPreviewCaption" hidden>
+        <button type="button" class="npc-preview-close" aria-label="关闭预览">×</button>
+        <img id="npcPreviewImage" alt="">
+        <p id="npcPreviewCaption"></p>
+    </div>
+
+    <script src="/assets/js/i18n/items_i18n.js"></script>
     <script>
-        const YEARS = [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
+        const YEARS = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
 
         const params = new URLSearchParams(location.search);
         const requested = parseInt(params.get('year'), 10);
         const selected = YEARS.includes(requested) ? requested : YEARS[0];
+        document.body.classList.toggle('christmas-2025-page', selected === 2025);
+        const previewPopover = document.getElementById('npcPreviewPopover');
+        const previewImage = document.getElementById('npcPreviewImage');
+        const previewCaption = document.getElementById('npcPreviewCaption');
+        let previewAnchor = null;
 
         document.title = `${selected}圣诞活动 | Ephinea PSOBB`;
         document.getElementById('page-title').textContent = document.title;
-        document.getElementById('project_title').textContent = `christmas${selected}`;
+        document.getElementById('project_year').textContent = selected;
 
         document.getElementById('yearNav').innerHTML = YEARS.map(y =>
             y === selected
@@ -75,18 +1389,173 @@
                 : `<a href="?year=${y}">${y}</a>`
         ).join('');
 
-        fetch(`./christmas/${selected}.html`)
+        const ITEM_NAME_OVERRIDES = [
+            { en: 'Ultimate Present', zh: '究极礼物' },
+            { en: 'Common Present', zh: '普通礼物' },
+            { en: 'Coal', zh: '煤炭' }
+        ];
+
+        function escapeRegExp(value) {
+            return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function getItemTranslations(sourceText) {
+            const translations = [
+                ...ITEM_NAME_OVERRIDES,
+                ...Object.values(window.ITEMS_I18N || {})
+                    .filter(item => item.en && item.zh && item.en !== item.zh)
+                    .map(item => ({ en: item.en, zh: item.zh }))
+            ];
+            const seen = new Set();
+            return translations
+                .filter(item => {
+                    const key = item.en.toLowerCase();
+                    if (seen.has(key) || !sourceText.toLowerCase().includes(key)) return false;
+                    seen.add(key);
+                    return true;
+                })
+                .sort((a, b) => b.en.length - a.en.length);
+        }
+
+        function localizeItemNames(container) {
+            const translations = getItemTranslations(container.textContent);
+            if (!translations.length) return;
+
+            const byEnglishName = new Map(
+                translations.map(item => [item.en.toLowerCase(), item])
+            );
+            const choices = translations.map(item => escapeRegExp(item.en)).join('|');
+            const itemPattern = new RegExp(
+                `(^|[^A-Za-z0-9])(${choices})(?=$|[^A-Za-z0-9])`,
+                'gi'
+            );
+            const walker = document.createTreeWalker(
+                container,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode(node) {
+                        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                        if (node.parentElement.closest('.item-bilingual, .quest-menu-demo, script, style')) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        return NodeFilter.FILTER_ACCEPT;
+                    }
+                }
+            );
+            const textNodes = [];
+            while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+            textNodes.forEach(node => {
+                const text = node.nodeValue;
+                itemPattern.lastIndex = 0;
+                if (!itemPattern.test(text)) return;
+                itemPattern.lastIndex = 0;
+
+                const fragment = document.createDocumentFragment();
+                let cursor = 0;
+                text.replace(itemPattern, (match, prefix, englishName, offset) => {
+                    const nameStart = offset + prefix.length;
+                    fragment.append(text.slice(cursor, nameStart));
+
+                    const item = byEnglishName.get(englishName.toLowerCase());
+                    const span = document.createElement('span');
+                    span.className = 'item-bilingual';
+                    span.innerHTML = `<span class="item-zh">${item.zh}</span><span class="item-en">（${englishName}）</span>`;
+                    fragment.append(span);
+                    cursor = nameStart + englishName.length;
+                    return match;
+                });
+                fragment.append(text.slice(cursor));
+                node.replaceWith(fragment);
+            });
+        }
+
+        function closeNpcPreview() {
+            previewPopover.hidden = true;
+            previewImage.removeAttribute('src');
+            previewAnchor = null;
+        }
+
+        function positionNpcPreview(anchor) {
+            if (previewPopover.hidden) return;
+
+            const gap = 10;
+            const margin = 12;
+            const anchorRect = anchor.getBoundingClientRect();
+            const popoverRect = previewPopover.getBoundingClientRect();
+            let left = anchorRect.right + gap;
+            let top = anchorRect.top + (anchorRect.height - popoverRect.height) / 2;
+
+            if (left + popoverRect.width > innerWidth - margin) {
+                left = anchorRect.left - popoverRect.width - gap;
+            }
+            if (left < margin) {
+                left = Math.min(
+                    Math.max(margin, anchorRect.left + (anchorRect.width - popoverRect.width) / 2),
+                    innerWidth - popoverRect.width - margin
+                );
+            }
+
+            previewPopover.style.left = `${Math.max(margin, left)}px`;
+            previewPopover.style.top =
+                `${Math.max(margin, Math.min(top, innerHeight - popoverRect.height - margin))}px`;
+        }
+
+        function showNpcPreview(anchor) {
+            previewAnchor = anchor;
+            previewImage.src = anchor.dataset.image;
+            previewImage.alt = anchor.dataset.caption;
+            previewCaption.textContent = anchor.dataset.caption;
+            previewPopover.hidden = false;
+            requestAnimationFrame(() => positionNpcPreview(anchor));
+        }
+
+        previewImage.addEventListener('load', () => {
+            if (previewAnchor && !previewPopover.hidden) {
+                positionNpcPreview(previewAnchor);
+            }
+        });
+
+        localizeItemNames(document.querySelector('.christmas-overview'));
+
+        fetch(`./christmas/${selected}.html?v=20260726-qst-menu`, { cache: 'no-store' })
             .then(r => {
                 if (!r.ok) throw new Error(`HTTP ${r.status}`);
                 return r.text();
             })
             .then(html => {
-                document.getElementById('content').innerHTML = html;
+                const content = document.getElementById('content');
+                content.innerHTML = html;
+                localizeItemNames(content);
             })
             .catch(() => {
                 document.getElementById('content').innerHTML =
                     `<p>未能加载 ${selected} 年圣诞活动内容。</p>`;
             });
+
+        document.addEventListener('click', event => {
+            if (!(event.target instanceof Element)) return;
+
+            const thumbnail = event.target.closest('.npc-thumbnail-button');
+            if (thumbnail) {
+                if (previewAnchor === thumbnail && !previewPopover.hidden) {
+                    closeNpcPreview();
+                } else {
+                    showNpcPreview(thumbnail);
+                }
+                return;
+            }
+
+            if (event.target.closest('.npc-preview-close')) {
+                closeNpcPreview();
+                return;
+            }
+
+            if (!event.target.closest('.npc-preview-popover')) closeNpcPreview();
+        });
+
+        addEventListener('scroll', closeNpcPreview, true);
+        addEventListener('resize', closeNpcPreview);
     </script>
 </body>
 

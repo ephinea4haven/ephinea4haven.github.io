@@ -17,7 +17,7 @@ Pure static site — no build system, no package manager — served directly via
 /assets/css/          ← Stylesheets (~7 CSS files)
 /data/droptable/      ← Drop tables (bb/dc/ngc/cn/en variants)
 /data/                ← Misc data pages (14 HTML files)
-/event/               ← Event pages — `event.html` index, `christmas.html` data-driven template, `christmas/` per-year fragments
+/event/               ← Event pages — `event.html` hub; `christmas.html` / `anniversary.html` data-driven templates; per-year fragments in matching subdirectories
 /guide/               ← Guides (14 HTML files)
 /tools/               ← Tool pages (13 HTML)
 ```

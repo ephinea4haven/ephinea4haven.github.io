@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ephinea PSOBB 周年活动 (2016-2025)">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="page-title">周年活动 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .event-masthead {
+            position: relative;
+            width: min(100%, 1120px);
+            max-width: 1120px;
+            margin: 0 auto 32px;
+            overflow: hidden;
+            border: 1px solid rgba(251, 191, 36, 0.34);
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at 78% 18%, rgba(34, 211, 238, 0.2), transparent 24%),
+                radial-gradient(circle at 13% 84%, rgba(168, 85, 247, 0.2), transparent 31%),
+                linear-gradient(135deg, rgba(8, 16, 38, 0.98), rgba(14, 27, 61, 0.96));
+            box-shadow:
+                0 28px 70px rgba(0, 0, 0, 0.32),
+                inset 0 1px rgba(255, 255, 255, 0.08);
+            isolation: isolate;
+        }
+
+        .event-masthead::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background-image:
+                linear-gradient(rgba(34, 211, 238, 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 211, 238, 0.055) 1px, transparent 1px);
+            background-size: 28px 28px;
+            mask-image: linear-gradient(to right, black, transparent 86%);
+        }
+
+        .event-masthead::after {
+            content: "X";
+            position: absolute;
+            top: -88px;
+            right: 18px;
+            z-index: -1;
+            color: transparent;
+            font: 900 clamp(250px, 34vw, 430px) / 1 sans-serif;
+            -webkit-text-stroke: 1px rgba(251, 191, 36, 0.17);
+            text-shadow: 0 0 80px rgba(251, 191, 36, 0.09);
+            transform: rotate(8deg);
+        }
+
+        .masthead-main {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 240px;
+            align-items: center;
+            min-height: 300px;
+            padding: 34px 42px 26px;
+        }
+
+        .masthead-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            margin-bottom: 34px;
+            color: rgba(226, 232, 240, 0.72);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            transition: color 160ms ease, transform 160ms ease;
+        }
+
+        .masthead-back::before {
+            content: "←";
+            display: grid;
+            width: 28px;
+            height: 28px;
+            place-items: center;
+            border: 1px solid rgba(226, 232, 240, 0.2);
+            border-radius: 50%;
+        }
+
+        .masthead-back:hover {
+            color: #fbbf24;
+            transform: translateX(-2px);
+        }
+
+        .masthead-kicker {
+            margin: 0 0 10px;
+            color: #22d3ee;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .masthead-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 10px 18px;
+            margin: 0;
+            color: #f8fafc;
+            font-size: clamp(42px, 7vw, 84px);
+            font-weight: 900;
+            letter-spacing: -0.055em;
+            line-height: 0.92;
+            text-shadow: none;
+        }
+
+        .event-masthead #project_title {
+            margin: 0;
+            color: #f8fafc;
+            font-size: clamp(42px, 6vw, 76px);
+            font-weight: 900;
+            letter-spacing: -0.055em;
+            text-shadow: none;
+        }
+
+        .masthead-title span {
+            color: #f8fafc;
+        }
+
+        .masthead-title strong {
+            color: #fbbf24;
+            font: inherit;
+        }
+
+        .masthead-summary {
+            max-width: 620px;
+            margin: 18px 0 0;
+            color: rgba(226, 232, 240, 0.72);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .masthead-emblem {
+            position: relative;
+            display: grid;
+            width: 184px;
+            height: 184px;
+            place-self: center end;
+            place-items: center;
+            border: 1px solid rgba(251, 191, 36, 0.42);
+            border-radius: 50%;
+            background: rgba(8, 16, 38, 0.56);
+            box-shadow:
+                0 0 0 14px rgba(251, 191, 36, 0.035),
+                0 0 64px rgba(34, 211, 238, 0.14);
+        }
+
+        .masthead-emblem::before,
+        .masthead-emblem::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .masthead-emblem::before {
+            inset: 13px;
+            border: 1px dashed rgba(34, 211, 238, 0.46);
+            animation: anniv-orbit 24s linear infinite;
+        }
+
+        .masthead-emblem::after {
+            inset: 33px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .emblem-number {
+            color: #fbbf24;
+            font-size: 72px;
+            font-weight: 900;
+            letter-spacing: -0.08em;
+            line-height: 1;
+        }
+
+        .emblem-label {
+            position: absolute;
+            bottom: 37px;
+            color: #22d3ee;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+        }
+
+        @keyframes anniv-orbit {
+            to { transform: rotate(360deg); }
+        }
+
+        .event-masthead .year-nav {
+            position: relative;
+            justify-content: flex-start;
+            gap: 8px;
+            margin: 0;
+            padding: 18px 42px 20px;
+            border-top: 1px solid rgba(148, 163, 184, 0.14);
+            background: rgba(3, 8, 24, 0.42);
+        }
+
+        .event-masthead .year-nav::before {
+            content: "YEAR";
+            align-self: center;
+            margin-right: 10px;
+            color: rgba(148, 163, 184, 0.6);
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+        }
+
+        .event-masthead .year-nav a,
+        .event-masthead .year-nav .year-current {
+            min-width: 52px;
+            padding: 7px 12px;
+            border-color: rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.64);
+            color: rgba(226, 232, 240, 0.76);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .event-masthead .year-nav a:hover {
+            border-color: rgba(34, 211, 238, 0.6);
+            background: rgba(34, 211, 238, 0.1);
+            color: #67e8f9;
+        }
+
+        .event-masthead .year-nav .year-current {
+            border-color: #fbbf24;
+            background: #fbbf24;
+            color: #111827;
+            box-shadow: 0 0 24px rgba(251, 191, 36, 0.24);
+        }
+
+        @media (max-width: 760px) {
+            .event-masthead {
+                border-radius: 18px;
+            }
+
+            .masthead-main {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                padding: 26px 24px 24px;
+            }
+
+            .masthead-back {
+                margin-bottom: 30px;
+            }
+
+            .masthead-emblem {
+                display: none;
+            }
+
+            .masthead-title {
+                font-size: clamp(34px, 11.2vw, 48px);
+            }
+
+            .event-masthead #project_title {
+                font-size: clamp(34px, 11.2vw, 48px);
+            }
+
+            .event-masthead .year-nav {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding: 14px 20px 16px;
+                scrollbar-width: thin;
+            }
+
+            .event-masthead .year-nav::before {
+                position: sticky;
+                left: 0;
+                z-index: 1;
+                padding: 8px 9px 8px 0;
+                background: #071024;
+            }
+
+            .event-masthead .year-nav a,
+            .event-masthead .year-nav .year-current {
+                flex: 0 0 auto;
+            }
+        }
+
+        .year-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .year-nav a,
+        .year-nav .year-current {
+            padding: 6px 14px;
+            border: 1px solid var(--accent-25);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .year-nav a {
+            background: var(--accent-10);
+            color: var(--text-primary);
+        }
+
+        .year-nav a:hover {
+            background: var(--accent-25);
+            color: var(--accent);
+        }
+
+        .year-nav .year-current {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            color: var(--accent-dark);
+        }
+
+        .year-hero {
+            margin-bottom: 24px;
+            padding: 22px;
+            border: 1px solid var(--accent-25);
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--accent-10), rgba(138, 43, 226, 0.08));
+        }
+
+        .year-hero h2 {
+            margin-top: 0;
+        }
+
+        .year-meta,
+        .source-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .year-meta span {
+            padding: 4px 10px;
+            border: 1px solid var(--accent-25);
+            border-radius: 999px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin: 14px 0 22px;
+        }
+
+        .rule-card,
+        .year-callout {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .rule-card strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .rule-card span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .change-list li,
+        .quest-list li {
+            margin-bottom: 6px;
+        }
+
+        .year-callout {
+            margin: 16px 0;
+            border-left: 3px solid var(--accent);
+            color: var(--text-secondary);
+        }
+
+        .source-links {
+            margin-top: 24px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .shop-table-wrap {
+            overflow-x: auto;
+            margin: 12px 0 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+        }
+
+        .shop-table {
+            width: 100%;
+            min-width: 680px;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .shop-table th,
+        .shop-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .shop-table th {
+            background: var(--accent-10);
+            color: var(--text-secondary);
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .shop-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .reward-columns {
+            columns: 2 260px;
+            column-gap: 28px;
+        }
+
+        .reward-columns li {
+            break-inside: avoid;
+            margin-bottom: 5px;
+        }
+
+        .npc-image-cell {
+            width: 96px;
+            text-align: center !important;
+            vertical-align: middle !important;
+        }
+
+        .npc-thumbnail-button {
+            display: block;
+            overflow: hidden;
+            width: 82px;
+            margin: 0 auto;
+            padding: 0;
+            border: 1px solid rgba(255, 211, 91, 0.52);
+            border-radius: 9px;
+            background: var(--bg-secondary);
+            box-shadow: 0 0 0 rgba(255, 211, 91, 0);
+            cursor: zoom-in;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .npc-thumbnail-button:hover {
+            border-color: #ffe08a;
+            box-shadow: 0 0 16px rgba(255, 211, 91, 0.32);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        .npc-thumbnail-button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        .npc-thumbnail-button img {
+            display: block;
+            width: 100%;
+            height: 54px;
+            object-fit: contain;
+            background: #202020;
+        }
+
+        .npc-image-missing {
+            color: var(--text-muted);
+        }
+
+        .npc-image-cell-multiple {
+            width: 190px;
+            white-space: nowrap;
+        }
+
+        .npc-image-cell-multiple .npc-thumbnail-button {
+            display: inline-block;
+            width: 54px;
+            margin: 0 3px;
+        }
+
+        .npc-image-cell-multiple .npc-thumbnail-button img {
+            height: 54px;
+        }
+
+        .npc-preview-popover {
+            position: fixed;
+            z-index: 1200;
+            width: min(260px, calc(100vw - 24px));
+            padding: 12px;
+            border: 1px solid rgba(255, 211, 91, 0.55);
+            border-radius: 12px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.62), 0 0 24px rgba(255, 211, 91, 0.14);
+        }
+
+        .npc-preview-popover[hidden] {
+            display: none;
+        }
+
+        .npc-preview-popover img {
+            display: block;
+            width: 100%;
+            max-height: min(52vh, 360px);
+            margin: 0 auto;
+            border-radius: 8px;
+            background: #202020;
+            object-fit: contain;
+        }
+
+        .npc-preview-popover p {
+            margin: 9px 30px 0;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .npc-preview-close {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.72);
+            color: #fff;
+            font-size: 21px;
+            line-height: 26px;
+            cursor: pointer;
+        }
+
+        .anniv-2025 {
+            --a-gold: hsl(43 96% 64%);
+            --a-cyan: hsl(188 92% 58%);
+            --a-violet: hsl(268 85% 67%);
+            --a-panel: hsl(226 58% 13% / 0.82);
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 48px;
+        }
+
+        .anniv-2025 > * {
+            min-width: 0;
+        }
+
+        .anniv-2025 .event-hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 360px;
+            padding: 48px;
+            border: 1px solid hsl(188 80% 60% / 0.28);
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at 78% 24%, hsl(43 96% 64% / 0.2), transparent 28%),
+                radial-gradient(circle at 16% 82%, hsl(268 85% 67% / 0.2), transparent 34%),
+                linear-gradient(135deg, hsl(223 66% 13%), hsl(235 64% 20%) 58%, hsl(205 73% 17%));
+            box-shadow: 0 24px 70px hsl(225 90% 4% / 0.55);
+        }
+
+        .anniv-2025 .event-hero::after {
+            position: absolute;
+            right: -92px;
+            bottom: -136px;
+            width: 360px;
+            height: 360px;
+            border: 1px solid hsl(188 92% 58% / 0.28);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 34px hsl(188 92% 58% / 0.06),
+                0 0 0 68px hsl(43 96% 64% / 0.05);
+            content: "";
+        }
+
+        .anniv-2025 .hero-layout {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.65fr);
+            align-items: end;
+            gap: 40px;
+        }
+
+        .anniv-2025 .event-eyebrow,
+        .anniv-2025 .section-kicker {
+            color: var(--a-cyan);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .anniv-2025 .event-hero h2 {
+            max-width: 11ch;
+            margin: 12px 0 18px;
+            color: #fff;
+            font-size: clamp(38px, 6vw, 68px);
+            line-height: 0.98;
+            letter-spacing: -0.045em;
+        }
+
+        .anniv-2025 .event-hero h2 span {
+            color: var(--a-gold);
+        }
+
+        .anniv-2025 .hero-copy {
+            max-width: 38em;
+            margin: 0;
+            color: hsl(210 30% 86%);
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .anniv-2025 .hero-stats {
+            display: grid;
+            gap: 10px;
+            padding: 18px;
+            border: 1px solid hsl(0 0% 100% / 0.12);
+            border-radius: 18px;
+            background: hsl(226 58% 9% / 0.62);
+            backdrop-filter: blur(10px);
+        }
+
+        .anniv-2025 .hero-stat {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 10px 4px;
+            border-bottom: 1px solid hsl(0 0% 100% / 0.08);
+        }
+
+        .anniv-2025 .hero-stat:last-child {
+            border-bottom: 0;
+        }
+
+        .anniv-2025 .hero-stat span {
+            color: hsl(211 23% 70%);
+            font-size: 13px;
+        }
+
+        .anniv-2025 .hero-stat strong {
+            color: #fff;
+            font-size: 18px;
+            text-align: right;
+        }
+
+        .anniv-2025 .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: -24px;
+            padding: 12px;
+            border: 1px solid hsl(188 80% 60% / 0.18);
+            border-radius: 16px;
+            background: hsl(226 58% 10% / 0.94);
+            box-shadow: 0 12px 34px hsl(225 90% 4% / 0.35);
+        }
+
+        .anniv-2025 .section-nav a {
+            padding: 8px 13px;
+            border-radius: 9px;
+            color: hsl(210 25% 78%);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .anniv-2025 .section-nav a:hover {
+            background: hsl(188 92% 58% / 0.12);
+            color: var(--a-cyan);
+        }
+
+        .anniv-2025 .event-section {
+            scroll-margin-top: 24px;
+        }
+
+        .anniv-2025 .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .anniv-2025 .section-heading h3 {
+            margin: 5px 0 0;
+            color: #fff;
+            font-size: clamp(25px, 4vw, 34px);
+            letter-spacing: -0.025em;
+        }
+
+        .anniv-2025 .section-heading p {
+            max-width: 34em;
+            margin: 0;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .anniv-2025 .feature-cards,
+        .anniv-2025 .quest-cards,
+        .anniv-2025 .badge-cards,
+        .anniv-2025 .tier-cards,
+        .anniv-2025 .special-cards {
+            display: grid;
+            gap: 14px;
+        }
+
+        .anniv-2025 .feature-cards {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .anniv-2025 .feature-card,
+        .anniv-2025 .quest-card,
+        .anniv-2025 .badge-card,
+        .anniv-2025 .tier-card,
+        .anniv-2025 .special-card {
+            position: relative;
+            overflow: hidden;
+            padding: 20px;
+            border: 0;
+            border-radius: 16px;
+            background: var(--a-panel);
+            box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.06), 0 10px 28px hsl(225 80% 5% / 0.24);
+        }
+
+        .anniv-2025 .feature-card::before {
+            display: block;
+            width: 32px;
+            height: 3px;
+            margin-bottom: 16px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--a-cyan), var(--a-gold));
+            content: "";
+        }
+
+        .anniv-2025 .feature-card strong,
+        .anniv-2025 .quest-card strong,
+        .anniv-2025 .tier-card strong,
+        .anniv-2025 .special-card strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .anniv-2025 .feature-card p,
+        .anniv-2025 .quest-card p,
+        .anniv-2025 .tier-card p,
+        .anniv-2025 .special-card p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .anniv-2025 .quest-cards,
+        .anniv-2025 .tier-cards,
+        .anniv-2025 .special-cards {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .anniv-2025 .quest-card em {
+            display: inline-block;
+            margin-bottom: 14px;
+            color: var(--a-gold);
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 800;
+        }
+
+        .anniv-2025 .strategy-callout {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 16px;
+            margin-top: 16px;
+            padding: 20px;
+            border-radius: 16px;
+            background: linear-gradient(100deg, hsl(188 92% 58% / 0.13), hsl(268 85% 67% / 0.1));
+            color: hsl(210 30% 86%);
+        }
+
+        .anniv-2025 .strategy-callout b {
+            color: var(--a-cyan);
+            font-size: 22px;
+        }
+
+        .anniv-2025 .badge-cards {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .anniv-2025 .badge-card {
+            border-top: 3px solid var(--badge-color);
+        }
+
+        .anniv-2025 .badge-card strong {
+            display: block;
+            color: var(--badge-color);
+            font-size: 22px;
+        }
+
+        .anniv-2025 .badge-card span {
+            display: block;
+            margin: 7px 0 14px;
+            color: hsl(210 25% 82%);
+            font-size: 13px;
+        }
+
+        .anniv-2025 .badge-card p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .anniv-2025 .shop-table-wrap {
+            border: 0;
+            border-radius: 18px;
+            background: hsl(226 58% 10% / 0.84);
+            box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.06), 0 16px 38px hsl(225 80% 5% / 0.28);
+        }
+
+        .anniv-2025 .shop-table th {
+            padding-top: 14px;
+            padding-bottom: 14px;
+            background: hsl(218 66% 24%);
+            color: hsl(188 90% 88%);
+            letter-spacing: 0.05em;
+        }
+
+        .anniv-2025 .shop-table td {
+            padding-top: 13px;
+            padding-bottom: 13px;
+        }
+
+        .anniv-2025 .tier-card {
+            border-top: 3px solid var(--tier-color);
+        }
+
+        .anniv-2025 .tier-card strong {
+            color: var(--tier-color);
+            font-size: 20px;
+        }
+
+        .anniv-2025 .special-card ul {
+            margin: 12px 0 0;
+            padding-left: 18px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .anniv-2025 .source-links {
+            justify-content: center;
+            margin-top: 0;
+            padding: 20px;
+            border: 0;
+            border-radius: 16px;
+            background: hsl(226 58% 10% / 0.7);
+        }
+
+        .anniv-2025 .source-links a {
+            padding: 9px 14px;
+            border-radius: 9px;
+            background: hsl(188 92% 58% / 0.1);
+            color: var(--a-cyan);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        body.anniversary-2025-page > #content {
+            width: min(100%, 1120px);
+            max-width: 1120px;
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+        }
+
+        .anniv-2025 .event-section {
+            position: relative;
+            padding: 28px;
+            border: 1px solid hsl(188 80% 60% / 0.14);
+            border-radius: 20px;
+            background:
+                radial-gradient(circle at 100% 0, hsl(268 85% 67% / 0.08), transparent 28%),
+                linear-gradient(145deg, hsl(226 58% 13% / 0.82), hsl(223 60% 9% / 0.74));
+            box-shadow:
+                inset 0 1px 0 hsl(0 0% 100% / 0.05),
+                0 18px 46px hsl(225 90% 4% / 0.24);
+        }
+
+        .anniv-2025 .section-heading {
+            padding-bottom: 18px;
+            border-bottom: 1px solid hsl(188 80% 60% / 0.12);
+        }
+
+        .anniv-2025 .feature-card,
+        .anniv-2025 .quest-card,
+        .anniv-2025 .badge-card,
+        .anniv-2025 .tier-card,
+        .anniv-2025 .special-card {
+            border: 1px solid hsl(188 80% 60% / 0.1);
+            background:
+                linear-gradient(150deg, hsl(224 56% 16% / 0.96), hsl(229 58% 11% / 0.92));
+            transition:
+                border-color 180ms ease,
+                box-shadow 180ms ease,
+                transform 180ms ease;
+        }
+
+        .anniv-2025 .feature-card:hover,
+        .anniv-2025 .quest-card:hover,
+        .anniv-2025 .badge-card:hover,
+        .anniv-2025 .tier-card:hover,
+        .anniv-2025 .special-card:hover {
+            border-color: hsl(188 92% 58% / 0.34);
+            box-shadow:
+                inset 0 1px 0 hsl(0 0% 100% / 0.08),
+                0 15px 34px hsl(225 90% 4% / 0.34),
+                0 0 26px hsl(188 92% 58% / 0.06);
+            transform: translateY(-2px);
+        }
+
+        .anniv-2025 .shop-table-wrap {
+            border: 1px solid hsl(43 96% 64% / 0.16);
+        }
+
+        .anniv-2025 .quest-menu-demo {
+            margin-top: 24px;
+            overflow: hidden;
+            border: 1px solid hsl(188 92% 58% / 0.34);
+            border-radius: 18px;
+            background:
+                linear-gradient(hsl(188 92% 58% / 0.035) 1px, transparent 1px),
+                hsl(205 67% 7% / 0.96);
+            background-size: 100% 4px;
+            box-shadow:
+                inset 0 0 28px hsl(188 92% 58% / 0.08),
+                0 18px 42px hsl(225 90% 4% / 0.32);
+        }
+
+        .anniv-2025 .quest-menu-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 16px 20px;
+            border-bottom: 1px solid hsl(188 92% 58% / 0.22);
+            background: linear-gradient(90deg, hsl(188 92% 58% / 0.11), hsl(268 85% 67% / 0.08));
+        }
+
+        .anniv-2025 .quest-menu-bar span {
+            display: block;
+            color: var(--a-cyan);
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+        }
+
+        .anniv-2025 .quest-menu-bar strong {
+            display: block;
+            margin-top: 3px;
+            color: #fff;
+            font-size: 17px;
+        }
+
+        .anniv-2025 .quest-menu-bar code {
+            color: var(--a-gold);
+            font-size: 11px;
+        }
+
+        .anniv-2025 .quest-menu-tabs {
+            display: flex;
+            gap: 8px;
+            padding: 14px 20px 0;
+        }
+
+        .anniv-2025 .quest-menu-tabs button,
+        .anniv-2025 .quest-menu-options button {
+            border: 1px solid hsl(188 92% 58% / 0.15);
+            background: hsl(205 58% 11% / 0.9);
+            color: hsl(190 30% 82%);
+            font: inherit;
+            cursor: pointer;
+            transition: border-color 140ms ease, background 140ms ease, color 140ms ease;
+        }
+
+        .anniv-2025 .quest-menu-tabs button {
+            padding: 8px 14px;
+            border-radius: 8px 8px 0 0;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .anniv-2025 .quest-menu-tabs button:hover,
+        .anniv-2025 .quest-menu-tabs button.is-active {
+            border-color: hsl(43 96% 64% / 0.5);
+            background: hsl(43 96% 64% / 0.12);
+            color: var(--a-gold);
+        }
+
+        .anniv-2025 .quest-menu-panel {
+            padding: 20px;
+        }
+
+        .anniv-2025 .quest-menu-panel[hidden] {
+            display: none;
+        }
+
+        .anniv-2025 .quest-menu-speaker {
+            margin: 0;
+            color: var(--a-gold);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .anniv-2025 .quest-menu-prompt {
+            margin: 4px 0 16px;
+            color: hsl(190 35% 88%);
+            font-size: 14px;
+        }
+
+        .anniv-2025 .quest-menu-options {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 7px;
+            max-height: 270px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .anniv-2025 .quest-menu-options button {
+            position: relative;
+            min-height: 42px;
+            padding: 9px 12px 9px 26px;
+            border-radius: 7px;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .anniv-2025 .quest-menu-options button::before {
+            position: absolute;
+            left: 10px;
+            color: transparent;
+            content: "▶";
+        }
+
+        .anniv-2025 .quest-menu-options button:hover,
+        .anniv-2025 .quest-menu-options button.is-active {
+            border-color: hsl(188 92% 58% / 0.48);
+            background: hsl(188 92% 58% / 0.11);
+            color: #fff;
+        }
+
+        .anniv-2025 .quest-menu-options button:hover::before,
+        .anniv-2025 .quest-menu-options button.is-active::before {
+            color: var(--a-gold);
+        }
+
+        .anniv-2025 .quest-menu-response {
+            min-height: 46px;
+            margin: 14px 0 0;
+            padding: 11px 14px;
+            border-left: 3px solid var(--a-gold);
+            background: hsl(43 96% 64% / 0.07);
+            color: hsl(43 70% 86%);
+            font-size: 13px;
+        }
+
+        .anniv-2025 .quest-menu-source {
+            margin: 0;
+            padding: 0 20px 16px;
+            color: hsl(210 18% 58%);
+            font-size: 11px;
+        }
+
+        @media (max-width: 720px) {
+            .rule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .npc-image-cell {
+                width: 78px;
+            }
+
+            .npc-thumbnail-button {
+                width: 66px;
+            }
+
+            .npc-thumbnail-button img {
+                height: 46px;
+            }
+
+            .anniv-2025 {
+                gap: 36px;
+            }
+
+            .anniv-2025 .event-section {
+                padding: 20px 18px;
+                border-radius: 18px;
+            }
+
+            .anniv-2025 .quest-menu-options {
+                grid-template-columns: 1fr;
+            }
+
+            .anniv-2025 .event-hero {
+                min-height: 0;
+                padding: 30px 22px;
+                border-radius: 18px;
+            }
+
+            .anniv-2025 .hero-layout {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .anniv-2025 .event-hero h2 {
+                font-size: 42px;
+            }
+
+            .anniv-2025 .section-nav {
+                margin-top: -18px;
+            }
+
+            .anniv-2025 .section-heading {
+                display: block;
+            }
+
+            .anniv-2025 .section-heading p {
+                margin-top: 10px;
+            }
+
+            .anniv-2025 .feature-cards,
+            .anniv-2025 .badge-cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .anniv-2025 .quest-cards,
+            .anniv-2025 .tier-cards,
+            .anniv-2025 .special-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .anniv-2025 .feature-cards,
+            .anniv-2025 .badge-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script src="/assets/js/page-chrome.js"></script>
+</head>
+
+<body>
+<section class="event-masthead anniversary-masthead" aria-labelledby="project_title">
+    <div class="masthead-main">
+        <div class="masthead-copy">
+            <a class="masthead-back" href="./event.html">返回活动页</a>
+            <p class="masthead-kicker">Ephinea seasonal archive · anniversary</p>
+            <h1 id="project_title" class="masthead-title">
+                <span>ANNIVERSARY</span>
+                <strong id="project_year">2025</strong>
+            </h1>
+            <p class="masthead-summary">周年纪念活动档案 · 徽章经济、限定任务与年度奖励完整收录</p>
+        </div>
+        <div class="masthead-emblem" aria-hidden="true">
+            <span class="emblem-number">10</span>
+            <span class="emblem-label">ANNIV.</span>
+        </div>
+    </div>
+    <nav id="yearNav" class="year-nav" aria-label="周年活动年份"></nav>
+</section>
+
+<main class="content-container" id="content">
+    <p>载入中…</p>
+</main>
+
+<div id="npcPreviewPopover" class="npc-preview-popover" role="dialog"
+     aria-labelledby="npcPreviewCaption" hidden>
+    <button type="button" class="npc-preview-close" aria-label="关闭预览">×</button>
+    <img id="npcPreviewImage" alt="">
+    <p id="npcPreviewCaption"></p>
+</div>
+
+<script>
+    const YEARS = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016];
+    const NPC_ROW_LABELS = new Set([
+        'Bronze Shop',
+        'Silver Shop',
+        'Gold Shop',
+        'Bronze / Silver / Gold Shops',
+        'Bronze Badge Shop',
+        'Silver Badge Shop',
+        'Gold Badge Shop',
+        'Hunter from Ragol',
+        'Thief from Ragol',
+        'Scavenger from Ragol',
+        'Guide',
+        'Badger',
+        'Chef from Ragol'
+    ]);
+    const NPC_IMAGES = [
+        {
+            matches: label => /^(Bronze)( Badge)? Shop$/.test(label),
+            src: '/assets/img/event/anniversary/bronze-shop.png',
+            caption: 'Bronze Badge Shop · Blue Soldier'
+        },
+        {
+            matches: label => /^(Silver)( Badge)? Shop$/.test(label),
+            src: '/assets/img/event/anniversary/silver-shop.png',
+            caption: 'Silver Badge Shop · Red Soldier'
+        },
+        {
+            matches: label => /^(Gold)( Badge)? Shop$/.test(label),
+            src: '/assets/img/event/anniversary/gold-shop.png',
+            caption: 'Gold Badge Shop · Lab Scientist（QST #2）'
+        },
+        {
+            matches: label => label === 'Hunter from Ragol',
+            src: '/assets/img/event/anniversary/hunter.png',
+            caption: 'Hunter from Ragol'
+        },
+        {
+            matches: label => label === 'Thief from Ragol',
+            src: '/assets/img/event/anniversary/thief.png',
+            caption: 'Thief from Ragol'
+        },
+        {
+            matches: label => label === 'Scavenger from Ragol',
+            src: '/assets/img/event/anniversary/scavenger.png',
+            caption: 'Scavenger from Ragol'
+        },
+        {
+            matches: label => label === 'Guide',
+            src: '/assets/img/event/anniversary/guide.png',
+            caption: 'Guide'
+        },
+        {
+            matches: label => label === 'Badger',
+            src: '/assets/img/event/anniversary/badger.png',
+            caption: 'Badger'
+        }
+    ];
+    const params = new URLSearchParams(location.search);
+    const requested = parseInt(params.get('year'), 10);
+    const selected = YEARS.includes(requested) ? requested : YEARS[0];
+    document.body.classList.toggle('anniversary-2025-page', selected === 2025);
+    const previewPopover = document.getElementById('npcPreviewPopover');
+    const previewImage = document.getElementById('npcPreviewImage');
+    const previewCaption = document.getElementById('npcPreviewCaption');
+    let previewAnchor = null;
+
+    function findNpcImages(label) {
+        if (label === 'Bronze / Silver / Gold Shops') {
+            return NPC_IMAGES.slice(0, 3);
+        }
+        return NPC_IMAGES.filter(image => image.matches(label));
+    }
+
+    function closeNpcPreview() {
+        previewPopover.hidden = true;
+        previewImage.removeAttribute('src');
+        previewAnchor = null;
+    }
+
+    function positionNpcPreview(anchor) {
+        if (previewPopover.hidden) return;
+
+        const gap = 10;
+        const margin = 12;
+        const anchorRect = anchor.getBoundingClientRect();
+        const popoverRect = previewPopover.getBoundingClientRect();
+        let left = anchorRect.right + gap;
+        let top = anchorRect.top + (anchorRect.height - popoverRect.height) / 2;
+
+        if (left + popoverRect.width > innerWidth - margin) {
+            left = anchorRect.left - popoverRect.width - gap;
+        }
+        if (left < margin) {
+            left = Math.min(
+                Math.max(margin, anchorRect.left + (anchorRect.width - popoverRect.width) / 2),
+                innerWidth - popoverRect.width - margin
+            );
+        }
+
+        previewPopover.style.left = `${Math.max(margin, left)}px`;
+        previewPopover.style.top =
+            `${Math.max(margin, Math.min(top, innerHeight - popoverRect.height - margin))}px`;
+    }
+
+    function showNpcPreview(anchor) {
+        previewAnchor = anchor;
+        previewImage.src = anchor.dataset.image;
+        previewImage.alt = anchor.dataset.caption;
+        previewCaption.textContent = anchor.dataset.caption;
+        previewPopover.hidden = false;
+        requestAnimationFrame(() => positionNpcPreview(anchor));
+    }
+
+    previewImage.addEventListener('load', () => {
+        if (previewAnchor && !previewPopover.hidden) {
+            positionNpcPreview(previewAnchor);
+        }
+    });
+
+    function decorateNpcTables() {
+        document.querySelectorAll('#content .shop-table').forEach(table => {
+            if (table.dataset.npcImages === 'ready' || !table.tBodies.length) return;
+
+            const rows = Array.from(table.tBodies[0].rows);
+            const labels = rows.map(row => row.cells[0]?.textContent.trim() || '');
+            if (!labels.some(label => NPC_ROW_LABELS.has(label))) return;
+
+            const headerRow = table.tHead?.rows[0];
+            if (!headerRow) return;
+
+            const imageHeader = document.createElement('th');
+            imageHeader.textContent = '外观';
+            headerRow.insertBefore(imageHeader, headerRow.cells[1] || null);
+
+            rows.forEach(row => {
+                const label = row.cells[0]?.textContent.trim() || '';
+                const images = findNpcImages(label);
+                const cell = row.insertCell(1);
+                cell.className = 'npc-image-cell';
+
+                if (!images.length) {
+                    cell.textContent = '—';
+                    cell.classList.add('npc-image-missing');
+                    return;
+                }
+
+                if (images.length > 1) cell.classList.add('npc-image-cell-multiple');
+
+                images.forEach(image => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'npc-thumbnail-button';
+                    button.dataset.image = image.src;
+                    button.dataset.caption = image.caption;
+                    button.setAttribute('aria-label', `查看 ${image.caption} 大图`);
+
+                    const thumbnail = document.createElement('img');
+                    thumbnail.src = image.src;
+                    thumbnail.alt = image.caption;
+                    thumbnail.loading = 'lazy';
+                    button.appendChild(thumbnail);
+                    cell.appendChild(button);
+                });
+            });
+
+            table.dataset.npcImages = 'ready';
+        });
+    }
+
+    document.title = `${selected}周年活动 | Ephinea PSOBB`;
+    document.getElementById('page-title').textContent = document.title;
+    document.getElementById('project_year').textContent = selected;
+    document.querySelector('.emblem-number').textContent = selected - 2015;
+    document.getElementById('yearNav').innerHTML = YEARS.map(year =>
+        year === selected
+            ? `<span class="year-current">${year}</span>`
+            : `<a href="?year=${year}">${year}</a>`
+    ).join('');
+
+    fetch(`./anniversary/${selected}.html?v=20260726-qst-menu`, { cache: 'no-store' })
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.text();
+        })
+        .then(html => {
+            document.getElementById('content').innerHTML = html;
+            decorateNpcTables();
+        })
+        .catch(() => {
+            document.getElementById('content').innerHTML =
+                `<p>未能加载 ${selected} 年周年活动内容。</p>`;
+        });
+
+    document.addEventListener('click', event => {
+        if (!(event.target instanceof Element)) return;
+
+        const menuTab = event.target.closest('[data-quest-panel-target]');
+        if (menuTab) {
+            const menu = menuTab.closest('[data-quest-menu]');
+            const target = menuTab.dataset.questPanelTarget;
+            menu.querySelectorAll('[data-quest-panel-target]').forEach(button => {
+                button.classList.toggle('is-active', button === menuTab);
+            });
+            menu.querySelectorAll('[data-quest-panel]').forEach(panel => {
+                panel.hidden = panel.dataset.questPanel !== target;
+            });
+            return;
+        }
+
+        const menuOption = event.target.closest('[data-quest-response]');
+        if (menuOption) {
+            const panel = menuOption.closest('.quest-menu-panel, .quest-menu-demo');
+            panel.querySelectorAll('[data-quest-response]').forEach(button => {
+                button.classList.toggle('is-active', button === menuOption);
+            });
+            panel.querySelector('.quest-menu-response').textContent =
+                menuOption.dataset.questResponse;
+            return;
+        }
+
+        const thumbnail = event.target.closest('.npc-thumbnail-button');
+        if (thumbnail) {
+            if (previewAnchor === thumbnail && !previewPopover.hidden) {
+                closeNpcPreview();
+            } else {
+                showNpcPreview(thumbnail);
+            }
+            return;
+        }
+
+        if (event.target.closest('.npc-preview-close')) {
+            closeNpcPreview();
+            return;
+        }
+
+        if (!event.target.closest('.npc-preview-popover')) closeNpcPreview();
+    });
+
+    addEventListener('scroll', closeNpcPreview, true);
+    addEventListener('resize', closeNpcPreview);
+</script>
+</body>
+
+</html>

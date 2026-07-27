@@ -3,47 +3,311 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Ephinea PSOBB 活动一览">
+    <meta name="description" content="Ephinea PSOBB 五大年度活动逐年资料">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>event | Ephinea PSOBB</title>
+    <title>活动专题 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .event-intro {
+            max-width: 760px;
+            margin: 0 auto 24px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .event-grid,
+        .history-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .event-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            margin-bottom: 32px;
+        }
+
+        .history-grid {
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        }
+
+        .event-card {
+            position: relative;
+            overflow: hidden;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            background: linear-gradient(145deg, var(--accent-10), rgba(255, 255, 255, 0.025));
+        }
+
+        .event-card::before {
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 3px;
+            background: linear-gradient(var(--accent), var(--accent-alt));
+            content: "";
+        }
+
+        .event-card h2 {
+            margin: 4px 0 10px;
+        }
+
+        .event-kicker {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .event-tags,
+        .event-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .event-tags {
+            margin: 16px 0 20px;
+        }
+
+        .event-tags span {
+            padding: 5px 10px;
+            border: 1px solid var(--accent-25);
+            border-radius: 999px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .event-actions a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 38px;
+            padding: 0 15px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+            color: var(--accent-dark);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .history-panel h2 {
+            margin-bottom: 5px;
+        }
+
+        .history-panel,
+        .table-wrap {
+            min-width: 0;
+        }
+
+        .history-note {
+            margin-top: 0;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .history-table {
+            width: 100%;
+            min-width: 450px;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .history-table th,
+        .history-table td {
+            padding: 9px 11px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .history-table th {
+            background: var(--accent-10);
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .history-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .history-table .year-link {
+            font-weight: 700;
+        }
+
+        @media (max-width: 860px) {
+            .event-grid,
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
     <script src="/assets/js/page-chrome.js"></script>
 </head>
 
 <body>
-<page-chrome title="圣诞大乱斗"></page-chrome>
+<page-chrome title="活动专题"></page-chrome>
 
-<div class="content-container">
-    <p>活动内容尽量简单明了，没用的废话都删除掉！</p>
+<main class="content-container">
+    <p class="event-intro">
+        Ephinea 全年共有五类服务器活动。每个有官方记录的年份都保留独立内容，
+        直接整理当年的机制变化、任务、NPC、奖励与活动公告。
+    </p>
 
-    <hr>
-    <p><strong>已过期活动</strong></p>
+    <section class="event-grid" aria-label="活动专题">
+        <article class="event-card">
+            <div class="event-kicker">December · Christmas</div>
+            <h2>圣诞活动</h2>
+            <p>逐年整理 Present 奖池、Coal、Christmas Fiasco、商店兑换与当年规则。</p>
+            <div class="event-tags"><span>2015–2025</span><span>Present</span><span>Christmas Fiasco</span><span>Coal</span></div>
+            <div class="event-actions"><a href="./christmas.html?year=2025">进入圣诞逐年资料</a></div>
+        </article>
 
-    <p><a href="./christmas.html?year=2026">2026圣诞活动</a></p>
+        <article class="event-card">
+            <div class="event-kicker">August · Anniversary</div>
+            <h2>周年活动</h2>
+            <p>逐年整理周年徽章、Maximum Attack E、活动商店与全服里程碑变化。</p>
+            <div class="event-tags"><span>2016–2025</span><span>Anniversary Badges</span><span>MAE</span><span>Milestones</span></div>
+            <div class="event-actions"><a href="./anniversary.html?year=2025">进入周年逐年资料</a></div>
+        </article>
 
-    <p><a href="./christmas.html?year=2025">2025圣诞活动</a></p>
+        <article class="event-card">
+            <div class="event-kicker">February · Valentine’s</div>
+            <h2>情人节活动</h2>
+            <p>逐年整理组队人数 RDR、Daily Forecast 共享，以及早期 SEGA Valentine’s 任务记录。</p>
+            <div class="event-tags"><span>2016 / 2023–2026</span><span>Party RDR</span><span>Forecast</span></div>
+            <div class="event-actions"><a href="./valentines.html?year=2026">进入情人节逐年资料</a></div>
+        </article>
 
-    <p><a href="./christmas.html?year=2024">2024圣诞活动</a></p>
+        <article class="event-card">
+            <div class="event-kicker">March–April · Easter</div>
+            <h2>复活节活动</h2>
+            <p>逐年整理 Event Egg、RBR 掉率、Egg Rappy、Elly / Karen 商店与三档赌博。</p>
+            <div class="event-tags"><span>2016–2026</span><span>Event Egg</span><span>The Egg Shop</span></div>
+            <div class="event-actions"><a href="./easter.html?year=2026">进入复活节逐年资料</a></div>
+        </article>
 
-    <p><a href="./christmas.html?year=2023">2023圣诞活动</a></p>
+        <article class="event-card">
+            <div class="event-kicker">October · Halloween</div>
+            <h2>万圣节活动</h2>
+            <p>逐年整理 Halloween Cookie、11 项 Hollow 任务、任务 Boost 与 Hallo Rappy 奖池。</p>
+            <div class="event-tags"><span>2017 / 2020–2025</span><span>Cookie</span><span>Hollow Quests</span></div>
+            <div class="event-actions"><a href="./halloween.html?year=2025">进入万圣节逐年资料</a></div>
+        </article>
+    </section>
 
-    <p><a href="./christmas.html?year=2022">2022圣诞活动</a></p>
+    <section class="history-grid" aria-label="历年活动">
+        <div class="history-panel">
+            <h2>历年圣诞活动</h2>
+            <p class="history-note">点击年份进入本站对应年份的完整内容。</p>
+            <div class="table-wrap">
+                <table class="history-table">
+                    <thead><tr><th>年份</th><th>开始</th><th>结束</th><th>公告</th></tr></thead>
+                    <tbody>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2025">2025</a></td><td>12 月 14 日</td><td>2026 年 1 月 11 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2025-event-thread.32172/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2024">2024</a></td><td>12 月 14 日</td><td>2025 年 1 月 11 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2024-event-thread.30010/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2023">2023</a></td><td>12 月 12 日</td><td>2024 年 1 月 9 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2023-event-thread.27468/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2022">2022</a></td><td>12 月 10 日</td><td>2023 年 1 月 7 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2022-event-thread.24852/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2021">2021</a></td><td>12 月 11 日</td><td>2022 年 1 月 8 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2021-event-thread.22085/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2020">2020</a></td><td>12 月 12 日</td><td>2021 年 1 月 9 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2020-event-thread.19752/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2019">2019</a></td><td>12 月 17 日</td><td>2020 年 1 月 13 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2019.16501/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2018">2018</a></td><td>12 月 15 日</td><td>2019 年 1 月 12 日</td><td><a href="https://www.pioneer2.net/community/threads/christmas-2018-event-thread.12809/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2017">2017</a></td><td>12 月 8 日</td><td>2018 年 1 月 8 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-christmas-2017.9136/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    <tr><td><a class="year-link" href="./christmas.html?year=2016">2016</a></td><td>12 月 6 日</td><td>2017 年 1 月 9 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-christmas-event-2016.4487/" target="_blank" rel="noopener">论坛</a></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <p><a href="./christmas.html?year=2021">2021圣诞活动</a></p>
+        <div class="history-panel">
+            <h2>历年周年活动</h2>
+            <p class="history-note">点击年份进入本站对应年份的完整内容；* 为网页存档。</p>
+            <div class="table-wrap">
+                <table class="history-table">
+                    <thead><tr><th>年份</th><th>开始</th><th>结束</th><th>公告</th><th>里程碑</th></tr></thead>
+                    <tbody>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2025">2025</a></td><td>8 月 11 日</td><td>9 月 8 日</td><td><a href="https://www.pioneer2.net/community/threads/10th-anniversary-event-thread.31236/" target="_blank" rel="noopener">论坛</a></td><td><a href="https://ephinea.pioneer2.net/10th-anniv-event/" target="_blank" rel="noopener">查看</a></td></tr>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2024">2024</a></td><td>8 月 12 日</td><td>9 月 9 日</td><td><a href="https://www.pioneer2.net/community/threads/9th-anniversary-event-thread.29237/" target="_blank" rel="noopener">论坛</a></td><td><a href="https://web.archive.org/web/20250617010430/https://ephinea.pioneer2.net/9th-anniv-event/" target="_blank" rel="noopener">查看*</a></td></tr>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2023">2023</a></td><td>8 月 5 日</td><td>9 月 5 日</td><td><a href="https://www.pioneer2.net/community/threads/8th-anniversary-event-thread.26453/" target="_blank" rel="noopener">论坛</a></td><td><a href="https://web.archive.org/web/20230905072422/https://ephinea.pioneer2.net/8th-anniv-event/" target="_blank" rel="noopener">查看*</a></td></tr>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2022">2022</a></td><td>8 月 6 日</td><td>9 月 6 日</td><td><a href="https://www.pioneer2.net/community/threads/7th-anniversary-event-thread.23826/" target="_blank" rel="noopener">论坛</a></td><td><a href="https://web.archive.org/web/20230322154243/https://ephinea.pioneer2.net/7th-anniv-event/" target="_blank" rel="noopener">查看*</a></td></tr>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2021">2021</a></td><td>8 月 7 日</td><td>9 月 4 日</td><td><a href="https://www.pioneer2.net/community/threads/6th-anniversary-event-thread-6%E5%91%A8%E5%B9%B4%E3%82%A2%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AA%E3%83%BC%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88.21021/" target="_blank" rel="noopener">论坛</a></td><td><a href="https://web.archive.org/web/20211205140205/https://ephinea.pioneer2.net/6th-anniv-event/" target="_blank" rel="noopener">查看*</a></td></tr>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2020">2020</a></td><td>8 月 17 日</td><td>9 月 14 日</td><td><a href="https://www.pioneer2.net/community/threads/5th-anniversary-event-thread.18985/" target="_blank" rel="noopener">论坛</a></td><td><a href="https://web.archive.org/web/20210805171958/https://ephinea.pioneer2.net/5th-anniv-event/" target="_blank" rel="noopener">查看*</a></td></tr>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2019">2019</a></td><td>8 月 2 日</td><td>9 月 6 日</td><td><a href="https://www.pioneer2.net/community/threads/4th-anniversary-event-thread.15276/" target="_blank" rel="noopener">论坛</a></td><td>—</td></tr>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2018">2018</a></td><td>8 月 6 日</td><td>9 月 3 日</td><td><a href="https://www.pioneer2.net/community/threads/3rd-anniversary-event-thread.11345/" target="_blank" rel="noopener">论坛</a></td><td>—</td></tr>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2017">2017</a></td><td>8 月 13 日</td><td>9 月 10 日</td><td><a href="https://www.pioneer2.net/community/threads/the-anniversary-event-thread.7734/" target="_blank" rel="noopener">论坛</a></td><td>—</td></tr>
+                    <tr><td><a class="year-link" href="./anniversary.html?year=2016">2016</a></td><td>8 月 11 日</td><td>10 月 1 日</td><td><a href="https://www.pioneer2.net/community/threads/ephinea-summer-event.3083/" target="_blank" rel="noopener">论坛</a></td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <p><a href="./christmas.html?year=2020">2020圣诞活动</a></p>
+        <div class="history-panel">
+            <h2>历年情人节活动</h2>
+            <p class="history-note">官方仅记录以下年份；未创建不存在的 2017–2022 页面。</p>
+            <div class="table-wrap">
+                <table class="history-table">
+                    <thead><tr><th>年份</th><th>开始</th><th>结束</th></tr></thead>
+                    <tbody>
+                    <tr><td><a class="year-link" href="./valentines.html?year=2026">2026</a></td><td>2 月 6 日</td><td>2 月 20 日</td></tr>
+                    <tr><td><a class="year-link" href="./valentines.html?year=2025">2025</a></td><td>2 月 7 日</td><td>2 月 21 日</td></tr>
+                    <tr><td><a class="year-link" href="./valentines.html?year=2024">2024</a></td><td>2 月 7 日</td><td>2 月 21 日</td></tr>
+                    <tr><td><a class="year-link" href="./valentines.html?year=2023">2023</a></td><td>2 月 8 日</td><td>2 月 21 日</td></tr>
+                    <tr><td><a class="year-link" href="./valentines.html?year=2016">2016</a></td><td>2 月 12 日</td><td>2 月 16 日</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <p><a href="./christmas.html?year=2019">2019圣诞活动</a></p>
+        <div class="history-panel">
+            <h2>历年复活节活动</h2>
+            <p class="history-note">点击年份进入本站对应年份的规则与变化。</p>
+            <div class="table-wrap">
+                <table class="history-table">
+                    <thead><tr><th>年份</th><th>开始</th><th>结束</th></tr></thead>
+                    <tbody>
+                    <tr><td><a class="year-link" href="./easter.html?year=2026">2026</a></td><td>3 月 23 日</td><td>4 月 20 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2025">2025</a></td><td>4 月 6 日</td><td>5 月 4 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2024">2024</a></td><td>3 月 30 日</td><td>4 月 27 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2023">2023</a></td><td>4 月 2 日</td><td>4 月 30 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2022">2022</a></td><td>4 月 2 日</td><td>4 月 30 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2021">2021</a></td><td>4 月 3 日</td><td>5 月 14 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2020">2020</a></td><td>4 月 12 日</td><td>5 月 10 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2019">2019</a></td><td>3 月 31 日</td><td>4 月 28 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2018">2018</a></td><td>3 月 23 日</td><td>4 月 20 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2017">2017</a></td><td>4 月 2 日</td><td>4 月 30 日</td></tr>
+                    <tr><td><a class="year-link" href="./easter.html?year=2016">2016</a></td><td>3 月 19 日</td><td>4 月 9 日</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <p><a href="./christmas.html?year=2018">2018圣诞活动</a></p>
+        <div class="history-panel">
+            <h2>历年万圣节活动</h2>
+            <p class="history-note">官方仅记录以下年份；2018、2019 没有独立历史记录。</p>
+            <div class="table-wrap">
+                <table class="history-table">
+                    <thead><tr><th>年份</th><th>开始</th><th>结束</th></tr></thead>
+                    <tbody>
+                    <tr><td><a class="year-link" href="./halloween.html?year=2025">2025</a></td><td>10 月 23 日</td><td>11 月 7 日</td></tr>
+                    <tr><td><a class="year-link" href="./halloween.html?year=2024">2024</a></td><td>10 月 23 日</td><td>11 月 7 日</td></tr>
+                    <tr><td><a class="year-link" href="./halloween.html?year=2023">2023</a></td><td>10 月 24 日</td><td>11 月 7 日</td></tr>
+                    <tr><td><a class="year-link" href="./halloween.html?year=2022">2022</a></td><td>10 月 23 日</td><td>11 月 7 日</td></tr>
+                    <tr><td><a class="year-link" href="./halloween.html?year=2021">2021</a></td><td>10 月 24 日</td><td>11 月 8 日</td></tr>
+                    <tr><td><a class="year-link" href="./halloween.html?year=2020">2020</a></td><td>10 月 25 日</td><td>11 月 8 日</td></tr>
+                    <tr><td><a class="year-link" href="./halloween.html?year=2017">2017</a></td><td>10 月 27 日</td><td>11 月 10 日</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
 
-    <p><a href="./christmas.html?year=2017">2017圣诞活动</a></p>
-
-    <p><a href="./christmas.html?year=2016">2016圣诞活动</a></p>
-
-    <p><a href="./christmas.html?year=2015">2015圣诞活动</a></p>
-</div>
+</main>
 </body>
 
 </html>
