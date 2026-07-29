@@ -1,13 +1,43 @@
 # Architecture & Optimization Notes
 
-> Last updated: 2026-07-27
+> Last updated: 2026-07-28
 > The following are intentionally outside the refactor/cleanup scope per user direction (don't propose changes):
 > - `data/droptable/` — opt-out by user
 > - `assets/js/combo_calc.js`, `tools/cc.html`, `tools/ccopm.html` — third-party combo calculator, sync'd from upstream
 
 ## Overview
 
-Pure static site — no build system, no package manager — served directly via GitHub Pages.
+Pure static site deployed to GitHub Pages from an immutable `_site` artifact.
+The repository keeps readable JavaScript only; generated `.min.js` files are
+never written back to source control.
+
+`npm run build` is the single production build entry point. It:
+
+- copies an explicit allowlist of public site files into a temporary directory;
+- discovers browser JavaScript from parsed HTML entries;
+- minifies classic scripts and bundles ES-module dependency graphs;
+- emits content-hashed `.min.js` filenames and rewrites only the copied HTML;
+- preserves existing third-party `.min.js` files;
+- excludes the opt-out drop-table tree and upstream `combo_calc.js`;
+- validates local resource references, source exclusion, coverage and hashes;
+- writes a deterministic `build-manifest.json`;
+- atomically publishes the completed `_site` directory.
+
+`npm run release:prepare` is the local release gate. GitHub Actions performs a
+locked install, dependency audit, business tests, two reproducibility builds,
+and browser tests. The build job uploads `_site`; the deploy job deploys that
+exact artifact without checking out or rebuilding the repository.
+
+Useful commands:
+
+```bash
+npm ci
+npx playwright install chromium
+npm test
+npm run build
+npm run test:e2e
+npm run preview
+```
 
 ### Directory Structure
 
@@ -71,11 +101,13 @@ identifier and is never highlighted.
 
 ## Issues & Recommendations
 
-### 1. Manual Cache-Busting Version Numbers (Low)
+### 1. Manually versioned runtime data (Low)
 
-**Problem:** `<script src="assets/js/index.js?v=1">` requires manual version bumps, which are easy to forget.
+Production JavaScript uses content-hashed filenames. A few runtime-fetched JSON
+and explicitly excluded drop-table resources still use manual query versions.
 
-**Fix:** Add a simple build step (Python script or Makefile) to auto-generate content-hash query strings.
+Future work can include those data resources in the build manifest or move them
+behind a cache-aware CDN.
 
 ---
 

@@ -3,11 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "node scripts/serve_site.mjs . 5173",
+    "build": "node scripts/build_site.mjs",
+    "preview": "node scripts/serve_site.mjs _site 4173",
+    "test": "node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_mag_sim.mjs && node scripts/verify_mag_sim_planner.mjs",
+    "test:e2e": "playwright test",
+    "release:prepare": "npm test && npm run build && npm run test:e2e"
   },
   "devDependencies": {
-    "vite": "^7.0.0"
+    "@playwright/test": "^1.62.0",
+    "esbuild": "^0.28.1",
+    "parse5": "^8.0.1"
   }
 }
