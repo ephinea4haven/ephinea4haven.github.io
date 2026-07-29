@@ -2,11 +2,15 @@
 .DS_Store
 __pycache__/
 *.pyc
-package-lock.json
 /static/node_modules/
 node_modules/
 dist/
+_site/
+.site-build-*/
+.site-backup-*/
 .vite/
+playwright-report/
+test-results/
 
 # pw is deployed separately at pw.psohaven.com; no longer part of this repo
 tools/pw/
