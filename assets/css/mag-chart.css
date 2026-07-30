@@ -366,12 +366,14 @@
     background: rgba(255, 255, 255, .055);
 }
 
-/* 64x64 sprites: bilinear scaling turns them to mush, so keep it pixelated. */
+/* The source sprites are 64×64 and display slightly smaller here. Let the
+ * browser downsample them smoothly; pixelated rendering exaggerates pale edge
+ * pixels and makes the recoloured material look flatter than the screenshots. */
 .mag-card__sprite {
     width: 56px;
     height: 56px;
     object-fit: contain;
-    image-rendering: pixelated;
+    image-rendering: auto;
     align-self: start;
 }
 
@@ -738,10 +740,9 @@
     font-weight: 600;
 }
 
-/* ---------- Ephinea-exclusive colours ----------
- * Was a 12-row table whose point — the colour — was a 32x16px chip lost in a
- * 190px cell, with the rest of each row given over to whitespace. A card grid
- * lets the swatch and the in-game screenshot carry the information.
+/* ---------- Mag colours ----------
+ * Card grids let the swatch and the in-game screenshot carry the information
+ * for both the 18 original colours and the 12 Ephinea-exclusive colours.
  */
 
 .mag-colors {

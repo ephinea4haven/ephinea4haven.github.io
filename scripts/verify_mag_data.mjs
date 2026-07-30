@@ -1,6 +1,6 @@
 /* Asserts assets/js/mag-evolution.js carries the corrections listed in the
  * 2026-07 chart redesign. Run: node scripts/verify_mag_data.mjs */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 
 const src = readFileSync('assets/js/mag-evolution.js', 'utf8');
 const win = {};
@@ -19,6 +19,20 @@ const conds = (list, n) => find(list, n).flatMap((m) => m.cond);
 check('三个职业', Object.keys(D.classes).join() === 'HU,RA,FO');
 check('meta.pbNames 六个 PB', Object.keys(D.meta.pbNames).length === 6);
 check('meta.events 三个且无死亡', D.meta.events.length === 3 && !D.meta.events.includes('Death'));
+check('30 种配色（18 常规 + 12 专属）',
+    D.meta.colors.length === 30
+    && D.meta.colors.filter((c) => !c.exclusive).length === 18
+    && D.meta.colors.filter((c) => c.exclusive).length === 12);
+check('Sapphire 色值为 #0A0AF2',
+    D.meta.colors.find((c) => c.name === 'Sapphire')?.hex === '#0A0AF2');
+
+const magHtml = readFileSync('tools/mag.html', 'utf8');
+const colorCards = [...magHtml.matchAll(/<figure class="mag-color"/g)];
+const colorImages = [...magHtml.matchAll(/src="\/(assets\/img\/mag\/colors\/[^"]+)"/g)]
+    .map((match) => match[1]);
+check('页面展示 30 张配色图卡', colorCards.length === 30);
+check('30 张配色图片均为本地有效引用',
+    colorImages.length === 30 && colorImages.every((path) => existsSync(path)));
 
 // ---- #1 FO B 组是 Marica 不是 Madhu
 const foB = D.classes.FO.stage3.B;

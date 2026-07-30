@@ -179,7 +179,7 @@ window.MAG_EVOLUTION = {
       },
       {
         "name": "Sapphire",
-        "hex": "#0A0AFF",
+        "hex": "#0A0AF2",
         "exclusive": true
       },
       {

@@ -9,6 +9,7 @@ data changes; commit the regenerated output alongside the script run.
 | `scrape_gizonde.py` | `assets/js/volopt_data.js` | Vol Opt Gizonde stunlock tables |
 | `scrape_price_guide.py` | `assets/js/price_guide_data.js` | Ephinea PSO price guide |
 | `build_mag_data.py` | `assets/js/mag-evolution.js`, `assets/js/mag-sim-data.js` | Mags wiki page + Mag feeding tables |
+| `download_wiki_mag_assets.py` | `assets/img/mag/wiki/*.png`, `assets/img/mag/colors/*.png` | Evolution sprites + 30 Mag color-reference screenshots |
 | `build_rbr_data.py` | `data/rbr/source.json` | RBR candidate pool, current rotation, quest metadata, XP and enemy counts |
 | `build_rbr_tier_charts.py` | `assets/img/guide/rbr/*-tier-section-colors.svg` | Curated tier layout using the BB drop table's canonical Section ID palette |
 
@@ -18,12 +19,14 @@ data changes; commit the regenerated output alongside the script run.
 python3 scripts/scrape_gizonde.py > assets/js/volopt_data.js
 python3 scripts/scrape_price_guide.py > assets/js/price_guide_data.js
 python3 scripts/build_mag_data.py
+python3 scripts/download_wiki_mag_assets.py
 python3 scripts/build_rbr_data.py
 python3 scripts/build_rbr_tier_charts.py
 ```
 
-No external dependencies — every script uses only Python's stdlib (`urllib`,
-`html.parser`, `subprocess`+`curl`).
+The data builders use Python's standard library. The Mag asset downloader also
+requires Pillow to validate cached PNG files and invokes `rtk curl` for
+downloads.
 
 `build_mag_data.py` writes both of its output files only after every parse and
 audit has passed, so a failed run never leaves the two data blobs out of sync.
@@ -34,6 +37,14 @@ python3 scripts/build_mag_data.py --offline mags.wiki \
     --offline-feed magfeedtable.wiki --offline-feed-page feedtables.wiki
 ```
 
+`mag.html` presents all 30 in-game Mag colors as two groups: the 18 original
+Blue Burst colors and the 12 Ephinea-exclusive colors. The color picker uses
+the same generated color list. Evolution sprites have a single cyan body
+material; the browser recolors only that material with a shadow/base/highlight
+ramp while retaining neutral details such as eyes, seams, and specular
+highlights. Run `download_wiki_mag_assets.py` to restore either the evolution
+sprites or the color-reference screenshots when an asset is missing.
+
 ## Tests
 
 Node assertion scripts using this project's plain `check(name, cond)` convention
@@ -43,7 +54,7 @@ corresponding source.
 
 | Script | Verifies |
 |--------|----------|
-| `verify_mag_data.mjs` | `assets/js/mag-evolution.js` (evolution graph data) |
+| `verify_mag_data.mjs` | `assets/js/mag-evolution.js` plus the 18+12 color split, color cards, and local image references |
 | `verify_mag_sim_data.mjs` | `assets/js/mag-sim-data.js` (feed tables, mag cells) |
 | `verify_mag_sim.mjs` | `assets/js/mag-sim-engine.js` (feeding/evolution engine) |
 | `verify_mag_sim_planner.mjs` | `assets/js/mag-sim-planner.js` (reverse-search planner, intermediate fourth-evolution checkpoints, Cell evolution steps, and full engine replay) |

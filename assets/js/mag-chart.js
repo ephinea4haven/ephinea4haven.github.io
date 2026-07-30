@@ -29,36 +29,81 @@
     }
 
     /* ---------- sprite recolour ----------
-     * The wiki sprites are a single cyan hue — faithful, since a mag's colour
-     * is random / costume-based, not a property of its species, and stays
-     * constant across every evolution. So the tint is global: pick one colour
-     * and every sprite on the page takes it.
-     *
-     * Multiply tint: scale the chosen colour by each pixel's luma, so shadows
-     * and highlights survive. Validated against the 12 real in-game screenshots
-     * — recoloured hue matched every one.
+     * The wiki sprites use cyan for the player-selectable body material. Keep
+     * neutral pixels (eyes, seams, metal and specular highlights) intact and
+     * replace only that cyan material with a shadow/base/highlight ramp derived
+     * from the selected in-game colour. This is closer to the real screenshots
+     * than multiplying every opaque pixel by one RGB value, which tinted fixed
+     * details and clipped highlights to white.
      */
     const REC = { hex: null, cache: new Map(), sources: new Map() };
+
+    const clamp01 = (n) => Math.max(0, Math.min(1, n));
+    const smoothstep = (lo, hi, n) => {
+        const t = clamp01((n - lo) / (hi - lo));
+        return t * t * (3 - 2 * t);
+    };
+
+    function cyanMaterial(pixel) {
+        const r = pixel[0] / 255;
+        const g = pixel[1] / 255;
+        const b = pixel[2] / 255;
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        const saturation = max ? (max - min) / max : 0;
+        const cyanLead = ((g + b) / 2) - r;
+        return smoothstep(0.08, 0.28, saturation)
+            * smoothstep(0.02, 0.18, cyanLead);
+    }
+
+    function percentile(sorted, ratio) {
+        if (!sorted.length) return 0;
+        return sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * ratio))];
+    }
 
     function tintDataUrl(imgData, hex) {
         const T = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
         const d = imgData.data;
-        // luma range over opaque pixels, to normalise contrast per sprite
-        let lo = 1, hi = 0;
+
+        // Use the central 90% of the colourable material's luminance range.
+        // Black outlines and isolated white glints must not flatten the body
+        // material's useful contrast.
+        const samples = [];
         for (let i = 0; i < d.length; i += 4) {
             if (d[i + 3] < 8) continue;
+            const mask = cyanMaterial([d[i], d[i + 1], d[i + 2]]);
+            if (mask < 0.2) continue;
             const y = (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255;
-            if (y < lo) lo = y;
-            if (y > hi) hi = y;
+            samples.push(y);
         }
+        samples.sort((a, b) => a - b);
+        const lo = percentile(samples, 0.05);
+        const hi = percentile(samples, 0.95);
         const span = hi - lo || 1;
+
         for (let i = 0; i < d.length; i += 4) {
             if (d[i + 3] === 0) continue;
+            const original = [d[i], d[i + 1], d[i + 2]];
+            const mask = cyanMaterial(original);
+            if (mask <= 0) continue;
+
             const y = (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255;
-            const k = 0.25 + 1.35 * ((y - lo) / span);
-            d[i] = Math.min(255, T[0] * k);
-            d[i + 1] = Math.min(255, T[1] * k);
-            d[i + 2] = Math.min(255, T[2] * k);
+            const q = smoothstep(0, 1, clamp01((y - lo) / span));
+            const ramp = T.map((channel) => {
+                if (q < 0.58) {
+                    // Coloured shadows, rather than neutral black multiplied
+                    // into the entire sprite.
+                    return channel * (0.22 + 0.78 * (q / 0.58));
+                }
+                // Specular light stays coloured and never reaches flat white.
+                const u = (q - 0.58) / 0.42;
+                const highlight = channel + (255 - channel) * 0.36;
+                return channel + (highlight - channel) * u;
+            });
+
+            d[i] = Math.round(original[0] + (ramp[0] - original[0]) * mask);
+            d[i + 1] = Math.round(original[1] + (ramp[1] - original[1]) * mask);
+            d[i + 2] = Math.round(original[2] + (ramp[2] - original[2]) * mask);
         }
         return d;
     }
