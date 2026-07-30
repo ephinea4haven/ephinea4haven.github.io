@@ -81,9 +81,10 @@
             padding-bottom: 6px;
             border-bottom: 1px solid rgba(0, 212, 255, 0.15);
         }
-        .price-table {
+        .content-container .price-table {
             font-size: 13px;
             width: 100%;
+            overflow: visible;
         }
         .price-table th, .price-table td {
             padding: 6px 8px;
@@ -95,7 +96,26 @@
             white-space: normal;
             min-width: 120px;
         }
-        .price-table td:first-child { color: #fbbf24; font-weight: 500; }
+        .price-table thead th:first-child,
+        .price-table tbody tr:not(.price-note-row) > td:first-child {
+            position: sticky;
+            left: 0;
+            box-shadow: 2px 0 0 rgba(0, 212, 255, 0.15);
+        }
+        .price-table thead th:first-child {
+            z-index: 2;
+            background-color: var(--bg-primary);
+            background-image: var(--table-header-bg);
+        }
+        .price-table tbody tr:not(.price-note-row) > td:first-child {
+            z-index: 1;
+            color: #fbbf24;
+            font-weight: 500;
+            background: var(--bg-primary);
+        }
+        .price-table tbody tr:not(.price-note-row):hover > td:first-child {
+            background: #0c213f;
+        }
         .price-table .val-inest { color: #f472b6; font-style: italic; font-size: 12px; }
         .price-table .val-na { color: #475569; }
         .price-table .val-zero { color: #64748b; }
