@@ -26659,7 +26659,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1/182.9"
               },
               {
-                "item": "NUG-导弹发射器",
+                "item": "NUG-2000火箭炮",
                 "rate": "1/28807.0"
               },
               {
@@ -26771,7 +26771,7 @@ window.DROP_DATA_ZH = {
                 "ss": true
               },
               {
-                "item": "NUG-导弹发射器",
+                "item": "NUG-2000火箭炮",
                 "rate": "1/18331.8"
               },
               {
@@ -28206,7 +28206,7 @@ window.DROP_DATA_ZH = {
             "name": "暗黑巨神像/远古巨神像",
             "drops": [
               {
-                "item": "NUG-导弹发射器",
+                "item": "NUG-2000火箭炮",
                 "rate": "1/28807.0"
               },
               {
