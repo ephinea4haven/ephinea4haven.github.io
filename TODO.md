@@ -54,5 +54,5 @@ Revisit when: cache-busting `?v=N` becomes painful enough to justify automated h
 
 These are intentionally outside the refactor/cleanup scope (don't propose changes):
 
-- `data/droptable/` — opt-out by user (dedup of `en.js` / `zh.js` 27k-line data files was previously proposed but rejected).
+- `data/droptable/` — retained for local tooling; production links and deployment use `dropcharts.psohaven.com`.
 - `assets/js/combo_calc.js`, `tools/cc.html`, `tools/ccopm.html` — third-party combo calculator sync'd from upstream; local edits get clobbered on each sync.

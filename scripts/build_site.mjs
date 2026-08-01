@@ -173,7 +173,9 @@ async function copySiteSource() {
     await cp(source, path.join(temporaryDirectory, directory), {
       recursive: true,
       filter(file) {
-        return !isMinifiableSource(file) && !isGeneratedSibling(file);
+        return !excludedTrees.some((tree) => isInside(file, tree))
+          && !isMinifiableSource(file)
+          && !isGeneratedSibling(file);
       },
     });
   }
@@ -186,7 +188,10 @@ async function discoverPages() {
   const nestedPages = (await Promise.all(
     siteDirectories.map(async (directory) => {
       const absolute = path.join(root, directory);
-      return (await walk(absolute)).filter((file) => file.endsWith('.html'));
+      return (await walk(absolute)).filter(
+        (file) => file.endsWith('.html')
+          && !excludedTrees.some((tree) => isInside(file, tree)),
+      );
     }),
   )).flat();
   return [...rootPages, ...nestedPages].sort();

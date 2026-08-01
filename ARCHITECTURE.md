@@ -2,7 +2,7 @@
 
 > Last updated: 2026-07-28
 > The following are intentionally outside the refactor/cleanup scope per user direction (don't propose changes):
-> - `data/droptable/` — opt-out by user
+> - `data/droptable/` — retained as tooling input but excluded from the published artifact
 > - `assets/js/combo_calc.js`, `tools/cc.html`, `tools/ccopm.html` — third-party combo calculator, sync'd from upstream
 
 ## Overview
@@ -45,7 +45,7 @@ npm run preview
 /                     ← Landing page (index.html)
 /assets/js/           ← Core JS (~6 files)
 /assets/css/          ← Stylesheets (~7 CSS files)
-/data/droptable/      ← Drop tables (bb/dc/ngc/cn/en variants)
+/data/droptable/      ← Tooling-only drop-chart snapshot (not published)
 /data/                ← Misc data pages (14 HTML files)
 /event/               ← Event pages — `event.html` hub; `christmas.html` / `anniversary.html` data-driven templates; per-year fragments in matching subdirectories
 /guide/               ← Guides (14 HTML files)

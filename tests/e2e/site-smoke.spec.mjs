@@ -56,12 +56,6 @@ const pages = [
     minimumReadyCount: 1,
   },
   {
-    name: 'drop table',
-    path: '/data/droptable/bb/index.html?lang=zh&diff=Ultimate',
-    title: /Ephinea PSOBB 掉落表/,
-    heading: 'Ephinea PSOBB 掉落表',
-  },
-  {
     name: '404 page',
     path: '/this-page-does-not-exist',
     title: /页面未找到/,
@@ -129,5 +123,31 @@ for (const pageCase of pages) {
 
     expect(failedResources).toEqual([]);
     expect(runtimeErrors).toEqual([]);
+  });
+}
+
+const legacyDropChartRedirects = [
+  {
+    name: 'legacy language page',
+    path: '/droptable/cn/CUltimate.html',
+    target: 'https://dropcharts.psohaven.com/bb/?lang=zh&diff=Ultimate',
+  },
+  {
+    name: 'former embedded chart',
+    path: '/data/droptable/ngc/index.html?lang=zh&diff=Ultimate',
+    target: 'https://dropcharts.psohaven.com/ngc/?lang=zh&diff=Ultimate',
+  },
+];
+
+for (const redirectCase of legacyDropChartRedirects) {
+  test(`${redirectCase.name} redirects to the independent site`, async ({ page }) => {
+    await page.route('https://dropcharts.psohaven.com/**', (route) => route.fulfill({
+      contentType: 'text/html',
+      body: '<!doctype html><title>Drop Charts redirect target</title>',
+    }));
+
+    await page.goto(redirectCase.path);
+
+    await expect(page).toHaveURL(redirectCase.target);
   });
 }
