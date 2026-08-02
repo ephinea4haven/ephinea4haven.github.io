@@ -1367,6 +1367,7 @@
     </div>
 
     <script src="/assets/js/i18n/items_i18n.js"></script>
+    <script src="/assets/js/event-item-localizer.js?v=4"></script>
     <script>
         const YEARS = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
 
@@ -1388,87 +1389,6 @@
                 ? `<span class="year-current">${y}</span>`
                 : `<a href="?year=${y}">${y}</a>`
         ).join('');
-
-        const ITEM_NAME_OVERRIDES = [
-            { en: 'Ultimate Present', zh: '究极礼物' },
-            { en: 'Common Present', zh: '普通礼物' },
-            { en: 'Coal', zh: '煤炭' }
-        ];
-
-        function escapeRegExp(value) {
-            return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        }
-
-        function getItemTranslations(sourceText) {
-            const translations = [
-                ...ITEM_NAME_OVERRIDES,
-                ...Object.values(window.ITEMS_I18N || {})
-                    .filter(item => item.en && item.zh && item.en !== item.zh)
-                    .map(item => ({ en: item.en, zh: item.zh }))
-            ];
-            const seen = new Set();
-            return translations
-                .filter(item => {
-                    const key = item.en.toLowerCase();
-                    if (seen.has(key) || !sourceText.toLowerCase().includes(key)) return false;
-                    seen.add(key);
-                    return true;
-                })
-                .sort((a, b) => b.en.length - a.en.length);
-        }
-
-        function localizeItemNames(container) {
-            const translations = getItemTranslations(container.textContent);
-            if (!translations.length) return;
-
-            const byEnglishName = new Map(
-                translations.map(item => [item.en.toLowerCase(), item])
-            );
-            const choices = translations.map(item => escapeRegExp(item.en)).join('|');
-            const itemPattern = new RegExp(
-                `(^|[^A-Za-z0-9])(${choices})(?=$|[^A-Za-z0-9])`,
-                'gi'
-            );
-            const walker = document.createTreeWalker(
-                container,
-                NodeFilter.SHOW_TEXT,
-                {
-                    acceptNode(node) {
-                        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-                        if (node.parentElement.closest('.item-bilingual, .quest-menu-demo, script, style')) {
-                            return NodeFilter.FILTER_REJECT;
-                        }
-                        return NodeFilter.FILTER_ACCEPT;
-                    }
-                }
-            );
-            const textNodes = [];
-            while (walker.nextNode()) textNodes.push(walker.currentNode);
-
-            textNodes.forEach(node => {
-                const text = node.nodeValue;
-                itemPattern.lastIndex = 0;
-                if (!itemPattern.test(text)) return;
-                itemPattern.lastIndex = 0;
-
-                const fragment = document.createDocumentFragment();
-                let cursor = 0;
-                text.replace(itemPattern, (match, prefix, englishName, offset) => {
-                    const nameStart = offset + prefix.length;
-                    fragment.append(text.slice(cursor, nameStart));
-
-                    const item = byEnglishName.get(englishName.toLowerCase());
-                    const span = document.createElement('span');
-                    span.className = 'item-bilingual';
-                    span.innerHTML = `<span class="item-zh">${item.zh}</span><span class="item-en">（${englishName}）</span>`;
-                    fragment.append(span);
-                    cursor = nameStart + englishName.length;
-                    return match;
-                });
-                fragment.append(text.slice(cursor));
-                node.replaceWith(fragment);
-            });
-        }
 
         function closeNpcPreview() {
             previewPopover.hidden = true;

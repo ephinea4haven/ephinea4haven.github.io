@@ -384,6 +384,20 @@
             color: var(--text-secondary);
         }
 
+        .item-bilingual {
+            white-space: nowrap;
+        }
+
+        .item-bilingual .item-zh {
+            color: var(--accent);
+            font-weight: 650;
+        }
+
+        .item-bilingual .item-en {
+            color: var(--text-secondary);
+            font-size: 0.88em;
+        }
+
         .source-links {
             margin-top: 24px;
             padding-top: 14px;
@@ -1196,6 +1210,8 @@
     <p id="npcPreviewCaption"></p>
 </div>
 
+<script src="/assets/js/i18n/items_i18n.js"></script>
+<script src="/assets/js/event-item-localizer.js?v=4"></script>
 <script>
     const YEARS = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016];
     const NPC_ROW_LABELS = new Set([
@@ -1217,42 +1233,42 @@
         {
             matches: label => /^(Bronze)( Badge)? Shop$/.test(label),
             src: '/assets/img/event/anniversary/bronze-shop.png',
-            caption: 'Bronze Badge Shop · Blue Soldier'
+            caption: '铜牌商店 · 蓝色士兵'
         },
         {
             matches: label => /^(Silver)( Badge)? Shop$/.test(label),
             src: '/assets/img/event/anniversary/silver-shop.png',
-            caption: 'Silver Badge Shop · Red Soldier'
+            caption: '银牌商店 · 红色士兵'
         },
         {
             matches: label => /^(Gold)( Badge)? Shop$/.test(label),
             src: '/assets/img/event/anniversary/gold-shop.png',
-            caption: 'Gold Badge Shop · Lab Scientist（QST #2）'
+            caption: '金牌商店 · 实验室科学家(QST #2)'
         },
         {
             matches: label => label === 'Hunter from Ragol',
             src: '/assets/img/event/anniversary/hunter.png',
-            caption: 'Hunter from Ragol'
+            caption: '拉古奥猎人'
         },
         {
             matches: label => label === 'Thief from Ragol',
             src: '/assets/img/event/anniversary/thief.png',
-            caption: 'Thief from Ragol'
+            caption: '拉古奥盗贼'
         },
         {
             matches: label => label === 'Scavenger from Ragol',
             src: '/assets/img/event/anniversary/scavenger.png',
-            caption: 'Scavenger from Ragol'
+            caption: '拉古奥拾荒者'
         },
         {
             matches: label => label === 'Guide',
             src: '/assets/img/event/anniversary/guide.png',
-            caption: 'Guide'
+            caption: '向导'
         },
         {
             matches: label => label === 'Badger',
             src: '/assets/img/event/anniversary/badger.png',
-            caption: 'Badger'
+            caption: '徽章兑换员'
         }
     ];
     const params = new URLSearchParams(location.search);
@@ -1263,6 +1279,93 @@
     const previewImage = document.getElementById('npcPreviewImage');
     const previewCaption = document.getElementById('npcPreviewCaption');
     let previewAnchor = null;
+
+    const ANNIVERSARY_LABELS = new Map([
+        ['Bronze / Silver / Gold Shops', '铜牌/银牌/金牌商店'],
+        ['Anniversary Badge Shop', '周年徽章商店'],
+        ['Bronze Badge Shop', '铜牌商店'],
+        ['Silver Badge Shop', '银牌商店'],
+        ['Gold Badge Shop', '金牌商店'],
+        ['Scavenger from Ragol', '拉古奥拾荒者'],
+        ['Hunter from Ragol', '拉古奥猎人'],
+        ['Thief from Ragol', '拉古奥盗贼'],
+        ['Chef from Ragol', '拉古奥厨师'],
+        ['Bronze Shop', '铜牌商店'],
+        ['Silver Shop', '银牌商店'],
+        ['Gold Shop', '金牌商店'],
+        ['Platinum Badges', '白金牌'],
+        ['Bronze Badges', '铜牌'],
+        ['Silver Badges', '银牌'],
+        ['Gold Badges', '金牌'],
+        ['Platinum Badge', '白金牌'],
+        ['Bronze Badge', '铜牌'],
+        ['Silver Badge', '银牌'],
+        ['Gold Badge', '金牌'],
+        ['Platinum', '白金牌'],
+        ['Bronze', '铜牌'],
+        ['Silver', '银牌'],
+        ['Gold', '金牌'],
+        ['Tyrell\'s Office', '泰瑞尔总督办公室'],
+        ['Medical Center', '医疗中心'],
+        ['Hunter\'s Guild', '猎人公会'],
+        ['Hit', '命中'],
+        ['We are currently offering the following prizes.', '当前提供以下奖品。'],
+        ['LOCAL QST MENU', '本地 QST 菜单'],
+        ['Pioneer 2 services', '先锋2号服务'],
+        ['Reward catalog', '奖励目录'],
+        ['Never mind', '不兑换'],
+        ['Badger', '徽章兑换员'],
+        ['Guide', '向导']
+    ]);
+
+    const anniversaryLabelPattern = new RegExp(
+        Array.from(ANNIVERSARY_LABELS.keys())
+            .sort((a, b) => b.length - a.length)
+            .map(value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+            .join('|'),
+        'g'
+    );
+
+    function localizeAnniversaryLabels(container) {
+        const walker = document.createTreeWalker(
+            container,
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode(node) {
+                    if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                    if (node.parentElement.closest('.item-bilingual, script, style')) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            }
+        );
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+        textNodes.forEach(node => {
+            node.nodeValue = node.nodeValue.replace(
+                anniversaryLabelPattern,
+                match => ANNIVERSARY_LABELS.get(match)
+            );
+        });
+    }
+
+    function markAnniversaryLabelNodes(container) {
+        container.querySelectorAll([
+            'h3',
+            '.badge-card > strong',
+            '.quest-menu-bar span',
+            '.quest-menu-bar strong',
+            '.quest-menu-speaker',
+            '.quest-menu-source',
+            '.tier-card > strong',
+            '.special-card > strong',
+            '.shop-table tbody td:first-child'
+        ].join(',')).forEach(element => {
+            element.classList.add('event-ui-label');
+        });
+    }
 
     function findNpcImages(label) {
         if (label === 'Bronze / Silver / Gold Shops') {
@@ -1383,8 +1486,12 @@
             return response.text();
         })
         .then(html => {
-            document.getElementById('content').innerHTML = html;
+            const content = document.getElementById('content');
+            content.innerHTML = html;
+            markAnniversaryLabelNodes(content);
+            localizeItemNames(content);
             decorateNpcTables();
+            localizeAnniversaryLabels(content);
         })
         .catch(() => {
             document.getElementById('content').innerHTML =
@@ -1413,8 +1520,10 @@
             panel.querySelectorAll('[data-quest-response]').forEach(button => {
                 button.classList.toggle('is-active', button === menuOption);
             });
-            panel.querySelector('.quest-menu-response').textContent =
-                menuOption.dataset.questResponse;
+            const response = panel.querySelector('.quest-menu-response');
+            response.textContent = menuOption.dataset.questResponse;
+            localizeAnniversaryLabels(response);
+            localizeItemNames(response);
             return;
         }
 
