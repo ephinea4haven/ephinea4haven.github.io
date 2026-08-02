@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-07-26T01:45:58.676095+00:00",
+  "generatedAt": "2026-08-02T01:08:43.266603+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,16 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 43279
+      "revision": 43302
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 43277
-    },
-    "weekConfirmation": {
-      "url": "https://note.com/fine_yarrow878/n/n2dad65aec004",
-      "publishedAt": "2026-07-26T10:11:27+09:00"
+      "revision": 43301
     }
   },
   "boosts": {
@@ -42,28 +38,28 @@
     "4": 14
   },
   "current": {
-    "week": "26 July 2026",
+    "week": "02 August 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Scarlet Realm 3",
-        "name": "Scarlet Realm #3",
-        "abbreviation": "SR3"
+        "page": "Endless Nightmare 1",
+        "name": "Endless Nightmare #1",
+        "abbreviation": "EN1"
       },
       {
         "episode": 2,
-        "page": "Anomalous Ordeal 4",
-        "name": "Anomalous Ordeal #4",
-        "abbreviation": "AO4"
+        "page": "The East Tower",
+        "name": "The East Tower",
+        "abbreviation": "TET"
       },
       {
         "episode": 4,
-        "page": "Sweep-up Operation 14",
-        "name": "Sweep-up Operation #14",
-        "abbreviation": "SU14"
+        "page": "New Mop-Up Operation 1",
+        "name": "New Mop-Up Operation #1",
+        "abbreviation": "NMU1"
       }
     ],
-    "expectedWeek": "26 July 2026",
+    "expectedWeek": "02 August 2026",
     "isFresh": true
   },
   "tracker": {
@@ -81,7 +77,6 @@
           "SU2",
           "SU3",
           "SU4",
-          "EN1",
           "EN3",
           "AO1",
           "SR1",
@@ -91,7 +86,7 @@
           "LHP"
         ],
         "current": [
-          "SR3"
+          "EN1"
         ],
         "unavailable": [
           "MU2",
@@ -100,6 +95,7 @@
           "EN4",
           "AO2",
           "SR2",
+          "SR3",
           "SR4",
           "LHS"
         ]
@@ -112,11 +108,10 @@
           "AO5",
           "LSR",
           "LDR",
-          "LCV",
-          "TET"
+          "LCV"
         ],
         "current": [
-          "AO4"
+          "TET"
         ],
         "unavailable": [
           "PW1",
@@ -129,21 +124,20 @@
           "PS5",
           "PS6",
           "AO3",
+          "AO4",
           "LBA",
           "TWT"
         ]
       },
       "4": {
-        "possible": [
-          "WoL3",
-          "NMU1"
-        ],
+        "possible": [],
         "current": [
-          "SU14"
+          "NMU1"
         ],
         "unavailable": [
           "WoL1",
           "WoL2",
+          "WoL3",
           "WoL4",
           "WoL5",
           "NMU2",
@@ -152,7 +146,8 @@
           "SU10",
           "SU11",
           "SU12",
-          "SU13"
+          "SU13",
+          "SU14"
         ]
       }
     },
