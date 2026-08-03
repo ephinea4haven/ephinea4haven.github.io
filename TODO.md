@@ -55,4 +55,4 @@ Revisit when: cache-busting `?v=N` becomes painful enough to justify automated h
 These are intentionally outside the refactor/cleanup scope (don't propose changes):
 
 - `data/droptable/` — retained for local tooling; production links and deployment use `dropcharts.psohaven.com`.
-- `assets/js/combo_calc.js`, `tools/cc.html`, `tools/ccopm.html` — third-party combo calculator sync'd from upstream; local edits get clobbered on each sync.
+- `assets/js/combo_calc*.js`, `tools/cc.html`, `tools/ccopm.html` — generated third-party Combo Calculator snapshots. Put Haven-specific changes in `scripts/sync_combo_calculator.mjs`; direct edits get clobbered on sync.

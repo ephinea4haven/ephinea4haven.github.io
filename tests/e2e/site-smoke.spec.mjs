@@ -32,6 +32,24 @@ const pages = [
     heading: '玛古进化图谱',
   },
   {
+    name: 'multiplayer combo calculator',
+    path: '/tools/cc.html',
+    title: /Combo Calculator - PSOStats/,
+    heading: 'Combo Calculator Multiplayer',
+    resourcePath: '/assets/js/combo_calc.js',
+    readySelector: '#app .multiselect',
+    minimumReadyCount: 1,
+  },
+  {
+    name: 'OPM combo calculator',
+    path: '/tools/ccopm.html',
+    title: /Combo Calculator - PSOStats/,
+    heading: 'Combo Calculator OPM',
+    resourcePath: '/assets/js/combo_calc.js',
+    readySelector: '#enemy-select-vue .multiselect',
+    minimumReadyCount: 1,
+  },
+  {
     name: 'event archive',
     path: '/event/christmas.html?year=2025',
     title: /2025圣诞活动/,
@@ -119,6 +137,28 @@ for (const pageCase of pages) {
     expect(runtimeErrors).toEqual([]);
   });
 }
+
+for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
+  test(`${calculatorPath} calculates native-enemy rows`, async ({ page }) => {
+    const runtimeErrors = [];
+    page.on('pageerror', (error) => runtimeErrors.push(error.message));
+
+    await page.goto(calculatorPath);
+    await page.locator('#native-btn').click();
+
+    await expect.poll(
+      () => page.locator('#combo-calc-table tbody tr').count(),
+    ).toBeGreaterThan(5);
+    await expect(page.locator('#combo-calc-table tbody tr').first()).toContainText(/\d/);
+    expect(runtimeErrors).toEqual([]);
+  });
+}
+
+test('Combo Calculator license is included in the production artifact', async ({ request }) => {
+  const response = await request.get('/third_party/psostats-combo/LICENSE');
+  expect(response.ok()).toBe(true);
+  await expect(response.text()).resolves.toContain('Copyright (c) 2021 phelix-');
+});
 
 const legacyDropChartRedirects = [
   {

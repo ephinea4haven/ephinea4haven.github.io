@@ -25,8 +25,13 @@ const budgets = JSON.parse(await readFile(path.join(root, 'build-budgets.json'),
 
 const rootFiles = ['index.html', '404.html', 'CNAME'];
 const siteDirectories = ['assets', 'data', 'event', 'guide', 'tools'];
+const publishedFiles = [path.join(root, 'third_party', 'psostats-combo', 'LICENSE')];
 const excludedTrees = [path.join(root, 'data', 'droptable')];
-const excludedFiles = new Set([path.join(root, 'assets', 'js', 'combo_calc.js')]);
+const excludedFiles = new Set([
+  path.join(root, 'assets', 'js', 'combo_calc.js'),
+  path.join(root, 'assets', 'js', 'combo_calc_multi_data.js'),
+  path.join(root, 'assets', 'js', 'combo_calc_opm_data.js'),
+]);
 const target = 'es2018';
 
 function isInside(file, directory) {
@@ -178,6 +183,12 @@ async function copySiteSource() {
           && !isGeneratedSibling(file);
       },
     });
+  }
+
+  for (const source of publishedFiles) {
+    const destination = path.join(temporaryDirectory, path.relative(root, source));
+    await mkdir(path.dirname(destination), { recursive: true });
+    await cp(source, destination);
   }
 }
 
@@ -433,6 +444,15 @@ async function validateOutput(pages, assets, eligibleSources) {
   }
   await validateCssResources(errors);
 
+  for (const source of publishedFiles) {
+    const output = path.join(temporaryDirectory, path.relative(root, source));
+    if (!(await exists(output))) {
+      errors.push(`required published file is missing: ${relativeToRoot(source)}`);
+    } else if (sha256(await readFile(output)) !== sha256(await readFile(source))) {
+      errors.push(`required published file changed: ${relativeToRoot(source)}`);
+    }
+  }
+
   for (const asset of assets) {
     if (await exists(path.join(temporaryDirectory, asset.source))) {
       errors.push(`readable source leaked into artifact: ${asset.source}`);
@@ -490,11 +510,17 @@ async function excludedStats() {
   const details = await Promise.all(files.map(async (file) => ({
     file: relativeToRoot(file),
     bytes: (await stat(file)).size,
+    gzipBytes: gzipSync(await readFile(file)).length,
+    published: excludedFiles.has(file),
     reason: excludedFiles.has(file) ? 'upstream-managed' : 'explicit-tree-opt-out',
   })));
   return {
     files: details,
     totalBytes: details.reduce((total, file) => total + file.bytes, 0),
+    publishedGzipBytes: details.reduce(
+      (total, file) => total + (file.published ? file.gzipBytes : 0),
+      0,
+    ),
   };
 }
 
@@ -512,7 +538,7 @@ async function writeManifest(pages, assets, eligibleSources) {
     }),
   );
   const sourceContents = await Promise.all(eligibleSources.map((file) => readFile(file)));
-  const totals = assets.reduce((summary, asset) => ({
+  const transformedTotals = assets.reduce((summary, asset) => ({
     sourceBytes: summary.sourceBytes,
     outputBytes: summary.outputBytes + asset.outputBytes,
     sourceGzipBytes: summary.sourceGzipBytes,
@@ -526,6 +552,11 @@ async function writeManifest(pages, assets, eligibleSources) {
     ),
     outputGzipBytes: 0,
   });
+  const totals = {
+    ...transformedTotals,
+    publishedJavaScriptGzipBytes:
+      transformedTotals.outputGzipBytes + excluded.publishedGzipBytes,
+  };
   const manifest = {
     schemaVersion: 1,
     target,
@@ -550,9 +581,9 @@ async function writeManifest(pages, assets, eligibleSources) {
 
 function enforceBudgets(manifest) {
   const failures = [];
-  if (manifest.totals.outputGzipBytes > budgets.maxJavaScriptGzipBytes) {
+  if (manifest.totals.publishedJavaScriptGzipBytes > budgets.maxJavaScriptGzipBytes) {
     failures.push(
-      `JavaScript gzip budget exceeded: ${manifest.totals.outputGzipBytes} `
+      `JavaScript gzip budget exceeded: ${manifest.totals.publishedJavaScriptGzipBytes} `
       + `> ${budgets.maxJavaScriptGzipBytes}`,
     );
   }
@@ -603,6 +634,10 @@ try {
     + `(${(rawSaving * 100).toFixed(1)}% smaller), gzip `
     + `${manifest.totals.sourceGzipBytes} -> ${manifest.totals.outputGzipBytes} bytes `
     + `(${(gzipSaving * 100).toFixed(1)}% smaller).`,
+  );
+  console.log(
+    `Published JavaScript gzip budget: ${manifest.totals.publishedJavaScriptGzipBytes} `
+    + `/ ${budgets.maxJavaScriptGzipBytes} bytes.`,
   );
 } catch (error) {
   await rm(temporaryDirectory, { recursive: true, force: true });

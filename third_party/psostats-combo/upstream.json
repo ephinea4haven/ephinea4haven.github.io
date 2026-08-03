@@ -1,0 +1,27 @@
+{
+  "repository": "https://github.com/phelix-/psostats-client",
+  "observedMainCommit": "a27460f0fc7b222a8adea5e5cbc86c8b10ee4ca3",
+  "verifiedScriptCommit": "a27460f0fc7b222a8adea5e5cbc86c8b10ee4ca3",
+  "sources": {
+    "script": "https://psostats.com/static/combo_calc3.js",
+    "commitScript": "https://raw.githubusercontent.com/phelix-/psostats-client/a27460f0fc7b222a8adea5e5cbc86c8b10ee4ca3/static/combo_calc3.js",
+    "multiplayerPage": "https://psostats.com/combo-calculator",
+    "opmPage": "https://psostats.com/combo-calculator/opm",
+    "license": "https://raw.githubusercontent.com/phelix-/psostats-client/a27460f0fc7b222a8adea5e5cbc86c8b10ee4ca3/LICENSE"
+  },
+  "sourceSha256": {
+    "script": "7849e35a4d0c87f11481d742c5ae50bc026eb12cc588357f2f81361c1c64087e",
+    "commitScript": "7849e35a4d0c87f11481d742c5ae50bc026eb12cc588357f2f81361c1c64087e",
+    "multiplayerPage": "a8d8093af3667c160703c6e0ea9ea539a368cfdcecc9b0b55f9387fb7b932ccc",
+    "opmPage": "94d43529b1608abb9e6af5440e4de43eeea7a6253aef774e4bc985f3f6740e94",
+    "license": "85121548e3c096ece17e642796fc7298814b22e4abadad630083ed6446eec977"
+  },
+  "generatedSha256": {
+    "script": "38a90c235e01e03ea5e7436cc7779f83719cd42d8873971606d61d91c59bfc7b",
+    "multiplayerPage": "94c45f7e03ce75f1838d7d33f98ffbf01541ada6c33bba754894a5d8a92c036b",
+    "multiplayerData": "f996fe3d1ab36959585b2144a54941668118ce7b5fa7e942c1ffeb6eb6998138",
+    "opmPage": "f780ab22cee171dc85294f6ac621e739599315433f431b783d302d6e5c0fdf37",
+    "opmData": "212d89cb1106fa70bbb83696172165a4c0680fea0400064aabdeabafd574737c",
+    "license": "85121548e3c096ece17e642796fc7298814b22e4abadad630083ed6446eec977"
+  }
+}

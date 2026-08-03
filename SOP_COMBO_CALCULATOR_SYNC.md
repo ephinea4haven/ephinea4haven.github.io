@@ -1,0 +1,186 @@
+# PSOStats Combo Calculator 上游同步 SOP
+
+## 目的
+
+在保持 Haven 本地适配（下称 **overlay**）的前提下，将本站 Combo
+Calculator 对齐到 PSOStats 当前部署版本，并留下可审计、可重复、可回滚的
+更新记录。
+
+上游项目：[`phelix-/psostats-client`](https://github.com/phelix-/psostats-client)
+
+## 文件归属
+
+### 上游生成文件
+
+以下文件由 `npm run sync:combo` 生成，不得直接修改：
+
+- `tools/cc.html`
+- `tools/ccopm.html`
+- `assets/js/combo_calc.js`
+- `assets/js/combo_calc_multi_data.js`
+- `assets/js/combo_calc_opm_data.js`
+- `third_party/psostats-combo/LICENSE`
+- `third_party/psostats-combo/upstream.json`
+
+`combo_calc.js` 保留上游部署脚本逻辑，只在文件头添加许可证指引。两个
+`*_data.js` 文件来自上游
+Go 服务端渲染后的 Multiplayer/OPM 页面，包含对应模式的职业、武器、护甲和
+敌人数据；它们同样带有许可证指引。完整 MIT 文本会发布到
+`/third_party/psostats-combo/LICENSE`。
+
+### Haven overlay
+
+Overlay 的唯一实现入口是：
+
+- `scripts/sync_combo_calculator.mjs`
+
+当前 overlay 负责：
+
+- 将 CDN 依赖替换为本站本地 CSS/JavaScript；
+- 移除 PSOStats 导航栏；
+- 将 Multiplayer/OPM 互链改为本站路径；
+- 添加本站需要的 charset 和 description；
+- 将上游服务端注入数据拆为独立脚本，避免突破内联脚本预算；
+- 为页面、计算脚本和数据脚本添加上游版权及许可证指引；
+- 规范化换行和行尾空白，保证生成差异可直接通过 `git diff --check`；
+- 验证部署脚本与 GitHub commit 一致，并拒绝同步过程中发生变化的线上快照；
+- 校验上游关键结构，结构变化时立即失败。
+
+配套约束位于：
+
+- `scripts/build_site.mjs`：复制生成的第三方脚本和许可证，不改写其全局绑定，并把
+  上游脚本计入发布 JavaScript gzip 预算；
+- `scripts/verify_combo_sync.mjs`：验证来源、hash、许可证、格式、本地依赖和页面互链；
+- `tests/e2e/site-smoke.spec.mjs`：验证两个模式能加载并实际生成伤害结果行。
+
+## 标准更新流程
+
+### 1. 更新前检查
+
+```bash
+git status --short
+git pull --ff-only
+```
+
+建议从干净工作树开始。如果存在其他改动，应先确认它们与本次同步互不重叠，
+不得用 reset、restore 或 checkout 清除未确认的修改。
+
+### 2. 获取并应用上游快照
+
+```bash
+npm run sync:combo
+```
+
+该命令需要访问 `psostats.com` 和 GitHub。它会验证线上计算脚本与记录的 GitHub
+commit 完全一致，并对线上脚本及两个页面执行二次抓取稳定性检查；随后完成结构
+校验和 overlay 转换，再写入生成文件。网络失败、部署正在变化或上游结构不符合
+预期时应停止，不要手工拼接不完整快照。
+
+### 3. 审查来源和差异
+
+```bash
+git diff --stat
+git diff -- third_party/psostats-combo/upstream.json
+git diff -- tools/cc.html tools/ccopm.html
+git diff -- assets/js/combo_calc.js
+```
+
+检查项：
+
+- `verifiedScriptCommit` 是否为预期的上游计算脚本提交；
+- 来源 URL 和 SHA-256 是否完整；
+- `sourceSha256.script` 与 `sourceSha256.commitScript` 是否一致；
+- 页面仍只引用本站本地脚本和样式；
+- Multiplayer 和 OPM 数据没有串用；
+- 没有重新出现 PSOStats 导航或 `/combo-calculator` 上游路由；
+- 上游新增或删除的武器、特殊攻击、字段和 UI 控件符合预期；
+- 许可证变化已被包含。
+
+### 4. 验证同步可重复
+
+```bash
+npm run sync:combo -- --check
+```
+
+此命令重新读取当前上游并与工作树比较。通过表示同步结果当前且可重复；失败表示
+上游在审查期间发生变化，或生成文件被手工修改，应重新同步并重新审查。
+
+### 5. 完整验证
+
+```bash
+npm run release:prepare
+```
+
+该命令依次覆盖业务校验、生产构建和浏览器测试。Combo Calculator 的最低验收
+标准为：
+
+- `npm test` 中 Combo snapshot/hash 校验通过；
+- `npm run build` 将原样复制的上游脚本也计入发布 JavaScript gzip 预算，且不突破
+  JavaScript 和内联脚本预算；
+- `_site/third_party/psostats-combo/LICENSE` 存在并与源码许可证一致；
+- Multiplayer 与 OPM 页面无运行时或资源加载错误；
+- 点击 Native 后，两个模式都能生成包含数值的敌人伤害结果行。
+
+### 6. 提交
+
+```bash
+git status --short
+git diff --check
+git add \
+  tools/cc.html tools/ccopm.html \
+  assets/js/combo_calc.js \
+  assets/js/combo_calc_multi_data.js \
+  assets/js/combo_calc_opm_data.js \
+  third_party/psostats-combo/LICENSE \
+  third_party/psostats-combo/upstream.json
+git commit -m "chore: sync PSOStats combo calculator"
+git push
+```
+
+如果本次同时修改了 overlay、校验或文档，也应明确审查后加入同一个提交，或拆成
+一个 overlay 机制提交和一个生成快照提交。
+
+## 修改 overlay 的流程
+
+1. 只修改 `scripts/sync_combo_calculator.mjs`，不要在生成页面或生成脚本中打补丁。
+2. 为新转换增加“必须命中”的结构校验，避免上游改版后静默漏应用。
+3. 执行 `npm run sync:combo` 重新生成全部快照。
+4. 在 `scripts/verify_combo_sync.mjs` 增加静态约束。
+5. 涉及用户行为时，在 `tests/e2e/site-smoke.spec.mjs` 增加浏览器断言。
+6. 重新执行本 SOP 的差异审查、幂等检查和完整验证。
+
+紧急修复也应进入同步器后再生成文件。只修改生成文件会导致下一次同步覆盖修复，
+并触发 provenance hash 校验失败。
+
+## 常见失败处理
+
+| 现象 | 原因 | 处理 |
+|---|---|---|
+| `fetch failed` / DNS 错误 | 当前环境禁止联网或上游暂时不可用 | 获取联网权限后重试；不要使用旧页面配新脚本 |
+| `Upstream page no longer contains...` | 上游标签、依赖或模板结构变化 | 对照上游模板更新同步器匹配规则，再完整验证 |
+| `data block boundaries changed` | 上游改变服务端数据注入方式 | 重新确定数据边界并更新提取逻辑与静态校验 |
+| `does not match upstream commit` | GitHub main 与 PSOStats 部署不同步 | 等待部署稳定后重试，不要把 commit 与错误的部署快照关联 |
+| `changed during synchronization` | 同步期间 PSOStats 正在部署 | 等待部署稳定后重新执行完整同步 |
+| `--check` 报 stale | 上游再次更新或生成文件被修改 | 重新运行同步并审查新差异 |
+| provenance hash 校验失败 | 生成文件被手工编辑或元数据不匹配 | 将需要的修改移入 overlay，然后重新生成 |
+| Inline script budget exceeded | 新数据仍留在页面内联脚本中 | 更新提取逻辑，不应直接提高预算 |
+| 页面加载但无结果行 | 数据脚本顺序、全局绑定或上游计算接口变化 | 检查浏览器错误并更新 overlay/E2E，禁止只放宽测试 |
+
+## 回滚
+
+同步应作为边界清晰的提交发布。发现回归时，优先对该同步提交执行普通 `git revert`
+并重新部署；不要手工混搭不同日期的 HTML、数据脚本和计算脚本。修复同步器后，再
+从同一套上游来源重新生成和验证。
+
+## 完成定义
+
+只有同时满足以下条件，才可视为一次同步完成：
+
+- 线上计算脚本已与记录的 GitHub commit 校验一致；页面数据作为部署快照记录
+  SHA-256，不宣称由 Git commit 唯一确定；
+- 许可证已记录并进入发布产物；
+- overlay 已自动应用；
+- `sync:combo -- --check` 通过；
+- `release:prepare` 通过；
+- 差异已经人工审查；
+- 生成文件、来源记录及相关 overlay 修改已一起提交。

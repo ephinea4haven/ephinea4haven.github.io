@@ -12,6 +12,7 @@ data changes; commit the regenerated output alongside the script run.
 | `download_wiki_mag_assets.py` | `assets/img/mag/wiki/*.png`, `assets/img/mag/colors/*.png` | Evolution sprites + 30 Mag color-reference screenshots |
 | `build_rbr_data.py` | `data/rbr/source.json` | RBR candidate pool, current rotation, quest metadata, XP and enemy counts |
 | `build_rbr_tier_charts.py` | `assets/img/guide/rbr/*-tier-section-colors.svg` | Curated tier layout using the BB drop table's canonical Section ID palette |
+| `sync_combo_calculator.mjs` | `tools/cc*.html`, `assets/js/combo_calc*.js`, `third_party/psostats-combo/{LICENSE,upstream.json}` | PSOStats rendered calculators, per-mode data, calculation script, license, and provenance |
 
 ## Usage
 
@@ -22,7 +23,11 @@ python3 scripts/build_mag_data.py
 python3 scripts/download_wiki_mag_assets.py
 python3 scripts/build_rbr_data.py
 python3 scripts/build_rbr_tier_charts.py
+npm run sync:combo
 ```
+
+For Combo Calculator ownership rules and the complete update procedure, follow
+[`SOP_COMBO_CALCULATOR_SYNC.md`](../SOP_COMBO_CALCULATOR_SYNC.md).
 
 The data builders use Python's standard library. The Mag asset downloader also
 requires Pillow to validate cached PNG files and invokes `rtk curl` for
@@ -56,6 +61,7 @@ corresponding source.
 |--------|----------|
 | `verify_mag_data.mjs` | `assets/js/mag-evolution.js` plus the 18+12 color split, color cards, and local image references |
 | `verify_mag_sim_data.mjs` | `assets/js/mag-sim-data.js` (feed tables, mag cells) |
+| `verify_combo_sync.mjs` | PSOStats provenance, extracted server data, license attribution, local dependencies and links, formatting, and generated-file hashes |
 | `test_build_rbr_data.py` | RBR wiki parsers, full-clear enemy totals and quest abbreviations |
 | `test_rbr_tiers.py` | Curated RBR Tier coverage: all 58 candidates exactly once |
 | `test_rbr_tier_charts.py` | Generated SVGs are current and embed the canonical drop-table palette |
@@ -63,6 +69,7 @@ corresponding source.
 ```bash
 node scripts/verify_mag_data.mjs
 node scripts/verify_mag_sim_data.mjs
+node scripts/verify_combo_sync.mjs
 python3 -m unittest scripts/test_build_rbr_data.py
 python3 -m unittest scripts/test_rbr_tiers.py
 python3 -m unittest scripts/test_rbr_tier_charts.py
