@@ -28,6 +28,20 @@ Go 服务端渲染后的 Multiplayer/OPM 页面，包含对应模式的职业、
 敌人数据；它们同样带有许可证指引。完整 MIT 文本会发布到
 `/third_party/psostats-combo/LICENSE`。
 
+### 全站共享前端依赖
+
+CC 不保留专用 jQuery/Bootstrap 副本，而是与现有工具页共享：
+
+- `assets/js/jquery.min.js`：jQuery 3.7.1 slim；
+- `assets/css/bootstrap.min.css`：Bootstrap 4.6.2 CSS。
+
+版本在 `package.json` 中精确锁定，文件由 `npm run sync:frontend` 从 lockfile
+安装出的 npm 包复制。`npm test` 会逐字节校验共享文件与锁定包一致。当前页面没有
+使用 Bootstrap JavaScript 插件，因此不发布 `bootstrap.min.js` 或 `popper.min.js`；
+同步器会在上游开始使用 Bootstrap JS 时拒绝生成，避免静默删除必要依赖。
+
+同步器还会读取上游页面声明的 jQuery/Bootstrap 版本；本地版本低于上游时同步失败。
+
 ### Haven overlay
 
 Overlay 的唯一实现入口是：
@@ -36,7 +50,8 @@ Overlay 的唯一实现入口是：
 
 当前 overlay 负责：
 
-- 将 CDN 依赖替换为本站本地 CSS/JavaScript；
+- 将 CDN 依赖替换为本站统一的 jQuery 和 Bootstrap CSS，并移除未使用的
+  Bootstrap JavaScript bundle；
 - 移除 PSOStats 导航栏；
 - 将 Multiplayer/OPM 互链改为本站路径；
 - 添加本站需要的 charset 和 description；
@@ -68,6 +83,8 @@ git pull --ff-only
 ### 2. 获取并应用上游快照
 
 ```bash
+npm ci
+npm run sync:frontend -- --check
 npm run sync:combo
 ```
 
@@ -75,6 +92,14 @@ npm run sync:combo
 commit 完全一致，并对线上脚本及两个页面执行二次抓取稳定性检查；随后完成结构
 校验和 overlay 转换，再写入生成文件。网络失败、部署正在变化或上游结构不符合
 预期时应停止，不要手工拼接不完整快照。
+
+如果要升级共享依赖，先修改 `package.json` 的精确版本并更新 lockfile，再执行：
+
+```bash
+npm run sync:frontend
+```
+
+不得直接覆盖 `assets/js/jquery.min.js` 或 `assets/css/bootstrap.min.css`。
 
 ### 3. 审查来源和差异
 
@@ -91,6 +116,8 @@ git diff -- assets/js/combo_calc.js
 - 来源 URL 和 SHA-256 是否完整；
 - `sourceSha256.script` 与 `sourceSha256.commitScript` 是否一致；
 - 页面仍只引用本站本地脚本和样式；
+- `dependencies.local` 不低于 `dependencies.upstream`；
+- CC、属性模拟器和人物能力表引用的是同一个共享 jQuery 文件；
 - Multiplayer 和 OPM 数据没有串用；
 - 没有重新出现 PSOStats 导航或 `/combo-calculator` 上游路由；
 - 上游新增或删除的武器、特殊攻击、字段和 UI 控件符合预期；
@@ -119,7 +146,11 @@ npm run release:prepare
   JavaScript 和内联脚本预算；
 - `_site/third_party/psostats-combo/LICENSE` 存在并与源码许可证一致；
 - Multiplayer 与 OPM 页面无运行时或资源加载错误；
-- 点击 Native 后，两个模式都能生成包含数值的敌人伤害结果行。
+- 浏览器中实际加载 jQuery 3.7.1 slim；属性模拟器的职业/等级、Mag/素材输入及
+  重置操作正常；
+- 人物能力表的 12 个职业各生成 200 行，按钮/回车跳转、高亮和重置正常；
+- CC 两个模式的四类敌人、职业切换、Shifta 输入、伤害排序和清空操作正常；
+- 390px 移动视口下 CC 核心控件和结果表可用，页面不产生整体横向溢出。
 
 ### 6. 提交
 
@@ -140,6 +171,14 @@ git push
 如果本次同时修改了 overlay、校验或文档，也应明确审查后加入同一个提交，或拆成
 一个 overlay 机制提交和一个生成快照提交。
 
+如果本次升级了共享前端依赖，还必须一并提交并审查：
+
+- `package.json`、`package-lock.json`；
+- `scripts/sync_frontend_dependencies.mjs`；
+- `assets/js/jquery.min.js`、`assets/css/bootstrap.min.css`；
+- 因不再使用而删除的旧 Bootstrap JavaScript/Popper 文件及其页面引用；
+- 对应静态校验、E2E 和文档变更。
+
 ## 修改 overlay 的流程
 
 1. 只修改 `scripts/sync_combo_calculator.mjs`，不要在生成页面或生成脚本中打补丁。
@@ -158,6 +197,8 @@ git push
 |---|---|---|
 | `fetch failed` / DNS 错误 | 当前环境禁止联网或上游暂时不可用 | 获取联网权限后重试；不要使用旧页面配新脚本 |
 | `Upstream page no longer contains...` | 上游标签、依赖或模板结构变化 | 对照上游模板更新同步器匹配规则，再完整验证 |
+| `began using Bootstrap JavaScript` | 上游新增 Bootstrap JS 插件行为 | 评估并恢复锁定版本的 Bootstrap JS；增加对应 E2E 后才能继续同步 |
+| `does not match ... locked package` | 共享依赖被手改或升级后未生成 | 执行 `npm run sync:frontend`，审查并提交生成差异 |
 | `data block boundaries changed` | 上游改变服务端数据注入方式 | 重新确定数据边界并更新提取逻辑与静态校验 |
 | `does not match upstream commit` | GitHub main 与 PSOStats 部署不同步 | 等待部署稳定后重试，不要把 commit 与错误的部署快照关联 |
 | `changed during synchronization` | 同步期间 PSOStats 正在部署 | 等待部署稳定后重新执行完整同步 |

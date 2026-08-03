@@ -18,10 +18,20 @@
   },
   "generatedSha256": {
     "script": "38a90c235e01e03ea5e7436cc7779f83719cd42d8873971606d61d91c59bfc7b",
-    "multiplayerPage": "94c45f7e03ce75f1838d7d33f98ffbf01541ada6c33bba754894a5d8a92c036b",
+    "multiplayerPage": "607c2669d244a1099156a32a7d480beb2af1496658c615a05be6cb6b89604c95",
     "multiplayerData": "f996fe3d1ab36959585b2144a54941668118ce7b5fa7e942c1ffeb6eb6998138",
-    "opmPage": "f780ab22cee171dc85294f6ac621e739599315433f431b783d302d6e5c0fdf37",
+    "opmPage": "14ccc27ab4b803a7d12354ece29208a32f1838e503098cfd3479c81a549dbf90",
     "opmData": "212d89cb1106fa70bbb83696172165a4c0680fea0400064aabdeabafd574737c",
     "license": "85121548e3c096ece17e642796fc7298814b22e4abadad630083ed6446eec977"
+  },
+  "dependencies": {
+    "upstream": {
+      "jquery": "3.5.1",
+      "bootstrap": "4.6.0"
+    },
+    "local": {
+      "jquery": "3.7.1",
+      "bootstrap": "4.6.2"
+    }
   }
 }

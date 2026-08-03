@@ -17,15 +17,46 @@ function check(name, condition) {
   }
 }
 
-const [multi, multiData, opm, opmData, script, license, metadataText] = await Promise.all([
+function compareVersions(left, right) {
+  const leftParts = left.split('.').map(Number);
+  const rightParts = right.split('.').map(Number);
+  for (let index = 0; index < Math.max(leftParts.length, rightParts.length); index += 1) {
+    const difference = (leftParts[index] || 0) - (rightParts[index] || 0);
+    if (difference) {
+      return Math.sign(difference);
+    }
+  }
+  return 0;
+}
+
+const [
+  multi,
+  multiData,
+  opm,
+  opmData,
+  script,
+  license,
+  jqueryScript,
+  bootstrapCss,
+  jqueryPackageScript,
+  bootstrapPackageCss,
+  packageText,
+  metadataText,
+] = await Promise.all([
   read('tools/cc.html'),
   read('assets/js/combo_calc_multi_data.js'),
   read('tools/ccopm.html'),
   read('assets/js/combo_calc_opm_data.js'),
   read('assets/js/combo_calc.js'),
   read('third_party/psostats-combo/LICENSE'),
+  read('assets/js/jquery.min.js'),
+  read('assets/css/bootstrap.min.css'),
+  read('node_modules/jquery/dist/jquery.slim.min.js'),
+  read('node_modules/bootstrap/dist/css/bootstrap.min.css'),
+  read('package.json'),
   read('third_party/psostats-combo/upstream.json'),
 ]);
+const packageJson = JSON.parse(packageText);
 const metadata = JSON.parse(metadataText);
 const licensePath = '/third_party/psostats-combo/LICENSE';
 const hasTrailingWhitespace = (content) => /[ \t]+$/m.test(content);
@@ -36,6 +67,12 @@ for (const [name, page, data, dataFile] of [
 ]) {
   check(`${name} page uses the local calculator script`,
     page.includes('src="../assets/js/combo_calc.js"'));
+  check(`${name} page uses the shared jQuery`,
+    page.includes('src="../assets/js/jquery.min.js"'));
+  check(`${name} page uses the shared Bootstrap CSS`,
+    page.includes('href="../assets/css/bootstrap.min.css"'));
+  check(`${name} page does not load unused Bootstrap JavaScript or Popper`,
+    !page.includes('bootstrap.min.js') && !page.includes('popper.min.js'));
   check(`${name} page has no remote script or stylesheet dependencies`,
     !/(?:src|href)="https?:\/\//.test(page));
   check(`${name} page loads its extracted data`, page.includes(`src="../assets/js/${dataFile}"`));
@@ -67,6 +104,28 @@ check('generated OPM data hash matches metadata', hash(opmData) === metadata.gen
 check('generated script hash matches metadata', hash(script) === metadata.generatedSha256.script);
 check('generated license hash matches metadata', hash(license) === metadata.generatedSha256.license);
 check('source license is recorded', Boolean(metadata.sources.license && metadata.sourceSha256.license));
+check('jQuery is pinned exactly in package.json', packageJson.devDependencies.jquery === '3.7.1');
+check('Bootstrap is pinned exactly in package.json', packageJson.devDependencies.bootstrap === '4.6.2');
+check('jQuery asset identifies version 3.7.1 slim',
+  jqueryScript.startsWith('/*! jQuery v3.7.1 ') && jqueryScript.includes('-ajax'));
+check('Bootstrap CSS identifies version 4.6.2', bootstrapCss.includes('Bootstrap v4.6.2'));
+check('local dependencies are not older than upstream',
+  metadata.dependencies.local.jquery === '3.7.1'
+    && metadata.dependencies.local.bootstrap === '4.6.2'
+    && compareVersions(
+      metadata.dependencies.local.jquery,
+      metadata.dependencies.upstream.jquery,
+    ) >= 0
+    && compareVersions(
+      metadata.dependencies.local.bootstrap,
+      metadata.dependencies.upstream.bootstrap,
+    ) >= 0);
+for (const [name, content, packageContent] of [
+  ['jQuery', jqueryScript, jqueryPackageScript],
+  ['Bootstrap CSS', bootstrapCss, bootstrapPackageCss],
+]) {
+  check(`${name} shared asset matches its locked package`, hash(content) === hash(packageContent));
+}
 
 if (failures) {
   process.exitCode = 1;

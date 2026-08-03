@@ -6,7 +6,9 @@
 <title>页面未找到 - PSO Haven</title>
 <script>
   const DROP_CHARTS_ORIGIN = 'https://dropcharts.psohaven.com';
+  const MAG_FEEDER_ORIGIN = 'https://magfeeder.psohaven.com';
   const REDIRECTS = {
+    '/tools/mag-sim.html': `${MAG_FEEDER_ORIGIN}/${location.search}${location.hash}`,
     '/droptable/cn/CNormal.html':   `${DROP_CHARTS_ORIGIN}/bb/?lang=zh&diff=Normal`,
     '/droptable/cn/CHard.html':     `${DROP_CHARTS_ORIGIN}/bb/?lang=zh&diff=Hard`,
     '/droptable/cn/CVeryHard.html': `${DROP_CHARTS_ORIGIN}/bb/?lang=zh&diff=VeryHard`,

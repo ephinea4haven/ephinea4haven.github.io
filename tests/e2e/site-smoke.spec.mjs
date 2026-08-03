@@ -15,6 +15,7 @@ const pages = [
     resourcePath: '/assets/js/chardata.json',
     readySelector: '#class option',
     minimumReadyCount: 2,
+    jqueryVersion: '3.7.1',
   },
   {
     name: 'character table',
@@ -24,6 +25,7 @@ const pages = [
     resourcePath: '/assets/js/chardata.json',
     readySelector: '#humar tbody tr',
     minimumReadyCount: 1,
+    jqueryVersion: '3.7.1',
   },
   {
     name: 'mag chart',
@@ -81,6 +83,13 @@ for (const pageCase of pages) {
     const runtimeErrors = [];
     const failedResources = [];
 
+    if (pageCase.path === '/') {
+      await page.route('https://fonts.googleapis.com/**', (route) => route.fulfill({
+        contentType: 'text/css',
+        body: '/* Google Fonts is external; keep the production smoke test deterministic. */',
+      }));
+    }
+
     page.on('pageerror', (error) => runtimeErrors.push(error.message));
     page.on('console', (message) => {
       if (message.type() === 'error') {
@@ -132,6 +141,12 @@ for (const pageCase of pages) {
     if (pageCase.readyText) {
       await expect(page.locator(pageCase.readySelector)).toContainText(pageCase.readyText);
     }
+    if (pageCase.jqueryVersion) {
+      await expect.poll(() => page.evaluate(() => window.jQuery?.fn.jquery.split(' ')[0]))
+        .toBe(pageCase.jqueryVersion);
+      await expect.poll(() => page.evaluate(() => typeof window.jQuery?.ajax))
+        .toBe('undefined');
+    }
 
     expect(failedResources).toEqual([]);
     expect(runtimeErrors).toEqual([]);
@@ -139,25 +154,157 @@ for (const pageCase of pages) {
 }
 
 for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
-  test(`${calculatorPath} calculates native-enemy rows`, async ({ page }) => {
+  test(`${calculatorPath} exercises calculator controls and enemy groups`, async ({ page }) => {
     const runtimeErrors = [];
     page.on('pageerror', (error) => runtimeErrors.push(error.message));
+    page.on('console', (message) => {
+      if (message.type() === 'error') {
+        runtimeErrors.push(message.text());
+      }
+    });
 
     await page.goto(calculatorPath);
-    await page.locator('#native-btn').click();
-
     await expect.poll(
-      () => page.locator('#combo-calc-table tbody tr').count(),
-    ).toBeGreaterThan(5);
-    await expect(page.locator('#combo-calc-table tbody tr').first()).toContainText(/\d/);
+      () => page.evaluate(() => window.jQuery?.fn.jquery.split(' ')[0]),
+    ).toBe('3.7.1');
+    await expect.poll(() => page.evaluate(() => typeof window.jQuery?.ajax)).toBe('undefined');
+    const tableRows = page.locator('#combo-calc-table tbody tr');
+
+    for (const enemyButton of ['#native-btn', '#abeast-btn', '#machine-btn', '#dark-btn']) {
+      await page.locator('#clear-btn').click();
+      await expect(tableRows).toHaveCount(0);
+      await page.locator(enemyButton).click();
+      await expect.poll(() => tableRows.count()).toBeGreaterThan(0);
+      await expect(tableRows.first()).toContainText(/\d/);
+    }
+
+    await page.locator('#clear-btn').click();
+    await page.locator('#native-btn').click();
+    await expect.poll(() => tableRows.count()).toBeGreaterThan(5);
+
+    const initialClassAtp = await page.locator('#classMinAtpInput').inputValue();
+    await page.locator('#class-select').selectOption('RAmarl');
+    await expect(page.locator('#classMinAtpInput')).not.toHaveValue(initialClassAtp);
+
+    const damageBeforeShifta = await tableRows.first().innerText();
+    await page.locator('#shiftaInput').fill('30');
+    await page.locator('#shiftaInput').press('Tab');
+    await expect.poll(() => tableRows.first().innerText()).not.toBe(damageBeforeShifta);
+
+    await page.locator('#damage-header').click();
+    await expect(page.locator('#damage-header')).toContainText('▲');
+    await page.locator('#damage-header').click();
+    await expect(page.locator('#damage-header')).toContainText('▼');
+    await page.locator('#damage-header').click();
+    await expect(page.locator('#damage-header')).toHaveText('Damage');
+
+    await page.locator('#clear-btn').click();
+    await expect(tableRows).toHaveCount(0);
     expect(runtimeErrors).toEqual([]);
   });
 }
+
+test('status simulator handles shared-jQuery inputs and resets', async ({ page }) => {
+  const runtimeErrors = [];
+  page.on('pageerror', (error) => runtimeErrors.push(error.message));
+  page.on('console', (message) => {
+    if (message.type() === 'error') runtimeErrors.push(message.text());
+  });
+
+  await page.goto('/tools/status.html');
+  await expect.poll(() => page.locator('#class option').count()).toBeGreaterThan(2);
+  await page.locator('#class').selectOption('ramarl');
+  await page.locator('#lv').selectOption('100');
+
+  await page.locator('#magPow').fill('5');
+  await page.locator('#magPow').press('0');
+  await expect(page.locator('#output')).toContainText(/5\/50\/0\/0/);
+  await page.locator('#magReset').click();
+  await expect(page.locator('#magDef')).toHaveValue('5');
+  await expect(page.locator('#magPow')).toHaveValue('0');
+  await expect(page.locator('#output')).toContainText(/5\/0\/0\/0/);
+
+  await page.locator('#matPow').fill('2');
+  await page.locator('#matPow').press('0');
+  await expect(page.locator('#matPow')).toHaveValue('20');
+  await page.locator('#matReset').click();
+  await expect(page.locator('#matPow')).toHaveValue('0');
+
+  const armorValue = await page.locator('#armor option').nth(1).getAttribute('value');
+  expect(armorValue).toBeTruthy();
+  await page.locator('#armor').selectOption(armorValue);
+  await page.locator('#equipReset').click();
+  await expect(page.locator('#armor')).toHaveValue('-');
+  expect(runtimeErrors).toEqual([]);
+});
+
+test('character table supports jump, keyboard, highlight, and reset', async ({ page }) => {
+  const runtimeErrors = [];
+  page.on('pageerror', (error) => runtimeErrors.push(error.message));
+  page.on('console', (message) => {
+    if (message.type() === 'error') runtimeErrors.push(message.text());
+  });
+
+  await page.goto('/tools/chartable.html');
+  await expect.poll(() => page.locator('.table-container table').evaluateAll(
+    (tables) => tables.map((table) => table.querySelectorAll('tbody tr').length),
+  )).toEqual(Array(12).fill(200));
+
+  await page.locator('#classSelect').selectOption('ramarl');
+  await page.locator('#levelInput').fill('123');
+  await page.locator('.jump-btn').click();
+  await expect(page.locator('#ramarl')).toHaveClass(/active/);
+  await expect(page.locator('#ramarl tbody tr').nth(122)).toHaveClass(/highlight/);
+  await expect(page.locator('#ramarl tbody tr').nth(122).locator('td').first()).toHaveText('123');
+
+  await page.locator('#classSelect').selectOption('fomar');
+  await page.locator('#levelInput').fill('50');
+  await page.locator('#levelInput').press('Enter');
+  await expect(page.locator('#fomar')).toHaveClass(/active/);
+  await expect(page.locator('#fomar tbody tr').nth(49)).toHaveClass(/highlight/);
+
+  await page.locator('.reset-btn').click();
+  await expect(page.locator('#emptyState')).toBeVisible();
+  await expect(page.locator('#classSelect')).toHaveValue('');
+  await expect(page.locator('#levelInput')).toHaveValue('');
+  await expect(page.locator('tbody tr.highlight')).toHaveCount(0);
+  expect(runtimeErrors).toEqual([]);
+});
+
+test('Combo Calculator remains usable at a mobile viewport', async ({ page }) => {
+  const runtimeErrors = [];
+  page.on('pageerror', (error) => runtimeErrors.push(error.message));
+  page.on('console', (message) => {
+    if (message.type() === 'error') runtimeErrors.push(message.text());
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/tools/cc.html');
+
+  await expect(page.getByRole('heading', { name: 'Combo Calculator Multiplayer' })).toBeVisible();
+  await expect(page.locator('#class-select')).toBeVisible();
+  await page.locator('#machine-btn').click();
+  await expect.poll(() => page.locator('#combo-calc-table tbody tr').count()).toBeGreaterThan(0);
+  await expect.poll(() => page.evaluate(
+    () => document.documentElement.scrollWidth <= window.innerWidth + 1,
+  )).toBe(true);
+  expect(runtimeErrors).toEqual([]);
+});
 
 test('Combo Calculator license is included in the production artifact', async ({ request }) => {
   const response = await request.get('/third_party/psostats-combo/LICENSE');
   expect(response.ok()).toBe(true);
   await expect(response.text()).resolves.toContain('Copyright (c) 2021 phelix-');
+});
+
+test('legacy Mag simulator URL redirects to the standalone site', async ({ page }) => {
+  await page.route('https://magfeeder.psohaven.com/**', (route) => route.fulfill({
+    contentType: 'text/html',
+    body: '<!doctype html><title>Mag Feeder redirect target</title>',
+  }));
+
+  await page.goto('/tools/mag-sim.html?mode=planner#target');
+
+  await expect(page).toHaveURL('https://magfeeder.psohaven.com/?mode=planner#target');
 });
 
 const legacyDropChartRedirects = [

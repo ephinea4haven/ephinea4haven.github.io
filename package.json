@@ -7,13 +7,16 @@
     "build": "node scripts/build_site.mjs",
     "preview": "node scripts/serve_site.mjs _site 4173",
     "sync:combo": "node scripts/sync_combo_calculator.mjs",
-    "test": "node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs",
+    "sync:frontend": "node scripts/sync_frontend_dependencies.mjs",
+    "test": "node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/sync_frontend_dependencies.mjs --check && node scripts/verify_combo_sync.mjs",
     "test:e2e": "playwright test",
     "release:prepare": "npm test && npm run build && npm run test:e2e"
   },
   "devDependencies": {
     "@playwright/test": "^1.62.0",
+    "bootstrap": "4.6.2",
     "esbuild": "^0.28.1",
+    "jquery": "3.7.1",
     "parse5": "^8.0.1"
   }
 }

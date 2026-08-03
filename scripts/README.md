@@ -13,6 +13,7 @@ data changes; commit the regenerated output alongside the script run.
 | `build_rbr_data.py` | `data/rbr/source.json` | RBR candidate pool, current rotation, quest metadata, XP and enemy counts |
 | `build_rbr_tier_charts.py` | `assets/img/guide/rbr/*-tier-section-colors.svg` | Curated tier layout using the BB drop table's canonical Section ID palette |
 | `sync_combo_calculator.mjs` | `tools/cc*.html`, `assets/js/combo_calc*.js`, `third_party/psostats-combo/{LICENSE,upstream.json}` | PSOStats rendered calculators, per-mode data, calculation script, license, and provenance |
+| `sync_frontend_dependencies.mjs` | `assets/js/jquery.min.js`, `assets/css/bootstrap.min.css` | Shared, exactly pinned jQuery and Bootstrap CSS assets |
 
 ## Usage
 
@@ -23,6 +24,7 @@ python3 scripts/build_mag_data.py
 python3 scripts/download_wiki_mag_assets.py
 python3 scripts/build_rbr_data.py
 python3 scripts/build_rbr_tier_charts.py
+npm run sync:frontend
 npm run sync:combo
 ```
 
@@ -61,7 +63,7 @@ corresponding source.
 |--------|----------|
 | `verify_mag_data.mjs` | `assets/js/mag-evolution.js` plus the 18+12 color split, color cards, and local image references |
 | `verify_mag_sim_data.mjs` | `assets/js/mag-sim-data.js` (feed tables, mag cells) |
-| `verify_combo_sync.mjs` | PSOStats provenance, extracted server data, license attribution, local dependencies and links, formatting, and generated-file hashes |
+| `verify_combo_sync.mjs` | PSOStats provenance, extracted server data, license attribution, shared dependency versions and links, formatting, and generated-file hashes |
 | `test_build_rbr_data.py` | RBR wiki parsers, full-clear enemy totals and quest abbreviations |
 | `test_rbr_tiers.py` | Curated RBR Tier coverage: all 58 candidates exactly once |
 | `test_rbr_tier_charts.py` | Generated SVGs are current and embed the canonical drop-table palette |

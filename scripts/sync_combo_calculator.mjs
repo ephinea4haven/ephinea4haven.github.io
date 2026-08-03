@@ -28,6 +28,16 @@ const upstreamScriptUrl = 'https://psostats.com/static/combo_calc3.js';
 const outputScript = path.join(root, 'assets', 'js', 'combo_calc.js');
 const metadataFile = path.join(root, 'third_party', 'psostats-combo', 'upstream.json');
 const licenseFile = path.join(root, 'third_party', 'psostats-combo', 'LICENSE');
+const localDependencies = {
+  jquery: {
+    version: '3.7.1',
+    pageUrl: '../assets/js/jquery.min.js',
+  },
+  bootstrap: {
+    version: '4.6.2',
+    cssPageUrl: '../assets/css/bootstrap.min.css',
+  },
+};
 const publishedLicensePath = '/third_party/psostats-combo/LICENSE';
 const licenseBanner = `/*! PSOStats Combo Calculator - Copyright (c) 2021 phelix- - MIT License: ${publishedLicensePath} */`;
 const checkOnly = process.argv.includes('--check');
@@ -62,6 +72,33 @@ function replaceRequired(source, pattern, replacement, label) {
   return source.replace(pattern, replacement);
 }
 
+function compareVersions(left, right) {
+  const leftParts = left.split('.').map(Number);
+  const rightParts = right.split('.').map(Number);
+  for (let index = 0; index < Math.max(leftParts.length, rightParts.length); index += 1) {
+    const difference = (leftParts[index] || 0) - (rightParts[index] || 0);
+    if (difference) {
+      return Math.sign(difference);
+    }
+  }
+  return 0;
+}
+
+function readUpstreamDependencyVersions(source, pageName) {
+  const jquery = source.match(/code\.jquery\.com\/jquery-(\d+\.\d+\.\d+)(?:\.slim)?\.min\.js/);
+  const bootstrapCss = source.match(/bootstrap@(\d+\.\d+\.\d+)\/dist\/css\/bootstrap\.min\.css/);
+  const bootstrapScript = source.match(
+    /bootstrap@(\d+\.\d+\.\d+)\/dist\/js\/bootstrap\.bundle\.min\.js/,
+  );
+  if (!jquery || !bootstrapCss || !bootstrapScript) {
+    throw new Error(`${pageName} page dependency versions could not be identified`);
+  }
+  if (bootstrapCss[1] !== bootstrapScript[1]) {
+    throw new Error(`${pageName} page uses mismatched Bootstrap CSS and JavaScript versions`);
+  }
+  return { jquery: jquery[1], bootstrap: bootstrapCss[1] };
+}
+
 function removeUpstreamNavbar(html) {
   const start = html.indexOf('<div class="row psostats-nav">');
   const heading = html.indexOf('<h1>Combo Calculator', start);
@@ -84,25 +121,30 @@ function adaptPage(source, page) {
       throw new Error(`${page.name} page is missing required marker: ${marker}`);
     }
   }
+  if (/data-(?:toggle|dismiss|spy)=|\.(?:carousel|collapse|dropdown|modal|popover|scrollspy|tab|toast|tooltip)\s*\(/i.test(source)) {
+    throw new Error(
+      `${page.name} page began using Bootstrap JavaScript; do not remove the upstream bundle`,
+    );
+  }
 
   let html = source.replace(/\r\n/g, '\n').trim();
   html = removeUpstreamNavbar(html);
   html = replaceRequired(
     html,
-    /<link rel="stylesheet" href="https:\/\/cdn\.jsdelivr\.net\/npm\/bootstrap@4\.6\.0\/dist\/css\/bootstrap\.min\.css"[^>]*>/,
-    '<link rel="stylesheet" href="../assets/css/bootstrap.min.css">',
+    /<link rel="stylesheet" href="https:\/\/cdn\.jsdelivr\.net\/npm\/bootstrap@[^/]+\/dist\/css\/bootstrap\.min\.css"[^>]*>/,
+    `<link rel="stylesheet" href="${localDependencies.bootstrap.cssPageUrl}">`,
     'Bootstrap stylesheet',
   );
   html = replaceRequired(
     html,
     /<script type="text\/javascript" src="https:\/\/code\.jquery\.com\/jquery-[^"]+"[^>]*><\/script>/,
-    '<script src="../assets/js/jquery.min.js"></script>',
+    `<script src="${localDependencies.jquery.pageUrl}"></script>`,
     'jQuery script',
   );
   html = replaceRequired(
     html,
-    /<script type="text\/javascript" src="https:\/\/cdn\.jsdelivr\.net\/npm\/bootstrap@4\.6\.0\/dist\/js\/bootstrap\.bundle\.min\.js"[^>]*><\/script>/,
-    '<script src="../assets/js/popper.min.js"></script>\n        <script src="../assets/js/bootstrap.min.js"></script>',
+    /<script type="text\/javascript" src="https:\/\/cdn\.jsdelivr\.net\/npm\/bootstrap@[^/]+\/dist\/js\/bootstrap\.bundle\.min\.js"[^>]*><\/script>/,
+    '',
     'Bootstrap script',
   );
   html = replaceRequired(
@@ -228,6 +270,20 @@ for (const [name, first, second] of [
   }
 }
 
+const upstreamDependencyVersions = pageSources.map((source, index) => (
+  readUpstreamDependencyVersions(source, upstreamPages[index].name)
+));
+if (JSON.stringify(upstreamDependencyVersions[0]) !== JSON.stringify(upstreamDependencyVersions[1])) {
+  throw new Error('Upstream calculator pages use different dependency versions');
+}
+for (const dependency of ['jquery', 'bootstrap']) {
+  if (compareVersions(localDependencies[dependency].version, upstreamDependencyVersions[0][dependency]) < 0) {
+    throw new Error(
+      `Local ${dependency} ${localDependencies[dependency].version} is older than upstream ${upstreamDependencyVersions[0][dependency]}`,
+    );
+  }
+}
+
 const generatedPages = pageSources.map((source, index) => adaptPage(source, upstreamPages[index]));
 const generatedScript = normalizeText(`${licenseBanner}\n${upstreamScript}`);
 const generatedLicense = normalizeText(upstreamLicense);
@@ -256,6 +312,13 @@ const metadata = `${JSON.stringify({
     opmPage: sha256(generatedPages[1].html),
     opmData: sha256(generatedPages[1].data),
     license: sha256(generatedLicense),
+  },
+  dependencies: {
+    upstream: upstreamDependencyVersions[0],
+    local: {
+      jquery: localDependencies.jquery.version,
+      bootstrap: localDependencies.bootstrap.version,
+    },
   },
 }, null, 2)}\n`;
 

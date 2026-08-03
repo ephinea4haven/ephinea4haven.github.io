@@ -10,8 +10,9 @@ $(function () {
         for (const [clazz, levels] of Object.entries(data)) {
             if (!levels.lv) continue;
 
+            const rows = [];
             for (const [lv, stat] of Object.entries(levels.lv)) {
-                const row = `<tr>
+                rows.push(`<tr>
                     <td>${lv}</td>
                     <td>${stat[0]}</td>
                     <td>${stat[1]}</td>
@@ -20,9 +21,9 @@ $(function () {
                     <td>${stat[4]}</td>
                     <td>${stat[5]}</td>
                     <td>${stat[6]}</td>
-                </tr>`;
-                $(`#${clazz}`).append(row);
+                </tr>`);
             }
+            $(`#${clazz} tbody`).html(rows.join(''));
         }
     });
 });

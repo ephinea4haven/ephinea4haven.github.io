@@ -4,6 +4,13 @@
 
 ## Active
 
+- [ ] **迁移 Bootstrap 4.6.2 到 Bootstrap 5.x 或移除 Bootstrap** (Medium)
+  - 当前实际使用范围只有 Combo Calculator 的 grid/form/input-group/table 样式，以及 `tools/chartable.html` 的 table 样式；Bootstrap JavaScript 和 Popper 已无调用并移除。
+  - Bootstrap 5 不是无破坏升级：需要处理 `input-group-prepend`、`custom-select`、间距/表单 class 和 jQuery 依赖模型的变化，并重新核对 Haven overlay 与上游页面同步规则。
+  - 同时评估替代路线：将 CC/人物表实际使用的少量规则迁入站点自有 CSS，彻底移除 Bootstrap，避免长期维护整套框架。
+  - 验收条件：桌面和移动布局回归、CC 两模式计算交互、人物表跳转、无障碍检查和发布体积预算全部通过。
+  - 背景：[Bootstrap 4 已结束官方支持](https://getbootstrap.com/docs/4.6/end-of-life/)。
+
 - [ ] **清点并选择性恢复 PSO FRAME slot3（Red-Wolf）资料** (Medium)
   - 已确认旧站名称为 **PSO FRAME slot3**，管理者为 Red-Wolf；早期地址为 `http://www.red-wolf.ac/pso/`，之后迁移到 `http://www.red-wolf.sakura.ne.jp/pso/`。
   - 两个旧域名目前均已无法解析；2016 年的 PSO 玩家讨论也已明确提到该攻略站消失。
@@ -21,7 +28,7 @@
 
 - [x] **首页活动专题自动高亮** — 除“活动总览”外，五个节日入口按访客本地日期在对应活动窗口自动显示流动彩虹高亮；周年活动为 8 月 1 日至 9 月 15 日。动画遵循 `prefers-reduced-motion`。
 
-- [x] **Mag 模拟器与反向规划器** — 已拆分至独立项目 [`warmonipa/magfeeder`](https://github.com/warmonipa/magfeeder)，生产地址为 [`magfeeder.psohaven.com`](https://magfeeder.psohaven.com/)；主站仅保留入口链接以及进化图谱使用的共享 Mag 数据。
+- [x] **Mag 模拟器与反向规划器** — 已拆分至独立项目 [`warmonipa/magfeeder`](https://github.com/warmonipa/magfeeder)，生产地址为 [`magfeeder.psohaven.com`](https://magfeeder.psohaven.com/)；主站保留入口链接、旧 `/tools/mag-sim.html` 兼容跳转，以及作为唯一生成源的共享 Mag 数据。
 
 ## Optional follow-ups
 
@@ -35,7 +42,7 @@
 
 Rationale:
 - ~60 HTML pages would each need MPA entry registration.
-- Vendor libs (jquery / bootstrap / vue / vue-multiselect / popper / marked) live as dropped-in `assets/js/*.min.js`; migrating to npm imports is significant churn.
+- Shared jQuery and Bootstrap CSS are generated from pinned npm packages, while Vue, vue-multiselect and marked remain dropped-in assets; migrating all page dependencies to imports is still significant churn.
 - Site is otherwise stable static HTML; cost of full migration >> benefit.
 
 Revisit when: cache-busting `?v=N` becomes painful enough to justify automated hashing (i.e. once "Automated cache-busting" above stops being deferrable).
@@ -56,3 +63,4 @@ These are intentionally outside the refactor/cleanup scope (don't propose change
 
 - `data/droptable/` — retained for local tooling; production links and deployment use `dropcharts.psohaven.com`.
 - `assets/js/combo_calc*.js`, `tools/cc.html`, `tools/ccopm.html` — generated third-party Combo Calculator snapshots. Put Haven-specific changes in `scripts/sync_combo_calculator.mjs`; direct edits get clobbered on sync.
+- `assets/js/jquery.min.js`, `assets/css/bootstrap.min.css` — shared pinned frontend dependencies. Update package versions and run `npm run sync:frontend`; do not add per-page copies.
