@@ -32,12 +32,6 @@ const pages = [
     heading: '玛古进化图谱',
   },
   {
-    name: 'mag simulator',
-    path: '/tools/mag-sim.html',
-    title: /玛古模拟器/,
-    heading: '玛古模拟器',
-  },
-  {
     name: 'event archive',
     path: '/event/christmas.html?year=2025',
     title: /2025圣诞活动/,

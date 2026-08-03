@@ -21,7 +21,7 @@
 
 - [x] **首页活动专题自动高亮** — 除“活动总览”外，五个节日入口按访客本地日期在对应活动窗口自动显示流动彩虹高亮；周年活动为 8 月 1 日至 9 月 15 日。动画遵循 `prefers-reduced-motion`。
 
-- [x] **Mag 模拟器与反向规划器** — `tools/mag-sim.html` 使用单窗口三栏工作台展示设置、当前 Mag、喂食和历史记录；能力槽显示各属性升到下一级的百分比。规划器输入目标种类 + 精确四维，输出由正向引擎完整回放验证的分组方案：四阶公式只在 Lv100/110… 的实际进化节点检查，进化锁定后可继续成长；Cell Mag 会先规划前置 Mag，再把 Cell 作为显式进化步骤，之后继续培养到最终四维。精确解不可达时回退到最近可达四维，并支持一键导入正向模拟器。
+- [x] **Mag 模拟器与反向规划器** — 已拆分至独立项目 [`warmonipa/magfeeder`](https://github.com/warmonipa/magfeeder)，生产地址为 [`magfeeder.psohaven.com`](https://magfeeder.psohaven.com/)；主站仅保留入口链接以及进化图谱使用的共享 Mag 数据。
 
 ## Optional follow-ups
 

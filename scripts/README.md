@@ -56,8 +56,6 @@ corresponding source.
 |--------|----------|
 | `verify_mag_data.mjs` | `assets/js/mag-evolution.js` plus the 18+12 color split, color cards, and local image references |
 | `verify_mag_sim_data.mjs` | `assets/js/mag-sim-data.js` (feed tables, mag cells) |
-| `verify_mag_sim.mjs` | `assets/js/mag-sim-engine.js` (feeding/evolution engine) |
-| `verify_mag_sim_planner.mjs` | `assets/js/mag-sim-planner.js` (reverse-search planner, intermediate fourth-evolution checkpoints, Cell evolution steps, and full engine replay) |
 | `test_build_rbr_data.py` | RBR wiki parsers, full-clear enemy totals and quest abbreviations |
 | `test_rbr_tiers.py` | Curated RBR Tier coverage: all 58 candidates exactly once |
 | `test_rbr_tier_charts.py` | Generated SVGs are current and embed the canonical drop-table palette |
@@ -65,8 +63,6 @@ corresponding source.
 ```bash
 node scripts/verify_mag_data.mjs
 node scripts/verify_mag_sim_data.mjs
-node scripts/verify_mag_sim.mjs
-node scripts/verify_mag_sim_planner.mjs
 python3 -m unittest scripts/test_build_rbr_data.py
 python3 -m unittest scripts/test_rbr_tiers.py
 python3 -m unittest scripts/test_rbr_tier_charts.py
