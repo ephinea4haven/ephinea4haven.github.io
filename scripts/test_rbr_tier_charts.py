@@ -55,6 +55,42 @@ class RbrTierChartTest(unittest.TestCase):
                 self.assertIn(section_id, svg)
                 self.assertIn(color, svg)
 
+    def test_green_section_ids_match_source_articles(self) -> None:
+        def section_id_for(rows, quest):
+            return next(
+                section_id
+                for _, entries in rows
+                for abbreviation, section_id in entries
+                if abbreviation == quest
+            )
+
+        expected = {
+            "LIS": "Viridia",
+            "EN1": "Viridia",
+            "SU11": "Viridia",
+            "MAE4": "Greenill",
+            "TTF": "Viridia",
+            "MA4B": "Viridia",
+        }
+        for quest, section_id in expected.items():
+            rows = charts.RBR_ROWS if quest in {"LIS", "EN1", "SU11"} else charts.NON_RBR_ROWS
+            self.assertEqual(section_id_for(rows, quest), section_id)
+
+    def test_green_section_ids_in_page_copy(self) -> None:
+        page = (charts.ROOT / "guide/rbr.html").read_text(encoding="utf-8")
+        expected_copy = (
+            "Heart of Daisy Chain（Viridia）",
+            "L&amp;K38 Combat（Viridia）",
+            "Heaven Striker（Greenill / Redria）",
+            "Greenill 可刷 Pyro Goran 的 Heaven Striker",
+            "出现 Hildetorr 时换 Viridia",
+            "Viridia 可从 Dal Ra Lie 刷取 L&amp;K38 Combat",
+            "Viridia 刷 L&amp;K38 Combat",
+            "Dark Falz；Viridia / Redria 有效",
+        )
+        for text in expected_copy:
+            self.assertIn(text, page)
+
 
 if __name__ == "__main__":
     unittest.main()

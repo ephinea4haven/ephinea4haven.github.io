@@ -114,9 +114,9 @@
 <rect x="154" y="632" width="115.571" height="104" fill="#FFFFFF" stroke="#08101D" stroke-width="4"/>
 <text x="211.786" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">LHS</text>
 <text x="211.786" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Whitill</text>
-<rect x="269.571" y="632" width="115.571" height="104" fill="#76FE43" stroke="#08101D" stroke-width="4"/>
-<text x="327.357" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">LIS</text>
-<text x="327.357" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Greenill</text>
+<rect x="269.571" y="632" width="115.571" height="104" fill="#00A562" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">LIS</text>
+<text x="327.357" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Viridia</text>
 <rect x="385.143" y="632" width="115.571" height="104" fill="#FFFFFF" stroke="#08101D" stroke-width="4"/>
 <text x="442.929" y="679" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">MU1</text>
 <text x="442.929" y="708" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Whitill</text>
@@ -169,9 +169,9 @@
 <rect x="154" y="944" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
 <text x="211.786" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU1</text>
 <text x="211.786" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
-<rect x="269.571" y="944" width="115.571" height="104" fill="#76FE43" stroke="#08101D" stroke-width="4"/>
-<text x="327.357" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">EN1</text>
-<text x="327.357" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Greenill</text>
+<rect x="269.571" y="944" width="115.571" height="104" fill="#00A562" stroke="#08101D" stroke-width="4"/>
+<text x="327.357" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">EN1</text>
+<text x="327.357" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Viridia</text>
 <rect x="385.143" y="944" width="115.571" height="104" fill="#FF87CB" stroke="#08101D" stroke-width="4"/>
 <text x="442.929" y="991" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SR1</text>
 <text x="442.929" y="1020" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Pinkal</text>
@@ -208,9 +208,9 @@
 <rect x="847.429" y="1048" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
 <text x="905.214" y="1095" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU10</text>
 <text x="905.214" y="1124" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>
-<rect x="154" y="1152" width="115.571" height="104" fill="#76FE43" stroke="#08101D" stroke-width="4"/>
-<text x="211.786" y="1199" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">SU11</text>
-<text x="211.786" y="1228" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Greenill</text>
+<rect x="154" y="1152" width="115.571" height="104" fill="#00A562" stroke="#08101D" stroke-width="4"/>
+<text x="211.786" y="1199" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#FFFFFF">SU11</text>
+<text x="211.786" y="1228" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF">Viridia</text>
 <rect x="269.571" y="1152" width="115.571" height="104" fill="#4488FF" stroke="#08101D" stroke-width="4"/>
 <text x="327.357" y="1199" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#000000">NMU1</text>
 <text x="327.357" y="1228" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="600" fill="#000000">Bluefull</text>

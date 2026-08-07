@@ -17,15 +17,15 @@ RBR_ROWS = (
     ("S", (("EN2", "Bluefull"), ("SR3", "Yellowboze"), ("EN4", "Bluefull"), ("PW1", "Whitill"), ("PW3", "Bluefull"), ("PS2", "Oran"), ("LCV", "Purplenum"), ("NMU4", "Redria"), ("WoL4", "Redria"))),
     ("A", (("SU2", "Purplenum"), ("MU2", "Bluefull"), ("SU3", "Purplenum"), ("LHP", "Skyly"), ("LBA", "Oran"))),
     ("B", (("SR2", "Skyly"), ("MU4", "Bluefull"), ("SA2", "Yellowboze"), ("SU6", "Oran"), ("SU7", "Skyly"), ("SU8", "Redria"), ("WoL2", "Oran"), ("SU13", "Pinkal"), ("SU14", "Pinkal"))),
-    ("C", (("LHS", "Whitill"), ("LIS", "Greenill"), ("MU1", "Whitill"), ("MU3", "Purplenum"), ("EN3", "Oran"), ("SU4", "Oran"), ("SR4", "Oran"), ("PS1", "Purplenum"), ("PS3", "Skyly"), ("PS4", "Purplenum"), ("PS5", "Whitill"), ("PS6", "Skyly"), ("LSR", "Purplenum"), ("NMU2", "Oran"), ("WoL3", "Purplenum"), ("SU12", "Redria"))),
-    ("D", (("SU1", "Pinkal"), ("EN1", "Greenill"), ("SR1", "Pinkal"), ("SA1", "Redria"), ("AO1", "Redria"), ("AO2", "Purplenum"), ("SU5", "Pinkal"), ("LDR", "Bluefull"), ("TET", "Whitill"), ("TWT", "Bluefull"), ("AO3", "Pinkal"), ("AO4", "Bluefull"), ("AO5", "Whitill"), ("SU10", "Bluefull"), ("SU11", "Greenill"), ("NMU1", "Bluefull"), ("NMU5", "Pinkal"), ("WoL1", "Bluefull"), ("WoL5", "Pinkal"))),
+    ("C", (("LHS", "Whitill"), ("LIS", "Viridia"), ("MU1", "Whitill"), ("MU3", "Purplenum"), ("EN3", "Oran"), ("SU4", "Oran"), ("SR4", "Oran"), ("PS1", "Purplenum"), ("PS3", "Skyly"), ("PS4", "Purplenum"), ("PS5", "Whitill"), ("PS6", "Skyly"), ("LSR", "Purplenum"), ("NMU2", "Oran"), ("WoL3", "Purplenum"), ("SU12", "Redria"))),
+    ("D", (("SU1", "Pinkal"), ("EN1", "Viridia"), ("SR1", "Pinkal"), ("SA1", "Redria"), ("AO1", "Redria"), ("AO2", "Purplenum"), ("SU5", "Pinkal"), ("LDR", "Bluefull"), ("TET", "Whitill"), ("TWT", "Bluefull"), ("AO3", "Pinkal"), ("AO4", "Bluefull"), ("AO5", "Whitill"), ("SU10", "Bluefull"), ("SU11", "Viridia"), ("NMU1", "Bluefull"), ("NMU5", "Pinkal"), ("WoL1", "Bluefull"), ("WoL5", "Pinkal"))),
 )
 
 NON_RBR_ROWS = (
-    ("SS", (("MAE4", "Viridia"),)),
+    ("SS", (("MAE4", "Greenill"),)),
     ("S", (("TS", "Purplenum"), ("MSB", "Yellowboze"), ("PW2", "Pinkal"))),
-    ("A", (("TTF", "Greenill"), ("RT", "Yellowboze"), ("GDV", "Purplenum"))),
-    ("RER", (("TE", "Whitill"), ("5-3", "Whitill"), ("PoD", "Purplenum"), ("MA4B", "Greenill"))),
+    ("A", (("TTF", "Viridia"), ("RT", "Yellowboze"), ("GDV", "Purplenum"))),
+    ("RER", (("TE", "Whitill"), ("5-3", "Whitill"), ("PoD", "Purplenum"), ("MA4B", "Viridia"))),
 )
 
 TIER_COLORS = {
