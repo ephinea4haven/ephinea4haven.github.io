@@ -290,6 +290,24 @@ test('Combo Calculator remains usable at a mobile viewport', async ({ page }) =>
   expect(runtimeErrors).toEqual([]);
 });
 
+test('anniversary feature cards keep bilingual item names visible', async ({ page }) => {
+  await page.setViewportSize({ width: 457, height: 800 });
+  await page.goto('/event/anniversary.html?year=2025');
+
+  const card = page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' });
+  await expect(card).toContainText(
+    '白金牌 奖池移除圣剑「拉维斯·迦农」(Lavis Cannon)，新增索尼克人偶(Sonic Doll)。',
+  );
+  await expect.poll(() => card.locator('p').evaluate((paragraph) => {
+    const paragraphRect = paragraph.getBoundingClientRect();
+    const parts = paragraph.querySelectorAll('.item-zh, .item-en');
+    return getComputedStyle(paragraph).textAlign === 'left'
+      && [...parts].every((part) => (
+        part.getBoundingClientRect().right <= paragraphRect.right + 0.5
+      ));
+  })).toBe(true);
+});
+
 test('Combo Calculator license is included in the production artifact', async ({ request }) => {
   const response = await request.get('/third_party/psostats-combo/LICENSE');
   expect(response.ok()).toBe(true);
