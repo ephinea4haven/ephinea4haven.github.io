@@ -22,7 +22,9 @@
 <li><a href="#overview">总览关系图</a></li>
 <li><a href="#backend">渲染后端 (D3D / Vulkan)</a></li>
 <li><a href="#aa">抗锯齿 (Anti-Aliasing)</a></li>
+<li><a href="#af">各向异性过滤 (Anisotropic Filtering)</a></li>
 <li><a href="#swap">dgVoodoo Model (交换链模式)</a></li>
+<li><a href="#effects-pipeline">画面效果在渲染管线中的位置</a></li>
 <li><a href="#ao">环境光遮蔽 (Ambient Occlusion)</a></li>
 <li><a href="#extra">Extra (额外功能)</a></li>
 <li><a href="#shaders">Shaders (着色器)</a></li>
@@ -74,33 +76,33 @@
   <line class="arrow" x1="380" y1="153" x2="220" y2="183" marker-end="url(#arr)"/>
   <line class="arrow" x1="540" y1="153" x2="700" y2="183" marker-end="url(#arr)"/>
 
-  <!-- 原生路径 -->
+  <!-- 原生/系统兼容路径 -->
   <rect class="lvl2" x="40" y="185" width="360" height="140" rx="10" ry="10"/>
-  <text class="th-blue" x="220" y="210" text-anchor="middle">原生路径</text>
+  <text class="th-blue" x="220" y="210" text-anchor="middle">原生 / 系统兼容路径</text>
   <text class="t" x="60" y="237">• Direct3D 8 — 不经翻译,原版渲染</text>
-  <text class="t" x="60" y="260">• Direct3D 9 — 轻包装,稳定性 ↑</text>
+  <text class="t" x="60" y="260">• Direct3D 9 — Ephinea 将 D3D8 包装为 D3D9</text>
   <text class="t" x="60" y="283">• Direct3D 9on12 — 微软 D3D9→D3D12</text>
-  <text class="tm" x="220" y="312" text-anchor="middle">AA / SSAO / Shaders / dgVoodoo Model 不生效</text>
+  <text class="tm" x="220" y="312" text-anchor="middle">D3D9 起可用高级 AA;D3D8 用于原版基准</text>
 
   <!-- 翻译层路径 -->
   <rect class="lvl2" x="520" y="185" width="360" height="140" rx="10" ry="10"/>
   <text class="th-blue" x="700" y="210" text-anchor="middle">翻译层路径</text>
-  <text class="t" x="540" y="237">• D3D 11 / 12 — 经 dgVoodoo (2.79.3 / 2.87.1)</text>
-  <text class="t" x="540" y="260">• Vulkan — 经 DXVK (2.3.1 / 2.7.1)</text>
+  <text class="t" x="540" y="237">• D3D 11 / 12 — D3D9 经 dgVoodoo 输出</text>
+  <text class="t" x="540" y="260">• Vulkan — D3D9 经 DXVK 输出</text>
   <text class="t" x="540" y="283">• (Custom) — 用户自带 dll</text>
-  <text class="tm" x="700" y="312" text-anchor="middle">↓ 下方画质选项才会生效 ↓</text>
+  <text class="tm" x="700" y="312" text-anchor="middle">↓ 主要改变兼容性、呈现方式与驱动路径 ↓</text>
 
   <!-- 翻译层 → 画质选项 -->
   <line class="arrow" x1="700" y1="325" x2="700" y2="348" marker-end="url(#arr)"/>
 
   <!-- 画质选项面板 -->
   <rect class="lvl3" x="520" y="350" width="360" height="180" rx="10" ry="10"/>
-  <text class="th-purple" x="700" y="375" text-anchor="middle">翻译层启用的画质选项</text>
-  <text class="t" x="540" y="403">• 抗锯齿 — MSAA / SSAA / SMAA / HSAA / 组合</text>
+  <text class="th-purple" x="700" y="375" text-anchor="middle">后端与画质设置的关系</text>
+  <text class="t" x="540" y="403">• 高级 AA — D3D9 及以上可用</text>
   <text class="t" x="540" y="428">• dgVoodoo Model — 交换链 (仅 D3D11/12)</text>
-  <text class="t" x="540" y="453">• 环境光遮蔽 — Low / Medium / High</text>
-  <text class="t" x="540" y="478">• Shaders — Bloom / DoF / Cel / Tonemapping</text>
-  <text class="tm" x="700" y="510" text-anchor="middle">原生路径下,这些设置会被忽略</text>
+  <text class="t" x="540" y="453">• 同分辨率与 AA 下,后端不会凭空提升画质</text>
+  <text class="t" x="540" y="478">• 翻译差异可能影响雾、反射、色彩与纹理</text>
+  <text class="tm" x="700" y="510" text-anchor="middle">API 版本 ≠ 画质等级</text>
 
   <!-- 汇合: 原生路径 (向下再右拐到合流点) -->
   <polyline class="arrow" points="220,325 220,605 460,605" />
@@ -118,21 +120,111 @@
   <text class="th-mute" x="60" y="755">Extra (与渲染解耦 · 任何后端都生效)</text>
   <text class="t" x="60" y="779">FAST STARTUP · CLEAN CAPTURE · MOTION BLUR · RARE DROP SFX · BANK SHORTCUTS · LARGE BANK WINDOW</text>
 </svg>
-<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">青框 = 主流程 · 蓝框 = 后端分支 · 紫框 = 翻译层启用后的画质选项 · 虚线框 = 与渲染解耦</figcaption>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">青框 = 主流程 · 蓝框 = 后端分支 · 紫框 = 后端与画质设置的关系 · 虚线框 = 与渲染解耦</figcaption>
 </figure>
 
-<p>看图记一句话: <strong>选 D3D 8 / 9 / 9on12 时,抗锯齿、SSAO、Shaders、dgVoodoo Model 这四组设置都不会生效</strong>;只有切到 D3D 11/12 或 Vulkan,下方的画质开关才有意义。Extra 那一组与渲染无关,随时可开。</p>
+<p>看图记两句话: <strong>API 数字越大不代表画质越高</strong>;它首先决定命令经过哪套运行库、包装器和显卡驱动。Ephinea 的高级抗锯齿从 <strong>D3D9</strong> 起可用,D3D11/12 额外使用 dgVoodoo,Vulkan 使用 DXVK;只有 <strong>dgVoodoo Model</strong> 明确限定在 D3D11/12 路径。</p>
 
 <hr>
 
 <h2 id="backend">渲染后端 (D3D / Vulkan)</h2>
 
-<p>PSOBB 原生使用 <strong>Direct3D 8</strong> 渲染。Ephinea 登陆器提供了多种"渲染后端",通过翻译层把游戏的 D3D8 调用映射到现代图形 API,以提升兼容性、稳定性和窗口/全屏行为。</p>
+<p>PSOBB 的引擎原生只会提交 <strong>Direct3D 8</strong> 命令。登陆器里的选项不会重写模型、纹理或场景光照,而是决定这些命令之后经过哪套<strong>兼容层、输出 API 和显卡驱动</strong>。严格来说,下拉框混合了原生 API、转译路径和包装器输出后端,并不只是几套平级的"渲染器"。</p>
+
+<h3>先建立正确的渲染链概念</h3>
+
+<p>现代后端不是把 PSOBB 改造成一款 D3D11 或 D3D12 原生游戏。游戏仍然生成同一批 D3D8 时代的顶点、纹理、固定功能状态和 Draw Call;兼容层负责把它们改写成后续 API 能理解的资源、状态和着色器,最后再交给显卡驱动。</p>
+
+<pre><code>PSOBB 内容与逻辑
+    ↓  D3D8 命令
+Ephinea 兼容/增强层 (D3D9 路径、AA、AF、后处理)
+    ├─ D3D9 ───────────────────────────────→ D3D9 驱动
+    ├─ D3D9 → Microsoft D3D9On12 ─────────→ D3D12 驱动
+    ├─ D3D9 → dgVoodoo ─→ D3D11 或 D3D12 → 对应驱动
+    └─ D3D9 → DXVK ───────────────────────→ Vulkan 驱动</code></pre>
+
+<p>这也解释了为什么登陆器的自定义文件是 <code>dgVoodoo_d3d9.dll</code> 或 <code>dxvk_d3d9.dll</code>:包装器接收的是 Ephinea 输出的 D3D9 调用,再转到 D3D11、D3D12 或 Vulkan。Ephinea 官方的 <a href="https://www.pioneer2.net/community/threads/ephinea-launcher-3-5-0-and-dll-update-1-860-for-april-29th-2026-%E3%83%A9%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC%E3%81%8A%E3%82%88%E3%81%B3dll%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88-4-29.33093/" target="_blank" rel="noopener">Launcher 3.5.0 更新说明</a>也给出了这两个文件名和版本关系。</p>
+
+<h3>全部后端一眼看懂</h3>
+
+<div style="overflow-x:auto">
+<table>
+<thead>
+<tr><th>选项</th><th>最终输出</th><th>画质功能</th><th>核心区别</th></tr>
+</thead>
+<tbody>
+<tr><td>Direct3D 8</td><td>系统 D3D8</td><td>原版基准;高级 AA 不完整</td><td>链路最短,但保留旧式设备丢失与全屏行为</td></tr>
+<tr><td>Direct3D 9</td><td>系统 D3D9</td><td><strong>可用 Ephinea 高级 AA</strong></td><td>接近传统渲染,兼容面广;MSAA/HSAA 可能破坏部分反射</td></tr>
+<tr><td>Direct3D 9on12</td><td>系统 D3D9On12 → D3D12</td><td>与 D3D9 路径相同</td><td>是微软的 D3D9 映射层;<strong>不等于 dgVoodoo D3D12</strong></td></tr>
+<tr><td><strong>Direct3D 11</strong></td><td>dgVoodoo → D3D11</td><td>高级 AA;反射兼容性较好</td><td>现代呈现与设备管理,通常作为首选或排障基准</td></tr>
+<tr><td>Direct3D 12</td><td>dgVoodoo → D3D12</td><td>与 D3D11 基本相同</td><td>同一 dgVoodoo 前端的低层输出后端;强制使用 Flip 呈现</td></tr>
+<tr><td>Vulkan</td><td>DXVK → Vulkan</td><td>高级 AA;效果由 Ephinea 层实现</td><td>完全不同的驱动栈,适合交叉排障,但 DXVK 不正式支持 Windows</td></tr>
+<tr><td>Custom</td><td>自备 dgVoodoo / DXVK</td><td>取决于所用版本</td><td>用于验证新版修复或回归,不是额外画质档位</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>画质:为什么通常一样,但不能保证逐像素相同?</h3>
+
+<p><strong>API 本身不提供"D3D12 级画质"。</strong>角色多边形数量、贴图分辨率、材质、光照公式、阴影和特效仍由 PSOBB 决定。若输出分辨率、AA、AF、SSAO 与 Shaders 完全相同,D3D9、D3D11、D3D12 和 Vulkan 的目标画面应当非常接近。</p>
+
+<p>但不同路径不是逐位等价的录像回放。包装器需要模拟 D3D8/9 的固定功能管线,并把旧式格式与状态转换成现代着色器和资源;以下细节可能产生可见差异:</p>
+<ul>
+<li><strong>采样与过滤:</strong>纹理坐标精度、mipmap LOD、各向异性过滤和半像素规则可能让纹理锐度略有不同。</li>
+<li><strong>深度与混合:</strong>深度缓冲格式、比较精度、Alpha Test/Blend 的模拟差异可能表现为接缝、闪烁或透明排序异常。</li>
+<li><strong>固定功能模拟:</strong>顶点雾、光照、反射和纹理阶段需要被转成 Shader;包装器 bug 会造成雾缺失、反射异常或颜色不一致。</li>
+<li><strong>色彩与呈现:</strong>gamma、色彩空间、缩放过滤和交换链合成方式会影响亮度、对比度或最终锐度。</li>
+</ul>
+
+<p>因此,后端之间出现明显的黑块、错误雾效、缺失反射或整体偏暗时,应视为<strong>兼容性差异或翻译错误</strong>,而不是某个 API 的正常"画风"。切换后端的主要价值是寻找对当前 GPU、驱动和窗口模式最正确稳定的实现。</p>
+
+<h3>D3D9on12 和 D3D12 为什么不是一回事?</h3>
+
+<p>两者最终都会调用 D3D12 驱动,但<strong>翻译器、对上层暴露的设备模型和呈现管理都不同</strong>。"最终用了 D3D12"并不足以判断它们的行为。</p>
+
+<table>
+<thead>
+<tr><th>对比项</th><th>Direct3D 9on12</th><th>Direct3D 12</th></tr>
+</thead>
+<tbody>
+<tr><td>完整路径</td><td>D3D8 → Ephinea D3D9 → Microsoft D3D9On12 → D3D12</td><td>D3D8 → Ephinea D3D9 → dgVoodoo → D3D12</td></tr>
+<tr><td>谁负责翻译</td><td>Windows 的 D3D9On12 Mapping Layer</td><td>第三方包装器 dgVoodoo2</td></tr>
+<tr><td>上层语义</td><td>仍按 D3D9 设备、资源和交换链规则工作</td><td>由 dgVoodoo 模拟 D3D9,再自行管理 D3D12 资源与同步</td></tr>
+<tr><td>设备丢失</td><td>保留较多传统 D3D9 行为;Ephinea 已确认 UAC、锁屏等仍可触发问题</td><td>dgVoodoo 接管设备与呈现,通常可避开该类 D3D8/9 Device Lost</td></tr>
+<tr><td>交换链</td><td>由 D3D9 运行库及映射层决定</td><td>dgVoodoo D3D12 固定采用现代 Flip Discard</td></tr>
+<tr><td>抗锯齿</td><td>Ephinea 高级 AA 可用;更接近 D3D9 的兼容特征</td><td>同一套 Ephinea AA 可用;MSAA/HSAA 的反射兼容性通常更好</td></tr>
+<tr><td>主要用途</td><td>系统兼容路径,并非性能或画质升级档</td><td>用于 dgVoodoo 的现代设备管理、呈现和兼容修复</td></tr>
+</tbody>
+</table>
+
+<p>所以,为了避免 D3D8/9 在 Alt-Tab、UAC 安全桌面或锁屏后的 Device Lost,应选择登陆器中的 <strong>Direct3D 11/12 (dgVoodoo)</strong>,而不是 D3D9on12。后者只是把 D3D9 工作负载映射到 D3D12,不会自动获得 dgVoodoo 的兼容策略。</p>
+
+<h3>D3D11 和 D3D12 到底差在哪?</h3>
+
+<p><strong>先说结论:</strong>两者共享 dgVoodoo 的 D3D9 前端、状态转换和固定功能模拟,只在最后的资源管理、命令提交、同步与呈现层分流。因此它们的功能和预期画质相同;D3D12 不是增强画质版 D3D11。</p>
+
+<table>
+<thead>
+<tr><th>对比项</th><th>Direct3D 11</th><th>Direct3D 12</th></tr>
+</thead>
+<tbody>
+<tr><td>画质</td><td>由分辨率、AA、SSAO、Shaders 决定</td><td>相同设置下与 D3D11 基本一致</td></tr>
+<tr><td>驱动模型</td><td>驱动承担较多资源状态与同步管理</td><td>dgVoodoo 需要显式管理资源状态、同步和命令队列</td></tr>
+<tr><td>呈现</td><td>可使用传统 BitBlt 或现代 Flip 模型</td><td>dgVoodoo 使用 <strong>Flip Discard</strong>,即使全屏也以窗口交换链呈现</td></tr>
+<tr><td>性能</td><td>PSOBB 上通常已足够稳定</td><td>在个别机器可改善 CPU 开销或卡顿,但 30 FPS 老游戏通常没有普遍优势</td></tr>
+<tr><td>兼容性</td><td>硬件覆盖更广;部分 AMD 驱动可能出现纹理异常</td><td>需要 D3D12 支持;部分 NVIDIA 驱动组合存在挂起/崩溃风险</td></tr>
+<tr><td>选择依据</td><td>默认先试;也适合作为现代后端的排障基准</td><td>D3D11 有性能或显示问题时试,尤其可作为 AMD 纹理问题的替代路径</td></tr>
+</tbody>
+</table>
+
+<p>dgVoodoo 作者的<a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">官方说明</a>也没有把 D3D12 视为无条件升级:其自动选择在 x86/x64 上不会默认选 D3D12,并记录了特定 NVIDIA 与 AMD 驱动的相反兼容性表现。因此更专业的选择方法是<strong>以正确渲染和稳定帧时间为准,而不是按 API 数字排序</strong>。</p>
+
+<p><strong>最简单的选择顺序:</strong>先试 <strong>Direct3D 11 (2.87.1)</strong>;画面和运行都正常就无需换。若有纹理错误、卡顿或冻结,试同版本 D3D12;若两者都有问题,再分别试较旧 dgVoodoo、D3D9 或 Vulkan,每次只改变一个变量。</p>
 
 <p>下拉菜单中括号内的数字,是该后端使用的<strong>翻译层版本号</strong>:</p>
 <ul>
-<li><code>2.79.3</code> / <code>2.87.1</code> — <a href="http://dege.freeweb.hu/dgVoodoo2/dgVoodoo2/" target="_blank">dgVoodoo2</a> 版本(把旧 D3D 转 D3D11/12)</li>
-<li><code>2.3.1</code> / <code>2.7.1</code> — <a href="https://github.com/doitsujin/dxvk" target="_blank">DXVK</a> 版本(把 D3D 转 Vulkan)</li>
+<li><code>2.79.3</code> / <code>2.87.1</code> — <a href="https://github.com/dege-diosg/dgVoodoo2/releases" target="_blank" rel="noopener">dgVoodoo2</a> 版本(Ephinea 使用其 x86 D3D9 包装库输出到 D3D11/12)</li>
+<li><code>2.3.1</code> / <code>2.7.1</code> — <a href="https://github.com/doitsujin/dxvk" target="_blank" rel="noopener">DXVK</a> 版本(Ephinea 使用其 x32 D3D9 包装库输出到 Vulkan)</li>
 </ul>
 
 <h3>各后端含义</h3>
@@ -140,56 +232,57 @@
 <h3>Direct3D 8</h3>
 <p>游戏的<strong>原版渲染</strong>。不经过任何翻译层,直接调用系统 D3D8。最接近 2003 年原版表现。</p>
 <ul>
-<li>✅ 老硬件/老系统(Win XP / Win 7)兼容性最好</li>
+<li>✅ 变量最少,适合确认游戏本体是否能正常运行</li>
 <li>⚠ 在 Win10/11 + 高刷新率 + 多显示器下,容易出现闪退、撕裂、Alt-Tab 黑屏</li>
-<li>⚠ 部分新显卡驱动已经不再优化 D3D8 路径</li>
+<li>⚠ 不具备 D3D9 及以上路径的完整高级 AA 组合;旧式 Device Lost 行为仍然存在</li>
 </ul>
 
 <h3>Direct3D 9</h3>
 <p>用一个轻量包装把 D3D8 调用转成 <strong>D3D9</strong>。开销极小,行为接近原版,稳定性略好于纯 D3D8。</p>
 <ul>
 <li>✅ 兼容性广,几乎所有支持 D3D9 的显卡都能跑</li>
-<li>✅ 闪退倾向比 D3D8 低</li>
+<li>✅ 支持 Ephinea 的 SSAA、SMAA、MSAA、HSAA 等高级 AA 选项</li>
 <li>⚠ 仍依赖系统的 D3D9 驱动质量</li>
+<li>⚠ 官方更新记录指出 MSAA/HSAA 在 D3D9 路径可能破坏部分反射;遇到问题改用 SMAA 或 SSAA</li>
 </ul>
 
 <h3>Direct3D 9on12</h3>
 <p>微软官方的 <strong>D3D9-on-D3D12</strong> 转译层。先把 D3D8 调用走 D3D9,再由 Windows 内置的 <code>d3d9on12.dll</code> 转译为 D3D12 提交给显卡。</p>
 <ul>
-<li>✅ 在没有原生 D3D9 驱动的环境(部分 ARM Windows、云游戏机、虚拟机)能跑</li>
-<li>⚠ 性能通常比直接 D3D9 略差,一般情况下没必要</li>
-<li>⚠ 需要 Windows 10 1803 及以上</li>
+<li>✅ 让系统把 D3D9 工作负载映射到 D3D12,主要是平台兼容路径</li>
+<li>⚠ 它仍保留 Ephinea D3D9 前端的行为,不是 dgVoodoo 的 D3D12 模式</li>
+<li>⚠ Ephinea 官方测试指出它仍可能在 UAC、安全桌面或锁屏后发生 Device Lost,普通电脑不建议优先选择</li>
 </ul>
 
 <h3>Direct3D 11 (2.79.3 / 2.87.1)</h3>
-<p>使用 <strong>dgVoodoo2</strong> 把 D3D8 转译到 <strong>D3D11</strong>。dgVoodoo 是著名的老游戏图形包装器,对 PSOBB 兼容性成熟。</p>
+<p>使用 <strong>dgVoodoo2</strong> 接收 Ephinea 的 D3D9 调用,再输出到 <strong>D3D11</strong>。旧式固定功能状态会被包装器模拟为现代 GPU 资源和 Shader。</p>
 <ul>
-<li>✅ 修复了原版在窗口/无边框/高分辨率下的多数渲染问题</li>
-<li>✅ 在 N 卡 / A 卡 / Intel 上表现都比较一致</li>
-<li>✅ Alt-Tab、Win 键不易丢失渲染上下文</li>
+<li>✅ 可避开原生 D3D8/9 的 Device Lost 问题,窗口化、Alt-Tab 和现代桌面合成通常更可靠</li>
+<li>✅ 可在 Auto、Discard、Flip 等呈现模型之间选择</li>
+<li>📌 <strong>默认先试</strong>:硬件覆盖较广,也是与 D3D12 对照排障的合理起点</li>
 <li>📌 <strong>2.79.3</strong> 是较老的稳定版,<strong>2.87.1</strong> 是较新的版本,功能更全但偶有新 bug</li>
 </ul>
 
 <h3>Direct3D 12 (2.79.3 / 2.87.1)</h3>
 <p>同上,但 dgVoodoo2 输出到更现代的 <strong>D3D12</strong>。</p>
 <ul>
-<li>✅ 在新显卡上 CPU 开销略低,帧时间更平滑</li>
-<li>⚠ 极个别旧显卡(GTX 700 系及更早)不支持 D3D12,会启动失败</li>
-<li>⚠ 部分驱动版本下可能比 D3D11 更不稳定,出问题时优先回退到 D3D11</li>
+<li>✅ 在部分新显卡和驱动组合上可能降低 CPU/驱动开销</li>
+<li>📌 <strong>画质不会高于 D3D11</strong>,PSOBB 中通常也看不到明显帧率提升</li>
+<li>📌 始终使用 Flip Discard 呈现;"dgVoodoo Model"的其他选择不能把它变成传统 BitBlt 模型</li>
+<li>⚠ 对驱动和包装器同步实现更敏感;若出现 GPU 挂起、冻结或叠加层冲突,先试 D3D11</li>
 </ul>
 
 <h3>Vulkan (2.3.1 / 2.7.1)</h3>
-<p>使用 <strong>DXVK</strong> 把 D3D 调用转译到 <strong>Vulkan</strong>。DXVK 是 Linux 上 Steam Proton 跑 Windows 游戏的核心组件,在 Windows 上同样可用。</p>
+<p>使用 <strong>DXVK</strong> 把 Ephinea 的 D3D9 调用转译到 <strong>Vulkan</strong>。它走的是另一套驱动编译、资源管理和呈现路径,适合验证问题是否只存在于 Direct3D 驱动栈。</p>
 <ul>
-<li>✅ 多线程命令提交,CPU 占用低</li>
-<li>✅ 对 A 卡 / 部分 Intel 新驱动友好</li>
-<li>⚠ 首次加载着色器时会有短暂卡顿(着色器编译缓存,之后不再卡)</li>
-<li>⚠ 极少数 N 卡老驱动(<470)Vulkan 支持不完整</li>
+<li>✅ 某些硬件上可改善 D3D 路径特有的卡顿或显示错误</li>
+<li>⚠ Vulkan Shader/管线首次创建时可能产生短时卡顿;具体程度取决于驱动和 DXVK 版本</li>
+<li>⚠ <a href="https://github.com/doitsujin/dxvk/wiki/Windows" target="_blank" rel="noopener">DXVK 官方不正式支持 Windows</a>;录屏、Overlay、RTSS 等注入软件也可能与其冲突</li>
 <li>📌 <strong>2.3.1</strong> 是较老的稳定版,<strong>2.7.1</strong> 是较新版本</li>
 </ul>
 
 <h3>Direct3D 11 / 12 / Vulkan (Custom)</h3>
-<p>使用<strong>用户自定义</strong>的 dgVoodoo 或 DXVK 版本。登陆器会从游戏目录中指定的文件夹读取你自己放进去的 <code>.dll</code>(<code>D3D8.dll</code> / <code>d3d9.dll</code> / <code>dxgi.dll</code> 等)。</p>
+<p>使用<strong>用户自定义</strong>的 dgVoodoo 或 DXVK 版本。按 Ephinea 官方约定,在游戏目录的 <code>dxdg</code> 文件夹放置 x86 <code>dgVoodoo_d3d9.dll</code> 或 x32 <code>dxvk_d3d9.dll</code>。</p>
 <ul>
 <li>需要自己下载并放置正确版本的文件,适合高级用户测试新版翻译层</li>
 <li>放置错误会导致启动黑屏或闪退</li>
@@ -199,72 +292,260 @@
 
 <h2 id="aa">抗锯齿 (Anti-Aliasing)</h2>
 
-<p>用来消除画面边缘的锯齿。PSOBB 是低多边形老游戏,锯齿在高分屏下尤其明显。下拉菜单里有四种基础算法和它们的组合:</p>
+<p>锯齿不是单一现象。PSOBB 中至少会看到三类:多边形轮廓的<strong>几何锯齿</strong>、远处细纹理/栅栏随镜头闪动的<strong>纹理与透明测试走样</strong>,以及低分辨率渲染后放大产生的<strong>整体采样不足</strong>。不同 AA 算法处理的对象并不相同,所以不能只比较名称后的 2x/4x。</p>
+
+<h3>AA 由哪一层实现?</h3>
+
+<p>Ephinea 的 AA 不是 D3D11、D3D12 或 Vulkan 自动附送的画质功能。客户端在渲染目标创建和最终图像处理阶段实现它:MSAA 改变渲染目标的多重采样参数;SSAA 提高内部渲染尺寸后缩小;SMAA 在场景完成后执行空间后处理。Ephinea 开发者对其实现的<a href="https://www.pioneer2.net/community/threads/game-update-for-august-17th-2022-8-17-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.23942/" target="_blank" rel="noopener">说明</a>也明确了这个顺序。</p>
+
+<table>
+<thead><tr><th>后端</th><th>高级 AA</th><th>需要注意</th></tr></thead>
+<tbody>
+<tr><td>D3D8</td><td>不是完整支持路径</td><td>用于无增强的原版基准最合适</td></tr>
+<tr><td>D3D9</td><td><strong>支持</strong></td><td>MSAA/HSAA 可能造成部分场景反射异常</td></tr>
+<tr><td>D3D9on12</td><td><strong>支持</strong></td><td>继承 D3D9 前端特征,不是 dgVoodoo D3D12</td></tr>
+<tr><td>D3D11 / D3D12</td><td><strong>支持</strong></td><td>经 dgVoodoo 时,官方记录显示 MSAA/HSAA 的反射兼容性更好</td></tr>
+<tr><td>Vulkan</td><td><strong>支持</strong></td><td>仍由 Ephinea 生成 AA 结果,DXVK 负责把 D3D9 工作负载翻译到 Vulkan</td></tr>
+</tbody>
+</table>
 
 <h3>基础算法</h3>
 <ul>
 <li><strong>None</strong> — 关闭抗锯齿。性能最好,边缘最锐利但有齿。</li>
-<li><strong>MSAA 2x / 4x</strong> — Multi-Sample AA。<strong>仅对几何边缘</strong>多次采样,GPU 硬件加速。开销小,效果只覆盖物体轮廓,不影响纹理/透明像素。</li>
-<li><strong>SSAA 2x / 4x</strong> — Super-Sample AA。先把整个画面渲染到 2x/4x 倍分辨率再缩回来。<strong>全画面</strong>抗锯齿,效果最好,但开销最大(4x SSAA ≈ 4 倍像素)。</li>
-<li><strong>SMAA Low / Medium / High / Ultra</strong> — Subpixel Morphological AA。<strong>后期处理</strong>抗锯齿,在已渲染的画面上识别边缘并平滑,几乎不耗 GPU。Low → Ultra 是 SMAA 自带的质量预设。代价是画面会略微变软。</li>
-<li><strong>HSAA 2x / 4x</strong> — Hybrid AA。MSAA + SSAA 混合,质量介于二者之间。</li>
+<li><strong>MSAA 2x / 4x</strong> — Multi-Sample AA。在一个像素内用多个位置计算三角形覆盖率和深度/模板结果,通常共享一次像素着色结果。它主要平滑<strong>几何轮廓</strong>,比 SSAA 便宜,但不能解决纹理内部闪烁、Shader aliasing,对 Alpha Test 形成的树叶/栅栏边缘也往往无能为力。微软的 <a href="https://learn.microsoft.com/en-us/windows/win32/direct3d11/d3d10-graphics-programming-guide-rasterizer-stage-rules" target="_blank" rel="noopener">MSAA 光栅化规则</a>同样明确指出它不消除 surface aliasing。</li>
+<li><strong>SSAA 2x / 4x</strong> — Super-Sample AA。Ephinea 将<strong>宽和高分别</strong>放大 2 或 4 倍渲染,再用线性过滤缩回输出分辨率。它能同时改善几何边缘、纹理细节与部分透明边缘,效果最全面,但会显著增加像素着色、显存与带宽成本。</li>
+<li><strong>SMAA Low / Medium / High / Ultra</strong> — Subpixel Morphological AA。最终场景完成后,根据颜色/亮度边缘搜索形态并混合邻近像素。它对几何边缘和部分 Alpha Test 边缘有效,成本相对低,但没有额外的几何或时间采样信息,因此无法真正恢复亚像素细节,也不能可靠消除镜头移动时的纹理闪烁。质量越高,搜索范围和处理精度越高;副作用是细字、HUD 或纹理可能略软。</li>
+<li><strong>HSAA 2x / 4x</strong> — Hybrid-Sampling AA。Ephinea 中指<strong>同倍率 SSAA + 同倍率 MSAA</strong>,不是介于两者之间的廉价折中。它同时提高内部分辨率与每像素覆盖样本,质量上限高,但也是最重的选项之一。</li>
 </ul>
 
+<h3>SSAA / HSAA 的倍率到底有多大?</h3>
+
+<p>这里的倍率作用于横向和纵向。设输出尺寸为 <code>W × H</code>,则 SSAA Nx 的内部尺寸为 <code>(N·W) × (N·H)</code>,像素数是 <code>N²</code> 倍。不要把 SSAA 4x 误解成只渲染 4 倍像素。</p>
+
+<table>
+<thead><tr><th>1080p 输出示例</th><th>内部分辨率</th><th>内部像素数</th><th>相对 1080p</th></tr></thead>
+<tbody>
+<tr><td>无 SSAA</td><td>1920 × 1080</td><td>约 207 万</td><td>1×</td></tr>
+<tr><td>SSAA 2x</td><td>3840 × 2160</td><td>约 829 万</td><td><strong>4× 像素</strong></td></tr>
+<tr><td>SSAA 4x</td><td>7680 × 4320</td><td>约 3318 万</td><td><strong>16× 像素</strong></td></tr>
+</tbody>
+</table>
+
+<p>HSAA 还会在这个高分辨率渲染目标上叠加 MSAA 样本。例如 HSAA 4x 可近似理解为 16 倍像素着色规模上再使用 4 个覆盖/深度样本;总耗时不会严格等于 64 倍,但渲染目标、深度缓冲、带宽和显存压力可能非常高。即使 PSOBB 很老,4K 输出再开 4x 也可能启动失败、掉帧或耗尽包装器配置的 VRAM。</p>
+
 <h3>组合 (X + SMAA)</h3>
-<p>把硬件采样型(MSAA / SSAA / HSAA)和后期处理型(SMAA)叠加,补偿各自的短板:</p>
+<p>SMAA 位于场景完成后的后处理阶段,所以可以继续处理 MSAA、SSAA 或 HSAA resolve/downsample 之后仍残留的高对比边缘:</p>
 <ul>
-<li><strong>MSAA + SMAA</strong> — 几何边缘走 MSAA 硬件采样,其余靠 SMAA 后处理。性价比高,默认推荐。</li>
-<li><strong>SSAA + SMAA</strong> — 最高画质,但 4x SSAA + SMAA 开销很大,核显或老卡谨慎。</li>
-<li><strong>HSAA + SMAA</strong> — 折中方案。</li>
+<li><strong>MSAA + SMAA</strong> — MSAA 提供真实几何覆盖样本,SMAA 清理剩余可识别边缘。通常是质量/成本较均衡的组合。</li>
+<li><strong>SSAA + SMAA</strong> — SSAA 先抑制高频细节和亚像素走样,SMAA 再处理残留边缘。质量较高,但 SMAA 无法抵消 SSAA 本身的巨大像素成本。</li>
+<li><strong>HSAA + SMAA</strong> — SSAA、MSAA、SMAA 三种机制叠加,属于极限方案,不是日常推荐的"折中"。</li>
 </ul>
 
 <h3>选择建议</h3>
 <table>
 <thead><tr><th>需求</th><th>推荐</th></tr></thead>
 <tbody>
-<tr><td>性能优先 / 核显</td><td><strong>SMAA Medium</strong> 或 <strong>MSAA 2x</strong></td></tr>
-<tr><td>画质均衡(默认推荐)</td><td><strong>MSAA 4x + SMAA</strong></td></tr>
-<tr><td>画质优先</td><td><strong>SSAA 2x + SMAA</strong></td></tr>
-<tr><td>画质拉满,性能无忧</td><td><strong>SSAA 4x + SMAA</strong></td></tr>
+<tr><td>性能优先 / 核显</td><td><strong>SMAA Medium/High</strong>;成本低且不增加渲染分辨率</td></tr>
+<tr><td>均衡通用</td><td><strong>SMAA Ultra</strong> 或 <strong>MSAA 2x + SMAA</strong></td></tr>
+<tr><td>减少纹理闪烁 / 画质优先</td><td><strong>SSAA 2x</strong> 或 <strong>SSAA 2x + SMAA</strong></td></tr>
+<tr><td>D3D9 反射异常</td><td>避开 MSAA/HSAA,改用 <strong>SMAA Ultra</strong> 或 <strong>SSAA 2x</strong></td></tr>
+<tr><td>4K 输出</td><td>先用 <strong>SMAA Ultra</strong>;通常没有必要再开 SSAA 4x</td></tr>
+<tr><td>极限截图 / 充足显存</td><td><strong>SSAA 4x</strong> 或 HSAA;逐级测试,不建议直接拉满</td></tr>
 </tbody>
 </table>
 
 <hr>
 
+<h2 id="af">各向异性过滤 (Anisotropic Filtering)</h2>
+
+<p>AF 解决的是<strong>斜视角纹理变糊</strong>,不是模型轮廓锯齿。当地板、墙面或道路朝远处延伸时,一个屏幕像素在纹理上覆盖的区域会变成长条而不是正方形。普通双线性/三线性过滤用近似正方形的采样足迹,容易选择过低的 mipmap 并丢失远处细节;AF 沿长轴增加采样,让斜面纹理保持更清晰。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 285" role="img" aria-labelledby="af-title af-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="af-title">普通纹理过滤与各向异性过滤的采样足迹对比</title>
+  <desc id="af-desc">透视地面上的屏幕像素映射成狭长纹理区域。普通过滤以小方形近似而变糊,各向异性过滤沿长轴使用多个样本。</desc>
+  <style>
+    .af-panel{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .af-grid{stroke:#64748b;stroke-width:1;opacity:.65}
+    .af-head{fill:#f8fafc;font-size:16px;font-weight:700}
+    .af-text{fill:#cbd5e1;font-size:14px}
+    .af-note{fill:#94a3b8;font-size:12px}
+    .af-foot{fill:rgba(0,212,255,.16);stroke:#00d4ff;stroke-width:2}
+    .af-sample{fill:#a78bfa;stroke:#ede9fe;stroke-width:1}
+  </style>
+  <rect class="af-panel" x="20" y="18" width="425" height="225" rx="10"/>
+  <rect class="af-panel" x="475" y="18" width="425" height="225" rx="10"/>
+  <text class="af-head" x="232" y="48" text-anchor="middle">普通双线性 / 三线性</text>
+  <text class="af-head" x="687" y="48" text-anchor="middle">各向异性过滤</text>
+  <g class="af-grid">
+    <path d="M55 208 L180 70 M115 208 L215 70 M175 208 L250 70 M235 208 L285 70 M295 208 L320 70 M355 208 L355 70 M415 208 L390 70"/>
+    <path d="M55 208 H415 M75 180 H405 M95 154 H400 M117 130 H395 M140 108 H390 M163 88 H388 M180 70 H390"/>
+    <path d="M510 208 L635 70 M570 208 L670 70 M630 208 L705 70 M690 208 L740 70 M750 208 L775 70 M810 208 L810 70 M870 208 L845 70"/>
+    <path d="M510 208 H870 M530 180 H860 M550 154 H855 M572 130 H850 M595 108 H845 M618 88 H843 M635 70 H845"/>
+  </g>
+  <rect class="af-foot" x="203" y="129" width="60" height="60" rx="5"/>
+  <ellipse class="af-foot" cx="687" cy="157" rx="88" ry="22" transform="rotate(-15 687 157)"/>
+  <circle class="af-sample" cx="620" cy="175" r="6"/><circle class="af-sample" cx="648" cy="167" r="6"/>
+  <circle class="af-sample" cx="678" cy="159" r="6"/><circle class="af-sample" cx="708" cy="151" r="6"/>
+  <circle class="af-sample" cx="738" cy="143" r="6"/><circle class="af-sample" cx="765" cy="136" r="6"/>
+  <text class="af-text" x="232" y="229" text-anchor="middle">方形近似 → 远处容易过度模糊</text>
+  <text class="af-text" x="687" y="229" text-anchor="middle">沿长轴采样 → 保留斜面细节</text>
+  <text class="af-note" x="20" y="272">AF 处理纹理采样足迹;AA 处理像素覆盖或最终边缘,两者不能互相替代</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">透视越倾斜,纹理足迹越狭长,AF 的收益越明显</figcaption>
+</figure>
+
+<ul>
+<li><strong>2x / 4x:</strong>较低成本改善地板和墙面的斜角清晰度,适合老 GPU 或核显。</li>
+<li><strong>8x:</strong>通常已覆盖绝大多数可见收益,适合作为通用设置。</li>
+<li><strong>16x:</strong>最大化倾斜纹理清晰度;现代独显上的额外成本通常不高,但仍会增加纹理采样和带宽压力。</li>
+</ul>
+
+<h3>AF 为什么有时反而更闪?</h3>
+
+<p>AF 会保留更多高频纹理细节。如果原版或 Mod 纹理缺少正确的 mipmap、含有过强锐化/细线,更清晰的远景也可能带来闪烁、摩尔纹和视觉噪声。此时问题不一定是 AF 实现错误:先把 16x 降到 8x/4x,或换用包含正确 mipmap 的纹理;SSAA 也能进一步压制这种走样。</p>
+
+<p><strong>建议:</strong>原版纹理和现代 GPU 可从 <strong>AF 16x</strong> 开始;若使用自定义高清纹理后远处明显闪烁,降到 8x/4x 并检查纹理包 mipmap。AF 不会消除角色轮廓锯齿,仍需搭配合适的 AA。</p>
+
+<hr>
+
 <h2 id="swap">dgVoodoo Model (交换链模式)</h2>
 
-<p>这一项只在选择了 <strong>Direct3D 11 / 12</strong> 后端 (即走 dgVoodoo) 时生效,控制 dgVoodoo 使用的 <strong>DXGI 交换链(Swap Chain)模式</strong>。简单说就是"画面是怎么从显卡送到屏幕的"。</p>
+<p>这一项只与 <strong>dgVoodoo</strong> 路径有关,控制 DXGI 交换链的 Present 模型,即渲染完成的后台缓冲如何交给 Windows 桌面合成器或显示器。它影响延迟、窗口兼容性、Alt-Tab 和捕获方式,<strong>不改变场景本身的采样画质</strong>。</p>
+
+<p><strong>重要限制:</strong>这些模式主要用于 D3D11 输出。根据 dgVoodoo 官方说明,D3D12 输出必须使用 <strong>Flip Discard</strong>;即使登陆器保留了其他选择,D3D12 也不能退回传统 BitBlt 交换链。</p>
 
 <ul>
 <li><strong>Auto</strong> — 由 dgVoodoo 根据后端和窗口模式自动选,默认推荐。</li>
 <li><strong>Discard</strong> — 传统 BitBlt 模型,显示新一帧时<strong>丢弃</strong>旧帧。Win 7 / 旧驱动兼容性最好,但不能利用 Win10+ 的 DWM 优化路径。</li>
 <li><strong>Sequential</strong> — 传统 BitBlt 模型,但保留之前几帧。一般用得很少。</li>
-<li><strong>Flip Discard</strong> — 现代 Flip 模型 + 丢弃旧帧。Win10/11 上<strong>开销最低、延迟最小</strong>,DWM 直接 Flip 显示。</li>
+<li><strong>Flip Discard</strong> — 现代 Flip 模型 + 丢弃缓冲内容。减少不必要的桌面拷贝并允许现代呈现优化;实际延迟仍受 V-Sync、窗口模式、驱动队列和 DWM 调度共同影响。</li>
 <li><strong>Flip Sequential</strong> — Flip 模型,但保留旧帧。比 Flip Discard 多一点开销。</li>
 </ul>
 
 <p><strong>建议:</strong></p>
 <ul>
-<li>大多数情况选 <strong>Auto</strong> 即可</li>
-<li>Win10/11 想要最低延迟,可手动选 <strong>Flip Discard</strong></li>
-<li>切到 Flip 后录屏 / 直播软件捕获不到画面,改回 <strong>Discard</strong></li>
-<li>Alt-Tab 后画面异常,试 <strong>Discard</strong></li>
+<li>D3D11 大多数情况选 <strong>Auto</strong> 即可;只有捕获、Alt-Tab 或窗口合成异常时才逐项测试</li>
+<li>D3D11 切到 Flip 后录屏软件捕获不到画面,可改回 <strong>Discard</strong></li>
+<li>D3D12 出现呈现或捕获问题时,切换 Model 通常无效;应改用 <strong>D3D11 + Auto/Discard</strong></li>
 </ul>
+
+<hr>
+
+<h2 id="effects-pipeline">画面效果在渲染管线中的位置</h2>
+
+<p>下面是<strong>概念上的数据依赖图</strong>,用于理解每种设置处理的对象,不表示 Ephinea 源码中绝对固定的逐条执行顺序。最重要的区别是:MSAA/SSAA/HSAA 会改变场景如何被采样,而 SSAO、Bloom、DoF、Cel Shading、Tonemapping 和 SMAA 都需要读取已经产生的图像或深度信息。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 390" role="img" aria-labelledby="fx-title fx-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="fx-title">Ephinea 画面效果概念管线</title>
+  <desc id="fx-desc">从游戏几何和纹理开始,经过光栅化与采样型抗锯齿生成颜色和深度缓冲,随后供环境光遮蔽、景深、泛光、卡通着色、色调映射和 SMAA 使用,最后由交换链呈现。</desc>
+  <defs>
+    <marker id="fx-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/></marker>
+    <filter id="fx-soft"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>
+  <style>
+    .fx-box{fill:rgba(0,212,255,.08);stroke:#00d4ff;stroke-width:2}
+    .fx-post{fill:rgba(167,139,250,.10);stroke:#a78bfa;stroke-width:2}
+    .fx-buffer{fill:rgba(96,165,250,.10);stroke:#60a5fa;stroke-width:2}
+    .fx-line{stroke:#00d4ff;stroke-width:2;fill:none;marker-end:url(#fx-arr)}
+    .fx-text{fill:#e2e8f0;font-size:14px}
+    .fx-head{fill:#f8fafc;font-size:15px;font-weight:700}
+    .fx-note{fill:#94a3b8;font-size:12px}
+  </style>
+  <rect class="fx-box" x="20" y="128" width="145" height="78" rx="10"/>
+  <text class="fx-head" x="92" y="154" text-anchor="middle">场景输入</text>
+  <text class="fx-text" x="92" y="177" text-anchor="middle">几何 · 纹理 · 光照</text>
+  <text class="fx-note" x="92" y="196" text-anchor="middle">后端不会增加原始细节</text>
+
+  <path class="fx-line" d="M165 167 H205"/>
+  <rect class="fx-box" x="210" y="112" width="180" height="110" rx="10"/>
+  <text class="fx-head" x="300" y="140" text-anchor="middle">光栅化 / 场景采样</text>
+  <text class="fx-text" x="300" y="164" text-anchor="middle">MSAA:覆盖样本</text>
+  <text class="fx-text" x="300" y="186" text-anchor="middle">SSAA:提高内部尺寸</text>
+  <text class="fx-text" x="300" y="208" text-anchor="middle">HSAA:两者叠加</text>
+
+  <path class="fx-line" d="M390 167 H430"/>
+  <rect class="fx-buffer" x="435" y="112" width="145" height="110" rx="10"/>
+  <text class="fx-head" x="507" y="140" text-anchor="middle">场景缓冲</text>
+  <text class="fx-text" x="507" y="168" text-anchor="middle">Color 颜色</text>
+  <text class="fx-text" x="507" y="192" text-anchor="middle">Depth 深度</text>
+  <text class="fx-note" x="507" y="211" text-anchor="middle">后处理的主要输入</text>
+
+  <path class="fx-line" d="M507 112 V73 H630"/>
+  <rect class="fx-post" x="635" y="28" width="130" height="78" rx="10"/>
+  <text class="fx-head" x="700" y="55" text-anchor="middle">深度相关</text>
+  <text class="fx-text" x="700" y="78" text-anchor="middle">SSAO · DoF</text>
+  <text class="fx-note" x="700" y="97" text-anchor="middle">屏幕空间有限信息</text>
+
+  <path class="fx-line" d="M580 167 H630"/>
+  <rect class="fx-post" x="635" y="128" width="130" height="78" rx="10"/>
+  <text class="fx-head" x="700" y="155" text-anchor="middle">颜色相关</text>
+  <text class="fx-text" x="700" y="178" text-anchor="middle">Bloom · Tone</text>
+  <text class="fx-note" x="700" y="197" text-anchor="middle">亮度与色彩重映射</text>
+
+  <path class="fx-line" d="M507 222 V273 H630"/>
+  <rect class="fx-post" x="635" y="234" width="130" height="78" rx="10"/>
+  <text class="fx-head" x="700" y="261" text-anchor="middle">边缘相关</text>
+  <text class="fx-text" x="700" y="284" text-anchor="middle">Cel · SMAA</text>
+  <text class="fx-note" x="700" y="303" text-anchor="middle">轮廓检测与混合</text>
+
+  <path class="fx-line" d="M765 67 H795 V167 H820"/>
+  <path class="fx-line" d="M765 167 H820"/>
+  <path class="fx-line" d="M765 273 H795 V167 H820"/>
+  <rect class="fx-box" x="825" y="128" width="75" height="78" rx="10"/>
+  <text class="fx-head" x="862" y="155" text-anchor="middle">呈现</text>
+  <text class="fx-text" x="862" y="178" text-anchor="middle">Swap</text>
+  <text class="fx-note" x="862" y="197" text-anchor="middle">送到屏幕</text>
+
+  <text class="fx-note" x="20" y="350">采样型 AA 改变场景生成方式 · 后处理效果读取有限的 Color/Depth 信息 · 交换链只负责呈现,不提高画质</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">概念数据流:同属"画面设置",但发生阶段、可见收益和失真类型完全不同</figcaption>
+</figure>
+
+<h3>普通玩家效果速查</h3>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>效果</th><th>最明显的变化</th><th>主要代价 / 副作用</th><th>一句话建议</th></tr></thead>
+<tbody>
+<tr><td>SSAO</td><td>墙角、脚底、物体接缝更有接触阴影</td><td>边缘光晕、噪声;分辨率越高越耗 GPU</td><td>喜欢立体感开 Medium,原版党关闭</td></tr>
+<tr><td>Bloom</td><td>高亮特效产生柔和光晕</td><td>过曝、发灰、细节变糊</td><td>按口味开,不要把它当作 HDR</td></tr>
+<tr><td>Depth of Field</td><td>非焦点区域模糊,更有镜头感</td><td>远处辨识度下降;透明物体/HUD 边缘可能异常</td><td>战斗清晰度优先就关</td></tr>
+<tr><td>Cel Shading</td><td>轮廓更明显,画面偏动画风格</td><td>细节边缘可能被误判或描得过重</td><td>纯审美选项</td></tr>
+<tr><td>Tonemapping</td><td>改变亮度、对比度和颜色响应</td><td>暗部压黑或高光丢失</td><td>先单独开,确认颜色合口味再叠加 Bloom</td></tr>
+<tr><td>Motion Blur</td><td>运动与镜头变化产生拖尾</td><td>动态清晰度降低,可能引发眩晕</td><td>大多数玩家可关闭</td></tr>
+</tbody>
+</table>
+</div>
 
 <hr>
 
 <h2 id="ao">环境光遮蔽 (Ambient Occlusion)</h2>
 
-<p>SSAO (Screen-Space Ambient Occlusion) 是一种<strong>后期处理</strong>效果,在物体接缝、墙角、角色脚下等被遮挡的区域加上柔和阴影,让画面更有体积感。原版 PSOBB 没有这个效果。</p>
+<p>SSAO (Screen-Space Ambient Occlusion) 是一种<strong>屏幕空间接触遮蔽近似</strong>。它从当前帧的深度缓冲(实现也可能结合法线信息)重建相邻表面的空间关系,在墙角、物体接缝和角色脚底等光线较难到达的位置生成低频暗化。</p>
+
+<p><strong>它不是动态阴影,也不是全局光照。</strong>真正的阴影要知道光源、遮挡物和被投影表面的关系;SSAO 只知道镜头当前看见的有限深度信息,因此只能提供"物体似乎更贴地、更有体积"的视觉线索。</p>
 
 <ul>
 <li><strong>Disabled</strong> — 关闭。最接近原版观感,性能最好。</li>
-<li><strong>Low</strong> — 低采样数,阴影较粗糙,几乎没有性能影响。</li>
-<li><strong>Medium</strong> — 中等采样,效果和性能均衡。</li>
-<li><strong>High</strong> — 高采样,阴影更细腻平滑,推荐配置。</li>
+<li><strong>Low</strong> — 更适合低分辨率或性能有限设备;采样噪声、条带或边缘变化可能更明显。</li>
+<li><strong>Medium</strong> — 接触感与成本较均衡,适合作为普通玩家起点。</li>
+<li><strong>High</strong> — 提高采样/处理质量,阴影通常更稳定细腻,但成本会随输出分辨率显著增加。</li>
 </ul>
 
-<p><strong>建议:</strong>现代显卡直接 <strong>High</strong>;核显或想完全保留原版味道选 <strong>Disabled</strong>。</p>
+<h3>高阶玩家需要知道的局限</h3>
+<ul>
+<li><strong>屏幕边缘泄漏:</strong>采样范围超出屏幕时没有场景数据,遮蔽可能突然变淡或消失。</li>
+<li><strong>遮挡信息不完整:</strong>镜头外和被前景完全挡住的物体不存在于当前深度缓冲,无法贡献正确遮蔽。</li>
+<li><strong>深度不连续光晕:</strong>前后景交界处的巨大深度差可能形成不自然的暗边或亮边。</li>
+<li><strong>透明与粒子:</strong>透明物体、特效和 HUD 往往不按普通实体写入深度,可能不参与或被错误覆盖。</li>
+<li><strong>与 AA 的关系:</strong>SSAO/DoF 需要正确读取或解析多采样深度/颜色缓冲。Ephinea 2022-09-06 更新已专门修复它们与 MSAA/HSAA 的组合,因此旧客户端出现问题应先完整更新。</li>
+</ul>
+
+<p><strong>建议:</strong>先用 <strong>Medium</strong> 观察角色脚底、墙角和屏幕边缘;若没有光晕、噪点或掉帧再升 High。想保留原版明快风格、追求敌人轮廓清晰或正在排查 Shader 崩溃时选 <strong>Disabled</strong>。</p>
 
 <hr>
 
@@ -274,27 +555,105 @@
 
 <ul>
 <li><strong>FAST STARTUP</strong> — 跳过游戏启动时的 SEGA / Sonic Team / SOFTDEC 等 logo 动画,直接进登录界面。</li>
-<li><strong>CLEAN CAPTURE</strong> — 录屏 / 直播友好模式,隐藏登陆器自身可能叠加在画面上的水印、调试覆盖层等,只保留游戏画面本身。</li>
-<li><strong>MOTION BLUR</strong> — 运动模糊。攻击挥刀、技能位移时画面有拖影。原版没有,启用后视觉更"现代",对动晕敏感者建议关闭。</li>
+<li><strong>CLEAN CAPTURE</strong> — 让游戏内置截图从场景渲染目标读取"干净"画面,因此不会包含 Lua Addons 等后叠加内容。它不是提升录屏编码质量的开关;第三方录屏是否能捕获仍取决于后端和交换链。</li>
+<li><strong>MOTION BLUR</strong> — 运动模糊。通过混合运动方向上的样本或累积相邻帧,模拟快门曝光期间的运动轨迹。它能让低帧率运动显得连续,代价是移动中细节和文字辨识度下降;PSOBB 固定 30 FPS 时拖尾会尤其明显,对动态清晰度或动晕敏感者建议关闭。</li>
 <li><strong>RARE DROP SFX</strong> — 稀有掉落提示音效。掉到稀有物品时播放额外提示音,刷宝时不易漏掉。</li>
 <li><strong>BANK SHORTCUTS</strong> — 仓库快捷键。开启后可在仓库界面用键盘快速存取/翻页,效率显著提升。</li>
 <li><strong>LARGE BANK WINDOW</strong> — 加大仓库窗口。一次显示更多物品,减少翻页次数。</li>
 </ul>
 
+<p><strong>截图兼容性:</strong>Ephinea 开发者明确说明 Clean Capture 不会包含 Addons;D3D12 的内置截图也无法捕获 Addons。若必须把插件 UI 一起截入,优先尝试 D3D8/9 且关闭 Clean Capture,或在 D3D11 下尝试兼容的 Flip 呈现模式;也可以直接用系统/OBS 的窗口捕获。</p>
+
 <hr>
 
 <h2 id="shaders">Shaders (着色器)</h2>
 
-<p>这组是<strong>画面后期效果开关</strong>,绿色 = 开启,灰色 = 关闭。开启都会有一定 GPU 开销。</p>
+<p>这组是基于最终颜色、深度或边缘信息的<strong>屏幕空间后处理</strong>,绿色 = 开启,灰色 = 关闭。它们不增加模型或贴图细节,而是重新解释已经渲染出的像素。多个效果叠加时,成本和伪影也会叠加,最终观感还会受执行顺序影响。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 430" role="img" aria-labelledby="shader-title shader-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="shader-title">后处理效果概念对比</title>
+  <desc id="shader-desc">五个抽象示意格分别说明环境光遮蔽压暗接触区域,泛光扩散高亮,景深模糊远景,卡通着色强化轮廓,色调映射重排亮度。</desc>
+  <defs>
+    <filter id="blur-bg"><feGaussianBlur stdDeviation="7"/></filter>
+    <filter id="bloom-glow"><feGaussianBlur stdDeviation="12"/></filter>
+    <linearGradient id="tone-old" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#111827"/><stop offset=".55" stop-color="#64748b"/><stop offset="1" stop-color="#f8fafc"/></linearGradient>
+    <linearGradient id="tone-new" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#020617"/><stop offset=".55" stop-color="#0ea5e9"/><stop offset="1" stop-color="#fef08a"/></linearGradient>
+  </defs>
+  <style>
+    .s-panel{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .s-title{fill:#f8fafc;font-size:15px;font-weight:700}
+    .s-label{fill:#cbd5e1;font-size:13px}
+    .s-note{fill:#94a3b8;font-size:12px}
+    .s-object{fill:#60a5fa;stroke:#dbeafe;stroke-width:1.5}
+    .s-ground{stroke:#64748b;stroke-width:3}
+  </style>
+
+  <rect class="s-panel" x="10" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="96" y="61" text-anchor="middle">SSAO</text>
+  <line class="s-ground" x1="30" y1="273" x2="162" y2="273"/>
+  <ellipse cx="96" cy="267" rx="54" ry="14" fill="#020617" opacity=".60" filter="url(#blur-bg)"/>
+  <rect class="s-object" x="66" y="153" width="60" height="118" rx="8"/>
+  <text class="s-label" x="96" y="304" text-anchor="middle">接触处变暗</text>
+  <text class="s-note" x="96" y="327" text-anchor="middle">增强贴地与体积感</text>
+
+  <rect class="s-panel" x="192" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="278" y="61" text-anchor="middle">Bloom</text>
+  <circle cx="278" cy="202" r="67" fill="#38bdf8" opacity=".30" filter="url(#bloom-glow)"/>
+  <circle cx="278" cy="202" r="40" fill="#7dd3fc" opacity=".65"/>
+  <circle cx="278" cy="202" r="18" fill="#f8fafc"/>
+  <text class="s-label" x="278" y="304" text-anchor="middle">高亮向外扩散</text>
+  <text class="s-note" x="278" y="327" text-anchor="middle">光感更强,细节可能发糊</text>
+
+  <rect class="s-panel" x="374" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="460" y="61" text-anchor="middle">Depth of Field</text>
+  <g filter="url(#blur-bg)" opacity=".6">
+    <circle cx="417" cy="138" r="26" fill="#a78bfa"/>
+    <rect x="495" y="105" width="30" height="75" fill="#34d399"/>
+  </g>
+  <rect class="s-object" x="431" y="176" width="58" height="95" rx="8"/>
+  <text class="s-label" x="460" y="304" text-anchor="middle">焦点清晰,远景模糊</text>
+  <text class="s-note" x="460" y="327" text-anchor="middle">镜头感换取辨识度</text>
+
+  <rect class="s-panel" x="556" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="642" y="61" text-anchor="middle">Cel Shading</text>
+  <path d="M600 263 L600 165 L642 105 L684 165 L684 263 Z" fill="#a78bfa" stroke="#020617" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M608 168 L642 119 L642 255 L608 255 Z" fill="#c4b5fd"/>
+  <text class="s-label" x="642" y="304" text-anchor="middle">轮廓与明暗分区增强</text>
+  <text class="s-note" x="642" y="327" text-anchor="middle">强调动画化造型</text>
+
+  <rect class="s-panel" x="738" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="824" y="61" text-anchor="middle">Tonemapping</text>
+  <rect x="763" y="108" width="122" height="62" rx="5" fill="url(#tone-old)"/>
+  <path d="M824 184 V211" stroke="#00d4ff" stroke-width="2"/>
+  <path d="M816 203 L824 212 L832 203" fill="none" stroke="#00d4ff" stroke-width="2"/>
+  <rect x="763" y="224" width="122" height="62" rx="5" fill="url(#tone-new)"/>
+  <text class="s-label" x="824" y="315" text-anchor="middle">重新映射亮度与颜色</text>
+  <text class="s-note" x="824" y="337" text-anchor="middle">不等于增加 HDR 信息</text>
+
+  <text class="s-note" x="10" y="394">抽象示意,不是游戏截图;用于显示每种算法主要改变的视觉线索</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">效果示意:它们改变的是接触暗化、光晕、焦点、轮廓或色调,不是 API 等级</figcaption>
+</figure>
 
 <ul>
-<li><strong>BLOOM</strong> — 泛光。让高亮区域(技能特效、亮面金属)向外溢出柔光。开启后画面更"亮",但部分场景会糊。</li>
-<li><strong>DEPTH OF FIELD</strong> — 景深。镜头焦点外的画面虚化,营造电影感。PSO 视角较远,效果不如近距离游戏明显。</li>
-<li><strong>CEL SHADING</strong> — 卡通描边 / 赛璐珞着色。给角色和物体边缘加深色描边,呈现卡通风格。开启后整体观感会偏向漫画/动画。</li>
-<li><strong>TONEMAPPING</strong> — 色调映射。把渲染产生的高动态范围色彩压回显示器可表现的范围,通常会让画面对比度和色彩更"现代",原版老电视感会减弱。</li>
+<li><strong>BLOOM</strong> — 泛光。典型实现会提取较亮像素,对较低分辨率的亮度图做多次模糊,再加回原图。它模拟镜头/眼睛中强光扩散的感觉,不会产生新的光照。过强时会让白色 HUD、技能特效和亮纹理互相污染,看起来像过曝或蒙雾。</li>
+<li><strong>DEPTH OF FIELD</strong> — 景深。根据深度缓冲估算像素与焦平面的距离(Circle of Confusion),再对焦外区域模糊。PSOBB 的透明特效、角色名和 HUD 不一定拥有与实体几何一致的深度,所以边缘可能出现光晕、前景被背景颜色污染或文字发糊。</li>
+<li><strong>CEL SHADING</strong> — 卡通化处理。通过亮度/深度/法线边缘检测强化轮廓,并可能压缩连续明暗层次,让形体接近赛璐珞动画。它是屏幕空间风格化,不等于重新制作角色材质;细小纹理和高对比 HUD 也可能被当成轮廓。</li>
+<li><strong>TONEMAPPING</strong> — 色调映射。用非线性曲线把内部亮度重新映射到显示范围,改变暗部压缩、高光 roll-off、对比度和饱和度。PSOBB 本身不是现代 HDR 渲染器,所以这里更应理解为<strong>显示色调/颜色响应重塑</strong>,而不是凭空生成 HDR 动态范围。</li>
 </ul>
 
-<p><strong>原版党</strong>建议四项都关;追求<strong>现代化观感</strong>可同时开 <strong>BLOOM + TONEMAPPING</strong>;喜欢<strong>动画风格</strong>再加 <strong>CEL SHADING</strong>。</p>
+<h3>效果叠加与排障</h3>
+<ul>
+<li><strong>逐项开启:</strong>先选稳定后端和 AA,再一次只开一个 Shader。这样才能判断崩溃、发糊、掉帧或颜色异常由谁引起。</li>
+<li><strong>Bloom + Tonemapping:</strong>色调映射若抬高亮部或对比度,会改变 Bloom 提取到的亮区;组合结果不只是两项视觉效果简单相加。</li>
+<li><strong>DoF / SSAO + MSAA:</strong>两者依赖深度解析。保持客户端更新;出现轮廓光晕时先降 AO、关 DoF,再更换 AA。</li>
+<li><strong>多个全屏 Pass:</strong>后处理通常按输出像素执行,4K 的像素数是 1080p 的 4 倍。单项很轻不代表同时开启仍然很轻。</li>
+<li><strong>Vulkan / Wine:</strong>Shader 编译、深度格式和注入式 Overlay 的组合更复杂。遇到崩溃先全关 Shaders,确认后端稳定后再恢复。</li>
+</ul>
+
+<p><strong>原版与清晰度优先:</strong>四项都关。<strong>轻度现代化:</strong>先单开 Tonemapping,再按口味加 Bloom。<strong>动画风格:</strong>单开 Cel Shading 观察轮廓是否干净。<strong>截图氛围:</strong>可尝试 DoF + Bloom,但不建议在需要远距离辨认敌人和掉落物时长期使用。</p>
 
 <hr>
 
@@ -309,19 +668,20 @@
 </thead>
 <tbody>
 <tr><td>不知道选什么 / 第一次玩</td><td><strong>Direct3D 11 (2.87.1)</strong></td></tr>
-<tr><td>新显卡 (RTX 30/40 系、RX 6000/7000 系)</td><td><strong>Direct3D 12 (2.87.1)</strong> 或 <strong>Vulkan (2.7.1)</strong></td></tr>
-<tr><td>A 卡 / Intel 核显 / Intel Arc</td><td><strong>Vulkan (2.7.1)</strong></td></tr>
-<tr><td>老显卡 (GTX 600/700 系或更早)</td><td><strong>Direct3D 11 (2.79.3)</strong> 或 <strong>Direct3D 9</strong></td></tr>
-<tr><td>Win 7 / 极老硬件</td><td><strong>Direct3D 8</strong> 或 <strong>Direct3D 9</strong></td></tr>
-<tr><td>启动黑屏 / 闪退</td><td>从最新版往下逐项试 (12 → 11 → 9 → 8)</td></tr>
-<tr><td>录屏 / 直播软件捕获不到画面</td><td>切到 <strong>Direct3D 11/12</strong> 后端,改用"窗口捕获"</td></tr>
+<tr><td>D3D11 正常</td><td>保持不变;换 D3D12 不会提高基础画质</td></tr>
+<tr><td>D3D11 纹理错误或明显卡顿</td><td>试 <strong>Direct3D 12 (2.87.1)</strong></td></tr>
+<tr><td>D3D12 冻结 / GPU 挂起 / Overlay 冲突</td><td>回到 <strong>Direct3D 11</strong>,必要时试 2.79.3</td></tr>
+<tr><td>D3D11/12 都异常</td><td>试 <strong>Direct3D 9</strong>;Vulkan 作为不同驱动路径的交叉测试</td></tr>
+<tr><td>UAC、锁屏、Alt-Tab 后 Device Lost</td><td>使用 <strong>D3D11/12 (dgVoodoo)</strong>;不要用 D3D9on12 代替</td></tr>
+<tr><td>只想验证原版是否能启动</td><td><strong>D3D8 + None AA + 关闭 Shaders</strong></td></tr>
+<tr><td>录屏 / 直播捕获不到画面</td><td><strong>D3D11 + Auto/Discard</strong>,并尝试窗口捕获</td></tr>
 </tbody>
 </table>
 
 <h3>一套省事配置 (现代显卡 + 平衡画质)</h3>
 <ul>
-<li>渲染后端: <strong>Direct3D 12 (2.87.1)</strong></li>
-<li>抗锯齿: <strong>MSAA 4x + SMAA</strong></li>
+<li>渲染后端: <strong>Direct3D 11 (2.87.1)</strong> (D3D12 不会额外提升画质)</li>
+<li>抗锯齿: <strong>SMAA Ultra</strong> 或 <strong>MSAA 2x + SMAA</strong></li>
 <li>dgVoodoo Model: <strong>Auto</strong></li>
 <li>环境光遮蔽: <strong>High</strong></li>
 <li>Extra: 全开 (除非要原版味道,关 MOTION BLUR)</li>
@@ -354,13 +714,16 @@ A: PSOBB 原生帧率上限是 30 FPS,翻译层不会突破游戏内部锁帧。
 A: 参考 <a href="/guide/crash.html">关于闪退</a> 检查 DEP、兼容性、UAC、杀软白名单等系统层设置。</p>
 
 <p><strong>Q: 抗锯齿开了为什么不生效 / 没区别?</strong><br>
-A: 抗锯齿由 dgVoodoo / DXVK 翻译层负责,只在选了 <strong>Direct3D 11 / 12 / Vulkan</strong> 后端时生效。选 <strong>Direct3D 8 / 9</strong> 走原生路径时,抗锯齿设置会被忽略。</p>
+A: 高级 AA 由 Ephinea 客户端在渲染目标和后处理阶段实现,不是 dgVoodoo / DXVK 自动提供。完整的高级选项从 <strong>D3D9</strong> 起可用;D3D8 不适合作为高级 AA 路径。MSAA 只处理几何覆盖边缘,所以纹理内部仍会闪烁;想改善这类问题应试 SSAA,只想低成本平滑可试 SMAA。</p>
+
+<p><strong>Q: D3D9on12 已经用了 D3D12,为什么还要选 D3D12?</strong><br>
+A: D3D9on12 是微软把 D3D9 命令映射到 D3D12 的系统兼容层,上层仍保留 D3D9 设备模型;登陆器的 D3D12 则由 dgVoodoo 接管 D3D9 模拟、资源管理和 Flip 呈现。两者只是最终驱动 API 相同,翻译器和兼容行为完全不同。要规避传统 Device Lost,应使用 dgVoodoo 的 D3D11/12。</p>
 
 <p><strong>Q: 开了 Shaders 之后画面糊 / 颜色变了?</strong><br>
 A: 这是后期处理本身的特性,不是 bug。最常见的"罪魁"是 <strong>BLOOM</strong> (糊) 和 <strong>TONEMAPPING</strong> (颜色变深变饱和)。逐项关掉定位不喜欢的那一项即可。</p>
 
 <p><strong>Q: CLEAN CAPTURE 和 dgVoodoo Model = Discard 有什么联系?</strong><br>
-A: 二者都和"录屏 / 直播能不能正常捕获画面"有关。优先开 <strong>CLEAN CAPTURE</strong>,如果 OBS 仍然捕不到,再把 <strong>dgVoodoo Model</strong> 从 Flip 类切回 <strong>Discard</strong>。</p>
+A: 二者都和"录屏 / 直播能不能正常捕获画面"有关。优先开 <strong>CLEAN CAPTURE</strong>;D3D11 下若 OBS 仍捕不到,再把 Model 从 Flip 类切回 <strong>Discard</strong>。D3D12 固定走 Flip Discard,此时应改用 D3D11 再测试 Model。</p>
 
     </div>
 </body>
