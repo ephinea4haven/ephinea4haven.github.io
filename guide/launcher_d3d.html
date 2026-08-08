@@ -333,6 +333,96 @@ Ephinea 兼容/增强层 (D3D9 路径、AA、AF、后处理)
 
 <p>HSAA 还会在这个高分辨率渲染目标上叠加 MSAA 样本。例如 HSAA 4x 可近似理解为 16 倍像素着色规模上再使用 4 个覆盖/深度样本;总耗时不会严格等于 64 倍,但渲染目标、深度缓冲、带宽和显存压力可能非常高。即使 PSOBB 很老,4K 输出再开 4x 也可能启动失败、掉帧或耗尽包装器配置的 VRAM。</p>
 
+<h3>为什么 20 年前的硬件能流畅,RTX 4090 在 4K 极限设置下也可能吃力?</h3>
+
+<p>两种说法并不矛盾。PSOBB 原版的几何复杂度、Shader 复杂度和 30 FPS 上限都很低,20 年前的显卡在 640×480、800×600 或 1024×768、无现代后处理的条件下本来就能完成设计目标。现代登陆器则允许把<strong>每帧需要处理的像素、样本和全屏 Pass</strong>放大几个数量级;游戏内容仍然古老,但 GPU 实际执行的工作已经不是 2004 年的负载。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 390" role="img" aria-labelledby="pixel-title pixel-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="pixel-title">不同分辨率与 SSAA 设置相对 640×480 的每帧像素量</title>
+  <desc id="pixel-desc">640×480 为一倍,1080p 约六点七五倍,4K 为二十七倍,4K SSAA 2x 为一百零八倍,4K SSAA 4x 为四百三十二倍。</desc>
+  <style>
+    .px-axis{stroke:#64748b;stroke-width:1.5}
+    .px-grid{stroke:#334155;stroke-width:1}
+    .px-bar{fill:rgba(0,212,255,.32);stroke:#00d4ff;stroke-width:1.5}
+    .px-extreme{fill:rgba(167,139,250,.36);stroke:#a78bfa;stroke-width:1.5}
+    .px-head{fill:#f8fafc;font-size:15px;font-weight:700}
+    .px-text{fill:#cbd5e1;font-size:13px}
+    .px-note{fill:#94a3b8;font-size:12px}
+  </style>
+  <text class="px-head" x="20" y="28">相对 640×480、无 SSAA 的每帧像素工作量(对数刻度)</text>
+  <line class="px-axis" x1="220" y1="55" x2="220" y2="330"/>
+  <line class="px-grid" x1="220" y1="330" x2="880" y2="330"/>
+  <line class="px-grid" x1="385" y1="55" x2="385" y2="330"/>
+  <line class="px-grid" x1="550" y1="55" x2="550" y2="330"/>
+  <line class="px-grid" x1="715" y1="55" x2="715" y2="330"/>
+  <line class="px-grid" x1="880" y1="55" x2="880" y2="330"/>
+  <text class="px-note" x="220" y="350" text-anchor="middle">1×</text>
+  <text class="px-note" x="385" y="350" text-anchor="middle">约 4.6×</text>
+  <text class="px-note" x="550" y="350" text-anchor="middle">约 21×</text>
+  <text class="px-note" x="715" y="350" text-anchor="middle">约 95×</text>
+  <text class="px-note" x="880" y="350" text-anchor="middle">432×</text>
+
+  <text class="px-text" x="205" y="82" text-anchor="end">640×480</text>
+  <rect class="px-bar" x="220" y="64" width="10" height="25" rx="4"/>
+  <text class="px-text" x="240" y="82">1× · 0.31 MP</text>
+
+  <text class="px-text" x="205" y="137" text-anchor="end">1080p</text>
+  <rect class="px-bar" x="220" y="119" width="211" height="25" rx="4"/>
+  <text class="px-text" x="441" y="137">6.75× · 2.07 MP</text>
+
+  <text class="px-text" x="205" y="192" text-anchor="end">4K</text>
+  <rect class="px-bar" x="220" y="174" width="366" height="25" rx="4"/>
+  <text class="px-text" x="596" y="192">27× · 8.29 MP</text>
+
+  <text class="px-text" x="205" y="247" text-anchor="end">4K + SSAA 2x</text>
+  <rect class="px-extreme" x="220" y="229" width="521" height="25" rx="4"/>
+  <text class="px-text" x="751" y="247">108× · 33.18 MP</text>
+
+  <text class="px-text" x="205" y="302" text-anchor="end">4K + SSAA 4x</text>
+  <rect class="px-extreme" x="220" y="284" width="660" height="25" rx="4"/>
+  <text class="px-text" x="870" y="325" text-anchor="end">432× · 132.71 MP</text>
+
+  <text class="px-note" x="20" y="382">HSAA 还会在对应高分辨率上增加 MSAA 覆盖/深度样本,因此不只看这张像素量图</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">同一个游戏场景,4K + SSAA 4x 每帧要着色的像素约为原版 640×480 的 432 倍</figcaption>
+</figure>
+
+<h4>从分辨率、D3D 后端、AA 和特效分别看</h4>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>因素</th><th>负载如何增长</th><th>主要压力</th><th>容易误解的地方</th></tr></thead>
+<tbody>
+<tr><td>输出分辨率</td><td>与宽×高成正比;4K 是 1080p 的 4 倍像素</td><td>像素着色、带宽、后处理</td><td>帧率仍锁 30 不代表每帧可以无限昂贵</td></tr>
+<tr><td>D3D8 / D3D9</td><td>链路较短,原始负载很低</td><td>旧驱动、Device Lost、CPU 提交</td><td>老硬件流畅通常指较低分辨率和较少增强</td></tr>
+<tr><td>D3D11 / D3D12</td><td>增加 Ephinea + dgVoodoo 的状态翻译和资源管理</td><td>CPU 开销、同步、驱动兼容</td><td>D3D12 可改善部分提交开销,但不能减少 SSAA 像素</td></tr>
+<tr><td>Vulkan</td><td>增加 Ephinea + DXVK 的翻译与管线编译</td><td>Shader 编译、驱动、同步</td><td>不同 API 不是免费的性能升级</td></tr>
+<tr><td>MSAA Nx</td><td>增加覆盖率、深度/模板和多样本存储;像素 Shader 不一定完整执行 N 次</td><td>ROP、深度、带宽、显存</td><td>主要处理几何边缘,不是全画面 N 倍清晰</td></tr>
+<tr><td>SSAA Nx</td><td>宽高各乘 N,像素数乘 N²</td><td>像素 Shader、纹理采样、显存、带宽</td><td>SSAA 4x 是 16 倍像素,不是 4 倍</td></tr>
+<tr><td>HSAA Nx</td><td>SSAA 的 N² 像素上再叠加 Nx MSAA 样本</td><td>几乎所有 GPU 后端资源</td><td>它是极限组合,不是廉价折中</td></tr>
+<tr><td>AF 16x</td><td>斜面纹理增加采样数</td><td>纹理单元与带宽</td><td>通常远轻于 SSAA,但自定义纹理仍可能增加压力</td></tr>
+<tr><td>SSAO / DoF</td><td>每个输出像素进行多次深度读取与邻域采样</td><td>带宽、缓存、Shader 运算</td><td>分辨率越高越贵,High 不只是视觉档位</td></tr>
+<tr><td>Bloom / SMAA / Tone</td><td>增加一个或多个全屏读取、模糊、混合 Pass</td><td>带宽与像素 Shader</td><td>单项便宜,多项叠加仍可成为瓶颈</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>以 4K 极限设置估算显存和采样规模</h4>
+
+<p>4K 输出是 3840×2160,约 829 万像素。开启 SSAA 4x 后,内部尺寸变为 <strong>15360×8640</strong>,约 1.327 亿像素。仅一个 RGBA8 颜色缓冲约占 531 MB,一个 32-bit 深度缓冲也约 531 MB;两者还未计算 resolve 目标、Bloom/SSAO/DoF 中间纹理、包装器缓存和游戏纹理,就已超过 1 GB。</p>
+
+<p>若再使用 HSAA 4x,颜色与深度目标需要保存约 4 倍多样本数据,仅上述两个缓冲的理论规模就可能接近 <strong>4.25 GB</strong>。每帧还要完成约 1.327 亿像素的着色和约 5.308 亿覆盖/深度样本处理,随后再 resolve、缩小到 4K 并执行多个后处理 Pass。这类负载主要受填充率、显存带宽、缓存与包装器实现限制,与模型只有多少三角形关系不大。</p>
+
+<h4>RTX 4090 与 RTX 5090 应该怎样理解?</h4>
+
+<p>RTX 4090 拥有 24 GB GDDR6X;RTX 5090 提升到 32 GB GDDR7。NVIDIA 官方规格列出的显存带宽分别约为 <strong>1008 GB/s</strong> 和 <strong>1792 GB/s</strong>。因此在 SSAA/HSAA、多重全屏 Pass 这类偏带宽和显存容量的负载中,5090 通常会有更大的余量。参见 <a href="https://www.nvidia.com/en-gb/geforce/graphics-cards/50-series/rtx-5090/" target="_blank" rel="noopener">NVIDIA 5090 与 4090 官方规格对比</a>。</p>
+
+<p>但这不代表 5090 会按带宽比例提升 PSOBB 帧率。Ephinea 是 32-bit 老程序,还经过 D3D8→D3D9→dgVoodoo/DXVK 的状态翻译;瓶颈可能位于 CPU 单线程、同步、驱动、包装器内部上限或超大渲染目标分配。4090 在 4K + SSAA/HSAA 4x + SSAO High + 多个 Shaders 下<strong>可能达到满载、掉到 30 FPS 以下或因资源分配失败而崩溃</strong>;5090 通常更从容,但也不保证所有极限组合都合理。</p>
+
+<p><strong>实用判断:</strong>老硬件流畅说明它能承担"原版场景负载";顶级显卡吃力说明玩家主动创建了数百倍像素、更多采样和更多全屏 Pass。判断性能时应记录完整组合,不能只说"这是一款 20 年前的游戏"或只比较 D3D11/D3D12。</p>
+
 <h3>组合 (X + SMAA)</h3>
 <p>SMAA 位于场景完成后的后处理阶段,所以可以继续处理 MSAA、SSAA 或 HSAA resolve/downsample 之后仍残留的高对比边缘:</p>
 <ul>
