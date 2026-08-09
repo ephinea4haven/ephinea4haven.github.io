@@ -16,7 +16,7 @@
     "@playwright/test": "^1.62.0",
     "bootstrap": "4.6.2",
     "esbuild": "^0.28.1",
-    "jquery": "3.7.1",
+    "jquery": "4.0.0",
     "parse5": "^8.0.1"
   }
 }
