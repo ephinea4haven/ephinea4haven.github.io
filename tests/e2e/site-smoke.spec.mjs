@@ -70,6 +70,14 @@ const pages = [
     minimumReadyCount: 1,
   },
   {
+    name: 'NPC guide',
+    path: '/guide/npc.html',
+    title: /NPC 人物志/,
+    heading: 'NPC 人物志',
+    readySelector: '.npc-card',
+    minimumReadyCount: 25,
+  },
+  {
     name: '404 page',
     path: '/this-page-does-not-exist',
     title: /页面未找到/,
@@ -152,6 +160,33 @@ for (const pageCase of pages) {
     expect(runtimeErrors).toEqual([]);
   });
 }
+
+test('NPC guide keeps card and relationship names bilingual', async ({ page }) => {
+  await page.goto('/guide/npc.html');
+
+  const bilingualName = /[\u3400-\u9fff].*（[^）]*[A-Za-z][^）]*）/;
+  const cardNames = await page.locator('.npc-name').evaluateAll((elements) => (
+    elements.map((element) => element.firstChild?.textContent.trim() || '')
+  ));
+  expect(cardNames).toHaveLength(25);
+  for (const name of cardNames) expect(name).toMatch(bilingualName);
+  expect(cardNames).toContain('暗黑佛 / 黑暗法尔兹（Dark Falz）');
+
+  const graphNames = await page.locator('.rel-svg .node:not(.muted) > text.label')
+    .evaluateAll((elements) => elements.map((element) => ({
+      name: element.textContent.trim(),
+      lines: element.querySelectorAll('tspan').length,
+      english: element.querySelector('.label-en')?.textContent.trim() || '',
+    })));
+  expect(graphNames).toHaveLength(25);
+  for (const { name, lines, english } of graphNames) {
+    expect(name).toMatch(bilingualName);
+    expect(lines).toBe(2);
+    expect(english).toMatch(/^（.*[A-Za-z].*）$/);
+  }
+  expect(graphNames.map(({ name }) => name))
+    .toContain('暗黑佛 / 黑暗法尔兹（Dark Falz）');
+});
 
 for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
   test(`${calculatorPath} exercises calculator controls and enemy groups`, async ({ page }) => {
