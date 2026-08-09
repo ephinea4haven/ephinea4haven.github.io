@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-02T01:08:43.266603+00:00",
+  "generatedAt": "2026-08-09T00:14:03+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -16,6 +16,10 @@
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
       "revision": 43301
+    },
+    "weekConfirmation": {
+      "source": "in-game /rbr screenshot",
+      "confirmedAt": "2026-08-09T00:14:03+00:00"
     }
   },
   "boosts": {
@@ -38,28 +42,28 @@
     "4": 14
   },
   "current": {
-    "week": "02 August 2026",
+    "week": "09 August 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Endless Nightmare 1",
-        "name": "Endless Nightmare #1",
-        "abbreviation": "EN1"
+        "page": "Silent Afterimage 1",
+        "name": "Silent Afterimage #1",
+        "abbreviation": "SA1"
       },
       {
         "episode": 2,
-        "page": "The East Tower",
-        "name": "The East Tower",
-        "abbreviation": "TET"
+        "page": "Anomalous Ordeal 5",
+        "name": "Anomalous Ordeal #5",
+        "abbreviation": "AO5"
       },
       {
         "episode": 4,
-        "page": "New Mop-Up Operation 1",
-        "name": "New Mop-Up Operation #1",
-        "abbreviation": "NMU1"
+        "page": "Sweep-up Operation 11",
+        "name": "Sweep-up Operation #11",
+        "abbreviation": "SU11"
       }
     ],
-    "expectedWeek": "02 August 2026",
+    "expectedWeek": "09 August 2026",
     "isFresh": true
   },
   "tracker": {
@@ -80,17 +84,17 @@
           "EN3",
           "AO1",
           "SR1",
-          "SA1",
           "SA2",
           "LIS",
           "LHP"
         ],
         "current": [
-          "EN1"
+          "SA1"
         ],
         "unavailable": [
           "MU2",
           "MU3",
+          "EN1",
           "EN2",
           "EN4",
           "AO2",
@@ -105,13 +109,12 @@
           "SU7",
           "PS1",
           "PS2",
-          "AO5",
           "LSR",
           "LDR",
           "LCV"
         ],
         "current": [
-          "TET"
+          "AO5"
         ],
         "unavailable": [
           "PW1",
@@ -126,29 +129,30 @@
           "AO3",
           "AO4",
           "LBA",
-          "TWT"
+          "TWT",
+          "TET"
         ]
       },
       "4": {
-        "possible": [],
-        "current": [
-          "NMU1"
-        ],
-        "unavailable": [
+        "possible": [
           "WoL1",
           "WoL2",
           "WoL3",
           "WoL4",
           "WoL5",
+          "NMU1",
           "NMU2",
           "NMU4",
           "NMU5",
           "SU10",
-          "SU11",
           "SU12",
           "SU13",
           "SU14"
-        ]
+        ],
+        "current": [
+          "SU11"
+        ],
+        "unavailable": []
       }
     },
     "isConsistentWithCurrentTemplate": true
