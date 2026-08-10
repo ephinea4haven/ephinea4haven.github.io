@@ -22,7 +22,11 @@ CSS assets. Their exact npm versions are pinned in `package.json` and copied by
 `npm run sync:frontend`. Bootstrap JavaScript and Popper are intentionally not
 published because none of the local or upstream calculator behavior uses a
 Bootstrap JavaScript plugin. The sync migrates the upstream Bootstrap 4 form
-markup to Bootstrap 5 and fails if legacy input-group or select markup remains.
+markup to Bootstrap 5, supplies accessible names for upstream controls, and
+replaces hidden-but-focusable enemy tag icons with accessible removal buttons.
+Static verification rejects legacy markup or missing accessibility overlays;
+Playwright runs both calculator modes through axe WCAG A/AA audits after real
+enemy selection and removal interactions.
 
 The generated JavaScript and pages contain an attribution banner. The build
 publishes this directory's `LICENSE` at `/third_party/psostats-combo/LICENSE`.

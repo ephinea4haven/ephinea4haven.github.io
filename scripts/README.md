@@ -63,7 +63,7 @@ corresponding source.
 |--------|----------|
 | `verify_mag_data.mjs` | `assets/js/mag-evolution.js` plus the 18+12 color split, color cards, and local image references |
 | `verify_mag_sim_data.mjs` | `assets/js/mag-sim-data.js` (feed tables, mag cells) |
-| `verify_combo_sync.mjs` | PSOStats provenance, extracted server data, license attribution, shared dependency versions and links, formatting, and generated-file hashes |
+| `verify_combo_sync.mjs` | PSOStats provenance, extracted server data, license attribution, shared dependency versions, Bootstrap 5 markup, accessible Combo controls, links, formatting, and generated-file hashes |
 | `test_build_rbr_data.py` | RBR wiki parsers, full-clear enemy totals and quest abbreviations |
 | `test_rbr_tiers.py` | Curated RBR Tier coverage: all 58 candidates exactly once |
 | `test_rbr_tier_charts.py` | Generated SVGs are current and embed the canonical drop-table palette |
@@ -76,3 +76,7 @@ python3 -m unittest scripts/test_build_rbr_data.py
 python3 -m unittest scripts/test_rbr_tiers.py
 python3 -m unittest scripts/test_rbr_tier_charts.py
 ```
+
+`npm run test:e2e` additionally exercises the published pages in Chromium,
+including runtime/resource errors, Combo interactions, responsive layout, and
+axe WCAG A/AA audits for the four jQuery/Bootstrap consumer pages.

@@ -42,7 +42,7 @@
 **Decision (2026-04-26): Vite stays dev-only.** Deployment remains `push to master` → GitHub Pages serving the repo as-is. No `vite build`, no `dist/`, no MPA entries. Vite's role is HMR + dev-time cache busting only.
 
 Rationale:
-- ~60 HTML pages would each need MPA entry registration.
+- The current 105 HTML pages would each need MPA entry registration.
 - Shared jQuery and Bootstrap CSS are generated from pinned npm packages, while Vue, vue-multiselect and marked remain dropped-in assets; migrating all page dependencies to imports is still significant churn.
 - Site is otherwise stable static HTML; cost of full migration >> benefit.
 
@@ -50,7 +50,7 @@ Revisit when: cache-busting `?v=N` becomes painful enough to justify automated h
 
 ## Long-term (probably won't, but documented)
 
-- [ ] **Astro migration** — would give automated hashing, zero-JS by default, and cleaner shared layouts. But requires production build pipeline, MPA registration of ~60 pages, vendor lib migration to npm, and excluding the third-party combo calc sync. Currently overruled by the Vite dev-only decision; revisit only if multiple concrete pain points emerge.
+- [ ] **Astro migration** — would give automated hashing, zero-JS by default, and cleaner shared layouts. But requires production build pipeline, MPA registration of the current 105 HTML pages, vendor lib migration to npm, and excluding the third-party combo calc sync. Currently overruled by the Vite dev-only decision; revisit only if multiple concrete pain points emerge.
 - [ ] **TypeScript for `chardata.js`** — type safety on calculation data. No bug-driven motivation today; defer until a class/stat data bug bites or the chardata decoupling above is done (good time to add types alongside JSON extraction).
 
 ## Design follow-ups (passive)

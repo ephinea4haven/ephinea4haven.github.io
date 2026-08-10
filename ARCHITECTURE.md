@@ -1,6 +1,6 @@
 # Architecture & Optimization Notes
 
-> Last updated: 2026-08-03
+> Last updated: 2026-08-09
 > The following are intentionally outside the refactor/cleanup scope per user direction (don't propose changes):
 > - `data/droptable/` — retained as tooling input but excluded from the published artifact
 > - `assets/js/combo_calc*.js`, `tools/cc.html`, `tools/ccopm.html` — generated third-party Combo Calculator snapshots; update only through `npm run sync:combo`
@@ -28,8 +28,10 @@ never written back to source control.
 
 `npm run release:prepare` is the local release gate. GitHub Actions performs a
 locked install, dependency audit, business tests, two reproducibility builds,
-and browser tests. The build job uploads `_site`; the deploy job deploys that
-exact artifact without checking out or rebuilding the repository.
+and browser tests. Browser coverage includes WCAG A/AA axe audits for both Combo
+Calculator modes, the status simulator, and the character table. The build job
+uploads `_site`; the deploy job deploys that exact artifact without checking out
+or rebuilding the repository.
 
 Useful commands:
 
