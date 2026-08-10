@@ -23,6 +23,23 @@ recorded only as provenance so a source-boundary change causes synchronization
 to fail explicitly. Playwright exercises both modes and runs axe WCAG A/AA
 audits after real enemy-selection and removal interactions.
 
+## Compatibility contract
+
+Compatibility means that routine upstream data and calculation updates can be
+adopted without replacing Haven's Angular presentation. It does not mean that
+arbitrary upstream structural changes are accepted silently.
+
+| Upstream change | Expected result |
+|---|---|
+| Values change inside the five existing datasets | Synchronizes automatically when both modes remain valid JSON. |
+| Calculation rules change behind the existing domain function boundary | Synchronizes when the Angular adapter still applies and the complete release gate passes. |
+| Upstream UI framework, markup or styling changes | Ignored by the published application unless the data-extraction boundary also changes. |
+| Dataset names/count, extraction markers, function signatures or browser dependencies change | Synchronization or generation fails closed; update the adapter and regression tests explicitly. |
+| The deployed script differs from the recorded GitHub commit, or upstream content changes during a sync | Synchronization stops to prevent a mixed-source snapshot. |
+
+An incompatible update must never be worked around by publishing upstream HTML
+or restoring jQuery, Bootstrap, Vue or another compatibility runtime.
+
 The generated calculation and data snapshots contain an attribution banner but
 are build inputs, not browser entry points. The Angular generator converts them
 to temporary TypeScript modules, and the build publishes this directory's
