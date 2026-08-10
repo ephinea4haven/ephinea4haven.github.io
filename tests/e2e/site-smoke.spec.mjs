@@ -15,7 +15,7 @@ const pages = [
     resourcePath: '/assets/js/chardata.json',
     readySelector: '#class option',
     minimumReadyCount: 2,
-    jqueryVersion: '3.7.1',
+    jqueryVersion: '4.0.0+slim',
   },
   {
     name: 'character table',
@@ -25,7 +25,7 @@ const pages = [
     resourcePath: '/assets/js/chardata.json',
     readySelector: '#humar tbody tr',
     minimumReadyCount: 1,
-    jqueryVersion: '3.7.1',
+    jqueryVersion: '4.0.0+slim',
   },
   {
     name: 'mag chart',
@@ -209,7 +209,7 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
     await page.goto(calculatorPath);
     await expect.poll(
       () => page.evaluate(() => window.jQuery?.fn.jquery.split(' ')[0]),
-    ).toBe('3.7.1');
+    ).toBe('4.0.0+slim');
     await expect.poll(() => page.evaluate(() => typeof window.jQuery?.ajax)).toBe('undefined');
     const tableRows = page.locator('#combo-calc-table tbody tr');
 
@@ -325,6 +325,11 @@ test('Combo Calculator remains usable at a mobile viewport', async ({ page }) =>
 
   await expect(page.getByRole('heading', { name: 'Combo Calculator Multiplayer' })).toBeVisible();
   await expect(page.locator('#class-select')).toBeVisible();
+  await expect(page.locator('#classMinAtpInput')).toHaveValue('1634');
+  await expect(page.locator('#classMaxAtpInput')).toHaveValue('1639');
+  await expect.poll(() => page.locator('#classMinAtpInput').evaluate(
+    (input) => input.getBoundingClientRect().width,
+  )).toBeGreaterThanOrEqual(100);
   await page.locator('#machine-btn').click();
   await expect.poll(() => page.locator('#combo-calc-table tbody tr').count()).toBeGreaterThan(0);
   await expect.poll(() => page.evaluate(

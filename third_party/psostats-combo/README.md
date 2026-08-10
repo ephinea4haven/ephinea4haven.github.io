@@ -17,11 +17,12 @@ uses this site's vendored CSS and JavaScript dependencies, and adds local page
 metadata. Do not edit the generated files directly; the next sync replaces
 them.
 
-The calculator shares the site's single jQuery 3.7.1 slim and Bootstrap 4.6.2
+The calculator shares the site's single jQuery 4.0.0 slim and Bootstrap 5.3.8
 CSS assets. Their exact npm versions are pinned in `package.json` and copied by
 `npm run sync:frontend`. Bootstrap JavaScript and Popper are intentionally not
 published because none of the local or upstream calculator behavior uses a
-Bootstrap JavaScript plugin; the sync fails if such usage appears upstream.
+Bootstrap JavaScript plugin. The sync migrates the upstream Bootstrap 4 form
+markup to Bootstrap 5 and fails if legacy input-group or select markup remains.
 
 The generated JavaScript and pages contain an attribution banner. The build
 publishes this directory's `LICENSE` at `/third_party/psostats-combo/LICENSE`.

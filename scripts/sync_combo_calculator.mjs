@@ -30,11 +30,11 @@ const metadataFile = path.join(root, 'third_party', 'psostats-combo', 'upstream.
 const licenseFile = path.join(root, 'third_party', 'psostats-combo', 'LICENSE');
 const localDependencies = {
   jquery: {
-    version: '3.7.1',
+    version: '4.0.0',
     pageUrl: '../assets/js/jquery.min.js',
   },
   bootstrap: {
-    version: '4.6.2',
+    version: '5.3.8',
     cssPageUrl: '../assets/css/bootstrap.min.css',
   },
 };
@@ -109,6 +109,22 @@ function removeUpstreamNavbar(html) {
   return `${html.slice(0, start)}${html.slice(end)}`;
 }
 
+function migrateBootstrap5Markup(html) {
+  const withoutInputGroupWrappers = html.replace(
+    /<div class="input-group-(?:prepend|append)">\s*<div class="input-group-text">([^<]*)<\/div>\s*<\/div>/g,
+    '<span class="input-group-text">$1</span>',
+  );
+  return withoutInputGroupWrappers
+    .replace(
+      /<select\b[^>]*>/g,
+      (tag) => tag.replace(/\bform-control\b/, 'form-select'),
+    )
+    .replaceAll(
+      'class="col-6 col-md-3 mb-1"',
+      'class="col-12 col-sm-6 col-md-3 mb-1"',
+    );
+}
+
 function adaptPage(source, page) {
   for (const marker of [
     'const weapons =',
@@ -181,6 +197,12 @@ function adaptPage(source, page) {
   html = html
     .replaceAll('href="/combo-calculator/opm"', 'href="/tools/ccopm.html"')
     .replaceAll('href="/combo-calculator"', 'href="/tools/cc.html"');
+  html = migrateBootstrap5Markup(html);
+  if (/input-group-(?:prepend|append)/.test(html)
+      || /<select\b[^>]*class="[^"]*\bform-control\b/.test(html)
+      || html.includes('class="col-6 col-md-3 mb-1"')) {
+    throw new Error(`${page.name} page still contains Bootstrap 4 form markup`);
+  }
   html = replaceRequired(
     html,
     '<head>',

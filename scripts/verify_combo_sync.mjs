@@ -104,14 +104,14 @@ check('generated OPM data hash matches metadata', hash(opmData) === metadata.gen
 check('generated script hash matches metadata', hash(script) === metadata.generatedSha256.script);
 check('generated license hash matches metadata', hash(license) === metadata.generatedSha256.license);
 check('source license is recorded', Boolean(metadata.sources.license && metadata.sourceSha256.license));
-check('jQuery is pinned exactly in package.json', packageJson.devDependencies.jquery === '3.7.1');
-check('Bootstrap is pinned exactly in package.json', packageJson.devDependencies.bootstrap === '4.6.2');
-check('jQuery asset identifies version 3.7.1 slim',
-  jqueryScript.startsWith('/*! jQuery v3.7.1 ') && jqueryScript.includes('-ajax'));
-check('Bootstrap CSS identifies version 4.6.2', bootstrapCss.includes('Bootstrap v4.6.2'));
+check('jQuery is pinned exactly in package.json', packageJson.devDependencies.jquery === '4.0.0');
+check('Bootstrap is pinned exactly in package.json', packageJson.devDependencies.bootstrap === '5.3.8');
+check('jQuery asset identifies version 4.0.0 slim',
+  jqueryScript.startsWith('/*! jQuery v4.0.0+slim '));
+check('Bootstrap CSS identifies version 5.3.8', /Bootstrap\s+v5\.3\.8/.test(bootstrapCss));
 check('local dependencies are not older than upstream',
-  metadata.dependencies.local.jquery === '3.7.1'
-    && metadata.dependencies.local.bootstrap === '4.6.2'
+  metadata.dependencies.local.jquery === '4.0.0'
+    && metadata.dependencies.local.bootstrap === '5.3.8'
     && compareVersions(
       metadata.dependencies.local.jquery,
       metadata.dependencies.upstream.jquery,
@@ -120,6 +120,14 @@ check('local dependencies are not older than upstream',
       metadata.dependencies.local.bootstrap,
       metadata.dependencies.upstream.bootstrap,
     ) >= 0);
+for (const [name, page] of [['multiplayer', multi], ['OPM', opm]]) {
+  check(`${name} page uses Bootstrap 5 input-group markup`,
+    !/input-group-(?:prepend|append)/.test(page));
+  check(`${name} page uses Bootstrap 5 select markup`,
+    !/<select\b[^>]*class="[^"]*\bform-control\b/.test(page));
+  check(`${name} page keeps character stat inputs readable on mobile`,
+    !page.includes('class="col-6 col-md-3 mb-1"'));
+}
 for (const [name, content, packageContent] of [
   ['jQuery', jqueryScript, jqueryPackageScript],
   ['Bootstrap CSS', bootstrapCss, bootstrapPackageCss],

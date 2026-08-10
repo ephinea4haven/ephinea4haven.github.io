@@ -18,7 +18,7 @@ never written back to source control.
 - minifies classic scripts and bundles ES-module dependency graphs;
 - emits content-hashed `.min.js` filenames and rewrites only the copied HTML;
 - preserves existing third-party `.min.js` files;
-- keeps one shared, lockfile-backed jQuery 3.7.1 slim and Bootstrap 4.6.2 CSS copy;
+- keeps one shared, lockfile-backed jQuery 4.0.0 slim and Bootstrap 5.3.8 CSS copy;
 - excludes the opt-out drop-table tree and generated upstream `combo_calc*.js` files from
   transformation, while still counting the published Combo scripts against the gzip budget;
 - publishes the PSOStats Combo Calculator MIT license with the copied upstream code;

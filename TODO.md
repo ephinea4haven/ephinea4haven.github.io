@@ -4,13 +4,6 @@
 
 ## Active
 
-- [ ] **迁移 Bootstrap 4.6.2 到 Bootstrap 5.x 或移除 Bootstrap** (Medium)
-  - 当前实际使用范围只有 Combo Calculator 的 grid/form/input-group/table 样式，以及 `tools/chartable.html` 的 table 样式；Bootstrap JavaScript 和 Popper 已无调用并移除。
-  - Bootstrap 5 不是无破坏升级：需要处理 `input-group-prepend`、`custom-select`、间距/表单 class 和 jQuery 依赖模型的变化，并重新核对 Haven overlay 与上游页面同步规则。
-  - 同时评估替代路线：将 CC/人物表实际使用的少量规则迁入站点自有 CSS，彻底移除 Bootstrap，避免长期维护整套框架。
-  - 验收条件：桌面和移动布局回归、CC 两模式计算交互、人物表跳转、无障碍检查和发布体积预算全部通过。
-  - 背景：[Bootstrap 4 已结束官方支持](https://getbootstrap.com/docs/4.6/end-of-life/)。
-
 - [ ] **清点并选择性恢复 PSO FRAME slot3（Red-Wolf）资料** (Medium)
   - 已确认旧站名称为 **PSO FRAME slot3**，管理者为 Red-Wolf；早期地址为 `http://www.red-wolf.ac/pso/`，之后迁移到 `http://www.red-wolf.sakura.ne.jp/pso/`。
   - 两个旧域名目前均已无法解析；2016 年的 PSO 玩家讨论也已明确提到该攻略站消失。
@@ -25,6 +18,8 @@
   - Cross-ref: ARCHITECTURE.md issue #1.
 
 ## Shipped
+
+- [x] **Bootstrap 5 与 jQuery 4 迁移** — 共享依赖升级到 Bootstrap 5.3.8 CSS 和 jQuery 4.0.0 slim；Combo 同步器会将上游 Bootstrap 4 input-group/select 标记转换为 Bootstrap 5，并通过桌面、移动端、计算交互、人物表与发布体积回归验证。
 
 - [x] **首页活动专题自动高亮** — 除“活动总览”外，五个节日入口按访客本地日期在对应活动窗口自动显示流动彩虹高亮；周年活动为 8 月 1 日至 9 月 15 日。动画遵循 `prefers-reduced-motion`。
 

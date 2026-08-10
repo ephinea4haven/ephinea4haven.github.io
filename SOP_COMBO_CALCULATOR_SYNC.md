@@ -32,8 +32,8 @@ Go 服务端渲染后的 Multiplayer/OPM 页面，包含对应模式的职业、
 
 CC 不保留专用 jQuery/Bootstrap 副本，而是与现有工具页共享：
 
-- `assets/js/jquery.min.js`：jQuery 3.7.1 slim；
-- `assets/css/bootstrap.min.css`：Bootstrap 4.6.2 CSS。
+- `assets/js/jquery.min.js`：jQuery 4.0.0 slim；
+- `assets/css/bootstrap.min.css`：Bootstrap 5.3.8 CSS。
 
 版本在 `package.json` 中精确锁定，文件由 `npm run sync:frontend` 从 lockfile
 安装出的 npm 包复制。`npm test` 会逐字节校验共享文件与锁定包一致。当前页面没有
@@ -52,6 +52,7 @@ Overlay 的唯一实现入口是：
 
 - 将 CDN 依赖替换为本站统一的 jQuery 和 Bootstrap CSS，并移除未使用的
   Bootstrap JavaScript bundle；
+- 将上游 Bootstrap 4 的 input-group 与 select 标记迁移为 Bootstrap 5 结构；
 - 移除 PSOStats 导航栏；
 - 将 Multiplayer/OPM 互链改为本站路径；
 - 添加本站需要的 charset 和 description；
@@ -60,6 +61,29 @@ Overlay 的唯一实现入口是：
 - 规范化换行和行尾空白，保证生成差异可直接通过 `git diff --check`；
 - 验证部署脚本与 GitHub commit 一致，并拒绝同步过程中发生变化的线上快照；
 - 校验上游关键结构，结构变化时立即失败。
+
+#### Bootstrap 5 / jQuery 4 本地迁移契约
+
+PSOStats 上游当前仍声明 jQuery 3.x、Bootstrap 4.x，并输出 Bootstrap 4 的
+`input-group-prepend` / `input-group-append` 与 select `form-control` 标记；本站统一
+发布 jQuery 4.0.0 slim 和 Bootstrap 5.3.8 CSS。两者之间的差异必须由
+`scripts/sync_combo_calculator.mjs` 的 `migrateBootstrap5Markup()` 处理，禁止直接修改
+生成文件 `tools/cc.html` 或 `tools/ccopm.html`。
+
+同步适配器必须保持以下不变量：
+
+- input-group 标签是 `.input-group` 的直接子元素，不得残留
+  `input-group-prepend` / `input-group-append`；
+- `<select>` 使用 Bootstrap 5 的 `form-select`，不得继续使用 `form-control`；
+- 角色 ATP / ATA / Shifta / Zalure 栏在 390px 视口使用全宽布局，避免双 ATP
+  输入值被裁切；
+- 不引入 Bootstrap JavaScript 或 Popper；
+- jQuery 使用 slim 构建，因此不得依赖 Ajax、Effects、Deferred 或 Queue 模块。
+
+`scripts/verify_combo_sync.mjs` 会校验版本、共享资源字节、生成哈希和 Bootstrap 5
+标记；Playwright 会验证两种计算器的敌人选择、职业/数值交互、移动端横向溢出及
+jQuery 运行时版本。上游同步后必须同时运行 `npm test`、`npm run build` 和
+`npm run test:e2e`，任何旧标记回流或移动端退化都应视为同步失败。
 
 配套约束位于：
 
@@ -146,7 +170,7 @@ npm run release:prepare
   JavaScript 和内联脚本预算；
 - `_site/third_party/psostats-combo/LICENSE` 存在并与源码许可证一致；
 - Multiplayer 与 OPM 页面无运行时或资源加载错误；
-- 浏览器中实际加载 jQuery 3.7.1 slim；属性模拟器的职业/等级、Mag/素材输入及
+- 浏览器中实际加载 jQuery 4.0.0 slim；属性模拟器的职业/等级、Mag/素材输入及
   重置操作正常；
 - 人物能力表的 12 个职业各生成 200 行，按钮/回车跳转、高亮和重置正常；
 - CC 两个模式的四类敌人、职业切换、Shifta 输入、伤害排序和清空操作正常；
