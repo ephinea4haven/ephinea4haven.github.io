@@ -4,32 +4,29 @@ The Combo Calculator is synchronized from
 [`phelix-/psostats-client`](https://github.com/phelix-/psostats-client), which is
 licensed under the MIT License.
 
-Run `npm run sync:combo` to refresh the generated calculator pages, per-mode
-data scripts, calculation script, license, and provenance metadata. The upstream application injects its
-weapon, frame, class, and enemy data from a Go server, so this repository takes
-snapshots of the two rendered pages as well as the deployed JavaScript. The
-sync verifies that the deployed calculation script exactly matches the recorded
-GitHub commit; rendered page data is tracked separately by deployment hashes.
+Run `npm run sync:combo` to refresh the per-mode data snapshots, calculation
+snapshot, license and provenance metadata. The upstream application injects its
+weapon, frame, class and enemy data from a Go server, so the synchronizer reads
+the two rendered upstream pages to extract data only. The sync verifies that the
+deployed calculation script exactly matches the recorded GitHub commit; rendered
+page sources are tracked separately by hashes.
 
 Haven-specific behavior belongs in `scripts/sync_combo_calculator.mjs`. The
-adapter removes the PSOStats navigation, rewrites the Multiplayer/OPM links,
-uses this site's vendored CSS and JavaScript dependencies, and adds local page
-metadata. Do not edit the generated files directly; the next sync replaces
-them.
+adapter verifies upstream provenance and extracts the calculation/data boundary.
+Do not edit the generated snapshots directly; the next sync replaces them.
 
-The calculator shares the site's single jQuery 4.0.0 slim and Bootstrap 5.3.8
-CSS assets. Their exact npm versions are pinned in `package.json` and copied by
-`npm run sync:frontend`. Bootstrap JavaScript and Popper are intentionally not
-published because none of the local or upstream calculator behavior uses a
-Bootstrap JavaScript plugin. The sync migrates the upstream Bootstrap 4 form
-markup to Bootstrap 5, supplies accessible names for upstream controls, and
-replaces hidden-but-focusable enemy tag icons with accessible removal buttons.
-Static verification rejects legacy markup or missing accessibility overlays;
-Playwright runs both calculator modes through axe WCAG A/AA audits after real
-enemy selection and removal interactions.
+Haven owns the calculator presentation in `src/app/combo/`. Angular components
+provide the Multiplayer and OPM views, accessible controls and interaction state.
+jQuery, Bootstrap, Vue and upstream HTML are not application dependencies and
+are never copied into the published artifact. Upstream dependency versions are
+recorded only as provenance so a source-boundary change causes synchronization
+to fail explicitly. Playwright exercises both modes and runs axe WCAG A/AA
+audits after real enemy-selection and removal interactions.
 
-The generated JavaScript and pages contain an attribution banner. The build
-publishes this directory's `LICENSE` at `/third_party/psostats-combo/LICENSE`.
+The generated calculation and data snapshots contain an attribution banner but
+are build inputs, not browser entry points. The Angular generator converts them
+to temporary TypeScript modules, and the build publishes this directory's
+`LICENSE` at `/third_party/psostats-combo/LICENSE`.
 
 The complete update, review, validation, failure-handling, and rollback
 procedure is documented in

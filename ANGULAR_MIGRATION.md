@@ -1,7 +1,7 @@
-# Angular Tool Architecture
+# Angular Site Architecture and Migration Record
 
 > Decision date: 2026-08-09
-> Status: completed and release-validated on `feat/angular-modernization` (2026-08-10)
+> Status: completed, release-validated and deployed from `master` (2026-08-10)
 
 ## Outcome
 
@@ -9,9 +9,16 @@ Angular 22 owns the complete public site: the landing page, error page, guides,
 data references, event archives and interactive tools. All existing public URLs
 remain valid, including `.html` paths and yearly event pages.
 
+The production build currently contains 57 prerendered Angular application
+hosts and 44 event content fragments. The generated build manifest is the
+authoritative inventory; every application host is covered by the production
+browser suite before deployment.
+
 jQuery, Bootstrap, Vue 2 and vue-multiselect are retired from the application.
-There is no compatibility runtime, parallel implementation, client-side router or
-URL redirect. Git history is the rollback mechanism.
+There is no compatibility runtime or parallel implementation. Angular Router is
+the sole application router. Explicit redirects remain only for products that
+were intentionally moved to independent sites; they are not migration fallbacks.
+Git history is the rollback mechanism.
 
 ## Page model and static hosting boundary
 
@@ -92,6 +99,11 @@ The migration is complete only when all of the following pass:
 
 The migration was completed in working vertical slices. The complete route
 inventory now uses Angular and every retirement gate passes.
+
+The deployed production artifact is required to match the release-validated
+build. A `master` deployment cannot publish unless dependency audit, business
+tests, deterministic rebuild verification and the complete Playwright suite all
+succeed.
 
 Status browser coverage includes all three language variants, input and reset
 flows, material-plan presets, calculation diagnostics, equipment validity,

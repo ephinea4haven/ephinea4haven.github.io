@@ -8,6 +8,11 @@ Ephinea4Haven is a statically deployed Angular application. Angular 22 owns ever
 public page, route and interaction. GitHub Pages serves the immutable `_site`
 artifact; it does not need server-side rewrites or a JavaScript backend.
 
+The current production inventory contains 57 prerendered Angular application
+hosts and 44 year-specific event content fragments. `_site/build-manifest.json`
+is the source of truth for this inventory and for the JavaScript budgets applied
+to each route.
+
 The historical URLs are part of the product contract. The Angular build
 prerenders routes and `scripts/build_site.mjs` installs each result at its
 existing `.html` path. Directory-index aliases remain available where they
@@ -89,7 +94,7 @@ second byte-identical build before deploying the exact tested artifact.
 
 The release gates cover:
 
-- no jQuery, Bootstrap or Vue package/runtime/assets;
+- no jQuery, Bootstrap, Vue or vue-multiselect package/runtime/assets;
 - no scripts or inline event handlers in repository-owned page sources;
 - Angular ownership of every public application host;
 - browser console, page and local-resource errors on every route;

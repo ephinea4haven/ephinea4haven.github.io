@@ -25,27 +25,28 @@ Dependabot checks npm packages and GitHub Actions weekly. Angular framework and
 build packages are grouped with RxJS and TypeScript so their compatibility is
 validated in one update instead of a sequence of temporarily mismatched pull
 requests. This group automatically proposes minor and patch releases. Framework,
-RxJS and TypeScript major releases require an explicit migration branch because
-their compiler and runtime compatibility ranges must move together. Security
-updates remain eligible independently and do not wait for the weekly
-version-update batch.
+RxJS and TypeScript major releases require an explicit migration plan and a
+compatible version set because their compiler and runtime ranges must move
+together. Security updates remain eligible independently and do not wait for the
+weekly version-update batch.
 
 Every dependency update must pass the same locked install, audit,
 reproducibility, build and browser gates as an application change before it is
 accepted.
 
-## One-time activation
+## Production verification
 
-After the workflow is present on `master`:
+GitHub Pages is configured to deploy through GitHub Actions. After a production
+run completes:
 
-1. Open repository **Settings → Pages**.
-2. Change **Build and deployment → Source** from **Deploy from a branch** to
-   **GitHub Actions**.
-3. Run **Verify and deploy Pages** manually.
-4. Verify `https://www.psohaven.com/`, `404.html`, the custom domain, HTTPS,
-   and the key pages covered by `tests/e2e/site-smoke.spec.mjs`.
+1. Confirm both the `build` and `deploy` jobs succeeded for the expected
+   `master` commit.
+2. Verify `https://www.psohaven.com/`, `404.html`, the custom domain and HTTPS.
+3. Confirm a representative content route and each dedicated interactive tool
+   load the content-hashed Angular assets without console or resource errors.
 
-Do not switch the Pages source before the workflow has reached `master`.
+The workflow publishes only the artifact that passed the release gates; do not
+copy files directly into the deployed site.
 
 ## Rollback
 
