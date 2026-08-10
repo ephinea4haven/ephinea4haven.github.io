@@ -313,6 +313,22 @@ for (const accessibilityPath of [
   });
 }
 
+test('Angular route hosts keep representative page content centered', async ({ page }) => {
+  await page.setViewportSize({ width: 1512, height: 900 });
+  for (const [path, selector] of [
+    ['/', '.container'],
+    ['/event/anniversary.html?year=2025', '.content-container'],
+    ['/guide/banners.html', '.content-container'],
+    ['/tools/status.html', '.content-container'],
+  ]) {
+    await page.goto(path);
+    const box = await page.locator(selector).first().boundingBox();
+    expect(box, `${path} should render ${selector}`).not.toBeNull();
+    expect(Math.abs(box.x + box.width / 2 - 1512 / 2), `${path} should be horizontally centered`)
+      .toBeLessThanOrEqual(1);
+  }
+});
+
 test('status simulator handles Angular inputs and resets', async ({ page }) => {
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
