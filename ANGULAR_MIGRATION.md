@@ -1,7 +1,7 @@
 # Angular Tool Architecture
 
 > Decision date: 2026-08-09
-> Status: completed and release-validated on `feat/angular-modernization`
+> Status: completed and release-validated on `feat/angular-modernization` (2026-08-10)
 
 ## Outcome
 
@@ -59,6 +59,13 @@ domain boundaries. This keeps game rules testable without a browser and prevents
 framework concepts from entering the calculation model. Pure content does not
 pay for feature code.
 
+The Status tool preserves the established three-column character, material and
+equipment workflow while Angular owns all state and rendering. Its result table
+uses an internal horizontal viewport on small screens, resistance codes retain
+their canonical EFR/EIC/ETH/EDK/ELT names alongside localized Chinese, English
+and Japanese labels, and the compact build link serializes the complete current
+configuration for sharing.
+
 ## Combo upstream contract
 
 PSOStats remains the source for Combo Calculator datasets and calculation rules.
@@ -85,6 +92,10 @@ The migration is complete only when all of the following pass:
 
 The migration was completed in working vertical slices. The complete route
 inventory now uses Angular and every retirement gate passes.
+
+Status browser coverage includes all three language variants, input and reset
+flows, material-plan presets, calculation diagnostics, equipment validity,
+rarity colors, special effects and the serialized build link.
 
 The aggregate JavaScript ceiling is an artifact-health guard, not a per-user
 payload target: content and feature routes are lazy chunks, so the stricter chunk

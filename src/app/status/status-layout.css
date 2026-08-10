@@ -1,0 +1,160 @@
+.status-shell {
+  width: 100%;
+  margin-inline: auto;
+}
+
+.equipment-column table {
+  width: 100%;
+}
+
+.character-column {
+  flex-basis: 250px;
+}
+
+.materials-column {
+  flex-basis: 290px;
+}
+
+.status-shell #class {
+  width: 112px;
+}
+
+.equipment-column select {
+  max-width: none;
+}
+
+.result-grid {
+  align-items: start;
+}
+
+.limit-value,
+.material-total {
+  white-space: nowrap;
+}
+
+.resist-list {
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+.resist-list div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+
+.resist-list dd {
+  margin: 0;
+}
+
+.resist-list dt {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.resist-code {
+  min-width: 30px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.resist-name {
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.boxcontainer {
+  width: auto;
+}
+
+.boxcontainer:hover,
+.result-grid > section:hover,
+.effects:hover {
+  transform: none;
+}
+
+.boxcontainer:hover table {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(0, 212, 255, 0.08);
+}
+
+.share-link {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.share-link > span {
+  color: #b0c4de;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.share-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;
+  padding: 8px 12px;
+  border: 1px solid rgba(0, 212, 255, 0.28);
+  border-radius: 6px;
+  background: rgba(0, 212, 255, 0.08);
+  text-decoration: none;
+}
+
+.share-link a:hover {
+  border-color: rgba(0, 212, 255, 0.5);
+  background: rgba(0, 212, 255, 0.14);
+}
+
+.status-shell button:focus-visible,
+.share-link a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .boxcontainer {
+    width: 100%;
+  }
+
+  .legacy-language button {
+    flex: 1;
+    width: auto;
+    margin: 0;
+  }
+
+  .status-shell thead button {
+    width: auto;
+    min-height: 28px;
+    margin: 0 0 0 6px;
+    padding: 4px 10px;
+  }
+
+  .table-scroll {
+    padding-bottom: 8px;
+    scrollbar-gutter: stable;
+  }
+
+  .stat-table th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    box-shadow: 8px 0 12px rgba(0, 0, 0, 0.22);
+  }
+
+  .share-link {
+    grid-template-columns: 1fr;
+  }
+
+  .share-link a {
+    justify-content: space-between;
+    justify-self: stretch;
+  }
+}

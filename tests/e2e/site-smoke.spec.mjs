@@ -322,11 +322,24 @@ test('status simulator handles Angular inputs and resets', async ({ page }) => {
 
   await page.goto('/tools/status.html');
   await expect.poll(() => page.locator('#class option').count()).toBeGreaterThan(2);
+  await expect(page.locator('.resist-list dt')).toHaveText([
+    'EFR火焰', 'EIC冰冻', 'ETH雷电', 'EDK暗黑', 'ELT光明',
+  ]);
   await page.getByRole('button', { name: 'EN', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Character Stat Simulator' })).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('.resist-list dt')).toHaveText([
+    'EFRFire', 'EICIce', 'ETHThunder', 'EDKDark', 'ELTLight',
+  ]);
+  await page.getByRole('button', { name: '日', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'キャラクターステータスシミュレーター' })).toBeVisible();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'ja');
+  await expect(page.locator('.resist-list dt')).toHaveText([
+    'EFR炎', 'EIC氷', 'ETH雷', 'EDK闇', 'ELT光',
+  ]);
   await page.getByRole('button', { name: '中', exact: true }).click();
   await expect(page.getByRole('heading', { name: '角色属性模拟器' })).toBeVisible();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
   await page.locator('#class').selectOption('ramarl');
   await page.locator('#lv').selectOption('100');
 

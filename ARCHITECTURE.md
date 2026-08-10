@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-08-09
+> Last updated: 2026-08-10
 
 ## System shape
 
@@ -63,6 +63,13 @@ audited upstream boundary. The character simulator is Haven-owned TypeScript:
 `status-domain.ts` is a pure calculation module and `item-data.js` is an immutable
 catalog behind an explicit TypeScript declaration. Neither depends on the DOM or
 an obsolete browser runtime.
+
+The Status component owns presentation separately from that calculation domain.
+It retains the established character/material/equipment editing layout, provides
+a mobile-scrolling result table with a sticky stat column, displays canonical
+resistance codes with Chinese, English and Japanese labels, and exposes the
+current configuration through a serialized share link. Browser tests cover these
+language and interaction contracts in addition to the exhaustive domain checks.
 
 ## Build and release
 

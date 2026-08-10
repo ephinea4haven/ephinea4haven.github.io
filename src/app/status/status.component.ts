@@ -35,6 +35,7 @@ const TEXT = {
     results: '计算结果', base: '基础', material: '材料', magBonus: '玛古', equipmentBonus: '装备', unitBonus: '插件',
     current: '当前', maximum: '上限', difference: '差值', valid: '可装备', invalid: '不可装备', rarity: '稀有度',
     effects: '特殊效果', noEffects: '无特殊效果', share: '当前配置链接', materialLimit: '材料用量', magLevel: '玛古等级',
+    fireResist: '火焰', iceResist: '冰冻', thunderResist: '雷电', darkResist: '暗黑', lightResist: '光明',
   },
   en: {
     eyebrow: 'PSOBB character laboratory', title: 'Character Stat Simulator', character: 'Character', class: 'Class', level: 'Level',
@@ -43,6 +44,7 @@ const TEXT = {
     results: 'Results', base: 'Base', material: 'Material', magBonus: 'Mag', equipmentBonus: 'Equipment', unitBonus: 'Unit',
     current: 'Current', maximum: 'Max', difference: 'Difference', valid: 'Equipable', invalid: 'Not equipable', rarity: 'Rarity',
     effects: 'Special effects', noEffects: 'No special effects', share: 'Link to this build', materialLimit: 'Material use', magLevel: 'Mag level',
+    fireResist: 'Fire', iceResist: 'Ice', thunderResist: 'Thunder', darkResist: 'Dark', lightResist: 'Light',
   },
   ja: {
     eyebrow: 'PSOBB キャラクターラボ', title: 'キャラクターステータスシミュレーター', character: 'キャラクター', class: '職業', level: 'レベル',
@@ -51,6 +53,7 @@ const TEXT = {
     results: '計算結果', base: '基本', material: 'マテリアル', magBonus: 'マグ', equipmentBonus: '装備', unitBonus: 'ユニット',
     current: '現在', maximum: '上限', difference: '差分', valid: '装備可能', invalid: '装備不可', rarity: 'レア度',
     effects: '特殊効果', noEffects: '特殊効果なし', share: '現在の構成リンク', materialLimit: 'マテリアル使用量', magLevel: 'マグレベル',
+    fireResist: '炎', iceResist: '氷', thunderResist: '雷', darkResist: '闇', lightResist: '光',
   },
 } as const;
 
@@ -58,7 +61,7 @@ const TEXT = {
   selector: 'haven-status',
   imports: [FormsModule, PageChromeComponent],
   templateUrl: './status.component.html',
-  styleUrl: './status.component.css',
+  styleUrls: ['./status.component.css', './status-layout.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
