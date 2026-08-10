@@ -1,5 +1,8 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { readFileSync } from 'node:fs';
+
+const buildManifest = JSON.parse(readFileSync('_site/build-manifest.json', 'utf8'));
 
 const pages = [
   {
@@ -16,7 +19,7 @@ const pages = [
     resourcePath: '/assets/js/chardata.json',
     readySelector: '#class option',
     minimumReadyCount: 2,
-    jqueryVersion: '4.0.0+slim',
+    noLegacyRuntime: true,
   },
   {
     name: 'character table',
@@ -26,7 +29,7 @@ const pages = [
     resourcePath: '/assets/js/chardata.json',
     readySelector: '#humar tbody tr',
     minimumReadyCount: 1,
-    jqueryVersion: '4.0.0+slim',
+    noLegacyRuntime: true,
   },
   {
     name: 'mag chart',
@@ -39,25 +42,24 @@ const pages = [
     path: '/tools/cc.html',
     title: /Combo Calculator - PSOStats/,
     heading: 'Combo Calculator Multiplayer',
-    resourcePath: '/assets/js/combo_calc.js',
-    readySelector: '#app .multiselect',
+    readySelector: '.enemy-picker',
     minimumReadyCount: 1,
+    noLegacyRuntime: true,
   },
   {
     name: 'OPM combo calculator',
     path: '/tools/ccopm.html',
     title: /Combo Calculator - PSOStats/,
     heading: 'Combo Calculator OPM',
-    resourcePath: '/assets/js/combo_calc.js',
-    readySelector: '#enemy-select-vue .multiselect',
+    readySelector: '.enemy-picker',
     minimumReadyCount: 1,
+    noLegacyRuntime: true,
   },
   {
     name: 'event archive',
     path: '/event/christmas.html?year=2025',
     title: /2025圣诞活动/,
     heading: 'CHRISTMAS 2025',
-    resourcePath: '/event/christmas/2025.html',
     readySelector: '#content',
     readyText: '2025',
   },
@@ -66,7 +68,6 @@ const pages = [
     path: '/data/price_guide.html',
     title: /物品价格参考/,
     heading: '物品价格参考',
-    resourcePath: '/assets/js/i18n/i18n_names.json',
     readySelector: '#price-content .price-section',
     minimumReadyCount: 1,
   },
@@ -164,8 +165,31 @@ for (const pageCase of pages) {
       await expect.poll(() => page.evaluate(() => typeof window.jQuery?.ajax))
         .toBe('undefined');
     }
+    if (pageCase.noLegacyRuntime) {
+      await expect.poll(() => page.evaluate(() => ({
+        jquery: typeof window.jQuery,
+        bootstrap: typeof window.bootstrap,
+        vue: typeof window.Vue,
+      }))).toEqual({ jquery: 'undefined', bootstrap: 'undefined', vue: 'undefined' });
+    }
 
     expect(failedResources).toEqual([]);
+    expect(runtimeErrors).toEqual([]);
+  });
+}
+
+for (const { route } of buildManifest.angular.routes) {
+  test(`${route} prerendered Angular route has no runtime errors`, async ({ page }) => {
+    const runtimeErrors = [];
+    page.on('pageerror', (error) => runtimeErrors.push(error.message));
+    page.on('console', (message) => {
+      if (message.type() === 'error') runtimeErrors.push(message.text());
+    });
+
+    const response = await page.goto(route, { waitUntil: 'load' });
+    expect(response?.status()).toBe(200);
+    await expect(page.locator('haven-tools-app')).toBeAttached();
+    await expect(page.locator('body')).not.toBeEmpty();
     expect(runtimeErrors).toEqual([]);
   });
 }
@@ -208,10 +232,11 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
     });
 
     await page.goto(calculatorPath);
-    await expect.poll(
-      () => page.evaluate(() => window.jQuery?.fn.jquery.split(' ')[0]),
-    ).toBe('4.0.0+slim');
-    await expect.poll(() => page.evaluate(() => typeof window.jQuery?.ajax)).toBe('undefined');
+    await expect.poll(() => page.evaluate(() => ({
+      jquery: typeof window.jQuery,
+      bootstrap: typeof window.bootstrap,
+      vue: typeof window.Vue,
+    }))).toEqual({ jquery: 'undefined', bootstrap: 'undefined', vue: 'undefined' });
     const tableRows = page.locator('#combo-calc-table tbody tr');
 
     for (const enemyButton of ['#native-btn', '#abeast-btn', '#machine-btn', '#dark-btn']) {
@@ -288,7 +313,7 @@ for (const accessibilityPath of [
   });
 }
 
-test('status simulator handles shared-jQuery inputs and resets', async ({ page }) => {
+test('status simulator handles Angular inputs and resets', async ({ page }) => {
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
   page.on('console', (message) => {
@@ -297,16 +322,21 @@ test('status simulator handles shared-jQuery inputs and resets', async ({ page }
 
   await page.goto('/tools/status.html');
   await expect.poll(() => page.locator('#class option').count()).toBeGreaterThan(2);
+  await page.getByRole('button', { name: 'EN', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Character Stat Simulator' })).toBeVisible();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await page.getByRole('button', { name: '中', exact: true }).click();
+  await expect(page.getByRole('heading', { name: '角色属性模拟器' })).toBeVisible();
   await page.locator('#class').selectOption('ramarl');
   await page.locator('#lv').selectOption('100');
 
   await page.locator('#magPow').fill('5');
   await page.locator('#magPow').press('0');
-  await expect(page.locator('#output')).toContainText(/5\/50\/0\/0/);
+  await expect(page.locator('.limit-badges')).toContainText('玛古等级 55 / 200');
   await page.locator('#magReset').click();
   await expect(page.locator('#magDef')).toHaveValue('5');
   await expect(page.locator('#magPow')).toHaveValue('0');
-  await expect(page.locator('#output')).toContainText(/5\/0\/0\/0/);
+  await expect(page.locator('.limit-badges')).toContainText('玛古等级 5 / 200');
 
   await page.locator('#matPow').fill('2');
   await page.locator('#matPow').press('0');
@@ -319,6 +349,90 @@ test('status simulator handles shared-jQuery inputs and resets', async ({ page }
   await page.locator('#armor').selectOption(armorValue);
   await page.locator('#equipReset').click();
   await expect(page.locator('#armor')).toHaveValue('-');
+
+  expect(runtimeErrors).toEqual([]);
+});
+
+test('status simulator preserves material-plan presets and calculation diagnostics', async ({ page }) => {
+  const runtimeErrors = [];
+  page.on('pageerror', (error) => runtimeErrors.push(error.message));
+  page.on('console', (message) => {
+    if (message.type() === 'error') runtimeErrors.push(message.text());
+  });
+
+  await page.goto('/tools/materialplan.html');
+  const preset = await page.locator('a[href^="/tools/status.html?"]').first().getAttribute('href');
+  expect(preset).toBeTruthy();
+  await page.goto(preset);
+  await expect(page.locator('#class')).toHaveValue('humar');
+  await expect(page.locator('#lv option:checked')).toHaveText('200');
+  await expect(page.locator('#magPow')).toHaveValue('147');
+  await expect(page.locator('#magDex')).toHaveValue('48');
+  await expect(page.locator('#matPow')).toHaveValue('222');
+  await expect(page.locator('#armor')).toHaveValue('41');
+  await expect(page.locator('#unit1')).toHaveValue('49');
+  await expect(page.locator('.stat-table tbody tr')).toHaveCount(8);
+  await expect(page.locator('.share-link a')).toHaveAttribute('href', /c=humar.*mpow=147/);
+
+  await page.goto('/tools/status.html?c=ramarl&lv=150&mdef=5&mpow=100&mdex=45&mmind=50&hp=20&tp=10&pow=50&def=25&mind=30&eva=15&lck=10&armor=45&shield=2a&unit1=5b&unit2=5d&unit3=4c&unit4=51');
+  const expectedCurrent = { hp: '1098', tp: '969', atp: '907', dfp: '378', mst: '800', ata: '213.9', evp: '700', lck: '60' };
+  for (const [stat, value] of Object.entries(expectedCurrent)) {
+    await expect(page.locator(`[data-stat="${stat}"] td`).nth(5)).toHaveText(value);
+  }
+  await expect(page.locator('.resist-list')).toContainText('29');
+  await expect(page.locator('[data-equipment-code="45"]')).toContainText('★★★★★★★★★★★');
+  await expect(page.locator('.rarity .rare1').filter({ hasText: '★★★★★★★★★' }).first()).toHaveCSS('color', 'rgb(102, 153, 255)');
+  await expect(page.locator('.rarity .rare2').filter({ hasText: '★★' }).first()).toHaveCSS('color', 'rgb(255, 102, 102)');
+  await expect(page.locator('.effects')).toContainText('Technique speed ×1.5');
+  await page.locator('#armor').selectOption('1a');
+  await expect(page.locator('[data-equipment-code="1a"]')).toContainText('不可装备');
+  await page.locator('#matPow').fill('999');
+  await expect(page.locator('.limit-badges .over-limit')).toContainText('材料用量');
+
+  await page.goto('/tools/status.html?c=hucast&lv=123&tp=13&unit1=5e');
+  await expect(page.locator('[data-stat="tp"] td').nth(5)).toHaveText('0');
+  expect(runtimeErrors).toEqual([]);
+});
+
+test('Angular content behaviors cover landing, search, filters, tabs, and RBR data', async ({ page }) => {
+  const runtimeErrors = [];
+  page.on('pageerror', (error) => runtimeErrors.push(error.message));
+  page.on('console', (message) => {
+    if (message.type() === 'error') runtimeErrors.push(message.text());
+  });
+
+  await page.goto('/');
+  await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
+  await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
+  await expect(page.locator('#galatine-atp')).toContainText('ATP');
+  await expect(page.locator('#buf-current')).not.toBeEmpty();
+
+  await page.goto('/data/bb_items.html');
+  await page.locator('#searchBox').fill('Heavenly/Battle');
+  await expect(page.locator('#searchCount')).toContainText(/找到 [1-9]\d* 条/);
+  await expect(page.locator('#searchResults .search-results-table tbody tr')).toHaveCount(1);
+
+  await page.goto('/data/monsters.html');
+  const total = await page.locator('.monster-entry').count();
+  expect(total).toBeGreaterThan(20);
+  await page.locator('#monsterSearch').fill('Booma');
+  await expect(page.locator('#monsterCount')).toContainText(new RegExp(`/ ${total} 项`));
+  expect(await page.locator('.monster-entry:visible').count()).toBeLessThan(total);
+
+  await page.goto('/guide/class-guide.html');
+  await page.locator('#tab-ranger').click();
+  await expect(page.locator('#ranger')).toBeVisible();
+  await expect(page.locator('#hunter')).toBeHidden();
+  await expect(page).toHaveURL(/#ranger$/);
+  await page.locator('#tab-ranger').press('ArrowRight');
+  await expect(page.locator('#force')).toBeVisible();
+  await expect(page.locator('#tab-force')).toBeFocused();
+
+  await page.goto('/guide/rbr.html');
+  await expect(page.locator('#rbr-tracker-status')).toContainText('Tracker');
+  await expect(page.locator('.rbr-episode-card')).toHaveCount(3);
+  await expect(page.locator('.rbr-quest-cell')).toHaveCount(58);
+  await expect(page.locator('.tier-current-marker')).toHaveCount(3);
   expect(runtimeErrors).toEqual([]);
 });
 
@@ -395,6 +509,102 @@ test('anniversary feature cards keep bilingual item names visible', async ({ pag
         part.getBoundingClientRect().right <= paragraphRect.right + 0.5
       ));
   })).toBe(true);
+});
+
+test('Angular content behaviors preserve lookup and Section ID interactions', async ({ page }) => {
+  await page.goto('/data/en2chinese.html');
+  const lookupRows = page.locator('#lookup tr');
+  await expect.poll(() => lookupRows.count()).toBeGreaterThan(500);
+  await page.locator('#search-input').fill('V502');
+  await expect(page.locator('#result-count')).toContainText(/匹配 \d+ \/ \d+ 项/);
+  await expect(page.locator('#lookup tr:visible')).toHaveCount(1);
+  await expect(page.locator('#lookup tr:visible').first()).toContainText('V502');
+
+  await page.goto('/tools/id.html');
+  await page.locator('#name').fill('Haven');
+  await expect(page.locator('#tf1')).not.toHaveText('N/A');
+  await expect(page.locator('#img1')).not.toHaveAttribute('src', /Impossible/);
+  await page.getByRole('button', { name: 'DC/PC/GC/XB' }).click();
+  await expect(page.locator('#Legacy')).toBeVisible();
+  await expect(page.locator('#BB')).toBeHidden();
+});
+
+test('Angular multilingual data tables switch language without legacy globals', async ({ page }) => {
+  await page.goto('/data/bdp/');
+  await expect.poll(() => page.locator('.bdp-row').count()).toBeGreaterThan(0);
+  await page.getByRole('button', { name: 'EN', exact: true }).click();
+  await expect(page.locator('#pageTitle')).toHaveText("Black Paper's Deal Drop Charts");
+  await expect(page.locator('.bdp-head')).toContainText('Ultimate');
+  await expect.poll(() => page.evaluate(() => ({
+    jquery: typeof window.jQuery,
+    bootstrap: typeof window.bootstrap,
+    vue: typeof window.Vue,
+  }))).toEqual({ jquery: 'undefined', bootstrap: 'undefined', vue: 'undefined' });
+
+  await page.goto('/data/prizelist/');
+  await expect(page.locator('#pageTitle')).toHaveText("Coren's Prize List");
+  await expect(page.locator('.day-head').first()).toContainText('Monday');
+  await page.getByRole('button', { name: '日', exact: true }).click();
+  await expect(page.locator('.day-head').first()).toContainText('月曜日');
+});
+
+test('Angular price guide filters categories and bilingual item names', async ({ page }) => {
+  await page.goto('/data/price_guide.html');
+  const sections = page.locator('#price-content .price-section');
+  await expect.poll(() => sections.count()).toBeGreaterThan(20);
+  await page.locator('#price-search').fill('Lavis Cannon');
+  await expect(page.locator('#match-count')).toContainText(/找到 [1-9]\d* \/ \d+ 项/);
+  await expect(page.locator('#price-content')).toContainText('圣剑「拉维斯·迦农」');
+  await page.locator('#price-search').fill('not-a-real-pso-item');
+  await expect(page.locator('.empty-result')).toBeVisible();
+  await page.locator('#price-search').fill('');
+  await page.getByRole('button', { name: '玛古', exact: true }).click();
+  await expect(page.locator('#price-content .price-section')).toHaveCount(2);
+});
+
+test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ page }) => {
+  await page.goto('/data/protocol/');
+  await page.getByRole('button', { name: 'EN', exact: true }).click();
+  await expect(page.locator('#project_title')).toHaveText('Protocol Reference');
+  await page.locator('#tab-list [data-tab="subcommands"]').click();
+  await expect(page.locator('#proto-content section.active')).toHaveAttribute('data-tab', 'subcommands');
+  await expect.poll(() => page.locator('#section-list a').count()).toBeGreaterThan(0);
+
+  await page.goto('/guide/volopt.html');
+  const firstRow = page.locator('#cast-body tr').first();
+  await expect(firstRow).toBeVisible();
+  const initial = await firstRow.innerText();
+  await page.locator('#mode-tabs [data-mode="one_person"]').click();
+  await page.locator('#class-tabs [data-class="ramarl"]').click();
+  await expect.poll(() => firstRow.innerText()).not.toBe(initial);
+  await page.locator('#mode-tabs [data-mode="normal"]').click();
+  await expect.poll(() => page.locator('#shifta-tabs button').count()).toBeGreaterThan(1);
+  await page.locator('#shifta-tabs button').last().click();
+  await expect(page.locator('#shifta-tabs button').last()).toHaveClass(/active/);
+
+  await page.goto('/tools/mag.html');
+  await expect.poll(() => page.locator('#panel-hu .mag-card').count()).toBeGreaterThan(5);
+  await page.getByRole('tab', { name: /枪手/ }).click();
+  await expect(page.locator('#panel-ra')).toBeVisible();
+  await expect(page.locator('#panel-hu')).toBeHidden();
+  await page.getByRole('tab', { name: /表2/ }).click();
+  await expect(page.locator('#panel-recipe2')).toBeVisible();
+  await expect.poll(() => page.locator('#panel-recipe2 tbody tr').count()).toBeGreaterThan(5);
+});
+
+test('Angular event archive prerenders the default year and loads requested years', async ({ page }) => {
+  await page.goto('/event/easter.html');
+  await expect(page.locator('#eventYear')).toHaveText('2026');
+  await expect(page.locator('#yearContent')).not.toContainText('载入中');
+  await expect(page.locator('#yearContent')).toContainText('2026');
+
+  await page.goto('/event/easter.html?year=2025');
+  await expect(page.locator('#eventYear')).toHaveText('2025');
+  await expect(page.locator('#yearContent')).toContainText('2025');
+  await page.locator('[data-preview-image]').first().click();
+  await expect(page.locator('#imagePreview')).toBeVisible();
+  await page.locator('.image-preview-close').click();
+  await expect(page.locator('#imagePreview')).toBeHidden();
 });
 
 test('Combo Calculator license is included in the production artifact', async ({ request }) => {

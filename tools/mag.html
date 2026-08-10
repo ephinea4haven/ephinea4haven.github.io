@@ -9,10 +9,6 @@
     <title>玛古进化图谱 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/mag-chart.css">
-    <script src="/assets/js/page-chrome.js"></script>
-    <script src="/assets/js/mag-evolution.js" defer></script>
-    <script src="/assets/js/mag-sim-data.js" defer></script>
-    <script src="/assets/js/mag-chart.js" defer></script>
 </head>
 
 <body>
@@ -501,27 +497,6 @@
     <!-- Back to Top Button -->
     <button id="backToTop" title="回到顶部">↑</button>
 
-    <script>
-        // Back to Top functionality
-        const backToTopBtn = document.getElementById('backToTop');
-
-        // Show button when scrolling down
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-
-        // Scroll to top when clicked
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
 </body>
 
 </html>

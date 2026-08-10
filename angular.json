@@ -1,0 +1,51 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "haven-tools": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "haven",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "tsConfig": "tsconfig.app.json",
+            "index": "src/index.html",
+            "styles": [
+              "assets/css/unified-style.css",
+              "assets/css/tool-pages.css"
+            ],
+            "outputPath": "dist/angular-tools",
+            "outputHashing": "all",
+            "optimization": true,
+            "sourceMap": false,
+            "extractLicenses": true
+            ,
+            "outputMode": "static",
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "280kB",
+                "maximumError": "300kB"
+              },
+              {
+                "type": "anyScript",
+                "maximumWarning": "250kB",
+                "maximumError": "300kB"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {}
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    }
+  }
+}

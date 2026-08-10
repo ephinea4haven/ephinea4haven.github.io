@@ -2,6 +2,7 @@
   "repository": "https://github.com/phelix-/psostats-client",
   "observedMainCommit": "a27460f0fc7b222a8adea5e5cbc86c8b10ee4ca3",
   "verifiedScriptCommit": "a27460f0fc7b222a8adea5e5cbc86c8b10ee4ca3",
+  "presentation": "Haven-owned Angular components",
   "sources": {
     "script": "https://psostats.com/static/combo_calc3.js",
     "commitScript": "https://raw.githubusercontent.com/phelix-/psostats-client/a27460f0fc7b222a8adea5e5cbc86c8b10ee4ca3/static/combo_calc3.js",
@@ -18,20 +19,13 @@
   },
   "generatedSha256": {
     "script": "38a90c235e01e03ea5e7436cc7779f83719cd42d8873971606d61d91c59bfc7b",
-    "multiplayerPage": "73e881d8d4207b9e377d57920fcebe72e3c1787e246b65ae0a9b6bb71f079f32",
     "multiplayerData": "f996fe3d1ab36959585b2144a54941668118ce7b5fa7e942c1ffeb6eb6998138",
-    "opmPage": "024ff1bc35f28aedc9b509a4a4dd76282b4f733eb0a307bb0202c2b447fa863a",
     "opmData": "212d89cb1106fa70bbb83696172165a4c0680fea0400064aabdeabafd574737c",
     "license": "85121548e3c096ece17e642796fc7298814b22e4abadad630083ed6446eec977"
   },
-  "dependencies": {
-    "upstream": {
-      "jquery": "3.5.1",
-      "bootstrap": "4.6.0"
-    },
-    "local": {
-      "jquery": "4.0.0",
-      "bootstrap": "5.3.8"
-    }
+  "observedUpstreamDependencies": {
+    "jquery": "3.5.1",
+    "bootstrap": "4.6.0",
+    "vue": "2"
   }
 }

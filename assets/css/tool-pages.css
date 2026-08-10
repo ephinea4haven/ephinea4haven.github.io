@@ -1,0 +1,116 @@
+/* Shared visual language for interactive Angular tools. */
+
+:root {
+    --tool-surface: rgba(12, 24, 56, 0.62);
+    --tool-surface-strong: rgba(12, 24, 56, 0.82);
+    --tool-control: rgba(26, 42, 79, 0.9);
+    --tool-radius: 12px;
+    --tool-space: 20px;
+}
+
+haven-tools-app {
+    display: block;
+    width: 100%;
+}
+
+.tool-page {
+    width: 100%;
+    padding: 32px;
+}
+
+.tool-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--accent-20);
+}
+
+.tool-kicker {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.tool-section {
+    margin: 16px 0;
+    padding: var(--tool-space);
+    border: 1px solid var(--accent-20);
+    border-radius: var(--tool-radius);
+    background: var(--tool-surface);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+}
+
+.tool-page .tool-section > h2,
+.tool-page .tool-section > h3,
+.tool-page .section-heading h2,
+.tool-page .section-heading h3 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: var(--heading-h3);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.tool-page :is(input:not([type='checkbox']), select) {
+    width: 100%;
+    min-height: 42px;
+    padding: 8px 11px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    border-radius: 8px;
+    outline: none;
+    color: var(--text-primary);
+    background: var(--tool-control);
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tool-page :is(input:not([type='checkbox']), select):focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-15);
+}
+
+.tool-page button,
+.tool-page .tool-action {
+    min-height: 36px;
+    padding: 7px 13px;
+    border: 1px solid var(--accent-30);
+    border-radius: 8px;
+    color: var(--link-color);
+    background: var(--accent-10);
+    font: inherit;
+    font-weight: 650;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.tool-page button:hover,
+.tool-page .tool-action:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-15);
+}
+
+.tool-page button:focus-visible,
+.tool-page .tool-action:focus-visible {
+    outline: 3px solid var(--accent-20);
+    outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+    .tool-page {
+        padding: 22px 18px;
+    }
+
+    .tool-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

@@ -32,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Audit dependencies
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=low
 
       - name: Run business tests
         run: npm test

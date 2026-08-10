@@ -297,11 +297,22 @@ header {
     animation: pulse-val 2.8s ease-in-out infinite, beat-glow 1.8s ease-in-out infinite;
 }
 
+#swatchTime[data-period="divine"] { color: #47a447; text-shadow: 0 0 20px rgba(71, 164, 71, 0.6); }
+#swatchTime[data-period="normal"] { color: #c8a23a; text-shadow: 0 0 20px rgba(200, 162, 58, 0.5); }
+#beat-period-label[data-period="divine"] { color: #4ade80; }
+#beat-period-label[data-period="normal"] { color: #94a3b8; }
+
 #galatine-atp {
     font-family: 'Share Tech Mono', monospace;
     color: #fde68a;
     text-align: center;
 }
+
+#galatine-atp[data-multiplier="0.33×"] { color: #7a6a3a; text-shadow: none; }
+#galatine-atp[data-multiplier="0.5×"] { color: #b89548; text-shadow: none; }
+#galatine-atp[data-multiplier="1×"] { color: #fde68a; text-shadow: 0 0 8px rgba(253, 230, 138, 0.25); }
+#galatine-atp[data-multiplier="2×"] { color: #fff3b0; text-shadow: 0 0 16px rgba(253, 230, 138, 0.55); }
+#galatine-atp[data-multiplier="3×"] { color: #fff; text-shadow: 0 0 24px rgba(253, 230, 138, 0.9), 0 0 48px rgba(253, 230, 138, 0.4); }
 
 #buf-current {
     font-family: 'Noto Sans SC', sans-serif;

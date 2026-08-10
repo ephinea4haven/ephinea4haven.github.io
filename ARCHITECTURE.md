@@ -1,124 +1,107 @@
-# Architecture & Optimization Notes
+# Architecture
 
 > Last updated: 2026-08-09
-> The following are intentionally outside the refactor/cleanup scope per user direction (don't propose changes):
-> - `data/droptable/` — retained as tooling input but excluded from the published artifact
-> - `assets/js/combo_calc*.js`, `tools/cc.html`, `tools/ccopm.html` — generated third-party Combo Calculator snapshots; update only through `npm run sync:combo`
 
-## Overview
+## System shape
 
-Pure static site deployed to GitHub Pages from an immutable `_site` artifact.
-The repository keeps readable JavaScript only; generated `.min.js` files are
-never written back to source control.
+Ephinea4Haven is a statically deployed Angular application. Angular 22 owns every
+public page, route and interaction. GitHub Pages serves the immutable `_site`
+artifact; it does not need server-side rewrites or a JavaScript backend.
 
-`npm run build` is the single production build entry point. It:
+The historical URLs are part of the product contract. The Angular build
+prerenders routes and `scripts/build_site.mjs` installs each result at its
+existing `.html` path. Directory-index aliases remain available where they
+already existed. Year-specific event HTML files are content fragments loaded by
+their Angular event route, not independent application hosts.
 
-- copies an explicit allowlist of public site files into a temporary directory;
-- discovers browser JavaScript from parsed HTML entries;
-- minifies classic scripts and bundles ES-module dependency graphs;
-- emits content-hashed `.min.js` filenames and rewrites only the copied HTML;
-- preserves existing third-party `.min.js` files;
-- keeps one shared, lockfile-backed jQuery 4.0.0 slim and Bootstrap 5.3.8 CSS copy;
-- excludes the opt-out drop-table tree and generated upstream `combo_calc*.js` files from
-  transformation, while still counting the published Combo scripts against the gzip budget;
-- publishes the PSOStats Combo Calculator MIT license with the copied upstream code;
-- validates local resource references, source exclusion, coverage and hashes;
-- writes a deterministic `build-manifest.json`;
-- atomically publishes the completed `_site` directory.
+There is one browser runtime:
 
-`npm run release:prepare` is the local release gate. GitHub Actions performs a
-locked install, dependency audit, business tests, two reproducibility builds,
-and browser tests. Browser coverage includes WCAG A/AA axe audits for both Combo
-Calculator modes, the status simulator, and the character table. The build job
-uploads `_site`; the deploy job deploys that exact artifact without checking out
-or rebuilding the repository.
+- standalone Angular components and directives;
+- Angular Router with lazy route entries;
+- zoneless change detection;
+- signals for local feature state;
+- SSR/SSG for meaningful initial HTML;
+- typed or explicitly bounded domain/data modules.
 
-Useful commands:
+jQuery, Bootstrap, Vue, vue-multiselect and the old `page-chrome` custom element
+runtime are retired. They must not appear in package dependencies or the
+published artifact. Repository-owned HTML sources contain content and styling,
+but no scripts or inline event handlers; Angular owns behavior.
+
+## Ownership
+
+- `src/app/`: bootstrap, routing and application features.
+- `src/app/content/`: shared behaviors for content-oriented routes.
+- `src/app/shared/`: the Angular page shell and common presentation.
+- `src/app/combo/`, `status/`, `chartable/`, `price-guide/`: dedicated tools.
+- `src/app/events/`, `data/`, `mag/`, `rbr/`: specialized interactive content.
+- `src/app/generated/`: ignored build output derived from committed source data.
+- `assets/`: images, CSS, fonts, JSON and immutable build inputs.
+- `scripts/`: data generation, upstream synchronization, architecture checks and
+  deterministic release construction.
+- `third_party/`: licenses and provenance for synchronized upstream material.
+
+`data/droptable/` is a tooling-only snapshot and is excluded from publication.
+The current drop-table product is hosted independently at
+`dropcharts.psohaven.com`.
+
+## Content and application routes
+
+Content routes preserve the existing authored HTML as build-time content input.
+The generator extracts body markup, metadata and route-specific styles, removes
+no behavior at runtime, and emits lazy standalone Angular components. Interactive
+routes either attach a scoped Angular directive or use a dedicated component.
+
+Dedicated components are preferred when state changes the rendered model, such
+as Combo, status, character tables and prices. Scoped directives are used for
+stable document-like content whose interaction is naturally DOM-local, such as
+tabs, filters and event previews.
+
+Build-input JavaScript datasets are never copied to `_site`. Generators evaluate
+or normalize them into Angular modules. The PSOStats Combo snapshot remains an
+audited upstream boundary. The character simulator is Haven-owned TypeScript:
+`status-domain.ts` is a pure calculation module and `item-data.js` is an immutable
+catalog behind an explicit TypeScript declaration. Neither depends on the DOM or
+an obsolete browser runtime.
+
+## Build and release
+
+`npm run build` performs the following transaction:
+
+1. regenerate Angular modules from committed datasets;
+2. build and prerender the Angular application;
+3. copy the explicit static-resource allowlist into a temporary directory;
+4. install every prerendered route at its historical path;
+5. reject any unexpected non-Angular HTML host, missing resource, retired
+   runtime asset, or route/chunk budget violation;
+6. write a deterministic manifest and atomically publish `_site`.
+
+`npm run release:prepare` runs source/data checks, the production build and the
+Playwright suite. CI additionally performs `npm ci`, dependency audit and a
+second byte-identical build before deploying the exact tested artifact.
+
+The release gates cover:
+
+- no jQuery, Bootstrap or Vue package/runtime/assets;
+- no scripts or inline event handlers in repository-owned page sources;
+- Angular ownership of every public application host;
+- browser console, page and local-resource errors on every route;
+- representative behavior and WCAG A/AA checks;
+- per-chunk, per-route and aggregate gzip budgets;
+- Status calculation fixtures and exhaustive character/equipment compatibility;
+- Combo provenance, license and calculation-data integrity;
+- deterministic output.
+
+## Development commands
 
 ```bash
 npm ci
-npx playwright install chromium
 npm test
 npm run build
 npm run test:e2e
+npm run dev
 npm run preview
 ```
 
-### Directory Structure
-
-```
-/                     ← Landing page (index.html)
-/assets/js/           ← Core JS (~6 files)
-/assets/css/          ← Stylesheets (~7 CSS files)
-/data/droptable/      ← Tooling-only drop-chart snapshot (not published)
-/data/                ← Misc data pages (14 HTML files)
-/event/               ← Event pages — `event.html` hub; `christmas.html` / `anniversary.html` data-driven templates; per-year fragments in matching subdirectories
-/guide/               ← Guides (14 HTML files)
-/tools/               ← Tool pages (13 HTML)
-/third_party/         ← Upstream licenses and synchronization provenance (Combo license published)
-```
-
-> Note: the quest editor (`pw`) is deployed separately at `pw.psohaven.com` from its own Kotlin Multiplatform repo; it is no longer part of this codebase. The landing page links out to it.
-
-### Core JS Files
-
-| File | Lines | Purpose |
-|------|-------|---------|
-| `assets/js/chardata.json` | 2500 | Per-class stat tables (pure JSON, fetched at load) |
-| `assets/js/chardata.js` | 18 | Loader; sets `window.charDataReady` Promise |
-| `assets/js/combo_calc.js` | — | PSOStats calculation engine (generated by `npm run sync:combo`) |
-| `assets/js/simulator.js` | 1066 | Character damage simulator |
-| `data/droptable/shared/viewer.js` | 390 | Shared drop table rendering logic |
-| `assets/js/itemdata.js` | 359 | Weapon/armor/item database |
-| `assets/js/id.js` | 82 | Section ID calculator |
-| `assets/js/index.js` | 111 | Landing page logic (Swatch time, RBS rotation, seasonal event highlighting) |
-| `assets/js/page-chrome.js` | 30 | `<page-chrome>` custom element — injects standard subpage header + back-link |
-| `assets/js/chartable.js` | 27 | Per-class stat table jump logic |
-
-### Drop Table Data Files
-
-| File | Lines | Notes |
-|------|-------|-------|
-| `data/droptable/bb/data/en.js` | 27,362 | BB English drop data |
-| `data/droptable/bb/data/zh.js` | 27,362 | BB Chinese drop data |
-| `data/droptable/dc/data/*.js` | — | DC variant, all languages |
-| `data/droptable/ngc/data/*.js` | — | NGC variant, all languages |
-
----
-
-## Landing-page seasonal highlights
-
-The five event links in the landing page's **活动专题** group carry a `data-holiday`
-identifier. `assets/js/index.js` adds `holiday-active` to links whose recurring
-display window contains the visitor's local date; `assets/css/index.css` renders
-that state as an animated rainbow highlight and disables animation when
-`prefers-reduced-motion` is enabled. The **活动总览** link intentionally has no
-identifier and is never highlighted.
-
-| Event | Display window |
-|------|----------------|
-| Valentine's | February 1–28/29 |
-| Easter | March 1–May 15 |
-| Anniversary | August 1–September 15 |
-| Halloween | October 1–November 10 |
-| Christmas | December 1–January 15 |
-
----
-
-## Issues & Recommendations
-
-### 1. Manually versioned runtime data (Low)
-
-Production JavaScript uses content-hashed filenames. A few runtime-fetched JSON
-and explicitly excluded drop-table resources still use manual query versions.
-
-Future work can include those data resources in the build manifest or move them
-behind a cache-aware CDN.
-
----
-
-## Priority Summary
-
-| Priority | Item | Expected Benefit |
-|----------|------|-----------------|
-| Low | Automated cache-busting | Prevent stale cache issues |
+Use current stable, non-prerelease dependencies and commit exact direct versions.
+Dependency updates are accepted only after the complete release gate passes.

@@ -8,8 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>游戏物品中英对照 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
-    <script src="/assets/js/page-chrome.js"></script>
-    <script src="/assets/js/i18n/items_i18n.js"></script>
     <style>
         /* Search bar — matches price_guide.html convention */
         .filter-bar {
@@ -82,84 +80,6 @@
         <div id="no-results" style="display:none;">没有匹配的物品</div>
     </div>
 
-    <script>
-        (function () {
-            var tbody = document.getElementById('lookup');
-            var countEl = document.getElementById('result-count');
-            var noResults = document.getElementById('no-results');
-            var table = document.getElementById('lookup-table');
-            var dict = window.ITEMS_I18N || {};
-
-            var rows = [];
-            for (var slug in dict) {
-                var entry = dict[slug];
-                if (entry && entry.en && entry.zh) {
-                    rows.push({ en: entry.en, zh: entry.zh, ja: entry.ja || '' });
-                }
-            }
-            rows.sort(function (a, b) {
-                return a.en.toLowerCase().localeCompare(b.en.toLowerCase());
-            });
-
-            // Build all rows once; filtering toggles display.
-            for (var i = 0; i < rows.length; i++) {
-                var tr = document.createElement('tr');
-                var tdEn = document.createElement('td');
-                var tdZh = document.createElement('td');
-                var tdJa = document.createElement('td');
-                tdEn.textContent = rows[i].en;
-                tdZh.textContent = rows[i].zh;
-                if (rows[i].ja) {
-                    tdJa.textContent = rows[i].ja;
-                } else {
-                    tdJa.textContent = '—';
-                    tdJa.className = 'empty';
-                }
-                tr.appendChild(tdEn);
-                tr.appendChild(tdZh);
-                tr.appendChild(tdJa);
-                tbody.appendChild(tr);
-                rows[i].node = tr;
-                rows[i].enLower = rows[i].en.toLowerCase();
-            }
-
-            var total = rows.length;
-
-            function render(term) {
-                var shown = 0;
-                for (var i = 0; i < rows.length; i++) {
-                    var r = rows[i];
-                    var match = !term ||
-                        r.enLower.indexOf(term) >= 0 ||
-                        r.zh.indexOf(term) >= 0 ||
-                        (r.ja && r.ja.indexOf(term) >= 0);
-                    r.node.style.display = match ? '' : 'none';
-                    if (match) shown++;
-                }
-                if (shown === 0) {
-                    table.style.display = 'none';
-                    noResults.style.display = '';
-                } else {
-                    table.style.display = '';
-                    noResults.style.display = 'none';
-                }
-                countEl.textContent = term
-                    ? ('匹配 ' + shown + ' / ' + total + ' 项')
-                    : ('共 ' + total + ' 项');
-            }
-
-            var input = document.getElementById('search-input');
-            var timer = null;
-            input.addEventListener('input', function () {
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    render(input.value.trim().toLowerCase());
-                }, 120);
-            });
-
-            render('');
-        })();
-    </script>
 </body>
 
 </html>

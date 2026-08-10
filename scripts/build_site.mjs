@@ -1,4 +1,3 @@
-import { build as esbuild, transform } from 'esbuild';
 import {
   access,
   cp,
@@ -12,9 +11,10 @@ import {
 } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { gzipSync } from 'node:zlib';
-import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { parse } from 'parse5';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -31,27 +31,21 @@ const excludedFiles = new Set([
   path.join(root, 'assets', 'js', 'combo_calc.js'),
   path.join(root, 'assets', 'js', 'combo_calc_multi_data.js'),
   path.join(root, 'assets', 'js', 'combo_calc_opm_data.js'),
+  path.join(root, 'data', 'bdp', 'data.js'),
+  path.join(root, 'data', 'prizelist', 'data.js'),
+  path.join(root, 'assets', 'js', 'volopt_data.js'),
+  path.join(root, 'assets', 'js', 'i18n', 'items_i18n.js'),
+  path.join(root, 'assets', 'js', 'price_guide_data.js'),
+  path.join(root, 'assets', 'js', 'mag-evolution.js'),
+  path.join(root, 'assets', 'js', 'mag-sim-data.js'),
 ]);
-const target = 'es2018';
+const unpublishedBuildInputs = new Set(excludedFiles);
+const execFileAsync = promisify(execFile);
+const angularOutputDirectory = path.join(root, 'dist', 'angular-tools', 'browser');
 
 function isInside(file, directory) {
   const relative = path.relative(directory, file);
   return relative === '' || (!relative.startsWith('..') && !path.isAbsolute(relative));
-}
-
-function isMinifiableSource(file) {
-  return file.endsWith('.js')
-    && !file.endsWith('.min.js')
-    && !excludedFiles.has(file)
-    && !excludedTrees.some((directory) => isInside(file, directory));
-}
-
-function isGeneratedSibling(file) {
-  if (!file.endsWith('.min.js')) {
-    return false;
-  }
-  const source = file.replace(/\.min\.js$/, '.js');
-  return existsSync(source) && isMinifiableSource(source);
 }
 
 function toPosix(file) {
@@ -115,54 +109,6 @@ function localPathFromUrl(pageFile, url) {
     : path.resolve(path.dirname(pageFile), clean);
 }
 
-function pageUrlForOutput(pageFile, originalUrl, outputRelative) {
-  const suffix = originalUrl.match(/#.*$/)?.[0] || '';
-  if (originalUrl.startsWith('/')) {
-    return `/${outputRelative}${suffix}`;
-  }
-  let relative = toPosix(path.relative(
-    path.dirname(path.relative(root, pageFile)),
-    outputRelative,
-  ));
-  if (originalUrl.startsWith('./') && !relative.startsWith('.')) {
-    relative = `./${relative}`;
-  }
-  return `${relative}${suffix}`;
-}
-
-function scriptEntries(html, pageFile) {
-  const document = parse(html, { sourceCodeLocationInfo: true });
-  const entries = [];
-  visit(document, (node) => {
-    if (node.tagName !== 'script' || !node.sourceCodeLocation?.attrs) {
-      return;
-    }
-    const src = node.attrs?.find((attribute) => attribute.name === 'src')?.value;
-    if (!src) {
-      return;
-    }
-    const sourceFile = localPathFromUrl(pageFile, src);
-    if (!sourceFile) {
-      return;
-    }
-    entries.push({
-      pageFile,
-      sourceFile,
-      sourceUrl: src,
-      type: node.attrs?.find((attribute) => attribute.name === 'type')?.value === 'module'
-        ? 'module'
-        : 'classic',
-      location: node.sourceCodeLocation.attrs.src,
-    });
-  });
-  return entries;
-}
-
-function rewriteAttribute(html, location, name, value) {
-  return `${html.slice(0, location.startOffset)}${name}="${value}"`
-    + html.slice(location.endOffset);
-}
-
 async function copySiteSource() {
   await mkdir(temporaryDirectory, { recursive: true });
 
@@ -179,8 +125,7 @@ async function copySiteSource() {
       recursive: true,
       filter(file) {
         return !excludedTrees.some((tree) => isInside(file, tree))
-          && !isMinifiableSource(file)
-          && !isGeneratedSibling(file);
+          && !unpublishedBuildInputs.has(file);
       },
     });
   }
@@ -190,6 +135,106 @@ async function copySiteSource() {
     await mkdir(path.dirname(destination), { recursive: true });
     await cp(source, destination);
   }
+}
+
+async function buildAngularApplication() {
+  await execFileAsync(process.execPath, [
+    path.join(root, 'scripts', 'generate_angular_combo.mjs'),
+  ], { cwd: root });
+  await execFileAsync(process.execPath, [
+    path.join(root, 'scripts', 'generate_angular_content.mjs'),
+  ], { cwd: root });
+  const angularCli = path.join(root, 'node_modules', '@angular', 'cli', 'bin', 'ng.js');
+  await execFileAsync(process.execPath, [angularCli, 'build', 'haven-tools'], {
+    cwd: root,
+    env: {
+      ...process.env,
+      NG_BUILD_MAX_WORKERS: '1',
+      NODE_OPTIONS: `${process.env.NODE_OPTIONS || ''} --max-old-space-size=4096`.trim(),
+    },
+  });
+
+}
+
+async function installAngularApplication(pages) {
+  const destination = path.join(temporaryDirectory, 'assets', 'angular');
+  await mkdir(destination, { recursive: true });
+  const browserFiles = (await walk(angularOutputDirectory)).sort();
+  for (const source of browserFiles.filter((file) => !file.endsWith('.html'))) {
+    const relative = path.relative(angularOutputDirectory, source);
+    const output = path.join(destination, relative);
+    await mkdir(path.dirname(output), { recursive: true });
+    await cp(source, output);
+  }
+
+  const prerenderManifest = JSON.parse(await readFile(
+    path.join(root, 'dist', 'angular-tools', 'prerendered-routes.json'),
+    'utf8',
+  ));
+  const prerenderedRoutes = Object.keys(prerenderManifest.routes).sort();
+  const pageSet = new Set(pages.map(relativeToRoot));
+  const routeAssets = [];
+  const angularPages = new Set();
+  let hosts = 0;
+  for (const route of prerenderedRoutes) {
+    const relativeRoute = route.replace(/^\//, '');
+    const historicalPage = relativeRoute === ''
+      ? 'index.html'
+      : (pageSet.has(relativeRoute) ? relativeRoute : `${relativeRoute}/index.html`);
+    if (!pageSet.has(historicalPage)) {
+      throw new Error(`Angular prerender route has no historical page: ${route}`);
+    }
+    angularPages.add(historicalPage);
+    const prerenderedPage = relativeRoute
+      ? path.join(angularOutputDirectory, relativeRoute, 'index.html')
+      : path.join(angularOutputDirectory, 'index.html');
+    let html = await readFile(prerenderedPage, 'utf8');
+    html = html.replace(
+      /((?:src|href)=")((?:chunk|main|styles)-[^"/]+\.(?:js|css))/g,
+      '$1/assets/angular/$2',
+    );
+    routeAssets.push({
+      route,
+      files: [...html.matchAll(/(?:src|href)="\/assets\/angular\/([^"?]+\.js)/g)]
+        .map((match) => `assets/angular/${match[1]}`),
+    });
+    await writeFile(path.join(temporaryDirectory, historicalPage), html);
+    hosts += 1;
+  }
+
+  const fragmentPattern = /^event\/(?:anniversary|christmas|easter|halloween|valentines)\/\d{4}\.html$/;
+  const unexpectedNonAngularPages = [...pageSet]
+    .filter((page) => !angularPages.has(page) && !fragmentPattern.test(page));
+  if (unexpectedNonAngularPages.length) {
+    throw new Error(`Public HTML is not Angular-owned:\n${unexpectedNonAngularPages.join('\n')}`);
+  }
+  if (!hosts) {
+    throw new Error('Angular build has no HTML host document');
+  }
+
+  const files = (await walk(destination)).sort();
+  const javascript = files.filter((file) => file.endsWith('.js'));
+  const chunks = await Promise.all(javascript.map(async (file) => ({
+    file: toPosix(path.relative(temporaryDirectory, file)),
+    gzipBytes: gzipSync(await readFile(file)).length,
+  })));
+  const javascriptGzipBytes = chunks.reduce((total, chunk) => total + chunk.gzipBytes, 0);
+  const gzipByFile = new Map(chunks.map((chunk) => [chunk.file, chunk.gzipBytes]));
+  const routes = routeAssets.map(({ route, files }) => ({
+    route,
+    files: [...new Set(files)].sort(),
+    gzipBytes: [...new Set(files)].reduce(
+      (total, file) => total + (gzipByFile.get(file) ?? 0),
+      0,
+    ),
+  }));
+  return {
+    hosts,
+    files: files.map((file) => toPosix(path.relative(temporaryDirectory, file))),
+    javascriptGzipBytes,
+    chunks,
+    routes,
+  };
 }
 
 async function discoverPages() {
@@ -206,153 +251,6 @@ async function discoverPages() {
     }),
   )).flat();
   return [...rootPages, ...nestedPages].sort();
-}
-
-async function discoverMinifiableSources() {
-  return (await Promise.all(
-    siteDirectories.map(async (directory) => {
-      const absolute = path.join(root, directory);
-      return (await walk(absolute)).filter(isMinifiableSource);
-    }),
-  )).flat().sort();
-}
-
-async function minifyClassic(sourceFile) {
-  const source = await readFile(sourceFile, 'utf8');
-  const result = await transform(source, {
-    loader: 'js',
-    minify: true,
-    target,
-    legalComments: 'eof',
-    sourcefile: relativeToRoot(sourceFile),
-  });
-  return {
-    code: result.code,
-    inputs: [sourceFile],
-  };
-}
-
-async function bundleModule(sourceFile) {
-  const result = await esbuild({
-    entryPoints: [sourceFile],
-    bundle: true,
-    write: false,
-    format: 'esm',
-    platform: 'browser',
-    target,
-    minify: true,
-    legalComments: 'eof',
-    metafile: true,
-    plugins: [{
-      name: 'site-root-imports',
-      setup(context) {
-        context.onResolve({ filter: /^\// }, (args) => {
-          if (args.kind === 'entry-point') {
-            return null;
-          }
-          return { path: path.join(root, args.path.slice(1)) };
-        });
-      },
-    }],
-  });
-  if (result.outputFiles.length !== 1) {
-    throw new Error(
-      `${relativeToRoot(sourceFile)} emitted ${result.outputFiles.length} module outputs; expected one`,
-    );
-  }
-  const inputs = Object.keys(result.metafile.inputs)
-    .map((file) => path.resolve(root, file));
-  return {
-    code: result.outputFiles[0].text,
-    inputs,
-  };
-}
-
-async function emitEntry(sourceFile, type) {
-  const result = type === 'module'
-    ? await bundleModule(sourceFile)
-    : await minifyClassic(sourceFile);
-  const digest = sha256(result.code);
-  const sourceRelative = relativeToRoot(sourceFile);
-  const parsed = path.posix.parse(sourceRelative);
-  const outputRelative = path.posix.join(
-    parsed.dir,
-    `${parsed.name}.${digest.slice(0, 12)}.min.js`,
-  );
-  const output = path.join(temporaryDirectory, outputRelative);
-  await mkdir(path.dirname(output), { recursive: true });
-  await writeFile(output, result.code);
-
-  const inputContents = await Promise.all(result.inputs.map((file) => readFile(file)));
-  return {
-    source: sourceRelative,
-    output: outputRelative,
-    type,
-    sha256: digest,
-    inputBytes: inputContents.reduce((total, content) => total + content.length, 0),
-    outputBytes: Buffer.byteLength(result.code),
-    inputGzipBytes: inputContents.reduce(
-      (total, content) => total + gzipSync(content).length,
-      0,
-    ),
-    outputGzipBytes: gzipSync(result.code).length,
-    inputs: result.inputs.map(relativeToRoot).sort(),
-  };
-}
-
-async function transformScripts(pages) {
-  const entriesByKey = new Map();
-  const entriesByPage = new Map();
-  const typeBySource = new Map();
-
-  for (const pageFile of pages) {
-    const html = await readFile(pageFile, 'utf8');
-    const entries = scriptEntries(html, pageFile);
-    entriesByPage.set(pageFile, entries);
-    for (const entry of entries) {
-      if (!isMinifiableSource(entry.sourceFile)) {
-        continue;
-      }
-      const existingType = typeBySource.get(entry.sourceFile);
-      if (existingType && existingType !== entry.type) {
-        throw new Error(`${relativeToRoot(entry.sourceFile)} is used as both module and classic script`);
-      }
-      typeBySource.set(entry.sourceFile, entry.type);
-      const key = `${entry.type}:${entry.sourceFile}`;
-      entriesByKey.set(key, entry);
-    }
-  }
-
-  const assets = [];
-  const outputByKey = new Map();
-  for (const key of [...entriesByKey.keys()].sort()) {
-    const entry = entriesByKey.get(key);
-    const asset = await emitEntry(entry.sourceFile, entry.type);
-    assets.push(asset);
-    outputByKey.set(key, asset.output);
-  }
-
-  for (const pageFile of pages) {
-    const destination = path.join(temporaryDirectory, path.relative(root, pageFile));
-    let html = await readFile(pageFile, 'utf8');
-    const replacements = entriesByPage.get(pageFile)
-      .filter((entry) => isMinifiableSource(entry.sourceFile))
-      .map((entry) => {
-        const output = outputByKey.get(`${entry.type}:${entry.sourceFile}`);
-        return {
-          ...entry,
-          output,
-          url: pageUrlForOutput(pageFile, entry.sourceUrl, output),
-        };
-      })
-      .sort((left, right) => right.location.startOffset - left.location.startOffset);
-    for (const replacement of replacements) {
-      html = rewriteAttribute(html, replacement.location, 'src', replacement.url);
-    }
-    await writeFile(destination, html);
-  }
-
-  return assets;
 }
 
 function resourceReferences(html, pageFile) {
@@ -431,11 +329,20 @@ async function validateCssResources(errors) {
   }
 }
 
-async function validateOutput(pages, assets, eligibleSources) {
+async function validateOutput(pages) {
   const errors = [];
   for (const pageFile of pages) {
     const outputPage = path.join(temporaryDirectory, path.relative(root, pageFile));
     const html = await readFile(outputPage, 'utf8');
+    const document = parse(html);
+    visit(document, (node) => {
+      if (node.tagName !== 'script') return;
+      const attributes = new Map((node.attrs || []).map(({ name, value }) => [name, value]));
+      const source = attributes.get('src');
+      if (!source?.startsWith('/assets/angular/')) {
+        errors.push(`${relativeToRoot(pageFile)}: non-Angular script ${source ?? '(inline)'}`);
+      }
+    });
     for (const reference of resourceReferences(html, pageFile)) {
       if (!(await outputReferenceExists(reference))) {
         errors.push(`${relativeToRoot(pageFile)}: missing ${reference.url}`);
@@ -444,31 +351,18 @@ async function validateOutput(pages, assets, eligibleSources) {
   }
   await validateCssResources(errors);
 
+  const forbiddenRuntime = /(?:^|\/)(?:jquery(?:\.min)?\.js|bootstrap(?:\.bundle|\.min)?\.(?:js|css)|vue(?:-multiselect)?(?:\.min)?\.(?:js|css)|page-chrome\.js)$/i;
+  for (const file of await walk(temporaryDirectory)) {
+    const relative = toPosix(path.relative(temporaryDirectory, file));
+    if (forbiddenRuntime.test(relative)) errors.push(`retired runtime leaked into artifact: ${relative}`);
+  }
+
   for (const source of publishedFiles) {
     const output = path.join(temporaryDirectory, path.relative(root, source));
     if (!(await exists(output))) {
       errors.push(`required published file is missing: ${relativeToRoot(source)}`);
     } else if (sha256(await readFile(output)) !== sha256(await readFile(source))) {
       errors.push(`required published file changed: ${relativeToRoot(source)}`);
-    }
-  }
-
-  for (const asset of assets) {
-    if (await exists(path.join(temporaryDirectory, asset.source))) {
-      errors.push(`readable source leaked into artifact: ${asset.source}`);
-    }
-    const output = path.join(temporaryDirectory, asset.output);
-    const content = await readFile(output);
-    if (sha256(content) !== asset.sha256) {
-      errors.push(`hash mismatch: ${asset.output}`);
-    }
-  }
-
-  const accountedInputs = new Set(assets.flatMap((asset) => asset.inputs));
-  for (const source of eligibleSources) {
-    const relative = relativeToRoot(source);
-    if (!accountedInputs.has(relative)) {
-      errors.push(`minifiable source is not reachable from any HTML entry: ${relative}`);
     }
   }
 
@@ -511,8 +405,8 @@ async function excludedStats() {
     file: relativeToRoot(file),
     bytes: (await stat(file)).size,
     gzipBytes: gzipSync(await readFile(file)).length,
-    published: excludedFiles.has(file),
-    reason: excludedFiles.has(file) ? 'upstream-managed' : 'explicit-tree-opt-out',
+    published: false,
+    reason: unpublishedBuildInputs.has(file) ? 'angular-build-input' : 'explicit-tree-opt-out',
   })));
   return {
     files: details,
@@ -524,7 +418,7 @@ async function excludedStats() {
   };
 }
 
-async function writeManifest(pages, assets, eligibleSources) {
+async function writeManifest(pages, angular) {
   const inline = await inlineScriptStats(pages);
   const excluded = await excludedStats();
   const artifactFiles = await Promise.all(
@@ -537,40 +431,22 @@ async function writeManifest(pages, assets, eligibleSources) {
       };
     }),
   );
-  const sourceContents = await Promise.all(eligibleSources.map((file) => readFile(file)));
-  const transformedTotals = assets.reduce((summary, asset) => ({
-    sourceBytes: summary.sourceBytes,
-    outputBytes: summary.outputBytes + asset.outputBytes,
-    sourceGzipBytes: summary.sourceGzipBytes,
-    outputGzipBytes: summary.outputGzipBytes + asset.outputGzipBytes,
-  }), {
-    sourceBytes: sourceContents.reduce((total, content) => total + content.length, 0),
-    outputBytes: 0,
-    sourceGzipBytes: sourceContents.reduce(
-      (total, content) => total + gzipSync(content).length,
-      0,
-    ),
-    outputGzipBytes: 0,
-  });
   const totals = {
-    ...transformedTotals,
-    publishedJavaScriptGzipBytes:
-      transformedTotals.outputGzipBytes + excluded.publishedGzipBytes,
+    publishedJavaScriptGzipBytes: excluded.publishedGzipBytes + angular.javascriptGzipBytes,
   };
   const manifest = {
     schemaVersion: 1,
-    target,
     coverage: {
-      sources: eligibleSources.map(relativeToRoot),
-      sourceFiles: eligibleSources.length,
-      outputEntries: assets.length,
+      angularRoutes: angular.routes.length,
+      angularHosts: angular.hosts,
+      fragmentResources: pages.filter((file) => /event\/(?:anniversary|christmas|easter|halloween|valentines)\/\d{4}\.html$/.test(relativeToRoot(file))).length,
     },
     budgets,
-    assets: assets.sort((left, right) => left.source.localeCompare(right.source)),
     artifactFiles,
     totals,
     inline,
     excluded,
+    angular,
   };
   await writeFile(
     path.join(temporaryDirectory, 'build-manifest.json'),
@@ -592,6 +468,22 @@ function enforceBudgets(manifest) {
       `Inline script budget exceeded: ${manifest.inline.bytes} `
       + `> ${budgets.maxInlineScriptBytes}`,
     );
+  }
+  for (const chunk of manifest.angular.chunks) {
+    if (chunk.gzipBytes > budgets.maxAngularChunkGzipBytes) {
+      failures.push(
+        `Angular chunk gzip budget exceeded (${chunk.file}): ${chunk.gzipBytes} `
+        + `> ${budgets.maxAngularChunkGzipBytes}`,
+      );
+    }
+  }
+  for (const route of manifest.angular.routes) {
+    if (route.gzipBytes > budgets.maxAngularRouteGzipBytes) {
+      failures.push(
+        `Angular route gzip budget exceeded (${route.route}): ${route.gzipBytes} `
+        + `> ${budgets.maxAngularRouteGzipBytes}`,
+      );
+    }
   }
   if (failures.length) {
     throw new Error(`Build budget failed:\n${failures.join('\n')}`);
@@ -617,23 +509,18 @@ async function publishAtomically() {
 
 await rm(temporaryDirectory, { recursive: true, force: true });
 try {
+  await buildAngularApplication();
   await copySiteSource();
   const pages = await discoverPages();
-  const eligibleSources = await discoverMinifiableSources();
-  const assets = await transformScripts(pages);
-  await validateOutput(pages, assets, eligibleSources);
-  const manifest = await writeManifest(pages, assets, eligibleSources);
+  const angular = await installAngularApplication(pages);
+  await validateOutput(pages);
+  const manifest = await writeManifest(pages, angular);
   enforceBudgets(manifest);
   await publishAtomically();
 
-  const rawSaving = 1 - manifest.totals.outputBytes / manifest.totals.sourceBytes;
-  const gzipSaving = 1 - manifest.totals.outputGzipBytes / manifest.totals.sourceGzipBytes;
   console.log(
-    `Built _site with ${manifest.assets.length} compressed entries: `
-    + `${manifest.totals.sourceBytes} -> ${manifest.totals.outputBytes} bytes `
-    + `(${(rawSaving * 100).toFixed(1)}% smaller), gzip `
-    + `${manifest.totals.sourceGzipBytes} -> ${manifest.totals.outputGzipBytes} bytes `
-    + `(${(gzipSaving * 100).toFixed(1)}% smaller).`,
+    `Built _site with ${manifest.coverage.angularRoutes} prerendered Angular routes `
+    + `and ${manifest.coverage.fragmentResources} event fragment resources.`,
   );
   console.log(
     `Published JavaScript gzip budget: ${manifest.totals.publishedJavaScriptGzipBytes} `

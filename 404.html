@@ -4,30 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>页面未找到 - PSO Haven</title>
-<script>
-  const DROP_CHARTS_ORIGIN = 'https://dropcharts.psohaven.com';
-  const MAG_FEEDER_ORIGIN = 'https://magfeeder.psohaven.com';
-  const REDIRECTS = {
-    '/tools/mag-sim.html': `${MAG_FEEDER_ORIGIN}/${location.search}${location.hash}`,
-    '/droptable/cn/CNormal.html':   `${DROP_CHARTS_ORIGIN}/bb/?lang=zh&diff=Normal`,
-    '/droptable/cn/CHard.html':     `${DROP_CHARTS_ORIGIN}/bb/?lang=zh&diff=Hard`,
-    '/droptable/cn/CVeryHard.html': `${DROP_CHARTS_ORIGIN}/bb/?lang=zh&diff=VeryHard`,
-    '/droptable/cn/CUltimate.html': `${DROP_CHARTS_ORIGIN}/bb/?lang=zh&diff=Ultimate`,
-    '/droptable/en/Normal.html':    `${DROP_CHARTS_ORIGIN}/bb/?lang=en&diff=Normal`,
-    '/droptable/en/Hard.html':      `${DROP_CHARTS_ORIGIN}/bb/?lang=en&diff=Hard`,
-    '/droptable/en/VeryHard.html':  `${DROP_CHARTS_ORIGIN}/bb/?lang=en&diff=VeryHard`,
-    '/droptable/en/Ultimate.html':  `${DROP_CHARTS_ORIGIN}/bb/?lang=en&diff=Ultimate`,
-  };
-
-  const legacyDataPath = location.pathname.match(
-    /^\/data\/droptable\/(bb|dc|ngc)(?:\/index\.html)?\/?$/,
-  );
-  const target = REDIRECTS[location.pathname]
-    || (legacyDataPath
-      ? `${DROP_CHARTS_ORIGIN}/${legacyDataPath[1]}/${location.search}${location.hash}`
-      : null);
-  if (target) location.replace(target);
-</script>
 </head>
 <body>
 <h1>404 - 页面未找到</h1>

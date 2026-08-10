@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>物品代码表 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
-    <script src="/assets/js/page-chrome.js"></script>
+    <style>#searchBox:focus { border-color: rgba(100, 180, 255, 0.5) !important; }</style>
 </head>
 
 <body>
@@ -22,8 +22,7 @@
         <!-- Search Box -->
         <div style="margin: 20px 0; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
             <input type="text" id="searchBox" placeholder="输入代码或名称搜索..."
-                style="width: 100%; padding: 10px 15px; font-size: 16px; background: rgba(0,0,0,0.5); color: #e0e0e0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; outline: none; box-sizing: border-box;"
-                onfocus="this.style.borderColor='rgba(100,180,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'">
+                style="width: 100%; padding: 10px 15px; font-size: 16px; background: rgba(0,0,0,0.5); color: #e0e0e0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; outline: none; box-sizing: border-box;">
             <div id="searchCount" style="margin-top: 8px; font-size: 13px; color: #888;"></div>
             <div id="searchResults"></div>
         </div>
@@ -1324,65 +1323,6 @@
 
     </div>
 
-    <script>
-    (function() {
-        var searchBox = document.getElementById('searchBox');
-        var searchCount = document.getElementById('searchCount');
-        var resultList = document.getElementById('searchResults');
-        var allTables = document.querySelectorAll('.compact-table');
-
-        searchBox.addEventListener('input', function() {
-            var query = this.value.trim().toLowerCase();
-            resultList.innerHTML = '';
-
-            if (!query) {
-                for (var t = 0; t < allTables.length; t++) {
-                    var rows = allTables[t].querySelectorAll('tbody tr');
-                    for (var i = 0; i < rows.length; i++) {
-                        rows[i].style.display = '';
-                    }
-                }
-                searchCount.textContent = '';
-                return;
-            }
-
-            var totalVisible = 0;
-            var totalRows = 0;
-            var results = [];
-
-            for (var t = 0; t < allTables.length; t++) {
-                var rows = allTables[t].querySelectorAll('tbody tr');
-                for (var i = 0; i < rows.length; i++) {
-                    totalRows++;
-                    var text = rows[i].textContent.toLowerCase();
-                    if (text.indexOf(query) !== -1) {
-                        rows[i].style.display = '';
-                        totalVisible++;
-                        var cells = rows[i].querySelectorAll('td');
-                        if (cells.length >= 2) {
-                            results.push({code: cells[0].textContent.trim(), name: cells[1].textContent.trim()});
-                        }
-                    } else {
-                        rows[i].style.display = 'none';
-                    }
-                }
-            }
-
-            searchCount.textContent = '找到 ' + totalVisible + ' 条匹配结果（共 ' + totalRows + ' 条）';
-
-            if (results.length > 0 && results.length <= 50) {
-                var html = '<table style="width:100%;margin-top:10px;"><thead><tr><th>代码</th><th>名称</th></tr></thead><tbody>';
-                for (var i = 0; i < results.length; i++) {
-                    html += '<tr><td><code>' + results[i].code + '</code></td><td>' + results[i].name + '</td></tr>';
-                }
-                html += '</tbody></table>';
-                resultList.innerHTML = html;
-            } else if (results.length > 50) {
-                resultList.innerHTML = '<p style="color:#888;margin-top:8px;">结果过多，请输入更精确的关键词</p>';
-            }
-        });
-    })();
-    </script>
 </body>
 
 </html>

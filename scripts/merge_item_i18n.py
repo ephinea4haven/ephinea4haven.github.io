@@ -273,8 +273,8 @@ def write_items_i18n(merged: dict):
 
 
 def coverage_check(merged: dict):
-    """Report how many itemdata.js armor/shield/unit names are covered."""
-    itemdata = (REPO / 'assets/js/itemdata.js').read_text(encoding='utf-8')
+    """Report how many Angular item catalog armor/shield/unit names are covered."""
+    itemdata = (REPO / 'src/app/status/item-data.js').read_text(encoding='utf-8')
     # Extract the English item name from each entry like:
     #   "00": ["Frame", 5, 0, ...],
     names = set()

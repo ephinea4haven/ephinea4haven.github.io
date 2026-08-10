@@ -1,0 +1,79 @@
+<page-chrome [title]="t('title')"></page-chrome>
+<main class="content-container status-shell">
+  <nav class="legacy-language" aria-label="语言">
+    <button type="button" [class.active]="language() === 'zh'" [attr.aria-pressed]="language() === 'zh'" (click)="setLanguage('zh')">中</button>
+    <button type="button" [class.active]="language() === 'en'" [attr.aria-pressed]="language() === 'en'" (click)="setLanguage('en')">EN</button>
+    <button type="button" [class.active]="language() === 'ja'" [attr.aria-pressed]="language() === 'ja'" (click)="setLanguage('ja')">日</button>
+  </nav>
+
+  @if (loadError) {
+    <p id="output" class="status-message error" role="alert">{{ t('loadError') }}</p>
+  } @else if (!result) {
+    <p id="output" class="status-message" aria-live="polite">{{ t('loading') }}</p>
+  } @else {
+    <div id="main" class="simulator-layout">
+      <div class="boxcontainer character-column">
+        <table><tbody><tr><th>{{ t('class') }}</th><td><select id="class" aria-label="Class" [(ngModel)]="selectedClass" (change)="classChanged()">@for (option of classes; track option.value) {<option [value]="option.value">{{ option.label }}</option>}</select></td></tr></tbody></table>
+        <table><tbody><tr><th>{{ t('level') }}</th><td><select id="lv" aria-label="Level" [(ngModel)]="level" (change)="recalculate()">@for (value of levels; track value) {<option [ngValue]="value">{{ value }}</option>}</select></td></tr></tbody></table>
+        <table>
+          <thead><tr><th colspan="2">{{ t('mag') }} <button id="magReset" type="button" (click)="resetMag()">{{ t('reset') }}</button></th></tr></thead>
+          <tbody>
+            <tr><th>LV</th><td class="limit-value" [class.over-limit]="result.mag.level > 200">{{ result.mag.level }} / 200</td></tr>
+            <tr><th>DEF</th><td><input id="magDef" aria-label="Mag DEF" type="number" min="0" max="999" [(ngModel)]="magDef" (input)="recalculate()"><small>× 1</small></td></tr>
+            <tr><th>POW</th><td><input id="magPow" aria-label="Mag POW" type="number" min="0" max="999" [(ngModel)]="magPow" (input)="recalculate()"><small>× 2</small></td></tr>
+            <tr><th>DEX</th><td><input id="magDex" aria-label="Mag DEX" type="number" min="0" max="999" [(ngModel)]="magDex" (input)="recalculate()"><small>÷ 2</small></td></tr>
+            <tr><th>MIND</th><td><input id="magMind" aria-label="Mag MIND" type="number" min="0" max="999" [(ngModel)]="magMind" (input)="recalculate()"><small>× 2</small></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="boxcontainer materials-column">
+        <table>
+          <thead><tr><th colspan="3">{{ t('materials') }} <button id="matReset" type="button" (click)="resetMaterials()">{{ t('reset') }}</button></th></tr></thead>
+          <tbody>
+            <tr><th>HP</th><td><input id="matHP" aria-label="HP materials" type="number" min="0" max="999" [(ngModel)]="matHP" (input)="recalculate()"></td><td class="limit-value" [class.over-limit]="result.materials.hpUsed > result.materials.hpMaximum">{{ result.materials.hpUsed }} / {{ result.materials.hpMaximum }}</td></tr>
+            <tr><th>TP</th><td><input id="matTP" aria-label="TP materials" type="number" min="0" max="999" [(ngModel)]="matTP" (input)="recalculate()"></td><td class="limit-value" [class.over-limit]="result.materials.tpUsed > result.materials.tpMaximum">{{ result.materials.tpUsed }} / {{ result.materials.tpMaximum }}</td></tr>
+            <tr><th>Power</th><td><input id="matPow" aria-label="Power materials" type="number" min="0" max="999" [(ngModel)]="matPow" (input)="recalculate()"></td><td class="material-total" rowspan="5" [class.over-limit]="result.materials.used > result.materials.maximum">{{ result.materials.used }} / {{ result.materials.maximum }}</td></tr>
+            <tr><th>Def</th><td><input id="matDef" aria-label="Defense materials" type="number" min="0" max="999" [(ngModel)]="matDef" (input)="recalculate()"></td></tr>
+            <tr><th>Mind</th><td><input id="matMind" aria-label="Mind materials" type="number" min="0" max="999" [(ngModel)]="matMind" (input)="recalculate()"></td></tr>
+            <tr><th>Evade</th><td><input id="matEva" aria-label="Evade materials" type="number" min="0" max="999" [(ngModel)]="matEva" (input)="recalculate()"></td></tr>
+            <tr><th>Luck</th><td><input id="matLck" aria-label="Luck materials" type="number" min="0" max="999" [(ngModel)]="matLck" (input)="recalculate()"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="boxcontainer equipment-column">
+        <table>
+          <thead><tr><th colspan="2">{{ t('equipment') }} <button id="equipReset" type="button" (click)="resetEquipment()">{{ t('reset') }}</button></th><th>★</th></tr></thead>
+          <tbody>
+            <tr><th>Armor</th><td><select id="armor" aria-label="Armor" [(ngModel)]="armor" (change)="recalculate()">@for (option of armors; track option.value) {<option [value]="option.value">{{ option.label }}</option>}</select></td><td class="rarity" [class.invalid]="!result.equipment.armor.equipable">@if (result.equipment.armor.stars) {<span class="rare1">{{ '★'.repeat(result.equipment.armor.stars > 9 ? 9 : result.equipment.armor.stars) }}</span><span class="rare2">{{ '★'.repeat(result.equipment.armor.stars > 9 ? result.equipment.armor.stars - 9 : 0) }}</span>} @else {—}</td></tr>
+            <tr><th>Shield</th><td><select id="shield" aria-label="Shield" [(ngModel)]="shield" (change)="recalculate()">@for (option of shields; track option.value) {<option [value]="option.value">{{ option.label }}</option>}</select></td><td class="rarity" [class.invalid]="!result.equipment.shield.equipable">@if (result.equipment.shield.stars) {<span class="rare1">{{ '★'.repeat(result.equipment.shield.stars > 9 ? 9 : result.equipment.shield.stars) }}</span><span class="rare2">{{ '★'.repeat(result.equipment.shield.stars > 9 ? result.equipment.shield.stars - 9 : 0) }}</span>} @else {—}</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead><tr><th colspan="2">{{ t('units') }} <button id="unitReset" type="button" (click)="resetUnits()">{{ t('reset') }}</button></th><th>★</th></tr></thead>
+          <tbody>
+            @for (index of [0, 1, 2, 3]; track index) {
+              <tr><th>Slot {{ index + 1 }}</th><td><select class="unit" [id]="'unit' + (index + 1)" [attr.aria-label]="'Unit slot ' + (index + 1)" [(ngModel)]="units[index]" (change)="recalculate()">@for (option of unitOptions; track option.value) {<option [value]="option.value">{{ option.label }}</option>}</select></td><td class="rarity" [class.invalid]="!result.equipment.units[index].equipable">@if (result.equipment.units[index].stars) {<span class="rare1">{{ '★'.repeat(result.equipment.units[index].stars > 9 ? 9 : result.equipment.units[index].stars) }}</span><span class="rare2">{{ '★'.repeat(result.equipment.units[index].stars > 9 ? result.equipment.units[index].stars - 9 : 0) }}</span>} @else {—}</td></tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <section id="output" class="legacy-output" aria-labelledby="results-title" aria-live="polite">
+      <h2 id="results-title">{{ t('results') }}</h2>
+      <div class="table-scroll"><table class="stat-table">
+        <thead><tr><th>Stat</th><th>{{ t('base') }}</th><th>{{ t('material') }}</th><th>{{ t('magBonus') }}</th><th>{{ t('equipmentBonus') }}</th><th>{{ t('unitBonus') }}</th><th>{{ t('current') }}</th><th>{{ t('maximum') }}</th><th>{{ t('difference') }}</th></tr></thead>
+        <tbody>@for (row of statRows; track row.key) {<tr [attr.data-stat]="row.key" [class.over-limit]="row.difference !== null && row.difference > 0"><th>{{ row.label }}</th><td>{{ displayValue(row,row.base) }}</td><td>{{ displayValue(row,row.material) }}</td><td>{{ displayValue(row,row.mag) }}</td><td>{{ displayValue(row,row.equipment) }}</td><td>{{ displayValue(row,row.unit) }}</td><td class="current">{{ displayValue(row,row.current) }}</td><td>{{ row.maximum === null ? '—' : displayValue(row,row.maximum) }}</td><td>{{ row.difference === null ? '—' : displayValue(row,row.difference) }}</td></tr>}</tbody>
+      </table></div>
+      <div class="limit-badges"><span [class.over-limit]="result.mag.level > 200">{{ t('magLevel') }} {{ result.mag.level }} / 200</span><span [class.over-limit]="result.materials.used > result.materials.maximum">{{ t('materialLimit') }} {{ result.materials.used }} / {{ result.materials.maximum }}</span><span [class.over-limit]="result.materials.hpUsed > result.materials.hpMaximum">HP {{ result.materials.hpUsed }} / {{ result.materials.hpMaximum }}</span><span [class.over-limit]="result.materials.tpUsed > result.materials.tpMaximum">TP {{ result.materials.tpUsed }} / {{ result.materials.tpMaximum }}</span></div>
+      <div class="result-grid">
+        <section><h3>{{ t('resists') }}</h3><dl class="resist-list"><div><dt>EFR</dt><dd>{{ result.resists.fire }}</dd></div><div><dt>EIC</dt><dd>{{ result.resists.ice }}</dd></div><div><dt>ETH</dt><dd>{{ result.resists.thunder }}</dd></div><div><dt>EDK</dt><dd>{{ result.resists.dark }}</dd></div><div><dt>ELT</dt><dd>{{ result.resists.light }}</dd></div></dl></section>
+        <section><h3>{{ t('equipment') }}</h3><ul class="equipment-report">@for (item of [result.equipment.armor,result.equipment.shield,...result.equipment.units]; track $index) {<li [attr.data-equipment-code]="item.code" [class.invalid]="!item.equipable"><span>{{ item.name }}</span><span>{{ item.stars ? '★'.repeat(item.stars) : '—' }} · {{ item.equipable ? t('valid') : t('invalid') }}</span></li>}</ul></section>
+      </div>
+      <section class="effects"><h3>{{ t('effects') }}</h3>@if (effectLabels.length) {<ul>@for (effect of effectLabels; track effect) {<li>{{ effect }}</li>}</ul>} @else {<p>{{ t('noEffects') }}</p>}</section>
+      <p class="share-link"><span>{{ t('share') }}</span><a [href]="shareUrl">{{ shareUrl }}</a></p>
+    </section>
+  }
+</main>

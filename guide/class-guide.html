@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>三职业实战指南 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
-    <script src="/assets/js/page-chrome.js"></script>
     <style>
         .guide-lead,
         .notice {
@@ -1040,49 +1039,5 @@
         <p class="source-list">本文是中文整理与摘要；装备价值会随任务、队伍、角色动作、Hit 和属性百分比改变，请把清单当作决策框架，而不是唯一答案。</p>
         </details>
     </main>
-    <script>
-        (function () {
-            const names = ['hunter', 'ranger', 'force'];
-            const tabs = Array.from(document.querySelectorAll('[data-profession]'));
-            const panels = names.map((name) => document.getElementById(name));
-
-            function activate(name, updateUrl) {
-                if (!names.includes(name)) name = 'hunter';
-                tabs.forEach((tab) => {
-                    const active = tab.dataset.profession === name;
-                    tab.setAttribute('aria-selected', String(active));
-                    tab.tabIndex = active ? 0 : -1;
-                });
-                panels.forEach((panel) => {
-                    panel.hidden = panel.id !== name;
-                });
-                if (updateUrl) history.replaceState(null, '', '#' + name);
-            }
-
-            function activateFromHash() {
-                const hash = location.hash.slice(1);
-                const target = hash ? document.getElementById(hash) : null;
-                const panel = target && target.closest('.profession-panel');
-                activate(panel ? panel.id : hash, false);
-                if (target && target.tagName === 'DETAILS') target.open = true;
-                if (target && panel) requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
-            }
-
-            tabs.forEach((tab, index) => {
-                tab.addEventListener('click', () => activate(tab.dataset.profession, true));
-                tab.addEventListener('keydown', (event) => {
-                    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-                    event.preventDefault();
-                    const offset = event.key === 'ArrowRight' ? 1 : -1;
-                    const next = tabs[(index + offset + tabs.length) % tabs.length];
-                    activate(next.dataset.profession, true);
-                    next.focus();
-                });
-            });
-
-            window.addEventListener('hashchange', activateFromHash);
-            activateFromHash();
-        })();
-    </script>
 </body>
 </html>

@@ -188,23 +188,7 @@
             </table>
         </div>
 
-        <div class="scroll-hint" style="display: none;">← 左右滑动查看更多 →</div>
+        <div class="scroll-hint">← 左右滑动查看更多 →</div>
     </div>
-
-    <script>
-        // 检测是否为移动设备，显示滑动提示
-        if (window.innerWidth <= 768) {
-            document.querySelector('.scroll-hint').style.display = 'block';
-        }
-
-        // 响应窗口大小变化
-        window.addEventListener('resize', function() {
-            if (window.innerWidth <= 768) {
-                document.querySelector('.scroll-hint').style.display = 'block';
-            } else {
-                document.querySelector('.scroll-hint').style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>

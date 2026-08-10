@@ -1,0 +1,120 @@
+<page-chrome [title]="'Combo Calculator ' + (isOpm ? 'OPM' : 'Multiplayer')"></page-chrome>
+<main class="content-container tool-page combo-shell">
+  <div class="tool-toolbar combo-toolbar">
+    <p class="tool-kicker">PSO damage laboratory</p>
+    <a class="tool-action" [href]="isOpm ? '/tools/cc.html' : '/tools/ccopm.html'">
+      Switch to {{ isOpm ? 'Multiplayer' : 'OPM' }}
+    </a>
+  </div>
+
+  @if (!loaded) {
+    <p class="loading" aria-live="polite">Loading calculator data…</p>
+  } @else {
+    <section class="tool-section control-card" aria-labelledby="character-heading">
+      <h2 id="character-heading">Character</h2>
+      <div class="control-grid">
+        <label class="check"><input id="commanderBlade" type="checkbox"
+          [(ngModel)]="commanderBlade" (change)="updateEquipment()"> Commander Blade</label>
+        <label class="check"><input id="smartlinkInput" type="checkbox"
+          [(ngModel)]="smartlink"> Smartlink</label>
+        <label>Class<select id="class-select" [(ngModel)]="selectedClass"
+          (change)="updateClass()">@for (name of classes; track name) {<option>{{ name }}</option>}</select></label>
+        <label>Frame<select id="frame-select" [(ngModel)]="selectedFrame"
+          (change)="updateEquipment()">@for (name of frameNames; track name) {<option>{{ name }}</option>}</select></label>
+        <label>Barrier<select id="barrier-select" [(ngModel)]="selectedBarrier"
+          (change)="updateEquipment()">@for (name of barrierNames; track name) {<option>{{ name }}</option>}</select></label>
+        <label>Units<select id="unit-select" [(ngModel)]="selectedUnit"
+          (change)="updateEquipment()">@for (name of units; track name) {<option [value]="name">{{ name === 'NONE' ? 'None' : name }}</option>}</select></label>
+        <label>Minimum class ATP<input id="classMinAtpInput" type="number" [(ngModel)]="classMinAtp"></label>
+        <label>Maximum class ATP<input id="classMaxAtpInput" type="number" [(ngModel)]="classMaxAtp"></label>
+        <label>ATA<input id="ataInput" type="number" [(ngModel)]="ata"></label>
+        <label>Shifta<input id="shiftaInput" type="number" [(ngModel)]="shifta"></label>
+        <label>Zalure<input id="zalureInput" type="number" [(ngModel)]="zalure"></label>
+      </div>
+    </section>
+
+    <section class="tool-section control-card" aria-labelledby="weapon-heading">
+      <h2 id="weapon-heading">Weapon</h2>
+      <div class="control-grid">
+        <label class="wide">Weapon<select class="weapon-picker" [(ngModel)]="selectedWeaponName"
+          (change)="updateWeapon()">@for (name of weaponNames; track name) {<option [value]="name">{{ name }}</option>}</select></label>
+        <label>Special<select id="special-select" [(ngModel)]="special">@for (name of specials; track name) {<option>{{ name }}</option>}</select></label>
+        <label>Attribute %<input id="sphereInput" type="number" [(ngModel)]="sphere"></label>
+        <label>Hit<input id="hitInput" type="number" [(ngModel)]="hit" (change)="updateEquipment()"></label>
+        <label>Minimum weapon ATP<input id="minAtpInput" type="number" [(ngModel)]="minAtp"></label>
+        <label>Maximum weapon ATP<input id="maxAtpInput" type="number" [(ngModel)]="maxAtp"></label>
+      </div>
+    </section>
+
+    <section class="tool-section control-card" aria-labelledby="combo-heading">
+      <h2 id="combo-heading">Combo</h2>
+      <div class="checks">
+        <label class="check"><input id="ataGlitch" type="checkbox" [(ngModel)]="ataGlitch"> Accuracy (SN) Glitch</label>
+        <label class="check"><input id="autoCombo" type="checkbox" [(ngModel)]="autoCombo"> Auto Combo</label>
+      </div>
+      <div class="attack-grid">
+        @for (index of [1, 2, 3]; track index) {
+          <div class="attack-pair">
+            <label [for]="'attack' + index">Attack {{ index }}</label>
+            <select [id]="'attack' + index" [disabled]="autoCombo"
+              [(ngModel)]="$any(this)['attack' + index]">
+              @for (attack of attacks; track attack) {<option>{{ attack }}</option>}
+            </select>
+            <label [for]="'hits' + index">Hits</label>
+            <select [id]="'hits' + index" [(ngModel)]="$any(this)['hits' + index]">
+              @for (count of hits; track count) {<option [ngValue]="count">{{ count }}</option>}
+            </select>
+          </div>
+        }
+      </div>
+      <p id="total-frames">{{ totalFrames }}</p>
+    </section>
+
+    <section id="enemy-select" class="tool-section control-card" aria-labelledby="enemy-heading">
+      <h2 id="enemy-heading">Enemies</h2>
+      <div class="checks">
+        <label class="check"><input id="frozenCheckbox" type="checkbox" [(ngModel)]="frozen"> Frozen</label>
+        <label class="check"><input id="paralyzedCheckbox" type="checkbox" [(ngModel)]="paralyzed"> Paralyzed</label>
+        <label class="check"><input id="maxDamageCheckbox" type="checkbox" [(ngModel)]="maxDamage"> Max Damage</label>
+      </div>
+      <div class="enemy-actions enemy-picker">
+        <button id="native-btn" type="button" class="native-btn" (click)="addEnemies('Native')">Native</button>
+        <button id="abeast-btn" type="button" class="abeast-btn" (click)="addEnemies('A.Beast')">A.Beast</button>
+        <button id="machine-btn" type="button" class="machine-btn" (click)="addEnemies('Machine')">Machine</button>
+        <button id="dark-btn" type="button" class="dark-btn" (click)="addEnemies('Dark')">Dark</button>
+        <button id="clear-btn" type="button" (click)="clearEnemies()">Clear</button>
+      </div>
+      <div class="enemy-chips" aria-live="polite">
+        @for (enemy of selectedEnemies; track enemy.name) {
+          <span>{{ enemy.name }} <button type="button" (click)="removeEnemy(enemy)"
+            [attr.aria-label]="'Remove ' + enemy.name">×</button></span>
+        }
+      </div>
+    </section>
+
+    <div class="result-scroll">
+      <table id="combo-calc-table">
+        <thead><tr>
+          <th scope="col" id="monsters-header" colspan="2"><button type="button" (click)="sort('name')">{{ sortLabel('name', 'Monster') }}</button></th>
+          <th scope="col" id="damage-header"><button type="button" (click)="sort('damage')">{{ sortLabel('damage', 'Damage') }}</button></th>
+          <th scope="col" id="accuracy-header"><button type="button" (click)="sort('accuracy')">{{ sortLabel('accuracy', 'Accuracy') }}</button></th>
+          <th scope="col">Attack 1</th><th scope="col">Attack 2</th><th scope="col">Attack 3</th>
+        </tr></thead>
+        <tbody>
+          @for (row of rows; track row.name) {
+            <tr>
+              <th colspan="2" [class]="'monster-title-' + row.type">{{ row.name }}</th>
+              <td><div class="damage-track"><span [style.width.%]="row.percentDamage"
+                [class.kill]="row.comboDamage > row.hp" [title]="row.comboDamage.toFixed(0) + '/' + row.hp">
+                {{ row.comboDamage.toFixed(0) }} ({{ row.percentDamage.toFixed(0) }}%)</span></div></td>
+              <td>{{ accuracy(row.overallAccuracy, row.overallMinAccuracy) }}</td>
+              <td [class.muted]="row.a1Type === 'NONE'">{{ row.a1Damage.toFixed(0) }} ({{ accuracy(row.a1Accuracy, row.a1MinAccuracy) }})</td>
+              <td [class.muted]="row.a2Type === 'NONE'">{{ row.a2Damage.toFixed(0) }} ({{ accuracy(row.a2Accuracy, row.a2MinAccuracy) }})</td>
+              <td [class.muted]="row.a3Type === 'NONE'">{{ row.a3Damage.toFixed(0) }} ({{ accuracy(row.a3Accuracy, row.a3MinAccuracy) }})</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</main>

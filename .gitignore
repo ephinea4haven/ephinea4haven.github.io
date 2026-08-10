@@ -5,10 +5,12 @@ __pycache__/
 /static/node_modules/
 node_modules/
 dist/
+src/app/generated/
 _site/
 .site-build-*/
 .site-backup-*/
 .vite/
+.angular/
 playwright-report/
 test-results/
 

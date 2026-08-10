@@ -1,0 +1,69 @@
+<page-chrome title="全等级人物能力表"></page-chrome>
+<main class="content-container tool-page chartable-page">
+
+<section class="tool-section jump-container" aria-labelledby="jump-title">
+  <h2 id="jump-title">快速跳转</h2>
+  <div class="jump-controls">
+    <label for="classSelect">选择职业：</label>
+    <select id="classSelect" [(ngModel)]="selectedClass">
+      <option value="">-- 请选择 --</option>
+      @for (group of groups; track group) {
+        <optgroup [label]="group">
+          @for (characterClass of classesIn(group); track characterClass.id) {
+            <option [value]="characterClass.id">
+              {{ characterClass.name }} ({{ characterClass.code }})
+            </option>
+          }
+        </optgroup>
+      }
+    </select>
+
+    <label for="levelInput">等级（可选）：</label>
+    <input id="levelInput" type="number" min="1" max="200" placeholder="1-200"
+           [(ngModel)]="requestedLevel" (keydown.enter)="show()">
+    <button type="button" class="jump-btn" (click)="show()">查看</button>
+    <button type="button" class="reset-btn" (click)="reset()">重置</button>
+  </div>
+</section>
+
+<div class="table-container" aria-live="polite">
+  @if (loadError()) {
+    <p class="empty-state" role="alert">人物数据加载失败，请刷新页面重试。</p>
+  } @else if (!data()) {
+    <p class="empty-state">正在加载人物数据…</p>
+  } @else {
+    <div class="empty-state" id="emptyState" [hidden]="selectedClass()">
+      <div class="empty-state-icon" aria-hidden="true">📊</div>
+      <p>请选择职业查看能力表</p>
+    </div>
+    @for (characterClass of classes; track characterClass.id) {
+      <table #statTable [id]="characterClass.id"
+             [class.active]="selectedClass() === characterClass.id">
+        <thead>
+          <tr><th colspan="8">{{ characterClass.name }}</th></tr>
+          <tr>
+            <th scope="col">等级</th><th scope="col">攻击力</th>
+            <th scope="col">防御力</th><th scope="col">精神力</th>
+            <th scope="col">命中</th><th scope="col">回避力</th>
+            <th scope="col">暴击率</th><th scope="col">HP</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (entry of rowsFor(characterClass.id); track entry[0]) {
+            <tr [class.highlight]="selectedClass() === characterClass.id
+                                   && highlightedLevel() === +entry[0]">
+              <td>{{ entry[0] }}</td>
+              <td>{{ entry[1][0] }}</td><td>{{ entry[1][1] }}</td>
+              <td>{{ entry[1][2] }}</td><td>{{ entry[1][3] / 10 }}</td>
+              <td>{{ entry[1][4] }}</td><td>{{ entry[1][5] }}</td>
+              <td>{{ entry[1][6] }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  }
+</div>
+</main>
+
+<a href="#" class="back-to-top" aria-label="返回顶部" (click)="scrollToTop($event)">↑</a>

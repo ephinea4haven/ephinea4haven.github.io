@@ -59,7 +59,6 @@
             .monster-toolbar { position: static; }
         }
     </style>
-    <script src="/assets/js/page-chrome.js"></script>
 </head>
 
 <body>
@@ -1129,66 +1128,6 @@
     </main>
 
     <button id="backToTop" title="回到顶部" aria-label="回到顶部">↑</button>
-    <script>
-        const content = document.querySelector('.content-container');
-        const searchInput = document.getElementById('monsterSearch');
-        const countLabel = document.getElementById('monsterCount');
-        const entryStarts = [...content.querySelectorAll('p:has(> strong)')];
-
-        for (const start of entryStarts) {
-            const section = document.createElement('section');
-            section.className = 'monster-entry';
-            start.before(section);
-            let node = start;
-            while (node && !(node !== start && (node.matches('p:has(> strong), h2, h3')))) {
-                const next = node.nextElementSibling;
-                section.appendChild(node);
-                node = next;
-            }
-        }
-
-        const entries = [...document.querySelectorAll('.monster-entry')];
-        const headings = [...document.querySelectorAll('.episode-heading, .area-heading')];
-        for (const entry of entries) {
-            let cursor = entry.previousElementSibling;
-            let area = '';
-            let episode = '';
-            while (cursor && !episode) {
-                if (!area && cursor.matches('.area-heading')) area = cursor.textContent;
-                if (cursor.matches('.episode-heading')) episode = cursor.textContent;
-                cursor = cursor.previousElementSibling;
-            }
-            entry.dataset.search = `${episode} ${area} ${entry.textContent}`.toLocaleLowerCase('zh-CN');
-        }
-
-        function updateFilter() {
-            const query = searchInput.value.trim().toLocaleLowerCase('zh-CN');
-            let visible = 0;
-            for (const entry of entries) {
-                const matches = !query || entry.dataset.search.includes(query);
-                entry.hidden = !matches;
-                if (matches) visible++;
-            }
-
-            for (const heading of headings) {
-                let node = heading.nextElementSibling;
-                let hasVisibleEntry = false;
-                while (node && !node.matches(heading.matches('h2') ? 'h2' : 'h2, h3')) {
-                    if (node.matches('.monster-entry') && !node.hidden) hasVisibleEntry = true;
-                    node = node.nextElementSibling;
-                }
-                heading.hidden = !!query && !hasVisibleEntry;
-            }
-            countLabel.textContent = `${visible} / ${entries.length} 项`;
-        }
-
-        searchInput.addEventListener('input', updateFilter);
-        updateFilter();
-
-        const backToTopBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => backToTopBtn.classList.toggle('show', window.scrollY > 300));
-        backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    </script>
 </body>
 
 </html>

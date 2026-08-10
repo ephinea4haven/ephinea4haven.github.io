@@ -1262,7 +1262,6 @@
             }
         }
     </style>
-    <script src="/assets/js/page-chrome.js"></script>
 </head>
 
 <body>
@@ -1366,117 +1365,6 @@
         <p id="npcPreviewCaption"></p>
     </div>
 
-    <script src="/assets/js/i18n/items_i18n.js"></script>
-    <script src="/assets/js/event-item-localizer.js?v=4"></script>
-    <script>
-        const YEARS = [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015];
-
-        const params = new URLSearchParams(location.search);
-        const requested = parseInt(params.get('year'), 10);
-        const selected = YEARS.includes(requested) ? requested : YEARS[0];
-        document.body.classList.toggle('christmas-2025-page', selected === 2025);
-        const previewPopover = document.getElementById('npcPreviewPopover');
-        const previewImage = document.getElementById('npcPreviewImage');
-        const previewCaption = document.getElementById('npcPreviewCaption');
-        let previewAnchor = null;
-
-        document.title = `${selected}圣诞活动 | Ephinea PSOBB`;
-        document.getElementById('page-title').textContent = document.title;
-        document.getElementById('project_year').textContent = selected;
-
-        document.getElementById('yearNav').innerHTML = YEARS.map(y =>
-            y === selected
-                ? `<span class="year-current">${y}</span>`
-                : `<a href="?year=${y}">${y}</a>`
-        ).join('');
-
-        function closeNpcPreview() {
-            previewPopover.hidden = true;
-            previewImage.removeAttribute('src');
-            previewAnchor = null;
-        }
-
-        function positionNpcPreview(anchor) {
-            if (previewPopover.hidden) return;
-
-            const gap = 10;
-            const margin = 12;
-            const anchorRect = anchor.getBoundingClientRect();
-            const popoverRect = previewPopover.getBoundingClientRect();
-            let left = anchorRect.right + gap;
-            let top = anchorRect.top + (anchorRect.height - popoverRect.height) / 2;
-
-            if (left + popoverRect.width > innerWidth - margin) {
-                left = anchorRect.left - popoverRect.width - gap;
-            }
-            if (left < margin) {
-                left = Math.min(
-                    Math.max(margin, anchorRect.left + (anchorRect.width - popoverRect.width) / 2),
-                    innerWidth - popoverRect.width - margin
-                );
-            }
-
-            previewPopover.style.left = `${Math.max(margin, left)}px`;
-            previewPopover.style.top =
-                `${Math.max(margin, Math.min(top, innerHeight - popoverRect.height - margin))}px`;
-        }
-
-        function showNpcPreview(anchor) {
-            previewAnchor = anchor;
-            previewImage.src = anchor.dataset.image;
-            previewImage.alt = anchor.dataset.caption;
-            previewCaption.textContent = anchor.dataset.caption;
-            previewPopover.hidden = false;
-            requestAnimationFrame(() => positionNpcPreview(anchor));
-        }
-
-        previewImage.addEventListener('load', () => {
-            if (previewAnchor && !previewPopover.hidden) {
-                positionNpcPreview(previewAnchor);
-            }
-        });
-
-        localizeItemNames(document.querySelector('.christmas-overview'));
-
-        fetch(`./christmas/${selected}.html?v=20260726-qst-menu`, { cache: 'no-store' })
-            .then(r => {
-                if (!r.ok) throw new Error(`HTTP ${r.status}`);
-                return r.text();
-            })
-            .then(html => {
-                const content = document.getElementById('content');
-                content.innerHTML = html;
-                localizeItemNames(content);
-            })
-            .catch(() => {
-                document.getElementById('content').innerHTML =
-                    `<p>未能加载 ${selected} 年圣诞活动内容。</p>`;
-            });
-
-        document.addEventListener('click', event => {
-            if (!(event.target instanceof Element)) return;
-
-            const thumbnail = event.target.closest('.npc-thumbnail-button');
-            if (thumbnail) {
-                if (previewAnchor === thumbnail && !previewPopover.hidden) {
-                    closeNpcPreview();
-                } else {
-                    showNpcPreview(thumbnail);
-                }
-                return;
-            }
-
-            if (event.target.closest('.npc-preview-close')) {
-                closeNpcPreview();
-                return;
-            }
-
-            if (!event.target.closest('.npc-preview-popover')) closeNpcPreview();
-        });
-
-        addEventListener('scroll', closeNpcPreview, true);
-        addEventListener('resize', closeNpcPreview);
-    </script>
 </body>
 
 </html>
