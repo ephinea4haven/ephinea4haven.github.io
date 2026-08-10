@@ -41,6 +41,24 @@ const localDependencies = {
 const publishedLicensePath = '/third_party/psostats-combo/LICENSE';
 const licenseBanner = `/*! PSOStats Combo Calculator - Copyright (c) 2021 phelix- - MIT License: ${publishedLicensePath} */`;
 const checkOnly = process.argv.includes('--check');
+const accessibilityLabels = new Map([
+  ['classMinAtpInput', 'Minimum class ATP'],
+  ['classMaxAtpInput', 'Maximum class ATP'],
+  ['ataInput', 'ATA'],
+  ['shiftaInput', 'Shifta level'],
+  ['zalureInput', 'Zalure level'],
+  ['special-select', 'Special attack'],
+  ['sphereInput', 'Attribute percentage'],
+  ['hitInput', 'Weapon Hit'],
+  ['minAtpInput', 'Minimum weapon ATP'],
+  ['maxAtpInput', 'Maximum weapon ATP'],
+  ['attack1', 'First attack'],
+  ['hits1', 'First attack hit count'],
+  ['attack2', 'Second attack'],
+  ['hits2', 'Second attack hit count'],
+  ['attack3', 'Third attack'],
+  ['hits3', 'Third attack hit count'],
+]);
 
 function sha256(content) {
   return createHash('sha256').update(content).digest('hex');
@@ -125,6 +143,55 @@ function migrateBootstrap5Markup(html) {
     );
 }
 
+function addAccessibilityNames(html) {
+  const namedControls = new Set();
+  const output = html.replace(/<(?:input|select)\b[^>]*>/g, (tag) => {
+    const id = tag.match(/\bid="([^"]+)"/)?.[1];
+    const label = accessibilityLabels.get(id);
+    if (!label) return tag;
+    namedControls.add(id);
+    return /\baria-label=/.test(tag)
+      ? tag
+      : tag.replace(/>$/, ` aria-label="${label}">`);
+  });
+  const missingControls = [...accessibilityLabels.keys()]
+    .filter((id) => !namedControls.has(id));
+  if (missingControls.length) {
+    throw new Error(`Upstream page is missing named controls: ${missingControls.join(', ')}`);
+  }
+  return output;
+}
+
+function addAccessibleEnemyTags(html) {
+  html = replaceRequired(
+    html,
+    '                            @search-change="filterEnemies"\n                    >\n                    </multiselect>',
+    `                            @search-change="filterEnemies"
+                    >
+                        <template slot="tag" slot-scope="{ option, remove }">
+                            <span class="multiselect__tag">
+                                <span>{{ option.name }}</span>
+                                <button type="button" class="multiselect__tag-icon"
+                                        @click.stop.prevent="remove(option)"
+                                        :aria-label="'Remove ' + option.name"></button>
+                            </span>
+                        </template>
+                    </multiselect>`,
+    'enemy multiselect closing tag',
+  );
+  return replaceRequired(
+    html,
+    '    </style>',
+    `        button.multiselect__tag-icon {
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+    </style>`,
+    'page style block',
+  );
+}
+
 function adaptPage(source, page) {
   for (const marker of [
     'const weapons =',
@@ -198,6 +265,8 @@ function adaptPage(source, page) {
     .replaceAll('href="/combo-calculator/opm"', 'href="/tools/ccopm.html"')
     .replaceAll('href="/combo-calculator"', 'href="/tools/cc.html"');
   html = migrateBootstrap5Markup(html);
+  html = addAccessibilityNames(html);
+  html = addAccessibleEnemyTags(html);
   if (/input-group-(?:prepend|append)/.test(html)
       || /<select\b[^>]*class="[^"]*\bform-control\b/.test(html)
       || html.includes('class="col-6 col-md-3 mb-1"')) {

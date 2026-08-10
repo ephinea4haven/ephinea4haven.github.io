@@ -60,6 +60,11 @@ const packageJson = JSON.parse(packageText);
 const metadata = JSON.parse(metadataText);
 const licensePath = '/third_party/psostats-combo/LICENSE';
 const hasTrailingWhitespace = (content) => /[ \t]+$/m.test(content);
+const accessibilityControlIds = [
+  'classMinAtpInput', 'classMaxAtpInput', 'ataInput', 'shiftaInput', 'zalureInput',
+  'special-select', 'sphereInput', 'hitInput', 'minAtpInput', 'maxAtpInput',
+  'attack1', 'hits1', 'attack2', 'hits2', 'attack3', 'hits3',
+];
 
 for (const [name, page, data, dataFile] of [
   ['multiplayer', multi, multiData, 'combo_calc_multi_data.js'],
@@ -127,6 +132,14 @@ for (const [name, page] of [['multiplayer', multi], ['OPM', opm]]) {
     !/<select\b[^>]*class="[^"]*\bform-control\b/.test(page));
   check(`${name} page keeps character stat inputs readable on mobile`,
     !page.includes('class="col-6 col-md-3 mb-1"'));
+  check(`${name} page gives migrated controls accessible names`,
+    accessibilityControlIds.every((id) => new RegExp(
+      `<(?:input|select)\\b(?=[^>]*\\bid="${id}")(?=[^>]*\\baria-label="[^"]+")[^>]*>`,
+    ).test(page)));
+  check(`${name} page exposes enemy tag removal to assistive technology`,
+    page.includes('class="multiselect__tag-icon"')
+      && page.includes(`:aria-label="'Remove ' + option.name"`)
+      && !page.includes('aria-hidden="true" tabindex="1"'));
 }
 for (const [name, content, packageContent] of [
   ['jQuery', jqueryScript, jqueryPackageScript],

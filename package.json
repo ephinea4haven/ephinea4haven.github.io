@@ -13,6 +13,7 @@
     "release:prepare": "npm test && npm run build && npm run test:e2e"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
     "@playwright/test": "^1.62.1",
     "bootstrap": "5.3.8",
     "esbuild": "^0.28.1",

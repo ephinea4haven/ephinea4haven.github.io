@@ -4,6 +4,12 @@
 
 ## Active
 
+- [ ] **Angular 前端现代化与 jQuery / Bootstrap 退休评估** (Long-term)
+  - 先以 `tools/status.html` 和 `tools/chartable.html` 做 Angular POC，验证静态托管、路由回退、构建产物、缓存失效、SEO、无障碍和发布体积，不直接迁移全站 105 个 HTML 页面。
+  - 盘点并逐步移除本站自有代码中的 jQuery；评估以站点自有组件样式替代 Bootstrap CSS，禁止同时长期维护旧实现与 Angular 兼容层。
+  - Combo Calculator 必须先决定是否继续同步 PSOStats 上游。继续同步时不得在生成文件中手改 Angular 实现；若改为本站完整维护，需明确 fork 边界、许可证、数据同步和回归基线。
+  - 决策门槛：POC 相比当前原生静态实现能够实质降低维护成本或支撑明确的新产品能力，并且完整迁移计划、体积预算与回滚方案通过 review 后再实施。
+
 - [ ] **清点并选择性恢复 PSO FRAME slot3（Red-Wolf）资料** (Medium)
   - 已确认旧站名称为 **PSO FRAME slot3**，管理者为 Red-Wolf；早期地址为 `http://www.red-wolf.ac/pso/`，之后迁移到 `http://www.red-wolf.sakura.ne.jp/pso/`。
   - 两个旧域名目前均已无法解析；2016 年的 PSO 玩家讨论也已明确提到该攻略站消失。
@@ -19,7 +25,7 @@
 
 ## Shipped
 
-- [x] **Bootstrap 5 与 jQuery 4 迁移** — 共享依赖升级到 Bootstrap 5.3.8 CSS 和 jQuery 4.0.0 slim；Combo 同步器会将上游 Bootstrap 4 input-group/select 标记转换为 Bootstrap 5，并通过桌面、移动端、计算交互、人物表与发布体积回归验证。
+- [x] **Bootstrap 5 与 jQuery 4 迁移** — 共享依赖升级到 Bootstrap 5.3.8 CSS 和 jQuery 4.0.0 slim；Combo 同步器会将上游 Bootstrap 4 input-group/select 标记转换为 Bootstrap 5，并通过桌面、移动端、计算交互、人物表、无障碍与发布体积回归验证。
 
 - [x] **首页活动专题自动高亮** — 除“活动总览”外，五个节日入口按访客本地日期在对应活动窗口自动显示流动彩虹高亮；周年活动为 8 月 1 日至 9 月 15 日。动画遵循 `prefers-reduced-motion`。
 

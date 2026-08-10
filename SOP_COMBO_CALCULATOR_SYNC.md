@@ -53,6 +53,8 @@ Overlay 的唯一实现入口是：
 - 将 CDN 依赖替换为本站统一的 jQuery 和 Bootstrap CSS，并移除未使用的
   Bootstrap JavaScript bundle；
 - 将上游 Bootstrap 4 的 input-group 与 select 标记迁移为 Bootstrap 5 结构；
+- 为上游缺少 label 的 Combo 表单控件补充稳定的可访问名称；
+- 将敌人多选标签的删除图标转换为可由键盘和读屏器识别的按钮；
 - 移除 PSOStats 导航栏；
 - 将 Multiplayer/OPM 互链改为本站路径；
 - 添加本站需要的 charset 和 description；
@@ -79,10 +81,12 @@ PSOStats 上游当前仍声明 jQuery 3.x、Bootstrap 4.x，并输出 Bootstrap 
   输入值被裁切；
 - 不引入 Bootstrap JavaScript 或 Popper；
 - jQuery 使用 slim 构建，因此不得依赖 Ajax、Effects、Deferred 或 Queue 模块。
+- 所有 input/select 必须具有 label、`aria-label` 或等效的可访问名称。
+- 敌人标签的删除操作不得同时设置 `aria-hidden` 与可聚焦 tabindex。
 
 `scripts/verify_combo_sync.mjs` 会校验版本、共享资源字节、生成哈希和 Bootstrap 5
 标记；Playwright 会验证两种计算器的敌人选择、职业/数值交互、移动端横向溢出及
-jQuery 运行时版本。上游同步后必须同时运行 `npm test`、`npm run build` 和
+jQuery 运行时版本，并使用 axe 执行 WCAG A/AA 自动审计。上游同步后必须同时运行 `npm test`、`npm run build` 和
 `npm run test:e2e`，任何旧标记回流或移动端退化都应视为同步失败。
 
 配套约束位于：

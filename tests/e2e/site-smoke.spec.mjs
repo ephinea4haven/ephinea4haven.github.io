@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 
 const pages = [
   {
@@ -244,6 +245,46 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
     await page.locator('#clear-btn').click();
     await expect(tableRows).toHaveCount(0);
     expect(runtimeErrors).toEqual([]);
+  });
+}
+
+for (const accessibilityPath of [
+  '/tools/cc.html',
+  '/tools/ccopm.html',
+  '/tools/status.html',
+  '/tools/chartable.html',
+]) {
+  test(`${accessibilityPath} has no WCAG A/AA accessibility violations`, async ({ page }) => {
+    await page.goto(accessibilityPath);
+    if (accessibilityPath.includes('/cc')) {
+      await page.locator('#native-btn').click();
+      await expect.poll(() => page.locator('#combo-calc-table tbody tr').count())
+        .toBeGreaterThan(0);
+      const rowsBeforeRemoval = await page.locator('#combo-calc-table tbody tr').count();
+      const removeEnemyButton = page.getByRole('button', { name: /^Remove / }).first();
+      await expect(removeEnemyButton).toBeVisible();
+      await removeEnemyButton.click();
+      await expect(page.locator('#combo-calc-table tbody tr'))
+        .toHaveCount(rowsBeforeRemoval - 1);
+    } else if (accessibilityPath.endsWith('/status.html')) {
+      await page.locator('#class').selectOption('ramarl');
+      await page.locator('#lv').selectOption('100');
+    } else {
+      await page.locator('#classSelect').selectOption('ramarl');
+      await page.locator('#levelInput').fill('123');
+      await page.locator('.jump-btn').click();
+      await expect(page.locator('#ramarl')).toHaveClass(/active/);
+    }
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .analyze();
+    const violations = results.violations.map(({ id, impact, nodes }) => ({
+      id,
+      impact,
+      targets: nodes.map(({ target }) => target.join(' ')),
+    }));
+
+    expect(violations).toEqual([]);
   });
 }
 
