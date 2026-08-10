@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ephinea PSOBB 顶部滚动公告（Banner）类型、稀有掉落触发清单与个人公告说明">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Banner 顶部公告 | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .content-container {
+            --banner-cyan-300: hsl(187 100% 78%);
+            --banner-cyan-400: hsl(187 96% 62%);
+            --banner-cyan-500: hsl(190 100% 48%);
+            --banner-blue-700: hsl(218 72% 32%);
+            --banner-blue-850: hsl(224 70% 16%);
+            --banner-blue-900: hsl(228 72% 11%);
+            --banner-gold-300: hsl(48 100% 76%);
+            --banner-gold-400: hsl(46 100% 64%);
+            --banner-purple-500: hsl(267 72% 58%);
+            --banner-shadow-sm: 0 1px 2px hsl(230 80% 4% / 0.36), 0 4px 12px hsl(230 80% 4% / 0.18);
+            --banner-shadow-lg: 0 12px 24px hsl(230 80% 4% / 0.35), 0 32px 64px hsl(230 80% 4% / 0.25);
+            overflow: hidden;
+            padding: 0 48px 48px;
+            border-color: hsl(187 96% 62% / 0.34);
+            background: hsl(228 72% 10% / 0.88);
+            box-shadow: var(--banner-shadow-lg), inset 0 1px 0 hsl(187 100% 92% / 0.08);
+        }
+
+        .guide-hero {
+            position: relative;
+            isolation: isolate;
+            margin: 0 -48px 48px;
+            padding: 48px 48px 32px;
+            overflow: hidden;
+            background:
+                linear-gradient(120deg, hsl(226 76% 13% / 0.98), hsl(216 72% 19% / 0.92)),
+                var(--banner-blue-900);
+        }
+
+        .guide-hero::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            background:
+                radial-gradient(circle at 82% 18%, hsl(187 96% 62% / 0.2), transparent 28%),
+                radial-gradient(circle at 8% 100%, hsl(267 72% 58% / 0.15), transparent 30%),
+                linear-gradient(hsl(187 96% 62% / 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, hsl(187 96% 62% / 0.07) 1px, transparent 1px);
+            background-size: auto, auto, 24px 24px, 24px 24px;
+            mask-image: linear-gradient(to bottom, black 15%, transparent 100%);
+        }
+
+        .guide-hero::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: -96px;
+            right: -64px;
+            width: 320px;
+            height: 320px;
+            border: 1px solid hsl(187 96% 62% / 0.18);
+            border-radius: 50%;
+            box-shadow: 0 0 0 32px hsl(187 96% 62% / 0.04), 0 0 0 64px hsl(187 96% 62% / 0.03);
+        }
+
+        .hero-eyebrow {
+            margin-bottom: 8px;
+            color: var(--banner-cyan-300);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .content-container .guide-hero h1 {
+            max-width: 12em;
+            margin: 0 0 16px;
+            padding: 0;
+            border: 0;
+            color: hsl(190 100% 96%);
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            text-shadow: 0 0 28px hsl(187 96% 62% / 0.25);
+        }
+
+        .intro-lead {
+            max-width: 40em;
+            color: hsl(190 50% 91% / 0.82);
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .banner-preview {
+            position: relative;
+            margin: 32px 0 24px;
+            padding: 16px 24px 16px 52px;
+            overflow: hidden;
+            border: 1px solid hsl(46 100% 64% / 0.62);
+            border-radius: 8px;
+            color: var(--banner-gold-300);
+            background: linear-gradient(90deg, hsl(224 70% 9% / 0.92), hsl(216 67% 18% / 0.92), hsl(224 70% 9% / 0.92));
+            box-shadow: inset 0 0 28px hsl(187 96% 62% / 0.12), var(--banner-shadow-sm), 0 0 24px hsl(46 100% 64% / 0.12);
+            font-family: "Courier New", monospace;
+            font-weight: 700;
+            text-align: left;
+            text-shadow: 0 0 8px hsl(46 100% 64% / 0.65);
+        }
+
+        .banner-preview::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 24px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--banner-gold-400);
+            box-shadow: 0 0 0 5px hsl(46 100% 64% / 0.12), 0 0 14px var(--banner-gold-400);
+            transform: translateY(-50%);
+            animation: signal-pulse 1.8s ease-in-out infinite;
+        }
+
+        .banner-preview::after {
+            content: "LIVE SERVER FEED";
+            position: absolute;
+            top: 4px;
+            right: 8px;
+            color: hsl(190 50% 91% / 0.44);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 9px;
+            letter-spacing: 0.12em;
+        }
+
+        .type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 24px 0 32px;
+            counter-reset: info-card;
+        }
+
+        .type-card {
+            position: relative;
+            min-height: 168px;
+            padding: 24px;
+            overflow: hidden;
+            border: 0;
+            border-radius: 12px;
+            background: linear-gradient(145deg, hsl(217 67% 22% / 0.72), hsl(225 67% 15% / 0.82));
+            box-shadow: var(--banner-shadow-sm), inset 0 1px 0 hsl(190 100% 96% / 0.08);
+        }
+
+        .type-card::before {
+            content: "0" counter(info-card);
+            counter-increment: info-card;
+            display: block;
+            margin-bottom: 16px;
+            color: var(--banner-cyan-300);
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+        }
+
+        .type-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 72px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--banner-cyan-400));
+        }
+
+        .type-card h3 {
+            margin: 0 0 12px;
+            color: hsl(190 100% 92%);
+            font-size: 20px;
+            line-height: 1.25;
+        }
+
+        .type-card p,
+        .type-card li {
+            color: hsl(190 35% 88% / 0.78);
+            font-size: 14px;
+        }
+
+        .type-card p:last-child,
+        .type-card ul:last-child { margin-bottom: 0; }
+
+        .jump-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .jump-links a {
+            padding: 8px 12px;
+            border: 1px solid hsl(187 96% 62% / 0.22);
+            border-radius: 999px;
+            color: hsl(190 80% 90% / 0.74);
+            background: hsl(218 72% 22% / 0.48);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            box-shadow: var(--banner-shadow-sm);
+        }
+
+        .jump-links a:hover {
+            border-color: hsl(187 96% 62% / 0.6);
+            color: hsl(190 100% 96%);
+            background: hsl(218 72% 28% / 0.78);
+            transform: translateY(-1px);
+        }
+
+        .notice {
+            margin: 24px 0 40px;
+            padding: 16px 20px;
+            border: 0;
+            border-left: 4px solid var(--banner-cyan-400);
+            border-radius: 0 8px 8px 0;
+            background: linear-gradient(90deg, hsl(204 82% 24% / 0.72), hsl(218 72% 20% / 0.48));
+            box-shadow: var(--banner-shadow-sm);
+        }
+
+        .notice p:last-child { margin-bottom: 0; }
+
+        .content-container > h2 {
+            position: relative;
+            margin: 64px 0 24px;
+            padding: 22px 0 0 48px;
+            border: 0;
+            color: hsl(190 100% 92%);
+            font-size: 30px;
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+        }
+
+        .content-container > h2::before {
+            content: attr(data-section);
+            position: absolute;
+            top: 0;
+            left: 48px;
+            color: var(--banner-cyan-300);
+            font-family: "Courier New", monospace;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+        }
+
+        .content-container > h2::after {
+            content: "";
+            position: absolute;
+            top: 28px;
+            left: 0;
+            width: 28px;
+            height: 4px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--banner-cyan-400), var(--banner-purple-500));
+            box-shadow: 0 0 14px hsl(187 96% 62% / 0.42);
+        }
+
+        .content-container > h2 + p,
+        .content-container > h2 + ul {
+            max-width: 72ch;
+            color: hsl(190 35% 88% / 0.76);
+        }
+
+        .table-scroll {
+            overflow-x: auto;
+            margin: 16px 0 32px;
+            border-radius: 12px;
+            background: hsl(224 70% 12% / 0.72);
+            box-shadow: var(--banner-shadow-sm), inset 0 1px 0 hsl(190 100% 96% / 0.05);
+        }
+
+        .table-scroll table {
+            min-width: 700px;
+            margin: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .table-scroll table thead {
+            background: linear-gradient(90deg, hsl(197 84% 30%), hsl(218 72% 32%) 60%, hsl(267 58% 35%));
+        }
+
+        .table-scroll table th,
+        .table-scroll table td,
+        .table-scroll table thead th {
+            border: 0;
+            border-bottom: 1px solid hsl(190 100% 96% / 0.06);
+        }
+
+        .table-scroll table th {
+            color: hsl(190 100% 96% / 0.86);
+            font-size: 12px;
+            letter-spacing: 0.04em;
+        }
+
+        .table-scroll table td {
+            padding-top: 16px;
+            padding-bottom: 16px;
+            color: hsl(190 35% 91% / 0.82);
+            font-size: 14px;
+        }
+
+        .table-scroll table tbody tr:nth-child(even) {
+            background: hsl(218 72% 22% / 0.18);
+        }
+
+        .table-scroll table tbody tr:hover {
+            background: hsl(187 96% 62% / 0.08);
+        }
+
+        .weapon-table tbody tr:last-child {
+            background: linear-gradient(90deg, hsl(46 100% 64% / 0.12), transparent 70%);
+        }
+
+        .weapon-table tbody tr:last-child .hit-value {
+            color: var(--banner-gold-300);
+            text-shadow: 0 0 10px hsl(46 100% 64% / 0.45);
+        }
+
+        .hit-value {
+            width: 92px;
+            color: var(--banner-cyan-300);
+            font-weight: 700;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .item-list { line-height: 1.75; }
+
+        .source-panel {
+            margin: 64px -48px -48px;
+            padding: 32px 48px;
+            border-top: 1px solid hsl(187 96% 62% / 0.14);
+            background: hsl(224 70% 8% / 0.68);
+        }
+
+        .source-panel h2 {
+            margin: 0 0 8px;
+            color: hsl(190 100% 92%);
+            font-size: 20px;
+        }
+
+        .source-note {
+            max-width: 72ch;
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        @keyframes signal-pulse {
+            0%, 100% { opacity: 0.65; transform: translateY(-50%) scale(0.86); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .content-container { padding: 0 24px 32px; }
+            .guide-hero {
+                margin: 0 -24px 40px;
+                padding: 32px 24px 24px;
+            }
+            .guide-hero::after { opacity: 0.5; }
+            .banner-preview { padding: 20px 16px 16px 44px; }
+            .banner-preview::before { left: 20px; }
+            .type-grid { grid-template-columns: 1fr; }
+            .type-card { min-height: auto; }
+            .content-container > h2 {
+                margin-top: 48px;
+                padding-left: 36px;
+                font-size: 24px;
+            }
+            .content-container > h2::before { left: 36px; }
+            .content-container > h2::after { width: 20px; }
+            .table-scroll table { min-width: 0; }
+            .table-scroll table thead { display: none; }
+            .table-scroll table tbody,
+            .table-scroll table tr,
+            .table-scroll table td,
+            .table-scroll table th { display: block; }
+            .table-scroll table tr {
+                display: grid;
+                grid-template-columns: 76px minmax(0, 1fr);
+                align-items: stretch;
+                border-bottom: 1px solid hsl(190 100% 96% / 0.06);
+            }
+            .table-scroll table tr:last-child { border-bottom: 0; }
+            .table-scroll table td,
+            .table-scroll table th {
+                min-width: 0;
+                padding: 14px 12px;
+                border: 0;
+                overflow-wrap: anywhere;
+            }
+            .table-scroll table tbody th,
+            .table-scroll .hit-value {
+                display: flex;
+                width: auto;
+                align-items: center;
+                justify-content: center;
+                color: var(--banner-cyan-300);
+                background: hsl(197 84% 30% / 0.16);
+                text-align: center;
+            }
+            .weapon-table .hit-value::after {
+                content: " HIT";
+                margin-left: 3px;
+                color: hsl(190 35% 88% / 0.48);
+                font-size: 9px;
+                font-weight: 600;
+            }
+            .source-panel {
+                margin: 48px -24px -32px;
+                padding: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .banner-preview::before { animation: none; }
+        }
+    </style>
+    <script src="/assets/js/page-chrome.js"></script>
+</head>
+
+<body>
+    <page-chrome title="Banner 指南"></page-chrome>
+
+    <main class="content-container">
+        <section class="guide-hero">
+            <p class="hero-eyebrow">Ephinea Server Intelligence</p>
+            <h1>Banner 顶部公告</h1>
+            <p class="intro-lead">
+                Banner 是沿游戏画面顶部滚动显示的文字公告。它既用于向全服玩家广播系统消息和重要掉落，也用于只对当前玩家显示命令结果与状态提醒。
+            </p>
+
+            <div class="banner-preview" aria-label="稀有掉落公告示例">
+                [Ship] - [Block] - [Player] found [Item] from [Enemy]!
+            </div>
+
+            <nav class="jump-links" aria-label="页面目录">
+                <a href="#global">全服公告</a>
+                <a href="#rare-rules">掉落规则</a>
+                <a href="#weapons">武器清单</a>
+                <a href="#other-items">其他物品</a>
+                <a href="#personal">个人公告</a>
+            </nav>
+        </section>
+
+        <h2 id="global" data-section="01 / BROADCAST">全服公告</h2>
+        <p>以下公告会发送给当时在线的全部玩家。</p>
+
+        <div class="type-grid">
+            <article class="type-card">
+                <h3>系统与 GM 消息</h3>
+                <p>计划维护前会自动显示服务器关闭倒计时，通常在剩余 120、60、30、15、10、2、1、0 分钟时发布。GM 也可广播自定义消息。</p>
+            </article>
+            <article class="type-card">
+                <h3>每日运势变更</h3>
+                <p>每日 00:00 UTC 更新运势参数时自动发布：</p>
+                <p><code>The daily luck forecast has changed!</code></p>
+            </article>
+            <article class="type-card">
+                <h3>角色达到 200 级</h3>
+                <p>角色升至 200 级时显示 Ship、Block 与角色名，并向全服发送祝贺消息。</p>
+            </article>
+            <article class="type-card">
+                <h3>稀有掉落</h3>
+                <p>符合下方条件的物品掉落时，公告会包含 Ship、Block、玩家名、物品名、怪物名，以及适用时的未鉴定 Hit。</p>
+            </article>
+        </div>
+
+        <h2 id="rare-rules" data-section="02 / DROP RULES">稀有掉落公告规则</h2>
+        <ul>
+            <li>表格中的“最低 Hit”指武器刚掉落、尚未鉴定时的 Hit 属性。</li>
+            <li>最低 Hit 为 0 的武器：0 Hit 会公告，20 Hit 及以上也会公告；5、10、15 Hit 不会显示在公告文字中。</li>
+            <li>符合条件的物品若来自箱子，通常不会触发公告。</li>
+            <li>箱子掉落的 Diska of Braveman、Vjaya、M&amp;A60 Vise 即使达到 50 Hit，以及任意 90 Hit 稀有武器，都不会触发公告。</li>
+            <li>30 级攻击型技能盘即使来自箱子，仍会触发公告。</li>
+            <li>部分活动稀有物品也会公告，例如 Anniv. Platinum Badge 与 Ultimate Present “very rare”档奖励。</li>
+        </ul>
+
+        <div class="notice">
+            <p><strong>隐私设置：</strong>玩家可输入 <code>/findprivacy</code>，禁止自己的稀有掉落向全服和队伍广播。</p>
+        </div>
+
+        <h2 id="weapons" data-section="03 / WEAPON INDEX">会触发公告的武器</h2>
+        <p>物品名称保留英文，以便与客户端公告和掉落表直接对应。Classic Ship Devaloka 的单独规则已在表中标注。</p>
+
+        <h3>近战武器</h3>
+        <div class="table-scroll">
+            <table class="weapon-table">
+                <thead><tr><th scope="col">最低 Hit</th><th scope="col">物品</th></tr></thead>
+                <tbody>
+                    <tr><td class="hit-value">0</td><td class="item-list">Agito (1975) <em>（仅 Classic Ship Devaloka）</em></td></tr>
+                    <tr><td class="hit-value">20</td><td class="item-list">DB's Saber (3064) · DB's Saber (3077) · Evil Curst · Flowen's Sword (3073) · Flowen's Sword (3077) · Lavis Cannon · Madam's Parasol · Nei's Claw · Sealed J-Sword · Yasha · Galatine</td></tr>
+                    <tr><td class="hit-value">30</td><td class="item-list">Lame d'Argent · Daylight Scar</td></tr>
+                    <tr><td class="hit-value">40</td><td class="item-list">Vivienne · Asteron Belt</td></tr>
+                    <tr><td class="hit-value">50</td><td class="item-list">Girasole · Guren · Monkey King Bar · Shouren · Slicer of Fanatic · Twin Blaze · Yunchang · Zanba · Chain Sawd</td></tr>
+                    <tr><td class="hit-value">90</td><td class="item-list">Demolition Comet · Diska of Braveman · Flowen's Sword (3084) · Red Sword · Sange · Tyrell's Parasol · Vjaya · Yamigarasu · 任意稀有武器</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>远程武器</h3>
+        <div class="table-scroll">
+            <table class="weapon-table">
+                <thead><tr><th scope="col">最低 Hit</th><th scope="col">物品</th></tr></thead>
+                <tbody>
+                    <tr><td class="hit-value">0</td><td class="item-list">Angel Harp</td></tr>
+                    <tr><td class="hit-value">20</td><td class="item-list">Handgun: Guld · Handgun: Milla · Heaven Punisher · NUG2000-Bazooka · Heaven Striker</td></tr>
+                    <tr><td class="hit-value">30</td><td class="item-list">Cannon Rouge</td></tr>
+                    <tr><td class="hit-value">40</td><td class="item-list">Frozen Shooter · Rambling May · Holy Ray</td></tr>
+                    <tr><td class="hit-value">50</td><td class="item-list">L&amp;K38 Combat · Ophelie Seize · Spread Needle · Yasminkov 9000M · M&amp;A60 Vise</td></tr>
+                    <tr><td class="hit-value">90</td><td class="item-list">Panzer Faust · Yasminkov 7000V · 任意稀有武器</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>法系武器</h3>
+        <div class="table-scroll">
+            <table class="weapon-table">
+                <thead><tr><th scope="col">最低 Hit</th><th scope="col">物品</th></tr></thead>
+                <tbody>
+                    <tr><td class="hit-value">0</td><td class="item-list">Bluefull Card</td></tr>
+                    <tr><td class="hit-value">50</td><td class="item-list">Greenill Card · Oran Card · Pinkal Card · Prophets of Motav · Psycho Wand · Purplenum Card · Redria Card · Skyly Card · Viridia Card · Whitill Card · Yellowboze Card · Clio</td></tr>
+                    <tr><td class="hit-value">90</td><td class="item-list">Guardianna · 任意稀有武器</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="other-items" data-section="04 / OTHER ITEMS">其他会触发公告的物品</h2>
+        <div class="table-scroll">
+            <table>
+                <thead><tr><th scope="col">类别</th><th scope="col">物品</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row">盾牌</th><td class="item-list">Red Ring · S-Parts ver2.01</td></tr>
+                    <tr><th scope="row">武器之心</th><td class="item-list">Heart of Ancient Saber · Heart of Angel Harp · Heart of Blade Dance · Heart of Chameleon Scythe · Heart of Crazy Tune · Heart of Daisy Chain · Heart of DB's Saber · Heart of Delsaber's Buster · Heart of Diska of Liberator · Heart of Egg Blaster · Heart of Flamberge · Heart of Izmaela · Heart of Laconium Axe · Heart of Lollipop · Heart of Partisan of Lightning · Heart of Plantain Huge Fan · Heart of Rabbit Wand · Heart of Rianov 303SNR · Heart of Ruby Bullet · Heart of Samba Maracas · Heart of Sorcerer's Cane · Heart of Soul Banish · Heart of Suppressed Gun · Heart of Tension Blaster · Heart of The Sigh of a God · Heart of TypeDS/D.Saber · Heart of TypeSS/Swords · Heart of Yasminkov 9000M</td></tr>
+                    <tr><th scope="row">30 级攻击技能盘</th><td class="item-list">Foie · Barta · Zonde · Gifoie · Gibarta · Gizonde · Rafoie · Rabarta · Razonde · Grants · Megid</td></tr>
+                    <tr><th scope="row">工具</th><td class="item-list">Anniv. Platinum Badge · Book of Hitogata · Magic Stone “Iritista” · Parasitic Gene “Flow” · Syncesta</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="personal" data-section="05 / PERSONAL FEED">个人公告</h2>
+        <p>以下 Banner 只会显示给触发它的玩家，不会向其他人广播。</p>
+        <div class="type-grid">
+            <article class="type-card">
+                <h3><code>/killcount</code></h3>
+                <p>显示服务器记录的当前装备封印物品击杀数。客户端与服务器的计数处理可能不同；需要解封时，可能要先 Change Block 重新同步。</p>
+            </article>
+            <article class="type-card">
+                <h3><code>/rbr</code></h3>
+                <p>显示本周 Ragol Boost Road 任务。更多机制与周回建议见 <a href="/guide/rbr.html">RBR 任务推荐</a>。</p>
+            </article>
+            <article class="type-card">
+                <h3>信息与同步警告</h3>
+                <p>服务器与客户端对角色物品栏状态不一致时会显示警告，提示玩家 Change Block 重新同步，以免继续操作造成物品问题或损失。</p>
+            </article>
+        </div>
+
+        <section class="source-panel">
+            <h2>资料来源</h2>
+            <p class="source-note">
+                本页依据 Ephinea PSO Wiki 的
+                <a href="https://wiki.pioneer2.net/w/Banners" target="_blank" rel="noopener noreferrer">Banners</a>
+                页面整理。服务器规则与触发清单可能更新，具体以原页面及官方公告为准。
+            </p>
+        </section>
+    </main>
+</body>
+
+</html>

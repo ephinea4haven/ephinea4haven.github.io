@@ -78,6 +78,14 @@ const pages = [
     minimumReadyCount: 25,
   },
   {
+    name: 'banner guide',
+    path: '/guide/banners.html',
+    title: /Banner 顶部公告/,
+    heading: 'Banner 顶部公告',
+    readySelector: 'main table tbody tr',
+    minimumReadyCount: 19,
+  },
+  {
     name: '404 page',
     path: '/this-page-does-not-exist',
     title: /页面未找到/,
