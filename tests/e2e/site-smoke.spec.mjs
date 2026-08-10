@@ -329,6 +329,33 @@ test('Angular route hosts keep representative page content centered', async ({ p
   }
 });
 
+test('shared page chrome aligns titles and back links with page content', async ({ page }) => {
+  await page.setViewportSize({ width: 1512, height: 900 });
+  for (const path of [
+    '/data/enemy_weapon_hit.html',
+    '/guide/banners.html',
+    '/tools/status.html',
+  ]) {
+    await page.goto(path);
+    const centers = await page.locator('body').evaluate(() => {
+      const center = (selector) => {
+        const rect = document.querySelector(selector).getBoundingClientRect();
+        return rect.x + rect.width / 2;
+      };
+      return {
+        title: center('#project_title'),
+        backLink: center('.back-link'),
+        content: center('.content-container'),
+      };
+    });
+
+    expect(Math.abs(centers.title - centers.content), `${path} title should align with content`)
+      .toBeLessThanOrEqual(1);
+    expect(Math.abs(centers.backLink - centers.content), `${path} back link should align with content`)
+      .toBeLessThanOrEqual(1);
+  }
+});
+
 test('status simulator handles Angular inputs and resets', async ({ page }) => {
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
