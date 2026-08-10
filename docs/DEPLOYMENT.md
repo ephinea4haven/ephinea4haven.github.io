@@ -19,6 +19,21 @@ npx playwright install chromium
 npm run release:prepare
 ```
 
+## Dependency updates
+
+Dependabot checks npm packages and GitHub Actions weekly. Angular framework and
+build packages are grouped with RxJS and TypeScript so their compatibility is
+validated in one update instead of a sequence of temporarily mismatched pull
+requests. This group automatically proposes minor and patch releases. Framework,
+RxJS and TypeScript major releases require an explicit migration branch because
+their compiler and runtime compatibility ranges must move together. Security
+updates remain eligible independently and do not wait for the weekly
+version-update batch.
+
+Every dependency update must pass the same locked install, audit,
+reproducibility, build and browser gates as an application change before it is
+accepted.
+
 ## One-time activation
 
 After the workflow is present on `master`:
