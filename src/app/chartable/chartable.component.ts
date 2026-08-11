@@ -4,7 +4,6 @@ import {
   Component,
   ElementRef,
   Injector,
-  ViewEncapsulation,
   inject,
   signal,
   viewChild,
@@ -44,7 +43,6 @@ const CLASSES: readonly CharacterClass[] = [
   imports: [FormsModule, PageChromeComponent],
   templateUrl: './chartable.component.html',
   styleUrl: '../../../assets/css/chartable.css',
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChartableComponent {

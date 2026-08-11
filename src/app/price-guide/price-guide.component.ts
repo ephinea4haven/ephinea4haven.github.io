@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, signal, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PRICE_DATA, PRICE_NAMES } from '../generated/data/price-data';
 import { PageChromeComponent } from '../shared/page-chrome.component';
@@ -45,7 +45,6 @@ const HEADER_LABELS: Readonly<Record<string, string>> = {
   imports: [FormsModule, PageChromeComponent],
   templateUrl: './price-guide.component.html',
   styleUrl: './price-guide.component.css',
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceGuideComponent {

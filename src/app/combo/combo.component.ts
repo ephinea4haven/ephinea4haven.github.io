@@ -1,13 +1,12 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   inject,
-  ViewEncapsulation,
+  input,
+  OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
-import { Router } from '@angular/router';
 import { PageChromeComponent } from '../shared/page-chrome.component';
 import {
   barriers,
@@ -20,12 +19,43 @@ import {
   getSetEffectAtp,
 } from '../generated/combo/engine';
 
-interface ComboData {
-  weapons: Record<string, any>;
+type AttackType = 'NORMAL' | 'HEAVY' | 'SPECIAL' | 'NONE';
+
+interface WeaponPreset {
+  readonly attack1?: AttackType | '';
+  readonly attack1Hits?: number;
+  readonly attack2?: AttackType | '';
+  readonly attack2Hits?: number;
+  readonly attack3?: AttackType | '';
+  readonly attack3Hits?: number;
+}
+
+interface Weapon {
+  readonly minAtp: number;
+  readonly maxAtp: number;
+  readonly ata: number;
+  readonly grind: number;
+  readonly maxHit?: number;
+  readonly maxAttr?: number;
+  readonly special?: string;
+  readonly horizontalDistance: number;
+  readonly comboPreset?: WeaponPreset;
+}
+
+export interface ComboEnemy {
+  readonly name: string;
+  readonly type: string;
+  readonly hp: number;
+  readonly evp: number;
+  readonly dfp: number;
+}
+
+export interface ComboData {
+  readonly weapons: Readonly<Record<string, Weapon>>;
   frames: Record<string, { atp: number; ata: number }>;
   classStats: Record<string, { minAtp: number; maxAtp: number; ata: number; animation: string }>;
   enemyNameSort: Record<string, string[]>;
-  enemies: Record<string, any>;
+  readonly enemies: Readonly<Record<string, ComboEnemy>>;
 }
 
 interface ComboRow {
@@ -55,28 +85,29 @@ interface ComboRow {
   imports: [FormsModule, PageChromeComponent],
   templateUrl: './combo.component.html',
   styleUrl: './combo.component.css',
-  encapsulation: ViewEncapsulation.None,
+  host: {
+    style: 'display: flex; flex-direction: column; align-items: center; width: 100%; min-width: 0; --native: #a5ffaa; --abeast: #f5ff99; --machine: #ff958b; --dark: #e1a9ff',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ComboComponent {
-  private readonly changeDetector = inject(ChangeDetectorRef);
-  private readonly router = inject(Router);
+export class ComboComponent implements OnInit {
   private readonly meta = inject(Meta);
-  private data?: ComboData;
+  private comboData!: ComboData;
 
-  readonly isOpm = this.router.url.includes('ccopm.html');
+  readonly data = input.required<ComboData>();
+  readonly isOpm = input.required<boolean>();
   readonly classes = ['HUmar', 'HUnewearl', 'HUcast', 'HUcaseal', 'RAmar', 'RAmarl',
     'RAcast', 'RAcaseal', 'FOmar', 'FOmarl', 'FOnewm', 'FOnewearl'];
   readonly units = ['NONE', 'POSS1', 'POSS2', 'POSS3', 'POSS4'];
   readonly specials = ['None', 'Charge', 'Berserk', 'Spirit', 'Arrest', 'Gush', "Devil's",
     "Demon's", 'Lavis Cannon', 'Lavis Blade', 'Raikiri', 'Orotiagito', 'TJS', 'Dark Flow',
     'Frozen Shooter', 'Vjaya', 'Mille Marteaux'];
-  readonly attacks = ['NORMAL', 'HEAVY', 'SPECIAL', 'NONE'];
+  readonly attacks: readonly AttackType[] = ['NORMAL', 'HEAVY', 'SPECIAL', 'NONE'];
   readonly hits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   weaponNames: string[] = [];
   frameNames: string[] = [];
-  selectedEnemies: any[] = [];
+  selectedEnemies: ComboEnemy[] = [];
   selectedClass = 'HUcast';
   selectedFrame = 'None';
   selectedBarrier = 'Red Ring';
@@ -99,34 +130,21 @@ export class ComboComponent {
   frozen = false;
   paralyzed = false;
   maxDamage = false;
-  attack1 = 'NORMAL';
-  attack2 = 'NORMAL';
-  attack3 = 'NORMAL';
-  hits1 = 1;
-  hits2 = 1;
-  hits3 = 1;
+  selectedAttacks: [AttackType, AttackType, AttackType] = ['NORMAL', 'NORMAL', 'NORMAL'];
+  selectedHits: [number, number, number] = [1, 1, 1];
   sortColumn = '';
   sortAscending: boolean | null = null;
 
-  constructor() {
-    const mode = this.isOpm ? import('../generated/combo/opm-data')
-      : import('../generated/combo/multi-data');
-    mode.then((data) => {
-      this.data = data as unknown as ComboData;
-      this.weaponNames = Object.keys(this.data.weapons);
-      this.frameNames = Object.keys(this.data.frames);
-      this.updateClass();
-      this.updateWeapon();
-      this.changeDetector.markForCheck();
-    });
+  ngOnInit(): void {
+    this.comboData = this.data();
+    this.weaponNames = Object.keys(this.comboData.weapons);
+    this.frameNames = Object.keys(this.comboData.frames);
+    this.updateClass();
+    this.updateWeapon();
     this.meta.updateTag({
       name: 'description',
-      content: `PSOBB ${this.isOpm ? 'one-person mode' : 'multiplayer'} Combo damage calculator`,
+      content: `PSOBB ${this.isOpm() ? 'one-person mode' : 'multiplayer'} Combo damage calculator`,
     });
-  }
-
-  get loaded(): boolean {
-    return Boolean(this.data);
   }
 
   get barrierNames(): string[] {
@@ -134,8 +152,7 @@ export class ComboComponent {
   }
 
   get rows(): ComboRow[] {
-    if (!this.data) return [];
-    const weapon = this.data.weapons[this.selectedWeaponName];
+    const weapon = this.comboData.weapons[this.selectedWeaponName];
     const range = this.smartlink || this.selectedClass.startsWith('RA')
       ? 0
       : weapon.horizontalDistance;
@@ -151,9 +168,9 @@ export class ComboComponent {
       zalure: Number(this.zalure),
     };
     const baseCombo = {
-      a1Type: this.attack1, a1Hits: Number(this.hits1),
-      a2Type: this.attack2, a2Hits: Number(this.hits2),
-      a3Type: this.attack3, a3Hits: Number(this.hits3),
+      a1Type: this.selectedAttacks[0], a1Hits: Number(this.selectedHits[0]),
+      a2Type: this.selectedAttacks[1], a2Hits: Number(this.selectedHits[1]),
+      a3Type: this.selectedAttacks[2], a3Hits: Number(this.selectedHits[2]),
     };
     const evpModifier = getEvpModifier(this.frozen, this.paralyzed);
     const rows = this.selectedEnemies.map((enemy) => createMonsterRow(
@@ -167,7 +184,7 @@ export class ComboComponent {
       atpInput,
       { ...baseCombo },
       range,
-      this.data?.classStats,
+      this.comboData.classStats,
     )) as ComboRow[];
     if (this.sortAscending === null) return rows;
     const direction = this.sortAscending ? 1 : -1;
@@ -179,62 +196,61 @@ export class ComboComponent {
   }
 
   get totalFrames(): string {
-    if (!this.data) return '';
-    const weapon = this.data.weapons[this.selectedWeaponName];
-    const result = getFrameDataForWeapon(weapon, this.selectedClass, this.data.classStats);
+    const weapon = this.comboData.weapons[this.selectedWeaponName];
+    const result = getFrameDataForWeapon(weapon, this.selectedClass, this.comboData.classStats);
     const frames = getFramesForCombo(
-      this.attack1,
-      this.attack2,
-      this.attack3,
+      this.selectedAttacks[0],
+      this.selectedAttacks[1],
+      this.selectedAttacks[2],
       result.animationFrameData,
     );
     return `Total Frames: ${frames}${result.animationSource}`;
   }
 
   updateClass(): void {
-    if (!this.data) return;
-    const selected = this.data.classStats[this.selectedClass];
+    const selected = this.comboData.classStats[this.selectedClass];
     this.classMinAtp = selected.minAtp;
     this.classMaxAtp = selected.maxAtp;
     this.updateEquipment();
   }
 
   updateWeapon(): void {
-    if (!this.data) return;
-    const weapon = this.data.weapons[this.selectedWeaponName];
+    const weapon = this.comboData.weapons[this.selectedWeaponName];
     this.hit = weapon.maxHit ?? 100;
     this.sphere = weapon.maxAttr ?? 100;
     this.special = weapon.special || 'Charge';
     const preset = weapon.comboPreset;
-    if (preset?.attack1) this.attack1 = preset.attack1;
-    if (preset?.attack2) this.attack2 = preset.attack2;
-    if (preset?.attack3) this.attack3 = preset.attack3;
-    this.hits1 = preset?.attack1Hits || 1;
-    this.hits2 = preset?.attack2Hits || 1;
-    this.hits3 = preset?.attack3Hits || 1;
+    this.selectedAttacks = [
+      preset?.attack1 || 'NORMAL',
+      preset?.attack2 || 'NORMAL',
+      preset?.attack3 || 'NORMAL',
+    ];
+    this.selectedHits = [
+      preset?.attack1Hits || 1,
+      preset?.attack2Hits || 1,
+      preset?.attack3Hits || 1,
+    ];
     this.updateEquipment();
   }
 
   updateEquipment(): void {
-    if (!this.data) return;
-    const weapon = this.data.weapons[this.selectedWeaponName];
-    const frame = this.data.frames[this.selectedFrame];
+    const weapon = this.comboData.weapons[this.selectedWeaponName];
+    const frame = this.comboData.frames[this.selectedFrame];
     const barrier = (barriers as Record<string, { atp: number; ata: number }>)[
       this.selectedBarrier
     ];
     const bonusAtp = getSetEffectAtp(weapon, this.selectedFrame, this.selectedBarrier);
     this.minAtp = weapon.minAtp + (2 * weapon.grind) + frame.atp + barrier.atp + bonusAtp;
     this.maxAtp = weapon.maxAtp + (2 * weapon.grind) + frame.atp + barrier.atp + bonusAtp;
-    const selectedClass = this.data.classStats[this.selectedClass];
+    const selectedClass = this.comboData.classStats[this.selectedClass];
     this.ata = selectedClass.ata + weapon.ata + frame.ata + barrier.ata
       + getSetEffectAta(weapon, this.selectedFrame, this.selectedBarrier, this.selectedUnit)
       + Number(this.hit) + (this.commanderBlade ? 20 : 0);
   }
 
   addEnemies(type: string): void {
-    if (!this.data) return;
     const existing = new Set(this.selectedEnemies);
-    for (const enemy of Object.values(this.data.enemies)) {
+    for (const enemy of Object.values(this.comboData.enemies)) {
       if (enemy.type === type && !existing.has(enemy)) this.selectedEnemies.push(enemy);
     }
   }
@@ -243,7 +259,7 @@ export class ComboComponent {
     this.selectedEnemies = [];
   }
 
-  removeEnemy(enemy: any): void {
+  removeEnemy(enemy: ComboEnemy): void {
     this.selectedEnemies = this.selectedEnemies.filter((candidate) => candidate !== enemy);
   }
 
@@ -266,7 +282,7 @@ export class ComboComponent {
   }
 
   accuracy(value: number, minimum: number): string {
-    const weapon = this.data?.weapons[this.selectedWeaponName];
+    const weapon = this.comboData.weapons[this.selectedWeaponName];
     const ranged = !this.smartlink && !this.selectedClass.startsWith('RA')
       && weapon?.horizontalDistance > 0;
     return formatAccuracyText(value, minimum, ranged);

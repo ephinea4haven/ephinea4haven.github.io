@@ -95,11 +95,17 @@ const pages = [
 test('data-driven tools avoid asynchronous loading placeholders', () => {
   const statusHtml = readFileSync('_site/tools/status.html', 'utf8');
   const chartableHtml = readFileSync('_site/tools/chartable.html', 'utf8');
+  const comboHtml = readFileSync('_site/tools/cc.html', 'utf8');
+  const comboOpmHtml = readFileSync('_site/tools/ccopm.html', 'utf8');
 
   expect(statusHtml).toContain('class="stat-table"');
   expect(statusHtml).not.toContain('正在加载人物数据');
   expect(chartableHtml).toContain('请选择职业查看能力表');
   expect(chartableHtml).not.toContain('正在加载人物数据');
+  expect(comboHtml).toContain('id="combo-calc-table"');
+  expect(comboHtml).not.toContain('Loading calculator data');
+  expect(comboOpmHtml).toContain('id="combo-calc-table"');
+  expect(comboOpmHtml).not.toContain('Loading calculator data');
 });
 
 for (const pageCase of pages) {
@@ -243,6 +249,7 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
       bootstrap: typeof window.bootstrap,
       vue: typeof window.Vue,
     }))).toEqual({ jquery: 'undefined', bootstrap: 'undefined', vue: 'undefined' });
+    await expect(page.locator('#native-btn')).toHaveCSS('color', 'rgb(165, 255, 170)');
     const tableRows = page.locator('#combo-calc-table tbody tr');
 
     for (const enemyButton of ['#native-btn', '#abeast-btn', '#machine-btn', '#dark-btn']) {
@@ -260,6 +267,14 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
     const initialClassAtp = await page.locator('#classMinAtpInput').inputValue();
     await page.locator('#class-select').selectOption('RAmarl');
     await expect(page.locator('#classMinAtpInput')).not.toHaveValue(initialClassAtp);
+
+    await page.locator('.weapon-picker').selectOption({ label: 'Dark Flow' });
+    await expect(page.locator('#attack1')).toHaveValue('SPECIAL');
+    await expect(page.locator('#attack2')).toHaveValue('NONE');
+    await page.locator('.weapon-picker').selectOption({ label: 'Unarmed' });
+    await expect(page.locator('#attack1')).toHaveValue('NORMAL');
+    await expect(page.locator('#attack2')).toHaveValue('NORMAL');
+    await expect(page.locator('#attack3')).toHaveValue('NORMAL');
 
     const damageBeforeShifta = await tableRows.first().innerText();
     await page.locator('#shiftaInput').fill('30');
@@ -669,6 +684,38 @@ test('Angular price guide hydrates the prerendered DOM in place', async ({ page 
     removed: window.__hydrationProbe.removed,
   }))).toEqual({ captured: true, removed: false });
 });
+
+for (const path of ['/tools/cc.html', '/tools/ccopm.html']) {
+  test(`${path} hydrates its mode-specific prerendered calculator in place`, async ({ page }) => {
+    await page.addInitScript(() => {
+      const probe = { main: null, removed: false };
+      Object.defineProperty(window, '__comboHydrationProbe', { value: probe });
+      new MutationObserver((records) => {
+        for (const record of records) {
+          for (const node of record.addedNodes) {
+            if (!probe.main && node.nodeType === Node.ELEMENT_NODE) {
+              probe.main = node.matches?.('main.combo-shell')
+                ? node
+                : node.querySelector?.('main.combo-shell');
+            }
+          }
+          for (const node of record.removedNodes) {
+            if (probe.main && (node === probe.main || node.contains?.(probe.main))) {
+              probe.removed = true;
+            }
+          }
+        }
+      }).observe(document, { childList: true, subtree: true });
+    });
+
+    await page.goto(path);
+    await expect(page.locator('#combo-calc-table')).toBeVisible();
+    await expect.poll(() => page.evaluate(() => ({
+      captured: Boolean(window.__comboHydrationProbe.main),
+      removed: window.__comboHydrationProbe.removed,
+    }))).toEqual({ captured: true, removed: false });
+  });
+}
 
 test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ page }) => {
   await page.goto('/data/protocol/');

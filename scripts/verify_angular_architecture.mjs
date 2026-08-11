@@ -56,6 +56,21 @@ for (const file of angularSources) {
       + 'use an Angular render callback for DOM access and hydration safety',
     );
   }
+  if (!file.includes(`${path.sep}generated${path.sep}`)
+      && source.includes('ViewEncapsulation.None')) {
+    throw new Error(
+      `${path.relative(root, file)} disables style encapsulation outside the generated-content boundary`,
+    );
+  }
+}
+
+const angularTemplates = (await walk(path.join(root, 'src', 'app')))
+  .filter((file) => file.endsWith('.html'));
+for (const file of angularTemplates) {
+  const source = await readFile(file, 'utf8');
+  if (source.includes('$any(this)')) {
+    throw new Error(`${path.relative(root, file)} bypasses strict template typing with $any(this)`);
+  }
 }
 
 const htmlFiles = [

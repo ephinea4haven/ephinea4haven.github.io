@@ -12,7 +12,8 @@ function check(name, condition) {
   if (!condition) failures += 1;
 }
 
-const [multiData, opmData, engine, license, metadataText, packageText, routes, template] =
+const [multiData, opmData, engine, license, metadataText, packageText, routes, template,
+  multiplayerPage, opmPage] =
   await Promise.all([
     read('assets/js/combo_calc_multi_data.js'),
     read('assets/js/combo_calc_opm_data.js'),
@@ -22,6 +23,8 @@ const [multiData, opmData, engine, license, metadataText, packageText, routes, t
     read('package.json'),
     read('src/app/app.routes.ts'),
     read('src/app/combo/combo.component.html'),
+    read('src/app/combo/combo-multiplayer-page.component.ts'),
+    read('src/app/combo/combo-opm-page.component.ts'),
   ]);
 const metadata = JSON.parse(metadataText);
 const packageJson = JSON.parse(packageText);
@@ -42,10 +45,15 @@ check('generated hashes match metadata',
     && hash(multiData) === metadata.generatedSha256.multiplayerData
     && hash(opmData) === metadata.generatedSha256.opmData
     && hash(license) === metadata.generatedSha256.license);
-check('both Combo routes use the shared Angular component',
+check('both Combo routes use typed mode wrappers around the shared Angular component',
   routes.includes("path: 'tools/cc.html'")
     && routes.includes("path: 'tools/ccopm.html'")
-    && routes.match(/\.\/combo\/combo\.component/g)?.length === 2);
+    && routes.includes('./combo/combo-multiplayer-page.component')
+    && routes.includes('./combo/combo-opm-page.component')
+    && multiplayerPage.includes("from './combo.component'")
+    && multiplayerPage.includes("from '../generated/combo/multi-data'")
+    && opmPage.includes("from './combo.component'")
+    && opmPage.includes("from '../generated/combo/opm-data'"));
 check('Angular template preserves calculator controls',
   ['class-select', 'damage-header', 'native-btn', 'clear-btn', 'combo-calc-table']
     .every((id) => template.includes(`id="${id}"`)));

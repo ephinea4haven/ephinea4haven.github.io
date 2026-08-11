@@ -1,15 +1,12 @@
-<page-chrome [title]="'Combo Calculator ' + (isOpm ? 'OPM' : 'Multiplayer')"></page-chrome>
+<page-chrome [title]="'Combo Calculator ' + (isOpm() ? 'OPM' : 'Multiplayer')"></page-chrome>
 <main class="content-container tool-page combo-shell">
   <div class="tool-toolbar combo-toolbar">
     <p class="tool-kicker">PSO damage laboratory</p>
-    <a class="tool-action" [href]="isOpm ? '/tools/cc.html' : '/tools/ccopm.html'">
-      Switch to {{ isOpm ? 'Multiplayer' : 'OPM' }}
+    <a class="tool-action" [href]="isOpm() ? '/tools/cc.html' : '/tools/ccopm.html'">
+      Switch to {{ isOpm() ? 'Multiplayer' : 'OPM' }}
     </a>
   </div>
 
-  @if (!loaded) {
-    <p class="loading" aria-live="polite">Loading calculator data…</p>
-  } @else {
     <section class="tool-section control-card" aria-labelledby="character-heading">
       <h2 id="character-heading">Character</h2>
       <div class="control-grid">
@@ -57,11 +54,11 @@
           <div class="attack-pair">
             <label [for]="'attack' + index">Attack {{ index }}</label>
             <select [id]="'attack' + index" [disabled]="autoCombo"
-              [(ngModel)]="$any(this)['attack' + index]">
+              [(ngModel)]="selectedAttacks[index - 1]">
               @for (attack of attacks; track attack) {<option>{{ attack }}</option>}
             </select>
             <label [for]="'hits' + index">Hits</label>
-            <select [id]="'hits' + index" [(ngModel)]="$any(this)['hits' + index]">
+            <select [id]="'hits' + index" [(ngModel)]="selectedHits[index - 1]">
               @for (count of hits; track count) {<option [ngValue]="count">{{ count }}</option>}
             </select>
           </div>
@@ -116,5 +113,4 @@
         </tbody>
       </table>
     </div>
-  }
 </main>

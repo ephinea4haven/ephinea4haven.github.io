@@ -22,14 +22,14 @@ export const routes: Routes = [
   {
     path: 'tools/cc.html',
     title: 'Combo Calculator - PSOStats',
-    loadComponent: () => import('./combo/combo.component')
-      .then(({ ComboComponent }) => ComboComponent),
+    loadComponent: () => import('./combo/combo-multiplayer-page.component')
+      .then(({ ComboMultiplayerPageComponent }) => ComboMultiplayerPageComponent),
   },
   {
     path: 'tools/ccopm.html',
     title: 'Combo Calculator - PSOStats',
-    loadComponent: () => import('./combo/combo.component')
-      .then(({ ComboComponent }) => ComboComponent),
+    loadComponent: () => import('./combo/combo-opm-page.component')
+      .then(({ ComboOpmPageComponent }) => ComboOpmPageComponent),
   },
   ...contentRoutes,
 ];

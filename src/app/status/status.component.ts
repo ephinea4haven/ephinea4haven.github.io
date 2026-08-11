@@ -4,7 +4,6 @@ import {
   Component,
   inject,
   signal,
-  ViewEncapsulation,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta } from '@angular/platform-browser';
@@ -57,7 +56,6 @@ const TEXT = {
   imports: [FormsModule, PageChromeComponent],
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.css', './status-layout.css'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusComponent {

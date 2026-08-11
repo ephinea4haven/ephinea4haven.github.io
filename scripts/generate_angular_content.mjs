@@ -41,6 +41,7 @@ const pageBehaviors = new Map([
   ['event/christmas.html', ['SeasonalEventBehavior']],
 ]);
 const behaviorModules = new Map([
+  ['LandingPageBehavior', '../../content/landing-page.directive'],
   ['VolOptBehavior', '../../data/volopt.directive'],
   ['RbrBehavior', '../../rbr/rbr.directive'],
   ['MagBehavior', '../../mag/mag.directive'],
