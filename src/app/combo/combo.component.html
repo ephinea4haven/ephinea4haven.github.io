@@ -35,7 +35,7 @@
       <div class="control-grid">
         <label class="wide">Weapon<select class="weapon-picker" [(ngModel)]="selectedWeaponName"
           (change)="updateWeapon()">@for (name of weaponNames; track name) {<option [value]="name">{{ name }}</option>}</select></label>
-        <label>Special<select id="special-select" [(ngModel)]="special">@for (name of specials; track name) {<option>{{ name }}</option>}</select></label>
+        <label>Special<select id="special-select" [(ngModel)]="special">@for (name of specials(); track name) {<option>{{ name }}</option>}</select></label>
         <label>Attribute %<input id="sphereInput" type="number" [(ngModel)]="sphere"></label>
         <label>Hit<input id="hitInput" type="number" [(ngModel)]="hit" (change)="updateEquipment()"></label>
         <label>Minimum weapon ATP<input id="minAtpInput" type="number" [(ngModel)]="minAtp"></label>
@@ -54,12 +54,18 @@
           <div class="attack-pair">
             <label [for]="'attack' + index">Attack {{ index }}</label>
             <select [id]="'attack' + index" [disabled]="autoCombo"
-              [(ngModel)]="selectedAttacks[index - 1]">
+              [ngModel]="selectedAttacks[index - 1]"
+              (ngModelChange)="updateAttack(index - 1, $event)">
               @for (attack of attacks; track attack) {<option>{{ attack }}</option>}
             </select>
             <label [for]="'hits' + index">Hits</label>
-            <select [id]="'hits' + index" [(ngModel)]="selectedHits[index - 1]">
-              @for (count of hits; track count) {<option [ngValue]="count">{{ count }}</option>}
+            <select [id]="'hits' + index" [disabled]="selectedAttacks[index - 1] === 'NONE'"
+              [(ngModel)]="selectedHits[index - 1]">
+              @if (selectedAttacks[index - 1] === 'NONE') {
+                <option [ngValue]="0">0</option>
+              } @else {
+                @for (count of hits; track count) {<option [ngValue]="count">{{ count }}</option>}
+              }
             </select>
           </div>
         }

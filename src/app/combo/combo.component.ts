@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   input,
   OnInit,
@@ -20,6 +21,14 @@ import {
 } from '../generated/combo/engine';
 
 type AttackType = 'NORMAL' | 'HEAVY' | 'SPECIAL' | 'NONE';
+type ComboSelection = [AttackType, AttackType, AttackType];
+type HitSelection = [number, number, number];
+
+const EDITABLE_SPECIALS = [
+  'Charge', 'Berserk', 'Spirit', 'Arrest', 'Gush', "Devil's", "Demon's",
+  'Lavis Cannon', 'Lavis Blade', 'Raikiri', 'Orotiagito', 'TJS', 'Dark Flow',
+  'Frozen Shooter', 'Vjaya', 'Mille Marteaux',
+] as const;
 
 interface WeaponPreset {
   readonly attack1?: AttackType | '';
@@ -99,9 +108,12 @@ export class ComboComponent implements OnInit {
   readonly classes = ['HUmar', 'HUnewearl', 'HUcast', 'HUcaseal', 'RAmar', 'RAmarl',
     'RAcast', 'RAcaseal', 'FOmar', 'FOmarl', 'FOnewm', 'FOnewearl'];
   readonly units = ['NONE', 'POSS1', 'POSS2', 'POSS3', 'POSS4'];
-  readonly specials = ['None', 'Charge', 'Berserk', 'Spirit', 'Arrest', 'Gush', "Devil's",
-    "Demon's", 'Lavis Cannon', 'Lavis Blade', 'Raikiri', 'Orotiagito', 'TJS', 'Dark Flow',
-    'Frozen Shooter', 'Vjaya', 'Mille Marteaux'];
+  readonly specials = computed(() => ['None', ...new Set([
+    ...EDITABLE_SPECIALS,
+    ...Object.values(this.data().weapons)
+      .map((weapon) => weapon.special)
+      .filter((special): special is string => Boolean(special)),
+  ])]);
   readonly attacks: readonly AttackType[] = ['NORMAL', 'HEAVY', 'SPECIAL', 'NONE'];
   readonly hits = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -130,8 +142,8 @@ export class ComboComponent implements OnInit {
   frozen = false;
   paralyzed = false;
   maxDamage = false;
-  selectedAttacks: [AttackType, AttackType, AttackType] = ['NORMAL', 'NORMAL', 'NORMAL'];
-  selectedHits: [number, number, number] = [1, 1, 1];
+  selectedAttacks: ComboSelection = ['NORMAL', 'NORMAL', 'NORMAL'];
+  selectedHits: HitSelection = [1, 1, 1];
   sortColumn = '';
   sortAscending: boolean | null = null;
 
@@ -168,9 +180,9 @@ export class ComboComponent implements OnInit {
       zalure: Number(this.zalure),
     };
     const baseCombo = {
-      a1Type: this.selectedAttacks[0], a1Hits: Number(this.selectedHits[0]),
-      a2Type: this.selectedAttacks[1], a2Hits: Number(this.selectedHits[1]),
-      a3Type: this.selectedAttacks[2], a3Hits: Number(this.selectedHits[2]),
+      a1Type: this.selectedAttacks[0], a1Hits: this.effectiveHits(0),
+      a2Type: this.selectedAttacks[1], a2Hits: this.effectiveHits(1),
+      a3Type: this.selectedAttacks[2], a3Hits: this.effectiveHits(2),
     };
     const evpModifier = getEvpModifier(this.frozen, this.paralyzed);
     const rows = this.selectedEnemies.map((enemy) => createMonsterRow(
@@ -220,17 +232,28 @@ export class ComboComponent implements OnInit {
     this.sphere = weapon.maxAttr ?? 100;
     this.special = weapon.special || 'Charge';
     const preset = weapon.comboPreset;
-    this.selectedAttacks = [
+    const attacks: ComboSelection = [
       preset?.attack1 || 'NORMAL',
       preset?.attack2 || 'NORMAL',
       preset?.attack3 || 'NORMAL',
     ];
+    this.selectedAttacks = attacks;
     this.selectedHits = [
-      preset?.attack1Hits || 1,
-      preset?.attack2Hits || 1,
-      preset?.attack3Hits || 1,
+      attacks[0] === 'NONE' ? 0 : preset?.attack1Hits || 1,
+      attacks[1] === 'NONE' ? 0 : preset?.attack2Hits || 1,
+      attacks[2] === 'NONE' ? 0 : preset?.attack3Hits || 1,
     ];
     this.updateEquipment();
+  }
+
+  updateAttack(index: number, attack: AttackType): void {
+    const attacks: ComboSelection = [...this.selectedAttacks];
+    const hits: HitSelection = [...this.selectedHits];
+    attacks[index] = attack;
+    if (attack === 'NONE') hits[index] = 0;
+    else if (hits[index] === 0) hits[index] = 1;
+    this.selectedAttacks = attacks;
+    this.selectedHits = hits;
   }
 
   updateEquipment(): void {
@@ -286,5 +309,9 @@ export class ComboComponent implements OnInit {
     const ranged = !this.smartlink && !this.selectedClass.startsWith('RA')
       && weapon?.horizontalDistance > 0;
     return formatAccuracyText(value, minimum, ranged);
+  }
+
+  private effectiveHits(index: 0 | 1 | 2): number {
+    return this.selectedAttacks[index] === 'NONE' ? 0 : Number(this.selectedHits[index]);
   }
 }

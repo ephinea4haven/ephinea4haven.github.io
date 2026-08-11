@@ -271,10 +271,24 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
     await page.locator('.weapon-picker').selectOption({ label: 'Dark Flow' });
     await expect(page.locator('#attack1')).toHaveValue('SPECIAL');
     await expect(page.locator('#attack2')).toHaveValue('NONE');
+    await expect(page.locator('#hits2 option:checked')).toHaveText('0');
+    await expect(page.locator('#hits2')).toBeDisabled();
+    await expect(tableRows.first().locator('td').nth(1)).not.toContainText('NaN');
+    await page.locator('.weapon-picker').selectOption({ label: 'Asteron Belt' });
+    await expect(page.locator('#special-select')).toHaveValue('Hell*');
+    await page.locator('.weapon-picker').selectOption({ label: 'Spread Needle' });
+    await expect(page.locator('#special-select')).toHaveValue('Seize');
     await page.locator('.weapon-picker').selectOption({ label: 'Unarmed' });
     await expect(page.locator('#attack1')).toHaveValue('NORMAL');
     await expect(page.locator('#attack2')).toHaveValue('NORMAL');
     await expect(page.locator('#attack3')).toHaveValue('NORMAL');
+    await page.locator('#attack2').selectOption('NONE');
+    await expect(page.locator('#hits2 option:checked')).toHaveText('0');
+    await expect(page.locator('#hits2')).toBeDisabled();
+    await expect(tableRows.first().locator('td').nth(1)).not.toContainText('NaN');
+    await page.locator('#attack2').selectOption('NORMAL');
+    await expect(page.locator('#hits2 option:checked')).toHaveText('1');
+    await expect(page.locator('#hits2')).toBeEnabled();
 
     const damageBeforeShifta = await tableRows.first().innerText();
     await page.locator('#shiftaInput').fill('30');
