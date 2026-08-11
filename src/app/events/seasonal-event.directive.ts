@@ -1,5 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, DestroyRef, Directive, ElementRef, PLATFORM_ID, inject } from '@angular/core';
+import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
 import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
 
 const OVERRIDES = [
@@ -40,14 +39,16 @@ const NPC_IMAGES = new Map<string, readonly [string, string]>([
 ]);
 
 @Directive({ standalone: true })
-export class SeasonalEventBehavior implements AfterViewInit {
+export class SeasonalEventBehavior {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
-  private readonly platformId = inject(PLATFORM_ID);
   private readonly destroyRef = inject(DestroyRef);
   private previewAnchor: HTMLElement | null = null;
 
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
+  constructor() {
+    afterNextRender(() => this.connect());
+  }
+
+  private connect(): void {
     const masthead = this.host.querySelector<HTMLElement>('[data-seasonal-event]');
     const content = this.host.querySelector<HTMLElement>('#content');
     if (!masthead || !content) return;

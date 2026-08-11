@@ -44,6 +44,20 @@ for (const relative of retiredAssets) {
   }
 }
 
+const angularSources = (await walk(path.join(root, 'src', 'app')))
+  .filter((file) => file.endsWith('.ts'));
+for (const file of angularSources) {
+  const source = await readFile(file, 'utf8');
+  const usesViewInitHook = /\b(?:AfterViewInit|ngAfterViewInit)\b/.test(source);
+  const accessesDom = /\b(?:ElementRef|document|window|querySelector)\b/.test(source);
+  if (usesViewInitHook && accessesDom) {
+    throw new Error(
+      `${path.relative(root, file)} performs work in ngAfterViewInit; `
+      + 'use an Angular render callback for DOM access and hydration safety',
+    );
+  }
+}
+
 const htmlFiles = [
   path.join(root, 'index.html'),
   path.join(root, '404.html'),

@@ -6,11 +6,7 @@
     <button type="button" [class.active]="language() === 'ja'" [attr.aria-pressed]="language() === 'ja'" (click)="setLanguage('ja')">日</button>
   </nav>
 
-  @if (loadError) {
-    <p id="output" class="status-message error" role="alert">{{ t('loadError') }}</p>
-  } @else if (!result) {
-    <p id="output" class="status-message" aria-live="polite">{{ t('loading') }}</p>
-  } @else {
+  @if (result; as result) {
     <div id="main" class="simulator-layout">
       <div class="boxcontainer character-column">
         <table><tbody><tr><th>{{ t('class') }}</th><td><select id="class" aria-label="Class" [(ngModel)]="selectedClass" (change)="classChanged()">@for (option of classes; track option.value) {<option [value]="option.value">{{ option.label }}</option>}</select></td></tr></tbody></table>

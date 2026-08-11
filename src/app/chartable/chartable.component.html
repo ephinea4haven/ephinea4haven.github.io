@@ -27,18 +27,13 @@
 </section>
 
 <div class="table-container" aria-live="polite">
-  @if (loadError()) {
-    <p class="empty-state" role="alert">人物数据加载失败，请刷新页面重试。</p>
-  } @else if (!data()) {
-    <p class="empty-state">正在加载人物数据…</p>
-  } @else {
-    <div class="empty-state" id="emptyState" [hidden]="selectedClass()">
-      <div class="empty-state-icon" aria-hidden="true">📊</div>
-      <p>请选择职业查看能力表</p>
-    </div>
-    @for (characterClass of classes; track characterClass.id) {
-      <table #statTable [id]="characterClass.id"
-             [class.active]="selectedClass() === characterClass.id">
+  <div class="empty-state" id="emptyState" [hidden]="selectedClass()">
+    <div class="empty-state-icon" aria-hidden="true">📊</div>
+    <p>请选择职业查看能力表</p>
+  </div>
+  @for (characterClass of classes; track characterClass.id) {
+    @if (selectedClass() === characterClass.id) {
+      <table #statTable [id]="characterClass.id" class="active">
         <thead>
           <tr><th colspan="8">{{ characterClass.name }}</th></tr>
           <tr>
@@ -50,8 +45,7 @@
         </thead>
         <tbody>
           @for (entry of rowsFor(characterClass.id); track entry[0]) {
-            <tr [class.highlight]="selectedClass() === characterClass.id
-                                   && highlightedLevel() === +entry[0]">
+            <tr [class.highlight]="highlightedLevel() === +entry[0]">
               <td>{{ entry[0] }}</td>
               <td>{{ entry[1][0] }}</td><td>{{ entry[1][1] }}</td>
               <td>{{ entry[1][2] }}</td><td>{{ entry[1][3] / 10 }}</td>

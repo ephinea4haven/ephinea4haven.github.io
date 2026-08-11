@@ -1,18 +1,16 @@
-import { isPlatformBrowser } from '@angular/common';
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   inject,
-  PLATFORM_ID,
   signal,
   ViewEncapsulation,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { PageChromeComponent } from '../shared/page-chrome.component';
+import characterDataJson from '../../../assets/js/chardata.json';
 import { ItemData } from './item-data.js';
 import {
   CHARACTER_CLASSES,
@@ -30,8 +28,7 @@ type Language = 'zh' | 'en' | 'ja';
 const TEXT = {
   zh: {
     eyebrow: 'PSOBB 角色实验室', title: '角色属性模拟器', character: '角色', class: '职业', level: '等级',
-    mag: '玛古', materials: '材料', equipment: '装备', reset: '重置', units: '插件', loading: '正在加载人物数据…',
-    loadError: '人物数据加载失败，请刷新页面重试。', remaining: '剩余', exceeded: '超出上限', resists: '抗性',
+    mag: '玛古', materials: '材料', equipment: '装备', reset: '重置', units: '插件', remaining: '剩余', exceeded: '超出上限', resists: '抗性',
     results: '计算结果', base: '基础', material: '材料', magBonus: '玛古', equipmentBonus: '装备', unitBonus: '插件',
     current: '当前', maximum: '上限', difference: '差值', valid: '可装备', invalid: '不可装备', rarity: '稀有度',
     effects: '特殊效果', noEffects: '无特殊效果', share: '当前配置链接', materialLimit: '材料用量', magLevel: '玛古等级',
@@ -39,8 +36,7 @@ const TEXT = {
   },
   en: {
     eyebrow: 'PSOBB character laboratory', title: 'Character Stat Simulator', character: 'Character', class: 'Class', level: 'Level',
-    mag: 'Mag', materials: 'Materials', equipment: 'Equipment', reset: 'Reset', units: 'Units', loading: 'Loading character data…',
-    loadError: 'Character data failed to load. Refresh and try again.', remaining: 'remaining', exceeded: 'over limit', resists: 'Resists',
+    mag: 'Mag', materials: 'Materials', equipment: 'Equipment', reset: 'Reset', units: 'Units', remaining: 'remaining', exceeded: 'over limit', resists: 'Resists',
     results: 'Results', base: 'Base', material: 'Material', magBonus: 'Mag', equipmentBonus: 'Equipment', unitBonus: 'Unit',
     current: 'Current', maximum: 'Max', difference: 'Difference', valid: 'Equipable', invalid: 'Not equipable', rarity: 'Rarity',
     effects: 'Special effects', noEffects: 'No special effects', share: 'Link to this build', materialLimit: 'Material use', magLevel: 'Mag level',
@@ -48,8 +44,7 @@ const TEXT = {
   },
   ja: {
     eyebrow: 'PSOBB キャラクターラボ', title: 'キャラクターステータスシミュレーター', character: 'キャラクター', class: '職業', level: 'レベル',
-    mag: 'マグ', materials: 'マテリアル', equipment: '装備', reset: 'リセット', units: 'ユニット', loading: 'キャラクターデータを読み込み中…',
-    loadError: 'キャラクターデータを読み込めませんでした。再読み込みしてください。', remaining: '残り', exceeded: '上限超過', resists: '耐性',
+    mag: 'マグ', materials: 'マテリアル', equipment: '装備', reset: 'リセット', units: 'ユニット', remaining: '残り', exceeded: '上限超過', resists: '耐性',
     results: '計算結果', base: '基本', material: 'マテリアル', magBonus: 'マグ', equipmentBonus: '装備', unitBonus: 'ユニット',
     current: '現在', maximum: '上限', difference: '差分', valid: '装備可能', invalid: '装備不可', rarity: 'レア度',
     effects: '特殊効果', noEffects: '特殊効果なし', share: '現在の構成リンク', materialLimit: 'マテリアル使用量', magLevel: 'マグレベル',
@@ -66,14 +61,11 @@ const TEXT = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusComponent {
-  private readonly http = inject(HttpClient);
   private readonly route = inject(ActivatedRoute);
-  private readonly platformId = inject(PLATFORM_ID);
-  private readonly changeDetector = inject(ChangeDetectorRef);
   private readonly meta = inject(Meta);
-  private calculator: StatusCalculator | null = null;
-  private characterData: CharacterData | null = null;
-  private itemData: ItemData | null = null;
+  private readonly characterData = characterDataJson as unknown as CharacterData;
+  private readonly itemData = new ItemData();
+  private readonly calculator = new StatusCalculator(this.itemData, this.characterData);
 
   readonly levels = Array.from({ length: 200 }, (_, index) => index + 1);
   readonly language = signal<Language>('zh');
@@ -101,28 +93,17 @@ export class StatusComponent {
   statRows: StatRow[] = [];
   effectLabels: string[] = [];
   shareUrl = '';
-  loadError = false;
 
   constructor() {
     this.meta.updateTag({ name: 'description', content: 'PSOBB 角色属性模拟器' });
-    if (!isPlatformBrowser(this.platformId)) return;
-    this.http.get<CharacterData>('/assets/js/chardata.json').subscribe({
-      next: (characterData) => {
-        this.characterData = characterData;
-        this.itemData = new ItemData();
-        this.calculator = new StatusCalculator(this.itemData, characterData);
-        this.classes = CHARACTER_CLASSES.map((value) => ({ value, label: characterData.clazz[value][0] }));
-        this.armors = this.options(this.itemData.armors);
-        this.shields = this.options(this.itemData.shields);
-        this.unitOptions = this.options(this.itemData.units);
-        this.applyPreset();
-        this.recalculate();
-        this.changeDetector.markForCheck();
-      },
-      error: () => {
-        this.loadError = true;
-        this.changeDetector.markForCheck();
-      },
+    this.classes = CHARACTER_CLASSES.map((value) => ({ value, label: this.characterData.clazz[value][0] }));
+    this.armors = this.options(this.itemData.armors);
+    this.shields = this.options(this.itemData.shields);
+    this.unitOptions = this.options(this.itemData.units);
+    this.recalculate();
+    afterNextRender(() => {
+      this.applyPreset();
+      this.recalculate();
     });
   }
 
@@ -170,7 +151,6 @@ export class StatusComponent {
   classChanged(): void { this.recalculate(); }
 
   recalculate(): void {
-    if (!this.calculator || !this.characterData) return;
     this.result = this.calculator.calculate({
       characterClass: this.selectedClass,
       level: Number(this.level),
@@ -209,7 +189,7 @@ export class StatusComponent {
   }
 
   private buildShareUrl(): string {
-    const url = new URL('/tools/status.html', window.location.origin);
+    const url = new URL('/tools/status.html', 'https://psohaven.invalid');
     const entries: Record<string, string | number> = {
       c: this.selectedClass, lv: this.level, mdef: this.magDef, mpow: this.magPow, mdex: this.magDex, mmind: this.magMind,
       hp: this.matHP, tp: this.matTP, pow: this.matPow, def: this.matDef, mind: this.matMind, eva: this.matEva, lck: this.matLck,
@@ -217,7 +197,7 @@ export class StatusComponent {
     };
     this.units.forEach((unit, index) => { entries[`unit${index + 1}`] = unit; });
     for (const [key, value] of Object.entries(entries)) url.searchParams.set(key, String(value));
-    return url.toString();
+    return `${url.pathname}${url.search}`;
   }
 
   displayValue(row: StatRow, value: number): number { return row.key === 'ata' ? value / 10 : value; }

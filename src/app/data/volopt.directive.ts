@@ -1,5 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, DestroyRef, Directive, ElementRef, PLATFORM_ID, inject } from '@angular/core';
+import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
 import { VOL_OPT_DATA } from '../generated/data/volopt-data';
 
 type WeaponValues = Readonly<Record<string, Readonly<Record<string, number>>>>;
@@ -19,17 +18,19 @@ const DISPLAY: Readonly<Record<string, { readonly icon: string; readonly classNa
 };
 
 @Directive({ standalone: true })
-export class VolOptBehavior implements AfterViewInit {
+export class VolOptBehavior {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
-  private readonly platformId = inject(PLATFORM_ID);
   private readonly destroyRef = inject(DestroyRef);
   private readonly data = VOL_OPT_DATA as ModeValues;
   private mode = 'normal';
   private playerClass = 'humar';
   private shifta: string | null = null;
 
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
+  constructor() {
+    afterNextRender(() => this.connect());
+  }
+
+  private connect(): void {
     this.connectTabs('mode-tabs', (button) => { this.mode = button.dataset['mode'] ?? this.mode; });
     this.connectTabs('class-tabs', (button) => { this.playerClass = button.dataset['class'] ?? this.playerClass; });
     const shiftaTabs = this.host.querySelector<HTMLElement>('#shifta-tabs');

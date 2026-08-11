@@ -388,8 +388,8 @@ function pageDetails(file, source, relative) {
     .replaceAll(/\son(?:focus|blur)=["'][^"']*["']/gi, '')
     .match(/\son[a-z]+\s*=/i);
   const isPassive = Boolean(body?.sourceCodeLocation?.startTag && body.sourceCodeLocation.endTag)
-    && (hasAngularBehavior || scripts.every((script) => script === '/assets/js/page-chrome.js'))
-    && (inlineScripts.length === 0 || hasAngularBehavior)
+    && scripts.length === 0
+    && inlineScripts.length === 0
     && (!unsupportedEventHandlers || hasAngularBehavior);
   if (!isPassive) return null;
 

@@ -1,21 +1,18 @@
 import {
-  AfterViewInit,
+  afterNextRender,
   DestroyRef,
   Directive,
   ElementRef,
-  PLATFORM_ID,
   inject,
 } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
 
 @Directive()
-abstract class BrowserContentBehavior implements AfterViewInit {
+abstract class BrowserContentBehavior {
   protected readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   protected readonly destroyRef = inject(DestroyRef);
-  private readonly platformId = inject(PLATFORM_ID);
 
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platformId)) this.connect();
+  constructor() {
+    afterNextRender(() => this.connect());
   }
 
   protected abstract connect(): void;

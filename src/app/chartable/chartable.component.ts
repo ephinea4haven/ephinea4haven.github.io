@@ -1,18 +1,18 @@
 import {
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  PLATFORM_ID,
+  Injector,
   ViewEncapsulation,
   inject,
   signal,
-  viewChildren,
+  viewChild,
 } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { isPlatformBrowser } from '@angular/common';
 import { Meta } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { PageChromeComponent } from '../shared/page-chrome.component';
+import characterData from '../../../assets/js/chardata.json';
 
 type StatRow = readonly [number, number, number, number, number, number, number];
 type CharacterData = Record<string, { lv?: Record<string, StatRow> }>;
@@ -48,25 +48,18 @@ const CLASSES: readonly CharacterClass[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChartableComponent {
-  private readonly http = inject(HttpClient);
-  private readonly platformId = inject(PLATFORM_ID);
   private readonly meta = inject(Meta);
-  readonly tables = viewChildren<ElementRef<HTMLTableElement>>('statTable');
+  private readonly injector = inject(Injector);
+  readonly table = viewChild<ElementRef<HTMLTableElement>>('statTable');
   readonly classes = CLASSES;
   readonly groups = ['战士 Hunter', '游骑兵 Ranger', '法师 Force'] as const;
   readonly selectedClass = signal('');
   readonly requestedLevel = signal<number | null>(null);
   readonly highlightedLevel = signal<number | null>(null);
-  readonly data = signal<CharacterData | null>(null);
-  readonly loadError = signal(false);
+  readonly data = characterData as unknown as CharacterData;
 
   constructor() {
     this.meta.updateTag({ name: 'description', content: 'PSOBB 全等级人物能力表' });
-    if (!isPlatformBrowser(this.platformId)) return;
-    this.http.get<CharacterData>('/assets/js/chardata.json').subscribe({
-      next: (data) => this.data.set(data),
-      error: () => this.loadError.set(true),
-    });
   }
 
   classesIn(group: CharacterClass['group']): readonly CharacterClass[] {
@@ -74,7 +67,7 @@ export class ChartableComponent {
   }
 
   rowsFor(classId: string): readonly [string, StatRow][] {
-    return Object.entries(this.data()?.[classId]?.lv ?? {});
+    return Object.entries(this.data[classId]?.lv ?? {});
   }
 
   show(): void {
@@ -89,13 +82,12 @@ export class ChartableComponent {
       return;
     }
     this.highlightedLevel.set(level);
-    window.setTimeout(() => {
-      const table = this.tables().find(({ nativeElement }) => nativeElement.id === classId);
+    afterNextRender(() => {
       const target = level === null
-        ? table?.nativeElement
-        : table?.nativeElement.querySelector(`tbody tr:nth-child(${level})`);
+        ? this.table()?.nativeElement
+        : this.table()?.nativeElement.querySelector(`tbody tr:nth-child(${level})`);
       target?.scrollIntoView({ behavior: 'smooth', block: level === null ? 'start' : 'center' });
-    });
+    }, { injector: this.injector });
   }
 
   reset(): void {

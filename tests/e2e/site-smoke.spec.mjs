@@ -16,7 +16,6 @@ const pages = [
     path: '/tools/status.html',
     title: /角色属性模拟器/,
     heading: '角色属性模拟器',
-    resourcePath: '/assets/js/chardata.json',
     readySelector: '#class option',
     minimumReadyCount: 2,
     noLegacyRuntime: true,
@@ -26,9 +25,6 @@ const pages = [
     path: '/tools/chartable.html',
     title: /全等级人物能力表/,
     heading: '全等级人物能力表',
-    resourcePath: '/assets/js/chardata.json',
-    readySelector: '#humar tbody tr',
-    minimumReadyCount: 1,
     noLegacyRuntime: true,
   },
   {
@@ -95,6 +91,16 @@ const pages = [
     status: 404,
   },
 ];
+
+test('data-driven tools avoid asynchronous loading placeholders', () => {
+  const statusHtml = readFileSync('_site/tools/status.html', 'utf8');
+  const chartableHtml = readFileSync('_site/tools/chartable.html', 'utf8');
+
+  expect(statusHtml).toContain('class="stat-table"');
+  expect(statusHtml).not.toContain('正在加载人物数据');
+  expect(chartableHtml).toContain('请选择职业查看能力表');
+  expect(chartableHtml).not.toContain('正在加载人物数据');
+});
 
 for (const pageCase of pages) {
   test(`${pageCase.name} loads the production artifact cleanly`, async ({ page }) => {
@@ -500,13 +506,13 @@ test('character table supports jump, keyboard, highlight, and reset', async ({ p
   });
 
   await page.goto('/tools/chartable.html');
-  await expect.poll(() => page.locator('.table-container table').evaluateAll(
-    (tables) => tables.map((table) => table.querySelectorAll('tbody tr').length),
-  )).toEqual(Array(12).fill(200));
+  await expect(page.locator('.table-container table')).toHaveCount(0);
 
   await page.locator('#classSelect').selectOption('ramarl');
   await page.locator('#levelInput').fill('123');
   await page.locator('.jump-btn').click();
+  await expect(page.locator('.table-container table')).toHaveCount(1);
+  await expect(page.locator('#ramarl tbody tr')).toHaveCount(200);
   await expect(page.locator('#ramarl')).toHaveClass(/active/);
   await expect(page.locator('#ramarl tbody tr').nth(122)).toHaveClass(/highlight/);
   await expect(page.locator('#ramarl tbody tr').nth(122).locator('td').first()).toHaveText('123');
