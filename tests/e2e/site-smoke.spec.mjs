@@ -567,6 +567,22 @@ test('anniversary feature cards keep bilingual item names visible', async ({ pag
   })).toBe(true);
 });
 
+test('banner item lists use Chinese-first bilingual names', async ({ page }) => {
+  await page.goto('/guide/banners.html');
+
+  const names = page.locator('.item-list .item-bilingual');
+  await expect.poll(() => names.count()).toBeGreaterThan(80);
+  await expect(page.locator('.weapon-table').filter({ hasText: 'Lavis Cannon' })).toContainText(
+    '圣剑「拉维斯·迦农」(Lavis Cannon)',
+  );
+  await expect(page.locator('#other-items + .table-scroll')).toContainText(
+    '红色手镯(Red Ring)',
+  );
+  await expect.poll(() => names.first().evaluate((name) => (
+    [...name.children].map((part) => part.className)
+  ))).toEqual(['item-zh', 'item-en']);
+});
+
 test('Angular content behaviors preserve lookup and Section ID interactions', async ({ page }) => {
   await page.goto('/data/en2chinese.html');
   const lookupRows = page.locator('#lookup tr');

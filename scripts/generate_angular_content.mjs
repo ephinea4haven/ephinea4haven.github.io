@@ -224,6 +224,43 @@ function buildPrizeContent(source) {
     .replace('<div id="tablesContainer"></div>', `<div id="tablesContainer">${tables}</div>`);
 }
 
+function buildBannersContent(source) {
+  const candidates = new Map();
+  for (const item of itemTranslations) {
+    if (item.en === item.zh) continue;
+    const names = [item.en, item.en.replace(/"([^"]+)"/g, '“$1”')];
+    for (const name of names) candidates.set(escapeHtml(name), item.zh);
+  }
+  const names = [...candidates.keys()].sort((left, right) => right.length - left.length);
+  const candidatesByName = new Map(
+    [...candidates].map(([name, zh]) => [name.toLocaleLowerCase(), zh]),
+  );
+  const escaped = names.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+  const pattern = new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z0-9])`, 'gi');
+  const document = parse(source, { sourceCodeLocationInfo: true });
+  const ranges = [];
+  visit(document, (node) => {
+    if (node.tagName !== 'td'
+        || !node.attrs?.some(({ name, value }) => name === 'class' && value.split(/\s+/).includes('item-list'))
+        || !node.sourceCodeLocation?.startTag
+        || !node.sourceCodeLocation?.endTag) return;
+    ranges.push([
+      node.sourceCodeLocation.startTag.endOffset,
+      node.sourceCodeLocation.endTag.startOffset,
+    ]);
+  });
+
+  for (const [start, end] of ranges.reverse()) {
+    const localized = source.slice(start, end).replace(pattern, (match, prefix, english) => {
+      const zh = candidatesByName.get(english.toLocaleLowerCase());
+      if (!zh) return match;
+      return `${prefix}<span class="item-bilingual"><span class="item-zh">${escapeHtml(zh)}</span><span class="item-en">(${english})</span></span>`;
+    });
+    source = `${source.slice(0, start)}${localized}${source.slice(end)}`;
+  }
+  return source;
+}
+
 async function buildProtocolContent(source) {
   const documents = [
     { id: 'protocol', en: 'protocol-commands.md', zh: 'protocol-commands.zh.md', enLabel: 'Protocol', zhLabel: '协议命令', hint: 'Protocol' },
@@ -275,6 +312,7 @@ async function applyBuildTimeContent(relative, source) {
   if (relative === 'data/bdp/index.html') return buildBdpContent(source);
   if (relative === 'data/prizelist/index.html') return buildPrizeContent(source);
   if (relative === 'data/protocol/index.html') return buildProtocolContent(source);
+  if (relative === 'guide/banners.html') return buildBannersContent(source);
   if (relative === 'event/anniversary.html' || relative === 'event/christmas.html') {
     return buildSeasonalContent(relative, source);
   }
