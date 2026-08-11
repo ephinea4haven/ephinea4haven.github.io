@@ -19,11 +19,11 @@ for (const mode of ['multi', 'opm']) {
   }
   const modules = declarations.map(([, name, json]) => {
     JSON.parse(json);
-    return `export const ${name} = ${json};`;
+    return `export const ${name} = ${json} satisfies ComboData['${name}'];`;
   });
   await writeFile(
     path.join(output, `${mode}-data.ts`),
-    `// @ts-nocheck -- generated from the pinned upstream dataset\n${modules.join('\n')}\n`,
+    `import type { ComboData } from '../../combo/combo.types';\n\n${modules.join('\n')}\n`,
   );
 }
 

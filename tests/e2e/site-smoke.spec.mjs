@@ -261,6 +261,11 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
     }
 
     await page.locator('#clear-btn').click();
+    await page.locator('#abeast-btn').click();
+    await expect(tableRows.first().locator('th')).toHaveClass(/monster-title-ABeast/);
+    await expect(tableRows.first().locator('th')).toHaveCSS('color', 'rgb(245, 255, 153)');
+
+    await page.locator('#clear-btn').click();
     await page.locator('#native-btn').click();
     await expect.poll(() => tableRows.count()).toBeGreaterThan(5);
 

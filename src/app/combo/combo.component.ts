@@ -19,10 +19,11 @@ import {
   getSetEffectAta,
   getSetEffectAtp,
 } from '../generated/combo/engine';
+import type { AttackType, ComboData, ComboEnemy, EnemyType } from './combo.types';
 
-type AttackType = 'NORMAL' | 'HEAVY' | 'SPECIAL' | 'NONE';
 type ComboSelection = [AttackType, AttackType, AttackType];
 type HitSelection = [number, number, number];
+type EnemyTitleType = 'Native' | 'ABeast' | 'Machine' | 'Dark';
 
 const EDITABLE_SPECIALS = [
   'Charge', 'Berserk', 'Spirit', 'Arrest', 'Gush', "Devil's", "Demon's",
@@ -30,47 +31,10 @@ const EDITABLE_SPECIALS = [
   'Frozen Shooter', 'Vjaya', 'Mille Marteaux',
 ] as const;
 
-interface WeaponPreset {
-  readonly attack1?: AttackType | '';
-  readonly attack1Hits?: number;
-  readonly attack2?: AttackType | '';
-  readonly attack2Hits?: number;
-  readonly attack3?: AttackType | '';
-  readonly attack3Hits?: number;
-}
-
-interface Weapon {
-  readonly minAtp: number;
-  readonly maxAtp: number;
-  readonly ata: number;
-  readonly grind: number;
-  readonly maxHit?: number;
-  readonly maxAttr?: number;
-  readonly special?: string;
-  readonly horizontalDistance: number;
-  readonly comboPreset?: WeaponPreset;
-}
-
-export interface ComboEnemy {
-  readonly name: string;
-  readonly type: string;
-  readonly hp: number;
-  readonly evp: number;
-  readonly dfp: number;
-}
-
-export interface ComboData {
-  readonly weapons: Readonly<Record<string, Weapon>>;
-  frames: Record<string, { atp: number; ata: number }>;
-  classStats: Record<string, { minAtp: number; maxAtp: number; ata: number; animation: string }>;
-  enemyNameSort: Record<string, string[]>;
-  readonly enemies: Readonly<Record<string, ComboEnemy>>;
-}
-
 interface ComboRow {
   name: string;
   hp: number;
-  type: string;
+  type: EnemyTitleType;
   percentDamage: number;
   comboDamage: number;
   overallAccuracy: number;
@@ -228,20 +192,20 @@ export class ComboComponent implements OnInit {
 
   updateWeapon(): void {
     const weapon = this.comboData.weapons[this.selectedWeaponName];
-    this.hit = weapon.maxHit ?? 100;
-    this.sphere = weapon.maxAttr ?? 100;
+    this.hit = weapon.maxHit;
+    this.sphere = weapon.maxAttr;
     this.special = weapon.special || 'Charge';
     const preset = weapon.comboPreset;
     const attacks: ComboSelection = [
-      preset?.attack1 || 'NORMAL',
-      preset?.attack2 || 'NORMAL',
-      preset?.attack3 || 'NORMAL',
+      preset.attack1 || 'NORMAL',
+      preset.attack2 || 'NORMAL',
+      preset.attack3 || 'NORMAL',
     ];
     this.selectedAttacks = attacks;
     this.selectedHits = [
-      attacks[0] === 'NONE' ? 0 : preset?.attack1Hits || 1,
-      attacks[1] === 'NONE' ? 0 : preset?.attack2Hits || 1,
-      attacks[2] === 'NONE' ? 0 : preset?.attack3Hits || 1,
+      attacks[0] === 'NONE' ? 0 : preset.attack1Hits || 1,
+      attacks[1] === 'NONE' ? 0 : preset.attack2Hits || 1,
+      attacks[2] === 'NONE' ? 0 : preset.attack3Hits || 1,
     ];
     this.updateEquipment();
   }
@@ -271,7 +235,7 @@ export class ComboComponent implements OnInit {
       + Number(this.hit) + (this.commanderBlade ? 20 : 0);
   }
 
-  addEnemies(type: string): void {
+  addEnemies(type: EnemyType): void {
     const existing = new Set(this.selectedEnemies);
     for (const enemy of Object.values(this.comboData.enemies)) {
       if (enemy.type === type && !existing.has(enemy)) this.selectedEnemies.push(enemy);

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import * as opmData from '../generated/combo/opm-data';
-import { ComboComponent, ComboData } from './combo.component';
+import { ComboComponent } from './combo.component';
+import type { ComboData } from './combo.types';
 
 @Component({
   selector: 'haven-combo-opm-page',
@@ -9,5 +10,5 @@ import { ComboComponent, ComboData } from './combo.component';
   template: '<haven-combo [data]="data" [isOpm]="true" />',
 })
 export class ComboOpmPageComponent {
-  readonly data = opmData as unknown as ComboData;
+  readonly data: ComboData = opmData;
 }

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import * as multiplayerData from '../generated/combo/multi-data';
-import { ComboComponent, ComboData } from './combo.component';
+import { ComboComponent } from './combo.component';
+import type { ComboData } from './combo.types';
 
 @Component({
   selector: 'haven-combo-multiplayer-page',
@@ -9,5 +10,5 @@ import { ComboComponent, ComboData } from './combo.component';
   template: '<haven-combo [data]="data" [isOpm]="false" />',
 })
 export class ComboMultiplayerPageComponent {
-  readonly data = multiplayerData as unknown as ComboData;
+  readonly data: ComboData = multiplayerData;
 }

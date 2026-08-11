@@ -51,8 +51,12 @@ check('both Combo routes use typed mode wrappers around the shared Angular compo
     && routes.includes('./combo/combo-multiplayer-page.component')
     && routes.includes('./combo/combo-opm-page.component')
     && multiplayerPage.includes("from './combo.component'")
+    && multiplayerPage.includes("from './combo.types'")
+    && !multiplayerPage.includes('as unknown as')
     && multiplayerPage.includes("from '../generated/combo/multi-data'")
     && opmPage.includes("from './combo.component'")
+    && opmPage.includes("from './combo.types'")
+    && !opmPage.includes('as unknown as')
     && opmPage.includes("from '../generated/combo/opm-data'"));
 check('Angular template preserves calculator controls',
   ['class-select', 'damage-header', 'native-btn', 'clear-btn', 'combo-calc-table']
