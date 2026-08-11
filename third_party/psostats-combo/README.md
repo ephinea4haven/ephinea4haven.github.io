@@ -47,4 +47,4 @@ to temporary TypeScript modules, and the build publishes this directory's
 
 The complete update, review, validation, failure-handling, and rollback
 procedure is documented in
-[`SOP_COMBO_CALCULATOR_SYNC.md`](../../SOP_COMBO_CALCULATOR_SYNC.md).
+[`SOP_COMBO_CALCULATOR_SYNC.md`](../../docs/SOP_COMBO_CALCULATOR_SYNC.md).

@@ -29,7 +29,7 @@ npm run release:prepare
 ```
 
 For Combo ownership and synchronization rules, see
-[`SOP_COMBO_CALCULATOR_SYNC.md`](../SOP_COMBO_CALCULATOR_SYNC.md).
+[`SOP_COMBO_CALCULATOR_SYNC.md`](../docs/SOP_COMBO_CALCULATOR_SYNC.md).
 
 The Mag builder can operate on offline wiki fixtures:
 
