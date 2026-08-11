@@ -618,6 +618,36 @@ test('Angular price guide filters categories and bilingual item names', async ({
   await expect(page.locator('#price-content .price-section')).toHaveCount(2);
 });
 
+test('Angular price guide hydrates the prerendered DOM in place', async ({ page }) => {
+  await page.addInitScript(() => {
+    const probe = { main: null, removed: false };
+    Object.defineProperty(window, '__hydrationProbe', { value: probe });
+    new MutationObserver((records) => {
+      for (const record of records) {
+        for (const node of record.addedNodes) {
+          if (!probe.main && node.nodeType === Node.ELEMENT_NODE) {
+            probe.main = node.matches?.('main.price-guide')
+              ? node
+              : node.querySelector?.('main.price-guide');
+          }
+        }
+        for (const node of record.removedNodes) {
+          if (probe.main && (node === probe.main || node.contains?.(probe.main))) {
+            probe.removed = true;
+          }
+        }
+      }
+    }).observe(document, { childList: true, subtree: true });
+  });
+
+  await page.goto('/data/price_guide.html');
+  await expect(page.locator('#price-search')).toBeVisible();
+  await expect.poll(() => page.evaluate(() => ({
+    captured: Boolean(window.__hydrationProbe.main),
+    removed: window.__hydrationProbe.removed,
+  }))).toEqual({ captured: true, removed: false });
+});
+
 test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ page }) => {
   await page.goto('/data/protocol/');
   await page.getByRole('button', { name: 'EN', exact: true }).click();

@@ -1,6 +1,6 @@
 {
   "maxJavaScriptGzipBytes": 1000000,
   "maxAngularChunkGzipBytes": 85000,
-  "maxAngularRouteGzipBytes": 150000,
+  "maxAngularRouteGzipBytes": 160000,
   "maxInlineScriptBytes": 132000
 }

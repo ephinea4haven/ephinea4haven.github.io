@@ -230,6 +230,7 @@ async function installAngularApplication(pages) {
   }));
   return {
     hosts,
+    hostPages: [...angularPages].sort(),
     files: files.map((file) => toPosix(path.relative(temporaryDirectory, file))),
     javascriptGzipBytes,
     chunks,
@@ -329,20 +330,40 @@ async function validateCssResources(errors) {
   }
 }
 
-async function validateOutput(pages) {
+function isAngularInlineScript(node, attributes) {
+  const id = attributes.get('id');
+  const type = attributes.get('type');
+  const source = node.childNodes?.map((child) => child.value || '').join('').trim() || '';
+  return (id === 'ng-state' && type === 'application/json')
+    || (id === 'ng-event-dispatch-contract' && type === 'text/javascript')
+    || (!id && /^window\.__jsaction_bootstrap\(document\.body,"ng",\[.*\],\[.*\]\);$/.test(source));
+}
+
+async function validateOutput(pages, angularPages) {
   const errors = [];
   for (const pageFile of pages) {
     const outputPage = path.join(temporaryDirectory, path.relative(root, pageFile));
     const html = await readFile(outputPage, 'utf8');
     const document = parse(html);
+    let hasHydrationState = false;
+    let hasHydratedRoot = false;
     visit(document, (node) => {
-      if (node.tagName !== 'script') return;
       const attributes = new Map((node.attrs || []).map(({ name, value }) => [name, value]));
+      if (node.tagName === 'haven-tools-app' && attributes.has('ngh')) {
+        hasHydratedRoot = true;
+      }
+      if (node.tagName !== 'script') return;
       const source = attributes.get('src');
-      if (!source?.startsWith('/assets/angular/')) {
+      if (attributes.get('id') === 'ng-state') {
+        hasHydrationState = true;
+      }
+      if (!source?.startsWith('/assets/angular/') && !isAngularInlineScript(node, attributes)) {
         errors.push(`${relativeToRoot(pageFile)}: non-Angular script ${source ?? '(inline)'}`);
       }
     });
+    if (angularPages.has(relativeToRoot(pageFile)) && (!hasHydratedRoot || !hasHydrationState)) {
+      errors.push(`${relativeToRoot(pageFile)}: missing Angular hydration metadata`);
+    }
     for (const reference of resourceReferences(html, pageFile)) {
       if (!(await outputReferenceExists(reference))) {
         errors.push(`${relativeToRoot(pageFile)}: missing ${reference.url}`);
@@ -512,8 +533,8 @@ try {
   await buildAngularApplication();
   await copySiteSource();
   const pages = await discoverPages();
-  const angular = await installAngularApplication(pages);
-  await validateOutput(pages);
+  const { hostPages, ...angular } = await installAngularApplication(pages);
+  await validateOutput(pages, new Set(hostPages));
   const manifest = await writeManifest(pages, angular);
   enforceBudgets(manifest);
   await publishAtomically();
