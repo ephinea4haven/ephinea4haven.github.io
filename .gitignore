@@ -14,5 +14,14 @@ _site/
 playwright-report/
 test-results/
 
+# The global ignore file excludes docs/. Re-include only maintained project docs.
+!docs/
+docs/*
+!docs/ANGULAR_MIGRATION.md
+!docs/ARCHITECTURE.md
+!docs/DEPLOYMENT.md
+!docs/SOP_COMBO_CALCULATOR_SYNC.md
+!docs/TODO.md
+
 # pw is deployed separately at pw.psohaven.com; no longer part of this repo
 tools/pw/
