@@ -206,6 +206,77 @@ for (const { route } of buildManifest.angular.routes) {
   });
 }
 
+test('challenge guides use localized redraws and remember the guidance language', async ({ page }) => {
+  await page.goto('/guide/ep1ch.html');
+  const firstMap = page.locator('.challenge-map img').first();
+  await expect(firstMap).toHaveAttribute('src', /\/maps\/zh\/area_01\.svg$/);
+  await expect(page.locator('.challenge-map img')).toHaveCount(42);
+  await expect(page.locator('.challenge-legend li')).toHaveCount(7);
+  await expect(page.locator('.challenge-legend')).toContainText('主路线');
+  await expect(page.locator('.challenge-legend')).toContainText('传送点');
+
+  await page.getByRole('button', { name: 'EN', exact: true }).click();
+  await expect(firstMap).toHaveAttribute('src', /\/maps\/en\/area_01\.svg$/);
+  const c2Maps = page.locator('.challenge-map img[data-i18n-src]');
+  await expect(c2Maps).toHaveCount(42);
+  await expect(c2Maps.first()).toHaveAttribute('src', /\/maps\/en\/area_01\.svg$/);
+  await expect(c2Maps.first()).toHaveAttribute('alt', 'EP1 Challenge Area 01 map');
+  await expect(page.locator('.challenge-legend')).toContainText('Primary route');
+  await expect(page.locator('.challenge-language')).toContainText('independently redrawn');
+
+  await page.goto('/guide/ep2ch.html');
+  const ep2Maps = page.locator('.challenge-map img[data-i18n-src]');
+  await expect(ep2Maps.first()).toHaveAttribute('src', /\/maps\/en\/c1_area_01\.svg$/);
+  await expect(ep2Maps).toHaveCount(25);
+  await expect(ep2Maps.first()).toHaveAttribute('alt', 'EP2 C1 Challenge Area 01 map');
+  await expect(page.locator('.challenge-legend')).toContainText('Primary route');
+});
+
+test('challenge and Seabed guides keep their complete map inventories usable on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  for (const [path, expectedMaps] of [
+    ['/guide/ep1ch.html', 42],
+    ['/guide/ep2ch.html', 25],
+  ]) {
+    await page.goto(path);
+    await expect(page.locator('.challenge-map img')).toHaveCount(expectedMaps);
+    await expect.poll(() => page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth + 1,
+    )).toBe(true);
+  }
+
+  await page.goto('/guide/seabed.html');
+  await expect(page.locator('.map-card')).toHaveCount(8);
+  await expect(page.locator('.map-card img')).toHaveCount(8);
+  await expect(page.locator('.map-meta a')).toHaveCount(8);
+  await expect(page.locator('.jump-links a')).toHaveCount(6);
+  for (const image of await page.locator('.map-card img').all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect.poll(() => image.evaluate(
+      (element) => element.complete && element.naturalWidth > 0,
+    )).toBe(true);
+  }
+  await expect.poll(() => page.evaluate(
+    () => document.documentElement.scrollWidth <= window.innerWidth + 1,
+  )).toBe(true);
+});
+
+test('Seabed route variants use an exclusive full-width accordion', async ({ page }) => {
+  await page.goto('/guide/seabed.html#routes');
+  const variants = page.locator('.route-notes details');
+  await expect(variants).toHaveCount(8);
+  await expect(page.locator('.route-notes details[open]')).toHaveCount(1);
+
+  await variants.nth(1).locator('summary').click();
+  await expect(variants.nth(0)).not.toHaveAttribute('open', '');
+  await expect(variants.nth(1)).toHaveAttribute('open', '');
+  await expect(variants.nth(1)).toContainText('第二只 Sinow 攻击前');
+  await expect.poll(() => variants.nth(1).evaluate((element) => (
+    element.getBoundingClientRect().width / element.parentElement.getBoundingClientRect().width
+  ))).toBeGreaterThan(0.98);
+});
+
 test('NPC guide keeps card and relationship names bilingual', async ({ page }) => {
   await page.goto('/guide/npc.html');
 
@@ -343,6 +414,32 @@ for (const accessibilityPath of [
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze();
+    const violations = results.violations.map(({ id, impact, nodes }) => ({
+      id,
+      impact,
+      targets: nodes.map(({ target }) => target.join(' ')),
+    }));
+
+    expect(violations).toEqual([]);
+  });
+}
+
+for (const { path, selectors } of [
+  {
+    path: '/guide/ep1ch.html',
+    selectors: ['.challenge-language', '.challenge-map:first-of-type'],
+  },
+  {
+    path: '/guide/seabed.html',
+    selectors: ['.seabed-hero', '.source-note', '.map-card:first-of-type', '.equipment-table-wrap'],
+  },
+]) {
+  test(`${path} feature UI has no WCAG A/AA accessibility violations`, async ({ page }) => {
+    await page.goto(path);
+    let scan = new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']);
+    for (const selector of selectors) scan = scan.include(selector);
+    const results = await scan.analyze();
     const violations = results.violations.map(({ id, impact, nodes }) => ({
       id,
       impact,

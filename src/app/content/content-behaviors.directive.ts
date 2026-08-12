@@ -393,6 +393,11 @@ export class LanguageSwitchBehavior extends BrowserContentBehavior {
       for (const element of this.host.querySelectorAll<HTMLElement>('[data-lang-content]')) {
         element.hidden = element.dataset['langContent'] !== language;
       }
+      for (const image of this.host.querySelectorAll<HTMLImageElement>('img[data-i18n-src]')) {
+        const source = image.dataset[`${language}Src`];
+        if (source && image.getAttribute('src') !== source) image.src = source;
+        image.alt = image.dataset[`${language}Alt`] ?? image.dataset['enAlt'] ?? '';
+      }
       for (const button of host.querySelectorAll<HTMLButtonElement>('[data-lang]')) {
         button.classList.toggle('active', button.dataset['lang'] === language);
         button.setAttribute('aria-pressed', String(button.dataset['lang'] === language));

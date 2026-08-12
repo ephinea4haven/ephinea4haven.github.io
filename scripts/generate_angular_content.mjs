@@ -25,6 +25,8 @@ const pageBehaviors = new Map([
   ['data/monsters.html', ['MonsterFilterBehavior', 'BackToTopBehavior']],
   ['data/quest.html', ['BackToTopBehavior']],
   ['guide/class-guide.html', ['ProfessionTabsBehavior']],
+  ['guide/ep1ch.html', ['LanguageSwitchBehavior']],
+  ['guide/ep2ch.html', ['LanguageSwitchBehavior']],
   ['tools/materialplan.html', ['BackToTopBehavior']],
   ['tools/id.html', ['SectionIdBehavior']],
   ['data/en2chinese.html', ['ItemLookupBehavior']],

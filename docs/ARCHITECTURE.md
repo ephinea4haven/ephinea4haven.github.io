@@ -69,6 +69,19 @@ uses an explicit pending template for 2026 details that have not been announced.
 Historical milestone archive links are not part of the UI; the localized yearly
 fragments are the maintained record.
 
+The Episode I challenge guide publishes the original high-resolution map
+images embedded in the archived PSO World PDFs. `import_challenge_source_maps.py`
+uses Poppler to extract those images without rendering or resampling. Episode
+II publishes the original JPEG maps from the historical web archive. Language
+selection changes the page guidance and legend without duplicating or altering
+the source artwork. `verify_challenge_maps.mjs` enforces the exact inventories,
+minimum source dimensions and page references.
+
+The Seabed guide is a dedicated Chinese content route covering all eight Upper
+and Lower map variants. It keeps route media, gameplay advice and server-specific
+provenance together so readers can distinguish general PSOBB mechanics from
+Ultima-specific equipment and timing recommendations.
+
 Build-input JavaScript datasets are never copied to `_site`. Generators evaluate
 or normalize them into Angular modules. The PSOStats Combo snapshot remains an
 audited upstream boundary. The character simulator is Haven-owned TypeScript:

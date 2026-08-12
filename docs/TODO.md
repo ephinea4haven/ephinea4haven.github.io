@@ -21,3 +21,5 @@
 - [x] Banner reference page based on the Ephinea Wiki banner documentation.
 - [x] Landing-page seasonal highlighting with reduced-motion support.
 - [x] Standalone Mag feeder/planner deployment with legacy URL redirect.
+- [x] Original-source high-resolution map atlas for the Episode I and II challenge guides.
+- [x] Standalone Chinese Seabed route, combat and equipment guide.

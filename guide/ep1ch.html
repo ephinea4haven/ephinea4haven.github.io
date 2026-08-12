@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EP1 挑战模式 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/challenge-maps.css">
 </head>
 
 <body>
@@ -16,128 +17,253 @@
 <div class="content-container">
     <h1>EP1 挑战模式</h1>
 
+    <div class="challenge-language">
+        <p data-i18n
+           data-zh="地图按 PSO World 原图独立矢量重绘；语言选择同步切换地图提示、页面说明和图例。"
+           data-en="Maps are independently redrawn as vectors from PSO World sources; language selection switches map notes, page guidance and the legend."
+           data-ja="マップは PSO World 資料から独自にベクター再描画しています。言語選択でマップ注記・ページ説明・凡例が切り替わります。">地图按 PSO World 原图独立矢量重绘；语言选择同步切换地图提示、页面说明和图例。</p>
+        <div id="langSwitch" role="group" aria-label="地图语言">
+            <button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中</button>
+            <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+            <button type="button" class="lang-btn" data-lang="ja" aria-pressed="false">日</button>
+        </div>
+    </div>
+
+    <aside class="challenge-legend" aria-label="地图图例">
+        <strong data-i18n data-zh="地图图例" data-en="Map legend" data-ja="マップ凡例">地图图例</strong>
+        <ul>
+            <li><span class="legend-line legend-route" aria-hidden="true"></span><span data-i18n data-zh="主路线" data-en="Primary route" data-ja="主ルート">主路线</span></li>
+            <li><span class="legend-line legend-alternate" aria-hidden="true"></span><span data-i18n data-zh="分队 / 可选路线" data-en="Split / optional route" data-ja="分隊 / 任意ルート">分队 / 可选路线</span></li>
+            <li><span class="legend-dot legend-start" aria-hidden="true"></span><span data-i18n data-zh="起点" data-en="Start" data-ja="開始">起点</span></li>
+            <li><span class="legend-dot legend-exit" aria-hidden="true"></span><span data-i18n data-zh="出口 / 下一张地图" data-en="Exit / next map" data-ja="出口 / 次のマップ">出口 / 下一张地图</span></li>
+            <li><span class="legend-square legend-warp" aria-hidden="true"></span><span data-i18n data-zh="传送点" data-en="Warp" data-ja="ワープ">传送点</span></li>
+            <li><span class="legend-square legend-switch" aria-hidden="true"></span><span data-i18n data-zh="机关 / 触发点" data-en="Switch / trigger" data-ja="スイッチ / トリガー">机关 / 触发点</span></li>
+            <li><span class="legend-room" aria-hidden="true"></span><span data-i18n data-zh="房间与通道" data-en="Rooms and corridors" data-ja="部屋と通路">房间与通道</span></li>
+        </ul>
+    </aside>
+
+    <section aria-labelledby="ep1-principles">
+        <h2 id="ep1-principles">通关原则</h2>
+        <ul>
+            <li><strong>避免伤害抵消：</strong>不要四人围攻同一只敌人。默认一人处理一个目标，强力武器持有者优先处理高 HP 敌人。</li>
+            <li><strong>集中资源：</strong>POW/HP 素材、高属性武器、手臂插件和 MAG 应交给能最早达到装备门槛的队员，不要平均分配。</li>
+            <li><strong>替身娃娃优先保障 FO：</strong>熟练队可让 FO 利用死亡回满 TP；普通通关则应先保证 Boss 战容错。</li>
+            <li><strong>不熟机关时跟队：</strong>定时门、假开关和强制分队都会因误触浪费大量时间。优先看图上的编号和路线。</li>
+            <li><strong>通关与 TA 分开处理：</strong>首次通关要回收关键武器、防具和娃娃；TA 才考虑忽略支路箱子、摸黑战斗或特殊捷径。</li>
+        </ul>
+        <blockquote><p>本页整合历史 PSO World 地图、旧版 TA 攻略与现有中文资料。旧资料的阵容和目标时间仅作路线思路参考，不作为 Ephinea 队伍的硬性要求。</p></blockquote>
+    </section>
+
     <h2>C1</h2>
-    <p>没什么好说的，只要严格按照 <code>HUC</code> 对每个怪的打法来打，并且不要陷入包围，不要重复打怪，过C1是绝对没有问题的。
-    </p>
-    <p><img src="/assets/img/challenge/ep1/area_01.gif" alt="C1"></p>
-    <p><img src="/assets/img/challenge/ep1/area_02.gif" alt="C1"></p>
+    <p><strong>关卡目标：</strong>学会分配敌人、定时机关和龙战站位。尽量一人负责一只敌人，避免被包围或重复攻击同一目标。</p>
+    <ul>
+        <li>按地图编号分工开机关；等待定时门的队员不要离位。</li>
+        <li>POW 素材优先集中给最有机会装备匕首或高属性武器的 HU。</li>
+        <li><strong>龙战：</strong>三名近战分别处理头部和两条腿，FO 在地面用 Barta、飞行时用 Zonde。龙落地前离开其落点，没有娃娃时尤其注意。</li>
+    </ul>
+    <figure class="challenge-map" aria-label="C1 · Area 1">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_01.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_01.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_01.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_01.svg" data-zh-alt="EP1 挑战模式区域 01 地图" data-en-alt="EP1 Challenge Area 01 map" data-ja-alt="EP1 チャレンジ エリア01 マップ" alt="EP1 挑战模式区域 01 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C1 · Area 2">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_02.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_02.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_02.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_02.svg" data-zh-alt="EP1 挑战模式区域 02 地图" data-en-alt="EP1 Challenge Area 02 map" data-ja-alt="EP1 チャレンジ エリア02 マップ" alt="EP1 挑战模式区域 02 地图">
+    </figure>
 
     <h2>C2</h2>
-    <p><code>HUC</code> 的miss地狱，初期为 <code>N-DN-DH</code>，后期可以采用 <code>NHH</code>。翼龙和螳螂优先考虑，最好有专门的
-        <code>HUC</code> 负责翼龙。有 <code>FO</code> 在的话，花就交给 <code>FO</code> 了，<code>HUC</code>
-        <strong>绝对不要打</strong>，除非 <code>FO</code> 离花很远并且你已经空闲。<code>HUC</code> 的全部替身娃娃都给
-        <code>FO</code>。</p>
+    <p><strong>关卡目标：</strong>在低 ATA 阶段稳定控场，并把 FO 的 TP 转化为推进速度。</p>
+    <ul>
+        <li>HU 初期优先使用保守连段，待命中稳定后再用 <code>NHH</code>；优先处理 Nano Dragon 与 Grass Assassin。</li>
+        <li>花类和 Nano Dragon 在 FO 附近时交给 FO 单独处理，HU 不要用低伤害攻击触发伤害抵消。</li>
+        <li>回收支路由当前输出最低的 HU 执行；强力队员与 FO 先进入下一区。</li>
+        <li>普通通关优先回收固定武器和防具；TA 队可只取高价值固定箱，其余支路跳过。</li>
+    </ul>
 
-    <h3>回收要点</h3>
-    <p>回收由最弱的 <code>HUC</code> 去做，大剑回收那里3过1留，应该让 <code>FO</code> 和1个 <code>HUC</code> 先过进下一区，留下一个
-        <code>HUC</code> 踩机关让最后一个 <code>HUC</code> 过，因为 <code>FO</code> 的攻击力强过 <code>HUC</code>。在最后一个区有鬼火出现在房间，<code>FO</code>
-        在门前用火攻击6次就可开门。</p>
-    <blockquote><p>TA的话只回收+10剑、+5大剑和盾，其他箱子无视。</p></blockquote>
-
-    <p><img src="/assets/img/challenge/ep1/area_04.gif" alt="C2"></p>
-    <p><img src="/assets/img/challenge/ep1/area_05.gif" alt="C2"></p>
-    <p><img src="/assets/img/challenge/ep1/area_06.gif" alt="C2"></p>
-    <p><img src="/assets/img/challenge/ep1/area_07.gif" alt="C2"></p>
-    <p><img src="/assets/img/challenge/ep1/area_08.gif" alt="C2"></p>
+    <figure class="challenge-map" aria-label="C2 · Area 4">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_04.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_04.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_04.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_04.svg" data-zh-alt="EP1 挑战模式区域 04 地图" data-en-alt="EP1 Challenge Area 04 map" data-ja-alt="EP1 チャレンジ エリア04 マップ" alt="EP1 挑战模式区域 04 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C2 · Area 5">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_05.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_05.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_05.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_05.svg" data-zh-alt="EP1 挑战模式区域 05 地图" data-en-alt="EP1 Challenge Area 05 map" data-ja-alt="EP1 チャレンジ エリア05 マップ" alt="EP1 挑战模式区域 05 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C2 · Area 6">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_06.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_06.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_06.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_06.svg" data-zh-alt="EP1 挑战模式区域 06 地图" data-en-alt="EP1 Challenge Area 06 map" data-ja-alt="EP1 チャレンジ エリア06 マップ" alt="EP1 挑战模式区域 06 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C2 · Area 7">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_07.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_07.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_07.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_07.svg" data-zh-alt="EP1 挑战模式区域 07 地图" data-en-alt="EP1 Challenge Area 07 map" data-ja-alt="EP1 チャレンジ エリア07 マップ" alt="EP1 挑战模式区域 07 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C2 · Area 8">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_08.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_08.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_08.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_08.svg" data-zh-alt="EP1 挑战模式区域 08 地图" data-en-alt="EP1 Challenge Area 08 map" data-ja-alt="EP1 チャレンジ エリア08 マップ" alt="EP1 挑战模式区域 08 地图">
+    </figure>
 
     <h2>C3</h2>
-    <p><code>HUC</code> 终于可以用大剑了，标准攻击方式 <code>NNH</code>，后期或在怪背后时可以考虑 <code>NHH</code>，捡到印剑后可用
-        <code>NHH</code>，绿魔鲨可以3连毙命。翼龙还是要有专人负责，史莱姆交给有印剑的队友，只有大剑时最好看准时机第1下挥空，第2下用H，不然miss3次就会分裂，浪费时间。
-    </p>
-    <p><strong>新人不熟悉地图的不要乱碰机关</strong>，不然会扣HP的。第9区大型机关那里1踩3过。<code>FO</code> 从这一关开始要给队友加攻。
-    </p>
+    <p><strong>关卡目标：</strong>熟悉大剑连段、史莱姆处理和多人机关。</p>
+    <ul>
+        <li>HU 用大剑时以 <code>NNH</code> 为基准，背面或命中足够时再用 <code>NHH</code>。强力单手剑持有者优先处理史莱姆。</li>
+        <li>攻击史莱姆时不要盲目打满三连，连续失误容易使其分裂，增加敌人数量。</li>
+        <li>Area 9 的大型机关采用“1 人留守、3 人通过”；图上未标记的开关可能是陷阱。</li>
+        <li>FO 从本关开始稳定维持 Shifta，但不要为了补辅助而脱离主队。</li>
+    </ul>
 
-    <p><img src="/assets/img/challenge/ep1/area_09.gif" alt="C3"></p>
-    <p><img src="/assets/img/challenge/ep1/area_10.gif" alt="C3"></p>
-    <p><img src="/assets/img/challenge/ep1/area_11.gif" alt="C3"></p>
-    <p><img src="/assets/img/challenge/ep1/area_12.gif" alt="C3"></p>
-    <p><img src="/assets/img/challenge/ep1/area_13.gif" alt="C3"></p>
+    <figure class="challenge-map" aria-label="C3 · Area 9">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_09.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_09.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_09.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_09.svg" data-zh-alt="EP1 挑战模式区域 09 地图" data-en-alt="EP1 Challenge Area 09 map" data-ja-alt="EP1 チャレンジ エリア09 マップ" alt="EP1 挑战模式区域 09 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C3 · Area 10">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_10.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_10.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_10.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_10.svg" data-zh-alt="EP1 挑战模式区域 10 地图" data-en-alt="EP1 Challenge Area 10 map" data-ja-alt="EP1 チャレンジ エリア10 マップ" alt="EP1 挑战模式区域 10 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C3 · Area 11">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_11.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_11.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_11.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_11.svg" data-zh-alt="EP1 挑战模式区域 11 地图" data-en-alt="EP1 Challenge Area 11 map" data-ja-alt="EP1 チャレンジ エリア11 マップ" alt="EP1 挑战模式区域 11 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C3 · Area 12">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_12.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_12.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_12.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_12.svg" data-zh-alt="EP1 挑战模式区域 12 地图" data-en-alt="EP1 Challenge Area 12 map" data-ja-alt="EP1 チャレンジ エリア12 マップ" alt="EP1 挑战模式区域 12 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C3 · Area 13">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_13.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_13.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_13.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_13.svg" data-zh-alt="EP1 挑战模式区域 13 地图" data-en-alt="EP1 Challenge Area 13 map" data-ja-alt="EP1 チャレンジ エリア13 マップ" alt="EP1 挑战模式区域 13 地图">
+    </figure>
 
     <h2>C4</h2>
-    <p>关于机关，图已经讲得很明白了，就不罗嗦了，怪物的基本打法和C3相同。2：2分队时 <code>FO</code> 跟攻击力强的
-        <code>HUC</code>。</p>
+    <p><strong>关卡目标：</strong>按图完成多路机关，并为 De Rol Le 准备可靠的大剑或高属性武器。</p>
+    <ul>
+        <li>2:2 分队时，FO 与输出更强的 HU 同路；另一组优先完成机关，避免在支路恋战。</li>
+        <li>有命中的 Dim/Shadow 武器可尝试处理 Pan Arms；否则由 FO 使用术法，HU 不要用低伤害攻击干扰。</li>
+        <li><strong>De Rol Le：</strong>队员在船上分散站位，避免同时承受一次攻击。Boss 位于船侧时可用大剑预判攻击；多余恢复品可放在易取位置共享。</li>
+    </ul>
 
-    <h3>BOSS战</h3>
-    <p>BOSS蜈蚣用大剑砍，<strong>站位要分开，避免一击打多人</strong>。未爬上来时站在船边可以用大剑砍到船侧面的蜈蚣，有多余的替身娃娃和HP恢复药可以扔在地上供队员急用。
-    </p>
-
-    <p><img src="/assets/img/challenge/ep1/area_14.gif" alt="C4"></p>
-    <p><img src="/assets/img/challenge/ep1/area_15.gif" alt="C4"></p>
-    <p><img src="/assets/img/challenge/ep1/area_16.gif" alt="C4"></p>
-    <p><img src="/assets/img/challenge/ep1/area_17.gif" alt="C4"></p>
-    <p><img src="/assets/img/challenge/ep1/area_18.gif" alt="C4"></p>
+    <figure class="challenge-map" aria-label="C4 · Area 14">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_14.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_14.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_14.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_14.svg" data-zh-alt="EP1 挑战模式区域 14 地图" data-en-alt="EP1 Challenge Area 14 map" data-ja-alt="EP1 チャレンジ エリア14 マップ" alt="EP1 挑战模式区域 14 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C4 · Area 15">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_15.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_15.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_15.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_15.svg" data-zh-alt="EP1 挑战模式区域 15 地图" data-en-alt="EP1 Challenge Area 15 map" data-ja-alt="EP1 チャレンジ エリア15 マップ" alt="EP1 挑战模式区域 15 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C4 · Area 16">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_16.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_16.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_16.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_16.svg" data-zh-alt="EP1 挑战模式区域 16 地图" data-en-alt="EP1 Challenge Area 16 map" data-ja-alt="EP1 チャレンジ エリア16 マップ" alt="EP1 挑战模式区域 16 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C4 · Area 17">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_17.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_17.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_17.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_17.svg" data-zh-alt="EP1 挑战模式区域 17 地图" data-en-alt="EP1 Challenge Area 17 map" data-ja-alt="EP1 チャレンジ エリア17 マップ" alt="EP1 挑战模式区域 17 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C4 · Area 18">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_18.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_18.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_18.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_18.svg" data-zh-alt="EP1 挑战模式区域 18 地图" data-en-alt="EP1 Challenge Area 18 map" data-ja-alt="EP1 チャレンジ エリア18 マップ" alt="EP1 挑战模式区域 18 地图">
+    </figure>
 
     <h2>C5</h2>
-    <p>机忍要群欧，单挑的话很容易被反击，假如捡到高属性的剑就爽了，一下3连就能砍死机忍。<code>FO</code> 优先攻击机忍和空中的电爪。
-    </p>
-    <p>回收一般最弱的 <code>HUC</code> 去，<code>FO</code> 要随队对付机忍和电爪。黑房间由 <code>FO</code> 去开灯，有陷阱的机关那里由
-        <code>HUC</code> 来。</p>
+    <p><strong>关卡目标：</strong>开始适应矿区的高回避敌人、暗房和射击陷阱。</p>
+    <ul>
+        <li>Sinow Beat 优先冻结或集火，单人不要贪三连；高属性剑、Gizonde 和高 Hit 枪可明显提速。</li>
+        <li>FO 优先处理 Sinow 与 Canadine，回收支路交给当前输出较低的 HU。</li>
+        <li>普通通关建议开灯并清理射击陷阱；熟练 TA 队才在能控制伤害时摸黑推进。</li>
+    </ul>
 
-    <p><img src="/assets/img/challenge/ep1/area_20.gif" alt="C5"></p>
-    <p><img src="/assets/img/challenge/ep1/area_21.gif" alt="C5"></p>
-    <p><img src="/assets/img/challenge/ep1/area_22.gif" alt="C5"></p>
-    <p><img src="/assets/img/challenge/ep1/area_23.gif" alt="C5"></p>
-    <p><img src="/assets/img/challenge/ep1/area_24.gif" alt="C5"></p>
+    <figure class="challenge-map" aria-label="C5 · Area 20">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_20.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_20.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_20.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_20.svg" data-zh-alt="EP1 挑战模式区域 20 地图" data-en-alt="EP1 Challenge Area 20 map" data-ja-alt="EP1 チャレンジ エリア20 マップ" alt="EP1 挑战模式区域 20 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C5 · Area 21">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_21.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_21.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_21.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_21.svg" data-zh-alt="EP1 挑战模式区域 21 地图" data-en-alt="EP1 Challenge Area 21 map" data-ja-alt="EP1 チャレンジ エリア21 マップ" alt="EP1 挑战模式区域 21 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C5 · Area 22">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_22.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_22.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_22.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_22.svg" data-zh-alt="EP1 挑战模式区域 22 地图" data-en-alt="EP1 Challenge Area 22 map" data-ja-alt="EP1 チャレンジ エリア22 マップ" alt="EP1 挑战模式区域 22 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C5 · Area 23">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_23.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_23.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_23.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_23.svg" data-zh-alt="EP1 挑战模式区域 23 地图" data-en-alt="EP1 Challenge Area 23 map" data-ja-alt="EP1 チャレンジ エリア23 マップ" alt="EP1 挑战模式区域 23 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C5 · Area 24">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_24.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_24.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_24.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_24.svg" data-zh-alt="EP1 挑战模式区域 24 地图" data-en-alt="EP1 Challenge Area 24 map" data-ja-alt="EP1 チャレンジ エリア24 マップ" alt="EP1 挑战模式区域 24 地图">
+    </figure>
 
     <h2>C6</h2>
-    <p>不TA的话绕机堡，注意陷阱的位置，不然，药怕是不够的。<code>FO</code> 还是要随队对付机忍和电爪，所以回收还是由
-        <code>HUC</code> 去吧。大型机关那里3人没人负责相临的2-3个机关，1人进去开。</p>
+    <p><strong>关卡目标：</strong>在药品可控的前提下稳定处理 Garanz，并协作完成 Area 28 的大型机关。</p>
+    <ul>
+        <li>Garanz 优先冻结后从背后攻击；陷阱不足时不要长时间绕圈，保持队伍输出节奏。</li>
+        <li>Area 28 由一人进入迷宫，其余三人按地图顺序踩机关；每人只负责相邻开关，不要交叉跑位。</li>
+        <li><strong>Vol Opt：</strong>第一形态优先攻击红色柱体，不在屏幕上浪费输出。高属性机枪或枪交给命中足够的队员。</li>
+    </ul>
 
-    <h3>BOSS战</h3>
-    <p>养MAG的 <code>HUC</code> 到后期可以用机枪，用来对付BOSS的柱子很好用，不过屏幕还是无视，打完6个柱子BOSS就任你宰割了。
-    </p>
-
-    <p><img src="/assets/img/challenge/ep1/area_25.gif" alt="C6"></p>
-    <p><img src="/assets/img/challenge/ep1/area_26.gif" alt="C6"></p>
-    <p><img src="/assets/img/challenge/ep1/area_27.gif" alt="C6"></p>
-    <p><img src="/assets/img/challenge/ep1/area_28.gif" alt="C6"></p>
-    <p><img src="/assets/img/challenge/ep1/area_29.gif" alt="C6"></p>
+    <figure class="challenge-map" aria-label="C6 · Area 25">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_25.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_25.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_25.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_25.svg" data-zh-alt="EP1 挑战模式区域 25 地图" data-en-alt="EP1 Challenge Area 25 map" data-ja-alt="EP1 チャレンジ エリア25 マップ" alt="EP1 挑战模式区域 25 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C6 · Area 26">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_26.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_26.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_26.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_26.svg" data-zh-alt="EP1 挑战模式区域 26 地图" data-en-alt="EP1 Challenge Area 26 map" data-ja-alt="EP1 チャレンジ エリア26 マップ" alt="EP1 挑战模式区域 26 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C6 · Area 27">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_27.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_27.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_27.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_27.svg" data-zh-alt="EP1 挑战模式区域 27 地图" data-en-alt="EP1 Challenge Area 27 map" data-ja-alt="EP1 チャレンジ エリア27 マップ" alt="EP1 挑战模式区域 27 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C6 · Area 28">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_28.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_28.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_28.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_28.svg" data-zh-alt="EP1 挑战模式区域 28 地图" data-en-alt="EP1 Challenge Area 28 map" data-ja-alt="EP1 チャレンジ エリア28 マップ" alt="EP1 挑战模式区域 28 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C6 · Area 29">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_29.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_29.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_29.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_29.svg" data-zh-alt="EP1 挑战模式区域 29 地图" data-en-alt="EP1 Challenge Area 29 map" data-ja-alt="EP1 チャレンジ エリア29 マップ" alt="EP1 挑战模式区域 29 地图">
+    </figure>
 
     <h2>C7</h2>
-    <p>出现了<strong>头号危险敌人：法师</strong>，不优先消灭会让你们吃尽苦头，<code>HUC</code> 在C7时命中还不高，推荐用
-        <code>NHH</code>。<code>FO</code> 从这关开始可以用圣泉给同伴加HP了。<code>HUC</code> 砍剑魔参考HUC打怪心得。</p>
-    <p><strong>新手最好不要乱碰机关</strong>，不然不是害了队友就是自己迷路。</p>
+    <p><strong>关卡目标：</strong>废墟阶段的重点是危险目标优先级、暗房机关和 FO 的 TP 管理。</p>
+    <ul>
+        <li>优先处理 Chaos Sorcerer 和 Delsaber；HU 命中不足时使用稳定连段，Android 在多只 Delsaber 场合使用冰冻陷阱。</li>
+        <li>FO 在 HU 武器未成型前主动处理 Delsaber 与 Dark Belra；HU 取得高属性武器后则一人负责一只 Belra。</li>
+        <li>Area 32 进入定时门后走光栅内侧，避免经过终端前方而破坏回收路线。</li>
+        <li><strong>TA 捷径：</strong>旧资料记录了 Area 33 的穿石捷径。这不是通关必需操作，不熟练时按地图正常路线前进。</li>
+    </ul>
 
-    <h3>崂山术穿墙技巧</h3>
-    <blockquote><p>
-        靠空手3连的最后一下后退挤进石头的，所以刚开始的方向要与墙壁或石头成45度角，利用最后一击挤一下，然后调整好方向再3连，再挤，一般3次就可穿过，实在不行的话还是规规矩矩地走远路吧。</p>
-    </blockquote>
-
-    <p>不TA的32区通过有时间限制的门进传送后走光栅内侧，也就是箱子的那一测，<strong>千万不要从电脑前面经过</strong>，不然回收的同志就惨了。
-    </p>
-
-    <p><img src="/assets/img/challenge/ep1/area_31.gif" alt="C7"></p>
-    <p><img src="/assets/img/challenge/ep1/area_32.gif" alt="C7"></p>
-    <p><img src="/assets/img/challenge/ep1/area_33.gif" alt="C7"></p>
-    <p><img src="/assets/img/challenge/ep1/area_34.gif" alt="C7"></p>
-    <p><img src="/assets/img/challenge/ep1/area_35.gif" alt="C7"></p>
+    <figure class="challenge-map" aria-label="C7 · Area 31">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_31.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_31.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_31.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_31.svg" data-zh-alt="EP1 挑战模式区域 31 地图" data-en-alt="EP1 Challenge Area 31 map" data-ja-alt="EP1 チャレンジ エリア31 マップ" alt="EP1 挑战模式区域 31 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C7 · Area 32">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_32.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_32.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_32.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_32.svg" data-zh-alt="EP1 挑战模式区域 32 地图" data-en-alt="EP1 Challenge Area 32 map" data-ja-alt="EP1 チャレンジ エリア32 マップ" alt="EP1 挑战模式区域 32 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C7 · Area 33">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_33.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_33.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_33.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_33.svg" data-zh-alt="EP1 挑战模式区域 33 地图" data-en-alt="EP1 Challenge Area 33 map" data-ja-alt="EP1 チャレンジ エリア33 マップ" alt="EP1 挑战模式区域 33 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C7 · Area 34">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_34.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_34.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_34.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_34.svg" data-zh-alt="EP1 挑战模式区域 34 地图" data-en-alt="EP1 Challenge Area 34 map" data-ja-alt="EP1 チャレンジ エリア34 マップ" alt="EP1 挑战模式区域 34 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C7 · Area 35">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_35.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_35.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_35.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_35.svg" data-zh-alt="EP1 挑战模式区域 35 地图" data-en-alt="EP1 Challenge Area 35 map" data-ja-alt="EP1 チャレンジ エリア35 マップ" alt="EP1 挑战模式区域 35 地图">
+    </figure>
 
     <h2>C8</h2>
-    <p>基本上没什么棘手的怪物，用 4<code>HUC</code> 要比 3<code>HUC</code>+<code>FO</code>
-        感觉要快一点。前2个房间只要集齐3个武器就可以在第2个房间走左边抄近路了，最后一个通过4武器机关的人可以利用网络延迟在进门的瞬间拿回武器顺利脱出。<strong>新人还是不要乱进传送</strong>，跟老手走。
-    </p>
-    <p>40区在A区时3：1分队，强力 <code>HUC</code> 去右边，3人进左边后再2：1分队，然后4人分别开a,b,c,d4个机关A区的红门就打开了。
-    </p>
+    <p><strong>关卡目标：</strong>保留足够的武器用于捷径机关，并在 Area 40 正确分队。</p>
+    <ul>
+        <li>前期不要随意丢弃武器；使用左侧捷径需要在前两个房间凑齐机关所需数量。</li>
+        <li>Chaos Bringer 交给高输出队员单独处理；有高 Hit 枪时优先给 HUcaseal 或命中合格的角色。</li>
+        <li>Area 40 先 3:1 分队，强力 HU 走右路；左路三人再分为 2:1，四人分别完成 a–d 机关后会合。</li>
+        <li>利用延迟取回机关武器属于 TA 技巧；普通队应确保门已稳定开启，不要因拾取过早导致团灭。</li>
+    </ul>
 
-    <p><img src="/assets/img/challenge/ep1/area_36.gif" alt="C8"></p>
-    <p><img src="/assets/img/challenge/ep1/area_37.gif" alt="C8"></p>
-    <p><img src="/assets/img/challenge/ep1/area_38.gif" alt="C8"></p>
-    <p><img src="/assets/img/challenge/ep1/area_39.gif" alt="C8"></p>
-    <p><img src="/assets/img/challenge/ep1/area_40.gif" alt="C8"></p>
+    <figure class="challenge-map" aria-label="C8 · Area 36">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_36.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_36.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_36.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_36.svg" data-zh-alt="EP1 挑战模式区域 36 地图" data-en-alt="EP1 Challenge Area 36 map" data-ja-alt="EP1 チャレンジ エリア36 マップ" alt="EP1 挑战模式区域 36 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C8 · Area 37">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_37.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_37.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_37.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_37.svg" data-zh-alt="EP1 挑战模式区域 37 地图" data-en-alt="EP1 Challenge Area 37 map" data-ja-alt="EP1 チャレンジ エリア37 マップ" alt="EP1 挑战模式区域 37 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C8 · Area 38">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_38.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_38.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_38.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_38.svg" data-zh-alt="EP1 挑战模式区域 38 地图" data-en-alt="EP1 Challenge Area 38 map" data-ja-alt="EP1 チャレンジ エリア38 マップ" alt="EP1 挑战模式区域 38 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C8 · Area 39">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_39.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_39.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_39.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_39.svg" data-zh-alt="EP1 挑战模式区域 39 地图" data-en-alt="EP1 Challenge Area 39 map" data-ja-alt="EP1 チャレンジ エリア39 マップ" alt="EP1 挑战模式区域 39 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C8 · Area 40">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_40.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_40.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_40.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_40.svg" data-zh-alt="EP1 挑战模式区域 40 地图" data-en-alt="EP1 Challenge Area 40 map" data-ja-alt="EP1 チャレンジ エリア40 マップ" alt="EP1 挑战模式区域 40 地图">
+    </figure>
 
     <h2>C9</h2>
-    <p>讨厌的法师再度回归，<code>HUC</code> 用 <code>HHH</code>。想走45区的捷径，8武器和8盾必须，要做好回收工作。最后一个区是无法开灯了，摸黑战斗吧。
-    </p>
+    <p><strong>关卡目标：</strong>围绕 Dark Falz 准备 HP、娃娃和高属性武器，同时决定是否走 Area 45 资源捷径。</p>
+    <ul>
+        <li>废墟仍优先处理 Chaos Sorcerer、Delsaber 和 Dark Belra；拾取 Grants 后交给 FO。</li>
+        <li>Area 41 暗房可由 FO 放下 MAG 压机关后回收资源。如计划走 Area 45 捷径，全程保留 8 件武器和 8 面盾。</li>
+        <li>所有 HP 素材优先交给 FO；Boss 前 HU 通常保留一个娃娃，其余交给 FO，但新手队可按生存情况保守分配。</li>
+        <li><strong>Dark Falz：</strong>进场前确认 FO 的 HP 能承受关键攻击，全队保持分散并随时自行吃药。FO 维持 Shifta/Deband 与 Jellen/Zalure，有 Grants 时用于合适形态。</li>
+    </ul>
 
-    <h3>BOSS战</h3>
-    <p><code>HUC</code> 自己只留一个娃娃，其他的都给 <code>FO</code>。<code>FO</code> 要做好降防工作，然后帮忙队友回复HP。
-    </p>
-
-    <p><img src="/assets/img/challenge/ep1/area_41.gif" alt="C9"></p>
-    <p><img src="/assets/img/challenge/ep1/area_42.gif" alt="C9"></p>
-    <p><img src="/assets/img/challenge/ep1/area_43.gif" alt="C9"></p>
-    <p><img src="/assets/img/challenge/ep1/area_44.gif" alt="C9"></p>
-    <p><img src="/assets/img/challenge/ep1/area_45.gif" alt="C9"></p>
+    <figure class="challenge-map" aria-label="C9 · Area 41">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_41.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_41.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_41.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_41.svg" data-zh-alt="EP1 挑战模式区域 41 地图" data-en-alt="EP1 Challenge Area 41 map" data-ja-alt="EP1 チャレンジ エリア41 マップ" alt="EP1 挑战模式区域 41 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C9 · Area 42">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_42.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_42.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_42.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_42.svg" data-zh-alt="EP1 挑战模式区域 42 地图" data-en-alt="EP1 Challenge Area 42 map" data-ja-alt="EP1 チャレンジ エリア42 マップ" alt="EP1 挑战模式区域 42 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C9 · Area 43">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_43.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_43.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_43.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_43.svg" data-zh-alt="EP1 挑战模式区域 43 地图" data-en-alt="EP1 Challenge Area 43 map" data-ja-alt="EP1 チャレンジ エリア43 マップ" alt="EP1 挑战模式区域 43 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C9 · Area 44">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_44.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_44.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_44.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_44.svg" data-zh-alt="EP1 挑战模式区域 44 地图" data-en-alt="EP1 Challenge Area 44 map" data-ja-alt="EP1 チャレンジ エリア44 マップ" alt="EP1 挑战模式区域 44 地图">
+    </figure>
+    <figure class="challenge-map" aria-label="C9 · Area 45">
+        <img src="/assets/img/challenge/ep1/maps/zh/area_45.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_45.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_45.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_45.svg" data-zh-alt="EP1 挑战模式区域 45 地图" data-en-alt="EP1 Challenge Area 45 map" data-ja-alt="EP1 チャレンジ エリア45 マップ" alt="EP1 挑战模式区域 45 地图">
+    </figure>
 </div>
 </body>
 

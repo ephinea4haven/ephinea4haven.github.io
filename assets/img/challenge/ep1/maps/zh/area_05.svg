@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1080" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
+<title id="title">区域 05</title>
+<desc id="desc">主路线; 回收支线; 地板机关; 传送点.</desc>
+<defs>
+  <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061329"/><stop offset="1" stop-color="#0b2845"/></linearGradient>
+  <marker id="route-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ff5c72"/></marker>
+  <marker id="branch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ffb04a"/></marker>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#000" flood-opacity=".3"/></filter>
+</defs>
+<rect width="1000" height="1080" rx="28" fill="url(#background)"/>
+<g transform="translate(34 28)"><rect width="164" height="48" rx="24" fill="#0e3760"/><text x="82" y="32" text-anchor="middle" fill="#e5fbff" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="900">区域 05</text></g>
+
+<!-- Map geometry, redrawn from the original PSO World Area 05 plan. -->
+<g fill="#173d60" stroke="#8edfff" stroke-width="4" stroke-linejoin="round" filter="url(#shadow)">
+  <circle cx="157" cy="536" r="107"/>
+  <path d="M286 210 327 187 397 198 499 196 519 241 495 278 511 326 487 376 441 389 402 371 367 386 329 376 307 338 316 296 286 267Z"/>
+  <path d="M707 210 747 188 814 198 832 188 897 202 926 244 910 280 928 318 898 369 852 383 815 368 780 382 741 370 719 334 728 293 706 257Z"/>
+  <circle cx="824" cy="545" r="107"/>
+  <path d="M787 387h74v42h-74Z"/>
+  <path d="M812 652v34h-18v55h60v-55h-18v-34Z"/>
+</g>
+<g fill="none" stroke-linecap="square" stroke-linejoin="round" filter="url(#shadow)">
+  <path d="M157 717v-74M157 429V318h240V78" stroke="#8edfff" stroke-width="48"/>
+  <path d="M157 717v-74M157 429V318h240V78" stroke="#173d60" stroke-width="40"/>
+</g>
+
+<!-- Primary route and optional pickup branch. -->
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M157 717V318H397V78" stroke="#ff5c72" stroke-width="7" stroke-dasharray="14 12" marker-end="url(#route-arrow)"/>
+  <path d="M824 741V649a107 107 0 0 0 0-208v-54" stroke="#ff5c72" stroke-width="7" stroke-dasharray="14 12" marker-end="url(#route-arrow)"/>
+  <path d="M824 558 890 507" stroke="#ffb04a" stroke-width="7" stroke-dasharray="12 10" marker-end="url(#branch-arrow)"/>
+</g>
+
+<!-- Start, next-area warp, switches, door and pickup. -->
+<g stroke="#061329" stroke-width="5">
+  <circle cx="157" cy="717" r="17" fill="#39d6ff"/>
+  <path d="M397 73l-20-35h40Z" fill="#ff5ca8"/><circle cx="397" cy="78" r="17" fill="#ff5ca8"/>
+  <circle cx="824" cy="741" r="17" fill="#ff5ca8"/><path d="M824 746l-20 35h40Z" fill="#ff5ca8"/>
+  <rect x="779" y="443" width="86" height="13" rx="6" fill="#61e89f"/>
+  <rect x="785" y="524" width="36" height="36" rx="8" fill="#61e89f"/>
+  <path d="M795 530h16v16l-8 7-8-7Z" fill="#0d7d47" stroke-width="3"/>
+  <rect x="780" y="401" width="88" height="13" rx="6" fill="#ff5ca8"/>
+  <rect x="860" y="480" width="74" height="13" rx="6" fill="#5278ff"/>
+  <circle cx="803" cy="487" r="13" fill="#ff4d4d"/>
+  <circle cx="759" cy="501" r="13" fill="#78f05f"/>
+  <circle cx="898" cy="527" r="13" fill="#5278ff"/>
+  <circle cx="824" cy="608" r="13" fill="#ff5ca8"/>
+</g>
+
+<!-- Localized labels and numbered callouts. -->
+<text x="157" y="758" text-anchor="middle" fill="#dff8ff" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="800" letter-spacing=".04em">起点</text>
+<text x="909" y="772" text-anchor="middle" fill="#ff9dca" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="800" letter-spacing=".04em">前往下一区</text>
+<text x="407" y="352" text-anchor="middle" fill="#dff8ff" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="800" letter-spacing=".04em">无视敌人</text>
+<text x="815" y="281" text-anchor="middle" fill="#ffed72" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="800" letter-spacing=".04em">前往下一区</text>
+<g font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="900" text-anchor="middle">
+  <g transform="translate(397 260)"><rect x="-18" y="-24" width="36" height="32" rx="7" fill="#ffe45c"/><text y="1" fill="#08162b">1</text></g>
+  <g transform="translate(754 622)"><rect x="-18" y="-24" width="36" height="32" rx="7" fill="#ffe45c"/><text y="1" fill="#08162b">2</text></g>
+  <g transform="translate(815 317)"><rect x="-18" y="-24" width="36" height="32" rx="7" fill="#ffe45c"/><text y="1" fill="#08162b">3</text></g>
+</g>
+
+<!-- Evidence-backed tactical reminders. Letters keep the map readable at small sizes. -->
+<g transform="translate(452 318)" filter="url(#shadow)">
+  <path d="M0-23 23 0 0 23-23 0Z" fill="#ffb04a" stroke="#061329" stroke-width="4"/>
+  <text y="7" text-anchor="middle" fill="#08162b" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="950">A</text>
+</g>
+<g fill="none" stroke="#ffb04a" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 7">
+  <path d="M692 540 785 535"/>
+  <path d="M948 535 866 535"/>
+</g>
+<g transform="translate(670 540)" filter="url(#shadow)">
+  <path d="M0-23 23 0 0 23-23 0Z" fill="#ffb04a" stroke="#061329" stroke-width="4"/>
+  <text y="7" text-anchor="middle" fill="#08162b" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="950">B</text>
+</g>
+<g transform="translate(956 535)" filter="url(#shadow)">
+  <path d="M0-23 23 0 0 23-23 0Z" fill="#ffb04a" stroke="#061329" stroke-width="4"/>
+  <text y="7" text-anchor="middle" fill="#08162b" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="950">C</text>
+</g>
+<g transform="translate(34 826)">
+  <rect width="932" height="218" rx="18" fill="#0b2745" stroke="#2c648b" stroke-width="2"/>
+  <text x="24" y="40" fill="#e7f9ff" font-family="system-ui,-apple-system,sans-serif" font-size="21" font-weight="900">关键提醒</text>
+  <g transform="translate(24 68)">
+    <circle cx="14" cy="14" r="14" fill="#ffb04a"/><text x="14" y="21" text-anchor="middle" fill="#08162b" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="950">A</text>
+    <text x="40" y="20" fill="#ffcf7c" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="900">穿墙捷径</text>
+    <text x="40" y="46" fill="#bcd7ea" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="650"><tspan x="40" dy="0">无视敌人，穿过北墙进入传送点；同时避开下一出口房间</tspan><tspan x="40" dy="24">的陷阱。</tspan></text>
+  </g>
+  <g transform="translate(484 68)">
+    <circle cx="14" cy="14" r="14" fill="#ffb04a"/><text x="14" y="21" text-anchor="middle" fill="#08162b" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="950">B</text>
+    <text x="40" y="20" fill="#ffcf7c" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="900">三机关接力</text>
+    <text x="40" y="46" fill="#bcd7ea" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="650"><tspan x="40" dy="0">一人踩右侧机关；通过屏障后踩中央机关取箱；取箱者再</tspan><tspan x="40" dy="24">踩左侧机关放行队友。</tspan></text>
+  </g>
+  <g transform="translate(24 146)">
+    <circle cx="14" cy="14" r="14" fill="#ffb04a"/><text x="14" y="21" text-anchor="middle" fill="#08162b" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="950">C</text>
+    <text x="40" y="20" fill="#ffcf7c" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="900">可选补给</text>
+    <text x="40" y="46" fill="#bcd7ea" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="650"><tspan x="40" dy="0">传送点后的假墙内有箱子。非 TA 时可由机器人绕行回收</tspan><tspan x="40" dy="24">。</tspan></text>
+  </g>
+  <text x="908" y="196" text-anchor="end" fill="#7698b1" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="650">提示依据：PSO World · Sakura 攻略</text>
+</g>
+</svg>

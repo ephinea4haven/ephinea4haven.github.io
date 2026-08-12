@@ -9,7 +9,11 @@ are build inputs and are not copied into the published artifact.
 | `build_site.mjs` | Generate, prerender, validate and atomically publish `_site`. |
 | `generate_angular_content.mjs` | Convert content sources and datasets into lazy Angular routes. |
 | `generate_angular_combo.mjs` | Normalize the pinned PSOStats calculation/data boundary. |
+| `import_challenge_source_maps.py` | Import the original Episode I map images embedded in the archived PSO World PDFs. |
+| `build_challenge_map_atlas.py` | Build the localized Episode I challenge-map atlas. |
+| `build_ep2_challenge_map_atlas.py` | Build the localized Episode II atlas from pinned Ephinea Wiki source maps. |
 | `verify_angular_architecture.mjs` | Reject retired runtimes, scripts and inline handlers in page sources. |
+| `verify_challenge_maps.mjs` | Verify original challenge-map inventories, dimensions and page references. |
 | `verify_status_domain.mjs` | Verify all character/equipment mappings and status calculation fixtures. |
 | `sync_combo_calculator.mjs` | Synchronize verified PSOStats rules, data, license and provenance. |
 | `scrape_gizonde.py` | Generate Vol Opt data from the Ephinea Wiki. |
@@ -39,5 +43,10 @@ python3 scripts/build_mag_data.py --offline mags.wiki \
 ```
 
 Python data builders use the standard library unless their own help text states
-otherwise. `download_wiki_mag_assets.py` additionally uses Pillow for image
-validation.
+otherwise. `download_wiki_mag_assets.py` uses Pillow for image validation.
+`import_challenge_source_maps.py` requires Poppler's `pdfimages` command and
+extracts the embedded Episode I map images without rendering or resampling.
+The imported PNG files are committed, so production builds do not require the
+source PDFs or Poppler. Episode II retains the archived JPEGs for provenance,
+but the published atlas is generated from the pinned high-resolution Ephinea
+Wiki PNGs under `assets/img/challenge/ep2/original/wiki/`.
