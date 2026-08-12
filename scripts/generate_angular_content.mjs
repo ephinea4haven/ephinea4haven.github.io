@@ -291,14 +291,14 @@ async function buildProtocolContent(source) {
 async function buildSeasonalContent(relative, source) {
   const eventName = relative.includes('anniversary') ? 'anniversary' : 'christmas';
   const yearsByEvent = {
-    anniversary: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016],
+    anniversary: [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016],
     christmas: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
   };
   const years = yearsByEvent[eventName];
   const defaultYear = years[0];
   const fragment = await readFile(path.join(root, 'event', eventName, `${defaultYear}.html`), 'utf8');
   const nav = years.map((year) => year === defaultYear
-    ? `<span class="year-current">${year}</span>` : `<a href="?year=${year}">${year}</a>`).join('');
+    ? `<span class="year-current">${year}</span>` : `<a href="/event/${eventName}.html?year=${year}">${year}</a>`).join('');
   return source
     .replace('<section class="event-masthead', `<section data-seasonal-event data-event="${eventName}" data-years="${years.join(',')}" data-default-year="${defaultYear}" class="event-masthead`)
     .replace(/<nav id="yearNav"([^>]*)><\/nav>/, `<nav id="yearNav"$1>${nav}</nav>`)

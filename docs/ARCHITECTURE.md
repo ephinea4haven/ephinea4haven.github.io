@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-08-10
+> Last updated: 2026-08-11
 
 ## System shape
 
@@ -8,8 +8,8 @@ Ephinea4Haven is a statically deployed Angular application. Angular 22 owns ever
 public page, route and interaction. GitHub Pages serves the immutable `_site`
 artifact; it does not need server-side rewrites or a JavaScript backend.
 
-The current production inventory contains 57 prerendered Angular application
-hosts and 44 year-specific event content fragments. `_site/build-manifest.json`
+The current production inventory contains 58 prerendered Angular application
+hosts and 45 year-specific event content fragments. `_site/build-manifest.json`
 is the source of truth for this inventory and for the JavaScript budgets applied
 to each route.
 
@@ -61,6 +61,13 @@ Dedicated components are preferred when state changes the rendered model, such
 as Combo, status, character tables and prices. Scoped directives are used for
 stable document-like content whose interaction is naturally DOM-local, such as
 tabs, filters and event previews.
+
+Seasonal event routes own a fixed year manifest and load committed yearly HTML
+fragments through root-relative URLs. The anniversary archive defaults to 2026,
+keeps localized milestone tables with stable yearly anchors for 2016–2025, and
+uses an explicit pending template for 2026 details that have not been announced.
+Historical milestone archive links are not part of the UI; the localized yearly
+fragments are the maintained record.
 
 Build-input JavaScript datasets are never copied to `_site`. Generators evaluate
 or normalize them into Angular modules. The PSOStats Combo snapshot remains an

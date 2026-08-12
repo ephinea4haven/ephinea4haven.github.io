@@ -607,6 +607,60 @@ test('anniversary feature cards keep bilingual item names visible', async ({ pag
   })).toBe(true);
 });
 
+test('anniversary archive defaults to the 2026 adjustment template and keeps 2025 available', async ({ page }) => {
+  await page.goto('/event/anniversary.html');
+
+  await expect(page.locator('#project_year')).toHaveText('2026');
+  await expect(page.locator('#yearNav .year-current')).toHaveText('2026');
+  await expect(page.locator('#anniv-2026-quests')).toContainText('不默认沿用 2025');
+  await expect(page.locator('#anniv-2026-badges')).toContainText('不复制 2025 奖池');
+  await expect(page.locator('#anniv-2026-milestones')).toContainText('总进度与当前阶段');
+  await expect(page.locator('#anniv-2026-milestones')).toContainText('解锁状态与下一奖励');
+
+  await page.locator('#yearNav a', { hasText: '2025' }).click();
+  await expect(page.locator('#project_year')).toHaveText('2025');
+  await expect(page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' })).toBeVisible();
+});
+
+test('anniversary years expose complete localized milestone contracts', async ({ page }) => {
+  const expected = [
+    { year: 2025, total: '25,417', rows: 11, first: ['2,500', '经验值 +50%'], last: ['20,000', '命中 属性出现概率 +1%'] },
+    { year: 2024, total: '11,316', rows: 22, first: ['150', '稀有物品掉落率 +10%'], last: ['12,000 / 14,000 / 16,000 / 18,000 / 20,000', '官方最终存档仍显示“???”'] },
+    { year: 2023, total: '18,149,237', rows: 26, first: ['25 万', '周年徽章掉落率 +25%'], last: ['1,500 万', '命中 属性出现概率 +1%'] },
+    { year: 2022, total: '13,578,324', rows: 24, first: ['25 万', '任意掉落率 +5%'], last: ['1,500 万', '官方最终存档仍显示“???”'] },
+    { year: 2021, total: '11,050,327', rows: 19, first: ['5 万', 'Festivity on the Beach'], last: ['600 万后', '每 10 万击杀使徽章率 +1%'] },
+    { year: 2020, total: '8,777,030', rows: 19, first: ['5 万', 'Festivity on the Beach'], last: ['600 万后', '每 10 万击杀使徽章率 +1%'] },
+    { year: 2019, total: '4,352,016', rows: 18, first: ['5 万', 'Beach Laughter'], last: ['750 万', '官方页面保留为“???”'] },
+    { year: 2018, total: '2,482,339', rows: 17, first: ['5 万', 'Festivity on the Beach'], last: ['500 万', '官方页面保留为“???”'] },
+    { year: 2017, total: '6,092,971', rows: 18, first: ['5 万', 'Festivity on the Beach'], last: ['500 万后', '每 20,000 击杀使徽章率 +1%'] },
+    { year: 2016, total: '最终突破 450 万', rows: 20, first: ['5 万', 'Resting at the Beach'], last: ['600 万', 'Photon Sphere'] },
+  ];
+  for (const { year, total, rows, first, last } of expected) {
+    await page.goto(`/event/anniversary.html?year=${year}`);
+    await expect(page.locator(`#anniv-${year}-milestones`)).toBeVisible();
+    await expect(page.locator('#content')).toContainText(total);
+    const milestoneRows = page.locator(`.milestone-table[data-milestone-year="${year}"] tbody tr`);
+    await expect(milestoneRows).toHaveCount(rows);
+    await expect(milestoneRows.first().locator('td').nth(0)).toHaveText(first[0]);
+    await expect(milestoneRows.first().locator('td').nth(1)).toContainText(first[1]);
+    await expect(milestoneRows.last().locator('td').nth(0)).toHaveText(last[0]);
+    await expect(milestoneRows.last().locator('td').nth(1)).toContainText(last[1]);
+  }
+});
+
+test('event overview milestone link loads the historical year and scrolls to its anchor', async ({ page }) => {
+  await page.goto('/event/event.html');
+  await page.locator('a[href="/event/anniversary.html?year=2017#anniv-2017-milestones"]').click();
+
+  await expect(page).toHaveURL(/\/event\/anniversary\.html\?year=2017#anniv-2017-milestones$/);
+  const anchor = page.locator('#anniv-2017-milestones');
+  await expect(anchor).toBeVisible();
+  await expect.poll(() => anchor.evaluate((element) => {
+    const { top, bottom } = element.getBoundingClientRect();
+    return top >= 0 && bottom <= window.innerHeight;
+  })).toBe(true);
+});
+
 test('banner item lists use Chinese-first bilingual names', async ({ page }) => {
   await page.goto('/guide/banners.html');
 

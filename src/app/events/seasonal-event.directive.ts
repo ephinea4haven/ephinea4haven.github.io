@@ -66,7 +66,7 @@ export class SeasonalEventBehavior {
     nav?.replaceChildren(...years.map((year) => {
       const element = document.createElement(year === selected ? 'span' : 'a');
       element.textContent = String(year);
-      if (element instanceof HTMLAnchorElement) element.href = `?year=${year}`;
+      if (element instanceof HTMLAnchorElement) element.href = `/event/${eventName}.html?year=${year}`;
       else element.className = 'year-current';
       return element;
     }));
@@ -79,10 +79,12 @@ export class SeasonalEventBehavior {
       this.localizeItems(eventName === 'christmas'
         ? this.host.querySelector<HTMLElement>('.christmas-overview')! : content);
       if (eventName === 'anniversary') this.localizeAnniversaryLabels(content);
+      const anchor = location.hash ? this.host.querySelector<HTMLElement>(location.hash) : null;
+      anchor?.scrollIntoView();
     };
     if (selected === defaultYear) finish();
     else {
-      fetch(`./${eventName}/${selected}.html`, { cache: 'no-store' })
+      fetch(`/event/${eventName}/${selected}.html`, { cache: 'no-store' })
         .then((response) => {
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           return response.text();
