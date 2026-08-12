@@ -591,6 +591,10 @@ window.ITEMS_I18N = {
     "zh": "蓝色手镯",
     "ja": "ブルーリング"
   },
+  "blue_powder_coating": {
+    "en": "Blue Powder Coating",
+    "zh": "蓝色粉末涂层"
+  },
   "bluefull_card": {
     "zh": "纯蓝卡片",
     "en": "Bluefull Card",
@@ -2580,6 +2584,10 @@ window.ITEMS_I18N = {
     "en": "Heart of Chao",
     "zh": "查欧之心",
     "ja": "チャオの心"
+  },
+  "heart_of_flight_fan": {
+    "en": "Heart of Flight Fan",
+    "zh": "扇舞之心"
   },
   "heart_of_chu_chu": {
     "en": "Heart of Chu Chu",

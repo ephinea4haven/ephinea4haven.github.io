@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-08-11
+> Last updated: 2026-08-12
 
 ## System shape
 
@@ -65,7 +65,7 @@ tabs, filters and event previews.
 Seasonal event routes own a fixed year manifest and load committed yearly HTML
 fragments through root-relative URLs. The anniversary archive defaults to 2026,
 keeps localized milestone tables with stable yearly anchors for 2016–2025, and
-uses an explicit pending template for 2026 details that have not been announced.
+documents the announced 2026 return of the MAE and Anniversary Badge format.
 Historical milestone archive links are not part of the UI; the localized yearly
 fragments are the maintained record.
 
