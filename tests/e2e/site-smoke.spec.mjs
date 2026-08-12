@@ -625,6 +625,9 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect.poll(() => thiefPool.locator('.item-en').evaluateAll(
     (names) => names.length > 10 && names.every((name) => name.textContent?.startsWith(' ')),
   )).toBe(true);
+  await expect.poll(() => thiefPool.locator('p').evaluateAll(
+    (paragraphs) => paragraphs.every((paragraph) => getComputedStyle(paragraph).textAlign === 'left'),
+  )).toBe(true);
 
   await page.locator('#yearNav a', { hasText: '2025' }).click();
   await expect(page.locator('#project_year')).toHaveText('2025');
