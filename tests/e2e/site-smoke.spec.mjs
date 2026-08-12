@@ -692,7 +692,7 @@ test('anniversary feature cards keep bilingual item names visible', async ({ pag
 
   const card = page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' });
   await expect(card).toContainText(
-    '白金牌 奖池移除圣剑「拉维斯·迦农」(Lavis Cannon)，新增索尼克人偶(Sonic Doll)。',
+    '白金牌 奖池移除圣剑「拉维斯·迦农」 (Lavis Cannon)，新增索尼克人偶 (Sonic Doll)。',
   );
   await expect.poll(() => card.locator('p').evaluate((paragraph) => {
     const paragraphRect = paragraph.getBoundingClientRect();
@@ -704,15 +704,27 @@ test('anniversary feature cards keep bilingual item names visible', async ({ pag
   })).toBe(true);
 });
 
-test('anniversary archive defaults to the 2026 adjustment template and keeps 2025 available', async ({ page }) => {
+test('anniversary archive defaults to the announced 2026 event and keeps 2025 available', async ({ page }) => {
   await page.goto('/event/anniversary.html');
 
   await expect(page.locator('#project_year')).toHaveText('2026');
   await expect(page.locator('#yearNav .year-current')).toHaveText('2026');
-  await expect(page.locator('#anniv-2026-quests')).toContainText('不默认沿用 2025');
-  await expect(page.locator('#anniv-2026-badges')).toContainText('不复制 2025 奖池');
-  await expect(page.locator('#anniv-2026-milestones')).toContainText('总进度与当前阶段');
-  await expect(page.locator('#anniv-2026-milestones')).toContainText('解锁状态与下一奖励');
+  await expect(page.locator('#anniv-2026-quests')).toContainText('任务阵容暂未更换');
+  await expect(page.locator('#anniv-2026-quests')).toContainText('Forest · Caves · Mines · Ruins');
+  await expect(page.locator('#anniv-2026-changes')).toContainText('/badgenotify');
+  await expect(page.locator('#anniv-2026-milestones')).toContainText('11 项 MAE 中最低的通关数');
+  await expect(page.locator('#anniv-2026-shop')).toContainText('Heart of Flight Fan');
+  await expect(page.locator('#anniv-2026-shop')).toContainText('Blue Powder Coating');
+  await expect(page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' }).locator('strong'))
+    .toHaveText('拉古奥盗贼 · 铜牌 随机奖池');
+  const thiefPool = page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' });
+  await expect(thiefPool).toContainText('小ＨＰ回复液 (Monomate)、小ＴＰ回复液 (Monofluid)');
+  await expect.poll(() => thiefPool.locator('.item-en').evaluateAll(
+    (names) => names.length > 10 && names.every((name) => name.textContent?.startsWith(' ')),
+  )).toBe(true);
+  await expect.poll(() => thiefPool.locator('p').evaluateAll(
+    (paragraphs) => paragraphs.every((paragraph) => getComputedStyle(paragraph).textAlign === 'left'),
+  )).toBe(true);
 
   await page.locator('#yearNav a', { hasText: '2025' }).click();
   await expect(page.locator('#project_year')).toHaveText('2025');

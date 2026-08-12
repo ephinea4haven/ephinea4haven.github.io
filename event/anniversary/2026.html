@@ -3,149 +3,184 @@
         <div class="hero-layout">
             <div>
                 <span class="event-eyebrow">Ephinea · 11 Years Online</span>
-                <h2>十一周年 <span>启动公告</span></h2>
+                <h2>十一周年 <span>Anniversary</span></h2>
                 <p class="hero-copy">
-                    官方将通过服务器维护启动 2026 周年活动。完整活动规则、结束时间、奖励与里程碑尚未公布，本站将在正式公告发布后补全。
+                    原定今年启用的新任务与 Anniversary Token 方案延期；2026 暂时沿用 MAE、August Atrocity
+                    和四级周年徽章，并加入队伍共享徽章、自动存入银行等便利改动。
                 </p>
             </div>
-            <div class="hero-stats" aria-label="2026 周年活动启动维护摘要">
-                <div class="hero-stat"><span>维护时间</span><strong>8 月 12 日 04:30 UTC</strong></div>
-                <div class="hero-stat"><span>北京时间</span><strong>8 月 12 日 12:30</strong></div>
-                <div class="hero-stat"><span>美西时间</span><strong>8 月 11 日 21:30 PDT</strong></div>
-                <div class="hero-stat"><span>预计时长</span><strong>最长约 1 小时</strong></div>
+            <div class="hero-stats" aria-label="2026 周年活动摘要">
+                <div class="hero-stat"><span>活动时间</span><strong>8.12 — 9.09</strong></div>
+                <div class="hero-stat"><span>任务阵容</span><strong>11 MAE + August Atrocity</strong></div>
+                <div class="hero-stat"><span>里程碑基准</span><strong>11 项 MAE 最低通关数</strong></div>
+                <div class="hero-stat"><span>主要改动</span><strong>队伍共享 · 自动入库</strong></div>
             </div>
         </div>
     </header>
 
     <nav class="section-nav" aria-label="2026 周年活动章节">
-        <a href="#anniv-2026-confirmed">启动信息</a>
-        <a href="#anniv-2026-quests">任务调整</a>
-        <a href="#anniv-2026-badges">徽章调整</a>
+        <a href="#anniv-2026-changes">年度变化</a>
+        <a href="#anniv-2026-quests">活动任务</a>
+        <a href="#anniv-2026-badges">徽章规则</a>
         <a href="#anniv-2026-milestones">全服里程碑</a>
+        <a href="#anniv-2026-shop">完整商店</a>
+        <a href="#anniv-2026-future">后续改版</a>
         <a href="#anniv-2026-sources">官方来源</a>
     </nav>
 
-    <section id="anniv-2026-confirmed" class="event-section">
+    <section id="anniv-2026-changes" class="event-section">
         <div class="section-heading">
-            <div>
-                <span class="section-kicker">Confirmed information</span>
-                <h3>目前已确认</h3>
-            </div>
-            <p>以下内容仅来自 2026 年 8 月 12 日发布的官方维护公告。</p>
+            <div><span class="section-kicker">What changed</span><h3>十一周年的十一项变化</h3></div>
+            <p>任务和货币暂时没有换代，主要变化集中在徽章分配、拾取体验、里程碑编排和 Gold Shop。</p>
         </div>
-        <div class="quest-cards">
-            <article class="quest-card">
-                <em>01</em>
-                <strong>维护后启动</strong>
-                <p>本次维护的目的，是开启 Ephinea 2026 周年活动。</p>
-            </article>
-            <article class="quest-card">
-                <em>02</em>
-                <strong>04:30 UTC 开始</strong>
-                <p>换算为北京时间 12:30；美西夏令时为前一日 21:30。</p>
-            </article>
-            <article class="quest-card">
-                <em>03</em>
-                <strong>最多约一小时</strong>
-                <p>官方说明维护可能持续最长一小时，实际开放时间以服务器恢复为准。</p>
-            </article>
-        </div>
-        <div class="strategy-callout">
-            <b>→</b>
-            <div><strong>资料状态：</strong>活动玩法、徽章、商店、奖励、里程碑与结束日期均等待官方活动帖确认。</div>
+        <div class="feature-cards">
+            <article class="feature-card"><strong>徽章独立判定</strong><p>徽章不再占用敌人的普通掉落位；同一只敌人可以同时产出普通物品和徽章。</p></article>
+            <article class="feature-card"><strong>全队同一结果</strong><p>每只怪物只判定一次徽章，队伍成员会从该敌人取得相同徽章。</p></article>
+            <article class="feature-card"><strong>Classic 模式例外</strong><p>多人队伍设为 Classic drops 时，判定出的徽章会落到地面。</p></article>
+            <article class="feature-card"><strong>普通掉落自动入库</strong><p>玩家获得的徽章会存入角色银行或共享银行；没有空间时才落地。</p></article>
+            <article class="feature-card"><strong>入库通知</strong><p>自动入库会在屏幕右侧提示；每名角色可用 <code>/badgenotify</code> 切换。</p></article>
+            <article class="feature-card"><strong>保留稀有音效</strong><p>若 Launcher 已启用稀有掉落音效，自动入库的徽章仍会播放该音效。</p></article>
+            <article class="feature-card"><strong>地面徽章浮动</strong><p>地上的徽章会轻微上下浮动，使其更容易与其他红箱区分。</p></article>
+            <article class="feature-card"><strong>通关奖励自动入库</strong><p>MAE 或 AA 的通关徽章会存入角色或共享银行；没有空间时进入物品栏。</p></article>
+            <article class="feature-card"><strong>里程碑重排</strong><p>节点重新编排并略微扩充，但仍保持较集中，让每次解锁提供更大的整体奖励。</p></article>
+            <article class="feature-card"><strong>目标重新估算</strong><p>今年的里程碑目标参考历届周年活动表现估算。</p></article>
+            <article class="feature-card"><strong>Gold Shop 两件新品</strong><p>加入 Heart of Flight Fan 与 Blue Powder Coating，价格均为 99 Gold。</p></article>
         </div>
     </section>
 
     <section id="anniv-2026-quests" class="event-section">
         <div class="section-heading">
-            <div>
-                <span class="section-kicker">Quest changes</span>
-                <h3>任务系统调整</h3>
-            </div>
-            <p>今年任务会有调整；正式任务表和进度规则将在活动公告发布后填写。</p>
+            <div><span class="section-kicker">Quest lineup</span><h3>任务阵容暂未更换</h3></div>
+            <p>活动版 Maximum Attack E 仍由 11 个约 5–10 分钟、不会失败的短任务组成，所有玩家都能参与。</p>
         </div>
         <div class="quest-cards">
-            <article class="quest-card">
-                <em>任务表</em>
-                <strong>等待正式清单</strong>
-                <p>记录各 Episode 的新增、保留和移除任务，不默认沿用 2025 的 11 项 MAE 与 AA 配置。</p>
-            </article>
-            <article class="quest-card">
-                <em>进度</em>
-                <strong>等待计分规则</strong>
-                <p>预留全服里程碑、个人进度、任务权重和补偿机制的位置。</p>
-            </article>
-            <article class="quest-card">
-                <em>策略</em>
-                <strong>等待实服验证</strong>
-                <p>公告确认后再整理推荐路线、人数配置与效率差异。</p>
-            </article>
+            <article class="quest-card"><em>EP1</em><strong>Forest · Caves · Mines · Ruins</strong><p>四项 MAE 继续参加 Ultimate 通关统计。</p></article>
+            <article class="quest-card"><em>EP2</em><strong>Temple · Spaceship · CCA · Seabed · Tower</strong><p>五项 MAE 继续参加 Ultimate 通关统计。</p></article>
+            <article class="quest-card"><em>EP4</em><strong>Crater · Desert</strong><p>两项 MAE 继续参加 Ultimate 通关统计。</p></article>
+        </div>
+        <div class="strategy-callout">
+            <b>⏱</b>
+            <div><strong>任务计时器：</strong>只供希望比较速度的玩家参考，不影响任务成败；计时器会在任务结束时冻结，方便截图。</div>
+        </div>
+        <div class="strategy-callout">
+            <b>+</b>
+            <div><strong>August Atrocity：</strong>系列任务同步回归。它采用与 Christmas Event 的 December Disaster 相近的设计，并混合多个 Episode 的敌人。</div>
         </div>
     </section>
 
     <section id="anniv-2026-badges" class="event-section">
         <div class="section-heading">
-            <div>
-                <span class="section-kicker">Badge changes</span>
-                <h3>徽章系统调整</h3>
-            </div>
-            <p>今年徽章也会调整；掉落、兑换和奖池均以 2026 正式规则为准。</p>
+            <div><span class="section-kicker">Badge economy</span><h3>四级周年徽章继续使用</h3></div>
+            <p>徽章可由全地图敌人掉落，不限定活动任务；难度越高越常见。</p>
         </div>
-        <div class="quest-cards">
-            <article class="quest-card">
-                <em>掉落</em>
-                <strong>等待掉落规则</strong>
-                <p>预留徽章种类、适用难度、掉落来源与倍率说明。</p>
-            </article>
-            <article class="quest-card">
-                <em>兑换</em>
-                <strong>等待商店清单</strong>
-                <p>预留 NPC、兑换比例、固定商品与价格变动。</p>
-            </article>
-            <article class="quest-card">
-                <em>奖池</em>
-                <strong>等待奖励确认</strong>
-                <p>预留随机奖池、白金奖励和新增限定物品，不复制 2025 奖池。</p>
-            </article>
+        <div class="badge-cards">
+            <article class="badge-card" style="--badge-color: hsl(28 72% 60%)"><strong>Bronze</strong><span>所有难度</span><p>基础商店和 Thief 赌博；10 Bronze 可换 1 Silver。</p></article>
+            <article class="badge-card" style="--badge-color: hsl(210 16% 82%)"><strong>Silver</strong><span>Very Hard · Ultimate</span><p>材料、趣味武器和 Paint；10 Silver 可换 1 Gold。</p></article>
+            <article class="badge-card" style="--badge-color: hsl(43 96% 64%)"><strong>Gold</strong><span>Ultimate</span><p>高阶固定兑换与 Hunter 随机未鉴定武器。</p></article>
+            <article class="badge-card" style="--badge-color: hsl(188 92% 66%)"><strong>Platinum</strong><span>Ultimate · 极稀有</span><p>交给 Guide，1 枚可选择 1 件顶级奖励。</p></article>
         </div>
-        <div class="strategy-callout">
-            <b>!</b>
-            <div><strong>版本边界：</strong>2025 页面继续作为历史档案；其任务、徽章和奖励内容不视为 2026 规则。</div>
-        </div>
+        <p class="year-callout">普通掉率修正和队伍人数不会改变徽章掉率。受惊逃跑而非被击杀的 Rappy 不会掉落徽章。</p>
     </section>
 
     <section id="anniv-2026-milestones" class="event-section">
         <div class="section-heading">
-            <div>
-                <span class="section-kicker">Localized milestones</span>
-                <h3>全服里程碑</h3>
-            </div>
-            <p>里程碑将在本站直接以中文展示，不要求玩家跳转英文页面对照。</p>
+            <div><span class="section-kicker">Server milestones</span><h3>全服里程碑</h3></div>
+            <p>Ultimate 难度下分别统计各活动任务通关；11 项 MAE 中最低的通关数决定服务器当前里程碑。</p>
         </div>
-        <div class="quest-cards" aria-label="2026 周年活动里程碑本地化字段">
-            <article class="quest-card">
-                <em>进度</em>
-                <strong>总进度与当前阶段</strong>
-                <p>显示当前累计值、阶段目标、完成百分比和下一阶段所需进度。</p>
-            </article>
-            <article class="quest-card">
-                <em>任务</em>
-                <strong>分任务完成数</strong>
-                <p>按正式任务清单显示各任务计数，并标出决定里程碑进度的关键任务。</p>
-            </article>
-            <article class="quest-card">
-                <em>奖励</em>
-                <strong>解锁状态与下一奖励</strong>
-                <p>逐项翻译奖励效果，区分已解锁、当前目标和后续阶段。</p>
-            </article>
+        <div class="quest-cards">
+            <article class="quest-card"><em>计分</em><strong>以最低项为准</strong><p>只刷热门任务不会单独抬高里程碑，应优先补齐通关数最低的 MAE。</p></article>
+            <article class="quest-card"><em>奖励</em><strong>全服务器生效</strong><p>解锁的增益作用于所有区域，并不限于周年活动任务。</p></article>
+            <article class="quest-card"><em>个人查询</em><strong>Anniversary Shop · Guide</strong><p>可在 Guide 处查看个人计数。</p></article>
         </div>
         <div class="strategy-callout">
-            <b>↻</b>
-            <div><strong>数据状态：</strong>官方十一周年里程碑页尚未上线；页面发布后将补充数据来源、最后更新时间和中文奖励说明。</div>
+            <b>i</b>
+            <div><strong>具体档位：</strong>十一周年活动帖没有列出各目标值与奖励，帖内的 Event Milestone Page 链接目前也不可用；本站不会用 2025 数值代替，待官方数据可核实时补齐。</div>
         </div>
     </section>
 
+    <section id="anniv-2026-shop" class="event-section">
+        <div class="section-heading">
+            <div><span class="section-kicker">Complete reward catalog</span><h3>Anniversary Shop Quest</h3></div>
+            <p>入口：Normal → Episode 1 → Shop。下面保留官方活动帖公布的完整价格和奖池。</p>
+        </div>
+        <div class="shop-table-wrap">
+            <table class="shop-table">
+                <thead><tr><th>NPC</th><th>位置</th><th>货币</th><th>功能</th></tr></thead>
+                <tbody>
+                <tr><td>Bronze Badge Shop</td><td>银行旁广场</td><td>Bronze</td><td>固定商品。</td></tr>
+                <tr><td>Silver Badge Shop</td><td>银行旁广场</td><td>Silver</td><td>固定商品。</td></tr>
+                <tr><td>Gold Badge Shop</td><td>银行旁广场</td><td>Gold</td><td>固定商品及两件十一周年新品。</td></tr>
+                <tr><td>Hunter from Ragol</td><td>Tyrell's Office</td><td>Gold</td><td>随机未鉴定趣味武器，可能带更高属性。</td></tr>
+                <tr><td>Thief from Ragol</td><td>Medical Center</td><td>Bronze</td><td>以 Coren 系物品为主的随机奖池。</td></tr>
+                <tr><td>Badger</td><td>Tyrell's Office 传送器外</td><td>Bronze、Silver</td><td>10 Bronze → 1 Silver；10 Silver → 1 Gold。</td></tr>
+                <tr><td>Guide</td><td>Hunter's Guild</td><td>Platinum</td><td>活动说明、个人计数与 Platinum 奖励。</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tier-cards" style="margin-top: 14px">
+            <article class="tier-card" style="--tier-color: hsl(28 72% 60%)">
+                <strong>Bronze Badge Shop</strong>
+                <p>1：随机 Music Disk<br>1：Trigrinder<br>5：Soul Eater<br>5：Suppressed Gun<br>5：Technical Crozier<br>8：Addslot<br>20：Butterfly Net<br>20：Bamboo Spear<br>50：Chu Chu Fever<br>50：Bunny Ears<br>50：Cat Ears</p>
+            </article>
+            <article class="tier-card" style="--tier-color: hsl(210 16% 82%)">
+                <strong>Silver Badge Shop</strong>
+                <p>1：Def / Evade / Power / Mind Material<br>2：HP Material<br>3：TP Material<br>5：Luck Material<br>8：Broom<br>8：Chameleon Scythe<br>8：Wok of Akiko's Shop<br>10：Item Ticket<br>99：Cyan / Onyx / Orange / Rose / Ultramarine / Violet / Chartreuse Paint</p>
+            </article>
+            <article class="tier-card" style="--tier-color: hsl(43 96% 64%)">
+                <strong>Gold Badge Shop</strong>
+                <p>1：Photon Crystal<br>1：Imperial Pick / Red Mechgun / Windmill（随机属性）<br>5：Pioneer Parts / Heart of YN-0117 / Stealth Kit<br>6：Parasitic Cell Type D<br>6：Flame Garment（220 DFP / 120 EVP）<br>6：Electro Frame（220 DFP / 120 EVP）<br>8：Aura Field（250 DFP / 140 EVP）<br>30：Mag / Varuna / Kalki / Vritra Kit<br>35：Photon Filter<br>50：Photon Booster<br>95：Photon Sphere<br>99：Heart of Flight Fan<br>99：Blue Powder Coating</p>
+            </article>
+        </div>
+
+        <div class="special-cards" style="margin-top: 14px">
+            <article class="special-card">
+                <strong>Hunter from Ragol · 每次 1 Gold</strong>
+                <p>随机取得一件未鉴定武器，不能指定种类，可能出现更高百分比。</p>
+                <ul>
+                    <li>Daisy Chain、Nice Shot、Hammer、Crazy Tune</li>
+                    <li>Toy Hammer、Harisen Battle Fan、Akiko's Cleaver</li>
+                    <li>Samba Maracas、Rocket Punch、Le Cogneur</li>
+                    <li>Lollipop、Flower Cane、Syringe、Game Magazine</li>
+                </ul>
+            </article>
+            <article class="special-card">
+                <strong>Thief from Ragol · Bronze 随机奖池</strong>
+                <p>普通：Monomate、Monofluid、Antidote、Antiparalysis。</p>
+                <p>较少见：Cure/Poison、Cure/Paralysis、Cure/Slow、Cure/Confuse、Cure/Freeze、Cure/Shock、Hero/Ability、HP/Revival、TP/Revival、PB/Create、Devil/Technique、Devil/Battle、Three Seals、Tablet。</p>
+                <p>稀有：Raikiri、Invisible Guard、Sacred Guard、S-Parts ver2.01、Honeycomb Reflector、Hunter's Shell。</p>
+            </article>
+            <article class="special-card">
+                <strong>Guide · 每次 1 Platinum</strong>
+                <p>六选一；所有武器均为全属性 0。</p>
+                <ul>
+                    <li>Sonic Doll</li>
+                    <li>Sealed J-Sword</li>
+                    <li>Heaven Punisher</li>
+                    <li>Handgun: Guld</li>
+                    <li>Psycho Wand</li>
+                    <li>Prophets of Motav</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+
+    <section id="anniv-2026-future" class="event-section">
+        <div class="section-heading">
+            <div><span class="section-kicker">Deferred redesign</span><h3>延期但未取消的周年改版</h3></div>
+            <p>以下是 2025 年改版公告描述的后续方向，不是 2026 实服规则。</p>
+        </div>
+        <div class="quest-cards">
+            <article class="quest-card"><em>任务</em><strong>活动版 MAE 将退出</strong><p>常驻版 MAE 仍会保留；August Atrocity 也会继续在周年期间开放。新活动任务将采用接近的难度，不会设置一项纯 Forest 的最低门槛路线。</p></article>
+            <article class="quest-card"><em>货币</em><strong>多种 Anniversary Token</strong><p>不同精选任务分别奖励自己的 Token；购买商店物品需要组合多种 Token，促使玩家参与所有活动任务。</p></article>
+            <article class="quest-card"><em>交易</em><strong>Token 可以交易</strong><p>玩家可以用偏好任务所得 Token 与他人交换，不必亲自刷完每项任务；官方示例中的颜色和数量并非最终值。</p></article>
+        </div>
+        <p class="year-callout">未来仍会保留 Platinum Badge 的等价稀有奖励、全服里程碑与可解锁增益。当前持有的旧周年徽章届时不再产出，但兑换任务会继续保留。</p>
+    </section>
+
     <div id="anniv-2026-sources" class="source-links">
-        <a href="https://www.pioneer2.net/community/threads/server-maintenance-scheduled-for-august-12th-2026-at-04-30-utc.33607/" target="_blank" rel="noopener">2026 官方维护公告</a>
+        <a href="https://www.pioneer2.net/community/threads/11th-anniversary-event-thread.33612/" target="_blank" rel="noopener">2026 官方活动帖</a>
+        <a href="https://www.pioneer2.net/community/threads/regarding-future-anniversary-events-%E4%BB%8A%E5%BE%8C%E3%81%AE%E3%82%A2%E3%83%8B%E3%83%90%E3%83%BC%E3%82%B5%E3%83%AA%E3%83%BC%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.31716/" target="_blank" rel="noopener">未来周年改版公告</a>
+        <a href="https://www.pioneer2.net/community/threads/server-maintenance-scheduled-for-august-12th-2026-at-04-30-utc.33607/" target="_blank" rel="noopener">2026 启动维护公告</a>
     </div>
 </article>
