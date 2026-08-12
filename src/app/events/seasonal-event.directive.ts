@@ -142,7 +142,7 @@ export class SeasonalEventBehavior {
         const wrapper = document.createElement('span');
         wrapper.className = 'item-bilingual';
         const zh = document.createElement('span'); zh.className = 'item-zh'; zh.textContent = byName.get(english.toLocaleLowerCase()) ?? '';
-        const en = document.createElement('span'); en.className = 'item-en'; en.textContent = `(${english})`;
+        const en = document.createElement('span'); en.className = 'item-en'; en.textContent = ` (${english})`;
         wrapper.append(zh, en); fragment.append(wrapper);
         cursor = start + english.length;
         return match;
