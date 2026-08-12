@@ -805,6 +805,7 @@
         .anniv-2025 .strategy-callout {
             display: grid;
             grid-template-columns: auto 1fr;
+            align-items: start;
             gap: 16px;
             margin-top: 16px;
             padding: 20px;
@@ -814,8 +815,17 @@
         }
 
         .anniv-2025 .strategy-callout b {
+            display: grid;
+            width: 24px;
+            height: 1.7rem;
+            place-items: center;
             color: var(--a-cyan);
             font-size: 22px;
+            line-height: 1;
+        }
+
+        .anniv-2025 .strategy-callout > div {
+            line-height: 1.7;
         }
 
         .anniv-2025 .badge-cards {

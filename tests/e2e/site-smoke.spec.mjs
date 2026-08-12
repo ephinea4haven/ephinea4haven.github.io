@@ -710,7 +710,9 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('#project_year')).toHaveText('2026');
   await expect(page.locator('#yearNav .year-current')).toHaveText('2026');
   await expect(page.locator('#anniv-2026-quests')).toContainText('任务阵容暂未更换');
-  await expect(page.locator('#anniv-2026-quests')).toContainText('Forest · Caves · Mines · Ruins');
+  await expect(page.locator('#anniv-2026-quests')).toContainText('Maximum Attack E: Forest');
+  await expect(page.locator('#anniv-2026-quests')).toContainText('Maximum Attack E: Tower');
+  await expect(page.locator('#anniv-2026-quests')).toContainText('August Atrocity #1、August Atrocity #2');
   await expect(page.locator('#anniv-2026-changes')).toContainText('/badgenotify');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('11 项 MAE 中最低的通关数');
   await expect(page.locator('#anniv-2026-shop')).toContainText('Heart of Flight Fan');
