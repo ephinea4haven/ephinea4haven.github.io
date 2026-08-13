@@ -12,6 +12,7 @@ const retiredAssets = [
   'assets/js/page-chrome.js',
   'assets/css/bootstrap.min.css',
   'assets/css/vue-multiselect.min.css',
+  'assets/js/i18n/i18n_names.json',
 ];
 
 async function walk(directory) {
@@ -62,6 +63,57 @@ for (const file of angularSources) {
       `${path.relative(root, file)} disables style encapsulation outside the generated-content boundary`,
     );
   }
+}
+
+const itemConsumerContracts = [
+  {
+    file: 'src/app/events/seasonal-event.directive.ts',
+    forbidden: /\bOVERRIDES\b/,
+    message: 'seasonal events must not override canonical item translations',
+  },
+  {
+    file: 'src/app/data/volopt.directive.ts',
+    forbidden: /\bzh\??\s*:/,
+    message: 'Vol Opt display metadata must not contain Chinese item translations',
+  },
+];
+for (const contract of itemConsumerContracts) {
+  const source = await readFile(path.join(root, contract.file), 'utf8');
+  if (!source.includes('ITEM_TRANSLATIONS')) {
+    throw new Error(`${contract.file} must consume canonical ITEM_TRANSLATIONS`);
+  }
+  if (contract.forbidden.test(source)) {
+    throw new Error(`${contract.file}: ${contract.message}`);
+  }
+}
+
+const canonicalItemPages = [
+  'data/weapon_special_reduction.html',
+  'data/enemy_weapon_hit.html',
+  'data/WSBoost.html',
+  'data/gallons_roulette.html',
+];
+const contentGenerator = await readFile(path.join(root, 'scripts/generate_angular_content.mjs'), 'utf8');
+for (const relative of canonicalItemPages) {
+  const source = await readFile(path.join(root, relative), 'utf8');
+  if (!/<page-chrome\b[^>]*\bitem-width\b/.test(source)) {
+    throw new Error(`${relative} must expose the shared item translation width control`);
+  }
+  if (!contentGenerator.includes(`'${relative}', ['ItemTranslationWidthBehavior']`)) {
+    throw new Error(`${relative} must activate ItemTranslationWidthBehavior`);
+  }
+  if (!contentGenerator.includes(`'${relative}'`)) {
+    throw new Error(`${relative} must derive displayed names from canonical item translations`);
+  }
+}
+
+const volOptSource = await readFile(path.join(root, 'guide/volopt.html'), 'utf8');
+const volOptItemList = volOptSource.match(/<ul data-item-translation-list>([\s\S]*?)<\/ul>/)?.[1];
+if (!volOptItemList) {
+  throw new Error('guide/volopt.html is missing its item-translation list contract');
+}
+if (/<strong(?![^>]*data-item-name)[^>]*>[^<]*[A-Za-z][^<]*[\u3400-\u9fff]/.test(volOptItemList)) {
+  throw new Error('guide/volopt.html contains an unmarked hard-coded bilingual item name');
 }
 
 const angularTemplates = (await walk(path.join(root, 'src', 'app')))

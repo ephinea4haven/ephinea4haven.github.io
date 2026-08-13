@@ -805,13 +805,14 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('a[href="https://ephinea.pioneer2.net/11th-anniv-event/"]')).toHaveText('2026 官方实时里程碑');
   await expect(page.locator('#anniv-2026-shop')).toContainText('Heart of Flight Fan');
   await expect(page.locator('#anniv-2026-shop')).toContainText('Blue Powder Coating');
+  await expect(page.locator('#anniv-2026-shop')).toContainText('光子水晶PC (Photon Crystal)');
   await expect(page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' }).locator('strong'))
     .toHaveText('拉古奥盗贼 · 铜牌 随机奖池');
   const thiefPool = page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' });
   await expect(thiefPool.locator('.prize-list').first().locator('li').nth(0))
-    .toHaveText('小ＨＰ回复液 (Monomate)');
+    .toHaveText('小HP回复液 (Monomate)');
   await expect(thiefPool.locator('.prize-list').first().locator('li').nth(1))
-    .toHaveText('小ＴＰ回复液 (Monofluid)');
+    .toHaveText('小TP回复液 (Monofluid)');
   await expect.poll(() => thiefPool.locator('.item-en').evaluateAll(
     (names) => names.length > 10 && names.every((name) => name.textContent?.startsWith(' ')),
   )).toBe(true);
@@ -1005,6 +1006,12 @@ test('Angular content behaviors preserve lookup and Section ID interactions', as
   await expect(page.locator('#result-count')).toContainText(/匹配 \d+ \/ \d+ 项/);
   await expect(page.locator('#lookup tr:visible')).toHaveCount(1);
   await expect(page.locator('#lookup tr:visible').first()).toContainText('V502');
+  await page.locator('#search-input').fill('5TH ANNIV. BLADE');
+  await expect(page.locator('#lookup tr:visible').first().locator('td').nth(1)).toHaveText('PSO五周年纪念感恩刀');
+  await page.getByRole('button', { name: '全角', exact: true }).click();
+  await expect(page.locator('#lookup tr:visible').first().locator('td').nth(1)).toHaveText('ＰＳＯ五周年纪念感恩刀');
+  await page.locator('#search-input').fill('PSO五周年纪念感恩刀');
+  await expect(page.locator('#lookup tr:visible')).toHaveCount(1);
 
   await page.goto('/tools/id.html');
   await page.locator('#name').fill('Haven');
@@ -1018,7 +1025,13 @@ test('Angular content behaviors preserve lookup and Section ID interactions', as
 test('Angular multilingual data tables switch language without legacy globals', async ({ page }) => {
   await page.goto('/data/bdp/');
   await expect.poll(() => page.locator('.bdp-row').count()).toBeGreaterThan(0);
+  const nugBazooka = page.locator('[data-item-zh="NUG-2000火箭炮"]').first();
+  await expect(nugBazooka).toHaveText('NUG-2000火箭炮');
+  await page.getByRole('button', { name: '全角', exact: true }).click();
+  await expect(nugBazooka).toHaveText('ＮＵＧ－２０００火箭炮');
   await page.getByRole('button', { name: 'EN', exact: true }).click();
+  await expect(nugBazooka).toHaveText('Nug2000-Bazooka');
+  await expect(page.getByRole('group', { name: '中文道具译名字符宽度' })).toBeHidden();
   await expect(page.locator('#pageTitle')).toHaveText("Black Paper's Deal Drop Charts");
   await expect(page.locator('.bdp-head')).toContainText('Ultimate');
   await expect.poll(() => page.evaluate(() => ({
@@ -1034,6 +1047,24 @@ test('Angular multilingual data tables switch language without legacy globals', 
   await expect(page.locator('.day-head').first()).toContainText('月曜日');
 });
 
+test('canonical item pages share authoritative names and width preference', async ({ page }) => {
+  await page.goto('/data/weapon_special_reduction.html');
+  const justice = page.locator('[data-item-zh="Ｈ＆Ｓ２５正义制裁"]');
+  await expect(justice).toHaveText('H&S25正义制裁');
+  await expect(page.getByText('暗杀者的投刃', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '全角', exact: true }).click();
+  await expect(justice).toHaveText('Ｈ＆Ｓ２５正义制裁');
+
+  await page.goto('/data/enemy_weapon_hit.html');
+  await expect(page.locator('[data-item-zh="森隐雷藏拳套０型"]')).toHaveText('森隐雷藏拳套０型');
+  await expect(page.getByRole('button', { name: '全角', exact: true })).toHaveAttribute('aria-pressed', 'true');
+
+  await page.goto('/data/WSBoost.html');
+  await expect(page.locator('[data-item-zh="冰杖「达冈」"]')).toHaveText('冰杖「达冈」');
+  await page.getByRole('button', { name: '半角', exact: true }).click();
+  await expect(page.locator('[data-item-zh="冰杖「达冈」"]')).toHaveText('冰杖「达冈」');
+});
+
 test('Angular price guide filters categories and bilingual item names', async ({ page }) => {
   await page.goto('/data/price_guide.html');
   const sections = page.locator('#price-content .price-section');
@@ -1041,6 +1072,17 @@ test('Angular price guide filters categories and bilingual item names', async ({
   await page.locator('#price-search').fill('Lavis Cannon');
   await expect(page.locator('#match-count')).toContainText(/找到 [1-9]\d* \/ \d+ 项/);
   await expect(page.locator('#price-content')).toContainText('圣剑「拉维斯·迦农」');
+  await page.locator('#price-search').fill('Frozen Shooter');
+  await expect(page.locator('#price-content')).toContainText('冷射枪');
+  await page.locator('#price-search').fill('5th Anniv. Blade');
+  await expect(page.locator('#price-content')).toContainText('PSO五周年纪念感恩刀');
+  await page.getByRole('button', { name: '全角', exact: true }).click();
+  await expect(page.locator('#price-content')).toContainText('ＰＳＯ五周年纪念感恩刀');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('itemZhWidth'))).toBe('full');
+  await page.reload();
+  await page.locator('#price-search').fill('5th Anniv. Blade');
+  await expect(page.locator('#price-content')).toContainText('ＰＳＯ五周年纪念感恩刀');
+  await expect(page.getByRole('button', { name: '全角', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await page.locator('#price-search').fill('not-a-real-pso-item');
   await expect(page.locator('.empty-result')).toBeVisible();
   await page.locator('#price-search').fill('');
@@ -1119,8 +1161,12 @@ test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ 
   await expect.poll(() => page.locator('#section-list a').count()).toBeGreaterThan(0);
 
   await page.goto('/guide/volopt.html');
+  await expect(page.locator('[data-item-name="Excalibur"]')).toContainText('Excalibur 王者之剑');
   const firstRow = page.locator('#cast-body tr').first();
   await expect(firstRow).toBeVisible();
+  await expect(firstRow).toContainText('王者之剑');
+  await page.getByRole('button', { name: '全角', exact: true }).click();
+  await expect(page.locator('[data-item-name="Excalibur"]')).toContainText('Excalibur 王者之剑');
   const initial = await firstRow.innerText();
   await page.locator('#mode-tabs [data-mode="one_person"]').click();
   await page.locator('#class-tabs [data-class="ramarl"]').click();

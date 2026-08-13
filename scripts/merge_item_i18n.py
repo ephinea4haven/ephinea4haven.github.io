@@ -1,19 +1,16 @@
 #!/usr/bin/env python3
 """
-Merge item translation data from multiple sources into the canonical
-assets/js/i18n/items_i18n.js dictionary.
+Synchronize the canonical assets/js/i18n/items_i18n.js translation dictionary.
 
-Sources (priority high -> low for conflict resolution on zh):
-  1. Existing items_i18n.js (hand-edited zh names — keep as-is)
-  2. data/en2chinese.html (hand-curated en->zh, no Japanese)
-  3. data/droptable/{bb,dc,ngc}/data/{en,zh,ja}.js (read-only; pair walks)
+The localized droptables under data/droptable/{bb,dc,ngc}/data/ are
+authoritative for Chinese translations of overlapping English names.
+items_i18n.js remains the canonical dictionary consumed by the site and owns
+translations for names that are not present in a droptable. Character-width
+variants are a presentation concern and do not alter the authoritative text.
 
-For en/ja, source #1 wins; otherwise droptable fills gaps. en2chinese has
-no Japanese so it never sets ja.
-
-After merging, items_i18n.js is rewritten with entries sorted by slug
-key. Existing keys/values are preserved if no new info; new entries
-get a generated snake_case slug from their English name.
+After synchronization, items_i18n.js is rewritten with entries sorted by slug
+key. Existing keys/values are preserved; new entries get a generated
+snake_case slug from their English name.
 
 Usage:
   python3 scripts/merge_item_i18n.py [--dry-run]
@@ -26,9 +23,12 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 ITEMS_I18N = REPO / 'assets/js/i18n/items_i18n.js'
-EN2CHINESE = REPO / 'data/en2chinese.html'
 DROPTABLE_DIR = REPO / 'data/droptable'
 REGIONS = ['bb', 'dc', 'ngc']
+
+
+class DroptableShapeError(ValueError):
+    """Raised when localized droptable structures cannot be paired safely."""
 
 
 def slugify(name: str) -> str:
@@ -56,58 +56,112 @@ def load_items_i18n() -> dict:
     return json.loads(m.group(1))
 
 
-def load_en2chinese() -> dict:
-    """Parse <li>EN ZH</li> entries -> en->zh dict."""
-    html = EN2CHINESE.read_text(encoding='utf-8')
-    pairs = {}
-    for m in re.finditer(r'<li>([^<]+)</li>', html):
-        line = m.group(1).strip()
-        # Split: leading non-CJK chars are EN, then CJK starts the ZH part.
-        m2 = re.match(r'^([^一-鿿＀-￯　-〿]+?)\s+([一-鿿＀-￯　-〿].*)$', line)
-        if m2:
-            en, zh = m2.group(1).strip(), m2.group(2).strip()
-            if is_placeholder(en) or is_placeholder(zh) or en == zh:
-                continue
-            pairs.setdefault(en, zh)
-    return pairs
-
-
-def parse_droptable(path: Path) -> dict | None:
+def parse_droptable(path: Path) -> dict:
     if not path.exists():
-        return None
+        raise FileNotFoundError(f'Required droptable locale is missing: {path}')
     js = path.read_text(encoding='utf-8')
     m = re.search(r"window\.DROP_DATA_\w+\s*=\s*(\{.*\});?\s*$", js, re.DOTALL)
     if not m:
-        return None
-    return json.loads(m.group(1))
+        raise DroptableShapeError(f'Could not parse droptable locale: {path}')
+    try:
+        return json.loads(m.group(1))
+    except json.JSONDecodeError as error:
+        raise DroptableShapeError(
+            f'Invalid JSON in droptable locale {path}: {error}'
+        ) from error
+
+
+def parallel_entries(en_values, zh_values, ja_values, *, context: str):
+    """Pair three localized sequences after validating their lengths."""
+    values = (en_values, zh_values, ja_values)
+    if not all(isinstance(value, list) for value in values):
+        raise DroptableShapeError(f'{context}: expected three lists')
+    lengths = tuple(len(value) for value in values)
+    if len(set(lengths)) != 1:
+        raise DroptableShapeError(
+            f'{context}: en/zh/ja lengths differ: {lengths}'
+        )
+    return zip(*values)
+
+
+def walk_parallel_drop_items(en_drop, zh_drop, ja_drop, *, context: str):
+    """Yield localized item triples from one flat or nested drop node."""
+    drops = (en_drop, zh_drop, ja_drop)
+    if not all(isinstance(drop, dict) for drop in drops):
+        raise DroptableShapeError(f'{context}: expected three drop objects')
+
+    shapes = tuple(
+        'item' if 'item' in drop else 'items' if 'items' in drop else 'unknown'
+        for drop in drops
+    )
+    if len(set(shapes)) != 1 or shapes[0] == 'unknown':
+        raise DroptableShapeError(
+            f'{context}: en/zh/ja drop shapes differ: {shapes}'
+        )
+
+    if shapes[0] == 'item':
+        items = tuple(drop['item'] for drop in drops)
+        if not all(isinstance(item, str) for item in items):
+            raise DroptableShapeError(f'{context}: item values must be strings')
+        yield items
+        return
+
+    nested = parallel_entries(
+        *(drop['items'] for drop in drops),
+        context=f'{context}.items',
+    )
+    for index, child_drops in enumerate(nested):
+        yield from walk_parallel_drop_items(
+            *child_drops,
+            context=f'{context}.items[{index}]',
+        )
 
 
 def walk_droptable_items(en_data, zh_data, ja_data):
-    """Yield (en, zh, ja) item triples from parallel walk of monsters + boxes."""
+    """Yield item triples from structurally aligned localized droptables."""
     if not en_data or not zh_data or not ja_data:
-        return
+        raise DroptableShapeError('en/zh/ja droptable data must all be present')
     for difficulty in en_data['data']:
         en_diff = en_data['data'][difficulty]
-        zh_diff = zh_data['data'].get(difficulty, {})
-        ja_diff = ja_data['data'].get(difficulty, {})
+        try:
+            zh_diff = zh_data['data'][difficulty]
+            ja_diff = ja_data['data'][difficulty]
+        except KeyError as error:
+            raise DroptableShapeError(
+                f'{difficulty}: missing localized difficulty'
+            ) from error
         for section in ('monsters', 'boxes'):
             en_sec = en_diff.get(section, {})
             zh_sec = zh_diff.get(section, {})
             ja_sec = ja_diff.get(section, {})
             for episode in en_sec:
                 en_list = en_sec[episode]
-                zh_list = zh_sec.get(episode, [])
-                ja_list = ja_sec.get(episode, [])
-                for i, en_entry in enumerate(en_list):
-                    if i >= len(zh_list) or i >= len(ja_list):
-                        continue
-                    en_drops = en_entry.get('drops', [])
-                    zh_drops = zh_list[i].get('drops', [])
-                    ja_drops = ja_list[i].get('drops', [])
-                    for j, en_drop in enumerate(en_drops):
-                        if j >= len(zh_drops) or j >= len(ja_drops):
-                            continue
-                        yield en_drop['item'], zh_drops[j]['item'], ja_drops[j]['item']
+                try:
+                    zh_list = zh_sec[episode]
+                    ja_list = ja_sec[episode]
+                except KeyError as error:
+                    raise DroptableShapeError(
+                        f'{difficulty}/{section}/{episode}: '
+                        'missing localized episode'
+                    ) from error
+                context = f'{difficulty}/{section}/{episode}'
+                entries = parallel_entries(
+                    en_list, zh_list, ja_list, context=context
+                )
+                for entry_index, entries_by_language in enumerate(entries):
+                    entry_context = f'{context}[{entry_index}]'
+                    drops = tuple(
+                        entry.get('drops', [])
+                        for entry in entries_by_language
+                    )
+                    parallel_drops = parallel_entries(
+                        *drops, context=f'{entry_context}.drops'
+                    )
+                    for drop_index, drops_by_language in enumerate(parallel_drops):
+                        yield from walk_parallel_drop_items(
+                            *drops_by_language,
+                            context=f'{entry_context}.drops[{drop_index}]',
+                        )
 
 
 def load_droptable_pairs() -> tuple[dict, dict]:
@@ -129,67 +183,39 @@ def load_droptable_pairs() -> tuple[dict, dict]:
     return en_to_zh, en_to_ja
 
 
-def merge(items_i18n, en2cn, dt_zh, dt_ja):
+def merge(items_i18n, dt_zh, dt_ja):
     """
     Merge sources into a slug-keyed dict with zh/en/ja per entry.
 
     Returns: (merged_dict, stats)
     """
-    # Drop any existing placeholder entries (?? / ??? / -- etc.) before merging.
-    placeholder_slugs = [
-        slug for slug, entry in items_i18n.items()
-        if is_placeholder(entry.get('en')) or is_placeholder(entry.get('zh'))
-    ]
-    for slug in placeholder_slugs:
-        del items_i18n[slug]
-
-    # Collapse case-insensitive duplicates (e.g. "Adept" and "ADEPT" → one entry).
-    # When duplicates exist, keep the slug whose en is NOT all-caps (so we
-    # preserve the more natural Title Case form), merging missing fields in.
-    by_lower: dict[str, list[str]] = {}
-    for slug, entry in items_i18n.items():
-        en = entry.get('en') or ''
-        if en:
-            by_lower.setdefault(en.lower(), []).append(slug)
-    case_dupes_collapsed = 0
-    for lower, slugs in by_lower.items():
-        if len(slugs) <= 1:
-            continue
-        # Pick canonical: prefer not-all-uppercase, then first encountered
-        slugs_sorted = sorted(slugs, key=lambda s: (items_i18n[s].get('en', '').isupper(), s))
-        keep = slugs_sorted[0]
-        keep_entry = items_i18n[keep]
-        for s in slugs_sorted[1:]:
-            other = items_i18n[s]
-            for field in ('zh', 'en', 'ja'):
-                if not keep_entry.get(field) and other.get(field):
-                    keep_entry[field] = other[field]
-            del items_i18n[s]
-            case_dupes_collapsed += 1
-
     # Start with existing items_i18n; index by EN name (and lowercased EN) for lookup.
     by_en = {}
     by_en_lower = {}
     for slug, entry in items_i18n.items():
         en = entry.get('en')
         if en:
-            by_en[en] = (slug, dict(entry))
-            by_en_lower[en.lower()] = (slug, by_en[en][1])
+            lower = en.lower()
+            if lower in by_en_lower:
+                other_slug, _ = by_en_lower[lower]
+                raise ValueError(
+                    f'duplicate English item names: {other_slug!r} and {slug!r}'
+                )
+            copied = dict(entry)
+            by_en[en] = (slug, copied)
+            by_en_lower[lower] = (slug, copied)
 
     stats = {
-        'pre_existing': len(items_i18n) + len(placeholder_slugs) + case_dupes_collapsed,
-        'placeholders_pruned': len(placeholder_slugs),
-        'case_dupes_collapsed': case_dupes_collapsed,
-        'added_from_en2chinese': 0,
+        'pre_existing': len(items_i18n),
         'added_from_droptable': 0,
         'zh_filled': 0,
+        'zh_updated_from_droptable': 0,
         'ja_filled_from_droptable': 0,
-        'zh_conflicts_kept_existing': 0,
     }
 
-    def upsert(en: str, zh: str | None, ja: str | None):
+    def upsert(en: str, zh: str | None, ja: str | None) -> bool:
         if not en:
-            return
+            return False
         # Match case-insensitively to avoid creating duplicate entries that
         # differ only in case (Title Case vs UPPERCASE).
         existing_key = en if en in by_en else None
@@ -201,16 +227,17 @@ def merge(items_i18n, en2cn, dt_zh, dt_ja):
                 existing_key = entry.get('en')
         if existing_key:
             slug, entry = by_en[existing_key]
-            # Don't overwrite hand-edited zh
-            if zh and entry.get('zh') and entry['zh'] != zh:
-                stats['zh_conflicts_kept_existing'] += 1
-            elif zh and not entry.get('zh'):
+            if zh and not entry.get('zh'):
                 entry['zh'] = zh
                 stats['zh_filled'] += 1
+            elif zh and entry['zh'] != zh:
+                entry['zh'] = zh
+                stats['zh_updated_from_droptable'] += 1
             # ja: fill if missing
             if ja and not entry.get('ja'):
                 entry['ja'] = ja
                 stats['ja_filled_from_droptable'] += 1
+            return False
         else:
             slug = slugify(en)
             # Disambiguate slug collision
@@ -230,23 +257,11 @@ def merge(items_i18n, en2cn, dt_zh, dt_ja):
             items_i18n[slug] = entry
             by_en[en] = (slug, entry)
             by_en_lower[en.lower()] = (slug, entry)
+            return True
 
-    # Apply en2chinese (en -> zh, no ja)
-    for en, zh in en2cn.items():
-        before = en in by_en
-        upsert(en, zh, None)
-        if not before:
-            stats['added_from_en2chinese'] += 1
-
-    # Apply droptable (en -> zh and ja, in two passes so en->zh adds entries first)
-    for en, zh in dt_zh.items():
-        before = en in by_en
-        upsert(en, zh, dt_ja.get(en))
-        if not before:
-            stats['added_from_droptable'] += 1
-    for en, ja in dt_ja.items():
-        if en not in by_en:
-            upsert(en, dt_zh.get(en), ja)
+    # Apply each discovered English name once. Droptable zh wins on overlap.
+    for en in dict.fromkeys((*dt_zh, *dt_ja)):
+        if upsert(en, dt_zh.get(en), dt_ja.get(en)):
             stats['added_from_droptable'] += 1
 
     # Sync entries dict from by_en mutations
@@ -263,26 +278,42 @@ def write_items_i18n(merged: dict):
     sorted_dict = {k: merged[k] for k in sorted_keys}
     body = json.dumps(sorted_dict, ensure_ascii=False, indent=2)
     out = (
-        "/* Single source of truth for item translations.\n"
-        " * Edit by hand to fix zh/en/ja strings; `scripts/merge_item_i18n.py`\n"
-        " * preserves your edits — it only fills missing fields and appends new\n"
-        " * items discovered in en2chinese.html / data/droptable/. */\n"
+        "/* Canonical site dictionary for item translations.\n"
+        " * Droptable zh is authoritative for overlapping English names;\n"
+        " * other entries are maintained here. Width is a display preference.\n"
+        " * Run `scripts/merge_item_i18n.py` after droptable updates. */\n"
         f"window.ITEMS_I18N = {body};\n"
     )
     ITEMS_I18N.write_text(out, encoding='utf-8')
 
 
-def coverage_check(merged: dict):
-    """Report how many Angular item catalog armor/shield/unit names are covered."""
-    itemdata = (REPO / 'src/app/status/item-data.js').read_text(encoding='utf-8')
-    # Extract the English item name from each entry like:
-    #   "00": ["Frame", 5, 0, ...],
-    names = set()
-    for m in re.finditer(r'"\w+":\s*\["([^"]+)"', itemdata):
-        names.add(m.group(1))
-    by_en = {entry['en']: slug for slug, entry in merged.items()}
-    covered = sum(1 for n in names if n in by_en)
-    missing = [n for n in names if n not in by_en]
+def coverage_check(merged: dict, *, itemdata: str | None = None):
+    """Report translation coverage for canonical armor/shield/unit names.
+
+    Hyphenated item-data keys represent stat variants of a canonical unit and
+    are intentionally excluded. English-name matching follows the merge
+    contract and is case-insensitive.
+    """
+    if itemdata is None:
+        itemdata = (REPO / 'src/app/status/item-data.js').read_text(
+            encoding='utf-8'
+        )
+    # Capture a JSON-compatible JavaScript string, including escaped quotes,
+    # from entries such as: "00": ["Frame", 5, 0, ...].
+    pattern = re.compile(r'^\s*"\w+":\s*\["((?:\\.|[^"\\])*)"', re.MULTILINE)
+    names = {
+        json.loads(f'"{match.group(1)}"')
+        for match in pattern.finditer(itemdata)
+    }
+    translated_names = {
+        entry['en'].casefold()
+        for entry in merged.values()
+        if entry.get('en')
+    }
+    missing = sorted(
+        name for name in names if name.casefold() not in translated_names
+    )
+    covered = len(names) - len(missing)
     return covered, len(names), missing
 
 
@@ -293,14 +324,12 @@ def main():
 
     print('Loading sources...')
     items_i18n = load_items_i18n()
-    en2cn = load_en2chinese()
     dt_zh, dt_ja = load_droptable_pairs()
     print(f'  items_i18n.js: {len(items_i18n)} entries')
-    print(f'  en2chinese.html: {len(en2cn)} en->zh pairs')
     print(f'  droptable: {len(dt_zh)} en->zh, {len(dt_ja)} en->ja')
 
     print('\nMerging...')
-    merged, stats = merge(items_i18n, en2cn, dt_zh, dt_ja)
+    merged, stats = merge(items_i18n, dt_zh, dt_ja)
     for k, v in stats.items():
         print(f'  {k}: {v}')
 

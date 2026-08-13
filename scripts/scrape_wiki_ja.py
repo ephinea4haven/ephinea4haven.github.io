@@ -43,10 +43,10 @@ def write_items_i18n(data: dict) -> None:
     sorted_dict = {k: data[k] for k in sorted(data.keys())}
     body = json.dumps(sorted_dict, ensure_ascii=False, indent=2)
     out = (
-        "/* Single source of truth for item translations.\n"
-        " * Edit by hand to fix zh/en/ja strings; `scripts/merge_item_i18n.py`\n"
-        " * preserves your edits — it only fills missing fields and appends new\n"
-        " * items discovered in en2chinese.html / data/droptable/. */\n"
+        "/* Canonical site dictionary for item translations.\n"
+        " * Droptable zh is authoritative for overlapping English names;\n"
+        " * other entries are maintained here. Width is a display preference.\n"
+        " * Run `scripts/merge_item_i18n.py` after droptable updates. */\n"
         f"window.ITEMS_I18N = {body};\n"
     )
     ITEMS_I18N.write_text(out, encoding='utf-8')

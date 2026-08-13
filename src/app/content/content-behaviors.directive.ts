@@ -1,4 +1,11 @@
-import { Directive } from '@angular/core';
+import { Directive, inject } from '@angular/core';
+import {
+  ITEM_TRANSLATION_WIDTH_CHANGE,
+  ItemTranslationWidth,
+  ItemTranslationWidthService,
+  toFullwidthItemTranslation,
+  toHalfwidthItemTranslation,
+} from '../i18n/item-translation-width.service';
 import { BrowserContentBehavior } from './browser-content-behavior.directive';
 
 @Directive({ standalone: true })
@@ -266,7 +273,11 @@ export class ItemLookupBehavior extends BrowserContentBehavior {
 
     const searchable = rows.map((element) => ({
       element,
-      text: element.textContent?.toLocaleLowerCase() ?? '',
+      text: [
+        element.textContent ?? '',
+        toHalfwidthItemTranslation(element.cells[1]?.textContent ?? ''),
+        toFullwidthItemTranslation(element.cells[1]?.textContent ?? ''),
+      ].join(' ').toLocaleLowerCase(),
     }));
     const render = () => {
       const term = input.value.trim().toLocaleLowerCase();
@@ -282,6 +293,21 @@ export class ItemLookupBehavior extends BrowserContentBehavior {
     };
     this.listen(input, 'input', render);
     render();
+  }
+}
+
+@Directive({ standalone: true })
+export class ItemTranslationWidthBehavior extends BrowserContentBehavior {
+  private readonly itemWidth = inject(ItemTranslationWidthService);
+
+  protected connect(): void {
+    this.itemWidth.load();
+    for (const cell of this.host.querySelectorAll<HTMLElement>('#lookup tr > td:nth-child(2)')) {
+      cell.dataset['itemZh'] = cell.textContent ?? '';
+    }
+    const apply = () => this.itemWidth.apply(this.host);
+    this.listen(window, ITEM_TRANSLATION_WIDTH_CHANGE, apply);
+    apply();
   }
 }
 @Directive({ standalone: true })
@@ -376,6 +402,8 @@ export class EventArchiveBehavior extends BrowserContentBehavior {
 
 @Directive({ standalone: true })
 export class LanguageSwitchBehavior extends BrowserContentBehavior {
+  private readonly itemWidth = inject(ItemTranslationWidthService);
+
   protected connect(): void {
     const supported = ['zh', 'en', 'ja'] as const;
     type Language = typeof supported[number];
@@ -384,11 +412,14 @@ export class LanguageSwitchBehavior extends BrowserContentBehavior {
     let saved: string | null = null;
     try { saved = localStorage.getItem('siteLang'); } catch { /* storage may be disabled */ }
     let language: Language = supported.includes(saved as Language) ? saved as Language : 'zh';
+    this.itemWidth.load();
 
     const apply = () => {
       document.documentElement.lang = language === 'zh' ? 'zh-CN' : language;
       for (const element of this.host.querySelectorAll<HTMLElement>('[data-i18n]')) {
-        element.textContent = element.dataset[language] ?? element.dataset['en'] ?? '';
+        const value = element.dataset[language] ?? element.dataset['en'] ?? '';
+        element.textContent = language === 'zh' && element.hasAttribute('data-item-zh')
+          ? this.itemWidth.format(value) : value;
       }
       for (const element of this.host.querySelectorAll<HTMLElement>('[data-lang-content]')) {
         element.hidden = element.dataset['langContent'] !== language;
@@ -402,10 +433,21 @@ export class LanguageSwitchBehavior extends BrowserContentBehavior {
         button.classList.toggle('active', button.dataset['lang'] === language);
         button.setAttribute('aria-pressed', String(button.dataset['lang'] === language));
       }
+      const widthSwitch = host.querySelector<HTMLElement>('.item-width-switch');
+      if (widthSwitch) widthSwitch.hidden = language !== 'zh';
+      this.itemWidth.apply(host);
       const title = this.host.querySelector<HTMLElement>('#pageTitle')?.textContent;
       if (title) document.title = `${title} — PSOBB Wiki`;
     };
     this.listen(host, 'click', ((event: MouseEvent) => {
+      const widthButton = event.target instanceof Element
+        ? event.target.closest<HTMLButtonElement>('[data-item-width]') : null;
+      const requestedWidth = widthButton?.dataset['itemWidth'];
+      if (requestedWidth === 'half' || requestedWidth === 'full') {
+        this.itemWidth.setWidth(requestedWidth as ItemTranslationWidth);
+        apply();
+        return;
+      }
       const button = event.target instanceof Element
         ? event.target.closest<HTMLButtonElement>('[data-lang]') : null;
       const requested = button?.dataset['lang'];
@@ -414,6 +456,7 @@ export class LanguageSwitchBehavior extends BrowserContentBehavior {
       try { localStorage.setItem('siteLang', language); } catch { /* storage may be disabled */ }
       apply();
     }) as EventListener);
+    this.listen(window, ITEM_TRANSLATION_WIDTH_CHANGE, apply);
     apply();
   }
 }

@@ -1,7 +1,7 @@
-/* Single source of truth for item translations.
- * Edit by hand to fix zh/en/ja strings; `scripts/merge_item_i18n.py`
- * preserves your edits — it only fills missing fields and appends new
- * items discovered in en2chinese.html / data/droptable/. */
+/* Canonical site dictionary for item translations.
+ * Droptable zh is authoritative for overlapping English names;
+ * other entries are maintained here. Width is a display preference.
+ * Run `scripts/merge_item_i18n.py` after droptable updates. */
 window.ITEMS_I18N = {
   "5th_anniv_blade": {
     "en": "5TH ANNIV. BLADE",
@@ -9,6 +9,7 @@ window.ITEMS_I18N = {
   },
   "68000": {
     "en": "68000",
+    "zh": "68000",
     "ja": "６８０００"
   },
   "a_beast": {
@@ -123,7 +124,7 @@ window.ITEMS_I18N = {
   },
   "amitie_s_memo": {
     "en": "Amitie's Memo",
-    "zh": "艾米提的笔记",
+    "zh": "艾米提的日记",
     "ja": "アミティのメモ"
   },
   "amore_rose": {
@@ -245,7 +246,7 @@ window.ITEMS_I18N = {
   },
   "angel_tp": {
     "en": "Angel/TP",
-    "zh": "天使级/ＴＰ",
+    "zh": "天使级/TP",
     "ja": "エンジェル/ＴＰ"
   },
   "angle_harp": {
@@ -347,7 +348,7 @@ window.ITEMS_I18N = {
     "ja": "アステロンベルト"
   },
   "asuka": {
-    "zh": "双刀飞鸟",
+    "zh": "飞鸟",
     "en": "Asuka",
     "ja": "アスカ"
   },
@@ -445,7 +446,7 @@ window.ITEMS_I18N = {
   },
   "beam": {
     "en": "Beam",
-    "zh": "激光步枪",
+    "zh": "脉冲步枪",
     "ja": "ビーム"
   },
   "bee_l": {
@@ -524,12 +525,12 @@ window.ITEMS_I18N = {
     "zh": "苍黑如意棒"
   },
   "black_odoshi_domaru": {
-    "zh": "黑色轻铠",
+    "zh": "魔鬼战衣",
     "en": "Black Odoshi Domaru",
     "ja": "黒糸威胴丸"
   },
   "black_odoshi_red_nimaidou": {
-    "zh": "黑系威赤涂桶侧二枚酮",
+    "zh": "天神战衣",
     "en": "Black Odoshi Red Nimaidou",
     "ja": "黒糸威朱塗桶側二枚胴"
   },
@@ -555,7 +556,7 @@ window.ITEMS_I18N = {
   },
   "blaster": {
     "en": "Blaster",
-    "zh": "狙击步枪",
+    "zh": "爆能步枪",
     "ja": "ブラスター"
   },
   "blizzard": {
@@ -586,14 +587,14 @@ window.ITEMS_I18N = {
     "zh": "天堂战衣",
     "ja": "紺糸威紫塗桶側二枚胴"
   },
+  "blue_powder_coating": {
+    "en": "Blue Powder Coating",
+    "zh": "蓝色粉末涂层"
+  },
   "blue_ring": {
     "en": "BLUE RING",
     "zh": "蓝色手镯",
     "ja": "ブルーリング"
-  },
-  "blue_powder_coating": {
-    "en": "Blue Powder Coating",
-    "zh": "蓝色粉末涂层"
   },
   "bluefull_card": {
     "zh": "纯蓝卡片",
@@ -871,12 +872,12 @@ window.ITEMS_I18N = {
   },
   "cell_of_mag_213": {
     "en": "Cell of MAG 213",
-    "zh": "玛古细胞２１３",
+    "zh": "玛古细胞213",
     "ja": "マグ細胞２１３"
   },
   "cell_of_mag_502": {
     "en": "Cell of MAG 502",
-    "zh": "玛古细胞５０２",
+    "zh": "玛古细胞502",
     "ja": "マグ細胞５０２"
   },
   "centurion_ability": {
@@ -946,7 +947,7 @@ window.ITEMS_I18N = {
   },
   "cladding_of_epsilon": {
     "en": "Cladding of Epsilon",
-    "zh": "厄普西隆的装甲",
+    "zh": "伊普西龙的装甲",
     "ja": "イプシロンの外装"
   },
   "claw_2": {
@@ -978,6 +979,10 @@ window.ITEMS_I18N = {
     "en": "Club of Zumiuran",
     "ja": "ズミウランの杖"
   },
+  "coal": {
+    "en": "Coal",
+    "zh": "煤炭"
+  },
   "combat_gear_2": {
     "en": "Combat Gear",
     "zh": "格斗盾",
@@ -991,6 +996,10 @@ window.ITEMS_I18N = {
     "en": "Commander Uniform",
     "zh": "亲卫队指挥官军服",
     "ja": "連盟親衛隊指揮官軍服"
+  },
+  "common_present": {
+    "en": "Common Present",
+    "zh": "普通礼物"
   },
   "congeal_cloak_2": {
     "en": "Congeal Cloak",
@@ -1044,7 +1053,7 @@ window.ITEMS_I18N = {
     "zh": "ＷＥＡＰＯＮＳ水晶徽章"
   },
   "cure_confuse": {
-    "zh": "状态预防/混乱",
+    "zh": "混乱预防",
     "en": "Cure/Confuse",
     "ja": "キュア/コンフューズ"
   },
@@ -1054,7 +1063,7 @@ window.ITEMS_I18N = {
     "ja": "キュア/コンフューズ"
   },
   "cure_freeze": {
-    "zh": "状态预防/冰冻",
+    "zh": "冰冻预防",
     "en": "Cure/Freeze",
     "ja": "キュア/フリーズ"
   },
@@ -1064,7 +1073,7 @@ window.ITEMS_I18N = {
     "ja": "キュア/フリーズ"
   },
   "cure_paralysis": {
-    "zh": "状态预防/麻痹",
+    "zh": "麻痹预防",
     "en": "Cure/Paralysis",
     "ja": "キュア/パラライズ"
   },
@@ -1074,7 +1083,7 @@ window.ITEMS_I18N = {
     "ja": "キュア/パラライズ"
   },
   "cure_poison": {
-    "zh": "状态预防/中毒",
+    "zh": "中毒预防",
     "en": "Cure/Poison",
     "ja": "キュア/ポイズン"
   },
@@ -1084,7 +1093,7 @@ window.ITEMS_I18N = {
     "ja": "キュア/ポイズン"
   },
   "cure_shock": {
-    "zh": "状态预防/感电",
+    "zh": "感电预防",
     "en": "Cure/Shock",
     "ja": "キュア/ショック"
   },
@@ -1094,7 +1103,7 @@ window.ITEMS_I18N = {
     "ja": "キュア/ショック"
   },
   "cure_slow": {
-    "zh": "状态预防/减速",
+    "zh": "缓慢预防",
     "en": "Cure/Slow",
     "ja": "キュア/スロー"
   },
@@ -1115,7 +1124,7 @@ window.ITEMS_I18N = {
   },
   "custom_barrier_ver_oo": {
     "en": "CUSTOM BARRIER ver.OO",
-    "zh": "军用盾 ver.00",
+    "zh": "军用盾ver.OO",
     "ja": "カスタムバリア ver.OO"
   },
   "custom_frame_ver_00": {
@@ -1124,7 +1133,7 @@ window.ITEMS_I18N = {
     "ja": "カスタムフレーム Ver.00"
   },
   "custom_frame_ver_oo": {
-    "zh": "军用铠 ver.00",
+    "zh": "军用铠ver.OO",
     "en": "Custom Frame ver.OO",
     "ja": "カスタムフレーム ver.OO"
   },
@@ -1134,7 +1143,7 @@ window.ITEMS_I18N = {
     "ja": "カスタムレイVer.00"
   },
   "custom_ray_ver_oo": {
-    "zh": "军用光枪 ver.00",
+    "zh": "军用光枪ver.OO",
     "en": "Custom Ray ver.OO",
     "ja": "カスタムレイ ver.OO"
   },
@@ -1144,12 +1153,12 @@ window.ITEMS_I18N = {
     "ja": "カッター"
   },
   "d_parts_ver1_01": {
-    "zh": "D组件 ver1.01",
+    "zh": "Ｄ组件ver1.01",
     "en": "D-Parts ver1.01",
     "ja": "Ｄパーツ ver1.01"
   },
   "d_parts_ver2_10": {
-    "zh": "D组件 ver2.10",
+    "zh": "Ｄ组件ver2.10",
     "en": "D-Parts ver2.10",
     "ja": "Ｄパーツ ver2.10"
   },
@@ -1317,7 +1326,7 @@ window.ITEMS_I18N = {
   },
   "de_rol_le_shell": {
     "en": "De Rol Le Shell",
-    "zh": "迪-洛尔-雷的壳",
+    "zh": "迪·洛尔·雷的壳",
     "ja": "デ・ロル・レの殻"
   },
   "de_rol_le_shield": {
@@ -1401,7 +1410,7 @@ window.ITEMS_I18N = {
     "ja": "デルセイバーの右手"
   },
   "demolition_comet": {
-    "zh": "破坏彗星t",
+    "zh": "破坏彗星",
     "en": "Demolition Comet",
     "ja": "デモリションコメット"
   },
@@ -1419,7 +1428,7 @@ window.ITEMS_I18N = {
     "zh": "提婆"
   },
   "devil_battle": {
-    "zh": "恶魔级/战斗",
+    "zh": "魔鬼级/战斗",
     "en": "Devil/Battle",
     "ja": "デビル/バトル"
   },
@@ -1441,7 +1450,7 @@ window.ITEMS_I18N = {
     "ja": "デビル/テクニック"
   },
   "df_field": {
-    "zh": "DF铠",
+    "zh": "ＤＦ领域",
     "en": "DF Field",
     "ja": "ＤＦフィールド"
   },
@@ -1678,7 +1687,7 @@ window.ITEMS_I18N = {
     "zh": "傀儡操纵器"
   },
   "earth_wand_brownie": {
-    "zh": "土杖-布拉乌尼",
+    "zh": "土杖「布拉乌尼」",
     "en": "Earth Wand: Brownie",
     "ja": "土杖「ブラウニー」"
   },
@@ -1782,7 +1791,7 @@ window.ITEMS_I18N = {
     "zh": "火热"
   },
   "fire_scepter_agni": {
-    "zh": "炎杖-阿耆尼",
+    "zh": "炎杖「阿耆尼」",
     "en": "Fire Scepter: Agni",
     "ja": "炎杖「アグニ」"
   },
@@ -1953,7 +1962,7 @@ window.ITEMS_I18N = {
     "zh": "冰霜"
   },
   "frozen_shooter": {
-    "zh": "极冻枪",
+    "zh": "冷射枪",
     "en": "Frozen Shooter",
     "ja": "フローズンシューター"
   },
@@ -2001,6 +2010,10 @@ window.ITEMS_I18N = {
     "en": "Galatine",
     "zh": "太阳之剑",
     "ja": "ガラティーン"
+  },
+  "game_magazine": {
+    "en": "Game Magazine",
+    "zh": "游戏杂志"
   },
   "game_magazne": {
     "en": "GAME MAGAZNE",
@@ -2271,7 +2284,7 @@ window.ITEMS_I18N = {
     "ja": "ゴッドハンド"
   },
   "god_hp": {
-    "zh": "天神级/HP",
+    "zh": "天神级/ＨＰ",
     "en": "God/HP",
     "ja": "ゴッド/ＨＰ"
   },
@@ -2281,7 +2294,7 @@ window.ITEMS_I18N = {
     "ja": "ゴッド/レグス"
   },
   "god_luck": {
-    "zh": "天神级/幸运",
+    "zh": "天神级/运",
     "en": "God/Luck",
     "ja": "ゴッド/ラック"
   },
@@ -2326,7 +2339,7 @@ window.ITEMS_I18N = {
     "ja": "ゴッド/テクニック"
   },
   "god_tp": {
-    "zh": "天神级/TP",
+    "zh": "天神级/ＴＰ",
     "en": "God/TP",
     "ja": "ゴッド/ＴＰ"
   },
@@ -2489,7 +2502,7 @@ window.ITEMS_I18N = {
     "zh": "嗜血"
   },
   "h_s25_justice": {
-    "zh": "H&S25 正义制裁",
+    "zh": "Ｈ＆Ｓ２５正义制裁",
     "en": "H&S25 Justice",
     "ja": "Ｈ＆Ｓ２５ ジャスティス"
   },
@@ -2525,7 +2538,7 @@ window.ITEMS_I18N = {
     "ja": "短銃「ガルド」"
   },
   "handgun_milla": {
-    "zh": "光枪-米拉",
+    "zh": "小枪「米拉」",
     "en": "Handgun:Milla",
     "ja": "短銃「ミラ」"
   },
@@ -2585,10 +2598,6 @@ window.ITEMS_I18N = {
     "zh": "查欧之心",
     "ja": "チャオの心"
   },
-  "heart_of_flight_fan": {
-    "en": "Heart of Flight Fan",
-    "zh": "扇舞之心"
-  },
   "heart_of_chu_chu": {
     "en": "Heart of Chu Chu",
     "zh": "啾啾之心"
@@ -2631,6 +2640,10 @@ window.ITEMS_I18N = {
     "en": "Heart of Flamberge",
     "zh": "波纹剑之心",
     "ja": "フランベルジュの心"
+  },
+  "heart_of_flight_fan": {
+    "en": "Heart of Flight Fan",
+    "zh": "扇舞之心"
   },
   "heart_of_izmaela": {
     "en": "Heart of Izmaela",
@@ -2677,7 +2690,7 @@ window.ITEMS_I18N = {
     "ja": "バショウセンの心"
   },
   "heart_of_poumn": {
-    "zh": "幻爪-波姆之心",
+    "zh": "幻爪「波姆之心」",
     "en": "Heart of Poumn",
     "ja": "ハート・オブ・ポウム"
   },
@@ -2750,6 +2763,10 @@ window.ITEMS_I18N = {
     "en": "Heart of Yasminkov 9000M",
     "zh": "雅斯米诺科夫9000M之心",
     "ja": "ヤスミノコフ9000Mの心"
+  },
+  "heart_of_yn_0117": {
+    "en": "Heart of YN-0117",
+    "zh": "YN-0117之心"
   },
   "heat": {
     "en": "Heat",
@@ -2875,6 +2892,10 @@ window.ITEMS_I18N = {
     "zh": "狂暴白猿的头",
     "ja": "ヒルデブルーの頭"
   },
+  "hildeblue_s_cane": {
+    "en": "Hildeblue's Cane",
+    "zh": "狂暴白猿头杖"
+  },
   "hildelt": {
     "en": "Hildelt",
     "zh": "雷暴巨猿"
@@ -2936,7 +2957,7 @@ window.ITEMS_I18N = {
     "ja": "ＨＰ/リストレイト"
   },
   "hp_revival": {
-    "zh": "HP/速生",
+    "zh": "ＨＰ/重生",
     "en": "HP/Revival",
     "ja": "ＨＰ/リバイバル"
   },
@@ -2974,7 +2995,7 @@ window.ITEMS_I18N = {
     "zh": "冰晶"
   },
   "ice_staff_dagon": {
-    "zh": "冰杖-达贡",
+    "zh": "冰杖「达冈」",
     "en": "Ice Staff: Dagon",
     "ja": "氷杖「ダゴン」"
   },
@@ -3016,12 +3037,12 @@ window.ITEMS_I18N = {
     "zh": "远古巨神像"
   },
   "infantry_gear": {
-    "zh": "空间机动步兵第32分队上等兵军服",
+    "zh": "空间机动军官军服",
     "en": "Infantry Gear",
     "ja": "空間機動歩兵第３２分隊上等兵軍服"
   },
   "infantry_mantle": {
-    "zh": "空间机动步兵外套",
+    "zh": "空间机动歩兵外套",
     "en": "Infantry Mantle",
     "ja": "空間機動歩兵外套"
   },
@@ -3042,6 +3063,10 @@ window.ITEMS_I18N = {
   "item_exchange_ticket": {
     "en": "Item Exchange Ticket",
     "zh": "道具交换点券"
+  },
+  "item_ticket": {
+    "en": "Item Ticket",
+    "zh": "道具兑换券"
   },
   "izmaela": {
     "en": "IZMAELA",
@@ -3074,7 +3099,7 @@ window.ITEMS_I18N = {
     "ja": "ジョイントパーツ"
   },
   "justy_23st": {
-    "zh": "迦斯特-23ST",
+    "zh": "伽斯帝－２３ＳＴ",
     "en": "Justy-23ST",
     "ja": "ジャスティ－２３ＳＴ"
   },
@@ -3201,7 +3226,7 @@ window.ITEMS_I18N = {
     "ja": "草薙"
   },
   "l_k14_combat": {
-    "zh": "L&K14 战场之狼",
+    "zh": "Ｌ＆Ｋ１４战场之狼",
     "en": "L&K14 Combat",
     "ja": "Ｌ＆Ｋ１４ コンバット"
   },
@@ -3226,7 +3251,7 @@ window.ITEMS_I18N = {
   },
   "laser": {
     "en": "Laser",
-    "zh": "脉冲步枪",
+    "zh": "激光步枪",
     "ja": "レーザー"
   },
   "last_survivor": {
@@ -3272,7 +3297,7 @@ window.ITEMS_I18N = {
   },
   "liberta_kit": {
     "en": "Liberta Kit",
-    "zh": "浮游炮细胞",
+    "zh": "浮游炮零件",
     "ja": "リベルタユニット"
   },
   "lieutenant_gear_2": {
@@ -3331,7 +3356,7 @@ window.ITEMS_I18N = {
     "ja": "ルミナスフィールド"
   },
   "m_a60_vise": {
-    "zh": "M&A60 老虎钳",
+    "zh": "Ｍ＆Ａ６０老虎钳",
     "en": "M&A60 Vise",
     "ja": "Ｍ＆Ａ６０ ヴァイス"
   },
@@ -3377,9 +3402,21 @@ window.ITEMS_I18N = {
     "zh": "玛古",
     "ja": "マグ"
   },
+  "mag_kit": {
+    "en": "Mag Kit",
+    "zh": "玛古套件"
+  },
+  "mag_kits": {
+    "en": "Mag Kits",
+    "zh": "玛古套件"
+  },
   "magic_rock_heart_key": {
     "en": "magic rock \"Heart Key\"",
     "zh": "魔石「心键」"
+  },
+  "magic_rock_heart_key_event": {
+    "en": "Magic Rock Heart Key",
+    "zh": "魔石「心之钥」"
   },
   "magic_rock_moola": {
     "en": "magic rock \"Moola\"",
@@ -3464,6 +3501,10 @@ window.ITEMS_I18N = {
   "master_s": {
     "en": "Master's",
     "zh": "将之"
+  },
+  "material": {
+    "en": "Material",
+    "zh": "材料"
   },
   "mechgun": {
     "en": "Mechgun",
@@ -3647,9 +3688,13 @@ window.ITEMS_I18N = {
     "zh": "村雨"
   },
   "musashi": {
-    "zh": "双刀武藏",
+    "zh": "武藏",
     "en": "Musashi",
     "ja": "ムサシ"
+  },
+  "music_disk": {
+    "en": "Music Disk",
+    "zh": "音乐光盘"
   },
   "naga": {
     "en": "Naga",
@@ -3697,13 +3742,13 @@ window.ITEMS_I18N = {
     "zh": "尼德拉"
   },
   "nug2000_bazooka": {
-    "zh": "NUG2000 火箭炮",
+    "zh": "NUG-2000火箭炮",
     "en": "Nug2000-Bazooka",
     "ja": "Nug2000バズーカ"
   },
   "nug_2000_bazooka": {
     "en": "NUG-2000 BAZOOKA",
-    "zh": "Nug2000火箭炮",
+    "zh": "NUG-2000火箭炮",
     "ja": "Nug2000バズーカ"
   },
   "ob_lily": {
@@ -3711,7 +3756,7 @@ window.ITEMS_I18N = {
     "zh": "变种铃兰"
   },
   "officer_uniform": {
-    "zh": "联盟亲卫队上等兵军服",
+    "zh": "亲卫队军官军服",
     "en": "Officer Uniform",
     "ja": "連盟親衛隊上等兵軍服"
   },
@@ -3854,6 +3899,10 @@ window.ITEMS_I18N = {
     "en": "Partisan of Lightning",
     "ja": "迅雷"
   },
+  "parts": {
+    "en": "Parts",
+    "zh": "部件"
+  },
   "parts_of_baranz": {
     "en": "Parts of Baranz",
     "zh": "机甲堡垒的零件",
@@ -3879,7 +3928,7 @@ window.ITEMS_I18N = {
     "ja": "PB/アンプリファー"
   },
   "pb_create": {
-    "zh": "PB/速生",
+    "zh": "ＰＢ/重生",
     "en": "PB/Create",
     "ja": "ＰＢ/クリエイト"
   },
@@ -3927,7 +3976,7 @@ window.ITEMS_I18N = {
     "ja": "フォトンクロー"
   },
   "photon_crystal": {
-    "zh": "PC",
+    "zh": "光子水晶ＰＣ",
     "en": "Photon Crystal",
     "ja": "フォトンクリスタル"
   },
@@ -3938,7 +3987,7 @@ window.ITEMS_I18N = {
   },
   "photon_filter": {
     "en": "Photon Filter",
-    "zh": "光子滤镜",
+    "zh": "光子滤波器",
     "ja": "フォトンフィルター"
   },
   "photon_hoard": {
@@ -4021,7 +4070,8 @@ window.ITEMS_I18N = {
   },
   "pole": {
     "en": "Pole",
-    "zh": "法师长杖"
+    "zh": "法师长杖",
+    "ja": "ポール"
   },
   "pouilly_slime": {
     "en": "Pouilly Slime",
@@ -4217,6 +4267,10 @@ window.ITEMS_I18N = {
     "zh": "漫步少女",
     "ja": "ランブリングメイ"
   },
+  "random_music_disc": {
+    "en": "Random Music Disc",
+    "zh": "随机音乐光盘"
+  },
   "ranger_field_2": {
     "en": "Ranger Field",
     "zh": "枪手服",
@@ -4239,7 +4293,7 @@ window.ITEMS_I18N = {
   },
   "rappy_s_beak_2": {
     "en": "Rappy's Beak",
-    "zh": "拉比鸟的嘴",
+    "zh": "拉比鸟嘴",
     "ja": "ラッピーのくちばし"
   },
   "rappy_s_fan": {
@@ -4248,7 +4302,7 @@ window.ITEMS_I18N = {
   },
   "rappy_s_wing": {
     "en": "Rappy's Wing",
-    "zh": "拉比鸟的羽毛",
+    "zh": "拉比的羽毛",
     "ja": "ラッピーのハネ"
   },
   "rati": {
@@ -4301,7 +4355,7 @@ window.ITEMS_I18N = {
     "ja": "赤のダガー"
   },
   "red_handgun": {
-    "zh": "红色光枪",
+    "zh": "红色手枪",
     "en": "Red Handgun",
     "ja": "赤のハンドガン"
   },
@@ -4330,13 +4384,17 @@ window.ITEMS_I18N = {
     "zh": "红色手镯",
     "ja": "レッドリング"
   },
+  "red_ring_paint": {
+    "en": "Red Ring Paint",
+    "zh": "红色手镯涂装"
+  },
   "red_saber": {
     "zh": "红色光剑",
     "en": "Red Saber",
     "ja": "赤のセイバー"
   },
   "red_scorpio": {
-    "zh": "红蝎",
+    "zh": "红蝎子",
     "en": "Red Scorpio",
     "ja": "レッドスコルピオ"
   },
@@ -4366,13 +4424,13 @@ window.ITEMS_I18N = {
     "ja": "リジェネレイトギア"
   },
   "regenerate_gear_b_p": {
-    "zh": "再生机能盾 B.P.",
+    "zh": "再生机能盾Ｂ．Ｐ",
     "en": "Regenerate Gear B.P.",
     "ja": "リジェネレイトギアＢ．Ｐ"
   },
   "repeater": {
     "en": "Repeater",
-    "zh": "高射机枪",
+    "zh": "连射机枪",
     "ja": "リピーター"
   },
   "resist_blizzard": {
@@ -4459,6 +4517,10 @@ window.ITEMS_I18N = {
     "zh": "圣泉增幅盾",
     "ja": "レスタマージ"
   },
+  "revival": {
+    "en": "Revival",
+    "zh": "速生"
+  },
   "revival_cuirass": {
     "zh": "回生护甲",
     "en": "Revival Cuirass",
@@ -4470,7 +4532,7 @@ window.ITEMS_I18N = {
     "ja": "リバイバルガーメント"
   },
   "rianov_303snr": {
-    "zh": "莱阿诺夫 303SNR",
+    "zh": "莱阿诺夫３０３ＳＮＲ",
     "en": "Rianov 303SNR",
     "ja": "ライアーノフ303SNR"
   },
@@ -4565,7 +4627,7 @@ window.ITEMS_I18N = {
   },
   "s_beat_s_arms": {
     "en": "S-beat's Arms",
-    "zh": "蓝机忍的双手",
+    "zh": "蓝色机甲忍者的双手",
     "ja": "シノワビートの両手"
   },
   "s_beat_s_blade": {
@@ -4586,18 +4648,18 @@ window.ITEMS_I18N = {
     "zh": "森隐雷藏拳套１型"
   },
   "s_parts_ver1_16": {
-    "zh": "S组件 ver1.16",
+    "zh": "Ｓ组件ver1.16",
     "en": "S-Parts ver1.16",
     "ja": "Ｓパーツ ver1.16"
   },
   "s_parts_ver2_01": {
-    "zh": "S组件 ver2.01",
+    "zh": "Ｓ组件ver2.01",
     "en": "S-Parts ver2.01",
     "ja": "Ｓパーツ ver2.01"
   },
   "s_red_s_arms": {
     "en": "S-red's Arms",
-    "zh": "红机忍的双手",
+    "zh": "红色机甲忍者的双手",
     "ja": "シノワレッドの両手"
   },
   "s_red_s_blade": {
@@ -4732,10 +4794,12 @@ window.ITEMS_I18N = {
   },
   "sh2": {
     "en": "SH2",
+    "zh": "SH2",
     "ja": "ＳＨ２"
   },
   "sh4": {
     "en": "SH4",
+    "zh": "SH4",
     "ja": "ＳＨ４"
   },
   "shadow": {
@@ -4902,7 +4966,7 @@ window.ITEMS_I18N = {
     "zh": "刀魔王"
   },
   "sol_atomizer": {
-    "zh": "魂之粉",
+    "zh": "阳之粉",
     "en": "Sol Atomizer",
     "ja": "ソルアトマイザー"
   },
@@ -4924,6 +4988,10 @@ window.ITEMS_I18N = {
   "soma": {
     "en": "Soma",
     "zh": "苏摩"
+  },
+  "sonic_doll": {
+    "en": "Sonic Doll",
+    "zh": "索尼克人偶"
   },
   "sonic_knuckle": {
     "en": "SONIC KNUCKLE",
@@ -5057,6 +5125,10 @@ window.ITEMS_I18N = {
     "en": "STAR'S WEEP ELEGY",
     "zh": "星哭挽歌"
   },
+  "stealth_kit": {
+    "en": "Stealth Kit",
+    "zh": "隐形套件"
+  },
   "stealth_suit": {
     "en": "STEALTH SUIT",
     "zh": "隐身铠",
@@ -5095,7 +5167,7 @@ window.ITEMS_I18N = {
     "zh": "雷暴"
   },
   "storm_wand_indra": {
-    "zh": "雷杖-因陀罗",
+    "zh": "雷杖「因陀罗」",
     "en": "Storm Wand: Indra",
     "ja": "雷杖「インドラ」"
   },
@@ -5105,7 +5177,8 @@ window.ITEMS_I18N = {
   },
   "striker": {
     "en": "Striker",
-    "zh": "贤者长杖"
+    "zh": "贤者长杖",
+    "ja": "ストライカー"
   },
   "striker_of_chao": {
     "en": "STRIKER OF CHAO",
@@ -5276,7 +5349,7 @@ window.ITEMS_I18N = {
     "ja": "ＴＰ/リストレイト"
   },
   "tp_revival": {
-    "zh": "TP/速生",
+    "zh": "ＴＰ/重生",
     "en": "TP/Revival",
     "ja": "ＴＰ/リバイバル"
   },
@@ -5492,6 +5565,10 @@ window.ITEMS_I18N = {
     "zh": "终极铠甲",
     "ja": "アルティメットフレーム"
   },
+  "ultimate_present": {
+    "en": "Ultimate Present",
+    "zh": "究极礼物"
+  },
   "ultimate_shield": {
     "en": "Ultimate Shield",
     "zh": "终极机械盾",
@@ -5528,17 +5605,17 @@ window.ITEMS_I18N = {
     "zh": "乌莎斯"
   },
   "v101": {
-    "zh": "V101",
+    "zh": "Ｖ１０１",
     "en": "V101",
     "ja": "Ｖ１０１"
   },
   "v501": {
-    "zh": "V501",
+    "zh": "Ｖ５０１",
     "en": "V501",
     "ja": "Ｖ５０１"
   },
   "v502": {
-    "zh": "V502",
+    "zh": "Ｖ５０２",
     "en": "V502",
     "ja": "Ｖ５０２"
   },
@@ -5599,7 +5676,7 @@ window.ITEMS_I18N = {
     "ja": "細菌防具「ラフテリア」"
   },
   "visk_235w": {
-    "zh": "维斯克-235W",
+    "zh": "威斯克－２３５Ｗ",
     "en": "Visk-235W",
     "ja": "ヴィスク－２３５Ｗ"
   },
@@ -5609,7 +5686,7 @@ window.ITEMS_I18N = {
     "ja": "ヴィスク235W"
   },
   "vivienne": {
-    "zh": "维维安",
+    "zh": "维维安双刃",
     "en": "Vivienne",
     "ja": "ヴィヴィアン"
   },
@@ -5640,7 +5717,7 @@ window.ITEMS_I18N = {
     "zh": "紫鲨熊"
   },
   "wals_mk2": {
-    "zh": "瓦尔斯-MK2",
+    "zh": "瓦尔斯－ＭＫ２",
     "en": "Wals-MK2",
     "ja": "ウォルス－ＭＫ２"
   },
@@ -5715,7 +5792,7 @@ window.ITEMS_I18N = {
   },
   "yahoo_s_engine": {
     "en": "Yahoo!'s engine",
-    "zh": "Ｙａｈｏｏ！细胞",
+    "zh": "雅虎！细胞",
     "ja": "Ｙａｈｏｏ！エンジン"
   },
   "yaksa": {
@@ -5723,12 +5800,12 @@ window.ITEMS_I18N = {
     "zh": "夜叉"
   },
   "yamato": {
-    "zh": "双刀大和",
+    "zh": "大和",
     "en": "Yamato",
     "ja": "ヤマト"
   },
   "yamigarasu": {
-    "zh": "妖刀-暗鸦",
+    "zh": "妖刀·暗鸦",
     "en": "Yamigarasu",
     "ja": "ヤミガラス"
   },
@@ -5743,22 +5820,22 @@ window.ITEMS_I18N = {
     "ja": "ヤシャ"
   },
   "yasminkov_2000h": {
-    "zh": "雅斯米诺科夫 2000H",
+    "zh": "雅斯米诺科夫２０００Ｈ",
     "en": "Yasminkov 2000H",
     "ja": "ヤスミノコフ2000H"
   },
   "yasminkov_3000r": {
-    "zh": "雅斯米诺科夫 3000R",
+    "zh": "雅斯米诺科夫３０００Ｒ",
     "en": "Yasminkov 3000R",
     "ja": "ヤスミノコフ3000R"
   },
   "yasminkov_7000v": {
-    "zh": "雅斯米诺科夫 7000V",
+    "zh": "雅斯米诺科夫７０００Ｖ",
     "en": "Yasminkov 7000V",
     "ja": "ヤスミノコフ7000V"
   },
   "yasminkov_9000m": {
-    "zh": "雅斯米诺科夫 9000M",
+    "zh": "雅斯米诺科夫９０００Ｍ",
     "en": "Yasminkov 9000M",
     "ja": "ヤスミノコフ9000M"
   },

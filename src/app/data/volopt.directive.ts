@@ -1,5 +1,10 @@
 import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
 import { VOL_OPT_DATA } from '../generated/data/volopt-data';
+import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
+import {
+  ITEM_TRANSLATION_WIDTH_CHANGE,
+  ItemTranslationWidthService,
+} from '../i18n/item-translation-width.service';
 
 type WeaponValues = Readonly<Record<string, Readonly<Record<string, number>>>>;
 type ShiftaValues = Readonly<Record<string, WeaponValues>>;
@@ -7,20 +12,24 @@ type ClassValues = Readonly<Record<string, ShiftaValues>>;
 type ModeValues = Readonly<Record<string, ClassValues>>;
 
 const PERCENTS = [0, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100];
-const DISPLAY: Readonly<Record<string, { readonly icon: string; readonly className: string; readonly zh?: string }>> = {
-  Excalibur: { icon: '⚔', className: 'weapon-sword', zh: '王者之剑' },
-  Galatine: { icon: '⚔', className: 'weapon-sword', zh: '太阳之剑' },
-  'Sacred Duster': { icon: '★', className: 'weapon-fist', zh: '神圣粉碎者' },
-  'Angry Fist': { icon: '★', className: 'weapon-fist', zh: '愤怒之拳' },
-  'Red Saber + Crimson Coat': { icon: '◆', className: 'set-name', zh: '红色光剑 + 真红外套' },
-  'Orotiagito + Samurai Armor': { icon: '◆', className: 'set-name', zh: '大蛇腭 + 浅黄丝威褄取铠' },
-  Vivienne: { icon: '⚔', className: 'weapon-sword', zh: '维维安双刃' },
+const DISPLAY: Readonly<Record<string, { readonly icon: string; readonly className: string }>> = {
+  Excalibur: { icon: '⚔', className: 'weapon-sword' },
+  Galatine: { icon: '⚔', className: 'weapon-sword' },
+  'Sacred Duster': { icon: '★', className: 'weapon-fist' },
+  'Angry Fist': { icon: '★', className: 'weapon-fist' },
+  'Red Saber + Crimson Coat': { icon: '◆', className: 'set-name' },
+  'Orotiagito + Samurai Armor': { icon: '◆', className: 'set-name' },
+  Vivienne: { icon: '⚔', className: 'weapon-sword' },
 };
+const ITEM_NAMES = new Map(Object.values(ITEM_TRANSLATIONS)
+  .filter((item) => item.en && item.zh)
+  .map((item) => [item.en!.toLocaleLowerCase(), item.zh!] as const));
 
 @Directive({ standalone: true })
 export class VolOptBehavior {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly destroyRef = inject(DestroyRef);
+  private readonly itemWidth = inject(ItemTranslationWidthService);
   private readonly data = VOL_OPT_DATA as ModeValues;
   private mode = 'normal';
   private playerClass = 'humar';
@@ -31,6 +40,9 @@ export class VolOptBehavior {
   }
 
   private connect(): void {
+    this.itemWidth.load();
+    this.localizeStaticItemNames();
+    this.listen(window, ITEM_TRANSLATION_WIDTH_CHANGE, () => this.itemWidth.apply(this.host));
     this.connectTabs('mode-tabs', (button) => { this.mode = button.dataset['mode'] ?? this.mode; });
     this.connectTabs('class-tabs', (button) => { this.playerClass = button.dataset['class'] ?? this.playerClass; });
     const shiftaTabs = this.host.querySelector<HTMLElement>('#shifta-tabs');
@@ -107,7 +119,17 @@ export class VolOptBehavior {
       const icon = document.createElement('span');
       icon.className = display.className;
       icon.textContent = display.icon ? `${display.icon} ` : '';
-      label.append(icon, `${name}${display.zh ? ` ${display.zh}` : ''}`);
+      label.append(icon, name);
+      const itemNames = name.split(' + ');
+      const translations = itemNames.map((itemName) => ITEM_NAMES.get(itemName.toLocaleLowerCase()));
+      const translation = translations.every((itemName): itemName is string => Boolean(itemName))
+        ? translations.join(' + ') : '';
+      if (translation) {
+        const translatedName = document.createElement('span');
+        translatedName.dataset['itemZh'] = translation;
+        translatedName.textContent = this.itemWidth.format(translation);
+        label.append(' ', translatedName);
+      }
       for (const percent of PERCENTS) {
         const cell = row.insertCell();
         const value = values[String(percent)];
@@ -116,6 +138,17 @@ export class VolOptBehavior {
       }
       return row;
     }));
+  }
+
+  private localizeStaticItemNames(): void {
+    for (const element of this.host.querySelectorAll<HTMLElement>('[data-item-name]')) {
+      const translation = ITEM_NAMES.get((element.dataset['itemName'] ?? '').toLocaleLowerCase());
+      if (!translation) continue;
+      const translatedName = document.createElement('span');
+      translatedName.dataset['itemZh'] = translation;
+      translatedName.textContent = this.itemWidth.format(translation);
+      element.append(' ', translatedName);
+    }
   }
 
   private listen(target: EventTarget, event: string, listener: EventListener): void {

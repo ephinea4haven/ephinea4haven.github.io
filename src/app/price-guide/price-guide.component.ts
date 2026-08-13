@@ -1,6 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PRICE_DATA, PRICE_NAMES } from '../generated/data/price-data';
+import { PRICE_DATA } from '../generated/data/price-data';
+import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
+import {
+  ItemTranslationWidthService,
+  toFullwidthItemTranslation,
+  toHalfwidthItemTranslation,
+} from '../i18n/item-translation-width.service';
 import { PageChromeComponent } from '../shared/page-chrome.component';
 
 interface PriceSection {
@@ -10,6 +16,9 @@ interface PriceSection {
 }
 
 const SECTIONS = PRICE_DATA as readonly PriceSection[];
+const ITEM_NAMES = new Map(Object.values(ITEM_TRANSLATIONS)
+  .filter((item) => item.en)
+  .map((item) => [item.en!.toLocaleLowerCase(), item] as const));
 const SECTION_LABELS: Readonly<Record<string, string>> = {
   'Common weapons - Melee commons': '普通武器 - 近战', 'Common weapons - Ranged commons': '普通武器 - 远程',
   'Common weapons - Technique commons': '普通武器 - 法术', 'Common weapons - Combination commons': '普通武器 - 合成',
@@ -48,6 +57,7 @@ const HEADER_LABELS: Readonly<Record<string, string>> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceGuideComponent {
+  private readonly itemWidth = inject(ItemTranslationWidthService);
   readonly category = signal('all');
   readonly search = signal('');
   readonly categories = [...new Set(SECTIONS.map((section) => this.categoryFor(section.section)))];
@@ -73,7 +83,10 @@ export class PriceGuideComponent {
   nameKey(headers: readonly string[]): string {
     return ['Item Name', 'Weapon Type', 'Item', 'Name'].find((key) => headers.includes(key)) ?? headers[0];
   }
-  itemName(value: string | null | undefined): string { return value ? PRICE_NAMES[value]?.zh ?? '' : ''; }
+  itemName(value: string | null | undefined): string {
+    const translation = value ? ITEM_NAMES.get(value.toLocaleLowerCase())?.zh : '';
+    return translation ? this.itemWidth.format(translation) : '';
+  }
   cellClass(value: string | null | undefined): string {
     if (value == null || value === 'N/A') return 'val-na';
     if (value === '0') return 'val-zero';
@@ -87,6 +100,12 @@ export class PriceGuideComponent {
 
   private searchText(section: PriceSection, row: Readonly<Record<string, string | null | undefined>>): string {
     const name = row[this.nameKey(section.headers)];
-    return `${Object.values(row).filter(Boolean).join(' ')} ${this.itemName(name)}`.toLocaleLowerCase();
+    const translation = name ? ITEM_NAMES.get(name.toLocaleLowerCase())?.zh ?? '' : '';
+    return [
+      Object.values(row).filter(Boolean).join(' '),
+      translation,
+      toHalfwidthItemTranslation(translation),
+      toFullwidthItemTranslation(translation),
+    ].join(' ').toLocaleLowerCase();
   }
 }

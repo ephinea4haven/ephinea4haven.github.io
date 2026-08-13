@@ -1,14 +1,10 @@
 import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
 import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
+import {
+  ITEM_TRANSLATION_WIDTH_CHANGE,
+  ItemTranslationWidthService,
+} from '../i18n/item-translation-width.service';
 
-const OVERRIDES = [
-  ['Ultimate Present', '究极礼物'], ['Common Present', '普通礼物'], ['Music Disk', '音乐光盘'],
-  ['Random Music Disc', '随机音乐光盘'], ['Item Ticket', '道具兑换券'], ['Red Ring Paint', '红色手镯涂装'],
-  ['Photon Crystal', '光子水晶'], ['Mag Kits', '玛古套件'], ['Mag Kit', '玛古套件'],
-  ['Sonic Doll', '索尼克人偶'], ['Game Magazine', '游戏杂志'], ['Heart of YN-0117', 'YN-0117之心'],
-  ['Magic Rock Heart Key', '魔石「心之钥」'], ['Stealth Kit', '隐形套件'], ['Revival', '速生'],
-  ['Material', '材料'], ['Parts', '部件'], ['Coal', '煤炭'],
-] as const;
 const AMBIGUOUS = new Set(['disk', 'heart', 'hit', 'mind', 'pioneer', 'rappy']);
 const ANNIVERSARY_LABELS = new Map([
   ['Bronze / Silver / Gold Shops', '铜牌/银牌/金牌商店'], ['Anniversary Badge Shop', '周年徽章商店'],
@@ -42,6 +38,7 @@ const NPC_IMAGES = new Map<string, readonly [string, string]>([
 export class SeasonalEventBehavior {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly destroyRef = inject(DestroyRef);
+  private readonly itemWidth = inject(ItemTranslationWidthService);
   private previewAnchor: HTMLElement | null = null;
 
   constructor() {
@@ -53,6 +50,7 @@ export class SeasonalEventBehavior {
     const content = this.host.querySelector<HTMLElement>('#content');
     if (!masthead || !content) return;
     const eventName = masthead.dataset['event'] ?? '';
+    this.itemWidth.load();
     const years = (masthead.dataset['years'] ?? '').split(',').map(Number).filter(Number.isFinite);
     const defaultYear = Number(masthead.dataset['defaultYear']);
     const requested = Number(new URLSearchParams(location.search).get('year'));
@@ -86,6 +84,7 @@ export class SeasonalEventBehavior {
       }
       this.localizeItems(eventName === 'christmas'
         ? this.host.querySelector<HTMLElement>('.christmas-overview')! : content);
+      this.itemWidth.apply(this.host);
       if (eventName === 'anniversary') this.localizeAnniversaryLabels(content);
       const anchor = location.hash ? this.host.querySelector<HTMLElement>(location.hash) : null;
       anchor?.scrollIntoView();
@@ -110,13 +109,16 @@ export class SeasonalEventBehavior {
       if (event.key === 'Escape') this.setYearRailCollapsed(true);
     };
     const resize = () => this.closePreview();
+    const applyItemWidth = () => this.itemWidth.apply(this.host);
     this.host.addEventListener('click', click);
     this.host.addEventListener('keydown', keydown);
     window.addEventListener('resize', resize);
+    window.addEventListener(ITEM_TRANSLATION_WIDTH_CHANGE, applyItemWidth);
     this.destroyRef.onDestroy(() => {
       this.host.removeEventListener('click', click);
       this.host.removeEventListener('keydown', keydown);
       window.removeEventListener('resize', resize);
+      window.removeEventListener(ITEM_TRANSLATION_WIDTH_CHANGE, applyItemWidth);
     });
   }
 
@@ -142,9 +144,9 @@ export class SeasonalEventBehavior {
 
   private localizeItems(container: HTMLElement | null): void {
     if (!container) return;
-    const translations = [...OVERRIDES, ...Object.values(ITEM_TRANSLATIONS)
+    const translations = Object.values(ITEM_TRANSLATIONS)
       .filter((item) => item.en && item.zh && item.en !== item.zh && !AMBIGUOUS.has(item.en.toLocaleLowerCase()))
-      .map((item) => [item.en!, item.zh!] as const)];
+      .map((item) => [item.en!, item.zh!] as const);
     const source = container.textContent?.toLocaleLowerCase() ?? '';
     const seen = new Set<string>();
     const matches = translations.filter(([en]) => {
@@ -174,7 +176,11 @@ export class SeasonalEventBehavior {
         fragment.append(text.slice(cursor, start).replace(/([\u3400-\u9fff])\s+$/, '$1'));
         const wrapper = document.createElement('span');
         wrapper.className = 'item-bilingual';
-        const zh = document.createElement('span'); zh.className = 'item-zh'; zh.textContent = byName.get(english.toLocaleLowerCase()) ?? '';
+        const zh = document.createElement('span');
+        const translation = byName.get(english.toLocaleLowerCase()) ?? '';
+        zh.className = 'item-zh';
+        zh.dataset['itemZh'] = translation;
+        zh.textContent = this.itemWidth.format(translation);
         const en = document.createElement('span'); en.className = 'item-en'; en.textContent = ` (${english})`;
         wrapper.append(zh, en); fragment.append(wrapper);
         cursor = start + english.length;
@@ -234,6 +240,12 @@ export class SeasonalEventBehavior {
 
   private handleClick(event: Event): void {
     const target = event.target instanceof Element ? event.target : null;
+    const widthButton = target?.closest<HTMLButtonElement>('[data-item-width]');
+    const requestedWidth = widthButton?.dataset['itemWidth'];
+    if (requestedWidth === 'half' || requestedWidth === 'full') {
+      this.itemWidth.setWidth(requestedWidth);
+      return;
+    }
     const railToggle = target?.closest<HTMLElement>('[data-year-rail-toggle]');
     if (railToggle) {
       const shell = railToggle.closest<HTMLElement>('.anniversary-page-shell');

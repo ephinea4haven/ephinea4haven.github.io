@@ -29,12 +29,17 @@ const pageBehaviors = new Map([
   ['guide/ep2ch.html', ['LanguageSwitchBehavior']],
   ['tools/materialplan.html', ['BackToTopBehavior']],
   ['tools/id.html', ['SectionIdBehavior']],
-  ['data/en2chinese.html', ['ItemLookupBehavior']],
+  ['data/en2chinese.html', ['ItemLookupBehavior', 'ItemTranslationWidthBehavior']],
+  ['data/weapon_special_reduction.html', ['ItemTranslationWidthBehavior']],
+  ['data/enemy_weapon_hit.html', ['ItemTranslationWidthBehavior']],
+  ['data/WSBoost.html', ['ItemTranslationWidthBehavior']],
+  ['data/gallons_roulette.html', ['ItemTranslationWidthBehavior']],
   ['event/easter.html', ['EventArchiveBehavior']],
   ['event/halloween.html', ['EventArchiveBehavior']],
   ['event/valentines.html', ['EventArchiveBehavior']],
   ['data/bdp/index.html', ['LanguageSwitchBehavior']],
   ['data/prizelist/index.html', ['LanguageSwitchBehavior']],
+  ['guide/banners.html', ['ItemTranslationWidthBehavior']],
   ['guide/volopt.html', ['VolOptBehavior']],
   ['guide/rbr.html', ['RbrBehavior']],
   ['tools/mag.html', ['MagBehavior']],
@@ -95,6 +100,14 @@ function escapeHtml(value) {
     .replaceAll('"', '&quot;');
 }
 
+function toHalfwidthItemTranslation(value) {
+  return String(value).replace(/[\u3000\uFF01-\uFF5E]/g, (character) => (
+    character === '\u3000'
+      ? ' '
+      : String.fromCharCode(character.charCodeAt(0) - 0xFEE0)
+  ));
+}
+
 const itemTranslationSource = await readFile(path.join(root, 'assets/js/i18n/items_i18n.js'), 'utf8');
 const itemTranslationSandbox = { window: {} };
 vm.runInNewContext(itemTranslationSource, itemTranslationSandbox, {
@@ -104,6 +117,13 @@ const itemTranslations = Object.values(itemTranslationSandbox.window.ITEMS_I18N 
   .filter((item) => item?.en && item?.zh)
   .sort((left, right) => left.en.localeCompare(right.en, 'en', { sensitivity: 'base' }));
 const itemTranslationById = itemTranslationSandbox.window.ITEMS_I18N || {};
+function normalizeEnglishItemName(value) {
+  return value.replaceAll(/[‘’]/g, "'").trim().toLocaleLowerCase('en');
+}
+
+const itemTranslationByEnglish = new Map(itemTranslations.map((item) => [
+  normalizeEnglishItemName(item.en), item,
+]));
 await mkdir(path.join(root, 'src/app/generated/i18n'), { recursive: true });
 await writeFile(path.join(root, 'src/app/generated/i18n/items.ts'), `export interface ItemTranslation {
   readonly en?: string; readonly zh?: string; readonly ja?: string;
@@ -136,9 +156,8 @@ vm.runInNewContext(`${await readFile(path.join(root, 'assets/js/price_guide_data
   filename: 'assets/js/price_guide_data.js', timeout: 1000,
 });
 const priceData = priceSandbox.__PRICE_DATA;
-const priceNames = JSON.parse(await readFile(path.join(root, 'assets/js/i18n/i18n_names.json'), 'utf8')).items || {};
 await writeFile(path.join(root, 'src/app/generated/data/price-data.ts'),
-  `export const PRICE_DATA = ${JSON.stringify(priceData)} as const;\nexport const PRICE_NAMES: Readonly<Record<string, { readonly zh?: string; readonly en?: string; readonly ja?: string }>> = ${JSON.stringify(priceNames)};\n`);
+  `export const PRICE_DATA = ${JSON.stringify(priceData)} as const;\n`);
 const magEvolutionSandbox = { window: {} };
 const magSimulationSandbox = { window: {} };
 vm.runInNewContext(await readFile(path.join(root, 'assets/js/mag-evolution.js'), 'utf8'), magEvolutionSandbox, {
@@ -154,6 +173,14 @@ function i18nAttributes(values) {
   return `data-i18n data-zh="${escapeHtml(values.zh)}" data-en="${escapeHtml(values.en)}" data-ja="${escapeHtml(values.ja)}"`;
 }
 
+function itemI18nAttributes(values) {
+  return `${i18nAttributes(values)} data-item-zh="${escapeHtml(values.zh)}"`;
+}
+
+function visibleItemZh(values) {
+  return escapeHtml(toHalfwidthItemTranslation(values.zh));
+}
+
 function itemI18n(id) {
   const item = itemTranslationById[id] || {};
   return {
@@ -163,8 +190,110 @@ function itemI18n(id) {
   };
 }
 
+function itemByEnglish(name, context) {
+  const cleaned = name.replace(/\s*⭐.*$/, '').trim();
+  const item = itemTranslationByEnglish.get(normalizeEnglishItemName(cleaned));
+  if (!item) throw new Error(`${context}: unknown canonical item ${JSON.stringify(cleaned)}`);
+  return {
+    zh: item.zh || item.en,
+    en: item.en || item.zh,
+    ja: item.ja || item.en || item.zh,
+  };
+}
+
+function nodeText(node) {
+  if (node.nodeName === '#text') return node.value || '';
+  return (node.childNodes || []).map(nodeText).join('');
+}
+
+function replaceInnerHtml(source, replacements) {
+  for (const { node, html } of replacements.sort((left, right) => (
+    right.node.sourceCodeLocation.startTag.endOffset - left.node.sourceCodeLocation.startTag.endOffset
+  ))) {
+    source = `${source.slice(0, node.sourceCodeLocation.startTag.endOffset)}${html}${source.slice(node.sourceCodeLocation.endTag.startOffset)}`;
+  }
+  return source;
+}
+
+function canonicalItemMarkup(item) {
+  return `<span data-item-zh="${escapeHtml(item.zh)}">${visibleItemZh(item)}</span>`;
+}
+
+function buildCanonicalItemConsumers(relative, source) {
+  if (![
+    'data/weapon_special_reduction.html',
+    'data/enemy_weapon_hit.html',
+    'data/WSBoost.html',
+    'data/gallons_roulette.html',
+  ].includes(relative)) return source;
+
+  const document = parse(source, { sourceCodeLocationInfo: true });
+  const replacements = [];
+  visit(document, (node) => {
+    if (!node.sourceCodeLocation?.startTag || !node.sourceCodeLocation?.endTag) return;
+    const attributes = new Map((node.attrs || []).map(({ name, value }) => [name, value]));
+    const explicitEnglish = attributes.get('data-item-en');
+    if (explicitEnglish) {
+      const item = itemByEnglish(explicitEnglish, relative);
+      const english = nodeText(node).trim();
+      replacements.push({
+        node,
+        html: `${english ? `${escapeHtml(english)} ` : ''}${canonicalItemMarkup(item)}`,
+      });
+      return;
+    }
+    let ancestor = node.parentNode;
+    while (ancestor && ancestor.tagName !== 'table') ancestor = ancestor.parentNode;
+    const canonicalBilingualTable = ancestor?.attrs?.some((attribute) => (
+      attribute.name === 'data-canonical-bilingual-items'
+    ));
+    if (relative === 'data/WSBoost.html' && node.tagName === 'td' && canonicalBilingualTable) {
+      const text = nodeText(node).trim();
+      const normalized = normalizeEnglishItemName(text);
+      const match = [...itemTranslationByEnglish.entries()]
+        .filter(([english]) => normalized.startsWith(`${english} `))
+        .sort(([left], [right]) => right.length - left.length)[0];
+      if (match) {
+        const item = match[1];
+        replacements.push({
+          node,
+          html: `${escapeHtml(item.en)} ${canonicalItemMarkup(item)}`,
+        });
+      }
+      return;
+    }
+    if (node.tagName !== 'table') return;
+    const rows = [];
+    visit(node, (child) => {
+      if (child.tagName === 'tr') rows.push(child);
+    });
+    const headers = rows[0]?.childNodes?.filter((child) => child.tagName === 'th') || [];
+    const zhIndex = headers.findIndex((header) => nodeText(header).trim() === '中文名');
+    const enIndex = headers.findIndex((header) => nodeText(header).trim() === '武器');
+    if (zhIndex < 0 || enIndex < 0) return;
+    for (const [index, row] of rows.slice(1).entries()) {
+      const cells = row.childNodes?.filter((child) => child.tagName === 'td') || [];
+      if (!cells[enIndex] || !cells[zhIndex]) continue;
+      const item = itemByEnglish(nodeText(cells[enIndex]), `${relative} row ${index + 1}`);
+      replacements.push({ node: cells[zhIndex], html: canonicalItemMarkup(item) });
+    }
+  });
+  return replaceInnerHtml(source, replacements);
+}
+
+function assertHalfwidthItemFirstPaint(relative, source) {
+  const document = parse(source);
+  visit(document, (node) => {
+    if (!node.attrs?.some((attribute) => attribute.name === 'data-item-zh')) return;
+    const visible = nodeText(node);
+    if (/[\u3000\uFF01-\uFF5E]/.test(visible)) {
+      throw new Error(`${relative}: item translation is not halfwidth on first paint: ${visible}`);
+    }
+  });
+}
+
 function languageButtons() {
-  return '<button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中</button><button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button><button type="button" class="lang-btn" data-lang="ja" aria-pressed="false">日</button>';
+  return '<button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中</button><button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button><button type="button" class="lang-btn" data-lang="ja" aria-pressed="false">日</button><span class="item-width-switch" role="group" aria-label="中文道具译名字符宽度"><span class="item-width-label">中文译名</span><button type="button" class="active" data-item-width="half" aria-pressed="true">半角</button><button type="button" data-item-width="full" aria-pressed="false">全角</button></span>';
 }
 
 function buildBdpContent(source) {
@@ -186,9 +315,9 @@ function buildBdpContent(source) {
     const label = itemI18n(section.label_id);
     const cells = section.columns.map((column) => `<td valign="top">${column.map((id) => {
       const item = itemI18n(id);
-      return `<span ${i18nAttributes(item)}>${escapeHtml(item.zh)}</span>`;
+      return `<span ${itemI18nAttributes(item)}>${visibleItemZh(item)}</span>`;
     }).join('<br>')}</td>`).join('');
-    return `<tr class="bdp-row bdp-row-${index}"><td class="monster-label"><strong ${i18nAttributes(label)}>${escapeHtml(label.zh)}</strong></td>${cells}</tr>`;
+    return `<tr class="bdp-row bdp-row-${index}"><td class="monster-label"><strong ${itemI18nAttributes(label)}>${visibleItemZh(label)}</strong></td>${cells}</tr>`;
   }).join('');
   return source
     .replace('<h1 id="pageTitle">黑页危险交易掉落表</h1>', `<h1 id="pageTitle" ${i18nAttributes(labels.title)}>${labels.title.zh}</h1>`)
@@ -212,7 +341,7 @@ function buildPrizeContent(source) {
   const tables = prizeData.map((day) => {
     const itemCells = day.columns.map((column) => `<td valign="top">${column.map((id) => {
       const item = itemI18n(id);
-      return `<span ${i18nAttributes(item)}>${escapeHtml(item.zh)}</span>`;
+      return `<span ${itemI18nAttributes(item)}>${visibleItemZh(item)}</span>`;
     }).join('<br>')}</td>`).join('');
     return `<section id="day-${day.key}" class="day-section"><table class="prize-table"><tbody><tr class="day-head"><td colspan="3" ${i18nAttributes(weekdays[day.key])}>${weekdays[day.key].zh}</td></tr><tr class="odds-head">${day.odds.map((odds) => `<td><strong>${escapeHtml(odds)}</strong></td>`).join('')}</tr><tr class="items-row">${itemCells}</tr></tbody></table></section>`;
   }).join('');
@@ -257,7 +386,7 @@ function buildBannersContent(source) {
     const localized = source.slice(start, end).replace(pattern, (match, prefix, english) => {
       const zh = candidatesByName.get(english.toLocaleLowerCase());
       if (!zh) return match;
-      return `${prefix}<span class="item-bilingual"><span class="item-zh">${escapeHtml(zh)}</span><span class="item-en">(${english})</span></span>`;
+      return `${prefix}<span class="item-bilingual"><span class="item-zh" data-item-zh="${escapeHtml(zh)}">${escapeHtml(toHalfwidthItemTranslation(zh))}</span><span class="item-en">(${english})</span></span>`;
     });
     source = `${source.slice(0, start)}${localized}${source.slice(end)}`;
   }
@@ -308,8 +437,9 @@ async function buildSeasonalContent(relative, source) {
 }
 
 async function applyBuildTimeContent(relative, source) {
+  source = buildCanonicalItemConsumers(relative, source);
   if (relative === 'data/en2chinese.html') {
-    const rows = itemTranslations.map((item) => `<tr><td>${escapeHtml(item.en)}</td><td>${escapeHtml(item.zh)}</td><td${item.ja ? '' : ' class="empty"'}>${escapeHtml(item.ja || '—')}</td></tr>`).join('');
+    const rows = itemTranslations.map((item) => `<tr><td>${escapeHtml(item.en)}</td><td>${escapeHtml(toHalfwidthItemTranslation(item.zh))}</td><td${item.ja ? '' : ' class="empty"'}>${escapeHtml(item.ja || '—')}</td></tr>`).join('');
     return source.replace('<tbody id="lookup"></tbody>', `<tbody id="lookup">${rows}</tbody>`);
   }
   if (relative === 'data/bdp/index.html') return buildBdpContent(source);
@@ -428,6 +558,7 @@ for (const file of candidates) {
   const relative = path.relative(root, file).split(path.sep).join('/');
   if (explicitPages.has(relative)) continue;
   const source = await applyBuildTimeContent(relative, await readFile(file, 'utf8'));
+  assertHalfwidthItemFirstPaint(relative, source);
   const details = pageDetails(file, source, relative);
   if (!details) continue;
 
