@@ -708,9 +708,8 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await page.goto('/event/anniversary.html');
 
   await expect(page.locator('#project_year')).toHaveText('2026');
-  const yearPicker = page.locator('#yearNav select');
-  await expect(yearPicker).toHaveValue('2026');
-  await expect(yearPicker.locator('option')).toHaveCount(11);
+  await expect(page.locator('#yearNav .year-current')).toHaveText('2026');
+  await expect(page.locator('#yearNav a')).toHaveCount(10);
   await expect(page.locator('#anniv-2026-quests')).toContainText('任务阵容暂未更换');
   await expect(page.locator('#anniv-2026-quests')).toContainText('Maximum Attack E: Forest');
   await expect(page.locator('#anniv-2026-quests')).toContainText('Maximum Attack E: Tower');
@@ -740,7 +739,7 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
     (paragraphs) => paragraphs.every((paragraph) => getComputedStyle(paragraph).textAlign === 'left'),
   )).toBe(true);
 
-  await yearPicker.selectOption('2025');
+  await page.locator('#yearNav a', { hasText: '2025' }).click();
   await expect(page.locator('#project_year')).toHaveText('2025');
   await expect(page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' })).toBeVisible();
 });
@@ -757,8 +756,30 @@ test('2026 anniversary navigation contains only primary guide sections', async (
     '全服里程碑',
     '完整商店',
   ]);
-  await expect(nav.locator('a[href="#anniv-2026-future"]')).toHaveCount(0);
-  await expect(nav.locator('a[href="#anniv-2026-sources"]')).toHaveCount(0);
+  await expect(nav.locator('a[href$="#anniv-2026-future"]')).toHaveCount(0);
+  await expect(nav.locator('a[href$="#anniv-2026-sources"]')).toHaveCount(0);
+
+  for (const link of await nav.locator('a').all()) {
+    const href = await link.getAttribute('href');
+    const hash = new URL(href, 'http://localhost').hash;
+    await link.click();
+    await expect(page).toHaveURL(new RegExp(`/event/anniversary\\.html\\?year=2026${hash}$`));
+    await expect(page.locator(hash)).toBeVisible();
+  }
+});
+
+test('2025 anniversary section navigation stays on the selected archive year', async ({ page }) => {
+  await page.goto('/event/anniversary.html?year=2025');
+  const nav = page.locator('.anniv-2025 .section-nav');
+  await expect(nav.locator('a')).toHaveCount(6);
+
+  for (const link of await nav.locator('a').all()) {
+    const href = await link.getAttribute('href');
+    const hash = new URL(href, 'http://localhost').hash;
+    await link.click();
+    await expect(page).toHaveURL(new RegExp(`/event/anniversary\\.html\\?year=2025${hash}$`));
+    await expect(page.locator(hash)).toBeVisible();
+  }
 });
 
 test('anniversary years expose complete localized milestone contracts', async ({ page }) => {

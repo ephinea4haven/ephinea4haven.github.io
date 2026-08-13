@@ -63,26 +63,13 @@ export class SeasonalEventBehavior {
     const emblem = this.host.querySelector<HTMLElement>('.emblem-number');
     if (emblem && eventName === 'anniversary') emblem.textContent = String(selected - 2015);
     const nav = this.host.querySelector<HTMLElement>('#yearNav');
-    if (nav) {
-      const label = document.createElement('label');
-      label.className = 'year-picker';
-      const labelText = document.createElement('span');
-      labelText.textContent = '活动年份';
-      const select = document.createElement('select');
-      select.setAttribute('aria-label', '选择周年活动年份');
-      select.replaceChildren(...years.map((year) => {
-        const option = document.createElement('option');
-        option.value = String(year);
-        option.textContent = String(year);
-        option.selected = year === selected;
-        return option;
-      }));
-      select.addEventListener('change', () => {
-        location.href = `/event/${eventName}.html?year=${select.value}`;
-      });
-      label.append(labelText, select);
-      nav.replaceChildren(label);
-    }
+    nav?.replaceChildren(...years.map((year) => {
+      const element = document.createElement(year === selected ? 'span' : 'a');
+      element.textContent = String(year);
+      if (element instanceof HTMLAnchorElement) element.href = `/event/${eventName}.html?year=${year}`;
+      else { element.className = 'year-current'; element.setAttribute('aria-current', 'page'); }
+      return element;
+    }));
 
     const finish = () => {
       if (eventName === 'anniversary') {
