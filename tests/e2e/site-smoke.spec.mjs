@@ -743,6 +743,24 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' })).toBeVisible();
 });
 
+test('2026 anniversary section navigation uses an aligned responsive grid', async ({ page }) => {
+  const expectedColumns = [
+    { width: 1280, columns: 8 },
+    { width: 820, columns: 4 },
+    { width: 390, columns: 2 },
+  ];
+
+  for (const { width, columns } of expectedColumns) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto('/event/anniversary.html?year=2026');
+    const nav = page.locator('.anniv-2026 .section-nav');
+    await expect(nav.locator('a')).toHaveCount(8);
+    await expect.poll(() => nav.evaluate((element) => (
+      getComputedStyle(element).gridTemplateColumns.split(' ').length
+    ))).toBe(columns);
+  }
+});
+
 test('anniversary years expose complete localized milestone contracts', async ({ page }) => {
   const expected = [
     { year: 2026, total: '服务器点数为 1,090', rows: 16, first: ['1,000', '稀有物品掉落率 +10%'], last: ['20,000', '官方暂未公开'] },
