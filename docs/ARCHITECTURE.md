@@ -73,6 +73,9 @@ fragment as a jump to the home route. The 2026 guide exposes only its six primar
 guide sections in that navigation while documenting the continuing MAE and
 Anniversary Badge format. Historical external milestone archive links are not
 part of the UI; the localized yearly fragments are the maintained record.
+PSOStats quest telemetry belongs to the matching yearly fragment and is only
+published for upstream archives that actually exist: 2021, 2022, 2023 and
+2025. Known upstream gaps are preserved and explained instead of inferred.
 
 The Episode I challenge guide publishes the original high-resolution map
 images embedded in the archived PSO World PDFs. `import_challenge_source_maps.py`

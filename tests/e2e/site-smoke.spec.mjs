@@ -720,14 +720,7 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(questGuide).toContainText('综合首选 · Desert');
   await expect(questGuide).toContainText('定点首选 · CCA');
   await expect(questGuide).toContainText('配队原则');
-  await expect(questGuide).toContainText('PSOStats 共记录 13,319 局 MAE');
-  const questStats = questGuide.locator('[data-quest-stats-year="2025"]');
-  await expect(questStats.locator('tbody tr')).toHaveCount(11);
-  await expect(questStats.locator('tbody tr').filter({ hasText: 'Temple' })).toContainText('2:33.019');
-  await expect(questStats.locator('tbody tr').filter({ hasText: 'Desert' })).toContainText('1,773');
-  await expect(questStats.locator('tbody tr').filter({ hasText: 'Tower' })).toContainText('0.84');
   await expect(page.locator('a[href="https://note.com/fine_yarrow878/n/n84a2c42c24f5"]')).toHaveText('みどり · MAE 社区攻略参考');
-  await expect(page.locator('a[href="https://psostats.com/anniv2025"]')).toHaveCount(2);
   await expect(page.locator('#anniv-2026-changes')).toContainText('/badgenotify');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('11 项 MAE 最低值');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('服务器点数为 1,090');
@@ -749,6 +742,36 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await page.locator('#yearNav a', { hasText: '2025' }).click();
   await expect(page.locator('#project_year')).toHaveText('2025');
   await expect(page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' })).toBeVisible();
+});
+
+test('PSOStats quest data belongs to its archived anniversary year', async ({ page }) => {
+  const archives = [
+    { year: 2021, total: '9,798', highlight: '3:25.204' },
+    { year: 2022, total: '18,149', highlight: '3,968' },
+    { year: 2023, total: '15,605', highlight: '2:43.107' },
+    { year: 2025, total: '13,319', highlight: '2:33.019' },
+  ];
+
+  for (const { year, total, highlight } of archives) {
+    await page.goto(`/event/anniversary.html?year=${year}`);
+    const questStats = page.locator(`[data-quest-stats-year="${year}"]`);
+    await expect(questStats.locator('tbody tr')).toHaveCount(11);
+    await expect(page.locator('#content')).toContainText(total);
+    await expect(questStats).toContainText(highlight);
+    await expect(page.locator(`a[href="https://psostats.com/anniv${year}"]`)).toBeVisible();
+  }
+
+  for (const year of [2024, 2026]) {
+    await page.goto(`/event/anniversary.html?year=${year}`);
+    await expect(page.locator('[data-quest-stats-year]')).toHaveCount(0);
+    await expect(page.locator(`a[href="https://psostats.com/anniv${year}"]`)).toHaveCount(0);
+  }
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/event/anniversary.html?year=2025');
+  const statsWrap = page.locator('[data-quest-stats-year="2025"]').locator('xpath=..');
+  expect(await statsWrap.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
 
 test('2026 anniversary navigation contains only primary guide sections', async ({ page }) => {
