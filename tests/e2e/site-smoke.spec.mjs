@@ -704,6 +704,21 @@ test('anniversary feature cards keep bilingual item names visible', async ({ pag
   })).toBe(true);
 });
 
+test('anniversary visual system has no WCAG A/AA accessibility violations', async ({ page }) => {
+  await page.goto('/event/anniversary.html?year=2026');
+  await expect(page.locator('#anniv-2026-shop')).toBeVisible();
+  const results = await new AxeBuilder({ page })
+    .include('.event-masthead')
+    .include('#content')
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+    .analyze();
+  expect(results.violations.map(({ id, impact, nodes }) => ({
+    id,
+    impact,
+    targets: nodes.map(({ target }) => target.join(' ')),
+  }))).toEqual([]);
+});
+
 test('anniversary archive defaults to the announced 2026 event and keeps 2025 available', async ({ page }) => {
   await page.goto('/event/anniversary.html');
 
@@ -871,10 +886,18 @@ test('historical anniversary years share the modern archive presentation', async
     await expect(content).toHaveClass(/anniv-legacy/);
     await expect(content.locator('.year-hero')).toBeVisible();
     await expect(content.locator('.archive-section').first()).toBeVisible();
+    await expect(content).toHaveAttribute('data-anniversary-year', String(year));
     await expect.poll(() => content.locator('.archive-section').first().evaluate((section) => {
       const style = getComputedStyle(section);
       return style.display !== 'none' && Number.parseFloat(style.borderRadius) >= 18;
     })).toBe(true);
+    await expect.poll(() => content.locator('.year-hero').evaluate(
+      (hero) => getComputedStyle(hero, '::after').content.replaceAll('"', ''),
+    )).toBe(String(year));
+    const sectionBackgrounds = await content.locator('.archive-section').evaluateAll(
+      (sections) => sections.slice(0, 3).map((section) => getComputedStyle(section).backgroundImage),
+    );
+    expect(new Set(sectionBackgrounds).size).toBeGreaterThan(1);
   }
 });
 

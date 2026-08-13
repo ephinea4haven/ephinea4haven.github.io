@@ -58,6 +58,14 @@ export class SeasonalEventBehavior {
     const requested = Number(new URLSearchParams(location.search).get('year'));
     const selected = years.includes(requested) ? requested : defaultYear;
     const label = eventName === 'anniversary' ? '周年活动' : '圣诞活动';
+    if (eventName === 'anniversary') {
+      let hue = 188;
+      if (selected <= 2018) hue = 38;
+      else if (selected <= 2021) hue = 272;
+      else if (selected === 2025) hue = 43;
+      this.host.style.setProperty('--anniv-year-hue', String(hue));
+      content.dataset['anniversaryYear'] = String(selected);
+    }
     document.title = `${selected}${label} | Ephinea PSOBB`;
     this.host.querySelector<HTMLElement>('#project_year')!.textContent = String(selected);
     const emblem = this.host.querySelector<HTMLElement>('.emblem-number');
@@ -112,6 +120,8 @@ export class SeasonalEventBehavior {
     if (container.querySelector('.anniv-2025') || container.querySelector('.anniv-legacy')) return;
 
     container.classList.add('anniv-legacy');
+    const hero = container.querySelector<HTMLElement>('.year-hero');
+    if (hero) hero.dataset['year'] = container.dataset['anniversaryYear'] ?? '';
     const headings = Array.from(container.children).filter((element) => element.tagName === 'H3');
     for (const heading of headings) {
       const section = document.createElement('section');

@@ -11,14 +11,15 @@
     <style>
         .event-masthead {
             position: relative;
+            --year-accent: hsl(var(--anniv-year-hue, 188) 92% 58%);
             width: min(100%, 1120px);
             max-width: 1120px;
             margin: 0 auto 32px;
             overflow: hidden;
-            border: 1px solid rgba(251, 191, 36, 0.34);
+            border: 1px solid hsl(var(--anniv-year-hue, 188) 92% 58% / 0.38);
             border-radius: 24px;
             background:
-                radial-gradient(circle at 78% 18%, rgba(34, 211, 238, 0.2), transparent 24%),
+                radial-gradient(circle at 78% 18%, hsl(var(--anniv-year-hue, 188) 92% 58% / 0.24), transparent 24%),
                 radial-gradient(circle at 13% 84%, rgba(168, 85, 247, 0.2), transparent 31%),
                 linear-gradient(135deg, rgba(8, 16, 38, 0.98), rgba(14, 27, 61, 0.96));
             box-shadow:
@@ -33,8 +34,8 @@
             inset: 0;
             z-index: -2;
             background-image:
-                linear-gradient(rgba(34, 211, 238, 0.055) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 211, 238, 0.055) 1px, transparent 1px);
+                linear-gradient(hsl(var(--anniv-year-hue, 188) 92% 58% / 0.065) 1px, transparent 1px),
+                linear-gradient(90deg, hsl(var(--anniv-year-hue, 188) 92% 58% / 0.065) 1px, transparent 1px);
             background-size: 28px 28px;
             mask-image: linear-gradient(to right, black, transparent 86%);
         }
@@ -91,7 +92,7 @@
 
         .masthead-kicker {
             margin: 0 0 10px;
-            color: #22d3ee;
+            color: var(--year-accent);
             font-size: 12px;
             font-weight: 800;
             letter-spacing: 0.22em;
@@ -150,7 +151,7 @@
             background: rgba(8, 16, 38, 0.56);
             box-shadow:
                 0 0 0 14px rgba(251, 191, 36, 0.035),
-                0 0 64px rgba(34, 211, 238, 0.14);
+                0 0 64px hsl(var(--anniv-year-hue, 188) 92% 58% / 0.18);
         }
 
         .masthead-emblem::before,
@@ -162,7 +163,7 @@
 
         .masthead-emblem::before {
             inset: 13px;
-            border: 1px dashed rgba(34, 211, 238, 0.46);
+            border: 1px dashed hsl(var(--anniv-year-hue, 188) 92% 58% / 0.5);
             animation: anniv-orbit 24s linear infinite;
         }
 
@@ -182,7 +183,7 @@
         .emblem-label {
             position: absolute;
             bottom: 37px;
-            color: #22d3ee;
+            color: var(--year-accent);
             font-size: 9px;
             font-weight: 900;
             letter-spacing: 0.25em;
@@ -1294,6 +1295,235 @@
             padding: 0 20px 16px;
             color: hsl(210 18% 58%);
             font-size: 11px;
+        }
+
+        /* Shared anniversary art direction: one system, varied chapter rhythm. */
+        .anniv-2025,
+        .anniv-legacy {
+            --year-accent: hsl(var(--anniv-year-hue, 188) 92% 58%);
+        }
+
+        .anniv-2025 .event-section,
+        .anniv-legacy .event-section {
+            --section-hue: var(--anniv-year-hue, 188);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            background:
+                linear-gradient(hsl(var(--section-hue) 85% 60% / 0.026) 1px, transparent 1px),
+                linear-gradient(90deg, hsl(var(--section-hue) 85% 60% / 0.026) 1px, transparent 1px),
+                radial-gradient(circle at 100% 0, hsl(var(--section-hue) 88% 62% / 0.14), transparent 34%),
+                linear-gradient(145deg, hsl(226 58% 13% / 0.9), hsl(223 60% 9% / 0.8));
+            background-size: 32px 32px, 32px 32px, auto, auto;
+        }
+
+        .anniv-2025 .event-section:nth-of-type(3n + 2),
+        .anniv-legacy .event-section:nth-of-type(3n + 2) {
+            --section-hue: 43;
+        }
+
+        .anniv-2025 .event-section:nth-of-type(3n),
+        .anniv-legacy .event-section:nth-of-type(3n) {
+            --section-hue: 272;
+        }
+
+        .anniv-2025 .event-section::before,
+        .anniv-legacy .event-section::before {
+            position: absolute;
+            inset: 0 0 auto;
+            z-index: 2;
+            height: 3px;
+            background: linear-gradient(90deg,
+                hsl(var(--section-hue) 90% 60%),
+                hsl(var(--section-hue) 90% 60% / 0.08) 72%,
+                transparent);
+            content: "";
+        }
+
+        .anniv-2025 .event-section:target,
+        .anniv-legacy .event-section:has(> h3:target) {
+            border-color: hsl(var(--section-hue) 90% 60% / 0.52);
+            box-shadow:
+                inset 0 1px 0 hsl(0 0% 100% / 0.08),
+                0 18px 46px hsl(225 90% 4% / 0.3),
+                0 0 32px hsl(var(--section-hue) 90% 60% / 0.09);
+        }
+
+        .anniv-2025 .section-heading {
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .anniv-2025 .section-heading::before {
+            position: absolute;
+            inset: 2px auto 18px 0;
+            width: 3px;
+            border-radius: 999px;
+            background: hsl(var(--section-hue) 90% 60%);
+            box-shadow: 0 0 18px hsl(var(--section-hue) 90% 60% / 0.42);
+            content: "";
+        }
+
+        .anniv-2025 .section-kicker {
+            color: hsl(var(--section-hue) 90% 66%);
+        }
+
+        .anniv-legacy {
+            counter-reset: archive-section;
+        }
+
+        .anniv-legacy .year-hero {
+            position: relative;
+            overflow: hidden;
+            border-color: hsl(var(--anniv-year-hue, 188) 90% 60% / 0.34);
+            background:
+                linear-gradient(hsl(var(--anniv-year-hue, 188) 90% 60% / 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, hsl(var(--anniv-year-hue, 188) 90% 60% / 0.035) 1px, transparent 1px),
+                radial-gradient(circle at 82% 18%, hsl(var(--anniv-year-hue, 188) 92% 58% / 0.22), transparent 32%),
+                radial-gradient(circle at 12% 90%, hsl(272 85% 67% / 0.16), transparent 34%),
+                linear-gradient(135deg, hsl(223 66% 13%), hsl(235 64% 18%));
+            background-size: 28px 28px, 28px 28px, auto, auto, auto;
+        }
+
+        .anniv-legacy .year-hero::after {
+            position: absolute;
+            right: 24px;
+            bottom: -28px;
+            color: hsl(var(--anniv-year-hue, 188) 92% 70% / 0.08);
+            font-size: clamp(110px, 18vw, 190px);
+            font-weight: 900;
+            letter-spacing: -0.08em;
+            line-height: 1;
+            content: attr(data-year);
+            pointer-events: none;
+        }
+
+        .anniv-legacy .year-hero > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .anniv-legacy .archive-section {
+            counter-increment: archive-section;
+        }
+
+        .anniv-legacy .event-section > h3:first-child {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .anniv-legacy .event-section > h3:first-child::before {
+            display: inline-grid;
+            flex: 0 0 auto;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border: 1px solid hsl(var(--section-hue) 90% 60% / 0.32);
+            border-radius: 10px;
+            background: hsl(var(--section-hue) 90% 60% / 0.1);
+            color: hsl(var(--section-hue) 90% 68%);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0;
+            content: "0" counter(archive-section);
+        }
+
+        .anniv-legacy .change-list li::marker,
+        .anniv-legacy .quest-list li::marker,
+        .anniv-2025 .prize-list li::marker {
+            color: hsl(var(--section-hue, var(--anniv-year-hue, 188)) 90% 64%);
+        }
+
+        .anniv-legacy .rule-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .anniv-legacy .rule-card::after {
+            position: absolute;
+            right: -20px;
+            bottom: -32px;
+            width: 76px;
+            height: 76px;
+            border: 1px solid hsl(var(--section-hue) 90% 60% / 0.14);
+            border-radius: 50%;
+            box-shadow: 0 0 0 12px hsl(var(--section-hue) 90% 60% / 0.035);
+            content: "";
+        }
+
+        .anniv-2025 .feature-card,
+        .anniv-2025 .quest-card,
+        .anniv-2025 .special-card {
+            --card-hue: var(--section-hue, 188);
+        }
+
+        .anniv-2025 .feature-card:nth-child(3n + 2),
+        .anniv-2025 .quest-card:nth-child(3n + 2),
+        .anniv-2025 .special-card:nth-child(3n + 2) {
+            --card-hue: 43;
+        }
+
+        .anniv-2025 .feature-card:nth-child(3n),
+        .anniv-2025 .quest-card:nth-child(3n),
+        .anniv-2025 .special-card:nth-child(3n) {
+            --card-hue: 272;
+        }
+
+        .anniv-2025 .feature-card::before {
+            background: linear-gradient(90deg,
+                hsl(var(--card-hue) 90% 62%),
+                hsl(var(--card-hue) 90% 62% / 0.18));
+            box-shadow: 0 0 16px hsl(var(--card-hue) 90% 60% / 0.28);
+        }
+
+        .anniv-2025 .feature-card::after,
+        .anniv-2025 .quest-card::after,
+        .anniv-2025 .special-card::after {
+            position: absolute;
+            top: -36px;
+            right: -36px;
+            width: 92px;
+            height: 92px;
+            border-radius: 50%;
+            background: hsl(var(--card-hue) 90% 60% / 0.055);
+            box-shadow: 0 0 28px hsl(var(--card-hue) 90% 60% / 0.08);
+            content: "";
+            pointer-events: none;
+        }
+
+        .anniv-2025 .special-card {
+            border-top: 3px solid hsl(var(--card-hue) 90% 60% / 0.72);
+        }
+
+        .anniv-2025 .shop-table tbody tr:nth-child(even),
+        .anniv-legacy .shop-table tbody tr:nth-child(even) {
+            background: hsl(var(--section-hue, var(--anniv-year-hue, 188)) 75% 55% / 0.025);
+        }
+
+        .anniv-2025 .shop-table tbody tr:hover,
+        .anniv-legacy .shop-table tbody tr:hover {
+            background: hsl(var(--section-hue, var(--anniv-year-hue, 188)) 80% 58% / 0.075);
+        }
+
+        .anniv-2025 .source-links a:hover,
+        .anniv-legacy .source-links a:hover {
+            background: hsl(var(--anniv-year-hue, 188) 92% 58% / 0.18);
+            box-shadow: 0 0 20px hsl(var(--anniv-year-hue, 188) 92% 58% / 0.1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .masthead-emblem::before {
+                animation: none;
+            }
+
+            .anniv-2025 .feature-card,
+            .anniv-2025 .quest-card,
+            .anniv-2025 .badge-card,
+            .anniv-2025 .tier-card,
+            .anniv-2025 .special-card {
+                transition: none;
+            }
         }
 
         @media (max-width: 720px) {
