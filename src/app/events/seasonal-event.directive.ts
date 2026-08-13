@@ -124,7 +124,7 @@ export class SeasonalEventBehavior {
     const escaped = matches.map(([en]) => en.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
     const pattern = new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z0-9])`, 'gi');
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
-      acceptNode: (node) => !node.nodeValue?.trim() || node.parentElement?.closest('.event-ui-label, .item-bilingual, script, style')
+      acceptNode: (node) => !node.nodeValue?.trim() || node.parentElement?.closest('.event-ui-label, .event-verbatim, .item-bilingual, script, style')
         ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT,
     });
     const nodes: Text[] = [];
@@ -154,13 +154,15 @@ export class SeasonalEventBehavior {
   private markAnniversaryLabels(container: HTMLElement): void {
     container.querySelectorAll<HTMLElement>('h3, .badge-card > strong, .quest-menu-bar span, .quest-menu-bar strong, .quest-menu-speaker, .quest-menu-source, .tier-card > strong, .special-card > strong, .shop-table tbody td:first-child')
       .forEach((element) => element.classList.add('event-ui-label'));
+    container.querySelectorAll<HTMLElement>('.ta-ranking-table tbody td:nth-child(3)')
+      .forEach((element) => element.classList.add('event-verbatim'));
   }
 
   private localizeAnniversaryLabels(container: HTMLElement): void {
     const pattern = new RegExp([...ANNIVERSARY_LABELS.keys()].sort((a, b) => b.length - a.length)
       .map((value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
-      acceptNode: (node) => !node.nodeValue?.trim() || node.parentElement?.closest('.item-bilingual, script, style')
+      acceptNode: (node) => !node.nodeValue?.trim() || node.parentElement?.closest('.event-verbatim, .item-bilingual, script, style')
         ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT,
     });
     const nodes: Text[] = [];

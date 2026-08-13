@@ -746,31 +746,43 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
 
 test('PSOStats quest data belongs to its archived anniversary year', async ({ page }) => {
   const archives = [
-    { year: 2021, total: '9,798', highlight: '3:25.204' },
-    { year: 2022, total: '18,149', highlight: '3,968' },
-    { year: 2023, total: '15,605', highlight: '2:43.107' },
-    { year: 2025, total: '13,319', highlight: '2:33.019' },
+    { year: 2021, total: '9,798', highlight: '3:25.204', taRows: 10, leader: 'No Hit', taTime: '44:48' },
+    { year: 2022, total: '18,149', highlight: '3,968', taRows: 20, leader: 'No Hit', taTime: '41:36' },
+    { year: 2023, total: '15,605', highlight: '2:43.107', taRows: 20, leader: 'mewkey', taTime: '38:03' },
+    { year: 2025, total: '13,319', highlight: '2:33.019', taRows: 20, leader: 'slw', taTime: '34:35' },
   ];
 
-  for (const { year, total, highlight } of archives) {
+  for (const { year, total, highlight, taRows, leader, taTime } of archives) {
     await page.goto(`/event/anniversary.html?year=${year}`);
     const questStats = page.locator(`[data-quest-stats-year="${year}"]`);
     await expect(questStats.locator('tbody tr')).toHaveCount(11);
     await expect(page.locator('#content')).toContainText(total);
     await expect(questStats).toContainText(highlight);
+    const taRanking = page.locator(`[data-ta-ranking-year="${year}"]`);
+    await expect(taRanking.locator('tbody tr')).toHaveCount(taRows);
+    await expect(taRanking.locator('tbody tr').first()).toContainText(leader);
+    await expect(taRanking.locator('tbody tr').first()).toContainText(taTime);
     await expect(page.locator(`a[href="https://psostats.com/anniv${year}"]`)).toBeVisible();
   }
+
+  await page.goto('/event/anniversary.html?year=2023');
+  await expect(page.locator('[data-ta-ranking-year="2023"] tbody tr').filter({ hasText: '43:17' })).toHaveCount(2);
+  await page.goto('/event/anniversary.html?year=2025');
+  await expect(page.locator('[data-ta-ranking-year="2025"] tbody tr').filter({ hasText: '40:55' })).toHaveCount(2);
 
   for (const year of [2024, 2026]) {
     await page.goto(`/event/anniversary.html?year=${year}`);
     await expect(page.locator('[data-quest-stats-year]')).toHaveCount(0);
+    await expect(page.locator('[data-ta-ranking-year]')).toHaveCount(0);
     await expect(page.locator(`a[href="https://psostats.com/anniv${year}"]`)).toHaveCount(0);
   }
 
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/event/anniversary.html?year=2025');
   const statsWrap = page.locator('[data-quest-stats-year="2025"]').locator('xpath=..');
+  const rankingWrap = page.locator('[data-ta-ranking-year="2025"]').locator('xpath=..');
   expect(await statsWrap.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
+  expect(await rankingWrap.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
 
