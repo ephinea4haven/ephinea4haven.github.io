@@ -9,8 +9,8 @@ Angular 22 owns the complete public site: the landing page, error page, guides,
 data references, event archives and interactive tools. All existing public URLs
 remain valid, including `.html` paths and yearly event pages.
 
-The production build currently contains 57 prerendered Angular application
-hosts and 44 event content fragments. The generated build manifest is the
+The production build currently contains 58 prerendered Angular application
+hosts and 45 event content fragments. The generated build manifest is the
 authoritative inventory; every application host is covered by the production
 browser suite before deployment.
 
@@ -83,6 +83,19 @@ The upstream copyright notice and MIT license continue to ship with the tool.
 Any upstream rule change must update normalized data or domain code together with
 regression fixtures. Presentation differences are intentionally Haven-owned and
 are not treated as sync drift.
+
+## Anniversary archive contract
+
+The anniversary route owns a fixed 2016–2026 year manifest and loads each
+committed year as an event content fragment. Year navigation remains a flat,
+horizontally scrollable row on narrow screens, and section links retain the
+selected year instead of falling through to the site root.
+
+PSOStats anniversary telemetry is archived only for the upstream years that
+exist: 2021, 2022, 2023 and 2025. Each of those fragments keeps its published
+quest totals and complete Overall Lap TA ranking, including available MAE
+splits. Missing or inconsistent upstream fields are called out rather than
+copied into another year or inferred locally.
 
 ## Release gates
 
