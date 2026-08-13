@@ -63,11 +63,16 @@ stable document-like content whose interaction is naturally DOM-local, such as
 tabs, filters and event previews.
 
 Seasonal event routes own a fixed year manifest and load committed yearly HTML
-fragments through root-relative URLs. The anniversary archive defaults to 2026,
-keeps localized milestone tables with stable yearly anchors for 2016–2025, and
-documents the announced 2026 return of the MAE and Anniversary Badge format.
-Historical milestone archive links are not part of the UI; the localized yearly
-fragments are the maintained record.
+fragments through root-relative URLs. The anniversary archive defaults to 2026
+and presents the complete 2016–2026 manifest as a flat year navigation row; on
+narrow screens the row scrolls horizontally instead of collapsing into a
+selector. Each yearly fragment keeps localized milestone tables under stable
+year-specific anchors. Section navigation uses the full archive URL, selected
+year query and fragment together so Angular routing cannot reinterpret a bare
+fragment as a jump to the home route. The 2026 guide exposes only its six primary
+guide sections in that navigation while documenting the continuing MAE and
+Anniversary Badge format. Historical external milestone archive links are not
+part of the UI; the localized yearly fragments are the maintained record.
 
 The Episode I challenge guide publishes the original high-resolution map
 images embedded in the archived PSO World PDFs. `import_challenge_source_maps.py`
