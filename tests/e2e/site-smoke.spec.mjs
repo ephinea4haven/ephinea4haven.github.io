@@ -708,7 +708,9 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await page.goto('/event/anniversary.html');
 
   await expect(page.locator('#project_year')).toHaveText('2026');
-  await expect(page.locator('#yearNav .year-current')).toHaveText('2026');
+  const yearPicker = page.locator('#yearNav select');
+  await expect(yearPicker).toHaveValue('2026');
+  await expect(yearPicker.locator('option')).toHaveCount(11);
   await expect(page.locator('#anniv-2026-quests')).toContainText('任务阵容暂未更换');
   await expect(page.locator('#anniv-2026-quests')).toContainText('Maximum Attack E: Forest');
   await expect(page.locator('#anniv-2026-quests')).toContainText('Maximum Attack E: Tower');
@@ -738,27 +740,25 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
     (paragraphs) => paragraphs.every((paragraph) => getComputedStyle(paragraph).textAlign === 'left'),
   )).toBe(true);
 
-  await page.locator('#yearNav a', { hasText: '2025' }).click();
+  await yearPicker.selectOption('2025');
   await expect(page.locator('#project_year')).toHaveText('2025');
   await expect(page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' })).toBeVisible();
 });
 
-test('2026 anniversary section navigation uses an aligned responsive grid', async ({ page }) => {
-  const expectedColumns = [
-    { width: 1280, columns: 8 },
-    { width: 820, columns: 4 },
-    { width: 390, columns: 2 },
-  ];
-
-  for (const { width, columns } of expectedColumns) {
-    await page.setViewportSize({ width, height: 800 });
-    await page.goto('/event/anniversary.html?year=2026');
-    const nav = page.locator('.anniv-2026 .section-nav');
-    await expect(nav.locator('a')).toHaveCount(8);
-    await expect.poll(() => nav.evaluate((element) => (
-      getComputedStyle(element).gridTemplateColumns.split(' ').length
-    ))).toBe(columns);
-  }
+test('2026 anniversary navigation contains only primary guide sections', async ({ page }) => {
+  await page.goto('/event/anniversary.html?year=2026');
+  const nav = page.locator('.anniv-2026 .section-nav');
+  await expect(nav.locator('a')).toHaveCount(6);
+  expect(await nav.locator('a').allTextContents()).toEqual([
+    '年度变化',
+    '活动任务',
+    '周回攻略',
+    '徽章规则',
+    '全服里程碑',
+    '完整商店',
+  ]);
+  await expect(nav.locator('a[href="#anniv-2026-future"]')).toHaveCount(0);
+  await expect(nav.locator('a[href="#anniv-2026-sources"]')).toHaveCount(0);
 });
 
 test('anniversary years expose complete localized milestone contracts', async ({ page }) => {
