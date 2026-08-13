@@ -713,6 +713,13 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('#anniv-2026-quests')).toContainText('Maximum Attack E: Forest');
   await expect(page.locator('#anniv-2026-quests')).toContainText('Maximum Attack E: Tower');
   await expect(page.locator('#anniv-2026-quests')).toContainText('August Atrocity #1、August Atrocity #2');
+  const questGuide = page.locator('#anniv-2026-quest-guide');
+  await expect(questGuide).toContainText('11 项 MAE 周回选择');
+  await expect(questGuide.locator('[data-quest-guide-year="2026"] tbody tr')).toHaveCount(11);
+  await expect(questGuide).toContainText('综合首选 · Desert');
+  await expect(questGuide).toContainText('定点首选 · CCA');
+  await expect(questGuide).toContainText('配队原则');
+  await expect(page.locator('a[href="https://note.com/fine_yarrow878/n/n84a2c42c24f5"]')).toHaveText('みどり · MAE 社区攻略参考');
   await expect(page.locator('#anniv-2026-changes')).toContainText('/badgenotify');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('11 项 MAE 最低值');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('服务器点数为 1,090');
