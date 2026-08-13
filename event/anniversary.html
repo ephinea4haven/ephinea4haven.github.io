@@ -12,53 +12,80 @@
         .event-masthead {
             position: relative;
             --year-accent: hsl(var(--anniv-year-hue, 188) 92% 58%);
-            width: min(100%, 1120px);
-            max-width: 1120px;
-            margin: 0 auto 32px;
+            width: 100%;
+            max-width: none;
+            margin: 0;
             overflow: hidden;
-            border: 1px solid hsl(var(--anniv-year-hue, 188) 92% 58% / 0.38);
-            border-radius: 24px;
+            border: 1px solid hsl(var(--anniv-year-hue, 188) 92% 58% / 0.32);
+            border-radius: 16px;
             background:
-                radial-gradient(circle at 78% 18%, hsl(var(--anniv-year-hue, 188) 92% 58% / 0.24), transparent 24%),
-                radial-gradient(circle at 13% 84%, rgba(168, 85, 247, 0.2), transparent 31%),
-                linear-gradient(135deg, rgba(8, 16, 38, 0.98), rgba(14, 27, 61, 0.96));
-            box-shadow:
-                0 28px 70px rgba(0, 0, 0, 0.32),
-                inset 0 1px rgba(255, 255, 255, 0.08);
+                linear-gradient(90deg, hsl(var(--anniv-year-hue, 188) 92% 58% / 0.09), transparent 28%),
+                hsl(226 58% 9% / 0.94);
+            box-shadow: 0 12px 32px hsl(225 90% 4% / 0.24), inset 0 1px hsl(0 0% 100% / 0.08);
             isolation: isolate;
         }
 
         .event-masthead::before {
-            content: "";
             position: absolute;
             inset: 0;
-            z-index: -2;
+            z-index: -1;
             background-image:
-                linear-gradient(hsl(var(--anniv-year-hue, 188) 92% 58% / 0.065) 1px, transparent 1px),
-                linear-gradient(90deg, hsl(var(--anniv-year-hue, 188) 92% 58% / 0.065) 1px, transparent 1px);
-            background-size: 28px 28px;
-            mask-image: linear-gradient(to right, black, transparent 86%);
+                linear-gradient(hsl(var(--anniv-year-hue, 188) 92% 58% / 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, hsl(var(--anniv-year-hue, 188) 92% 58% / 0.055) 1px, transparent 1px);
+            background-size: 24px 24px;
+            mask-image: linear-gradient(to right, black, transparent 62%);
+            content: "";
         }
 
         .event-masthead::after {
-            content: "X";
             position: absolute;
-            top: -88px;
-            right: 18px;
-            z-index: -1;
-            color: transparent;
-            font: 900 clamp(250px, 34vw, 430px) / 1 sans-serif;
-            -webkit-text-stroke: 1px rgba(251, 191, 36, 0.17);
-            text-shadow: 0 0 80px rgba(251, 191, 36, 0.09);
-            transform: rotate(8deg);
+            inset: auto 0 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--year-accent), hsl(43 96% 64%), transparent 72%);
+            content: "";
         }
 
         .masthead-main {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 240px;
+            grid-template-columns: auto minmax(0, 1fr) auto;
             align-items: center;
-            min-height: 300px;
-            padding: 34px 42px 26px;
+            gap: 24px;
+            min-height: 88px;
+            padding: 14px 20px;
+        }
+
+        .masthead-copy {
+            min-width: 0;
+        }
+
+        .masthead-facts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-self: end;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .masthead-facts span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 11px;
+            border: 1px solid hsl(var(--anniv-year-hue, 188) 92% 58% / 0.2);
+            border-radius: 999px;
+            background: hsl(226 58% 9% / 0.54);
+            color: hsl(210 25% 80%);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .masthead-facts span::before {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--year-accent);
+            box-shadow: 0 0 12px var(--year-accent);
+            content: "";
         }
 
         .masthead-back {
@@ -66,9 +93,9 @@
             align-items: center;
             gap: 8px;
             width: fit-content;
-            margin-bottom: 34px;
-            color: rgba(226, 232, 240, 0.72);
-            font-size: 14px;
+            margin: 0;
+            color: hsl(210 25% 75%);
+            font-size: 13px;
             font-weight: 700;
             letter-spacing: 0.04em;
             text-decoration: none;
@@ -76,214 +103,422 @@
         }
 
         .masthead-back::before {
-            content: "←";
             display: grid;
             width: 28px;
             height: 28px;
             place-items: center;
-            border: 1px solid rgba(226, 232, 240, 0.2);
+            border: 1px solid hsl(210 25% 75% / 0.2);
             border-radius: 50%;
+            content: "←";
         }
 
         .masthead-back:hover {
-            color: #fbbf24;
+            color: hsl(43 96% 64%);
             transform: translateX(-2px);
         }
 
         .masthead-kicker {
-            margin: 0 0 10px;
+            margin: 0 0 4px;
             color: var(--year-accent);
-            font-size: 12px;
+            font-size: 9px;
             font-weight: 800;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
         }
 
-        .masthead-title {
+        .masthead-title,
+        .event-masthead #project_title {
             display: flex;
             flex-wrap: wrap;
-            align-items: baseline;
-            gap: 10px 18px;
+            align-items: center;
+            gap: 8px;
             margin: 0;
-            color: #f8fafc;
-            font-size: clamp(42px, 7vw, 84px);
+            color: hsl(210 40% 97%);
+            font-size: 24px;
             font-weight: 900;
-            letter-spacing: -0.055em;
-            line-height: 0.92;
+            letter-spacing: -0.035em;
+            line-height: 1.1;
             text-shadow: none;
-        }
-
-        .event-masthead #project_title {
-            margin: 0;
-            color: #f8fafc;
-            font-size: clamp(42px, 6vw, 76px);
-            font-weight: 900;
-            letter-spacing: -0.055em;
-            text-shadow: none;
-        }
-
-        .masthead-title span {
-            color: #f8fafc;
         }
 
         .masthead-title strong {
-            color: #fbbf24;
-            font: inherit;
-        }
-
-        .masthead-summary {
-            max-width: 620px;
-            margin: 18px 0 0;
-            color: rgba(226, 232, 240, 0.72);
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        .masthead-emblem {
-            position: relative;
-            display: grid;
-            width: 184px;
-            height: 184px;
-            place-self: center end;
-            place-items: center;
-            border: 1px solid rgba(251, 191, 36, 0.42);
-            border-radius: 50%;
-            background: rgba(8, 16, 38, 0.56);
-            box-shadow:
-                0 0 0 14px rgba(251, 191, 36, 0.035),
-                0 0 64px hsl(var(--anniv-year-hue, 188) 92% 58% / 0.18);
-        }
-
-        .masthead-emblem::before,
-        .masthead-emblem::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-        }
-
-        .masthead-emblem::before {
-            inset: 13px;
-            border: 1px dashed hsl(var(--anniv-year-hue, 188) 92% 58% / 0.5);
-            animation: anniv-orbit 24s linear infinite;
-        }
-
-        .masthead-emblem::after {
-            inset: 33px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-
-        .emblem-number {
-            color: #fbbf24;
-            font-size: 72px;
+            padding: 5px 8px;
+            border: 1px solid hsl(var(--anniv-year-hue, 188) 92% 58% / 0.3);
+            border-radius: 999px;
+            background: hsl(var(--anniv-year-hue, 188) 92% 58% / 0.1);
+            color: var(--year-accent);
+            font-size: 12px;
             font-weight: 900;
-            letter-spacing: -0.08em;
+            letter-spacing: 0.06em;
             line-height: 1;
         }
 
-        .emblem-label {
+        .anniversary-page-shell {
+            position: relative;
+            width: min(calc(100% - 32px), 1320px);
+            margin: 0 auto;
+            isolation: isolate;
+        }
+
+        .anniversary-page-shell::before,
+        .anniversary-page-shell::after {
+            position: fixed;
+            z-index: -1;
+            border-radius: 50%;
+            filter: blur(2px);
+            content: "";
+            pointer-events: none;
+        }
+
+        .anniversary-page-shell::before {
+            top: 8vh;
+            left: -18vw;
+            width: 52vw;
+            height: 52vw;
+            background: radial-gradient(circle, hsl(var(--anniv-year-hue, 188) 92% 58% / 0.11), transparent 68%);
+        }
+
+        .anniversary-page-shell::after {
+            right: -20vw;
+            bottom: 4vh;
+            width: 56vw;
+            height: 56vw;
+            background: radial-gradient(circle, hsl(272 85% 60% / 0.1), transparent 70%);
+        }
+
+        .anniversary-workspace {
+            position: relative;
+            display: block;
+            margin-top: 16px;
+        }
+
+        .anniversary-year-rail-layer {
+            position: sticky;
+            top: 16px;
+            z-index: 40;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
+        .anniversary-year-rail {
             position: absolute;
-            bottom: 37px;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 296px;
+            max-height: calc(100vh - 32px);
+            overflow: auto;
+            border: 1px solid hsl(var(--anniv-year-hue, 188) 92% 58% / 0.22);
+            border-radius: 18px;
+            background:
+                linear-gradient(hsl(var(--anniv-year-hue, 188) 92% 58% / 0.04) 1px, transparent 1px),
+                hsl(226 58% 9% / 0.94);
+            background-size: 100% 24px;
+            box-shadow: 0 18px 46px hsl(225 90% 4% / 0.3);
+            pointer-events: auto;
+            transform: translateX(0);
+            transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease-out;
+            will-change: transform;
+        }
+
+        .year-rail-backdrop {
+            position: fixed;
+            inset: 0;
+            border: 0;
+            background: hsl(225 75% 4% / 0.52);
+            opacity: 1;
+            pointer-events: auto;
+            cursor: default;
+            transition: opacity 180ms ease-out, visibility 180ms;
+        }
+
+        .year-rail-heading {
+            padding: 20px 18px 16px;
+            border-bottom: 1px solid hsl(var(--anniv-year-hue, 188) 92% 58% / 0.14);
+        }
+
+        .year-rail-toggle {
+            position: absolute;
+            top: 12px;
+            left: 256px;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: auto;
+            min-width: 28px;
+            height: 28px;
+            padding: 0;
+            border: 1px solid hsl(var(--anniv-year-hue, 188) 92% 58% / 0.22);
+            border-radius: 8px;
+            background: hsl(226 58% 15% / 0.92);
+            color: hsl(210 25% 78%);
+            font: 800 18px / 1 sans-serif;
+            pointer-events: auto;
+            cursor: pointer;
+            transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+        }
+
+        .year-rail-toggle-label {
+            display: none;
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .year-rail-toggle-icon {
+            display: inline-block;
+            flex: 0 0 auto;
+            line-height: 1;
+        }
+
+        .year-rail-toggle:hover,
+        .year-rail-toggle:focus-visible {
+            border-color: var(--year-accent);
+            color: var(--year-accent);
+            outline: 0;
+        }
+
+        .anniversary-page-shell.is-year-rail-collapsed .anniversary-year-rail {
+            transform: translateX(calc(-100% - 12px));
+            border-radius: 12px;
+            box-shadow: 0 10px 28px hsl(225 90% 4% / 0.22);
+        }
+
+        .anniversary-page-shell.is-year-rail-collapsed .year-rail-backdrop {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .anniversary-page-shell.is-year-rail-collapsed .year-rail-heading,
+        .anniversary-page-shell.is-year-rail-collapsed .year-nav,
+        .anniversary-page-shell.is-year-rail-collapsed .year-rail-note {
+            display: none;
+        }
+
+        .anniversary-page-shell.is-year-rail-collapsed .year-rail-toggle {
+            top: 7px;
+            left: 7px;
+            gap: 6px;
+            width: auto;
+            min-width: 68px;
+            padding: 0 9px;
+            background: hsl(226 58% 13% / 0.96);
+        }
+
+        .anniversary-page-shell.is-year-rail-collapsed .year-rail-toggle-label {
+            display: block;
+        }
+
+        .anniversary-page-shell.is-year-rail-collapsed .year-rail-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .year-rail-heading span {
+            display: block;
             color: var(--year-accent);
             font-size: 9px;
             font-weight: 900;
-            letter-spacing: 0.25em;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
         }
 
-        @keyframes anniv-orbit {
-            to { transform: rotate(360deg); }
+        .year-rail-heading strong {
+            display: block;
+            margin-top: 6px;
+            color: #fff;
+            font-size: 17px;
+            letter-spacing: -0.02em;
         }
 
-        .event-masthead .year-nav {
+        .anniversary-year-rail .year-nav {
             position: relative;
-            justify-content: flex-start;
-            gap: 8px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5px;
             margin: 0;
-            padding: 18px 42px 20px;
-            border-top: 1px solid rgba(148, 163, 184, 0.14);
-            background: rgba(3, 8, 24, 0.42);
+            padding: 12px;
         }
 
-        .event-masthead .year-nav::before {
-            content: "YEAR";
-            align-self: center;
-            margin-right: 10px;
-            color: rgba(148, 163, 184, 0.6);
-            font-size: 10px;
-            font-weight: 900;
-            letter-spacing: 0.2em;
+        .anniversary-year-rail .year-nav::before {
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: 25px;
+            width: 1px;
+            background: linear-gradient(var(--year-accent), hsl(272 85% 67% / 0.2));
+            content: "";
         }
 
-        .event-masthead .year-nav a,
-        .event-masthead .year-nav .year-current {
-            min-width: 52px;
-            padding: 7px 12px;
-            border-color: rgba(148, 163, 184, 0.2);
-            border-radius: 8px;
-            background: rgba(15, 23, 42, 0.64);
-            color: rgba(226, 232, 240, 0.76);
+        .anniversary-year-rail .year-nav a,
+        .anniversary-year-rail .year-nav .year-current {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            min-width: 0;
+            padding: 9px 10px 9px 30px;
+            border: 0;
+            border-radius: 9px;
+            background: transparent;
+            color: hsl(210 18% 66%);
             font-size: 13px;
-            text-align: center;
+            font-weight: 750;
+            text-align: left;
+            text-decoration: none;
         }
 
-        .event-masthead .year-nav a:hover {
-            border-color: rgba(34, 211, 238, 0.6);
-            background: rgba(34, 211, 238, 0.1);
-            color: #67e8f9;
+        .anniversary-year-rail .year-nav a::before,
+        .anniversary-year-rail .year-nav .year-current::before {
+            position: absolute;
+            left: 10px;
+            width: 8px;
+            height: 8px;
+            border: 2px solid hsl(210 18% 44%);
+            border-radius: 50%;
+            background: hsl(226 58% 9%);
+            content: "";
         }
 
-        .event-masthead .year-nav .year-current {
-            border-color: #fbbf24;
-            background: #fbbf24;
-            color: #111827;
-            box-shadow: 0 0 24px rgba(251, 191, 36, 0.24);
+        .anniversary-year-rail .year-nav a:hover {
+            background: hsl(var(--anniv-year-hue, 188) 92% 58% / 0.08);
+            color: hsl(210 30% 88%);
+        }
+
+        .anniversary-year-rail .year-nav .year-current {
+            background: linear-gradient(90deg,
+                hsl(var(--anniv-year-hue, 188) 92% 58% / 0.2),
+                hsl(var(--anniv-year-hue, 188) 92% 58% / 0.04));
+            color: #fff;
+            box-shadow: inset 3px 0 var(--year-accent);
+        }
+
+        .anniversary-year-rail .year-nav .year-current::before {
+            border-color: var(--year-accent);
+            background: var(--year-accent);
+            box-shadow: 0 0 12px var(--year-accent);
+        }
+
+        .year-rail-note {
+            margin: 0;
+            padding: 14px 18px 18px;
+            border-top: 1px solid hsl(var(--anniv-year-hue, 188) 92% 58% / 0.1);
+            color: hsl(210 16% 52%);
+            font-size: 11px;
+            line-height: 1.55;
+        }
+
+        .anniversary-workspace > #content {
+            width: 100%;
+            max-width: none;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
         }
 
         @media (max-width: 760px) {
+            .anniversary-page-shell {
+                width: min(calc(100% - 20px), 1320px);
+            }
+
             .event-masthead {
-                border-radius: 18px;
+                border-radius: 14px;
             }
 
             .masthead-main {
-                grid-template-columns: 1fr;
-                min-height: auto;
-                padding: 26px 24px 24px;
+                grid-template-columns: auto minmax(0, 1fr);
+                gap: 12px;
+                min-height: 76px;
+                padding: 10px 14px;
             }
 
             .masthead-back {
-                margin-bottom: 30px;
+                gap: 0;
+                font-size: 0;
             }
 
-            .masthead-emblem {
-                display: none;
+            .masthead-back::before {
+                font-size: 14px;
             }
 
             .masthead-title {
-                font-size: clamp(34px, 11.2vw, 48px);
+                flex-wrap: nowrap;
+                font-size: 21px;
             }
 
             .event-masthead #project_title {
-                font-size: clamp(34px, 11.2vw, 48px);
+                font-size: 21px;
             }
 
-            .event-masthead .year-nav {
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding: 14px 20px 16px;
-                scrollbar-width: thin;
+            .masthead-facts {
+                display: none;
             }
 
-            .event-masthead .year-nav::before {
-                position: sticky;
-                left: 0;
-                z-index: 1;
-                padding: 8px 9px 8px 0;
-                background: #071024;
+            .anniversary-workspace {
+                margin-top: 12px;
             }
 
-            .event-masthead .year-nav a,
-            .event-masthead .year-nav .year-current {
-                flex: 0 0 auto;
+            .anniversary-year-rail-layer {
+                top: 8px;
+            }
+
+            .anniversary-year-rail {
+                width: min(330px, 86vw);
+                max-height: calc(100vh - 16px);
+                border-radius: 14px;
+            }
+
+            .year-rail-toggle {
+                left: calc(min(330px, 86vw) - 40px);
+            }
+
+            .anniversary-page-shell.is-year-rail-collapsed .year-rail-toggle {
+                position: fixed;
+                top: auto;
+                bottom: max(16px, env(safe-area-inset-bottom));
+                left: 7px;
+            }
+
+            .year-rail-note {
+                display: none;
+            }
+
+            .anniversary-year-rail .year-nav {
+                display: grid;
+                gap: 6px;
+                padding: 10px;
+            }
+
+            .anniversary-year-rail .year-nav::before {
+                display: none;
+            }
+
+            .anniversary-year-rail .year-nav a,
+            .anniversary-year-rail .year-nav .year-current {
+                padding: 10px 12px 10px 34px;
+                border: 0;
+                border-radius: 8px;
+            }
+
+            .anniversary-year-rail .year-nav a::before,
+            .anniversary-year-rail .year-nav .year-current::before {
+                display: block;
+                left: 12px;
+            }
+
+            .anniversary-year-rail .year-nav .year-current {
+                background: linear-gradient(90deg,
+                    hsl(var(--anniv-year-hue, 188) 92% 58% / 0.2),
+                    hsl(var(--anniv-year-hue, 188) 92% 58% / 0.04));
+                color: #fff;
+                box-shadow: 0 0 18px hsl(var(--anniv-year-hue, 188) 92% 58% / 0.22);
             }
         }
 
@@ -578,7 +813,7 @@
             --a-panel: hsl(226 58% 13% / 0.82);
             display: grid;
             grid-template-columns: minmax(0, 1fr);
-            gap: 48px;
+            gap: 40px;
         }
 
         .anniv-2025 > * {
@@ -588,8 +823,8 @@
         .anniv-2025 .event-hero {
             position: relative;
             overflow: hidden;
-            min-height: 360px;
-            padding: 48px;
+            min-height: 300px;
+            padding: 40px;
             border: 1px solid hsl(188 80% 60% / 0.28);
             border-radius: 24px;
             background:
@@ -597,6 +832,7 @@
                 radial-gradient(circle at 16% 82%, hsl(268 85% 67% / 0.2), transparent 34%),
                 linear-gradient(135deg, hsl(223 66% 13%), hsl(235 64% 20%) 58%, hsl(205 73% 17%));
             box-shadow: 0 24px 70px hsl(225 90% 4% / 0.55);
+            animation: anniv-rise 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
         .anniv-2025 .event-hero::after {
@@ -687,6 +923,9 @@
         }
 
         .anniv-2025 .section-nav {
+            position: sticky;
+            top: 12px;
+            z-index: 30;
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
@@ -696,6 +935,8 @@
             border-radius: 16px;
             background: hsl(226 58% 10% / 0.94);
             box-shadow: 0 12px 34px hsl(225 90% 4% / 0.35);
+            backdrop-filter: blur(14px);
+            animation: anniv-rise 480ms 80ms cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
         .anniv-2025 .section-nav a {
@@ -713,7 +954,14 @@
         }
 
         .anniv-2025 .event-section {
-            scroll-margin-top: 24px;
+            scroll-margin-top: 84px;
+        }
+
+        @keyframes anniv-rise {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
         }
 
         .anniv-2025 .section-heading {
@@ -749,6 +997,7 @@
 
         .anniv-2025 .feature-cards {
             grid-template-columns: repeat(5, minmax(0, 1fr));
+            counter-reset: anniversary-change;
         }
 
         .anniv-2025 .feature-card,
@@ -766,13 +1015,20 @@
         }
 
         .anniv-2025 .feature-card::before {
-            display: block;
-            width: 32px;
-            height: 3px;
+            display: grid;
+            width: 30px;
+            height: 30px;
             margin-bottom: 16px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, var(--a-cyan), var(--a-gold));
-            content: "";
+            place-items: center;
+            border: 1px solid hsl(var(--card-hue) 90% 62% / 0.36);
+            border-radius: 9px;
+            background: hsl(var(--card-hue) 90% 62% / 0.1);
+            color: hsl(var(--card-hue) 90% 68%);
+            box-shadow: 0 0 16px hsl(var(--card-hue) 90% 60% / 0.16);
+            counter-increment: anniversary-change;
+            content: counter(anniversary-change, decimal-leading-zero);
+            font-size: 10px;
+            font-weight: 900;
         }
 
         .anniv-2025 .feature-card strong,
@@ -1309,12 +1565,17 @@
             position: relative;
             overflow: hidden;
             isolation: isolate;
+            border: 0;
+            border-radius: 4px 22px 22px 4px;
             background:
                 linear-gradient(hsl(var(--section-hue) 85% 60% / 0.026) 1px, transparent 1px),
                 linear-gradient(90deg, hsl(var(--section-hue) 85% 60% / 0.026) 1px, transparent 1px),
                 radial-gradient(circle at 100% 0, hsl(var(--section-hue) 88% 62% / 0.14), transparent 34%),
                 linear-gradient(145deg, hsl(226 58% 13% / 0.9), hsl(223 60% 9% / 0.8));
             background-size: 32px 32px, 32px 32px, auto, auto;
+            box-shadow:
+                inset 0 1px 0 hsl(0 0% 100% / 0.04),
+                0 16px 40px hsl(225 90% 4% / 0.2);
         }
 
         .anniv-2025 .event-section:nth-of-type(3n + 2),
@@ -1330,12 +1591,12 @@
         .anniv-2025 .event-section::before,
         .anniv-legacy .event-section::before {
             position: absolute;
-            inset: 0 0 auto;
+            inset: 0 auto 0 0;
             z-index: 2;
-            height: 3px;
-            background: linear-gradient(90deg,
+            width: 4px;
+            background: linear-gradient(180deg,
                 hsl(var(--section-hue) 90% 60%),
-                hsl(var(--section-hue) 90% 60% / 0.08) 72%,
+                hsl(var(--section-hue) 90% 60% / 0.16) 72%,
                 transparent);
             content: "";
         }
@@ -1351,17 +1612,11 @@
 
         .anniv-2025 .section-heading {
             position: relative;
-            padding-left: 18px;
+            padding-left: 0;
         }
 
         .anniv-2025 .section-heading::before {
-            position: absolute;
-            inset: 2px auto 18px 0;
-            width: 3px;
-            border-radius: 999px;
-            background: hsl(var(--section-hue) 90% 60%);
-            box-shadow: 0 0 18px hsl(var(--section-hue) 90% 60% / 0.42);
-            content: "";
+            display: none;
         }
 
         .anniv-2025 .section-kicker {
@@ -1470,13 +1725,6 @@
             --card-hue: 272;
         }
 
-        .anniv-2025 .feature-card::before {
-            background: linear-gradient(90deg,
-                hsl(var(--card-hue) 90% 62%),
-                hsl(var(--card-hue) 90% 62% / 0.18));
-            box-shadow: 0 0 16px hsl(var(--card-hue) 90% 60% / 0.28);
-        }
-
         .anniv-2025 .feature-card::after,
         .anniv-2025 .quest-card::after,
         .anniv-2025 .special-card::after {
@@ -1513,8 +1761,14 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .masthead-emblem::before {
+            .anniv-2025 .event-hero,
+            .anniv-2025 .section-nav {
                 animation: none;
+            }
+
+            .anniversary-year-rail,
+            .year-rail-backdrop {
+                transition: none;
             }
 
             .anniv-2025 .feature-card,
@@ -1544,7 +1798,7 @@
             }
 
             .anniv-2025 {
-                gap: 36px;
+                gap: 28px;
             }
 
             .anniv-2025 .event-section {
@@ -1558,21 +1812,57 @@
 
             .anniv-2025 .event-hero {
                 min-height: 0;
-                padding: 30px 22px;
+                padding: 24px 20px;
                 border-radius: 18px;
             }
 
             .anniv-2025 .hero-layout {
                 grid-template-columns: 1fr;
-                gap: 28px;
+                gap: 20px;
             }
 
             .anniv-2025 .event-hero h2 {
-                font-size: 42px;
+                margin-bottom: 14px;
+                font-size: clamp(34px, 10vw, 38px);
             }
 
             .anniv-2025 .section-nav {
+                top: 8px;
+                flex-wrap: nowrap;
+                overflow-x: auto;
                 margin-top: -18px;
+                scrollbar-width: thin;
+            }
+
+            .anniv-2025 .section-nav a {
+                flex: 0 0 auto;
+            }
+
+            .anniv-2025 .hero-stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+                padding: 10px;
+            }
+
+            .anniv-2025 .hero-stat {
+                display: block;
+                min-width: 0;
+                padding: 10px;
+                border: 0;
+                border-radius: 10px;
+                background: hsl(220 45% 18% / 0.68);
+            }
+
+            .anniv-2025 .hero-stat span,
+            .anniv-2025 .hero-stat strong {
+                display: block;
+                text-align: left;
+            }
+
+            .anniv-2025 .hero-stat strong {
+                margin-top: 6px;
+                font-size: 14px;
+                overflow-wrap: anywhere;
             }
 
             .anniv-2025 .section-heading {
@@ -1615,28 +1905,48 @@
 </head>
 
 <body>
-<section class="event-masthead anniversary-masthead" aria-labelledby="project_title">
-    <div class="masthead-main">
-        <div class="masthead-copy">
+<div class="anniversary-page-shell">
+    <section class="event-masthead anniversary-masthead" aria-labelledby="project_title">
+        <div class="masthead-main">
             <a class="masthead-back" href="./event.html">返回活动页</a>
-            <p class="masthead-kicker">Ephinea seasonal archive · anniversary</p>
-            <h1 id="project_title" class="masthead-title">
-                <span>ANNIVERSARY</span>
-                <strong id="project_year">2026</strong>
-            </h1>
-            <p class="masthead-summary">周年纪念活动档案 · 徽章经济、限定任务与年度奖励完整收录</p>
+            <div class="masthead-copy">
+                <p class="masthead-kicker">Anniversary archive</p>
+                <h1 id="project_title" class="masthead-title">
+                    <span>周年活动档案</span>
+                    <strong id="project_year">2026</strong>
+                </h1>
+            </div>
+            <div class="masthead-facts" aria-label="档案摘要">
+                <span>2016—2026</span>
+                <span>11 届活动</span>
+            </div>
         </div>
-        <div class="masthead-emblem" aria-hidden="true">
-            <span class="emblem-number">11</span>
-            <span class="emblem-label">ANNIV.</span>
-        </div>
-    </div>
-    <nav id="yearNav" class="year-nav" aria-label="周年活动年份"></nav>
-</section>
+    </section>
 
-<main class="content-container" id="content">
-    <p>载入中…</p>
-</main>
+    <div class="anniversary-workspace">
+        <div class="anniversary-year-rail-layer">
+            <button class="year-rail-backdrop" type="button" aria-label="收起年份导航"
+                    tabindex="-1" data-year-rail-dismiss></button>
+            <aside class="anniversary-year-rail" aria-label="周年活动档案年份">
+                <div class="year-rail-heading">
+                    <span>Archive timeline</span>
+                    <strong>选择活动年份</strong>
+                </div>
+                <nav id="yearNav" class="year-nav" aria-label="周年活动年份"></nav>
+                <p class="year-rail-note">从首届 Summer Event 到当前周年活动，按年份浏览规则、里程碑与奖励变化。</p>
+            </aside>
+            <button class="year-rail-toggle" type="button" aria-label="展开年份导航"
+                    aria-expanded="false" aria-controls="yearNav" data-year-rail-toggle>
+                <span class="year-rail-toggle-label" aria-hidden="true">年份</span>
+                <span class="year-rail-toggle-icon" aria-hidden="true">‹</span>
+            </button>
+        </div>
+
+        <main class="content-container" id="content">
+            <p>载入中…</p>
+        </main>
+    </div>
+</div>
 
 <div id="npcPreviewPopover" class="npc-preview-popover" role="dialog"
      aria-labelledby="npcPreviewCaption" hidden>

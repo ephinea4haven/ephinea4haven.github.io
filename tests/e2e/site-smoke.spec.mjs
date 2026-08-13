@@ -454,7 +454,7 @@ test('Angular route hosts keep representative page content centered', async ({ p
   await page.setViewportSize({ width: 1512, height: 900 });
   for (const [path, selector] of [
     ['/', '.container'],
-    ['/event/anniversary.html?year=2025', '.content-container'],
+    ['/event/anniversary.html?year=2025', '.anniversary-page-shell'],
     ['/guide/banners.html', '.content-container'],
     ['/tools/status.html', '.content-container'],
   ]) {
@@ -719,6 +719,68 @@ test('anniversary visual system has no WCAG A/AA accessibility violations', asyn
   }))).toEqual([]);
 });
 
+test('anniversary archive uses a full-page timeline workspace', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/event/anniversary.html?year=2026');
+  const workspace = page.locator('.anniversary-workspace');
+  const rail = page.locator('.anniversary-year-rail');
+  await expect(workspace).toBeVisible();
+  await expect(rail).toBeVisible();
+  await expect(rail.locator('#yearNav > *')).toHaveCount(11);
+  await expect.poll(() => workspace.evaluate((element) => getComputedStyle(element).display)).toBe('block');
+  await expect.poll(() => page.locator('.anniversary-year-rail-layer').evaluate(
+    (element) => getComputedStyle(element).position,
+  )).toBe('sticky');
+  await expect.poll(() => rail.evaluate((element) => getComputedStyle(element).position)).toBe('absolute');
+  const railToggle = page.locator('[data-year-rail-toggle]');
+  await expect(railToggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(railToggle).toHaveAttribute('aria-label', '展开年份导航');
+  await expect(railToggle.locator('.year-rail-toggle-label')).toHaveText('年份');
+  await expect(railToggle.locator('.year-rail-toggle-icon')).toHaveText('‹');
+  const toggleParts = await railToggle.locator('span').evaluateAll((parts) => parts.map((part) => {
+    const rect = part.getBoundingClientRect();
+    return { left: rect.left, right: rect.right, centerY: rect.top + rect.height / 2 };
+  }));
+  expect(Math.abs(toggleParts[0].centerY - toggleParts[1].centerY)).toBeLessThan(1);
+  expect(toggleParts[0].right).toBeLessThanOrEqual(toggleParts[1].left);
+  await expect(page.locator('.anniversary-page-shell')).toHaveClass(/is-year-rail-collapsed/);
+  await expect(rail.locator('#yearNav')).toBeHidden();
+  const contentBefore = await page.locator('#content').boundingBox();
+  await railToggle.click();
+  await expect(railToggle).toHaveAttribute('aria-expanded', 'true');
+  await expect(railToggle).toHaveAttribute('aria-label', '收起年份导航');
+  await expect(rail.locator('#yearNav')).toBeVisible();
+  expect(await page.locator('#content').boundingBox()).toEqual(contentBefore);
+  await page.locator('[data-year-rail-dismiss]').click({ position: { x: 500, y: 500 } });
+  await expect(railToggle).toHaveAttribute('aria-expanded', 'false');
+
+  await railToggle.click();
+  await page.keyboard.press('Escape');
+  await expect(railToggle).toHaveAttribute('aria-expanded', 'false');
+
+  await expect.poll(() => page.locator('.anniv-2026 .section-nav').evaluate(
+    (element) => getComputedStyle(element).position,
+  )).toBe('sticky');
+  expect((await page.locator('.event-masthead').boundingBox())?.height).toBeLessThan(120);
+  await expect(page.locator('.event-masthead')).toContainText('周年活动档案');
+  await expect.poll(() => page.locator('.anniv-2026 .feature-card').first().evaluate((element) => {
+    const style = getComputedStyle(element, '::before');
+    return [style.content, style.counterIncrement];
+  })).toEqual(['counter(anniversary-change, decimal-leading-zero)', 'anniversary-change 1']);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect.poll(() => workspace.evaluate((element) => getComputedStyle(element).display)).toBe('block');
+  await expect.poll(() => railToggle.evaluate((element) => getComputedStyle(element).position)).toBe('fixed');
+  await railToggle.click();
+  await expect.poll(() => rail.locator('#yearNav').evaluate(
+    (element) => getComputedStyle(element).display,
+  )).toBe('grid');
+  await expect.poll(() => page.locator('.anniv-2026 .hero-stats').evaluate(
+    (element) => getComputedStyle(element).gridTemplateColumns.split(' ').length,
+  )).toBe(2);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+});
+
 test('anniversary archive defaults to the announced 2026 event and keeps 2025 available', async ({ page }) => {
   await page.goto('/event/anniversary.html');
 
@@ -765,6 +827,7 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('#anniv-2026-shop .special-card').filter({ hasText: '向导' }).locator('.prize-list li'))
     .toHaveCount(6);
 
+  await page.locator('[data-year-rail-toggle]').click();
   await page.locator('#yearNav a', { hasText: '2025' }).click();
   await expect(page.locator('#project_year')).toHaveText('2025');
   await expect(page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' })).toBeVisible();
@@ -889,7 +952,11 @@ test('historical anniversary years share the modern archive presentation', async
     await expect(content).toHaveAttribute('data-anniversary-year', String(year));
     await expect.poll(() => content.locator('.archive-section').first().evaluate((section) => {
       const style = getComputedStyle(section);
-      return style.display !== 'none' && Number.parseFloat(style.borderRadius) >= 18;
+      const accent = getComputedStyle(section, '::before');
+      return style.display !== 'none'
+        && Number.parseFloat(style.borderTopLeftRadius) <= 6
+        && Number.parseFloat(style.borderTopRightRadius) >= 20
+        && Number.parseFloat(accent.width) === 4;
     })).toBe(true);
     await expect.poll(() => content.locator('.year-hero').evaluate(
       (hero) => getComputedStyle(hero, '::after').content.replaceAll('"', ''),

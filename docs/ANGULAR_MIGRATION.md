@@ -87,9 +87,13 @@ are not treated as sync drift.
 ## Anniversary archive contract
 
 The anniversary route owns a fixed 2016–2026 year manifest and loads each
-committed year as an event content fragment. Year navigation remains a flat,
-horizontally scrollable row on narrow screens, and section links retain the
-selected year instead of falling through to the site root.
+committed year as an event content fragment. Year navigation is a
+default-collapsed overlay drawer that does not alter content geometry; its
+toggle, backdrop and Escape key share the same Angular-owned state. Narrow
+screens keep the drawer vertical and move the collapsed control to the lower
+safe area. Every year uses the shared archive toolbar, themed hero and chapter
+presentation, while section links retain the selected year instead of falling
+through to the site root.
 
 PSOStats anniversary telemetry is archived only for the upstream years that
 exist: 2021, 2022, 2023 and 2025. Each of those fragments keeps its published

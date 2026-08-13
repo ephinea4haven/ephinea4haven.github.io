@@ -64,15 +64,20 @@ tabs, filters and event previews.
 
 Seasonal event routes own a fixed year manifest and load committed yearly HTML
 fragments through root-relative URLs. The anniversary archive defaults to 2026
-and presents the complete 2016–2026 manifest as a flat year navigation row; on
-narrow screens the row scrolls horizontally instead of collapsing into a
-selector. Each yearly fragment keeps localized milestone tables under stable
-year-specific anchors. Section navigation uses the full archive URL, selected
-year query and fragment together so Angular routing cannot reinterpret a bare
-fragment as a jump to the home route. The 2026 guide exposes only its six primary
-guide sections in that navigation while documenting the continuing MAE and
-Anniversary Badge format. Historical external milestone archive links are not
-part of the UI; the localized yearly fragments are the maintained record.
+and presents the complete 2016–2026 manifest in a default-collapsed overlay
+drawer. Opening the drawer never changes the content column geometry; it closes
+through its toggle, backdrop, or Escape key. On narrow screens the collapsed
+year control moves to the lower safe area while the drawer remains a vertical,
+scrollable timeline. All years share the compact archive toolbar, year-themed
+hero treatment, alternating chapter accents, and localized milestone tables
+under stable year-specific anchors. The 2025–2026 fragments additionally use a
+sticky, horizontally scrollable section navigation and numbered change cards.
+Section navigation uses the full archive URL, selected year query and fragment
+together so Angular routing cannot reinterpret a bare fragment as a jump to the
+home route. The 2026 guide exposes only its six primary guide sections while
+documenting the continuing MAE and Anniversary Badge format. Historical external
+milestone archive links are not part of the UI; the localized yearly fragments
+are the maintained record.
 PSOStats quest telemetry belongs to the matching yearly fragment and is only
 published for upstream archives that actually exist: 2021, 2022, 2023 and
 2025. Each supported year also preserves its complete published Overall Lap TA

@@ -65,11 +65,10 @@ export class SeasonalEventBehavior {
       else if (selected === 2025) hue = 43;
       this.host.style.setProperty('--anniv-year-hue', String(hue));
       content.dataset['anniversaryYear'] = String(selected);
+      this.setYearRailCollapsed(true);
     }
     document.title = `${selected}${label} | Ephinea PSOBB`;
     this.host.querySelector<HTMLElement>('#project_year')!.textContent = String(selected);
-    const emblem = this.host.querySelector<HTMLElement>('.emblem-number');
-    if (emblem && eventName === 'anniversary') emblem.textContent = String(selected - 2015);
     const nav = this.host.querySelector<HTMLElement>('#yearNav');
     nav?.replaceChildren(...years.map((year) => {
       const element = document.createElement(year === selected ? 'span' : 'a');
@@ -107,11 +106,16 @@ export class SeasonalEventBehavior {
         .catch(() => { content.textContent = `未能加载 ${selected} 年${label}内容。`; });
     }
     const click = (event: Event) => this.handleClick(event);
+    const keydown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') this.setYearRailCollapsed(true);
+    };
     const resize = () => this.closePreview();
     this.host.addEventListener('click', click);
+    this.host.addEventListener('keydown', keydown);
     window.addEventListener('resize', resize);
     this.destroyRef.onDestroy(() => {
       this.host.removeEventListener('click', click);
+      this.host.removeEventListener('keydown', keydown);
       window.removeEventListener('resize', resize);
     });
   }
@@ -230,6 +234,16 @@ export class SeasonalEventBehavior {
 
   private handleClick(event: Event): void {
     const target = event.target instanceof Element ? event.target : null;
+    const railToggle = target?.closest<HTMLElement>('[data-year-rail-toggle]');
+    if (railToggle) {
+      const shell = railToggle.closest<HTMLElement>('.anniversary-page-shell');
+      this.setYearRailCollapsed(!shell?.classList.contains('is-year-rail-collapsed'));
+      return;
+    }
+    if (target?.closest('[data-year-rail-dismiss]')) {
+      this.setYearRailCollapsed(true);
+      return;
+    }
     const menuTab = target?.closest<HTMLElement>('[data-quest-panel-target]');
     if (menuTab) {
       const menu = menuTab.closest<HTMLElement>('[data-quest-menu]');
@@ -248,6 +262,15 @@ export class SeasonalEventBehavior {
     const thumbnail = target?.closest<HTMLElement>('.npc-thumbnail-button');
     if (thumbnail) { this.previewAnchor === thumbnail ? this.closePreview() : this.showPreview(thumbnail); return; }
     if (target?.closest('.npc-preview-close') || !target?.closest('.npc-preview-popover')) this.closePreview();
+  }
+
+  private setYearRailCollapsed(collapsed: boolean): void {
+    const shell = this.host.querySelector<HTMLElement>('.anniversary-page-shell');
+    const toggle = this.host.querySelector<HTMLButtonElement>('[data-year-rail-toggle]');
+    if (!shell || !toggle) return;
+    shell.classList.toggle('is-year-rail-collapsed', collapsed);
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    toggle.setAttribute('aria-label', collapsed ? '展开年份导航' : '收起年份导航');
   }
 
   private showPreview(anchor: HTMLElement): void {

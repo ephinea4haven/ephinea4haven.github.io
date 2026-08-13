@@ -16,6 +16,8 @@
 
 ## Shipped
 
+- [x] Unified 2016–2026 anniversary archive with 2026 milestones, stable overlay
+  year navigation, responsive chapter navigation and shared year-themed presentation.
 - [x] Full-site Angular modernization completed and release-validated; jQuery,
   Bootstrap and Vue retired from the application and production artifact.
 - [x] Banner reference page based on the Ephinea Wiki banner documentation.
