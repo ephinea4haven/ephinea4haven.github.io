@@ -720,7 +720,14 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(questGuide).toContainText('综合首选 · Desert');
   await expect(questGuide).toContainText('定点首选 · CCA');
   await expect(questGuide).toContainText('配队原则');
+  await expect(questGuide).toContainText('PSOStats 共记录 13,319 局 MAE');
+  const questStats = questGuide.locator('[data-quest-stats-year="2025"]');
+  await expect(questStats.locator('tbody tr')).toHaveCount(11);
+  await expect(questStats.locator('tbody tr').filter({ hasText: 'Temple' })).toContainText('2:33.019');
+  await expect(questStats.locator('tbody tr').filter({ hasText: 'Desert' })).toContainText('1,773');
+  await expect(questStats.locator('tbody tr').filter({ hasText: 'Tower' })).toContainText('0.84');
   await expect(page.locator('a[href="https://note.com/fine_yarrow878/n/n84a2c42c24f5"]')).toHaveText('みどり · MAE 社区攻略参考');
+  await expect(page.locator('a[href="https://psostats.com/anniv2025"]')).toHaveCount(2);
   await expect(page.locator('#anniv-2026-changes')).toContainText('/badgenotify');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('11 项 MAE 最低值');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('服务器点数为 1,090');
