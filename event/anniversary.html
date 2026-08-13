@@ -909,6 +909,164 @@
             line-height: 1.65;
         }
 
+        .anniv-2025 .prize-list {
+            display: grid;
+            gap: 8px;
+            margin-top: 14px;
+            padding-left: 22px;
+        }
+
+        .anniv-2025 .prize-list li {
+            padding-left: 2px;
+            line-height: 1.5;
+        }
+
+        .anniv-2025 .prize-group {
+            margin: 18px 0 0;
+            color: hsl(210 20% 66%);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .anniv-2025 .special-cards {
+            align-items: start;
+        }
+
+        .anniv-legacy {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 32px;
+        }
+
+        .anniv-legacy > * {
+            min-width: 0;
+        }
+
+        .anniv-legacy .year-hero,
+        .anniv-legacy .event-section {
+            border: 1px solid hsl(188 80% 60% / 0.14);
+            border-radius: 20px;
+            background:
+                radial-gradient(circle at 100% 0, hsl(268 85% 67% / 0.08), transparent 28%),
+                linear-gradient(145deg, hsl(226 58% 13% / 0.82), hsl(223 60% 9% / 0.74));
+            box-shadow:
+                inset 0 1px 0 hsl(0 0% 100% / 0.05),
+                0 18px 46px hsl(225 90% 4% / 0.24);
+        }
+
+        .anniv-legacy .year-hero {
+            margin: 0;
+            padding: 32px;
+            border-color: hsl(188 80% 60% / 0.24);
+            background:
+                radial-gradient(circle at 84% 20%, hsl(43 96% 64% / 0.14), transparent 30%),
+                radial-gradient(circle at 12% 90%, hsl(268 85% 67% / 0.14), transparent 34%),
+                linear-gradient(135deg, hsl(223 66% 13%), hsl(235 64% 18%));
+        }
+
+        .anniv-legacy .year-hero h2 {
+            margin: 0 0 12px;
+            color: #fff;
+            font-size: clamp(30px, 5vw, 46px);
+            line-height: 1.08;
+            letter-spacing: -0.035em;
+        }
+
+        .anniv-legacy .year-hero > p {
+            max-width: 44em;
+            margin: 0;
+            color: hsl(210 30% 84%);
+            line-height: 1.7;
+        }
+
+        .anniv-legacy .year-meta {
+            margin-top: 20px;
+        }
+
+        .anniv-legacy .year-meta span {
+            border-color: hsl(188 80% 60% / 0.2);
+            background: hsl(226 58% 9% / 0.42);
+            color: hsl(210 25% 78%);
+        }
+
+        .anniv-legacy .event-section {
+            padding: 28px;
+        }
+
+        .anniv-legacy .event-section > h3:first-child {
+            margin: 0 0 18px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid hsl(188 80% 60% / 0.12);
+            color: #fff;
+            font-size: clamp(24px, 4vw, 32px);
+            letter-spacing: -0.025em;
+        }
+
+        .anniv-legacy .event-section > p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .anniv-legacy .change-list,
+        .anniv-legacy .quest-list {
+            display: grid;
+            gap: 10px;
+            margin: 0;
+            padding-left: 22px;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+
+        .anniv-legacy .change-list li,
+        .anniv-legacy .quest-list li {
+            margin: 0;
+            padding-left: 3px;
+        }
+
+        .anniv-legacy .rule-card {
+            padding: 18px;
+            border-color: hsl(188 80% 60% / 0.1);
+            border-radius: 16px;
+            background: linear-gradient(150deg, hsl(224 56% 16% / 0.96), hsl(229 58% 11% / 0.92));
+            box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.05);
+        }
+
+        .anniv-legacy .rule-card strong {
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .anniv-legacy .shop-table-wrap {
+            margin-bottom: 0;
+            border-color: hsl(43 96% 64% / 0.16);
+            border-radius: 14px;
+            background: hsl(226 58% 9% / 0.42);
+        }
+
+        .anniv-legacy .shop-table th {
+            background: hsl(188 92% 58% / 0.08);
+            color: hsl(210 25% 76%);
+        }
+
+        .anniv-legacy .source-links {
+            justify-content: center;
+            margin: 0;
+            padding: 20px;
+            border: 0;
+            border-radius: 16px;
+            background: hsl(226 58% 10% / 0.7);
+        }
+
+        .anniv-legacy .source-links a {
+            padding: 9px 14px;
+            border-radius: 9px;
+            background: hsl(188 92% 58% / 0.1);
+            color: hsl(188 92% 58%);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
         .anniv-2025 .source-links {
             justify-content: center;
             margin-top: 0;
@@ -1204,6 +1362,16 @@
             .anniv-2025 .tier-cards,
             .anniv-2025 .special-cards {
                 grid-template-columns: 1fr;
+            }
+
+            .anniv-legacy {
+                gap: 24px;
+            }
+
+            .anniv-legacy .year-hero,
+            .anniv-legacy .event-section {
+                padding: 22px 18px;
+                border-radius: 18px;
             }
         }
 

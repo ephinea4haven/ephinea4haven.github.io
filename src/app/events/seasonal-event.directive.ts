@@ -73,6 +73,7 @@ export class SeasonalEventBehavior {
 
     const finish = () => {
       if (eventName === 'anniversary') {
+        this.normalizeAnniversaryLayout(content);
         this.markAnniversaryLabels(content);
         this.decorateNpcTables(content);
       }
@@ -105,6 +106,24 @@ export class SeasonalEventBehavior {
       this.host.removeEventListener('click', click);
       window.removeEventListener('resize', resize);
     });
+  }
+
+  private normalizeAnniversaryLayout(container: HTMLElement): void {
+    if (container.querySelector('.anniv-2025') || container.querySelector('.anniv-legacy')) return;
+
+    container.classList.add('anniv-legacy');
+    const headings = Array.from(container.children).filter((element) => element.tagName === 'H3');
+    for (const heading of headings) {
+      const section = document.createElement('section');
+      section.className = 'event-section archive-section';
+      heading.before(section);
+      section.append(heading);
+      while (section.nextElementSibling
+        && section.nextElementSibling.tagName !== 'H3'
+        && !section.nextElementSibling.classList.contains('source-links')) {
+        section.append(section.nextElementSibling);
+      }
+    }
   }
 
   private localizeItems(container: HTMLElement | null): void {

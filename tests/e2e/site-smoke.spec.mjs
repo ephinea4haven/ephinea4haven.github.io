@@ -731,17 +731,30 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' }).locator('strong'))
     .toHaveText('拉古奥盗贼 · 铜牌 随机奖池');
   const thiefPool = page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' });
-  await expect(thiefPool).toContainText('小ＨＰ回复液 (Monomate)、小ＴＰ回复液 (Monofluid)');
+  await expect(thiefPool.locator('.prize-list').first().locator('li').nth(0))
+    .toHaveText('小ＨＰ回复液 (Monomate)');
+  await expect(thiefPool.locator('.prize-list').first().locator('li').nth(1))
+    .toHaveText('小ＴＰ回复液 (Monofluid)');
   await expect.poll(() => thiefPool.locator('.item-en').evaluateAll(
     (names) => names.length > 10 && names.every((name) => name.textContent?.startsWith(' ')),
   )).toBe(true);
   await expect.poll(() => thiefPool.locator('p').evaluateAll(
     (paragraphs) => paragraphs.every((paragraph) => getComputedStyle(paragraph).textAlign === 'left'),
   )).toBe(true);
+  await expect(thiefPool.locator('.prize-list li')).toHaveCount(24);
+  await expect.poll(() => page.locator('#anniv-2026-shop .prize-list li').evaluateAll(
+    (items) => items.every((item) => !/[、，,]\s*$/.test(item.textContent?.trim() ?? '')),
+  )).toBe(true);
+  await expect(page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥猎人' }).locator('.prize-list li'))
+    .toHaveCount(14);
+  await expect(page.locator('#anniv-2026-shop .special-card').filter({ hasText: '向导' }).locator('.prize-list li'))
+    .toHaveCount(6);
 
   await page.locator('#yearNav a', { hasText: '2025' }).click();
   await expect(page.locator('#project_year')).toHaveText('2025');
   await expect(page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' })).toBeVisible();
+  await expect(page.locator('#anniv-prizes .special-card').filter({ hasText: '拉古奥盗贼' }).locator('.prize-list li'))
+    .toHaveCount(11);
 });
 
 test('PSOStats quest data belongs to its archived anniversary year', async ({ page }) => {
@@ -848,6 +861,20 @@ test('anniversary years expose complete localized milestone contracts', async ({
     await expect(milestoneRows.first().locator('td').nth(1)).toContainText(first[1]);
     await expect(milestoneRows.last().locator('td').nth(0)).toHaveText(last[0]);
     await expect(milestoneRows.last().locator('td').nth(1)).toContainText(last[1]);
+  }
+});
+
+test('historical anniversary years share the modern archive presentation', async ({ page }) => {
+  for (const year of [2016, 2020, 2024]) {
+    await page.goto(`/event/anniversary.html?year=${year}`);
+    const content = page.locator('#content');
+    await expect(content).toHaveClass(/anniv-legacy/);
+    await expect(content.locator('.year-hero')).toBeVisible();
+    await expect(content.locator('.archive-section').first()).toBeVisible();
+    await expect.poll(() => content.locator('.archive-section').first().evaluate((section) => {
+      const style = getComputedStyle(section);
+      return style.display !== 'none' && Number.parseFloat(style.borderRadius) >= 18;
+    })).toBe(true);
   }
 });
 
