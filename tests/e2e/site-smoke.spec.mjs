@@ -704,6 +704,14 @@ test('anniversary feature cards keep bilingual item names visible', async ({ pag
   })).toBe(true);
 });
 
+test('anniversary archive returns to the event overview', async ({ page }) => {
+  await page.goto('/event/anniversary.html?year=2026');
+  await page.getByRole('link', { name: '返回活动页' }).click();
+
+  await expect(page).toHaveURL(/\/event\/event\.html$/);
+  await expect(page.getByRole('heading', { name: '周年活动', exact: true })).toBeVisible();
+});
+
 test('anniversary visual system has no WCAG A/AA accessibility violations', async ({ page }) => {
   await page.goto('/event/anniversary.html?year=2026');
   await expect(page.locator('#anniv-2026-shop')).toBeVisible();
