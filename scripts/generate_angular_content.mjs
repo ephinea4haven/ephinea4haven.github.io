@@ -32,7 +32,7 @@ const pageBehaviors = new Map([
   ['data/en2chinese.html', ['ItemLookupBehavior', 'ItemTranslationWidthBehavior']],
   ['data/weapon_special_reduction.html', ['ItemTranslationWidthBehavior']],
   ['data/enemy_weapon_hit.html', ['ItemTranslationWidthBehavior']],
-  ['data/WSBoost.html', ['ItemTranslationWidthBehavior']],
+  ['data/equipment_technique_boosts.html', ['ItemTranslationWidthBehavior']],
   ['data/gallons_roulette.html', ['ItemTranslationWidthBehavior']],
   ['event/easter.html', ['EventArchiveBehavior']],
   ['event/halloween.html', ['EventArchiveBehavior']],
@@ -121,9 +121,17 @@ function normalizeEnglishItemName(value) {
   return value.replaceAll(/[‘’]/g, "'").trim().toLocaleLowerCase('en');
 }
 
-const itemTranslationByEnglish = new Map(itemTranslations.map((item) => [
-  normalizeEnglishItemName(item.en), item,
-]));
+const itemTranslationByEnglish = new Map();
+for (const item of itemTranslations) {
+  const identity = normalizeEnglishItemName(item.en);
+  const duplicate = itemTranslationByEnglish.get(identity);
+  if (duplicate) {
+    throw new Error(
+      `items_i18n.js has duplicate English item identity: ${JSON.stringify(duplicate.en)} and ${JSON.stringify(item.en)}`,
+    );
+  }
+  itemTranslationByEnglish.set(identity, item);
+}
 await mkdir(path.join(root, 'src/app/generated/i18n'), { recursive: true });
 await writeFile(path.join(root, 'src/app/generated/i18n/items.ts'), `export interface ItemTranslation {
   readonly en?: string; readonly zh?: string; readonly ja?: string;
@@ -182,11 +190,14 @@ function visibleItemZh(values) {
 }
 
 function itemI18n(id) {
-  const item = itemTranslationById[id] || {};
+  const item = itemTranslationById[id];
+  if (!item?.en || !item?.zh) {
+    throw new Error(`Unknown canonical item translation id: ${JSON.stringify(id)}`);
+  }
   return {
-    zh: item.zh || item.en || id,
-    en: item.en || item.zh || id,
-    ja: item.ja || item.en || item.zh || id,
+    zh: item.zh,
+    en: item.en,
+    ja: item.ja || item.en,
   };
 }
 
@@ -223,7 +234,7 @@ function buildCanonicalItemConsumers(relative, source) {
   if (![
     'data/weapon_special_reduction.html',
     'data/enemy_weapon_hit.html',
-    'data/WSBoost.html',
+    'data/equipment_technique_boosts.html',
     'data/gallons_roulette.html',
   ].includes(relative)) return source;
 
@@ -240,26 +251,6 @@ function buildCanonicalItemConsumers(relative, source) {
         node,
         html: `${english ? `${escapeHtml(english)} ` : ''}${canonicalItemMarkup(item)}`,
       });
-      return;
-    }
-    let ancestor = node.parentNode;
-    while (ancestor && ancestor.tagName !== 'table') ancestor = ancestor.parentNode;
-    const canonicalBilingualTable = ancestor?.attrs?.some((attribute) => (
-      attribute.name === 'data-canonical-bilingual-items'
-    ));
-    if (relative === 'data/WSBoost.html' && node.tagName === 'td' && canonicalBilingualTable) {
-      const text = nodeText(node).trim();
-      const normalized = normalizeEnglishItemName(text);
-      const match = [...itemTranslationByEnglish.entries()]
-        .filter(([english]) => normalized.startsWith(`${english} `))
-        .sort(([left], [right]) => right.length - left.length)[0];
-      if (match) {
-        const item = match[1];
-        replacements.push({
-          node,
-          html: `${escapeHtml(item.en)} ${canonicalItemMarkup(item)}`,
-        });
-      }
       return;
     }
     if (node.tagName !== 'table') return;

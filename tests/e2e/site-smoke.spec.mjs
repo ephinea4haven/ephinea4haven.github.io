@@ -800,7 +800,8 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('a[href="https://note.com/fine_yarrow878/n/n84a2c42c24f5"]')).toHaveText('みどり · MAE 社区攻略参考');
   await expect(page.locator('#anniv-2026-changes')).toContainText('/badgenotify');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('11 项 MAE 最低值');
-  await expect(page.locator('#anniv-2026-milestones')).toContainText('服务器点数为 1,645');
+  await expect(page.locator('#anniv-2026-milestones')).toContainText('服务器点数为 2,624');
+  await expect(page.locator('#anniv-2026-milestones')).toContainText('Meseta 掉落量 +25%（已解锁）');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('August Atrocity #1、#2 始终为 +25%');
   await expect(page.locator('a[href="https://ephinea.pioneer2.net/11th-anniv-event/"]')).toHaveText('2026 官方实时里程碑');
   await expect(page.locator('#anniv-2026-shop')).toContainText('Heart of Flight Fan');
@@ -918,7 +919,7 @@ test('2025 anniversary section navigation stays on the selected archive year', a
 
 test('anniversary years expose complete localized milestone contracts', async ({ page }) => {
   const expected = [
-    { year: 2026, total: '服务器点数为 1,645', rows: 16, first: ['1,000', '稀有物品掉落率 +10%'], last: ['20,000', '官方暂未公开'] },
+    { year: 2026, total: '服务器点数为 2,624', rows: 16, first: ['1,000', '稀有物品掉落率 +10%'], last: ['20,000', '官方暂未公开'] },
     { year: 2025, total: '25,417', rows: 11, first: ['2,500', '经验值 +50%'], last: ['20,000', '命中 属性出现概率 +1%'] },
     { year: 2024, total: '11,316', rows: 22, first: ['150', '稀有物品掉落率 +10%'], last: ['12,000 / 14,000 / 16,000 / 18,000 / 20,000', '官方最终存档仍显示“???”'] },
     { year: 2023, total: '18,149,237', rows: 26, first: ['25 万', '周年徽章掉落率 +25%'], last: ['1,500 万', '命中 属性出现概率 +1%'] },
@@ -993,6 +994,10 @@ test('banner item lists use Chinese-first bilingual names', async ({ page }) => 
   await expect(page.locator('#other-items + .table-scroll')).toContainText(
     '红色手镯(Red Ring)',
   );
+  await expect(page.locator('#other-items + .table-scroll')).toContainText(
+    '天使之琴之心(Heart of Angel Harp)',
+  );
+  await expect(page.getByText('天使之琴涂之心', { exact: true })).toHaveCount(0);
   await expect.poll(() => names.first().evaluate((name) => (
     [...name.children].map((part) => part.className)
   ))).toEqual(['item-zh', 'item-en']);
@@ -1059,8 +1064,22 @@ test('canonical item pages share authoritative names and width preference', asyn
   await expect(page.locator('[data-item-zh="森隐雷藏拳套０型"]')).toHaveText('森隐雷藏拳套０型');
   await expect(page.getByRole('button', { name: '全角', exact: true })).toHaveAttribute('aria-pressed', 'true');
 
-  await page.goto('/data/WSBoost.html');
+  await page.goto('/data/equipment_technique_boosts.html');
+  await expect(page.getByRole('heading', { name: '装备技能增幅', exact: true }).first()).toBeVisible();
   await expect(page.locator('[data-item-zh="冰杖「达冈」"]')).toHaveText('冰杖「达冈」');
+  const caduceusRow = page.locator('tr', { has: page.locator('[data-item-en="Caduceus"]') });
+  const tyrellRow = page.locator('tr', { has: page.locator('[data-item-en="Tyrell\'s Parasol"]') });
+  await expect(caduceusRow.locator('td').nth(1)).toHaveText('Grants');
+  await expect(caduceusRow.locator('td').nth(2)).toHaveText('伤害 +20%');
+  await expect(tyrellRow.locator('td').first()).toContainText('总督恩赐的阳伞');
+  await expect(tyrellRow.locator('td').nth(1)).toHaveText('Shifta / Deband / Resta');
+  await expect(tyrellRow.locator('td').nth(2)).toHaveText('范围 +100%');
+  await expect(page.locator('[data-item-en="Ignition Cloak"]')).toBeVisible();
+  await expect(page.locator('[data-item-en="FOIE MERGE"]')).toBeVisible();
+  await expect(page.locator('tbody tr')).toHaveCount(58);
+  await expect(page.getByText('IZMAELA', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('Two Kamui', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('Evil Curst', { exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: '半角', exact: true }).click();
   await expect(page.locator('[data-item-zh="冰杖「达冈」"]')).toHaveText('冰杖「达冈」');
 });

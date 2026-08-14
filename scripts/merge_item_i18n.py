@@ -27,6 +27,11 @@ DROPTABLE_DIR = REPO / 'data/droptable'
 REGIONS = ['bb', 'dc', 'ngc']
 
 
+def normalize_english_name(name: str) -> str:
+    """Return the canonical identity used for English item-name matching."""
+    return name.translate(str.maketrans({'‘': "'", '’': "'"})).strip().casefold()
+
+
 class DroptableShapeError(ValueError):
     """Raised when localized droptable structures cannot be paired safely."""
 
@@ -189,21 +194,21 @@ def merge(items_i18n, dt_zh, dt_ja):
 
     Returns: (merged_dict, stats)
     """
-    # Start with existing items_i18n; index by EN name (and lowercased EN) for lookup.
+    # Start with existing items_i18n; normalized English identity is unique.
     by_en = {}
-    by_en_lower = {}
+    by_en_identity = {}
     for slug, entry in items_i18n.items():
         en = entry.get('en')
         if en:
-            lower = en.lower()
-            if lower in by_en_lower:
-                other_slug, _ = by_en_lower[lower]
+            identity = normalize_english_name(en)
+            if identity in by_en_identity:
+                other_slug, _ = by_en_identity[identity]
                 raise ValueError(
                     f'duplicate English item names: {other_slug!r} and {slug!r}'
                 )
             copied = dict(entry)
             by_en[en] = (slug, copied)
-            by_en_lower[lower] = (slug, copied)
+            by_en_identity[identity] = (slug, copied)
 
     stats = {
         'pre_existing': len(items_i18n),
@@ -216,14 +221,13 @@ def merge(items_i18n, dt_zh, dt_ja):
     def upsert(en: str, zh: str | None, ja: str | None) -> bool:
         if not en:
             return False
-        # Match case-insensitively to avoid creating duplicate entries that
-        # differ only in case (Title Case vs UPPERCASE).
+        # Match canonical English identity so case and apostrophe typography
+        # cannot create parallel translation records.
         existing_key = en if en in by_en else None
         if not existing_key:
-            existing_key_lower = en.lower()
-            if existing_key_lower in by_en_lower:
-                # Use the canonical (lowercased) match's slug
-                slug, entry = by_en_lower[existing_key_lower]
+            identity = normalize_english_name(en)
+            if identity in by_en_identity:
+                slug, entry = by_en_identity[identity]
                 existing_key = entry.get('en')
         if existing_key:
             slug, entry = by_en[existing_key]
@@ -256,7 +260,7 @@ def merge(items_i18n, dt_zh, dt_ja):
                 entry['ja'] = ja
             items_i18n[slug] = entry
             by_en[en] = (slug, entry)
-            by_en_lower[en.lower()] = (slug, entry)
+            by_en_identity[normalize_english_name(en)] = (slug, entry)
             return True
 
     # Apply each discovered English name once. Droptable zh wins on overlap.
@@ -306,12 +310,13 @@ def coverage_check(merged: dict, *, itemdata: str | None = None):
         for match in pattern.finditer(itemdata)
     }
     translated_names = {
-        entry['en'].casefold()
+        normalize_english_name(entry['en'])
         for entry in merged.values()
         if entry.get('en')
     }
     missing = sorted(
-        name for name in names if name.casefold() not in translated_names
+        name for name in names
+        if normalize_english_name(name) not in translated_names
     )
     covered = len(names) - len(missing)
     return covered, len(names), missing

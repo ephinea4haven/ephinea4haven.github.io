@@ -506,8 +506,8 @@ window.ITEMS_I18N = {
     "en": "Birthday Card",
     "zh": "生日贺卡"
   },
-  "black_gauntlet": {
-    "en": "Black Gauntlet",
+  "black_gauntlets": {
+    "en": "Black Gauntlets",
     "zh": "黑色手套"
   },
   "black_gear": {
@@ -1231,11 +1231,6 @@ window.ITEMS_I18N = {
     "ja": "ＤＢの鎧"
   },
   "db_s_saber": {
-    "zh": "DB剑",
-    "en": "DB’s Saber",
-    "ja": "ＤＢの剣"
-  },
-  "db_s_saber_3": {
     "en": "DB's Saber",
     "zh": "ＤＢ之剑",
     "ja": "ＤＢの剣"
@@ -1306,11 +1301,6 @@ window.ITEMS_I18N = {
     "ja": "DBの剣 (No 9*)"
   },
   "db_s_shield": {
-    "zh": "DB盾",
-    "en": "DB’s Shield",
-    "ja": "ＤＢの盾"
-  },
-  "db_s_shield_3": {
     "en": "DB's Shield",
     "zh": "ＤＢ之盾",
     "ja": "ＤＢの盾"
@@ -1850,11 +1840,6 @@ window.ITEMS_I18N = {
     "ja": "フロウウェンの盾"
   },
   "flowen_s_sword": {
-    "zh": "佛洛文大剑",
-    "en": "Flowen’s Sword",
-    "ja": "フロウウェンの大剣"
-  },
-  "flowen_s_sword_3": {
     "en": "Flowen's Sword",
     "zh": "弗罗文大剑",
     "ja": "フロウウェンの大剣"
@@ -2580,7 +2565,7 @@ window.ITEMS_I18N = {
   },
   "heart_of_angel_harp": {
     "en": "Heart of Angel Harp",
-    "zh": "天使之琴涂之心",
+    "zh": "天使之琴之心",
     "ja": "エンジェルハープの心"
   },
   "heart_of_blade_dance": {
@@ -3374,21 +3359,11 @@ window.ITEMS_I18N = {
     "zh": "机械"
   },
   "madam_s_parasol": {
-    "zh": "女士阳伞",
-    "en": "Madam’s Parasol",
-    "ja": "マダムノヒガサ"
-  },
-  "madam_s_parasol_3": {
     "en": "Madam's Parasol",
     "zh": "女士阳伞",
     "ja": "マダムノヒガサ"
   },
   "madam_s_umbrella": {
-    "zh": "女士雨伞",
-    "en": "Madam’s Umbrella",
-    "ja": "マダムノアマガサ"
-  },
-  "madam_s_umbrella_3": {
     "en": "Madam's Umbrella",
     "zh": "女士雨伞",
     "ja": "マダムノアマガサ"
@@ -4287,11 +4262,6 @@ window.ITEMS_I18N = {
     "ja": "ラッピー"
   },
   "rappy_s_beak": {
-    "zh": "蜡笔鸟嘴",
-    "en": "Rappy’s Beak",
-    "ja": "ラッピーのくちばし"
-  },
-  "rappy_s_beak_2": {
     "en": "Rappy's Beak",
     "zh": "拉比鸟嘴",
     "ja": "ラッピーのくちばし"
@@ -5543,11 +5513,6 @@ window.ITEMS_I18N = {
     "zh": "白-魔杖/魔杖"
   },
   "tyrell_s_parasol": {
-    "zh": "总督阳伞",
-    "en": "Tyrell’s Parasol",
-    "ja": "総督恩賜パラソル"
-  },
-  "tyrell_s_parasol_2": {
     "en": "Tyrell's Parasol",
     "zh": "总督恩赐的阳伞",
     "ja": "総督恩賜パラソル"

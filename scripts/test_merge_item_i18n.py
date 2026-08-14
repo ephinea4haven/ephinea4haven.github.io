@@ -143,6 +143,40 @@ class MergeItemTranslationsTest(unittest.TestCase):
         ):
             list(walk_droptable_items(*tables))
 
+    def test_rejects_typographic_apostrophe_duplicate_identity(self) -> None:
+        source = {
+            'smart': {'en': 'Tyrell’s Parasol', 'zh': '旧译名'},
+            'ascii': {'en': "Tyrell's Parasol", 'zh': '权威译名'},
+        }
+
+        with self.assertRaisesRegex(
+            ValueError,
+            'duplicate English item names',
+        ):
+            merge(source, {}, {})
+
+    def test_droptable_updates_same_apostrophe_identity(self) -> None:
+        source = {
+            'parasol': {'en': 'Tyrell’s Parasol', 'zh': '旧译名'},
+        }
+
+        merged, stats = merge(
+            source,
+            {"Tyrell's Parasol": '总督恩赐的阳伞'},
+            {"Tyrell's Parasol": '総督恩賜パラソル'},
+        )
+
+        self.assertEqual(
+            merged['parasol'],
+            {
+                'en': 'Tyrell’s Parasol',
+                'zh': '总督恩赐的阳伞',
+                'ja': '総督恩賜パラソル',
+            },
+        )
+        self.assertEqual(stats['added_from_droptable'], 0)
+        self.assertEqual(stats['zh_updated_from_droptable'], 1)
+
 
 class CoverageCheckTest(unittest.TestCase):
     """Verify catalog coverage uses the same name identity as merging."""

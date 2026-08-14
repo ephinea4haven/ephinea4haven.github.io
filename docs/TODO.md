@@ -21,6 +21,10 @@
 - [x] Full-site Angular modernization completed and release-validated; jQuery,
   Bootstrap and Vue retired from the application and production artifact.
 - [x] Banner reference page based on the Ephinea Wiki banner documentation.
+- [x] Canonical item-translation pipeline with `items_i18n.js` ownership,
+  normalized English identities and persistent Chinese width selection.
+- [x] Ephinea equipment-based Technique boost reference covering weapons,
+  frames and barriers through the canonical translation catalog.
 - [x] Landing-page seasonal highlighting with reduced-motion support.
 - [x] Standalone Mag feeder/planner deployment with legacy URL redirect.
 - [x] Original-source high-resolution map atlas for the Episode I and II challenge guides.

@@ -50,6 +50,15 @@ but no scripts or inline event handlers; Angular owns behavior.
 The current drop-table product is hosted independently at
 `dropcharts.psohaven.com`.
 
+`assets/js/i18n/items_i18n.js` is the single authoritative item-translation
+catalog for this repository. `data/droptable/` supplies upstream Chinese and
+Japanese names to `scripts/merge_item_i18n.py`, but pages and generated Angular
+modules never read droptable files as their runtime item list. English identity
+matching is case-insensitive and normalizes straight and typographic apostrophes;
+duplicates fail generation instead of silently overwriting one another. Only
+Chinese item labels offer halfwidth/fullwidth presentation. The selected mode is
+shared across routes and persisted in `localStorage` under `itemZhWidth`.
+
 ## Content and application routes
 
 Content routes preserve the existing authored HTML as build-time content input.
@@ -61,6 +70,11 @@ Dedicated components are preferred when state changes the rendered model, such
 as Combo, status, character tables and prices. Scoped directives are used for
 stable document-like content whose interaction is naturally DOM-local, such as
 tabs, filters and event previews.
+
+`/data/equipment_technique_boosts.html` is the canonical equipment-based
+Technique boost reference. Its weapon, frame and barrier rows follow the Ephinea
+Wiki source, while every displayed equipment name resolves through
+`items_i18n.js`.
 
 Seasonal event routes own a fixed year manifest and load committed yearly HTML
 fragments through root-relative URLs. The anniversary archive defaults to 2026
@@ -75,7 +89,10 @@ sticky, horizontally scrollable section navigation and numbered change cards.
 Section navigation uses the full archive URL, selected year query and fragment
 together so Angular routing cannot reinterpret a bare fragment as a jump to the
 home route. The 2026 guide exposes only its six primary guide sections while
-documenting the continuing MAE and Anniversary Badge format. Historical external
+documenting the continuing MAE and Anniversary Badge format. Its committed
+milestone table is a dated snapshot synchronized from the official Ephinea live
+milestone page; that external page remains the authority for later point and
+reward updates. Historical external
 milestone archive links are not part of the UI; the localized yearly fragments
 are the maintained record.
 PSOStats quest telemetry belongs to the matching yearly fragment and is only

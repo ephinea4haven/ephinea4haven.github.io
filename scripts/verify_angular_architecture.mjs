@@ -2,6 +2,7 @@ import { access, readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse } from 'parse5';
+import vm from 'node:vm';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const pageRoots = ['data', 'event', 'guide', 'tools'];
@@ -43,6 +44,23 @@ for (const relative of retiredAssets) {
   } catch (error) {
     if (error?.code !== 'ENOENT') throw error;
   }
+}
+
+const itemTranslationSandbox = { window: {} };
+vm.runInNewContext(
+  await readFile(path.join(root, 'assets/js/i18n/items_i18n.js'), 'utf8'),
+  itemTranslationSandbox,
+  { filename: 'items_i18n.js', timeout: 1000 },
+);
+const itemIdentities = new Map();
+for (const [id, item] of Object.entries(itemTranslationSandbox.window.ITEMS_I18N || {})) {
+  if (!item?.en) continue;
+  const identity = item.en.replaceAll(/[‘’]/g, "'").trim().toLocaleLowerCase('en');
+  const duplicate = itemIdentities.get(identity);
+  if (duplicate) {
+    throw new Error(`Duplicate canonical item identity: ${duplicate} and ${id}`);
+  }
+  itemIdentities.set(identity, id);
 }
 
 const angularSources = (await walk(path.join(root, 'src', 'app')))
@@ -90,7 +108,7 @@ for (const contract of itemConsumerContracts) {
 const canonicalItemPages = [
   'data/weapon_special_reduction.html',
   'data/enemy_weapon_hit.html',
-  'data/WSBoost.html',
+  'data/equipment_technique_boosts.html',
   'data/gallons_roulette.html',
 ];
 const contentGenerator = await readFile(path.join(root, 'scripts/generate_angular_content.mjs'), 'utf8');
@@ -105,6 +123,28 @@ for (const relative of canonicalItemPages) {
   if (!contentGenerator.includes(`'${relative}'`)) {
     throw new Error(`${relative} must derive displayed names from canonical item translations`);
   }
+}
+
+
+const equipmentTechniqueBoostsSource = await readFile(
+  path.join(root, 'data/equipment_technique_boosts.html'),
+  'utf8',
+);
+const equipmentTechniqueBoostsDocument = parse(equipmentTechniqueBoostsSource);
+const equipmentTechniqueBoostRows = [];
+visit(equipmentTechniqueBoostsDocument, (node) => {
+  if (node.tagName === 'tr') {
+    const cells = node.childNodes?.filter((child) => child.tagName === 'td') || [];
+    if (cells.length === 3) equipmentTechniqueBoostRows.push(cells);
+  }
+});
+if (equipmentTechniqueBoostRows.length !== 58
+    || equipmentTechniqueBoostRows.some(([item, technique, boost]) => (
+  !item.attrs?.some((attribute) => attribute.name === 'data-item-en')
+  || technique.attrs?.some((attribute) => attribute.name === 'data-item-en')
+  || boost.attrs?.some((attribute) => attribute.name === 'data-item-en')
+))) {
+  throw new Error('equipment technique boosts must identify only its 58 equipment-name cells as canonical items');
 }
 
 const volOptSource = await readFile(path.join(root, 'guide/volopt.html'), 'utf8');
