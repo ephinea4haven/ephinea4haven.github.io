@@ -20,7 +20,6 @@ from sync_item_i18n import (  # noqa: E402
 
 
 class SyncItemTranslationsTest(unittest.TestCase):
-    @unittest.skipUnless(DEFAULT_AUTHORITY.is_file(), 'sibling authority checkout unavailable')
     def test_checked_in_dictionary_matches_authority(self) -> None:
         authority_bytes = DEFAULT_AUTHORITY.read_bytes()
         expected = render(

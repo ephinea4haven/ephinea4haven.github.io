@@ -51,6 +51,8 @@ The current drop-table product is hosted independently at
 `dropcharts.psohaven.com`.
 
 The sibling `droptable/i18n_names.json` file is the sole item-name authority.
+CI checks out `warmonipa/dropcharts` at `master` and fails if the checked-in
+site dictionary differs from that authority.
 `scripts/sync_item_i18n.py` deterministically generates
 `assets/js/i18n/items_i18n.js`; the generated JavaScript is a checked-in build
 input and must not be edited by hand. The authority retains names outside

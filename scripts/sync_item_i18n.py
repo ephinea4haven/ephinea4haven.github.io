@@ -6,12 +6,18 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 from pathlib import Path
 
 
 REPO = Path(__file__).resolve().parent.parent
-DEFAULT_AUTHORITY = REPO.parent / "droptable" / "i18n_names.json"
+DEFAULT_AUTHORITY = Path(
+    os.environ.get(
+        "DROPTABLE_I18N_AUTHORITY",
+        REPO.parent / "droptable" / "i18n_names.json",
+    )
+)
 OUTPUT = REPO / "assets" / "js" / "i18n" / "items_i18n.js"
 
 
