@@ -1,0 +1,22 @@
+.filter-bar { display: flex; margin-bottom: 16px; }
+.filter-bar input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 16px;
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  border-radius: 8px;
+  outline: none;
+  background: rgba(0, 212, 255, 0.06);
+  color: #e2e8f0;
+  font: inherit;
+}
+.filter-bar input:focus { border-color: rgba(0, 212, 255, 0.6); }
+.filter-bar input::placeholder { color: #64748b; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+#result-count { margin-bottom: 12px; color: var(--text-secondary); font-size: 13px; }
+.table-scroll { overflow-x: auto; }
+#lookup-table { min-width: 680px; }
+#lookup-table td:first-child { width: 40%; font-family: 'Segoe UI', 'Courier New', monospace; letter-spacing: 0.3px; }
+#lookup-table td:nth-child(2), #lookup-table td:nth-child(3) { width: 30%; }
+#lookup-table td.empty, #no-results { color: var(--text-muted); }
+#no-results { padding: 24px; text-align: center; }

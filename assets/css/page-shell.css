@@ -41,8 +41,6 @@ header {
     gap: 8px;
 }
 
-#langSwitch .item-width-switch { margin: 0; }
-
 #langSwitch .lang-btn {
     background: transparent;
     color: #6a85a0;

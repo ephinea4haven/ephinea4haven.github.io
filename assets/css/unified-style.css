@@ -98,47 +98,6 @@ page-chrome {
     width: 100%;
 }
 
-.item-width-switch {
-    display: inline-flex;
-    align-items: center;
-    gap: 3px;
-    margin: -8px 0 18px;
-    padding: 3px;
-    border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 999px;
-    background: rgba(12, 24, 56, 0.62);
-    color: var(--text-muted);
-    font-size: 12px;
-}
-
-.item-width-switch[hidden] { display: none; }
-
-.item-width-label {
-    padding: 0 8px;
-    letter-spacing: 0.04em;
-}
-
-.item-width-switch button {
-    padding: 4px 10px;
-    border: 0;
-    border-radius: 999px;
-    background: transparent;
-    color: var(--text-secondary);
-    cursor: pointer;
-    font: inherit;
-    font-weight: 700;
-}
-
-.item-width-switch button:hover { color: var(--text-primary); }
-
-.item-width-switch button.active {
-    background: rgba(0, 212, 255, 0.18);
-    color: var(--accent);
-    box-shadow: inset 0 0 0 1px rgba(0, 212, 255, 0.28);
-}
-
-.event-masthead .item-width-switch { margin: 12px 0 0; }
-
 #project_title {
     color: var(--heading-h1);
     font-size: 2.8em;

@@ -13,6 +13,7 @@ const roots = ['data', 'event', 'guide', 'tools'];
 const rootPages = ['index.html', '404.html'];
 const explicitPages = new Set([
   'data/price_guide.html',
+  'data/en2chinese.html',
   'tools/cc.html',
   'tools/ccopm.html',
   'tools/chartable.html',
@@ -29,17 +30,11 @@ const pageBehaviors = new Map([
   ['guide/ep2ch.html', ['LanguageSwitchBehavior']],
   ['tools/materialplan.html', ['BackToTopBehavior']],
   ['tools/id.html', ['SectionIdBehavior']],
-  ['data/en2chinese.html', ['ItemLookupBehavior', 'ItemTranslationWidthBehavior']],
-  ['data/weapon_special_reduction.html', ['ItemTranslationWidthBehavior']],
-  ['data/enemy_weapon_hit.html', ['ItemTranslationWidthBehavior']],
-  ['data/equipment_technique_boosts.html', ['ItemTranslationWidthBehavior']],
-  ['data/gallons_roulette.html', ['ItemTranslationWidthBehavior']],
   ['event/easter.html', ['EventArchiveBehavior']],
   ['event/halloween.html', ['EventArchiveBehavior']],
   ['event/valentines.html', ['EventArchiveBehavior']],
   ['data/bdp/index.html', ['LanguageSwitchBehavior']],
   ['data/prizelist/index.html', ['LanguageSwitchBehavior']],
-  ['guide/banners.html', ['ItemTranslationWidthBehavior']],
   ['guide/volopt.html', ['VolOptBehavior']],
   ['guide/rbr.html', ['RbrBehavior']],
   ['tools/mag.html', ['MagBehavior']],
@@ -100,14 +95,6 @@ function escapeHtml(value) {
     .replaceAll('"', '&quot;');
 }
 
-function toHalfwidthItemTranslation(value) {
-  return String(value).replace(/[\u3000\uFF01-\uFF5E]/g, (character) => (
-    character === '\u3000'
-      ? ' '
-      : String.fromCharCode(character.charCodeAt(0) - 0xFEE0)
-  ));
-}
-
 const itemTranslationSource = await readFile(path.join(root, 'assets/js/i18n/items_i18n.js'), 'utf8');
 const itemTranslationSandbox = { window: {} };
 vm.runInNewContext(itemTranslationSource, itemTranslationSandbox, {
@@ -118,7 +105,7 @@ const itemTranslations = Object.values(itemTranslationSandbox.window.ITEMS_I18N 
   .sort((left, right) => left.en.localeCompare(right.en, 'en', { sensitivity: 'base' }));
 const itemTranslationById = itemTranslationSandbox.window.ITEMS_I18N || {};
 function normalizeEnglishItemName(value) {
-  return value.replaceAll(/[‘’]/g, "'").trim().toLocaleLowerCase('en');
+  return value.normalize('NFKC').replaceAll(/[‘’']/g, '-').trim().toLocaleLowerCase('en');
 }
 
 const itemTranslationByEnglish = new Map();
@@ -134,9 +121,9 @@ for (const item of itemTranslations) {
 }
 await mkdir(path.join(root, 'src/app/generated/i18n'), { recursive: true });
 await writeFile(path.join(root, 'src/app/generated/i18n/items.ts'), `export interface ItemTranslation {
-  readonly en?: string; readonly zh?: string; readonly ja?: string;
+  readonly en: string; readonly zh: string; readonly ja?: string;
 }
-export const ITEM_TRANSLATIONS: Readonly<Record<string, ItemTranslation>> = ${JSON.stringify(itemTranslationById)};\n`);
+export const ITEM_TRANSLATIONS: readonly ItemTranslation[] = ${JSON.stringify(itemTranslations)};\n`);
 
 async function evaluateWindowData(file, property) {
   const sandbox = { window: {} };
@@ -186,7 +173,7 @@ function itemI18nAttributes(values) {
 }
 
 function visibleItemZh(values) {
-  return escapeHtml(toHalfwidthItemTranslation(values.zh));
+  return escapeHtml(values.zh);
 }
 
 function itemI18n(id) {
@@ -272,19 +259,8 @@ function buildCanonicalItemConsumers(relative, source) {
   return replaceInnerHtml(source, replacements);
 }
 
-function assertHalfwidthItemFirstPaint(relative, source) {
-  const document = parse(source);
-  visit(document, (node) => {
-    if (!node.attrs?.some((attribute) => attribute.name === 'data-item-zh')) return;
-    const visible = nodeText(node);
-    if (/[\u3000\uFF01-\uFF5E]/.test(visible)) {
-      throw new Error(`${relative}: item translation is not halfwidth on first paint: ${visible}`);
-    }
-  });
-}
-
 function languageButtons() {
-  return '<button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中</button><button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button><button type="button" class="lang-btn" data-lang="ja" aria-pressed="false">日</button><span class="item-width-switch" role="group" aria-label="中文道具译名字符宽度"><span class="item-width-label">中文译名</span><button type="button" class="active" data-item-width="half" aria-pressed="true">半角</button><button type="button" data-item-width="full" aria-pressed="false">全角</button></span>';
+  return '<button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中</button><button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button><button type="button" class="lang-btn" data-lang="ja" aria-pressed="false">日</button>';
 }
 
 function buildBdpContent(source) {
@@ -377,7 +353,7 @@ function buildBannersContent(source) {
     const localized = source.slice(start, end).replace(pattern, (match, prefix, english) => {
       const zh = candidatesByName.get(english.toLocaleLowerCase());
       if (!zh) return match;
-      return `${prefix}<span class="item-bilingual"><span class="item-zh" data-item-zh="${escapeHtml(zh)}">${escapeHtml(toHalfwidthItemTranslation(zh))}</span><span class="item-en">(${english})</span></span>`;
+      return `${prefix}<span class="item-bilingual"><span class="item-zh">${escapeHtml(zh)}</span><span class="item-en">(${english})</span></span>`;
     });
     source = `${source.slice(0, start)}${localized}${source.slice(end)}`;
   }
@@ -429,10 +405,6 @@ async function buildSeasonalContent(relative, source) {
 
 async function applyBuildTimeContent(relative, source) {
   source = buildCanonicalItemConsumers(relative, source);
-  if (relative === 'data/en2chinese.html') {
-    const rows = itemTranslations.map((item) => `<tr><td>${escapeHtml(item.en)}</td><td>${escapeHtml(toHalfwidthItemTranslation(item.zh))}</td><td${item.ja ? '' : ' class="empty"'}>${escapeHtml(item.ja || '—')}</td></tr>`).join('');
-    return source.replace('<tbody id="lookup"></tbody>', `<tbody id="lookup">${rows}</tbody>`);
-  }
   if (relative === 'data/bdp/index.html') return buildBdpContent(source);
   if (relative === 'data/prizelist/index.html') return buildPrizeContent(source);
   if (relative === 'data/protocol/index.html') return buildProtocolContent(source);
@@ -549,7 +521,6 @@ for (const file of candidates) {
   const relative = path.relative(root, file).split(path.sep).join('/');
   if (explicitPages.has(relative)) continue;
   const source = await applyBuildTimeContent(relative, await readFile(file, 'utf8'));
-  assertHalfwidthItemFirstPaint(relative, source);
   const details = pageDetails(file, source, relative);
   if (!details) continue;
 

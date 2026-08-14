@@ -10,7 +10,9 @@
     "generate:challenge-maps": "python3 scripts/build_challenge_map_atlas.py",
     "generate:challenge-maps:ep2": "python3 scripts/build_ep2_challenge_map_atlas.py",
     "sync:combo": "node scripts/sync_combo_calculator.mjs",
-    "test": "node scripts/verify_angular_architecture.mjs && node scripts/verify_challenge_maps.mjs && node scripts/verify_status_domain.mjs && node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs",
+    "sync:i18n": "python3 scripts/sync_item_i18n.py",
+    "test:i18n": "python3 -m unittest scripts.test_sync_item_i18n",
+    "test": "npm run test:i18n && node scripts/verify_angular_architecture.mjs && node scripts/verify_challenge_maps.mjs && node scripts/verify_status_domain.mjs && node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs",
     "test:e2e": "playwright test",
     "release:prepare": "npm test && npm run build && npm run test:e2e"
   },

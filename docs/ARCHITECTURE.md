@@ -50,14 +50,14 @@ but no scripts or inline event handlers; Angular owns behavior.
 The current drop-table product is hosted independently at
 `dropcharts.psohaven.com`.
 
-`assets/js/i18n/items_i18n.js` is the single authoritative item-translation
-catalog for this repository. `data/droptable/` supplies upstream Chinese and
-Japanese names to `scripts/merge_item_i18n.py`, but pages and generated Angular
-modules never read droptable files as their runtime item list. English identity
-matching is case-insensitive and normalizes straight and typographic apostrophes;
-duplicates fail generation instead of silently overwriting one another. Only
-Chinese item labels offer halfwidth/fullwidth presentation. The selected mode is
-shared across routes and persisted in `localStorage` under `itemZhWidth`.
+The sibling `droptable/i18n_names.json` file is the sole item-name authority.
+`scripts/sync_item_i18n.py` deterministically generates
+`assets/js/i18n/items_i18n.js`; the generated JavaScript is a checked-in build
+input and must not be edited by hand. The authority retains names outside
+Unitxt and replaces matching Chinese names from `psobb-localization`'s unified
+mixed-width `zh/unitxt_j.prs`. Angular consumers render those values verbatim
+with one-way binding. Search uses NFKC normalization, but display never performs
+a global halfwidth/fullwidth conversion and exposes no width selector.
 
 ## Content and application routes
 

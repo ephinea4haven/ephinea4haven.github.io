@@ -1,12 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PRICE_DATA } from '../generated/data/price-data';
 import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
-import {
-  ItemTranslationWidthService,
-  toFullwidthItemTranslation,
-  toHalfwidthItemTranslation,
-} from '../i18n/item-translation-width.service';
 import { PageChromeComponent } from '../shared/page-chrome.component';
 
 interface PriceSection {
@@ -57,12 +52,11 @@ const HEADER_LABELS: Readonly<Record<string, string>> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceGuideComponent {
-  private readonly itemWidth = inject(ItemTranslationWidthService);
   readonly category = signal('all');
   readonly search = signal('');
   readonly categories = [...new Set(SECTIONS.map((section) => this.categoryFor(section.section)))];
   readonly visibleSections = computed(() => {
-    const query = this.search().trim().toLocaleLowerCase();
+    const query = this.normalizeSearch(this.search().trim());
     return SECTIONS
       .filter((section) => this.category() === 'all' || this.categoryFor(section.section) === this.category())
       .map((section) => ({
@@ -85,7 +79,7 @@ export class PriceGuideComponent {
   }
   itemName(value: string | null | undefined): string {
     const translation = value ? ITEM_NAMES.get(value.toLocaleLowerCase())?.zh : '';
-    return translation ? this.itemWidth.format(translation) : '';
+    return translation ?? '';
   }
   cellClass(value: string | null | undefined): string {
     if (value == null || value === 'N/A') return 'val-na';
@@ -101,11 +95,8 @@ export class PriceGuideComponent {
   private searchText(section: PriceSection, row: Readonly<Record<string, string | null | undefined>>): string {
     const name = row[this.nameKey(section.headers)];
     const translation = name ? ITEM_NAMES.get(name.toLocaleLowerCase())?.zh ?? '' : '';
-    return [
-      Object.values(row).filter(Boolean).join(' '),
-      translation,
-      toHalfwidthItemTranslation(translation),
-      toFullwidthItemTranslation(translation),
-    ].join(' ').toLocaleLowerCase();
+    return this.normalizeSearch(`${Object.values(row).filter(Boolean).join(' ')} ${translation}`);
   }
+
+  private normalizeSearch(value: string): string { return value.normalize('NFKC').toLocaleLowerCase(); }
 }

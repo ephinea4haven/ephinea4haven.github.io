@@ -3,6 +3,12 @@ import { contentRoutes } from './generated/content.routes';
 
 export const routes: Routes = [
   {
+    path: 'data/en2chinese.html',
+    title: '游戏物品中英对照 | Ephinea PSOBB',
+    loadComponent: () => import('./item-lookup/item-lookup.component')
+      .then(({ ItemLookupComponent }) => ItemLookupComponent),
+  },
+  {
     path: 'data/price_guide.html',
     title: '物品价格参考 | Ephinea PSOBB',
     loadComponent: () => import('./price-guide/price-guide.component').then(({ PriceGuideComponent }) => PriceGuideComponent),

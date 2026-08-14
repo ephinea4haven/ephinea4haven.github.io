@@ -1,10 +1,6 @@
 import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
 import { VOL_OPT_DATA } from '../generated/data/volopt-data';
 import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
-import {
-  ITEM_TRANSLATION_WIDTH_CHANGE,
-  ItemTranslationWidthService,
-} from '../i18n/item-translation-width.service';
 
 type WeaponValues = Readonly<Record<string, Readonly<Record<string, number>>>>;
 type ShiftaValues = Readonly<Record<string, WeaponValues>>;
@@ -29,7 +25,6 @@ const ITEM_NAMES = new Map(Object.values(ITEM_TRANSLATIONS)
 export class VolOptBehavior {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly destroyRef = inject(DestroyRef);
-  private readonly itemWidth = inject(ItemTranslationWidthService);
   private readonly data = VOL_OPT_DATA as ModeValues;
   private mode = 'normal';
   private playerClass = 'humar';
@@ -40,9 +35,7 @@ export class VolOptBehavior {
   }
 
   private connect(): void {
-    this.itemWidth.load();
     this.localizeStaticItemNames();
-    this.listen(window, ITEM_TRANSLATION_WIDTH_CHANGE, () => this.itemWidth.apply(this.host));
     this.connectTabs('mode-tabs', (button) => { this.mode = button.dataset['mode'] ?? this.mode; });
     this.connectTabs('class-tabs', (button) => { this.playerClass = button.dataset['class'] ?? this.playerClass; });
     const shiftaTabs = this.host.querySelector<HTMLElement>('#shifta-tabs');
@@ -126,8 +119,7 @@ export class VolOptBehavior {
         ? translations.join(' + ') : '';
       if (translation) {
         const translatedName = document.createElement('span');
-        translatedName.dataset['itemZh'] = translation;
-        translatedName.textContent = this.itemWidth.format(translation);
+        translatedName.textContent = translation;
         label.append(' ', translatedName);
       }
       for (const percent of PERCENTS) {
@@ -145,8 +137,7 @@ export class VolOptBehavior {
       const translation = ITEM_NAMES.get((element.dataset['itemName'] ?? '').toLocaleLowerCase());
       if (!translation) continue;
       const translatedName = document.createElement('span');
-      translatedName.dataset['itemZh'] = translation;
-      translatedName.textContent = this.itemWidth.format(translation);
+      translatedName.textContent = translation;
       element.append(' ', translatedName);
     }
   }

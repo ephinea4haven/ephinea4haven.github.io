@@ -1,0 +1,23 @@
+<page-chrome title="游戏物品中英对照"></page-chrome>
+<main class="content-container">
+  <div class="filter-bar">
+    <label class="visually-hidden" for="search-input">搜索物品名称</label>
+    <input id="search-input" type="search" placeholder="搜索英文 / 中文 / 日文物品名…"
+           [ngModel]="search()" (ngModelChange)="search.set($event)">
+  </div>
+  <p id="result-count" aria-live="polite">
+    @if (search()) { 找到 {{ visibleItems().length }} / {{ items.length }} 项 }
+    @else { 共 {{ items.length }} 项 }
+  </p>
+  <div class="table-scroll">
+    <table id="lookup-table">
+      <thead><tr><th>英文 / English</th><th>中文</th><th>日本語</th></tr></thead>
+      <tbody id="lookup">
+        @for (item of visibleItems(); track item.en) {
+          <tr><td>{{ item.en }}</td><td>{{ item.zh }}</td><td [class.empty]="!item.ja">{{ item.ja || '—' }}</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  @if (!visibleItems().length) { <p id="no-results">没有匹配的物品</p> }
+</main>
