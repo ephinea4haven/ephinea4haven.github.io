@@ -1061,6 +1061,8 @@ test('canonical item pages preserve authoritative Unitxt mixed-width names', asy
   await page.goto('/data/weapon_special_reduction.html');
   const justice = page.locator('[data-item-zh="Ｈ＆Ｓ２５正义制裁"]');
   await expect(justice).toHaveText('Ｈ＆Ｓ２５正义制裁');
+  await expect(page.locator('[data-item-zh="突刺匕首"]')).toHaveText('突刺匕首');
+  await expect(page.locator('[data-item-zh="强袭散弹枪"]')).toHaveText('强袭散弹枪');
   await expect(page.getByText('暗杀者的投刃', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /半角|全角/ })).toHaveCount(0);
 

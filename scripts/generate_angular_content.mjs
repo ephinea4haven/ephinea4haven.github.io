@@ -105,10 +105,15 @@ const itemTranslations = Object.values(itemTranslationSandbox.window.ITEMS_I18N 
   .sort((left, right) => left.en.localeCompare(right.en, 'en', { sensitivity: 'base' }));
 const itemTranslationById = itemTranslationSandbox.window.ITEMS_I18N || {};
 function normalizeEnglishItemName(value) {
-  return value.normalize('NFKC').replaceAll(/[‘’']/g, '-').trim().toLocaleLowerCase('en');
+  return value.normalize('NFKC').replaceAll(/[‘’']/g, '-').trim();
+}
+
+function foldEnglishItemName(value) {
+  return normalizeEnglishItemName(value).toLocaleLowerCase('en');
 }
 
 const itemTranslationByEnglish = new Map();
+const itemTranslationsByFoldedEnglish = new Map();
 for (const item of itemTranslations) {
   const identity = normalizeEnglishItemName(item.en);
   const duplicate = itemTranslationByEnglish.get(identity);
@@ -118,6 +123,10 @@ for (const item of itemTranslations) {
     );
   }
   itemTranslationByEnglish.set(identity, item);
+  const folded = foldEnglishItemName(item.en);
+  const foldedItems = itemTranslationsByFoldedEnglish.get(folded) || [];
+  foldedItems.push(item);
+  itemTranslationsByFoldedEnglish.set(folded, foldedItems);
 }
 await mkdir(path.join(root, 'src/app/generated/i18n'), { recursive: true });
 await writeFile(path.join(root, 'src/app/generated/i18n/items.ts'), `export interface ItemTranslation {
@@ -190,7 +199,15 @@ function itemI18n(id) {
 
 function itemByEnglish(name, context) {
   const cleaned = name.replace(/\s*⭐.*$/, '').trim();
-  const item = itemTranslationByEnglish.get(normalizeEnglishItemName(cleaned));
+  let item = itemTranslationByEnglish.get(normalizeEnglishItemName(cleaned));
+  if (!item) {
+    const foldedItems = itemTranslationsByFoldedEnglish.get(foldEnglishItemName(cleaned)) || [];
+    const translations = new Set(foldedItems.map((candidate) => candidate.zh));
+    if (translations.size === 1) [item] = foldedItems;
+    else if (foldedItems.length > 1) {
+      throw new Error(`${context}: ambiguous canonical item ${JSON.stringify(cleaned)}`);
+    }
+  }
   if (!item) throw new Error(`${context}: unknown canonical item ${JSON.stringify(cleaned)}`);
   return {
     zh: item.zh || item.en,

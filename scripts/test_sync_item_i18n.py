@@ -22,12 +22,19 @@ from sync_item_i18n import (  # noqa: E402
 class SyncItemTranslationsTest(unittest.TestCase):
     def test_checked_in_dictionary_matches_authority(self) -> None:
         authority_bytes = DEFAULT_AUTHORITY.read_bytes()
+        authority = load_authority(DEFAULT_AUTHORITY)
         expected = render(
-            build_site_dictionary(load_authority(DEFAULT_AUTHORITY)),
+            build_site_dictionary(authority),
             authority_bytes,
         )
 
         self.assertEqual(OUTPUT.read_text(encoding='utf-8'), expected)
+        self.assertEqual(authority["Blade"]["zh"], "突刺匕首")
+        self.assertEqual(authority["BLADE"]["zh"], "匕首")
+        self.assertEqual(authority["HAMMER"]["zh"], "锤子")
+        self.assertEqual(authority["Hammer"]["zh"], "金槌")
+        self.assertEqual(authority["Launcher"]["zh"], "强袭散弹枪")
+        self.assertEqual(authority["LAUNCHER"]["zh"], "发射器")
 
     def test_builds_deterministic_ids_and_preserves_mixed_width(self) -> None:
         result = build_site_dictionary(

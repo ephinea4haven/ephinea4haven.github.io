@@ -67,7 +67,7 @@ vm.runInNewContext(
 const itemIdentities = new Map();
 for (const [id, item] of Object.entries(itemTranslationSandbox.window.ITEMS_I18N || {})) {
   if (!item?.en) continue;
-  const identity = item.en.normalize('NFKC').replaceAll(/[‘’']/g, '-').trim().toLocaleLowerCase('en');
+  const identity = item.en.normalize('NFKC').replaceAll(/[‘’']/g, '-').trim();
   const duplicate = itemIdentities.get(identity);
   if (duplicate) {
     throw new Error(`Duplicate canonical item identity: ${duplicate} and ${id}`);
