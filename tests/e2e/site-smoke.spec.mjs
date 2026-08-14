@@ -934,8 +934,8 @@ test('anniversary years expose complete localized milestone contracts', async ({
     { year: 2022, total: '13,578,324', rows: 24, first: ['25 万', '任意掉落率 +5%'], last: ['1,500 万', '官方最终存档仍显示“？？？ (???)”'] },
     { year: 2021, total: '11,050,327', rows: 19, first: ['5 万', 'Festivity on the Beach'], last: ['600 万后', '每 10 万击杀使徽章率 +1%'] },
     { year: 2020, total: '8,777,030', rows: 19, first: ['5 万', 'Festivity on the Beach'], last: ['600 万后', '每 10 万击杀使徽章率 +1%'] },
-    { year: 2019, total: '4,352,016', rows: 18, first: ['5 万', 'Beach Laughter'], last: ['750 万', '官方页面保留为“???”'] },
-    { year: 2018, total: '2,482,339', rows: 17, first: ['5 万', 'Festivity on the Beach'], last: ['500 万', '官方页面保留为“???”'] },
+    { year: 2019, total: '4,352,016', rows: 18, first: ['5 万', 'Beach Laughter'], last: ['750 万', '官方页面保留为“？？？ (???)”'] },
+    { year: 2018, total: '2,482,339', rows: 17, first: ['5 万', 'Festivity on the Beach'], last: ['500 万', '官方页面保留为“？？？ (???)”'] },
     { year: 2017, total: '6,092,971', rows: 18, first: ['5 万', 'Festivity on the Beach'], last: ['500 万后', '每 20,000 击杀使徽章率 +1%'] },
     { year: 2016, total: '最终突破 450 万', rows: 20, first: ['5 万', 'Resting at the Beach'], last: ['600 万', 'Photon Sphere'] },
   ];
@@ -1040,7 +1040,7 @@ test('Angular multilingual data tables switch language without legacy globals', 
   const nugBazooka = page.locator('[data-item-zh="NUG2000火箭筒"]').first();
   await expect(nugBazooka).toHaveText('NUG2000火箭筒');
   await page.getByRole('button', { name: 'EN', exact: true }).click();
-  await expect(nugBazooka).toHaveText('Nug2000-Bazooka');
+  await expect(nugBazooka).toHaveText('NUG2000-Bazooka');
   await expect(page.getByRole('group', { name: '中文道具译名字符宽度' })).toHaveCount(0);
   await expect(page.locator('#pageTitle')).toHaveText("Black Paper's Deal Drop Charts");
   await expect(page.locator('.bdp-head')).toContainText('Ultimate');

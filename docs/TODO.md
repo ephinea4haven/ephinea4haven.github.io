@@ -21,8 +21,9 @@
 - [x] Full-site Angular modernization completed and release-validated; jQuery,
   Bootstrap and Vue retired from the application and production artifact.
 - [x] Banner reference page based on the Ephinea Wiki banner documentation.
-- [x] Canonical item-translation pipeline with `items_i18n.js` ownership,
-  normalized English identities and persistent Chinese width selection.
+- [x] Canonical item-translation pipeline generated from the sole
+  `droptable/i18n_names.json` authority, preserving Unitxt mixed-width names
+  without a halfwidth/fullwidth selector.
 - [x] Ephinea equipment-based Technique boost reference covering weapons,
   frames and barriers through the canonical translation catalog.
 - [x] Landing-page seasonal highlighting with reduced-motion support.
