@@ -1,0 +1,161 @@
+import { readFile, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { parse } from 'parse5';
+
+export const OFFICIAL_MILESTONE_URL = 'https://ephinea.pioneer2.net/11th-anniv-event/';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const anniversaryFragment = path.join(root, 'event', 'anniversary', '2026.html');
+const questNames = [
+  'Forest', 'Cave', 'Mine', 'Ruins', 'Temple', 'Spaceship',
+  'CCA', 'Seabed', 'Tower', 'Crater', 'Desert',
+];
+
+function textContent(node) {
+  if (node.nodeName === '#text') return node.value;
+  return (node.childNodes || []).map(textContent).join('');
+}
+
+function descendants(node, tagName) {
+  const matches = [];
+  if (node.tagName === tagName) matches.push(node);
+  for (const child of node.childNodes || []) matches.push(...descendants(child, tagName));
+  return matches;
+}
+
+function cells(row) {
+  return (row.childNodes || [])
+    .filter((node) => node.tagName === 'td' || node.tagName === 'th')
+    .map((node) => textContent(node).replace(/\s+/g, ' ').trim());
+}
+
+function parseNumber(value, context) {
+  const match = value.match(/\b([\d,]+)\b/);
+  if (!match) throw new Error(`Missing number in ${context}: ${value}`);
+  return Number.parseInt(match[1].replaceAll(',', ''), 10);
+}
+
+export function parseOfficialMilestones(html) {
+  const document = parse(html);
+  const tables = descendants(document, 'table');
+  const rewardTable = tables.find((table) => textContent(table).includes('Milestone Rewards'));
+  const questTable = tables.find((table) => textContent(table).includes('Per Quest Clear Points'));
+  if (!rewardTable || !questTable) throw new Error('Official milestone tables were not found');
+
+  const rewardRows = descendants(rewardTable, 'tr').map(cells);
+  const totalRow = rewardRows.find((row) => row.some((cell) => cell.includes('Server clear points')));
+  if (!totalRow) throw new Error('Official server clear point total was not found');
+  const total = parseNumber(totalRow.join(' '), 'server clear points');
+
+  const rewards = rewardRows
+    .filter((row) => row.length === 2 && row[1].includes('points needed'))
+    .map(([reward, threshold]) => ({
+      threshold: parseNumber(threshold, 'milestone threshold'),
+      reward: reward.replace(/^\s+|\s+$/g, ''),
+    }));
+
+  const quests = descendants(questTable, 'tr').map(cells)
+    .filter((row) => row.length === 2 && row[1].includes('points'))
+    .map(([name, points]) => ({
+      name: name.split('/', 1)[0].trim(),
+      points: parseNumber(points, `${name} points`),
+    }));
+
+  if (rewards.length < 3) throw new Error(`Expected milestone rewards, found ${rewards.length}`);
+  if (JSON.stringify(quests.map(({ name }) => name)) !== JSON.stringify(questNames)) {
+    throw new Error(`Unexpected official quest list: ${quests.map(({ name }) => name).join(', ')}`);
+  }
+  if (total !== Math.min(...quests.map(({ points }) => points))) {
+    throw new Error(`Server clear points ${total} do not match the lowest quest total`);
+  }
+  return { total, rewards, quests };
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat('en-US').format(value);
+}
+
+function translatedReward(reward) {
+  if (/^\?(?:\s*\?)*$/.test(reward)) return '官方暂未公开';
+  const rate = reward.match(/[+-]\d+%/)?.[0];
+  if (reward.includes('Rare Drop Rate') && rate) return `稀有物品掉落率 ${rate}`;
+  if (reward.includes('Meseta Drops') && rate) return `Meseta 掉落量 ${rate}`;
+  if (reward.includes('Photon Drop Rate') && rate) return `Photon Drop 掉落率 ${rate}`;
+  if (reward.includes('Experience Rate')) {
+    return rate ? `经验值获取率 ${rate}` : '经验值获取率提升';
+  }
+  return reward.replace(/\s*\([^)]*[\u3040-\u30ff\u3400-\u9fff][^)]*\)\s*$/u, '').trim();
+}
+
+function escapeHtml(value) {
+  return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+}
+
+function joinChinese(items) {
+  if (items.length < 2) return items[0] || '暂无';
+  return `${items.slice(0, -1).join('、')} 与${items.at(-1)}`;
+}
+
+function replaceExactlyOnce(source, pattern, replacement, context) {
+  const matches = source.match(new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : `${pattern.flags}g`));
+  if (matches?.length !== 1) throw new Error(`Expected one ${context}, found ${matches?.length || 0}`);
+  return source.replace(pattern, replacement);
+}
+
+export function updateAnniversaryFragment(source, snapshot, now = new Date()) {
+  const unlocked = snapshot.rewards
+    .filter(({ threshold, reward }) => threshold <= snapshot.total && translatedReward(reward) !== '官方暂未公开')
+    .map(({ reward }) => translatedReward(reward));
+  const dateParts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles', year: 'numeric', month: 'numeric', day: 'numeric',
+  }).formatToParts(now);
+  const datePart = (type) => dateParts.find((part) => part.type === type)?.value;
+  const date = `${datePart('year')} 年 ${datePart('month')} 月 ${datePart('day')} 日`;
+  const summary = `截至 ${date}，服务器点数为 <strong>${formatNumber(snapshot.total)}</strong>，已解锁${joinChinese(unlocked)}。`;
+  const rewardRows = snapshot.rewards.map(({ threshold, reward }) => {
+    const label = translatedReward(reward);
+    const suffix = threshold <= snapshot.total && label !== '官方暂未公开' ? '（已解锁）' : '';
+    return `                <tr><td>${formatNumber(threshold)}</td><td>${escapeHtml(label)}${suffix}</td></tr>`;
+  }).join('\n');
+  const questRows = snapshot.quests.map(({ name, points }) =>
+    `                <tr><td>${name}</td><td>${formatNumber(points)}</td></tr>`).join('\n');
+
+  const sectionStart = source.indexOf('<section id="anniv-2026-milestones"');
+  const sectionEnd = source.indexOf('\n    <section ', sectionStart + 1);
+  if (sectionStart < 0 || sectionEnd < 0) throw new Error('2026 milestone section was not found');
+  let section = source.slice(sectionStart, sectionEnd);
+  section = replaceExactlyOnce(
+    section,
+    /<p>截至 [^<]+<strong>[\d,]+<\/strong>，已解锁[^<]+<\/p>/,
+    `<p>${summary}</p>`,
+    'milestone summary',
+  );
+  section = replaceExactlyOnce(
+    section,
+    /(<table class="shop-table milestone-table" data-milestone-year="2026">[\s\S]*?<tbody>)\n[\s\S]*?(\n\s*<\/tbody>)/,
+    `$1\n${rewardRows}$2`,
+    'milestone reward table',
+  );
+  section = replaceExactlyOnce(
+    section,
+    /(<thead><tr><th>MAE 任务<\/th><th>当前点数<\/th><\/tr><\/thead>\s*<tbody>)\n[\s\S]*?(\n\s*<\/tbody>)/,
+    `$1\n${questRows}$2`,
+    'quest point table',
+  );
+  return `${source.slice(0, sectionStart)}${section}${source.slice(sectionEnd)}`;
+}
+
+async function main() {
+  const response = await fetch(OFFICIAL_MILESTONE_URL, {
+    headers: { 'user-agent': 'ephinea4haven-milestone-sync/1.0' },
+  });
+  if (!response.ok) throw new Error(`Official milestone request failed: HTTP ${response.status}`);
+  const snapshot = parseOfficialMilestones(await response.text());
+  const current = await readFile(anniversaryFragment, 'utf8');
+  const updated = updateAnniversaryFragment(current, snapshot);
+  if (updated !== current) await writeFile(anniversaryFragment, updated);
+  console.log(`2026 anniversary milestones: ${formatNumber(snapshot.total)} (${updated === current ? 'unchanged' : 'updated'})`);
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) await main();
