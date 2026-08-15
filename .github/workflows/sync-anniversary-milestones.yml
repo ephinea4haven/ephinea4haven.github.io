@@ -2,7 +2,8 @@ name: Sync anniversary milestones
 
 on:
   schedule:
-    - cron: '7 * * * *'
+    - cron: '7 * 12-31 8 *'
+    - cron: '7 * 1-9 9 *'
   workflow_dispatch:
 
 permissions:
@@ -18,27 +19,44 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Check anniversary window
+        id: window
+        shell: bash
+        run: |
+          today=$(date -u +%F)
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" || ( "$today" > "2026-08-11" && "$today" < "2026-09-10" ) ]]; then
+            echo "active=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "active=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Check out master
+        if: steps.window.outputs.active == 'true'
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: master
 
       - name: Set up Node.js
+        if: steps.window.outputs.active == 'true'
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
           cache: npm
 
       - name: Install locked dependencies
+        if: steps.window.outputs.active == 'true'
         run: npm ci
 
       - name: Sync official milestones
+        if: steps.window.outputs.active == 'true'
         run: npm run sync:anniversary
 
       - name: Verify synchronized snapshot
+        if: steps.window.outputs.active == 'true'
         run: npm run test:anniversary-sync
 
       - name: Detect changes
+        if: steps.window.outputs.active == 'true'
         id: changes
         shell: bash
         run: |
