@@ -11,6 +11,10 @@ const questNames = [
   'Forest', 'Cave', 'Mine', 'Ruins', 'Temple', 'Spaceship',
   'CCA', 'Seabed', 'Tower', 'Crater', 'Desert',
 ];
+const milestoneThresholds = [
+  1000, 2000, 3500, 4500, 5500, 7000, 8000, 9500,
+  10000, 11500, 12500, 14000, 15000, 16500, 18000, 20000,
+];
 
 function textContent(node) {
   if (node.nodeName === '#text') return node.value;
@@ -62,7 +66,9 @@ export function parseOfficialMilestones(html) {
       points: parseNumber(points, `${name} points`),
     }));
 
-  if (rewards.length < 3) throw new Error(`Expected milestone rewards, found ${rewards.length}`);
+  if (JSON.stringify(rewards.map(({ threshold }) => threshold)) !== JSON.stringify(milestoneThresholds)) {
+    throw new Error(`Unexpected official milestone thresholds: ${rewards.map(({ threshold }) => threshold).join(', ')}`);
+  }
   if (JSON.stringify(quests.map(({ name }) => name)) !== JSON.stringify(questNames)) {
     throw new Error(`Unexpected official quest list: ${quests.map(({ name }) => name).join(', ')}`);
   }
