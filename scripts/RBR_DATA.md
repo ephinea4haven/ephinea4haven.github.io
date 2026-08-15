@@ -35,6 +35,24 @@ python3 -m unittest scripts/test_build_rbr_data.py
 
 输出：`data/rbr/source.json`
 
+## 每周自动同步
+
+GitHub Actions 在每周日每小时检查一次 Wiki。由于实服会在周日 00:00 UTC
+自动轮换、Wiki 通常稍后才由人工更新，同步器采用以下发布门禁：
+
+1. `Template:RagolBoostRoad` 的周日期必须等于当前 UTC 周日；
+2. 模板必须包含 Episode 1、2、4 各一个候选池内任务；
+3. `Template:RagolBoostRoadTracker` 的三个 current 标记必须与模板一致；
+4. 候选池、任务元数据和三套 RBR 测试必须全部通过。
+
+门禁未满足时任务正常结束且不修改文件，下一个小时继续检测。首次检测到完整的
+本周数据后，Action 原子更新 `data/rbr/source.json`、提交到 `master` 并触发 Pages
+部署；此后相同 Wiki revision 会复用现有快照，不重复抓取 58 个任务页或产生空提交。
+前端会按浏览器当前 UTC 日期重新判断周次，因此等待 Wiki 更新期间不会把上周数据
+误报为本周数据。
+
+可用 `workflow_dispatch` 随时触发同一套无人值守检查；不再需要截图确认或人工提交。
+
 人工整理后的两张 Tier 表保存在 `data/rbr/tiers.json`。完整性测试会确认 RBR 的
 58 个候选任务恰好各出现一次，不允许漏项或重复：
 
@@ -65,8 +83,9 @@ python3 -m unittest scripts/test_rbr_tiers.py
 - `current.expectedWeek`
 - `current.isFresh`
 
-如果 Wiki 模板还停留在上周，输出会保留原值并产生 `current-rotation` warning，
-而不是把旧数据当作最新数据。
+自动同步模式下，如果 Wiki 模板还停留在上周，输出文件保持不变并在下一小时重试，
+而不是把旧数据当作最新数据。手工运行不带 `--require-current` 时仍可生成带 warning
+的诊断快照。
 
 ## 自动计算掉落收益
 

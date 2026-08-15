@@ -13,6 +13,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import copy
 import json
 import os
 import re
@@ -68,6 +69,10 @@ class SourceFetchError(RbrDataError):
 
 class SourceParseError(RbrDataError):
     """Raised when upstream content no longer matches the expected structure."""
+
+
+class CurrentRotationPending(RbrDataError):
+    """Raised when the Wiki has not finished publishing the current rotation."""
 
 
 @dataclass(frozen=True)
@@ -231,7 +236,11 @@ def parse_current_rbr(wikitext: str, /) -> dict[str, Any]:
             f"Expected 3 current RBR quests, found {len(links)}"
         )
 
-    return {"week": date_match.group("week"), "quests": links}
+    week = datetime.strptime(
+        date_match.group("week"),
+        "%d %B %Y",
+    ).strftime("%d %B %Y")
+    return {"week": week, "quests": links}
 
 
 def parse_rbr_tracker(wikitext: str, /) -> dict[str, int]:
@@ -568,7 +577,94 @@ def fetch_quest_records(
     return [records_by_page[link.page] for link in links]
 
 
-def build_source_data(*, workers: int = 8) -> dict[str, Any]:
+def _reusable_automated_snapshot(
+    existing: dict[str, Any] | None,
+    /,
+    *,
+    sources: dict[str, Any],
+    current: dict[str, Any],
+    tracker: dict[str, Any],
+    links: list[QuestLink],
+) -> dict[str, Any] | None:
+    """Return a normalized existing snapshot when all polled sources match."""
+    if not existing or existing.get("schemaVersion") != 2:
+        return None
+
+    normalized = copy.deepcopy(existing)
+    normalized.get("sources", {}).pop("weekConfirmation", None)
+    existing_pages = [quest.get("page") for quest in normalized.get("quests", [])]
+    if (
+        normalized.get("sources") == sources
+        and normalized.get("current") == current
+        and normalized.get("tracker") == tracker
+        and existing_pages == [link.page for link in links]
+    ):
+        return normalized
+    return None
+
+
+def require_publishable_rotation(
+    current: dict[str, Any],
+    tracker: dict[str, Any],
+    /,
+) -> None:
+    """Stop unattended publication until both Wiki sources agree this week."""
+    if not current["isFresh"]:
+        raise CurrentRotationPending(
+            "Wiki current-rotation template is stale: "
+            f"expected {current['expectedWeek']}, found {current['week']}"
+        )
+    if not tracker["isConsistentWithCurrentTemplate"]:
+        raise CurrentRotationPending(
+            "Wiki tracker current quests do not match the current-rotation template"
+        )
+
+
+def expected_rbr_week(now: datetime | None = None, /) -> str:
+    """Return the most recent Sunday as the expected UTC RBR week label."""
+    generated_at = now or datetime.now(tz=timezone.utc)
+    expected_week = (
+        generated_at
+        - timedelta(days=(generated_at.weekday() + 1) % 7)
+    ).date()
+    return expected_week.strftime("%d %B %Y")
+
+
+def normalize_rbr_week(value: str, /) -> str:
+    """Normalize Wiki and stored week labels for idempotent comparison."""
+    return datetime.strptime(value, "%d %B %Y").strftime("%d %B %Y")
+
+
+def existing_snapshot_is_current(
+    existing: dict[str, Any] | None,
+    now: datetime | None = None,
+    /,
+) -> bool:
+    """Return whether this week's successful automated snapshot already exists."""
+    if not existing or existing.get("schemaVersion") != 2:
+        return False
+    try:
+        stored_week = normalize_rbr_week(
+            existing.get("current", {}).get("week", "")
+        )
+    except ValueError:
+        return False
+    return (
+        stored_week == expected_rbr_week(now)
+        and existing.get("tracker", {}).get(
+            "isConsistentWithCurrentTemplate"
+        )
+        is True
+        and "weekConfirmation" not in existing.get("sources", {})
+    )
+
+
+def build_source_data(
+    *,
+    workers: int = 8,
+    require_current: bool = False,
+    existing: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     """Fetch and assemble the complete generated RBR source document."""
     rbr_page = fetch_wiki_page(RBR_PAGE)
     current_page = fetch_wiki_page(CURRENT_RBR_TEMPLATE)
@@ -576,21 +672,27 @@ def build_source_data(*, workers: int = 8) -> dict[str, Any]:
     links = parse_eligible_quests(rbr_page.wikitext)
     current = parse_current_rbr(current_page.wikitext)
     tracker_statuses = parse_rbr_tracker(tracker_page.wikitext)
-    records = fetch_quest_records(links, workers=workers)
     generated_at = datetime.now(tz=timezone.utc)
     current_week = datetime.strptime(
         current["week"],
         "%d %B %Y",
     ).date()
-    expected_week = (
-        generated_at
-        - timedelta(days=(generated_at.weekday() + 1) % 7)
-    ).date()
-    current["expectedWeek"] = expected_week.strftime("%d %B %Y")
-    current["isFresh"] = current_week == expected_week
+    current["expectedWeek"] = expected_rbr_week(generated_at)
+    current["isFresh"] = (
+        current_week.strftime("%d %B %Y") == current["expectedWeek"]
+    )
 
+    candidate_summaries = [
+        {
+            "episode": link.episode,
+            "page": link.page,
+            "abbreviation": quest_abbreviation(link.name),
+        }
+        for link in links
+    ]
     abbreviation_by_page = {
-        record["page"]: record["abbreviation"] for record in records
+        record["page"]: record["abbreviation"]
+        for record in candidate_summaries
     }
     for quest in current["quests"]:
         try:
@@ -600,7 +702,49 @@ def build_source_data(*, workers: int = 8) -> dict[str, Any]:
                 f"Current RBR quest {quest['page']!r} is not in candidate pool"
             ) from error
 
-    tracker = build_tracker_summary(tracker_statuses, records, current)
+    tracker = build_tracker_summary(
+        tracker_statuses,
+        candidate_summaries,
+        current,
+    )
+    if require_current:
+        require_publishable_rotation(current, tracker)
+
+    sources = {
+        "candidatePool": {
+            "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
+            "pageId": rbr_page.page_id,
+            "revision": rbr_page.revision_id,
+        },
+        "currentRotation": {
+            "url": (
+                "https://wiki.pioneer2.net/w/"
+                "Template:RagolBoostRoad"
+            ),
+            "pageId": current_page.page_id,
+            "revision": current_page.revision_id,
+        },
+        "tracker": {
+            "url": (
+                "https://wiki.pioneer2.net/w/"
+                "Template:RagolBoostRoadTracker"
+            ),
+            "pageId": tracker_page.page_id,
+            "revision": tracker_page.revision_id,
+        },
+    }
+    if require_current:
+        reusable = _reusable_automated_snapshot(
+            existing,
+            sources=sources,
+            current=current,
+            tracker=tracker,
+            links=links,
+        )
+        if reusable is not None:
+            return reusable
+
+    records = fetch_quest_records(links, workers=workers)
     warnings = [
         {
             "scope": "quest-enemy-counts",
@@ -636,29 +780,7 @@ def build_source_data(*, workers: int = 8) -> dict[str, Any]:
     return {
         "schemaVersion": 2,
         "generatedAt": generated_at.isoformat(),
-        "sources": {
-            "candidatePool": {
-                "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
-                "pageId": rbr_page.page_id,
-                "revision": rbr_page.revision_id,
-            },
-            "currentRotation": {
-                "url": (
-                    "https://wiki.pioneer2.net/w/"
-                    "Template:RagolBoostRoad"
-                ),
-                "pageId": current_page.page_id,
-                "revision": current_page.revision_id,
-            },
-            "tracker": {
-                "url": (
-                    "https://wiki.pioneer2.net/w/"
-                    "Template:RagolBoostRoadTracker"
-                ),
-                "pageId": tracker_page.page_id,
-                "revision": tracker_page.revision_id,
-            },
-        },
+        "sources": sources,
         "boosts": {
             "rates": ["DAR", "RDR", "EXP"],
             "byPlayerCount": {"1": 15, "2": 20, "3": 25, "4": 25},
@@ -675,8 +797,18 @@ def build_source_data(*, workers: int = 8) -> dict[str, Any]:
     }
 
 
-def write_json_atomic(data: dict[str, Any], output: Path, /) -> None:
-    """Write JSON atomically so a failed run cannot truncate existing data."""
+def write_json_atomic(data: dict[str, Any], output: Path, /) -> bool:
+    """Write changed JSON atomically and report whether the file changed."""
+    if output.exists():
+        try:
+            with output.open(encoding="utf-8") as existing_file:
+                if json.load(existing_file) == data:
+                    return False
+        except (OSError, json.JSONDecodeError) as error:
+            raise RbrDataError(
+                f"Could not read existing RBR data from {output}: {error}"
+            ) from error
+
     output.parent.mkdir(parents=True, exist_ok=True)
     file_descriptor, temporary_name = tempfile.mkstemp(
         dir=output.parent,
@@ -695,6 +827,7 @@ def write_json_atomic(data: dict[str, Any], output: Path, /) -> None:
         except FileNotFoundError:
             pass
         raise
+    return True
 
 
 def parse_args() -> argparse.Namespace:
@@ -712,6 +845,14 @@ def parse_args() -> argparse.Namespace:
         default=8,
         help="concurrent wiki requests (default: 8)",
     )
+    parser.add_argument(
+        "--require-current",
+        action="store_true",
+        help=(
+            "wait without writing until the Wiki week and tracker both match "
+            "the current UTC week"
+        ),
+    )
     return parser.parse_args()
 
 
@@ -722,13 +863,35 @@ def main() -> int:
         raise SystemExit("--workers must be at least 1")
 
     try:
-        data = build_source_data(workers=args.workers)
-        write_json_atomic(data, args.output)
+        existing = None
+        if args.require_current and args.output.exists():
+            with args.output.open(encoding="utf-8") as existing_file:
+                existing = json.load(existing_file)
+        if args.require_current and existing_snapshot_is_current(existing):
+            print(
+                "RBR data unchanged: current week already published "
+                f"({existing['current']['week']})"
+            )
+            return 0
+        data = build_source_data(
+            workers=args.workers,
+            require_current=args.require_current,
+            existing=existing,
+        )
+        changed = write_json_atomic(data, args.output)
+    except CurrentRotationPending as error:
+        print(f"RBR rotation pending: {error}")
+        return 0
+    except (OSError, json.JSONDecodeError) as error:
+        raise SystemExit(
+            f"RBR data generation failed: could not read {args.output}: {error}"
+        ) from error
     except RbrDataError as error:
         raise SystemExit(f"RBR data generation failed: {error}") from error
 
     print(
-        f"Wrote {len(data['quests'])} RBR quests to {args.output} "
+        f"RBR data {'updated' if changed else 'unchanged'}: "
+        f"{len(data['quests'])} quests at {args.output} "
         f"(current week: {data['current']['week']}, "
         f"warnings: {len(data['warnings'])})"
     )

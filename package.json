@@ -12,9 +12,11 @@
     "sync:combo": "node scripts/sync_combo_calculator.mjs",
     "sync:i18n": "python3 scripts/sync_item_i18n.py",
     "sync:anniversary": "node scripts/sync_anniversary_milestones.mjs",
+    "sync:rbr": "python3 scripts/build_rbr_data.py --require-current",
     "test:i18n": "python3 -m unittest scripts.test_sync_item_i18n",
     "test:anniversary-sync": "node --test scripts/test_sync_anniversary_milestones.mjs",
-    "test": "npm run test:i18n && npm run test:anniversary-sync && node scripts/verify_angular_architecture.mjs && node scripts/verify_challenge_maps.mjs && node scripts/verify_status_domain.mjs && node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs",
+    "test:rbr": "python3 -m unittest scripts.test_build_rbr_data scripts.test_rbr_tiers scripts.test_rbr_tier_charts",
+    "test": "npm run test:i18n && npm run test:anniversary-sync && npm run test:rbr && node scripts/verify_angular_architecture.mjs && node scripts/verify_challenge_maps.mjs && node scripts/verify_status_domain.mjs && node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs",
     "test:e2e": "playwright test",
     "release:prepare": "npm test && npm run build && npm run test:e2e"
   },

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-09T00:14:03+00:00",
+  "generatedAt": "2026-08-15T15:47:58.262784+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,16 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 43302
+      "revision": 43326
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 43301
-    },
-    "weekConfirmation": {
-      "source": "in-game /rbr screenshot",
-      "confirmedAt": "2026-08-09T00:14:03+00:00"
+      "revision": 43316
     }
   },
   "boosts": {
@@ -129,8 +125,8 @@
           "AO3",
           "AO4",
           "LBA",
-          "TWT",
-          "TET"
+          "TET",
+          "TWT"
         ]
       },
       "4": {
@@ -390,7 +386,7 @@
       "page": "Endless Nightmare 1",
       "name": "Endless Nightmare #1",
       "wikiUrl": "https://wiki.pioneer2.net/w/Endless_Nightmare_1",
-      "wikiRevision": 42630,
+      "wikiRevision": 43304,
       "category": "Extermination",
       "ultimateExperience": 48994,
       "ultimateExperienceRaw": null,

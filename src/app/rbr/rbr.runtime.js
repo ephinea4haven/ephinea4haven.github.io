@@ -145,7 +145,22 @@ export function initializeRbr(root) {
     function renderSourceStatus(data) {
         const status = byId("rbr-tracker-status");
         const consistent = data.tracker.isConsistentWithCurrentTemplate;
-        const dateFresh = data.current.isFresh;
+        const now = new Date();
+        const utcMidnight = Date.UTC(
+            now.getUTCFullYear(),
+            now.getUTCMonth(),
+            now.getUTCDate()
+        );
+        const expectedSunday = new Date(
+            utcMidnight - now.getUTCDay() * 24 * 60 * 60 * 1000
+        );
+        const expectedWeek = new Intl.DateTimeFormat("en-GB", {
+            timeZone: "UTC",
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+        }).format(expectedSunday);
+        const dateFresh = data.current.week === expectedWeek;
         const current = data.current.quests
             .map((quest) => quest.abbreviation)
             .join(" / ");
@@ -165,8 +180,8 @@ export function initializeRbr(root) {
             status.classList.add("is-warning");
             status.textContent =
                 `Tracker 与当前任务模板一致（${current}），但模板周日期仍为 ` +
-                `${data.current.week}，按更新时间应为 ${data.current.expectedWeek}。` +
-                "这通常表示任务已更新、日期字段漏改；请以游戏内 /rbr 为准。";
+                `${data.current.week}，本周应为 ${expectedWeek}。` +
+                "Wiki 正在等待人工更新；请暂时以游戏内 /rbr 为准。";
         } else {
             status.classList.add("is-ok");
             status.textContent =
