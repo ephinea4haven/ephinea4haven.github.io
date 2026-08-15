@@ -15,6 +15,16 @@ const milestoneThresholds = [
   1000, 2000, 3500, 4500, 5500, 7000, 8000, 9500,
   10000, 11500, 12500, 14000, 15000, 16500, 18000, 20000,
 ];
+const anniversaryBoosts = [
+  { key: 'dar', acronym: 'DAR', label: '普通掉落判定率', base: 25, patterns: [/Drop Anything Rate/i] },
+  { key: 'rareDrop', acronym: 'RDR', label: '稀有物品掉落率', base: 25, patterns: [/Rare Drop Rate/i] },
+  { key: 'badge', acronym: '徽章', label: '周年徽章掉落率', base: 0, patterns: [/(?:Anniversary )?Badge (?:Drop )?Rate/i] },
+  { key: 'photonDrop', acronym: 'PD', label: 'Photon Drop 掉落率', base: 0, patterns: [/Photon Drop Rate/i] },
+  { key: 'experience', acronym: 'EXP', label: '经验值', base: 50, patterns: [/Experience Rate/i] },
+  { key: 'meseta', acronym: 'Meseta', label: 'Meseta 掉落量', base: 0, patterns: [/Meseta Drops/i] },
+  { key: 'rareMonster', acronym: 'RER', label: '稀有怪出现率', base: 50, patterns: [/Rare (?:Monster|Enemy) Rate/i] },
+  { key: 'hitWeapon', acronym: 'Hit', label: 'Hit 武器出现率', base: 0, patterns: [/(?:Weapon )?Hit (?:Weapon )?(?:Drop )?Rate/i] },
+];
 
 function textContent(node) {
   if (node.nodeName === '#text') return node.value;
@@ -94,6 +104,19 @@ function translatedReward(reward) {
   return reward.replace(/\s*\([^)]*[\u3040-\u30ff\u3400-\u9fff][^)]*\)\s*$/u, '').trim();
 }
 
+export function calculateCurrentBoosts(rewards, total) {
+  return anniversaryBoosts.map((boost) => {
+    const milestone = rewards
+      .filter(({ threshold }) => threshold <= total)
+      .filter(({ reward }) => boost.patterns.some((pattern) => pattern.test(reward)))
+      .reduce((sum, { reward }) => {
+        const rate = reward.match(/\+(\d+)%/)?.[1];
+        return sum + (rate ? Number.parseInt(rate, 10) : 0);
+      }, 0);
+    return { ...boost, milestone, total: boost.base + milestone };
+  });
+}
+
 function escapeHtml(value) {
   return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
@@ -119,6 +142,13 @@ export function updateAnniversaryFragment(source, snapshot, now = new Date()) {
   const datePart = (type) => dateParts.find((part) => part.type === type)?.value;
   const date = `${datePart('year')} 年 ${datePart('month')} 月 ${datePart('day')} 日`;
   const summary = `截至 ${date}，服务器点数为 <strong>${formatNumber(snapshot.total)}</strong>，已解锁${joinChinese(unlocked)}。`;
+  const boostCards = calculateCurrentBoosts(snapshot.rewards, snapshot.total).map((boost) => {
+    const sources = [];
+    if (boost.base) sources.push(`周年固定 +${boost.base}%`);
+    if (boost.milestone) sources.push(`里程碑 +${boost.milestone}%`);
+    if (!sources.length) sources.push('里程碑尚未解锁加成');
+    return `            <article class="quest-card"><em>+${boost.total}%</em><strong>${boost.acronym} · ${boost.label}</strong><p>${sources.join(' · ')}</p></article>`;
+  }).join('\n');
   const rewardRows = snapshot.rewards.map(({ threshold, reward }) => {
     const label = translatedReward(reward);
     const suffix = threshold <= snapshot.total && label !== '官方暂未公开' ? '（已解锁）' : '';
@@ -136,6 +166,12 @@ export function updateAnniversaryFragment(source, snapshot, now = new Date()) {
     /<p>截至 [^<]+<strong>[\d,]+<\/strong>，已解锁[^<]+<\/p>/,
     `<p>${summary}</p>`,
     'milestone summary',
+  );
+  section = replaceExactlyOnce(
+    section,
+    /(<div class="quest-cards current-boosts" data-boost-summary-year="2026">)\n[\s\S]*?(\n\s*<\/div>)/,
+    `$1\n${boostCards}$2`,
+    'current boost summary',
   );
   section = replaceExactlyOnce(
     section,

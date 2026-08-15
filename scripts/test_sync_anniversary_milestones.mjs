@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { parseOfficialMilestones, updateAnniversaryFragment } from './sync_anniversary_milestones.mjs';
+import {
+  calculateCurrentBoosts,
+  parseOfficialMilestones,
+  updateAnniversaryFragment,
+} from './sync_anniversary_milestones.mjs';
 
 const questNames = ['Forest', 'Cave', 'Mine', 'Ruins', 'Temple', 'Spaceship', 'CCA', 'Seabed', 'Tower', 'Crater', 'Desert'];
 const milestoneThresholds = [
@@ -54,9 +58,29 @@ test('rejects incomplete, duplicate, reordered, and unknown milestone thresholds
   }
 });
 
+test('combines fixed anniversary boosts with unlocked milestone rewards', () => {
+  const boosts = calculateCurrentBoosts(parseOfficialMilestones(officialHtml).rewards, 4730);
+  assert.deepEqual(
+    boosts.map(({ key, base, milestone, total }) => ({ key, base, milestone, total })),
+    [
+      { key: 'dar', base: 25, milestone: 0, total: 25 },
+      { key: 'rareDrop', base: 25, milestone: 10, total: 35 },
+      { key: 'badge', base: 0, milestone: 0, total: 0 },
+      { key: 'photonDrop', base: 0, milestone: 10, total: 10 },
+      { key: 'experience', base: 50, milestone: 50, total: 100 },
+      { key: 'meseta', base: 0, milestone: 25, total: 25 },
+      { key: 'rareMonster', base: 50, milestone: 0, total: 50 },
+      { key: 'hitWeapon', base: 0, milestone: 0, total: 0 },
+    ],
+  );
+});
+
 test('updates only the milestone snapshot content', () => {
   const source = `<section id="anniv-2026-milestones">
 <p>截至 2026 年 8 月 14 日，服务器点数为 <strong>4,462</strong>，已解锁旧奖励。</p>
+<div class="quest-cards current-boosts" data-boost-summary-year="2026">
+<article class="quest-card">old boosts</article>
+</div>
 <table class="shop-table milestone-table" data-milestone-year="2026"><tbody>
 <tr><td>old</td></tr>
 </tbody></table>
@@ -69,6 +93,11 @@ test('updates only the milestone snapshot content', () => {
   assert.match(updated, /服务器点数为 <strong>4,730<\/strong>/);
   assert.match(updated, /<tr><td>1,000<\/td><td>稀有物品掉落率 \+10%（已解锁）<\/td><\/tr>/);
   assert.match(updated, /经验值获取率 \+50%（已解锁）/);
+  assert.match(updated, /<em>\+100%<\/em><strong>EXP · 经验值<\/strong>/);
+  assert.match(updated, /<em>\+35%<\/em><strong>RDR · 稀有物品掉落率<\/strong>/);
+  assert.match(updated, /<em>\+0%<\/em><strong>徽章 · 周年徽章掉落率<\/strong>/);
+  assert.match(updated, /<em>\+0%<\/em><strong>Hit · Hit 武器出现率<\/strong>/);
+  assert.match(updated, /周年固定 \+25% · 里程碑 \+10%/);
   assert.match(updated, /截至 2026 年 8 月 14 日/);
   assert.match(updated, /<tr><td>Tower<\/td><td>4,730<\/td><\/tr>/);
   assert.match(updated, /<section id="next">keep me<\/section>/);

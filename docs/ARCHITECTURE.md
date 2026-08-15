@@ -94,7 +94,11 @@ home route. The 2026 guide exposes only its six primary guide sections while
 documenting the continuing MAE and Anniversary Badge format. Its committed
 milestone table is a dated snapshot synchronized from the official Ephinea live
 milestone page; that external page remains the authority for later point and
-reward updates. Historical external
+reward updates. The same synchronization pass recalculates eight visible boost
+dimensions: DAR, RDR, Anniversary Badge rate, Photon Drop rate, experience,
+Meseta, rare-monster rate and Hit-weapon rate. Anniversary Weekly Boost values
+are fixed baselines; only unlocked milestone rewards change the calculated
+totals. Historical external
 milestone archive links are not part of the UI; the localized yearly fragments
 are the maintained record.
 PSOStats quest telemetry belongs to the matching yearly fragment and is only

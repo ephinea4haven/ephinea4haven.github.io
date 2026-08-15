@@ -95,6 +95,11 @@ safe area. Every year uses the shared archive toolbar, themed hero and chapter
 presentation, while section links retain the selected year instead of falling
 through to the site root.
 
+The 2026 fragment commits the official live milestone snapshot and an eight-item
+boost summary. Its Weekly Boost baselines are fixed for the Anniversary event;
+the hourly milestone synchronizer updates only unlocked milestone contributions
+and the resulting totals.
+
 PSOStats anniversary telemetry is archived only for the upstream years that
 exist: 2021, 2022, 2023 and 2025. Each of those fragments keeps its published
 quest totals and complete Overall Lap TA ranking, including available MAE
