@@ -808,8 +808,15 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('a[href="https://note.com/fine_yarrow878/n/n84a2c42c24f5"]')).toHaveText('みどり · MAE 社区攻略参考');
   await expect(page.locator('#anniv-2026-changes')).toContainText('/badgenotify');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('11 项 MAE 最低值');
-  await expect(page.locator('#anniv-2026-milestones')).toContainText('服务器点数为 3,304');
+  await expect(page.locator('#anniv-2026-milestones')).toContainText('服务器点数为 4,296');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('Meseta 掉落量 +25%（已解锁）');
+  await expect(page.locator('#anniv-2026-milestones')).toContainText('光子微晶PD (Photon Drop) 掉落率 +10%（已解锁）');
+  expect(await page.locator('#anniv-2026-milestones .shop-table').nth(1).locator('tbody tr').allTextContents())
+    .toEqual([
+      'Forest22,071', 'Cave4,315', 'Mine5,177', 'Ruins4,303',
+      'Temple4,309', 'Spaceship4,299', 'CCA6,740', 'Seabed4,304',
+      'Tower4,304', 'Crater4,296', 'Desert10,501',
+    ]);
   await expect(page.locator('#anniv-2026-milestones')).toContainText('August Atrocity #1、#2 始终为 +25%');
   await expect(page.locator('a[href="https://ephinea.pioneer2.net/11th-anniv-event/"]')).toHaveText('2026 官方实时里程碑');
   await expect(page.locator('#anniv-2026-shop')).toContainText('Heart of Flight Fan');
@@ -927,7 +934,7 @@ test('2025 anniversary section navigation stays on the selected archive year', a
 
 test('anniversary years expose complete localized milestone contracts', async ({ page }) => {
   const expected = [
-    { year: 2026, total: '服务器点数为 3,304', rows: 16, first: ['1,000', '稀有物品掉落率 +10%'], last: ['20,000', '官方暂未公开'] },
+    { year: 2026, total: '服务器点数为 4,296', rows: 16, first: ['1,000', '稀有物品掉落率 +10%'], last: ['20,000', '官方暂未公开'] },
     { year: 2025, total: '25,417', rows: 11, first: ['2,500', '经验值 +50%'], last: ['20,000', '命中 属性出现概率 +1%'] },
     { year: 2024, total: '11,316', rows: 22, first: ['150', '稀有物品掉落率 +10%'], last: ['12,000 / 14,000 / 16,000 / 18,000 / 20,000', '官方最终存档仍显示“？？？ (???)”'] },
     { year: 2023, total: '18,149,237', rows: 26, first: ['25 万', '周年徽章掉落率 +25%'], last: ['1,500 万', '命中 属性出现概率 +1%'] },
