@@ -17,6 +17,7 @@ function rewardName(threshold) {
   if (threshold === 2000) return '+25% Meseta Drops';
   if (threshold === 3500) return '+10% Photon Drop Rate';
   if (threshold === 4500) return '+50% Experience Rate (EXP)';
+  if (threshold === 5500) return '+10% Rare Enemy Rate';
   return '? ? ?';
 }
 
@@ -59,7 +60,8 @@ test('rejects incomplete, duplicate, reordered, and unknown milestone thresholds
 });
 
 test('combines fixed anniversary boosts with unlocked milestone rewards', () => {
-  const boosts = calculateCurrentBoosts(parseOfficialMilestones(officialHtml).rewards, 4730);
+  const rewards = parseOfficialMilestones(officialHtml).rewards;
+  const boosts = calculateCurrentBoosts(rewards, 4730);
   assert.deepEqual(
     boosts.map(({ key, base, milestone, total }) => ({ key, base, milestone, total })),
     [
@@ -72,6 +74,18 @@ test('combines fixed anniversary boosts with unlocked milestone rewards', () => 
       { key: 'rareMonster', base: 50, milestone: 0, total: 50 },
       { key: 'hitWeapon', base: 0, milestone: 0, total: 0 },
     ],
+  );
+  assert.deepEqual(
+    calculateCurrentBoosts(rewards, 5500).find(({ key }) => key === 'rareMonster'),
+    {
+      key: 'rareMonster',
+      acronym: 'RER',
+      label: '稀有怪出现率',
+      base: 50,
+      patterns: [/Rare (?:Monster|Enemy) Rate/i],
+      milestone: 10,
+      total: 60,
+    },
   );
 });
 
@@ -93,6 +107,7 @@ test('updates only the milestone snapshot content', () => {
   assert.match(updated, /服务器点数为 <strong>4,730<\/strong>/);
   assert.match(updated, /<tr><td>1,000<\/td><td>稀有物品掉落率 \+10%（已解锁）<\/td><\/tr>/);
   assert.match(updated, /经验值获取率 \+50%（已解锁）/);
+  assert.match(updated, /<tr><td>5,500<\/td><td>稀有怪出现率 \+10%<\/td><\/tr>/);
   assert.match(updated, /<em>\+100%<\/em><strong>EXP · 经验值<\/strong>/);
   assert.match(updated, /<em>\+35%<\/em><strong>RDR · 稀有物品掉落率<\/strong>/);
   assert.match(updated, /<em>\+0%<\/em><strong>徽章 · 周年徽章掉落率<\/strong>/);

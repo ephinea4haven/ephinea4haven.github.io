@@ -911,7 +911,7 @@ test('2026 anniversary navigation contains only primary guide sections', async (
     '活动任务',
     '周回攻略',
     '徽章规则',
-    '全服里程碑',
+    'Buff 与里程碑',
     '完整商店',
   ]);
   await expect(nav.locator('a[href$="#anniv-2026-future"]')).toHaveCount(0);

@@ -96,6 +96,7 @@ function translatedReward(reward) {
   if (/^\?(?:\s*\?)*$/.test(reward)) return '官方暂未公开';
   const rate = reward.match(/[+-]\d+%/)?.[0];
   if (reward.includes('Rare Drop Rate') && rate) return `稀有物品掉落率 ${rate}`;
+  if (reward.match(/Rare (?:Monster|Enemy) Rate/i) && rate) return `稀有怪出现率 ${rate}`;
   if (reward.includes('Meseta Drops') && rate) return `Meseta 掉落量 ${rate}`;
   if (reward.includes('Photon Drop Rate') && rate) return `Photon Drop 掉落率 ${rate}`;
   if (reward.includes('Experience Rate')) {
