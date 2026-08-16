@@ -48,6 +48,25 @@ run completes:
 The workflow publishes only the artifact that passed the release gates; do not
 copy files directly into the deployed site.
 
+## Automated RBR publication
+
+`.github/workflows/sync-rbr.yml` checks the Ephinea Wiki every hour on UTC
+Sunday. It publishes at most one verified RBR snapshot per UTC week:
+
+1. The current-rotation template must name the current UTC Sunday and contain
+   one eligible quest for Episodes 1, 2 and 4.
+2. The RBR Tracker current markers must match those three quests.
+3. The generator and all RBR data tests must pass.
+4. A changed `data/rbr/source.json` is committed directly to `master`, then the
+   normal Pages workflow builds, tests and deploys that commit.
+
+An incomplete Wiki update is a normal no-change result and is checked again by
+the next scheduled run. Network, parsing and validation errors fail the run
+without replacing the last verified snapshot. `workflow_dispatch` runs the same
+gates for an immediate retry; it does not bypass source validation. Detailed
+source and data-contract rules are documented in
+[`scripts/RBR_DATA.md`](../scripts/RBR_DATA.md).
+
 ## Rollback
 
 Preferred rollback:

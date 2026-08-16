@@ -51,6 +51,10 @@ GitHub Actions 在每周日每小时检查一次 Wiki。由于实服会在周日
 前端会按浏览器当前 UTC 日期重新判断周次，因此等待 Wiki 更新期间不会把上周数据
 误报为本周数据。
 
+“Wiki 尚未完成本周模板与 Tracker 更新”属于预期等待状态，Action 不提交也不部署；
+HTTP 失败、无效 JSON、模板结构变化或任务数据校验失败属于运行错误，Action 会失败并
+保留上一份已验证快照。GitHub Actions 或 Wiki 的瞬时故障可以安全重跑同一 workflow。
+
 可用 `workflow_dispatch` 随时触发同一套无人值守检查；不再需要截图确认或人工提交。
 
 人工整理后的两张 Tier 表保存在 `data/rbr/tiers.json`。完整性测试会确认 RBR 的

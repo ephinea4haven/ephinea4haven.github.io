@@ -22,7 +22,7 @@ are build inputs and are not copied into the published artifact.
 | `scrape_price_guide.py` | Generate price-guide data from the Ephinea Wiki. |
 | `build_mag_data.py` | Generate Mag evolution and feeding data. |
 | `download_wiki_mag_assets.py` | Download and validate Mag image assets. |
-| `build_rbr_data.py` | Build RBR quest and rotation source data. |
+| `build_rbr_data.py` | Build RBR quest and rotation source data; `--require-current` publishes only after the weekly template and Tracker agree. |
 | `build_rbr_tier_charts.py` | Build RBR tier SVGs. |
 
 Common verification:
@@ -36,6 +36,8 @@ npm run release:prepare
 
 For Combo ownership and synchronization rules, see
 [`SOP_COMBO_CALCULATOR_SYNC.md`](../docs/SOP_COMBO_CALCULATOR_SYNC.md).
+For RBR source ownership, weekly publication gates and retry behavior, see
+[`RBR_DATA.md`](RBR_DATA.md).
 
 The Mag builder can operate on offline wiki fixtures:
 
