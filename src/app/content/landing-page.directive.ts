@@ -14,9 +14,23 @@ export class LandingPageBehavior extends BrowserContentBehavior {
     '经验值 (EXP)  +50%', '掉物率 (DAR)  +25%',
   ];
 
+  private updateActivityVisibility(now: Date): void {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit',
+    }).formatToParts(now);
+    const value = (type: Intl.DateTimeFormatPartTypes) => parts.find((part) => part.type === type)?.value ?? '';
+    const today = `${value('year')}-${value('month')}-${value('day')}`;
+    for (const activity of this.host.querySelectorAll<HTMLElement>('[data-current-activity]')) {
+      const activeFrom = activity.dataset['activeFrom'];
+      const activeThrough = activity.dataset['activeThrough'];
+      activity.hidden = !activeFrom || !activeThrough || today < activeFrom || today > activeThrough;
+    }
+  }
+
   protected connect(): void {
     const tick = () => {
       const now = new Date();
+      this.updateActivityVisibility(now);
       const hour = now.getUTCHours() === 23 ? 0 : now.getUTCHours() + 1;
       const beats = Math.abs((((hour * 60 + now.getUTCMinutes()) * 60) + now.getUTCSeconds()) / 86.4);
       const [whole, fraction] = beats.toFixed(2).split('.');

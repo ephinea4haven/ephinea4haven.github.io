@@ -199,6 +199,470 @@ header {
         0 28px 72px rgba(0, 0, 0, 0.34);
 }
 
+.current-activity {
+    --activity-accent: hsl(187 100% 50%);
+    --activity-warm: hsl(43 96% 64%);
+    display: grid;
+    position: relative;
+    grid-template-columns: minmax(300px, 0.82fr) minmax(520px, 1.18fr);
+    min-height: 360px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    background:
+        radial-gradient(circle at 4% 12%, hsl(187 100% 50% / 0.2), transparent 31%) padding-box,
+        radial-gradient(circle at 84% 118%, hsl(43 96% 64% / 0.12), transparent 36%) padding-box,
+        linear-gradient(132deg, hsl(218 68% 10% / 0.98), hsl(225 62% 7% / 0.99)) padding-box,
+        linear-gradient(112deg, hsl(187 100% 50%), hsl(220 98% 68%), hsl(309 88% 68%), hsl(43 100% 60%), hsl(187 100% 50%)) border-box;
+    background-position: center, center, center, 0% 50%;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 300% 100%;
+    box-shadow:
+        inset 0 1px 0 hsl(190 100% 96% / 0.11),
+        inset 0 0 32px hsl(205 100% 50% / 0.06),
+        0 18px 48px hsl(220 90% 2% / 0.58),
+        0 0 18px hsl(187 100% 50% / 0.28),
+        0 0 52px hsl(309 88% 60% / 0.12);
+}
+
+.current-activity[hidden] { display: none; }
+
+.current-activity::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(hsl(187 100% 56% / 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(187 100% 56% / 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(90deg, black, transparent 72%);
+    pointer-events: none;
+}
+
+.current-activity::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 4%;
+    width: 64%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, hsl(187 100% 64%), hsl(309 92% 72%), hsl(43 100% 66%), transparent);
+    background-size: 220% 100%;
+    box-shadow: 0 0 14px hsl(187 100% 50%), 0 0 30px hsl(309 88% 60% / 0.7);
+    animation: activity-edge-scan 4.8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.activity-intro,
+.activity-dashboard {
+    position: relative;
+    z-index: 1;
+}
+
+.activity-intro {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 40px 32px;
+}
+
+.activity-intro::before,
+.activity-dashboard::after {
+    content: '';
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    pointer-events: none;
+}
+
+.activity-intro::before {
+    top: 12px;
+    left: 12px;
+    border-top: 2px solid hsl(187 100% 68% / 0.92);
+    border-left: 2px solid hsl(187 100% 68% / 0.92);
+    filter: drop-shadow(0 0 7px hsl(187 100% 50% / 0.75));
+}
+
+.activity-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    color: hsl(188 70% 79% / 0.78);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.activity-status span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 24px;
+    padding: 0 9px;
+    border: 1px solid hsl(145 72% 58% / 0.42);
+    border-radius: 999px;
+    background: hsl(145 72% 46% / 0.12);
+    color: hsl(145 80% 74%);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+}
+
+.activity-status span::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: hsl(145 80% 60%);
+    box-shadow: 0 0 10px hsl(145 80% 60% / 0.8);
+}
+
+.activity-intro h2 {
+    max-width: 11em;
+    margin-bottom: 16px;
+    color: hsl(190 100% 98%);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: clamp(32px, 3.2vw, 48px);
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 1.1;
+    text-wrap: balance;
+    text-shadow:
+        0 0 18px hsl(187 100% 64% / 0.42),
+        0 0 44px hsl(220 100% 60% / 0.24),
+        2px 2px 0 hsl(309 82% 54% / 0.2);
+}
+
+.activity-intro > p {
+    max-width: 34em;
+    color: hsl(213 28% 78% / 0.83);
+    font-size: 14px;
+    font-weight: 550;
+    line-height: 1.75;
+}
+
+.activity-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.activity-actions a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 17px;
+    border-radius: 5px;
+    color: hsl(190 100% 97%);
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.activity-primary {
+    gap: 12px;
+    background: linear-gradient(135deg, hsl(190 94% 40%), hsl(203 92% 46%));
+    box-shadow: 0 8px 24px hsl(195 100% 35% / 0.25), inset 0 1px 0 hsl(190 100% 95% / 0.28);
+}
+
+.activity-secondary {
+    border: 1px solid hsl(202 60% 70% / 0.2);
+    background: hsl(212 55% 34% / 0.12);
+}
+
+.activity-actions .activity-source {
+    padding-inline: 8px;
+    color: hsl(207 38% 78% / 0.86);
+    font-weight: 650;
+}
+
+.activity-actions a:hover {
+    transform: translateY(-2px);
+}
+
+.activity-primary:hover {
+    box-shadow: 0 12px 30px hsl(195 100% 40% / 0.34), inset 0 1px 0 hsl(190 100% 95% / 0.34);
+}
+
+.activity-secondary:hover {
+    background: hsl(196 72% 42% / 0.16);
+}
+
+.activity-actions .activity-source:hover {
+    color: hsl(190 100% 92%);
+}
+
+.activity-actions a:focus-visible {
+    outline: 2px solid hsl(43 96% 64%);
+    outline-offset: 3px;
+}
+
+.activity-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.activity-meta div {
+    display: grid;
+    gap: 4px;
+}
+
+.activity-meta dt {
+    color: hsl(210 22% 66% / 0.68);
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: 1px;
+}
+
+.activity-meta dd {
+    color: hsl(207 45% 91% / 0.92);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.activity-dashboard {
+    margin: 16px;
+    padding: 28px;
+    border: 1px solid hsl(203 46% 66% / 0.13);
+    border-radius: 7px;
+    background: linear-gradient(150deg, hsl(218 55% 12% / 0.78), hsl(222 60% 8% / 0.92));
+    box-shadow: inset 0 1px 0 hsl(200 100% 96% / 0.05), 0 14px 32px hsl(220 90% 3% / 0.34);
+}
+
+.activity-dashboard::after {
+    right: 8px;
+    bottom: 8px;
+    border-right: 2px solid hsl(43 100% 68% / 0.9);
+    border-bottom: 2px solid hsl(309 92% 72% / 0.92);
+    filter: drop-shadow(0 0 7px hsl(309 88% 60% / 0.68));
+}
+
+.activity-progress-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.activity-progress-heading div {
+    display: grid;
+    gap: 3px;
+}
+
+.activity-progress-heading span,
+.activity-buff-heading span {
+    color: hsl(210 24% 70% / 0.72);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.activity-progress-heading strong {
+    color: hsl(188 100% 91%);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-shadow: 0 0 20px hsl(187 100% 50% / 0.38);
+}
+
+.activity-progress-heading .activity-next {
+    text-align: right;
+}
+
+.activity-progress-heading .activity-next strong {
+    color: hsl(215 22% 72%);
+    font-size: 20px;
+    text-shadow: none;
+}
+
+.activity-progress-track {
+    height: 9px;
+    margin-top: 16px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: hsl(218 42% 4% / 0.9);
+    box-shadow: inset 0 1px 3px hsl(220 100% 2% / 0.8);
+}
+
+.activity-progress-track span {
+    display: block;
+    width: var(--activity-progress);
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, hsl(190 100% 42%), hsl(43 96% 64%));
+    box-shadow: 0 0 16px hsl(187 100% 50% / 0.58);
+}
+
+.activity-progress-note {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 9px;
+    color: hsl(210 20% 66% / 0.72);
+    font-size: 11px;
+}
+
+.activity-progress-note strong {
+    color: hsl(43 92% 72% / 0.92);
+    font-weight: 750;
+}
+
+.activity-highlight-heading,
+.activity-unlock-heading,
+.activity-buff-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid hsl(206 35% 60% / 0.1);
+}
+
+.activity-highlight-heading span,
+.activity-unlock-heading span,
+.activity-buff-heading span {
+    color: hsl(210 24% 70% / 0.72);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.activity-highlight-heading strong,
+.activity-unlock-heading strong,
+.activity-buff-heading strong {
+    color: hsl(188 90% 78% / 0.84);
+    font-size: 11px;
+    font-weight: 750;
+}
+
+.activity-highlights {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+    list-style: none;
+}
+
+.activity-highlights li {
+    display: grid;
+    align-content: center;
+    gap: 6px;
+    min-height: 104px;
+    padding: 16px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, hsl(204 58% 24% / 0.52), hsl(225 48% 16% / 0.54));
+    box-shadow: inset 0 1px 0 hsl(190 100% 96% / 0.06);
+}
+
+.activity-highlights li > span {
+    color: hsl(43 96% 72%);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.activity-highlights li > strong {
+    color: hsl(207 34% 87% / 0.82);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.activity-milestones {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+    list-style: none;
+}
+
+.activity-milestones li {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+    min-height: 58px;
+    padding: 9px 11px;
+    border-left: 2px solid hsl(145 76% 58% / 0.72);
+    border-radius: 3px;
+    background: linear-gradient(110deg, hsl(145 62% 25% / 0.19), hsl(210 44% 18% / 0.42));
+    box-shadow: inset 0 1px 0 hsl(145 90% 90% / 0.04);
+}
+
+.activity-milestones li > span {
+    color: hsl(145 70% 72% / 0.82);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.activity-milestones li > strong {
+    overflow: hidden;
+    color: hsl(207 34% 87% / 0.88);
+    font-size: 10px;
+    font-weight: 650;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.activity-buff-heading {
+    margin-top: 20px;
+}
+
+.activity-buffs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+    list-style: none;
+}
+
+.activity-buff {
+    display: grid;
+    min-width: 0;
+    min-height: 82px;
+    padding: 10px 11px;
+    border-radius: 5px;
+    background: hsl(210 44% 18% / 0.48);
+    box-shadow: inset 0 1px 0 hsl(190 100% 96% / 0.045);
+}
+
+.activity-buff > span {
+    overflow: hidden;
+    color: hsl(198 38% 74% / 0.72);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.6px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.activity-buff > strong {
+    color: hsl(43 96% 72%);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.activity-buff > small {
+    overflow: hidden;
+    color: hsl(212 24% 75% / 0.68);
+    font-size: 10px;
+    font-weight: 550;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .info-bar {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -639,8 +1103,35 @@ footer::after { background: linear-gradient(to left, transparent, rgba(115, 132,
     50%      { filter: brightness(1.12); }
 }
 
-.info-bar  { animation: fadeUp 0.7s 0.12s cubic-bezier(0.16, 1, 0.3, 1) both; }
-.nav-panel { animation: fadeUp 0.7s 0.24s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes activity-energy-pulse {
+    50% {
+        box-shadow:
+            inset 0 1px 0 hsl(190 100% 96% / 0.14),
+            inset 0 0 38px hsl(205 100% 50% / 0.09),
+            0 20px 52px hsl(220 90% 2% / 0.62),
+            0 0 26px hsl(187 100% 50% / 0.4),
+            0 0 68px hsl(309 88% 60% / 0.18);
+    }
+}
+
+@keyframes activity-border-flow {
+    0%, 100% { background-position: center, center, center, 0% 50%; }
+    50% { background-position: center, center, center, 100% 50%; }
+}
+
+@keyframes activity-edge-scan {
+    0%, 100% { background-position: 100% 50%; opacity: 0.7; }
+    50% { background-position: 0% 50%; opacity: 1; }
+}
+
+.current-activity {
+    animation:
+        fadeUp 0.7s 0.08s cubic-bezier(0.16, 1, 0.3, 1) both,
+        activity-energy-pulse 3.2s 0.8s ease-in-out infinite,
+        activity-border-flow 7s linear infinite;
+}
+.info-bar  { animation: fadeUp 0.7s 0.18s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.nav-panel { animation: fadeUp 0.7s 0.28s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -657,6 +1148,9 @@ footer::after { background: linear-gradient(to left, transparent, rgba(115, 132,
     .title-wrap { gap: 10px; }
     #project_title { letter-spacing: 3px; }
     .title-sub { letter-spacing: 1.6px; }
+    .current-activity { grid-template-columns: 1fr; }
+    .activity-intro { padding: 32px 32px 24px; }
+    .activity-dashboard { margin: 0 16px 16px; }
     .info-bar { grid-template-columns: 1fr; }
     .info-cell { min-height: 124px; }
     .info-cell + .info-cell {
@@ -675,6 +1169,16 @@ footer::after { background: linear-gradient(to left, transparent, rgba(115, 132,
     .container { gap: 12px; }
     .title-bracket { font-size: 1.45em; }
     .qq-btn { width: min(100%, 310px); }
+    .activity-intro { padding: 24px 20px; }
+    .activity-status { align-items: flex-start; flex-direction: column; gap: 8px; }
+    .activity-intro h2 { font-size: 28px; }
+    .activity-actions { flex-direction: column; }
+    .activity-actions a { width: 100%; }
+    .activity-meta { gap: 24px; }
+    .activity-dashboard { margin: 0 8px 8px; padding: 20px 12px; }
+    .activity-progress-heading strong { font-size: 30px; }
+    .activity-milestones { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .activity-buffs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .info-cell-inner { padding: 17px 16px 15px; }
     #swatchTime { font-size: 1.5rem; }
     .info-val { font-size: 1.1rem; min-height: 48px; }

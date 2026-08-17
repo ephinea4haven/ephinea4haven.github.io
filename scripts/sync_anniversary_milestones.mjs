@@ -2,11 +2,13 @@ import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parse } from 'parse5';
+import { activityIsActive, registeredSeasonalActivities, replaceHomeActivities } from './home_activity.mjs';
 
 export const OFFICIAL_MILESTONE_URL = 'https://ephinea.pioneer2.net/11th-anniv-event/';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const anniversaryFragment = path.join(root, 'event', 'anniversary', '2026.html');
+const homePage = path.join(root, 'index.html');
 const questNames = [
   'Forest', 'Cave', 'Mine', 'Ruins', 'Temple', 'Spaceship',
   'CCA', 'Seabed', 'Tower', 'Crater', 'Desert',
@@ -16,15 +18,23 @@ const milestoneThresholds = [
   10000, 11500, 12500, 14000, 15000, 16500, 18000, 20000,
 ];
 const anniversaryBoosts = [
-  { key: 'dar', acronym: 'DAR', label: '普通掉落判定率', base: 25, patterns: [/Drop Anything Rate/i] },
-  { key: 'rareDrop', acronym: 'RDR', label: '稀有物品掉落率', base: 25, patterns: [/Rare Drop Rate/i] },
-  { key: 'badge', acronym: '徽章', label: '周年徽章掉落率', base: 0, patterns: [/(?:Anniversary )?Badge (?:Drop )?Rate/i] },
-  { key: 'photonDrop', acronym: 'PD', label: 'Photon Drop 掉落率', base: 0, patterns: [/Photon Drop Rate/i] },
-  { key: 'experience', acronym: 'EXP', label: '经验值', base: 50, patterns: [/Experience Rate/i] },
-  { key: 'meseta', acronym: 'Meseta', label: 'Meseta 掉落量', base: 0, patterns: [/Meseta Drops/i] },
-  { key: 'rareMonster', acronym: 'RER', label: '稀有怪出现率', base: 50, patterns: [/Rare (?:Monster|Enemy) Rate/i] },
-  { key: 'hitWeapon', acronym: 'Hit', label: 'Hit 武器出现率', base: 0, patterns: [/(?:Weapon )?Hit (?:Weapon )?(?:Drop )?Rate/i] },
+  { key: 'dar', acronym: 'DAR', label: '普通掉落判定率', base: 25, pattern: /Drop Anything Rate/i },
+  { key: 'rareDrop', acronym: 'RDR', label: '稀有物品掉落率', base: 25, pattern: /Rare Drop Rate/i },
+  { key: 'badge', acronym: '徽章', label: '周年徽章掉落率', base: 0, pattern: /(?:Anniversary )?Badge (?:Drop )?Rate/i },
+  { key: 'photonDrop', acronym: 'PD', label: 'Photon Drop 掉落率', base: 0, pattern: /Photon Drop Rate/i },
+  { key: 'experience', acronym: 'EXP', label: '经验值', rewardLabel: '经验值获取率', base: 50, pattern: /Experience Rate/i },
+  { key: 'meseta', acronym: 'Meseta', label: 'Meseta 掉落量', base: 0, pattern: /Meseta Drops/i },
+  { key: 'rareMonster', acronym: 'RER', label: '稀有怪出现率', base: 50, pattern: /Rare (?:Monster|Enemy) Rate/i },
+  { key: 'hitWeapon', acronym: 'Hit', label: 'Hit 武器出现率', base: 0, pattern: /(?:Weapon )?Hit (?:Weapon )?(?:Drop )?Rate/i },
 ];
+
+function rewardDetails(reward) {
+  if (/^\?(?:\s*\?)*$/.test(reward)) return null;
+  const boost = anniversaryBoosts.find(({ pattern }) => pattern.test(reward));
+  const rate = reward.match(/([+-]\d+)%/)?.[1];
+  if (!boost || !rate) throw new Error(`Unsupported official milestone reward: ${reward}`);
+  return { boost, rate: Number.parseInt(rate, 10) };
+}
 
 function textContent(node) {
   if (node.nodeName === '#text') return node.value;
@@ -85,6 +95,7 @@ export function parseOfficialMilestones(html) {
   if (total !== Math.min(...quests.map(({ points }) => points))) {
     throw new Error(`Server clear points ${total} do not match the lowest quest total`);
   }
+  rewards.forEach(({ reward }) => rewardDetails(reward));
   return { total, rewards, quests };
 }
 
@@ -92,31 +103,32 @@ function formatNumber(value) {
   return new Intl.NumberFormat('en-US').format(value);
 }
 
+function pacificDate(now) {
+  const dateParts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Los_Angeles', year: 'numeric', month: 'numeric', day: 'numeric',
+  }).formatToParts(now);
+  const datePart = (type) => dateParts.find((part) => part.type === type)?.value;
+  return {
+    chinese: `${datePart('year')} 年 ${datePart('month')} 月 ${datePart('day')} 日`,
+    compact: `${datePart('month')}.${datePart('day')}`,
+    iso: `${datePart('year')}-${datePart('month').padStart(2, '0')}-${datePart('day').padStart(2, '0')}`,
+  };
+}
+
 function translatedReward(reward) {
-  if (/^\?(?:\s*\?)*$/.test(reward)) return '官方暂未公开';
-  const rate = reward.match(/[+-]\d+%/)?.[0];
-  if (reward.includes('Drop Anything Rate') && rate) return `普通掉落判定率 ${rate}`;
-  if (reward.includes('Rare Drop Rate') && rate) return `稀有物品掉落率 ${rate}`;
-  if (reward.match(/Rare (?:Monster|Enemy) Rate/i) && rate) return `稀有怪出现率 ${rate}`;
-  if (reward.match(/(?:Anniversary )?Badge (?:Drop )?Rate/i) && rate) return `周年徽章掉落率 ${rate}`;
-  if (reward.includes('Meseta Drops') && rate) return `Meseta 掉落量 ${rate}`;
-  if (reward.includes('Photon Drop Rate') && rate) return `Photon Drop 掉落率 ${rate}`;
-  if (reward.match(/(?:Weapon )?Hit (?:Weapon )?(?:Drop )?Rate/i) && rate) return `Hit 武器出现率 ${rate}`;
-  if (reward.includes('Experience Rate')) {
-    return rate ? `经验值获取率 ${rate}` : '经验值获取率提升';
-  }
-  return reward.replace(/\s*\([^)]*[\u3040-\u30ff\u3400-\u9fff][^)]*\)\s*$/u, '').trim();
+  const details = rewardDetails(reward);
+  if (!details) return '官方暂未公开';
+  const sign = details.rate >= 0 ? '+' : '';
+  return `${details.boost.rewardLabel || details.boost.label} ${sign}${details.rate}%`;
 }
 
 export function calculateCurrentBoosts(rewards, total) {
   return anniversaryBoosts.map((boost) => {
     const milestone = rewards
       .filter(({ threshold }) => threshold <= total)
-      .filter(({ reward }) => boost.patterns.some((pattern) => pattern.test(reward)))
-      .reduce((sum, { reward }) => {
-        const rate = reward.match(/\+(\d+)%/)?.[1];
-        return sum + (rate ? Number.parseInt(rate, 10) : 0);
-      }, 0);
+      .map(({ reward }) => rewardDetails(reward))
+      .filter((details) => details?.boost.key === boost.key)
+      .reduce((sum, details) => sum + details.rate, 0);
     return { ...boost, milestone, total: boost.base + milestone };
   });
 }
@@ -140,11 +152,7 @@ export function updateAnniversaryFragment(source, snapshot, now = new Date()) {
   const unlocked = snapshot.rewards
     .filter(({ threshold, reward }) => threshold <= snapshot.total && translatedReward(reward) !== '官方暂未公开')
     .map(({ reward }) => translatedReward(reward));
-  const dateParts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/Los_Angeles', year: 'numeric', month: 'numeric', day: 'numeric',
-  }).formatToParts(now);
-  const datePart = (type) => dateParts.find((part) => part.type === type)?.value;
-  const date = `${datePart('year')} 年 ${datePart('month')} 月 ${datePart('day')} 日`;
+  const date = pacificDate(now).chinese;
   const summary = `截至 ${date}，服务器点数为 <strong>${formatNumber(snapshot.total)}</strong>，已解锁${joinChinese(unlocked)}。`;
   const boostCards = calculateCurrentBoosts(snapshot.rewards, snapshot.total).map((boost) => {
     const sources = [];
@@ -192,16 +200,65 @@ export function updateAnniversaryFragment(source, snapshot, now = new Date()) {
   return `${source.slice(0, sectionStart)}${section}${source.slice(sectionEnd)}`;
 }
 
+export function updateHomeActivity(source, snapshot, now = new Date()) {
+  const nextMilestone = snapshot.rewards.find(({ threshold }) => threshold > snapshot.total);
+  const milestone = nextMilestone || snapshot.rewards.at(-1);
+  if (!milestone) throw new Error('The anniversary has no milestones');
+  const buffs = calculateCurrentBoosts(snapshot.rewards, snapshot.total)
+    .filter(({ total }) => total > 0)
+    .map(({ acronym, label, total }) => ({ code: acronym, label, value: total }));
+  const unlockedMilestones = snapshot.rewards
+    .filter(({ threshold, reward }) => threshold <= snapshot.total && translatedReward(reward) !== '官方暂未公开')
+    .map(({ threshold, reward }) => ({ threshold, reward: translatedReward(reward) }));
+  const activeFrom = '2026-08-12';
+  const activeThrough = '2026-09-09';
+  const today = pacificDate(now).iso;
+  const anniversary = {
+    id: 'anniversary-2026',
+    status: 'LIVE',
+    eyebrow: '全服 Buff · 高增益阶段',
+    title: 'Ephinea 2026 十一周年活动',
+    description: '完成 MAE 与 August Atrocity，推进全服里程碑；周年徽章、经验、稀有怪与掉落增益现已同时生效。',
+    href: '/event/anniversary.html?year=2026',
+    secondaryHref: '/event/anniversary.html?year=2026#anniv-2026-milestones',
+    secondaryLabel: 'Buff 与里程碑',
+    officialHref: 'https://wiki.pioneer2.net/w/Anniversary_event',
+    period: '8.12 — 9.09',
+    updated: `${pacificDate(now).compact} · 自动同步`,
+    activeFrom,
+    activeThrough,
+    active: false,
+    milestone: {
+      current: snapshot.total,
+      target: milestone.threshold,
+      reward: nextMilestone ? translatedReward(nextMilestone.reward) : '全部里程碑奖励已解锁',
+    },
+    milestoneCount: snapshot.rewards.length,
+    unlockedMilestones,
+    buffs,
+  };
+  anniversary.active = activityIsActive(anniversary, today);
+  return replaceHomeActivities(source, [...registeredSeasonalActivities(today), anniversary]);
+}
+
 async function main() {
   const response = await fetch(OFFICIAL_MILESTONE_URL, {
     headers: { 'user-agent': 'ephinea4haven-milestone-sync/1.0' },
   });
   if (!response.ok) throw new Error(`Official milestone request failed: HTTP ${response.status}`);
   const snapshot = parseOfficialMilestones(await response.text());
-  const current = await readFile(anniversaryFragment, 'utf8');
+  const [current, currentHome] = await Promise.all([
+    readFile(anniversaryFragment, 'utf8'),
+    readFile(homePage, 'utf8'),
+  ]);
   const updated = updateAnniversaryFragment(current, snapshot);
-  if (updated !== current) await writeFile(anniversaryFragment, updated);
-  console.log(`2026 anniversary milestones: ${formatNumber(snapshot.total)} (${updated === current ? 'unchanged' : 'updated'})`);
+  const updatedHome = updateHomeActivity(currentHome, snapshot);
+  await Promise.all([
+    updated === current ? null : writeFile(anniversaryFragment, updated),
+    updatedHome === currentHome ? null : writeFile(homePage, updatedHome),
+  ]);
+  const changed = updated !== current || updatedHome !== currentHome;
+  console.log(`2026 anniversary milestones: ${formatNumber(snapshot.total)} (${changed ? 'updated' : 'unchanged'})`);
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) await main();

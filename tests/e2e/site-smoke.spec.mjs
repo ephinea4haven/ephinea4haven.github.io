@@ -424,6 +424,20 @@ for (const accessibilityPath of [
   });
 }
 
+test('landing activity spotlight has no WCAG A/AA accessibility violations', async ({ page }) => {
+  await page.goto('/');
+  const results = await new AxeBuilder({ page })
+    .include('.current-activity')
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+    .analyze();
+  const violations = results.violations.map(({ id, impact, nodes }) => ({
+    id,
+    impact,
+    targets: nodes.map(({ target }) => target.join(' ')),
+  }));
+  expect(violations).toEqual([]);
+});
+
 for (const { path, selectors } of [
   {
     path: '/guide/ep1ch.html',
@@ -599,6 +613,28 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
   await expect(page.locator('#galatine-atp')).toContainText('ATP');
   await expect(page.locator('#buf-current')).not.toBeEmpty();
+  const currentActivity = page.locator('[data-current-activity="anniversary-2026"]');
+  await expect(page.locator('[data-current-activity]')).toHaveCount(5);
+  await expect(page.locator('[data-current-activity]:visible')).toHaveCount(1);
+  await expect(currentActivity).toHaveAttribute('data-active-from', '2026-08-12');
+  await expect(currentActivity).toHaveAttribute('data-active-through', '2026-09-09');
+  await currentActivity.evaluate((element) => {
+    element.dataset['activeFrom'] = '0000-01-01';
+    element.dataset['activeThrough'] = '9999-12-31';
+  });
+  await expect(currentActivity).toBeVisible();
+  await expect(currentActivity.locator('h2')).toHaveText('Ephinea 2026 十一周年活动');
+  await expect(page.locator('.activity-progress-track')).toHaveAttribute('aria-valuenow', /^\d+$/);
+  await expect(page.locator('.activity-milestones li')).toHaveCount(7);
+  await expect(page.locator('.activity-buff')).toHaveCount(7);
+  await expect(currentActivity.locator('.activity-primary')).toHaveAttribute('href', '/event/anniversary.html?year=2026');
+  await expect(currentActivity.locator('.activity-source')).toHaveAttribute('href', 'https://wiki.pioneer2.net/w/Anniversary_event');
+  await expect(currentActivity.locator('.activity-source')).toHaveAttribute('rel', 'noopener noreferrer');
+  await currentActivity.evaluate((element) => {
+    element.dataset['activeFrom'] = '2000-01-01';
+    element.dataset['activeThrough'] = '2000-12-31';
+  });
+  await expect(currentActivity).toBeHidden();
 
   await page.goto('/data/bb_items.html');
   await page.locator('#searchBox').fill('Heavenly/Battle');

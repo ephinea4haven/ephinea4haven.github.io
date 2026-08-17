@@ -4,6 +4,7 @@ import {
   calculateCurrentBoosts,
   parseOfficialMilestones,
   updateAnniversaryFragment,
+  updateHomeActivity,
 } from './sync_anniversary_milestones.mjs';
 
 const questNames = ['Forest', 'Cave', 'Mine', 'Ruins', 'Temple', 'Spaceship', 'CCA', 'Seabed', 'Tower', 'Crater', 'Desert'];
@@ -63,6 +64,13 @@ test('rejects incomplete, duplicate, reordered, and unknown milestone thresholds
   }
 });
 
+test('rejects revealed milestone rewards that are not recognized', () => {
+  assert.throws(
+    () => parseOfficialMilestones(officialHtml.replace('+10% Rare Drop Rate', '+10% Mystery Rate')),
+    /Unsupported official milestone reward: \+10% Mystery Rate/,
+  );
+});
+
 test('combines fixed anniversary boosts with unlocked milestone rewards', () => {
   const rewards = parseOfficialMilestones(officialHtml).rewards;
   const boosts = calculateCurrentBoosts(rewards, 4730);
@@ -80,16 +88,18 @@ test('combines fixed anniversary boosts with unlocked milestone rewards', () => 
     ],
   );
   assert.deepEqual(
-    calculateCurrentBoosts(rewards, 5500).find(({ key }) => key === 'rareMonster'),
-    {
-      key: 'rareMonster',
-      acronym: 'RER',
-      label: '稀有怪出现率',
-      base: 50,
-      patterns: [/Rare (?:Monster|Enemy) Rate/i],
-      milestone: 10,
-      total: 60,
-    },
+    calculateCurrentBoosts(rewards, 10000)
+      .map(({ key, base, milestone, total }) => ({ key, base, milestone, total })),
+    [
+      { key: 'dar', base: 25, milestone: 20, total: 45 },
+      { key: 'rareDrop', base: 25, milestone: 10, total: 35 },
+      { key: 'badge', base: 0, milestone: 25, total: 25 },
+      { key: 'photonDrop', base: 0, milestone: 10, total: 10 },
+      { key: 'experience', base: 50, milestone: 50, total: 100 },
+      { key: 'meseta', base: 0, milestone: 25, total: 25 },
+      { key: 'rareMonster', base: 50, milestone: 25, total: 75 },
+      { key: 'hitWeapon', base: 0, milestone: 25, total: 25 },
+    ],
   );
 });
 
@@ -126,4 +136,48 @@ test('updates only the milestone snapshot content', () => {
   assert.match(updated, /截至 2026 年 8 月 14 日/);
   assert.match(updated, /<tr><td>Tower<\/td><td>4,730<\/td><\/tr>/);
   assert.match(updated, /<section id="next">keep me<\/section>/);
+});
+
+test('renders a reusable home activity spotlight from the milestone snapshot', () => {
+  const source = `<main>
+<!-- current-activity:start -->old<!-- current-activity:end -->
+</main>`;
+  const snapshot = { ...parseOfficialMilestones(officialHtml), total: 8259 };
+  const updated = updateHomeActivity(source, snapshot, new Date('2026-08-16T12:00:00-07:00'));
+  assert.equal((updated.match(/class="current-activity card"/g) || []).length, 5);
+  assert.equal((updated.match(/<!-- current-activity:start -->/g) || []).length, 1);
+  assert.equal((updated.match(/<!-- current-activity:end -->/g) || []).length, 1);
+  assert.match(updated, /data-current-activity="anniversary-2026"/);
+  assert.match(updated, /data-active-from="2026-08-12" data-active-through="2026-09-09"/);
+  assert.match(updated, /<h2 id="current-activity-title-anniversary-2026">Ephinea 2026 十一周年活动<\/h2>/);
+  assert.match(updated, /data-current-activity="valentines-2026"[^>]+ hidden>/);
+  assert.match(updated, /data-current-activity="easter-2026"[^>]+ hidden>/);
+  assert.match(updated, /全服里程碑<\/span><strong>8,259<\/strong>/);
+  assert.match(updated, /下一节点<\/span><strong>9,500<\/strong>/);
+  assert.match(updated, /aria-valuemax="9500" aria-valuenow="8259"/);
+  assert.match(updated, /还差 1,241 点/);
+  assert.match(updated, /当前生效 Buff<\/span><strong>7 项<\/strong>/);
+  assert.match(updated, /已解锁里程碑<\/span><strong>7 \/ 16<\/strong>/);
+  assert.equal((updated.match(/class="activity-milestones"/g) || []).length, 1);
+  assert.equal((updated.match(/<li>\s*<span>\d+,\d{3}<\/span>\s*<strong>[^<]+<\/strong>\s*<\/li>/g) || []).length, 7);
+  assert.match(updated, /<span>7,000<\/span>\s*<strong>周年徽章掉落率 \+25%<\/strong>/);
+  assert.equal((updated.match(/class="activity-buff"/g) || []).length, 7);
+  assert.match(updated, /<strong>\+100%<\/strong>\s*<small>经验值<\/small>/);
+  assert.match(updated, /href="\/event\/anniversary\.html\?year=2026#anniv-2026-milestones"/);
+  assert.equal((updated.match(/class="activity-source"/g) || []).length, 5);
+  assert.match(updated, /href="https:\/\/wiki\.pioneer2\.net\/w\/Anniversary_event" target="_blank" rel="noopener noreferrer">官方 Wiki 详情/);
+  assert.match(updated, /href="https:\/\/wiki\.pioneer2\.net\/w\/Valentine%27s_event" target="_blank" rel="noopener noreferrer">官方 Wiki 详情/);
+  assert.doesNotMatch(updated, />old</);
+
+  const completed = updateHomeActivity(source, { ...snapshot, total: 21000 });
+  assert.match(completed, /全部里程碑奖励已解锁/);
+  assert.match(completed, /aria-valuemax="20000" aria-valuenow="20000"/);
+  assert.match(completed, /全部节点已完成/);
+
+  const beforeEvent = updateHomeActivity(source, snapshot, new Date('2026-08-11T12:00:00-07:00'));
+  assert.equal((beforeEvent.match(/class="current-activity card"[^>]+ hidden/g) || []).length, 5);
+
+  const duringValentines = updateHomeActivity(source, snapshot, new Date('2026-02-10T12:00:00-08:00'));
+  assert.doesNotMatch(duringValentines, /data-current-activity="valentines-2026"[^>]+ hidden/);
+  assert.match(duringValentines, /data-current-activity="anniversary-2026"[^>]+ hidden>/);
 });

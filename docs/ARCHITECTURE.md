@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-08-12
+> Last updated: 2026-08-16
 
 ## System shape
 
@@ -101,6 +101,34 @@ are fixed baselines; only unlocked milestone rewards change the calculated
 totals. Historical external
 milestone archive links are not part of the UI; the localized yearly fragments
 are the maintained record.
+The landing page exposes active seasonal events through reusable
+`current-activity` regions. `scripts/home_activity.mjs` owns the build-time
+renderer, event registry and replacement contract; event-specific synchronizers
+supply the title, period, internal guide links, official Ephinea Wiki detail
+link, milestone progress, unlocked milestones and active boost list. Registered
+events are prerendered for deterministic builds, but inactive regions use the
+native `hidden` state and occupy no layout space. Each activity carries an
+inclusive America/Los_Angeles visibility window; the landing-page Angular
+directive reevaluates every registered region when the route is activated and
+when the local calendar date changes.
+
+The event spotlight has its own annual-event visual layer: an animated
+cyan-blue-magenta-gold perimeter, restrained edge scan, energy corner marks and
+dashboard depth. These selectors remain scoped to the activity component so the
+existing landing-page navigation and information cards retain their original
+presentation. `prefers-reduced-motion` disables the repeating motion through the
+site-wide reduced-motion contract.
+
+The anniversary sync updates the landing regions in the same atomic pass as the
+2026 fragment, so the landing page never carries a separately maintained
+milestone snapshot. The GitHub synchronization workflow commits both generated
+surfaces together. Future seasonal events reuse the registry and renderer
+instead of adding event-specific landing-page markup or behavior.
+The registry follows Ephinea's five documented server-wide event families:
+Valentine's, Easter, Anniversary, Halloween and Christmas. Ephinea explicitly
+does not prescribe exact annual start dates, so registry windows must come from
+an announced yearly event page; historical timing is never projected onto an
+unannounced future event.
 PSOStats quest telemetry belongs to the matching yearly fragment and is only
 published for upstream archives that actually exist: 2021, 2022, 2023 and
 2025. Each supported year also preserves its complete published Overall Lap TA
