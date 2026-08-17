@@ -77,6 +77,25 @@ function fileNameFor(relative) {
   return relative.replace(/\.html$/, '').replaceAll('/', '__').replaceAll(/[^a-zA-Z0-9_]/g, '-');
 }
 
+function canonicalRoute(relative) {
+  if (relative === 'index.html') return '';
+  return relative.endsWith('/index.html') ? relative.slice(0, -'/index.html'.length) : relative;
+}
+
+function makeRelativeUrlsRootRelative(body, relative) {
+  const pageUrl = new URL(relative, 'https://psohaven.invalid/');
+  visit(body, (node) => {
+    for (const attribute of node.attrs || []) {
+      if (!['href', 'src', 'action', 'poster'].includes(attribute.name)
+          || !attribute.value
+          || attribute.value.startsWith('/')
+          || /^[a-z][a-z0-9+.-]*:/i.test(attribute.value)) continue;
+      const resolved = new URL(attribute.value, pageUrl);
+      attribute.value = `${resolved.pathname}${resolved.search}${resolved.hash}`;
+    }
+  });
+}
+
 function textBetween(source, node) {
   const location = node.sourceCodeLocation;
   if (!location?.startTag || !location.endTag) return '';
@@ -507,6 +526,7 @@ function pageDetails(file, source, relative) {
   if (!isPassive) return null;
 
   removeScripts(body);
+  makeRelativeUrlsRootRelative(body, relative);
   const template = serialize(body).replaceAll(
     /\sonerror="this\.remove\(\)"/gi,
     ' (error)="$any($event.target).remove()"',
@@ -582,11 +602,6 @@ export class ${className} {
 `;
   await writeFile(path.join(outputDirectory, `${generatedFileName}.ts`), component);
   pages.push({ relative, title: details.title, className, generatedFileName });
-}
-
-function canonicalRoute(relative) {
-  if (relative === 'index.html') return '';
-  return relative.endsWith('/index.html') ? relative.slice(0, -'/index.html'.length) : relative;
 }
 
 const routeEntries = pages.map(({ relative, title, className, generatedFileName }) => `  {

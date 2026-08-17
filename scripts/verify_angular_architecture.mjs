@@ -79,6 +79,13 @@ const angularSources = (await walk(path.join(root, 'src', 'app')))
   .filter((file) => file.endsWith('.ts'));
 for (const file of angularSources) {
   const source = await readFile(file, 'utf8');
+  if (file.includes(`${path.sep}generated${path.sep}pages${path.sep}`)
+      && /href=\\\"(?!\/|[a-z][a-z0-9+.-]*:)/i.test(source)) {
+    throw new Error(
+      `${path.relative(root, file)} contains a relative link; generated content links `
+      + 'must not resolve against the application-wide base URL',
+    );
+  }
   const usesViewInitHook = /\b(?:AfterViewInit|ngAfterViewInit)\b/.test(source);
   const accessesDom = /\b(?:ElementRef|document|window|querySelector)\b/.test(source);
   if (usesViewInitHook && accessesDom) {

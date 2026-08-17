@@ -698,6 +698,26 @@ test('character table supports jump, keyboard, highlight, and reset', async ({ p
   expect(runtimeErrors).toEqual([]);
 });
 
+test('content-page relative links resolve within their source directory', async ({ page }) => {
+  await page.goto('/tools/materialplan.html');
+  await page.locator('.class-nav a[href="/tools/materialplan.html#racast"]').click();
+  await expect(page).toHaveURL(/\/tools\/materialplan\.html#racast$/);
+  await expect(page.locator('#racast')).toBeInViewport();
+
+  await page.goto('/tools/equipment.html');
+  await page.locator('.class-nav a[href="/tools/equipment.html#fonewearl"]').click();
+  await expect(page).toHaveURL(/\/tools\/equipment\.html#fonewearl$/);
+  await expect(page.locator('#fonewearl')).toBeInViewport();
+
+  await page.goto('/event/event.html');
+  await page.locator('a[href="/event/christmas.html?year=2025"]').first().click();
+  await expect(page).toHaveURL(/\/event\/christmas\.html\?year=2025$/);
+
+  await page.goto('/guide/register.html');
+  await expect(page.getByRole('link', { name: 'HeaderEditor-4.1.1.xpi' }))
+    .toHaveAttribute('href', '/assets/plugin/HeaderEditor-4.1.1.xpi');
+});
+
 test('Combo Calculator remains usable at a mobile viewport', async ({ page }) => {
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
