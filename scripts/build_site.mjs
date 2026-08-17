@@ -125,7 +125,8 @@ async function copySiteSource() {
       recursive: true,
       filter(file) {
         return !excludedTrees.some((tree) => isInside(file, tree))
-          && !unpublishedBuildInputs.has(file);
+          && !unpublishedBuildInputs.has(file)
+          && path.basename(file) !== '.DS_Store';
       },
     });
   }
@@ -376,6 +377,7 @@ async function validateOutput(pages, angularPages) {
   for (const file of await walk(temporaryDirectory)) {
     const relative = toPosix(path.relative(temporaryDirectory, file));
     if (forbiddenRuntime.test(relative)) errors.push(`retired runtime leaked into artifact: ${relative}`);
+    if (path.basename(file) === '.DS_Store') errors.push(`operating-system metadata leaked into artifact: ${relative}`);
   }
 
   for (const source of publishedFiles) {

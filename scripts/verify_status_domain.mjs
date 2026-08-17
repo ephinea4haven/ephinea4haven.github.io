@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { parse } from 'parse5';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import { ItemData } from '../src/app/status/item-data.js';
@@ -222,4 +223,54 @@ assert.equal(limits.materials.hpMaximum, 125, 'HUmar HP material cap');
 assert.equal(limits.materials.tpMaximum, 125, 'HUmar TP material cap');
 assert.throws(() => calculate('humar', { level: 0 }), /Unsupported level/, 'invalid level is rejected');
 
-console.log(`Status domain verified: 12 class fixtures, ${catalogCases} catalog cases, ${effectCases.length} special effects, 2 equipment combos.`);
+const materialPlan = parse(await readFile(path.join(root, 'tools/materialplan.html'), 'utf8'));
+const presetUrls = [];
+function visit(node, callback) {
+  callback(node);
+  for (const child of node.childNodes || []) visit(child, callback);
+  if (node.content) visit(node.content, callback);
+}
+visit(materialPlan, (node) => {
+  if (node.tagName !== 'a') return;
+  const href = node.attrs?.find((attribute) => attribute.name === 'href')?.value;
+  if (href?.startsWith('/tools/status.html?')) presetUrls.push(new URL(href, 'https://psohaven.invalid'));
+});
+assert.equal(presetUrls.length, 47, 'material plan preset completeness');
+
+const numericPresetFields = ['lv', 'mdef', 'mpow', 'mdex', 'mmind', 'hp', 'tp', 'pow', 'def', 'mind', 'eva', 'lck'];
+const presetFields = new Set([
+  'c', ...numericPresetFields, 'armor', 'shield', 'unit1', 'unit2', 'unit3', 'unit4',
+]);
+for (const url of presetUrls) {
+  const params = url.searchParams;
+  const characterClass = params.get('c');
+  assert.ok(CHARACTER_CLASSES.includes(characterClass), `material preset has known class: ${url.pathname}${url.search}`);
+  for (const key of params.keys()) assert.ok(presetFields.has(key), `${characterClass} material preset field ${key}`);
+  for (const key of numericPresetFields) {
+    const value = params.get(key);
+    if (value !== null) assert.match(value, /^\d+$/, `${characterClass} material preset ${key}`);
+  }
+  const number = (key) => Number(params.get(key) ?? 0);
+  const units = [1, 2, 3, 4].map((index) => params.get(`unit${index}`) ?? '-');
+  const result = calculator.calculate({
+    characterClass,
+    level: number('lv'),
+    mag: { def: number('mdef'), pow: number('mpow'), dex: number('mdex'), mind: number('mmind') },
+    materials: {
+      hp: number('hp'), tp: number('tp'), pow: number('pow'), def: number('def'),
+      mind: number('mind'), evade: number('eva'), luck: number('lck'),
+    },
+    armor: params.get('armor') ?? '-',
+    shield: params.get('shield') ?? '-',
+    units,
+  });
+  assert.ok(result.mag.level <= 200, `${characterClass} material preset Mag level`);
+  assert.ok(result.materials.used <= result.materials.maximum, `${characterClass} shared material limit`);
+  assert.ok(result.materials.hpUsed <= result.materials.hpMaximum, `${characterClass} HP material limit`);
+  assert.ok(result.materials.tpUsed <= result.materials.tpMaximum, `${characterClass} TP material limit`);
+  assert.ok(result.equipment.armor.equipable, `${characterClass} material preset armor`);
+  assert.ok(result.equipment.shield.equipable, `${characterClass} material preset shield`);
+  assert.ok(result.equipment.units.every((unit) => unit.equipable), `${characterClass} material preset units`);
+}
+
+console.log(`Status domain verified: 12 class fixtures, ${catalogCases} catalog cases, ${effectCases.length} special effects, 2 equipment combos, ${presetUrls.length} material presets.`);

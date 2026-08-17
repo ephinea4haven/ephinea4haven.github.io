@@ -208,12 +208,19 @@ const htmlFiles = [
 const violations = [];
 for (const file of htmlFiles) {
   const source = await readFile(file, 'utf8');
-  const document = parse(source);
+  const relative = path.relative(root, file);
+  const isFragment = /^event[\\/](?:anniversary|christmas|easter|halloween|valentines)[\\/]\d{4}\.html$/.test(relative);
+  const document = parse(source, {
+    onParseError(error) {
+      if (isFragment && error.code === 'missing-doctype') return;
+      violations.push(`${relative}:${error.startLine}:${error.startCol} invalid HTML (${error.code})`);
+    },
+  });
   visit(document, (node) => {
-    if (node.tagName === 'script') violations.push(`${path.relative(root, file)} contains <script>`);
+    if (node.tagName === 'script') violations.push(`${relative} contains <script>`);
     for (const attribute of node.attrs || []) {
       if (/^on[a-z]+$/i.test(attribute.name)) {
-        violations.push(`${path.relative(root, file)} contains ${attribute.name}`);
+        violations.push(`${relative} contains ${attribute.name}`);
       }
     }
   });

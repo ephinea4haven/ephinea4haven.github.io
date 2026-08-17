@@ -581,6 +581,14 @@ test('status simulator preserves material-plan presets and calculation diagnosti
   await expect(page.locator('.stat-table tbody tr')).toHaveCount(8);
   await expect(page.locator('.share-link a')).toHaveAttribute('href', /c=humar.*mpow=147/);
 
+  await page.goto('/tools/materialplan.html');
+  const fomarPreset = await page.locator('a[href*="c=fomar"][href*="mmind=32"]').getAttribute('href');
+  expect(fomarPreset).toBeTruthy();
+  await page.goto(fomarPreset);
+  await expect(page.locator('#class')).toHaveValue('fomar');
+  await expect(page.locator('#matHP')).toHaveValue('125');
+  await expect(page.locator('#matTP')).toHaveValue('125');
+
   await page.goto('/tools/status.html?c=ramarl&lv=150&mdef=5&mpow=100&mdex=45&mmind=50&hp=20&tp=10&pow=50&def=25&mind=30&eva=15&lck=10&armor=45&shield=2a&unit1=5b&unit2=5d&unit3=4c&unit4=51');
   const expectedCurrent = { hp: '1098', tp: '969', atp: '907', dfp: '378', mst: '800', ata: '213.9', evp: '700', lck: '60' };
   for (const [stat, value] of Object.entries(expectedCurrent)) {
