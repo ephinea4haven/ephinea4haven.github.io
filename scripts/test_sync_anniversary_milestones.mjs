@@ -20,6 +20,8 @@ function rewardName(threshold) {
   if (threshold === 5500) return '+10% Rare Enemy Rate';
   if (threshold === 7000) return '+25% Badge Drop Rate';
   if (threshold === 8000) return '+15% Rare Monster Rate';
+  if (threshold === 9500) return '+20% Drop Anything Rate';
+  if (threshold === 10000) return '+25% Weapon Hit Drop Rate';
   return '? ? ?';
 }
 
@@ -108,9 +110,14 @@ test('updates only the milestone snapshot content', () => {
   const updated = updateAnniversaryFragment(source, parseOfficialMilestones(officialHtml), new Date('2026-08-14T12:00:00-07:00'));
   assert.match(updated, /服务器点数为 <strong>4,730<\/strong>/);
   assert.match(updated, /<tr><td>1,000<\/td><td>稀有物品掉落率 \+10%（已解锁）<\/td><\/tr>/);
+  assert.match(updated, /<tr><td>2,000<\/td><td>Meseta 掉落量 \+25%（已解锁）<\/td><\/tr>/);
+  assert.match(updated, /<tr><td>3,500<\/td><td>Photon Drop 掉落率 \+10%（已解锁）<\/td><\/tr>/);
   assert.match(updated, /经验值获取率 \+50%（已解锁）/);
   assert.match(updated, /<tr><td>5,500<\/td><td>稀有怪出现率 \+10%<\/td><\/tr>/);
   assert.match(updated, /<tr><td>7,000<\/td><td>周年徽章掉落率 \+25%<\/td><\/tr>/);
+  assert.match(updated, /<tr><td>8,000<\/td><td>稀有怪出现率 \+15%<\/td><\/tr>/);
+  assert.match(updated, /<tr><td>9,500<\/td><td>普通掉落判定率 \+20%<\/td><\/tr>/);
+  assert.match(updated, /<tr><td>10,000<\/td><td>Hit 武器出现率 \+25%<\/td><\/tr>/);
   assert.match(updated, /<em>\+100%<\/em><strong>EXP · 经验值<\/strong>/);
   assert.match(updated, /<em>\+35%<\/em><strong>RDR · 稀有物品掉落率<\/strong>/);
   assert.match(updated, /<em>\+0%<\/em><strong>徽章 · 周年徽章掉落率<\/strong>/);

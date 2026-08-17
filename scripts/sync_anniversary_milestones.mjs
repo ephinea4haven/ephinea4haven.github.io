@@ -95,11 +95,13 @@ function formatNumber(value) {
 function translatedReward(reward) {
   if (/^\?(?:\s*\?)*$/.test(reward)) return '官方暂未公开';
   const rate = reward.match(/[+-]\d+%/)?.[0];
+  if (reward.includes('Drop Anything Rate') && rate) return `普通掉落判定率 ${rate}`;
   if (reward.includes('Rare Drop Rate') && rate) return `稀有物品掉落率 ${rate}`;
   if (reward.match(/Rare (?:Monster|Enemy) Rate/i) && rate) return `稀有怪出现率 ${rate}`;
   if (reward.match(/(?:Anniversary )?Badge (?:Drop )?Rate/i) && rate) return `周年徽章掉落率 ${rate}`;
   if (reward.includes('Meseta Drops') && rate) return `Meseta 掉落量 ${rate}`;
   if (reward.includes('Photon Drop Rate') && rate) return `Photon Drop 掉落率 ${rate}`;
+  if (reward.match(/(?:Weapon )?Hit (?:Weapon )?(?:Drop )?Rate/i) && rate) return `Hit 武器出现率 ${rate}`;
   if (reward.includes('Experience Rate')) {
     return rate ? `经验值获取率 ${rate}` : '经验值获取率提升';
   }
