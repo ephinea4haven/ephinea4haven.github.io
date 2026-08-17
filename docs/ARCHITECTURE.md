@@ -67,6 +67,11 @@ Content routes preserve the existing authored HTML as build-time content input.
 The generator extracts body markup, metadata and route-specific styles, removes
 no behavior at runtime, and emits lazy standalone Angular components. Interactive
 routes either attach a scoped Angular directive or use a dedicated component.
+Because the application-wide base URL is `/`, the generator resolves fragment,
+query-only and path-relative `href`, `src`, `action` and `poster` values against
+their source document and emits root-relative URLs. Generated content is rejected
+if an unresolved relative link remains, so a local section jump cannot be
+reinterpreted as a navigation to the home route.
 
 Dedicated components are preferred when state changes the rendered model, such
 as Combo, status, character tables and prices. Scoped directives are used for
@@ -161,6 +166,8 @@ a mobile-scrolling result table with a sticky stat column, displays canonical
 resistance codes with Chinese, English and Japanese labels, and exposes the
 current configuration through a serialized share link. Browser tests cover these
 language and interaction contracts in addition to the exhaustive domain checks.
+All 47 material-plan links are parsed as calculator inputs and checked for known
+fields, numeric form, Mag and material limits, and class-compatible equipment.
 
 ## Build and release
 
@@ -168,10 +175,11 @@ language and interaction contracts in addition to the exhaustive domain checks.
 
 1. regenerate Angular modules from committed datasets;
 2. build and prerender the Angular application;
-3. copy the explicit static-resource allowlist into a temporary directory;
+3. copy the maintained static-resource trees into a temporary directory while
+   excluding build-only inputs, retired trees and operating-system metadata;
 4. install every prerendered route at its historical path;
-5. reject any unexpected non-Angular HTML host, missing resource, retired
-   runtime asset, or route/chunk budget violation;
+5. reject any unexpected non-Angular HTML host, missing resource, retired runtime
+   asset, operating-system metadata, or route/chunk budget violation;
 6. write a deterministic manifest and atomically publish `_site`.
 
 `npm run release:prepare` runs source/data checks, the production build and the
@@ -182,11 +190,15 @@ The release gates cover:
 
 - no jQuery, Bootstrap, Vue or vue-multiselect package/runtime/assets;
 - no scripts or inline event handlers in repository-owned page sources;
+- valid authored HTML, with the intentional event-fragment doctype omission as
+  the only fragment-specific exception;
+- no unresolved relative content links or operating-system metadata in `_site`;
 - Angular ownership of every public application host;
 - browser console, page and local-resource errors on every route;
 - representative behavior and WCAG A/AA checks;
 - per-chunk, per-route and aggregate gzip budgets;
-- Status calculation fixtures and exhaustive character/equipment compatibility;
+- Status calculation fixtures, exhaustive character/equipment compatibility and
+  all material-plan presets;
 - Combo provenance, license and calculation-data integrity;
 - deterministic output.
 

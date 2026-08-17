@@ -39,12 +39,17 @@ Repository-owned HTML files remain content sources so large reference documents
 stay easy to edit and retain their historical paths. They contain no scripts or
 inline event handlers. The build converts them to standalone Angular components;
 only the prerendered Angular result is published at an application URL.
+The content generator resolves fragment, query-only and path-relative URLs
+against each source document before Angular compilation. This is required by the
+application-wide `/` base URL and prevents local links from falling through to
+the site root.
 
 Angular builds first into a temporary, ignored directory. The existing site
 builder then installs its content-hashed browser assets and prerendered route
 documents at the historical paths, validates all local references and includes
-them in the deterministic release manifest. `_site` remains the only deployed
-artifact.
+them in the deterministic release manifest. Build-only inputs, retired trees and
+operating-system metadata such as `.DS_Store` are excluded and forbidden by
+artifact validation. `_site` remains the only deployed artifact.
 
 ## Ownership boundaries
 
@@ -118,6 +123,11 @@ The migration is complete only when all of the following pass:
 5. browser console/page-error rejection on every route and axe WCAG A/AA audits;
 6. gzip budgets for each emitted chunk and each route's actual initial download;
 7. repository search and artifact checks proving the retired runtimes are absent.
+
+Source and domain gates additionally reject malformed authored HTML, unresolved
+relative links, and invalid material-plan presets. Every one of the 47 presets
+must use known fields, remain within its class and Mag limits, and reference
+class-compatible equipment.
 
 The migration was completed in working vertical slices. The complete route
 inventory now uses Angular and every retirement gate passes.

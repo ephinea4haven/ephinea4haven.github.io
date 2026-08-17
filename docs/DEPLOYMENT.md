@@ -19,6 +19,13 @@ npx playwright install chromium
 npm run release:prepare
 ```
 
+The build is expected to report 58 Angular hosts and 45 event content fragments.
+`_site/build-manifest.json` is the authoritative inventory. Artifact validation
+rejects non-Angular application hosts, retired runtimes, missing local resources,
+and operating-system metadata before `_site` is published atomically. The source
+test gate separately rejects malformed HTML, unresolved relative content links
+and invalid material-plan presets.
+
 ## Dependency updates
 
 Dependabot checks npm packages and GitHub Actions weekly. Angular framework and
