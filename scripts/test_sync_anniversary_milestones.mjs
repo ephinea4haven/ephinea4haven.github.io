@@ -18,6 +18,8 @@ function rewardName(threshold) {
   if (threshold === 3500) return '+10% Photon Drop Rate';
   if (threshold === 4500) return '+50% Experience Rate (EXP)';
   if (threshold === 5500) return '+10% Rare Enemy Rate';
+  if (threshold === 7000) return '+25% Badge Drop Rate';
+  if (threshold === 8000) return '+15% Rare Monster Rate';
   return '? ? ?';
 }
 
@@ -108,6 +110,7 @@ test('updates only the milestone snapshot content', () => {
   assert.match(updated, /<tr><td>1,000<\/td><td>稀有物品掉落率 \+10%（已解锁）<\/td><\/tr>/);
   assert.match(updated, /经验值获取率 \+50%（已解锁）/);
   assert.match(updated, /<tr><td>5,500<\/td><td>稀有怪出现率 \+10%<\/td><\/tr>/);
+  assert.match(updated, /<tr><td>7,000<\/td><td>周年徽章掉落率 \+25%<\/td><\/tr>/);
   assert.match(updated, /<em>\+100%<\/em><strong>EXP · 经验值<\/strong>/);
   assert.match(updated, /<em>\+35%<\/em><strong>RDR · 稀有物品掉落率<\/strong>/);
   assert.match(updated, /<em>\+0%<\/em><strong>徽章 · 周年徽章掉落率<\/strong>/);
