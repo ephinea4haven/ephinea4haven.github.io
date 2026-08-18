@@ -97,6 +97,6 @@ export class PageUpdateStampComponent {
     const match = this.timestamp().match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})[+-]\d{2}:\d{2}$/);
     if (!match) throw new Error(`Invalid page update timestamp: ${this.timestamp()}`);
     const [, year, month, day, hour, minute] = match;
-    return `${year} 年 ${Number(month)} 月 ${Number(day)} 日 ${hour}:${minute}`;
+    return `${year} 年 ${Number(month)} 月 ${Number(day)} 日 ${hour}:${minute}（UTC+8）`;
   });
 }

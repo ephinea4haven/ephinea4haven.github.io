@@ -131,7 +131,7 @@ site-wide reduced-motion contract.
 The anniversary sync updates the landing regions in the same atomic pass as the
 2026 fragment, so the landing page never carries a separately maintained
 milestone snapshot. The GitHub synchronization workflow commits both generated
-surfaces and their shared minute-precise Pacific update timestamp together. Future seasonal events reuse the registry and renderer
+surfaces and their shared minute-precise UTC+8 update timestamp together. Future seasonal events reuse the registry and renderer
 instead of adding event-specific landing-page markup or behavior.
 The registry follows Ephinea's five documented server-wide event families:
 Valentine's, Easter, Anniversary, Halloween and Christmas. Ephinea explicitly

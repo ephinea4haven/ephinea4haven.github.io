@@ -134,7 +134,7 @@ test('updates only the milestone snapshot content', () => {
   assert.match(updated, /<em>\+0%<\/em><strong>徽章 · 周年徽章掉落率<\/strong>/);
   assert.match(updated, /<em>\+0%<\/em><strong>Hit · Hit 武器出现率<\/strong>/);
   assert.match(updated, /周年固定 \+25% · 里程碑 \+10%/);
-  assert.match(updated, /截至 2026 年 8 月 14 日/);
+  assert.match(updated, /截至 2026 年 8 月 15 日/);
   assert.match(updated, /<tr><td>Tower<\/td><td>4,730<\/td><\/tr>/);
   assert.match(updated, /<section id="next">keep me<\/section>/);
 });
@@ -168,7 +168,7 @@ test('renders a reusable home activity spotlight from the milestone snapshot', (
   assert.equal((updated.match(/class="activity-source"/g) || []).length, 5);
   assert.match(updated, /href="https:\/\/wiki\.pioneer2\.net\/w\/Anniversary_event" target="_blank" rel="noopener noreferrer">官方 Wiki 详情/);
   assert.match(updated, /href="https:\/\/wiki\.pioneer2\.net\/w\/Valentine%27s_event" target="_blank" rel="noopener noreferrer">官方 Wiki 详情/);
-  assert.match(updated, /<page-update-stamp class="activity-status-update" timestamp="2026-08-16T12:00-07:00"><\/page-update-stamp>/);
+  assert.match(updated, /<page-update-stamp class="activity-status-update" timestamp="2026-08-17T03:00\+08:00"><\/page-update-stamp>/);
   assert.doesNotMatch(updated, />old</);
 
   const completed = updateHomeActivity(source, { ...snapshot, total: 21000 });
@@ -184,8 +184,8 @@ test('renders a reusable home activity spotlight from the milestone snapshot', (
   assert.match(duringValentines, /data-current-activity="anniversary-2026"[^>]+ hidden>/);
 });
 
-test('updates a page-level timestamp with semantic Pacific time to the minute', () => {
+test('updates a page-level timestamp with semantic UTC+8 time to the minute', () => {
   const source = '<page-update-stamp class="milestone-section-update" timestamp="2026-08-15T09:30-07:00"></page-update-stamp>';
   const updated = updatePageTimestamp(source, new Date('2026-08-17T01:00:00-07:00'));
-  assert.equal(updated, '<page-update-stamp class="milestone-section-update" timestamp="2026-08-17T01:00-07:00"></page-update-stamp>');
+  assert.equal(updated, '<page-update-stamp class="milestone-section-update" timestamp="2026-08-17T16:00+08:00"></page-update-stamp>');
 });

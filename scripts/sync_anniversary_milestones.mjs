@@ -103,20 +103,27 @@ function formatNumber(value) {
   return new Intl.NumberFormat('en-US').format(value);
 }
 
-function pacificTime(now) {
+function dateInTimeZone(now, timeZone) {
   const dateParts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/Los_Angeles',
+    timeZone, year: 'numeric', month: 'numeric', day: 'numeric',
+  }).formatToParts(now);
+  const datePart = (type) => dateParts.find((part) => part.type === type)?.value;
+  return `${datePart('year')}-${datePart('month').padStart(2, '0')}-${datePart('day').padStart(2, '0')}`;
+}
+
+function chinaTime(now) {
+  const timeParts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Shanghai',
     year: 'numeric', month: 'numeric', day: 'numeric',
     hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZoneName: 'longOffset',
   }).formatToParts(now);
-  const datePart = (type) => dateParts.find((part) => part.type === type)?.value;
-  const dateIso = `${datePart('year')}-${datePart('month').padStart(2, '0')}-${datePart('day').padStart(2, '0')}`;
-  const offset = datePart('timeZoneName').replace('GMT', '');
+  const timePart = (type) => timeParts.find((part) => part.type === type)?.value;
+  const dateIso = `${timePart('year')}-${timePart('month').padStart(2, '0')}-${timePart('day').padStart(2, '0')}`;
+  const offset = timePart('timeZoneName').replace('GMT', '');
   return {
-    chinese: `${datePart('year')} 年 ${datePart('month')} 月 ${datePart('day')} 日`,
-    compact: `${datePart('month')}.${datePart('day')}`,
-    dateIso,
-    timestamp: `${dateIso}T${datePart('hour')}:${datePart('minute')}${offset}`,
+    chinese: `${timePart('year')} 年 ${timePart('month')} 月 ${timePart('day')} 日`,
+    compact: `${timePart('month')}.${timePart('day')}`,
+    timestamp: `${dateIso}T${timePart('hour')}:${timePart('minute')}${offset}`,
   };
 }
 
@@ -154,7 +161,7 @@ function replaceExactlyOnce(source, pattern, replacement, context) {
 }
 
 export function updatePageTimestamp(source, now = new Date()) {
-  const timestamp = pacificTime(now).timestamp;
+  const timestamp = chinaTime(now).timestamp;
   return replaceExactlyOnce(
     source,
     /(<page-update-stamp\b[^>]*\btimestamp=")[^"]+("[^>]*\/?\s*>)/,
@@ -167,7 +174,7 @@ export function updateAnniversaryFragment(source, snapshot, now = new Date()) {
   const unlocked = snapshot.rewards
     .filter(({ threshold, reward }) => threshold <= snapshot.total && translatedReward(reward) !== '官方暂未公开')
     .map(({ reward }) => translatedReward(reward));
-  const date = pacificTime(now).chinese;
+  const date = chinaTime(now).chinese;
   const summary = `截至 ${date}，服务器点数为 <strong>${formatNumber(snapshot.total)}</strong>，已解锁${joinChinese(unlocked)}。`;
   const boostCards = calculateCurrentBoosts(snapshot.rewards, snapshot.total).map((boost) => {
     const sources = [];
@@ -227,8 +234,8 @@ export function updateHomeActivity(source, snapshot, now = new Date()) {
     .map(({ threshold, reward }) => ({ threshold, reward: translatedReward(reward) }));
   const activeFrom = '2026-08-12';
   const activeThrough = '2026-09-09';
-  const currentPacificTime = pacificTime(now);
-  const today = currentPacificTime.dateIso;
+  const currentChinaTime = chinaTime(now);
+  const today = dateInTimeZone(now, 'America/Los_Angeles');
   const anniversary = {
     id: 'anniversary-2026',
     status: 'LIVE',
@@ -240,8 +247,8 @@ export function updateHomeActivity(source, snapshot, now = new Date()) {
     secondaryLabel: 'Buff 与里程碑',
     officialHref: 'https://wiki.pioneer2.net/w/Anniversary_event',
     period: '8.12 — 9.09',
-    updated: `${currentPacificTime.compact} · 自动同步`,
-    updatedAt: currentPacificTime.timestamp,
+    updated: `${currentChinaTime.compact} · 自动同步`,
+    updatedAt: currentChinaTime.timestamp,
     activeFrom,
     activeThrough,
     active: false,

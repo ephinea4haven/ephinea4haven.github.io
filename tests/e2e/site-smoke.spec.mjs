@@ -626,8 +626,8 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   const homeUpdated = page.locator('[data-current-activity="anniversary-2026"] page-update-stamp');
   await expect(homeUpdated).toBeVisible();
   await expect(homeUpdated).toContainText('最后更新');
-  await expect(homeUpdated.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}-\d{2}:\d{2}$/);
-  await expect(homeUpdated.locator('time')).toContainText(/\d{1,2} 月 \d{1,2} 日 \d{2}:\d{2}$/);
+  await expect(homeUpdated.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}\+08:00$/);
+  await expect(homeUpdated.locator('time')).toContainText(/\d{1,2} 月 \d{1,2} 日 \d{2}:\d{2}（UTC\+8）$/);
   await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
   await expect(page.locator('#galatine-atp')).toContainText('ATP');
@@ -853,8 +853,8 @@ test('anniversary archive uses a full-page timeline workspace', async ({ page })
   const anniversaryUpdated = page.locator('#anniv-2026-milestones page-update-stamp');
   await expect(anniversaryUpdated).toBeVisible();
   await expect(anniversaryUpdated).toContainText('最后更新');
-  await expect(anniversaryUpdated.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}-\d{2}:\d{2}$/);
-  await expect(anniversaryUpdated.locator('time')).toContainText(/\d{1,2} 月 \d{1,2} 日 \d{2}:\d{2}$/);
+  await expect(anniversaryUpdated.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}\+08:00$/);
+  await expect(anniversaryUpdated.locator('time')).toContainText(/\d{1,2} 月 \d{1,2} 日 \d{2}:\d{2}（UTC\+8）$/);
   await expect.poll(() => page.locator('.anniv-2026 .feature-card').first().evaluate((element) => {
     const style = getComputedStyle(element, '::before');
     return [style.content, style.counterIncrement];
