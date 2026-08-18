@@ -644,6 +644,7 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
     range.selectNodeContents(element);
     return range.getClientRects().length;
   })).toBe(1);
+  await expect(homeUpdated.locator('time')).toContainText(/\d{1,2} 月 \d{1,2} 日 \d{2}:\d{2}（UTC\+8）$/);
   expect(await homeUpdated.evaluate((element) =>
     getComputedStyle(element).getPropertyValue('--update-stamp-tilt').trim(),
   )).toBe('-6deg');
@@ -658,7 +659,7 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   const mobileTitleLines = await page.locator('#current-activity-title-anniversary-2026').evaluate((element) => {
     const range = document.createRange();
     range.selectNodeContents(element);
-    return Array.from(range.getClientRects(), ({ y, height }) => ({ y, height }));
+    return Array.from(range.getClientRects(), ({ x, y, width, height }) => ({ x, y, width, height }));
   });
   expect(mobileTitleLines).toHaveLength(2);
   const updateCenterY = mobileUpdateBox.y + mobileUpdateBox.height / 2;
@@ -666,6 +667,7 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   const anniversaryTitleLineCenterY = mobileTitleLines[1].y + mobileTitleLines[1].height / 2;
   expect(Math.abs(updateCenterY - anniversaryTitleLineCenterY))
     .toBeLessThan(Math.abs(updateCenterY - firstTitleLineCenterY));
+  expect(mobileTitleLines[1].x + mobileTitleLines[1].width).toBeLessThanOrEqual(mobileUpdateBox.x);
   await page.setViewportSize({ width: 1280, height: 720 });
   await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
@@ -901,6 +903,19 @@ test('anniversary archive uses a full-page timeline workspace', async ({ page })
 
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(anniversaryUpdated).toBeVisible();
+  const [mobileMilestoneTitleBox, mobileMilestoneUpdateBox] = await Promise.all([
+    page.locator('#anniv-2026-milestones .milestone-heading-title h3').boundingBox(),
+    anniversaryUpdated.boundingBox(),
+  ]);
+  expect(Math.abs(
+    mobileMilestoneTitleBox.y + mobileMilestoneTitleBox.height / 2
+      - (mobileMilestoneUpdateBox.y + mobileMilestoneUpdateBox.height / 2),
+  )).toBeLessThan(10);
+  expect(await anniversaryUpdated.locator('time').evaluate((element) => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    return range.getClientRects().length;
+  })).toBe(1);
   await expect(page.locator('#anniv-2026-milestones .section-heading > p')).toHaveCSS('text-align', 'left');
   await expect.poll(() => workspace.evaluate((element) => getComputedStyle(element).display)).toBe('block');
   await expect.poll(() => railToggle.evaluate((element) => getComputedStyle(element).position)).toBe('fixed');
