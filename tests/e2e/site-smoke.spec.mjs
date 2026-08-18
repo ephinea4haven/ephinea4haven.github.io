@@ -633,7 +633,7 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   await expect(currentActivity).toBeVisible();
   await expect(currentActivity.locator('h2')).toHaveText('Ephinea 2026 十一周年活动');
   await expect(page.locator('.activity-progress-track')).toHaveAttribute('aria-valuenow', /^\d+$/);
-  await expect(page.locator('.activity-milestones li')).toHaveCount(7);
+  await expect(page.locator('.activity-milestones li')).toHaveCount(8);
   await expect(page.locator('.activity-buff')).toHaveCount(7);
   await expect(currentActivity.locator('.activity-primary')).toHaveAttribute('href', '/event/anniversary.html?year=2026');
   await expect(currentActivity.locator('.activity-source')).toHaveAttribute('href', 'https://wiki.pioneer2.net/w/Anniversary_event');
