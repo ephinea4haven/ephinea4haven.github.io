@@ -22,14 +22,14 @@ import { formatUtc8Timestamp } from './utc8-timestamp';
       border-radius: 4px;
       background:
         linear-gradient(110deg, hsl(188 92% 58% / 0.09), transparent 52%),
-        hsl(222 52% 10% / 0.42);
+        hsl(222 52% 10% / 0.26);
       color: hsl(190 34% 78%);
       font-size: 12px;
       font-weight: 400;
       line-height: 1.4;
       white-space: nowrap;
       box-shadow:
-        0 9px 18px hsl(225 90% 3% / 0.62),
+        0 9px 18px hsl(225 90% 3% / 0.42),
         0 2px 0 hsl(204 82% 30% / 0.72),
         0 0 12px hsl(188 92% 58% / 0.48),
         0 0 30px hsl(188 92% 58% / 0.26),
@@ -56,7 +56,7 @@ import { formatUtc8Timestamp } from './utc8-timestamp';
       inset: 5px -4px -6px 4px;
       z-index: -1;
       border-radius: 4px;
-      background: hsl(225 74% 4% / 0.58);
+      background: hsl(225 74% 4% / 0.38);
       filter: blur(3px);
       content: '';
     }
@@ -78,7 +78,7 @@ import { formatUtc8Timestamp } from './utc8-timestamp';
       to {
         border-color: hsl(188 100% 72% / 0.92);
         box-shadow:
-          0 11px 22px hsl(225 90% 3% / 0.68),
+          0 11px 22px hsl(225 90% 3% / 0.48),
           0 2px 0 hsl(204 82% 30% / 0.78),
           0 0 16px hsl(188 100% 62% / 0.66),
           0 0 38px hsl(188 92% 58% / 0.34),

@@ -628,6 +628,16 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   await expect(homeUpdated).toContainText('最后更新');
   await expect(homeUpdated.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}\+08:00$/);
   await expect(homeUpdated.locator('time')).toContainText(/\d{1,2} 月 \d{1,2} 日 \d{2}:\d{2}（UTC\+8）$/);
+  const [homeUpdatedBox, homeTitleBox] = await Promise.all([
+    homeUpdated.boundingBox(),
+    page.locator('#current-activity-title-anniversary-2026').boundingBox(),
+  ]);
+  expect(homeUpdatedBox).not.toBeNull();
+  expect(homeTitleBox).not.toBeNull();
+  expect(homeUpdatedBox.x).toBeLessThan(homeTitleBox.x + homeTitleBox.width);
+  expect(homeUpdatedBox.x + homeUpdatedBox.width).toBeGreaterThan(homeTitleBox.x);
+  expect(homeUpdatedBox.y).toBeLessThan(homeTitleBox.y + homeTitleBox.height);
+  expect(homeUpdatedBox.y + homeUpdatedBox.height).toBeGreaterThan(homeTitleBox.y);
   await page.setViewportSize({ width: 390, height: 844 });
   expect(await homeUpdated.locator('time').evaluate((element) => {
     const range = document.createRange();

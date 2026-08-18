@@ -64,9 +64,11 @@ export function renderHomeActivity(activity) {
   return `    <section class="current-activity card" data-current-activity="${escapeHtml(activity.id)}" data-active-from="${escapeHtml(activity.activeFrom)}" data-active-through="${escapeHtml(activity.activeThrough)}" aria-labelledby="${escapeHtml(titleId)}"${hidden}>
         <div class="activity-intro">
             <div class="activity-topline">
-                <div class="activity-status"><span>${escapeHtml(activity.status)}</span>${escapeHtml(activity.eyebrow)}</div>${updateStamp}
+                <div class="activity-status"><span>${escapeHtml(activity.status)}</span>${escapeHtml(activity.eyebrow)}</div>
             </div>
-            <h2 id="${escapeHtml(titleId)}">${escapeHtml(activity.title)}</h2>
+            <div class="activity-title-wrap">
+                <h2 id="${escapeHtml(titleId)}">${escapeHtml(activity.title)}</h2>${updateStamp}
+            </div>
             <p>${escapeHtml(activity.description)}</p>
             <div class="activity-actions">
                 <a class="activity-primary" href="${escapeHtml(activity.href)}">查看活动完整攻略 <span aria-hidden="true">→</span></a>

@@ -151,6 +151,7 @@ test('renders a reusable home activity spotlight from the milestone snapshot', (
   assert.match(updated, /data-current-activity="anniversary-2026"/);
   assert.match(updated, /data-active-from="2026-08-12" data-active-through="2026-09-09"/);
   assert.match(updated, /<h2 id="current-activity-title-anniversary-2026">Ephinea 2026 十一周年活动<\/h2>/);
+  assert.match(updated, /<div class="activity-title-wrap">\s*<h2 id="current-activity-title-anniversary-2026">[^<]+<\/h2>\s*<page-update-stamp/);
   assert.match(updated, /data-current-activity="valentines-2026"[^>]+ hidden>/);
   assert.match(updated, /data-current-activity="easter-2026"[^>]+ hidden>/);
   assert.match(updated, /全服里程碑<\/span><strong>8,259<\/strong>/);
