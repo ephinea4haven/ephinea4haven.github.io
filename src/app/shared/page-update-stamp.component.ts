@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { formatUtc8Timestamp } from './utc8-timestamp';
 
 @Component({
   selector: 'page-update-stamp',
@@ -93,10 +94,5 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 })
 export class PageUpdateStampComponent {
   readonly timestamp = input.required<string>();
-  readonly localizedTimestamp = computed(() => {
-    const match = this.timestamp().match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})[+-]\d{2}:\d{2}$/);
-    if (!match) throw new Error(`Invalid page update timestamp: ${this.timestamp()}`);
-    const [, year, month, day, hour, minute] = match;
-    return `${year} 年 ${Number(month)} 月 ${Number(day)} 日 ${hour}:${minute}（UTC+8）`;
-  });
+  readonly localizedTimestamp = computed(() => formatUtc8Timestamp(this.timestamp()));
 }

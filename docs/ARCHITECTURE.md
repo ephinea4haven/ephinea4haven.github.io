@@ -104,8 +104,8 @@ dimensions: DAR, RDR, Anniversary Badge rate, Photon Drop rate, experience,
 Meseta, rare-monster rate and Hit-weapon rate. Anniversary Weekly Boost values
 are fixed baselines; only unlocked milestone rewards change the calculated
 totals. The landing spotlight and current-year milestone chapter render the
-same Angular `PageUpdateStampComponent` from the synchronized Pacific snapshot
-date. The stamp is deliberately colocated only with live Buff, milestone and
+same Angular `PageUpdateStampComponent` from the synchronized UTC+8 snapshot
+timestamp. The stamp is deliberately colocated only with live Buff, milestone and
 server-point data; static event rules and historical years do not present a
 live-update timestamp. Historical external
 milestone archive links are not part of the UI; the localized yearly fragments
