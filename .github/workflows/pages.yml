@@ -47,7 +47,8 @@ jobs:
         run: npm test
 
       - name: Install browser
-        run: npx playwright install --with-deps chromium
+        timeout-minutes: 5
+        run: npx playwright install chromium
 
       - name: Build production artifact
         run: npm run build
