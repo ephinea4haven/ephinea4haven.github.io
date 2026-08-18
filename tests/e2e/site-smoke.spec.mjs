@@ -637,6 +637,14 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   expect(await homeUpdated.evaluate((element) =>
     getComputedStyle(element).getPropertyValue('--update-stamp-tilt').trim(),
   )).toBe('-6deg');
+  const mobileActivityStatus = page.locator('[data-current-activity="anniversary-2026"] .activity-status');
+  await expect(mobileActivityStatus).toHaveCSS('flex-direction', 'row');
+  await expect(mobileActivityStatus).toHaveCSS('white-space', 'nowrap');
+  const [mobileStatusBox, mobileUpdateBox] = await Promise.all([
+    mobileActivityStatus.boundingBox(),
+    homeUpdated.boundingBox(),
+  ]);
+  expect(mobileStatusBox.y + mobileStatusBox.height).toBeLessThanOrEqual(mobileUpdateBox.y);
   await page.setViewportSize({ width: 1280, height: 720 });
   await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
