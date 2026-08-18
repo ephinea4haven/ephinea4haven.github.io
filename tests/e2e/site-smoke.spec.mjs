@@ -633,8 +633,12 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   await expect(currentActivity).toBeVisible();
   await expect(currentActivity.locator('h2')).toHaveText('Ephinea 2026 十一周年活动');
   await expect(page.locator('.activity-progress-track')).toHaveAttribute('aria-valuenow', /^\d+$/);
-  await expect(page.locator('.activity-milestones li')).toHaveCount(8);
-  await expect(page.locator('.activity-buff')).toHaveCount(7);
+  const unlockedMilestoneCount = await currentActivity.locator('.activity-milestones li').count();
+  const activeBuffCount = await currentActivity.locator('.activity-buff').count();
+  expect(unlockedMilestoneCount).toBeGreaterThan(0);
+  expect(activeBuffCount).toBeGreaterThan(0);
+  await expect(currentActivity.locator('.activity-unlock-heading strong')).toHaveText(`${unlockedMilestoneCount} / 16`);
+  await expect(currentActivity.locator('.activity-buff-heading strong')).toHaveText(`${activeBuffCount} 项`);
   await expect(currentActivity.locator('.activity-primary')).toHaveAttribute('href', '/event/anniversary.html?year=2026');
   await expect(currentActivity.locator('.activity-source')).toHaveAttribute('href', 'https://wiki.pioneer2.net/w/Anniversary_event');
   await expect(currentActivity.locator('.activity-source')).toHaveAttribute('rel', 'noopener noreferrer');
