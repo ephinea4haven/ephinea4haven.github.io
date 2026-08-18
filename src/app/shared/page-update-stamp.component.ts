@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <span>最后更新</span>
-    <time [attr.datetime]="date()">{{ localizedDate() }}</time>
+    <time [attr.datetime]="timestamp()">{{ localizedTimestamp() }}</time>
   `,
   styles: `
     :host {
@@ -92,9 +92,11 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
   `,
 })
 export class PageUpdateStampComponent {
-  readonly date = input.required<string>();
-  readonly localizedDate = computed(() => {
-    const [year, month, day] = this.date().split('-').map(Number);
-    return `${year} 年 ${month} 月 ${day} 日`;
+  readonly timestamp = input.required<string>();
+  readonly localizedTimestamp = computed(() => {
+    const match = this.timestamp().match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})[+-]\d{2}:\d{2}$/);
+    if (!match) throw new Error(`Invalid page update timestamp: ${this.timestamp()}`);
+    const [, year, month, day, hour, minute] = match;
+    return `${year} 年 ${Number(month)} 月 ${Number(day)} 日 ${hour}:${minute}`;
   });
 }

@@ -168,7 +168,7 @@ test('renders a reusable home activity spotlight from the milestone snapshot', (
   assert.equal((updated.match(/class="activity-source"/g) || []).length, 5);
   assert.match(updated, /href="https:\/\/wiki\.pioneer2\.net\/w\/Anniversary_event" target="_blank" rel="noopener noreferrer">官方 Wiki 详情/);
   assert.match(updated, /href="https:\/\/wiki\.pioneer2\.net\/w\/Valentine%27s_event" target="_blank" rel="noopener noreferrer">官方 Wiki 详情/);
-  assert.match(updated, /<page-update-stamp class="activity-status-update" date="2026-08-16"><\/page-update-stamp>/);
+  assert.match(updated, /<page-update-stamp class="activity-status-update" timestamp="2026-08-16T12:00-07:00"><\/page-update-stamp>/);
   assert.doesNotMatch(updated, />old</);
 
   const completed = updateHomeActivity(source, { ...snapshot, total: 21000 });
@@ -184,8 +184,8 @@ test('renders a reusable home activity spotlight from the milestone snapshot', (
   assert.match(duringValentines, /data-current-activity="anniversary-2026"[^>]+ hidden>/);
 });
 
-test('updates a page-level timestamp with a semantic Pacific date', () => {
-  const source = '<page-update-stamp class="milestone-section-update" date="2026-08-15"></page-update-stamp>';
+test('updates a page-level timestamp with semantic Pacific time to the minute', () => {
+  const source = '<page-update-stamp class="milestone-section-update" timestamp="2026-08-15T09:30-07:00"></page-update-stamp>';
   const updated = updatePageTimestamp(source, new Date('2026-08-17T01:00:00-07:00'));
-  assert.equal(updated, '<page-update-stamp class="milestone-section-update" date="2026-08-17"></page-update-stamp>');
+  assert.equal(updated, '<page-update-stamp class="milestone-section-update" timestamp="2026-08-17T01:00-07:00"></page-update-stamp>');
 });

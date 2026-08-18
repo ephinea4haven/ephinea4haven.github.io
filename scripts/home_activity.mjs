@@ -37,7 +37,7 @@ export function renderHomeActivity(activity) {
   const hidden = activity.active ? '' : ' hidden';
   const titleId = `current-activity-title-${activity.id}`;
   const updateStamp = activity.updatedAt
-    ? `\n                <page-update-stamp class="activity-status-update" date="${escapeHtml(activity.updatedAt)}"></page-update-stamp>`
+    ? `\n                <page-update-stamp class="activity-status-update" timestamp="${escapeHtml(activity.updatedAt)}"></page-update-stamp>`
     : '';
   const dashboard = milestone ? `
             <div class="activity-progress-heading">

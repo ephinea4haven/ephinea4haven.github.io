@@ -17,7 +17,7 @@ are build inputs and are not copied into the published artifact.
 | `verify_challenge_maps.mjs` | Verify original challenge-map inventories, dimensions and page references. |
 | `verify_status_domain.mjs` | Verify all character/equipment mappings and status calculation fixtures. |
 | `sync_combo_calculator.mjs` | Synchronize verified PSOStats rules, data, license and provenance. |
-| `sync_anniversary_milestones.mjs` | Synchronize the official 2026 milestone snapshot, its shared landing/detail update date, and the eight anniversary boost dimensions from fixed Weekly Boost baselines plus unlocked milestone rewards. |
+| `sync_anniversary_milestones.mjs` | Synchronize the official 2026 milestone snapshot, its shared landing/detail Pacific timestamp (minute precision), and the eight anniversary boost dimensions from fixed Weekly Boost baselines plus unlocked milestone rewards. |
 | `scrape_gizonde.py` | Generate Vol Opt data from the Ephinea Wiki. |
 | `scrape_price_guide.py` | Generate price-guide data from the Ephinea Wiki. |
 | `build_mag_data.py` | Generate Mag evolution and feeding data. |
