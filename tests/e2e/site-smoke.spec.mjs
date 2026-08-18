@@ -862,6 +862,7 @@ test('anniversary archive uses a full-page timeline workspace', async ({ page })
 
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(anniversaryUpdated).toBeVisible();
+  await expect(page.locator('#anniv-2026-milestones .section-heading > p')).toHaveCSS('text-align', 'left');
   await expect.poll(() => workspace.evaluate((element) => getComputedStyle(element).display)).toBe('block');
   await expect.poll(() => railToggle.evaluate((element) => getComputedStyle(element).position)).toBe('fixed');
   await railToggle.click();
