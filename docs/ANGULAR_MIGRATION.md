@@ -102,8 +102,8 @@ through to the site root.
 
 The 2026 fragment commits the official live milestone snapshot and an eight-item
 boost summary. Its Weekly Boost baselines are fixed for the Anniversary event;
-the hourly milestone synchronizer updates only unlocked milestone contributions
-and the resulting totals.
+the milestone synchronizer runs twice hourly from 23:00 through 17:59 UTC and
+updates only unlocked milestone contributions and the resulting totals.
 
 PSOStats anniversary telemetry is archived only for the upstream years that
 exist: 2021, 2022, 2023 and 2025. Each of those fragments keeps its published
