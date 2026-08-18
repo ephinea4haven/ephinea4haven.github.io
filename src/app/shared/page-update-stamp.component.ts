@@ -11,6 +11,7 @@ import { formatUtc8Timestamp } from './utc8-timestamp';
   styles: `
     :host {
       display: flex;
+      flex-shrink: 0;
       align-items: baseline;
       gap: 7px;
       width: fit-content;
@@ -26,6 +27,7 @@ import { formatUtc8Timestamp } from './utc8-timestamp';
       font-size: 12px;
       font-weight: 400;
       line-height: 1.4;
+      white-space: nowrap;
       box-shadow:
         0 9px 18px hsl(225 90% 3% / 0.62),
         0 2px 0 hsl(204 82% 30% / 0.72),
