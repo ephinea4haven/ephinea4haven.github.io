@@ -118,7 +118,7 @@ header {
 
 .activity-status-update {
     --update-stamp-scale: 0.86;
-    --update-stamp-tilt: 5deg;
+    --update-stamp-tilt: -6deg;
     position: absolute;
     top: -8px;
     right: 0;
