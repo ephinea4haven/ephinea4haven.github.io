@@ -66,6 +66,13 @@
             margin: 0;
         }
 
+        .milestone-heading-title {
+            position: relative;
+            flex: 0 0 auto;
+            padding-right: 70px;
+            isolation: isolate;
+        }
+
         .masthead-facts span {
             display: inline-flex;
             align-items: center;
@@ -151,6 +158,16 @@
             font-weight: 900;
             letter-spacing: 0.06em;
             line-height: 1;
+        }
+
+        .milestone-section-update {
+            --update-stamp-scale: 0.86;
+            --update-stamp-tilt: -6deg;
+            position: absolute;
+            right: 0;
+            bottom: 1px;
+            z-index: 3;
+            pointer-events: none;
         }
 
         .anniversary-page-shell {
@@ -459,6 +476,12 @@
 
             .masthead-facts {
                 display: none;
+            }
+
+            .milestone-section-update {
+                --update-stamp-scale: 0.78;
+                right: -4px;
+                bottom: 1px;
             }
 
             .anniversary-workspace {
@@ -1898,6 +1921,7 @@
             .anniv-2025 .section-heading p {
                 margin-top: 10px;
             }
+
 
             .anniv-2025 .feature-cards,
             .anniv-2025 .badge-cards {

@@ -264,7 +264,9 @@ test('challenge and Seabed guides keep their complete map inventories usable on 
 
 test('Seabed route variants use an exclusive full-width accordion', async ({ page }) => {
   await page.goto('/guide/seabed.html#routes');
-  const variants = page.locator('.route-notes details');
+  const routeNotes = page.locator('[data-seabed-routes]');
+  const variants = routeNotes.locator('details');
+  await expect(routeNotes).toHaveAttribute('data-seabed-routes', 'ready');
   await expect(variants).toHaveCount(8);
   await expect(page.locator('.route-notes details[open]')).toHaveCount(1);
 
@@ -272,6 +274,10 @@ test('Seabed route variants use an exclusive full-width accordion', async ({ pag
   await expect(variants.nth(0)).not.toHaveAttribute('open', '');
   await expect(variants.nth(1)).toHaveAttribute('open', '');
   await expect(variants.nth(1)).toContainText('第二只 Sinow 攻击前');
+  await variants.nth(2).locator('summary').focus();
+  await variants.nth(2).locator('summary').press('Enter');
+  await expect(variants.nth(1)).not.toHaveAttribute('open', '');
+  await expect(variants.nth(2)).toHaveAttribute('open', '');
   await expect.poll(() => variants.nth(1).evaluate((element) => (
     element.getBoundingClientRect().width / element.parentElement.getBoundingClientRect().width
   ))).toBeGreaterThan(0.98);
@@ -617,6 +623,10 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   });
 
   await page.goto('/');
+  const homeUpdated = page.locator('[data-current-activity="anniversary-2026"] page-update-stamp');
+  await expect(homeUpdated).toBeVisible();
+  await expect(homeUpdated).toContainText('最后更新');
+  await expect(homeUpdated.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
   await expect(page.locator('#galatine-atp')).toContainText('ATP');
@@ -839,12 +849,17 @@ test('anniversary archive uses a full-page timeline workspace', async ({ page })
   )).toBe('sticky');
   expect((await page.locator('.event-masthead').boundingBox())?.height).toBeLessThan(120);
   await expect(page.locator('.event-masthead')).toContainText('周年活动档案');
+  const anniversaryUpdated = page.locator('#anniv-2026-milestones page-update-stamp');
+  await expect(anniversaryUpdated).toBeVisible();
+  await expect(anniversaryUpdated).toContainText('最后更新');
+  await expect(anniversaryUpdated.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}$/);
   await expect.poll(() => page.locator('.anniv-2026 .feature-card').first().evaluate((element) => {
     const style = getComputedStyle(element, '::before');
     return [style.content, style.counterIncrement];
   })).toEqual(['counter(anniversary-change, decimal-leading-zero)', 'anniversary-change 1']);
 
   await page.setViewportSize({ width: 390, height: 844 });
+  await expect(anniversaryUpdated).toBeVisible();
   await expect.poll(() => workspace.evaluate((element) => getComputedStyle(element).display)).toBe('block');
   await expect.poll(() => railToggle.evaluate((element) => getComputedStyle(element).position)).toBe('fixed');
   await railToggle.click();

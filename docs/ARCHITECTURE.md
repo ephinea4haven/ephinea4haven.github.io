@@ -103,7 +103,11 @@ reward updates. The same synchronization pass recalculates eight visible boost
 dimensions: DAR, RDR, Anniversary Badge rate, Photon Drop rate, experience,
 Meseta, rare-monster rate and Hit-weapon rate. Anniversary Weekly Boost values
 are fixed baselines; only unlocked milestone rewards change the calculated
-totals. Historical external
+totals. The landing spotlight and current-year milestone chapter render the
+same Angular `PageUpdateStampComponent` from the synchronized Pacific snapshot
+date. The stamp is deliberately colocated only with live Buff, milestone and
+server-point data; static event rules and historical years do not present a
+live-update timestamp. Historical external
 milestone archive links are not part of the UI; the localized yearly fragments
 are the maintained record.
 The landing page exposes active seasonal events through reusable
@@ -127,7 +131,7 @@ site-wide reduced-motion contract.
 The anniversary sync updates the landing regions in the same atomic pass as the
 2026 fragment, so the landing page never carries a separately maintained
 milestone snapshot. The GitHub synchronization workflow commits both generated
-surfaces together. Future seasonal events reuse the registry and renderer
+surfaces and their shared update date together. Future seasonal events reuse the registry and renderer
 instead of adding event-specific landing-page markup or behavior.
 The registry follows Ephinea's five documented server-wide event families:
 Valentine's, Easter, Anniversary, Halloween and Christmas. Ephinea explicitly
@@ -151,7 +155,9 @@ minimum source dimensions and page references.
 The Seabed guide is a dedicated Chinese content route covering all eight Upper
 and Lower map variants. It keeps route media, gameplay advice and server-specific
 provenance together so readers can distinguish general PSOBB mechanics from
-Ultima-specific equipment and timing recommendations.
+Ultima-specific equipment and timing recommendations. Angular explicitly owns
+the eight-route accordion after hydration, publishes a readiness contract, and
+keeps exactly one variant open for both pointer and keyboard activation.
 
 Build-input JavaScript datasets are never copied to `_site`. Generators evaluate
 or normalize them into Angular modules. The PSOStats Combo snapshot remains an

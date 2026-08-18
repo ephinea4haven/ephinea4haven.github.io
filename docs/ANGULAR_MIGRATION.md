@@ -104,7 +104,11 @@ The 2026 fragment commits the official live milestone snapshot and an eight-item
 boost summary. Its Weekly Boost baselines are fixed for the Anniversary event;
 the milestone synchronizer runs at `:07` and `:37` during UTC hours 23 and
 00–17 (07:07 through 01:37 the following day in UTC+8), and updates only
-unlocked milestone contributions and the resulting totals.
+unlocked milestone contributions and the resulting totals. The same pass writes
+the America/Los_Angeles snapshot date to the landing spotlight and the 2026
+milestone chapter. Angular renders both through the shared semantic
+`PageUpdateStampComponent`; static rules and historical fragments remain
+untimestamped.
 
 PSOStats anniversary telemetry is archived only for the upstream years that
 exist: 2021, 2022, 2023 and 2025. Each of those fragments keeps its published

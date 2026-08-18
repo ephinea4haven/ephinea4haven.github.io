@@ -148,6 +148,16 @@ function replaceExactlyOnce(source, pattern, replacement, context) {
   return source.replace(pattern, replacement);
 }
 
+export function updatePageTimestamp(source, now = new Date()) {
+  const date = pacificDate(now);
+  return replaceExactlyOnce(
+    source,
+    /(<page-update-stamp\b[^>]*\bdate=")[^"]+("[^>]*\/?\s*>)/,
+    `$1${date.iso}$2`,
+    'page update timestamp',
+  );
+}
+
 export function updateAnniversaryFragment(source, snapshot, now = new Date()) {
   const unlocked = snapshot.rewards
     .filter(({ threshold, reward }) => threshold <= snapshot.total && translatedReward(reward) !== '官方暂未公开')
@@ -225,6 +235,7 @@ export function updateHomeActivity(source, snapshot, now = new Date()) {
     officialHref: 'https://wiki.pioneer2.net/w/Anniversary_event',
     period: '8.12 — 9.09',
     updated: `${pacificDate(now).compact} · 自动同步`,
+    updatedAt: pacificDate(now).iso,
     activeFrom,
     activeThrough,
     active: false,
@@ -238,7 +249,8 @@ export function updateHomeActivity(source, snapshot, now = new Date()) {
     buffs,
   };
   anniversary.active = activityIsActive(anniversary, today);
-  return replaceHomeActivities(source, [...registeredSeasonalActivities(today), anniversary]);
+  const activities = replaceHomeActivities(source, [...registeredSeasonalActivities(today), anniversary]);
+  return updatePageTimestamp(activities, now);
 }
 
 async function main() {
@@ -251,7 +263,7 @@ async function main() {
     readFile(anniversaryFragment, 'utf8'),
     readFile(homePage, 'utf8'),
   ]);
-  const updated = updateAnniversaryFragment(current, snapshot);
+  const updated = updatePageTimestamp(updateAnniversaryFragment(current, snapshot));
   const updatedHome = updateHomeActivity(currentHome, snapshot);
   await Promise.all([
     updated === current ? null : writeFile(anniversaryFragment, updated),

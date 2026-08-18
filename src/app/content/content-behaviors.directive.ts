@@ -15,6 +15,35 @@ export class BackToTopBehavior extends BrowserContentBehavior {
 }
 
 @Directive({ standalone: true })
+export class SeabedRouteBehavior extends BrowserContentBehavior {
+  protected connect(): void {
+    const container = this.host.querySelector<HTMLElement>('[data-seabed-routes]');
+    const variants = Array.from(container?.querySelectorAll<HTMLDetailsElement>('details') ?? []);
+    if (!container || !variants.length) return;
+
+    const activate = (selected: HTMLDetailsElement) => {
+      for (const variant of variants) variant.open = variant === selected;
+    };
+    activate(variants.find((variant) => variant.open) ?? variants[0]);
+
+    for (const variant of variants) {
+      const summary = variant.querySelector<HTMLElement>('summary');
+      if (!summary) continue;
+      this.listen(summary, 'click', (event) => {
+        event.preventDefault();
+        activate(variant);
+      });
+      this.listen(summary, 'keydown', ((event: KeyboardEvent) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        activate(variant);
+      }) as EventListener);
+    }
+    container.dataset['seabedRoutes'] = 'ready';
+  }
+}
+
+@Directive({ standalone: true })
 export class ItemTableSearchBehavior extends BrowserContentBehavior {
   protected connect(): void {
     const input = this.host.querySelector<HTMLInputElement>('#searchBox');

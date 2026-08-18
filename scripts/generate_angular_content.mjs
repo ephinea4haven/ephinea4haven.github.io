@@ -28,6 +28,7 @@ const pageBehaviors = new Map([
   ['guide/class-guide.html', ['ProfessionTabsBehavior']],
   ['guide/ep1ch.html', ['LanguageSwitchBehavior']],
   ['guide/ep2ch.html', ['LanguageSwitchBehavior']],
+  ['guide/seabed.html', ['SeabedRouteBehavior']],
   ['tools/materialplan.html', ['BackToTopBehavior']],
   ['tools/id.html', ['SectionIdBehavior']],
   ['event/easter.html', ['EventArchiveBehavior']],
@@ -570,6 +571,7 @@ for (const file of candidates) {
     return value;
   });
   const usesPageChrome = details.template.includes('<page-chrome');
+  const usesPageUpdateStamp = details.template.includes('<page-update-stamp');
   const behaviors = pageBehaviors.get(relative) || [];
   const groupedBehaviorImports = Map.groupBy(behaviors, (behavior) => (
     behaviorModules.get(behavior) || '../../content/content-behaviors.directive'
@@ -580,11 +582,12 @@ for (const file of candidates) {
   const component = `import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 ${usesPageChrome ? "import { PageChromeComponent } from '../../shared/page-chrome.component';" : ''}
+${usesPageUpdateStamp ? "import { PageUpdateStampComponent } from '../../shared/page-update-stamp.component';" : ''}
 ${behaviorImport}
 
 @Component({
   selector: 'haven-content-page',
-  imports: [${usesPageChrome ? 'PageChromeComponent' : ''}],
+  imports: [${[usesPageChrome ? 'PageChromeComponent' : '', usesPageUpdateStamp ? 'PageUpdateStampComponent' : ''].filter(Boolean).join(', ')}],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   hostDirectives: [${behaviors.join(', ')}],

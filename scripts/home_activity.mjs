@@ -36,6 +36,9 @@ export function renderHomeActivity(activity) {
                     </li>`).join('');
   const hidden = activity.active ? '' : ' hidden';
   const titleId = `current-activity-title-${activity.id}`;
+  const updateStamp = activity.updatedAt
+    ? `\n                <page-update-stamp class="activity-status-update" date="${escapeHtml(activity.updatedAt)}"></page-update-stamp>`
+    : '';
   const dashboard = milestone ? `
             <div class="activity-progress-heading">
                 <div><span>全服里程碑</span><strong>${formatNumber(milestone.current)}</strong></div>
@@ -60,7 +63,9 @@ export function renderHomeActivity(activity) {
 
   return `    <section class="current-activity card" data-current-activity="${escapeHtml(activity.id)}" data-active-from="${escapeHtml(activity.activeFrom)}" data-active-through="${escapeHtml(activity.activeThrough)}" aria-labelledby="${escapeHtml(titleId)}"${hidden}>
         <div class="activity-intro">
-            <div class="activity-status"><span>${escapeHtml(activity.status)}</span>${escapeHtml(activity.eyebrow)}</div>
+            <div class="activity-topline">
+                <div class="activity-status"><span>${escapeHtml(activity.status)}</span>${escapeHtml(activity.eyebrow)}</div>${updateStamp}
+            </div>
             <h2 id="${escapeHtml(titleId)}">${escapeHtml(activity.title)}</h2>
             <p>${escapeHtml(activity.description)}</p>
             <div class="activity-actions">

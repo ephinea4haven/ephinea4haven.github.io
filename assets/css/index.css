@@ -116,6 +116,29 @@ header {
     margin-bottom: 22px;
 }
 
+.activity-status-update {
+    --update-stamp-scale: 0.86;
+    --update-stamp-tilt: 5deg;
+    position: absolute;
+    top: -8px;
+    right: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.activity-topline {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+    width: fit-content;
+    max-width: 100%;
+    padding-right: 70px;
+    margin-bottom: 16px;
+    isolation: isolate;
+}
+
 .qq-btn {
     display: inline-flex;
     align-items: center;
@@ -284,7 +307,7 @@ header {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 16px;
+    margin-bottom: 0;
     color: hsl(188 70% 79% / 0.78);
     font-family: 'Share Tech Mono', monospace;
     font-size: 12px;
@@ -1168,6 +1191,7 @@ footer::after { background: linear-gradient(to left, transparent, rgba(115, 132,
     body { padding: 22px 10px 40px; }
     .container { gap: 12px; }
     .title-bracket { font-size: 1.45em; }
+    .activity-status-update { --update-stamp-scale: 0.78; top: 12px; right: -4px; }
     .qq-btn { width: min(100%, 310px); }
     .activity-intro { padding: 24px 20px; }
     .activity-status { align-items: flex-start; flex-direction: column; gap: 8px; }
