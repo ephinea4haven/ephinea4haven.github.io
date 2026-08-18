@@ -866,6 +866,8 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   const questGuide = page.locator('#anniv-2026-quest-guide');
   await expect(questGuide).toContainText('11 项 MAE 周回选择');
   await expect(questGuide.locator('[data-quest-guide-year="2026"] tbody tr')).toHaveCount(11);
+  await expect(questGuide.locator('.section-id-icon')).toHaveCount(27);
+  await expect(questGuide.locator('.section-id-icon[alt="Skyly"]')).toHaveCount(5);
   await expect(questGuide).toContainText('综合首选 · Desert');
   await expect(questGuide).toContainText('定点首选 · CCA');
   await expect(questGuide).toContainText('配队原则');
