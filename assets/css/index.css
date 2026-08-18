@@ -1197,7 +1197,7 @@ footer::after { background: linear-gradient(to left, transparent, rgba(115, 132,
     .container { gap: 12px; }
     .title-bracket { font-size: 1.45em; }
     .activity-topline { width: 100%; }
-    .activity-status-update { --update-stamp-scale: 0.78; top: -4px; right: -4px; }
+    .activity-status-update { --update-stamp-scale: 0.78; top: 27px; right: -4px; }
     .qq-btn { width: min(100%, 310px); }
     .activity-intro { padding: 24px 20px; }
     .activity-status { align-items: center; flex-direction: row; gap: 12px; white-space: nowrap; }

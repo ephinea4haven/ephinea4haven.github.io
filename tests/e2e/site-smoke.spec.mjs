@@ -655,6 +655,17 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
     homeUpdated.boundingBox(),
   ]);
   expect(mobileStatusBox.y + mobileStatusBox.height).toBeLessThanOrEqual(mobileUpdateBox.y);
+  const mobileTitleLines = await page.locator('#current-activity-title-anniversary-2026').evaluate((element) => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    return Array.from(range.getClientRects(), ({ y, height }) => ({ y, height }));
+  });
+  expect(mobileTitleLines).toHaveLength(2);
+  const updateCenterY = mobileUpdateBox.y + mobileUpdateBox.height / 2;
+  const firstTitleLineCenterY = mobileTitleLines[0].y + mobileTitleLines[0].height / 2;
+  const anniversaryTitleLineCenterY = mobileTitleLines[1].y + mobileTitleLines[1].height / 2;
+  expect(Math.abs(updateCenterY - anniversaryTitleLineCenterY))
+    .toBeLessThan(Math.abs(updateCenterY - firstTitleLineCenterY));
   await page.setViewportSize({ width: 1280, height: 720 });
   await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
