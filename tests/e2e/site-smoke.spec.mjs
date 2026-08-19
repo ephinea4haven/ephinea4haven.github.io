@@ -664,6 +664,7 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
     range.selectNodeContents(element);
     return Array.from(range.getClientRects(), ({ x, y, width, height }) => ({ x, y, width, height }));
   });
+  await expect(page.locator('#current-activity-title-anniversary-2026')).toHaveCSS('max-width', '224px');
   expect(mobileTitleLines).toHaveLength(2);
   const updateCenterY = mobileUpdateBox.y + mobileUpdateBox.height / 2;
   const firstTitleLineCenterY = mobileTitleLines[0].y + mobileTitleLines[0].height / 2;

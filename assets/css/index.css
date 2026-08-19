@@ -1201,6 +1201,7 @@ footer::after { background: linear-gradient(to left, transparent, rgba(115, 132,
         --update-stamp-scale: 0.78;
         right: -4px;
     }
+    .activity-title-wrap h2 { max-width: 8em; }
     .qq-btn { width: min(100%, 310px); }
     .activity-intro { padding: 24px 20px; }
     .activity-status { align-items: center; flex-direction: row; gap: 12px; white-space: nowrap; }
