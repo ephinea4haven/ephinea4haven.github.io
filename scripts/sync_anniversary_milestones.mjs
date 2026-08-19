@@ -227,7 +227,6 @@ export function updateHomeActivity(source, snapshot, now = new Date()) {
   const milestone = nextMilestone || snapshot.rewards.at(-1);
   if (!milestone) throw new Error('The anniversary has no milestones');
   const buffs = calculateCurrentBoosts(snapshot.rewards, snapshot.total)
-    .filter(({ total }) => total > 0)
     .map(({ acronym, label, total }) => ({ code: acronym, label, value: total }));
   const unlockedMilestones = snapshot.rewards
     .filter(({ threshold, reward }) => threshold <= snapshot.total && translatedReward(reward) !== '官方暂未公开')

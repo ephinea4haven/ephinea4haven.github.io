@@ -158,13 +158,14 @@ test('renders a reusable home activity spotlight from the milestone snapshot', (
   assert.match(updated, /下一节点<\/span><strong>9,500<\/strong>/);
   assert.match(updated, /aria-valuemax="9500" aria-valuenow="8259"/);
   assert.match(updated, /还差 1,241 点/);
-  assert.match(updated, /当前生效 Buff<\/span><strong>7 项<\/strong>/);
+  assert.match(updated, /当前生效 Buff<\/span><strong>8 项<\/strong>/);
   assert.match(updated, /已解锁里程碑<\/span><strong>7 \/ 16<\/strong>/);
   assert.equal((updated.match(/class="activity-milestones"/g) || []).length, 1);
   assert.equal((updated.match(/<li>\s*<span>\d+,\d{3}<\/span>\s*<strong>[^<]+<\/strong>\s*<\/li>/g) || []).length, 7);
   assert.match(updated, /<span>7,000<\/span>\s*<strong>周年徽章掉落率 \+25%<\/strong>/);
-  assert.equal((updated.match(/class="activity-buff"/g) || []).length, 7);
+  assert.equal((updated.match(/class="activity-buff"/g) || []).length, 8);
   assert.match(updated, /<strong>\+100%<\/strong>\s*<small>经验值<\/small>/);
+  assert.match(updated, /<span>Hit<\/span>\s*<strong>\+0%<\/strong>\s*<small>Hit 武器出现率<\/small>/);
   assert.match(updated, /href="\/event\/anniversary\.html\?year=2026#anniv-2026-milestones"/);
   assert.equal((updated.match(/class="activity-source"/g) || []).length, 5);
   assert.match(updated, /href="https:\/\/wiki\.pioneer2\.net\/w\/Anniversary_event" target="_blank" rel="noopener noreferrer">官方 Wiki 详情/);
