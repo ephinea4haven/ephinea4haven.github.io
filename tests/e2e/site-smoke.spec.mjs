@@ -648,6 +648,9 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   expect(await homeUpdated.evaluate((element) =>
     getComputedStyle(element).getPropertyValue('--update-stamp-tilt').trim(),
   )).toBe('-6deg');
+  expect(await homeUpdated.evaluate((element) =>
+    Number(getComputedStyle(element).getPropertyValue('--update-stamp-scale')),
+  )).toBe(0.78);
   const mobileActivityStatus = page.locator('[data-current-activity="anniversary-2026"] .activity-status');
   await expect(mobileActivityStatus).toHaveCSS('flex-direction', 'row');
   await expect(mobileActivityStatus).toHaveCSS('white-space', 'nowrap');
@@ -667,7 +670,8 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   const anniversaryTitleLineCenterY = mobileTitleLines[1].y + mobileTitleLines[1].height / 2;
   expect(Math.abs(updateCenterY - anniversaryTitleLineCenterY))
     .toBeLessThan(Math.abs(updateCenterY - firstTitleLineCenterY));
-  expect(mobileTitleLines[1].x + mobileTitleLines[1].width).toBeLessThanOrEqual(mobileUpdateBox.x);
+  expect(mobileUpdateBox.x).toBeLessThan(mobileTitleLines[1].x + mobileTitleLines[1].width);
+  expect(mobileUpdateBox.x + mobileUpdateBox.width).toBeGreaterThan(mobileTitleLines[1].x);
   await page.setViewportSize({ width: 1280, height: 720 });
   await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
@@ -903,6 +907,10 @@ test('anniversary archive uses a full-page timeline workspace', async ({ page })
 
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(anniversaryUpdated).toBeVisible();
+  expect(await anniversaryUpdated.evaluate((element) => ({
+    scale: Number(getComputedStyle(element).getPropertyValue('--update-stamp-scale')),
+    tilt: getComputedStyle(element).getPropertyValue('--update-stamp-tilt').trim(),
+  }))).toEqual({ scale: 0.78, tilt: '-6deg' });
   const [mobileMilestoneTitleBox, mobileMilestoneUpdateBox] = await Promise.all([
     page.locator('#anniv-2026-milestones .milestone-heading-title h3').boundingBox(),
     anniversaryUpdated.boundingBox(),

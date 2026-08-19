@@ -120,8 +120,8 @@ header {
     --update-stamp-scale: 0.86;
     --update-stamp-tilt: -6deg;
     position: absolute;
-    top: 2px;
-    right: 8px;
+    right: 0;
+    bottom: 1px;
     z-index: 3;
     pointer-events: none;
 }
@@ -1197,21 +1197,9 @@ footer::after { background: linear-gradient(to left, transparent, rgba(115, 132,
     .container { gap: 12px; }
     .title-bracket { font-size: 1.45em; }
     .activity-topline { width: 100%; }
-    .activity-title-wrap {
-        display: flex;
-        align-items: flex-end;
-        gap: 2px;
-        width: 100%;
-    }
-    .activity-title-wrap h2 {
-        flex: 0 0 6.35em;
-        width: 6.35em;
-    }
     .activity-status-update {
-        --update-stamp-scale: 1;
-        position: static;
-        margin-bottom: 6px;
-        zoom: 0.45;
+        --update-stamp-scale: 0.78;
+        right: -4px;
     }
     .qq-btn { width: min(100%, 310px); }
     .activity-intro { padding: 24px 20px; }

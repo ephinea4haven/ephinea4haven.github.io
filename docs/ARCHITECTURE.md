@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-08-16
+> Last updated: 2026-08-18
 
 ## System shape
 
@@ -105,7 +105,10 @@ Meseta, rare-monster rate and Hit-weapon rate. Anniversary Weekly Boost values
 are fixed baselines; only unlocked milestone rewards change the calculated
 totals. The landing spotlight and current-year milestone chapter render the
 same Angular `PageUpdateStampComponent` from the synchronized UTC+8 snapshot
-timestamp. The stamp is deliberately colocated only with live Buff, milestone and
+timestamp. Both surfaces preserve the same stamp scale, tilt and overlay
+treatment on narrow screens: the landing stamp aligns with the second title
+line (`十一周年活动`), while the milestone stamp aligns with its single-line
+heading. The stamp is deliberately colocated only with live Buff, milestone and
 server-point data; static event rules and historical years do not present a
 live-update timestamp. Historical external
 milestone archive links are not part of the UI; the localized yearly fragments
