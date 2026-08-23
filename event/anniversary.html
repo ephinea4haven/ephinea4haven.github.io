@@ -1115,6 +1115,14 @@
             grid-template-columns: repeat(3, minmax(0, 1fr));
         }
 
+        .anniv-2025 .tier-cards {
+            margin: 14px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .anniv-2025 .tier-cards > .tier-card { margin: 0; }
+
         .anniv-2025 .current-boosts {
             grid-template-columns: repeat(4, minmax(0, 1fr));
         }
@@ -1210,6 +1218,39 @@
             color: var(--tier-color);
             font-size: 20px;
         }
+
+        .anniv-2025 .shop-reward-list {
+            margin: 0;
+            padding: 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.65;
+            list-style: none;
+        }
+
+        .anniv-2025 .shop-reward-list > li {
+            display: grid;
+            grid-template-columns: 2.5em minmax(0, 1fr);
+            gap: 8px;
+            margin: 0;
+        }
+
+        .anniv-2025 .shop-reward-list > li + li { margin-top: 4px; }
+
+        .anniv-2025 .reward-price {
+            color: var(--tier-color);
+            font-weight: 800;
+            text-align: right;
+        }
+
+        .anniv-2025 .reward-price::after { content: "："; }
+
+        .anniv-2025 .reward-options {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        .anniv-2025 .reward-options li { margin: 0; }
 
         .anniv-2025 .special-card ul {
             margin: 12px 0 0;
