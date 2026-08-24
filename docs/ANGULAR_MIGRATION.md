@@ -108,7 +108,11 @@ unlocked milestone contributions and the resulting totals. The same pass writes
 the minute-precise UTC+8 snapshot timestamp to the landing spotlight and the 2026
 milestone chapter. Angular renders both through the shared semantic
 `PageUpdateStampComponent`; static rules and historical fragments remain
-untimestamped.
+untimestamped. GitHub schedules are treated as best-effort; a missing scheduled
+run is recovered through the same `workflow_dispatch` path. Once the official
+total reaches 20,000 and all 16 rewards are public, the successful final pass
+disables its own schedule. A September 10 UTC sentinel remains as the
+end-of-event fallback.
 
 PSOStats anniversary telemetry is archived only for the upstream years that
 exist: 2021, 2022, 2023 and 2025. Each of those fragments keeps its published
