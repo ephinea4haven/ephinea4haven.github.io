@@ -36,6 +36,7 @@ jobs:
         run: npm ci
 
       - name: Sync official milestones
+        id: sync
         run: npm run sync:anniversary
 
       - name: Verify synchronized snapshot
@@ -70,6 +71,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run pages.yml --ref master
+
+      - name: Disable completed milestone synchronization
+        if: steps.sync.outputs.complete == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow disable sync-anniversary-milestones.yml --repo "$GITHUB_REPOSITORY"
 
   close-event-window:
     if: github.event_name == 'schedule' && github.event.schedule == '17 * 10 9 *'

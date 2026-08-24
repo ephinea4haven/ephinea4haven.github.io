@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { appendFile, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parse } from 'parse5';
@@ -145,6 +145,13 @@ export function calculateCurrentBoosts(rewards, total) {
   });
 }
 
+export function anniversaryMilestonesAreComplete(snapshot) {
+  const finalThreshold = snapshot.rewards.at(-1)?.threshold;
+  return finalThreshold !== undefined
+    && snapshot.total >= finalThreshold
+    && snapshot.rewards.every(({ reward }) => rewardDetails(reward) !== null);
+}
+
 function escapeHtml(value) {
   return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
@@ -282,7 +289,11 @@ async function main() {
     updatedHome === currentHome ? null : writeFile(homePage, updatedHome),
   ]);
   const changed = updated !== current || updatedHome !== currentHome;
-  console.log(`2026 anniversary milestones: ${formatNumber(snapshot.total)} (${changed ? 'updated' : 'unchanged'})`);
+  const complete = anniversaryMilestonesAreComplete(snapshot);
+  if (process.env.GITHUB_OUTPUT) {
+    await appendFile(process.env.GITHUB_OUTPUT, `complete=${complete}\n`);
+  }
+  console.log(`2026 anniversary milestones: ${formatNumber(snapshot.total)} (${changed ? 'updated' : 'unchanged'}, ${complete ? 'complete' : 'in progress'})`);
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) await main();

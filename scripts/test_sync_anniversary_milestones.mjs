@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
+  anniversaryMilestonesAreComplete,
   calculateCurrentBoosts,
   parseOfficialMilestones,
   updateAnniversaryFragment,
@@ -102,6 +103,25 @@ test('combines fixed anniversary boosts with unlocked milestone rewards', () => 
       { key: 'hitWeapon', base: 0, milestone: 25, total: 25 },
     ],
   );
+});
+
+test('completes only after the final threshold and reward are both available', () => {
+  const snapshot = parseOfficialMilestones(officialHtml);
+  assert.equal(anniversaryMilestonesAreComplete(snapshot), false);
+  assert.equal(
+    anniversaryMilestonesAreComplete({ ...snapshot, total: 20000 }),
+    false,
+  );
+
+  const revealed = {
+    ...snapshot,
+    total: 20000,
+    rewards: snapshot.rewards.map(({ threshold, reward }) => ({
+      threshold,
+      reward: /^\?(?:\s*\?)*$/.test(reward) ? '+10% Rare Drop Rate' : reward,
+    })),
+  };
+  assert.equal(anniversaryMilestonesAreComplete(revealed), true);
 });
 
 test('updates only the milestone snapshot content', () => {
