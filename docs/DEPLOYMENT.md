@@ -69,6 +69,23 @@ Wiki, write `data/rbr/source.json`, commit, or deploy. Ephinea Wiki publication
 requires separate explicit approval. Detailed source and validation rules are
 documented in [`scripts/RBR_DATA.md`](../scripts/RBR_DATA.md).
 
+This is a completed read-only feasibility path, not a completed two-target
+publication path. It currently accepts three extracted abbreviations rather than
+raw `/rbr` text. Raw-output parsing, site snapshot publication, authenticated
+MediaWiki editing, revision-conflict handling, partial-failure recovery and
+idempotent cross-target retries remain unimplemented. The reported local
+projection and Wiki diffs are candidates, not evidence that either target was
+updated.
+
+The two targets use different publication mechanisms. Haven is a static Pages
+site: a future publisher must build a complete `data/rbr/source.json` from the
+observed rotation, pass the RBR and production gates, commit to `master`, and
+deploy that commit. Ephinea is MediaWiki: a future publisher must authenticate,
+obtain a CSRF token, reread both template revisions and timestamps, submit
+conflict-protected `action=edit` requests, and validate the API results. These
+targets do not share a transaction, so the publisher must record per-target
+results and support safe retries after a partial failure.
+
 ## Anniversary milestone publication
 
 `.github/workflows/sync-anniversary-milestones.yml` reads the official 2026

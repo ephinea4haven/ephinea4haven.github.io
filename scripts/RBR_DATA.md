@@ -41,9 +41,47 @@ python3 -m unittest scripts/test_build_rbr_data.py
 RBR 不再通过 GitHub Actions 定时轮询 Ephinea Wiki。旧的 `sync-rbr.yml` 已退休，
 因为 Wiki 只是可能滞后的镜像，不能替代游戏服务器的实际轮换。
 
-每周由维护者提供游戏内 `/rbr` 的原始内容。当前阶段先运行只读计划器，验证输入、
-Tracker 状态、本站投影和 Ephinea Wiki 候选 diff；本站数据更新与 Ephinea Wiki 写入
-都不由定时任务执行。
+每周由维护者提供游戏内 `/rbr` 的原始内容，并从中确认 Episode 1、2、4 的三个
+任务缩写。当前计划器只接受这三个拆分后的缩写，尚不能直接解析整段 `/rbr` 原文。
+它验证输入、Tracker 状态、本站投影和 Ephinea Wiki 候选 diff；本站数据更新与
+Ephinea Wiki 写入都不由定时任务执行。
+
+## 自动化闭环状态
+
+只读调研和方案验证已经闭环：
+
+- 游戏 `/rbr` 被确定为本周轮换的唯一权威来源；
+- 三个任务的缩写、Episode 归属、周次和 Tracker 状态均会校验；
+- 两个 Ephinea Wiki 模板的候选 Wikitext、revision 和 diff 均会生成；
+- 本站 current/Tracker 投影会生成，并经过与候选 Wiki 模板相同的结构校验；
+- 候选 Wikitext 仅通过 `action=parse` 预览，不产生外部写入。
+
+“输入一次 `/rbr` 后自动更新本站和 Ephinea Wiki”的发布闭环尚未实现：
+
+- 没有整段 `/rbr` 原文解析器；
+- 不写入或提交本站 `data/rbr/source.json`；
+- 不登录 Ephinea Wiki，也不调用 `action=edit`；
+- 尚未实现两个目标之间的顺序发布、revision 冲突、部分失败恢复和幂等重试；
+- Ephinea Wiki 账户权限与 Bot Password 尚未经过真实写入验证。
+
+因此 `localProjection` 和 Wiki diff 都是候选结果，不是发布成功记录。Ephinea Wiki
+写入必须由维护者另行明确批准；在此之前不得把只读计划器描述为双边自动更新器。
+
+## 两个目标的已知更新路径
+
+本站不是 MediaWiki，而是由 Git 仓库发布的静态 GitHub Pages 站点。本站的目标路径
+已经明确：用游戏 `/rbr` 的三个任务更新 `data/rbr/source.json`，运行 RBR 测试和生产
+构建，提交到 `master`，再通过 Pages Workflow 发布。当前缺少的是从 `/rbr` 输入直接
+构造完整 snapshot 并执行上述发布链路的实现；现有 `localProjection` 不能替代它。
+
+Ephinea Wiki 使用标准 MediaWiki Action API。已明确的目标路径是：建立持久登录
+session，获取登录 token 和 CSRF token，重新读取两个模板的最新 revision 与时间戳，
+提交带冲突保护的 `action=edit`，并校验 JSON 中的业务结果。当前缺少专用账户或 Bot
+Password 的权限验证、真实写入测试，以及两模板和本站发布之间的部分失败恢复。
+
+两边不存在共同事务，不能声称“同时原子更新”。未来发布器必须按可重入步骤记录每个
+目标的 revision/commit 和结果；任何一步失败时停止后续写入，并允许基于相同 `/rbr`
+输入安全重试。Ephinea Wiki 写入仍受单独批准边界约束。
 
 ## Wiki 更新方案验证
 
@@ -65,7 +103,7 @@ MediaWiki `action=parse` 做只读渲染预览。输出 JSON 包含源 revision�
 
 `.github/workflows/validate-rbr-update.yml` 提供相同的手动输入入口。该 Workflow
 只有 `contents: read` 权限，不读取 Wiki 凭据、不调用 `action=edit`、不提交文件。
-它只验证方案，不是发布流程。Ephinea Wiki 写入必须另行明确批准。
+它只验证方案，不是本站或 Ephinea Wiki 的发布流程。
 
 人工整理后的两张 Tier 表保存在 `data/rbr/tiers.json`。完整性测试会确认 RBR 的
 58 个候选任务恰好各出现一次，不允许漏项或重复：
