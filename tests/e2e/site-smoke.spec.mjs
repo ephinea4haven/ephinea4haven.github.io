@@ -1177,6 +1177,27 @@ test('banner item lists use Chinese-first bilingual names', async ({ page }) => 
   ))).toEqual(['item-zh', 'item-en']);
 });
 
+test('banner weapon Hit groups match the Ephinea Wiki table spans', async ({ page }) => {
+  await page.goto('/guide/banners.html');
+
+  const groups = await page.locator('.weapon-table').evaluateAll((tables) => tables.map((table) => (
+    Object.fromEntries([...table.tBodies[0].rows].map((row) => [
+      row.cells[0].textContent.trim(),
+      row.cells[1].textContent.replace(/\s+/g, ' ').trim(),
+    ]))
+  )));
+
+  expect(groups[0]['50']).toContain('Demolition Comet');
+  expect(groups[0]['50']).toContain("Tyrell's Parasol");
+  expect(groups[0]['90']).toBe('任意稀有武器');
+  expect(groups[1]['0']).toContain('NUG2000-Bazooka');
+  expect(groups[1]['50']).toContain('Yasminkov 7000V');
+  expect(groups[1]['90']).toBe('任意稀有武器');
+  expect(groups[2]['0']).toContain('Psycho Wand');
+  expect(groups[2]['50']).toContain('Guardianna');
+  expect(groups[2]['90']).toBe('任意稀有武器');
+});
+
 test('Angular content behaviors preserve lookup and Section ID interactions', async ({ page }) => {
   await page.goto('/data/en2chinese.html');
   const lookupRows = page.locator('#lookup tr');
