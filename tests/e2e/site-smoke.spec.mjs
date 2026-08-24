@@ -1192,6 +1192,13 @@ test('Angular content behaviors preserve lookup and Section ID interactions', as
   await expect(page.getByRole('button', { name: /半角|全角/ })).toHaveCount(0);
 
   await page.goto('/tools/id.html');
+  await page.setViewportSize({ width: 1512, height: 900 });
+  const nameBox = await page.locator('#name').boundingBox();
+  const blueBurstBox = await page.locator('#BB').boundingBox();
+  expect(nameBox).not.toBeNull();
+  expect(blueBurstBox).not.toBeNull();
+  expect(nameBox.width).toBeGreaterThan(200);
+  expect(blueBurstBox.width).toBeGreaterThanOrEqual(479);
   await page.locator('#name').fill('Haven');
   await expect(page.locator('#tf1')).not.toHaveText('N/A');
   await expect(page.locator('#img1')).not.toHaveAttribute('src', /Impossible/);
