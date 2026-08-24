@@ -13,7 +13,8 @@ RBR 的客观数据可以大部分自动化，Tier 评级不能原样自动生�
 
 ```text
 Ragol Boost Road Wiki ──> 候选池（EP1 23 / EP2 21 / EP4 14）与加成规则
-RagolBoostRoad 模板 ────> Wiki 公布的本周三个任务
+游戏内 `/rbr` ─────────> 本周三个任务（唯一权威来源）
+RagolBoostRoad 模板 ────> Ephinea Wiki 镜像与候选 diff 基线
 58 个任务 Wiki 页面 ───> Episode、类别、Ultimate EXP、敌人数量
 Ephinea 掉落表 ─────────> 敌人 × Section ID × 物品 × 基础掉率
 Price Guide ────────────> 物品价格区间
@@ -35,27 +36,14 @@ python3 -m unittest scripts/test_build_rbr_data.py
 
 输出：`data/rbr/source.json`
 
-## 每周自动同步
+## 每周更新入口
 
-GitHub Actions 在每周日每小时检查一次 Wiki。由于实服会在周日 00:00 UTC
-自动轮换、Wiki 通常稍后才由人工更新，同步器采用以下发布门禁：
+RBR 不再通过 GitHub Actions 定时轮询 Ephinea Wiki。旧的 `sync-rbr.yml` 已退休，
+因为 Wiki 只是可能滞后的镜像，不能替代游戏服务器的实际轮换。
 
-1. `Template:RagolBoostRoad` 的周日期必须等于当前 UTC 周日；
-2. 模板必须包含 Episode 1、2、4 各一个候选池内任务；
-3. `Template:RagolBoostRoadTracker` 的三个 current 标记必须与模板一致；
-4. 候选池、任务元数据和三套 RBR 测试必须全部通过。
-
-门禁未满足时任务正常结束且不修改文件，下一个小时继续检测。首次检测到完整的
-本周数据后，Action 原子更新 `data/rbr/source.json`、提交到 `master` 并触发 Pages
-部署；此后相同 Wiki revision 会复用现有快照，不重复抓取 58 个任务页或产生空提交。
-前端会按浏览器当前 UTC 日期重新判断周次，因此等待 Wiki 更新期间不会把上周数据
-误报为本周数据。
-
-“Wiki 尚未完成本周模板与 Tracker 更新”属于预期等待状态，Action 不提交也不部署；
-HTTP 失败、无效 JSON、模板结构变化或任务数据校验失败属于运行错误，Action 会失败并
-保留上一份已验证快照。GitHub Actions 或 Wiki 的瞬时故障可以安全重跑同一 workflow。
-
-可用 `workflow_dispatch` 随时触发同一套无人值守检查；不再需要截图确认或人工提交。
+每周由维护者提供游戏内 `/rbr` 的原始内容。当前阶段先运行只读计划器，验证输入、
+Tracker 状态、本站投影和 Ephinea Wiki 候选 diff；本站数据更新与 Ephinea Wiki 写入
+都不由定时任务执行。
 
 ## Wiki 更新方案验证
 
@@ -77,7 +65,7 @@ MediaWiki `action=parse` 做只读渲染预览。输出 JSON 包含源 revision�
 
 `.github/workflows/validate-rbr-update.yml` 提供相同的手动输入入口。该 Workflow
 只有 `contents: read` 权限，不读取 Wiki 凭据、不调用 `action=edit`、不提交文件。
-现有自动同步在方案验证期间保持不变；只有写入流程另行审核通过后才会替换。
+它只验证方案，不是发布流程。Ephinea Wiki 写入必须另行明确批准。
 
 人工整理后的两张 Tier 表保存在 `data/rbr/tiers.json`。完整性测试会确认 RBR 的
 58 个候选任务恰好各出现一次，不允许漏项或重复：
@@ -109,8 +97,8 @@ python3 -m unittest scripts/test_rbr_tiers.py
 - `current.expectedWeek`
 - `current.isFresh`
 
-自动同步模式下，如果 Wiki 模板还停留在上周，输出文件保持不变并在下一小时重试，
-而不是把旧数据当作最新数据。手工运行不带 `--require-current` 时仍可生成带 warning
+手工运行生成器时，`--require-current` 可用于拒绝尚未与当前 UTC 周次一致的 Wiki
+镜像；这只是本地诊断门禁，不再由定时 Action 调用。不带该参数时仍可生成带 warning
 的诊断快照。
 
 ## 自动计算掉落收益
