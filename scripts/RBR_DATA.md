@@ -57,6 +57,28 @@ HTTP 失败、无效 JSON、模板结构变化或任务数据校验失败属于�
 
 可用 `workflow_dispatch` 随时触发同一套无人值守检查；不再需要截图确认或人工提交。
 
+## Wiki 更新方案验证
+
+游戏内 `/rbr` 是服务器实际轮换的唯一权威来源，服务器没有公开的 RBR 接口。
+第一阶段只验证更新方案，不修改 Ephinea Wiki，也不覆盖本站的
+`data/rbr/source.json`：
+
+```bash
+python3 scripts/plan_rbr_update.py \
+  --episode-1 EN3 \
+  --episode-2 PS2 \
+  --episode-4 NMU5
+```
+
+计划器读取候选池、当前模板和 Tracker，确认 Wiki 只落后一周或已经是本周，
+验证三个缩写所属 Episode 与当前轮次状态，生成两个候选 Wikitext，并通过
+MediaWiki `action=parse` 做只读渲染预览。输出 JSON 包含源 revision、模板 diff、
+预览 HTML 大小，以及本站将使用的 current/Tracker 投影。
+
+`.github/workflows/validate-rbr-update.yml` 提供相同的手动输入入口。该 Workflow
+只有 `contents: read` 权限，不读取 Wiki 凭据、不调用 `action=edit`、不提交文件。
+现有自动同步在方案验证期间保持不变；只有写入流程另行审核通过后才会替换。
+
 人工整理后的两张 Tier 表保存在 `data/rbr/tiers.json`。完整性测试会确认 RBR 的
 58 个候选任务恰好各出现一次，不允许漏项或重复：
 

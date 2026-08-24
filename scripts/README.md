@@ -23,6 +23,7 @@ are build inputs and are not copied into the published artifact.
 | `build_mag_data.py` | Generate Mag evolution and feeding data. |
 | `download_wiki_mag_assets.py` | Download and validate Mag image assets. |
 | `build_rbr_data.py` | Build RBR quest and rotation source data; `--require-current` publishes only after the weekly template and Tracker agree. |
+| `plan_rbr_update.py` | Validate three quests observed through `/rbr`, render both candidate Wiki templates, and preview them without editing either Wiki or site data. |
 | `build_rbr_tier_charts.py` | Build RBR tier SVGs. |
 
 Common verification:

@@ -1,0 +1,46 @@
+name: Validate RBR update plan
+
+on:
+  workflow_dispatch:
+    inputs:
+      episode_1:
+        description: Episode 1 quest abbreviation from /rbr
+        required: true
+        type: string
+      episode_2:
+        description: Episode 2 quest abbreviation from /rbr
+        required: true
+        type: string
+      episode_4:
+        description: Episode 4 quest abbreviation from /rbr
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-rbr-update
+  cancel-in-progress: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run RBR regression tests
+        run: npm run test:rbr
+
+      - name: Build read-only update plan
+        env:
+          RBR_EPISODE_1: ${{ inputs.episode_1 }}
+          RBR_EPISODE_2: ${{ inputs.episode_2 }}
+          RBR_EPISODE_4: ${{ inputs.episode_4 }}
+        run: >-
+          python3 scripts/plan_rbr_update.py
+          --episode-1 "$RBR_EPISODE_1"
+          --episode-2 "$RBR_EPISODE_2"
+          --episode-4 "$RBR_EPISODE_4"

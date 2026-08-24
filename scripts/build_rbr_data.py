@@ -215,6 +215,12 @@ def parse_current_rbr(wikitext: str, /) -> dict[str, Any]:
     if not date_match:
         raise SourceParseError("Could not find the current RBR week")
 
+    link_matches = list(QUEST_LINK_RE.finditer(wikitext))
+    if len(link_matches) != len(EPISODES):
+        raise SourceParseError(
+            f"Expected 3 current RBR quests, found {len(link_matches)}"
+        )
+
     links = [
         {
             "episode": episode,
@@ -225,21 +231,18 @@ def parse_current_rbr(wikitext: str, /) -> dict[str, Any]:
                 else match.group("page").strip()
             ),
         }
-        for episode, match in zip(
-            EPISODES,
-            QUEST_LINK_RE.finditer(wikitext),
-            strict=True,
-        )
+        for episode, match in zip(EPISODES, link_matches, strict=True)
     ]
-    if len(links) != 3:
-        raise SourceParseError(
-            f"Expected 3 current RBR quests, found {len(links)}"
-        )
 
-    week = datetime.strptime(
-        date_match.group("week"),
-        "%d %B %Y",
-    ).strftime("%d %B %Y")
+    try:
+        week = datetime.strptime(
+            date_match.group("week"),
+            "%d %B %Y",
+        ).strftime("%d %B %Y")
+    except ValueError as error:
+        raise SourceParseError(
+            f"Invalid current RBR week: {date_match.group('week')!r}"
+        ) from error
     return {"week": week, "quests": links}
 
 

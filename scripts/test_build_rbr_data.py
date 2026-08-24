@@ -67,6 +67,32 @@ class CurrentRbrParserTest(unittest.TestCase):
                 "* {{Quest link|Sweep-up Operation 10}}\n"
             )
 
+    def test_rejects_wrong_quest_link_count_as_a_source_error(self) -> None:
+        for links in (
+            "* {{Quest link|Endless Nightmare 2}}\n",
+            (
+                "* {{Quest link|Endless Nightmare 2}}\n"
+                "* {{Quest link|Lost BIND ASSAULT}}\n"
+                "* {{Quest link|Sweep-up Operation 10}}\n"
+                "* {{Quest link|New Mop-Up Operation 1}}\n"
+            ),
+        ):
+            with self.subTest(link_count=links.count("Quest link")):
+                with self.assertRaisesRegex(SourceParseError, "current RBR quests"):
+                    parse_current_rbr(
+                        "<!--WEEK (DD Month YYYY) GOES HERE:-->12 July 2026\n"
+                        + links
+                    )
+
+    def test_rejects_invalid_week_as_a_source_error(self) -> None:
+        with self.assertRaisesRegex(SourceParseError, "Invalid current RBR week"):
+            parse_current_rbr(
+                "<!--WEEK (DD Month YYYY) GOES HERE:-->32 July 2026\n"
+                "* {{Quest link|Endless Nightmare 2}}\n"
+                "* {{Quest link|Lost BIND ASSAULT}}\n"
+                "* {{Quest link|Sweep-up Operation 10}}\n"
+            )
+
 
 class RbrTrackerParserTest(unittest.TestCase):
     """Verify tracker parsing and candidate-pool validation."""
