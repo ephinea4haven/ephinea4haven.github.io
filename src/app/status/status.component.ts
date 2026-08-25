@@ -27,10 +27,10 @@ type Language = 'zh' | 'en' | 'ja';
 const TEXT = {
   zh: {
     eyebrow: 'PSOBB 角色实验室', title: '角色属性模拟器', character: '角色', class: '职业', level: '等级',
-    mag: '玛古', materials: '材料', equipment: '装备', reset: '重置', units: '插件', remaining: '剩余', exceeded: '超出上限', resists: '抗性',
-    results: '计算结果', base: '基础', material: '材料', magBonus: '玛古', equipmentBonus: '装备', unitBonus: '插件',
+    mag: '玛古', materials: '能力药', equipment: '装备', reset: '重置', units: '插件', remaining: '剩余', exceeded: '超出上限', resists: '抗性',
+    results: '计算结果', base: '基础', material: '能力药', magBonus: '玛古', equipmentBonus: '装备', unitBonus: '插件',
     current: '当前', maximum: '上限', difference: '差值', valid: '可装备', invalid: '不可装备', rarity: '稀有度',
-    effects: '特殊效果', noEffects: '无特殊效果', share: '当前配置链接', materialLimit: '材料用量', magLevel: '玛古等级',
+    effects: '特殊效果', noEffects: '无特殊效果', share: '当前配置链接', materialLimit: '能力药用量', magLevel: '玛古等级',
     fireResist: '火焰', iceResist: '冰冻', thunderResist: '雷电', darkResist: '暗黑', lightResist: '光明',
   },
   en: {

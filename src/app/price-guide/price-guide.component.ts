@@ -23,7 +23,7 @@ const SECTION_LABELS: Readonly<Record<string, string>> = {
   'Rare weapons - TypeM weapons': '稀有武器 - TypeM武器', Frames: '装甲', 'Frames - Rare frames': '装甲 - 稀有装甲',
   Barriers: '护盾', 'Barriers - Rare barriers': '护盾 - 稀有护盾', 'Units - Common units': '插件 - 普通插件',
   'Units - Rare units': '插件 - 稀有插件', 'Mags - Mag types': '玛古 - 玛古类型', 'Mags - Cells': '玛古 - 进化细胞',
-  'Tools - Currencies': '道具 - 货币', 'Tools - Grinders': '道具 - 研磨石', 'Tools - Materials': '道具 - 素材',
+  'Tools - Currencies': '道具 - 货币', 'Tools - Grinders': '道具 - 研磨石', 'Tools - Materials': '道具 - 能力药',
   'Tools - Combination items': '道具 - 合成物品', 'Tools - Miscellaneous': '道具 - 杂项', 'Tools - Event items': '道具 - 活动物品',
   Techniques: '法术', 'Techniques - Technique sets': '法术 - 法术套装', 'Techniques - Individual techniques': '法术 - 单个法术',
   Meseta: '美赛塔', 'Services - Unsealing': '服务 - 解封', 'Services - Instant unsealing': '服务 - 即时解封',

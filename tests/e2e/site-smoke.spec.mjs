@@ -608,7 +608,7 @@ test('status simulator preserves material-plan presets and calculation diagnosti
   await page.locator('#armor').selectOption('1a');
   await expect(page.locator('[data-equipment-code="1a"]')).toContainText('不可装备');
   await page.locator('#matPow').fill('999');
-  await expect(page.locator('.limit-badges .over-limit')).toContainText('材料用量');
+  await expect(page.locator('.limit-badges .over-limit')).toContainText('能力药用量');
 
   await page.goto('/tools/status.html?c=hucast&lv=123&tp=13&unit1=5e');
   await expect(page.locator('[data-stat="tp"] td').nth(5)).toHaveText('0');
