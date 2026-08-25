@@ -85,7 +85,7 @@
 <div class="content-container">
     <p class="card">
         <strong>ItemPMT</strong>（Item Parameter Table）是 PSO 客户端和服务器共享的「物品属性表」。
-        游戏里每一件武器、铠甲、盾牌、插件、mag、消耗品的<strong>基础属性、名称索引、装备要求、描述文本、外观模型</strong>全部定义在这张表里。
+        游戏里每一件武器、铠甲、盾牌、插件、玛古、消耗品的<strong>基础属性、名称索引、装备要求、描述文本、外观模型</strong>全部定义在这张表里。
         掉落分布（ItemPT）和稀有池（ItemRT）都不管「物品长什么样」，它们只管「什么时候、以什么概率掉」，最终要去 ItemPMT 里查这件物品的所有详细参数。
     </p>
 
@@ -95,7 +95,7 @@
         <a href="#weapon">武器</a>
         <a href="#armor-shield">铠甲 &amp; 盾牌</a>
         <a href="#unit">插件</a>
-        <a href="#mag">Mag</a>
+        <a href="#mag">玛古</a>
         <a href="#tool">消耗品</a>
         <a href="#special">特殊能力表</a>
         <a href="#other-tables">其他子表</a>
@@ -107,10 +107,10 @@
     <ul>
         <li>物品的显示名称（对应文本档 TextEnglish/TextJapanese 里的名字索引）</li>
         <li>外观模型（Model）和贴图（Texture）</li>
-        <li>物品类别（武器 / 铠甲 / 盾牌 / 插件 / mag / 消耗品 / 技能 / 光子微晶 …）</li>
+        <li>物品类别（武器 / 铠甲 / 盾牌 / 插件 / 玛古 / 消耗品 / 术法 / 光子微晶 …）</li>
         <li>基础数值（武器 ATP/ATA、铠甲 DFP/EVP、盾牌抗性 …）</li>
         <li>装备限制（职业 flag、所需 ATP/MST/ATA、所需等级）</li>
-        <li>磨石上限、稀有度（星级）、是否可以在店铺出售、基础售价</li>
+        <li>磨数上限、稀有度（星级）、是否可以在店铺出售、基础售价</li>
     </ul>
     <p>每次客户端把物品读到存档、每次玩家查看物品详情、每次服务器判定能否装备，都依赖这张表。</p>
 
@@ -139,8 +139,8 @@
     <ul>
         <li><strong>ATP Min / ATP Max</strong>：武器的基础攻击力范围（实际值会在此区间随机）</li>
         <li><strong>ATA</strong>：命中率加成</li>
-        <li><strong>Max Grind</strong>：可磨石的上限（<code>+9</code> 就是 9）</li>
-        <li><strong>Photon</strong>：光子类型（决定是近战 / 远程 / 技能武器，以及连击模式）</li>
+        <li><strong>Max Grind</strong>：武器磨数上限（<code>+9</code> 就是 9）</li>
+        <li><strong>Photon</strong>：光子类型（决定是近战 / 远程 / 术法武器，以及连击模式）</li>
         <li><strong>Special</strong>：默认的特殊能力编号（指向<a href="#special">特殊能力表</a>）</li>
     </ul>
     <h3>装备限制字段</h3>
@@ -174,14 +174,14 @@
         它们在 ItemPMT 里并没有数值字段，而是被游戏代码按 ID 硬编码识别，触发特殊效果。
     </p>
 
-    <h2 id="mag">Mag</h2>
-    <p>Mag 的参数表是 ItemPMT 里最特别的一块。每个 Mag 条目包含：</p>
+    <h2 id="mag">玛古</h2>
+    <p>玛古的参数表是 ItemPMT 里最特别的一块。每个玛古条目包含：</p>
     <ul>
         <li><strong>Model ID</strong>：进化后的外观（取决于 DEF/POW/DEX/MIND 四维和主人的职业阵营）</li>
         <li><strong>光子点 Cost</strong>（feed table）：吃不同道具（肉、药、流体…）会加什么属性、加多少</li>
         <li><strong>触发 Photon Blast 的阵营组合</strong>：三个槽分别可以存哪些 PB</li>
     </ul>
-    <p>Mag 的「喂养规则」（feed table）在 ItemPMT 里是一张巨大的表：<strong>Mag 型号 × 29 种食物</strong>，每格决定吃这个食物时 DEF/POW/DEX/MIND/SYNC/IQ 怎么变。</p>
+    <p>玛古的「喂养规则」（feed table）在 ItemPMT 里是一张巨大的表：<strong>玛古型号 × 29 种食物</strong>，每格决定吃这个食物时 DEF/POW/DEX/MIND/SYNC/IQ 怎么变。</p>
 
     <h2 id="tool">消耗品（Tool）</h2>
     <p>消耗品条目最简单，基本只有：</p>
@@ -192,7 +192,7 @@
         <li><strong>是否可出售</strong> / <strong>基础售价</strong></li>
         <li><strong>星级</strong>：例如 Addslot（扩展插槽）虽然是消耗品但有星级</li>
     </ul>
-    <p>魔法书（Technique Disk）虽然归在「Tool」大类，但结构不太一样：它是一个「技能编号 + 等级」的小结构，堆叠上限固定为 1。</p>
+    <p>术法光盘（Technique Disk）虽然归在「Tool」大类，但结构不太一样：它是一个「术法编号 + 等级」的小结构，堆叠上限固定为 1。</p>
 
     <h2 id="special">特殊能力表（Special Table）</h2>
     <p>武器的特殊能力（Charge / Spirit / Berserk / Geist / Hell / Demon's / Arrest / Chaos / Blizzard / Burning…）
@@ -213,7 +213,7 @@
     <h3>合成 / 升级（Item Combination Table）</h3>
     <p>存的是一组「<strong>用哪件道具 × 对哪件已装备物品 × 得到什么</strong>」的配方记录，附加一些约束条件：</p>
     <ul>
-        <li>所需 Mag 等级、武器磨石数、角色等级、角色职业</li>
+        <li>所需玛古等级、武器磨数、角色等级、角色职业</li>
         <li>典型用途：Photon Drop 合成 Photon Sphere；特定道具把某件武器升级成进化版本</li>
     </ul>
     <p class="card">
@@ -222,7 +222,7 @@
     </p>
 
     <h3>Tech Boost Table</h3>
-    <p>法杖对特定技能的伤害/等级加成。典型例子：<strong>Psycho Wand</strong> 降 Simple/Mid 攻击技能等级上限、<strong>Glide Divine</strong> 对 Grants 的加成等。武器条目里有一个 <code>tech_boost</code> 字段指向这张表。</p>
+    <p>法杖对特定术法的伤害/等级加成。典型例子：<strong>Psycho Wand</strong> 降 Simple/Mid 攻击术法等级上限、<strong>Glide Divine</strong> 对 Grants 的加成等。武器条目里有一个 <code>tech_boost</code> 字段指向这张表。</p>
 
     <h3>Special Data / Weapon Effect / Shield Effect</h3>
     <ul>
@@ -236,7 +236,7 @@
     <p>插件条目引用的实际加成数据 —— 插件本体只存一个 boost ID，去这张表才能拿到「加哪个属性、加几点」。</p>
 
     <h3>Max Tech Level Table</h3>
-    <p>每个职业每种技能的学习上限（例如 FO 系可以学到 Lv30 Rafoie，而 HU 系只能学到 Lv15）。角色尝试使用超过上限的技能书时游戏会拒绝。</p>
+    <p>每个职业每种术法的学习上限（例如 FO 系可以学到 Lv30 Rafoie，而 HU 系只能学到 Lv15）。角色尝试使用超过上限的术法光盘时游戏会拒绝。</p>
 
     <h3>Photon Color / Weapon Range / Star Value</h3>
     <ul>
@@ -269,22 +269,22 @@
             <tr><td>0x04</td><td>armor_table</td><td>u32</td><td>铠甲/盾牌表指针（两组：armors, shields）</td></tr>
             <tr><td>0x08</td><td>unit_table</td><td>u32</td><td>插件表指针 → [UnitV4]</td></tr>
             <tr><td>0x0C</td><td>tool_table</td><td>u32</td><td>消耗品表指针 → [{count, offset → [ToolV4]}](0x1A 项)</td></tr>
-            <tr><td>0x10</td><td>mag_table</td><td>u32</td><td>Mag 表指针 → [MagV4]</td></tr>
+            <tr><td>0x10</td><td>mag_table</td><td>u32</td><td>玛古表指针 → [MagV4]</td></tr>
             <tr><td>0x14</td><td>v1_replacement_table</td><td>u32</td><td>PSO v1 老 ID → BB 新 ID 的替换表</td></tr>
             <tr><td>0x18</td><td>photon_color_table</td><td>u32</td><td>光子颜色表（0x20 种，每项 0x24 字节）</td></tr>
             <tr><td>0x1C</td><td>weapon_range_table</td><td>u32</td><td>武器射程/判定范围表</td></tr>
             <tr><td>0x20</td><td>weapon_sale_divisor_table</td><td>u32</td><td>武器售价除数 → [float]</td></tr>
             <tr><td>0x24</td><td>sale_divisor_table</td><td>u32</td><td>非武器售价除数</td></tr>
-            <tr><td>0x28</td><td>mag_feed_table</td><td>u32</td><td>Mag 喂食表</td></tr>
+            <tr><td>0x28</td><td>mag_feed_table</td><td>u32</td><td>玛古喂食表</td></tr>
             <tr><td>0x2C</td><td>star_value_table</td><td>u32</td><td>物品 ID → 星级 (☆ 数量)，0x330 项</td></tr>
             <tr><td>0x30</td><td>special_data_table</td><td>u32</td><td>特殊能力定义表 → [Special]</td></tr>
             <tr><td>0x34</td><td>weapon_effect_table</td><td>u32</td><td>武器被动效果表（每项 0x10 字节）</td></tr>
             <tr><td>0x38</td><td>stat_boost_table</td><td>u32</td><td>插件加成数据 → [StatBoost]</td></tr>
             <tr><td>0x3C</td><td>shield_effect_table</td><td>u32</td><td>盾牌被动效果表（每项 8 字节）</td></tr>
-            <tr><td>0x40</td><td>max_tech_level_table</td><td>u32</td><td>每职业每技能的学习上限</td></tr>
+            <tr><td>0x40</td><td>max_tech_level_table</td><td>u32</td><td>每职业每术法的学习上限</td></tr>
             <tr><td>0x44</td><td>combination_table</td><td>u32</td><td>合成/升级配方 → [ItemCombination]</td></tr>
             <tr><td>0x48</td><td>unknown_a1</td><td>u32</td><td>未解析</td></tr>
-            <tr><td>0x4C</td><td>tech_boost_table</td><td>u32</td><td>法杖对技能的加成 → [TechniqueBoost × 3]</td></tr>
+            <tr><td>0x4C</td><td>tech_boost_table</td><td>u32</td><td>法杖对术法的加成 → [TechniqueBoost × 3]</td></tr>
             <tr><td>0x50</td><td>unwrap_table</td><td>u32</td><td>礼物盒拆包结果</td></tr>
             <tr><td>0x54</td><td>unsealable_table</td><td>u32</td><td>封印武器解封结果</td></tr>
             <tr><td>0x58</td><td>ranged_special_table</td><td>u32</td><td>远程武器的特殊能力行为</td></tr>
@@ -292,7 +292,7 @@
     </table>
 
     <h3>物品基础结构 <code>ItemBaseV4</code></h3>
-    <p>所有具体物品条目（武器/铠甲/插件/Mag/消耗品）的前 12 字节都是这张共用基础头部：</p>
+    <p>所有具体物品条目（武器/铠甲/插件/玛古/消耗品）的前 12 字节都是这张共用基础头部：</p>
     <table>
         <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
         <tbody>
@@ -315,8 +315,8 @@
             <tr><td>0x14</td><td>mst_required</td><td>u16</td><td>装备所需最低 MST</td></tr>
             <tr><td>0x16</td><td>ata_required</td><td>u16</td><td>装备所需最低 ATA</td></tr>
             <tr><td>0x18</td><td>mst</td><td>u16</td><td>武器自带的 MST 加成</td></tr>
-            <tr><td>0x1A</td><td>max_grind</td><td>u8</td><td>磨石上限（<code>+9</code> 就是 9）</td></tr>
-            <tr><td>0x1B</td><td>photon</td><td>u8</td><td>光子类型（决定近战/远程/技能系）</td></tr>
+            <tr><td>0x1A</td><td>max_grind</td><td>u8</td><td>磨数上限（<code>+9</code> 就是 9）</td></tr>
+            <tr><td>0x1B</td><td>photon</td><td>u8</td><td>光子类型（决定近战/远程/术法系）</td></tr>
             <tr><td>0x1C</td><td>special</td><td>u8</td><td>默认特殊能力编号（索引 special_data_table）</td></tr>
             <tr><td>0x1D</td><td>ata</td><td>u8</td><td>命中加成</td></tr>
             <tr><td>0x1E</td><td>stat_boost_entry_index</td><td>u8</td><td>指向 stat_boost_table 的索引</td></tr>
@@ -325,7 +325,7 @@
             <tr><td>0x22</td><td>trail2_x / y</td><td>i8×2</td><td>武器光迹终点偏移</td></tr>
             <tr><td>0x24</td><td>color</td><td>i8</td><td>颜色索引（进入 photon_color_table）</td></tr>
             <tr><td>0x25</td><td>unknown_a1</td><td>u8×3</td><td>未解析</td></tr>
-            <tr><td>0x2A</td><td>tech_boost</td><td>u8</td><td>技能加成索引（进入 tech_boost_table）</td></tr>
+            <tr><td>0x2A</td><td>tech_boost</td><td>u8</td><td>术法加成索引（进入 tech_boost_table）</td></tr>
             <tr><td>0x2B</td><td>behavior_flags</td><td>u8</td><td>行为位：<code>0x01</code> 禁止连击 / <code>0x08</code> 不能带属性</td></tr>
         </tbody>
     </table>
@@ -349,7 +349,7 @@
             <tr><td>0x1A</td><td>dfp_range</td><td>u8</td><td>精炼 DFP 上限（+N 能加的最大值）</td></tr>
             <tr><td>0x1B</td><td>evp_range</td><td>u8</td><td>精炼 EVP 上限</td></tr>
             <tr><td>0x1C</td><td>stat_boost_entry_index</td><td>u8</td><td>stat_boost_table 索引</td></tr>
-            <tr><td>0x1D</td><td>tech_boost</td><td>u8</td><td>技能加成（用于 Psycho Wand 类的铠甲配对）</td></tr>
+            <tr><td>0x1D</td><td>tech_boost</td><td>u8</td><td>术法加成（用于 Psycho Wand 类的铠甲配对）</td></tr>
             <tr><td>0x1E</td><td>flags_type</td><td>u8</td><td>行为标志（铠甲 0x01 / 盾牌 0x01 / 0x02 / 0x03 等）</td></tr>
         </tbody>
     </table>
@@ -366,7 +366,7 @@
         </tbody>
     </table>
 
-    <h3>Mag <code>MagV4</code>（0x1C 字节）</h3>
+    <h3>玛古 <code>MagV4</code>（0x1C 字节）</h3>
     <table>
         <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
         <tbody>
@@ -387,7 +387,7 @@
         </tbody>
     </table>
     <p class="card">
-        Mag 事件触发概率计算：先根据 synchro 值算出 <code>step_synchro</code>（0/15/25/30/35…分档），然后按 flag 值决定实际概率 ——
+        玛古事件触发概率计算：先根据 synchro 值算出 <code>step_synchro</code>（0/15/25/30/35…分档），然后按 flag 值决定实际概率 ——
         <code>flag=0</code> 取 activation、<code>flag=1</code> 取 activation+step_synchro、<code>flag=2</code> 取 step_synchro…
     </p>
 
@@ -396,8 +396,8 @@
         <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
         <tbody>
             <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>基础头部</td></tr>
-            <tr><td>0x0C</td><td>amount</td><td>u16</td><td>数量/效果值（对 mate 类是回血量，对技能书是技能等级）</td></tr>
-            <tr><td>0x0E</td><td>tech</td><td>u16</td><td>技能类 tool 的技能编号</td></tr>
+            <tr><td>0x0C</td><td>amount</td><td>u16</td><td>数量/效果值（对 mate 类是回血量，对术法光盘是术法等级）</td></tr>
+            <tr><td>0x0E</td><td>tech</td><td>u16</td><td>术法类 tool 的术法编号</td></tr>
             <tr><td>0x10</td><td>cost</td><td>i32</td><td>商店价格</td></tr>
             <tr><td>0x14</td><td>item_flags</td><td>u32</td><td>位标志：<code>0x01</code> 可使用 / <code>0x08</code> Android 可用 / <code>0x10</code> 市镇可用 / <code>0x20</code> BOSS 房可用 / <code>0x40</code> 挑战模式可用 / <code>0x80</code> 稀有</td></tr>
         </tbody>
@@ -443,16 +443,16 @@
             <tr><td>0x00</td><td>used_item</td><td>u8×3</td><td>使用的道具 ID（data1[0..2]）</td></tr>
             <tr><td>0x03</td><td>equipped_item</td><td>u8×3</td><td>已装备的目标物品 ID</td></tr>
             <tr><td>0x06</td><td>result_item</td><td>u8×3</td><td>合成结果物品 ID</td></tr>
-            <tr><td>0x09</td><td>mag_level</td><td>u8</td><td>所需 Mag 总等级</td></tr>
-            <tr><td>0x0A</td><td>grind</td><td>u8</td><td>目标武器所需磨石数</td></tr>
+            <tr><td>0x09</td><td>mag_level</td><td>u8</td><td>所需玛古总等级</td></tr>
+            <tr><td>0x0A</td><td>grind</td><td>u8</td><td>目标武器所需磨数</td></tr>
             <tr><td>0x0B</td><td>level</td><td>u8</td><td>所需角色等级</td></tr>
             <tr><td>0x0C</td><td>char_class</td><td>u8</td><td>职业限制</td></tr>
             <tr><td>0x0D</td><td>unused</td><td>u8×3</td><td>填充</td></tr>
         </tbody>
     </table>
 
-    <h3>Mag 喂食结果 <code>MagFeedResult</code>（8 字节）</h3>
-    <p>喂食表按「Mag 型号 × 食物种类（11 种）」组织，每个格子是一条 MagFeedResult：</p>
+    <h3>玛古喂食结果 <code>MagFeedResult</code>（8 字节）</h3>
+    <p>喂食表按「玛古型号 × 食物种类（11 种）」组织，每个格子是一条 MagFeedResult：</p>
     <table>
         <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
         <tbody>

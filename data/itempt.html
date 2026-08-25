@@ -99,7 +99,7 @@
 <div class="content-container">
     <p class="card">
         <strong>ItemPT</strong>（Item Pattern Table）是 PSO 的「普通掉落规则表」。
-        它决定了当怪物或箱子掉落<strong>非稀有</strong>物品时，物品的类型、属性、磨石、特殊能力、梅塞塔金额如何生成。
+        它决定了当怪物或箱子掉落<strong>非稀有</strong>物品时，物品的类型、属性、磨数、特殊攻击、梅塞塔金额如何生成。
         稀有物品（Rare）由 <a href="/data/itemrt.html">ItemRT</a> 控制；每件物品的基础属性（ATP、ATA、需求等级等）由
         <a href="/data/itempmt.html">ItemPMT</a> 定义；ItemPT 只管「这次掉什么、掉出来长什么样」。
     </p>
@@ -122,7 +122,7 @@
         <li><strong>判定是否掉落</strong>：每种怪物都有一个掉落概率（由怪物类型决定，0–100%）。先根据此概率决定这次打击会不会产生掉落。</li>
         <li><strong>判定物品大类</strong>：再根据怪物/箱子所在区域的物品类别表决定这次掉的是 <code>武器</code>/<code>铠甲</code>/<code>盾牌</code>/<code>插件</code>/<code>消耗品</code>/<code>梅塞塔</code> 哪一类。</li>
         <li><strong>判定具体物品</strong>：根据大类的子表生成具体物品（如消耗品 26 种概率表、武器类型-亚种概率表等）。</li>
-        <li><strong>判定附加属性</strong>：如果是武器，再决定磨石 (+0 ~ +9)、属性 bonus（Native/A.Beast/Machine/Dark/Hit）、特殊能力（Charge/Spirit/Berserk…）。</li>
+        <li><strong>判定附加属性</strong>：如果是武器，再决定磨数（+0 ～ +9）、属性加成（Native / A.Beast / Machine / Dark / Hit）和特殊攻击（Charge / Spirit / Berserk…）。</li>
     </ol>
     <p>整张 ItemPT 按「<strong>难度 × 区域</strong>」为单位存放多份子表，所以不同难度、不同区域出的物品分布完全不同。玩家熟知的「坑道容易出机枪、遗迹容易出高属性」就是这张表决定的。</p>
 
@@ -155,12 +155,12 @@
         <li>Hit Material 命中率药</li>
         <li>Luck Material 运之药</li>
         <li>Scape Doll 替身人偶</li>
-        <li>Technique Disk 魔法书</li>
-        <li>Photon Drop 光子水晶</li>
+        <li>Technique Disk 术法光盘</li>
+        <li>Photon Drop 光子微晶PD</li>
     </ul>
     <p class="card">
-        魔法书（Technique Disk）掉落时，还会再走一张「技能 × 等级」的二级表，决定是哪种技能、几级。
-        高等级的技能书只会在对应区域和难度出现（比如 Lv30 的 Rafoie 只会在 U 难度遗迹出）。
+        术法光盘（Technique Disk）掉落时，还会再走一张「术法 × 等级」的二级表，决定是哪种术法、几级。
+        高等级的术法光盘只会在对应区域和难度出现（比如 Lv30 的 Rafoie 只会在 U 难度遗迹出）。
     </p>
 
     <h2 id="fixed">固定模式（类别式）掉落</h2>
@@ -390,7 +390,7 @@
             <tr>
                 <td><code>grind_prob_table</code></td>
                 <td>u8[9][4]</td>
-                <td>磨石值概率表，按 <code>[磨石数][亚种所在区域偏移]</code> 索引。亚种偏移是「当前区域减亚种首现区域」，截断到 0–3。</td>
+                <td>磨数概率表，按 <code>[磨数][亚种所在区域偏移]</code> 索引。亚种偏移是「当前区域减亚种首现区域」，截断到 0–3。</td>
             </tr>
             <tr>
                 <td><code>armor_shield_type_index_prob_table</code></td>
@@ -460,12 +460,12 @@
             <tr>
                 <td><code>technique_index_prob_table</code></td>
                 <td>u8[0x13][0x0A]</td>
-                <td>技能书的技能种类概率，19 种技能 × 10 个区域。</td>
+                <td>术法光盘的术法种类概率，19 种术法 × 10 个区域。</td>
             </tr>
             <tr>
                 <td><code>technique_level_ranges</code></td>
                 <td>Range⟨u8⟩[0x13][0x0A]</td>
-                <td>每种技能在每个区域掉出的等级范围。比如 Rafoie 在 U 难度遗迹才会出现 Lv30 的上限。</td>
+                <td>每种术法在每个区域掉出的等级范围。比如 Rafoie 在 U 难度遗迹才会出现 Lv30 的上限。</td>
             </tr>
             <tr>
                 <td><code>armor_or_shield_type_bias</code></td>
