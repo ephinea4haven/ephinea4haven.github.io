@@ -107,7 +107,7 @@
     <ul>
         <li>物品的显示名称（对应文本档 TextEnglish/TextJapanese 里的名字索引）</li>
         <li>外观模型（Model）和贴图（Texture）</li>
-        <li>物品类别（武器 / 铠甲 / 盾牌 / 插件 / 玛古 / 消耗品 / 术法 / 光子微晶 …）</li>
+        <li>物品类别（武器 / 铠甲 / 盾牌 / 插件 / 玛古 / 消耗品 / 魔法 / 光子微晶 …）</li>
         <li>基础数值（武器 ATP/ATA、铠甲 DFP/EVP、盾牌抗性 …）</li>
         <li>装备限制（职业 flag、所需 ATP/MST/ATA、所需等级）</li>
         <li>磨数上限、稀有度（星级）、是否可以在店铺出售、基础售价</li>
@@ -140,7 +140,7 @@
         <li><strong>ATP Min / ATP Max</strong>：武器的基础攻击力范围（实际值会在此区间随机）</li>
         <li><strong>ATA</strong>：命中率加成</li>
         <li><strong>Max Grind</strong>：武器磨数上限（<code>+9</code> 就是 9）</li>
-        <li><strong>Photon</strong>：光子类型（决定是近战 / 远程 / 术法武器，以及连击模式）</li>
+        <li><strong>Photon</strong>：光子类型（决定是近战 / 远程 / 魔法武器，以及连击模式）</li>
         <li><strong>Special</strong>：默认的特殊能力编号（指向<a href="#special">特殊能力表</a>）</li>
     </ul>
     <h3>装备限制字段</h3>
@@ -192,7 +192,7 @@
         <li><strong>是否可出售</strong> / <strong>基础售价</strong></li>
         <li><strong>星级</strong>：例如 Addslot（扩展插槽）虽然是消耗品但有星级</li>
     </ul>
-    <p>术法光盘（Technique Disk）虽然归在「Tool」大类，但结构不太一样：它是一个「术法编号 + 等级」的小结构，堆叠上限固定为 1。</p>
+    <p>魔法光盘（Technique Disk）虽然归在「Tool」大类，但结构不太一样：它是一个「魔法编号 + 等级」的小结构，堆叠上限固定为 1。</p>
 
     <h2 id="special">特殊能力表（Special Table）</h2>
     <p>武器的特殊能力（Charge / Spirit / Berserk / Geist / Hell / Demon's / Arrest / Chaos / Blizzard / Burning…）
@@ -222,7 +222,7 @@
     </p>
 
     <h3>Tech Boost Table</h3>
-    <p>法杖对特定术法的伤害/等级加成。典型例子：<strong>Psycho Wand</strong> 降 Simple/Mid 攻击术法等级上限、<strong>Glide Divine</strong> 对 Grants 的加成等。武器条目里有一个 <code>tech_boost</code> 字段指向这张表。</p>
+    <p>法杖对特定魔法的伤害/等级加成。典型例子：<strong>Psycho Wand</strong> 降 Simple/Mid 攻击魔法等级上限、<strong>Glide Divine</strong> 对 Grants 的加成等。武器条目里有一个 <code>tech_boost</code> 字段指向这张表。</p>
 
     <h3>Special Data / Weapon Effect / Shield Effect</h3>
     <ul>
@@ -236,7 +236,7 @@
     <p>插件条目引用的实际加成数据 —— 插件本体只存一个 boost ID，去这张表才能拿到「加哪个属性、加几点」。</p>
 
     <h3>Max Tech Level Table</h3>
-    <p>每个职业每种术法的学习上限（例如 FO 系可以学到 Lv30 Rafoie，而 HU 系只能学到 Lv15）。角色尝试使用超过上限的术法光盘时游戏会拒绝。</p>
+    <p>每个职业每种魔法的学习上限（例如 FO 系可以学到 Lv30 Rafoie，而 HU 系只能学到 Lv15）。角色尝试使用超过上限的魔法光盘时游戏会拒绝。</p>
 
     <h3>Photon Color / Weapon Range / Star Value</h3>
     <ul>
@@ -281,10 +281,10 @@
             <tr><td>0x34</td><td>weapon_effect_table</td><td>u32</td><td>武器被动效果表（每项 0x10 字节）</td></tr>
             <tr><td>0x38</td><td>stat_boost_table</td><td>u32</td><td>插件加成数据 → [StatBoost]</td></tr>
             <tr><td>0x3C</td><td>shield_effect_table</td><td>u32</td><td>盾牌被动效果表（每项 8 字节）</td></tr>
-            <tr><td>0x40</td><td>max_tech_level_table</td><td>u32</td><td>每职业每术法的学习上限</td></tr>
+            <tr><td>0x40</td><td>max_tech_level_table</td><td>u32</td><td>每职业每魔法的学习上限</td></tr>
             <tr><td>0x44</td><td>combination_table</td><td>u32</td><td>合成/升级配方 → [ItemCombination]</td></tr>
             <tr><td>0x48</td><td>unknown_a1</td><td>u32</td><td>未解析</td></tr>
-            <tr><td>0x4C</td><td>tech_boost_table</td><td>u32</td><td>法杖对术法的加成 → [TechniqueBoost × 3]</td></tr>
+            <tr><td>0x4C</td><td>tech_boost_table</td><td>u32</td><td>法杖对魔法的加成 → [TechniqueBoost × 3]</td></tr>
             <tr><td>0x50</td><td>unwrap_table</td><td>u32</td><td>礼物盒拆包结果</td></tr>
             <tr><td>0x54</td><td>unsealable_table</td><td>u32</td><td>封印武器解封结果</td></tr>
             <tr><td>0x58</td><td>ranged_special_table</td><td>u32</td><td>远程武器的特殊能力行为</td></tr>
@@ -316,7 +316,7 @@
             <tr><td>0x16</td><td>ata_required</td><td>u16</td><td>装备所需最低 ATA</td></tr>
             <tr><td>0x18</td><td>mst</td><td>u16</td><td>武器自带的 MST 加成</td></tr>
             <tr><td>0x1A</td><td>max_grind</td><td>u8</td><td>磨数上限（<code>+9</code> 就是 9）</td></tr>
-            <tr><td>0x1B</td><td>photon</td><td>u8</td><td>光子类型（决定近战/远程/术法系）</td></tr>
+            <tr><td>0x1B</td><td>photon</td><td>u8</td><td>光子类型（决定近战/远程/魔法系）</td></tr>
             <tr><td>0x1C</td><td>special</td><td>u8</td><td>默认特殊能力编号（索引 special_data_table）</td></tr>
             <tr><td>0x1D</td><td>ata</td><td>u8</td><td>命中加成</td></tr>
             <tr><td>0x1E</td><td>stat_boost_entry_index</td><td>u8</td><td>指向 stat_boost_table 的索引</td></tr>
@@ -325,7 +325,7 @@
             <tr><td>0x22</td><td>trail2_x / y</td><td>i8×2</td><td>武器光迹终点偏移</td></tr>
             <tr><td>0x24</td><td>color</td><td>i8</td><td>颜色索引（进入 photon_color_table）</td></tr>
             <tr><td>0x25</td><td>unknown_a1</td><td>u8×3</td><td>未解析</td></tr>
-            <tr><td>0x2A</td><td>tech_boost</td><td>u8</td><td>术法加成索引（进入 tech_boost_table）</td></tr>
+            <tr><td>0x2A</td><td>tech_boost</td><td>u8</td><td>魔法加成索引（进入 tech_boost_table）</td></tr>
             <tr><td>0x2B</td><td>behavior_flags</td><td>u8</td><td>行为位：<code>0x01</code> 禁止连击 / <code>0x08</code> 不能带属性</td></tr>
         </tbody>
     </table>
@@ -349,7 +349,7 @@
             <tr><td>0x1A</td><td>dfp_range</td><td>u8</td><td>精炼 DFP 上限（+N 能加的最大值）</td></tr>
             <tr><td>0x1B</td><td>evp_range</td><td>u8</td><td>精炼 EVP 上限</td></tr>
             <tr><td>0x1C</td><td>stat_boost_entry_index</td><td>u8</td><td>stat_boost_table 索引</td></tr>
-            <tr><td>0x1D</td><td>tech_boost</td><td>u8</td><td>术法加成（用于 Psycho Wand 类的铠甲配对）</td></tr>
+            <tr><td>0x1D</td><td>tech_boost</td><td>u8</td><td>魔法加成（用于 Psycho Wand 类的铠甲配对）</td></tr>
             <tr><td>0x1E</td><td>flags_type</td><td>u8</td><td>行为标志（铠甲 0x01 / 盾牌 0x01 / 0x02 / 0x03 等）</td></tr>
         </tbody>
     </table>
@@ -396,8 +396,8 @@
         <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
         <tbody>
             <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>基础头部</td></tr>
-            <tr><td>0x0C</td><td>amount</td><td>u16</td><td>数量/效果值（对 mate 类是回血量，对术法光盘是术法等级）</td></tr>
-            <tr><td>0x0E</td><td>tech</td><td>u16</td><td>术法类 tool 的术法编号</td></tr>
+            <tr><td>0x0C</td><td>amount</td><td>u16</td><td>数量/效果值（对 mate 类是回血量，对魔法光盘是魔法等级）</td></tr>
+            <tr><td>0x0E</td><td>tech</td><td>u16</td><td>魔法类 tool 的魔法编号</td></tr>
             <tr><td>0x10</td><td>cost</td><td>i32</td><td>商店价格</td></tr>
             <tr><td>0x14</td><td>item_flags</td><td>u32</td><td>位标志：<code>0x01</code> 可使用 / <code>0x08</code> Android 可用 / <code>0x10</code> 市镇可用 / <code>0x20</code> BOSS 房可用 / <code>0x40</code> 挑战模式可用 / <code>0x80</code> 稀有</td></tr>
         </tbody>

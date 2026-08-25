@@ -155,12 +155,12 @@
         <li>Hit Material 命中率药</li>
         <li>Luck Material 运之药</li>
         <li>Scape Doll 替身人偶</li>
-        <li>Technique Disk 术法光盘</li>
+        <li>Technique Disk 魔法光盘</li>
         <li>Photon Drop 光子微晶PD</li>
     </ul>
     <p class="card">
-        术法光盘（Technique Disk）掉落时，还会再走一张「术法 × 等级」的二级表，决定是哪种术法、几级。
-        高等级的术法光盘只会在对应区域和难度出现（比如 Lv30 的 Rafoie 只会在 U 难度遗迹出）。
+        魔法光盘（Technique Disk）掉落时，还会再走一张「魔法 × 等级」的二级表，决定是哪种魔法、几级。
+        高等级的魔法光盘只会在对应区域和难度出现（比如 Lv30 的 Rafoie 只会在 U 难度遗迹出）。
     </p>
 
     <h2 id="fixed">固定模式（类别式）掉落</h2>
@@ -460,12 +460,12 @@
             <tr>
                 <td><code>technique_index_prob_table</code></td>
                 <td>u8[0x13][0x0A]</td>
-                <td>术法光盘的术法种类概率，19 种术法 × 10 个区域。</td>
+                <td>魔法光盘的魔法种类概率，19 种魔法 × 10 个区域。</td>
             </tr>
             <tr>
                 <td><code>technique_level_ranges</code></td>
                 <td>Range⟨u8⟩[0x13][0x0A]</td>
-                <td>每种术法在每个区域掉出的等级范围。比如 Rafoie 在 U 难度遗迹才会出现 Lv30 的上限。</td>
+                <td>每种魔法在每个区域掉出的等级范围。比如 Rafoie 在 U 难度遗迹才会出现 Lv30 的上限。</td>
             </tr>
             <tr>
                 <td><code>armor_or_shield_type_bias</code></td>

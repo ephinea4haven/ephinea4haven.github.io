@@ -1264,7 +1264,7 @@ test('canonical item pages preserve authoritative Unitxt mixed-width names', asy
   await expect(page.locator('[data-item-zh="森隐雷藏拳套０型"]')).toHaveText('森隐雷藏拳套０型');
 
   await page.goto('/data/equipment_technique_boosts.html');
-  await expect(page.getByRole('heading', { name: '装备术法增幅', exact: true }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: '装备魔法增幅', exact: true }).first()).toBeVisible();
   await expect(page.locator('[data-item-zh="冰杖「达冈」"]')).toHaveText('冰杖「达冈」');
   const caduceusRow = page.locator('tr', { has: page.locator('[data-item-en="Caduceus"]') });
   const tyrellRow = page.locator('tr', { has: page.locator('[data-item-en="Tyrell\'s Parasol"]') });
@@ -1290,7 +1290,7 @@ test('Angular price guide filters categories and bilingual item names', async ({
   await expect(page.locator('#price-content')).toContainText('所需光子微晶（PD）');
   await expect(page.locator('#price-content')).toContainText('特殊攻击等级');
   await expect(page.locator('#price-content')).toContainText('可添加的特殊攻击');
-  await expect(page.locator('#price-content')).toContainText('术法光盘');
+  await expect(page.locator('#price-content')).toContainText('魔法光盘');
   await page.locator('#price-search').fill('Lavis Cannon');
   await expect(page.locator('#match-count')).toContainText(/找到 [1-9]\d* \/ \d+ 项/);
   await expect(page.locator('#price-content')).toContainText('圣剑「拉维斯·迦农」');

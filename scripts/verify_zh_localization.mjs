@@ -14,12 +14,20 @@ const [agents, standard, materialPlan, priceGuide, authoredContent] = await Prom
   Promise.all([
     'data/itempt.html',
     'data/itempmt.html',
+    'data/bb_items.html',
+    'data/equipment_technique_boosts.html',
     'data/price_guide.html',
     'guide/acronym.html',
     'guide/anguish.html',
     'guide/banners.html',
     'guide/class-guide.html',
+    'guide/ep1ch.html',
+    'guide/ep2ch.html',
+    'guide/launcher_d3d.html',
+    'index.html',
     'src/app/price-guide/price-guide.component.html',
+    'tools/equipment.html',
+    'tools/mechanics.html',
   ].map(read)).then((files) => files.join('\n')),
 ]);
 
@@ -39,7 +47,7 @@ for (const expected of [
 
 for (const expected of [
   "'Photon Drops': '所需光子微晶（PD）'",
-  "'Technique disks': '术法光盘'",
+  "'Technique disks': '魔法光盘'",
   "'Special Rank': '特殊攻击等级'",
   "AB: 'A.Beast（变异兽）'",
   "N: 'Native（原生）'",
@@ -52,7 +60,7 @@ const forbidden = [
   '光子球',
   '法术盘',
   '技能盘',
-  '术法书',
+  '术法',
   '魔法书',
   '特殊等级',
 ];
