@@ -105,10 +105,11 @@ boost summary. Its Weekly Boost baselines are fixed for the Anniversary event;
 the milestone synchronizer runs at `:07` and `:37` during UTC hours 23 and
 00–17 (07:07 through 01:37 the following day in UTC+8), and updates only
 unlocked milestone contributions and the resulting totals. The same pass writes
-the minute-precise UTC+8 snapshot timestamp to the landing spotlight and the 2026
-milestone chapter. Angular renders both through the shared semantic
-`PageUpdateStampComponent`; static rules and historical fragments remain
-untimestamped. GitHub schedules are treated as best-effort; a missing scheduled
+the minute-precise UTC+8 snapshot timestamp to the 2026 milestone chapter, which
+Angular renders through the semantic `PageUpdateStampComponent`; static rules
+and historical fragments remain untimestamped. The completed event's landing
+spotlight is retired while its archive navigation entry remains. GitHub
+schedules are treated as best-effort; a missing scheduled
 run is recovered through the same `workflow_dispatch` path. Once the official
 total reaches 20,000 and all 16 rewards are public, the successful final pass
 disables its own schedule. A September 10 UTC sentinel remains as the

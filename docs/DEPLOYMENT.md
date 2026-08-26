@@ -90,9 +90,10 @@ results and support safe retries after a partial failure.
 
 `.github/workflows/sync-anniversary-milestones.yml` reads the official 2026
 milestone page at `:07` and `:37` during UTC hours 23 and 00–17 while the event
-is active. A changed snapshot updates the landing page and 2026 anniversary
-fragment together, runs the anniversary tests and production build, commits to
-`master`, and dispatches the normal Pages workflow.
+is active. A changed snapshot updates the 2026 anniversary fragment, runs the
+anniversary tests and production build, commits to `master`, and dispatches the
+normal Pages workflow. The completed event's landing spotlight is retired and
+is not recreated by manual synchronization; its navigation entry remains.
 
 GitHub scheduled events are best-effort: a scheduled run may be delayed or
 dropped before a workflow run is created. A missing run therefore has no job

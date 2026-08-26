@@ -623,87 +623,14 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   });
 
   await page.goto('/');
-  const homeUpdated = page.locator('[data-current-activity="anniversary-2026"] page-update-stamp');
-  await expect(homeUpdated).toBeVisible();
-  await expect(homeUpdated).toContainText('最后更新');
-  await expect(homeUpdated.locator('time')).toHaveAttribute('datetime', /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}\+08:00$/);
-  await expect(homeUpdated.locator('time')).toContainText(/\d{1,2} 月 \d{1,2} 日 \d{2}:\d{2}（UTC\+8）$/);
-  const [homeUpdatedBox, homeTitleBox] = await Promise.all([
-    homeUpdated.boundingBox(),
-    page.locator('#current-activity-title-anniversary-2026').boundingBox(),
-  ]);
-  expect(homeUpdatedBox).not.toBeNull();
-  expect(homeTitleBox).not.toBeNull();
-  expect(homeUpdatedBox.x).toBeLessThan(homeTitleBox.x + homeTitleBox.width);
-  expect(homeUpdatedBox.x + homeUpdatedBox.width).toBeGreaterThan(homeTitleBox.x);
-  expect(homeUpdatedBox.y).toBeLessThan(homeTitleBox.y + homeTitleBox.height);
-  expect(homeUpdatedBox.y + homeUpdatedBox.height).toBeGreaterThan(homeTitleBox.y);
-  await page.setViewportSize({ width: 390, height: 844 });
-  expect(await homeUpdated.locator('time').evaluate((element) => {
-    const range = document.createRange();
-    range.selectNodeContents(element);
-    return range.getClientRects().length;
-  })).toBe(1);
-  await expect(homeUpdated.locator('time')).toContainText(/\d{1,2} 月 \d{1,2} 日 \d{2}:\d{2}（UTC\+8）$/);
-  expect(await homeUpdated.evaluate((element) =>
-    getComputedStyle(element).getPropertyValue('--update-stamp-tilt').trim(),
-  )).toBe('-6deg');
-  expect(await homeUpdated.evaluate((element) =>
-    Number(getComputedStyle(element).getPropertyValue('--update-stamp-scale')),
-  )).toBe(0.78);
-  const mobileActivityStatus = page.locator('[data-current-activity="anniversary-2026"] .activity-status');
-  await expect(mobileActivityStatus).toHaveCSS('flex-direction', 'row');
-  await expect(mobileActivityStatus).toHaveCSS('white-space', 'nowrap');
-  const [mobileStatusBox, mobileUpdateBox] = await Promise.all([
-    mobileActivityStatus.boundingBox(),
-    homeUpdated.boundingBox(),
-  ]);
-  expect(mobileStatusBox.y + mobileStatusBox.height).toBeLessThanOrEqual(mobileUpdateBox.y);
-  const mobileTitleLines = await page.locator('#current-activity-title-anniversary-2026').evaluate((element) => {
-    const range = document.createRange();
-    range.selectNodeContents(element);
-    return Array.from(range.getClientRects(), ({ x, y, width, height }) => ({ x, y, width, height }));
-  });
-  await expect(page.locator('#current-activity-title-anniversary-2026')).toHaveCSS('max-width', '224px');
-  expect(mobileTitleLines).toHaveLength(2);
-  const updateCenterY = mobileUpdateBox.y + mobileUpdateBox.height / 2;
-  const firstTitleLineCenterY = mobileTitleLines[0].y + mobileTitleLines[0].height / 2;
-  const anniversaryTitleLineCenterY = mobileTitleLines[1].y + mobileTitleLines[1].height / 2;
-  expect(Math.abs(updateCenterY - anniversaryTitleLineCenterY))
-    .toBeLessThan(Math.abs(updateCenterY - firstTitleLineCenterY));
-  expect(mobileUpdateBox.x).toBeLessThan(mobileTitleLines[1].x + mobileTitleLines[1].width);
-  expect(mobileUpdateBox.x + mobileUpdateBox.width).toBeGreaterThan(mobileTitleLines[1].x);
-  await page.setViewportSize({ width: 1280, height: 720 });
+  await expect(page.locator('[data-current-activity="anniversary-2026"]')).toHaveCount(0);
+  await expect(page.locator('[data-holiday="anniversary"]')).toHaveAttribute('href', '/event/anniversary.html?year=2026');
   await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
   await expect(page.locator('#galatine-atp')).toContainText('ATP');
   await expect(page.locator('#buf-current')).not.toBeEmpty();
-  const currentActivity = page.locator('[data-current-activity="anniversary-2026"]');
-  await expect(page.locator('[data-current-activity]')).toHaveCount(5);
-  await expect(page.locator('[data-current-activity]:visible')).toHaveCount(1);
-  await expect(currentActivity).toHaveAttribute('data-active-from', '2026-08-12');
-  await expect(currentActivity).toHaveAttribute('data-active-through', '2026-09-09');
-  await currentActivity.evaluate((element) => {
-    element.dataset['activeFrom'] = '0000-01-01';
-    element.dataset['activeThrough'] = '9999-12-31';
-  });
-  await expect(currentActivity).toBeVisible();
-  await expect(currentActivity.locator('h2')).toHaveText('Ephinea 2026 十一周年活动');
-  await expect(page.locator('.activity-progress-track')).toHaveAttribute('aria-valuenow', /^\d+$/);
-  const unlockedMilestoneCount = await currentActivity.locator('.activity-milestones li').count();
-  const activeBuffCount = await currentActivity.locator('.activity-buff').count();
-  expect(unlockedMilestoneCount).toBeGreaterThan(0);
-  expect(activeBuffCount).toBeGreaterThan(0);
-  await expect(currentActivity.locator('.activity-unlock-heading strong')).toHaveText(`${unlockedMilestoneCount} / 16`);
-  await expect(currentActivity.locator('.activity-buff-heading strong')).toHaveText(`${activeBuffCount} 项`);
-  await expect(currentActivity.locator('.activity-primary')).toHaveAttribute('href', '/event/anniversary.html?year=2026');
-  await expect(currentActivity.locator('.activity-source')).toHaveAttribute('href', 'https://wiki.pioneer2.net/w/Anniversary_event');
-  await expect(currentActivity.locator('.activity-source')).toHaveAttribute('rel', 'noopener noreferrer');
-  await currentActivity.evaluate((element) => {
-    element.dataset['activeFrom'] = '2000-01-01';
-    element.dataset['activeThrough'] = '2000-12-31';
-  });
-  await expect(currentActivity).toBeHidden();
+  await expect(page.locator('[data-current-activity]')).toHaveCount(4);
+  await expect(page.locator('[data-current-activity]:visible')).toHaveCount(0);
 
   await page.goto('/data/bb_items.html');
   await page.locator('#searchBox').fill('Heavenly/Battle');

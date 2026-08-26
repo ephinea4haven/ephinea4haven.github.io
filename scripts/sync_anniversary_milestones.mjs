@@ -2,13 +2,11 @@ import { appendFile, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parse } from 'parse5';
-import { activityIsActive, registeredSeasonalActivities, replaceHomeActivities } from './home_activity.mjs';
 
 export const OFFICIAL_MILESTONE_URL = 'https://ephinea.pioneer2.net/11th-anniv-event/';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const anniversaryFragment = path.join(root, 'event', 'anniversary', '2026.html');
-const homePage = path.join(root, 'index.html');
 const questNames = [
   'Forest', 'Cave', 'Mine', 'Ruins', 'Temple', 'Spaceship',
   'CCA', 'Seabed', 'Tower', 'Crater', 'Desert',
@@ -101,14 +99,6 @@ export function parseOfficialMilestones(html) {
 
 function formatNumber(value) {
   return new Intl.NumberFormat('en-US').format(value);
-}
-
-function dateInTimeZone(now, timeZone) {
-  const dateParts = new Intl.DateTimeFormat('en-US', {
-    timeZone, year: 'numeric', month: 'numeric', day: 'numeric',
-  }).formatToParts(now);
-  const datePart = (type) => dateParts.find((part) => part.type === type)?.value;
-  return `${datePart('year')}-${datePart('month').padStart(2, '0')}-${datePart('day').padStart(2, '0')}`;
 }
 
 function chinaTime(now) {
@@ -229,66 +219,16 @@ export function updateAnniversaryFragment(source, snapshot, now = new Date()) {
   return `${source.slice(0, sectionStart)}${section}${source.slice(sectionEnd)}`;
 }
 
-export function updateHomeActivity(source, snapshot, now = new Date()) {
-  const nextMilestone = snapshot.rewards.find(({ threshold }) => threshold > snapshot.total);
-  const milestone = nextMilestone || snapshot.rewards.at(-1);
-  if (!milestone) throw new Error('The anniversary has no milestones');
-  const buffs = calculateCurrentBoosts(snapshot.rewards, snapshot.total)
-    .map(({ acronym, label, total }) => ({ code: acronym, label, value: total }));
-  const unlockedMilestones = snapshot.rewards
-    .filter(({ threshold, reward }) => threshold <= snapshot.total && translatedReward(reward) !== '官方暂未公开')
-    .map(({ threshold, reward }) => ({ threshold, reward: translatedReward(reward) }));
-  const activeFrom = '2026-08-12';
-  const activeThrough = '2026-09-09';
-  const currentChinaTime = chinaTime(now);
-  const today = dateInTimeZone(now, 'America/Los_Angeles');
-  const anniversary = {
-    id: 'anniversary-2026',
-    status: 'LIVE',
-    eyebrow: '全服 Buff · 高增益阶段',
-    title: 'Ephinea 2026 十一周年活动',
-    description: '完成 MAE 与 August Atrocity，推进全服里程碑；周年徽章、经验、稀有怪与掉落增益现已同时生效。',
-    href: '/event/anniversary.html?year=2026',
-    secondaryHref: '/event/anniversary.html?year=2026#anniv-2026-milestones',
-    secondaryLabel: 'Buff 与里程碑',
-    officialHref: 'https://wiki.pioneer2.net/w/Anniversary_event',
-    period: '8.12 — 9.09',
-    updated: `${currentChinaTime.compact} · 自动同步`,
-    updatedAt: currentChinaTime.timestamp,
-    activeFrom,
-    activeThrough,
-    active: false,
-    milestone: {
-      current: snapshot.total,
-      target: milestone.threshold,
-      reward: nextMilestone ? translatedReward(nextMilestone.reward) : '全部里程碑奖励已解锁',
-    },
-    milestoneCount: snapshot.rewards.length,
-    unlockedMilestones,
-    buffs,
-  };
-  anniversary.active = activityIsActive(anniversary, today);
-  const activities = replaceHomeActivities(source, [...registeredSeasonalActivities(today), anniversary]);
-  return updatePageTimestamp(activities, now);
-}
-
 async function main() {
   const response = await fetch(OFFICIAL_MILESTONE_URL, {
     headers: { 'user-agent': 'ephinea4haven-milestone-sync/1.0' },
   });
   if (!response.ok) throw new Error(`Official milestone request failed: HTTP ${response.status}`);
   const snapshot = parseOfficialMilestones(await response.text());
-  const [current, currentHome] = await Promise.all([
-    readFile(anniversaryFragment, 'utf8'),
-    readFile(homePage, 'utf8'),
-  ]);
+  const current = await readFile(anniversaryFragment, 'utf8');
   const updated = updatePageTimestamp(updateAnniversaryFragment(current, snapshot));
-  const updatedHome = updateHomeActivity(currentHome, snapshot);
-  await Promise.all([
-    updated === current ? null : writeFile(anniversaryFragment, updated),
-    updatedHome === currentHome ? null : writeFile(homePage, updatedHome),
-  ]);
-  const changed = updated !== current || updatedHome !== currentHome;
+  if (updated !== current) await writeFile(anniversaryFragment, updated);
+  const changed = updated !== current;
   const complete = anniversaryMilestonesAreComplete(snapshot);
   if (process.env.GITHUB_OUTPUT) {
     await appendFile(process.env.GITHUB_OUTPUT, `complete=${complete}\n`);

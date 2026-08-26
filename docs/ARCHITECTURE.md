@@ -103,14 +103,11 @@ reward updates. The same synchronization pass recalculates eight visible boost
 dimensions: DAR, RDR, Anniversary Badge rate, Photon Drop rate, experience,
 Meseta, rare-monster rate and Hit-weapon rate. Anniversary Weekly Boost values
 are fixed baselines; only unlocked milestone rewards change the calculated
-totals. The landing spotlight and current-year milestone chapter render the
-same Angular `PageUpdateStampComponent` from the synchronized UTC+8 snapshot
-timestamp. Both surfaces preserve the same stamp scale, tilt and overlay
-treatment on narrow screens: the landing stamp aligns with the second title
-line (`十一周年活动`), while the milestone stamp aligns with its single-line
-heading. The stamp is deliberately colocated only with live Buff, milestone and
-server-point data; static event rules and historical years do not present a
-live-update timestamp. Historical external
+totals. The current-year milestone chapter renders its synchronized UTC+8
+snapshot timestamp through Angular's `PageUpdateStampComponent`. The stamp is
+deliberately colocated only with the archived Buff, milestone and server-point
+snapshot; static event rules and historical years do not present an update
+timestamp. Historical external
 milestone archive links are not part of the UI; the localized yearly fragments
 are the maintained record.
 The landing page exposes active seasonal events through reusable
@@ -131,14 +128,11 @@ existing landing-page navigation and information cards retain their original
 presentation. `prefers-reduced-motion` disables the repeating motion through the
 site-wide reduced-motion contract.
 
-The anniversary sync updates the landing regions in the same atomic pass as the
-2026 fragment, so the landing page never carries a separately maintained
-milestone snapshot. The GitHub synchronization workflow commits both generated
-surfaces and their shared minute-precise UTC+8 update timestamp together. Its
-scheduled trigger is best-effort and shares the complete path with the manual
-recovery trigger. The workflow retires itself only after the final threshold is
-reached and every reward is public, so an unrevealed final reward cannot be
-lost. Future seasonal events reuse the registry and renderer
+The completed 2026 anniversary spotlight is retired from the landing page; the
+stable 周年活动 navigation link remains the entry to its yearly archive. The
+anniversary synchronizer owns only the 2026 archive fragment, so a manual
+snapshot refresh cannot recreate the retired landing spotlight. Future active
+seasonal events reuse the registry and renderer
 instead of adding event-specific landing-page markup or behavior.
 The registry follows Ephinea's five documented server-wide event families:
 Valentine's, Easter, Anniversary, Halloween and Christmas. Ephinea explicitly
