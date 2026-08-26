@@ -25,7 +25,7 @@ const anniversaryBoosts = [
   { key: 'experience', acronym: 'EXP', label: '经验值', rewardLabel: '经验值获取率', base: 50, pattern: /Experience Rate/i },
   { key: 'meseta', acronym: 'Meseta', label: 'Meseta 掉落量', base: 0, pattern: /Meseta Drops/i },
   { key: 'rareMonster', acronym: 'RER', label: '稀有怪出现率', base: 50, pattern: /Rare (?:Monster|Enemy) Rate/i },
-  { key: 'hitWeapon', acronym: 'Hit', label: 'Hit 武器出现率', base: 0, pattern: /(?:Weapon )?Hit (?:Weapon )?(?:Drop )?Rate/i },
+  { key: 'hitWeapon', acronym: 'Hit', label: 'Hit 武器出现率', base: 0, pattern: /(?:Weapon )?Hit (?:(?:Weapon )?(?:Drop )?Rate|Chance)/i },
 ];
 
 function rewardDetails(reward) {

@@ -73,6 +73,19 @@ test('rejects revealed milestone rewards that are not recognized', () => {
   );
 });
 
+test('parses the official Hit Chance wording used by the final milestone', () => {
+  const finalRewardHtml = officialHtml.replace(
+    '<tr><td>? ? ?</td><td>20,000 points needed!</td></tr>',
+    '<tr><td>+1% Hit Chance (ヒット)</td><td>20,000 points needed!</td></tr>',
+  );
+  const snapshot = parseOfficialMilestones(finalRewardHtml);
+  const hitBoost = calculateCurrentBoosts(snapshot.rewards, 20000)
+    .find(({ key }) => key === 'hitWeapon');
+
+  assert.equal(snapshot.rewards.at(-1).reward, '+1% Hit Chance (ヒット)');
+  assert.equal(hitBoost.milestone, 26);
+});
+
 test('combines fixed anniversary boosts with unlocked milestone rewards', () => {
   const rewards = parseOfficialMilestones(officialHtml).rewards;
   const boosts = calculateCurrentBoosts(rewards, 4730);
