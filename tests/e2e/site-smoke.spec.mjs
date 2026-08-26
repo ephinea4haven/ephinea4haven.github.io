@@ -1093,7 +1093,7 @@ test('2025 anniversary section navigation stays on the selected archive year', a
 
 test('anniversary years expose complete localized milestone contracts', async ({ page }) => {
   const expected = [
-    { year: 2026, total: /服务器点数为 [\d,]+/, rows: 16, first: ['1,000', '稀有物品掉落率 +10%'], last: ['20,000', '官方暂未公开'] },
+    { year: 2026, total: /服务器点数为 [\d,]+/, rows: 16, first: ['1,000', '稀有物品掉落率 +10%'], last: ['20,000', '命中 武器出现率 +1%'] },
     { year: 2025, total: '25,417', rows: 11, first: ['2,500', '经验值 +50%'], last: ['20,000', '命中 属性出现概率 +1%'] },
     { year: 2024, total: '11,316', rows: 22, first: ['150', '稀有物品掉落率 +10%'], last: ['12,000 / 14,000 / 16,000 / 18,000 / 20,000', '官方最终存档仍显示“？？？ (???)”'] },
     { year: 2023, total: '18,149,237', rows: 26, first: ['25 万', '周年徽章掉落率 +25%'], last: ['1,500 万', '命中 属性出现概率 +1%'] },
