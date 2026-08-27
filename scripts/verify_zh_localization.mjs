@@ -23,7 +23,7 @@ const [agents, standard, materialPlan, priceGuide, authoredContent] = await Prom
     'guide/class-guide.html',
     'guide/ep1ch.html',
     'guide/ep2ch.html',
-    'guide/launcher_d3d.html',
+    'guide/d3d.html',
     'index.html',
     'src/app/price-guide/price-guide.component.html',
     'tools/equipment.html',

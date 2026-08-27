@@ -15,8 +15,9 @@
     "test:i18n": "python3 -m unittest scripts.test_sync_item_i18n",
     "test:anniversary-sync": "node --test scripts/test_sync_anniversary_milestones.mjs",
     "test:timestamps": "node --experimental-strip-types --test scripts/test_utc8_timestamp.mjs",
+    "test:graphics-guide": "node scripts/verify_graphics_api_guide.mjs",
     "test:rbr": "python3 -m unittest scripts.test_build_rbr_data scripts.test_plan_rbr_update scripts.test_rbr_tiers scripts.test_rbr_tier_charts",
-    "test": "npm run test:i18n && npm run test:anniversary-sync && npm run test:timestamps && npm run test:rbr && node scripts/verify_angular_architecture.mjs && node scripts/verify_challenge_maps.mjs && node scripts/verify_status_domain.mjs && node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs && node scripts/verify_zh_localization.mjs",
+    "test": "npm run test:i18n && npm run test:anniversary-sync && npm run test:timestamps && npm run test:graphics-guide && npm run test:rbr && node scripts/verify_angular_architecture.mjs && node scripts/verify_challenge_maps.mjs && node scripts/verify_status_domain.mjs && node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs && node scripts/verify_zh_localization.mjs",
     "test:e2e": "playwright test",
     "release:prepare": "npm test && npm run build && npm run test:e2e"
   },
