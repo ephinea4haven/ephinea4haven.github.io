@@ -3,23 +3,27 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Ephinea PSOBB 登陆器选项解读: 渲染后端、抗锯齿、dgVoodoo Model、环境光遮蔽、Extra/Shaders">
+    <meta name="description" content="PSOBB 渲染与图形 API 指南：D3D8/9/11/12、Vulkan、dgVoodoo、DXVK、抗锯齿与后处理">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>登陆器选项解读 | Ephinea PSOBB</title>
+    <title>渲染与图形 API 指南 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
 </head>
 
 <body>
-    <page-chrome title="登陆器选项解读"></page-chrome>
+    <page-chrome title="渲染与图形 API 指南"></page-chrome>
 
     <div class="content-container">
-        <h1>登陆器选项解读</h1>
+        <h1>PSOBB 渲染与图形 API 指南</h1>
 
-<p>本页解读 Ephinea 登陆器中和画面/渲染相关的各项设置。涵盖:</p>
+<p>本页以 PSOBB 为对象，解释旧式 Direct3D 调用如何经过 D3D9、dgVoodoo 或 DXVK 到达现代显卡，并说明 Ephinea 对应画面设置的实际作用。它既是渲染技术知识页，也可用于选择和排查客户端后端。涵盖:</p>
 <ul>
 <li><a href="#overview">总览关系图</a></li>
 <li><a href="#backend">渲染后端 (D3D / Vulkan)</a></li>
+<li><a href="#api-comparison">D3D8 / D3D9 / 9on12 / 11 / 12 / Vulkan 总对比</a></li>
+<li><a href="#d3d12-vulkan">D3D12 与 Vulkan 的底层关系</a></li>
+<li><a href="#versions">Ephinea 提供的翻译层版本</a></li>
+<li><a href="#device-lost">Device Lost 版本与后端风险</a></li>
 <li><a href="#aa">抗锯齿 (Anti-Aliasing)</a></li>
 <li><a href="#af">各向异性过滤 (Anisotropic Filtering)</a></li>
 <li><a href="#swap">dgVoodoo Model (交换链模式)</a></li>
@@ -38,7 +42,7 @@
 <p>一张图看清各项设置之间的依赖关系: <strong>渲染后端的选择决定了下方哪些画质选项会真正生效</strong>。</p>
 
 <figure style="margin:24px 0;text-align:center">
-<svg viewBox="0 0 920 800" role="img" aria-label="PSOBB 登陆器选项关系图" xmlns="http://www.w3.org/2000/svg"
+<svg viewBox="0 0 920 800" role="img" aria-label="PSOBB 渲染与画面设置关系图" xmlns="http://www.w3.org/2000/svg"
      style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
   <defs>
     <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -144,24 +148,28 @@ Ephinea 兼容/增强层 (D3D9 路径、AA、AF、后处理)
 
 <p>这也解释了为什么登陆器的自定义文件是 <code>dgVoodoo_d3d9.dll</code> 或 <code>dxvk_d3d9.dll</code>:包装器接收的是 Ephinea 输出的 D3D9 调用,再转到 D3D11、D3D12 或 Vulkan。Ephinea 官方的 <a href="https://www.pioneer2.net/community/threads/ephinea-launcher-3-5-0-and-dll-update-1-860-for-april-29th-2026-%E3%83%A9%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC%E3%81%8A%E3%82%88%E3%81%B3dll%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88-4-29.33093/" target="_blank" rel="noopener">Launcher 3.5.0 更新说明</a>也给出了这两个文件名和版本关系。</p>
 
-<h3>全部后端一眼看懂</h3>
+<h3 id="api-comparison">D3D8 / D3D9 / 9on12 / 11 / 12 / Vulkan 总对比</h3>
+
+<p>首先要区分三件事：<strong>D3D8/9/11/12 与 Vulkan 是图形 API；D3D9On12 是微软的映射层；dgVoodoo 和 DXVK 是第三方翻译器。</strong>Ephinea 下拉菜单把这些不同层级组合成便于选择的“后端”。</p>
 
 <div style="overflow-x:auto">
 <table>
 <thead>
-<tr><th>选项</th><th>最终输出</th><th>画质功能</th><th>核心区别</th></tr>
+<tr><th>Ephinea 选项</th><th>PSOBB 上层接口</th><th>中间层</th><th>最终驱动 API</th><th>抽象层级</th><th>关键特征</th></tr>
 </thead>
 <tbody>
-<tr><td>Direct3D 8</td><td>系统 D3D8</td><td>原版基准;高级 AA 不完整</td><td>链路最短,但保留旧式设备丢失与全屏行为</td></tr>
-<tr><td>Direct3D 9</td><td>系统 D3D9</td><td><strong>可用 Ephinea 高级 AA</strong></td><td>接近传统渲染,兼容面广;MSAA/HSAA 可能破坏部分反射</td></tr>
-<tr><td>Direct3D 9on12</td><td>系统 D3D9On12 → D3D12</td><td>与 D3D9 路径相同</td><td>是微软的 D3D9 映射层;<strong>不等于 dgVoodoo D3D12</strong></td></tr>
-<tr><td><strong>Direct3D 11</strong></td><td>dgVoodoo → D3D11</td><td>高级 AA;反射兼容性较好</td><td>现代呈现与设备管理,通常作为首选或排障基准</td></tr>
-<tr><td>Direct3D 12</td><td>dgVoodoo → D3D12</td><td>与 D3D11 基本相同</td><td>同一 dgVoodoo 前端的低层输出后端;强制使用 Flip 呈现</td></tr>
-<tr><td>Vulkan</td><td>DXVK → Vulkan</td><td>高级 AA;效果由 Ephinea 层实现</td><td>完全不同的驱动栈,适合交叉排障,但 DXVK 不正式支持 Windows</td></tr>
-<tr><td>Custom</td><td>自备 dgVoodoo / DXVK</td><td>取决于所用版本</td><td>用于验证新版修复或回归,不是额外画质档位</td></tr>
+<tr><td>Direct3D 8</td><td>D3D8</td><td>无</td><td>D3D8</td><td>旧式高层</td><td>原版固定功能管线；链路最短；高级 AA 不完整；传统设备丢失语义</td></tr>
+<tr><td>Direct3D 9</td><td>D3D8</td><td>Ephinea D3D8→9</td><td>D3D9</td><td>旧式高层</td><td>固定功能与 Shader Model 并存；可用高级 AA；仍采用 D3D9 Reset/Device Lost 模型</td></tr>
+<tr><td>Direct3D 9on12</td><td>D3D8→D3D9</td><td>Microsoft D3D9On12</td><td>D3D12</td><td>上层 D3D9、底层 D3D12</td><td>系统映射层；不是 dgVoodoo；保留上层 D3D9 设备语义</td></tr>
+<tr><td><strong>Direct3D 11</strong></td><td>D3D8→D3D9</td><td>dgVoodoo</td><td>D3D11</td><td>现代高层</td><td>驱动代管资源状态、同步与较多显存策略；兼容性通常最好</td></tr>
+<tr><td>Direct3D 12</td><td>D3D8→D3D9</td><td>dgVoodoo</td><td>D3D12</td><td>现代低层</td><td>翻译器显式管理命令、资源状态、描述符、同步和显存；固定 Flip 呈现</td></tr>
+<tr><td>Vulkan</td><td>D3D8→D3D9</td><td>DXVK</td><td>Vulkan</td><td>现代低层</td><td>与 D3D12 同代但属于另一套跨平台 API 和驱动栈；Windows 非 DXVK 官方支持目标</td></tr>
+<tr><td>Custom</td><td>D3D8→D3D9</td><td>用户提供的 dgVoodoo / DXVK</td><td>D3D11、D3D12 或 Vulkan</td><td>取决于文件</td><td>用于验证新版修复或回归；行为不能由“Custom”名称本身判断</td></tr>
 </tbody>
 </table>
 </div>
+
+<p>D3D8 到 D3D9 是旧式 API 的渐进升级，仍保留固定功能和传统设备重置模型；D3D11 把现代 GPU 功能包装成由驱动管理的高层接口；D3D12 与 Vulkan 则把资源状态、命令提交和同步显式交给上层。<strong>D3D9On12 只改变 D3D9 下面的实现，不会把 PSOBB 或 Ephinea 前端变成原生 D3D12。</strong></p>
 
 <h3>画质:为什么通常一样,但不能保证逐像素相同?</h3>
 
@@ -207,9 +215,15 @@ Ephinea 兼容/增强层 (D3D9 路径、AA、AF、后处理)
 <tr><th>对比项</th><th>Direct3D 11</th><th>Direct3D 12</th></tr>
 </thead>
 <tbody>
-<tr><td>画质</td><td>由分辨率、AA、SSAO、Shaders 决定</td><td>相同设置下与 D3D11 基本一致</td></tr>
-<tr><td>驱动模型</td><td>驱动承担较多资源状态与同步管理</td><td>dgVoodoo 需要显式管理资源状态、同步和命令队列</td></tr>
+<tr><td>API 抽象</td><td>现代高层 API；即时上下文接收绘制命令</td><td>现代低层 API；命令列表录制后提交到命令队列</td></tr>
+<tr><td>资源状态</td><td>驱动跟踪读写冲突和状态转换</td><td>dgVoodoo 显式插入 Resource Barrier</td></tr>
+<tr><td>资源绑定</td><td>通过 Slot 绑定资源，驱动维护大量隐式状态</td><td>通过 Descriptor Heap/Table 与 Root Signature 组织绑定</td></tr>
+<tr><td>同步</td><td>驱动负责大部分调度与危险跟踪</td><td>dgVoodoo 使用 Queue、Fence 等对象显式同步</td></tr>
+<tr><td>显存管理</td><td>资源驻留与内存策略主要由驱动处理</td><td>dgVoodoo 更直接地分配 Heap、放置资源并控制驻留策略</td></tr>
+<tr><td>管线状态</td><td>状态可分项修改，驱动在运行时组合</td><td>大部分状态预先固化为 Pipeline State Object</td></tr>
 <tr><td>呈现</td><td>可使用传统 BitBlt 或现代 Flip 模型</td><td>dgVoodoo 使用 <strong>Flip Discard</strong>,即使全屏也以窗口交换链呈现</td></tr>
+<tr><td>失败模型</td><td>驱动重置可报告 DXGI Device Removed/Reset</td><td>命令、同步或驱动异常可报告 Device Removed/Hung；显式管理错误更容易暴露</td></tr>
+<tr><td>画质</td><td>由分辨率、AA、SSAO、Shaders 决定</td><td>相同设置下与 D3D11 基本一致</td></tr>
 <tr><td>性能</td><td>PSOBB 上通常已足够稳定</td><td>在个别机器可改善 CPU 开销或卡顿,但 30 FPS 老游戏通常没有普遍优势</td></tr>
 <tr><td>兼容性</td><td>硬件覆盖更广;部分 AMD 驱动可能出现纹理异常</td><td>需要 D3D12 支持;部分 NVIDIA 驱动组合存在挂起/崩溃风险</td></tr>
 <tr><td>选择依据</td><td>默认先试;也适合作为现代后端的排障基准</td><td>D3D11 有性能或显示问题时试,尤其可作为 AMD 纹理问题的替代路径</td></tr>
@@ -220,11 +234,98 @@ Ephinea 兼容/增强层 (D3D9 路径、AA、AF、后处理)
 
 <p><strong>最简单的选择顺序:</strong>先试 <strong>Direct3D 11 (2.87.1)</strong>;画面和运行都正常就无需换。若有纹理错误、卡顿或冻结,试同版本 D3D12;若两者都有问题,再分别试较旧 dgVoodoo、D3D9 或 Vulkan,每次只改变一个变量。</p>
 
-<p>下拉菜单中括号内的数字,是该后端使用的<strong>翻译层版本号</strong>:</p>
+<h3 id="d3d12-vulkan">D3D12 与 Vulkan 的底层关系</h3>
+
+<p><strong>D3D12 和 Vulkan 属于同一代低层图形 API，设计理念非常接近。</strong>两者都把过去由 D3D11 驱动隐式完成的大量工作交给应用或翻译层：提前记录 GPU 命令、显式声明资源状态、组织管线对象、绑定描述符并处理 CPU/GPU 同步。在本页讨论的 PSOBB 场景中，承担这些工作的不是游戏本体，而是 dgVoodoo 或 DXVK。</p>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>对比项</th><th>Direct3D 12</th><th>Vulkan</th></tr></thead>
+<tbody>
+<tr><td>标准与平台</td><td>微软 API，面向 Windows / Xbox</td><td>Khronos 标准，覆盖 Windows / Linux / Android 等平台</td></tr>
+<tr><td>运行时与呈现</td><td>D3D12 Runtime + DXGI Swap Chain</td><td>Vulkan Loader/ICD + Surface/Swapchain 扩展</td></tr>
+<tr><td>Shader 表示</td><td>通常由 HLSL 编译为 DXIL；旧工具链也可使用 DXBC</td><td>由 GLSL、HLSL 等编译为 SPIR-V</td></tr>
+<tr><td>资源绑定模型</td><td>Root Signature + Descriptor Heap/Table</td><td>Pipeline Layout + Descriptor Set</td></tr>
+<tr><td>资源状态</td><td>Resource State + Resource Barrier</td><td>Access/Stage Mask + Pipeline Barrier + Image Layout</td></tr>
+<tr><td>显存模型</td><td>Heap 与 Resource，结合 Windows 驻留管理</td><td>Memory Type/Heap 与显式绑定，细节暴露通常更多</td></tr>
+<tr><td>同步对象</td><td>Fence 为核心，同步语义与 Queue 紧密结合</td><td>Fence、Semaphore、Event；新版本可使用 Timeline Semaphore</td></tr>
+<tr><td>能力扩展</td><td>Feature Level、接口版本与可选 Feature</td><td>Core Version、Extension 与 Feature 链</td></tr>
+<tr><td>PSOBB 路径</td><td>dgVoodoo 接收 D3D9 后输出 D3D12</td><td>DXVK 接收 D3D9 后输出 Vulkan</td></tr>
+<tr><td>典型错误</td><td>DXGI_ERROR_DEVICE_REMOVED / HUNG / RESET</td><td>VK_ERROR_DEVICE_LOST</td></tr>
+</tbody>
+</table>
+</div>
+
+<div style="overflow-x:auto">
+<table>
+<thead>
+<tr><th>D3D12 概念</th><th>Vulkan 对应概念</th><th>底层职责</th></tr>
+</thead>
+<tbody>
+<tr><td>Command List</td><td>Command Buffer</td><td>先记录绘制、复制和状态切换命令，再批量提交给 GPU</td></tr>
+<tr><td>Command Queue</td><td>Queue</td><td>接收图形、计算或复制工作，并决定提交顺序</td></tr>
+<tr><td>Resource Barrier</td><td>Pipeline Barrier / Image Layout Transition</td><td>声明资源何时从渲染目标、纹理或复制用途之间切换</td></tr>
+<tr><td>Descriptor Heap / Table</td><td>Descriptor Pool / Set</td><td>让 Shader 找到纹理、采样器和缓冲区</td></tr>
+<tr><td>Pipeline State Object</td><td>Graphics Pipeline</td><td>把 Shader 与光栅化、混合、深度等状态组合成可执行管线</td></tr>
+<tr><td>Fence</td><td>Fence / Semaphore</td><td>协调 CPU、GPU 以及不同队列间的执行进度</td></tr>
+<tr><td>Heap / Resource</td><td>Device Memory / Image / Buffer</td><td>分配显存并放置纹理、顶点和渲染目标</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>它们的主要差别不在“高低级”，而在生态和接口约定：D3D12 属于微软的 Windows/Xbox 图形栈，使用 DXGI、HLSL/DXIL 与 Windows 驱动模型；Vulkan 由 Khronos 制定，可跨 Windows、Linux 和 Android，通常使用 SPIR-V，并有自己的呈现与扩展体系。Vulkan 往往暴露更多显式选择，但两者都要求上层正确管理资源生命周期、同步和管线。</p>
+
+<pre><code>PSOBB → D3D8 → Ephinea D3D9 → dgVoodoo → D3D12 → Windows 显卡驱动 → GPU
+PSOBB → D3D8 → Ephinea D3D9 → DXVK     → Vulkan → Vulkan 显卡驱动  → GPU</code></pre>
+
+<p>所以可以把 <strong>dgVoodoo + D3D12</strong> 与 <strong>DXVK + Vulkan</strong> 看作两条同类的现代低层翻译路线，但不能认为它们等价。两套翻译器对 D3D9 固定功能、Shader、旧纹理格式、深度缓冲、交换链和设备丢失的模拟方式不同；这些实现差异比 API 名称更容易决定 PSOBB 的正确性、卡顿和稳定性。对这款 30 FPS 老游戏，低层 API 的理论吞吐优势通常不重要，优先选择渲染正确且稳定的路径。</p>
+
+<h3 id="versions">Ephinea 提供的翻译层版本</h3>
+
+<p>括号内数字不是“D3D 小版本”，而是翻译器发布版本。Ephinea Launcher 3.5.0 与客户端 DLL 1.860 加入了多版本选择；它们负责选择和装载文件，本身不是图形 API。官方提供的组合如下：</p>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>菜单组合</th><th>翻译器</th><th>在 Ephinea 中的定位</th><th>已知版本差异</th></tr></thead>
+<tbody>
+<tr><td>D3D11 / D3D12 <strong>2.79.3</strong></td><td>dgVoodoo2 x86 D3D9</td><td>此前随客户端提供的旧版，可继续使用</td><td>2.79.3 明确修复 Ephinea PSOBB 的顶点雾兼容问题，并包含 D3D8/9 Device Reset 修复；但后者的变更记录针对另一款游戏，不能据此宣称消除 PSOBB 的所有设备丢失</td></tr>
+<tr><td>D3D11 / D3D12 <strong>2.87.1</strong></td><td>dgVoodoo2 x86 D3D9</td><td>Launcher 3.5.0 新增的较新可选版</td><td>继承 2.87 的 D3D12 FL11 兼容路径和 FL12+ zero-copy 路径；2.87.1 修复一项 D3D12 后端崩溃，并改善伪全屏和窗口尺寸行为；Ephinea 官方称它可能解决部分 D3D12 冻屏</td></tr>
+<tr><td>Vulkan <strong>2.3.1</strong></td><td>DXVK x32 D3D9</td><td>此前随客户端提供的旧版，可继续使用</td><td>适合已有稳定配置；并不因为版本较旧就一定比 2.7.1 更差</td></tr>
+<tr><td>Vulkan <strong>2.7.1</strong></td><td>DXVK x32 D3D9</td><td>Launcher 3.5.0 新增的较新可选版</td><td>Ephinea 官方称更新 DXVK 可修复部分 Vulkan 图形异常；没有承诺解决所有崩溃或 Device Lost</td></tr>
+<tr><td>D3D11 / D3D12 / Vulkan <strong>Custom</strong></td><td>用户提供的 x86/x32 D3D9 DLL</td><td>验证上游新版、旧版或特定修复</td><td>兼容性完全取决于所放文件；“Custom”本身不代表更新、更快或更稳定</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>版本事实依据：<a href="https://www.pioneer2.net/community/threads/ephinea-launcher-3-5-0-and-dll-update-1-860-for-april-29th-2026-%E3%83%A9%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC%E3%81%8A%E3%82%88%E3%81%B3dll%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88-4-29.33093/" target="_blank" rel="noopener">Ephinea Launcher 3.5.0 / DLL 1.860 公告</a>与 <a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">dgVoodoo 官方变更记录</a>。上游已有更新版本不代表 Ephinea 已内置；只有菜单列出的版本或正确放入 <code>dxdg</code> 的 Custom 文件会实际加载。</p>
+
+<h3 id="device-lost">截图中的 Device Lost：哪些路径有，哪些路径规避?</h3>
+
+<p>截图文字描述的是<strong>客户端收到设备丢失后，恢复/Reset 失败</strong>。它不是“dgVoodoo 2.79.3 专属错误”或“D3D12 专属错误”。必须先区分两类原因：</p>
 <ul>
-<li><code>2.79.3</code> / <code>2.87.1</code> — <a href="https://github.com/dege-diosg/dgVoodoo2/releases" target="_blank" rel="noopener">dgVoodoo2</a> 版本(Ephinea 使用其 x86 D3D9 包装库输出到 D3D11/12)</li>
-<li><code>2.3.1</code> / <code>2.7.1</code> — <a href="https://github.com/doitsujin/dxvk" target="_blank" rel="noopener">DXVK</a> 版本(Ephinea 使用其 x32 D3D9 包装库输出到 Vulkan)</li>
+<li><strong>传统 D3D8/9 设备丢失：</strong>独占全屏失去焦点、Alt-Tab、UAC 安全桌面、锁屏、屏保或显示模式切换触发；这是 PSOBB 最典型的该弹窗来源。</li>
+<li><strong>真实 GPU/驱动重置：</strong>Windows TDR、驱动崩溃、超频不稳、Overlay/注入冲突或翻译器 bug。D3D12 可表现为 Device Removed/Hung，Vulkan 可表现为 <code>VK_ERROR_DEVICE_LOST</code>；任何后端都无法保证免疫。</li>
 </ul>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>后端与版本</th><th>Alt-Tab/UAC/锁屏型 Device Lost</th><th>对截图弹窗的判断</th><th>仍需注意</th></tr></thead>
+<tbody>
+<tr><td><strong>D3D8</strong></td><td><strong>明确受影响</strong></td><td>高概率来源，尤其是经典全屏</td><td>关闭 Classic Fullscreen，避免显示模式切换</td></tr>
+<tr><td><strong>D3D9</strong></td><td><strong>明确受影响</strong></td><td>仍使用传统 D3D9 Device/Reset 语义</td><td>比 D3D8 多一层转换不等于解决设备丢失</td></tr>
+<tr><td><strong>D3D9On12</strong></td><td><strong>明确受影响</strong></td><td>Ephinea 官方明确说明它不能规避 UAC、锁屏和屏保导致的 Device Lost</td><td>底层是 D3D12，但上层仍是 D3D9；不要把它当作 dgVoodoo D3D12</td></tr>
+<tr><td><strong>dgVoodoo D3D11 2.79.3 / 2.87.1</strong></td><td><strong>通常规避</strong></td><td>不是传统焦点丢失的预期路径；若仍出现，应怀疑驱动重置或 dgVoodoo/Overlay 冲突</td><td>2.87.1 不是“绝不崩溃版”；AMD 某些驱动还可能出现纹理异常</td></tr>
+<tr><td><strong>dgVoodoo D3D12 2.79.3</strong></td><td><strong>通常规避</strong></td><td>传统 Device Lost 风险低，但 Ephinea 已记录部分用户存在 D3D12 冻屏</td><td>NVIDIA 某些驱动可能发生 dgVoodoo D3D12 GPU Hang</td></tr>
+<tr><td><strong>dgVoodoo D3D12 2.87.1</strong></td><td><strong>通常规避</strong></td><td>较 2.79.3 更适合优先验证 D3D12 冻屏问题，但仍不能抵御真实 TDR</td><td>包含 D3D12 崩溃与全屏行为修复，不代表修复所有硬件组合</td></tr>
+<tr><td><strong>DXVK Vulkan 2.3.1 / 2.7.1</strong></td><td><strong>默认通常不模拟焦点丢失</strong></td><td>DXVK 默认 <code>d3d9.deviceLossOnFocusLoss = False</code>，所以 Alt-Tab 型弹窗通常不是预期行为</td><td>Vulkan 驱动仍可返回真实 <code>VK_ERROR_DEVICE_LOST</code>；DXVK 不正式支持原生 Windows</td></tr>
+<tr><td><strong>Custom</strong></td><td>无法统一判断</td><td>必须记录实际 DLL、版本和配置</td><td>旧配置可主动开启 DXVK 的焦点丢失模拟；第三方构建也可能改变行为</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Ephinea 早期更新已经明确建议：要避开 UAC、锁屏、屏保等造成的传统 Device Lost，应使用 <a href="https://www.pioneer2.net/community/threads/game-update-for-august-17th-2022-8-17-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.23942/" target="_blank" rel="noopener">dgVoodoo D3D11/12，而不是 D3D9On12</a>。DXVK 的默认行为可在其<a href="https://github.com/doitsujin/dxvk/blob/master/dxvk.conf" target="_blank" rel="noopener">官方配置说明</a>中核对。</p>
+
+<p><strong>对这张报错截图的实际判断：</strong>如果发生时选的是 D3D8、D3D9 或 D3D9On12，并且刚好 Alt-Tab、弹出 UAC、锁屏或切换显示模式，就是已知的传统设备丢失；优先改为 <strong>D3D11 2.87.1</strong>。如果当时已经是 dgVoodoo D3D11/12 或 Vulkan，这就不再是正常的焦点丢失行为，应检查 Windows 事件查看器中的 <code>LiveKernelEvent 117/141</code>、显卡驱动、超频和 Overlay，并交叉测试 D3D11 2.87.1 与 D3D12 2.87.1。</p>
 
 <h3>各后端含义</h3>
 
@@ -807,6 +908,9 @@ A: 高级 AA 由 Ephinea 客户端在渲染目标和后处理阶段实现,不是
 
 <p><strong>Q: D3D9on12 已经用了 D3D12,为什么还要选 D3D12?</strong><br>
 A: D3D9on12 是微软把 D3D9 命令映射到 D3D12 的系统兼容层,上层仍保留 D3D9 设备模型;登陆器的 D3D12 则由 dgVoodoo 接管 D3D9 模拟、资源管理和 Flip 呈现。两者只是最终驱动 API 相同,翻译器和兼容行为完全不同。要规避传统 Device Lost,应使用 dgVoodoo 的 D3D11/12。</p>
+
+<p><strong>Q: D3D12 是否可以理解为微软版本的 Vulkan?</strong><br>
+A: 作为入门类比可以：两者都是显式管理命令、资源状态、描述符、管线与同步的现代低层 API。但它们不是同一套 API，也不是彼此的包装层；D3D12 属于 Windows/Xbox 生态，Vulkan 是跨平台标准。在 PSOBB 中更准确的说法是，dgVoodoo 把 D3D9 翻译到 D3D12，DXVK 则把同类工作负载翻译到 Vulkan。</p>
 
 <p><strong>Q: 开了 Shaders 之后画面糊 / 颜色变了?</strong><br>
 A: 这是后期处理本身的特性,不是 bug。最常见的"罪魁"是 <strong>BLOOM</strong> (糊) 和 <strong>TONEMAPPING</strong> (颜色变深变饱和)。逐项关掉定位不喜欢的那一项即可。</p>
