@@ -25,12 +25,12 @@ const SECTION_LABELS: Readonly<Record<string, string>> = {
   'Units - Rare units': '插件 - 稀有插件', 'Mags - Mag types': '玛古 - 玛古类型', 'Mags - Cells': '玛古 - 进化道具',
   'Tools - Currencies': '道具 - 货币', 'Tools - Grinders': '道具 - 打磨石', 'Tools - Materials': '道具 - 能力药',
   'Tools - Combination items': '道具 - 合成素材', 'Tools - Miscellaneous': '道具 - 杂项', 'Tools - Event items': '道具 - 活动物品',
-  Techniques: '魔法', 'Techniques - Technique sets': '魔法 - 职业套装', 'Techniques - Individual techniques': '魔法 - 单项价格',
+  Techniques: '魔法光盘', 'Techniques - Technique sets': '魔法光盘 - 职业套装价格', 'Techniques - Individual techniques': '魔法光盘 - 单张价格',
   Meseta: '美赛塔', 'Services - Unsealing': '服务 - 解封', 'Services - Instant unsealing': '服务 - 即时解封',
 };
 const CATEGORY_LABELS: Readonly<Record<string, string>> = {
   'Common weapons': '普通武器', 'Rare weapons': '稀有武器', Frames: '铠甲', Barriers: '盾牌', Units: '插件',
-  Mags: '玛古', Tools: '道具', Techniques: '魔法', Meseta: '美赛塔', Services: '服务',
+  Mags: '玛古', Tools: '道具', Techniques: '魔法光盘', Meseta: '美赛塔', Services: '服务',
 };
 const HEADER_LABELS: Readonly<Record<string, string>> = {
   'Weapon Type': '武器类型', Special: '特殊攻击', 'Item Name': '物品名称', Item: '物品', Name: '名称', Price: '价格',

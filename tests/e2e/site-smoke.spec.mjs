@@ -1218,6 +1218,9 @@ test('Angular price guide filters categories and bilingual item names', async ({
   await expect(page.locator('#price-content')).toContainText('特殊攻击等级');
   await expect(page.locator('#price-content')).toContainText('可添加的特殊攻击');
   await expect(page.locator('#price-content')).toContainText('魔法光盘');
+  await expect(page.getByRole('button', { name: '魔法光盘', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '魔法光盘 - 职业套装价格', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '魔法光盘 - 单张价格', exact: true })).toHaveCount(2);
   await page.locator('#price-search').fill('Lavis Cannon');
   await expect(page.locator('#match-count')).toContainText(/找到 [1-9]\d* \/ \d+ 项/);
   await expect(page.locator('#price-content')).toContainText('圣剑「拉维斯·迦农」');

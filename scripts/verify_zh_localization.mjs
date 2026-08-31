@@ -47,6 +47,9 @@ for (const expected of [
 
 for (const expected of [
   "'Photon Drops': '所需光子微晶（PD）'",
+  "Techniques: '魔法光盘'",
+  "'Techniques - Technique sets': '魔法光盘 - 职业套装价格'",
+  "'Techniques - Individual techniques': '魔法光盘 - 单张价格'",
   "'Technique disks': '魔法光盘'",
   "'Special Rank': '特殊攻击等级'",
   "AB: 'A.Beast（变异兽）'",
@@ -58,6 +61,7 @@ const forbidden = [
   '光子水滴',
   '光子微滴',
   '光子球',
+  '法术',
   '法术盘',
   '技能盘',
   '术法',
