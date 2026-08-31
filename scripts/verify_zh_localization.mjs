@@ -56,6 +56,11 @@ for (const expected of [
   "N: 'Native（原生）'",
 ]) assert.ok(priceGuide.includes(expected), `price guide is missing ${JSON.stringify(expected)}`);
 
+for (const expected of [
+  '<strong>ATA</strong>：武器提供的命中力加成',
+  '在使用相同武器时，RAmar 最容易让特殊攻击稳定命中',
+]) assert.ok(authoredContent.includes(expected), `authored content is missing ${JSON.stringify(expected)}`);
+
 const forbidden = [
   '材料方案',
   '光子水滴',
@@ -67,6 +72,8 @@ const forbidden = [
   '术法',
   '魔法书',
   '特殊等级',
+  'Hit 命中阈值',
+  '<strong>ATA</strong>：命中率加成',
 ];
 for (const term of forbidden) {
   assert.ok(!authoredContent.includes(term), `legacy PSOBB translation remains: ${term}`);
