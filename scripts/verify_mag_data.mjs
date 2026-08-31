@@ -33,6 +33,15 @@ const colorImages = [...magHtml.matchAll(/src="\/(assets\/img\/mag\/colors\/[^"]
 check('页面展示 30 张配色图卡', colorCards.length === 30);
 check('30 张配色图片均为本地有效引用',
     colorImages.length === 30 && colorImages.every((path) => existsSync(path)));
+const costumeRows = [...magHtml.matchAll(/<tr data-mag-color="([^"]+)">([\s\S]*?)<\/tr>/g)];
+check('18 种常规色均有职业服装坐标', costumeRows.length === 18
+    && costumeRows.every(([, , row]) => [...row.matchAll(/<td>/g)].length === 13));
+check('服装坐标覆盖 12 个职业',
+    magHtml.includes('<th scope="col">HUmar</th>')
+    && magHtml.includes('<th scope="col">FOnewearl</th>'));
+check('Green 仅由三个 Force 服装坐标创建',
+    costumeRows.find(([, name]) => name === 'Green')?.[2]
+        .includes('<td>—</td><td>1-4</td><td>2-4</td><td>1-4</td>'));
 
 // ---- #1 FO B 组是 Marica 不是 Madhu
 const foB = D.classes.FO.stage3.B;

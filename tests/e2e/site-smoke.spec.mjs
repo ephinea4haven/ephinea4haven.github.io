@@ -1325,6 +1325,9 @@ test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ 
 
   await page.goto('/tools/mag.html');
   await expect.poll(() => page.locator('#panel-hu .mag-card').count()).toBeGreaterThan(5);
+  await expect(page.getByRole('region', { name: '角色服装与初始玛古颜色对应表' })).toBeVisible();
+  await expect(page.locator('.mag-costume-table tbody tr')).toHaveCount(18);
+  await expect(page.locator('.mag-costume-table tr[data-mag-color="Green"] td').nth(12)).toHaveText('1-4');
   await page.getByRole('tab', { name: /枪手/ }).click();
   await expect(page.locator('#panel-ra')).toBeVisible();
   await expect(page.locator('#panel-hu')).toBeHidden();

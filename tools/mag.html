@@ -402,7 +402,42 @@
   </figure>
 </div>
 
-<h3>Ephinea 服专属配色</h3>
+<h4>角色服装与初始玛古颜色</h4>
+
+<p>创建角色时，初始玛古的颜色由所选职业和服装坐标决定。坐标采用<b>行-列</b>表示法，例如 <code>2-1</code> 表示服装选择区第 2 行、第 1 列；同一格列出多个坐标时，任选其一都会得到该颜色。<code>—</code> 表示该职业无法通过角色创建取得该颜色，但仍可能从道具箱掉落的玛古上获得。</p>
+
+<div class="mag-costume-table-wrap" role="region" aria-label="角色服装与初始玛古颜色对应表" tabindex="0">
+  <table class="mag-costume-table">
+    <thead>
+      <tr><th rowspan="2" scope="col">颜色</th><th rowspan="2" scope="col">色值</th><th colspan="4" scope="colgroup">Hunter</th><th colspan="4" scope="colgroup">Ranger</th><th colspan="4" scope="colgroup">Force</th></tr>
+      <tr><th scope="col">HUmar</th><th scope="col">HUnewearl</th><th scope="col">HUcast</th><th scope="col">HUcaseal</th><th scope="col">RAmar</th><th scope="col">RAmarl</th><th scope="col">RAcast</th><th scope="col">RAcaseal</th><th scope="col">FOmar</th><th scope="col">FOmarl</th><th scope="col">FOnewm</th><th scope="col">FOnewearl</th></tr>
+    </thead>
+    <tbody>
+      <tr data-mag-color="Red"><th scope="row"><span class="mag-costume-color" style="--swatch:#FF3319">Red<small>红</small></span></th><td><code>#FF3319</code></td><td>2-1</td><td>1-1</td><td>1-1</td><td>1-1</td><td>1-1</td><td>1-1 · 2-1</td><td>1-1</td><td>1-8 · 2-1</td><td>1-1</td><td>1-1 · 2-1</td><td>1-8</td><td>1-1</td></tr>
+      <tr data-mag-color="Blue"><th scope="row"><span class="mag-costume-color" style="--swatch:#3333FF">Blue<small>蓝</small></span></th><td><code>#3333FF</code></td><td>1-2</td><td>1-2 · 2-2 · 2-9</td><td>1-2 · 1-8 · 3-2</td><td>1-2 · 2-2</td><td>1-2</td><td>2-2 · 2-8</td><td>1-2 · 2-2 · 2-8 · 3-3</td><td>2-2</td><td>1-2 · 2-8</td><td>1-2 · 1-9</td><td>1-2 · 2-2</td><td>1-2 · 2-2 · 2-9</td></tr>
+      <tr data-mag-color="Yellow"><th scope="row"><span class="mag-costume-color" style="--swatch:#FFE619">Yellow<small>黄</small></span></th><td><code>#FFE619</code></td><td>1-3</td><td>1-3 · 2-3</td><td>1-3 · 2-3</td><td>1-3 · 3-3</td><td>2-3</td><td>1-3 · 2-3</td><td>2-3</td><td>1-3 · 2-9 · 3-3</td><td>2-3</td><td>1-3 · 2-3</td><td>1-3 · 2-3</td><td>1-3</td></tr>
+      <tr data-mag-color="Green"><th scope="row"><span class="mag-costume-color" style="--swatch:#19FF19">Green<small>绿</small></span></th><td><code>#19FF19</code></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1-4</td><td>2-4</td><td>1-4</td></tr>
+      <tr data-mag-color="Purple"><th scope="row"><span class="mag-costume-color" style="--swatch:#CC19FF">Purple<small>紫</small></span></th><td><code>#CC19FF</code></td><td>2-5</td><td>1-5 · 2-5</td><td>1-5 · 2-5 · 2-8</td><td>1-5 · 1-9 · 2-5</td><td>1-5 · 2-5</td><td>1-5</td><td>2-9</td><td>2-5 · 3-5</td><td>1-5</td><td>1-5 · 2-5</td><td>1-5 · 2-5 · 2-8</td><td>1-5 · 2-5</td></tr>
+      <tr data-mag-color="Black"><th scope="row"><span class="mag-costume-color" style="--swatch:#191933">Black<small>黑</small></span></th><td><code>#191933</code></td><td>1-6 · 1-9 · 2-6</td><td>1-6 · 2-6</td><td>2-6 · 3-6</td><td>1-6 · 2-6 · 2-8</td><td>1-6 · 1-9 · 2-6</td><td>1-6 · 2-6</td><td>1-6 · 3-6</td><td>1-6</td><td>1-6 · 2-6</td><td>1-6 · 2-6</td><td>1-6 · 2-6</td><td>1-6 · 1-9 · 2-6</td></tr>
+      <tr data-mag-color="White"><th scope="row"><span class="mag-costume-color" style="--swatch:#E6FFFF">White<small>白</small></span></th><td><code>#E6FFFF</code></td><td>1-7 · 2-7 · 2-9</td><td>1-7 · 2-7</td><td>1-7 · 2-7 · 3-7</td><td>—</td><td>1-7 · 2-7 · 2-8</td><td>1-7 · 2-7 · 2-9</td><td>1-7 · 1-8 · 2-7 · 3-7</td><td>—</td><td>1-7 · 2-7</td><td>1-7 · 2-7</td><td>1-7 · 2-7</td><td>1-7 · 2-7</td></tr>
+      <tr data-mag-color="Cyan"><th scope="row"><span class="mag-costume-color" style="--swatch:#19E6FF">Cyan<small>青</small></span></th><td><code>#19E6FF</code></td><td>2-2</td><td>—</td><td>2-2</td><td>3-2</td><td>2-2</td><td>1-2</td><td>3-2</td><td>1-2 · 1-9 · 3-2</td><td>2-2</td><td>2-2</td><td>—</td><td>—</td></tr>
+      <tr data-mag-color="Brown"><th scope="row"><span class="mag-costume-color" style="--swatch:#804C33">Brown<small>棕</small></span></th><td><code>#804C33</code></td><td>—</td><td>1-8</td><td>—</td><td>2-3</td><td>2-9</td><td>—</td><td>—</td><td>2-3</td><td>1-8</td><td>—</td><td>2-1</td><td>—</td></tr>
+      <tr data-mag-color="Orange"><th scope="row"><span class="mag-costume-color" style="--swatch:#FF6600">Orange<small>橙</small></span></th><td><code>#FF6600</code></td><td>1-1</td><td>—</td><td>2-1</td><td>—</td><td>2-1</td><td>1-8</td><td>1-9 · 2-1</td><td>2-6</td><td>—</td><td>—</td><td>2-9</td><td>2-1</td></tr>
+      <tr data-mag-color="Slate Blue"><th scope="row"><span class="mag-costume-color" style="--swatch:#808BF9">Slate Blue<small>灰蓝</small></span></th><td><code>#808BF9</code></td><td>1-5</td><td>—</td><td>—</td><td>1-8 · 3-5 · 3-6</td><td>—</td><td>—</td><td>1-5 · 2-5 · 3-5</td><td>1-5 · 1-7 · 3-1</td><td>1-9 · 2-5</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr data-mag-color="Olive"><th scope="row"><span class="mag-costume-color" style="--swatch:#808000">Olive<small>橄榄绿</small></span></th><td><code>#808000</code></td><td>1-8 · 2-3</td><td>—</td><td>3-3</td><td>3-4</td><td>1-3</td><td>—</td><td>1-3</td><td>—</td><td>1-3 · 2-9</td><td>2-9</td><td>—</td><td>2-3</td></tr>
+      <tr data-mag-color="Turquoise"><th scope="row"><span class="mag-costume-color" style="--swatch:#00F0B6">Turquoise<small>绿松石</small></span></th><td><code>#00F0B6</code></td><td>2-4</td><td>2-4</td><td>—</td><td>1-4</td><td>—</td><td>1-9</td><td>3-4</td><td>3-4</td><td>1-4</td><td>2-4</td><td>—</td><td>2-4</td></tr>
+      <tr data-mag-color="Fuchsia"><th scope="row"><span class="mag-costume-color" style="--swatch:#CC1964">Fuchsia<small>紫红</small></span></th><td><code>#CC1964</code></td><td>—</td><td>2-1</td><td>3-1 · 3-5</td><td>2-1</td><td>—</td><td>2-5</td><td>3-1</td><td>2-8</td><td>2-1</td><td>—</td><td>1-1</td><td>—</td></tr>
+      <tr data-mag-color="Gray"><th scope="row"><span class="mag-costume-color" style="--swatch:#7F7F7F">Gray<small>灰</small></span></th><td><code>#7F7F7F</code></td><td>2-8</td><td>—</td><td>1-6 · 1-9</td><td>—</td><td>—</td><td>—</td><td>2-6</td><td>3-6 · 3-7</td><td>—</td><td>—</td><td>—</td><td>2-8</td></tr>
+      <tr data-mag-color="Cream"><th scope="row"><span class="mag-costume-color" style="--swatch:#FEFED5">Cream<small>奶油白</small></span></th><td><code>#FEFED5</code></td><td>—</td><td>—</td><td>—</td><td>1-7 · 2-7 · 3-7</td><td>1-8 · 2-7</td><td>—</td><td>—</td><td>2-7</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr data-mag-color="Pink"><th scope="row"><span class="mag-costume-color" style="--swatch:#FE7FC8">Pink<small>粉红</small></span></th><td><code>#FE7FC8</code></td><td>—</td><td>2-8</td><td>—</td><td>2-9 · 3-1</td><td>—</td><td>2-7</td><td>—</td><td>1-1</td><td>—</td><td>1-8 · 2-8</td><td>—</td><td>1-8</td></tr>
+      <tr data-mag-color="Dark Green"><th scope="row"><span class="mag-costume-color" style="--swatch:#007F52">Dark Green<small>深绿</small></span></th><td><code>#007F52</code></td><td>1-4</td><td>1-4 · 1-9</td><td>1-4 · 2-4 · 2-9 · 3-4</td><td>2-4</td><td>1-4 · 2-4</td><td>1-4 · 2-4</td><td>1-4 · 2-4</td><td>1-4 · 2-4</td><td>2-4</td><td>—</td><td>1-4 · 1-9</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="source-list">服装坐标依据 <a href="https://wiki.pioneer2.net/w/Mags#Mag_colors" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Mag colors</a> 整理。</p>
+
+<h3>Ephinea 专属配色</h3>
 
 <p>以下 12 种颜色只会出现在<b>道具箱掉落</b>的玛古上，Ephinea 于 2022-03-06 加入。点击色值即可复制。</p>
 
