@@ -29,8 +29,8 @@ for (const expected of [
 }
 
 assert.ok(
-  index.includes('<a href="/guide/d3d.html" target="_blank">PSOBB 渲染与图形 API</a>'),
-  'home page is missing the renamed graphics API guide link',
+  index.includes('<a href="/guide/d3d.html" target="_blank">图形后端</a>'),
+  'home page is missing the concise graphics backend guide link',
 );
 
 const ids = [...guide.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
