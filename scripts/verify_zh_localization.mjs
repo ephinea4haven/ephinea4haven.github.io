@@ -6,11 +6,13 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = (filename) => readFile(path.join(root, filename), 'utf8');
 
-const [agents, standard, materialPlan, priceGuide, authoredContent] = await Promise.all([
+const [agents, standard, materialPlan, priceGuide, mechanics, commandGuide, authoredContent] = await Promise.all([
   read('AGENTS.md'),
   read('docs/PSOBB_CHINESE_LOCALIZATION.md'),
   read('tools/materialplan.html'),
   read('src/app/price-guide/price-guide.component.ts'),
+  read('tools/mechanics.html'),
+  read('guide/command.html'),
   Promise.all([
     'data/itempt.html',
     'data/itempmt.html',
@@ -55,6 +57,19 @@ for (const expected of [
   "AB: 'A.Beast（变异兽）'",
   "N: 'Native（原生）'",
 ]) assert.ok(priceGuide.includes(expected), `price guide is missing ${JSON.stringify(expected)}`);
+
+for (const expected of [
+  '角色属性 LCK 只影响暴击，不影响掉落率',
+  '<code>/forecast</code> 显示当天的运势条件',
+  '<code>/luck</code> 显示当前角色对应的运势等级',
+]) assert.ok(mechanics.includes(expected), `mechanics guide is missing ${JSON.stringify(expected)}`);
+
+for (const expected of [
+  '显示当前角色由每日运势决定的运势等级',
+  '显示当天的每日运势条件',
+  '切换当前角色是否接受每日运势提供的稀有掉落率加成',
+]) assert.ok(commandGuide.includes(expected), `command guide is missing ${JSON.stringify(expected)}`);
+assert.ok(!commandGuide.includes('显示当前幸</p>'), 'command guide retains a truncated /forecast description');
 
 for (const expected of [
   '<strong>ATA</strong>：武器提供的命中力加成',
