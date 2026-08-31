@@ -22,6 +22,7 @@ from build_rbr_data import (  # noqa: E402
     build_tracker_summary,
     existing_snapshot_is_current,
     expected_rbr_week,
+    normalize_current_quests,
     parse_current_rbr,
     parse_enemy_count_data,
     parse_enemy_counts,
@@ -92,6 +93,59 @@ class CurrentRbrParserTest(unittest.TestCase):
                 "* {{Quest link|Lost BIND ASSAULT}}\n"
                 "* {{Quest link|Sweep-up Operation 10}}\n"
             )
+
+    def test_normalizes_display_title_used_as_link_target(self) -> None:
+        current = {
+            "quests": [
+                {
+                    "episode": 1,
+                    "page": "Silent Afterimage #2",
+                    "name": "Silent Afterimage #2",
+                }
+            ]
+        }
+        records = [
+            {
+                "episode": 1,
+                "page": "Silent Afterimage 2",
+                "name": "Silent Afterimage #2",
+                "abbreviation": "SA2",
+            }
+        ]
+
+        normalize_current_quests(current, records)
+
+        self.assertEqual(
+            current["quests"][0],
+            {
+                "episode": 1,
+                "page": "Silent Afterimage 2",
+                "name": "Silent Afterimage #2",
+                "abbreviation": "SA2",
+            },
+        )
+
+    def test_rejects_alias_from_the_wrong_episode(self) -> None:
+        current = {
+            "quests": [
+                {
+                    "episode": 2,
+                    "page": "Silent Afterimage #2",
+                    "name": "Silent Afterimage #2",
+                }
+            ]
+        }
+        records = [
+            {
+                "episode": 1,
+                "page": "Silent Afterimage 2",
+                "name": "Silent Afterimage #2",
+                "abbreviation": "SA2",
+            }
+        ]
+
+        with self.assertRaisesRegex(SourceParseError, "not in candidate pool"):
+            normalize_current_quests(current, records)
 
 
 class RbrTrackerParserTest(unittest.TestCase):

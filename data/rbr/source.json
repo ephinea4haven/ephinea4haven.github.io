@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-23T07:29:41.127821+00:00",
+  "generatedAt": "2026-08-31T01:13:27.840598+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,12 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 43478
+      "revision": 43501
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 43476
+      "revision": 43500
     }
   },
   "boosts": {
@@ -38,28 +38,28 @@
     "4": 14
   },
   "current": {
-    "week": "23 August 2026",
+    "week": "30 August 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Endless Nightmare 3",
-        "name": "Endless Nightmare #3",
-        "abbreviation": "EN3"
+        "page": "Silent Afterimage 2",
+        "name": "Silent Afterimage #2",
+        "abbreviation": "SA2"
       },
       {
         "episode": 2,
-        "page": "Penumbral Surge 2",
-        "name": "Penumbral Surge #2",
-        "abbreviation": "PS2"
+        "page": "Lost CHARGE VULCAN",
+        "name": "Lost CHARGE VULCAN",
+        "abbreviation": "LCV"
       },
       {
         "episode": 4,
-        "page": "New Mop-Up Operation 5",
-        "name": "New Mop-Up Operation #5",
-        "abbreviation": "NMU5"
+        "page": "New Mop-Up Operation 1",
+        "name": "New Mop-Up Operation #1",
+        "abbreviation": "NMU1"
       }
     ],
-    "expectedWeek": "23 August 2026",
+    "expectedWeek": "30 August 2026",
     "isFresh": true
   },
   "tracker": {
@@ -78,12 +78,11 @@
           "SU4",
           "AO1",
           "SR1",
-          "SA2",
           "LIS",
           "LHP"
         ],
         "current": [
-          "EN3"
+          "SA2"
         ],
         "unavailable": [
           "MU2",
@@ -91,6 +90,7 @@
           "MU4",
           "EN1",
           "EN2",
+          "EN3",
           "EN4",
           "AO2",
           "SR2",
@@ -104,11 +104,10 @@
         "possible": [
           "PS1",
           "LSR",
-          "LDR",
-          "LCV"
+          "LDR"
         ],
         "current": [
-          "PS2"
+          "LCV"
         ],
         "unavailable": [
           "PW1",
@@ -117,6 +116,7 @@
           "SU6",
           "SU7",
           "SU8",
+          "PS2",
           "PS3",
           "PS4",
           "PS5",
@@ -135,7 +135,6 @@
           "WoL2",
           "WoL3",
           "WoL5",
-          "NMU1",
           "NMU2",
           "NMU4",
           "SU10",
@@ -144,10 +143,11 @@
           "SU14"
         ],
         "current": [
-          "NMU5"
+          "NMU1"
         ],
         "unavailable": [
           "WoL4",
+          "NMU5",
           "SU11"
         ]
       }

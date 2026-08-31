@@ -358,6 +358,41 @@ def quest_abbreviation(title: str, /) -> str:
         ) from error
 
 
+def normalize_current_quests(
+    current: dict[str, Any],
+    records: list[dict[str, Any]],
+    /,
+) -> dict[str, Any]:
+    """Resolve current-template links to canonical candidate-pool records."""
+    records_by_page = {record["page"].casefold(): record for record in records}
+    records_by_identity = {
+        (record["episode"], record["abbreviation"].casefold()): record
+        for record in records
+    }
+
+    for quest in current["quests"]:
+        record = records_by_page.get(quest["page"].casefold())
+        if record is None:
+            try:
+                abbreviation = quest_abbreviation(quest["name"])
+            except SourceParseError:
+                abbreviation = quest_abbreviation(quest["page"])
+            record = records_by_identity.get(
+                (quest["episode"], abbreviation.casefold())
+            )
+        if record is None:
+            raise SourceParseError(
+                f"Current RBR quest {quest['page']!r} is not in candidate pool"
+            )
+        quest.update(
+            page=record["page"],
+            name=record["name"],
+            abbreviation=record["abbreviation"],
+        )
+
+    return current
+
+
 def _strip_wiki_markup(value: str, /) -> str:
     """Reduce the small subset of wiki markup used by enemy-count tables."""
     value = value.strip()
@@ -689,21 +724,12 @@ def build_source_data(
         {
             "episode": link.episode,
             "page": link.page,
+            "name": link.name,
             "abbreviation": quest_abbreviation(link.name),
         }
         for link in links
     ]
-    abbreviation_by_page = {
-        record["page"]: record["abbreviation"]
-        for record in candidate_summaries
-    }
-    for quest in current["quests"]:
-        try:
-            quest["abbreviation"] = abbreviation_by_page[quest["page"]]
-        except KeyError as error:
-            raise SourceParseError(
-                f"Current RBR quest {quest['page']!r} is not in candidate pool"
-            ) from error
+    normalize_current_quests(current, candidate_summaries)
 
     tracker = build_tracker_summary(
         tracker_statuses,

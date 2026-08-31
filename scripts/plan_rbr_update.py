@@ -32,6 +32,7 @@ from build_rbr_data import (
     expected_rbr_week,
     fetch_wiki_page,
     normalize_rbr_week,
+    normalize_current_quests,
     parse_current_rbr,
     parse_eligible_quests,
     parse_rbr_tracker,
@@ -80,17 +81,10 @@ def _current_with_abbreviations(
     /,
 ) -> dict[str, Any]:
     current = parse_current_rbr(wikitext)
-    abbreviation_by_page = {
-        record["page"]: record["abbreviation"] for record in records
-    }
-    for quest in current["quests"]:
-        try:
-            quest["abbreviation"] = abbreviation_by_page[quest["page"]]
-        except KeyError as error:
-            raise RbrUpdatePlanError(
-                f"Current RBR quest {quest['page']!r} is not in the candidate pool"
-            ) from error
-    return current
+    try:
+        return normalize_current_quests(current, records)
+    except RbrDataError as error:
+        raise RbrUpdatePlanError(str(error)) from error
 
 
 def _normalize_selection(
