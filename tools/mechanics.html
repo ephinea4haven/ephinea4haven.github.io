@@ -62,15 +62,20 @@
 </tbody>
 </table>
 
-<h4>暴击:</h4>
+<h4>暴击与 LCK:</h4>
 <ul>
-<li>暴击伤害: 攻击结果 × 1.5</li>
-<li>暴击率: min(LCK, 100) / 5 %</li>
+<li>玩家暴击率：<code>min(LCK, 100) / 5 %</code>。角色 LCK 上限为 100，因此最高暴击率为 20%。</li>
+<li>暴击伤害：<code>攻击结果 × 1.5</code>。</li>
+<li>只有已经命中、且不是魔法或固定伤害的攻击才进行暴击判定。</li>
+<li>LCK 不会随角色升级提高，主要通过装备和运之药补充。</li>
 </ul>
+<p><strong>不要混淆两种 Luck：</strong>角色属性 LCK 只影响暴击，不影响掉落率；Ephinea 的 <code>/luck</code> 显示的是独立的每日运势，部分运势会影响稀有掉落率。参见 <a href="https://wiki.pioneer2.net/w/Stats#Luck_(LCK)" target="_blank" rel="noopener">Ephinea Wiki 的 LCK 说明</a>与<a href="https://wiki.pioneer2.net/w/Daily_forecast" target="_blank" rel="noopener">每日运势规则</a>。</p>
 
 <hr>
 
-<h2>B: 命中计算公式</h2>
+<h2>B: 玩家攻击敌人的命中计算</h2>
+
+<p>本节以玩家为攻击方、敌人为防守方。玩家的 ATA 与敌人的 EVP 决定攻击是否命中；命中后再进入上面的物理伤害计算。</p>
 
 <h3>第1步: 总命中 (ATA)</h3>
 <p><code>ATA_total = ATA_base + 武器ATA + 铠甲ATA + 盾ATA</code></p>
@@ -119,7 +124,37 @@
 
 <hr>
 
-<h2>C: 魔法伤害公式</h2>
+<h2>C: 玩家承受物理攻击：回避、Guard 与 DFP</h2>
+
+<p>敌人对玩家发动普通、可回避的物理攻击时，<strong>EVP（回避力）的判定在前，DFP（防御力）的伤害判定在后</strong>：</p>
+
+<ol>
+<li>先用敌人的 ATA 与玩家的 EVP 进行命中／回避判定。</li>
+<li>回避成功时，攻击在原地被弹开，角色不会后退。</li>
+<li>回避失败后，才用敌人的 ATP 与玩家的 DFP 计算物理伤害。</li>
+<li>DFP 足够高、使计算结果为 0 时会出现 <strong>Guard</strong>：角色被向后推开，但 HP 不减少。</li>
+<li>伤害大于 0 时会扣除相应 HP；单次伤害达到角色最大 HP 的 25% 时，角色会倒地。</li>
+</ol>
+
+<p>因此，Guard 不是 EVP 生效：它表示 EVP 判定已经失败，只是后续计算得到的伤害为 0。完整顺序是：<strong>EVP 判定 → ATP 与 DFP 计算伤害 → Guard、受伤或倒地</strong>。</p>
+
+<h3>敌人攻击玩家时的命中率</h3>
+<p>SLW 在 Ephinea 的实测结果符合以下近似关系：</p>
+<p><code>敌人命中率(%) ≈ clamp(敌人 ATA - 玩家 EVP × 0.2, 0, 100)</code></p>
+<p>也可以写成 <code>敌人 ATA - 玩家 EVP / 5</code>。例如敌人 ATA 为 290 时，玩家 EVP 达到 1450，理论命中率为 0%；EVP 为 1442 时，理论命中率为 1.6%。视频中以 EVP 1457 承受约 300 次攻击均成功回避，降低到 1442 后则观察到了命中。</p>
+
+<h3>适用范围与读表注意</h3>
+<ul>
+<li>这个顺序与命中率关系只用于会进行回避判定的攻击。固定伤害、导弹、光束、踩踏等特殊攻击可能无法用 EVP 回避。</li>
+<li>应使用敌人在当前难度、模式和任务中的实际 ATA；资料表上的基础值不一定等于战斗中的有效值。</li>
+<li>零伤害不等于没有动作硬直：回避成功不会后退，Guard 会把角色向后推开，这会影响站位和连续受击风险。</li>
+</ul>
+
+<p><strong>实测来源：</strong><a href="https://www.youtube.com/watch?v=J2FgRRGCQEM" target="_blank" rel="noopener">SLW《【PSOBB Ephinea】ガードと回避の成功率検証と結果【解説動画】》</a>。命中率公式来自视频中的实验归纳，应视为 Ephinea 实测结论，而不是本站对客户端代码的反编译证明。</p>
+
+<hr>
+
+<h2>D: 魔法伤害公式</h2>
 
 <p><code>[(MST + 魔法基础威力) / 5] × (1.0 + 职业天赋 + 武器增益 + 铠甲增益 + 增幅盾增益) × (1 - 怪物抗性)</code></p>
 
@@ -265,12 +300,12 @@
 
 <hr>
 
-<h2>D: 击倒机制</h2>
+<h2>E: 击倒机制</h2>
 <p>当单次攻击造成的伤害 ≥ 角色最大HP的 <strong>25%</strong> 时，角色会被击倒。</p>
 
 <hr>
 
-<h2>E: HP吸取武器</h2>
+<h2>F: HP吸取武器</h2>
 <p>以下武器攻击时会消耗自身 HP，可用于触发玛古的低血量事件：</p>
 
 <table>
@@ -290,7 +325,7 @@
 
 <hr>
 
-<h2>F: PB增加公式</h2>
+<h2>G: PB增加公式</h2>
 
 <ul>
 <li>攻击: 怪物受到的伤害(非EX攻击) / (等级 × 15)</li>
@@ -299,7 +334,7 @@
 
 <hr>
 
-<h2>G: 玛古事件触发概率公式</h2>
+<h2>H: 玛古事件触发概率公式</h2>
 
 <table>
 <thead><tr>
