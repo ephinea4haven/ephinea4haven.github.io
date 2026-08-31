@@ -43,8 +43,8 @@ RBR 不再通过 GitHub Actions 定时轮询 Ephinea Wiki。旧的 `sync-rbr.yml
 
 每周由维护者提供游戏内 `/rbr` 的原始内容，并从中确认 Episode 1、2、4 的三个
 任务缩写。当前计划器只接受这三个拆分后的缩写，尚不能直接解析整段 `/rbr` 原文。
-它验证输入、Tracker 状态、本站投影和 Ephinea Wiki 候选 diff；本站数据更新与
-Ephinea Wiki 写入都不由定时任务执行。
+它验证输入、Tracker 状态、本站投影和 Ephinea Wiki 候选 diff。本站数据更新不由
+定时任务执行；Ephinea Wiki 的两个模板可以由本地认证发布器显式更新。
 
 ## 自动化闭环状态
 
@@ -56,16 +56,15 @@ Ephinea Wiki 写入都不由定时任务执行。
 - 本站 current/Tracker 投影会生成，并经过与候选 Wiki 模板相同的结构校验；
 - 候选 Wikitext 仅通过 `action=parse` 预览，不产生外部写入。
 
-“输入一次 `/rbr` 后自动更新本站和 Ephinea Wiki”的发布闭环尚未实现：
+“输入一次 `/rbr` 后自动更新本站和 Ephinea Wiki”的跨目标发布闭环尚未实现：
 
 - 没有整段 `/rbr` 原文解析器；
 - 不写入或提交本站 `data/rbr/source.json`；
-- 不登录 Ephinea Wiki，也不调用 `action=edit`；
-- 尚未实现两个目标之间的顺序发布、revision 冲突、部分失败恢复和幂等重试；
-- Ephinea Wiki 账户权限与 Bot Password 尚未经过真实写入验证。
+- 本地发布器只负责 Ephinea Wiki 的两个模板，不提交本站；
+- 本站和 Wiki 两个目标之间仍没有顺序发布、部分失败恢复或幂等重试。
 
-因此 `localProjection` 和 Wiki diff 都是候选结果，不是发布成功记录。Ephinea Wiki
-写入必须由维护者另行明确批准；在此之前不得把只读计划器描述为双边自动更新器。
+因此只读计划器中的 `localProjection` 和 Wiki diff 仍是候选结果，不是发布成功记录。
+只有 `publish_rbr_update.py` 返回的逐模板 revision 和写后校验结果才是 Wiki 发布记录。
 
 ## 两个目标的已知更新路径
 
@@ -74,14 +73,14 @@ Ephinea Wiki 写入都不由定时任务执行。
 构建，提交到 `master`，再通过 Pages Workflow 发布。当前缺少的是从 `/rbr` 输入直接
 构造完整 snapshot 并执行上述发布链路的实现；现有 `localProjection` 不能替代它。
 
-Ephinea Wiki 使用标准 MediaWiki Action API。已明确的目标路径是：建立持久登录
-session，获取登录 token 和 CSRF token，重新读取两个模板的最新 revision 与时间戳，
-提交带冲突保护的 `action=edit`，并校验 JSON 中的业务结果。当前缺少专用账户或 Bot
-Password 的权限验证、真实写入测试，以及两模板和本站发布之间的部分失败恢复。
+Ephinea Wiki 使用标准 MediaWiki Action API。本地发布器建立内存 cookie session，
+通过 `clientlogin` 登录，获取 CSRF token，读取两个模板的最新 revision 与时间戳，
+提交带 `baserevid`、`basetimestamp` 和 `starttimestamp` 的 `action=edit`，并在每次写入后
+重新读取验证。两个模板中的任意一个先成功后中断时，重跑会识别中间状态并只补剩余
+模板；未知的不一致状态会停止。
 
-两边不存在共同事务，不能声称“同时原子更新”。未来发布器必须按可重入步骤记录每个
-目标的 revision/commit 和结果；任何一步失败时停止后续写入，并允许基于相同 `/rbr`
-输入安全重试。Ephinea Wiki 写入仍受单独批准边界约束。
+本站与 Wiki 不存在共同事务，不能声称“同时原子更新”。Wiki 内部的两个模板同样不是
+单一事务，但发布器会记录每个模板的 revision，并允许基于相同输入安全重试。
 
 ## Wiki 更新方案验证
 
@@ -104,6 +103,36 @@ MediaWiki `action=parse` 做只读渲染预览。输出 JSON 包含源 revision�
 `.github/workflows/validate-rbr-update.yml` 提供相同的手动输入入口。该 Workflow
 只有 `contents: read` 权限，不读取 Wiki 凭据、不调用 `action=edit`、不提交文件。
 它只验证方案，不是本站或 Ephinea Wiki 的发布流程。
+
+## 本地发布两个 Wiki 模板
+
+凭据保存在 Git 忽略的 `.secrets/ephinea-wiki.json`：
+
+```json
+{
+  "username": "account name",
+  "password": "account password"
+}
+```
+
+文件必须设置为仅当前用户可读写：
+
+```bash
+chmod 600 .secrets/ephinea-wiki.json
+```
+
+发布命令：
+
+```bash
+python3 scripts/publish_rbr_update.py \
+  --episode-1 EN3 \
+  --episode-2 PS2 \
+  --episode-4 NMU5
+```
+
+发布器仍会先运行完整规划和 MediaWiki 渲染预览。若两个模板已经是目标状态，它会完成
+登录与读取验证并返回 `already-current`，不会取得 CSRF token 或制造空编辑。凭据不会
+写入输出、Git、命令行参数或 cookie 文件。
 
 人工整理后的两张 Tier 表保存在 `data/rbr/tiers.json`。完整性测试会确认 RBR 的
 58 个候选任务恰好各出现一次，不允许漏项或重复：

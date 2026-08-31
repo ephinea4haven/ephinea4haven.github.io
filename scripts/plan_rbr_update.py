@@ -277,6 +277,7 @@ def build_update_plan(
     *,
     now: datetime | None = None,
     previewer: Callable[[str, str], int] = preview_wikitext,
+    include_wikitext: bool = False,
 ) -> dict[str, Any]:
     """Validate one observed rotation and return a non-mutating update plan."""
     records = _records_from_pool(pool_page)
@@ -284,10 +285,6 @@ def build_update_plan(
     current = _current_with_abbreviations(current_page.wikitext, records)
     statuses = parse_rbr_tracker(tracker_page.wikitext)
     tracker = build_tracker_summary(statuses, records, current)
-    if not tracker["isConsistentWithCurrentTemplate"]:
-        raise RbrUpdatePlanError(
-            "Current Wiki template and Tracker disagree before planning"
-        )
 
     selected = _normalize_selection(selected_input, records)
     target_week = expected_rbr_week(now)
@@ -301,29 +298,52 @@ def build_update_plan(
     selected_abbreviations = {
         episode: selected[episode]["abbreviation"] for episode in EPISODES
     }
+    tracker_selection = {
+        int(episode): grouped["current"][0]
+        for episode, grouped in tracker["byEpisode"].items()
+    }
+    current_is_target = selected_abbreviations == current_selection
+    tracker_is_target = selected_abbreviations == tracker_selection
 
     if week_delta == 0:
-        if selected_abbreviations != current_selection:
+        if not current_is_target:
             raise RbrUpdatePlanError(
                 "Wiki already has the target week with a different rotation; "
                 "automatic Tracker correction would be ambiguous"
             )
-        next_statuses = statuses
-        result = "already-current"
         current_text = current_page.wikitext
-        tracker_text = tracker_page.wikitext
+        if tracker_is_target:
+            next_statuses = statuses
+            result = "already-current"
+            tracker_text = tracker_page.wikitext
+        else:
+            next_statuses = transition_tracker(statuses, records, selected)
+            result = "resume-tracker"
+            tracker_text = render_tracker_template(
+                tracker_page.wikitext,
+                next_statuses,
+            )
     elif week_delta == 7:
-        next_statuses = transition_tracker(statuses, records, selected)
-        result = "planned"
         current_text = render_current_template(
             current_page.wikitext,
             target_week,
             selected,
         )
-        tracker_text = render_tracker_template(
-            tracker_page.wikitext,
-            next_statuses,
-        )
+        if tracker["isConsistentWithCurrentTemplate"]:
+            next_statuses = transition_tracker(statuses, records, selected)
+            result = "planned"
+            tracker_text = render_tracker_template(
+                tracker_page.wikitext,
+                next_statuses,
+            )
+        elif tracker_is_target:
+            next_statuses = statuses
+            result = "resume-current"
+            tracker_text = tracker_page.wikitext
+        else:
+            raise RbrUpdatePlanError(
+                "Current Wiki template and Tracker disagree in an unknown state"
+            )
     else:
         raise RbrUpdatePlanError(
             "Wiki current week must be either the target week or exactly one "
@@ -346,7 +366,7 @@ def build_update_plan(
 
     current_preview_bytes = previewer(CURRENT_RBR_TEMPLATE, current_text)
     tracker_preview_bytes = previewer(RBR_TRACKER_TEMPLATE, tracker_text)
-    return {
+    plan = {
         "mode": "dry-run",
         "result": result,
         "targetWeek": target_week,
@@ -394,6 +414,12 @@ def build_update_plan(
             "tracker": planned_tracker,
         },
     }
+    if include_wikitext:
+        plan["candidateWikitext"] = {
+            CURRENT_RBR_TEMPLATE: current_text,
+            RBR_TRACKER_TEMPLATE: tracker_text,
+        }
+    return plan
 
 
 def parse_args() -> argparse.Namespace:

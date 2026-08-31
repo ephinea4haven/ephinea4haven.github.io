@@ -260,18 +260,62 @@ class UpdatePlanTest(unittest.TestCase):
                 candidate_records=duplicated,
             )
 
-    def test_rejects_inconsistent_or_skipped_wiki_state(self) -> None:
+    def test_resumes_after_current_template_was_published_first(self) -> None:
         inconsistent = pages(
+            week="23 August 2026",
+            current=("A2", "B2", "C2"),
             statuses={
                 "a1": 1,
                 "a2": 0,
-                "b1": 0,
-                "b2": 1,
+                "b1": 1,
+                "b2": 0,
                 "c1": 1,
                 "c2": 0,
-            }
+            },
         )
-        with self.assertRaisesRegex(planner.RbrUpdatePlanError, "disagree"):
+
+        plan = self.build(
+            {1: "A2", 2: "B2", 4: "C2"},
+            source_pages=inconsistent,
+        )
+
+        self.assertEqual(plan["result"], "resume-tracker")
+        self.assertFalse(plan["wiki"]["currentRotation"]["changed"])
+        self.assertTrue(plan["wiki"]["tracker"]["changed"])
+
+    def test_resumes_after_tracker_was_published_first(self) -> None:
+        inconsistent = pages(
+            statuses={
+                "a1": 2,
+                "a2": 1,
+                "b1": 2,
+                "b2": 1,
+                "c1": 2,
+                "c2": 1,
+            },
+        )
+
+        plan = self.build(
+            {1: "A2", 2: "B2", 4: "C2"},
+            source_pages=inconsistent,
+        )
+
+        self.assertEqual(plan["result"], "resume-current")
+        self.assertTrue(plan["wiki"]["currentRotation"]["changed"])
+        self.assertFalse(plan["wiki"]["tracker"]["changed"])
+
+    def test_rejects_unknown_inconsistent_or_skipped_wiki_state(self) -> None:
+        inconsistent = pages(
+            statuses={
+                "a1": 0,
+                "a2": 1,
+                "b1": 1,
+                "b2": 0,
+                "c1": 1,
+                "c2": 0,
+            },
+        )
+        with self.assertRaisesRegex(planner.RbrUpdatePlanError, "unknown state"):
             self.build(
                 {1: "A2", 2: "B2", 4: "C2"},
                 source_pages=inconsistent,
