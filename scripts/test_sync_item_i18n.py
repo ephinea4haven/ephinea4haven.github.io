@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -12,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from sync_item_i18n import (  # noqa: E402
     DEFAULT_AUTHORITY,
     OUTPUT,
+    REPO,
     build_site_dictionary,
     load_authority,
     render,
@@ -20,6 +22,17 @@ from sync_item_i18n import (  # noqa: E402
 
 
 class SyncItemTranslationsTest(unittest.TestCase):
+    def test_ci_uses_immutable_authority_revision(self) -> None:
+        workflow = (REPO / ".github" / "workflows" / "pages.yml").read_text(
+            encoding="utf-8"
+        )
+        checkout = re.search(
+            r"repository: warmonipa/dropcharts\s+ref: ([^\s#]+)", workflow
+        )
+
+        self.assertIsNotNone(checkout)
+        self.assertRegex(checkout.group(1), r"\A[0-9a-f]{40}\Z")
+
     def test_checked_in_dictionary_matches_authority(self) -> None:
         authority_bytes = DEFAULT_AUTHORITY.read_bytes()
         authority = load_authority(DEFAULT_AUTHORITY)

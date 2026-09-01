@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: warmonipa/dropcharts
-          ref: master
+          ref: 74ff7edd68eac1ff2b71554375c64472ece6319e
           path: droptable
 
       - name: Set up Node.js

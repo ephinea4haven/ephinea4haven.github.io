@@ -43,7 +43,7 @@
 2. 网站显示名必须与该条目的 `zh` 完全一致；大小写差异只能发生在英文检索层，不能把不同物品合并。
 3. 页面优先保存英文物品身份，并通过生成的 `ITEM_TRANSLATIONS` 或 `data-item-en` 显示中文，避免复制中文名称。
 4. 权威词典缺少物品或译名疑似错误时，先用同版本中文/英文 Unitxt、ItemPMT 索引或实际游戏消费者核实，再修改 `../droptable/i18n_names.json`。
-5. 修改权威词典后运行 `npm run sync:i18n`，提交词典源和本站生成结果，并执行 `npm run test:i18n`。
+5. 修改并提交权威词典后，将 `.github/workflows/pages.yml` 固定到该权威提交，运行 `npm run sync:i18n`，提交本站生成结果，并执行 `npm run test:i18n`。
 6. 禁止只改 `assets/js/i18n/items_i18n.js`；它是生成文件，下次同步会覆盖手工修改。
 
 普通正文若必须同时展示中英文物品名，也要从同一权威条目核对，不能自行缩写中文。例如：
