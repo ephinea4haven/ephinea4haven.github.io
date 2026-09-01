@@ -36,7 +36,7 @@ const [agents, standard, materialPlan, priceGuide, mechanics, commandGuide, auth
 assert.match(agents, /Treat PSOBB as the mandatory context for every translation/);
 assert.match(agents, /\.\.\/droptable\/i18n_names\.json/);
 assert.match(standard, /网站物品名称必须与掉落表对齐/);
-assert.match(standard, /Photon Drop\s+→ 光子微晶PD/);
+assert.match(standard, /Photon Drop\s+→ 光子微晶ＰＤ/);
 
 for (const expected of [
   '<title>能力药配点 | Ephinea PSOBB</title>',

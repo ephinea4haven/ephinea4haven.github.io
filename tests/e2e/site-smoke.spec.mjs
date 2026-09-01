@@ -888,7 +888,7 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('#anniv-2026-milestones')).toContainText('11 项 MAE 最低值');
   await expect(page.locator('#anniv-2026-milestones')).toContainText(/服务器点数为 [\d,]+/);
   await expect(page.locator('#anniv-2026-milestones')).toContainText('Meseta 掉落量 +25%（已解锁）');
-  await expect(page.locator('#anniv-2026-milestones')).toContainText('光子微晶PD (Photon Drop) 掉落率 +10%（已解锁）');
+  await expect(page.locator('#anniv-2026-milestones')).toContainText('光子微晶ＰＤ (Photon Drop) 掉落率 +10%（已解锁）');
   const milestoneText = await page.locator('#anniv-2026-milestones .section-heading p').innerText();
   const serverPoints = Number.parseInt(milestoneText.match(/服务器点数为 ([\d,]+)/)[1].replaceAll(',', ''), 10);
   const questPointRows = await page.locator('#anniv-2026-milestones .shop-table').nth(1).locator('tbody tr').evaluateAll(
@@ -907,7 +907,7 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('a[href="https://ephinea.pioneer2.net/11th-anniv-event/"]')).toHaveText('2026 官方实时里程碑');
   await expect(page.locator('#anniv-2026-shop')).toContainText('Heart of Flight Fan');
   await expect(page.locator('#anniv-2026-shop')).toContainText('Blue Powder Coating');
-  await expect(page.locator('#anniv-2026-shop')).toContainText('光子水晶PC (Photon Crystal)');
+  await expect(page.locator('#anniv-2026-shop')).toContainText('光子水晶ＰＣ (Photon Crystal)');
   await expect(page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' }).locator('strong'))
     .toHaveText('拉古奥盗贼 · 铜牌 随机奖池');
   const thiefPool = page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' });
@@ -1188,7 +1188,7 @@ test('canonical item pages preserve authoritative Unitxt mixed-width names', asy
   await expect(page.getByRole('button', { name: /半角|全角/ })).toHaveCount(0);
 
   await page.goto('/data/enemy_weapon_hit.html');
-  await expect(page.locator('[data-item-zh="森隐雷藏拳套０型"]')).toHaveText('森隐雷藏拳套０型');
+  await expect(page.locator('[data-item-zh="森隐雷藏拳套0型"]')).toHaveText('森隐雷藏拳套0型');
 
   await page.goto('/data/equipment_technique_boosts.html');
   await expect(page.getByRole('heading', { name: '装备魔法增幅', exact: true }).first()).toBeVisible();
