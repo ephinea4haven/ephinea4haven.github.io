@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-31T01:13:27.840598+00:00",
+  "generatedAt": "2026-09-06T01:27:12.177627+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,12 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 43501
+      "revision": 43522
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 43500
+      "revision": 43520
     }
   },
   "boosts": {
@@ -38,29 +38,29 @@
     "4": 14
   },
   "current": {
-    "week": "30 August 2026",
+    "week": "05 September 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Silent Afterimage 2",
-        "name": "Silent Afterimage #2",
-        "abbreviation": "SA2"
+        "page": "Sweep-up Operation 2",
+        "name": "Sweep-up Operation #2",
+        "abbreviation": "SU2"
       },
       {
         "episode": 2,
-        "page": "Lost CHARGE VULCAN",
-        "name": "Lost CHARGE VULCAN",
-        "abbreviation": "LCV"
+        "page": "Lost SHOCK RIFLE",
+        "name": "Lost SHOCK RIFLE",
+        "abbreviation": "LSR"
       },
       {
         "episode": 4,
-        "page": "New Mop-Up Operation 1",
-        "name": "New Mop-Up Operation #1",
-        "abbreviation": "NMU1"
+        "page": "War of Limits 2",
+        "name": "War of Limits 2",
+        "abbreviation": "WoL2"
       }
     ],
-    "expectedWeek": "30 August 2026",
-    "isFresh": true
+    "expectedWeek": "06 September 2026",
+    "isFresh": false
   },
   "tracker": {
     "statusLabels": {
@@ -73,7 +73,6 @@
         "possible": [
           "MU1",
           "SU1",
-          "SU2",
           "SU3",
           "SU4",
           "AO1",
@@ -82,7 +81,7 @@
           "LHP"
         ],
         "current": [
-          "SA2"
+          "SU2"
         ],
         "unavailable": [
           "MU2",
@@ -97,17 +96,17 @@
           "SR3",
           "SR4",
           "SA1",
+          "SA2",
           "LHS"
         ]
       },
       "2": {
         "possible": [
           "PS1",
-          "LSR",
           "LDR"
         ],
         "current": [
-          "LCV"
+          "LSR"
         ],
         "unavailable": [
           "PW1",
@@ -125,6 +124,7 @@
           "AO4",
           "AO5",
           "LBA",
+          "LCV",
           "TET",
           "TWT"
         ]
@@ -132,7 +132,6 @@
       "4": {
         "possible": [
           "WoL1",
-          "WoL2",
           "WoL3",
           "WoL5",
           "NMU2",
@@ -143,10 +142,11 @@
           "SU14"
         ],
         "current": [
-          "NMU1"
+          "WoL2"
         ],
         "unavailable": [
           "WoL4",
+          "NMU1",
           "NMU5",
           "SU11"
         ]
@@ -184,6 +184,10 @@
       "quest": "AO5",
       "page": "Anomalous Ordeal 5",
       "issue": "Quest page has no Enemy Counts section"
+    },
+    {
+      "scope": "current-rotation",
+      "issue": "Wiki current-rotation template is stale: expected 06 September 2026, found 05 September 2026"
     }
   ],
   "quests": [
