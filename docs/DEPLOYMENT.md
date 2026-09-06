@@ -74,9 +74,11 @@ The read-only validation path and local two-template Wiki publisher are
 complete. The publisher uses authenticated `clientlogin`, CSRF protection,
 revision and timestamp conflict guards, post-edit reads, and resumable handling
 of either possible one-template partial state. It still accepts three extracted
-abbreviations rather than raw `/rbr` text. Raw-output parsing, site snapshot
-publication and idempotent retries spanning both the Git site and Wiki remain
-unimplemented. A dry-run projection is not evidence of publication; only the
+abbreviations rather than raw `/rbr` text. Raw-output parsing, automated site
+snapshot publication from that input and idempotent retries spanning both the
+Git site and Wiki remain unimplemented. Manual Wiki snapshot synchronization,
+review, Git submission and Pages deployment are available. A dry-run projection
+is not evidence of publication; only the
 publisher's verified revision results are.
 
 The two targets use different publication mechanisms. Haven is a static Pages
@@ -87,6 +89,19 @@ already performs conflict-protected edits and verification for its two
 MediaWiki templates. The Git site and Wiki do not share a transaction, so a
 future cross-target publisher must record per-target results and support safe
 retries after a partial failure.
+
+When the maintainer requests synchronization from a Wiki already updated by
+others, follow the manual procedure in `scripts/RBR_DATA.md`. Check the actual
+snapshot diff: `--require-current` exits successfully without writing when the
+mirror is pending, and skips fetching when the local snapshot is already current.
+Record any maintainer-confirmed local date correction separately from the source
+revision. A site correction does not edit the remote Wiki.
+
+The September 6, 2026 rotation (`SU2 / LSR / WoL2`) was deployed at `e2c7678` in
+[Pages run 34004094751](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34004094751).
+The site week was corrected to September 6; the Wiki read during synchronization
+was dated September 5 and was not edited by this update. The run passed the
+dependency audit, business tests, reproducibility checks and all 117 browser tests.
 
 ## Anniversary milestone publication
 

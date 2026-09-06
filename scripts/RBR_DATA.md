@@ -59,7 +59,7 @@ RBR 不再通过 GitHub Actions 定时轮询 Ephinea Wiki。旧的 `sync-rbr.yml
 “输入一次 `/rbr` 后自动更新本站和 Ephinea Wiki”的跨目标发布闭环尚未实现：
 
 - 没有整段 `/rbr` 原文解析器；
-- 不写入或提交本站 `data/rbr/source.json`；
+- 计划器和 Wiki 发布器不写入或提交本站 `data/rbr/source.json`；本站快照由生成器配合人工审核、提交和 Pages 发布更新；
 - 本地发布器只负责 Ephinea Wiki 的两个模板，不提交本站；
 - 本站和 Wiki 两个目标之间仍没有顺序发布、部分失败恢复或幂等重试。
 
@@ -81,6 +81,44 @@ Ephinea Wiki 使用标准 MediaWiki Action API。本地发布器建立内存 coo
 
 本站与 Wiki 不存在共同事务，不能声称“同时原子更新”。Wiki 内部的两个模板同样不是
 单一事务，但发布器会记录每个模板的 revision，并允许基于相同输入安全重试。
+
+## Wiki 已由他人更新时同步本站
+
+维护者要求采用已更新的 Wiki 时，可以通过生成器同步本站；这不代表已独立核对游戏内
+`/rbr`。先检查当前任务、Episode 归属、Tracker 和 UTC 周日期，再审核快照 diff：
+
+```bash
+python3 scripts/build_rbr_data.py --require-current
+git diff -- data/rbr/source.json
+npm run test:rbr
+npm run build
+```
+
+`--require-current` 在镜像日期过期或 Tracker 不一致时打印 `RBR rotation pending`
+并以状态码 0 退出，不写入文件；不能仅凭退出码判断已同步。本地快照已经是本周时，
+该选项会直接跳过抓取。需要重新核对远程内容时，使用独立临时输出路径。
+
+若 Wiki 日期有误，先生成临时诊断快照并核对原因，不自动把任意旧日期改成本周。
+维护者确认只修正本站日期时，在本站快照修正 `current.week`，保持 `expectedWeek`
+与 `isFresh` 一致，并移除已解决的对应日期 warning；保留其他 warning 和实际读取的
+源 revision。在更新记录中保留 Wiki 原日期及本站修正依据，避免把人工修正当成源数据。
+
+审核后提交并推送到 `master`，确认对应 Pages 流程的 `build` 和 `deploy` 均成功。
+本站发布与 Ephinea Wiki 编辑分别记录；本站日期修正不会修改远程模板。
+
+### 2026-09-06 更新记录
+
+- 维护者要求同步他人已更新的 Wiki；本次未读取游戏内 `/rbr`。
+- 当前模板读取 revision `43522`，Tracker 读取 revision `43520`；两者任务一致：
+  EP1 `SU2`、EP2 `LSR`、EP4 `WoL2`。候选池仍为 58 个任务。
+- Wiki 模板在读取时标注 `05 September 2026`，本周 UTC 周日为 `06 September 2026`。
+  经维护者确认，本站日期修正为 9 月 6 日；本次未编辑 Ephinea Wiki。
+- 数据同步提交 `fde585f`；日期修正与发布依赖修复提交 `e2c7678`。
+  后者将 `fast-uri` 更新至 `3.1.7`、`qs` 更新至 `6.16.0`，解除依赖审计拦截。
+- 本地 54 项 RBR 测试和生产构建通过。完整本地浏览器测试首次 116 项通过、
+  1 项锚点定位失败，该项单独复测通过。CI 全部 117 项浏览器测试通过，
+  依赖审计、业务测试、可重复构建和 Pages 部署均成功：
+  [发布记录](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34004094751)。
 
 ## Wiki 更新方案验证
 
