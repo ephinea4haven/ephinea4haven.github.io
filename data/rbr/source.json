@@ -38,7 +38,7 @@
     "4": 14
   },
   "current": {
-    "week": "05 September 2026",
+    "week": "06 September 2026",
     "quests": [
       {
         "episode": 1,
@@ -60,7 +60,7 @@
       }
     ],
     "expectedWeek": "06 September 2026",
-    "isFresh": false
+    "isFresh": true
   },
   "tracker": {
     "statusLabels": {
@@ -184,10 +184,6 @@
       "quest": "AO5",
       "page": "Anomalous Ordeal 5",
       "issue": "Quest page has no Enemy Counts section"
-    },
-    {
-      "scope": "current-rotation",
-      "issue": "Wiki current-rotation template is stale: expected 06 September 2026, found 05 September 2026"
     }
   ],
   "quests": [
