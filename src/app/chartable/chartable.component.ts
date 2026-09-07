@@ -51,7 +51,9 @@ export class ChartableComponent {
   readonly table = viewChild<ElementRef<HTMLTableElement>>('statTable');
   readonly classes = CLASSES;
   readonly groups = ['战士 Hunter', '游骑兵 Ranger', '法师 Force'] as const;
-  readonly selectedClass = signal('');
+  readonly selectedClass = signal('humar');
+  readonly levelError = signal('');
+  readonly quickLevels = [1, 50, 100, 150, 200];
   readonly requestedLevel = signal<number | null>(null);
   readonly highlightedLevel = signal<number | null>(null);
   readonly data = characterData as unknown as CharacterData;
@@ -68,35 +70,55 @@ export class ChartableComponent {
     return Object.entries(this.data[classId]?.lv ?? {});
   }
 
-  show(): void {
-    const classId = this.selectedClass();
-    if (!classId) {
-      window.alert('请选择职业');
-      return;
-    }
-    const level = this.requestedLevel();
-    if (level !== null && (level < 1 || level > 200)) {
-      window.alert('请输入有效的等级（1-200）');
-      return;
-    }
-    this.highlightedLevel.set(level);
-    afterNextRender(() => {
-      const target = level === null
-        ? this.table()?.nativeElement
-        : this.table()?.nativeElement.querySelector(`tbody tr:nth-child(${level})`);
-      target?.scrollIntoView({ behavior: 'smooth', block: level === null ? 'start' : 'center' });
-    }, { injector: this.injector });
+  selectClass(classId: string): void {
+    this.selectedClass.set(classId);
+    this.scrollToLevel();
   }
 
-  reset(): void {
-    this.selectedClass.set('');
-    this.requestedLevel.set(null);
-    this.highlightedLevel.set(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  scrollToTop(event: Event): void {
+  onTabKeydown(event: KeyboardEvent): void {
+    const tabs = Array.from((event.currentTarget as HTMLElement).querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const index = tabs.indexOf(event.target as HTMLButtonElement);
+    if (index < 0) return;
+    let next: number;
+    switch (event.key) {
+      case 'ArrowRight': next = (index + 1) % tabs.length; break;
+      case 'ArrowLeft': next = (index - 1 + tabs.length) % tabs.length; break;
+      case 'Home': next = 0; break;
+      case 'End': next = tabs.length - 1; break;
+      default: return;
+    }
     event.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this.selectClass(this.classes[next].id);
+    tabs[next].focus();
+  }
+
+  show(): void {
+    const level = this.requestedLevel();
+    if (level === null || !Number.isInteger(level) || level < 1 || level > 200) {
+      this.levelError.set('请输入 1–200 之间的整数等级');
+      return;
+    }
+    this.levelError.set('');
+    this.highlightedLevel.set(level);
+    this.scrollToLevel();
+  }
+
+  jumpTo(level: number): void {
+    this.requestedLevel.set(level);
+    this.show();
+  }
+
+  private scrollToLevel(): void {
+    afterNextRender(() => {
+      const table = this.table()?.nativeElement;
+      const container = table?.parentElement;
+      const level = this.highlightedLevel();
+      const row = level === null ? null : table?.querySelector<HTMLElement>('tbody tr:nth-child(' + level + ')');
+      if (!container) return;
+      const top = row
+        ? row.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop - container.clientHeight / 2 + row.offsetHeight / 2
+        : 0;
+      container.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    }, { injector: this.injector });
   }
 }

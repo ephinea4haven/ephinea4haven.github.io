@@ -1,2 +1,66 @@
-/* Page-specific behavior and data-table styling for tools/chartable.html. */
-.chartable-page{max-width:1200px}.jump-container{margin:0 0 28px;text-align:center}.jump-container h2{margin:0 0 18px!important;padding:0!important;border:0!important;color:var(--heading-h3)!important;font-size:1.15rem!important}.jump-controls{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap}.jump-controls label{color:var(--text-secondary);font-weight:600}.jump-controls select{min-width:170px}.jump-controls input{width:110px}.jump-btn{color:var(--accent-dark)!important;background:linear-gradient(135deg,var(--accent),var(--accent-alt))!important}.reset-btn{border-color:rgba(251,113,133,.45)!important;color:#fecdd3!important;background:rgba(190,24,93,.16)!important}.table-container{max-width:100%;margin:0 auto}.chartable-page table{display:none;width:100%!important;margin:0;background:var(--tool-surface-strong)!important}.chartable-page table.active{display:table}.chartable-page thead{text-align:center}.chartable-page thead tr:first-child th{padding:15px!important;border-color:var(--accent-30)!important;color:var(--accent)!important;background:var(--table-header-bg)!important;font-size:1.2em;font-weight:700}.chartable-page thead tr:nth-child(2) th{padding:10px 5px!important;border-color:var(--accent-15)!important;color:var(--heading-h3)!important;background:rgba(0,0,0,.3)!important;font-size:.85em}.chartable-page tbody tr{background:rgba(0,0,0,.1)!important;transition:background-color .2s ease}.chartable-page tbody tr:nth-child(even){background:var(--accent-5)!important}.chartable-page tbody tr:hover{background:var(--accent-15)!important}.chartable-page tbody td{padding:8px!important;border-color:var(--accent-10)!important;text-align:center;font-size:.9em}.empty-state{padding:60px 20px;text-align:center;color:var(--heading-h3);font-size:1.1em}.empty-state-icon{margin-bottom:16px;font-size:3em;opacity:.5}.chartable-page tbody tr.highlight{color:var(--accent)!important;background:var(--accent-30)!important;font-weight:700;box-shadow:inset 0 0 20px var(--accent-20);animation:highlightPulse 1.5s ease-in-out}.back-to-top{position:fixed;right:30px;bottom:30px;display:flex;align-items:center;justify-content:center;width:50px;height:50px;border:2px solid var(--accent-30);border-radius:50%;color:var(--accent-dark);background:linear-gradient(135deg,var(--accent),var(--accent-alt));box-shadow:0 0 30px var(--accent-40);font-size:24px;font-weight:700;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease;z-index:100}.back-to-top:hover{transform:translateY(-3px);box-shadow:0 0 40px var(--accent-60)}@keyframes highlightPulse{50%{background:var(--accent-50)!important}}@media(max-width:768px){.chartable-page tbody td{padding:6px 3px!important;font-size:.8em}.chartable-page thead tr:nth-child(2) th{padding:8px 3px!important;font-size:.75em}.back-to-top{right:18px;bottom:18px;width:44px;height:44px}}
+/* Character tabs and a contained, scrollable level reference. */
+.chartable-page { max-width: 1120px; }
+.chartable-page .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.chartable-page .section-heading p { margin: 0; color: var(--text-secondary); font-size: 14px; }
+.class-tabs { display: grid; gap: 12px; }
+.class-group { display: grid; grid-template-columns: 132px minmax(0, 1fr); align-items: center; gap: 16px; }
+.group-label { color: var(--text-secondary); font-size: 14px; }
+.group-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.chartable-page .class-tab { display: flex; align-items: center; gap: 8px; padding: 8px; min-width: 0; text-align: left; background: var(--tool-surface); border-color: var(--border-color); position: relative; }
+.chartable-page .class-tab img { flex-shrink: 0; width: 40px; height: 56px; object-fit: contain; border-radius: 0; }
+.class-label { display: flex; flex-direction: column; min-width: 0; }
+.class-code { color: var(--text-primary); font-size: 14px; font-weight: 700; }
+.class-name { color: var(--text-secondary); font-size: 12px; font-weight: 400; }
+.selected-mark { display: none; position: absolute; right: 6px; top: 2px; color: var(--accent); font-size: 12px; }
+.chartable-page .class-tab[aria-selected='true'] { border-color: var(--accent); background: var(--accent-15); box-shadow: inset 0 -2px var(--accent); }
+.class-tab[aria-selected='true'] .class-code { color: var(--accent); }
+.class-tab[aria-selected='true'] .selected-mark { display: block; }
+#class-panel { margin-top: 24px; border-top: 1px solid var(--border-color); padding-top: 24px; }
+.level-toolbar, .jump-controls, .quick-levels { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.level-toolbar { justify-content: space-between; gap: 16px; }
+.jump-controls label { font-size: 14px; margin-right: 4px; }
+.chartable-page .jump-controls input { width: 104px; min-height: 44px; }
+.chartable-page .jump-btn { color: var(--accent-dark); background: var(--accent); min-height: 44px; padding-inline: 20px; }
+.chartable-page .quick-levels button { color: var(--text-secondary); font-size: 12px; min-height: 44px; background: transparent; border-color: var(--border-color); }
+.chartable-page .quick-levels button[aria-pressed='true'] { color: var(--accent); background: var(--accent-10); border-color: var(--accent); }
+.chartable-page .level-feedback { margin: 8px 0 24px; color: var(--text-secondary); font-size: 12px; text-align: left; }
+.chartable-page .level-feedback.has-error { color: hsl(350 100% 82%); }
+.table-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.chartable-page .table-heading h2 { margin: 0; padding: 0; border: 0; color: var(--text-primary); font-size: 20px; }
+.table-heading h2 span { margin-left: 8px; font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+.table-heading > span { color: var(--text-secondary); font-size: 12px; }
+.chartable-page .table-hint { color: var(--text-secondary); font-size: 12px; margin: 4px 0 12px; text-align: left; }
+.table-container { overflow: auto; max-height: 560px; border: 1px solid var(--border-color); border-radius: 8px; scrollbar-color: var(--text-muted) var(--bg-primary); }
+.chartable-page table { margin: 0; min-width: 640px; width: 100%; border-collapse: separate; border-spacing: 0; overflow: visible; border-radius: 0; background: hsl(224 54% 13%); font-variant-numeric: tabular-nums; font-size: 14px; }
+.chartable-page caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.chartable-page table th, .chartable-page table td { text-align: right; padding: 10px 16px; border: 0; border-bottom: 1px solid var(--border-color); white-space: nowrap; }
+.chartable-page thead th { position: sticky; top: 0; z-index: 2; background: hsl(222 48% 20%); }
+.chartable-page thead th span { display: block; font-size: 11px; font-weight: 400; color: var(--text-secondary); }
+.chartable-page tbody tr { background: hsl(224 54% 13%); }
+.chartable-page tbody tr:nth-child(even) { background: hsl(224 48% 16%); }
+.chartable-page tbody tr:hover { background: hsl(217 48% 23%); }
+.chartable-page tbody th { position: sticky; left: 0; z-index: 1; background: inherit; }
+.chartable-page tbody tr > th { background-color: inherit; }
+.chartable-page thead th:first-child { left: 0; z-index: 3; }
+.chartable-page tbody tr.highlight { background: hsl(204 65% 24%); }
+.chartable-page tbody tr.highlight > * { color: var(--accent); font-weight: 700; }
+.chartable-page tbody tr.highlight th { box-shadow: inset 3px 0 var(--accent); }
+.chartable-page :is(button, #class-panel, .table-container):focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (max-width: 900px) {
+  .class-group { grid-template-columns: 1fr; gap: 8px; }
+  .class-tabs { gap: 16px; }
+}
+@media (max-width: 600px) {
+  .chartable-page { padding: 20px 12px; }
+  .chartable-page .section-heading { display: block; margin-bottom: 16px; }
+  .chartable-page .section-heading p { margin-top: 4px; font-size: 12px; }
+  .group-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .chartable-page .class-tab img { width: 32px; height: 44px; }
+  .chartable-page .class-tab { padding: 6px 8px; }
+  .quick-levels { width: 100%; gap: 6px; }
+  .chartable-page .quick-levels button { flex: 1; padding-inline: 4px; }
+  .table-container { max-height: 65vh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chartable-page button { transition: none; }
+}

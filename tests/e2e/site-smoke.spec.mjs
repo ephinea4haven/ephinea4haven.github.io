@@ -100,7 +100,8 @@ test('data-driven tools avoid asynchronous loading placeholders', () => {
 
   expect(statusHtml).toContain('class="stat-table"');
   expect(statusHtml).not.toContain('正在加载人物数据');
-  expect(chartableHtml).toContain('请选择职业查看能力表');
+  expect(chartableHtml).toContain('tab-humar');
+  expect(chartableHtml).toContain('1–200 级能力值');
   expect(chartableHtml).not.toContain('正在加载人物数据');
   expect(comboHtml).toContain('id="combo-calc-table"');
   expect(comboHtml).not.toContain('Loading calculator data');
@@ -412,10 +413,10 @@ for (const accessibilityPath of [
       await page.locator('#class').selectOption('ramarl');
       await page.locator('#lv').selectOption('100');
     } else {
-      await page.locator('#classSelect').selectOption('ramarl');
+      await page.getByRole('tab', { name: 'RAmarl 军嫂' }).click();
       await page.locator('#levelInput').fill('123');
       await page.locator('.jump-btn').click();
-      await expect(page.locator('#ramarl')).toHaveClass(/active/);
+      await expect(page.getByRole('tab', { name: 'RAmarl 军嫂' })).toHaveAttribute('aria-selected', 'true');
     }
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
@@ -661,7 +662,7 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   expect(runtimeErrors).toEqual([]);
 });
 
-test('character table supports jump, keyboard, highlight, and reset', async ({ page }) => {
+test('character table supports icon tabs, level validation, keyboard navigation, and mobile scrolling', async ({ page }) => {
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
   page.on('console', (message) => {
@@ -669,28 +670,51 @@ test('character table supports jump, keyboard, highlight, and reset', async ({ p
   });
 
   await page.goto('/tools/chartable.html');
-  await expect(page.locator('.table-container table')).toHaveCount(0);
+  await expect(page.locator('#humar tbody tr')).toHaveCount(200);
+  await expect(page.getByRole('tab')).toHaveCount(12);
 
-  await page.locator('#classSelect').selectOption('ramarl');
+  await page.getByRole('tab', { name: 'RAmarl 军嫂' }).click();
   await page.locator('#levelInput').fill('123');
   await page.locator('.jump-btn').click();
   await expect(page.locator('.table-container table')).toHaveCount(1);
   await expect(page.locator('#ramarl tbody tr')).toHaveCount(200);
-  await expect(page.locator('#ramarl')).toHaveClass(/active/);
+  await expect(page.getByRole('tab', { name: 'RAmarl 军嫂' })).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('#ramarl tbody tr').nth(122)).toHaveClass(/highlight/);
-  await expect(page.locator('#ramarl tbody tr').nth(122).locator('td').first()).toHaveText('123');
+  await expect(page.locator('#ramarl tbody tr').nth(122).locator('th')).toHaveText('123');
 
-  await page.locator('#classSelect').selectOption('fomar');
+  await page.getByRole('tab', { name: 'FOmar 爆法' }).click();
+  await expect(page.locator('#fomar tbody tr').nth(122)).toHaveClass(/highlight/);
   await page.locator('#levelInput').fill('50');
   await page.locator('#levelInput').press('Enter');
-  await expect(page.locator('#fomar')).toHaveClass(/active/);
+  await expect(page.locator('#fomar')).toBeVisible();
   await expect(page.locator('#fomar tbody tr').nth(49)).toHaveClass(/highlight/);
 
-  await page.locator('.reset-btn').click();
-  await expect(page.locator('#emptyState')).toBeVisible();
-  await expect(page.locator('#classSelect')).toHaveValue('');
-  await expect(page.locator('#levelInput')).toHaveValue('');
-  await expect(page.locator('tbody tr.highlight')).toHaveCount(0);
+  for (const invalid of ['0', '201', '1.5', '']) {
+    await page.locator('#levelInput').fill(invalid);
+    await page.locator('#levelInput').press('Enter');
+    await expect(page.locator('#level-feedback')).toHaveText('请输入 1–200 之间的整数等级');
+    await expect(page.locator('#fomar tbody tr').nth(49)).toHaveClass(/highlight/);
+  }
+  await page.getByRole('button', { name: 'Lv. 200', exact: true }).click();
+  await expect(page.locator('#fomar tbody tr').last()).toHaveClass(/highlight/);
+  await expect(page.locator('#levelInput')).toHaveValue('200');
+  await page.getByRole('tab', { name: 'FOmar 爆法' }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(page.locator('#tab-fomarl')).toBeFocused();
+  await expect(page.locator('#fomarl tbody tr').last()).toHaveClass(/highlight/);
+  await page.keyboard.press('Home');
+  await expect(page.locator('#tab-humar')).toBeFocused();
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.locator('#tab-fonewearl')).toBeFocused();
+  for (const tab of await page.getByRole('tab').all()) {
+    await tab.click();
+    await expect(page.locator('.table-container tbody tr')).toHaveCount(200);
+  }
+  expect(await page.locator('.class-tab img').evaluateAll(images => images.every(img => img.complete && img.naturalWidth > 0))).toBe(true);
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  const container = page.locator('.table-container');
+  expect(await container.evaluate(el => el.scrollWidth > el.clientWidth)).toBe(true);
   expect(runtimeErrors).toEqual([]);
 });
 
