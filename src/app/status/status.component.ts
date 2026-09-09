@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PageChromeComponent } from '../shared/page-chrome.component';
 import characterDataJson from '../../../assets/js/chardata.json';
 import { ItemData } from './item-data.js';
+import { STATUS_ITEM_NAMES } from '../generated/i18n/status-items';
 import {
   CHARACTER_CLASSES,
   CharacterClass,
@@ -175,14 +176,14 @@ export class StatusComponent {
     if (effects.attackSpeed) labels.push(`Attack speed +${effects.attackSpeed}%`);
     if (effects.techniqueSpeed) labels.push('Technique speed ×1.5');
     if (effects.techniqueLevel) labels.push(`Technique level +${effects.techniqueLevel}`);
-    if (effects.smartlink) labels.push('Smartlink');
-    if (effects.v50x) labels.push(effects.v50x === 2 ? 'V502' : 'V501');
+    if (effects.smartlink) labels.push(this.itemName('Smartlink'));
+    if (effects.v50x) labels.push(this.itemName(effects.v50x === 2 ? 'V502' : 'V501'));
     const booleans: readonly [boolean, string][] = [
       [effects.curePoison, 'Cure/Poison'], [effects.cureParalysis, 'Cure/Paralysis'],
       [effects.cureSlow, 'Cure/Slow'], [effects.cureConfuse, 'Cure/Confuse'],
       [effects.cureFreeze, 'Cure/Freeze'], [effects.cureShock, 'Cure/Shock'], [effects.trapVision, 'Trap Vision'],
     ];
-    for (const [active, label] of booleans) if (active) labels.push(label);
+    for (const [active, label] of booleans) if (active) labels.push(this.itemName(label));
     return labels;
   }
 
@@ -210,8 +211,16 @@ export class StatusComponent {
   resetUnits(): void { this.units = ['-', '-', '-', '-']; this.recalculate(); }
   setLanguage(language: Language): void {
     this.language.set(language);
+    if (this.result) this.effectLabels = this.describeEffects(this.result);
     document.documentElement.lang = language === 'zh' ? 'zh-CN' : language;
     document.title = `${this.t('title')} | Ephinea PSOBB`;
+  }
+
+  itemName(name: string): string {
+    if (name === '-' || this.language() !== 'zh') return name;
+    const translated = STATUS_ITEM_NAMES[name];
+    if (!translated) throw new Error(`Missing status item translation: ${name}`);
+    return translated;
   }
 
   t(key: keyof typeof TEXT.zh): string { return TEXT[this.language()][key]; }

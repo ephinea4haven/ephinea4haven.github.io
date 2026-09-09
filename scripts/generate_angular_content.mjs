@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { parse, serialize } from 'parse5';
 import vm from 'node:vm';
 import { marked } from 'marked';
+import { ItemData } from '../src/app/status/item-data.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputDirectory = path.join(root, 'src', 'app', 'generated', 'pages');
@@ -236,6 +237,30 @@ function itemByEnglish(name, context) {
   };
 }
 
+
+// Resolve every status-catalog display name at build time. Unit modifiers belong
+// to the catalog variant; translate its base identity and preserve the modifier.
+const statusCatalog = new ItemData();
+const statusItemNames = {};
+for (const kind of ['armors', 'shields', 'units']) {
+  for (const [code, [name]] of Object.entries(statusCatalog[kind])) {
+    const variant = kind === 'units' && /^([0-9a-f]{2})-([1-5])$/.exec(code);
+    const base = variant ? statusCatalog.units[`${variant[1]}-3`]?.[0] : name;
+    const suffix = variant ? ['', '--', '-', '', '+', '++'][Number(variant[2])] : '';
+    if (!base || name !== base + suffix) {
+      throw new Error(`Status catalog has an invalid unit variant: ${code} ${name}`);
+    }
+    statusItemNames[name] = itemByEnglish(base, `Status ${kind} ${code}`).zh + suffix;
+  }
+}
+// Effects are named by the calculation domain independently of catalog casing.
+for (const name of ['Smartlink', 'V501', 'V502', 'Cure/Poison', 'Cure/Paralysis',
+  'Cure/Slow', 'Cure/Confuse', 'Cure/Freeze', 'Cure/Shock', 'Trap Vision']) {
+  statusItemNames[name] = itemByEnglish(name, 'Status effect').zh;
+}
+await writeFile(path.join(root, 'src/app/generated/i18n/status-items.ts'),
+  `export const STATUS_ITEM_NAMES: Readonly<Record<string, string>> = ${JSON.stringify(statusItemNames)};\n`);
+
 function nodeText(node) {
   if (node.nodeName === '#text') return node.value || '';
   return (node.childNodes || []).map(nodeText).join('');
@@ -255,12 +280,12 @@ function canonicalItemMarkup(item) {
 }
 
 function buildCanonicalItemConsumers(relative, source) {
-  if (![
+  const pairedTablePage = [
     'data/weapon_special_reduction.html',
     'data/enemy_weapon_hit.html',
     'data/equipment_technique_boosts.html',
     'data/gallons_roulette.html',
-  ].includes(relative)) return source;
+  ].includes(relative);
 
   const document = parse(source, { sourceCodeLocationInfo: true });
   const replacements = [];
@@ -277,7 +302,7 @@ function buildCanonicalItemConsumers(relative, source) {
       });
       return;
     }
-    if (node.tagName !== 'table') return;
+    if (!pairedTablePage || node.tagName !== 'table') return;
     const rows = [];
     visit(node, (child) => {
       if (child.tagName === 'tr') rows.push(child);

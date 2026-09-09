@@ -36,7 +36,7 @@ const [agents, standard, materialPlan, priceGuide, mechanics, commandGuide, auth
 assert.match(agents, /Treat PSOBB as the mandatory context for every translation/);
 assert.match(agents, /\.\.\/droptable\/i18n_names\.json/);
 assert.match(standard, /网站物品名称必须与掉落表对齐/);
-assert.match(standard, /Photon Drop\s+→ 光子微晶ＰＤ/);
+assert.match(standard, /Photon Drop\s+→ 光子微晶 PD/);
 
 for (const expected of [
   '<title>能力药配点 | Ephinea PSOBB</title>',
@@ -44,7 +44,7 @@ for (const expected of [
   '通用（以最少插件达到属性上限）',
   '<th rowspan="2">玛古</th>',
   '<th>攻击力药</th>',
-  '<th>运之药</th>',
+  '<th><span data-item-en="Luck Material"></span></th>',
 ]) assert.ok(materialPlan.includes(expected), `material plan is missing ${JSON.stringify(expected)}`);
 
 for (const expected of [

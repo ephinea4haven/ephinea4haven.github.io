@@ -19,6 +19,7 @@ DEFAULT_AUTHORITY = Path(
     )
 )
 OUTPUT = REPO / "assets" / "js" / "i18n" / "items_i18n.js"
+MAG_OUTPUT = REPO / "assets" / "js" / "mag-evolution.js"
 
 
 def slugify(name: str) -> str:
@@ -71,6 +72,30 @@ def render(items: dict[str, dict[str, str]], authority_bytes: bytes) -> str:
     )
 
 
+def render_mag_names(source: str, items: dict[str, dict[str, str]]) -> str:
+    """Refresh named Mag nodes without changing evolution rules or source metadata."""
+    header, separator, body = source.partition("window.MAG_EVOLUTION = ")
+    if not separator or not body.rstrip().endswith(";"):
+        raise ValueError("Invalid MAG_EVOLUTION data framing")
+    data = json.loads(body.rstrip()[:-1])
+
+    def align(value):
+        if isinstance(value, dict):
+            if "name" in value and "zh" in value:
+                name = value["name"]
+                if name not in items:
+                    raise ValueError(f"Missing Mag identity in authority: {name!r}")
+                value["zh"] = items[name]["zh"]
+            for child in value.values():
+                align(child)
+        elif isinstance(value, list):
+            for child in value:
+                align(child)
+
+    align(data)
+    return header + separator + json.dumps(data, ensure_ascii=False, indent=2) + ";\n"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--authority", type=Path, default=DEFAULT_AUTHORITY)
@@ -81,19 +106,21 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     authority_bytes = args.authority.read_bytes()
-    generated = render(
-        build_site_dictionary(load_authority(args.authority)),
-        authority_bytes,
-    )
+    items = load_authority(args.authority)
+    outputs = {
+        OUTPUT: render(build_site_dictionary(items), authority_bytes),
+        MAG_OUTPUT: render_mag_names(MAG_OUTPUT.read_text(encoding="utf-8"), items),
+    }
     if args.check:
-        if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != generated:
-            raise SystemExit(
-                "items_i18n.js is stale; run scripts/sync_item_i18n.py"
-            )
-        print("items_i18n.js matches droptable/i18n_names.json")
+        stale = [path.name for path, generated in outputs.items()
+                 if not path.is_file() or path.read_text(encoding="utf-8") != generated]
+        if stale:
+            raise SystemExit(f"{', '.join(stale)} is stale; run npm run sync:i18n")
+        print("Item dictionary and Mag names match droptable/i18n_names.json")
         return
-    OUTPUT.write_text(generated, encoding="utf-8")
-    print(f"Wrote {OUTPUT} ({generated.count(chr(10)):,} lines)")
+    for path, generated in outputs.items():
+        path.write_text(generated, encoding="utf-8")
+        print(f"Wrote {path} ({generated.count(chr(10)):,} lines)")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { readFileSync } from 'node:fs';
+import vm from 'node:vm';
+import { ItemData } from '../../src/app/status/item-data.js';
 
 const buildManifest = JSON.parse(readFileSync('_site/build-manifest.json', 'utf8'));
 
@@ -905,14 +907,14 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(questGuide.locator('.section-id-icon')).toHaveCount(27);
   await expect(questGuide.locator('.section-id-icon[alt="Skyly"]')).toHaveCount(5);
   await expect(questGuide).toContainText('综合首选 · Desert');
-  await expect(questGuide).toContainText('定点首选 · CCA');
+  await expect(questGuide).toContainText('定点首选 · 中央管理区 (CCA)');
   await expect(questGuide).toContainText('配队原则');
   await expect(page.locator('a[href="https://note.com/fine_yarrow878/n/n84a2c42c24f5"]')).toHaveText('みどり · MAE 社区攻略参考');
   await expect(page.locator('#anniv-2026-changes')).toContainText('/badgenotify');
   await expect(page.locator('#anniv-2026-milestones')).toContainText('11 项 MAE 最低值');
   await expect(page.locator('#anniv-2026-milestones')).toContainText(/服务器点数为 [\d,]+/);
   await expect(page.locator('#anniv-2026-milestones')).toContainText('Meseta 掉落量 +25%（已解锁）');
-  await expect(page.locator('#anniv-2026-milestones')).toContainText('光子微晶ＰＤ (Photon Drop) 掉落率 +10%（已解锁）');
+  await expect(page.locator('#anniv-2026-milestones')).toContainText('光子微晶 PD (Photon Drop) 掉落率 +10%（已解锁）');
   const milestoneText = await page.locator('#anniv-2026-milestones .section-heading p').innerText();
   const serverPoints = Number.parseInt(milestoneText.match(/服务器点数为 ([\d,]+)/)[1].replaceAll(',', ''), 10);
   const questPointRows = await page.locator('#anniv-2026-milestones .shop-table').nth(1).locator('tbody tr').evaluateAll(
@@ -931,14 +933,14 @@ test('anniversary archive defaults to the announced 2026 event and keeps 2025 av
   await expect(page.locator('a[href="https://ephinea.pioneer2.net/11th-anniv-event/"]')).toHaveText('2026 官方实时里程碑');
   await expect(page.locator('#anniv-2026-shop')).toContainText('Heart of Flight Fan');
   await expect(page.locator('#anniv-2026-shop')).toContainText('Blue Powder Coating');
-  await expect(page.locator('#anniv-2026-shop')).toContainText('光子水晶ＰＣ (Photon Crystal)');
+  await expect(page.locator('#anniv-2026-shop')).toContainText('光子水晶 PC (Photon Crystal)');
   await expect(page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' }).locator('strong'))
     .toHaveText('拉古奥盗贼 · 铜牌 随机奖池');
   const thiefPool = page.locator('#anniv-2026-shop .special-card').filter({ hasText: '拉古奥盗贼' });
   await expect(thiefPool.locator('.prize-list').first().locator('li').nth(0))
-    .toHaveText('小ＨＰ回复液 (Monomate)');
+    .toHaveText('小HP回复液 (Monomate)');
   await expect(thiefPool.locator('.prize-list').first().locator('li').nth(1))
-    .toHaveText('小ＴＰ回复液 (Monofluid)');
+    .toHaveText('小TP回复液 (Monofluid)');
   await expect.poll(() => thiefPool.locator('.item-en').evaluateAll(
     (names) => names.length > 10 && names.every((name) => name.textContent?.startsWith(' ')),
   )).toBe(true);
@@ -1046,13 +1048,13 @@ test('anniversary years expose complete localized milestone contracts', async ({
   const expected = [
     { year: 2026, total: /服务器点数为 [\d,]+/, rows: 16, first: ['1,000', '稀有物品掉落率 +10%'], last: ['20,000', '命中 武器出现率 +1%'] },
     { year: 2025, total: '25,417', rows: 11, first: ['2,500', '经验值 +50%'], last: ['20,000', '命中 属性出现概率 +1%'] },
-    { year: 2024, total: '11,316', rows: 22, first: ['150', '稀有物品掉落率 +10%'], last: ['12,000 / 14,000 / 16,000 / 18,000 / 20,000', '官方最终存档仍显示“？？？ (???)”'] },
+    { year: 2024, total: '11,316', rows: 22, first: ['150', '稀有物品掉落率 +10%'], last: ['12,000 / 14,000 / 16,000 / 18,000 / 20,000', '官方最终存档仍显示“???”'] },
     { year: 2023, total: '18,149,237', rows: 26, first: ['25 万', '周年徽章掉落率 +25%'], last: ['1,500 万', '命中 属性出现概率 +1%'] },
-    { year: 2022, total: '13,578,324', rows: 24, first: ['25 万', '任意掉落率 +5%'], last: ['1,500 万', '官方最终存档仍显示“？？？ (???)”'] },
+    { year: 2022, total: '13,578,324', rows: 24, first: ['25 万', '任意掉落率 +5%'], last: ['1,500 万', '官方最终存档仍显示“???”'] },
     { year: 2021, total: '11,050,327', rows: 19, first: ['5 万', 'Festivity on the Beach'], last: ['600 万后', '每 10 万击杀使徽章率 +1%'] },
     { year: 2020, total: '8,777,030', rows: 19, first: ['5 万', 'Festivity on the Beach'], last: ['600 万后', '每 10 万击杀使徽章率 +1%'] },
-    { year: 2019, total: '4,352,016', rows: 18, first: ['5 万', 'Beach Laughter'], last: ['750 万', '官方页面保留为“？？？ (???)”'] },
-    { year: 2018, total: '2,482,339', rows: 17, first: ['5 万', 'Festivity on the Beach'], last: ['500 万', '官方页面保留为“？？？ (???)”'] },
+    { year: 2019, total: '4,352,016', rows: 18, first: ['5 万', 'Beach Laughter'], last: ['750 万', '官方页面保留为“???”'] },
+    { year: 2018, total: '2,482,339', rows: 17, first: ['5 万', 'Festivity on the Beach'], last: ['500 万', '官方页面保留为“???”'] },
     { year: 2017, total: '6,092,971', rows: 18, first: ['5 万', 'Festivity on the Beach'], last: ['500 万后', '每 20,000 击杀使徽章率 +1%'] },
     { year: 2016, total: '最终突破 450 万', rows: 20, first: ['5 万', 'Resting at the Beach'], last: ['600 万', 'Photon Sphere'] },
   ];
@@ -1120,9 +1122,9 @@ test('banner item lists use Chinese-first bilingual names', async ({ page }) => 
     '红色手镯(Red Ring)',
   );
   await expect(page.locator('#other-items + .table-scroll')).toContainText(
-    '天使之琴之心(Heart of Angel Harp)',
+    '天使竖琴之心(Heart of Angel Harp)',
   );
-  await expect(page.getByText('天使之琴涂之心', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('天使竖琴涂之心', { exact: true })).toHaveCount(0);
   await expect.poll(() => names.first().evaluate((name) => (
     [...name.children].map((part) => part.className)
   ))).toEqual(['item-zh', 'item-en']);
@@ -1182,10 +1184,13 @@ test('Angular content behaviors preserve lookup and Section ID interactions', as
 test('Angular multilingual data tables switch language without legacy globals', async ({ page }) => {
   await page.goto('/data/bdp/');
   await expect.poll(() => page.locator('.bdp-row').count()).toBeGreaterThan(0);
-  const nugBazooka = page.locator('[data-item-zh="NUG2000火箭筒"]').first();
-  await expect(nugBazooka).toHaveText('NUG2000火箭筒');
+  const db3069 = page.locator('.bdp-row-2 td').nth(1);
+  await expect(db3069).toContainText('DB 之剑「3069·Chris 公司」');
+  const nugBazooka = page.locator('[data-item-zh="NUG2000 火箭筒"]').first();
+  await expect(nugBazooka).toHaveText('NUG2000 火箭筒');
   await page.getByRole('button', { name: 'EN', exact: true }).click();
   await expect(nugBazooka).toHaveText('NUG2000-Bazooka');
+  await expect(db3069).toContainText("DB's Saber (3069 Chris)");
   await expect(page.getByRole('group', { name: '中文道具译名字符宽度' })).toHaveCount(0);
   await expect(page.locator('#pageTitle')).toHaveText("Black Paper's Deal Drop Charts");
   await expect(page.locator('.bdp-head')).toContainText('Ultimate');
@@ -1204,24 +1209,24 @@ test('Angular multilingual data tables switch language without legacy globals', 
 
 test('canonical item pages preserve authoritative Unitxt mixed-width names', async ({ page }) => {
   await page.goto('/data/weapon_special_reduction.html');
-  const justice = page.locator('[data-item-zh="Ｈ＆Ｓ２５正义制裁"]');
-  await expect(justice).toHaveText('Ｈ＆Ｓ２５正义制裁');
+  const justice = page.locator('[data-item-zh="H&S25 正义制裁"]');
+  await expect(justice).toHaveText('H&S25 正义制裁');
   await expect(page.locator('[data-item-zh="突刺匕首"]')).toHaveText('突刺匕首');
-  await expect(page.locator('[data-item-zh="强袭散弹枪"]')).toHaveText('强袭散弹枪');
+  await expect(page.locator('[data-item-zh="强袭霰弹枪"]')).toHaveText('强袭霰弹枪');
   await expect(page.getByText('暗杀者的投刃', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /半角|全角/ })).toHaveCount(0);
 
   await page.goto('/data/enemy_weapon_hit.html');
-  await expect(page.locator('[data-item-zh="森隐雷藏拳套0型"]')).toHaveText('森隐雷藏拳套0型');
+  await expect(page.locator('[data-item-zh="森隐雷藏拳套 0型"]')).toHaveText('森隐雷藏拳套 0型');
 
   await page.goto('/data/equipment_technique_boosts.html');
   await expect(page.getByRole('heading', { name: '装备魔法增幅', exact: true }).first()).toBeVisible();
-  await expect(page.locator('[data-item-zh="冰杖「达冈」"]')).toHaveText('冰杖「达冈」');
+  await expect(page.locator('[data-item-zh="冰杖「达贡」"]')).toHaveText('冰杖「达贡」');
   const caduceusRow = page.locator('tr', { has: page.locator('[data-item-en="Caduceus"]') });
   const tyrellRow = page.locator('tr', { has: page.locator('[data-item-en="Tyrell\'s Parasol"]') });
   await expect(caduceusRow.locator('td').nth(1)).toHaveText('Grants');
   await expect(caduceusRow.locator('td').nth(2)).toHaveText('伤害 +20%');
-  await expect(tyrellRow.locator('td').first()).toContainText('总督恩赐的阳伞');
+  await expect(tyrellRow.locator('td').first()).toContainText('总督恩赐阳伞');
   await expect(tyrellRow.locator('td').nth(1)).toHaveText('Shifta / Deband / Resta');
   await expect(tyrellRow.locator('td').nth(2)).toHaveText('范围 +100%');
   await expect(page.locator('[data-item-en="Ignition Cloak"]')).toBeVisible();
@@ -1230,7 +1235,7 @@ test('canonical item pages preserve authoritative Unitxt mixed-width names', asy
   await expect(page.getByText('IZMAELA', { exact: true })).toHaveCount(0);
   await expect(page.getByText('Two Kamui', { exact: true })).toHaveCount(0);
   await expect(page.getByText('Evil Curst', { exact: true })).toHaveCount(0);
-  await expect(page.locator('[data-item-zh="冰杖「达冈」"]')).toHaveText('冰杖「达冈」');
+  await expect(page.locator('[data-item-zh="冰杖「达贡」"]')).toHaveText('冰杖「达贡」');
 });
 
 test('Angular price guide filters categories and bilingual item names', async ({ page }) => {
@@ -1249,7 +1254,7 @@ test('Angular price guide filters categories and bilingual item names', async ({
   await expect(page.locator('#match-count')).toContainText(/找到 [1-9]\d* \/ \d+ 项/);
   await expect(page.locator('#price-content')).toContainText('圣剑「拉维斯·迦农」');
   await page.locator('#price-search').fill('Frozen Shooter');
-  await expect(page.locator('#price-content')).toContainText('冷射枪');
+  await expect(page.locator('#price-content')).toContainText('极冻枪');
   await page.locator('#price-search').fill('5th Anniv. Blade');
   await expect(page.locator('#price-content')).toContainText('PSO5周年纪念·感恩刀');
   await page.locator('#price-search').fill('ＰＳＯ５周年');
@@ -1417,3 +1422,121 @@ for (const redirectCase of legacyDropChartRedirects) {
     await expect(page).toHaveURL(redirectCase.target);
   });
 }
+
+
+test('authored item names stay aligned across guides and tools', async ({ page }) => {
+  const authority = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
+  for (const route of ['/', '/data/itempt.html', '/data/itempmt.html', '/guide/acronym.html',
+    '/guide/class-guide.html', '/tools/materialplan.html', '/tools/mechanics.html',
+    '/tools/v50x.html', '/tools/equipment.html', '/data/gallons_roulette.html']) {
+    await page.goto(route);
+    const names = await page.locator('[data-item-en]').evaluateAll((nodes) => nodes.map((node) => ({
+      en: node.getAttribute('data-item-en'), zh: node.querySelector('[data-item-zh]')?.textContent,
+    })));
+    expect(names.length, route).toBeGreaterThan(0);
+    if (route === '/tools/equipment.html') {
+      for (const [en, count] of [["DARK FLOW", 1], ["Master Raven", 2], ["L&K38 Combat", 1],
+        ["S-BEAT'S BLADE", 1], ["Tyrell's Parasol", 1]]) {
+        expect(names.filter((item) => item.en === en), en).toHaveLength(count);
+      }
+      await expect(page.locator('.content-container')).not.toContainText('暗黑弗罗文');
+      await expect(page.locator('.content-container')).not.toContainText('乌鸦');
+    }
+    for (const { en, zh } of names) expect(zh, `${route}: ${en}`).toBe(authority[en].zh);
+  }
+});
+
+
+test('status equipment names follow the authority through variants and language switches', async ({ page }) => {
+  const sandbox = { window: {} };
+  vm.runInNewContext(readFileSync('assets/js/i18n/items_i18n.js', 'utf8'), sandbox);
+  const authority = Object.values(sandbox.window.ITEMS_I18N);
+  const catalog = new ItemData();
+  const canonical = (name) => {
+    const exact = authority.find((item) => item.en === name);
+    const candidates = exact ? [exact] : authority.filter((item) => item.en.toLowerCase() === name.toLowerCase());
+    expect(candidates, name).toHaveLength(1);
+    return candidates[0].zh;
+  };
+  await page.goto('/tools/status.html?armor=10&shield=10&unit1=10&unit2=00-5&unit3=51&unit4=43');
+  await expect(page.locator('#armor')).toHaveValue('10');
+  for (const [kind, selector] of [['armors', '#armor'], ['shields', '#shield'], ['units', '#unit1']]) {
+    const actual = await page.locator(`${selector} option`).evaluateAll((options) => Object.fromEntries(
+      options.filter((option) => option.value !== '-').map((option) => [option.value, option.textContent]),
+    ));
+    const expected = Object.fromEntries(Object.entries(catalog[kind]).map(([code, [name]]) => {
+      const variant = kind === 'units' && /^([0-9a-f]{2})-([1-5])$/.exec(code);
+      const base = variant ? catalog.units[`${variant[1]}-3`][0] : name;
+      const suffix = variant ? ['', '--', '-', '', '+', '++'][Number(variant[2])] : '';
+      return [code, canonical(base) + suffix];
+    }));
+    expect(actual, kind).toEqual(expected);
+  }
+  await expect(page.locator('.equipment-report li span:first-child')).toHaveText([
+    '完美铠甲', '守护盾', '矿工级/HP', '骑士级/攻击++', '智能联结', '解除/麻痹',
+  ]);
+  await expect(page.locator('.effects')).toContainText('智能联结');
+  await expect(page.locator('.effects')).toContainText('解除/麻痹');
+  const share = await page.locator('.share-link a').getAttribute('href');
+  const stats = await page.locator('.stat-table tbody').innerText();
+  for (const language of ['EN', '日', '中']) {
+    await page.getByRole('button', { name: language, exact: true }).click();
+    await expect(page.locator('#armor option:checked')).toHaveText(language === '中' ? '完美铠甲' : 'Perfect Frame');
+    await expect(page.locator('#unit2 option:checked')).toHaveText(language === '中' ? '骑士级/攻击++' : 'Knight/Power++');
+    await expect(page.locator('.equipment-report li').first()).toContainText(language === '中' ? '完美铠甲' : 'Perfect Frame');
+    await expect(page.locator('.effects')).toContainText(language === '中' ? '智能联结' : 'Smartlink');
+    await expect(page.locator('.share-link a')).toHaveAttribute('href', share);
+    expect(await page.locator('.stat-table tbody').innerText()).toBe(stats);
+  }
+  await page.goto(share);
+  await expect(page.locator('#unit2')).toHaveValue('00-5');
+  await expect(page.locator('#unit2 option:checked')).toHaveText('骑士级/攻击++');
+});
+
+
+test('complete item lookup includes current inactive aliases and removes retired entries', async ({ page }) => {
+  const sandbox = { window: {} };
+  vm.runInNewContext(readFileSync('assets/js/i18n/items_i18n.js', 'utf8'), sandbox);
+  const expected = Object.fromEntries(Object.values(sandbox.window.ITEMS_I18N).map(({ en, zh }) => [en, zh]));
+  await page.goto('/data/en2chinese.html');
+  const actual = await page.locator('#lookup tr').evaluateAll((rows) => Object.fromEntries(
+    rows.map((row) => [row.cells[0].textContent, row.cells[1].textContent]),
+  ));
+  expect(actual).toEqual(expected);
+  expect(actual["DB'S SABER 3062"]).toBe('DB 之剑「3062」');
+  expect(actual['Book of KATANA1']).toBe('四天书「壹」');
+  expect(actual['MARK3']).toBe('MARK3');
+  expect(actual['Claw']).toBe('光子爪');
+  expect(actual['キュア/ポイズン']).toBe('解除/中毒');
+  expect(actual['アギト(1977))']).toBeUndefined();
+});
+
+test('anniversary currency and interactive item replies keep their event context', async ({ page }) => {
+  await page.goto('/event/anniversary.html?year=2022');
+  await expect(page.locator('.year-callout').filter({ hasText: 'Scavenger' })).toContainText('银牌');
+  await expect(page.locator('.year-callout').filter({ hasText: 'Scavenger' })).not.toContainText('WEAPONS');
+  await expect(page.locator('.year-callout').filter({ hasText: 'Scavenger' })).not.toContainText('银制勋章');
+  await page.goto('/event/anniversary.html?year=2025');
+  const option = page.locator('[data-quest-response="Power Material：1 Silver Badge"]');
+  const panel = option.locator('xpath=ancestor::*[contains(@class,"quest-menu-panel")][1]');
+  await option.click();
+  await expect(panel.locator('.quest-menu-response')).toContainText('攻击力药');
+  await expect(panel.locator('.quest-menu-response')).toContainText('银牌');
+  await expect(panel.locator('.quest-menu-response')).not.toContainText('WEAPONS');
+  await option.click();
+  await expect(panel.locator('.quest-menu-response .item-bilingual')).toHaveCount(1);
+});
+
+
+test('seasonal archives preserve exact case-sensitive weapon identities', async ({ page }) => {
+  await page.goto('/event/anniversary.html?year=2025');
+  const hammer = page.locator('.item-bilingual').filter({
+    has: page.locator('.item-en', { hasText: /^\s*\(Hammer\)$/ }),
+  }).first();
+  await expect(hammer.locator('.item-zh')).toHaveText('铁锤');
+  await page.goto('/event/christmas.html?year=2017');
+  const launcher = page.locator('.item-bilingual').filter({
+    has: page.locator('.item-en', { hasText: /^\s*\(Launcher\)$/ }),
+  }).first();
+  await expect(launcher.locator('.item-zh')).toHaveText('强袭霰弹枪');
+});

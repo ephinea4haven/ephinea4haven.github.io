@@ -76,8 +76,8 @@ export class SeasonalEventBehavior {
         this.markAnniversaryLabels(content);
         this.decorateNpcTables(content);
       }
-      this.localizeItems(eventName === 'christmas'
-        ? this.host.querySelector<HTMLElement>('.christmas-overview')! : content);
+      this.localizeItems(content, eventName === 'anniversary');
+      if (eventName === 'christmas') this.localizeItems(this.host.querySelector<HTMLElement>('.christmas-overview'));
       if (eventName === 'anniversary') this.localizeAnniversaryLabels(content);
       const anchor = location.hash ? this.host.querySelector<HTMLElement>(location.hash) : null;
       anchor?.scrollIntoView();
@@ -132,10 +132,11 @@ export class SeasonalEventBehavior {
     }
   }
 
-  private localizeItems(container: HTMLElement | null): void {
+  private localizeItems(container: HTMLElement | null, anniversary = false): void {
     if (!container) return;
     const translations = Object.values(ITEM_TRANSLATIONS)
-      .filter((item) => item.en && item.zh && item.en !== item.zh && !AMBIGUOUS.has(item.en.toLocaleLowerCase()))
+      .filter((item) => item.en && item.zh && item.en !== item.zh && !AMBIGUOUS.has(item.en.toLocaleLowerCase())
+        && !(anniversary && ANNIVERSARY_LABELS.has(item.en)))
       .map((item) => [item.en!, item.zh!] as const);
     const source = container.textContent?.toLocaleLowerCase() ?? '';
     const seen = new Set<string>();
@@ -145,7 +146,15 @@ export class SeasonalEventBehavior {
       seen.add(key); return true;
     }).sort(([left], [right]) => right.length - left.length);
     if (!matches.length) return;
-    const byName = new Map(matches.map(([en, zh]) => [en.toLocaleLowerCase(), zh]));
+    const byExactName = new Map(translations);
+    const byName = new Map<string, string>();
+    const ambiguous = new Set<string>();
+    for (const [en, zh] of translations) {
+      const key = en.toLocaleLowerCase();
+      if (byName.has(key) && byName.get(key) !== zh) ambiguous.add(key);
+      byName.set(key, zh);
+    }
+    for (const key of ambiguous) byName.delete(key);
     const escaped = matches.map(([en]) => en.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
     const pattern = new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z0-9])`, 'gi');
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
@@ -162,12 +171,13 @@ export class SeasonalEventBehavior {
       const fragment = document.createDocumentFragment();
       let cursor = 0;
       text.replace(pattern, (match, prefix: string, english: string, offset: number) => {
+        const translation = byExactName.get(english) ?? byName.get(english.toLocaleLowerCase());
+        if (!translation) return match;
         const start = offset + prefix.length;
         fragment.append(text.slice(cursor, start).replace(/([\u3400-\u9fff])\s+$/, '$1'));
         const wrapper = document.createElement('span');
         wrapper.className = 'item-bilingual';
         const zh = document.createElement('span');
-        const translation = byName.get(english.toLocaleLowerCase()) ?? '';
         zh.className = 'item-zh';
         zh.textContent = translation;
         const en = document.createElement('span'); en.className = 'item-en'; en.textContent = ` (${english})`;
@@ -251,7 +261,12 @@ export class SeasonalEventBehavior {
       const panel = option.closest<HTMLElement>('.quest-menu-panel, .quest-menu-demo');
       panel?.querySelectorAll<HTMLElement>('[data-quest-response]').forEach((button) => button.classList.toggle('is-active', button === option));
       const response = panel?.querySelector<HTMLElement>('.quest-menu-response');
-      if (response) response.textContent = option.dataset['questResponse'] ?? '';
+      if (response) {
+        response.textContent = option.dataset['questResponse'] ?? '';
+        const anniversary = this.host.querySelector('[data-event="anniversary"]') !== null;
+        this.localizeItems(response, anniversary);
+        if (anniversary) this.localizeAnniversaryLabels(response);
+      }
       return;
     }
     const thumbnail = target?.closest<HTMLElement>('.npc-thumbnail-button');

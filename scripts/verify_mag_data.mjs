@@ -49,7 +49,7 @@ check('#1 FO B 有 Marica', find(foB, 'Marica').length === 1);
 check('#1 FO B 无 Madhu', find(foB, 'Madhu').length === 0);
 check('#1 Marica 规则', conds(foB, 'Marica').join() === 'POW > DEX ≥ MIND');
 check('#1 Marica PB=Pilla', find(foB, 'Marica')[0]?.pb === 'Pilla');
-check('#1 Marica 中文名', find(foB, 'Marica')[0]?.zh === '摩利支天');
+check('#1 Marica 中文名', find(foB, 'Marica')[0]?.zh === '摩利遮');
 check('#1 Madhu 只在 RA', find(D.classes.RA.stage3.B, 'Madhu').length === 1);
 check('#1 Madhu PB=M&Y', find(D.classes.RA.stage3.B, 'Madhu')[0]?.pb === 'Mylla & Youlla');
 
@@ -103,8 +103,8 @@ check('#9 每个节点至少一个触发', allNodes.every((m) => Object.keys(m.t
 
 // ---- #10 译名取自 items_i18n
 check('#10 Kalki 迦尔吉', D.classes.RA.stage1.zh === '迦尔吉');
-check('#10 Apsaras 飞天', find(D.classes.HU.stage3.B, 'Apsaras')[0]?.zh === '飞天');
-check('#10 Naraka 奈落迦', find(foA, 'Naraka')[0]?.zh === '奈落迦');
+check('#10 Apsaras 阿普萨拉斯', find(D.classes.HU.stage3.B, 'Apsaras')[0]?.zh === '阿普萨拉斯');
+check('#10 Naraka 那罗迦', find(foA, 'Naraka')[0]?.zh === '那罗迦');
 check('#10 每个节点都有 zh', allNodes.every((m) => m.zh && m.zh !== m.name));
 
 // ---- FO 特殊分支。wikitext 把职业与规则拆成两行，早先的解析只留下了职业行，

@@ -60,6 +60,18 @@ Unitxt and replaces matching Chinese names from `psobb-localization`'s unified
 mixed-width `zh/unitxt_j.prs`. Angular consumers render those values verbatim
 with one-way binding. Search uses NFKC normalization, but display never performs
 a global halfwidth/fullwidth conversion and exposes no width selector.
+The same synchronization command refreshes named Mag evolution nodes while
+preserving their rules and source metadata. Authored item labels use
+`data-item-en` and resolve at build time; structured Black Paper and Coren reward
+IDs must resolve to the current authority or generation fails.
+
+Seasonal localization covers both initial content and fetched historical
+fragments, including Christmas overview and archive bodies. Exact English casing
+selects item identity before any unambiguous case-insensitive lookup; Hammer and
+HAMMER cannot share a translation. Anniversary currency abbreviations use their
+event context, and interactive quest replies repeat the same localization after
+replacing the response text.
+
 
 ## Content and application routes
 
@@ -173,6 +185,9 @@ a mobile-scrolling result table with a sticky stat column, displays canonical
 resistance codes with Chinese, English and Japanese labels, and exposes the
 current configuration through a serialized share link. Browser tests cover these
 language and interaction contracts in addition to the exhaustive domain checks.
+Chinese equipment options, result names and named item effects come from the
+canonical item dictionary at build time. Catalog unit modifiers remain attached
+to their translated base names; catalog codes and shared presets stay unchanged.
 All 47 material-plan links are parsed as calculator inputs and checked for known
 fields, numeric form, Mag and material limits, and class-compatible equipment.
 

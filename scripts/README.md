@@ -8,7 +8,7 @@ are build inputs and are not copied into the published artifact.
 |---|---|
 | `build_site.mjs` | Generate, prerender, validate and atomically publish `_site`. |
 | `generate_angular_content.mjs` | Convert content sources and datasets into lazy Angular routes. |
-| `sync_item_i18n.py` | Generate the site's item dictionary from the sole authority, sibling `droptable/i18n_names.json`. |
+| `sync_item_i18n.py` | Generate the site's item dictionary and refresh Mag evolution names from the sole authority, sibling `droptable/i18n_names.json`, preserving gameplay data. |
 | `generate_angular_combo.mjs` | Normalize the pinned PSOStats calculation/data boundary. |
 | `import_challenge_source_maps.py` | Import the original Episode I map images embedded in the archived PSO World PDFs. |
 | `build_challenge_map_atlas.py` | Build the localized Episode I challenge-map atlas. |
