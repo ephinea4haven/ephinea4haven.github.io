@@ -627,7 +627,7 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
 
   await page.goto('/');
   await expect(page.locator('[data-current-activity="anniversary-2026"]')).toHaveCount(0);
-  await expect(page.locator('[data-holiday="anniversary"]')).toHaveAttribute('href', '/event/anniversary.html?year=2026');
+  await expect(page.locator('[data-holiday="anniversary-2026"]')).toHaveAttribute('href', '/event/anniversary.html?year=2026');
   await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
   await expect(page.locator('#galatine-atp')).toContainText('ATP');

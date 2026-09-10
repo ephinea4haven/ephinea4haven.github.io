@@ -20,10 +20,15 @@ export class LandingPageBehavior extends BrowserContentBehavior {
     }).formatToParts(now);
     const value = (type: Intl.DateTimeFormatPartTypes) => parts.find((part) => part.type === type)?.value ?? '';
     const today = `${value('year')}-${value('month')}-${value('day')}`;
+    const activeIds = new Set<string>();
     for (const activity of this.host.querySelectorAll<HTMLElement>('[data-current-activity]')) {
       const activeFrom = activity.dataset['activeFrom'];
       const activeThrough = activity.dataset['activeThrough'];
       activity.hidden = !activeFrom || !activeThrough || today < activeFrom || today > activeThrough;
+      if (!activity.hidden) activeIds.add(activity.dataset['currentActivity']!);
+    }
+    for (const link of this.host.querySelectorAll<HTMLElement>('[data-holiday]')) {
+      link.classList.toggle('holiday-active', activeIds.has(link.dataset['holiday']!));
     }
   }
 
@@ -67,19 +72,5 @@ export class LandingPageBehavior extends BrowserContentBehavior {
     const next = this.host.querySelector<HTMLElement>('#buf-next');
     if (current) current.textContent = LandingPageBehavior.buffs[offset];
     if (next) next.textContent = `下周轮替：${LandingPageBehavior.buffs[(offset + 1) % 4]}`;
-
-    const date = new Date();
-    const month = date.getMonth() + 1;
-    const monthDay = month * 100 + date.getDate();
-    const active: Record<string, boolean> = {
-      valentines: month === 2,
-      easter: monthDay >= 301 && monthDay <= 515,
-      anniversary: monthDay >= 801 && monthDay <= 915,
-      halloween: monthDay >= 1001 && monthDay <= 1110,
-      christmas: monthDay >= 1201 || monthDay <= 115,
-    };
-    for (const link of this.host.querySelectorAll<HTMLElement>('[data-holiday]')) {
-      link.classList.toggle('holiday-active', active[link.dataset['holiday'] ?? ''] === true);
-    }
   }
 }

@@ -131,7 +131,9 @@ events are prerendered for deterministic builds, but inactive regions use the
 native `hidden` state and occupy no layout space. Each activity carries an
 inclusive America/Los_Angeles visibility window; the landing-page Angular
 directive reevaluates every registered region when the route is activated and
-when the local calendar date changes.
+on each clock tick. Holiday navigation links carry the same year-specific
+activity IDs and derive their LIVE state from those active regions. Archived
+or unannounced events cannot become active based on the month alone.
 
 The event spotlight has its own annual-event visual layer: an animated
 cyan-blue-magenta-gold perimeter, restrained edge scan, energy corner marks and
