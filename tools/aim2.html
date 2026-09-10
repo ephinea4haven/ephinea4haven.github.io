@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="PSOBB 瞄准旋转机制概述（修订版，待实测验收）">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>🎯 瞄准旋转机制概述（修订版） | Ephinea PSOBB</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <style>
+        .content-container .rev { border-left: 3px solid #f0b35a; background: rgba(240, 179, 90, .08); padding: 10px 16px; margin: 12px 0 10px; border-radius: 0 6px 6px 0; }
+        .content-container .rev .tag { display: inline-block; font-size: .75em; letter-spacing: .12em; color: #f0b35a; font-weight: 700; margin-bottom: 4px; }
+        .content-container .rev p { margin-bottom: 6px; }
+        .content-container .rev p:last-child { margin-bottom: 0; }
+        .content-container details { margin: 0 0 16px; font-size: .92em; color: var(--text-secondary); }
+        .content-container summary { cursor: pointer; color: var(--link-color); }
+        .content-container blockquote { margin: 8px 0; padding: 6px 14px; border-left: 2px solid var(--border-color); color: var(--text-secondary); }
+        .content-container blockquote p { margin: 0; }
+        .content-container .note { margin-top: 30px; padding: 16px 18px; border: 1px solid var(--accent-20); border-radius: 8px; font-size: .92em; color: var(--text-secondary); }
+        .content-container .note ul { margin-bottom: 0; }
+        .content-container .legend { font-size: .9em; color: var(--text-secondary); margin-bottom: 20px; }
+    </style>
+</head>
+
+<body>
+    <page-chrome title="🎯 瞄准旋转机制概述（修订版）"></page-chrome>
+
+    <div class="content-container">
+        <h1>🎯 瞄准旋转机制概述（修订版）</h1>
+
+<p class="legend">本页是 <a href="/tools/aim.html">原页面</a> 的修订版，待游戏内实测验收。琥珀色侧标为改写的段落，可展开「对照原文」查看被替换的文字。操作步骤与应用场景沿用原文。</p>
+
+<p>在连击系统中，角色在<strong>每一段攻击开始时</strong>决定一次面朝方向，之后在这一段里逐步转向那个方向。这个“<strong>瞄准旋转（Auto-Facing）</strong>”规则决定了你能否在连击中保持角度。</p>
+
+<h3>🔹 Combo连击机制中的旋转规则：</h3>
+
+<p>1. <strong>第一段攻击（1st Combo Step）</strong></p>
+
+<ul>
+<li>按下攻击键时，角色会<strong>自动旋转</strong>，面对<strong>瞄准区域内最近的敌人</strong>。</li>
+<li>瞄准区域按武器不同：距离、水平与垂直角度各有参数；读取的是按下前一刻已生成的目标列表。</li>
+</ul>
+
+<p>2. <strong>第二 / 第三段攻击（2nd / 3rd Combo Step）</strong></p>
+
+<div class="rev"><span class="tag">修订</span><p>只会转向<strong>上一段记录下来的目标</strong>。发起时会检查该目标是否仍有效（存活、可被锁定）：有效就转向它；已死亡或失效则<strong>保持当前朝向</strong>，不会重新锁定新的敌人。</p></div>
+<details><summary>对照原文</summary><blockquote><p>仅当当前攻击目标与上一次相同时，才会发生自动旋转。</p></blockquote><p>代码里没有“与上次相同”的比较。第二、三段读取的是上一段命中时保存的目标，并只验证它是否仍有效。</p></details>
+
+<hr>
+
+<h1>🧠 高阶操作技巧：绕过 / 控制旋转机制</h1>
+
+<h3>✅ 1. 快速瞄准（Snap Aim）【仅限第一段】</h3>
+
+<ul>
+<li>当你<strong>移动摇杆并按下攻击键</strong>时，角色立即转向输入方向出手，<strong>原地转身攻击</strong>，不移动身体。</li>
+</ul>
+
+<div class="rev"><span class="tag">修订</span><p>前提：按下的瞬间，<strong>原朝向的瞄准区域内没有可锁定的敌人</strong>。若已有敌人在锁定范围内，角色仍会记录它，并在出手过程中转回去。</p></div>
+<details><summary>对照原文</summary><blockquote><p>角色会按照输入方向攻击，不会自动锁定敌人。</p></blockquote><p>方向输入确实立即改写朝向，但第一段随后仍读取目标列表；列表里有有效目标时照样记录其角度。</p></details>
+
+<ul>
+<li>应用场景：</li>
+</ul>
+
+<ul>
+<li>躲避 <strong>Indi Belra</strong> 的远程攻击</li>
+<li><strong>贴墙卡怪</strong>（如 Ill Gill、Gibbles 在塔中的行为）</li>
+</ul>
+
+<hr>
+
+<h3>✅ 2. Heaven Striker 精准多目标击杀</h3>
+
+<p>使用 <strong>Heaven Striker</strong> 武器时，可精准处理多个目标：</p>
+
+<p><strong>操作流程</strong>：</p>
+
+<p>1. <strong>N1</strong>：手动瞄准两个残血敌人之间的空隙攻击（避免锁定）</p>
+<p>2. <strong>S2</strong>：击杀目标A</p>
+<p>3. <strong>S3</strong>：击杀目标B</p>
+
+<div class="rev"><span class="tag">修订</span><p>📌 原理：N1 空打没有记录目标，所以 <strong>S2 不会自动旋转</strong>。S2 的特殊攻击用更宽的锁定范围命中 A；A 一旦被判定击杀就立即失效，<strong>S3 发起时无目标可转</strong>，于是保持角度射向 B。</p><p>反例：若 S2 <strong>MISS 或没有击杀 A</strong>，S3 会转向 A。另外子弹本身会朝目标飞，身体不转不影响命中侧面的敌人。</p></div>
+<details><summary>对照原文</summary><blockquote><p>由于 N1未锁定敌人 → 后续 S2/S3 不触发自动旋转 → 保持精确角度输出</p></blockquote><p>N1 空打只解释 S2。S3 是否旋转取决于 S2 记录的目标在 S3 发起时是否仍有效，因此“S2 击杀 A”是必要条件。</p></details>
+
+<hr>
+
+<h3>✅ 3. 敌人不存在时不会自动旋转</h3>
+
+<ul>
+<li>若你在敌人尚未生成或尚未进入攻击范围时就按下第一击（N1），<strong>不会触发自动转身</strong>。</li>
+</ul>
+
+<div class="rev"><span class="tag">修订</span><p>这只对第一段有效。后续段若在上一段命中时记录到刚刷新的敌人，仍会转向它。</p></div>
+
+<hr>
+
+<h3>✅ 4. 快捷栏取消追踪（Palette Cancel）</h3>
+
+<p>使用快捷栏切换，<strong>让这一段攻击不发出、也不记录目标</strong>：</p>
+
+<p><strong>操作方法</strong>：</p>
+
+<ul>
+<li>在 <strong>前排快捷栏</strong>中按下攻击键；</li>
+<li>同时按住后排快捷栏的按键，使当前栏切换到一个<strong>没有绑定该攻击类型</strong>的快捷栏。</li>
+</ul>
+
+<div class="rev"><span class="tag">修订</span><p>切换必须在这一段的<strong>出手判定之前</strong>生效，否则取消不了。是否取消取决于切换后有没有匹配这次攻击的配置，与按的是哪个键无关。</p></div>
+<details><summary>对照原文</summary><blockquote><p>同时按住后排快捷栏中未绑定攻击的任意按键。</p></blockquote><p>代码检查的是切栏后 14 组瞄准配置中是否还有该攻击类型的启用项；单个按键未绑定不是充分条件。</p></details>
+
+<p>🔍 效果：</p>
+
+<ul>
+<li>不生成弹道</li>
+<li>不命中任何目标（即使近战）</li>
+<li>不锁定敌人</li>
+<li>不引爆友军冰冻陷阱等（玩家经验，未在代码中核对）</li>
+</ul>
+
+<p>📌 结果：这一段不发出攻击事件，也不记录目标，所以<strong>下一段没有目标可转向</strong>。</p>
+
+<p><strong>常用场景</strong>：</p>
+
+<ul>
+<li>敌人刚刷新时，使用 <strong>Shot</strong> 或 <strong>Needle</strong> 保持角度，以便进行后续的 <strong>S3 精准击杀</strong></li>
+</ul>
+
+<p>💡 示例连击格式：<code>(N)(N)S</code></p>
+
+<div class="note"><strong>修订依据与边界</strong>
+<ul>
+<li>机制解释来自对客户端代码的静态分析，Haven、Tethealla、Ephinea 三份客户端在相关函数上逐字节一致；未做实机逐帧验证，本页待游戏内实测后再替换原页面。</li>
+<li>Ephinea 启动后会对伤害与特殊攻击函数打运行时补丁，已核对不改变“击杀立即使目标失效”的顺序结论。</li>
+</ul>
+</div>
+
+    </div>
+</body>
+
+</html>
