@@ -134,6 +134,10 @@ directive reevaluates every registered region when the route is activated and
 on each clock tick. Holiday navigation links carry the same year-specific
 activity IDs and derive their LIVE state from those active regions. Archived
 or unannounced events cannot become active based on the month alone.
+`tests/e2e/home-activities.spec.mjs` covers the retired anniversary link,
+year-specific activation, cross-year Christmas dates and Pacific start/end
+boundaries while the browser uses an Asia/Shanghai timezone. The boundary test
+keeps the page open to verify that panels and navigation update together.
 
 The event spotlight has its own annual-event visual layer: an animated
 cyan-blue-magenta-gold perimeter, restrained edge scan, energy corner marks and

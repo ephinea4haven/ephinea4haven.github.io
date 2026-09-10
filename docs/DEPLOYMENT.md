@@ -11,6 +11,12 @@ Production is built and deployed by `.github/workflows/pages.yml`.
 3. The deploy job publishes that exact artifact. It does not check out or
    rebuild the repository.
 
+The build job checks out the pinned item-name authority into `droptable/` and
+sets `DROPTABLE_I18N_AUTHORITY` for the entire job. Business tests and browser
+tests must read the same checked-out authority; setting this variable only on
+the business-test step leaves browser tests looking for the local sibling path
+`../droptable/i18n_names.json`, which does not exist in CI.
+
 Local release verification:
 
 ```bash
@@ -54,6 +60,39 @@ run completes:
 
 The workflow publishes only the artifact that passed the release gates; do not
 copy files directly into the deployed site.
+
+### September 10, 2026 release
+
+Commit `186ce35fb96f772b82f45597bb797eb62c694b2e` passed both build and deployment
+in [Pages run 34427458809](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34427458809).
+The run passed the locked install, dependency audit with zero vulnerabilities,
+business tests, two reproducible builds and all 129 browser tests. The artifact
+contains 58 prerendered Angular routes and 45 event content fragments.
+
+- `f4f9f18` removed the landing navigation's recurring month-based event
+  guesses. Navigation LIVE markers now use the same year-specific activity IDs
+  and inclusive Pacific date windows as the activity panels. It also made the
+  item-name authority path available to every build-job step.
+- `49c03b8` upgraded the indirect Hono dependency from 4.13.1 to 4.13.7 to pass
+  the dependency audit. [PR #21](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/21)
+  was closed because its complete lockfile change was already on `master`.
+- [PR #19](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/19)
+  was merged at `abbd10d`, updating the pinned `actions/deploy-pages` action to
+  5.0.1. [PR #20](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/20)
+  was merged at `186ce35`, updating Angular framework packages to 22.1.5 and
+  Angular build, CLI and SSR packages to 22.1.7.
+
+The homepage fix was first deployed by
+[Pages run 34427005202](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34427005202).
+A live Chromium check confirmed that the anniversary archive link remained
+available with no LIVE marker and no visible current-activity panels.
+
+During local validation of the combined dependency updates, one existing
+equipment-guide fragment-navigation assertion timed out. The unchanged focused
+test then passed three consecutive runs, the unchanged full suite passed
+129/129, and the final CI suite passed 129/129. No assertion was weakened and no
+product workaround was added. If the timeout recurs, retain its Playwright
+trace and investigate the navigation and viewport timing before changing code.
 
 ## RBR update validation
 

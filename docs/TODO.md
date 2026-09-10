@@ -26,7 +26,13 @@
   without a halfwidth/fullwidth selector.
 - [x] Ephinea equipment-based Technique boost reference covering weapons,
   frames and barriers through the canonical translation catalog.
-- [x] Landing-page seasonal highlighting with reduced-motion support.
+- [x] Landing-page seasonal highlighting with reduced-motion support; LIVE
+  markers and activity panels share registered yearly dates, so expired or
+  unannounced events cannot be highlighted by month alone.
+- [x] September 10 homepage fix and dependency updates released: Angular
+  patch group and deploy-pages merged, duplicate Hono PR closed, and the CI
+  item-name authority path shared across business and browser tests. See the
+  [verified release record](DEPLOYMENT.md#september-10-2026-release).
 - [x] Standalone Mag feeder/planner deployment with legacy URL redirect.
 - [x] Original-source high-resolution map atlas for the Episode I and II challenge guides.
 - [x] Standalone Chinese Seabed route, combat and equipment guide.
