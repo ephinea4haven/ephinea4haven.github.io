@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-06T01:27:12.177627+00:00",
+  "generatedAt": "2026-09-13T00:15:28.025009+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,12 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 43522
+      "revision": 43587
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 43520
+      "revision": 43588
     }
   },
   "boosts": {
@@ -38,28 +38,28 @@
     "4": 14
   },
   "current": {
-    "week": "06 September 2026",
+    "week": "13 September 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Sweep-up Operation 2",
-        "name": "Sweep-up Operation #2",
-        "abbreviation": "SU2"
+        "page": "Scarlet Realm 1",
+        "name": "Scarlet Realm #1",
+        "abbreviation": "SR1"
       },
       {
         "episode": 2,
-        "page": "Lost SHOCK RIFLE",
-        "name": "Lost SHOCK RIFLE",
-        "abbreviation": "LSR"
+        "page": "Lost DEMON'S RAILGUN",
+        "name": "Lost DEMON'S RAILGUN",
+        "abbreviation": "LDR"
       },
       {
         "episode": 4,
-        "page": "War of Limits 2",
-        "name": "War of Limits 2",
-        "abbreviation": "WoL2"
+        "page": "War of Limits 5",
+        "name": "War of Limits 5",
+        "abbreviation": "WoL5"
       }
     ],
-    "expectedWeek": "06 September 2026",
+    "expectedWeek": "13 September 2026",
     "isFresh": true
   },
   "tracker": {
@@ -76,17 +76,17 @@
           "SU3",
           "SU4",
           "AO1",
-          "SR1",
           "LIS",
           "LHP"
         ],
         "current": [
-          "SU2"
+          "SR1"
         ],
         "unavailable": [
           "MU2",
           "MU3",
           "MU4",
+          "SU2",
           "EN1",
           "EN2",
           "EN3",
@@ -102,11 +102,10 @@
       },
       "2": {
         "possible": [
-          "PS1",
-          "LDR"
+          "PS1"
         ],
         "current": [
-          "LSR"
+          "LDR"
         ],
         "unavailable": [
           "PW1",
@@ -123,6 +122,7 @@
           "AO3",
           "AO4",
           "AO5",
+          "LSR",
           "LBA",
           "LCV",
           "TET",
@@ -133,7 +133,6 @@
         "possible": [
           "WoL1",
           "WoL3",
-          "WoL5",
           "NMU2",
           "NMU4",
           "SU10",
@@ -142,9 +141,10 @@
           "SU14"
         ],
         "current": [
-          "WoL2"
+          "WoL5"
         ],
         "unavailable": [
+          "WoL2",
           "WoL4",
           "NMU1",
           "NMU5",
