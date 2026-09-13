@@ -120,6 +120,22 @@ npm run build
   依赖审计、业务测试、可重复构建和 Pages 部署均成功：
   [发布记录](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34004094751)。
 
+### 2026-09-13 更新记录
+
+- 维护者提供游戏内 `/rbr` 截图，确认 EP1 `Scarlet Realm #1`（`SR1`）、
+  EP2 `Lost DEMON'S RAILGUN`（`LDR`）、EP4 `War of Limits 5`（`WoL5`）。
+- Wiki 当前模板仍为 revision `43522`，日期原文为 `5 September 2026`；
+  按上述 9 月 6 日已确认记录，仅在本次规划输入中校正旧周日期，再运行现有任务池、
+  Episode、Tracker 推进与 MediaWiki 渲染预览校验。远程模板直接更新至本周
+  `13 September 2026`，未增加通用日期容错或修改发布器的校验规则。
+- 经维护者要求更新 Wiki，带原始 revision 和时间戳提交两个模板，并逐一读回核验：
+  [当前任务 revision 43587](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43587)、
+  [Tracker revision 43588](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=43588)。
+- 本站随后通过 `build_rbr_data.py --require-current` 从这两个已发布修订生成完整快照；
+  58 个任务的客观数据未变化，保留原有 5 个随机刷怪任务的敌人数提示。
+- 本地 54 项 RBR 测试、生产构建及覆盖 RBR Tracker 和 Tier 当前任务标记的浏览器测试
+  通过；额外逐项核对本站当前任务、Tracker 与已审核发布计划完全一致。
+
 ## Wiki 更新方案验证
 
 游戏内 `/rbr` 是服务器实际轮换的唯一权威来源，服务器没有公开的 RBR 接口。
