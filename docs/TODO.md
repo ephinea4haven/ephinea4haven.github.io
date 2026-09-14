@@ -24,7 +24,9 @@
 - [x] [怪物图鉴](MONSTER_CATALOG.md)：160 个条目、三语界面与名称、
   难度／模式属性、行为与条件机制表；十色掉落直接由 droptable 生成。
 - [x] 首页展示 `data/rbr/source.json` 的 RBR 任务并链接详情页，
-  UTC 周日跨周后未更新的记录明确显示待更新。
+  UTC 周日跨周后未更新的记录明确显示待更新；卡片显示共用评级数据中的 Tier、
+  推荐 Section ID 和对应颜色，并标明评级日期与非官方性质。
+  `548e78e` 已部署并完成[线上核验](MONSTER_CATALOG.md#2026-09-14-发布核验)。
 
 - [x] Full [item catalog](ITEM_CATALOG.md): 1,044 items across six categories,
   524 illustrated entries, search/filter URLs and per-item detail pages. All

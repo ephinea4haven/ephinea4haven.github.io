@@ -50,6 +50,8 @@ node scripts/download_monster_images.mjs /path/to/imageinfo.json
 
 主页构建时从 `data/rbr/source.json` 的 `current.quests` 生成三个章节的任务卡，点击进入 `/guide/rbr.html`。任务名和轮替周没有页面副本；更新既有 RBR 数据并重建即可同步首页。浏览器按 UTC 周日判断记录是否属于本周，跨周未更新时改为“待更新”并保留记录日期；静态 HTML 使用中性的“RBR 任务”标题。
 
+卡片从 `data/rbr/tiers.json` 读取 Tier 和推荐 Section ID，与详情页 Tier 图共用数据；顶边和色点使用本站 BB 掉落表的 ID 调色板。卡片下方标明评级日期与非官方性质。生成后仍须提交、推送并完成 Pages 部署，线上才会更新。
+
 ## 验证范围
 
 数据检查覆盖全部难度／章节的掉落行与十色单元格、别名、单格多物品、上游变更、缺失属性、来源空值、机制条件和图片引用。浏览器检查覆盖三语与筛选往返、概率与道具跳转、模式／难度区别、缺图、手机及桌面溢出和 WCAG A/AA；首页检查任务数据一致性、详情入口和 UTC 周日过期状态。
@@ -112,4 +114,10 @@ node scripts/download_monster_images.mjs /path/to/imageinfo.json
 
 本地 `npm test` 通过（10 项道具、9 项怪物／图片、55 项 RBR 检查），`python3 scripts/sync_item_i18n.py --check` 通过；图鉴／RBR 定向回归 **48 / 48**，完整 `npx playwright test --workers=4` **1,386 / 1,386** 通过。生产构建包含 1,265 个路由、45 个活动片段，JavaScript gzip 为 874,959 / 1,000,000 字节；重复构建的 manifest 逐字节一致，`git diff --check` 通过。最终重审无剩余 Blocking 或 Should-fix 问题。
 
-重复构建再次遇到上述既有 LMDB 原生异常；检查缓存实现后运行 `npx ng cache clean`，随后构建通过。没有修改依赖或加入产品层规避逻辑，工具链偶发异常仍是已知边界。初始七个 RBR 文件继续保留在工作区；本轮仅提交 D3、D4、回归与审查记录，结论不包含线上发布核验。
+重复构建再次遇到上述既有 LMDB 原生异常；检查缓存实现后运行 `npx ng cache clean`，随后构建通过。没有修改依赖或加入产品层规避逻辑，工具链偶发异常仍是已知边界。该轮提交 `230766c` 仅包含 D3、D4、回归与审查记录；当时七个 RBR 文件尚未提交，也尚未完成线上核验，后续发布结果如下。
+
+## 2026-09-14 发布核验
+
+七个 RBR 文件已在 `548e78e` 提交并推送，包含主页 Tier、推荐 Section ID、颜色、共用数据与回归测试。[Pages 运行 34821846682](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34821846682) 的构建和部署均成功：业务测试、两次生产构建、manifest 比较及 **1,386 / 1,386** 浏览器测试通过。
+
+部署后在 `https://www.psohaven.com/` 刷新并检查实际页面与截图，确认记录周为 `13 September 2026`，SR1、LDR、WoL5 均显示 Tier D，推荐 ID 分别为 Pinkal、Bluefull、Pinkal，顶边与色点颜色一致；评级说明显示 `2025-11，非官方`。此次核验确认页面发布和显示结果，没有重新评估 Tier 或变更游戏内轮换。
