@@ -251,6 +251,12 @@
       "本身没有能力加成。装备状态下累计 20,000 次击杀后，可解封为 Proof of Sword-Saint。"
     ]
   },
+  "Proof of Sword-Saint": {
+    "effects": [
+      "与支持的武器同时装备时，ATA 增加 30、EVP 增加 60、DFP 降低 20；这些加成作用于总能力值，多个插件可以叠加。",
+      "仅支持指定型号，并非所有光剑、日本刀或双剑都能触发；适用武器清单见来源页面的 Eligibility 章节。"
+    ]
+  },
   "Yasakani Magatama": {
     "effects": [
       "与 Kusanagi 同时装备时增加 30 ATA；未装备该武器时没有效果。"

@@ -14,6 +14,7 @@ export interface ItemDetail {
   id: string; en: string; title: string; summary: string; stats: Stat[]; effects: string[];
   boosts: Stat[]; sets: { item: string; id: string | null; effect: string }[];
   skins: { item: string; id: string | null; code: string }[];
+  feeding: { item: string; values: number[] }[];
   drops: { kind: string; sectionId: string; difficulty: string; location: string; area: string; rate: string }[];
   availability: string; source: string; revision: number; checkedAt: string;
   excerpts: string[]; imageSource: string | null; imagePage: string | null; related: string[];

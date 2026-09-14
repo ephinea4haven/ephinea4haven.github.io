@@ -20,7 +20,8 @@ export function splitArguments(source) {
 }
 
 export function templates(source) {
-  source = source.replace(/<!--[\s\S]*?-->/g, '');
+  // Keep offsets relative to the original source for callers that slice it.
+  source = source.replace(/<!--[\s\S]*?-->/g, comment => ' '.repeat(comment.length));
   const found = [];
   const stack = [];
   for (let i = 0; i < source.length - 1; i += 1) {

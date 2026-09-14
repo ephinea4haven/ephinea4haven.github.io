@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { clean, range, slug, typeOf, TYPES, magTrigger } from './item_catalog_model.mjs';
+import { clean, range, slug, typeOf, TYPES, magTrigger, isCommonWeapon } from './item_catalog_model.mjs';
 import { collectMagTriggers, magCellRules } from './item_catalog_mag.mjs';
 
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -91,16 +91,18 @@ for (const record of records) {
   if (category === 'armor' || category === 'shield') stats.sort((a, b) => Number(!/^(DFP|EVP)/.test(a.label)) - Number(!/^(DFP|EVP)/.test(b.label)));
   stats.unshift(...(notes[title]?.extraStats || []));
   if (record.attackSpeed) stats.unshift({label: '攻击速度', value: `+${record.attackSpeed}%`});
-  if (record.regeneration) stats.unshift({label: `${record.regeneration.stat} 回复`, value: `${record.regeneration.amount} / ${record.regeneration.seconds} 秒`});
+  for (const periodic of record.periodic || []) stats.push({label: `${periodic.stat} ${periodic.amount < 0 ? '消耗' : '回复'}`, value: `${Math.abs(periodic.amount)} / ${periodic.seconds} 秒${periodic.moving ? '（移动时）' : ''}`});
   if (record.techniqueLevels) stats.unshift({label: '魔法等级', value: `+${record.techniqueLevels}`});
   const effects = [...(notes[title]?.effects || []), ...toolUses(title), ...magCellRules(magCells[title], display, magData.meta.idGroups)];
   const addStat = (label, value) => { if (value !== undefined && value !== '') stats.push({ label, value: String(value) }); };
   const atp = range(f.ATP);
   const grind = /^\d+$/.test(f.grind || '') ? +f.grind : null;
+  const commonWeapon = category === 'weapon' && isCommonWeapon(code);
   if (category === 'weapon') {
     addStat('最大磨数', grind === null ? '来源未标注' : `+${grind}`);
     if (atp && grind !== null) addStat('最大磨数下 ATP', [...new Set(atp.map(n => n + grind * 2))].join('–'));
-    addStat('特殊攻击', /^See page$/i.test(f.special || '') ? '独有特殊攻击 · 见使用说明' : clean(f.special, true).replace(/^None$/, '无').replace(/^Varies$/, '可变'));
+    addStat('特殊攻击', commonWeapon ? '可变' : /^See page$/i.test(f.special || '') ? '独有特殊攻击 · 见使用说明' : clean(f.special, true).replace(/^None$/, '无').replace(/^Varies$/, '可变'));
+    if (commonWeapon) effects.push('特殊攻击由具体掉落或商店生成的道具决定，不是固定效果。');
     addStat('普通攻击目标数', clean(f.targets).replace(/^Varies$/, '随攻击方式变化') || '来源未标注');
     addStat('连段', record.noCombo ? '不可连段' : '可以连段');
     for (const [key, label] of Object.entries({ hdist: '水平距离', vdist: '垂直距离', hangle: '水平角度', vangle: '垂直角度', special_hdist: '特殊攻击水平距离', special_vdist: '特殊攻击垂直距离', special_hangle: '特殊攻击水平角度', special_vangle: '特殊攻击垂直角度' })) {
@@ -127,7 +129,7 @@ for (const record of records) {
     effects.push('玛古的 DEF / POW / DEX / MIND 由培养决定；外观形态不代表固定配点。低 HP 触发还要求单帧损失超过最大 HP 的 20%，并降至 10% 以下。');
   }
   if (f.stack) addStat('堆叠上限', f.stack);
-  if (record.regeneration) effects.push(`每 ${record.regeneration.seconds} 秒恢复 ${record.regeneration.amount} ${record.regeneration.stat}。`);
+  for (const periodic of record.periodic || []) effects.push(`${periodic.moving ? '装备后移动时，' : '装备时，'}每 ${periodic.seconds} 秒${periodic.amount < 0 ? '消耗' : '恢复'} ${Math.abs(periodic.amount)} ${periodic.stat}。`);
   if (record.attackSpeed) effects.push(`攻击速度提高 ${record.attackSpeed}%。攻击速度加成不叠加，仅生效最高值。`);
   if (record.techniqueLevels) effects.push(`已学魔法等级提高 ${record.techniqueLevels} 级，不超过职业的魔法等级上限。`);
   if (title.startsWith('Cure/')) effects.push(`装备时免疫${{Confuse:'混乱', Freeze:'冰冻', Paralysis:'麻痹', Poison:'中毒', Shock:'感电', Slow:'缓慢'}[title.split('/')[1]]}。`);
@@ -142,10 +144,15 @@ for (const record of records) {
   const image = images[imageName] || images[imageName[0]?.toUpperCase() + imageName.slice(1)];
   const source = record.source || `https://wiki.pioneer2.net/w/${encodeURIComponent(title.replaceAll(' ', '_'))}`;
   const acquisition = record.acquisition.map(a => acquisitionLabels[a.toLowerCase()] || a);
+  if (commonWeapon) acquisition.push('武器商店（随角色等级刷新）');
   const availability = notes[title]?.availability || (status === 'obsolete' ? '已停用的历史道具，现已无法获取或使用。' : status === 'unavailable' ? '当前无法在 Ephinea 获取。' : acquisition.length ? `来源页面列出的获取途径：${[...new Set(acquisition)].join('、')}。` : '具体获取条件请查阅来源页面与掉落表。');
   const summary = notes[title]?.summary || `${subtype}${isEquipment ? '装备' : ''}。${status === 'obsolete' ? '历史活动条目。' : status === 'unavailable' ? '当前无法获取。' : ''}`;
   const drops = record.drops.map(d => ({ kind: d.kind, sectionId: clean(d.id) || '来源未标注', difficulty: { N: 'Normal', H: 'Hard', VH: 'Very Hard', U: 'Ultimate' }[d.diff] || clean(d.diff), location: clean(d.location), area: clean(d.area), rate: clean(d.rate) || '普通掉落' }));
-  const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Set(effects)], boosts, sets, skins, drops, availability, source, revision: record.revision, checkedAt: snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
+  const feedId = record.tables.find(t => t.template === 'MagFeedTable')?.[1];
+  const feedTable = feedId === undefined ? null : sandbox.window.MAG_SIM.feedTables[feedId];
+  if (feedId !== undefined && !feedTable) throw new Error(`Unknown feeding table: ${title}: ${feedId}`);
+  const feeding = feedTable ? Object.entries(feedTable).map(([item, values]) => ({ item, values })) : [];
+  const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Set(effects)], boosts, sets, skins, feeding, drops, availability, source, revision: record.revision, checkedAt: snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
   details[id] = detail;
   // Compact tuples keep the searchable index small; detailed data is loaded per item.

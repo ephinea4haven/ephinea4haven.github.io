@@ -5,6 +5,8 @@ import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { clean, range, slug, magTrigger } from './item_catalog_model.mjs';
 import { templates } from './item_catalog_wiki.mjs';
+import { extractMechanics } from './item_catalog_mechanics.mjs';
+import vm from 'node:vm';
 
 test('balanced templates preserve repeated fields, nesting and numeric conditions', () => {
   assert.equal(clean('{{DEF}} + {{DEX}} / {{DEF}} + {{POW}}'), 'DEF + DEX / DEF + POW');
@@ -17,6 +19,22 @@ test('balanced templates preserve repeated fields, nesting and numeric condition
   assert.notEqual(slug('Kalki'), slug('Kalki*'));
   assert.equal(magTrigger('invinc-', '50'), '无敌 · 0–35%（随同步率变化）');
   assert.equal(magTrigger('sd+', '50'), 'Shifta + Deband · 50–85%（随同步率变化）');
+  assert.equal(clean('<!-- note -->{{Note|conditional|12}}', true), '12 (conditional)');
+  const commented = '<!-- {{ignored}} -->{{Item|ATP=12}}';
+  const parsed = templates(commented);
+  assert.equal(parsed.length, 1);
+  assert.equal(commented.slice(parsed[0].start, parsed[0].end), '{{Item|ATP=12}}');
+  assert.equal(clean('[[File:example.png|thumb|right|caption]]Visible facts.'), 'Visible facts.');
+});
+
+test('mechanics extraction distinguishes drain from regeneration and accepts linked stats', () => {
+  assert.deepEqual(extractMechanics('HP is drained while moving at a rate of 1 HP every 5 seconds.', 'Partisan').periodic,
+    [{stat:'HP', amount:-1, seconds:5, moving:true}]);
+  assert.deepEqual(extractMechanics('It restores 1 [[Stats#HP|HP]] every 8 seconds.', 'Unit').periodic,
+    [{stat:'HP', amount:1, seconds:8, moving:false}]);
+  assert.equal(extractMechanics('A rate of 1 HP every 5 seconds.', 'Unit').periodic, undefined);
+  assert.equal(extractMechanics('It increases physical attack speed by 5%.', 'Unit').attackSpeed, 5);
+  assert.equal(extractMechanics("It increases the level of a character’s [[techniques]] by three.", 'Unit').techniqueLevels, 3);
 });
 
 execFileSync(process.execPath, ['scripts/generate_item_catalog.mjs']);
@@ -79,4 +97,49 @@ test('downloaded illustrations match the recorded original checksums', () => {
     assert.equal(bytes.subarray(1,4).toString(), 'PNG');
   }
   for (const item of items) if (item.image) assert.ok(fs.existsSync('.' + item.image));
+});
+
+test('all 57 shop weapon models retain verified images and variable specials', () => {
+  const expected = [];
+  for (let family = 1; family <= 12; family++) for (let tier = 0; tier < (family <= 9 ? 5 : 4); tier++) {
+    expected.push(`00${family.toString(16).padStart(2,'0')}${tier.toString(16).padStart(2,'0')}`.toUpperCase());
+  }
+  assert.equal(expected.length, 57);
+  for (const code of expected) {
+    const item = items.find(i => i.code === code);
+    assert.ok(item, code);
+    const record = snapshot.records.find(r => r.title === item.title);
+    const images = read('content/item-catalog/images.json');
+    const image = Object.entries(images).find(([name]) => name.toLowerCase() === record.fields.image.replaceAll('_',' ').toLowerCase())?.[1];
+    assert.ok(image, item.title);
+    assert.equal(item.image, image.path, item.title);
+    assert.equal(item.stats.find(s => s.label === '特殊攻击')?.value, '可变', item.title);
+    assert.match(item.availability, /武器商店/, item.title);
+  }
+  assert.equal(details['dbs-saber'].stats.find(s => s.label === '特殊攻击')?.value, '无');
+});
+
+test('all periodic and unit effect families retain direction, conditions and values', () => {
+  const stat = (id,label) => details[id].stats.find(s => s.label === label)?.value;
+  const drains = {'soul-eater':5,'soul-banish':3,'luminous-field':6,'parasite-wear-de-rol':11,'parasite-wear-nelgal':8,'parasite-wear-vajulla':8,'three-seals':6};
+  for (const [id,seconds] of Object.entries(drains)) {
+    assert.equal(stat(id,'HP 消耗'), `1 / ${seconds} 秒（移动时）`, id);
+    assert.equal(stat(id,'HP 回复'), undefined, id);
+    assert.ok(details[id].effects.some(e=>e.includes(`每 ${seconds} 秒消耗 1 HP`)), id);
+  }
+  for (const [id,speed] of Object.entries({'general-battle':5,'devil-battle':10,'god-battle':20,'heavenly-battle':40,v101:40})) assert.equal(stat(id,'攻击速度'), `+${speed}%`, id);
+  for (const [id,level] of Object.entries({'wizard-technique':1,'devil-technique':2,'god-technique':3,'heavenly-technique':4})) assert.equal(stat(id,'魔法等级'), `+${level}`, id);
+  for (const [id,label,seconds] of [['hp-restorate','HP 回复',14],['hp-generate','HP 回复',11],['hp-revival','HP 回复',8],['hp-resurrection','HP 回复',5],['tp-restorate','TP 回复',15],['tp-generate','TP 回复',13],['tp-revival','TP 回复',11],['tp-resurrection','TP 回复',9],['pb-amplifier','PB 回复',40],['pb-generate','PB 回复',35],['pb-create','PB 回复',23],['pb-increase','PB 回复',18],['revival-cuirass','HP 回复',5],['revival-garment','HP 回复',5],['red-ring','HP 回复',15],['red-ring','TP 回复',15],['gods-shield-kouryu','PB 回复',23]]) assert.equal(stat(id,label), `1 / ${seconds} 秒`, id);
+  assert.ok(details['proof-of-sword-saint'].effects.some(e=>e.includes('ATA 增加 30')));
+});
+
+test('all Mag feeding tables exactly reuse maintained simulation values', () => {
+  const sandbox = {window:{}};
+  vm.runInNewContext(fs.readFileSync('assets/js/mag-sim-data.js','utf8'),sandbox);
+  for (const item of items.filter(i=>i.category==='mag')) {
+    const record = snapshot.records.find(r=>r.title===item.title);
+    const key = record.tables.find(t=>t.template==='MagFeedTable')[1];
+    assert.equal(item.feeding.length, 11, item.title);
+    assert.deepEqual(Object.fromEntries(item.feeding.map(r=>[r.item,r.values])), JSON.parse(JSON.stringify(sandbox.window.MAG_SIM.feedTables[key])), item.title);
+  }
 });

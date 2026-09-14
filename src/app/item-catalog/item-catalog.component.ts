@@ -29,7 +29,7 @@ export class ItemCatalogComponent {
   readonly filtersOpen = signal(false);
   readonly query = computed(() => this.params().get('q') ?? '');
   readonly category = computed(() => CATEGORIES.some(({ id }) => id === this.params().get('category')) ? this.params().get('category')! : 'all');
-  readonly profession = computed(() => CLASSES.includes(this.params().get('class') ?? '') ? this.params().get('class')! : '');
+  readonly profession = computed(() => this.category() !== 'tool' && CLASSES.includes(this.params().get('class') ?? '') ? this.params().get('class')! : '');
   readonly rarity = computed(() => ['common', '9', '10', '11', '12', 'unknown'].includes(this.params().get('rarity') ?? '') ? this.params().get('rarity')! : '');
   readonly subtypes = computed(() => [...new Set(ITEMS.filter(i => this.category() === 'all' || i.category === this.category()).map(i => i.subtype))]);
   readonly subtype = computed(() => this.subtypes().includes(this.params().get('type') || '') ? this.params().get('type')! : '');

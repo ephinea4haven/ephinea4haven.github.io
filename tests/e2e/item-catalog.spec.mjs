@@ -52,6 +52,38 @@ test('equipment class filters exclude consumables and reset on the tools categor
   await expect(page.getByLabel('可装备职业', {exact:true})).toBeDisabled();
 });
 
+test('tool category URLs ignore an incompatible equipment class on entry and reload', async ({page}) => {
+  await page.goto('/data/items.html?category=tool&class=HUmar&q=Monomate');
+  for (let pass=0;pass<2;pass++) {
+    await expect(page.locator('.item-row')).toHaveCount(1);
+    await expect(page.getByLabel('可装备职业', {exact:true})).toHaveValue('');
+    await expect(page.getByLabel('可装备职业', {exact:true})).toBeDisabled();
+    await expect(page.locator('.item-row')).not.toHaveAttribute('href', /class=/);
+    await page.reload();
+  }
+});
+
+test('corrected periodic effects, shop specials and Mag feeding values render', async ({page}) => {
+  await page.goto('/data/items/soul-eater.html');
+  await expect(page.locator('#attributes')).toContainText('HP 消耗1 / 5 秒（移动时）');
+  await expect(page.locator('#attributes')).not.toContainText('HP 回复');
+  await page.goto('/data/items/vulcan.html');
+  await expect(page.locator('#attributes')).toContainText('特殊攻击可变');
+  await expect(page.locator('#availability')).toContainText('武器商店');
+  await page.goto('/data/items/mag.html');
+  await expect(page.locator('.feeding-table tbody tr')).toHaveCount(11);
+  await expect(page.locator('.feeding-table tbody tr').first()).toContainText('小HP回复液');
+  await expect(page.locator('.feeding-table tbody tr').first().locator('td')).toHaveText(['小HP回复液','+5','+40','+5','0','+3','+3']);
+});
+
+test('an existing image that fails to load is not presented as a missing screenshot', async ({page}) => {
+  await page.route('**/assets/img/items/wiki/29f6af4df3b08415.png',route=>route.abort());
+  await page.goto('/data/items/saber.html');
+  await expect(page.locator('.image-stage')).toContainText('图片加载失败');
+  await expect(page.locator('.image-stage')).not.toContainText('暂无截图');
+  await expect(page.getByRole('link',{name:'查看原图 ↗'})).toBeVisible();
+});
+
 test('pagination, jump input, and detail back navigation retain the list', async ({page}) => {
   await page.goto('/data/items.html?category=weapon');
   await page.getByLabel('跳转页码').fill('3');
