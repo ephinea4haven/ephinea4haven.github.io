@@ -21,7 +21,7 @@
     "test:e2e": "playwright test",
     "release:prepare": "npm test && npm run build && npm run test:e2e",
     "test:items": "node --test scripts/test_item_catalog.mjs",
-    "test:monsters": "node --test scripts/test_monster_catalog.mjs"
+    "test:monsters": "node --test scripts/test_monster_catalog.mjs scripts/test_monster_images.mjs"
   },
   "overrides": {
     "@angular/cli": {

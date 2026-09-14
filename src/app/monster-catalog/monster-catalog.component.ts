@@ -17,6 +17,7 @@ export class MonsterCatalogComponent {
   private readonly route=inject(ActivatedRoute);private readonly router=inject(Router);private readonly document=inject(DOCUMENT);private readonly title=inject(Title);
   private readonly params=toSignal(this.route.queryParamMap,{initialValue:this.route.snapshot.queryParamMap});
   private readonly data=toSignal(this.route.data,{initialValue:this.route.snapshot.data});
+  private readonly fragment=toSignal(this.route.fragment,{initialValue:this.route.snapshot.fragment});
   readonly result=computed(()=>this.data()['result'] as MonsterResult|undefined);
   readonly detail=computed(()=>this.result()?.detail);
   readonly monster=computed(()=>this.detail() ? MONSTER_BY_ID.get(this.detail()!.id)! : null);
@@ -43,6 +44,7 @@ export class MonsterCatalogComponent {
   readonly tables=computed(()=>this.detail()?.tables.filter(t=>{
     const difficulty=this.difficulties.find(d=>d.id===this.difficulty())!.label;
     const mode=this.mode()==='on'?'Normal':'One Person';
+    if(t.difficulties.length && !t.difficulties.includes(difficulty)) return false;
     if(t.axis==='difficulty-mode') return t.context[0]===difficulty && t.context[1]===mode;
     if(t.axis==='difficulty') return t.context[0]===difficulty;
     if(t.axis==='mode') return t.context[0]===mode;
@@ -57,11 +59,20 @@ export class MonsterCatalogComponent {
     const mode=this.i18n.t(table.context.at(-1)==='Normal'?'多人模式':'单人模式');
     return table.axis==='difficulty-mode' ? `${table.context[0]} / ${mode}` : table.axis==='mode' ? mode : table.context.join(' / ');
   }
-  update(key:string,value:string):void {void this.router.navigate([],{relativeTo:this.route,queryParams:{[key]:value||null,...(key==='page'?{}:{page:null}),...(key==='ep'?{area:null}:{})},queryParamsHandling:'merge',replaceUrl:true});}
+  update(key:string,value:string):void {
+    void this.router.navigate([],{relativeTo:this.route,queryParams:{[key]:value||null,...(key==='page'?{}:{page:null}),...(key==='ep'?{area:null}:{})},queryParamsHandling:'merge',preserveFragment:true,replaceUrl:true}).then(navigated=>{
+      if(navigated && key==='page') this.document.getElementById('monster-results')?.scrollIntoView({behavior:'instant',block:'start'});
+    });
+  }
   clear():void {void this.router.navigate([],{relativeTo:this.route,queryParams:{lang:this.i18n.language(),diff:this.difficulty(),mode:this.mode()},replaceUrl:true});}
   retry():void {this.document.defaultView?.location.reload();}
   constructor(){
     effect(()=>this.title.setTitle(`${this.monster()?this.name(this.monster()!)+' | ':''}${this.i18n.t('怪物图鉴')} · Ephinea PSOBB`));
-    afterRenderEffect(()=>{const id=this.monster()?.id;if(id)this.document.defaultView?.scrollTo({top:0,behavior:'instant'});});
+    afterRenderEffect(()=>{
+      if(!this.monster()) return;
+      const fragment=this.fragment();
+      if(fragment) this.document.getElementById(fragment)?.scrollIntoView({behavior:'instant'});
+      else this.document.defaultView?.scrollTo({top:0,behavior:'instant'});
+    });
   }
 }

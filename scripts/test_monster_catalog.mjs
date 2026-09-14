@@ -57,6 +57,21 @@ test('fixed damage and unknown entries preserve contextual facts, captions and p
     assert.ok(d.revision>0&&d.source.startsWith('https://wiki.pioneer2.net/w/'));
     assert.ok(Buffer.byteLength(JSON.stringify(d))<32000,d.id);
     for(const t of d.tables) assert.ok(!t.caption.includes('Monsters that ignore technique boosts'));
+    for(const t of d.tables) assert.ok(t.headings.length && t.headings.at(-1)===t.section,`${d.id}: missing source hierarchy`);
+  }
+});
+test('prose-only difficulty restrictions and boss phase context remain explicit',()=>{
+  const pages=['Chaos Sorcerer','Hildeblue','Poison Lily','Nar Lily','Deldepth','Zol Gibbon'];
+  const records=JSON.parse(fs.readFileSync('content/monster-catalog/wiki.json','utf8')).records;
+  for(const record of records.filter(record=>pages.includes(record.page))) {
+    for(const table of details[record.id].tables.filter(t=>/Megid level/i.test(t.section))) assert.deepEqual(table.difficulties,['Ultimate'],record.id);
+  }
+  assert.ok(details['del-lily'].tables.filter(t=>/Megid level/i.test(t.section)).every(t=>t.difficulties.length===0));
+  for(const id of ['olga-flow-form-1','olga-flow-form-2','gael','giel']) {
+    const tables=details[id].tables;
+    assert.ok(tables.every(t=>t.headings[0]==='Behavior/Mechanics (Second phase)'));
+    assert.deepEqual(tables.find(t=>t.caption==='Divine Punishment damage threshold').rows.at(-1),['Ultimate','750','1280']);
+    assert.equal(details[id].sourceTitle,'Olga Flow');
   }
 });
 test('switch extraction rejects ambiguous numerical cases and preserves grouped aliases',()=>{

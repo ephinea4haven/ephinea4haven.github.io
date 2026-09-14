@@ -82,6 +82,13 @@ the homepage RBR cards linking to `/guide/rbr.html`. The same authority checkout
 provides both item/monster names and `bb/data/en.js`; do not copy drop values
 into page sources.
 
+The subsequent review-fix loop corrected monster section links and pagination,
+preserved prose-only mechanic conditions and boss-phase context, and made image
+synchronization recover corrupted cache files. Local validation passed all
+1,382 browser checks, business tests and the production build (874,665 bytes
+JavaScript gzip). Reproduction evidence and the closed finding ledger are in
+[the monster catalog review record](MONSTER_CATALOG.md#2026-09-14-review-fix-loop-记录).
+
 ### September 10, 2026 release
 
 Commit `186ce35fb96f772b82f45597bb797eb62c694b2e` passed both build and deployment
