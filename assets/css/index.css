@@ -8,13 +8,18 @@
 .home-rbr-status { color: #a6bace; font-size: 12px; margin: 12px 0 18px; }
 .home-rbr[data-status="stale"] .home-rbr-status { color: #fcd34d; }
 .home-rbr-quests { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.home-rbr-quest { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #294455; border-radius: 10px; background: #061423c9; color: #f0f9ff; text-decoration: none; overflow-wrap: anywhere; }
+.home-rbr-quest { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #294455; border-top: 3px solid var(--section-color); border-radius: 10px; background: #061423c9; color: #f0f9ff; text-decoration: none; overflow-wrap: anywhere; }
 .home-rbr-quest:hover { background: #123144; border-color: #67e8f9; }
 .home-rbr-quest:focus-visible { outline: 2px solid #67e8f9; outline-offset: 3px; }
-.home-rbr-quest span { color: #7dd3fc; font: 11px 'Share Tech Mono', monospace; letter-spacing: 2px; }
+.home-rbr-episode { color: #7dd3fc; font: 11px 'Share Tech Mono', monospace; letter-spacing: 2px; }
 .home-rbr-quest strong { font: 700 26px 'Orbitron', sans-serif; }
 .home-rbr-quest small { color: #b5c8d9; font-size: 12px; }
 .home-rbr-quest b { position: absolute; right: 16px; top: 15px; color: #7dd3fc; }
+.home-rbr-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: auto; padding-top: 8px; }
+.home-rbr-tier { padding: 4px 8px; border-radius: 5px; background: #26374c; color: #e2e8f0; font: 700 12px/1.5 'Share Tech Mono', monospace; white-space: nowrap; }
+.home-rbr-section { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #d3e0ed; }
+.home-rbr-section i { width: 10px; height: 10px; flex-shrink: 0; border-radius: 50%; background: var(--section-color); box-shadow: 0 0 0 1px #ffffff40; }
+.home-rbr-note { margin-top: 12px; color: #a6bace; font-size: 12px; line-height: 1.6; }
 @media (max-width: 600px) { .home-rbr { padding: 18px; } .home-rbr-heading { align-items: flex-start; flex-direction: column; } .home-rbr-quests { grid-template-columns: 1fr; } }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
