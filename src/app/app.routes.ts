@@ -2,11 +2,10 @@ import { Routes } from '@angular/router';
 import { contentRoutes } from './generated/content.routes';
 
 export const routes: Routes = [
-  { path:'data/enemies.html', title:'怪物图鉴 | Ephinea PSOBB', loadComponent:()=>import('./monster-catalog/monster-catalog.component').then(m=>m.MonsterCatalogComponent) },
+  { path:'data/enemies.html', loadComponent:()=>import('./monster-catalog/monster-catalog.component').then(m=>m.MonsterCatalogComponent) },
   { path:'data/enemies/:monster', loadChildren:()=>import('./monster-catalog/monster-detail.routes').then(m=>m.monsterDetailRoutes) },
   {
     path: 'data/items.html',
-    title: '道具图鉴 | Ephinea PSOBB',
     loadComponent: () => import('./item-catalog/item-catalog.component').then(({ ItemCatalogComponent }) => ItemCatalogComponent),
   },
   {

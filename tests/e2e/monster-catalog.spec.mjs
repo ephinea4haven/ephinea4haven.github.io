@@ -3,6 +3,37 @@ import AxeBuilder from '@axe-core/playwright';
 import { readFileSync } from 'node:fs';
 import { extractMechanicTables } from '../../scripts/extract_monster_mechanics.mjs';
 const details=JSON.parse(readFileSync('src/app/generated/monster-catalog/details.server.json','utf8'));
+test('monster detail context changes preserve the originating list page',async({page})=>{
+  await page.goto('/data/enemies.html?ep=1&page=2&lang=en');
+  const first=await page.locator('.monster-card').first().getAttribute('href');
+  await page.locator('.monster-card').first().click();
+  await page.locator('.section-nav a[href$="#stats"]').click();
+  await page.getByRole('button',{name:'Ultimate',exact:true}).click();
+  await expect(page).toHaveURL(/page=2/);
+  await page.getByLabel('Mode',{exact:true}).selectOption('off');
+  await expect(page).toHaveURL(/page=2/);
+  await page.reload();
+  await page.getByRole('button',{name:'日本語',exact:true}).click();
+  await expect(page).toHaveURL(/page=2.*#stats$/);
+  await page.getByRole('link',{name:'← 一覧に戻る',exact:true}).click();
+  await expect(page).toHaveURL(/page=2/);
+  expect(new URL(await page.locator('.monster-card').first().getAttribute('href'),page.url()).pathname).toBe(new URL(first,page.url()).pathname);
+  await page.getByRole('button',{name:'Normal',exact:true}).click();
+  await expect(page).not.toHaveURL(/page=/);
+});
+
+test('monster list title stays localized after query-only navigation',async({page})=>{
+  await page.goto('/data/enemies.html?lang=en');
+  await expect(page).toHaveTitle(/Bestiary/);
+  await page.getByRole('searchbox').fill('Booma');
+  await expect(page).toHaveURL(/q=Booma/);
+  await expect(page).toHaveTitle(/Bestiary/);
+  await page.getByRole('button',{name:'日本語',exact:true}).click();
+  await page.getByRole('button',{name:'Ultimate',exact:true}).click();
+  await expect(page).toHaveURL(/diff=u/);
+  await expect(page).toHaveTitle(/エネミー図鑑/);
+});
+
 test('monster sections stay on the detail route and retain language and conditions',async({page})=>{
   await page.goto('/data/enemies/chaos-bringer.html?diff=u&mode=on&lang=en');
   for(const section of ['drops','stats','attacks','behavior']) {
