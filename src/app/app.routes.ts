@@ -9,7 +9,7 @@ export const routes: Routes = [
   },
   {
     path: 'data/items/:item',
-    loadComponent: () => import('./item-catalog/item-detail.component').then(({ ItemDetailComponent }) => ItemDetailComponent),
+    loadChildren: () => import('./item-catalog/item-detail.routes').then(m => m.itemDetailRoutes),
   },
   {
     path: 'data/en2chinese.html',

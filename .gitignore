@@ -6,6 +6,7 @@ __pycache__/
 node_modules/
 dist/
 src/app/generated/
+assets/data/items/
 _site/
 .site-build-*/
 .site-backup-*/
@@ -23,6 +24,7 @@ docs/*
 !docs/DEPLOYMENT.md
 !docs/SOP_COMBO_CALCULATOR_SYNC.md
 !docs/TODO.md
+!docs/ITEM_CATALOG.md
 
 # pw is deployed separately at pw.psohaven.com; no longer part of this repo
 tools/pw/

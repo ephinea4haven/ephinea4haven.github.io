@@ -1,0 +1,408 @@
+{
+  "Saber": {
+    "summary": "基础近战武器，特殊攻击随具体道具变化。",
+    "effects": [
+      "特殊攻击由具体掉落或商店生成的道具决定，不是固定效果。"
+    ],
+    "availability": "普通掉落与武器商店。"
+  },
+  "DB's Saber": {
+    "summary": "军用光剑的复制品，可与同系列铠甲、盾牌组成套装。",
+    "effects": [
+      "同系列三件套全部装备时，武器 ATP、铠甲 DFP、盾牌 EVP 各增加 50%。"
+    ],
+    "availability": "怪物与箱子掉落。"
+  },
+  "Kaladbolg": {
+    "summary": "特殊攻击可使敌人冰冻。",
+    "effects": [
+      "特殊攻击可使敌人冰冻。"
+    ],
+    "availability": "怪物与箱子掉落。"
+  },
+  "Durandal": {
+    "summary": "提供额外精神力，特殊攻击可夺取经验。",
+    "effects": [
+      "提供额外精神力，特殊攻击可夺取经验。"
+    ],
+    "availability": "怪物与箱子掉落。"
+  },
+  "Ancient Saber": {
+    "summary": "古代遗迹出土的武器，特殊攻击可夺取经验。",
+    "effects": [
+      "古代遗迹出土的武器，特殊攻击可夺取经验。"
+    ],
+    "availability": "怪物掉落、黑页危险交易与科伦赌博。"
+  },
+  "Red Saber": {
+    "summary": "红色试制光剑，较高的最大磨数提供进一步的攻击力提升。",
+    "effects": [
+      "红色试制光剑，较高的最大磨数提供进一步的攻击力提升。"
+    ],
+    "availability": "怪物掉落。"
+  },
+  "Lavis Cannon": {
+    "summary": "消耗 HP 发射贯通光波的猎人专用武器。",
+    "effects": [
+      "特殊攻击消耗最大 HP 的 5%，发射贯通光波；伤害约为普通攻击的 0.56 倍。"
+    ],
+    "availability": "怪物掉落与道具合成。"
+  },
+  "Elysion": {
+    "summary": "以精神力作为装备门槛，特殊攻击释放 6 级火球术。",
+    "effects": [
+      "特殊攻击释放 6 级火球术。机器人无法装备，RAmar 的精神力上限也无法满足装备要求。"
+    ],
+    "availability": "怪物掉落、黑页危险交易与科伦赌博。"
+  },
+  "Guard Wave": {
+    "summary": "附带波动外观效果的稀有铠甲。",
+    "effects": [
+      "防御力与回避力存在个体差异，图鉴显示可取范围。",
+      "装备后具有波动外观效果。"
+    ],
+    "availability": "怪物掉落与科伦赌博。"
+  },
+  "Red Ring": {
+    "summary": "兼具能力加成与多种抗性的高等级盾牌。",
+    "effects": [
+      "每 15 秒恢复 1 HP 和 1 TP。",
+      "此处 DFP、EVP 范围已经包含各 +20 的加成，请勿重复计算。"
+    ],
+    "availability": "部分 Section ID 的 Ultimate 难度 Dark Falz 掉落；完整条件见来源。"
+  },
+  "V101": {
+    "summary": "同时提升角色能力值与攻击速度的插件。",
+    "effects": [
+      "攻击速度提升 40%。多个攻击速度加成不会叠加，只采用最高值。",
+      "ATP、DFP、MST、EVP、LCK 各增加 15，ATA 增加 1.5。"
+    ],
+    "availability": "怪物掉落与科伦赌博。"
+  },
+  "V502": {
+    "summary": "提高部分武器特殊攻击的成功率。",
+    "effects": [
+      "对部分武器特殊攻击生效，不代表增加相同数值的命中力。",
+      "不提升 Devil’s、Demon’s 削减 HP 的特殊攻击，也不提升魔法造成的状态效果。"
+    ],
+    "availability": "怪物掉落与科伦赌博。",
+    "extraStats": [
+      {
+        "label": "即死特殊攻击成功率",
+        "value": "×2"
+      },
+      {
+        "label": "冰冻 / 感电 / 麻痹 / 混乱",
+        "value": "×1.5"
+      }
+    ]
+  },
+  "Berdysh": {
+    "effects": [
+      "特殊攻击消耗 PB 发出 360° 冲击波，启动至少需要 20 PB。冲击波必中，伤害相当于普通攻击；持续到 PB 耗尽。"
+    ]
+  },
+  "Double Cannon": {
+    "effects": [
+      "特殊攻击向周围发出贯穿波，最多命中 4 个目标，每次消耗最大 HP 的 5%。伤害系数为普通攻击的约 0.56 倍。"
+    ]
+  },
+  "Dancing Hitogata": {
+    "effects": [
+      "装备后纸人环绕角色，每 5 秒增加一个，最多 5 个。攻击会消耗积累的纸人并向外发射；第三段不会像通常卡片一样额外发射三枚。"
+    ]
+  },
+  "Dark Flow": {
+    "effects": [
+      "特殊攻击通常相当于重攻击。HP 低于最大值的 12.5% 时，改为向前发射五道能量波，沿用重攻击的伤害和命中系数，垂直范围无限。贴近敌人可让多道波命中同一目标。"
+    ]
+  },
+  "Dark Meteor": {
+    "effects": [
+      "特殊攻击发射贯穿墙壁、垂直范围无限的能量波，沿用重攻击的伤害与命中系数。每道波最多尝试命中 8 个独立判定框，同一判定框每道波只尝试一次；切换武器会终止剩余判定。"
+    ]
+  },
+  "ES Windmill": {
+    "effects": [
+      "特殊攻击保留 Windmill 的蓄速发射机制。可追加的特殊效果限于 Jellen、Zalure、HP Revival 与 TP Revival。"
+    ]
+  },
+  "ES Psychogun": {
+    "effects": [
+      "可追加的特殊效果限于 D 级的 HP、TP 自动回复效果。"
+    ]
+  },
+  "Girasole": {
+    "effects": [
+      "特殊攻击向周围发出 360° 贯穿波，最多命中 4 个目标，每次消耗最大 HP 的 10%。"
+    ]
+  },
+  "Gal Wind": {
+    "effects": [
+      "特殊攻击发射贯穿波，每枚消耗最大 HP 的 7%，伤害与命中采用重攻击系数。第三段发射三枚，可消耗最大 HP 的 21%。"
+    ]
+  },
+  "Heaven Punisher": {
+    "effects": [
+      "Beat Time 的百位为偶数时，特殊攻击为 Divine Punishment；百位为奇数时，改为自动瞄准攻击，采用重攻击伤害与特殊攻击命中系数。可用 Divine Filter 或 Lock-on Filter 固定特殊攻击模式。"
+    ]
+  },
+  "Heaven Striker": {
+    "effects": [
+      "普通与重攻击使用步枪射程。特殊攻击通常是具有散弹枪瞄准范围的 Berserk；装备 Striker Unit 且 Beat Time 百位为偶数时，特殊攻击变为 Divine Punishment。"
+    ]
+  },
+  "Frozen Shooter": {
+    "effects": [
+      "特殊攻击采用重攻击伤害与命中系数；命中可冰冻目标后，冰冻触发率为 100%。冰冻免疫目标不受影响。",
+      "连续装备满 2 分钟时，有 25% 概率使自身冰冻。卸下武器会重置计时。"
+    ]
+  },
+  "Lavis Blade": {
+    "effects": [
+      "特殊攻击每次发出两道贯穿波，每道消耗最大 HP 的 5%。可以通过取消后续动作只发射一道波。"
+    ]
+  },
+  "Izmaela": {
+    "effects": [
+      "特殊攻击按攻击次数依次使用 Foie、Barta、Zonde、Grants。前三种魔法的等级在 5–15 之间随机，特殊攻击距离为 150。"
+    ]
+  },
+  "Mille Marteaux": {
+    "effects": [
+      "Beat Time 的百位为偶数时，特殊攻击为 Divine Punishment；百位为奇数时，改为自动瞄准攻击。Divine Punishment 每段只释放一次；可用滤镜固定特殊攻击模式。"
+    ]
+  },
+  "Plantain Huge Fan": {
+    "effects": [
+      "特殊攻击发射贯穿波，伤害低于普通攻击。"
+    ]
+  },
+  "Raikiri": {
+    "effects": [
+      "特殊攻击消耗最大 HP 的 7%，发射射程为 100 的贯穿波；伤害约为普通攻击的 0.97 倍。"
+    ]
+  },
+  "Orotiagito": {
+    "effects": [
+      "特殊攻击消耗最大 HP 的 7%，发射射程为 100 的贯穿波。伤害系数约为普通攻击的 1.94 倍。"
+    ]
+  },
+  "Psycho Wand": {
+    "effects": [
+      "特殊攻击随机施放一种等级 11 的初级攻击魔法。",
+      "装备时魔法的 TP 消耗减半，同时扣除相当于原始 TP 消耗的 HP。与 Adept 同用时，服务端道具顺序会影响 HP 消耗；完整规则见来源。"
+    ]
+  },
+  "Plantain Fan": {
+    "effects": [
+      "特殊攻击发射贯穿波，采用重攻击伤害与命中系数。"
+    ]
+  },
+  "Snow Queen": {
+    "effects": [
+      "特殊攻击采用重攻击伤害与命中系数，命中可冰冻目标后必定触发冰冻。弹道可以贯穿敌人，武器不能连段。",
+      "连续装备满 2 分钟时，有 25% 概率使自身冰冻，卸下会重置计时。"
+    ]
+  },
+  "Tsumikiri J-Sword": {
+    "effects": [
+      "特殊攻击消耗 PB 发出 360° 冲击波，启动至少需要 20 PB，采用重攻击伤害且必中。PB 不足时变为普通的重攻击判定。",
+      "由封印武器解封而来，最多只能保留两种武器属性。"
+    ]
+  },
+  "Twin Psychogun": {
+    "effects": [
+      "特殊攻击发射单枚贯穿弹，采用特殊攻击命中系数；伤害约为普通攻击的 1.67 倍。"
+    ]
+  },
+  "Windmill": {
+    "effects": [
+      "攻击会提高风车转速。转速足够时，特殊攻击可发射风车头，使用重攻击伤害与命中系数、散弹枪瞄准范围。卸下后转速会保留。"
+    ]
+  },
+  "Vjaya": {
+    "effects": [
+      "每次挥动特殊攻击都消耗 10,000 美塞塔，包括未命中任何目标的情况。伤害系数为 5.67，命中系数为重攻击的 0.7；同时具有击退和积累 PB 的效果。"
+    ]
+  },
+  "Adept": {
+    "effects": [
+      "魔法与 Spirit 特殊攻击的 TP 消耗降低 25%。多个 Adept 及其他 TP 减耗效果按乘法叠加。"
+    ]
+  },
+  "Divine Protection": {
+    "effects": [
+      "仅在 Beat Time 百位为奇数时生效：LCK 加倍，EDK 与 ELT 各增加 20。"
+    ]
+  },
+  "Friend Ring": {
+    "effects": [
+      "ATP 加成等于队伍（Team）成员数的一半，DFP 加成等于持有公会卡数量的一半。"
+    ]
+  },
+  "Limiter": {
+    "effects": [
+      "装备状态下累计 20,000 次击杀后，可从道具栏使用并解封为 Adept。"
+    ]
+  },
+  "Swordsman Lore": {
+    "effects": [
+      "本身没有能力加成。装备状态下累计 20,000 次击杀后，可解封为 Proof of Sword-Saint。"
+    ]
+  },
+  "Yasakani Magatama": {
+    "effects": [
+      "与 Kusanagi 同时装备时增加 30 ATA；未装备该武器时没有效果。"
+    ]
+  },
+  "Smartlink": {
+    "effects": [
+      "消除 Hunter 与 Force 使用远程攻击时的距离命中惩罚，也适用于投刃和卡片。不会直接增加面板 ATA。"
+    ],
+    "extraStats": [
+      {
+        "label": "远程命中距离惩罚",
+        "value": "消除"
+      }
+    ]
+  },
+  "V801": {
+    "effects": [
+      "缩短魔法的蓄力与施放动作；缩短量取决于魔法、等级、职业与武器。多个 V801 不叠加施法加速，MST 加成仍可叠加。"
+    ],
+    "extraStats": [
+      {
+        "label": "施法速度",
+        "value": "加速 · 依动作而定"
+      }
+    ]
+  },
+  "V501": {
+    "effects": [
+      "提高冰冻、感电、麻痹、混乱与即死类武器特殊攻击的触发率 50%。不提高 Devil’s、Demon’s 的 HP 削减效果，也不影响魔法产生的异常状态。"
+    ],
+    "extraStats": [
+      {
+        "label": "适用特殊攻击成功率",
+        "value": "×1.5"
+      }
+    ]
+  },
+  "Lame d'Argent": {
+    "effects": [
+      "装备状态下累计 10,000 次击杀后，可解封为 Excalibur。无需磨满，武器属性会继承；最多保留两种武器属性。"
+    ]
+  },
+  "Monomate": {
+    "effects": [
+      "恢复 70 HP。"
+    ],
+    "extraStats": [
+      {
+        "label": "回复量",
+        "value": "70 HP"
+      }
+    ]
+  },
+  "Dimate": {
+    "effects": [
+      "恢复 200 HP。"
+    ],
+    "extraStats": [
+      {
+        "label": "回复量",
+        "value": "200 HP"
+      }
+    ]
+  },
+  "Trimate": {
+    "effects": [
+      "完全恢复 HP。"
+    ],
+    "extraStats": [
+      {
+        "label": "回复量",
+        "value": "全部 HP"
+      }
+    ]
+  },
+  "Monofluid": {
+    "effects": [
+      "恢复 70 TP。"
+    ],
+    "extraStats": [
+      {
+        "label": "回复量",
+        "value": "70 TP"
+      }
+    ]
+  },
+  "Difluid": {
+    "effects": [
+      "恢复 200 TP。"
+    ],
+    "extraStats": [
+      {
+        "label": "回复量",
+        "value": "200 TP"
+      }
+    ]
+  },
+  "Trifluid": {
+    "effects": [
+      "完全恢复 TP。"
+    ],
+    "extraStats": [
+      {
+        "label": "回复量",
+        "value": "全部 TP"
+      }
+    ]
+  },
+  "Antidote": {
+    "effects": [
+      "解除中毒。"
+    ]
+  },
+  "Antiparalysis": {
+    "effects": [
+      "解除麻痹。"
+    ]
+  },
+  "Sol Atomizer": {
+    "effects": [
+      "解除自身的异常状态。"
+    ]
+  },
+  "Moon Atomizer": {
+    "effects": [
+      "复活一名附近倒下的队友。"
+    ]
+  },
+  "Star Atomizer": {
+    "effects": [
+      "完全恢复自身及附近队友的 HP。"
+    ]
+  },
+  "Trap Vision": {
+    "effects": [
+      "使附近隐藏的陷阱显现。"
+    ]
+  },
+  "Telepipe": {
+    "effects": [
+      "建立往返 Pioneer 2 的传送门。"
+    ]
+  },
+  "Photon Hoard": {
+    "effects": [
+      "等值于 99 个 Photon Drop，可在 Gallon’s Shop 中双向兑换。"
+    ]
+  },
+  "AddSlot": {
+    "effects": [
+      "为铠甲增加一个插件槽，最多四个槽。"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "Sange & Yasha": {
+    "fields": { "class": "111100000000" },
+    "reason": "Infobox contains 14 bits; the Twin Swords index confirms the four Hunter classes.",
+    "source": "https://wiki.pioneer2.net/w/Twin_Swords"
+  },
+  "Tsumikiri J-Sword": {
+    "fields": { "class": "111100000000" },
+    "reason": "Infobox contains 13 bits; the Swords index confirms the four Hunter classes.",
+    "source": "https://wiki.pioneer2.net/w/Swords"
+  },
+  "ES Hammer": {
+    "fields": { "hex": "" },
+    "reason": "Infobox duplicates ES Harisen code 008600; do not publish the conflicting identifier before verification.",
+    "source": "https://wiki.pioneer2.net/w/ES_Hammer"
+  },
+  "Angel's Wing": {
+    "fields": { "hex": "" },
+    "reason": "Infobox duplicates Agastya identifier; retain unknown until verified.",
+    "source": "https://wiki.pioneer2.net/w/Angel%27s_Wing"
+  },
+  "Robochao": {
+    "fields": { "hex": "" },
+    "reason": "Infobox duplicates Chao identifier; retain unknown until verified.",
+    "source": "https://wiki.pioneer2.net/w/Robochao"
+  },
+  "Lollipop": {
+    "fields": { "hex": "" },
+    "reason": "Infobox duplicates Club of Zumiuran identifier; retain unknown until verified.",
+    "source": "https://wiki.pioneer2.net/w/Lollipop"
+  }
+}
