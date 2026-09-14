@@ -22,6 +22,10 @@
   fixes and 1,193-test local validation are recorded in the
   [September 14 release record](DEPLOYMENT.md#september-14-2026-item-catalog);
   production status follows the latest successful Pages run for `master`.
+- [x] Item catalog visual refresh and zh/en/ja interface/name switching, with
+  URL and local preference persistence, source-language mechanics labels and
+  817 verified Japanese item names. The remaining 227 show an explicit English
+  name notice; Chinese names still use the drop-table authority.
 - [x] Unified 2016–2026 anniversary archive with 2026 milestones, stable overlay
   year navigation, responsive chapter navigation and shared year-themed presentation.
 - [x] Full-site Angular modernization completed and release-validated; jQuery,

@@ -5,6 +5,118 @@ import { readFileSync } from 'node:fs';
 const items = Object.values(JSON.parse(readFileSync('src/app/generated/item-catalog/details.server.json', 'utf8')));
 const names = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
 
+test('language changes preserve filters, sorting, pagination and authoritative names', async ({page}) => {
+  await page.goto('/data/items.html?category=weapon&type=光剑&class=FOnewearl&sort=name&page=2');
+  const ids = await page.locator('.item-row').evaluateAll(rows => rows.map(r => new URL(r.href).pathname));
+  for (const [button,lang,title] of [['English','en','Item Database'],['日本語','ja','アイテム図鑑'],['中文','zh','道具图鉴']]) {
+    await page.getByRole('button',{name:button,exact:true}).click();
+    await expect(page.locator('#catalog-title')).toHaveText(title);
+    const params = new URL(page.url()).searchParams;
+    expect(Object.fromEntries(params)).toEqual({category:'weapon',type:'光剑',class:'FOnewearl',sort:'name',page:'2',lang});
+    expect(await page.locator('.item-row').evaluateAll(rows => rows.map(r => new URL(r.href).pathname))).toEqual(ids);
+    await expect(page.locator('html')).toHaveAttribute('lang',lang === 'zh' ? 'zh-CN' : lang);
+  }
+  await page.goto('/data/items.html?q=赤のセイバー&lang=ja');
+  await expect(page.locator('.identity strong')).toHaveText(names['Red Saber'].ja);
+  await page.getByRole('button',{name:'English',exact:true}).click();
+  await expect(page.locator('.identity strong')).toHaveText('Red Saber');
+  await page.getByRole('button',{name:'中文',exact:true}).click();
+  await expect(page.locator('.identity strong')).toHaveText(names['Red Saber'].zh);
+});
+
+test('detail language persists through return, refresh and explicit shared links', async ({page}) => {
+  await page.goto('/data/items.html?category=weapon&q=Saber');
+  await page.getByRole('button',{name:'日本語',exact:true}).click();
+  await page.locator('.item-row').first().click();
+  await expect(page.locator('#item-title')).toHaveText('セイバー');
+  await expect(page.locator('#effects .source-language')).toHaveText('仕様の説明（中国語原文）');
+  await expect(page.locator('.effect-list.source-copy')).toHaveAttribute('lang','zh-CN');
+  await page.getByRole('button',{name:'English',exact:true}).click();
+  await expect(page.locator('#item-title')).toHaveText('Saber');
+  await page.getByRole('link',{name:'← Back to item list',exact:true}).click();
+  await expect(page).toHaveURL(/lang=en/);
+  await expect(page.getByRole('searchbox')).toHaveValue('Saber');
+  await page.reload();
+  await expect(page.locator('#catalog-title')).toHaveText('Item Database');
+  await page.goto('/data/items.html');
+  await expect(page.locator('#catalog-title')).toHaveText('Item Database');
+  await page.goto('/data/items.html?lang=zh');
+  await expect(page.locator('#catalog-title')).toHaveText('道具图鉴');
+  await page.goto('/data/items.html?lang=en&q=missing-item');
+  await page.getByRole('button',{name:'Clear all filters'}).click();
+  await expect(page).toHaveURL(/items.html\?lang=en$/);
+  await expect(page.locator('.item-row')).toHaveCount(24);
+});
+
+test('language works when browser preference storage is blocked', async ({page}) => {
+  await page.addInitScript(() => {
+    Storage.prototype.getItem = () => { throw new DOMException('Blocked','SecurityError'); };
+    Storage.prototype.setItem = () => { throw new DOMException('Blocked','SecurityError'); };
+  });
+  await page.goto('/data/items/saber.html?lang=en');
+  await expect(page.locator('#item-title')).toHaveText('Saber');
+  await page.getByRole('button',{name:'日本語',exact:true}).click();
+  await expect(page.locator('#item-title')).toHaveText('セイバー');
+  await page.reload();
+  await expect(page.locator('#item-title')).toHaveText('セイバー');
+});
+
+test('language changes keep detail fragments without fetching detail data again', async ({page}) => {
+  await page.goto('/data/items/soul-eater.html#attributes');
+  const requests=[];
+  page.on('request',r => { if(r.url().includes('/assets/data/items/')) requests.push(r.url()); });
+  await page.getByRole('button',{name:'English',exact:true}).click();
+  await expect(page).toHaveURL(/lang=en#attributes$/);
+  await expect(page.locator('#attributes')).toContainText('HP drain1 / 5 sec (while moving)');
+  await expect(page).toHaveTitle(/SOUL EATER|Soul Eater/);
+  expect(requests).toEqual([]);
+  await page.goto('/data/items/mag.html?lang=ja');
+  await expect(page.locator('.feeding-table tbody tr').first().locator('td').first()).toHaveText('モノメイト');
+  await page.goto('/data/items/psycho-wand.html?lang=en');
+  await expect(page.locator('#effects')).toContainText('Rafoie');
+  await expect(page.locator('#effects')).toContainText('+30% damage');
+  await page.goto('/data/items/es-saber.html?lang=ja');
+  await expect(page.locator('.detail-overview')).toContainText('日本語名未確認 · 英語表記');
+});
+
+test('English detail request failures expose translated retry and return controls', async ({page}) => {
+  await page.goto('/data/items.html?lang=en&q=V801');
+  await page.route('**/assets/data/items/v801.json',route=>route.abort());
+  await page.locator('.item-row').click();
+  await expect(page.getByRole('heading',{name:'Item details could not be loaded'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Retry'})).toBeVisible();
+  await page.getByRole('link',{name:'Back to the database →'}).click();
+  await expect(page.locator('#catalog-title')).toHaveText('Item Database');
+  await expect(page).toHaveURL(/lang=en/);
+});
+
+for (const width of [390,820,1280]) {
+  test(`English and Japanese layouts remain accessible at ${width}px`, async ({page}) => {
+    await page.setViewportSize({width,height:900});
+    for (const lang of ['en','ja']) for (const path of ['/data/items.html?category=unit','/data/items/nidra.html','/data/items/addslot.html']) {
+      await page.goto(`${path}${path.includes('?') ? '&' : '?'}lang=${lang}`);
+      await expect(page.locator('main.catalog-shell')).toHaveAttribute('lang',lang);
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      if (path.includes('category=unit')) {
+        expect(await page.locator('.item-row item-image').evaluateAll(images => images.every(image => {
+          const text = image.querySelector('small');
+          if (!text) return true;
+          const box = image.getBoundingClientRect(), label = text.getBoundingClientRect();
+          return label.top >= box.top && label.bottom <= box.bottom && label.left >= box.left && label.right <= box.right;
+        }))).toBe(true);
+      }
+      expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
+    }
+  });
+}
+
+test('reduced motion disables decorative row movement', async ({page}) => {
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto('/data/items.html?lang=en');
+  await page.locator('.item-row').first().hover();
+  expect(await page.locator('.row-arrow').first().evaluate(n => ({transition:getComputedStyle(n).transitionDuration,transform:getComputedStyle(n).transform}))).toEqual({transition:'0s',transform:'none'});
+});
+
 test('the full inventory is prerendered with bounded per-item hydration data', () => {
   expect(items).toHaveLength(1044);
   for (const item of items) {
@@ -164,11 +276,16 @@ test('mobile filters expose image-only results with real local files', async ({p
 
 test('section links and related navigation update the scroll position', async ({page}) => {
   await page.setViewportSize({width:390,height:844});
-  await page.goto('/data/items/lavis-cannon.html#effects');
-  await expect.poll(()=>page.locator('#effects').evaluate(n=>Math.abs(n.getBoundingClientRect().top))).toBeLessThan(50);
-  await page.locator('.related-items a').first().click();
-  await expect(page.locator('#item-title')).toBeVisible();
-  await expect.poll(()=>page.evaluate(()=>scrollY)).toBe(0);
+  for (const lang of ['zh','en','ja']) {
+    await page.goto(`/data/items/lavis-cannon.html?lang=${lang}#effects`);
+    await expect.poll(()=>page.locator('#effects').evaluate(n=>Math.abs(n.getBoundingClientRect().top))).toBeLessThan(50);
+    const link = page.locator('.related-items a').first();
+    const target = new URL(await link.getAttribute('href'), page.url()).href;
+    await link.click();
+    await expect(page).toHaveURL(target);
+    await expect(page.locator('#item-title')).toBeVisible();
+    await expect.poll(()=>page.evaluate(()=>scrollY)).toBe(0);
+  }
 });
 
 test('details load on demand and a failed request has an explicit retry state', async ({page}) => {

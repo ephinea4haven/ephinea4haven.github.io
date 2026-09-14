@@ -137,7 +137,7 @@ for (const record of records) {
   if (type === 'Material') effects.push('用于提升角色能力。使用次数受职业与能力药种类的上限约束。');
   if (type === 'Music Disk') effects.push('使用后更换当前区域的背景音乐，同区域玩家也会听到。属于一次性道具，使用者离开区域后恢复原有背景音乐。');
   if (type === 'Disk') effects.push('魔法光盘按魔法种类和等级区分，学习时检查基础 MST 与职业限制。大多数魔法最高等级为 30；Anti 最高为 7，Ryuker 与 Reverser 无等级变化。机器人不能学习魔法。');
-  const boosts = record.tables.filter(t => t.template === 'TechBoostRow').map(t => ({ label: display(t[1]), value: clean(t[2], true).replace(/Damage/gi, '伤害').replace(/Range/gi, '范围') }));
+  const boosts = record.tables.filter(t => t.template === 'TechBoostRow').map(t => ({ label: identity(clean(t[1])), value: clean(t[2], true).replace(/Damage/gi, '伤害').replace(/Range/gi, '范围') }));
   const sets = record.tables.filter(t => t.template === 'SetEffectRow').map(t => ({ item: clean(t[2]), id: itemIds.get(clean(t[2])) || null, effect: clean(t.effect || '', true) }));
   const skins = record.tables.filter(t => t.template === 'ReskinsRow').map(t => ({ item: clean(t[1]), id: itemIds.get(clean(t[1])) || null, code: clean(t[2]) }));
   const imageName = clean(f.image).replaceAll('_', ' ');
@@ -156,7 +156,7 @@ for (const record of records) {
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
   details[id] = detail;
   // Compact tuples keep the searchable index small; detailed data is loaded per item.
-  index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), image?.path || null, code, status, title === en ? '' : title, atp?.[1] ?? null]);
+  index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), image?.path || null, code, status, title === en ? '' : title, atp?.[1] ?? null, names.get(en)?.ja ? '' : clean(f.jp)]);
 }
 index.sort((a, b) => (a[8] || 'FFFFFF').localeCompare(b[8] || 'FFFFFF') || a[0].localeCompare(b[0]));
 fs.mkdirSync('src/app/generated/item-catalog', { recursive: true });

@@ -30,9 +30,9 @@ export const CATEGORIES = [
 ] as const;
 export const CLASSES = ['HUmar', 'HUnewearl', 'HUcast', 'HUcaseal', 'RAmar', 'RAmarl', 'RAcast', 'RAcaseal', 'FOmar', 'FOmarl', 'FOnewm', 'FOnewearl'];
 const names = new Map(ITEM_TRANSLATIONS.map(item => [item.en, item]));
-type IndexRow = [string, string, keyof typeof types, number | null, string, string, [string,string][], string | null, string | null, string, string, number | null];
-export const ITEMS: readonly CatalogItem[] = (rawIndex as IndexRow[]).map(([id, en, type, rarity, mask, requirement, stats, image, code, status, alias, atpMax]) => ({
-  id, en, title: alias || en, zh: names.get(en)?.zh || en, ja: names.get(en)?.ja,
+type IndexRow = [string, string, keyof typeof types, number | null, string, string, [string,string][], string | null, string | null, string, string, number | null, string];
+export const ITEMS: readonly CatalogItem[] = (rawIndex as IndexRow[]).map(([id, en, type, rarity, mask, requirement, stats, image, code, status, alias, atpMax, ja]) => ({
+  id, en, title: alias || en, zh: names.get(en)?.zh || en, ja: names.get(en)?.ja || ja,
   type, subtype: types[type][1], category: types[type][0] as Category,
   rarity, mask, classes: CLASSES.filter((_, i) => mask[i] === '1'), requirement,
   stats: stats.map(([label,value]) => ({label,value})), image, code, status, atpMax,
@@ -43,5 +43,9 @@ export function categoryLabel(id: string): string {
 }
 export function itemPath(item: Pick<CatalogItem, 'id'>): string { return `/data/items/${item.id}.html`; }
 export function normalize(value: string): string { return value.normalize('NFKC').toLocaleLowerCase().trim(); }
-export function itemName(en: string): string { return names.get(en)?.zh || ITEMS.find(i => i.title === en)?.zh || en; }
+export function localizedItemName(value: CatalogItem | string, language: 'zh' | 'en' | 'ja'): string {
+  const item = typeof value === 'string' ? ITEMS.find(i => i.en === value || i.title === value) || names.get(value) : value;
+  if (!item) return value as string;
+  return language === 'zh' ? item.zh : language === 'ja' ? item.ja || item.en : item.en;
+}
 export function statusLabel(status: string): string { return ({obsolete: '历史道具', unavailable: '当前无法获取'} as Record<string,string>)[status] || ''; }

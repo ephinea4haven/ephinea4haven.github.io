@@ -727,9 +727,11 @@ test('content-page relative links resolve within their source directory', async 
   await expect(page.locator('#racast')).toBeInViewport();
 
   await page.goto('/tools/equipment.html');
-  await page.locator('.class-nav a[href="/tools/equipment.html#fonewearl"]').click();
-  await expect(page).toHaveURL(/\/tools\/equipment\.html#fonewearl$/);
-  await expect(page.locator('#fonewearl')).toBeInViewport();
+  for (const id of ['fonewearl', 'humar', 'fonewm']) {
+    await page.locator(`.class-nav a[href="/tools/equipment.html#${id}"]`).click();
+    await expect(page).toHaveURL(new RegExp(`/tools/equipment.html#${id}$`));
+    await expect(page.locator(`#${id}`)).toBeInViewport();
+  }
 
   await page.goto('/event/event.html');
   await page.locator('a[href="/event/christmas.html?year=2025"]').first().click();

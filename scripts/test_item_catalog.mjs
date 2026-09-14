@@ -7,6 +7,7 @@ import { clean, range, slug, magTrigger } from './item_catalog_model.mjs';
 import { templates } from './item_catalog_wiki.mjs';
 import { extractMechanics } from './item_catalog_mechanics.mjs';
 import vm from 'node:vm';
+import { MESSAGES, catalogText, catalogValue } from '../src/app/item-catalog/catalog-messages.ts';
 
 test('balanced templates preserve repeated fields, nesting and numeric conditions', () => {
   assert.equal(clean('{{DEF}} + {{DEX}} / {{DEF}} + {{POW}}'), 'DEF + DEX / DEF + POW');
@@ -44,6 +45,40 @@ const items = Object.values(details);
 const coverage = read('content/item-catalog/coverage.json');
 const snapshot = read('content/item-catalog/wiki.json');
 const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json').items;
+
+test('catalog UI and structured stats have complete English and Japanese messages', () => {
+  for (const [key, translations] of Object.entries(MESSAGES)) {
+    assert.equal(translations.length, 2, key);
+    for (const text of translations) assert.ok(text.trim(), key);
+    assert.equal(catalogText(key, 'zh'), key);
+  }
+  for (const file of fs.readdirSync('src/app/item-catalog').filter(f => /\.(html|ts)$/.test(f))) {
+    const source = fs.readFileSync(`src/app/item-catalog/${file}`, 'utf8');
+    for (const match of source.matchAll(/i18n\.t\('([^']+)'\)/g)) assert.ok(MESSAGES[match[1]], `${file}: ${match[1]}`);
+  }
+  for (const item of items) {
+    for (const stat of item.stats) {
+      if (/\p{Script=Han}/u.test(stat.label)) assert.ok(MESSAGES[stat.label], stat.label);
+      assert.doesNotMatch(catalogValue(stat.value, 'en'), /\p{Script=Han}/u, `${item.id}: ${stat.value}`);
+    }
+    assert.doesNotMatch(catalogValue(item.requirement, 'en'), /\p{Script=Han}/u, item.id);
+    for (const boost of item.boosts) assert.doesNotMatch(boost.label, /\p{Script=Han}/u, item.id);
+  }
+  assert.equal(catalogValue('1 / 5 秒（移动时）', 'en'), '1 / 5 sec (while moving)');
+  assert.equal(catalogValue('无敌 · 0–35%（随同步率变化）', 'ja'), '無敵 · 0–35%（シンクロ率で変化）');
+});
+
+test('Japanese catalog names use exact authority or recorded Wiki evidence', () => {
+  const index = read('src/app/generated/item-catalog/index.json');
+  const records = new Map(snapshot.records.map(r => [r.title, r]));
+  for (const row of index) {
+    const [id,en] = row;
+    assert.equal(row[12], authority[en]?.ja ? '' : clean(records.get(details[id].title)?.fields.jp), id);
+  }
+  assert.equal(index.find(row => row[0] === 'saber')[12], 'セイバー');
+  assert.equal(index.find(row => row[0] === 'monomate')[12], 'モノメイト');
+  assert.equal(index.filter(row => authority[row[1]]?.ja || row[12]).length, 817);
+});
 
 test('every inventory item has a unique route, exact authority identity or an explicit unresolved name', () => {
   assert.equal(items.length, 1044);
