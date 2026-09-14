@@ -33,7 +33,7 @@ export class MonsterCatalogComponent {
   readonly areas=computed(()=>[...new Set(MONSTERS.filter(m=>!this.episode() || m.episode===Number(this.episode())).flatMap(m=>m.areas))]);
   readonly filtered=computed(()=>{
     const q=normalize(this.q()); const kind=this.kind();
-    const list=MONSTERS.filter(m=>(!this.episode() || m.episode===Number(this.episode())) && (!this.area() || m.areas.includes(this.area())) && (!kind || (kind==='regular' ? !m.rare&&!m.boss&&!m.part : m[kind as 'rare'|'boss'|'part'])) && (!q || normalize([...Object.values(m.names),...Object.values(m.ultimateNames),...m.areas,...m.areas.map(a=>this.i18n.area(a))].join(' ')).includes(q)));
+    const list=MONSTERS.filter(m=>(!this.episode() || m.episode===Number(this.episode())) && (!this.area() || m.areas.includes(this.area())) && (!kind || (kind==='regular' ? !m.rare&&!m.boss&&!m.part : m[kind as 'rare'|'boss'|'part'])) && (!q || normalize([...Object.values(m.names),...Object.values(m.ultimateNames),...m.areas.flatMap(a=>[a,this.i18n.area(a,'zh'),this.i18n.area(a,'ja')])].join(' ')).includes(q)));
     return this.sort()==='hp' ? list.sort((a,b)=>(b.values[this.context()]?.[0]??-1)-(a.values[this.context()]?.[0]??-1)) : list;
   });
   readonly pages=computed(()=>Math.max(1,Math.ceil(this.filtered().length/24)));

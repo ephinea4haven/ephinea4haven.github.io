@@ -34,9 +34,9 @@ const areas: Record<string,[string,string]> = {'Forest':['森林','森'],'Cave':
 export class MonsterLanguageService extends LanguagePreferenceService {
   t(key:string):string {return this.language() === 'zh' ? key : messages[key]?.[this.language() === 'en' ? 0 : 1] || key;}
   name(names:Names):string {return names[this.language()];}
-  area(value:string):string {
-    if (this.language() === 'en') return value;
-    for (const [en,translated] of Object.entries(areas)) if (value === en || value.startsWith(en+' ')) return translated[this.language() === 'zh' ? 0 : 1]+value.slice(en.length);
+  area(value:string, language=this.language()):string {
+    if (language === 'en') return value;
+    for (const [en,translated] of Object.entries(areas)) if (value === en || value.startsWith(en+' ')) return translated[language === 'zh' ? 0 : 1]+value.slice(en.length);
     return value;
   }
 }
