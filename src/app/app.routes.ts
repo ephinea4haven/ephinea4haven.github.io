@@ -3,6 +3,15 @@ import { contentRoutes } from './generated/content.routes';
 
 export const routes: Routes = [
   {
+    path: 'data/items.html',
+    title: '道具图鉴 | Ephinea PSOBB',
+    loadComponent: () => import('./item-catalog/item-catalog.component').then(({ ItemCatalogComponent }) => ItemCatalogComponent),
+  },
+  {
+    path: 'data/items/:item',
+    loadComponent: () => import('./item-catalog/item-detail.component').then(({ ItemDetailComponent }) => ItemDetailComponent),
+  },
+  {
     path: 'data/en2chinese.html',
     title: '游戏物品中英对照 | Ephinea PSOBB',
     loadComponent: () => import('./item-lookup/item-lookup.component')

@@ -582,7 +582,7 @@ const candidates = [
 const pages = [];
 for (const file of candidates) {
   const relative = path.relative(root, file).split(path.sep).join('/');
-  if (explicitPages.has(relative)) continue;
+  if (explicitPages.has(relative) || relative === 'data/items.html' || relative.startsWith('data/items/')) continue;
   const source = await applyBuildTimeContent(relative, await readFile(file, 'utf8'));
   const details = pageDetails(file, source, relative);
   if (!details) continue;
