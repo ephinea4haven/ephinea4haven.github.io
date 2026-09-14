@@ -4,6 +4,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { templates, pageSource } from './item_catalog_wiki.mjs';
 import { clean } from './item_catalog_model.mjs';
+import { extractMechanics } from './item_catalog_mechanics.mjs';
 
 const [pagesFile, imagesFile] = process.argv.slice(2);
 if (!pagesFile || !imagesFile) throw new Error('Usage: node scripts/import_item_catalog.mjs pages.json image-bytes.json');
@@ -62,10 +63,6 @@ for (const page of Object.values(pages)) {
   for (const match of availability.matchAll(/===\s*([^=\n]+?)\s*===/g)) acquisition.push(match[1]);
   const related = calls.filter(t => /^(Sword|Gun|Cane|Frame|Shield|Unit|Mag|Tool)$/.test(t.name))
     .map(t => t.fields[2] || t.fields[1]).filter(Boolean);
-  const regen = source.match(/(?:restores|generates)\s+(\d+)\s+(HP|TP|PB)\s+every\s+(\d+)\s+seconds/i)
-    || source.match(/(?:rate of)\s+(\d+)\s+(HP|TP|PB)\s+every\s+(\d+)\s+seconds/i);
-  const battle = source.match(/(?:speed of attacks[\s\S]{0,100}?by|grants the user)\s+(\d+)%/i);
-  const technique = source.match(/increases the level of all[\s\S]{0,150}?by\s+(one|two|three|four|five)/i);
   const mechanics = source.slice(item.end).split(/\n==\s*(?:Availability|Trivia|Gallery|Reskins|The Forge)/i)[0];
   const sentences = mechanics.split(/\n\s*\n/).filter(p => !/^\s*(?:[{:|=!]|<)/.test(p))
     .map(p => clean(p, true)).flatMap(p => p.split(/(?<=[.!?])\s+(?=[A-Z])/u))
@@ -83,9 +80,7 @@ for (const page of Object.values(pages)) {
     obsolete: calls.some(t => t.name === 'Obsolete'),
     unavailable: /(?:currently |remains? )unobtainable|not (?:currently )?obtainable on Ephinea/i.test(source),
     noCombo: noCombo.has(page.title),
-    ...(regen ? { regeneration: { amount: +regen[1], stat: regen[2], seconds: +regen[3] } } : {}),
-    ...(battle ? { attackSpeed: +battle[1] } : {}),
-    ...(technique ? { techniqueLevels: ['one', 'two', 'three', 'four', 'five'].indexOf(technique[1]) + 1 } : {}),
+    ...extractMechanics(mechanics, fields.type),
   });
 }
 records.sort((a, b) => a.title.localeCompare(b.title, 'en'));

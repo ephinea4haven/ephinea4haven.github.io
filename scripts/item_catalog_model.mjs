@@ -21,7 +21,7 @@ const templateWords = {
   f: '女性', F: '女性', m: '男性', M: '男性', Invinc: '无敌', SD: 'Shifta + Deband', RestaMag: 'Resta',
 };
 export function clean(value = '', notes = false) {
-  let text = String(value);
+  let text = String(value).replace(/<!--[\s\S]*?-->/g, '');
   const calls = templates(text);
   for (let i = calls.length - 1; i >= 0; i--) {
     const t = calls[i];
@@ -34,7 +34,8 @@ export function clean(value = '', notes = false) {
     else replacement = templateWords[t.name] || clean(f[1] || t.name, notes);
     text = text.slice(0, t.start) + replacement + text.slice(t.end);
   }
-  text = text.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, target, label) => label || target)
+  text = text.replace(/\[\[(?:File|Image):[^\]]*\]\]/gi, '')
+    .replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, target, label) => label || target)
     .replace(/<br\s*\/?\s*>/gi, ' / ').replace(/'{2,}/g, '');
   const fragment = parseFragment(text);
   const content = node => node.nodeName === '#text' ? node.value : (node.childNodes || []).map(content).join('');
@@ -52,6 +53,12 @@ export function typeOf(value) {
   const type = Object.keys(TYPES).find(k => k.toLowerCase() === text.toLowerCase());
   if (!type) throw new Error(`Unknown item type: ${value}`);
   return type;
+}
+export function isCommonWeapon(code) {
+  if (!/^00[0-9a-f]{4}$/i.test(code || '')) return false;
+  const family = parseInt(code.slice(2, 4), 16);
+  const tier = parseInt(code.slice(4), 16);
+  return family >= 1 && family <= 12 && tier < (family <= 9 ? 5 : 4);
 }
 export function magTrigger(trigger, base) {
   if (!trigger || trigger === '-') return '无';

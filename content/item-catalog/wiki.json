@@ -17126,9 +17126,7 @@
         "class": "111111111111",
         "hex": "010294"
       },
-      "excerpts": [
-        "thumb|right|Angel Ring's aesthetic effect"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "Claire's Deal 5"
@@ -17996,9 +17994,7 @@
         "class": "111111111111",
         "hex": "010273"
       },
-      "excerpts": [
-        "thumb|right|Anti Dark Ring's aesthetic effect"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "Quest Reward"
@@ -18030,9 +18026,7 @@
         "class": "111111111111",
         "hex": "01027B"
       },
-      "excerpts": [
-        "thumb|right|Anti Light Ring's aesthetic effect"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "Enemy Drops"
@@ -19115,7 +19109,7 @@
         "hex": "010131"
       },
       "excerpts": [
-        "thumb|right|Aura Field's aesthetic effect Aura Field is a rare frame that is not equippable by androids."
+        "Aura Field is a rare frame that is not equippable by androids."
       ],
       "tables": [],
       "acquisition": [
@@ -20238,9 +20232,7 @@
         "class": "111111111111",
         "hex": "010250"
       },
-      "excerpts": [
-        "thumb|Black Gear's aesthetic effect|360x360px"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "Quest Reward"
@@ -24271,7 +24263,7 @@
         "hex": "010130"
       },
       "excerpts": [
-        "thumb|right|Brightness Circle's aesthetic effect Brightness Circle is a rare frame with an aesthetic effect."
+        "Brightness Circle is a rare frame with an aesthetic effect."
       ],
       "tables": [],
       "acquisition": [
@@ -24932,9 +24924,7 @@
         "class": "111111111111",
         "hex": "01028B"
       },
-      "excerpts": [
-        "thumb|Bunny Ears's aesthetic effect"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "Black Paper's Dangerous Deal",
@@ -26136,7 +26126,7 @@
         "hex": "01012C"
       },
       "excerpts": [
-        "thumb|right|Chu Chu Fever's aesthetic effect Chu Chu Fever is a rare frame that comes with an aesthetic effect."
+        "Chu Chu Fever is a rare frame that comes with an aesthetic effect."
       ],
       "tables": [],
       "acquisition": [
@@ -32409,7 +32399,7 @@
         "hex": "01023D"
       },
       "excerpts": [
-        "thumb|right|Deband Merge aesthetic effect ==Technique Boost== TechBoostTable Deband |}"
+        "==Technique Boost== TechBoostTable Deband |}"
       ],
       "tables": [
         {
@@ -33347,7 +33337,8 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "attackSpeed": 10
     },
     {
       "title": "Devil/Technique",
@@ -33417,7 +33408,6 @@
         "hex": "01012A"
       },
       "excerpts": [
-        "DF Field's aesthetic effect / Blinks every 3 seconds|thumb|right DF Field is a rare frame.",
         "It comes with an aesthetic effect."
       ],
       "tables": [],
@@ -36796,7 +36786,7 @@
         "hex": "010144"
       },
       "excerpts": [
-        "thumb|Dress Plate's aesthetic effect|329x329px Dress Plate is a rare frame only equippable by males."
+        "Dress Plate is a rare frame only equippable by males."
       ],
       "tables": [],
       "acquisition": [
@@ -37715,7 +37705,7 @@
         "hex": "010132"
       },
       "excerpts": [
-        "thumb|right|Electro Frame's aesthetic effect Electro Frame is a rare frame only equippable by androids.",
+        "Electro Frame is a rare frame only equippable by androids.",
         "It comes with an aesthetic effect."
       ],
       "tables": [],
@@ -38026,7 +38016,7 @@
         "hex": "010293"
       },
       "excerpts": [
-        "right|Epsiguard's aesthetic effect (EDK resist)|thumb Epsiguard is a rare barrier only equippable by androids."
+        "Epsiguard is a rare barrier only equippable by androids."
       ],
       "tables": [],
       "acquisition": [
@@ -40486,7 +40476,7 @@
         "hex": "01012E"
       },
       "excerpts": [
-        "thumb|right|Flame Garment's aesthetic effect Flame Garment is a rare frame that provides an aesthetic effect."
+        "Flame Garment is a rare frame that provides an aesthetic effect."
       ],
       "tables": [],
       "acquisition": [
@@ -40854,7 +40844,8 @@
         "hex": "010224"
       },
       "excerpts": [
-        "thumb|right|Flowen's Shield's aesthetic effect Flowen's Shield is a rare barrier not equippable by Forces."
+        "Flowen's Shield is a rare barrier not equippable by Forces.",
+        "It offers bonuses while Flowen's Sword and Flowen's Frame are also equipped."
       ],
       "tables": [
         {
@@ -41860,7 +41851,7 @@
         "hex": "01023E"
       },
       "excerpts": [
-        "thumb|right|Foie Merge aesthetic effect ==Technique Boost== TechBoostTable Foie |}"
+        "==Technique Boost== TechBoostTable Foie |}"
       ],
       "tables": [
         {
@@ -42076,7 +42067,7 @@
         "hex": "010290"
       },
       "excerpts": [
-        "thumb|From The Depths' aesthetic effect|281x281px From the Depths is a rare barrier with an aesthetic effect that offers a high spread of defensive stats."
+        "From the Depths is a rare barrier with an aesthetic effect that offers a high spread of defensive stats."
       ],
       "tables": [],
       "acquisition": [
@@ -43161,7 +43152,8 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "attackSpeed": 5
     },
     {
       "title": "General/Body",
@@ -43517,7 +43509,7 @@
         "hex": "01029B"
       },
       "excerpts": [
-        "thumb|right|Genpei's aesthetic effect (Viridia) Genpei is a rare barrier."
+        "It has an aesthetic effect that also displays the wearer's Section ID. ==Set Effect== SetEffectHead Frame |}"
       ],
       "tables": [
         {
@@ -45547,7 +45539,8 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "attackSpeed": 20
     },
     {
       "title": "God/Body",
@@ -45910,7 +45903,8 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "techniqueLevels": 3
     },
     {
       "title": "God/TP",
@@ -46058,9 +46052,7 @@
         "class": "111111111111",
         "hex": "01028E"
       },
-      "excerpts": [
-        "200px|thumb|right|Gods Shield \"Kouryu\"'s aesthetic effect Gods Shield \"Kouryu\" is a rare barrier that can be obtained from the quest Claire's Deal 5."
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "Claire's Deal 5"
@@ -46079,7 +46071,15 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "periodic": [
+        {
+          "stat": "PB",
+          "amount": 1,
+          "seconds": 23,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "Gods Shield \"Seiryu\"",
@@ -46809,7 +46809,6 @@
         "hex": "010129"
       },
       "excerpts": [
-        "thumb|right|Guard Wave's aesthetic effect Guard Wave is a rare frame.",
         "It offers an aesthetic effect."
       ],
       "tables": [],
@@ -51689,7 +51688,7 @@
         "hex": "010292"
       },
       "excerpts": [
-        "thumb|right|Honeycomb Reflector's aesthetic effect Honeycomb Reflector is a rare barrier."
+        "Note that the DFP boost from the frame is calculated based on the equipped frame's minimum value."
       ],
       "tables": [],
       "acquisition": [
@@ -51885,11 +51884,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 11
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": 1,
+          "seconds": 11,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "HP/Restorate",
@@ -51946,11 +51948,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 14
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": 1,
+          "seconds": 14,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "HP/Resurrection",
@@ -52004,11 +52009,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 5
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": 1,
+          "seconds": 5,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "HP/Revival",
@@ -52081,7 +52089,15 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": 1,
+          "seconds": 8,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "Huge Battle Fan",
@@ -52224,7 +52240,6 @@
         "hex": "010230"
       },
       "excerpts": [
-        "190px|thumb|right|Hunter's Shell's aesthetic effect Hunter's Shell is a rare barrier.",
         "It is only equippable by HUmar."
       ],
       "tables": [],
@@ -55039,7 +55054,7 @@
         "hex": "01022B"
       },
       "excerpts": [
-        "200px|thumb|right|Kasami Bracer's aesthetic effect Kasami Bracer is a rare barrier only equippable by Hunters."
+        "Kasami Bracer is a rare barrier only equippable by Hunters."
       ],
       "tables": [],
       "acquisition": [
@@ -57768,7 +57783,7 @@
         "hex": "01012D"
       },
       "excerpts": [
-        "thumb|Love Heart's aesthetic effect|319x319px Love Heart is a rare frame that is only equippable by females."
+        "Love Heart is a rare frame that is only equippable by females."
       ],
       "tables": [],
       "acquisition": [
@@ -57889,7 +57904,7 @@
         "hex": "01012B"
       },
       "excerpts": [
-        "thumb|right|Luminous Field's aesthetic effect Luminous Field is a rare frame that provides an aesthetic effect."
+        "Luminous Field is a rare frame that provides an aesthetic effect."
       ],
       "tables": [],
       "acquisition": [
@@ -57939,11 +57954,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 6
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": -1,
+          "seconds": 6,
+          "moving": true
+        }
+      ]
     },
     {
       "title": "M&A60 Vise",
@@ -63509,11 +63527,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 11
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": -1,
+          "seconds": 11,
+          "moving": true
+        }
+      ]
     },
     {
       "title": "Parasite Wear: Nelgal",
@@ -63556,11 +63577,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 8
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": -1,
+          "seconds": 8,
+          "moving": true
+        }
+      ]
     },
     {
       "title": "Parasite Wear: Vajulla",
@@ -63602,11 +63626,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 8
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": -1,
+          "seconds": 8,
+          "moving": true
+        }
+      ]
     },
     {
       "title": "Parasitic Cell Type D",
@@ -64009,11 +64036,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "PB",
-        "seconds": 40
-      }
+      "periodic": [
+        {
+          "stat": "PB",
+          "amount": 1,
+          "seconds": 40,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "PB/Create",
@@ -64075,7 +64105,15 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "periodic": [
+        {
+          "stat": "PB",
+          "amount": 1,
+          "seconds": 23,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "PB/Generate",
@@ -64104,11 +64142,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "PB",
-        "seconds": 35
-      }
+      "periodic": [
+        {
+          "stat": "PB",
+          "amount": 1,
+          "seconds": 35,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "PB/Increase",
@@ -64160,7 +64201,15 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "periodic": [
+        {
+          "stat": "PB",
+          "amount": 1,
+          "seconds": 18,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "Perfect Frame",
@@ -67761,9 +67810,7 @@
         "class": "111111111111",
         "hex": "01026C"
       },
-      "excerpts": [
-        "thumb|right|Purple Ring's aesthetic effect Purple Ring is a rare barrier."
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "Quest Reward"
@@ -68327,9 +68374,7 @@
         "class": "111111111111",
         "hex": "010252"
       },
-      "excerpts": [
-        "thumb|right|Ragol Ring's aesthetic effect Ragol Ring is a rare barrier that functions as a Scape Doll."
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "Quest Reward"
@@ -71209,7 +71254,7 @@
         "hex": "010227"
       },
       "excerpts": [
-        "thumb|right|Red Ring's aesthetic effect Red Ring is a rare barrier that is considered to be the best barrier in the game."
+        "The DFP and EVP values shown here are after this increase."
       ],
       "tables": [],
       "acquisition": [
@@ -71282,7 +71327,21 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": 1,
+          "seconds": 15,
+          "moving": false
+        },
+        {
+          "stat": "TP",
+          "amount": 1,
+          "seconds": 15,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "Red Saber",
@@ -71960,7 +72019,9 @@
         "class": "111111111111",
         "hex": "010288"
       },
-      "excerpts": [],
+      "excerpts": [
+        "Regenerate Gear B.P. is a rare barrier that restores 2% of max HP and TP when an attack is blocked or evaded."
+      ],
       "tables": [],
       "acquisition": [
         "Enemy Drops",
@@ -72728,7 +72789,7 @@
         "hex": "01023A"
       },
       "excerpts": [
-        "thumb|right|Resta Merge aesthetic effect ==Technique Boost== TechBoostTable Resta |}"
+        "==Technique Boost== TechBoostTable Resta |}"
       ],
       "tables": [
         {
@@ -72828,11 +72889,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 5
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": 1,
+          "seconds": 5,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "Revival Garment",
@@ -72933,11 +72997,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 5
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": 1,
+          "seconds": 5,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "Rianov 303SNR",
@@ -73415,7 +73482,7 @@
         "hex": "010232"
       },
       "excerpts": [
-        "180px|thumb|right|Rico's Earring's aesthetic effect Rico's Earring is a rare barrier only equippable by females."
+        "Rico's Earring is a rare barrier only equippable by females."
       ],
       "tables": [],
       "acquisition": [
@@ -73473,7 +73540,7 @@
         "hex": "010231"
       },
       "excerpts": [
-        "180px|thumb|right|Rico's Glasses' aesthetic effect Rico's Glasses are a rare barrier only equippable by FOmarl.",
+        "Rico's Glasses are a rare barrier only equippable by FOmarl.",
         "They grant Trap Vision while they are equipped."
       ],
       "tables": [],
@@ -74089,7 +74156,7 @@
         "hex": "010289"
       },
       "excerpts": [
-        "thumb|right|Rupika's aesthetic effect Rupika is a rare barrier."
+        "While equipped, it increases Shifta range, similar to the effect of a Shifta Merge. ==Technique Boost== TechBoostTable Shifta |}"
       ],
       "tables": [
         {
@@ -74946,7 +75013,6 @@
         "hex": "010133"
       },
       "excerpts": [
-        "thumb|right|Sacred Cloth's aesthetic effect Sacred Cloth is a rare frame.",
         "It grants immunity to paralysis and has an aesthetic effect."
       ],
       "tables": [],
@@ -75179,7 +75245,7 @@
         "hex": "01022A"
       },
       "excerpts": [
-        "180px|thumb|right|Safety Heart's aesthetic effect Safety Heart is a rare barrier that is only equippable by females.",
+        "Safety Heart is a rare barrier that is only equippable by females.",
         "It comes with an aesthetic effect."
       ],
       "tables": [
@@ -76030,7 +76096,7 @@
         "hex": "010235"
       },
       "excerpts": [
-        "thumb|right|Secure Feet's aesthetic effect Secure Feet is a rare barrier only equippable by human Rangers."
+        "Secure Feet is a rare barrier only equippable by human Rangers."
       ],
       "tables": [],
       "acquisition": [
@@ -76395,9 +76461,7 @@
         "class": "111111110000",
         "hex": "01021A"
       },
-      "excerpts": [
-        "195px|thumb|right|The Delsaber set's aesthetic effect Shield of Delsaber is a rare barrier that is the result of converting the enemy part Delsaber's Left Arm."
-      ],
+      "excerpts": [],
       "tables": [
         {
           "1": "Sword",
@@ -77751,7 +77815,7 @@
         "hex": "010134"
       },
       "excerpts": [
-        "thumb|right|Smoking Plate's aesthetic effect Smoking Plate is a frame equippable only by FOnewms.",
+        "Smoking Plate is a frame equippable only by FOnewms.",
         "It has an aesthetic effect."
       ],
       "tables": [],
@@ -79590,11 +79654,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 3
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": -1,
+          "seconds": 3,
+          "moving": true
+        }
+      ]
     },
     {
       "title": "Soul Barrier",
@@ -79669,11 +79736,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 5
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": -1,
+          "seconds": 5,
+          "moving": true
+        }
+      ]
     },
     {
       "title": "Soul Frame",
@@ -81676,7 +81746,8 @@
         "hex": "010157"
       },
       "excerpts": [
-        "thumb|right|Stealth Suit's aesthetic effect Stealth Suit is a rare frame with an aesthetic effect."
+        "Stealth Suit is a rare frame with an aesthetic effect.",
+        "While Stealth Suit is equipped, the character will turn almost transparent while standing still."
       ],
       "tables": [],
       "acquisition": [
@@ -82639,7 +82710,8 @@
         "hex": "010287"
       },
       "excerpts": [
-        "thumb|right|Striker Plus' aesthetic effect Striker Plus is a rare barrier only equippable by Rangers."
+        "Striker Plus is a rare barrier only equippable by Rangers.",
+        "It has an aesthetic effect and offers bonuses when equipped with Heaven Striker."
       ],
       "tables": [
         {
@@ -84153,7 +84225,8 @@
         "hex": "01028D"
       },
       "excerpts": [
-        "thumb|Three Seals aesthetic effect|240x240px|border Three Seals is a rare barrier only equippable by Forces."
+        "Three Seals is a rare barrier only equippable by Forces.",
+        "This effect has a 3% chance of occurring when a physical attack hits the player."
       ],
       "tables": [
         {
@@ -84174,11 +84247,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "HP",
-        "seconds": 6
-      }
+      "periodic": [
+        {
+          "stat": "HP",
+          "amount": -1,
+          "seconds": 6,
+          "moving": true
+        }
+      ]
     },
     {
       "title": "Toy Hammer",
@@ -84273,11 +84349,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "TP",
-        "seconds": 13
-      }
+      "periodic": [
+        {
+          "stat": "TP",
+          "amount": 1,
+          "seconds": 13,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "TP/Restorate",
@@ -84348,11 +84427,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "TP",
-        "seconds": 15
-      }
+      "periodic": [
+        {
+          "stat": "TP",
+          "amount": 1,
+          "seconds": 15,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "TP/Resurrection",
@@ -84406,11 +84488,14 @@
       "obsolete": false,
       "unavailable": false,
       "noCombo": false,
-      "regeneration": {
-        "amount": 1,
-        "stat": "TP",
-        "seconds": 9
-      }
+      "periodic": [
+        {
+          "stat": "TP",
+          "amount": 1,
+          "seconds": 9,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "TP/Revival",
@@ -84455,7 +84540,15 @@
       ],
       "obsolete": false,
       "unavailable": false,
-      "noCombo": false
+      "noCombo": false,
+      "periodic": [
+        {
+          "stat": "TP",
+          "amount": 1,
+          "seconds": 11,
+          "moving": false
+        }
+      ]
     },
     {
       "title": "Trap Vision",
@@ -85358,7 +85451,9 @@
         "class": "111111111111",
         "hex": "010286"
       },
-      "excerpts": [],
+      "excerpts": [
+        "Tripolic Reflector is a rare barrier that has the ability to block all damage from techniques, including inflictions such as Jellen and Zalure."
+      ],
       "tables": [],
       "acquisition": [
         "Enemy Drops"
@@ -85408,9 +85503,7 @@
         "class": "111111111111",
         "hex": "010228"
       },
-      "excerpts": [
-        "190px|thumb|right|Tripolic Shield's aesthetic effect"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "Enemy Drops",
@@ -87272,7 +87365,6 @@
         "hex": "010295"
       },
       "excerpts": [
-        "thumb|right|Union Guard's aesthetic effect Union Guard is a rare barrier.",
         "While equipped, it displays the current Team's flag, if one is set."
       ],
       "tables": [],
@@ -89087,8 +89179,7 @@
         "hex": "01012F"
       },
       "excerpts": [
-        "thumb|right|Virus Armor: Lafuteria's aesthetic effect Virus Armor: Lafuteria is a rare frame.",
-        "It offers the highest DFP for non-android characters, and has an aesthetic effect."
+        "It is the end result of the Stink Frame and \"Parasite Wear\" series of combination frames."
       ],
       "tables": [],
       "acquisition": [
@@ -91014,7 +91105,7 @@
         "hex": "01013E"
       },
       "excerpts": [
-        "thumb|right|Wedding Dress' aesthetic effect Wedding Dress is a rare frame only equippable by females."
+        "Wedding Dress is a rare frame only equippable by females."
       ],
       "tables": [],
       "acquisition": [
@@ -91339,7 +91430,6 @@
         "hex": "010251"
       },
       "excerpts": [
-        "thumb|right|Works Guard's aesthetic effect Works Guard is a rare barrier.",
         "It offers an aesthetic effect."
       ],
       "tables": [],
@@ -92295,7 +92385,7 @@
         "hex": "01028A"
       },
       "excerpts": [
-        "thumb|right|Yata Mirror aesthetic effect Yata Mirror is a rare barrier not equippable by Forces."
+        "Yata Mirror is a rare barrier not equippable by Forces."
       ],
       "tables": [
         {

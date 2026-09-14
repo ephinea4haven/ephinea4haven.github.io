@@ -8,7 +8,7 @@ import { CatalogItem, categoryLabel } from './catalog';
     @if (item().image && failedUrl() !== item().image) {
       <img [src]="item().image" [alt]="item().zh + '游戏截图'" width="256" height="192" loading="lazy" (error)="failedUrl.set(item().image)">
     } @else {
-      <span class="placeholder"><span aria-hidden="true">{{ item().category === 'weapon' ? '⚔' : '◇' }}</span><small>{{ categoryLabel(item().category) }} · 暂无截图</small></span>
+      <span class="placeholder"><span aria-hidden="true">{{ item().category === 'weapon' ? '⚔' : '◇' }}</span><small>{{ item().image ? '图片加载失败' : categoryLabel(item().category) + ' · 暂无截图' }}</small></span>
     }
   `,
   styles: `
