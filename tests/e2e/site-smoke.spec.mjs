@@ -1099,18 +1099,22 @@ test('historical anniversary years share the modern archive presentation', async
   }
 });
 
-test('event overview milestone link loads the historical year and scrolls to its anchor', async ({ page }) => {
-  await page.goto('/event/event.html');
-  await page.locator('a[href="/event/anniversary.html?year=2017#anniv-2017-milestones"]').click();
+for (const fontSize of [16, 15.5, 16.5]) {
+  test(`event overview milestone link scrolls to its anchor at ${fontSize}px root font size`, async ({ page }) => {
+    await page.addInitScript((size) => {
+      document.addEventListener('DOMContentLoaded', () => { document.documentElement.style.fontSize = `${size}px`; }, {once:true});
+    }, fontSize);
+    await page.goto('/event/event.html');
+    await page.locator('a[href="/event/anniversary.html?year=2017#anniv-2017-milestones"]').click();
 
-  await expect(page).toHaveURL(/\/event\/anniversary\.html\?year=2017#anniv-2017-milestones$/);
-  const anchor = page.locator('#anniv-2017-milestones');
-  await expect(anchor).toBeVisible();
-  await expect.poll(() => anchor.evaluate((element) => {
-    const { top, bottom } = element.getBoundingClientRect();
-    return top >= 0 && bottom <= window.innerHeight;
-  })).toBe(true);
-});
+    await expect(page).toHaveURL(/\/event\/anniversary\.html\?year=2017#anniv-2017-milestones$/);
+    const anchor = page.locator('#anniv-2017-milestones');
+    await expect(anchor).toBeVisible();
+    // Scroll offsets are rounded to CSS pixels while layout coordinates retain fractions.
+    await expect.poll(() => anchor.evaluate(element => element.getBoundingClientRect().top)).toBeGreaterThanOrEqual(-1);
+    await expect.poll(() => anchor.evaluate(element => element.getBoundingClientRect().bottom - window.innerHeight)).toBeLessThanOrEqual(1);
+  });
+}
 
 test('banner item lists use Chinese-first bilingual names', async ({ page }) => {
   await page.goto('/guide/banners.html');

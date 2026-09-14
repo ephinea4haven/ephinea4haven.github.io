@@ -145,6 +145,18 @@ The artifact has 1,104 routes and 45 event fragments; JavaScript gzip totals
 All existing performance ceilings remain unchanged. Publication is confirmed
 only by a successful Pages run for the pushed `master` SHA.
 
+The first multilingual release attempt, `11e098c`, was blocked in
+[Pages run 34807545578](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34807545578):
+both production builds and their byte-identical comparison passed, but the
+anniversary milestone anchor check failed twice; 1,201 other browser tests passed.
+No deployment occurred. The boolean assertion did not log its coordinates.
+Local reproduction with a 16.5px root font exposed the same assertion failure:
+scroll offsets round to whole pixels while layout can place the heading a
+fraction of a pixel above zero. The check now reports each boundary and allows
+one pixel of rounding at either viewport edge, retaining full-heading visibility.
+The 16px, 15.5px and 16.5px cases each passed three repeated runs. This test-only
+follow-up expands the CI inventory to 1,204 tests; production code is unchanged.
+
 ## RBR update validation
 
 The retired `sync-rbr.yml` workflow no longer polls the Ephinea Wiki or
