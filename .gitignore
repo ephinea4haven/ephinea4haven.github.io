@@ -7,6 +7,7 @@ node_modules/
 dist/
 src/app/generated/
 assets/data/items/
+assets/data/monsters/
 _site/
 .site-build-*/
 .site-backup-*/
@@ -25,6 +26,7 @@ docs/*
 !docs/SOP_COMBO_CALCULATOR_SYNC.md
 !docs/TODO.md
 !docs/ITEM_CATALOG.md
+!docs/MONSTER_CATALOG.md
 
 # pw is deployed separately at pw.psohaven.com; no longer part of this repo
 tools/pw/

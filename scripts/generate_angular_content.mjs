@@ -467,6 +467,11 @@ async function buildSeasonalContent(relative, source) {
 
 async function applyBuildTimeContent(relative, source) {
   source = buildCanonicalItemConsumers(relative, source);
+  if (relative === 'index.html') {
+    const data = JSON.parse(await readFile(path.join(root, 'data/rbr/source.json'), 'utf8'));
+    const quests = data.current.quests.map(quest => `<a class="home-rbr-quest" href="/guide/rbr.html"><span>EPISODE 0${quest.episode}</span><strong>${escapeHtml(quest.abbreviation)}</strong><small>${escapeHtml(quest.name)}</small><b aria-hidden="true">↗</b></a>`).join('');
+    return source.replace('<!-- home-rbr -->', `<section class="home-rbr" data-rbr-week="${escapeHtml(data.current.week)}" aria-labelledby="home-rbr-title"><div class="home-rbr-heading"><div><p>RAGOL BOOST ROAD</p><h2 id="home-rbr-title">RBR 任务</h2></div><a href="/guide/rbr.html">任务详情与周回推荐 →</a></div><p class="home-rbr-status">记录周：${escapeHtml(data.current.week)} · UTC 周日轮替</p><div class="home-rbr-quests">${quests}</div></section>`);
+  }
   if (relative === 'data/bdp/index.html') return buildBdpContent(source);
   if (relative === 'data/prizelist/index.html') return buildPrizeContent(source);
   if (relative === 'data/protocol/index.html') return buildProtocolContent(source);

@@ -1,5 +1,5 @@
 <main class="catalog-shell detail-shell" [attr.lang]="i18n.htmlLanguage()">
-  <nav class="masthead" [attr.aria-label]="i18n.t('站点导航')"><a href="/index.html" class="brand"><span aria-hidden="true">◈</span> HAVEN <small>PSOBB</small></a><div class="masthead-actions"><a routerLink="/data/items.html" [queryParams]="queryParams()">{{ i18n.t('← 返回道具列表') }}</a><catalog-language/></div></nav>
+  <nav class="masthead" [attr.aria-label]="i18n.t('站点导航')"><a href="/index.html" class="brand"><span aria-hidden="true">◈</span> HAVEN <small>PSOBB</small></a><div class="masthead-actions"><a routerLink="/data/items.html" [queryParams]="queryParams()">{{ i18n.t('← 返回道具列表') }}</a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)"/></div></nav>
   @if (item(); as entry) {
     <nav class="breadcrumbs" [attr.aria-label]="i18n.t('当前位置')"><a routerLink="/data/items.html" [queryParams]="queryParams()">{{ i18n.t('道具图鉴') }}</a><span aria-hidden="true">/</span><a routerLink="/data/items.html" [queryParams]="{category: entry.category, lang:i18n.language()}">{{ i18n.category(entry.category) }}</a><span aria-hidden="true">/</span><span>{{ i18n.name(entry) }}</span></nav>
     <section class="detail-hero" aria-labelledby="item-title">
