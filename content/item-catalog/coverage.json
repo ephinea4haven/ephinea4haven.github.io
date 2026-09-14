@@ -1,0 +1,164 @@
+{
+  "checkedAt": "2026-09-14",
+  "items": 1044,
+  "categories": {
+    "weapon": 419,
+    "armor": 88,
+    "shield": 107,
+    "unit": 100,
+    "mag": 84,
+    "tool": 246
+  },
+  "withImages": 524,
+  "unresolvedNames": [
+    "ES Axe",
+    "ES Bazooka",
+    "ES Blade",
+    "ES Cane",
+    "ES Cards",
+    "ES Claw",
+    "ES Gun",
+    "ES Hammer",
+    "ES Harisen",
+    "ES J-Cutter",
+    "ES Katana",
+    "ES Knuckle",
+    "ES Launcher",
+    "ES Mechgun",
+    "ES Moon",
+    "ES Needle",
+    "ES Partisan",
+    "ES Psychogun",
+    "ES Punch",
+    "ES Rifle",
+    "ES Rod",
+    "ES Saber",
+    "ES Scythe",
+    "ES Shot",
+    "ES Slicer",
+    "ES Sword",
+    "ES Swords",
+    "ES Twin",
+    "ES Wand",
+    "ES Windmill",
+    "Nei's Claw (Replica)"
+  ],
+  "unknownCodes": [
+    {
+      "title": "Angel's Wing",
+      "sourceValue": null
+    },
+    {
+      "title": "Book of Katana 1",
+      "sourceValue": null
+    },
+    {
+      "title": "Book of Katana 2",
+      "sourceValue": null
+    },
+    {
+      "title": "Book of Katana 3",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.10 \"Reunion System\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.11 \"Pinnacles\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.12 \"Fight inside the Spaceship\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.13 \"Get It Up\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.14 \"Flight\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.15 \"Space Harrier\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.16 \"Deathwatch\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.17 \"Fly Me To The Moon\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.18 \"Puyo Puyo\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.19 \"Rhythm And Balance\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.20 \"The Party Must Go On\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.21 \"Armada Battle\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.4 \"Open Your Heart\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.5 \"Live & Learn\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.8 \"Heart to Heart\"",
+      "sourceValue": null
+    },
+    {
+      "title": "Disk Vol.9 \"Strange Blue\"",
+      "sourceValue": null
+    },
+    {
+      "title": "ES Hammer",
+      "sourceValue": null
+    },
+    {
+      "title": "Item Ticket",
+      "sourceValue": null
+    },
+    {
+      "title": "Lollipop",
+      "sourceValue": null
+    },
+    {
+      "title": "PB/Generate",
+      "sourceValue": "0103A"
+    },
+    {
+      "title": "Robochao",
+      "sourceValue": null
+    },
+    {
+      "title": "S-Red's Blade",
+      "sourceValue": "00620"
+    },
+    {
+      "title": "Soniti",
+      "sourceValue": "02210000"
+    },
+    {
+      "title": "Valentine's Chocolate",
+      "sourceValue": "?"
+    },
+    {
+      "title": "disk",
+      "sourceValue": null
+    }
+  ]
+}

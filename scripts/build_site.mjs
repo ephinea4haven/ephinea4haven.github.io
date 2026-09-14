@@ -139,6 +139,7 @@ async function copySiteSource() {
 }
 
 async function buildAngularApplication() {
+  await execFileAsync(process.execPath, [path.join(root, 'scripts', 'generate_item_catalog.mjs')], { cwd: root });
   await execFileAsync(process.execPath, [
     path.join(root, 'scripts', 'generate_angular_combo.mjs'),
   ], { cwd: root });
@@ -174,6 +175,12 @@ async function installAngularApplication(pages) {
   ));
   const prerenderedRoutes = Object.keys(prerenderManifest.routes).sort();
   const pageSet = new Set(pages.map(relativeToRoot));
+  const catalog = JSON.parse(await readFile(path.join(root, 'src/app/generated/item-catalog/index.json'), 'utf8'));
+  for (const row of catalog) {
+    const host = `data/items/${row[0]}.html`;
+    pageSet.add(host);
+    if (!pages.some(page => relativeToRoot(page) === host)) pages.push(path.join(root, host));
+  }
   const routeAssets = [];
   const angularPages = new Set();
   let hosts = 0;
@@ -199,6 +206,7 @@ async function installAngularApplication(pages) {
       files: [...html.matchAll(/(?:src|href)="\/assets\/angular\/([^"?]+\.js)/g)]
         .map((match) => `assets/angular/${match[1]}`),
     });
+    await mkdir(path.dirname(path.join(temporaryDirectory, historicalPage)), { recursive: true });
     await writeFile(path.join(temporaryDirectory, historicalPage), html);
     hosts += 1;
   }
@@ -357,6 +365,8 @@ async function validateOutput(pages, angularPages) {
       const source = attributes.get('src');
       if (attributes.get('id') === 'ng-state') {
         hasHydrationState = true;
+        const size = Buffer.byteLength(node.childNodes?.map(child => child.value || '').join('') || '');
+        if (size > budgets.maxAngularHydrationBytesPerPage) errors.push(`${relativeToRoot(pageFile)}: hydration data exceeds ${budgets.maxAngularHydrationBytesPerPage} bytes (${size})`);
       }
       if (!source?.startsWith('/assets/angular/') && !isAngularInlineScript(node, attributes)) {
         errors.push(`${relativeToRoot(pageFile)}: non-Angular script ${source ?? '(inline)'}`);
@@ -398,7 +408,7 @@ async function inlineScriptStats(pages) {
   let blocks = 0;
   let bytes = 0;
   for (const pageFile of pages) {
-    const html = await readFile(pageFile, 'utf8');
+    const html = await readFile(path.join(temporaryDirectory, path.relative(root, pageFile)), 'utf8');
     const document = parse(html, { sourceCodeLocationInfo: true });
     visit(document, (node) => {
       if (node.tagName !== 'script'
@@ -407,6 +417,8 @@ async function inlineScriptStats(pages) {
           || !node.sourceCodeLocation?.endTag) {
         return;
       }
+      const attributes = new Map((node.attrs || []).map(({ name, value }) => [name, value]));
+      if (isAngularInlineScript(node, attributes)) return;
       blocks += 1;
       const body = html.slice(
         node.sourceCodeLocation.startTag.endOffset,
