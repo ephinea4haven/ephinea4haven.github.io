@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import os from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { switchCases } from './monster_catalog_model.mjs';
 import { cellDrops, findDropRow, generateMonsterCatalog, readDropData } from './generate_monster_catalog.mjs';
@@ -9,6 +10,29 @@ execFileSync(process.execPath,['scripts/generate_item_catalog.mjs']);
 const {index,details,metadata}=generateMonsterCatalog();
 const authorityPath=process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json';
 const dropData=readDropData(path.join(path.dirname(authorityPath),'bb/data/en.js')).data;
+test('regenerating a reduced monster catalog removes retired detail assets',()=>{
+  const fixture=fs.mkdtempSync(path.join(os.tmpdir(),'monster-catalog-update-'));
+  try {
+    fs.cpSync('content/monster-catalog',path.join(fixture,'content/monster-catalog'),{recursive:true});
+    fs.mkdirSync(path.join(fixture,'src/app/generated/item-catalog'),{recursive:true});
+    fs.copyFileSync('src/app/generated/item-catalog/index.json',path.join(fixture,'src/app/generated/item-catalog/index.json'));
+    const generate=()=>execFileSync(process.execPath,[path.resolve('scripts/generate_monster_catalog.mjs')],{
+      cwd:fixture,env:{...process.env,DROPTABLE_I18N_AUTHORITY:path.resolve(authorityPath)},
+    });
+    generate();
+    const retired=path.join(fixture,'assets/data/monsters/booma.json');
+    assert.ok(fs.existsSync(retired));
+    const snapshotFile=path.join(fixture,'content/monster-catalog/wiki.json');
+    const snapshot=JSON.parse(fs.readFileSync(snapshotFile,'utf8'));
+    snapshot.records=snapshot.records.filter(record=>record.id!=='booma');
+    fs.writeFileSync(snapshotFile,JSON.stringify(snapshot));
+    generate();
+    assert.ok(!fs.existsSync(retired),'removed monster detail must not remain in the published asset tree');
+    const index=JSON.parse(fs.readFileSync(path.join(fixture,'src/app/generated/monster-catalog/index.json'),'utf8'));
+    assert.deepEqual(fs.readdirSync(path.join(fixture,'assets/data/monsters')).sort(),index.map(m=>`${m.id}.json`).sort());
+  } finally {fs.rmSync(fixture,{recursive:true,force:true});}
+});
+
 test('all 158 stat contexts preserve episode, mode, difficulty and absent phases',()=>{
   assert.equal(index.length,160);
   assert.equal(details['booma'].stats['n-on'][0],92);

@@ -3,6 +3,23 @@ import AxeBuilder from '@axe-core/playwright';
 import { readFileSync } from 'node:fs';
 import { extractMechanicTables } from '../../scripts/extract_monster_mechanics.mjs';
 const details=JSON.parse(readFileSync('src/app/generated/monster-catalog/details.server.json','utf8'));
+test('monster area search results are independent of the interface language',async({page})=>{
+  for(const term of ['森林','地下砂漠','遺跡 2']) {
+    await page.goto(`/data/enemies.html?q=${encodeURIComponent(term)}&lang=${term==='森林'?'zh':'ja'}`);
+    await expect(page.getByRole('searchbox')).toHaveValue(term);
+    const paths=await page.locator('.monster-card').evaluateAll(cards=>cards.map(card=>new URL(card.href).pathname));
+    expect(paths.length).toBeGreaterThan(0);
+    for(const language of ['English','日本語','中文']) {
+      await page.getByRole('button',{name:language,exact:true}).click();
+      await expect(page.getByRole('searchbox')).toHaveValue(term);
+      await expect(page.locator('.monster-card')).toHaveCount(paths.length);
+      expect(await page.locator('.monster-card').evaluateAll(cards=>cards.map(card=>new URL(card.href).pathname))).toEqual(paths);
+    }
+    await page.reload();
+    await expect(page.locator('.monster-card')).toHaveCount(paths.length);
+  }
+});
+
 test('monster detail context changes preserve the originating list page',async({page})=>{
   await page.goto('/data/enemies.html?ep=1&page=2&lang=en');
   const first=await page.locator('.monster-card').first().getAttribute('href');

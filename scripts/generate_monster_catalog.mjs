@@ -100,6 +100,7 @@ export function generateMonsterCatalog() {
   }
   const metadata = {checkedAt:snapshot.checkedAt,statKeys:snapshot.statKeys,sections:drops.data.sectionIds.map((name,i)=>({name,color:drops.data.sectionColors[i]})),dropSource:'https://github.com/warmonipa/dropcharts/blob/master/bb/data/en.js',dropSha256:drops.sha256};
   fs.mkdirSync('src/app/generated/monster-catalog',{recursive:true});
+  fs.rmSync('assets/data/monsters',{recursive:true,force:true});
   fs.mkdirSync('assets/data/monsters',{recursive:true});
   for (const [name,data] of Object.entries({index,'details.server':details,metadata})) fs.writeFileSync(`src/app/generated/monster-catalog/${name}.json`,JSON.stringify(data));
   for (const [id,data] of Object.entries(details)) fs.writeFileSync(`assets/data/monsters/${id}.json`,JSON.stringify(data));
