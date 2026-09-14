@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CatalogLanguageService } from './catalog-language.service';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { PageLanguage } from '../shared/language-preference.service';
 
 @Component({
   selector: 'catalog-language',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<div class="language-control" role="group" aria-label="语言 / Language / 言語">
     @for (option of options; track option.id) {
-      <button type="button" [lang]="option.id" [attr.aria-label]="option.label" [attr.aria-pressed]="i18n.language() === option.id" (click)="i18n.select(option.id)">{{ option.short }}</button>
+      <button type="button" [lang]="option.id" [attr.aria-label]="option.label" [attr.aria-pressed]="language() === option.id" (click)="selected.emit(option.id)">{{ option.short }}</button>
     }
   </div>`,
   styles: `
@@ -18,6 +18,7 @@ import { CatalogLanguageService } from './catalog-language.service';
   `,
 })
 export class CatalogLanguageComponent {
-  readonly i18n = inject(CatalogLanguageService);
+  readonly language = input.required<PageLanguage>();
+  readonly selected = output<PageLanguage>();
   readonly options = [{id:'zh',label:'中文',short:'中'},{id:'en',label:'English',short:'EN'},{id:'ja',label:'日本語',short:'日'}] as const;
 }

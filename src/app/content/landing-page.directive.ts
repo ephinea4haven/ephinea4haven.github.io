@@ -32,10 +32,26 @@ export class LandingPageBehavior extends BrowserContentBehavior {
     }
   }
 
+  private updateRbrFreshness(now: Date): void {
+    const panel = this.host.querySelector<HTMLElement>('[data-rbr-week]');
+    if (!panel) return;
+    const sunday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - now.getUTCDay()));
+    const week = new Intl.DateTimeFormat('en-GB', { timeZone: 'UTC', day: '2-digit', month: 'long', year: 'numeric' }).format(sunday);
+    const fresh = panel.dataset['rbrWeek'] === week;
+    const status = fresh ? 'fresh' : 'stale';
+    if (panel.dataset['status'] === status) return;
+    panel.dataset['status'] = status;
+    panel.querySelector('h2')!.textContent = fresh ? '本周 RBR 任务' : 'RBR 任务 · 待更新';
+    panel.querySelector('.home-rbr-status')!.textContent = fresh
+      ? `记录周：${week} · UTC 周日轮替`
+      : `以下为 ${panel.dataset['rbrWeek']} 的记录，本周轮替尚待核对。`;
+  }
+
   protected connect(): void {
     const tick = () => {
       const now = new Date();
       this.updateActivityVisibility(now);
+      this.updateRbrFreshness(now);
       const hour = now.getUTCHours() === 23 ? 0 : now.getUTCHours() + 1;
       const beats = Math.abs((((hour * 60 + now.getUTCMinutes()) * 60) + now.getUTCSeconds()) / 86.4);
       const [whole, fraction] = beats.toFixed(2).split('.');

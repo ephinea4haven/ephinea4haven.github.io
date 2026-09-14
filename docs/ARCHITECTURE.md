@@ -8,8 +8,8 @@ Ephinea4Haven is a statically deployed Angular application. Angular 22 owns ever
 public page, route and interaction. GitHub Pages serves the immutable `_site`
 artifact; it does not need server-side rewrites or a JavaScript backend.
 
-The current build inventory contains 1,104 prerendered Angular application
-hosts, including 1,044 item detail pages, and 45 year-specific event content fragments. `_site/build-manifest.json`
+The current build inventory contains 1,265 prerendered Angular application
+hosts, including 1,044 item detail pages and 160 monster detail pages, and 45 year-specific event content fragments. `_site/build-manifest.json`
 is the source of truth for this inventory and for the JavaScript budgets applied
 to each route.
 
@@ -44,6 +44,9 @@ but no scripts or inline event handlers; Angular owns behavior.
   UI state and presentation; source-language mechanics remain explicitly labeled.
 - `content/item-catalog/`: committed Wiki facts, image provenance, corrections
   and reviewed mechanics notes.
+- `src/app/monster-catalog/`, `content/monster-catalog/`: the trilingual bestiary,
+  contextual Wiki stats/mechanics and generated ten-section drops from the sibling
+  drop-table authority; see [the data contract](MONSTER_CATALOG.md).
 - `src/app/generated/`: ignored build output derived from committed source data.
 - `assets/`: images, CSS, fonts, JSON and immutable build inputs.
 - `scripts/`: data generation, upstream synchronization, architecture checks and
@@ -66,7 +69,7 @@ Unitxt and replaces matching Chinese names from `psobb-localization`'s unified
 mixed-width `zh/unitxt_j.prs`. Angular consumers render those values verbatim
 with one-way binding. Search uses NFKC normalization, but display never performs
 a global halfwidth/fullwidth conversion and exposes no width selector.
-The same synchronization command refreshes named Mag evolution nodes while
+The same synchronization command refreshes monster names and named Mag evolution nodes while
 preserving their rules and source metadata. Authored item labels use
 `data-item-en` and resolve at build time; structured Black Paper and Coren reward
 IDs must resolve to the current authority or generation fails.

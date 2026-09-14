@@ -1,0 +1,1570 @@
+{
+  "Al Rappy": {
+    "path": "/assets/img/monsters/wiki/bbf08afcd2a54cb6.png",
+    "source": "https://wiki.pioneer2.net/images/4/4f/Al_Rappy.png",
+    "page": "https://wiki.pioneer2.net/w/File:Al_Rappy.png",
+    "sha1": "bbf08afcd2a54cb6f5f9c3791da51bf0a62c2364",
+    "width": 365,
+    "height": 464
+  },
+  "Arlan (E1)": {
+    "path": "/assets/img/monsters/wiki/e87bc366a66f3007.png",
+    "source": "https://wiki.pioneer2.net/images/a/a7/Arlan_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Arlan_(E1).png",
+    "sha1": "e87bc366a66f3007f2575e53f0d750b2c2c80e6d",
+    "width": 228,
+    "height": 208
+  },
+  "Astark": {
+    "path": "/assets/img/monsters/wiki/2ca0a24b779fba78.png",
+    "source": "https://wiki.pioneer2.net/images/2/24/Astark.png",
+    "page": "https://wiki.pioneer2.net/w/File:Astark.png",
+    "sha1": "2ca0a24b779fba78c502495d2709caaeb848666e",
+    "width": 200,
+    "height": 280
+  },
+  "Ba Boota": {
+    "path": "/assets/img/monsters/wiki/cd0a387b8d4c357c.png",
+    "source": "https://wiki.pioneer2.net/images/2/2c/Ba_Boota.png",
+    "page": "https://wiki.pioneer2.net/w/File:Ba_Boota.png",
+    "sha1": "cd0a387b8d4c357ccdc5db92291ad63dc3335fc6",
+    "width": 200,
+    "height": 151
+  },
+  "Baranz (E1)": {
+    "path": "/assets/img/monsters/wiki/00711b99c55e2038.png",
+    "source": "https://wiki.pioneer2.net/images/8/87/Baranz_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Baranz_(E1).png",
+    "sha1": "00711b99c55e2038b49babb1ebb702e316142616",
+    "width": 562,
+    "height": 386
+  },
+  "Baranz (E2)": {
+    "path": "/assets/img/monsters/wiki/99bb9deced36735f.png",
+    "source": "https://wiki.pioneer2.net/images/e/e3/Baranz_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Baranz_(E2).png",
+    "sha1": "99bb9deced36735f708fab712a19aa963f394078",
+    "width": 160,
+    "height": 110
+  },
+  "Barba Ray": {
+    "path": "/assets/img/monsters/wiki/3afe5dffd09e740c.png",
+    "source": "https://wiki.pioneer2.net/images/0/05/Barba_Ray.png",
+    "page": "https://wiki.pioneer2.net/w/File:Barba_Ray.png",
+    "sha1": "3afe5dffd09e740ccd512d68c2345530cfaa4e1b",
+    "width": 200,
+    "height": 57
+  },
+  "Barbarous Wolf (E1)": {
+    "path": "/assets/img/monsters/wiki/15a3b963ec207ff8.png",
+    "source": "https://wiki.pioneer2.net/images/a/a7/Barbarous_Wolf_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Barbarous_Wolf_(E1).png",
+    "sha1": "15a3b963ec207ff8e5d57d437cab4590c605c7ef",
+    "width": 200,
+    "height": 110
+  },
+  "Barbarous Wolf (E2)": {
+    "path": "/assets/img/monsters/wiki/cd3cf835f95b6a06.png",
+    "source": "https://wiki.pioneer2.net/images/8/81/Barbarous_Wolf_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Barbarous_Wolf_(E2).png",
+    "sha1": "cd3cf835f95b6a06cafa044d3b2268f339c20ace",
+    "width": 200,
+    "height": 91
+  },
+  "Barble": {
+    "path": "/assets/img/monsters/wiki/0c8713af28f23129.png",
+    "source": "https://wiki.pioneer2.net/images/4/41/Barble.png",
+    "page": "https://wiki.pioneer2.net/w/File:Barble.png",
+    "sha1": "0c8713af28f231290617c9c9dd472f857a29a389",
+    "width": 160,
+    "height": 152
+  },
+  "Bartle": {
+    "path": "/assets/img/monsters/wiki/acadd05b8c7d8766.png",
+    "source": "https://wiki.pioneer2.net/images/5/52/Bartle.png",
+    "page": "https://wiki.pioneer2.net/w/File:Bartle.png",
+    "sha1": "acadd05b8c7d876638038c5b5ddd49718339d8a6",
+    "width": 160,
+    "height": 131
+  },
+  "Bee L (E1)": {
+    "path": "/assets/img/monsters/wiki/c6c50d0655b10de2.png",
+    "source": "https://wiki.pioneer2.net/images/0/0c/Bee_L_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Bee_L_(E1).png",
+    "sha1": "c6c50d0655b10de2c8b95250cfa79922245e405d",
+    "width": 70,
+    "height": 103
+  },
+  "Bee L (E2)": {
+    "path": "/assets/img/monsters/wiki/9439451e30d1145a.png",
+    "source": "https://wiki.pioneer2.net/images/1/1e/Bee_L_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Bee_L_(E2).png",
+    "sha1": "9439451e30d1145a860e38051b0b6acaaa3866d2",
+    "width": 61,
+    "height": 89
+  },
+  "Bee R (E1)": {
+    "path": "/assets/img/monsters/wiki/9e01aaac30669d25.png",
+    "source": "https://wiki.pioneer2.net/images/8/8a/Bee_R_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Bee_R_(E1).png",
+    "sha1": "9e01aaac30669d253d905d6ab09753b9452eb8cb",
+    "width": 76,
+    "height": 128
+  },
+  "Bee R (E2)": {
+    "path": "/assets/img/monsters/wiki/fd48bf794f64332c.png",
+    "source": "https://wiki.pioneer2.net/images/0/05/Bee_R_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Bee_R_(E2).png",
+    "sha1": "fd48bf794f64332ca7cd627eaaba4a96b610b9cc",
+    "width": 72,
+    "height": 101
+  },
+  "Booma": {
+    "path": "/assets/img/monsters/wiki/8ee7b8b9bed920da.png",
+    "source": "https://wiki.pioneer2.net/images/4/47/Booma.png",
+    "page": "https://wiki.pioneer2.net/w/File:Booma.png",
+    "sha1": "8ee7b8b9bed920da88d565dc3f2c1227a934631e",
+    "width": 200,
+    "height": 211
+  },
+  "Boota": {
+    "path": "/assets/img/monsters/wiki/c5940bbbabcaeb45.png",
+    "source": "https://wiki.pioneer2.net/images/a/aa/Boota.png",
+    "page": "https://wiki.pioneer2.net/w/File:Boota.png",
+    "sha1": "c5940bbbabcaeb455b48bb4f514d0a99621abc3d",
+    "width": 200,
+    "height": 159
+  },
+  "Bulclaw": {
+    "path": "/assets/img/monsters/wiki/3cc1882bc8488d21.png",
+    "source": "https://wiki.pioneer2.net/images/4/47/Bulclaw.png",
+    "page": "https://wiki.pioneer2.net/w/File:Bulclaw.png",
+    "sha1": "3cc1882bc8488d21914eaaa4cbd65d611d48a7b6",
+    "width": 228,
+    "height": 273
+  },
+  "Canabin (Ring)": {
+    "path": "/assets/img/monsters/wiki/f9ea029fa98cb6d4.png",
+    "source": "https://wiki.pioneer2.net/images/a/ab/Canabin_%28Ring%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Canabin_(Ring).png",
+    "sha1": "f9ea029fa98cb6d4d84b06966aa2bedab08c366b",
+    "width": 160,
+    "height": 173
+  },
+  "Canabin": {
+    "path": "/assets/img/monsters/wiki/b87e714a8889dfc4.png",
+    "source": "https://wiki.pioneer2.net/images/8/8a/Canabin.png",
+    "page": "https://wiki.pioneer2.net/w/File:Canabin.png",
+    "sha1": "b87e714a8889dfc47a32f0cd63eb1fce98237983",
+    "width": 228,
+    "height": 246
+  },
+  "Canadine (Ring)": {
+    "path": "/assets/img/monsters/wiki/72dfcc879ec916d4.png",
+    "source": "https://wiki.pioneer2.net/images/4/4a/Canadine_%28Ring%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Canadine_(Ring).png",
+    "sha1": "72dfcc879ec916d4795676f71de28bfdebf8079d",
+    "width": 160,
+    "height": 171
+  },
+  "Canadine": {
+    "path": "/assets/img/monsters/wiki/7391b92340132dee.png",
+    "source": "https://wiki.pioneer2.net/images/4/4d/Canadine.png",
+    "page": "https://wiki.pioneer2.net/w/File:Canadine.png",
+    "sha1": "7391b92340132dee56bb9ab301a08997f218839f",
+    "width": 228,
+    "height": 243
+  },
+  "Canane": {
+    "path": "/assets/img/monsters/wiki/e0d8d46381aa814d.png",
+    "source": "https://wiki.pioneer2.net/images/b/b3/Canane.png",
+    "page": "https://wiki.pioneer2.net/w/File:Canane.png",
+    "sha1": "e0d8d46381aa814dc0cdc58deb1ae691488bd5dd",
+    "width": 228,
+    "height": 292
+  },
+  "Canune": {
+    "path": "/assets/img/monsters/wiki/d32234ca4b8ecf90.png",
+    "source": "https://wiki.pioneer2.net/images/7/7f/Canune.png",
+    "page": "https://wiki.pioneer2.net/w/File:Canune.png",
+    "sha1": "d32234ca4b8ecf9074708ff9a4e4e6fff48e1126",
+    "width": 228,
+    "height": 301
+  },
+  "Chaos Bringer": {
+    "path": "/assets/img/monsters/wiki/67822ac2fa24b7fe.png",
+    "source": "https://wiki.pioneer2.net/images/0/04/Chaos_Bringer.png",
+    "page": "https://wiki.pioneer2.net/w/File:Chaos_Bringer.png",
+    "sha1": "67822ac2fa24b7fe7baef38ad3e99eb28906ac3c",
+    "width": 228,
+    "height": 119
+  },
+  "Chaos Sorcerer (E1)": {
+    "path": "/assets/img/monsters/wiki/3cd743ad16a6211f.png",
+    "source": "https://wiki.pioneer2.net/images/0/07/Chaos_Sorcerer_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Chaos_Sorcerer_(E1).png",
+    "sha1": "3cd743ad16a6211fee85fc1e2d91aa0c2380afe5",
+    "width": 228,
+    "height": 215
+  },
+  "Chaos Sorcerer (E2)": {
+    "path": "/assets/img/monsters/wiki/3294f52d736c27d3.png",
+    "source": "https://wiki.pioneer2.net/images/0/09/Chaos_Sorcerer_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Chaos_Sorcerer_(E2).png",
+    "sha1": "3294f52d736c27d3c4901c6877ac870f24ba4ba1",
+    "width": 154,
+    "height": 200
+  },
+  "Claw": {
+    "path": "/assets/img/monsters/wiki/fb8978cd7ac6a8e7.png",
+    "source": "https://wiki.pioneer2.net/images/4/47/Claw.png",
+    "page": "https://wiki.pioneer2.net/w/File:Claw.png",
+    "sha1": "fb8978cd7ac6a8e78a9e73827f1911eb25d34c71",
+    "width": 157,
+    "height": 67
+  },
+  "Crimson Assassin (E1)": {
+    "path": "/assets/img/monsters/wiki/37f3537fa70e0e44.png",
+    "source": "https://wiki.pioneer2.net/images/3/33/Crimson_Assassin_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Crimson_Assassin_(E1).png",
+    "sha1": "37f3537fa70e0e44f41120a457d343934452f365",
+    "width": 228,
+    "height": 288
+  },
+  "Dal Ra Lie": {
+    "path": "/assets/img/monsters/wiki/684b80b265ef68fd.png",
+    "source": "https://wiki.pioneer2.net/images/6/6f/Dal_Ra_Lie.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dal_Ra_Lie.png",
+    "sha1": "684b80b265ef68fd2563c8a0f972cf3b49cc3127",
+    "width": 228,
+    "height": 109
+  },
+  "Dark Belra (E1)": {
+    "path": "/assets/img/monsters/wiki/a97a120eecf952cc.png",
+    "source": "https://wiki.pioneer2.net/images/f/f6/Dark_Belra_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dark_Belra_(E1).png",
+    "sha1": "a97a120eecf952ccd6af5f67d602fe260c947cd7",
+    "width": 228,
+    "height": 241
+  },
+  "Dark Belra (E2)": {
+    "path": "/assets/img/monsters/wiki/5611c336eec741a0.png",
+    "source": "https://wiki.pioneer2.net/images/4/4e/Dark_Belra_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dark_Belra_(E2).png",
+    "sha1": "5611c336eec741a0b89361d4f9c5f7a3524b276c",
+    "width": 169,
+    "height": 200
+  },
+  "Dark Bringer": {
+    "path": "/assets/img/monsters/wiki/27cb335d0f75be36.png",
+    "source": "https://wiki.pioneer2.net/images/f/f9/Dark_Bringer.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dark_Bringer.png",
+    "sha1": "27cb335d0f75be36718a8c9bb9d4f6fa47aae648",
+    "width": 228,
+    "height": 127
+  },
+  "Dark Falz (Form 1)": {
+    "path": "/assets/img/monsters/wiki/4b9b822de4d0ce71.png",
+    "source": "https://wiki.pioneer2.net/images/6/6a/Dark_Falz_%28Form_1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dark_Falz_(Form_1).png",
+    "sha1": "4b9b822de4d0ce7125508711c6cbfda6e0fedc36",
+    "width": 228,
+    "height": 118
+  },
+  "Dark Falz (Form 2)": {
+    "path": "/assets/img/monsters/wiki/2625a264bc4bd4d9.png",
+    "source": "https://wiki.pioneer2.net/images/8/85/Dark_Falz_%28Form_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dark_Falz_(Form_2).png",
+    "sha1": "2625a264bc4bd4d9e056c66ad073fc85302e430f",
+    "width": 228,
+    "height": 188
+  },
+  "Dark Falz (Form 3)": {
+    "path": "/assets/img/monsters/wiki/89f6de5dc7add2f3.png",
+    "source": "https://wiki.pioneer2.net/images/9/9a/Dark_Falz_%28Form_3%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dark_Falz_(Form_3).png",
+    "sha1": "89f6de5dc7add2f3742303b7a70054310e557d5d",
+    "width": 136,
+    "height": 350
+  },
+  "Dark Gunner": {
+    "path": "/assets/img/monsters/wiki/967fc2f42e8bab3c.png",
+    "source": "https://wiki.pioneer2.net/images/e/e6/Dark_Gunner.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dark_Gunner.png",
+    "sha1": "967fc2f42e8bab3c9ecc777cbb4ec59288eb6699",
+    "width": 228,
+    "height": 135
+  },
+  "Darvant (Falz)": {
+    "path": "/assets/img/monsters/wiki/0e6ba02d77b27314.png",
+    "source": "https://wiki.pioneer2.net/images/7/78/Darvant_%28Falz%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Darvant_(Falz).png",
+    "sha1": "0e6ba02d77b27314f51791c07c764c4a199e4904",
+    "width": 200,
+    "height": 176
+  },
+  "Darvant": {
+    "path": "/assets/img/monsters/wiki/d6904f12c0396aab.png",
+    "source": "https://wiki.pioneer2.net/images/3/38/Darvant.png",
+    "page": "https://wiki.pioneer2.net/w/File:Darvant.png",
+    "sha1": "d6904f12c0396aab29b11955bf5a7020eb9a96b2",
+    "width": 160,
+    "height": 174
+  },
+  "De Rol Le (Mine)": {
+    "path": "/assets/img/monsters/wiki/f6ea0dd6ab1f258b.png",
+    "source": "https://wiki.pioneer2.net/images/2/2d/De_Rol_Le_%28Mine%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:De_Rol_Le_(Mine).png",
+    "sha1": "f6ea0dd6ab1f258b9f6a0aac4fb2b64f22edc7f1",
+    "width": 200,
+    "height": 297
+  },
+  "De Rol Le (Shell)": {
+    "path": "/assets/img/monsters/wiki/9d686c9786287e55.png",
+    "source": "https://wiki.pioneer2.net/images/1/13/De_Rol_Le_%28Shell%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:De_Rol_Le_(Shell).png",
+    "sha1": "9d686c9786287e55484fad393cdd2a5c6e3cac3f",
+    "width": 200,
+    "height": 178
+  },
+  "De Rol Le": {
+    "path": "/assets/img/monsters/wiki/b88369cdd9d194d6.png",
+    "source": "https://wiki.pioneer2.net/images/c/c0/De_Rol_Le.png",
+    "page": "https://wiki.pioneer2.net/w/File:De_Rol_Le.png",
+    "sha1": "b88369cdd9d194d6006c544c1c71b2af6ef386a3",
+    "width": 228,
+    "height": 144
+  },
+  "Del Lily": {
+    "path": "/assets/img/monsters/wiki/9629654892a00321.png",
+    "source": "https://wiki.pioneer2.net/images/b/be/Del_Lily.png",
+    "page": "https://wiki.pioneer2.net/w/File:Del_Lily.png",
+    "sha1": "9629654892a0032195b6870597684ea520d48f45",
+    "width": 512,
+    "height": 399
+  },
+  "Del Rappy (Desert)": {
+    "path": "/assets/img/monsters/wiki/0f73b811f09ae5cf.png",
+    "source": "https://wiki.pioneer2.net/images/9/96/Del_Rappy_%28Desert%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Del_Rappy_(Desert).png",
+    "sha1": "0f73b811f09ae5cf3e880e8b5d16005770058804",
+    "width": 237,
+    "height": 175
+  },
+  "Del-D (E1)": {
+    "path": "/assets/img/monsters/wiki/dda3687404d2aebf.png",
+    "source": "https://wiki.pioneer2.net/images/8/86/Del-D_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Del-D_(E1).png",
+    "sha1": "dda3687404d2aebf78a22811dbd63f7855164a01",
+    "width": 228,
+    "height": 195
+  },
+  "Delbiter": {
+    "path": "/assets/img/monsters/wiki/fac7dc2d85a66d27.png",
+    "source": "https://wiki.pioneer2.net/images/a/a4/Delbiter.png",
+    "page": "https://wiki.pioneer2.net/w/File:Delbiter.png",
+    "sha1": "fac7dc2d85a66d276ccef46a67e82307a4e8fa71",
+    "width": 166,
+    "height": 200
+  },
+  "Deldepth": {
+    "path": "/assets/img/monsters/wiki/e657890cd4351bd0.png",
+    "source": "https://wiki.pioneer2.net/images/7/7c/Deldepth.png",
+    "page": "https://wiki.pioneer2.net/w/File:Deldepth.png",
+    "sha1": "e657890cd4351bd0143e0fe2a5a145931d5aa3e4",
+    "width": 168,
+    "height": 200
+  },
+  "Delsaber (E1)": {
+    "path": "/assets/img/monsters/wiki/3afa6c23456a27c9.png",
+    "source": "https://wiki.pioneer2.net/images/6/6c/Delsaber_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Delsaber_(E1).png",
+    "sha1": "3afa6c23456a27c9777ffcb17f96cf4762171ac8",
+    "width": 228,
+    "height": 197
+  },
+  "Delsaber (E2)": {
+    "path": "/assets/img/monsters/wiki/746edba709f7da6c.png",
+    "source": "https://wiki.pioneer2.net/images/5/51/Delsaber_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Delsaber_(E2).png",
+    "sha1": "746edba709f7da6cf845e3b7d660b5fe068f2cf7",
+    "width": 200,
+    "height": 198
+  },
+  "Dimenian (E1)": {
+    "path": "/assets/img/monsters/wiki/60552510bbf4f6ec.png",
+    "source": "https://wiki.pioneer2.net/images/4/44/Dimenian_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dimenian_(E1).png",
+    "sha1": "60552510bbf4f6ecfef80b51540c4337caefdae3",
+    "width": 160,
+    "height": 180
+  },
+  "Dimenian (E2)": {
+    "path": "/assets/img/monsters/wiki/7c2114f5aa7a9771.png",
+    "source": "https://wiki.pioneer2.net/images/9/9c/Dimenian_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dimenian_(E2).png",
+    "sha1": "7c2114f5aa7a977120e8c07e4824def54441d059",
+    "width": 184,
+    "height": 200
+  },
+  "Dolmdarl": {
+    "path": "/assets/img/monsters/wiki/b2d52287d994fcc7.png",
+    "source": "https://wiki.pioneer2.net/images/6/6d/Dolmdarl.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dolmdarl.png",
+    "sha1": "b2d52287d994fcc725821d69f2ccb532574f4ddc",
+    "width": 111,
+    "height": 200
+  },
+  "Dolmolm": {
+    "path": "/assets/img/monsters/wiki/435c22e1848aa9ac.png",
+    "source": "https://wiki.pioneer2.net/images/e/e0/Dolmolm.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dolmolm.png",
+    "sha1": "435c22e1848aa9ac3c5394b5bd476d25536b0f06",
+    "width": 111,
+    "height": 200
+  },
+  "Dorphon Eclair": {
+    "path": "/assets/img/monsters/wiki/01db0bb32ca33729.png",
+    "source": "https://wiki.pioneer2.net/images/3/38/Dorphon_Eclair.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dorphon_Eclair.png",
+    "sha1": "01db0bb32ca337292a322036b6b80738d0f871dd",
+    "width": 160,
+    "height": 116
+  },
+  "Dorphon": {
+    "path": "/assets/img/monsters/wiki/c0a3a57ab52767c6.png",
+    "source": "https://wiki.pioneer2.net/images/c/cf/Dorphon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dorphon.png",
+    "sha1": "c0a3a57ab52767c602da125058bf31ebd7b6e5b0",
+    "width": 160,
+    "height": 116
+  },
+  "Dragon": {
+    "path": "/assets/img/monsters/wiki/1cac6413831ea771.png",
+    "source": "https://wiki.pioneer2.net/images/c/c7/Dragon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dragon.png",
+    "sha1": "1cac6413831ea771ae0b84a7e9438d8ac09b81d5",
+    "width": 228,
+    "height": 164
+  },
+  "Dubchic (E1)": {
+    "path": "/assets/img/monsters/wiki/ab74407f12e4429f.png",
+    "source": "https://wiki.pioneer2.net/images/f/fb/Dubchic_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dubchic_(E1).png",
+    "sha1": "ab74407f12e4429fad51a6c92d5e642cbc79abea",
+    "width": 122,
+    "height": 165
+  },
+  "Dubchic (E2)": {
+    "path": "/assets/img/monsters/wiki/5aac732279fa00df.png",
+    "source": "https://wiki.pioneer2.net/images/c/cb/Dubchic_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dubchic_(E2).png",
+    "sha1": "5aac732279fa00dfd398cf49309f7a09f87f8d2b",
+    "width": 151,
+    "height": 200
+  },
+  "Dubchich (E1)": {
+    "path": "/assets/img/monsters/wiki/5675bdbd86c8d0d5.png",
+    "source": "https://wiki.pioneer2.net/images/8/81/Dubchich_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dubchich_(E1).png",
+    "sha1": "5675bdbd86c8d0d59b2f448840f03c852e14833c",
+    "width": 228,
+    "height": 204
+  },
+  "Dubwitch (E1)": {
+    "path": "/assets/img/monsters/wiki/72bdd749fe2d6306.png",
+    "source": "https://wiki.pioneer2.net/images/4/40/Dubwitch_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dubwitch_(E1).png",
+    "sha1": "72bdd749fe2d630689c07c86c8294e0006f413ed",
+    "width": 200,
+    "height": 73
+  },
+  "Dubwitch (E2)": {
+    "path": "/assets/img/monsters/wiki/64156f9e133a94fb.png",
+    "source": "https://wiki.pioneer2.net/images/a/a4/Dubwitch_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Dubwitch_(E2).png",
+    "sha1": "64156f9e133a94fbd713a43397aa06d3ed799abe",
+    "width": 200,
+    "height": 80
+  },
+  "Duvuik (E1)": {
+    "path": "/assets/img/monsters/wiki/5eb9df672d48fcfb.png",
+    "source": "https://wiki.pioneer2.net/images/9/99/Duvuik_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Duvuik_(E1).png",
+    "sha1": "5eb9df672d48fcfb31c20deb45eba9da16a1dc54",
+    "width": 160,
+    "height": 58
+  },
+  "Duvuik (E2)": {
+    "path": "/assets/img/monsters/wiki/5eb9df672d48fcfb.png",
+    "source": "https://wiki.pioneer2.net/images/c/cd/Duvuik_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Duvuik_(E2).png",
+    "sha1": "5eb9df672d48fcfb31c20deb45eba9da16a1dc54",
+    "width": 160,
+    "height": 58
+  },
+  "Egg Rappy": {
+    "path": "/assets/img/monsters/wiki/e19bb0e5961a3a66.png",
+    "source": "https://wiki.pioneer2.net/images/d/d1/Egg_Rappy.png",
+    "page": "https://wiki.pioneer2.net/w/File:Egg_Rappy.png",
+    "sha1": "e19bb0e5961a3a66e150d5da933d927af31db0c1",
+    "width": 167,
+    "height": 167
+  },
+  "El Rappy (E1)": {
+    "path": "/assets/img/monsters/wiki/4f2cfb6f834e6dcb.png",
+    "source": "https://wiki.pioneer2.net/images/c/c1/El_Rappy_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:El_Rappy_(E1).png",
+    "sha1": "4f2cfb6f834e6dcb58da3a93c2826bb871e57dee",
+    "width": 160,
+    "height": 182
+  },
+  "Epsigard": {
+    "path": "/assets/img/monsters/wiki/b8937a46422c7546.png",
+    "source": "https://wiki.pioneer2.net/images/a/a5/Epsigard.png",
+    "page": "https://wiki.pioneer2.net/w/File:Epsigard.png",
+    "sha1": "b8937a46422c754616b9e64f7b27dd0c5dd0039d",
+    "width": 102,
+    "height": 200
+  },
+  "Epsilon": {
+    "path": "/assets/img/monsters/wiki/e840fe7d3e027666.png",
+    "source": "https://wiki.pioneer2.net/images/e/e3/Epsilon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Epsilon.png",
+    "sha1": "e840fe7d3e02766620f09c469411e3857095a28a",
+    "width": 191,
+    "height": 144
+  },
+  "Evil Shark": {
+    "path": "/assets/img/monsters/wiki/2597824f71484cc6.png",
+    "source": "https://wiki.pioneer2.net/images/7/71/Evil_Shark.png",
+    "page": "https://wiki.pioneer2.net/w/File:Evil_Shark.png",
+    "sha1": "2597824f71484cc619d13f0b75c1facf50a24aaa",
+    "width": 149,
+    "height": 200
+  },
+  "Gael": {
+    "path": "/assets/img/monsters/wiki/8bac49018b2aea1a.png",
+    "source": "https://wiki.pioneer2.net/images/7/72/Gael.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gael.png",
+    "sha1": "8bac49018b2aea1ae17b1698e671ac0ffd753ccf",
+    "width": 200,
+    "height": 135
+  },
+  "Gal Gryphon": {
+    "path": "/assets/img/monsters/wiki/7521993345ba3edd.png",
+    "source": "https://wiki.pioneer2.net/images/9/94/Gal_Gryphon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gal_Gryphon.png",
+    "sha1": "7521993345ba3edd7ee46559f99ac15ef75cf9fc",
+    "width": 200,
+    "height": 94
+  },
+  "Garanz (E1)": {
+    "path": "/assets/img/monsters/wiki/ab914b5d7142ecf7.png",
+    "source": "https://wiki.pioneer2.net/images/7/71/Garanz_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Garanz_(E1).png",
+    "sha1": "ab914b5d7142ecf7b73d085dff4e14db7e368476",
+    "width": 228,
+    "height": 155
+  },
+  "Garanz (E2)": {
+    "path": "/assets/img/monsters/wiki/57743a9a18be772e.png",
+    "source": "https://wiki.pioneer2.net/images/0/0e/Garanz_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Garanz_(E2).png",
+    "sha1": "57743a9a18be772ec352a8de071f213a7287f96f",
+    "width": 200,
+    "height": 149
+  },
+  "Gee": {
+    "path": "/assets/img/monsters/wiki/560b589f7db4ca41.png",
+    "source": "https://wiki.pioneer2.net/images/9/95/Gee.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gee.png",
+    "sha1": "560b589f7db4ca411c6f3e01d963b89714069dd2",
+    "width": 160,
+    "height": 101
+  },
+  "Gi Gue": {
+    "path": "/assets/img/monsters/wiki/1d3e55115b037886.png",
+    "source": "https://wiki.pioneer2.net/images/6/6c/Gi_Gue.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gi_Gue.png",
+    "sha1": "1d3e55115b037886b22f43a825a2ebe8990ccbbe",
+    "width": 200,
+    "height": 171
+  },
+  "Gibbles": {
+    "path": "/assets/img/monsters/wiki/4c68b5267a85447c.png",
+    "source": "https://wiki.pioneer2.net/images/1/10/Gibbles.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gibbles.png",
+    "sha1": "4c68b5267a85447c2c53eb14c896c3b763670f8e",
+    "width": 200,
+    "height": 200
+  },
+  "Giel": {
+    "path": "/assets/img/monsters/wiki/1f060637f375ff26.png",
+    "source": "https://wiki.pioneer2.net/images/8/8f/Giel.png",
+    "page": "https://wiki.pioneer2.net/w/File:Giel.png",
+    "sha1": "1f060637f375ff260508c97f1983493c26b9e996",
+    "width": 156,
+    "height": 98
+  },
+  "Gigobooma": {
+    "path": "/assets/img/monsters/wiki/6cd8674d1c324e96.png",
+    "source": "https://wiki.pioneer2.net/images/a/ad/Gigobooma.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gigobooma.png",
+    "sha1": "6cd8674d1c324e9607fb89f2e1f8f03c09b46456",
+    "width": 148,
+    "height": 200
+  },
+  "Gillchic (E1)": {
+    "path": "/assets/img/monsters/wiki/24dab19e3716c8d4.png",
+    "source": "https://wiki.pioneer2.net/images/0/03/Gillchic_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gillchic_(E1).png",
+    "sha1": "24dab19e3716c8d48afa1f180f88cd0a521dd25d",
+    "width": 134,
+    "height": 193
+  },
+  "Gillchic (E2)": {
+    "path": "/assets/img/monsters/wiki/5b772c87c9e900ff.png",
+    "source": "https://wiki.pioneer2.net/images/1/12/Gillchic_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gillchic_(E2).png",
+    "sha1": "5b772c87c9e900ffbf0e1e4538362270c37b1296",
+    "width": 134,
+    "height": 193
+  },
+  "Gillchich (E1)": {
+    "path": "/assets/img/monsters/wiki/9a0614bd6776f83e.png",
+    "source": "https://wiki.pioneer2.net/images/f/f7/Gillchich_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gillchich_(E1).png",
+    "sha1": "9a0614bd6776f83edf8e83b2a83b9ab50ed35ae2",
+    "width": 194,
+    "height": 243
+  },
+  "Gillchich (E2)": {
+    "path": "/assets/img/monsters/wiki/9a0614bd6776f83e.png",
+    "source": "https://wiki.pioneer2.net/images/b/b7/Gillchich_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gillchich_(E2).png",
+    "sha1": "9a0614bd6776f83edf8e83b2a83b9ab50ed35ae2",
+    "width": 194,
+    "height": 243
+  },
+  "Girtablulu": {
+    "path": "/assets/img/monsters/wiki/f729bc01df8fea28.png",
+    "source": "https://wiki.pioneer2.net/images/1/14/Girtablulu.png",
+    "page": "https://wiki.pioneer2.net/w/File:Girtablulu.png",
+    "sha1": "f729bc01df8fea28221502e458d69fe22393efce",
+    "width": 160,
+    "height": 178
+  },
+  "Gobooma": {
+    "path": "/assets/img/monsters/wiki/4f178b4442e46be4.png",
+    "source": "https://wiki.pioneer2.net/images/3/38/Gobooma.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gobooma.png",
+    "sha1": "4f178b4442e46be45263f74c672d61b6346a06c7",
+    "width": 160,
+    "height": 170
+  },
+  "Gol Dragon": {
+    "path": "/assets/img/monsters/wiki/30047833a043286e.png",
+    "source": "https://wiki.pioneer2.net/images/2/22/Gol_Dragon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gol_Dragon.png",
+    "sha1": "30047833a043286edd1cc85d2b773d24a6b8824c",
+    "width": 200,
+    "height": 146
+  },
+  "Goran Detonator": {
+    "path": "/assets/img/monsters/wiki/694df06af9e5b453.png",
+    "source": "https://wiki.pioneer2.net/images/4/4d/Goran_Detonator.png",
+    "page": "https://wiki.pioneer2.net/w/File:Goran_Detonator.png",
+    "sha1": "694df06af9e5b453726a2616ecce4187dddd65cd",
+    "width": 160,
+    "height": 237
+  },
+  "Goran": {
+    "path": "/assets/img/monsters/wiki/275b18e310248c2f.png",
+    "source": "https://wiki.pioneer2.net/images/5/51/Goran.png",
+    "page": "https://wiki.pioneer2.net/w/File:Goran.png",
+    "sha1": "275b18e310248c2fbc20a2414fc86234a376e3ea",
+    "width": 160,
+    "height": 197
+  },
+  "Govulmer": {
+    "path": "/assets/img/monsters/wiki/ad94465d1d6d0e78.png",
+    "source": "https://wiki.pioneer2.net/images/0/02/Govulmer.png",
+    "page": "https://wiki.pioneer2.net/w/File:Govulmer.png",
+    "sha1": "ad94465d1d6d0e7841d7815e12fa5dc7d71afbec",
+    "width": 228,
+    "height": 184
+  },
+  "Gran Sorcerer (E1)": {
+    "path": "/assets/img/monsters/wiki/cab8910ebd3e2d76.png",
+    "source": "https://wiki.pioneer2.net/images/c/cc/Gran_Sorcerer_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gran_Sorcerer_(E1).png",
+    "sha1": "cab8910ebd3e2d76da114b8a16fc987badac8cb4",
+    "width": 228,
+    "height": 243
+  },
+  "Grass Assassin (E1)": {
+    "path": "/assets/img/monsters/wiki/2d80f408d3d85155.png",
+    "source": "https://wiki.pioneer2.net/images/b/ba/Grass_Assassin_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Grass_Assassin_(E1).png",
+    "sha1": "2d80f408d3d85155f25e4768df6f5fd3bab03a99",
+    "width": 228,
+    "height": 244
+  },
+  "Grass Assassin (E2)": {
+    "path": "/assets/img/monsters/wiki/015b358477e25377.png",
+    "source": "https://wiki.pioneer2.net/images/5/51/Grass_Assassin_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Grass_Assassin_(E2).png",
+    "sha1": "015b358477e253775e06c8c8c72732a011bd5076",
+    "width": 150,
+    "height": 200
+  },
+  "Guil Shark": {
+    "path": "/assets/img/monsters/wiki/be488c61c8808913.png",
+    "source": "https://wiki.pioneer2.net/images/c/cd/Guil_Shark.png",
+    "page": "https://wiki.pioneer2.net/w/File:Guil_Shark.png",
+    "sha1": "be488c61c880891394bd2d3c3f9bae8cc4813a6d",
+    "width": 228,
+    "height": 277
+  },
+  "Gulgus (E1)": {
+    "path": "/assets/img/monsters/wiki/e7ba3acb861d6960.png",
+    "source": "https://wiki.pioneer2.net/images/4/41/Gulgus_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gulgus_(E1).png",
+    "sha1": "e7ba3acb861d69603b7440155b1bb19aaedc06ec",
+    "width": 160,
+    "height": 63
+  },
+  "Gulgus-gue (E1)": {
+    "path": "/assets/img/monsters/wiki/9c525279b1e44fb2.png",
+    "source": "https://wiki.pioneer2.net/images/9/9f/Gulgus-gue_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gulgus-gue_(E1).png",
+    "sha1": "9c525279b1e44fb28aa117f99b79ca614feadb9b",
+    "width": 160,
+    "height": 101
+  },
+  "Gulgus-gue (E2)": {
+    "path": "/assets/img/monsters/wiki/9c525279b1e44fb2.png",
+    "source": "https://wiki.pioneer2.net/images/5/5a/Gulgus-gue_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Gulgus-gue_(E2).png",
+    "sha1": "9c525279b1e44fb28aa117f99b79ca614feadb9b",
+    "width": 160,
+    "height": 101
+  },
+  "Hallo Rappy": {
+    "path": "/assets/img/monsters/wiki/a526783138cad8e5.png",
+    "source": "https://wiki.pioneer2.net/images/1/10/Hallo_Rappy.png",
+    "page": "https://wiki.pioneer2.net/w/File:Hallo_Rappy.png",
+    "sha1": "a526783138cad8e5948e7cef3f94cf061d619ec4",
+    "width": 750,
+    "height": 650
+  },
+  "Hidoom (E1)": {
+    "path": "/assets/img/monsters/wiki/c9714ac38fd33790.png",
+    "source": "https://wiki.pioneer2.net/images/4/49/Hidoom_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Hidoom_(E1).png",
+    "sha1": "c9714ac38fd33790caf96df080173c824ab2f919",
+    "width": 228,
+    "height": 118
+  },
+  "Hidoom (E2)": {
+    "path": "/assets/img/monsters/wiki/ce56f1f4179e5222.png",
+    "source": "https://wiki.pioneer2.net/images/a/a7/Hidoom_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Hidoom_(E2).png",
+    "sha1": "ce56f1f4179e5222a6ee94658c96a5a66846bee0",
+    "width": 200,
+    "height": 154
+  },
+  "Hildebear (E1)": {
+    "path": "/assets/img/monsters/wiki/d38a04550b2a8c3c.png",
+    "source": "https://wiki.pioneer2.net/images/f/fd/Hildebear_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Hildebear_(E1).png",
+    "sha1": "d38a04550b2a8c3cb5e975ba71d56a96cdb3191e",
+    "width": 182,
+    "height": 200
+  },
+  "Hildebear (E2)": {
+    "path": "/assets/img/monsters/wiki/c7909c38c2ee3268.png",
+    "source": "https://wiki.pioneer2.net/images/d/df/Hildebear_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Hildebear_(E2).png",
+    "sha1": "c7909c38c2ee3268dd9a68428da7f0d92e43160a",
+    "width": 197,
+    "height": 200
+  },
+  "Hildeblue (E1)": {
+    "path": "/assets/img/monsters/wiki/c1088934f2efdf53.png",
+    "source": "https://wiki.pioneer2.net/images/3/30/Hildeblue_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Hildeblue_(E1).png",
+    "sha1": "c1088934f2efdf53ec5b71c949132e612c3b3d1c",
+    "width": 435,
+    "height": 419
+  },
+  "Hildelt (E1)": {
+    "path": "/assets/img/monsters/wiki/cf3ca53d4f912d6f.png",
+    "source": "https://wiki.pioneer2.net/images/3/37/Hildelt_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Hildelt_(E1).png",
+    "sha1": "cf3ca53d4f912d6f03382786d910253d2cf43518",
+    "width": 160,
+    "height": 184
+  },
+  "Hildetorr (E1)": {
+    "path": "/assets/img/monsters/wiki/c5e43a4323494a08.png",
+    "source": "https://wiki.pioneer2.net/images/1/1b/Hildetorr_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Hildetorr_(E1).png",
+    "sha1": "c5e43a4323494a088a9cfdedd842848e1b5d02c8",
+    "width": 228,
+    "height": 236
+  },
+  "Ill Gill": {
+    "path": "/assets/img/monsters/wiki/d7864e46c05c102a.png",
+    "source": "https://wiki.pioneer2.net/images/b/ba/Ill_Gill.png",
+    "page": "https://wiki.pioneer2.net/w/File:Ill_Gill.png",
+    "sha1": "d7864e46c05c102a8d6961b18511e0d487e60a59",
+    "width": 650,
+    "height": 500
+  },
+  "Indi Belra": {
+    "path": "/assets/img/monsters/wiki/09ea5b7fa0ed7381.png",
+    "source": "https://wiki.pioneer2.net/images/9/91/Indi_Belra.png",
+    "page": "https://wiki.pioneer2.net/w/File:Indi_Belra.png",
+    "sha1": "09ea5b7fa0ed7381de97d59ddb8f15161cdc7461",
+    "width": 228,
+    "height": 237
+  },
+  "Kondrieu (Phase 1)": {
+    "path": "/assets/img/monsters/wiki/167c8b7cd9e58cd4.png",
+    "source": "https://wiki.pioneer2.net/images/4/48/Kondrieu_%28Phase_1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Kondrieu_(Phase_1).png",
+    "sha1": "167c8b7cd9e58cd479084c28e78e4c5be6e4a116",
+    "width": 160,
+    "height": 72
+  },
+  "Kondrieu (Phase 2)": {
+    "path": "/assets/img/monsters/wiki/07068057c661c193.png",
+    "source": "https://wiki.pioneer2.net/images/8/81/Kondrieu_%28Phase_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Kondrieu_(Phase_2).png",
+    "sha1": "07068057c661c193abc08431ab7d0a356acf78d8",
+    "width": 160,
+    "height": 247
+  },
+  "La Dimenian (E1)": {
+    "path": "/assets/img/monsters/wiki/32ef5b05e075a577.png",
+    "source": "https://wiki.pioneer2.net/images/1/1c/La_Dimenian_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:La_Dimenian_(E1).png",
+    "sha1": "32ef5b05e075a57707ed287fa4fe756cab055d6e",
+    "width": 228,
+    "height": 250
+  },
+  "La Dimenian (E2)": {
+    "path": "/assets/img/monsters/wiki/eb2c9a75200f3ae5.png",
+    "source": "https://wiki.pioneer2.net/images/d/d0/La_Dimenian_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:La_Dimenian_(E2).png",
+    "sha1": "eb2c9a75200f3ae56f99ad6410566e4e3432b458",
+    "width": 192,
+    "height": 200
+  },
+  "Love Rappy": {
+    "path": "/assets/img/monsters/wiki/77b568cf26730f6c.png",
+    "source": "https://wiki.pioneer2.net/images/f/ff/Love_Rappy.png",
+    "page": "https://wiki.pioneer2.net/w/File:Love_Rappy.png",
+    "sha1": "77b568cf26730f6c190a1f3b6d8fa4df3fa2aa15",
+    "width": 750,
+    "height": 650
+  },
+  "Melqueek": {
+    "path": "/assets/img/monsters/wiki/c3bd2ce17c5e68e9.png",
+    "source": "https://wiki.pioneer2.net/images/d/df/Melqueek.png",
+    "page": "https://wiki.pioneer2.net/w/File:Melqueek.png",
+    "sha1": "c3bd2ce17c5e68e945ebaca241127028cc757d1f",
+    "width": 228,
+    "height": 315
+  },
+  "Mericarol": {
+    "path": "/assets/img/monsters/wiki/64c267bc820c0365.png",
+    "source": "https://wiki.pioneer2.net/images/2/29/Mericarol.png",
+    "page": "https://wiki.pioneer2.net/w/File:Mericarol.png",
+    "sha1": "64c267bc820c0365375c54d5e9e79a52e555a6ac",
+    "width": 189,
+    "height": 200
+  },
+  "Mericus": {
+    "path": "/assets/img/monsters/wiki/d48d516bffb6c014.png",
+    "source": "https://wiki.pioneer2.net/images/4/46/Mericus.png",
+    "page": "https://wiki.pioneer2.net/w/File:Mericus.png",
+    "sha1": "d48d516bffb6c01433e78d2b61182b5218b4976d",
+    "width": 185,
+    "height": 200
+  },
+  "Merikle": {
+    "path": "/assets/img/monsters/wiki/15417a094fa55751.png",
+    "source": "https://wiki.pioneer2.net/images/1/1c/Merikle.png",
+    "page": "https://wiki.pioneer2.net/w/File:Merikle.png",
+    "sha1": "15417a094fa5575120c665fb3890e56c0ae8e6b9",
+    "width": 176,
+    "height": 200
+  },
+  "Merillia": {
+    "path": "/assets/img/monsters/wiki/dc2a64cf50ab8364.png",
+    "source": "https://wiki.pioneer2.net/images/1/14/Merillia.png",
+    "page": "https://wiki.pioneer2.net/w/File:Merillia.png",
+    "sha1": "dc2a64cf50ab83646aa871735a2bb8dc4f87357b",
+    "width": 148,
+    "height": 187
+  },
+  "Meriltas": {
+    "path": "/assets/img/monsters/wiki/fda064b50bb74617.png",
+    "source": "https://wiki.pioneer2.net/images/5/58/Meriltas.png",
+    "page": "https://wiki.pioneer2.net/w/File:Meriltas.png",
+    "sha1": "fda064b50bb74617e7b31f2933eb76d28f7d0af0",
+    "width": 160,
+    "height": 144
+  },
+  "Merissa A": {
+    "path": "/assets/img/monsters/wiki/ea439f833c93e1b4.png",
+    "source": "https://wiki.pioneer2.net/images/0/07/Merissa_A.png",
+    "page": "https://wiki.pioneer2.net/w/File:Merissa_A.png",
+    "sha1": "ea439f833c93e1b4ee9c4a39c15ecc5f85f6b4f6",
+    "width": 160,
+    "height": 151
+  },
+  "Merissa AA": {
+    "path": "/assets/img/monsters/wiki/a0fe893a14dbc997.png",
+    "source": "https://wiki.pioneer2.net/images/c/c5/Merissa_AA.png",
+    "page": "https://wiki.pioneer2.net/w/File:Merissa_AA.png",
+    "sha1": "a0fe893a14dbc997b70cd867038507ed3cbc687f",
+    "width": 378,
+    "height": 369
+  },
+  "Merlan (E1)": {
+    "path": "/assets/img/monsters/wiki/b66f6218c494dc6f.png",
+    "source": "https://wiki.pioneer2.net/images/e/e3/Merlan_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Merlan_(E1).png",
+    "sha1": "b66f6218c494dc6fa875b918880a83bd473b7577",
+    "width": 228,
+    "height": 227
+  },
+  "Migium (E1)": {
+    "path": "/assets/img/monsters/wiki/9c7b8e4cb7b7194c.png",
+    "source": "https://wiki.pioneer2.net/images/f/f9/Migium_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Migium_(E1).png",
+    "sha1": "9c7b8e4cb7b7194cae72d6767f1d4d293c384c6b",
+    "width": 228,
+    "height": 127
+  },
+  "Migium (E2)": {
+    "path": "/assets/img/monsters/wiki/42d37872bf417e3e.png",
+    "source": "https://wiki.pioneer2.net/images/8/8e/Migium_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Migium_(E2).png",
+    "sha1": "42d37872bf417e3ee2f962c5654d9966408483a7",
+    "width": 200,
+    "height": 165
+  },
+  "Mil Lily (E1)": {
+    "path": "/assets/img/monsters/wiki/2b847747d84815d1.png",
+    "source": "https://wiki.pioneer2.net/images/9/9c/Mil_Lily_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Mil_Lily_(E1).png",
+    "sha1": "2b847747d84815d18a8409bed6a52cbfd4668a02",
+    "width": 387,
+    "height": 326
+  },
+  "Monest (E1)": {
+    "path": "/assets/img/monsters/wiki/b99d7da108cdac99.png",
+    "source": "https://wiki.pioneer2.net/images/7/7b/Monest_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Monest_(E1).png",
+    "sha1": "b99d7da108cdac9980c16cccb1b81889ff46e5bb",
+    "width": 408,
+    "height": 473
+  },
+  "Monest (E2)": {
+    "path": "/assets/img/monsters/wiki/16c1ccd6f361ec9a.png",
+    "source": "https://wiki.pioneer2.net/images/b/b4/Monest_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Monest_(E2).png",
+    "sha1": "16c1ccd6f361ec9a546800ae91ec36b641f62398",
+    "width": 152,
+    "height": 200
+  },
+  "Morfos": {
+    "path": "/assets/img/monsters/wiki/2281d75e7a1d7aa0.png",
+    "source": "https://wiki.pioneer2.net/images/6/6e/Morfos.png",
+    "page": "https://wiki.pioneer2.net/w/File:Morfos.png",
+    "sha1": "2281d75e7a1d7aa07fe9add6fed0b767187460bd",
+    "width": 121,
+    "height": 200
+  },
+  "Mothmant (E1)": {
+    "path": "/assets/img/monsters/wiki/4cdb56bdc24f194d.png",
+    "source": "https://wiki.pioneer2.net/images/1/1a/Mothmant_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Mothmant_(E1).png",
+    "sha1": "4cdb56bdc24f194d9ef3e74dc2d2acd3e2ee108e",
+    "width": 527,
+    "height": 473
+  },
+  "Mothmant (E2)": {
+    "path": "/assets/img/monsters/wiki/9edfdb26e410a1ac.png",
+    "source": "https://wiki.pioneer2.net/images/e/ea/Mothmant_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Mothmant_(E2).png",
+    "sha1": "9edfdb26e410a1ac47e237e146e96d11311ab187",
+    "width": 200,
+    "height": 74
+  },
+  "Mothvert (E1)": {
+    "path": "/assets/img/monsters/wiki/ea55e35929256d46.png",
+    "source": "https://wiki.pioneer2.net/images/5/5c/Mothvert_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Mothvert_(E1).png",
+    "sha1": "ea55e35929256d467456df6e7ae36c12b430369f",
+    "width": 360,
+    "height": 450
+  },
+  "Mothvist (E1)": {
+    "path": "/assets/img/monsters/wiki/1c08e8277f9674d4.png",
+    "source": "https://wiki.pioneer2.net/images/2/29/Mothvist_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Mothvist_(E1).png",
+    "sha1": "1c08e8277f9674d4f3c104ba6845d638417a7966",
+    "width": 188,
+    "height": 200
+  },
+  "Nano Dragon": {
+    "path": "/assets/img/monsters/wiki/441914cf555fb35f.png",
+    "source": "https://wiki.pioneer2.net/images/a/a2/Nano_Dragon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Nano_Dragon.png",
+    "sha1": "441914cf555fb35f894cc81dcd7a8d2d47bba8c5",
+    "width": 200,
+    "height": 163
+  },
+  "Nar Lily (E1)": {
+    "path": "/assets/img/monsters/wiki/18e397db4bf4dce3.png",
+    "source": "https://wiki.pioneer2.net/images/a/a4/Nar_Lily_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Nar_Lily_(E1).png",
+    "sha1": "18e397db4bf4dce3af9754054ad29ecd98683d4c",
+    "width": 360,
+    "height": 450
+  },
+  "Ob Lily (E1)": {
+    "path": "/assets/img/monsters/wiki/e7446b34d2ca2d38.png",
+    "source": "https://wiki.pioneer2.net/images/f/fc/Ob_Lily_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Ob_Lily_(E1).png",
+    "sha1": "e7446b34d2ca2d38d5af8956f2c7d726c012eda8",
+    "width": 360,
+    "height": 450
+  },
+  "Olga Flow (Form 1)": {
+    "path": "/assets/img/monsters/wiki/1b43ccedc84d2ec0.png",
+    "source": "https://wiki.pioneer2.net/images/d/d9/Olga_Flow_%28Form_1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Olga_Flow_(Form_1).png",
+    "sha1": "1b43ccedc84d2ec091c50b893ee8ce6a67a81f7c",
+    "width": 200,
+    "height": 177
+  },
+  "Olga Flow (Form 2)": {
+    "path": "/assets/img/monsters/wiki/5a902f61258ecff5.png",
+    "source": "https://wiki.pioneer2.net/images/6/6e/Olga_Flow_%28Form_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Olga_Flow_(Form_2).png",
+    "sha1": "5a902f61258ecff54457c50f8fed243389f5adbf",
+    "width": 128,
+    "height": 200
+  },
+  "Pal Rappy": {
+    "path": "/assets/img/monsters/wiki/ec853cff7e5ad5b7.png",
+    "source": "https://wiki.pioneer2.net/images/4/4e/Pal_Rappy.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pal_Rappy.png",
+    "sha1": "ec853cff7e5ad5b738ab11576e0f88ecc77f9a78",
+    "width": 254,
+    "height": 321
+  },
+  "Pal Shark": {
+    "path": "/assets/img/monsters/wiki/b7e6e8bb235e10f2.png",
+    "source": "https://wiki.pioneer2.net/images/3/39/Pal_Shark.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pal_Shark.png",
+    "sha1": "b7e6e8bb235e10f2dd7fdd0e22281809d4f02435",
+    "width": 135,
+    "height": 200
+  },
+  "Pan Arms (E1)": {
+    "path": "/assets/img/monsters/wiki/9fc86cd110b27e44.png",
+    "source": "https://wiki.pioneer2.net/images/7/74/Pan_Arms_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pan_Arms_(E1).png",
+    "sha1": "9fc86cd110b27e4400b6f3fb25ba2c0d9b5de21d",
+    "width": 228,
+    "height": 97
+  },
+  "Pan Arms (E2)": {
+    "path": "/assets/img/monsters/wiki/6625b7ceb5a98bc2.png",
+    "source": "https://wiki.pioneer2.net/images/7/72/Pan_Arms_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pan_Arms_(E2).png",
+    "sha1": "6625b7ceb5a98bc28dbf88ca0a4b3ce3bceea7d7",
+    "width": 200,
+    "height": 143
+  },
+  "Pazuzu (Crater)": {
+    "path": "/assets/img/monsters/wiki/b630e538019fe725.png",
+    "source": "https://wiki.pioneer2.net/images/c/c5/Pazuzu_%28Crater%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pazuzu_(Crater).png",
+    "sha1": "b630e538019fe725dc0251faa2852b3c1ba7bc78",
+    "width": 495,
+    "height": 186
+  },
+  "Pazuzu (Desert)": {
+    "path": "/assets/img/monsters/wiki/0f97c7589daffef6.png",
+    "source": "https://wiki.pioneer2.net/images/6/66/Pazuzu_%28Desert%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pazuzu_(Desert).png",
+    "sha1": "0f97c7589daffef64025f42d1f6a43981b831553",
+    "width": 422,
+    "height": 224
+  },
+  "Pazuzu": {
+    "path": "/assets/img/monsters/wiki/b630e538019fe725.png",
+    "source": "https://wiki.pioneer2.net/images/c/c1/Pazuzu.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pazuzu.png",
+    "sha1": "b630e538019fe725dc0251faa2852b3c1ba7bc78",
+    "width": 495,
+    "height": 186
+  },
+  "Pig Ray": {
+    "path": "/assets/img/monsters/wiki/68536872f6841952.png",
+    "source": "https://wiki.pioneer2.net/images/2/20/Pig_Ray.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pig_Ray.png",
+    "sha1": "68536872f68419526b1d95b17a0f691def9e0146",
+    "width": 146,
+    "height": 110
+  },
+  "Pofuilly Slime": {
+    "path": "/assets/img/monsters/wiki/3dfb88c3598c87f5.png",
+    "source": "https://wiki.pioneer2.net/images/c/c0/Pofuilly_Slime.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pofuilly_Slime.png",
+    "sha1": "3dfb88c3598c87f54e0f58cd93cd1c0ff3b5689f",
+    "width": 228,
+    "height": 177
+  },
+  "Poison Lily (E1)": {
+    "path": "/assets/img/monsters/wiki/85fea29543acfaad.png",
+    "source": "https://wiki.pioneer2.net/images/b/bd/Poison_Lily_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Poison_Lily_(E1).png",
+    "sha1": "85fea29543acfaad960b3e7d4956b28cad80e81e",
+    "width": 162,
+    "height": 162
+  },
+  "Poison Lily (E2)": {
+    "path": "/assets/img/monsters/wiki/c15baab263e32676.png",
+    "source": "https://wiki.pioneer2.net/images/7/77/Poison_Lily_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Poison_Lily_(E2).png",
+    "sha1": "c15baab263e3267641e79dda41d1feff2632cd8a",
+    "width": 154,
+    "height": 149
+  },
+  "Pouilly Slime": {
+    "path": "/assets/img/monsters/wiki/7ffb73bc7340d476.png",
+    "source": "https://wiki.pioneer2.net/images/f/f2/Pouilly_Slime.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pouilly_Slime.png",
+    "sha1": "7ffb73bc7340d4766e5cb6f0b83abfc01e37f7a9",
+    "width": 228,
+    "height": 229
+  },
+  "Pyro Goran": {
+    "path": "/assets/img/monsters/wiki/3923e42d62da2259.png",
+    "source": "https://wiki.pioneer2.net/images/8/8f/Pyro_Goran.png",
+    "page": "https://wiki.pioneer2.net/w/File:Pyro_Goran.png",
+    "sha1": "3923e42d62da225991a0973e57a5383961fdef93",
+    "width": 160,
+    "height": 189
+  },
+  "Rag Rappy (E1)": {
+    "path": "/assets/img/monsters/wiki/a04c53e691d86e1c.png",
+    "source": "https://wiki.pioneer2.net/images/e/e4/Rag_Rappy_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Rag_Rappy_(E1).png",
+    "sha1": "a04c53e691d86e1c1a4febafddc3946f712d6fde",
+    "width": 111,
+    "height": 156
+  },
+  "Rag Rappy (E2)": {
+    "path": "/assets/img/monsters/wiki/6cda83064590b675.png",
+    "source": "https://wiki.pioneer2.net/images/f/f7/Rag_Rappy_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Rag_Rappy_(E2).png",
+    "sha1": "6cda83064590b67510e0a95a70b39b804566e7ef",
+    "width": 167,
+    "height": 194
+  },
+  "Recobox": {
+    "path": "/assets/img/monsters/wiki/ccf82e01cc25591b.png",
+    "source": "https://wiki.pioneer2.net/images/a/a8/Recobox.png",
+    "page": "https://wiki.pioneer2.net/w/File:Recobox.png",
+    "sha1": "ccf82e01cc25591b7be647e61ced63df503d1301",
+    "width": 120,
+    "height": 98
+  },
+  "Recon": {
+    "path": "/assets/img/monsters/wiki/383837bf6ca6dc04.png",
+    "source": "https://wiki.pioneer2.net/images/4/45/Recon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Recon.png",
+    "sha1": "383837bf6ca6dc043dbb641981c685f7e0e4a717",
+    "width": 99,
+    "height": 115
+  },
+  "Saint-Milion (Phase 1)": {
+    "path": "/assets/img/monsters/wiki/80a3497896df559c.png",
+    "source": "https://wiki.pioneer2.net/images/5/53/Saint-Milion_%28Phase_1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Saint-Milion_(Phase_1).png",
+    "sha1": "80a3497896df559cd3494d97b9c9730e066d7f65",
+    "width": 160,
+    "height": 72
+  },
+  "Saint-Milion (Phase 2)": {
+    "path": "/assets/img/monsters/wiki/6cc4bf74088f50af.png",
+    "source": "https://wiki.pioneer2.net/images/9/9c/Saint-Milion_%28Phase_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Saint-Milion_(Phase_2).png",
+    "sha1": "6cc4bf74088f50af132ca8a3648341d0439e8635",
+    "width": 160,
+    "height": 247
+  },
+  "Sand Rappy (Crater)": {
+    "path": "/assets/img/monsters/wiki/8a2239c73f2e8caa.png",
+    "source": "https://wiki.pioneer2.net/images/c/c4/Sand_Rappy_%28Crater%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sand_Rappy_(Crater).png",
+    "sha1": "8a2239c73f2e8caaba88b007b00f9b0cb46e5856",
+    "width": 168,
+    "height": 200
+  },
+  "Sand Rappy (Desert)": {
+    "path": "/assets/img/monsters/wiki/bfbfd90cbff22abc.png",
+    "source": "https://wiki.pioneer2.net/images/f/f2/Sand_Rappy_%28Desert%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sand_Rappy_(Desert).png",
+    "sha1": "bfbfd90cbff22abccb77e9c5cf39727c832dd37f",
+    "width": 200,
+    "height": 195
+  },
+  "Satellite Lizard (Crater)": {
+    "path": "/assets/img/monsters/wiki/488e618a0a5fb4be.png",
+    "source": "https://wiki.pioneer2.net/images/0/05/Satellite_Lizard_%28Crater%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Satellite_Lizard_(Crater).png",
+    "sha1": "488e618a0a5fb4be327177de9b185301611b8cc3",
+    "width": 200,
+    "height": 131
+  },
+  "Satellite Lizard (Desert)": {
+    "path": "/assets/img/monsters/wiki/aecc8a32a9de3cf6.png",
+    "source": "https://wiki.pioneer2.net/images/2/2e/Satellite_Lizard_%28Desert%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Satellite_Lizard_(Desert).png",
+    "sha1": "aecc8a32a9de3cf66fe922d713561591893d46fd",
+    "width": 200,
+    "height": 104
+  },
+  "Savage Wolf (E1)": {
+    "path": "/assets/img/monsters/wiki/90811f72c385c072.png",
+    "source": "https://wiki.pioneer2.net/images/1/17/Savage_Wolf_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Savage_Wolf_(E1).png",
+    "sha1": "90811f72c385c072507606a2daaee5547b60619f",
+    "width": 200,
+    "height": 78
+  },
+  "Savage Wolf (E2)": {
+    "path": "/assets/img/monsters/wiki/5852ed842673b47e.png",
+    "source": "https://wiki.pioneer2.net/images/c/c4/Savage_Wolf_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Savage_Wolf_(E2).png",
+    "sha1": "5852ed842673b47e96b4169c95824aed2000dc8d",
+    "width": 200,
+    "height": 85
+  },
+  "Shambertin (Phase 1)": {
+    "path": "/assets/img/monsters/wiki/0920ab88db29f908.png",
+    "source": "https://wiki.pioneer2.net/images/a/a2/Shambertin_%28Phase_1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Shambertin_(Phase_1).png",
+    "sha1": "0920ab88db29f90840e70abf1173254d91d64643",
+    "width": 160,
+    "height": 72
+  },
+  "Shambertin (Phase 2)": {
+    "path": "/assets/img/monsters/wiki/21cb0feb26f3e646.png",
+    "source": "https://wiki.pioneer2.net/images/e/ef/Shambertin_%28Phase_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Shambertin_(Phase_2).png",
+    "sha1": "21cb0feb26f3e646b679de057a79eff630414230",
+    "width": 160,
+    "height": 247
+  },
+  "Sil Dragon": {
+    "path": "/assets/img/monsters/wiki/1b8fa7a4eeaa6dd7.png",
+    "source": "https://wiki.pioneer2.net/images/c/c7/Sil_Dragon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sil_Dragon.png",
+    "sha1": "1b8fa7a4eeaa6dd7fdbd872ffab6185107d77657",
+    "width": 228,
+    "height": 108
+  },
+  "Sinow Beat": {
+    "path": "/assets/img/monsters/wiki/a7e1166214189c9d.png",
+    "source": "https://wiki.pioneer2.net/images/b/bb/Sinow_Beat.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sinow_Beat.png",
+    "sha1": "a7e1166214189c9dbaaa72d48772954aaba94a7c",
+    "width": 200,
+    "height": 166
+  },
+  "Sinow Berill": {
+    "path": "/assets/img/monsters/wiki/787f2314b75dacf2.png",
+    "source": "https://wiki.pioneer2.net/images/4/40/Sinow_Berill.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sinow_Berill.png",
+    "sha1": "787f2314b75dacf2461ec1d24b74f3a8cc89f0b6",
+    "width": 200,
+    "height": 128
+  },
+  "Sinow Blue": {
+    "path": "/assets/img/monsters/wiki/3673ad1b00de75a3.png",
+    "source": "https://wiki.pioneer2.net/images/a/a5/Sinow_Blue.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sinow_Blue.png",
+    "sha1": "3673ad1b00de75a379257d0991cc939747debe6f",
+    "width": 348,
+    "height": 358
+  },
+  "Sinow Gold": {
+    "path": "/assets/img/monsters/wiki/d8c6914700f647a1.png",
+    "source": "https://wiki.pioneer2.net/images/a/a0/Sinow_Gold.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sinow_Gold.png",
+    "sha1": "d8c6914700f647a184426e163055ca0779a6e64f",
+    "width": 191,
+    "height": 149
+  },
+  "Sinow Red": {
+    "path": "/assets/img/monsters/wiki/2eac1a78fe81d35d.png",
+    "source": "https://wiki.pioneer2.net/images/9/96/Sinow_Red.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sinow_Red.png",
+    "sha1": "2eac1a78fe81d35dd2d8dc4a561c0cf60c2fcde0",
+    "width": 181,
+    "height": 176
+  },
+  "Sinow Spigell": {
+    "path": "/assets/img/monsters/wiki/268e998f2d4762d0.png",
+    "source": "https://wiki.pioneer2.net/images/f/f7/Sinow_Spigell.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sinow_Spigell.png",
+    "sha1": "268e998f2d4762d064a0053e8acb4ea07e2de203",
+    "width": 200,
+    "height": 168
+  },
+  "Sinow Zele": {
+    "path": "/assets/img/monsters/wiki/b80aa79681b3b611.png",
+    "source": "https://wiki.pioneer2.net/images/0/09/Sinow_Zele.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sinow_Zele.png",
+    "sha1": "b80aa79681b3b611e938510f999db04ccc7d441c",
+    "width": 200,
+    "height": 167
+  },
+  "Sinow Zoa": {
+    "path": "/assets/img/monsters/wiki/82165a3fa6ae99ef.png",
+    "source": "https://wiki.pioneer2.net/images/1/18/Sinow_Zoa.png",
+    "page": "https://wiki.pioneer2.net/w/File:Sinow_Zoa.png",
+    "sha1": "82165a3fa6ae99efd3edb00687b40dfa27439f10",
+    "width": 228,
+    "height": 188
+  },
+  "So Dimenian (E1)": {
+    "path": "/assets/img/monsters/wiki/5bc0ec59e91ec931.png",
+    "source": "https://wiki.pioneer2.net/images/4/4a/So_Dimenian_%28E1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:So_Dimenian_(E1).png",
+    "sha1": "5bc0ec59e91ec931b17e8308be7e98b611192a71",
+    "width": 228,
+    "height": 250
+  },
+  "So Dimenian (E2)": {
+    "path": "/assets/img/monsters/wiki/ebd85826544170a5.png",
+    "source": "https://wiki.pioneer2.net/images/0/06/So_Dimenian_%28E2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:So_Dimenian_(E2).png",
+    "sha1": "ebd85826544170a50aed61ef51c21199aa5b2f3c",
+    "width": 175,
+    "height": 200
+  },
+  "Spinner (Kondrieu 1)": {
+    "path": "/assets/img/monsters/wiki/87ef2eee638c1611.png",
+    "source": "https://wiki.pioneer2.net/images/1/15/Spinner_%28Kondrieu_1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Spinner_(Kondrieu_1).png",
+    "sha1": "87ef2eee638c16119e233b969137ba09b7438cd4",
+    "width": 160,
+    "height": 95
+  },
+  "Spinner (Kondrieu 2)": {
+    "path": "/assets/img/monsters/wiki/7a1e451984a03fd7.png",
+    "source": "https://wiki.pioneer2.net/images/5/52/Spinner_%28Kondrieu_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Spinner_(Kondrieu_2).png",
+    "sha1": "7a1e451984a03fd75b500188fac72cb5334d583d",
+    "width": 160,
+    "height": 154
+  },
+  "Spinner (Saint-Milion 1)": {
+    "path": "/assets/img/monsters/wiki/45c5534537a5df91.png",
+    "source": "https://wiki.pioneer2.net/images/9/90/Spinner_%28Saint-Milion_1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Spinner_(Saint-Milion_1).png",
+    "sha1": "45c5534537a5df914aae61b68c6bc9e682149f07",
+    "width": 160,
+    "height": 95
+  },
+  "Spinner (Saint-Milion 2)": {
+    "path": "/assets/img/monsters/wiki/3a2d362da24e96af.png",
+    "source": "https://wiki.pioneer2.net/images/b/b3/Spinner_%28Saint-Milion_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Spinner_(Saint-Milion_2).png",
+    "sha1": "3a2d362da24e96afb9b7cec433d2d66e33543d8c",
+    "width": 160,
+    "height": 154
+  },
+  "Spinner (Shambertin 1)": {
+    "path": "/assets/img/monsters/wiki/27bc20804c4abc1c.png",
+    "source": "https://wiki.pioneer2.net/images/4/49/Spinner_%28Shambertin_1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Spinner_(Shambertin_1).png",
+    "sha1": "27bc20804c4abc1c22edee6f8c43acde8b5287ec",
+    "width": 160,
+    "height": 95
+  },
+  "Spinner (Shambertin 2)": {
+    "path": "/assets/img/monsters/wiki/cf10d873035e67fc.png",
+    "source": "https://wiki.pioneer2.net/images/e/ec/Spinner_%28Shambertin_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Spinner_(Shambertin_2).png",
+    "sha1": "cf10d873035e67fc09269304c670357066dca531",
+    "width": 160,
+    "height": 154
+  },
+  "St Rappy": {
+    "path": "/assets/img/monsters/wiki/e1e3d71a78f184cf.png",
+    "source": "https://wiki.pioneer2.net/images/8/86/St_Rappy.png",
+    "page": "https://wiki.pioneer2.net/w/File:St_Rappy.png",
+    "sha1": "e1e3d71a78f184cf9e122c8a46c7abcca81a3929",
+    "width": 360,
+    "height": 450
+  },
+  "Tollaw": {
+    "path": "/assets/img/monsters/wiki/622f909033d80129.png",
+    "source": "https://wiki.pioneer2.net/images/b/b5/Tollaw.png",
+    "page": "https://wiki.pioneer2.net/w/File:Tollaw.png",
+    "sha1": "622f909033d80129730c021a89103da085e151d6",
+    "width": 160,
+    "height": 220
+  },
+  "Ul Gibbon": {
+    "path": "/assets/img/monsters/wiki/b4630033e5f156fa.png",
+    "source": "https://wiki.pioneer2.net/images/e/e4/Ul_Gibbon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Ul_Gibbon.png",
+    "sha1": "b4630033e5f156facec507ee8716a9e7c6dc01bd",
+    "width": 320,
+    "height": 384
+  },
+  "Ul Ray": {
+    "path": "/assets/img/monsters/wiki/690a34ef64452a16.png",
+    "source": "https://wiki.pioneer2.net/images/a/ad/Ul_Ray.png",
+    "page": "https://wiki.pioneer2.net/w/File:Ul_Ray.png",
+    "sha1": "690a34ef64452a1687d0ac93d0b5346c5c359f61",
+    "width": 144,
+    "height": 99
+  },
+  "Vol Opt (Form 1)": {
+    "path": "/assets/img/monsters/wiki/5437028a81cc2c2b.png",
+    "source": "https://wiki.pioneer2.net/images/4/48/Vol_Opt_%28Form_1%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Vol_Opt_(Form_1).png",
+    "sha1": "5437028a81cc2c2bcf1cb3416a6a746a2c05fd75",
+    "width": 228,
+    "height": 164
+  },
+  "Vol Opt (Form 2)": {
+    "path": "/assets/img/monsters/wiki/eafa90e65d505ad7.png",
+    "source": "https://wiki.pioneer2.net/images/2/2f/Vol_Opt_%28Form_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Vol_Opt_(Form_2).png",
+    "sha1": "eafa90e65d505ad7b542e743e4caf5989541563e",
+    "width": 228,
+    "height": 186
+  },
+  "Vol Opt (Monitor)": {
+    "path": "/assets/img/monsters/wiki/0e1169ed6753f5fe.png",
+    "source": "https://wiki.pioneer2.net/images/1/16/Vol_Opt_%28Monitor%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Vol_Opt_(Monitor).png",
+    "sha1": "0e1169ed6753f5fedc3253ca1471ece3d6e82104",
+    "width": 228,
+    "height": 186
+  },
+  "Vol Opt (Pillar)": {
+    "path": "/assets/img/monsters/wiki/b0e6af4991d59c27.png",
+    "source": "https://wiki.pioneer2.net/images/7/7b/Vol_Opt_%28Pillar%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Vol_Opt_(Pillar).png",
+    "sha1": "b0e6af4991d59c276dd701ea15dcb5c625907b55",
+    "width": 210,
+    "height": 467
+  },
+  "Vol Opt (Prison)": {
+    "path": "/assets/img/monsters/wiki/e780edbc93ff0bba.png",
+    "source": "https://wiki.pioneer2.net/images/d/df/Vol_Opt_%28Prison%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Vol_Opt_(Prison).png",
+    "sha1": "e780edbc93ff0bbabe1b4c4d9fd5a1aa43391df5",
+    "width": 228,
+    "height": 186
+  },
+  "Vol Opt (Spire)": {
+    "path": "/assets/img/monsters/wiki/12128af7afc73b29.png",
+    "source": "https://wiki.pioneer2.net/images/f/f5/Vol_Opt_%28Spire%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Vol_Opt_(Spire).png",
+    "sha1": "12128af7afc73b29bf0a4642b3b4d065c8ed9aa9",
+    "width": 160,
+    "height": 265
+  },
+  "Vol Opt ver. 2 (Form 2)": {
+    "path": "/assets/img/monsters/wiki/cea3d49b41d8383a.png",
+    "source": "https://wiki.pioneer2.net/images/8/88/Vol_Opt_ver._2_%28Form_2%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Vol_Opt_ver._2_(Form_2).png",
+    "sha1": "cea3d49b41d8383a00055c71ba6e497acf7e50bb",
+    "width": 228,
+    "height": 104
+  },
+  "Vol Opt ver. 2 (Pillar)": {
+    "path": "/assets/img/monsters/wiki/8784b56215771129.png",
+    "source": "https://wiki.pioneer2.net/images/0/05/Vol_Opt_ver._2_%28Pillar%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Vol_Opt_ver._2_(Pillar).png",
+    "sha1": "8784b56215771129d28c0bb757efc96ee6eb94dc",
+    "width": 210,
+    "height": 475
+  },
+  "Vulmer": {
+    "path": "/assets/img/monsters/wiki/cb4faf457d94d70b.png",
+    "source": "https://wiki.pioneer2.net/images/4/49/Vulmer.png",
+    "page": "https://wiki.pioneer2.net/w/File:Vulmer.png",
+    "sha1": "cb4faf457d94d70b721e07935ca2d2d9b8b3ed53",
+    "width": 228,
+    "height": 184
+  },
+  "Yowie (Crater)": {
+    "path": "/assets/img/monsters/wiki/8b4ec53e8ae30355.png",
+    "source": "https://wiki.pioneer2.net/images/8/80/Yowie_%28Crater%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Yowie_(Crater).png",
+    "sha1": "8b4ec53e8ae30355b81d0efde99ba3a044900102",
+    "width": 200,
+    "height": 152
+  },
+  "Yowie (Desert)": {
+    "path": "/assets/img/monsters/wiki/6409bcce26d7b7ce.png",
+    "source": "https://wiki.pioneer2.net/images/3/38/Yowie_%28Desert%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Yowie_(Desert).png",
+    "sha1": "6409bcce26d7b7ce93e2afe51079c710af32177a",
+    "width": 200,
+    "height": 110
+  },
+  "Ze Boota": {
+    "path": "/assets/img/monsters/wiki/640cbd49866cb477.png",
+    "source": "https://wiki.pioneer2.net/images/f/fc/Ze_Boota.png",
+    "page": "https://wiki.pioneer2.net/w/File:Ze_Boota.png",
+    "sha1": "640cbd49866cb477833d3de8c3778e6aca285707",
+    "width": 200,
+    "height": 154
+  },
+  "Zol Gibbon": {
+    "path": "/assets/img/monsters/wiki/ff87b79947ef620d.png",
+    "source": "https://wiki.pioneer2.net/images/c/ca/Zol_Gibbon.png",
+    "page": "https://wiki.pioneer2.net/w/File:Zol_Gibbon.png",
+    "sha1": "ff87b79947ef620dcb285d1a942524995c4e8d55",
+    "width": 360,
+    "height": 450
+  },
+  "Zu (Crater)": {
+    "path": "/assets/img/monsters/wiki/6fe0e18c459f5c7d.png",
+    "source": "https://wiki.pioneer2.net/images/a/ac/Zu_%28Crater%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Zu_(Crater).png",
+    "sha1": "6fe0e18c459f5c7dc221d7b5345363ee3e370b16",
+    "width": 200,
+    "height": 200
+  },
+  "Zu (Desert)": {
+    "path": "/assets/img/monsters/wiki/89a049dab18e28bc.png",
+    "source": "https://wiki.pioneer2.net/images/6/69/Zu_%28Desert%29.png",
+    "page": "https://wiki.pioneer2.net/w/File:Zu_(Desert).png",
+    "sha1": "89a049dab18e28bc053e2ceaf4871b81a6c1b58e",
+    "width": 320,
+    "height": 136
+  }
+}

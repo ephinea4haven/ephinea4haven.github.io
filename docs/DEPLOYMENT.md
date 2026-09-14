@@ -25,8 +25,8 @@ npx playwright install chromium
 npm run release:prepare
 ```
 
-The September 14 build reports 1,104 Angular hosts (including 1,044 item detail
-pages) and 45 event content fragments.
+The September 14 monster-catalog build reports 1,265 Angular hosts (including
+1,044 item and 160 monster detail pages) and 45 event content fragments.
 `_site/build-manifest.json` is the authoritative inventory. Artifact validation
 rejects non-Angular application hosts, retired runtimes, missing local resources,
 and operating-system metadata before `_site` is published atomically. The source
@@ -65,6 +65,22 @@ run completes:
 
 The workflow publishes only the artifact that passed the release gates; do not
 copy files directly into the deployed site.
+
+### September 14, 2026 monster catalog and home RBR
+
+Local verification passed `npm test`, the production build, 11 new feature
+browser checks and all 1,376 full-site browser checks. The artifact's JavaScript
+gzip total is 874,366 / 1,000,000 bytes, with unchanged route, chunk and hydration
+budgets. [The catalog contract](MONSTER_CATALOG.md) records coverage and source
+limitations. Deployment status must be checked against the matching `master`
+Pages run; these local results alone do not establish publication.
+
+For production verification, open `/data/enemies.html`, a detail such as
+`/data/enemies/chaos-bringer.html?diff=u&lang=en`, and `/`. Check the ten Section ID
+cards against the pinned drop-table source, the selected damage context, and
+the homepage RBR cards linking to `/guide/rbr.html`. The same authority checkout
+provides both item/monster names and `bb/data/en.js`; do not copy drop values
+into page sources.
 
 ### September 10, 2026 release
 

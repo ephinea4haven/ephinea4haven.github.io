@@ -20,6 +20,7 @@ DEFAULT_AUTHORITY = Path(
 )
 OUTPUT = REPO / "assets" / "js" / "i18n" / "items_i18n.js"
 MAG_OUTPUT = REPO / "assets" / "js" / "mag-evolution.js"
+MONSTER_OUTPUT = REPO / "content" / "monster-catalog" / "names.json"
 
 
 def slugify(name: str) -> str:
@@ -110,13 +111,14 @@ def main() -> None:
     outputs = {
         OUTPUT: render(build_site_dictionary(items), authority_bytes),
         MAG_OUTPUT: render_mag_names(MAG_OUTPUT.read_text(encoding="utf-8"), items),
+        MONSTER_OUTPUT: json.dumps(json.loads(authority_bytes)["monsters"], ensure_ascii=False, indent=2, sort_keys=True) + "\n",
     }
     if args.check:
         stale = [path.name for path, generated in outputs.items()
                  if not path.is_file() or path.read_text(encoding="utf-8") != generated]
         if stale:
             raise SystemExit(f"{', '.join(stale)} is stale; run npm run sync:i18n")
-        print("Item dictionary and Mag names match droptable/i18n_names.json")
+        print("Item, monster and Mag names match droptable/i18n_names.json")
         return
     for path, generated in outputs.items():
         path.write_text(generated, encoding="utf-8")

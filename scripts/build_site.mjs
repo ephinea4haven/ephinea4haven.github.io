@@ -140,6 +140,7 @@ async function copySiteSource() {
 
 async function buildAngularApplication() {
   await execFileAsync(process.execPath, [path.join(root, 'scripts', 'generate_item_catalog.mjs')], { cwd: root });
+  await execFileAsync(process.execPath, [path.join(root, 'scripts', 'generate_monster_catalog.mjs')], { cwd: root });
   await execFileAsync(process.execPath, [
     path.join(root, 'scripts', 'generate_angular_combo.mjs'),
   ], { cwd: root });
@@ -182,6 +183,11 @@ async function installAngularApplication(pages) {
     if (!pages.some(page => relativeToRoot(page) === host)) pages.push(path.join(root, host));
   }
   const routeAssets = [];
+  const monsters = JSON.parse(await readFile(path.join(root,'src/app/generated/monster-catalog/index.json'),'utf8'));
+  for (const host of ['data/enemies.html', ...monsters.map(m=>`data/enemies/${m.id}.html`)]) {
+    pageSet.add(host);
+    if (!pages.some(page=>relativeToRoot(page)===host)) pages.push(path.join(root,host));
+  }
   const angularPages = new Set();
   let hosts = 0;
   for (const route of prerenderedRoutes) {

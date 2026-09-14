@@ -1,5 +1,22 @@
 /* Landing page styles. Standalone design for the Haven PSOBB home page. */
 
+.home-rbr { padding: 24px; margin-bottom: 24px; border: 1px solid #23556a; border-radius: 16px; background: linear-gradient(120deg, #102a3cef, #091324f5); }
+.home-rbr-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.home-rbr-heading p { color: #7dd3fc; font: 12px 'Share Tech Mono', monospace; letter-spacing: 3px; margin-bottom: 6px; }
+.home-rbr-heading h2 { font-size: 23px; color: #f0f9ff; }
+.home-rbr-heading a { color: #a5f3fc; font-size: 13px; }
+.home-rbr-status { color: #a6bace; font-size: 12px; margin: 12px 0 18px; }
+.home-rbr[data-status="stale"] .home-rbr-status { color: #fcd34d; }
+.home-rbr-quests { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.home-rbr-quest { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #294455; border-radius: 10px; background: #061423c9; color: #f0f9ff; text-decoration: none; overflow-wrap: anywhere; }
+.home-rbr-quest:hover { background: #123144; border-color: #67e8f9; }
+.home-rbr-quest:focus-visible { outline: 2px solid #67e8f9; outline-offset: 3px; }
+.home-rbr-quest span { color: #7dd3fc; font: 11px 'Share Tech Mono', monospace; letter-spacing: 2px; }
+.home-rbr-quest strong { font: 700 26px 'Orbitron', sans-serif; }
+.home-rbr-quest small { color: #b5c8d9; font-size: 12px; }
+.home-rbr-quest b { position: absolute; right: 16px; top: 15px; color: #7dd3fc; }
+@media (max-width: 600px) { .home-rbr { padding: 18px; } .home-rbr-heading { align-items: flex-start; flex-direction: column; } .home-rbr-quests { grid-template-columns: 1fr; } }
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
