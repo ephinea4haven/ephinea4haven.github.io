@@ -5,6 +5,18 @@ import { readFileSync } from 'node:fs';
 const items = Object.values(JSON.parse(readFileSync('src/app/generated/item-catalog/details.server.json', 'utf8')));
 const names = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
 
+test('item list title stays localized after query-only navigation', async ({page}) => {
+  await page.goto('/data/items.html?lang=en');
+  await expect(page).toHaveTitle(/Item Database/);
+  await page.getByRole('searchbox').fill('Saber');
+  await expect(page).toHaveURL(/q=Saber/);
+  await expect(page).toHaveTitle(/Item Database/);
+  await page.getByRole('button',{name:'日本語',exact:true}).click();
+  await page.getByRole('searchbox').fill('V101');
+  await expect(page).toHaveURL(/q=V101/);
+  await expect(page).toHaveTitle(/アイテム図鑑/);
+});
+
 test('language changes preserve filters, sorting, pagination and authoritative names', async ({page}) => {
   await page.goto('/data/items.html?category=weapon&type=光剑&class=FOnewearl&sort=name&page=2');
   const ids = await page.locator('.item-row').evaluateAll(rows => rows.map(r => new URL(r.href).pathname));

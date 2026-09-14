@@ -60,7 +60,7 @@ export class MonsterCatalogComponent {
     return table.axis==='difficulty-mode' ? `${table.context[0]} / ${mode}` : table.axis==='mode' ? mode : table.context.join(' / ');
   }
   update(key:string,value:string):void {
-    void this.router.navigate([],{relativeTo:this.route,queryParams:{[key]:value||null,...(key==='page'?{}:{page:null}),...(key==='ep'?{area:null}:{})},queryParamsHandling:'merge',preserveFragment:true,replaceUrl:true}).then(navigated=>{
+    void this.router.navigate([],{relativeTo:this.route,queryParams:{[key]:value||null,...(key==='page'||this.result()?{}:{page:null}),...(key==='ep'?{area:null}:{})},queryParamsHandling:'merge',preserveFragment:true,replaceUrl:true}).then(navigated=>{
       if(navigated && key==='page') this.document.getElementById('monster-results')?.scrollIntoView({behavior:'instant',block:'start'});
     });
   }
