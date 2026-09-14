@@ -48,6 +48,38 @@ Every dependency update must pass the same locked install, audit,
 reproducibility, build and browser gates as an application change before it is
 accepted.
 
+## Actions history cleanup — September 14, 2026
+
+At the maintainer's request, a one-time cleanup deleted 34 of 39 completed
+workflow runs, retaining the latest five across the repository (not five per
+workflow): `34816485230`, `34813347099`, `34808521958`, `34807545578`, and
+`34803541649`. No automatic count-based retention was configured; future runs
+will increase the count. Workflow configuration was not changed.
+
+Historical release results below remain contemporaneous records, but deleted
+runs no longer provide accessible logs or rerun targets. Their identifiers are
+retained as plain text and explicitly marked as deleted. The old checks for
+open dependency PRs #22, #23 and #24 were also deleted; their current check
+rollups are empty. Validate those updates against the current base before
+merging; the previously reported success is not a current merge gate.
+
+### Cleanup review-fix-loop ledger
+
+Scope: the one-time cleanup and its affected documentation, workflow state,
+open-PR check records, and current deployment. Application feature review,
+dependency upgrades, and automatic retention are outside this review.
+
+| ID | Status | Root cause and affected scope | Verification |
+| --- | --- | --- | --- |
+| AC1 | Should-fix / Fixed | Deleting historical runs left five dead evidence links across this runbook and `scripts/RBR_DATA.md`. Preserved the original release claims and run IDs, removed invalid links, and labeled deleted records. | Reproduced HTTP 404 for run `34004094751`; repository-wide search identified four deleted run IDs across five links. A `rtk proxy node -e` assertion over all Markdown files passed: the sole remaining run link points to a retained run and all five removed links are explicitly labeled. `rtk git diff --check` passed; full diff review found no further issue. |
+
+The run-list API returned exactly the five IDs above, matching the pre-cleanup
+inventory's newest entries. Pages and RBR validation workflows remain active;
+anniversary synchronization remains manually disabled. Run `34816485230` for
+`c45d6c4` still reports successful build and deploy jobs, and the production
+homepage returned HTTP 200 after cleanup. PR listing confirms #22–#24 remain
+open with empty check rollups.
+
 ## Production verification
 
 GitHub Pages is configured to deploy through GitHub Actions. After a production
@@ -92,7 +124,7 @@ JavaScript gzip). Reproduction evidence and the closed finding ledger are in
 ### September 10, 2026 release
 
 Commit `186ce35fb96f772b82f45597bb797eb62c694b2e` passed both build and deployment
-in [Pages run 34427458809](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34427458809).
+in Pages run `34427458809` (deleted in the September 14 history cleanup).
 The run passed the locked install, dependency audit with zero vulnerabilities,
 business tests, two reproducible builds and all 129 browser tests. The artifact
 contains 58 prerendered Angular routes and 45 event content fragments.
@@ -111,7 +143,7 @@ contains 58 prerendered Angular routes and 45 event content fragments.
   Angular build, CLI and SSR packages to 22.1.7.
 
 The homepage fix was first deployed by
-[Pages run 34427005202](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34427005202).
+Pages run `34427005202` (deleted in the September 14 history cleanup).
 A live Chromium check confirmed that the anniversary archive link remained
 available with no LIVE marker and no visible current-activity panels.
 
@@ -125,7 +157,7 @@ trace and investigate the navigation and viewport timing before changing code.
 ### September 14, 2026 item catalog
 
 The complete catalog was deployed at `76d261cbffbe8cc372dd8b7de76123b64e69a630`
-in [Pages run 34801778747](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34801778747).
+in Pages run `34801778747` (deleted in the September 14 history cleanup).
 Both build and deployment succeeded. A live check verified the 1,044-item
 inventory, the Saber detail page and the published image's original SHA-1.
 
@@ -223,7 +255,7 @@ Record any maintainer-confirmed local date correction separately from the source
 revision. A site correction does not edit the remote Wiki.
 
 The September 6, 2026 rotation (`SU2 / LSR / WoL2`) was deployed at `e2c7678` in
-[Pages run 34004094751](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34004094751).
+Pages run `34004094751` (deleted in the September 14 history cleanup).
 The site week was corrected to September 6; the Wiki read during synchronization
 was dated September 5 and was not edited by this update. The run passed the
 dependency audit, business tests, reproducibility checks and all 117 browser tests.
