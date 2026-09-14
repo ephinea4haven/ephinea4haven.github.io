@@ -6,11 +6,11 @@ export interface Monster {
   rare:boolean; boss:boolean; part:boolean; image:string|null; ultimateImage:string|null;
   values:Record<string,number[]|undefined>;
 }
-export interface MechanicTable {section:string;anchor:string;caption:string;context:string[];axis:'all'|'difficulty'|'mode'|'difficulty-mode';rows:string[][]}
+export interface MechanicTable {section:string;anchor:string;caption:string;context:string[];headings:string[];difficulties:string[];axis:'all'|'difficulty'|'mode'|'difficulty-mode';rows:string[][]}
 export interface MonsterDetail {
   id:string; stats:Record<string,(number|string)[]>; notes:string[]; tables:MechanicTable[];
   drops:Record<string,{name:string;dar:string|null;cells:(Names & {rate:string;id:string|null})[][]}>;
-  dropScope:string; source:string;revision:number;checkedAt:string;imageSource:string|null;ultimateImageSource:string|null;
+  dropScope:string; source:string;sourceTitle:string;revision:number;checkedAt:string;imageSource:string|null;ultimateImageSource:string|null;
 }
 export const MONSTERS = raw as Monster[];
 export const MONSTER_BY_ID = new Map(MONSTERS.map(m => [m.id,m]));

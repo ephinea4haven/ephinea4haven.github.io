@@ -25,8 +25,8 @@ export function cellDrops(cell) {
   if (!Array.isArray(values) || values.some(v => typeof v.item !== 'string' || typeof v.rate !== 'string')) throw new Error('Invalid drop cell');
   return values.filter(v => v.item);
 }
-export function contextualTables(tables) {
-  return tables.map(table => ({...table, axis: table.context.length >= 2 ? 'difficulty-mode'
+export function contextualTables(tables,conditions=[]) {
+  return tables.map(table => ({...table, difficulties:conditions.find(rule=>rule.anchor===table.anchor)?.difficulties || [], axis: table.context.length >= 2 ? 'difficulty-mode'
     : table.context.length === 0 ? 'all'
     : tables.some(other => other.anchor === table.anchor && other.context.length === 1 && ['Hard','Very Hard','Ultimate'].includes(other.context[0])) ? 'difficulty' : 'mode'}));
 }
@@ -36,6 +36,11 @@ export function generateMonsterCatalog() {
   const names = readJson('content/monster-catalog/names.json');
   const notes = readJson('content/monster-catalog/notes.json');
   const mechanics = readJson('content/monster-catalog/mechanics.json');
+  const conditions = readJson('content/monster-catalog/mechanic-conditions.json');
+  for(const condition of conditions) {
+    const article=mechanics.find(page=>page.title===condition.page);
+    if(!article || article.revision!==condition.revision || !article.tables.some(table=>table.anchor===condition.anchor)) throw new Error(`Review outdated mechanic condition: ${condition.page} #${condition.anchor}`);
+  }
   const authorityPath = process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json';
   const authority = readJson(authorityPath);
   const dropFile = path.join(path.dirname(authorityPath),'bb/data/en.js');
@@ -85,9 +90,10 @@ export function generateMonsterCatalog() {
       })))};
     }
     details[record.id] = {
-      id:record.id, stats:record.stats, notes:notes[record.page] || [], tables:contextualTables(article.tables),
+      id:record.id, stats:record.stats, notes:notes[record.page] || [], tables:contextualTables(article.tables,conditions.filter(rule=>rule.page===record.page)),
       drops:dropRows, dropScope:boss && part ? 'boss' : 'enemy',
       source:`https://wiki.pioneer2.net/w/${encodeURIComponent(record.page.replaceAll(' ','_'))}`,
+      sourceTitle:record.page,
       revision:article.revision, checkedAt:snapshot.checkedAt,
       imageSource:image?.page || null, ultimateImageSource:ultimateImage?.page || null,
     };

@@ -17,7 +17,7 @@ export function extractMechanicTables(document) {
       continue;
     }
     if (!/behavior|mechanics|strategy/i.test(major)) continue;
-    if (!/damage|megid|targeting|resistan|immun|attack|mechanics|behavior/i.test(section) && !headings.includes('Attacks')) continue;
+    if (!/damage|megid|targeting|resistan|immun|attack|mechanics|behavior/i.test(section) && !headings.some(heading=>/attacks|divine punishment/i.test(heading))) continue;
     if (/breakpoints/i.test(section)) continue;
     if (node.querySelector('table') || /Monsters that ignore technique boosts/.test(node.caption?.textContent || '')) continue;
     const context = [];
@@ -43,7 +43,7 @@ export function extractMechanicTables(document) {
         x += cell.colSpan;
       }
     });
-    if (grid.length > 1) result.push({section, anchor, caption:clean(node.caption?.textContent || ''), context, rows:grid});
+    if (grid.length > 1) result.push({section, anchor, headings:[...headings], caption:clean(node.caption?.textContent || ''), context, rows:grid});
   }
   return result;
 }
