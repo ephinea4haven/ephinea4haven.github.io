@@ -16,6 +16,12 @@
 
 ## Shipped
 
+- [x] Full [item catalog](ITEM_CATALOG.md): 1,044 items across six categories,
+  524 illustrated entries, search/filter URLs and per-item detail pages. All
+  57 ordinary shop weapon models have verified local images. Follow-up review
+  fixes and 1,193-test local validation are recorded in the
+  [September 14 release record](DEPLOYMENT.md#september-14-2026-item-catalog);
+  production status follows the latest successful Pages run for `master`.
 - [x] Unified 2016–2026 anniversary archive with 2026 milestones, stable overlay
   year navigation, responsive chapter navigation and shared year-themed presentation.
 - [x] Full-site Angular modernization completed and release-validated; jQuery,

@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-08-18
+> Last updated: 2026-09-14
 
 ## System shape
 
@@ -8,8 +8,8 @@ Ephinea4Haven is a statically deployed Angular application. Angular 22 owns ever
 public page, route and interaction. GitHub Pages serves the immutable `_site`
 artifact; it does not need server-side rewrites or a JavaScript backend.
 
-The current production inventory contains 58 prerendered Angular application
-hosts and 45 year-specific event content fragments. `_site/build-manifest.json`
+The current build inventory contains 1,104 prerendered Angular application
+hosts, including 1,044 item detail pages, and 45 year-specific event content fragments. `_site/build-manifest.json`
 is the source of truth for this inventory and for the JavaScript budgets applied
 to each route.
 
@@ -40,6 +40,9 @@ but no scripts or inline event handlers; Angular owns behavior.
 - `src/app/shared/`: the Angular page shell and common presentation.
 - `src/app/combo/`, `status/`, `chartable/`, `price-guide/`: dedicated tools.
 - `src/app/events/`, `data/`, `mag/`, `rbr/`: specialized interactive content.
+- `src/app/item-catalog/`: item search, filters, detail loading and presentation.
+- `content/item-catalog/`: committed Wiki facts, image provenance, corrections
+  and reviewed mechanics notes.
 - `src/app/generated/`: ignored build output derived from committed source data.
 - `assets/`: images, CSS, fonts, JSON and immutable build inputs.
 - `scripts/`: data generation, upstream synchronization, architecture checks and
@@ -94,6 +97,22 @@ tabs, filters and event previews.
 Technique boost reference. Its weapon, frame and barrier rows follow the Ephinea
 Wiki source, while every displayed equipment name resolves through
 `items_i18n.js`.
+
+`/data/items.html` is the full item catalog; `/data/items/{slug}.html` is the
+individual detail route. `scripts/generate_item_catalog.mjs` derives a compact
+search index, server-only details and ignored `assets/data/items/*.json` from
+committed facts. The build generates detail hosts directly from that inventory,
+without maintaining an authored HTML file for every item. The browser loads
+details per item, while prerendering transfers only the current item's data.
+Each page has a 64,000-byte hydration-state limit; the full detail dataset is
+not bundled into browser JavaScript. Filters and pagination use URL parameters.
+
+All current catalog images come from Ephinea Wiki and are stored locally with
+source URLs and SHA-1 checksums. The 57 ordinary shop weapon models have images
+and variable-special descriptions. Mag feeding and evolution reuse the maintained
+Mag datasets; item names use the canonical translation authority. Missing images,
+unresolved names and unknown item codes are explicit coverage states. See
+[the item catalog contract](ITEM_CATALOG.md) for counts, import steps and regression evidence.
 
 Seasonal event routes own a fixed year manifest and load committed yearly HTML
 fragments through root-relative URLs. The anniversary archive defaults to 2026

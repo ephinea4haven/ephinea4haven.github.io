@@ -25,7 +25,8 @@ npx playwright install chromium
 npm run release:prepare
 ```
 
-The build is expected to report 58 Angular hosts and 45 event content fragments.
+The September 14 build reports 1,104 Angular hosts (including 1,044 item detail
+pages) and 45 event content fragments.
 `_site/build-manifest.json` is the authoritative inventory. Artifact validation
 rejects non-Angular application hosts, retired runtimes, missing local resources,
 and operating-system metadata before `_site` is published atomically. The source
@@ -57,6 +58,10 @@ run completes:
 2. Verify `https://www.psohaven.com/`, `404.html`, the custom domain and HTTPS.
 3. Confirm a representative content route and each dedicated interactive tool
    load the content-hashed Angular assets without console or resource errors.
+4. For item catalog changes, verify `/data/items.html`, a shop weapon such as
+   `/data/items/saber.html`, and its local image. Confirm the item count and
+   source image checksum against `content/item-catalog/coverage.json` and
+   `images.json`; an earlier deployment's successful run does not verify a later fix.
 
 The workflow publishes only the artifact that passed the release gates; do not
 copy files directly into the deployed site.
@@ -93,6 +98,29 @@ test then passed three consecutive runs, the unchanged full suite passed
 129/129, and the final CI suite passed 129/129. No assertion was weakened and no
 product workaround was added. If the timeout recurs, retain its Playwright
 trace and investigate the navigation and viewport timing before changing code.
+
+### September 14, 2026 item catalog
+
+The complete catalog was deployed at `76d261cbffbe8cc372dd8b7de76123b64e69a630`
+in [Pages run 34801778747](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34801778747).
+Both build and deployment succeeded. A live check verified the 1,044-item
+inventory, the Saber detail page and the published image's original SHA-1.
+
+Commit `5765cb18bf6255d6fee234d22d33e0df9b1ba9a1` fixes six reviewed issue classes:
+mechanics extraction, ordinary weapon descriptions, incompatible URL filters,
+Wiki markup parsing, missing Mag feeding values and image-failure messaging.
+The [catalog review record](ITEM_CATALOG.md#收敛审查记录) records the causes,
+affected scope and regression coverage. Its local validation passed `npm test`,
+the production build, all 18 catalog browser tests and all 1,193 site browser tests.
+The build contains 1,104 prerendered routes and 45 event fragments, with
+825,653 / 1,000,000 gzip JavaScript bytes and a maximum item hydration state of
+22,713 / 64,000 bytes.
+
+These local checks do not assert that a later commit is already deployed.
+For the fix and subsequent documentation commits, verify the latest successful
+[Pages workflow](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/workflows/pages.yml)
+against the expected `master` SHA. A new `master` push supersedes an unfinished
+run under the workflow's concurrency policy.
 
 ## RBR update validation
 

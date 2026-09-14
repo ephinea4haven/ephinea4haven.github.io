@@ -9,8 +9,9 @@ Angular 22 owns the complete public site: the landing page, error page, guides,
 data references, event archives and interactive tools. All existing public URLs
 remain valid, including `.html` paths and yearly event pages.
 
-The production build currently contains 58 prerendered Angular application
-hosts and 45 event content fragments. The generated build manifest is the
+The September 14 build contains 1,104 prerendered Angular application
+hosts and 45 event content fragments, including the 1,044 item detail pages
+added after the migration. The generated build manifest is the
 authoritative inventory; every application host is covered by the production
 browser suite before deployment.
 
@@ -57,6 +58,8 @@ artifact validation. `_site` remains the only deployed artifact.
 - `src/app/content/`: scoped behaviors for document-oriented Angular routes.
 - `src/app/events/`: event archive and localized event views.
 - `src/app/data/`: interactive data-reference views.
+- `src/app/item-catalog/`: the [full item catalog](ITEM_CATALOG.md), URL-backed
+  filters and lazy-loaded individual details; its hosts are generated from data.
 - `src/app/status/`: character simulator presentation, typed calculation domain
   and immutable item catalog.
 - `src/app/chartable/`: level-table presentation and navigation.
