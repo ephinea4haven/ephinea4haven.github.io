@@ -52,6 +52,14 @@ class RbrTierIntegrityTest(unittest.TestCase):
             ["SS", "S", "A"],
         )
 
+    def test_recommended_sections_cover_every_candidate(self) -> None:
+        from scripts.build_rbr_tier_charts import load_section_palette
+
+        recommendations = self.tiers["rbr"]["recommendedSectionIds"]
+        candidates = {quest["abbreviation"] for quest in self.source["quests"]}
+        self.assertEqual(set(recommendations), candidates)
+        self.assertTrue(set(recommendations.values()) <= set(load_section_palette()))
+
 
 if __name__ == "__main__":
     unittest.main()

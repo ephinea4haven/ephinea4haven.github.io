@@ -469,8 +469,18 @@ async function applyBuildTimeContent(relative, source) {
   source = buildCanonicalItemConsumers(relative, source);
   if (relative === 'index.html') {
     const data = JSON.parse(await readFile(path.join(root, 'data/rbr/source.json'), 'utf8'));
-    const quests = data.current.quests.map(quest => `<a class="home-rbr-quest" href="/guide/rbr.html"><span>EPISODE 0${quest.episode}</span><strong>${escapeHtml(quest.abbreviation)}</strong><small>${escapeHtml(quest.name)}</small><b aria-hidden="true">↗</b></a>`).join('');
-    return source.replace('<!-- home-rbr -->', `<section class="home-rbr" data-rbr-week="${escapeHtml(data.current.week)}" aria-labelledby="home-rbr-title"><div class="home-rbr-heading"><div><p>RAGOL BOOST ROAD</p><h2 id="home-rbr-title">RBR 任务</h2></div><a href="/guide/rbr.html">任务详情与周回推荐 →</a></div><p class="home-rbr-status">记录周：${escapeHtml(data.current.week)} · UTC 周日轮替</p><div class="home-rbr-quests">${quests}</div></section>`);
+    const { rbr: ratings } = JSON.parse(await readFile(path.join(root, 'data/rbr/tiers.json'), 'utf8'));
+    const dropSource = await readFile(path.join(root, 'data/droptable/bb/data/zh.js'), 'utf8');
+    const sectionIds = JSON.parse(dropSource.match(/"sectionIds"\s*:\s*(\[[^\]]+\])/)[1]);
+    const sectionColors = JSON.parse(dropSource.match(/"sectionColors"\s*:\s*(\[[^\]]+\])/)[1]);
+    const quests = data.current.quests.map(quest => {
+      const tier = Object.entries(ratings.tiers).find(([, quests]) => quests.includes(quest.abbreviation))?.[0];
+      const section = ratings.recommendedSectionIds[quest.abbreviation];
+      const color = sectionColors[sectionIds.indexOf(section)];
+      if (!tier || !/^#[0-9a-f]{6}$/i.test(color)) throw new Error(`Missing RBR recommendation: ${quest.abbreviation}`);
+      return `<a class="home-rbr-quest" href="/guide/rbr.html" style="--section-color:${color}" data-tier="${escapeHtml(tier)}"><span class="home-rbr-episode">EPISODE 0${quest.episode}</span><strong>${escapeHtml(quest.abbreviation)}</strong><small>${escapeHtml(quest.name)}</small><div class="home-rbr-tags"><span class="home-rbr-tier">Tier ${escapeHtml(tier)}</span><span class="home-rbr-section"><i aria-hidden="true"></i>推荐 ID · ${escapeHtml(section)}</span></div><b aria-hidden="true">↗</b></a>`;
+    }).join('');
+    return source.replace('<!-- home-rbr -->', `<section class="home-rbr" data-rbr-week="${escapeHtml(data.current.week)}" aria-labelledby="home-rbr-title"><div class="home-rbr-heading"><div><p>RAGOL BOOST ROAD</p><h2 id="home-rbr-title">RBR 任务</h2></div><a href="/guide/rbr.html">任务详情与周回推荐 →</a></div><p class="home-rbr-status">记录周：${escapeHtml(data.current.week)} · UTC 周日轮替</p><div class="home-rbr-quests">${quests}</div><p class="home-rbr-note">颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）</p></section>`);
   }
   if (relative === 'data/bdp/index.html') return buildBdpContent(source);
   if (relative === 'data/prizelist/index.html') return buildPrizeContent(source);
