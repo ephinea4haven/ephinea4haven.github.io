@@ -2,6 +2,9 @@
 @media(max-width:800px) { .detail-hero { gap: 24px; }.detail-layout { grid-template-columns: minmax(0,1fr) 220px; gap: 24px; }.attribute-grid { grid-template-columns: 1fr; }.detail-overview h1 { font-size: 25px; } }
 @media(max-width:600px) { .breadcrumbs { gap: 8px; padding: 20px 0; }.detail-hero { grid-template-columns: 1fr; gap: 24px; }.image-stage { min-height: 210px; }.detail-overview h1 { font-size: 27px; }.detail-layout { grid-template-columns: 1fr; gap: 0; }.attribute-grid { grid-template-columns: 1fr 1fr; }.attribute-grid > div { flex-direction: column; align-items: flex-start; gap: 8px; }.detail-sidebar { display: grid; grid-template-columns: 1fr; }.class-grid { grid-template-columns: repeat(3,1fr); }.detail-nav { justify-content: space-between; gap: 10px; }.related-items { grid-template-columns: 1fr; }.hero-stats strong { font-size: 26px; } }
 :host { min-width: 0; }
+.detail-layout > *, .detail-hero > * { min-width: 0; }
+.detail-overview, .attribute-grid, .related-items { overflow-wrap: anywhere; }
+.attribute-grid > div { min-width: 0; }
 .detail-section h3 { color: var(--ink); margin: 28px 0 14px; font-size: 16px; }
 .detail-section a { color: #8fe0d9; }
 .wiki-notes { margin-top: 24px; padding: 16px; background: #13283a; border: 1px solid var(--line); border-radius: 7px; line-height: 1.8; overflow-wrap: anywhere; }

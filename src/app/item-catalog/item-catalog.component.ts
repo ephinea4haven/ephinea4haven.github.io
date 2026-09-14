@@ -1,20 +1,25 @@
 import { DOCUMENT } from '@angular/common';
-import { afterNextRender, ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
-import { CATEGORIES, CLASSES, ITEMS, categoryLabel, itemPath, normalize, statusLabel } from './catalog';
+import { CATEGORIES, CLASSES, ITEMS, itemPath, normalize } from './catalog';
 import { CatalogNavigation } from './catalog-navigation.service';
+import { Title } from '@angular/platform-browser';
+import { CatalogLanguageService } from './catalog-language.service';
+import { CatalogLanguageComponent } from './catalog-language.component';
 import { ItemImageComponent } from './item-image.component';
 
 @Component({
   selector: 'haven-item-catalog',
-  imports: [FormsModule, RouterLink, ItemImageComponent],
+  imports: [RouterLink, ItemImageComponent, CatalogLanguageComponent],
+  providers: [CatalogLanguageService],
   templateUrl: './item-catalog.component.html',
-  styleUrl: './item-catalog.component.css',
+  styleUrls: ['./item-catalog.component.css', './catalog-visual.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemCatalogComponent {
+  readonly i18n = inject(CatalogLanguageService);
+  private readonly title = inject(Title);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly document = inject(DOCUMENT);
@@ -23,9 +28,7 @@ export class ItemCatalogComponent {
   readonly categories = CATEGORIES;
   readonly classes = CLASSES;
   readonly items = ITEMS;
-  readonly categoryLabel = categoryLabel;
   readonly itemPath = itemPath;
-  readonly statusLabel = statusLabel;
   readonly filtersOpen = signal(false);
   readonly query = computed(() => this.params().get('q') ?? '');
   readonly category = computed(() => CATEGORIES.some(({ id }) => id === this.params().get('category')) ? this.params().get('category')! : 'all');
@@ -62,18 +65,19 @@ export class ItemCatalogComponent {
   });
   readonly visible = computed(() => this.filtered().slice((this.page() - 1) * this.pageSize, this.page() * this.pageSize));
   readonly activeFilters = computed(() => [
-    ...(this.query() ? [{ key: 'q', label: `搜索：${this.query()}` }] : []),
-    ...(this.category() !== 'all' ? [{ key: 'category', label: categoryLabel(this.category()) }] : []),
-    ...(this.subtype() ? [{ key: 'type', label: this.subtype() }] : []),
-    ...(this.status() ? [{ key: 'status', label: this.status() === 'listed' ? '现行目录' : statusLabel(this.status()) }] : []),
+    ...(this.query() ? [{ key: 'q', label: this.i18n.t('搜索：') + this.query() }] : []),
+    ...(this.category() !== 'all' ? [{ key: 'category', label: this.i18n.category(this.category()) }] : []),
+    ...(this.subtype() ? [{ key: 'type', label: this.i18n.t(this.subtype()) }] : []),
+    ...(this.status() ? [{ key: 'status', label: this.status() === 'listed' ? this.i18n.t('现行目录') : this.i18n.status(this.status()) }] : []),
     ...(this.profession() ? [{ key: 'class', label: this.profession() }] : []),
-    ...(this.rarity() ? [{ key: 'rarity', label: this.rarity() === 'unknown' ? '未标星级' : this.rarity() === 'common' ? '普通道具' : `${this.rarity()}★` }] : []),
-    ...(this.imagesOnly() ? [{ key: 'images', label: '有截图' }] : []),
+    ...(this.rarity() ? [{ key: 'rarity', label: this.rarity() === 'unknown' ? this.i18n.t('未标星级') : this.rarity() === 'common' ? this.i18n.t('普通道具') : `${this.rarity()}★` }] : []),
+    ...(this.imagesOnly() ? [{ key: 'images', label: this.i18n.t('有截图') }] : []),
   ]);
-  readonly listParams = computed<Params>(() => ({ q: this.query() || null, category: this.category() === 'all' ? null : this.category(), type: this.subtype() || null, status: this.status() || null, class: this.profession() || null, rarity: this.rarity() || null, images: this.imagesOnly() ? '1' : null, sort: this.sort() === 'catalog' ? null : this.sort(), page: this.page() === 1 ? null : this.page() }));
+  readonly listParams = computed<Params>(() => ({ lang: this.i18n.language(), q: this.query() || null, category: this.category() === 'all' ? null : this.category(), type: this.subtype() || null, status: this.status() || null, class: this.profession() || null, rarity: this.rarity() || null, images: this.imagesOnly() ? '1' : null, sort: this.sort() === 'catalog' ? null : this.sort(), page: this.page() === 1 ? null : this.page() }));
 
   constructor() {
-    afterNextRender(() => this.document.defaultView?.scrollTo(0, this.navigation.scrollY));
+    effect(() => this.title.setTitle(`${this.i18n.t('道具图鉴')} | Ephinea PSOBB`));
+    afterNextRender(() => this.document.defaultView?.scrollTo({top: this.navigation.scrollY, left: 0, behavior: 'instant'}));
   }
   count(category: string): number { return category === 'all' ? ITEMS.length : ITEMS.filter((item) => item.category === category).length; }
   update(key: string, value: string | null): void {
@@ -81,7 +85,7 @@ export class ItemCatalogComponent {
     if (key === 'category') { queryParams['sort'] = null; queryParams['type'] = null; if (value === 'tool') queryParams['class'] = null; }
     void this.router.navigate([], { relativeTo: this.route, queryParams, replaceUrl: true });
   }
-  clear(): void { void this.router.navigate([], { relativeTo: this.route, queryParams: {}, replaceUrl: true }); }
+  clear(): void { void this.router.navigate([], { relativeTo: this.route, queryParams: {lang:this.i18n.language()}, replaceUrl: true }); }
   goToPage(page: number): void {
     page = Number.isSafeInteger(page) ? Math.max(1, Math.min(page, this.pageCount())) : 1;
     void this.router.navigate([], { relativeTo: this.route, queryParams: { ...this.listParams(), page }, replaceUrl: true }).then(() => {

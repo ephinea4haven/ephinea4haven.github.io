@@ -122,6 +122,29 @@ For the fix and subsequent documentation commits, verify the latest successful
 against the expected `master` SHA. A new `master` push supersedes an unfinished
 run under the workflow's concurrency policy.
 
+### September 14, 2026 catalog language and visual update
+
+The catalog now switches its interface and item names between Chinese, English
+and Japanese, preserving URL filters and browser language preference. Detailed
+mechanics retain labeled source-language notes. Japanese coverage is 817 items
+(667 authority names and 150 recorded Wiki names); the other 227 explicitly
+retain English. Chinese names continue to match the pinned authority.
+
+The visual update adds cyan lighting, rare-item accents, framed screenshots and
+responsive attribute panels. Validation also fixed narrow-screen text clipping,
+Mag table overflow and catalog navigation scrolling. The previously recorded
+equipment-guide anchor failure recurred during the full suite; retained traces
+led to removing the document-wide forced smooth-scroll rule. Both affected
+navigation scenarios passed 10 repeated runs with stronger destination checks.
+
+Final local validation passed `npm test` (including 10 catalog data tests), the
+production build and all **1,202 browser tests**, including 27 catalog tests.
+The artifact has 1,104 routes and 45 event fragments; JavaScript gzip totals
+842,140 / 1,000,000 bytes, with 153,622 bytes for the catalog's initial route,
+154,993 bytes for item details, and at most 22,824 bytes of item hydration state.
+All existing performance ceilings remain unchanged. Publication is confirmed
+only by a successful Pages run for the pushed `master` SHA.
+
 ## RBR update validation
 
 The retired `sync-rbr.yml` workflow no longer polls the Ephinea Wiki or

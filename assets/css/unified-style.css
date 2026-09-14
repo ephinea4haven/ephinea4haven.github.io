@@ -396,11 +396,6 @@ page-chrome {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
-}
-
 /* Section anchors with offset */
 .section-anchor {
     display: block;

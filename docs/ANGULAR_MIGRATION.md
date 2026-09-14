@@ -59,7 +59,8 @@ artifact validation. `_site` remains the only deployed artifact.
 - `src/app/events/`: event archive and localized event views.
 - `src/app/data/`: interactive data-reference views.
 - `src/app/item-catalog/`: the [full item catalog](ITEM_CATALOG.md), URL-backed
-  filters and lazy-loaded individual details; its hosts are generated from data.
+  filters, zh/en/ja interface and names, and lazy-loaded individual details;
+  source-language mechanics are labeled and hosts are generated from data.
 - `src/app/status/`: character simulator presentation, typed calculation domain
   and immutable item catalog.
 - `src/app/chartable/`: level-table presentation and navigation.
