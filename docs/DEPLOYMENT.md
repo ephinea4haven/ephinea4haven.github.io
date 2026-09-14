@@ -50,11 +50,15 @@ accepted.
 
 ## Actions history cleanup — September 14, 2026
 
-At the maintainer's request, a one-time cleanup deleted 34 of 39 completed
+At the maintainer's initial request, a one-time cleanup deleted 34 of 39 completed
 workflow runs, retaining the latest five across the repository (not five per
 workflow): `34816485230`, `34813347099`, `34808521958`, `34807545578`, and
-`34803541649`. No automatic count-based retention was configured; future runs
-will increase the count. Workflow configuration was not changed.
+`34803541649`. Later that day, the maintainer requested retaining only the latest
+three. A second cleanup deleted six of the then-nine runs, retaining
+`34821846682`, `34820895893`, and `34819951807` at that point. The five runs kept
+by the initial cleanup were all deleted in this second cleanup. No automatic
+count-based retention was configured; future runs increase the count until the
+next cleanup. Workflow configuration was not changed.
 
 Historical release results below remain contemporaneous records, but deleted
 runs no longer provide accessible logs or rerun targets. Their identifiers are
@@ -73,12 +77,13 @@ dependency upgrades, and automatic retention are outside this review.
 | --- | --- | --- | --- |
 | AC1 | Should-fix / Fixed | Deleting historical runs left five dead evidence links across this runbook and `scripts/RBR_DATA.md`. Preserved the original release claims and run IDs, removed invalid links, and labeled deleted records. | Reproduced HTTP 404 for run `34004094751`; repository-wide search identified four deleted run IDs across five links. A `rtk proxy node -e` assertion over all Markdown files passed: the sole remaining run link points to a retained run and all five removed links are explicitly labeled. `rtk git diff --check` passed; full diff review found no further issue. |
 
-The run-list API returned exactly the five IDs above, matching the pre-cleanup
+After the initial cleanup, the run-list API returned exactly its five retained IDs, matching the pre-cleanup
 inventory's newest entries. Pages and RBR validation workflows remain active;
-anniversary synchronization remains manually disabled. Run `34816485230` for
-`c45d6c4` still reports successful build and deploy jobs, and the production
-homepage returned HTTP 200 after cleanup. PR listing confirms #22–#24 remain
-open with empty check rollups.
+anniversary synchronization remains manually disabled. At that time, run
+`34816485230` for `c45d6c4` reported successful build and deploy jobs, and the
+production homepage returned HTTP 200. That run was deleted in the second
+cleanup. The initial PR listing confirmed #22–#24 remained open with empty
+check rollups; these are historical observations, not a current PR status check.
 
 ## Production verification
 
@@ -120,6 +125,24 @@ synchronization recover corrupted cache files. Local validation passed all
 1,382 browser checks, business tests and the production build (874,665 bytes
 JavaScript gzip). Reproduction evidence and the closed finding ledger are in
 [the monster catalog review record](MONSTER_CATALOG.md#2026-09-14-review-fix-loop-记录).
+
+Further fixes in `5a772d4` and `230766c` preserve detail return pagination and
+localized list titles, make area search independent of interface language, and
+remove retired generated monster assets. The initially uncommitted home RBR
+changes were then committed and pushed in `548e78e`; cards now show Tier,
+recommended Section ID and its color using shared rating data.
+
+[Pages run 34821846682](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34821846682)
+successfully built and deployed `548e78ec417c6918c59377d510c304436e6c6e67`.
+Business tests, both production builds, their manifest comparison and all
+1,386 browser tests passed. The artifact contains 1,265 routes and 45 fragments,
+with 874,959 / 1,000,000 bytes of gzip JavaScript.
+
+A live browser refresh and screenshot of `https://www.psohaven.com/` confirmed
+the September 13 rotation: SR1, LDR and WoL5 each show Tier D; their recommended
+IDs are Pinkal, Bluefull and Pinkal with matching borders and dots. The rating
+date and unofficial label are visible. This verifies deployment and homepage
+rendering; it does not reassess the ratings or independently recheck the game.
 
 ### September 10, 2026 release
 
@@ -201,7 +224,7 @@ All existing performance ceilings remain unchanged. Publication is confirmed
 only by a successful Pages run for the pushed `master` SHA.
 
 The first multilingual release attempt, `11e098c`, was blocked in
-[Pages run 34807545578](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34807545578):
+Pages run `34807545578` (deleted in the second September 14 history cleanup):
 both production builds and their byte-identical comparison passed, but the
 anniversary milestone anchor check failed twice; 1,201 other browser tests passed.
 No deployment occurred. The boolean assertion did not log its coordinates.

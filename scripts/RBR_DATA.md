@@ -144,6 +144,16 @@ npm run build
 - 本地 54 项 RBR 测试、生产构建及覆盖 RBR Tracker 和 Tier 当前任务标记的浏览器测试
   通过；额外逐项核对本站当前任务、Tracker 与已审核发布计划完全一致。
 
+### 2026-09-14 主页展示发布记录
+
+- `548e78e` 已提交并发布主页 Tier、推荐 ID 和颜色展示；主页与详情页 Tier 图
+  共用评级及推荐数据，未改动本周轮换或重新评估评级。
+- [Pages 运行 34821846682](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34821846682)
+  的业务测试、生产构建、重复构建比较、1,386 项浏览器测试及部署全部通过。
+- 在 `https://www.psohaven.com/` 实际刷新核验：SR1 / LDR / WoL5 均为 Tier D，
+  推荐 ID 为 Pinkal / Bluefull / Pinkal；彩色顶边、色点及 `2025-11，非官方`
+  评级说明显示正常。
+
 ## Wiki 更新方案验证
 
 游戏内 `/rbr` 是服务器实际轮换的唯一权威来源，服务器没有公开的 RBR 接口。
