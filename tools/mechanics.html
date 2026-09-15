@@ -14,13 +14,41 @@
 <body>
     <page-chrome title="游戏机制与伤害公式"></page-chrome>
 
-    <div class="content-container">
+    <div class="content-container mechanics-guide">
 
-<p>本页汇总 Ephinea PSOBB 的核心数值公式。除另有注明外，公式与数值均整理自 <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">Ephinea Wiki 的 Game mechanics 页面</a>。游戏对最终伤害只做截断，不做四舍五入：计算结果为 100.92 时，实际伤害为 100。</p>
+<header class="mechanics-intro">
+  <span class="mechanics-eyebrow">战斗机制图解</span>
+  <p class="mechanics-intro-title">从一次攻击，读懂背后的数值</p>
+  <p>先看图理解判定，再查公式与细节。分清命中、伤害和受击结果，配装与连击选择才有依据。</p>
+</header>
+<nav class="mechanics-nav" aria-label="机制章节导航">
+  <a href="#physical-damage"><span>A</span>物理伤害</a>
+  <a href="#accuracy"><span>B</span>攻击命中</a>
+  <a href="#incoming-physical"><span>C</span>回避与 Guard</a>
+  <a href="#technique-damage"><span>D</span>魔法伤害</a>
+  <a href="#knockdown"><span>E</span>击倒阈值</a>
+  <a href="#hp-drain"><span>F</span>消耗自身 HP</a>
+  <a href="#photon-blast"><span>G</span>PB 积累</a>
+  <a href="#mag-triggers"><span>H</span>玛古事件</a>
+</nav>
+<p class="mechanics-illustration-note">本页汇总 Ephinea PSOBB 的核心数值公式。除另有注明外，公式与数值均整理自 <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">Ephinea Wiki 的 Game mechanics 页面</a>。游戏对最终伤害只做截断，不做四舍五入：计算结果为 100.92 时，实际伤害为 100。</p>
 
-<h2>A: 物理伤害公式</h2>
+<h2 id="physical-damage">A: 物理伤害公式</h2>
 
 <p>物理伤害指除火焰／雷电类特殊攻击和魔法以外的一切伤害。菜单中括号内显示的 ATP 是该职业的<strong>最大值</strong>；游戏实际使用一个隐藏的基础 ATP，并在每次攻击时叠加一个职业相关的随机方差。</p>
+
+<figure class="mechanics-figure" aria-labelledby="atp-caption">
+  <figcaption id="atp-caption"><span class="mechanics-eyebrow">武器属性图解</span><strong>属性加成提高下限，随机区间宽度不变</strong><span>假设武器 ATP 为 300–400，只比较武器自身；不计磨数、其他装备与 Shifta。</span></figcaption>
+  <div class="mechanics-range-chart">
+    <div class="mechanics-chart-axis" aria-hidden="true"><span>0 ATP</span><span>700 ATP</span></div>
+    <div class="mechanics-chart-label"><span>对应属性 0%</span><strong>300–400 ATP</strong></div>
+    <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:42.857143%"></span><span class="mechanics-segment-spread" style="width:14.285714%"></span></div>
+    <div class="mechanics-chart-label"><span>对应属性 100%</span><strong>600–700 ATP</strong></div>
+    <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:85.714286%"></span><span class="mechanics-segment-spread" style="width:14.285714%"></span></div>
+    <div class="mechanics-legend"><span><i class="mechanics-segment-base" aria-hidden="true"></i>下限：300 → 600</span><span><i class="mechanics-segment-spread" aria-hidden="true"></i>随机区间：始终为 100</span></div>
+  </div>
+  <p class="mechanics-figure-takeaway">100% 属性不代表最终伤害翻倍。角色基础 ATP、Shifta 与目标 DFP 仍会参与后续计算。</p>
+</figure>
 
 <h3>职业攻击方差 (Pvar)</h3>
 <table>
@@ -50,7 +78,7 @@
 <ul>
 <li>Wvar = 每次攻击随机生成的 0~1 小数</li>
 <li>WSpread = 武器 ATP 区间宽度（例如 300-400 ATP 的武器为 100）</li>
-<li>Shifta% = 当前 Shifta 等级的增幅百分比（见 D 节）</li>
+<li>Shifta% = 当前 Shifta 等级的增幅百分比（见 <a href="#technique-damage">D 节</a>）</li>
 <li>Pvar = 每次攻击随机生成的职业方差：Hunter 1~6，Ranger 1~4，Force 1~3</li>
 </ul>
 <p>Shifta 只作用于基础 ATP 与武器随机区间，不作用于 EQATP。武器属性百分比只乘以武器 ATP 下限，随机区间宽度不变：一把 300-400 ATP、属性 100% 的武器，实际 ATP 为 600-700，而不是 600-800。</p>
@@ -92,9 +120,22 @@
 
 <hr>
 
-<h2>B: 玩家攻击敌人的命中计算</h2>
+<h2 id="accuracy">B: 玩家攻击敌人的命中计算</h2>
 
 <p>本节以玩家为攻击方、敌人为防守方。玩家的 ATA 与敌人的 EVP 决定攻击是否命中；命中后再进入 A 节的物理伤害计算。魔法不进行命中判定，只要接触到目标就必定生效。</p>
+
+<figure class="mechanics-figure" aria-labelledby="combo-caption">
+  <figcaption id="combo-caption"><span class="mechanics-eyebrow">连击命中图解</span><strong>同样是重攻击，放在后段更容易命中</strong><span>算例：总 ATA 200，敌人 EVP 500、无异常状态，近战攻击。三条横条共用 0–100% 刻度。</span></figcaption>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>0%</span><span>100% · 必定命中</span></div>
+  <div class="mechanics-chart-label"><span>第一段 <small>×1.0</small></span><strong>40%</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:40%"></span></div>
+  <div class="mechanics-chart-label"><span>第二段 <small>×1.3</small></span><strong>82%</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:82%"></span></div>
+  <div class="mechanics-chart-label"><span>第三段 <small>×1.69</small></span><strong>100%</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:100%"></span></div>
+  <p class="mechanics-figure-note">第一段：200 × 0.7 × 1.0 − 500 × 0.2 = 40%。第三段计算值为 136.6%，实际命中率封顶 100%。</p>
+  <p class="mechanics-figure-takeaway">普通攻击的命中修正更高，可用于起手；重攻击放在后段能利用连击修正。图中只比较各段的命中率，不表示整套连击全部命中的概率。</p>
+</figure>
 
 <h3>第1步: 总命中 (ATA)</h3>
 <p><code>ATA_total = ATA_base + 武器ATA + 铠甲ATA + 盾牌ATA</code></p>
@@ -225,7 +266,7 @@
 
 <hr>
 
-<h2>D: 魔法伤害公式</h2>
+<h2 id="technique-damage">D: 魔法伤害公式</h2>
 
 <p><code>伤害 = [(MST + 魔法基础威力) / 5] × (1 + 职业增幅 + 武器增幅 + 铠甲增幅 + 盾牌增幅) × (1 - 目标抗性)</code></p>
 <ul>
@@ -235,6 +276,17 @@
 <li>Megid 的增幅不提高即死率，而是使其贯穿；多个 Megid 增幅不会叠加。</li>
 <li>Jellen 与 Zalure 没有任何职业增幅；Reverser 与 Ryuker 没有任何增幅。装备增幅见<a href="/data/equipment_technique_boosts.html">装备魔法增幅</a>。</li>
 </ul>
+
+<figure class="mechanics-figure" aria-labelledby="technique-caption">
+  <figcaption id="technique-caption"><span class="mechanics-eyebrow">魔法伤害图解</span><strong>先把增幅相加，再由抗性削减</strong><span>假设 (MST + 魔法基础威力) ÷ 5 = 500，职业与装备各提供 30% 伤害增幅，目标对应抗性为 40%。</span></figcaption>
+  <div class="mechanics-boost-bar" aria-hidden="true"><span>基础 100%</span><span>+30%</span><span>+30%</span></div>
+  <ol class="mechanics-calculation">
+    <li><span class="mechanics-eyebrow">基础计算</span><strong>500</strong><span>(MST + 基础威力) ÷ 5</span></li>
+    <li><span class="mechanics-eyebrow">增幅合计 +60%</span><strong>800</strong><span>500 × (1 + 0.3 + 0.3)</span></li>
+    <li><span class="mechanics-eyebrow">抗性削减 40%</span><strong>480</strong><span>800 × (1 − 0.4)</span></li>
+  </ol>
+  <p class="mechanics-figure-takeaway">两个 +30% 合成 ×1.6，不是 ×1.3 ×1.3。这里计算的是伤害魔法；Megid 的即死判定见下文。</p>
+</figure>
 
 <h3>职业增幅</h3>
 <div class="mechanics-table-scroll" role="region" aria-label="职业魔法增幅表" tabindex="0">
@@ -400,8 +452,8 @@
 
 <hr>
 
-<h2>F: HP 消耗型武器</h2>
-<p>以下稀有武器的特殊攻击会按角色最大 HP 的固定百分比消耗自身 HP。配合 Monomate（回复 200 HP）与 Dimate（回复 500 HP）可以把 HP 精确控制到目标数值，用于触发玛古的 1/10 HP 事件（见 H 节），或让机器人角色主动消耗 Scape Doll 以补满陷阱。</p>
+<h2 id="hp-drain">F: HP 消耗型武器</h2>
+<p>以下稀有武器的特殊攻击会按角色最大 HP 的固定百分比消耗自身 HP。在 Ultimate 难度下，配合 Monomate（回复 200 HP）与 Dimate（回复 500 HP）可以把 HP 精确控制到目标数值，用于触发玛古的 1/10 HP 事件（见 H 节），或让机器人角色主动消耗 Scape Doll 以补满陷阱。</p>
 
 <table>
 <thead><tr><th>武器</th><th>HP 消耗</th></tr></thead>
@@ -421,7 +473,18 @@
 
 <hr>
 
-<h2>G: PB 增加公式</h2>
+<h2 id="photon-blast">G: PB 增加公式</h2>
+
+<figure class="mechanics-figure" aria-labelledby="pb-caption">
+  <figcaption id="pb-caption"><span class="mechanics-eyebrow">PB 积累图解</span><strong>同样 300 点伤害，PB 增量并不相同</strong><span>以 Lv.100 角色为例，比较下表中造成伤害与受到伤害的两条公式。</span></figcaption>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>0 PB</span><span>4 PB</span></div>
+  <div class="mechanics-chart-label"><span>造成 300 点伤害</span><strong>+0.2 PB</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:5%"></span></div>
+  <div class="mechanics-chart-label"><span>受到 300 点伤害</span><strong>+4 PB</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-spread" style="width:100%"></span></div>
+  <p class="mechanics-figure-note">300 ÷ (100 × 15) = 0.2；300 × 20 ÷ (100 × 15) = 4。横条表示本次增量，不是完整的 100 PB 槽。</p>
+  <p class="mechanics-figure-takeaway">相同等级、相同伤害数值下，受伤公式的 PB 增量是造成伤害的 20 倍。特殊攻击造成的伤害不计入 PB 槽。</p>
+</figure>
 
 <table>
 <thead><tr><th>行为</th><th>PB 增加量</th></tr></thead>
@@ -430,11 +493,30 @@
 <tr><td>受到伤害</td><td><code>受到的伤害 × 20 / (角色等级 × 15)</code></td></tr>
 </tbody>
 </table>
-<p>特殊攻击造成的伤害不计入 PB 槽。</p>
+<p>特殊攻击造成的伤害不计入 PB 槽。参见 <a href="https://wiki.pioneer2.net/w/Photon_Blasts" target="_blank" rel="noopener">Ephinea Wiki 的 PB 增加公式</a>。</p>
 
 <hr>
 
-<h2>H: 玛古事件触发概率</h2>
+<h2 id="mag-triggers">H: 玛古事件触发概率</h2>
+
+<figure class="mechanics-figure" aria-labelledby="mag-caption">
+  <figcaption id="mag-caption"><span class="mechanics-eyebrow">玛古低血量事件图解</span><strong>低血量只是其中一个条件</strong><span>最大 HP 为 1,000 时，需同一帧损失超过 200 HP，且剩余 HP 低于 100。以下比较前后两帧。</span></figcaption>
+  <div class="mechanics-frame-examples">
+    <div>
+      <span class="mechanics-eyebrow">两个条件均满足</span>
+      <div class="mechanics-frame-pair"><strong>310 <small>HP</small></strong><span aria-hidden="true">→</span><strong>90 <small>HP</small></strong></div>
+      <p>损失 220 &gt; 200<br>剩余 90 &lt; 100</p>
+      <b>满足 1/10 HP 事件条件</b>
+    </div>
+    <div>
+      <span class="mechanics-eyebrow">只满足低血量</span>
+      <div class="mechanics-frame-pair"><strong>200 <small>HP</small></strong><span aria-hidden="true">→</span><strong>90 <small>HP</small></strong></div>
+      <p>损失 110，未超过 200<br>剩余 90 &lt; 100</p>
+      <b>不满足 1/10 HP 事件条件</b>
+    </div>
+  </div>
+  <p class="mechanics-figure-takeaway">满足事件条件后，还要按玛古对应的触发率判定效果；并非降到低血量就必定无敌。同一帧发生多个事件时，还需遵循下文优先级。</p>
+</figure>
 
 <h3>触发事件</h3>
 <table>
@@ -446,6 +528,8 @@
 </tbody>
 </table>
 <p>玛古每帧检查一次触发条件。1/10 HP 事件只比较前后两帧的 HP 差值，与 HP 损失来源无关，因此 Berserk 武器命中 4 个以上目标、Gal Wind 第三段、装备 Psycho Wand 时施放魔法等都可以触发。同一帧内满足多个条件时只检查一个，优先级为：100 PB → Boss 房 → 1/10 HP。死亡事件在 Blue Burst 中已禁用。</p>
+
+<p class="mechanics-illustration-note">事件条件与判定顺序参见 <a href="https://wiki.pioneer2.net/w/Mags#Mag_triggers" target="_blank" rel="noopener">Ephinea Wiki 的玛古事件说明</a>。</p>
 
 <h3>同步率加成</h3>
 <table>

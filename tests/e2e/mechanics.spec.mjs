@@ -21,8 +21,8 @@ test('mechanics authored item references use exact authority keys', () => {
 
 test('mechanics diagrams remain readable and keyboard accessible', async ({ page }) => {
   await page.goto('/tools/mechanics.html#incoming-physical');
-  const diagrams = page.locator('.mechanics-flow, .mechanics-outcome, .mechanics-threshold');
-  await expect(diagrams).toHaveCount(5);
+  const diagrams = page.locator('.mechanics-flow, .mechanics-outcome, .mechanics-threshold, .mechanics-figure');
+  await expect(diagrams).toHaveCount(10);
   for (const width of [320, 390, 760, 761, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     const overflow = await diagrams.evaluateAll((figures) => figures.filter((figure) => {
@@ -33,6 +33,15 @@ test('mechanics diagrams remain readable and keyboard accessible', async ({ page
     expect(overflow, `Diagram overflow at ${width}px`).toEqual([]);
     expect(await page.evaluate(() => document.documentElement.scrollWidth), `Page overflow at ${width}px`)
       .toBeLessThanOrEqual(width);
+  }
+
+  const navigation = page.getByRole('navigation', { name: '机制章节导航' });
+  for (const link of await navigation.getByRole('link').all()) {
+    const target = new URL(await link.getAttribute('href'), page.url()).hash;
+    await link.focus();
+    await page.keyboard.press('Enter');
+    expect(new URL(page.url()).hash).toBe(target);
+    await expect(page.locator(target)).toBeInViewport();
   }
 
   const jump = page.getByRole('link', { name: '何时会被击倒？ ↓', exact: true });
@@ -46,6 +55,8 @@ test('mechanics diagrams remain readable and keyboard accessible', async ({ page
   await expect(source).toContainText('尚未验证当前线上运行时是否有额外修改');
 
   const results = await new AxeBuilder({ page })
+    .include('.mechanics-nav')
+    .include('.mechanics-figure')
     .include('.mechanics-flow')
     .include('.mechanics-outcomes')
     .include('.mechanics-threshold')
