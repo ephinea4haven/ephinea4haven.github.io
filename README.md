@@ -32,7 +32,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full design.
 | `index.html`, `404.html` | Landing and error page sources |
 | `guide/`, `data/`, `event/`, `tools/` | Content page sources, served at their historical paths |
 | `src/app/` | Angular bootstrap, routing, shared shell and interactive features |
-| `content/` | Curated facts and provenance for the item and monster catalogs |
+| `content/` | Curated catalog facts, provenance and challenge-map data |
 | `assets/` | Stylesheets, fonts, images and build-time data |
 | `scripts/` | Generators, upstream synchronizers, verifiers and the site build |
 | `tests/e2e/` | Playwright browser and accessibility tests |
@@ -45,6 +45,9 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full design.
 
 - Node.js 24 and npm
 - Python 3, for the data generators and their tests
+- To regenerate challenge maps only: the [`potrace`](https://potrace.sourceforge.net)
+  binary on `PATH`, `pip install -r scripts/requirements-maps.txt`, and
+  `npx playwright install chromium` for `scripts/render_challenge_maps.mjs`
 - A checkout of [`warmonipa/dropcharts`](https://github.com/warmonipa/dropcharts)
   next to this repository. Its `i18n_names.json` is the sole authority for Chinese
   item names. To use a different location, set `DROPTABLE_I18N_AUTHORITY` to the
@@ -61,7 +64,7 @@ parent/
 
 ```bash
 npm ci
-npx playwright install chromium   # needed only for browser tests
+npx playwright install chromium   # browser tests and map preview rendering
 npm run dev                       # build, then serve _site at http://127.0.0.1:5173
 ```
 
@@ -80,6 +83,9 @@ server, so rerun it after changing sources.
 | `npm run sync:i18n` | Regenerate site item names from the drop-table authority |
 | `npm run sync:combo` | Refresh the combo calculator from its pinned upstream |
 | `npm run sync:anniversary` | Refresh the anniversary milestone snapshot |
+| `npm run generate:challenge-maps` | Regenerate the Episode I SVG maps |
+| `npm run generate:challenge-maps:ep2` | Regenerate the Episode II SVG maps |
+| `npm run test:challenge-maps` | Check the EP1 map JSON structure |
 
 [`scripts/README.md`](scripts/README.md) describes every generator and verifier.
 
@@ -118,6 +124,7 @@ Engineering principles and repository workflow are defined in
 - [Angular migration record](docs/ANGULAR_MIGRATION.md)
 - [Item catalog](docs/ITEM_CATALOG.md) and [monster catalog](docs/MONSTER_CATALOG.md)
 - [Mechanics guide illustrations and review record](docs/MECHANICS_VISUAL_EVIDENCE.md)
+- [Challenge-map implementation, generation and remaining work](docs/CHALLENGE_MAP_REDRAW.md)
 - [Combo calculator synchronization](docs/SOP_COMBO_CALCULATOR_SYNC.md)
 - [RBR data workflow](scripts/RBR_DATA.md)
 - [Roadmap](docs/TODO.md)

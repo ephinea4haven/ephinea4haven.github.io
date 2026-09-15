@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import html
 import re
 import subprocess
@@ -12,6 +13,8 @@ from collections import deque
 from pathlib import Path
 
 from PIL import Image, ImageFilter
+
+import challenge_maps as maps
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -93,42 +96,6 @@ C2_NOTES = {
         7: ["暗い部屋の北にある高い岩を銃で破壊。フォースが隠し箱を取り、他は東へ。", "岩を壊してスイッチを出し、出口バリアを解除。", "ゲート奥の隠し壁から盾・鎧を回収。次エリアで盾4個が必要。"],
         8: ["黄色スイッチを1～6の順に踏み、1人が前進。番号を声掛けして同期する。", "桃色スイッチには盾4個が必要。", "三日月部屋の罠を処理し、中央スイッチ後に赤・青の火球を順に撃つ。"],
     },
-}
-
-C1_NOTES = {
-    "zh": {
-        1: ["Force 或 Ranger 回收首房箱子；其余队员直接推进。", "两名强力队员在屏障前留守，另两人继续去踩机关。", "踩机关时无视敌人；最弱队员留守，另一人经 1→1′ 回援。", "清场后派一人向南无视敌人踩粉色机关，其余人在门前等待。", "留守队员踩黄色机关放行；随后继续无视敌人取得下一区机关。"],
-        2: ["踩限时绿色机关的队员留守，过门队员进入 1→1′。", "传送后立刻回头进入 2→2′并踩紫色机关；正前方 3 号补给传送耗时，TA 忽略。", "Boss 前 Hunter 将替身娃娃优先交给 Force / Ranger。"],
-    },
-    "en": {
-        1: ["The Force or Ranger collects the first-room boxes while the others advance.", "The two strongest players wait at the barrier while the other pair goes for the switch.", "Ignore enemies while taking the switch; leave the weakest player behind and send the other through warp 1→1′ to help.", "After clearing, send one player south to take the pink switch while the others wait at the door.", "The waiting player takes the yellow switch, then ignores enemies and continues to the next-area switch."],
-        2: ["Players who took the timed green switch wait here while the players through the gate use warp 1→1′.", "Turn around immediately after warping and use 2→2′ for the purple switch. Warp 3 leads to slow optional boxes and is skipped in TA.", "Before the boss, Hunters should give spare Scape Dolls to the Force or Ranger."],
-    },
-    "ja": {
-        1: ["最初の箱はフォースかレンジャーが回収し、他は先行。", "強い2人はバリア前で待機し、残り2人がスイッチへ。", "敵を無視してスイッチを踏む。最弱役を残し、もう1人は1→1′で援護へ。", "殲滅後、1人が南へ走り敵を無視して桃色スイッチ。他は扉前待機。", "待機役が黄色スイッチで開門し、そのまま敵を無視して次エリア用スイッチへ。"],
-        2: ["時間制の緑スイッチ役は待機。ゲート通過組は1→1′へ。", "転送後すぐ後ろの2→2′へ入り紫スイッチ。正面の3番は箱部屋で、TAでは無視。", "ボス前にハンターの予備スケープドールをフォース／レンジャーへ渡す。"],
-    },
-}
-
-C1_BADGES = {
-    1: [(1, 159, 235), (2, 95, 27), (3, 414, 160), (4, 492, 426), (5, 558, 130)],
-    2: [(1, 554, 629), (2, 751, 751)],
-}
-
-C1_TERMINALS = {
-    1: ((123, 561), (620, 95)),
-    2: ((46, 43), (555, 65)),
-}
-
-C1_SYMBOLS = {
-    1: [
-        ("switch", 118, 238, "#61e89f"), ("switch", 405, 146, "#ac65c6"),
-        ("switch", 465, 405, "#ffe45c"), ("switch", 575, 94, "#ffe45c"),
-        ("switch", 636, 588, "#ac65c6"),
-    ],
-    2: [
-        ("switch", 568, 577, "#ac65c6"), ("switch", 662, 699, "#61e89f"),
-    ],
 }
 
 C3_NOTES = {
@@ -829,39 +796,138 @@ def traced_map(area: int, language: str, notes_by_language: dict, badges_by_area
 </svg>'''
 
 
-def main() -> None:
+MAP_WIDTH = 1000
+MAP_MAX_HEIGHT = 1000
+LEGACY_STAGES = (
+    ((4, 6, 7, 8), "C2"),
+    ((9, 10, 11, 12, 13), "C3"),
+    ((14, 15, 16, 17, 18), "C4"),
+    ((20, 21, 22, 23, 24), "C5"),
+    ((25, 26, 27, 28, 29), "C6"),
+    ((31, 32, 33, 34, 35), "C7"),
+    ((36, 37, 38, 39, 40), "C8"),
+    ((41, 42, 43, 44, 45), "C9"),
+)
+
+
+def render_area(area_id: str, area: dict, geometry: maps.Geometry, strings: dict, language: str) -> str:
+    """Render one data-driven EP1 area (docs/CHALLENGE_MAP_REDRAW.md §3)."""
+    words = strings[language]
+    left, top, right, bottom = maps.content_bounds(geometry, area)
+    scale = min((MAP_WIDTH - 40) / (right - left), MAP_MAX_HEIGHT / (bottom - top))
+    map_width = (right - left) * scale
+    map_height = (bottom - top) * scale
+    offset_x = (MAP_WIDTH - map_width) / 2 - left * scale
+    offset_y = 24 - top * scale
+
+    def screen(point: list[int]) -> tuple[float, float]:
+        return offset_x + point[0] * scale, offset_y + point[1] * scale
+
+    number = f"{int(area_id):02d}"
+    title = words["area"].replace("{n}", number)
+    notes = maps.panel_notes(area, language)
+    roles = [route["role"] for route in area["routes"]]
+    map_bottom = 24 + map_height
+    strip, strip_height = maps.key_strip(roles, words, MAP_WIDTH, round(map_bottom + 14))
+    panel, panel_height = maps.notes_panel(notes, words, MAP_WIDTH, round(map_bottom + 18 + strip_height))
+    total_height = round(map_bottom + 18 + strip_height + panel_height + 18)
+
+    dark_rooms = [symbol for symbol in area["symbols"] if symbol["kind"] == "dark-room"]
+    mechanisms = [symbol for symbol in area["symbols"] if symbol["kind"] != "dark-room"]
+    routes = sorted(area["routes"], key=lambda route: maps.ROUTE_ROLES.index(route["role"]))
+    exit_label = words["boss"] if area["exit_kind"] == "boss" else words["next"]
+    badges = "".join(maps.badge(badge_number, *screen([x, y])) for badge_number, x, y in area["badges"])
+    terminals = maps.terminal("start", *screen(area["start"]), words["start"]) + maps.terminal("exit", *screen(area["exit"]), exit_label)
+    desc = " ".join(note for _, note in notes)
+
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {MAP_WIDTH} {total_height}" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
+<title id="title">{html.escape(title)}</title>
+<desc id="desc">{html.escape(desc)}</desc>
+{maps.defs(scale)}
+<rect width="{MAP_WIDTH}" height="{total_height}" rx="18" fill="{maps.PALETTE["background"]}"/>
+<g transform="translate({offset_x:g} {offset_y:g}) scale({scale:g})">
+  <g filter="url(#shadow)">{geometry.floor_svg}</g>
+  {geometry.outline_svg}
+  {"".join(maps.symbol_svg(symbol, scale) for symbol in dark_rooms)}
+  {"".join(maps.route_svg(route, scale) for route in routes)}
+  {"".join(maps.symbol_svg(symbol, scale) for symbol in mechanisms)}
+</g>
+{badges}
+{terminals}
+{strip}
+{panel}
+</svg>
+'''
+
+
+def build_data_areas(selected: set[int] | None) -> None:
+    content = maps.load_content("ep1.json")
+    strings = content["strings"]
+    languages = list(strings)
+    errors: list[str] = []
+    for area_id, area in content["areas"].items():
+        if selected and int(area_id) not in selected:
+            continue
+        geometry = maps.trace_geometry(SOURCE / area["source"])
+        area_errors: list[str] = []
+        if geometry.coverage < maps.CONSISTENCY_FLOOR:
+            area_errors.append(f"area {area_id}: wall-crossing consistency {geometry.coverage:.1f}% is below {maps.CONSISTENCY_FLOOR}%")
+        area_errors.extend(maps.validate_area(area_id, area, geometry, languages))
+        dash_covered, route_on_dash = maps.fidelity(area, geometry)
+        print(
+            f"area {area_id}: consistency {geometry.coverage:.1f}%  dark room {int(geometry.dark_room.sum())} px  "
+            f"dashes <={geometry.dash_max} px, symbols >={geometry.symbol_min} px  "
+            f"fidelity {dash_covered:.1f}% dashes covered, {route_on_dash:.1f}% route on dashes"
+        )
+        if area["fidelity"] is None and (
+            dash_covered < maps.FIDELITY_DASH_COVERED or route_on_dash < maps.FIDELITY_ROUTE_ON_DASH
+        ):
+            area_errors.append(f"area {area_id}: route fidelity below threshold and no fidelity reason recorded")
+        errors.extend(area_errors)
+        if area_errors:
+            continue
+        geometry.floor_svg = maps.trace_mask(geometry.floor, maps.PALETTE["floor"])
+        geometry.outline_svg = maps.trace_mask(geometry.outline, maps.PALETTE["outline"])
+        for language in languages:
+            directory = OUTPUT / language
+            directory.mkdir(parents=True, exist_ok=True)
+            svg = render_area(area_id, area, geometry, strings, language)
+            (directory / f"area_{int(area_id):02d}.svg").write_text(svg, encoding="utf-8")
+    if errors:
+        raise SystemExit("Challenge map data failed validation:\n" + "\n".join(errors))
+
+
+def build_legacy_areas(selected: set[int] | None) -> None:
+    tables = {
+        "C2": (C2_NOTES, C2_BADGES, C2_TERMINALS, C2_SYMBOLS),
+        "C3": (C3_NOTES, C3_BADGES, C3_TERMINALS, C3_SYMBOLS),
+        "C4": (C4_NOTES, C4_BADGES, C4_TERMINALS, C4_SYMBOLS),
+        "C5": (C5_NOTES, C5_BADGES, C5_TERMINALS, C5_SYMBOLS),
+        "C6": (C6_NOTES, C6_BADGES, C6_TERMINALS, C6_SYMBOLS),
+        "C7": (C7_NOTES, C7_BADGES, C7_TERMINALS, C7_SYMBOLS),
+        "C8": (C8_NOTES, C8_BADGES, C8_TERMINALS, C8_SYMBOLS),
+        "C9": (C9_NOTES, C9_BADGES, C9_TERMINALS, C9_SYMBOLS),
+    }
     for language in LANGUAGES:
         directory = OUTPUT / language
         directory.mkdir(parents=True, exist_ok=True)
-        (directory / "area_05.svg").write_text(area_05(language), encoding="utf-8")
-        for area in (4, 6, 7, 8):
-            svg = traced_map(area, language, C2_NOTES, C2_BADGES, C2_TERMINALS, C2_SYMBOLS)
-            (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
-        for area in (1, 2):
-            svg = traced_map(area, language, C1_NOTES, C1_BADGES, C1_TERMINALS, C1_SYMBOLS)
-            (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
-        for area in (9, 10, 11, 12, 13):
-            svg = traced_map(area, language, C3_NOTES, C3_BADGES, C3_TERMINALS, C3_SYMBOLS)
-            (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
-        for area in (14, 15, 16, 17, 18):
-            svg = traced_map(area, language, C4_NOTES, C4_BADGES, C4_TERMINALS, C4_SYMBOLS)
-            (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
-        for area in (20, 21, 22, 23, 24):
-            svg = traced_map(area, language, C5_NOTES, C5_BADGES, C5_TERMINALS, C5_SYMBOLS)
-            (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
-        for area in (25, 26, 27, 28, 29):
-            svg = traced_map(area, language, C6_NOTES, C6_BADGES, C6_TERMINALS, C6_SYMBOLS)
-            (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
-        for area in (31, 32, 33, 34, 35):
-            svg = traced_map(area, language, C7_NOTES, C7_BADGES, C7_TERMINALS, C7_SYMBOLS)
-            (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
-        for area in (36, 37, 38, 39, 40):
-            svg = traced_map(area, language, C8_NOTES, C8_BADGES, C8_TERMINALS, C8_SYMBOLS)
-            (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
-        for area in (41, 42, 43, 44, 45):
-            svg = traced_map(area, language, C9_NOTES, C9_BADGES, C9_TERMINALS, C9_SYMBOLS)
-            (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
-    print("Built all localized EP1 challenge vector redraws.")
+        if not selected or 5 in selected:
+            (directory / "area_05.svg").write_text(area_05(language), encoding="utf-8")
+        for areas, stage in LEGACY_STAGES:
+            for area in areas:
+                if selected and area not in selected:
+                    continue
+                svg = traced_map(area, language, *tables[stage])
+                (directory / f"area_{area:02d}.svg").write_text(svg, encoding="utf-8")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--area", type=int, action="append", help="build only this area (repeatable)")
+    selected = set(parser.parse_args().area or []) or None
+    build_data_areas(selected)
+    build_legacy_areas(selected)
+    print("Built localized EP1 challenge maps.")
 
 
 if __name__ == "__main__":

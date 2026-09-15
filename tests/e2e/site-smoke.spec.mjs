@@ -214,7 +214,7 @@ test('challenge guides use localized redraws and remember the guidance language'
   const firstMap = page.locator('.challenge-map img').first();
   await expect(firstMap).toHaveAttribute('src', /\/maps\/zh\/area_01\.svg$/);
   await expect(page.locator('.challenge-map img')).toHaveCount(42);
-  await expect(page.locator('.challenge-legend li')).toHaveCount(7);
+  await expect(page.locator('.challenge-legend li')).toHaveCount(12);
   await expect(page.locator('.challenge-legend')).toContainText('主路线');
   await expect(page.locator('.challenge-legend')).toContainText('传送点');
 
@@ -224,7 +224,7 @@ test('challenge guides use localized redraws and remember the guidance language'
   await expect(c2Maps).toHaveCount(42);
   await expect(c2Maps.first()).toHaveAttribute('src', /\/maps\/en\/area_01\.svg$/);
   await expect(c2Maps.first()).toHaveAttribute('alt', 'EP1 Challenge Area 01 map');
-  await expect(page.locator('.challenge-legend')).toContainText('Primary route');
+  await expect(page.locator('.challenge-legend')).toContainText('Main route');
   await expect(page.locator('.challenge-language')).toContainText('independently redrawn');
 
   await page.goto('/guide/ep2ch.html');
@@ -232,7 +232,7 @@ test('challenge guides use localized redraws and remember the guidance language'
   await expect(ep2Maps.first()).toHaveAttribute('src', /\/maps\/en\/c1_area_01\.svg$/);
   await expect(ep2Maps).toHaveCount(25);
   await expect(ep2Maps.first()).toHaveAttribute('alt', 'EP2 C1 Challenge Area 01 map');
-  await expect(page.locator('.challenge-legend')).toContainText('Primary route');
+  await expect(page.locator('.challenge-legend')).toContainText('Main route');
 });
 
 test('challenge and Seabed guides keep their complete map inventories usable on mobile', async ({ page }) => {

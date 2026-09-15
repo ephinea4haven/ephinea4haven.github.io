@@ -60,6 +60,8 @@ await verifyInventory(ep1Directory, expectedEp1);
 await verifyInventory(ep2SourceDirectory, expectedEp2.keys());
 
 const ep1Page = await readFile(path.join(root, 'guide/ep1ch.html'), 'utf8');
+const ep1Data = JSON.parse(await readFile(path.join(root, 'content/challenge-maps/ep1.json'), 'utf8'));
+const ep1DataStems = new Set(Object.keys(ep1Data.areas).map((area) => `area_${String(area).padStart(2, '0')}`));
 const ep2Page = await readFile(path.join(root, 'guide/ep2ch.html'), 'utf8');
 
 for (const name of expectedEp1) {
@@ -74,6 +76,7 @@ for (const name of expectedEp1) {
     const svg = await readFile(path.join(root, relative), 'utf8');
     if (svg.includes('<image') || svg.includes('data:image/')) throw new Error(`${relative} embeds a raster source`);
     if (!svg.includes('PSO World') || !svg.includes('Sakura')) throw new Error(`${relative} is missing source attribution`);
+    if (ep1DataStems.has(stem) && !svg.includes('data-role="main"')) throw new Error(`${relative} has no main route path`);
   }
 }
 

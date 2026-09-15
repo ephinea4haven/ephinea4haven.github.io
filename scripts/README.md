@@ -16,7 +16,10 @@ are build inputs and are not copied into the published artifact.
 | `build_challenge_map_atlas.py` | Build the localized Episode I challenge-map atlas. |
 | `build_ep2_challenge_map_atlas.py` | Build the localized Episode II atlas from pinned Ephinea Wiki source maps. |
 | `verify_angular_architecture.mjs` | Reject retired runtimes, scripts and inline handlers in page sources. |
-| `verify_challenge_maps.mjs` | Verify original challenge-map inventories, dimensions and page references. |
+| `challenge_maps.py` | Shared geometry, routes, symbols, notes and validation for EP1 Areas 1–2 and all EP2 maps. |
+| `test_challenge_maps.py` | Check EP1 JSON structure, coordinates, warp pairs and localized badge/notes counts without rendering dependencies. |
+| `render_challenge_maps.mjs` | Render selected SVGs to PNG using Playwright Chromium for visual review. |
+| `verify_challenge_maps.mjs` | Verify source pins, map inventories, dimensions, page references and main routes on JSON-backed EP1 maps. |
 | `verify_status_domain.mjs` | Verify all character/equipment mappings and status calculation fixtures. |
 | `sync_combo_calculator.mjs` | Synchronize verified PSOStats rules, data, license and provenance. |
 | `sync_anniversary_milestones.mjs` | Synchronize the official 2026 milestone snapshot, shared UTC+8 timestamp and eight boost dimensions, and report when the final threshold and all rewards are complete. |
@@ -58,3 +61,9 @@ The imported PNG files are committed, so production builds do not require the
 source PDFs or Poppler. Episode II retains the archived JPEGs for provenance,
 but the published atlas is generated from the pinned high-resolution Ephinea
 Wiki PNGs under `assets/img/challenge/ep2/original/wiki/`.
+
+Both challenge-map generators require the pinned Python packages in
+`requirements-maps.txt`; EP1 also requires `potrace` on `PATH`. Their SVG
+outputs are committed, so normal site builds do not run these generators.
+See [Challenge Map Redraw](../docs/CHALLENGE_MAP_REDRAW.md) for regeneration,
+PNG preview commands and the current migration scope.

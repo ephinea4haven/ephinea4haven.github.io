@@ -2,6 +2,10 @@
 
 ## Active
 
+- [ ] Finish the [challenge-map redraw](CHALLENGE_MAP_REDRAW.md): migrate the
+  remaining 40 EP1 areas, remove the old renderer, extend structural tests to
+  EP2, and complete per-map visual acceptance. EP1 Areas 1–2 and all 25 EP2
+  areas currently use JSON data.
 - [ ] Inventory the archived PSO FRAME slot3 (Red-Wolf) material, record version
   and provenance, and selectively restore only information that remains unique.
 

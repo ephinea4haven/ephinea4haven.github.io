@@ -22,6 +22,7 @@ test-results/
 docs/*
 !docs/ANGULAR_MIGRATION.md
 !docs/ARCHITECTURE.md
+!docs/CHALLENGE_MAP_REDRAW.md
 !docs/DEPLOYMENT.md
 !docs/SOP_COMBO_CALCULATOR_SYNC.md
 !docs/TODO.md

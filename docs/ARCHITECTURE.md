@@ -219,13 +219,23 @@ published for upstream archives that actually exist: 2021, 2022, 2023 and
 ranking and available MAE splits. Known upstream gaps are preserved and
 explained instead of inferred.
 
-The Episode I challenge guide publishes the original high-resolution map
-images embedded in the archived PSO World PDFs. `import_challenge_source_maps.py`
-uses Poppler to extract those images without rendering or resampling. Episode
-II publishes the original JPEG maps from the historical web archive. Language
-selection changes the page guidance and legend without duplicating or altering
-the source artwork. `verify_challenge_maps.mjs` enforces the exact inventories,
-minimum source dimensions and page references.
+The challenge guides publish 42 Episode I and 25 Episode II localized SVG maps
+in Chinese, English and Japanese. Episode I geometry is traced from PSO World
+scans with `potrace`. Areas 1 and 2 use `content/challenge-maps/ep1.json` and
+the shared `scripts/challenge_maps.py`; the other 40 still use the existing
+tables and renderer in `build_challenge_map_atlas.py`, including the custom
+Area 05 SVG. All 25 Episode II maps use `content/challenge-maps/ep2.json` and
+embed two raster layers extracted from the pinned Ephinea Wiki PNGs, with
+route overlays between floor geometry and source labels.
+
+`test_challenge_maps.py` checks the EP1 JSON structure without the rendering
+toolchain. Both data-driven generators validate route points, symbols, warp
+pairs and badges; EP1 Areas 1 and 2 also check wall-crossing consistency and
+route fidelity. `verify_challenge_maps.mjs` checks inventories, source pins,
+dimensions and page references, and requires a main route on the EP1 areas
+listed in JSON. Map generation is separate from the production site build.
+See [Challenge Map Redraw](CHALLENGE_MAP_REDRAW.md) for commands, current
+coverage and the remaining design work.
 
 The Seabed guide is a dedicated Chinese content route covering all eight Upper
 and Lower map variants. It keeps route media, gameplay advice and server-specific

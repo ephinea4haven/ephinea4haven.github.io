@@ -1,0 +1,196 @@
+{
+  "strings": {
+    "zh": {
+      "area": "区域 {n}",
+      "start": "起点",
+      "next": "前往下一区",
+      "boss": "前往 Boss",
+      "tips": "关键提醒",
+      "main": "主路线",
+      "split": "分队路线",
+      "solo": "单人路线",
+      "optional": "可选回收",
+      "sources": "提示依据：PSO World · Sakura 攻略"
+    },
+    "en": {
+      "area": "AREA {n}",
+      "start": "START",
+      "next": "NEXT AREA",
+      "boss": "TO BOSS",
+      "tips": "KEY NOTES",
+      "main": "Main route",
+      "split": "Split route",
+      "solo": "Solo route",
+      "optional": "Optional pickup",
+      "sources": "Notes: PSO World · Sakura guide"
+    },
+    "ja": {
+      "area": "エリア {n}",
+      "start": "スタート",
+      "next": "次のエリアへ",
+      "boss": "ボスへ",
+      "tips": "重要ポイント",
+      "main": "メインルート",
+      "split": "分担ルート",
+      "solo": "単独ルート",
+      "optional": "任意回収",
+      "sources": "攻略情報：PSO World · Sakura"
+    }
+  },
+  "areas": {
+    "1": {
+      "stage": 1,
+      "source": "area_01.png",
+      "start": [157, 548],
+      "exit": [592, 96],
+      "exit_kind": "next",
+      "routes": [
+        {
+          "role": "main",
+          "legs": [
+            [[157, 545], [157, 505], [58, 458], [60, 158], [105, 112], [135, 112], [198, 145], [262, 172], [302, 218], [345, 218], [362, 190], [380, 172], [400, 172], [412, 138], [443, 104], [570, 104]]
+          ]
+        },
+        {
+          "role": "main",
+          "legs": [
+            [[400, 172], [396, 218], [474, 372], [472, 398]]
+          ]
+        },
+        {
+          "role": "split",
+          "legs": [
+            [[360, 196], [345, 210], [307, 210], [275, 172], [200, 132], [135, 100], [133, 72], [85, 72], [76, 48]],
+            [[492, 470], [463, 500], [462, 560], [478, 625], [540, 623], [562, 590], [622, 590]]
+          ]
+        },
+        {
+          "role": "solo",
+          "legs": [
+            [[622, 372], [647, 290], [560, 147], [520, 140], [487, 110], [458, 106]]
+          ]
+        }
+      ],
+      "symbols": [
+        { "kind": "door", "at": [78, 57], "angle": 90, "color": "#e0254b" },
+        { "kind": "warp", "at": [72, 38], "n": 1, "prime": false, "color": "#f7a1b5" },
+        { "kind": "warp", "at": [492, 475], "n": 1, "prime": true, "color": "#f7a1b5" },
+        { "kind": "switch", "at": [28, 200], "color": "#8ee26b" },
+        { "kind": "door", "at": [117, 236], "angle": 0, "color": "#8ee26b" },
+        { "kind": "box", "at": [136, 241], "color": "#2e9e4a" },
+        { "kind": "switch", "at": [368, 172], "color": "#2440ff" },
+        { "kind": "door", "at": [439, 134], "angle": 110, "color": "#a45fbf" },
+        { "kind": "door", "at": [444, 175], "angle": 0, "color": "#2440ff" },
+        { "kind": "switch", "at": [461, 176], "color": "#e0254b" },
+        { "kind": "door", "at": [475, 405], "angle": 90, "color": "#f5b841" },
+        { "kind": "switch", "at": [529, 148], "color": "#f5b841" },
+        { "kind": "door", "at": [586, 108], "angle": 135, "color": "#fff59d" },
+        { "kind": "switch", "at": [625, 380], "color": "#fff59d" },
+        { "kind": "switch", "at": [635, 590], "color": "#a45fbf" }
+      ],
+      "badges": [[1, 161, 234], [2, 99, 17], [3, 412, 158], [4, 491, 427], [5, 558, 128]],
+      "notes": {
+        "zh": {
+          "general": [],
+          "numbered": [
+            "Force 或 Ranger 回收首房箱子；其余队员直接推进。",
+            "两名强力队员在屏障前留守，另两人继续去踩机关。",
+            "踩机关时无视敌人；最弱队员留守，另一人经 1→1′ 回援。",
+            "清场后派一人向南无视敌人踩粉色机关，其余人在门前等待。",
+            "留守队员踩黄色机关放行；随后继续无视敌人取得下一区机关。"
+          ]
+        },
+        "en": {
+          "general": [],
+          "numbered": [
+            "The Force or Ranger collects the first-room boxes while the others advance.",
+            "The two strongest players wait at the barrier while the other pair goes for the switch.",
+            "Ignore enemies while taking the switch; leave the weakest player behind and send the other through warp 1→1′ to help.",
+            "After clearing, send one player south to take the pink switch while the others wait at the door.",
+            "The waiting player takes the yellow switch, then ignores enemies and continues to the next-area switch."
+          ]
+        },
+        "ja": {
+          "general": [],
+          "numbered": [
+            "最初の箱はフォースかレンジャーが回収し、他は先行。",
+            "強い2人はバリア前で待機し、残り2人がスイッチへ。",
+            "敵を無視してスイッチを踏む。最弱役を残し、もう1人は1→1′で援護へ。",
+            "殲滅後、1人が南へ走り敵を無視して桃色スイッチ。他は扉前待機。",
+            "待機役が黄色スイッチで開門し、そのまま敵を無視して次エリア用スイッチへ。"
+          ]
+        }
+      },
+      "fidelity": null
+    },
+    "2": {
+      "stage": 1,
+      "source": "area_02.png",
+      "start": [107, 55],
+      "exit": [560, 66],
+      "exit_kind": "boss",
+      "routes": [
+        {
+          "role": "main",
+          "legs": [
+            [[107, 55], [180, 25], [297, 138], [352, 258], [402, 285], [403, 390], [302, 645], [352, 722], [372, 722], [475, 673], [500, 676], [512, 732], [555, 608], [590, 552]],
+            [[624, 466], [725, 355], [770, 245], [665, 100], [572, 76]]
+          ]
+        },
+        {
+          "role": "split",
+          "legs": [
+            [[530, 736], [640, 683], [682, 683], [688, 712], [712, 740]],
+            [[590, 302], [620, 302]],
+            [[568, 540], [568, 566]]
+          ]
+        }
+      ],
+      "symbols": [
+        { "kind": "timed-switch", "at": [522, 740], "color": "#8ee26b" },
+        { "kind": "door", "at": [663, 683], "angle": 0, "color": "#8ee26b" },
+        { "kind": "switch", "at": [568, 577], "color": "#a45fbf" },
+        { "kind": "door", "at": [562, 597], "angle": 115, "color": "#a45fbf" },
+        { "kind": "warp", "at": [718, 748], "n": 1, "prime": false, "color": "#f7a1b5" },
+        { "kind": "warp", "at": [585, 300], "n": 1, "prime": true, "color": "#f7a1b5" },
+        { "kind": "warp", "at": [625, 300], "n": 2, "prime": false, "color": "#f7a1b5" },
+        { "kind": "warp", "at": [568, 534], "n": 2, "prime": true, "color": "#f7a1b5" },
+        { "kind": "warp", "at": [592, 546], "n": 3, "prime": false, "color": "#f7a1b5" },
+        { "kind": "warp", "at": [621, 468], "n": 3, "prime": true, "color": "#f7a1b5" },
+        { "kind": "warp", "at": [598, 345], "n": 4, "prime": false, "color": "#f7a1b5" },
+        { "kind": "warp", "at": [500, 345], "n": 4, "prime": true, "color": "#f7a1b5" }
+      ],
+      "badges": [[1, 640, 715], [2, 662, 330]],
+      "notes": {
+        "zh": {
+          "general": [
+            "Boss 前 Hunter 将替身娃娃优先交给 Force / Ranger。"
+          ],
+          "numbered": [
+            "踩限时绿色机关的队员留守，过门队员进入 1→1′。",
+            "传送后立刻回头进入 2→2′并踩紫色机关；正前方 4 号补给传送耗时，TA 忽略。"
+          ]
+        },
+        "en": {
+          "general": [
+            "Before the boss, Hunters should give spare Scape Dolls to the Force or Ranger."
+          ],
+          "numbered": [
+            "Players who took the timed green switch wait here while the players through the gate use warp 1→1′.",
+            "Turn around immediately after warping and use 2→2′ for the purple switch. Warp 4 leads to slow optional boxes and is skipped in TA."
+          ]
+        },
+        "ja": {
+          "general": [
+            "ボス前にハンターの予備スケープドールをフォース／レンジャーへ渡す。"
+          ],
+          "numbered": [
+            "時間制の緑スイッチ役は待機。ゲート通過組は1→1′へ。",
+            "転送後すぐ後ろの2→2′へ入り紫スイッチ。正面の4番は箱部屋で、TAでは無視。"
+          ]
+        }
+      },
+      "fidelity": null
+    }
+  }
+}
