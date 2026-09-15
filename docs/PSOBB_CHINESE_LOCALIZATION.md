@@ -1,52 +1,88 @@
-# PSOBB 中文本地化标准
+# PSOBB Chinese Localization Standard
 
-本站所有中文翻译都以《梦幻之星在线 蓝色脉冲》（PSOBB）的游戏语境为前提。本标准适用于页面标题、导航、正文、表格、工具界面、物品词典、活动说明、元数据和测试断言。
+Every Chinese translation on this site assumes the game context of *Phantasy Star
+Online: Blue Burst* (PSOBB). This standard applies to page titles, navigation,
+body text, tables, tool interfaces, the item dictionary, event descriptions,
+metadata and test assertions.
 
-## 核心原则
+## Core principle
 
-先确认英文在 PSOBB 中指什么，再翻译它在游戏中的实际功能和玩家行为。不得把英文拆成孤立单词逐词直译，也不得仅因字典释义相同就复用中文词。
+First establish what the English term refers to in PSOBB, then translate its
+actual in-game function and the player action it describes. Do not split an
+English term into isolated words and translate them one by one, and do not reuse
+a Chinese word merely because a dictionary gives the same meaning.
 
-翻译必须同时满足：
+A translation must be all of the following:
 
-1. **语义准确**：说明对象在 PSOBB 中是什么、做什么、如何使用。
-2. **玩家自然**：采用玩家能立即理解的说法，不制造生硬的书面直译。
-3. **站内一致**：同一概念在标题、导航、正文、工具和词典中使用同一译名。
-4. **名称忠实**：物品名、职业名、属性缩写、任务名和服务器专有名词遵循已经核实的名称，不擅自意译。
+1. **Semantically accurate**: it conveys what the object is in PSOBB, what it does
+   and how it is used.
+2. **Natural to players**: it uses wording players understand at once, not stiff
+   literal phrasing.
+3. **Consistent across the site**: one concept uses one translation in titles,
+   navigation, body text, tools and the dictionary.
+4. **Faithful to names**: item names, class names, stat abbreviations, quest names
+   and server-specific proper nouns follow verified names and are never
+   paraphrased.
 
-## 证据优先级
+## Evidence order
 
-发生歧义时，按以下顺序确定译法：
+When a term is ambiguous, resolve it in this order:
 
-1. 当前 PSOBB 版本实际使用的中文客户端文本，以及同索引英文、日文客户端文本。
-2. 已验证的游戏数据和行为，包括 ItemPMT、ItemPT、ItemRT、Unitxt、任务脚本和客户端实现。
-3. PSOBB 掉落表的权威中英物品词典及其生成数据；网站物品名称必须与掉落表对齐。
-4. Ephinea 官方 Wiki、活动公告和服务器说明中的完整上下文。
-5. 稳定、明确的 PSOBB 中文玩家用语。
-6. 通用词典释义；只能用于排除歧义后的普通语言润色，不能单独决定游戏术语。
+1. The Chinese client text actually used by the current PSOBB version, together
+   with the English and Japanese client text at the same index.
+2. Verified game data and in-game behavior, including ItemPMT, ItemPT, ItemRT,
+   Unitxt and quest scripts.
+3. The authoritative Chinese–English item dictionary of the PSOBB drop tables and
+   the data generated from it. Site item names must match the drop-table authority.
+4. The full context of the Ephinea Wiki, event announcements and server notices.
+5. Stable, unambiguous wording used by Chinese PSOBB players.
+6. General dictionary meanings. These may only polish ordinary language after the
+   ambiguity is resolved; they never decide a game term on their own.
 
-英文和日文的作用不同：英文通常用于确认含义，日文可帮助确认系列原始概念和表现习惯；最终中文仍须符合 PSOBB 中文玩家的表达方式。
+English and Japanese serve different purposes. English usually confirms the
+meaning, and Japanese helps confirm the series' original concept and conventions.
+The final Chinese must still read the way Chinese PSOBB players speak.
 
-## 翻译流程
+## Translation workflow
 
-1. 确认对象类型：物品、装备类别、角色属性、机制、任务、NPC、界面操作或普通叙述。
-2. 阅读完整句段、页面用途和相关数据，确认该词在当前位置的消费者与效果。
-3. 查询已有中文客户端文本、权威物品词典和站内同概念用法。
-4. 按游戏中的结果或玩家行为组织中文，不照搬英文语序。
-5. 搜索全站同义词和旧译名，同步更新页面标题、入口、正文、工具标签、元数据与测试。
-6. 重新阅读中文成句，确认即使不看英文也自然、明确、无歧义。
+1. Identify the object type: item, equipment category, character stat, mechanic,
+   quest, NPC, interface action or plain narration.
+2. Read the full passage, the page's purpose and the related data to confirm what
+   consumes the term at this location and what effect it has.
+3. Look up existing Chinese client text, the authoritative item dictionary and
+   how the site already translates the same concept.
+4. Phrase the Chinese around the in-game result or player action instead of
+   copying English word order.
+5. Search the whole site for synonyms and outdated translations, and update page
+   titles, entry links, body text, tool labels, metadata and tests together.
+6. Reread the Chinese sentence and confirm it is natural, clear and unambiguous
+   without the English beside it.
 
-## 物品名称与掉落表对齐
+## Item names and drop-table alignment
 
-`../droptable/i18n_names.json` 是本站物品中英名称的唯一权威源。处理任何武器、铠甲、盾牌、插件、玛古、魔法光盘、消耗品、活动道具或货币名称时，必须执行以下流程：
+`../droptable/i18n_names.json` is the sole authority for Chinese and English item
+names on this site. Follow this workflow for every weapon, frame, barrier, unit,
+Mag, technique disk, consumable, event item or currency name:
 
-1. 用完整英文物品名查询 `items` 中的对应键，不以简称、词片段或相似物品猜测。
-2. 网站显示名必须与该条目的 `zh` 完全一致；大小写差异只能发生在英文检索层，不能把不同物品合并。
-3. 页面优先保存英文物品身份，并通过生成的 `ITEM_TRANSLATIONS` 或 `data-item-en` 显示中文，避免复制中文名称。
-4. 权威词典缺少物品或译名疑似错误时，先用同版本中文/英文 Unitxt、ItemPMT 索引或实际游戏消费者核实，再修改 `../droptable/i18n_names.json`。
-5. 修改并提交权威词典后，将 `.github/workflows/pages.yml` 固定到该权威提交，运行 `npm run sync:i18n`，提交本站生成结果，并执行 `npm run test:i18n`。
-6. 禁止只改 `assets/js/i18n/items_i18n.js`；它是生成文件，下次同步会覆盖手工修改。
+1. Look up the matching key in `items` by the full English item name. Never guess
+   from an abbreviation, a word fragment or a similar item.
+2. The displayed name must equal that entry's `zh` exactly. Case differences are
+   only allowed at the English lookup layer and must never merge distinct items.
+3. Pages should store the English item identity and display Chinese through the
+   generated `ITEM_TRANSLATIONS` or `data-item-en`, instead of copying the Chinese
+   name.
+4. When the authority lacks an item or a translation looks wrong, verify it first
+   against the same-version Chinese and English Unitxt, the ItemPMT index or the
+   actual in-game consumer, then change `../droptable/i18n_names.json`.
+5. After committing the authority change, pin `.github/workflows/pages.yml` to
+   that authority commit, run `npm run sync:i18n`, commit the regenerated site
+   output and run `npm run test:i18n`.
+6. Never edit only `assets/js/i18n/items_i18n.js`. It is generated, and the next
+   sync overwrites manual changes.
 
-普通正文若必须同时展示中英文物品名，也要从同一权威条目核对，不能自行缩写中文。例如：
+When body text must show both the Chinese and English item names, check both
+against the same authority entry and never abbreviate the Chinese yourself. For
+example:
 
 ```text
 Photon Drop    → 光子微晶 PD
@@ -54,76 +90,142 @@ Photon Crystal → 光子水晶 PC
 Photon Sphere  → 光子结晶 PS
 ```
 
-## 已确认术语
+## Confirmed terms
 
-| 英文概念 | 采用译名 | PSOBB 语境说明 |
+| English concept | Adopted translation | PSOBB context |
 | --- | --- | --- |
-| `Material` / `Materials`（提升角色能力值的消耗品类别） | 能力药 | 不是制作“材料”。具体物品使用客户端名称，如“攻击力药”“防御力药”“精神力药”“回避力药”“运气药”“HP药”“TP药”。 |
-| `Material plan` / `Material plans` | 能力药配点 | 页面表达的是各职业如何分配能力药次数，并与玛古和插件组合达到目标属性，不是“材料方案”。 |
-| `Mag`（游戏中的培养型辅助装备） | 玛古 | 中文说明和类别名称使用“玛古”；仅在正式英文物品名、外部页面标题或技术标识中保留 `Mag`。 |
-| `Unit` / `Units`（装入铠甲槽位的装备类别） | 插件 | 不是普通意义的“单位”。英文描述中的 reinforcing unit 对应客户端“防具的扩展插件”。 |
-| `Frame` / `Armor`（角色穿戴的防具类别） | 铠甲 | 具体物品名称以客户端词典为准，可能包含“铠”“装甲”或“防具”；类别名不据英文词形来回切换。 |
-| `Barrier` / `Shield`（角色穿戴的盾类装备） | 盾牌 | 具体物品名称以客户端词典为准；机制中的临时能量屏障等非装备对象须按实际含义另译。 |
-| `Technique` / `Techniques`（角色消耗 TP 使用的法系能力） | 魔法 | 核心客户端菜单使用“魔法”“魔法窗口”“使用魔法”。不得泛化成现实技能，也不采用局部新增文本中的异译“术法”；具体名称仍遵循“火球术”等固定译名。 |
-| `Technique disk` / ` disk`（学习魔法的动态物品名） | 魔法光盘 | 类别使用权威词典的 `disk` 条目“魔法光盘”；具体魔法名称和等级显示格式按客户端实际文本核对。不得写成“法术盘”“技能盘”或“魔法书”。 |
-| `Grinder`（提升武器磨数的道具或数值） | 打磨石 / 磨数 | 道具名使用“小磨石 / 中磨石 / 大磨石”；武器的 `+N` 数值按语境写“磨数”，不能笼统译成制作材料。 |
-| `Photon Drop` / `Photon Crystal` / `Photon Sphere` | 光子微晶 PD / 光子水晶 PC / 光子结晶 PS | 三者是不同物品，名称必须同时与中文客户端和掉落表权威词典对齐；禁止按字面写成“光子水滴”，也不得混用“水晶”“结晶”或缩写。 |
+| `Material` / `Materials` (consumables that raise character stats) | 能力药 | Not a crafting "material". Specific items use their client names, such as 攻击力药, 防御力药, 精神力药, 回避力药, 运气药, HP药 and TP药. |
+| `Material plan` / `Material plans` | 能力药配点 | The page shows how each class allocates material uses and combines them with Mags and units to reach target stats. It is not a "materials plan". |
+| `Mag` (the trainable support equipment) | 玛古 | Chinese descriptions and category names use 玛古. Keep `Mag` only in official English item names, external page titles and technical identifiers. |
+| `Unit` / `Units` (equipment slotted into a frame) | 插件 | Not a generic "unit". The English phrase "reinforcing unit" corresponds to the client text 防具的扩展插件. |
+| `Frame` / `Armor` (worn body armor) | 铠甲 | Specific item names follow the client dictionary and may contain 铠, 装甲 or 防具. The category name does not switch with the English word form. |
+| `Barrier` / `Shield` (worn shield equipment) | 盾牌 | Specific item names follow the client dictionary. Non-equipment objects in mechanics, such as temporary energy barriers, are translated by their actual meaning. |
+| `Technique` / `Techniques` (TP-consuming spell abilities) | 魔法 | The core client menus use 魔法, 魔法窗口 and 使用魔法. Do not generalize it to a real-world skill, and do not adopt the variant 术法 from isolated newer text. Specific names keep fixed translations such as 火球术. |
+| `Technique disk` / ` disk` (dynamic item name for learning a technique) | 魔法光盘 | The category uses the authority's `disk` entry, 魔法光盘. Specific technique names and level formats are checked against actual client text. Never write 法术盘, 技能盘 or 魔法书. |
+| `Grinder` (item or value that raises a weapon's grind) | 打磨石 / 磨数 | Item names use 小磨石 / 中磨石 / 大磨石. A weapon's `+N` value is written 磨数 in context and is never rendered as a crafting material. |
+| `Photon Drop` / `Photon Crystal` / `Photon Sphere` | 光子微晶 PD / 光子水晶 PC / 光子结晶 PS | Three distinct items whose names must match both the Chinese client and the drop-table authority. Never write the literal 光子水滴, and never mix up 水晶, 结晶 or the abbreviations. |
 
-表中的中文只约束对应的 PSOBB 概念。普通叙述中的 `material`（材质、原料）、`unit`（计量单位、组织单位）、`shield`（Boss 能量屏障）等必须按其实际语义翻译，禁止无条件全局替换。
+The Chinese in this table only governs the corresponding PSOBB concept. In plain
+narration, words such as `material` (texture, raw material), `unit` (measurement
+or organizational unit) and `shield` (a boss energy barrier) must be translated
+by their actual meaning. Unconditional global replacement is forbidden.
 
-## 已确认 NPC 人名
+## Confirmed NPC names
 
-NPC 人名必须先确认英文客户端身份，再结合日文客户端文本判断读音。英文拼写本身不能证明某组日文汉字；没有一手资料明确给出汉字时，采用稳定的中文音译，并保留英文名用于消歧。
+Confirm an NPC's English client identity first, then use the Japanese client text
+to determine the pronunciation. English spelling alone cannot prove a particular
+set of Japanese kanji. When no primary source gives the kanji, use a stable
+Chinese transliteration and keep the English name for disambiguation.
 
-| 英文客户端名 | 采用译名 | PSOBB 语境说明 |
+| English client name | Adopted translation | PSOBB context |
 | --- | --- | --- |
-| `Shino` | 希诺 | 日文客户端写作「シノ」，只确认读音，不能据英文反推为“紫乃”或“志乃”。人物志显示为“希诺（Shino）”。 |
-| `Gizel` | 吉泽尔 | 《The Value of Money》中的男性 NPC；采用英文名的中文音译“吉泽尔（Gizel）”。 |
+| `Shino` | 希诺 | The Japanese client writes 「シノ」, which confirms only the pronunciation. Do not back-derive 紫乃 or 志乃 from the English. The NPC profile shows 希诺（Shino）. |
+| `Gizel` | 吉泽尔 | The male NPC in *The Value of Money*. Uses the Chinese transliteration of the English name, 吉泽尔（Gizel）. |
 
-## 语境翻译示例
+## Contextual translation examples
 
-- `Material Plans` → **能力药配点**：页面内容是角色培养方案，标题应直接表达玩家用途。
-- `Minimum Units, Maximum Stats` → **以最少插件达到属性上限**：表达配装结果，而不是照搬成“最小插件，最大状态”。
-- `unit` 出现在铠甲插槽说明中 → **插件**；出现在“per unit of time”中 → **单位时间**。
-- `shield` 指装备栏类别时 → **盾牌**；指 Boss 展开的防护场时 → **护盾**或**屏障**。
-- `material` 指能力提升道具时 → **能力药**；指武器制作材质时 → **材料**或**材质**。
-- `Technique disks` 作为物品类别 → **魔法光盘**；具体魔法名称和等级格式按客户端实际文本核对。
-- `Special Rank` 出现在 ES 武器追加特殊攻击的费用表中 → **特殊攻击等级**，不能省略成含义不明的“特殊等级”。
-- 武器属性列 `N / AB / M / D` → **Native（原生）/ A.Beast（变异兽）/ Machine（机械）/ Dark（暗）**，不能按单个字母猜成“普通 / 吸收 / 魔防 / 防御”。
+- `Material Plans` → **能力药配点**: the page is a character build plan, so the
+  title states the player's purpose directly.
+- `Minimum Units, Maximum Stats` → **以最少插件达到属性上限**: express the build
+  outcome instead of the literal 最小插件，最大状态.
+- `unit` in a frame slot description → **插件**; in "per unit of time" →
+  **单位时间**.
+- `shield` as an equipment category → **盾牌**; as a boss's protective field →
+  **护盾** or **屏障**.
+- `material` as a stat-raising item → **能力药**; as a weapon crafting substance →
+  **材料** or **材质**.
+- `Technique disks` as an item category → **魔法光盘**. Specific technique names
+  and level formats are checked against actual client text.
+- `Special Rank` in the ES weapon special-attack cost table → **特殊攻击等级**,
+  never shortened to the vague 特殊等级.
+- Weapon attribute columns `N / AB / M / D` → **Native（原生）/ A.Beast（变异兽）/
+  Machine（机械）/ Dark（暗）**. Never guess from single letters, such as
+  普通 / 吸收 / 魔防 / 防御.
 
-## 一致性要求
+## Consistency requirements
 
-- 页面浏览器标题、页眉标题和主要站内入口必须表达同一名称；允许入口因空间缩短，但不得换成另一个概念。
-- 类别名称与具体物品名称必须区分。类别统一不意味着改写已经核实的物品专名。
-- 网站出现的物品名称必须与掉落表权威词典逐项对齐；如果客户端与掉落表不一致，先核对版本、物品索引和实际消费者，再记录结论，不能任选其一。
-- 英文缩写如 ATP、ATA、DFP、EVP、MST、LCK、HP、TP、PB 和 Section ID 可以保留；首次出现时应在需要的场合给出中文含义。
-- 代码字段、URL、文件名、查询参数和上游数据键不因显示层本地化而重命名。
-- 不确定的词必须记录证据和待确认点，不得用一个“看起来像中文”的临时直译交付。
+- The browser title, page header title and main entry links for a page must
+  express the same name. An entry link may be shortened for space but must not
+  switch to a different concept.
+- Keep category names distinct from specific item names. Unifying a category
+  never means rewriting a verified proper item name.
+- Every item name on the site must match the drop-table authority entry by entry.
+  If the client and the drop table disagree, check the version, the item index
+  and the actual consumer, then record the conclusion. Never pick one arbitrarily.
+- English abbreviations such as ATP, ATA, DFP, EVP, MST, LCK, HP, TP, PB and
+  Section ID may be kept. Give the Chinese meaning on first use where needed.
+- Code fields, URLs, file names, query parameters and upstream data keys are never
+  renamed for display-layer localization.
+- An uncertain term must be recorded with its evidence and open questions. Never
+  ship a temporary literal translation that merely looks like Chinese.
 
-## 2026-09-09 跨项目核对记录
+## 2026-09-09 cross-project verification record
 
-- 黑页危险交易的 Dorphon 普通难度奖励使用 `DB's Saber (3069 Chris)` 的权威身份，数据键为 `db_s_saber_3069_chris`。旧键 `db_s_saber_3069` 未区分制造商，已移除。身份依据：[Ephinea 任务奖励表，修订 42514](https://wiki.pioneer2.net/index.php?title=Black_Paper%27s_Dangerous_Deal&oldid=42514)。中文仍由权威词典生成。
-- `test_structured_rewards_resolve_current_authority` 检查黑页交易及科伦全部结构化引用；构建也拒绝未知道具 ID。
-- 周年活动中的 Silver Badge / Gold Badge 是周年徽章简称，按已存在的活动语境标签显示；不得匹配旧版本 WEAPONS 勋章的同名别名。动态兑换回复也执行相同的语境处理。
-- 活动奖励的 `Hammer` 与 ES 武器 `HAMMER` 是不同身份。精确大小写优先；仅当忽略大小写后译名唯一时才允许该检索方式。圣诞历史正文和概览均执行道具本地化。
+- The Black Paper's Dangerous Deal reward for Dorphon on Normal uses the
+  authoritative identity `DB's Saber (3069 Chris)`, with the data key
+  `db_s_saber_3069_chris`. The old key `db_s_saber_3069` did not distinguish the
+  manufacturer and was removed. Identity source:
+  [Ephinea quest reward table, revision 42514](https://wiki.pioneer2.net/index.php?title=Black_Paper%27s_Dangerous_Deal&oldid=42514).
+  The Chinese name is still generated from the authority.
+- `test_structured_rewards_resolve_current_authority` checks every structured
+  reference in the Black Paper deal and the Coren prize list. The build also
+  rejects unknown item IDs.
+- Silver Badge and Gold Badge in the anniversary event are short names for the
+  anniversary badges and are shown with the existing event-context labels. They
+  must not match the same-named aliases of the old WEAPONS badges. Dynamic
+  exchange replies apply the same context handling.
+- The event reward `Hammer` and the ES weapon `HAMMER` are different identities.
+  An exact-case match wins. Case-insensitive lookup is allowed only when it yields
+  a unique translation. The Christmas history text and overview both localize
+  items.
 
+The source chain for this pass:
 
-本次来源链为：
+- localization: `5a679c5e2f9857f54b83a9b8b415931ac172324e`. The SHA-256 of the
+  main Chinese table is
+  `720cfd525b5645198d89661ea71c628696df6e024e4a03ef4db75bf1110cf401`.
+- droptable: `8fbbde4fe3a65819067f6037da7a8d6562e8956a`, pinned in the site CI.
+  The authority's SHA-256 is
+  `cbb4b89da0cfb213494edba99eccc2aabc7c1660bf5b52022b6575ee82c753ed`, with 1,566
+  entries. That commit adds handover documentation; its dictionary content is
+  identical to the name-fix commit `62cdfbdbe011ae33ecd3927a6118e371ab7d8878`.
 
-- localization：`5a679c5e2f9857f54b83a9b8b415931ac172324e`；中文主表 SHA-256 为 `720cfd525b5645198d89661ea71c628696df6e024e4a03ef4db75bf1110cf401`。
-- droptable：`8fbbde4fe3a65819067f6037da7a8d6562e8956a`，已固定于本站 CI；权威词典 SHA-256 为 `cbb4b89da0cfb213494edba99eccc2aabc7c1660bf5b52022b6575ee82c753ed`，共 1,566 条。该提交补齐交接文档，词典内容与名称修复提交 `62cdfbdbe011ae33ecd3927a6118e371ab7d8878` 相同。
+Earlier checks covered only active drops or tagged page references, so they missed
+old aliases and untagged outdated translations. This pass expanded coverage to the
+entire dictionary, 547 structured references across the Black Paper deal and the
+Coren prize list, 351 stat simulator equipment names and variants, name
+references in guides, historical events and dynamic replies. Six more outdated
+translations in the equipment recommendations were converted to `data-item-en`
+references, and a required-entry count check was added so that untagged
+references can no longer escape checking.
 
-此前只检查活跃掉落或已标记的页面引用，会漏掉旧别名与未标记的旧译名。本轮扩大到整份词典、黑页交易／科伦共 547 个结构化引用、351 个属性模拟器装备名称及变体、攻略中的名称引用、历史活动和动态回复。装备推荐中另有 6 处旧译名改为 `data-item-en` 引用，新增必需条目数量检查，避免“没有标记所以不检查”的漏检。
+Final verification:
 
-最终验证记录：
+- `npm run sync:i18n` and `python3 scripts/sync_item_i18n.py --check`: the
+  dictionary and Mag names match upstream exactly, and the Mag rules are
+  unchanged.
+- `npm test`: all project checks pass, including 8 sync tests and 4,212 catalog
+  cases in the stat-domain check.
+- `npm run build`: 58 prerendered routes and 45 event fragments.
+- `npm run test:e2e`: 122 browser tests pass, covering the full dictionary,
+  equipment variants, language switching, share links, reward models, event
+  context and repeated clicks.
 
-- `npm run sync:i18n` 与 `python3 scripts/sync_item_i18n.py --check`：词典及玛古名称与上游完全一致，玛古规则保持不变。
-- `npm test`：全部项目检查通过；其中同步测试 8 项，属性领域检查包含 4,212 个目录用例。
-- `npm run build`：生成 58 个预渲染路由、45 个活动片段。
-- `npm run test:e2e`：122 项浏览器测试通过，覆盖完整词典、装备变体、语言切换、分享链接、奖励型号、活动语境及重复点击。
+The later naming-policy discussion did not change `Caduceus → 赫尔墨斯杖`,
+`Excalibur → 王者之剑` or `Glide Divine → 澄蓝之杖「神游」`. The site keeps the
+authoritative translations. A passing sync review is not a re-review of every
+translation and does not replace in-game display verification. The docs, code and
+generated data were committed to master in `cc835f4`.
 
-后续命名策略讨论未修改 `Caduceus → 赫尔墨斯杖`、`Excalibur → 王者之剑`、`Glide Divine → 澄蓝之杖「神游」`。本站继续使用权威译名；同步审查通过不等于重新审定每个译名，也不替代客户端游戏内显示验证。文档、代码及生成数据已随 `cc835f4` 提交到 master。
+### 2026-09-10 release verification addendum
 
-### 2026-09-10 发布核验补记
-
-CI 的 `DROPTABLE_I18N_AUTHORITY` 原先只传给业务测试，浏览器测试因此找不到已检出的词典。`f4f9f18` 将该变量提升到整个 build job；两类测试现在使用同一份固定版本权威词典。解除依赖审计阻塞并合并补丁更新后，包含上述本地化提交的 `186ce35` 已通过 Pages run `34427458809` 的全部检查并部署成功（该运行已于 2026-09-14 清理，原日志不再可查）。本轮为 129 项浏览器测试，包含新增的 7 项主页活动状态测试；上文 122 项保留为 9 月 9 日本地验证记录。发布明细见[部署记录](DEPLOYMENT.md#september-10-2026-release)。
+The CI variable `DROPTABLE_I18N_AUTHORITY` was originally passed only to the
+business tests, so the browser tests could not find the checked-out dictionary.
+`f4f9f18` moved the variable up to the whole build job, and both test suites now
+use the same pinned authority. After the dependency audit blocker was cleared and
+the patch updates were merged, `186ce35`, which includes the localization commit
+above, passed every check in Pages run `34427458809` and deployed successfully.
+That run was cleaned up on 2026-09-14 and its logs are no longer available. This
+pass ran 129 browser tests, including 7 new homepage event-state tests. The
+earlier count of 122 is kept as the September 9 local verification record. See the
+[deployment record](DEPLOYMENT.md#september-10-2026-release) for release details.

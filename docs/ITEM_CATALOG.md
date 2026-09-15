@@ -1,38 +1,117 @@
-# 道具图鉴
+# Item Catalog
 
-入口 `/data/items.html`，单件详情 `/data/items/{slug}.html`。在已确认的 MVP 布局上扩展为全类别目录。
+The catalog lives at `/data/items.html`, with one detail page per item at
+`/data/items/{slug}.html`. It extends the approved MVP layout into a full,
+all-category catalog.
 
-## 收录与界面
+## Coverage and interface
 
-2026-09-14 快照包含 1,044 条：419 武器、88 铠甲、107 盾牌、100 插件、84 玛古、246 其他道具。524 条有图片，共用 456 张原始 PNG，约 2.7 MB。制造年份、制造商、真品／复制品等独立型号分开；外观改造列在基础型号的详情中，魔法光盘作为一个道具家族收录，不把每个等级重复计数。
+The 2026-09-14 snapshot contains 1,044 entries: 419 weapons, 88 frames, 107
+barriers, 100 units, 84 Mags and 246 other items. 524 entries have images, drawn
+from 456 original PNG files totaling about 2.7 MB. Independent models such as
+manufacturing year, manufacturer and genuine versus replica are listed
+separately. Cosmetic modifications are listed on the base model's detail page.
+Technique disks are catalogued as a single item family rather than counting each
+level again.
 
-支持中文、英文、日文和已核实代码搜索，类别／细分类别／职业／星级／收录状态／图片筛选，名称／稀有度／基础 ATP 上限排序，每页 24 件并可跳转页码。筛选、排序和页码写入 URL，进入详情再返回保留查询与滚动位置。手机使用横向类别导航、可展开筛选与单列条目。
+Search accepts Chinese, English, Japanese and verified item codes. Filters cover
+category, subcategory, class, star rating, availability status and image presence.
+Results sort by name, rarity or maximum base ATP, show 24 items per page and
+support jumping to a page. Filters, sorting and page number are written to the
+URL, and returning from a detail page restores both the query and the scroll
+position. On phones the categories scroll horizontally, filters collapse, and
+entries show in a single column.
 
-列表和详情右上角提供中／EN／日整体切换，覆盖标题、导航、筛选、状态、属性标签／结构化数值、道具名、喂养物品和关联道具。详细机制、获取说明保留中文说明原文，Wiki 摘录与套装说明保留英文，分别标明语言。职业、Section ID、难度和怪物／区域等游戏标识保留源数据名称。
+A zh / EN / ja switch at the top right of both the list and detail pages changes
+the whole interface: titles, navigation, filters, status text, stat labels and
+structured values, item names, Mag food items and related items. Detailed
+mechanics and acquisition notes keep their original Chinese, and Wiki excerpts
+and set descriptions keep their original English; each is labeled with its
+language. Game identifiers such as classes, Section IDs, difficulties and
+monster or area names keep their source-data names.
 
-`lang=zh|en|ja` 决定分享链接语言，优先于浏览器偏好；主动切换写入 `haven.catalog.language`。无语言参数时读取偏好，首次访问默认中文，存储不可用时仍可通过 URL 切换。静态 HTML 预渲染中文，水合后应用 URL／偏好，同时更新页面标题和 `html.lang`。切换不清空筛选、排序、页码和详情章节；详情及返回链接携带语言。
+`lang=zh|en|ja` sets the language of a shared link and takes precedence over the
+browser preference. An explicit switch is saved to `haven.catalog.language`.
+Without a language parameter the saved preference is used, first visits default
+to Chinese, and the URL still switches languages when storage is unavailable.
+Static HTML is prerendered in Chinese; after hydration the URL or preference is
+applied, and the page title and `html.lang` are updated. Switching languages
+never clears filters, sorting, page number or the open detail section, and detail
+and back links carry the language.
 
-日文名称优先采用现有词典，缺项补用同一 Wiki 修订中的 `jp` 字段：667 件来自词典，150 件来自 Wiki，合计 817 件；其余 227 件保留英文并显示日文名称未核实提示。补充名称参与日文搜索，不改写中文权威词典。青蓝渐变、环形背景、稀有条目金色标记、截图取景框和属性卡片构成新版视觉；悬停反馈遵循减少动态效果的系统偏好。
+Japanese names come from the existing dictionary first. Missing ones are filled
+from the `jp` field in the same Wiki revision: 667 come from the dictionary and
+150 from the Wiki, for 817 in total. The remaining 227 keep their English name
+and show a notice that the Japanese name is unverified. The supplementary names
+are searchable in Japanese and never modify the Chinese authority. The visual
+refresh uses a cyan-to-blue gradient, a ring background, gold markers for rare
+entries, a screenshot frame and stat cards. Hover feedback respects the system's
+reduced-motion preference.
 
-详情按类别展示基础数值、最大磨数、目标数、连段、攻击范围、抗性、职业、特殊效果、魔法加成、套装、改造分支、玛古进化／触发／喂养表、道具堆叠与用途、Wiki 掉落表和来源修订。84 件玛古直接展示各食物对 DEF／POW／DEX／MIND／同步率／IQ 的增减值，复用培养工具的数据。资料加载失败有重试入口；图片加载失败与未收录图片分别提示；未知地址有明确空状态。
+Detail pages show, by category, base stats, maximum grind, target count, combo,
+attack range, resistances, classes, special effects, technique boosts, sets,
+modification branches, Mag evolution, activation and feeding tables, item stack
+size and use, Wiki drop tables and source revisions. All 84 Mags show the
+DEF / POW / DEX / MIND / synchro / IQ change for each food item, reusing the data
+from the Mag training tool. Failed data loads offer a retry. Failed image loads
+and uncatalogued images show different notices, and unknown addresses show a
+clear empty state.
 
-普通商店武器按道具代码识别，共 12 个系列、57 个基础型号，全部有图。包含 Calibur、Ripper、Gungnir、Diska、Laser、Vulcan、Arms 七件五星型号，不能只按 0–4 星统计。特殊攻击标为可变，获取方式补充武器商店；特殊攻击、Hit 等随机组合不重复收录为独立型号。
+Ordinary shop weapons are identified by item code: 12 series and 57 base models,
+all with images. They include seven five-star models, Calibur, Ripper, Gungnir,
+Diska, Laser, Vulcan and Arms, so the count cannot stop at zero to four stars.
+Special attacks are marked as variable and the weapon shop is added as an
+acquisition source. Random combinations of special attack and Hit are not listed
+as separate models.
 
-## 来源与边界
+## Sources and limits
 
-- 收录清单交叉核对 Ephinea Wiki 的分类目录与武器、Frames、Barriers、Units、Mags、Tools、ES／TypeM 列表。分类目录本身会漏掉玛古进化道具及部分活动、改造条目。
-- `content/item-catalog/wiki.json` 保存每页修订号、属性和表格事实；不存储或复制完整 Wiki 文章。英文补充摘录每页最多 25 词，独有特殊攻击和常用道具另有中文说明。
-- `notes.json` 保存经上下文核对的中文机制说明，更新 Wiki 快照后需一并复核。基础 ATP 不采用 Wiki 中可能有笔误的磨满提示文字，而是由基础范围与磨数计算。
-- 周期效果保留数值正负与“移动时”条件；消耗 HP 与回复 HP 分别展示。导入器先清理 Wiki 链接，再识别回复、攻速和魔法等级，避免因链接语法或句式差异漏掉插件的核心属性。模板位置保持原文偏移，文件说明不混入正文摘录。
-- 玛古进化、触发和进化道具条件复用本站已验证的 `mag-evolution.js`、`mag-sim-data.js`，避免与培养工具产生两套规则。
-- 中文显示名来自生成的 `ITEM_TRANSLATIONS`，仍以 `../droptable/i18n_names.json` 为唯一权威。没有可靠独立名称的 30 件 ES 武器和 Nei's Claw 复制品保留英文，不能用同名普通武器或真品的译名替代。
-- 星级缺失显示未标星级，不当作 0 星；冲突或缺失代码显示未核实。`corrections.json` 记录两处职业标记修正和四处冲突代码。完整待核对清单在 `coverage.json`，当前共 29 项代码（包括按家族收录的魔法光盘）。
-- 历史、无法获取条目单独标注；“现行目录”不承诺当前活动或 NPC 随时供应。掉落概率是引用修订的基准值，不包含实时倍率。
-- 当前图片全部来自 Ephinea Wiki 信息框，MVP 使用的 7 张 KT GIF 已移除。`images.json` 记录原始 URL、来源页面、尺寸与 SHA-1；原图按原始字节保存，缺图明确显示占位。共享同一外观的型号可以引用同一张图片。419 件武器中 416 件有图；尚未收录图片的条目不代表其他来源一定没有截图。
+- The item list is cross-checked against the Ephinea Wiki category indexes and
+  the weapon, Frames, Barriers, Units, Mags, Tools and ES / TypeM lists. The
+  category indexes alone miss Mag evolution items and some event and modification
+  entries.
+- `content/item-catalog/wiki.json` stores each page's revision ID, stats and table
+  facts. It does not store or copy full Wiki articles. Supplementary English
+  excerpts are limited to 25 words per page, and unique special attacks and common
+  items also have Chinese notes.
+- `notes.json` holds Chinese mechanics notes verified against their context. Review
+  them again whenever the Wiki snapshot is updated. Base ATP does not use the
+  Wiki's fully-ground hint text, which may contain typos; it is calculated from the
+  base range and grind.
+- Periodic effects keep their sign and the "while moving" condition, and HP cost
+  and HP recovery are shown separately. The importer strips Wiki links before
+  detecting recovery, attack speed and technique levels, so link syntax or
+  phrasing differences do not drop a unit's core stats. Template positions keep
+  their original offsets, and file captions are kept out of body excerpts.
+- Mag evolution, activation and evolution-item conditions reuse the site's
+  verified `mag-evolution.js` and `mag-sim-data.js`, so the catalog and the
+  training tool never diverge into two rule sets.
+- Chinese display names come from the generated `ITEM_TRANSLATIONS`, and
+  `../droptable/i18n_names.json` remains the sole authority. Thirty ES weapons and
+  the Nei's Claw replica have no reliable independent name and stay in English;
+  they never borrow the translation of a same-named ordinary weapon or the genuine
+  item.
+- A missing star rating displays as unrated rather than zero stars. Conflicting or
+  missing codes display as unverified. `corrections.json` records two class-flag
+  corrections and four conflicting codes. The full review list is in
+  `coverage.json`, currently 29 codes including the technique disk family.
+- Historical and unobtainable entries are labeled separately. The "current
+  catalog" does not promise that an event or NPC supplies an item at any given
+  time. Drop rates are the baseline values of the cited revision and exclude live
+  multipliers.
+- All current images come from Ephinea Wiki infoboxes, and the seven KT GIFs used
+  by the MVP have been removed. `images.json` records the original URL, source
+  page, dimensions and SHA-1. Original files are stored byte for byte, and missing
+  images show an explicit placeholder. Models that share an appearance may share
+  one image. 416 of the 419 weapons have images; an entry without an image does
+  not mean no screenshot exists elsewhere.
 
-## 数据更新
+## Updating the data
 
-取得 MediaWiki `action=query&prop=revisions&rvslots=main&rvprop=ids|timestamp|content&formatversion=2` 的页面导出（按标题组织）和 `imageinfo` 对应的原始图片导出后：
+Export the MediaWiki pages with
+`action=query&prop=revisions&rvslots=main&rvprop=ids|timestamp|content&formatversion=2`
+(organized by title) and the original image bytes from the matching `imageinfo`,
+then run:
 
 ```sh
 node scripts/import_item_catalog.mjs /path/to/pages.json /path/to/image-bytes.json
@@ -42,47 +121,117 @@ npm run build
 npm run test:e2e
 ```
 
-图片导出为数组，字段包括 `title`（File: 前缀）、`url`、`descriptionurl`、`sha1`、`width`、`height`、`base64`。导入检查原图校验和；网络抓取结果放在临时工作目录，不进入网站。更新日期应与实际抓取日期一致；新增字段、类别和条目需要更新对应校验与文档，不能静默丢弃。
+The image export is an array with the fields `title` (with the `File:` prefix),
+`url`, `descriptionurl`, `sha1`, `width`, `height` and `base64`. The importer
+verifies original checksums. Network downloads stay in a temporary working
+directory and never enter the site. The update date must match the actual fetch
+date. New fields, categories or entries require updates to the matching checks and
+docs; nothing may be dropped silently.
 
-`generate_item_catalog.mjs` 负责从版本化快照生成检索索引、服务器详情与单件 JSON。生成目录不提交。构建不依赖 Wiki 在线响应，CI 可以离线生成相同内容。
+`generate_item_catalog.mjs` builds the search index, server-side details and
+per-item JSON from the versioned snapshot. The generated directory is not
+committed. The build never depends on a live Wiki response, so CI can regenerate
+identical content offline.
 
-## 页面与性能
+## Pages and performance
 
-检索索引约 191 KB 原始 JSON，按功能路由延迟加载；仅附加词典缺失的日文名，避免重复打包。浏览器只请求当前单件的 JSON，服务器预渲染由独立注入的数据加载器读取生成快照。TransferState 携带当前条目，实现直达页面的无重复请求水合；不把全部详情放进客户端 JavaScript。列表使用原生表单事件，不为这些简单输入加载 Angular Forms。
+The search index is about 191 KB of raw JSON and is lazy-loaded with its feature
+route. Only Japanese names missing from the dictionary are added, to avoid
+bundling duplicates. The browser requests only the current item's JSON, while
+server prerendering reads the generated snapshot through a separately injected
+data loader. TransferState carries the current entry so a directly opened page
+hydrates without a duplicate request, and the full set of details never ships in
+client JavaScript. The list uses native form events and does not load Angular
+Forms for these simple inputs.
 
-详情 HTML 由图鉴清单直接生成，不维护千份重复的空 HTML 源文件。构建检查所有生成详情的引用、水合元数据和链接。既有 JavaScript gzip 总量／chunk／路由预算保持不变；新增每页 64 KB 的水合数据预算。非 Angular 管理的行内脚本继续单独计量并校验。
+Detail HTML is generated directly from the catalog list, so there are no thousand
+duplicate empty HTML source files to maintain. The build checks every generated
+detail page's references, hydration metadata and links. Existing JavaScript gzip
+budgets for the total, chunks and routes are unchanged, and a new 64 KB hydration
+data budget applies per page. Inline scripts not managed by Angular are still
+measured and validated separately.
 
-## 验证
+## Verification
 
-数据测试覆盖完整目录与 26 个清单的交集、独立名称与型号、唯一代码、全部图片校验和、模板嵌套、随机范围、玛古触发、合成关联及输出数据一致性。浏览器测试覆盖全量静态详情、分页跳转、筛选组合、失败重试、按需请求、章节导航及 390／820／1280 像素下的无障碍与溢出检查。
+Data tests cover the full catalog against its intersection with 26 lists,
+independent names and models, unique codes, every image checksum, template
+nesting, random ranges, Mag activation, synthesis relationships and output data
+consistency. Browser tests cover every static detail page, page jumps, filter
+combinations, failure retry, on-demand requests, section navigation, and
+accessibility and overflow checks at 390, 820 and 1280 px.
 
-2026-09-14 收敛复查：修正周期效果方向、插件效果漏项、普通武器特殊攻击／商店来源、带职业参数的道具分类链接、模板注释位置、图片失败提示；补齐玛古喂养表内容。新增浏览器用例已在修复前产物上复现原问题。
+2026-09-14 convergence review: fixed the sign of periodic effects, missing unit
+effects, special attacks and shop sources for ordinary weapons, category links
+carrying a class parameter, template comment positions and image failure notices,
+and completed the Mag feeding tables. The new browser cases reproduced each
+original problem against the pre-fix build.
 
-上述收敛复查验证：`npm test` 通过（含 8 项图鉴数据回归）；构建 1,104 个预渲染路由，JavaScript gzip 共 825,653 / 1,000,000 字节；单页道具水合数据最大 22,713 / 64,000 字节；18 项图鉴浏览器检查及全站 1,193 项浏览器回归全部通过。
+Verification for that review: `npm test` passed, including 8 catalog data
+regressions. The build produced 1,104 prerendered routes with 825,653 / 1,000,000
+bytes of gzip JavaScript. The largest per-page item hydration data was 22,713 /
+64,000 bytes. All 18 catalog browser checks and the full 1,193-test site browser
+regression passed.
 
-同日三语与视觉更新验证：`npm test` 通过（含 10 项图鉴数据检查），27 项图鉴浏览器检查通过。新增检查覆盖权威／Wiki 日文名来源、结构化字段文案、语言与筛选互相独立、直达／刷新／返回列表、偏好存储不可用、原文语言标记、减少动态效果及中英日手机／平板／桌面布局。英文喂养表曾撑宽手机详情，修复网格子项最小宽度后通过溢出与无障碍检查。
+Verification for the same day's trilingual and visual update: `npm test` passed,
+including 10 catalog data checks, and 27 catalog browser checks passed. The new
+checks cover authority and Wiki sources for Japanese names, structured field text,
+independence of language and filters, direct open, refresh and return to list,
+unavailable preference storage, source-language labels, reduced motion, and
+phone, tablet and desktop layouts in all three languages. The English feeding
+table initially widened the phone detail page; fixing the grid children's minimum
+width made the overflow and accessibility checks pass.
 
-首次全站回归为 1,201 通过、1 失败，暴露详情关联导航的滚动竞态：全站 `scroll-behavior: smooth` 影响程序定位，详情替换期间可能在距顶部 265 像素处结束。详情／章节定位及列表滚动恢复改为立即定位，相关测试扩大到三种语言，并先确认目标 URL 后再检查顶部位置；连续重复 10 轮通过。小缩略图中的英文缺图提示另经视觉检查修正，并加入三种屏宽的文字边界断言。
+The first full-site regression finished with 1,201 passed and 1 failed, exposing a
+scroll race in related-item navigation on detail pages. The site-wide
+`scroll-behavior: smooth` affected programmatic positioning, so a detail swap could
+stop 265 px from the top. Detail and section positioning and list scroll
+restoration now jump immediately. The related tests were extended to all three
+languages and confirm the target URL before checking the top position; they
+passed 10 consecutive runs. The English missing-image notice in small thumbnails
+was also corrected after visual review, with text-boundary assertions added at
+three screen widths.
 
-后续全站检查复现部署文档中已记录的装备攻略锚点失败，图鉴用例全部通过。保留追踪后移除 `unified-style.css` 对整个文档强制应用的平滑滚动，使普通锚点采用浏览器默认定位；装备攻略测试增加跨远近职业章节的往返检查。
+A later full-site run reproduced the equipment guide anchor failure already
+recorded in the deployment docs, while every catalog case passed. After keeping
+the trace, the smooth scrolling that `unified-style.css` forced on the whole
+document was removed, so ordinary anchors use the browser's default positioning.
+The equipment guide test now also checks round trips between near and far class
+sections.
 
-最终验证：两个导航场景分别连续重复 10 轮通过，完整全站浏览器回归 **1,202 / 1,202 通过**（含 27 项图鉴用例）。名称同步未产生权威词典差异；构建及资源预算全部通过。
+Final verification: both navigation scenarios passed 10 consecutive runs each, and
+the full-site browser regression passed **1,202 / 1,202**, including 27 catalog
+cases. The name sync produced no authority differences, and the build and all
+resource budgets passed.
 
-三语版本仍生成 1,104 个路由；JavaScript gzip 总量 842,140 / 1,000,000 字节，列表首屏 153,622 / 160,000 字节，详情首屏 154,993 / 160,000 字节，单件水合数据最大 22,824 / 64,000 字节。未提高性能预算。
+The trilingual version still produces 1,104 routes. Gzip JavaScript totals
+842,140 / 1,000,000 bytes; the list's initial load is 153,622 / 160,000 bytes and
+the detail page's is 154,993 / 160,000 bytes. The largest per-item hydration data
+is 22,824 / 64,000 bytes. No performance budget was raised.
 
-## 收敛审查记录
+## Convergence review log
 
-审查范围为 `88b50fe` 的 MVP、`76d261c` 的全量扩展，以及导入、生成、构建、路由、列表、详情、图片组件和相关测试。修复提交为 `5765cb1`；下列问题均已修复并完成重新审查，无剩余 Blocking 或 Should-fix 问题。
+The review covered the MVP in `88b50fe`, the full expansion in `76d261c`, and the
+import, generation, build, routing, list, detail and image components with their
+tests. The fixes landed in `5765cb1`. Every issue below was fixed and re-reviewed,
+and no Blocking or Should-fix issues remain.
 
-| 编号 | 根因与影响范围 | 回归证据 | 状态 |
+| ID | Root cause and scope | Regression evidence | Status |
 | --- | --- | --- | --- |
-| R1 | 正则忽略效果方向和 Wiki 链接／句式，把 7 件装备的移动扣血解释为回血，遗漏部分攻速、魔法等级及回复插件效果；扩展检查全部周期效果与插件系列。 | 检查 7 件扣血装备、17 项正向周期效果、全部攻速／魔法等级插件；补充条件能力插件说明。 | Fixed |
-| R2 | 普通武器信息框的空白特殊攻击被直接省略，获取说明漏掉商店；此前按 0–4 星统计也漏算 7 件五星型号，实际图片文件已存在。 | 按 12 个系列的道具代码独立枚举 57 件，检查图片来源、可变特殊攻击和商店说明。 | Fixed |
-| R3 | 职业条件只在点击分类时重置，直接打开带职业参数的其他道具列表会得到空结果且无法操作职业控件。 | 带参数直达与刷新测试，确认结果、禁用控件及详情返回参数一致。 | Fixed |
-| R4 | 删除注释后仍用缩短文本的偏移切割原文，文件链接的缩略图参数也混入摘录。 | 注释前后与嵌套模板的位置检查，清理文件说明；全量生成结果无残留模板或图片标记。 | Fixed |
-| R5 | 玛古详情只展示喂养表编号，没有展示已承诺的喂养值。 | 84 件玛古的 11 行喂养值逐项匹配既有培养数据，并检查手机表格、无障碍和溢出。 | Fixed |
-| R6 | 图片缺失与网络加载失败共用“暂无截图”提示。 | 中断已有 Saber 图片请求，确认显示加载失败且保留原图入口。 | Fixed |
+| R1 | The regular expressions ignored effect direction and Wiki link and phrasing variants. They read HP loss while moving on 7 items as recovery, and missed some attack speed, technique level and recovery unit effects. The check was extended to every periodic effect and unit series. | Checks the 7 HP-draining items, 17 positive periodic effects and every attack speed and technique level unit, and adds notes for conditional stat units. | Fixed |
+| R2 | Blank special attacks in ordinary weapon infoboxes were dropped, and acquisition notes omitted the shop. Counting only zero to four stars also missed 7 five-star models whose image files already existed. | Enumerates all 57 models across 12 series by item code and checks image sources, variable special attacks and shop notes. | Fixed |
+| R3 | The class condition reset only when a category was clicked, so opening another item list with a class parameter directly gave empty results and a disabled class control. | Direct-open and refresh tests confirm results, disabled controls and detail return parameters. | Fixed |
+| R4 | After comments were removed, the original text was still sliced with offsets from the shortened text, and thumbnail parameters from file links leaked into excerpts. | Position checks before and after comments and in nested templates, with file captions stripped. The full generated output has no leftover templates or image markup. | Fixed |
+| R5 | Mag detail pages showed only the feeding table number, not the promised feeding values. | The 11 feeding value rows for all 84 Mags match the existing training data, with phone table, accessibility and overflow checks. | Fixed |
+| R6 | Missing images and network load failures shared the same "no screenshot" notice. | Aborting an existing Saber image request confirms the load-failure notice and that the original image link is kept. | Fixed |
 
-原测试偏重样例数值，未覆盖周期效果正负方向及全部普通武器型号。新增浏览器测试在修复前产物上复现了 R1、R3，再在修复后的完整回归中通过。R1 首轮扩展检查还发现 HP／TP Resurrection 的另一种句式，在关闭问题前一并修复并扩大测试范围。
+The original tests focused on sample values and did not cover the sign of periodic
+effects or every ordinary weapon model. The new browser tests reproduced R1 and R3
+against the pre-fix build and then passed in the full post-fix regression. The
+first extended R1 check also found another phrasing for HP / TP Resurrection,
+which was fixed and added to the test scope before the issue was closed.
 
-数据边界仍为上文记录的缺图、31 个未核实中文名称和 29 项未核实编号；三语更新另记录 227 个未核实日文名称。未凭相似型号补造译名或编号。实现验证与线上发布证据分别记录在[部署文档](DEPLOYMENT.md#september-14-2026-item-catalog)。
+The data limits remain the missing images, 31 unverified Chinese names and 29
+unverified codes recorded above, plus 227 unverified Japanese names from the
+trilingual update. No names or codes were invented from similar models.
+Implementation verification and production release evidence are recorded in the
+[deployment docs](DEPLOYMENT.md#september-14-2026-item-catalog).

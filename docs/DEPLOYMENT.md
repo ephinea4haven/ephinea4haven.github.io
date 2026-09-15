@@ -106,8 +106,8 @@ copy files directly into the deployed site.
 ### September 15, 2026 mechanics illustrations
 
 The mechanics guide adds a C-section decision flow and three outcome
-illustrations, plus an E-section knockdown threshold chart with client-snapshot
-evidence and source limitations. The D-section class table scrolls locally on
+illustrations, plus an E-section knockdown threshold chart with its source
+limitations. The D-section class table scrolls locally on
 narrow screens. Six item-reference attributes now match the authority's exact
 keys; their item identities and Chinese names are unchanged.
 
@@ -145,7 +145,7 @@ preserved prose-only mechanic conditions and boss-phase context, and made image
 synchronization recover corrupted cache files. Local validation passed all
 1,382 browser checks, business tests and the production build (874,665 bytes
 JavaScript gzip). Reproduction evidence and the closed finding ledger are in
-[the monster catalog review record](MONSTER_CATALOG.md#2026-09-14-review-fix-loop-记录).
+[the monster catalog review record](MONSTER_CATALOG.md#2026-09-14-review-fix-loop-log).
 
 Further fixes in `5a772d4` and `230766c` preserve detail return pagination and
 localized list titles, make area search independent of interface language, and
@@ -208,7 +208,7 @@ inventory, the Saber detail page and the published image's original SHA-1.
 Commit `5765cb18bf6255d6fee234d22d33e0df9b1ba9a1` fixes six reviewed issue classes:
 mechanics extraction, ordinary weapon descriptions, incompatible URL filters,
 Wiki markup parsing, missing Mag feeding values and image-failure messaging.
-The [catalog review record](ITEM_CATALOG.md#收敛审查记录) records the causes,
+The [catalog review record](ITEM_CATALOG.md#convergence-review-log) records the causes,
 affected scope and regression coverage. Its local validation passed `npm test`,
 the production build, all 18 catalog browser tests and all 1,193 site browser tests.
 The build contains 1,104 prerendered routes and 45 event fragments, with

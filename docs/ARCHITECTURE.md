@@ -179,7 +179,7 @@ clock, Galatine ATP window, weekly RBS boost), the build-time weekly RBR
 cards, the seasonal activity spotlight, a four-step onboarding strip and an
 eight-card content directory grouped by topic. The onboarding strip is the
 only home for the install, registration, localization and IME entries; the
-directory's 安装与故障排除 card covers post-install problems and does not
+directory's 安装与故障排除 (Installation & Troubleshooting) card covers post-install problems and does not
 repeat them. Cards, buttons, spacing and
 type share one token set in `index.css`; the activity spotlight uses the same
 card surface with a static gradient top rule and a faint cyan grid, and
@@ -192,7 +192,7 @@ Angular route host lays its children out as a centered flex column, the
 full-bleed bands (top bar, hero, footer) declare `width: 100%` explicitly.
 
 The completed 2026 anniversary spotlight is retired from the landing page; the
-stable 周年活动 navigation link remains the entry to its yearly archive. The
+stable 周年活动 (Anniversary Event) navigation link remains the entry to its yearly archive. The
 anniversary synchronizer owns only the 2026 archive fragment, so a manual
 snapshot refresh cannot recreate the retired landing spotlight. Future active
 seasonal events reuse the registry and renderer
@@ -230,9 +230,9 @@ knockdown threshold without an additional JavaScript runtime. The D-section
 class table scrolls within its own keyboard-focusable region on narrow screens.
 `tests/e2e/mechanics.spec.mjs` checks exact authored item-authority keys before
 display normalization, six viewport widths, keyboard interaction and scoped
-accessibility. [The mechanics evidence record](MECHANICS_VISUAL_EVIDENCE.md)
-pins the client snapshot and distinguishes its strict internal-damage threshold
-from the Wiki summary and unverified online runtime behavior.
+accessibility. [The mechanics illustration record](MECHANICS_VISUAL_EVIDENCE.md)
+lists the sources, verification results and review history for these figures,
+including where the page's threshold wording differs from the Wiki summary.
 
 Build-input JavaScript datasets are never copied to `_site`. Generators evaluate
 or normalize them into Angular modules. The PSOStats Combo snapshot remains an

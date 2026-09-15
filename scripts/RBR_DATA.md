@@ -1,99 +1,130 @@
-# RBR 数据来源与自动化边界
+# RBR Data Sources and Automation Limits
 
-## 结论
+## Summary
 
-RBR 的客观数据可以大部分自动化，Tier 评级不能原样自动生成。
+Most objective RBR data can be automated, but tier ratings cannot be generated
+automatically as they are.
 
-- 候选任务池、机制、Wiki 当前轮换、任务 EXP 和刷怪数已经可以自动抓取。
-- 掉落率可以与仓库现有 Ephinea 掉落表连接。
-- 物价可以与现有 Price Guide 抓取结果连接。
-- Tier 仍需要人工确认，因为它包含路线、完成时间、队伍要求、操作难度、市场流动性和作者偏好。
+- The candidate quest pool, mechanics, the Wiki's current rotation, quest EXP and
+  enemy counts can already be fetched automatically.
+- Drop rates can be joined with the repository's existing Ephinea drop tables.
+- Prices can be joined with the existing Price Guide scrape.
+- Tiers still need human review, because they reflect routes, clear times, party
+  requirements, execution difficulty, market liquidity and the author's
+  preferences.
 
-主页 RBR 卡片与详情页 Tier 图共用 `data/rbr/tiers.json` 的评级和
-`recommendedSectionIds` 推荐 ID；颜色读取同一份本站 BB 掉落表调色板。
-主页以彩色顶边、色点及 ID 名称展示推荐颜色，并显示 Tier 和评级日期，
-明确其为非官方的周回收益评价。轮换继续读取 `data/rbr/source.json`，
-不会把本周任务、颜色或评级写死在页面中。
-同步脚本实际写入新轮换后，运行 `npm run build` 会同时更新主页卡片和详情页数据；
-同步脚本本身不提交或部署，线上生效仍需提交推送并完成 Pages 发布。
+The home page RBR cards and the detail page's tier chart share the ratings and
+`recommendedSectionIds` in `data/rbr/tiers.json`, and their colors come from the
+site's BB drop table palette. The home page shows the recommended color through a
+colored top border, a color dot and the ID name, along with the tier and rating
+date, and makes clear the rating is an unofficial farming value assessment. The
+rotation is still read from `data/rbr/source.json`, so the current quests, colors
+and ratings are never hard-coded in the page. After the sync script writes a new
+rotation, `npm run build` updates both the home page cards and the detail page
+data. The sync script itself does not commit or deploy; changes reach production
+only after they are committed, pushed and published through Pages.
 
-## 数据链
+## Data chain
 
 ```text
-Ragol Boost Road Wiki ──> 候选池（EP1 23 / EP2 21 / EP4 14）与加成规则
-游戏内 `/rbr` ─────────> 本周三个任务（唯一权威来源）
-RagolBoostRoad 模板 ────> Ephinea Wiki 镜像与候选 diff 基线
-58 个任务 Wiki 页面 ───> Episode、类别、Ultimate EXP、敌人数量
-Ephinea 掉落表 ─────────> 敌人 × Section ID × 物品 × 基础掉率
-Price Guide ────────────> 物品价格区间
-玩家实测 ───────────────> 路线、人数、周回时间、失败率
+Ragol Boost Road Wiki ──> candidate pool (EP1 23 / EP2 21 / EP4 14) and boost rules
+In-game `/rbr` ────────> this week's three quests (the only authoritative source)
+RagolBoostRoad template ─> Ephinea Wiki mirror and candidate diff baseline
+58 quest Wiki pages ───> episode, category, Ultimate EXP, enemy count
+Ephinea drop tables ───> enemy × Section ID × item × base drop rate
+Price Guide ───────────> item price ranges
+Player measurements ───> route, party size, clear time, failure rate
                            │
-                           └──> 每轮掉落期望 / 每小时价值 / 建议 ID
+                           └──> expected drops per run / value per hour / suggested ID
                                       │
-note Tier + 人工判断 ────────────────> 最终 Tier
+note tiers + human judgment ─────────> final tier
 ```
 
-## 已实现的生成器
+## Implemented generator
 
-运行：
+Run:
 
 ```bash
 python3 scripts/build_rbr_data.py
 python3 -m unittest scripts/test_build_rbr_data.py
 ```
 
-输出：`data/rbr/source.json`
+Output: `data/rbr/source.json`
 
-## 每周更新入口
+## Weekly update entry point
 
-RBR 不再通过 GitHub Actions 定时轮询 Ephinea Wiki。旧的 `sync-rbr.yml` 已退休，
-因为 Wiki 只是可能滞后的镜像，不能替代游戏服务器的实际轮换。
+RBR no longer polls the Ephinea Wiki on a GitHub Actions schedule. The old
+`sync-rbr.yml` was retired, because the Wiki is only a mirror that can lag behind
+and cannot stand in for the game server's actual rotation.
 
-每周由维护者提供游戏内 `/rbr` 的原始内容，并从中确认 Episode 1、2、4 的三个
-任务缩写。当前计划器只接受这三个拆分后的缩写，尚不能直接解析整段 `/rbr` 原文。
-它验证输入、Tracker 状态、本站投影和 Ephinea Wiki 候选 diff。本站数据更新不由
-定时任务执行；Ephinea Wiki 的两个模板可以由本地认证发布器显式更新。
+Each week the maintainer provides the raw output of the in-game `/rbr` command and
+confirms the three quest abbreviations for Episodes 1, 2 and 4. The current
+planner accepts only those three separated abbreviations and cannot yet parse the
+raw `/rbr` text directly. It validates the input, the Tracker state, the site
+projection and the Ephinea Wiki candidate diff. Site data updates are not run by a
+scheduled job. The two Ephinea Wiki templates can be updated explicitly by the
+locally authenticated publisher.
 
-## 自动化闭环状态
+## Automation status
 
-只读调研和方案验证已经闭环：
+Read-only research and plan validation are complete:
 
-- 游戏 `/rbr` 被确定为本周轮换的唯一权威来源；
-- 三个任务的缩写、Episode 归属、周次和 Tracker 状态均会校验；
-- 两个 Ephinea Wiki 模板的候选 Wikitext、revision 和 diff 均会生成；
-- 本站 current/Tracker 投影会生成，并经过与候选 Wiki 模板相同的结构校验；
-- 候选 Wikitext 仅通过 `action=parse` 预览，不产生外部写入。
+- the in-game `/rbr` command is established as the only authoritative source for
+  the current rotation;
+- the three quest abbreviations, episode assignment, week and Tracker state are all
+  validated;
+- candidate Wikitext, revisions and diffs are generated for both Ephinea Wiki
+  templates;
+- the site's current and Tracker projection is generated and passes the same
+  structural checks as the candidate Wiki templates;
+- candidate Wikitext is previewed only through `action=parse`, with no external
+  writes.
 
-“输入一次 `/rbr` 后自动更新本站和 Ephinea Wiki”的跨目标发布闭环尚未实现：
+A cross-target publishing flow of "enter `/rbr` once and update both the site and
+the Ephinea Wiki automatically" is not implemented:
 
-- 没有整段 `/rbr` 原文解析器；
-- 计划器和 Wiki 发布器不写入或提交本站 `data/rbr/source.json`；本站快照由生成器配合人工审核、提交和 Pages 发布更新；
-- 本地发布器只负责 Ephinea Wiki 的两个模板，不提交本站；
-- 本站和 Wiki 两个目标之间仍没有顺序发布、部分失败恢复或幂等重试。
+- there is no parser for raw `/rbr` text;
+- the planner and Wiki publisher do not write or commit the site's
+  `data/rbr/source.json`; the site snapshot is updated by the generator with human
+  review, a commit and a Pages release;
+- the local publisher handles only the two Ephinea Wiki templates and does not
+  commit to the site;
+- there is still no ordered publishing, partial failure recovery or idempotent
+  retry across the two targets.
 
-因此只读计划器中的 `localProjection` 和 Wiki diff 仍是候选结果，不是发布成功记录。
-只有 `publish_rbr_update.py` 返回的逐模板 revision 和写后校验结果才是 Wiki 发布记录。
+The `localProjection` and Wiki diff from the read-only planner are therefore
+candidate results, not publication records. Only the per-template revisions and
+post-write verification returned by `publish_rbr_update.py` count as Wiki
+publication records.
 
-## 两个目标的已知更新路径
+## Known update paths for both targets
 
-本站不是 MediaWiki，而是由 Git 仓库发布的静态 GitHub Pages 站点。本站的目标路径
-已经明确：用游戏 `/rbr` 的三个任务更新 `data/rbr/source.json`，运行 RBR 测试和生产
-构建，提交到 `master`，再通过 Pages Workflow 发布。当前缺少的是从 `/rbr` 输入直接
-构造完整 snapshot 并执行上述发布链路的实现；现有 `localProjection` 不能替代它。
+The site is not MediaWiki; it is a static GitHub Pages site published from a Git
+repository. Its update path is already defined: update `data/rbr/source.json`
+with the three quests from the in-game `/rbr`, run the RBR tests and the production
+build, commit to `master`, and publish through the Pages workflow. What is missing
+is an implementation that builds a complete snapshot directly from `/rbr` input and
+runs that publishing chain; the existing `localProjection` cannot replace it.
 
-Ephinea Wiki 使用标准 MediaWiki Action API。本地发布器建立内存 cookie session，
-通过 `clientlogin` 登录，获取 CSRF token，读取两个模板的最新 revision 与时间戳，
-提交带 `baserevid`、`basetimestamp` 和 `starttimestamp` 的 `action=edit`，并在每次写入后
-重新读取验证。两个模板中的任意一个先成功后中断时，重跑会识别中间状态并只补剩余
-模板；未知的不一致状态会停止。
+The Ephinea Wiki uses the standard MediaWiki Action API. The local publisher opens
+an in-memory cookie session, logs in through `clientlogin`, fetches a CSRF token,
+reads the latest revision and timestamp of both templates, and submits
+`action=edit` with `baserevid`, `basetimestamp` and `starttimestamp`, re-reading to
+verify after each write. If one template succeeds and the run is then interrupted,
+a rerun recognizes the intermediate state and completes only the remaining template.
+Any unknown inconsistent state stops the run.
 
-本站与 Wiki 不存在共同事务，不能声称“同时原子更新”。Wiki 内部的两个模板同样不是
-单一事务，但发布器会记录每个模板的 revision，并允许基于相同输入安全重试。
+The site and the Wiki share no transaction, so they cannot be claimed to update
+"atomically together". The two templates within the Wiki are not a single
+transaction either, but the publisher records each template's revision and allows
+safe retries from the same input.
 
-## Wiki 已由他人更新时同步本站
+## Syncing the site after someone else updates the Wiki
 
-维护者要求采用已更新的 Wiki 时，可以通过生成器同步本站；这不代表已独立核对游戏内
-`/rbr`。先检查当前任务、Episode 归属、Tracker 和 UTC 周日期，再审核快照 diff：
+When the maintainer asks to adopt an already-updated Wiki, the site can be synced
+through the generator. This does not mean the in-game `/rbr` was checked
+independently. First check the current quests, episode assignment, Tracker and UTC
+Sunday date, then review the snapshot diff:
 
 ```bash
 python3 scripts/build_rbr_data.py --require-current
@@ -102,63 +133,91 @@ npm run test:rbr
 npm run build
 ```
 
-`--require-current` 在镜像日期过期或 Tracker 不一致时打印 `RBR rotation pending`
-并以状态码 0 退出，不写入文件；不能仅凭退出码判断已同步。本地快照已经是本周时，
-该选项会直接跳过抓取。需要重新核对远程内容时，使用独立临时输出路径。
+When the mirror date is stale or the Tracker is inconsistent, `--require-current`
+prints `RBR rotation pending` and exits with status 0 without writing files, so the
+exit code alone does not prove a sync happened. When the local snapshot already
+belongs to the current week, the option skips fetching entirely. To re-check the
+remote content, use a separate temporary output path.
 
-若 Wiki 日期有误，先生成临时诊断快照并核对原因，不自动把任意旧日期改成本周。
-维护者确认只修正本站日期时，在本站快照修正 `current.week`，保持 `expectedWeek`
-与 `isFresh` 一致，并移除已解决的对应日期 warning；保留其他 warning 和实际读取的
-源 revision。在更新记录中保留 Wiki 原日期及本站修正依据，避免把人工修正当成源数据。
+If the Wiki date is wrong, first generate a temporary diagnostic snapshot and check
+the cause; never change an arbitrary old date to the current week automatically.
+When the maintainer confirms that only the site's date should be corrected, fix
+`current.week` in the site snapshot, keep `expectedWeek` and `isFresh` consistent,
+and remove the resolved date warning. Keep any other warnings and the source
+revisions actually read. The update record keeps the Wiki's original date and the
+reason for the site correction, so a manual correction is never mistaken for source
+data.
 
-审核后提交并推送到 `master`，确认对应 Pages 流程的 `build` 和 `deploy` 均成功。
-本站发布与 Ephinea Wiki 编辑分别记录；本站日期修正不会修改远程模板。
+After review, commit and push to `master`, and confirm that both the `build` and
+`deploy` jobs of the matching Pages run succeed. Site releases and Ephinea Wiki
+edits are recorded separately, and a site date correction never modifies the
+remote templates.
 
-### 2026-09-06 更新记录
+### 2026-09-06 update record
 
-- 维护者要求同步他人已更新的 Wiki；本次未读取游戏内 `/rbr`。
-- 当前模板读取 revision `43522`，Tracker 读取 revision `43520`；两者任务一致：
-  EP1 `SU2`、EP2 `LSR`、EP4 `WoL2`。候选池仍为 58 个任务。
-- Wiki 模板在读取时标注 `05 September 2026`，本周 UTC 周日为 `06 September 2026`。
-  经维护者确认，本站日期修正为 9 月 6 日；本次未编辑 Ephinea Wiki。
-- 数据同步提交 `fde585f`；日期修正与发布依赖修复提交 `e2c7678`。
-  后者将 `fast-uri` 更新至 `3.1.7`、`qs` 更新至 `6.16.0`，解除依赖审计拦截。
-- 本地 54 项 RBR 测试和生产构建通过。完整本地浏览器测试首次 116 项通过、
-  1 项锚点定位失败，该项单独复测通过。CI 全部 117 项浏览器测试通过，
-  依赖审计、业务测试、可重复构建和 Pages 部署均成功：
-  当时的发布记录编号为 `34004094751`（已于 2026-09-14 按维护者要求清理，原日志不再可查）。
+- The maintainer asked to sync a Wiki that someone else had updated; the in-game
+  `/rbr` was not read this time.
+- The current template was read at revision `43522` and the Tracker at revision
+  `43520`, and both list the same quests: EP1 `SU2`, EP2 `LSR`, EP4 `WoL2`. The
+  candidate pool is still 58 quests.
+- The Wiki template was labeled `05 September 2026` when read, while the current
+  UTC Sunday was `06 September 2026`. With the maintainer's confirmation, the site
+  date was corrected to September 6. The Ephinea Wiki was not edited.
+- Data sync commit `fde585f`; date correction and release dependency fix commit
+  `e2c7678`. The latter updated `fast-uri` to `3.1.7` and `qs` to `6.16.0`,
+  clearing the dependency audit blocker.
+- 54 local RBR tests and the production build passed. The first full local browser
+  run passed 116 tests with 1 anchor positioning failure, which passed when rerun on
+  its own. CI passed all 117 browser tests, and the dependency audit, business
+  tests, reproducible build and Pages deployment all succeeded. The release run was
+  `34004094751`; it was cleaned up on 2026-09-14 at the maintainer's request, and
+  its logs are no longer available.
 
-### 2026-09-13 更新记录
+### 2026-09-13 update record
 
-- 维护者提供游戏内 `/rbr` 截图，确认 EP1 `Scarlet Realm #1`（`SR1`）、
-  EP2 `Lost DEMON'S RAILGUN`（`LDR`）、EP4 `War of Limits 5`（`WoL5`）。
-- Wiki 当前模板仍为 revision `43522`，日期原文为 `5 September 2026`；
-  按上述 9 月 6 日已确认记录，仅在本次规划输入中校正旧周日期，再运行现有任务池、
-  Episode、Tracker 推进与 MediaWiki 渲染预览校验。远程模板直接更新至本周
-  `13 September 2026`，未增加通用日期容错或修改发布器的校验规则。
-- 经维护者要求更新 Wiki，带原始 revision 和时间戳提交两个模板，并逐一读回核验：
-  [当前任务 revision 43587](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43587)、
-  [Tracker revision 43588](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=43588)。
-- 本站随后通过 `build_rbr_data.py --require-current` 从这两个已发布修订生成完整快照；
-  58 个任务的客观数据未变化，保留原有 5 个随机刷怪任务的敌人数提示。
-- 本地 54 项 RBR 测试、生产构建及覆盖 RBR Tracker 和 Tier 当前任务标记的浏览器测试
-  通过；额外逐项核对本站当前任务、Tracker 与已审核发布计划完全一致。
+- The maintainer provided an in-game `/rbr` screenshot confirming EP1
+  `Scarlet Realm #1` (`SR1`), EP2 `Lost DEMON'S RAILGUN` (`LDR`) and EP4
+  `War of Limits 5` (`WoL5`).
+- The Wiki's current template was still revision `43522`, with the original date
+  text `5 September 2026`. Following the confirmed September 6 record above, only
+  the old week date in this run's planning input was corrected before running the
+  existing quest pool, episode, Tracker advancement and MediaWiki render preview
+  checks. The remote templates were updated directly to the current week,
+  `13 September 2026`, without adding general date tolerance or changing the
+  publisher's validation rules.
+- At the maintainer's request, both templates were submitted with their original
+  revisions and timestamps and read back one by one:
+  [current quests revision 43587](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43587)
+  and
+  [Tracker revision 43588](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=43588).
+- The site then generated a complete snapshot from these two published revisions
+  through `build_rbr_data.py --require-current`. The objective data for all 58
+  quests was unchanged, and the enemy count notes for the 5 random-spawn quests
+  were kept.
+- 54 local RBR tests, the production build, and browser tests covering the RBR
+  Tracker and the tier chart's current quest markers passed. The site's current
+  quests and Tracker were also checked one by one against the reviewed publishing
+  plan and match exactly.
 
-### 2026-09-14 主页展示发布记录
+### 2026-09-14 home page release record
 
-- `548e78e` 已提交并发布主页 Tier、推荐 ID 和颜色展示；主页与详情页 Tier 图
-  共用评级及推荐数据，未改动本周轮换或重新评估评级。
-- [Pages 运行 34821846682](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34821846682)
-  的业务测试、生产构建、重复构建比较、1,386 项浏览器测试及部署全部通过。
-- 在 `https://www.psohaven.com/` 实际刷新核验：SR1 / LDR / WoL5 均为 Tier D，
-  推荐 ID 为 Pinkal / Bluefull / Pinkal；彩色顶边、色点及 `2025-11，非官方`
-  评级说明显示正常。
+- `548e78e` committed and released the home page tier, recommended ID and color
+  display. The home page and the detail page's tier chart share rating and
+  recommendation data; the current rotation and ratings were not changed.
+- [Pages run 34821846682](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34821846682)
+  passed business tests, the production build, the repeated build comparison,
+  1,386 browser tests and deployment.
+- A live refresh of `https://www.psohaven.com/` confirmed that SR1, LDR and WoL5
+  are all Tier D with recommended IDs Pinkal, Bluefull and Pinkal, and that the
+  colored top border, color dot and the rating note `2025-11，非官方`
+  (2025-11, unofficial) display correctly.
 
-## Wiki 更新方案验证
+## Validating a Wiki update plan
 
-游戏内 `/rbr` 是服务器实际轮换的唯一权威来源，服务器没有公开的 RBR 接口。
-第一阶段只验证更新方案，不修改 Ephinea Wiki，也不覆盖本站的
-`data/rbr/source.json`：
+The in-game `/rbr` command is the only authoritative source for the server's actual
+rotation, and the server has no public RBR API. The first stage only validates the
+update plan; it neither edits the Ephinea Wiki nor overwrites the site's
+`data/rbr/source.json`:
 
 ```bash
 python3 scripts/plan_rbr_update.py \
@@ -167,18 +226,21 @@ python3 scripts/plan_rbr_update.py \
   --episode-4 NMU5
 ```
 
-计划器读取候选池、当前模板和 Tracker，确认 Wiki 只落后一周或已经是本周，
-验证三个缩写所属 Episode 与当前轮次状态，生成两个候选 Wikitext，并通过
-MediaWiki `action=parse` 做只读渲染预览。输出 JSON 包含源 revision、模板 diff、
-预览 HTML 大小，以及本站将使用的 current/Tracker 投影。
+The planner reads the candidate pool, the current template and the Tracker,
+confirms the Wiki is at most one week behind or already current, validates each
+abbreviation's episode and the current round state, generates two candidate
+Wikitexts, and runs a read-only render preview through MediaWiki `action=parse`.
+The JSON output includes the source revisions, template diffs, preview HTML size
+and the current and Tracker projection the site will use.
 
-`.github/workflows/validate-rbr-update.yml` 提供相同的手动输入入口。该 Workflow
-只有 `contents: read` 权限，不读取 Wiki 凭据、不调用 `action=edit`、不提交文件。
-它只验证方案，不是本站或 Ephinea Wiki 的发布流程。
+`.github/workflows/validate-rbr-update.yml` provides the same manual input entry
+point. The workflow has only `contents: read` permission; it reads no Wiki
+credentials, never calls `action=edit` and commits no files. It only validates the
+plan and is not a publishing flow for the site or the Ephinea Wiki.
 
-## 本地发布两个 Wiki 模板
+## Publishing the two Wiki templates locally
 
-凭据保存在 Git 忽略的 `.secrets/ephinea-wiki.json`：
+Credentials live in the Git-ignored `.secrets/ephinea-wiki.json`:
 
 ```json
 {
@@ -187,13 +249,13 @@ MediaWiki `action=parse` 做只读渲染预览。输出 JSON 包含源 revision�
 }
 ```
 
-文件必须设置为仅当前用户可读写：
+The file must be readable and writable only by the current user:
 
 ```bash
 chmod 600 .secrets/ephinea-wiki.json
 ```
 
-发布命令：
+Publish command:
 
 ```bash
 python3 scripts/publish_rbr_update.py \
@@ -202,74 +264,89 @@ python3 scripts/publish_rbr_update.py \
   --episode-4 NMU5
 ```
 
-发布器仍会先运行完整规划和 MediaWiki 渲染预览。若两个模板已经是目标状态，它会完成
-登录与读取验证并返回 `already-current`，不会取得 CSRF token 或制造空编辑。凭据不会
-写入输出、Git、命令行参数或 cookie 文件。
+The publisher still runs the full plan and MediaWiki render preview first. If both
+templates are already in the target state, it completes login and read
+verification and returns `already-current`, without fetching a CSRF token or
+making an empty edit. Credentials are never written to output, Git, command-line
+arguments or cookie files.
 
-人工整理后的两张 Tier 表保存在 `data/rbr/tiers.json`。完整性测试会确认 RBR 的
-58 个候选任务恰好各出现一次，不允许漏项或重复：
+The two manually curated tier tables are stored in `data/rbr/tiers.json`. An
+integrity test confirms that each of the 58 RBR candidate quests appears exactly
+once, with no omissions or duplicates:
 
 ```bash
 python3 -m unittest scripts/test_rbr_tiers.py
 ```
 
-生成器会：
+The generator:
 
-1. 通过 MediaWiki API 读取 `Ragol Boost Road` 页面。
-2. 审计候选数必须仍为 EP1 23、EP2 21、EP4 14，共 58 个。
-3. 读取 `Template:RagolBoostRoad`，取得 Wiki 公布的当前周与三个任务。
-4. 并发读取 58 个任务页。
-5. 提取 Wiki revision、任务类别、Ultimate EXP、敌人数与条件数量注释。
-6. 原子写入 JSON；网络或关键结构错误时不会破坏旧文件。
+1. Reads the `Ragol Boost Road` page through the MediaWiki API.
+2. Audits that the candidate counts are still EP1 23, EP2 21 and EP4 14, for 58 in
+   total.
+3. Reads `Template:RagolBoostRoad` to get the week and three quests published on
+   the Wiki.
+4. Reads the 58 quest pages concurrently.
+5. Extracts the Wiki revision, quest category, Ultimate EXP, enemy count and
+   conditional count notes.
+6. Writes the JSON atomically, so network or critical structure errors never
+   corrupt the existing file.
 
-当前 Wiki 的五个 `Anomalous Ordeal` 页面没有固定刷怪表，因为任务以随机刷怪为特点。
-生成器会将它们标为 `enemyCountStatus: "unavailable"`，不会伪造数量。
+The five current Wiki pages for `Anomalous Ordeal` have no fixed spawn table,
+because those quests feature random spawns. The generator marks them
+`enemyCountStatus: "unavailable"` instead of inventing counts.
 
-## “当前 RBR”并非完全可靠的公开 API
+## "Current RBR" is not a fully reliable public API
 
-游戏内 `/rbr` 和大厅柜台是服务器实际状态的权威来源。Wiki 的
-`Template:RagolBoostRoad` 是公开、可抓取的镜像，但由 Wiki 维护，可能晚于每周日
-00:00 UTC 的服务器轮换。
+The in-game `/rbr` command and the lobby counter are the authoritative sources for
+the server's actual state. The Wiki's `Template:RagolBoostRoad` is a public,
+scrapeable mirror, but it is maintained by Wiki editors and can lag behind the
+server rotation at 00:00 UTC every Sunday.
 
-生成器会计算最近一个周日并写入：
+The generator computes the most recent Sunday and writes:
 
 - `current.expectedWeek`
 - `current.isFresh`
 
-手工运行生成器时，`--require-current` 可用于拒绝尚未与当前 UTC 周次一致的 Wiki
-镜像；这只是本地诊断门禁，不再由定时 Action 调用。不带该参数时仍可生成带 warning
-的诊断快照。
+When running the generator by hand, `--require-current` rejects a Wiki mirror that
+does not yet match the current UTC week. It is only a local diagnostic gate and is
+no longer called by a scheduled Action. Without the flag, the generator can still
+produce a diagnostic snapshot with warnings.
 
-## 自动计算掉落收益
+## Calculating drop value automatically
 
-有了敌人数 `n` 和单只敌人的最终掉落概率 `p`，至少一次掉落的概率为：
+Given the enemy count `n` and the final drop probability `p` for a single enemy,
+the probability of at least one drop is:
 
 ```text
-P(每轮至少一件) = 1 - (1 - p)^n
+P(at least one per run) = 1 - (1 - p)^n
 ```
 
-下一阶段可以将 `source.json` 与 `data/droptable/bb/data/en.js` 连接，为每个任务和
-Section ID 生成：
+The next stage can join `source.json` with `data/droptable/bb/data/en.js` to
+generate, for each quest and Section ID:
 
-- 每轮各稀有物品的掉落概率；
-- 推荐 Section ID；
-- RBR 1–4 人加成后的概率；
-- 以 Price Guide 中位价估算的每轮 PD 价值；
-- 加入实测周回时间后的每小时价值。
+- the drop probability of each rare item per run;
+- the recommended Section ID;
+- probabilities with RBR 1–4 player boosts applied;
+- the PD value per run, estimated from Price Guide median prices;
+- value per hour once measured clear times are added.
 
-这里需要先确认 Ephinea 对 DAR 与 RDR 加成的精确组合公式，不能直接对最终掉率
-重复乘加成。
+This first requires confirming Ephinea's exact formula for combining DAR and RDR
+boosts; boosts must not be multiplied onto the final drop rate twice.
 
-## 为什么 Tier 不能完全自动
+## Why tiers cannot be fully automated
 
-两篇 note 的 Tier 不是单纯按敌人数排序，还明显使用了以下信息：
+The tiers in the two note articles are not simply sorted by enemy count. They
+clearly also use:
 
-- 只刷 Area 1、打到中段即退等非完整路线；
-- 2:2 或四人分路带来的时间收益；
-- Hell、Divine Punishment、Anguish 1 等装备和难度条件；
-- Boss、箱子、Lucky Coin、任务票与 Meseta 等额外收益；
-- 当时的市场价格与物品流动性；
-- 地图移动距离、迷路、机关、失败风险和队伍熟练度。
+- partial routes, such as farming only Area 1 or leaving mid-quest;
+- time savings from 2:2 or four-way party splits;
+- equipment and difficulty conditions such as Hell, Divine Punishment and
+  Anguish 1;
+- extra rewards such as bosses, boxes, Lucky Coins, quest tickets and Meseta;
+- market prices and item liquidity at the time;
+- map travel distance, getting lost, puzzles, failure risk and party experience.
 
-因此最稳妥的方案是“自动生成客观底表 + 人工维护路线时间与 Tier”。当 note 原文、
-Wiki revision 或掉落表变化时，自动检查负责提示重新评估，而不是擅自改 Tier。
+The safest approach is therefore "automatically generated objective tables plus
+manually maintained route times and tiers". When the note text, a Wiki revision or
+the drop tables change, automated checks flag the need for re-evaluation instead of
+changing tiers on their own.
