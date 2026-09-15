@@ -12,7 +12,8 @@
 ## Maintenance
 
 - PB 机制正文仅维护在 [游戏机制 G 节](../tools/mechanics.html#photon-blast)：
-  参数、伤害／恢复／辅助公式、连锁与捐赠、图标和算例集中展示。
+  六种技能各自的作用方式、属性影响、使用场景与限制、连锁定位，以及参数、
+  伤害／恢复／辅助公式、连锁与捐赠、图标和算例集中展示。
   玛古页面、缩写表及项目文档只提供相关入口，不另存一套公式或攻略。
 - Keep Angular and build tooling on stable, non-prerelease releases.
 - Run the complete release gate for dependency or upstream-data changes.
@@ -21,11 +22,14 @@
 
 ## Shipped
 
-- [x] [游戏机制 G 节](../tools/mechanics.html#photon-blast)：补齐六种 PB 的图标与公式、
-  首发角色／玛古属性取值、逐步截断、光抗性、连锁与捐赠；提供伤害算例及对比图，
-  分别说明 Leilla 恢复量与 Mylla & Youlla 辅助等级。依据
+- [x] [游戏机制 G 节](../tools/mechanics.html#photon-blast)：六种 PB 均有游戏图标、
+  作用方式示意图、属性影响、使用场景与限制、连锁定位及公式；补齐首发角色／玛古
+  参数取值、逐步截断、光抗性、伤害算例与同条件对比。分别说明 Leilla 恢复量、
+  Mylla & Youlla 辅助等级，以及捐赠与有效连锁数、相邻重复覆盖的规则。依据
   [Ephinea Photon Blasts](https://wiki.pioneer2.net/w/Photon_Blasts) 整理，未宣称客户端实测；
-  构建、中文检查、机制页浏览器测试及桌面／手机显示验证通过。
+  构建、中文与架构检查、10 项定向浏览器测试及桌面／手机显示验证通过。
+  2026-09-15 用户验收并明确授权提交、推送；复审与授权记录见
+  [机制页验证记录](MECHANICS_VISUAL_EVIDENCE.md#用户验收与提交授权)。
 - [x] [怪物图鉴](MONSTER_CATALOG.md)：160 个条目、三语界面与名称、
   难度／模式属性、行为与条件机制表；十色掉落直接由 droptable 生成。
 - [x] 首页展示 `data/rbr/source.json` 的 RBR 任务并链接详情页，
