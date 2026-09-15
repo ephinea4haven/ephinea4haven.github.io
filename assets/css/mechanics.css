@@ -1,0 +1,146 @@
+/* Scoped diagrams for the mechanics guide. */
+#incoming-physical, #knockdown { scroll-margin-top: 24px; }
+
+.mechanics-flow, .mechanics-threshold {
+    margin: 24px 0 32px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-primary);
+}
+
+.mechanics-flow figcaption, .mechanics-threshold figcaption { margin-bottom: 24px; }
+.mechanics-flow figcaption > *, .mechanics-threshold figcaption > * { display: block; }
+.mechanics-flow figcaption strong, .mechanics-threshold figcaption strong { font-size: 24px; }
+.mechanics-flow figcaption > span, .mechanics-threshold figcaption > span {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+.mechanics-flow figcaption .mechanics-eyebrow,
+.mechanics-threshold figcaption .mechanics-eyebrow { color: var(--accent); margin-bottom: 4px; }
+.mechanics-flow-start { text-align: center; font-weight: 600; }
+.mechanics-flow-arrow { color: var(--text-secondary); text-align: center; font-size: 24px; }
+.mechanics-flow > .mechanics-flow-step { max-width: 560px; margin: auto; }
+
+.mechanics-flow-step {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    text-align: left;
+}
+.mechanics-step-number { color: var(--accent); font-size: 24px; font-weight: 700; }
+.mechanics-flow-step strong, .mechanics-flow-step div > span, .mechanics-flow-result > * { display: block; }
+.mechanics-flow-step div > span, .mechanics-flow-result small { color: var(--text-secondary); font-size: 14px; }
+.mechanics-flow-branches { display: grid; grid-template-columns: 1fr 2fr; gap: 24px; }
+.mechanics-damage-branches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.mechanics-flow-branches, .mechanics-damage-branches { position: relative; padding-top: 24px; }
+.mechanics-flow-branches::before, .mechanics-damage-branches::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: calc((100% - 24px) / 6);
+    right: calc((100% - 24px) / 3);
+    border-top: 1px solid #64748b;
+}
+.mechanics-damage-branches::before { left: calc(25% - 4px); right: calc(25% - 4px); }
+.mechanics-flow-branches::after, .mechanics-damage-branches::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    height: 12px;
+    border-left: 1px solid #64748b;
+}
+.mechanics-flow-branches > div, .mechanics-damage-branches > div { position: relative; }
+.mechanics-flow-branches > div::before, .mechanics-damage-branches > div::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -12px;
+    height: 12px;
+    border-left: 1px solid #64748b;
+}
+.content-container .mechanics-branch-label { margin: 4px 0 12px; font-size: 14px; text-align: center; }
+.mechanics-branch-label span { margin-right: 8px; color: var(--text-secondary); }
+.mechanics-evade { --result-color: #71e0c2; }
+.mechanics-guard { --result-color: #f3cf82; }
+.mechanics-hurt { --result-color: #ffabb3; }
+.mechanics-flow-result {
+    padding: 16px;
+    border-left: 3px solid var(--result-color);
+    border-radius: 0 8px 8px 0;
+    background: var(--bg-secondary);
+    font-size: 14px;
+}
+.mechanics-flow-result strong { color: var(--result-color); font-size: 18px; }
+.mechanics-flow-result a { margin-top: 8px; }
+.content-container .mechanics-illustration-note { color: var(--text-secondary); font-size: 14px; }
+.mechanics-outcomes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+.mechanics-outcome { margin: 0; overflow: hidden; border-top: 3px solid var(--result-color); border-radius: 8px; background: var(--bg-primary); }
+.mechanics-outcome svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    padding: 12px;
+    background: var(--bg-secondary);
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.mechanics-ground { stroke: #64748b; }
+.mechanics-attack { stroke: #cbd5e1; stroke-width: 3; }
+.mechanics-player { stroke: #e2e8f0; stroke-width: 3; fill: #283d63; }
+.mechanics-player .mechanics-visor { stroke: #71e0c2; }
+.mechanics-ghost { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 4 5; }
+.mechanics-effect, .mechanics-position { stroke: var(--result-color); stroke-width: 3; }
+.mechanics-outcome figcaption { padding: 16px; }
+.mechanics-outcome-tag { color: var(--result-color); font-size: 14px; }
+.content-container .mechanics-outcome h4 { margin: 8px 0; color: var(--text-primary); font-size: 18px; }
+.content-container .mechanics-outcome p { margin: 8px 0 0; font-size: 14px; }
+.mechanics-hp { display: flex; align-items: center; gap: 8px; }
+.mechanics-hp-bar { flex: 1; height: 8px; border-radius: 4px; background: #71e0c2; }
+.mechanics-hp-reduced { background: linear-gradient(to right, #71e0c2 55%, #364765 55%); }
+.mechanics-key-point { padding: 16px; border-left: 3px solid var(--accent); background: var(--accent-5); }
+
+.mechanics-threshold-axis { position: relative; display: flex; justify-content: space-between; margin-bottom: 8px; color: var(--text-secondary); font-size: 14px; }
+.mechanics-threshold-axis span:nth-child(2) { position: absolute; left: 83.333333%; transform: translateX(-50%); color: #f3cf82; white-space: nowrap; }
+.mechanics-threshold-row { padding: 12px 0; }
+.mechanics-threshold-track { position: relative; height: 16px; border-radius: 4px; background: var(--bg-secondary); }
+.mechanics-threshold-track::after { content: ''; position: absolute; left: 83.333333%; top: -8px; bottom: -8px; border-left: 2px dashed #f3cf82; }
+.mechanics-damage-fill { display: block; height: 100%; background: #91a9c8; border-radius: 4px; }
+.mechanics-damage-below { width: 80%; }
+.mechanics-damage-equal { width: 83.333333%; }
+.mechanics-damage-above { width: 86.666667%; background: var(--result-color); }
+.content-container .mechanics-threshold-row p { display: flex; align-items: baseline; gap: 16px; margin: 8px 0 0; font-size: 14px; }
+.mechanics-threshold-row p strong { font-size: 24px; font-variant-numeric: tabular-nums; }
+.mechanics-threshold-row p span { color: var(--text-secondary); }
+.mechanics-threshold-row p b { margin-left: auto; font-weight: 500; }
+.mechanics-threshold-row.mechanics-hurt p b { color: var(--result-color); }
+.content-container .mechanics-threshold-note { color: var(--text-secondary); font-size: 14px; margin: 16px 0 0; }
+.mechanics-source-note { padding: 16px; border: 1px solid var(--border-color); border-radius: 8px; }
+.mechanics-source-note summary { cursor: pointer; color: var(--link-color); }
+.mechanics-source-note summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.content-container .mechanics-source-note p { margin: 12px 0 0; font-size: 14px; overflow-wrap: anywhere; }
+.mechanics-table-scroll { max-width: 100%; overflow-x: auto; margin: 20px 0; }
+.mechanics-table-scroll table { margin: 0; }
+.mechanics-table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+@media (max-width: 760px) {
+    .mechanics-flow, .mechanics-threshold { padding: 16px; }
+    .mechanics-flow-branches, .mechanics-outcomes { grid-template-columns: minmax(0, 1fr); }
+    .mechanics-flow-branches { gap: 0; padding-left: 12px; border-left: 1px solid var(--border-color); }
+    .mechanics-damage-branches { grid-template-columns: minmax(0, 1fr); gap: 0; padding-left: 12px; border-left: 1px solid var(--border-color); }
+    .mechanics-flow-branches, .mechanics-damage-branches { padding-top: 0; }
+    .mechanics-flow-branches::before, .mechanics-flow-branches::after,
+    .mechanics-damage-branches::before, .mechanics-damage-branches::after,
+    .mechanics-flow-branches > div::before, .mechanics-damage-branches > div::before { content: none; }
+    .content-container .mechanics-branch-label { margin: 12px 0; text-align: left; }
+    .mechanics-threshold-row p { flex-wrap: wrap; gap: 4px 12px; }
+    .mechanics-threshold-row p b { width: 100%; margin-left: 0; }
+    .mechanics-threshold-axis { padding-top: 24px; }
+    .mechanics-threshold-axis span:nth-child(2) { top: 0; }
+}

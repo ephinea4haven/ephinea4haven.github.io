@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>游戏机制与伤害公式 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/mechanics.css">
 </head>
 
 <body>
@@ -70,7 +71,7 @@
 <tr><td>牺牲型特殊攻击（Charge 金祭 / Spirit 灵祭 / Berserk 血祭）</td><td>×3.33</td></tr>
 <tr><td><span data-item-en="Vjaya"></span> 的特殊攻击</td><td>×5.67</td></tr>
 <tr><td>HP 吸取 / TP 吸取 / EXP 吸取 / 冰冻 / 麻痹 / 混乱类特殊攻击</td><td>×0.67</td></tr>
-<tr><td><span data-item-en="Orotiagito"></span> 穿透波</td><td>×1.94</td></tr>
+<tr><td><span data-item-en="OROTIAGITO"></span> 穿透波</td><td>×1.94</td></tr>
 <tr><td><span data-item-en="Raikiri"></span> 穿透波</td><td>×0.97</td></tr>
 </tbody>
 </table>
@@ -148,19 +149,65 @@
 
 <hr>
 
-<h2>C: 玩家受到物理攻击时的判定流程</h2>
+<h2 id="incoming-physical">C: 玩家受到物理攻击时的判定流程</h2>
 
-<p>敌人对玩家发动普通、可回避的物理攻击时，<strong>EVP（回避力）的判定在前，DFP（防御力）的伤害判定在后</strong>：</p>
+<p>先看能否回避，再看会受多少伤害。以下流程适用于敌人发动的<strong>普通、可回避的物理攻击</strong>。</p>
 
-<ol>
-<li>先用敌人的 ATA 与玩家的 EVP 进行命中／回避判定。</li>
-<li>回避成功时，攻击在原地被弹开，角色不会后退。</li>
-<li>回避失败后，才用敌人的 ATP 与玩家的 DFP 计算物理伤害。</li>
-<li>DFP 足够高、使计算结果为 0 时会出现 <strong>Guard</strong>：角色被向后推开，但 HP 不减少。</li>
-<li>伤害大于 0 时会扣除相应 HP；单次伤害达到角色最大 HP 的 25% 时，角色会倒地（见 E 节）。</li>
-</ol>
+<figure class="mechanics-flow" aria-labelledby="physical-flow-caption">
+  <figcaption id="physical-flow-caption"><span class="mechanics-eyebrow">判定顺序</span><strong>EVP 在前，DFP 在后</strong><span>从上往下，沿条件分支阅读。</span></figcaption>
+  <div class="mechanics-flow-start">敌人发动可回避的物理攻击</div>
+  <div class="mechanics-flow-arrow" aria-hidden="true">↓</div>
+  <div class="mechanics-flow-step"><span class="mechanics-step-number" aria-hidden="true">01</span><div><strong>命中／回避判定</strong><span>敌人 ATA（命中力）与玩家 EVP（回避力）</span></div></div>
+  <div class="mechanics-flow-branches">
+    <div class="mechanics-flow-branch mechanics-evade">
+      <p class="mechanics-branch-label"><span aria-hidden="true">↓</span> 回避成功</p>
+      <div class="mechanics-flow-result"><strong>回避</strong><span>原地弹开 · HP 不减少</span><small>本次攻击判定结束</small></div>
+    </div>
+    <div class="mechanics-flow-branch">
+      <p class="mechanics-branch-label"><span aria-hidden="true">↓</span> 回避失败</p>
+      <div class="mechanics-flow-step"><span class="mechanics-step-number" aria-hidden="true">02</span><div><strong>计算物理伤害</strong><span>敌人 ATP（攻击力）与玩家 DFP（防御力）</span></div></div>
+      <div class="mechanics-damage-branches">
+        <div class="mechanics-guard"><p class="mechanics-branch-label"><span aria-hidden="true">↓</span> 伤害为 0</p><div class="mechanics-flow-result"><strong>Guard</strong><span>向后推开 · HP 不减少</span></div></div>
+        <div class="mechanics-hurt"><p class="mechanics-branch-label"><span aria-hidden="true">↓</span> 伤害大于 0</p><div class="mechanics-flow-result"><strong>受伤</strong><span>扣除相应 HP</span><a href="#knockdown">何时会被击倒？ ↓</a></div></div>
+      </div>
+    </div>
+  </div>
+</figure>
 
-<p>因此，Guard 不是 EVP 生效：它表示 EVP 判定已经失败，只是后续计算得到的伤害为 0。完整顺序是：<strong>EVP 判定 → ATP 与 DFP 计算伤害 → Guard、受伤或倒地</strong>。</p>
+<h3 id="physical-outcomes">看动作，分清三种结果</h3>
+<p class="mechanics-illustration-note">动作示意：攻击从左侧到来，虚线人形表示受击前的位置；HP 条只表示是否扣血。</p>
+<div class="mechanics-outcomes">
+  <figure class="mechanics-outcome mechanics-evade">
+    <svg viewBox="0 0 280 172" aria-hidden="true" focusable="false">
+      <path class="mechanics-ground" d="M20 141H260"/>
+      <path class="mechanics-attack" d="M24 85H98m-10-7 10 7-10 7"/>
+      <path class="mechanics-effect" d="M118 57Q101 85 118 113M98 61 77 40m0 13V40h13"/>
+      <g class="mechanics-player"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/><path class="mechanics-visor" d="M146 39h28"/></g>
+      <path class="mechanics-position" d="M137 151h46m-23-5v10"/>
+    </svg>
+    <figcaption><span class="mechanics-outcome-tag">EVP 判定成功</span><h4>回避：留在原地</h4><p>攻击被弹开，角色不会后退。</p><p class="mechanics-hp"><span>HP</span><span class="mechanics-hp-bar" aria-hidden="true"></span><strong>不减少</strong></p></figcaption>
+  </figure>
+  <figure class="mechanics-outcome mechanics-guard">
+    <svg viewBox="0 0 280 172" aria-hidden="true" focusable="false">
+      <path class="mechanics-ground" d="M20 141H260"/>
+      <g class="mechanics-ghost"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/></g>
+      <path class="mechanics-attack" d="M24 85H98m-10-7 10 7-10 7"/>
+      <g class="mechanics-player" transform="translate(62 0)"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/><path class="mechanics-visor" d="M146 39h28"/></g>
+      <path class="mechanics-effect" d="M192 66v37m-13-27 6 6m-6 12 6-6M160 151h62m-10-7 10 7-10 7"/>
+    </svg>
+    <figcaption><span class="mechanics-outcome-tag">回避失败 · 伤害为 0</span><h4>Guard：向后推开</h4><p>DFP 使伤害降至 0，角色仍会后退。</p><p class="mechanics-hp"><span>HP</span><span class="mechanics-hp-bar" aria-hidden="true"></span><strong>不减少</strong></p></figcaption>
+  </figure>
+  <figure class="mechanics-outcome mechanics-hurt">
+    <svg viewBox="0 0 280 172" aria-hidden="true" focusable="false">
+      <path class="mechanics-ground" d="M20 141H260"/>
+      <path class="mechanics-attack" d="M24 85H119m-10-7 10 7-10 7"/>
+      <g class="mechanics-player" transform="rotate(12 160 135)"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/><path class="mechanics-visor" d="M146 39h28"/></g>
+      <path class="mechanics-effect" d="m143 65 5 15 16-5-10 13 13 10-17-2-3 16-6-15-15 4 10-12-12-11 16 3z"/>
+    </svg>
+    <figcaption><span class="mechanics-outcome-tag">回避失败 · 伤害大于 0</span><h4>受伤：扣除 HP</h4><p>按计算结果扣血，伤害较高时会倒地。</p><p class="mechanics-hp"><span>HP</span><span class="mechanics-hp-bar mechanics-hp-reduced" aria-hidden="true"></span><strong>减少</strong></p></figcaption>
+  </figure>
+</div>
+<p class="mechanics-key-point"><strong>同样不扣血，动作不同。</strong>回避成功时留在原地；Guard 表示回避已失败，只是后续伤害为 0，角色仍会被向后推开。</p>
 
 <h3>敌人攻击玩家时的命中率</h3>
 <p>SLW 在 Ephinea 的实测结果符合以下近似关系：</p>
@@ -184,12 +231,13 @@
 <ul>
 <li>魔法伤害由 MST 决定，由目标对应属性的抗性削减，不受目标 DFP 影响。</li>
 <li>魔法不进行命中判定，也不会暴击。</li>
-<li>所有百分比增幅先<strong>相加</strong>再乘算：FOnewearl 装备<span data-item-en="Foie Merge"></span>时，Foie 的增幅为 +30% + 30% = +60%。</li>
+<li>所有百分比增幅先<strong>相加</strong>再乘算：FOnewearl 装备<span data-item-en="FOIE MERGE"></span>时，Foie 的增幅为 +30% + 30% = +60%。</li>
 <li>Megid 的增幅不提高即死率，而是使其贯穿；多个 Megid 增幅不会叠加。</li>
 <li>Jellen 与 Zalure 没有任何职业增幅；Reverser 与 Ryuker 没有任何增幅。装备增幅见<a href="/data/equipment_technique_boosts.html">装备魔法增幅</a>。</li>
 </ul>
 
 <h3>职业增幅</h3>
+<div class="mechanics-table-scroll" role="region" aria-label="职业魔法增幅表" tabindex="0">
 <table>
 <thead><tr><th>职业</th><th>魔法</th><th>增幅</th></tr></thead>
 <tbody>
@@ -203,6 +251,7 @@
 <tr><td>Resta / Anti</td><td>范围 +100%</td></tr>
 </tbody>
 </table>
+</div>
 
 <h3>魔法基础威力与 TP 消耗公式</h3>
 <p>TLv 为魔法等级。</p>
@@ -323,8 +372,31 @@
 
 <hr>
 
-<h2>E: 击倒机制</h2>
-<p>当单次攻击造成的伤害 ≥ 角色最大 HP 的 <strong>25%</strong> 时，角色会被击倒。</p>
+<h2 id="knockdown">E: 击倒机制</h2>
+<p>在本地保存的 Ephinea 客户端通用受击路径中，<strong>内部计算伤害 &gt; 最大 HP × 25%</strong> 时会设置击倒标志。比较发生在伤害截断成整数之前。</p>
+<figure class="mechanics-threshold" aria-labelledby="knockdown-caption">
+  <figcaption id="knockdown-caption"><span class="mechanics-eyebrow">击倒阈值</span><strong>看单次伤害，不看剩余血量</strong><span>示例：最大 HP 为 1,000，比较界线为 250。</span></figcaption>
+  <div class="mechanics-threshold-axis" aria-hidden="true"><span>内部伤害 0</span><span>250 · 25%</span><span>300</span></div>
+  <div class="mechanics-threshold-row">
+    <div class="mechanics-threshold-track"><span class="mechanics-damage-fill mechanics-damage-below"></span></div>
+    <p><strong>240</strong><span>低于界线</span><b>不触发通用击倒判定</b></p>
+  </div>
+  <div class="mechanics-threshold-row">
+    <div class="mechanics-threshold-track"><span class="mechanics-damage-fill mechanics-damage-equal"></span></div>
+    <p><strong>250</strong><span>恰好等于界线</span><b>不触发通用击倒判定</b></p>
+  </div>
+  <div class="mechanics-threshold-row mechanics-hurt">
+    <div class="mechanics-threshold-track"><span class="mechanics-damage-fill mechanics-damage-above"></span></div>
+    <p><strong>260</strong><span>超过界线</span><b>触发通用击倒判定</b></p>
+  </div>
+  <p class="mechanics-threshold-note">以上数值均为截断前的内部伤害。竖线表示最大 HP 的 25%；横条表示单次伤害量。</p>
+</figure>
+<p class="mechanics-key-point"><strong>为什么显示 250，也可能倒地？</strong>内部伤害若为 250.5，已经超过界线，但显示和扣除的整数伤害为 250。因此，不能仅凭显示的整数伤害判断是否越过阈值。</p>
+<details class="mechanics-source-note">
+  <summary>查看阈值来源与适用范围</summary>
+  <p><a href="https://wiki.pioneer2.net/w/Game_mechanics#Knockdown" target="_blank" rel="noopener">Ephinea Wiki</a>将此概括为“25% 或以上”。本图的严格边界依据本地保存的 Ephinea 客户端：<code>try_knockdown_player</code> 在内部伤害严格大于最大 HP 的 25% 时设置击倒标志。</p>
+  <p>此图解释通用伤害阈值，不覆盖特殊攻击直接设置的击倒、死亡或其他状态。核对对象是本地客户端快照，尚未验证当前线上运行时是否有额外修改。</p>
+</details>
 
 <hr>
 
@@ -334,14 +406,14 @@
 <table>
 <thead><tr><th>武器</th><th>HP 消耗</th></tr></thead>
 <tbody>
-<tr><td><span data-item-en="Double Cannon"></span></td><td>5%</td></tr>
+<tr><td><span data-item-en="DOUBLE CANNON"></span></td><td>5%</td></tr>
 <tr><td><span data-item-en="Girasole"></span></td><td>10%</td></tr>
-<tr><td><span data-item-en="Lavis Blade"></span></td><td>5% + 5%（每次攻击分两次消耗）</td></tr>
+<tr><td><span data-item-en="LAVIS BLADE"></span></td><td>5% + 5%（每次攻击分两次消耗）</td></tr>
 <tr><td><span data-item-en="Lavis Cannon"></span></td><td>5%</td></tr>
-<tr><td><span data-item-en="Orotiagito"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="OROTIAGITO"></span></td><td>7%</td></tr>
 <tr><td><span data-item-en="Raikiri"></span></td><td>7%</td></tr>
 <tr><td><span data-item-en="Soul Banish"></span></td><td>7%</td></tr>
-<tr><td><span data-item-en="Gal Wind"></span></td><td>第一、二段 7%；第三段发射三枚弹道，共 21%</td></tr>
+<tr><td><span data-item-en="GAL WIND"></span></td><td>第一、二段 7%；第三段发射三枚弹道，共 21%</td></tr>
 <tr><td><span data-item-en="Psycho Wand"></span></td><td>施放任意魔法时，消耗等于该魔法原始 TP 消耗的 HP（TP 消耗本身减半）</td></tr>
 </tbody>
 </table>

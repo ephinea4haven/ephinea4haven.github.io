@@ -27,6 +27,7 @@ docs/*
 !docs/TODO.md
 !docs/ITEM_CATALOG.md
 !docs/MONSTER_CATALOG.md
+!docs/MECHANICS_VISUAL_EVIDENCE.md
 
 # pw is deployed separately at pw.psohaven.com; no longer part of this repo
 tools/pw/
