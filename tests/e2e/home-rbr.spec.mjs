@@ -23,7 +23,10 @@ test('home renders source RBR quests and opens the RBR detail page',async({page}
     const color=sectionColors[sectionIds.indexOf(section)];
     const rgb=`rgb(${color.slice(1).match(/../g).map(hex=>parseInt(hex,16)).join(', ')})`;
     await expect(card).toHaveCSS('border-top-color',rgb);
-    await expect(card.locator('.home-rbr-section i')).toHaveCSS('background-color',rgb);
+    const icon=card.locator('.home-rbr-section img');
+    await expect(icon).toHaveAttribute('src',`/assets/img/section/icon/${section}.png`);
+    await expect(icon).toBeVisible();
+    await expect.poll(()=>icon.evaluate(img=>img.complete && img.naturalWidth>0)).toBe(true);
   }
   await expect(panel.locator('.home-rbr-note')).toContainText(ratings.asOf);
   await panel.locator('.home-rbr-quest').first().click();
