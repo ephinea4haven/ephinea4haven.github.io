@@ -1,5 +1,5 @@
 /* Scoped diagrams for the mechanics guide. */
-.mechanics-guide h2[id] { scroll-margin-top: 24px; }
+.mechanics-guide :is(h2, h3)[id] { scroll-margin-top: 24px; }
 .mechanics-guide p { text-align: left; }
 .mechanics-intro { text-align: left; margin-bottom: 24px; }
 .mechanics-eyebrow { color: var(--accent); font-size: 14px; }
@@ -47,6 +47,13 @@
 .mechanics-frame-pair strong { font-size: 30px; color: var(--text-primary); font-variant-numeric: tabular-nums; }
 .mechanics-frame-pair small { color: var(--text-secondary); font-size: 14px; font-weight: 400; }
 .mechanics-guide .mechanics-frame-examples p { font-size: 14px; margin-bottom: 12px; }
+.mechanics-pb-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0; }
+.mechanics-pb-card { min-width: 0; padding: 24px; border-radius: 8px; background: var(--bg-primary); }
+.mechanics-guide .mechanics-pb-card h4 { display: flex; align-items: center; gap: 16px; margin: 0 0 16px; color: var(--text-primary); }
+.mechanics-pb-card h4 img { flex-shrink: 0; object-fit: contain; }
+.mechanics-pb-card h4 small { display: block; color: var(--text-secondary); font-size: 14px; font-weight: 400; }
+.mechanics-pb-card code { overflow-wrap: anywhere; }
+.mechanics-guide .mechanics-pb-card p:last-child { margin-bottom: 0; }
 
 .mechanics-flow, .mechanics-threshold {
     margin: 24px 0 32px;
@@ -177,6 +184,8 @@
 .mechanics-table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 @media (max-width: 760px) {
+    .mechanics-pb-grid { grid-template-columns: minmax(0, 1fr); }
+    .mechanics-pb-card { padding: 16px; }
     .mechanics-figure { padding: 16px; }
     .mechanics-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .mechanics-nav a { gap: 8px; padding: 12px; font-size: 14px; }

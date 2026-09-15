@@ -2,9 +2,6 @@
 
 ## Active
 
-- [ ] 游戏机制：补充各 Photon Blast 的伤害计算逻辑，核对基础公式、
-  PB 类型、玛古与角色属性、连锁／捐献、目标抗性及适用条件；区分攻击型
-  PB 与治疗／辅助型 PB。来源：[Ephinea Photon Blasts](https://wiki.pioneer2.net/w/Photon_Blasts)。
 - [ ] 武器之心：整理完整列表、对应武器外观、获取途径、使用与还原条件，
   关联道具图鉴并沿用权威名称。来源：[Ephinea Weapon hearts](https://wiki.pioneer2.net/w/Weapon_hearts)。
 - [ ] Inventory the archived PSO FRAME slot3 (Red-Wolf) material, record version
@@ -21,6 +18,11 @@
 
 ## Shipped
 
+- [x] [游戏机制 G 节](../tools/mechanics.html#photon-blast)：补齐六种 PB 的图标与公式、
+  首发角色／玛古属性取值、逐步截断、光抗性、连锁与捐赠；提供伤害算例及对比图，
+  分别说明 Leilla 恢复量与 Mylla & Youlla 辅助等级。依据
+  [Ephinea Photon Blasts](https://wiki.pioneer2.net/w/Photon_Blasts) 整理，未宣称客户端实测；
+  构建、中文检查、机制页浏览器测试及桌面／手机显示验证通过。
 - [x] [怪物图鉴](MONSTER_CATALOG.md)：160 个条目、三语界面与名称、
   难度／模式属性、行为与条件机制表；十色掉落直接由 droptable 生成。
 - [x] 首页展示 `data/rbr/source.json` 的 RBR 任务并链接详情页，

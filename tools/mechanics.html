@@ -28,7 +28,7 @@
   <a href="#technique-damage"><span>D</span>魔法伤害</a>
   <a href="#knockdown"><span>E</span>击倒阈值</a>
   <a href="#hp-drain"><span>F</span>消耗自身 HP</a>
-  <a href="#photon-blast"><span>G</span>PB 积累</a>
+  <a href="#photon-blast"><span>G</span>PB 伤害与积累</a>
   <a href="#mag-triggers"><span>H</span>玛古事件</a>
 </nav>
 <p class="mechanics-illustration-note">本页汇总 Ephinea PSOBB 的核心数值公式。除另有注明外，公式与数值均整理自 <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">Ephinea Wiki 的 Game mechanics 页面</a>。游戏对最终伤害只做截断，不做四舍五入：计算结果为 100.92 时，实际伤害为 100。</p>
@@ -420,7 +420,7 @@
 
 <h3>Resta 恢复量</h3>
 <p><code>恢复量 = MST × 0.5 + 魔法基础威力</code></p>
-<p>玛古光子爆裂 Leilla 的治疗量也按此公式计算。</p>
+<p>玛古光子爆裂 Leilla 的恢复量另有玛古 IQ、连锁与捐赠修正，见 <a href="#pb-support">G 节治疗与辅助型 PB</a>。</p>
 
 <hr>
 
@@ -473,7 +473,94 @@
 
 <hr>
 
-<h2 id="photon-blast">G: PB 增加公式</h2>
+<h2 id="photon-blast">G: 玛古光子爆裂（PB）伤害与积累</h2>
+<p>光子爆裂有四种攻击型 PB，以及治疗型 Leilla、辅助型 Mylla &amp; Youlla。以下依据 <a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">Ephinea Wiki 的 PB 威力公式</a>整理；PB 伤害均为<strong>光属性伤害</strong>，由目标 ELT（光抗性）削减。</p>
+<p class="mechanics-key-point"><a href="#pb-damage">攻击型伤害</a> · <a href="#pb-chain">连锁与捐赠</a> · <a href="#pb-support">治疗与辅助</a> · <a href="#pb-gain">PB 槽积累</a></p>
+
+<h3 id="pb-damage">攻击型 PB：先算基础威力，再算伤害</h3>
+<p><code>trunc(x)</code> 表示舍去小数。下面每行公式算完后分别截断，再把结果代入下一行；不能只在最终伤害处截断。</p>
+<div class="mechanics-pb-grid">
+  <article class="mechanics-pb-card">
+    <h4><img src="/assets/img/mag/pb/Farlla.png" width="50" height="43" alt="" loading="lazy"><span>海蛇<small>Farlla</small></span></h4>
+    <p class="mechanics-illustration-note">周围范围攻击 · 使用 ATP</p>
+    <p><code>B = trunc(同步率 × ATP × 0.025 + IQ × 2.5 + 500)</code></p>
+  </article>
+  <article class="mechanics-pb-card">
+    <h4><img src="/assets/img/mag/pb/Estlla.png" width="50" height="43" alt="" loading="lazy"><span>海豚<small>Estlla</small></span></h4>
+    <p class="mechanics-illustration-note">前方直线攻击 · 使用 EVP</p>
+    <p><code>B = trunc(同步率 × EVP × 0.15 + IQ × 15 + 350)</code></p>
+  </article>
+  <article class="mechanics-pb-card">
+    <h4><img src="/assets/img/mag/pb/Golla.png" width="50" height="43" alt="" loading="lazy"><span>角鹿<small>Golla</small></span></h4>
+    <p class="mechanics-illustration-note">单体攻击 · 使用 ATP</p>
+    <p><code>B = trunc(同步率 × ATP × 0.075 + IQ × 7.5 + 1,200)</code></p>
+  </article>
+  <article class="mechanics-pb-card">
+    <h4><img src="/assets/img/mag/pb/Pilla.png" width="50" height="43" alt="" loading="lazy"><span>神像<small>Pilla</small></span></h4>
+    <p class="mechanics-illustration-note">周围范围攻击 · 使用 ATP</p>
+    <p><code>B = trunc(同步率 × ATP × 0.075 + IQ × 7.5 + 1,200)</code></p>
+  </article>
+</div>
+<p class="mechanics-illustration-note">B 为基础威力。Pilla 当前使用与 Golla 相同的 ATP 公式；Wiki 另外列出的 ATA 公式是未使用的路径，不用于这里的计算。</p>
+<p><code>S = trunc(B × Q × N × 0.01 + MST)</code></p>
+<p><code>伤害 = trunc((S ÷ 5) × ((100 − 目标 ELT) ÷ 100))</code></p>
+<ul>
+<li><strong>属性取谁的：</strong>按当前客户端观察到的连锁首发角色计算，同步率与 IQ 也取该角色的玛古；单人释放时就是自己。同步率 120% 在公式中填 <code>120</code>，不是 <code>1.2</code>。</li>
+<li><strong>ATP：</strong>基础 ATP 经 Shifta 加成后，加上装备提供的 ATP；武器使用 ATP 下限，不含职业随机方差。不要直接拿 A 节每次随机生成的 ATPeff 代入。</li>
+<li><strong>EVP、MST：</strong>取首发角色对应属性。S 是连锁／捐赠修正后再加 MST 的威力值。</li>
+<li><strong>Q：</strong>首发侧观察到的 PB 量，通常为 100，加上收到的捐赠；<strong>N：</strong>连锁中观察到的 PB 数，单发为 1。Q 不把每位连锁者的 100 PB 再累加一遍。</li>
+<li><strong>目标 ELT：</strong>使用当前难度与模式下的光抗性，40 代表 40%。PB 使用本节公式，不套 D 节的职业／装备魔法增幅。</li>
+</ul>
+
+<figure class="mechanics-figure" aria-labelledby="pb-damage-caption">
+  <figcaption id="pb-damage-caption"><span class="mechanics-eyebrow">神像 Pilla · 单发算例</span><strong>从玛古与角色属性，算到 1,952 点伤害</strong><span>同步率 120%，IQ 200，按上述口径取 ATP 1,000、MST 500；Q = 100、N = 1，目标 ELT = 20。</span></figcaption>
+  <ol class="mechanics-calculation">
+    <li><span class="mechanics-eyebrow">基础威力 B</span><strong>11,700</strong><span>120 × 1,000 × 0.075<br>+ 200 × 7.5 + 1,200</span></li>
+    <li><span class="mechanics-eyebrow">修正后威力 S</span><strong>12,200</strong><span>11,700 × 100 × 1 × 0.01<br>+ 500</span></li>
+    <li><span class="mechanics-eyebrow">光抗性削减 20%</span><strong>1,952</strong><span>(12,200 ÷ 5) × 0.8</span></li>
+  </ol>
+  <p class="mechanics-figure-takeaway">保持其余条件相同，目标 ELT 若升到 60，伤害就变为 976。敌人的光抗性会直接影响攻击型 PB 的效果。</p>
+</figure>
+
+<h3 id="pb-chain">连锁与捐赠：分别改变 N 与 Q</h3>
+<ul>
+<li><strong>连锁：</strong>在首个 PB 的起手动画结束前加入自己的 PB，增加 N。相邻两次应使用不同 PB；连续重复同一种会覆盖前一次，破坏预期连锁。</li>
+<li><strong>捐赠：</strong>同房间队友可在起手动画结束前贡献 PB，增加 Q；每人最多捐赠 30 PB。默认键盘按键为 <code>End</code>，每次捐赠 10 PB。</li>
+<li>伤害、恢复与辅助效果在客户端计算；延迟或不同步可能让各玩家观察到的顺序和结果不同。应以实际观察到的首发者、PB 数与 PB 量代入。</li>
+</ul>
+<figure class="mechanics-figure" aria-labelledby="pb-chain-caption">
+  <figcaption id="pb-chain-caption"><span class="mechanics-eyebrow">相同属性与目标 · Pilla 伤害对比</span><strong>连锁放大基础威力，MST 在之后相加</strong><span>沿用上图属性与 ELT 20，比较其中一次 Pilla 对同一目标的伤害；不是整条连锁的伤害总和。</span></figcaption>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>0 伤害</span><span>7,568 伤害</span></div>
+  <div class="mechanics-chart-label"><span>单发 · Q 100 / N 1</span><strong>1,952</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:25.792812%"></span></div>
+  <div class="mechanics-chart-label"><span>单发 + 队友捐赠 30 · Q 130 / N 1</span><strong>2,513</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:33.205602%"></span></div>
+  <div class="mechanics-chart-label"><span>四人有效连锁、无捐赠 · Q 100 / N 4</span><strong>7,568</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:100%"></span></div>
+  <p class="mechanics-figure-note">捐赠算例：S = 15,710，最终 2,513.6 截断为 2,513。四连算例：S = 47,300，最终伤害 7,568。</p>
+  <p class="mechanics-figure-takeaway">四连时 Q 仍为 100、N 为 4；不要填成 Q 400、N 4。MST 没有乘以连锁数，所以四连的单次伤害也不是单发伤害直接乘 4。</p>
+</figure>
+
+<h3 id="pb-support">治疗与辅助型 PB</h3>
+<div class="mechanics-pb-grid">
+  <article class="mechanics-pb-card">
+    <h4><img src="/assets/img/mag/pb/Leilla.png" width="50" height="43" alt="" loading="lazy"><span>女神<small>Leilla</small></span></h4>
+    <p>恢复 HP，不造成伤害。IQ、MST、Q、N 的取值口径同上。</p>
+    <p><code>B = trunc(IQ × 0.5 + 150)</code></p>
+    <p><code>R = trunc(B × Q × N × 0.01)</code></p>
+    <p><code>恢复量 = trunc(MST × 0.5 + R)</code></p>
+    <p>IQ 200、MST 500、Q 100：单发恢复 500 HP；四连恢复 1,250 HP，实际回复受缺失 HP 限制。</p>
+  </article>
+  <article class="mechanics-pb-card">
+    <h4><img src="/assets/img/mag/pb/Mylla_Youlla.png" width="50" height="43" alt="" loading="lazy"><span>双子<small>Mylla &amp; Youlla</small></span></h4>
+    <p>提供 Shifta／Deband，不造成直接伤害。计算辅助魔法等级：</p>
+    <p><code>等级 = trunc(1 + (Q × N × 0.01) × (IQ × 0.1))</code></p>
+    <p>IQ 200、Q 100 时，单发为 Lv.21，二连 Lv.41，三连 Lv.61，四连 Lv.81。</p>
+  </article>
+</div>
+<p class="mechanics-illustration-note">以上是 Wiki 整理公式与按公式推导的算例，未将其标作本站对当前客户端的实测。来源：<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">各 PB 威力</a>、<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Donating_and_Chaining" target="_blank" rel="noopener">捐赠与连锁规则</a>。</p>
+
+<h3 id="pb-gain">PB 槽增加公式</h3>
 
 <figure class="mechanics-figure" aria-labelledby="pb-caption">
   <figcaption id="pb-caption"><span class="mechanics-eyebrow">PB 积累图解</span><strong>同样 300 点伤害，PB 增量并不相同</strong><span>以 Lv.100 角色为例，比较下表中造成伤害与受到伤害的两条公式。</span></figcaption>
