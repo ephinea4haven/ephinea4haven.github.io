@@ -172,12 +172,21 @@ year-specific activation, cross-year Christmas dates and Pacific start/end
 boundaries while the browser uses an Asia/Shanghai timezone. The boundary test
 keeps the page open to verify that panels and navigation update together.
 
-The event spotlight has its own annual-event visual layer: an animated
-cyan-blue-magenta-gold perimeter, restrained edge scan, energy corner marks and
-dashboard depth. These selectors remain scoped to the activity component so the
-existing landing-page navigation and information cards retain their original
-presentation. `prefers-reduced-motion` disables the repeating motion through the
-site-wide reduced-motion contract.
+The landing page (`index.html` with `assets/css/index.css`) is a standalone
+design: a sticky top bar with in-page anchors, a hero that pairs the site
+positioning and primary calls to action with the live server panel (.beat
+clock, Galatine ATP window, weekly RBS boost), the build-time weekly RBR
+cards, the seasonal activity spotlight, a four-step onboarding strip and an
+eight-card content directory grouped by topic. Cards, buttons, spacing and
+type share one token set in `index.css`; the activity spotlight uses the same
+card surface with a static gradient top rule and a faint cyan grid, and
+`prefers-reduced-motion` disables the remaining motion through the site-wide
+reduced-motion contract. The content pipeline keeps only the page body and
+local stylesheet links, so the landing page cannot rely on `<head>` font
+links; the Orbitron display face is self-hosted from `assets/fonts/` via
+`@font-face`, and body text uses the system Chinese font stack. Because the
+Angular route host lays its children out as a centered flex column, the
+full-bleed bands (top bar, hero, footer) declare `width: 100%` explicitly.
 
 The completed 2026 anniversary spotlight is retired from the landing page; the
 stable 周年活动 navigation link remains the entry to its yearly archive. The
