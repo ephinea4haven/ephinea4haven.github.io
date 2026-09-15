@@ -10,10 +10,18 @@ export interface CatalogItem {
   mask: string; classes: string[]; requirement: string; stats: Stat[];
   image: string | null; code: string | null; status: string; atpMax: number | null;
 }
+export interface ItemLink { item: string; id: string }
+export interface Cosmetic {
+  kind: 'heart' | 'paint' | 'plating'; item: ItemLink; targets: ItemLink[]; skin: ItemLink | null; color: string | null; reverts?: boolean;
+  photonFilter: { color: string; weapons: ItemLink[] } | null;
+  trade: (ItemLink & { quantity: number })[];
+}
+export const COSMETICS_PATH = '/data/cosmetics.html';
 export interface ItemDetail {
   id: string; en: string; title: string; summary: string; stats: Stat[]; effects: string[];
   boosts: Stat[]; sets: { item: string; id: string | null; effect: string }[];
   skins: { item: string; id: string | null; code: string }[];
+  cosmetic: Cosmetic | null; cosmetics: { item: ItemLink; kind: Cosmetic['kind']; skin: ItemLink | null; color: string | null }[];
   feeding: { item: string; values: number[] }[];
   drops: { kind: string; sectionId: string; difficulty: string; location: string; area: string; rate: string }[];
   availability: string; source: string; revision: number; checkedAt: string;

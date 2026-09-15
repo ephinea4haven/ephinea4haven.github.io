@@ -6,11 +6,13 @@ all-category catalog.
 
 ## Coverage and interface
 
-The 2026-09-14 snapshot contains 1,044 entries: 419 weapons, 88 frames, 107
-barriers, 100 units, 84 Mags and 246 other items. 524 entries have images, drawn
-from 456 original PNG files totaling about 2.7 MB. Independent models such as
-manufacturing year, manufacturer and genuine versus replica are listed
-separately. Cosmetic modifications are listed on the base model's detail page.
+The snapshot contains 1,045 entries: 419 weapons, 88 frames, 107 barriers, 100
+units, 84 Mags and 247 other items. 547 entries have images, drawn from 478
+PNG files totaling about 4.9 MB. The snapshot was taken on 2026-09-14;
+the cosmetic item pages and 21 excerpt fixes were re-merged on 2026-09-15 at
+unchanged Wiki revisions, and those records carry their own check date.
+Independent models such as manufacturing year, manufacturer and genuine versus
+replica are listed separately. Cosmetic modifications are listed on the base model's detail page.
 Technique disks are catalogued as a single item family rather than counting each
 level again.
 
@@ -99,9 +101,14 @@ as separate models.
   catalog" does not promise that an event or NPC supplies an item at any given
   time. Drop rates are the baseline values of the cited revision and exclude live
   multipliers.
-- All current images come from Ephinea Wiki infoboxes, and the seven KT GIFs used
-  by the MVP have been removed. `images.json` records the original URL, source
-  page, dimensions and SHA-1. Original files are stored byte for byte, and missing
+- All current images come from Ephinea Wiki: item infoboxes, plus the in-game
+  screenshot on each ring paint and plating page, which shows a Red Ring after
+  use. Red Paint shows the original Red Ring. Deep Plating and Delsaber Plating
+  have only multi-megabyte animated GIFs on the Wiki, so they use the first frame
+  saved as a PNG; their `images.json` entries point to the GIF and record its
+  SHA-1 and frame under `derivedFrom`. The
+  seven KT GIFs used by the MVP have been removed. `images.json` records the
+  original URL, source page, dimensions and SHA-1. Original files are stored byte for byte, and missing
   images show an explicit placeholder. Models that share an appearance may share
   one image. 416 of the 419 weapons have images; an entry without an image does
   not mean no screenshot exists elsewhere.
@@ -121,9 +128,24 @@ npm run build
 npm run test:e2e
 ```
 
+A full import replaces the snapshot and requires the `List of weapons which
+cannot combo` page. To refresh or add specific pages without re-importing the
+catalog, pass `--merge` first: the exported records, index pages and images are
+upserted, every other record stays byte-identical, and merged records get their
+own `checkedAt`.
+
+```sh
+node scripts/import_item_catalog.mjs --merge /path/to/pages.json /path/to/image-bytes.json
+```
+
 The image export is an array with the fields `title` (with the `File:` prefix),
 `url`, `descriptionurl`, `sha1`, `width`, `height` and `base64`. The importer
-verifies original checksums. Network downloads stay in a temporary working
+verifies original checksums. The Wiki's CDN serves recompressed copies of cached
+images, so download originals with a query string that is unique to each request
+(for example a timestamp). That bypasses the cache and returns bytes that match
+the recorded SHA-1; a repeated query string can itself be cached and recompressed.
+An image entry may carry `derivedFrom: { sha1, frame }` for a still frame of an
+animated original; its `sha1` is then that of the stored PNG. Network downloads stay in a temporary working
 directory and never enter the site. The update date must match the actual fetch
 date. New fields, categories or entries require updates to the matching checks and
 docs; nothing may be dropped silently.
@@ -132,6 +154,48 @@ docs; nothing may be dropped silently.
 per-item JSON from the versioned snapshot. The generated directory is not
 committed. The build never depends on a live Wiki response, so CI can regenerate
 identical content offline.
+
+## Cosmetic items
+
+`/data/cosmetics.html` (外观道具 on the home page) covers every Ephinea item that
+changes appearance without changing performance. Each item's detail page carries
+the same structured facts, and each weapon or the Red Ring lists the cosmetics
+that apply to it.
+
+| Kind | Count | Facts | Source |
+| --- | --- | --- | --- |
+| Weapon hearts | 31 | Compatible weapons, resulting appearance, Photon Filter combinations and starting color, drops | Each heart page's Compatible equipment section, checked against the Weapon hearts list page, revision 43368 |
+| Ring paints | 14 | Color, Christmas Present or Anniversary Badge Shop source; Red Paint is free and reverts any skin | Each paint page and the Red Ring page, revision 43083 |
+| Ring platings | 9 | Resulting barrier appearance and the complete The Forge trade recipe | Each plating page |
+
+- The importer stores a heart's compatibility from its own page. The list page has
+  rowspans and two incomplete lists (Blade Dance, Partisan of Lightning), so the
+  generator requires both sources to agree and fails the build otherwise.
+- Weapon heart rules come from the Weapon hearts and Neutralizer pages: grind is
+  reset, the weapon gains `*` and a `Skin:` line, a Neutralizer reverts it without
+  returning the heart, and a Mille Marteaux or Heaven Punisher with a Divine or
+  Lock-on Filter needs two Neutralizers. Photon Filters only work on the seven
+  combinations the list page names.
+- Paint and plating rules come from the Red Ring page: both keep Red Ring
+  performance, and Red Paint removes either kind while the paint or plating is
+  lost. A paint's color label is taken from its authoritative item name.
+- The Neutralizer was missing from every Wiki list page the catalog inventory is
+  built from; it was added through `--merge` with notes on its free quest sources.
+
+Verification for this addition: 11 catalog data tests, including a cosmetics test
+that checks all 54 items, list-page agreement, targets, results, trade recipes,
+color names against the authority and full image coverage. The catalog browser suite
+covers the overview, item detail sections, versioned JSON requests, and
+accessibility plus overflow at 390 and 1280 px in all three languages. Axe found
+links inside sentences distinguished only by color, which are now underlined.
+
+The same change fixed two existing problems. Tall screenshots overflowed the
+item image frame and were cropped to their top, because the image's 100% height
+resolved against a grid row that grew with it; the image is now absolutely
+positioned inside the frame. English excerpts in 21 records included raw headings
+and table markup when a table followed prose without a blank line; the importer
+now starts a new paragraph at each heading or table, and those pages were
+re-merged at their unchanged revisions.
 
 ## Pages and performance
 

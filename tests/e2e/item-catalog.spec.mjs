@@ -93,7 +93,9 @@ test('language changes keep detail fragments without fetching detail data again'
 
 test('English detail request failures expose translated retry and return controls', async ({page}) => {
   await page.goto('/data/items.html?lang=en&q=V801');
-  await page.route('**/assets/data/items/v801.json',route=>route.abort());
+  await page.route(/\/assets\/data\/items\/v801\.json\?v=[0-9a-f]{12}$/,route=>route.abort());
+  // The prerendered list is unfiltered; wait for hydration to apply the query before clicking.
+  await expect(page.locator('.item-row')).toHaveCount(1);
   await page.locator('.item-row').click();
   await expect(page.getByRole('heading',{name:'Item details could not be loaded'})).toBeVisible();
   await expect(page.getByRole('button',{name:'Retry'})).toBeVisible();
@@ -130,7 +132,7 @@ test('reduced motion disables decorative row movement', async ({page}) => {
 });
 
 test('the full inventory is prerendered with bounded per-item hydration data', () => {
-  expect(items).toHaveLength(1044);
+  expect(items).toHaveLength(1045);
   for (const item of items) {
     const html = readFileSync(`_site/data/items/${item.id}.html`, 'utf8');
     expect(html).toContain('id="item-title"');
@@ -171,7 +173,7 @@ test('subtype, class, rarity and base ATP sorting compose', async ({page}) => {
 test('equipment class filters exclude consumables and reset on the tools category', async ({page}) => {
   await page.goto('/data/items.html?class=HUmar&q=Monomate');
   await expect(page.locator('.item-row')).toHaveCount(0);
-  await page.getByRole('button', {name: /其他道具 246/}).click();
+  await page.getByRole('button', {name: /其他道具 247/}).click();
   await expect(page.locator('.item-row')).toHaveCount(1);
   await expect(page.getByLabel('可装备职业', {exact:true})).toBeDisabled();
 });
@@ -238,7 +240,7 @@ test('empty results and malformed pagination recover', async ({page}) => {
   await page.getByRole('button',{name:'清除全部条件'}).click();
   await expect(page.locator('.item-row')).toHaveCount(24);
   await page.goto('/data/items.html?page=9999');
-  await expect(page.locator('.item-row')).toHaveCount(12);
+  await expect(page.locator('.item-row')).toHaveCount(13);
   await expect(page.getByLabel('跳转页码')).toHaveValue('44');
 });
 
@@ -281,7 +283,7 @@ test('mobile filters expose image-only results with real local files', async ({p
   await expect(page.locator('#catalog-filters')).toBeHidden();
   await page.getByRole('button',{name:'筛选条件'}).click();
   await page.getByLabel('只看有截图的道具').check();
-  await expect(page.locator('.result-toolbar')).toContainText('524');
+  await expect(page.locator('.result-toolbar')).toContainText('547');
   await expect(page.locator('.item-row')).toHaveCount(24);
   expect(await page.locator('.item-row').first().locator('img').evaluate(img=>img.complete && img.naturalWidth > 0)).toBe(true);
 });
@@ -305,12 +307,77 @@ test('details load on demand and a failed request has an explicit retry state', 
   page.on('request',r=>{if(r.url().includes('/assets/data/items/'))requests.push(r.url());});
   await page.goto('/data/items.html?q=V801');
   expect(requests).toEqual([]);
-  await page.route('**/assets/data/items/v801.json',route=>route.abort());
+  await page.route(/\/assets\/data\/items\/v801\.json\?v=[0-9a-f]{12}$/,route=>route.abort());
+  await expect(page.locator('.item-row')).toHaveCount(1);
   await page.locator('.item-row').click();
   await expect(page.getByRole('heading',{name:'道具资料暂时未能加载'})).toBeVisible();
-  await page.unroute('**/assets/data/items/v801.json');
+  await page.unroute(/\/assets\/data\/items\/v801\.json\?v=[0-9a-f]{12}$/);
   await page.getByRole('button',{name:'重新加载'}).click();
   await expect(page.locator('#item-title')).toBeVisible();
   await expect(page.locator('#item-title')).toHaveText('V801');
   expect(requests).toHaveLength(1);
+});
+
+test('cosmetics overview covers weapon hearts, ring paints and platings with working links', async ({page}) => {
+  const overview = JSON.parse(readFileSync('src/app/generated/item-catalog/cosmetics.json', 'utf8'));
+  await page.goto('/data/cosmetics.html');
+  await expect(page.locator('#cosmetics-title')).toHaveText('外观道具');
+  await expect(page.locator('#weapon-hearts .cosmetic-card')).toHaveCount(overview.hearts.length);
+  await expect(page.locator('#ring-paints .cosmetic-card')).toHaveCount(overview.paints.length);
+  await expect(page.locator('#ring-platings .cosmetic-card')).toHaveCount(overview.platings.length);
+  const samba = page.locator('#heart-of-samba-maracas');
+  await expect(samba).toContainText('桑巴沙锤');
+  for (const weapon of ['dual-bird', 'guld-milla', 'manda60-vise', 'mille-marteaux']) {
+    await expect(samba.locator(`a[href="/data/items/${weapon}.html?lang=zh"]`)).toHaveCount(1);
+  }
+  await expect(page.locator('#heart-of-flamberge')).toContainText('蓝色');
+  await expect(page.locator('#onyx-paint')).toContainText('漆黑色');
+  await expect(page.locator('#onyx-paint')).toContainText('× 99');
+  await expect(page.locator('#deep-plating')).toContainText('V502 × 1');
+  const requests = [];
+  page.on('request', r => { if (r.url().includes('/assets/data/items/')) requests.push(new URL(r.url())); });
+  await samba.getByRole('heading').getByRole('link').click();
+  await expect(page).toHaveURL(/\/data\/items\/heart-of-samba-maracas\.html\?lang=zh$/);
+  await expect(page.locator('#item-title')).toHaveText(names['Heart of Samba Maracas'].zh);
+  await expect(page.locator('#effects .cosmetic-links a')).toHaveText(['双翎', '伽尔德·米拉', 'M&A60 老虎钳', '米尔·马尔托'].map(name => new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))));
+  expect(requests.map(url => url.pathname)).toEqual(['/assets/data/items/heart-of-samba-maracas.json']);
+  expect(requests[0].searchParams.get('v')).toMatch(/^[0-9a-f]{12}$/);
+  await page.getByRole('link', {name: '查看全部外观道具 →'}).click();
+  await expect(page).toHaveURL(/\/data\/cosmetics\.html\?lang=zh#weapon-hearts$/);
+});
+
+test('equipment detail pages list the cosmetic items that apply to them', async ({page}) => {
+  await page.goto('/data/items/excalibur.html?lang=en');
+  const hearts = page.locator('#effects h3', {hasText: 'Available cosmetic items'}).locator('xpath=following-sibling::ul[1]/li');
+  await expect(hearts).toHaveCount(5);
+  await expect(hearts.first()).toContainText('Lollipop');
+  await page.goto('/data/items/red-ring.html');
+  await expect(page.locator('#effects h3', {hasText: '可用外观道具'}).locator('xpath=following-sibling::ul[1]/li')).toHaveCount(22);
+  await page.goto('/data/items/deep-plating.html?lang=ja');
+  await expect(page.locator('#effects')).toContainText('The Forge での交換に必要なアイテム');
+  await expect(page.locator('#effects .cosmetic-links').last().locator('li')).toHaveCount(7);
+  await expect(page.locator('#effects .cosmetic-links').last()).toContainText('× 10');
+  await expect(page.locator('#effects')).not.toContainText('{|');
+});
+
+for (const width of [390, 1280]) {
+  test(`cosmetics overview is accessible and fits at ${width}px`, async ({page}) => {
+    await page.setViewportSize({width, height: 900});
+    for (const lang of ['zh', 'en', 'ja']) {
+      await page.goto(`/data/cosmetics.html?lang=${lang}`);
+      await expect(page.locator('main.catalog-shell')).toHaveAttribute('lang', lang === 'zh' ? 'zh-CN' : lang);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+      expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
+    }
+    await expect(page).toHaveTitle(/外観アイテム/);
+  });
+}
+
+test('monster detail requests carry the dataset version', async ({page}) => {
+  const requests = [];
+  page.on('request', r => { if (r.url().includes('/assets/data/monsters/')) requests.push(new URL(r.url())); });
+  await page.goto('/data/enemies.html');
+  await page.locator('a[href*="/data/enemies/"]').first().click();
+  await expect.poll(() => requests.length).toBe(1);
+  expect(requests[0].searchParams.get('v')).toMatch(/^[0-9a-f]{12}$/);
 });

@@ -1,8 +1,9 @@
 import { inject, Injectable, InjectionToken, makeStateKey, TransferState } from '@angular/core';
 import type { MonsterDetail } from './monster';
+import version from '../generated/monster-catalog/version.json';
 export const MONSTER_LOADER = new InjectionToken<(id:string)=>Promise<MonsterDetail>>('MONSTER_LOADER', {
   providedIn:'root', factory:() => async id => {
-    const response = await fetch(`/assets/data/monsters/${id}.json`);
+    const response = await fetch(`/assets/data/monsters/${id}.json?v=${version.details}`);
     if (!response.ok) throw new Error(`Monster request failed: ${response.status}`);
     return response.json();
   },

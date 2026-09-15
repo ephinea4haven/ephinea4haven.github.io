@@ -1,10 +1,11 @@
 import { inject, Injectable, InjectionToken, makeStateKey, TransferState } from '@angular/core';
 import { ItemDetail } from './catalog';
+import version from '../generated/item-catalog/version.json';
 
 export const ITEM_DETAIL_LOADER = new InjectionToken<(id: string) => Promise<ItemDetail>>('ITEM_DETAIL_LOADER', {
   providedIn: 'root',
   factory: () => async id => {
-    const response = await fetch(`/assets/data/items/${id}.json`);
+    const response = await fetch(`/assets/data/items/${id}.json?v=${version.details}`);
     if (!response.ok) throw new Error(`Item request failed: ${response.status}`);
     return response.json();
   },

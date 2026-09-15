@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { createHash } from 'node:crypto';
 import { clean, range, slug, typeOf, TYPES, magTrigger, isCommonWeapon } from './item_catalog_model.mjs';
 import { collectMagTriggers, magCellRules } from './item_catalog_mag.mjs';
 
@@ -38,7 +39,7 @@ function toolUses(title) {
     let m;
     if ((m = /^Makes (.+)$/.exec(value))) return [`可交给蒙塔古博士制成 ${display(m[1])}；需满足相关任务条件。`];
     if ((m = /^Combines with (.+) to (?:make|create) (.+)$/.exec(value))) return [`与 ${display(m[1])} 合成为 ${display(m[2])}。使用前还需满足对应的等级、职业与磨数条件。`];
-    if ((m = /^Gives certain weapons the appearance of (.+)$/.exec(value))) return [`为指定武器应用 ${display(m[1])} 的外观；适用型号见来源说明。`];
+    if ((m = /^Gives certain weapons the appearance of (.+)$/.exec(value))) return [`对适用武器使用后，外观变为 ${display(m[1])}，武器原有的参数不变。`];
     if ((m = /^Adds (\d+) (base|max) (\w+)$/.exec(value))) return [`使用后增加 ${m[1]} ${m[3]}${m[2] === 'max' ? '上限' : '基础值'}。`];
     if ((m = /^Adds (\d+) grind value to weapons$/.exec(value))) return [`增加当前装备武器 ${m[1]} 磨数。`];
     return [];
@@ -65,6 +66,99 @@ const records = [...snapshot.records, {
   excerpts: [], source: 'https://wiki.pioneer2.net/w/Techniques',
 }];
 const itemIds = new Map(records.map(r => [r.title, slug(r.title)]));
+const recordByTitle = new Map(records.map(r => [r.title, r]));
+const link = title => {
+  const id = itemIds.get(title);
+  if (!id) throw new Error(`Weapon heart references an uncatalogued item: ${title}`);
+  return { item: title, id };
+};
+// Cosmetic items change appearance only. Weapon heart compatibility comes from each heart page and
+// must agree with the Weapon hearts list page; ring paints and platings always target the Red Ring.
+const heartIndex = snapshot.indexes['Weapon hearts'];
+if (!heartIndex) throw new Error('Missing Weapon hearts index');
+const PHOTON_COLORS = { Blue: '蓝色', Yellow: '黄色', Green: '绿色', White: '白色' };
+const colorOf = value => {
+  if (!PHOTON_COLORS[value]) throw new Error(`Unknown Photon Filter color: ${value}`);
+  return PHOTON_COLORS[value];
+};
+// A paint's color is named exactly as in its authoritative item name, e.g. 漆黑色涂料 -> 漆黑色.
+const paintColor = title => {
+  const name = display(title);
+  if (!/^.+色涂料$/.test(name)) throw new Error(`Paint name does not state its color: ${title}: ${name}`);
+  return name.replace(/涂料$/, '');
+};
+const filterWeapons = ['Heaven Punisher', 'Mille Marteaux'];
+const toolRow = title => clean(snapshot.indexes.Tools.rows.find(r => r[1] === title)?.[2]);
+const cosmeticByTitle = new Map();
+for (const row of heartIndex.rows) {
+  const title = clean(row[1]);
+  const record = recordByTitle.get(title);
+  if (!record?.compatible) throw new Error(`Weapon heart without compatibility: ${title}`);
+  if ([...record.compatible].sort().join('|') !== [...row.compatible].sort().join('|')) throw new Error(`Weapon heart compatibility differs from the list page: ${title}`);
+  const skin = toolRow(title).replace(/^Gives certain weapons the appearance of /, '');
+  const filter = heartIndex.photonFilter.find(f => f.heart === title) || null;
+  cosmeticByTitle.set(title, {
+    kind: 'heart', item: link(title), targets: record.compatible.map(link), skin: link(skin), color: null,
+    photonFilter: filter ? { color: colorOf(filter.color), weapons: filter.weapons.map(link) } : null,
+    trade: [], shop: null, event: null, freeQuests: [],
+  });
+}
+for (const record of records.filter(r => r.cosmetic)) {
+  const kind = typeOf(record.fields.type) === 'Ring plating' ? 'plating' : 'paint';
+  const description = toolRow(record.title);
+  const skin = kind === 'plating' ? description.replace(/^Gives Red Ring the appearance of /, '') : null;
+  const reverts = /^Reverts any painted/.test(description);
+  const color = kind === 'paint' && !reverts ? paintColor(record.title) : null;
+  if (kind === 'plating' && skin === description) throw new Error(`Unrecognized plating: ${record.title}`);
+  if (kind === 'paint' && !reverts && !/^Turns Red Ring /.test(description)) throw new Error(`Unrecognized paint: ${record.title}`);
+  const { trade, shop, event, freeQuests } = record.cosmetic;
+  cosmeticByTitle.set(record.title, {
+    kind, item: link(record.title), targets: [link('Red Ring')], skin: skin ? link(skin) : null, color, reverts, photonFilter: null,
+    trade: trade.map(t => ({ ...link(t.item), quantity: t.quantity })),
+    shop: shop ? { quest: shop.quest, price: shop.price, currency: link(shop.currency) } : null,
+    event: event ? { event: event.event, via: link(event.via) } : null,
+    freeQuests,
+  });
+}
+const cosmeticsByTarget = new Map();
+for (const entry of cosmeticByTitle.values()) {
+  if (entry.reverts) continue;
+  for (const target of entry.targets) {
+    cosmeticsByTarget.set(target.item, [...(cosmeticsByTarget.get(target.item) || []), { item: entry.item, kind: entry.kind, skin: entry.skin, color: entry.color }]);
+  }
+}
+const EVENTS = { 'Christmas event': '圣诞活动' };
+function cosmeticRules(entry) {
+  const ring = display('Red Ring');
+  const redPaint = display('Red Paint');
+  if (entry.kind === 'heart') {
+    const rules = [
+      '先装备适用武器，再在道具栏使用本道具；适用武器见下方列表。',
+      `使用后武器磨数会被重置。武器名称后会加上 *，道具说明中显示“Skin: ${entry.skin.item}”。`,
+      `可以用 ${display('Neutralizer')} 将武器恢复为原本外观，但已使用的武器之心不会返还。`,
+    ];
+    const filtered = entry.targets.filter(w => filterWeapons.includes(w.item)).map(w => display(w.item));
+    if (filtered.length) rules.push(`${filtered.join(' / ')} 若同时带有外观和 ${display('Divine Filter')} 或 ${display('Lock-on Filter')}，第一次使用 ${display('Neutralizer')} 只移除滤镜效果，第二次才移除外观。`);
+    if (entry.photonFilter) rules.push(`${entry.photonFilter.weapons.map(w => display(w.item)).join(' / ')} 应用 ${display(entry.skin.item)} 外观后，可以使用 ${display('Photon Filter')} 改变颜色：初始为${entry.photonFilter.color}，每次使用消耗一个 ${display('Photon Filter')}，按固定顺序切换到下一种颜色。其他组合使用无效。`);
+    return rules;
+  }
+  if (entry.reverts) return [`对已染色或已更换外观的 ${ring}* 使用，恢复为原版 ${ring}。之前使用的涂料或镀层不会返还。`];
+  const common = `性能与普通 ${ring} 完全相同。可以用 ${redPaint} 恢复原版外观，但已使用的道具不会返还。`;
+  return entry.kind === 'paint'
+    ? [`装备 ${ring}（原版或已染色）后在道具栏使用，戒指颜色变为${entry.color}。`, `使用后名称后会加上 *。${common}`]
+    : [`装备 ${ring} 后在道具栏使用，外观变为 ${display(entry.skin.item)}。`, `使用后名称后会加上 *，道具说明中显示“Skin: ${entry.skin.item}”。${common}`];
+}
+function cosmeticAvailability(entry) {
+  if (!entry || entry.kind === 'heart') return null;
+  const sources = [];
+  if (entry.event) {
+    if (!EVENTS[entry.event.event]) throw new Error(`Untranslated cosmetic event: ${entry.item.item}: ${entry.event.event}`);
+    sources.push(`${EVENTS[entry.event.event]}期间开启 ${display(entry.event.via.item)} 时有较低几率获得。`);
+  }
+  if (entry.shop) sources.push(`在任务 ${entry.shop.quest} 中用 ${entry.shop.price} 个 ${display(entry.shop.currency.item)} 购买。`);
+  if (entry.trade.length) sources.push('只能在任务 The Forge 中向 Montague 交换获得，所需道具见下方列表。');
+  return sources.join('') || null;
+}
 const details = {};
 const index = [];
 const unresolved = [];
@@ -93,7 +187,8 @@ for (const record of records) {
   if (record.attackSpeed) stats.unshift({label: '攻击速度', value: `+${record.attackSpeed}%`});
   for (const periodic of record.periodic || []) stats.push({label: `${periodic.stat} ${periodic.amount < 0 ? '消耗' : '回复'}`, value: `${Math.abs(periodic.amount)} / ${periodic.seconds} 秒${periodic.moving ? '（移动时）' : ''}`});
   if (record.techniqueLevels) stats.unshift({label: '魔法等级', value: `+${record.techniqueLevels}`});
-  const effects = [...(notes[title]?.effects || []), ...toolUses(title), ...magCellRules(magCells[title], display, magData.meta.idGroups)];
+  const cosmetic = cosmeticByTitle.get(title) || null;
+  const effects = [...(notes[title]?.effects || []), ...toolUses(title), ...(cosmetic ? cosmeticRules(cosmetic) : []), ...magCellRules(magCells[title], display, magData.meta.idGroups)];
   const addStat = (label, value) => { if (value !== undefined && value !== '') stats.push({ label, value: String(value) }); };
   const atp = range(f.ATP);
   const grind = /^\d+$/.test(f.grind || '') ? +f.grind : null;
@@ -141,18 +236,21 @@ for (const record of records) {
   const sets = record.tables.filter(t => t.template === 'SetEffectRow').map(t => ({ item: clean(t[2]), id: itemIds.get(clean(t[2])) || null, effect: clean(t.effect || '', true) }));
   const skins = record.tables.filter(t => t.template === 'ReskinsRow').map(t => ({ item: clean(t[1]), id: itemIds.get(clean(t[1])) || null, code: clean(t[2]) }));
   const imageName = clean(f.image).replaceAll('_', ' ');
-  const image = images[imageName] || images[imageName[0]?.toUpperCase() + imageName.slice(1)];
+  // Paints and platings use the Wiki screenshot of the ring after use; Red Paint restores the original Red Ring.
+  const appearanceName = record.cosmetic ? (record.cosmetic.appearance || '') : '';
+  const image = images[imageName] || images[imageName[0]?.toUpperCase() + imageName.slice(1)]
+    || images[appearanceName] || (cosmetic?.reverts ? images[clean(recordByTitle.get('Red Ring').fields.image).replaceAll('_', ' ')] : undefined);
   const source = record.source || `https://wiki.pioneer2.net/w/${encodeURIComponent(title.replaceAll(' ', '_'))}`;
   const acquisition = record.acquisition.map(a => acquisitionLabels[a.toLowerCase()] || a);
   if (commonWeapon) acquisition.push('武器商店（随角色等级刷新）');
-  const availability = notes[title]?.availability || (status === 'obsolete' ? '已停用的历史道具，现已无法获取或使用。' : status === 'unavailable' ? '当前无法在 Ephinea 获取。' : acquisition.length ? `来源页面列出的获取途径：${[...new Set(acquisition)].join('、')}。` : '具体获取条件请查阅来源页面与掉落表。');
+  const availability = notes[title]?.availability || cosmeticAvailability(cosmetic) || (status === 'obsolete' ? '已停用的历史道具，现已无法获取或使用。' : status === 'unavailable' ? '当前无法在 Ephinea 获取。' : acquisition.length ? `来源页面列出的获取途径：${[...new Set(acquisition)].join('、')}。` : '具体获取条件请查阅来源页面与掉落表。');
   const summary = notes[title]?.summary || `${subtype}${isEquipment ? '装备' : ''}。${status === 'obsolete' ? '历史活动条目。' : status === 'unavailable' ? '当前无法获取。' : ''}`;
   const drops = record.drops.map(d => ({ kind: d.kind, sectionId: clean(d.id) || '来源未标注', difficulty: { N: 'Normal', H: 'Hard', VH: 'Very Hard', U: 'Ultimate' }[d.diff] || clean(d.diff), location: clean(d.location), area: clean(d.area), rate: clean(d.rate) || '普通掉落' }));
   const feedId = record.tables.find(t => t.template === 'MagFeedTable')?.[1];
   const feedTable = feedId === undefined ? null : sandbox.window.MAG_SIM.feedTables[feedId];
   if (feedId !== undefined && !feedTable) throw new Error(`Unknown feeding table: ${title}: ${feedId}`);
   const feeding = feedTable ? Object.entries(feedTable).map(([item, values]) => ({ item, values })) : [];
-  const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Set(effects)], boosts, sets, skins, feeding, drops, availability, source, revision: record.revision, checkedAt: snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
+  const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Set(effects)], boosts, sets, skins, cosmetic, cosmetics: cosmeticsByTarget.get(title) || [], feeding, drops, availability, source, revision: record.revision, checkedAt: record.checkedAt || snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
   details[id] = detail;
   // Compact tuples keep the searchable index small; detailed data is loaded per item.
@@ -165,7 +263,38 @@ fs.mkdirSync('assets/data/items', { recursive: true });
 fs.writeFileSync('src/app/generated/item-catalog/index.json', JSON.stringify(index));
 fs.writeFileSync('src/app/generated/item-catalog/details.server.json', JSON.stringify(details));
 fs.writeFileSync('src/app/generated/item-catalog/types.json', JSON.stringify(TYPES));
-for (const [id, detail] of Object.entries(details)) fs.writeFileSync(`assets/data/items/${id}.json`, JSON.stringify(detail));
+// The overview groups hearts like the Wiki list: by the shared type of their compatible weapons.
+// Only non-empty facts are emitted; the overview ships inside its route bundle.
+const compact = row => Object.fromEntries(Object.entries(row).filter(([, value]) => value !== null && value !== false && !(Array.isArray(value) && !value.length)));
+const overviewRow = entry => compact({
+  item: entry.item.id, skin: entry.skin?.id ?? null, color: entry.color, reverts: !!entry.reverts,
+  targets: entry.kind === 'heart' ? entry.targets.map(t => t.id) : null,
+  photonFilter: entry.photonFilter ? { color: entry.photonFilter.color, weapons: entry.photonFilter.weapons.map(w => w.id) } : null,
+  trade: entry.trade.map(t => [t.id, t.quantity]),
+  shop: entry.shop ? { quest: entry.shop.quest, price: entry.shop.price, currency: entry.shop.currency.id } : null,
+  event: entry.event ? { event: entry.event.event, via: entry.event.via.id } : null,
+  freeQuests: entry.freeQuests,
+  drops: details[entry.item.id].drops.map(d => [d.sectionId, d.difficulty, d.location, d.rate, ...(d.kind === 'box' ? ['box'] : [])]),
+});
+const entries = [...cosmeticByTitle.values()];
+const cosmeticsOverview = {
+  sources: { weaponHearts: heartIndex.revision, redRing: recordByTitle.get('Red Ring').revision },
+  hearts: entries.filter(e => e.kind === 'heart').map(entry => {
+    const types = [...new Set(entry.targets.map(w => details[w.id].type))];
+    return { ...overviewRow(entry), group: types.length === 1 ? types[0] : 'Multiple' };
+  }),
+  paints: entries.filter(e => e.kind === 'paint').sort((a, b) => Number(!!b.reverts) - Number(!!a.reverts) || a.item.item.localeCompare(b.item.item, 'en')).map(overviewRow),
+  platings: entries.filter(e => e.kind === 'plating').sort((a, b) => a.item.item.localeCompare(b.item.item, 'en')).map(overviewRow),
+};
+fs.writeFileSync('src/app/generated/item-catalog/cosmetics.json', JSON.stringify(cosmeticsOverview));
+const detailHash = createHash('sha256');
+for (const [id, detail] of Object.entries(details).sort(([a], [b]) => a.localeCompare(b))) {
+  const json = JSON.stringify(detail);
+  fs.writeFileSync(`assets/data/items/${id}.json`, json);
+  detailHash.update(`${id}\n${json}\n`);
+}
+// The bundled version changes whenever any detail file changes, so browsers never reuse stale detail JSON.
+fs.writeFileSync('src/app/generated/item-catalog/version.json', JSON.stringify({ details: detailHash.digest('hex').slice(0, 12) }));
 const report = { checkedAt: snapshot.checkedAt, items: index.length, categories: Object.fromEntries(['weapon','armor','shield','unit','mag','tool'].map(c => [c,Object.values(details).filter(d=>d.category===c).length])), withImages: index.filter(x => x[7]).length, unresolvedNames: unresolved, unknownCodes };
 fs.writeFileSync('content/item-catalog/coverage.json', JSON.stringify(report, null, 2) + '\n');
 console.log(`Generated ${index.length} item pages; ${report.withImages} with images. Index: ${fs.statSync('src/app/generated/item-catalog/index.json').size} bytes.`);

@@ -410,5 +410,16 @@
     "effects": [
       "为铠甲增加一个插件槽，最多四个槽。"
     ]
+  },
+  "Neutralizer": {
+    "summary": "Ephinea 限定道具，用于移除武器之心外观及部分武器的特殊攻击滤镜。",
+    "effects": [
+      "对已应用武器之心外观的武器使用，恢复为原本外观；已使用的武器之心不会返还。",
+      "也可以移除圣枪「天罚」或米尔·马尔托上的神罚滤镜、锁定滤镜效果。若武器同时带有外观和滤镜，第一次使用只移除滤镜效果，第二次才移除外观。"
+    ],
+    "availability": "可在任务 The Forge（寄存处附近的 RAmar）与 Seasons Shop（Guards Shop NPC）免费领取，数量不限。"
+  },
+  "Red Paint": {
+    "availability": "可在任务 The Forge（寄存处附近的 RAmar）与 Seasons Shop（Guards Shop NPC）免费领取，数量不限。"
   }
 }

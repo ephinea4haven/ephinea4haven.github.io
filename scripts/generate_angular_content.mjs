@@ -1,4 +1,6 @@
 import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse, serialize } from 'parse5';
@@ -94,6 +96,31 @@ function makeRelativeUrlsRootRelative(body, relative) {
           || /^[a-z][a-z0-9+.-]*:/i.test(attribute.value)) continue;
       const resolved = new URL(attribute.value, pageUrl);
       attribute.value = `${resolved.pathname}${resolved.search}${resolved.hash}`;
+    }
+  });
+}
+
+// A local asset URL ending in a bare `?v` is stamped with its content hash, so cache busting never needs a manual number.
+const assetVersions = new Map();
+function stampAssetVersions(body, relative) {
+  visit(body, (node) => {
+    for (const attribute of node.attrs || []) {
+      if (!['href', 'src', 'poster'].includes(attribute.name) || !attribute.value.startsWith('/')) continue;
+      if (/\?(?:[^#]*&)?v=/.test(attribute.value)) {
+        throw new Error(`${relative}: replace the manual version in ${attribute.value} with a bare ?v`);
+      }
+      const match = /^(\/[^?#]+)\?v(#.*)?$/.exec(attribute.value);
+      if (!match) continue;
+      if (!assetVersions.has(match[1])) {
+        let bytes;
+        try {
+          bytes = readFileSync(path.join(root, decodeURIComponent(match[1]).slice(1)));
+        } catch {
+          throw new Error(`${relative}: versioned asset does not exist: ${match[1]}`);
+        }
+        assetVersions.set(match[1], createHash('sha256').update(bytes).digest('hex').slice(0, 12));
+      }
+      attribute.value = `${match[1]}?v=${assetVersions.get(match[1])}${match[2] || ''}`;
     }
   });
 }
@@ -568,6 +595,7 @@ function pageDetails(file, source, relative) {
 
   removeScripts(body);
   makeRelativeUrlsRootRelative(body, relative);
+  stampAssetVersions(body, relative);
   const template = serialize(body).replaceAll(
     /\sonerror="this\.remove\(\)"/gi,
     ' (error)="$any($event.target).remove()"',
@@ -597,7 +625,7 @@ const candidates = [
 const pages = [];
 for (const file of candidates) {
   const relative = path.relative(root, file).split(path.sep).join('/');
-  if (explicitPages.has(relative) || relative === 'data/items.html' || relative.startsWith('data/items/')) continue;
+  if (explicitPages.has(relative) || ['data/items.html', 'data/cosmetics.html'].includes(relative) || relative.startsWith('data/items/')) continue;
   const source = await applyBuildTimeContent(relative, await readFile(file, 'utf8'));
   const details = pageDetails(file, source, relative);
   if (!details) continue;

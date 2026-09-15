@@ -116,6 +116,15 @@ export const MESSAGES: Record<string, readonly [string, string]> = {
   '来源未标注': ['Not specified', '出典に記載なし'], '初始形态': ['Initial form', '初期形態'], '消除': ['Removed', '無効化'],
   '全部 TP': ['Full TP', 'TP 全回復'], '全部 HP': ['Full HP', 'HP 全回復'], '加速 · 依动作而定': ['Faster · varies by animation', '高速化 · モーションによる'],
   '普通掉落': ['Common drop', '通常ドロップ'],
+  '外观道具': ['Cosmetic Items', '外観アイテム'], '外观道具分类': ['Cosmetic item types', '外観アイテムの種類'], '武器之心': ['Weapon hearts', '武器の心'],
+  'Ephinea 限定道具': ['Ephinea-exclusive items', 'Ephinea 限定アイテム'],
+  '外观': ['Skin', '外観'], '颜色': ['Color', '色'], '效果': ['Effect', '効果'], '恢复原版外观': ['Restores the original look', '元の見た目に戻す'],
+  '适用武器': ['Compatible weapons', '対応武器'], '适用装备': ['Compatible equipment', '対応装備'], '光子滤镜初始颜色': ['Photon Filter starting color', 'フォトンフィルターの初期色'],
+  'The Forge 交换所需道具': ['Items to trade in The Forge', 'The Forge での交換に必要なアイテム'], '免费领取': ['Free', '無料で入手'], '圣诞活动': ['Christmas event', 'クリスマスイベント'],
+  '可用外观道具': ['Available cosmetic items', '使える外観アイテム'], '以下道具只改变这件装备的外观，性能不变。': ['These items only change how this equipment looks, not how it performs.', '以下のアイテムはこの装備の見た目だけを変え、性能は変えません。'],
+  '查看全部外观道具 →': ['View all cosmetic items →', '外観アイテムの一覧を見る →'], '多种武器': ['Multiple weapon types', '複数の武器種'],
+  '蓝色': ['Blue', '青'], '绿色': ['Green', '緑'], '黄色': ['Yellow', '黄'], '紫色': ['Purple', '紫'], '白色': ['White', '白'], '黑色': ['Black', '黒'],
+  '黄绿色': ['Chartreuse', '黄緑'], '青色': ['Cyan', 'シアン'], '漆黑色': ['Onyx', '漆黒'], '橙色': ['Orange', 'オレンジ'], '玫瑰色': ['Rose', 'ローズ'], '群青色': ['Ultramarine', '群青'], '紫罗兰色': ['Violet', 'バイオレット'],
 };
 
 export function catalogText(text: string, language: CatalogLanguage): string {
