@@ -54,6 +54,14 @@
 .mechanics-pb-card h4 small { display: block; color: var(--text-secondary); font-size: 14px; font-weight: 400; }
 .mechanics-pb-card code { overflow-wrap: anywhere; }
 .mechanics-guide .mechanics-pb-card p:last-child { margin-bottom: 0; }
+.mechanics-parameter-table { min-width: 520px; }
+.mechanics-parameter-table th[scope="row"] { width: 18%; font-size: 14px; text-align: left; }
+.mechanics-parameter-table td:last-child { width: 26%; }
+.mechanics-guide .mechanics-pb-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; list-style: none; margin: 0; }
+.mechanics-pb-chain li { position: relative; display: grid; justify-items: center; gap: 8px; padding: 16px 8px; border-radius: 8px; background: var(--bg-secondary); }
+.mechanics-pb-chain li > span { color: var(--text-secondary); font-size: 14px; }
+.mechanics-pb-chain li + li::before { content: '→'; position: absolute; left: -20px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); }
+.mechanics-pb-chain + .mechanics-figure-note { padding-bottom: 24px; }
 
 .mechanics-flow, .mechanics-threshold {
     margin: 24px 0 32px;
@@ -184,6 +192,9 @@
 .mechanics-table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 @media (max-width: 760px) {
+    .mechanics-guide .mechanics-pb-chain { grid-template-columns: minmax(0, 1fr); }
+    .mechanics-pb-chain li { display: flex; justify-content: center; gap: 16px; }
+    .mechanics-pb-chain li + li::before { content: '↓'; top: -24px; left: 50%; transform: translateX(-50%); }
     .mechanics-pb-grid { grid-template-columns: minmax(0, 1fr); }
     .mechanics-pb-card { padding: 16px; }
     .mechanics-figure { padding: 16px; }

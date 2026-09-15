@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-09-14
+> Last updated: 2026-09-15
 
 ## System shape
 
@@ -83,6 +83,13 @@ replacing the response text.
 
 
 ## Content and application routes
+
+PB mechanics have one authored home: `tools/mechanics.html#photon-blast`.
+Keep damage, healing, support levels, parameter definitions, chain/donation rules,
+worked examples and PB illustrations together there. The Mag guide and acronym
+reference link to that section; they do not maintain separate PB formulas.
+Reuse the six existing icons in `assets/img/mag/pb/`. Project documents record
+ownership, sources and completion status, rather than duplicating the guide.
 
 Content routes preserve the existing authored HTML as build-time content input.
 The generator extracts body markup, metadata and route-specific styles, removes
