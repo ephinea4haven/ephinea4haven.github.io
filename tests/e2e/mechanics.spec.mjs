@@ -45,7 +45,7 @@ test('mechanics diagrams remain readable and keyboard accessible', async ({ page
   }
 
   for (const [id, name] of [
-    ['pb-damage', '攻击型伤害'], ['pb-chain', '连锁与捐赠'],
+    ['pb-parameters', '参数速查'], ['pb-damage', '攻击型伤害'], ['pb-chain', '连锁与捐赠'],
     ['pb-support', '治疗与辅助'], ['pb-gain', 'PB 槽积累'],
   ]) {
     const link = page.getByRole('link', { name, exact: true });
@@ -54,7 +54,7 @@ test('mechanics diagrams remain readable and keyboard accessible', async ({ page
     expect(new URL(page.url()).hash).toBe('#' + id);
     await expect(page.locator('#' + id)).toBeInViewport();
   }
-  for (const icon of await page.locator('.mechanics-pb-card img').all()) {
+  for (const icon of await page.locator('.mechanics-pb-card img, .mechanics-pb-chain img').all()) {
     await icon.scrollIntoViewIfNeeded();
     await expect.poll(() => icon.evaluate((image) => image.complete && image.naturalWidth > 0)).toBe(true);
   }

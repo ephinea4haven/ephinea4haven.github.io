@@ -475,7 +475,26 @@
 
 <h2 id="photon-blast">G: 玛古光子爆裂（PB）伤害与积累</h2>
 <p>光子爆裂有四种攻击型 PB，以及治疗型 Leilla、辅助型 Mylla &amp; Youlla。以下依据 <a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">Ephinea Wiki 的 PB 威力公式</a>整理；PB 伤害均为<strong>光属性伤害</strong>，由目标 ELT（光抗性）削减。</p>
-<p class="mechanics-key-point"><a href="#pb-damage">攻击型伤害</a> · <a href="#pb-chain">连锁与捐赠</a> · <a href="#pb-support">治疗与辅助</a> · <a href="#pb-gain">PB 槽积累</a></p>
+<p class="mechanics-key-point"><a href="#pb-parameters">参数速查</a> · <a href="#pb-damage">攻击型伤害</a> · <a href="#pb-chain">连锁与捐赠</a> · <a href="#pb-support">治疗与辅助</a> · <a href="#pb-gain">PB 槽积累</a></p>
+
+<h3 id="pb-parameters">参数速查：从哪里取值，填什么数</h3>
+<p>按当前客户端观察到的<strong>连锁首发角色</strong>取角色属性和玛古参数；单人释放时取自己。先准备下表中的输入值，再选择 PB 公式。</p>
+<div class="mechanics-table-scroll" role="region" aria-label="PB 参数速查表" tabindex="0">
+<table class="mechanics-parameter-table">
+<thead><tr><th scope="col">参数</th><th scope="col">含义与取值来源</th><th scope="col">填写示例</th></tr></thead>
+<tbody>
+<tr><th scope="row">同步率<br>Synchro</th><td>首发角色的玛古同步率，使用百分数本身。</td><td>120% → <code>120</code><br>不是 1.2</td></tr>
+<tr><th scope="row">IQ</th><td>首发角色的玛古智力，直接读取 IQ；不是玛古等级。</td><td>IQ 200 → <code>200</code></td></tr>
+<tr><th scope="row">ATP<br>攻击力</th><td>首发角色的基础 ATP 经 Shifta 加成，再加装备 ATP。武器取 ATP 下限，不含职业随机方差，不直接使用 A 节随机生成的 ATPeff。</td><td>按此口径得到 1,000 → <code>1000</code></td></tr>
+<tr><th scope="row">EVP<br>回避力</th><td>首发角色的 EVP。海豚 Estlla 用它计算基础威力。</td><td>EVP 800 → <code>800</code></td></tr>
+<tr><th scope="row">MST<br>精神力</th><td>首发角色的 MST；攻击型 PB 在连锁／捐赠修正之后加上此值。</td><td>MST 500 → <code>500</code></td></tr>
+<tr><th scope="row">Q<br>PB 量</th><td>首发侧观察到的 PB 量，通常为 100 加收到的捐赠；不累加每位连锁者各自的 100 PB。</td><td>无捐赠 → <code>100</code><br>收到 30 → <code>130</code></td></tr>
+<tr><th scope="row">N<br>连锁 PB 数</th><td>有效连锁中观察到的 PB 数。捐赠者不增加 N。</td><td>单发 → <code>1</code><br>四连 → <code>4</code></td></tr>
+<tr><th scope="row">ELT<br>光抗性</th><td>目标在当前难度、模式下的光抗性。公式会自行除以 100。</td><td>20% → <code>20</code><br>不是 0.2</td></tr>
+</tbody>
+</table>
+</div>
+<p class="mechanics-illustration-note"><strong>公式中的中间结果：</strong>B = 基础威力；S = 攻击型 PB 修正后威力；R = Leilla 经连锁／捐赠修正后的恢复基础值。三者均按公式计算，不从角色菜单读取。</p>
 
 <h3 id="pb-damage">攻击型 PB：先算基础威力，再算伤害</h3>
 <p><code>trunc(x)</code> 表示舍去小数。下面每行公式算完后分别截断，再把结果代入下一行；不能只在最终伤害处截断。</p>
@@ -504,13 +523,7 @@
 <p class="mechanics-illustration-note">B 为基础威力。Pilla 当前使用与 Golla 相同的 ATP 公式；Wiki 另外列出的 ATA 公式是未使用的路径，不用于这里的计算。</p>
 <p><code>S = trunc(B × Q × N × 0.01 + MST)</code></p>
 <p><code>伤害 = trunc((S ÷ 5) × ((100 − 目标 ELT) ÷ 100))</code></p>
-<ul>
-<li><strong>属性取谁的：</strong>按当前客户端观察到的连锁首发角色计算，同步率与 IQ 也取该角色的玛古；单人释放时就是自己。同步率 120% 在公式中填 <code>120</code>，不是 <code>1.2</code>。</li>
-<li><strong>ATP：</strong>基础 ATP 经 Shifta 加成后，加上装备提供的 ATP；武器使用 ATP 下限，不含职业随机方差。不要直接拿 A 节每次随机生成的 ATPeff 代入。</li>
-<li><strong>EVP、MST：</strong>取首发角色对应属性。S 是连锁／捐赠修正后再加 MST 的威力值。</li>
-<li><strong>Q：</strong>首发侧观察到的 PB 量，通常为 100，加上收到的捐赠；<strong>N：</strong>连锁中观察到的 PB 数，单发为 1。Q 不把每位连锁者的 100 PB 再累加一遍。</li>
-<li><strong>目标 ELT：</strong>使用当前难度与模式下的光抗性，40 代表 40%。PB 使用本节公式，不套 D 节的职业／装备魔法增幅。</li>
-</ul>
+<p>PB 使用本节公式，不套 D 节的职业／装备魔法增幅。参数取值见上方速查表。</p>
 
 <figure class="mechanics-figure" aria-labelledby="pb-damage-caption">
   <figcaption id="pb-damage-caption"><span class="mechanics-eyebrow">神像 Pilla · 单发算例</span><strong>从玛古与角色属性，算到 1,952 点伤害</strong><span>同步率 120%，IQ 200，按上述口径取 ATP 1,000、MST 500；Q = 100、N = 1，目标 ELT = 20。</span></figcaption>
@@ -530,6 +543,13 @@
 </ul>
 <figure class="mechanics-figure" aria-labelledby="pb-chain-caption">
   <figcaption id="pb-chain-caption"><span class="mechanics-eyebrow">相同属性与目标 · Pilla 伤害对比</span><strong>连锁放大基础威力，MST 在之后相加</strong><span>沿用上图属性与 ELT 20，比较其中一次 Pilla 对同一目标的伤害；不是整条连锁的伤害总和。</span></figcaption>
+  <ol class="mechanics-pb-chain" aria-label="四人有效 PB 连锁示例">
+    <li><span>1 · 首发</span><img src="/assets/img/mag/pb/Estlla.png" width="50" height="43" alt="" loading="lazy"><strong>海豚</strong></li>
+    <li><span>2 · 加入</span><img src="/assets/img/mag/pb/Pilla.png" width="50" height="43" alt="" loading="lazy"><strong>神像</strong></li>
+    <li><span>3 · 加入</span><img src="/assets/img/mag/pb/Leilla.png" width="50" height="43" alt="" loading="lazy"><strong>女神</strong></li>
+    <li><span>4 · 加入</span><img src="/assets/img/mag/pb/Mylla_Youlla.png" width="50" height="43" alt="" loading="lazy"><strong>双子</strong></li>
+  </ol>
+  <p class="mechanics-figure-note">上图为无捐赠的四连：Q = 100、N = 4。四次 PB 都取首发者的角色与玛古参数；此处首发者的属性与上方单发算例相同。</p>
   <div class="mechanics-chart-axis" aria-hidden="true"><span>0 伤害</span><span>7,568 伤害</span></div>
   <div class="mechanics-chart-label"><span>单发 · Q 100 / N 1</span><strong>1,952</strong></div>
   <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:25.792812%"></span></div>

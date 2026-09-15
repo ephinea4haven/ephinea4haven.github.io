@@ -11,6 +11,9 @@
 
 ## Maintenance
 
+- PB 机制正文仅维护在 [游戏机制 G 节](../tools/mechanics.html#photon-blast)：
+  参数、伤害／恢复／辅助公式、连锁与捐赠、图标和算例集中展示。
+  玛古页面、缩写表及项目文档只提供相关入口，不另存一套公式或攻略。
 - Keep Angular and build tooling on stable, non-prerelease releases.
 - Run the complete release gate for dependency or upstream-data changes.
 - Preserve historical public URLs and the static GitHub Pages deployment model.
