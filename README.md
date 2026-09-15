@@ -117,7 +117,7 @@ Engineering principles and repository workflow are defined in
 - [Architecture](docs/ARCHITECTURE.md)
 - [Angular migration record](docs/ANGULAR_MIGRATION.md)
 - [Item catalog](docs/ITEM_CATALOG.md) and [monster catalog](docs/MONSTER_CATALOG.md)
-- [Mechanics visual evidence](docs/MECHANICS_VISUAL_EVIDENCE.md)
+- [Mechanics guide illustrations and review record](docs/MECHANICS_VISUAL_EVIDENCE.md)
 - [Combo calculator synchronization](docs/SOP_COMBO_CALCULATOR_SYNC.md)
 - [RBR data workflow](scripts/RBR_DATA.md)
 - [Roadmap](docs/TODO.md)

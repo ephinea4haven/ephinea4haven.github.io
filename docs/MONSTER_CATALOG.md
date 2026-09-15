@@ -1,32 +1,96 @@
-# 怪物图鉴
+# Monster Catalog
 
-入口 `/data/enemies.html`，详情 `/data/enemies/{id}.html`。原 `/data/monsters.html` 保留为周回指南，两者互相链接。
+The catalog lives at `/data/enemies.html`, with detail pages at
+`/data/enemies/{id}.html`. The original `/data/monsters.html` remains the farming
+guide, and the two pages link to each other.
 
-## 收录与使用
+## Coverage and use
 
-2026-09-14 快照包含 160 个条目，覆盖 EP1、EP2、EP4；同种怪物在不同章节、区域和首领阶段分别记录，Normal 至 Very Hard 与 Ultimate 外观在同一条目切换。158 个条目有属性，共 1,262 组难度／模式记录；Bulk、Death Gunner 另从掉落清单补入，没有借用母体属性。Dark Falz 第三阶段没有 Normal 属性，显示未收录而不是 0。
+The 2026-09-14 snapshot contains 160 entries across EP1, EP2 and EP4. A monster is
+recorded separately for each episode, area and boss phase, and its Normal through
+Very Hard and Ultimate appearances switch within one entry. 158 entries have
+stats, for 1,262 difficulty and mode records in total. Bulk and Death Gunner were
+added from the drop list without borrowing their parent's stats. Dark Falz's third
+phase has no Normal stats and shows as uncatalogued rather than zero.
 
-支持中／英／日名称搜索、章节／区域／类型筛选、HP 排序、24 条分页、四难度和多人／单人模式切换。查询保存在 URL，返回列表保留条件。界面与名称支持中英日，沿用道具图鉴的语言偏好；详细机制中文整理和英文事实表分别标明原文语言。未核实译名保留英文标识。
+The catalog supports Chinese, English and Japanese name search, episode, area and
+type filters, HP sorting, 24-entry pages, and switching between four difficulties
+and multiplayer or single-player mode. The query is kept in the URL, and returning
+to the list restores the conditions. The interface and names are available in
+Chinese, English and Japanese and share the item catalog's language preference.
+Chinese mechanics summaries and English fact tables are each labeled with their
+source language. Unverified translations keep the English identifier.
 
-详情包括属性、行为与机制、条件伤害表、十色稀有掉落和来源。141 个条目有中文机制说明，109 个条目有机制表；共整理 81 个来源页面的说明、98 个页面中的 458 张事实表。没有说明的条目明确提示未收录，不据此推断其没有特殊攻击。表格空白或 `???` 不转换为 0。
+Detail pages include stats, behavior and mechanics, conditional damage tables,
+ten-Section-ID rare drops and sources. 141 entries have Chinese mechanics notes and
+109 have mechanics tables, drawn from notes on 81 source pages and 458 fact tables
+on 98 pages. Entries without notes say so explicitly; this is never taken to mean
+the monster has no special attacks. Blank or `???` table cells are never converted
+to zero.
 
-157 个普通外观、149 个 Ultimate 外观已有图片。196 条 Wiki 图片元数据记录原始 URL、来源页、尺寸和 SHA-1；相同字节可共用本地 PNG。同种 EP1／EP2 外观可以复用图片，未收录外观显示占位；不是 KT 图片。
+157 normal and 149 Ultimate appearances have images. 196 Wiki image metadata
+records store the original URL, source page, dimensions and SHA-1, and identical
+bytes may share a local PNG. EP1 and EP2 appearances of the same monster may reuse
+an image, and uncatalogued appearances show a placeholder. None of these are KT
+images.
 
-## 数据来源与边界
+## Data sources and limits
 
-- 属性主源为 Ephinea Wiki `Template:FullEnemyTable` 及其引用模板。`wiki.json` 保存 127 份来源修订和数值事实，不保存完整文章。天幻 [EP1](http://pso.ffsky.cn/ep1m1.htm)、[EP2](http://pso.ffsky.cn/ep2m1.htm)、[EP4](http://pso.ffsky.cn/ep4m1.htm) 用作交叉参考；不同版本数值不能混合覆盖 Ephinea。
-- `mechanics.json` 保存机制事实表、章节锚点、难度／模式 tab 上下文和来源修订；`notes.json` 保存经来源上下文核对的中文整理。提取器展开行列合并、保留单元格短注，排除历史、策略清单和嵌入的无关总表。
-- 固伤必须连同条件阅读，例如 Chaos Bringer 的 TP 吸取强化、Gibbles 起跳物理判定与后续固伤、Vol Opt 囚笼、Olga Flow 距离与部位叠加、Epsilon 属性护罩及 Ill Gill 即死。魔法基础伤害、抗性折减、物理倍率和固定 HP 扣除不合并成一个“固伤”数值。
-- Wiki 的 `Normal` 既可能指难度，也可能指多人模式；生成器根据同组 tab 区分，前端显示明确的模式名。按来源提供的 tab 与已核对正文条件筛选；表中另列的难度、区域与说明条件继续保留，不能把无 tab 的整表解释成当前模式专属。
-- 表格保留来源页名称和完整标题层级，包括 Boss 形态／阶段。只有正文提供的难度限制记录在 `mechanic-conditions.json`，按原修订和章节锚点绑定；更新来源修订后必须重新核对，否则构建失败。当前六类仅 Ultimate 使用的 Megid 表不会出现在较低难度下；Del Lily 的全难度 Megid 不套用这一限制。
-- **稀有掉落直接读取上游 `droptable/bb/data/en.js`**。路径由 `DROPTABLE_I18N_AUTHORITY` 所在目录确定，默认 `../droptable/`。构建时解析上游 JSON 数据段，不执行脚本，不在页面维护概率或十色映射副本。CI 已固定 `warmonipa/dropcharts` 提交 `8fbbde4fe3a65819067f6037da7a8d6562e8956a`；更新上游后应同步更新该固定版本。
-- 怪物按章节和已核实英文别名关联，覆盖上游全部四难度怪物掉落行。Section ID 名称、颜色、顺序、单格多个物品和概率均来自上游。概率为包含 DAR 的基础每次击杀 DR，不重复相乘，不包含活动／队伍加成。DAR 缺失明确显示来源未填写。
-- 首领阶段／部位共用首领掉落时显示击破奖励提示；21 个条目未关联独立掉落行，不能因此断言游戏中没有任何关联奖励。
-- 掉落道具中文、日文来自 `i18n_names.json`，链接复用道具图鉴英文身份。怪物名称也通过 `npm run sync:i18n` 从同一权威的 `monsters` 生成 `names.json`。日文缺项可用相同 Wiki 怪物模板名称补充；模板重复且冲突的名称不采用。
+- Stats come primarily from the Ephinea Wiki `Template:FullEnemyTable` and the
+  templates it references. `wiki.json` stores 127 source revisions and numeric
+  facts, not full articles. Tianhuan
+  [EP1](http://pso.ffsky.cn/ep1m1.htm), [EP2](http://pso.ffsky.cn/ep2m1.htm) and
+  [EP4](http://pso.ffsky.cn/ep4m1.htm) serve as cross-references; values from
+  different versions never overwrite Ephinea's.
+- `mechanics.json` stores mechanics fact tables, section anchors, difficulty and
+  mode tab context, and source revisions. `notes.json` stores Chinese summaries
+  verified against the source context. The extractor expands merged rows and
+  columns, keeps short cell notes, and excludes history, strategy lists and
+  unrelated embedded master tables.
+- Fixed damage must be read with its conditions, for example Chaos Bringer's TP
+  drain boost, Gibbles' jump physical hit and follow-up fixed damage, Vol Opt's
+  cage, Olga Flow's distance and body-part stacking, Epsilon's element shield and
+  Ill Gill's instant death. Technique base damage, resistance reduction, physical
+  multipliers and fixed HP loss are never merged into one "fixed damage" number.
+- The Wiki's `Normal` can mean either the difficulty or multiplayer mode. The
+  generator tells them apart from the surrounding tab group, and the front end
+  shows an explicit mode name. Filtering follows the tabs provided by the source
+  and verified body-text conditions. Difficulty, area and note conditions listed
+  separately in a table are kept, and a table without tabs is never treated as
+  specific to the current mode.
+- Tables keep the source page name and the full heading hierarchy, including boss
+  forms and phases. Difficulty restrictions stated only in body text are recorded
+  in `mechanic-conditions.json`, bound to the original revision and section
+  anchor. After a source revision changes, they must be re-verified or the build
+  fails. The six Megid tables used only on Ultimate currently do not appear on
+  lower difficulties; Del Lily's all-difficulty Megid is not given that
+  restriction.
+- **Rare drops are read directly from upstream `droptable/bb/data/en.js`.** The
+  path is resolved from the directory containing `DROPTABLE_I18N_AUTHORITY`,
+  defaulting to `../droptable/`. The build parses the upstream JSON data section
+  without executing the script, and pages keep no copy of rates or the
+  ten-Section-ID mapping. CI pins `warmonipa/dropcharts` at commit
+  `8fbbde4fe3a65819067f6037da7a8d6562e8956a`; update that pin whenever upstream
+  changes.
+- Monsters are linked by episode and verified English aliases, covering every
+  upstream monster drop row across all four difficulties. Section ID names, colors
+  and order, multiple items in one cell, and rates all come from upstream. Rates
+  are the base per-kill DR including DAR, never multiplied again, and exclude event
+  or party boosts. A missing DAR is shown as not provided by the source.
+- Boss phases and body parts that share the boss drop show a defeat-reward notice.
+  21 entries have no linked drop row of their own, which does not prove that no
+  related reward exists in the game.
+- Chinese and Japanese names of dropped items come from `i18n_names.json`, and the
+  links reuse the item catalog's English identity. Monster names are also
+  generated into `names.json` from the same authority's `monsters` section by
+  `npm run sync:i18n`. Missing Japanese names may be filled from the same Wiki
+  monster template names; duplicated and conflicting template names are not used.
 
-## 维护流程
+## Maintenance
 
-构建不请求 Wiki，使用已提交快照和 CI 固定版本的掉落表。正常更新掉落数据无需修改怪物页面：
+The build does not call the Wiki. It uses the committed snapshots and the drop
+table pinned in CI. Routine drop data updates need no changes to the monster
+pages:
 
 ```sh
 npm run sync:i18n
@@ -35,89 +99,195 @@ npm run build
 npm run test:e2e
 ```
 
-更新 Wiki 属性时，导出 MediaWiki `action=query` 的模板页面数组，包含 `revisions` 的 ID、时间与 `slots.main.content`，然后运行：
+To update Wiki stats, export the MediaWiki `action=query` template page array,
+including each revision's ID, timestamp and `slots.main.content`, then run:
 
 ```sh
 node scripts/import_monster_catalog.mjs /path/to/templates.json
 node scripts/download_monster_images.mjs /path/to/imageinfo.json
 ```
 
-模板清单由 `Template:FullEnemyTable` 引用决定。图片输入为 MediaWiki `imageinfo` 页数组，下载器校验 PNG 签名和 SHA-1；损坏缓存重新下载，原图与清单均通过临时文件校验后原子替换。机制更新使用 `scripts/extract_monster_mechanics.mjs` 对每个怪物 `action=parse` 的 DOM 取事实表，与页面修订记录一并写回 `mechanics.json`；中文说明与正文条件须重新阅读来源核对。网络导出文件留在临时目录。
+The template list is determined by what `Template:FullEnemyTable` references. The
+image input is an array of MediaWiki `imageinfo` pages. The downloader verifies
+the PNG signature and SHA-1, re-downloads corrupt cache entries, and atomically
+replaces the originals and the manifest only after the temporary files pass
+verification. For mechanics updates, `scripts/extract_monster_mechanics.mjs` pulls
+fact tables from each monster's `action=parse` DOM and writes them back to
+`mechanics.json` with the page revision record. Chinese notes and body-text
+conditions must be re-read and verified against the source. Network exports stay
+in a temporary directory.
 
-`generate_monster_catalog.mjs` 生成轻量索引、服务器详情及 `/assets/data/monsters/{id}.json`。这些输出不提交。详情预渲染使用服务器加载器和 TransferState，浏览器导航按需请求单条，不把全部详情打入客户端包。
+`generate_monster_catalog.mjs` generates a lightweight index, server-side details
+and `/assets/data/monsters/{id}.json`. These outputs are not committed. Detail
+prerendering uses a server loader and TransferState, and browser navigation
+requests a single entry on demand instead of bundling every detail into the client.
 
-## 首页 RBR
+## Home page RBR
 
-主页构建时从 `data/rbr/source.json` 的 `current.quests` 生成三个章节的任务卡，点击进入 `/guide/rbr.html`。任务名和轮替周没有页面副本；更新既有 RBR 数据并重建即可同步首页。浏览器按 UTC 周日判断记录是否属于本周，跨周未更新时改为“待更新”并保留记录日期；静态 HTML 使用中性的“RBR 任务”标题。
+At build time the home page generates quest cards for three episodes from
+`current.quests` in `data/rbr/source.json`, and each card opens `/guide/rbr.html`.
+Quest names and the rotation week have no copy in the page, so updating the RBR
+data and rebuilding also updates the home page. The browser decides whether the
+record belongs to the current week by the UTC Sunday. If a new week starts
+without an update, the card changes to "pending update" and keeps the recorded
+date. Static HTML uses the neutral heading "RBR 任务" (RBR quests).
 
-卡片从 `data/rbr/tiers.json` 读取 Tier 和推荐 Section ID，与详情页 Tier 图共用数据；顶边和色点使用本站 BB 掉落表的 ID 调色板。卡片下方标明评级日期与非官方性质。生成后仍须提交、推送并完成 Pages 部署，线上才会更新。
+Cards read the tier and recommended Section ID from `data/rbr/tiers.json`,
+sharing that data with the detail page's tier chart. The top border and color dot
+use the site's BB drop table Section ID palette. Each card notes the rating date
+and that the rating is unofficial. Changes still have to be committed, pushed and
+deployed through Pages before they appear in production.
 
-## 验证范围
+## Verification scope
 
-数据检查覆盖全部难度／章节的掉落行与十色单元格、别名、单格多物品、上游变更、缺失属性、来源空值、机制条件和图片引用。浏览器检查覆盖三语与筛选往返、概率与道具跳转、模式／难度区别、缺图、手机及桌面溢出和 WCAG A/AA；首页检查任务数据一致性、详情入口和 UTC 周日过期状态。
+Data checks cover drop rows and ten-Section-ID cells for every difficulty and
+episode, aliases, multiple items per cell, upstream changes, missing stats, empty
+source values, mechanics conditions and image references. Browser checks cover
+language and filter round trips, rate and item links, mode and difficulty
+differences, missing images, phone and desktop overflow, and WCAG A/AA. Home page
+checks cover quest data consistency, the detail link and the UTC Sunday
+staleness state.
 
-2026-09-14 本地验证：`npm test`、生产构建、新增 11 项页面检查及完整 **1,376 / 1,376** 浏览器回归通过。产物包含 1,265 个 Angular 路由、45 个活动片段，JavaScript gzip 为 874,366 / 1,000,000 字节，未提高预算。最终手机／桌面截图已检查。首次页面检查发现模式选择的无障碍名称歧义及长图越界，修复后增加边界断言；机制复查另修正单轴 Normal tab 的难度／模式歧义。
+2026-09-14 local verification: `npm test`, the production build, 11 new page
+checks and the full **1,376 / 1,376** browser regression passed. The output
+contains 1,265 Angular routes and 45 event fragments, with 874,366 / 1,000,000
+bytes of gzip JavaScript and no budget increase. Final phone and desktop
+screenshots were reviewed. The first page checks found an ambiguous accessible
+name on the mode selector and a long image overflowing its box; both were fixed
+and boundary assertions were added. A mechanics review also fixed a
+difficulty-versus-mode ambiguity on single-axis Normal tabs.
 
-## 2026-09-14 review-fix-loop 记录
+## 2026-09-14 review-fix-loop log
 
-基线 `d173fec`，工作区初始干净。范围为已落地的道具／怪物图鉴、三语、数据和图片来源、十色掉落、首页 RBR 与两项待办登记。PB 公式和武器之心的实际内容仍是待办，不在本轮实现范围。根目录 AGENTS 为唯一适用的仓库指令。
+Baseline `d173fec`, with a clean working tree at the start. The scope was the
+shipped item and monster catalogs, trilingual support, data and image sources,
+ten-Section-ID drops, the home page RBR cards, and two TODO entries. The actual
+content of the PB formulas and weapon hearts was still pending and out of scope.
+The root `AGENTS.md` was the only applicable repository instruction.
 
-| ID | 等级／状态 | 根因与扩展范围 | 回归与关闭证据 |
+| ID | Severity / status | Root cause and extended scope | Regression and closure evidence |
 | --- | --- | --- | --- |
-| RF1 | Blocking / Fixed | 怪物章节使用裸 fragment，被根 `base` 解析成主页；详情 effect 无条件滚顶，条件导航丢失 fragment；翻页保留旧页底部位置。使用 RouterLink 保留查询与章节、按 fragment 定位、翻页定位首行。扩展检查全部章节、直达／刷新、三语、难度／模式切换及列表翻页定位。 | 旧产物分别复现跳到 `/#drops`、直达章节距视口顶部 1465 px、翻页首条可见比例为 0。修复后图鉴／RBR 44 项浏览器检查通过，含章节导航、分享／刷新与分页回归。 |
-| RF2 | Blocking / Fixed | 机制提取只保留 tab 和最末标题，遗漏正文的 Ultimate 限制、上级阶段标题；标题白名单还漏掉 Olga Flow 的攻击触发阈值表。补充六类正文条件、来源页及整套标题层级，恢复攻击触发阈值表。扩展至全部八类 Megid 表和所有共享 Boss 来源。 | 旧产物复现 Normal 显示 Ultimate Megid、缺少阶段与阈值。对照当日 Wiki 原始修订新增条件记录；原 457 张表数值和修订完全保留。`npm run test:monsters` 8 项、图鉴／RBR 44 项通过，覆盖六类限制及不应受限的 Del Lily、Boss 形态和提取器 Usage 表。 |
-| RF3 | Should-fix / Fixed | 图片下载直接写最终缓存文件，网络中断会留下不完整文件；重试只检查文件存在，校验失败后始终退出，无法恢复下载。改为验证缓存、重新下载损坏文件、临时文件校验通过后原子替换。扩展到所有图片缓存与清单发布。 | `node --test scripts/test_monster_images.mjs` 在旧脚本上复现 Invalid image；修复后 `npm run test:monsters` 8 项通过，覆盖损坏缓存恢复、有效缓存离线复用、错误响应不得替换原文件或清单。 |
+| RF1 | Blocking / Fixed | Monster sections used bare fragments, which the root `base` resolved to the home page. The detail effect always scrolled to the top, conditional navigation lost the fragment, and paging kept the old page's bottom position. RouterLink now keeps the query and section, positioning follows the fragment, and paging scrolls to the first row. The check was extended to every section, direct open and refresh, all three languages, difficulty and mode switches, and list paging. | The old build reproduced a jump to `/#drops`, a directly opened section 1465 px from the viewport top, and a first-entry visibility ratio of 0 after paging. After the fix, 44 catalog and RBR browser checks passed, including section navigation, share and refresh, and paging regressions. |
+| RF2 | Blocking / Fixed | Mechanics extraction kept only the tab and the last heading. It missed Ultimate restrictions stated in body text and parent phase headings, and the heading allowlist also dropped Olga Flow's attack trigger threshold table. Six body-text conditions, source pages and full heading hierarchies were added, and the threshold table was restored. The check was extended to all eight Megid tables and every shared boss source. | The old build showed Ultimate Megid on Normal and lacked phases and thresholds. New condition records were checked against the same day's original Wiki revisions, and the values and revisions of the original 457 tables were fully preserved. `npm run test:monsters` (8 tests) and 44 catalog and RBR checks passed, covering the six restrictions plus Del Lily, boss forms and the extractor Usage table, which must not be restricted. |
+| RF3 | Should-fix / Fixed | Image downloads wrote straight to the final cache file, so a network interruption left a partial file. Retries only checked that the file existed and exited on every checksum failure, so downloads could never recover. The downloader now validates the cache, re-downloads corrupt files, and atomically replaces files only after the temporary copy passes verification. The change covers every image cache entry and the manifest publication. | `node --test scripts/test_monster_images.mjs` reproduced "Invalid image" on the old script. After the fix, `npm run test:monsters` (8 tests) passed, covering corrupt cache recovery, offline reuse of a valid cache, and error responses that must not replace the original file or manifest. |
 
-修复后重新审查了数据导入、生成、路由、共享语言状态、列表／详情消费者、测试和文档，未发现新的可执行问题。此前测试只覆盖 tab，遗漏了正文／上级标题的适用条件；新回归明确覆盖这两类来源条件。所有 158 个属性条目、127 份模板修订逐项匹配原始导出，196 条怪物图片 SHA-1 全部匹配；既有机制表数据保持原样。
+After the fixes, data import, generation, routing, shared language state, list and
+detail consumers, tests and docs were re-reviewed with no new actionable issues.
+Earlier tests only covered tabs and missed applicability conditions from body text
+and parent headings; the new regressions cover both source types. All 158 stat
+entries and 127 template revisions match the original export one by one, all 196
+monster image SHA-1 values match, and the existing mechanics table data is
+unchanged.
 
-| 用户需求 | 实现与核查证据 |
+| User requirement | Implementation and verification evidence |
 | --- | --- |
-| 完整道具列表、属性、商店图片与图片来源 | 1,044 条目录完整性、57 件商店武器图片、原始图片校验及 27 项道具页面检查通过。 |
-| 稀有道具获取途径 | 道具详情显示来源说明、Wiki 掉落条件和修订；数据测试检查 V101 等具体概率。 |
-| 整体三语与 UI | 道具和怪物的界面／名称切换、查询保留、原文语言标记，手机／桌面溢出和无障碍回归通过。 |
-| 怪物属性、行为和条件机制 | 160 条目录、1,262 组属性，RF2 补齐正文难度限制与 Boss 阶段；未收录内容保持明确空状态。 |
-| droptable 十色掉落 | 全部难度／章节掉落行、颜色顺序、逐格概率、多物品和道具详情关联与上游一致；CI 使用同一固定版本。 |
-| 首页 RBR 与详情入口 | 主页任务来自 `data/rbr/source.json`，点击进入详情；UTC 周日跨周提示回归通过。 |
-| PB 计算、武器之心待办 | `docs/TODO.md` 分别记录范围和指定 Wiki 来源，未宣称已实现。 |
+| Complete item list, stats, shop images and image sources | Completeness of the 1,044-entry catalog, images for all 57 shop weapons, original image checksums and 27 item page checks passed. |
+| How to obtain rare items | Item detail pages show acquisition notes, Wiki drop conditions and revisions. Data tests check specific rates such as V101. |
+| Full trilingual interface | Interface and name switching for items and monsters, query preservation, source-language labels, and phone and desktop overflow and accessibility regressions passed. |
+| Monster stats, behavior and conditional mechanics | A 160-entry catalog with 1,262 stat records. RF2 added body-text difficulty restrictions and boss phases, and uncatalogued content keeps an explicit empty state. |
+| Ten-Section-ID drops from droptable | Drop rows for every difficulty and episode, color order, per-cell rates, multiple items and item detail links match upstream, and CI uses the same pinned version. |
+| Home page RBR and detail link | Home page quests come from `data/rbr/source.json` and open the detail page. The UTC Sunday week-rollover notice regression passed. |
+| PB calculation and weapon heart TODOs | `docs/TODO.md` records each scope and the designated Wiki sources without claiming they are implemented. |
 
-本轮根据当日保存的 Wiki 原始修订复核，没有改变来源版本或批量刷新外网数据。外网浏览工具本轮连接失败，未将其当作属性或机制的反证；已保存的完整原文及来源修订足以核对本次修复。
+This pass re-verified against the Wiki revisions saved that day, without changing
+source versions or bulk-refreshing external data. The web browsing tool failed to
+connect during this pass, and that failure was not treated as evidence against any
+stat or mechanic; the saved full source text and revisions were sufficient to
+verify these fixes.
 
-最终本地验证：`npm test` 通过（含 10 项道具数据、8 项怪物／图片检查）；`npm run build` 通过，1,265 个路由、45 个活动片段，JavaScript gzip 874,665 / 1,000,000 字节；图鉴／RBR 定向回归 **44 / 44**，完整 `npx playwright test` **1,382 / 1,382** 通过；`git diff --check` 通过。台账 RF1–RF3 均为 Fixed，完整重审未发现剩余 Blocking 或 Should-fix 问题。发布状态仍以对应提交的 Pages 流水线为准。
+Final local verification: `npm test` passed, including 10 item data checks and 8
+monster and image checks. `npm run build` passed with 1,265 routes, 45 event
+fragments and 874,665 / 1,000,000 bytes of gzip JavaScript. The focused catalog
+and RBR regression passed **44 / 44**, the full `npx playwright test` passed
+**1,382 / 1,382**, and `git diff --check` passed. RF1 through RF3 are all Fixed,
+and the full re-review found no remaining Blocking or Should-fix issues. Release
+status follows the Pages pipeline for the matching commit.
 
-## 同日全量改动复审
+## Same-day full change re-review
 
-范围为 `31a0985..5fd44ce` 的九个提交，以及开始审查时七个文件的未提交 RBR 改动。复核数据导入、生成、路由、三语、列表／详情、图片、构建和相关测试；新增三个浏览器回归先在修复前产物上全部失败，再在修复后通过。
+The scope was the nine commits in `31a0985..5fd44ce`, plus uncommitted RBR changes
+in seven files present when the review started. Data import, generation, routing,
+trilingual support, list and detail pages, images, the build and related tests
+were re-checked. Three new browser regressions all failed against the pre-fix
+build and passed after the fix.
 
-| ID | 等级／状态 | 根因与修复范围 | 回归证据 |
+| ID | Severity / status | Root cause and fix scope | Regression evidence |
 | --- | --- | --- | --- |
-| D1 | Blocking / Fixed | 列表和详情共用的更新方法无条件清除页码，详情切换难度／模式因此丢失返回位置。仅在列表筛选变化时重置页码，详情保留来源页。 | EP1 第二页进入详情，切换难度、模式和日文，刷新并返回后仍为原页；章节与首条身份保持一致，列表条件变化仍重置页码。 |
-| D2 | Blocking / Fixed | 两个图鉴列表的静态中文路由标题在查询导航结束时覆盖组件三语标题；语言未变，标题 effect 不再执行。移除两处静态标题，由组件统一管理。 | 英文搜索后、日文继续改变条件后，两个列表的浏览器标题均保留所选语言；静态预渲染仍为中文。 |
+| D1 | Blocking / Fixed | The list and detail pages shared an update method that always cleared the page number, so switching difficulty or mode on a detail page lost the return position. The page number now resets only when list filters change, and detail pages keep the originating page. | Opening a detail from page two of EP1, switching difficulty, mode and Japanese, refreshing and returning lands on the original page, with the section and first entry unchanged; changing list conditions still resets the page. |
+| D2 | Blocking / Fixed | The static Chinese route titles of both catalog lists overwrote the component's trilingual title when query navigation finished. Because the language had not changed, the title effect did not run again. Both static titles were removed and the components own the title. | After an English search, and after further condition changes in Japanese, both lists keep the browser title in the selected language, while static prerendering remains Chinese. |
 
-此前回归分别检查过三语和列表返回，但没有覆盖语言不变时的浏览器标题，也未组合后续页详情与难度／模式切换。新增回归覆盖这些交互组合，未降低原有断言。
+Earlier regressions checked trilingual support and list return separately, but did
+not cover the browser title when the language stays the same, or combine later-page
+details with difficulty and mode switches. The new regressions cover these
+combinations without weakening existing assertions.
 
-本地 `npm test`、`python3 scripts/sync_item_i18n.py --check` 和生产构建通过；图鉴／RBR **47 / 47**，完整 `npm run test:e2e -- --workers=4` **1,385 / 1,385** 通过。构建包含 1,265 个路由、45 个片段，JavaScript gzip 为 874,973 / 1,000,000 字节。158 个怪物条目的 1,262 组属性逐项匹配保存快照，196 条怪物图片校验记录全部通过，1,044 个道具详情及套装／外观关联完整。最终重审无剩余 Blocking 或 Should-fix。
+Local `npm test`, `python3 scripts/sync_item_i18n.py --check` and the production
+build passed. The catalog and RBR suite passed **47 / 47**, and the full
+`npm run test:e2e -- --workers=4` passed **1,385 / 1,385**. The build contains 1,265
+routes and 45 fragments, with 874,973 / 1,000,000 bytes of gzip JavaScript. The
+1,262 stat records of 158 monster entries match the saved snapshot one by one, all
+196 monster image checksum records pass, and all 1,044 item detail pages with set
+and appearance links are complete. The final re-review found no remaining Blocking
+or Should-fix issues.
 
-重复构建的 manifest 逐字节比较通过，`git diff --check` 通过。期间一次构建在 LMDB 3.5.6 原生缓存的 `ExtendedEnv` 析构处异常退出；macOS 9 月 13 日的报告已有同一调用栈。未修改产品代码的重跑成功，并生成与已测试产物完全相同的 manifest；该既有工具链问题仍可能偶发。
+A byte-for-byte comparison of manifests from repeated builds passed, and
+`git diff --check` passed. One build exited abnormally in the destructor of
+`ExtendedEnv` in the LMDB 3.5.6 native cache; a macOS report from September 13
+already showed the same call stack. Rerunning without product code changes
+succeeded and produced a manifest identical to the tested artifact. This existing
+toolchain issue may still occur intermittently.
 
-本次结论基于仓库保存的来源快照与本地产物，不代替新的游戏内验证或线上发布核验。初始 RBR 工作区改动纳入审查和测试，本轮图鉴修复提交只包含 D1、D2 及其回归与审查记录。
+These conclusions rest on the source snapshots saved in the repository and on local
+build output. They do not replace new in-game verification or production release
+checks. The initial RBR working-tree changes were included in the review and tests,
+and this pass's catalog fix commit contains only D1, D2, their regressions and the
+review record.
 
-## 再次复审：区域检索与生成目录
+## Second re-review: area search and generated directories
 
-基线 `5a772d4`，继续审查同日改动和原有七个未提交 RBR 文件。D1、D2 回归保持通过；本轮确认并修复两个不同根因的问题。
+Baseline `5a772d4`, continuing the review of the same day's changes and the seven
+uncommitted RBR files. The D1 and D2 regressions still passed, and this pass
+confirmed and fixed two issues with distinct root causes.
 
-| ID | 等级／状态 | 根因与修复范围 | 回归证据 |
+| ID | Severity / status | Root cause and fix scope | Regression evidence |
 | --- | --- | --- | --- |
-| D3 | Should-fix / Fixed | 区域搜索只索引当前界面语言的译名，切换语言后查询不变但结果丢失。统一索引英文、中文和日文区域名，复用既有翻译并保留区域编号。 | 修复前搜索「森林」有 11 条，切换英文后变成 0 条；新增回归覆盖「森林」「地下砂漠」「遺跡 2」，三语切换及刷新均保持结果身份和数量。 |
-| D4 | Should-fix / Fixed | 怪物生成器只覆盖当前条目，不清除已删除条目的 JSON，导致构建产物受历史生成状态影响。完成输入校验和数据准备后，重建生成器专属的怪物资产目录。 | 隔离夹具先生成完整目录，再移除 Booma 后重新生成；修复前遗留 `booma.json`，修复后删除成功，文件清单与当前索引完全一致。 |
+| D3 | Should-fix / Fixed | Area search indexed only the area names of the current interface language, so switching languages kept the query but lost the results. English, Chinese and Japanese area names are now all indexed, reusing the existing translations and keeping area numbers. | Before the fix, searching 森林 returned 11 entries and switching to English returned 0. The new regression covers 森林, 地下砂漠 and 遺跡 2, keeping result identity and count across all three languages and refreshes. |
+| D4 | Should-fix / Fixed | The monster generator overwrote only current entries and never removed JSON for deleted entries, so build output depended on past generation state. After input validation and data preparation, the generator now rebuilds its own monster asset directory. | An isolated fixture generated the full catalog, removed Booma and regenerated. Before the fix `booma.json` remained; after the fix it is deleted and the file list matches the current index exactly. |
 
-此前搜索回归使用怪物名称，没有覆盖区域译名与语言切换的组合；重复构建使用相同清单，没有覆盖条目删除。两个新增回归均先复现失败，再验证修复。重新使用保存的 127 份 Wiki 原始导出提取快照，与提交的怪物属性和来源记录完全一致。
+Earlier search regressions used monster names and did not cover area translations
+combined with language switching, and repeated builds used the same list, which did
+not cover deleted entries. Both new regressions reproduced the failure first and
+then verified the fix. Re-extracting the snapshot from the 127 saved original Wiki
+exports matched the committed monster stats and source records exactly.
 
-本地 `npm test` 通过（10 项道具、9 项怪物／图片、55 项 RBR 检查），`python3 scripts/sync_item_i18n.py --check` 通过；图鉴／RBR 定向回归 **48 / 48**，完整 `npx playwright test --workers=4` **1,386 / 1,386** 通过。生产构建包含 1,265 个路由、45 个活动片段，JavaScript gzip 为 874,959 / 1,000,000 字节；重复构建的 manifest 逐字节一致，`git diff --check` 通过。最终重审无剩余 Blocking 或 Should-fix 问题。
+Local `npm test` passed, including 10 item checks, 9 monster and image checks and
+55 RBR checks, and `python3 scripts/sync_item_i18n.py --check` passed. The focused
+catalog and RBR regression passed **48 / 48**, and the full
+`npx playwright test --workers=4` passed **1,386 / 1,386**. The production build
+contains 1,265 routes and 45 event fragments, with 874,959 / 1,000,000 bytes of
+gzip JavaScript. Manifests from repeated builds match byte for byte, and
+`git diff --check` passed. The final re-review found no remaining Blocking or
+Should-fix issues.
 
-重复构建再次遇到上述既有 LMDB 原生异常；检查缓存实现后运行 `npx ng cache clean`，随后构建通过。没有修改依赖或加入产品层规避逻辑，工具链偶发异常仍是已知边界。该轮提交 `230766c` 仅包含 D3、D4、回归与审查记录；当时七个 RBR 文件尚未提交，也尚未完成线上核验，后续发布结果如下。
+Repeated builds hit the known LMDB native crash again. After inspecting the cache
+implementation, `npx ng cache clean` was run and the build then passed. No
+dependencies were changed and no product-level workaround was added; the
+intermittent toolchain crash remains a known limitation. That pass's commit
+`230766c` contains only D3, D4, their regressions and the review record. The seven
+RBR files were not yet committed or verified in production at that point; the
+later release result follows.
 
-## 2026-09-14 发布核验
+## 2026-09-14 release verification
 
-七个 RBR 文件已在 `548e78e` 提交并推送，包含主页 Tier、推荐 Section ID、颜色、共用数据与回归测试。[Pages 运行 34821846682](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34821846682) 的构建和部署均成功：业务测试、两次生产构建、manifest 比较及 **1,386 / 1,386** 浏览器测试通过。
+The seven RBR files were committed and pushed in `548e78e`, covering home page
+tiers, recommended Section IDs, colors, shared data and regression tests.
+[Pages run 34821846682](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/34821846682)
+built and deployed successfully: business tests, two production builds, the
+manifest comparison and **1,386 / 1,386** browser tests passed.
 
-部署后在 `https://www.psohaven.com/` 刷新并检查实际页面与截图，确认记录周为 `13 September 2026`，SR1、LDR、WoL5 均显示 Tier D，推荐 ID 分别为 Pinkal、Bluefull、Pinkal，顶边与色点颜色一致；评级说明显示 `2025-11，非官方`。此次核验确认页面发布和显示结果，没有重新评估 Tier 或变更游戏内轮换。
+After deployment, `https://www.psohaven.com/` was refreshed and the live page and
+screenshots were checked. The recorded week is `13 September 2026`. SR1, LDR and
+WoL5 all show Tier D, with recommended IDs Pinkal, Bluefull and Pinkal, and the top
+border and color dot colors match. The rating note shows `2025-11，非官方`
+(2025-11, unofficial). This check confirms page publication and display only; it
+did not re-evaluate tiers or change the in-game rotation.

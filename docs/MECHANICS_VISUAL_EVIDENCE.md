@@ -1,120 +1,183 @@
-# 机制页图文与复审证据记录
+# Mechanics Guide Illustrations and Review Record
 
-日期：2026-09-15。记录 `tools/mechanics.html` 的图文变更、机制证据、验证结果与已关闭的复审问题。部署流程见[发布手册](DEPLOYMENT.md#september-15-2026-mechanics-illustrations)。
+Date: 2026-09-15. This record covers the illustration changes to
+`tools/mechanics.html`, their mechanics sources, verification results and closed
+review issues. For the deployment steps, see the
+[release runbook](DEPLOYMENT.md#september-15-2026-mechanics-illustrations).
 
-## C / E 初次图解的核对对象
+## E: knockdown threshold chart
 
-- `../bb-psov4/clients/ephinea/psobb.exe`
-- SHA-256：`f4d4bd463c07fec2542452735deb5237641634100d9223d2d0f0ae4000315cc0`
-- 反编译参考：`../bb-psov4/ref/original-psobb-client-source/src/Psobb.exe-05112026.c`
-- 本次使用 pefile 读取 PE 映射与常量，使用 Capstone 解码该 EXE 的实际 x86 指令；未修改参考仓库。
+The E-section chart compares a single hit against 25% of maximum HP, not against
+remaining HP. It uses internal damage before integer truncation, with a maximum HP
+of 1,000 and internal damage of 240, 250 and 260 as examples. A value such as 250.5
+crosses the threshold while the integer HP loss is still 250.
 
-## E：严格大于 25%，比较先于整数截断
+The chart describes only the general damage threshold. It does not cover
+knockdown, death or other states set directly by special attacks, and it does not
+claim that every attack passes through this check.
 
-函数 `try_knockdown_player`，VA `0x0077529c`：
+The [Ephinea Wiki / Game mechanics / Knockdown](https://wiki.pioneer2.net/w/Game_mechanics#Knockdown)
+page, read on 2026-09-15, summarizes the rule as "25% or more". The page's
+expandable source note records this wording difference and its version limits.
 
-```asm
-0077529f movsx edx, word ptr [ecx + 0x2bc]
-007752a6 mov dword ptr [esp], edx
-007752a9 fild dword ptr [esp]
-007752ac fmul dword ptr [0x97822c]
-007752b2 fcomp dword ptr [esp + 0xc]
-007752b6 fnstsw ax
-007752b8 sahf
-007752b9 jae 0x7752d2
-007752bb mov edx, dword ptr [ecx + 0x30]
-007752be or edx, 0x400
-007752c4 mov dword ptr [ecx + 0x30], edx
-```
+## C: action illustrations and the limits of the measured formula
 
-`0x0097822c` 的 float32 实值为 `0.25`。`jae` 在阈值大于或等于传入伤害时跳过置位，所以只有 `damage > max_hp * 0.25` 才设置 `0x400`。
+- The original page's attribution to the
+  [SLW measurement video](https://www.youtube.com/watch?v=J2FgRRGCQEM) is kept for
+  evasion, differences between Guard animations and the approximate hit-rate
+  relationship.
+- This pass did not rewatch the video or verify it frame by frame, and did not
+  trace every hit and zero-damage outcome for players. The illustrations add no
+  claims about the enemy hit-rate formula beyond the cited measurements.
+- The figures, knockback paths, displacement arrows and HP bars in the diagrams
+  are explanatory sketches, not in-game screenshots. They do not represent exact
+  displacement distances or stagger durations.
+- The section covers only ordinary, evadable physical attacks, and keeps the body
+  text's notes on exceptions such as fixed damage.
 
-物理伤害路径在 `0x007738d6` 调用该函数，随后才执行 FPU 控制字 `OR 0xc00` 与 `fistp` 进行向零截断。反编译对应 747691 行先调用 `try_knockdown_player(local_14)`，再截断并调用 `deal_damage`。因此图解明确使用“截断前的内部伤害”，例子为最大 HP 1,000、内部伤害 240 / 250 / 260。250.5 会越过阈值而整数扣血仍为 250。
+## Change scope
 
-状态消费者 `HandlePostEvadeDamageCheck_0069f408` 检查 `took_damage` 和 `0x400`，分别转入 light / heavy 受击状态。该证据只描述通用伤害阈值，不代表每个攻击都必然经过它，也不证明当前在线客户端没有运行时补丁。
+- C: decision branches, three outcomes, before-and-after position comparison, and
+  a link to E.
+- E: internal damage scale, the threshold boundary, the truncation note and an
+  expandable source note.
+- Formulas and item identities in A, B, D, F, G and H are unchanged.
+- A 320 px browser check found that the D-section class boost table widened the
+  whole page. It now sits in a keyboard-focusable local horizontal scroll
+  container, with the table data unchanged.
+- The illustrations use semantic HTML, decorative inline SVG and page-specific
+  CSS. Jump links and source notes use native links and `details`, with no new
+  dependency or JavaScript runtime.
 
-### 与 Wiki 的差异
+## Local verification results
 
-2026-09-15 读取的 [Ephinea Wiki / Game mechanics / Knockdown](https://wiki.pioneer2.net/w/Game_mechanics#Knockdown) 写为“25% or more”。本地逆向仓库的 `_wiki_combat_formulas.md` 重复此说法；`_wiki_TODO.md` B.3 仍未勾选；`COVERAGE.md` 的轻重受击笔记则写为 `≤25%` / `>25%`。不能把 Wiki 摘录当作独立 RE 结论，本次按精确 EXE 指令说明严格边界，并在页面展开说明中注明差异和版本限制。
+- `npm run sync:i18n` ran with no extra differences in generated files, and
+  `npm run test:i18n` passed 8 tests.
+- `npm run build` passed with 1,265 Angular prerendered routes and 45 event
+  fragments. Final gzip JavaScript was 882,022 / 1,000,000 bytes.
+- `npm run test:e2e -- --grep 'mechanics authored item references|mechanics diagrams remain readable|authored item names stay aligned across guides and tools' --workers=1`
+  passed 3 tests, including the existing cross-page item check.
+- `node scripts/verify_zh_localization.mjs`,
+  `node scripts/verify_angular_architecture.mjs` and `git diff --check` passed.
+- parse5 found no parse errors or duplicate IDs, and every in-page link and
+  `aria-labelledby` points to an existing ID. All 15 item identities, across 17
+  references, are unchanged. Apart from item reference key casing, the body text
+  of F through H is unchanged.
+- Chrome desktop screenshots were reviewed for the flow connectors, the three
+  action comparisons and the threshold scale. The C-to-E link and the expandable
+  source note were exercised by hand.
+- Automated checks at 320, 390, 760, 761, 1,024 and 1,440 px passed, and desktop,
+  390 px and 320 px screenshots were reviewed by hand. Neither the illustrations
+  nor the page overflow horizontally, and the class boost table scrolls within
+  its own container.
+- Automated WCAG A/AA scans of the illustrations, source notes and table scroll
+  area passed, as did keyboard jumps and expand actions.
+- No browser error or warning logs were captured.
+- Local preview entry points: `http://127.0.0.1:4173/tools/mechanics.html#incoming-physical`,
+  with the E section at `#knockdown`.
 
-## C：动作图与实测公式的证据边界
+## Review-fix-loop log
 
-- 保留原页 [SLW 实测视频](https://www.youtube.com/watch?v=J2FgRRGCQEM) 对回避、Guard 动作差异及命中率近似关系的归因。
-- 本次没有重新观看并逐帧验证该视频，也没有完整追踪玩家的所有命中/零伤害消费者；图解不新增“客户端反编译证明敌人命中率公式”的断言。
-- 图中人形、弹开轨迹、位移箭头与 HP 条为解释性示意，不是实机截图，不表达精确位移距离或硬直时长。
-- 只说明普通、可回避的物理攻击；保留正文固定伤害等例外提示。
+The review found that the earlier "references unchanged" check only proved the
+illustration edits had not altered existing references; it could not prove the
+references matched the authority's keys. The 6 attributes introduced in `f1dff12`
+used 5 non-authoritative casings, and the browser's lenient lookup still displayed
+Chinese, so the earlier display checks missed the problem. The page's attributes
+are now `OROTIAGITO` (2 places), `FOIE MERGE`, `DOUBLE CANNON`, `LAVIS BLADE` and
+`GAL WIND`. Semantic identities, Chinese translations, formulas and values are
+unchanged.
 
-## 变更范围
+The new `tests/e2e/mechanics.spec.mjs` uses parse5 to check every item key in the
+source file before page rendering and case normalization. It failed before the fix
+and listed all 6 items, and it passes after the fix. It also verifies 6 viewport
+widths, keyboard jumps and source note expansion, and WCAG A/AA within the
+illustrations. The existing cross-page item E2E test is kept and its assertions
+were not relaxed.
 
-- C：判定分支、三种结果、前后位置对照、跳转 E 的链接。
-- E：内部伤害标尺、严格边界、截断说明、来源展开说明。
-- A / B / D / F / G / H 的公式与物品身份保持不变。
-- 320 px 浏览器检查发现 D 节职业增幅表会撑宽整页；加入可键盘聚焦的局部横向滚动容器，表内数据未改动。
-- 图解使用语义 HTML、装饰性内联 SVG 和页面专用 CSS；跳转与来源展开使用原生链接及 details，无新增依赖或 JavaScript 运行时。
-
-## 本地验证结果
-
-- `npm run sync:i18n` 已执行，生成文件内容无额外差异；`npm run test:i18n` 通过 8 项。
-- `npm run build` 通过：1,265 个 Angular 预渲染路由、45 个活动片段；最终 JavaScript gzip 882,022 / 1,000,000 bytes。
-- `npm run test:e2e -- --grep 'mechanics authored item references|mechanics diagrams remain readable|authored item names stay aligned across guides and tools' --workers=1` 通过 3 项，包含原有跨页面物品校验。
-- `node scripts/verify_zh_localization.mjs`、`node scripts/verify_angular_architecture.mjs` 与 `git diff --check` 通过。
-- parse5 检查无解析错误、无重复 ID，页内链接与 aria-labelledby 指向存在的 ID；15 种物品身份（共 17 处引用）保持一致。F–H 除物品引用键大小写外，正文未改动。
-- Chrome 桌面截图检查：流程连线、三幅动作对照与阈值标尺均已查看；C 到 E 的链接及来源 details 展开已操作确认。
-- 320 / 390 / 760 / 761 / 1,024 / 1,440 px 自动检查通过；桌面及 390 / 320 px 截图已人工查看。图解与整页无横向溢出，职业增幅表在自身容器内横向滚动。
-- 图解、来源说明及表格滚动区域的 WCAG A/AA 自动扫描通过；键盘跳转与展开操作通过。
-- 浏览器采集到的 error / warn 日志为空。
-- 本地预览运行时入口：`http://127.0.0.1:4173/tools/mechanics.html#incoming-physical`，E 节锚点为 `#knockdown`。
-
-## Review-fix-loop 记录
-
-复审发现：原先的“引用保持一致”检查只能证明图文修改未改变原引用，不能证明这些引用符合权威键。`f1dff12` 引入的 6 个属性使用了 5 种非权威大小写，浏览器的宽松查找仍能显示中文，导致该问题未被先前的展示检查发现。现将本页属性统一为 `OROTIAGITO`（2 处）、`FOIE MERGE`、`DOUBLE CANNON`、`LAVIS BLADE`、`GAL WIND`；语义身份、中文译名、公式和数值保持不变。
-
-新增 `tests/e2e/mechanics.spec.mjs`：在页面渲染与大小写归一化之前使用 parse5 检查源文件中的每个物品键。修复前明确失败并列出全部 6 项，修复后通过；另验证 6 个视口宽度、键盘跳转与来源展开、图解范围的 WCAG A/AA。原有跨页面物品 E2E 保留，未放宽断言。
-
-| ID | 级别 / 状态 | 根因与检查范围 | 修复与关闭证据 |
+| ID | Severity / status | Root cause and check scope | Fix and closure evidence |
 | --- | --- | --- | --- |
-| M-01 | Should-fix / Fixed | 显示层的大小写归一化掩盖源文件的非权威键。按原有跨页面测试解析全部受测页面的物品属性，6 处缺失精确键均位于 mechanics.html。 | 修正全部 6 处，新增源文件精确键测试；修复前列出 6 项失败，修复后通过。原有跨页面测试由失败转为通过，未放宽断言；同步、8 项单元测试、3 项定向 E2E、构建及完整性检查通过。 |
+| M-01 | Should-fix / Fixed | Case normalization in the display layer hid non-authoritative keys in the source file. The existing cross-page test's item attributes were parsed across every tested page, and all 6 missing exact keys were in `mechanics.html`. | All 6 were fixed and a source-level exact-key test was added. It listed 6 failures before the fix and passes after. The existing cross-page test went from failing to passing without relaxed assertions. Sync, 8 unit tests, 3 focused E2E tests, the build and integrity checks passed. |
 
-最终完整差异复审未发现其他可操作问题，无剩余 Blocking 或 Should-fix。结论：**PASS**。
+The final full diff review found no other actionable issues and no remaining
+Blocking or Should-fix. Verdict: **PASS**.
 
-## 验证边界
+## Verification limits
 
-- 本次本地验证未运行全站完整测试集；完整发布门禁由对应提交的 Pages 工作流执行，发布状态以该次 build / deploy 结果为准。
-- C 节引用的实测未重新复现；E 节只核对上述固定客户端快照，未验证当前在线运行时。页面正文与来源展开说明保留这些边界。
+- This local verification did not run the full site test suite. The complete
+  release gates run in the Pages workflow for the matching commit, and release
+  status follows that build and deploy result.
+- The measurements cited in section C were not reproduced, and section E was not
+  re-verified in game. The page body and its source notes keep these limits.
 
-## 2026-09-15 PB 整合复审台账
+## 2026-09-15 PB consolidation review ledger
 
-范围：`8b235b2..141d070` 的机制页图解、PB 集中整理、玛古／缩写表入口、样式、测试与文档；同时落实用户新指示：本地完成后等待验收，未经明确同意不推送或部署。
-本节记录复审证据，PB 公式正文仍只维护在 `tools/mechanics.html#photon-blast`。
-当前状态：2026-09-15 用户已验收并授权提交、推送，见[用户验收与提交授权](#用户验收与提交授权)。以下各轮的待验收描述保留为当时的过程记录。
+Scope: `8b235b2..141d070`, covering the mechanics guide illustrations, the
+consolidated PB content, the Mag and acronym table entry links, styles, tests and
+docs. It also applied the user's new instruction: after local completion, wait for
+acceptance, and do not push or deploy without explicit approval. This section
+records review evidence; the PB formula text is maintained only in
+`tools/mechanics.html#photon-blast`.
 
-### 第 1 轮：审查与复现
+Current status: on 2026-09-15 the user accepted the work and authorized commit and
+push; see [User acceptance and push authorization](#user-acceptance-and-push-authorization).
+The pending-acceptance wording in each round below is kept as the process record of
+that time.
 
-- 完整差异、Angular 内容生成和相关入口已检查。依据 Ephinea Wiki 的 Game mechanics、Photon Blasts、Mags 页面核对新增公式、输入参数和适用范围；单独重算图中数值，未发现公式或算例错误。
-- parse5 检查机制页、玛古页和缩写表：无解析错误、重复 ID、悬空页内链接或 aria-labelledby。
-- 原有机制页测试通过 2 项；临时探针在加载后移除所有 PB 图标，原有测试仍通过 2 项，确认存在漏检。
+### Round 1: review and reproduction
 
-| ID | 级别 / 状态 | 根因与影响范围 | 回归覆盖与关闭证据 |
+- The full diff, Angular content generation and related entry links were reviewed.
+  New formulas, input parameters and scope were checked against the Ephinea Wiki
+  Game mechanics, Photon Blasts and Mags pages. The diagram values were recomputed
+  independently, and no formula or example errors were found.
+- parse5 checks of the mechanics guide, Mag page and acronym table found no parse
+  errors, duplicate IDs, dangling in-page links or broken `aria-labelledby`.
+- The existing mechanics tests passed 2 tests. A temporary probe removed every PB
+  icon after load and the existing tests still passed 2 tests, confirming a gap.
+
+| ID | Severity / status | Root cause and impact | Regression coverage and closure evidence |
 | --- | --- | --- | --- |
-| PB-R01 | Should-fix / Fixed | 图标和章节检查遍历当前 DOM；节点消失时循环不执行，图标错配时也只检查图片能加载。影响六种 PB 图标、四连图标顺序及八个章节入口。已有跨页入口只做过一次人工验证。 | 固定必需图标／章节集合，验证名称与图标配对、连锁顺序以及玛古／缩写页的三个入口与返回。机制页测试通过 3 项；临时缺图、错图、缺章节三个探针分别被新断言拦截。 |
-| PB-R02 | Should-fix / Fixed | 介绍区为排版使用顶层 header，与 page-chrome 的 header 一起暴露两个无名称区分的 banner 地标。原 WCAG 标签与局部选择器没有检查全页地标唯一性。影响页头与介绍区的辅助阅读器导航。 | 全页 Axe landmark-unique 探针已复现；介绍容器改为 div，新增 banner 数量和全页地标唯一性检查。最终 9 项定向 E2E 全部通过，包含该回归。 |
-| PB-R03 | Blocking / Fixed | 将用户要求的逐技能分析误缩为公式与参数整理；六张 PB 卡片只有简短效果和公式，缺少各自的使用场景、限制、属性差异与连锁定位。原验收只覆盖公式／图标，遗漏内容完整性。 | 六种 PB 各有作用方式、参数影响、使用分析、连锁定位、原有图标及新增 SVG 示意图；技能分析前置，新增六个直达入口与同条件伤害比较。新回归在旧页面因缺少六个分析入口失败；实施后验证六种技能的效果、属性差异、关键限制、图文关联及键盘跳转，通过。 |
+| PB-R01 | Should-fix / Fixed | Icon and section checks iterated over the current DOM, so the loop never ran when nodes were missing, and mismatched icons were only checked for loading. This affected the six PB icons, the four-chain icon order and eight section entry links. Existing cross-page links had been verified by hand only once. | A fixed set of required icons and sections now verifies name-to-icon pairing, chain order, and the three entry links and return paths from the Mag and acronym pages. The mechanics tests pass 3 tests, and temporary probes for a missing icon, a wrong icon and a missing section are each caught by the new assertions. |
+| PB-R02 | Should-fix / Fixed | The intro area used a top-level `header` for layout, which together with page-chrome's `header` exposed two unnamed banner landmarks. The original WCAG tags and scoped selectors did not check page-wide landmark uniqueness. This affected assistive-technology navigation between the page header and the intro. | A page-wide Axe `landmark-unique` probe reproduced it. The intro container is now a `div`, and checks for the banner count and page-wide landmark uniqueness were added. All 9 final focused E2E tests passed, including this regression. |
+| PB-R03 | Blocking / Fixed | The user's request for a per-skill analysis was narrowed to a list of formulas and parameters. The six PB cards had only brief effects and formulas, with no use cases, limits, stat differences or chain role. The original acceptance covered only formulas and icons and missed content completeness. | Each of the six PBs now has its mechanism, parameter effects, usage analysis, chain role, its original icon and a new SVG sketch. The skill analysis comes first, with six new jump links and a same-conditions damage comparison. The new regression failed on the old page for lacking the six analysis entry links. After implementation it verifies each skill's effect, stat differences, key limits, image-text association and keyboard jumps, and passes. |
 
-用户工作流调整单独处理：AGENTS.md 改为本地验证后等待验收。本轮不提交、不推送、不部署。
+The user's workflow change was handled separately: `AGENTS.md` now says to wait for
+acceptance after local verification. This round made no commit, push or deploy.
 
-### 第 2 轮：修复后复审
+### Round 2: post-fix review
 
-PB-R01 的回归测试最初误写了无空格的链接可访问名称；根据浏览器 accessibility snapshot 修正测试定位器后，3 项正式测试通过。这是测试工具问题，未修改产品来迎合错误断言。
-随后三个故障探针分别确认缺失图标、错误图标和缺失章节均失败；新增全页地标检查发现 PB-R02，继续修复，不将此中间状态作为完成结论。
+The PB-R01 regression test initially used an accessible link name without spaces.
+After checking the browser accessibility snapshot, the test locator was corrected
+and all 3 formal tests passed. This was a test tooling problem; the product was not
+changed to satisfy a wrong assertion.
 
-### 第 3 轮：按逐技能分析要求补齐并收敛
+The three fault probes then confirmed that a missing icon, a wrong icon and a
+missing section each fail. The new page-wide landmark check found PB-R02, which was
+fixed; this intermediate state was not treated as a completion verdict.
 
-- 用户指出“每个 PB 技能的分析”仍缺失；将此遗漏记为 PB-R03，并明确承认先前把范围误缩为公式汇总。新增 `each PB explains its role, stat scaling and limits beside its illustration`，在旧构建上复现失败：应有 6 个技能分析入口，实际 0 个。
-- 依据 [Ephinea Photon Blasts](https://wiki.pioneer2.net/w/Photon_Blasts) 的效果描述与公式逐个整理六种技能。正文明确区分来源事实与推导建议；示意图不声称具体距离、精确范围或目标选择规则。
-- 独立重算四种攻击的同条件算例，基础威力及最终伤害均与正文一致。六种 PB 仍各只有一张主卡片，攻击／恢复／辅助公式随各自分析维护；玛古页和缩写表继续指向机制页，不复制攻略。
-- 检查完整本地差异及关联入口。视觉复审将双子图原先分别写在不同玩家下的 ATP／DFP 标签统一为每人“攻防 ↑”，避免误解为不同玩家只获得其中一种加成；更新构建后重新截图、检查并通过同一组 9 项测试。
+### Round 3: completing the per-skill analysis
 
-最终验证：
+- The user pointed out that the "analysis of each PB skill" was still missing. The
+  gap was recorded as PB-R03, with an explicit acknowledgment that the scope had
+  been narrowed to a formula summary. The new test
+  `each PB explains its role, stat scaling and limits beside its illustration`
+  reproduced the failure on the old build: 6 skill analysis entry links expected,
+  0 found.
+- The six skills were written up one by one from the effect descriptions and
+  formulas in [Ephinea Photon Blasts](https://wiki.pioneer2.net/w/Photon_Blasts).
+  The text clearly separates sourced facts from derived advice, and the sketches do
+  not claim specific distances, exact ranges or targeting rules.
+- The same-conditions examples for the four attack PBs were recomputed
+  independently, and base power and final damage match the text. Each PB still has
+  a single main card, and the attack, recovery and support formulas are maintained
+  with its analysis. The Mag page and acronym table still point to the mechanics
+  guide instead of copying the guide.
+- The full local diff and related entry links were reviewed. The visual review
+  changed the twin-PB diagram, which had shown ATP and DFP labels under different
+  players, to "攻防 ↑" (ATP/DFP up) for each player, so it cannot be read as each
+  player receiving only one boost. After rebuilding, screenshots were retaken and
+  reviewed, and the same 9 tests passed.
+
+Final verification:
 
 ```sh
 rtk npm run build
@@ -124,28 +187,52 @@ rtk node scripts/verify_angular_architecture.mjs
 rtk git diff --check
 ```
 
-- 构建成功：1,265 个预渲染路由、45 个活动片段；JavaScript gzip 为 894,263 / 1,000,000 字节。
-- 定向 E2E：9 项通过；包含 320、390、760、761、1,024、1,440 px 页面／图卡无横向溢出、必需图标配对与加载、全部章节和技能键盘跳转、三个跨页入口与返回、局部 WCAG 检查、全页地标唯一性及相关 Angular 交互。
-- 中文一致性与 105 个 HTML 源文件的 Angular 归属检查通过。parse5 检查三个关联页面，无解析错误、重复 ID 或悬空链接／aria-labelledby。
-- 人工查看本地截图：`/tmp/pb-skills-desktop.png`、`/tmp/pb-support-desktop.png`、`/tmp/pb-estlla-mobile.png`、`/tmp/pb-twins-mobile.png`、`/tmp/pb-comparison-desktop.png`。技能图标、示意图、说明与公式均可读；手机端按单列排列。
+- The build succeeded with 1,265 prerendered routes and 45 event fragments, and
+  gzip JavaScript of 894,263 / 1,000,000 bytes.
+- 9 focused E2E tests passed. They cover no horizontal page or card overflow at
+  320, 390, 760, 761, 1,024 and 1,440 px, required icon pairing and loading,
+  keyboard jumps to every section and skill, the three cross-page entry links and
+  returns, scoped WCAG checks, page-wide landmark uniqueness and related Angular
+  interactions.
+- The Chinese consistency check and the Angular ownership check across 105 HTML
+  source files passed. parse5 checks of the three related pages found no parse
+  errors, duplicate IDs or dangling links and `aria-labelledby`.
+- Local screenshots were reviewed by hand: `/tmp/pb-skills-desktop.png`,
+  `/tmp/pb-support-desktop.png`, `/tmp/pb-estlla-mobile.png`,
+  `/tmp/pb-twins-mobile.png` and `/tmp/pb-comparison-desktop.png`. Skill icons,
+  sketches, text and formulas are readable, and phones show a single column.
 
-本轮无剩余 Blocking 或 Should-fix，结论：**PASS**。本轮为本地内容与展示验证，未执行全站 release:prepare，未声称对线上客户端实测。更改未提交、未推送、未部署；用户验收仍为后续发布前提。
+No Blocking or Should-fix issues remained. Verdict: **PASS**. This round was local
+content and display verification only; it did not run the full `release:prepare` or
+claim in-game testing. The changes were not committed, pushed or deployed, and user
+acceptance remained a precondition for release.
 
-### 第 4 轮：Wiki 规则与算例校准（用户追加要求）
+### Round 4: aligning with Wiki rules and examples (user follow-up)
 
-本轮按用户“校准对齐”要求重新核对 PB 全节及玛古／缩写表入口。来源为 Ephinea Wiki `Photon Blasts`（页面引用修订 41842）、`Game mechanics#Special attacks`；玛古自动触发与 PB 施放的等级概念另核对 `Mags#Trigger types`。
+At the user's request to "calibrate and align", the whole PB section and the Mag
+and acronym entry links were re-checked. Sources were the Ephinea Wiki
+`Photon Blasts` page (cited revision 41842) and `Game mechanics#Special attacks`,
+with the level concepts for Mag auto-activation and PB casting also checked against
+`Mags#Trigger types`.
 
-| ID | 级别 / 状态 | 根因与影响范围 | 回归覆盖与关闭证据 |
+| ID | Severity / status | Root cause and impact | Regression coverage and closure evidence |
 | --- | --- | --- | --- |
-| PB-R04 | Should-fix / Fixed | 规则被压缩且只给宽泛来源：没有说明相邻重复时被覆盖者失去连锁收益；双子等级算例未就近标明推导性质，缺少捐赠参与者数量与有效 PB 数的对照；PB 积累末句将特殊攻击限制引向未写此限制的 Photon Blasts 页面。影响双子卡片、参数表、连锁／捐赠段和 PB 积累来源。 | 已补齐覆盖后果、同房间／时机条件及精确原文链接，明确 Shifta／Deband 等级含义，增加捐赠与连锁的条件化算例回归。旧页面缺失覆盖后果时失败；最终 10 项定向 E2E 通过。公式逐项复算，未发现数值错误。 |
+| PB-R04 | Should-fix / Fixed | Rules were compressed and cited only broad sources. The text did not say that an overwritten player loses the chain bonus when adjacent PBs repeat. The twin-PB level examples did not mark their derived nature nearby and lacked a comparison of donating participants against effective PB count. The last sentence on PB accumulation pointed its special-attack restriction to the Photon Blasts page, which does not state that restriction. This affected the twin card, parameter table, chain and donation paragraph, and the PB accumulation source. | Added the overwrite consequence, same-room and timing conditions and exact source links, clarified the meaning of Shifta and Deband levels, and added regressions for conditional donation and chain examples. The old page failed on the missing overwrite consequence, and 10 final focused E2E tests passed. Formulas were recomputed item by item with no numeric errors found. |
 
-本轮回归最初因新增的可访问名称尚不存在而失败；改为定位既有连锁列表后，旧页面明确在“被覆盖的玩家不会获得该次连锁收益”断言失败，确认覆盖的是内容缺失。首次修正后 10 项通过。人工截图复审发现手机端等级列默认需横向滚动，继续将本表改为窄屏四列完整展示，并将回归改为检查 320／390 px 所有列与文字均可见。
+The regression first failed because a new accessible name did not exist yet. After
+switching to the existing chain list locator, the old page failed specifically on
+the assertion "被覆盖的玩家不会获得该次连锁收益" (an overwritten player does not
+receive that chain bonus), confirming the coverage targeted missing content. After
+the first fix, 10 tests passed. A manual screenshot review then found that the
+level column required horizontal scrolling on phones by default, so the table was
+changed to show all four columns on narrow screens, and the regression now checks
+that every column and its text is visible at 320 and 390 px.
 
-| ID | 级别 / 状态 | 根因与影响范围 | 回归覆盖与关闭证据 |
+| ID | Severity / status | Root cause and impact | Regression coverage and closure evidence |
 | --- | --- | --- | --- |
-| PB-R05 | Should-fix / Fixed | 新增手机表格规则的选择器优先级低于全站 `.content-container table th/td`，实际仍保留左右各 15 px 内边距，导致固定列宽下的 Q 与等级文字超出单元格。影响该表在窄屏的表头与数据单元格。 | 320 px 单元格内容尺寸断言复现；浏览器计算样式确认为 `12px 15px`，Q 列宽 36 px、所需 41 px。将规则限定到机制页、提高选择器优先级后，320／390 px 所有表头与单元格尺寸断言及截图验证通过，无需横向滚动即可同时读取四列。 |
+| PB-R05 | Should-fix / Fixed | The new phone table rule had lower selector specificity than the site-wide `.content-container table th/td`, so 15 px of left and right padding remained. With fixed column widths, the Q and level text overflowed their cells. This affected the table's header and data cells on narrow screens. | A 320 px cell content size assertion reproduced it. Computed styles confirmed `12px 15px`, with a 36 px Q column needing 41 px. After scoping the rule to the mechanics guide with higher specificity, header and cell size assertions and screenshots at 320 and 390 px passed, and all four columns are readable without horizontal scrolling. |
 
-最终重建与复审：
+Final rebuild and review:
 
 ```sh
 rtk npm run build
@@ -155,24 +242,74 @@ rtk node scripts/verify_angular_architecture.mjs
 rtk git diff --check
 ```
 
-- 构建成功：1,265 路由、45 活动片段，JavaScript gzip 为 895,760 / 1,000,000 字节。最终 10 项定向 E2E 通过；中文检查、105 个 HTML 源文件归属检查及差异检查通过。
-- 三个关联页面的 parse5 解析、ID 唯一性、页内链接和 aria-labelledby 完整性通过。通过独立代数化简复算新增等级表，六个场景与页面数值一致。
-- 查看 `test-results/mechanics-PB-donation-rule-81698--facts-from-worked-examples/` 下的 `pb-levels-desktop.png`、`pb-levels-mobile-320.png`、`pb-levels-mobile-390.png`：桌面和两种手机宽度均可同时读取方式、Q、N、等级，文字无重叠或裁切。
-- 最终复审覆盖六种 PB 原有卡片、参数口径、伤害／恢复／辅助公式、捐赠／连锁规则、新增等级表及关联入口，未发现剩余 Blocking 或 Should-fix；本轮结论 **PASS**。
-- 本轮仅在机制页维护 PB 正文；文档记录来源与验收状态。按 Wiki 整理并推算的性质已在正文注明，未做游戏客户端实测或全站 release:prepare。全部改动继续保留在本地，未提交、未推送、未部署，等待用户验收。
+- The build succeeded with 1,265 routes, 45 event fragments and gzip JavaScript of
+  895,760 / 1,000,000 bytes. 10 final focused E2E tests passed, and the Chinese
+  check, the ownership check across 105 HTML source files and the diff check
+  passed.
+- parse5 parsing, ID uniqueness, in-page links and `aria-labelledby` integrity
+  passed for the three related pages. The new level table was recomputed through
+  independent algebraic simplification, and all six scenarios match the page.
+- Screenshots under
+  `test-results/mechanics-PB-donation-rule-81698--facts-from-worked-examples/`,
+  namely `pb-levels-desktop.png`, `pb-levels-mobile-320.png` and
+  `pb-levels-mobile-390.png`, show method, Q, N and level readable together on
+  desktop and both phone widths, with no overlapping or clipped text.
+- The final review covered the six original PB cards, parameter definitions,
+  damage, recovery and support formulas, donation and chain rules, the new level
+  table and related entry links, and found no remaining Blocking or Should-fix.
+  Verdict for this round: **PASS**.
+- This round maintained PB text only in the mechanics guide, with the docs
+  recording sources and acceptance status. The text notes where content is
+  compiled and derived from the Wiki. No in-game testing or full `release:prepare`
+  was done. All changes stayed local, uncommitted, unpushed and undeployed,
+  pending user acceptance.
 
-### 第 5 轮：用户再次调用 review-fix-loop
+### Round 5: user invoked review-fix-loop again
 
-- 重新审查全部 7 个本地改动文件；暂存区无改动。检查关联的玛古／缩写表入口、HTML 到 Angular 的正文及 URL／样式生成、页面页头、路由配置与测试选择器，未发现新的可操作问题。
-- 重新读取 Ephinea Wiki Photon Blasts，逐项核对六种效果、首发参数、截断公式、Q／N、捐赠／覆盖规则及双子复活限制。独立复算攻击对比、Pilla 单发／捐赠／四连和六个双子等级场景，页面数值一致。规则、推导建议和未实测边界仍分别明确标注。
-- PB-R01 至 PB-R05 均维持 Fixed：必需图标与名称匹配、唯一 banner、六种独立分析、规则出处和捐赠等级对照、手机单元格内容尺寸均通过现有回归。本轮没有新增缺陷，因此只追加复审记录。
-- 重新执行第 4 轮列出的完整验证命令：构建成功（1,265 路由、45 片段、JavaScript gzip 895,760 / 1,000,000 字节），10 项定向 E2E 全部通过，中文／105 个 HTML 归属／差异检查通过。再次以 parse5 检查三个关联页面，无解析错误、重复 ID 或悬空页内／aria-labelledby 引用。
-- 人工查看本轮重新生成的 `pb-levels-desktop.png`、`pb-levels-mobile-320.png`、`pb-levels-mobile-390.png`，四列及文字完整可读。外部引用检查基于 Wiki 正文与页面链接地址；未把外站可用性或游戏客户端实测纳入本地 E2E。
-- 最终完整复审无剩余 Blocking 或 Should-fix，结论 **PASS**。本次验证仍为机制页及关联模块范围，未运行全站 release:prepare；所有改动未提交、未推送、未部署，发布前仍须用户验收。
+- All 7 locally changed files were re-reviewed with nothing staged. The related Mag
+  and acronym entry links, HTML-to-Angular body, URL and style generation, page
+  header, route configuration and test selectors were checked, and no new
+  actionable issues were found.
+- The Ephinea Wiki Photon Blasts page was re-read to check the six effects,
+  first-caster parameters, truncation formulas, Q and N, donation and overwrite
+  rules, and the twin revival restriction. The attack comparison, Pilla single,
+  donated and four-chain casts, and the six twin level scenarios were recomputed
+  independently and match the page. Rules, derived advice and untested limits
+  remain clearly labeled.
+- PB-R01 through PB-R05 remain Fixed. Required icon and name matching, a unique
+  banner, six independent analyses, rule sources and the donation level comparison,
+  and phone cell content sizes all pass their existing regressions. No new defects
+  were found in this round, so only the review record was added.
+- All verification commands from Round 4 were rerun. The build succeeded (1,265
+  routes, 45 fragments, gzip JavaScript 895,760 / 1,000,000 bytes), all 10 focused
+  E2E tests passed, and the Chinese, 105-file HTML ownership and diff checks passed.
+  parse5 again found no parse errors, duplicate IDs or dangling in-page or
+  `aria-labelledby` references across the three related pages.
+- The regenerated `pb-levels-desktop.png`, `pb-levels-mobile-320.png` and
+  `pb-levels-mobile-390.png` were reviewed by hand, and all four columns and their
+  text are fully readable. External reference checks were based on the Wiki text and
+  page link targets; external site availability and in-game testing were not part
+  of the local E2E.
+- The final full review found no remaining Blocking or Should-fix. Verdict:
+  **PASS**. Verification covered the mechanics guide and related modules only,
+  without the full `release:prepare`. All changes remained uncommitted, unpushed
+  and undeployed, and user acceptance was still required before release.
 
-### 用户验收与提交授权
+### User acceptance and push authorization
 
-- 2026-09-15，用户在图文资源确认及第 5 轮复审后明确要求“对齐文档，提交推送”，本次机制页改动已获验收与提交、推送授权。
-- 本次交付包含六种 PB 的图标、技能示意与独立分析，伤害／恢复／辅助等级参数，Wiki 规则校准、捐赠等级对照和手机显示修复，以及对应回归测试。PB 正文只在机制页维护。
-- 文档已将该项从待验收移至完成，并保持后续工作须先验收再推送的仓库规则。本次验收后仅更新文档状态，产品验证沿用第 5 轮通过的构建、10 项定向 E2E、中文与架构检查；未扩展为全站 release:prepare 或客户端实测结论。
-- 按此版本直接提交至 `master` 并推送 `origin/master`；Git 提交记录对应本次交付，实际部署状态以该提交的 Pages 工作流结果为准。
+- On 2026-09-15, after confirming the illustration assets and the Round 5 review,
+  the user explicitly asked to align the docs, commit and push.
+  The mechanics guide changes were accepted and commit and push were
+  authorized.
+- The delivery includes icons, skill sketches and independent analyses for all six
+  PBs, damage, recovery and support level parameters, Wiki rule calibration, the
+  donation level comparison, the phone display fix, and the matching regression
+  tests. PB text is maintained only in the mechanics guide.
+- The docs moved this item from pending acceptance to done and keep the repository
+  rule that later work must be accepted before pushing. After acceptance only the
+  doc status was updated. Product verification relies on the Round 5 build, 10
+  focused E2E tests, and Chinese and architecture checks; it was not extended to a
+  full `release:prepare`.
+- This version was committed directly to `master` and pushed to `origin/master`.
+  The Git commit history matches this delivery, and actual deployment status
+  follows the Pages workflow result for that commit.
