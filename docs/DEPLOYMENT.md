@@ -103,6 +103,27 @@ run completes:
 The workflow publishes only the artifact that passed the release gates; do not
 copy files directly into the deployed site.
 
+### September 15, 2026 mechanics illustrations
+
+The mechanics guide adds a C-section decision flow and three outcome
+illustrations, plus an E-section knockdown threshold chart with client-snapshot
+evidence and source limitations. The D-section class table scrolls locally on
+narrow screens. Six item-reference attributes now match the authority's exact
+keys; their item identities and Chinese names are unchanged.
+
+Local validation passed 8 item-localization unit tests, 3 focused browser tests,
+the production build, localization and Angular architecture checks. The build
+contains 1,265 routes and 45 fragments, with 882,022 / 1,000,000 bytes of gzip
+JavaScript. These are focused local results; the full-site release gates run on
+the matching `master` push. [The evidence and closed review ledger](MECHANICS_VISUAL_EVIDENCE.md)
+record the commands and remaining evidence limits.
+
+After the matching Pages build and deploy succeed, verify
+`/tools/mechanics.html#incoming-physical` and `#knockdown`: check the three
+outcomes, C-to-E keyboard navigation, the expandable source note, and 320 px
+layout including the class table. Local verification alone does not establish
+production publication.
+
 ### September 14, 2026 monster catalog and home RBR
 
 Local verification passed `npm test`, the production build, 11 new feature

@@ -203,6 +203,17 @@ Ultima-specific equipment and timing recommendations. Angular explicitly owns
 the eight-route accordion after hydration, publishes a readiness contract, and
 keeps exactly one variant open for both pointer and keyboard activation.
 
+The mechanics guide keeps its C/E explanatory figures in `tools/mechanics.html`
+with page-scoped styles in `assets/css/mechanics.css`. Semantic HTML, decorative
+inline SVG and native links/details provide the flow, outcome comparisons and
+knockdown threshold without an additional JavaScript runtime. The D-section
+class table scrolls within its own keyboard-focusable region on narrow screens.
+`tests/e2e/mechanics.spec.mjs` checks exact authored item-authority keys before
+display normalization, six viewport widths, keyboard interaction and scoped
+accessibility. [The mechanics evidence record](MECHANICS_VISUAL_EVIDENCE.md)
+pins the client snapshot and distinguishes its strict internal-damage threshold
+from the Wiki summary and unverified online runtime behavior.
+
 Build-input JavaScript datasets are never copied to `_site`. Generators evaluate
 or normalize them into Angular modules. The PSOStats Combo snapshot remains an
 audited upstream boundary. The character simulator is Haven-owned TypeScript:
