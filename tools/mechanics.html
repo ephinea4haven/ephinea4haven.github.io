@@ -15,31 +15,44 @@
 
     <div class="content-container">
 
+<p>本页汇总 Ephinea PSOBB 的核心数值公式。除另有注明外，公式与数值均整理自 <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">Ephinea Wiki 的 Game mechanics 页面</a>。游戏对最终伤害只做截断，不做四舍五入：计算结果为 100.92 时，实际伤害为 100。</p>
+
 <h2>A: 物理伤害公式</h2>
 
-<p>PSO 菜单中显示的是最大ATP值。实际上每个职业有一个隐藏的基础ATP，每次攻击会加上一个职业特定的随机值（游戏截断而非四舍五入）。</p>
+<p>物理伤害指除火焰／雷电类特殊攻击和魔法以外的一切伤害。菜单中括号内显示的 ATP 是该职业的<strong>最大值</strong>；游戏实际使用一个隐藏的基础 ATP，并在每次攻击时叠加一个职业相关的随机方差。</p>
 
 <h3>职业攻击方差 (Pvar)</h3>
-<ul>
-<li>Hunter: 6</li>
-<li>Ranger: 4</li>
-<li>Force: 3</li>
-</ul>
+<table>
+<thead><tr><th>职业</th><th>Pvar_max</th></tr></thead>
+<tbody>
+<tr><td>Hunter</td><td>6</td></tr>
+<tr><td>Ranger</td><td>4</td></tr>
+<tr><td>Force</td><td>3</td></tr>
+</tbody>
+</table>
 
 <h3>第1步: 装备ATP (EQATP)</h3>
-<p><code>EQATP = [武器ATP_min + (打磨 × 2) + 铠甲ATP + 盾ATP] × [武器属性% + 1]</code></p>
+<p><code>EQATP = [武器ATP_min + (磨数 × 2) + 铠甲ATP + 盾牌ATP] × [武器属性% + 1]</code></p>
+<ul>
+<li>武器ATP_min = 武器 ATP 区间的下限</li>
+<li>武器属性% = 对目标种类生效的属性百分比（Native / A.Beast / Machine / Dark）</li>
+</ul>
 
 <h3>第2步: 基础ATP</h3>
 <p><code>BaseATP = BaseATP_max - Pvar_max</code></p>
+<ul>
+<li>BaseATP_max = 菜单中括号内显示的 ATP</li>
+</ul>
 
 <h3>第3步: 有效ATP</h3>
 <p><code>ATPeff = [BaseATP + (Wvar × WSpread)] × (1 + Shifta%) + EQATP + Pvar</code></p>
 <ul>
-<li>Wvar = 武器方差（最大ATP - 最小ATP）</li>
-<li>WSpread = 随机比例 0~1</li>
-<li>Shifta% = Shifta增幅百分比</li>
-<li>Pvar = 随机职业方差 0~Pvar_max</li>
+<li>Wvar = 每次攻击随机生成的 0~1 小数</li>
+<li>WSpread = 武器 ATP 区间宽度（例如 300-400 ATP 的武器为 100）</li>
+<li>Shifta% = 当前 Shifta 等级的增幅百分比（见 D 节）</li>
+<li>Pvar = 每次攻击随机生成的职业方差：Hunter 1~6，Ranger 1~4，Force 1~3</li>
 </ul>
+<p>Shifta 只作用于基础 ATP 与武器随机区间，不作用于 EQATP。武器属性百分比只乘以武器 ATP 下限，随机区间宽度不变：一把 300-400 ATP、属性 100% 的武器，实际 ATP 为 600-700，而不是 600-800。</p>
 
 <h3>第4步: 有效DFP</h3>
 <p><code>DFPeff = DFP_base × (1 - Zalure%)</code></p>
@@ -47,27 +60,32 @@
 <h3>第5步: 最终伤害</h3>
 <p><code>伤害 = [(ATPeff - DFPeff) / 5] × 0.9 × 攻击倍率</code></p>
 
-<h4>攻击倍率:</h4>
+<h4>攻击倍率</h4>
 <table>
 <thead><tr><th>攻击类型</th><th>倍率</th></tr></thead>
 <tbody>
 <tr><td>普通攻击 Normal</td><td>×1.0</td></tr>
 <tr><td>重攻击 Heavy</td><td>×1.89</td></tr>
-<tr><td>特殊攻击 Special</td><td>×0.56</td></tr>
-<tr><td>祭系 (Charge/Spirit/Berserk)</td><td>×3.33</td></tr>
-<tr><td>富豪 Vjaya</td><td>×5.67</td></tr>
-<tr><td>HP/TP/EXP吸取类特殊</td><td>×0.67</td></tr>
-<tr><td><span data-item-en="OROTIAGITO"></span> 穿透波</td><td>×1.94</td></tr>
-<tr><td>雷切 穿透波</td><td>×0.97</td></tr>
+<tr><td>特殊攻击 Special（一般特殊）</td><td>×0.56</td></tr>
+<tr><td>牺牲型特殊攻击（Charge 金祭 / Spirit 灵祭 / Berserk 血祭）</td><td>×3.33</td></tr>
+<tr><td><span data-item-en="Vjaya"></span> 的特殊攻击</td><td>×5.67</td></tr>
+<tr><td>HP 吸取 / TP 吸取 / EXP 吸取 / 冰冻 / 麻痹 / 混乱类特殊攻击</td><td>×0.67</td></tr>
+<tr><td><span data-item-en="Orotiagito"></span> 穿透波</td><td>×1.94</td></tr>
+<tr><td><span data-item-en="Raikiri"></span> 穿透波</td><td>×0.97</td></tr>
 </tbody>
 </table>
+<ul>
+<li>HP 吸取类特殊攻击吸取的 HP 等于其造成的伤害。</li>
+<li>Vjaya 每次特殊攻击消耗 10,000 Meseta，命中率按重攻击计算。</li>
+</ul>
 
-<h4>暴击与 LCK:</h4>
+<h4>暴击与 LCK</h4>
 <ul>
 <li>玩家暴击率：<code>min(LCK, 100) / 5 %</code>。角色 LCK 上限为 100，因此最高暴击率为 20%。</li>
+<li>敌人暴击率：<code>min(LCK, 100) / 2 %</code>。</li>
 <li>暴击伤害：<code>攻击结果 × 1.5</code>。</li>
 <li>只有已经命中、且不是魔法或固定伤害的攻击才进行暴击判定。</li>
-<li>LCK 不会随角色升级提高，主要通过装备和<span data-item-en="Luck Material"></span>补充。</li>
+<li>LCK 是唯一不随升级增长的非抗性属性，只能通过装备和<span data-item-en="Luck Material"></span>提高。</li>
 </ul>
 <p><strong>不要混淆两种 Luck：</strong>角色属性 LCK 只影响暴击，不影响掉落率；Ephinea 另有独立的每日运势系统，符合当天职业、种族或性别条件的角色会获得稀有掉落率加成。<code>/forecast</code> 显示当天的运势条件，<code>/luck</code> 显示当前角色对应的运势等级。参见 <a href="https://wiki.pioneer2.net/w/Stats#Luck_(LCK)" target="_blank" rel="noopener">Ephinea Wiki 的 LCK 说明</a>与<a href="https://wiki.pioneer2.net/w/Daily_forecast" target="_blank" rel="noopener">每日运势规则</a>。</p>
 
@@ -75,10 +93,15 @@
 
 <h2>B: 玩家攻击敌人的命中计算</h2>
 
-<p>本节以玩家为攻击方、敌人为防守方。玩家的 ATA 与敌人的 EVP 决定攻击是否命中；命中后再进入上面的物理伤害计算。</p>
+<p>本节以玩家为攻击方、敌人为防守方。玩家的 ATA 与敌人的 EVP 决定攻击是否命中；命中后再进入 A 节的物理伤害计算。魔法不进行命中判定，只要接触到目标就必定生效。</p>
 
 <h3>第1步: 总命中 (ATA)</h3>
-<p><code>ATA_total = ATA_base + 武器ATA + 铠甲ATA + 盾ATA</code></p>
+<p><code>ATA_total = ATA_base + 武器ATA + 铠甲ATA + 盾牌ATA</code></p>
+<ul>
+<li>ATA_base = 菜单中括号内显示的 ATA</li>
+<li>武器ATA 包含武器的 Hit 属性</li>
+<li>ATA_total 就是菜单中括号外显示的 ATA，可直接读取</li>
+</ul>
 
 <h3>第2步: 有效命中</h3>
 <p><code>ATA_eff = ATA_total × 攻击类型修正 × 连击段修正</code></p>
@@ -108,18 +131,19 @@
 <thead><tr><th>怪物状态</th><th>修正</th></tr></thead>
 <tbody>
 <tr><td>无状态</td><td>1.0</td></tr>
-<tr><td>麻痹/感电</td><td>0.85</td></tr>
+<tr><td>麻痹或感电</td><td>0.85</td></tr>
 <tr><td>冰冻</td><td>0.7</td></tr>
-<tr><td>麻痹+冰冻</td><td>0.55</td></tr>
+<tr><td>麻痹（或感电）+ 冰冻</td><td>0.55</td></tr>
 </tbody>
 </table>
 
 <h3>第4步: 最终命中率</h3>
-<p><code>近战命中 = ATA_eff - (EVP_eff × 0.2)</code></p>
-<p><code>远程命中 = ATA_eff - (EVP_eff × 0.2) - 距离惩罚</code></p>
+<p><code>近战命中率(%) = ATA_eff - (EVP_eff × 0.2)</code></p>
+<p><code>远程命中率(%) = ATA_eff - (EVP_eff × 0.2) - 距离惩罚</code></p>
 <ul>
-<li>命中率超过100%必定命中，低于0%必定未命中</li>
-<li>装备<strong><span data-item-en="Smartlink"></span> Smartlink</strong> 可抵消距离惩罚</li>
+<li>计算结果直接作为百分比：达到 100 必定命中，为负必定未命中。</li>
+<li>距离惩罚 = <code>距离 × 0.33</code>，只对未装备<span data-item-en="Smartlink"></span>的 Hunter 与 Force 生效；Ranger 以及装备 Smartlink 的角色没有距离惩罚。</li>
+<li>子弹类弹道在目标移动超过 8 单位后不再进行命中判定；目标被击退导致弹道提前消失时，不会显示 MISS。</li>
 </ul>
 
 <hr>
@@ -133,7 +157,7 @@
 <li>回避成功时，攻击在原地被弹开，角色不会后退。</li>
 <li>回避失败后，才用敌人的 ATP 与玩家的 DFP 计算物理伤害。</li>
 <li>DFP 足够高、使计算结果为 0 时会出现 <strong>Guard</strong>：角色被向后推开，但 HP 不减少。</li>
-<li>伤害大于 0 时会扣除相应 HP；单次伤害达到角色最大 HP 的 25% 时，角色会倒地。</li>
+<li>伤害大于 0 时会扣除相应 HP；单次伤害达到角色最大 HP 的 25% 时，角色会倒地（见 E 节）。</li>
 </ol>
 
 <p>因此，Guard 不是 EVP 生效：它表示 EVP 判定已经失败，只是后续计算得到的伤害为 0。完整顺序是：<strong>EVP 判定 → ATP 与 DFP 计算伤害 → Guard、受伤或倒地</strong>。</p>
@@ -141,7 +165,7 @@
 <h3>敌人攻击玩家时的命中率</h3>
 <p>SLW 在 Ephinea 的实测结果符合以下近似关系：</p>
 <p><code>敌人命中率(%) ≈ clamp(敌人 ATA - 玩家 EVP × 0.2, 0, 100)</code></p>
-<p>也可以写成 <code>敌人 ATA - 玩家 EVP / 5</code>。例如敌人 ATA 为 290 时，玩家 EVP 达到 1450，理论命中率为 0%；EVP 为 1442 时，理论命中率为 1.6%。视频中以 EVP 1457 承受约 300 次攻击均成功回避，降低到 1442 后则观察到了命中。</p>
+<p>也可以写成 <code>敌人 ATA - 玩家 EVP / 5</code>，与 B 节玩家攻击敌人的公式形式一致。例如敌人 ATA 为 290 时，玩家 EVP 达到 1450，理论命中率为 0%；EVP 为 1442 时，理论命中率为 1.6%。视频中以 EVP 1457 承受约 300 次攻击均成功回避，降低到 1442 后则观察到了命中。</p>
 
 <h3>适用范围与读表注意</h3>
 <ul>
@@ -156,39 +180,32 @@
 
 <h2>D: 魔法伤害公式</h2>
 
-<p><code>[(MST + 魔法基础威力) / 5] × (1.0 + 职业天赋 + 武器增益 + 铠甲增益 + 增幅盾增益) × (1 - 怪物抗性)</code></p>
-
-<h3>职业天赋</h3>
-
+<p><code>伤害 = [(MST + 魔法基础威力) / 5] × (1 + 职业增幅 + 武器增幅 + 铠甲增幅 + 盾牌增幅) × (1 - 目标抗性)</code></p>
 <ul>
-<li><strong>爆法 FOmar:</strong>
-  <ul>
-  <li>Gifoie/Gibarta/Gizonde/Grants: +30%伤害</li>
-  <li>Shifta/Deband: +100%范围</li>
-  </ul>
-</li>
-<li><strong>人妻 FOmarl:</strong>
-  <ul>
-  <li>Grants: +50%伤害</li>
-  <li>Shifta/Deband/Resta/Anti: +100%范围</li>
-  </ul>
-</li>
-<li><strong>猴子 FOnewm:</strong>
-  <ul>
-  <li>Gifoie/Gibarta/Gizonde: +30%伤害</li>
-  <li>Rafoie/Rabarta/Razonde: +30%伤害</li>
-  </ul>
-</li>
-<li><strong>萝莉 FOnewearl:</strong>
-  <ul>
-  <li>Foie/Barta/Zonde: +30%伤害</li>
-  <li>Resta/Anti: +100%范围</li>
-  <li>Megid: 贯穿</li>
-  </ul>
-</li>
+<li>魔法伤害由 MST 决定，由目标对应属性的抗性削减，不受目标 DFP 影响。</li>
+<li>魔法不进行命中判定，也不会暴击。</li>
+<li>所有百分比增幅先<strong>相加</strong>再乘算：FOnewearl 装备<span data-item-en="Foie Merge"></span>时，Foie 的增幅为 +30% + 30% = +60%。</li>
+<li>Megid 的增幅不提高即死率，而是使其贯穿；多个 Megid 增幅不会叠加。</li>
+<li>Jellen 与 Zalure 没有任何职业增幅；Reverser 与 Ryuker 没有任何增幅。装备增幅见<a href="/data/equipment_technique_boosts.html">装备魔法增幅</a>。</li>
 </ul>
 
-<h3>魔法基础威力与TP消耗公式</h3>
+<h3>职业增幅</h3>
+<table>
+<thead><tr><th>职业</th><th>魔法</th><th>增幅</th></tr></thead>
+<tbody>
+<tr><td rowspan="2">FOmar</td><td>Gifoie / Gibarta / Gizonde / Grants</td><td>伤害 +30%</td></tr>
+<tr><td>Shifta / Deband</td><td>范围 +100%</td></tr>
+<tr><td rowspan="2">FOmarl</td><td>Grants</td><td>伤害 +50%</td></tr>
+<tr><td>Resta / Anti / Shifta / Deband</td><td>范围 +100%</td></tr>
+<tr><td>FOnewm</td><td>Gifoie / Gibarta / Gizonde / Rafoie / Rabarta / Razonde</td><td>伤害 +30%</td></tr>
+<tr><td rowspan="3">FOnewearl</td><td>Foie / Barta / Zonde</td><td>伤害 +30%</td></tr>
+<tr><td>Megid</td><td>贯穿</td></tr>
+<tr><td>Resta / Anti</td><td>范围 +100%</td></tr>
+</tbody>
+</table>
+
+<h3>魔法基础威力与 TP 消耗公式</h3>
+<p>TLv 为魔法等级。</p>
 
 <table>
 <thead><tr>
@@ -238,7 +255,7 @@
 <td>[0.6 × (TLv - 1)] + 25</td>
 </tr>
 <tr>
-<td>Razonde 雷暴术</td>
+<td>Razonde 雷爆术</td>
 <td>Lv.1-15: [16 × (TLv - 1)] + 450<br>Lv.16-30: [8 × (TLv - 1)] + 565</td>
 <td>[0.3 × (TLv - 1)] + 35</td>
 </tr>
@@ -295,47 +312,70 @@
 </tbody>
 </table>
 
+<h3>Megid 即死率</h3>
+<p>Megid 不造成伤害，其基础威力直接表示即死的百分比概率，并被目标的 EDK 削减：</p>
+<p><code>即死率(%) = 魔法基础威力 - 目标 EDK</code></p>
+<p>例如 Lv.30 Megid（基础威力 100）命中 EDK 为 80 的目标时，即死率为 20%。</p>
+
 <h3>Resta 恢复量</h3>
 <p><code>恢复量 = MST × 0.5 + 魔法基础威力</code></p>
+<p>玛古光子爆裂 Leilla 的治疗量也按此公式计算。</p>
 
 <hr>
 
 <h2>E: 击倒机制</h2>
-<p>当单次攻击造成的伤害 ≥ 角色最大HP的 <strong>25%</strong> 时，角色会被击倒。</p>
+<p>当单次攻击造成的伤害 ≥ 角色最大 HP 的 <strong>25%</strong> 时，角色会被击倒。</p>
 
 <hr>
 
-<h2>F: HP吸取武器</h2>
-<p>以下武器攻击时会消耗自身 HP，可用于触发玛古的低血量事件：</p>
+<h2>F: HP 消耗型武器</h2>
+<p>以下稀有武器的特殊攻击会按角色最大 HP 的固定百分比消耗自身 HP。配合 Monomate（回复 200 HP）与 Dimate（回复 500 HP）可以把 HP 精确控制到目标数值，用于触发玛古的 1/10 HP 事件（见 H 节），或让机器人角色主动消耗 Scape Doll 以补满陷阱。</p>
 
 <table>
-<thead><tr><th>武器</th><th>HP消耗</th></tr></thead>
+<thead><tr><th>武器</th><th>HP 消耗</th></tr></thead>
 <tbody>
-<tr><td>Double Cannon 双切迦农</td><td>5%</td></tr>
-<tr><td>Girasole 向日葵</td><td>10%</td></tr>
-<tr><td>Lavis Blade 拉维斯</td><td>5% ×2</td></tr>
-<tr><td>Lavis Cannon 拉维斯炮</td><td>5%</td></tr>
-<tr><td>Orotiagito 大蛇太刀</td><td>7%</td></tr>
-<tr><td>Raikiri 雷切</td><td>7%</td></tr>
-<tr><td>Soul Banish 灵魂放逐</td><td>7%</td></tr>
-<tr><td>Gal Wind 突风</td><td>7% (第三段21%)</td></tr>
-<tr><td>Psycho Wand 意念杖</td><td>TP消耗%</td></tr>
+<tr><td><span data-item-en="Double Cannon"></span></td><td>5%</td></tr>
+<tr><td><span data-item-en="Girasole"></span></td><td>10%</td></tr>
+<tr><td><span data-item-en="Lavis Blade"></span></td><td>5% + 5%（每次攻击分两次消耗）</td></tr>
+<tr><td><span data-item-en="Lavis Cannon"></span></td><td>5%</td></tr>
+<tr><td><span data-item-en="Orotiagito"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="Raikiri"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="Soul Banish"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="Gal Wind"></span></td><td>第一、二段 7%；第三段发射三枚弹道，共 21%</td></tr>
+<tr><td><span data-item-en="Psycho Wand"></span></td><td>施放任意魔法时，消耗等于该魔法原始 TP 消耗的 HP（TP 消耗本身减半）</td></tr>
 </tbody>
 </table>
+<p>Gal Wind 的第三段一次消耗 21% HP，不需要目标即可满足 1/10 HP 事件的触发条件。</p>
 
 <hr>
 
-<h2>G: PB增加公式</h2>
+<h2>G: PB 增加公式</h2>
 
-<ul>
-<li>攻击: 怪物受到的伤害(非EX攻击) / (等级 × 15)</li>
-<li>防御: 受到伤害 × 20 / (等级 × 15)</li>
-</ul>
+<table>
+<thead><tr><th>行为</th><th>PB 增加量</th></tr></thead>
+<tbody>
+<tr><td>对敌人造成伤害</td><td><code>造成的伤害 / (角色等级 × 15)</code></td></tr>
+<tr><td>受到伤害</td><td><code>受到的伤害 × 20 / (角色等级 × 15)</code></td></tr>
+</tbody>
+</table>
+<p>特殊攻击造成的伤害不计入 PB 槽。</p>
 
 <hr>
 
-<h2>H: 玛古事件触发概率公式</h2>
+<h2>H: 玛古事件触发概率</h2>
 
+<h3>触发事件</h3>
+<table>
+<thead><tr><th>事件</th><th>条件</th></tr></thead>
+<tbody>
+<tr><td>100 PB</td><td>PB 槽达到 100 时</td></tr>
+<tr><td>1/10 HP</td><td>在同一帧内损失超过 20% HP，且 HP 降到 10% 以下时</td></tr>
+<tr><td>Boss 房</td><td>进入 Boss 房间时</td></tr>
+</tbody>
+</table>
+<p>玛古每帧检查一次触发条件。1/10 HP 事件只比较前后两帧的 HP 差值，与 HP 损失来源无关，因此 Berserk 武器命中 4 个以上目标、Gal Wind 第三段、装备 Psycho Wand 时施放魔法等都可以触发。同一帧内满足多个条件时只检查一个，优先级为：100 PB → Boss 房 → 1/10 HP。死亡事件在 Blue Burst 中已禁用。</p>
+
+<h3>同步率加成</h3>
 <table>
 <thead><tr>
 <th>同步率</th>
@@ -350,13 +390,15 @@
 </tbody>
 </table>
 
-<h4>积极激活+</h4>
-<p><code>积极激活率 = 基础激活率 + 同步激活率</code></p>
-<p>例如: 蝎子101-120%的同步率，Boss房的激活率为85% = 50% + 35%</p>
+<p>每个玛古的每个事件都有固定的基础触发率。受同步率影响的事件分为两类，Wiki 玛古列表中以 <code>50-85%</code>、<code>0-35%</code> 这类区间标注：</p>
 
-<h4>消极激活-</h4>
-<p><code>消极激活率 = 同步激活率 (忽略基础激活率)</code></p>
-<p>例如: 猫61-80%的同步率，100PB仅有25%的激活率，而不是50%</p>
+<h4>加算型</h4>
+<p><code>触发率 = 基础触发率 + 同步率加成</code></p>
+<p>例如 <span data-item-en="Nidra"></span> 的 Boss 房无敌事件为 50-85%：同步率 101-120% 时触发率为 50% + 35% = 85%。</p>
+
+<h4>独立型</h4>
+<p><code>触发率 = 同步率加成</code></p>
+<p>例如 <span data-item-en="Sato"></span> 的 100 PB 无敌事件为 0-35%：同步率 61-80% 时触发率只有 25%，同步率不超过 30% 时完全不会触发。</p>
 
     </div>
 </body>
