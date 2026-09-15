@@ -177,7 +177,10 @@ design: a sticky top bar with in-page anchors, a hero that pairs the site
 positioning and primary calls to action with the live server panel (.beat
 clock, Galatine ATP window, weekly RBS boost), the build-time weekly RBR
 cards, the seasonal activity spotlight, a four-step onboarding strip and an
-eight-card content directory grouped by topic. Cards, buttons, spacing and
+eight-card content directory grouped by topic. The onboarding strip is the
+only home for the install, registration, localization and IME entries; the
+directory's 安装与故障排除 card covers post-install problems and does not
+repeat them. Cards, buttons, spacing and
 type share one token set in `index.css`; the activity spotlight uses the same
 card surface with a static gradient top rule and a faint cyan grid, and
 `prefers-reduced-motion` disables the remaining motion through the site-wide
