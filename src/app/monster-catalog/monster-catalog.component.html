@@ -27,7 +27,27 @@
     <section class="empty"><h1>{{ i18n.t(result()?.failed?'资料暂时无法加载':'未找到怪物') }}</h1>@if(result()?.failed){<button (click)="retry()">{{ i18n.t('返回并重试') }}</button>}</section>
   } @else {
     <div class="result-heading"><p aria-live="polite">{{ i18n.t('怪物') }} <strong>{{ filtered().length }}</strong> / {{ count }}</p><label>{{ i18n.t('排序') }}<select [value]="sort()" (change)="update('sort',$any($event.target).value)"><option value="">{{ i18n.t('图鉴顺序') }}</option><option value="hp">{{ i18n.t('HP 从高到低') }}</option></select></label></div>
-    <ul id="monster-results" class="monster-grid">@for(m of visible();track m.id){<li><a [routerLink]="path(m)" [queryParams]="query()" class="monster-card" [class.is-rare]="m.rare"><div class="card-top"><span>EP{{ m.episode }} · {{ m.attribute }}</span>@if(m.rare){<span class="rare">{{ i18n.t('稀有') }}</span>}@else if(m.boss){<span>{{ i18n.t('首领') }}</span>}@else if(m.part){<span>{{ i18n.t('部位') }}</span>}</div><monster-image [src]="image(m)" [name]="name(m)" [unavailable]="i18n.t('图片暂缺')" /><h2>{{ name(m) }}</h2><p class="english" lang="en">{{ difficulty()==='u'?m.ultimateNames.en:m.names.en }}</p><p class="card-area">{{ i18n.area(m.areas[0] || '') }}</p><div class="card-values"><span>HP <strong>{{ m.values[context()]?.[0] ?? '—' }}</strong></span><span>XP <strong>{{ m.values[context()]?.[1] ?? '—' }}</strong></span><span aria-hidden="true">↗</span></div></a></li>}@empty{<li class="empty"><h2>{{ i18n.t('没有匹配的怪物') }}</h2><button (click)="clear()">{{ i18n.t('清除筛选') }}</button></li>}</ul>
+    <ul id="monster-results" class="monster-list">
+      @for(m of visible();track m.id){
+        <li>
+          <a [routerLink]="path(m)" [queryParams]="query()" class="monster-row">
+            <monster-image [src]="image(m)" [name]="name(m)" [unavailable]="i18n.t('图片暂缺')" />
+            <div class="monster-identity">
+              <h2>{{ name(m) }}</h2>
+              <p class="english" lang="en">{{ difficulty()==='u'?m.ultimateNames.en:m.names.en }}</p>
+              @if(m.rare){<span class="monster-kind rare">{{ i18n.t('稀有') }}</span>}@else if(m.boss){<span class="monster-kind">{{ i18n.t('首领') }}</span>}@else if(m.part){<span class="monster-kind">{{ i18n.t('部位') }}</span>}
+            </div>
+            <p class="monster-location"><span>EP{{ m.episode }}</span>{{ i18n.area(m.areas[0] || '') }}</p>
+            <p class="monster-attribute">{{ m.attribute }}</p>
+            <dl class="monster-values">
+              <div><dt>HP</dt><dd>{{ m.values[context()]?.[0] ?? '—' }}</dd></div>
+              <div><dt>XP</dt><dd>{{ m.values[context()]?.[1] ?? '—' }}</dd></div>
+            </dl>
+            <span class="monster-open" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      }@empty{<li class="empty"><h2>{{ i18n.t('没有匹配的怪物') }}</h2><button (click)="clear()">{{ i18n.t('清除筛选') }}</button></li>}
+    </ul>
     <nav class="pagination"><button [disabled]="page()===1" (click)="update('page',''+(page()-1))">← {{ i18n.t('上一页') }}</button><span>{{ page() }} / {{ pages() }}</span><button [disabled]="page()===pages()" (click)="update('page',''+(page()+1))">{{ i18n.t('下一页') }} →</button></nav>
   }
   <footer><span>PSO HAVEN / FIELD ARCHIVE</span><span>{{ i18n.t('数据核对') }} {{ metadata.checkedAt }}</span></footer>

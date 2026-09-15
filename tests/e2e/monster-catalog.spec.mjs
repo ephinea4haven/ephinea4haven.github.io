@@ -7,23 +7,23 @@ test('monster area search results are independent of the interface language',asy
   for(const term of ['森林','地下砂漠','遺跡 2']) {
     await page.goto(`/data/enemies.html?q=${encodeURIComponent(term)}&lang=${term==='森林'?'zh':'ja'}`);
     await expect(page.getByRole('searchbox')).toHaveValue(term);
-    const paths=await page.locator('.monster-card').evaluateAll(cards=>cards.map(card=>new URL(card.href).pathname));
+    const paths=await page.locator('.monster-row').evaluateAll(rows=>rows.map(row=>new URL(row.href).pathname));
     expect(paths.length).toBeGreaterThan(0);
     for(const language of ['English','日本語','中文']) {
       await page.getByRole('button',{name:language,exact:true}).click();
       await expect(page.getByRole('searchbox')).toHaveValue(term);
-      await expect(page.locator('.monster-card')).toHaveCount(paths.length);
-      expect(await page.locator('.monster-card').evaluateAll(cards=>cards.map(card=>new URL(card.href).pathname))).toEqual(paths);
+      await expect(page.locator('.monster-row')).toHaveCount(paths.length);
+      expect(await page.locator('.monster-row').evaluateAll(rows=>rows.map(row=>new URL(row.href).pathname))).toEqual(paths);
     }
     await page.reload();
-    await expect(page.locator('.monster-card')).toHaveCount(paths.length);
+    await expect(page.locator('.monster-row')).toHaveCount(paths.length);
   }
 });
 
 test('monster detail context changes preserve the originating list page',async({page})=>{
   await page.goto('/data/enemies.html?ep=1&page=2&lang=en');
-  const first=await page.locator('.monster-card').first().getAttribute('href');
-  await page.locator('.monster-card').first().click();
+  const first=await page.locator('.monster-row').first().getAttribute('href');
+  await page.locator('.monster-row').first().click();
   await page.locator('.section-nav a[href$="#stats"]').click();
   await page.getByRole('button',{name:'Ultimate',exact:true}).click();
   await expect(page).toHaveURL(/page=2/);
@@ -34,7 +34,7 @@ test('monster detail context changes preserve the originating list page',async({
   await expect(page).toHaveURL(/page=2.*#stats$/);
   await page.getByRole('link',{name:'← 一覧に戻る',exact:true}).click();
   await expect(page).toHaveURL(/page=2/);
-  expect(new URL(await page.locator('.monster-card').first().getAttribute('href'),page.url()).pathname).toBe(new URL(first,page.url()).pathname);
+  expect(new URL(await page.locator('.monster-row').first().getAttribute('href'),page.url()).pathname).toBe(new URL(first,page.url()).pathname);
   await page.getByRole('button',{name:'Normal',exact:true}).click();
   await expect(page).not.toHaveURL(/page=/);
 });
@@ -75,7 +75,7 @@ test('monster pagination scrolls to the first new result',async({page})=>{
   await page.goto('/data/enemies.html?lang=en');
   await page.getByRole('button',{name:'Next →',exact:true}).click();
   await expect(page).toHaveURL(/page=2/);
-  await expect(page.locator('.monster-card').first()).toBeInViewport();
+  await expect(page.locator('.monster-row').first()).toBeInViewport();
 });
 test('Ultimate-only Megid tables never appear at lower difficulties',async({page})=>{
   for(const id of ['hildeblue-e1','hildeblue-e2','chaos-sorcerer-e1','chaos-sorcerer-e2','poison-lily-e1','nar-lily-e2','deldepth','zol-gibbon']) {
@@ -97,7 +97,7 @@ test('monster search, context and trilingual names survive detail and return',as
   await page.goto('/data/enemies.html?q=Booma&diff=n&mode=on');
   await page.getByRole('button',{name:'日本語',exact:true}).click();
   await expect(page.locator('h1')).toHaveText('エネミー図鑑');
-  await page.locator('.monster-card').filter({has:page.getByRole('heading',{name:'ブーマ',exact:true})}).click();
+  await page.locator('.monster-row').filter({has:page.getByRole('heading',{name:'ブーマ',exact:true})}).click();
   await expect(page.locator('h1')).toHaveText('ブーマ');
   await expect(page.locator('.hero-values strong').first()).toHaveText('92');
   await page.getByRole('button',{name:'Ultimate',exact:true}).click();
@@ -150,7 +150,7 @@ test('empty search and image failure remain usable',async({page})=>{
   await page.goto('/data/enemies.html?q=nonexistent&lang=en');
   await expect(page.locator('.empty')).toContainText('No matching enemies');
   await page.getByRole('button',{name:'Clear filters'}).click();
-  await expect(page.locator('.monster-card')).toHaveCount(24);
+  await expect(page.locator('.monster-row')).toHaveCount(24);
   await expect(page.locator('monster-image').first()).toContainText('Image unavailable');
 });
 test('source table extractor keeps nested difficulty, row spans, notes and empty numbers',async({page})=>{
