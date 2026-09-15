@@ -57,6 +57,9 @@
   without a halfwidth/fullwidth selector.
 - [x] Ephinea equipment-based Technique boost reference covering weapons,
   frames and barriers through the canonical translation catalog.
+- [x] Landing page redesign (2026-09-15): sticky top bar, hero with live server
+  panel, onboarding steps, topic directory cards, self-hosted Orbitron; the
+  RBR, activity and live-info contracts and their browser tests are unchanged.
 - [x] Landing-page seasonal highlighting with reduced-motion support; LIVE
   markers and activity panels share registered yearly dates, so expired or
   unannounced events cannot be highlighted by month alone.

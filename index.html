@@ -3,30 +3,85 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="Haven工会 PSOBB 中文维基">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Haven 工会维护的 Ephinea PSOBB 中文维基：新手入门、掉落表、任务周回、伤害计算器与活动攻略。">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>QQ群: 956652396 | Haven工会 PSOBB 中文维基</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Share+Tech+Mono&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/index.css?v=7">
+    <link rel="stylesheet" href="/assets/css/index.css?v=8">
 </head>
 
 <body>
 
-<header>
-    <div class="header-eyebrow">Pioneer 2 Station  ·  Haven 工会  ·  PSOBB 中文维基</div>
-    <div class="title-wrap">
-        <span class="title-bracket">[</span>
-        <h1 id="project_title">Haven PSOBB</h1>
-        <span class="title-bracket">]</span>
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<nav class="topbar" aria-label="站点导航">
+    <div class="shell topbar-inner">
+        <a class="brand" href="/" aria-label="Haven PSOBB 首页">
+            <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+                <path d="M16 2.5 27.7 9.25v13.5L16 29.5 4.3 22.75V9.25Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M11 10v12M21 10v12M11 16h10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+            <span class="brand-text">Haven <b>PSOBB</b></span>
+        </a>
+        <div class="topbar-links">
+            <a href="#rbr">本周 RBR</a>
+            <a href="#live">实时信息</a>
+            <a href="#start">新手入门</a>
+            <a href="#directory">全部内容</a>
+        </div>
+        <a class="btn btn-secondary btn-sm topbar-cta" href="https://qm.qq.com/q/iK2hVbSs3S" target="_blank" rel="noopener noreferrer">
+            <span class="qq-dot" aria-hidden="true"></span>QQ 群 <span class="num">956652396</span>
+        </a>
     </div>
-    <div class="title-sub">Phantasy Star Online Blue Burst  ·  Haven 工会</div>
-    <a href="https://qm.qq.com/q/iK2hVbSs3S" target="_blank" class="qq-btn"><span class="qq-label">加入 QQ 群</span><span class="qq-sep">-</span><span class="qq-number">956652396</span></a>
+</nav>
+
+<header class="hero">
+    <div class="shell hero-inner">
+        <div class="hero-copy">
+            <p class="hero-eyebrow">Pioneer 2 Station · Haven 工会 · Ephinea 服务器</p>
+            <h1 id="project_title">Haven PSOBB</h1>
+            <p class="hero-title-sub">中文维基</p>
+            <p class="hero-lead">从安装、注册、汉化，到掉落表、周回路线与伤害计算，Ephinea 服务器的中文攻略与数据一站查齐。</p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="https://files.pioneer2.net/Ephinea_PSOBB_Installer.exe">
+                    <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M10 3v9m0 0 3.5-3.5M10 12 6.5 8.5M4 15.5h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    下载客户端
+                </a>
+                <a class="btn btn-secondary" href="https://qm.qq.com/q/iK2hVbSs3S" target="_blank" rel="noopener noreferrer">
+                    <span class="qq-dot" aria-hidden="true"></span>加入 QQ 群 <span class="num">956652396</span>
+                </a>
+                <a class="btn btn-ghost" href="#start">新手入门 <span aria-hidden="true">→</span></a>
+            </div>
+        </div>
+
+        <!-- ── 实时信息 ── -->
+        <aside class="info-bar card" id="live" aria-label="实时信息">
+            <div class="info-bar-head"><span class="live-dot" aria-hidden="true"></span>实时信息 <small>每秒更新</small></div>
+            <div class="info-cell" id="network-time">
+                <div class="info-cell-inner">
+                    <h2>网络时间 .beat</h2>
+                    <span id="swatchTime" class="info-val"></span>
+                    <span id="beat-period-label" class="info-note"></span>
+                </div>
+            </div>
+            <div class="info-cell" id="galatine">
+                <div class="info-cell-inner">
+                    <h2><span data-item-en="Galatine"></span> ATP</h2>
+                    <span id="galatine-atp" class="info-val"></span>
+                    <span id="galatine-period" class="info-note"></span>
+                </div>
+            </div>
+            <div class="info-cell" id="buf">
+                <div class="info-cell-inner">
+                    <h2>RBS 周轮替增益</h2>
+                    <span id="buf-current" class="info-val"></span>
+                    <span id="buf-next" class="info-note"></span>
+                </div>
+            </div>
+        </aside>
+    </div>
 </header>
 
-<div class="container">
+<main class="container" id="main">
 
     <!-- home-rbr -->
 
@@ -197,36 +252,65 @@
     </section>
 <!-- current-activity:end -->
 
-    <!-- ── 实时信息 ── -->
-    <div class="info-bar card">
-        <div class="info-cell" id="network-time">
-            <div class="info-cell-inner">
-                <h2>网络时间 .beat</h2>
-                <span id="swatchTime" class="info-val"></span>
-                <span id="beat-period-label" class="info-note"></span>
+    <!-- ── 新手入门 ── -->
+    <section class="quickstart" id="start" aria-labelledby="quickstart-title">
+        <div class="section-head">
+            <div>
+                <p class="section-eyebrow">Getting Started</p>
+                <h2 id="quickstart-title">新手入门四步</h2>
             </div>
+            <a class="section-link" href="/guide/ephinea.html" target="_blank">先了解 Ephinea 服务器 <span aria-hidden="true">→</span></a>
         </div>
-        <div class="info-cell" id="galatine">
-            <div class="info-cell-inner">
-                <h2><span data-item-en="Galatine"></span> ATP</h2>
-                <span id="galatine-atp" class="info-val"></span>
-                <span id="galatine-period" class="info-note"></span>
-            </div>
-        </div>
-        <div class="info-cell" id="buf">
-            <div class="info-cell-inner">
-                <h2>RBS 周轮替增益</h2>
-                <span id="buf-current" class="info-val"></span>
-                <span id="buf-next" class="info-note"></span>
-            </div>
-        </div>
-    </div>
+        <ol class="steps">
+            <li>
+                <a class="step" href="https://files.pioneer2.net/Ephinea_PSOBB_Installer.exe">
+                    <span class="step-no">01</span>
+                    <strong>下载客户端</strong>
+                    <span class="step-desc">获取官方 Ephinea 安装程序并完成安装。</span>
+                </a>
+            </li>
+            <li>
+                <a class="step" href="/guide/register.html" target="_blank">
+                    <span class="step-no">02</span>
+                    <strong>注册账号</strong>
+                    <span class="step-desc">在官网创建账号，并了解账号保存的注意事项。</span>
+                </a>
+            </li>
+            <li>
+                <a class="step" href="/guide/localized.html" target="_blank">
+                    <span class="step-no">03</span>
+                    <strong>安装汉化</strong>
+                    <span class="step-desc">应用社区汉化补丁，让界面与道具显示为中文。</span>
+                </a>
+            </li>
+            <li>
+                <a class="step" href="/guide/ime.html" target="_blank">
+                    <span class="step-no">04</span>
+                    <strong>配置中文输入法</strong>
+                    <span class="step-desc">解决游戏内无法输入中文的问题，开始组队交流。</span>
+                </a>
+            </li>
+        </ol>
+    </section>
 
-    <!-- ── 导航面板 ── -->
-    <div class="nav-panel card">
-        <div class="nav-col">
-            <div class="nav-cat">
-                <h3>掉落与奖励</h3>
+    <!-- ── 内容目录 ── -->
+    <section class="directory" id="directory" aria-labelledby="directory-title">
+        <div class="section-head">
+            <div>
+                <p class="section-eyebrow">Directory</p>
+                <h2 id="directory-title">全部内容</h2>
+            </div>
+            <p class="section-note">按主题分类的攻略、数据表与工具。</p>
+        </div>
+        <div class="nav-grid">
+            <section class="nav-cat card" data-tone="amber" aria-labelledby="cat-drops">
+                <div class="nav-cat-head">
+                    <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M20 12v9H4v-9M2 7h20v5H2zM12 22V7M12 7c-1.5 0-4-.7-4-2.5S10.5 2 12 4.5C13.5 2 16 2.7 16 4.5S13.5 7 12 7Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <div>
+                        <h3 id="cat-drops">掉落与奖励</h3>
+                        <p>各版本掉落表、赌博与轮盘奖品</p>
+                    </div>
+                </div>
                 <div class="tag-links">
                     <a href="https://dropcharts.psohaven.com/bb/?lang=zh&diff=Ultimate" target="_blank">E服掉落表</a>
                     <a href="https://dropcharts.psohaven.com/ngc/?lang=zh&diff=Ultimate" target="_blank">NGC掉落表</a>
@@ -235,9 +319,16 @@
                     <a href="/data/prizelist/" target="_blank">科伦赌博奖品</a>
                     <a href="/data/gallons_roulette.html" target="_blank">幻界幸运轮盘</a>
                 </div>
-            </div>
-            <div class="nav-cat">
-                <h3>任务与地图</h3>
+            </section>
+
+            <section class="nav-cat card" data-tone="green" aria-labelledby="cat-quests">
+                <div class="nav-cat-head">
+                    <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3zM9 3v15M15 6v15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <div>
+                        <h3 id="cat-quests">任务与地图</h3>
+                        <p>任务列表、周回路线与挑战模式</p>
+                    </div>
+                </div>
                 <div class="tag-links">
                     <a href="/data/quest.html" target="_blank">任务列表</a>
                     <a href="/data/monsters.html" target="_blank">怪物周回指南</a>
@@ -247,9 +338,16 @@
                     <a href="/guide/seabed.html" target="_blank">海底完整攻略</a>
                     <a href="https://pw.psohaven.com/" target="_blank">任务编辑器</a>
                 </div>
-            </div>
-            <div class="nav-cat">
-                <h3>活动专题</h3>
+            </section>
+
+            <section class="nav-cat card" data-tone="purple" aria-labelledby="cat-events">
+                <div class="nav-cat-head">
+                    <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 5h16v15H4zM4 10h16M8 3v4M16 3v4M8 14h3M13 14h3M8 17h3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <div>
+                        <h3 id="cat-events">活动专题</h3>
+                        <p>季节活动攻略与历年档案</p>
+                    </div>
+                </div>
                 <div class="tag-links">
                     <a href="/event/event.html" target="_blank">活动总览</a>
                     <a href="/event/valentines.html?year=2026" target="_blank" data-holiday="valentines-2026">情人节活动</a>
@@ -258,40 +356,37 @@
                     <a href="/event/christmas.html?year=2025" target="_blank" data-holiday="christmas-2025">圣诞活动</a>
                     <a href="/event/anniversary.html?year=2026" target="_blank" data-holiday="anniversary-2026">周年活动</a>
                 </div>
-            </div>
-            <div class="nav-cat">
-                <h3>道具数据</h3>
+            </section>
+
+            <section class="nav-cat card" data-tone="sky" aria-labelledby="cat-items">
+                <div class="nav-cat-head">
+                    <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><ellipse cx="12" cy="6" rx="8" ry="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                    <div>
+                        <h3 id="cat-items">道具数据</h3>
+                        <p>物品参数、代码、价格与图鉴</p>
+                    </div>
+                </div>
                 <div class="tag-links">
+                    <a href="/data/items.html">道具图鉴</a>
+                    <a href="/data/enemies.html">怪物图鉴</a>
+                    <a href="/data/price_guide.html" target="_blank">物品价格参考</a>
+                    <a href="/data/en2chinese.html" target="_blank">中英文对照表</a>
+                    <a href="/data/bb_items.html" target="_blank">物品代码表</a>
                     <a href="/data/itempmt.html" target="_blank">ItemPMT</a>
                     <a href="/data/itempt.html" target="_blank">ItemPT</a>
                     <a href="/data/itemrt.html" target="_blank">ItemRT</a>
-                    <a href="/data/bb_items.html" target="_blank">物品代码表</a>
-                    <a href="/data/price_guide.html" target="_blank">物品价格参考</a>
-                    <a href="/data/en2chinese.html" target="_blank">中英文对照表</a>
-                    <a href="/data/items.html">道具图鉴</a>
-                    <a href="/data/enemies.html">怪物图鉴</a>
                     <a href="/data/protocol/" target="_blank">协议命令参考</a>
                 </div>
-            </div>
-            <div class="nav-cat">
-                <h3>入门指南</h3>
-                <div class="tag-links">
-                    <a href="/guide/ephinea.html" target="_blank">EPHINEA介绍</a>
-                    <a href="/guide/ephinea_rules.html" target="_blank">论坛规则</a>
-                    <a href="/guide/anguish.html" target="_blank">苦痛难度</a>
-                    <a href="/guide/command.html" target="_blank">游戏内命令</a>
-                    <a href="/guide/banners.html" target="_blank">Banner 顶部公告</a>
-                    <a href="/guide/acronym.html" target="_blank">常见英文缩写</a>
-                    <a href="/guide/discord.html" target="_blank">Discord</a>
-                    <a href="/guide/volopt.html" target="_blank">Vol Opt 伤害</a>
-                    <a href="/guide/npc.html" target="_blank">NPC 人物志</a>
-                </div>
-            </div>
-        </div>
+            </section>
 
-        <div class="nav-col">
-            <div class="nav-cat">
-                <h3>游戏机制</h3>
+            <section class="nav-cat card" data-tone="cyan" aria-labelledby="cat-mechanics">
+                <div class="nav-cat-head">
+                    <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                    <div>
+                        <h3 id="cat-mechanics">游戏机制</h3>
+                        <p>伤害公式、命中机制与计算器</p>
+                    </div>
+                </div>
                 <div class="tag-links">
                     <a href="/tools/mechanics.html" target="_blank">游戏机制与伤害公式</a>
                     <a href="/tools/cc.html" target="_blank">伤害计算器</a>
@@ -302,9 +397,16 @@
                     <a href="/tools/survial_hp.html" target="_blank">血线</a>
                     <a href="/data/enemy_weapon_hit.html" target="_blank">尸块改造与加命中</a>
                 </div>
-            </div>
-            <div class="nav-cat">
-                <h3>角色培养</h3>
+            </section>
+
+            <section class="nav-cat card" data-tone="rose" aria-labelledby="cat-build">
+                <div class="nav-cat-head">
+                    <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>
+                    <div>
+                        <h3 id="cat-build">角色培养</h3>
+                        <p>职业指南、配点计算与玛古</p>
+                    </div>
+                </div>
                 <div class="tag-links">
                     <a href="/guide/class-guide.html" target="_blank">三职业实战指南</a>
                     <a href="/tools/id.html" target="_blank">Section ID 计算器</a>
@@ -316,9 +418,37 @@
                     <a href="/tools/mag.html" target="_blank">玛古进化图谱</a>
                     <a href="https://magfeeder.psohaven.com/" target="_blank">玛古模拟器</a>
                 </div>
-            </div>
-            <div class="nav-cat">
-                <h3>下载与设置</h3>
+            </section>
+
+            <section class="nav-cat card" data-tone="slate" aria-labelledby="cat-guide">
+                <div class="nav-cat-head">
+                    <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4zM20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></span>
+                    <div>
+                        <h3 id="cat-guide">入门指南</h3>
+                        <p>服务器介绍、规则、命令与常识</p>
+                    </div>
+                </div>
+                <div class="tag-links">
+                    <a href="/guide/ephinea.html" target="_blank">EPHINEA介绍</a>
+                    <a href="/guide/ephinea_rules.html" target="_blank">论坛规则</a>
+                    <a href="/guide/anguish.html" target="_blank">苦痛难度</a>
+                    <a href="/guide/command.html" target="_blank">游戏内命令</a>
+                    <a href="/guide/banners.html" target="_blank">Banner 顶部公告</a>
+                    <a href="/guide/acronym.html" target="_blank">常见英文缩写</a>
+                    <a href="/guide/discord.html" target="_blank">Discord</a>
+                    <a href="/guide/volopt.html" target="_blank">Vol Opt 伤害</a>
+                    <a href="/guide/npc.html" target="_blank">NPC 人物志</a>
+                </div>
+            </section>
+
+            <section class="nav-cat card" data-tone="orange" aria-labelledby="cat-setup">
+                <div class="nav-cat-head">
+                    <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <div>
+                        <h3 id="cat-setup">下载与设置</h3>
+                        <p>安装、注册、汉化与故障排除</p>
+                    </div>
+                </div>
                 <div class="tag-links">
                     <a href="https://files.pioneer2.net/Ephinea_PSOBB_Installer.exe">客户端下载</a>
                     <a href="/guide/register.html" target="_blank">账号注册</a>
@@ -330,13 +460,33 @@
                     <a href="/guide/d3d.html" target="_blank">图形后端</a>
                     <a href="/guide/timezone.html" target="_blank">时区问题</a>
                 </div>
-            </div>
+            </section>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <div class="shell footer-inner">
+        <div class="footer-brand">
+            <span class="brand-text">Haven <b>PSOBB</b></span>
+            <p>Haven 工会维护的 Ephinea PSOBB 中文维基，由社区共同整理与更新。</p>
+        </div>
+        <div class="footer-col">
+            <h3>社区</h3>
+            <a href="https://qm.qq.com/q/iK2hVbSs3S" target="_blank" rel="noopener noreferrer">QQ 群 956652396</a>
+            <a href="/guide/discord.html" target="_blank">Discord</a>
+            <a href="https://wiki.pioneer2.net/" target="_blank" rel="noopener noreferrer">官方 Wiki</a>
+        </div>
+        <div class="footer-col">
+            <h3>常用工具</h3>
+            <a href="https://dropcharts.psohaven.com/bb/?lang=zh&diff=Ultimate" target="_blank">掉落表</a>
+            <a href="/tools/cc.html" target="_blank">伤害计算器</a>
+            <a href="https://magfeeder.psohaven.com/" target="_blank">玛古模拟器</a>
         </div>
     </div>
-
-</div>
-
-<footer>Haven 工会 · PSOBB 中文维基 · 社区维护</footer>
+    <div class="shell footer-bottom">Haven 工会 · PSOBB 中文维基 · 社区维护</div>
+</footer>
 
 </body>
 </html>
