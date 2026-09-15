@@ -22,3 +22,4 @@
 - Work directly on `master` by default. Complete local changes and validation, then leave them for the user's acceptance review.
 - Do not push to `origin/master` or deploy until the user explicitly approves after reviewing the result. Do not treat completion of tests as approval to publish.
 - Do not create feature branches or pull requests unless the user explicitly requests them.
+- Do not add AI attribution to commits or pull requests. Omit `Co-Authored-By` trailers, "Generated with" footers and any other assistant or tool signature.
