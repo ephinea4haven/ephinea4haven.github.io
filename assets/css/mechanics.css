@@ -1,5 +1,5 @@
 /* Scoped diagrams for the mechanics guide. */
-.mechanics-guide :is(h2, h3)[id] { scroll-margin-top: 24px; }
+.mechanics-guide :is(h2, h3, h4)[id] { scroll-margin-top: 24px; }
 .mechanics-guide p { text-align: left; }
 .mechanics-intro { text-align: left; margin-bottom: 24px; }
 .mechanics-eyebrow { color: var(--accent); font-size: 14px; }
@@ -54,9 +54,30 @@
 .mechanics-pb-card h4 small { display: block; color: var(--text-secondary); font-size: 14px; font-weight: 400; }
 .mechanics-pb-card code { overflow-wrap: anywhere; }
 .mechanics-guide .mechanics-pb-card p:last-child { margin-bottom: 0; }
+.mechanics-pb-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.mechanics-pb-nav a { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 14px; }
+.mechanics-pb-nav a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mechanics-pb-effect { margin: 0 0 24px; padding: 12px; border-radius: 8px; background: var(--bg-secondary); }
+.mechanics-pb-effect svg { display: block; width: 100%; height: auto; max-height: 160px; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.mechanics-pb-effect text { fill: var(--text-primary); text-anchor: middle; font-size: 14px; }
+.mechanics-pb-effect figcaption { margin-top: 8px; color: var(--text-secondary); font-size: 14px; text-align: center; }
+.pb-area { fill: #71e0c21a; stroke: #71e0c2; stroke-width: 1.5; stroke-dasharray: 5 5; }
+.pb-motion { stroke: #71e0c2; stroke-width: 2; }
+.pb-player { fill: #e2e8f0; stroke: #283d63; stroke-width: 3; }
+.pb-enemy { fill: #f3cf82; stroke: #f3cf82; stroke-width: 2; }
+.pb-outside { stroke: #91a9c8; stroke-width: 2; stroke-dasharray: 3 3; }
+.mechanics-pb-facts { margin: 0; }
+.mechanics-pb-facts > div { margin: 0 0 16px; }
+.mechanics-pb-facts dt { margin-bottom: 4px; color: var(--accent); font-size: 14px; font-weight: 600; }
+.mechanics-pb-facts dd { margin: 0; font-size: 16px; line-height: 1.8; }
+.mechanics-pb-formula { margin: 24px 0 0; padding-top: 16px; border-top: 1px solid var(--border-color); }
+.mechanics-pb-formula > span { display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 14px; }
 .mechanics-parameter-table { min-width: 520px; }
 .mechanics-parameter-table th[scope="row"] { width: 18%; font-size: 14px; text-align: left; }
 .mechanics-parameter-table td:last-child { width: 26%; }
+.mechanics-pb-level-table { min-width: 440px; font-variant-numeric: tabular-nums; }
+.mechanics-pb-level-table th[scope="row"] { width: 52%; text-align: left; font-weight: 400; }
+.mechanics-pb-level-table td { white-space: nowrap; }
 .mechanics-guide .mechanics-pb-chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; list-style: none; margin: 0; }
 .mechanics-pb-chain li { position: relative; display: grid; justify-items: center; gap: 8px; padding: 16px 8px; border-radius: 8px; background: var(--bg-secondary); }
 .mechanics-pb-chain li > span { color: var(--text-secondary); font-size: 14px; }
@@ -192,6 +213,12 @@
 .mechanics-table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
 @media (max-width: 760px) {
+    .mechanics-pb-level-table { min-width: 0; table-layout: fixed; }
+    .mechanics-guide .mechanics-pb-level-table :is(th, td) { padding: 8px 6px; font-size: 14px; }
+    .mechanics-pb-level-table th[scope="row"], .mechanics-pb-level-table th:first-child { width: 42%; }
+    .mechanics-pb-level-table th:nth-child(2) { width: 18%; }
+    .mechanics-pb-level-table th:nth-child(3) { width: 16%; }
+    .mechanics-pb-level-table th:nth-child(4) { width: 24%; }
     .mechanics-guide .mechanics-pb-chain { grid-template-columns: minmax(0, 1fr); }
     .mechanics-pb-chain li { display: flex; justify-content: center; gap: 16px; }
     .mechanics-pb-chain li + li::before { content: '↓'; top: -24px; left: 50%; transform: translateX(-50%); }
