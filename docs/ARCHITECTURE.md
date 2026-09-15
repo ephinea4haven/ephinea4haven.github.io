@@ -8,8 +8,8 @@ Ephinea4Haven is a statically deployed Angular application. Angular 22 owns ever
 public page, route and interaction. GitHub Pages serves the immutable `_site`
 artifact; it does not need server-side rewrites or a JavaScript backend.
 
-The current build inventory contains 1,265 prerendered Angular application
-hosts, including 1,044 item detail pages and 160 monster detail pages, and 45 year-specific event content fragments. `_site/build-manifest.json`
+The current build inventory contains 1,267 prerendered Angular application
+hosts, including 1,045 item detail pages and 160 monster detail pages, and 45 year-specific event content fragments. `_site/build-manifest.json`
 is the source of truth for this inventory and for the JavaScript budgets applied
 to each route.
 
@@ -120,6 +120,17 @@ without maintaining an authored HTML file for every item. The browser loads
 details per item, while prerendering transfers only the current item's data.
 Each page has a 64,000-byte hydration-state limit; the full detail dataset is
 not bundled into browser JavaScript. Filters and pagination use URL parameters.
+Detail JSON requests append `?v=` with a hash of the whole generated detail set
+(`src/app/generated/item-catalog/version.json`, bundled with the app), so a data
+change is never served from a stale browser cache; the monster catalog does the
+same with its own version file.
+
+`/data/cosmetics.html` presents weapon hearts, ring paints and ring platings from
+one generated dataset. The generator validates every heart's compatibility against
+the Weapon hearts list page, resolves all targets, results and trade items to
+catalog entries, and fails the build on unknown items, colors or events. Page-only
+explanatory copy lives in `cosmetics-messages.ts` and shared section styles in
+`catalog-sections.css`, so the list and detail bundles do not carry them.
 
 All current catalog images come from Ephinea Wiki and are stored locally with
 source URLs and SHA-1 checksums. The 57 ordinary shop weapon models have images
@@ -265,6 +276,12 @@ fields, numeric form, Mag and material limits, and class-compatible equipment.
 5. reject any unexpected non-Angular HTML host, missing resource, retired runtime
    asset, operating-system metadata, or route/chunk budget violation;
 6. write a deterministic manifest and atomically publish `_site`.
+
+Content sources never carry hand-maintained cache numbers. A root-relative asset
+URL written with a bare `?v` (for example `/assets/img/guide/rbr/chart.svg?v`) is
+stamped with the first 12 hex digits of the file's SHA-256 when content routes are
+generated; a missing file or a manual `?v=N` fails generation. Stylesheets linked
+from content sources are compiled into hashed Angular bundles and need no marker.
 
 `npm run release:prepare` runs source/data checks, the production build and the
 Playwright suite. CI additionally performs `npm ci`, dependency audit and a

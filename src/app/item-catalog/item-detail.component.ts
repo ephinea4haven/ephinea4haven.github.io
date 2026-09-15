@@ -3,7 +3,7 @@ import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, effect
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ITEMS, CLASSES, itemPath, ITEM_BY_ID } from './catalog';
+import { ITEMS, CLASSES, itemPath, ITEM_BY_ID, COSMETICS_PATH, ItemDetail } from './catalog';
 import type { DetailResult } from './item-detail.routes';
 import { CatalogLanguageService } from './catalog-language.service';
 import { CatalogLanguageComponent } from './catalog-language.component';
@@ -14,7 +14,7 @@ import { ItemImageComponent } from './item-image.component';
   imports: [RouterLink, ItemImageComponent, CatalogLanguageComponent],
   providers: [CatalogLanguageService],
   templateUrl: './item-detail.component.html',
-  styleUrls: ['./item-catalog.component.css', './item-detail.component.css', './catalog-visual.css'],
+  styleUrls: ['./item-catalog.component.css', './catalog-sections.css', './item-detail.component.css', './catalog-visual.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemDetailComponent {
@@ -31,6 +31,11 @@ export class ItemDetailComponent {
   readonly related = computed(() => ITEMS.filter((candidate) => this.item()?.related.includes(candidate.id)));
   readonly classes = CLASSES;
   readonly itemPath = itemPath;
+  readonly cosmeticsPath = COSMETICS_PATH;
+  cosmeticSection(entry: Pick<ItemDetail, 'cosmetic' | 'cosmetics'>): string {
+    const kind = entry.cosmetic?.kind ?? entry.cosmetics[0]?.kind ?? 'heart';
+    return kind === 'heart' ? 'weapon-hearts' : kind === 'paint' ? 'ring-paints' : 'ring-platings';
+  }
   retry(): void { this.document.defaultView?.location.reload(); }
   constructor() {
     effect(() => this.title.setTitle(`${this.item() ? this.i18n.name(this.item()!) : this.i18n.t(this.result().failed ? '道具资料暂时未能加载' : '未找到这件道具')} | ${this.i18n.t('道具图鉴')} · Ephinea PSOBB`));

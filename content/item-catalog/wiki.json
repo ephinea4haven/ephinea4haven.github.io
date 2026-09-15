@@ -10657,6 +10657,342 @@
           "template": "ToolTableRow"
         }
       ]
+    },
+    "Weapon hearts": {
+      "revision": 43368,
+      "rows": [
+        {
+          "1": "Heart of Lollipop",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Excalibur",
+            "Summit Moon",
+            "Tsumikiri J-Sword"
+          ]
+        },
+        {
+          "1": "Heart of Ancient Saber",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Excalibur",
+            "Red Saber",
+            "Dark Flow"
+          ]
+        },
+        {
+          "1": "Heart of DB's Saber",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Excalibur",
+            "Red Saber"
+          ]
+        },
+        {
+          "1": "Heart of Delsaber's Buster",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Excalibur",
+            "Red Saber"
+          ]
+        },
+        {
+          "1": "Heart of Flamberge",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Excalibur",
+            "Red Saber"
+          ]
+        },
+        {
+          "1": "Heart of Crazy Tune",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Chain Sawd",
+            "Dark Flow",
+            "Flowen's Sword (3084)",
+            "Red Sword",
+            "Tsumikiri J-Sword",
+            "Zanba"
+          ]
+        },
+        {
+          "1": "Heart of Daisy Chain",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Chain Sawd",
+            "Dark Flow",
+            "Flowen's Sword (3084)",
+            "Red Sword",
+            "Tsumikiri J-Sword",
+            "Zanba"
+          ]
+        },
+        {
+          "1": "Heart of Laconium Axe",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Dark Flow",
+            "Tsumikiri J-Sword",
+            "Zanba"
+          ]
+        },
+        {
+          "1": "Heart of Blade Dance",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Daylight Scar"
+          ]
+        },
+        {
+          "1": "Heart of Twin Chakram",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Daylight Scar"
+          ]
+        },
+        {
+          "1": "Heart of Wok of Akiko's Shop",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Daylight Scar"
+          ]
+        },
+        {
+          "1": "Heart of Plantain Huge Fan",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Vjaya",
+            "Asteron Belt",
+            "Yunchang"
+          ]
+        },
+        {
+          "1": "Heart of Soul Banish",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Vjaya",
+            "Asteron Belt",
+            "Yunchang"
+          ]
+        },
+        {
+          "1": "Heart of Chameleon Scythe",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Vjaya",
+            "Asteron Belt",
+            "Yunchang"
+          ]
+        },
+        {
+          "1": "Heart of Diska of Liberator",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Diska of Braveman",
+            "Rainbow Baton",
+            "Slicer of Fanatic"
+          ]
+        },
+        {
+          "1": "Heart of Flight Fan",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Diska of Braveman",
+            "Rainbow Baton",
+            "Slicer of Fanatic"
+          ]
+        },
+        {
+          "1": "Heart of Izmaela",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Diska of Braveman",
+            "Rainbow Baton",
+            "Slicer of Fanatic"
+          ]
+        },
+        {
+          "1": "Heart of Partisan of Lightning",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Vivienne"
+          ]
+        },
+        {
+          "1": "Heart of TypeDS/D.Saber",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Vivienne"
+          ]
+        },
+        {
+          "1": "Heart of TypeSS/Swords",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Musashi",
+            "Asuka",
+            "Sange & Yasha",
+            "Jizai"
+          ]
+        },
+        {
+          "1": "Heart of Suppressed Gun",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Heaven Punisher",
+            "Heaven Striker"
+          ]
+        },
+        {
+          "1": "Heart of Tension Blaster",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Heaven Punisher",
+            "Heaven Striker"
+          ]
+        },
+        {
+          "1": "Heart of Ruby Bullet",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Heaven Punisher",
+            "Heaven Striker"
+          ]
+        },
+        {
+          "1": "Heart of Rianov 303SNR",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Bringer's Rifle",
+            "Frozen Shooter",
+            "Spread Needle",
+            "Snow Queen"
+          ]
+        },
+        {
+          "1": "Heart of Angel Harp",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Bringer's Rifle",
+            "Frozen Shooter",
+            "Snow Queen"
+          ]
+        },
+        {
+          "1": "Heart of Egg Blaster",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Bringer's Rifle",
+            "Frozen Shooter",
+            "Snow Queen"
+          ]
+        },
+        {
+          "1": "Heart of Yasminkov 9000M",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Dual Bird",
+            "Guld Milla",
+            "M&A60 Vise",
+            "Mille Marteaux"
+          ]
+        },
+        {
+          "1": "Heart of Samba Maracas",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Dual Bird",
+            "Guld Milla",
+            "M&A60 Vise",
+            "Mille Marteaux"
+          ]
+        },
+        {
+          "1": "Heart of Rabbit Wand",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Glide Divine",
+            "Psycho Wand",
+            "Striker of Chao"
+          ]
+        },
+        {
+          "1": "Heart of Sorcerer's Cane",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Glide Divine",
+            "Psycho Wand",
+            "Striker of Chao"
+          ]
+        },
+        {
+          "1": "Heart of The Sigh of a God",
+          "template": "WeaponHeartRow",
+          "compatible": [
+            "Magical Piece",
+            "Prophets of Motav"
+          ]
+        }
+      ],
+      "photonFilter": [
+        {
+          "heart": "Heart of Flamberge",
+          "weapons": [
+            "Excalibur"
+          ],
+          "color": "Blue"
+        },
+        {
+          "heart": "Heart of Daisy Chain",
+          "weapons": [
+            "Chain Sawd",
+            "Red Sword",
+            "Tsumikiri J-Sword",
+            "Zanba",
+            "Flowen's Sword (3084)",
+            "Dark Flow"
+          ],
+          "color": "Yellow"
+        },
+        {
+          "heart": "Heart of Twin Chakram",
+          "weapons": [
+            "Daylight Scar"
+          ],
+          "color": "Green"
+        },
+        {
+          "heart": "Heart of TypeDS/D.Saber",
+          "weapons": [
+            "Vivienne"
+          ],
+          "color": "White"
+        },
+        {
+          "heart": "Heart of TypeSS/Swords",
+          "weapons": [
+            "Musashi",
+            "Asuka",
+            "Sange & Yasha",
+            "Jizai"
+          ],
+          "color": "White"
+        },
+        {
+          "heart": "Heart of Suppressed Gun",
+          "weapons": [
+            "Heaven Striker"
+          ],
+          "color": "Green"
+        },
+        {
+          "heart": "Heart of The Sigh of a God",
+          "weapons": [
+            "Magical Piece"
+          ],
+          "color": "Yellow"
+        }
+      ]
     }
   },
   "records": [
@@ -17074,6 +17410,35 @@
       "title": "Angel Plating",
       "revision": 39627,
       "timestamp": "2025-12-13T05:21:40Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "AngelRing.png",
+        "trade": [
+          {
+            "item": "Nei's Claw",
+            "quantity": 1
+          },
+          {
+            "item": "Sorcerer's Cane",
+            "quantity": 10
+          },
+          {
+            "item": "Angel Ring",
+            "quantity": 3
+          },
+          {
+            "item": "Adept",
+            "quantity": 1
+          },
+          {
+            "item": "Angel's Wing",
+            "quantity": 1
+          }
+        ],
+        "shop": null,
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "Tool",
         "color": "rare",
@@ -17083,9 +17448,7 @@
         "class": "111111111111",
         "hex": "030E55"
       },
-      "excerpts": [
-        "Skinned rings function identically to a normal Red Ring. ==Combinations== {| class=\"wikitable\" style=\"text-align:center;\" |- !Item !Result |- |Red Ring |Red Ring* |}"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "The Forge"
@@ -20454,6 +20817,17 @@
       "title": "Black Paint",
       "revision": 43117,
       "timestamp": "2026-07-02T19:53:16Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Black Ring.png",
+        "trade": [],
+        "shop": null,
+        "event": {
+          "via": "Present (Christmas)",
+          "event": "Christmas event"
+        },
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -22344,6 +22718,7 @@
       "title": "Blue Odoshi Violet Nimaidou",
       "revision": 34241,
       "timestamp": "2025-01-07T20:52:59Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "title": "Blue Odoshi Violet Nimaidou",
         "jp": "紺糸威紫塗桶側二枚胴",
@@ -22363,7 +22738,7 @@
         "hex": "01013B"
       },
       "excerpts": [
-        "Multiple sources of attack speed increase will not stack; only the highest source will apply. ==Set Effect== SetEffectHead Sword Sword Sword Sword |}"
+        "Multiple sources of attack speed increase will not stack; only the highest source will apply."
       ],
       "tables": [
         {
@@ -22428,6 +22803,17 @@
       "title": "Blue Paint",
       "revision": 43116,
       "timestamp": "2026-07-02T19:53:04Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Blue Ring.png",
+        "trade": [],
+        "shop": null,
+        "event": {
+          "via": "Present (Christmas)",
+          "event": "Christmas event"
+        },
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -24945,6 +25331,35 @@
       "title": "Bunny Plating",
       "revision": 39628,
       "timestamp": "2025-12-13T05:22:10Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Bunny Ears.png",
+        "trade": [
+          {
+            "item": "Two Kamui",
+            "quantity": 1
+          },
+          {
+            "item": "Handgun: Guld",
+            "quantity": 1
+          },
+          {
+            "item": "Hildeblue's Cane",
+            "quantity": 5
+          },
+          {
+            "item": "Bunny Ears",
+            "quantity": 3
+          },
+          {
+            "item": "Chao",
+            "quantity": 1
+          }
+        ],
+        "shop": null,
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "Tool",
         "color": "rare",
@@ -24954,9 +25369,7 @@
         "class": "111111111111",
         "hex": "030E56"
       },
-      "excerpts": [
-        "Skinned rings function identically to a normal Red Ring. ==Combinations== {| class=\"wikitable\" style=\"text-align:center;\" |- !Item !Result |- |Red Ring |Red Ring* |}"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "The Forge"
@@ -25570,6 +25983,43 @@
       "title": "Cat Plating",
       "revision": 39629,
       "timestamp": "2025-12-13T05:22:59Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Cat Ears.png",
+        "trade": [
+          {
+            "item": "Gigobooma's Claw",
+            "quantity": 5
+          },
+          {
+            "item": "Rappy's Fan",
+            "quantity": 10
+          },
+          {
+            "item": "Burning Visit",
+            "quantity": 1
+          },
+          {
+            "item": "Mercurius Rod",
+            "quantity": 3
+          },
+          {
+            "item": "Prophets of Motav",
+            "quantity": 1
+          },
+          {
+            "item": "Cat Ears",
+            "quantity": 3
+          },
+          {
+            "item": "Dreamcast",
+            "quantity": 1
+          }
+        ],
+        "shop": null,
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "Tool",
         "color": "rare",
@@ -25579,9 +26029,7 @@
         "class": "111111111111",
         "hex": "030E57"
       },
-      "excerpts": [
-        "Skinned rings function identically to a normal Red Ring. ==Combinations== {| class=\"wikitable\" style=\"text-align:center;\" |- !Item !Result |- |Red Ring |Red Ring* |}"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "The Forge"
@@ -25963,6 +26411,18 @@
       "title": "Chartreuse Paint",
       "revision": 29730,
       "timestamp": "2024-08-10T16:47:56Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Chartreuse Ring.png",
+        "trade": [],
+        "shop": {
+          "quest": "Anniversary Badge Shop",
+          "price": 99,
+          "currency": "Anniv. Silver Badge"
+        },
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -30392,6 +30852,18 @@
       "title": "Cyan Paint",
       "revision": 29731,
       "timestamp": "2024-08-10T16:48:47Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Cyan Ring.png",
+        "trade": [],
+        "shop": {
+          "quest": "Anniversary Badge Shop",
+          "price": 99,
+          "currency": "Anniv. Silver Badge"
+        },
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -32381,6 +32853,7 @@
       "title": "Deband Merge",
       "revision": 31413,
       "timestamp": "2024-09-25T17:09:27Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "jp": "デバンドマージ",
         "romaji": "Deband Merge",
@@ -32398,9 +32871,7 @@
         "class": "111111111111",
         "hex": "01023D"
       },
-      "excerpts": [
-        "==Technique Boost== TechBoostTable Deband |}"
-      ],
+      "excerpts": [],
       "tables": [
         {
           "1": "Deband",
@@ -32464,6 +32935,43 @@
       "title": "Deep Plating",
       "revision": 39630,
       "timestamp": "2025-12-13T05:23:26Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "From The depth.gif",
+        "trade": [
+          {
+            "item": "Flapjack Flapper",
+            "quantity": 2
+          },
+          {
+            "item": "Belra Cannon",
+            "quantity": 10
+          },
+          {
+            "item": "Bluefull Card",
+            "quantity": 1
+          },
+          {
+            "item": "Dress Plate",
+            "quantity": 1
+          },
+          {
+            "item": "From the Depths",
+            "quantity": 2
+          },
+          {
+            "item": "Heavenly/Resist",
+            "quantity": 2
+          },
+          {
+            "item": "V502",
+            "quantity": 1
+          }
+        ],
+        "shop": null,
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "Tool",
         "color": "rare",
@@ -32473,9 +32981,7 @@
         "class": "111111111111",
         "hex": "030E58"
       },
-      "excerpts": [
-        "Skinned rings function identically to a normal Red Ring. ==Combinations== {| class=\"wikitable\" style=\"text-align:center;\" |- !Item !Result |- |Red Ring |Red Ring* |}"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "The Forge"
@@ -32662,6 +33168,51 @@
       "title": "Delsaber Plating",
       "revision": 39631,
       "timestamp": "2025-12-13T05:26:11Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Delsaber set.gif",
+        "trade": [
+          {
+            "item": "Delsaber's Buster",
+            "quantity": 8
+          },
+          {
+            "item": "Orotiagito",
+            "quantity": 1
+          },
+          {
+            "item": "Siren Glass Hammer",
+            "quantity": 2
+          },
+          {
+            "item": "Plantain Fan",
+            "quantity": 1
+          },
+          {
+            "item": "Kasami Bracer",
+            "quantity": 1
+          },
+          {
+            "item": "S-Parts ver2.01",
+            "quantity": 1
+          },
+          {
+            "item": "Shield of Delsaber",
+            "quantity": 8
+          },
+          {
+            "item": "HP/Resurrection",
+            "quantity": 2
+          },
+          {
+            "item": "Proof of Sword-Saint",
+            "quantity": 1
+          }
+        ],
+        "shop": null,
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "Tool",
         "jp": "デルセイバーの盾のメッキ",
@@ -32671,9 +33222,7 @@
         "class": "111111111111",
         "hex": "030E50"
       },
-      "excerpts": [
-        "Skinned rings function identically to a normal Red Ring. ==Combinations== {| class=\"wikitable\" style=\"text-align:center;\" |- !Item !Result |- |Red Ring |Red Ring* |}"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "The Forge"
@@ -38038,6 +38587,55 @@
       "title": "Epsilon Plating",
       "revision": 39632,
       "timestamp": "2025-12-13T05:32:43Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Epsiguard EDK.png",
+        "trade": [
+          {
+            "item": "DB's Saber (3064)",
+            "quantity": 1
+          },
+          {
+            "item": "S-Berill's Hands No. 1",
+            "quantity": 2
+          },
+          {
+            "item": "Ano Rifle",
+            "quantity": 2
+          },
+          {
+            "item": "Anti Android Rifle",
+            "quantity": 2
+          },
+          {
+            "item": "Gi Gue Bazooka",
+            "quantity": 5
+          },
+          {
+            "item": "Whitill Card",
+            "quantity": 1
+          },
+          {
+            "item": "D-Parts ver1.01",
+            "quantity": 1
+          },
+          {
+            "item": "Electro Frame",
+            "quantity": 1
+          },
+          {
+            "item": "Epsiguard",
+            "quantity": 10
+          },
+          {
+            "item": "V101",
+            "quantity": 1
+          }
+        ],
+        "shop": null,
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "Tool",
         "color": "rare",
@@ -41833,6 +42431,7 @@
       "title": "Foie Merge",
       "revision": 31400,
       "timestamp": "2024-09-25T17:05:06Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "jp": "フォイエマージ",
         "romaji": "Foie Merge",
@@ -41850,9 +42449,7 @@
         "class": "111111111111",
         "hex": "01023E"
       },
-      "excerpts": [
-        "==Technique Boost== TechBoostTable Foie |}"
-      ],
+      "excerpts": [],
       "tables": [
         {
           "1": "Foie",
@@ -43491,6 +44088,7 @@
       "title": "Genpei",
       "revision": 35242,
       "timestamp": "2025-02-19T17:54:10Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "jp": "源平",
         "romaji": "Genpei",
@@ -43509,7 +44107,7 @@
         "hex": "01029B"
       },
       "excerpts": [
-        "It has an aesthetic effect that also displays the wearer's Section ID. ==Set Effect== SetEffectHead Frame |}"
+        "It has an aesthetic effect that also displays the wearer's Section ID."
       ],
       "tables": [
         {
@@ -44850,6 +45448,7 @@
       "title": "Glide Divine",
       "revision": 35876,
       "timestamp": "2025-03-10T17:30:36Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "icon": "Cane",
         "image": "Glide_Divine.png",
@@ -44878,7 +45477,7 @@
         "hex": "00C500"
       },
       "excerpts": [
-        "Glide Divine cannot make a combo attack. ==Technique Boost== TechBoostTable Jellen Zalure |}"
+        "Glide Divine cannot make a combo attack."
       ],
       "tables": [
         {
@@ -46657,6 +47256,17 @@
       "title": "Green Paint",
       "revision": 43118,
       "timestamp": "2026-07-02T19:53:37Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Green Ring.png",
+        "trade": [],
+        "shop": null,
+        "event": {
+          "via": "Present (Christmas)",
+          "event": "Christmas event"
+        },
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48514,6 +49124,12 @@
       "title": "Heart of Ancient Saber",
       "revision": 31587,
       "timestamp": "2024-09-27T18:30:32Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Excalibur",
+        "Dark Flow",
+        "Red Saber"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48577,6 +49193,12 @@
       "title": "Heart of Angel Harp",
       "revision": 31609,
       "timestamp": "2024-09-27T18:33:14Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Bringer's Rifle",
+        "Frozen Shooter",
+        "Snow Queen"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48613,6 +49235,10 @@
       "title": "Heart of Blade Dance",
       "revision": 32536,
       "timestamp": "2024-10-18T18:49:11Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Daylight Scar"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48647,6 +49273,12 @@
       "title": "Heart of Chameleon Scythe",
       "revision": 31599,
       "timestamp": "2024-09-27T18:32:12Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Vjaya",
+        "Asteron Belt",
+        "Yunchang"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48738,6 +49370,15 @@
       "title": "Heart of Crazy Tune",
       "revision": 31591,
       "timestamp": "2024-09-27T18:31:05Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Chain Sawd",
+        "Dark Flow",
+        "Flowen's Sword (3084)",
+        "Red Sword",
+        "Tsumikiri J-Sword",
+        "Zanba"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48777,6 +49418,15 @@
       "title": "Heart of Daisy Chain",
       "revision": 31592,
       "timestamp": "2024-09-27T18:31:16Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Chain Sawd",
+        "Dark Flow",
+        "Flowen's Sword (3084)",
+        "Red Sword",
+        "Tsumikiri J-Sword",
+        "Zanba"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48816,6 +49466,11 @@
       "title": "Heart of DB's Saber",
       "revision": 31588,
       "timestamp": "2024-09-27T18:30:41Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Excalibur",
+        "Red Saber"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48851,6 +49506,11 @@
       "title": "Heart of Delsaber's Buster",
       "revision": 31589,
       "timestamp": "2024-09-27T18:30:48Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Excalibur",
+        "Red Saber"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48914,6 +49574,12 @@
       "title": "Heart of Diska of Liberator",
       "revision": 31600,
       "timestamp": "2024-09-27T18:32:16Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Diska of Braveman",
+        "Rainbow Baton",
+        "Slicer of Fanatic"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48950,6 +49616,12 @@
       "title": "Heart of Egg Blaster",
       "revision": 31610,
       "timestamp": "2024-09-27T18:33:19Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Bringer's Rifle",
+        "Frozen Shooter",
+        "Snow Queen"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48986,6 +49658,11 @@
       "title": "Heart of Flamberge",
       "revision": 31590,
       "timestamp": "2024-09-27T18:30:57Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Excalibur",
+        "Red Saber"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -48994,9 +49671,7 @@
         "jp": "フランベルジュの心",
         "hex": "030E46"
       },
-      "excerpts": [
-        "The Photon Filter will be consumed in the process."
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [],
       "drops": [
@@ -49024,6 +49699,12 @@
       "title": "Heart of Flight Fan",
       "revision": 43441,
       "timestamp": "2026-08-15T11:23:10Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Diska of Braveman",
+        "Rainbow Baton",
+        "Slicer of Fanatic"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49056,6 +49737,12 @@
       "title": "Heart of Izmaela",
       "revision": 31601,
       "timestamp": "2024-09-27T18:32:23Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Diska of Braveman",
+        "Rainbow Baton",
+        "Slicer of Fanatic"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49119,6 +49806,12 @@
       "title": "Heart of Laconium Axe",
       "revision": 31593,
       "timestamp": "2024-09-27T18:31:33Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Dark Flow",
+        "Tsumikiri J-Sword",
+        "Zanba"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49155,6 +49848,12 @@
       "title": "Heart of Lollipop",
       "revision": 31586,
       "timestamp": "2024-09-27T18:30:12Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Excalibur",
+        "Summit Moon",
+        "Tsumikiri J-Sword"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49251,6 +49950,10 @@
       "title": "Heart of Partisan of Lightning",
       "revision": 31602,
       "timestamp": "2024-09-27T18:32:28Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Vivienne"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49312,6 +50015,12 @@
       "title": "Heart of Plantain Huge Fan",
       "revision": 31597,
       "timestamp": "2024-09-27T18:32:01Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Vjaya",
+        "Asteron Belt",
+        "Yunchang"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49407,6 +50116,12 @@
       "title": "Heart of Rabbit Wand",
       "revision": 31612,
       "timestamp": "2024-09-27T18:33:29Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Glide Divine",
+        "Psycho Wand",
+        "Striker of Chao"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49443,6 +50158,13 @@
       "title": "Heart of Rianov 303SNR",
       "revision": 31608,
       "timestamp": "2024-09-27T18:33:10Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Bringer's Rifle",
+        "Frozen Shooter",
+        "Snow Queen",
+        "Spread Needle"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49480,6 +50202,11 @@
       "title": "Heart of Ruby Bullet",
       "revision": 35100,
       "timestamp": "2025-02-09T19:49:41Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Heaven Punisher",
+        "Heaven Striker"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49519,6 +50246,13 @@
       "title": "Heart of Samba Maracas",
       "revision": 35106,
       "timestamp": "2025-02-09T20:10:29Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Dual Bird",
+        "Guld Milla",
+        "M&A60 Vise",
+        "Mille Marteaux"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49560,6 +50294,12 @@
       "title": "Heart of Sorcerer's Cane",
       "revision": 31613,
       "timestamp": "2024-09-27T18:33:34Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Glide Divine",
+        "Psycho Wand",
+        "Striker of Chao"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49596,6 +50336,12 @@
       "title": "Heart of Soul Banish",
       "revision": 31598,
       "timestamp": "2024-09-27T18:32:06Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Vjaya",
+        "Asteron Belt",
+        "Yunchang"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49632,6 +50378,11 @@
       "title": "Heart of Suppressed Gun",
       "revision": 35099,
       "timestamp": "2025-02-09T19:48:52Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Heaven Punisher",
+        "Heaven Striker"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49672,6 +50423,11 @@
       "title": "Heart of Tension Blaster",
       "revision": 35098,
       "timestamp": "2025-02-09T19:47:56Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Heaven Punisher",
+        "Heaven Striker"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49711,6 +50467,11 @@
       "title": "Heart of The Sigh of a God",
       "revision": 31614,
       "timestamp": "2024-09-27T18:33:39Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Magical Piece",
+        "Prophets of Motav"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49719,9 +50480,7 @@
         "jp": "神の吐息の心",
         "hex": "030E3E"
       },
-      "excerpts": [
-        "The Photon Filter will be consumed in the process."
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [],
       "drops": [
@@ -49749,6 +50508,10 @@
       "title": "Heart of Twin Chakram",
       "revision": 31595,
       "timestamp": "2024-09-27T18:31:43Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Daylight Scar"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49784,6 +50547,10 @@
       "title": "Heart of TypeDS/D.Saber",
       "revision": 31603,
       "timestamp": "2024-09-27T18:32:33Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Vivienne"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49819,6 +50586,13 @@
       "title": "Heart of TypeSS/Swords",
       "revision": 31888,
       "timestamp": "2024-10-04T19:34:19Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Musashi",
+        "Asuka",
+        "Sange & Yasha",
+        "Jizai"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49857,6 +50631,10 @@
       "title": "Heart of Wok of Akiko's Shop",
       "revision": 31596,
       "timestamp": "2024-09-27T18:31:53Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Daylight Scar"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49891,6 +50669,13 @@
       "title": "Heart of Yasminkov 9000M",
       "revision": 35105,
       "timestamp": "2025-02-09T20:09:31Z",
+      "checkedAt": "2026-09-15",
+      "compatible": [
+        "Dual Bird",
+        "Guld Milla",
+        "M&A60 Vise",
+        "Mille Marteaux"
+      ],
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -49961,6 +50746,39 @@
       "title": "Heart Plating",
       "revision": 39633,
       "timestamp": "2025-12-13T05:33:40Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Safety heart.png",
+        "trade": [
+          {
+            "item": "Gobooma's Claw",
+            "quantity": 10
+          },
+          {
+            "item": "Dark Bridge",
+            "quantity": 1
+          },
+          {
+            "item": "Pinkal Card",
+            "quantity": 1
+          },
+          {
+            "item": "Love Heart",
+            "quantity": 1
+          },
+          {
+            "item": "Safety Heart",
+            "quantity": 1
+          },
+          {
+            "item": "Varuna*",
+            "quantity": 1
+          }
+        ],
+        "shop": null,
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "Tool",
         "color": "rare",
@@ -49970,9 +50788,7 @@
         "class": "111111111111",
         "hex": "030E54"
       },
-      "excerpts": [
-        "Skinned rings function identically to a normal Red Ring. ==Combinations== {| class=\"wikitable\" style=\"text-align:center;\" |- !Item !Result |- |Red Ring |Red Ring* |}"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "The Forge"
@@ -51633,6 +52449,43 @@
       "title": "Honeycomb Plating",
       "revision": 39634,
       "timestamp": "2025-12-13T05:34:04Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Honeycomb Reflector.png",
+        "trade": [
+          {
+            "item": "Double Cannon",
+            "quantity": 1
+          },
+          {
+            "item": "Izmaela",
+            "quantity": 1
+          },
+          {
+            "item": "P-Arms' Blade",
+            "quantity": 10
+          },
+          {
+            "item": "Tension Blaster",
+            "quantity": 2
+          },
+          {
+            "item": "Honeycomb Reflector",
+            "quantity": 3
+          },
+          {
+            "item": "TP/Resurrection",
+            "quantity": 3
+          },
+          {
+            "item": "Photon Filter",
+            "quantity": 1
+          }
+        ],
+        "shop": null,
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "Tool",
         "color": "rare",
@@ -51642,9 +52495,7 @@
         "class": "111111111111",
         "hex": "030E52"
       },
-      "excerpts": [
-        "Skinned rings function identically to a normal Red Ring. ==Combinations== {| class=\"wikitable\" style=\"text-align:center;\" |- !Item !Result |- |Red Ring |Red Ring* |}"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "The Forge"
@@ -62613,6 +63464,37 @@
       "noCombo": false
     },
     {
+      "title": "Neutralizer",
+      "revision": 35101,
+      "timestamp": "2025-02-09T19:54:04Z",
+      "checkedAt": "2026-09-15",
+      "fields": {
+        "icon": "tool",
+        "color": "rare",
+        "stack": "1",
+        "hex": "030E2E",
+        "type": "Tool"
+      },
+      "excerpts": [
+        "A second Neutralizer can then be used to remove the cosmetic skin, leaving a vanilla weapon with no skin or special attack filter applied."
+      ],
+      "tables": [],
+      "acquisition": [
+        "Quest Reward"
+      ],
+      "drops": [],
+      "related": [
+        "Neutralizer",
+        "Heaven Punisher",
+        "Mille Marteaux",
+        "Divine Filter",
+        "Lock-on Filter"
+      ],
+      "obsolete": false,
+      "unavailable": false,
+      "noCombo": false
+    },
+    {
       "title": "Nice Shot",
       "revision": 35174,
       "timestamp": "2025-02-15T18:15:39Z",
@@ -62857,6 +63739,18 @@
       "title": "Onyx Paint",
       "revision": 43495,
       "timestamp": "2026-08-28T21:26:46Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Onyx Ring.png",
+        "trade": [],
+        "shop": {
+          "quest": "Anniversary Badge Shop",
+          "price": 99,
+          "currency": "Anniv. Silver Badge"
+        },
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -63079,6 +63973,18 @@
       "title": "Orange Paint",
       "revision": 29733,
       "timestamp": "2024-08-10T16:49:17Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Orange Ring.png",
+        "trade": [],
+        "shop": {
+          "quest": "Anniversary Badge Shop",
+          "price": 99,
+          "currency": "Anniv. Silver Badge"
+        },
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -67329,6 +68235,7 @@
       "title": "Prophets of Motav",
       "revision": 31219,
       "timestamp": "2024-09-21T16:21:00Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "jp": "モタブの預言書",
         "romaji": "Motav's Prophecy",
@@ -67351,7 +68258,7 @@
         "hex": "005A00"
       },
       "excerpts": [
-        "Prophets of Motav's special attack casts Jellen and Zalure at level 5. ==Technique Boost== TechBoostTable Rafoie Razonde Rabarta |}"
+        "Prophets of Motav's special attack casts Jellen and Zalure at level 5."
       ],
       "tables": [
         {
@@ -67765,6 +68672,17 @@
       "title": "Purple Paint",
       "revision": 43119,
       "timestamp": "2026-07-02T19:53:53Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Purple Ring.png",
+        "trade": [],
+        "shop": null,
+        "event": {
+          "via": "Present (Christmas)",
+          "event": "Christmas event"
+        },
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -71143,6 +72061,17 @@
       "title": "Red Paint",
       "revision": 22603,
       "timestamp": "2023-11-21T19:28:27Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": null,
+        "trade": [],
+        "shop": null,
+        "event": null,
+        "freeQuests": [
+          "The Forge",
+          "Seasons Shop"
+        ]
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -72771,6 +73700,7 @@
       "title": "Resta Merge",
       "revision": 33734,
       "timestamp": "2024-11-27T16:15:02Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "jp": "レスタマージ",
         "romaji": "Resta Merge",
@@ -72788,9 +73718,7 @@
         "class": "111111111111",
         "hex": "01023A"
       },
-      "excerpts": [
-        "==Technique Boost== TechBoostTable Resta |}"
-      ],
+      "excerpts": [],
       "tables": [
         {
           "1": "Resta",
@@ -73183,6 +74111,7 @@
       "title": "Rianov 303SNR-2",
       "revision": 39145,
       "timestamp": "2025-11-18T23:15:16Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "title": "Rianov 303SNR-2",
         "jp": "ライアーノフ303NR-2",
@@ -73205,9 +74134,7 @@
         "vangle": "36",
         "hex": "00070A"
       },
-      "excerpts": [
-        "Unlike other rifles, this rifle has ranges identical to a shot-type weapon. ==Set Effect== SetEffectHead Shield |}"
-      ],
+      "excerpts": [],
       "tables": [
         {
           "1": "Shield",
@@ -73949,6 +74876,18 @@
       "title": "Rose Paint",
       "revision": 29734,
       "timestamp": "2024-08-10T16:49:32Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Rose Ring.png",
+        "trade": [],
+        "shop": {
+          "quest": "Anniversary Badge Shop",
+          "price": 99,
+          "currency": "Anniv. Silver Badge"
+        },
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -74138,6 +75077,7 @@
       "title": "Rupika",
       "revision": 29713,
       "timestamp": "2024-08-09T22:16:56Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "jp": "ルピカ",
         "romaji": "Rupika",
@@ -74156,7 +75096,7 @@
         "hex": "010289"
       },
       "excerpts": [
-        "While equipped, it increases Shifta range, similar to the effect of a Shifta Merge. ==Technique Boost== TechBoostTable Shifta |}"
+        "While equipped, it increases Shifta range, similar to the effect of a Shifta Merge."
       ],
       "tables": [
         {
@@ -77040,6 +77980,7 @@
       "title": "Siren Glass Hammer",
       "revision": 37891,
       "timestamp": "2025-08-18T13:47:30Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "icon": "Cane",
         "image": "Siren_Glass_Hammer.png",
@@ -77062,7 +78003,7 @@
         "hex": "00C400"
       },
       "excerpts": [
-        "While this weapon is equipped, TP is drained while moving at a rate of 1 TP every second. ==Technique Boost== TechBoostTable Gibarta |}"
+        "While this weapon is equipped, TP is drained while moving at a rate of 1 TP every second."
       ],
       "tables": [
         {
@@ -80456,6 +81397,43 @@
       "title": "Standstill Plating",
       "revision": 39635,
       "timestamp": "2025-12-13T05:34:33Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Standstill shield.png",
+        "trade": [
+          {
+            "item": "G-Assassin's Sabers",
+            "quantity": 10
+          },
+          {
+            "item": "Soul Eater",
+            "quantity": 2
+          },
+          {
+            "item": "Iron Faust",
+            "quantity": 1
+          },
+          {
+            "item": "Rupika",
+            "quantity": 2
+          },
+          {
+            "item": "Secure Feet",
+            "quantity": 5
+          },
+          {
+            "item": "Standstill Shield",
+            "quantity": 8
+          },
+          {
+            "item": "Yahoo!",
+            "quantity": 1
+          }
+        ],
+        "shop": null,
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "Tool",
         "color": "rare",
@@ -80465,9 +81443,7 @@
         "class": "111111111111",
         "hex": "030E51"
       },
-      "excerpts": [
-        "Skinned rings function identically to a normal Red Ring. ==Combinations== {| class=\"wikitable\" style=\"text-align:center;\" |- !Item !Result |- |Red Ring |Red Ring* |}"
-      ],
+      "excerpts": [],
       "tables": [],
       "acquisition": [
         "The Forge"
@@ -82622,6 +83598,7 @@
       "title": "Striker of Chao",
       "revision": 43465,
       "timestamp": "2026-08-19T00:30:54Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "title": "Striker of Chao",
         "jp": "チャオの杖",
@@ -82646,9 +83623,7 @@
         "vangle": "26",
         "hex": "005800"
       },
-      "excerpts": [
-        "The stats from the Striker of Chao are not transferred in the process. ==Technique Boost== TechBoostTable Shifta Deband |}"
-      ],
+      "excerpts": [],
       "tables": [
         {
           "1": "Shifta",
@@ -85923,6 +86898,7 @@
       "title": "Twinkle Star",
       "revision": 31222,
       "timestamp": "2024-09-21T16:22:27Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "jp": "トゥインクルスター",
         "romaji": "Twinkle Star",
@@ -85945,7 +86921,7 @@
         "hex": "005C00"
       },
       "excerpts": [
-        "It is strictly inferior to Summit Moon, which boosts simple techniques more than Twinkle Star. ==Technique Boost== TechBoostTable Foie Zonde Barta |}"
+        "It is strictly inferior to Summit Moon, which boosts simple techniques more than Twinkle Star."
       ],
       "tables": [
         {
@@ -87280,6 +88256,18 @@
       "title": "Ultramarine Paint",
       "revision": 29735,
       "timestamp": "2024-08-10T16:49:45Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Ultramarine Ring.png",
+        "trade": [],
+        "shop": {
+          "quest": "Anniversary Badge Shop",
+          "price": 99,
+          "currency": "Anniv. Silver Badge"
+        },
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -89060,6 +90048,18 @@
       "title": "Violet Paint",
       "revision": 29736,
       "timestamp": "2024-08-10T16:49:57Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Violet Ring.png",
+        "trade": [],
+        "shop": {
+          "quest": "Anniversary Badge Shop",
+          "price": 99,
+          "currency": "Anniv. Silver Badge"
+        },
+        "event": null,
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -91139,6 +92139,17 @@
       "title": "White Paint",
       "revision": 43120,
       "timestamp": "2026-07-02T19:54:15Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "White Ring.png",
+        "trade": [],
+        "shop": null,
+        "event": {
+          "via": "Present (Christmas)",
+          "event": "Christmas event"
+        },
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",
@@ -92208,6 +93219,7 @@
       "title": "Yasminkov 7000V",
       "revision": 30834,
       "timestamp": "2024-09-12T21:26:17Z",
+      "checkedAt": "2026-09-15",
       "fields": {
         "title": "Yasminkov 7000V",
         "jp": "ヤスミノコフ7000V",
@@ -92230,9 +93242,7 @@
         "vangle": "36",
         "hex": "006B00"
       },
-      "excerpts": [
-        "Unlike other Rifles, it has ranges identical to a shot-type weapon. ==Set Effect== SetEffectHead Shield |}"
-      ],
+      "excerpts": [],
       "tables": [
         {
           "1": "Shield",
@@ -92925,6 +93935,17 @@
       "title": "Yellow Paint",
       "revision": 43121,
       "timestamp": "2026-07-02T19:54:23Z",
+      "checkedAt": "2026-09-15",
+      "cosmetic": {
+        "appearance": "Yellow Ring.png",
+        "trade": [],
+        "shop": null,
+        "event": {
+          "via": "Present (Christmas)",
+          "event": "Christmas event"
+        },
+        "freeQuests": []
+      },
       "fields": {
         "icon": "tool",
         "color": "rare",

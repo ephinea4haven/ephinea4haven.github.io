@@ -1,0 +1,35 @@
+.cosmetics-shell .intro { padding-bottom: 8px; }
+.cosmetics-shell .detail-nav small { margin-left: 4px; color: var(--muted); font-size: 10px; }
+.cosmetics-kind { scroll-margin-top: 22px; }
+.cosmetic-rules { margin-top: 16px; }
+.cosmetic-rules a { white-space: nowrap; }
+.cosmetic-group { scroll-margin-top: 22px; }
+.cosmetic-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 16px; margin-top: 18px; }
+.cosmetic-card { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 16px; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 9px; scroll-margin-top: 22px; }
+.cosmetic-card:target { border-color: #5cddd4; box-shadow: 0 0 0 1px #5cddd4; }
+.cosmetic-picture { align-self: start; }
+.cosmetic-body { min-width: 0; overflow-wrap: anywhere; }
+.cosmetic-body h4 { margin: 0 0 4px; font-size: 15px; line-height: 1.4; }
+.cosmetic-body h4 a { color: var(--ink); }
+.cosmetic-result { margin: 0 0 12px; color: var(--muted); font-size: 12px; }
+.cosmetic-result a, .cosmetic-body dd a { color: #8fe0d9; }
+.cosmetic-body dl { display: grid; gap: 10px; margin: 0; }
+.cosmetic-body dt { color: #9bbac8; font-size: 10px; letter-spacing: .6px; margin-bottom: 3px; }
+.cosmetic-body dd { margin: 0; color: #bfcede; font-size: 12px; line-height: 1.7; }
+.cosmetic-body dd ul { margin: 0; padding: 0; list-style: none; }
+.cosmetic-body dd p { margin: 0; }
+.swatch { display: inline-flex; align-items: center; gap: 6px; }
+.swatch::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: var(--swatch, #ccc); box-shadow: 0 0 6px var(--swatch, #ccc); }
+.swatch[data-color="蓝色"] { --swatch: #5aa9ff; }
+.swatch[data-color="黄色"] { --swatch: #ffd84d; }
+.swatch[data-color="绿色"] { --swatch: #62e38c; }
+.swatch[data-color="白色"] { --swatch: #f2f6fa; }
+.cosmetics-source .source-actions { margin-top: 14px; }
+@media (max-width: 600px) {
+  .cosmetic-card { grid-template-columns: 84px minmax(0, 1fr); gap: 12px; padding: 14px; }
+}
+/* Ring screenshots are tall character shots; a portrait frame keeps the ring legible. */
+.cosmetic-cards.portrait .cosmetic-card { grid-template-columns: 96px minmax(0, 1fr); }
+.cosmetic-cards.portrait item-image { aspect-ratio: 3 / 5; }
+/* Links inside sentences need a non-color cue (WCAG 1.4.1). */
+.cosmetic-rules a, .cosmetic-result a, .cosmetic-body dd a { text-decoration: underline; text-underline-offset: 3px; }

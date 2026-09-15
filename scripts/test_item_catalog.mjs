@@ -8,6 +8,7 @@ import { templates } from './item_catalog_wiki.mjs';
 import { extractMechanics } from './item_catalog_mechanics.mjs';
 import vm from 'node:vm';
 import { MESSAGES, catalogText, catalogValue } from '../src/app/item-catalog/catalog-messages.ts';
+import { COSMETICS_MESSAGES } from '../src/app/item-catalog/cosmetics-messages.ts';
 
 test('balanced templates preserve repeated fields, nesting and numeric conditions', () => {
   assert.equal(clean('{{DEF}} + {{DEX}} / {{DEF}} + {{POW}}'), 'DEF + DEX / DEF + POW');
@@ -47,7 +48,7 @@ const snapshot = read('content/item-catalog/wiki.json');
 const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json').items;
 
 test('catalog UI and structured stats have complete English and Japanese messages', () => {
-  for (const [key, translations] of Object.entries(MESSAGES)) {
+  for (const [key, translations] of [...Object.entries(MESSAGES), ...Object.entries(COSMETICS_MESSAGES)]) {
     assert.equal(translations.length, 2, key);
     for (const text of translations) assert.ok(text.trim(), key);
     assert.equal(catalogText(key, 'zh'), key);
@@ -55,6 +56,7 @@ test('catalog UI and structured stats have complete English and Japanese message
   for (const file of fs.readdirSync('src/app/item-catalog').filter(f => /\.(html|ts)$/.test(f))) {
     const source = fs.readFileSync(`src/app/item-catalog/${file}`, 'utf8');
     for (const match of source.matchAll(/i18n\.t\('([^']+)'\)/g)) assert.ok(MESSAGES[match[1]], `${file}: ${match[1]}`);
+    for (const match of source.matchAll(/copy\('([^']+)'\)/g)) assert.ok(COSMETICS_MESSAGES[match[1]], `${file}: ${match[1]}`);
   }
   for (const item of items) {
     for (const stat of item.stats) {
@@ -81,8 +83,8 @@ test('Japanese catalog names use exact authority or recorded Wiki evidence', () 
 });
 
 test('every inventory item has a unique route, exact authority identity or an explicit unresolved name', () => {
-  assert.equal(items.length, 1044);
-  assert.deepEqual(coverage.categories, { weapon:419, armor:88, shield:107, unit:100, mag:84, tool:246 });
+  assert.equal(items.length, 1045);
+  assert.deepEqual(coverage.categories, { weapon:419, armor:88, shield:107, unit:100, mag:84, tool:247 });
   const known = new Set(items.map(i => i.title.toLowerCase()));
   const indexAliases = { "S-Berill's Hands #0": "S-Berill's Hands No. 0", "S-Berill's Hands #1": "S-Berill's Hands No. 1", Present: 'Present (Christmas)' };
   for (const [page, index] of Object.entries(snapshot.indexes)) for (const row of index.rows) {
@@ -125,7 +127,7 @@ test('fields preserve PSOBB semantics instead of sample assumptions', () => {
 
 test('downloaded illustrations match the recorded original checksums', () => {
   const images = read('content/item-catalog/images.json');
-  assert.equal(Object.keys(images).length, 456);
+  assert.equal(Object.keys(images).length, 478);
   for (const image of Object.values(images)) {
     const bytes = fs.readFileSync('.' + image.path);
     assert.equal(createHash('sha1').update(bytes).digest('hex'), image.sha1);
@@ -177,4 +179,74 @@ test('all Mag feeding tables exactly reuse maintained simulation values', () => 
     assert.equal(item.feeding.length, 11, item.title);
     assert.deepEqual(Object.fromEntries(item.feeding.map(r=>[r.item,r.values])), JSON.parse(JSON.stringify(sandbox.window.MAG_SIM.feedTables[key])), item.title);
   }
+});
+
+test('cosmetic items carry verified targets, results, sources and reversal rules', () => {
+  const overview = read('src/app/generated/item-catalog/cosmetics.json');
+  const list = snapshot.indexes['Weapon hearts'];
+  const ids = entries => entries.map(e => e.id);
+  const hearts = items.filter(i => i.type === 'Weapon heart');
+  assert.equal(hearts.length, 31);
+  assert.equal(list.rows.length, 31);
+  assert.deepEqual([overview.hearts.length, overview.paints.length, overview.platings.length], [31, 14, 9]);
+  assert.equal(overview.sources.weaponHearts, list.revision);
+  assert.equal(overview.sources.redRing, snapshot.records.find(r => r.title === 'Red Ring').revision);
+  for (const item of hearts) {
+    const row = list.rows.find(r => r[1] === item.title);
+    assert.ok(row, item.title);
+    assert.equal(item.cosmetic.kind, 'heart', item.title);
+    assert.deepEqual([...item.cosmetic.targets.map(w => w.item)].sort(), [...row.compatible].sort(), item.title);
+    for (const weapon of item.cosmetic.targets) {
+      assert.equal(details[weapon.id].category, 'weapon', item.title);
+      assert.ok(details[weapon.id].cosmetics.some(c => c.item.id === item.id && c.skin.id === item.cosmetic.skin.id), `${weapon.id} lists ${item.id}`);
+    }
+    assert.ok(item.effects.some(e => e.includes('中和剂') && e.includes('不会返还')), item.title);
+    assert.ok(item.effects.some(e => e.includes('磨数会被重置')), item.title);
+    assert.ok(!item.effects.some(e => e.includes('适用型号见来源说明')), item.title);
+  }
+  // Rows the list page leaves incomplete are resolved by each heart's own page.
+  assert.deepEqual(ids(details['heart-of-blade-dance'].cosmetic.targets), ['daylight-scar']);
+  assert.deepEqual(ids(details['heart-of-partisan-of-lightning'].cosmetic.targets), ['vivienne']);
+  assert.deepEqual(ids(details['heart-of-samba-maracas'].cosmetic.targets), ['dual-bird', 'guld-milla', 'manda60-vise', 'mille-marteaux']);
+  assert.equal(details['heart-of-soul-banish'].cosmetic.skin.id, 'soul-banish');
+  assert.deepEqual(details['heart-of-flamberge'].cosmetic.photonFilter, { color: '蓝色', weapons: [{ item: 'Excalibur', id: 'excalibur' }] });
+  assert.equal(details['heart-of-dbs-saber'].cosmetic.photonFilter, null);
+  assert.equal(list.photonFilter.length, 7);
+  assert.ok(details['heart-of-suppressed-gun'].effects.some(e => e.includes('第一次使用') && e.includes('第二次才移除外观')));
+  assert.ok(!details['heart-of-flamberge'].effects.some(e => e.includes('第一次使用')));
+  assert.deepEqual(ids(details.excalibur.cosmetics.map(c => c.item)), ['heart-of-lollipop', 'heart-of-ancient-saber', 'heart-of-dbs-saber', 'heart-of-delsabers-buster', 'heart-of-flamberge']);
+  assert.equal(details.saber.cosmetics.length, 0);
+  assert.deepEqual(overview.hearts.map(h => h.group).filter((g, i, all) => all.indexOf(g) === i),
+    ['Multiple', 'Saber', 'Sword', 'Dagger', 'Partisan', 'Slicer', 'Double Saber', 'Twin Sword', 'Handgun', 'Rifle', 'Mechgun', 'Rod', 'Wand']);
+
+  // Ring paints and platings all target the Red Ring; Red Paint reverts either kind.
+  const rings = items.filter(i => ['Ring paint', 'Ring plating'].includes(i.type));
+  assert.equal(rings.length, 23);
+  for (const item of rings) {
+    assert.deepEqual(ids(item.cosmetic.targets), ['red-ring'], item.title);
+    assert.ok(item.effects.some(e => e.includes('红色手镯')), item.title);
+    assert.ok(item.availability && !item.availability.startsWith('来源页面列出'), item.title);
+  }
+  assert.equal(details['red-ring'].cosmetics.length, 22);
+  assert.equal(details['blue-paint'].cosmetic.color, '蓝色');
+  assert.equal(details['onyx-paint'].cosmetic.color, '漆黑色');
+  for (const item of rings.filter(i => i.cosmetic.color)) assert.equal(`${item.cosmetic.color}涂料`, authority[item.en].zh, item.title);
+  assert.match(details['blue-paint'].availability, /圣诞活动期间开启 礼物/);
+  assert.match(details['onyx-paint'].availability, /99 个 周年纪念·白银徽章/);
+  assert.ok(details['red-paint'].cosmetic.reverts);
+  assert.match(details['red-paint'].availability, /数量不限/);
+  assert.equal(details['red-paint'].image, details['red-ring'].image);
+  assert.equal(details['angel-plating'].cosmetic.skin.id, 'angel-ring');
+  assert.deepEqual(details['deep-plating'].cosmetic.trade.map(t => [t.id, t.quantity]),
+    [['flapjack-flapper', 2], ['belra-cannon', 10], ['bluefull-card', 1], ['dress-plate', 1], ['from-the-depths', 2], ['heavenly-resist', 2], ['v502', 1]]);
+  for (const plating of overview.platings) assert.ok(plating.trade.length >= 5, plating.item);
+  // Every paint and plating has a verified Wiki screenshot; two are still first frames of animated Wiki GIFs.
+  assert.deepEqual(rings.filter(i => !i.image).map(i => i.id), []);
+  const images = read('content/item-catalog/images.json');
+  const derived = Object.entries(images).filter(([, image]) => image.derivedFrom).map(([name]) => name).sort();
+  assert.deepEqual(derived, ['Delsaber set.gif', 'From The depth.gif']);
+  for (const name of derived) assert.match(images[name].source, /\.gif$/);
+  assert.equal(details.neutralizer.category, 'tool');
+  assert.match(details.neutralizer.availability, /The Forge/);
+  assert.ok(details.neutralizer.effects.some(e => e.includes('不会返还')));
 });

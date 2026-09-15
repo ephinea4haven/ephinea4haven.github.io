@@ -3646,5 +3646,189 @@
     "sha1": "8febdd52f2027b76db38f584e149b99b61c0bf27",
     "width": 64,
     "height": 64
+  },
+  "Standstill shield.png": {
+    "path": "/assets/img/items/wiki/ff770c4f516e21fd.png",
+    "source": "https://wiki.pioneer2.net/images/8/84/Standstill_shield.png",
+    "page": "https://wiki.pioneer2.net/w/File:Standstill_shield.png",
+    "sha1": "ff770c4f516e21fda9ee745361a70f6e19a46910",
+    "width": 260,
+    "height": 470
+  },
+  "Safety heart.png": {
+    "path": "/assets/img/items/wiki/b4cfa69a9f4df32c.png",
+    "source": "https://wiki.pioneer2.net/images/a/a5/Safety_heart.png",
+    "page": "https://wiki.pioneer2.net/w/File:Safety_heart.png",
+    "sha1": "b4cfa69a9f4df32c9f10e26c9974dc853147da56",
+    "width": 210,
+    "height": 460
+  },
+  "Bunny Ears.png": {
+    "path": "/assets/img/items/wiki/95ff8d16527e5619.png",
+    "source": "https://wiki.pioneer2.net/images/d/d7/Bunny_Ears.png",
+    "page": "https://wiki.pioneer2.net/w/File:Bunny_Ears.png",
+    "sha1": "95ff8d16527e56193601e5cf1688980ceb2a2558",
+    "width": 129,
+    "height": 385
+  },
+  "Cat Ears.png": {
+    "path": "/assets/img/items/wiki/a8443414a664371d.png",
+    "source": "https://wiki.pioneer2.net/images/a/ab/Cat_Ears.png",
+    "page": "https://wiki.pioneer2.net/w/File:Cat_Ears.png",
+    "sha1": "a8443414a664371deedccc1b80a5996faca2f4bb",
+    "width": 122,
+    "height": 368
+  },
+  "Honeycomb Reflector.png": {
+    "path": "/assets/img/items/wiki/f9cae112328b2906.png",
+    "source": "https://wiki.pioneer2.net/images/4/45/Honeycomb_Reflector.png",
+    "page": "https://wiki.pioneer2.net/w/File:Honeycomb_Reflector.png",
+    "sha1": "f9cae112328b29064c4a8a51b33ef67b257c19f6",
+    "width": 184,
+    "height": 366
+  },
+  "White Ring.png": {
+    "path": "/assets/img/items/wiki/74a4eacc4e99eda0.png",
+    "source": "https://wiki.pioneer2.net/images/b/b1/White_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:White_Ring.png",
+    "sha1": "74a4eacc4e99eda06e007275d42940ca92e135d1",
+    "width": 137,
+    "height": 335
+  },
+  "Black Ring.png": {
+    "path": "/assets/img/items/wiki/a3de924637fb3de3.png",
+    "source": "https://wiki.pioneer2.net/images/4/44/Black_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Black_Ring.png",
+    "sha1": "a3de924637fb3de3a2abd556f4c547ce45c1f55a",
+    "width": 136,
+    "height": 346
+  },
+  "Blue Ring.png": {
+    "path": "/assets/img/items/wiki/8abfd51bbbc9e59c.png",
+    "source": "https://wiki.pioneer2.net/images/c/c6/Blue_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Blue_Ring.png",
+    "sha1": "8abfd51bbbc9e59ca91a6a52f740a1495db214b9",
+    "width": 131,
+    "height": 340
+  },
+  "Green Ring.png": {
+    "path": "/assets/img/items/wiki/1b675625e66924fe.png",
+    "source": "https://wiki.pioneer2.net/images/c/ca/Green_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Green_Ring.png",
+    "sha1": "1b675625e66924fe29d3f1db919f36ac91e4dd32",
+    "width": 130,
+    "height": 331
+  },
+  "Yellow Ring.png": {
+    "path": "/assets/img/items/wiki/2409df3ce1b5e585.png",
+    "source": "https://wiki.pioneer2.net/images/f/fc/Yellow_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Yellow_Ring.png",
+    "sha1": "2409df3ce1b5e5851a89b57c62ce0310069c615b",
+    "width": 132,
+    "height": 334
+  },
+  "Purple Ring.png": {
+    "path": "/assets/img/items/wiki/888e3b8e574eb511.png",
+    "source": "https://wiki.pioneer2.net/images/1/13/Purple_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Purple_Ring.png",
+    "sha1": "888e3b8e574eb51138bb856d3519db5dd988de59",
+    "width": 137,
+    "height": 336
+  },
+  "Epsiguard EDK.png": {
+    "path": "/assets/img/items/wiki/e976556ad3fcd4a0.png",
+    "source": "https://wiki.pioneer2.net/images/9/9b/Epsiguard_EDK.png",
+    "page": "https://wiki.pioneer2.net/w/File:Epsiguard_EDK.png",
+    "sha1": "e976556ad3fcd4a0f27beb55c381a8cc9c88e9c2",
+    "width": 154,
+    "height": 340
+  },
+  "Cyan Ring.png": {
+    "path": "/assets/img/items/wiki/f47b145e820da2ea.png",
+    "source": "https://wiki.pioneer2.net/images/d/d6/Cyan_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Cyan_Ring.png",
+    "sha1": "f47b145e820da2ea8c25ae0d6db63fa422c65bc8",
+    "width": 125,
+    "height": 352
+  },
+  "Chartreuse Ring.png": {
+    "path": "/assets/img/items/wiki/16e2c04b81468a15.png",
+    "source": "https://wiki.pioneer2.net/images/7/7b/Chartreuse_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Chartreuse_Ring.png",
+    "sha1": "16e2c04b81468a15e30a6a786d4177ea8881bc46",
+    "width": 132,
+    "height": 348
+  },
+  "Onyx Ring.png": {
+    "path": "/assets/img/items/wiki/29dd1d4c14ee90b6.png",
+    "source": "https://wiki.pioneer2.net/images/5/50/Onyx_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Onyx_Ring.png",
+    "sha1": "29dd1d4c14ee90b62a1c019353d336c5131f8f1e",
+    "width": 131,
+    "height": 347
+  },
+  "Rose Ring.png": {
+    "path": "/assets/img/items/wiki/c0b15ec8d2d464fb.png",
+    "source": "https://wiki.pioneer2.net/images/1/13/Rose_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Rose_Ring.png",
+    "sha1": "c0b15ec8d2d464fbedd9a2aeecaedd4e7335b9a0",
+    "width": 125,
+    "height": 352
+  },
+  "Ultramarine Ring.png": {
+    "path": "/assets/img/items/wiki/f424e380f2832565.png",
+    "source": "https://wiki.pioneer2.net/images/b/bd/Ultramarine_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Ultramarine_Ring.png",
+    "sha1": "f424e380f2832565a413467f13795e917822e0ae",
+    "width": 126,
+    "height": 352
+  },
+  "Orange Ring.png": {
+    "path": "/assets/img/items/wiki/9e00b570333d2f1a.png",
+    "source": "https://wiki.pioneer2.net/images/8/84/Orange_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Orange_Ring.png",
+    "sha1": "9e00b570333d2f1aac3d6375b18f04eaca9f8cc1",
+    "width": 125,
+    "height": 351
+  },
+  "Violet Ring.png": {
+    "path": "/assets/img/items/wiki/228ce03602f14dd8.png",
+    "source": "https://wiki.pioneer2.net/images/0/02/Violet_Ring.png",
+    "page": "https://wiki.pioneer2.net/w/File:Violet_Ring.png",
+    "sha1": "228ce03602f14dd83c80ea07ff483c2aab5e1a63",
+    "width": 125,
+    "height": 352
+  },
+  "AngelRing.png": {
+    "path": "/assets/img/items/wiki/457a0680a322f1d4.png",
+    "source": "https://wiki.pioneer2.net/images/c/ca/AngelRing.png",
+    "page": "https://wiki.pioneer2.net/w/File:AngelRing.png",
+    "sha1": "457a0680a322f1d4921acba0f74dd9618d16ab3f",
+    "width": 183,
+    "height": 442
+  },
+  "From The depth.gif": {
+    "path": "/assets/img/items/wiki/0a36ddd8f40b8730.png",
+    "source": "https://wiki.pioneer2.net/images/a/ac/From_The_depth.gif",
+    "page": "https://wiki.pioneer2.net/w/File:From_The_depth.gif",
+    "sha1": "0a36ddd8f40b8730fdb1ac49bb4716817a0e0007",
+    "width": 238,
+    "height": 371,
+    "derivedFrom": {
+      "sha1": "f6bdf882942368bdf6b026f10e83f39953eb112b",
+      "frame": 0
+    }
+  },
+  "Delsaber set.gif": {
+    "path": "/assets/img/items/wiki/2c20798405dd1462.png",
+    "source": "https://wiki.pioneer2.net/images/3/3c/Delsaber_set.gif",
+    "page": "https://wiki.pioneer2.net/w/File:Delsaber_set.gif",
+    "sha1": "2c20798405dd14625f78330d1ad366772a399ffc",
+    "width": 195,
+    "height": 281,
+    "derivedFrom": {
+      "sha1": "9fce88dd0d34887e4c3aafd58031584163ee40bd",
+      "frame": 0
+    }
   }
 }

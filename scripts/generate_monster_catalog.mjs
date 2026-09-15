@@ -103,7 +103,14 @@ export function generateMonsterCatalog() {
   fs.rmSync('assets/data/monsters',{recursive:true,force:true});
   fs.mkdirSync('assets/data/monsters',{recursive:true});
   for (const [name,data] of Object.entries({index,'details.server':details,metadata})) fs.writeFileSync(`src/app/generated/monster-catalog/${name}.json`,JSON.stringify(data));
-  for (const [id,data] of Object.entries(details)) fs.writeFileSync(`assets/data/monsters/${id}.json`,JSON.stringify(data));
+  const detailHash=createHash('sha256');
+  for (const [id,data] of Object.entries(details).sort(([a],[b])=>a.localeCompare(b))) {
+    const json=JSON.stringify(data);
+    fs.writeFileSync(`assets/data/monsters/${id}.json`,json);
+    detailHash.update(`${id}\n${json}\n`);
+  }
+  // Bundled with the catalog so any detail change busts cached monster JSON.
+  fs.writeFileSync('src/app/generated/monster-catalog/version.json',JSON.stringify({details:detailHash.digest('hex').slice(0,12)}));
   console.log(`Generated ${index.length} monster pages from Wiki facts and droptable ${drops.sha256.slice(0,12)}.`);
   return {index,details,metadata};
 }

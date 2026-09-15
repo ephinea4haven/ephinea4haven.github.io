@@ -2,14 +2,8 @@
 
 ## Active
 
-- [ ] Weapon hearts: compile the full list, matching weapon appearances, how to
-  obtain them and the conditions for use and reversal, link them to the item
-  catalog and reuse authoritative names. Source:
-  [Ephinea Weapon hearts](https://wiki.pioneer2.net/w/Weapon_hearts).
 - [ ] Inventory the archived PSO FRAME slot3 (Red-Wolf) material, record version
   and provenance, and selectively restore only information that remains unique.
-- [ ] Move manually versioned runtime data URLs behind the build manifest where
-  this materially improves cache behavior.
 
 ## Maintenance
 
@@ -69,6 +63,19 @@
   without a halfwidth/fullwidth selector.
 - [x] Ephinea equipment-based Technique boost reference covering weapons,
   frames and barriers through the canonical translation catalog.
+- [x] [Cosmetic items](../data/cosmetics.html) (2026-09-15): one trilingual
+  overview for all 31 weapon hearts, 14 ring paints and 9 ring platings, linked
+  from the home page directory as 外观道具. Hearts list their compatible weapons,
+  resulting appearance, Photon Filter combinations, drops, and Neutralizer
+  reversal; paints and platings list their color or appearance, event, shop or
+  The Forge trade sources, and Red Paint reversal. Item detail pages gained the
+  same structured sections, equipment pages list the cosmetics that apply to them,
+  and the Neutralizer joined the catalog. See the
+  [item catalog record](ITEM_CATALOG.md#cosmetic-items).
+- [x] Automatic cache busting (2026-09-15): content-page asset URLs marked with a
+  bare `?v` are stamped with a content hash at build time, manual `?v=N` numbers
+  are rejected, and item and monster detail JSON requests carry a dataset version
+  bundled with the app.
 - [x] Project documentation in English (2026-09-15): root README added, and all
   maintained docs translated. The docs contain no reverse-engineering material;
   the localization standard keeps the Chinese terms it defines.

@@ -1,15 +1,15 @@
 {
   "checkedAt": "2026-09-14",
-  "items": 1044,
+  "items": 1045,
   "categories": {
     "weapon": 419,
     "armor": 88,
     "shield": 107,
     "unit": 100,
     "mag": 84,
-    "tool": 246
+    "tool": 247
   },
-  "withImages": 524,
+  "withImages": 547,
   "unresolvedNames": [
     "ES Axe",
     "ES Bazooka",

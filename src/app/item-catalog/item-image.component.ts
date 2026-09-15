@@ -13,8 +13,9 @@ import { CatalogItem } from './catalog';
     }
   `,
   styles: `
-    :host { display: grid; place-items: center; container-type: inline-size; overflow: hidden; width: 100%; aspect-ratio: 4/3; background: #081322; border: 1px solid #26364a; border-radius: 6px; }
-    img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    :host { position: relative; display: grid; place-items: center; container-type: inline-size; overflow: hidden; width: 100%; aspect-ratio: 4/3; background: #081322; border: 1px solid #26364a; border-radius: 6px; }
+    /* Absolute sizing keeps tall screenshots inside the 4:3 frame instead of stretching the grid row. */
+    img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
     .placeholder { display: grid; place-items: center; gap: 5px; color: #a0b1c3; }
     .placeholder > span { font-size: 25px; color: #6f8ca3; }
     small { font-size: 10px; text-align: center; line-height: 1.4; overflow-wrap: anywhere; padding: 0 4px; }

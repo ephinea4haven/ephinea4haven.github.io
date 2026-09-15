@@ -1,0 +1,18 @@
+/* Section primitives shared by catalog detail and overview pages. */
+.detail-shell { max-width: 1120px; }
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: 11px; padding: 24px 0; }
+.breadcrumbs a { color: #a9c6d8; }
+.detail-nav { display: flex; gap: 28px; border-bottom: 1px solid var(--line); padding: 0 0 15px; }
+.detail-nav a { color: #b9d6df; font-size: 13px; }
+.detail-section { padding: 27px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 22px; }
+.detail-shell h2 { font-size: 16px; color: var(--ink); margin: 0 0 20px; padding: 0; border: 0; }
+.detail-section h2 > span { margin-right: 12px; font-size: 11px; color: #6bc3bd; font-weight: 500; }
+.detail-note { color: #a1b5c8; font-size: 11px; line-height: 1.85; margin-top: 12px; }
+.effect-list { padding-left: 18px; color: #bfcede; font-size: 13px; line-height: 1.95; }
+.effect-list li { margin-bottom: 9px; padding-left: 5px; }
+.effect-list li::marker { color: #78d2cc; }
+.source-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+.source-actions a { color: #b3e5e1; background: #1c3b45; border: 1px solid #3d6169; border-radius: 5px; padding: 10px 12px; font-size: 11px; }
+.detail-section h3 { color: var(--ink); margin: 28px 0 14px; font-size: 16px; }
+.detail-section a { color: #8fe0d9; }
+@media(max-width:600px) { .breadcrumbs { gap: 8px; padding: 20px 0; }.detail-nav { justify-content: space-between; gap: 10px; } }

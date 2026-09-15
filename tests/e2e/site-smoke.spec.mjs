@@ -618,6 +618,18 @@ test('status simulator preserves material-plan presets and calculation diagnosti
   expect(runtimeErrors).toEqual([]);
 });
 
+test('content images marked for versioning carry their content hash', async ({page, request}) => {
+  await page.goto('/guide/rbr.html');
+  const sources = await page.locator('img[src*="section-colors.svg"]').evaluateAll(images => images.map(image => image.getAttribute('src')));
+  expect(sources).toHaveLength(2);
+  for (const source of sources) {
+    expect(source).toMatch(/\.svg\?v=[0-9a-f]{12}$/);
+    expect((await request.get(source)).ok()).toBe(true);
+  }
+  await page.goto('/');
+  await expect(page.locator('a[href="/data/cosmetics.html"]')).toHaveText('外观道具');
+});
+
 test('Angular content behaviors cover landing, search, filters, tabs, and RBR data', async ({ page }) => {
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
