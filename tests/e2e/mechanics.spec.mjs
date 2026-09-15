@@ -21,8 +21,8 @@ test('mechanics authored item references use exact authority keys', () => {
 
 test('mechanics diagrams remain readable and keyboard accessible', async ({ page }) => {
   await page.goto('/tools/mechanics.html#incoming-physical');
-  const diagrams = page.locator('.mechanics-flow, .mechanics-outcome, .mechanics-threshold, .mechanics-figure');
-  await expect(diagrams).toHaveCount(10);
+  const diagrams = page.locator('.mechanics-flow, .mechanics-outcome, .mechanics-threshold, .mechanics-figure, .mechanics-pb-card');
+  await expect(diagrams).toHaveCount(18);
   for (const width of [320, 390, 760, 761, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     const overflow = await diagrams.evaluateAll((figures) => figures.filter((figure) => {
@@ -44,6 +44,21 @@ test('mechanics diagrams remain readable and keyboard accessible', async ({ page
     await expect(page.locator(target)).toBeInViewport();
   }
 
+  for (const [id, name] of [
+    ['pb-damage', '攻击型伤害'], ['pb-chain', '连锁与捐赠'],
+    ['pb-support', '治疗与辅助'], ['pb-gain', 'PB 槽积累'],
+  ]) {
+    const link = page.getByRole('link', { name, exact: true });
+    await link.focus();
+    await page.keyboard.press('Enter');
+    expect(new URL(page.url()).hash).toBe('#' + id);
+    await expect(page.locator('#' + id)).toBeInViewport();
+  }
+  for (const icon of await page.locator('.mechanics-pb-card img').all()) {
+    await icon.scrollIntoViewIfNeeded();
+    await expect.poll(() => icon.evaluate((image) => image.complete && image.naturalWidth > 0)).toBe(true);
+  }
+
   const jump = page.getByRole('link', { name: '何时会被击倒？ ↓', exact: true });
   await jump.focus();
   await page.keyboard.press('Enter');
@@ -57,6 +72,7 @@ test('mechanics diagrams remain readable and keyboard accessible', async ({ page
   const results = await new AxeBuilder({ page })
     .include('.mechanics-nav')
     .include('.mechanics-figure')
+    .include('.mechanics-pb-grid')
     .include('.mechanics-flow')
     .include('.mechanics-outcomes')
     .include('.mechanics-threshold')
