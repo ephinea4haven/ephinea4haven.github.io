@@ -16,6 +16,7 @@ are build inputs and are not copied into the published artifact.
 | `build_challenge_map_atlas.py` | Build the localized Episode I challenge-map atlas. |
 | `build_ep2_challenge_map_atlas.py` | Build the localized Episode II atlas from pinned Ephinea Wiki source maps. |
 | `verify_angular_architecture.mjs` | Reject retired runtimes, scripts and inline handlers in page sources. |
+| `test_launcher_guide.mjs` | Check launcher setting semantics, native screenshot dimensions, local links and evidence tracking; run with `npm run test:launcher-guide`. |
 | `challenge_maps.py` | Shared geometry, routes, symbols, notes and validation for EP1 Areas 1–2 and all EP2 maps. |
 | `test_challenge_maps.py` | Check EP1 JSON structure, coordinates, warp pairs and localized badge/notes counts without rendering dependencies. |
 | `render_challenge_maps.mjs` | Render selected SVGs to PNG using Playwright Chromium for visual review. |

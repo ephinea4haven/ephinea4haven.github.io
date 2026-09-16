@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ephinea 登录器 3.5.2 中文设置指南：Windows 英文原生截图，逐页介绍图形、声音、HUD、手柄、镜头、菜单和 MORE 详细选项。">
+<title>登录器设置指南 | Haven PSOBB Wiki</title>
+<link rel="stylesheet" href="/assets/css/unified-style.css">
+<link rel="stylesheet" href="/assets/css/launcher-guide.css">
+</head>
+<body>
+<page-chrome title="登录器设置指南"></page-chrome>
+<main class="content-container launcher-guide">
+<p class="launcher-kicker">EPHINEA · LAUNCHER GUIDE</p>
+<h1>登录器设置指南</h1>
+<p class="launcher-lead">从启动游戏到调整镜头，按登录器的实际页序找到每个开关。保留英文控件名称，搭配中文说明，方便一边看界面一边设置。</p>
+<p class="launcher-meta">对应 Launcher v3.5.2 · 核对日期 2026-09-16 · 配图来自 Parallels Desktop 中的 Windows 11 原生程序</p>
+<nav class="launcher-nav" aria-label="登录器设置章节">
+<a href="#page1">01 · 画面、声音与界面<span>OPTIONS 第 1 页</span></a>
+<a href="#page2">02 · 便利功能与画面效果<span>OPTIONS 第 2 页</span></a>
+<a href="#page3">03 · 提醒、镜头与文字<span>OPTIONS 第 3 页</span></a>
+<a href="#page4">04 · 手柄、拾取与光子爆发<span>OPTIONS 第 4 页</span></a>
+<a href="#page5">05 · 菜单操作与游戏便利设置<span>OPTIONS 第 5 页</span></a>
+<a href="#more">06 · MORE：原版详细设置<span>独立详细设置窗口</span></a>
+</nav>
+<aside class="launcher-note"><p><strong>先看操作方法：</strong>点击 OPTIONS 打开设置，用 NEXT PAGE／PREVIOUS PAGE 翻页。绿色开关表示开启，灰色表示关闭；灰色不一定表示无法点击。截图展示的是这台电脑当时的配置，不是统一推荐值。点击图片可查看原图。</p></aside>
+<section id="main-window"><h2>主界面与保存方式</h2>
+<figure><a href="/assets/img/launcher/main.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/main.png" width="1600" height="1200" alt="Windows 11 中的 Ephinea 英文登录器主界面"></a><figcaption>主界面：启动、公告、语言／资源选择与设置入口。</figcaption></figure>
+<table><thead><tr><th scope="col">控件</th><th scope="col">作用</th></tr></thead><tbody>
+<tr><td>START GAME</td><td>启动游戏；账号登录和角色选择在游戏内进行。</td></tr>
+<tr><td>ENGLISH / 日本語 / CUSTOM</td><td>选择对应的语言资源更新方式。CUSTOM 用于自定义资源，不是内置的“中文”选项；截图中的 CUSTOM 与英文界面可以同时存在。切换语言会保存当前设置并触发更新检查，维护自定义汉化时需确认所选资源模式。</td></tr>
+<tr><td>OFFICIAL SITE / REGISTER / FAQ / DONATE</td><td>分别打开官方网站、账号注册、常见问题和捐赠入口。</td></tr>
+<tr><td>CREDITS / QUIT</td><td>查看制作名单／退出登录器。</td></tr>
+<tr><td>CHECK FOR UPDATES</td><td>重新检查客户端更新，不等于恢复设置。</td></tr>
+<tr><td>MORE</td><td>先保存登录器设置，再打开独立的原版详细设置窗口。</td></tr>
+<tr><td>REVERT</td><td>重新读取已保存的配置，撤回尚未保存的修改。</td></tr>
+<tr><td>RESET ALL</td><td>把多项当前设置重置为程序指定的初始值，此时尚未保存；也会把语言选择重置为 English、分辨率重置为 1024×768。需要 CUSTOM 资源时，在执行后续保存或更新操作前确认语言选择。3.5.2 的重置逻辑未覆盖全部后加选项，不能当成完整清除所有配置。</td></tr>
+</tbody></table>
+<aside class="launcher-note"><p><strong>怎样保存？</strong>登录器没有统一的 Save 按钮。START GAME、QUIT、MORE 等操作会写入设置；再次点击 OPTIONS 只收起面板。希望撤回修改时，应先使用 REVERT，再执行会保存的操作。MORE 窗口有自己的 Save／Cancel。</p></aside>
+</section>
+<section id="page1">
+<p class="launcher-kicker">01 / OPTIONS</p><h2>画面、声音与界面</h2><p>先决定游戏窗口与渲染方式，再调整界面大小和声音。</p>
+<figure><a href="/assets/img/launcher/page1.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page1.png" width="1600" height="1200" loading="lazy" alt="Ephinea 英文原生界面：画面、声音与界面"></a><figcaption>OPTIONS 第 1 页 · Windows 11 原生截图</figcaption></figure>
+<table><thead><tr><th scope="col">英文控件 / 中文含义</th><th scope="col">作用与注意点</th></tr></thead><tbody>
+<tr><td>Resolution<small>分辨率</small></td><td>决定游戏画面的宽、高及宽高比。Custom 可输入自定义宽高；高分辨率通常更清晰，也增加绘制开销。</td></tr>
+<tr><td>Windowed Mode<small>窗口模式</small></td><td>Fullscreen 为独占全屏；Windowed 为普通窗口；Virtual Fullscreen 为无边框全屏。切换应用时，普通窗口或无边框全屏通常更方便。</td></tr>
+<tr><td>Rain/Laser Scale<small>雨线／激光缩放</small></td><td>调整雨线、激光等线状特效的显示比例，100% 为基准；不改变攻击伤害或判定范围。</td></tr>
+<tr><td>Direct3D API<small>渲染后端</small></td><td>选择 D3D8、D3D9、D3D9on12，或经 dgVoodoo 输出的 D3D11／12、经 DXVK 输出的 Vulkan。括号里的版本是转换组件版本，Custom 使用自行提供的组件。兼容性取决于驱动与运行环境，详见<a href="/guide/d3d.html#backend">图形后端指南</a>。</td></tr>
+<tr><td>Anti-Aliasing<small>抗锯齿</small></td><td>None 关闭；MSAA 处理几何边缘；SSAA 提高内部渲染分辨率后缩小；SMAA 对图像边缘做后处理；HSAA 组合 SSAA 与 MSAA。带 + SMAA 的选项追加 SMAA。更高档位通常增加负载，各后端支持情况见<a href="/guide/d3d.html#aa">抗锯齿说明</a>。</td></tr>
+<tr><td>Anisotropic Filtering<small>各向异性过滤</small></td><td>Disabled 或 2×／4×／8×／16×。改善斜视地板、道路等表面的纹理清晰度。</td></tr>
+<tr><td>BGM / SFX<small>音乐／音效音量</small></td><td>分别调节背景音乐和音效，范围 0–10；0 为静音。</td></tr>
+<tr><td>DISABLE SKIN SFX<small>关闭外观专用音效</small></td><td>关闭武器外观（skin）的专用音效，不是关闭游戏全部音效。</td></tr>
+<tr><td>HIGH RES HUD / HUD Scale<small>高分辨率 HUD／界面缩放</small></td><td>启用高分辨率 HUD 后显示 HUD Scale。数值越大，HUD 在屏幕上越小、可用空间越多；这项不会自动安装高清界面贴图。</td></tr>
+<tr><td>Damage Scale<small>伤害数字缩放</small></td><td>只调整伤害数字的显示大小，不改变实际伤害。</td></tr>
+<tr><td>NO MINIMAP SCALE<small>关闭小地图缩放修正</small></td><td>关闭高分辨率 HUD 的小地图缩放修正。原修正用于让不同 HUD 分辨率显示相同的内部视野范围，并调整图标比例；不是固定整个 HUD 小地图框的大小。不会揭示未探索区域。参见<a href="https://www.pioneer2.net/community/threads/dll-update-for-may-12th-2022-dllアップデート.23143/">原缩放行为说明</a>与<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-may-22nd-at-00-00-utc-サーバメンテナンス完了.23197/">关闭选项公告</a>。</td></tr>
+<tr><td>IME<small>输入法支持</small></td><td>启用客户端的输入法支持，供中文、日文等文字输入使用；可用输入法由运行环境提供。</td></tr>
+<tr><td>LOW PERFORMANCE<small>低负载运行</small></td><td>让客户端主循环更主动地让出 CPU 时间，降低 CPU 占用；可能影响帧节奏。不是网络加速，也不是一键降低全部画质。</td></tr>
+<tr><td>CLASSIC INTRO FMV<small>旧版开场影片播放方式</small></td><td>开启时，创建角色的开场使用旧版 PAE 影片及原播放器；关闭时使用新版影片播放路径，不代表跳过影片。参见<a href="https://www.pioneer2.net/community/threads/no-episode-2-end-credits-on-classic.24232/post-190564">官方对两种播放方式的说明</a>。</td></tr>
+</tbody></table>
+<p class="launcher-sources">补充依据：<a href="https://www.pioneer2.net/community/threads/low-performance-mode.7323/">官方人员对 Low Performance 的说明</a>；<a href="https://www.pioneer2.net/community/threads/hd-ui-project-by-luthee-a-k-a-eleria.23410/page-3">HUD Scale 与高清界面贴图的区别</a>。</p>
+</section>
+<section id="page2">
+<p class="launcher-kicker">02 / OPTIONS</p><h2>便利功能与画面效果</h2><p>这页既有仓库操作选项，也有后处理和 dgVoodoo 设置。</p>
+<figure><a href="/assets/img/launcher/page2.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page2.png" width="1600" height="1200" loading="lazy" alt="Ephinea 英文原生界面：便利功能与画面效果"></a><figcaption>OPTIONS 第 2 页 · Windows 11 原生截图</figcaption></figure>
+<table><thead><tr><th scope="col">英文控件 / 中文含义</th><th scope="col">作用与注意点</th></tr></thead><tbody>
+<tr><td>FAST STARTUP<small>快速启动</small></td><td>跳过 SEGA、Sonic Team 等启动标志画面，不会跳过登录器更新检查。</td></tr>
+<tr><td>CLEAN CAPTURE<small>干净截图</small></td><td>改变游戏内置截图的取图方式，从游戏画面缓冲区取图，避免把附加组件叠加层一起截入。不会自动隐藏游戏 HUD。</td></tr>
+<tr><td>MOTION BLUR<small>动态模糊</small></td><td>控制游戏原有的动态拖影效果。</td></tr>
+<tr><td>RARE DROP SFX<small>稀有掉落提示音</small></td><td>稀有物品掉落时播放提示音；不会改变掉率。</td></tr>
+<tr><td>BANK SHORTCUTS<small>仓库数字快捷键</small></td><td>在仓库列表中使用数字键 1–0 快速跳转，不是切换角色仓库的命令。</td></tr>
+<tr><td>LARGE BANK WINDOW<small>大仓库窗口</small></td><td>扩大仓库列表，一次显示更多条目。</td></tr>
+<tr><td>BLOOM<small>泛光</small></td><td>在明亮区域周围加入光晕。</td></tr>
+<tr><td>DEPTH OF FIELD<small>景深</small></td><td>根据深度模糊部分画面，改变远近景的清晰程度。</td></tr>
+<tr><td>CEL SHADING<small>卡通描边</small></td><td>加强轮廓，产生卡通式画面风格。</td></tr>
+<tr><td>TONEMAPPING<small>色调映射</small></td><td>调整画面的亮度、对比与色调呈现。</td></tr>
+<tr><td>Ambient Occlusion<small>环境光遮蔽</small></td><td>Disabled／Low／Medium／High；为接触处和遮蔽区域加入暗部层次。后处理效果及负载见<a href="/guide/d3d.html#shaders">着色器说明</a>。</td></tr>
+<tr><td>dgVoodoo Model<small>画面呈现模式</small></td><td>Auto、Discard、Sequential、Flip Discard、Flip Sequential 是交换链／呈现方式，不是画质等级。仅对 dgVoodoo 路径有意义，详见<a href="/guide/d3d.html#swap">交换链说明</a>。</td></tr>
+<tr><td>dgVoodoo VRAM<small>虚拟显存</small></td><td>Auto 或 64–4096 MB，配置 dgVoodoo 向旧游戏呈现的显存容量；不会增加显卡的物理显存。</td></tr>
+</tbody></table>
+<p class="launcher-sources">补充依据：<a href="https://www.pioneer2.net/community/threads/game-update-for-august-2nd-2022.23773/post-186589">快速启动更新说明</a>；<a href="https://www.pioneer2.net/community/threads/game-update-for-august-27th-2022-8-27-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.24114/">Clean Capture 更新说明</a>。</p>
+</section>
+<section id="page3">
+<p class="launcher-kicker">03 / OPTIONS</p><h2>提醒、镜头与文字</h2><p>镜头控制可以按自己的手柄和操作习惯设置。部分控件只在相关功能开启后出现。</p>
+<figure><a href="/assets/img/launcher/page3.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page3.png" width="1600" height="1200" loading="lazy" alt="Ephinea 英文原生界面：提醒、镜头与文字"></a><figcaption>OPTIONS 第 3 页 · Windows 11 原生截图</figcaption></figure>
+<table><thead><tr><th scope="col">英文控件 / 中文含义</th><th scope="col">作用与注意点</th></tr></thead><tbody>
+<tr><td>SDJZ Icon<small>辅助状态图标</small></td><td>控制 Shifta、Deband、Jellen、Zalure 图标的显示方式：Normal 普通、Blink 闪烁、Fade 渐隐。</td></tr>
+<tr><td>Mag Alert<small>玛古喂养提醒</small></td><td>开启后，当随身携带的玛古可以喂养时播放提示音。</td></tr>
+<tr><td>Mag Alert Delay<small>提醒间隔</small></td><td>两次提醒音之间的最短间隔，单位为秒，默认 30。它不是玛古的喂养冷却时间。</td></tr>
+<tr><td>Analog Camera Control<small>摇杆镜头控制</small></td><td>允许用手柄右摇杆调整镜头。</td></tr>
+<tr><td>Analog Sensitivity / INVERT<small>镜头灵敏度／反向</small></td><td>灵敏度影响摇杆转动镜头的速度；INVERT 反转对应的镜头控制方向。</td></tr>
+<tr><td>Camera Dead Zone<small>镜头摇杆死区</small></td><td>忽略摇杆中心附近的小幅输入，用于避免镜头漂移；过大会减少有效操控范围。</td></tr>
+<tr><td>ANALOG CAMERA KEYS / TURN LEFT / TURN RIGHT<small>键盘镜头控制</small></td><td>启用并指定向左、向右旋转镜头的键盘按键；相关控件随镜头选项显示。</td></tr>
+<tr><td>Chase Cam<small>自动跟随镜头</small></td><td>Enabled 自动跟随；Disabled 关闭自动跟随，使用手动镜头或回正键；Hybrid 在摇杆操作镜头时暂停自动跟随；Toggle 用摇杆操作后保持手动，按镜头回正键恢复跟随。</td></tr>
+<tr><td>Font Render Method<small>文字渲染方式</small></td><td>Hi-Res (Antialiased) 使用抗锯齿高分辨率字形；Hi-Res (ClearType) 使用 ClearType；Normal 使用普通方式。字体本身在 MORE 中选择。</td></tr>
+<tr><td>Font Resolution<small>字形分辨率</small></td><td>Auto 或指定字形栅格化分辨率。影响清晰度与采样，不等于把所有文字直接改成同数值的字号。</td></tr>
+<tr><td>NUMPAD SHORTCUTS<small>数字小键盘快捷栏</small></td><td>允许数字小键盘触发对应的数字快捷栏。</td></tr>
+<tr><td>Show Mob Drop<small>目标怪物稀有掉落显示</small></td><td>Disabled 关闭；Drop Only 只显示物品；Drop (Current Rate) 加当前掉率；Drop (Current & Base Rate) 同时显示当前与基础掉率。显示在目标信息区域，概率由客户端计算，可能存在舍入差异，不是下一次掉落预测。</td></tr>
+<tr><td>ENHANCED MAP DRAW<small>扩展场景绘制</small></td><td>让更多场景几何保持可绘制，减轻原有绘制距离与裁切造成的缺失；可能增加负载。与小地图探索或怪物刷新无关。</td></tr>
+</tbody></table>
+<p class="launcher-sources">补充依据：<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-july-6th-2024.29028/">镜头模式、玛古提醒与字体更新说明</a>；<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-january-12th-2025-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E5%AE%8C%E4%BA%86-1-12.30249/">场景绘制与目标掉落显示说明</a>。</p>
+</section>
+<section id="page4">
+<p class="launcher-kicker">04 / OPTIONS</p><h2>手柄、拾取与光子爆发</h2><p>把容易误触的拾取和光子爆发动作放到需要按住修饰键才能使用的操作层。</p>
+<figure><a href="/assets/img/launcher/page4.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page4.png" width="1600" height="1200" loading="lazy" alt="Ephinea 英文原生界面：手柄、拾取与光子爆发"></a><figcaption>OPTIONS 第 4 页 · Windows 11 原生截图</figcaption></figure>
+<table><thead><tr><th scope="col">英文控件 / 中文含义</th><th scope="col">作用与注意点</th></tr></thead><tbody>
+<tr><td>AUTO DETECT ACTIVE GAMEPAD<small>自动识别当前手柄</small></td><td>自动采用最近使用的手柄，方便连接多个控制器时切换。</td></tr>
+<tr><td>USE XINPUT FOR GAMEPAD<small>使用 XInput</small></td><td>改用 XInput 手柄接口，支持相应控制器的热插拔及扳机按钮。开启后显示以下三个调整项；非 XInput 设备可能需要映射才能使用。</td></tr>
+<tr><td>Deadzone<small>摇杆死区</small></td><td>过滤摇杆中心附近的小幅输入，范围 0–75%。</td></tr>
+<tr><td>Axis Snapping<small>方向吸附</small></td><td>让接近水平或垂直方向的输入更容易落在正方向，范围 0–50%。</td></tr>
+<tr><td>Trigger Threshold<small>扳机阈值</small></td><td>扳机按下到这个程度才视为触发，范围 0–100%。</td></tr>
+<tr><td>Item Pickup and Photon Blast Usage<small>拾取／光子爆发操作方式</small></td><td>Disabled 保留原版操作：附近物品可能把主动作栏中间位置换成拾取，光子爆发蓄满时会占用副动作栏。其余三项分别要求按住修饰键才能使用拾取、光子爆发，或二者；释放后保留原动作栏。</td></tr>
+<tr><td>HOLD GAMEPAD BUTTON<small>手柄修饰键</small></td><td>允许手柄按键触发上述操作层；在游戏内 Options → Pad button config 底部的对应项目绑定按键。</td></tr>
+<tr><td>HOLD SHIFT KEY / HOLD ALT KEY / HOLD KEY<small>键盘修饰键</small></td><td>选择允许触发的 Shift、Alt 或指定键。相关控件在启用拾取／光子爆发限制后出现。这些选项不会自动拾取，也不会自动释放光子爆发。</td></tr>
+</tbody></table>
+</section>
+<section id="page5">
+<p class="launcher-kicker">05 / OPTIONS</p><h2>菜单操作与游戏便利设置</h2><p>区分菜单反应速度、快捷菜单的内容和真正影响单人模式战斗的选项。</p>
+<figure><a href="/assets/img/launcher/page5.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page5.png" width="1600" height="1200" loading="lazy" alt="Ephinea 英文原生界面：菜单操作与游戏便利设置"></a><figcaption>OPTIONS 第 5 页 · Windows 11 原生截图</figcaption></figure>
+<table><thead><tr><th scope="col">英文控件 / 中文含义</th><th scope="col">作用与注意点</th></tr></thead><tbody>
+<tr><td>Menu Scroll Repeat Delay<small>菜单连移启动延迟</small></td><td>按住方向后，等待多少帧才开始连续移动。默认 6 帧，范围 1–20 帧；按 30 FPS 计算，6 帧约 0.2 秒。</td></tr>
+<tr><td>Menu Scroll Repeat Interval<small>菜单连移间隔</small></td><td>开始连续移动后，每隔多少帧再移动一次。默认 5 帧，范围 1–20 帧；值越小，连移越快。</td></tr>
+<tr><td>Page Up and Page Down Behavior<small>菜单翻页方式</small></td><td>No Change 保留原行为；Auto 按当前可见条目数翻一页；Fixed 使用指定条目数（1–100）。主要用于物品、仓库等列表。</td></tr>
+<tr><td>QUICK MENU MATERIALS<small>快捷菜单显示能力药</small></td><td>把能力药加入快捷菜单，便于使用；不改变挑战／对战任务中的相关限制。</td></tr>
+<tr><td>ONE PERSON I-FRAMES<small>单人模式受击无敌时间</small></td><td>在 One Person 模式采用类似旧版离线模式的较长受击无敌时间；关闭则使用原版 BB 行为。仅限房间类型为 One Person，不是多人房间里只有一个人就生效。</td></tr>
+<tr><td>QUICK MENU UNTEKKED WEAPONS<small>快捷菜单显示未鉴定武器</small></td><td>让未鉴定武器也出现在快捷菜单中；不会替你鉴定武器。</td></tr>
+<tr><td>SAVE PARTY INFO<small>保存房间信息</small></td><td>记住创建房间的名称、密码、类型、难度，以及加入同名房间时用到的密码。此功能已于 2026-08-01 更新启用，早期资料中“只是占位开关”的说法已经过时。</td></tr>
+</tbody></table>
+<p class="launcher-sources">补充依据：<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-october-19th-2025-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E5%AE%8C%E4%BA%86-10-19.31884/">翻页与单人模式更新说明</a>；<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-august-1st-2026-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9-%E5%AE%8C%E4%BA%86-8-2.33568/">保存房间信息正式启用公告</a>。</p>
+</section>
+<section id="more">
+<p class="launcher-kicker">06 / MORE</p><h2>MORE：原版详细设置</h2><p>MORE 会打开独立的 option.exe。这里管理原版图形细节、雾效、声音开关和游戏字体。</p>
+<figure><a href="/assets/img/launcher/more.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/more.png" width="1192" height="570" loading="lazy" alt="Ephinea 英文原生界面：MORE：原版详细设置"></a><figcaption>MORE 详细设置 · Windows 11 原生截图</figcaption></figure>
+<table><thead><tr><th scope="col">英文控件 / 中文含义</th><th scope="col">作用与注意点</th></tr></thead><tbody>
+<tr><td>Preset<small>图形预设</small></td><td>High end／Normal／Low end 会一起调整多项原版图形参数；Custom 表示自行组合。Low end 还包含跳帧设置，不能只把它理解为纹理质量。</td></tr>
+<tr><td>Colors<small>颜色深度</small></td><td>16bit 或 32bit，选择游戏输出颜色深度。</td></tr>
+<tr><td>Wait V-Sync<small>等待垂直同步</small></td><td>让画面呈现等待显示器同步，减少撕裂；实际行为也受所选渲染后端和驱动影响。</td></tr>
+<tr><td>Word Wrap<small>自动换行</small></td><td>控制文字在行尾的自动换行处理。</td></tr>
+<tr><td>Frame Skip / Auto Frame Skip<small>跳帧／自动跳帧</small></td><td>Frame Skip 设置跳帧级别（0–2，0 不主动跳帧）；Auto Frame Skip 允许游戏在跟不上目标节奏时自动跳过部分画面绘制。</td></tr>
+<tr><td>Advanced Effect<small>原版高级效果</small></td><td>控制原版客户端的高级画面效果，与第二页的 Bloom 等 Ephinea 后处理开关分别管理。</td></tr>
+<tr><td>Low Res Texture<small>低分辨率纹理</small></td><td>降低纹理分辨率，以画面细节换取较低资源占用。</td></tr>
+<tr><td>Shadow / Enemy / Map<small>阴影／敌人／地图细节</small></td><td>控制原版对应细节等级：Shadow 0–2、Enemy 0–1、Map 0–2。具体视觉差异取决于场景和资源。</td></tr>
+<tr><td>Clip Distance<small>绘制距离</small></td><td>调整原版场景绘制距离。常规档位为 0–2；更高档位属于扩展范围，保存时程序会提示风险。</td></tr>
+<tr><td>Fog Effect<small>雾效实现</small></td><td>Vertex Fog 按顶点计算；Pixel Fog 按像素计算；Emulation Fog 使用模拟方式。兼容性和视觉结果与图形后端有关。</td></tr>
+<tr><td>Sound Effects / Background Music<small>音效／音乐总开关</small></td><td>分别启用或禁用音效、背景音乐；与第一页的音量滑块共同决定最终声音。</td></tr>
+<tr><td>Global Focus Sound<small>后台声音</small></td><td>游戏窗口失去焦点后继续播放声音。</td></tr>
+<tr><td>Font<small>游戏字体</small></td><td>选择 Windows 环境中已安装的字体。中文字形覆盖取决于字体；Wine 和 Windows 的可用字体及显示效果可能不同。</td></tr>
+<tr><td>Save ID and Password<small>保存登录信息</small></td><td>控制游戏是否保存登录 ID 和密码，详见<a href="/guide/saveaccount.html">游戏账号保存</a>。</td></tr>
+<tr><td>Hardware Log<small>硬件诊断日志</small></td><td>调用 DirectX 诊断工具生成硬件信息日志，用于排查兼容性问题。</td></tr>
+<tr><td>Save / Cancel<small>保存／取消</small></td><td>Save 写入本窗口设置；Cancel 放弃本窗口未保存的修改并返回登录器。</td></tr>
+</tbody></table>
+</section>
+<section id="scope"><h2>版本与使用范围</h2><p>本页按 3.5.2 的界面、程序设置读写逻辑和官方更新说明整理。截图保留 Windows 的原生显示效果，仅裁去桌面背景；Wine 下的字体、控件外观和可用渲染后端可能不同。游戏效果也受客户端 DLL、驱动与图形后端影响，截图不代表各项效果已经逐一进行游戏内测试。</p><p>需要进一步选择抗锯齿或排查后端兼容性时，继续阅读<a href="/guide/d3d.html">渲染与图形 API 指南</a>。本专题正文为中文，英文控件名用于界面对照。</p><p><a href="#main-window">返回主界面说明 ↑</a></p></section>
+</main>
+</body>
+</html>

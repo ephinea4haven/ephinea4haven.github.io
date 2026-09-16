@@ -8,6 +8,12 @@
 - Keep scope small without knowingly choosing disposable architecture. Make architectural decisions for the long term; do not accept stopgaps that are already expected to be replaced.
 - For significant product or architectural decisions, study how established products solve the problem and adopt proven patterns and conventions instead of inventing a custom approach without a clear reason.
 
+# Project Identity
+
+- Haven PSOBB Wiki is maintained by the Haven guild for PSOBB players worldwide, with a focus on Ephinea. It is open to everyone, regardless of country, language or guild membership.
+- Describe the project as a multilingual wiki supporting English, Japanese and Chinese. Keep this positioning consistent across site copy, metadata and documentation.
+- Describe translation coverage accurately for each page or feature; do not imply that every page is fully translated into all three languages.
+
 # Chinese Localization
 
 - Treat PSOBB as the mandatory context for every translation. Translate the in-game concept, mechanic, item, or player action—not isolated English words.
