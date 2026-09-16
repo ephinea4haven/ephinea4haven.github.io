@@ -6,8 +6,20 @@
   remaining 40 EP1 areas, remove the old renderer, extend structural tests to
   EP2, and complete per-map visual acceptance. EP1 Areas 1–2 and all 25 EP2
   areas currently use JSON data.
-- [ ] Inventory the archived PSO FRAME slot3 (Red-Wolf) material, record version
-  and provenance, and selectively restore only information that remains unique.
+- [ ] Complete the claim-level audit of archived PSO FRAME slot3 (Red-Wolf)
+  material. The [archive inventory and acquisition record](PSO_FRAME_ARCHIVE.md) (2026-09-16)
+  locates readable Wayback captures, records 61 HTML page addresses plus the
+  frame root and 217 image/icon addresses, and compares the major topics with
+  Haven. All 279 indexed files are now downloaded to the local archive;
+  38 additional internal references remain unavailable in the queried indexes.
+  Content-use decisions await maintainer review. Individual gameplay claims,
+  image content and BB applicability remain unverified.
+  Restore information only when it adds content missing from those
+  pages and its applicability to Ephinea PSOBB is verified. Complete this task
+  when every inventoried topic has a documented restore/skip decision and reason,
+  and every selected restoration has a destination link and has passed the
+  relevant content and localization checks. Unresolved source or applicability
+  questions must remain explicitly open.
 
 ## Maintenance
 
@@ -24,6 +36,12 @@
 - Keep generated third-party snapshots separate from Haven-owned Angular UI.
 
 ## Shipped
+
+- [x] [Red-Wolf local archive](PSO_FRAME_ARCHIVE.md) (2026-09-16): acquired and
+  hash-verified all 279 indexed files; checked image rendering on all 62 HTML
+  pages and added a gallery of all 216 PNGs. Recorded 38 unavailable internal
+  references and marked missing image positions. The source archive and ZIP
+  remain local; gameplay verification and content-use decisions remain open.
 
 - [x] [Mechanics guide section G](../tools/mechanics.html#photon-blast): all six
   PBs have their game icon, a mechanism sketch, stat effects, use cases and limits,
