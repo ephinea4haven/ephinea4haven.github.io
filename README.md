@@ -1,13 +1,18 @@
 # Haven PSOBB Wiki
 
-A Chinese-language reference for [Ephinea](https://ephinea.pioneer2.net/), the
-community *Phantasy Star Online: Blue Burst* server, maintained by the Haven guild.
+A multilingual wiki for *Phantasy Star Online: Blue Burst* players worldwide,
+focused on the [Ephinea](https://ephinea.pioneer2.net/) community server.
+Maintained by the Haven guild and open to everyone, it supports English, Japanese
+and Chinese.
 
 **Live site:** [www.psohaven.com](https://www.psohaven.com)
 
 The site covers onboarding and client setup, drop tables, quest and RBR rotation
 guides, seasonal events, item and monster catalogs, damage formulas, and
 character-planning tools such as the stat simulator and combo calculator.
+
+Language coverage varies by page and feature; support for three languages does
+not mean every guide or source excerpt has been translated into all three.
 
 ## Architecture at a glance
 
@@ -86,6 +91,7 @@ server, so rerun it after changing sources.
 | `npm run generate:challenge-maps` | Regenerate the Episode I SVG maps |
 | `npm run generate:challenge-maps:ep2` | Regenerate the Episode II SVG maps |
 | `npm run test:challenge-maps` | Check the EP1 map JSON structure |
+| `npm run test:launcher-guide` | Check launcher settings descriptions, native screenshots and guide links |
 
 [`scripts/README.md`](scripts/README.md) describes every generator and verifier.
 
@@ -124,6 +130,7 @@ Engineering principles and repository workflow are defined in
 - [Angular migration record](docs/ANGULAR_MIGRATION.md)
 - [Item catalog](docs/ITEM_CATALOG.md) and [monster catalog](docs/MONSTER_CATALOG.md)
 - [Mechanics guide illustrations and review record](docs/MECHANICS_VISUAL_EVIDENCE.md)
+- [Launcher settings guide](guide/launcher.html) and [native screenshot evidence and review record](docs/EPHINEA_LAUNCHER_EVIDENCE.md)
 - [Challenge-map implementation, generation and remaining work](docs/CHALLENGE_MAP_REDRAW.md)
 - [Combo calculator synchronization](docs/SOP_COMBO_CALCULATOR_SYNC.md)
 - [RBR data workflow](scripts/RBR_DATA.md)
@@ -131,7 +138,9 @@ Engineering principles and repository workflow are defined in
 
 ## Community
 
-Join the Haven guild QQ group: **956652396**.
+Players from every country and community are welcome. Guild membership is not
+required to use the wiki. To connect with Haven, join the guild's QQ group:
+**956652396**.
 
 ## Acknowledgements
 

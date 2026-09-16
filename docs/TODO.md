@@ -1,7 +1,23 @@
 # TODO
 
-## Active
+This document lists open work, ongoing maintenance requirements and completed
+milestones. Detailed implementation and verification records live in the linked
+documents.
 
+## Open Work
+
+Unchecked items remain open; listing an item here does not mean implementation
+has started. Check an item only when its stated completion criteria are met.
+
+- [ ] Extend Chinese, English and Japanese support to every public site page,
+  including the homepage, guides, reference pages, tools and event archives.
+  Cover navigation, page titles and metadata, body content and interactive UI;
+  keep language selection consistent and preserve the selected language across
+  navigation and reloads. Follow the verified PSOBB terminology and item-name
+  authorities, including the [Chinese localization standard](PSOBB_CHINESE_LOCALIZATION.md).
+  Complete this task when every public page has all three language versions
+  reviewed for content parity and has passed language-switching and layout checks
+  on desktop and mobile.
 - [ ] Complete the claim-level audit of archived PSO FRAME slot3 (Red-Wolf)
   material. The [archive inventory and acquisition record](PSO_FRAME_ARCHIVE.md) (2026-09-16)
   locates readable Wayback captures, records 61 HTML page addresses plus the
@@ -17,60 +33,65 @@
   relevant content and localization checks. Unresolved source or applicability
   questions must remain explicitly open.
 
-## Maintenance
+## Maintenance Guidelines
 
-- PB mechanics text is maintained only in
-  [section G of the mechanics guide](../tools/mechanics.html#photon-blast). It
-  gathers each of the six skills' mechanism, stat effects, use cases and limits
-  and chain role, together with parameters, damage, recovery and support formulas,
-  chaining and donation, icons and worked examples. The Mag page, acronym table and
-  project docs only link to it and never keep a separate copy of formulas or
-  guides.
+These are ongoing maintenance requirements, not pending tasks. Apply them when
+making relevant changes.
+
+- Maintain PB mechanics, formulas, usage guidance and examples only in
+  [section G of the mechanics guide](../tools/mechanics.html#photon-blast).
+  The Mag page, acronym table and project docs link there instead of maintaining
+  separate explanations or formulas.
 - Keep Angular and build tooling on stable, non-prerelease releases.
-- Run the complete release gate for dependency or upstream-data changes.
+- For dependency or upstream-data changes, run `npm run release:prepare` locally
+  and require the full CI gate, including locked installation, dependency audit
+  and build reproducibility, as defined in the
+  [release path](DEPLOYMENT.md#release-path) and
+  [dependency update requirements](DEPLOYMENT.md#dependency-updates).
 - Preserve historical public URLs and the static GitHub Pages deployment model.
 - Keep generated third-party snapshots separate from Haven-owned Angular UI.
 
-## Shipped
+## Completed
 
+Checked items record completion of the stated milestone, not the current
+production version or authorization to publish later changes. Validation and
+acceptance evidence belongs in the linked records. Deployment status follows
+the successful Pages workflow for the relevant commit; see
+[production verification](DEPLOYMENT.md#production-verification).
+
+- [x] [Launcher settings guide](../guide/launcher.html) (2026-09-16): documented
+  the main window, five OPTIONS pages and MORE, with seven English screenshots
+  from Windows in Parallels Desktop. The Chinese guide explains save/reset
+  behavior and links to the graphics guide. See the
+  [capture evidence and closed review ledger](EPHINEA_LAUNCHER_EVIDENCE.md).
 - [x] [Red-Wolf local archive](PSO_FRAME_ARCHIVE.md) (2026-09-16): acquired and
   hash-verified all 279 indexed files; checked image rendering on all 62 HTML
   pages and added a gallery of all 216 PNGs. Recorded 38 unavailable internal
   references and marked missing image positions. The source archive and ZIP
   remain local; gameplay verification and content-use decisions remain open.
 
-- [x] [Mechanics guide section G](../tools/mechanics.html#photon-blast): all six
-  PBs have their game icon, a mechanism sketch, stat effects, use cases and limits,
-  chain role and formulas. Added first-caster character and Mag parameter values,
-  step-by-step truncation, light resistance, damage examples and a same-conditions
-  comparison. Leilla's recovery amount, Mylla & Youlla's support levels, and the
-  rules for donation, effective chain count and adjacent-repeat overwrites are each
-  explained. Compiled from
-  [Ephinea Photon Blasts](https://wiki.pioneer2.net/w/Photon_Blasts) without
-  claiming in-game testing. The build, Chinese and architecture checks, 10 focused
-  browser tests and desktop and phone display checks passed. The user accepted the
-  work on 2026-09-15 and explicitly authorized commit and push; see the
+- [x] [Mechanics guide section G](../tools/mechanics.html#photon-blast)
+  (2026-09-15): consolidated all six PBs' mechanics, usage guidance, illustrations
+  and worked examples. See the
   [mechanics guide review record](MECHANICS_VISUAL_EVIDENCE.md#user-acceptance-and-push-authorization).
-- [x] [Monster catalog](MONSTER_CATALOG.md): 160 entries, a trilingual interface
+- [x] [Monster catalog](MONSTER_CATALOG.md): a trilingual interface
   and names, difficulty and mode stats, and behavior and conditional mechanics
   tables. Ten-Section-ID drops are generated directly from droptable.
 - [x] The home page shows the RBR quests from `data/rbr/source.json` and links to
   the detail page. A record not updated after the UTC Sunday rollover is clearly
   marked as pending. Cards show the tier, recommended Section ID and matching color
   from the shared rating data, with the rating date and unofficial status.
-  `548e78e` is deployed and passed
-  [production verification](MONSTER_CATALOG.md#2026-09-14-release-verification).
-
-- [x] Full [item catalog](ITEM_CATALOG.md): 1,044 items across six categories,
-  524 illustrated entries, search/filter URLs and per-item detail pages. All
-  57 ordinary shop weapon models have verified local images. Follow-up review
-  fixes and 1,193-test local validation are recorded in the
-  [September 14 release record](DEPLOYMENT.md#september-14-2026-item-catalog);
-  production status follows the latest successful Pages run for `master`.
+  See the [September 14, 2026 verification record](MONSTER_CATALOG.md#2026-09-14-release-verification).
+- [x] All-category [item catalog](ITEM_CATALOG.md): illustrated entries,
+  search/filter URLs, per-item detail pages and verified local images for ordinary
+  shop weapon models. Current coverage is documented in the catalog record;
+  initial validation is in the
+  [September 14, 2026 release record](DEPLOYMENT.md#september-14-2026-item-catalog).
 - [x] Item catalog visual refresh and zh/en/ja interface/name switching, with
   URL and local preference persistence, source-language mechanics labels and
-  817 verified Japanese item names. The remaining 227 show an explicit English
-  name notice; Chinese names still use the drop-table authority.
+  verified Japanese names with an explicit notice where a name is unverified.
+  Chinese names use the drop-table authority. See
+  [catalog coverage and interface](ITEM_CATALOG.md#coverage-and-interface).
 - [x] Unified 2016–2026 anniversary archive with 2026 milestones, stable overlay
   year navigation, responsive chapter navigation and shared year-themed presentation.
 - [x] Full-site Angular modernization completed and release-validated; jQuery,
@@ -82,13 +103,10 @@
 - [x] Ephinea equipment-based Technique boost reference covering weapons,
   frames and barriers through the canonical translation catalog.
 - [x] [Cosmetic items](../data/cosmetics.html) (2026-09-15): one trilingual
-  overview for all 31 weapon hearts, 14 ring paints and 9 ring platings, linked
-  from the home page directory as 外观道具. Hearts list their compatible weapons,
-  resulting appearance, Photon Filter combinations, drops, and Neutralizer
-  reversal; paints and platings list their color or appearance, event, shop or
-  The Forge trade sources, and Red Paint reversal. Item detail pages gained the
-  same structured sections, equipment pages list the cosmetics that apply to them,
-  and the Neutralizer joined the catalog. See the
+  overview for weapon hearts, ring paints and ring platings, linked from the home
+  page directory. Added compatibility, appearance, acquisition and reversal
+  information, with matching sections and links on item and equipment pages.
+  See the
   [item catalog record](ITEM_CATALOG.md#cosmetic-items).
 - [x] Automatic cache busting (2026-09-15): content-page asset URLs marked with a
   bare `?v` are stamped with a content hash at build time, manual `?v=N` numbers
@@ -103,7 +121,7 @@
 - [x] Landing-page seasonal highlighting with reduced-motion support; LIVE
   markers and activity panels share registered yearly dates, so expired or
   unannounced events cannot be highlighted by month alone.
-- [x] September 10 homepage fix and dependency updates released: Angular
+- [x] September 10, 2026 homepage fix and dependency updates released: Angular
   patch group and deploy-pages merged, duplicate Hono PR closed, and the CI
   item-name authority path shared across business and browser tests. See the
   [verified release record](DEPLOYMENT.md#september-10-2026-release).

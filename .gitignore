@@ -36,6 +36,7 @@ docs/*
 !docs/MECHANICS_VISUAL_EVIDENCE.md
 !docs/PSO_FRAME_ARCHIVE.md
 !docs/PSO_FRAME_CDX_2026-09-16.json
+!docs/EPHINEA_LAUNCHER_EVIDENCE.md
 
 # pw is deployed separately at pw.psohaven.com; no longer part of this repo
 tools/pw/

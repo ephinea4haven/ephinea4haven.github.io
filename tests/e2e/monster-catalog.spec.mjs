@@ -56,7 +56,7 @@ test('monster sections stay on the detail route and retain language and conditio
   for(const section of ['drops','stats','attacks','behavior']) {
     await page.locator(`.section-nav a[fragment="${section}"], .section-nav a[href$="#${section}"]`).click();
     await expect(page).toHaveURL(new RegExp(`/data/enemies/chaos-bringer.html\\?.*#${section}$`));
-    expect(await page.locator(`#${section}`).evaluate(el=>Math.abs(el.getBoundingClientRect().top)<60)).toBe(true);
+    await expect.poll(()=>page.locator(`#${section}`).evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(60);
   }
   await page.getByRole('button',{name:'日本語',exact:true}).click();
   await expect(page).toHaveURL(/lang=ja.*#behavior$/);

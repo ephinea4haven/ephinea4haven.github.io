@@ -1,0 +1,29 @@
+.launcher-guide { max-width: 1080px; }
+.launcher-guide .launcher-kicker { color: var(--accent); font-size: .85rem; letter-spacing: .12em; font-weight: 700; }
+.launcher-guide .launcher-lead { max-width: 760px; font-size: 1.1rem; line-height: 1.9; }
+.launcher-guide .launcher-meta, .launcher-guide figcaption { color: var(--text-secondary); font-size: .9rem; line-height: 1.7; }
+.launcher-guide .launcher-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 28px 0; }
+.launcher-guide .launcher-nav a { display: block; padding: 18px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-secondary); text-decoration: none; }
+.launcher-guide .launcher-nav a:hover { border-color: var(--accent); }
+.launcher-guide .launcher-nav span { display: block; color: var(--text-secondary); font-size: .85rem; margin-top: 5px; }
+.launcher-guide section { margin-top: 48px; scroll-margin-top: 90px; }
+.launcher-guide figure { margin: 24px 0; }
+.launcher-guide figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; border-radius: 6px; }
+.launcher-guide figcaption { text-align: center; margin-top: 10px; }
+.launcher-guide .launcher-note { border-left: 3px solid var(--accent); padding: 14px 20px; background: var(--bg-secondary); line-height: 1.8; margin: 24px 0; }
+.launcher-guide .launcher-note p { margin: 5px 0; }
+.launcher-guide table { width: 100%; table-layout: fixed; }
+.launcher-guide th:first-child { width: 31%; }
+.launcher-guide th, .launcher-guide td { text-align: left; vertical-align: top; overflow-wrap: anywhere; line-height: 1.75; padding: 13px 16px; }
+.launcher-guide td:first-child { color: var(--text-primary); font-weight: 600; }
+.launcher-guide td small { display: block; color: var(--text-secondary); font-weight: 400; }
+.launcher-guide details { background: var(--bg-secondary); padding: 16px 20px; border-radius: 8px; margin: 20px 0; }
+.launcher-guide summary { cursor: pointer; font-weight: 600; }
+.launcher-guide .launcher-sources { color: var(--text-secondary); font-size: .9rem; line-height: 1.8; }
+@media (max-width: 640px) {
+  .launcher-guide .launcher-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .launcher-guide .launcher-nav a { padding: 12px; }
+  .launcher-guide th:first-child { width: 36%; }
+  .launcher-guide th, .launcher-guide td { padding: 10px 8px; font-size: .9rem; }
+  .launcher-guide section { margin-top: 36px; }
+}

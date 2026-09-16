@@ -1,5 +1,9 @@
 # PSOBB Chinese Localization Standard
 
+Haven PSOBB Wiki serves players worldwide and supports English, Japanese and
+Chinese. This document governs its Chinese content; it does not limit the site's
+audience or the languages supported by other pages and features.
+
 Every Chinese translation on this site assumes the game context of *Phantasy Star
 Online: Blue Burst* (PSOBB). This standard applies to page titles, navigation,
 body text, tables, tool interfaces, the item dictionary, event descriptions,

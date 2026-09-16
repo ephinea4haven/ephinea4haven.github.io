@@ -2,13 +2,26 @@
 
 > Last updated: 2026-09-16
 
+## Audience and languages
+
+Haven PSOBB Wiki is a multilingual reference for PSOBB players worldwide, focused
+on Ephinea and maintained by the Haven guild. Access is open to everyone,
+regardless of country, language or guild membership.
+
+The site supports English, Japanese and Chinese. Language selection and
+translation coverage are currently feature-specific: the item and monster
+catalogs and challenge maps provide multilingual content, while individual
+guides and source excerpts may remain in their authored language. Product copy
+must reflect this scope without presenting the site as a Chinese-only resource
+or promising complete translations of every page.
+
 ## System shape
 
 Ephinea4Haven is a statically deployed Angular application. Angular 22 owns every
 public page, route and interaction. GitHub Pages serves the immutable `_site`
 artifact; it does not need server-side rewrites or a JavaScript backend.
 
-The current build inventory contains 1,267 prerendered Angular application
+The current build inventory contains 1,268 prerendered Angular application
 hosts, including 1,045 item detail pages and 160 monster detail pages, and 45 year-specific event content fragments. `_site/build-manifest.json`
 is the source of truth for this inventory and for the JavaScript budgets applied
 to each route.
@@ -83,6 +96,14 @@ replacing the response text.
 
 
 ## Content and application routes
+
+`/guide/launcher.html` documents Ephinea Launcher 3.5.2 in Chinese with English
+control labels. It is a passive content route with scoped styles in
+`assets/css/launcher-guide.css` and seven native Windows screenshots in
+`assets/img/launcher/`. The home directory and graphics API guide link to it.
+Capture provenance, setting interpretation and review results live in
+[the launcher evidence record](EPHINEA_LAUNCHER_EVIDENCE.md); the focused
+`npm run test:launcher-guide` checks are included in `npm test`.
 
 PB mechanics have one authored home: `tools/mechanics.html#photon-blast`.
 Keep all six skills' effects, stat scaling, usage analysis, limits and chain roles,
