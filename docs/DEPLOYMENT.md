@@ -48,6 +48,37 @@ Every dependency update must pass the same locked install, audit,
 reproducibility, build and browser gates as an application change before it is
 accepted.
 
+## September 16, 2026 dependency updates
+
+The maintainer authorized processing the four open Dependabot PRs. The updates
+were integrated on the current `master`, preserving the launcher guide and
+multilingual project copy:
+
+- [#22](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/22): Angular
+  framework/compiler packages 22.1.5 → 22.1.6; build/CLI/SSR remain 22.1.7.
+- [#23](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/23):
+  Playwright 1.62.1 → 1.63.0, including its matching browser binaries.
+- [#24](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/24):
+  marked 18.0.11 → 18.0.12. The adjacent manifest/lockfile conflict with #23
+  was resolved by retaining both new versions.
+- [#25](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/25):
+  Pillow 12.2.0 → 12.3.0 in the map-generation requirements.
+
+Locked installation, `npm audit --audit-level=low` (zero vulnerabilities),
+the complete business tests, and two production builds passed locally. The
+build manifests are byte-identical: 1,268 routes, 45 fragments and 948,815 /
+1,000,000 gzip JavaScript bytes. All 1,430 browser tests passed with Playwright
+1.63.0 and Chromium 153.0.8010.12.
+
+Pillow was also checked in an isolated Python environment with the complete
+pinned map requirements. `pip check` passed, and regenerating all EP1/EP2 maps
+into a temporary directory produced 201 SVGs byte-identical to the committed
+assets. This explicitly covers the Python image-processing path that the
+normal Pages workflow's structural map tests do not exercise.
+
+Production publication still requires the full Pages build and deploy jobs to
+succeed for the pushed revision; the local results alone do not establish it.
+
 ## Actions history cleanup — September 14, 2026
 
 At the maintainer's initial request, a one-time cleanup deleted 34 of 39 completed
