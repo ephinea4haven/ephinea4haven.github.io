@@ -205,9 +205,83 @@ test('corrected periodic effects, shop specials and Mag feeding values render', 
 test('an existing image that fails to load is not presented as a missing screenshot', async ({page}) => {
   await page.route('**/assets/img/items/wiki/29f6af4df3b08415.png',route=>route.abort());
   await page.goto('/data/items/saber.html');
+  await page.getByRole('button', {name:'现有图片', exact:true}).click();
   await expect(page.locator('.image-stage')).toContainText('图片加载失败');
   await expect(page.locator('.image-stage')).not.toContainText('暂无截图');
   await expect(page.getByRole('link',{name:'查看原图 ↗'})).toBeVisible();
+});
+
+test('HD details default to HD and switching changes both the image and its source link', async ({page}) => {
+  const requested = [];
+  page.on('request', request => requested.push(new URL(request.url()).pathname));
+  await page.goto('/data/items/saber.html');
+  const picture = page.locator('.image-stage img');
+  const link = page.locator('.item-figure figcaption a');
+  await expect(picture).toHaveAttribute('src', '/assets/img/items/hd/items/saber.webp');
+  await expect.poll(() => picture.evaluate(img => img.naturalWidth)).toBe(1024);
+  expect(requested).not.toContain('/assets/img/items/wiki/29f6af4df3b08415.png');
+  await expect(page.getByRole('button', {name:'高清图片', exact:true})).toHaveAttribute('aria-pressed', 'true');
+  await expect(link).toHaveAttribute('href', '/assets/img/items/hd/items/saber.webp');
+  await page.getByRole('button', {name:'现有图片', exact:true}).click();
+  await expect(picture).toHaveAttribute('src', '/assets/img/items/wiki/29f6af4df3b08415.png');
+  await expect(link).toHaveAttribute('href', '/assets/img/items/wiki/29f6af4df3b08415.png');
+  await expect(page.locator('.item-figure figcaption')).toContainText('Ephinea Wiki');
+  // Keyboard interaction and language navigation keep the selected image.
+  await page.getByRole('button', {name:'English', exact:true}).click();
+  await expect(page.getByRole('button', {name:'Wiki image', exact:true})).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', {name:'HD image', exact:true}).focus();
+  await page.keyboard.press('Enter');
+  await expect(picture).toHaveAttribute('src', '/assets/img/items/hd/items/saber.webp');
+  await expect(page.locator('.item-figure figcaption')).toContainText('HD gallery');
+});
+
+test('HD images never load in the list and do not affect image-only filtering', async ({page}) => {
+  const hdRequests = [];
+  page.on('request', request => { if (request.url().includes('/assets/img/items/hd/')) hdRequests.push(request.url()); });
+  await page.goto('/data/items.html?q=Saber');
+  await expect(page.locator('.item-row').first().locator('img')).toHaveAttribute('src', '/assets/img/items/wiki/29f6af4df3b08415.png');
+  await page.getByRole('searchbox').fill('Dress Plate');
+  await expect(page.locator('.item-row')).toHaveCount(1);
+  await expect(page.locator('.item-row img')).toHaveAttribute('src', '/assets/img/items/no-image.webp');
+  await page.getByLabel('只看有截图的道具').check();
+  await expect(page.locator('.item-row')).toHaveCount(0);
+  expect(hdRequests).toEqual([]);
+});
+
+test('single-source and missing-image details have no unnecessary image switch', async ({page}) => {
+  for (const [id, image] of [
+    ['dress-plate', '/assets/img/items/hd/items/dress-plate.webp'],
+    ['mag', items.find(item => item.id === 'mag').image],
+    ['god-power', '/assets/img/items/no-image.webp'],
+  ]) {
+    await page.goto(`/data/items/${id}.html`);
+    await expect(page.locator('.image-stage img')).toHaveAttribute('src', image);
+    await expect(page.locator('.image-switch')).toHaveCount(0);
+    await expect.poll(() => page.locator('.image-stage img').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+  }
+});
+
+test('a failed HD image remains switchable to the existing Wiki image', async ({page}) => {
+  await page.route('**/assets/img/items/hd/items/saber.webp', route => route.abort());
+  await page.goto('/data/items/saber.html');
+  await expect(page.locator('.image-stage')).toContainText('图片加载失败');
+  await expect(page.locator('.image-stage img')).toHaveAttribute('src', '/assets/img/items/no-image.webp');
+  await page.getByRole('button', {name:'现有图片', exact:true}).click();
+  await expect(page.locator('.image-stage img')).toHaveAttribute('src', '/assets/img/items/wiki/29f6af4df3b08415.png');
+  await expect.poll(() => page.locator('.image-stage img').evaluate(img => img.naturalWidth)).toBeGreaterThan(0);
+  await expect(page.locator('.image-stage')).not.toContainText('图片加载失败');
+});
+
+test('related navigation resets the image selection for the next item', async ({page}) => {
+  await page.goto('/data/items/lavis-cannon.html');
+  await page.getByRole('button', {name:'现有图片', exact:true}).click();
+  const related = page.locator('.related-items a').first();
+  const targetId = (await related.getAttribute('href')).match(/\/items\/([^/?]+)\.html/)[1];
+  const target = items.find(item => item.id === targetId);
+  expect(target.hdImage).toBeTruthy();
+  await related.click();
+  await expect(page.locator('.image-stage img')).toHaveAttribute('src', target.hdImage);
+  await expect(page.getByRole('button', {name:'高清图片', exact:true})).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('pagination, jump input, and detail back navigation retain the list', async ({page}) => {
@@ -268,7 +342,7 @@ test('Mag and item-specific details render supported mechanics', async ({page}) 
 for (const width of [390,820,1280]) {
   test(`list and long details pass accessibility and overflow checks at ${width}px`, async ({page}) => {
     await page.setViewportSize({width,height:900});
-    for (const path of ['/data/items.html','/data/items/nidra.html','/data/items/addslot.html']) {
+    for (const path of ['/data/items.html','/data/items/nidra.html','/data/items/addslot.html','/data/items/saber.html']) {
       await page.goto(path);
       await expect(page.getByRole('heading',{level:1})).toBeVisible();
       expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);

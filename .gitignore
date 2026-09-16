@@ -15,6 +15,7 @@ _site/
 .angular/
 playwright-report/
 test-results/
+artifacts/hd-gallery/
 .secrets/ephinea-wiki.json
 
 # The global ignore file excludes docs/. Re-include only maintained project docs.

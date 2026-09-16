@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
+import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, effect, inject, linkedSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -29,6 +29,15 @@ export class ItemDetailComponent {
   private readonly fragment = toSignal(this.route.fragment, { initialValue: this.route.snapshot.fragment });
   readonly item = computed(() => { const detail = this.result().detail; const summary = detail ? ITEM_BY_ID.get(detail.id) : null; return detail && summary ? { ...summary, ...detail } : null; });
   readonly related = computed(() => ITEMS.filter((candidate) => this.item()?.related.includes(candidate.id)));
+  readonly imageMode = linkedSignal({
+    source: () => this.item()?.id,
+    computation: (): 'hd' | 'wiki' => 'hd',
+  });
+  readonly showingHd = computed(() => !!this.item()?.hdImage && this.imageMode() === 'hd');
+  readonly picturedItem = computed(() => {
+    const item = this.item();
+    return item ? { ...item, image: this.showingHd() ? item.hdImage : item.image } : null;
+  });
   readonly classes = CLASSES;
   readonly itemPath = itemPath;
   readonly cosmeticsPath = COSMETICS_PATH;

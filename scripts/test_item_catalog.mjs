@@ -47,6 +47,28 @@ const coverage = read('content/item-catalog/coverage.json');
 const snapshot = read('content/item-catalog/wiki.json');
 const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json').items;
 
+test('HD images are detail-only and leave Wiki images and list filters unchanged', () => {
+  const index = read('src/app/generated/item-catalog/index.json');
+  assert.equal(items.filter(item => item.hdImage).length, 409);
+  assert.equal(index.filter(row => row[7]).length, 547);
+  assert.equal(details.saber.hdImage, '/assets/img/items/hd/items/saber.webp');
+  assert.equal(details['dress-plate'].image, null);
+  assert.equal(details['dress-plate'].hdImage, '/assets/img/items/hd/items/dress-plate.webp');
+  assert.equal(details['agito-1975'].hdImage, null);
+  assert.equal(details['typebl-blade'].hdImage, null);
+  assert.equal(details.mag.hdImage, null);
+  for (const row of index) {
+    assert.equal(row[7], details[row[0]].image);
+    assert.ok(!JSON.stringify(row).includes('/items/hd/'), row[0]);
+  }
+  for (const item of items.filter(item => item.hdImage)) {
+    const image = fs.readFileSync(item.hdImage.slice(1));
+    assert.equal(image.toString('ascii', 0, 4), 'RIFF', item.id);
+    assert.equal(image.toString('ascii', 8, 12), 'WEBP', item.id);
+    assert.ok(image.length < 250_000, item.id);
+  }
+});
+
 test('catalog UI and structured stats have complete English and Japanese messages', () => {
   for (const [key, translations] of [...Object.entries(MESSAGES), ...Object.entries(COSMETICS_MESSAGES)]) {
     assert.equal(translations.length, 2, key);

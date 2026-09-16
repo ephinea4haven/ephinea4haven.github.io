@@ -18,6 +18,7 @@ export interface Cosmetic {
 }
 export const COSMETICS_PATH = '/data/cosmetics.html';
 export interface ItemDetail {
+  hdImage: string | null;
   id: string; en: string; title: string; summary: string; stats: Stat[]; effects: string[];
   boosts: Stat[]; sets: { item: string; id: string | null; effect: string }[];
   skins: { item: string; id: string | null; code: string }[];
