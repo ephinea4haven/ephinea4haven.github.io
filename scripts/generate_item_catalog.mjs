@@ -3,10 +3,15 @@ import vm from 'node:vm';
 import { createHash } from 'node:crypto';
 import { clean, range, slug, typeOf, TYPES, magTrigger, isCommonWeapon } from './item_catalog_model.mjs';
 import { collectMagTriggers, magCellRules } from './item_catalog_mag.mjs';
+import { selectHdImages } from './item_catalog_hd.mjs';
 
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const snapshot = read('content/item-catalog/wiki.json');
 const images = read('content/item-catalog/images.json');
+const hdImages = selectHdImages(read('content/item-catalog/hd-gallery.json'));
+for (const file of new Set(hdImages.values())) {
+  if (!fs.existsSync(`assets/img/items/hd/${file}`)) throw new Error(`Missing HD image: ${file}`);
+}
 const notes = read('content/item-catalog/notes.json');
 const corrections = read('content/item-catalog/corrections.json');
 const sandbox = { window: {} };
@@ -66,6 +71,9 @@ const records = [...snapshot.records, {
   excerpts: [], source: 'https://wiki.pioneer2.net/w/Techniques',
 }];
 const itemIds = new Map(records.map(r => [r.title, slug(r.title)]));
+for (const id of hdImages.keys()) {
+  if (![...itemIds.values()].includes(id)) throw new Error(`Unknown HD item: ${id}`);
+}
 const recordByTitle = new Map(records.map(r => [r.title, r]));
 const link = title => {
   const id = itemIds.get(title);
@@ -252,6 +260,7 @@ for (const record of records) {
   const feeding = feedTable ? Object.entries(feedTable).map(([item, values]) => ({ item, values })) : [];
   const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Set(effects)], boosts, sets, skins, cosmetic, cosmetics: cosmeticsByTarget.get(title) || [], feeding, drops, availability, source, revision: record.revision, checkedAt: record.checkedAt || snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
+  detail.hdImage = hdImages.has(id) ? `/assets/img/items/hd/${hdImages.get(id)}` : null;
   details[id] = detail;
   // Compact tuples keep the searchable index small; detailed data is loaded per item.
   index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), image?.path || null, code, status, title === en ? '' : title, atp?.[1] ?? null, names.get(en)?.ja ? '' : clean(f.jp)]);

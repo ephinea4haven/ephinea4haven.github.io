@@ -7,8 +7,10 @@ all-category catalog.
 ## Coverage and interface
 
 The snapshot contains 1,045 entries: 419 weapons, 88 frames, 107 barriers, 100
-units, 84 Mags and 247 other items. 547 entries have images, drawn from 478
-PNG files totaling about 4.9 MB. The snapshot was taken on 2026-09-14;
+units, 84 Mags and 247 other items. The list retains Wiki images for 547 entries,
+drawn from 478 PNG files totaling about 4.9 MB. Detail pages additionally offer
+HD images for 409 entries; 44 previously had no Wiki image, bringing detail image
+coverage to 591 entries. The snapshot was taken on 2026-09-14;
 the cosmetic item pages and 21 excerpt fixes were re-merged on 2026-09-15 at
 unchanged Wiki revisions, and those records carry their own check date.
 Independent models such as manufacturing year, manufacturer and genuine versus
@@ -101,7 +103,7 @@ as separate models.
   catalog" does not promise that an event or NPC supplies an item at any given
   time. Drop rates are the baseline values of the cited revision and exclude live
   multipliers.
-- All current images come from Ephinea Wiki: item infoboxes, plus the in-game
+- List and related-item images come from Ephinea Wiki: item infoboxes, plus the in-game
   screenshot on each ring paint and plating page, which shows a Red Ring after
   use. Red Paint shows the original Red Ring. Deep Plating and Delsaber Plating
   have only multi-megabyte animated GIFs on the Wiki, so they use the first frame
@@ -114,6 +116,94 @@ as separate models.
   not mean no screenshot exists elsewhere.
 
 ## Updating the data
+
+### HD detail images and naming (2026-09-16)
+
+`content/item-catalog/hd-gallery.json` accounts for all 606 images in the supplied
+高清图库 collection. SHA-256 comparison reduces these to 552 unique assets; all
+original relative filenames, dimensions, sizes and checksums are retained.
+The detail generator consumes only verified direct `itemIds`: 403 optimized
+images cover 409 details. The `hdImage` field is emitted only in per-item detail
+data, leaving the searchable list's image paths and image-only filter unchanged.
+Details default to HD when available and offer HD / Wiki buttons when both images
+exist. The displayed source and full-size image link follow the selected image.
+Navigating to another item resets the choice to HD. Single-source details show
+their available image without a switch. Related-item thumbnails stay unchanged.
+
+Output names use the catalog's stable English item IDs. `itemIds` are direct
+equipment identities, while `appearanceOf` records a shared model or a visual
+variant without claiming it is the same game item. Chinese names in the local
+review page are read from `../droptable/i18n_names.json`, never invented from
+filenames. ES names and Nei's Claw (Replica) retain the existing catalog English
+where the authority lacks that exact entry.
+
+The numbered weapon files have been visually compared with the existing named
+Wiki images. Similarity candidates were corrected manually for common weapon
+colors, Section ID cards and other misclassifications. Number 102 cannot identify
+an Agito year and remains shared artwork. S RANK DAGGER and HANDGUN correspond
+to the catalog's ES Blade and ES Gun respectively.
+
+NGC labels are not assumed to be Ephinea item identities. In particular, the
+seven `NGC 加强版/TypeBL` images are byte-identical to `TWIN CHAKRAM 06–12` in
+the skin directory, and are grouped as Twin Chakram color variants. TypeDS and
+TypeGU also contain exact aliases. Paired weapons are model variants, not mere
+color changes. Different files are not merged just because they look similar.
+
+Twenty-two assets remain unresolved: 12 numbered armor effects, five shield
+images, the unqualified named AGITO image, and four TYPE model images. They have
+source-derived names under `unresolved/`, no item bindings, and explicit reasons
+and candidates where available. Do not promote these candidates to item names.
+Armor effect descriptions alone cannot securely bind an unlabeled screenshot;
+for example the Wiki documents similar effects for
+[Love Heart](https://wiki.pioneer2.net/w/Love_Heart) and Dress Plate. Likewise,
+[Secure Feet](https://wiki.pioneer2.net/w/Secure_Feet) and
+[Secret Gear](https://wiki.pioneer2.net/w/Secret_Gear) are distinct identities,
+so `SECRET FEET.png` is not automatically renamed to either one.
+
+Generate a local searchable review gallery and normalized 1024-pixel WebP copies
+with the installed `cwebp` tool. The source directory is read-only for this task;
+the destination must be separate and empty. This checks every original hash
+before creating images and records each output's size and SHA-256 alongside the
+exact naming manifest in the prepared `manifest.json`. The generated review
+folder is ignored by Git and is outside the site's published asset directories.
+
+```sh
+node scripts/prepare_hd_gallery.mjs --check /path/to/高清图库
+node scripts/prepare_hd_gallery.mjs /path/to/高清图库 artifacts/hd-gallery
+node scripts/install_hd_gallery.mjs artifacts/hd-gallery
+npm run test:items
+```
+
+The installer copies only images selected by `scripts/item_catalog_hd.mjs` into
+`assets/img/items/hd/`; those WebPs are checked in, so CI and ordinary builds do
+not need the downloaded collection or `cwebp`. Installation rejects stale naming
+manifests or changed output bytes before writing any images, then removes retired
+WebPs from its owned destination directory. Regenerate the prepared gallery after
+changing the naming manifest; do not rename prepared files manually.
+They preserve aspect ratio at 1024-pixel width with lossy WebP quality 85,
+totaling 15,223,540 bytes. The detail frame displays them at up to 512 CSS pixels,
+providing enough pixels for a 2× display at that size. This is optimized web
+artwork, not a lossless archival copy; enlarging it cannot retain the detail of
+the original roughly 5,000-pixel images. Downloaded originals are unchanged.
+The canonical named view wins when an item
+has alternate screenshots. `appearanceOf`, photon/model variants, unresolved
+images and placeholder records never create direct detail bindings.
+
+Missing and failed images use the supplied NO DATE artwork optimized separately
+to `assets/img/items/no-image.webp` (512 × 376, 41,500 bytes); failures retain an
+explicit notice. The supplied Section ID icons have no visual quality advantage:
+nine are byte-identical to the existing PNGs and Whitill has identical RGBA
+pixels. Existing Section ID assets remain in use.
+
+Validation for this change: `npm run test:items` passed 23 tests;
+`npx playwright test tests/e2e/item-catalog.spec.mjs --workers=4` passed 38 tests;
+`npm run build` passed with 1,267 prerendered routes. The installer regressions
+cover stale mappings, changed/truncated/missing output, checksum omissions,
+retired files and repeated installation. Re-conversion verified all 606 source
+hashes and reproduced all 552 prepared images byte for byte, including the 403
+installed images. This validation covers the image changes, not unrelated work.
+
+### Wiki data
 
 Export the MediaWiki pages with
 `action=query&prop=revisions&rvslots=main&rvprop=ids|timestamp|content&formatversion=2`

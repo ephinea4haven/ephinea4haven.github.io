@@ -3,6 +3,11 @@
 .figure-top { display: flex; justify-content: space-between; padding: 15px 18px; color: #9bbac8; font-size: 10px; letter-spacing: 1px; }
 .image-stage { min-height: 225px; display: grid; place-items: center; padding: 20px; background-image: linear-gradient(#24394e33 1px,transparent 1px),linear-gradient(90deg,#24394e33 1px,transparent 1px); background-size: 24px 24px; }
 .image-stage item-image { max-width: 256px; border: 0; border-radius: 0; box-shadow: 0 18px 35px #0005; }
+.image-stage.hd-image item-image { max-width: 512px; }
+.image-switch { display: flex; gap: 6px; padding: 10px 18px; border-bottom: 1px solid #273a50; }
+.image-switch button { min-height: 40px; padding: 8px 14px; border: 1px solid #41667b; border-radius: 5px; background: #102739; color: #c7dce5; font: inherit; font-size: 12px; cursor: pointer; }
+.image-switch button[aria-pressed="true"] { background: #a5e5e0; color: #102739; border-color: #a5e5e0; }
+.image-switch button:focus-visible { outline: 2px solid #e4fbff; outline-offset: 3px; }
 .item-figure figcaption { min-height: 44px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; padding: 12px 18px; border-top: 1px solid #273a50; color: #a6b9c9; font-size: 10px; }
 .item-figure figcaption a { color: #89d4d1; }
 .detail-overview h1 { color: var(--ink); font-size: 30px; line-height: 1.35; margin: 10px 0; text-shadow: none; }

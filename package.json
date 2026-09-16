@@ -21,7 +21,7 @@
     "test": "npm run test:i18n && npm run test:anniversary-sync && npm run test:timestamps && npm run test:graphics-guide && npm run test:rbr && node scripts/verify_angular_architecture.mjs && npm run test:challenge-maps && node scripts/verify_challenge_maps.mjs && node scripts/verify_status_domain.mjs && node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs && node scripts/verify_zh_localization.mjs && npm run test:items && npm run test:monsters",
     "test:e2e": "playwright test",
     "release:prepare": "npm test && npm run build && npm run test:e2e",
-    "test:items": "node --test scripts/test_item_catalog.mjs",
+    "test:items": "node --test scripts/test_item_catalog.mjs scripts/test_hd_gallery.mjs scripts/test_hd_gallery_install.mjs",
     "test:monsters": "node --test scripts/test_monster_catalog.mjs scripts/test_monster_images.mjs"
   },
   "overrides": {

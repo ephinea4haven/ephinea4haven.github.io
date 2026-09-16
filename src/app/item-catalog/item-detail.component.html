@@ -3,7 +3,24 @@
   @if (item(); as entry) {
     <nav class="breadcrumbs" [attr.aria-label]="i18n.t('当前位置')"><a routerLink="/data/items.html" [queryParams]="queryParams()">{{ i18n.t('道具图鉴') }}</a><span aria-hidden="true">/</span><a routerLink="/data/items.html" [queryParams]="{category: entry.category, lang:i18n.language()}">{{ i18n.category(entry.category) }}</a><span aria-hidden="true">/</span><span>{{ i18n.name(entry) }}</span></nav>
     <section class="detail-hero" aria-labelledby="item-title">
-      <figure class="item-figure"><div class="figure-top"><span>{{ i18n.t('游戏内外观') }}</span><span>{{ i18n.category(entry.category) }}</span></div><div class="image-stage"><item-image [item]="entry"/></div><figcaption>@if (entry.image) {<a [href]="entry.image" target="_blank" rel="noopener">{{ i18n.t('查看原图 ↗') }}</a><span>{{ i18n.t('图片来源：Ephinea Wiki') }}</span>} @else {<span>{{ i18n.t('暂未收录此道具的游戏截图') }}</span>}</figcaption></figure>
+      <figure class="item-figure">
+        <div class="figure-top"><span>{{ i18n.t('游戏内外观') }}</span><span>{{ i18n.category(entry.category) }}</span></div>
+        @if (entry.hdImage && entry.image) {
+          <div class="image-switch" role="group" [attr.aria-label]="i18n.t('图片版本')">
+            <button type="button" [attr.aria-pressed]="showingHd()" (click)="imageMode.set('hd')">{{ i18n.t('高清图片') }}</button>
+            <button type="button" [attr.aria-pressed]="!showingHd()" (click)="imageMode.set('wiki')">{{ i18n.t('现有图片') }}</button>
+          </div>
+        }
+        @if (picturedItem(); as pictured) {
+          <div class="image-stage" [class.hd-image]="showingHd()"><item-image [item]="pictured"/></div>
+          <figcaption>
+            @if (pictured.image) {
+              <a [href]="pictured.image" target="_blank" rel="noopener">{{ i18n.t('查看原图 ↗') }}</a>
+              <span>{{ i18n.t(showingHd() ? '图片来源：高清图库' : '图片来源：Ephinea Wiki') }}</span>
+            } @else {<span>{{ i18n.t('暂未收录此道具的游戏截图') }}</span>}
+          </figcaption>
+        }
+      </figure>
       <div class="detail-overview"><p class="eyebrow">{{ i18n.t(entry.subtype) }} / {{ i18n.category(entry.category) }} <span class="rarity rare">{{ entry.rarity === null ? i18n.t('未标星级') : entry.rarity + '★' }}</span></p><h1 id="item-title">{{ i18n.name(entry) }}</h1>@if (i18n.language() === 'ja' && !entry.ja) {<span class="source-language">{{ i18n.t('日文名未核实 · 显示英文') }}</span>}<p class="detail-english" [attr.lang]="i18n.language() === 'en' ? 'ja' : 'en'">{{ i18n.language() === 'en' ? entry.ja : entry.title }}</p>@if (i18n.status(entry.status)) {<span class="status-badge">{{ i18n.status(entry.status) }}</span>}@if (entry.ja && i18n.language() === 'zh') {<p class="detail-japanese">{{ entry.ja }}</p>}<p class="detail-summary">{{ i18n.language() === 'zh' ? entry.summary : i18n.t(entry.subtype) }}</p><div class="hero-stats">@for (stat of entry.stats.slice(0, 2); track stat.label) {<div><span>{{ i18n.t(stat.label) }}</span><strong>{{ i18n.value(stat.value) }}</strong></div>}</div><div class="equip-callout"><span>{{ i18n.t(entry.category === 'tool' ? '使用方式' : '装备要求') }}</span><strong>{{ i18n.value(entry.requirement) }}</strong></div></div>
     </section>
     <nav class="detail-nav" [attr.aria-label]="i18n.t('道具详情章节')"><a [routerLink]="itemPath(entry)" [queryParams]="queryParams()" fragment="attributes">{{ i18n.t('基本属性') }}</a><a [routerLink]="itemPath(entry)" [queryParams]="queryParams()" fragment="effects">{{ i18n.t('特殊效果') }}</a><a [routerLink]="itemPath(entry)" [queryParams]="queryParams()" fragment="availability">{{ i18n.t('获取方式') }}</a></nav>
