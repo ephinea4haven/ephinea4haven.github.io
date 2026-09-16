@@ -1,21 +1,12 @@
 #!/usr/bin/env python3
-"""Build localized Episode II challenge maps from Ephinea Wiki originals.
-
-The high-resolution Wiki PNGs are immutable source evidence. Each map embeds
-two raster layers extracted from its source (floor geometry below the routes,
-room numbers and mechanism icons above them); routes, terminals, badges and
-notes come from content/challenge-maps/ep2.json. See
-docs/CHALLENGE_MAP_REDRAW.md.
-"""
+"""Build localized Episode II maps from reviewed vector contours and annotations."""
 
 from __future__ import annotations
 
 import argparse
-import base64
-import io
-
 import numpy as np
-from PIL import Image, ImageChops, ImageFilter
+from PIL import Image, ImageDraw
+from scipy import ndimage
 
 import challenge_maps as maps
 
@@ -23,80 +14,42 @@ import challenge_maps as maps
 SOURCE = maps.ROOT / "assets/img/challenge/ep2/original/wiki"
 OUTPUT = maps.ROOT / "assets/img/challenge/ep2/maps"
 
-# Wiki floor classes: normal floor and its edge shading, dark rooms, poison rooms.
-FLOOR_COLOR = (62, 65, 69)
-DARK_COLOR = (33, 34, 32)
-POISON_COLOR = (74, 0, 74)
-BACKGROUND = (7, 26, 49, 255)
-FILL = (31, 90, 140, 255)
-DARK_FILL = (22, 52, 84, 255)
-DARK_HATCH = (79, 227, 255, 70)
-POISON_FILL = (84, 44, 118, 255)
-OUTLINE = (79, 227, 255, 255)
+def polygon_path(contours: list) -> str:
+    """Join measured contours with even-odd holes."""
+    return " ".join("M" + "L".join(f"{x} {y}" for x, y in polygon) + "Z" for polygon in contours)
 
 
-def floor_classes(source: Image.Image) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Exact floor, dark-room and poison-room pixels of the wiki map."""
-    rgb = np.asarray(source.convert("RGB")).astype(np.int16)
-    normal = np.all(rgb == FLOOR_COLOR, axis=2)
-    shade = (np.abs(rgb - (38, 42, 44)).max(axis=2) <= 4)
-    dark = np.all(rgb == DARK_COLOR, axis=2)
-    poison = np.all(rgb == POISON_COLOR, axis=2)
-    return normal | shade | dark | poison, dark, poison
-
-
-def _closed(mask: np.ndarray) -> Image.Image:
-    image = Image.fromarray(np.where(mask, 255, 0).astype(np.uint8))
-    return image.filter(ImageFilter.MaxFilter(21)).filter(ImageFilter.MinFilter(21))
-
-
-def base_layer(floor: np.ndarray, dark: np.ndarray, poison: np.ndarray) -> Image.Image:
-    """Filled floor with an outline, dark rooms hatched and poison rooms tinted.
-    Closing repairs the small holes that labels and icons punch into the floor."""
-    mask = _closed(floor)
-    outline = ImageChops.subtract(mask.filter(ImageFilter.MaxFilter(7)), mask)
-    base = Image.new("RGBA", mask.size, BACKGROUND)
-    base.paste(Image.new("RGBA", mask.size, FILL), mask=mask)
-    if dark.any():
-        dark_mask = ImageChops.multiply(_closed(dark), mask)
-        base.paste(Image.new("RGBA", mask.size, DARK_FILL), mask=dark_mask)
-        y, x = np.indices(dark.shape)
-        stripes = Image.fromarray(np.where(((x + y) % 14) < 3, 255, 0).astype(np.uint8))
-        hatch = Image.new("RGBA", mask.size, DARK_HATCH)
-        base.alpha_composite(Image.composite(hatch, Image.new("RGBA", mask.size, (0, 0, 0, 0)), ImageChops.multiply(stripes, dark_mask)))
-    if poison.any():
-        base.paste(Image.new("RGBA", mask.size, POISON_FILL), mask=ImageChops.multiply(_closed(poison), mask))
-    base.paste(Image.new("RGBA", mask.size, OUTLINE), mask=outline)
-    return base
-
-
-def label_layer(source: Image.Image) -> Image.Image:
-    """Keep coloured mechanisms and bright room labels; drop the black and grey map."""
-    rgb = np.asarray(source.convert("RGB")).astype(np.int16)
-    high = rgb.max(axis=2)
-    low = rgb.min(axis=2)
-    saturation = np.where(high == 0, 0, (high - low) / np.maximum(high, 1))
-    poison = np.all(rgb == POISON_COLOR, axis=2)
-    keep = ((saturation >= 0.24) | (low >= 185)) & ~poison
-    rgba = np.zeros((*rgb.shape[:2], 4), np.uint8)
-    rgba[..., :3] = rgb
-    rgba[..., 3] = np.where(keep, 255, 0)
-    return Image.fromarray(rgba, "RGBA")
-
-
-def png_data_uri(image: Image.Image) -> str:
-    buffer = io.BytesIO()
-    image.save(buffer, format="PNG", optimize=True)
-    return "data:image/png;base64," + base64.b64encode(buffer.getvalue()).decode("ascii")
-
-
-def geometry_for(floor: np.ndarray) -> maps.Geometry:
-    height, width = floor.shape
+def geometry_for(area_id: str, area: dict) -> maps.Geometry:
+    """Load reviewed floor contours; source annotations never define the floor."""
+    data = maps.load_content(f"ep2-c{area['stage']}-geometry.json")["areas"][area_id]
+    width, height = data["size"]
+    with Image.open(SOURCE / area["source"]) as source:
+        if source.size != (width, height):
+            raise ValueError(f"area {area_id}: source dimensions changed")
+    def mask(contours: list) -> np.ndarray:
+        result = np.zeros((height, width), dtype=bool)
+        for polygon in contours:
+            layer = Image.new("1", (width, height))
+            ImageDraw.Draw(layer).polygon([tuple(p) for p in polygon], fill=1)
+            result ^= np.asarray(layer, dtype=bool)
+        return result
+    floor = mask(data["floor"])
+    path = polygon_path(data["floor"])
+    prefix = f"ep2-{area_id}"
+    dark = polygon_path(data["dark_rooms"])
+    poison = polygon_path(data["poison_rooms"])
+    base = f'<g id="{prefix}-floor"><path d="{path}" fill="#173d60" fill-rule="evenodd"/></g>'
+    base += f'<path d="{dark}" fill="#102b42" fill-rule="evenodd"/><path d="{dark}" fill="url(#dark-hatch)" fill-rule="evenodd"/><path d="{poison}" fill="#542c76" fill-rule="evenodd"/>'
+    walls = f'<path d="{path}" fill="none" stroke="#8edfff" stroke-width="1.5" stroke-linejoin="round"/>'
+    # Source mechanism artwork is kept independently at its original coordinates.
+    # Reviewed room labels and terminals are replaced by authored vector text.
+    detail = data["mechanisms_svg"]
+    for room in area.get("rooms", []):
+        detail += maps.text(room["label"], *room["at"], size=24, fill="#ffffff")
     empty = np.zeros_like(floor)
-    return maps.Geometry(
-        width=width, height=height, floor=floor, outline=empty, dark_room=empty,
-        dashes=empty, coverage=100.0, dash_max=0, symbol_min=0,
-    )
+    return maps.Geometry(width, height, floor, empty, mask(data["dark_rooms"]), empty,
+                         100.0, 0, 0, floor_svg=base, outline_svg=walls, detail_svg=detail)
+
 
 
 def build(selected: set[int] | None) -> None:
@@ -107,26 +60,22 @@ def build(selected: set[int] | None) -> None:
     for area_id, area in content["areas"].items():
         if selected and int(area_id) not in selected:
             continue
-        source = Image.open(SOURCE / area["source"])
-        floor, dark, poison = floor_classes(source)
-        labels = label_layer(source)
-        geometry = geometry_for(floor)
-        geometry.extent = floor | (np.asarray(labels)[..., 3] > 0)
+        geometry = geometry_for(area_id, area)
         area_errors = maps.validate_area(area_id, area, geometry, languages)
+        distance = ndimage.distance_transform_edt(~geometry.floor)
+        for route in area["routes"]:
+            for leg in route["legs"]:
+                points = np.rint(maps._polyline_points(leg, step=1)).astype(int)
+                if any(distance[y, x] > 2 for x, y in points):
+                    area_errors.append(f"area {area_id}: {route['role']} route crosses a wall")
         errors.extend(area_errors)
         if area_errors:
             continue
         stem = f"c{area['stage']}_area_{int(area_id):02d}"
-        width, height = source.size
-        layer = '<image href="{}" x="0" y="0" width="{}" height="{}" preserveAspectRatio="none"/>'
-        below = layer.format(png_data_uri(base_layer(floor, dark, poison)), width, height)
-        above = layer.format(png_data_uri(labels), width, height)
         for language in languages:
-            words = strings[language]
-            title = words["area"].replace("{stage}", str(area["stage"])).replace("{n}", f"{int(area_id):02d}")
-            stage_note = content["stages"][str(area["stage"])][language]
-            notes = maps.panel_notes(area, language, stage_note)
-            svg = maps.render_svg(area, geometry, words, title, notes, below, above)
+            localized = {**area, "notes": {**area["notes"], language: {"general": content["source_legend"][language], "numbered": []}}}
+            svg = maps.render_area(area_id, localized, geometry, strings, language, content["symbol_labels"][language])
+            svg = "\n".join(line.rstrip() for line in svg.splitlines()) + "\n"
             directory = OUTPUT / language
             directory.mkdir(parents=True, exist_ok=True)
             (directory / f"{stem}.svg").write_text(svg, encoding="utf-8")

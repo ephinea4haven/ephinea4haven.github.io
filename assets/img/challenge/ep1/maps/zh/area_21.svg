@@ -1,104 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 551" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
 <title id="title">区域 21</title>
-<desc id="desc">第二房机关会升起炮台；开门后直接无视。 下一组炮台需要处理后再推进。</desc>
-<defs><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".35"/></filter><pattern id="dark-hatch" width="6.70833" height="6.70833" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6.70833" height="6.70833" fill="#000" fill-opacity=".25"/><path d="M0 0V6.70833" stroke="#4fe3ff" stroke-opacity=".25" stroke-width="2.0125"/></pattern><marker id="arrow-main" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ffd23f" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-split" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#f5f7ff" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-solo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#b48cff" stroke="#061329" stroke-width="1"/></marker></defs>
-<rect width="1000" height="551" rx="18" fill="#071a31"/>
-<g transform="translate(-42.6087 24) scale(1.49068)">
-  <g filter="url(#shadow)"><g transform="translate(0.000000,231.000000) scale(0.100000,-0.100000)"
-fill="#1f5a8c" stroke="none">
-<path d="M2200 1945 l0 -335 135 0 135 0 0 -200 0 -200 -35 0 c-31 0 -35 3
--35 25 l0 25 -270 0 -270 0 0 -25 0 -25 -130 0 -130 0 0 25 c0 25 -1 25 -90
-25 l-90 0 0 -105 0 -105 25 0 c23 0 25 -4 25 -40 l0 -40 -210 0 -210 0 0 85 0
-85 -195 0 -195 0 0 -45 0 -44 138 -3 137 -3 0 -100 0 -100 -137 -3 -138 -3 0
--49 0 -50 195 0 195 0 0 85 0 85 210 0 210 0 0 -40 c0 -36 -2 -40 -25 -40
-l-25 0 0 -105 0 -105 90 0 c89 0 90 0 90 25 l0 25 130 0 130 0 0 -25 0 -25
-270 0 270 0 0 25 0 25 140 0 140 0 0 -25 c0 -25 1 -25 85 -25 l85 0 0 105 0
-105 -25 0 -25 0 0 110 0 110 25 0 25 0 0 105 0 105 -85 0 c-84 0 -85 0 -85
--25 0 -24 -2 -25 -70 -25 l-70 0 2 198 3 197 168 3 167 2 0 140 c0 116 3 140
-15 140 10 0 15 16 18 58 l3 57 2 -62 2 -62 28 7 c15 4 107 6 204 4 l178 -4 2
--641 3 -642 962 -3 962 -2 3 -153 3 -152 150 1 c83 1 167 2 187 4 l37 3 1 220
-c0 146 -4 225 -11 234 -8 9 -8 13 0 13 7 0 11 32 11 99 l0 98 -40 0 -40 0 0
--98 c0 -67 4 -99 11 -99 8 0 8 -4 1 -13 -6 -7 -13 -65 -15 -128 l-3 -114 -1
-125 c-1 69 -2 173 -2 233 l-1 107 -145 0 -145 0 0 -145 0 -145 -270 0 -270 0
--2 653 -3 652 -875 3 c-481 2 -894 3 -917 4 l-43 1 0 138 0 139 -265 0 c-223
-0 -265 -2 -265 -14 0 -8 10 -16 23 -18 18 -2 23 -10 25 -46 2 -29 0 -42 -7
--37 -6 3 -11 19 -11 36 0 19 -5 29 -15 29 -10 0 -15 -11 -15 -35 0 -19 -4 -35
--10 -35 -6 0 -10 27 -10 60 0 59 0 60 -27 59 -17 -1 -21 -3 -10 -6 27 -7 20
--22 -9 -20 -38 3 -41 -19 -4 -26 58 -12 46 -71 -13 -65 -39 4 -46 23 -10 23
-34 0 43 18 12 25 -12 3 -27 13 -33 23 -9 15 -7 21 8 33 19 13 18 14 -12 14
-l-32 0 0 -335z M905 1020 c10 -11 20 -20 22 -20 1 0 3 9 3 20 0 14 -7 20 -22
-20 -20 0 -21 -1 -3 -20z M5649 873 c0 -60 0 -169 0 -243 0 -74 1 -181 1 -237
-l0 -103 150 0 150 0 0 155 0 155 160 0 160 0 0 -75 0 -75 180 0 180 0 0 50 0
-50 -129 0 -129 0 -4 53 c-2 28 0 53 4 55 4 2 8 14 8 26 0 46 32 60 146 64
-l104 4 0 29 0 29 -180 0 -180 0 0 -60 0 -60 -160 0 -160 0 0 145 0 145 -150 0
--150 0 -1 -107z M905 870 c-18 -19 -17 -20 3 -20 15 0 22 6 22 20 0 11 -2 20
--3 20 -2 0 -12 -9 -22 -20z M6380 575 c0 -8 7 -15 16 -15 14 0 14 3 4 15 -7 8
--14 15 -16 15 -2 0 -4 -7 -4 -15z"/>
+<desc id="desc"> 第二房由 Hunter 或 Ranger 取机关；炮台出现后全队立即进下一房，不必停下破坏。 这组必须先处理：短踩粉色机关后退，清炮台，再让一人过栅栏。 先行者踩另一侧绿色机关，放行留守队友后再离开。</desc>
+<defs><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".35"/></filter><pattern id="dark-hatch" width="10.5902" height="10.5902" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10.5902" height="10.5902" fill="#000" fill-opacity=".25"/><path d="M0 0V10.5902" stroke="#4fe3ff" stroke-opacity=".25" stroke-width="3.17705"/></pattern><marker id="arrow-main" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ffd23f" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-split" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#f5f7ff" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-solo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#b48cff" stroke="#061329" stroke-width="1"/></marker></defs>
+<rect width="1000" height="460" rx="18" fill="#071a31"/>
+<text x="26" y="30" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">C5 · 区域 21</text>
+<g transform="translate(15.3406 75) scale(0.944272)">
+  <g filter="url(#shadow)"><g id="c5-floor" data-source="PSO World area_21.png">
+  <defs>
+    <clipPath id="c5-floor-clip"><path d="M220 36L220 70L248 70L248 110L240 110L240 105L186 105L186 110L160 110L160 105L142 105L142 126L147 126L147 134L105 135L105 117L66 117L66 157L105 157L105 140L147 140L147 148L142 148L142 169L160 169L160 164L186 164L186 169L240 169L240 164L268 164L268 169L285 169L285 148L280 148L280 126L285 126L285 105L268 105L268 110L254 110L254 70L289 70L289 44L292 44L292 49L290 48L290 50L294 52L298 52L302 44L333 44L333 171L526 171L526 202L555 202L556 204L564 204L565 202L595 202L595 171L627 171L627 187L664 187L664 150L627 150L627 162L595 162L595 133L564 133L564 131L556 131L555 133L526 133L526 162L472 162L472 31L301 31L297 24L297 20L290 21L290 30L292 22L292 30L289 31L289 3L220 3Z" clip-rule="evenodd"/></clipPath>
+    <pattern id="c5-dark-hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M-2 2L2-2M0 8L8 0M6 10L10 6" fill="none" stroke="#4fe3ff" stroke-opacity=".18" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <path d="M220 36L220 70L248 70L248 110L240 110L240 105L186 105L186 110L160 110L160 105L142 105L142 126L147 126L147 134L105 135L105 117L66 117L66 157L105 157L105 140L147 140L147 148L142 148L142 169L160 169L160 164L186 164L186 169L240 169L240 164L268 164L268 169L285 169L285 148L280 148L280 126L285 126L285 105L268 105L268 110L254 110L254 70L289 70L289 44L292 44L292 49L290 48L290 50L294 52L298 52L302 44L333 44L333 171L526 171L526 202L555 202L556 204L564 204L565 202L595 202L595 171L627 171L627 187L664 187L664 150L627 150L627 162L595 162L595 133L564 133L564 131L556 131L555 133L526 133L526 162L472 162L472 31L301 31L297 24L297 20L290 21L290 30L292 22L292 30L289 31L289 3L220 3Z" fill="#173d60" fill-rule="evenodd"/>
+  <g id="c5-dark-rooms" clip-path="url(#c5-floor-clip)">
+    <path d="" fill="#102b42"/>
+    <path d="" fill="url(#c5-dark-hatch)"/>
+  </g>
 </g></g>
-  <g transform="translate(0.000000,231.000000) scale(0.100000,-0.100000)"
-fill="#4fe3ff" stroke="none">
-<path d="M2191 2287 c-16 -16 -15 -669 1 -685 8 -8 53 -12 135 -12 l123 0 0
--180 c0 -138 -3 -180 -13 -180 -7 0 -17 10 -22 23 l-10 22 -275 0 -275 0 -10
--22 c-9 -22 -15 -23 -115 -23 -100 0 -106 1 -115 22 -9 21 -18 23 -101 26 -69
-2 -94 -1 -103 -12 -8 -9 -11 -48 -9 -117 3 -97 5 -105 26 -114 12 -5 22 -18
-22 -27 0 -17 -15 -18 -190 -18 l-190 0 0 73 c0 43 -5 78 -12 85 -17 17 -389
-17 -406 0 -17 -17 -15 -93 3 -108 11 -9 51 -11 142 -8 l128 4 0 -91 0 -91
--128 4 c-91 3 -131 1 -142 -8 -18 -15 -20 -101 -3 -118 17 -17 389 -17 406 0
-7 7 12 42 12 85 l0 73 190 0 c175 0 190 -1 190 -18 0 -9 -10 -22 -22 -27 -21
--9 -23 -17 -26 -114 -2 -69 1 -108 9 -117 9 -11 34 -14 103 -12 83 3 92 5 101
-25 9 22 15 23 115 23 100 0 106 -1 115 -22 l10 -23 275 0 275 0 10 23 c9 21
-15 22 125 22 110 0 116 -1 125 -22 9 -21 18 -23 96 -26 65 -2 89 1 98 12 8 9
-11 48 9 117 -3 97 -5 105 -25 114 -21 9 -23 16 -23 95 0 79 2 86 23 95 20 9
-22 17 25 114 2 69 -1 108 -9 117 -9 11 -33 14 -98 12 -78 -3 -87 -5 -96 -25
--8 -19 -18 -23 -57 -23 l-48 0 0 180 0 180 158 0 c110 0 162 4 170 12 8 8 12
-54 12 141 0 105 3 128 14 124 13 -5 14 7 2 116 -1 15 1 27 6 27 4 0 8 5 8 11
-0 6 -7 9 -15 5 -13 -5 -15 13 -15 123 0 98 -3 131 -14 140 -19 16 -679 14
--695 -2z m53 -21 c-15 -12 -17 -18 -8 -33 6 -10 21 -20 33 -23 31 -7 22 -25
--12 -25 -36 0 -29 -19 10 -23 59 -6 71 53 13 65 -37 7 -34 29 4 26 29 -2 36
-13 9 20 -11 3 -7 5 10 6 27 1 27 0 27 -59 0 -33 4 -60 10 -60 6 0 10 16 10 35
-0 24 5 35 15 35 10 0 15 -10 15 -29 0 -17 5 -33 11 -36 7 -5 9 8 7 37 -2 36
--7 44 -25 46 -13 2 -23 10 -23 18 0 12 42 14 265 14 l265 0 0 -140 c0 -118 2
--140 15 -140 12 0 15 -13 15 -55 0 -42 -3 -55 -15 -55 -13 0 -15 -22 -15 -140
-l0 -140 -167 -2 -168 -3 -3 -197 -2 -198 70 0 c68 0 70 1 70 25 0 25 1 25 85
-25 l85 0 0 -105 0 -105 -25 0 -25 0 0 -110 0 -110 25 0 25 0 0 -105 0 -105
--85 0 c-84 0 -85 0 -85 25 l0 25 -140 0 -140 0 0 -25 0 -25 -270 0 -270 0 0
-25 0 25 -130 0 -130 0 0 -25 c0 -25 -1 -25 -90 -25 l-90 0 0 105 0 105 25 0
-c23 0 25 4 25 40 l0 40 -210 0 -210 0 0 -85 0 -85 -195 0 -195 0 0 50 0 49
-138 3 137 3 0 100 0 100 -137 3 -138 3 0 44 0 45 195 0 195 0 0 -85 0 -85 210
-0 210 0 0 40 c0 36 -2 40 -25 40 l-25 0 0 105 0 105 90 0 c89 0 90 0 90 -25
-l0 -25 130 0 130 0 0 25 0 25 270 0 270 0 0 -25 c0 -22 4 -25 35 -25 l35 0 0
-200 0 200 -135 0 -135 0 0 335 0 335 32 0 c30 0 31 -1 12 -14z M3007 2013 c-4
--3 -7 -9 -7 -12 0 -3 386 -6 857 -6 l858 0 3 -652 2 -653 270 0 270 0 0 145 0
-145 145 0 145 0 1 -107 c0 -60 1 -164 2 -233 l1 -125 3 114 c2 63 9 121 15
-128 8 9 7 13 -2 13 -9 0 -11 29 -8 110 2 85 0 111 -10 115 -29 11 -288 5 -300
--7 -8 -8 -12 -55 -12 -145 l0 -133 -250 0 -250 0 0 638 c0 606 -1 640 -18 655
--17 16 -91 17 -864 17 -464 0 -848 -3 -851 -7z M3003 1885 c2 -6 66 -11 155
--13 l152 -3 0 -628 c0 -596 1 -629 18 -644 17 -16 98 -17 965 -17 l947 0 0
--138 c0 -180 -7 -172 167 -172 125 0 163 4 163 19 0 3 -69 6 -152 6 l-153 0
--3 152 -3 153 -962 2 -962 3 -3 642 -2 642 -165 3 c-107 2 -164 -1 -162 -7z
-M5645 994 c-6 -2 -9 -47 -7 -114 3 -81 1 -110 -8 -110 -10 0 -10 -3 -1 -14 8
--10 11 -81 9 -245 -2 -185 0 -232 10 -236 29 -11 298 -5 310 7 8 8 12 57 12
-155 l0 143 140 0 140 0 0 -63 c0 -36 5 -68 12 -75 17 -17 359 -17 376 0 17 17
-15 103 -3 118 -10 9 -50 11 -135 9 l-119 -4 6 38 c4 24 2 37 -6 37 -6 0 -11
--18 -11 -45 l0 -45 130 0 130 0 0 -50 0 -50 -180 0 -180 0 0 75 0 75 -160 0
--160 0 0 -155 0 -155 -150 0 -150 0 0 103 c0 56 -1 163 -1 237 0 74 0 183 0
-243 l1 107 150 0 150 0 0 -145 0 -145 160 0 160 0 0 60 0 60 180 0 180 0 0
--30 0 -29 -92 -4 -93 -3 100 0 100 1 3 28 c6 54 -4 57 -197 57 -124 0 -181 -4
--189 -12 -7 -7 -12 -34 -12 -60 l0 -48 -140 0 -140 0 0 133 c0 90 -4 137 -12
-145 -8 8 -57 12 -157 11 -81 0 -150 -2 -156 -5z M6382 680 c0 -19 2 -27 5 -17
-2 9 2 25 0 35 -3 9 -5 1 -5 -18z"/>
+  <g id="c5-walls" fill="none" stroke="#8edfff" stroke-width="1.5" stroke-linejoin="miter">
+  <path d="M220 36L220 70L248 70L248 110L240 110L240 105L186 105L186 110L160 110L160 105L142 105L142 126L147 126L147 134L105 135L105 117L66 117L66 157L105 157L105 140L147 140L147 148L142 148L142 169L160 169L160 164L186 164L186 169L240 169L240 164L268 164L268 169L285 169L285 148L280 148L280 126L285 126L285 105L268 105L268 110L254 110L254 70L289 70L289 44L292 44L292 49L290 48L290 50L294 52L298 52L302 44L333 44L333 171L526 171L526 202L555 202L556 204L564 204L565 202L595 202L595 171L627 171L627 187L664 187L664 150L627 150L627 162L595 162L595 133L564 133L564 131L556 131L555 133L526 133L526 162L472 162L472 31L301 31L297 24L297 20L290 21L290 30L292 22L292 30L289 31L289 3L220 3Z"/>
+  <path d=""/>
+  <path d=""/>
 </g>
 
-  <path d="M88 137 L249 137 L249 36 L340 36 L467 163 L636 165" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="8.05" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M88 137 L249 137 L249 36 L340 36 L467 163 L636 165" fill="none" stroke="#ffd23f" stroke-width="4.69583" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-main)"/>
-  <g transform="translate(251 38) scale(0.670833)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="10" fill="#ff9200"/></g><g transform="translate(227 52) scale(0.670833)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="9" fill="#ffe45c"/><path d="M0 0 14-8" stroke-width="5" stroke-linecap="round" stroke="#ffe45c"/></g><g transform="translate(296 36) scale(0.670833)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-4" y="-19" width="8" height="38" rx="3" fill="#ff9200"/></g><g transform="translate(539 165) scale(0.670833)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="10" fill="#fe7fff"/></g><g transform="translate(559 142) scale(0.670833)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-4" y="-19" width="8" height="38" rx="3" fill="#fe7fff"/></g><g transform="translate(559 167) scale(0.670833)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-4" y="-19" width="8" height="38" rx="3" fill="#05df00"/></g><g transform="translate(559 191) scale(0.670833)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-4" y="-19" width="8" height="38" rx="3" fill="#fe7fff"/></g><g transform="translate(581 188) scale(0.670833)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="10" fill="#05df00"/></g><g transform="translate(585 141) scale(0.670833)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="9" fill="#ffe45c"/><path d="M0 0 14-8" stroke-width="5" stroke-linecap="round" stroke="#ffe45c"/></g>
+  <path d="M80 138 L249 138 L251 38 L333 38 L472 166 L539 166 L581 166 L647 166" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="6.98951" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M80 138 L249 138 L251 38 L333 38 L472 166 L539 166 L581 166 L647 166" fill="none" stroke="#ffd23f" stroke-width="4.07721" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-main)"/>
+  <g transform="translate(251 38) scale(0.762492)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="10" fill="#ffa540"/></g><g transform="translate(297 38) scale(0.762492)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-4" y="-19" width="8" height="38" rx="3" fill="#ffa540"/></g><g transform="translate(238 21) scale(0.762492)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="9" fill="#ffe45c"/><path d="M0 0 14-8" stroke-width="5" stroke-linecap="round" stroke="#ffe45c"/></g><g transform="translate(539 166) scale(0.762492)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="10" fill="#ed64b2"/></g><g transform="translate(560 167) scale(0.762492)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-4" y="-19" width="8" height="38" rx="3" fill="#ed64b2"/></g><g transform="translate(581 188) scale(0.762492)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="10" fill="#8ee26b"/></g><g transform="translate(540 144) scale(0.762492)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="9" fill="#ffe45c"/><path d="M0 0 14-8" stroke-width="5" stroke-linecap="round" stroke="#ffe45c"/></g>
 </g>
-<g transform="translate(361.366 107.478)" filter="url(#shadow)"><rect x="-15" y="-15" width="30" height="30" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="950">1</text></g><g transform="translate(762.36 304.248)" filter="url(#shadow)"><rect x="-15" y="-15" width="30" height="30" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="950">2</text></g>
-<g transform="translate(82.6087 228.224)" filter="url(#shadow)"><circle r="12" fill="#39d6ff" stroke="#061329" stroke-width="4"/><rect x="-27" y="-46" width="54" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#39d6ff" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#39d6ff" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">起点</text></g><g transform="translate(932.298 271.453)" filter="url(#shadow)"><circle r="12" fill="#ff5ca8" stroke="#061329" stroke-width="4"/><rect x="-51" y="-46" width="102" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#ff5ca8" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#ff5ca8" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">前往下一区</text></g>
 
-<g transform="translate(18 377)">
-  <rect width="964" height="156" rx="14" fill="#0b2745" stroke="#2c648b" stroke-width="2"/>
-  <text x="24" y="34" text-anchor="start" fill="#e7f9ff" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="900">关键提醒</text>
-  <g transform="translate(40 61)" filter="url(#shadow)"><rect x="-14" y="-14" width="28" height="28" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="5.6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="950">1</text></g><text x="68" y="66" fill="#bcd7ea" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="650"><tspan x="68" dy="0">第二房机关会升起炮台；开门后直接无视。</tspan></text><g transform="translate(504 61)" filter="url(#shadow)"><rect x="-14" y="-14" width="28" height="28" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="5.6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="950">2</text></g><text x="532" y="66" fill="#bcd7ea" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="650"><tspan x="532" dy="0">下一组炮台需要处理后再推进。</tspan></text>
-  <text x="940" y="142" text-anchor="end" fill="#7698b1" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">提示依据：PSO World · Sakura 攻略</text>
-</g>
+<g transform="translate(90.8824 205.31)" filter="url(#shadow)"><circle r="12" fill="#39d6ff" stroke="#061329" stroke-width="4"/><rect x="-27" y="-46" width="54" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#39d6ff" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#39d6ff" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">起点</text></g><g transform="translate(626.285 231.749)" filter="url(#shadow)"><circle r="12" fill="#ff5ca8" stroke="#061329" stroke-width="4"/><rect x="-51" y="-46" width="102" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#ff5ca8" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#ff5ca8" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">前往下一区</text></g>
+<path d="M252.353 110.882L705 110.882" fill="none" stroke="#ffbe99" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/><circle cx="252.353" cy="110.882" r="2.5" fill="#ffbe99"/><path d="M524.303 231.749L705 228" fill="none" stroke="#ffbe99" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/><circle cx="524.303" cy="231.749" r="2.5" fill="#ffbe99"/><path d="M563.963 252.523L705 286" fill="none" stroke="#a9d8ed" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/><circle cx="563.963" cy="252.523" r="2.5" fill="#a9d8ed"/><g data-callout="first-turrets-run"><title>PSO World source map; Sakura; PSO Palace C5</title><rect data-callout-box="" x="705" y="70" width="275" height="50" rx="5" fill="#10263a" stroke="#ffbe99" stroke-opacity=".35"/><text x="713" y="90" text-anchor="start" fill="#ffbe99" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">第二房由 Hunter 或 Ranger 取机关；炮台</text><text x="713" y="108" text-anchor="start" fill="#ffbe99" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">出现后全队立即进下一房，不必停下破坏。</text></g><g data-callout="second-turrets-clear"><title>PSO World source map; Sakura; PSO Palace C5</title><rect data-callout-box="" x="705" y="178" width="275" height="50" rx="5" fill="#10263a" stroke="#ffbe99" stroke-opacity=".35"/><text x="713" y="198" text-anchor="start" fill="#ffbe99" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">这组必须先处理：短踩粉色机关后退，清炮</text><text x="713" y="216" text-anchor="start" fill="#ffbe99" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">台，再让一人过栅栏。</text></g><g data-callout="far-side-release"><title>PSO World source map; Sakura; PSO Palace C5</title><rect data-callout-box="" x="705" y="286" width="275" height="50" rx="5" fill="#10263a" stroke="#a9d8ed" stroke-opacity=".35"/><text x="713" y="306" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">先行者踩另一侧绿色机关，放行留守队友后</text><text x="713" y="324" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">再离开。</text></g>
+
+<g transform="translate(34 370) scale(0.769231)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="10" fill="#a9d8ed"/></g><text x="54" y="375" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">地板机关</text><g transform="translate(146 370) scale(0.769231)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-4" y="-19" width="8" height="38" rx="3" fill="#a9d8ed"/></g><text x="166" y="375" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">门／屏障</text><g transform="translate(258 370) scale(0.769231)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><circle r="9" fill="#a9d8ed"/><path d="M0 0 14-8" stroke-width="5" stroke-linecap="round" stroke="#a9d8ed"/></g><text x="278" y="375" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">射击陷阱</text>
+<text x="958" y="424" text-anchor="end" fill="#8aabba" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="900">提示依据：PSO World · Sakura 攻略</text>
 </svg>

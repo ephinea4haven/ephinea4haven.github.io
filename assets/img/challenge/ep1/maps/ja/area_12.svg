@@ -1,80 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1216" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 768" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
 <title id="title">エリア 12</title>
-<desc id="desc">短いエリア。主ルートを直進し、2部屋目の隠し部屋は無視。</desc>
-<defs><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".35"/></filter><pattern id="dark-hatch" width="2.89" height="2.89" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="2.89" height="2.89" fill="#000" fill-opacity=".25"/><path d="M0 0V2.89" stroke="#4fe3ff" stroke-opacity=".25" stroke-width="0.867"/></pattern><marker id="arrow-main" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ffd23f" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-split" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#f5f7ff" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-solo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#b48cff" stroke="#061329" stroke-width="1"/></marker></defs>
-<rect width="1000" height="1216" rx="18" fill="#071a31"/>
-<g transform="translate(110.727 10.1592) scale(3.46021)">
-  <g filter="url(#shadow)"><g transform="translate(0.000000,293.000000) scale(0.100000,-0.100000)"
-fill="#1f5a8c" stroke="none">
-<path d="M1176 2606 c5 -13 25 -23 77 -40 14 -5 17 -18 17 -90 l0 -84 -43 -6
-c-84 -13 -151 -79 -183 -180 -22 -68 -31 -353 -15 -456 22 -143 95 -239 189
--250 l47 -5 3 -167 2 -166 -52 -7 c-73 -9 -132 -46 -164 -101 -21 -35 -27 -62
--32 -129 l-5 -85 -28 0 c-19 0 -29 -5 -29 -15 0 -10 10 -15 29 -15 27 0 30 -3
-36 -49 8 -60 44 -118 93 -151 35 -23 47 -25 184 -28 130 -3 150 -1 185 16 92
-48 113 98 113 274 0 119 -3 137 -23 172 -34 60 -84 95 -155 108 l-62 12 0 168
-0 168 36 0 c74 0 131 47 177 148 21 44 22 61 22 292 l0 245 -33 68 c-39 80
--91 123 -158 133 l-44 6 0 82 c0 65 4 86 20 106 11 14 20 28 20 33 0 4 -52 7
--115 7 -94 0 -113 -2 -109 -14z M269 1087 c-24 -13 -57 -43 -74 -66 -29 -42
--30 -45 -33 -186 -4 -156 2 -179 57 -238 34 -38 66 -54 124 -62 l47 -7 0 -78
-c0 -67 -4 -84 -30 -131 -16 -30 -30 -57 -30 -61 0 -5 56 -8 124 -8 104 0 125
-3 130 16 18 46 -4 75 -71 95 l-43 12 0 77 0 77 60 6 c122 11 195 85 207 211 6
-64 7 66 34 66 19 0 29 5 29 15 0 10 -10 15 -30 15 -28 0 -30 2 -30 38 0 63
--27 135 -62 169 -60 56 -84 63 -231 63 -121 0 -138 -2 -178 -23z M1917 1002
-c-9 -10 -22 -41 -28 -70 l-12 -52 -84 0 -83 0 0 -35 0 -35 90 0 c80 0 97 -3
-148 -29 31 -16 73 -45 91 -65 39 -40 73 -46 121 -21 68 35 88 102 48 160 -34
-51 -215 165 -261 165 -8 0 -21 -8 -30 -18z M850 825 c0 -10 10 -15 30 -15 20
-0 30 5 30 15 0 10 -10 15 -30 15 -20 0 -30 -5 -30 -15z"/>
+<desc id="desc"> 主ルートで出口へ。2部屋目東の隠し部屋は不要。</desc>
+<defs><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".35"/></filter><pattern id="dark-hatch" width="5.11364" height="5.11364" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5.11364" height="5.11364" fill="#000" fill-opacity=".25"/><path d="M0 0V5.11364" stroke="#4fe3ff" stroke-opacity=".25" stroke-width="1.53409"/></pattern><marker id="arrow-main" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ffd23f" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-split" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#f5f7ff" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-solo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#b48cff" stroke="#061329" stroke-width="1"/></marker></defs>
+<rect width="1000" height="768" rx="18" fill="#071a31"/>
+<text x="26" y="30" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">C3 · エリア 12</text>
+<g transform="translate(85 75) scale(1.95556)">
+  <g filter="url(#shadow)"><g id="c3-floor" data-source="PSO World area_12.png">
+  <defs>
+    <clipPath id="c3-floor-clip"><path d="M119 9L116 16L117 28L127 40L131 39L131 46L127 46L127 54L118 55L112 59L106 67L103 78L102 110L104 125L110 136L117 142L126 144L127 177L116 178L107 184L103 192L102 207L74 207L74 201L71 191L58 182L31 182L22 187L16 195L16 224L24 236L30 239L39 240L39 257L33 262L29 270L29 279L34 288L40 292L47 292L54 288L58 279L58 270L54 262L49 258L54 257L46 256L46 240L54 240L65 236L73 225L74 212L102 212L103 222L107 229L116 234L145 235L155 229L160 219L160 192L156 185L148 179L136 177L136 143L146 142L153 137L160 124L160 74L153 61L145 55L136 54L136 38L143 37L154 23L154 12L139 2L122 2Z M192 193L190 195L188 205L171 205L171 212L189 212L200 218L207 225L214 225L217 223L224 214L220 205L204 194L197 191L193 191Z" clip-rule="evenodd"/></clipPath>
+    <pattern id="c3-dark-hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M-2 2L2-2M0 8L8 0M6 10L10 6" fill="none" stroke="#4fe3ff" stroke-opacity=".18" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <path d="M119 9L116 16L117 28L127 40L131 39L131 46L127 46L127 54L118 55L112 59L106 67L103 78L102 110L104 125L110 136L117 142L126 144L127 177L116 178L107 184L103 192L102 207L74 207L74 201L71 191L58 182L31 182L22 187L16 195L16 224L24 236L30 239L39 240L39 257L33 262L29 270L29 279L34 288L40 292L47 292L54 288L58 279L58 270L54 262L49 258L54 257L46 256L46 240L54 240L65 236L73 225L74 212L102 212L103 222L107 229L116 234L145 235L155 229L160 219L160 192L156 185L148 179L136 177L136 143L146 142L153 137L160 124L160 74L153 61L145 55L136 54L136 38L143 37L154 23L154 12L139 2L122 2Z M192 193L190 195L188 205L171 205L171 212L189 212L200 218L207 225L214 225L217 223L224 214L220 205L204 194L197 191L193 191Z" fill="#173d60" fill-rule="evenodd"/>
+  <g id="c3-dark-rooms" clip-path="url(#c3-floor-clip)">
+    <path d="" fill="#102b42"/>
+    <path d="" fill="url(#c3-dark-hatch)"/>
+  </g>
 </g></g>
-  <g transform="translate(0.000000,293.000000) scale(0.100000,-0.100000)"
-fill="#4fe3ff" stroke="none">
-<path d="M1160 2625 c-9 -11 -7 -19 13 -39 14 -14 37 -28 51 -32 25 -6 26 -9
-26 -74 l0 -68 -46 -11 c-96 -24 -174 -132 -195 -271 -16 -107 -7 -390 16 -455
-35 -104 124 -195 191 -195 l34 0 0 -150 0 -149 -37 -6 c-60 -10 -69 -14 -111
--45 -62 -44 -92 -105 -99 -195 -5 -63 -9 -75 -24 -75 -10 0 -21 -4 -24 -10 -4
--6 8 -10 28 -10 l34 0 5 85 c5 67 11 94 32 129 32 55 91 92 164 101 l52 7 -2
-166 -3 167 -47 5 c-94 11 -167 107 -189 250 -16 103 -7 388 15 456 32 101 99
-167 184 180 l43 6 -3 85 -3 85 -39 13 c-21 8 -43 20 -47 27 -7 10 14 14 103
-16 61 1 113 1 115 -2 3 -3 -4 -18 -16 -34 -17 -25 -21 -45 -21 -110 l0 -80 44
--6 c67 -10 119 -53 158 -133 l33 -68 0 -245 c0 -231 -1 -248 -22 -292 -46
--101 -103 -148 -177 -148 l-36 0 0 -168 0 -168 62 -12 c71 -13 121 -48 155
--108 20 -35 23 -53 23 -172 0 -176 -21 -226 -113 -274 -35 -17 -55 -19 -185
--16 -137 3 -149 5 -184 28 -49 33 -85 91 -93 151 -7 48 -8 49 -42 49 -20 0
--32 -4 -28 -10 3 -5 15 -10 25 -10 15 0 21 -9 26 -40 9 -54 54 -121 107 -156
-41 -28 46 -29 189 -32 164 -4 192 4 255 70 53 55 63 92 63 238 0 152 -10 182
--85 248 -34 30 -61 44 -101 52 l-54 11 0 150 0 149 26 0 c65 0 141 67 186 166
-22 47 23 60 23 294 l0 245 -33 67 c-39 79 -98 134 -159 150 l-43 10 0 70 c0
-55 4 76 21 99 35 50 16 59 -116 59 -86 0 -115 -3 -125 -15z M273 1109 c-48
--24 -99 -77 -119 -125 -10 -23 -14 -76 -14 -164 0 -146 6 -168 69 -233 42 -45
-71 -62 124 -71 l37 -7 0 -68 c0 -56 -5 -77 -31 -125 -44 -81 -38 -86 117 -86
-116 0 124 1 138 22 9 12 16 32 16 43 0 26 -45 69 -85 82 -28 9 -30 13 -33 70
-l-3 60 52 6 c112 13 202 105 215 217 5 49 10 60 25 60 10 0 21 5 24 10 4 6 -8
-10 -28 10 l-34 0 -6 -66 c-12 -126 -85 -200 -207 -211 l-60 -6 0 -77 0 -77 43
--12 c67 -20 89 -49 71 -95 -5 -13 -26 -16 -130 -16 -68 0 -124 3 -124 8 0 4
-14 31 30 61 26 47 30 64 30 131 l0 78 -47 7 c-58 8 -90 24 -124 62 -52 56 -59
-82 -59 226 0 121 2 138 23 178 13 24 43 58 66 74 42 29 45 30 186 33 158 4
-180 -2 243 -61 35 -34 62 -106 62 -169 0 -37 1 -38 36 -38 21 0 33 4 29 10 -3
-6 -15 10 -26 10 -14 0 -19 7 -19 28 0 60 -29 126 -72 169 -70 67 -89 73 -240
-73 -115 0 -139 -3 -175 -21z M1908 1013 c-15 -16 -31 -47 -38 -70 l-11 -43
--72 0 c-82 0 -97 -9 -97 -55 0 -48 14 -55 112 -55 78 0 95 -3 146 -29 31 -16
-73 -45 91 -65 54 -56 114 -46 180 29 39 45 40 85 5 136 -39 57 -228 179 -277
-179 -7 0 -25 -12 -39 -27z m89 -8 c60 -25 188 -116 211 -150 40 -58 20 -125
--48 -160 -48 -25 -82 -19 -121 21 -18 20 -60 49 -91 65 -51 26 -68 29 -148 29
-l-90 0 0 35 0 35 83 0 84 0 12 52 c12 54 34 88 58 88 7 0 30 -7 50 -15z M845
-850 c-4 -6 10 -10 35 -10 25 0 39 4 35 10 -3 6 -19 10 -35 10 -16 0 -32 -4
--35 -10z M845 800 c3 -5 19 -10 35 -10 16 0 32 5 35 10 4 6 -10 10 -35 10 -25
-0 -39 -4 -35 -10z"/>
+  <g id="c3-walls" fill="none" stroke="#8edfff" stroke-width="1.5" stroke-linejoin="miter">
+  <path d="M119 9L116 16L117 28L127 40L131 39L131 46L127 46L127 54L118 55L112 59L106 67L103 78L102 110L104 125L110 136L117 142L126 144L127 177L116 178L107 184L103 192L102 207L74 207L74 201L71 191L58 182L31 182L22 187L16 195L16 224L24 236L30 239L39 240L39 257L33 262L29 270L29 279L34 288L40 292L47 292L54 288L58 279L58 270L54 262L49 258L54 257L46 256L46 240L54 240L65 236L73 225L74 212L102 212L103 222L107 229L116 234L145 235L155 229L160 219L160 192L156 185L148 179L136 177L136 143L146 142L153 137L160 124L160 74L153 61L145 55L136 54L136 38L143 37L154 23L154 12L139 2L122 2Z M192 193L190 195L188 205L171 205L171 212L189 212L200 218L207 225L214 225L217 223L224 214L220 205L204 194L197 191L193 191Z"/>
+  <path d=""/>
+  <path d=""/>
 </g>
 
-  <path d="M43 266 L43 210 L132 210 L132 38" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="3.468" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M43 266 L43 210 L132 210 L132 38" fill="none" stroke="#ffd23f" stroke-width="2.023" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-main)"/>
+  <path d="M43 275 L43 209 L133 209 L133 20" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="3.375" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M43 275 L43 209 L133 209 L133 20" fill="none" stroke="#ffd23f" stroke-width="1.96875" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-main)"/>
 
 </g>
 
-<g transform="translate(259.516 961.716)" filter="url(#shadow)"><circle r="12" fill="#39d6ff" stroke="#061329" stroke-width="4"/><rect x="-43" y="-46" width="86" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#39d6ff" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#39d6ff" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">スタート</text></g><g transform="translate(567.474 107.045)" filter="url(#shadow)"><circle r="12" fill="#ff5ca8" stroke="#061329" stroke-width="4"/><rect x="-59" y="-46" width="118" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#ff5ca8" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#ff5ca8" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">次のエリアへ</text></g>
+<g transform="translate(169.089 612.778)" filter="url(#shadow)"><circle r="12" fill="#39d6ff" stroke="#061329" stroke-width="4"/><rect x="-43" y="-46" width="86" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#39d6ff" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#39d6ff" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">スタート</text></g><g transform="translate(345.089 114.111)" filter="url(#shadow)"><circle r="12" fill="#ff5ca8" stroke="#061329" stroke-width="4"/><rect x="-59" y="-46" width="118" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#ff5ca8" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#ff5ca8" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">次のエリアへ</text></g>
+<path d="M440.911 481.756L705 120" fill="none" stroke="#a9d8ed" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/><circle cx="440.911" cy="481.756" r="2.5" fill="#a9d8ed"/><g data-callout="skip-side-room"><title>PSO World Area 12 route; Sakura map; PSO Palace straightforward route</title><rect data-callout-box="" x="705" y="70" width="275" height="50" rx="5" fill="#10263a" stroke="#a9d8ed" stroke-opacity=".35"/><text x="713" y="90" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">主ルートで出口へ。2部屋目東の隠し部屋は</text><text x="713" y="108" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">不要。</text></g>
 
-<g transform="translate(18 1042)">
-  <rect width="964" height="156" rx="14" fill="#0b2745" stroke="#2c648b" stroke-width="2"/>
-  <text x="24" y="34" text-anchor="start" fill="#e7f9ff" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="900">重要ポイント</text>
-  <circle cx="40" cy="65" r="5" fill="#7fb8d8"/><text x="68" y="66" fill="#bcd7ea" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="650"><tspan x="68" dy="0">短いエリア。主ルートを直進し、2部屋目の隠し部屋は無視。</tspan></text>
-  <text x="940" y="142" text-anchor="end" fill="#7698b1" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">攻略情報：PSO World · Sakura</text>
-</g>
+
+<text x="958" y="732" text-anchor="end" fill="#8aabba" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="900">攻略情報：PSO World · Sakura</text>
 </svg>

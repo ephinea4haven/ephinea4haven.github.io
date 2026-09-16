@@ -225,7 +225,7 @@ test('challenge guides use localized redraws and remember the guidance language'
   await expect(c2Maps.first()).toHaveAttribute('src', /\/maps\/en\/area_01\.svg$/);
   await expect(c2Maps.first()).toHaveAttribute('alt', 'EP1 Challenge Area 01 map');
   await expect(page.locator('.challenge-legend')).toContainText('Main route');
-  await expect(page.locator('.challenge-language')).toContainText('independently redrawn');
+  await expect(page.locator('.challenge-language')).toContainText('Map language');
 
   await page.goto('/guide/ep2ch.html');
   const ep2Maps = page.locator('.challenge-map img[data-i18n-src]');
@@ -234,6 +234,87 @@ test('challenge guides use localized redraws and remember the guidance language'
   await expect(ep2Maps.first()).toHaveAttribute('alt', 'EP2 C1 Challenge Area 01 map');
   await expect(page.locator('.challenge-legend')).toContainText('Main route');
 });
+
+for (const [stage, areas] of [[1, [1, 2]], [2, [4, 5, 6, 7, 8]], [3, [9, 10, 11, 12, 13]], [4, [14, 15, 16, 17, 18]], [5, [20, 21, 22, 23, 24]], [6, [25, 26, 27, 28, 29]], [7, [31, 32, 33, 34, 35]], [8, [36, 37, 38, 39, 40]], [9, [41, 42, 43, 44, 45]]]) {
+test(`C${stage} maps load all aligned areas in each guidance language on mobile`, async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/guide/ep1ch.html');
+  for (const [button, language] of [['中', 'zh'], ['EN', 'en'], ['日', 'ja']]) {
+    await page.getByRole('button', { name: button, exact: true }).click();
+    for (const area of areas) {
+      const map = page.locator(`figure[aria-label="C${stage} · Area ${area}"] img`);
+      await expect(map).toHaveAttribute('src', `/assets/img/challenge/ep1/maps/${language}/area_${String(area).padStart(2, '0')}.svg`);
+      await map.scrollIntoViewIfNeeded();
+      await expect.poll(() => map.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+      const box = await map.boundingBox();
+      expect(box.x).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width).toBeLessThanOrEqual(391);
+    }
+  }
+});
+}
+
+for (const [stage, areas] of [[1,[1,2,3,4,5,6]],[2,[8,9,10,11,12,13]],[3,[15,16,17,18,19]],[4,[21,22,23,24,25,26]],[5,[28,29]]]) {
+  test(`EP2 C${stage} maps load aligned areas in all languages on mobile`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/guide/ep2ch.html');
+    for (const [button, language] of [['中','zh'],['EN','en'],['日','ja']]) {
+      await page.getByRole('button', { name: button, exact: true }).click();
+      for (const area of areas) {
+        const file=`c${stage}_area_${String(area).padStart(2,'0')}.svg`;
+        const map=page.locator(`.challenge-map img[data-zh-src$="/${file}"]`);
+        await expect(map).toHaveAttribute('src', `/assets/img/challenge/ep2/maps/${language}/${file}`);
+        await map.scrollIntoViewIfNeeded();
+        await expect.poll(() => map.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+        const box=await map.boundingBox();
+        expect(box.x).toBeGreaterThanOrEqual(0);
+        expect(box.x+box.width).toBeLessThanOrEqual(391);
+      }
+    }
+  });
+}
+
+for (const episode of [1, 2]) {
+  test(`EP${episode} guide navigates stages and inspects the selected localized map`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(`/guide/ep${episode}ch.html`);
+    await page.getByRole('button', { name: 'EN', exact: true }).click();
+    const stageLink = page.locator('[data-stage-link="c3"]');
+    await stageLink.click();
+    await expect(page).toHaveURL(/#c3$/);
+    await expect(stageLink).toHaveAttribute('aria-current', 'location');
+    const stage = page.locator('#c3');
+    const tactics = stage.locator('.challenge-tactics');
+    await tactics.locator('summary').click();
+    await expect(tactics).not.toHaveAttribute('open');
+    const mapLink = stage.locator('.challenge-area-nav a').first();
+    const destination = await mapLink.getAttribute('href');
+    await mapLink.click();
+    await expect(page).toHaveURL(new RegExp(`${destination.split('#')[1]}$`));
+    const figure = stage.locator('.challenge-map').first();
+    const opener = figure.locator('[data-map-open]');
+    await opener.focus();
+    await page.keyboard.press('Enter');
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator('img')).toHaveAttribute('src', await figure.locator('img').evaluate(image => image.src));
+    await expect(dialog.locator('img')).toHaveAttribute('alt', await figure.locator('img').getAttribute('alt'));
+    const accessibility = await new AxeBuilder({ page }).include('.challenge-viewer')
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
+    expect(accessibility.violations).toEqual([]);
+    await dialog.locator('[data-map-zoom="in"]').click();
+    expect(await dialog.locator('img').evaluate(image => image.getBoundingClientRect().width)).toBeGreaterThanOrEqual(1000);
+    const canvas = dialog.locator('.challenge-viewer-canvas');
+    expect(await canvas.evaluate(element => element.scrollWidth > element.clientWidth)).toBe(true);
+    await dialog.locator('[data-map-zoom="fit"]').click();
+    expect(await canvas.evaluate(element => element.scrollWidth <= element.clientWidth + 1)).toBe(true);
+    await page.keyboard.press('Escape');
+    await expect(dialog).not.toBeVisible();
+    await expect(opener).toBeFocused();
+    expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  });
+}
 
 test('challenge and Seabed guides keep their complete map inventories usable on mobile', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -450,7 +531,11 @@ test('landing activity spotlight has no WCAG A/AA accessibility violations', asy
 for (const { path, selectors } of [
   {
     path: '/guide/ep1ch.html',
-    selectors: ['.challenge-language', '.challenge-map:first-of-type'],
+    selectors: ['.challenge-guide'],
+  },
+  {
+    path: '/guide/ep2ch.html',
+    selectors: ['.challenge-guide'],
   },
   {
     path: '/guide/seabed.html',
