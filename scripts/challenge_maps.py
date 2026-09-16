@@ -52,8 +52,9 @@ ROUTE_STYLE = {
 SYMBOL_KINDS = {
     "switch", "timed-switch", "door", "warp", "box", "trap", "turret", "rocks",
     "heal", "target", "console", "press", "false-wall", "sequence", "dark-room",
+    "mag-switch", "item-switch", "light-switch", "jar-trap", "avoid-target", "avoid-switch", "avoid-warp", "barrier-grid", "barrier-switch",
 }
-EXIT_KINDS = {"next", "boss"}
+EXIT_KINDS = {"next", "boss", "finish"}
 
 ANCHOR_TOLERANCE = 12
 CONSISTENCY_FLOOR = 90.0  # % of wall-crossing evidence the floor parity agrees with
@@ -100,6 +101,7 @@ class Geometry:
     symbol_min: int
     floor_svg: str = ""
     outline_svg: str = ""
+    detail_svg: str = ""
     extent: np.ndarray | None = None  # drawn area for cropping when it exceeds the floor
 
 
@@ -453,7 +455,7 @@ def validate_area(area_id: str, area: dict, geometry: Geometry, languages: list[
     if area["exit_kind"] not in EXIT_KINDS:
         errors.append(f"exit_kind {area['exit_kind']!r} is not one of {sorted(EXIT_KINDS)}")
 
-    warps: dict[int, dict[bool, list[int]]] = {}
+    warps: dict[int, dict[bool, list[list[int]]]] = {}
     for symbol in area["symbols"]:
         kind = symbol["kind"]
         if kind not in SYMBOL_KINDS:
@@ -469,12 +471,13 @@ def validate_area(area_id: str, area: dict, geometry: Geometry, languages: list[
             continue
         on_floor(symbol["at"], f"{kind} symbol")
         if kind == "warp":
-            pair = warps.setdefault(symbol["n"], {})
-            if symbol["prime"] in pair:
-                errors.append(f"warp {symbol['n']} has two prime={symbol['prime']} symbols")
-            pair[symbol["prime"]] = symbol["at"]
+            pair = warps.setdefault(symbol["n"], {False: [], True: []})
+            side = pair[symbol["prime"]]
+            if symbol["at"] in side:
+                errors.append(f"warp {symbol['n']} repeats endpoint {symbol['at']}")
+            side.append(symbol["at"])
     for number, pair in warps.items():
-        if set(pair) != {False, True}:
+        if not pair[False] or not pair[True]:
             errors.append(f"warp {number} is not paired")
 
     for route in area["routes"]:
@@ -490,8 +493,9 @@ def validate_area(area_id: str, area: dict, geometry: Geometry, languages: list[
             end, start = before[-1], after[0]
             matched = any(
                 set(pair) == {False, True}
-                and np.hypot(end[0] - pair[False][0], end[1] - pair[False][1]) <= ANCHOR_TOLERANCE
-                and np.hypot(start[0] - pair[True][0], start[1] - pair[True][1]) <= ANCHOR_TOLERANCE
+                and any(np.hypot(end[0] - origin[0], end[1] - origin[1]) <= ANCHOR_TOLERANCE
+                        and np.hypot(start[0] - destination[0], start[1] - destination[1]) <= ANCHOR_TOLERANCE
+                        for prime in (False, True) for origin in pair[prime] for destination in pair[not prime])
                 for pair in warps.values()
             )
             if not matched:
@@ -598,15 +602,16 @@ def label_width(content: str, size: int) -> float:
     return sum(size if unicodedata.east_asian_width(c) in {"W", "F"} else size * 0.62 for c in content)
 
 
-def terminal(kind: str, x: float, y: float, label: str) -> str:
+def terminal(kind: str, x: float, y: float, label: str, label_offset: tuple[float, float] = (0, -46)) -> str:
     """Start or exit marker in screen coordinates, label pill above the point."""
     color = PALETTE["start"] if kind == "start" else PALETTE["exit"]
     pill = label_width(label, 16) + 22
+    dx, dy = label_offset
     return (
         f'<g transform="translate({x:g} {y:g})" filter="url(#shadow)">'
         f'<circle r="12" fill="{color}" stroke="{PALETTE["ink"]}" stroke-width="4"/>'
-        f'<rect x="{-pill / 2:g}" y="-46" width="{pill:g}" height="26" rx="13" fill="{PALETTE["ink"]}" fill-opacity=".9" stroke="{color}" stroke-width="2"/>'
-        f'{text(label, 0, -27.5, size=16, fill=color)}</g>'
+        f'<rect x="{dx-pill / 2:g}" y="{dy:g}" width="{pill:g}" height="26" rx="13" fill="{PALETTE["ink"]}" fill-opacity=".9" stroke="{color}" stroke-width="2"/>'
+        f'{text(label, dx, dy + 18.5, size=16, fill=color)}</g>'
     )
 
 
@@ -626,8 +631,12 @@ def symbol_svg(symbol: dict, scale: float) -> str:
         return f'<polygon points="{points}" fill="url(#dark-hatch)" stroke="none"/>'
     x, y = symbol["at"]
     label = symbol.get("label")
-    if kind in {"switch", "timed-switch"}:
+    if kind in {"switch", "timed-switch", "barrier-switch"}:
         body = f'<circle r="10" fill="{color}"/>'
+        if kind == "barrier-switch":
+            body = f'<rect x="-9" y="-11" width="18" height="22" rx="3" fill="{color}"/>'
+        if "step" in symbol:
+            body += f'<text y="4" text-anchor="middle" font-family="{FONT}" font-size="11" font-weight="950" fill="{PALETTE["ink"]}" stroke="none">{symbol["step"]}</text>'
         if kind == "timed-switch":
             body += f'<path d="M0-5V0l4 3" fill="none" stroke="{PALETTE["ink"]}" stroke-width="2.4" stroke-linecap="round"/>'
     elif kind == "door":
@@ -639,12 +648,24 @@ def symbol_svg(symbol: dict, scale: float) -> str:
             f'<path d="M-14-11H14L0 14Z" fill="{color}"/>'
             f'<text y="4" text-anchor="middle" font-family="{FONT}" font-size="13" font-weight="950" fill="{PALETTE["ink"]}" stroke="none">{mark}</text>'
         )
+    elif kind == "barrier-grid":
+        width, height = symbol["width"], symbol["height"]
+        lines = "".join(f'<path d="M{width * (i / 3 - .5):g} {-height / 2:g}v{height:g}M{-width / 2:g} {height * (i / 3 - .5):g}h{width:g}"/>' for i in range(4))
+        return f'<g transform="translate({x} {y})" fill="none" stroke="{color}" stroke-width="{2 / scale:g}">{lines}</g>'
     elif kind == "box":
         body = f'<rect x="-10" y="-9" width="20" height="18" rx="4" fill="{color}"/><path d="M-10-2H10" fill="none"/>'
     elif kind == "trap":
         body = f'<path d="M0-13 13 11H-13Z" fill="{color}"/><path d="M0-4V3M0 7v1" stroke-linecap="round"/>'
     elif kind == "turret":
         body = f'<circle r="9" fill="{color}"/><path d="M0 0 14-8" stroke-width="5" stroke-linecap="round" stroke="{color}"/>'
+    elif kind == "jar-trap":
+        body = f'<path d="M-11 10V-2Q-11-12 0-12Q11-12 11-2V10Z" fill="{color}"/><circle cy="-3" r="4" fill="#f26573"/><path d="M-13 10H13"/>'
+    elif kind == "avoid-target":
+        body = f'<circle r="10" fill="{PALETTE["ink"]}" stroke="{color}"/><path d="M-5-5 5 5M-5 5 5-5" stroke="{color}" stroke-width="3"/>'
+    elif kind == "avoid-warp":
+        body = f'<path d="M-14-11H14L0 14Z" fill="{PALETTE["ink"]}" stroke="{color}"/><path d="M-5-6 5 4M-5 4 5-6" stroke="{color}" stroke-width="3"/>'
+    elif kind == "avoid-switch":
+        body = f'<rect x="-10" y="-10" width="20" height="20" rx="3" fill="{PALETTE["ink"]}" stroke="{color}"/><path d="M-5-5 5 5M-5 5 5-5" stroke="{color}" stroke-width="3"/>'
     elif kind == "rocks":
         body = f'<path d="M-15 6-11-6-4-3 1-11 8-3 15-7 17 6 8 10 0 6-6 11Z" fill="{color}"/>'
     elif kind == "heal":
@@ -653,10 +674,19 @@ def symbol_svg(symbol: dict, scale: float) -> str:
         body = f'<circle r="9" fill="none" stroke="{color}" stroke-width="3"/><circle r="3" fill="{color}"/>'
     elif kind == "console":
         body = f'<rect x="-10" y="-8" width="20" height="14" rx="2" fill="{color}"/><path d="M-4 10h8" stroke-width="3"/>'
+    elif kind == "mag-switch":
+        body = f'<rect x="-13" y="-9" width="26" height="18" rx="4" fill="{color}"/><text y="4" text-anchor="middle" font-family="{FONT}" font-size="11" font-weight="900" stroke="none" fill="{PALETTE["ink"]}">MAG</text>'
+    elif kind == "item-switch":
+        icon = 'M-6-6H6V1Q6 5 0 8Q-6 5-6 1Z' if symbol["item"] == "shield" else 'M-7 7 6-6M1-7 7-7 7-1M-7 1-1 7'
+        body = f'<rect x="-11" y="-11" width="22" height="22" rx="3" fill="{color}"/><path d="{icon}" fill="none" stroke-width="2"/>'
+        if "count" in symbol:
+            body += f'<circle cx="10" cy="10" r="7" fill="{PALETTE["ink"]}" stroke="none"/><text x="10" y="14" text-anchor="middle" font-family="{FONT}" font-size="11" font-weight="950" fill="{color}" stroke="none">{symbol["count"]}</text>'
+    elif kind == "light-switch":
+        body = f'<circle cy="-3" r="8" fill="{color}"/><path d="M-4 6H4M-3 10H3" stroke="{color}" stroke-width="3"/>'
     elif kind == "press":
         body = f'<rect x="-10" y="-11" width="20" height="7" fill="{color}"/><path d="M0-4V6M-8 9H8" stroke-width="3"/>'
     elif kind == "false-wall":
-        body = f'<path d="M0-18V18" stroke="{color}" stroke-width="5" stroke-dasharray="5 4"/>'
+        body = "".join(f'<rect x="-2.5" y="{y}" width="5" height="8" rx="1" fill="{color}" stroke="none"/>' for y in (-18, -5, 8))
         return _ring(body, x, y, scale, symbol.get("angle", 0))
     else:  # sequence
         count = symbol["count"]
@@ -721,7 +751,85 @@ def key_strip(roles: list[str], strings: dict, width: int, y: int) -> tuple[str,
     return "".join(items), 40
 
 
+def symbol_key_strip(symbols: list[dict], labels: dict[str, str], width: int, y: int) -> tuple[str, int]:
+    """Show each mechanism used on this map once, with a localized caption."""
+    examples = {}
+    for symbol in symbols:
+        key = symbol["kind"]
+        if key == "item-switch":
+            key += ":" + symbol["item"]
+        examples.setdefault(key, symbol)
+    x, row = 34, 0
+    items = []
+    for key, example in examples.items():
+        label = labels[key]
+        item_width = 32 + label_width(label, 13) + 28
+        if x + item_width > width - 20:
+            x, row = 34, row + 1
+        icon = {**example, "at": [x, y + 16 + row * 34], "color": "#a9d8ed"}
+        icon.pop("step", None)
+        if icon["kind"] == "barrier-grid":
+            icon.update(width=18, height=18)
+        if icon["kind"] == "warp":
+            icon.update(n=1, prime=False)
+        items.append(symbol_svg(icon, 1.3))
+        items.append(text(label, x + 20, y + 21 + row * 34, size=13, fill="#a9d8ed", weight=650, anchor="start"))
+        x += item_width
+    return "".join(items), (row + 1) * 34 + 8
+
+
+def callout_height(callout: dict, language: str) -> int:
+    text_height = len(wrap_text(callout["text"][language], callout["box"][2] - 16, 13)) * 18 + 14
+    return text_height + (len(callout["grid"]) * 28 + 12 if "grid" in callout else 0)
+
+
+def callout_svg(callout: dict, anchor: tuple[float, float], language: str) -> tuple[str, str]:
+    """Keep a source instruction next to its location, with a leader line.
+
+    Anchors use source coordinates; label boxes use the 1000-unit page layout.
+    Their placement is shared by all languages, with text wrapped to fit.
+    """
+    x, y, width = callout["box"]
+    lines = wrap_text(callout["text"][language], width - 16, 13)
+    height = callout_height(callout, language)
+    ax, ay = anchor
+    edge_x = min(max(ax, x), x + width)
+    edge_y = min(max(ay, y), y + height)
+    color = {"warning": "#ffbe99", "supply": "#a0e5b6", "action": "#a9d8ed"}[callout["tone"]]
+    caption = "".join(text(line, x + 8, y + 20 + index * 18, size=13, fill=color, weight=650, anchor="start")
+                      for index, line in enumerate(lines))
+    if "grid" in callout:
+        rows = callout["grid"]
+        top = y + len(lines) * 18 + 24
+        left = x + width / 2 - (len(rows[0]) - 1) * 18
+        cells = []
+        for row, values in enumerate(rows):
+            for col, value in enumerate(values):
+                if not value:
+                    continue
+                cx, cy = left + col * 36, top + row * 28
+                ink = "#ffbe99" if value == "×" else "#a0e5b6"
+                cells.append(f'<circle cx="{cx:g}" cy="{cy:g}" r="11" fill="#071a31" stroke="{ink}"/>'
+                             + text(value, cx, cy + 4.5, size=14, fill=ink))
+        caption += '<g data-switch-grid="">' + "".join(cells) + '</g>'
+    leader = (
+        f'<path d="M{ax:g} {ay:g}L{edge_x:g} {edge_y:g}" fill="none" stroke="{color}" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/>'
+        f'<circle cx="{ax:g}" cy="{ay:g}" r="2.5" fill="{color}"/>'
+    )
+    box = (
+        f'<g data-callout="{html.escape(callout["id"], quote=True)}">'
+        f'<title>{html.escape(callout["source"])}</title>'
+        f'<rect data-callout-box="" x="{x}" y="{y}" width="{width}" height="{height}" rx="5" fill="#10263a" stroke="{color}" stroke-opacity=".35"/>'
+        f'{caption}</g>'
+    )
+    # Paint all leaders before any caption so another annotation's leader
+    # cannot cross the text in an already-painted box.
+    return leader, box
+
+
 def notes_panel(notes: list[tuple[int | None, str]], strings: dict, width: int, y: int) -> tuple[str, int]:
+    if not notes:
+        return text(strings["sources"], width - 42, y + 24, size=12, fill="#8aabba", anchor="end"), 42
     columns = 2 if width >= 700 else 1
     column_width = (width - 72) // columns
     heights = [max(56, len(wrap_text(note, column_width - 54, 15)) * 24 + 22) for _, note in notes]
@@ -764,54 +872,71 @@ MAP_WIDTH = 1000
 MAP_MAX_HEIGHT = 1000
 
 
-def render_svg(area: dict, geometry: Geometry, words: dict, title: str, notes: list[tuple[int | None, str]], below: str, above: str = "") -> str:
-    """Assemble one localized map (docs/CHALLENGE_MAP_REDRAW.md §3).
-
-    `below` is the geometry drawn under the routes in source coordinates
-    (EP1 traced floor and outline, EP2 base raster); `above` is drawn over
-    the mechanism symbols (EP2 label raster).
-    """
+def render_area(area_id: str, area: dict, geometry: Geometry, strings: dict, language: str, symbol_labels: dict) -> str:
+    """Render measured geometry, routes and localized anchored captions."""
+    words = {**strings[language]}
+    if "attribution" in area:
+        words["sources"] = area["attribution"]
     left, top, right, bottom = content_bounds(geometry, area)
-    scale = min((MAP_WIDTH - 40) / (right - left), MAP_MAX_HEIGHT / (bottom - top))
+    frame_x, frame_y, frame_width, frame_height = area.get(
+        "map_frame", [65, 60, 870, MAP_MAX_HEIGHT]
+    )
+    scale = min(frame_width / (right - left), frame_height / (bottom - top))
     map_width = (right - left) * scale
     map_height = (bottom - top) * scale
-    map_left = (MAP_WIDTH - map_width) / 2
-    offset_x = map_left - left * scale
-    offset_y = 24 - top * scale
+    offset_x = frame_x + (frame_width - map_width) / 2 - left * scale
+    offset_y = frame_y - top * scale
 
     def screen(point: list[int]) -> tuple[float, float]:
         return offset_x + point[0] * scale, offset_y + point[1] * scale
 
+    number = f"{int(area_id):02d}"
+    title = words["area"].replace("{n}", number).replace("{stage}", str(area["stage"]))
+    notes = panel_notes(area, language)
     roles = [route["role"] for route in area["routes"]]
-    map_bottom = 24 + map_height
+    map_bottom = max([frame_y + map_height] + [c["box"][1] + callout_height(c, language) + 4
+                                              for c in area.get("callouts", [])])
     strip, strip_height = key_strip(roles, words, MAP_WIDTH, round(map_bottom + 14))
+    symbol_strip, symbol_height = symbol_key_strip([s for s in area["symbols"] if s.get("visible", True)], symbol_labels, MAP_WIDTH, round(map_bottom + 14 + strip_height))
+    strip_height += symbol_height
     panel, panel_height = notes_panel(notes, words, MAP_WIDTH, round(map_bottom + 18 + strip_height))
     total_height = round(map_bottom + 18 + strip_height + panel_height + 18)
 
     dark_rooms = [symbol for symbol in area["symbols"] if symbol["kind"] == "dark-room"]
-    mechanisms = [symbol for symbol in area["symbols"] if symbol["kind"] != "dark-room"]
+    mechanisms = [symbol for symbol in area["symbols"] if symbol["kind"] != "dark-room" and symbol.get("visible", True)]
     routes = sorted(area["routes"], key=lambda route: ROUTE_ROLES.index(route["role"]))
-    exit_label = words["boss"] if area["exit_kind"] == "boss" else words["next"]
-    badges = "".join(badge(number, *screen([x, y])) for number, x, y in area["badges"])
-    terminals = terminal("start", *screen(area["start"]), words["start"]) + terminal("exit", *screen(area["exit"]), exit_label)
+    exit_label = words[area["exit_kind"]]
+    badges = "".join(badge(badge_number, *screen([x, y])) for badge_number, x, y in area["badges"])
+    terminals = terminal("start", *screen(area["start"]), words["start"] + (" · " + area["start_label"] if "start_label" in area else ""), area.get("start_label_offset", (0, -46))) + terminal("exit", *screen(area["exit"]), exit_label, area.get("exit_label_offset", (0, -46)))
+    terminals += "".join(terminal("start", *screen(start["at"]), words["start"] + " · " + start["label"], start.get("label_offset", (0, -46))) for start in area.get("starts", []))
+    source_labels = "".join(text(label["text"][language], *label["at"], size=18, fill="#dff8ff", weight=500, anchor="start") for label in area.get("item_labels", []))
     desc = " ".join(note for _, note in notes)
+    callout_parts = [callout_svg(callout, screen(callout["at"]), language) for callout in area.get("callouts", [])]
+    callouts = "".join(leader for leader, _ in callout_parts) + "".join(box for _, box in callout_parts)
+    desc += " " + " ".join(callout["text"][language] for callout in area.get("callouts", []))
+    # Dense map mechanisms should fit beside the measured narrow passages.
+    symbol_scale = scale / 0.72
+    route_scale = scale / 0.55
+    heading = text((title if title.startswith("EP2") else f"C{area["stage"]} · {title}"), 26, 30, size=16, fill="#a9d8ed", anchor="start")
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {MAP_WIDTH} {total_height}" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
 <title id="title">{html.escape(title)}</title>
 <desc id="desc">{html.escape(desc)}</desc>
 {defs(scale)}
-<clipPath id="map-clip"><rect x="{map_left:g}" y="24" width="{map_width:g}" height="{map_height:g}"/></clipPath>
 <rect width="{MAP_WIDTH}" height="{total_height}" rx="18" fill="{PALETTE["background"]}"/>
-<g clip-path="url(#map-clip)"><g transform="translate({offset_x:g} {offset_y:g}) scale({scale:g})">
-  {below}
+{heading}
+<g transform="translate({offset_x:g} {offset_y:g}) scale({scale:g})">
+  <g filter="url(#shadow)">{geometry.floor_svg}</g>
+  {geometry.outline_svg}
   {"".join(symbol_svg(symbol, scale) for symbol in dark_rooms)}
-  {"".join(route_svg(route, scale) for route in routes)}
-  {"".join(symbol_svg(symbol, scale) for symbol in mechanisms)}
-  {above}
-</g></g>
+  {"".join(route_svg(route, route_scale) for route in routes)}
+  {geometry.detail_svg}{source_labels}{"".join(symbol_svg(symbol, symbol_scale / symbol.get("size", 1)) for symbol in mechanisms)}
+</g>
 {badges}
 {terminals}
+{callouts}
 {strip}
+{symbol_strip}
 {panel}
 </svg>
 '''

@@ -1,123 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1049" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 740" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
 <title id="title">エリア 23</title>
-<desc id="desc">入口から見て左のワープ1へ入る。 転送後すぐ後ろの隠し通路を抜け、次エリアのワープへ。</desc>
-<defs><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".35"/></filter><pattern id="dark-hatch" width="5.6875" height="5.6875" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5.6875" height="5.6875" fill="#000" fill-opacity=".25"/><path d="M0 0V5.6875" stroke="#4fe3ff" stroke-opacity=".25" stroke-width="1.70625"/></pattern><marker id="arrow-main" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ffd23f" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-split" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#f5f7ff" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-solo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#b48cff" stroke="#061329" stroke-width="1"/></marker></defs>
-<rect width="1000" height="1049" rx="18" fill="#071a31"/>
-<g transform="translate(-45.0549 24) scale(1.75824)">
-  <g filter="url(#shadow)"><g transform="translate(0.000000,474.000000) scale(0.100000,-0.100000)"
-fill="#1f5a8c" stroke="none">
-<path d="M3100 4635 l0 -85 -175 0 -175 0 0 -25 0 -25 175 0 175 0 0 -70 0
--70 190 0 190 0 0 180 0 180 -190 0 -190 0 0 -85z M2300 4675 l0 -35 128 0
-c121 0 130 -1 150 -23 17 -18 22 -36 22 -73 0 -61 -28 -94 -78 -94 -18 0 -32
--4 -32 -8 0 -4 -43 -6 -95 -4 l-95 4 0 -46 0 -46 80 0 80 0 0 -31 c0 -38 24
--35 28 4 l3 27 90 0 89 0 0 180 0 180 -185 0 -185 0 0 -35z M2460 4220 c0 -20
-5 -30 15 -30 10 0 15 10 15 30 0 20 -5 30 -15 30 -10 0 -15 -10 -15 -30z
-M2460 4110 c0 -20 5 -30 15 -30 10 0 15 10 15 30 0 20 -5 30 -15 30 -10 0 -15
--10 -15 -30z M2150 3860 c0 -89 0 -90 25 -90 l25 0 0 -140 0 -140 -25 0 -25 0
-0 -270 0 -270 25 0 25 0 0 -130 0 -130 -25 0 c-25 0 -25 -1 -25 -90 l0 -90
-105 0 105 0 0 25 0 25 109 0 c106 0 110 -1 113 -22 3 -22 8 -23 111 -26 l107
--3 0 91 0 90 -30 0 -30 0 0 130 0 130 30 0 30 0 0 269 0 270 -27 3 -28 3 -3
-138 -3 137 31 0 30 0 0 90 0 90 -110 0 c-109 0 -110 0 -110 -24 0 -22 -5 -24
--52 -28 -29 -2 -79 -2 -110 0 -53 4 -58 6 -58 28 0 24 -1 24 -105 24 l-105 0
-0 -90z M5060 3320 l0 -70 -885 0 -885 0 -2 -857 -3 -858 -57 -3 -58 -3 0 31 0
-30 -270 0 -270 0 0 -30 0 -30 -130 0 -130 0 0 30 0 30 -90 0 -90 0 0 -110 0
--110 25 0 c22 0 25 -4 25 -35 l0 -35 -170 0 -170 0 0 55 0 55 -299 0 -300 0
--3 -152 c-3 -150 -3 -154 21 -181 24 -26 29 -27 118 -27 l93 0 0 -130 0 -129
--147 -3 -148 -3 -3 -158 -3 -157 -119 0 -119 0 -3 68 -3 67 -187 3 -188 2 0
--50 0 -50 136 0 136 0 -7 -72 c-10 -110 -25 -121 -160 -126 l-105 -4 0 -34 0
--34 190 0 190 0 0 65 0 65 120 0 120 0 0 -135 0 -135 345 0 345 0 0 345 0 345
--155 0 -155 0 0 130 0 130 118 0 117 0 28 34 c19 25 27 46 27 75 l0 41 170 0
-170 0 0 -25 c0 -20 -5 -25 -25 -25 l-25 0 0 -105 0 -105 90 0 c89 0 90 0 90
-25 l0 25 130 0 130 0 0 -25 0 -25 270 0 270 0 0 25 0 25 140 0 140 0 0 -25 c0
--25 1 -25 90 -25 l90 0 0 105 0 105 -25 0 -25 0 0 109 c0 106 1 110 23 113 21
-3 22 8 25 111 l3 107 -91 0 -90 0 0 -30 c0 -29 -1 -30 -50 -30 l-50 0 0 165 0
-165 650 0 650 0 0 650 0 650 205 0 205 0 0 -65 0 -65 30 0 c34 0 62 14 102 49
-40 35 87 31 141 -13 26 -21 55 -36 71 -36 l26 0 0 180 0 180 -47 0 c-37 0 -53
--6 -74 -26 -19 -18 -38 -26 -64 -26 -26 0 -45 8 -64 26 -21 20 -37 26 -74 26
-l-47 0 0 -70z M845 480 c10 -11 20 -20 22 -20 1 0 3 9 3 20 0 14 -7 20 -22 20
--20 0 -21 -1 -3 -20z"/>
+<desc id="desc"> 2部屋目の罠を処理してワープへ。 入口から見て左のワープ1へ（図では上側）。もう一方には入らない。 ワープ直後に回れ右。背後の隠し壁を抜け、次エリアの転送装置へ。</desc>
+<defs><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".35"/></filter><pattern id="dark-hatch" width="8.70492" height="8.70492" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8.70492" height="8.70492" fill="#000" fill-opacity=".25"/><path d="M0 0V8.70492" stroke="#4fe3ff" stroke-opacity=".25" stroke-width="2.61148"/></pattern><marker id="arrow-main" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ffd23f" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-split" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#f5f7ff" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-solo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#b48cff" stroke="#061329" stroke-width="1"/></marker></defs>
+<rect width="1000" height="740" rx="18" fill="#071a31"/>
+<text x="26" y="30" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">C5 · エリア 23</text>
+<g transform="translate(12.4953 75) scale(1.14878)">
+  <g filter="url(#shadow)"><g id="c5-floor" data-source="PSO World area_23.png">
+  <defs>
+    <clipPath id="c5-floor-clip"><path d="M230 3L230 40L245 39L245 84L236 84L237 79L215 79L215 97L220 97L220 125L215 124L215 179L220 179L220 205L215 205L215 223L236 222L236 218L258 218L258 223L280 223L280 205L274 205L274 179L280 179L280 124L274 124L274 97L280 97L280 79L258 79L258 84L252 84L252 39L268 40L268 2Z M310 11L310 19L274 19L274 24L310 24L310 38L348 38L348 2L310 2Z M506 142L506 149L329 150L329 276L331 276L329 282L330 320L317 321L317 315L263 315L263 321L237 321L237 315L219 315L219 337L224 337L224 344L190 344L190 333L130 333L130 364L134 369L153 369L153 395L123 395L123 427L99 427L99 413L61 413L61 450L99 450L99 437L123 437L123 464L192 464L192 396L161 395L161 369L184 369L190 363L190 354L224 354L224 359L219 358L219 381L237 381L237 375L263 375L263 380L317 380L317 375L345 375L345 381L362 380L362 358L358 359L358 337L363 337L363 315L345 315L345 321L335 321L335 288L465 288L465 157L506 158L506 172L544 172L544 135L505 135Z" clip-rule="evenodd"/></clipPath>
+    <pattern id="c5-dark-hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M-2 2L2-2M0 8L8 0M6 10L10 6" fill="none" stroke="#4fe3ff" stroke-opacity=".18" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <path d="M230 3L230 40L245 39L245 84L236 84L237 79L215 79L215 97L220 97L220 125L215 124L215 179L220 179L220 205L215 205L215 223L236 222L236 218L258 218L258 223L280 223L280 205L274 205L274 179L280 179L280 124L274 124L274 97L280 97L280 79L258 79L258 84L252 84L252 39L268 40L268 2Z M310 11L310 19L274 19L274 24L310 24L310 38L348 38L348 2L310 2Z M506 142L506 149L329 150L329 276L331 276L329 282L330 320L317 321L317 315L263 315L263 321L237 321L237 315L219 315L219 337L224 337L224 344L190 344L190 333L130 333L130 364L134 369L153 369L153 395L123 395L123 427L99 427L99 413L61 413L61 450L99 450L99 437L123 437L123 464L192 464L192 396L161 395L161 369L184 369L190 363L190 354L224 354L224 359L219 358L219 381L237 381L237 375L263 375L263 380L317 380L317 375L345 375L345 381L362 380L362 358L358 359L358 337L363 337L363 315L345 315L345 321L335 321L335 288L465 288L465 157L506 158L506 172L544 172L544 135L505 135Z" fill="#173d60" fill-rule="evenodd"/>
+  <g id="c5-dark-rooms" clip-path="url(#c5-floor-clip)">
+    <path d="" fill="#102b42"/>
+    <path d="" fill="url(#c5-dark-hatch)"/>
+  </g>
 </g></g>
-  <g transform="translate(0.000000,474.000000) scale(0.100000,-0.100000)"
-fill="#4fe3ff" stroke="none">
-<path d="M3092 4728 c-7 -7 -12 -42 -12 -85 l0 -73 -163 0 c-171 0 -187 -4
--187 -45 0 -41 16 -45 187 -45 l163 0 0 -58 c0 -32 5 -63 12 -70 17 -17 379
--17 396 0 17 17 17 359 0 376 -17 17 -379 17 -396 0z m388 -188 l0 -180 -190
-0 -190 0 0 70 0 70 -175 0 -175 0 0 25 0 25 175 0 175 0 0 85 0 85 190 0 190
-0 0 -180z M2291 4716 c-7 -8 -11 -30 -9 -48 l3 -33 140 0 140 -1 -132 3 -133
-4 0 34 0 35 185 0 185 0 0 -180 0 -180 -89 0 -90 0 -3 -27 c-4 -39 -28 -42
--28 -4 l0 31 -80 0 -80 0 0 45 0 45 80 0 c47 0 80 4 80 10 0 15 -153 13 -168
--2 -7 -7 -12 -30 -12 -53 0 -23 5 -46 12 -53 7 -7 40 -12 80 -12 59 0 68 -2
-68 -18 0 -10 5 -23 12 -30 9 -9 9 -15 0 -24 -17 -17 -15 -63 4 -79 37 -30 73
-43 39 80 -14 16 -14 19 0 31 8 7 15 19 15 26 0 11 18 14 78 14 47 0 83 5 90
-12 17 17 17 359 0 376 -19 19 -372 17 -387 -2z m199 -496 c0 -20 -5 -30 -15
--30 -10 0 -15 10 -15 30 0 20 5 30 15 30 10 0 15 -10 15 -30z M2593 4545 c0
--33 2 -45 4 -27 2 18 2 45 0 60 -2 15 -4 0 -4 -33z M2498 4453 c12 -2 32 -2
-45 0 12 2 2 4 -23 4 -25 0 -35 -2 -22 -4z M2452 4148 c-17 -17 -15 -63 4 -79
-22 -18 48 0 52 35 6 45 -29 71 -56 44z m38 -38 c0 -20 -5 -30 -15 -30 -10 0
--15 10 -15 30 0 20 5 30 15 30 10 0 15 -10 15 -30z M2141 3956 c-8 -9 -11 -45
--9 -103 3 -80 5 -89 26 -98 21 -9 22 -15 22 -125 0 -110 -1 -116 -22 -125
-l-23 -10 0 -275 0 -275 23 -10 c21 -9 22 -15 22 -115 0 -100 -1 -106 -22 -115
--21 -9 -23 -18 -26 -101 -2 -69 1 -94 12 -103 9 -8 48 -11 117 -9 97 3 105 5
-114 26 9 20 16 22 93 22 78 0 86 -2 104 -25 18 -24 25 -25 122 -25 66 0 106 4
-114 12 7 7 12 44 12 98 0 89 -8 110 -42 110 -16 0 -18 11 -18 110 0 99 2 110
-18 110 40 0 42 14 42 290 0 276 -2 290 -42 290 -16 0 -18 11 -18 120 0 109 2
-120 18 120 34 0 42 21 42 111 0 62 -4 90 -14 98 -9 8 -51 11 -122 9 -102 -3
--110 -4 -119 -25 -7 -17 -18 -23 -42 -23 -18 0 -33 -4 -33 -10 0 -5 20 -10 45
--10 41 0 45 2 45 25 l0 25 110 0 110 0 0 -90 0 -90 -30 0 -31 0 3 -137 3 -138
-28 -3 27 -3 0 -270 0 -269 -30 0 -30 0 0 -130 0 -130 30 0 30 0 0 -90 0 -91
--107 3 c-103 3 -108 4 -111 26 -3 21 -7 22 -113 22 l-109 0 0 -25 0 -25 -105
-0 -105 0 0 90 c0 89 0 90 25 90 l25 0 0 130 0 130 -25 0 -25 0 0 270 0 270 25
-0 25 0 0 140 0 140 -25 0 c-25 0 -25 1 -25 90 l0 90 105 0 105 0 0 -25 c0 -23
-3 -25 50 -25 28 0 50 5 50 10 0 6 -17 10 -38 10 -29 0 -39 5 -47 23 -9 21 -17
-22 -116 25 -82 2 -109 -1 -118 -12z M5052 3398 c-7 -7 -12 -38 -12 -70 l0 -58
--873 0 c-666 0 -876 -3 -885 -12 -9 -9 -12 -214 -12 -860 l0 -848 -40 0 c-32
-0 -40 4 -40 18 0 40 -14 42 -290 42 -276 0 -290 -2 -290 -42 0 -16 -11 -18
--110 -18 -99 0 -110 2 -110 18 0 34 -21 42 -111 42 -62 0 -90 -4 -98 -14 -8
--9 -11 -51 -9 -122 3 -102 4 -110 25 -119 13 -5 23 -15 23 -22 0 -10 -36 -13
--150 -13 l-150 0 0 43 c0 24 -5 48 -12 55 -18 18 -601 17 -616 -1 -6 -7 -12
--76 -13 -165 l-2 -153 34 -35 c32 -33 34 -34 116 -34 l83 0 0 -110 0 -110
--133 0 c-175 0 -167 8 -167 -178 l0 -142 -100 0 -100 0 0 53 c0 86 -4 87 -216
-87 -127 0 -184 -4 -192 -12 -17 -17 -15 -103 3 -118 11 -9 50 -11 139 -8 l124
-4 -3 -71 c-4 -65 -3 -67 5 -20 4 28 9 62 9 78 l1 27 -135 0 -135 0 0 50 0 50
-188 -2 187 -3 3 -68 3 -67 119 0 119 0 3 157 3 158 148 3 147 3 0 129 0 130
--93 0 c-89 0 -94 1 -118 27 -24 27 -24 31 -21 181 l3 152 300 0 299 0 0 -55 0
--55 170 0 170 0 0 35 c0 31 -3 35 -25 35 l-25 0 0 110 0 110 90 0 90 0 0 -30
-0 -30 130 0 130 0 0 30 0 30 270 0 270 0 0 -30 0 -31 58 3 57 3 3 858 2 857
-885 0 885 0 0 70 0 70 45 0 c25 0 45 5 45 10 0 14 -84 12 -98 -2z M5335 3400
-c-4 -6 13 -10 44 -10 l51 0 0 -180 0 -180 -36 0 c-21 0 -33 -4 -29 -10 9 -14
-58 -13 73 2 8 8 12 64 12 188 0 124 -4 180 -12 188 -14 14 -94 16 -103 2z
-M4650 2510 l0 -650 -650 0 -650 0 0 -165 0 -165 50 0 c49 0 50 1 50 30 l0 30
-90 0 91 0 -3 -107 c-3 -103 -4 -108 -25 -111 -22 -3 -23 -7 -23 -113 l0 -109
-25 0 25 0 0 -105 0 -105 -90 0 c-89 0 -90 0 -90 25 l0 25 -140 0 -140 0 0 -25
-0 -25 -270 0 -270 0 0 25 0 25 -130 0 -130 0 0 -25 c0 -25 -1 -25 -90 -25
-l-90 0 0 105 0 105 25 0 c20 0 25 5 25 25 l0 25 -170 0 -170 0 0 -41 c0 -29
--8 -50 -27 -75 l-28 -34 -117 0 -118 0 0 -130 0 -130 155 0 155 0 0 -345 0
--345 -345 0 -345 0 0 135 0 135 -120 0 -120 0 0 -65 0 -65 -190 0 -190 0 0 35
-0 34 93 4 92 3 -100 0 -100 -1 -3 -33 c-6 -60 0 -62 207 -62 132 0 191 4 199
-12 7 7 12 36 12 65 l0 53 100 0 100 0 0 -123 c0 -82 4 -127 12 -135 17 -17
-689 -17 706 0 9 9 12 101 12 353 0 252 -3 344 -12 353 -8 8 -57 12 -155 12
-l-143 0 0 110 0 110 109 0 109 0 36 44 c24 30 36 55 36 75 l0 31 153 0 c129 0
-148 -2 127 -13 -24 -12 -25 -17 -28 -116 -2 -69 1 -108 9 -117 9 -11 34 -14
-103 -12 83 3 92 5 101 25 9 22 15 23 115 23 100 0 106 -1 115 -23 l10 -22 275
-0 275 0 10 23 c9 21 15 22 125 22 110 0 116 -1 125 -22 9 -21 18 -23 101 -26
-69 -2 94 1 103 12 8 9 11 48 9 117 -3 97 -5 105 -25 114 -21 9 -23 16 -23 93
-0 78 2 86 25 104 24 18 25 25 25 122 0 66 -4 106 -12 114 -16 16 -180 16 -196
-0 -7 -7 -12 -20 -12 -30 0 -13 -8 -18 -30 -18 l-30 0 0 145 0 145 638 0 c483
-0 641 3 650 12 9 9 12 167 12 650 l0 638 185 0 185 0 0 -53 c0 -29 5 -58 12
--65 15 -15 74 -16 83 -2 4 6 -10 10 -34 10 l-41 0 0 65 0 65 -205 0 -205 0 0
--650z"/>
+  <g id="c5-walls" fill="none" stroke="#8edfff" stroke-width="1.5" stroke-linejoin="miter">
+  <path d="M230 3L230 40L245 39L245 84L236 84L237 79L215 79L215 97L220 97L220 125L215 124L215 179L220 179L220 205L215 205L215 223L236 222L236 218L258 218L258 223L280 223L280 205L274 205L274 179L280 179L280 124L274 124L274 97L280 97L280 79L258 79L258 84L252 84L252 39L268 40L268 2Z M310 11L310 19L274 19L274 24L310 24L310 38L348 38L348 2L310 2Z M506 142L506 149L329 150L329 276L331 276L329 282L330 320L317 321L317 315L263 315L263 321L237 321L237 315L219 315L219 337L224 337L224 344L190 344L190 333L130 333L130 364L134 369L153 369L153 395L123 395L123 427L99 427L99 413L61 413L61 450L99 450L99 437L123 437L123 464L192 464L192 396L161 395L161 369L184 369L190 363L190 354L224 354L224 359L219 358L219 381L237 381L237 375L263 375L263 380L317 380L317 375L345 375L345 381L362 380L362 358L358 359L358 337L363 337L363 315L345 315L345 321L335 321L335 288L465 288L465 157L506 158L506 172L544 172L544 135L505 135Z"/>
+  <path d=""/>
+  <path d=""/>
 </g>
 
-  <path d="M72 431 L125 431 L155 400 L157 350 L330 350 L330 270 L462 154 L512 154 L522 139" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="6.825" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M72 431 L125 431 L155 400 L157 350 L330 350 L330 270 L462 154 L512 154 L522 139" fill="none" stroke="#ffd23f" stroke-width="3.98125" stroke-linecap="round" stroke-linejoin="round"/><path d="M248 92 L248 34" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="6.825" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M248 92 L248 34" fill="none" stroke="#ffd23f" stroke-width="3.98125" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-main)"/>
-  <g transform="translate(523 128) scale(0.56875)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M-14-11H14L0 14Z" fill="#f9bdc1"/><text y="4" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="950" fill="#061329" stroke="none">1</text></g><g transform="translate(248 101) scale(0.56875)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M-14-11H14L0 14Z" fill="#f9bdc1"/><text y="4" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="950" fill="#061329" stroke="none">1′</text></g><g transform="translate(248 55) scale(0.56875) rotate(90)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M0-18V18" stroke="#606060" stroke-width="5" stroke-dasharray="5 4"/></g><g transform="translate(333 20) scale(0.56875)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-10" y="-9" width="20" height="18" rx="4" fill="#009900"/><path d="M-10-2H10" fill="none"/></g>
+  <path d="M78 435 L120 435 L158 393 L158 351 L332 351 L332 277 L460 154 L525 154" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="5.74525" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M78 435 L120 435 L158 393 L158 351 L332 351 L332 277 L460 154 L525 154" fill="none" stroke="#ffd23f" stroke-width="3.35139" stroke-linecap="round" stroke-linejoin="round"/><path d="M249 107 L248 77 L248 24" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="5.74525" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M249 107 L248 77 L248 24" fill="none" stroke="#ffd23f" stroke-width="3.35139" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-main)"/>
+  <g transform="translate(525 144) scale(0.626754)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M-14-11H14L0 14Z" fill="#ed64b2"/><text y="4" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="950" fill="#061329" stroke="none">1</text></g><g transform="translate(249 107) scale(0.626754)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M-14-11H14L0 14Z" fill="#ed64b2"/><text y="4" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="950" fill="#061329" stroke="none">1′</text></g><g transform="translate(525 171) scale(0.626754)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M-14-11H14L0 14Z" fill="#061329" stroke="#e64c55"/><path d="M-5-6 5 4M-5 4 5-6" stroke="#e64c55" stroke-width="3"/></g><g transform="translate(248 76) scale(0.626754) rotate(90)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-2.5" y="-18" width="5" height="8" rx="1" fill="#43c8df" stroke="none"/><rect x="-2.5" y="-5" width="5" height="8" rx="1" fill="#43c8df" stroke="none"/><rect x="-2.5" y="8" width="5" height="8" rx="1" fill="#43c8df" stroke="none"/></g><g transform="translate(185 349) scale(0.626754)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M0-13 13 11H-13Z" fill="#ffe45c"/><path d="M0-4V3M0 7v1" stroke-linecap="round"/></g><g transform="translate(334 21) scale(0.626754)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-10" y="-9" width="20" height="18" rx="4" fill="#8ee26b"/><path d="M-10-2H10" fill="none"/></g>
 </g>
-<g transform="translate(941.319 257.846)" filter="url(#shadow)"><rect x="-15" y="-15" width="30" height="30" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="950">1</text></g><g transform="translate(350.549 125.978)" filter="url(#shadow)"><rect x="-15" y="-15" width="30" height="30" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="950">2</text></g>
-<g transform="translate(78.022 785.319)" filter="url(#shadow)"><circle r="12" fill="#39d6ff" stroke="#061329" stroke-width="4"/><rect x="-43" y="-46" width="86" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#39d6ff" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#39d6ff" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">スタート</text></g><g transform="translate(387.473 66.1978)" filter="url(#shadow)"><circle r="12" fill="#ff5ca8" stroke="#061329" stroke-width="4"/><rect x="-59" y="-46" width="118" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#ff5ca8" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#ff5ca8" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">次のエリアへ</text></g>
 
-<g transform="translate(18 875)">
-  <rect width="964" height="156" rx="14" fill="#0b2745" stroke="#2c648b" stroke-width="2"/>
-  <text x="24" y="34" text-anchor="start" fill="#e7f9ff" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="900">重要ポイント</text>
-  <g transform="translate(40 61)" filter="url(#shadow)"><rect x="-14" y="-14" width="28" height="28" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="5.6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="950">1</text></g><text x="68" y="66" fill="#bcd7ea" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="650"><tspan x="68" dy="0">入口から見て左のワープ1へ入る。</tspan></text><g transform="translate(504 61)" filter="url(#shadow)"><rect x="-14" y="-14" width="28" height="28" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="5.6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="950">2</text></g><text x="532" y="66" fill="#bcd7ea" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="650"><tspan x="532" dy="0">転送後すぐ後ろの隠し通路を抜け、次エリアのワープへ。</tspan></text>
-  <text x="940" y="142" text-anchor="end" fill="#7698b1" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">攻略情報：PSO World · Sakura</text>
-</g>
+<g transform="translate(102.1 574.718)" filter="url(#shadow)"><circle r="12" fill="#39d6ff" stroke="#061329" stroke-width="4"/><rect x="-43" y="-46" width="86" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#39d6ff" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#39d6ff" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">スタート</text></g><g transform="translate(297.392 102.571)" filter="url(#shadow)"><circle r="12" fill="#ff5ca8" stroke="#061329" stroke-width="4"/><rect x="-59" y="-46" width="118" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#ff5ca8" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#ff5ca8" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">次のエリアへ</text></g>
+<path d="M225.019 475.923L705 102" fill="none" stroke="#ffbe99" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/><circle cx="225.019" cy="475.923" r="2.5" fill="#ffbe99"/><path d="M615.603 240.424L705 192" fill="none" stroke="#a9d8ed" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/><circle cx="615.603" cy="240.424" r="2.5" fill="#a9d8ed"/><path d="M297.392 162.307L705 232" fill="none" stroke="#a9d8ed" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/><circle cx="297.392" cy="162.307" r="2.5" fill="#a9d8ed"/><g data-callout="second-room-traps"><title>PSO World source map; Sakura; PSO Palace C5</title><rect data-callout-box="" x="705" y="70" width="275" height="32" rx="5" fill="#10263a" stroke="#ffbe99" stroke-opacity=".35"/><text x="713" y="90" text-anchor="start" fill="#ffbe99" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">2部屋目の罠を処理してワープへ。</text></g><g data-callout="entrance-left-warp"><title>PSO World source map; Sakura; PSO Palace C5</title><rect data-callout-box="" x="705" y="142" width="275" height="50" rx="5" fill="#10263a" stroke="#a9d8ed" stroke-opacity=".35"/><text x="713" y="162" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">入口から見て左のワープ1へ（図では上側）。</text><text x="713" y="180" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">もう一方には入らない。</text></g><g data-callout="turn-back-false-wall"><title>PSO World source map; Sakura; PSO Palace C5</title><rect data-callout-box="" x="705" y="232" width="275" height="50" rx="5" fill="#10263a" stroke="#a9d8ed" stroke-opacity=".35"/><text x="713" y="252" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">ワープ直後に回れ右。背後の隠し壁を抜け、</text><text x="713" y="270" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">次エリアの転送装置へ。</text></g>
+
+<g transform="translate(34 650) scale(0.769231)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M-14-11H14L0 14Z" fill="#a9d8ed"/><text y="4" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="950" fill="#061329" stroke="none">1</text></g><text x="54" y="655" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">ワープ 1→1′</text><g transform="translate(173.3 650) scale(0.769231)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M-14-11H14L0 14Z" fill="#061329" stroke="#a9d8ed"/><path d="M-5-6 5 4M-5 4 5-6" stroke="#a9d8ed" stroke-width="3"/></g><text x="193.3" y="655" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">入らない</text><g transform="translate(285.3 650) scale(0.769231) rotate(90)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-2.5" y="-18" width="5" height="8" rx="1" fill="#a9d8ed" stroke="none"/><rect x="-2.5" y="-5" width="5" height="8" rx="1" fill="#a9d8ed" stroke="none"/><rect x="-2.5" y="8" width="5" height="8" rx="1" fill="#a9d8ed" stroke="none"/></g><text x="305.3" y="655" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">隠し壁</text><g transform="translate(384.3 650) scale(0.769231)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><path d="M0-13 13 11H-13Z" fill="#a9d8ed"/><path d="M0-4V3M0 7v1" stroke-linecap="round"/></g><text x="404.3" y="655" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">罠</text><g transform="translate(457.3 650) scale(0.769231)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-10" y="-9" width="20" height="18" rx="4" fill="#a9d8ed"/><path d="M-10-2H10" fill="none"/></g><text x="477.3" y="655" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">箱</text>
+<text x="958" y="704" text-anchor="end" fill="#8aabba" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="900">攻略情報：PSO World · Sakura</text>
 </svg>

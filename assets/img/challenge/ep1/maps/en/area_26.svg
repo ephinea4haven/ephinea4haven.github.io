@@ -1,106 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 845" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 585" role="img" aria-labelledby="title desc" shape-rendering="geometricPrecision">
 <title id="title">AREA 26</title>
-<desc id="desc">The main route is linear. A Force or Ranger takes the hidden-room boxes; one contains a fixed Buster.</desc>
-<defs><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".35"/></filter><pattern id="dark-hatch" width="7.83333" height="7.83333" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7.83333" height="7.83333" fill="#000" fill-opacity=".25"/><path d="M0 0V7.83333" stroke="#4fe3ff" stroke-opacity=".25" stroke-width="2.35"/></pattern><marker id="arrow-main" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ffd23f" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-split" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#f5f7ff" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-solo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#b48cff" stroke="#061329" stroke-width="1"/></marker></defs>
-<rect width="1000" height="845" rx="18" fill="#071a31"/>
-<g transform="translate(-51.4894 24) scale(1.2766)">
-  <g filter="url(#shadow)"><g transform="translate(0.000000,432.000000) scale(0.100000,-0.100000)"
-fill="#1f5a8c" stroke="none">
-<path d="M2810 4115 l0 -185 65 0 65 0 0 -210 0 -210 40 0 40 0 0 210 0 210
-80 0 80 0 0 185 0 185 -185 0 -185 0 0 -185z M2960 3470 c0 -16 5 -30 10 -30
-6 0 10 14 10 30 0 17 -4 30 -10 30 -5 0 -10 -13 -10 -30z M6340 3295 l0 -165
--235 0 -235 0 0 45 c0 41 2 45 25 45 l25 0 0 115 0 115 -90 0 -90 0 0 -30 0
--30 -140 0 -140 0 0 30 0 30 -267 -2 -268 -3 -3 -27 -3 -28 -130 0 -129 0 0
-30 0 31 -87 -3 -88 -3 0 -110 c0 -106 1 -110 23 -113 19 -3 22 -9 22 -48 l0
--44 -220 0 -220 0 0 63 0 62 -66 73 -66 72 -578 0 -578 0 -49 -56 -48 -57 -3
--318 -3 -319 475 0 476 0 0 -100 0 -100 -480 0 -480 0 0 -55 0 -55 -185 0
--185 0 0 155 0 155 -345 0 -345 0 0 -155 0 -155 -225 0 -225 0 0 60 0 60 -191
-0 -190 0 3 -42 3 -43 126 -3 c120 -2 127 -4 150 -28 19 -20 24 -38 27 -94 l4
--70 -156 0 -156 0 0 -45 0 -45 190 0 190 0 0 80 0 80 225 0 225 0 0 -145 0
--145 343 2 342 3 3 143 3 142 184 0 185 0 0 -68 0 -68 63 -62 63 -62 565 0
-566 0 72 79 71 79 0 321 0 321 -505 0 -505 0 0 105 0 105 505 0 c498 0 505 0
-505 20 0 19 7 20 220 20 213 0 220 -1 220 -20 0 -15 -7 -20 -25 -20 l-25 0 0
--110 0 -110 90 0 c89 0 90 0 90 25 l0 25 130 0 130 0 0 -25 0 -25 270 0 270 0
-0 25 0 25 140 0 140 0 0 -25 c0 -25 1 -25 90 -25 l90 0 0 110 0 110 -25 0
-c-18 0 -25 5 -25 20 0 19 7 20 235 20 l235 0 0 -135 0 -135 345 0 345 0 0 135
-0 135 225 0 225 0 0 -70 0 -70 185 0 185 0 0 45 0 45 -147 1 c-82 1 -135 4
--119 6 l28 5 -22 23 c-31 33 -31 97 -1 129 26 28 101 46 192 46 l69 0 0 35 0
-35 -185 0 -185 0 0 -70 0 -70 -225 0 -225 0 0 165 0 165 -345 0 -345 0 0 -165z
-M1075 2210 c-18 -19 -17 -20 3 -20 15 0 22 6 22 20 0 11 -2 20 -3 20 -2 0 -12
--9 -22 -20z M3750 1720 l0 -170 -145 0 -145 0 0 -340 0 -340 145 0 145 0 0
--220 0 -220 -65 0 -65 0 0 -185 0 -185 185 0 185 0 0 185 0 185 -85 0 -85 0 0
-220 0 220 165 0 165 0 0 340 0 340 -165 0 -165 0 0 170 0 170 -35 0 -35 0 0
--170z"/>
+<desc id="desc"> The false-wall box room after room 2 has a fixed Buster. Give it to a Hunter who can equip it and pass the replaced weapon on. Sakura marks the box room as trap-free; a Force or Ranger can collect while the party advances.</desc>
+<defs><filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity=".35"/></filter><pattern id="dark-hatch" width="12.3443" height="12.3443" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12.3443" height="12.3443" fill="#000" fill-opacity=".25"/><path d="M0 0V12.3443" stroke="#4fe3ff" stroke-opacity=".25" stroke-width="3.70328"/></pattern><marker id="arrow-main" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#ffd23f" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-split" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#f5f7ff" stroke="#061329" stroke-width="1"/></marker><marker id="arrow-solo" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#b48cff" stroke="#061329" stroke-width="1"/></marker></defs>
+<rect width="1000" height="585" rx="18" fill="#071a31"/>
+<text x="26" y="30" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">C6 · AREA 26</text>
+<g transform="translate(9.63479 75) scale(0.810093)">
+  <g filter="url(#shadow)"><g id="c6-floor" data-source="PSO World area_26.png">
+  <defs>
+    <clipPath id="c6-floor-clip"><path d="M281 20L281 39L295 39L295 92L280 92L270 103L270 167L365 167L365 187L269 187L269 198L232 198L232 167L163 167L163 199L118 198L118 186L80 186L80 223L118 223L118 207L163 207L163 236L232 236L232 207L269 207L269 220L280 233L395 233L409 217L409 153L308 153L308 132L409 132L409 128L453 128L453 132L448 132L448 154L466 154L466 149L492 149L492 154L546 154L546 149L574 149L574 154L592 154L592 132L587 132L587 128L634 128L634 155L703 155L703 128L748 128L748 143L785 143L785 105L748 105L748 119L744 119L744 121L738 121L738 119L733 119L733 121L727 121L727 119L723 119L723 121L716 121L716 119L712 119L712 121L706 121L703 118L703 86L634 86L634 121L630 121L630 119L625 119L625 121L619 121L619 119L615 119L615 121L608 121L608 119L604 119L604 121L597 121L597 119L593 119L593 121L587 121L587 110L592 110L592 87L574 87L574 93L546 93L546 87L492 87L492 93L466 93L466 87L448 87L448 110L453 110L453 121L446 121L446 119L442 119L442 121L435 121L435 119L431 119L431 121L425 121L425 119L414 121L414 119L409 119L409 106L396 92L300 92L300 81L302 81L302 39L318 39L318 2L281 2Z M375 260L375 277L346 277L346 345L375 345L375 389L362 389L362 426L399 426L399 389L382 389L382 345L415 345L415 277L382 277L382 243L375 243Z" clip-rule="evenodd"/></clipPath>
+    <pattern id="c6-dark-hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M-2 2L2-2M0 8L8 0M6 10L10 6" fill="none" stroke="#4fe3ff" stroke-opacity=".18" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <path d="M281 20L281 39L295 39L295 92L280 92L270 103L270 167L365 167L365 187L269 187L269 198L232 198L232 167L163 167L163 199L118 198L118 186L80 186L80 223L118 223L118 207L163 207L163 236L232 236L232 207L269 207L269 220L280 233L395 233L409 217L409 153L308 153L308 132L409 132L409 128L453 128L453 132L448 132L448 154L466 154L466 149L492 149L492 154L546 154L546 149L574 149L574 154L592 154L592 132L587 132L587 128L634 128L634 155L703 155L703 128L748 128L748 143L785 143L785 105L748 105L748 119L744 119L744 121L738 121L738 119L733 119L733 121L727 121L727 119L723 119L723 121L716 121L716 119L712 119L712 121L706 121L703 118L703 86L634 86L634 121L630 121L630 119L625 119L625 121L619 121L619 119L615 119L615 121L608 121L608 119L604 119L604 121L597 121L597 119L593 119L593 121L587 121L587 110L592 110L592 87L574 87L574 93L546 93L546 87L492 87L492 93L466 93L466 87L448 87L448 110L453 110L453 121L446 121L446 119L442 119L442 121L435 121L435 119L431 119L431 121L425 121L425 119L414 121L414 119L409 119L409 106L396 92L300 92L300 81L302 81L302 39L318 39L318 2L281 2Z M375 260L375 277L346 277L346 345L375 345L375 389L362 389L362 426L399 426L399 389L382 389L382 345L415 345L415 277L382 277L382 243L375 243Z" fill="#173d60" fill-rule="evenodd"/>
+  <g id="c6-dark-rooms" clip-path="url(#c6-floor-clip)">
+    <path d="" fill="#102b42"/>
+    <path d="" fill="url(#c6-dark-hatch)"/>
+  </g>
 </g></g>
-  <g transform="translate(0.000000,432.000000) scale(0.100000,-0.100000)"
-fill="#4fe3ff" stroke="none">
-<path d="M2802 4308 c-17 -17 -17 -369 0 -386 7 -7 36 -12 65 -12 l53 0 0
--199 c0 -218 -1 -214 60 -218 59 -4 60 -1 60 218 l0 199 68 0 c40 0 73 5 80
-12 17 17 17 369 0 386 -8 8 -66 12 -193 12 -127 0 -185 -4 -193 -12z m378
--193 l0 -185 -80 0 -80 0 0 -210 0 -210 -40 0 -40 0 0 210 0 210 -65 0 -65 0
-0 185 0 185 185 0 185 0 0 -185z M6332 3468 c-8 -8 -12 -59 -12 -165 l0 -153
--215 0 -215 0 0 23 c0 14 9 26 23 32 21 9 22 17 25 124 2 75 -1 118 -9 127 -8
-10 -36 14 -98 14 -90 0 -111 -8 -111 -42 0 -16 -11 -18 -120 -18 -109 0 -120
-2 -120 18 0 40 -14 42 -285 42 -241 0 -263 -1 -278 -18 -10 -10 -17 -24 -17
--30 0 -9 -33 -12 -110 -12 -99 0 -110 2 -110 18 0 33 -21 42 -105 42 -111 0
--115 -5 -115 -138 0 -95 1 -102 25 -120 14 -11 25 -29 25 -41 0 -21 -3 -21
--200 -21 l-200 0 0 53 c0 51 -1 54 -76 135 l-76 82 -578 0 -579 0 -53 -60
-c-29 -33 -56 -70 -60 -83 -3 -12 -6 -157 -7 -323 -1 -221 2 -303 11 -312 9 -9
-128 -12 475 -12 l463 0 0 -80 0 -80 -468 0 c-351 0 -471 -3 -480 -12 -7 -7
--12 -31 -12 -55 l0 -43 -165 0 -165 0 0 143 c0 98 -4 147 -12 155 -17 17 -689
-17 -706 0 -8 -8 -12 -57 -12 -155 l0 -143 -205 0 -205 0 0 48 c0 26 -5 53 -12
-60 -17 17 -379 17 -396 0 -16 -16 -16 -80 0 -96 8 -8 47 -11 123 -10 l110 2
--110 5 -110 6 -3 43 -3 42 190 0 191 0 0 -60 0 -60 225 0 225 0 0 155 0 155
-345 0 345 0 0 -155 0 -155 185 0 185 0 0 55 0 55 480 0 480 0 0 100 0 100
--476 0 -475 0 3 319 3 318 48 57 49 56 578 0 578 0 66 -72 66 -73 0 -62 0 -63
-220 0 220 0 0 44 c0 39 -3 45 -22 48 -22 3 -23 7 -23 113 l0 110 88 3 87 3 0
--31 0 -30 129 0 130 0 3 28 3 27 268 3 267 2 0 -30 0 -30 140 0 140 0 0 30 0
-30 90 0 90 0 0 -115 0 -115 -25 0 c-23 0 -25 -4 -25 -45 l0 -45 235 0 235 0 0
-165 0 165 345 0 345 0 0 -165 0 -165 225 0 225 0 0 70 0 70 185 0 185 0 0 -35
-0 -35 -77 -1 c-122 -2 -145 -17 -28 -18 112 -1 125 5 125 54 0 53 -8 55 -205
-55 -127 0 -185 -4 -193 -12 -7 -7 -12 -38 -12 -70 l0 -58 -205 0 -205 0 0 153
-c0 106 -4 157 -12 165 -17 17 -689 17 -706 0z M4090 3020 c0 -20 -7 -20 -505
--20 l-505 0 0 -105 0 -105 505 0 505 0 0 -321 0 -321 -71 -79 -72 -79 -566 0
--567 0 -62 63 -62 63 0 67 0 67 -185 0 -184 0 -3 -142 -3 -143 -342 -3 -343
--2 0 145 0 145 -225 0 -225 0 0 -80 0 -80 -190 0 -190 0 0 45 0 45 155 0 155
-0 -1 58 c0 31 -5 66 -10 77 -6 14 -8 -1 -5 -50 l4 -70 -144 3 c-104 3 -148 1
--159 -8 -18 -15 -20 -91 -3 -108 17 -17 379 -17 396 0 7 7 12 40 12 80 l0 68
-205 0 205 0 0 -133 c0 -90 4 -137 12 -145 9 -9 100 -12 348 -12 314 0 338 1
-353 18 14 15 17 41 17 145 l0 127 165 0 165 0 0 -58 0 -58 73 -72 72 -72 567
-0 566 0 81 89 81 89 0 319 c0 235 -3 322 -12 331 -9 9 -135 12 -505 12 l-493
-0 0 85 0 85 495 0 c484 0 495 0 507 20 12 19 24 20 197 20 144 0 182 -3 173
--12 -18 -18 -16 -222 2 -237 9 -8 46 -11 103 -9 80 3 89 5 98 26 9 21 15 22
-115 22 100 0 106 -1 115 -22 l10 -23 275 0 275 0 10 23 c9 21 15 22 125 22
-110 0 116 -1 125 -22 9 -21 18 -23 98 -26 57 -2 94 1 103 9 18 15 20 219 2
-237 -9 9 33 12 190 12 l202 0 0 -123 c0 -82 4 -127 12 -135 9 -9 101 -12 353
--12 252 0 344 3 353 12 8 8 12 53 12 135 l0 123 205 0 205 0 0 -58 c0 -32 5
--63 12 -70 8 -8 66 -12 193 -12 127 0 185 4 193 12 16 16 16 90 0 106 -8 8
--50 12 -128 11 -177 -2 -200 -16 -27 -18 l147 -1 0 -45 0 -45 -185 0 -185 0 0
-70 0 70 -225 0 -225 0 0 -135 0 -135 -345 0 -345 0 0 135 0 135 -235 0 c-228
-0 -235 -1 -235 -20 0 -15 7 -20 25 -20 l25 0 0 -110 0 -110 -90 0 c-89 0 -90
-0 -90 25 l0 25 -140 0 -140 0 0 -25 0 -25 -270 0 -270 0 0 25 0 25 -130 0
--130 0 0 -25 c0 -25 -1 -25 -90 -25 l-90 0 0 110 0 110 25 0 c18 0 25 5 25 20
-0 19 -7 20 -220 20 -213 0 -220 -1 -220 -20z M3742 1898 c-8 -8 -12 -60 -12
--170 l0 -158 -133 0 c-90 0 -137 -4 -145 -12 -17 -17 -17 -679 0 -696 8 -8 55
--12 145 -12 l133 0 0 -200 0 -200 -53 0 c-29 0 -58 -5 -65 -12 -17 -17 -17
--369 0 -386 17 -17 369 -17 386 0 17 17 17 369 0 386 -7 7 -42 12 -85 12 l-73
-0 0 200 0 200 153 0 c106 0 157 4 165 12 17 17 17 679 0 696 -8 8 -59 12 -165
-12 l-153 0 0 158 c0 172 -3 182 -55 182 -17 0 -36 -5 -43 -12z m78 -178 l0
--170 165 0 165 0 0 -340 0 -340 -165 0 -165 0 0 -220 0 -220 85 0 85 0 0 -185
-0 -185 -185 0 -185 0 0 185 0 185 65 0 65 0 0 220 0 220 -145 0 -145 0 0 340
-0 340 145 0 145 0 0 170 0 170 35 0 35 0 0 -170z"/>
+  <g id="c6-walls" fill="none" stroke="#8edfff" stroke-width="1.5" stroke-linejoin="miter">
+  <path d="M281 20L281 39L295 39L295 92L280 92L270 103L270 167L365 167L365 187L269 187L269 198L232 198L232 167L163 167L163 199L118 198L118 186L80 186L80 223L118 223L118 207L163 207L163 236L232 236L232 207L269 207L269 220L280 233L395 233L409 217L409 153L308 153L308 132L409 132L409 128L453 128L453 132L448 132L448 154L466 154L466 149L492 149L492 154L546 154L546 149L574 149L574 154L592 154L592 132L587 132L587 128L634 128L634 155L703 155L703 128L748 128L748 143L785 143L785 105L748 105L748 119L744 119L744 121L738 121L738 119L733 119L733 121L727 121L727 119L723 119L723 121L716 121L716 119L712 119L712 121L706 121L703 118L703 86L634 86L634 121L630 121L630 119L625 119L625 121L619 121L619 119L615 119L615 121L608 121L608 119L604 119L604 121L597 121L597 119L593 119L593 121L587 121L587 110L592 110L592 87L574 87L574 93L546 93L546 87L492 87L492 93L466 93L466 87L448 87L448 110L453 110L453 121L446 121L446 119L442 119L442 121L435 121L435 119L431 119L431 121L425 121L425 119L414 121L414 119L409 119L409 106L396 92L300 92L300 81L302 81L302 39L318 39L318 2L281 2Z M375 260L375 277L346 277L346 345L375 345L375 389L362 389L362 426L399 426L399 389L382 389L382 345L415 345L415 277L382 277L382 243L375 243Z"/>
+  <path d=""/>
+  <path d=""/>
 </g>
 
-  <path d="M112 200 L384 200 L384 160 L295 159 L295 121 L751 121" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="9.4" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M112 200 L384 200 L384 160 L295 159 L295 121 L751 121" fill="none" stroke="#ffd23f" stroke-width="5.48333" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-main)"/><path d="M296 121 L296 31" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="7.05" stroke-linecap="round" stroke-linejoin="round"/><path data-role="optional" d="M296 121 L296 31" fill="none" stroke="#c9d6e8" stroke-width="3.13333" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="10.9667 7.83333"/>
-  <g transform="translate(298 20) scale(0.783333)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-10" y="-9" width="20" height="18" rx="4" fill="#009900"/><path d="M-10-2H10" fill="none"/></g>
+  <path d="M98 202 L384 202 L384 159 L296 159 L296 122 L769 122" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="8.14721" stroke-linecap="round" stroke-linejoin="round"/><path data-role="main" d="M98 202 L384 202 L384 159 L296 159 L296 122 L769 122" fill="none" stroke="#ffd23f" stroke-width="4.75254" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow-main)"/><path d="M296 122 L298 20 L296 122" fill="none" stroke="#071a31" stroke-opacity=".85" stroke-width="6.11041" stroke-linecap="round" stroke-linejoin="round"/><path data-role="optional" d="M296 122 L298 20 L296 122" fill="none" stroke="#c9d6e8" stroke-width="2.71574" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9.50508 6.78934"/>
+  <g transform="translate(298 83) scale(0.888787) rotate(90)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-2.5" y="-18" width="5" height="8" rx="1" fill="#43c8df" stroke="none"/><rect x="-2.5" y="-5" width="5" height="8" rx="1" fill="#43c8df" stroke="none"/><rect x="-2.5" y="8" width="5" height="8" rx="1" fill="#43c8df" stroke="none"/></g><g transform="translate(298 20) scale(0.888787)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-10" y="-9" width="20" height="18" rx="4" fill="#8ee26b"/><path d="M-10-2H10" fill="none"/></g>
 </g>
-<g transform="translate(376.17 49.5319)" filter="url(#shadow)"><rect x="-15" y="-15" width="30" height="30" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="950">1</text></g>
-<g transform="translate(76.1702 279.319)" filter="url(#shadow)"><circle r="12" fill="#39d6ff" stroke="#061329" stroke-width="4"/><rect x="-35.8" y="-46" width="71.6" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#39d6ff" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#39d6ff" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">START</text></g><g transform="translate(931.489 178.468)" filter="url(#shadow)"><circle r="12" fill="#ff5ca8" stroke="#061329" stroke-width="4"/><rect x="-55.64" y="-46" width="111.28" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#ff5ca8" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#ff5ca8" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">NEXT AREA</text></g>
-<path d="M30 607h34" stroke="#ffd23f" stroke-width="7" stroke-linecap="round"/><text x="74" y="613" text-anchor="start" fill="#dff8ff" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="800">Main route</text><path d="M203.0 607h34" stroke="#c9d6e8" stroke-width="4" stroke-linecap="round" stroke-dasharray="14 10"/><text x="247" y="613" text-anchor="start" fill="#dff8ff" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="800">Optional pickup</text>
-<g transform="translate(18 633)">
-  <rect width="964" height="194" rx="14" fill="#0b2745" stroke="#2c648b" stroke-width="2"/>
-  <text x="24" y="34" text-anchor="start" fill="#e7f9ff" font-family="system-ui,-apple-system,sans-serif" font-size="19" font-weight="900">KEY NOTES</text>
-  <g transform="translate(40 61)" filter="url(#shadow)"><rect x="-14" y="-14" width="28" height="28" rx="7" fill="#ff9f43" stroke="#061329" stroke-width="3"/><text x="0" y="5.6" text-anchor="middle" fill="#061329" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="950">1</text></g><text x="68" y="66" fill="#bcd7ea" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="650"><tspan x="68" dy="0">The main route is linear. A Force or Ranger</tspan><tspan x="68" dy="24">takes the hidden-room boxes; one contains a</tspan><tspan x="68" dy="24">fixed Buster.</tspan></text>
-  <text x="940" y="180" text-anchor="end" fill="#7698b1" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">Notes: PSO World · Sakura guide</text>
-</g>
+
+<g transform="translate(89.0239 238.639)" filter="url(#shadow)"><circle r="12" fill="#39d6ff" stroke="#061329" stroke-width="4"/><rect x="-35.8" y="-46" width="71.6" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#39d6ff" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#39d6ff" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">START</text></g><g transform="translate(632.596 173.831)" filter="url(#shadow)"><circle r="12" fill="#ff5ca8" stroke="#061329" stroke-width="4"/><rect x="-55.64" y="-46" width="111.28" height="26" rx="13" fill="#061329" fill-opacity=".9" stroke="#ff5ca8" stroke-width="2"/><text x="0" y="-27.5" text-anchor="middle" fill="#ff5ca8" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="900">NEXT AREA</text></g>
+<path d="M251.042 91.2019L705 91.2019" fill="none" stroke="#a0e5b6" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/><circle cx="251.042" cy="91.2019" r="2.5" fill="#a0e5b6"/><path d="M251.042 142.238L705 178" fill="none" stroke="#a0e5b6" stroke-opacity=".7" stroke-width="1" stroke-dasharray="2 3"/><circle cx="251.042" cy="142.238" r="2.5" fill="#a0e5b6"/><g data-callout="fixed-buster"><title>PSO World source map; Sakura; PSO Palace C6</title><rect data-callout-box="" x="705" y="70" width="275" height="86" rx="5" fill="#10263a" stroke="#a0e5b6" stroke-opacity=".35"/><text x="713" y="90" text-anchor="start" fill="#a0e5b6" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">The false-wall box room after room</text><text x="713" y="108" text-anchor="start" fill="#a0e5b6" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">2 has a fixed Buster. Give it to a</text><text x="713" y="126" text-anchor="start" fill="#a0e5b6" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">Hunter who can equip it and pass</text><text x="713" y="144" text-anchor="start" fill="#a0e5b6" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">the replaced weapon on.</text></g><g data-callout="trap-free-box-room"><title>Sakura Area 26 safe-box caption</title><rect data-callout-box="" x="705" y="178" width="275" height="68" rx="5" fill="#10263a" stroke="#a0e5b6" stroke-opacity=".35"/><text x="713" y="198" text-anchor="start" fill="#a0e5b6" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">Sakura marks the box room as</text><text x="713" y="216" text-anchor="start" fill="#a0e5b6" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">trap-free; a Force or Ranger can</text><text x="713" y="234" text-anchor="start" fill="#a0e5b6" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">collect while the party advances.</text></g>
+<path d="M30 457h34" stroke="#ffd23f" stroke-width="7" stroke-linecap="round"/><text x="74" y="463" text-anchor="start" fill="#dff8ff" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="800">Main route</text><path d="M203.0 457h34" stroke="#c9d6e8" stroke-width="4" stroke-linecap="round" stroke-dasharray="14 10"/><text x="247" y="463" text-anchor="start" fill="#dff8ff" font-family="system-ui,-apple-system,sans-serif" font-size="15" font-weight="800">Optional route</text>
+<g transform="translate(34 495) scale(0.769231) rotate(90)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-2.5" y="-18" width="5" height="8" rx="1" fill="#a9d8ed" stroke="none"/><rect x="-2.5" y="-5" width="5" height="8" rx="1" fill="#a9d8ed" stroke="none"/><rect x="-2.5" y="8" width="5" height="8" rx="1" fill="#a9d8ed" stroke="none"/></g><text x="54" y="500" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">False wall</text><g transform="translate(174.6 495) scale(0.769231)" stroke="#061329" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"><rect x="-10" y="-9" width="20" height="18" rx="4" fill="#a9d8ed"/><path d="M-10-2H10" fill="none"/></g><text x="194.6" y="500" text-anchor="start" fill="#a9d8ed" font-family="system-ui,-apple-system,sans-serif" font-size="13" font-weight="650">Boxes</text>
+<text x="958" y="549" text-anchor="end" fill="#8aabba" font-family="system-ui,-apple-system,sans-serif" font-size="12" font-weight="900">Notes: PSO World · Sakura guide</text>
 </svg>

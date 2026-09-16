@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-09-15
+> Last updated: 2026-09-16
 
 ## System shape
 
@@ -220,22 +220,55 @@ ranking and available MAE splits. Known upstream gaps are preserved and
 explained instead of inferred.
 
 The challenge guides publish 42 Episode I and 25 Episode II localized SVG maps
-in Chinese, English and Japanese. Episode I geometry is traced from PSO World
-scans with `potrace`. Areas 1 and 2 use `content/challenge-maps/ep1.json` and
-the shared `scripts/challenge_maps.py`; the other 40 still use the existing
-tables and renderer in `build_challenge_map_atlas.py`, including the custom
-Area 05 SVG. All 25 Episode II maps use `content/challenge-maps/ep2.json` and
-embed two raster layers extracted from the pinned Ephinea Wiki PNGs, with
-route overlays between floor geometry and source labels.
+in Chinese, English and Japanese. All Episode I areas use authored routes,
+mechanisms and instructions in `content/challenge-maps/ep1.json`, with measured
+floor contours in `ep1-c1-geometry.json` through `ep1-c9-geometry.json`.
+`build_challenge_map_atlas.py` renders those contours through the shared
+`scripts/challenge_maps.py`; obsolete table renderers and the custom Area 05
+path have been removed. Floor, interior walls, dark rooms, routes and captions
+are separate layers. C1–C8 add 179 local instructions; the accepted C9 retains
+its 31. Each stores source evidence, three translations, an anchor and a caption
+box. Numeric puzzle insets, equipment quantities, distinct trap types and
+wrong-choice markers preserve operating details. See the
+[EP1 alignment ledger](CHALLENGE_EP1_ALIGNMENT.md) and
+[C9 annotation audit](CHALLENGE_C9_ANNOTATION_AUDIT.md) for source disagreements
+and scope limits.
 
-`test_challenge_maps.py` checks the EP1 JSON structure without the rendering
-toolchain. Both data-driven generators validate route points, symbols, warp
-pairs and badges; EP1 Areas 1 and 2 also check wall-crossing consistency and
-route fidelity. `verify_challenge_maps.mjs` checks inventories, source pins,
-dimensions and page references, and requires a main route on the EP1 areas
-listed in JSON. Map generation is separate from the production site build.
-See [Challenge Map Redraw](CHALLENGE_MAP_REDRAW.md) for commands, current
-coverage and the remaining design work.
+All 25 Episode II maps use `content/challenge-maps/ep2.json` and five measured
+geometry files (`ep2-c1-geometry.json` through `ep2-c5-geometry.json`). The same
+renderer produces vector floors, source mechanism artwork, routes, 110 anchored
+instructions and 44 localized item labels without embedded raster layers. Multiple
+starts, letter-paired warps and tower completion are explicit. The page prose
+links each stage to Ephinea and available Sakura references; see the
+[EP2 alignment ledger](CHALLENGE_EP2_ALIGNMENT.md) for disagreements and limits.
+
+`test_challenge_maps.py` checks both episode inventories, contour intersections,
+complete route segments, source instruction inventory, mechanism requirements
+and identical geometry across languages without the rendering toolchain.
+EP1 generation samples each route segment at 1 px intervals with a 2 px floor
+tolerance and requires at least 95% source-dash coverage. Reviewed teleport
+connector ink exclusions are separate from walking routes. The shared
+validators check symbols, warp endpoints and badge alignment.
+`check_challenge_map_layout.mjs` checks every EP1 and EP2 caption in all three languages
+for clipping, overlap and floor occlusion. Browser tests load every stage in
+all guidance languages on mobile. `verify_challenge_maps.mjs` checks inventories,
+source pins, dimensions and page references. Generation remains separate from
+the production site build. See [Challenge Map Redraw](CHALLENGE_MAP_REDRAW.md)
+for commands and the historical design investigation.
+
+Both challenge guides share the `challenge-guide` page layout: episode links,
+sticky stage anchors, per-stage area links, collapsible strategy and map legends,
+and labeled figures. `ChallengeGuideBehavior` owns scroll position highlighting
+and the native-dialog map viewer, with zoom around the visible center,
+fit-to-width, mouse/pen drag panning, keyboard dismissal and focus return.
+Touch retains native scrolling. The existing language behavior updates each map's source,
+alt text and reserved image height together to prevent lazy-loading layout shifts.
+The viewer opens the currently selected language. These behaviors are attached
+through the content generator; page HTML contains no inline scripts. Map assets
+and authored strategy content remain independent of the reading interface.
+`challenge-viewer.spec.mjs` guards full-width captions, right-aligned buttons,
+zoom-center preservation and drag/release behavior at mobile and desktop widths.
+See the [final acceptance record](CHALLENGE_MAP_REDRAW.md#acceptance-and-review-2026-09-16) for review results and remaining limits.
 
 The Seabed guide is a dedicated Chinese content route covering all eight Upper
 and Lower map variants. It keeps route media, gameplay advice and server-specific

@@ -393,6 +393,8 @@ export class LanguageSwitchBehavior extends BrowserContentBehavior {
         element.hidden = element.dataset['langContent'] !== language;
       }
       for (const image of this.host.querySelectorAll<HTMLImageElement>('img[data-i18n-src]')) {
+        const height = image.dataset[`${language}Height`];
+        if (height) image.height = Number(height);
         const source = image.dataset[`${language}Src`];
         if (source && image.getAttribute('src') !== source) image.src = source;
         image.alt = image.dataset[`${language}Alt`] ?? image.dataset['enAlt'] ?? '';
@@ -401,8 +403,9 @@ export class LanguageSwitchBehavior extends BrowserContentBehavior {
         button.classList.toggle('active', button.dataset['lang'] === language);
         button.setAttribute('aria-pressed', String(button.dataset['lang'] === language));
       }
-      const title = this.host.querySelector<HTMLElement>('#pageTitle')?.textContent;
-      if (title) document.title = `${title} — PSOBB Wiki`;
+      const titleElement = this.host.querySelector<HTMLElement>('#pageTitle');
+      const title = titleElement?.textContent;
+      if (title) document.title = `${titleElement?.dataset['titlePrefix'] ?? ''}${title} — PSOBB Wiki`;
     };
     this.listen(host, 'click', ((event: MouseEvent) => {
       const button = event.target instanceof Element

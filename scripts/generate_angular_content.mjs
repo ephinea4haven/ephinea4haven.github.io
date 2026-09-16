@@ -29,8 +29,8 @@ const pageBehaviors = new Map([
   ['data/monsters.html', ['MonsterFilterBehavior', 'BackToTopBehavior']],
   ['data/quest.html', ['BackToTopBehavior']],
   ['guide/class-guide.html', ['ProfessionTabsBehavior']],
-  ['guide/ep1ch.html', ['LanguageSwitchBehavior']],
-  ['guide/ep2ch.html', ['LanguageSwitchBehavior']],
+  ['guide/ep1ch.html', ['LanguageSwitchBehavior', 'ChallengeGuideBehavior']],
+  ['guide/ep2ch.html', ['LanguageSwitchBehavior', 'ChallengeGuideBehavior']],
   ['guide/seabed.html', ['SeabedRouteBehavior']],
   ['tools/materialplan.html', ['BackToTopBehavior']],
   ['tools/id.html', ['SectionIdBehavior']],
@@ -47,6 +47,7 @@ const pageBehaviors = new Map([
   ['event/christmas.html', ['SeasonalEventBehavior']],
 ]);
 const behaviorModules = new Map([
+  ['ChallengeGuideBehavior', '../../content/challenge-guide.directive'],
   ['LandingPageBehavior', '../../content/landing-page.directive'],
   ['VolOptBehavior', '../../data/volopt.directive'],
   ['RbrBehavior', '../../rbr/rbr.directive'],

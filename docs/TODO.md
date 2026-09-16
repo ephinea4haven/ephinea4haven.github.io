@@ -2,10 +2,6 @@
 
 ## Active
 
-- [ ] Finish the [challenge-map redraw](CHALLENGE_MAP_REDRAW.md): migrate the
-  remaining 40 EP1 areas, remove the old renderer, extend structural tests to
-  EP2, and complete per-map visual acceptance. EP1 Areas 1–2 and all 25 EP2
-  areas currently use JSON data.
 - [ ] Complete the claim-level audit of archived PSO FRAME slot3 (Red-Wolf)
   material. The [archive inventory and acquisition record](PSO_FRAME_ARCHIVE.md) (2026-09-16)
   locates readable Wayback captures, records 61 HTML page addresses plus the
@@ -112,5 +108,11 @@
   item-name authority path shared across business and browser tests. See the
   [verified release record](DEPLOYMENT.md#september-10-2026-release).
 - [x] Standalone Mag feeder/planner deployment with legacy URL redirect.
-- [x] Original-source high-resolution map atlas for the Episode I and II challenge guides.
+- [x] [Challenge-map redraw and guide interface](CHALLENGE_MAP_REDRAW.md#acceptance-and-review-2026-09-16)
+  (2026-09-16): all 42 EP1 and 25 EP2 areas use vector geometry and the shared
+  renderer, with 201 localized SVGs, 320 anchored instructions and 44 EP2 item
+  labels. Source/prose alignment and the shared navigation/map viewer are
+  complete. Caption alignment, zoom anchoring and drag regressions pass;
+  maintainer re-review is PASS and commit/push is authorized. The linked record
+  preserves browser and live quest-event verification limits.
 - [x] Standalone Chinese-language Seabed route, combat and equipment guide.

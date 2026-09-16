@@ -102,16 +102,8 @@ for (const [sourceName, [stage, area, expectedSha1]] of expectedEp2) {
     if (svg.includes('../')) {
       throw new Error(`${relative} contains a parent-directory resource reference`);
     }
-    const embeddedLayers = [...svg.matchAll(/href="data:image\/png;base64,([^"]+)"/g)];
-    if (embeddedLayers.length !== 2) {
-      throw new Error(`${relative} must contain exactly two self-contained PNG layers`);
-    }
-    for (const [, encodedLayer] of embeddedLayers) {
-      const layerDimensions = pngDimensions(Buffer.from(encodedLayer, 'base64'));
-      if (layerDimensions.width !== sourceDimensions.width || layerDimensions.height !== sourceDimensions.height) {
-        throw new Error(`${relative} has a layer with dimensions that differ from ${sourceName}`);
-      }
-    }
+    if (svg.includes('<image') || svg.includes('data:image/')) throw new Error(`${relative} embeds raster artwork`);
+    if (!svg.includes('data-role="main"') || !svg.includes('data-callout=')) throw new Error(`${relative} lacks routes or local instructions`);
     expectedGeneratedFiles.get(language).push(`${stem}.svg`);
   }
 }
@@ -124,4 +116,4 @@ for (const language of languages) {
   );
 }
 
-console.log('Challenge maps verified: 42 EP1 vector maps and 25 EP2 high-resolution maps are complete in zh/en/ja.');
+console.log('Challenge maps verified: 42 EP1 vector maps and 25 EP2 vector maps are complete in zh/en/ja.');
