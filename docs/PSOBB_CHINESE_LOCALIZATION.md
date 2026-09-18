@@ -233,3 +233,26 @@ That run was cleaned up on 2026-09-14 and its logs are no longer available. This
 pass ran 129 browser tests, including 7 new homepage event-state tests. The
 earlier count of 122 is kept as the September 9 local verification record. See the
 [deployment record](DEPLOYMENT.md#september-10-2026-release) for release details.
+
+### 2026-09-18 UN-10 / UN-11 synchronization
+
+The confirmed Unitxt decisions in psobb-localization
+`a0081273bb4f523b1c2d7f73613d4a462ed1caa9` are synchronized through droptable
+into the site dictionary: 46 authority entries changed. The authority SHA-256 is
+`761980abc3d3658ed20a148a112e9f0b820a2351b6b8f035f7f121ef51aebc98`.
+The upstream Chinese resource SHA-256 is
+`681f4a69785d2a976ac115d2611c6ee81d08790ec3888aa17b69b8f1d487f75c`.
+No upstream resource change is required. See droptable's
+`docs/unitxt-alignment-review.md` for the source and regression record.
+
+Local verification passed droptable's `npm run verify:localization`, Haven's
+`npm test` and build (1,268 prerendered routes), and 64 focused browser tests
+covering items, monsters, mechanics, authored item references and status equipment.
+The added rename regression verifies Chinese detail hydration, English switching,
+return to Chinese and reload for magazine, armor, TypeM and parts identities.
+
+The maintainer approved separate commits, pushes and deployment on September 18.
+Haven now pins droptable `fa878d073e4cb0d0d8d47ab4582d52f37f043e27` in
+`.github/workflows/pages.yml`. This revision includes the synchronized authority
+and the BB monster presentation changes. The Pages workflow must pass its full
+checks and deployment before production publication is considered complete.
