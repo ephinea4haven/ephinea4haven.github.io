@@ -33,6 +33,23 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## September 18, 2026 localization and drop-chart release
+
+The approved release publishes droptable first, then Haven. Haven pins
+`warmonipa/dropcharts@fa878d073e4cb0d0d8d47ab4582d52f37f043e27`; both repositories
+use the same confirmed UN-10/UN-11 Chinese names. The client localization resources
+are unchanged and require no repackaging.
+
+Droptable publishes Normal/Ultimate monster names and portraits, monster/item
+links to Haven, readable typography and URL-preserved table context. Haven
+publishes the updated item dictionary and regenerated consumers. Bulk and Death
+Gunner still use documented portrait placeholders.
+
+Local verification passed droptable's 69 tests and actual Unitxt check, Haven's
+business tests and build, and 64 focused browser tests. These local checks do not
+replace the full Pages gates. Verify each repository's build and deploy jobs for
+the pushed commit, then check the live BB assets and Haven item detail pages.
+
 ## Dependency updates
 
 Dependabot checks npm packages and GitHub Actions weekly. Angular framework and

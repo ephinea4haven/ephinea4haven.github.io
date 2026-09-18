@@ -5,6 +5,21 @@ import { readFileSync } from 'node:fs';
 const items = Object.values(JSON.parse(readFileSync('src/app/generated/item-catalog/details.server.json', 'utf8')));
 const names = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
 
+test('confirmed Unitxt renames survive detail hydration and language switching', async ({ page }) => {
+  for (const en of ['Thirteen', 'Game Magazine', 'TypeSA/SABER', 'D-Parts ver1.01']) {
+    const item = items.find(candidate => candidate.en === en);
+    expect(item, en).toBeDefined();
+    await page.goto(`/data/items/${item.id}.html?lang=zh`);
+    await expect(page.locator('#item-title')).toHaveText(names[en].zh);
+    await page.getByRole('button', { name: 'English', exact: true }).click();
+    await expect(page.locator('#item-title')).toHaveText(en);
+    await page.getByRole('button', { name: '中文', exact: true }).click();
+    await expect(page.locator('#item-title')).toHaveText(names[en].zh);
+    await page.reload();
+    await expect(page.locator('#item-title')).toHaveText(names[en].zh);
+  }
+});
+
 test('item list title stays localized after query-only navigation', async ({page}) => {
   await page.goto('/data/items.html?lang=en');
   await expect(page).toHaveTitle(/Item Database/);
