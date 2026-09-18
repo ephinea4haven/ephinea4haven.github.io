@@ -1,5 +1,10 @@
 # Monster Catalog
 
+The episode selector contains EP1, EP2 and EP4 with no All option and defaults
+to EP1. Search stays within the selected episode; clearing auxiliary filters
+preserves it. All areas and All types remain available. A directly opened detail
+page returns to its monster's episode when no originating episode is specified.
+
 The catalog lives at `/data/enemies.html`, with detail pages at
 `/data/enemies/{id}.html`. The original `/data/monsters.html` remains the farming
 guide, and the two pages link to each other.

@@ -50,6 +50,18 @@ business tests and build, and 64 focused browser tests. These local checks do no
 replace the full Pages gates. Verify each repository's build and deploy jobs for
 the pushed commit, then check the live BB assets and Haven item detail pages.
 
+## September 18, 2026 catalog category selection
+
+The maintainer accepted removal of the item list's All category and the monster
+list's All episodes option. Defaults are Weapons and EP1. Auxiliary All filters
+remain; search, reset and detail-return behavior retain the selected category or
+episode. Direct detail links return to their own category/episode by default.
+
+Local validation passed `npm test`, `npm run build` (1,268 routes), and all 59
+item/monster browser tests. The approved desktop previews were inspected before
+publication. The master push still requires the standard full Pages checks and
+deployment; these local results alone do not establish production publication.
+
 ## Dependency updates
 
 Dependabot checks npm packages and GitHub Actions weekly. Angular framework and

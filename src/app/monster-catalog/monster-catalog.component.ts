@@ -24,16 +24,16 @@ export class MonsterCatalogComponent {
   readonly difficulty=computed(()=>DIFFICULTIES.some(d=>d.id===this.params().get('diff')) ? this.params().get('diff')! : 'n');
   readonly mode=computed(()=>this.params().get('mode')==='off' ? 'off':'on');
   readonly context=computed(()=>`${this.difficulty()}-${this.mode()}`);
-  readonly query=computed(()=>Object.fromEntries([...this.params().keys.map(k=>[k,this.params().get(k)]),['lang',this.i18n.language()]]));
+  readonly query=computed(()=>Object.fromEntries([...this.params().keys.map(k=>[k,this.params().get(k)]),['lang',this.i18n.language()],['ep',this.episode()]]));
   readonly q=computed(()=>this.params().get('q') || '');
-  readonly episode=computed(()=>['1','2','4'].includes(this.params().get('ep')||'') ? this.params().get('ep')! : '');
-  readonly area=computed(()=>this.params().get('area')||'');
+  readonly episode=computed(()=>['1','2','4'].includes(this.params().get('ep')||'') ? this.params().get('ep')! : String(this.monster()?.episode ?? 1));
+  readonly area=computed(()=>this.areas().includes(this.params().get('area')||'') ? this.params().get('area')! : '');
   readonly kind=computed(()=>['rare','boss','part','regular'].includes(this.params().get('kind')||'') ? this.params().get('kind')! : '');
   readonly sort=computed(()=>this.params().get('sort')==='hp'?'hp':'');
-  readonly areas=computed(()=>[...new Set(MONSTERS.filter(m=>!this.episode() || m.episode===Number(this.episode())).flatMap(m=>m.areas))]);
+  readonly areas=computed(()=>[...new Set(MONSTERS.filter(m=>m.episode===Number(this.episode())).flatMap(m=>m.areas))]);
   readonly filtered=computed(()=>{
     const q=normalize(this.q()); const kind=this.kind();
-    const list=MONSTERS.filter(m=>(!this.episode() || m.episode===Number(this.episode())) && (!this.area() || m.areas.includes(this.area())) && (!kind || (kind==='regular' ? !m.rare&&!m.boss&&!m.part : m[kind as 'rare'|'boss'|'part'])) && (!q || normalize([...Object.values(m.names),...Object.values(m.ultimateNames),...m.areas.flatMap(a=>[a,this.i18n.area(a,'zh'),this.i18n.area(a,'ja')])].join(' ')).includes(q)));
+    const list=MONSTERS.filter(m=>(m.episode===Number(this.episode())) && (!this.area() || m.areas.includes(this.area())) && (!kind || (kind==='regular' ? !m.rare&&!m.boss&&!m.part : m[kind as 'rare'|'boss'|'part'])) && (!q || normalize([...Object.values(m.names),...Object.values(m.ultimateNames),...m.areas.flatMap(a=>[a,this.i18n.area(a,'zh'),this.i18n.area(a,'ja')])].join(' ')).includes(q)));
     return this.sort()==='hp' ? list.sort((a,b)=>(b.values[this.context()]?.[0]??-1)-(a.values[this.context()]?.[0]??-1)) : list;
   });
   readonly pages=computed(()=>Math.max(1,Math.ceil(this.filtered().length/24)));
@@ -64,7 +64,7 @@ export class MonsterCatalogComponent {
       if(navigated && key==='page') this.document.getElementById('monster-results')?.scrollIntoView({behavior:'instant',block:'start'});
     });
   }
-  clear():void {void this.router.navigate([],{relativeTo:this.route,queryParams:{lang:this.i18n.language(),diff:this.difficulty(),mode:this.mode()},replaceUrl:true});}
+  clear():void {void this.router.navigate([],{relativeTo:this.route,queryParams:{lang:this.i18n.language(),ep:this.episode(),diff:this.difficulty(),mode:this.mode()},replaceUrl:true});}
   retry():void {this.document.defaultView?.location.reload();}
   constructor(){
     effect(()=>this.title.setTitle(`${this.monster()?this.name(this.monster()!)+' | ':''}${this.i18n.t('怪物图鉴')} · Ephinea PSOBB`));

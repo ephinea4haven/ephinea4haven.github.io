@@ -1,8 +1,13 @@
 # Item Catalog
 
+The primary selector contains six categories with no All option and defaults to
+Weapons. Search stays within the selected category; clearing auxiliary filters
+preserves it. Auxiliary All options (type, class, rarity and status) remain.
+A directly opened detail page returns to its item's category when no originating
+category is specified.
+
 The catalog lives at `/data/items.html`, with one detail page per item at
-`/data/items/{slug}.html`. It extends the approved MVP layout into a full,
-all-category catalog.
+`/data/items/{slug}.html`. It extends the approved MVP layout into a full catalog covering all six categories.
 
 ## Coverage and interface
 

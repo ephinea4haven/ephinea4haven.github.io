@@ -29,7 +29,6 @@ export interface ItemDetail {
   excerpts: string[]; imageSource: string | null; imagePage: string | null; related: string[];
 }
 export const CATEGORIES = [
-  { id: 'all', label: '全部道具', icon: '◈' },
   { id: 'weapon', label: '武器', icon: '⚔' },
   { id: 'armor', label: '铠甲', icon: '◇' },
   { id: 'shield', label: '盾牌', icon: '⬡' },
@@ -48,7 +47,7 @@ export const ITEMS: readonly CatalogItem[] = (rawIndex as IndexRow[]).map(([id, 
 }));
 export const ITEM_BY_ID = new Map(ITEMS.map(item => [item.id, item]));
 export function categoryLabel(id: string): string {
-  return CATEGORIES.find((category) => category.id === id)?.label ?? '全部道具';
+  return CATEGORIES.find((category) => category.id === id)?.label ?? '武器';
 }
 export function itemPath(item: Pick<CatalogItem, 'id'>): string { return `/data/items/${item.id}.html`; }
 export function normalize(value: string): string { return value.normalize('NFKC').toLocaleLowerCase().trim(); }
