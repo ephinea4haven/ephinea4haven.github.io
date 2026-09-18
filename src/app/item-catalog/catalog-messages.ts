@@ -18,7 +18,7 @@ export const MESSAGES: Record<string, readonly [string, string]> = {
   '搜索道具名称或代码': ['Search item names or codes', 'アイテム名・コードを検索'],
   '搜索中文、English、日本語或道具代码…': ['Search names in any language, or an item code…', '中国語・英語・日本語の名称、またはコードで検索…'],
   '道具类别': ['Item categories', 'アイテムカテゴリ'],
-  '全部道具': ['All items', 'すべて'], '武器': ['Weapons', '武器'], '铠甲': ['Frames', '鎧'],
+  '武器': ['Weapons', '武器'], '铠甲': ['Frames', '鎧'],
   '盾牌': ['Barriers', '盾'], '插件': ['Units', 'ユニット'], '玛古': ['Mags', 'マグ'], '其他道具': ['Tools', 'その他'],
   '筛选条件': ['Filters', '絞り込み'], '重置': ['Reset', 'リセット'], '细分类别': ['Item type', '種類'],
   '全部类型': ['All types', 'すべての種類'], '收录状态': ['Availability status', '収録状態'],

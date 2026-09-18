@@ -71,7 +71,7 @@ test('detail language persists through return, refresh and explicit shared links
   await expect(page.locator('#catalog-title')).toHaveText('道具图鉴');
   await page.goto('/data/items.html?lang=en&q=missing-item');
   await page.getByRole('button',{name:'Clear all filters'}).click();
-  await expect(page).toHaveURL(/items.html\?lang=en$/);
+  await expect(page).toHaveURL(/items.html\?lang=en&category=weapon$/);
   await expect(page.locator('.item-row')).toHaveCount(24);
 });
 
@@ -107,7 +107,7 @@ test('language changes keep detail fragments without fetching detail data again'
 });
 
 test('English detail request failures expose translated retry and return controls', async ({page}) => {
-  await page.goto('/data/items.html?lang=en&q=V801');
+  await page.goto('/data/items.html?category=unit&lang=en&q=V801');
   await page.route(/\/assets\/data\/items\/v801\.json\?v=[0-9a-f]{12}$/,route=>route.abort());
   // The prerendered list is unfiltered; wait for hydration to apply the query before clicking.
   await expect(page.locator('.item-row')).toHaveCount(1);
@@ -255,6 +255,7 @@ test('HD images never load in the list and do not affect image-only filtering', 
   page.on('request', request => { if (request.url().includes('/assets/img/items/hd/')) hdRequests.push(request.url()); });
   await page.goto('/data/items.html?q=Saber');
   await expect(page.locator('.item-row').first().locator('img')).toHaveAttribute('src', '/assets/img/items/wiki/29f6af4df3b08415.png');
+  await page.locator('.category-tabs button').nth(1).click();
   await page.getByRole('searchbox').fill('Dress Plate');
   await expect(page.locator('.item-row')).toHaveCount(1);
   await expect(page.locator('.item-row img')).toHaveAttribute('src', '/assets/img/items/no-image.webp');
@@ -329,8 +330,9 @@ test('empty results and malformed pagination recover', async ({page}) => {
   await page.getByRole('button',{name:'清除全部条件'}).click();
   await expect(page.locator('.item-row')).toHaveCount(24);
   await page.goto('/data/items.html?page=9999');
-  await expect(page.locator('.item-row')).toHaveCount(13);
-  await expect(page.getByLabel('跳转页码')).toHaveValue('44');
+  const weapons = items.filter(item => item.category === 'weapon').length;
+  await expect(page.locator('.item-row')).toHaveCount(weapons % 24 || 24);
+  await expect(page.getByLabel('跳转页码')).toHaveValue(String(Math.ceil(weapons / 24)));
 });
 
 test('unknown rarity, historical items and unavailable items are explicit', async ({page}) => {
@@ -372,7 +374,7 @@ test('mobile filters expose image-only results with real local files', async ({p
   await expect(page.locator('#catalog-filters')).toBeHidden();
   await page.getByRole('button',{name:'筛选条件'}).click();
   await page.getByLabel('只看有截图的道具').check();
-  await expect(page.locator('.result-toolbar')).toContainText('547');
+  await expect(page.locator('.result-toolbar')).toContainText(String(items.filter(item => item.category === 'weapon' && item.image).length));
   await expect(page.locator('.item-row')).toHaveCount(24);
   expect(await page.locator('.item-row').first().locator('img').evaluate(img=>img.complete && img.naturalWidth > 0)).toBe(true);
 });
@@ -394,7 +396,7 @@ test('section links and related navigation update the scroll position', async ({
 test('details load on demand and a failed request has an explicit retry state', async ({page}) => {
   const requests = [];
   page.on('request',r=>{if(r.url().includes('/assets/data/items/'))requests.push(r.url());});
-  await page.goto('/data/items.html?q=V801');
+  await page.goto('/data/items.html?category=unit&q=V801');
   expect(requests).toEqual([]);
   await page.route(/\/assets\/data\/items\/v801\.json\?v=[0-9a-f]{12}$/,route=>route.abort());
   await expect(page.locator('.item-row')).toHaveCount(1);
@@ -469,4 +471,27 @@ test('monster detail requests carry the dataset version', async ({page}) => {
   await page.locator('a[href*="/data/enemies/"]').first().click();
   await expect.poll(() => requests.length).toBe(1);
   expect(requests[0].searchParams.get('v')).toMatch(/^[0-9a-f]{12}$/);
+});
+
+
+test('primary item categories have no All option and reset keeps the selected category', async ({page}) => {
+  for (const lang of ['zh','en','ja']) {
+    await page.goto(`/data/items.html?lang=${lang}`);
+    await expect(page.locator('.category-tabs button')).toHaveCount(6);
+    await expect(page.locator('.category-tabs button').first()).toHaveAttribute('aria-pressed','true');
+    await expect(page.locator('.item-row').first()).toHaveAttribute('href',/category=weapon/);
+    await expect(page.locator('#type-filter option').first()).toHaveAttribute('value','');
+    await expect(page.locator('#class-filter option').first()).toHaveAttribute('value','');
+    await expect(page.locator('#rarity-filter option').first()).toHaveAttribute('value','');
+  }
+  await page.goto('/data/items.html?category=unit&q=nonexistent&lang=en');
+  await page.getByRole('button',{name:'Clear all filters',exact:true}).click();
+  await expect(page).toHaveURL(/category=unit/);
+  await expect(page.locator('.category-tabs button[aria-pressed="true"]')).toContainText('Units');
+  await expect(page.getByRole('searchbox')).toHaveValue('');
+  await page.goto('/data/items/v801.html?lang=en');
+  await page.getByRole('link',{name:'← Back to item list',exact:true}).click();
+  await expect(page).toHaveURL(/category=unit/);
+  await page.reload();
+  await expect(page.locator('.category-tabs button[aria-pressed="true"]')).toContainText('Units');
 });

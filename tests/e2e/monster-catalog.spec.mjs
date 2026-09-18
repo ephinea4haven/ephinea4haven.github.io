@@ -4,8 +4,8 @@ import { readFileSync } from 'node:fs';
 import { extractMechanicTables } from '../../scripts/extract_monster_mechanics.mjs';
 const details=JSON.parse(readFileSync('src/app/generated/monster-catalog/details.server.json','utf8'));
 test('monster area search results are independent of the interface language',async({page})=>{
-  for(const term of ['森林','地下砂漠','遺跡 2']) {
-    await page.goto(`/data/enemies.html?q=${encodeURIComponent(term)}&lang=${term==='森林'?'zh':'ja'}`);
+  for(const [term,ep] of [['森林','1'],['地下砂漠','4'],['遺跡 2','1']]) {
+    await page.goto(`/data/enemies.html?ep=${ep}&q=${encodeURIComponent(term)}&lang=${term==='森林'?'zh':'ja'}`);
     await expect(page.getByRole('searchbox')).toHaveValue(term);
     const paths=await page.locator('.monster-row').evaluateAll(rows=>rows.map(row=>new URL(row.href).pathname));
     expect(paths.length).toBeGreaterThan(0);
@@ -179,4 +179,29 @@ for(const width of [390,1280]) test(`monster pages fit viewport and pass accessi
     const results=await new AxeBuilder({page}).include('.bestiary').withTags(['wcag2a','wcag2aa']).analyze();
     expect(results.violations).toEqual([]);
   }
+});
+
+
+test('episode selection has no All option and auxiliary resets preserve the chapter',async({page})=>{
+  for(const lang of ['zh','en','ja']) {
+    await page.goto(`/data/enemies.html?lang=${lang}`);
+    const episode=page.locator('.filters select').nth(0);
+    await expect(episode).toHaveValue('1');
+    await expect(episode.locator('option')).toHaveText(['EP1','EP2','EP4']);
+    await expect(page.locator('.filters select').nth(1).locator('option').first()).toHaveAttribute('value','');
+    await expect(page.locator('.filters select').nth(2).locator('option').first()).toHaveAttribute('value','');
+    const chapters=await page.locator('.monster-location span').allTextContents();
+    expect(chapters.length).toBeGreaterThan(0);expect(chapters.every(x=>x==='EP1')).toBe(true);
+  }
+  await page.goto('/data/enemies.html?ep=4&q=nonexistent&lang=en');
+  await page.getByRole('button',{name:'Clear filters',exact:true}).click();
+  await expect(page.locator('.filters select').first()).toHaveValue('4');
+  await expect(page.getByRole('searchbox')).toHaveValue('');
+  await page.locator('.monster-row').first().click();
+  await page.getByRole('link',{name:'← Back to list',exact:true}).click();
+  await expect(page.locator('.filters select').first()).toHaveValue('4');
+  await page.goto('/data/enemies/boota.html?lang=en');
+  await page.getByRole('link',{name:'← Back to list',exact:true}).click();
+  await expect(page.locator('.filters select').first()).toHaveValue('4');
+  await page.reload();await expect(page.locator('.filters select').first()).toHaveValue('4');
 });

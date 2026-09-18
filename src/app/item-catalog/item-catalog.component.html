@@ -7,7 +7,7 @@
   <div class="search-box"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><label class="sr-only" for="item-search">{{ i18n.t('搜索道具名称或代码') }}</label><input id="item-search" type="search" [placeholder]="i18n.t('搜索中文、English、日本語或道具代码…')" [value]="query()" #searchInput (input)="update('q', searchInput.value)" autocomplete="off"><span class="search-hint">{{ i18n.t('中 / EN / 日') }}</span></div>
   <nav class="category-tabs" [attr.aria-label]="i18n.t('道具类别')">
     @for (entry of categories; track entry.id) {
-      <button type="button" [class.selected]="category() === entry.id" [attr.aria-pressed]="category() === entry.id" (click)="update('category', entry.id === 'all' ? null : entry.id)"><span aria-hidden="true">{{ entry.icon }}</span>{{ i18n.t(entry.label) }}<span class="count">{{ count(entry.id) }}</span></button>
+      <button type="button" [class.selected]="category() === entry.id" [attr.aria-pressed]="category() === entry.id" (click)="update('category', entry.id)"><span aria-hidden="true">{{ entry.icon }}</span>{{ i18n.t(entry.label) }}<span class="count">{{ count(entry.id) }}</span></button>
     }
   </nav>
   <div class="catalog-layout">

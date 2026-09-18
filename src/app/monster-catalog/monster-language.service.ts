@@ -6,7 +6,7 @@ const messages: Record<string,[string,string]> = {
   '怪物图鉴':['Bestiary','エネミー図鑑'], '返回主页':['Home','ホーム'], '道具图鉴':['Item Database','アイテム図鑑'],
   '怪物周回指南':['Hunting Guide','周回ガイド'], '搜寻拉古奥尔的每一个威胁。':['Know what awaits on Ragol.','ラグオルの脅威を知る。'],
   '按章节、难度与模式查看属性、行为机制和掉落。':['Explore stats, mechanics and drops by episode, difficulty and mode.','エピソード・難易度・モード別に能力値、行動、ドロップを確認。'],
-  '搜索怪物名称或区域':['Search enemies or areas','エネミー名・エリアを検索'], '全部章节':['All episodes','全エピソード'], '全部区域':['All areas','全エリア'],
+  '搜索怪物名称或区域':['Search enemies or areas','エネミー名・エリアを検索'], '全部区域':['All areas','全エリア'],
   '全部类型':['All types','全種類'], '普通怪物':['Regular enemies','通常エネミー'], '稀有怪物':['Rare enemies','レアエネミー'], '首领':['Bosses','ボス'], '部位与召唤物':['Parts & summons','部位・召喚体'],
   '章节':['Episode','エピソード'], '区域':['Area','エリア'], '类型':['Type','種類'], '难度':['Difficulty','難易度'], '模式':['Mode','モード'],
   '多人模式':['Multiplayer','通常モード'], '单人模式':['One Person','一人用モード'], '怪物':['Enemies','エネミー'], '属性':['Attribute','属性'],
