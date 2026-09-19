@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceCollection": "高清图库",
-  "reviewedOn": "2026-09-16",
+  "reviewedOn": "2026-09-19",
   "identityAuthority": "../droptable/i18n_names.json",
   "notes": [
     "Normalized output names; source files are preserved.",
@@ -1397,6 +1397,10 @@
     },
     "slicer-of-assassin": {
       "en": "Slicer of Assassin",
+      "authorityMatched": true
+    },
+    "slicer-of-fanatic": {
+      "en": "Slicer of Fanatic",
       "authorityMatched": true
     },
     "snake-spire": {
@@ -8118,6 +8122,25 @@
           "bytes": 8986049,
           "width": 5444,
           "height": 3990
+        }
+      ]
+    },
+    {
+      "file": "items/slicer-of-fanatic.webp",
+      "kind": "item",
+      "itemIds": [
+        "slicer-of-fanatic"
+      ],
+      "appearanceOf": [],
+      "variant": null,
+      "evidence": "Image supplied and explicitly identified as SOF (Slicer of Fanatic) by the maintainer on 2026-09-19.",
+      "sources": [
+        {
+          "path": "SUPPLIED/51ad1493c22ac2388491fd999e3df93f_720.png",
+          "sha256": "90648a48e705e0ac7bb8c0e1147b31e97ddc04dfa6fd9148286042f6d2b2204a",
+          "bytes": 736125,
+          "width": 1280,
+          "height": 938
         }
       ]
     },

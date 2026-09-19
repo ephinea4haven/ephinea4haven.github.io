@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import path from 'node:path';
 import { slug } from './item_catalog_model.mjs';
 import { selectHdImages } from './item_catalog_hd.mjs';
 
@@ -19,14 +20,14 @@ test('published HD images use only direct identities and resolve alternate views
     assert.ok(asset.itemIds.includes(id));
     assert.ok(['item', 'shared-appearance'].includes(asset.kind));
   }
-  const published = fs.readdirSync('assets/img/items/hd', {recursive: true}).filter(file => file.endsWith('.webp'));
+  const published = fs.readdirSync('assets/img/items/hd', {recursive: true}).filter(file => file.endsWith('.webp')).map(file => file.split(path.sep).join('/'));
   assert.deepEqual(published.sort(), [...new Set(images.values())].sort());
 });
 
 test('HD naming accounts for the entire collection and merges only identical files', () => {
-  assert.equal(gallery.assets.length, 552);
+  assert.equal(gallery.assets.length, 553);
   const sources = gallery.assets.flatMap(asset => asset.sources);
-  assert.equal(sources.length, 606);
+  assert.equal(sources.length, 607);
   assert.equal(new Set(sources.map(source => source.path)).size, sources.length);
   assert.equal(new Set(gallery.assets.map(asset => asset.file)).size, gallery.assets.length);
   assert.equal(new Set(gallery.assets.map(asset => asset.sources[0].sha256)).size, gallery.assets.length);
