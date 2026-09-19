@@ -27,32 +27,39 @@ for (const mode of ['multi', 'opm']) {
   );
 }
 
-let engine = await readFile(path.join(root, 'assets', 'js', 'combo_calc.js'), 'utf8');
-engine = engine
-  .replace(
-    'evpModifier, base_ata, snGlitch, atpInput, comboInput, range\n)',
-    'evpModifier, base_ata, snGlitch, atpInput, comboInput, range, classStats\n)',
-  )
-  .replace(
-    'damageToUse, atpInput, comboInput, range)',
-    'damageToUse, atpInput, comboInput, range, classStats)',
-  )
-  .replace(
-    'baseDamage, atpInput, comboInput, range\n)',
-    'baseDamage, atpInput, comboInput, range, classStats\n)',
-  )
-  .replaceAll(
-    /\s+let className = \$\('#class-select'\)\.val\(\);/g,
-    '\n    const className = atpInput.playerClass;',
-  )
-  .replace(
-    'getFrameDataForWeapon(weapon, className)',
-    'getFrameDataForWeapon(weapon, className, classStats)',
-  )
-  .replace(
-    'function getFrameDataForWeapon(weapon, className) {',
-    'function getFrameDataForWeapon(weapon, className, classStats) {',
-  );
+let engine = (await readFile(path.join(root, 'assets', 'js', 'combo_calc.js'), 'utf8'))
+  .replace(/\r\n?/g, '\n');
+function replaceRequired(before, after) {
+  const matches = engine.split(before).length - 1;
+  if (matches !== 1) {
+    throw new Error(`Expected one Combo engine transformation target ${JSON.stringify(before)}; found ${matches}`);
+  }
+  engine = engine.replace(before, after);
+}
+replaceRequired(
+  'evpModifier, base_ata, snGlitch, atpInput, comboInput, range\n)',
+  'evpModifier, base_ata, snGlitch, atpInput, comboInput, range, classStats\n)',
+);
+replaceRequired(
+  'damageToUse, atpInput, comboInput, range)',
+  'damageToUse, atpInput, comboInput, range, classStats)',
+);
+replaceRequired(
+  'baseDamage, atpInput, comboInput, range\n)',
+  'baseDamage, atpInput, comboInput, range, classStats\n)',
+);
+engine = engine.replaceAll(
+  /\s+let className = \$\('#class-select'\)\.val\(\);/g,
+  '\n    const className = atpInput.playerClass;',
+);
+replaceRequired(
+  'let frameData = getFrameDataForWeapon(weapon, className);',
+  'let frameData = getFrameDataForWeapon(weapon, className, classStats);',
+);
+replaceRequired(
+  'function getFrameDataForWeapon(weapon, className) {',
+  'function getFrameDataForWeapon(weapon, className, classStats) {',
+);
 
 const browserFunctions = new Set([
   'appendMonsterRow',

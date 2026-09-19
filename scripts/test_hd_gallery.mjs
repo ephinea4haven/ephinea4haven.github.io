@@ -88,7 +88,7 @@ test('NGC aliases preserve shared color variants without inventing TYPE equipmen
 
 test('uncertain identities remain explicit and cannot become item bindings', () => {
   const unresolved = gallery.assets.filter(asset => asset.kind === 'unresolved');
-  assert.equal(unresolved.length, 22);
+  assert.equal(unresolved.length, 21);
   for (const asset of unresolved) {
     assert.ok(asset.file.startsWith('unresolved/'));
     assert.equal(asset.itemIds.length + asset.appearanceOf.length, 0, asset.file);

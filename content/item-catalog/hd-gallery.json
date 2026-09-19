@@ -4807,12 +4807,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed. Replacement artwork supplied in 替换.zip on 2026-09-19; matched to the previously reviewed source filename and item appearance.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/GIGUE BAZOOKA.png",
-          "sha256": "41de8354f49167ead71bf7fe2e96a4bd205c5aeef2a1fb180de45be694bbc171",
-          "bytes": 5477425,
+          "path": "替换/GIGUE BAZOOKA.png",
+          "sha256": "f521647bc1a7ebd239b554893778d83d250b927062fe4f974d211c92182feaca",
+          "bytes": 19438650,
           "width": 5444,
           "height": 3989
         }
@@ -7262,14 +7262,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Visual comparison with local Wiki image; shape and color reviewed against the candidate.",
+      "evidence": "Visual comparison with local Wiki image; shape and color reviewed against the candidate. Replacement artwork supplied in 替换.zip on 2026-09-19; matched to the previously reviewed source filename and item appearance.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/136.png",
-          "sha256": "ae1310aa9c06e9c7abeadc5152bc3ae48a2790446ba5abf16d36a29f79a4e695",
-          "bytes": 3918793,
-          "width": 2474,
-          "height": 1813
+          "path": "替换/136.png",
+          "sha256": "7b1ff9e4e0de01021d304bee682cb13f96a4304119d89083b250b1a2db832ad2",
+          "bytes": 20678089,
+          "width": 5444,
+          "height": 3989
         }
       ]
     },
@@ -9217,12 +9217,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Visual comparison with local Wiki image; shape and color reviewed against the candidate.",
+      "evidence": "Visual comparison with local Wiki image; shape and color reviewed against the candidate. Replacement artwork supplied in 替换.zip on 2026-09-19; matched to the previously reviewed source filename and item appearance.",
       "sources": [
         {
-          "path": "WEAPON/EP4/234.png",
-          "sha256": "e740b25e43d428d028761d7d83d13b888a38640c802ca232ba6382440443341c",
-          "bytes": 12374268,
+          "path": "替换/234.png",
+          "sha256": "7fcdf95fc3d385e51a0c2ff84685346fd7fb8e868fca6291423ef84056fb2839",
+          "bytes": 15924318,
           "width": 5444,
           "height": 3989
         }
@@ -10481,22 +10481,21 @@
       ]
     },
     {
-      "file": "unresolved/weapon-type-weapon/swords.webp",
-      "kind": "unresolved",
-      "itemIds": [],
-      "appearanceOf": [],
-      "variant": null,
-      "evidence": "TYPE filename identifies a model only; the site's exact TYPE item/animation identity is not established.",
-      "candidateItemIds": [
+      "file": "items/typess-swords.webp",
+      "kind": "item",
+      "itemIds": [
         "typess-swords"
       ],
+      "appearanceOf": [],
+      "variant": null,
+      "evidence": "Replacement artwork supplied in 替换.zip on 2026-09-19; explicitly confirmed by the maintainer as TypeSS/Swords.",
       "sources": [
         {
-          "path": "WEAPON/TYPE WEAPON/SWORDS.png",
-          "sha256": "e18209f89782b6be10d76018936f9ff1c6c518d2caf56886da4ae42c6e6102d1",
-          "bytes": 2361890,
-          "width": 1582,
-          "height": 1160
+          "path": "替换/SWORDS.png",
+          "sha256": "9e876d132a5320ad7d8f0f6d850fb078b7aac5d7077c45b65a1df4f6cee80d74",
+          "bytes": 17253245,
+          "width": 5444,
+          "height": 3989
         }
       ]
     },

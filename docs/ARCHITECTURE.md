@@ -311,7 +311,11 @@ including where the page's threshold wording differs from the Wiki summary.
 
 Build-input JavaScript datasets are never copied to `_site`. Generators evaluate
 or normalize them into Angular modules. The PSOStats Combo snapshot remains an
-audited upstream boundary. The character simulator is Haven-owned TypeScript:
+audited upstream boundary. Its Angular generator normalizes source line endings
+in memory and requires each parameter transformation to match exactly once.
+`scripts/test_generate_angular_combo.mjs`, included in `npm test`, verifies
+equivalent LF/CRLF output and rejection of changed source signatures.
+The character simulator is Haven-owned TypeScript:
 `status-domain.ts` is a pure calculation module and `item-data.js` is an immutable
 catalog behind an explicit TypeScript declaration. Neither depends on the DOM or
 an obsolete browser runtime.
