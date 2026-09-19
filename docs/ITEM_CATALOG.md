@@ -14,7 +14,7 @@ The catalog lives at `/data/items.html`, with one detail page per item at
 The snapshot contains 1,045 entries: 419 weapons, 88 frames, 107 barriers, 100
 units, 84 Mags and 247 other items. The list retains Wiki images for 547 entries,
 drawn from 478 PNG files totaling about 4.9 MB. Detail pages additionally offer
-HD images for 410 entries; 44 previously had no Wiki image, bringing detail image
+HD images for 411 entries; 44 previously had no Wiki image, bringing detail image
 coverage to 591 entries. The snapshot was taken on 2026-09-14;
 the cosmetic item pages and 21 excerpt fixes were re-merged on 2026-09-15 at
 unchanged Wiki revisions, and those records carry their own check date.
@@ -125,11 +125,12 @@ as separate models.
 ### HD detail images and naming (updated 2026-09-19)
 
 `content/item-catalog/hd-gallery.json` accounts for 607 source images: the original
-606-image 高清图库 collection and one subsequently supplied SOF image.
-SHA-256 comparison reduces these to 553 unique assets; all
-original relative filenames, dimensions, sizes and checksums are retained.
-The detail generator consumes only verified direct `itemIds`: 404 optimized
-images cover 410 details. The `hdImage` field is emitted only in per-item detail
+606-image 高清图库 collection with four images replaced by the supplied 替换.zip
+artwork, plus one subsequently supplied SOF image. SHA-256 comparison reduces
+these to 553 unique assets; the manifest records the current source paths,
+dimensions, sizes and checksums.
+The detail generator consumes only verified direct `itemIds`: 405 optimized
+images cover 411 details. The `hdImage` field is emitted only in per-item detail
 data, leaving the searchable list's image paths and image-only filter unchanged.
 Details default to HD when available and offer HD / Wiki buttons when both images
 exist. The displayed source and full-size image link follow the selected image.
@@ -161,8 +162,8 @@ the skin directory, and are grouped as Twin Chakram color variants. TypeDS and
 TypeGU also contain exact aliases. Paired weapons are model variants, not mere
 color changes. Different files are not merged just because they look similar.
 
-Twenty-two assets remain unresolved: 12 numbered armor effects, five shield
-images, the unqualified named AGITO image, and four TYPE model images. They have
+Twenty-one assets remain unresolved: 12 numbered armor effects, five shield
+images, the unqualified named AGITO image, and three TYPE model images. They have
 source-derived names under `unresolved/`, no item bindings, and explicit reasons
 and candidates where available. Do not promote these candidates to item names.
 Armor effect descriptions alone cannot securely bind an unlabeled screenshot;
@@ -178,10 +179,26 @@ the destination must be separate and empty. This checks every original hash
 before creating images and records each output's size and SHA-256 alongside the
 exact naming manifest in the prepared `manifest.json`. The generated review
 folder is ignored by Git and is outside the site's published asset directories.
-For a full regeneration, assemble a source directory containing the original
-collection plus the supplied PNG at the exact `SUPPLIED/` path above. The
-inventory check requires all 607 sources; the original collection alone is
-no longer the complete input.
+For a full regeneration, assemble a separate working copy of the original
+collection and add the supplied SOF PNG at the exact `SUPPLIED/` path above.
+In that working copy, remove the four old files listed below and extract their
+replacements from `替换.zip` into a `替换/` subdirectory. Keep the original archive
+and original collection unchanged.
+
+| Remove old source from working copy | Add replacement source | Detail item |
+| --- | --- | --- |
+| `WEAPON/EP1+2/136.png` | `替换/136.png` | Red Dagger |
+| `WEAPON/EP4/234.png` | `替换/234.png` | Vivienne |
+| `WEAPON/EP1+2/GIGUE BAZOOKA.png` | `替换/GIGUE BAZOOKA.png` | Gi Gue Bazooka |
+| `WEAPON/TYPE WEAPON/SWORDS.png` | `替换/SWORDS.png` | TypeSS/Swords |
+
+The maintainer confirmed the TypeSS/Swords identity on 2026-09-19, enabling its
+previously unbound HD detail image. The other three images replace existing HD
+images. All four replacement PNGs are 5444 × 3989; the published WebPs are
+1024 × 750. The inventory check requires exactly 607 sources, including these
+replacements and the SOF image. Leaving the four old files in the working copy
+or omitting the replacements will fail the inventory check. Pass this assembled
+working copy as the source directory in the commands below.
 
 ```sh
 node scripts/prepare_hd_gallery.mjs --check /path/to/高清图库
