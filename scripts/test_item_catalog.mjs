@@ -49,7 +49,7 @@ const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18
 
 test('HD images are detail-only and leave Wiki images and list filters unchanged', () => {
   const index = read('src/app/generated/item-catalog/index.json');
-  assert.equal(items.filter(item => item.hdImage).length, 409);
+  assert.equal(items.filter(item => item.hdImage).length, 410);
   assert.equal(index.filter(row => row[7]).length, 547);
   assert.equal(details.saber.hdImage, '/assets/img/items/hd/items/saber.webp');
   assert.equal(details['dress-plate'].image, null);

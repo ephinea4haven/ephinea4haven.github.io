@@ -14,7 +14,7 @@ The catalog lives at `/data/items.html`, with one detail page per item at
 The snapshot contains 1,045 entries: 419 weapons, 88 frames, 107 barriers, 100
 units, 84 Mags and 247 other items. The list retains Wiki images for 547 entries,
 drawn from 478 PNG files totaling about 4.9 MB. Detail pages additionally offer
-HD images for 409 entries; 44 previously had no Wiki image, bringing detail image
+HD images for 410 entries; 44 previously had no Wiki image, bringing detail image
 coverage to 591 entries. The snapshot was taken on 2026-09-14;
 the cosmetic item pages and 21 excerpt fixes were re-merged on 2026-09-15 at
 unchanged Wiki revisions, and those records carry their own check date.
@@ -122,18 +122,25 @@ as separate models.
 
 ## Updating the data
 
-### HD detail images and naming (2026-09-16)
+### HD detail images and naming (updated 2026-09-19)
 
-`content/item-catalog/hd-gallery.json` accounts for all 606 images in the supplied
-高清图库 collection. SHA-256 comparison reduces these to 552 unique assets; all
+`content/item-catalog/hd-gallery.json` accounts for 607 source images: the original
+606-image 高清图库 collection and one subsequently supplied SOF image.
+SHA-256 comparison reduces these to 553 unique assets; all
 original relative filenames, dimensions, sizes and checksums are retained.
-The detail generator consumes only verified direct `itemIds`: 403 optimized
-images cover 409 details. The `hdImage` field is emitted only in per-item detail
+The detail generator consumes only verified direct `itemIds`: 404 optimized
+images cover 410 details. The `hdImage` field is emitted only in per-item detail
 data, leaving the searchable list's image paths and image-only filter unchanged.
 Details default to HD when available and offer HD / Wiki buttons when both images
 exist. The displayed source and full-size image link follow the selected image.
 Navigating to another item resets the choice to HD. Single-source details show
 their available image without a switch. Related-item thumbnails stay unchanged.
+
+On 2026-09-19 the maintainer supplied and identified the SOF image, bound to
+`slicer-of-fanatic`. The 1280 × 938 PNG is recorded as
+`SUPPLIED/51ad1493c22ac2388491fd999e3df93f_720.png` in the source inventory;
+its 1024 × 750 WebP is 18,548 bytes. The existing Wiki image remains available
+through the detail page's image switch.
 
 Output names use the catalog's stable English item IDs. `itemIds` are direct
 equipment identities, while `appearanceOf` records a shared model or a visual
@@ -171,6 +178,10 @@ the destination must be separate and empty. This checks every original hash
 before creating images and records each output's size and SHA-256 alongside the
 exact naming manifest in the prepared `manifest.json`. The generated review
 folder is ignored by Git and is outside the site's published asset directories.
+For a full regeneration, assemble a source directory containing the original
+collection plus the supplied PNG at the exact `SUPPLIED/` path above. The
+inventory check requires all 607 sources; the original collection alone is
+no longer the complete input.
 
 ```sh
 node scripts/prepare_hd_gallery.mjs --check /path/to/高清图库
@@ -186,7 +197,7 @@ manifests or changed output bytes before writing any images, then removes retire
 WebPs from its owned destination directory. Regenerate the prepared gallery after
 changing the naming manifest; do not rename prepared files manually.
 They preserve aspect ratio at 1024-pixel width with lossy WebP quality 85,
-totaling 15,223,540 bytes. The detail frame displays them at up to 512 CSS pixels,
+totaling 15,242,088 bytes. The detail frame displays them at up to 512 CSS pixels,
 providing enough pixels for a 2× display at that size. This is optimized web
 artwork, not a lossless archival copy; enlarging it cannot retain the detail of
 the original roughly 5,000-pixel images. Downloaded originals are unchanged.
@@ -200,13 +211,19 @@ explicit notice. The supplied Section ID icons have no visual quality advantage:
 nine are byte-identical to the existing PNGs and Whitill has identical RGBA
 pixels. Existing Section ID assets remain in use.
 
-Validation for this change: `npm run test:items` passed 23 tests;
+Validation of the original 2026-09-16 collection: `npm run test:items` passed 23 tests;
 `npx playwright test tests/e2e/item-catalog.spec.mjs --workers=4` passed 38 tests;
 `npm run build` passed with 1,267 prerendered routes. The installer regressions
 cover stale mappings, changed/truncated/missing output, checksum omissions,
 retired files and repeated installation. Re-conversion verified all 606 source
 hashes and reproduced all 552 prepared images byte for byte, including the 403
 installed images. This validation covers the image changes, not unrelated work.
+
+Validation of the 2026-09-19 SOF addition: all 23 item/gallery tests passed,
+detail generation succeeded, and the converted image was visually inspected.
+The gallery inventory test now normalizes Windows path separators before
+comparing published paths. The build and browser suite were not rerun for this
+asset addition.
 
 ### Wiki data
 
