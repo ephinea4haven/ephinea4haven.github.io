@@ -113,9 +113,9 @@ test('names match authority and referenced assets exist',()=>{
 
 test('HD artwork keeps episode copies separate and binds only the pictured boss forms',()=>{
   const gallery=JSON.parse(fs.readFileSync('content/monster-catalog/hd-gallery.json'));
-  assert.equal(gallery.sources.length,168);
-  assert.equal(gallery.assets.length,168);
-  assert.equal(new Set(gallery.assets.map(a=>a.path)).size,168);
+  assert.equal(gallery.sources.length,171);
+  assert.equal(gallery.assets.length,171);
+  assert.equal(new Set(gallery.assets.map(a=>a.path)).size,171);
   for(const asset of gallery.assets) {
     const bytes=fs.readFileSync(asset.path.slice(1));
     assert.equal(bytes.length,asset.bytes);
@@ -128,14 +128,14 @@ test('HD artwork keeps episode copies separate and binds only the pictured boss 
   const galleryNames=JSON.parse(fs.readFileSync('content/monster-catalog/names.json'));
   for(const source of gallery.sources) {
     assert.ok(gallery.assets.some(a=>a.path===source.asset));
-    const base=source.identity.replace(/ \(Form [12]\)$/,'');
+    const base=source.identity.replace(/ \(Form [123]\)$/,'');
     assert.equal(path.basename(source.source,'.png'),galleryNames[base].zh+source.identity.slice(base.length));
   }
   assert.notEqual(details['rag-rappy-e1'].hdImage,details['rag-rappy-e2'].hdImage);
   assert.match(details['rag-rappy-e1'].hdImage,/\/forest\//);
   assert.match(details['rag-rappy-e2'].hdImage,/\/temple\//);
   assert.notEqual(details.booma.hdImage,details.booma.ultimateHdImage);
-  for(const id of ['vol-opt-form-1','vol-opt-pillar','dark-falz-form-2','dark-falz-form-3','olga-flow-form-1','epsigard']) assert.equal(details[id].hdImage,null,id);
-  for(const id of ['vol-opt-form-2','dark-falz-form-1','olga-flow-form-2','death-gunner','dolmolm','epsilon']) assert.ok(details[id].hdImage,id);
+  for(const id of ['vol-opt-form-1','vol-opt-pillar','epsigard']) assert.equal(details[id].hdImage,null,id);
+  for(const id of ['vol-opt-form-2','dark-falz-form-1','dark-falz-form-2','dark-falz-form-3','olga-flow-form-1','olga-flow-form-2','death-gunner','dolmolm','epsilon']) assert.ok(details[id].hdImage,id);
   for(const monster of index) assert.equal('hdImage' in monster,false,'HD assets stay out of the list bundle');
 });

@@ -1,6 +1,6 @@
 {
   "checkedAt": "2026-09-20",
-  "source": "User-provided ENEMY gallery",
+  "source": "User-provided ENEMY gallery and BOSS 补完 supplement",
   "normalization": {
     "format": "webp",
     "quality": 85,
@@ -197,16 +197,6 @@
       "width": 2768,
       "height": 1408,
       "asset": "/assets/img/monsters/hd/cave/dal-ral-lie-0cdd3a463db4.webp"
-    },
-    {
-      "original": "CAVE/迪·洛尔·雷.png",
-      "source": "CAVE/迪·洛尔·雷.png",
-      "identity": "De Rol Le",
-      "sha256": "69ee4aa4e20aaea105ddedad067f689eeeec850ef6b558fbdb305fcd0a089821",
-      "bytes": 3048300,
-      "width": 2432,
-      "height": 1600,
-      "asset": "/assets/img/monsters/hd/cave/de-rol-le-69ee4aa4e20a.webp"
     },
     {
       "original": "CCA/加尔狮鹫.png",
@@ -1687,6 +1677,46 @@
       "width": 2048,
       "height": 2048,
       "asset": "/assets/img/monsters/hd/tower/del-lily-29652bafd275.webp"
+    },
+    {
+      "original": "BOSS 补完/Dark Falz(Form 2).png",
+      "source": "BOSS 补完/暗黑佛 (Form 2).png",
+      "identity": "Dark Falz (Form 2)",
+      "sha256": "1f6d0e66a161e2801ffede27d1c119be1a5b3d41b3f778c5206cdeb59089c792",
+      "bytes": 4082861,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/ruins/dark-falz-form-2-1f6d0e66a161.webp"
+    },
+    {
+      "original": "BOSS 补完/Dark Falz(Form 3).png",
+      "source": "BOSS 补完/暗黑佛 (Form 3).png",
+      "identity": "Dark Falz (Form 3)",
+      "sha256": "b929c7a55a17f6bde38d453fe4b8e466fe03009130d3df3087de47f17d762806",
+      "bytes": 2188380,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/ruins/dark-falz-form-3-b929c7a55a17.webp"
+    },
+    {
+      "original": "BOSS 补完/Olga Flow(Form 1).png",
+      "source": "BOSS 补完/奥尔加·弗洛 (Form 1).png",
+      "identity": "Olga Flow (Form 1)",
+      "sha256": "a22462b30a249b37c1eb440da22a08f687832b381d09b698dd98e090e5616518",
+      "bytes": 13926851,
+      "width": 4511,
+      "height": 3989,
+      "asset": "/assets/img/monsters/hd/seabed/olga-flow-form-1-a22462b30a24.webp"
+    },
+    {
+      "original": "BOSS 补完/De Rol Le.png",
+      "source": "BOSS 补完/迪·洛尔·雷.png",
+      "identity": "De Rol Le",
+      "sha256": "0cacea48de848987a78d467ed91aae49ffc9c1edd0911d0d314aab606dc5fbcf",
+      "bytes": 2800315,
+      "width": 2848,
+      "height": 1600,
+      "asset": "/assets/img/monsters/hd/cave/de-rol-le-0cacea48de84.webp"
     }
   ],
   "assets": [
@@ -1784,11 +1814,6 @@
       "path": "/assets/img/monsters/hd/cave/dal-ral-lie-0cdd3a463db4.webp",
       "sha256": "a76d655d5c4782348c86f7014578f59e7c927531137e6a4b9bf176358782e132",
       "bytes": 74604
-    },
-    {
-      "path": "/assets/img/monsters/hd/cave/de-rol-le-69ee4aa4e20a.webp",
-      "sha256": "035cdf73929ced8ca5f3008501368b68b63aac1ca932a0d55c217e706c55a2d8",
-      "bytes": 92824
     },
     {
       "path": "/assets/img/monsters/hd/cca/gal-gryphon-1aedfe1b8b67.webp",
@@ -2529,6 +2554,26 @@
       "path": "/assets/img/monsters/hd/tower/del-lily-29652bafd275.webp",
       "sha256": "90c33a857b5a712a519e7e018eca40fb891d7afdf03c544cc516ab577c8b749f",
       "bytes": 94230
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/dark-falz-form-2-1f6d0e66a161.webp",
+      "sha256": "c4af0ecaf18cd8ec116b43fe96b2a911023fe5464818d243c72b3ee7effb4da8",
+      "bytes": 207714
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/dark-falz-form-3-b929c7a55a17.webp",
+      "sha256": "8137c64edcc1c738039f919a0b8797f7307110b9a0c6f188312fc89e6ae60b77",
+      "bytes": 144854
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/olga-flow-form-1-a22462b30a24.webp",
+      "sha256": "57592c02a4c81c09cc38d512e9fc57c947873e2d5d653dec65d444a25c11421c",
+      "bytes": 156408
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/de-rol-le-0cacea48de84.webp",
+      "sha256": "f0d54a76caf6b2d97c6b88a434824b4ddf0955937e366f3792e0a76c940c0e75",
+      "bytes": 110356
     }
   ],
   "assignments": {
@@ -2606,7 +2651,7 @@
     },
     "de-rol-le": {
       "ultimate": "/assets/img/monsters/hd/cave/dal-ral-lie-0cdd3a463db4.webp",
-      "normal": "/assets/img/monsters/hd/cave/de-rol-le-69ee4aa4e20a.webp"
+      "normal": "/assets/img/monsters/hd/cave/de-rol-le-0cacea48de84.webp"
     },
     "gal-gryphon": {
       "normal": "/assets/img/monsters/hd/cca/gal-gryphon-1aedfe1b8b67.webp",
@@ -3055,6 +3100,18 @@
     "del-lily": {
       "normal": "/assets/img/monsters/hd/tower/del-lily-29652bafd275.webp",
       "ultimate": "/assets/img/monsters/hd/tower/del-lily-29652bafd275.webp"
+    },
+    "dark-falz-form-2": {
+      "normal": "/assets/img/monsters/hd/ruins/dark-falz-form-2-1f6d0e66a161.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/dark-falz-form-2-1f6d0e66a161.webp"
+    },
+    "dark-falz-form-3": {
+      "normal": "/assets/img/monsters/hd/ruins/dark-falz-form-3-b929c7a55a17.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/dark-falz-form-3-b929c7a55a17.webp"
+    },
+    "olga-flow-form-1": {
+      "normal": "/assets/img/monsters/hd/seabed/olga-flow-form-1-a22462b30a24.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/olga-flow-form-1-a22462b30a24.webp"
     }
   }
 }
