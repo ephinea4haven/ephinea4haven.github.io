@@ -7,7 +7,8 @@
 'use strict';
 
 export function initializeMag(root, evolution, simulation) {
-    const SPRITE_DIR = '/assets/img/mag/wiki/';
+    const SPRITE_DIR = '/assets/img/mag/default/';
+    const COLOR_SOURCE_DIR = '/assets/img/mag/wiki/';
     const STAT = /\b(POW|DEX|MIND|DEF)\b/g;
 
     function esc(s) {
@@ -24,7 +25,7 @@ export function initializeMag(root, evolution, simulation) {
     }
 
     function sprite(name) {
-        return `${SPRITE_DIR}${encodeURIComponent(name)}.png`;
+        return `${SPRITE_DIR}${encodeURIComponent(name)}.webp`;
     }
 
     /* ---------- sprite recolour ----------
@@ -134,7 +135,7 @@ export function initializeMag(root, evolution, simulation) {
         root.querySelectorAll('.mag-card__sprite[data-mag]').forEach((img) => {
             const raw = REC.sources.get(img.dataset.mag);
             if (raw && raw.complete && raw.naturalWidth) recolorImg(img, hex);
-            else if (raw) raw.addEventListener('load', () => recolorImg(img, hex), { once: true });
+            else if (raw) raw.addEventListener('load', () => recolorImg(img, REC.hex), { once: true });
         });
     }
 
@@ -144,7 +145,7 @@ export function initializeMag(root, evolution, simulation) {
         const name = img.dataset.mag;
         if (REC.sources.has(name)) return;
         const raw = new Image();
-        raw.src = sprite(name);
+        raw.src = `${COLOR_SOURCE_DIR}${encodeURIComponent(name)}.png`;
         REC.sources.set(name, raw);
     }
 

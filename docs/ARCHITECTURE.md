@@ -62,6 +62,14 @@ but no scripts or inline event handlers; Angular owns behavior.
   drop-table authority; see [the data contract](MONSTER_CATALOG.md).
 - `src/app/generated/`: ignored build output derived from committed source data.
 - `assets/`: images, CSS, fonts, JSON and immutable build inputs.
+
+The Mag evolution chart uses 46 original-texture renders in
+`assets/img/mag/default/` for its initial display and colour reset. Each render
+has its own reference-matched camera; provenance, camera parameters and known
+outline differences are recorded in that directory. Colour selections still
+use the cyan Wiki sprites in `assets/img/mag/wiki/` as inputs to the existing
+approximate recolouring algorithm. The Wiki asset downloader updates those
+colour inputs, not the default renders.
 - `scripts/`: data generation, upstream synchronization, architecture checks and
   deterministic release construction.
 - `third_party/`: licenses and provenance for synchronized upstream material.
