@@ -11,6 +11,21 @@ guide, and the two pages link to each other.
 
 ## Coverage and use
 
+The [monster name reference by episode and area](MONSTER_NAMES_BY_AREA.md)
+lists Chinese, English and Japanese names, with Ultimate names alongside the
+Normal–Very Hard names. It covers all 160 catalog records in 12 regional groups;
+eight cross-region records appear twice, for 168 table rows. Boss phases and
+parts are labeled separately from ordinary enemies. Central Control Area and
+Crater retain the catalog's broad area grouping rather than implying a verified
+sub-area spawn inventory.
+
+On 2026-09-20 all 223 distinct normal/Ultimate source identifiers matched the
+[Ephinea Wiki full monster table](https://wiki.pioneer2.net/w/Monsters/Full_Monster_Table).
+The reference also includes Bulk and Death Gunner from the drop list. Checks
+found no omitted catalog record, normal/Ultimate name or recorded area, and all
+nine monster tests passed, including coverage of every drop row in all four
+difficulties. This verifies name coverage, not every quest-specific spawn location.
+
 The 2026-09-14 snapshot contains 160 entries across EP1, EP2 and EP4. A monster is
 recorded separately for each episode, area and boss phase, and its Normal through
 Very Hard and Ultimate appearances switch within one entry. 158 entries have

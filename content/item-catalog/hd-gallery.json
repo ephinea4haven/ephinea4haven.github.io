@@ -2114,12 +2114,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source technique label aligned to the canonical merge identity; matching model/color visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/Anti.png",
-          "sha256": "7180caf90c303de1644db31ea4eb2e307198a95d0cde8ded8602e28ec6aaf0f7",
-          "bytes": 8348613,
+          "path": "盾牌替换/Anti.png",
+          "sha256": "838defb353df7f6367cc28aac3d344509315221a4c8ec04382f4a2fb7d905d8f",
+          "bytes": 12556581,
           "width": 5444,
           "height": 3989
         }
@@ -2253,6 +2253,25 @@
           "path": "WEAPON/EP1+2/182.png",
           "sha256": "b2fd2d853f9f7369bce10ed790e2f426aacb50ca0fd54667dad464000546f36f",
           "bytes": 9302803,
+          "width": 5444,
+          "height": 3989
+        }
+      ]
+    },
+    {
+      "file": "items/barta-merge.webp",
+      "kind": "item",
+      "itemIds": [
+        "barta-merge"
+      ],
+      "appearanceOf": [],
+      "variant": null,
+      "evidence": "Maintainer confirmed the supplied technique image as this exact Merge identity on 2026-09-20 (Fire: Foie; Ice: Barta; Zonde: Zonde).",
+      "sources": [
+        {
+          "path": "盾牌替换/Ice.png",
+          "sha256": "849d5e9b44fdabc4fc612ba8bf0afe1db89adc62f762912bfb6557b2290439f4",
+          "bytes": 10701062,
           "width": 5444,
           "height": 3989
         }
@@ -3404,12 +3423,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/DB'S SHIELD.png",
-          "sha256": "962df683b38f2e171ac877f807b51b386e911b30eac0855741b773c617ea4b2f",
-          "bytes": 9619256,
+          "path": "盾牌替换/DB'S SHIELD.png",
+          "sha256": "d122083f10f040ce889986de019fbe9f0bd0a7de949bc9e48c1c5141cb332bf9",
+          "bytes": 8671645,
           "width": 5444,
           "height": 3989
         }
@@ -3442,12 +3461,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source technique label aligned to the canonical merge identity; matching model/color visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/Deband.png",
-          "sha256": "260c90ae2c7be6d00ade2749decf251a224f8e846d31a8dd6f02540b83e4847b",
-          "bytes": 7195969,
+          "path": "盾牌替换/Deband.png",
+          "sha256": "7b6f4e1e8d100603a4aceb31cca458db0c60822b81aac71fc96ae5a7a8b15f3e",
+          "bytes": 10645004,
           "width": 5444,
           "height": 3989
         }
@@ -4604,6 +4623,25 @@
           "path": "WEAPON/EP1+2/161.png",
           "sha256": "d2922c38933dec8c18c6c0ce5adfd93e7248d48a04416e46f8f54d31eaf3df10",
           "bytes": 12989253,
+          "width": 5444,
+          "height": 3989
+        }
+      ]
+    },
+    {
+      "file": "items/foie-merge.webp",
+      "kind": "item",
+      "itemIds": [
+        "foie-merge"
+      ],
+      "appearanceOf": [],
+      "variant": null,
+      "evidence": "Maintainer confirmed the supplied technique image as this exact Merge identity on 2026-09-20 (Fire: Foie; Ice: Barta; Zonde: Zonde).",
+      "sources": [
+        {
+          "path": "盾牌替换/Fire.png",
+          "sha256": "933bfa13c281acc990e74859b6ea3fc587ee0a9a460b64d9b4780838efc548fc",
+          "bytes": 10163502,
           "width": 5444,
           "height": 3989
         }
@@ -7518,12 +7556,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/RICO'S EARNING.png",
-          "sha256": "c9d225bda6e3cfc6b11b20db387e637b2670f779e10eb881d7df49f6b0b555ee",
-          "bytes": 7920655,
+          "path": "盾牌替换/RICO'S EARNING.png",
+          "sha256": "1e4887d3e576e06da8e75e17efd872d5a39f204c4e061dd1cd514bcd5b65074e",
+          "bytes": 15252739,
           "width": 5444,
           "height": 3989
         }
@@ -7537,12 +7575,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/RICO'S GLASS.png",
-          "sha256": "01e566f841c437a4ee161e3ab9ad5320dbceddb493628170c80811db77e0812e",
-          "bytes": 6973741,
+          "path": "盾牌替换/RICO'S GLASS.png",
+          "sha256": "5048c12a4f29041bd154a916c849af802d8f4176b4cd7c50d1e9bdb70702b3b3",
+          "bytes": 13893380,
           "width": 5444,
           "height": 3989
         }
@@ -7981,12 +8019,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/DELSABER'S SHIELD.png",
-          "sha256": "0da63347f3d2cea2adaf2ba7a5c4f50b2d6bb3bddc286256128165f44c5fd503",
-          "bytes": 15193934,
+          "path": "盾牌替换/DELSABER'S SHIELD.png",
+          "sha256": "ac91b70a1d7a2b9c46fdc7f7a056b23d1381625c51bbedc442f04362fb748053",
+          "bytes": 6761258,
           "width": 5444,
           "height": 3989
         }
@@ -8000,12 +8038,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source technique label aligned to the canonical merge identity; matching model/color visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/Shifta.png",
-          "sha256": "eadb07aaf0f355f056eff689226bae3f1a92042d45a6db358a54535316d5814e",
-          "bytes": 7058367,
+          "path": "盾牌替换/Shifta.png",
+          "sha256": "b1108851b58fcfaf53893a33179215f8f17413468ddd4c889249358bebbb9c64",
+          "bytes": 10550240,
           "width": 5444,
           "height": 3989
         }
@@ -8906,12 +8944,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Visual comparison with named Wiki shield artwork, including emblem and color.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/02.png",
-          "sha256": "1dbc4dad446fb4de384c35784c0d105ce50846cc40b0ae83bdcc03f44f8fb819",
-          "bytes": 8991550,
+          "path": "盾牌替换/02.png",
+          "sha256": "a5c983dcb50240b4ef0bb915897440ca7ebce184f8e0ce46c0289df484bd81f5",
+          "bytes": 6818158,
           "width": 5444,
           "height": 3989
         }
@@ -9071,6 +9109,25 @@
           "path": "WEAPON/EP4/294.png",
           "sha256": "9254de88e5b0c1a71ebc42ba249c9b52997697673deb67355461d1226e3998f5",
           "bytes": 13532332,
+          "width": 5444,
+          "height": 3989
+        }
+      ]
+    },
+    {
+      "file": "items/typess-swords.webp",
+      "kind": "item",
+      "itemIds": [
+        "typess-swords"
+      ],
+      "appearanceOf": [],
+      "variant": null,
+      "evidence": "Replacement artwork supplied in 替换.zip on 2026-09-19; explicitly confirmed by the maintainer as TypeSS/Swords.",
+      "sources": [
+        {
+          "path": "替换/SWORDS.png",
+          "sha256": "9e876d132a5320ad7d8f0f6d850fb078b7aac5d7077c45b65a1df4f6cee80d74",
+          "bytes": 17253245,
           "width": 5444,
           "height": 3989
         }
@@ -9312,12 +9369,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/WEAPONS COPPER SHIELD.png",
-          "sha256": "8f03f6b26caac508bc086268b5cfac477735be56d05977ee3aa7fcf04a85659f",
-          "bytes": 13988171,
+          "path": "盾牌替换/WEAPONS COPPER SHIELD.png",
+          "sha256": "7b153d015a8abe81623a6c971ed7665240928b88e23a234b1aa453ac6eb0340e",
+          "bytes": 11966508,
           "width": 5444,
           "height": 3989
         }
@@ -9331,14 +9388,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/WEAPONS GOLD SHIELD.png",
-          "sha256": "0fd3a5cddc792385719e495be11274d66f1bd383150e2a3778e02de01a03152b",
-          "bytes": 2393162,
-          "width": 2479,
-          "height": 1817
+          "path": "盾牌替换/WEAPONS GOLD SHIELD.png",
+          "sha256": "5affafbdd776fb7a1204ec779a2b2972bf17d312db89e265c1af04de023ec2b9",
+          "bytes": 10154212,
+          "width": 5444,
+          "height": 3989
         }
       ]
     },
@@ -9350,14 +9407,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "Replacement supplied on 2026-09-20; visually reviewed against the previously verified shield identity.",
       "sources": [
         {
-          "path": "SHIELD/WEAPONS SILVER SHIELD.png",
-          "sha256": "b676624ee074dec319b48b7c15c7b91651d65649a4fb47e53cb388c1ce9fb835",
-          "bytes": 2440178,
-          "width": 2479,
-          "height": 1817
+          "path": "盾牌替换/WEAPONS SILVER SHIELD.png",
+          "sha256": "51a0a6c510ce68bd76000871914f752ed507d19126be58767801504832e68814",
+          "bytes": 10295598,
+          "width": 5444,
+          "height": 3989
         }
       ]
     },
@@ -9754,6 +9811,25 @@
           "path": "WEAPON/EP4/277.png",
           "sha256": "e04c9dfaca437c9e130731b91e8d679d56430025c33a25c5eb6311f95a013270",
           "bytes": 20939521,
+          "width": 5444,
+          "height": 3989
+        }
+      ]
+    },
+    {
+      "file": "items/zonde-merge.webp",
+      "kind": "item",
+      "itemIds": [
+        "zonde-merge"
+      ],
+      "appearanceOf": [],
+      "variant": null,
+      "evidence": "Maintainer confirmed the supplied technique image as this exact Merge identity on 2026-09-20 (Fire: Foie; Ice: Barta; Zonde: Zonde).",
+      "sources": [
+        {
+          "path": "盾牌替换/Zonde.png",
+          "sha256": "0e5770c8025d1060abd538b2bb459d4aec1cbb6e5173f8668b7f19bdada9173b",
+          "bytes": 10610527,
           "width": 5444,
           "height": 3989
         }
@@ -10330,52 +10406,6 @@
       ]
     },
     {
-      "file": "unresolved/shield/fire.webp",
-      "kind": "unresolved",
-      "itemIds": [],
-      "appearanceOf": [],
-      "variant": null,
-      "evidence": "Elemental merge illustration; filename does not distinguish individual-technique and technique-family merges.",
-      "candidateItemIds": [
-        "foie-merge",
-        "gifoie-merge",
-        "rafoie-merge",
-        "red-merge"
-      ],
-      "sources": [
-        {
-          "path": "SHIELD/Fire.png",
-          "sha256": "d58bb38f58bbb4edf9ee64797c49b75a208bfd6a7ac5a8ff06e222fcc2aa2957",
-          "bytes": 6899211,
-          "width": 5444,
-          "height": 3989
-        }
-      ]
-    },
-    {
-      "file": "unresolved/shield/ice.webp",
-      "kind": "unresolved",
-      "itemIds": [],
-      "appearanceOf": [],
-      "variant": null,
-      "evidence": "Elemental merge illustration; filename does not distinguish individual-technique and technique-family merges.",
-      "candidateItemIds": [
-        "barta-merge",
-        "gibarta-merge",
-        "rabarta-merge",
-        "blue-merge"
-      ],
-      "sources": [
-        {
-          "path": "SHIELD/Ice.png",
-          "sha256": "225a23673eb01ddd961b81832389957eda77cf8afc55bdbf5031186356c01d87",
-          "bytes": 7217455,
-          "width": 5444,
-          "height": 3989
-        }
-      ]
-    },
-    {
       "file": "unresolved/shield/secret-feet.webp",
       "kind": "unresolved",
       "itemIds": [],
@@ -10391,29 +10421,6 @@
           "path": "SHIELD/SECRET FEET.png",
           "sha256": "8656b011f37b524f9539dc61869e658bb74dd059e8c4a256f647528a2580e5e5",
           "bytes": 12852244,
-          "width": 5444,
-          "height": 3989
-        }
-      ]
-    },
-    {
-      "file": "unresolved/shield/zonde.webp",
-      "kind": "unresolved",
-      "itemIds": [],
-      "appearanceOf": [],
-      "variant": null,
-      "evidence": "Elemental merge illustration; filename does not distinguish individual-technique and technique-family merges.",
-      "candidateItemIds": [
-        "zonde-merge",
-        "gizonde-merge",
-        "razonde-merge",
-        "yellow-merge"
-      ],
-      "sources": [
-        {
-          "path": "SHIELD/Zonde.png",
-          "sha256": "61e1d8b67158270e6bf100585382d80e790aaef689a9d0e9d8b0d01e10fa9e60",
-          "bytes": 7140751,
           "width": 5444,
           "height": 3989
         }
@@ -10475,25 +10482,6 @@
           "path": "WEAPON/TYPE WEAPON/MECHGUN.png",
           "sha256": "2bb37db67282b36d157f0a5abe23b46d2ccb47a8496398430cbb5adae8205ca9",
           "bytes": 19838493,
-          "width": 5444,
-          "height": 3989
-        }
-      ]
-    },
-    {
-      "file": "items/typess-swords.webp",
-      "kind": "item",
-      "itemIds": [
-        "typess-swords"
-      ],
-      "appearanceOf": [],
-      "variant": null,
-      "evidence": "Replacement artwork supplied in 替换.zip on 2026-09-19; explicitly confirmed by the maintainer as TypeSS/Swords.",
-      "sources": [
-        {
-          "path": "替换/SWORDS.png",
-          "sha256": "9e876d132a5320ad7d8f0f6d850fb078b7aac5d7077c45b65a1df4f6cee80d74",
-          "bytes": 17253245,
           "width": 5444,
           "height": 3989
         }
