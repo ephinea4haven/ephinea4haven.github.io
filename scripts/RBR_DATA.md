@@ -199,6 +199,26 @@ remote templates.
   quests and Tracker were also checked one by one against the reviewed publishing
   plan and match exactly.
 
+### 2026-09-20 update record
+
+- The maintainer provided an in-game `/rbr` screenshot confirming EP1
+  `Sweep-up Operation #1` (`SU1`), EP2 `Penumbral Surge #1` (`PS1`) and EP4
+  `Sweep-up Operation #13` (`SU13`).
+- The read-only planner found the Wiki current template still at revision
+  `43587` (September 13), while Tracker revision `43611` already matches the
+  screenshot. Candidate validation and both MediaWiki render previews passed.
+- The Wiki current template was subsequently published and read back at
+  [revision 43613](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43613).
+  The already-correct Tracker required no edit.
+- The site snapshot was regenerated from published revisions `43613` and
+  `43611`. Its current quests and Tracker match the reviewed plan exactly;
+  all 58 quest records, ratings and enemy-count warnings were retained.
+- EP2 has no remaining possible quests this cycle; its reset belongs to the
+  next weekly transition. The maintainer approved publishing both targets;
+  this snapshot is included in the site release.
+- 55 RBR tests, the production build and both home RBR browser tests passed
+  for the updated rotation.
+
 ### 2026-09-14 home page release record
 
 - `548e78e` committed and released the home page tier, recommended ID and color

@@ -22,6 +22,13 @@
 - Before writing or changing any item name, look up its exact English identity in the drop-table authority at `../droptable/i18n_names.json`. Site item names must match that authority and be regenerated with `npm run sync:i18n`; do not create page-local alternative translations.
 - When a term is ambiguous, keep the verified English identifier temporarily and investigate; never invent a Chinese translation from the dictionary meaning alone.
 
+# Weekly RBR updates
+
+- When the maintainer supplies this week's in-game `/rbr` screenshot or quest list, treat it as a request to update both Ephinea Wiki and this site. Do not stop after editing the local snapshot.
+- Follow `scripts/RBR_DATA.md`: validate the three quests with `plan_rbr_update.py`, publish the current rotation and Tracker through `publish_rbr_update.py`, verify the remote result, then regenerate the site snapshot with `build_rbr_data.py --require-current` and check that it matches the confirmed rotation. Leave an already-correct Wiki template unchanged.
+- Run the RBR tests, production build and relevant browser tests. Record the verified Wiki revisions and update outcome in `scripts/RBR_DATA.md`.
+- Keep the publication states explicit: Wiki verified, site locally updated, and site deployed are separate milestones. Follow the acceptance and publication rules below before pushing or deploying; do not report both sites as updated while the site release is still pending.
+
 # Git Workflow
 
 - This is a single-maintainer repository.

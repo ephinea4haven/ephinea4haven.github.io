@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-13T00:15:28.025009+00:00",
+  "generatedAt": "2026-09-20T01:10:26.073369+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,12 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 43587
+      "revision": 43613
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 43588
+      "revision": 43611
     }
   },
   "boosts": {
@@ -38,28 +38,28 @@
     "4": 14
   },
   "current": {
-    "week": "13 September 2026",
+    "week": "20 September 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Scarlet Realm 1",
-        "name": "Scarlet Realm #1",
-        "abbreviation": "SR1"
+        "page": "Sweep-up Operation 1",
+        "name": "Sweep-up Operation #1",
+        "abbreviation": "SU1"
       },
       {
         "episode": 2,
-        "page": "Lost DEMON'S RAILGUN",
-        "name": "Lost DEMON'S RAILGUN",
-        "abbreviation": "LDR"
+        "page": "Penumbral Surge 1",
+        "name": "Penumbral Surge #1",
+        "abbreviation": "PS1"
       },
       {
         "episode": 4,
-        "page": "War of Limits 5",
-        "name": "War of Limits 5",
-        "abbreviation": "WoL5"
+        "page": "Sweep-up Operation 13",
+        "name": "Sweep-up Operation #13",
+        "abbreviation": "SU13"
       }
     ],
-    "expectedWeek": "13 September 2026",
+    "expectedWeek": "20 September 2026",
     "isFresh": true
   },
   "tracker": {
@@ -72,7 +72,6 @@
       "1": {
         "possible": [
           "MU1",
-          "SU1",
           "SU3",
           "SU4",
           "AO1",
@@ -80,7 +79,7 @@
           "LHP"
         ],
         "current": [
-          "SR1"
+          "SU1"
         ],
         "unavailable": [
           "MU2",
@@ -92,6 +91,7 @@
           "EN3",
           "EN4",
           "AO2",
+          "SR1",
           "SR2",
           "SR3",
           "SR4",
@@ -101,11 +101,9 @@
         ]
       },
       "2": {
-        "possible": [
-          "PS1"
-        ],
+        "possible": [],
         "current": [
-          "LDR"
+          "PS1"
         ],
         "unavailable": [
           "PW1",
@@ -124,6 +122,7 @@
           "AO5",
           "LSR",
           "LBA",
+          "LDR",
           "LCV",
           "TET",
           "TWT"
@@ -137,15 +136,15 @@
           "NMU4",
           "SU10",
           "SU12",
-          "SU13",
           "SU14"
         ],
         "current": [
-          "WoL5"
+          "SU13"
         ],
         "unavailable": [
           "WoL2",
           "WoL4",
+          "WoL5",
           "NMU1",
           "NMU5",
           "SU11"
