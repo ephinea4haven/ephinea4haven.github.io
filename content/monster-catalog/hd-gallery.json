@@ -1,0 +1,3060 @@
+{
+  "checkedAt": "2026-09-20",
+  "source": "User-provided ENEMY gallery",
+  "normalization": {
+    "format": "webp",
+    "quality": 85,
+    "method": 6,
+    "width": 1024
+  },
+  "sources": [
+    {
+      "original": "CAVE/冰剑怪.png",
+      "source": "CAVE/冰剑怪.png",
+      "identity": "Migium",
+      "sha256": "efc47ef8b51345c6586b376ab52b240ead068e75b02f5d867328c523c8328381",
+      "bytes": 2169176,
+      "width": 2784,
+      "height": 1632,
+      "asset": "/assets/img/monsters/hd/cave/migium-efc47ef8b513.webp"
+    },
+    {
+      "original": "CAVE/冰史莱姆.png",
+      "source": "CAVE/冰史莱姆.png",
+      "identity": "Pofuilly Slime",
+      "sha256": "78f7acb263563eec6219516e5c66d3d391bf66e8f4bd53d6a3183a7fa2c9f6ee",
+      "bytes": 2327873,
+      "width": 2048,
+      "height": 1856,
+      "asset": "/assets/img/monsters/hd/cave/pofuilly-slime-78f7acb26356.webp"
+    },
+    {
+      "original": "CAVE/变种铃兰.png",
+      "source": "CAVE/变种铃兰.png",
+      "identity": "Ob Lily",
+      "sha256": "5f5b30e0344a56794aa381a3e74745aeec4505c5d5485825411c9876e2c42712",
+      "bytes": 2103806,
+      "width": 2208,
+      "height": 1984,
+      "asset": "/assets/img/monsters/hd/cave/ob-lily-5f5b30e0344a.webp"
+    },
+    {
+      "original": "CAVE/变种鲨熊.png",
+      "source": "CAVE/变种鲨熊.png",
+      "identity": "Melqueek",
+      "sha256": "f30a4b8338f6b17b9471f6965f5e71c668e536c3577cf9dc5130075637ddecbe",
+      "bytes": 2080662,
+      "width": 2096,
+      "height": 2160,
+      "asset": "/assets/img/monsters/hd/cave/melqueek-f30a4b8338f6.webp"
+    },
+    {
+      "original": "CAVE/合体怪.png",
+      "source": "CAVE/合体怪.png",
+      "identity": "Pan Arms",
+      "sha256": "db2e29259cad204cdabfa2a5b632cd99b2fccdcaf887c35b70aa3fd689e22ba7",
+      "bytes": 3738486,
+      "width": 2560,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/cave/pan-arms-db2e29259cad.webp"
+    },
+    {
+      "original": "CAVE/嗜血巨螳螂.png",
+      "source": "CAVE/嗜血巨螳螂.png",
+      "identity": "Crimson Assassin",
+      "sha256": "baefa2f7f2908dc49cb94d366a916494a1e8e6dbaad128ccd486749d6b019155",
+      "bytes": 1773819,
+      "width": 2304,
+      "height": 1888,
+      "asset": "/assets/img/monsters/hd/cave/crimson-assassin-baefa2f7f290.webp"
+    },
+    {
+      "original": "CAVE/巨螳螂.png",
+      "source": "CAVE/巨螳螂.png",
+      "identity": "Grass Assassin",
+      "sha256": "b935177b3449be23dad5c37caa0005d3022763952165f9be08e8efb982792710",
+      "bytes": 1650752,
+      "width": 2576,
+      "height": 1696,
+      "asset": "/assets/img/monsters/hd/cave/grass-assassin-b935177b3449.webp"
+    },
+    {
+      "original": "CAVE/异种铃兰.png",
+      "source": "CAVE/异种铃兰.png",
+      "identity": "Mil Lily",
+      "sha256": "d9f459d0889af561a3599c8e48a384ed35fb8594d2d5b5b563a4da6892c122ca",
+      "bytes": 2014688,
+      "width": 2208,
+      "height": 1792,
+      "asset": "/assets/img/monsters/hd/cave/mil-lily-d9f459d0889a.webp"
+    },
+    {
+      "original": "CAVE/毒铃兰.png",
+      "source": "CAVE/毒铃兰.png",
+      "identity": "Poison Lily",
+      "sha256": "4e1f770e90cd5f0683ee97e2d4bfcbbcd5662fe755960193a6dcc19437460004",
+      "bytes": 2650065,
+      "width": 2096,
+      "height": 2160,
+      "asset": "/assets/img/monsters/hd/cave/poison-lily-4e1f770e90cd.webp"
+    },
+    {
+      "original": "CAVE/火剑怪.png",
+      "source": "CAVE/火剑怪.png",
+      "identity": "Hidoom",
+      "sha256": "bd9504af43b41061cc6414b0281268cd3922acc334bf19513fa0c557ee3c86f1",
+      "bytes": 1734849,
+      "width": 2240,
+      "height": 1696,
+      "asset": "/assets/img/monsters/hd/cave/hidoom-bd9504af43b4.webp"
+    },
+    {
+      "original": "CAVE/炎史莱姆.png",
+      "source": "CAVE/炎史莱姆.png",
+      "identity": "Pouilly Slime",
+      "sha256": "8938db3d390122f7a7e5d7bf194c609bbd23fbaf614cd70d8af1345add6d0c14",
+      "bytes": 2223238,
+      "width": 2048,
+      "height": 1888,
+      "asset": "/assets/img/monsters/hd/cave/pouilly-slime-8938db3d3901.webp"
+    },
+    {
+      "original": "CAVE/狂鲨魔.png",
+      "source": "CAVE/狂鲨魔.png",
+      "identity": "Guil Shark",
+      "sha256": "f3fb3a183203d5c25273cd0a539a96c32f0708c8268e9eaf0e84a7921eaf5c00",
+      "bytes": 2111932,
+      "width": 2208,
+      "height": 2080,
+      "asset": "/assets/img/monsters/hd/cave/guil-shark-f3fb3a183203.webp"
+    },
+    {
+      "original": "CAVE/红铃兰.png",
+      "source": "CAVE/红铃兰.png",
+      "identity": "Nar Lily",
+      "sha256": "465d11975d44599100da12b2699dadbd6aef7d68a094a85ac756449afe3e4bd7",
+      "bytes": 2500633,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/cave/nar-lily-465d11975d44.webp"
+    },
+    {
+      "original": "CAVE/紫鲨熊.png",
+      "source": "CAVE/紫鲨熊.png",
+      "identity": "Vulmer",
+      "sha256": "9ef87885dfd29784da104105f9ace0c04b7fd5e27b3ad18df4a8a355135cedde",
+      "bytes": 3287988,
+      "width": 1936,
+      "height": 2064,
+      "asset": "/assets/img/monsters/hd/cave/vulmer-9ef87885dfd2.webp"
+    },
+    {
+      "original": "CAVE/紫鲨魔.png",
+      "source": "CAVE/紫鲨魔.png",
+      "identity": "Pal Shark",
+      "sha256": "f114f128a68dba786d6cd17db6431604127fe0b4e83f05e9bf5231bddef359bd",
+      "bytes": 2269550,
+      "width": 1728,
+      "height": 2320,
+      "asset": "/assets/img/monsters/hd/cave/pal-shark-f114f128a68d.webp"
+    },
+    {
+      "original": "CAVE/绿鲨魔.png",
+      "source": "CAVE/绿鲨魔.png",
+      "identity": "Evil Shark",
+      "sha256": "574319249447668a5df8102ae527581848f1e59d2adeaba855d42a10fd057cfa",
+      "bytes": 2555690,
+      "width": 1984,
+      "height": 2208,
+      "asset": "/assets/img/monsters/hd/cave/evil-shark-574319249447.webp"
+    },
+    {
+      "original": "CAVE/翼龙.png",
+      "source": "CAVE/翼龙.png",
+      "identity": "Nano Dragon",
+      "sha256": "8191e3061004ff6444fa60da65301dcb3fb05cad6267e2dd68f259027000c356",
+      "bytes": 2612127,
+      "width": 2304,
+      "height": 1728,
+      "asset": "/assets/img/monsters/hd/cave/nano-dragon-8191e3061004.webp"
+    },
+    {
+      "original": "CAVE/蓝鲨熊.png",
+      "source": "CAVE/蓝鲨熊.png",
+      "identity": "Govulmer",
+      "sha256": "f9360b44e97f5b80095f7233e8b508daffe89aa7cee156d08a03ddff95ea2a59",
+      "bytes": 2282171,
+      "width": 2320,
+      "height": 1712,
+      "asset": "/assets/img/monsters/hd/cave/govulmer-f9360b44e97f.webp"
+    },
+    {
+      "original": "CAVE/达尔·拉·利.png",
+      "source": "CAVE/达尔·拉·利.png",
+      "identity": "Dal Ral Lie",
+      "sha256": "0cdd3a463db44def64ff449cf10ef56d12548908b5f9ea64e5c6e6c684fa5892",
+      "bytes": 2635627,
+      "width": 2768,
+      "height": 1408,
+      "asset": "/assets/img/monsters/hd/cave/dal-ral-lie-0cdd3a463db4.webp"
+    },
+    {
+      "original": "CAVE/迪·洛尔·雷.png",
+      "source": "CAVE/迪·洛尔·雷.png",
+      "identity": "De Rol Le",
+      "sha256": "69ee4aa4e20aaea105ddedad067f689eeeec850ef6b558fbdb305fcd0a089821",
+      "bytes": 3048300,
+      "width": 2432,
+      "height": 1600,
+      "asset": "/assets/img/monsters/hd/cave/de-rol-le-69ee4aa4e20a.webp"
+    },
+    {
+      "original": "CCA/加尔狮鹫.png",
+      "source": "CCA/加尔狮鹫.png",
+      "identity": "Gal Gryphon",
+      "sha256": "1aedfe1b8b67526b2923081b2286426a96bc1a1fbbd1adb20b9faf787563b875",
+      "bytes": 3667978,
+      "width": 2368,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/cca/gal-gryphon-1aedfe1b8b67.webp"
+    },
+    {
+      "original": "CCA/姬蜂.png",
+      "source": "CCA/姬蜂.png",
+      "identity": "Gee",
+      "sha256": "43022cc4d6b0936b4fb7dc52468943d14ffece87f7616e288da4fd4b6795661e",
+      "bytes": 2108639,
+      "width": 2256,
+      "height": 2000,
+      "asset": "/assets/img/monsters/hd/cca/gee-43022cc4d6b0.webp"
+    },
+    {
+      "original": "CCA/姬蜂后.png",
+      "source": "CCA/姬蜂后.png",
+      "identity": "Gi Gue",
+      "sha256": "9245aa5ec3475cf296024f515bd462d938babf8f38438b7b602d0f9a972da749",
+      "bytes": 2307432,
+      "width": 2000,
+      "height": 2256,
+      "asset": "/assets/img/monsters/hd/cca/gi-gue-9245aa5ec347.webp"
+    },
+    {
+      "original": "CCA/幽猿.png",
+      "source": "CCA/幽猿.png",
+      "identity": "Ul Gibbon",
+      "sha256": "75b053bddb2dcc3a0ce4711082f92a1791952a4698cedcbdacc2f04a28c1ee9e",
+      "bytes": 2056281,
+      "width": 2304,
+      "height": 1856,
+      "asset": "/assets/img/monsters/hd/cca/ul-gibbon-75b053bddb2d.webp"
+    },
+    {
+      "original": "CCA/森隐雷藏.png",
+      "source": "CCA/森隐雷藏.png",
+      "identity": "Sinow Berill",
+      "sha256": "9da73224e6f72780539990d3611b85381d5d579907ca9cffe912e612535e4995",
+      "bytes": 3234214,
+      "width": 2272,
+      "height": 1792,
+      "asset": "/assets/img/monsters/hd/cca/sinow-berill-9da73224e6f7.webp"
+    },
+    {
+      "original": "CCA/毒梅兰.png",
+      "source": "CCA/毒梅兰.png",
+      "identity": "Merillia",
+      "sha256": "b5f180194cd7a37a2e17b10cf4199474c13dba8d1a12843be88cebf63029aadf",
+      "bytes": 3024970,
+      "width": 1824,
+      "height": 2144,
+      "asset": "/assets/img/monsters/hd/cca/merillia-b5f180194cd7.webp"
+    },
+    {
+      "original": "CCA/泽猿.png",
+      "source": "CCA/泽猿.png",
+      "identity": "Zol Gibbon",
+      "sha256": "00af199eb16a0458f0cb5913bf29d91cd2f8bbb30083f8ba2821cdda7db438d9",
+      "bytes": 1946240,
+      "width": 2144,
+      "height": 1824,
+      "asset": "/assets/img/monsters/hd/cca/zol-gibbon-00af199eb16a.webp"
+    },
+    {
+      "original": "CCA/狂梅兰.png",
+      "source": "CCA/狂梅兰.png",
+      "identity": "Meriltas",
+      "sha256": "6c3faa49ea61ff8614680b80acf37dd4e689e50ad89510952c7bcf918c5b8d73",
+      "bytes": 2330441,
+      "width": 2320,
+      "height": 1728,
+      "asset": "/assets/img/monsters/hd/cca/meriltas-6c3faa49ea61.webp"
+    },
+    {
+      "original": "CCA/红歇花.png",
+      "source": "CCA/红蝎花.png",
+      "identity": "Mericarol",
+      "sha256": "f43d948115fc649c301e90035ee958f6728a235ccfad5755ac8c00d1af4cbdc1",
+      "bytes": 3182157,
+      "width": 2144,
+      "height": 1824,
+      "asset": "/assets/img/monsters/hd/cca/mericarol-f43d948115fc.webp"
+    },
+    {
+      "original": "CCA/绿歇花.png",
+      "source": "CCA/绿蝎花.png",
+      "identity": "Mericus",
+      "sha256": "6ce639e59c512bb5c4c9db0508a3b20d8ddd2db05f4b93ff6f3f424a4b3c1775",
+      "bytes": 3775577,
+      "width": 2560,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/cca/mericus-6ce639e59c51.webp"
+    },
+    {
+      "original": "CCA/蓝歇花.png",
+      "source": "CCA/蓝蝎花.png",
+      "identity": "Merikle",
+      "sha256": "21f8f51164912e83273c69ee3a9446f14b692bfb01d347df96c117e777d1c671",
+      "bytes": 3056157,
+      "width": 2144,
+      "height": 1824,
+      "asset": "/assets/img/monsters/hd/cca/merikle-21f8f5116491.webp"
+    },
+    {
+      "original": "CCA/蛮甲猿.png",
+      "source": "CCA/蛮甲猿.png",
+      "identity": "Gibbles",
+      "sha256": "68fb3358f464fa85ea05d2764f558fd968ff433c3f884c6c3a81f833095a7f90",
+      "bytes": 3815802,
+      "width": 2512,
+      "height": 1776,
+      "asset": "/assets/img/monsters/hd/cca/gibbles-68fb3358f464.webp"
+    },
+    {
+      "original": "CCA/雾隐雷藏.png",
+      "source": "CCA/雾隐雷藏.png",
+      "identity": "Sinow Spigell",
+      "sha256": "6f104f7423c06fa557789345481b9c74b6a6b960d277179a6a6b4002f3fc7d61",
+      "bytes": 4190852,
+      "width": 2320,
+      "height": 1728,
+      "asset": "/assets/img/monsters/hd/cca/sinow-spigell-6f104f7423c0.webp"
+    },
+    {
+      "original": "CRATER/变异猪.png",
+      "source": "CRATER/变异猪.png",
+      "identity": "Boota",
+      "sha256": "6ca6502c525bbe373edf67528083ab1b4295770e63ba146c1ae1bad653da8047",
+      "bytes": 2933377,
+      "width": 2272,
+      "height": 1792,
+      "asset": "/assets/img/monsters/hd/crater/boota-6ca6502c525b.webp"
+    },
+    {
+      "original": "CRATER/变异羚角鸟.png",
+      "source": "CRATER/变异羚角鸟.png",
+      "identity": "Pazuzu",
+      "sha256": "6eb0c42717b45b9359114bac879f916f688ee32a68631595aa5f8d41892ec500",
+      "bytes": 2296650,
+      "width": 2768,
+      "height": 1568,
+      "asset": "/assets/img/monsters/hd/crater/pazuzu-6eb0c42717b4.webp"
+    },
+    {
+      "original": "CRATER/巨型火犀鸟.png",
+      "source": "CRATER/巨型火犀鸟.png",
+      "identity": "Zu",
+      "sha256": "9c30f4d1704095569472f49572d221f6516d511b8f67c0c910d6905c5939d340",
+      "bytes": 2166306,
+      "width": 3408,
+      "height": 1328,
+      "asset": "/assets/img/monsters/hd/crater/zu-9c30f4d17040.webp"
+    },
+    {
+      "original": "CRATER/巨角变异猪.png",
+      "source": "CRATER/巨角变异猪.png",
+      "identity": "Ba Boota",
+      "sha256": "ebcfaf40a4ca327b931f0c83c96130ac206c11776e96493ed941bd1299312357",
+      "bytes": 2667596,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/crater/ba-boota-ebcfaf40a4ca.webp"
+    },
+    {
+      "original": "CRATER/异甲巨螳螂.png",
+      "source": "CRATER/异甲巨螳螂.png",
+      "identity": "Astark",
+      "sha256": "836193c9fa844e4378ce153b2acb863f557accc8efbeebcf2da2f84ba9b52c17",
+      "bytes": 3148639,
+      "width": 2240,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/crater/astark-836193c9fa84.webp"
+    },
+    {
+      "original": "CRATER/暗黑拉比鸟.png",
+      "source": "CRATER/暗黑拉比鸟.png",
+      "identity": "Del Rappy",
+      "sha256": "1e16586ed50092d0aee823af9ad993667d4d1921180641e02dd3b9b280499606",
+      "bytes": 3631413,
+      "width": 2064,
+      "height": 2000,
+      "asset": "/assets/img/monsters/hd/crater/del-rappy-1e16586ed500.webp"
+    },
+    {
+      "original": "CRATER/沙地拉比鸟.png",
+      "source": "CRATER/沙地拉比鸟.png",
+      "identity": "Sand Rappy",
+      "sha256": "8a037741ced3cddd8e987477ab7837cad8edcb6c11c07b0cb1aca0e1d8622876",
+      "bytes": 1945821,
+      "width": 1760,
+      "height": 2224,
+      "asset": "/assets/img/monsters/hd/crater/sand-rappy-8a037741ced3.webp"
+    },
+    {
+      "original": "CRATER/沙暴蜥蜴.png",
+      "source": "CRATER/沙暴蜥蜴.png",
+      "identity": "Satellite Lizard",
+      "sha256": "867d6628d1b2cda5df20c5674382e4bca542fb0e3ba090f99589f0c5d09df5e2",
+      "bytes": 1477199,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/crater/satellite-lizard-867d6628d1b2.webp"
+    },
+    {
+      "original": "CRATER/狂暴变异猪.png",
+      "source": "CRATER/狂影变异猪.png",
+      "identity": "Ze Boota",
+      "sha256": "f727f008d6d07783032d6aa376e5aaa263c42a598620ec781bbb55e6ddb1f676",
+      "bytes": 2946606,
+      "width": 2320,
+      "height": 1728,
+      "asset": "/assets/img/monsters/hd/crater/ze-boota-f727f008d6d0.webp"
+    },
+    {
+      "original": "CRATER/白垩战车象.png",
+      "source": "CRATER/白垩战车象.png",
+      "identity": "Dorphon Eclair",
+      "sha256": "e7d3cf99e39c2bf2b0221d4185bf8c40d572127dfd07e0db3a7edd573d856c92",
+      "bytes": 2248690,
+      "width": 2592,
+      "height": 1600,
+      "asset": "/assets/img/monsters/hd/crater/dorphon-eclair-e7d3cf99e39c.webp"
+    },
+    {
+      "original": "CRATER/砂岩蜥蜴.png",
+      "source": "CRATER/砂岩蜥蜴.png",
+      "identity": "Yowie",
+      "sha256": "41f9ef743960911160f663ea451584427f977b89c4357e7d73bb419fac619079",
+      "bytes": 2190094,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/crater/yowie-41f9ef743960.webp"
+    },
+    {
+      "original": "CRATER/铁甲战车象.png",
+      "source": "CRATER/铁甲战车象.png",
+      "identity": "Dorphon",
+      "sha256": "933dd41995a9e6aed60c3d61a11205bbf9c73038fdb8ca17528f229527ef54de",
+      "bytes": 2402387,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/crater/dorphon-933dd41995a9.webp"
+    },
+    {
+      "original": "DESERT/圣魔龙.png",
+      "source": "DESERT/圣魔龙.png",
+      "identity": "Saint Million",
+      "sha256": "d342c0aa63f411fa983f1a31e9945e834e1d453052901766c2feb52ca98c19ae",
+      "bytes": 2666779,
+      "width": 2496,
+      "height": 1696,
+      "asset": "/assets/img/monsters/hd/desert/saint-million-d342c0aa63f4.webp"
+    },
+    {
+      "original": "DESERT/媚影沙魔·A.png",
+      "source": "DESERT/媚影沙魔·Ａ.png",
+      "identity": "Merissa A",
+      "sha256": "25d11e30117572b5de5c19669d00d1c13098c22fab4c0f1c4f0af16e9349193f",
+      "bytes": 2844198,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/desert/merissa-a-25d11e301175.webp"
+    },
+    {
+      "original": "DESERT/媚影沙魔·AA.png",
+      "source": "DESERT/媚影沙魔·ＡＡ.png",
+      "identity": "Merissa AA",
+      "sha256": "b8b33b82bfab7a9173a2b2874848ee755802409e409e29d5c0dea57c0382b805",
+      "bytes": 3111400,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/desert/merissa-aa-b8b33b82bfab.webp"
+    },
+    {
+      "original": "DESERT/暗黑刀魔.png",
+      "source": "DESERT/暗黑刀魔.png",
+      "identity": "Goran",
+      "sha256": "14bad6e6797aab634511b555f910869e63762b363a6909dc05eb97869c7f5f7d",
+      "bytes": 2598786,
+      "width": 1696,
+      "height": 2240,
+      "asset": "/assets/img/monsters/hd/desert/goran-14bad6e6797a.webp"
+    },
+    {
+      "original": "DESERT/暗黑巨魔王.png",
+      "source": "DESERT/暗黑巨魔王.png",
+      "identity": "Goran Detonator",
+      "sha256": "3dccd4c68a9d3eb3f10b9e6e5ef02bd0537bbaba09cb41ab6eb9c92b104d316a",
+      "bytes": 2210504,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/desert/goran-detonator-3dccd4c68a9d.webp"
+    },
+    {
+      "original": "DESERT/暗黑狂刀魔.png",
+      "source": "DESERT/暗黑狂刀魔.png",
+      "identity": "Pyro Goran",
+      "sha256": "1aa529057c5af8f0df65d6e71fdafe77cfa0b492c8eaf50fe2ae7c3e42480536",
+      "bytes": 3268177,
+      "width": 1888,
+      "height": 2304,
+      "asset": "/assets/img/monsters/hd/desert/pyro-goran-1aa529057c5a.webp"
+    },
+    {
+      "original": "DESERT/暗黑魔眼巨花.png",
+      "source": "DESERT/暗黑魔眼巨花.png",
+      "identity": "Girtablulu",
+      "sha256": "724b9fb59897137c135703272fdefe64c6d772cb9f4cfa39892fb33fa86d6b7a",
+      "bytes": 3028850,
+      "width": 2096,
+      "height": 2160,
+      "asset": "/assets/img/monsters/hd/desert/girtablulu-724b9fb59897.webp"
+    },
+    {
+      "original": "DESERT/沙柏龙.png",
+      "source": "DESERT/沙柏龙.png",
+      "identity": "Shambertin",
+      "sha256": "cef3edbac6edc8a679c02bd405f36266aad9274a6e65c117ee1cbdc7daf60aa2",
+      "bytes": 2129827,
+      "width": 2640,
+      "height": 1616,
+      "asset": "/assets/img/monsters/hd/desert/shambertin-cef3edbac6ed.webp"
+    },
+    {
+      "original": "DESERT/空间龙.png",
+      "source": "DESERT/空间龙.png",
+      "identity": "Kondrieu",
+      "sha256": "ca014a3e29e84a9a99be25c77d854001a85ba24c3db8f7fc87dc4289b5b7cd46",
+      "bytes": 2519828,
+      "width": 2496,
+      "height": 1696,
+      "asset": "/assets/img/monsters/hd/desert/kondrieu-ca014a3e29e8.webp"
+    },
+    {
+      "original": "FROEST/冰霜巨龙.png",
+      "source": "FOREST/冰霜巨龙.png",
+      "identity": "Sil Dragon",
+      "sha256": "fb988725e28d8933577bfed2ecb107d2ea2c281f4a7bc9bad8fa81c58d292e50",
+      "bytes": 2950008,
+      "width": 2432,
+      "height": 1600,
+      "asset": "/assets/img/monsters/hd/forest/sil-dragon-fb988725e28d.webp"
+    },
+    {
+      "original": "FROEST/吸血巨蚊.png",
+      "source": "FOREST/吸血巨蚊.png",
+      "identity": "Mothmant",
+      "sha256": "40318be732f4d8da660f7d5f366acba72d4b660d861f1436d1b71b8fa2ed7a27",
+      "bytes": 1668904,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/mothmant-40318be732f4.webp"
+    },
+    {
+      "original": "FROEST/吸血巨蚊巢.png",
+      "source": "FOREST/吸血巨蚊巢.png",
+      "identity": "Monest",
+      "sha256": "60afbd56469df6a15147c8a6409b848cd028e29dd26cefa9607ffad66343e419",
+      "bytes": 3391134,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/monest-60afbd56469d.webp"
+    },
+    {
+      "original": "FROEST/嗜血巨蚊.png",
+      "source": "FOREST/嗜血巨蚊.png",
+      "identity": "Mothvert",
+      "sha256": "e4b1576028d61a6d6edb4008e1bad637b2ffbafab39d7b49d3a28518c458c12e",
+      "bytes": 1118962,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/mothvert-e4b1576028d6.webp"
+    },
+    {
+      "original": "FROEST/嗜血巨蚊巢.png",
+      "source": "FOREST/嗜血巨蚊巢.png",
+      "identity": "Mothvist",
+      "sha256": "7d6c6fc121868d2a33b87961ef0481fe889e3c932e84abda2fb82e1391f1e482",
+      "bytes": 3468412,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/mothvist-7d6c6fc12186.webp"
+    },
+    {
+      "original": "FROEST/彩虹拉比鸟.png",
+      "source": "FOREST/彩虹拉比鸟.png",
+      "identity": "Pal Rappy",
+      "sha256": "3838324a0ea5b8c521c3b47f1c890cf367fe94ba81aaee3f124c6f09842e9aeb",
+      "bytes": 1780577,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/pal-rappy-3838324a0ea5.webp"
+    },
+    {
+      "original": "FROEST/暗黑巨猿.png",
+      "source": "FOREST/暗黑巨猿.png",
+      "identity": "Hildetorr",
+      "sha256": "69be0dd285bbff32a5321ab4f644272b322156d8645d17fc5aaa115da5489fec",
+      "bytes": 2862915,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/hildetorr-69be0dd285bb.webp"
+    },
+    {
+      "original": "FROEST/棕狂熊.png",
+      "source": "FOREST/棕狂熊.png",
+      "identity": "Booma",
+      "sha256": "db497405161eccaab60e0c66b1c8b1ee1822949405d803bfd77271048eaf34f0",
+      "bytes": 2615456,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/booma-db497405161e.webp"
+    },
+    {
+      "original": "FROEST/狂暴巨猿.png",
+      "source": "FOREST/狂暴巨猿.png",
+      "identity": "Hildebear",
+      "sha256": "cde7d5977f69ce55616f4d2d25d456911279cc072abf4e7682a989b34bbc4f9e",
+      "bytes": 3709125,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/hildebear-cde7d5977f69.webp"
+    },
+    {
+      "original": "FROEST/狂暴白猿.png",
+      "source": "FOREST/狂暴白猿.png",
+      "identity": "Hildeblue",
+      "sha256": "2a51a349c624dc1ba0405e8404a6f9bf0c5fdf374319ae6ab04d2ff91ee175e9",
+      "bytes": 2865910,
+      "width": 2000,
+      "height": 2064,
+      "asset": "/assets/img/monsters/hd/forest/hildeblue-2a51a349c624.webp"
+    },
+    {
+      "original": "FROEST/狂狼.png",
+      "source": "FOREST/狂狼.png",
+      "identity": "Savage Wolf",
+      "sha256": "a311c3ae9d0b750b39bf78f24c4b73252d1cc9a5f134e95f3d2f23136cb4c896",
+      "bytes": 2684089,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/savage-wolf-a311c3ae9d0b.webp"
+    },
+    {
+      "original": "FROEST/狂狼王.png",
+      "source": "FOREST/狂狼王.png",
+      "identity": "Barbarous Wolf",
+      "sha256": "181f5b5483604bacb00a5243ad2d801679c0a7ab56450336c9024c049b197bac",
+      "bytes": 3321493,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/barbarous-wolf-181f5b548360.webp"
+    },
+    {
+      "original": "FROEST/白拉比鸟.png",
+      "source": "FOREST/白拉比鸟.png",
+      "identity": "El Rappy",
+      "sha256": "4a771880338a6425fe9a63f504ff0460ccc53d3fefd4c3ca90c92771211740ff",
+      "bytes": 1723673,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/el-rappy-4a771880338a.webp"
+    },
+    {
+      "original": "FROEST/红狂熊.png",
+      "source": "FOREST/红狂熊.png",
+      "identity": "Gigobooma",
+      "sha256": "d8d68e852a69105cbe307701eff46856cff656ea54d41042773c7161fcf0de28",
+      "bytes": 2470125,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/gigobooma-d8d68e852a69.webp"
+    },
+    {
+      "original": "FROEST/紫魔龟.png",
+      "source": "FOREST/紫魔龟.png",
+      "identity": "Bartle",
+      "sha256": "c41373d4b4e8017e4bb6ab8bcc1b5b8ac27a9e75c54c3b986a6f1cfd7257c5b8",
+      "bytes": 3254253,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/bartle-c41373d4b4e8.webp"
+    },
+    {
+      "original": "FROEST/蓝拉比鸟.png",
+      "source": "FOREST/蓝拉比鸟.png",
+      "identity": "Al Rappy",
+      "sha256": "be02c906790250bb2529a38717ea432005297c670d2b806a8b1e00bd915ef2e1",
+      "bytes": 1444495,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/al-rappy-be02c9067902.webp"
+    },
+    {
+      "original": "FROEST/蓝魔龟.png",
+      "source": "FOREST/蓝魔龟.png",
+      "identity": "Barble",
+      "sha256": "8e087ed05aefc6088e6385a2ca64741174286b3f0ecf954f6f4705170ac1d534",
+      "bytes": 2874465,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/barble-8e087ed05aef.webp"
+    },
+    {
+      "original": "FROEST/角狼.png",
+      "source": "FOREST/角狼.png",
+      "identity": "Gulgus",
+      "sha256": "522f47b701ccbe904ad48e277bfa4cb21c3392cd23d56090bc124f2a908c5992",
+      "bytes": 2893197,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/gulgus-522f47b701cc.webp"
+    },
+    {
+      "original": "FROEST/角狼王.png",
+      "source": "FOREST/角狼王.png",
+      "identity": "Gulgus-Gue",
+      "sha256": "ed22327feaeefd5b34f2663c8e9683f4285a05119d273929d6edd0f76cc1d99c",
+      "bytes": 1877960,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/gulgus-gue-ed22327feaee.webp"
+    },
+    {
+      "original": "FROEST/赤焰巨龙.png",
+      "source": "FOREST/赤焰巨龙.png",
+      "identity": "Dragon",
+      "sha256": "cf9e7b48e1c65f23502b4af38911bb1f362c40baca28301181b29c581192bf71",
+      "bytes": 3433235,
+      "width": 2400,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/forest/dragon-cf9e7b48e1c6.webp"
+    },
+    {
+      "original": "FROEST/雷暴巨猿.png",
+      "source": "FOREST/雷暴巨猿.png",
+      "identity": "Hildelt",
+      "sha256": "e9b491dbc3e85ea318e8e87d1f62bc3b1266b6ddb2f886eb82aeae6698be5a4f",
+      "bytes": 2337646,
+      "width": 2048,
+      "height": 1920,
+      "asset": "/assets/img/monsters/hd/forest/hildelt-e9b491dbc3e8.webp"
+    },
+    {
+      "original": "FROEST/魔螳螂.png",
+      "source": "FOREST/魔螳螂.png",
+      "identity": "Tollaw",
+      "sha256": "f40488beb9f54b8698f81c61eb2bac228af85403813621215c61abec296d95d6",
+      "bytes": 2053283,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/tollaw-f40488beb9f5.webp"
+    },
+    {
+      "original": "FROEST/黄拉比鸟.png",
+      "source": "FOREST/黄拉比鸟.png",
+      "identity": "Rag Rappy",
+      "sha256": "4bfc099d72c52686a2d7eacb0f504300390548484e8d6e72e2243c9b4db39c73",
+      "bytes": 1349204,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/rag-rappy-4bfc099d72c5.webp"
+    },
+    {
+      "original": "FROEST/黄狂熊.png",
+      "source": "FOREST/黄狂熊.png",
+      "identity": "Gobooma",
+      "sha256": "9a4406ff5b27919845b1c25eabfd49a30630762955d527a2ac2b3ea345871b2c",
+      "bytes": 2807100,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/forest/gobooma-9a4406ff5b27.webp"
+    },
+    {
+      "original": "MINE/傀儡机兵.png",
+      "source": "MINE/傀儡机兵.png",
+      "identity": "Dubchic",
+      "sha256": "83690c91227ed6ed683be2967b0e75b73fa2e9a929b790ad61b95afc07c37bca",
+      "bytes": 3370140,
+      "width": 1856,
+      "height": 2304,
+      "asset": "/assets/img/monsters/hd/mine/dubchic-83690c91227e.webp"
+    },
+    {
+      "original": "MINE/傀儡机将.png",
+      "source": "MINE/傀儡机将.png",
+      "identity": "Dubchich",
+      "sha256": "42f8ec69885b7eaaec0600d8a9e2e1dcf758f0581655f7469a99956b45ce0fa5",
+      "bytes": 3392827,
+      "width": 1856,
+      "height": 2304,
+      "asset": "/assets/img/monsters/hd/mine/dubchich-42f8ec69885b.webp"
+    },
+    {
+      "original": "MINE/强化核心电爪.png",
+      "source": "MINE/强化核心电爪.png",
+      "identity": "Canune",
+      "sha256": "f31707ae2763fd444c01f879c34c44ec356a361893b636f92639725e3ab5b5c7",
+      "bytes": 3668215,
+      "width": 1616,
+      "height": 2640,
+      "asset": "/assets/img/monsters/hd/mine/canune-f31707ae2763.webp"
+    },
+    {
+      "original": "MINE/强化电爪.png",
+      "source": "MINE/强化电爪.png",
+      "identity": "Canabin",
+      "sha256": "bed419018e92c943fc4be09e22a49caef34a84ff9bdf1e6c89e8507f08a1171f",
+      "bytes": 4290155,
+      "width": 1856,
+      "height": 2416,
+      "asset": "/assets/img/monsters/hd/mine/canabin-bed419018e92.webp"
+    },
+    {
+      "original": "MINE/机甲堡垒.png",
+      "source": "MINE/机甲堡垒.png",
+      "identity": "Garanz",
+      "sha256": "43abb97586c7b9235e28cd8b8e7d8f2b5c59bd624eeed1efc5ae50a8bfeb7765",
+      "bytes": 4345509,
+      "width": 2368,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/mine/garanz-43abb97586c7.webp"
+    },
+    {
+      "original": "MINE/机甲堡垒·改.png",
+      "source": "MINE/机甲堡垒·改.png",
+      "identity": "Baranz",
+      "sha256": "2725d0c39350fd0a61e9e2cc2ecf7e3143d2d72d8b9db3bbb878846b4569534e",
+      "bytes": 4037040,
+      "width": 2240,
+      "height": 1888,
+      "asset": "/assets/img/monsters/hd/mine/baranz-2725d0c39350.webp"
+    },
+    {
+      "original": "MINE/核心电爪.png",
+      "source": "MINE/核心电爪.png",
+      "identity": "Canane",
+      "sha256": "8c17685b3aec75109205418d2b3bcf913c5e693227ce07f4719e1adbf4b8b46b",
+      "bytes": 3354179,
+      "width": 1696,
+      "height": 2560,
+      "asset": "/assets/img/monsters/hd/mine/canane-8c17685b3aec.webp"
+    },
+    {
+      "original": "MINE/步行机兵.png",
+      "source": "MINE/步行机兵.png",
+      "identity": "Gilchic",
+      "sha256": "2c753c75f821f4ef3045e73b414b71dafc23c74d95aa12daf371fac529375c54",
+      "bytes": 4075512,
+      "width": 1696,
+      "height": 2496,
+      "asset": "/assets/img/monsters/hd/mine/gilchic-2c753c75f821.webp"
+    },
+    {
+      "original": "MINE/波鲁欧普.png",
+      "source": "MINE/波鲁欧普 (Form 2).png",
+      "identity": "Vol Opt (Form 2)",
+      "sha256": "30c9b391048186e925fb3dd9aac09ddea8dc7109bfa982fc58574737f3b67963",
+      "bytes": 5899930,
+      "width": 2142,
+      "height": 1727,
+      "asset": "/assets/img/monsters/hd/mine/vol-opt-form-2-30c9b3910481.webp"
+    },
+    {
+      "original": "MINE/波鲁欧普·改.png",
+      "source": "MINE/波鲁欧普 ver.2 (Form 2).png",
+      "identity": "Vol Opt ver. 2 (Form 2)",
+      "sha256": "0c2588719dddc3ec6e7f1a6f26b741865c1991388ec63debca3ad3ca3649d3d5",
+      "bytes": 4601983,
+      "width": 2368,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/mine/vol-opt-ver-2-form-2-0c2588719ddd.webp"
+    },
+    {
+      "original": "MINE/浮游机将.png",
+      "source": "MINE/浮游机将.png",
+      "identity": "Gilchich",
+      "sha256": "acebaca22d6402f45a4724fb0fda750a5ed4a8f4ae2f42ac0d0222c533f58150",
+      "bytes": 2739118,
+      "width": 2048,
+      "height": 1856,
+      "asset": "/assets/img/monsters/hd/mine/gilchich-acebaca22d64.webp"
+    },
+    {
+      "original": "MINE/电爪.png",
+      "source": "MINE/电爪.png",
+      "identity": "Canadine",
+      "sha256": "b2a3c541bbacfbc98ce2c60b696d9e97cf3b8a3852d58a18e8ec3da9f9ec2c54",
+      "bytes": 3798530,
+      "width": 1760,
+      "height": 2400,
+      "asset": "/assets/img/monsters/hd/mine/canadine-b2a3c541bbac.webp"
+    },
+    {
+      "original": "MINE/红机忍.png",
+      "source": "MINE/红机忍.png",
+      "identity": "Sinow Red",
+      "sha256": "a7dc14e8572dcff49ac856b19ac22b40924f0c8bffabbc40fb6d00fb4b1f0460",
+      "bytes": 1911964,
+      "width": 2448,
+      "height": 1632,
+      "asset": "/assets/img/monsters/hd/mine/sinow-red-a7dc14e8572d.webp"
+    },
+    {
+      "original": "MINE/紫机忍.png",
+      "source": "MINE/紫机忍.png",
+      "identity": "Sinow Blue",
+      "sha256": "8e1a58a2fa32785b659c4f154f6d71036416116f30c4b346494e9f4ebfe17f9a",
+      "bytes": 2106528,
+      "width": 2224,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/mine/sinow-blue-8e1a58a2fa32.webp"
+    },
+    {
+      "original": "MINE/蓝机忍.png",
+      "source": "MINE/蓝机忍.png",
+      "identity": "Sinow Beat",
+      "sha256": "c7b3181ca7ea519679451b838ed31b5cb01142e0dfd24ce14031fa6bcd4a4731",
+      "bytes": 2733438,
+      "width": 2272,
+      "height": 1792,
+      "asset": "/assets/img/monsters/hd/mine/sinow-beat-c7b3181ca7ea.webp"
+    },
+    {
+      "original": "MINE/金机忍.png",
+      "source": "MINE/金机忍.png",
+      "identity": "Sinow Gold",
+      "sha256": "129c8a5134f360c4e68e55f254179939241cc6f5d69e301e604a5c7937dad558",
+      "bytes": 2382153,
+      "width": 2496,
+      "height": 1600,
+      "asset": "/assets/img/monsters/hd/mine/sinow-gold-129c8a5134f3.webp"
+    },
+    {
+      "original": "RUINS/刀魔兵.png",
+      "source": "RUINS/刀魔兵.png",
+      "identity": "Dimenian",
+      "sha256": "03ad91ce1711cec7246bdd731fdf660953d6cbbaf1be801f6009ba0509ff0860",
+      "bytes": 2089821,
+      "width": 1888,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/ruins/dimenian-03ad91ce1711.webp"
+    },
+    {
+      "original": "RUINS/刀魔将.png",
+      "source": "RUINS/刀魔将.png",
+      "identity": "La Dimenian",
+      "sha256": "3e90e0fafa7cc8d5ce010c9266d0f313e04d6d37988353be05dfb594e4c9cc2f",
+      "bytes": 2559822,
+      "width": 1920,
+      "height": 2176,
+      "asset": "/assets/img/monsters/hd/ruins/la-dimenian-3e90e0fafa7c.webp"
+    },
+    {
+      "original": "RUINS/刀魔王.png",
+      "source": "RUINS/刀魔王.png",
+      "identity": "So Dimenian",
+      "sha256": "baa88d29b6100e6074abff9176af35c8a39d7aea12f5f2006127332da82ce6ca",
+      "bytes": 2678061,
+      "width": 2192,
+      "height": 2064,
+      "asset": "/assets/img/monsters/hd/ruins/so-dimenian-baa88d29b610.webp"
+    },
+    {
+      "original": "RUINS/剑魔.png",
+      "source": "RUINS/剑魔.png",
+      "identity": "Delsaber",
+      "sha256": "f681d4f88f47bdf2dfa901d5cc4f036bdd7f84cb2ee5035d1fe5e9bbdee21e66",
+      "bytes": 2204603,
+      "width": 2064,
+      "height": 1872,
+      "asset": "/assets/img/monsters/hd/ruins/delsaber-f681d4f88f47.webp"
+    },
+    {
+      "original": "RUINS/合体爪虫.png",
+      "source": "RUINS/合体爪虫.png",
+      "identity": "Bulk",
+      "sha256": "70378e67df627944773855cb2b16b6a9e3ffc6677157a4ed19e26f0b0796ea04",
+      "bytes": 1663461,
+      "width": 1920,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/ruins/bulk-70378e67df62.webp"
+    },
+    {
+      "original": "RUINS/合体爪魔.png",
+      "source": "RUINS/合体爪魔.png",
+      "identity": "Bulclaw",
+      "sha256": "9f4cf3e7cdb42f817f2b27b08feda5d8a08d690156cef0f95082e4dc5fd990cd",
+      "bytes": 2503662,
+      "width": 1696,
+      "height": 2240,
+      "asset": "/assets/img/monsters/hd/ruins/bulclaw-9f4cf3e7cdb4.webp"
+    },
+    {
+      "original": "RUINS/异魔兵.png",
+      "source": "RUINS/异魔兵.png",
+      "identity": "Arlan",
+      "sha256": "79d0d6ac9d3180d9d7ecc385c8ae0da2fc3a0c5749cc1cd27ae55fe2590dc6ca",
+      "bytes": 2896840,
+      "width": 2112,
+      "height": 2176,
+      "asset": "/assets/img/monsters/hd/ruins/arlan-79d0d6ac9d31.webp"
+    },
+    {
+      "original": "RUINS/异魔将.png",
+      "source": "RUINS/异魔将.png",
+      "identity": "Merlan",
+      "sha256": "778933a8013c8348f01e7dd59c322bd42595efa60ca0cd10469f5b5424295d02",
+      "bytes": 2501140,
+      "width": 2544,
+      "height": 1744,
+      "asset": "/assets/img/monsters/hd/ruins/merlan-778933a8013c.webp"
+    },
+    {
+      "original": "RUINS/异魔王.png",
+      "source": "RUINS/异魔王.png",
+      "identity": "Del-D",
+      "sha256": "0bfddd6ca4d38aef11258603d914fb90cfa9e29c2c21accd667cc81c7ef5bc9d",
+      "bytes": 2498812,
+      "width": 2176,
+      "height": 1920,
+      "asset": "/assets/img/monsters/hd/ruins/del-d-0bfddd6ca4d3.webp"
+    },
+    {
+      "original": "RUINS/暗黑佛.png",
+      "source": "RUINS/暗黑佛 (Form 1).png",
+      "identity": "Dark Falz (Form 1)",
+      "sha256": "f77f8f87a2d559b0f7d2ecd756dc426619ca8ba60a90a046e2bc4e273d4c6bb1",
+      "bytes": 3992836,
+      "width": 2048,
+      "height": 1920,
+      "asset": "/assets/img/monsters/hd/ruins/dark-falz-form-1-f77f8f87a2d5.webp"
+    },
+    {
+      "original": "RUINS/暗黑巨神像.png",
+      "source": "RUINS/暗黑巨神像.png",
+      "identity": "Dark Belra",
+      "sha256": "a43d75d806a680dabdcb76458199bb85e5eb3fb83fa8f2e09bdeb05a521112ae",
+      "bytes": 3566483,
+      "width": 2240,
+      "height": 1856,
+      "asset": "/assets/img/monsters/hd/ruins/dark-belra-a43d75d806a6.webp"
+    },
+    {
+      "original": "RUINS/暗黑炮台.png",
+      "source": "RUINS/暗黑炮台.png",
+      "identity": "Dark Gunner",
+      "sha256": "0fe936849c7757bea045a6f256175c18dfa30b7b75fb87041cbfba59b9ccfc48",
+      "bytes": 2225219,
+      "width": 2272,
+      "height": 1952,
+      "asset": "/assets/img/monsters/hd/ruins/dark-gunner-0fe936849c77.webp"
+    },
+    {
+      "original": "RUINS/暗黑骑士.png",
+      "source": "RUINS/暗黑骑士.png",
+      "identity": "Dark Bringer",
+      "sha256": "6b29b23d86c9da7569c097b00cd2e33cef9ff3c953de5cf9e129379272985372",
+      "bytes": 2936158,
+      "width": 2176,
+      "height": 2112,
+      "asset": "/assets/img/monsters/hd/ruins/dark-bringer-6b29b23d86c9.webp"
+    },
+    {
+      "original": "RUINS/核心炮台.png",
+      "source": "RUINS/死亡炮台.png",
+      "identity": "Death Gunner",
+      "sha256": "d655e641468d38bb80ade4ae526af1806e44a80fa3c2fd1db9908fa7bc577f9a",
+      "bytes": 2985827,
+      "width": 2272,
+      "height": 1952,
+      "asset": "/assets/img/monsters/hd/ruins/death-gunner-d655e641468d.webp"
+    },
+    {
+      "original": "RUINS/毁灭法师.png",
+      "source": "RUINS/毁灭法师.png",
+      "identity": "Gran Sorcerer",
+      "sha256": "8ad522d6d15fa649d9ce24f6681cb7e12c3a56536e08f723d9638fe3b2f7daf4",
+      "bytes": 2280422,
+      "width": 2240,
+      "height": 1696,
+      "asset": "/assets/img/monsters/hd/ruins/gran-sorcerer-8ad522d6d15f.webp"
+    },
+    {
+      "original": "RUINS/混沌法师.png",
+      "source": "RUINS/混沌法师.png",
+      "identity": "Chaos Sorcerer",
+      "sha256": "2a14fe39d02f296f5b048ec640c6d6ab0716413bb7a316d830bde354abc59341",
+      "bytes": 2718383,
+      "width": 2208,
+      "height": 1792,
+      "asset": "/assets/img/monsters/hd/ruins/chaos-sorcerer-2a14fe39d02f.webp"
+    },
+    {
+      "original": "RUINS/混沌骑士.png",
+      "source": "RUINS/混沌骑士.png",
+      "identity": "Chaos Bringer",
+      "sha256": "2954bc3f4da27f42bfcd50d8dc99d0db844937c1845bf47afea613fdce26c61b",
+      "bytes": 2746724,
+      "width": 2176,
+      "height": 2112,
+      "asset": "/assets/img/monsters/hd/ruins/chaos-bringer-2954bc3f4da2.webp"
+    },
+    {
+      "original": "RUINS/爪虫.png",
+      "source": "RUINS/爪虫.png",
+      "identity": "Claw",
+      "sha256": "109add334b74a0e799fce08991c5236d3699720f292246c1787ad6861ccc5bdf",
+      "bytes": 2437408,
+      "width": 3104,
+      "height": 1408,
+      "asset": "/assets/img/monsters/hd/ruins/claw-109add334b74.webp"
+    },
+    {
+      "original": "RUINS/远古巨神像.png",
+      "source": "RUINS/远古巨神像.png",
+      "identity": "Indi Belra",
+      "sha256": "0f048d1ef270e0ff5f713db153646d3086408ff402f60db1e3418ba4a3799009",
+      "bytes": 2921054,
+      "width": 1616,
+      "height": 2448,
+      "asset": "/assets/img/monsters/hd/ruins/indi-belra-0f048d1ef270.webp"
+    },
+    {
+      "original": "SEABED/46489496.png",
+      "source": "SEABED/奥尔加·弗洛 (Form 2).png",
+      "identity": "Olga Flow (Form 2)",
+      "sha256": "c2db3e0c3c0318e27a6c2dec61eabf4b46adc67ca4aa39e5be49e67d74083895",
+      "bytes": 3055274,
+      "width": 2368,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/seabed/olga-flow-form-2-c2db3e0c3c03.webp"
+    },
+    {
+      "original": "SEABED/图片背景改纯白 (1).png",
+      "source": "SEABED/爆防魔箱.png",
+      "identity": "Recobox",
+      "sha256": "8db2023fe4ea5fd743c3f5ce7fdec11995e5e4355c8a7d9ba0cab600d6cd4557",
+      "bytes": 5035681,
+      "width": 2080,
+      "height": 2208,
+      "asset": "/assets/img/monsters/hd/seabed/recobox-8db2023fe4ea.webp"
+    },
+    {
+      "original": "SEABED/图片背景改纯白 (2).png",
+      "source": "SEABED/暗腐蝶.png",
+      "identity": "Morfos",
+      "sha256": "23cfa0726fbac2ec071ec599ec99ce6a0fc5653d4c13e0de03570516e64573aa",
+      "bytes": 2716136,
+      "width": 1536,
+      "height": 2848,
+      "asset": "/assets/img/monsters/hd/seabed/morfos-23cfa0726fba.webp"
+    },
+    {
+      "original": "SEABED/图片背景改纯白 (3).png",
+      "source": "SEABED/青鱿.png",
+      "identity": "Dolmolm",
+      "sha256": "54bbfb7ba1cef8bbd165b38eabe408997b60ab1a266d1256917b853020baff19",
+      "bytes": 2013525,
+      "width": 2272,
+      "height": 1792,
+      "asset": "/assets/img/monsters/hd/seabed/dolmolm-54bbfb7ba1ce.webp"
+    },
+    {
+      "original": "SEABED/图片背景改纯白 (4).png",
+      "source": "SEABED/赤鱿.png",
+      "identity": "Dolmdarl",
+      "sha256": "a4e1908f71ae6a9fa3f6209bd5e2c5505f764e3c503d78fffa9cc6200a566e77",
+      "bytes": 1894886,
+      "width": 2416,
+      "height": 1856,
+      "asset": "/assets/img/monsters/hd/seabed/dolmdarl-a4e1908f71ae.webp"
+    },
+    {
+      "original": "SEABED/图片背景改纯白 (5).png",
+      "source": "SEABED/绯红光武.png",
+      "identity": "Sinow Zele",
+      "sha256": "88e281577a680a9f49bc575b3cd0e88327bd3e7bc6631a96f81545f67f6e1eea",
+      "bytes": 3671369,
+      "width": 2240,
+      "height": 1888,
+      "asset": "/assets/img/monsters/hd/seabed/sinow-zele-88e281577a68.webp"
+    },
+    {
+      "original": "SEABED/图片背景改纯白 (6).png",
+      "source": "SEABED/湛蓝光武.png",
+      "identity": "Sinow Zoa",
+      "sha256": "91562fe1d8c7b558195c2000fb0d3cbfb1c9e472e943fdf925266bedff0f5b80",
+      "bytes": 4199532,
+      "width": 2208,
+      "height": 2080,
+      "asset": "/assets/img/monsters/hd/seabed/sinow-zoa-91562fe1d8c7.webp"
+    },
+    {
+      "original": "SEABED/图片背景改纯白 (7).png",
+      "source": "SEABED/暗黑魔精.png",
+      "identity": "Deldepth",
+      "sha256": "8150d0a761a3d9aaf8364fdb69c7d8cea32c512ad546a516f4b67201536a2a4e",
+      "bytes": 2086037,
+      "width": 1776,
+      "height": 2512,
+      "asset": "/assets/img/monsters/hd/seabed/deldepth-8150d0a761a3.webp"
+    },
+    {
+      "original": "SEABED/图片背景改纯白 (8).png",
+      "source": "SEABED/暗黑麒麟.png",
+      "identity": "Delbiter",
+      "sha256": "c9777bd6a189d5fadb1b036d6f373518a36f0a58ab1a09460163f952a07db11c",
+      "bytes": 2624542,
+      "width": 2064,
+      "height": 1936,
+      "asset": "/assets/img/monsters/hd/seabed/delbiter-c9777bd6a189.webp"
+    },
+    {
+      "original": "SEABED/图片背景改纯白.png",
+      "source": "SEABED/爆防机.png",
+      "identity": "Recon",
+      "sha256": "0341448eb8310c52a4805ade0aa2c78dcb7fdfa2c190b0f995d3fed54e6372b7",
+      "bytes": 2413135,
+      "width": 2208,
+      "height": 1984,
+      "asset": "/assets/img/monsters/hd/seabed/recon-0341448eb831.webp"
+    },
+    {
+      "original": "SPACE SHIP/傀儡机兵.png",
+      "source": "SPACE SHIP/傀儡机兵.png",
+      "identity": "Dubchic",
+      "sha256": "83690c91227ed6ed683be2967b0e75b73fa2e9a929b790ad61b95afc07c37bca",
+      "bytes": 3370140,
+      "width": 1856,
+      "height": 2304,
+      "asset": "/assets/img/monsters/hd/space-ship/dubchic-83690c91227e.webp"
+    },
+    {
+      "original": "SPACE SHIP/傀儡机将.png",
+      "source": "SPACE SHIP/傀儡机将.png",
+      "identity": "Dubchich",
+      "sha256": "42f8ec69885b7eaaec0600d8a9e2e1dcf758f0581655f7469a99956b45ce0fa5",
+      "bytes": 3392827,
+      "width": 1856,
+      "height": 2304,
+      "asset": "/assets/img/monsters/hd/space-ship/dubchich-42f8ec69885b.webp"
+    },
+    {
+      "original": "SPACE SHIP/冰剑怪.png",
+      "source": "SPACE SHIP/冰剑怪.png",
+      "identity": "Migium",
+      "sha256": "efc47ef8b51345c6586b376ab52b240ead068e75b02f5d867328c523c8328381",
+      "bytes": 2169176,
+      "width": 2784,
+      "height": 1632,
+      "asset": "/assets/img/monsters/hd/space-ship/migium-efc47ef8b513.webp"
+    },
+    {
+      "original": "SPACE SHIP/剑魔.png",
+      "source": "SPACE SHIP/剑魔.png",
+      "identity": "Delsaber",
+      "sha256": "f681d4f88f47bdf2dfa901d5cc4f036bdd7f84cb2ee5035d1fe5e9bbdee21e66",
+      "bytes": 2204603,
+      "width": 2064,
+      "height": 1872,
+      "asset": "/assets/img/monsters/hd/space-ship/delsaber-f681d4f88f47.webp"
+    },
+    {
+      "original": "SPACE SHIP/合体怪.png",
+      "source": "SPACE SHIP/合体怪.png",
+      "identity": "Pan Arms",
+      "sha256": "db2e29259cad204cdabfa2a5b632cd99b2fccdcaf887c35b70aa3fd689e22ba7",
+      "bytes": 3738486,
+      "width": 2560,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/space-ship/pan-arms-db2e29259cad.webp"
+    },
+    {
+      "original": "SPACE SHIP/数码冰龙.png",
+      "source": "SPACE SHIP/数码冰龙.png",
+      "identity": "Gol Dragon",
+      "sha256": "ad4f76bacdbb78edc8d7b110bcfecff23b90102731673c295af04adbf62635d6",
+      "bytes": 4082012,
+      "width": 2176,
+      "height": 1888,
+      "asset": "/assets/img/monsters/hd/space-ship/gol-dragon-ad4f76bacdbb.webp"
+    },
+    {
+      "original": "SPACE SHIP/机甲堡垒.png",
+      "source": "SPACE SHIP/机甲堡垒.png",
+      "identity": "Garanz",
+      "sha256": "43abb97586c7b9235e28cd8b8e7d8f2b5c59bd624eeed1efc5ae50a8bfeb7765",
+      "bytes": 4345509,
+      "width": 2368,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/space-ship/garanz-43abb97586c7.webp"
+    },
+    {
+      "original": "SPACE SHIP/机甲堡垒·改.png",
+      "source": "SPACE SHIP/机甲堡垒·改.png",
+      "identity": "Baranz",
+      "sha256": "2725d0c39350fd0a61e9e2cc2ecf7e3143d2d72d8b9db3bbb878846b4569534e",
+      "bytes": 4037040,
+      "width": 2240,
+      "height": 1888,
+      "asset": "/assets/img/monsters/hd/space-ship/baranz-2725d0c39350.webp"
+    },
+    {
+      "original": "SPACE SHIP/步行机兵.png",
+      "source": "SPACE SHIP/步行机兵.png",
+      "identity": "Gilchic",
+      "sha256": "2c753c75f821f4ef3045e73b414b71dafc23c74d95aa12daf371fac529375c54",
+      "bytes": 4075512,
+      "width": 1696,
+      "height": 2496,
+      "asset": "/assets/img/monsters/hd/space-ship/gilchic-2c753c75f821.webp"
+    },
+    {
+      "original": "SPACE SHIP/毁灭法师.png",
+      "source": "SPACE SHIP/毁灭法师.png",
+      "identity": "Gran Sorcerer",
+      "sha256": "8ad522d6d15fa649d9ce24f6681cb7e12c3a56536e08f723d9638fe3b2f7daf4",
+      "bytes": 2280422,
+      "width": 2240,
+      "height": 1696,
+      "asset": "/assets/img/monsters/hd/space-ship/gran-sorcerer-8ad522d6d15f.webp"
+    },
+    {
+      "original": "SPACE SHIP/浮游机将.png",
+      "source": "SPACE SHIP/浮游机将.png",
+      "identity": "Gilchich",
+      "sha256": "acebaca22d6402f45a4724fb0fda750a5ed4a8f4ae2f42ac0d0222c533f58150",
+      "bytes": 2739118,
+      "width": 2048,
+      "height": 1856,
+      "asset": "/assets/img/monsters/hd/space-ship/gilchich-acebaca22d64.webp"
+    },
+    {
+      "original": "SPACE SHIP/混沌法师.png",
+      "source": "SPACE SHIP/混沌法师.png",
+      "identity": "Chaos Sorcerer",
+      "sha256": "2a14fe39d02f296f5b048ec640c6d6ab0716413bb7a316d830bde354abc59341",
+      "bytes": 2718383,
+      "width": 2208,
+      "height": 1792,
+      "asset": "/assets/img/monsters/hd/space-ship/chaos-sorcerer-2a14fe39d02f.webp"
+    },
+    {
+      "original": "SPACE SHIP/火剑怪.png",
+      "source": "SPACE SHIP/火剑怪.png",
+      "identity": "Hidoom",
+      "sha256": "bd9504af43b41061cc6414b0281268cd3922acc334bf19513fa0c557ee3c86f1",
+      "bytes": 1734849,
+      "width": 2240,
+      "height": 1696,
+      "asset": "/assets/img/monsters/hd/space-ship/hidoom-bd9504af43b4.webp"
+    },
+    {
+      "original": "SPACE SHIP/狂狼.png",
+      "source": "SPACE SHIP/狂狼.png",
+      "identity": "Savage Wolf",
+      "sha256": "a311c3ae9d0b750b39bf78f24c4b73252d1cc9a5f134e95f3d2f23136cb4c896",
+      "bytes": 2684089,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/space-ship/savage-wolf-a311c3ae9d0b.webp"
+    },
+    {
+      "original": "SPACE SHIP/狂狼王.png",
+      "source": "SPACE SHIP/狂狼王.png",
+      "identity": "Barbarous Wolf",
+      "sha256": "181f5b5483604bacb00a5243ad2d801679c0a7ab56450336c9024c049b197bac",
+      "bytes": 3321493,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/space-ship/barbarous-wolf-181f5b548360.webp"
+    },
+    {
+      "original": "SPACE SHIP/角狼.png",
+      "source": "SPACE SHIP/角狼.png",
+      "identity": "Gulgus",
+      "sha256": "522f47b701ccbe904ad48e277bfa4cb21c3392cd23d56090bc124f2a908c5992",
+      "bytes": 2893197,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/space-ship/gulgus-522f47b701cc.webp"
+    },
+    {
+      "original": "SPACE SHIP/角狼王.png",
+      "source": "SPACE SHIP/角狼王.png",
+      "identity": "Gulgus-Gue",
+      "sha256": "ed22327feaeefd5b34f2663c8e9683f4285a05119d273929d6edd0f76cc1d99c",
+      "bytes": 1877960,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/space-ship/gulgus-gue-ed22327feaee.webp"
+    },
+    {
+      "original": "TEMPLE/南瓜拉比.png",
+      "source": "TEMPLE/南瓜拉比.png",
+      "identity": "Halo Rappy",
+      "sha256": "8dded62c7914a4100ee763c813b8c955a5c57e9a710df32e24816f29bcb046d3",
+      "bytes": 1953036,
+      "width": 2208,
+      "height": 1760,
+      "asset": "/assets/img/monsters/hd/temple/halo-rappy-8dded62c7914.webp"
+    },
+    {
+      "original": "TEMPLE/变种铃兰.png",
+      "source": "TEMPLE/变种铃兰.png",
+      "identity": "Ob Lily",
+      "sha256": "5f5b30e0344a56794aa381a3e74745aeec4505c5d5485825411c9876e2c42712",
+      "bytes": 2103806,
+      "width": 2208,
+      "height": 1984,
+      "asset": "/assets/img/monsters/hd/temple/ob-lily-5f5b30e0344a.webp"
+    },
+    {
+      "original": "TEMPLE/吸血巨蚊.png",
+      "source": "TEMPLE/吸血巨蚊.png",
+      "identity": "Mothmant",
+      "sha256": "40318be732f4d8da660f7d5f366acba72d4b660d861f1436d1b71b8fa2ed7a27",
+      "bytes": 1668904,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/mothmant-40318be732f4.webp"
+    },
+    {
+      "original": "TEMPLE/吸血巨蚊巢.png",
+      "source": "TEMPLE/吸血巨蚊巢.png",
+      "identity": "Monest",
+      "sha256": "60afbd56469df6a15147c8a6409b848cd028e29dd26cefa9607ffad66343e419",
+      "bytes": 3391134,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/monest-60afbd56469d.webp"
+    },
+    {
+      "original": "TEMPLE/嗜血巨蚊.png",
+      "source": "TEMPLE/嗜血巨蚊.png",
+      "identity": "Mothvert",
+      "sha256": "e4b1576028d61a6d6edb4008e1bad637b2ffbafab39d7b49d3a28518c458c12e",
+      "bytes": 1118962,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/mothvert-e4b1576028d6.webp"
+    },
+    {
+      "original": "TEMPLE/嗜血巨蚊巢.png",
+      "source": "TEMPLE/嗜血巨蚊巢.png",
+      "identity": "Mothvist",
+      "sha256": "7d6c6fc121868d2a33b87961ef0481fe889e3c932e84abda2fb82e1391f1e482",
+      "bytes": 3468412,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/mothvist-7d6c6fc12186.webp"
+    },
+    {
+      "original": "TEMPLE/嗜血巨螳螂.png",
+      "source": "TEMPLE/嗜血巨螳螂.png",
+      "identity": "Crimson Assassin",
+      "sha256": "baefa2f7f2908dc49cb94d366a916494a1e8e6dbaad128ccd486749d6b019155",
+      "bytes": 1773819,
+      "width": 2304,
+      "height": 1888,
+      "asset": "/assets/img/monsters/hd/temple/crimson-assassin-baefa2f7f290.webp"
+    },
+    {
+      "original": "TEMPLE/圣诞拉比.png",
+      "source": "TEMPLE/圣诞拉比.png",
+      "identity": "St. Rappy",
+      "sha256": "859dc1996133677b0639a5f633d7e7549a367462022b9098e0f72083d3a2862a",
+      "bytes": 2840249,
+      "width": 2272,
+      "height": 1792,
+      "asset": "/assets/img/monsters/hd/temple/st-rappy-859dc1996133.webp"
+    },
+    {
+      "original": "TEMPLE/巨螳螂.png",
+      "source": "TEMPLE/巨螳螂.png",
+      "identity": "Grass Assassin",
+      "sha256": "b935177b3449be23dad5c37caa0005d3022763952165f9be08e8efb982792710",
+      "bytes": 1650752,
+      "width": 2576,
+      "height": 1696,
+      "asset": "/assets/img/monsters/hd/temple/grass-assassin-b935177b3449.webp"
+    },
+    {
+      "original": "TEMPLE/巴尔巴雷.png",
+      "source": "TEMPLE/巴尔巴雷.png",
+      "identity": "Barba Ray",
+      "sha256": "270196cad737c0852f78613d4a934af0bfbdf49a8c8a69df9991b46021164ece",
+      "bytes": 4304894,
+      "width": 2640,
+      "height": 1536,
+      "asset": "/assets/img/monsters/hd/temple/barba-ray-270196cad737.webp"
+    },
+    {
+      "original": "TEMPLE/异种铃兰.png",
+      "source": "TEMPLE/异种铃兰.png",
+      "identity": "Mil Lily",
+      "sha256": "d9f459d0889af561a3599c8e48a384ed35fb8594d2d5b5b563a4da6892c122ca",
+      "bytes": 2014688,
+      "width": 2208,
+      "height": 1792,
+      "asset": "/assets/img/monsters/hd/temple/mil-lily-d9f459d0889a.webp"
+    },
+    {
+      "original": "TEMPLE/彩虹拉比鸟.png",
+      "source": "TEMPLE/彩虹拉比鸟.png",
+      "identity": "Pal Rappy",
+      "sha256": "3838324a0ea5b8c521c3b47f1c890cf367fe94ba81aaee3f124c6f09842e9aeb",
+      "bytes": 1780577,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/pal-rappy-3838324a0ea5.webp"
+    },
+    {
+      "original": "TEMPLE/彩蛋拉比.png",
+      "source": "TEMPLE/彩蛋拉比.png",
+      "identity": "Egg Rappy",
+      "sha256": "d320b204851d6b5bbb02f9251cc6eaf37c831468d766aeee246ff91bfd2e4e76",
+      "bytes": 2107880,
+      "width": 2320,
+      "height": 1840,
+      "asset": "/assets/img/monsters/hd/temple/egg-rappy-d320b204851d.webp"
+    },
+    {
+      "original": "TEMPLE/暗黑巨猿.png",
+      "source": "TEMPLE/暗黑巨猿.png",
+      "identity": "Hildetorr",
+      "sha256": "69be0dd285bbff32a5321ab4f644272b322156d8645d17fc5aaa115da5489fec",
+      "bytes": 2862915,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/hildetorr-69be0dd285bb.webp"
+    },
+    {
+      "original": "TEMPLE/暗黑巨神像.png",
+      "source": "TEMPLE/暗黑巨神像.png",
+      "identity": "Dark Belra",
+      "sha256": "a43d75d806a680dabdcb76458199bb85e5eb3fb83fa8f2e09bdeb05a521112ae",
+      "bytes": 3566483,
+      "width": 2240,
+      "height": 1856,
+      "asset": "/assets/img/monsters/hd/temple/dark-belra-a43d75d806a6.webp"
+    },
+    {
+      "original": "TEMPLE/毒铃兰.png",
+      "source": "TEMPLE/毒铃兰.png",
+      "identity": "Poison Lily",
+      "sha256": "4e1f770e90cd5f0683ee97e2d4bfcbbcd5662fe755960193a6dcc19437460004",
+      "bytes": 2650065,
+      "width": 2096,
+      "height": 2160,
+      "asset": "/assets/img/monsters/hd/temple/poison-lily-4e1f770e90cd.webp"
+    },
+    {
+      "original": "TEMPLE/爱之拉比.png",
+      "source": "TEMPLE/爱之拉比.png",
+      "identity": "Love Rappy",
+      "sha256": "a7a4c370d9164126004d55c860b5e0fbb09a1668bfa4f9ef18ce23e246f20300",
+      "bytes": 2209708,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/love-rappy-a7a4c370d916.webp"
+    },
+    {
+      "original": "TEMPLE/狂暴巨猿.png",
+      "source": "TEMPLE/狂暴巨猿.png",
+      "identity": "Hildebear",
+      "sha256": "cde7d5977f69ce55616f4d2d25d456911279cc072abf4e7682a989b34bbc4f9e",
+      "bytes": 3709125,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/hildebear-cde7d5977f69.webp"
+    },
+    {
+      "original": "TEMPLE/狂暴白猿.png",
+      "source": "TEMPLE/狂暴白猿.png",
+      "identity": "Hildeblue",
+      "sha256": "2a51a349c624dc1ba0405e8404a6f9bf0c5fdf374319ae6ab04d2ff91ee175e9",
+      "bytes": 2865910,
+      "width": 2000,
+      "height": 2064,
+      "asset": "/assets/img/monsters/hd/temple/hildeblue-2a51a349c624.webp"
+    },
+    {
+      "original": "TEMPLE/白拉比鸟.png",
+      "source": "TEMPLE/白拉比鸟.png",
+      "identity": "El Rappy",
+      "sha256": "4a771880338a6425fe9a63f504ff0460ccc53d3fefd4c3ca90c92771211740ff",
+      "bytes": 1723673,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/el-rappy-4a771880338a.webp"
+    },
+    {
+      "original": "TEMPLE/红铃兰.png",
+      "source": "TEMPLE/红铃兰.png",
+      "identity": "Nar Lily",
+      "sha256": "465d11975d44599100da12b2699dadbd6aef7d68a094a85ac756449afe3e4bd7",
+      "bytes": 2500633,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/nar-lily-465d11975d44.webp"
+    },
+    {
+      "original": "TEMPLE/蓝拉比鸟.png",
+      "source": "TEMPLE/蓝拉比鸟.png",
+      "identity": "Al Rappy",
+      "sha256": "be02c906790250bb2529a38717ea432005297c670d2b806a8b1e00bd915ef2e1",
+      "bytes": 1444495,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/al-rappy-be02c9067902.webp"
+    },
+    {
+      "original": "TEMPLE/远古巨神像.png",
+      "source": "TEMPLE/远古巨神像.png",
+      "identity": "Indi Belra",
+      "sha256": "0f048d1ef270e0ff5f713db153646d3086408ff402f60db1e3418ba4a3799009",
+      "bytes": 2921054,
+      "width": 1616,
+      "height": 2448,
+      "asset": "/assets/img/monsters/hd/temple/indi-belra-0f048d1ef270.webp"
+    },
+    {
+      "original": "TEMPLE/雷暴巨猿.png",
+      "source": "TEMPLE/雷暴巨猿.png",
+      "identity": "Hildelt",
+      "sha256": "e9b491dbc3e85ea318e8e87d1f62bc3b1266b6ddb2f886eb82aeae6698be5a4f",
+      "bytes": 2337646,
+      "width": 2048,
+      "height": 1920,
+      "asset": "/assets/img/monsters/hd/temple/hildelt-e9b491dbc3e8.webp"
+    },
+    {
+      "original": "TEMPLE/黄拉比鸟.png",
+      "source": "TEMPLE/黄拉比鸟.png",
+      "identity": "Rag Rappy",
+      "sha256": "4bfc099d72c52686a2d7eacb0f504300390548484e8d6e72e2243c9b4db39c73",
+      "bytes": 1349204,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/temple/rag-rappy-4bfc099d72c5.webp"
+    },
+    {
+      "original": "TOWER/厄普西隆.png",
+      "source": "TOWER/伊普西龙.png",
+      "identity": "Epsilon",
+      "sha256": "7fd0b3cfedfa511b5036e71d12489d72d7954206e57ac46a10dafc01642e35e5",
+      "bytes": 3708615,
+      "width": 2320,
+      "height": 1840,
+      "asset": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp"
+    },
+    {
+      "original": "TOWER/恶镰死神.png",
+      "source": "TOWER/恶镰死神.png",
+      "identity": "Ill Gill",
+      "sha256": "5c11457d7fc74d302e60311b0f635ffe59f067990e233694671b2cb1144fba8d",
+      "bytes": 1574670,
+      "width": 2208,
+      "height": 2080,
+      "asset": "/assets/img/monsters/hd/tower/ill-gill-5c11457d7fc7.webp"
+    },
+    {
+      "original": "TOWER/暗铃兰.png",
+      "source": "TOWER/暗铃兰.png",
+      "identity": "Del Lily",
+      "sha256": "29652bafd2750130646f722786d4d16461dad18bae932c24f747376177a0811f",
+      "bytes": 1984281,
+      "width": 2048,
+      "height": 2048,
+      "asset": "/assets/img/monsters/hd/tower/del-lily-29652bafd275.webp"
+    }
+  ],
+  "assets": [
+    {
+      "path": "/assets/img/monsters/hd/cave/migium-efc47ef8b513.webp",
+      "sha256": "9d8377c6dddc1db35062bae8057125eac6cb2a94418e3d6d69a3950d1bba177a",
+      "bytes": 52290
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/pofuilly-slime-78f7acb26356.webp",
+      "sha256": "2062f57a2f3a68381aeb6385c30b9b9af0af95537784f4ce88ff3a1c52f96f35",
+      "bytes": 98946
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/ob-lily-5f5b30e0344a.webp",
+      "sha256": "55103b56c4d190c890e5753aa1b82e480342dc4f09bee32399d22e220f729692",
+      "bytes": 76330
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/melqueek-f30a4b8338f6.webp",
+      "sha256": "2e7dcb6e759423347bb7df38a4e5a8f9cbc317da170f8dd523ffa91324eda176",
+      "bytes": 82178
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/pan-arms-db2e29259cad.webp",
+      "sha256": "ea494bc0489c6529441b5504d13f8566c114b44d8299a023ccba2bfb893805a4",
+      "bytes": 124174
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/crimson-assassin-baefa2f7f290.webp",
+      "sha256": "9f2be61bedc7a2ef46026237f7b6075ff2d17e64451fa86276cc847dfd01698c",
+      "bytes": 69520
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/grass-assassin-b935177b3449.webp",
+      "sha256": "54bc87600948c9eb5a4f04284cde8c12bb3b90db5bf1fbf31ebd0d917a5fb9a9",
+      "bytes": 57064
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/mil-lily-d9f459d0889a.webp",
+      "sha256": "a08eb76f6b6854101c7949fb7f801a08d50adaa508e9499ac920ee027fb3f9e4",
+      "bytes": 68568
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/poison-lily-4e1f770e90cd.webp",
+      "sha256": "4cafef3384bca1d5df26b030e97b5a788318d0a98ae5f1f10242649a3703f8b8",
+      "bytes": 89600
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/hidoom-bd9504af43b4.webp",
+      "sha256": "c098d6d382f2017d2a34d5a9b37fe689b9c2591e6626e1b8c6f4ff98917157e4",
+      "bytes": 68298
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/pouilly-slime-8938db3d3901.webp",
+      "sha256": "2617915eca0be3674d9a33a6386d0e71a7bb6d07d3c85a19a84a8f3138b14847",
+      "bytes": 106094
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/guil-shark-f3fb3a183203.webp",
+      "sha256": "02ccbce05d95025d8174db77b75ea6ce40520c1c7e3b4842e7eea324e43dae99",
+      "bytes": 74954
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/vulmer-9ef87885dfd2.webp",
+      "sha256": "484be68f0a55551269ccb1616a43c8f9602c8970f6290b6903c36c489bed3303",
+      "bytes": 115532
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/pal-shark-f114f128a68d.webp",
+      "sha256": "b93d8a423c68c5f22826d51372867bed4c2aaec1da1dd02fce629e5147b73ebe",
+      "bytes": 114594
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/nar-lily-465d11975d44.webp",
+      "sha256": "bd81a0155d3303ee81a21d1feb59214138cb0cb209f11e902bfb0b1dccb284f6",
+      "bytes": 91086
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/evil-shark-574319249447.webp",
+      "sha256": "298ef39d996fc0cd78f4d50be296fe576dd50cdc561539d23e7c495a487d1f89",
+      "bytes": 104604
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/nano-dragon-8191e3061004.webp",
+      "sha256": "8fd7b25add2ab7a0a4c65244192f261d69de8d00f679c8a5f58ad2cdd25e07fd",
+      "bytes": 110428
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/govulmer-f9360b44e97f.webp",
+      "sha256": "e8f1c5363c0a5fee6ac735d43f63397dc2845ea835bf4679d582b06d58dca60b",
+      "bytes": 71630
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/dal-ral-lie-0cdd3a463db4.webp",
+      "sha256": "a76d655d5c4782348c86f7014578f59e7c927531137e6a4b9bf176358782e132",
+      "bytes": 74604
+    },
+    {
+      "path": "/assets/img/monsters/hd/cave/de-rol-le-69ee4aa4e20a.webp",
+      "sha256": "035cdf73929ced8ca5f3008501368b68b63aac1ca932a0d55c217e706c55a2d8",
+      "bytes": 92824
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/gal-gryphon-1aedfe1b8b67.webp",
+      "sha256": "381f08bdeb3e0e7a81c98d2dadc49d7b1e4802a3cd8e660d082a436953b85af8",
+      "bytes": 122474
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/gee-43022cc4d6b0.webp",
+      "sha256": "4384ff9c9fbbcd8fe31c04fe0100cfce569e4536dbde2add10dc2ed47a7a4b93",
+      "bytes": 75362
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/gi-gue-9245aa5ec347.webp",
+      "sha256": "f5d0a693a24d4c158651c558d1a5b681e858dd7adb9a3ca248df13510c02c698",
+      "bytes": 103652
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/ul-gibbon-75b053bddb2d.webp",
+      "sha256": "f8c0fa8fffb9a1b16fce2abe6610205b55dc1f3dee8752a797337313d569a4b7",
+      "bytes": 70792
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/sinow-berill-9da73224e6f7.webp",
+      "sha256": "b946227c6c0dcb1ff5f153203b0c0bc2cffaea24ddfe23922e55e907f2049c95",
+      "bytes": 90224
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/merillia-b5f180194cd7.webp",
+      "sha256": "82c0454f64c4a552710f8f80ae720cfc3b071de9f729455c4dc50036639909ee",
+      "bytes": 142596
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/zol-gibbon-00af199eb16a.webp",
+      "sha256": "ec39031122edef0b05b7a9cc97ded0b2865218616bebbdd22cb522ee93f5c420",
+      "bytes": 80302
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/meriltas-6c3faa49ea61.webp",
+      "sha256": "699213a8ba434c662cedb5196e2d075399621e322aec82374f31cd43f559bc90",
+      "bytes": 79924
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/mericarol-f43d948115fc.webp",
+      "sha256": "2e1bee15f6303957a2d0950b67569525042d9ddaf8e921fa83dee59897c8cf50",
+      "bytes": 116480
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/mericus-6ce639e59c51.webp",
+      "sha256": "0ba53071375c8df968ce55575c5a8061e8ae4ffecf5be8f44ae9d51513cef0c2",
+      "bytes": 101412
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/merikle-21f8f5116491.webp",
+      "sha256": "6924fb8b21861384988486eb05869e33cc15167cd82658f1745ab55dada46549",
+      "bytes": 114868
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/gibbles-68fb3358f464.webp",
+      "sha256": "536e7cbe224a40dc9372aa82575df8171c86cf7b3e4a1239dafc6f9cc6653293",
+      "bytes": 113540
+    },
+    {
+      "path": "/assets/img/monsters/hd/cca/sinow-spigell-6f104f7423c0.webp",
+      "sha256": "b53f5664a5d236bbff9b80b3e34df67ecbab114832fef91b5cc46e70063c6876",
+      "bytes": 122020
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/boota-6ca6502c525b.webp",
+      "sha256": "7f4852fb26e832982a6e609359ef4ddc8e52319d40559c4e6eaee4b1b6e9c650",
+      "bytes": 91598
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/pazuzu-6eb0c42717b4.webp",
+      "sha256": "2b2b7a0eea24e215903684689bcda18d442f5d612da403d0cc14db8aa9c71119",
+      "bytes": 54962
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/zu-9c30f4d17040.webp",
+      "sha256": "f6675bc0f81c2a8bdcdcade85af15dcee5306a611420e411506236fa16ec06c6",
+      "bytes": 36194
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/ba-boota-ebcfaf40a4ca.webp",
+      "sha256": "5c8a61fd1d426f61c1ca972b4e76cc58334892e3305a399ff159967c29e0e154",
+      "bytes": 100792
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/astark-836193c9fa84.webp",
+      "sha256": "333d288f3931712ccf5cca221ae2e77a2e1730dbe8b5297138f6d8b417fd3c27",
+      "bytes": 89576
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/del-rappy-1e16586ed500.webp",
+      "sha256": "fd8809f5a643e721ac746e0aee09f93d50e2cb7f4f8c54b62aeacdfc71a4bd38",
+      "bytes": 111014
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/sand-rappy-8a037741ced3.webp",
+      "sha256": "50d1cd5543b23039b6e980ec70ca5bf6ab0ebbd3bd0941befa6a8df16deb65c3",
+      "bytes": 80614
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/satellite-lizard-867d6628d1b2.webp",
+      "sha256": "acbd91773615ca17f94b9b47c5a0f6393e86338b0e375ab565aeb8cfdac502ba",
+      "bytes": 55874
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/ze-boota-f727f008d6d0.webp",
+      "sha256": "3ad1b36ff7407089156338ef41c3a4adfbea41ca5cfaab358ba14528bb2a4323",
+      "bytes": 95568
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/dorphon-eclair-e7d3cf99e39c.webp",
+      "sha256": "cd995c4c3b5f38614eac6120823f9a079631522da4fc2d457949f68b9d0f3d65",
+      "bytes": 60404
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/yowie-41f9ef743960.webp",
+      "sha256": "a177ac21d932ddb0a57b8d95026e32a67f66fd4148e3bce1600bddfbd202e42b",
+      "bytes": 87568
+    },
+    {
+      "path": "/assets/img/monsters/hd/crater/dorphon-933dd41995a9.webp",
+      "sha256": "fccd1b5a9a756388d53f43499994b9189da8a695b9d77c8e400494aa7048df21",
+      "bytes": 83714
+    },
+    {
+      "path": "/assets/img/monsters/hd/desert/saint-million-d342c0aa63f4.webp",
+      "sha256": "195329d8ac0809a30c5e7a3ecbaba5be1b137cf545c0cfaf0a4a2f1a6c78a75f",
+      "bytes": 83892
+    },
+    {
+      "path": "/assets/img/monsters/hd/desert/merissa-a-25d11e301175.webp",
+      "sha256": "61986ab9220b9d2481f29ee39ca914a99311ecb007dbd82d39be19793afde2e8",
+      "bytes": 116444
+    },
+    {
+      "path": "/assets/img/monsters/hd/desert/merissa-aa-b8b33b82bfab.webp",
+      "sha256": "dc4f71b3c6c65384cfb9264c60cc3f211229bcb3038f4225915117fbfb93dd90",
+      "bytes": 138818
+    },
+    {
+      "path": "/assets/img/monsters/hd/desert/goran-14bad6e6797a.webp",
+      "sha256": "c6e8fbbc7544086de180d0d26beaaf04486c667cec2bec6004eee330d62eb450",
+      "bytes": 138548
+    },
+    {
+      "path": "/assets/img/monsters/hd/desert/goran-detonator-3dccd4c68a9d.webp",
+      "sha256": "1c84c165a4d752f2cfaa1de64892db740bd2c76308c5cbbb0515688ccffb1320",
+      "bytes": 104304
+    },
+    {
+      "path": "/assets/img/monsters/hd/desert/pyro-goran-1aa529057c5a.webp",
+      "sha256": "d9880ff09858b158bbb70a9169becbdee471d727feaca3dcd8a054c2f37e3db0",
+      "bytes": 159682
+    },
+    {
+      "path": "/assets/img/monsters/hd/desert/girtablulu-724b9fb59897.webp",
+      "sha256": "ea4c0c6afc05f9605633c45bb02106ec37ca15e2b4ea2eaf1d349bb8169571d1",
+      "bytes": 108258
+    },
+    {
+      "path": "/assets/img/monsters/hd/desert/shambertin-cef3edbac6ed.webp",
+      "sha256": "3db1f59f9a7746029b333305bfb59055ef25880cc16cefda2147ba4cacf86d73",
+      "bytes": 63772
+    },
+    {
+      "path": "/assets/img/monsters/hd/desert/kondrieu-ca014a3e29e8.webp",
+      "sha256": "99070a16fdf7d5145d480bb84d5cb845984d7d89b3337ec4751d13322acfed6e",
+      "bytes": 77924
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/sil-dragon-fb988725e28d.webp",
+      "sha256": "ac2eb31c903ad4e555771526a3aadaef639484583d50cc7ac8b53f2eb736abee",
+      "bytes": 90980
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/mothmant-40318be732f4.webp",
+      "sha256": "0a0d56982c4221ad2224a6907f0015bfcd2529e5ac8629d7ddd584ac9830fb30",
+      "bytes": 85334
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/monest-60afbd56469d.webp",
+      "sha256": "f3642de68043b80c57e259c27e552c7429f938f5c4c7fed8b01b8d6802b75af4",
+      "bytes": 169286
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/mothvert-e4b1576028d6.webp",
+      "sha256": "ab9422e056f64f468ad495758128bd66f253264821ab53370f96afe7d12fd84a",
+      "bytes": 59024
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/mothvist-7d6c6fc12186.webp",
+      "sha256": "c6a1dc7a368590be30de33830be46b44ed5830f28c8dc134d46988cf2c0d6ad3",
+      "bytes": 179506
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/pal-rappy-3838324a0ea5.webp",
+      "sha256": "4aa819030245df6b8fc525c9c0ed9e6fa83927784bce96d678e76f19b9184e04",
+      "bytes": 76742
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/hildetorr-69be0dd285bb.webp",
+      "sha256": "f35ec57e07b9b60382647e29167e8c1a5d6a1507d196c2cefce15364e4e6ebad",
+      "bytes": 131498
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/booma-db497405161e.webp",
+      "sha256": "098cf8f2f973cb8a0225f02354526f480fac9da49f8ec35f4c6abbcfddbb8293",
+      "bytes": 127440
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/hildebear-cde7d5977f69.webp",
+      "sha256": "25b8eaa8967c8be32854154397b6e85a1ceb3c25fd06778b7921b6fb425ef0b7",
+      "bytes": 183622
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/hildeblue-2a51a349c624.webp",
+      "sha256": "93a5a05d5de3e18d2c0edb6a17b69dbbbe84df57c625e258e52c4e5b68dc394f",
+      "bytes": 104680
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/savage-wolf-a311c3ae9d0b.webp",
+      "sha256": "90fd61989e73c6fff01de7111e59fa2beef77da9db9b5323fca3b67471bd33b2",
+      "bytes": 135992
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/barbarous-wolf-181f5b548360.webp",
+      "sha256": "138bca90c20468b0cdbdc8bd6c302022ba06a9d88ca243af151134fbc10efbd7",
+      "bytes": 164722
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/el-rappy-4a771880338a.webp",
+      "sha256": "bb183013a1c7d2b3623c3fe655e0375503cccdc77580608637c2348b79b46be5",
+      "bytes": 65278
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/bartle-c41373d4b4e8.webp",
+      "sha256": "1346472d4a56015e5d491374f24f6bf5ca9f8861eefaa8f6326c702716d858f5",
+      "bytes": 155676
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/gigobooma-d8d68e852a69.webp",
+      "sha256": "137a8149475fd4017ccc4ce156c7c36dd4608a964a8cbb797fac61381f473cf4",
+      "bytes": 117464
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/al-rappy-be02c9067902.webp",
+      "sha256": "ff0409b1f8456eb7065283e3133ccf9d83e2f16c8b8ce4c0985dbf146c31a95c",
+      "bytes": 61118
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/barble-8e087ed05aef.webp",
+      "sha256": "7a6b1ee6c02721004787cbbdee05794cd9bb615151c27bad4f47c4ce8b62ede1",
+      "bytes": 146568
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/gulgus-522f47b701cc.webp",
+      "sha256": "5de9a1c29cbe2d515a6b64d532bd8bde4134035a55e6f3720b19fe45f7b10552",
+      "bytes": 136152
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/gulgus-gue-ed22327feaee.webp",
+      "sha256": "c901e8a76e4ebb4e0d6fb3b10522f78a25dfbc63f3c47051f5c206f04ad9ed71",
+      "bytes": 89730
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/dragon-cf9e7b48e1c6.webp",
+      "sha256": "6058e4c38dea54fc0616bc108c5e978daf4b406c1f2abb27b09d9237206eae54",
+      "bytes": 103374
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/hildelt-e9b491dbc3e8.webp",
+      "sha256": "02a911f5232bdae6a456036c436e325fb7d8c3a822170981a4d77dc11d232634",
+      "bytes": 90276
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/tollaw-f40488beb9f5.webp",
+      "sha256": "7bc3bb75ede7f6ec54427d58cb1ae1e3ae5b749f80cd5f5d39083f771ee18da5",
+      "bytes": 120388
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/rag-rappy-4bfc099d72c5.webp",
+      "sha256": "bb3ec297920661e91fa95f3c9e6669afca9eb29d2b22fc4afec5558110b6053e",
+      "bytes": 56978
+    },
+    {
+      "path": "/assets/img/monsters/hd/forest/gobooma-9a4406ff5b27.webp",
+      "sha256": "74f2fbdf80a8e85d3739c2c775276903bc12dec5fdb3dc0b2af3f4f650e5d824",
+      "bytes": 144536
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/dubchic-83690c91227e.webp",
+      "sha256": "f0d762597d5b14c3eec7035fb345d3a965a55d8cafbf174d89963e6aec658070",
+      "bytes": 172924
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/dubchich-42f8ec69885b.webp",
+      "sha256": "de59341859c2ac22860983a654295e2f8235e62bb0991b075a1857b2fc82a7d3",
+      "bytes": 148292
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/canune-f31707ae2763.webp",
+      "sha256": "8beb7051ba70045805f0e5346f2f6f4ae561314e5325103e1167495c47ec9d85",
+      "bytes": 167498
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/canabin-bed419018e92.webp",
+      "sha256": "9cc2d08fc0bee4f7f0ff80ce78393dd2ac3ae533d6718550983b2d9eb64808eb",
+      "bytes": 163830
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/garanz-43abb97586c7.webp",
+      "sha256": "1f25b6442d9bf884618cc0121f23303a426601dceba3707ed71f4f5a6fe6d930",
+      "bytes": 102180
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/baranz-2725d0c39350.webp",
+      "sha256": "7fd7fc4047369fc9d56226a4091470a8340c9a32f0a938df02152a10bd5bfa7f",
+      "bytes": 109498
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/canane-8c17685b3aec.webp",
+      "sha256": "aa89841ee4f2a6e8be04efb315b23c3e4f30d981f38dbb585f988cfb8d568c02",
+      "bytes": 168952
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/gilchic-2c753c75f821.webp",
+      "sha256": "99be811562330aa1633ef0248269629f4247c6947ce2b744aad251ea0358fa57",
+      "bytes": 189546
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/vol-opt-form-2-30c9b3910481.webp",
+      "sha256": "246b6e6e41c1862fc037351720587521728e3293171c6956c80a67c3f5ae5924",
+      "bytes": 114652
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/vol-opt-ver-2-form-2-0c2588719ddd.webp",
+      "sha256": "dfc77eae3c364b77674db043295615d435dc95361ce383c53fc55a4ba4b5fddc",
+      "bytes": 124636
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/gilchich-acebaca22d64.webp",
+      "sha256": "346f3aa3c4c0c054c86d239db38e2f4a2240df46aa173b17c5789ec61097da11",
+      "bytes": 118546
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/canadine-b2a3c541bbac.webp",
+      "sha256": "1b0b714718d2e14bf48f8a866783afb5a73dd6d022562bd2f1dbc71eac3b6dd5",
+      "bytes": 176666
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/sinow-blue-8e1a58a2fa32.webp",
+      "sha256": "4e6f3b99fa921702e880b8dadee06e06d8db0616451062cfebcff272d74be95a",
+      "bytes": 78856
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/sinow-red-a7dc14e8572d.webp",
+      "sha256": "800fc4d7c66f2711f9b199d0743ed7c657fcf801bfaacbfd2bcfd1dcaf58fc1d",
+      "bytes": 59626
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/sinow-beat-c7b3181ca7ea.webp",
+      "sha256": "7d805f2bfdd0aa130997e252efb58f2167f85d186b80ae55d38b11cdda2df188",
+      "bytes": 88690
+    },
+    {
+      "path": "/assets/img/monsters/hd/mine/sinow-gold-129c8a5134f3.webp",
+      "sha256": "3e5d4c876ff75710ba757c3fc79626e79bbba280acc1a9b5942485b5b1be9f69",
+      "bytes": 84424
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/dimenian-03ad91ce1711.webp",
+      "sha256": "658f4a42714eab45f5bf20fe0d1474a4d4cef15aa06662ad06766c4963057f28",
+      "bytes": 104848
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/la-dimenian-3e90e0fafa7c.webp",
+      "sha256": "ea6d08fe41e0f88ccab2c83158c500db653262e2ad5263e544198c5de6b934a7",
+      "bytes": 113632
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/so-dimenian-baa88d29b610.webp",
+      "sha256": "7403fb8951146821a0b02fd01518a13a24ee9af0fbbec9360c4db23a5df2ee4c",
+      "bytes": 101352
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/delsaber-f681d4f88f47.webp",
+      "sha256": "0b744f8e71ef3a6e36e72ad9666677aa4589248a54bb937d5f7b5a5ca224b887",
+      "bytes": 104972
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/bulk-70378e67df62.webp",
+      "sha256": "fd81c7c50ec9c4e166c3fa7ec2e673b1119b76844691fcc91e34b9b3cfe04140",
+      "bytes": 79382
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/bulclaw-9f4cf3e7cdb4.webp",
+      "sha256": "93c1263a0786d96d30c1909f995188853ebea2ec3804ee8ea99297807d3eda27",
+      "bytes": 154170
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/arlan-79d0d6ac9d31.webp",
+      "sha256": "c079271587e9c253349eb9f74a35e290df113a1023d06e421adfd246675667b5",
+      "bytes": 111818
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/merlan-778933a8013c.webp",
+      "sha256": "cf68e5d081ae65024149205392d831d571a87823450d82dd10d4d2354b6d2a1e",
+      "bytes": 85502
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/del-d-0bfddd6ca4d3.webp",
+      "sha256": "30e62898b3d27c3c25fc8987d72af6aef25655a18ffc855f15131bc503150a3b",
+      "bytes": 96878
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/dark-falz-form-1-f77f8f87a2d5.webp",
+      "sha256": "cb4a8dc894a03ab74258cbb9e47acea3c763c2ecf15a133caac1920c2a55efd7",
+      "bytes": 172664
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/dark-belra-a43d75d806a6.webp",
+      "sha256": "72386f102f76d3857aed64ae77cde36b7b8b2655cc391a443246dfee377266e3",
+      "bytes": 119650
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/dark-gunner-0fe936849c77.webp",
+      "sha256": "6c216c11eba8ac736183794384a0fcb29d75395fcf59f421b67b933b3e9c76e2",
+      "bytes": 87690
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/dark-bringer-6b29b23d86c9.webp",
+      "sha256": "8b8cca26d9b4f5ac6aa0b51246b00412c43627fa7fafce52baeccdde782579ef",
+      "bytes": 116926
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/death-gunner-d655e641468d.webp",
+      "sha256": "002901bcbf3eb2cd45c542f84d2952bfc1557964be01d018a71fed8167b00a28",
+      "bytes": 97344
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/gran-sorcerer-8ad522d6d15f.webp",
+      "sha256": "de62af12bcf14492cc573f1824486f103bc1b85683a3caaf402289f9f32ace0d",
+      "bytes": 84886
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/chaos-sorcerer-2a14fe39d02f.webp",
+      "sha256": "d45606e3ff70650fd915876628b8d9ddd188ba6c2a3614b06f4b6e40ddd26ab6",
+      "bytes": 92430
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/chaos-bringer-2954bc3f4da2.webp",
+      "sha256": "86b3146e0b4b1aa86e4ef5be3a8e1c8dd3a6039f2051f6a66a2789bb953429ee",
+      "bytes": 112576
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/claw-109add334b74.webp",
+      "sha256": "da4dad787a16ea9ee716f0c8fdc2f7a5998b0456aab3dfcb88b1570f0db2433a",
+      "bytes": 48278
+    },
+    {
+      "path": "/assets/img/monsters/hd/ruins/indi-belra-0f048d1ef270.webp",
+      "sha256": "4680eb1c271177a540a6a5f08bcd21630376824e2d00cd950dea0d60073b8f22",
+      "bytes": 165084
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/olga-flow-form-2-c2db3e0c3c03.webp",
+      "sha256": "1b13dd890f44f0ea6e40f159d9871026e5e70342b9da13a1ac6ec6f8b4bcedfb",
+      "bytes": 117286
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/recobox-8db2023fe4ea.webp",
+      "sha256": "3f1fdbe8d2b5d7e8266802398f10ca11c8f01d12d16e015c7788e6fa67d7d8fb",
+      "bytes": 133624
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/morfos-23cfa0726fba.webp",
+      "sha256": "54e23801ca481cc05ca8eeb4b72f5f52e669c8755a2c4f1334ed9940c1e2e512",
+      "bytes": 177536
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/dolmolm-54bbfb7ba1ce.webp",
+      "sha256": "e7b0979bc215fb328462ba7a00e80daf19fb4968320a5b7790e864d9616c59e9",
+      "bytes": 72144
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/dolmdarl-a4e1908f71ae.webp",
+      "sha256": "5077e2cced1e4607988ce102dcb5ee2d89adeb819879d4d70d938e17673ceb7b",
+      "bytes": 65924
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/sinow-zele-88e281577a68.webp",
+      "sha256": "31d18e60d15d137d7512ba8cc888ca02c2c5a9fee9639704e5a8a72f9ac038e6",
+      "bytes": 113202
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/sinow-zoa-91562fe1d8c7.webp",
+      "sha256": "2a198a416a5cf05b134cf8c3545f06c1d5ac5b4bd7d0afd075ea2c818e3e9ba6",
+      "bytes": 131556
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/deldepth-8150d0a761a3.webp",
+      "sha256": "e49e79b5ca84358dd9db8424cbed2c7e64e32322612a38a757cbc878882843de",
+      "bytes": 105126
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/delbiter-c9777bd6a189.webp",
+      "sha256": "c2c4e493967a069371c846ccf25bd717277ba92a5d58a140bf08f4b3a078de28",
+      "bytes": 106790
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/recon-0341448eb831.webp",
+      "sha256": "e89ada3721d4ace5fb7a3726c2e0a0f1d06c8535d8eed65f1351e3043f9e390c",
+      "bytes": 55990
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/dubchic-83690c91227e.webp",
+      "sha256": "f0d762597d5b14c3eec7035fb345d3a965a55d8cafbf174d89963e6aec658070",
+      "bytes": 172924
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/dubchich-42f8ec69885b.webp",
+      "sha256": "de59341859c2ac22860983a654295e2f8235e62bb0991b075a1857b2fc82a7d3",
+      "bytes": 148292
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/migium-efc47ef8b513.webp",
+      "sha256": "9d8377c6dddc1db35062bae8057125eac6cb2a94418e3d6d69a3950d1bba177a",
+      "bytes": 52290
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/delsaber-f681d4f88f47.webp",
+      "sha256": "0b744f8e71ef3a6e36e72ad9666677aa4589248a54bb937d5f7b5a5ca224b887",
+      "bytes": 104972
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/pan-arms-db2e29259cad.webp",
+      "sha256": "ea494bc0489c6529441b5504d13f8566c114b44d8299a023ccba2bfb893805a4",
+      "bytes": 124174
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/garanz-43abb97586c7.webp",
+      "sha256": "1f25b6442d9bf884618cc0121f23303a426601dceba3707ed71f4f5a6fe6d930",
+      "bytes": 102180
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/baranz-2725d0c39350.webp",
+      "sha256": "7fd7fc4047369fc9d56226a4091470a8340c9a32f0a938df02152a10bd5bfa7f",
+      "bytes": 109498
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/gilchic-2c753c75f821.webp",
+      "sha256": "99be811562330aa1633ef0248269629f4247c6947ce2b744aad251ea0358fa57",
+      "bytes": 189546
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/gol-dragon-ad4f76bacdbb.webp",
+      "sha256": "3be90b159c093b38a018b8d87a91ed147ea363f6632993f50e215eb41c1181fb",
+      "bytes": 160590
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/hidoom-bd9504af43b4.webp",
+      "sha256": "c098d6d382f2017d2a34d5a9b37fe689b9c2591e6626e1b8c6f4ff98917157e4",
+      "bytes": 68298
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/gran-sorcerer-8ad522d6d15f.webp",
+      "sha256": "de62af12bcf14492cc573f1824486f103bc1b85683a3caaf402289f9f32ace0d",
+      "bytes": 84886
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/chaos-sorcerer-2a14fe39d02f.webp",
+      "sha256": "d45606e3ff70650fd915876628b8d9ddd188ba6c2a3614b06f4b6e40ddd26ab6",
+      "bytes": 92430
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/gilchich-acebaca22d64.webp",
+      "sha256": "346f3aa3c4c0c054c86d239db38e2f4a2240df46aa173b17c5789ec61097da11",
+      "bytes": 118546
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/gulgus-gue-ed22327feaee.webp",
+      "sha256": "c901e8a76e4ebb4e0d6fb3b10522f78a25dfbc63f3c47051f5c206f04ad9ed71",
+      "bytes": 89730
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/savage-wolf-a311c3ae9d0b.webp",
+      "sha256": "90fd61989e73c6fff01de7111e59fa2beef77da9db9b5323fca3b67471bd33b2",
+      "bytes": 135992
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/gulgus-522f47b701cc.webp",
+      "sha256": "5de9a1c29cbe2d515a6b64d532bd8bde4134035a55e6f3720b19fe45f7b10552",
+      "bytes": 136152
+    },
+    {
+      "path": "/assets/img/monsters/hd/space-ship/barbarous-wolf-181f5b548360.webp",
+      "sha256": "138bca90c20468b0cdbdc8bd6c302022ba06a9d88ca243af151134fbc10efbd7",
+      "bytes": 164722
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/ob-lily-5f5b30e0344a.webp",
+      "sha256": "55103b56c4d190c890e5753aa1b82e480342dc4f09bee32399d22e220f729692",
+      "bytes": 76330
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/halo-rappy-8dded62c7914.webp",
+      "sha256": "58605c442eb76f4da2600339e2a993955c284d6358983e6173d3f24ada6d6583",
+      "bytes": 56262
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/mothmant-40318be732f4.webp",
+      "sha256": "0a0d56982c4221ad2224a6907f0015bfcd2529e5ac8629d7ddd584ac9830fb30",
+      "bytes": 85334
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/monest-60afbd56469d.webp",
+      "sha256": "f3642de68043b80c57e259c27e552c7429f938f5c4c7fed8b01b8d6802b75af4",
+      "bytes": 169286
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/crimson-assassin-baefa2f7f290.webp",
+      "sha256": "9f2be61bedc7a2ef46026237f7b6075ff2d17e64451fa86276cc847dfd01698c",
+      "bytes": 69520
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/st-rappy-859dc1996133.webp",
+      "sha256": "d63dac5f45396fd4c1307f77febdbedae13263293d67716db7983272c0bbd323",
+      "bytes": 100064
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/mothvert-e4b1576028d6.webp",
+      "sha256": "ab9422e056f64f468ad495758128bd66f253264821ab53370f96afe7d12fd84a",
+      "bytes": 59024
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/mothvist-7d6c6fc12186.webp",
+      "sha256": "c6a1dc7a368590be30de33830be46b44ed5830f28c8dc134d46988cf2c0d6ad3",
+      "bytes": 179506
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/grass-assassin-b935177b3449.webp",
+      "sha256": "54bc87600948c9eb5a4f04284cde8c12bb3b90db5bf1fbf31ebd0d917a5fb9a9",
+      "bytes": 57064
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/mil-lily-d9f459d0889a.webp",
+      "sha256": "a08eb76f6b6854101c7949fb7f801a08d50adaa508e9499ac920ee027fb3f9e4",
+      "bytes": 68568
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/pal-rappy-3838324a0ea5.webp",
+      "sha256": "4aa819030245df6b8fc525c9c0ed9e6fa83927784bce96d678e76f19b9184e04",
+      "bytes": 76742
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/barba-ray-270196cad737.webp",
+      "sha256": "01d5ae629496e3d3b3009a54d48eb01beb578bf930109029b4b8c97927cf2061",
+      "bytes": 121316
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/poison-lily-4e1f770e90cd.webp",
+      "sha256": "4cafef3384bca1d5df26b030e97b5a788318d0a98ae5f1f10242649a3703f8b8",
+      "bytes": 89600
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/egg-rappy-d320b204851d.webp",
+      "sha256": "ece11d15ec2eed9ef1f03439eb75620efe32ab5f6675fda5cc586c244be6495d",
+      "bytes": 54602
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/dark-belra-a43d75d806a6.webp",
+      "sha256": "72386f102f76d3857aed64ae77cde36b7b8b2655cc391a443246dfee377266e3",
+      "bytes": 119650
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/hildetorr-69be0dd285bb.webp",
+      "sha256": "f35ec57e07b9b60382647e29167e8c1a5d6a1507d196c2cefce15364e4e6ebad",
+      "bytes": 131498
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/hildeblue-2a51a349c624.webp",
+      "sha256": "93a5a05d5de3e18d2c0edb6a17b69dbbbe84df57c625e258e52c4e5b68dc394f",
+      "bytes": 104680
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/el-rappy-4a771880338a.webp",
+      "sha256": "bb183013a1c7d2b3623c3fe655e0375503cccdc77580608637c2348b79b46be5",
+      "bytes": 65278
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/love-rappy-a7a4c370d916.webp",
+      "sha256": "e6cd70fc3be40c6f3462f4d2812182090693006be9663d88fe10dba2d4cb2062",
+      "bytes": 88804
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/hildebear-cde7d5977f69.webp",
+      "sha256": "25b8eaa8967c8be32854154397b6e85a1ceb3c25fd06778b7921b6fb425ef0b7",
+      "bytes": 183622
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/al-rappy-be02c9067902.webp",
+      "sha256": "ff0409b1f8456eb7065283e3133ccf9d83e2f16c8b8ce4c0985dbf146c31a95c",
+      "bytes": 61118
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/indi-belra-0f048d1ef270.webp",
+      "sha256": "4680eb1c271177a540a6a5f08bcd21630376824e2d00cd950dea0d60073b8f22",
+      "bytes": 165084
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/nar-lily-465d11975d44.webp",
+      "sha256": "bd81a0155d3303ee81a21d1feb59214138cb0cb209f11e902bfb0b1dccb284f6",
+      "bytes": 91086
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/hildelt-e9b491dbc3e8.webp",
+      "sha256": "02a911f5232bdae6a456036c436e325fb7d8c3a822170981a4d77dc11d232634",
+      "bytes": 90276
+    },
+    {
+      "path": "/assets/img/monsters/hd/temple/rag-rappy-4bfc099d72c5.webp",
+      "sha256": "bb3ec297920661e91fa95f3c9e6669afca9eb29d2b22fc4afec5558110b6053e",
+      "bytes": 56978
+    },
+    {
+      "path": "/assets/img/monsters/hd/tower/ill-gill-5c11457d7fc7.webp",
+      "sha256": "83157dd31cdfb22084bc963c8913a44c5ecea2e59afbd9595d6f33dad487c79e",
+      "bytes": 68960
+    },
+    {
+      "path": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp",
+      "sha256": "a41e0982e9dbdbe327edfcd8f42cb6e0462256b21d2524c3706936c867312826",
+      "bytes": 117582
+    },
+    {
+      "path": "/assets/img/monsters/hd/tower/del-lily-29652bafd275.webp",
+      "sha256": "90c33a857b5a712a519e7e018eca40fb891d7afdf03c544cc516ab577c8b749f",
+      "bytes": 94230
+    }
+  ],
+  "assignments": {
+    "migium-e1": {
+      "normal": "/assets/img/monsters/hd/cave/migium-efc47ef8b513.webp",
+      "ultimate": "/assets/img/monsters/hd/cave/migium-efc47ef8b513.webp"
+    },
+    "migium-e2": {
+      "normal": "/assets/img/monsters/hd/space-ship/migium-efc47ef8b513.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/migium-efc47ef8b513.webp"
+    },
+    "pofuilly-slime": {
+      "normal": "/assets/img/monsters/hd/cave/pofuilly-slime-78f7acb26356.webp",
+      "ultimate": "/assets/img/monsters/hd/cave/pofuilly-slime-78f7acb26356.webp"
+    },
+    "poison-lily-e1": {
+      "ultimate": "/assets/img/monsters/hd/cave/ob-lily-5f5b30e0344a.webp",
+      "normal": "/assets/img/monsters/hd/cave/poison-lily-4e1f770e90cd.webp"
+    },
+    "poison-lily-e2": {
+      "ultimate": "/assets/img/monsters/hd/temple/ob-lily-5f5b30e0344a.webp",
+      "normal": "/assets/img/monsters/hd/temple/poison-lily-4e1f770e90cd.webp"
+    },
+    "guil-shark": {
+      "ultimate": "/assets/img/monsters/hd/cave/melqueek-f30a4b8338f6.webp",
+      "normal": "/assets/img/monsters/hd/cave/guil-shark-f3fb3a183203.webp"
+    },
+    "pan-arms-e1": {
+      "normal": "/assets/img/monsters/hd/cave/pan-arms-db2e29259cad.webp",
+      "ultimate": "/assets/img/monsters/hd/cave/pan-arms-db2e29259cad.webp"
+    },
+    "pan-arms-e2": {
+      "normal": "/assets/img/monsters/hd/space-ship/pan-arms-db2e29259cad.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/pan-arms-db2e29259cad.webp"
+    },
+    "grass-assassin-e1": {
+      "ultimate": "/assets/img/monsters/hd/cave/crimson-assassin-baefa2f7f290.webp",
+      "normal": "/assets/img/monsters/hd/cave/grass-assassin-b935177b3449.webp"
+    },
+    "grass-assassin-e2": {
+      "ultimate": "/assets/img/monsters/hd/temple/crimson-assassin-baefa2f7f290.webp",
+      "normal": "/assets/img/monsters/hd/temple/grass-assassin-b935177b3449.webp"
+    },
+    "nar-lily-e1": {
+      "ultimate": "/assets/img/monsters/hd/cave/mil-lily-d9f459d0889a.webp",
+      "normal": "/assets/img/monsters/hd/cave/nar-lily-465d11975d44.webp"
+    },
+    "nar-lily-e2": {
+      "ultimate": "/assets/img/monsters/hd/temple/mil-lily-d9f459d0889a.webp",
+      "normal": "/assets/img/monsters/hd/temple/nar-lily-465d11975d44.webp"
+    },
+    "hidoom-e1": {
+      "normal": "/assets/img/monsters/hd/cave/hidoom-bd9504af43b4.webp",
+      "ultimate": "/assets/img/monsters/hd/cave/hidoom-bd9504af43b4.webp"
+    },
+    "hidoom-e2": {
+      "normal": "/assets/img/monsters/hd/space-ship/hidoom-bd9504af43b4.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/hidoom-bd9504af43b4.webp"
+    },
+    "pouilly-slime": {
+      "normal": "/assets/img/monsters/hd/cave/pouilly-slime-8938db3d3901.webp",
+      "ultimate": "/assets/img/monsters/hd/cave/pouilly-slime-8938db3d3901.webp"
+    },
+    "evil-shark": {
+      "ultimate": "/assets/img/monsters/hd/cave/vulmer-9ef87885dfd2.webp",
+      "normal": "/assets/img/monsters/hd/cave/evil-shark-574319249447.webp"
+    },
+    "pal-shark": {
+      "normal": "/assets/img/monsters/hd/cave/pal-shark-f114f128a68d.webp",
+      "ultimate": "/assets/img/monsters/hd/cave/govulmer-f9360b44e97f.webp"
+    },
+    "nano-dragon": {
+      "normal": "/assets/img/monsters/hd/cave/nano-dragon-8191e3061004.webp",
+      "ultimate": "/assets/img/monsters/hd/cave/nano-dragon-8191e3061004.webp"
+    },
+    "de-rol-le": {
+      "ultimate": "/assets/img/monsters/hd/cave/dal-ral-lie-0cdd3a463db4.webp",
+      "normal": "/assets/img/monsters/hd/cave/de-rol-le-69ee4aa4e20a.webp"
+    },
+    "gal-gryphon": {
+      "normal": "/assets/img/monsters/hd/cca/gal-gryphon-1aedfe1b8b67.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/gal-gryphon-1aedfe1b8b67.webp"
+    },
+    "gee": {
+      "normal": "/assets/img/monsters/hd/cca/gee-43022cc4d6b0.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/gee-43022cc4d6b0.webp"
+    },
+    "gi-gue": {
+      "normal": "/assets/img/monsters/hd/cca/gi-gue-9245aa5ec347.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/gi-gue-9245aa5ec347.webp"
+    },
+    "ul-gibbon": {
+      "normal": "/assets/img/monsters/hd/cca/ul-gibbon-75b053bddb2d.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/ul-gibbon-75b053bddb2d.webp"
+    },
+    "sinow-berill": {
+      "normal": "/assets/img/monsters/hd/cca/sinow-berill-9da73224e6f7.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/sinow-berill-9da73224e6f7.webp"
+    },
+    "merillia": {
+      "normal": "/assets/img/monsters/hd/cca/merillia-b5f180194cd7.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/merillia-b5f180194cd7.webp"
+    },
+    "zol-gibbon": {
+      "normal": "/assets/img/monsters/hd/cca/zol-gibbon-00af199eb16a.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/zol-gibbon-00af199eb16a.webp"
+    },
+    "meriltas": {
+      "normal": "/assets/img/monsters/hd/cca/meriltas-6c3faa49ea61.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/meriltas-6c3faa49ea61.webp"
+    },
+    "mericarol": {
+      "normal": "/assets/img/monsters/hd/cca/mericarol-f43d948115fc.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/mericarol-f43d948115fc.webp"
+    },
+    "mericus": {
+      "normal": "/assets/img/monsters/hd/cca/mericus-6ce639e59c51.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/mericus-6ce639e59c51.webp"
+    },
+    "merikle": {
+      "normal": "/assets/img/monsters/hd/cca/merikle-21f8f5116491.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/merikle-21f8f5116491.webp"
+    },
+    "gibbles": {
+      "normal": "/assets/img/monsters/hd/cca/gibbles-68fb3358f464.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/gibbles-68fb3358f464.webp"
+    },
+    "sinow-spigell": {
+      "normal": "/assets/img/monsters/hd/cca/sinow-spigell-6f104f7423c0.webp",
+      "ultimate": "/assets/img/monsters/hd/cca/sinow-spigell-6f104f7423c0.webp"
+    },
+    "boota": {
+      "normal": "/assets/img/monsters/hd/crater/boota-6ca6502c525b.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/boota-6ca6502c525b.webp"
+    },
+    "pazuzu-crater": {
+      "normal": "/assets/img/monsters/hd/crater/pazuzu-6eb0c42717b4.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/pazuzu-6eb0c42717b4.webp"
+    },
+    "pazuzu-desert": {
+      "normal": "/assets/img/monsters/hd/crater/pazuzu-6eb0c42717b4.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/pazuzu-6eb0c42717b4.webp"
+    },
+    "zu-crater": {
+      "normal": "/assets/img/monsters/hd/crater/zu-9c30f4d17040.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/zu-9c30f4d17040.webp"
+    },
+    "zu-desert": {
+      "normal": "/assets/img/monsters/hd/crater/zu-9c30f4d17040.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/zu-9c30f4d17040.webp"
+    },
+    "ba-boota": {
+      "normal": "/assets/img/monsters/hd/crater/ba-boota-ebcfaf40a4ca.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/ba-boota-ebcfaf40a4ca.webp"
+    },
+    "astark": {
+      "normal": "/assets/img/monsters/hd/crater/astark-836193c9fa84.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/astark-836193c9fa84.webp"
+    },
+    "del-rappy-crater": {
+      "normal": "/assets/img/monsters/hd/crater/del-rappy-1e16586ed500.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/del-rappy-1e16586ed500.webp"
+    },
+    "del-rappy-desert": {
+      "normal": "/assets/img/monsters/hd/crater/del-rappy-1e16586ed500.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/del-rappy-1e16586ed500.webp"
+    },
+    "sand-rappy-crater": {
+      "normal": "/assets/img/monsters/hd/crater/sand-rappy-8a037741ced3.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/sand-rappy-8a037741ced3.webp"
+    },
+    "sand-rappy-desert": {
+      "normal": "/assets/img/monsters/hd/crater/sand-rappy-8a037741ced3.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/sand-rappy-8a037741ced3.webp"
+    },
+    "satellite-lizard-crater": {
+      "normal": "/assets/img/monsters/hd/crater/satellite-lizard-867d6628d1b2.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/satellite-lizard-867d6628d1b2.webp"
+    },
+    "satellite-lizard-desert": {
+      "normal": "/assets/img/monsters/hd/crater/satellite-lizard-867d6628d1b2.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/satellite-lizard-867d6628d1b2.webp"
+    },
+    "ze-boota": {
+      "normal": "/assets/img/monsters/hd/crater/ze-boota-f727f008d6d0.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/ze-boota-f727f008d6d0.webp"
+    },
+    "dorphon-eclair": {
+      "normal": "/assets/img/monsters/hd/crater/dorphon-eclair-e7d3cf99e39c.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/dorphon-eclair-e7d3cf99e39c.webp"
+    },
+    "yowie-crater": {
+      "normal": "/assets/img/monsters/hd/crater/yowie-41f9ef743960.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/yowie-41f9ef743960.webp"
+    },
+    "yowie-desert": {
+      "normal": "/assets/img/monsters/hd/crater/yowie-41f9ef743960.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/yowie-41f9ef743960.webp"
+    },
+    "dorphon": {
+      "normal": "/assets/img/monsters/hd/crater/dorphon-933dd41995a9.webp",
+      "ultimate": "/assets/img/monsters/hd/crater/dorphon-933dd41995a9.webp"
+    },
+    "saint-milion-phase-1": {
+      "normal": "/assets/img/monsters/hd/desert/saint-million-d342c0aa63f4.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/saint-million-d342c0aa63f4.webp"
+    },
+    "saint-milion-phase-2": {
+      "normal": "/assets/img/monsters/hd/desert/saint-million-d342c0aa63f4.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/saint-million-d342c0aa63f4.webp"
+    },
+    "merissa-a": {
+      "normal": "/assets/img/monsters/hd/desert/merissa-a-25d11e301175.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/merissa-a-25d11e301175.webp"
+    },
+    "merissa-aa": {
+      "normal": "/assets/img/monsters/hd/desert/merissa-aa-b8b33b82bfab.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/merissa-aa-b8b33b82bfab.webp"
+    },
+    "goran": {
+      "normal": "/assets/img/monsters/hd/desert/goran-14bad6e6797a.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/goran-14bad6e6797a.webp"
+    },
+    "goran-detonator": {
+      "normal": "/assets/img/monsters/hd/desert/goran-detonator-3dccd4c68a9d.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/goran-detonator-3dccd4c68a9d.webp"
+    },
+    "pyro-goran": {
+      "normal": "/assets/img/monsters/hd/desert/pyro-goran-1aa529057c5a.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/pyro-goran-1aa529057c5a.webp"
+    },
+    "girtablulu": {
+      "normal": "/assets/img/monsters/hd/desert/girtablulu-724b9fb59897.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/girtablulu-724b9fb59897.webp"
+    },
+    "shambertin-phase-1": {
+      "normal": "/assets/img/monsters/hd/desert/shambertin-cef3edbac6ed.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/shambertin-cef3edbac6ed.webp"
+    },
+    "shambertin-phase-2": {
+      "normal": "/assets/img/monsters/hd/desert/shambertin-cef3edbac6ed.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/shambertin-cef3edbac6ed.webp"
+    },
+    "kondrieu-phase-1": {
+      "normal": "/assets/img/monsters/hd/desert/kondrieu-ca014a3e29e8.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/kondrieu-ca014a3e29e8.webp"
+    },
+    "kondrieu-phase-2": {
+      "normal": "/assets/img/monsters/hd/desert/kondrieu-ca014a3e29e8.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/kondrieu-ca014a3e29e8.webp"
+    },
+    "dragon": {
+      "ultimate": "/assets/img/monsters/hd/forest/sil-dragon-fb988725e28d.webp",
+      "normal": "/assets/img/monsters/hd/forest/dragon-cf9e7b48e1c6.webp"
+    },
+    "mothmant-e1": {
+      "normal": "/assets/img/monsters/hd/forest/mothmant-40318be732f4.webp",
+      "ultimate": "/assets/img/monsters/hd/forest/mothvert-e4b1576028d6.webp"
+    },
+    "mothmant-e2": {
+      "normal": "/assets/img/monsters/hd/temple/mothmant-40318be732f4.webp",
+      "ultimate": "/assets/img/monsters/hd/temple/mothvert-e4b1576028d6.webp"
+    },
+    "monest-e1": {
+      "normal": "/assets/img/monsters/hd/forest/monest-60afbd56469d.webp",
+      "ultimate": "/assets/img/monsters/hd/forest/mothvist-7d6c6fc12186.webp"
+    },
+    "monest-e2": {
+      "normal": "/assets/img/monsters/hd/temple/monest-60afbd56469d.webp",
+      "ultimate": "/assets/img/monsters/hd/temple/mothvist-7d6c6fc12186.webp"
+    },
+    "al-rappy": {
+      "ultimate": "/assets/img/monsters/hd/forest/pal-rappy-3838324a0ea5.webp",
+      "normal": "/assets/img/monsters/hd/forest/al-rappy-be02c9067902.webp"
+    },
+    "hildeblue-e1": {
+      "ultimate": "/assets/img/monsters/hd/forest/hildetorr-69be0dd285bb.webp",
+      "normal": "/assets/img/monsters/hd/forest/hildeblue-2a51a349c624.webp"
+    },
+    "hildeblue-e2": {
+      "ultimate": "/assets/img/monsters/hd/temple/hildetorr-69be0dd285bb.webp",
+      "normal": "/assets/img/monsters/hd/temple/hildeblue-2a51a349c624.webp"
+    },
+    "booma": {
+      "normal": "/assets/img/monsters/hd/forest/booma-db497405161e.webp",
+      "ultimate": "/assets/img/monsters/hd/forest/bartle-c41373d4b4e8.webp"
+    },
+    "hildebear-e1": {
+      "normal": "/assets/img/monsters/hd/forest/hildebear-cde7d5977f69.webp",
+      "ultimate": "/assets/img/monsters/hd/forest/hildelt-e9b491dbc3e8.webp"
+    },
+    "hildebear-e2": {
+      "normal": "/assets/img/monsters/hd/temple/hildebear-cde7d5977f69.webp",
+      "ultimate": "/assets/img/monsters/hd/temple/hildelt-e9b491dbc3e8.webp"
+    },
+    "savage-wolf-e1": {
+      "normal": "/assets/img/monsters/hd/forest/savage-wolf-a311c3ae9d0b.webp",
+      "ultimate": "/assets/img/monsters/hd/forest/gulgus-522f47b701cc.webp"
+    },
+    "savage-wolf-e2": {
+      "normal": "/assets/img/monsters/hd/space-ship/savage-wolf-a311c3ae9d0b.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/gulgus-522f47b701cc.webp"
+    },
+    "barbarous-wolf-e1": {
+      "normal": "/assets/img/monsters/hd/forest/barbarous-wolf-181f5b548360.webp",
+      "ultimate": "/assets/img/monsters/hd/forest/gulgus-gue-ed22327feaee.webp"
+    },
+    "barbarous-wolf-e2": {
+      "normal": "/assets/img/monsters/hd/space-ship/barbarous-wolf-181f5b548360.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/gulgus-gue-ed22327feaee.webp"
+    },
+    "rag-rappy-e1": {
+      "ultimate": "/assets/img/monsters/hd/forest/el-rappy-4a771880338a.webp",
+      "normal": "/assets/img/monsters/hd/forest/rag-rappy-4bfc099d72c5.webp"
+    },
+    "rag-rappy-e2": {
+      "ultimate": "/assets/img/monsters/hd/temple/el-rappy-4a771880338a.webp",
+      "normal": "/assets/img/monsters/hd/temple/rag-rappy-4bfc099d72c5.webp"
+    },
+    "gigobooma": {
+      "normal": "/assets/img/monsters/hd/forest/gigobooma-d8d68e852a69.webp",
+      "ultimate": "/assets/img/monsters/hd/forest/tollaw-f40488beb9f5.webp"
+    },
+    "gobooma": {
+      "ultimate": "/assets/img/monsters/hd/forest/barble-8e087ed05aef.webp",
+      "normal": "/assets/img/monsters/hd/forest/gobooma-9a4406ff5b27.webp"
+    },
+    "dubchic-e1": {
+      "normal": "/assets/img/monsters/hd/mine/dubchic-83690c91227e.webp",
+      "ultimate": "/assets/img/monsters/hd/mine/dubchich-42f8ec69885b.webp"
+    },
+    "dubchic-e2": {
+      "normal": "/assets/img/monsters/hd/space-ship/dubchic-83690c91227e.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/dubchich-42f8ec69885b.webp"
+    },
+    "canane": {
+      "ultimate": "/assets/img/monsters/hd/mine/canune-f31707ae2763.webp",
+      "normal": "/assets/img/monsters/hd/mine/canane-8c17685b3aec.webp"
+    },
+    "canadine": {
+      "ultimate": "/assets/img/monsters/hd/mine/canabin-bed419018e92.webp",
+      "normal": "/assets/img/monsters/hd/mine/canadine-b2a3c541bbac.webp"
+    },
+    "canadine-ring": {
+      "ultimate": "/assets/img/monsters/hd/mine/canabin-bed419018e92.webp",
+      "normal": "/assets/img/monsters/hd/mine/canadine-b2a3c541bbac.webp"
+    },
+    "garanz-e1": {
+      "normal": "/assets/img/monsters/hd/mine/garanz-43abb97586c7.webp",
+      "ultimate": "/assets/img/monsters/hd/mine/baranz-2725d0c39350.webp"
+    },
+    "garanz-e2": {
+      "normal": "/assets/img/monsters/hd/space-ship/garanz-43abb97586c7.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/baranz-2725d0c39350.webp"
+    },
+    "gillchic-e1": {
+      "normal": "/assets/img/monsters/hd/mine/gilchic-2c753c75f821.webp",
+      "ultimate": "/assets/img/monsters/hd/mine/gilchich-acebaca22d64.webp"
+    },
+    "gillchic-e2": {
+      "normal": "/assets/img/monsters/hd/space-ship/gilchic-2c753c75f821.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/gilchich-acebaca22d64.webp"
+    },
+    "vol-opt-form-2": {
+      "normal": "/assets/img/monsters/hd/mine/vol-opt-form-2-30c9b3910481.webp",
+      "ultimate": "/assets/img/monsters/hd/mine/vol-opt-ver-2-form-2-0c2588719ddd.webp"
+    },
+    "sinow-beat": {
+      "ultimate": "/assets/img/monsters/hd/mine/sinow-blue-8e1a58a2fa32.webp",
+      "normal": "/assets/img/monsters/hd/mine/sinow-beat-c7b3181ca7ea.webp"
+    },
+    "sinow-gold": {
+      "ultimate": "/assets/img/monsters/hd/mine/sinow-red-a7dc14e8572d.webp",
+      "normal": "/assets/img/monsters/hd/mine/sinow-gold-129c8a5134f3.webp"
+    },
+    "dimenian-e1": {
+      "normal": "/assets/img/monsters/hd/ruins/dimenian-03ad91ce1711.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/arlan-79d0d6ac9d31.webp"
+    },
+    "dimenian-e2": {
+      "normal": "/assets/img/monsters/hd/ruins/dimenian-03ad91ce1711.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/arlan-79d0d6ac9d31.webp"
+    },
+    "la-dimenian-e1": {
+      "normal": "/assets/img/monsters/hd/ruins/la-dimenian-3e90e0fafa7c.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/merlan-778933a8013c.webp"
+    },
+    "la-dimenian-e2": {
+      "normal": "/assets/img/monsters/hd/ruins/la-dimenian-3e90e0fafa7c.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/merlan-778933a8013c.webp"
+    },
+    "so-dimenian-e1": {
+      "normal": "/assets/img/monsters/hd/ruins/so-dimenian-baa88d29b610.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/del-d-0bfddd6ca4d3.webp"
+    },
+    "so-dimenian-e2": {
+      "normal": "/assets/img/monsters/hd/ruins/so-dimenian-baa88d29b610.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/del-d-0bfddd6ca4d3.webp"
+    },
+    "delsaber-e1": {
+      "normal": "/assets/img/monsters/hd/ruins/delsaber-f681d4f88f47.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/delsaber-f681d4f88f47.webp"
+    },
+    "delsaber-e2": {
+      "normal": "/assets/img/monsters/hd/space-ship/delsaber-f681d4f88f47.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/delsaber-f681d4f88f47.webp"
+    },
+    "bulk": {
+      "normal": "/assets/img/monsters/hd/ruins/bulk-70378e67df62.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/bulk-70378e67df62.webp"
+    },
+    "bulclaw": {
+      "normal": "/assets/img/monsters/hd/ruins/bulclaw-9f4cf3e7cdb4.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/bulclaw-9f4cf3e7cdb4.webp"
+    },
+    "dark-falz-form-1": {
+      "normal": "/assets/img/monsters/hd/ruins/dark-falz-form-1-f77f8f87a2d5.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/dark-falz-form-1-f77f8f87a2d5.webp"
+    },
+    "dark-belra-e1": {
+      "normal": "/assets/img/monsters/hd/ruins/dark-belra-a43d75d806a6.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/indi-belra-0f048d1ef270.webp"
+    },
+    "dark-belra-e2": {
+      "normal": "/assets/img/monsters/hd/temple/dark-belra-a43d75d806a6.webp",
+      "ultimate": "/assets/img/monsters/hd/temple/indi-belra-0f048d1ef270.webp"
+    },
+    "dark-gunner": {
+      "normal": "/assets/img/monsters/hd/ruins/dark-gunner-0fe936849c77.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/dark-gunner-0fe936849c77.webp"
+    },
+    "chaos-bringer": {
+      "ultimate": "/assets/img/monsters/hd/ruins/dark-bringer-6b29b23d86c9.webp",
+      "normal": "/assets/img/monsters/hd/ruins/chaos-bringer-2954bc3f4da2.webp"
+    },
+    "death-gunner": {
+      "normal": "/assets/img/monsters/hd/ruins/death-gunner-d655e641468d.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/death-gunner-d655e641468d.webp"
+    },
+    "chaos-sorcerer-e1": {
+      "ultimate": "/assets/img/monsters/hd/ruins/gran-sorcerer-8ad522d6d15f.webp",
+      "normal": "/assets/img/monsters/hd/ruins/chaos-sorcerer-2a14fe39d02f.webp"
+    },
+    "chaos-sorcerer-e2": {
+      "ultimate": "/assets/img/monsters/hd/space-ship/gran-sorcerer-8ad522d6d15f.webp",
+      "normal": "/assets/img/monsters/hd/space-ship/chaos-sorcerer-2a14fe39d02f.webp"
+    },
+    "claw": {
+      "normal": "/assets/img/monsters/hd/ruins/claw-109add334b74.webp",
+      "ultimate": "/assets/img/monsters/hd/ruins/claw-109add334b74.webp"
+    },
+    "olga-flow-form-2": {
+      "normal": "/assets/img/monsters/hd/seabed/olga-flow-form-2-c2db3e0c3c03.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/olga-flow-form-2-c2db3e0c3c03.webp"
+    },
+    "recobox": {
+      "normal": "/assets/img/monsters/hd/seabed/recobox-8db2023fe4ea.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/recobox-8db2023fe4ea.webp"
+    },
+    "morfos": {
+      "normal": "/assets/img/monsters/hd/seabed/morfos-23cfa0726fba.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/morfos-23cfa0726fba.webp"
+    },
+    "dolmolm": {
+      "normal": "/assets/img/monsters/hd/seabed/dolmolm-54bbfb7ba1ce.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/dolmolm-54bbfb7ba1ce.webp"
+    },
+    "dolmdarl": {
+      "normal": "/assets/img/monsters/hd/seabed/dolmdarl-a4e1908f71ae.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/dolmdarl-a4e1908f71ae.webp"
+    },
+    "sinow-zele": {
+      "normal": "/assets/img/monsters/hd/seabed/sinow-zele-88e281577a68.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/sinow-zele-88e281577a68.webp"
+    },
+    "sinow-zoa": {
+      "normal": "/assets/img/monsters/hd/seabed/sinow-zoa-91562fe1d8c7.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/sinow-zoa-91562fe1d8c7.webp"
+    },
+    "deldepth": {
+      "normal": "/assets/img/monsters/hd/seabed/deldepth-8150d0a761a3.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/deldepth-8150d0a761a3.webp"
+    },
+    "delbiter": {
+      "normal": "/assets/img/monsters/hd/seabed/delbiter-c9777bd6a189.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/delbiter-c9777bd6a189.webp"
+    },
+    "recon": {
+      "normal": "/assets/img/monsters/hd/seabed/recon-0341448eb831.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/recon-0341448eb831.webp"
+    },
+    "gol-dragon": {
+      "normal": "/assets/img/monsters/hd/space-ship/gol-dragon-ad4f76bacdbb.webp",
+      "ultimate": "/assets/img/monsters/hd/space-ship/gol-dragon-ad4f76bacdbb.webp"
+    },
+    "hallo-rappy": {
+      "normal": "/assets/img/monsters/hd/temple/halo-rappy-8dded62c7914.webp",
+      "ultimate": "/assets/img/monsters/hd/temple/halo-rappy-8dded62c7914.webp"
+    },
+    "st-rappy": {
+      "normal": "/assets/img/monsters/hd/temple/st-rappy-859dc1996133.webp",
+      "ultimate": "/assets/img/monsters/hd/temple/st-rappy-859dc1996133.webp"
+    },
+    "barba-ray": {
+      "normal": "/assets/img/monsters/hd/temple/barba-ray-270196cad737.webp",
+      "ultimate": "/assets/img/monsters/hd/temple/barba-ray-270196cad737.webp"
+    },
+    "egg-rappy": {
+      "normal": "/assets/img/monsters/hd/temple/egg-rappy-d320b204851d.webp",
+      "ultimate": "/assets/img/monsters/hd/temple/egg-rappy-d320b204851d.webp"
+    },
+    "love-rappy": {
+      "normal": "/assets/img/monsters/hd/temple/love-rappy-a7a4c370d916.webp",
+      "ultimate": "/assets/img/monsters/hd/temple/love-rappy-a7a4c370d916.webp"
+    },
+    "ill-gill": {
+      "normal": "/assets/img/monsters/hd/tower/ill-gill-5c11457d7fc7.webp",
+      "ultimate": "/assets/img/monsters/hd/tower/ill-gill-5c11457d7fc7.webp"
+    },
+    "epsilon": {
+      "normal": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp",
+      "ultimate": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp"
+    },
+    "del-lily": {
+      "normal": "/assets/img/monsters/hd/tower/del-lily-29652bafd275.webp",
+      "ultimate": "/assets/img/monsters/hd/tower/del-lily-29652bafd275.webp"
+    }
+  }
+}
