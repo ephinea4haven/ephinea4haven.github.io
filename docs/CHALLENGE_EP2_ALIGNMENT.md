@@ -134,3 +134,19 @@ npm test
 npm run build
 npx playwright test tests/e2e/site-smoke.spec.mjs --grep 'challenge|EP1 C|EP2 C'
 ```
+
+## 2C4 auto-warp research handoff (2026-09-20)
+
+A separate [2C4 auto-warp and branch analysis](CHALLENGE_2C4_AUTO_WARP.md)
+now records the local BB quest evidence, a zoomed map and all 26 point coordinates.
+The analysis labels A/B correspond to the guide's E/F: **E has 12 auto-warps;
+F has 14**. Their onward routes differ: E continues through room 7 and G;
+F takes H/I to the unnumbered side room (Delbiter → two Sinow Zoa → three
+Deldepth) and returns through J. Both approaches converge at room 8.
+Identical event references at room 6 entrances do not establish identical
+onward routes or combat requirements.
+
+This is a documentation/data handoff from `pso-quest-master` commit `a2194c4`,
+not a change to the published guide or the accepted 2026-09-16 map outputs.
+The local sample labels this layout Area 24 while the guide calls it Area 23;
+retain that discrepancy until the deployed server quest has been checked.
