@@ -28,6 +28,14 @@ docs/*
 !docs/CHALLENGE_C9_ANNOTATION_AUDIT.md
 !docs/CHALLENGE_EP1_ALIGNMENT.md
 !docs/CHALLENGE_EP2_ALIGNMENT.md
+!docs/CHALLENGE_2C4_AUTO_WARP.md
+!docs/assets/
+docs/assets/*
+!docs/assets/2c4-auto-warp/
+docs/assets/2c4-auto-warp/*
+!docs/assets/2c4-auto-warp/auto-warp-map.png
+!docs/assets/2c4-auto-warp/auto-warp-map.svg
+!docs/assets/2c4-auto-warp/auto-warp-points.json
 !docs/DEPLOYMENT.md
 !docs/SOP_COMBO_CALCULATOR_SYNC.md
 !docs/TODO.md
