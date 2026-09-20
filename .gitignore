@@ -33,6 +33,7 @@ docs/*
 !docs/TODO.md
 !docs/ITEM_CATALOG.md
 !docs/MONSTER_CATALOG.md
+!docs/MONSTER_NAMES_BY_AREA.md
 !docs/MECHANICS_VISUAL_EVIDENCE.md
 !docs/PSO_FRAME_ARCHIVE.md
 !docs/PSO_FRAME_CDX_2026-09-16.json

@@ -88,12 +88,12 @@ test('NGC aliases preserve shared color variants without inventing TYPE equipmen
 
 test('uncertain identities remain explicit and cannot become item bindings', () => {
   const unresolved = gallery.assets.filter(asset => asset.kind === 'unresolved');
-  assert.equal(unresolved.length, 21);
+  assert.equal(unresolved.length, 18);
   for (const asset of unresolved) {
     assert.ok(asset.file.startsWith('unresolved/'));
     assert.equal(asset.itemIds.length + asset.appearanceOf.length, 0, asset.file);
   }
-  for (const source of ['SHIELD/Fire.png', 'SHIELD/SECRET FEET.png', 'WEAPON/EP1+2/AGITO.png', 'WEAPON/TYPE WEAPON/TWIN CLAW.png']) {
+  for (const source of ['SHIELD/SECRET FEET.png', 'WEAPON/EP1+2/AGITO.png', 'WEAPON/TYPE WEAPON/TWIN CLAW.png']) {
     assert.equal(from(source).kind, 'unresolved');
   }
   const agito = from('WEAPON/EP1+2/102.png');

@@ -14,8 +14,8 @@ The catalog lives at `/data/items.html`, with one detail page per item at
 The snapshot contains 1,045 entries: 419 weapons, 88 frames, 107 barriers, 100
 units, 84 Mags and 247 other items. The list retains Wiki images for 547 entries,
 drawn from 478 PNG files totaling about 4.9 MB. Detail pages additionally offer
-HD images for 411 entries; 44 previously had no Wiki image, bringing detail image
-coverage to 591 entries. The snapshot was taken on 2026-09-14;
+HD images for 414 entries; 47 previously had no Wiki image, bringing detail image
+coverage to 594 entries. The snapshot was taken on 2026-09-14;
 the cosmetic item pages and 21 excerpt fixes were re-merged on 2026-09-15 at
 unchanged Wiki revisions, and those records carry their own check date.
 Independent models such as manufacturing year, manufacturer and genuine versus
@@ -122,15 +122,16 @@ as separate models.
 
 ## Updating the data
 
-### HD detail images and naming (updated 2026-09-19)
+### HD detail images and naming (updated 2026-09-20)
 
 `content/item-catalog/hd-gallery.json` accounts for 607 source images: the original
 606-image 高清图库 collection with four images replaced by the supplied 替换.zip
-artwork, plus one subsequently supplied SOF image. SHA-256 comparison reduces
+artwork and 14 shield images replaced by the supplied 盾牌替换 collection,
+plus one subsequently supplied SOF image. SHA-256 comparison reduces
 these to 553 unique assets; the manifest records the current source paths,
 dimensions, sizes and checksums.
-The detail generator consumes only verified direct `itemIds`: 405 optimized
-images cover 411 details. The `hdImage` field is emitted only in per-item detail
+The detail generator consumes only verified direct `itemIds`: 408 optimized
+images cover 414 details. The `hdImage` field is emitted only in per-item detail
 data, leaving the searchable list's image paths and image-only filter unchanged.
 Details default to HD when available and offer HD / Wiki buttons when both images
 exist. The displayed source and full-size image link follow the selected image.
@@ -162,7 +163,7 @@ the skin directory, and are grouped as Twin Chakram color variants. TypeDS and
 TypeGU also contain exact aliases. Paired weapons are model variants, not mere
 color changes. Different files are not merged just because they look similar.
 
-Twenty-one assets remain unresolved: 12 numbered armor effects, five shield
+Eighteen assets remain unresolved: 12 numbered armor effects, two shield
 images, the unqualified named AGITO image, and three TYPE model images. They have
 source-derived names under `unresolved/`, no item bindings, and explicit reasons
 and candidates where available. Do not promote these candidates to item names.
@@ -199,6 +200,20 @@ images. All four replacement PNGs are 5444 × 3989; the published WebPs are
 replacements and the SOF image. Leaving the four old files in the working copy
 or omitting the replacements will fail the inventory check. Pass this assembled
 working copy as the source directory in the commands below.
+
+On 2026-09-20 the maintainer supplied 14 replacement shield PNGs, all
+5444 × 3989, under `盾牌替换/`. For full regeneration, replace the 14
+same-named `SHIELD/` sources with these files in the working copy. The source
+inventory remains 607 files. Eleven replace existing detail images; the
+maintainer confirmed `Fire.png` as Foie Merge, `Ice.png` as Barta Merge and
+`Zonde.png` as Zonde Merge, resolving three previously unbound images.
+Anti, Shifta and Deband retain their corresponding Merge identities.
+`02.png` retains Tripolic Shield; the other files retain DB's Shield,
+Shield of Delsaber, Rico's Earring, Rico's Glasses and WEAPONS Copper/Silver/Gold
+Shield. All 14 published WebPs are 1024 × 750, totaling 340,700 bytes.
+The existing Wiki images and list thumbnails are unchanged.
+Local validation passed all 23 item tests, the production build and three HD
+browser checks. All 14 generated detail bindings match the reviewed manifest.
 
 ```sh
 node scripts/prepare_hd_gallery.mjs --check /path/to/高清图库
