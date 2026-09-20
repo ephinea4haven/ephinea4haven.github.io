@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
+import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, effect, inject, linkedSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -22,6 +22,13 @@ export class MonsterCatalogComponent {
   readonly detail=computed(()=>this.result()?.detail);
   readonly monster=computed(()=>this.detail() ? MONSTER_BY_ID.get(this.detail()!.id)! : null);
   readonly difficulty=computed(()=>DIFFICULTIES.some(d=>d.id===this.params().get('diff')) ? this.params().get('diff')! : 'n');
+  readonly hdImage=computed(()=>this.difficulty()==='u' ? this.detail()?.ultimateHdImage : this.detail()?.hdImage);
+  readonly imageMode=linkedSignal({
+    source:()=>`${this.monster()?.id}:${this.difficulty()==='u' ? 'ultimate':'normal'}`,
+    computation:(): 'hd'|'wiki'=>'hd',
+  });
+  readonly showingHd=computed(()=>!!this.hdImage() && this.imageMode()==='hd');
+  readonly portraitImage=computed(()=>this.showingHd() ? this.hdImage()! : this.monster() ? this.image(this.monster()!) : null);
   readonly mode=computed(()=>this.params().get('mode')==='off' ? 'off':'on');
   readonly context=computed(()=>`${this.difficulty()}-${this.mode()}`);
   readonly query=computed(()=>Object.fromEntries([...this.params().keys.map(k=>[k,this.params().get(k)]),['lang',this.i18n.language()],['ep',this.episode()]]));

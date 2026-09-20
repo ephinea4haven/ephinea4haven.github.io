@@ -34,6 +34,7 @@ export function generateMonsterCatalog() {
   const snapshot = readJson('content/monster-catalog/wiki.json');
   const images = readJson('content/monster-catalog/images.json');
   const names = readJson('content/monster-catalog/names.json');
+  const hd = readJson('content/monster-catalog/hd-gallery.json').assignments;
   const notes = readJson('content/monster-catalog/notes.json');
   const mechanics = readJson('content/monster-catalog/mechanics.json');
   const conditions = readJson('content/monster-catalog/mechanic-conditions.json');
@@ -96,6 +97,7 @@ export function generateMonsterCatalog() {
       sourceTitle:record.page,
       revision:article.revision, checkedAt:snapshot.checkedAt,
       imageSource:image?.page || null, ultimateImageSource:ultimateImage?.page || null,
+      hdImage:hd[record.id]?.normal || null, ultimateHdImage:hd[record.id]?.ultimate || null,
     };
   }
   const metadata = {checkedAt:snapshot.checkedAt,statKeys:snapshot.statKeys,sections:drops.data.sectionIds.map((name,i)=>({name,color:drops.data.sectionColors[i]})),dropSource:'https://github.com/warmonipa/dropcharts/blob/master/bb/data/en.js',dropSha256:drops.sha256};

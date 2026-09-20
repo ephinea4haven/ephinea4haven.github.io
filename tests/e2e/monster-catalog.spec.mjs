@@ -205,3 +205,74 @@ test('episode selection has no All option and auxiliary resets preserve the chap
   await expect(page.locator('.filters select').first()).toHaveValue('4');
   await page.reload();await expect(page.locator('.filters select').first()).toHaveValue('4');
 });
+
+test('HD portrait selection follows appearance, preserves language changes, and updates its full image link',async({page})=>{
+  await page.goto('/data/enemies/booma.html?lang=en');
+  const portrait=page.locator('.portrait');const img=portrait.locator('img');
+  await expect(img).toHaveAttribute('src',details.booma.hdImage);
+  await expect(portrait.getByRole('link',{name:'View full image ↗'})).toHaveAttribute('href',details.booma.hdImage);
+  await expect.poll(()=>img.evaluate(image=>image.naturalWidth)).toBeGreaterThan(0);
+  await portrait.getByRole('button',{name:'Wiki image',exact:true}).click();
+  await expect(img).toHaveAttribute('src',/\/wiki\//);
+  await expect(portrait).toContainText('Image source: Ephinea Wiki');
+  await page.getByRole('button',{name:'日本語',exact:true}).click();
+  await expect(portrait.getByRole('button',{name:'Wiki 画像',exact:true})).toHaveAttribute('aria-pressed','true');
+  await page.getByRole('button',{name:'Hard',exact:true}).click();
+  await expect(img).toHaveAttribute('src',/\/wiki\//);
+  await page.getByRole('button',{name:'Ultimate',exact:true}).click();
+  await expect(img).toHaveAttribute('src',details.booma.ultimateHdImage);
+  await expect(portrait.getByRole('link')).toHaveAttribute('href',details.booma.ultimateHdImage);
+  await page.getByRole('button',{name:'Normal',exact:true}).click();
+  await expect(img).toHaveAttribute('src',details.booma.hdImage);
+});
+test('missing and failed HD portraits retain usable Wiki images',async({page})=>{
+  await page.route('**/assets/img/monsters/hd/**',route=>route.abort());
+  await page.goto('/data/enemies/booma.html?lang=en');
+  await expect(page.locator('.portrait monster-image')).toContainText('Image unavailable');
+  await page.getByRole('button',{name:'Wiki image',exact:true}).click();
+  await expect.poll(()=>page.locator('.portrait img').evaluate(image=>image.naturalWidth)).toBeGreaterThan(0);
+  await page.goto('/data/enemies/vol-opt-form-1.html?lang=en');
+  await expect(page.locator('.image-switch')).toHaveCount(0);
+  await expect(page.locator('.portrait img')).toHaveAttribute('src',/\/wiki\//);
+});
+test('monster lists request no HD artwork',async({page})=>{
+  const hd=[];page.on('request',request=>{if(request.url().includes('/monsters/hd/'))hd.push(request.url());});
+  await page.goto('/data/enemies.html?lang=en');
+  await expect(page.locator('.monster-row')).toHaveCount(24);
+  await page.getByRole('button',{name:'Ultimate',exact:true}).click();
+  await expect(page).toHaveURL(/diff=u/);
+  expect(hd).toEqual([]);
+});
+
+for(const mode of ['hd','wiki']) test(`a failed ${mode} portrait can be retried after changing image source`,async({page})=>{
+  const pattern=`**/assets/img/monsters/${mode}/**`;
+  await page.route(pattern,route=>route.abort());
+  await page.goto('/data/enemies/booma.html?lang=en');
+  const portrait=page.locator('.portrait');
+  const failedButton=mode==='hd'?'HD image':'Wiki image';
+  const alternateButton=mode==='hd'?'Wiki image':'HD image';
+  if(mode==='wiki') await portrait.getByRole('button',{name:failedButton,exact:true}).click();
+  await expect(portrait.locator('monster-image')).toContainText('Image unavailable');
+  await portrait.getByRole('button',{name:alternateButton,exact:true}).click();
+  await expect.poll(()=>portrait.locator('img').evaluate(img=>img.naturalWidth)).toBeGreaterThan(0);
+  await page.unroute(pattern);
+  await portrait.getByRole('button',{name:failedButton,exact:true}).click();
+  await expect(portrait.locator('img')).toHaveAttribute('src',new RegExp(`/monsters/${mode}/`));
+  await expect.poll(()=>portrait.locator('img').evaluate(img=>img.naturalWidth)).toBeGreaterThan(0);
+});
+
+for(const view of ['detail','list']) test(`a failed normal portrait can load again after changing difficulty in the ${view}`,async({page})=>{
+  const normalImage=view==='detail'?details.booma.hdImage:JSON.parse(readFileSync('src/app/generated/monster-catalog/index.json')).find(m=>m.id==='booma').image;
+  const pattern=`**${normalImage}`;
+  await page.route(pattern,route=>route.abort());
+  await page.goto(view==='detail'?'/data/enemies/booma.html?lang=en':'/data/enemies.html?q=Booma&lang=en');
+  const portrait=page.locator(view==='detail'?'.portrait':'.monster-row[href*="/booma.html"]');
+  await expect(portrait.locator('monster-image')).toContainText('Image unavailable');
+  await page.getByRole('button',{name:'Ultimate',exact:true}).click();
+  await expect(portrait.locator('img')).not.toHaveAttribute('src',normalImage);
+  await expect.poll(()=>portrait.locator('img').evaluate(img=>img.naturalWidth)).toBeGreaterThan(0);
+  await page.unroute(pattern);
+  await page.getByRole('button',{name:'Normal',exact:true}).click();
+  await expect(portrait.locator('img')).toHaveAttribute('src',normalImage);
+  await expect.poll(()=>portrait.locator('img').evaluate(img=>img.naturalWidth)).toBeGreaterThan(0);
+});

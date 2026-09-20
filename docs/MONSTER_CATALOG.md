@@ -311,3 +311,26 @@ WoL5 all show Tier D, with recommended IDs Pinkal, Bluefull and Pinkal, and the 
 border and color dot colors match. The rating note shows `2025-11，非官方`
 (2025-11, unofficial). This check confirms page publication and display only; it
 did not re-evaluate tiers or change the in-game rotation.
+
+## 高清怪物素材
+
+2026-09-20 接入维护者提供的 `ENEMY` 素材。全部 **168 张**按原区域分别保留，EP1 / EP2 中内容相同的图片也使用各自的资源路径，不做跨章节去重。覆盖 **131 / 160 个图鉴条目**的普通与 Ultimate 外观。神殿目录附带的 Al Rappy / Pal Rappy 两张图仍完整保留，但 EP2 没有对应条目，不误绑到 Love Rappy 或节日拉比。列表继续使用原 Wiki 缩略图；详情页有高清图时默认显示高清，并提供 Wiki 图片切换、当前图片来源与原图链接。没有高清素材的形态继续显示 Wiki 图片。
+
+- 清单：`content/monster-catalog/hd-gallery.json`，记录原文件名、规范文件名、英文身份、原 PNG 尺寸 / 大小 / SHA-256、WebP 大小 / SHA-256，以及每个条目的普通 / Ultimate 绑定。
+- 资源：`assets/img/monsters/hd/<area>/`；WebP 使用 `cwebp -q 85 -m 6 -resize 1024 0`，保留透明度，不重绘图片。此次原 PNG 宽度均不小于 1024。
+- 文件名以 `content/monster-catalog/names.json` 中维护的怪物名称为准，不能用上游素材名称反向改写图鉴名称。修正歇／蝎字误写、旧译名、海底临时文件名，以及 `FROEST` 目录拼写。
+- 按画面确认首领形态：Vol Opt 两种难度素材仅绑定 Form 2；Dark Falz 仅绑定 Form 1；Olga Flow 仅绑定 Form 2。不把本体图自动用于柱子、屏幕、护盾或其他部位。EP4 三只首领的完整本体图用于各自两阶段，不用于 Spinner。
+- 高清字段仅写入详情 JSON，不进入列表索引。切换语言或普通难度之间的条件保留图片选择，切换怪物或普通 / Ultimate 外观组时恢复默认高清；加载失败后仍可手动切换 Wiki 图片；失败状态仅属于当前图片，网络恢复后切走再切回可重新加载。
+
+更新流程：先按英文身份、章节和形态核对素材，再同步源文件名与清单，生成 WebP 并更新绑定；执行 `npm run test:monsters`、构建和怪物图鉴浏览器测试。新增图片不得凭中文相似名称自动绑定首领阶段或部位。
+
+### 本次导入与验收记录（2026-09-20）
+
+- 下载目录修正 21 个文件名，并将 `FROEST` 改为 `FOREST`；168 张 PNG 的内容、大小和尺寸均与导入前清单一致，SHA-256 全量核验通过。源 PNG 不随站点提交。
+- 站内保留 168 个独立 WebP 文件，共 17,768,210 字节；131 个条目对应 262 个普通 / Ultimate 图片绑定。29 个未提供高清素材的阶段、部位与召唤物继续沿用已有 Wiki 图片或缺图状态。
+- 最终审查修复图片失败状态跨图片切换残留的问题：网络恢复后切走再切回可重试。新增回归覆盖高清 / Wiki 双向切换，以及详情页 / 列表页的难度切换。
+- `npm run test:monsters`：10 / 10 通过；`npx playwright test tests/e2e/monster-catalog.spec.mjs --workers=4`：26 / 26 通过，含手机 / 桌面布局与无障碍检查。
+- `npm run build`：1,268 条预渲染路由构建成功，发布 JavaScript gzip 为 949,217 / 1,000,000 字节。`node scripts/verify_angular_architecture.mjs` 与 `git diff --check` 通过。
+- 独立完整性审计确认 168 个 WebP 均可解码、哈希符合清单；构建产物中的图片及全部 160 份详情 JSON 与本地生成结果一致。
+
+以上为本地验收结果；线上发布时间与部署结果以对应提交的 Pages 工作流为准。
