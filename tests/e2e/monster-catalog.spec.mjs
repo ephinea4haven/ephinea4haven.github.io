@@ -218,6 +218,7 @@ test('HD portrait selection follows appearance, preserves language changes, and 
   await page.getByRole('button',{name:'日本語',exact:true}).click();
   await expect(portrait.getByRole('button',{name:'Wiki 画像',exact:true})).toHaveAttribute('aria-pressed','true');
   await page.getByRole('button',{name:'Hard',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Hard',exact:true})).toHaveAttribute('aria-pressed','true');
   await expect(img).toHaveAttribute('src',/\/wiki\//);
   await page.getByRole('button',{name:'Ultimate',exact:true}).click();
   await expect(img).toHaveAttribute('src',details.booma.ultimateHdImage);

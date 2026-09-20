@@ -33,6 +33,36 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## September 20, 2026 homepage multilingual release
+
+The maintainer reviewed the local preview and approved committing and pushing
+this release. The homepage now supports Chinese, English and Japanese, including
+language preference, page metadata, live status and seasonal content. Linked
+pages retain their actual translation coverage; the static prerender remains
+Chinese. See [the architecture contract](ARCHITECTURE.md#homepage-internationalization-2026-09-20).
+
+Onboarding has three shared steps: installation, registration and launcher
+setup. Chinese and Japanese mention IME. The Chinese patch is linked below the
+steps and in the setup directory only when Chinese is selected. English hero
+copy uses normal letter spacing. The obsolete homepage timezone-guide link is
+removed; weekly boosts rotate at Sunday 00:00 UTC in every browser timezone.
+
+The full release check also exposed a pre-existing monster portrait reset when
+changing between Normal and Hard. The image-selection source now tracks the
+computed monster/appearance identity, so only a different monster or Ultimate
+appearance resets it. The regression waits for the difficulty change to finish
+before checking the retained selection; the previous assertion could pass before
+navigation completed. The homepage cosmetics-link assertion now includes the
+selected language query parameter.
+
+Final local verification passed `npm test`, the production build (1,268 routes
+and 45 event fragments; 957,501 / 1,000,000 JavaScript gzip bytes), and all
+**1,455 browser tests**. The two corrected regression scenarios also passed
+three consecutive focused runs each.
+
+Publication is established by the successful Pages run for the pushed revision,
+not by the local preview or a passing local build alone.
+
 ## September 18, 2026 localization and drop-chart release
 
 The approved release publishes droptable first, then Haven. Haven pins
