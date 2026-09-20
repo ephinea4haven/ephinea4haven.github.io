@@ -712,7 +712,7 @@ test('content images marked for versioning carry their content hash', async ({pa
     expect((await request.get(source)).ok()).toBe(true);
   }
   await page.goto('/');
-  await expect(page.locator('a[href="/data/cosmetics.html"]')).toHaveText('外观道具');
+  await expect(page.getByRole('link',{name:'外观道具',exact:true})).toHaveAttribute('href',/\/data\/cosmetics\.html\?lang=zh$/);
 });
 
 test('Angular content behaviors cover landing, search, filters, tabs, and RBR data', async ({ page }) => {

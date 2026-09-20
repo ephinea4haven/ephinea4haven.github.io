@@ -1,0 +1,566 @@
+{
+  "Haven PSOBB Wiki：由 Haven 公会维护、面向全球玩家的 Ephinea 多语言维基，支持中文、英文和日文，提供新手入门、掉落表、任务攻略与计算工具。": {
+    "en": "Haven PSOBB Wiki: a multilingual Ephinea wiki for players worldwide, maintained by the Haven guild. Explore guides, drop charts and tools in English, Japanese and Chinese. Translation coverage varies by page.",
+    "ja": "Haven ギルドが運営する、世界中のプレイヤーのための Ephinea 多言語 Wiki。英語・日本語・中国語でガイド、ドロップ表、計算ツールを提供しています。翻訳の対応範囲はページごとに異なります。"
+  },
+  "Haven PSOBB Wiki | 面向全球玩家的 Ephinea 多语言维基": {
+    "en": "Haven PSOBB Wiki | A multilingual Ephinea wiki for players worldwide",
+    "ja": "Haven PSOBB Wiki | 世界中のプレイヤーのための Ephinea 多言語 Wiki"
+  },
+  "跳到主要内容": {
+    "en": "Skip to main content",
+    "ja": "本文へスキップ"
+  },
+  "站点导航": {
+    "en": "Site navigation",
+    "ja": "サイトナビゲーション"
+  },
+  "Haven PSOBB 首页": {
+    "en": "Haven PSOBB home",
+    "ja": "Haven PSOBB ホーム"
+  },
+  "本周 RBR": {
+    "en": "This week's RBR",
+    "ja": "今週の RBR"
+  },
+  "实时信息": {
+    "en": "Live information",
+    "ja": "リアルタイム情報"
+  },
+  "新手入门": {
+    "en": "Getting started",
+    "ja": "はじめての方へ"
+  },
+  "全部内容": {
+    "en": "Directory",
+    "ja": "コンテンツ一覧"
+  },
+  "QQ 群": {
+    "en": "QQ group",
+    "ja": "QQ グループ"
+  },
+  "Pioneer 2 Station · Haven 公会维护 · Ephinea 服务器": {
+    "en": "Pioneer 2 Station · Maintained by Haven · Ephinea server",
+    "ja": "Pioneer 2 Station · Haven ギルド運営 · Ephinea サーバー"
+  },
+  "面向全球玩家的多语言维基": {
+    "en": "A multilingual wiki for players worldwide",
+    "ja": "世界中のプレイヤーのための多言語 Wiki"
+  },
+  "面向每一位 PSOBB 玩家，支持中文、英文和日文。从新手入门，到掉落表、周回路线与伤害计算，在这里查找 Ephinea 攻略与数据。": {
+    "en": "For every PSOBB player, in English, Japanese and Chinese. Find Ephinea guides and data, from getting started to drop charts, farming routes and damage calculations.",
+    "ja": "すべての PSOBB プレイヤーへ、英語・日本語・中国語で情報をお届けします。入門ガイドからドロップ表、周回ルート、ダメージ計算まで、Ephinea の攻略とデータを探せます。"
+  },
+  "各页面的翻译覆盖不同，部分攻略目前仅有中文。": {
+    "en": "Translation coverage varies by page; some guides are currently available only in Chinese.",
+    "ja": "翻訳の対応範囲はページごとに異なり、中国語のみのガイドもあります。"
+  },
+  "下载客户端": {
+    "en": "Download the client",
+    "ja": "クライアントをダウンロード"
+  },
+  "加入 QQ 群": {
+    "en": "Join our QQ group",
+    "ja": "QQ グループに参加"
+  },
+  "每秒更新": {
+    "en": "Updated every second",
+    "ja": "毎秒更新"
+  },
+  "网络时间 .beat": {
+    "en": "Internet time .beat",
+    "ja": "インターネットタイム .beat"
+  },
+  "RBS 周轮替增益": {
+    "en": "RBS weekly boost",
+    "ja": "RBS 週間ブースト"
+  },
+  "组队 RDR · Forecast 共享": {
+    "en": "Party RDR · Shared Forecast",
+    "ja": "パーティ RDR · Forecast 共有"
+  },
+  "Ephinea 2026 情人节活动": {
+    "en": "Ephinea 2026 Valentine's event",
+    "ja": "Ephinea 2026 バレンタインイベント"
+  },
+  "多人组队提升稀有物品掉落率，并在队伍成员之间共享 Daily Forecast。": {
+    "en": "Parties gain a rare drop rate boost and share Daily Forecast bonuses.",
+    "ja": "パーティプレイでレアドロップ率が上昇し、Daily Forecast のボーナスをメンバー間で共有できます。"
+  },
+  "查看活动完整攻略": {
+    "en": "Read the full event guide",
+    "ja": "イベントガイドを読む"
+  },
+  "活动详情": {
+    "en": "Event details",
+    "ja": "イベント詳細"
+  },
+  "官方 Wiki 详情": {
+    "en": "Details on the official wiki",
+    "ja": "公式 Wiki の詳細"
+  },
+  "活动时间": {
+    "en": "Event dates",
+    "ja": "開催期間"
+  },
+  "数据更新": {
+    "en": "Source",
+    "ja": "情報源"
+  },
+  "官方活动档案": {
+    "en": "Official event archive",
+    "ja": "公式イベントアーカイブ"
+  },
+  "活动重点": {
+    "en": "Event highlights",
+    "ja": "イベントの主な内容"
+  },
+  "4 项": {
+    "en": "4 highlights",
+    "ja": "4 項目"
+  },
+  "2 人组队 RDR": {
+    "en": "2-player party RDR",
+    "ja": "2 人パーティ RDR"
+  },
+  "3 人组队 RDR": {
+    "en": "3-player party RDR",
+    "ja": "3 人パーティ RDR"
+  },
+  "4 人组队 RDR": {
+    "en": "4-player party RDR",
+    "ja": "4 人パーティ RDR"
+  },
+  "共享": {
+    "en": "Shared",
+    "ja": "共有"
+  },
+  "Ephinea 2026 复活节活动": {
+    "en": "Ephinea 2026 Easter event",
+    "ja": "Ephinea 2026 イースターイベント"
+  },
+  "Event Egg 狩猎、Egg Rappy 与三类 Egg Shop 回归，RBR 队伍人数提供额外 Egg Boost。": {
+    "en": "Event Egg hunting, Egg Rappies and three Egg Shops return. RBR party size grants an extra Egg Boost.",
+    "ja": "Event Egg 集め、エグ・ラッピー、3 種類の Egg Shop が復活。RBR のパーティ人数に応じて追加の Egg Boost が適用されます。"
+  },
+  "RBR 1 人 Egg Boost": {
+    "en": "RBR solo Egg Boost",
+    "ja": "RBR 1 人 Egg Boost"
+  },
+  "RBR 2 人 Egg Boost": {
+    "en": "RBR 2-player Egg Boost",
+    "ja": "RBR 2 人 Egg Boost"
+  },
+  "RBR 3–4 人 Egg Boost": {
+    "en": "RBR 3–4-player Egg Boost",
+    "ja": "RBR 3～4 人 Egg Boost"
+  },
+  "Ephinea 2025 万圣节活动": {
+    "en": "Ephinea 2025 Halloween event",
+    "ja": "Ephinea 2025 ハロウィンイベント"
+  },
+  "分难度 Cookie 掉率、11 个 Halloween Quests 与 Hallo Rappy 奖池全部开放。": {
+    "en": "Cookies drop at difficulty-based rates, with 11 Halloween quests and seasonal Hallo Rappy drops.",
+    "ja": "難易度別の Cookie ドロップ、11 のハロウィンクエスト、ハロ・ラッピーの季節限定ドロップを楽しめます。"
+  },
+  "任务 Cookie Boost": {
+    "en": "Quest Cookie Boost",
+    "ja": "クエスト Cookie Boost"
+  },
+  "4 档": {
+    "en": "4 tiers",
+    "ja": "4 段階"
+  },
+  "分难度 Cookie 掉率": {
+    "en": "Cookie rates by difficulty",
+    "ja": "難易度別 Cookie ドロップ率"
+  },
+  "限定": {
+    "en": "Seasonal",
+    "ja": "期間限定"
+  },
+  "Hallo Rappy 奖池": {
+    "en": "Hallo Rappy drops",
+    "ja": "ハロ・ラッピーのドロップ"
+  },
+  "Ephinea 2025 圣诞活动": {
+    "en": "Ephinea 2025 Christmas event",
+    "ja": "Ephinea 2025 クリスマスイベント"
+  },
+  "Christmas Present、活动任务与季节奖池同步开放，覆盖圣诞至新年阶段。": {
+    "en": "Christmas Presents, event quests and seasonal rewards are available over Christmas and New Year.",
+    "ja": "クリスマスから新年にかけて、Christmas Present、イベントクエスト、季節限定報酬が登場します。"
+  },
+  "全服季节掉落": {
+    "en": "Server-wide seasonal drops",
+    "ja": "全サーバー共通の季節限定ドロップ"
+  },
+  "Christmas 活动任务": {
+    "en": "Christmas event quests",
+    "ja": "クリスマスイベントクエスト"
+  },
+  "圣诞奖池": {
+    "en": "Christmas rewards",
+    "ja": "クリスマス報酬"
+  },
+  "先了解 Ephinea 服务器": {
+    "en": "Learn about Ephinea first",
+    "ja": "まずは Ephinea を知ろう"
+  },
+  "获取官方 Ephinea 安装程序并完成安装。": {
+    "en": "Get the official Ephinea installer and install the game.",
+    "ja": "公式 Ephinea インストーラーでゲームをインストールします。"
+  },
+  "注册账号": {
+    "en": "Create an account",
+    "ja": "アカウントを作成"
+  },
+  "在官网创建账号，并了解账号保存的注意事项。": {
+    "en": "Register on the official website and learn how to save your login details.",
+    "ja": "公式サイトで登録し、ログイン情報の保存方法を確認します。"
+  },
+  "设置登录器": {
+    "en": "Configure the launcher",
+    "ja": "ランチャーを設定"
+  },
+  "中文玩家可选：": {
+    "en": "Optional resources for Chinese players:",
+    "ja": "中国語で遊ぶ方向けの追加ガイド："
+  },
+  "中文补丁": {
+    "en": "Chinese translation patch",
+    "ja": "中国語翻訳パッチ"
+  },
+  "按主题分类的攻略、数据表与工具。": {
+    "en": "Guides, data and tools organized by topic.",
+    "ja": "テーマ別のガイド、データ、ツール。"
+  },
+  "掉落与奖励": {
+    "en": "Drops & rewards",
+    "ja": "ドロップ・報酬"
+  },
+  "各版本掉落表、赌博与轮盘奖品": {
+    "en": "Drop charts, gambling and roulette rewards",
+    "ja": "各バージョンのドロップ表・抽選・ルーレット報酬"
+  },
+  "E服掉落表": {
+    "en": "Ephinea drop charts",
+    "ja": "Ephinea ドロップ表"
+  },
+  "NGC掉落表": {
+    "en": "GameCube drop charts",
+    "ja": "GC ドロップ表"
+  },
+  "DC掉落表": {
+    "en": "Dreamcast drop charts",
+    "ja": "DC ドロップ表"
+  },
+  "黑页掉落表": {
+    "en": "Black Paper's Deal drops",
+    "ja": "ブラックペーパーズディールのドロップ"
+  },
+  "科伦赌博奖品": {
+    "en": "Coren's gambling rewards",
+    "ja": "コレンの抽選報酬"
+  },
+  "幻界幸运轮盘": {
+    "en": "Gallon's Roulette",
+    "ja": "ガロンズ・ルーレット"
+  },
+  "任务与地图": {
+    "en": "Quests & maps",
+    "ja": "クエスト・マップ"
+  },
+  "任务列表、周回路线与挑战模式": {
+    "en": "Quest lists, farming routes and Challenge Mode",
+    "ja": "クエスト一覧・周回ルート・チャレンジモード"
+  },
+  "任务列表": {
+    "en": "Quest list",
+    "ja": "クエスト一覧"
+  },
+  "怪物周回指南": {
+    "en": "Hunting guide",
+    "ja": "エネミー周回ガイド"
+  },
+  "RBR任务推荐": {
+    "en": "RBR quest recommendations",
+    "ja": "RBR おすすめクエスト"
+  },
+  "挑战模式 EP1": {
+    "en": "EP1 Challenge Mode",
+    "ja": "EP1 チャレンジモード"
+  },
+  "挑战模式 EP2": {
+    "en": "EP2 Challenge Mode",
+    "ja": "EP2 チャレンジモード"
+  },
+  "海底完整攻略": {
+    "en": "Seabed guide",
+    "ja": "海底攻略ガイド"
+  },
+  "任务编辑器": {
+    "en": "Quest editor",
+    "ja": "クエストエディター"
+  },
+  "活动专题": {
+    "en": "Events",
+    "ja": "イベント"
+  },
+  "季节活动攻略与历年档案": {
+    "en": "Seasonal event guides and archives",
+    "ja": "季節イベント攻略・過去の記録"
+  },
+  "活动总览": {
+    "en": "Event overview",
+    "ja": "イベント一覧"
+  },
+  "情人节活动": {
+    "en": "Valentine's event",
+    "ja": "バレンタインイベント"
+  },
+  "复活节活动": {
+    "en": "Easter event",
+    "ja": "イースターイベント"
+  },
+  "万圣节活动": {
+    "en": "Halloween event",
+    "ja": "ハロウィンイベント"
+  },
+  "圣诞活动": {
+    "en": "Christmas event",
+    "ja": "クリスマスイベント"
+  },
+  "周年活动": {
+    "en": "Anniversary event",
+    "ja": "アニバーサリーイベント"
+  },
+  "道具数据": {
+    "en": "Item data",
+    "ja": "アイテムデータ"
+  },
+  "物品参数、代码、价格与图鉴": {
+    "en": "Item stats, codes, prices and catalogs",
+    "ja": "アイテムの能力・コード・価格・図鑑"
+  },
+  "道具图鉴": {
+    "en": "Item database",
+    "ja": "アイテム図鑑"
+  },
+  "怪物图鉴": {
+    "en": "Bestiary",
+    "ja": "エネミー図鑑"
+  },
+  "外观道具": {
+    "en": "Cosmetic items",
+    "ja": "外観変更アイテム"
+  },
+  "物品价格参考": {
+    "en": "Item price guide",
+    "ja": "アイテム価格ガイド"
+  },
+  "中英文对照表": {
+    "en": "Chinese–English glossary",
+    "ja": "中国語・英語対照表"
+  },
+  "物品代码表": {
+    "en": "Item codes",
+    "ja": "アイテムコード表"
+  },
+  "协议命令参考": {
+    "en": "Protocol command reference",
+    "ja": "プロトコルコマンド資料"
+  },
+  "游戏机制": {
+    "en": "Game mechanics",
+    "ja": "ゲーム仕様"
+  },
+  "伤害公式、命中机制与计算器": {
+    "en": "Damage formulas, accuracy and calculators",
+    "ja": "ダメージ計算式・命中の仕組み・計算ツール"
+  },
+  "游戏机制与伤害公式": {
+    "en": "Mechanics & damage formulas",
+    "ja": "ゲーム仕様・ダメージ計算式"
+  },
+  "伤害计算器": {
+    "en": "Damage calculator",
+    "ja": "ダメージ計算機"
+  },
+  "武器特殊攻击修正": {
+    "en": "Special attack reductions",
+    "ja": "武器のエクストラアタック補正"
+  },
+  "装备魔法增幅": {
+    "en": "Equipment technique boosts",
+    "ja": "装備のテクニックブースト"
+  },
+  "武器瞄准机制": {
+    "en": "Weapon targeting mechanics",
+    "ja": "武器のターゲット判定"
+  },
+  "S武EX成功率": {
+    "en": "ES weapon special success rates",
+    "ja": "ES 武器のエクストラアタック成功率"
+  },
+  "血线": {
+    "en": "Survival HP thresholds",
+    "ja": "生存に必要な HP"
+  },
+  "尸块改造与加命中": {
+    "en": "Enemy weapons & Hit upgrades",
+    "ja": "エネミーウェポン作成・Hit 付加"
+  },
+  "角色培养": {
+    "en": "Character builds",
+    "ja": "キャラクター育成"
+  },
+  "职业指南、配点计算与玛古": {
+    "en": "Class guides, stat planning and Mags",
+    "ja": "職業ガイド・能力値計画・マグ"
+  },
+  "三职业实战指南": {
+    "en": "Hunter, Ranger & Force guides",
+    "ja": "ハンター・レンジャー・フォース実戦ガイド"
+  },
+  "Section ID 计算器": {
+    "en": "Section ID calculator",
+    "ja": "セクション ID 計算機"
+  },
+  "全等级人物能力": {
+    "en": "Character stats by level",
+    "ja": "レベル別キャラクター能力"
+  },
+  "LV200基础能力": {
+    "en": "Level 200 base stats",
+    "ja": "Lv200 基礎能力"
+  },
+  "能力药配点": {
+    "en": "Material planning",
+    "ja": "マテリアル使用計画"
+  },
+  "配点计算器": {
+    "en": "Stat planner",
+    "ja": "能力値計算機"
+  },
+  "终极装备推荐": {
+    "en": "Endgame equipment",
+    "ja": "最終装備ガイド"
+  },
+  "玛古进化图谱": {
+    "en": "Mag evolution charts",
+    "ja": "マグ進化図鑑"
+  },
+  "玛古模拟器": {
+    "en": "Mag simulator",
+    "ja": "マグシミュレーター"
+  },
+  "入门指南": {
+    "en": "Player guides",
+    "ja": "プレイヤーガイド"
+  },
+  "服务器介绍、规则、命令与常识": {
+    "en": "Server introduction, rules, commands and essentials",
+    "ja": "サーバー紹介・ルール・コマンド・基礎知識"
+  },
+  "EPHINEA介绍": {
+    "en": "About Ephinea",
+    "ja": "Ephinea について"
+  },
+  "论坛规则": {
+    "en": "Forum rules",
+    "ja": "フォーラムのルール"
+  },
+  "苦痛难度": {
+    "en": "Anguish difficulty",
+    "ja": "Anguish 難易度"
+  },
+  "游戏内命令": {
+    "en": "In-game commands",
+    "ja": "ゲーム内コマンド"
+  },
+  "Banner 顶部公告": {
+    "en": "Banner announcements",
+    "ja": "画面上部のバナー通知"
+  },
+  "常见英文缩写": {
+    "en": "Common English abbreviations",
+    "ja": "よく使われる英語の略語"
+  },
+  "Vol Opt 伤害": {
+    "en": "Vol Opt damage",
+    "ja": "ボルオプトのダメージ"
+  },
+  "NPC 人物志": {
+    "en": "NPC profiles",
+    "ja": "NPC 紹介"
+  },
+  "安装与故障排除": {
+    "en": "Setup & troubleshooting",
+    "ja": "導入・トラブル対処"
+  },
+  "装好之后遇到问题看这里": {
+    "en": "Help with setup and common problems",
+    "ja": "設定やよくある問題の解決方法"
+  },
+  "登录器设置": {
+    "en": "Launcher settings",
+    "ja": "ランチャー設定"
+  },
+  "游戏账号保存": {
+    "en": "Saving login details",
+    "ja": "ログイン情報の保存"
+  },
+  "错误代码": {
+    "en": "Error codes",
+    "ja": "エラーコード"
+  },
+  "关于闪退": {
+    "en": "Crash troubleshooting",
+    "ja": "クラッシュへの対処"
+  },
+  "图形后端": {
+    "en": "Graphics backends",
+    "ja": "描画バックエンド"
+  },
+  "由 Haven 公会维护、面向全球玩家的 Ephinea PSOBB Wiki，支持中文、英文和日文，欢迎所有玩家查阅与交流。": {
+    "en": "An Ephinea PSOBB wiki maintained by the Haven guild for players worldwide, in English, Japanese and Chinese. Everyone is welcome.",
+    "ja": "Haven ギルドが運営する、世界中のプレイヤーに開かれた Ephinea PSOBB Wiki。英語・日本語・中国語で、どなたでもご利用いただけます。"
+  },
+  "社区": {
+    "en": "Community",
+    "ja": "コミュニティ"
+  },
+  "QQ 群 956652396": {
+    "en": "QQ group 956652396",
+    "ja": "QQ グループ 956652396"
+  },
+  "官方 Wiki": {
+    "en": "Official wiki",
+    "ja": "公式 Wiki"
+  },
+  "常用工具": {
+    "en": "Popular tools",
+    "ja": "よく使うツール"
+  },
+  "掉落表": {
+    "en": "Drop charts",
+    "ja": "ドロップ表"
+  },
+  "Haven PSOBB Wiki · 全球玩家共享 · Haven 公会维护": {
+    "en": "Haven PSOBB Wiki · For players worldwide · Maintained by Haven",
+    "ja": "Haven PSOBB Wiki · 世界中のプレイヤーへ · Haven ギルド運営"
+  },
+  "任务详情与周回推荐 →": {
+    "en": "Quest details & farming recommendations →",
+    "ja": "クエスト詳細・おすすめ周回 →"
+  },
+  "新手入门三步": {
+    "en": "Get started in three steps",
+    "ja": "3 ステップで始めよう"
+  },
+  "设置显示选项，并启用 IME 以输入中文。": {
+    "en": "Choose your language and display settings before playing.",
+    "ja": "言語と画面の設定を確認し、日本語入力のために IME を有効にします。"
+  }
+}

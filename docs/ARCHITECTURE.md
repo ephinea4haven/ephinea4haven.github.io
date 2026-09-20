@@ -208,11 +208,16 @@ The landing page (`index.html` with `assets/css/index.css`) is a standalone
 design: a sticky top bar with in-page anchors, a hero that pairs the site
 positioning and primary calls to action with the live server panel (.beat
 clock, Galatine ATP window, weekly RBS boost), the build-time weekly RBR
-cards, the seasonal activity spotlight, a four-step onboarding strip and an
+cards, the seasonal activity spotlight, a three-step onboarding strip and an
 eight-card content directory grouped by topic. The onboarding strip is the
-only home for the install, registration, localization and IME entries; the
-directory's 安装与故障排除 (Installation & Troubleshooting) card covers post-install problems and does not
-repeat them. Cards, buttons, spacing and
+entry point for installation, registration and launcher setup. Chinese and Japanese
+launcher instructions mention enabling IME; English does not assume a CJK input
+requirement. The Chinese translation patch is shown only on the Chinese homepage, both below
+the onboarding steps and in the Installation & Troubleshooting directory.
+English hero text uses normal letter spacing instead of the Chinese title spacing.
+IME is covered by the launcher guide, without a duplicate onboarding link.
+The directory's 安装与故障排除 (Installation & Troubleshooting) card covers
+post-install problems; the obsolete homepage timezone link is removed. Cards, buttons, spacing and
 type share one token set in `index.css`; the activity spotlight uses the same
 card surface with a static gradient top rule and a faint cyan grid, and
 `prefers-reduced-motion` disables the remaining motion through the site-wide
@@ -384,3 +389,36 @@ npm run preview
 
 Use current stable, non-prerelease dependencies and commit exact direct versions.
 Dependency updates are accepted only after the complete release gate passes.
+
+### Homepage internationalization (2026-09-20)
+
+The homepage positions Haven as a multilingual Ephinea PSOBB wiki for players
+worldwide, maintained by the Haven guild and open to everyone. Chinese, English
+and Japanese controls translate navigation, onboarding, directory links, seasonal
+panels, RBR explanations, live status labels, accessibility labels, title and
+meta description. A visible notice states that translation coverage varies by
+page; this change does not translate every linked guide.
+
+`content/home-i18n.json` owns static homepage translations. During content
+creation, `scripts/home_i18n.mjs` annotates individual text nodes, preserving
+icons and nested links. It rejects untranslated Chinese copy or accessibility
+labels, including hidden event panels. Future event synchronization must supply
+matching English/Japanese homepage text before the build can pass. Galatine
+uses the existing generated item dictionary, not a page-local item-name alias.
+
+`LandingPageBehavior` uses the shared `LanguagePreferenceService`: explicit
+`?lang=zh|en|ja` overrides the saved `haven.catalog.language` preference, with
+Chinese as the default. Switching preserves query parameters and fragments;
+catalog and drop-chart links carry the selected language. Other guides retain
+their existing language behavior. Disabled storage does not prevent URL-based
+selection. RBR freshness, .beat labels and weekly boosts update in the selected
+language on every clock tick. Weekly boosts use Sunday 00:00 UTC, independent
+of the browser timezone, following the [Ephinea weekly boost rules](https://wiki.pioneer2.net/w/Weekly_boosts).
+Seasonal visibility continues to use its registered Pacific date boundaries.
+
+The static prerender remains Chinese; browser activation applies the requested
+or saved language. This first step does not add separately prerendered language
+routes or promise multilingual search indexing. `npm run test:home` checks the
+translation annotation contract; homepage browser tests cover direct URLs,
+preferences, fragments, catalogs, unavailable storage, seasonal content, three
+timezones, and mobile/desktop accessibility in all three languages.

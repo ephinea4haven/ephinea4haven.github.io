@@ -24,7 +24,7 @@ export class MonsterCatalogComponent {
   readonly difficulty=computed(()=>DIFFICULTIES.some(d=>d.id===this.params().get('diff')) ? this.params().get('diff')! : 'n');
   readonly hdImage=computed(()=>this.difficulty()==='u' ? this.detail()?.ultimateHdImage : this.detail()?.hdImage);
   readonly imageMode=linkedSignal({
-    source:()=>`${this.monster()?.id}:${this.difficulty()==='u' ? 'ultimate':'normal'}`,
+    source:computed(()=>`${this.monster()?.id}:${this.difficulty()==='u' ? 'ultimate':'normal'}`),
     computation:(): 'hd'|'wiki'=>'hd',
   });
   readonly showingHd=computed(()=>!!this.hdImage() && this.imageMode()==='hd');

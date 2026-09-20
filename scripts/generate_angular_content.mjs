@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse, serialize } from 'parse5';
 import vm from 'node:vm';
+import { localizeHome } from './home_i18n.mjs';
 import { marked } from 'marked';
 import { ItemData } from '../src/app/status/item-data.js';
 
@@ -326,7 +327,7 @@ function buildCanonicalItemConsumers(relative, source) {
       const english = nodeText(node).trim();
       replacements.push({
         node,
-        html: `${english ? `${escapeHtml(english)} ` : ''}${canonicalItemMarkup(item)}`,
+        html: `${english ? `${escapeHtml(english)} ` : ''}${relative === 'index.html' ? `<span data-home-i18n ${i18nAttributes({zh:item.zh,en:item.en,ja:item.ja || item.en})} data-item-zh="${escapeHtml(item.zh)}">${visibleItemZh(item)}</span>` : canonicalItemMarkup(item)}`,
       });
       return;
     }
@@ -506,9 +507,10 @@ async function applyBuildTimeContent(relative, source) {
       const section = ratings.recommendedSectionIds[quest.abbreviation];
       const color = sectionColors[sectionIds.indexOf(section)];
       if (!tier || !/^#[0-9a-f]{6}$/i.test(color)) throw new Error(`Missing RBR recommendation: ${quest.abbreviation}`);
-      return `<a class="home-rbr-quest" href="/guide/rbr.html" style="--section-color:${color}" data-tier="${escapeHtml(tier)}"><span class="home-rbr-episode">EPISODE 0${quest.episode}</span><strong>${escapeHtml(quest.abbreviation)}</strong><small>${escapeHtml(quest.name)}</small><div class="home-rbr-tags"><span class="home-rbr-tier">Tier ${escapeHtml(tier)}</span><span class="home-rbr-section"><img src="/assets/img/section/icon/${encodeURIComponent(section)}.png" alt="" width="28" height="28">推荐 ID · ${escapeHtml(section)}</span></div><b aria-hidden="true">↗</b></a>`;
+      return `<a class="home-rbr-quest" href="/guide/rbr.html" style="--section-color:${color}" data-tier="${escapeHtml(tier)}"><span class="home-rbr-episode">EPISODE 0${quest.episode}</span><strong>${escapeHtml(quest.abbreviation)}</strong><small>${escapeHtml(quest.name)}</small><div class="home-rbr-tags"><span class="home-rbr-tier">Tier ${escapeHtml(tier)}</span><span class="home-rbr-section"><img src="/assets/img/section/icon/${encodeURIComponent(section)}.png" alt="" width="28" height="28"><span data-home-i18n data-zh="推荐 ID" data-en="Recommended ID" data-ja="おすすめ ID">推荐 ID</span> · ${escapeHtml(section)}</span></div><b aria-hidden="true">↗</b></a>`;
     }).join('');
-    return source.replace('<!-- home-rbr -->', `<section class="home-rbr" id="rbr" data-rbr-week="${escapeHtml(data.current.week)}" aria-labelledby="home-rbr-title"><div class="home-rbr-heading"><div><p>RAGOL BOOST ROAD</p><h2 id="home-rbr-title">RBR 任务</h2></div><a href="/guide/rbr.html">任务详情与周回推荐 →</a></div><p class="home-rbr-status">记录周：${escapeHtml(data.current.week)} · UTC 周日轮替</p><div class="home-rbr-quests">${quests}</div><p class="home-rbr-note">颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）</p></section>`);
+    const withRbr = source.replace('<!-- home-language -->', '<div id="home-language" class="home-language" role="group" aria-label="Language / 言語 / 语言"><button type="button" data-home-lang="zh" lang="zh-CN" aria-pressed="true">中文</button><button type="button" data-home-lang="en" lang="en" aria-pressed="false">English</button><button type="button" data-home-lang="ja" lang="ja" aria-pressed="false">日本語</button></div>').replace('<!-- home-rbr -->', `<section class="home-rbr" id="rbr" data-rbr-week="${escapeHtml(data.current.week)}" aria-labelledby="home-rbr-title"><div class="home-rbr-heading"><div><p>RAGOL BOOST ROAD</p><h2 id="home-rbr-title" data-home-live>RBR 任务</h2></div><a href="/guide/rbr.html">任务详情与周回推荐 →</a></div><p class="home-rbr-status" data-home-live>记录周：${escapeHtml(data.current.week)} · UTC 周日轮替</p><div class="home-rbr-quests">${quests}</div><p class="home-rbr-note" data-home-i18n data-zh="颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）" data-en="Colors indicate recommended Section IDs · Tiers rate farming returns (${escapeHtml(ratings.asOf)}, unofficial)" data-ja="色はおすすめのセクション ID · Tier は周回効率の評価（${escapeHtml(ratings.asOf)}、非公式）">颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）</p></section>`);
+    return localizeHome(withRbr, JSON.parse(await readFile(path.join(root, 'content/home-i18n.json'), 'utf8')));
   }
   if (relative === 'data/bdp/index.html') return buildBdpContent(source);
   if (relative === 'data/prizelist/index.html') return buildPrizeContent(source);
