@@ -4,7 +4,7 @@
 
 本记录从 `pso-quest-master` 提交 `a2194c4` 同步，用于本站 Challenge 攻略维护。
 [源文档及版本](https://github.com/warmonipa/pso-quest-master/blob/a2194c4/knowledge/20-2c4-auto-warp-branches.md)。
-本次同步的是研究文档、点位图和数据，不表示网站攻略已据此更新或发布。
+特写图、标记解释和分支对比已整理到本站 `guide/ep2ch.html#area-23-branches`，维护者已于 2026-09-21 验收并授权提交推送。线上发布结果以该提交的 Pages 工作流为准。
 
 ## 结论
 
@@ -16,7 +16,16 @@
 
 ![26个Auto-warp及两个落点](assets/2c4-auto-warp/auto-warp-map.png)
 
-[SVG矢量放大图](assets/2c4-auto-warp/auto-warp-map.svg) · [全部26点的坐标与对象ID](assets/2c4-auto-warp/auto-warp-points.json)
+[SVG矢量放大图](../assets/img/challenge/ep2/auto-warp-map.svg) · [全部26点的坐标与对象ID](assets/2c4-auto-warp/auto-warp-points.json)
+
+### A/E、B/F 是什么意思？
+
+它们是两套图示标记的对应写法，不是地图上的“AE”“BF”标识，也不是连续经过 A 再到 E、B 再到 F：
+
+- **A/E**：特写图的青色 A 组，对应攻略地图5号房的 **E**，传送到6号房的 **E′**。
+- **B/F**：特写图的橙色 B 组，对应攻略地图5号房的 **F**，传送到6号房的 **F′**。
+
+地图上的撇号表示对应的传送落点。攻略正文直接称为 **E 路线、F 路线**；地图2号房附近另有 A/B 传送标记，与特写图的 A/B 分组无关。
 
 | 分组 | 原攻略字母 | Auto-warp 数量 | 图中编号 | 世界落点 (X, Y, Z) | 落地朝向 |
 |---|---|---:|---|---|---|
@@ -142,7 +151,7 @@ SHA-256: b8b545b56484f3d63d80076b9f8b0ccd03b5133bf9a1ab34336c8684117610c2
 - [Ephinea Wiki：Stage 4 / Area 23](https://wiki.pioneer2.net/w/Episode_2:_Stage_4/Guide#Area_23)
 - 原攻略布局图：[本站保存的原攻略图](../assets/img/challenge/ep2/original/wiki/2ca23.png)。
 - 本地源码参考：`newserv/src/Map.cc`、`phantasmal-world/psolib/.../quest/ObjectType.kt`、`AreaRenderGeometry.kt`、`AreaCollisionGeometry.kt`。
-- 原始解码文本、地形绘图脚本、部署清单与刷怪报告保留在源项目本地的 `artifacts/2c4-auto-warp/`（不纳入版本控制）。本站同步的图像和26点JSON位于 `docs/assets/2c4-auto-warp/`。
+- 原始解码文本、地形绘图脚本、部署清单与刷怪报告保留在源项目本地的 `artifacts/2c4-auto-warp/`（不纳入版本控制）。本站同步的 PNG 和26点JSON位于 `docs/assets/2c4-auto-warp/`；攻略与本文共用的 SVG 已移至 `assets/img/challenge/ep2/auto-warp-map.svg`，随站点构建发布。
 
 ## 攻略维护入口
 
@@ -153,3 +162,11 @@ SHA-256: b8b545b56484f3d63d80076b9f8b0ccd03b5133bf9a1ab34336c8684117610c2
 - 面向玩家时优先沿用原图 E/F；如采用本图 A/B，必须明确 A=E、B=F，避免与3a/3b前面的 A/B 传送器混淆。
 - 更新路径时需区分步行和传送：E′→6上层→7→G，F′→6下层→H→I→左侧长房→J；传送跨越不能绘制成可步行连接。
 - 先保留攻略 Area 23 的标号；本地 BB 样本显示 Area 24 的差异属于证据备注，未核对服务器实际下发文件前不要据此重编号站点地图。
+
+## 2026-09-21 攻略验收记录
+
+- Area 23 全图下方新增展开的特写与分支对比，沿用地图查看器的放大、缩小与拖动功能。
+- 正文以 E/F 命名路线，解释特写 A/B 与地图 E/F、E′/F′ 的对应关系，并列出路线、主战斗链和另列的 Recobox 数量及统计边界。
+- 本次补充的攻略正文及特写为中文；英文、日文界面入口已明确标注中文内容，不表示已完成三语翻译。
+- 验证通过：生产构建、24 项地图单元测试、地图资产完整性检查、8 项地图查看器浏览器测试；另在 390px、1440px 下核对新特写加载、放大及页面无横向溢出。`git diff --check` 通过。
+- 维护者查看本地预览后明确要求“对齐文档，提交推送”，据此接受本次结果并授权推送到 `origin/master`。
