@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-09-20",
-  "source": "User-provided ENEMY gallery and BOSS 补完 supplement",
+  "checkedAt": "2026-09-22",
+  "source": "User-provided ENEMY gallery, BOSS 补完 supplement and 2026-09-22 corrections",
   "normalization": {
     "format": "webp",
     "quality": 85,
@@ -649,14 +649,14 @@
       "asset": "/assets/img/monsters/hd/forest/savage-wolf-a311c3ae9d0b.webp"
     },
     {
-      "original": "FROEST/狂狼王.png",
-      "source": "FOREST/狂狼王.png",
+      "original": "d617d682297236092f9b686d709123d9_720.png",
+      "source": "User-provided corrections/2026-09-22/FOREST/狂狼王.png",
       "identity": "Barbarous Wolf",
-      "sha256": "181f5b5483604bacb00a5243ad2d801679c0a7ab56450336c9024c049b197bac",
-      "bytes": 3321493,
-      "width": 2048,
-      "height": 2048,
-      "asset": "/assets/img/monsters/hd/forest/barbarous-wolf-181f5b548360.webp"
+      "sha256": "de6143827164167c3fcc89e80d811ceead0e16c4b684edfc7f047320395695ee",
+      "bytes": 1366442,
+      "width": 1280,
+      "height": 1280,
+      "asset": "/assets/img/monsters/hd/forest/barbarous-wolf-de6143827164.webp"
     },
     {
       "original": "FROEST/白拉比鸟.png",
@@ -699,14 +699,14 @@
       "asset": "/assets/img/monsters/hd/forest/al-rappy-be02c9067902.webp"
     },
     {
-      "original": "FROEST/蓝魔龟.png",
-      "source": "FOREST/蓝魔龟.png",
+      "original": "aa083d0132841d8ee94d65cd12cfa872_720.png",
+      "source": "User-provided corrections/2026-09-22/FOREST/蓝魔龟.png",
       "identity": "Barble",
-      "sha256": "8e087ed05aefc6088e6385a2ca64741174286b3f0ecf954f6f4705170ac1d534",
-      "bytes": 2874465,
-      "width": 2048,
-      "height": 2048,
-      "asset": "/assets/img/monsters/hd/forest/barble-8e087ed05aef.webp"
+      "sha256": "1e7ce6402750d7d472ad15aeea36161315f0e9e94ce6cea59bd3e43e5e26cb21",
+      "bytes": 1163260,
+      "width": 1280,
+      "height": 1280,
+      "asset": "/assets/img/monsters/hd/forest/barble-1e7ce6402750.webp"
     },
     {
       "original": "FROEST/角狼.png",
@@ -1369,14 +1369,14 @@
       "asset": "/assets/img/monsters/hd/space-ship/savage-wolf-a311c3ae9d0b.webp"
     },
     {
-      "original": "SPACE SHIP/狂狼王.png",
-      "source": "SPACE SHIP/狂狼王.png",
+      "original": "d617d682297236092f9b686d709123d9_720.png",
+      "source": "User-provided corrections/2026-09-22/SPACE SHIP/狂狼王.png",
       "identity": "Barbarous Wolf",
-      "sha256": "181f5b5483604bacb00a5243ad2d801679c0a7ab56450336c9024c049b197bac",
-      "bytes": 3321493,
-      "width": 2048,
-      "height": 2048,
-      "asset": "/assets/img/monsters/hd/space-ship/barbarous-wolf-181f5b548360.webp"
+      "sha256": "de6143827164167c3fcc89e80d811ceead0e16c4b684edfc7f047320395695ee",
+      "bytes": 1366442,
+      "width": 1280,
+      "height": 1280,
+      "asset": "/assets/img/monsters/hd/space-ship/barbarous-wolf-de6143827164.webp"
     },
     {
       "original": "SPACE SHIP/角狼.png",
@@ -2041,9 +2041,9 @@
       "bytes": 135992
     },
     {
-      "path": "/assets/img/monsters/hd/forest/barbarous-wolf-181f5b548360.webp",
-      "sha256": "138bca90c20468b0cdbdc8bd6c302022ba06a9d88ca243af151134fbc10efbd7",
-      "bytes": 164722
+      "path": "/assets/img/monsters/hd/forest/barbarous-wolf-de6143827164.webp",
+      "sha256": "c2ecc977f6d0e7f75b2eec8780e523fc89b9e992eb88c61468e89df83efc0ecd",
+      "bytes": 150730
     },
     {
       "path": "/assets/img/monsters/hd/forest/el-rappy-4a771880338a.webp",
@@ -2066,9 +2066,9 @@
       "bytes": 61118
     },
     {
-      "path": "/assets/img/monsters/hd/forest/barble-8e087ed05aef.webp",
-      "sha256": "7a6b1ee6c02721004787cbbdee05794cd9bb615151c27bad4f47c4ce8b62ede1",
-      "bytes": 146568
+      "path": "/assets/img/monsters/hd/forest/barble-1e7ce6402750.webp",
+      "sha256": "e5a13c11b8c3e3f03801a0403a39eebd8bc2b2847a73bda8f8b8a22f536d1644",
+      "bytes": 132214
     },
     {
       "path": "/assets/img/monsters/hd/forest/gulgus-522f47b701cc.webp",
@@ -2411,9 +2411,9 @@
       "bytes": 136152
     },
     {
-      "path": "/assets/img/monsters/hd/space-ship/barbarous-wolf-181f5b548360.webp",
-      "sha256": "138bca90c20468b0cdbdc8bd6c302022ba06a9d88ca243af151134fbc10efbd7",
-      "bytes": 164722
+      "path": "/assets/img/monsters/hd/space-ship/barbarous-wolf-de6143827164.webp",
+      "sha256": "c2ecc977f6d0e7f75b2eec8780e523fc89b9e992eb88c61468e89df83efc0ecd",
+      "bytes": 150730
     },
     {
       "path": "/assets/img/monsters/hd/temple/ob-lily-5f5b30e0344a.webp",
@@ -2878,11 +2878,11 @@
       "ultimate": "/assets/img/monsters/hd/space-ship/gulgus-522f47b701cc.webp"
     },
     "barbarous-wolf-e1": {
-      "normal": "/assets/img/monsters/hd/forest/barbarous-wolf-181f5b548360.webp",
+      "normal": "/assets/img/monsters/hd/forest/barbarous-wolf-de6143827164.webp",
       "ultimate": "/assets/img/monsters/hd/forest/gulgus-gue-ed22327feaee.webp"
     },
     "barbarous-wolf-e2": {
-      "normal": "/assets/img/monsters/hd/space-ship/barbarous-wolf-181f5b548360.webp",
+      "normal": "/assets/img/monsters/hd/space-ship/barbarous-wolf-de6143827164.webp",
       "ultimate": "/assets/img/monsters/hd/space-ship/gulgus-gue-ed22327feaee.webp"
     },
     "rag-rappy-e1": {
@@ -2898,7 +2898,7 @@
       "ultimate": "/assets/img/monsters/hd/forest/tollaw-f40488beb9f5.webp"
     },
     "gobooma": {
-      "ultimate": "/assets/img/monsters/hd/forest/barble-8e087ed05aef.webp",
+      "ultimate": "/assets/img/monsters/hd/forest/barble-1e7ce6402750.webp",
       "normal": "/assets/img/monsters/hd/forest/gobooma-9a4406ff5b27.webp"
     },
     "dubchic-e1": {

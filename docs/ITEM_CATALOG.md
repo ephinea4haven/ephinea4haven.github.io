@@ -122,7 +122,7 @@ as separate models.
 
 ## Updating the data
 
-### HD detail images and naming (updated 2026-09-20)
+### HD detail images and naming (updated 2026-09-22)
 
 `content/item-catalog/hd-gallery.json` accounts for 607 source images: the original
 606-image 高清图库 collection with four images replaced by the supplied 替换.zip
@@ -215,6 +215,19 @@ The existing Wiki images and list thumbnails are unchanged.
 Local validation passed all 23 item tests, the production build and three HD
 browser checks. All 14 generated detail bindings match the reviewed manifest.
 
+On 2026-09-22 the maintainer supplied a replacement for Silence Claw and
+explicitly corrected the initial S-Rank Claw label. The green-photon image is
+bound to Silence Claw only; the ES Claw asset is unchanged. The supplied PNG is
+1280 × 938 and the published WebP is 1024 × 750 (30,492 bytes), encoded with
+`cwebp -q 85 -m 6 -resize 1024 0`. For full regeneration, remove
+`WEAPON/EP1+2/095.png` from the assembled working copy and place the supplied
+PNG at `User-provided corrections/2026-09-22/ed763d830550db0a304d405f18a03b50_720.png`.
+The manifest records its exact dimensions, byte count and SHA-256; the source
+inventory remains 607 files. Local validation passed 23 item tests and the
+production build (1,268 routes and 45 event fragments). The maintainer approved
+commit and push; deployment status is tracked separately by the Pages workflow.
+Seven focused item/monster HD browser checks also passed.
+
 ```sh
 node scripts/prepare_hd_gallery.mjs --check /path/to/高清图库
 node scripts/prepare_hd_gallery.mjs /path/to/高清图库 artifacts/hd-gallery
@@ -229,7 +242,7 @@ manifests or changed output bytes before writing any images, then removes retire
 WebPs from its owned destination directory. Regenerate the prepared gallery after
 changing the naming manifest; do not rename prepared files manually.
 They preserve aspect ratio at 1024-pixel width with lossy WebP quality 85,
-totaling 15,242,088 bytes. The detail frame displays them at up to 512 CSS pixels,
+totaling 15,362,496 bytes. The detail frame displays them at up to 512 CSS pixels,
 providing enough pixels for a 2× display at that size. This is optimized web
 artwork, not a lossless archival copy; enlarging it cannot retain the detail of
 the original roughly 5,000-pixel images. Downloaded originals are unchanged.
