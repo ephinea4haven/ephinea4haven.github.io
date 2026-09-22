@@ -321,7 +321,7 @@ test('challenge and Seabed guides keep their complete map inventories usable on 
 
   for (const [path, expectedMaps] of [
     ['/guide/ep1ch.html', 42],
-    ['/guide/ep2ch.html', 25],
+    ['/guide/ep2ch.html', 26], // 25 area maps plus the Area 23 warp detail.
   ]) {
     await page.goto(path);
     await expect(page.locator('.challenge-map img')).toHaveCount(expectedMaps);
