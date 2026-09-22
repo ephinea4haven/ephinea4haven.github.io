@@ -8095,14 +8095,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Visual comparison with local Wiki image; shape and color reviewed against the candidate.",
+      "evidence": "Maintainer explicitly identified the supplied replacement as Silence Claw, correcting the initial S-Rank Claw label. Green-photon artwork supplied on 2026-09-22.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/095.png",
-          "sha256": "1f7387b984d83625d59d42ccf5a7635e72e3be6dc842129a76149e11db22df5d",
-          "bytes": 9064240,
-          "width": 5444,
-          "height": 3989
+          "path": "User-provided corrections/2026-09-22/ed763d830550db0a304d405f18a03b50_720.png",
+          "sha256": "8b87b82e5aecaff75e04de718da87eb9c9c658d1313107c57c4c5229297ac0d3",
+          "bytes": 618181,
+          "width": 1280,
+          "height": 938
         }
       ]
     },
