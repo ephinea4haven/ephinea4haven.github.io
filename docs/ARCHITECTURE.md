@@ -65,11 +65,12 @@ but no scripts or inline event handlers; Angular owns behavior.
 
 The Mag evolution chart uses 46 original-texture renders in
 `assets/img/mag/default/` for its initial display and colour reset. Each render
-has its own reference-matched camera; provenance, camera parameters and known
-outline differences are recorded in that directory. Colour selections still
-use the cyan Wiki sprites in `assets/img/mag/wiki/` as inputs to the existing
-approximate recolouring algorithm. The Wiki asset downloader updates those
-colour inputs, not the default renders.
+has its own reference-matched camera and shared camera-relative lighting that
+keeps brightness close to the original textures; provenance, camera and lighting
+parameters and known outline differences are recorded in that directory. Colour
+selections still use the cyan Wiki sprites in `assets/img/mag/wiki/` as inputs
+to the existing approximate recolouring algorithm. The Wiki asset downloader
+updates those colour inputs, not the default renders.
 - `scripts/`: data generation, upstream synchronization, architecture checks and
   deterministic release construction.
 - `third_party/`: licenses and provenance for synchronized upstream material.
