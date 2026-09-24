@@ -12,6 +12,11 @@ const hdImages = selectHdImages(read('content/item-catalog/hd-gallery.json'));
 for (const file of new Set(hdImages.values())) {
   if (!fs.existsSync(`assets/img/items/hd/${file}`)) throw new Error(`Missing HD image: ${file}`);
 }
+// Mag details use the evolution chart's original-model renders, keyed by exact item title.
+const magRenders = new Set(read('assets/img/mag/default/manifest.json').models.map(model => model.name));
+for (const name of magRenders) {
+  if (!fs.existsSync(`assets/img/mag/default/${name}.webp`)) throw new Error(`Missing Mag render: ${name}`);
+}
 const notes = read('content/item-catalog/notes.json');
 const corrections = read('content/item-catalog/corrections.json');
 const sandbox = { window: {} };
@@ -260,11 +265,16 @@ for (const record of records) {
   const feeding = feedTable ? Object.entries(feedTable).map(([item, values]) => ({ item, values })) : [];
   const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Set(effects)], boosts, sets, skins, cosmetic, cosmetics: cosmeticsByTarget.get(title) || [], feeding, drops, availability, source, revision: record.revision, checkedAt: record.checkedAt || snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
-  detail.hdImage = hdImages.has(id) ? `/assets/img/items/hd/${hdImages.get(id)}` : null;
+  const magRender = category === 'mag' && magRenders.has(title);
+  if (magRender && hdImages.has(id)) throw new Error(`Mag has both a render and an HD gallery image: ${title}`);
+  detail.hdImage = magRender ? `/assets/img/mag/default/${title}.webp` : hdImages.has(id) ? `/assets/img/items/hd/${hdImages.get(id)}` : null;
+  detail.hdSource = magRender ? 'model-render' : hdImages.has(id) ? 'gallery' : null;
+  if (magRender) magRenders.delete(title);
   details[id] = detail;
   // Compact tuples keep the searchable index small; detailed data is loaded per item.
   index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), image?.path || null, code, status, title === en ? '' : title, atp?.[1] ?? null, names.get(en)?.ja ? '' : clean(f.jp)]);
 }
+if (magRenders.size) throw new Error(`Mag renders without a catalog Mag: ${[...magRenders].join(', ')}`);
 index.sort((a, b) => (a[8] || 'FFFFFF').localeCompare(b[8] || 'FFFFFF') || a[0].localeCompare(b[0]));
 fs.mkdirSync('src/app/generated/item-catalog', { recursive: true });
 fs.rmSync('assets/data/items', { recursive: true, force: true });

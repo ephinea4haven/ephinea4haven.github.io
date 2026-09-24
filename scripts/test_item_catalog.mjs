@@ -49,7 +49,9 @@ const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18
 
 test('HD images are detail-only and leave Wiki images and list filters unchanged', () => {
   const index = read('src/app/generated/item-catalog/index.json');
-  assert.equal(items.filter(item => item.hdImage).length, 414);
+  assert.equal(items.filter(item => item.hdSource === 'gallery').length, 414);
+  assert.equal(items.filter(item => item.hdSource === 'model-render').length, 46);
+  assert.equal(items.filter(item => item.hdImage).length, 460);
   assert.equal(index.filter(row => row[7]).length, 547);
   assert.equal(details.saber.hdImage, '/assets/img/items/hd/items/saber.webp');
   assert.equal(details['typess-swords'].hdImage, '/assets/img/items/hd/items/typess-swords.webp');
@@ -57,7 +59,13 @@ test('HD images are detail-only and leave Wiki images and list filters unchanged
   assert.equal(details['dress-plate'].hdImage, '/assets/img/items/hd/items/dress-plate.webp');
   assert.equal(details['agito-1975'].hdImage, null);
   assert.equal(details['typebl-blade'].hdImage, null);
-  assert.equal(details.mag.hdImage, null);
+  assert.equal(details.saber.hdSource, 'gallery');
+  assert.equal(details.mag.hdImage, '/assets/img/mag/default/Mag.webp');
+  assert.equal(details.varuna.hdSource, 'model-render');
+  assert.equal(details['chu-chu'].hdImage, null);
+  for (const item of items) {
+    assert.equal(item.hdSource === 'model-render', item.category === 'mag' && !!item.hdImage, item.id);
+  }
   for (const row of index) {
     assert.equal(row[7], details[row[0]].image);
     assert.ok(!JSON.stringify(row).includes('/items/hd/'), row[0]);
