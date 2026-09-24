@@ -2,8 +2,6 @@
 from __future__ import annotations
 
 import argparse
-import json
-import re
 import subprocess
 from pathlib import Path
 from urllib.parse import quote
@@ -12,8 +10,6 @@ from PIL import Image
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA_PATH = ROOT / "assets" / "js" / "mag-evolution.js"
-OUT_DIR = ROOT / "assets" / "img" / "mag" / "wiki"
 COLOR_OUT_DIR = ROOT / "assets" / "img" / "mag" / "colors"
 
 # Upstream uses the historical spellings "fuschia" and "grey" for these two
@@ -31,32 +27,6 @@ COLOR_FILES = (
     "Mag_gold-0.png", "Mag_silver-0.png", "Mag_bronze-0.png",
     "Mag_plum-0.png", "Mag_violet-0.png", "Mag_goldenrod-0.png",
 )
-
-
-def chart_mag_names() -> list[str]:
-    """Sprite names come from the generated chart data, which is the sole
-    source of truth for which mags the charts draw."""
-    src = DATA_PATH.read_text(encoding="utf-8")
-    body = src[src.index("{"): src.rindex("}") + 1]
-    classes = json.loads(body)["classes"]
-    names: set[str] = set()
-
-    def collect(value: object) -> None:
-        if isinstance(value, dict):
-            name = value.get("name")
-            if isinstance(name, str):
-                names.add(name)
-            for child in value.values():
-                collect(child)
-        elif isinstance(value, list):
-            for child in value:
-                collect(child)
-
-    collect(classes)
-    if not names:
-        raise RuntimeError(f"no mag names found in {DATA_PATH}")
-    names.add("Mag")
-    return sorted(names)
 
 
 def valid_png(path: Path) -> bool:
@@ -86,15 +56,12 @@ def download_file(filename: str, out_dir: Path, force: bool) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Download Mag sprites and all 30 color-reference PNGs used by mag.html."
+        description="Download the 30 Mag color-reference PNGs used by mag.html."
     )
     parser.add_argument("--force", action="store_true", help="download assets even when a valid local PNG exists")
     args = parser.parse_args()
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
     COLOR_OUT_DIR.mkdir(parents=True, exist_ok=True)
-    for name in chart_mag_names():
-        download_file(f"{name}.png", OUT_DIR, args.force)
     for filename in COLOR_FILES:
         download_file(filename, COLOR_OUT_DIR, args.force)
 

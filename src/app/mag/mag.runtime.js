@@ -8,7 +8,7 @@
 
 export function initializeMag(root, evolution, simulation) {
     const SPRITE_DIR = '/assets/img/mag/default/';
-    const COLOR_SOURCE_DIR = '/assets/img/mag/wiki/';
+    const MASK_DIR = '/assets/img/mag/color-mask/';
     const STAT = /\b(POW|DEX|MIND|DEF)\b/g;
 
     function esc(s) {
@@ -29,124 +29,80 @@ export function initializeMag(root, evolution, simulation) {
     }
 
     /* ---------- sprite recolour ----------
-     * The wiki sprites use cyan for the player-selectable body material. Keep
-     * neutral pixels (eyes, seams, metal and specular highlights) intact and
-     * replace only that cyan material with a shadow/base/highlight ramp derived
-     * from the selected in-game colour. This is closer to the real screenshots
-     * than multiplying every opaque pixel by one RGB value, which tinted fixed
-     * details and clipped highlights to white.
+     * The client tints only the model nodes named by ItemMagEdit and a few
+     * hard-coded slots: while such a node is drawn, its texture is modulated by
+     * the selected colour through the constant material. Each mask marks those
+     * nodes as seen by the default render's camera (white = tinted), so the
+     * preview multiplies just the masked pixels and leaves fixed-colour parts,
+     * detail and pose untouched. Provenance: assets/img/mag/color-mask/README.md.
      */
     const REC = { hex: null, cache: new Map(), sources: new Map() };
 
-    const clamp01 = (n) => Math.max(0, Math.min(1, n));
-    const smoothstep = (lo, hi, n) => {
-        const t = clamp01((n - lo) / (hi - lo));
-        return t * t * (3 - 2 * t);
-    };
-
-    function cyanMaterial(pixel) {
-        const r = pixel[0] / 255;
-        const g = pixel[1] / 255;
-        const b = pixel[2] / 255;
-        const max = Math.max(r, g, b);
-        const min = Math.min(r, g, b);
-        const saturation = max ? (max - min) / max : 0;
-        const cyanLead = ((g + b) / 2) - r;
-        return smoothstep(0.08, 0.28, saturation)
-            * smoothstep(0.02, 0.18, cyanLead);
+    function loadImage(src) {
+        return new Promise((resolve, reject) => {
+            const image = new Image();
+            image.onload = () => resolve(image);
+            image.onerror = reject;
+            image.src = src;
+        });
     }
 
-    function percentile(sorted, ratio) {
-        if (!sorted.length) return 0;
-        return sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * ratio))];
+    function pixels(image) {
+        const cv = document.createElement('canvas');
+        cv.width = image.naturalWidth;
+        cv.height = image.naturalHeight;
+        const cx = cv.getContext('2d', { willReadFrequently: true });
+        cx.drawImage(image, 0, 0);
+        return { cv, cx, data: cx.getImageData(0, 0, cv.width, cv.height) };
     }
 
-    function tintDataUrl(imgData, hex) {
-        const T = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
-        const d = imgData.data;
-
-        // Use the central 90% of the colourable material's luminance range.
-        // Black outlines and isolated white glints must not flatten the body
-        // material's useful contrast.
-        const samples = [];
-        for (let i = 0; i < d.length; i += 4) {
-            if (d[i + 3] < 8) continue;
-            const mask = cyanMaterial([d[i], d[i + 1], d[i + 2]]);
-            if (mask < 0.2) continue;
-            const y = (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255;
-            samples.push(y);
+    /* One clean decode of each render and mask; repeated picks never compound. */
+    function sources(name) {
+        if (!REC.sources.has(name)) {
+            REC.sources.set(name, Promise.all([
+                loadImage(sprite(name)),
+                loadImage(`${MASK_DIR}${encodeURIComponent(name)}.webp`),
+            ]).then(([render, mask]) => ({ render: pixels(render), mask: pixels(mask).data.data })));
         }
-        samples.sort((a, b) => a - b);
-        const lo = percentile(samples, 0.05);
-        const hi = percentile(samples, 0.95);
-        const span = hi - lo || 1;
+        return REC.sources.get(name);
+    }
 
-        for (let i = 0; i < d.length; i += 4) {
-            if (d[i + 3] === 0) continue;
-            const original = [d[i], d[i + 1], d[i + 2]];
-            const mask = cyanMaterial(original);
-            if (mask <= 0) continue;
-
-            const y = (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255;
-            const q = smoothstep(0, 1, clamp01((y - lo) / span));
-            const ramp = T.map((channel) => {
-                if (q < 0.58) {
-                    // Coloured shadows, rather than neutral black multiplied
-                    // into the entire sprite.
-                    return channel * (0.22 + 0.78 * (q / 0.58));
+    function tinted(name, hex) {
+        const key = `${name}|${hex}`;
+        if (!REC.cache.has(key)) {
+            REC.cache.set(key, sources(name).then(({ render, mask }) => {
+                const tint = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
+                const src = render.data.data;
+                const out = new ImageData(new Uint8ClampedArray(src), render.cv.width, render.cv.height);
+                const d = out.data;
+                for (let i = 0; i < d.length; i += 4) {
+                    const m = mask[i] / 255;
+                    if (!m || !d[i + 3]) continue;
+                    d[i] = src[i] * (1 - m + m * tint[0]);
+                    d[i + 1] = src[i + 1] * (1 - m + m * tint[1]);
+                    d[i + 2] = src[i + 2] * (1 - m + m * tint[2]);
                 }
-                // Specular light stays coloured and never reaches flat white.
-                const u = (q - 0.58) / 0.42;
-                const highlight = channel + (255 - channel) * 0.36;
-                return channel + (highlight - channel) * u;
-            });
-
-            d[i] = Math.round(original[0] + (ramp[0] - original[0]) * mask);
-            d[i + 1] = Math.round(original[1] + (ramp[1] - original[1]) * mask);
-            d[i + 2] = Math.round(original[2] + (ramp[2] - original[2]) * mask);
+                const cv = document.createElement('canvas');
+                cv.width = out.width;
+                cv.height = out.height;
+                cv.getContext('2d').putImageData(out, 0, 0);
+                return new Promise((resolve) => cv.toBlob((blob) => resolve(URL.createObjectURL(blob)), 'image/webp', 0.9));
+            }));
         }
-        return d;
+        return REC.cache.get(key);
     }
 
     function recolorImg(img, hex) {
-        if (!hex) { img.src = sprite(img.dataset.mag); return; }
-        const key = `${img.dataset.mag}|${hex}`;
-        const cached = REC.cache.get(key);
-        if (cached) { img.src = cached; return; }
-        const src = REC.sources.get(img.dataset.mag);
-        if (!src || !src.complete || !src.naturalWidth) return;
-        const cv = document.createElement('canvas');
-        cv.width = src.naturalWidth;
-        cv.height = src.naturalHeight;
-        const cx = cv.getContext('2d');
-        cx.drawImage(src, 0, 0);
-        let data;
-        try { data = cx.getImageData(0, 0, cv.width, cv.height); }
-        catch { return; }  // canvas tainted — leave sprite as-is
-        tintDataUrl(data, hex);
-        cx.putImageData(data, 0, 0);
-        const url = cv.toDataURL('image/png');
-        REC.cache.set(key, url);
-        img.src = url;
+        const name = img.dataset.mag;
+        if (!hex) { img.src = sprite(name); return; }
+        tinted(name, hex).then((url) => {
+            if (REC.hex === hex) img.src = url;
+        }).catch((err) => console.error('mag-chart: recolour failed', name, err));
     }
 
     function applyRecolor(hex) {
         REC.hex = hex;
-        root.querySelectorAll('.mag-card__sprite[data-mag]').forEach((img) => {
-            const raw = REC.sources.get(img.dataset.mag);
-            if (raw && raw.complete && raw.naturalWidth) recolorImg(img, hex);
-            else if (raw) raw.addEventListener('load', () => recolorImg(img, REC.hex), { once: true });
-        });
-    }
-
-    /* Keep one clean off-DOM copy of each sprite to tint from, so repeated
-     * picks never compound. */
-    function trackSprite(img) {
-        const name = img.dataset.mag;
-        if (REC.sources.has(name)) return;
-        const raw = new Image();
-        raw.src = `${COLOR_SOURCE_DIR}${encodeURIComponent(name)}.png`;
-        REC.sources.set(name, raw);
+        root.querySelectorAll('.mag-card__sprite[data-mag]').forEach((img) => recolorImg(img, hex));
     }
 
     function triggerRows(mag, meta) {
@@ -699,10 +655,6 @@ export function initializeMag(root, evolution, simulation) {
         root.querySelectorAll('[data-section-nav]').forEach(initSectionNav);
         root.querySelectorAll('[data-copy]').forEach(initCopy);
         root.querySelectorAll('[data-mag-colorpicker]').forEach(initColorPicker);
-        root.querySelectorAll('.mag-card__sprite[data-mag]').forEach(trackSprite);
-        // Re-tint sprites that mount later (hidden tab panels render eagerly, but
-        // their images may still be decoding).
-        if (REC.hex) applyRecolor(REC.hex);
 
         // Connector layer: draw once, then keep it in sync with anything that
         // shifts card geometry — container resize, late web fonts, image decode.

@@ -68,9 +68,10 @@ The Mag evolution chart uses 46 original-texture renders in
 has its own reference-matched camera and shared camera-relative lighting that
 keeps brightness close to the original textures; provenance, camera and lighting
 parameters and known outline differences are recorded in that directory. Colour
-selections still use the cyan Wiki sprites in `assets/img/mag/wiki/` as inputs
-to the existing approximate recolouring algorithm. The Wiki asset downloader
-updates those colour inputs, not the default renders.
+selections tint only the model nodes the game client colours: per-Mag masks in
+`assets/img/mag/color-mask/`, rendered with the same cameras, select the pixels
+that are multiplied by the chosen colour. The node evidence lives in bb-psov4
+(`docs/psobb-mag-color-rendering.md`).
 - `scripts/`: data generation, upstream synchronization, architecture checks and
   deterministic release construction.
 - `third_party/`: licenses and provenance for synchronized upstream material.
