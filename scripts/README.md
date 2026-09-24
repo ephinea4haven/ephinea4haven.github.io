@@ -27,7 +27,7 @@ are build inputs and are not copied into the published artifact.
 | `scrape_gizonde.py` | Generate Vol Opt data from the Ephinea Wiki. |
 | `scrape_price_guide.py` | Generate price-guide data from the Ephinea Wiki. |
 | `build_mag_data.py` | Generate Mag evolution and feeding data. |
-| `download_wiki_mag_assets.py` | Download and validate Mag image assets. |
+| `download_wiki_mag_assets.py` | Download and validate the Mag color-reference images. |
 | `build_rbr_data.py` | Build an RBR diagnostic snapshot from Wiki data; `--require-current` rejects a stale or inconsistent Wiki mirror. |
 | `plan_rbr_update.py` | Validate three abbreviations extracted from `/rbr`, render both candidate Wiki templates and a local projection, and preview them without publishing either target. |
 | `publish_rbr_update.py` | Authenticate from the ignored local credentials file and publish both RBR Wiki templates with conflict guards and post-edit verification. |
