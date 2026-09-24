@@ -1457,12 +1457,23 @@ test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ 
 
   await page.goto('/tools/mag.html');
   await expect.poll(() => page.locator('#panel-hu .mag-card').count()).toBeGreaterThan(5);
+  // The section nav shows one section at a time; deep links pick the section.
+  const sectionNav = page.getByRole('navigation', { name: '页面导航' });
+  await expect(sectionNav.getByRole('link', { name: '进化图谱' })).toHaveAttribute('aria-current', 'page');
+  await expect(page.locator('#recipe')).toBeHidden();
+  await sectionNav.getByRole('link', { name: '玛古配色' }).click();
+  await expect(page.locator('#panel-hu')).toBeHidden();
+  await expect(sectionNav.getByRole('link', { name: '玛古配色' })).toHaveAttribute('aria-current', 'page');
   await expect(page.getByRole('region', { name: '角色服装与初始玛古颜色对应表' })).toBeVisible();
   await expect(page.locator('.mag-costume-table tbody tr')).toHaveCount(18);
   await expect(page.locator('.mag-costume-table tr[data-mag-color="Green"] td').nth(12)).toHaveText('1-4');
+  await sectionNav.getByRole('link', { name: '进化图谱' }).click();
   await page.getByRole('tab', { name: /枪手/ }).click();
   await expect(page.locator('#panel-ra')).toBeVisible();
   await expect(page.locator('#panel-hu')).toBeHidden();
+  await page.goto('/tools/mag.html#recipe5');
+  await expect(page.locator('#panel-recipe5')).toBeVisible();
+  await expect(page.locator('#chart')).toBeHidden();
   await page.getByRole('tab', { name: /表2/ }).click();
   await expect(page.locator('#panel-recipe2')).toBeVisible();
   await expect.poll(() => page.locator('#panel-recipe2 tbody tr').count()).toBeGreaterThan(5);

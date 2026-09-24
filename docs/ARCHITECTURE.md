@@ -72,7 +72,9 @@ parameters and known outline differences are recorded in that directory. Colour
 selections tint only the model nodes the game client colours: per-Mag masks in
 `assets/img/mag/color-mask/`, rendered with the same cameras, select the pixels
 that are multiplied by the chosen colour. The node evidence lives in bb-psov4
-(`docs/psobb-mag-color-rendering.md`).
+(`docs/psobb-mag-color-rendering.md`). The Mag page's sticky nav shows one
+`[data-mag-section]` at a time; any URL fragment selects the section containing
+its target, so section, class-tab and feeding-table deep links keep working.
 - `scripts/`: data generation, upstream synchronization, architecture checks and
   deterministic release construction.
 - `third_party/`: licenses and provenance for synchronized upstream material.

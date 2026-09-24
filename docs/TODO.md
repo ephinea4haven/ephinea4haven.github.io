@@ -59,6 +59,25 @@ acceptance evidence belongs in the linked records. Deployment status follows
 the successful Pages workflow for the relevant commit; see
 [production verification](DEPLOYMENT.md#production-verification).
 
+- [x] [Mag evolution chart](../tools/mag.html) colour preview and Mag detail
+  images (2026-09-24): the 46 original-model renders were brightened with
+  camera-relative lighting. Colour picks now tint only the model nodes the game
+  client colours, using per-Mag masks in `assets/img/mag/color-mask/` on the same
+  900 px renders, replacing the 64 px cyan Wiki sprites that painted the whole Mag.
+  Item-catalog Mag details reuse the renders as their HD image, labelled as
+  original model renders. The chart was then redesigned around the renders:
+  large portraits lit by the selected Mag colour, a level timeline, trigger-rate
+  bars, merged Lv.100 cards, a sticky named colour bar and phone layouts without
+  horizontal page scrolling. The page nav now shows one section at a time
+  (evolution chart, feeding tables, Mag colours, and triggers with synchro and
+  IQ merged into a final tab); the old `#sync`, `#iq`, `#trigger` and sub-tab
+  fragments still open their section. The node evidence (ItemMagEdit table, client-hardcoded
+  nodes and part mapping) is recorded in bb-psov4
+  `docs/psobb-mag-color-rendering.md`; in-game screenshot comparison and the
+  exact colour/texture blend remain unverified. See the
+  [colour mask record](../assets/img/mag/color-mask/README.md) and
+  [item catalog record](ITEM_CATALOG.md#hd-detail-images-and-naming-updated-2026-09-24).
+
 - [x] [Launcher settings guide](../guide/launcher.html) (2026-09-16): documented
   the main window, five OPTIONS pages and MORE, with seven English screenshots
   from Windows in Parallels Desktop. The Chinese guide explains save/reset

@@ -8,6 +8,16 @@
  * this chart needs no legend for them.
  */
 
+/* Level markers share the homepage's self-hosted display face. */
+@font-face {
+    font-family: 'Orbitron';
+    font-style: normal;
+    font-weight: 500 900;
+    font-display: swap;
+    src: url('/assets/fonts/orbitron-latin.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+2000-206F, U+2190-2193, U+2212;
+}
+
 /* Tokens live on :root, not on .mag-chart — the legend and the tab bar sit
  * outside any chart and need them too. */
 :root {
@@ -20,9 +30,23 @@
     --rail: var(--accent);
 }
 
+/* The four stages are one levelling route, drawn as a spine on the left with
+ * a node per level gate. */
 .mag-chart {
     position: relative;
     margin: 24px 0 40px;
+    padding-left: 72px;
+}
+
+.mag-chart::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    bottom: 24px;
+    left: 27px;
+    width: 2px;
+    border-radius: 1px;
+    background: linear-gradient(to bottom, var(--accent-60), var(--accent-20) 70%, transparent);
 }
 
 /* ---------- SVG connector layer ----------
@@ -136,7 +160,8 @@
 /* Anything that can be a scroll target must clear the sticky bar — that
  * includes the tab buttons, whose ids are the #hu / #recipe5 deep links. */
 .mag-anchor,
-.mag-tab {
+.mag-tab,
+.mag-section {
     scroll-margin-top: 84px;
 }
 
@@ -150,35 +175,95 @@
     clip: rect(0 0 0 0);
 }
 
+/* Sticks under the section nav while the chart is on screen (its wrapper
+ * ends with the chart), so a colour can be compared across every stage. */
+.mag-chart-area {
+    position: relative;
+}
+
 .mag-picker {
+    position: sticky;
+    top: 66px;
+    z-index: 15;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
-    margin: 4px 0 18px;
+    gap: 12px;
+    margin: 16px 0 4px;
+    padding: 8px 12px;
+    background: rgba(10, 20, 46, .92);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--accent-20);
+    border-radius: 12px;
 }
 
 .mag-picker__label {
-    margin-right: 4px;
+    flex: none;
     font-size: 12.5px;
     font-weight: 600;
     color: var(--text-secondary);
 }
 
+/* The chosen colour, named: swatches alone are ambiguous (Red vs Ruby). */
+.mag-picker__current {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 7.5em;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.mag-picker__current::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--mag-tint, transparent);
+    border: 1px solid rgba(255, 255, 255, .35);
+}
+
+.mag-picker__current:not([data-exclusive=""])[data-exclusive]::after {
+    content: attr(data-exclusive);
+    padding: 1px 7px;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--dex);
+    border: 1px solid currentColor;
+    border-radius: 10px;
+}
+
+.mag-picker__swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0;
+    padding: 3px;
+}
+
+/* Positioned so the swatch's screen-reader label stays inside the scrolling
+ * swatch row instead of widening the page. */
 .mag-swatch {
+    position: relative;
     width: 22px;
     height: 22px;
     padding: 0;
     font: inherit;
     border: 1px solid rgba(255, 255, 255, .25);
-    border-radius: 6px;
+    border-radius: 50%;
     background: var(--sw);
     cursor: pointer;
     transition: transform .12s ease, box-shadow .12s ease;
 }
 
 .mag-swatch:hover {
-    transform: translateY(-2px);
+    transform: scale(1.15);
+}
+
+.mag-swatch:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .mag-swatch.is-on {
@@ -192,6 +277,7 @@
     font-weight: 600;
     color: var(--text-secondary);
     background: var(--accent-5);
+    border-radius: 11px;
 }
 
 .mag-swatch--reset.is-on {
@@ -297,27 +383,52 @@
 /* ---------- stage headings ---------- */
 
 .mag-stage {
-    margin-top: 34px;
+    margin-top: 44px;
+}
+
+.mag-stage:first-of-type {
+    margin-top: 28px;
 }
 
 .mag-stage__title {
+    position: relative;
     display: flex;
-    align-items: baseline;
-    gap: 12px;
+    align-items: center;
+    min-height: 56px;
     margin-bottom: 4px;
-    font-size: 17px;
+    font-size: 19px;
     font-weight: 600;
     color: var(--text-primary);
 }
 
-.mag-stage__step {
-    padding: 2px 9px;
-    border-radius: 20px;
-    font-size: 11px;
+/* The level gate as a node on the spine: the number is the stage's name. */
+.mag-stage__level {
+    position: absolute;
+    top: 50%;
+    left: -72px;
+    display: grid;
+    place-content: center;
+    width: 56px;
+    height: 56px;
+    font-family: 'Orbitron', var(--font-sans, sans-serif);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    color: var(--accent);
+    background: var(--bg-primary);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px var(--bg-primary), 0 0 22px var(--accent-30);
+    transform: translateY(-50%);
+}
+
+.mag-stage__level small {
+    margin-bottom: 3px;
+    font-size: 9px;
     font-weight: 600;
-    letter-spacing: .04em;
-    color: var(--accent-dark);
-    background: var(--rail);
+    letter-spacing: .1em;
+    opacity: .75;
 }
 
 .mag-stage__note {
@@ -352,29 +463,60 @@
  * the savings are in tighter type and spacing, not just a smaller sprite. */
 .mag-card {
     display: grid;
-    grid-template-columns: 56px minmax(0, 1fr);
-    gap: 11px;
-    padding: 10px 12px;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 8px;
+    padding: 12px 14px 14px;
     background: var(--card-bg);
     border: 1px solid var(--card-br);
-    border-radius: 9px;
-    transition: border-color .18s ease, background .18s ease;
+    border-radius: 12px;
+    transition: border-color .18s ease;
 }
 
 .mag-card:hover {
     border-color: var(--accent-30);
-    background: rgba(255, 255, 255, .055);
 }
 
-/* The source sprites are 64×64 and display slightly smaller here. Let the
- * browser downsample them smoothly; pixelated rendering exaggerates pale edge
- * pixels and makes the recoloured material look flatter than the screenshots. */
+/* The Mag hovers over a pool of light in the selected Mag colour, with a
+ * soft floor shadow beneath it, like a Mag at the player's shoulder. */
+.mag-card__portrait {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 136px;
+    border-radius: 9px;
+    background: radial-gradient(closest-side at 50% 58%,
+        color-mix(in srgb, var(--mag-tint, var(--accent)) 24%, transparent),
+        color-mix(in srgb, var(--mag-tint, var(--accent)) 6%, transparent) 70%,
+        transparent);
+    transition: background .3s ease;
+}
+
+.mag-card__portrait::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    width: 52%;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0, 0, 0, .5), transparent);
+    transform: translateX(-50%);
+}
+
+/* The 900px original-model renders downsample smoothly at this size. */
 .mag-card__sprite {
-    width: 56px;
-    height: 56px;
+    position: relative;
+    z-index: 1;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
     image-rendering: auto;
-    align-self: start;
+    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .35));
+}
+
+.mag-card__body {
+    text-align: center;
 }
 
 .mag-card__name {
@@ -407,6 +549,7 @@
 .mag-card__pb {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 5px;
     margin-top: 6px;
@@ -444,35 +587,53 @@
 }
 
 .mag-card__label {
-    font-size: 10.5px;
-    color: var(--text-muted);
+    font-size: 11px;
+    color: var(--text-secondary);
 }
 
 /* ---------- trigger table ---------- */
 
 .mag-trig {
     display: grid;
-    gap: 2px;
-    margin-top: 6px;
-    padding-top: 6px;
+    /* Rows share the columns, so every bar starts and ends at the same x. */
+    grid-template-columns: max-content max-content minmax(28px, 1fr) max-content;
+    align-items: center;
+    gap: 5px 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    text-align: left;
     border-top: 1px solid var(--card-br);
-    font-size: 10.5px;
-    color: var(--text-muted);
-}
-
-.mag-trig__row {
-    display: grid;
-    grid-template-columns: 50px minmax(0, 1fr) auto;
-    gap: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
     font-variant-numeric: tabular-nums;
 }
 
-.mag-trig__event {
-    color: var(--text-secondary);
+.mag-trig__row {
+    display: contents;
 }
 
+.mag-trig__event,
+.mag-trig__effect {
+    white-space: nowrap;
+}
+
+/* Rate on a 0–100% track: solid up to the base rate, lighter up to the rate
+ * high synchro can reach. */
+.mag-trig__bar {
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg,
+        var(--accent) 0 var(--lo),
+        var(--accent-40) var(--lo) var(--hi),
+        rgba(255, 255, 255, .08) var(--hi) 100%);
+}
+
+/* The trigger rate is the value players compare, so it gets the strongest
+ * contrast in the card body. */
 .mag-trig__rate {
     text-align: right;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 /* ---------- Lv.1 → Lv.35 flow ---------- */
@@ -488,7 +649,7 @@
  * where the SVG draws a labelled connector — so the gap reads as "Mag, fed as
  * this class, becomes this form", not as dead space inside an over-wide card. */
 .mag-flow .mag-card {
-    flex: 0 1 auto;
+    flex: 0 1 280px;
     max-width: 100%;
 }
 
@@ -551,6 +712,21 @@
 .mag-grid .mag-card {
     width: 100%;
     max-width: 360px;
+}
+
+/* A card answering several rules spans their rows; centre its content in
+ * that span. The long Lv.50 / Lv.100 lists also use a smaller portrait. */
+.mag-grid .mag-card {
+    align-content: center;
+}
+
+.mag-grid .mag-card__portrait {
+    height: 116px;
+}
+
+.mag-grid .mag-card__sprite {
+    width: 104px;
+    height: 104px;
 }
 
 .mag-grid .mag-card[style*="grid-column:1"] {
@@ -662,51 +838,28 @@
     gap: 14px;
 }
 
-/* ---------- Lv.100 grid ---------- */
+/* ---------- Lv.100 grid ----------
+ * Reuses the Lv.50 grid; the middle column also carries each formula's
+ * Section ID icons, so it is wider and wraps.
+ */
 
-.mag-lv100 {
-    display: grid;
-    gap: 16px;
+.mag-grid--lv100 {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 280px) minmax(0, 1fr);
 }
 
-.mag-lv100__head {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 260px) minmax(0, 1fr);
-    gap: 16px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    text-align: center;
+.mag-grid--lv100 .mag-rule {
+    white-space: normal;
 }
 
-.mag-lv100__row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 260px) minmax(0, 1fr);
-    gap: 16px;
-    align-items: center;
+.mag-grid--lv100 .mag-idset {
+    justify-content: center;
 }
 
-/* Moderate cards centred under their centred "男性 / 女性" headers, the
- * connector reaching in to the central formula. */
-.mag-lv100__row .mag-card {
-    width: 100%;
-    max-width: 360px;
-    justify-self: center;
-}
-
-.mag-lv100__formula {
-    padding: 14px 12px;
-    text-align: center;
-    border: 1px dashed var(--card-br);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, .02);
-}
-
-.mag-lv100__expr {
+.mag-rule__expr {
     font-size: 13px;
     font-weight: 600;
     color: var(--text-primary);
-    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }
 
 /* ---------- legend ---------- */
@@ -865,6 +1018,12 @@
     border-radius: 5px;
 }
 
+/* Feeding tables have seven columns; scroll them inside their own region on
+ * narrow screens instead of widening the page. */
+.mag-feed-table-wrap {
+    overflow-x: auto;
+}
+
 /* The original Mag colours are selected through class-specific costume
  * coordinates. Keep the complete matrix available without forcing the page or
  * narrow screens wider than the viewport. */
@@ -1001,15 +1160,97 @@
     }
 
     .mag-branch,
-    .mag-special__cards,
-    .mag-lv100__row {
+    .mag-special__cards {
         grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mag-chart {
+        padding-left: 44px;
+    }
+
+    .mag-chart::before {
+        left: 17px;
+    }
+
+    .mag-stage__title {
+        min-height: 40px;
+        font-size: 17px;
+    }
+
+    .mag-stage__level {
+        left: -44px;
+        width: 36px;
+        height: 36px;
+        font-size: 12px;
+        box-shadow: 0 0 0 4px var(--bg-primary), 0 0 14px var(--accent-30);
+    }
+
+    .mag-stage__level small {
+        margin-bottom: 1px;
+        font-size: 7px;
+    }
+
+    .mag-picker {
+        top: 62px;
+        flex-wrap: wrap;
+        gap: 6px 10px;
+    }
+
+    /* One scrollable row keeps the sticky bar short on phones. */
+    .mag-picker__swatches {
+        flex: 1 0 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .mag-picker__swatches::-webkit-scrollbar {
+        display: none;
+    }
+
+    .mag-swatch {
+        flex: none;
+    }
+
+    /* The long Lv.50 / Lv.100 lists stack 10+ cards on a phone, so there the
+     * portrait moves beside the name and the trigger rows span the card. */
+    .mag-grid .mag-card {
+        grid-template-columns: 88px minmax(0, 1fr);
+        gap: 2px 12px;
+        text-align: left;
+    }
+
+    .mag-grid .mag-card__portrait {
+        grid-row: 1 / span 3;
+        height: 92px;
+    }
+
+    .mag-grid .mag-card__sprite {
+        width: 84px;
+        height: 84px;
+    }
+
+    .mag-grid .mag-card__body {
+        display: contents;
+        text-align: left;
+    }
+
+    .mag-grid .mag-card__body > * {
+        grid-column: 2;
+        align-self: center;
+    }
+
+    .mag-grid .mag-card__pb {
+        justify-content: flex-start;
+    }
+
+    .mag-grid .mag-card .mag-trig {
+        grid-column: 1 / -1;
     }
 
     /* Single column: the connector lines would have nothing meaningful to link,
      * so drop the whole SVG layer. */
-    .mag-wire,
-    .mag-lv100__head {
+    .mag-wire {
         display: none;
     }
 
