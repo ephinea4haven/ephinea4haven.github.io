@@ -122,12 +122,13 @@ as separate models.
 
 ## Updating the data
 
-### HD detail images and naming (updated 2026-09-22)
+### HD detail images and naming (updated 2026-09-24)
 
 `content/item-catalog/hd-gallery.json` accounts for 607 source images: the original
 606-image 高清图库 collection with four images replaced by the supplied 替换.zip
 artwork and 14 shield images replaced by the supplied 盾牌替换 collection,
-plus one subsequently supplied SOF image. SHA-256 comparison reduces
+plus one subsequently supplied SOF image. Later individual corrections replace
+the Silence Claw and Gi Gue Bazooka sources as recorded below. SHA-256 comparison reduces
 these to 553 unique assets; the manifest records the current source paths,
 dimensions, sizes and checksums.
 The detail generator consumes only verified direct `itemIds`: 408 optimized
@@ -228,6 +229,19 @@ production build (1,268 routes and 45 event fragments). The maintainer approved
 commit and push; deployment status is tracked separately by the Pages workflow.
 Seven focused item/monster HD browser checks also passed.
 
+On 2026-09-24 the maintainer supplied a new Gi Gue Bazooka image explicitly
+identified by item name. The supplied PNG is 1280 × 938 (710,245 bytes);
+the published WebP is 1024 × 751 (63,454 bytes), encoded with
+`cwebp -q 85 -m 6 -resize 1024 0`. For full regeneration, replace
+`替换/GIGUE BAZOOKA.png` in the assembled working copy with
+`User-provided corrections/2026-09-24/09cf5fb96e7a409fccea3041cfc661ff_720.png`.
+The manifest records the new source checksum and dimensions; the source
+inventory remains 607 files. Visual inspection of the encoded image, all 23
+item/gallery tests and the production build passed (1,268 routes and 45 event
+fragments). Browser tests were not rerun for this image-only replacement.
+The maintainer approved commit and push; deployment status is tracked separately
+by the Pages workflow.
+
 ```sh
 node scripts/prepare_hd_gallery.mjs --check /path/to/高清图库
 node scripts/prepare_hd_gallery.mjs /path/to/高清图库 artifacts/hd-gallery
@@ -242,7 +256,7 @@ manifests or changed output bytes before writing any images, then removes retire
 WebPs from its owned destination directory. Regenerate the prepared gallery after
 changing the naming manifest; do not rename prepared files manually.
 They preserve aspect ratio at 1024-pixel width with lossy WebP quality 85,
-totaling 15,362,496 bytes. The detail frame displays them at up to 512 CSS pixels,
+totaling 15,361,784 bytes. The detail frame displays them at up to 512 CSS pixels,
 providing enough pixels for a 2× display at that size. This is optimized web
 artwork, not a lossless archival copy; enlarging it cannot retain the detail of
 the original roughly 5,000-pixel images. Downloaded originals are unchanged.

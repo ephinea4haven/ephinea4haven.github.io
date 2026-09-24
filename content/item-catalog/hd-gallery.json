@@ -4845,14 +4845,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed. Replacement artwork supplied in 替换.zip on 2026-09-19; matched to the previously reviewed source filename and item appearance.",
+      "evidence": "Replacement artwork supplied by the maintainer on 2026-09-24 explicitly for Gi Gue Bazooka; artwork visually reviewed.",
       "sources": [
         {
-          "path": "替换/GIGUE BAZOOKA.png",
-          "sha256": "f521647bc1a7ebd239b554893778d83d250b927062fe4f974d211c92182feaca",
-          "bytes": 19438650,
-          "width": 5444,
-          "height": 3989
+          "path": "User-provided corrections/2026-09-24/09cf5fb96e7a409fccea3041cfc661ff_720.png",
+          "sha256": "bdb506d72f3eee93928ea904c4229accc17852caa634a9b8b53b669953caba2b",
+          "bytes": 710245,
+          "width": 1280,
+          "height": 938
         }
       ]
     },
