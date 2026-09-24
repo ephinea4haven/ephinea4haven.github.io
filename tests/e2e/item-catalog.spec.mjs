@@ -250,6 +250,21 @@ test('HD details default to HD and switching changes both the image and its sour
   await expect(page.locator('.item-figure figcaption')).toContainText('HD gallery');
 });
 
+test('Mag details show the original-model render with its own source label', async ({page}) => {
+  await page.goto('/data/items/varuna.html?lang=zh');
+  const picture = page.locator('.image-stage img');
+  const caption = page.locator('.item-figure figcaption');
+  await expect(picture).toHaveAttribute('src', '/assets/img/mag/default/Varuna.webp');
+  await expect.poll(() => picture.evaluate(img => img.naturalWidth)).toBe(900);
+  await expect(caption).toContainText('图片来源：原始模型渲染');
+  await page.getByRole('button', {name:'现有图片', exact:true}).click();
+  await expect(picture).toHaveAttribute('src', '/assets/img/items/wiki/3e69aa39006afee6.png');
+  await expect(caption).toContainText('Ephinea Wiki');
+  await page.getByRole('button', {name:'English', exact:true}).click();
+  await page.getByRole('button', {name:'HD image', exact:true}).click();
+  await expect(caption).toContainText('original model render');
+});
+
 test('HD images never load in the list and do not affect image-only filtering', async ({page}) => {
   const hdRequests = [];
   page.on('request', request => { if (request.url().includes('/assets/img/items/hd/')) hdRequests.push(request.url()); });
@@ -267,7 +282,7 @@ test('HD images never load in the list and do not affect image-only filtering', 
 test('single-source and missing-image details have no unnecessary image switch', async ({page}) => {
   for (const [id, image] of [
     ['dress-plate', '/assets/img/items/hd/items/dress-plate.webp'],
-    ['mag', items.find(item => item.id === 'mag').image],
+    ['chu-chu', items.find(item => item.id === 'chu-chu').image],
     ['god-power', '/assets/img/items/no-image.webp'],
   ]) {
     await page.goto(`/data/items/${id}.html`);

@@ -14,8 +14,9 @@ The catalog lives at `/data/items.html`, with one detail page per item at
 The snapshot contains 1,045 entries: 419 weapons, 88 frames, 107 barriers, 100
 units, 84 Mags and 247 other items. The list retains Wiki images for 547 entries,
 drawn from 478 PNG files totaling about 4.9 MB. Detail pages additionally offer
-HD images for 414 entries; 47 previously had no Wiki image, bringing detail image
-coverage to 594 entries. The snapshot was taken on 2026-09-14;
+HD images for 414 entries from the HD gallery, 47 of which previously had no
+Wiki image, plus the Mag evolution chart's original-model renders for 46 Mags,
+bringing detail image coverage to 594 entries. The snapshot was taken on 2026-09-14;
 the cosmetic item pages and 21 excerpt fixes were re-merged on 2026-09-15 at
 unchanged Wiki revisions, and those records carry their own check date.
 Independent models such as manufacturing year, manufacturer and genuine versus
@@ -135,7 +136,11 @@ The detail generator consumes only verified direct `itemIds`: 408 optimized
 images cover 414 details. The `hdImage` field is emitted only in per-item detail
 data, leaving the searchable list's image paths and image-only filter unchanged.
 Details default to HD when available and offer HD / Wiki buttons when both images
-exist. The displayed source and full-size image link follow the selected image.
+exist. Mag details reuse the 46 original-model renders in
+`assets/img/mag/default/` as their HD image (`hdSource: model-render`, captioned as
+an original model render rather than the HD gallery); the generator fails if a
+render has no matching catalog Mag or a Mag also has a gallery image. The other 38
+Mags keep only their Wiki image. The displayed source and full-size image link follow the selected image.
 Navigating to another item resets the choice to HD. Single-source details show
 their available image without a switch. Related-item thumbnails stay unchanged.
 
@@ -254,6 +259,18 @@ Visual inspection of the encoded image, all 23 item/gallery tests and the
 production build passed (1,268 routes and 45 event fragments). Browser tests
 were not rerun for this image-only replacement. The maintainer approved commit
 and push; deployment status is tracked separately by the Pages workflow.
+
+Also on 2026-09-24, Mag details gained HD images from the Mag evolution chart's
+46 original-model renders in `assets/img/mag/default/`, reused in place rather
+than copied into the HD gallery. The generator binds each render to the catalog
+Mag with the same exact title and marks it `hdSource: model-render`, so the
+caption reads "original model render" instead of "HD gallery"; the gallery
+manifest and its 414 details are unchanged. The Mag entry used by the
+single-source browser case became switchable, so that case now uses Chu Chu,
+which has only a Wiki image. `npm test` (23 item/gallery checks), the production
+build (1,268 routes and 45 event fragments) and the full browser regression
+(1,457 tests, including a new Mag detail case) passed. The maintainer approved
+commit and push; deployment status is tracked separately by the Pages workflow.
 
 ```sh
 node scripts/prepare_hd_gallery.mjs --check /path/to/高清图库

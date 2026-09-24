@@ -9,6 +9,7 @@ export const MESSAGES: Record<string, readonly [string, string]> = {
   '高清图片': ['HD image', '高解像度画像'],
   '现有图片': ['Wiki image', 'Wiki 画像'],
   '图片来源：高清图库': ['Image: HD gallery', '画像：高解像度ギャラリー'],
+  '图片来源：原始模型渲染': ['Image: original model render', '画像：オリジナルモデルのレンダリング'],
   '道具图鉴': ['Item Database', 'アイテム図鑑'],
   '站点导航': ['Site navigation', 'サイトナビゲーション'],
   '中英日名称对照': ['Name reference', '名称対照表'],
