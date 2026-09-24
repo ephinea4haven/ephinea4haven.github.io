@@ -110,9 +110,12 @@ export function initializeMag(root, evolution, simulation) {
             .filter((e) => e in mag.triggers)
             .map((e) => {
                 const t = mag.triggers[e];
+                // "50–85%": the base rate, raised by up to +35% at high synchro.
+                const [lo, hi = lo] = t.rate.match(/\d+/g).map(Number);
                 return `<div class="mag-trig__row">
           <span class="mag-trig__event">${esc(e)}</span>
-          <span>${esc(meta.effects[t.effect] || t.effect)}</span>
+          <span class="mag-trig__effect">${esc(meta.effects[t.effect] || t.effect)}</span>
+          <span class="mag-trig__bar" style="--lo:${lo}%;--hi:${hi}%" aria-hidden="true"></span>
           <span class="mag-trig__rate">${esc(t.rate)}</span>
         </div>`;
             });
@@ -142,7 +145,7 @@ export function initializeMag(root, evolution, simulation) {
      * own copy comes back. */
     function card(mag, meta, place = '') {
         return `<div class="mag-card"${place}>
-      <img class="mag-card__sprite" src="${sprite(mag.name)}" alt="${esc(mag.name)}" loading="lazy" data-mag="${esc(mag.name)}">
+      ${portrait(mag.name)}
       <div class="mag-card__body">
         <div class="mag-card__name">${esc(mag.zh)}<span class="mag-card__en">${esc(mag.name)}</span></div>
         <div class="mag-card__cond">${condLine(mag)}</div>
@@ -152,9 +155,18 @@ export function initializeMag(root, evolution, simulation) {
     </div>`;
     }
 
-    function stage(step, title, body, note) {
+    /* The Mag is the subject of every card: a large portrait lit from below by
+     * the selected Mag colour (--mag-tint, cyan when uncoloured). */
+    function portrait(name) {
+        return `<div class="mag-card__portrait">
+        <img class="mag-card__sprite" src="${sprite(name)}" alt="${esc(name)}" loading="lazy" data-mag="${esc(name)}">
+      </div>`;
+    }
+
+    /* Each stage is a node on the chart's level timeline. */
+    function stage(level, title, body, note) {
         return `<section class="mag-stage">
-      <h3 class="mag-stage__title"><span class="mag-stage__step">${esc(step)}</span>${esc(title)}</h3>
+      <h3 class="mag-stage__title"><span class="mag-stage__level"><small>Lv</small>${esc(level)}</span>${esc(title)}</h3>
       ${note ? `<p class="mag-stage__note">${note}</p>` : ''}
       ${body}
     </section>`;
@@ -168,8 +180,8 @@ export function initializeMag(root, evolution, simulation) {
 
     function starterCard() {
         return `<div class="mag-card">
-      <img class="mag-card__sprite" src="${sprite('Mag')}" alt="Mag" loading="lazy" data-mag="Mag">
-      <div>
+      ${portrait('Mag')}
+      <div class="mag-card__body">
         <div class="mag-card__name">玛古<span class="mag-card__en">Mag</span></div>
         <div class="mag-card__cond">初始形态</div>
       </div>
@@ -190,7 +202,7 @@ export function initializeMag(root, evolution, simulation) {
       ${arrow(`${key} 职业`)}
       ${card(c.stage1, meta)}
     </div>`;
-        return stage('LV.10', '一阶 · 只看职业', flow,
+        return stage('10', '一阶 · 只看职业', flow,
             `进化结果<b>仅</b>取决于把 Mag 喂到 Lv.10 的角色职业，与属性完全无关。`);
     }
 
@@ -200,7 +212,7 @@ export function initializeMag(root, evolution, simulation) {
       <span class="mag-gate__label">达到 Lv.35 · 比较 ${colorize('POW / DEX / MIND')} 最大值</span>
     </div>
     <div class="mag-branch">${c.stage2.map((m) => card(m, meta)).join('')}</div>`;
-        return stage('LV.35', '二阶 · 看一阶形态 + 最高属性', body,
+        return stage('35', '二阶 · 看一阶形态 + 最高属性', body,
             `此处<b>与职业无关</b>：由 ${esc(c.stage1.zh)} ${esc(c.stage1.name)} 出发，只比最高属性。`
             + `若最高属性并列，则按一阶形态的优先属性裁决 —— ${esc(c.stage1.zh)} 认 `
             + `${colorize(c.tieBreak)}，进化为 ${esc(tie ? tie.zh : '')}。`);
@@ -251,27 +263,46 @@ export function initializeMag(root, evolution, simulation) {
       ${c.stage3.B.map((m) => card(m, meta, at(m, 3))).join('')}
     </div>`;
 
-        return stage('LV.50', '三阶 · 看 Section ID + 进化条件', special + grid,
+        return stage('50', '三阶 · 看 Section ID + 进化条件', special + grid,
             '中间列是进化条件（属性比较），左右是 A 组 / B 组满足该条件时得到的 mag —— 同一条件在两组给出不同结果。'
             + '<b>Lv.50 之后每 5 级还可再次进化</b>（55、60、65…），前提是满足另一组进化条件，'
             + '例如把 Mag 转给另一个角色去喂。');
     }
 
+    /* Lv.100 uses the Lv.50 grid: formulas form the middle column and a Mag
+     * that answers several consecutive formulas is one card spanning those
+     * rows, instead of a repeated card per formula. The card's own rule line
+     * lists the formulas and Section IDs it covers for the single-column
+     * fallback. */
     function renderStage4(c, meta) {
-        const rows = c.stage4.map((r) => `<div class="mag-lv100__row">
-      ${card(r.male, meta)}
-      <div class="mag-lv100__formula">
-        <div class="mag-lv100__expr">${colorize(r.formula)}</div>
+        const ids = (r) => meta.idGroups[r.group].join(' / ');
+        const spans = (side) => {
+            const out = [];
+            c.stage4.forEach((r, i) => {
+                const last = out[out.length - 1];
+                if (last && last.mag.name === r[side].name) last.rows.push(r);
+                else out.push({ mag: r[side], start: i, rows: [r] });
+            });
+            return out;
+        };
+        const cards = (side, col) => spans(side).map(({ mag, start, rows }) => card(
+            { ...mag, cond: rows.map((r) => `${r.formula} · ${ids(r)}`) }, meta,
+            ` style="grid-column:${col};grid-row:${start + 2}/span ${rows.length}"`)).join('');
+        const rules = c.stage4.map((r, i) => `<div class="mag-rule" style="grid-row:${i + 2}">
+        <div class="mag-rule__expr">${colorize(r.formula)}</div>
         ${idSet(meta.idGroups[r.group])}
-      </div>
-      ${card(r.female, meta)}
-    </div>`).join('');
+      </div>`).join('');
+        const head = (label) => `<div class="mag-col__head"><div class="mag-col__title">${esc(label)}</div></div>`;
 
-        const body = `<div class="mag-lv100">
-      <div class="mag-lv100__head"><span>男性角色</span><span>数值公式 + Section ID</span><span>女性角色</span></div>
-      ${rows}
+        const grid = `<div class="mag-grid mag-grid--lv100">
+      ${head('男性角色')}
+      ${cards('male', 1)}
+      <div class="mag-grid__rulehead">数值公式 + Section ID</div>
+      ${rules}
+      ${head('女性角色')}
+      ${cards('female', 3)}
     </div>`;
-        return stage('LV.100', '四阶 · 看数值公式 + Section ID + 性别', body,
+        return stage('100', '四阶 · 看数值公式 + Section ID + 性别', grid,
             'Lv.100 起每逢 10 的倍数判定一次（110、120…）：公式、Section ID 与角色性别必须同时满足，'
             + '且<b>只能由三阶 Mag 进化</b>。四阶不保证达成 —— 若过了 100 级仍未进化，可转给条件吻合的角色再喂一次。'
             + '<b>一旦进化为四阶，便不再进化，也不再学习新的 PB。</b>');
@@ -406,13 +437,12 @@ export function initializeMag(root, evolution, simulation) {
             }
         }
 
-        // Lv.50 rules → the A card left and B card right for that rule. Matched
+        // Lv.50 and Lv.100 rules → the card left and card right for that rule. Matched
         // by the renderer's own grid-row spans (not by pixels), so a card that
         // covers several rules links to each — and the arrow lands clamped
         // inside that card even when it is shorter than the rows it spans.
         // Skip rules with no box (hidden below 900px).
-        const grid = chart.querySelector('.mag-grid');
-        if (grid) {
+        chart.querySelectorAll('.mag-grid').forEach((grid) => {
             const rowOf = (el) => {
                 const m = /grid-row:\s*(\d+)(?:\s*\/\s*span\s*(\d+))?/.exec(el.getAttribute('style') || '');
                 if (!m) return null;
@@ -433,16 +463,6 @@ export function initializeMag(root, evolution, simulation) {
                 if (a) elbowInto(R.l, a.box, R.cy, -1);
                 if (b) elbowInto(R.r, b.box, R.cy, +1);
             });
-        }
-
-        // Lv.100: each formula → the male card left, the female card right.
-        chart.querySelectorAll('.mag-lv100__row').forEach((row) => {
-            const f = row.querySelector('.mag-lv100__formula');
-            const cards = [...row.querySelectorAll('.mag-card')];
-            if (!f || cards.length < 2) return;
-            const F = rel(f);
-            elbowInto(F.l, rel(cards[0]), F.cy, -1);
-            elbowInto(F.r, rel(cards[1]), F.cy, +1);
         });
 
         svg.innerHTML = `<path class="mag-wire__path" d="${seg.join(' ')}"></path>${labels.join('')}`;
@@ -512,32 +532,41 @@ export function initializeMag(root, evolution, simulation) {
         fromHash(true);
     }
 
-    /* ---------- sticky section nav ----------
-     * Highlights whichever section is currently on screen. The page is long
-     * even with tabs, so a nav you cannot orient yourself in is dead weight.
+    /* ---------- section nav ----------
+     * The page's six sections are views: the nav shows one at a time instead
+     * of one long scroll. Any hash selects the section that contains its
+     * target, so the old deep links (#sync, #hu, #recipe5, …) keep working;
+     * a sub-target such as a class tab is then scrolled to directly.
      */
 
     function initSectionNav(nav) {
-        const links = [...nav.querySelectorAll('a[href^="#"]')];
-        const targets = links
-            .map((a) => ({ a, el: document.getElementById(a.hash.slice(1)) }))
-            .filter((t) => t.el);
-        if (!targets.length) return;
+        const sections = [...root.querySelectorAll('[data-mag-section]')];
+        // The build rewrites in-page hrefs to /tools/mag.html#…, so match by hash.
+        const links = [...nav.querySelectorAll('a')].filter((a) => a.hash);
+        if (!sections.length) return;
+        const sectionOf = (el) => el && sections.find((section) => section.contains(el));
 
-        const seen = new Map();
-        const mark = () => {
-            const visible = targets.filter((t) => seen.get(t.el));
-            const current = visible[0] || null;
-            links.forEach((a) => a.removeAttribute('aria-current'));
-            if (current) current.a.setAttribute('aria-current', 'true');
-        };
+        function show(section, target) {
+            const id = section.getAttribute('aria-labelledby');
+            sections.forEach((s) => { s.hidden = s !== section; });
+            links.forEach((a) => {
+                if (a.hash.slice(1) === id) a.setAttribute('aria-current', 'page');
+                else a.removeAttribute('aria-current');
+            });
+            // The chart may just have become visible; its wires measured 0.
+            redrawWires();
+            if (target) (target.id === id ? section : target).scrollIntoView({ block: 'start' });
+        }
 
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach((e) => seen.set(e.target, e.isIntersecting));
-            mark();
-        }, { rootMargin: '-72px 0px -55% 0px' });
+        function fromHash(initial) {
+            const hash = decodeURIComponent(location.hash.slice(1));
+            const target = hash ? document.getElementById(hash) : null;
+            const section = sectionOf(target) || (initial ? sections[0] : null);
+            if (section) show(section, target);
+        }
 
-        targets.forEach((t) => io.observe(t.el));
+        window.addEventListener('hashchange', () => fromHash(false));
+        fromHash(true);
     }
 
     /* ---------- click-to-copy ----------
@@ -591,14 +620,24 @@ export function initializeMag(root, evolution, simulation) {
         data-hex="${esc(c.hex)}" style="--sw:${esc(c.hex)}"><span class="sr-only">${esc(c.name)}</span></button>`;
 
         mount.innerHTML = `<span class="mag-picker__label">Mag 颜色</span>
-      <button class="mag-swatch mag-swatch--reset is-on" type="button" title="原始（无色）" data-hex="">原色</button>
-      ${colors.map(swatch).join('')}`;
+      <output class="mag-picker__current" aria-live="polite">原色</output>
+      <div class="mag-picker__swatches">
+        <button class="mag-swatch mag-swatch--reset is-on" type="button" title="原始（无色）" data-hex="">原色</button>
+        ${colors.map(swatch).join('')}
+      </div>`;
+        const current = mount.querySelector('.mag-picker__current');
 
         mount.addEventListener('click', (e) => {
             const btn = e.target.closest('[data-hex]');
             if (!btn) return;
             mount.querySelectorAll('[data-hex]').forEach((b) => b.classList.remove('is-on'));
             btn.classList.add('is-on');
+            const color = colors.find((c) => c.hex === btn.dataset.hex);
+            current.textContent = color ? color.name : '原色';
+            current.dataset.exclusive = color?.exclusive ? 'E 服独占' : '';
+            // The portrait glow follows the chosen colour across every chart.
+            if (color) root.style.setProperty('--mag-tint', color.hex);
+            else root.style.removeProperty('--mag-tint');
             applyRecolor(btn.dataset.hex || null);
         });
     }

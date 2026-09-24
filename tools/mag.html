@@ -17,14 +17,13 @@
     <nav class="mag-nav" aria-label="页面导航" data-section-nav>
         <a href="#chart">进化图谱</a>
         <a href="#recipe">喂食表</a>
-        <a href="#sync">同步率</a>
-        <a href="#iq">智力</a>
-        <a href="#trigger">PB 激活条件</a>
-<a href="#colors">玛古配色</a>
+        <a href="#colors">玛古配色</a>
+        <a href="#triggers">触发与同步率</a>
     </nav>
 
     <div class="content-container">
 
+<section class="mag-section" data-mag-section aria-labelledby="chart">
 <p><a href="https://magfeeder.psohaven.com/">→ 玛古模拟器</a></p>
 
 <div class="mag-legend">
@@ -36,26 +35,28 @@
     <span class="stat--def">DEF 防御</span>
   </div>
   <div>决定进化的职业、Section ID 与性别，取自<b>进化前喂下最后一个道具的那个角色</b>——不一定是玛古的主人。</div>
-  <div>卡片底部触发表三列为<b>事件 · 效果 · 触发概率</b>（缺行即无此触发）；效果为 <b>无敌</b> / <b>圣泉术</b>（Resta）/ <b>强攻·强体</b>（Shifta &amp; Deband）。</div>
+  <div>卡片底部触发表为<b>事件 · 效果 · 触发概率</b>（缺行即无此触发）；效果为 <b>无敌</b> / <b>圣泉术</b>（Resta）/ <b>强攻·强体</b>（Shifta &amp; Deband）。概率条的实色段是基础概率，浅色段是同步率最多能加到的概率。</div>
   <div><b>死亡触发在 Blue Burst 中已禁用</b>，故本图不列。</div>
 </div>
 
 <h2 id="chart" class="mag-anchor">进化图谱</h2>
 
-<div class="mag-picker" data-mag-colorpicker></div>
-
+<div class="mag-chart-area">
 <div class="mag-tabs" role="tablist" aria-label="职业" data-mag-tabs>
   <button class="mag-tab" role="tab" id="hu" aria-controls="panel-hu" aria-selected="true">战士 <span>Hunters</span></button>
   <button class="mag-tab" role="tab" id="ra" aria-controls="panel-ra" aria-selected="false">枪手 <span>Rangers</span></button>
   <button class="mag-tab" role="tab" id="fo" aria-controls="panel-fo" aria-selected="false">法师 <span>Forces</span></button>
 </div>
 
+<div class="mag-picker" data-mag-colorpicker></div>
+
 <div id="panel-hu" role="tabpanel" aria-labelledby="hu" data-mag-chart="HU"></div>
 <div id="panel-ra" role="tabpanel" aria-labelledby="ra" data-mag-chart="RA" hidden></div>
 <div id="panel-fo" role="tabpanel" aria-labelledby="fo" data-mag-chart="FO" hidden></div>
+</div>
+</section>
 
-
-<hr>
+<section class="mag-section" data-mag-section aria-labelledby="recipe">
 <h2 id="recipe" class="mag-anchor">喂食表</h2>
 
 <p>每次喂食按当前玛古所处的喂食表结算。同一只玛古在不同阶段可能换表。</p>
@@ -73,6 +74,7 @@
 
 <div id="panel-recipe1" role="tabpanel" aria-labelledby="recipe1">
 <p class="mag-recipe__mags"><b>阶段0:</b>玛古</p>
+<div class="mag-feed-table-wrap" role="region" aria-label="喂食表 1" tabindex="0">
 <table data-feed-table="0">
 <thead><tr>
 <th>Item</th>
@@ -86,9 +88,11 @@
 <tbody></tbody>
 </table>
 </div>
+</div>
 
 <div id="panel-recipe2" role="tabpanel" aria-labelledby="recipe2" hidden>
 <p class="mag-recipe__mags"><b>阶段1:</b>Kalki, Varuna, Vritra</p>
+<div class="mag-feed-table-wrap" role="region" aria-label="喂食表 2" tabindex="0">
 <table data-feed-table="1">
 <thead><tr>
 <th>Item</th>
@@ -102,9 +106,11 @@
 <tbody></tbody>
 </table>
 </div>
+</div>
 
 <div id="panel-recipe3" role="tabpanel" aria-labelledby="recipe3" hidden>
 <p class="mag-recipe__mags"><b>阶段2:</b>Ashvinau, Namuci, Marutah, Rudra, Sumba</p>
+<div class="mag-feed-table-wrap" role="region" aria-label="喂食表 3" tabindex="0">
 <table data-feed-table="2">
 <thead><tr>
 <th>Item</th>
@@ -118,9 +124,11 @@
 <tbody></tbody>
 </table>
 </div>
+</div>
 
 <div id="panel-recipe4" role="tabpanel" aria-labelledby="recipe4" hidden>
 <p class="mag-recipe__mags"><b>阶段2:</b>Mitra, Tapas, Surya</p>
+<div class="mag-feed-table-wrap" role="region" aria-label="喂食表 4" tabindex="0">
 <table data-feed-table="3">
 <thead><tr>
 <th>Item</th>
@@ -134,9 +142,11 @@
 <tbody></tbody>
 </table>
 </div>
+</div>
 
 <div id="panel-recipe5" role="tabpanel" aria-labelledby="recipe5" hidden>
 <p class="mag-recipe__mags"><b>阶段2:</b>Vayu<br><b>阶段3:</b>Apsaras, Bhirava, Kaitabha, Kama, Kumara, Ushasu, Varaha</p>
+<div class="mag-feed-table-wrap" role="region" aria-label="喂食表 5" tabindex="0">
 <table data-feed-table="4">
 <thead><tr>
 <th>Item</th>
@@ -150,9 +160,11 @@
 <tbody></tbody>
 </table>
 </div>
+</div>
 
 <div id="panel-recipe6" role="tabpanel" aria-labelledby="recipe6" hidden>
 <p class="mag-recipe__mags"><b>阶段3:</b>Durga, Garuda, Ila, Nandin, Ribhava, Sita, Soma, Yaksa<br><b>阶段4:</b>Deva, Rukmin, Sato</p>
+<div class="mag-feed-table-wrap" role="region" aria-label="喂食表 6" tabindex="0">
 <table data-feed-table="5">
 <thead><tr>
 <th>Item</th>
@@ -166,9 +178,11 @@
 <tbody></tbody>
 </table>
 </div>
+</div>
 
 <div id="panel-recipe7" role="tabpanel" aria-labelledby="recipe7" hidden>
 <p class="mag-recipe__mags"><b>阶段3:</b>Andhaka, Bana, Kabanda, Madhu, Marica, Naga, Naraka, Ravana<br><b>阶段4:</b>Bhima, Pushan, Rati</p>
+<div class="mag-feed-table-wrap" role="region" aria-label="喂食表 7" tabindex="0">
 <table data-feed-table="6">
 <thead><tr>
 <th>Item</th>
@@ -182,9 +196,11 @@
 <tbody></tbody>
 </table>
 </div>
+</div>
 
 <div id="panel-recipe8" role="tabpanel" aria-labelledby="recipe8" hidden>
 <p class="mag-recipe__mags"><b>阶段4:</b>Cell Mags, Diwari, Nidra, Savitri</p>
+<div class="mag-feed-table-wrap" role="region" aria-label="喂食表 8" tabindex="0">
 <table data-feed-table="7">
 <thead><tr>
 <th>Item</th>
@@ -198,67 +214,10 @@
 <tbody></tbody>
 </table>
 </div>
+</div>
+</section>
 
-<hr>
-<h2 id="sync" class="mag-anchor">同步率</h2>
-
-<p>同步率最大为 120%，角色死亡一次降低 5%。对光子爆裂威力的影响见<a href="/tools/mechanics.html#pb-parameters">机制页的 PB 参数速查</a>。</p>
-
-<h3>玛古同步率规则</h3>
-
-<ul>
-<li>+: 基础值+阶梯增幅</li>
-<li>-: 只有阶梯增幅</li>
-<li>无: 忽略同步率(如果玛古触发效果没有+-，可忽略此项,可参考 <a href="https://wiki.pioneer2.net/index.php?title=Mags">Mags</a> )</li>
-</ul>
-
-<table>
-<thead><tr>
-<th>同步率</th>
-<th>概率加成</th>
-</tr></thead>
-<tbody>
-<tr>
-<td>0-30%</td>
-<td>+0%</td>
-</tr>
-<tr>
-<td>31-60%</td>
-<td>+15%</td>
-</tr>
-<tr>
-<td>61-80%</td>
-<td>+25%</td>
-</tr>
-<tr>
-<td>81-100%</td>
-<td>+30%</td>
-</tr>
-<tr>
-<td>101-120%</td>
-<td>+35%</td>
-</tr>
-</tbody>
-</table>
-
-<hr>
-
-<h2 id="iq" class="mag-anchor">智力</h2>
-
-<p>IQ 会影响玛古的恢复与辅助效果。光子爆裂的伤害、女神恢复量、双子辅助等级及连锁／捐赠算例，统一参见<a href="/tools/mechanics.html#photon-blast">游戏机制：玛古光子爆裂（PB）</a>。</p>
-
-<hr>
-
-<h2 id="trigger" class="mag-anchor">激活条件</h2>
-
-<ul>
-<li>玛古10% HP可能触发条件: 角色在一帧内损失超过20%最大HP，并且扣血后当前HP低于10%最大HP（例如狮鹫羽毛EX为21%）。</li>
-<li>Boss房激活无需解释</li>
-<li>100PB激活无需解释</li>
-</ul>
-
-<hr>
-
+<section class="mag-section" data-mag-section aria-labelledby="colors">
 <a id="ephinea_exclusive_mag_colors" class="mag-anchor"></a>
 <h2 id="colors" class="mag-anchor">玛古配色</h2>
 
@@ -520,6 +479,66 @@
     </figcaption>
   </figure>
 </div>
+</section>
+
+<section class="mag-section" data-mag-section aria-labelledby="triggers">
+<h2 id="triggers" class="mag-anchor">触发与同步率</h2>
+
+<p>玛古的辅助效果何时触发看<b>激活条件</b>，触发概率随<b>同步率</b>提高，效果强弱受<b>智力</b>影响。</p>
+
+<h3 id="trigger" class="mag-anchor">激活条件</h3>
+
+<ul>
+<li>玛古10% HP可能触发条件: 角色在一帧内损失超过20%最大HP，并且扣血后当前HP低于10%最大HP（例如狮鹫羽毛EX为21%）。</li>
+<li>Boss房激活无需解释</li>
+<li>100PB激活无需解释</li>
+</ul>
+
+<h3 id="sync" class="mag-anchor">同步率</h3>
+
+<p>同步率最大为 120%，角色死亡一次降低 5%。对光子爆裂威力的影响见<a href="/tools/mechanics.html#pb-parameters">机制页的 PB 参数速查</a>。</p>
+
+<p>玛古同步率规则：</p>
+
+<ul>
+<li>+: 基础值+阶梯增幅</li>
+<li>-: 只有阶梯增幅</li>
+<li>无: 忽略同步率(如果玛古触发效果没有+-，可忽略此项,可参考 <a href="https://wiki.pioneer2.net/index.php?title=Mags">Mags</a> )</li>
+</ul>
+
+<table>
+<thead><tr>
+<th>同步率</th>
+<th>概率加成</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>0-30%</td>
+<td>+0%</td>
+</tr>
+<tr>
+<td>31-60%</td>
+<td>+15%</td>
+</tr>
+<tr>
+<td>61-80%</td>
+<td>+25%</td>
+</tr>
+<tr>
+<td>81-100%</td>
+<td>+30%</td>
+</tr>
+<tr>
+<td>101-120%</td>
+<td>+35%</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="iq" class="mag-anchor">智力</h3>
+
+<p>IQ 会影响玛古的恢复与辅助效果。光子爆裂的伤害、女神恢复量、双子辅助等级及连锁／捐赠算例，统一参见<a href="/tools/mechanics.html#photon-blast">游戏机制：玛古光子爆裂（PB）</a>。</p>
+</section>
     </div>
 
     <!-- Back to Top Button -->
