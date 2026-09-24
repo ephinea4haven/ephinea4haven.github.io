@@ -7300,14 +7300,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Visual comparison with local Wiki image; shape and color reviewed against the candidate. Replacement artwork supplied in 替换.zip on 2026-09-19; matched to the previously reviewed source filename and item appearance.",
+      "evidence": "Replacement artwork supplied by the maintainer on 2026-09-24 explicitly for Red Dagger; artwork visually reviewed.",
       "sources": [
         {
-          "path": "替换/136.png",
-          "sha256": "7b1ff9e4e0de01021d304bee682cb13f96a4304119d89083b250b1a2db832ad2",
-          "bytes": 20678089,
-          "width": 5444,
-          "height": 3989
+          "path": "User-provided corrections/2026-09-24/b93ba0b7a9763caa51639b014dba70e4_720.png",
+          "sha256": "ca822cac1aff26b42c957300fcfcf2b7cfa253ee9765f6e9c858cd71c410c41d",
+          "bytes": 1120323,
+          "width": 1280,
+          "height": 938
         }
       ]
     },
