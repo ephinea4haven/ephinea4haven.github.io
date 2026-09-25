@@ -35,7 +35,8 @@ test('onboarding follows input language needs when switching languages',async({p
   for(const lang of ['zh','ja','en','zh']) {
     await page.locator(`[data-home-lang=${lang}]`).click();
     await expect(steps).toHaveCount(3);
-    await expect(steps.nth(2)).toHaveAttribute('href','/guide/launcher.html');
+    // The launcher guide has every language version, so the link follows the homepage's language.
+    await expect(steps.nth(2)).toHaveAttribute('href',lang==='zh'?'/guide/launcher.html':`/${lang}/guide/launcher.html`);
     if(lang==='en') await expect(steps.nth(2)).not.toContainText('IME');
     else await expect(steps.nth(2)).toContainText('IME');
     if(lang==='zh') await expect(patch).toBeVisible();

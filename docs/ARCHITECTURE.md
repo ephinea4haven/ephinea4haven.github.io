@@ -47,6 +47,9 @@ Interface text and long-form text are kept apart, as is standard:
   page-local translations. Pages and translated documents name items with an
   empty `<span data-item-en="…"></span>` placeholder, which the build fills with
   the authority name in the page's language.
+- Any attribute can come from a message key as `data-i18n-<attribute>="key"`
+  (for example `<page-chrome data-i18n-title="…">`); the shared page chrome gets
+  its back-link text from `common.backHome` and links to the reader's language.
 - Localized images (`<img data-i18n-src>`) keep the Chinese file under a `/zh/`
   directory with `/en/` and `/ja/` siblings; their `alt` comes from a message key
   (`data-i18n-alt`, with `data-i18n-args`).
@@ -58,7 +61,8 @@ Interface text and long-form text are kept apart, as is standard:
 
 `scripts/generate_angular_content.mjs` compiles every page once per available
 language: keys, document regions, localized images and item names are resolved
-at build time, so a published page contains only its own language and needs no
+at build time, then links are made root-relative and pointed at the same
+language's version of each page that has one, so a published page contains only its own language and needs no
 runtime switching. The catalogs, homepage and status simulator use the same URL
 language through `SiteLanguage`.
 

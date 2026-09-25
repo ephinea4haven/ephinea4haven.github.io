@@ -1,0 +1,800 @@
+<!-- English text for /tools/mechanics.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="intro">
+<div class="mechanics-intro">
+  <span class="mechanics-eyebrow">Combat mechanics, illustrated</span>
+  <p class="mechanics-intro-title">Read the numbers behind a single attack</p>
+  <p>Look at the diagrams to understand each check, then look up the formulas and details. Telling hit, damage and hit-reaction results apart gives your gear and combo choices a basis.</p>
+</div>
+<nav class="mechanics-nav" aria-label="Mechanics sections">
+  <a href="#physical-damage"><span>A</span>Physical damage</a>
+  <a href="#accuracy"><span>B</span>Hitting enemies</a>
+  <a href="#incoming-physical"><span>C</span>Evasion and Guard</a>
+  <a href="#technique-damage"><span>D</span>Technique damage</a>
+  <a href="#knockdown"><span>E</span>Knockdown threshold</a>
+  <a href="#hp-drain"><span>F</span>Weapons that cost HP</a>
+  <a href="#photon-blast"><span>G</span>Photon Blasts</a>
+  <a href="#mag-triggers"><span>H</span>Mag events</a>
+</nav>
+<p class="mechanics-illustration-note">This page summarizes the core formulas of Ephinea PSOBB. Unless noted otherwise, formulas and values come from  <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">the Ephinea Wiki’s Game mechanics page</a>. The game truncates final damage rather than rounding it: a result of 100.92 deals 100.</p>
+
+</section>
+
+<section data-part="physical-damage">
+<h2 id="physical-damage">A: Physical damage formula</h2>
+
+<p>Physical damage is all damage except fire- and lightning-type specials and techniques. The ATP shown in brackets in the menu is the class’s <strong>maximum</strong>; the game actually uses a hidden base ATP and adds a class-dependent random variance on every attack.</p>
+
+<figure class="mechanics-figure" aria-labelledby="atp-caption">
+  <figcaption id="atp-caption"><span class="mechanics-eyebrow">Weapon attribute, illustrated</span><strong>An attribute raises the minimum; the random range stays the same width</strong><span>Assume a 300–400 ATP weapon and compare the weapon alone, without grinds, other gear or Shifta.</span></figcaption>
+  <div class="mechanics-range-chart">
+    <div class="mechanics-chart-axis" aria-hidden="true"><span>0 ATP</span><span>700 ATP</span></div>
+    <div class="mechanics-chart-label"><span>Matching attribute 0%</span><strong>300–400 ATP</strong></div>
+    <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:42.857143%"></span><span class="mechanics-segment-spread" style="width:14.285714%"></span></div>
+    <div class="mechanics-chart-label"><span>Matching attribute 100%</span><strong>600–700 ATP</strong></div>
+    <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:85.714286%"></span><span class="mechanics-segment-spread" style="width:14.285714%"></span></div>
+    <div class="mechanics-legend"><span><i class="mechanics-segment-base" aria-hidden="true"></i>Minimum: 300 → 600</span><span><i class="mechanics-segment-spread" aria-hidden="true"></i>Random range: always 100</span></div>
+  </div>
+  <p class="mechanics-figure-takeaway">A 100% attribute does not double the final damage. The character’s base ATP, Shifta and the target’s DFP still enter the later steps.</p>
+</figure>
+
+<h3>Class attack variance (Pvar)</h3>
+<table>
+<thead><tr><th>Class</th><th>Pvar_max</th></tr></thead>
+<tbody>
+<tr><td>Hunter</td><td>6</td></tr>
+<tr><td>Ranger</td><td>4</td></tr>
+<tr><td>Force</td><td>3</td></tr>
+</tbody>
+</table>
+
+<h3>Step 1: Equipment ATP (EQATP)</h3>
+<p><code>EQATP = [WeaponATP_min + (grind × 2) + frame ATP + barrier ATP] × [weapon attribute% + 1]</code></p>
+<ul>
+<li>WeaponATP_min = the low end of the weapon’s ATP range</li>
+<li>Weapon attribute% = the attribute percentage that applies to the target type (Native / A.Beast / Machine / Dark)</li>
+</ul>
+
+<h3>Step 2: Base ATP</h3>
+<p><code>BaseATP = BaseATP_max - Pvar_max</code></p>
+<ul>
+<li>BaseATP_max = the ATP shown in brackets in the menu</li>
+</ul>
+
+<h3>Step 3: Effective ATP</h3>
+<p><code>ATPeff = [BaseATP + (Wvar × WSpread)] × (1 + Shifta%) + EQATP + Pvar</code></p>
+<ul>
+<li>Wvar = a random decimal from 0 to 1 on each attack</li>
+<li>WSpread = the width of the weapon’s ATP range (100 for a 300–400 ATP weapon)</li>
+<li>Shifta% = the boost percentage of the current Shifta level (see  <a href="#technique-damage">Section D</a>)</li>
+<li>Pvar = a random class variance on each attack: Hunter 1–6, Ranger 1–4, Force 1–3</li>
+</ul>
+<p>Shifta only applies to base ATP and the weapon’s random range, not to EQATP. The attribute percentage only multiplies the weapon’s minimum ATP and leaves the random range unchanged: a 300–400 ATP weapon with 100% attribute has 600–700 ATP, not 600–800.</p>
+
+<h3>Step 4: Effective DFP</h3>
+<p><code>DFPeff = DFP_base × (1 - Zalure%)</code></p>
+
+<h3>Step 5: Final damage</h3>
+<p><code>Damage = [(ATPeff - DFPeff) / 5] × 0.9 × attack multiplier</code></p>
+
+<h4>Attack multipliers</h4>
+<table>
+<thead><tr><th>Attack type</th><th>Multiplier</th></tr></thead>
+<tbody>
+<tr><td>Normal attack</td><td>×1.0</td></tr>
+<tr><td>Heavy attack</td><td>×1.89</td></tr>
+<tr><td>Special attack (ordinary specials)</td><td>×0.56</td></tr>
+<tr><td>Sacrifice specials (Charge / Spirit / Berserk)</td><td>×3.33</td></tr>
+<tr><td><span data-item-en="Vjaya"></span> ’s special attack</td><td>×5.67</td></tr>
+<tr><td>HP drain / TP drain / EXP steal / freeze / paralysis / confusion specials</td><td>×0.67</td></tr>
+<tr><td><span data-item-en="OROTIAGITO"></span>  piercing wave</td><td>×1.94</td></tr>
+<tr><td><span data-item-en="Raikiri"></span>  piercing wave</td><td>×0.97</td></tr>
+</tbody>
+</table>
+<ul>
+<li>HP-drain specials drain HP equal to the damage they deal.</li>
+<li>Each Vjaya special attack costs 10,000 Meseta, and its accuracy is calculated as a heavy attack.</li>
+</ul>
+
+<h4>Criticals and LCK</h4>
+<ul>
+<li>Player critical rate: <code>min(LCK, 100) / 5 %</code>. Characters cap at 100 LCK, so the highest critical rate is 20%.</li>
+<li>Enemy critical rate: <code>min(LCK, 100) / 2 %</code>.</li>
+<li>Critical damage: <code>attack result × 1.5</code>.</li>
+<li>Only attacks that have already hit, and are not techniques or fixed damage, roll for a critical.</li>
+<li>LCK is the only non-resistance stat that does not grow with levels; it can only be raised by equipment and <span data-item-en="Luck Material"></span>.</li>
+</ul>
+<p><strong>Two different kinds of Luck: </strong>the LCK stat only affects criticals, not drop rates; Ephinea also has a separate daily forecast, which gives a rare drop rate bonus to characters matching the day’s class, race or sex. <code>/forecast</code>  shows the day’s forecast conditions, and <code>/luck</code>  shows your current character’s forecast level. See the  <a href="https://wiki.pioneer2.net/w/Stats#Luck_(LCK)" target="_blank" rel="noopener">Ephinea Wiki on LCK</a> and the <a href="https://wiki.pioneer2.net/w/Daily_forecast" target="_blank" rel="noopener">daily forecast rules</a>.</p>
+
+<hr>
+</section>
+
+<section data-part="accuracy">
+<h2 id="accuracy">B: Hit calculation when players attack enemies</h2>
+
+<p>In this section the player attacks and the enemy defends. The player’s ATA and the enemy’s EVP decide whether an attack hits; a hit then goes on to the physical damage calculation in Section A. Techniques have no hit check: they always take effect when they touch the target.</p>
+
+<figure class="mechanics-figure" aria-labelledby="combo-caption">
+  <figcaption id="combo-caption"><span class="mechanics-eyebrow">Combo accuracy, illustrated</span><strong>The same heavy attack hits more easily later in the combo</strong><span>Example: 200 total ATA against 500 EVP, no status effects, melee. All three bars share a 0–100% scale.</span></figcaption>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>0%</span><span>100% · always hits</span></div>
+  <div class="mechanics-chart-label"><span>1st hit <small>×1.0</small></span><strong>40%</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:40%"></span></div>
+  <div class="mechanics-chart-label"><span>2nd hit <small>×1.3</small></span><strong>82%</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:82%"></span></div>
+  <div class="mechanics-chart-label"><span>3rd hit <small>×1.69</small></span><strong>100%</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:100%"></span></div>
+  <p class="mechanics-figure-note">1st hit: 200 × 0.7 × 1.0 − 500 × 0.2 = 40%. The 3rd hit calculates to 136.6%, and actual accuracy is capped at 100%.</p>
+  <p class="mechanics-figure-takeaway">Normal attacks have a higher accuracy modifier and suit the opener; putting heavy attacks later uses the combo modifier. The chart compares each hit’s accuracy, not the chance that the whole combo lands.</p>
+</figure>
+
+<h3>Step 1: Total accuracy (ATA)</h3>
+<p><code>ATA_total = ATA_base + weapon ATA + frame ATA + barrier ATA</code></p>
+<ul>
+<li>ATA_base = the ATA shown in brackets in the menu</li>
+<li>Weapon ATA includes the weapon’s Hit attribute</li>
+<li>ATA_total is the ATA shown outside the brackets in the menu; you can read it directly</li>
+</ul>
+
+<h3>Step 2: Effective accuracy</h3>
+<p><code>ATA_eff = ATA_total × attack type modifier × combo step modifier</code></p>
+
+<table>
+<thead><tr><th>Attack type modifier</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Normal attack</td><td>1.0</td></tr>
+<tr><td>Heavy attack</td><td>0.7</td></tr>
+<tr><td>Special attack</td><td>0.5</td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><tr><th>Combo step modifier</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>1st hit</td><td>1.0</td></tr>
+<tr><td>2nd hit</td><td>1.3</td></tr>
+<tr><td>3rd hit</td><td>1.69</td></tr>
+</tbody>
+</table>
+
+<h3>Step 3: Effective evasion (EVP)</h3>
+<p><code>EVP_eff = EVP_base × status modifier</code></p>
+
+<table>
+<thead><tr><th>Monster status</th><th>Modifier</th></tr></thead>
+<tbody>
+<tr><td>None</td><td>1.0</td></tr>
+<tr><td>Paralysis or shock</td><td>0.85</td></tr>
+<tr><td>Frozen</td><td>0.7</td></tr>
+<tr><td>Paralysis (or shock) + frozen</td><td>0.55</td></tr>
+</tbody>
+</table>
+
+<h3>Step 4: Final hit rate</h3>
+<p><code>Melee hit rate (%) = ATA_eff - (EVP_eff × 0.2)</code></p>
+<p><code>Ranged hit rate (%) = ATA_eff - (EVP_eff × 0.2) - distance penalty</code></p>
+<ul>
+<li>The result is used directly as a percentage: 100 or more always hits, and a negative value always misses.</li>
+<li>Distance penalty =  <code>distance × 0.33</code>, and it only applies to Hunters and Forces without <span data-item-en="Smartlink"></span>; Rangers and characters with Smartlink have no distance penalty.</li>
+<li>Bullet-type shots stop checking for hits once the target has moved more than 8 units; if a knockback makes the shot vanish early, no MISS is shown.</li>
+</ul>
+
+<hr>
+</section>
+
+<section data-part="incoming-physical">
+<h2 id="incoming-physical">C: How incoming physical attacks are resolved</h2>
+
+<p>First check whether you evade, then how much damage you take. The flow below applies to enemies’ <strong>ordinary, evadable physical attacks</strong>.</p>
+
+<figure class="mechanics-flow" aria-labelledby="physical-flow-caption">
+  <figcaption id="physical-flow-caption"><span class="mechanics-eyebrow">Order of checks</span><strong>EVP first, then DFP</strong><span>Read from top to bottom, following the branches.</span></figcaption>
+  <div class="mechanics-flow-start">An enemy makes an evadable physical attack</div>
+  <div class="mechanics-flow-arrow" aria-hidden="true">↓</div>
+  <div class="mechanics-flow-step"><span class="mechanics-step-number" aria-hidden="true">01</span><div><strong>Hit / evade check</strong><span>Enemy ATA (accuracy) against player EVP (evasion)</span></div></div>
+  <div class="mechanics-flow-branches">
+    <div class="mechanics-flow-branch mechanics-evade">
+      <p class="mechanics-branch-label"><span aria-hidden="true">↓</span> Evaded</p>
+      <div class="mechanics-flow-result"><strong>Evade</strong><span>Deflected in place · no HP lost</span><small>This attack’s checks end here</small></div>
+    </div>
+    <div class="mechanics-flow-branch">
+      <p class="mechanics-branch-label"><span aria-hidden="true">↓</span> Not evaded</p>
+      <div class="mechanics-flow-step"><span class="mechanics-step-number" aria-hidden="true">02</span><div><strong>Calculate physical damage</strong><span>Enemy ATP (attack) against player DFP (defense)</span></div></div>
+      <div class="mechanics-damage-branches">
+        <div class="mechanics-guard"><p class="mechanics-branch-label"><span aria-hidden="true">↓</span> Damage is 0</p><div class="mechanics-flow-result"><strong>Guard</strong><span>Pushed back · no HP lost</span></div></div>
+        <div class="mechanics-hurt"><p class="mechanics-branch-label"><span aria-hidden="true">↓</span> Damage above 0</p><div class="mechanics-flow-result"><strong>Hurt</strong><span>Loses that much HP</span><a href="#knockdown">When are you knocked down? ↓</a></div></div>
+      </div>
+    </div>
+  </div>
+</figure>
+
+<h3 id="physical-outcomes">Tell the three outcomes apart by the animation</h3>
+<p class="mechanics-illustration-note">Animation sketch: the attack comes from the left, the dashed figure is the position before the hit, and the HP bar only shows whether HP is lost.</p>
+<div class="mechanics-outcomes">
+  <figure class="mechanics-outcome mechanics-evade">
+    <svg viewBox="0 0 280 172" aria-hidden="true" focusable="false">
+      <path class="mechanics-ground" d="M20 141H260"/>
+      <path class="mechanics-attack" d="M24 85H98m-10-7 10 7-10 7"/>
+      <path class="mechanics-effect" d="M118 57Q101 85 118 113M98 61 77 40m0 13V40h13"/>
+      <g class="mechanics-player"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/><path class="mechanics-visor" d="M146 39h28"/></g>
+      <path class="mechanics-position" d="M137 151h46m-23-5v10"/>
+    </svg>
+    <figcaption><span class="mechanics-outcome-tag">EVP check succeeds</span><h4>Evade: stays in place</h4><p>The attack is deflected and the character does not move back.</p><p class="mechanics-hp"><span>HP</span><span class="mechanics-hp-bar" aria-hidden="true"></span><strong>No loss</strong></p></figcaption>
+  </figure>
+  <figure class="mechanics-outcome mechanics-guard">
+    <svg viewBox="0 0 280 172" aria-hidden="true" focusable="false">
+      <path class="mechanics-ground" d="M20 141H260"/>
+      <g class="mechanics-ghost"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/></g>
+      <path class="mechanics-attack" d="M24 85H98m-10-7 10 7-10 7"/>
+      <g class="mechanics-player" transform="translate(62 0)"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/><path class="mechanics-visor" d="M146 39h28"/></g>
+      <path class="mechanics-effect" d="M192 66v37m-13-27 6 6m-6 12 6-6M160 151h62m-10-7 10 7-10 7"/>
+    </svg>
+    <figcaption><span class="mechanics-outcome-tag">Not evaded · damage 0</span><h4>Guard: pushed back</h4><p>DFP reduces the damage to 0, but the character still moves back.</p><p class="mechanics-hp"><span>HP</span><span class="mechanics-hp-bar" aria-hidden="true"></span><strong>No loss</strong></p></figcaption>
+  </figure>
+  <figure class="mechanics-outcome mechanics-hurt">
+    <svg viewBox="0 0 280 172" aria-hidden="true" focusable="false">
+      <path class="mechanics-ground" d="M20 141H260"/>
+      <path class="mechanics-attack" d="M24 85H119m-10-7 10 7-10 7"/>
+      <g class="mechanics-player" transform="rotate(12 160 135)"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/><path class="mechanics-visor" d="M146 39h28"/></g>
+      <path class="mechanics-effect" d="m143 65 5 15 16-5-10 13 13 10-17-2-3 16-6-15-15 4 10-12-12-11 16 3z"/>
+    </svg>
+    <figcaption><span class="mechanics-outcome-tag">Not evaded · damage above 0</span><h4>Hurt: loses HP</h4><p>HP drops by the calculated amount; high damage knocks you down.</p><p class="mechanics-hp"><span>HP</span><span class="mechanics-hp-bar mechanics-hp-reduced" aria-hidden="true"></span><strong>Lost</strong></p></figcaption>
+  </figure>
+</div>
+<p class="mechanics-key-point"><strong>No HP lost either way, but different animations.</strong>A successful evade stays in place; Guard means the evade already failed and only the damage came to 0, so the character is still pushed back.</p>
+
+<h3>Enemy hit rate against players</h3>
+<p>SLW’s measurements on Ephinea fit this approximation:</p>
+<p><code>Enemy hit rate (%) ≈ clamp(enemy ATA - player EVP × 0.2, 0, 100)</code></p>
+<p>It can also be written as  <code>enemy ATA - player EVP / 5</code>, the same form as the formula for players attacking enemies in Section B. For example, against an enemy with 290 ATA, 1450 EVP gives a theoretical hit rate of 0%, and 1442 EVP gives 1.6%. In the video, about 300 attacks were all evaded at 1457 EVP, and hits were seen after dropping to 1442.</p>
+
+<h3>Scope and reading the tables</h3>
+<ul>
+<li>This order and hit-rate relation only apply to attacks that roll for evasion. Fixed damage, missiles, beams, stomps and other special attacks may not be evadable with EVP.</li>
+<li>Use the enemy’s actual ATA in the current difficulty, mode and quest; the base value in a data table is not always the effective value in battle.</li>
+<li>Zero damage does not mean no hit reaction: a successful evade does not move you back, while Guard pushes you back, which affects your positioning and the risk of taking repeated hits.</li>
+</ul>
+
+<p><strong>Measurements: </strong><a href="https://www.youtube.com/watch?v=J2FgRRGCQEM" target="_blank" rel="noopener">SLW, 【PSOBB Ephinea】ガードと回避の成功率検証と結果【解説動画】</a>. The hit-rate formula is generalized from the video’s experiments and should be read as an Ephinea measurement, not as this site’s decompiled proof of the client code.</p>
+
+<hr>
+</section>
+
+<section data-part="technique-damage">
+<h2 id="technique-damage">D: Technique damage formula</h2>
+
+<p><code>Damage = [(MST + technique base power) / 5] × (1 + class boost + weapon boost + frame boost + barrier boost) × (1 - target resistance)</code></p>
+<ul>
+<li>Technique damage depends on MST and is reduced by the target’s matching resistance, not by its DFP.</li>
+<li>Techniques have no hit check and never crit.</li>
+<li>All percentage boosts are <strong>added</strong> first and then multiplied: a FOnewearl with <span data-item-en="FOIE MERGE"></span> equipped has a Foie boost of +30% + 30% = +60%.</li>
+<li>Megid boosts do not raise the instant-kill rate; they make it pierce instead, and multiple Megid boosts do not stack.</li>
+<li>Jellen and Zalure have no class boosts; Reverser and Ryuker have no boosts at all. For equipment boosts see <a href="/data/equipment_technique_boosts.html">Equipment technique boosts</a>.</li>
+</ul>
+
+<figure class="mechanics-figure" aria-labelledby="technique-caption">
+  <figcaption id="technique-caption"><span class="mechanics-eyebrow">Technique damage, illustrated</span><strong>Add the boosts together first, then apply the resistance</strong><span>Assume (MST + technique base power) ÷ 5 = 500, with 30% damage boosts from both class and equipment, against a matching resistance of 40%.</span></figcaption>
+  <div class="mechanics-boost-bar" aria-hidden="true"><span>Base 100%</span><span>+30%</span><span>+30%</span></div>
+  <ol class="mechanics-calculation">
+    <li><span class="mechanics-eyebrow">Base calculation</span><strong>500</strong><span>(MST + base power) ÷ 5</span></li>
+    <li><span class="mechanics-eyebrow">Total boost +60%</span><strong>800</strong><span>500 × (1 + 0.3 + 0.3)</span></li>
+    <li><span class="mechanics-eyebrow">Resistance −40%</span><strong>480</strong><span>800 × (1 − 0.4)</span></li>
+  </ol>
+  <p class="mechanics-figure-takeaway">Two +30% boosts make ×1.6, not ×1.3 × 1.3. This is for damaging techniques; Megid’s instant-kill check is below.</p>
+</figure>
+
+<h3>Class boosts</h3>
+<div class="mechanics-table-scroll" role="region" aria-label="Class technique boosts" tabindex="0">
+<table>
+<thead><tr><th>Class</th><th>Technique</th><th>Boost</th></tr></thead>
+<tbody>
+<tr><td rowspan="2">FOmar</td><td>Gifoie / Gibarta / Gizonde / Grants</td><td>Damage +30%</td></tr>
+<tr><td>Shifta / Deband</td><td>Range +100%</td></tr>
+<tr><td rowspan="2">FOmarl</td><td>Grants</td><td>Damage +50%</td></tr>
+<tr><td>Resta / Anti / Shifta / Deband</td><td>Range +100%</td></tr>
+<tr><td>FOnewm</td><td>Gifoie / Gibarta / Gizonde / Rafoie / Rabarta / Razonde</td><td>Damage +30%</td></tr>
+<tr><td rowspan="3">FOnewearl</td><td>Foie / Barta / Zonde</td><td>Damage +30%</td></tr>
+<tr><td>Megid</td><td>Pierces</td></tr>
+<tr><td>Resta / Anti</td><td>Range +100%</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Technique base power and TP cost formulas</h3>
+<p>TLv is the technique level.</p>
+
+<table>
+<thead><tr>
+<th>Technique</th>
+<th>Base power formula</th>
+<th>TP cost formula</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Foie</td>
+<td>Lv.1-15: [50 × (TLv - 1)] + 110<br>Lv.16-30: [65 × (TLv - 1)] - 85</td>
+<td>[1.3 × (TLv - 1)] + 5</td>
+</tr>
+<tr>
+<td>Gifoie</td>
+<td>Lv.1-15: [26 × (TLv - 1)] + 260<br>Lv.16-30: [42 × (TLv - 1)] + 30</td>
+<td>[0.37 × (TLv - 1)] + 20</td>
+</tr>
+<tr>
+<td>Rafoie</td>
+<td>Lv.1-15: [22 × (TLv - 1)] + 350<br>Lv.16-30: [21 × (TLv - 1)] + 370</td>
+<td>[0.25 × (TLv - 1)] + 30</td>
+</tr>
+<tr>
+<td>Barta</td>
+<td>Lv.1-15: [50 × (TLv - 1)] + 50<br>Lv.16-30: [63 × (TLv - 1)] - 125</td>
+<td>[1.2 × (TLv - 1)] + 4</td>
+</tr>
+<tr>
+<td>Gibarta</td>
+<td>Lv.1-15: [24 × (TLv - 1)] + 230<br>Lv.16-30: [40 × (TLv - 1)]</td>
+<td>[0.5 × (TLv - 1)] + 25</td>
+</tr>
+<tr>
+<td>Rabarta</td>
+<td>Lv.1-15: [19 × (TLv - 1)] + 400<br>Lv.16-30: [15 × (TLv - 1)] + 470</td>
+<td>[0.2 × (TLv - 1)] + 35</td>
+</tr>
+<tr>
+<td>Zonde</td>
+<td>Lv.1-15: [50 × (TLv - 1)] + 80<br>Lv.16-30: [55 × (TLv - 1)] + 5</td>
+<td>[1.1 × (TLv - 1)] + 6</td>
+</tr>
+<tr>
+<td>Gizonde</td>
+<td>Lv.1-15: [22 × (TLv - 1)] + 200<br>Lv.16-30: [38 × (TLv - 1)] - 30</td>
+<td>[0.6 × (TLv - 1)] + 25</td>
+</tr>
+<tr>
+<td>Razonde</td>
+<td>Lv.1-15: [16 × (TLv - 1)] + 450<br>Lv.16-30: [8 × (TLv - 1)] + 565</td>
+<td>[0.3 × (TLv - 1)] + 35</td>
+</tr>
+<tr>
+<td>Grants</td>
+<td>Lv.1-15: [75 × (TLv - 1)] + 1180<br>Lv.16-30: [60 × (TLv - 1)] + 1400</td>
+<td>[1.1 × (TLv - 1)] + 45</td>
+</tr>
+<tr>
+<td>Megid</td>
+<td>Lv.1-15: [3 × (TLv - 1)] + 27<br>Lv.16-30: [2 × (TLv - 1)] + 42</td>
+<td>[1.05 × (TLv - 1)] + 30</td>
+</tr>
+<tr>
+<td>Resta</td>
+<td>Lv.1-30: [5 × (TLv - 1)] + 50</td>
+<td>[1.2 × (TLv - 1)] + 15</td>
+</tr>
+<tr>
+<td>Shifta</td>
+<td>Boost %: [1.3 × (TLv - 1)] + 10<br>Duration: [10 × (TLv - 1)] + 30 sec</td>
+<td>[1.2 × (TLv - 1)] + 15</td>
+</tr>
+<tr>
+<td>Deband</td>
+<td>Boost %: [1.3 × (TLv - 1)] + 10<br>Duration: [10 × (TLv - 1)] + 30 sec</td>
+<td>[(TLv - 1)] + 10</td>
+</tr>
+<tr>
+<td>Jellen</td>
+<td>Reduction %: [1.3 × (TLv - 1)] + 10<br>Duration: [10 × (TLv - 1)] + 30 sec</td>
+<td>[(TLv - 1)] + 10</td>
+</tr>
+<tr>
+<td>Zalure</td>
+<td>Reduction %: [1.3 × (TLv - 1)] + 10<br>Duration: [10 × (TLv - 1)] + 30 sec</td>
+<td>[0.5 × (TLv - 1)] + 10</td>
+</tr>
+<tr>
+<td>Anti</td>
+<td>—</td>
+<td>[0.5 × (TLv - 1)] + 10</td>
+</tr>
+<tr>
+<td>Ryuker</td>
+<td>—</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Reverser</td>
+<td>—</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+
+<h3>Megid instant-kill rate</h3>
+<p>Megid deals no damage; its base power is the instant-kill chance in percent, reduced by the target’s EDK:</p>
+<p><code>Instant-kill rate (%) = technique base power - target EDK</code></p>
+<p>For example, Lv.30 Megid (base power 100) against a target with 80 EDK has a 20% instant-kill rate.</p>
+
+<h3>Resta healing</h3>
+<p><code>Healing = MST × 0.5 + technique base power</code></p>
+<p>The Mag Photon Blast Leilla’s healing also has Mag IQ, chain and donation modifiers; see  <a href="#pb-support">healing and support PBs in Section G</a>.</p>
+
+<hr>
+</section>
+
+<section data-part="knockdown">
+<h2 id="knockdown">E: Knockdown</h2>
+<p>In the general hit path of the locally saved Ephinea client, the knockdown flag is set when the <strong>internal damage &gt; max HP × 25%</strong> . The comparison happens before the damage is truncated to an integer.</p>
+<figure class="mechanics-threshold" aria-labelledby="knockdown-caption">
+  <figcaption id="knockdown-caption"><span class="mechanics-eyebrow">Knockdown threshold</span><strong>It depends on single-hit damage, not remaining HP</strong><span>Example: with 1,000 max HP the threshold is 250.</span></figcaption>
+  <div class="mechanics-threshold-axis" aria-hidden="true"><span>Internal damage 0</span><span>250 · 25%</span><span>300</span></div>
+  <div class="mechanics-threshold-row">
+    <div class="mechanics-threshold-track"><span class="mechanics-damage-fill mechanics-damage-below"></span></div>
+    <p><strong>240</strong><span>Below the threshold</span><b>No general knockdown check</b></p>
+  </div>
+  <div class="mechanics-threshold-row">
+    <div class="mechanics-threshold-track"><span class="mechanics-damage-fill mechanics-damage-equal"></span></div>
+    <p><strong>250</strong><span>Exactly at the threshold</span><b>No general knockdown check</b></p>
+  </div>
+  <div class="mechanics-threshold-row mechanics-hurt">
+    <div class="mechanics-threshold-track"><span class="mechanics-damage-fill mechanics-damage-above"></span></div>
+    <p><strong>260</strong><span>Above the threshold</span><b>General knockdown check triggers</b></p>
+  </div>
+  <p class="mechanics-threshold-note">All values are internal damage before truncation. The vertical line marks 25% of max HP; the bars show single-hit damage.</p>
+</figure>
+<p class="mechanics-key-point"><strong>Why can 250 displayed damage still knock you down?</strong>Internal damage of 250.5 is already over the threshold, but the integer damage shown and taken is 250. So the displayed damage alone cannot tell you whether the threshold was crossed.</p>
+<details class="mechanics-source-note">
+  <summary>Threshold source and scope</summary>
+  <p><a href="https://wiki.pioneer2.net/w/Game_mechanics#Knockdown" target="_blank" rel="noopener">Ephinea Wiki</a> summarizes this as “25% or more”. The strict boundary here follows the locally saved Ephinea client: <code>try_knockdown_player</code>  sets the knockdown flag when internal damage is strictly greater than 25% of max HP.</p>
+  <p>This chart explains the general damage threshold and does not cover knockdowns, deaths or other states set directly by special attacks. It was checked against a local client snapshot; whether the live runtime adds further changes has not been verified.</p>
+</details>
+
+<hr>
+</section>
+
+<section data-part="hp-drain">
+<h2 id="hp-drain">F: Weapons that spend HP</h2>
+<p>The special attacks of the rare weapons below spend a fixed percentage of the character’s max HP. On Ultimate, Monomates (200 HP) and Dimates (500 HP) let you set HP precisely to a target value, to trigger a Mag’s 1/10 HP event (see Section H) or to let an Android deliberately use up a Scape Doll to refill traps.</p>
+
+<table>
+<thead><tr><th>Weapon</th><th>HP cost</th></tr></thead>
+<tbody>
+<tr><td><span data-item-en="DOUBLE CANNON"></span></td><td>5%</td></tr>
+<tr><td><span data-item-en="Girasole"></span></td><td>10%</td></tr>
+<tr><td><span data-item-en="LAVIS BLADE"></span></td><td>5% + 5% (spent twice per attack)</td></tr>
+<tr><td><span data-item-en="Lavis Cannon"></span></td><td>5%</td></tr>
+<tr><td><span data-item-en="OROTIAGITO"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="Raikiri"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="Soul Banish"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="GAL WIND"></span></td><td>7% for the 1st and 2nd hits; the 3rd hit fires three shots, 21% in total</td></tr>
+<tr><td><span data-item-en="Psycho Wand"></span></td><td>Casting any technique costs HP equal to its original TP cost (the TP cost itself is halved)</td></tr>
+</tbody>
+</table>
+<p>Gal Wind’s 3rd hit spends 21% HP at once and meets the 1/10 HP event condition without needing a target.</p>
+
+<hr>
+</section>
+
+<section data-part="photon-blast">
+<h2 id="photon-blast">G: Mag Photon Blasts (PB): effects, damage and charging</h2>
+<p>The six PBs are four attacks, one heal and one support. First see how each works, what affects it and when to use it, then look up the damage and chain calculations. All four attack PBs deal <strong>light damage</strong>, reduced by the target’s ELT (light resistance).</p>
+<p class="mechanics-key-point"><a href="#pb-analysis">Each PB</a> · <a href="#pb-support">Heal and support</a> · <a href="#pb-parameters">Parameters</a> · <a href="#pb-damage">Attack damage</a> · <a href="#pb-chain">Chains and donations</a> · <a href="#pb-levels">Twins level examples</a> · <a href="#pb-gain">Charging the PB gauge</a></p>
+
+<h3 id="pb-analysis">The six PBs: effects and when to use them</h3>
+<nav class="mechanics-pb-nav" aria-label="The six PBs">
+  <a href="#pb-farlla">Farlla</a>
+  <a href="#pb-estlla">Estlla</a>
+  <a href="#pb-golla">Golla</a>
+  <a href="#pb-pilla">Pilla</a>
+  <a href="#pb-leilla">Leilla</a>
+  <a href="#pb-mylla-youlla">Mylla &amp; Youlla</a>
+</nav>
+<p class="mechanics-illustration-note">Effects and formulas follow the  <a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">Ephinea Wiki</a>; “When to use” and “In a chain” are recommendations derived from them. The diagrams only sketch how each works: dots are players and diamonds are enemies; they do not show actual distances, exact hit areas or targeting order.</p>
+<p>A single PB uses your own stats; in a chain, every stat below comes from the <strong>first character in the chain and their Mag</strong> as seen by the current client. Q is the PB amount and N the number of PBs in the effective chain; see the <a href="#pb-parameters">parameter table below</a>.</p>
+<div class="mechanics-pb-grid">
+  <article class="mechanics-pb-card" aria-labelledby="pb-farlla">
+    <h4 id="pb-farlla"><img src="/assets/img/mag/pb/Farlla.png" width="50" height="43" alt="" loading="lazy"><span>Serpent <small>Farlla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <ellipse class="pb-area" cx="152" cy="66" rx="103" ry="48"/>
+        <path class="pb-motion" d="M72 47 A87 37 0 0 1 231 46 M223 38 L232 47 L219 48"/>
+        <circle class="pb-player" cx="152" cy="66" r="10"/>
+        <path class="pb-enemy" d="M91 62 l8 8 -8 8 -8 -8 Z M180 33 l8 8 -8 8 -8 -8 Z M207 79 l8 8 -8 8 -8 -8 Z"/>
+      </svg>
+      <figcaption>A spinning attack that hits enemies around you</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>How it works</dt><dd>An area attack on the enemies around you, suited to several targets crowding in.</dd></div>
+      <div><dt>What affects it</dt><dd>Base power uses Synchro, ATP and IQ; MST is added after the chain and donation modifiers. The higher the Synchro, the more raising ATP pays off.</dd></div>
+      <div><dt>When to use</dt><dd>With the same stats and light resistance, Pilla has higher base power. Farlla works against enemies around you when it is what you have; when comparing area PBs, also count how many targets each actually covers.</dd></div>
+      <div><dt>In a chain</dt><dd>Even with low damage of its own, joining as a different PB from the previous one still raises N, strengthening the attacks, heals and Twins support across the chain.</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>Base power B</span><code>trunc(Synchro × ATP × 0.025 + IQ × 2.5 + 500)</code></p>
+  </article>
+  <article class="mechanics-pb-card" aria-labelledby="pb-estlla">
+    <h4 id="pb-estlla"><img src="/assets/img/mag/pb/Estlla.png" width="50" height="43" alt="" loading="lazy"><span>Dolphin <small>Estlla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <path class="pb-area" d="M53 48 H264 V84 H53 Z"/>
+        <path class="pb-motion" d="M75 66 H268 M258 57 L269 66 L258 75"/>
+        <circle class="pb-player" cx="43" cy="66" r="10"/>
+        <path class="pb-enemy" d="M120 58 l8 8 -8 8 -8 -8 Z M203 58 l8 8 -8 8 -8 -8 Z"/>
+        <path class="pb-outside" d="M170 17 l8 8 -8 8 -8 -8 Z M228 103 l8 8 -8 8 -8 -8 Z"/>
+      </svg>
+      <figcaption>Attacks enemies along a straight line ahead</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>How it works</dt><dd>Attacks in a straight line in front of the character and can hit several enemies along the path. Enemies off to the sides do not count as covered just because they are nearby.</dd></div>
+      <div><dt>What affects it</dt><dd>Among the four attack PBs, only Estlla uses EVP instead of ATP. Synchro and IQ affect base power, and MST is still added after the chain modifier.</dd></div>
+      <div><dt>When to use</dt><dd>Use it when enemies line up; mind your position and facing before firing. Low ATP does not make Estlla weak; compare it using EVP, not by weapon attack power.</dd></div>
+      <div><dt>In a chain</dt><dd>If Estlla is meant to carry the damage, the first character’s EVP matters; later Estllas also use the first character’s stats. It can alternate with area PBs.</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>Base power B</span><code>trunc(Synchro × EVP × 0.15 + IQ × 15 + 350)</code></p>
+  </article>
+  <article class="mechanics-pb-card" aria-labelledby="pb-golla">
+    <h4 id="pb-golla"><img src="/assets/img/mag/pb/Golla.png" width="50" height="43" alt="" loading="lazy"><span>Stag <small>Golla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <circle class="pb-player" cx="52" cy="66" r="10"/>
+        <path class="pb-motion" d="M72 66 H202 M192 57 L203 66 L192 75"/>
+        <circle class="pb-area" cx="227" cy="66" r="24"/>
+        <path class="pb-enemy" d="M227 58 l8 8 -8 8 -8 -8 Z"/>
+        <path class="pb-outside" d="M167 19 l8 8 -8 8 -8 -8 Z M173 96 l8 8 -8 8 -8 -8 Z"/>
+      </svg>
+      <figcaption>Focuses on one enemy</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>How it works</dt><dd>A single-target attack that focuses on one enemy and does not clear groups.</dd></div>
+      <div><dt>What affects it</dt><dd>Uses Synchro, ATP, IQ and MST; its base power formula is exactly the same as Pilla’s.</dd></div>
+      <div><dt>When to use</dt><dd>With only one target to deal with, judge it by single-target damage. Being single-target does not add bonus damage: under the same conditions it matches Pilla’s single-target damage and covers fewer enemies.</dd></div>
+      <div><dt>In a chain</dt><dd>After a Pilla, Golla provides a different PB and keeps raising N; the two are different skills even with the same formula.</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>Base power B</span><code>trunc(Synchro × ATP × 0.075 + IQ × 7.5 + 1,200)</code></p>
+  </article>
+  <article class="mechanics-pb-card" aria-labelledby="pb-pilla">
+    <h4 id="pb-pilla"><img src="/assets/img/mag/pb/Pilla.png" width="50" height="43" alt="" loading="lazy"><span>Statue <small>Pilla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <ellipse class="pb-area" cx="152" cy="82" rx="103" ry="37"/>
+        <circle class="pb-player" cx="152" cy="82" r="10"/>
+        <path class="pb-motion" d="M86 16 V62 M79 53 L86 63 L93 53 M206 16 V62 M199 53 L206 63 L213 53"/>
+        <path class="pb-enemy" d="M86 73 l8 8 -8 8 -8 -8 Z M206 73 l8 8 -8 8 -8 -8 Z M174 98 l8 8 -8 8 -8 -8 Z"/>
+      </svg>
+      <figcaption>Strikes enemies around you from above</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>How it works</dt><dd>Attacks several enemies around you. Unlike Estlla’s straight line ahead, it suits a group gathered around you.</dd></div>
+      <div><dt>What affects it</dt><dd>Currently uses the same ATP formula as Golla; Synchro, IQ and MST also affect damage. The ATA formula is an unused path, and ATA plays no part in Pilla damage here.</dd></div>
+      <div><dt>When to use</dt><dd>Under the same conditions its base power is higher than Farlla’s, and it hits several targets. The total payoff depends on how many targets it hits and each one’s ELT; do not treat the single-target example as the whole blast’s total.</dd></div>
+      <div><dt>In a chain</dt><dd>Suited to area damage, amplified by Q and N. Choose the first character by ATP, Synchro and IQ; firing later yourself does not switch to your own stats.</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>Base power B</span><code>trunc(Synchro × ATP × 0.075 + IQ × 7.5 + 1,200)</code></p>
+  </article>
+</div>
+
+<h3 id="pb-support">Goddess and Twins: what the heal and support do</h3>
+<p>Neither PB deals direct damage. Used alone they affect you; chains and donations extend the effects to the participants. Being in the same room is not the same as participating.</p>
+<div class="mechanics-pb-grid">
+  <article class="mechanics-pb-card" aria-labelledby="pb-leilla">
+    <h4 id="pb-leilla"><img src="/assets/img/mag/pb/Leilla.png" width="50" height="43" alt="" loading="lazy"><span>Goddess <small>Leilla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <path class="pb-motion" d="M152 36 V53 M57 75 V53 H247 V75"/>
+        <text x="152" y="25">Resta</text>
+        <circle class="pb-player" cx="57" cy="87" r="10"/><circle class="pb-player" cx="152" cy="87" r="10"/><circle class="pb-player" cx="247" cy="87" r="10"/>
+        <text x="57" y="121">+ HP</text><text x="152" y="121">+ HP</text><text x="247" y="121">+ HP</text>
+      </svg>
+      <figcaption>Restores HP to you and the chain/donation participants</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>How it works</dt><dd>Casts Resta to restore HP. Leilla does not cure status effects or revive; Anti and Reverser come from the Twins below.</dd></div>
+      <div><dt>What affects it</dt><dd>Healing depends on IQ, MST, Q and N, not on Synchro, ATP or EVP. The chain multiplies the base healing, and MST × 0.5 is added afterwards.</dd></div>
+      <div><dt>When to use</dt><dd>Use it to top up participants who are low on HP; actual healing is capped by missing HP. If a teammate needs to stay at low HP, coordinate first so you do not fill it up.</dd></div>
+      <div><dt>In a chain</dt><dd>It heals and can also slot into a chain as a different PB, strengthening later effects such as the Twins; do not pick it to revive fallen teammates.</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>Healing · truncate after each line</span><code>B = trunc(IQ × 0.5 + 150)<br>R = trunc(B × Q × N × 0.01)<br>Healing = trunc(MST × 0.5 + R)</code></p>
+    <p class="mechanics-illustration-note">By the formula: IQ 200, MST 500, Q 100 heals 500 HP alone and 1,250 HP in a four-PB chain.<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Leilla" target="_blank" rel="noopener">Wiki: Leilla’s effect and healing formula</a>.</p>
+  </article>
+  <article class="mechanics-pb-card" aria-labelledby="pb-mylla-youlla">
+    <h4 id="pb-mylla-youlla"><img src="/assets/img/mag/pb/Mylla_Youlla.png" width="50" height="43" alt="" loading="lazy"><span>Twins <small>Mylla &amp; Youlla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <text x="152" y="25">Shifta / Deband</text>
+        <path class="pb-motion" d="M152 36 V53 M57 75 V53 H247 V75"/>
+        <circle class="pb-player" cx="57" cy="87" r="10"/><circle class="pb-player" cx="152" cy="87" r="10"/><circle class="pb-player" cx="247" cy="87" r="10"/>
+        <text x="57" y="121">ATP/DFP ↑</text><text x="152" y="121">ATP/DFP ↑</text><text x="247" y="121">ATP/DFP ↑</text>
+      </svg>
+      <figcaption>Casts Shifta/Deband on eligible participants</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>How it works</dt><dd>Casts Shifta and Deband. It starts by casting Anti on living participants and Reverser on fallen ones; players revived this time do not get this Shifta/Deband.</dd></div>
+      <div><dt>What affects it</dt><dd>The support level depends only on the first Mag’s IQ, the PB amount Q and the effective chain count N; it ignores Synchro, ATP, EVP and MST. By the formula, with IQ 200 and Q 100 without donations, a single blast gives Lv.21, two give Lv.41, three Lv.61 and four Lv.81.</dd></div>
+      <div><dt>When to use</dt><dd>Good for giving the party high-level attack and defense support, especially for the physical damage that follows. If everyone should get the buff, make sure they have joined and are alive when this Twins blast starts.</dd></div>
+      <div><dt>In a chain</dt><dd>The Twins are often the main payoff of a chain. To raise the level, check the first Mag’s IQ and the effective N first; let other PBs lead in, and avoid two Twins in a row overwriting each other.</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>Shifta/Deband level · truncate the whole line</span><code>trunc(1 + (Q × N × 0.01) × (IQ × 0.1))</code></p>
+    <p class="mechanics-illustration-note"><a href="https://wiki.pioneer2.net/w/Photon_Blasts#Mylla_&amp;_Youlla" target="_blank" rel="noopener">Wiki: the Twins’ effect and level formula</a> · <a href="#pb-levels">donation and chain level examples</a>. This is the level of the support technique cast on characters; the support effects a Mag triggers on its own have their own formula, see  <a href="https://wiki.pioneer2.net/w/Mags#Trigger_types" target="_blank" rel="noopener">Wiki: Mag trigger effects</a>.</p>
+  </article>
+</div>
+
+<h3 id="pb-parameters">Parameters: where each value comes from and what to enter</h3>
+<p>Take character stats and Mag parameters from the <strong>first character in the chain</strong> as seen by the current client; for a solo blast, use your own. Prepare the inputs below, then choose the PB formula.<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">Wiki: parameter definitions and truncation rules</a>.</p>
+<div class="mechanics-table-scroll" role="region" aria-label="PB parameter table" tabindex="0">
+<table class="mechanics-parameter-table">
+<thead><tr><th scope="col">Parameter</th><th scope="col">Meaning and source</th><th scope="col">Example entry</th></tr></thead>
+<tbody>
+<tr><th scope="row">Synchro<br>Synchro</th><td>The first character’s Mag Synchro, as the percentage number itself.</td><td>120% → <code>120</code><br>not 1.2</td></tr>
+<tr><th scope="row">IQ</th><td>The first character’s Mag IQ, read directly; not the Mag’s level.</td><td>IQ 200 → <code>200</code></td></tr>
+<tr><th scope="row">ATP<br>Attack</th><td>The first character’s base ATP with Shifta applied, plus equipment ATP. The weapon uses the low end of its ATP range, without class variance, and not the randomly generated ATPeff from Section A.</td><td>Taken this way, 1,000 →  <code>1000</code></td></tr>
+<tr><th scope="row">EVP<br>Evasion</th><td>The first character’s EVP. Estlla uses it for base power.</td><td>EVP 800 → <code>800</code></td></tr>
+<tr><th scope="row">MST<br>Mental strength</th><td>The first character’s MST; attack PBs add it after the chain and donation modifiers.</td><td>MST 500 → <code>500</code></td></tr>
+<tr><th scope="row">Q<br>PB amount</th><td>The PB amount seen on the first character’s side, usually 100 plus all donations received. 30 is the cap per donor; each chaining player’s own 100 PB is not added.</td><td>No donations →  <code>100</code><br>Received 30 →  <code>130</code></td></tr>
+<tr><th scope="row">N<br>PBs in the chain</th><td>The number of PBs seen in the effective chain; participants who only donate and do not fire a PB do not add to N, so do not enter the number of people who got the effects.</td><td>Single →  <code>1</code><br>Four-chain →  <code>4</code></td></tr>
+<tr><th scope="row">ELT<br>Light resistance</th><td>The target’s light resistance in the current difficulty and mode. The formula divides by 100 itself.</td><td>20% → <code>20</code><br>not 0.2</td></tr>
+</tbody>
+</table>
+</div>
+<p class="mechanics-illustration-note"><strong>Intermediate results in the formulas: </strong>B = base power; S = attack PB power after modifiers; R = Leilla’s base healing after chain and donation modifiers. All three are calculated by the formulas, not read from the character menu.</p>
+<h3 id="pb-damage">Attack PBs: base power first, then damage</h3>
+<p>Calculate B with the formula on each card above, then S and damage in turn. <code>trunc(x)</code>  means drop the decimals; truncate after each line before using it in the next, not only at the final damage.</p>
+<p><code>S = trunc(B × Q × N × 0.01 + MST)</code></p>
+<p><code>Damage = trunc((S ÷ 5) × ((100 − target ELT) ÷ 100))</code></p>
+<p>PBs use the formulas in this section, not the class or equipment technique boosts from Section D.</p>
+
+<figure class="mechanics-figure" aria-labelledby="pb-comparison-caption">
+  <figcaption id="pb-comparison-caption"><span class="mechanics-eyebrow">Four attack PBs · same conditions</span><strong>Judge damage together with stats and target coverage</strong><span>Synchro 120%, IQ 200, ATP 1,000, EVP 800, MST 500; Q 100, N 1, target ELT 20. Each bar is the damage to one target hit.</span></figcaption>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>0 damage</span><span>2,920 damage</span></div>
+  <div class="mechanics-chart-label"><span>Farlla · area around you</span><strong>720</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:24.657534%"></span></div>
+  <div class="mechanics-chart-label"><span>Estlla · straight line ahead</span><strong>2,920</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:100%"></span></div>
+  <div class="mechanics-chart-label"><span>Golla · single target</span><strong>1,952</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:66.849315%"></span></div>
+  <div class="mechanics-chart-label"><span>Pilla · area around you</span><strong>1,952</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:66.849315%"></span></div>
+  <p class="mechanics-figure-note">Their B values are 4,000, 17,750, 11,700 and 11,700; MST is added before the light resistance reduction. The Pilla example is broken down below.</p>
+  <p class="mechanics-figure-takeaway">With these stats Estlla deals the most single-target damage, which does not make it best for every character or position. Changing the ATP-to-EVP ratio changes the comparison; Golla and Pilla have the same single-target value but cover different numbers of targets.</p>
+</figure>
+
+<figure class="mechanics-figure" aria-labelledby="pb-damage-caption">
+  <figcaption id="pb-damage-caption"><span class="mechanics-eyebrow">Pilla · single example</span><strong>From Mag and character stats to 1,952 damage</strong><span>Synchro 120%, IQ 200, ATP 1,000 and MST 500 taken as above; Q = 100, N = 1, target ELT = 20.</span></figcaption>
+  <ol class="mechanics-calculation">
+    <li><span class="mechanics-eyebrow">Base power B</span><strong>11,700</strong><span>120 × 1,000 × 0.075<br>+ 200 × 7.5 + 1,200</span></li>
+    <li><span class="mechanics-eyebrow">Power after modifiers S</span><strong>12,200</strong><span>11,700 × 100 × 1 × 0.01<br>+ 500</span></li>
+    <li><span class="mechanics-eyebrow">Light resistance −20%</span><strong>1,952</strong><span>(12,200 ÷ 5) × 0.8</span></li>
+  </ol>
+  <p class="mechanics-figure-takeaway">With everything else the same, raising the target’s ELT to 60 drops the damage to 976. Enemy light resistance directly affects attack PBs.</p>
+</figure>
+
+<h3 id="pb-chain">Chains and donations: they change N and Q respectively</h3>
+<ul aria-label="PB chain and donation rules">
+<li><strong>How to join: </strong>teammates in the same room must chain or donate <strong>before the first PB’s start-up animation ends</strong>; chaining players fire their own PB, and donors give their own PB gauge value.</li>
+<li><strong>Chaining: </strong>each valid join raises N, and the PBs fire in the order they started. When two of the same PB come back to back, the earlier one is overwritten, and <strong>the overwritten player gets no benefit from that chain</strong>. Only back-to-back repeats are limited; the Wiki’s Golla → Twins → Golla → Twins is a valid four-chain example.<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Chaining" target="_blank" rel="noopener">Wiki: chain rules</a>.</li>
+<li><strong>Donating: </strong>raises Q; each player can donate at most 30 PB. The default keyboard key is  <code>End</code>, donating 10 PB per press; on a gamepad it is the button above the action palette that opens Word Select/Symbol Chat. Donating also lets that participant receive the PB’s effect; donating alone does not raise N.<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Donating" target="_blank" rel="noopener">Wiki: donation rules</a>.</li>
+<li><strong>Different views: </strong>damage, healing and support are calculated on each client; latency or desync can make players see different orders and results. Plug in the first character, PB count and PB amount you actually observed.<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">Wiki: client-side calculation</a>.</li>
+</ul>
+
+<h4 id="pb-levels">Twins support level: donations versus chains</h4>
+<figure class="mechanics-figure" aria-labelledby="pb-levels-caption">
+  <figcaption id="pb-levels-caption"><span class="mechanics-eyebrow">Twins support level · by the formula</span><strong>Four players take part either way, but donating and a four-chain give different levels</strong><span>The first Mag’s IQ is fixed at 200. Every chain is valid and includes the Twins; the level is the Shifta/Deband level, not the Mag’s level or a skill level shared by the six PBs.</span></figcaption>
+  <div class="mechanics-table-scroll" role="region" aria-label="Twins donation and chain level table" tabindex="0">
+    <table class="mechanics-pb-level-table">
+      <thead><tr><th scope="col">How it is fired and donated</th><th scope="col">PB amount Q</th><th scope="col">PB count N</th><th scope="col">Support level</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Single, no donations</th><td>100</td><td>1</td><td>Lv.21</td></tr>
+        <tr><th scope="row">Single, 1 teammate donates 30</th><td>130</td><td>1</td><td>Lv.27</td></tr>
+        <tr><th scope="row">Single, 3 teammates donate 30 each</th><td>190</td><td>1</td><td>Lv.39</td></tr>
+        <tr><th scope="row">Two-chain, no donations</th><td>100</td><td>2</td><td>Lv.41</td></tr>
+        <tr><th scope="row">Three-chain, no donations</th><td>100</td><td>3</td><td>Lv.61</td></tr>
+        <tr><th scope="row">Four-chain, no donations</th><td>100</td><td>4</td><td>Lv.81</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mechanics-figure-note">For example, a single blast receiving 30 PB: 1 + (130 × 1 × 0.01) × (200 × 0.1) = 27. All values are calculated from the <a href="#pb-mylla-youlla">Wiki formula on the Twins card</a>; the examples are not marked as client measurements.</p>
+  <p class="mechanics-figure-takeaway">When 3 teammates only donate, N is still 1 even though four players take part; N is 4 only when all four fire a PB in a valid four-chain. Do not use the number of participants as the chain PB count.</p>
+</figure>
+
+<figure class="mechanics-figure" aria-labelledby="pb-chain-caption">
+  <figcaption id="pb-chain-caption"><span class="mechanics-eyebrow">Same stats and target · Pilla damage compared</span><strong>A chain amplifies base power; MST is added afterwards</strong><span>Using the character/Mag stats and ELT 20 from the single Pilla example above, this compares one Pilla hit on the same target; it is not the total damage of the whole chain.</span></figcaption>
+  <ol class="mechanics-pb-chain" aria-label="Four-player valid PB chain example">
+    <li><span>1 · first</span><img src="/assets/img/mag/pb/Estlla.png" width="50" height="43" alt="" loading="lazy"><strong>Dolphin</strong></li>
+    <li><span>2 · joins</span><img src="/assets/img/mag/pb/Pilla.png" width="50" height="43" alt="" loading="lazy"><strong>Statue</strong></li>
+    <li><span>3 · joins</span><img src="/assets/img/mag/pb/Leilla.png" width="50" height="43" alt="" loading="lazy"><strong>Goddess</strong></li>
+    <li><span>4 · joins</span><img src="/assets/img/mag/pb/Mylla_Youlla.png" width="50" height="43" alt="" loading="lazy"><strong>Twins</strong></li>
+  </ol>
+  <p class="mechanics-figure-note">Above is a four-chain without donations: Q = 100, N = 4. All four PBs use the first character’s character and Mag parameters; here that character has the same stats as the single example above.</p>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>0 damage</span><span>7,568 damage</span></div>
+  <div class="mechanics-chart-label"><span>Single · Q 100 / N 1</span><strong>1,952</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:25.792812%"></span></div>
+  <div class="mechanics-chart-label"><span>Single + teammate donates 30 · Q 130 / N 1</span><strong>2,513</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:33.205602%"></span></div>
+  <div class="mechanics-chart-label"><span>Four-player valid chain, no donations · Q 100 / N 4</span><strong>7,568</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:100%"></span></div>
+  <p class="mechanics-figure-note">Donation example: S = 15,710, final 2,513.6 truncated to 2,513. Four-chain example: S = 47,300, final damage 7,568.</p>
+  <p class="mechanics-figure-takeaway">In a four-chain Q is still 100 and N is 4; do not enter Q 400, N 4. MST is not multiplied by the chain count, so one hit in a four-chain is not simply four times the single damage.</p>
+</figure>
+
+<p class="mechanics-illustration-note">These are Wiki formulas and examples derived from them, not marked as this site’s measurements of the current client. Sources: <a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">each PB’s power</a>, <a href="https://wiki.pioneer2.net/w/Photon_Blasts#Donating_and_Chaining" target="_blank" rel="noopener">donation and chain rules</a>.</p>
+
+<h3 id="pb-gain">PB gauge formula</h3>
+
+<figure class="mechanics-figure" aria-labelledby="pb-caption">
+  <figcaption id="pb-caption"><span class="mechanics-eyebrow">PB charging, illustrated</span><strong>The same 300 damage adds different amounts of PB</strong><span>A level 100 character, comparing the two formulas in the table below for damage dealt and damage taken.</span></figcaption>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>0 PB</span><span>4 PB</span></div>
+  <div class="mechanics-chart-label"><span>Dealing 300 damage</span><strong>+0.2 PB</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:5%"></span></div>
+  <div class="mechanics-chart-label"><span>Taking 300 damage</span><strong>+4 PB</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-spread" style="width:100%"></span></div>
+  <p class="mechanics-figure-note">300 ÷ (100 × 15) = 0.2; 300 × 20 ÷ (100 × 15) = 4. The bars show this gain, not a full 100 PB gauge.</p>
+  <p class="mechanics-figure-takeaway">At the same level and damage, the damage-taken formula adds 20 times as much PB as dealing damage. Damage from special attacks does not count toward the PB gauge.</p>
+</figure>
+
+<table>
+<thead><tr><th>Action</th><th>PB gained</th></tr></thead>
+<tbody>
+<tr><td>Dealing damage to enemies</td><td><code>damage dealt / (character level × 15)</code></td></tr>
+<tr><td>Taking damage</td><td><code>damage taken × 20 / (character level × 15)</code></td></tr>
+</tbody>
+</table>
+<p>PB gain formula source: <a href="https://wiki.pioneer2.net/w/Photon_Blasts" target="_blank" rel="noopener">Wiki: PB gain formula</a>. For why weapon special attacks add no PB, see  <a href="https://wiki.pioneer2.net/w/Game_mechanics#Special_attacks" target="_blank" rel="noopener">Wiki: weapon special attacks</a>.</p>
+
+<hr>
+</section>
+
+<section data-part="mag-triggers">
+<h2 id="mag-triggers">H: Mag event trigger rates</h2>
+
+<figure class="mechanics-figure" aria-labelledby="mag-caption">
+  <figcaption id="mag-caption"><span class="mechanics-eyebrow">Mag low-HP event, illustrated</span><strong>Low HP is only one of the conditions</strong><span>With 1,000 max HP, you must lose more than 200 HP in one frame and have under 100 HP left. The examples compare two consecutive frames.</span></figcaption>
+  <div class="mechanics-frame-examples">
+    <div>
+      <span class="mechanics-eyebrow">Both conditions met</span>
+      <div class="mechanics-frame-pair"><strong>310 <small>HP</small></strong><span aria-hidden="true">→</span><strong>90 <small>HP</small></strong></div>
+      <p>Lost 220 &gt; 200<br>Left 90 &lt; 100</p>
+      <b>1/10 HP event condition met</b>
+    </div>
+    <div>
+      <span class="mechanics-eyebrow">Only low HP</span>
+      <div class="mechanics-frame-pair"><strong>200 <small>HP</small></strong><span aria-hidden="true">→</span><strong>90 <small>HP</small></strong></div>
+      <p>Lost 110, not over 200<br>Left 90 &lt; 100</p>
+      <b>1/10 HP event condition not met</b>
+    </div>
+  </div>
+  <p class="mechanics-figure-takeaway">Once the event condition is met, the Mag’s trigger rate decides whether the effect happens; dropping to low HP does not guarantee invincibility. When several events happen in the same frame, the priority below also applies.</p>
+</figure>
+
+<h3>Trigger events</h3>
+<table>
+<thead><tr><th>Event</th><th>Condition</th></tr></thead>
+<tbody>
+<tr><td>100 PB</td><td>When the PB gauge reaches 100</td></tr>
+<tr><td>1/10 HP</td><td>When you lose more than 20% HP in one frame and HP falls below 10%</td></tr>
+<tr><td>Boss room</td><td>When entering a boss room</td></tr>
+</tbody>
+</table>
+<p>The Mag checks its trigger conditions once per frame. The 1/10 HP event only compares HP across two frames, regardless of where the HP loss came from, so a Berserk weapon hitting 4 or more targets, Gal Wind’s 3rd hit, or casting a technique with Psycho Wand equipped can all trigger it. When several conditions are met in the same frame only one is checked, in the order 100 PB → boss room → 1/10 HP. The death event is disabled in Blue Burst.</p>
+
+<p class="mechanics-illustration-note">For event conditions and check order, see the  <a href="https://wiki.pioneer2.net/w/Mags#Mag_triggers" target="_blank" rel="noopener">Ephinea Wiki on Mag triggers</a>.</p>
+
+<h3>Synchro bonus</h3>
+<table>
+<thead><tr>
+<th>Synchro</th>
+<th>Rate bonus</th>
+</tr></thead>
+<tbody>
+<tr><td>0-30%</td><td>+0%</td></tr>
+<tr><td>31-60%</td><td>+15%</td></tr>
+<tr><td>61-80%</td><td>+25%</td></tr>
+<tr><td>81-100%</td><td>+30%</td></tr>
+<tr><td>101-120%</td><td>+35%</td></tr>
+</tbody>
+</table>
+
+<p>Each event of each Mag has a fixed base trigger rate. Events affected by Synchro come in two kinds, marked in the Wiki Mag list with ranges such as  <code>50-85%</code>, <code>0-35%</code> :</p>
+
+<h4>Additive</h4>
+<p><code>Trigger rate = base rate + Synchro bonus</code></p>
+<p>For example,  <span data-item-en="Nidra"></span> ’s boss-room invincibility event is 50–85%: at 101–120% Synchro the rate is 50% + 35% = 85%.</p>
+
+<h4>Independent</h4>
+<p><code>Trigger rate = Synchro bonus</code></p>
+<p>For example,  <span data-item-en="Sato"></span> ’s 100 PB invincibility event is 0–35%: at 61–80% Synchro the rate is only 25%, and at 30% Synchro or less it never triggers.</p>
+</section>

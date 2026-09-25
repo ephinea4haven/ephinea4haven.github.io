@@ -1,0 +1,796 @@
+<!-- Japanese text for /guide/class-guide.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+        <h1>Hunter · Ranger · Force</h1>
+
+        <p class="guide-lead">
+            このガイドは2層に分かれています。まず Normal から Ultimate まで通して役立つ <strong>Vanilla PSOBB の基本</strong>を説明し、その後 Ephinea のマルチプレイの終盤の装備と役割分担をまとめます。決まった装備の正解ではありません。HU は重要な敵を倒し、RA は場を制して敵の群れ全体を相手にし、FO はパーティ全体の効率を高めますが、どの職業も手持ちの装備・クエスト・パーティに合わせて調整する必要があります。
+        </p>
+
+        <nav class="jump-nav" role="tablist" aria-label="職業の章">
+            <button type="button" role="tab" id="tab-hunter" aria-controls="hunter" aria-selected="true" data-profession="hunter"><strong>HU · ハンター</strong><br>近接の瞬間火力 / 強敵の処理</button>
+            <button type="button" role="tab" id="tab-ranger" aria-controls="ranger" aria-selected="false" data-profession="ranger"><strong>RA · レンジャー</strong><br>遠距離からの制圧 / エクストラアタック</button>
+            <button type="button" role="tab" id="tab-force" aria-controls="force" aria-selected="false" data-profession="force"><strong>FO · フォース</strong><br>補助 / テクニック / 穴埋め</button>
+        </nav>
+
+        <details class="common-guide">
+        <summary>開く：Vanilla の意味、4つの難易度、全職業の基本</summary>
+        <h2>ここでいう Vanilla とは</h2>
+
+        <p>
+            このガイドの Vanilla は、PSO Blue Burst 本来の戦闘の枠組みのことです：3段攻撃、命中判定、武器の属性とエクストラアタック、マグ、マテリアル、テクニック、4つの難易度。Ephinea の <strong>Classic モード</strong>とは違います。Classic はエピソード4と関連アイテムも無効にし、公式 BB の難易度の条件を使います。以下の「Vanilla の進め方」はどれも高価な終盤の装備に頼らず、Ephinea で普通に始めるキャラクターにも向いています。
+        </p>
+
+        <h3>難易度ごとに身につけること</h3>
+        <table>
+            <thead>
+                <tr><th>段階</th><th>主な目標</th><th>急がなくていいこと</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Normal</td><td>すべての武器の動きを試し、マグを育て、通常／強／エクストラアタックと敵ののけぞりを覚える</td><td>つなぎの装備のためにグラインダーやマテリアルを早くから大量に使う</td></tr>
+                <tr><td>Hard</td><td>Hit の付いた武器を残し始め、基本のテクニックと範囲武器をそろえる</td><td>赤箱の星の数だけを見て、緑の通常武器を無視する</td></tr>
+                <tr><td>Very Hard</td><td>単体・範囲・遠距離・制圧の4種類の道具をそろえ、アルティメットに備える</td><td>ダメージだけを積み、ATA・HP・耐性を補わない</td></tr>
+                <tr><td>Ultimate</td><td>より速く EVP や耐性の高い敵に慣れ、エリアごとに武器と戦術を変える</td><td>Hit の低いエクストラアタックで命中に賭け続ける</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Vanilla で始めるときの資源の優先順位</h3>
+        <ol class="checklist">
+            <li><strong>まずマグを育てる：</strong>HU と RA は POW + DEX から。簡単な完成形なら  <code>5/145/50/0</code>  か  <code>5/150/45/0</code>。テクニック中心の FO は MIND から。DEF はたいてい意図して上げる価値はありません。</li>
+            <li><strong>レア度より Hit が大事：</strong>武器の Hit 1% は ATA 1 に相当し、すべての敵に効きます。Hit の高い通常武器は、Hit のない赤箱武器より役立つことがよくあります。</li>
+            <li><strong>敵の種族の属性を残す：</strong>Native・A.Beast・Machine・Dark は対応する敵への物理ダメージを上げます。新しいエリアの前に属性を合わせると、表示上の ATP が少し高いより効果が大きいことがよくあります。</li>
+            <li><strong>マテリアルは配分を決めてから使う：</strong>ヒューマンのマテリアルの合計上限は 250、ニューマンとアンドロイドは 150 で、HP／TP マテリアルは別枠です。最終的な配分を決めるまでは、少なくとも DEF と EVP のマテリアルを気軽に使わないでください。</li>
+            <li><strong>通常武器が主力：</strong>ソード、パルチザン、ショット、スライサー、マシンガンなどの範囲・多段の武器が掃除の速さを決め、レア武器は主に特別な機能を補うものです。</li>
+        </ol>
+
+        <p>
+            関連ツール：<a href="https://magfeeder.psohaven.com/">マグシミュレーター</a> ·
+            <a href="/tools/materialplan.html">マテリアルの配分</a> ·
+            <a href="/tools/status.html">能力値の計算</a> ·
+            <a href="/tools/equipment.html">終盤の装備の参考</a> ·
+            <a href="/tools/mechanics.html">ゲームの仕組みとダメージ計算式</a>
+        </p>
+
+        <h2>結論：パーティで何をするか</h2>
+
+        <div class="role-grid">
+            <article class="role-card">
+                <h3>HU：最も危険な敵を片付ける</h3>
+                <p>出現地点の横や後ろに先回りし、最も高い単体ダメージで HP の高い敵や突進して隊形を崩す敵を優先して倒します。雑魚ばかり追わないでください。</p>
+                <span class="tag">立ち位置が最も重要</span><span class="tag">近接の危険が高い</span>
+            </article>
+            <article class="role-card">
+                <h3>RA：敵の群れ全体の脅威をなくす</h3>
+                <p>多くの敵を狙える安全な距離から撃ち、ウェーブに応じて凍結・麻痺・Hell・Demon’s・範囲の火力を使い分けます。</p>
+                <span class="tag">道具が最もそろっている</span><span class="tag">ミスに強い</span>
+            </article>
+            <article class="role-card">
+                <h3>FO：パーティ全体の火力を上げる</h3>
+                <p>S/D を維持し、J/Z・レスタ・アンティをすばやく補います。ギフォイエを先に重ねられるならテンポを握り、武器やほかのテクニックが合うときはすぐ切り替えます。</p>
+                <span class="tag">全体を見る</span><span class="tag">装備の切り替えが多い</span>
+            </article>
+        </div>
+
+        <h2>3職業共通の基本</h2>
+
+        <ol class="checklist">
+            <li><strong>装備より出現の知識：</strong>まず危険な敵と大きなウェーブを覚え、次に普通のウェーブを覚えます。次のウェーブの出る場所が分かってこそ、先回り・先制攻撃・テクニックの重ね置きができます。</li>
+            <li><strong>同じ敵を重ねて相手にしない：</strong>仲間の動きを読み、誰も相手にしていない場所を引き受けます。集中攻撃がいつも最速とは限らず、うまく敵を分けるほうがたいてい効果的です。</li>
+            <li><strong>ショートカットメニューを使いこなす：</strong>戦闘中はショートカットメニューで武器の切り替え・アイテム・テクニックを使います。メインメニューより安全で、動作を実行できる最初のフレームに予約できます。</li>
+            <li><strong>連続攻撃を理解する：</strong><code>N / H / S</code>  はそれぞれ通常・強・エクストラアタックです。敵ののけぞりと武器の戻りの動作を見て2段か3段かを決め、機械的に最後まで振らないでください。</li>
+            <li><strong>命中が最優先：</strong>安定して当たらない理論上のダメージには意味がありません。Hit の高い武器、ATA、立ち位置、 <code>SN glitch</code>  は、どれも同じ問題を解決するためのものです。</li>
+        </ol>
+
+        <p class="notice">
+            <strong>現在の仕様：</strong>Ephinea ではダメージキャンセル（DMC）が削除されています。古いフォースの掲示板の投稿にある「仲間のダメージを打ち消さないよう攻撃しない」という話は過去の参考にすぎません。今も無意味な攻撃は避けるべきですが、理由は DMC ではなく立ち位置・制圧・役割分担です。
+        </p>
+        </details>
+
+        <section id="hunter" class="profession-panel" role="tabpanel" aria-labelledby="tab-hunter">
+            <h2>HU · Hunter / ハンター</h2>
+
+            <p>HU の強みは最高クラスの近接の瞬間火力で、弱みは有効範囲の狭さです。効率のよい HU は「敵を見たら斬る」のではなく、どの敵を最速で消すべきかを先に判断し、正しい角度と連続攻撃でコンボキル（1回の連続攻撃で倒すこと）を決めます。</p>
+
+            <h3>Vanilla での成長</h3>
+            <table>
+                <thead><tr><th>時期</th><th>武器と戦い方</th><th>育てること</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Normal–Hard</td>
+                        <td>セイバー／ダガーで単体、ソード／パルチザンで集まった敵、ハンドガンで飛ぶ敵・トラップ・近づくべきでない敵を処理します。まずは  <code>N-N-H</code>  か  <code>N-H-H</code>  で命中を確保します。</td>
+                        <td>マグは POW 中心で DEX を少し。まず Arm 系のユニットを装備します。背後に回る、2段で止める、3段目を遅らせることを覚えます。</td>
+                    </tr>
+                    <tr>
+                        <td>Very Hard</td>
+                        <td>単体用にマシンガン、散らばった敵用にスライサーを加え、Hit の高いチャージ／スピリット／バーサーク付きの通常武器を残し始めます。</td>
+                        <td>頼れる遠距離武器と範囲武器を1つずつ持ち、何でもソードで済ませないでください。</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimate</td>
+                        <td>敵は速く EVP も高いので、凍結・麻痺させるか空振りを誘ってから近づきます。当たらないときは、Hit のないレア武器にこだわらず Hit の高い下位の武器に替えます。</td>
+                        <td>敵の種類ごとに属性武器を用意し、Arrest・Hell・Demon’s や高ダメージの犠牲型エクストラアタックを少しずつ加えます。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Vanilla の大事な習慣：</strong>HP が高いからといって立ち止まって受けないでください。HU の守りは距離・角度・のけぞり・ダウンの管理から来ます。囲まれたら、まず敵を一列か扇形に引き寄せてから範囲武器を振ります。</p>
+
+            <h3>4キャラクターの選び方</h3>
+            <div class="class-grid">
+                <article class="class-card">
+                    <h4>HUmar</h4>
+                    <p>バランス型のヒューマンで近接が安定しており、Lv15 までの攻撃・回復テクニックを使えます。シフタ／デバンドは使えないため、パーティでは FO の補助に頼りがちです。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>まずジェルンで近接の危険を下げ、ザルアで倒せる線を上げてから、横や後ろからソード・Vjaya・マシンガンで一気に攻めます。</li>
+                        <li><strong>ソロ：</strong>S/D は S-Red's Blade か Mylla &amp; Youlla から得ます。トラップがないので、Arrest Slicer とギフォイエが主な制圧の手段です。</li>
+                        <li><strong>よくある誤解：</strong>「バランス型」は何でもそろっているという意味ではありません。S/D も強い制圧もないため、HUmar は実は立ち位置と装備がより問われます。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>HUnewearl</h4>
+                    <p>HU の中で HP が最も低く ATP も低めですが、Lv20 の S/D/J/Z とレスタ、自然な TP 回復を持ち、ソロと自給自足の力は最も強い職業です。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>ウェーブの前に S/D を維持し、強い敵には近づく前に J/Z。ラバータ／ギフォイエで近接の機会を作り、スピリット・バーサーク・多段の武器で仕留めます。</li>
+                        <li><strong>役割：</strong>FO がいないパーティでは補助を担い、FO がいるときは TP を制圧・レスタ・遠距離のとどめに回して、HU として重要な敵に集中します。</li>
+                        <li><strong>よくある誤解：</strong>テクニックが使えるからといって劣化版の FO にならないこと。主な火力は Hit の高い物理武器です。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>HUcast</h4>
+                    <p>全職業で最も高い ATP に、凍結・混乱・ダメージのトラップを持ち、最も分かりやすい近接の瞬間火力です。テクニックがないので、命中とパーティの補助がより重要です。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>出現地点にフリーズトラップを置いてすぐ起爆し、凍っている間にソードや Vjaya で群れを掃除するか、Dark Flow やマシンガンで HP の高い敵を処理します。</li>
+                        <li><strong>トラップ：</strong>フリーズは危険な強敵と攻め時に取っておき、普通の密集した敵にはコンフューズで固まって同士討ちさせます。ダメージトラップはスライムの分裂体を一撃で倒せます。</li>
+                        <li><strong>よくある誤解：</strong>ATP が高いからといって毎回3段まで振ることはありません。アンドロイドは回復手段が限られるので、2段で安全に止めるほうがたいてい速く片付きます。</li>
+                    </ul>
+                    <p><a href="#hucast-deep">HUcast の詳しい解説へ ↓</a></p>
+                </article>
+                <article class="class-card">
+                    <h4>HUcaseal</h4>
+                    <p>アンドロイドの HU で、ATA と EVP が高く、動作性能とトラップで安定した制圧ができます。ATP は HUcast より低く、機動力と正確さ寄りです。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>HU で最も高い ATA を活かして Arrest／Hell を早くから安定して当て、凍らせた後は速いダガーの動作や多段の武器で EVP の高い単体を処理します。</li>
+                        <li><strong>役割：</strong>HUcast とダメージを競うより、トラップによる制圧を優先します。HUcast のエクストラアタックが外れやすい敵を引き受けてください。</li>
+                        <li><strong>よくある誤解：</strong>高い EVP は確実なダメージ軽減ではありません。トラップ、背後に回る動き、のけぞりで主導権を保ってください。</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="character-handbook" aria-label="ハンターのキャラクター別の解説">
+                <h3>キャラクター別の解説</h3>
+                <details id="humar-deep">
+                    <summary>HUmar · トラップのないバランス型の制圧のしかた</summary>
+                    <div class="character-body">
+                        <p><strong>基本の流れ：</strong>安全な距離で部屋に入る → 近接の脅威にはジェルン、HP の高い敵にはザルア → ギフォイエで最初の突進を止める → 横や後ろからソードやスライサーで敵をまとめる → マシンガン・Vjaya・Excalibur で HP の高い敵を仕留める。HUmar の技術は「何でも少しできる」ことではなく、トラップがないときにテクニックで近接の機会を作ることです。</p>
+                        <div class="decision-grid">
+                            <section class="decision-card"><h4>ソロ</h4><p>S/D は S-Red's Blade かマグの PB で補います。近づく前にジェルン、レスタは攻撃の動作から抜けた後に使います。散らばった敵にはギフォイエか Arrest Slicer から始め、1体ずつ追いかけないでください。</p></section>
+                            <section class="decision-card"><h4>パーティ</h4><p>FO がすでに J/Z をかけているなら重ねずに、すぐ危険な敵に向かいます。FO がいないときは硬い敵に自分でザルアをかけますが、普通の敵に1体ずつかけてテンポを落とさないでください。</p></section>
+                        </div>
+                        <ul><li><strong>武器の優先順位：</strong>Hit の高い Raygun、DoB、範囲のソード、マシンガン。その後 Demon's Mechgun と Zalure Gun を加えます。</li><li><strong>練習のポイント：</strong>ギフォイエを撃ったらすぐ近接武器に替えます。2段で安全に止める練習をして、フリーズトラップがない分を補います。</li><li><strong>よくある失敗：</strong>囲まれたままレスタを使うこと。先に攻撃範囲から抜けて回復するほうが、次の一撃を受けるよりたいてい速く済みます。</li></ul>
+                    </div>
+                </details>
+                <details id="hunewearl-deep">
+                    <summary>HUnewearl · 補助・自衛・物理火力の切り替え</summary>
+                    <div class="character-body">
+                        <p><strong>基本の流れ：</strong>部屋の移動中に S/D を補う → ウェーブの開始時に重要な敵へ J/Z → ラバータ／ギフォイエで機会を作る → Hit の高い物理武器で仕留める。Lv20 の補助でソロも一通りこなせますが、ATP が低めなので、普通のソードで削るのではなく属性・エクストラアタック・多段の武器を活かす必要があります。</p>
+                        <ul><li><strong>TP の配分：</strong>普通の敵には J/Z 1回か、かけなくて構いません。TP は S/D、強い敵への J/Z、レスタ、非常時のアンティに回します。自然な TP 回復は安全な移動中の待ち時間に向いており、戦闘中にその場で待つものではありません。</li><li><strong>火力の選び方：</strong>弱い敵には DoB かソード。硬い敵には先に Demon's、その後マシンガン・Excalibur・Vivienne で仕留めます。敵のテクニック耐性が低いときは、テクニックで危険な接近を避けます。</li><li><strong>パーティ：</strong>FO がいれば HU の役割に戻って重要な敵を狙い、FO がいないときだけ補助をすべて担います。まだ時間の残っている S/D をかけ直すために、出現地点での立ち位置を手放さないでください。</li><li><strong>生存：</strong>HP が低いので、ジェルン、横や後ろからの攻撃、2段の連続攻撃でダメージを防ぎます。レスタを後からいくらでも取り返せる手段と考えないでください。</li></ul>
+                    </div>
+                </details>
+                <details id="hucaseal-deep">
+                    <summary>HUcaseal · ATA の高いトラップハンターの制圧</summary>
+                    <div class="character-body">
+                        <p><strong>基本の流れ：</strong>ATA の高さを活かして先に Arrest／Hell を当てる → 残った脅威をフリーズ → 速いダガー／ツインソードの動作で横から仕留める。「小さな HUcast」ではなく、早くから安定してエクストラアタックを当て、正確な制圧でパーティの足止めを減らすのが強みです。</p>
+                        <ul><li><strong>散らばった敵：</strong>Arrest J-Cutter かスライサーで一度なぎ払い、麻痺が入ってから近接に行くか決めます。散らばった敵の中心に突っ込むより安全です。</li><li><strong>EVP の高い単体：</strong>フリーズで EVP を下げてから多段の武器を使い、3段目で倒せないなら2段で離れます。</li><li><strong>トラップの配分：</strong>フリーズの増え方が HUcast より少ないので、危険なウェーブを毎回凍らせる進め方はまねできません。凍らせられる普通のウェーブは Arrest に任せ、本当に隊形を崩す敵にだけフリーズを使います。</li><li><strong>よくある失敗：</strong>高い EVP に頼って立ち止まること。回避は確率であって制圧ではありません。複数の敵に違う角度から挟まれたら、まず包囲から抜けてください。</li></ul>
+                    </div>
+                </details>
+            </div>
+
+            <article id="hucast-deep" class="deep-guide">
+                <h3>キャラクター別の詳しい解説 · HUcast の戦い方</h3>
+                <p>
+                    HUcast の強さは「数値が高いから突っ込んで斬る」ことではなく、出現の知識で射程の短さを強みに変えることです：<strong>危険な敵の横や後ろを先に取り、トラップで4秒の機会を作り、その間にコンボキルを決める</strong>。初めのうちは安全に倒すことだけを練習し、クエストに慣れたら、トラップの先置き、正確な立ち位置、HP を低くした Dark Flow を練習します。
+                </p>
+
+                <h4>部屋に入る前：高い武器6つではなく、6つの役割</h4>
+                <div class="decision-grid">
+                    <section class="decision-card">
+                        <h4>常に持つ</h4>
+                        <ul>
+                            <li><strong>Raygun：</strong>頭上のトラップの起爆、遠距離からのとどめ、1体だけの釣り出し。</li>
+                            <li><strong>Sword / Partisan：</strong>敵が正面の扇形に固まったら、群れを掃除する。</li>
+                            <li><strong>Slicer：</strong>敵が散らばっている、動き回る、または安全に近づけないときに使う。</li>
+                            <li><strong>Mechgun / Twin Sword：</strong>凍らせた後の HP の高い単体。</li>
+                        </ul>
+                    </section>
+                    <section class="decision-card">
+                        <h4>クエストに応じて入れ替え</h4>
+                        <ul>
+                            <li><strong>Arrest：</strong>ドルフォン、ギルタブリルなど、凍らないか麻痺のほうが向いている敵。</li>
+                            <li><strong>Hell：</strong>エピソード2で闇耐性が低く、物理では倒すのに時間がかかる敵。</li>
+                            <li><strong>Twin Blaze：</strong>残ったギフォイエでトラップを即座に起爆するよう先に仕込め、突進を止めることもできる。</li>
+                            <li><strong>Zalure ES：</strong>ソロのボス戦や、パーティに頼れるザルアがないときの穴埋め。</li>
+                        </ul>
+                    </section>
+                </div>
+                <p class="notice"><strong>ショートカットの配置のコツ：</strong>フリーズトラップ、コンフューズトラップ、メイト、スターアトマイザーを最も押しやすい場所に置き、武器は「遠距離 → 範囲 → 単体 → 特殊」の順に固定します。似た武器をもう1本持つより、体で覚えた操作のほうが価値があります。</p>
+
+                <h4>ウェーブごとの判断の順番</h4>
+                <ol class="combat-flow">
+                    <li><strong>まず危険な敵：</strong>突進・跳躍・遠距離からの妨害をする敵や、HP が最も高い敵を優先します。仲間がすでに向かっているなら反対側を引き受け、4人で同じ敵を追わないでください。</li>
+                    <li><strong>次に形：</strong>一列や扇形ならソード、広い角度に散っていればスライサー、HP の高い敵が1～3体ならマシンガン・ツインソード・Excalibur。</li>
+                    <li><strong>制圧するか決める：</strong>凍らせられて隊形を崩す敵ならフリーズを置きます。普通の敵を先に固めたいなら少し位置で待ち、凍らない敵には Arrest を試します。「トラップの節約」のためにパーティを崩されないでください。</li>
+                    <li><strong>横か後ろから始める：</strong>正面から張り付くと、最高の ATP を最大の被ダメージと引き換えるだけです。一度空振りを誘ってから横や後ろへ回るのが、トラップなしで最も安定した始め方です。</li>
+                    <li><strong>倒せる線で2段か3段かを決める：</strong>3段目で倒せず、戻りの動作で攻撃を受けるなら、2段で止めて位置を直します。3段目はご褒美のボタンではありません。</li>
+                </ol>
+
+                <h4>3種類のトラップの使い方</h4>
+                <table>
+                    <thead><tr><th>トラップ</th><th>使うタイミング</th><th>起爆のしかた</th><th>よくある失敗</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Freeze</strong></td>
+                            <td>危険なウェーブ、跳ぶ敵の着地点、EVP の高い敵、パーティ全体で安全に攻めたいとき。約4秒凍らせ、敵の EVP を 30% 下げます。</td>
+                            <td>その場でハンドガンで撃って起爆。出現地点が分かっていれば先置き。Twin Blaze があれば先にギフォイエを敷き、トラップを置くと自動で起爆します。</td>
+                            <td>敵が集まる前に凍らせてソード／Vjaya が届かない、または凍らない敵に無駄に使う。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Confuse</strong></td>
+                            <td>普通の敵の攻撃が痛いとき、同士討ちさせたいとき、固まってほしいとき。序盤で火力が足りないときほど価値があります。</td>
+                            <td>たいていは自然に作動させ、混乱している間に位置を直すか範囲武器に替えます。</td>
+                            <td>仲間がかけたばかりのフリーズを上書きする。アルティメットで適当に置くと敵の動きが読めなくなり、予定の立ち位置を崩します。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Damage</strong></td>
+                            <td>アルティメットで出たばかりのスライムを一撃で倒す、ラッピーを倒れさせて逃げさせる、EFR の低い小さな敵にダメージを足す。</td>
+                            <td>出現地点への先置きが最も安定します。普通の掃除で主な火力にする必要はありません。</td>
+                            <td>ダメージトラップを弱いフリーズのように続けて投げ、制圧にもならず動作の時間を無駄にする。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>連続攻撃に決まった正解はない：まずこの5つを練習</h4>
+                <table>
+                    <thead><tr><th>入力</th><th>場面</th><th>判断の基準</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="combo-code">N-H</span></td><td>慣れない近接の敵、ソードで正面から群れを抑えるとき</td><td>2段の後すぐ横に動きます。3段目が安全か分からなければ、打たないのが基本です。</td></tr>
+                        <tr><td><span class="combo-code">N-N-H</span></td><td>序盤、Hit が足りない、安定して当てたいとき</td><td>2段目と3段目をわざと遅らせ、のけぞりを本当につなげます。連打するとのけぞりの時間を無駄にします。</td></tr>
+                        <tr><td><span class="combo-code">N-H-H</span></td><td>凍結・麻痺した敵で、通常のダメージで足りるとき</td><td>3段目で必ず倒せるか、戻りの動作中に反撃されないこと。</td></tr>
+                        <tr><td><span class="combo-code">S-N-S</span></td><td>スライサーのエクストラアタック（DoB、Arrest、Hell など）</td><td>中距離で Accuracy Glitch を使いエクストラアタックの命中を上げます。距離とスライサーの戻るタイミングで結果が変わります。</td></tr>
+                        <tr><td><span class="combo-code">S-S-S / S-H-H</span></td><td>凍結中に使う Vjaya、バーサーク、そのほか危険の大きいエクストラアタック</td><td>命中率、HP やお金の消費、倒せる線がすべて分かっているときだけ使い、そうでなければ安全な連続攻撃に替えます。</td></tr>
+                    </tbody>
+                </table>
+                <p><strong>「遅らせる」の意味：</strong>敵がのけぞっている間にもう一度当てても、のけぞりの時間は満タンに戻りません。正しいのは、連続攻撃の入力の受付時間の中で少し待ち、前の段ののけぞりが終わりかけてから次を出すことで、3段のボタンを見たら最速で連打することではありません。</p>
+
+                <h4>よくある場面：見たら何に切り替えるか</h4>
+                <div class="decision-grid">
+                    <section class="decision-card">
+                        <h4>普通の敵の群れが近づいてくる</h4>
+                        <p>半歩下がって扇形に重ねる → フリーズ → 横からソード。まだ散っていればスライサーに替え、最初の1体を追って群れを散らさないでください。</p>
+                    </section>
+                    <section class="decision-card">
+                        <h4>HP の高い敵1体と雑魚が数体</h4>
+                        <p>仲間が雑魚を片付けられるなら HP の高い敵を直接狙います。誰も雑魚を相手にしないなら、先にウェーブ全体をフリーズしてから Excalibur／Vjaya でまとめて攻撃するか、2段で離れて仕切り直します。</p>
+                    </section>
+                    <section class="decision-card">
+                        <h4>ドルフォン／デルバイツァの突進</h4>
+                        <p>正面から連続攻撃に賭けないでください。トラップを先置きするか、Twin Blaze でギフォイエを敷きます。凍らない敵には Arrest を使い、制圧が決まったら横から一気に攻めます。</p>
+                    </section>
+                    <section class="decision-card">
+                        <h4>飛んでいる敵・高い位置の敵</h4>
+                        <p>まず Raygun で攻撃を続けて誘導します。慣れたら、垂直範囲が無限の TJS／Dark Flow のエクストラアタックでその出現地点を処理し、着地点の下でむやみに待たないようにします。</p>
+                    </section>
+                </div>
+
+                <h4>ソロとパーティでの役割の違い</h4>
+                <table>
+                    <thead><tr><th>場面</th><th>自分から担うこと</th><th>資源の管理</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>ソロ</strong></td><td>S-Red's Blade で Lv3 の S/D を補い、ボスや硬い敵は Zalure ES で処理します。扉・壁の角・コンフューズを活かして敵を集めます。</td><td>補給地点を覚えておきます。メイトは各10個しかないので、薬で強引に取り返すのではなく立ち位置で HP を節約します。</td></tr>
+                        <tr><td><strong>普通のパーティ</strong></td><td>FO が J/Z をかけたらすぐ倒す位置に入ります。フリーズでパーティ共通の機会を作り、仲間が倒すのに時間のかかる HP の高い敵を優先します。</td><td>スターアトマイザーで近接の仲間を助けてテンポを保ちます。仲間がすでに制圧しているなら、コンフューズで上書きしないでください。</td></tr>
+                        <tr><td><strong>慣れたメンバーでの高速周回</strong></td><td>床の模様を目印に先回りしてトラップを先置きし、敵が出た瞬間に倒せるようにします。仲間の動きを見て狙う敵を分けます。</td><td>部屋ごとにトラップを配分します。ずっと温存するのでも、毎回置くのでもありません。フリーズは明らかにウェーブを短くできる出現地点に取っておきます。</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>HP を低くした Dark Flow：最後に覚えるもので、入門の条件ではない</h4>
+                <p>
+                    Dark Flow のエクストラアタックには最大 HP の 12.5% 未満の HP が必要です。敵に密着すると5本の剣の波が重なり、非常に高い単体の瞬間火力になりますが、HP が低いので立ち位置を誤るとすぐ倒れます。まず  <code>Monomate +200 HP</code>、<code>Dimate +500 HP</code>  で HP を調整する方法と固定ダメージの攻撃を覚えてから、公開パーティで練習してください。仲間が回復を必要とするとき、自分の低 HP のプレイにパーティ全体を合わせさせないこと。普通の HP の高い連続攻撃に戻しても、十分に役目を果たせる HUcast です。
+                </p>
+
+                <h4>20分の練習法</h4>
+                <ol class="checklist">
+                    <li><strong>5分：</strong>ソードだけを持ち、同じ種類の近接の敵で「空振りを誘う → 横に動く → 遅らせた N-N-H」を反撃されなくなるまで練習します。</li>
+                    <li><strong>5分：</strong>同じ部屋で、自然な作動・Raygun での起爆・Twin Blaze での起爆でフリーズを試し、自分に残る有効な攻撃時間を比べます。</li>
+                    <li><strong>5分：</strong>各ウェーブをまず「固まっている／散らばっている／HP の高い単体」に分け、対応する武器に必ず替えます。ソード1本で最後まで戦ってはいけません。</li>
+                    <li><strong>5分：</strong>クエストを繰り返し、最も危険な3つの出現地点の立ち位置とトラップのタイミングだけを覚えます。次の周回でさらに3つ加え、一度にマップ全体を覚えようとしなくて構いません。</li>
+                </ol>
+            </article>
+
+            <h3>実戦の流れ</h3>
+            <ol>
+                <li>部屋に入る前に、次の出現地点と優先する敵を確認する。</li>
+                <li>敵の横か後ろに立ち、正面に張り付かない。必要なら床の模様を立ち位置の目印にする。</li>
+                <li>散らばった敵にはスライサー、固まった敵にはソード／パルチザン、HP の高い単体にはマシンガン・ツインソード・Dark Flow。</li>
+                <li>2段目と3段目を遅らせてのけぞりを保つ。戻りの動作が危ないか、3段目で倒せないなら2段だけ打つ。</li>
+                <li>ギフォイエ・Twin Blaze・凍結・Arrest で突進を止めてから、攻める位置に入る。</li>
+            </ol>
+
+            <h3>HP と低 HP のプレイ</h3>
+            <p>
+                HU は敵に近づくことが多く、マグの HP 低下時の無敵やDark Flow のエクストラアタックを最もよく使います。固定ダメージ、薬の回復量、安全な立ち位置を身につけてから HP を低く保つ練習をしてください。
+                <code>Monomate</code>  は 200 HP、<code>Dimate</code>  は 500 HP 回復し、アルティメットで HP を正確に調整できます。失敗したら、やみくもに防御を積むより立ち位置と連続攻撃を見直すほうが効果的です。
+            </p>
+
+            <h3>武器の進め方</h3>
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <h4>最初に用意する汎用の道具</h4>
+                    <ul>
+                        <li><strong>Charge / Berserk Raygun：</strong>遠距離からのとどめとトラップの起爆。</li>
+                        <li><strong>Charge / Berserk Vulcan：</strong>安く手に入る単体の瞬間火力。</li>
+                        <li><strong>Red Sword / Chain Sawd：</strong>序盤の範囲の掃除。</li>
+                        <li><strong>Diska of Braveman + Thirteen：</strong>実用的な遠距離の範囲火力。</li>
+                        <li><strong>S-Parts ver2.01：</strong>Lv180 までのアンドロイドにとって大事な ATA +15 の手段。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>重要な ES / S ランク</h4>
+                    <ul>
+                        <li><strong>Arrest / Hell のスライサーか J-Cutter：</strong>HU の中心となる範囲のエクストラアタック用の武器で、最優先。</li>
+                        <li><strong>Demon's Mechgun：</strong>ヒューマン／ニューマンの HU が HP の高い単体を削る道具。</li>
+                        <li><strong>Zalure Gun：</strong>FO がいないとき、ボス戦、ソロでの HUmar とアンドロイド用。</li>
+                        <li><strong>Hell Sword / Partisan / Scythe：</strong>敵が近すぎてスライサーの距離を活かせないときの穴埋め。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>終盤の火力の武器</h4>
+                    <ul>
+                        <li><strong>Vjaya：</strong>費用は高いが上限の高い複数の敵への瞬間火力。</li>
+                        <li><strong>Excalibur：</strong>最大3体。凍らせた後の HP の高い敵に向く。</li>
+                        <li><strong>Tsumikiri J-Sword：</strong>自分の周りを回り、垂直範囲が無限のエクストラアタック。</li>
+                        <li><strong>Dark Flow：</strong>密着して5本の剣の波を重ね、出現地点で最も強い単体の瞬間火力を出す。</li>
+                        <li><strong>Jizai：</strong>DFP／EVP の高い単体に。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>防具と強化</h4>
+                    <ul>
+                        <li><strong>Red Ring：</strong>ほとんどの場面での第一候補で、ATP・ATA・高い防御を持つ。</li>
+                        <li><strong>Anti-Dark Ring：</strong>EDK の高い装備構成の中心。</li>
+                        <li><strong>D-Parts ver1.01：</strong>アンドロイドに ATP +35。</li>
+                        <li><strong>敵の種族の属性を強化する優先順位（<span data-item-en="Photon Sphere"></span>）：</strong>Dark Flow → TJS → DoB / Vjaya / Excalibur → Twin Sword → Twin Saber。</li>
+                        <li><strong>属性の目安：</strong>Machine と Dark を優先。よくある組み合わせは Native／A.Beast と Machine／Dark。</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="ranger" class="profession-panel" role="tabpanel" aria-labelledby="tab-ranger" hidden>
+            <h2>RA · Ranger / レンジャー</h2>
+
+            <p>RA は最も高い ATA、優れた射程、最もそろったエクストラアタックの道具を持っています。大事なのはできるだけ遠くに立つことではなく、「十分に安全で、ショットやニードルが最も多くの敵に当たる」距離と角度を見つけることです。</p>
+
+            <h3>Vanilla での成長</h3>
+            <table>
+                <thead><tr><th>時期</th><th>武器と戦い方</th><th>育てること</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Normal–Hard</td>
+                        <td>ライフルで敵が動く前に遠くから倒し、ショットで正面の扇形の群れ、ハンドガンで動きながらの戦い、マシンガンはのけぞったか制圧した単体に使います。詰め寄られたらセイバーでも構わず、「撃つだけ」にこだわらなくて大丈夫です。</td>
+                        <td>マグは POW 中心で DEX を少し。扉・壁の角・凍った敵を使って、ほかの敵の進路をふさぐことを覚えます。</td>
+                    </tr>
+                    <tr>
+                        <td>Very Hard</td>
+                        <td>Hit の高いショットでウェーブを掃除し、マシンガンで一気に攻め、ライフルで危険な敵を抑えます。強攻撃だけでなく Arrest・Blizzard・Hell・Demon's などのエクストラアタックを試し始めます。</td>
+                        <td>武器欄は「範囲・単体・制圧・ボス」で役割を分け、同じ種類の銃ばかりにしないでください。</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimate</td>
+                        <td>ショットが今も中心ですが、Hit が重要です。強敵は先に凍結か麻痺させてから攻撃します。エピソード2の EDK の低い雑魚には Hell、HP の高い敵には Demon's が向いています。</td>
+                        <td>まず命中と制圧を固めてから火力を求めます。アンドロイドはトラップでテクニックがない分を補い、ヒューマンは自分の補助テクニックを切らさないようにします。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Vanilla の大事な習慣：</strong>最初の一発の価値は、ダメージより、敵を止める・向きを変えさせる・ショットで狙える形に並ばせることにあることが多いです。RA の安全な距離はパーティのために時間を稼ぐもので、ウェーブ全体が見えない場所に隠れることではありません。</p>
+
+            <h3>4キャラクターの選び方</h3>
+            <div class="class-grid">
+                <article class="class-card">
+                    <h4>RAmar</h4>
+                    <p>全職業で最も高い ATA と Lv15 の S/D を持ち、同じ武器なら RAmar が最も安定してエクストラアタックを当てられます。いろいろなエクストラアタックを安定して使いたい人向けです。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>S/D を常に維持し、最高の ATA で先に Arrest／Hell／Demon's を当てます。強敵を削ったら Charge Arms・マシンガン・Heaven Striker で仕留めます。</li>
+                        <li><strong>ソロ：</strong>射程・命中・レスタ・基本の S/D がそろい、最も安定した万能のソロ向きキャラクターの1人です。</li>
+                        <li><strong>よくある誤解：</strong>ATA が最高でも、何も考えずに S-S-S とは限りません。エクストラアタックは命中の補正が低いので、距離に応じて S-N-S、N-S-S、SN glitch を使い分けます。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>RAmarl</h4>
+                    <p>2番目に高い ATA と Lv20 の S/D/J/Z を持ち、ソロや FO のいないパーティで快適です。EVP が高いので回避型の構成もできます。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>まず J/Z でウェーブ全体の攻撃と防御を下げ、Arms／ニードルで掃除します。HP の高い敵には Demon's、はぐれた敵は Heaven Striker で仕留めます。</li>
+                        <li><strong>パーティ：</strong>FO がいないときは補助をすべて担い、いるときは重なる詠唱を減らして、その分を安全な遠距離からの制圧に回します。</li>
+                        <li><strong>よくある誤解：</strong>ATP の低さを近接のしすぎで補わないでください。効率は、補助をかけた後にウェーブ全体を攻撃し続けることから生まれます。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>RAcast</h4>
+                    <p>RA で最も高い ATP とトラップを持ち、フリーズトラップが4人の RA で最も低い ATA を大きく補います。範囲火力と瞬間火力を求める人向けです。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>フリーズトラップで EVP や危険度の高い敵を固め、Baranz／Arms で一掃します。単体には属性の高いマシンガンか Heaven Striker を使います。</li>
+                        <li><strong>パーティ：</strong>高レベルのシフタによる火力の伸びが最も大きく、FO と協力して低レベルのギフォイエでトラップを瞬時に起爆してもらいます。</li>
+                        <li><strong>よくある誤解：</strong>アルティメットではアンドロイドの Demon's の HP 削りに不利があるので、ヒューマンの RA の Demon's 中心の戦い方をまねしないでください。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>RAcaseal</h4>
+                    <p>全職業で最も高い DFP と、RAcast よりわずかに高い ATA、トラップ、アンドロイドの麻痺の補正を持ち、とても安定した制圧ができます。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>Spread／Arrest ニードルとトラップで制圧し続け、仲間が攻撃する間ははぐれた敵と側面を受け持ち、安全になってから範囲火力を加えます。</li>
+                        <li><strong>トレードオフ：</strong>RAcast より高い ATA はエクストラアタックの命中に有利ですが、ATP とフリーズトラップの数は少なく、制圧を優先する人向けです。</li>
+                        <li><strong>よくある誤解：</strong>DFP が高いと多段攻撃でダウンせず、連続でダメージを受け続けることがあります。「数値上最も硬い」から立ち止まって受けてよいわけではありません。</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="character-handbook" aria-label="レンジャーのキャラクター別の解説">
+                <h3>キャラクター別の解説</h3>
+                <details id="ramar-deep">
+                    <summary>RAmar · 最高の ATA でエクストラアタックを使いこなす</summary>
+                    <div class="character-body">
+                        <p><strong>基本の流れ：</strong>Lv15 の S/D を維持 → ライフル／ニードルで遠くから危険な敵を抑える → Demon's で HP の高い敵を削る → Charge Arms かマシンガンで仕留める。最高の ATA の価値は命中補正の低いエクストラアタックを確実にすることで、入り口に立って強攻撃を撃ち続けることではありません。</p>
+                        <ul><li><strong>Arrest：</strong>動きが速い・凍らない・近づかれると危険な敵は先に麻痺させます。Spread Needle は射程が短いので、敵が本当に扇形の範囲に入ってから撃ちます。</li><li><strong>Hell：</strong>まず EDK を見てから、ライフルで1体ずつかニードル／ショットでまとめてかを決めます。V502 で効果は上がりますが、正しい連続攻撃と距離は必要です。</li><li><strong>Demon's：</strong>素早く HP を削るためだけに使い、通常のダメージで倒せる範囲に入ったら Charge／Heaven Striker に替え、3回目のエクストラアタックで時間を無駄にしないようにします。</li><li><strong>ソロ：</strong>S/D、レスタ、高い ATA ですでに一通りそろっています。J/Z がない分は Zalure ES、制圧、正しい属性で補います。</li></ul>
+                    </div>
+                </details>
+                <details id="ramarl-deep">
+                    <summary>RAmarl · Lv20 の補助がそろった遠距離のテンポ</summary>
+                    <div class="character-body">
+                        <p><strong>基本の流れ：</strong>部屋の移動中に S/D → 新しいウェーブで重要な場所に J/Z を1回 → ニードル／Arms で制圧と攻撃 → HP の高い敵に Demon's → レスタ／アンティの後はすぐ射線に戻る。RAmarl の強みは、ソロでも FO のいないパーティでも補助と弱体をすべて維持できることです。</p>
+                        <ul><li><strong>詠唱の位置：</strong>J/Z は最も多くの敵を巻き込める中距離からかけ、全員に当てるために群れの中心へ走り込まないでください。1体漏らすほうが、詠唱を止められるよりたいてい安く済みます。</li><li><strong>火力：</strong>ATP が低めなので、先にザルアと Demon's で倒せる線を変えてから複数の敵を狙える銃で仕留めます。硬い敵に低ダメージのショットで3段を続けないでください。</li><li><strong>FO のいるパーティ：</strong>Lv30 の補助で主なメンバーを覆ってもらい、自分ははぐれた敵・遠くの仲間・緊急の回復だけを補い、RA としての先手の制圧に動作を回します。</li><li><strong>練習のポイント：</strong>補助の残り時間を次のウェーブの立ち位置と一緒に覚え、アイコンが消えてから戦闘中にかけ直すことのないようにします。</li></ul>
+                    </div>
+                </details>
+                <details id="racast-deep" open>
+                    <summary>RAcast · ATP の高いトラップ使いのガンナーの戦い方</summary>
+                    <div class="character-body">
+                        <p>RAcast の基本は<strong>まずトラップか銃のエクストラアタックでウェーブ全体を固め、RA で最も高い ATP を4～5体へのダメージに変えること</strong>です。高レベルのシフタがあるマルチプレイで特に強くなり、安定したシフタのないソロでは、安全な制圧とエクストラアタック寄りの戦い方になります。</p>
+
+                        <h4>ウェーブごとの4ステップ</h4>
+                        <ol class="combat-flow">
+                            <li><strong>形を読む：</strong>5体以下で扇形なら Arms／ニードル、4体が一列か着地点に集まるなら Baranz Launcher、HP の高い1体ならマシンガン／Heaven Striker に替えます。</li>
+                            <li><strong>まず固める：</strong>凍らせられる危険なウェーブにはフリーズトラップか Frozen Shooter、凍らない敵には Arrest Needle／Raygun を使います。敵がまだ横に散っているうちに急いで攻撃しないでください。</li>
+                            <li><strong>主な攻撃：</strong>安全なときは  <span class="combo-code">N-S-S</span>、<span class="combo-code">S-S-S</span>  の Charge／Berserk Arms か Baranz を使います。命中が不安定なら N から始め、1回の連続攻撃で倒せないなら早めに止めて距離を取り直します。</li>
+                            <li><strong>残りの処理：</strong>扇形の外の敵は Heaven Striker／ライフルで倒します。次のウェーブが出る直前なら、瀕死の1体をショットでゆっくり追うより、先に位置を移します。</li>
+                        </ol>
+
+                        <h4>武器を切り替えるタイミング</h4>
+                        <table>
+                            <thead><tr><th>状況</th><th>第一候補</th><th>理由と次の行動</th></tr></thead>
+                            <tbody>
+                                <tr><td>普通の5体の扇形</td><td>Charge Arms / Berserk Needle</td><td>多くの敵に当たり、動作も素直です。シフタと正しい属性があれば、1回の連続攻撃でウェーブを片付けることを狙います。</td></tr>
+                                <tr><td>HP の高い4体が一列</td><td>Baranz Launcher</td><td>ダメージは高いが、弾道とロックオンのために立ち位置が必要です。先に凍らせて、敵が動いて外れるのを防ぎます。</td></tr>
+                                <tr><td>危険な単体</td><td>Frozen Shooter → Mechgun / HS</td><td>先に凍らせてから多段を当て切ります。Frozen Shooter を普通の攻撃用の銃として撃ち続ける必要はありません。</td></tr>
+                                <tr><td>凍らない敵</td><td>Arrest Needle / Raygun</td><td>アンドロイドは Paralysis のエクストラアタックに補正があります。麻痺が入ったら攻撃用の武器に替えます。</td></tr>
+                                <tr><td>エピソード2の EDK の低い雑魚</td><td>V502 + Hell Needle / Shot / Rifle</td><td>密度に応じて範囲を選び、1体ならライフルを使って、1体のためにショットの動作をまるごと使わないようにします。</td></tr>
+                                <tr><td>HP／DFP が高い</td><td>物理の瞬間火力か、仲間の Demon's</td><td>アンドロイドはアルティメットで Demon's を使うと不利になるので、普通は中心に据えないでください。</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>トラップとパーティの連携</h4>
+                        <ul><li><strong>Freeze：</strong>Baranz／Arms で撃ち切れる時間を作ります。敵が自然に固まるなら、出た瞬間に凍らせるより半秒待ってからのほうがよいことがよくあります。</li><li><strong>Confuse：</strong>ソロの序盤では攻撃の痛い敵を同士討ちさせ、固まらせます。マルチプレイのアルティメットでは、フリーズを上書きしたり敵の進路を乱したりしないよう慎重に使います。</li><li><strong>Damage：</strong>スライム・ラッピー・EFR の低い敵専用の道具で、普通の掃除の主力ではありません。</li><li><strong>FO との連携：</strong>FO に低レベルのギフォイエか Mercurius Rod のエクストラアタックで先に炎の輪を敷いてもらえば、トラップを置いた瞬間に起爆し、銃を構えて撃つ手間を省けます。</li></ul>
+
+                        <h4>ソロとパーティの違い</h4>
+                        <div class="decision-grid">
+                            <section class="decision-card"><h4>ソロ</h4><p>一時的なシフタは Mylla &amp; Youlla から得ます。火力が足りないときはパーティでの倒せる線を追わず、フリーズ → 安全な3段 → 離れる、に切り替えます。Hell が効くエリアでは ATP の不足を補えます。</p></section>
+                            <section class="decision-card"><h4>パーティ</h4><p>犠牲型のエクストラアタックは FO のシフタ／ザルアを待ってから撃ちます。ダメージの差は大きいです。自分はウェーブ全体とトラップを担当し、HU が硬い敵に張り付いているときは、銃でその敵をのけぞらせたり向きを変えさせたりしないでください。</p></section>
+                        </div>
+                        <p class="notice"><strong>最もよくある失敗：</strong>HP と DFP が高いからと立ち止まって3段まで撃つこと。遠距離職の守りは射程とのけぞりから来ます。敵がショットの内側に入って散り始めたら、まずフリーズ、ニードルに替える、または下がって射線を整え直します。</p>
+                    </div>
+                </details>
+                <details id="racaseal-deep">
+                    <summary>RAcaseal · 制圧優先のアンドロイドのガンナー</summary>
+                    <div class="character-body">
+                        <p><strong>基本の流れ：</strong>Arrest／フリーズで最初の脅威を固める → ニードルではぐれた敵と側面を見張る → 仲間が攻撃を始めたら Arms／Baranz で範囲の火力を加える。RAcast より高い ATA で安定したエクストラアタックを得る代わりに、倒せる線はシフタ・ザルア・武器の属性により左右されます。</p>
+                        <ul><li><strong>先に制圧、それから攻撃：</strong>ウェーブの中で1体でも範囲から飛び出したら、まず Raygun／Frozen Shooter でその1体を抑えます。ショットの連続攻撃を続けるために FO まで行かせないでください。</li><li><strong>トラップ：</strong>トラップの増え方が RAcast と違うので、フリーズ／コンフューズはクエストごとに計画します。EVP の高い敵を抑えたら、HP の高い単体は HU に任せます。</li><li><strong>DFP が高いことの落とし穴：</strong>防御が高すぎると、一部の多段攻撃でダウンせずに当たり続けることがあるので、固定ダメージや属性攻撃には注意が必要です。</li><li><strong>火力の補い方：</strong>正しい敵の種族の属性、ザルア、チャージ系の武器のほうが、ATP のユニットを積むより掃除の速さを上げます。</li></ul>
+                    </div>
+                </details>
+            </div>
+
+            <h3>敵ごとの対処</h3>
+            <ul>
+                <li><strong>普通の密集した敵：</strong>Charge Arms から始め、後に Hit の高い Baranz Launcher に替えます。はぐれた敵は Heaven Striker で倒します。</li>
+                <li><strong>危険な強敵：</strong>先に Frozen Shooter／フリーズトラップで抑え、マシンガン・Heaven Striker・Excalibur・Daylight Scar で一気に攻めます。</li>
+                <li><strong>凍らない敵：</strong>ドルフォン・ギルタブリルなどは Spread／Arrest ニードルで先に麻痺させ、Demon's か攻撃用の武器を続けます。</li>
+                <li><strong>エピソード2の雑魚：</strong>多くの敵は EDK が低いので、<code>V502 + Hell Rifle / Needle / Shot</code>  が中心の進め方です。</li>
+                <li><strong>突進する敵：</strong>Twin Blaze の低レベルのギフォイエで、ダークブリンガー・デルバイツァ・ドルフォンの最初の突進を止められます。</li>
+                <li><strong>アンドロイドのトラップ：</strong>密集した強い敵にはフリーズトラップ、普通の敵を固めるにはコンフューズトラップ。銃や範囲攻撃ですぐ起爆できます。</li>
+            </ul>
+
+            <h3>装備の進め方</h3>
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <h4>入門の6点</h4>
+                    <ul>
+                        <li><strong>50 Hit Charge Vulcan：</strong>単体の瞬間火力。</li>
+                        <li><strong>50 Hit Charge Arms：</strong>5体を狙う主力。</li>
+                        <li><strong>Spread Needle：</strong>近～中距離の麻痺による制圧。</li>
+                        <li><strong>Frozen Shooter：</strong>確実な確率で凍らせる長銃の道具。</li>
+                        <li><strong>Heaven Striker：</strong>DFP の高い単体、ボス、遠距離からのとどめ。</li>
+                        <li><strong>Cannon Rouge：</strong>ドラゴン、デ・ロル・レ、バルバレイ、ガル・グリフォンなどのボス。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>終盤の道具</h4>
+                    <ul>
+                        <li><strong>Baranz Launcher：</strong>4体を狙う高火力の主力。</li>
+                        <li><strong>Hell Needle / Shot：</strong>エピソード2の雑魚掃除の中心。</li>
+                        <li><strong>Demon's Needle / Shot / Mechgun：</strong>ヒューマンの RA が高い HP を削る道具。</li>
+                        <li><strong>Arrest Needle：</strong>RAmar／RAmarl の安定した範囲の麻痺。</li>
+                        <li><strong>Excalibur / Daylight Scar：</strong>凍らせた後の近距離の高火力。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>ユニットと盾</h4>
+                    <ul>
+                        <li><strong>V101 / Heavenly Battle：</strong>攻撃速度の中心。</li>
+                        <li><strong>Heavenly Arms：</strong>ATA が上限になるまで必要に応じて装備。</li>
+                        <li><strong>V501 / V502：</strong>状態異常／Hell の発動率を上げる。エピソード2では常に装備したい。</li>
+                        <li><strong>Red Ring：</strong>終盤の汎用の盾。アンドロイドは序盤に S-Parts ver2.01 も使える。</li>
+                        <li><strong>Cure 系のユニット：</strong>クエストに応じて Freeze・Paralysis・Confuse・Shock を切り替える。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>敵の種族の属性を強化する優先順位（<span data-item-en="Photon Sphere"></span>）</h4>
+                    <p><strong>Baranz Launcher → Heaven Striker → Excalibur → Cannon Rouge → Daylight Scar → Arms</strong></p>
+                    <p>Hit が低く、いずれ替える武器に、急いで <span data-item-en="Photon Sphere"></span> を使って敵の種族の属性を強化しないでください。Baranz はよく Native／Machine と A.Beast／Dark に、Heaven Striker はよく Native／Dark にします。</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="force" class="profession-panel" role="tabpanel" aria-labelledby="tab-force" hidden>
+            <h2>FO · Force / フォース</h2>
+
+            <p>FO はまずパーティ全体の効率を上げる役で、テクニックの火力はその次です。Lv30 の補助テクニックはパーティの火力と生存を大きく上げます。今の Ephinea には DMC がないので、適切なテクニックの連打、ギフォイエの重ね置き、武器での攻撃のどれも積極的に使えます。</p>
+
+            <h3>Vanilla での成長</h3>
+            <table>
+                <thead><tr><th>時期</th><th>テクニックと戦い方</th><th>育てること</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Normal–Hard</td>
+                        <td>TP の少ないフォイエ／ゾンデ／バータで敵の弱点を試し、群れにはギ系・ラ系を使います。瀕死の1体に高い範囲テクニックを使わないでください。杖は MST とテクニックの補正のためのもので、敵を叩くためのものではありません。</td>
+                        <td>まず MIND 型のマグを育て、マインドマテリアル、Mind 系のユニット、レベルの高いレスタを用意します。フルイドを多めに持ち、ニューマンは安全な移動中に立ち止まって TP を回復できます。</td>
+                    </tr>
+                    <tr>
+                        <td>Very Hard</td>
+                        <td>パーティではまず S/D を維持し、危険な敵に J/Z を補います。レスタ・アンティ・リバーサーでパーティを支えます。テクニック耐性が高いときや TP が苦しいときは、ハンドガン・スライサー・エクストラアタック付きの武器で補います。</td>
+                        <td>属性ごとの補正のある杖と Merge を集め、エリアごとに切り替えます。4つのユニット欄をすべて Mind にしないでください。</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimate</td>
+                        <td>敵の属性耐性の差が大きくなるので、耐性を見てからテクニックを選びます。HP と耐性が高い敵には Demon's、EDK の低い敵には Hell／メギド。分かっている出現地点ではギフォイエを重ね置きします。</td>
+                        <td>MST のほかに HP・耐性・ATA も補います。テクニック中心・補助・武器での穴埋めの3つの考え方を、部屋ごとに切り替えられるようにします。</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Vanilla の大事な習慣：</strong>攻撃テクニックは DFP ではなく属性耐性で決まり、EVP で回避されることもありません。新しいエリアを初めて回るときは、ラフォイエばかり押すより小さく試すほうが確実です。補助テクニックが近くの仲間にも届くのは Lv3 からです。</p>
+
+            <h3>4キャラクターの選び方</h3>
+            <div class="class-grid">
+                <article class="class-card">
+                    <h4>FOmar</h4>
+                    <p>FO で最も高い ATP を持つ戦うフォースで、ギフォイエ／ギゾンデ／ギバータ +30%、グランツ +50%、S/D の範囲が2倍。ATA は全職業で最も低く、武器には高い Hit が必要です。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>エピソード1と4ではギフォイエの重ね置きが中心です。耐性の高いエリアでは Excalibur・DoB・Demon's／Hell の道具に替え、命中を上げる技術で ATA を補います。</li>
+                        <li><strong>パーティ：</strong>Striker of Chao で S/D の範囲を広げます。レスタ／アンティはもともと範囲が狭いので、回復の前にパーティへ近づきます。</li>
+                        <li><strong>よくある誤解：</strong>「戦うフォース」でも近接ばかりではありません。いつテクニックから武器に切り替えるかが FOmar の一番の判断です。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>FOmarl</h4>
+                    <p>補助寄りで、S/D／レスタ／アンティの範囲が2倍、グランツ +50%。スライサーの動作は命中を上げる技術に向き、Rambling May は撃つ動作が優れています。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>まず広い範囲の補助でパーティを安定させ、場面に応じて Rambling May で単体、SoF／DoB で範囲を削る、グランツで1体を倒すを使い分けます。</li>
+                        <li><strong>パーティ：</strong>散らばったパーティにも S/D・レスタ・アンティを最も届けやすい職業です。「少ない移動で間に合う補助」を、次のウェーブへの先回りに活かします。</li>
+                        <li><strong>よくある誤解：</strong>MST が最も低く、主な範囲テクニックの補正もないので、耐性を見ずにテクニックを撃ち続ける戦い方には向きません。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>FOnewm</h4>
+                    <p>ギ系とラ系のダメージがともに +30% で、範囲テクニックの火力は最強です。ATA も Demon's Mechgun などの重要な道具に足ります。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>ギフォイエを重ね置きし、ウェーブが始まったら弱点に応じてラフォイエ／ラバータ／ラゾンデを選びます。耐性の高い強敵には Demon's Mechgun・Bringer's Rifle・Excalibur に替えます。</li>
+                        <li><strong>ソロ：</strong>エピソード1と4でテクニックの効きが非常に強く、立ち止まると自然に TP が回復します。補正のある杖と Merge を替えて、倒せる線を狙います。</li>
+                        <li><strong>よくある誤解：</strong>最強の攻撃テクニック使いでも、ラ系を押すだけではありません。特にアルティメットのエピソード2では、武器のエクストラアタックと補助が必要です。</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>FOnewearl</h4>
+                    <p>MST と TP が最も高く、ATA も FO で最高。基本3系統 +30%、レスタ／アンティの範囲が2倍、メギドが貫通します。ATP と HP はとても低く、序盤は Heavenly/HP で固定ダメージの一撃死を防げます。</p>
+                    <ul class="play-loop">
+                        <li><strong>戦い方：</strong>フォイエ／ゾンデ／バータの高い単体効率で1体ずつ倒し、一列の敵にはバータか貫通するメギドを使います。HP の高い敵は、高い ATA を活かして Demon's／Hell の武器で削ります。</li>
+                        <li><strong>パーティ：</strong>強力で範囲の広いレスタ／アンティで、攻撃と救助を両立できます。HP が低く固定ダメージで一撃で倒されないよう、まず安全な距離を保ちます。</li>
+                        <li><strong>よくある誤解：</strong>MST が最高でも、範囲の掃除で FOnewm に勝るとは限りません。得意なのは基本テクニック、メギド、回復、武器のエクストラアタックです。</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="character-handbook" aria-label="フォースのキャラクター別の解説">
+                <h3>キャラクター別の解説</h3>
+                <details id="fomar-deep">
+                    <summary>FOmar · テクニックと武器を組み合わせる近～中距離のフォース</summary>
+                    <div class="character-body">
+                        <p><strong>基本の流れ：</strong>Striker of Chao で S/D を広げる → Glide Divine で J/Z を補う → ギフォイエを重ね置きして群れをまとめる → テクニック耐性の低い敵にはギ系・ラ系を続ける → 耐性の高い硬い敵には Demon's・DoB・Excalibur に替える。FOmar の ATP は、テクニックが合わないときの2つ目の答えであって、ずっと近接で戦えという意味ではありません。</p>
+                        <ul><li><strong>ATA の管理：</strong>全職業で最も低い ATA なので、Hit・Smartlink・制圧の機会がとても重要です。まずスライサーの命中を上げる技術か SoF で削ってから、近づくかどうか決めます。</li><li><strong>補助の範囲：</strong>S/D には職業の補正がありますが、レスタ／アンティにはありません。遠くから届かないのを見ているのではなく、自分から近づいて回復する必要があります。</li><li><strong>テクニック：</strong>ギフォイエ／ギゾンデ／ギバータの補正は、耐性の合う敵に使います。職業の補正があるからといって、敵の属性耐性を無視しないでください。</li><li><strong>練習のポイント：</strong>ウェーブごとに必ず「テクニックか武器か」を選び、どちらが早く倒せる線に届くか記録します。</li></ul>
+                    </div>
+                </details>
+                <details id="fomarl-deep">
+                    <summary>FOmarl · 広い範囲の補助と安定した武器での穴埋め</summary>
+                    <div class="character-body">
+                        <p><strong>基本の流れ：</strong>部屋の移動中に広げた S/D でパーティを覆う → 敵が出たら J/Z → HU／RA にレスタ／アンティが必要か見る → 合間に Rambling May・SoF／DoB・グランツで敵を片付ける。少ない移動で補助を済ませ、浮いた時間を安定した火力に変えるのが強みです。</p>
+                        <ul><li><strong>立ち位置：</strong>パーティの中ほどから後方にいて、広げた範囲が前衛と後衛の両方に届くようにします。1体を追って回復の範囲の中心から離れないでください。</li><li><strong>物理での穴埋め：</strong>Rambling May で単体を処理し、スライサーの動作はエクストラアタックに向いています。凍結か麻痺の後にだけ近づき、低めの ATA には高い Hit が必要です。</li><li><strong>Grants：</strong>職業の補正は大きいですが、光耐性と敵の数が合うときだけ使います。普通の敵が複数いるなら、範囲テクニックや武器の効率とも比べてください。</li><li><strong>よくある誤解：</strong>補助寄りでも、ずっとレスタを使うわけではありません。仲間が安全なら、先回り・J/Z・HP を削ることのほうが、回復のしすぎより価値があります。</li></ul>
+                    </div>
+                </details>
+                <details id="fonewm-deep" open>
+                    <summary>FOnewm · 範囲テクニックの火力の戦い方</summary>
+                    <div class="character-body">
+                        <p>FOnewm のギ系とラ系には 30% のダメージの補正があり、エピソード1と4の範囲の掃除が得意です。ただし本当の上達のポイントは<strong>テクニック・Demon's／Hell・物理攻撃の間をすばやく切り替えること</strong>です。アルティメットのエピソード2はテクニック耐性の高い敵が多く、ラフォイエだけを押し続けると TP とパーティの時間の両方を無駄にします。</p>
+
+                        <h4>ウェーブの前後の6ステップ</h4>
+                        <ol class="combat-flow">
+                            <li><strong>部屋の移動中：</strong>戦闘が始まってから補うのではなく、先に S/D を確認します。Striker of Chao に替えて範囲を広げ、かけ終わったらすぐ攻撃用の武器に戻します。</li>
+                            <li><strong>先読み：</strong>分かっている出現地点では、まず素手ですばやくギフォイエを重ね置きします。炎の輪ができたら Magical Piece／Gifoie Merge に替えます。ダメージは敵に当たったときの装備で計算されるからです。</li>
+                            <li><strong>ウェーブの開始：</strong>危険度の高い敵に J/Z を補います。アンドロイドがトラップを置いているときは低レベルのギフォイエで即座の起爆を助けますが、凍っている敵に状態異常のテクニックを上書きしないでください。</li>
+                            <li><strong>耐性を試す：</strong>慣れないエリアでは、合いそうな属性を1回撃ってダメージを見てから、ラ系／ギ系を続けるか決めます。敵の色だけで弱点を当て推量しないでください。</li>
+                            <li><strong>解法を切り替える：</strong>テクニックのダメージが高ければ撃ち続けます。HP や耐性の高い敵には Demon's、EDK の低い敵には Hell／メギド。瀕死の1体だけなら基本テクニックか武器でとどめを刺します。</li>
+                            <li><strong>ウェーブの締め：</strong>仲間が安全で敵も誰かが相手にしているなら、次の出現地点へ先回りします。FOnewm は「もう1発」のせいで重ね置きの機会を逃しやすい職業です。</li>
+                        </ol>
+
+                        <h4>テクニック選びは範囲の広さだけではない</h4>
+                        <table>
+                            <thead><tr><th>テクニック</th><th>向いている</th><th>向いていない</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Gifoie</strong></td><td>決まった出現地点、続けて出るウェーブ、最初の突進を止める、のけぞりを続けさせる</td><td>すでに散った敵を追いながらその場で撃つこと。先読みしていないと発動が遅い</td></tr>
+                                <tr><td><strong>Rafoie</strong></td><td>炎耐性が低く広く散らばり、すぐに全体に当てたい雑魚</td><td>硬い1体や、炎耐性の高いエピソード2の敵</td></tr>
+                                <tr><td><strong>Rabarta</strong></td><td>アンドロイドのフリーズトラップがないときの範囲の凍結と群れの制圧</td><td>重要な強敵を確実に凍らせることを頼ること。アルティメットでは凍結率が限られる</td></tr>
+                                <tr><td><strong>Razonde / Gizonde</strong></td><td>雷耐性の低い機械系、小さな敵、箱、ボルオプトなど特定の場面</td><td>動作が速いというだけで、雷耐性を無視して撃ち続けること</td></tr>
+                                <tr><td><strong>基本3系統</strong></td><td>瀕死の単体、遠距離から1体ずつ倒す、TP の消費を細かく管理する</td><td>大きく固まった群れ。FOnewm には FOnewearl の基本系の職業補正がない</td></tr>
+                                <tr><td><strong>Megid</strong></td><td>EDK が低く一列に並んだ敵、または範囲テクニックのダメージが要らない場面</td><td>EDK の高い敵と、すぐ確実に制圧すべき危険なウェーブ</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>すばやく切り替える4つの装備</h4>
+                        <div class="decision-grid">
+                            <section class="decision-card"><h4>補助セット</h4><p>S/D は Striker of Chao、J/Z は Glide Divine でかけます。補助が終わったらすぐ外し、火力の低い補助用の杖でウェーブ全体を戦わないでください。</p></section>
+                            <section class="decision-card"><h4>ギフォイエセット</h4><p>Magical Piece + Gifoie Merge／Ignition Cloak。重ね置きのときは詠唱の動作のために素手で撃ち、炎の輪が当たる前に補正のある装備へ戻します。</p></section>
+                            <section class="decision-card"><h4>ラ系セット</h4><p>Psycho Wand と対応する Merge。TP 消費が減る代わりの HP の消費を管理できるか先に確かめ、エリアの属性に応じて盾を替えます。</p></section>
+                            <section class="decision-card"><h4>エクストラアタック用セット</h4><p>Smartlink + V502 に、Demon's Mechgun／Bringer's Rifle、SoF、Hell J-Cutter を持ちます。耐性の高い敵は、別の職業として相手にするつもりで処理します。</p></section>
+                        </div>
+
+                        <h4>ソロとパーティ</h4>
+                        <ul><li><strong>ソロのエピソード1／4：</strong>扉・出現地点・ギフォイエの重ね置きで安全な場所を作ります。ニューマンの立ち止まっての TP 回復は、本当に安全な移動中だけにします。杖と Merge を替えて1発少なく倒せる線を狙うほうが、やみくもに MST を積むより現実的です。</li><li><strong>パーティ：</strong>第一の役目は今も Lv30 の S/D/J/Z と救助です。補助が安定してから範囲テクニックで全体の火力を上げます。仲間が1回の連続攻撃でウェーブを片付けられるなら、遅いテクニックをもう1発撃つと次のウェーブの立ち位置に遅れるだけです。</li><li><strong>Ep2：</strong>まずテクニックの効率を疑い、ダメージを試してからすぐ Hell・Demon's・Excalibur に切り替えます。FOnewm の ATA 180 は重要なエクストラアタック用の武器に足りますが、Hit・Smartlink・正しい連続攻撃は必要です。</li><li><strong>Boss：</strong>部位の数と耐性に応じてテクニックか多段の物理攻撃を選びます。雑魚用のラ系の構成をそのまますべてのボスに持ち込まないでください。</li></ul>
+
+                        <h4>15分の練習法</h4>
+                        <ol class="checklist"><li>慣れたクエストの一部を選び、部屋ごとに「最も少ない回数で済む属性」だけを記録して、エリアの耐性の感覚を身につけます。</li><li>素手でギフォイエ → Magical Piece／Merge に替える練習をし、装備を替えた後に炎の輪が当たるようにします。</li><li>最初に出た耐性の高い硬い敵には、必ず Demon's で削ってから仕留め、テクニックだけの場合と時間と TP を比べます。</li><li>ウェーブが終わる前に瀕死の敵を追うのをやめ、とどめは仲間に任せて次のウェーブへ先回りし、補助をかけ直します。</li></ol>
+                    </div>
+                </details>
+                <details id="fonewearl-deep">
+                    <summary>FOnewearl · 基本テクニック、貫通するメギド、正確なエクストラアタック</summary>
+                    <div class="character-body">
+                        <p><strong>基本の流れ：</strong>遠くから補助を続ける → 30% の職業補正があるフォイエ／ゾンデ／バータで正確に1体ずつ倒す → 一列の EDK の低い敵には貫通するメギド → HP と耐性の高い敵には、高めの ATA で Demon's／Hell の武器。基本3系統で遠くから1体ずつ倒すことと、貫通するメギドや ATA を活かしたエクストラアタックで特定の敵を正確に処理することが得意で、小さな FOnewm ではありません。</p>
+                        <ul><li><strong>基本テクニック：</strong>フォイエ／ゾンデは TP の消費が少なく、遠くの単体を倒すのに向いています。バータは一列の敵を貫通するので、複数の敵に当たる位置に立ちます。</li><li><strong>Megid：</strong>FOnewearl のメギドはもともと貫通するので、敵を一列に引き寄せてから撃ちます。相手の EDK が高ければすぐ解法を替え、確率に賭け続けて長引かせないでください。</li><li><strong>生存：</strong>HP の低さは避けられない制約です。エリアごとに HP／耐性のユニットを用意し、固定ダメージで一撃で倒されないことを確かめてから、Mind のユニットを増やすことを考えます。</li><li><strong>パーティ：</strong>広げたレスタ／アンティは遠くからの救助に向いています。回復したらすぐ安全な射線に戻り、HU について群れの中へ入らないでください。</li></ul>
+                    </div>
+                </details>
+            </div>
+
+            <h3>ウェーブごとの優先順位</h3>
+            <ol>
+                <li><strong>ウェーブの前：</strong>S/D の残り時間を確認し、パーティと出現地点をすばやく覆える位置へ動きます。</li>
+                <li><strong>開始の瞬間：</strong>危険度と DFP の高い敵に J/Z を補います。アンドロイドの仲間がトラップを置くときは、低レベルのギフォイエですぐ起爆するのを助けます。</li>
+                <li><strong>攻撃の方法を決める：</strong>出現地点が読めるならギフォイエを重ね置き、密集した群れには合ったラ系／ギ系、HP や耐性の高い敵には Demon's・SoF・物理武器に替えます。</li>
+                <li><strong>パーティを見る：</strong>レスタ／アンティ／リバーサーを遅れずにかけますが、「忙しく見せる」ために、凍った敵や仲間が決めた役割分担を乱さないでください。</li>
+                <li><strong>部屋の移動中：</strong>今のウェーブで補う必要がなければ、次のウェーブの立ち位置へ先回りします。これは FO が最も作りやすい、目に見えない貢献です。</li>
+            </ol>
+
+            <h3>テクニックの使い方</h3>
+            <ul>
+                <li><strong>Gifoie：</strong>敵が出る前に重ねて置け、ダメージは炎の輪が敵に触れたときに計算されます。素手ですばやく撃ち、敵が出る前に Magical Piece／Gifoie Merge に替えて補正を得ます。</li>
+                <li><strong>Rafoie / Razonde：</strong>広い範囲の掃除とのけぞりによる制圧に使います。特に DMC がなくなった今は、合った場面で遠慮なく撃てます。</li>
+                <li><strong>Rabarta：</strong>凍結率はアルティメット以前 40%、アルティメット 20%。フリーズトラップがないときに役立ちます。</li>
+                <li><strong>Gizonde：</strong>発動が速く、箱を開ける、小さな敵を片付ける、ボルオプトの第1段階を止めるのに使えます。</li>
+                <li><strong>Megid / Hell：</strong>エピソード2の EDK の低い雑魚や、エピソード4の特定の敵にとても効きます。FOnewearl のメギドはもともと貫通します。</li>
+                <li><strong>低レベルのギフォイエ：</strong>Mercurius Rod のエクストラアタックで、デルバイツァ・ダークブリンガー・ドルフォン・ズーの最初の突進を止められます。</li>
+            </ul>
+
+            <h3>装備の進め方</h3>
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <h4>補助とテクニックの補正</h4>
+                    <ul>
+                        <li><strong>Striker of Chao：</strong>S/D の範囲が2倍。常に持つ。</li>
+                        <li><strong>Glide Divine：</strong>J/Z の範囲が2倍。</li>
+                        <li><strong>Magical Piece：</strong>ギ系 +30%。ギフォイエの中心。</li>
+                        <li><strong>Psycho Wand：</strong>ラ系 +30%。ソロやテクニック火力の構成でより重要。</li>
+                        <li><strong>Mercurius Rod：</strong>グランツ +30%。低レベルのギフォイエのエクストラアタックで突進を止められる。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>エクストラアタックと物理での穴埋め</h4>
+                    <ul>
+                        <li><strong>Slicer of Fanatic：</strong>3体に減衰なく当たる Demon's。</li>
+                        <li><strong>Bringer's Rifle：</strong>遠距離の単体用の Demon's。</li>
+                        <li><strong>Hell Raygun / ES J-Cutter：</strong>エピソード2での単体／範囲の即死。</li>
+                        <li><strong>Demon's ES Mechgun：</strong>FOnewm／FOnewearl が HP と防御の高い敵を処理するためのもの。</li>
+                        <li><strong>DoB + Thirteen / Excalibur：</strong>物理ダメージが必要なときに。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>中心となるユニット</h4>
+                    <ul>
+                        <li><strong>V801：</strong>テクニックの発動速度の中心。</li>
+                        <li><strong>V101：</strong>武器の攻撃速度と総合的な能力。</li>
+                        <li><strong>Smartlink：</strong>RA 以外が遠距離武器を使うときの距離による命中のペナルティをなくす。</li>
+                        <li><strong>V502：</strong>エピソード2の Hell／状態異常のエクストラアタックの中心。</li>
+                        <li><strong>テクニックのレベルのユニット：</strong>テクニックディスクが Lv30 に届かない間、必要に応じてレベルを補う。</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>鎧と盾</h4>
+                    <ul>
+                        <li><strong>Ignition Cloak + Gifoie Merge：</strong>ギフォイエの火力の中心となる組み合わせ。</li>
+                        <li><strong>Thirteen：</strong>DoB を使うときに切り替える。</li>
+                        <li><strong>Dress Plate / Anti-Dark Ring：</strong>EDK の高い構成。</li>
+                        <li><strong>Red Ring：</strong>武器を使う FO の、ATA と総合能力の終盤の選択肢。</li>
+                        <li><strong>各種の Merge：</strong>ステージの主なテクニックに合わせて切り替え、1つの盾で最後まで通さないでください。</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <details class="common-guide">
+        <summary>開く：3職業の育成の早見表、Vanilla と Ephinea の違い、出典</summary>
+        <h2>最短の育成リスト</h2>
+        <table>
+            <thead>
+                <tr><th>職業</th><th>最初に解決</th><th>次に補う</th><th>終盤の方向性</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>HU</td><td>Hit、遠距離のハンドガン、範囲武器</td><td>Arrest / Hell Slicer、DoB + Thirteen</td><td>DF、TJS、Vjaya、Excalibur の属性セット</td></tr>
+                <tr><td>RA</td><td>50H Charge Arms / Vulcan</td><td>Frozen Shooter、Spread Needle、V502 + Hell</td><td>Baranz、HS、Excalibur の属性セット</td></tr>
+                <tr><td>FO</td><td>Lv30 の補助、V801、範囲用の杖</td><td>Magical Piece、補助用の杖、Smartlink／V502</td><td>テクニックに合わせた盾の切り替え、Demon's／Hell の道具</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Vanilla と Ephinea の終盤の境目</h2>
+        <table>
+            <thead><tr><th>システム</th><th>Vanilla の基本の考え方</th><th>このページ後半の Ephinea での応用</th></tr></thead>
+            <tbody>
+                <tr><td>ドロップ / 経験値</td><td>従来のドロップはパーティで共有。従来の経験値は、敵に攻撃を当てるか J/Z をかけて経験値の対象になる必要がある</td><td>Ephinea では初期設定で個別ドロップと範囲による経験値の共有が使える。ボスは今も経験値の対象になる必要がある</td></tr>
+                <tr><td>装備</td><td>その時々にドロップする Hit の高い通常武器で、道具をひととおりそろえる</td><td>その後、ES 武器、セット装備、<span data-item-en="Photon Sphere"></span>で強化した敵の種族の属性の武器で効率を上げる</td></tr>
+                <tr><td>パーティの火力</td><td>本来のオンライン環境には DMC があり、複数人で同じ敵を攻撃するのを避ける必要があった</td><td>Ephinea では DMC が削除されているので、立ち位置と役割に応じて一緒に集中攻撃できる</td></tr>
+                <tr><td>難易度の条件</td><td>公式 BB／Ephinea Classic のエピソード1は、H／VH／U に Lv20／50／90 が必要</td><td>Ephinea の標準のキャラクターは Lv20／40／80</td></tr>
+            </tbody>
+        </table>
+
+        <h2>出典と情報の新しさ</h2>
+        <ul class="source-list">
+            <li><a href="https://wiki.pioneer2.net/w/Hunter_guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Hunter guide</a>（2026-06-18 更新）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Ranger_guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Ranger guide</a></li>
+            <li><a href="https://www.pioneer2.net/community/threads/force-guide-wip.15075/" target="_blank" rel="noopener noreferrer">掲示板：Force Guide (WIP)</a>（2019年投稿、2020年最終編集。一部の仕様は古くなっています）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Force_guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki：現在の Force guide</a>（職業の違いと現在の仕様の補足に使用。2026-02-21 更新）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Classes" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Classes</a>（12キャラクターの種族と役割の照合に使用）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Damage_cancel" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Damage cancel</a>（この仕様が Ephinea から削除されたことの確認）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Mags/Guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki：マグの入門ガイド</a>（Vanilla の POW／MIND 型マグの育て始め）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Techniques" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Techniques</a>（テクニックの分類、レベルの制限、補正の仕組み）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Weapon_attributes" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Weapon attributes</a>（敵の種族の属性と Hit）</li>
+            <li><a href="https://wiki.pioneer2.net/w/Game_modes" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Game modes</a>（標準モードと Classic モードの違い）</li>
+            <li><a href="https://strategywiki.org/wiki/Phantasy_Star_Online_Episode_I_%26_II/Character_Selection" target="_blank" rel="noopener noreferrer">StrategyWiki：Episode I &amp; II Character Selection</a>（本来の職業の役割の参考）</li>
+            <li><a href="https://www.pso-world.com/sections.php?artid=2342&amp;op=viewarticle" target="_blank" rel="noopener noreferrer">PSO-World：Norvekh's Ranger Guide</a>（従来の RA の立ち位置とチームでの役割の参考）</li>
+            <li>キャラクター別の Wiki：<a href="https://wiki.pioneer2.net/w/HUmar/Guide" target="_blank" rel="noopener noreferrer">HUmar</a> · <a href="https://wiki.pioneer2.net/w/HUnewearl/Guide" target="_blank" rel="noopener noreferrer">HUnewearl</a> · <a href="https://wiki.pioneer2.net/w/HUcast/Guide" target="_blank" rel="noopener noreferrer">HUcast</a> · <a href="https://wiki.pioneer2.net/w/HUcaseal/Guide" target="_blank" rel="noopener noreferrer">HUcaseal</a></li>
+            <li>キャラクター別の Wiki：<a href="https://wiki.pioneer2.net/w/RAmar/Guide" target="_blank" rel="noopener noreferrer">RAmar</a> · <a href="https://wiki.pioneer2.net/w/RAmarl/Guide" target="_blank" rel="noopener noreferrer">RAmarl</a> · <a href="https://wiki.pioneer2.net/w/RAcast/Guide" target="_blank" rel="noopener noreferrer">RAcast</a> · <a href="https://wiki.pioneer2.net/w/RAcaseal/Guide" target="_blank" rel="noopener noreferrer">RAcaseal</a></li>
+            <li>キャラクター別の Wiki：<a href="https://wiki.pioneer2.net/w/FOmar/Guide" target="_blank" rel="noopener noreferrer">FOmar</a> · <a href="https://wiki.pioneer2.net/w/FOmarl/Guide" target="_blank" rel="noopener noreferrer">FOmarl</a> · <a href="https://wiki.pioneer2.net/w/FOnewm/Guide" target="_blank" rel="noopener noreferrer">FOnewm</a> · <a href="https://wiki.pioneer2.net/w/FOnewearl/Guide" target="_blank" rel="noopener noreferrer">FOnewearl</a></li>
+        </ul>
+
+        <p class="source-list">このガイドは中国語でまとめた要約です。装備の価値はクエスト・パーティ・キャラクターの動作・Hit・属性％で変わるので、リストは唯一の答えではなく判断の枠組みとして使ってください。</p>
+        </details>
+    </section>

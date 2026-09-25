@@ -153,10 +153,33 @@ export function localizeBody(i18n, body, language, relative, { itemName }) {
         const source = zhSource.replace('/zh/', `/${language}/`);
         setAttribute(child, 'src', source);
         setAttribute(child, 'height', svgHeight(i18n.root, source, Number(attribute(child, 'width'))));
-        setAttribute(child, 'alt', message(i18n, language, attribute(child, 'data-i18n-alt'), parseArgs(attribute(child, 'data-i18n-args'))));
-        removeAttributes(child, ['data-i18n-src', 'data-i18n-alt', 'data-i18n-args']);
+        removeAttributes(child, ['data-i18n-src']);
       }
-      if (child.tagName === 'a' && language !== 'zh') {
+      // Keyed attributes: data-i18n-<attribute>="key" (with optional data-i18n-args).
+      const keyed = child.attrs.filter((entry) => entry.name.startsWith('data-i18n-') && entry.name !== 'data-i18n-args');
+      if (keyed.length) {
+        const args = parseArgs(attribute(child, 'data-i18n-args'));
+        for (const entry of keyed) setAttribute(child, entry.name.slice('data-i18n-'.length), message(i18n, language, entry.value, args));
+        removeAttributes(child, [...keyed.map((entry) => entry.name), 'data-i18n-args']);
+      }
+      visitNode(child);
+    }
+  };
+  visitNode(body);
+  if (parts) for (const part of parts.keys()) {
+    if (!usedParts.has(part)) throw new Error(`Unused ${language} document region "${part}" for ${relative}`);
+  }
+}
+
+/**
+ * Point root-relative links at this language's version of each page that has one.
+ * Runs after relative URLs are made root-relative, so translated regions are covered.
+ */
+export function localizeLinks(i18n, body, language) {
+  if (language === 'zh') return;
+  const visitNode = (node) => {
+    for (const child of node.childNodes ?? []) {
+      if (child.tagName === 'a') {
         const href = attribute(child, 'href');
         if (href?.startsWith('/') && !href.startsWith('//') && hasVersion(i18n, pageKey(href), language)) {
           setAttribute(child, 'href', localizedPath(href, language));
@@ -166,9 +189,6 @@ export function localizeBody(i18n, body, language, relative, { itemName }) {
     }
   };
   visitNode(body);
-  if (parts) for (const part of parts.keys()) {
-    if (!usedParts.has(part)) throw new Error(`Unused ${language} document region "${part}" for ${relative}`);
-  }
 }
 
 export function pageMetadata(i18n, relative, language, zhTitle, zhDescription) {

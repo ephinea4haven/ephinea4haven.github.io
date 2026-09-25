@@ -41,7 +41,10 @@ has started. Check an item only when its stated completion criteria are met.
     and Japanese), and the item and monster catalogs' mechanics, acquisition and
     behaviour text in English and Japanese.
   - [ ] Phase 3: main guides and tools (mechanics, class guide, post-processing
-    comparison, launcher, status simulator, Mag chart and others).
+    comparison, launcher, status simulator, Mag chart and others). Done: the
+    mechanics guide, class guide and launcher guide (batch A) and the status
+    simulator. Next: graphics/Direct3D, RBR, NPC, acronym, Seabed and Vol Opt
+    guides (batch B), then the remaining tools (batch C).
   - [ ] Phase 4: data pages (price guide, monster farming guide, ItemPMT/PT/RT and
     others).
   - [ ] Phase 5: event archive (6 overviews and 45 yearly pages).

@@ -30,7 +30,7 @@ type Language = 'zh' | 'en' | 'ja';
 
 const TEXT = {
   zh: {
-    eyebrow: 'PSOBB 角色实验室', title: '角色属性模拟器', character: '角色', class: '职业', level: '等级',
+    eyebrow: 'PSOBB 角色实验室', title: '角色属性模拟器', backHome: '← 返回首页', character: '角色', class: '职业', level: '等级',
     mag: '玛古', materials: '能力药', equipment: '装备', reset: '重置', units: '插件', remaining: '剩余', exceeded: '超出上限', resists: '抗性',
     results: '计算结果', base: '基础', material: '能力药', magBonus: '玛古', equipmentBonus: '装备', unitBonus: '插件',
     current: '当前', maximum: '上限', difference: '差值', valid: '可装备', invalid: '不可装备', rarity: '稀有度',
@@ -39,7 +39,7 @@ const TEXT = {
     loadFailed: '角色能力数据暂时未能加载，请检查网络后重试。', retry: '重新加载',
   },
   en: {
-    eyebrow: 'PSOBB character laboratory', title: 'Character Stat Simulator', character: 'Character', class: 'Class', level: 'Level',
+    eyebrow: 'PSOBB character laboratory', title: 'Character Stat Simulator', backHome: '← Back to Home', character: 'Character', class: 'Class', level: 'Level',
     mag: 'Mag', materials: 'Materials', equipment: 'Equipment', reset: 'Reset', units: 'Units', remaining: 'remaining', exceeded: 'over limit', resists: 'Resists',
     results: 'Results', base: 'Base', material: 'Material', magBonus: 'Mag', equipmentBonus: 'Equipment', unitBonus: 'Unit',
     current: 'Current', maximum: 'Max', difference: 'Difference', valid: 'Equipable', invalid: 'Not equipable', rarity: 'Rarity',
@@ -48,7 +48,7 @@ const TEXT = {
     loadFailed: 'The character stat data could not be loaded. Check your connection and try again.', retry: 'Reload',
   },
   ja: {
-    eyebrow: 'PSOBB キャラクターラボ', title: 'キャラクターステータスシミュレーター', character: 'キャラクター', class: '職業', level: 'レベル',
+    eyebrow: 'PSOBB キャラクターラボ', title: 'キャラクターステータスシミュレーター', backHome: '← ホームへ戻る', character: 'キャラクター', class: '職業', level: 'レベル',
     mag: 'マグ', materials: 'マテリアル', equipment: '装備', reset: 'リセット', units: 'ユニット', remaining: '残り', exceeded: '上限超過', resists: '耐性',
     results: '計算結果', base: '基本', material: 'マテリアル', magBonus: 'マグ', equipmentBonus: '装備', unitBonus: 'ユニット',
     current: '現在', maximum: '上限', difference: '差分', valid: '装備可能', invalid: '装備不可', rarity: 'レア度',

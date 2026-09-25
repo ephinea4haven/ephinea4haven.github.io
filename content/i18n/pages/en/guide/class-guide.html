@@ -1,0 +1,796 @@
+<!-- English text for /guide/class-guide.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+        <h1>Hunter · Ranger · Force</h1>
+
+        <p class="guide-lead">
+            This guide has two layers: first the  <strong>Vanilla PSOBB fundamentals</strong> that hold from Normal all the way to Ultimate, then Ephinea’s multiplayer endgame gear and roles. It is not a fixed build answer: HUs take the key targets, RAs control the field and cover whole waves, and FOs multiply the party’s efficiency, but all three must adapt to their gear, the quest and the party.
+        </p>
+
+        <nav class="jump-nav" role="tablist" aria-label="Class sections">
+            <button type="button" role="tab" id="tab-hunter" aria-controls="hunter" aria-selected="true" data-profession="hunter"><strong>HU · Hunter</strong><br>Melee burst / elite targets</button>
+            <button type="button" role="tab" id="tab-ranger" aria-controls="ranger" aria-selected="false" data-profession="ranger"><strong>RA · Ranger</strong><br>Ranged control / special attacks</button>
+            <button type="button" role="tab" id="tab-force" aria-controls="force" aria-selected="false" data-profession="force"><strong>FO · Force</strong><br>Support / techniques / filling gaps</button>
+        </nav>
+
+        <details class="common-guide">
+        <summary>Expand: what Vanilla means, the four difficulties and fundamentals for all classes</summary>
+        <h2>What Vanilla means here</h2>
+
+        <p>
+            In this guide, Vanilla means PSO Blue Burst’s original combat framework: three-hit combos, hit checks, weapon attributes and special attacks, Mags, materials, techniques and the four difficulties. It is not the same as Ephinea’s  <strong>Classic mode</strong>: Classic also turns off Episode 4 and related items and uses official BB’s difficulty requirements. None of the “Vanilla route” below depends on expensive endgame gear, and it suits ordinary Ephinea characters starting out.
+        </p>
+
+        <h3>What to learn on each difficulty</h3>
+        <table>
+            <thead>
+                <tr><th>Stage</th><th>Main goals</th><th>Don’t rush</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Normal</td><td>Try every weapon type’s animations, raise a Mag, learn normal/heavy/special attacks and enemy hitstun</td><td>Spending lots of grinders or materials on transitional gear too early</td></tr>
+                <tr><td>Hard</td><td>Start keeping Hit weapons, round out the basic techniques and area weapons</td><td>Looking only at red-box star ratings and ignoring green common weapons</td></tr>
+                <tr><td>Very Hard</td><td>Build four kinds of tools—single target, area, ranged and control—and prepare for Ultimate</td><td>Stacking damage only, without adding ATA, HP and resistances</td></tr>
+                <tr><td>Ultimate</td><td>Adapt to faster enemies with more EVP and resistance; switch weapons and tactics by area</td><td>Gambling on low-Hit special attacks landing</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Resource priorities when starting out in Vanilla</h3>
+        <ol class="checklist">
+            <li><strong>Raise a Mag first: </strong>HUs and RAs start with POW + DEX; a simple ready-made choice is  <code>5/145/50/0</code>  or  <code>5/150/45/0</code>; pure-casting FOs start with MIND. DEF is usually not worth building on purpose.</li>
+            <li><strong>Hit matters more than rarity: </strong>each 1% Hit on a weapon adds 1 ATA against every enemy. A high-Hit common weapon is often more useful than a red-box weapon with no Hit.</li>
+            <li><strong>Keep enemy-type attributes: </strong>Native, A.Beast, Machine and Dark raise physical damage against the matching enemies; switching to the right attribute before a new area often pays off more than a little displayed ATP.</li>
+            <li><strong>Use materials according to your build: </strong>humans share a material cap of 250, Newmans and Androids 150; HP/TP Materials are counted separately. Until you settle your final build, at least avoid casually using DEF and EVP Materials.</li>
+            <li><strong>Common weapons are your mainstay: </strong>Swords, Partisans, Shots, Slicers, Mechguns and other area or multi-hit weapons decide how fast you clear; rare weapons mostly add special functions.</li>
+        </ol>
+
+        <p>
+            Related tools: <a href="https://magfeeder.psohaven.com/">Mag simulator</a> ·
+            <a href="/tools/materialplan.html">Material planning</a> ·
+            <a href="/tools/status.html">Stat calculator</a> ·
+            <a href="/tools/equipment.html">Endgame gear reference</a> ·
+            <a href="/tools/mechanics.html">Game mechanics and damage formulas</a>
+        </p>
+
+        <h2>The short answer: what each class does in a party</h2>
+
+        <div class="role-grid">
+            <article class="role-card">
+                <h3>HU: remove the most dangerous enemies</h3>
+                <p>Stand at the side or rear of spawn points in advance and use your highest single-target damage to kill high-HP enemies and those that charge or break the formation first; don’t just chase small fry.</p>
+                <span class="tag">Most demanding positioning</span><span class="tag">High melee risk</span>
+            </article>
+            <article class="role-card">
+                <h3>RA: take the threat out of whole waves</h3>
+                <p>Fire from a safe distance that covers most enemies, switching between freeze, paralysis, Hell, Demon’s and area firepower for each wave.</p>
+                <span class="tag">Fullest toolkit</span><span class="tag">More forgiving</span>
+            </article>
+            <article class="role-card">
+                <h3>FO: raise the whole party’s output</h3>
+                <p>Keep S/D up and quickly add J/Z, Resta and Anti; pre-stack Gifoie to seize the tempo when you can, and switch promptly when a weapon or another technique fits better.</p>
+                <span class="tag">Watching the whole field</span><span class="tag">Frequent gear swaps</span>
+            </article>
+        </div>
+
+        <h2>Fundamentals for all three classes</h2>
+
+        <ol class="checklist">
+            <li><strong>Spawn knowledge before gear: </strong>learn the dangerous enemies and big waves first, then the ordinary ones; only when you know where the next wave appears can you pre-position, pre-attack or pre-stack techniques.</li>
+            <li><strong>Don’t double up on one target: </strong>read where your teammates are heading and take over areas nobody is covering. Focusing fire is not always fastest; sensible target splitting is usually more effective.</li>
+            <li><strong>Master the shortcut menu: </strong>switch weapons, use items and cast from the shortcut menu in combat; it is safer than the main menu and queues actions on the first frame they can execute.</li>
+            <li><strong>Understand combos: </strong><code>N / H / S</code>  are normal, heavy and special. Decide on two or three hits by the enemy’s hitstun and your weapon’s recovery; don’t mechanically finish every combo.</li>
+            <li><strong>Accuracy first: </strong>theoretical damage you cannot land reliably is meaningless. High-Hit weapons, ATA, positioning and  <code>SN glitch</code>  all solve the same problem.</li>
+        </ol>
+
+        <p class="notice">
+            <strong>Current mechanics: </strong>Ephinea has removed Damage Cancel (DMC). The old Force forum post’s advice not to attack so you don’t cancel teammates’ damage is historical only; you should still avoid pointless attacks, but because of positioning, control and roles, not DMC.
+        </p>
+        </details>
+
+        <section id="hunter" class="profession-panel" role="tabpanel" aria-labelledby="tab-hunter">
+            <h2>HU · Hunter</h2>
+
+            <p>The HU’s strength is top-tier melee burst; the weakness is limited effective range. An efficient HU doesn’t hack at whatever is nearest, but decides in advance which enemy must disappear fastest, then uses the right angle and combo to finish a Combo Kill (killing it within one combo).</p>
+
+            <h3>Vanilla progression</h3>
+            <table>
+                <thead><tr><th>Period</th><th>Weapons and play</th><th>What to build</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Normal–Hard</td>
+                        <td>Sabers/Daggers for single targets, Swords/Partisans to sweep groups, Handguns for flyers, traps and targets you shouldn’t close in on. Start with  <code>N-N-H</code>  or  <code>N-H-H</code>  to make sure you hit.</td>
+                        <td>Mag mostly POW with some DEX; equip Arm units first. Learn to circle behind, stop after two hits and delay the third.</td>
+                    </tr>
+                    <tr>
+                        <td>Very Hard</td>
+                        <td>Add a Mechgun for single targets and a Slicer for scattered enemies; start keeping high-Hit Charge/Spirit/Berserk common weapons.</td>
+                        <td>Carry a reliable ranged weapon and an area weapon; don’t use a Sword for everything.</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimate</td>
+                        <td>Enemies are faster with more EVP: freeze, paralyse or bait a whiff before closing in. If you keep missing, switch to a high-Hit lower-tier weapon rather than forcing a rare with no Hit.</td>
+                        <td>Prepare attribute weapons by enemy type and gradually add Arrest, Hell, Demon’s and high-damage sacrifice specials.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Key Vanilla habit: </strong>don’t treat high HP as permission to stand and tank. A HU’s defense comes from distance, angle, hitstun and knockdown control; when surrounded, first pull enemies into a line or fan, then swing an area weapon.</p>
+
+            <h3>Choosing among the four characters</h3>
+            <div class="class-grid">
+                <article class="class-card">
+                    <h4>HUmar</h4>
+                    <p>A balanced human with steady melee who can use attack and healing techniques up to Lv15; cannot use Shifta/Deband, so relies more on FO support in a party.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>use Jellen first to lower melee risk and Zalure to raise your kill threshold, then burst from the side or rear with a Sword, Vjaya or Mechgun.</li>
+                        <li><strong>Solo: </strong>get S/D from S-Red’s Blade or Mylla &amp; Youlla; with no traps, Arrest Slicer and Gifoie are your main control patches.</li>
+                        <li><strong>Pitfall: </strong>“balanced” doesn’t mean well-rounded; without S/D and strong control, the HUmar actually demands more of your positioning and gear.</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>HUnewearl</h4>
+                    <p>The lowest HP and lower ATP among HUs, but with Lv20 S/D/J/Z, Resta and natural TP regeneration she is the strongest soloist and most self-sufficient.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Keep S/D up before each wave and J/Z strong enemies before closing in; use Rabarta/Gifoie to open a melee window, then finish with Spirit, Berserk or multi-hit weapons.</li>
+                        <li><strong>Role: </strong>in a party without an FO, provide support; with an FO, save TP for control, Resta and ranged finishing, and focus on the HU’s key targets.</li>
+                        <li><strong>Pitfall: </strong>don’t play a budget FO just because you can cast; her main damage is still high-Hit physical weapons.</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>HUcast</h4>
+                    <p>The highest ATP of any class, with freeze, confuse and damage traps, making him the most direct melee burst choice; no techniques, so accuracy and party support matter even more.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Place a Freeze Trap at the spawn and pop it at once; while they’re frozen, clear the group with a Sword or Vjaya, or take high-HP targets with Dark Flow or a Mechgun.</li>
+                        <li><strong>Traps: </strong>save Freeze for dangerous elites and burst windows; confuse ordinary dense groups so they bunch up and fight each other; Damage traps one-shot Slime splits.</li>
+                        <li><strong>Pitfall: </strong>high ATP doesn’t mean finishing every combo; Androids have limited healing, so stopping safely after two hits is usually faster.</li>
+                    </ul>
+                    <p><a href="#hucast-deep">Jump to the HUcast deep dive ↓</a></p>
+                </article>
+                <article class="class-card">
+                    <h4>HUcaseal</h4>
+                    <p>An Android HU with more ATA and EVP; her animations and traps give steady control. Lower ATP than the HUcast, leaning towards agility and precision.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Use the HU class’s highest ATA to land Arrest/Hell reliably earlier; after freezing, handle high-EVP single targets with fast Dagger animations or multi-hit weapons.</li>
+                        <li><strong>Role: </strong>prioritize trap control over competing with the HUcast on damage; take the targets the HUcast’s special attacks tend to miss.</li>
+                        <li><strong>Pitfall: </strong>high EVP isn’t reliable damage reduction; still use traps, circling behind and hitstun to stay in control.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="character-handbook" aria-label="Hunter character guides">
+                <h3>Character guides</h3>
+                <details id="humar-deep">
+                    <summary>HUmar · controlling the field as a balanced fighter with no traps</summary>
+                    <div class="character-body">
+                        <p><strong>Core loop: </strong>enter at a safe distance → Jellen melee threats and Zalure high-HP targets → Gifoie to stop the first charge → shape the group from the side or rear with a Sword or Slicer → finish high-HP targets with a Mechgun, Vjaya or Excalibur. The HUmar’s skill isn’t knowing a bit of everything; it’s trading techniques for melee windows when you have no traps.</p>
+                        <div class="decision-grid">
+                            <section class="decision-card"><h4>Solo</h4><p>Get S/D from S-Red’s Blade or your Mag’s PB; Jellen before closing in, and save Resta for after you leave the attack animation. Against a scattered group, open with Gifoie or Arrest Slicer instead of chasing them one by one.</p></section>
+                            <section class="decision-card"><h4>Party</h4><p>When the FO already has J/Z up, don’t recast; go straight for the dangerous targets. Without an FO, Zalure the tough enemies yourself, but don’t lose tempo casting on every ordinary enemy.</p></section>
+                        </div>
+                        <ul><li><strong>Weapon priorities: </strong>high-Hit Raygun, DoB, area swords and Mechguns, then add Demon’s Mechgun and a Zalure Gun.</li><li><strong>What to practice: </strong>switch to your melee weapon right after Gifoie; practice stopping safely after two hits to make up for having no Freeze Trap.</li><li><strong>Common mistake: </strong>casting Resta while surrounded; leaving the attack range before healing is usually faster than eating the next hit.</li></ul>
+                    </div>
+                </details>
+                <details id="hunewearl-deep">
+                    <summary>HUnewearl · switching between support, self-sufficiency and physical damage</summary>
+                    <div class="character-body">
+                        <p><strong>Core loop: </strong>top up S/D between rooms → J/Z the key enemies as the wave starts → Rabarta/Gifoie to make a window → finish with high-Hit physical weapons. Lv20 support makes her a complete soloist, but her lower ATP means she must use attributes, special attacks and multi-hit weapons rather than grinding enemies down with an ordinary sword.</p>
+                        <ul><li><strong>TP budget: </strong>ordinary enemies need one J/Z or none; save TP for S/D, J/Z on strong enemies, Resta and emergency Anti. Natural TP regeneration suits safe pauses between rooms, not standing still mid-fight.</li><li><strong>Damage choices: </strong>DoB or a Sword for weak enemies; for tough ones, Demon’s first, then finish with a Mechgun, Excalibur or Vivienne; use techniques when enemies have low technique resistance to avoid dangerous melee.</li><li><strong>Party: </strong>with an FO, go back to the HU role and hit the key targets; take on full support only without an FO. Don’t give up your position at the spawn point to refresh S/D that still has plenty of time left.</li><li><strong>Survival: </strong>low HP means preventing damage with Jellen, the side and rear, and two-hit combos; Resta is not unlimited after-the-fact forgiveness.</li></ul>
+                    </div>
+                </details>
+                <details id="hucaseal-deep">
+                    <summary>HUcaseal · control play as a high-ATA trap hunter</summary>
+                    <div class="character-body">
+                        <p><strong>Core loop: </strong>land Arrest/Hell first with your ATA advantage → Freeze the remaining threats → finish from the side with fast Dagger/Twin Sword animations. She isn’t a “small HUcast”; her advantage is landing special attacks reliably earlier and cutting party downtime with precise control.</p>
+                        <ul><li><strong>Scattered enemies: </strong>sweep once with an Arrest J-Cutter or Slicer, and decide on melee after the paralysis lands; safer than charging into the middle of a scattered group.</li><li><strong>High-EVP single targets: </strong>Freeze to lower their EVP, then use multi-hit weapons; if the third hit won’t kill, leave after two.</li><li><strong>Trap budget: </strong>she gains fewer Freezes than the HUcast, so she can’t copy the route of freezing every dangerous wave; leave freezable ordinary waves to Arrest and spend Freeze only on targets that actually break the formation.</li><li><strong>Common mistake: </strong>relying on high EVP to stand and tank. Evasion is a chance, not control; once several enemies flank you from different angles, still get out of the encirclement first.</li></ul>
+                    </div>
+                </details>
+            </div>
+
+            <article id="hucast-deep" class="deep-guide">
+                <h3>Character deep dive · how to play the HUcast</h3>
+                <p>
+                    The HUcast’s strength isn’t “big numbers, so charge in and hack”; it’s using spawn knowledge to turn limited reach into an advantage: <strong>take the side or rear of dangerous targets in advance, create a four-second window with a trap, and finish a Combo Kill within it</strong>. When starting out, practice only safe kills; once you know the quests, practice pre-placing traps, precise positioning and low-HP Dark Flow.
+                </p>
+
+                <h4>Before entering: six roles, not the six most expensive weapons</h4>
+                <div class="decision-grid">
+                    <section class="decision-card">
+                        <h4>Always carried</h4>
+                        <ul>
+                            <li><strong>Raygun: </strong>Pop overhead traps, finish from range, pull single enemies.</li>
+                            <li><strong>Sword / Partisan: </strong>Clear groups once enemies have bunched into a frontal fan.</li>
+                            <li><strong>Slicer: </strong>For scattered or moving enemies, or when you can’t safely close in.</li>
+                            <li><strong>Mechgun / Twin Sword: </strong>High-HP single targets once frozen.</li>
+                        </ul>
+                    </section>
+                    <section class="decision-card">
+                        <h4>Swap by quest</h4>
+                        <ul>
+                            <li><strong>Arrest: </strong>Dorphons, Girtablulus and other targets that can’t be frozen or are better paralysed.</li>
+                            <li><strong>Hell: </strong>Enemies in Episode 2 with low dark resistance that are slow to kill physically.</li>
+                            <li><strong>Twin Blaze: </strong>Pre-set traps to pop instantly with lingering Gifoie; it also blocks charges.</li>
+                            <li><strong>Zalure ES: </strong>Fills in when soloing bosses or when the party has no reliable Zalure.</li>
+                        </ul>
+                    </section>
+                </div>
+                <p class="notice"><strong>Shortcut bar tips: </strong>put Freeze Trap, Confuse Trap, Mates and Star Atomizer in the easiest slots, and keep weapons in a fixed ranged → area → single → special order. Muscle memory is worth more than one more similar weapon in your bag.</p>
+
+                <h4>What to check for every wave, in order</h4>
+                <ol class="combat-flow">
+                    <li><strong>Dangerous targets first: </strong>enemies that charge, leap, control from range or have the most HP come first. If a teammate is already heading for one, take the other side; don’t have four players chase the same enemy.</li>
+                    <li><strong>Then the shape: </strong>a line or fan calls for a Sword; enemies spread over a wide angle call for a Slicer; one to three high-HP targets call for a Mechgun, Twin Sword or Excalibur.</li>
+                    <li><strong>Decide whether to control: </strong>if the target can be frozen and will break the formation, place Freeze; if ordinary enemies need to bunch up first, wait briefly in position; if they can’t be frozen, try Arrest. Don’t let the party get scattered to “save traps”.</li>
+                    <li><strong>Open from the side or rear: </strong>going face to face only trades the highest ATP for the most damage taken. Baiting one whiff and then sidestepping to the side or rear is the steadiest opener without traps.</li>
+                    <li><strong>The kill threshold decides two hits or three: </strong>if the third hit won’t kill and its recovery will get you hit, stop at two and reposition. The third hit is not a reward button.</li>
+                </ol>
+
+                <h4>How to use the three traps</h4>
+                <table>
+                    <thead><tr><th>Trap</th><th>When to use</th><th>How to pop it</th><th>Common mistakes</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Freeze</strong></td>
+                            <td>Dangerous waves, where leaping enemies land, high-EVP targets, and whenever the whole party needs to burst safely. Freezes for about four seconds and lowers enemy EVP by 30%.</td>
+                            <td>Shoot it with a Handgun on the spot; pre-place it at known spawn points; with Twin Blaze, lay Gifoie first and the trap pops automatically.</td>
+                            <td>Freezing before enemies have gathered, so the Sword/Vjaya can’t cover them; or wasting it on targets that can’t be frozen.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Confuse</strong></td>
+                            <td>When ordinary enemies hit hard, when you want them to fight each other, or when you need them to gather; worth more when starting out and short on damage.</td>
+                            <td>Usually let the trap trigger naturally, and use the confusion to reposition or switch to an area weapon.</td>
+                            <td>Overwriting a teammate’s fresh Freeze; placed carelessly on Ultimate it makes movement unpredictable and breaks the planned positions.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Damage</strong></td>
+                            <td>On Ultimate, one-shot freshly spawned Slimes, knock Rappies down to flee, or add damage to small enemies with low EFR.</td>
+                            <td>Pre-placing at spawn points is steadiest; there’s no need to use it as main damage for ordinary clearing.</td>
+                            <td>Throwing Damage traps one after another as a weaker Freeze, which gives no control and wastes animation time.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Combos aren’t fixed answers: practice these five first</h4>
+                <table>
+                    <thead><tr><th>Input</th><th>When</th><th>How to judge</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="combo-code">N-H</span></td><td>Unfamiliar melee targets, controlling a group head-on with a Sword</td><td>Sidestep right after two hits; if you don’t know whether the third is safe, don’t throw it.</td></tr>
+                        <tr><td><span class="combo-code">N-N-H</span></td><td>Starting out, not enough Hit, when you need reliable hits</td><td>Deliberately delay the second and third hits so each hitstun truly chains; mashing wastes hitstun time.</td></tr>
+                        <tr><td><span class="combo-code">N-H-H</span></td><td>Frozen or paralysed targets, when ordinary damage is enough</td><td>The third hit must kill, or the target must be unable to counter during your recovery.</td></tr>
+                        <tr><td><span class="combo-code">S-N-S</span></td><td>Slicer special attacks such as DoB, Arrest and Hell</td><td>Use the Accuracy Glitch at mid range to raise special-attack accuracy; distance and when the slicer returns affect the result.</td></tr>
+                        <tr><td><span class="combo-code">S-S-S / S-H-H</span></td><td>Vjaya, Berserk or other high-risk specials inside a freeze window</td><td>Only when the hit rate, the HP/money cost and the kill threshold are all clear; otherwise switch to a safe combo.</td></tr>
+                    </tbody>
+                </table>
+                <p><strong>What “delay” means: </strong>hitting an enemy again while it is still flinching does not refill the flinch time. The right way is to wait a little within the combo’s input window, letting the previous hit’s hitstun nearly end before the next, instead of mashing as fast as possible when you see the three-hit button.</p>
+
+                <h4>Typical situations: what you see, what to switch to</h4>
+                <div class="decision-grid">
+                    <section class="decision-card">
+                        <h4>A group of ordinary enemies walks towards you</h4>
+                        <p>Step back half a pace so they stack into a fan → Freeze → Sword from the side. If they’re still spread out, switch to a Slicer; don’t chase the first one and scatter the group.</p>
+                    </section>
+                    <section class="decision-card">
+                        <h4>One high-HP enemy with a few small fry</h4>
+                        <p>If teammates can clear the small fry, go straight for the high-HP enemy; if nobody takes them, Freeze the whole wave first, then cover them all with Excalibur/Vjaya, or back off after two hits and reset.</p>
+                    </section>
+                    <section class="decision-card">
+                        <h4>Dorphon / Delbiter charges</h4>
+                        <p>Don’t gamble on a combo head-on. Pre-place a trap or lay Gifoie with Twin Blaze; use Arrest on targets that can’t be frozen, and burst from the side once the control lands.</p>
+                    </section>
+                    <section class="decision-card">
+                        <h4>Flying or high-altitude targets</h4>
+                        <p>Keep up damage and draw them with a Raygun first; once practised, handle those spawn points with the unlimited-vertical-range specials of TJS/Dark Flow instead of waiting blindly under the landing point.</p>
+                    </section>
+                </div>
+
+                <h4>Solo versus party responsibilities</h4>
+                <table>
+                    <thead><tr><th>Situation</th><th>What you should take on</th><th>Managing resources</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Solo</strong></td><td>Get Lv3 S/D from S-Red’s Blade and handle bosses and armoured targets with a Zalure ES; make good use of doors, corners and Confuse to gather enemies.</td><td>Remember the supply points; you only have 10 of each Mate, so save HP through positioning rather than trading medicine for hits.</td></tr>
+                        <tr><td><strong>Ordinary party</strong></td><td>Move into kill position as soon as the FO has J/Z up; Freeze creates a shared window for the party, and take the high-HP targets teammates are slow to kill first.</td><td>Use Star Atomizers to save teammates in melee and keep the tempo; when a teammate has already taken control, don’t overwrite it with Confuse.</td></tr>
+                        <tr><td><strong>Experienced speed runs</strong></td><td>Pre-position and pre-place traps by floor markings to enter the kill frame the moment enemies appear; assign targets by where teammates are heading.</td><td>Budget traps per room—neither hoarding them all run nor placing one every wave; save Freeze for spawns where it clearly shortens the wave.</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>Low-HP Dark Flow: learn it last, it’s not an entry requirement</h4>
+                <p>
+                    Dark Flow’s special needs HP below 12.5% of max. Standing against the target overlaps five sword waves for extreme single-target burst, but at low HP any positioning mistake can kill you. First learn to use  <code>Monomate +200 HP</code>, <code>Dimate +500 HP</code>  to adjust your HP and remember the fixed-damage attacks before practising in public parties. When teammates need healing, don’t ask the whole party to accommodate your low-HP play; switching back to ordinary full-HP combos still makes you a competent HUcast.
+                </p>
+
+                <h4>A 20-minute practice routine</h4>
+                <ol class="checklist">
+                    <li><strong>5 minutes: </strong>Sword only; against one melee enemy type practise “bait a whiff → sidestep → delayed N-N-H” until you stop getting countered.</li>
+                    <li><strong>5 minutes: </strong>In the same room, pop Freeze by natural trigger, a Raygun shot and Twin Blaze, and compare how much effective attack time you have left.</li>
+                    <li><strong>5 minutes: </strong>Split each wave into “bunched / scattered / high-HP single” first, and force yourself to switch to the matching weapon instead of using one Sword the whole way.</li>
+                    <li><strong>5 minutes: </strong>Rerun the quest and memorize only the positions and trap timing for the three most dangerous spawns; add three more next run instead of learning the whole map at once.</li>
+                </ol>
+            </article>
+
+            <h3>Combat loop</h3>
+            <ol>
+                <li>Before entering a room, confirm the next spawn point and priority target.</li>
+                <li>Stand to the enemy’s side or rear, not face to face; use floor textures as fixed position markers when needed.</li>
+                <li>Slicer for scattered enemies, Sword/Partisan for bunched enemies, Mechgun, Twin Sword or Dark Flow for high-HP single targets.</li>
+                <li>Delay the second and third hits to keep the hitstun going; when the recovery isn’t safe or the third hit won’t kill, throw only two.</li>
+                <li>Stop charges with Gifoie, Twin Blaze, freezing or Arrest, then move into burst position.</li>
+            </ol>
+
+            <h3>HP and low-HP play</h3>
+            <p>
+                HUs are often up close, and they use the Mag’s low-HP invincibility trigger and the Dark Flow special most. Master fixed damage, how much medicine heals and safe positions before practising low HP lines; 
+                <code>Monomate</code>  restores 200 HP and <code>Dimate</code>  restores 500 HP, which lets you adjust HP precisely on Ultimate. After a failure, reviewing your positioning and combos is more effective than blindly stacking defense.
+            </p>
+
+            <h3>Weapon route</h3>
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <h4>General tools to prepare first</h4>
+                    <ul>
+                        <li><strong>Charge / Berserk Raygun: </strong>Finishing from range and popping traps.</li>
+                        <li><strong>Charge / Berserk Vulcan: </strong>Cheap single-target burst.</li>
+                        <li><strong>Red Sword / Chain Sawd: </strong>Early area clearing.</li>
+                        <li><strong>Diska of Braveman + Thirteen: </strong>Practical ranged area damage.</li>
+                        <li><strong>S-Parts ver2.01: </strong>An important +15 ATA source for Androids before Lv180.</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>Key ES / S-Rank</h4>
+                    <ul>
+                        <li><strong>Arrest / Hell Slicer or J-Cutter: </strong>the HU’s core area special weapon, top priority.</li>
+                        <li><strong>Demon's Mechgun: </strong>Human/Newman HUs’ tool for shaving high-HP single targets.</li>
+                        <li><strong>Zalure Gun: </strong>For HUmars and Androids without an FO, against bosses or when soloing.</li>
+                        <li><strong>Hell Sword / Partisan / Scythe: </strong>Fills in when enemies are too close for the Slicer to use its range.</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>Endgame damage weapons</h4>
+                    <ul>
+                        <li><strong>Vjaya: </strong>Expensive, high-ceiling multi-target burst.</li>
+                        <li><strong>Excalibur: </strong>Up to three targets, good for high-HP enemies once frozen.</li>
+                        <li><strong>Tsumikiri J-Sword: </strong>A special that circles you with unlimited vertical range.</li>
+                        <li><strong>Dark Flow: </strong>Stacks five sword waves up close for the strongest single-target spawn burst.</li>
+                        <li><strong>Jizai: </strong>For single targets with high DFP/EVP.</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>Armour and upgrades</h4>
+                    <ul>
+                        <li><strong>Red Ring: </strong>First choice in most situations, with ATP, ATA and excellent defense.</li>
+                        <li><strong>Anti-Dark Ring: </strong>The core of high-EDK setups.</li>
+                        <li><strong>D-Parts ver1.01: </strong>+35 ATP for Androids.</li>
+                        <li><strong>Enemy-type attribute upgrade priority (<span data-item-en="Photon Sphere"></span>): </strong>Dark Flow → TJS → DoB / Vjaya / Excalibur → Twin Sword → Twin Saber.</li>
+                        <li><strong>Attribute reference: </strong>Machine and Dark first; common combinations are Native/A.Beast and Machine/Dark.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="ranger" class="profession-panel" role="tabpanel" aria-labelledby="tab-ranger" hidden>
+            <h2>RA · Ranger</h2>
+
+            <p>The RA has the highest ATA, excellent range and the fullest toolkit of weapon specials. The key isn’t standing as far away as possible, but finding the distance and angle that are safe enough while letting your Shot or Needle cover the most targets.</p>
+
+            <h3>Vanilla progression</h3>
+            <table>
+                <thead><tr><th>Period</th><th>Weapons and play</th><th>What to build</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Normal–Hard</td>
+                        <td>Rifles pick enemies off before they act, Shots handle frontal fans, Handguns suit moving fights, and Mechguns are for single targets already staggered or controlled. When pressed, a Saber is fine; don’t insist on only shooting.</td>
+                        <td>Mag mostly POW with some DEX; learn to use doorways, corners and frozen enemies to block other enemies’ paths.</td>
+                    </tr>
+                    <tr>
+                        <td>Very Hard</td>
+                        <td>Clear waves with high-Hit Shots, burst with Mechguns and control dangerous targets with Rifles; start testing specials like Arrest, Blizzard, Hell and Demon’s instead of only Heavy attacks.</td>
+                        <td>Divide your weapon bar into area, single target, control and boss, instead of filling your bag with the same kind of gun.</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimate</td>
+                        <td>The Shot is still the backbone, but Hit matters; freeze or paralyse elites before dealing damage. Episode 2’s low-EDK small fry suit Hell, and high-HP targets suit Demon’s.</td>
+                        <td>Build accuracy and control first, then chase damage. Androids make up for no techniques with traps, and humans keep their own support techniques up.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Key Vanilla habit: </strong>The first shot’s value is often not damage but making the enemy stop, turn or line up into a shape your Shot can cover. The RA’s safe distance buys time for the party; it isn’t hiding where you can’t see the whole wave.</p>
+
+            <h3>Choosing among the four characters</h3>
+            <div class="class-grid">
+                <article class="class-card">
+                    <h4>RAmar</h4>
+                    <p>The highest ATA of any class plus Lv15 S/D; with the same weapons, the RAmar lands special attacks most reliably. Suits players who want to use all kinds of specials consistently.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Keep S/D up and open with Arrest/Hell/Demon’s using your top ATA; once elites are worn down, finish with Charge Arms, a Mechgun or Heaven Striker.</li>
+                        <li><strong>Solo: </strong>With range, accuracy, Resta and basic S/D all covered, he’s one of the steadiest all-round soloists.</li>
+                        <li><strong>Pitfall: </strong>top ATA doesn’t mean mindless S-S-S; specials still have a lower accuracy modifier, so use S-N-S, N-S-S or the SN glitch depending on distance.</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>RAmarl</h4>
+                    <p>The second-highest ATA with Lv20 S/D/J/Z, comfortable solo and in parties without an FO; high EVP also allows an evasion build.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Lower the whole wave’s attack and defense with J/Z first, then clear with Arms/Needles; use Demon’s on high-HP targets and finish stragglers with Heaven Striker.</li>
+                        <li><strong>Party: </strong>provide full support without an FO; with one, cut duplicate casts and turn the advantage into safer ranged control.</li>
+                        <li><strong>Pitfall: </strong>don’t make up for low ATP with excessive melee; her efficiency comes from covering whole waves continuously after support.</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>RAcast</h4>
+                    <p>The highest ATP among RAs, with traps; the freeze trap more than makes up for having the lowest ATA of the four RAs. Suits players after area damage and burst.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Pin high-EVP or high-threat targets with a Freeze Trap, then sweep with Baranz/Arms; use a high-attribute Mechgun or Heaven Striker on single targets.</li>
+                        <li><strong>Party: </strong>the damage jump from high-level Shifta is the biggest; work with the FO so a low-level Gifoie pops traps instantly for you.</li>
+                        <li><strong>Pitfall: </strong>on Ultimate, Androids are penalized on Demon’s HP cuts, so don’t copy human RAs’ Demon’s-centred play.</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>RAcaseal</h4>
+                    <p>The highest DFP of any class, with ATA slightly above the RAcast, traps and the Android paralysis bonus; very steady control.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Control continuously with Spread/Arrest Needles and traps, covering stragglers and flanks while teammates deal damage; add area damage once it’s safe.</li>
+                        <li><strong>Trade-off: </strong>her extra ATA over the RAcast helps specials land, but lower ATP and fewer Freeze Traps suit players who prioritize control.</li>
+                        <li><strong>Pitfall: </strong>high DFP can stop multi-hit attacks from knocking her down, so she keeps taking damage; “toughest on paper” doesn’t mean she can stand and tank.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="character-handbook" aria-label="Ranger character guides">
+                <h3>Character guides</h3>
+                <details id="ramar-deep">
+                    <summary>RAmar · mastering special attacks with the top ATA</summary>
+                    <div class="character-body">
+                        <p><strong>Core loop: </strong>keep Lv15 S/D up → control dangerous enemies from range with a Rifle/Needle → shave high-HP targets with Demon’s → finish with Charge Arms or a Mechgun. The value of top ATA is making low-accuracy specials reliable, not standing in a doorway throwing Heavies.</p>
+                        <ul><li><strong>Arrest: </strong>Paralyse first targets that move fast, can’t be frozen or are dangerous once close; the Spread Needle has short range, so fire only once enemies are really inside its fan.</li><li><strong>Hell: </strong>Check EDK first, then decide between a Rifle pick or a Needle/Shot sweep; V502 boosts the effect, but you still need the right combo and distance.</li><li><strong>Demon's: </strong>Only for shaving HP quickly; once a target is within ordinary-damage kill range, switch to Charge/Heaven Striker so a third special doesn’t waste time.</li><li><strong>Solo: </strong>S/D, Resta and high ATA already form a complete loop; without J/Z, make up for it with a Zalure ES, control and the right attributes.</li></ul>
+                    </div>
+                </details>
+                <details id="ramarl-deep">
+                    <summary>RAmarl · ranged tempo with full Lv20 support</summary>
+                    <div class="character-body">
+                        <p><strong>Core loop: </strong>S/D between rooms → one J/Z covering the key area at each new wave → control and damage with Needles/Arms → Demon’s on high-HP targets → back to your firing line right after Resta/Anti. The RAmarl’s strength is keeping full buffs and debuffs both solo and in parties without an FO.</p>
+                        <ul><li><strong>Casting position: </strong>cast J/Z from the mid range that covers the most enemies; don’t run into the middle of the group for full coverage. Missing one is usually cheaper than being interrupted.</li><li><strong>Damage: </strong>with lower ATP, change the kill threshold with Zalure and Demon’s first, then finish with multi-target guns; don’t throw three-hit low-damage Shot combos at tough enemies.</li><li><strong>Parties with an FO: </strong>let the Lv30 support cover the main group, and only patch stragglers, far-off teammates and emergency heals yourself, saving your actions for the RA’s opening control.</li><li><strong>What to practice: </strong>track support time remaining together with the next wave’s position, instead of recasting mid-fight only when the icon disappears.</li></ul>
+                    </div>
+                </details>
+                <details id="racast-deep" open>
+                    <summary>RAcast · the complete high-ATP trap gunner</summary>
+                    <div class="character-body">
+                        <p>The RAcast’s core is <strong>pinning the whole wave with traps or gun specials first, then turning the top RA ATP into four-to-five-target damage</strong>. He improves most in multiplayer parties with high-level Shifta; solo without reliable Shifta, play leans towards safe control and special attacks.</p>
+
+                        <h4>A four-step loop for each wave</h4>
+                        <ol class="combat-flow">
+                            <li><strong>Read the shape: </strong>five or fewer in a fan, ready Arms/Needles; four in a line or gathered at a landing point, ready the Baranz Launcher; one high-HP enemy, switch to a Mechgun/Heaven Striker.</li>
+                            <li><strong>Pin first: </strong>use a Freeze Trap or Frozen Shooter on freezable dangerous waves, and an Arrest Needle/Raygun on targets that can’t be frozen. Don’t rush damage while enemies are still spread sideways.</li>
+                            <li><strong>Main damage: </strong>when safe, use  <span class="combo-code">N-S-S</span>, <span class="combo-code">S-S-S</span> ’s Charge/Berserk Arms or Baranz; if hits are unreliable open with N, and if one combo won’t kill, stop early and reset your distance.</li>
+                            <li><strong>Clean up: </strong>pick off targets outside the fan with Heaven Striker/Rifle; when the next wave is about to appear, reposition early rather than slowly chasing one wounded enemy with a Shot.</li>
+                        </ol>
+
+                        <h4>When to switch weapons</h4>
+                        <table>
+                            <thead><tr><th>Situation</th><th>First choice</th><th>Why, and what next</th></tr></thead>
+                            <tbody>
+                                <tr><td>Ordinary five-target fan</td><td>Charge Arms / Berserk Needle</td><td>Wide coverage and straightforward animation; with Shifta and the right attribute, aim to clear the wave in one combo.</td></tr>
+                                <tr><td>Four high-HP targets in a line</td><td>Baranz Launcher</td><td>High damage, but the shot path and lock-on need positioning; freeze first so movement doesn’t make it miss.</td></tr>
+                                <tr><td>Dangerous single target</td><td>Frozen Shooter → Mechgun / HS</td><td>Freeze first, then land every hit; no need to fire the Frozen Shooter continuously as an ordinary damage gun.</td></tr>
+                                <tr><td>Targets that can’t be frozen</td><td>Arrest Needle / Raygun</td><td>Androids get a bonus to Paralysis specials; switch to a damage weapon once the paralysis lands.</td></tr>
+                                <tr><td>Ep2 low-EDK small fry</td><td>V502 + Hell Needle / Shot / Rifle</td><td>Choose the area by density; use a Rifle on single targets instead of spending a whole Shot animation on one enemy.</td></tr>
+                                <tr><td>High HP / high DFP</td><td>Physical burst or a teammate’s Demon’s</td><td>Androids are penalized using Demon’s on Ultimate, so don’t usually build around it.</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>Traps and teamwork</h4>
+                        <ul><li><strong>Freeze: </strong>Creates a full firing window for Baranz/Arms. If enemies will bunch up on their own, waiting half a second before freezing often beats freezing them as they spawn.</li><li><strong>Confuse: </strong>Make high-damage enemies fight each other and gather when soloing early; use it carefully in multiplayer Ultimate so you don’t overwrite Freeze or disrupt enemy paths.</li><li><strong>Damage: </strong>A specialist tool for Slimes, Rappies and low-EFR targets, not your main clearing weapon.</li><li><strong>Working with the FO: </strong>have the FO lay a fire ring in advance with a low-level Gifoie or the Mercurius Rod’s special, so your trap pops the moment you place it, saving the time to aim and shoot it.</li></ul>
+
+                        <h4>Solo versus party</h4>
+                        <div class="decision-grid">
+                            <section class="decision-card"><h4>Solo</h4><p>Get temporary Shifta from Mylla &amp; Youlla; when damage is short, don’t chase the party kill threshold but go Freeze → safe three hits → back off. Hell’s effective areas get around a lack of ATP.</p></section>
+                            <section class="decision-card"><h4>Party</h4><p>Wait for the FO’s Shifta/Zalure before throwing sacrifice specials; the damage difference is large. You cover whole waves and traps; when a HU is on a tough enemy, don’t knock it back or turn it with your gun.</p></section>
+                        </div>
+                        <p class="notice"><strong>Most common mistake: </strong>standing still and finishing three hits because HP and DFP are high. A ranged class’s defense comes from range and hitstun; once enemies are inside the Shot’s inner ring and spreading out, Freeze first, switch to a Needle, or step back and reset your line.</p>
+                    </div>
+                </details>
+                <details id="racaseal-deep">
+                    <summary>RAcaseal · the control-first Android gunner</summary>
+                    <div class="character-body">
+                        <p><strong>Core loop: </strong>pin the first threats with Arrest/Freeze → guard stragglers and flanks with a Needle → add area damage with Arms/Baranz once teammates start attacking. She trades the RAcast’s damage for higher ATA and steadier specials, but her kill threshold depends more on Shifta, Zalure and weapon attributes.</p>
+                        <ul><li><strong>Control, then damage: </strong>if even one enemy in a wave breaks out of your coverage, control it alone with a Raygun/Frozen Shooter first; don’t let it reach the FO just to keep your Shot combo going.</li><li><strong>Traps: </strong>her trap count grows differently from the RAcast’s, so plan Freeze/Confuse by quest; once high-EVP enemies are controlled, let the HU take the high-HP single targets.</li><li><strong>The high-DFP trap: </strong>with very high defense some multi-hit attacks can keep hitting without knocking her down, so she must still respect fixed damage and elemental attacks.</li><li><strong>Making up damage: </strong>the right enemy-type attribute, Zalure and Charge weapons improve clearing speed more than just stacking ATP units.</li></ul>
+                    </div>
+                </details>
+            </div>
+
+            <h3>How to handle each target</h3>
+            <ul>
+                <li><strong>Ordinary dense enemies: </strong>start with Charge Arms and later switch to a high-Hit Baranz Launcher; pick off stragglers with Heaven Striker.</li>
+                <li><strong>Dangerous elites: </strong>control them with a Frozen Shooter/Freeze Trap first, then burst with a Mechgun, Heaven Striker, Excalibur or Daylight Scar.</li>
+                <li><strong>Enemies that can’t be frozen: </strong>paralyse Dorphons, Girtablulus and the like with a Spread/Arrest Needle first, then follow with Demon’s or a damage weapon.</li>
+                <li><strong>Episode 2 small fry: </strong>many enemies have low EDK, so <code>V502 + Hell Rifle / Needle / Shot</code>  is the core route.</li>
+                <li><strong>Charging enemies: </strong>Twin Blaze’s low-level Gifoie can stop the first charge of Dark Bringers, Delbiters and Dorphons.</li>
+                <li><strong>Android traps: </strong>Freeze Trap for dense strong enemies; Confuse Trap to bunch up ordinary enemies; guns or area attacks pop them instantly.</li>
+            </ul>
+
+            <h3>Gear route</h3>
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <h4>Starter six</h4>
+                    <ul>
+                        <li><strong>50 Hit Charge Vulcan: </strong>Single-target burst.</li>
+                        <li><strong>50 Hit Charge Arms: </strong>The five-target mainstay.</li>
+                        <li><strong>Spread Needle: </strong>Close-to-mid-range paralysis control.</li>
+                        <li><strong>Frozen Shooter: </strong>A long-gun tool with a guaranteed-chance freeze.</li>
+                        <li><strong>Heaven Striker: </strong>High-DFP single targets, bosses and finishing from range.</li>
+                        <li><strong>Cannon Rouge: </strong>Dragons, De Rol Le, Barba Ray, Gal Gryphon and other bosses.</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>Endgame toolkit</h4>
+                    <ul>
+                        <li><strong>Baranz Launcher: </strong>The high-damage four-target mainstay.</li>
+                        <li><strong>Hell Needle / Shot: </strong>The core of clearing Episode 2 small fry.</li>
+                        <li><strong>Demon's Needle / Shot / Mechgun: </strong>Human RAs’ tool for shaving high HP.</li>
+                        <li><strong>Arrest Needle: </strong>Reliable area paralysis for RAmars and RAmarls.</li>
+                        <li><strong>Excalibur / Daylight Scar: </strong>High damage up close after freezing.</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>Units and barriers</h4>
+                    <ul>
+                        <li><strong>V101 / Heavenly Battle: </strong>The attack-speed core.</li>
+                        <li><strong>Heavenly Arms: </strong>Equip as needed until your ATA is maxed.</li>
+                        <li><strong>V501 / V502: </strong>Raises status/Hell triggers; top priority to keep on in Ep2.</li>
+                        <li><strong>Red Ring: </strong>A general endgame barrier; Androids can use S-Parts ver2.01 early.</li>
+                        <li><strong>Cure units: </strong>swap Freeze, Paralysis, Confuse and Shock by quest.</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>Enemy-type attribute upgrade priority (<span data-item-en="Photon Sphere"></span>)</h4>
+                    <p><strong>Baranz Launcher → Heaven Striker → Excalibur → Cannon Rouge → Daylight Scar → Arms</strong></p>
+                    <p>Don’t rush to spend <span data-item-en="Photon Sphere"></span> upgrading enemy-type attributes on low-Hit weapons you’ll replace later. Baranz is commonly made Native/Machine and A.Beast/Dark; Heaven Striker is commonly Native/Dark.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="force" class="profession-panel" role="tabpanel" aria-labelledby="tab-force" hidden>
+            <h2>FO · Force</h2>
+
+            <p>The FO is first a multiplier for the whole party’s efficiency and only second a technique damage dealer. Lv30 support techniques noticeably raise party damage and survival; Ephinea currently has no DMC, so sensible technique barrages, Gifoie stacking and weapon attacks can all be used freely.</p>
+
+            <h3>Vanilla progression</h3>
+            <table>
+                <thead><tr><th>Period</th><th>Techniques and play</th><th>What to build</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td>Normal–Hard</td>
+                        <td>Test enemy weaknesses with low-TP Foie/Zonde/Barta, then use Gi/Ra techniques on groups; don’t spend expensive area techniques on a single wounded enemy. A cane or rod is about MST and technique boosts, not for hitting enemies.</td>
+                        <td>Raise a MIND-type Mag first and prepare Mind Materials, Mind units and a higher-level Resta. Carry plenty of Fluids; Newmans can regenerate TP by standing still during safe transitions.</td>
+                    </tr>
+                    <tr>
+                        <td>Very Hard</td>
+                        <td>In a party keep S/D up first and add J/Z to dangerous enemies; manage the party with Resta, Anti and Reverser. When technique resistance is high or TP is tight, fill in with a Handgun, a Slicer or a weapon with a special.</td>
+                        <td>Collect staves and Merges that boost different elements, and switch by area; don’t lock all four unit slots into Mind.</td>
+                    </tr>
+                    <tr>
+                        <td>Ultimate</td>
+                        <td>Enemy elemental resistances widen, so check resistance before choosing a technique. Use Demon’s on high-HP high-resistance targets and Hell/Megid on low-EDK ones; pre-stack Gifoie at known spawn points.</td>
+                        <td>Add HP, resistances and ATA beyond MST. Be ready to switch between pure casting, support and weapon fill-in from room to room.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Key Vanilla habit: </strong>Attack techniques depend on elemental resistance, not DFP, and can’t be evaded with EVP. On your first run through a new area, testing on a small scale beats always pressing Rafoie; support techniques only cover nearby teammates from Lv3 up.</p>
+
+            <h3>Choosing among the four characters</h3>
+            <div class="class-grid">
+                <article class="class-card">
+                    <h4>FOmar</h4>
+                    <p>The highest ATP among FOs, a battle mage; Gifoie/Gizonde/Gibarta +30%, Grants +50%, and S/D range doubled. The lowest ATA of any class, so weapons need high Hit.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>In Ep1 and Ep4 build around pre-stacked Gifoie; in high-resistance areas switch to Excalibur, DoB or Demon’s/Hell tools, and use accuracy techniques to make up for ATA.</li>
+                        <li><strong>Party: </strong>extend S/D with Striker of Chao; Resta/Anti have small natural ranges, so move in close to the party before healing.</li>
+                        <li><strong>Pitfall: </strong>“battle mage” doesn’t mean melee all the time; knowing when to switch from techniques to a weapon is the FOmar’s core judgement.</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>FOmarl</h4>
+                    <p>Support-oriented, with S/D/Resta/Anti range doubled and Grants +50%; Slicer animations help accuracy techniques, and the Rambling May has an excellent firing animation.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Steady the party with wide-range support first, then use the Rambling May on single targets, SoF/DoB to shave groups or Grants to pick off targets as the situation calls.</li>
+                        <li><strong>Party: </strong>she covers S/D, Resta and Anti across a spread-out party most easily; turn “supporting in time with less running” into standing ready for the next wave early.</li>
+                        <li><strong>Pitfall: </strong>the lowest MST with no boosts to the main area techniques, so she isn’t suited to nonstop barrages that ignore resistance.</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>FOnewm</h4>
+                    <p>Gi and Ra techniques both +30% damage, the strongest area technique damage; ATA is also enough for key tools like Demon’s Mechgun.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Pre-stack Gifoie, then choose Rafoie/Rabarta/Razonde by weakness once the wave starts; switch to Demon’s Mechgun, Bringer’s Rifle or Excalibur on high-resistance elites.</li>
+                        <li><strong>Solo: </strong>Superb technique coverage in Ep1 and Ep4, with natural TP regeneration when standing still; chase kill thresholds by swapping boosting staves and Merges.</li>
+                        <li><strong>Pitfall: </strong>the strongest nuker still doesn’t just press Ra techniques; Ultimate Ep2 especially needs weapon specials and support.</li>
+                    </ul>
+                </article>
+                <article class="class-card">
+                    <h4>FOnewearl</h4>
+                    <p>The highest MST and TP and the highest ATA among FOs; base techniques +30%, Resta/Anti range doubled and piercing Megid. ATP and HP are very low; early on, Heavenly/HP helps avoid being one-shot by fixed damage.</p>
+                    <ul class="play-loop">
+                        <li><strong>How to play: </strong>Pick off targets efficiently with Foie/Zonde/Barta, use Barta or piercing Megid on enemies in a line, and shave high-HP targets with Demon’s/Hell weapons thanks to her high ATA.</li>
+                        <li><strong>Party: </strong>strong Resta/Anti with long range lets her balance attacking and rescuing; keep a safe distance first, so her low HP isn’t one-shot by fixed damage.</li>
+                        <li><strong>Pitfall: </strong>the highest MST doesn’t mean her area clearing must beat the FOnewm; she excels at base techniques, Megid, healing and weapon specials.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="character-handbook" aria-label="Force character guides">
+                <h3>Character guides</h3>
+                <details id="fomar-deep">
+                    <summary>FOmar · a mid-to-close range mage mixing techniques and weapons</summary>
+                    <div class="character-body">
+                        <p><strong>Core loop: </strong>widen S/D with Striker of Chao → add J/Z with Glide Divine → pre-stack and shape the group with Gifoie → keep using Gi/Ra techniques on enemies with low resistance → switch to Demon’s, DoB or Excalibur on tough high-resistance enemies. The FOmar’s ATP is a second answer when techniques don’t fit, not a demand to melee the whole time.</p>
+                        <ul><li><strong>Managing ATA: </strong>the lowest ATA of any class makes Hit, Smartlink and control windows crucial; shave with Slicer accuracy techniques or SoF first, then decide whether to close in.</li><li><strong>Support range: </strong>S/D gets the class bonus but Resta/Anti don’t; you must move in to heal instead of watching a short range fall short from afar.</li><li><strong>Techniques: </strong>use the Gifoie/Gizonde/Gibarta bonuses on enemies with the right resistances; don’t ignore enemy elemental resistance just because you see a class bonus.</li><li><strong>What to practice: </strong>make a forced “technique or weapon” choice every wave and note which reaches the kill threshold faster.</li></ul>
+                    </div>
+                </details>
+                <details id="fomarl-deep">
+                    <summary>FOmarl · wide-range support and steady weapon fill-in</summary>
+                    <div class="character-body">
+                        <p><strong>Core loop: </strong>cover the party with widened S/D between rooms → J/Z once enemies spawn → watch whether the HU/RA need Resta/Anti → clear targets in the gaps with the Rambling May, SoF/DoB or Grants. Her strength is finishing support with less running and turning the time saved into steady damage.</p>
+                        <ul><li><strong>Position: </strong>stay in the middle-to-back of the party so the widened range reaches both front and back; don’t leave the centre of your healing coverage to chase one enemy.</li><li><strong>Physical fill-in: </strong>the Rambling May handles single targets and Slicer animations suit special attacks; close in only after freezing or paralysis, and her lower ATA still needs high Hit.</li><li><strong>Grants: </strong>the class bonus is high, but use it only when light resistance and target count fit; against several ordinary enemies, still compare area techniques and weapons.</li><li><strong>Pitfall: </strong>support-oriented doesn’t mean constant Resta. When teammates are safe, moving ahead, J/Z and shaving HP are all worth more than overhealing.</li></ul>
+                    </div>
+                </details>
+                <details id="fonewm-deep" open>
+                    <summary>FOnewm · the complete area-technique damage playbook</summary>
+                    <div class="character-body">
+                        <p>The FOnewm’s Gi and Ra techniques carry a built-in 30% damage bonus, excelling at clearing areas in Episodes 1 and 4; but the real next step is <strong>switching quickly between techniques, Demon’s/Hell and physical attacks</strong>. Many targets in Ultimate Episode 2 have high technique resistance, and pressing only Rafoie wastes both TP and the party’s time.</p>
+
+                        <h4>A six-step loop around each wave</h4>
+                        <ol class="combat-flow">
+                            <li><strong>Between rooms: </strong>check S/D instead of topping it up after the fight has started. Switch to Striker of Chao for range and swap back to your damage weapon right after casting.</li>
+                            <li><strong>Anticipate: </strong>at known spawn points, quickly pre-stack Gifoie bare-handed first; once the fire rings exist, switch to Magical Piece/Gifoie Merge, since damage uses the gear you have on when the enemy is hit.</li>
+                            <li><strong>As the wave starts: </strong>add J/Z to high-threat targets; when an Android is placing traps, help pop them instantly with a low-level Gifoie, but don’t overwrite frozen targets with status techniques.</li>
+                            <li><strong>Test resistances: </strong>in unfamiliar areas, cast a suitable element once and watch the damage before committing to Ra/Gi casts; don’t guess weaknesses from an enemy’s colour alone.</li>
+                            <li><strong>Switch solutions: </strong>keep casting when technique damage is high; switch to Demon’s on high-HP/high-resistance targets and Hell/Megid on low-EDK enemies; with only one wounded target left, finish with base techniques or a weapon.</li>
+                            <li><strong>Closing the wave: </strong>when teammates are safe and targets are covered, move ahead to the next spawn point; the FOnewm is the one most likely to miss the pre-stack window by casting “one more”.</li>
+                        </ol>
+
+                        <h4>Choosing a technique isn’t about which has the biggest area</h4>
+                        <table>
+                            <thead><tr><th>Technique</th><th>Good for</th><th>Not good for</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Gifoie</strong></td><td>Fixed spawn points, successive waves, stopping the first charge, sustained hitstun</td><td>Casting on the spot while chasing enemies that have already spread out; slow to start when not anticipated</td></tr>
+                                <tr><td><strong>Rafoie</strong></td><td>Small fry with low fire resistance spread over a wide area that need instant full coverage</td><td>Single tough enemies or Ep2 targets with high fire resistance</td></tr>
+                                <tr><td><strong>Rabarta</strong></td><td>Area freezing and crowd control when there’s no Android Freeze Trap</td><td>Relying on it to reliably freeze key elites; the Ultimate freeze rate is limited</td></tr>
+                                <tr><td><strong>Razonde / Gizonde</strong></td><td>Special cases such as low lightning resistance machines, small enemies, boxes and Vol Opt</td><td>Casting it repeatedly just because the animation is fast, ignoring lightning resistance</td></tr>
+                                <tr><td><strong>Base techniques</strong></td><td>Wounded single targets, picking off at range, precise control of TP cost</td><td>Large bunched groups; the FOnewm lacks the FOnewearl’s class bonus on base techniques</td></tr>
+                                <tr><td><strong>Megid</strong></td><td>Low-EDK targets in a line, or situations that don’t need area technique damage</td><td>High-EDK targets and dangerous waves that need reliable instant control</td></tr>
+                            </tbody>
+                        </table>
+
+                        <h4>Four quick-swap sets</h4>
+                        <div class="decision-grid">
+                            <section class="decision-card"><h4>Support set</h4><p>Striker of Chao for S/D and Glide Divine for J/Z; swap out as soon as support is done instead of fighting a whole wave with a low-damage support staff.</p></section>
+                            <section class="decision-card"><h4>Gifoie set</h4><p>Magical Piece + Gifoie Merge/Ignition Cloak. When pre-stacking you can cast bare-handed for the animation, then swap back to the boosts before the fire rings hit.</p></section>
+                            <section class="decision-card"><h4>Ra set</h4><p>Psycho Wand with the matching Merge; first make sure the HP cost of its TP reduction is manageable, and switch barriers by the area’s element.</p></section>
+                            <section class="decision-card"><h4>Weapon special set</h4><p>Smartlink + V502, carrying Demon’s Mechgun/Bringer’s Rifle, SoF and Hell J-Cutter. Treat high-resistance targets as a job for a different class.</p></section>
+                        </div>
+
+                        <h4>Solo and party</h4>
+                        <ul><li><strong>Solo Ep1/Ep4: </strong>make safe zones with doorways, spawn points and pre-stacked Gifoie; use the Newman’s standing TP regeneration only on truly safe transitions. Chasing one-cast-fewer kill thresholds by swapping staves and Merges is more practical than blindly stacking MST.</li><li><strong>Party: </strong>Your first job is still Lv30 S/D/J/Z and rescues. Raise total damage with area techniques only once support is steady; when teammates can already clear the wave in one combo, one more slow technique just makes you miss your position for the next wave.</li><li><strong>Ep2: </strong>Doubt technique efficiency by default, test the damage and switch promptly to Hell, Demon’s or Excalibur. The FOnewm’s 180 ATA is enough for the important special weapons, but you still need Hit, Smartlink and the right combo.</li><li><strong>Boss: </strong>Choose techniques or multi-hit physical attacks by part count and resistance; don’t bring your small-fry Ra setup unchanged into every boss.</li></ul>
+
+                        <h4>A 15-minute practice routine</h4>
+                        <ol class="checklist"><li>Pick a familiar stretch of a quest and record only the element that needs the fewest casts in each room, to build an intuition for area resistances.</li><li>Practise bare-handed Gifoie → swap to Magical Piece/Merge, so the fire rings hit after the gear swap.</li><li>At the first tough high-resistance enemy, force yourself to shave it with Demon’s and then finish, comparing time and TP with pure techniques.</li><li>Stop chasing wounded enemies before each wave ends; let teammates finish them, move ahead to the next wave and refresh support.</li></ol>
+                    </div>
+                </details>
+                <details id="fonewearl-deep">
+                    <summary>FOnewearl · base techniques, piercing Megid and precise specials</summary>
+                    <div class="character-body">
+                        <p><strong>Core loop: </strong>keep supporting from range → pick targets off precisely with Foie/Zonde/Barta and their 30% class bonus → piercing Megid on low-EDK enemies in a line → handle high-HP high-resistance enemies with Demon’s/Hell weapons thanks to her higher ATA. She excels at picking off targets at range with the three base techniques and handling specific targets precisely with piercing Megid and high-ATA special weapons; she is not a smaller FOnewm.</p>
+                        <ul><li><strong>Base techniques: </strong>Foie/Zonde suit picking off single targets at range with low TP cost; Barta pierces targets in a line, so position to cover several enemies.</li><li><strong>Megid: </strong>the FOnewearl’s Megid pierces by nature, so pull enemies into a line before casting; when target EDK is high, switch solutions at once instead of dragging it out gambling on chance.</li><li><strong>Survival: </strong>low HP is a hard limit. Prepare HP/resistance units per area and make sure you won’t be one-shot by fixed damage before thinking about one more Mind unit.</li><li><strong>Party: </strong>widened Resta/Anti suits rescues from range; after healing, return to a safe firing line at once instead of following the HU into the group.</li></ul>
+                    </div>
+                </details>
+            </div>
+
+            <h3>Priorities for each wave</h3>
+            <ol>
+                <li><strong>Before the wave: </strong>check how long S/D has left and move to where you can quickly cover the party and the spawn point.</li>
+                <li><strong>As it starts: </strong>add J/Z to high-threat, high-DFP enemies; when Android teammates place traps, help pop them instantly with a low-level Gifoie.</li>
+                <li><strong>Decide how to deal damage: </strong>stack Gifoie at predictable spawn points; use a suitable Ra/Gi technique on dense groups; switch to Demon’s, SoF or a physical weapon on high-HP/high-resistance targets.</li>
+                <li><strong>Watch the party: </strong>Resta/Anti/Reverser in time, but don’t disrupt frozen enemies and the roles teammates have already set up just to look busy.</li>
+                <li><strong>Between rooms: </strong>When the current wave needs no help, move ahead to the next wave’s position; this is the hidden gain FOs can create most easily.</li>
+            </ol>
+
+            <h3>Using techniques</h3>
+            <ul>
+                <li><strong>Gifoie: </strong>Can be stacked before enemies spawn; damage is calculated when the fire ring touches an enemy. Cast it quickly bare-handed, then switch to Magical Piece/Gifoie Merge before enemies appear for the damage boost.</li>
+                <li><strong>Rafoie / Razonde: </strong>For wide-area clearing and hitstun control; especially now that DMC is gone, it can be used freely in the right situations.</li>
+                <li><strong>Rabarta: </strong>Freeze rate 40% before Ultimate and 20% on Ultimate; valuable when there’s no freeze trap.</li>
+                <li><strong>Gizonde: </strong>Fast to cast; opens boxes, clears small enemies and locks down Vol Opt’s first phase.</li>
+                <li><strong>Megid / Hell: </strong>Very effective on Episode 2’s low-EDK small fry and certain Episode 4 enemies; the FOnewearl’s Megid pierces by nature.</li>
+                <li><strong>Low-level Gifoie: </strong>the Mercurius Rod’s special can stop the first charge of Delbiters, Dark Bringers, Dorphons and Zus.</li>
+            </ul>
+
+            <h3>Gear route</h3>
+            <div class="loadout-grid">
+                <article class="loadout-card">
+                    <h4>Support and technique boosts</h4>
+                    <ul>
+                        <li><strong>Striker of Chao: </strong>Doubles S/D range; always carried.</li>
+                        <li><strong>Glide Divine: </strong>Doubles J/Z range.</li>
+                        <li><strong>Magical Piece: </strong>Gi techniques +30%, the Gifoie core.</li>
+                        <li><strong>Psycho Wand: </strong>Ra techniques +30%, more important for solo and technique damage setups.</li>
+                        <li><strong>Mercurius Rod: </strong>Grants +30%, and its low-level Gifoie special can block charges.</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>Weapon specials and physical fill-in</h4>
+                    <ul>
+                        <li><strong>Slicer of Fanatic: </strong>Three-target Demon’s with no falloff.</li>
+                        <li><strong>Bringer's Rifle: </strong>Long-range single-target Demon’s.</li>
+                        <li><strong>Hell Raygun / ES J-Cutter: </strong>Single-target/area instant kills in Episode 2.</li>
+                        <li><strong>Demon's ES Mechgun: </strong>For FOnewms/FOnewearls against high-HP high-defense targets.</li>
+                        <li><strong>DoB + Thirteen / Excalibur: </strong>For when you need physical damage.</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>Core units</h4>
+                    <ul>
+                        <li><strong>V801: </strong>The technique casting speed core.</li>
+                        <li><strong>V101: </strong>Weapon attack speed and all-round stats.</li>
+                        <li><strong>Smartlink: </strong>Removes the distance accuracy penalty for non-RAs using ranged weapons.</li>
+                        <li><strong>V502: </strong>The core for Hell/status specials in Episode 2.</li>
+                        <li><strong>Technique level units: </strong>add levels as needed while your technique disks are below Lv30.</li>
+                    </ul>
+                </article>
+                <article class="loadout-card">
+                    <h4>Frames and barriers</h4>
+                    <ul>
+                        <li><strong>Ignition Cloak + Gifoie Merge: </strong>The core Gifoie damage combination.</li>
+                        <li><strong>Thirteen: </strong>Swap in when using DoB.</li>
+                        <li><strong>Dress Plate / Anti-Dark Ring: </strong>High-EDK setup.</li>
+                        <li><strong>Red Ring: </strong>The endgame ATA and all-round choice for weapon-using FOs.</li>
+                        <li><strong>Merges of every kind: </strong>switch by the stage’s main techniques; don’t wear one barrier the whole way.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <details class="common-guide">
+        <summary>Expand: build checklist for the three classes, Vanilla vs Ephinea, and sources</summary>
+        <h2>Shortest build checklist</h2>
+        <table>
+            <thead>
+                <tr><th>Class</th><th>Sort out first</th><th>Then add</th><th>Endgame direction</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>HU</td><td>Hit, ranged handguns, area weapons</td><td>Arrest / Hell Slicer, DoB + Thirteen</td><td>DF, TJS, Vjaya, Excalibur attribute set</td></tr>
+                <tr><td>RA</td><td>50H Charge Arms / Vulcan</td><td>Frozen Shooter, Spread Needle, V502 + Hell</td><td>Baranz, HS, Excalibur attribute set</td></tr>
+                <tr><td>FO</td><td>Lv30 support, V801, area staves</td><td>Magical Piece, support staves, Smartlink/V502</td><td>Barrier switching for techniques, a Demon’s/Hell toolkit</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Where Vanilla ends and the Ephinea endgame begins</h2>
+        <table>
+            <thead><tr><th>System</th><th>Vanilla core idea</th><th>Advanced use from the later parts of this page on Ephinea</th></tr></thead>
+            <tbody>
+                <tr><td>Drops / experience</td><td>Classic drops are shared by the party; traditionally you must hit an enemy or apply J/Z to qualify for its experience</td><td>Ephinea defaults to separate drops and area experience sharing; bosses still require qualifying for experience</td></tr>
+                <tr><td>Equipment</td><td>Build a full toolbar from high-Hit common weapons as they drop</td><td>Then raise efficiency with ES weapons, sets and enemy-type attribute weapons upgraded with <span data-item-en="Photon Sphere"></span></td></tr>
+                <tr><td>Party damage</td><td>The original online environment had DMC, so players avoided covering the same target together</td><td>Ephinea has removed DMC, so you can focus fire together according to positions and roles</td></tr>
+                <tr><td>Difficulty requirements</td><td>Official BB / Ephinea Classic Ep1 requires Lv20 / 50 / 90 for H / VH / U</td><td>Standard Ephinea characters need Lv20 / 40 / 80</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Sources and currency</h2>
+        <ul class="source-list">
+            <li><a href="https://wiki.pioneer2.net/w/Hunter_guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki: Hunter guide</a> (page updated 2026-06-18)</li>
+            <li><a href="https://wiki.pioneer2.net/w/Ranger_guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki: Ranger guide</a></li>
+            <li><a href="https://www.pioneer2.net/community/threads/force-guide-wip.15075/" target="_blank" rel="noopener noreferrer">Forum: Force Guide (WIP)</a> (posted 2019, last edited 2020; some mechanics are out of date)</li>
+            <li><a href="https://wiki.pioneer2.net/w/Force_guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki: current Force guide</a> (used for class differences and current mechanics; page updated 2026-02-21)</li>
+            <li><a href="https://wiki.pioneer2.net/w/Classes" target="_blank" rel="noopener noreferrer">Ephinea Wiki: Classes</a> (to cross-check the races and roles of the 12 characters)</li>
+            <li><a href="https://wiki.pioneer2.net/w/Damage_cancel" target="_blank" rel="noopener noreferrer">Ephinea Wiki: Damage cancel</a> (confirms the mechanic has been removed from Ephinea)</li>
+            <li><a href="https://wiki.pioneer2.net/w/Mags/Guide" target="_blank" rel="noopener noreferrer">Ephinea Wiki: Mag guide</a> (Vanilla POW/MIND Mag starting routes)</li>
+            <li><a href="https://wiki.pioneer2.net/w/Techniques" target="_blank" rel="noopener noreferrer">Ephinea Wiki: Techniques</a> (technique categories, level limits and boosts)</li>
+            <li><a href="https://wiki.pioneer2.net/w/Weapon_attributes" target="_blank" rel="noopener noreferrer">Ephinea Wiki: Weapon attributes</a> (enemy-type attributes and Hit)</li>
+            <li><a href="https://wiki.pioneer2.net/w/Game_modes" target="_blank" rel="noopener noreferrer">Ephinea Wiki: Game modes</a> (differences between Standard and Classic modes)</li>
+            <li><a href="https://strategywiki.org/wiki/Phantasy_Star_Online_Episode_I_%26_II/Character_Selection" target="_blank" rel="noopener noreferrer">StrategyWiki: Episode I &amp; II Character Selection</a> (reference for original class roles)</li>
+            <li><a href="https://www.pso-world.com/sections.php?artid=2342&amp;op=viewarticle" target="_blank" rel="noopener noreferrer">PSO-World: Norvekh's Ranger Guide</a> (classic RA positioning and team duties)</li>
+            <li>Character Wiki guides: <a href="https://wiki.pioneer2.net/w/HUmar/Guide" target="_blank" rel="noopener noreferrer">HUmar</a> · <a href="https://wiki.pioneer2.net/w/HUnewearl/Guide" target="_blank" rel="noopener noreferrer">HUnewearl</a> · <a href="https://wiki.pioneer2.net/w/HUcast/Guide" target="_blank" rel="noopener noreferrer">HUcast</a> · <a href="https://wiki.pioneer2.net/w/HUcaseal/Guide" target="_blank" rel="noopener noreferrer">HUcaseal</a></li>
+            <li>Character Wiki guides: <a href="https://wiki.pioneer2.net/w/RAmar/Guide" target="_blank" rel="noopener noreferrer">RAmar</a> · <a href="https://wiki.pioneer2.net/w/RAmarl/Guide" target="_blank" rel="noopener noreferrer">RAmarl</a> · <a href="https://wiki.pioneer2.net/w/RAcast/Guide" target="_blank" rel="noopener noreferrer">RAcast</a> · <a href="https://wiki.pioneer2.net/w/RAcaseal/Guide" target="_blank" rel="noopener noreferrer">RAcaseal</a></li>
+            <li>Character Wiki guides: <a href="https://wiki.pioneer2.net/w/FOmar/Guide" target="_blank" rel="noopener noreferrer">FOmar</a> · <a href="https://wiki.pioneer2.net/w/FOmarl/Guide" target="_blank" rel="noopener noreferrer">FOmarl</a> · <a href="https://wiki.pioneer2.net/w/FOnewm/Guide" target="_blank" rel="noopener noreferrer">FOnewm</a> · <a href="https://wiki.pioneer2.net/w/FOnewearl/Guide" target="_blank" rel="noopener noreferrer">FOnewearl</a></li>
+        </ul>
+
+        <p class="source-list">This guide is a Chinese compilation and summary; gear value changes with quest, party, character animations, Hit and attribute percentages, so treat the lists as a decision framework rather than the only answer.</p>
+        </details>
+    </section>

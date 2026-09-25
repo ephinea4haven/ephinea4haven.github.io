@@ -1,0 +1,143 @@
+<!-- English text for /guide/launcher.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+<p class="launcher-kicker">EPHINEA · LAUNCHER GUIDE</p>
+<h1>Launcher settings guide</h1>
+<p class="launcher-lead">From starting the game to adjusting the camera, find every switch in the order the launcher shows it. Control names stay in English, with an explanation beside each so you can follow along with the interface.</p>
+<p class="launcher-meta">For Launcher v3.5.2 · checked 2026-09-16 · screenshots of the native Windows 11 program in Parallels Desktop</p>
+<nav class="launcher-nav" aria-label="Launcher settings sections">
+<a href="#page1">01 · Display, sound and interface<span>OPTIONS page 1</span></a>
+<a href="#page2">02 · Conveniences and visual effects<span>OPTIONS page 2</span></a>
+<a href="#page3">03 · Reminders, camera and text<span>OPTIONS page 3</span></a>
+<a href="#page4">04 · Gamepad, pickup and Photon Blast<span>OPTIONS page 4</span></a>
+<a href="#page5">05 · Menu controls and gameplay conveniences<span>OPTIONS page 5</span></a>
+<a href="#more">06 · MORE: original detailed settings<span>Separate detailed settings window</span></a>
+</nav>
+<aside class="launcher-note"><p><strong>How to use it: </strong>click OPTIONS to open the settings and use NEXT PAGE/PREVIOUS PAGE to turn pages. A green switch is on and a grey one is off; grey doesn’t necessarily mean it can’t be clicked. The screenshots show this computer’s configuration at the time, not recommended values. Click an image to see it full size.</p></aside>
+<section id="main-window"><h2>Main screen and how settings are saved</h2>
+<figure><a href="/assets/img/launcher/main.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/main.png" width="1600" height="1200" alt="The Ephinea English launcher main screen on Windows 11"></a><figcaption>Main screen: start, news, language/resource choice and the way into settings.</figcaption></figure>
+<table><thead><tr><th scope="col">Control</th><th scope="col">What it does</th></tr></thead><tbody>
+<tr><td>START GAME</td><td>Starts the game; account login and character selection happen in the game.</td></tr>
+<tr><td>ENGLISH / 日本語 / CUSTOM</td><td>Chooses how the language resources are updated. CUSTOM is for custom resources, not a built-in Chinese option; the screenshot’s CUSTOM can coexist with the English interface. Switching language saves the current settings and triggers an update check, so if you maintain a custom translation, confirm the selected resource mode.</td></tr>
+<tr><td>OFFICIAL SITE / REGISTER / FAQ / DONATE</td><td>Open the official website, account registration, FAQ and donation page.</td></tr>
+<tr><td>CREDITS / QUIT</td><td>Show the credits / exit the launcher.</td></tr>
+<tr><td>CHECK FOR UPDATES</td><td>Checks for client updates again; it doesn’t restore settings.</td></tr>
+<tr><td>MORE</td><td>Saves the launcher settings first, then opens the separate original detailed settings window.</td></tr>
+<tr><td>REVERT</td><td>Reloads the saved configuration and discards unsaved changes.</td></tr>
+<tr><td>RESET ALL</td><td>Resets many current settings to the program’s initial values, without saving yet; it also resets the language choice to English and the resolution to 1024×768. If you need CUSTOM resources, confirm the language choice before any later save or update. The 3.5.2 reset doesn’t cover every option added later, so it isn’t a complete wipe of all settings.</td></tr>
+</tbody></table>
+<aside class="launcher-note"><p><strong>How do you save?</strong>The launcher has no single Save button. START GAME, QUIT, MORE and similar actions write the settings; clicking OPTIONS again only collapses the panel. To undo changes, use REVERT first and then do something that saves. The MORE window has its own Save/Cancel.</p></aside>
+</section>
+<section id="page1">
+<p class="launcher-kicker">01 / OPTIONS</p><h2>Display, sound and interface</h2><p>Decide the game window and rendering method first, then adjust the interface size and sound.</p>
+<figure><a href="/assets/img/launcher/page1.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page1.png" width="1600" height="1200" loading="lazy" alt="Ephinea English native interface: display, sound and interface"></a><figcaption>OPTIONS page 1 · native Windows 11 screenshot</figcaption></figure>
+<table><thead><tr><th scope="col">Control / meaning</th><th scope="col">What it does and notes</th></tr></thead><tbody>
+<tr><td>Resolution<small>Screen size</small></td><td>Sets the width, height and aspect ratio of the game image. Custom lets you enter your own width and height; higher resolutions are usually sharper but cost more to draw.</td></tr>
+<tr><td>Windowed Mode<small>Window type</small></td><td>Fullscreen is exclusive fullscreen, Windowed is a normal window, and Virtual Fullscreen is borderless fullscreen. A normal window or borderless fullscreen is usually handier when switching apps.</td></tr>
+<tr><td>Rain/Laser Scale<small>Rain and laser line scale</small></td><td>Scales line effects such as rain and lasers, with 100% as the baseline; it doesn’t change attack damage or hit areas.</td></tr>
+<tr><td>Direct3D API<small>Graphics backend</small></td><td>Choose D3D8, D3D9, D3D9on12, D3D11/12 through dgVoodoo, or Vulkan through DXVK. The version in brackets is the translation component’s version, and Custom uses components you provide. Compatibility depends on drivers and the environment; see the <a href="/guide/d3d.html#backend">graphics backend guide</a>.</td></tr>
+<tr><td>Anti-Aliasing<small>Anti-aliasing</small></td><td>None turns it off; MSAA smooths geometry edges; SSAA renders at a higher internal resolution and scales down; SMAA post-processes image edges; HSAA combines SSAA and MSAA. Options marked + SMAA add SMAA on top. Higher settings usually cost more; for support by backend see the <a href="/guide/d3d.html#aa">anti-aliasing notes</a>.</td></tr>
+<tr><td>Anisotropic Filtering<small>Anisotropic filtering</small></td><td>Disabled or 2×/4×/8×/16×. Sharpens textures on surfaces seen at an angle, such as floors and roads.</td></tr>
+<tr><td>BGM / SFX<small>Music / effects volume</small></td><td>Set the background music and sound effects separately, from 0 to 10; 0 is mute.</td></tr>
+<tr><td>DISABLE SKIN SFX<small>Turn off skin sounds</small></td><td>Turns off the dedicated sound effects of weapon skins, not all game sound.</td></tr>
+<tr><td>HIGH RES HUD / HUD Scale<small>High-res HUD / interface scale</small></td><td>Enabling the high-res HUD shows HUD Scale. A higher value makes the HUD smaller on screen, leaving more space; this doesn’t install high-definition interface textures.</td></tr>
+<tr><td>Damage Scale<small>Damage number scale</small></td><td>Only changes the size of the damage numbers, not the actual damage.</td></tr>
+<tr><td>NO MINIMAP SCALE<small>Turn off minimap scale correction</small></td><td>Turns off the high-res HUD’s minimap scale correction. That correction makes different HUD resolutions show the same internal view range and adjusts icon proportions; it doesn’t fix the size of the whole HUD minimap frame. It doesn’t reveal unexplored areas. See the <a href="https://www.pioneer2.net/community/threads/dll-update-for-may-12th-2022-dllアップデート.23143/">original scaling behaviour</a> and <a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-may-22nd-at-00-00-utc-サーバメンテナンス完了.23197/">option announcement</a>.</td></tr>
+<tr><td>IME<small>Text input support</small></td><td>Enables the client’s input method support for typing Chinese, Japanese and other text; the input methods available come from your environment.</td></tr>
+<tr><td>LOW PERFORMANCE<small>Low-load running</small></td><td>Makes the client’s main loop give up CPU time more readily, lowering CPU use; it may affect frame pacing. It isn’t network acceleration or a one-click way to lower all graphics quality.</td></tr>
+<tr><td>CLASSIC INTRO FMV<small>Legacy opening movie playback</small></td><td>When on, the character creation opening uses the old PAE movie and original player; when off, it uses the newer movie playback path. It doesn’t skip the movie. See the <a href="https://www.pioneer2.net/community/threads/no-episode-2-end-credits-on-classic.24232/post-190564">official explanation of the two playback methods</a>.</td></tr>
+</tbody></table>
+<p class="launcher-sources">Further sources: <a href="https://www.pioneer2.net/community/threads/low-performance-mode.7323/">staff explanation of Low Performance</a>; <a href="https://www.pioneer2.net/community/threads/hd-ui-project-by-luthee-a-k-a-eleria.23410/page-3">HUD Scale versus high-definition interface textures</a>.</p>
+</section>
+<section id="page2">
+<p class="launcher-kicker">02 / OPTIONS</p><h2>Conveniences and visual effects</h2><p>This page has bank options as well as post-processing and dgVoodoo settings.</p>
+<figure><a href="/assets/img/launcher/page2.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page2.png" width="1600" height="1200" loading="lazy" alt="Ephinea English native interface: conveniences and visual effects"></a><figcaption>OPTIONS page 2 · native Windows 11 screenshot</figcaption></figure>
+<table><thead><tr><th scope="col">Control / meaning</th><th scope="col">What it does and notes</th></tr></thead><tbody>
+<tr><td>FAST STARTUP<small>Quick start</small></td><td>Skips the SEGA, Sonic Team and other logo screens; it doesn’t skip the launcher’s update check.</td></tr>
+<tr><td>CLEAN CAPTURE<small>Clean screenshots</small></td><td>Changes how the game’s built-in screenshots are taken, capturing from the game image buffer so add-on overlays aren’t included. It doesn’t hide the game HUD automatically.</td></tr>
+<tr><td>MOTION BLUR<small>Motion blur</small></td><td>Controls the game’s original motion trail effect.</td></tr>
+<tr><td>RARE DROP SFX<small>Rare drop sound</small></td><td>Plays a sound when a rare item drops; it doesn’t change drop rates.</td></tr>
+<tr><td>BANK SHORTCUTS<small>Bank number keys</small></td><td>Use number keys 1–0 to jump in the bank list; it isn’t a command to switch to a character’s bank.</td></tr>
+<tr><td>LARGE BANK WINDOW<small>Large bank window</small></td><td>Enlarges the bank list to show more entries at once.</td></tr>
+<tr><td>BLOOM<small>Bloom</small></td><td>Adds a glow around bright areas.</td></tr>
+<tr><td>DEPTH OF FIELD<small>Depth of field</small></td><td>Blurs parts of the image by depth, changing how sharp near and far objects look.</td></tr>
+<tr><td>CEL SHADING<small>Cel shading</small></td><td>Strengthens outlines for a cartoon-like look.</td></tr>
+<tr><td>TONEMAPPING<small>Tone mapping</small></td><td>Adjusts how brightness, contrast and tone are presented.</td></tr>
+<tr><td>Ambient Occlusion<small>Ambient occlusion</small></td><td>Disabled/Low/Medium/High; adds shading depth where surfaces meet and in occluded areas. For post-processing effects and their cost see the <a href="/guide/d3d.html#shaders">shader notes</a>.</td></tr>
+<tr><td>dgVoodoo Model<small>Presentation mode</small></td><td>Auto, Discard, Sequential, Flip Discard and Flip Sequential are swap chain/presentation methods, not quality levels. They only matter on the dgVoodoo path; see the <a href="/guide/d3d.html#swap">swap chain notes</a>.</td></tr>
+<tr><td>dgVoodoo VRAM<small>Virtual video memory</small></td><td>Auto or 64–4096 MB; sets the video memory dgVoodoo reports to the old game. It doesn’t add physical memory to your graphics card.</td></tr>
+</tbody></table>
+<p class="launcher-sources">Further sources: <a href="https://www.pioneer2.net/community/threads/game-update-for-august-2nd-2022.23773/post-186589">Quick start update notes</a>; <a href="https://www.pioneer2.net/community/threads/game-update-for-august-27th-2022-8-27-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.24114/">Clean Capture update notes</a>.</p>
+</section>
+<section id="page3">
+<p class="launcher-kicker">03 / OPTIONS</p><h2>Reminders, camera and text</h2><p>Camera controls can be set to suit your gamepad and habits. Some controls only appear once the related feature is on.</p>
+<figure><a href="/assets/img/launcher/page3.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page3.png" width="1600" height="1200" loading="lazy" alt="Ephinea English native interface: reminders, camera and text"></a><figcaption>OPTIONS page 3 · native Windows 11 screenshot</figcaption></figure>
+<table><thead><tr><th scope="col">Control / meaning</th><th scope="col">What it does and notes</th></tr></thead><tbody>
+<tr><td>SDJZ Icon<small>Support status icons</small></td><td>Controls how the Shifta, Deband, Jellen and Zalure icons are shown: Normal, Blink or Fade.</td></tr>
+<tr><td>Mag Alert<small>Mag feeding reminder</small></td><td>When on, plays a sound when the Mag you carry can be fed.</td></tr>
+<tr><td>Mag Alert Delay<small>Reminder interval</small></td><td>The minimum time between two reminder sounds, in seconds, default 30. It isn’t the Mag’s feeding cooldown.</td></tr>
+<tr><td>Analog Camera Control<small>Stick camera control</small></td><td>Lets the gamepad’s right stick move the camera.</td></tr>
+<tr><td>Analog Sensitivity / INVERT<small>Camera sensitivity / invert</small></td><td>Sensitivity sets how fast the stick turns the camera; INVERT reverses the matching camera direction.</td></tr>
+<tr><td>Camera Dead Zone<small>Camera stick dead zone</small></td><td>Ignores small inputs near the stick’s centre to prevent camera drift; too large reduces the usable range.</td></tr>
+<tr><td>ANALOG CAMERA KEYS / TURN LEFT / TURN RIGHT<small>Keyboard camera control</small></td><td>Enables keyboard keys for turning the camera left and right and lets you choose them; the related controls appear with the camera options.</td></tr>
+<tr><td>Chase Cam<small>Auto-follow camera</small></td><td>Enabled follows automatically; Disabled turns it off, using manual camera or the recentre key; Hybrid pauses auto-follow while you move the camera with the stick; Toggle stays manual after stick input until you press the recentre key.</td></tr>
+<tr><td>Font Render Method<small>Text rendering</small></td><td>Hi-Res (Antialiased) uses antialiased high-resolution glyphs; Hi-Res (ClearType) uses ClearType; Normal uses the plain method. The font itself is chosen in MORE.</td></tr>
+<tr><td>Font Resolution<small>Glyph resolution</small></td><td>Auto or a set glyph rasterization resolution. It affects sharpness and sampling; it isn’t the same as setting all text to that font size.</td></tr>
+<tr><td>NUMPAD SHORTCUTS<small>Numeric keypad shortcuts</small></td><td>Lets the numeric keypad trigger the matching number shortcut bar.</td></tr>
+<tr><td>Show Mob Drop<small>Target enemy rare drop display</small></td><td>Disabled turns it off; Drop Only shows the item only; Drop (Current Rate) adds the current rate; Drop (Current & Base Rate) shows both. It appears in the target info area; rates are calculated by the client and may differ by rounding, and it isn’t a prediction of the next drop.</td></tr>
+<tr><td>ENHANCED MAP DRAW<small>Extended scene drawing</small></td><td>Keeps more scene geometry drawable, reducing gaps from the original draw distance and culling; may add load. Unrelated to minimap exploration or enemy spawns.</td></tr>
+</tbody></table>
+<p class="launcher-sources">Further sources: <a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-july-6th-2024.29028/">Camera mode, Mag reminder and font update notes</a>; <a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-january-12th-2025-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E5%AE%8C%E4%BA%86-1-12.30249/">Scene drawing and target drop display notes</a>.</p>
+</section>
+<section id="page4">
+<p class="launcher-kicker">04 / OPTIONS</p><h2>Gamepad, pickup and Photon Blast</h2><p>Move easily mis-pressed pickup and Photon Blast actions onto a layer that needs a held modifier key.</p>
+<figure><a href="/assets/img/launcher/page4.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page4.png" width="1600" height="1200" loading="lazy" alt="Ephinea English native interface: gamepad, pickup and Photon Blast"></a><figcaption>OPTIONS page 4 · native Windows 11 screenshot</figcaption></figure>
+<table><thead><tr><th scope="col">Control / meaning</th><th scope="col">What it does and notes</th></tr></thead><tbody>
+<tr><td>AUTO DETECT ACTIVE GAMEPAD<small>Detect current gamepad</small></td><td>Automatically uses the most recently used gamepad, handy for switching between several controllers.</td></tr>
+<tr><td>USE XINPUT FOR GAMEPAD<small>Use XInput</small></td><td>Switches to the XInput gamepad interface, with hot-plugging and trigger buttons on supported controllers. When on, the three adjustments below appear; non-XInput devices may need mapping.</td></tr>
+<tr><td>Deadzone<small>Stick dead zone</small></td><td>Filters small inputs near the stick’s centre, 0–75%.</td></tr>
+<tr><td>Axis Snapping<small>Direction snapping</small></td><td>Makes inputs close to horizontal or vertical snap to the straight direction more easily, 0–50%.</td></tr>
+<tr><td>Trigger Threshold<small>Trigger threshold</small></td><td>How far a trigger must be pressed to count, 0–100%.</td></tr>
+<tr><td>Item Pickup and Photon Blast Usage<small>Pickup / Photon Blast mode</small></td><td>Disabled keeps the original behaviour: nearby items may replace the middle slot of the main action bar with pickup, and a full Photon Blast takes over the secondary action bar. The other three require holding a modifier to use pickup, Photon Blast, or both; the original action bar stays when released.</td></tr>
+<tr><td>HOLD GAMEPAD BUTTON<small>Gamepad modifier</small></td><td>Lets a gamepad button trigger that action layer; bind it at the bottom of the in-game Options → Pad button config.</td></tr>
+<tr><td>HOLD SHIFT KEY / HOLD ALT KEY / HOLD KEY<small>Keyboard modifier</small></td><td>Choose Shift, Alt or a specific key. The related controls appear once the pickup/Photon Blast limit is on. These options don’t pick up items or fire Photon Blasts automatically.</td></tr>
+</tbody></table>
+</section>
+<section id="page5">
+<p class="launcher-kicker">05 / OPTIONS</p><h2>Menu controls and gameplay conveniences</h2><p>Separates menu responsiveness, shortcut menu contents and the options that actually affect single-player combat.</p>
+<figure><a href="/assets/img/launcher/page5.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page5.png" width="1600" height="1200" loading="lazy" alt="Ephinea English native interface: menu controls and gameplay conveniences"></a><figcaption>OPTIONS page 5 · native Windows 11 screenshot</figcaption></figure>
+<table><thead><tr><th scope="col">Control / meaning</th><th scope="col">What it does and notes</th></tr></thead><tbody>
+<tr><td>Menu Scroll Repeat Delay<small>Menu repeat delay</small></td><td>How many frames to wait after holding a direction before repeating starts. Default 6 frames, range 1–20; at 30 FPS, 6 frames is about 0.2 seconds.</td></tr>
+<tr><td>Menu Scroll Repeat Interval<small>Menu repeat interval</small></td><td>Once repeating, how many frames between moves. Default 5 frames, range 1–20; lower is faster.</td></tr>
+<tr><td>Page Up and Page Down Behavior<small>Menu page turning</small></td><td>No Change keeps the original behaviour; Auto turns a page by the number of visible entries; Fixed uses a set number of entries (1–100). Mainly for item and bank lists.</td></tr>
+<tr><td>QUICK MENU MATERIALS<small>Materials in the shortcut menu</small></td><td>Adds materials to the shortcut menu for convenience; it doesn’t change the related limits in challenge or battle quests.</td></tr>
+<tr><td>ONE PERSON I-FRAMES<small>Single-player invincibility time</small></td><td>In One Person mode, uses a longer post-hit invincibility time like the old offline mode; off uses the original BB behaviour. Only for One Person rooms, not a multiplayer room that happens to have one player.</td></tr>
+<tr><td>QUICK MENU UNTEKKED WEAPONS<small>Unidentified weapons in the shortcut menu</small></td><td>Shows unidentified weapons in the shortcut menu too; it doesn’t identify them for you.</td></tr>
+<tr><td>SAVE PARTY INFO<small>Save room info</small></td><td>Remembers the name, password, type and difficulty of rooms you create, and the password used when joining a room of the same name. This was enabled in the 2026-08-01 update; older sources calling it a placeholder switch are out of date.</td></tr>
+</tbody></table>
+<p class="launcher-sources">Further sources: <a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-october-19th-2025-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E5%AE%8C%E4%BA%86-10-19.31884/">Page turning and single-player update notes</a>; <a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-august-1st-2026-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9-%E5%AE%8C%E4%BA%86-8-2.33568/">Announcement that Save room info is enabled</a>.</p>
+</section>
+<section id="more">
+<p class="launcher-kicker">06 / MORE</p><h2>MORE: original detailed settings</h2><p>MORE opens the separate option.exe. It manages the original graphics details, fog, sound switches and game font.</p>
+<figure><a href="/assets/img/launcher/more.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/more.png" width="1192" height="570" loading="lazy" alt="Ephinea English native interface: MORE original detailed settings"></a><figcaption>MORE detailed settings · native Windows 11 screenshot</figcaption></figure>
+<table><thead><tr><th scope="col">Control / meaning</th><th scope="col">What it does and notes</th></tr></thead><tbody>
+<tr><td>Preset<small>Graphics preset</small></td><td>High end/Normal/Low end adjust several original graphics parameters together; Custom means your own combination. Low end also includes frame skipping, so it isn’t just texture quality.</td></tr>
+<tr><td>Colors<small>Colour depth</small></td><td>16bit or 32bit, the game’s output colour depth.</td></tr>
+<tr><td>Wait V-Sync<small>Wait for vertical sync</small></td><td>Makes presentation wait for the display’s sync, reducing tearing; actual behaviour also depends on the rendering backend and driver.</td></tr>
+<tr><td>Word Wrap<small>Word wrap</small></td><td>Controls automatic line wrapping of text at line ends.</td></tr>
+<tr><td>Frame Skip / Auto Frame Skip<small>Frame skip / auto frame skip</small></td><td>Frame Skip sets the skip level (0–2, 0 skips nothing on purpose); Auto Frame Skip lets the game skip drawing some frames when it can’t keep up with the target pace.</td></tr>
+<tr><td>Advanced Effect<small>Original advanced effects</small></td><td>Controls the original client’s advanced visual effects, managed separately from Ephinea post-processing switches such as Bloom on page 2.</td></tr>
+<tr><td>Low Res Texture<small>Low-resolution textures</small></td><td>Lowers texture resolution, trading detail for lower resource use.</td></tr>
+<tr><td>Shadow / Enemy / Map<small>Shadow / enemy / map detail</small></td><td>Controls the original detail levels: Shadow 0–2, Enemy 0–1, Map 0–2. The visual difference depends on the scene and resources.</td></tr>
+<tr><td>Clip Distance<small>Draw distance</small></td><td>Adjusts the original scene draw distance. Normal levels are 0–2; higher levels are an extended range, and the program warns of the risk when saving.</td></tr>
+<tr><td>Fog Effect<small>Fog implementation</small></td><td>Vertex Fog calculates per vertex; Pixel Fog per pixel; Emulation Fog uses emulation. Compatibility and appearance depend on the graphics backend.</td></tr>
+<tr><td>Sound Effects / Background Music<small>Sound effects / music switches</small></td><td>Enable or disable sound effects and background music separately; together with page 1’s volume sliders they decide the final sound.</td></tr>
+<tr><td>Global Focus Sound<small>Background sound</small></td><td>Keeps playing sound after the game window loses focus.</td></tr>
+<tr><td>Font<small>Game font</small></td><td>Choose a font installed in Windows. Chinese glyph coverage depends on the font; available fonts and rendering can differ between Wine and Windows.</td></tr>
+<tr><td>Save ID and Password<small>Save login info</small></td><td>Controls whether the game saves your login ID and password; see <a href="/guide/saveaccount.html">saving your game account</a>.</td></tr>
+<tr><td>Hardware Log<small>Hardware diagnostic log</small></td><td>Runs the DirectX diagnostic tool to create a hardware log for troubleshooting compatibility.</td></tr>
+<tr><td>Save / Cancel<small>Save / cancel</small></td><td>Save writes this window’s settings; Cancel discards this window’s unsaved changes and returns to the launcher.</td></tr>
+</tbody></table>
+</section>
+<section id="scope"><h2>Version and scope</h2><p>This page follows version 3.5.2’s interface, the program’s settings read/write logic and official update notes. Screenshots keep Windows’ native look with only the desktop background cropped; under Wine, fonts, control appearance and available backends may differ. Game effects also depend on the client DLL, drivers and graphics backend, and the screenshots don’t mean each effect has been tested in game one by one.</p><p>For choosing anti-aliasing or troubleshooting backend compatibility, continue with the <a href="/guide/d3d.html">rendering and graphics API guide</a>. Control names are kept in English to match the interface.</p><p><a href="#main-window">Back to the main screen ↑</a></p></section>
+</section>

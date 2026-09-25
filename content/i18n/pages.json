@@ -261,12 +261,18 @@
     },
     "guide/class-guide.html": {
       "title": {
-        "en": "Class guide | Haven PSOBB Wiki",
-        "ja": "職業別ガイド | Haven PSOBB Wiki"
+        "en": "Hunter, Ranger and Force guide | Haven PSOBB Wiki",
+        "ja": "3職業の実戦ガイド | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB class guide: Vanilla fundamentals and Ephinea endgame roles for Hunters, Rangers and Forces",
+        "ja": "PSOBB 職業ガイド：ハンター・レンジャー・フォースの Vanilla の基本と Ephinea の終盤の役割"
+      }
     },
     "guide/command.html": {
       "title": {
@@ -376,8 +382,14 @@
         "ja": "ランチャー設定ガイド | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Every Ephinea launcher setting explained, page by page",
+        "ja": "Ephinea ランチャーの各設定をページ順に解説"
+      }
     },
     "guide/localized.html": {
       "title": {
@@ -538,8 +550,14 @@
         "ja": "ゲームの仕組みとダメージ計算式 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB game mechanics and damage formulas explained",
+        "ja": "PSOBB のゲームの仕組みとダメージ計算式の解説"
+      }
     },
     "tools/status.html": {
       "title": {

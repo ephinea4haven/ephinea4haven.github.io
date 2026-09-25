@@ -1,0 +1,800 @@
+<!-- Japanese text for /tools/mechanics.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="intro">
+<div class="mechanics-intro">
+  <span class="mechanics-eyebrow">図解・戦闘の仕組み</span>
+  <p class="mechanics-intro-title">1回の攻撃から、その裏の数値を読み解く</p>
+  <p>まず図で判定を理解し、それから式と詳細を確認しましょう。命中・ダメージ・被弾時の結果を区別できれば、装備や連続攻撃の選び方に根拠が持てます。</p>
+</div>
+<nav class="mechanics-nav" aria-label="章の目次">
+  <a href="#physical-damage"><span>A</span>物理ダメージ</a>
+  <a href="#accuracy"><span>B</span>攻撃の命中</a>
+  <a href="#incoming-physical"><span>C</span>回避とガード</a>
+  <a href="#technique-damage"><span>D</span>テクニックのダメージ</a>
+  <a href="#knockdown"><span>E</span>ダウンの境目</a>
+  <a href="#hp-drain"><span>F</span>HP を消費する武器</a>
+  <a href="#photon-blast"><span>G</span>PB の効果とダメージ</a>
+  <a href="#mag-triggers"><span>H</span>マグのイベント</a>
+</nav>
+<p class="mechanics-illustration-note">このページは Ephinea PSOBB の主な数値の計算式をまとめたものです。特に記載がない限り、式と数値は <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">Ephinea Wiki の Game mechanics ページ</a>をもとにしています。最終ダメージは四捨五入ではなく切り捨てです。計算結果が 100.92 なら、実際のダメージは 100 になります。</p>
+
+</section>
+
+<section data-part="physical-damage">
+<h2 id="physical-damage">A：物理ダメージの計算式</h2>
+
+<p>物理ダメージとは、炎・雷系のエクストラアタックとテクニック以外のすべてのダメージです。メニューの括弧内に表示される ATP はその職業の<strong>最大値</strong>です。ゲームは実際には隠れた基本 ATP を使い、攻撃のたびに職業ごとのランダムな振れ幅を加えます。</p>
+
+<figure class="mechanics-figure" aria-labelledby="atp-caption">
+  <figcaption id="atp-caption"><span class="mechanics-eyebrow">図解・武器の属性</span><strong>属性は下限を上げ、ランダムな幅は変わらない</strong><span>ATP 300–400 の武器で、武器だけを比べた例です。付加値、ほかの装備、シフタは含みません。</span></figcaption>
+  <div class="mechanics-range-chart">
+    <div class="mechanics-chart-axis" aria-hidden="true"><span>0 ATP</span><span>700 ATP</span></div>
+    <div class="mechanics-chart-label"><span>対応属性 0%</span><strong>300–400 ATP</strong></div>
+    <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:42.857143%"></span><span class="mechanics-segment-spread" style="width:14.285714%"></span></div>
+    <div class="mechanics-chart-label"><span>対応属性 100%</span><strong>600–700 ATP</strong></div>
+    <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:85.714286%"></span><span class="mechanics-segment-spread" style="width:14.285714%"></span></div>
+    <div class="mechanics-legend"><span><i class="mechanics-segment-base" aria-hidden="true"></i>下限：300 → 600</span><span><i class="mechanics-segment-spread" aria-hidden="true"></i>ランダムな幅：常に 100</span></div>
+  </div>
+  <p class="mechanics-figure-takeaway">属性 100% でも最終ダメージが2倍になるわけではありません。キャラクターの基本 ATP、シフタ、相手の DFP もその後の計算に入ります。</p>
+</figure>
+
+<h3>職業ごとの攻撃の振れ幅（Pvar）</h3>
+<table>
+<thead><tr><th>職業</th><th>Pvar_max</th></tr></thead>
+<tbody>
+<tr><td>Hunter</td><td>6</td></tr>
+<tr><td>Ranger</td><td>4</td></tr>
+<tr><td>Force</td><td>3</td></tr>
+</tbody>
+</table>
+
+<h3>ステップ1：装備の ATP（EQATP）</h3>
+<p><code>EQATP = [武器ATP_min + (付加値 × 2) + 鎧ATP + 盾ATP] × [武器の属性% + 1]</code></p>
+<ul>
+<li>武器ATP_min = 武器の ATP の範囲の下限</li>
+<li>武器の属性% = 相手の種類に効く属性の％（Native / A.Beast / Machine / Dark）</li>
+</ul>
+
+<h3>ステップ2：基本 ATP</h3>
+<p><code>BaseATP = BaseATP_max - Pvar_max</code></p>
+<ul>
+<li>BaseATP_max = メニューの括弧内に表示される ATP</li>
+</ul>
+
+<h3>ステップ3：有効 ATP</h3>
+<p><code>ATPeff = [BaseATP + (Wvar × WSpread)] × (1 + Shifta%) + EQATP + Pvar</code></p>
+<ul>
+<li>Wvar = 攻撃ごとにランダムに決まる 0～1 の小数</li>
+<li>WSpread = 武器の ATP の範囲の幅（ATP 300–400 の武器なら 100）</li>
+<li>Shifta% = 現在のシフタのレベルによる上昇率（ <a href="#technique-damage">D 章を参照</a>）</li>
+<li>Pvar = 攻撃ごとにランダムに決まる職業の振れ幅：ハンター 1～6、レンジャー 1～4、フォース 1～3</li>
+</ul>
+<p>シフタは基本 ATP と武器のランダムな幅にだけかかり、EQATP にはかかりません。武器の属性％は武器の ATP の下限にだけかかり、ランダムな幅は変わりません。ATP 300–400 で属性 100% の武器は、600–800 ではなく 600–700 になります。</p>
+
+<h3>ステップ4：有効 DFP</h3>
+<p><code>DFPeff = DFP_base × (1 - Zalure%)</code></p>
+
+<h3>ステップ5：最終ダメージ</h3>
+<p><code>ダメージ = [(ATPeff - DFPeff) / 5] × 0.9 × 攻撃倍率</code></p>
+
+<h4>攻撃倍率</h4>
+<table>
+<thead><tr><th>攻撃の種類</th><th>倍率</th></tr></thead>
+<tbody>
+<tr><td>通常攻撃</td><td>×1.0</td></tr>
+<tr><td>強攻撃</td><td>×1.89</td></tr>
+<tr><td>エクストラアタック（一般）</td><td>×0.56</td></tr>
+<tr><td>犠牲型エクストラアタック（チャージ／スピリット／バーサーク）</td><td>×3.33</td></tr>
+<tr><td><span data-item-en="Vjaya"></span> のエクストラアタック</td><td>×5.67</td></tr>
+<tr><td>HP 吸収／TP 吸収／経験値吸収／凍結／麻痺／混乱系のエクストラアタック</td><td>×0.67</td></tr>
+<tr><td><span data-item-en="OROTIAGITO"></span>  の貫通波</td><td>×1.94</td></tr>
+<tr><td><span data-item-en="Raikiri"></span>  の貫通波</td><td>×0.97</td></tr>
+</tbody>
+</table>
+<ul>
+<li>HP 吸収系のエクストラアタックは、与えたダメージと同じ量の HP を吸収します。</li>
+<li>Vjaya のエクストラアタックは1回ごとに 10,000 メセタを消費し、命中は強攻撃として計算されます。</li>
+</ul>
+
+<h4>クリティカルと LCK</h4>
+<ul>
+<li>プレイヤーのクリティカル率：<code>min(LCK, 100) / 5 %</code>。キャラクターの LCK の上限は 100 なので、クリティカル率は最大 20% です。</li>
+<li>エネミーのクリティカル率：<code>min(LCK, 100) / 2 %</code>。</li>
+<li>クリティカルのダメージ：<code>攻撃結果 × 1.5</code>。</li>
+<li>すでに命中し、テクニックや固定ダメージではない攻撃だけがクリティカルの判定を受けます。</li>
+<li>LCK は耐性以外でレベルアップによって上がらない唯一の能力で、上げるには装備か<span data-item-en="Luck Material"></span>を使うしかありません。</li>
+</ul>
+<p><strong>2種類の「運」を混同しないこと：</strong>能力値の LCK はクリティカルにだけ影響し、ドロップ率には影響しません。Ephinea には別に毎日の運勢（Daily forecast）があり、その日の職業・種族・性別の条件に合うキャラクターのレアドロップ率が上がります。<code>/forecast</code>  でその日の運勢の条件を、<code>/luck</code>  で今のキャラクターの運勢のレベルを確認できます。参考： <a href="https://wiki.pioneer2.net/w/Stats#Luck_(LCK)" target="_blank" rel="noopener">Ephinea Wiki の LCK の説明</a>と<a href="https://wiki.pioneer2.net/w/Daily_forecast" target="_blank" rel="noopener">毎日の運勢のルール</a>。</p>
+
+<hr>
+</section>
+
+<section data-part="accuracy">
+<h2 id="accuracy">B：プレイヤーの攻撃の命中計算</h2>
+
+<p>この章ではプレイヤーが攻撃側、エネミーが防御側です。プレイヤーの ATA とエネミーの EVP で命中が決まり、命中したら A 章の物理ダメージの計算に進みます。テクニックには命中判定がなく、相手に触れれば必ず効果が出ます。</p>
+
+<figure class="mechanics-figure" aria-labelledby="combo-caption">
+  <figcaption id="combo-caption"><span class="mechanics-eyebrow">図解・連続攻撃の命中</span><strong>同じ強攻撃でも、後の段ほど当たりやすい</strong><span>例：合計 ATA 200、エネミーの EVP 500、状態異常なし、近接攻撃。3本の棒は同じ 0–100% の目盛りです。</span></figcaption>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>0%</span><span>100% · 必ず命中</span></div>
+  <div class="mechanics-chart-label"><span>1段目 <small>×1.0</small></span><strong>40%</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:40%"></span></div>
+  <div class="mechanics-chart-label"><span>2段目 <small>×1.3</small></span><strong>82%</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:82%"></span></div>
+  <div class="mechanics-chart-label"><span>3段目 <small>×1.69</small></span><strong>100%</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:100%"></span></div>
+  <p class="mechanics-figure-note">1段目：200 × 0.7 × 1.0 − 500 × 0.2 = 40%。3段目は計算上 136.6% ですが、実際の命中率は 100% が上限です。</p>
+  <p class="mechanics-figure-takeaway">通常攻撃は命中の補正が高いので1段目向きで、強攻撃を後の段に置くと連続攻撃の補正を活かせます。図は各段の命中率を比べたもので、連続攻撃がすべて当たる確率ではありません。</p>
+</figure>
+
+<h3>ステップ1：合計の命中（ATA）</h3>
+<p><code>ATA_total = ATA_base + 武器のATA + 鎧のATA + 盾のATA</code></p>
+<ul>
+<li>ATA_base = メニューの括弧内に表示される ATA</li>
+<li>武器の ATA には武器の Hit 属性を含みます</li>
+<li>ATA_total はメニューの括弧の外に表示される ATA で、そのまま読み取れます</li>
+</ul>
+
+<h3>ステップ2：有効な命中</h3>
+<p><code>ATA_eff = ATA_total × 攻撃の種類の補正 × 連続攻撃の段の補正</code></p>
+
+<table>
+<thead><tr><th>攻撃の種類の補正</th><th>値</th></tr></thead>
+<tbody>
+<tr><td>通常攻撃</td><td>1.0</td></tr>
+<tr><td>強攻撃</td><td>0.7</td></tr>
+<tr><td>エクストラアタック</td><td>0.5</td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><tr><th>連続攻撃の段の補正</th><th>値</th></tr></thead>
+<tbody>
+<tr><td>1段目</td><td>1.0</td></tr>
+<tr><td>2段目</td><td>1.3</td></tr>
+<tr><td>3段目</td><td>1.69</td></tr>
+</tbody>
+</table>
+
+<h3>ステップ3：有効な回避（EVP）</h3>
+<p><code>EVP_eff = EVP_base × 状態の補正</code></p>
+
+<table>
+<thead><tr><th>モンスターの状態</th><th>補正</th></tr></thead>
+<tbody>
+<tr><td>なし</td><td>1.0</td></tr>
+<tr><td>麻痺または感電</td><td>0.85</td></tr>
+<tr><td>凍結</td><td>0.7</td></tr>
+<tr><td>麻痺（または感電）＋凍結</td><td>0.55</td></tr>
+</tbody>
+</table>
+
+<h3>ステップ4：最終的な命中率</h3>
+<p><code>近接の命中率(%) = ATA_eff - (EVP_eff × 0.2)</code></p>
+<p><code>遠距離の命中率(%) = ATA_eff - (EVP_eff × 0.2) - 距離のペナルティ</code></p>
+<ul>
+<li>計算結果がそのまま％になります。100 以上なら必ず命中し、マイナスなら必ず外れます。</li>
+<li>距離のペナルティ =  <code>距離 × 0.33</code>。これは <span data-item-en="Smartlink"></span> を装備していないハンターとフォースにだけかかり、レンジャーと Smartlink を装備したキャラクターにはかかりません。</li>
+<li>弾丸系の攻撃は、相手が 8 単位以上動くと命中判定をしなくなります。ノックバックで弾が早く消えた場合、MISS は表示されません。</li>
+</ul>
+
+<hr>
+</section>
+
+<section data-part="incoming-physical">
+<h2 id="incoming-physical">C：物理攻撃を受けたときの判定の流れ</h2>
+
+<p>まず回避できるか、次にどれだけダメージを受けるかを見ます。以下の流れが当てはまるのは、エネミーが出す<strong>通常の、回避できる物理攻撃です</strong>。</p>
+
+<figure class="mechanics-flow" aria-labelledby="physical-flow-caption">
+  <figcaption id="physical-flow-caption"><span class="mechanics-eyebrow">判定の順番</span><strong>EVP が先、DFP が後</strong><span>上から下へ、条件の分岐に沿って読んでください。</span></figcaption>
+  <div class="mechanics-flow-start">エネミーが回避可能な物理攻撃を出す</div>
+  <div class="mechanics-flow-arrow" aria-hidden="true">↓</div>
+  <div class="mechanics-flow-step"><span class="mechanics-step-number" aria-hidden="true">01</span><div><strong>命中／回避の判定</strong><span>エネミーの ATA（命中力）とプレイヤーの EVP（回避力）</span></div></div>
+  <div class="mechanics-flow-branches">
+    <div class="mechanics-flow-branch mechanics-evade">
+      <p class="mechanics-branch-label"><span aria-hidden="true">↓</span> 回避成功</p>
+      <div class="mechanics-flow-result"><strong>回避</strong><span>その場ではじく · HP は減らない</span><small>この攻撃の判定はここで終わり</small></div>
+    </div>
+    <div class="mechanics-flow-branch">
+      <p class="mechanics-branch-label"><span aria-hidden="true">↓</span> 回避失敗</p>
+      <div class="mechanics-flow-step"><span class="mechanics-step-number" aria-hidden="true">02</span><div><strong>物理ダメージを計算</strong><span>エネミーの ATP（攻撃力）とプレイヤーの DFP（防御力）</span></div></div>
+      <div class="mechanics-damage-branches">
+        <div class="mechanics-guard"><p class="mechanics-branch-label"><span aria-hidden="true">↓</span> ダメージ 0</p><div class="mechanics-flow-result"><strong>Guard</strong><span>後ろへ押される · HP は減らない</span></div></div>
+        <div class="mechanics-hurt"><p class="mechanics-branch-label"><span aria-hidden="true">↓</span> ダメージが 0 より大きい</p><div class="mechanics-flow-result"><strong>被弾</strong><span>その分の HP が減る</span><a href="#knockdown">いつダウンする？ ↓</a></div></div>
+      </div>
+    </div>
+  </div>
+</figure>
+
+<h3 id="physical-outcomes">動きで3つの結果を見分ける</h3>
+<p class="mechanics-illustration-note">動きの図：攻撃は左から来ます。点線の人影は被弾前の位置、HP の棒は HP が減るかどうかだけを表します。</p>
+<div class="mechanics-outcomes">
+  <figure class="mechanics-outcome mechanics-evade">
+    <svg viewBox="0 0 280 172" aria-hidden="true" focusable="false">
+      <path class="mechanics-ground" d="M20 141H260"/>
+      <path class="mechanics-attack" d="M24 85H98m-10-7 10 7-10 7"/>
+      <path class="mechanics-effect" d="M118 57Q101 85 118 113M98 61 77 40m0 13V40h13"/>
+      <g class="mechanics-player"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/><path class="mechanics-visor" d="M146 39h28"/></g>
+      <path class="mechanics-position" d="M137 151h46m-23-5v10"/>
+    </svg>
+    <figcaption><span class="mechanics-outcome-tag">EVP の判定に成功</span><h4>回避：その場にとどまる</h4><p>攻撃ははじかれ、キャラクターは後ろに下がりません。</p><p class="mechanics-hp"><span>HP</span><span class="mechanics-hp-bar" aria-hidden="true"></span><strong>減らない</strong></p></figcaption>
+  </figure>
+  <figure class="mechanics-outcome mechanics-guard">
+    <svg viewBox="0 0 280 172" aria-hidden="true" focusable="false">
+      <path class="mechanics-ground" d="M20 141H260"/>
+      <g class="mechanics-ghost"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/></g>
+      <path class="mechanics-attack" d="M24 85H98m-10-7 10 7-10 7"/>
+      <g class="mechanics-player" transform="translate(62 0)"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/><path class="mechanics-visor" d="M146 39h28"/></g>
+      <path class="mechanics-effect" d="M192 66v37m-13-27 6 6m-6 12 6-6M160 151h62m-10-7 10 7-10 7"/>
+    </svg>
+    <figcaption><span class="mechanics-outcome-tag">回避失敗 · ダメージ 0</span><h4>ガード：後ろへ押される</h4><p>DFP でダメージが 0 になりますが、キャラクターは後ろに下がります。</p><p class="mechanics-hp"><span>HP</span><span class="mechanics-hp-bar" aria-hidden="true"></span><strong>減らない</strong></p></figcaption>
+  </figure>
+  <figure class="mechanics-outcome mechanics-hurt">
+    <svg viewBox="0 0 280 172" aria-hidden="true" focusable="false">
+      <path class="mechanics-ground" d="M20 141H260"/>
+      <path class="mechanics-attack" d="M24 85H119m-10-7 10 7-10 7"/>
+      <g class="mechanics-player" transform="rotate(12 160 135)"><path d="m146 31 14-5 14 5v19l-14 7-14-7zM144 66l16-6 16 6 7 38h-46zM144 72l-17 22M176 72l17 22M149 105l-8 30M171 105l8 30"/><path class="mechanics-visor" d="M146 39h28"/></g>
+      <path class="mechanics-effect" d="m143 65 5 15 16-5-10 13 13 10-17-2-3 16-6-15-15 4 10-12-12-11 16 3z"/>
+    </svg>
+    <figcaption><span class="mechanics-outcome-tag">回避失敗 · ダメージが 0 より大きい</span><h4>被弾：HP が減る</h4><p>計算どおりに HP が減り、ダメージが大きいとダウンします。</p><p class="mechanics-hp"><span>HP</span><span class="mechanics-hp-bar mechanics-hp-reduced" aria-hidden="true"></span><strong>減る</strong></p></figcaption>
+  </figure>
+</div>
+<p class="mechanics-key-point"><strong>どちらも HP は減らないが、動きが違う。</strong>回避成功ならその場にとどまります。ガードは回避に失敗してダメージが 0 になっただけなので、キャラクターは後ろに押されます。</p>
+
+<h3>エネミーの攻撃の命中率</h3>
+<p>SLW 氏による Ephinea での検証結果は、次の近似式に合います：</p>
+<p><code>エネミーの命中率(%) ≈ clamp(エネミーの ATA - プレイヤーの EVP × 0.2, 0, 100)</code></p>
+<p>これは  <code>エネミーの ATA - プレイヤーの EVP / 5</code> とも書け、B 章のプレイヤーの攻撃と同じ形です。たとえばエネミーの ATA が 290 なら、EVP 1450 で理論上の命中率は 0%、EVP 1442 では 1.6% です。動画では EVP 1457 で約 300 回の攻撃をすべて回避し、1442 に下げると命中が確認されました。</p>
+
+<h3>適用範囲と表の読み方</h3>
+<ul>
+<li>この順番と命中率の関係は、回避判定のある攻撃にだけ当てはまります。固定ダメージ、ミサイル、ビーム、踏みつけなどの特殊な攻撃は EVP で回避できないことがあります。</li>
+<li>現在の難易度・モード・クエストでのエネミーの実際の ATA を使ってください。資料の表の基本値が、戦闘中の有効な値と同じとは限りません。</li>
+<li>ダメージ 0 でも動きがないわけではありません。回避成功では下がりませんが、ガードでは後ろに押され、立ち位置や連続で被弾する危険に影響します。</li>
+</ul>
+
+<p><strong>検証の出典：</strong><a href="https://www.youtube.com/watch?v=J2FgRRGCQEM" target="_blank" rel="noopener">SLW《【PSOBB Ephinea】ガードと回避の成功率検証と結果【解説動画】》</a>。命中率の式は動画の実験から導いたもので、Ephinea での検証結果として扱ってください。当サイトがクライアントのコードを逆コンパイルして証明したものではありません。</p>
+
+<hr>
+</section>
+
+<section data-part="technique-damage">
+<h2 id="technique-damage">D：テクニックのダメージの計算式</h2>
+
+<p><code>ダメージ = [(MST + テクニックの基本威力) / 5] × (1 + 職業の補正 + 武器の補正 + 鎧の補正 + 盾の補正) × (1 - 相手の耐性)</code></p>
+<ul>
+<li>テクニックのダメージは MST で決まり、相手の対応する耐性で軽減されます。DFP の影響は受けません。</li>
+<li>テクニックには命中判定がなく、クリティカルにもなりません。</li>
+<li>すべての％の補正は、先に<strong>足し合わせて</strong>から掛けます。FOnewearl が <span data-item-en="FOIE MERGE"></span> を装備すると、フォイエの補正は +30% + 30% = +60% です。</li>
+<li>メギドの補正は即死率を上げず、貫通するようになります。複数のメギドの補正は重なりません。</li>
+<li>ジェルンとザルアには職業の補正がなく、リバーサーとリューカーには補正が一切ありません。装備による補正は次を参照：<a href="/data/equipment_technique_boosts.html">装備のテクニック補正</a>。</li>
+</ul>
+
+<figure class="mechanics-figure" aria-labelledby="technique-caption">
+  <figcaption id="technique-caption"><span class="mechanics-eyebrow">図解・テクニックのダメージ</span><strong>補正は先に足し、その後で耐性で減らす</strong><span>(MST + テクニックの基本威力) ÷ 5 = 500、職業と装備がそれぞれ 30% のダメージ補正、相手の対応する耐性が 40% の例です。</span></figcaption>
+  <div class="mechanics-boost-bar" aria-hidden="true"><span>基本 100%</span><span>+30%</span><span>+30%</span></div>
+  <ol class="mechanics-calculation">
+    <li><span class="mechanics-eyebrow">基本の計算</span><strong>500</strong><span>(MST + 基本威力) ÷ 5</span></li>
+    <li><span class="mechanics-eyebrow">補正の合計 +60%</span><strong>800</strong><span>500 × (1 + 0.3 + 0.3)</span></li>
+    <li><span class="mechanics-eyebrow">耐性で 40% 軽減</span><strong>480</strong><span>800 × (1 − 0.4)</span></li>
+  </ol>
+  <p class="mechanics-figure-takeaway">+30% が2つで ×1.6 になり、×1.3 ×1.3 ではありません。ここではダメージを与えるテクニックを計算しています。メギドの即死判定は下を参照してください。</p>
+</figure>
+
+<h3>職業の補正</h3>
+<div class="mechanics-table-scroll" role="region" aria-label="職業ごとのテクニック補正の表" tabindex="0">
+<table>
+<thead><tr><th>職業</th><th>テクニック</th><th>補正</th></tr></thead>
+<tbody>
+<tr><td rowspan="2">FOmar</td><td>Gifoie / Gibarta / Gizonde / Grants</td><td>ダメージ +30%</td></tr>
+<tr><td>Shifta / Deband</td><td>範囲 +100%</td></tr>
+<tr><td rowspan="2">FOmarl</td><td>Grants</td><td>ダメージ +50%</td></tr>
+<tr><td>Resta / Anti / Shifta / Deband</td><td>範囲 +100%</td></tr>
+<tr><td>FOnewm</td><td>Gifoie / Gibarta / Gizonde / Rafoie / Rabarta / Razonde</td><td>ダメージ +30%</td></tr>
+<tr><td rowspan="3">FOnewearl</td><td>Foie / Barta / Zonde</td><td>ダメージ +30%</td></tr>
+<tr><td>Megid</td><td>貫通</td></tr>
+<tr><td>Resta / Anti</td><td>範囲 +100%</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>テクニックの基本威力と TP 消費の計算式</h3>
+<p>TLv はテクニックのレベルです。</p>
+
+<table>
+<thead><tr>
+<th>テクニック</th>
+<th>基本威力の式</th>
+<th>TP 消費の式</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>フォイエ（Foie）</td>
+<td>Lv.1-15: [50 × (TLv - 1)] + 110<br>Lv.16-30: [65 × (TLv - 1)] - 85</td>
+<td>[1.3 × (TLv - 1)] + 5</td>
+</tr>
+<tr>
+<td>ギフォイエ（Gifoie）</td>
+<td>Lv.1-15: [26 × (TLv - 1)] + 260<br>Lv.16-30: [42 × (TLv - 1)] + 30</td>
+<td>[0.37 × (TLv - 1)] + 20</td>
+</tr>
+<tr>
+<td>ラフォイエ（Rafoie）</td>
+<td>Lv.1-15: [22 × (TLv - 1)] + 350<br>Lv.16-30: [21 × (TLv - 1)] + 370</td>
+<td>[0.25 × (TLv - 1)] + 30</td>
+</tr>
+<tr>
+<td>バータ（Barta）</td>
+<td>Lv.1-15: [50 × (TLv - 1)] + 50<br>Lv.16-30: [63 × (TLv - 1)] - 125</td>
+<td>[1.2 × (TLv - 1)] + 4</td>
+</tr>
+<tr>
+<td>ギバータ（Gibarta）</td>
+<td>Lv.1-15: [24 × (TLv - 1)] + 230<br>Lv.16-30: [40 × (TLv - 1)]</td>
+<td>[0.5 × (TLv - 1)] + 25</td>
+</tr>
+<tr>
+<td>ラバータ（Rabarta）</td>
+<td>Lv.1-15: [19 × (TLv - 1)] + 400<br>Lv.16-30: [15 × (TLv - 1)] + 470</td>
+<td>[0.2 × (TLv - 1)] + 35</td>
+</tr>
+<tr>
+<td>ゾンデ（Zonde）</td>
+<td>Lv.1-15: [50 × (TLv - 1)] + 80<br>Lv.16-30: [55 × (TLv - 1)] + 5</td>
+<td>[1.1 × (TLv - 1)] + 6</td>
+</tr>
+<tr>
+<td>ギゾンデ（Gizonde）</td>
+<td>Lv.1-15: [22 × (TLv - 1)] + 200<br>Lv.16-30: [38 × (TLv - 1)] - 30</td>
+<td>[0.6 × (TLv - 1)] + 25</td>
+</tr>
+<tr>
+<td>ラゾンデ（Razonde）</td>
+<td>Lv.1-15: [16 × (TLv - 1)] + 450<br>Lv.16-30: [8 × (TLv - 1)] + 565</td>
+<td>[0.3 × (TLv - 1)] + 35</td>
+</tr>
+<tr>
+<td>グランツ（Grants）</td>
+<td>Lv.1-15: [75 × (TLv - 1)] + 1180<br>Lv.16-30: [60 × (TLv - 1)] + 1400</td>
+<td>[1.1 × (TLv - 1)] + 45</td>
+</tr>
+<tr>
+<td>メギド（Megid）</td>
+<td>Lv.1-15: [3 × (TLv - 1)] + 27<br>Lv.16-30: [2 × (TLv - 1)] + 42</td>
+<td>[1.05 × (TLv - 1)] + 30</td>
+</tr>
+<tr>
+<td>レスタ（Resta）</td>
+<td>Lv.1-30: [5 × (TLv - 1)] + 50</td>
+<td>[1.2 × (TLv - 1)] + 15</td>
+</tr>
+<tr>
+<td>シフタ（Shifta）</td>
+<td>上昇%: [1.3 × (TLv - 1)] + 10<br>持続: [10 × (TLv - 1)] + 30 秒</td>
+<td>[1.2 × (TLv - 1)] + 15</td>
+</tr>
+<tr>
+<td>デバンド（Deband）</td>
+<td>上昇%: [1.3 × (TLv - 1)] + 10<br>持続: [10 × (TLv - 1)] + 30 秒</td>
+<td>[(TLv - 1)] + 10</td>
+</tr>
+<tr>
+<td>ジェルン（Jellen）</td>
+<td>低下%: [1.3 × (TLv - 1)] + 10<br>持続: [10 × (TLv - 1)] + 30 秒</td>
+<td>[(TLv - 1)] + 10</td>
+</tr>
+<tr>
+<td>ザルア（Zalure）</td>
+<td>低下%: [1.3 × (TLv - 1)] + 10<br>持続: [10 × (TLv - 1)] + 30 秒</td>
+<td>[0.5 × (TLv - 1)] + 10</td>
+</tr>
+<tr>
+<td>アンティ（Anti）</td>
+<td>—</td>
+<td>[0.5 × (TLv - 1)] + 10</td>
+</tr>
+<tr>
+<td>リューカー（Ryuker）</td>
+<td>—</td>
+<td>10</td>
+</tr>
+<tr>
+<td>リバーサー（Reverser）</td>
+<td>—</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+
+<h3>メギドの即死率</h3>
+<p>メギドはダメージを与えません。基本威力がそのまま即死の確率（％）になり、相手の EDK で減ります：</p>
+<p><code>即死率(%) = テクニックの基本威力 - 相手の EDK</code></p>
+<p>たとえば Lv.30 のメギド（基本威力 100）で EDK 80 の相手を狙うと、即死率は 20% です。</p>
+
+<h3>レスタの回復量</h3>
+<p><code>回復量 = MST × 0.5 + テクニックの基本威力</code></p>
+<p>マグのフォトンブラスト「レイラ」の回復量には、マグの IQ、チェイン、寄付による補正もあります。詳しくは <a href="#pb-support">G 章の回復・補助型 PB を参照</a>。</p>
+
+<hr>
+</section>
+
+<section data-part="knockdown">
+<h2 id="knockdown">E：ダウンの仕組み</h2>
+<p>ローカルに保存した Ephinea クライアントの一般的な被弾処理では、<strong>内部で計算したダメージ &gt; 最大 HP × 25%</strong>  のときにダウンのフラグが立ちます。比較はダメージを整数に切り捨てる前に行われます。</p>
+<figure class="mechanics-threshold" aria-labelledby="knockdown-caption">
+  <figcaption id="knockdown-caption"><span class="mechanics-eyebrow">ダウンの境目</span><strong>残り HP ではなく、1回のダメージで決まる</strong><span>例：最大 HP 1,000 なら境目は 250 です。</span></figcaption>
+  <div class="mechanics-threshold-axis" aria-hidden="true"><span>内部ダメージ 0</span><span>250 · 25%</span><span>300</span></div>
+  <div class="mechanics-threshold-row">
+    <div class="mechanics-threshold-track"><span class="mechanics-damage-fill mechanics-damage-below"></span></div>
+    <p><strong>240</strong><span>境目より下</span><b>一般的なダウン判定なし</b></p>
+  </div>
+  <div class="mechanics-threshold-row">
+    <div class="mechanics-threshold-track"><span class="mechanics-damage-fill mechanics-damage-equal"></span></div>
+    <p><strong>250</strong><span>ちょうど境目</span><b>一般的なダウン判定なし</b></p>
+  </div>
+  <div class="mechanics-threshold-row mechanics-hurt">
+    <div class="mechanics-threshold-track"><span class="mechanics-damage-fill mechanics-damage-above"></span></div>
+    <p><strong>260</strong><span>境目を超える</span><b>一般的なダウン判定あり</b></p>
+  </div>
+  <p class="mechanics-threshold-note">数値はすべて切り捨て前の内部ダメージです。縦線は最大 HP の 25%、横の棒は1回のダメージ量を表します。</p>
+</figure>
+<p class="mechanics-key-point"><strong>表示が 250 でもダウンするのはなぜ？</strong>内部ダメージが 250.5 なら境目を超えていますが、表示され実際に減る整数のダメージは 250 です。そのため、表示された整数のダメージだけでは境目を超えたかどうか判断できません。</p>
+<details class="mechanics-source-note">
+  <summary>境目の出典と適用範囲</summary>
+  <p><a href="https://wiki.pioneer2.net/w/Game_mechanics#Knockdown" target="_blank" rel="noopener">Ephinea Wiki</a> ではこれを「25% 以上」とまとめています。この図の厳密な境目は、ローカルに保存した Ephinea クライアントに基づきます：<code>try_knockdown_player</code>  は、内部ダメージが最大 HP の 25% を厳密に超えたときにダウンのフラグを立てます。</p>
+  <p>この図は一般的なダメージの境目を説明するもので、特殊な攻撃が直接設定するダウン・戦闘不能・その他の状態は含みません。確認の対象はローカルのクライアントのスナップショットで、現在の実際の環境で追加の変更があるかは未確認です。</p>
+</details>
+
+<hr>
+</section>
+
+<section data-part="hp-drain">
+<h2 id="hp-drain">F：HP を消費する武器</h2>
+<p>以下のレア武器のエクストラアタックは、キャラクターの最大 HP の決まった割合の HP を消費します。アルティメットではモノメイト（200 HP 回復）とディメイト（500 HP 回復）と組み合わせて HP を狙った値に調整でき、マグの 1/10 HP イベント（H 章）を起こしたり、アンドロイドがわざとスケープドールを使ってトラップを補充したりできます。</p>
+
+<table>
+<thead><tr><th>武器</th><th>HP 消費</th></tr></thead>
+<tbody>
+<tr><td><span data-item-en="DOUBLE CANNON"></span></td><td>5%</td></tr>
+<tr><td><span data-item-en="Girasole"></span></td><td>10%</td></tr>
+<tr><td><span data-item-en="LAVIS BLADE"></span></td><td>5% + 5%（1回の攻撃で2回消費）</td></tr>
+<tr><td><span data-item-en="Lavis Cannon"></span></td><td>5%</td></tr>
+<tr><td><span data-item-en="OROTIAGITO"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="Raikiri"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="Soul Banish"></span></td><td>7%</td></tr>
+<tr><td><span data-item-en="GAL WIND"></span></td><td>1段目と2段目は 7%。3段目は3発撃つため合計 21%</td></tr>
+<tr><td><span data-item-en="Psycho Wand"></span></td><td>テクニックを使うたびに、そのテクニック本来の TP 消費と同じ量の HP を消費します（TP 消費自体は半分）</td></tr>
+</tbody>
+</table>
+<p>Gal Wind の3段目は一度に HP を 21% 消費するため、相手がいなくても 1/10 HP イベントの条件を満たせます。</p>
+
+<hr>
+</section>
+
+<section data-part="photon-blast">
+<h2 id="photon-blast">G：マグのフォトンブラスト（PB）の効果・ダメージ・たまり方</h2>
+<p>6種類の PB は攻撃4種、回復1種、補助1種です。まず各 PB の働き、影響する能力、使いどころを確認し、それからダメージとチェインの計算を見てください。攻撃型の4種はすべて<strong>光属性のダメージ</strong>を与え、相手の ELT（光耐性）で軽減されます。</p>
+<p class="mechanics-key-point"><a href="#pb-analysis">PB ごとの分析</a> · <a href="#pb-support">回復と補助</a> · <a href="#pb-parameters">パラメータ早見表</a> · <a href="#pb-damage">攻撃型のダメージ</a> · <a href="#pb-chain">チェインと寄付</a> · <a href="#pb-levels">ミューラ＆ユーラのレベル計算例</a> · <a href="#pb-gain">PB ゲージのたまり方</a></p>
+
+<h3 id="pb-analysis">6種類の PB：効果と使いどころ</h3>
+<nav class="mechanics-pb-nav" aria-label="6種類の PB の分析">
+  <a href="#pb-farlla">ファーラ Farlla</a>
+  <a href="#pb-estlla">エストラ Estlla</a>
+  <a href="#pb-golla">ゴーラ Golla</a>
+  <a href="#pb-pilla">ピラ Pilla</a>
+  <a href="#pb-leilla">レイラ Leilla</a>
+  <a href="#pb-mylla-youlla">ミューラ＆ユーラ Mylla &amp; Youlla</a>
+</nav>
+<p class="mechanics-illustration-note">効果と式は <a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">Ephinea Wiki</a>に基づき、「使いどころ」と「チェインでの役割」はそこから導いた提案です。図は働き方を示すだけで、丸はプレイヤー、ひし形はエネミーです。実際の距離、正確な判定範囲、狙う順番は表していません。</p>
+<p>単発では自分の能力を使い、チェインでは以下のすべての能力に、今のクライアントから見た<strong>最初に発動したキャラクターとそのマグ</strong>の値が使われます。Q は PB 量、N は有効なチェインの PB の数です。詳しくは<a href="#pb-parameters">下のパラメータ表を参照</a>。</p>
+<div class="mechanics-pb-grid">
+  <article class="mechanics-pb-card" aria-labelledby="pb-farlla">
+    <h4 id="pb-farlla"><img src="/assets/img/mag/pb/Farlla.png" width="50" height="43" alt="" loading="lazy"><span>ファーラ <small>Farlla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <ellipse class="pb-area" cx="152" cy="66" rx="103" ry="48"/>
+        <path class="pb-motion" d="M72 47 A87 37 0 0 1 231 46 M223 38 L232 47 L219 48"/>
+        <circle class="pb-player" cx="152" cy="66" r="10"/>
+        <path class="pb-enemy" d="M91 62 l8 8 -8 8 -8 -8 Z M180 33 l8 8 -8 8 -8 -8 Z M207 79 l8 8 -8 8 -8 -8 Z"/>
+      </svg>
+      <figcaption>回転攻撃で周りの敵に当たる</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>働き方</dt><dd>周りの敵を対象にした範囲攻撃で、周りを囲む複数の敵に向いています。</dd></div>
+      <div><dt>影響する能力</dt><dd>基本威力はシンクロ率、ATP、IQ で決まり、MST はチェイン・寄付の補正の後に加わります。シンクロ率が高いほど、ATP を上げる効果が大きくなります。</dd></div>
+      <div><dt>使いどころ</dt><dd>同じ能力と光耐性なら、ピラのほうが基本威力は高くなります。ファーラしかないときは周りの敵に使えます。範囲型の PB を比べるときは、実際に何体に当たるかも見てください。</dd></div>
+      <div><dt>チェインでの役割</dt><dd>自分のダメージが低くても、直前と違う PB として加われば N が増え、チェイン全体の攻撃・回復・ミューラ＆ユーラの補助が強くなります。</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>基本威力 B</span><code>trunc(シンクロ率 × ATP × 0.025 + IQ × 2.5 + 500)</code></p>
+  </article>
+  <article class="mechanics-pb-card" aria-labelledby="pb-estlla">
+    <h4 id="pb-estlla"><img src="/assets/img/mag/pb/Estlla.png" width="50" height="43" alt="" loading="lazy"><span>エストラ <small>Estlla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <path class="pb-area" d="M53 48 H264 V84 H53 Z"/>
+        <path class="pb-motion" d="M75 66 H268 M258 57 L269 66 L258 75"/>
+        <circle class="pb-player" cx="43" cy="66" r="10"/>
+        <path class="pb-enemy" d="M120 58 l8 8 -8 8 -8 -8 Z M203 58 l8 8 -8 8 -8 -8 Z"/>
+        <path class="pb-outside" d="M170 17 l8 8 -8 8 -8 -8 Z M228 103 l8 8 -8 8 -8 -8 Z"/>
+      </svg>
+      <figcaption>前方の直線上の敵を攻撃</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>働き方</dt><dd>キャラクターの前方へ直線状に攻撃し、線上の複数の敵に当たります。横にいる敵は、近くにいるだけでは当たりません。</dd></div>
+      <div><dt>影響する能力</dt><dd>攻撃型の4種のうち、エストラだけが ATP の代わりに EVP を使います。シンクロ率と IQ が基本威力に影響し、MST はやはりチェインの補正の後に加わります。</dd></div>
+      <div><dt>使いどころ</dt><dd>敵が一列に並んだときに向いており、発動前に立ち位置と向きに注意してください。ATP が低くてもエストラが弱いとは限りません。武器の攻撃力ではなく EVP で比べてください。</dd></div>
+      <div><dt>チェインでの役割</dt><dd>エストラでダメージを出すなら、最初に発動する人の EVP が重要です。後のエストラも最初の人の能力で計算されます。範囲型の PB と交互に入れることもできます。</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>基本威力 B</span><code>trunc(シンクロ率 × EVP × 0.15 + IQ × 15 + 350)</code></p>
+  </article>
+  <article class="mechanics-pb-card" aria-labelledby="pb-golla">
+    <h4 id="pb-golla"><img src="/assets/img/mag/pb/Golla.png" width="50" height="43" alt="" loading="lazy"><span>ゴーラ <small>Golla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <circle class="pb-player" cx="52" cy="66" r="10"/>
+        <path class="pb-motion" d="M72 66 H202 M192 57 L203 66 L192 75"/>
+        <circle class="pb-area" cx="227" cy="66" r="24"/>
+        <path class="pb-enemy" d="M227 58 l8 8 -8 8 -8 -8 Z"/>
+        <path class="pb-outside" d="M167 19 l8 8 -8 8 -8 -8 Z M173 96 l8 8 -8 8 -8 -8 Z"/>
+      </svg>
+      <figcaption>1体の敵に集中して攻撃</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>働き方</dt><dd>単体攻撃で、1体の敵に集中し、群れの掃除には向きません。</dd></div>
+      <div><dt>影響する能力</dt><dd>シンクロ率・ATP・IQ・MST を使い、基本威力の式はピラとまったく同じです。</dd></div>
+      <div><dt>使いどころ</dt><dd>相手が1体だけなら、単体へのダメージで評価できます。単体攻撃だからといってダメージが増えるわけではなく、同じ条件ならピラの単体ダメージと同じで、複数の敵には当たる数が少なくなります。</dd></div>
+      <div><dt>チェインでの役割</dt><dd>直前がピラなら、ゴーラは違う PB として N を増やせます。式が同じでも別の技です。</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>基本威力 B</span><code>trunc(シンクロ率 × ATP × 0.075 + IQ × 7.5 + 1,200)</code></p>
+  </article>
+  <article class="mechanics-pb-card" aria-labelledby="pb-pilla">
+    <h4 id="pb-pilla"><img src="/assets/img/mag/pb/Pilla.png" width="50" height="43" alt="" loading="lazy"><span>ピラ <small>Pilla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <ellipse class="pb-area" cx="152" cy="82" rx="103" ry="37"/>
+        <circle class="pb-player" cx="152" cy="82" r="10"/>
+        <path class="pb-motion" d="M86 16 V62 M79 53 L86 63 L93 53 M206 16 V62 M199 53 L206 63 L213 53"/>
+        <path class="pb-enemy" d="M86 73 l8 8 -8 8 -8 -8 Z M206 73 l8 8 -8 8 -8 -8 Z M174 98 l8 8 -8 8 -8 -8 Z"/>
+      </svg>
+      <figcaption>空中から周りの敵を攻撃</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>働き方</dt><dd>周りの複数の敵を攻撃します。エストラの前方直線とは違い、周りに集まった敵に向いています。</dd></div>
+      <div><dt>影響する能力</dt><dd>現在はゴーラと同じ ATP の式を使い、シンクロ率・IQ・MST もダメージに影響します。ATA の式は使われない処理で、ここでのピラのダメージに ATA は関係しません。</dd></div>
+      <div><dt>使いどころ</dt><dd>同じ条件ならファーラより基本威力が高く、複数の敵にダメージを与えられます。合計の効果は当たる数とそれぞれの ELT で決まり、1体分の計算例をそのまま全体の合計とみなさないでください。</dd></div>
+      <div><dt>チェインでの役割</dt><dd>範囲攻撃の役に向き、Q と N で強化されます。最初に発動する人は ATP・シンクロ率・IQ で選んでください。自分が後から発動しても、自分の能力には切り替わりません。</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>基本威力 B</span><code>trunc(シンクロ率 × ATP × 0.075 + IQ × 7.5 + 1,200)</code></p>
+  </article>
+</div>
+
+<h3 id="pb-support">レイラとミューラ＆ユーラ：回復と補助の働き</h3>
+<p>この2種はどちらも直接ダメージを与えません。単発では自分にだけ効き、チェインや寄付で参加者にも効果が広がります。同じ部屋にいることは、参加したことと同じではありません。</p>
+<div class="mechanics-pb-grid">
+  <article class="mechanics-pb-card" aria-labelledby="pb-leilla">
+    <h4 id="pb-leilla"><img src="/assets/img/mag/pb/Leilla.png" width="50" height="43" alt="" loading="lazy"><span>レイラ <small>Leilla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <path class="pb-motion" d="M152 36 V53 M57 75 V53 H247 V75"/>
+        <text x="152" y="25">Resta</text>
+        <circle class="pb-player" cx="57" cy="87" r="10"/><circle class="pb-player" cx="152" cy="87" r="10"/><circle class="pb-player" cx="247" cy="87" r="10"/>
+        <text x="57" y="121">+ HP</text><text x="152" y="121">+ HP</text><text x="247" y="121">+ HP</text>
+      </svg>
+      <figcaption>自分とチェイン・寄付の参加者の HP を回復</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>働き方</dt><dd>レスタで HP を回復します。レイラは状態異常を治さず、復活もさせません。アンティ／リバーサーは下のミューラ＆ユーラの効果です。</dd></div>
+      <div><dt>影響する能力</dt><dd>回復量は IQ・MST・Q・N で決まり、シンクロ率・ATP・EVP は使いません。チェインで回復の基本値が大きくなり、MST × 0.5 はその後に加わります。</dd></div>
+      <div><dt>使いどころ</dt><dd>参加者の HP が減っているときの回復に向いており、実際の回復量は減った HP までです。仲間が低い HP を保つ必要があるなら、満タンにしないよう先に相談してください。</dd></div>
+      <div><dt>チェインでの役割</dt><dd>回復しつつ、違う PB としてチェインに加わりミューラ＆ユーラなど後の効果を強くできます。倒れた仲間を起こす目的で選ばないでください。</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>回復量 · 各行の計算後に切り捨て</span><code>B = trunc(IQ × 0.5 + 150)<br>R = trunc(B × Q × N × 0.01)<br>回復量 = trunc(MST × 0.5 + R)</code></p>
+    <p class="mechanics-illustration-note">式による計算：IQ 200、MST 500、Q 100 なら単発で 500 HP、4連チェインで 1,250 HP 回復します。<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Leilla" target="_blank" rel="noopener">Wiki：レイラの効果と回復量の式</a>。</p>
+  </article>
+  <article class="mechanics-pb-card" aria-labelledby="pb-mylla-youlla">
+    <h4 id="pb-mylla-youlla"><img src="/assets/img/mag/pb/Mylla_Youlla.png" width="50" height="43" alt="" loading="lazy"><span>ミューラ＆ユーラ <small>Mylla &amp; Youlla</small></span></h4>
+    <figure class="mechanics-pb-effect">
+      <svg viewBox="0 0 304 132" aria-hidden="true" focusable="false">
+        <text x="152" y="25">Shifta / Deband</text>
+        <path class="pb-motion" d="M152 36 V53 M57 75 V53 H247 V75"/>
+        <circle class="pb-player" cx="57" cy="87" r="10"/><circle class="pb-player" cx="152" cy="87" r="10"/><circle class="pb-player" cx="247" cy="87" r="10"/>
+        <text x="57" y="121">攻防 ↑</text><text x="152" y="121">攻防 ↑</text><text x="247" y="121">攻防 ↑</text>
+      </svg>
+      <figcaption>条件を満たす参加者にシフタ／デバンド</figcaption>
+    </figure>
+    <dl class="mechanics-pb-facts">
+      <div><dt>働き方</dt><dd>シフタとデバンドをかけます。最初に生きている参加者にアンティ、倒れている参加者にリバーサーをかけます。このとき復活したプレイヤーには、その回のシフタ／デバンドはかかりません。</dd></div>
+      <div><dt>影響する能力</dt><dd>補助のレベルは最初に発動したマグの IQ、PB 量 Q、有効なチェインの PB 数 N だけで決まり、シンクロ率・ATP・EVP・MST は使いません。式によれば、IQ 200、寄付なしの Q 100 で、単発は Lv.21、2連は Lv.41、3連は Lv.61、4連は Lv.81 です。</dd></div>
+      <div><dt>使いどころ</dt><dd>パーティに高レベルの攻防の補助を与えるのに向いており、特に後に続く物理攻撃に役立ちます。全員に補助をかけたいなら、参加していること、そしてこのミューラ＆ユーラの開始時に生きていることを確認してください。</dd></div>
+      <div><dt>チェインでの役割</dt><dd>ミューラ＆ユーラはチェインの主な目的になることが多い PB です。レベルを上げるには、まず最初のマグの IQ と有効な N を確認してください。前にほかの PB を入れ、ミューラ＆ユーラが2回続いて上書きし合うのを避けます。</dd></div>
+    </dl>
+    <p class="mechanics-pb-formula"><span>シフタ／デバンドのレベル · 行全体を計算後に切り捨て</span><code>trunc(1 + (Q × N × 0.01) × (IQ × 0.1))</code></p>
+    <p class="mechanics-illustration-note"><a href="https://wiki.pioneer2.net/w/Photon_Blasts#Mylla_&amp;_Youlla" target="_blank" rel="noopener">Wiki：ミューラ＆ユーラの効果とレベルの式</a> · <a href="#pb-levels">寄付とチェインのレベル計算例</a>。ここで計算しているのはキャラクターにかかる補助テクニックのレベルです。マグが自動で発動する補助効果には別の式があります： <a href="https://wiki.pioneer2.net/w/Mags#Trigger_types" target="_blank" rel="noopener">Wiki：マグの発動効果</a>。</p>
+  </article>
+</div>
+
+<h3 id="pb-parameters">パラメータ早見表：値の取り方と入れ方</h3>
+<p>キャラクターの能力とマグのパラメータは、今のクライアントから見た<strong>チェインで最初に発動したキャラクター</strong>のものを使い、単独で発動するときは自分のものを使います。下の表の入力値をそろえてから、PB の式を選んでください。<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">Wiki：パラメータの定義と切り捨てのルール</a>。</p>
+<div class="mechanics-table-scroll" role="region" aria-label="PB パラメータ早見表" tabindex="0">
+<table class="mechanics-parameter-table">
+<thead><tr><th scope="col">パラメータ</th><th scope="col">意味と値の取り方</th><th scope="col">入力例</th></tr></thead>
+<tbody>
+<tr><th scope="row">シンクロ率<br>Synchro</th><td>最初に発動したキャラクターのマグのシンクロ率。％の数字そのものを使います。</td><td>120% → <code>120</code><br>1.2 ではない</td></tr>
+<tr><th scope="row">IQ</th><td>最初に発動したキャラクターのマグの IQ をそのまま使います。マグのレベルではありません。</td><td>IQ 200 → <code>200</code></td></tr>
+<tr><th scope="row">ATP<br>攻撃力</th><td>最初に発動したキャラクターの基本 ATP にシフタをかけ、装備の ATP を足したもの。武器は ATP の下限を使い、職業の振れ幅は含めず、A 章でランダムに決まる ATPeff も直接は使いません。</td><td>この取り方で 1,000 なら → <code>1000</code></td></tr>
+<tr><th scope="row">EVP<br>回避力</th><td>最初に発動したキャラクターの EVP。エストラの基本威力に使います。</td><td>EVP 800 → <code>800</code></td></tr>
+<tr><th scope="row">MST<br>精神力</th><td>最初に発動したキャラクターの MST。攻撃型 PB ではチェイン・寄付の補正の後にこの値を足します。</td><td>MST 500 → <code>500</code></td></tr>
+<tr><th scope="row">Q<br>PB 量</th><td>最初に発動した側から見た PB 量で、普通は 100 に受け取った寄付の合計を足した値です。1人の寄付の上限は 30 で、チェインに加わった各人の 100 PB は足しません。</td><td>寄付なし → <code>100</code><br>30 受け取り → <code>130</code></td></tr>
+<tr><th scope="row">N<br>チェインの PB 数</th><td>有効なチェインで見えた PB の数です。寄付だけで PB を発動しない参加者は N を増やさないので、効果を受けた人数をそのまま入れないでください。</td><td>単発 → <code>1</code><br>4連 → <code>4</code></td></tr>
+<tr><th scope="row">ELT<br>光耐性</th><td>現在の難易度とモードでの相手の光耐性。式の中で自動的に 100 で割ります。</td><td>20% → <code>20</code><br>0.2 ではない</td></tr>
+</tbody>
+</table>
+</div>
+<p class="mechanics-illustration-note"><strong>式の途中の値：</strong>B = 基本威力、S = 攻撃型 PB の補正後の威力、R = チェイン・寄付の補正後のレイラの回復の基本値。3つとも式で計算し、キャラクターのメニューからは読み取りません。</p>
+<h3 id="pb-damage">攻撃型 PB：先に基本威力、次にダメージ</h3>
+<p>上の各カードの式で B を計算し、次に S とダメージを順に計算します。<code>trunc(x)</code>  は小数点以下の切り捨てです。各行を計算するたびに切り捨ててから次の行に使い、最終ダメージのところだけで切り捨ててはいけません。</p>
+<p><code>S = trunc(B × Q × N × 0.01 + MST)</code></p>
+<p><code>ダメージ = trunc((S ÷ 5) × ((100 − 相手の ELT) ÷ 100))</code></p>
+<p>PB はこの章の式を使い、D 章の職業・装備のテクニック補正は使いません。</p>
+
+<figure class="mechanics-figure" aria-labelledby="pb-comparison-caption">
+  <figcaption id="pb-comparison-caption"><span class="mechanics-eyebrow">攻撃型 PB 4種 · 同じ条件で比較</span><strong>ダメージは能力と当たる範囲とあわせて見る</strong><span>シンクロ率 120%、IQ 200、ATP 1,000、EVP 800、MST 500、Q 100、N 1、相手の ELT 20。棒はいずれも当たった1体へのダメージです。</span></figcaption>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>ダメージ 0</span><span>ダメージ 2,920</span></div>
+  <div class="mechanics-chart-label"><span>ファーラ Farlla · 周囲の範囲</span><strong>720</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:24.657534%"></span></div>
+  <div class="mechanics-chart-label"><span>エストラ Estlla · 前方の直線</span><strong>2,920</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:100%"></span></div>
+  <div class="mechanics-chart-label"><span>ゴーラ Golla · 単体</span><strong>1,952</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:66.849315%"></span></div>
+  <div class="mechanics-chart-label"><span>ピラ Pilla · 周囲の範囲</span><strong>1,952</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:66.849315%"></span></div>
+  <p class="mechanics-figure-note">B はそれぞれ 4,000、17,750、11,700、11,700 で、MST を足してから光耐性で減らします。下でピラの例を詳しく分解します。</p>
+  <p class="mechanics-figure-takeaway">この能力ではエストラの単体ダメージが最も高いですが、どのキャラクターや立ち位置でも最良とは限りません。ATP と EVP の比率が変われば比較も変わります。ゴーラとピラは単体の数値が同じでも、当たる数が違います。</p>
+</figure>
+
+<figure class="mechanics-figure" aria-labelledby="pb-damage-caption">
+  <figcaption id="pb-damage-caption"><span class="mechanics-eyebrow">ピラ Pilla · 単発の計算例</span><strong>マグとキャラクターの能力から 1,952 ダメージまで</strong><span>シンクロ率 120%、IQ 200、上の取り方で ATP 1,000、MST 500。Q = 100、N = 1、相手の ELT = 20。</span></figcaption>
+  <ol class="mechanics-calculation">
+    <li><span class="mechanics-eyebrow">基本威力 B</span><strong>11,700</strong><span>120 × 1,000 × 0.075<br>+ 200 × 7.5 + 1,200</span></li>
+    <li><span class="mechanics-eyebrow">補正後の威力 S</span><strong>12,200</strong><span>11,700 × 100 × 1 × 0.01<br>+ 500</span></li>
+    <li><span class="mechanics-eyebrow">光耐性で 20% 軽減</span><strong>1,952</strong><span>(12,200 ÷ 5) × 0.8</span></li>
+  </ol>
+  <p class="mechanics-figure-takeaway">ほかの条件が同じで相手の ELT が 60 になると、ダメージは 976 に下がります。敵の光耐性は攻撃型 PB の効果に直接影響します。</p>
+</figure>
+
+<h3 id="pb-chain">チェインと寄付：それぞれ N と Q を変える</h3>
+<ul aria-label="PB のチェインと寄付のルール">
+<li><strong>参加の条件：</strong>同じ部屋の仲間は<strong>最初の PB の発動モーションが終わる前に</strong>チェインか寄付をする必要があります。チェインする人は自分の PB を発動し、寄付する人は自分の PB ゲージの値を渡します。</li>
+<li><strong>チェイン：</strong>有効に加わるたびに N が増え、PB は発動した順に出ます。同じ PB が2回続くと前のものが上書きされ、<strong>上書きされたプレイヤーはそのチェインの効果を得られません</strong>。制限されるのは連続した重複だけで、Wiki の ゴーラ → ミューラ＆ユーラ → ゴーラ → ミューラ＆ユーラ は有効な4連の例です。<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Chaining" target="_blank" rel="noopener">Wiki：チェインのルール</a>。</li>
+<li><strong>寄付：</strong>Q を増やし、1人最大 30 PB まで寄付できます。キーボードの初期キーは  <code>End</code> で、1回ごとに 10 PB を寄付します。ゲームパッドではアクションパレットの上の、ワードセレクト／シンボルチャットを開くボタンです。寄付した参加者も PB の効果を受けられますが、寄付だけでは N は増えません。<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Donating" target="_blank" rel="noopener">Wiki：寄付のルール</a>。</li>
+<li><strong>見え方の違い：</strong>ダメージ・回復・補助はクライアントで計算されるため、遅延や同期のずれでプレイヤーごとに順番や結果が違って見えることがあります。実際に見えた最初の発動者、PB 数、PB 量を入れてください。<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">Wiki：クライアント側の計算</a>。</li>
+</ul>
+
+<h4 id="pb-levels">ミューラ＆ユーラの補助レベル：寄付とチェインの計算</h4>
+<figure class="mechanics-figure" aria-labelledby="pb-levels-caption">
+  <figcaption id="pb-levels-caption"><span class="mechanics-eyebrow">ミューラ＆ユーラの補助レベル · 式による計算</span><strong>同じ4人参加でも、寄付と4連ではレベルが違う</strong><span>最初のマグの IQ は 200 に固定。チェインはすべて有効で、ミューラ＆ユーラを含みます。レベルはシフタ／デバンドのレベルで、マグのレベルでも6種の PB 共通の技のレベルでもありません。</span></figcaption>
+  <div class="mechanics-table-scroll" role="region" aria-label="ミューラ＆ユーラの寄付とチェインのレベル表" tabindex="0">
+    <table class="mechanics-pb-level-table">
+      <thead><tr><th scope="col">発動と寄付のしかた</th><th scope="col">PB 量 Q</th><th scope="col">PB 数 N</th><th scope="col">補助レベル</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">単発・寄付なし</th><td>100</td><td>1</td><td>Lv.21</td></tr>
+        <tr><th scope="row">単発・仲間1人が 30 寄付</th><td>130</td><td>1</td><td>Lv.27</td></tr>
+        <tr><th scope="row">単発・仲間3人がそれぞれ 30 寄付</th><td>190</td><td>1</td><td>Lv.39</td></tr>
+        <tr><th scope="row">2連・寄付なし</th><td>100</td><td>2</td><td>Lv.41</td></tr>
+        <tr><th scope="row">3連・寄付なし</th><td>100</td><td>3</td><td>Lv.61</td></tr>
+        <tr><th scope="row">4連・寄付なし</th><td>100</td><td>4</td><td>Lv.81</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mechanics-figure-note">たとえば単発で 30 PB を受け取った場合：1 + (130 × 1 × 0.01) × (200 × 0.1) = 27。表の値はすべて<a href="#pb-mylla-youlla">ミューラ＆ユーラのカードにある Wiki の式</a>から計算したもので、クライアントでの実測とはしていません。</p>
+  <p class="mechanics-figure-takeaway">仲間3人が寄付だけした場合、4人が参加していても N は 1 のままです。4人がそれぞれ PB を発動して有効な4連になったときに初めて N は 4 になります。参加人数をチェインの PB 数の代わりにしないでください。</p>
+</figure>
+
+<figure class="mechanics-figure" aria-labelledby="pb-chain-caption">
+  <figcaption id="pb-chain-caption"><span class="mechanics-eyebrow">同じ能力と相手 · ピラのダメージ比較</span><strong>チェインで基本威力が大きくなり、MST はその後に足す</strong><span>上のピラの単発例と同じキャラクター・マグの能力と ELT 20 で、同じ相手へのピラ1回分のダメージを比べています。チェイン全体のダメージの合計ではありません。</span></figcaption>
+  <ol class="mechanics-pb-chain" aria-label="4人の有効な PB チェインの例">
+    <li><span>1 · 最初</span><img src="/assets/img/mag/pb/Estlla.png" width="50" height="43" alt="" loading="lazy"><strong>エストラ</strong></li>
+    <li><span>2 · 参加</span><img src="/assets/img/mag/pb/Pilla.png" width="50" height="43" alt="" loading="lazy"><strong>ピラ</strong></li>
+    <li><span>3 · 参加</span><img src="/assets/img/mag/pb/Leilla.png" width="50" height="43" alt="" loading="lazy"><strong>レイラ</strong></li>
+    <li><span>4 · 参加</span><img src="/assets/img/mag/pb/Mylla_Youlla.png" width="50" height="43" alt="" loading="lazy"><strong>ミューラ＆ユーラ</strong></li>
+  </ol>
+  <p class="mechanics-figure-note">上は寄付なしの4連です：Q = 100、N = 4。4回の PB はすべて最初の人のキャラクターとマグのパラメータを使い、ここでの最初の人の能力は上の単発例と同じです。</p>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>ダメージ 0</span><span>ダメージ 7,568</span></div>
+  <div class="mechanics-chart-label"><span>単発 · Q 100 / N 1</span><strong>1,952</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:25.792812%"></span></div>
+  <div class="mechanics-chart-label"><span>単発 + 仲間が 30 寄付 · Q 130 / N 1</span><strong>2,513</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:33.205602%"></span></div>
+  <div class="mechanics-chart-label"><span>4人の有効なチェイン・寄付なし · Q 100 / N 4</span><strong>7,568</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:100%"></span></div>
+  <p class="mechanics-figure-note">寄付の例：S = 15,710、最終 2,513.6 を切り捨てて 2,513。4連の例：S = 47,300、最終ダメージ 7,568。</p>
+  <p class="mechanics-figure-takeaway">4連でも Q は 100 のままで N が 4 です。Q 400、N 4 と入れないでください。MST はチェインの数で掛けられないので、4連での1回のダメージは単発のダメージの単純な4倍にはなりません。</p>
+</figure>
+
+<p class="mechanics-illustration-note">以上は Wiki がまとめた式と、それに基づく計算例で、当サイトによる現在のクライアントの実測とはしていません。出典：<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Photon_Blast_Strength" target="_blank" rel="noopener">各 PB の威力</a>、<a href="https://wiki.pioneer2.net/w/Photon_Blasts#Donating_and_Chaining" target="_blank" rel="noopener">寄付とチェインのルール</a>。</p>
+
+<h3 id="pb-gain">PB ゲージの増え方の式</h3>
+
+<figure class="mechanics-figure" aria-labelledby="pb-caption">
+  <figcaption id="pb-caption"><span class="mechanics-eyebrow">図解・PB のたまり方</span><strong>同じ 300 ダメージでも、PB の増え方は違う</strong><span>レベル 100 のキャラクターで、下の表の「与えたダメージ」と「受けたダメージ」の2つの式を比べます。</span></figcaption>
+  <div class="mechanics-chart-axis" aria-hidden="true"><span>0 PB</span><span>4 PB</span></div>
+  <div class="mechanics-chart-label"><span>300 ダメージを与える</span><strong>+0.2 PB</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-base" style="width:5%"></span></div>
+  <div class="mechanics-chart-label"><span>300 ダメージを受ける</span><strong>+4 PB</strong></div>
+  <div class="mechanics-stacked-track" aria-hidden="true"><span class="mechanics-segment-spread" style="width:100%"></span></div>
+  <p class="mechanics-figure-note">300 ÷ (100 × 15) = 0.2、300 × 20 ÷ (100 × 15) = 4。棒は今回の増加分で、100 PB のゲージ全体ではありません。</p>
+  <p class="mechanics-figure-takeaway">同じレベル・同じダメージなら、受けたダメージの式は与えたダメージの 20 倍 PB が増えます。エクストラアタックのダメージは PB ゲージに入りません。</p>
+</figure>
+
+<table>
+<thead><tr><th>行動</th><th>PB の増加量</th></tr></thead>
+<tbody>
+<tr><td>敵にダメージを与える</td><td><code>与えたダメージ / (キャラクターのレベル × 15)</code></td></tr>
+<tr><td>ダメージを受ける</td><td><code>受けたダメージ × 20 / (キャラクターのレベル × 15)</code></td></tr>
+</tbody>
+</table>
+<p>PB の増加量の式の出典：<a href="https://wiki.pioneer2.net/w/Photon_Blasts" target="_blank" rel="noopener">Wiki：PB の増加量の式</a>。武器のエクストラアタックが PB ゲージを増やさないルールは <a href="https://wiki.pioneer2.net/w/Game_mechanics#Special_attacks" target="_blank" rel="noopener">Wiki：武器のエクストラアタックの説明を参照</a>。</p>
+
+<hr>
+</section>
+
+<section data-part="mag-triggers">
+<h2 id="mag-triggers">H：マグのイベントの発動率</h2>
+
+<figure class="mechanics-figure" aria-labelledby="mag-caption">
+  <figcaption id="mag-caption"><span class="mechanics-eyebrow">図解・マグの HP 低下イベント</span><strong>HP が低いことは条件の1つにすぎない</strong><span>最大 HP 1,000 なら、1フレームで 200 HP を超えて失い、残り HP が 100 未満になる必要があります。以下は前後2つのフレームを比べたものです。</span></figcaption>
+  <div class="mechanics-frame-examples">
+    <div>
+      <span class="mechanics-eyebrow">両方の条件を満たす</span>
+      <div class="mechanics-frame-pair"><strong>310 <small>HP</small></strong><span aria-hidden="true">→</span><strong>90 <small>HP</small></strong></div>
+      <p>減少 220 &gt; 200<br>残り 90 &lt; 100</p>
+      <b>1/10 HP イベントの条件を満たす</b>
+    </div>
+    <div>
+      <span class="mechanics-eyebrow">HP が低いだけ</span>
+      <div class="mechanics-frame-pair"><strong>200 <small>HP</small></strong><span aria-hidden="true">→</span><strong>90 <small>HP</small></strong></div>
+      <p>減少 110、200 を超えない<br>残り 90 &lt; 100</p>
+      <b>1/10 HP イベントの条件を満たさない</b>
+    </div>
+  </div>
+  <p class="mechanics-figure-takeaway">イベントの条件を満たしても、効果が出るかはマグの発動率で決まります。HP が低くなれば必ず無敵になるわけではありません。同じフレームで複数のイベントが起きた場合は、下の優先順位にも従います。</p>
+</figure>
+
+<h3>発動のイベント</h3>
+<table>
+<thead><tr><th>イベント</th><th>条件</th></tr></thead>
+<tbody>
+<tr><td>100 PB</td><td>PB ゲージが 100 になったとき</td></tr>
+<tr><td>1/10 HP</td><td>1フレームで HP を 20% を超えて失い、HP が 10% 未満になったとき</td></tr>
+<tr><td>ボス部屋</td><td>ボス部屋に入ったとき</td></tr>
+</tbody>
+</table>
+<p>マグは1フレームに1回、発動の条件を確認します。1/10 HP イベントは前後2フレームの HP の差だけを見て、HP が減った原因は問わないため、バーサーク系の武器が4体以上に当たったとき、Gal Wind の3段目、Psycho Wand を装備してテクニックを使ったときなどでも発動します。同じフレームで複数の条件を満たした場合は1つだけ確認され、優先順位は 100 PB → ボス部屋 → 1/10 HP です。戦闘不能のイベントは Blue Burst では無効です。</p>
+
+<p class="mechanics-illustration-note">イベントの条件と判定の順番は <a href="https://wiki.pioneer2.net/w/Mags#Mag_triggers" target="_blank" rel="noopener">Ephinea Wiki のマグのイベントの説明を参照</a>。</p>
+
+<h3>シンクロ率による上乗せ</h3>
+<table>
+<thead><tr>
+<th>シンクロ率</th>
+<th>確率の上乗せ</th>
+</tr></thead>
+<tbody>
+<tr><td>0-30%</td><td>+0%</td></tr>
+<tr><td>31-60%</td><td>+15%</td></tr>
+<tr><td>61-80%</td><td>+25%</td></tr>
+<tr><td>81-100%</td><td>+30%</td></tr>
+<tr><td>101-120%</td><td>+35%</td></tr>
+</tbody>
+</table>
+
+<p>マグごと・イベントごとに決まった基本の発動率があります。シンクロ率の影響を受けるイベントは2種類あり、Wiki のマグの一覧では  <code>50-85%</code>、<code>0-35%</code>  のような範囲で書かれています：</p>
+
+<h4>加算型</h4>
+<p><code>発動率 = 基本の発動率 + シンクロ率による上乗せ</code></p>
+<p>たとえば  <span data-item-en="Nidra"></span>  のボス部屋の無敵イベントは 50-85% で、シンクロ率 101-120% なら発動率は 50% + 35% = 85% です。</p>
+
+<h4>独立型</h4>
+<p><code>発動率 = シンクロ率による上乗せ</code></p>
+<p>たとえば  <span data-item-en="Sato"></span>  の 100 PB の無敵イベントは 0-35% で、シンクロ率 61-80% では発動率は 25% だけ、シンクロ率 30% 以下ではまったく発動しません。</p>
+</section>

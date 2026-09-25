@@ -12,10 +12,11 @@
 </head>
 
 <body>
-    <page-chrome title="游戏机制与伤害公式"></page-chrome>
+    <page-chrome title="游戏机制与伤害公式" data-i18n-title="mechanics.title"></page-chrome>
 
     <div class="content-container mechanics-guide">
 
+<section data-part="intro">
 <div class="mechanics-intro">
   <span class="mechanics-eyebrow">战斗机制图解</span>
   <p class="mechanics-intro-title">从一次攻击，读懂背后的数值</p>
@@ -33,6 +34,9 @@
 </nav>
 <p class="mechanics-illustration-note">本页汇总 Ephinea PSOBB 的核心数值公式。除另有注明外，公式与数值均整理自 <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">Ephinea Wiki 的 Game mechanics 页面</a>。游戏对最终伤害只做截断，不做四舍五入：计算结果为 100.92 时，实际伤害为 100。</p>
 
+</section>
+
+<section data-part="physical-damage">
 <h2 id="physical-damage">A: 物理伤害公式</h2>
 
 <p>物理伤害指除火焰／雷电类特殊攻击和魔法以外的一切伤害。菜单中括号内显示的 ATP 是该职业的<strong>最大值</strong>；游戏实际使用一个隐藏的基础 ATP，并在每次攻击时叠加一个职业相关的随机方差。</p>
@@ -119,7 +123,9 @@
 <p><strong>不要混淆两种 Luck：</strong>角色属性 LCK 只影响暴击，不影响掉落率；Ephinea 另有独立的每日运势系统，符合当天职业、种族或性别条件的角色会获得稀有掉落率加成。<code>/forecast</code> 显示当天的运势条件，<code>/luck</code> 显示当前角色对应的运势等级。参见 <a href="https://wiki.pioneer2.net/w/Stats#Luck_(LCK)" target="_blank" rel="noopener">Ephinea Wiki 的 LCK 说明</a>与<a href="https://wiki.pioneer2.net/w/Daily_forecast" target="_blank" rel="noopener">每日运势规则</a>。</p>
 
 <hr>
+</section>
 
+<section data-part="accuracy">
 <h2 id="accuracy">B: 玩家攻击敌人的命中计算</h2>
 
 <p>本节以玩家为攻击方、敌人为防守方。玩家的 ATA 与敌人的 EVP 决定攻击是否命中；命中后再进入 A 节的物理伤害计算。魔法不进行命中判定，只要接触到目标就必定生效。</p>
@@ -189,7 +195,9 @@
 </ul>
 
 <hr>
+</section>
 
+<section data-part="incoming-physical">
 <h2 id="incoming-physical">C: 玩家受到物理攻击时的判定流程</h2>
 
 <p>先看能否回避，再看会受多少伤害。以下流程适用于敌人发动的<strong>普通、可回避的物理攻击</strong>。</p>
@@ -265,7 +273,9 @@
 <p><strong>实测来源：</strong><a href="https://www.youtube.com/watch?v=J2FgRRGCQEM" target="_blank" rel="noopener">SLW《【PSOBB Ephinea】ガードと回避の成功率検証と結果【解説動画】》</a>。命中率公式来自视频中的实验归纳，应视为 Ephinea 实测结论，而不是本站对客户端代码的反编译证明。</p>
 
 <hr>
+</section>
 
+<section data-part="technique-damage">
 <h2 id="technique-damage">D: 魔法伤害公式</h2>
 
 <p><code>伤害 = [(MST + 魔法基础威力) / 5] × (1 + 职业增幅 + 武器增幅 + 铠甲增幅 + 盾牌增幅) × (1 - 目标抗性)</code></p>
@@ -423,7 +433,9 @@
 <p>玛古光子爆裂 Leilla 的恢复量另有玛古 IQ、连锁与捐赠修正，见 <a href="#pb-support">G 节治疗与辅助型 PB</a>。</p>
 
 <hr>
+</section>
 
+<section data-part="knockdown">
 <h2 id="knockdown">E: 击倒机制</h2>
 <p>在本地保存的 Ephinea 客户端通用受击路径中，<strong>内部计算伤害 &gt; 最大 HP × 25%</strong> 时会设置击倒标志。比较发生在伤害截断成整数之前。</p>
 <figure class="mechanics-threshold" aria-labelledby="knockdown-caption">
@@ -451,7 +463,9 @@
 </details>
 
 <hr>
+</section>
 
+<section data-part="hp-drain">
 <h2 id="hp-drain">F: HP 消耗型武器</h2>
 <p>以下稀有武器的特殊攻击会按角色最大 HP 的固定百分比消耗自身 HP。在 Ultimate 难度下，配合 Monomate（回复 200 HP）与 Dimate（回复 500 HP）可以把 HP 精确控制到目标数值，用于触发玛古的 1/10 HP 事件（见 H 节），或让机器人角色主动消耗 Scape Doll 以补满陷阱。</p>
 
@@ -472,7 +486,9 @@
 <p>Gal Wind 的第三段一次消耗 21% HP，不需要目标即可满足 1/10 HP 事件的触发条件。</p>
 
 <hr>
+</section>
 
+<section data-part="photon-blast">
 <h2 id="photon-blast">G: 玛古光子爆裂（PB）技能、伤害与积累</h2>
 <p>六种 PB 分为四种攻击、一种治疗和一种辅助。先看各技能如何作用、受什么参数影响、什么时候使用，再查伤害与连锁计算。四种攻击型 PB 均造成<strong>光属性伤害</strong>，由目标 ELT（光抗性）削减。</p>
 <p class="mechanics-key-point"><a href="#pb-analysis">逐个技能分析</a> · <a href="#pb-support">治疗与辅助</a> · <a href="#pb-parameters">参数速查</a> · <a href="#pb-damage">攻击型伤害</a> · <a href="#pb-chain">连锁与捐赠</a> · <a href="#pb-levels">双子等级算例</a> · <a href="#pb-gain">PB 槽积累</a></p>
@@ -736,7 +752,9 @@
 <p>PB 增量公式来源：<a href="https://wiki.pioneer2.net/w/Photon_Blasts" target="_blank" rel="noopener">Wiki PB 增加公式</a>。武器特殊攻击不贡献 PB 槽的规则另见 <a href="https://wiki.pioneer2.net/w/Game_mechanics#Special_attacks" target="_blank" rel="noopener">Wiki 武器特殊攻击说明</a>。</p>
 
 <hr>
+</section>
 
+<section data-part="mag-triggers">
 <h2 id="mag-triggers">H: 玛古事件触发概率</h2>
 
 <figure class="mechanics-figure" aria-labelledby="mag-caption">
@@ -795,6 +813,7 @@
 <h4>独立型</h4>
 <p><code>触发率 = 同步率加成</code></p>
 <p>例如 <span data-item-en="Sato"></span> 的 100 PB 无敌事件为 0-35%：同步率 61-80% 时触发率只有 25%，同步率不超过 30% 时完全不会触发。</p>
+</section>
 
     </div>
 </body>

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { parse, serialize } from 'parse5';
 import vm from 'node:vm';
 import { localizeHome } from './home_i18n.mjs';
-import { languagesFor, loadPageI18n, localizeBody, pageMetadata } from './page_i18n.mjs';
+import { languagesFor, loadPageI18n, localizeBody, localizeLinks, pageMetadata } from './page_i18n.mjs';
 import { marked } from 'marked';
 import { ItemData } from '../src/app/status/item-data.js';
 
@@ -578,7 +578,6 @@ function pageDetails(file, source, relative, language) {
   if (!isPassive) return null;
 
   removeScripts(body);
-  makeRelativeUrlsRootRelative(body, relative);
   let homeMetadata = null;
   if (relative === 'index.html') {
     // The homepage's language control carries its translated title and description;
@@ -598,9 +597,20 @@ function pageDetails(file, source, relative, language) {
       }
     });
   }
+  // The shared page chrome: its back link text is the site message; a translated
+  // page must give its title as a message key.
+  visit(body, (node) => {
+    if (node.tagName !== 'page-chrome') return;
+    const names = new Set(node.attrs.map(({ name }) => name));
+    if (!names.has('back-text')) node.attrs.push({ name: 'data-i18n-back-text', value: 'common.backHome' });
+    if (language !== 'zh' && !names.has('data-i18n-title')) throw new Error(`${relative}: page-chrome title needs data-i18n-title for ${language}`);
+  });
   localizeBody(pageI18n, body, language, relative, {
     itemName: (english, itemLanguage) => itemByEnglish(english, relative)[itemLanguage],
   });
+  // Translated regions are in place; make every link root-relative, then point it at this language.
+  makeRelativeUrlsRootRelative(body, relative);
+  localizeLinks(pageI18n, body, language);
   stampAssetVersions(body, relative);
   const template = serialize(body).replaceAll(
     /\sonerror="this\.remove\(\)"/gi,
