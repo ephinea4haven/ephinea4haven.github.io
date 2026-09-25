@@ -1,0 +1,144 @@
+<!-- English text for /guide/banners.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+        <section class="guide-hero">
+            <p class="hero-eyebrow">Ephinea Server Intelligence</p>
+            <h1>Banners</h1>
+            <p class="intro-lead">
+                Banners are text announcements that scroll across the top of the game screen. They broadcast system messages and notable drops to everyone on the server, and also show command results and status warnings to just the current player.
+            </p>
+
+            <div class="banner-preview" aria-label="Example rare drop banner">
+                [Ship] - [Block] - [Player] found [Item] from [Enemy]!
+            </div>
+
+            <nav class="jump-links" aria-label="On this page">
+                <a href="#global">Server-wide</a>
+                <a href="#rare-rules">Drop rules</a>
+                <a href="#weapons">Weapons</a>
+                <a href="#other-items">Other items</a>
+                <a href="#personal">Personal</a>
+            </nav>
+        </section>
+
+        <h2 id="global" data-section="01 / BROADCAST">Server-wide banners</h2>
+        <p>These banners go to every player online at the time.</p>
+
+        <div class="type-grid">
+            <article class="type-card">
+                <h3>System and GM messages</h3>
+                <p>Before scheduled maintenance, a shutdown countdown is shown automatically, usually at 120, 60, 30, 15, 10, 2, 1 and 0 minutes remaining. GMs can also broadcast their own messages.</p>
+            </article>
+            <article class="type-card">
+                <h3>Daily luck change</h3>
+                <p>Posted automatically when the luck values update each day at 00:00 UTC:</p>
+                <p><code>The daily luck forecast has changed!</code></p>
+            </article>
+            <article class="type-card">
+                <h3>A character reaches level 200</h3>
+                <p>When a character reaches level 200, the Ship, Block and character name are shown in a congratulations message to the whole server.</p>
+            </article>
+            <article class="type-card">
+                <h3>Rare drops</h3>
+                <p>When an item meeting the conditions below drops, the banner shows the Ship, Block, player name, item name, enemy name and, where it applies, the unidentified Hit.</p>
+            </article>
+        </div>
+
+        <h2 id="rare-rules" data-section="02 / DROP RULES">Rare drop banner rules</h2>
+        <ul>
+            <li>"Minimum Hit" in the tables is the weapon's Hit attribute when it drops, before it is identified.</li>
+            <li>Weapons with a minimum Hit of 0: 0 Hit is announced, and so is 20 Hit or more; 5, 10 and 15 Hit are not shown in the banner text.</li>
+            <li>Qualifying items that come from boxes usually do not trigger a banner.</li>
+            <li>Diska of Braveman, Vjaya and M&amp;A60 Vise from boxes do not trigger a banner even at 50 Hit, and neither does any 90 Hit rare weapon from a box.</li>
+            <li>Level 30 attack technique disks trigger a banner even when they come from a box.</li>
+            <li>Some event rares are announced too, such as the Anniv. Platinum Badge and the "very rare" tier of Ultimate Present rewards.</li>
+        </ul>
+
+        <div class="notice">
+            <p><strong>Privacy:</strong> players can enter <code>/findprivacy</code> to stop their rare drops being announced to the server and the party.</p>
+        </div>
+
+        <h2 id="weapons" data-section="03 / WEAPON INDEX">Weapons that trigger a banner</h2>
+        <p>Item names are given as the client shows them, so they match the in-game banners and drop charts. Rules specific to the Classic ship Devaloka are marked in the table.</p>
+
+        <h3>Melee weapons</h3>
+        <div class="table-scroll">
+            <table class="weapon-table">
+                <thead><tr><th scope="col">Minimum Hit</th><th scope="col">Items</th></tr></thead>
+                <tbody>
+                    <tr><td class="hit-value">0</td><td class="item-list">Agito (1975) <em>(Classic ship Devaloka only)</em> · DB's Saber (3064) · DB's Saber (3077) · Evil Curst · Flowen's Sword (3073) · Flowen's Sword (3077) · Lavis Cannon · Madam's Parasol · Nei's Claw · Sealed J-Sword · Yasha</td></tr>
+                    <tr><td class="hit-value">20</td><td class="item-list">Galatine · Lame d'Argent</td></tr>
+                    <tr><td class="hit-value">30</td><td class="item-list">Daylight Scar · Vivienne</td></tr>
+                    <tr><td class="hit-value">40</td><td class="item-list">Asteron Belt · Girasole · Guren · Monkey King Bar · Shouren · Slicer of Fanatic · Twin Blaze · Yunchang · Zanba</td></tr>
+                    <tr><td class="hit-value">50</td><td class="item-list">Chain Sawd · Demolition Comet · Diska of Braveman · Flowen's Sword (3084) · Red Sword · Sange · Tyrell's Parasol · Vjaya · Yamigarasu</td></tr>
+                    <tr><td class="hit-value">90</td><td class="item-list">Any rare weapon</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Ranged weapons</h3>
+        <div class="table-scroll">
+            <table class="weapon-table">
+                <thead><tr><th scope="col">Minimum Hit</th><th scope="col">Items</th></tr></thead>
+                <tbody>
+                    <tr><td class="hit-value">0</td><td class="item-list">Angel Harp · Handgun: Guld · Handgun: Milla · Heaven Punisher · NUG2000-Bazooka</td></tr>
+                    <tr><td class="hit-value">20</td><td class="item-list">Heaven Striker</td></tr>
+                    <tr><td class="hit-value">30</td><td class="item-list">Cannon Rouge · Frozen Shooter · Rambling May</td></tr>
+                    <tr><td class="hit-value">40</td><td class="item-list">Holy Ray · L&amp;K38 Combat · Ophelie Seize · Spread Needle · Yasminkov 9000M</td></tr>
+                    <tr><td class="hit-value">50</td><td class="item-list">M&amp;A60 Vise · Panzer Faust · Yasminkov 7000V</td></tr>
+                    <tr><td class="hit-value">90</td><td class="item-list">Any rare weapon</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Technique weapons</h3>
+        <div class="table-scroll">
+            <table class="weapon-table">
+                <thead><tr><th scope="col">Minimum Hit</th><th scope="col">Items</th></tr></thead>
+                <tbody>
+                    <tr><td class="hit-value">0</td><td class="item-list">Bluefull Card · Greenill Card · Oran Card · Pinkal Card · Prophets of Motav · Psycho Wand · Purplenum Card · Redria Card · Skyly Card · Viridia Card · Whitill Card · Yellowboze Card</td></tr>
+                    <tr><td class="hit-value">50</td><td class="item-list">Clio · Guardianna</td></tr>
+                    <tr><td class="hit-value">90</td><td class="item-list">Any rare weapon</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="other-items" data-section="04 / OTHER ITEMS">Other items that trigger a banner</h2>
+        <div class="table-scroll">
+            <table>
+                <thead><tr><th scope="col">Category</th><th scope="col">Items</th></tr></thead>
+                <tbody>
+                    <tr><th scope="row">Shields</th><td class="item-list">Red Ring · S-Parts ver2.01</td></tr>
+                    <tr><th scope="row">Weapon hearts</th><td class="item-list">Heart of Ancient Saber · Heart of Angel Harp · Heart of Blade Dance · Heart of Chameleon Scythe · Heart of Crazy Tune · Heart of Daisy Chain · Heart of DB's Saber · Heart of Delsaber's Buster · Heart of Diska of Liberator · Heart of Egg Blaster · Heart of Flamberge · Heart of Izmaela · Heart of Laconium Axe · Heart of Lollipop · Heart of Partisan of Lightning · Heart of Plantain Huge Fan · Heart of Rabbit Wand · Heart of Rianov 303SNR · Heart of Ruby Bullet · Heart of Samba Maracas · Heart of Sorcerer's Cane · Heart of Soul Banish · Heart of Suppressed Gun · Heart of Tension Blaster · Heart of The Sigh of a God · Heart of TypeDS/D.Saber · Heart of TypeSS/Swords · Heart of Yasminkov 9000M</td></tr>
+                    <tr><th scope="row">Level 30 attack technique disks</th><td class="item-list">Foie · Barta · Zonde · Gifoie · Gibarta · Gizonde · Rafoie · Rabarta · Razonde · Grants · Megid</td></tr>
+                    <tr><th scope="row">Tools</th><td class="item-list">Anniv. Platinum Badge · Book of Hitogata · Magic Stone “Iritista” · Parasitic Gene “Flow” · Syncesta</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 id="personal" data-section="05 / PERSONAL FEED">Personal banners</h2>
+        <p>These banners are shown only to the player who triggered them and are not broadcast to anyone else.</p>
+        <div class="type-grid">
+            <article class="type-card">
+                <h3><code>/killcount</code></h3>
+                <p>Shows the kill count the server has recorded for your equipped sealed item. The client and server may count differently; before unsealing you may need to Change Block to resync.</p>
+            </article>
+            <article class="type-card">
+                <h3><code>/rbr</code></h3>
+                <p>Shows this week's Ragol Boost Road quests. For the mechanics and farming advice, see <a href="/guide/rbr.html">Ragol Boost Road (RBR)</a>.</p>
+            </article>
+            <article class="type-card">
+                <h3>Information and sync warnings</h3>
+                <p>When the server and client disagree about the character's inventory, a warning tells the player to Change Block and resync, so that carrying on doesn't cause item problems or losses.</p>
+            </article>
+        </div>
+
+        <section class="source-panel">
+            <h2>Source</h2>
+            <p class="source-note">
+                This page is based on the Ephinea PSO Wiki
+                <a href="https://wiki.pioneer2.net/w/Banners" target="_blank" rel="noopener noreferrer">Banners</a>
+                page. Server rules and trigger lists may change; the original page and official announcements take precedence.
+            </p>
+        </section>
+    </section>

@@ -2,16 +2,21 @@ import {
   afterNextRender,
   ChangeDetectionStrategy,
   Component,
+  computed,
+  effect,
   ElementRef,
   Injector,
   inject,
   signal,
   viewChild,
 } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PageChromeComponent } from '../shared/page-chrome.component';
+
+import { SiteLanguage } from '../shared/site-language.service';
+import { CHARTABLE_TEXT } from './chartable-text';
 
 type StatRow = readonly [number, number, number, number, number, number, number];
 type CharacterData = Record<string, { lv?: Record<string, StatRow> }>;
@@ -46,6 +51,9 @@ const CLASSES: readonly CharacterClass[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChartableComponent {
+  readonly siteLanguage = inject(SiteLanguage);
+  readonly text = computed(() => CHARTABLE_TEXT[this.siteLanguage.language()]);
+  private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly injector = inject(Injector);
   readonly table = viewChild<ElementRef<HTMLTableElement>>('statTable');
@@ -60,11 +68,22 @@ export class ChartableComponent {
   retry(): void { location.reload(); }
 
   constructor() {
-    this.meta.updateTag({ name: 'description', content: 'PSOBB 全等级人物能力表' });
+    effect(() => {
+      this.meta.updateTag({ name: 'description', content: this.text().description });
+      this.title.setTitle(this.siteLanguage.language() === 'zh' ? '全等级人物能力表 - PSOBB Wiki' : this.text().title + ' | Haven PSOBB Wiki');
+    });
   }
 
   classesIn(group: CharacterClass['group']): readonly CharacterClass[] {
     return this.classes.filter((characterClass) => characterClass.group === group);
+  }
+
+  className(characterClass: CharacterClass): string {
+    return this.siteLanguage.language() === 'zh' ? characterClass.name : '';
+  }
+
+  groupName(group: CharacterClass['group']): string {
+    return this.text()[group === '战士 Hunter' ? 'hunter' : group === '游骑兵 Ranger' ? 'ranger' : 'force'];
   }
 
   rowsFor(classId: string): readonly [string, StatRow][] {
@@ -96,7 +115,7 @@ export class ChartableComponent {
   show(): void {
     const level = this.requestedLevel();
     if (level === null || !Number.isInteger(level) || level < 1 || level > 200) {
-      this.levelError.set('请输入 1–200 之间的整数等级');
+      this.levelError.set(this.text().error);
       return;
     }
     this.levelError.set('');

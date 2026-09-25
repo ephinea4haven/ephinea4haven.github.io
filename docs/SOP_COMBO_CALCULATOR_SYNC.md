@@ -26,7 +26,15 @@ reintroduce jQuery, Bootstrap, Vue, upstream HTML, or compatibility layers.
 These files are non-published build inputs, not browser entry points. Do not edit
 them directly. The Angular build generator converts the data and calculation
 boundary into temporary TypeScript modules under `src/app/generated/combo/`.
-`src/app/combo/` independently owns templates, styles, state, and accessibility.
+`src/app/combo/` independently owns templates, styles, state, accessibility, and
+`combo-i18n.ts` (Chinese, English and Japanese interface text and display-name
+resolution). Item names use generated `ITEM_TRANSLATIONS`; monster names use
+`content/monster-catalog/names.json`, synchronized from the same authority.
+Upstream English keys remain the calculation and option values. No translation
+is written into synchronized snapshots or the generated engine.
+
+Both modes are prerendered at the historical Chinese URL and the `/en/` and
+`/ja/` URLs, and read the page language from `SiteLanguage`.
 
 ## Compatibility boundary
 
@@ -109,3 +117,17 @@ tests explicitly.
 If a production regression is discovered, use `git revert` for a synchronization
 commit with a clear boundary, rerun the release gate, and deploy. Do not manually
 combine scripts and data from different versions.
+
+## Translation rules
+
+Terminology follows the site: class identifiers (HUmar, HUnewearl …) and stats
+(ATP, ATA, Hit) stay as written; techniques and sacrificial attacks use the
+mechanics guide's terms (强攻术 / 降防术, 金祭 / 灵祭 / 血祭; シフタ / ザルア,
+チャージ / スピリット / バーサーク).
+
+Upstream item names resolve to an exact authority identity first, then only to an
+unambiguous case-insensitive one. ES weapons need their exact uppercase identity,
+so ES Saber never becomes the ordinary Saber. Sweetheart and Black Ring counts and
+POSS unit counts are display variants of their base equipment. A name missing from
+the authority, or missing a Japanese name there, is shown in English; never add a
+translation in Combo code.

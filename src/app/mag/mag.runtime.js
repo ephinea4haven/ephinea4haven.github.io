@@ -4,9 +4,13 @@
  *
  * Styles live in assets/css/mag-chart.css.
  */
-'use strict';
+import { MAG_TEXT } from './mag-text.js';
 
-export function initializeMag(root, evolution, simulation) {
+export function initializeMag(root, evolution, simulation, language, items) {
+    const text = MAG_TEXT[language];
+    const names = new Map(items.map((item) => [item.en, item]));
+    const itemName = (name) => language === 'en' ? name : names.get(name)?.[language] || name;
+    const t = (key, args = {}) => text[key].replace(/\{(\w+)\}/g, (_, name) => args[name]);
     const SPRITE_DIR = '/assets/img/mag/default/';
     const MASK_DIR = '/assets/img/mag/color-mask/';
     const STAT = /\b(POW|DEX|MIND|DEF)\b/g;
@@ -114,7 +118,7 @@ export function initializeMag(root, evolution, simulation) {
                 const [lo, hi = lo] = t.rate.match(/\d+/g).map(Number);
                 return `<div class="mag-trig__row">
           <span class="mag-trig__event">${esc(e)}</span>
-          <span class="mag-trig__effect">${esc(meta.effects[t.effect] || t.effect)}</span>
+          <span class="mag-trig__effect">${esc(text.effects[t.effect] || t.effect)}</span>
           <span class="mag-trig__bar" style="--lo:${lo}%;--hi:${hi}%" aria-hidden="true"></span>
           <span class="mag-trig__rate">${esc(t.rate)}</span>
         </div>`;
@@ -124,7 +128,7 @@ export function initializeMag(root, evolution, simulation) {
 
     function pbLine(mag, meta) {
         if (!mag.pb) return '';
-        const zh = meta.pbNames[mag.pb] || '';
+        const zh = text.pbs[mag.pb] || mag.pb;
         // Slug the file name — "Mylla & Youlla" as a raw <img src> (spaces + &)
         // fails to load in-page even though the encoded URL resolves directly.
         const icon = `/assets/img/mag/pb/${mag.pb.replace(/[^A-Za-z0-9]+/g, '_')}.png`;
@@ -135,8 +139,8 @@ export function initializeMag(root, evolution, simulation) {
 
     function condLine(mag) {
         return mag.cond
-            .map((c) => colorize(c))
-            .join('<span class="mag-card__or">或</span>');
+            .map((c) => colorize(text.conditionLabels[c] || c))
+            .join(`<span class="mag-card__or">${text.or}</span>`);
     }
 
     /* `place` positions a card in the Lv.50 grid. The rule text stays in the
@@ -147,7 +151,7 @@ export function initializeMag(root, evolution, simulation) {
         return `<div class="mag-card"${place}>
       ${portrait(mag.name)}
       <div class="mag-card__body">
-        <div class="mag-card__name">${esc(mag.zh)}<span class="mag-card__en">${esc(mag.name)}</span></div>
+        <div class="mag-card__name">${esc(itemName(mag.name))}<span class="mag-card__en">${esc(mag.name)}</span></div>
         <div class="mag-card__cond">${condLine(mag)}</div>
         ${pbLine(mag, meta)}
         ${triggerRows(mag, meta)}
@@ -159,7 +163,7 @@ export function initializeMag(root, evolution, simulation) {
      * the selected Mag colour (--mag-tint, cyan when uncoloured). */
     function portrait(name) {
         return `<div class="mag-card__portrait">
-        <img class="mag-card__sprite" src="${sprite(name)}" alt="${esc(name)}" loading="lazy" data-mag="${esc(name)}">
+        <img class="mag-card__sprite" src="${sprite(name)}" alt="${esc(itemName(name))}" loading="lazy" data-mag="${esc(name)}">
       </div>`;
     }
 
@@ -182,8 +186,8 @@ export function initializeMag(root, evolution, simulation) {
         return `<div class="mag-card">
       ${portrait('Mag')}
       <div class="mag-card__body">
-        <div class="mag-card__name">玛古<span class="mag-card__en">Mag</span></div>
-        <div class="mag-card__cond">初始形态</div>
+        <div class="mag-card__name">${esc(itemName('Mag'))}<span class="mag-card__en">Mag</span></div>
+        <div class="mag-card__cond">${text.initial}</div>
       </div>
     </div>`;
     }
@@ -199,30 +203,26 @@ export function initializeMag(root, evolution, simulation) {
     function renderLv10(c, meta, key) {
         const flow = `<div class="mag-flow">
       ${starterCard()}
-      ${arrow(`${key} 职业`)}
+      ${arrow(`${key} ${text.class}`)}
       ${card(c.stage1, meta)}
     </div>`;
-        return stage('10', '一阶 · 只看职业', flow,
-            `进化结果<b>仅</b>取决于把 Mag 喂到 Lv.10 的角色职业，与属性完全无关。`);
+        return stage('10', text.stage1, flow,
+            text.note1);
     }
 
     function renderLv35(c, meta) {
         const tie = c.stage2.find((m) => m.cond[0].startsWith(c.tieBreak));
         const body = `<div class="mag-gate">
-      <span class="mag-gate__label">达到 Lv.35 · 比较 ${colorize('POW / DEX / MIND')} 最大值</span>
+      <span class="mag-gate__label">${t('gate35', { stats: colorize('POW / DEX / MIND') })}</span>
     </div>
     <div class="mag-branch">${c.stage2.map((m) => card(m, meta)).join('')}</div>`;
-        return stage('35', '二阶 · 看一阶形态 + 最高属性', body,
-            `此处<b>与职业无关</b>：由 ${esc(c.stage1.zh)} ${esc(c.stage1.name)} 出发，只比最高属性。`
-            + `若最高属性并列，则按一阶形态的优先属性裁决 —— ${esc(c.stage1.zh)} 认 `
-            + `${colorize(c.tieBreak)}，进化为 ${esc(tie ? tie.zh : '')}。`);
+        return stage('35', text.stage2, body,
+            t('note2', { first: language === 'zh' ? esc(c.stage1.zh) + ' ' + esc(c.stage1.name) : esc(itemName(c.stage1.name)), name: esc(itemName(c.stage1.name)), stat: colorize(c.tieBreak), result: esc(tie ? itemName(tie.name) : '') }));
     }
 
     function renderFunnel() {
         return `<div class="mag-funnel">
-      <strong>Lv.50 起，进化结果只取决于 Section ID 与属性排序，与二阶形态无关。</strong>
-      注意这个不对称：Lv.35 是要看一阶形态的（所以上面那根箭头有意义），Lv.50 不看二阶形态。
-      因此下方与上方之间没有连线 —— 这样的映射并不存在，并非疏漏。
+      ${text.funnel}
     </div>`;
     }
 
@@ -240,7 +240,7 @@ export function initializeMag(root, evolution, simulation) {
     function renderStage3(c, meta) {
         const special = c.stage3.special
             ? `<div class="mag-special">
-           <div class="mag-special__title">${colorize('DEF ≥ 45')} — 不分 Section ID，优先于下方分支</div>
+           <div class="mag-special__title">${colorize('DEF ≥ 45')} — ${text.special}</div>
            <div class="mag-special__cards">${c.stage3.special.map((m) => card(m, meta)).join('')}</div>
          </div>`
             : '';
@@ -255,18 +255,16 @@ export function initializeMag(root, evolution, simulation) {
         // three headers auto-place into row 1 regardless. The spine is hidden
         // on mobile, where each card shows its own rule line instead.
         const grid = `<div class="mag-grid">
-      ${idHead(prefix + 'A 组', meta.idGroups.A)}
+      ${idHead(prefix + text.groupA, meta.idGroups.A)}
       ${c.stage3.A.map((m) => card(m, meta, at(m, 1))).join('')}
-      <div class="mag-grid__rulehead">进化条件</div>
+      <div class="mag-grid__rulehead">${text.conditions}</div>
       ${rules}
-      ${idHead(prefix + 'B 组', meta.idGroups.B)}
+      ${idHead(prefix + text.groupB, meta.idGroups.B)}
       ${c.stage3.B.map((m) => card(m, meta, at(m, 3))).join('')}
     </div>`;
 
-        return stage('50', '三阶 · 看 Section ID + 进化条件', special + grid,
-            '中间列是进化条件（属性比较），左右是 A 组 / B 组满足该条件时得到的 mag —— 同一条件在两组给出不同结果。'
-            + '<b>Lv.50 之后每 5 级还可再次进化</b>（55、60、65…），前提是满足另一组进化条件，'
-            + '例如把 Mag 转给另一个角色去喂。');
+        return stage('50', text.stage3, special + grid,
+            text.note3);
     }
 
     /* Lv.100 uses the Lv.50 grid: formulas form the middle column and a Mag
@@ -295,17 +293,15 @@ export function initializeMag(root, evolution, simulation) {
         const head = (label) => `<div class="mag-col__head"><div class="mag-col__title">${esc(label)}</div></div>`;
 
         const grid = `<div class="mag-grid mag-grid--lv100">
-      ${head('男性角色')}
+      ${head(text.male)}
       ${cards('male', 1)}
-      <div class="mag-grid__rulehead">数值公式 + Section ID</div>
+      <div class="mag-grid__rulehead">${text.formula}</div>
       ${rules}
-      ${head('女性角色')}
+      ${head(text.female)}
       ${cards('female', 3)}
     </div>`;
-        return stage('100', '四阶 · 看数值公式 + Section ID + 性别', grid,
-            'Lv.100 起每逢 10 的倍数判定一次（110、120…）：公式、Section ID 与角色性别必须同时满足，'
-            + '且<b>只能由三阶 Mag 进化</b>。四阶不保证达成 —— 若过了 100 级仍未进化，可转给条件吻合的角色再喂一次。'
-            + '<b>一旦进化为四阶，便不再进化，也不再学习新的 PB。</b>');
+        return stage('100', text.stage4, grid,
+            text.note4);
     }
 
     function renderMagChart(mount, key) {
@@ -616,13 +612,13 @@ export function initializeMag(root, evolution, simulation) {
         if (!colors.length) return;
 
         const swatch = (c) =>
-            `<button class="mag-swatch" type="button" title="${esc(c.name)}${c.exclusive ? '（E 服独占）' : ''}"
-        data-hex="${esc(c.hex)}" style="--sw:${esc(c.hex)}"><span class="sr-only">${esc(c.name)}</span></button>`;
+            `<button class="mag-swatch" type="button" title="${esc(text.colours[c.name])}${c.exclusive ? ' (' + text.exclusive + ')' : ''}"
+        data-hex="${esc(c.hex)}" style="--sw:${esc(c.hex)}"><span class="sr-only">${esc(text.colours[c.name])}</span></button>`;
 
-        mount.innerHTML = `<span class="mag-picker__label">Mag 颜色</span>
-      <output class="mag-picker__current" aria-live="polite">原色</output>
+        mount.innerHTML = `<span class="mag-picker__label">${text.colour}</span>
+      <output class="mag-picker__current" aria-live="polite">${text.original}</output>
       <div class="mag-picker__swatches">
-        <button class="mag-swatch mag-swatch--reset is-on" type="button" title="原始（无色）" data-hex="">原色</button>
+        <button class="mag-swatch mag-swatch--reset is-on" type="button" title="${text.reset}" data-hex="">${text.original}</button>
         ${colors.map(swatch).join('')}
       </div>`;
         const current = mount.querySelector('.mag-picker__current');
@@ -633,8 +629,8 @@ export function initializeMag(root, evolution, simulation) {
             mount.querySelectorAll('[data-hex]').forEach((b) => b.classList.remove('is-on'));
             btn.classList.add('is-on');
             const color = colors.find((c) => c.hex === btn.dataset.hex);
-            current.textContent = color ? color.name : '原色';
-            current.dataset.exclusive = color?.exclusive ? 'E 服独占' : '';
+            current.textContent = color ? text.colours[color.name] : text.original;
+            current.dataset.exclusive = color?.exclusive ? text.exclusive : '';
             // The portrait glow follows the chosen colour across every chart.
             if (color) root.style.setProperty('--mag-tint', color.hex);
             else root.style.removeProperty('--mag-tint');
@@ -668,7 +664,7 @@ export function initializeMag(root, evolution, simulation) {
             const v = rows[item];
             if (!v) return '';
             const cells = v.map((n) => `<td>${fmtFeed(n)}</td>`).join('');
-            return `<tr><td>${esc(item)}</td>${cells}</tr>`;
+            return `<tr><td>${esc(itemName(item))}</td>${cells}</tr>`;
         }).join('');
     }
 

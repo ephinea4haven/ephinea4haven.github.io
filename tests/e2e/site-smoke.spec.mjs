@@ -38,8 +38,8 @@ const pages = [
   {
     name: 'multiplayer combo calculator',
     path: '/tools/cc.html',
-    title: /Combo Calculator - PSOStats/,
-    heading: 'Combo Calculator Multiplayer',
+    title: /连击伤害计算器/,
+    heading: '连击伤害计算器（多人模式）',
     readySelector: '.enemy-picker',
     minimumReadyCount: 1,
     noLegacyRuntime: true,
@@ -47,8 +47,8 @@ const pages = [
   {
     name: 'OPM combo calculator',
     path: '/tools/ccopm.html',
-    title: /Combo Calculator - PSOStats/,
-    heading: 'Combo Calculator OPM',
+    title: /连击伤害计算器/,
+    heading: '连击伤害计算器（单人模式）',
     readySelector: '.enemy-picker',
     minimumReadyCount: 1,
     noLegacyRuntime: true,
@@ -366,6 +366,12 @@ test('Seabed route variants use an exclusive full-width accordion', async ({ pag
   await expect.poll(() => variants.nth(1).evaluate((element) => (
     element.getBoundingClientRect().width / element.parentElement.getBoundingClientRect().width
   ))).toBeGreaterThan(0.98);
+
+  await page.goto('/en/guide/seabed.html#routes');
+  await expect(page.locator('[data-seabed-routes]')).toHaveAttribute('data-seabed-routes', 'ready');
+  await page.locator('[data-seabed-routes] details').nth(1).locator('summary').click();
+  await expect(page.locator('[data-seabed-routes] details').nth(1)).toContainText('before the second one attacks');
+  await expect(page.locator('#equipment')).toContainText('Frozen Shooter');
 });
 
 test('NPC guide keeps card and relationship names bilingual', async ({ page }) => {
@@ -435,17 +441,17 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
     await page.locator('#class-select').selectOption('RAmarl');
     await expect(page.locator('#classMinAtpInput')).not.toHaveValue(initialClassAtp);
 
-    await page.locator('.weapon-picker').selectOption({ label: 'Dark Flow' });
+    await page.locator('.weapon-picker').selectOption({ value: 'Dark Flow' });
     await expect(page.locator('#attack1')).toHaveValue('SPECIAL');
     await expect(page.locator('#attack2')).toHaveValue('NONE');
     await expect(page.locator('#hits2 option:checked')).toHaveText('0');
     await expect(page.locator('#hits2')).toBeDisabled();
     await expect(tableRows.first().locator('td').nth(1)).not.toContainText('NaN');
-    await page.locator('.weapon-picker').selectOption({ label: 'Asteron Belt' });
+    await page.locator('.weapon-picker').selectOption({ value: 'Asteron Belt' });
     await expect(page.locator('#special-select')).toHaveValue('Hell*');
-    await page.locator('.weapon-picker').selectOption({ label: 'Spread Needle' });
+    await page.locator('.weapon-picker').selectOption({ value: 'Spread Needle' });
     await expect(page.locator('#special-select')).toHaveValue('Seize');
-    await page.locator('.weapon-picker').selectOption({ label: 'Unarmed' });
+    await page.locator('.weapon-picker').selectOption({ value: 'Unarmed' });
     await expect(page.locator('#attack1')).toHaveValue('NORMAL');
     await expect(page.locator('#attack2')).toHaveValue('NORMAL');
     await expect(page.locator('#attack3')).toHaveValue('NORMAL');
@@ -467,7 +473,7 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
     await page.locator('#damage-header').click();
     await expect(page.locator('#damage-header')).toContainText('▼');
     await page.locator('#damage-header').click();
-    await expect(page.locator('#damage-header')).toHaveText('Damage');
+    await expect(page.locator('#damage-header')).toHaveText('伤害');
 
     await page.locator('#clear-btn').click();
     await expect(tableRows).toHaveCount(0);
@@ -488,7 +494,7 @@ for (const accessibilityPath of [
       await expect.poll(() => page.locator('#combo-calc-table tbody tr').count())
         .toBeGreaterThan(0);
       const rowsBeforeRemoval = await page.locator('#combo-calc-table tbody tr').count();
-      const removeEnemyButton = page.getByRole('button', { name: /^Remove / }).first();
+      const removeEnemyButton = page.getByRole('button', { name: /^移除 / }).first();
       await expect(removeEnemyButton).toBeVisible();
       await removeEnemyButton.click();
       await expect(page.locator('#combo-calc-table tbody tr'))
@@ -862,7 +868,7 @@ test('Combo Calculator remains usable at a mobile viewport', async ({ page }) =>
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/tools/cc.html');
 
-  await expect(page.getByRole('heading', { name: 'Combo Calculator Multiplayer' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '连击伤害计算器（多人模式）' })).toBeVisible();
   await expect(page.locator('#class-select')).toBeVisible();
   await expect(page.locator('#classMinAtpInput')).toHaveValue('1634');
   await expect(page.locator('#classMaxAtpInput')).toHaveValue('1639');
@@ -1227,7 +1233,7 @@ for (const fontSize of [16, 15.5, 16.5]) {
   });
 }
 
-test('banner item lists use Chinese-first bilingual names', async ({ page }) => {
+test('banner item lists pair the page language with the in-game English name', async ({ page }) => {
   await page.goto('/guide/banners.html');
 
   const names = page.locator('.item-list .item-bilingual');
@@ -1244,7 +1250,13 @@ test('banner item lists use Chinese-first bilingual names', async ({ page }) => 
   await expect(page.getByText('天使竖琴涂之心', { exact: true })).toHaveCount(0);
   await expect.poll(() => names.first().evaluate((name) => (
     [...name.children].map((part) => part.className)
-  ))).toEqual(['item-zh', 'item-en']);
+  ))).toEqual(['item-local', 'item-en']);
+
+  await page.goto('/ja/guide/banners.html');
+  await expect(page.locator('.weapon-table').filter({ hasText: 'Lavis Cannon' })).toContainText('ラヴィス＝カノン(Lavis Cannon)');
+  await page.goto('/en/guide/banners.html');
+  await expect(page.locator('.item-list .item-bilingual')).toHaveCount(0);
+  await expect(page.locator('.weapon-table').first()).toContainText('Lavis Cannon');
 });
 
 test('banner weapon Hit groups match the Ephinea Wiki table spans', async ({ page }) => {
@@ -1269,7 +1281,7 @@ test('banner weapon Hit groups match the Ephinea Wiki table spans', async ({ pag
 });
 
 test('Angular content behaviors preserve lookup and Section ID interactions', async ({ page }) => {
-  await page.goto('/data/en2chinese.html');
+  await page.goto('/data/item-names.html');
   const lookupRows = page.locator('#lookup tr');
   await expect.poll(() => lookupRows.count()).toBeGreaterThan(500);
   await page.locator('#search-input').fill('V502');
@@ -1277,7 +1289,8 @@ test('Angular content behaviors preserve lookup and Section ID interactions', as
   await expect(page.locator('#lookup tr:visible')).toHaveCount(1);
   await expect(page.locator('#lookup tr:visible').first()).toContainText('V502');
   await page.locator('#search-input').fill('5TH ANNIV. BLADE');
-  await expect(page.locator('#lookup tr:visible').first().locator('td').nth(1)).toHaveText('PSO5周年纪念·感恩刀');
+  // The Chinese edition lists Chinese, Japanese, then English.
+  await expect(page.locator('#lookup tr:visible').first().locator('td').nth(0)).toHaveText('PSO5周年纪念·感恩刀');
   await page.locator('#search-input').fill('ＰＳＯ５周年');
   await expect(page.locator('#lookup tr:visible')).toHaveCount(1);
   await expect(page.getByRole('button', { name: /半角|全角/ })).toHaveCount(0);
@@ -1291,7 +1304,7 @@ test('Angular content behaviors preserve lookup and Section ID interactions', as
   expect(nameBox.width).toBeGreaterThan(200);
   expect(blueBurstBox.width).toBeGreaterThanOrEqual(479);
   await page.locator('#name').fill('Haven');
-  await expect(page.locator('#tf1')).not.toHaveText('N/A');
+  await expect(page.locator('#tf1')).toHaveText('Bluefull');
   await expect(page.locator('#img1')).not.toHaveAttribute('src', /Impossible/);
   await page.getByRole('button', { name: 'DC/PC/GC/XB' }).click();
   await expect(page.locator('#Legacy')).toBeVisible();
@@ -1453,6 +1466,9 @@ test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ 
   await page.locator('#tab-list [data-tab="subcommands"]').click();
   await expect(page.locator('#proto-content section.active')).toHaveAttribute('data-tab', 'subcommands');
   await expect.poll(() => page.locator('#section-list a').count()).toBeGreaterThan(0);
+  // Back to Chinese, so the remembered language does not redirect the next page.
+  await page.getByRole('button', { name: '中文', exact: true }).click();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
 
   await page.goto('/guide/volopt.html');
   await expect(page.locator('[data-item-name="Excalibur"]')).toContainText('Excalibur 王者之剑');
@@ -1468,6 +1484,14 @@ test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ 
   await expect.poll(() => page.locator('#shifta-tabs button').count()).toBeGreaterThan(1);
   await page.locator('#shifta-tabs button').last().click();
   await expect(page.locator('#shifta-tabs button').last()).toHaveClass(/active/);
+
+  // English shows the English name alone; Japanese adds the authority name.
+  await page.goto('/en/guide/volopt.html');
+  await expect(page.locator('[data-item-name="Galatine"]')).toHaveText('Galatine');
+  await expect(page.locator('#cast-body tr').first()).toBeVisible();
+  await page.goto('/ja/guide/volopt.html');
+  await expect(page.locator('[data-item-name="Galatine"]')).toHaveText('Galatine ガラティーン');
+  await expect(page.locator('#cast-body')).toContainText('ガラティーン');
 
   await page.goto('/tools/mag.html');
   await expect.poll(() => page.locator('#panel-hu .mag-card').count()).toBeGreaterThan(5);
@@ -1563,8 +1587,8 @@ test('authored item names stay aligned across guides and tools', async ({ page }
     })));
     expect(names.length, route).toBeGreaterThan(0);
     if (route === '/tools/equipment.html') {
-      for (const [en, count] of [["DARK FLOW", 1], ["Master Raven", 2], ["L&K38 Combat", 1],
-        ["S-BEAT'S BLADE", 1], ["Tyrell's Parasol", 1]]) {
+      for (const [en, count] of [["DARK FLOW", 4], ["Master Raven", 2], ["L&K38 Combat", 2],
+        ["S-BEAT'S BLADE", 5], ["Tyrell's Parasol", 6]]) {
         expect(names.filter((item) => item.en === en), en).toHaveLength(count);
       }
       await expect(page.locator('.content-container')).not.toContainText('暗黑弗罗文');
@@ -1626,9 +1650,9 @@ test('complete item lookup includes current inactive aliases and removes retired
   const sandbox = { window: {} };
   vm.runInNewContext(readFileSync('assets/js/i18n/items_i18n.js', 'utf8'), sandbox);
   const expected = Object.fromEntries(Object.values(sandbox.window.ITEMS_I18N).map(({ en, zh }) => [en, zh]));
-  await page.goto('/data/en2chinese.html');
+  await page.goto('/data/item-names.html');
   const actual = await page.locator('#lookup tr').evaluateAll((rows) => Object.fromEntries(
-    rows.map((row) => [row.cells[0].textContent, row.cells[1].textContent]),
+    rows.map((row) => [row.cells[2].textContent, row.cells[0].textContent]),
   ));
   expect(actual).toEqual(expected);
   expect(actual["DB'S SABER 3062"]).toBe('DB 之剑「3062」');

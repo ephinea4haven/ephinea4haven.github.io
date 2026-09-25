@@ -1,0 +1,242 @@
+<section data-part="main">
+ <p class="card">
+ <strong>ItemRT</strong> (Item Rare Table) is PSO’s rare drop table. It determines which<strong>rare item</strong>each enemy or box can drop, and at what probability. Figures such as “<span data-item-en="Dragon Slayer"></span> 1/456” and “<span data-item-en="Tyrell's Parasol"></span> 1/3660” come from ItemRT. Together with <a href="/data/itempt.html">ItemPT</a> (whether anything drops and its category) and <a href="/data/itempmt.html">ItemPMT</a> (the item’s own parameters), it forms PSO’s complete drop system.
+ </p>
+
+ <div class="nav-item-links">
+ <a href="#overview">Overview</a>
+ <a href="#structure">File layout</a>
+ <a href="#flow">Generation flow</a>
+ <a href="#probability">Probability encoding</a>
+ <a href="#sectionid">Section IDs</a>
+ <a href="#boxes">Boxes and enemies</a>
+ <a href="#rates">Drop rate modifiers</a>
+ <a href="#struct">Data structures</a>
+ </div>
+
+ <h2 id="overview">Overview</h2>
+ <p>In PSO’s drop checks, rare checks are<strong>independent of</strong>common drops. When an enemy dies or a box is broken, the game first checks for a rare drop:</p>
+ <ol>
+ <li>Look up the rare pool for this enemy or box in ItemRT.</li>
+ <li>Roll for the candidate rare items one at a time, stopping at the first hit (Sega's original method; newserv decides with a single roll, see "Complete drop-check flow" below).</li>
+ <li>If a roll succeeds, that rare item becomes the drop,<strong>bypassing ItemPT’s common-drop flow</strong>.</li>
+ <li>If all rolls fail, return to ItemPT’s common-drop flow.</li>
+ </ol>
+ <p>An enemy’s common drops and rare drops therefore follow separate paths. A low rare drop rate is not reduced further by the number of common items.</p>
+
+ <h2 id="structure">File layout</h2>
+ <p>ItemRT stores subtables for each <strong>difficulty × Section ID</strong> combination, giving <code>4 × 10 = 40</code> subtables (EP4 has a separate episode table). Each subtable has two parts:</p>
+ <ul>
+ <li><strong>Enemy rare pool</strong> (Monster Rares): indexed by enemy type. Each enemy has at most <strong>one rare item</strong> and its probability.</li>
+ <li><strong>Box rare pool</strong> (Box Rares): indexed by area. Boxes in an area usually have several candidates; Ruins 3 boxes, for example, have nearly ten possible rares.</li>
+ </ul>
+ <p class="card">
+ PSOBB uses two separate files: <code>ItemRT.gsl</code> (Ep1 &amp; Ep2) and <code>ItemRT_Ep4.gsl</code>. GSL is Sega’s compact archive format (GStreamLib); each entry contains one subtable.
+ </p>
+
+ <h2 id="flow">Generating a rare drop</h2>
+ <ol>
+ <li><strong>Select the subtable</strong>: use the current difficulty and the game’s Section ID.</li>
+ <li><strong>Find candidates</strong>:
+ <ul>
+ <li>Enemy rares: use the enemy type index to obtain <code>(item ID, probability)</code>.</li>
+ <li>Box rares: use the area index to obtain a candidate list.</li>
+ </ul>
+ </li>
+ <li><strong>Roll</strong>: Sega's original generates a random 32-bit integer for each candidate in turn and compares it with that candidate's probability, stopping at the first hit; newserv generates one 32-bit number and subtracts each candidate's probability in turn, hitting when the result goes negative. "Complete drop-check flow" below explains the difference.</li>
+ <li><strong>On success</strong>: construct the item immediately. Weapons also use the current area’s ItemPT bonus/special generation; frames/shields require a slot decision. Finally, <a href="/data/itempmt.html">ItemPMT</a> supplies the name and model.</li>
+ </ol>
+
+ <h2 id="probability">Probability encoding: why use compression?</h2>
+ <p>In PSOBB’s ItemRT files, a rare item’s probability is <strong>not stored directly as a fraction</strong>. Instead, it is compressed into a <code>uint8</code> (one byte), allowing Sega to fit hundreds of rare entries into a small file. The byte is interpreted as <code>SSSSS VVV</code> :</p>
+ <ul>
+ <li>The high 5 bits are the shift; the low 3 bits are the base value.</li>
+ <li>The approximate expansion formula is <code>(2 &lt;&lt; shift) × (value + 7)</code>, producing a 32-bit probability value.</li>
+ <li>Final drop rate = this 32-bit value / <code>0xFFFFFFFF</code> (4,294,967,295).</li>
+ </ul>
+ <p>Two examples:</p>
+ <ul>
+ <li><code>0x40000000</code>: final drop rate = 25% (<code>0x40000000 / 0xFFFFFFFF ≈ 1/4</code>)</li>
+ <li><code>0x00FFFFFF</code>: final drop rate ≈ 1/256</li>
+ </ul>
+ <p class="card">
+ The compressed format offers only 256 possible values, so ItemRT cannot represent arbitrary probabilities exactly. Familiar rates such as <code>1/456</code>, <code>1/3660</code>, <code>1/11702</code> look unusual because they are the nearest values this format can represent.
+ </p>
+
+ <h2 id="sectionid">How Section IDs are used</h2>
+ <p>Each PSOBB character has one of ten fixed colour-based Section IDs, determined by a hash of the name at creation and described here as unchangeable. The ID:</p>
+ <ul>
+ <li>Selects the game's ItemRT subtable at every difficulty, using the Section ID of the player who created the room.</li>
+ <li>Gives access to a different rare pool; some rares appear only under specific IDs.</li>
+ <li>For example, <strong><span data-item-en="Parasitic Gene &quot;Flow&quot;"></span></strong> can drop when an <strong>Oran</strong> player defeats Olga Flow on Ultimate.</li>
+ </ul>
+ <p>This is why players hunt under particular IDs for particular rares. The <a href="/tools/id.html">Section ID calculator</a> can help find a name that yields the required ID.</p>
+
+ <h2 id="boxes">Enemy rares versus box rares</h2>
+ <h3>Enemy rares</h3>
+ <ul>
+ <li>Indexed by <strong>rt_index</strong> (the enemy type enumeration), with one record per type.</li>
+ <li>Each fixed-length record contains <code>(item ID, packed probability)</code>.</li>
+ <li>One rare per enemy type is the limit. If an enemy has different rares under different IDs (for example, Hildebear dropping different swords), the ID selects a different subtable; the enemy does not roll for all those items at once.</li>
+ </ul>
+
+ <h3>Box rares</h3>
+ <ul>
+ <li>Indexed by <strong>area</strong>, with multiple candidates possible in each area.</li>
+ <li>An area usually has 1–30 candidates, each with its own probability.</li>
+ <li>The game checks the candidate list <strong>one entry at a time</strong>, giving each candidate a chance (see "Roll" above for how).</li>
+ <li>This explains the rich rare-box pools in later areas such as Ruins 3, CCA, Tower and Desert 3.</li>
+ </ul>
+
+ <h2 id="rates">Rare drop rate modifiers</h2>
+ <p>The raw ItemRT probabilities are Sega’s base values. Servers commonly apply a <strong>global drop rate multiplier</strong>:</p>
+ <ul>
+ <li><strong>Ephinea</strong> defaults to <code>1x</code> (base rate). Anniversary milestones can raise this multiplier.</li>
+ <li>The global multiplier affects every rare item’s probability.</li>
+ </ul>
+
+ <h2 id="struct">Data structures</h2>
+ <p>The binary ItemRT format uses a fixed-length packed-probability/item-code record as its smallest unit. Each difficulty × ID subtable starts with this offset header.</p>
+
+ <h3>Subtable header: <code>Offsets</code> (0x10 bytes)</h3>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>monster_rares_offset</td><td>u32</td><td>Enemy rare pool pointer → <code>PackedDrop[0x65]</code> (only 0x33 entries in v1), indexed by rt_index.</td></tr>
+ <tr><td>0x04</td><td>box_count</td><td>u32</td><td>Total box rare entries, usually fixed at 30 (0x1E).</td></tr>
+ <tr><td>0x08</td><td>box_areas_offset</td><td>u32</td><td>Box area array → <code>u8[box_count]</code>. Entry <em>i</em> gives the area of rare entry <em>i</em> .</td></tr>
+ <tr><td>0x0C</td><td>box_rares_offset</td><td>u32</td><td>Box rare pool pointer → <code>PackedDrop[box_count]</code>, corresponding one-to-one with box_areas.</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Packed probability entry: <code>PackedDrop</code> (4 bytes)</h3>
+ <p>Each rare record occupies four bytes, the smallest ItemRT unit. Enemy and box rare pools use the same structure.</p>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>probability</td><td>u8</td><td>Packed probability (<code>SSSSS VVV</code> bit layout).</td></tr>
+ <tr><td>0x01</td><td>item_code</td><td>u8×3</td><td>Item code <code>data1[0..2]</code>; for example, <code>00 01 00</code> means <span data-item-en="Saber"></span>.</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Packing and expanding probabilities</h3>
+ <p>The one-byte <code>probability</code> is interpreted as <code>SSSSS VVV</code> :</p>
+ <ul>
+ <li>The high 5 bits <code>S</code> determine the shift: <code>shift = S − 4</code>, range [−4, 27]; negative values are treated as 0.</li>
+ <li>The low 3 bits <code>V</code> determine the value: <code>value = V + 7</code>, range [7, 14].</li>
+ <li>Expanded 32-bit probability = <code>(2 &lt;&lt; shift) × value</code>. This is the numerator for the rare drop rate; the denominator is <code>0xFFFFFFFF</code> (all 32 bits).</li>
+ <li>Final drop rate = expanded value / <code>0xFFFFFFFF</code></li>
+ </ul>
+ <p>Examples:</p>
+ <table>
+ <thead><tr><th>packed (hex)</th><th>shift</th><th>value</th><th>expanded</th><th>Approximately</th></tr></thead>
+ <tbody>
+ <tr><td>0xFF</td><td>27</td><td>14</td><td>0xE0000000</td><td>87.5%</td></tr>
+ <tr><td>0xC0</td><td>20</td><td>7</td><td>0x01C00000</td><td>About 1/152</td></tr>
+ <tr><td>0x80</td><td>12</td><td>7</td><td>0x0001C000</td><td>About 1/38836</td></tr>
+ <tr><td>0x00</td><td>0</td><td>7</td><td>0x0000000E</td><td>Extremely small (&lt; 1/300 million)</td></tr>
+ </tbody>
+ </table>
+ <p class="card">
+ With only 256 available values, arbitrary exact drop rates cannot be stored. Figures such as <code>1/456</code>, <code>1/3660</code>, <code>1/11702</code> are the nearest representable values. An exact rate such as <code>1/500</code> cannot be specified.
+ </p>
+
+ <h3>Expanded structure: <code>ExpandedDrop</code></h3>
+ <p>newserv expands each <code>PackedDrop</code> into an in-memory structure used for calculations, interaction and serialisation:</p>
+ <table>
+ <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>probability</td><td>u32</td><td>Expanded 32-bit probability (numerator; denominator fixed at 0xFFFFFFFF)</td></tr>
+ <tr><td>data</td><td>ItemData</td><td>Full item data, including data1/data2, not just the three-byte ID</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Box rare: <code>BoxRare</code></h3>
+ <p>Box rare records embed the area number rather than being indexed directly by area:</p>
+ <table>
+ <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>area_norm_plus_1</td><td>u8</td><td>Area number + 1 (0 marks an unused entry)</td></tr>
+ <tr><td>drop</td><td>ExpandedDrop</td><td>Probability + item data</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Complete subtable: <code>SpecCollection</code></h3>
+ <p>Each top-level subtable corresponds to a difficulty × Section ID key and contains the following after expansion:</p>
+ <table>
+ <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr>
+ <td>enemy_specs</td>
+ <td>map⟨Enemy, ExpandedDrop[]⟩</td>
+ <td>Rare pool for each enemy type.</td>
+ </tr>
+ <tr>
+ <td>box_specs</td>
+ <td>ExpandedDrop[][]</td>
+ <td>Outer array indexed by area_norm; each area contains a candidate list whose entries are checked separately.</td>
+ </tr>
+ </tbody>
+ </table>
+
+ <h3>Complete drop-check flow</h3>
+ <p>An enemy death or a broken box initiates a drop event. These separate paths first check for a rare, then use ItemPT’s common flow if that fails.</p>
+
+ <h4>Enemy drops</h4>
+ <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.2);border-radius:6px;padding:14px;overflow-x:auto;color:#cbd5e1;line-height:1.6;font-family:'Fira Code','Consolas',monospace;font-size:13px"><code>// ① Initial check: does the enemy drop anything?
+type_drop_prob = pt.enemy_type_drop_probs[enemy_type]   // 0–100
+if rand(0..99) &gt;= type_drop_prob:
+    return nothing                                       // No drop
+
+// ② Rare check (stacking: one roll for all specs)
+specs = rare_item_set.get_enemy_specs(mode, episode, difficulty, section_id, enemy_type)
+det = rand(0, 0x100000000)                               // 32 bits + 1
+for spec in specs:
+    det -= spec.probability                              // Subtract in order
+    if det &lt; 0:
+        return create_rare_item(spec.data, area)          // Rare selected; finish
+
+// ③ ItemPT common flow: choose a category
+determinant = allow_meseta ? rand(0..2) : rand(0..1) + 1
+switch determinant:
+    case 0: item_class = 5 (Meseta)
+    case 1: item_class = 4 (Consumable)
+    case 2: item_class = pt.enemy_type_item_classes[enemy_type]   // 0..3: weapon/frame/barrier/unit
+
+// ④ Generate the item by category (weights, grind, attributes, special…)
+generate_common_item_variances(item, area)</code></pre>
+
+ <h4>Box drops</h4>
+ <pre style="background:rgba(0,0,0,0.4);border:1px solid rgba(0,212,255,0.2);border-radius:6px;padding:14px;overflow-x:auto;color:#cbd5e1;line-height:1.6;font-family:'Fira Code','Consolas',monospace;font-size:13px"><code>// ① Rare check (same stacking algorithm as enemies)
+table_index = table_index_for_area(area)
+specs = rare_item_set.get_box_specs(mode, episode, difficulty, section_id, table_index)
+det = rand(0, 0x100000000)
+for spec in specs:
+    det -= spec.probability
+    if det &lt; 0:
+        return create_rare_item(spec.data, area)
+
+// ② No rare → choose a weighted category from box_item_class_prob_table
+item_class = weighted_pick(pt.box_item_class_prob_table, table_index)
+    // 0=weapon 1=frame 2=barrier 3=unit 4=consumable 5=Meseta 6=empty
+
+// ③ Generate an item if item_class &lt; 6
+if item_class &lt; 6:
+    generate_common_item_variances(item, area)</code></pre>
+
+ <p class="card">
+ <strong>An important note on stacking:</strong><br>
+ Stacking starts with det, subtracts each spec’s probability in turn, and succeeds when the result becomes negative. This is equivalent to <strong>one random roll deciding among all specs</strong>; spec order does not affect the final distribution.<br>
+ Sega’s original client instead rolls <strong>independently</strong> for each spec using <code>rand(0, 0xFFFFFFFF)</code> and compares the result with spec.probability. Later specs are effectively rarer because a success ends the flow. This makes no difference for enemies with one spec, but box lists with many candidates differ from stacking. The newserv author documents this in the comments.
+ </p>
+
+ <h2>Related pages</h2>
+ <ul>
+ <li><a href="https://dropcharts.psohaven.com/bb/?diff=Ultimate">Drop charts</a>: look up rares by ID, difficulty and enemy.</li>
+ <li><a href="/data/itempt.html">ItemPT — common drop rules</a>: the common flow used after a failed rare check.</li>
+ <li><a href="/data/itempmt.html">ItemPMT — item parameter table</a>: base stats and equipment requirements for each rare.</li>
+ <li><a href="/tools/id.html">Section ID calculator</a>: find a name for an ID.</li>
+ <li><a href="/data/prizelist/">Coren’s gambling prizes</a> &nbsp;/&nbsp; <a href="/data/bdp/">Black Paper’s Dangerous Deal</a>: rares obtained outside normal drops.</li>
+ </ul>
+</section>
+

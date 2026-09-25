@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parse, serialize } from 'parse5';
+import { parse, parseFragment, serialize } from 'parse5';
 import vm from 'node:vm';
 import { localizeHome } from './home_i18n.mjs';
 import { languagesFor, loadPageI18n, localizeBody, localizeLinks, pageMetadata } from './page_i18n.mjs';
@@ -18,7 +18,7 @@ const roots = ['data', 'event', 'guide', 'tools'];
 const rootPages = ['index.html', '404.html'];
 const explicitPages = new Set([
   'data/price_guide.html',
-  'data/en2chinese.html',
+  'data/item-names.html',
   'tools/cc.html',
   'tools/ccopm.html',
   'tools/chartable.html',
@@ -48,6 +48,8 @@ const pageBehaviors = new Map([
 ]);
 const behaviorModules = new Map([
   ['ChallengeGuideBehavior', '../../content/challenge-guide.directive'],
+  ['BackToTopBehavior', '../../content/back-to-top.directive'],
+  ['EventArchiveBehavior', '../../events/event-archive.directive'],
   ['LandingPageBehavior', '../../content/landing-page.directive'],
   ['VolOptBehavior', '../../data/volopt.directive'],
   ['RbrBehavior', '../../rbr/rbr.directive'],
@@ -222,8 +224,10 @@ vm.runInNewContext(await readFile(path.join(root, 'assets/js/mag-evolution.js'),
 vm.runInNewContext(await readFile(path.join(root, 'assets/js/mag-sim-data.js'), 'utf8'), magSimulationSandbox, {
   filename: 'assets/js/mag-sim-data.js', timeout: 1000,
 });
+// The chart consumes feeding values only, not the simulator's evolution and cell rules.
+const { feedTables, itemOrder } = magSimulationSandbox.window.MAG_SIM;
 await writeFile(path.join(root, 'src/app/generated/data/mag-data.ts'),
-  `export const MAG_EVOLUTION = ${JSON.stringify(magEvolutionSandbox.window.MAG_EVOLUTION)} as const;\nexport const MAG_SIMULATION = ${JSON.stringify(magSimulationSandbox.window.MAG_SIM)} as const;\n`);
+  `export const MAG_EVOLUTION = ${JSON.stringify(magEvolutionSandbox.window.MAG_EVOLUTION)} as const;\nexport const MAG_FEEDING = ${JSON.stringify({ feedTables, itemOrder })} as const;\n`);
 
 function i18nAttributes(values) {
   return `data-i18n data-zh="${escapeHtml(values.zh)}" data-en="${escapeHtml(values.en)}" data-ja="${escapeHtml(values.ja)}"`;
@@ -399,41 +403,47 @@ function buildPrizeContent(source) {
     .replace('<div id="tablesContainer"></div>', `<div id="tablesContainer">${tables}</div>`);
 }
 
-function buildBannersContent(source) {
-  const candidates = new Map();
-  for (const item of itemTranslations) {
-    if (item.en === item.zh) continue;
-    const names = [item.en, item.en.replace(/"([^"]+)"/g, '“$1”')];
-    for (const name of names) candidates.set(escapeHtml(name), item.zh);
-  }
-  const names = [...candidates.keys()].sort((left, right) => right.length - left.length);
-  const candidatesByName = new Map(
-    [...candidates].map(([name, zh]) => [name.toLocaleLowerCase(), zh]),
-  );
-  const escaped = names.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
-  const pattern = new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z0-9])`, 'gi');
-  const document = parse(source, { sourceCodeLocationInfo: true });
-  const ranges = [];
-  visit(document, (node) => {
-    if (node.tagName !== 'td'
-        || !node.attrs?.some(({ name, value }) => name === 'class' && value.split(/\s+/).includes('item-list'))
-        || !node.sourceCodeLocation?.startTag
-        || !node.sourceCodeLocation?.endTag) return;
-    ranges.push([
-      node.sourceCodeLocation.startTag.endOffset,
-      node.sourceCodeLocation.endTag.startOffset,
-    ]);
-  });
-
-  for (const [start, end] of ranges.reverse()) {
-    const localized = source.slice(start, end).replace(pattern, (match, prefix, english) => {
-      const zh = candidatesByName.get(english.toLocaleLowerCase());
-      if (!zh) return match;
-      return `${prefix}<span class="item-bilingual"><span class="item-zh">${escapeHtml(zh)}</span><span class="item-en">(${english})</span></span>`;
+/**
+ * Banner item lists name items in English, as the in-game banners do. After the
+ * page's language is in place, each known name gains the authority name in that
+ * language, with the English kept in brackets; the English edition shows the
+ * English name alone.
+ */
+const bannerNamePatterns = new Map();
+function bannerNamePattern(language) {
+  if (!bannerNamePatterns.has(language)) {
+    const candidates = new Map();
+    for (const item of itemTranslations) {
+      const local = item[language];
+      if (!local || local === item.en) continue;
+      for (const name of [item.en, item.en.replace(/"([^"]+)"/g, '“$1”')]) {
+        candidates.set(escapeHtml(name).toLocaleLowerCase(), local);
+      }
+    }
+    const escaped = [...candidates.keys()].sort((left, right) => right.length - left.length)
+      .map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
+    bannerNamePatterns.set(language, {
+      candidates,
+      pattern: new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z0-9])`, 'gi'),
     });
-    source = `${source.slice(0, start)}${localized}${source.slice(end)}`;
   }
-  return source;
+  return bannerNamePatterns.get(language);
+}
+
+function localizeBannerItems(body, language) {
+  if (language === 'en') return;
+  const { candidates, pattern } = bannerNamePattern(language);
+  visit(body, (node) => {
+    if (node.tagName !== 'td'
+        || !node.attrs?.some(({ name, value }) => name === 'class' && value.split(/\s+/).includes('item-list'))) return;
+    const localized = serialize(node).replace(pattern, (match, prefix, english) => {
+      const local = candidates.get(english.toLocaleLowerCase());
+      if (!local) return match;
+      return `${prefix}<span class="item-bilingual"><span class="item-local">${escapeHtml(local)}</span><span class="item-en">(${english})</span></span>`;
+    });
+    node.childNodes = parseFragment(localized).childNodes;
+    for (const child of node.childNodes) child.parentNode = node;
+  });
 }
 
 async function buildProtocolContent(source) {
@@ -458,23 +468,6 @@ async function buildProtocolContent(source) {
     .replace('<div class="loading">正在加载文档…</div>', sections.join(''));
 }
 
-async function buildSeasonalContent(relative, source) {
-  const eventName = relative.includes('anniversary') ? 'anniversary' : 'christmas';
-  const yearsByEvent = {
-    anniversary: [2026, 2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016],
-    christmas: [2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015],
-  };
-  const years = yearsByEvent[eventName];
-  const defaultYear = years[0];
-  const fragment = await readFile(path.join(root, 'event', eventName, `${defaultYear}.html`), 'utf8');
-  const nav = years.map((year) => year === defaultYear
-    ? `<span class="year-current">${year}</span>` : `<a href="/event/${eventName}.html?year=${year}">${year}</a>`).join('');
-  return source
-    .replace('<section class="event-masthead', `<section data-seasonal-event data-event="${eventName}" data-years="${years.join(',')}" data-default-year="${defaultYear}" class="event-masthead`)
-    .replace(/<nav id="yearNav"([^>]*)><\/nav>/, `<nav id="yearNav"$1>${nav}</nav>`)
-    .replace('<p>载入中…</p>', fragment);
-}
-
 async function applyBuildTimeContent(relative, source) {
   source = buildCanonicalItemConsumers(relative, source);
   if (relative === 'index.html') {
@@ -496,31 +489,7 @@ async function applyBuildTimeContent(relative, source) {
   if (relative === 'data/bdp/index.html') return buildBdpContent(source);
   if (relative === 'data/prizelist/index.html') return buildPrizeContent(source);
   if (relative === 'data/protocol/index.html') return buildProtocolContent(source);
-  if (relative === 'guide/banners.html') return buildBannersContent(source);
-  if (relative === 'event/anniversary.html' || relative === 'event/christmas.html') {
-    return buildSeasonalContent(relative, source);
-  }
-  if (!['event/easter.html', 'event/halloween.html', 'event/valentines.html'].includes(relative)) {
-    return source;
-  }
-  const eventName = source.match(/data-event="([^"]+)"/)?.[1];
-  const years = source.match(/data-years="([^"]+)"/)?.[1];
-  const defaultYear = source.match(/data-default-year="([^"]+)"/)?.[1];
-  const titleName = source.match(/data-title-name="([^"]+)"/)?.[1];
-  if (!eventName || !years || !defaultYear || !titleName) {
-    throw new Error(`${relative} has an invalid event archive contract`);
-  }
-  const fragment = await readFile(path.join(root, 'event', eventName, `${defaultYear}.html`), 'utf8');
-  const nav = years.split(',').map((year) => (
-    year === defaultYear
-      ? `<span class="year-current" aria-current="page">${year}</span>`
-      : `<a href="?year=${year}">${year}</a>`
-  )).join('');
-  return source
-    .replace('<section class="archive-masthead"', `<section class="archive-masthead" data-event-archive data-event="${eventName}" data-years="${years}" data-default-year="${defaultYear}" data-title-name="${titleName}"`)
-    .replace('<nav id="yearNav" class="archive-year-nav" aria-label=', `<nav id="yearNav" class="archive-year-nav" data-prerendered aria-label=`)
-    .replace('</nav>', `${nav}</nav>`)
-    .replace(/<section id="yearContent" class="archive-content">[\s\S]*?<\/section>/, `<section id="yearContent" class="archive-content">${fragment}</section>`);
+  return source;
 }
 
 function removeScripts(node) {
@@ -608,6 +577,34 @@ function pageDetails(file, source, relative, language) {
   localizeBody(pageI18n, body, language, relative, {
     itemName: (english, itemLanguage) => itemByEnglish(english, relative)[itemLanguage],
   });
+  if (relative === 'guide/banners.html') localizeBannerItems(body, language);
+  // Regions replace the overview before the selected edition's default year is
+  // inserted. The same compiled fragment is published for later year requests.
+  const eventName = /^event\/(anniversary|christmas|easter|halloween|valentines)\.html$/.exec(relative)?.[1];
+  if (eventName) {
+    const years = eventYears.get(eventName);
+    const prefix = language === 'zh' ? '' : `/${language}`;
+    visit(body, (node) => {
+      const attrs = new Map((node.attrs ?? []).map(({ name, value }) => [name, value]));
+      if ((attrs.get('class') ?? '').split(' ').some((name) => name === 'event-masthead' || name === 'archive-masthead')) {
+        for (const [name, value] of Object.entries({
+          [eventName === 'anniversary' || eventName === 'christmas' ? 'data-seasonal-event' : 'data-event-archive']: '',
+          'data-event': eventName, 'data-years': years.join(','), 'data-default-year': String(years[0]),
+        })) {
+          node.attrs = node.attrs.filter((entry) => entry.name !== name);
+          node.attrs.push({ name, value });
+        }
+      }
+      if (attrs.get('id') === 'content' || attrs.get('id') === 'yearContent') {
+        node.childNodes = parseFragment(eventFragments.get(`${language}/event/${eventName}/${years[0]}.html`)).childNodes;
+      }
+      if (attrs.get('id') === 'yearNav') {
+        node.childNodes = parseFragment(years.map((year) => year === years[0]
+          ? `<span class="year-current" aria-current="page">${year}</span>`
+          : `<a href="${prefix}/event/${eventName}.html?year=${year}">${year}</a>`).join('')).childNodes;
+      }
+    });
+  }
   // Translated regions are in place; make every link root-relative, then point it at this language.
   makeRelativeUrlsRootRelative(body, relative);
   localizeLinks(pageI18n, body, language);
@@ -640,7 +637,40 @@ const candidates = [
 ].sort();
 
 const pageI18n = await loadPageI18n(root);
-await writeFile(path.join(root, 'src/app/generated/localized-pages.json'), `${JSON.stringify({ versions: pageI18n.localized, unprefixed: pageI18n.unprefixed })}\n`);
+const eventYears = new Map();
+const eventFragments = new Map();
+const fragmentDirectory = path.join(root, 'src/app/generated/event-fragments');
+await rm(fragmentDirectory, { recursive: true, force: true });
+for (const eventName of ['anniversary', 'christmas', 'easter', 'halloween', 'valentines']) {
+  const files = (await readdir(path.join(root, 'event', eventName))).filter((file) => /^\d{4}\.html$/.test(file)).sort().reverse();
+  eventYears.set(eventName, files.map((file) => Number(file.slice(0, 4))));
+  for (const file of files) {
+    const relative = `event/${eventName}/${file}`;
+    const source = await readFile(path.join(root, relative), 'utf8');
+    for (const language of ['zh', 'en', 'ja']) {
+      const body = parseFragment(source);
+      localizeBody(pageI18n, body, language, relative, {
+        itemName: (english, itemLanguage) => itemByEnglish(english, relative)[itemLanguage],
+      });
+      // A fragment's section navigation belongs to its archive host, not to the
+      // fetched resource (nor to the application's base URL).
+      visit(body, (node) => {
+        const href = node.attrs?.find((attribute) => attribute.name === 'href');
+        if (href?.value.startsWith('#')) href.value = `/event/${eventName}.html?year=${file.slice(0, 4)}${href.value}`;
+      });
+      makeRelativeUrlsRootRelative(body, relative);
+      localizeLinks(pageI18n, body, language);
+      // Keep the historical Chinese fragment's bytes apart from item placeholders.
+      const html = language === 'zh' ? source.replace(/ data-part="content\d+"/g, '').replace(/<span data-item-en="([^"]+)"><\/span>/g,
+        (_, name) => escapeHtml(itemByEnglish(name.replaceAll('&quot;', '"').replaceAll('&amp;', '&'), relative).zh)) : serialize(body);
+      eventFragments.set(`${language}/${relative}`, html);
+      const destination = path.join(fragmentDirectory, language === 'zh' ? relative : `${language}/${relative}`);
+      await mkdir(path.dirname(destination), { recursive: true });
+      await writeFile(destination, html);
+    }
+  }
+}
+await writeFile(path.join(root, 'src/app/generated/localized-pages.json'), `${JSON.stringify({ versions: pageI18n.localized })}\n`);
 const pages = [];
 for (const file of candidates) {
   const relative = path.relative(root, file).split(path.sep).join('/');

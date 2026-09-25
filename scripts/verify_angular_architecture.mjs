@@ -133,7 +133,7 @@ const itemLookupTemplate = await readFile(
   'utf8',
 );
 if (!itemLookupComponent.includes('ITEM_TRANSLATIONS')
-    || !itemLookupTemplate.includes('{{ item.zh }}')) {
+    || !itemLookupTemplate.includes('{{ name(item, column) || ')) {
   throw new Error('item lookup must render the generated authority through Angular binding');
 }
 if (itemLookupTemplate.includes('[(ngModel)]')

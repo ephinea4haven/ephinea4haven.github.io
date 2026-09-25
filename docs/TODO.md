@@ -32,27 +32,46 @@ has started. Check an item only when its stated completion criteria are met.
     Japanese under `/en/` and `/ja/`) with hreflang alternates; interface text
     comes from keyed message files and long-form text from per-language
     documents ([Languages and URLs](ARCHITECTURE.md#languages-and-urls)). A
-    remembered choice opens existing versions; pages without one stay put and
-    say so. Per-page coverage, titles and descriptions live in
-    `content/i18n/pages.json`.
+    remembered choice opens that language's version. Per-page coverage, titles
+    and descriptions live in `content/i18n/pages.json`.
   - [x] Phase 2 (2026-09-25): finish the partially translated pages — the EP1
     and EP2 challenge guides (text and redrawn maps, including the Area 23 warp
     close-up), Black Paper's Deal, the prize list, the protocol reference (English
     and Japanese), and the item and monster catalogs' mechanics, acquisition and
     behaviour text in English and Japanese.
-  - [ ] Phase 3: main guides and tools (mechanics, class guide, post-processing
-    comparison, launcher, status simulator, Mag chart and others). Done: the
-    mechanics guide, class guide and launcher guide (batch A); the status
-    simulator; the acronym, Anguish, command, DEP, graphics/Direct3D, Discord,
-    Ephinea, rules, error code, input method, Chinese patch, NPC, registration,
-    account backup and time zone guides (batch B1); and the RBR guide, including
-    its live tracker and per-language tier charts. Next: the Seabed, Vol Opt and
-    banner guides (batch B2), then the remaining tools (batch C).
-  - [ ] Phase 4: data pages (price guide, monster farming guide, ItemPMT/PT/RT and
-    others).
-  - [ ] Phase 5: event archive (6 overviews and 45 yearly pages).
-  - [ ] Scope decisions: upstream English tools (Combo Calculator, Section ID
-    Finder) and the English–Chinese item table.
+  - [x] Phase 3 (2026-09-25): main guides and tools. Batch A: the mechanics
+    guide, class guide and launcher guide, plus the status simulator. Batch B:
+    the acronym, Anguish, command, DEP, graphics/Direct3D, Discord, Ephinea,
+    rules, error code, input method, Chinese patch, NPC, registration, account
+    backup, time zone, RBR (with its live tracker and per-language tier charts),
+    Seabed, Vol Opt and banner guides. Batch C: the aim, aim2, V50x, survival
+    HP, equipment, material plan, character table and Mag chart tools,
+    including their runtime text.
+  - [x] Phase 4 (2026-09-25): the 13 data pages (price guide, item name table,
+    monster farming guide, ItemPMT/PT/RT, item codes, quests, level 200, enemy
+    weapon hit, equipment technique boosts, Gallon's Roulette, weapon special
+    reduction), including their runtime text. The English–Chinese item table
+    became `data/item-names.html` ("物品名称对照（中日英）"), listing Chinese,
+    Japanese and English with the page's language first.
+  - [x] Upstream tools (2026-09-25): the Combo Calculator (multiplayer and
+    OPM) and Section ID Finder have Chinese, English and Japanese versions and
+    runtime text; Chinese moved to the historical URL and English to `/en/`.
+  - [x] Phase 5 (2026-09-25): the six event overviews and 45 yearly fragments,
+    with per-language fragments, year navigation and archive controls. With no
+    Chinese-only page left, the "only available in Chinese" notice was removed;
+    the single GitHub Pages 404 page follows the URL's language.
+  - [ ] Final acceptance: review content parity page by page and check language
+    switching and layout on desktop and mobile, then check this item.
+
+- [x] Review source claims the translation passes flagged (2026-09-25, confirmed
+  with the maintainer; fixed in all three languages). ItemRT: the Olga Flow
+  example names Parasitic Gene "Flow", not Dark Flow; the room creator's Section
+  ID selects the subtable; the rare roll order distinguishes Sega's per-candidate
+  rolls from newserv's single stacked roll. ItemPMT: Psycho Wand (+30% Ra-tech
+  damage) and Glide Divine (+100% Jellen/Zalure range) examples; a 1★ Draw versus
+  4★ Gush area example (tiers from the Ephinea Wiki Weapons page, revision
+  43341); 8 feeding tables × 11 foods. The 2026 anniversary guide's "Melan" is
+  Merlan.
 
 ## Maintenance Guidelines
 

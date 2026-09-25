@@ -1,0 +1,387 @@
+<section data-part="main">
+ <p class="card">
+ <strong>ItemPMT</strong> (Item Parameter Table) is the item parameter table shared by the PSO client and server. For every weapon, frame, barrier, unit, Mag and consumable, it defines <strong>base stats, name indexes, equipment requirements, descriptions and appearance models</strong>. ItemPT and ItemRT determine when items drop and at what probability; they consult ItemPMT for the detailed parameters of the item itself.
+ </p>
+
+ <div class="nav-item-links">
+ <a href="#overview">Overview</a>
+ <a href="#format">Files and versions</a>
+ <a href="#weapon">Weapons</a>
+ <a href="#armor-shield">Frames &amp; barriers</a>
+ <a href="#unit">Units</a>
+ <a href="#mag">Mags</a>
+ <a href="#tool">Consumables</a>
+ <a href="#special">Special attack table</a>
+ <a href="#other-tables">Other subtables</a>
+ <a href="#struct">Data structures</a>
+ </div>
+
+ <h2 id="overview">Overview</h2>
+ <p>ItemPMT is the game’s item dictionary. Given an item ID, it supplies:</p>
+ <ul>
+ <li>Display name (an index into TextEnglish/TextJapanese)</li>
+ <li>Model and texture</li>
+ <li>Category (weapon/frame/barrier/unit/Mag/consumable/Technique/<span data-item-en="Photon Drop"></span>…)</li>
+ <li>Base stats (weapon ATP/ATA, frame DFP/EVP, barrier resistances…)</li>
+ <li>Equipment restrictions (class flags, ATP/MST/ATA and level requirements)</li>
+ <li>Grind limit, star rarity, whether the item can be sold and base sale price</li>
+ </ul>
+ <p>This table is used when the client reads saved items, when players inspect item details and when the server checks equipment eligibility.</p>
+
+ <h2 id="format">Files and versions</h2>
+ <p>ItemPMT is a PRS-compressed binary file, with different versions for different PSO releases:</p>
+ <ul>
+ <li><code>ItemPMT-bb-v4.prs</code> — official PSOBB / Ephinea</li>
+ <li><code>ItemPMT-gc-v3.prs</code> — GameCube (Episode I &amp; II)</li>
+ <li><code>ItemPMT-gc-ep3.prs</code> — Episode III card game</li>
+ <li><code>ItemPMT-xb-v3.prs</code> — Xbox</li>
+ <li><code>ItemPMT-pc-v2.prs</code> — PC v2</li>
+ <li><code>ItemPMT-dc-v1.prs</code> / <code>ItemPMT-dc-v2.prs</code> — Dreamcast v1/v2</li>
+ <li>There are also NTE (Network Trial Edition) and November 2000 prototype versions.</li>
+ </ul>
+
+ <h2 id="weapon">Weapons</h2>
+ <p>Weapon fields fall into three broad groups:</p>
+ <h3>Identity and classification</h3>
+ <ul>
+ <li><strong>ID</strong>: unique item number, also selecting the name text index</li>
+ <li><strong>Model / Texture</strong>: 3D model and texture</li>
+ <li><strong>Type / Subtype</strong>: parent type and subtype, such as <span data-item-en="Saber"></span>/<span data-item-en="Brand"></span>/<span data-item-en="Buster"></span> within the saber family</li>
+ <li><strong>Class Flags</strong>: eligible classes, one bit for each of the 12 classes (HUmar/HUnewearl/HUcast/…) </li>
+ </ul>
+ <h3>Combat fields</h3>
+ <ul>
+ <li><strong>ATP Min / ATP Max</strong>: base ATP range; the actual value is random within this range</li>
+ <li><strong>ATA</strong>: weapon ATA bonus</li>
+ <li><strong>Max Grind</strong>: maximum grind (<code>+9</code> means 9)</li>
+ <li><strong>Photon</strong>: photon type, determining melee/ranged/Technique category and combo behaviour</li>
+ <li><strong>Special</strong>: default special ID (references <a href="#special">Special attack table</a>)</li>
+ </ul>
+ <h3>Equipment requirements</h3>
+ <ul>
+ <li><strong>ATP Required</strong>: minimum ATP to equip</li>
+ <li><strong>MST Required</strong>: minimum MST to equip</li>
+ <li><strong>ATA Required</strong>: minimum ATA to equip</li>
+ </ul>
+
+ <h2 id="armor-shield">Frames (Armor / Frame) and barriers (Shield / Barrier)</h2>
+ <p>Frames and barriers share a structure but are stored in separate subtables. Each entry contains:</p>
+ <ul>
+ <li><strong>DFP / EVP</strong>: base defence and evasion, with a <code>min–max</code> range for random variation</li>
+ <li><strong>Class Flags</strong>: eligible classes</li>
+ <li><strong>Required level</strong>: minimum level to equip</li>
+ <li><strong>Maximum DFP / EVP bonus</strong>: maximum increase through frame upgrades (frame <code>+N</code>)</li>
+ <li><strong>Unit slots</strong>: always 0 for barriers; 0–4 for frames (rare frame slots are selected by ItemPT, not fixed)</li>
+ <li><strong>Five elemental resistances</strong>: EFR / EIC / ETH / EDK / ELT (fire/ice/lightning/dark/light)</li>
+ </ul>
+
+ <h2 id="unit">Units</h2>
+ <p>Unit entries are relatively simple:</p>
+ <ul>
+ <li><strong>Class Flags</strong>: eligible classes</li>
+ <li><strong>Stat Bonus</strong>: the stat and amount added (HP, TP, ATP, DFP, ATA, EVP, LCK, MST…)</li>
+ <li><strong>Plus/minus threshold</strong>: units marked with <code>/</code> signs (such as <code><span data-item-en="HP/Restorate"></span></code>, <code>HP/Resurrect</code>): activation chance or cooldown</li>
+ <li><strong>Star rarity</strong>: determines common versus rare units</li>
+ </ul>
+ <p class="card">
+ Some units use <strong>behavioural checks</strong> rather than numeric bonuses, such as <code><span data-item-en="Smartlink"></span></code>, <code><span data-item-en="V501"></span></code>/<code><span data-item-en="V502"></span></code>, <code><span data-item-en="Trap Vision"></span></code>. Their effects are hard-coded by item ID rather than stored as numeric fields in ItemPMT.
+ </p>
+
+ <h2 id="mag">Mags</h2>
+ <p>Mag parameters are a distinctive part of ItemPMT. Each Mag entry contains:</p>
+ <ul>
+ <li><strong>Model ID</strong>: evolved appearance, dependent on DEF/POW/DEX/MIND and the owner’s class group</li>
+ <li><strong>Photon point cost</strong> (feed table): stat changes and amounts for each food item</li>
+ <li><strong>Photon Blast group combinations</strong>: which PBs can occupy the three slots</li>
+ </ul>
+ <p>The Mag feeding rules form a large table in ItemPMT: <strong>8 feeding tables × 11 foods</strong>; each Mag type points to one of the tables, and each cell specifies changes to DEF/POW/DEX/MIND/SYNC/IQ.</p>
+
+ <h2 id="tool">Consumables (Tools)</h2>
+ <p>Tool entries are the simplest, primarily containing:</p>
+ <ul>
+ <li><strong>ID</strong> and <strong>Name index</strong></li>
+ <li><strong>Use effect</strong> ID (the game handles healing, status recovery, teleporting and so on by ID)</li>
+ <li><strong>Stack limit</strong> (Stack Max): maximum per inventory slot; for example, recovery items and <span data-item-en="Sol Atomizer"></span> stack to 10, <span data-item-en="Photon Drop"></span> to 99.</li>
+ <li><strong>Can be sold</strong> / <strong>Base sale price</strong></li>
+ <li><strong>Star rarity</strong>: for example, <span data-item-en="AddSlot"></span> is a consumable with a star rating</li>
+ </ul>
+ <p>Technique disks belong to Tools but have a different small structure: Technique ID plus level, with a fixed stack limit of 1.</p>
+
+ <h2 id="special">Special attack table</h2>
+ <p>Weapon specials (Charge / Spirit / Berserk / Geist / Hell / Demon’s / Arrest / Chaos / Blizzard / Burning…) have their own table referenced by ID in ItemPMT. Each entry includes:</p>
+ <ul>
+ <li><strong>Name index</strong> (“Charge”, “Berserk”, etc.)</li>
+ <li><strong>Star rarity</strong>: common-weapon special generation rolls a star tier, then selects an ability in that tier</li>
+ <li><strong>Activation parameters</strong>: chance, cost (MST/HP/etc.) and additional damage</li>
+ </ul>
+ <p class="card">
+ <strong>Where do common-weapon specials come from?</strong><br>
+ Instead of reading a weapon’s Special field directly, ItemPT generates a star tier (0–5) based on area, then selects a matching entry in ItemPMT. So a weapon found in the Mines may carry a 1★ Draw, while the same model found in the Ruins may carry a 4★ Gush: the available pool differs by area.
+ </p>
+
+ <h2 id="other-tables">Other subtables</h2>
+ <p>Alongside the main item entries, ItemPMT has smaller auxiliary tables for various game systems:</p>
+ <h3>Combining and upgrading (Item Combination Table)</h3>
+ <p>Recipes record <strong>used item × equipped target × result</strong>, with additional constraints:</p>
+ <ul>
+ <li>Required Mag level, weapon grind, character level and class</li>
+ <li>Example uses: converting <span data-item-en="Photon Drop"></span> into <span data-item-en="Photon Sphere"></span>, or upgrading a weapon with a specific tool</li>
+ </ul>
+ <p class="card">
+ This table is <strong>not</strong> the attack combo table. PSO’s N-N-H / N-H-H sequence modifiers are <strong>hard-coded</strong> in the client. The only combo-related ItemPMT field is each weapon’s one-byte <code>behavior_flags</code>, whose bits include a combo prohibition flag (some weapons can attack only once per sequence).
+ </p>
+
+ <h3>Tech Boost Table</h3>
+ <p>Technique damage or range bonuses on canes and related weapons. Examples include <strong><span data-item-en="Psycho Wand"></span></strong>, which gives Rafoie / Rabarta / Razonde +30% damage, and <strong><span data-item-en="Glide Divine"></span></strong>, which gives Jellen / Zalure +100% range. A weapon’s <code>tech_boost</code> field points to this table.</p>
+
+ <h3>Special Data / Weapon Effect / Shield Effect</h3>
+ <ul>
+ <li><strong>Special Data Table</strong>: parameters for all specials (Charge/Berserk/Hell/Demon’s…), as described above.</li>
+ <li><strong>Weapon Effect Table</strong>: passive effects of equipped weapons, such as HP absorption or resistances.</li>
+ <li><strong>Shield Effect Table</strong>: passive effects on barriers, such as regeneration and additional rare-barrier effects.</li>
+ <li><strong>Ranged Special Table</strong>: ranged-weapon special behaviour; some specials behave differently on ranged weapons.</li>
+ </ul>
+
+ <h3>Stat Boost Table</h3>
+ <p>Actual bonus data referenced by units. The unit stores a boost ID; this table supplies the stat and amount.</p>
+
+ <h3>Max Tech Level Table</h3>
+ <p>Technique level caps for each class. For example, Forces can learn Lv30 Rafoie while Hunters are described here as capped at Lv15. Disks above a class’s cap cannot be used.</p>
+
+ <h3>Photon Color / Weapon Range / Star Value</h3>
+ <ul>
+ <li><strong>Photon Color Table</strong>: photon blade colours, with an RGB combination for each photon type.</li>
+ <li><strong>Weapon Range Table</strong>: weapon attack reach and hit-range parameters.</li>
+ <li><strong>Star Value Table</strong>: maps item IDs to star ratings, determining the ☆ count beside item names.</li>
+ </ul>
+
+ <h3>Unsealable / Unwrap</h3>
+ <ul>
+ <li><strong>Unsealable Table</strong>: the result of unsealing weapons such as <strong><span data-item-en="Sealed J-Sword"></span></strong>, <strong><span data-item-en="Lame d'Argent"></span></strong> .</li>
+ <li><strong>Unwrap Table</strong>: possible contents of gift boxes such as <span data-item-en="Christmas Present"></span> and <span data-item-en="Easter Egg"></span>.</li>
+ </ul>
+
+ <h3>Sale Divisor / V1 Replacement</h3>
+ <ul>
+ <li><strong>Weapon Sale Divisor / Non-Weapon Sale Divisor</strong>: item-specific divisors used to calculate shop sale prices.</li>
+ <li><strong>V1 Replacement Table</strong>: replaces PSO v1 item IDs with their BB equivalents.</li>
+ </ul>
+
+ <h2 id="struct">Data structures</h2>
+ <p>The structures below describe PSOBB (V4) ItemPMT. V1/V2/V3 and DC/GC/XB layouts differ slightly but serve the same purposes. Offsets are hexadecimal byte offsets.</p>
+
+ <h3>Top-level offset table <code>TableOffsetsV3V4</code></h3>
+ <p>At the top of the decompressed ItemPMT, each field is a four-byte offset to a subtable. The BB client reads it at startup to locate the other tables.</p>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>weapon_table</td><td>u32</td><td>Weapon table → [{count, offset → [WeaponV4]}] (0xED entries)</td></tr>
+ <tr><td>0x04</td><td>armor_table</td><td>u32</td><td>Frame/barrier tables (armors and shields)</td></tr>
+ <tr><td>0x08</td><td>unit_table</td><td>u32</td><td>Unit table → [UnitV4]</td></tr>
+ <tr><td>0x0C</td><td>tool_table</td><td>u32</td><td>Tool table → [{count, offset → [ToolV4]}] (0x1A entries)</td></tr>
+ <tr><td>0x10</td><td>mag_table</td><td>u32</td><td>Mag table → [MagV4]</td></tr>
+ <tr><td>0x14</td><td>v1_replacement_table</td><td>u32</td><td>PSO v1 → BB item ID replacement table</td></tr>
+ <tr><td>0x18</td><td>photon_color_table</td><td>u32</td><td>Photon colours (0x20 types, 0x24 bytes each)</td></tr>
+ <tr><td>0x1C</td><td>weapon_range_table</td><td>u32</td><td>Weapon range/hit-area table</td></tr>
+ <tr><td>0x20</td><td>weapon_sale_divisor_table</td><td>u32</td><td>Weapon sale price divisors → [float]</td></tr>
+ <tr><td>0x24</td><td>sale_divisor_table</td><td>u32</td><td>Non-weapon sale price divisors</td></tr>
+ <tr><td>0x28</td><td>mag_feed_table</td><td>u32</td><td>Mag feeding table</td></tr>
+ <tr><td>0x2C</td><td>star_value_table</td><td>u32</td><td>Item ID → star rating (☆ count), 0x330 entries</td></tr>
+ <tr><td>0x30</td><td>special_data_table</td><td>u32</td><td>Special definitions → [Special]</td></tr>
+ <tr><td>0x34</td><td>weapon_effect_table</td><td>u32</td><td>Weapon passive effects (0x10 bytes each)</td></tr>
+ <tr><td>0x38</td><td>stat_boost_table</td><td>u32</td><td>Unit bonus data → [StatBoost]</td></tr>
+ <tr><td>0x3C</td><td>shield_effect_table</td><td>u32</td><td>Barrier passive effects (8 bytes each)</td></tr>
+ <tr><td>0x40</td><td>max_tech_level_table</td><td>u32</td><td>Technique level caps per class</td></tr>
+ <tr><td>0x44</td><td>combination_table</td><td>u32</td><td>Combination/upgrade recipes → [ItemCombination]</td></tr>
+ <tr><td>0x48</td><td>unknown_a1</td><td>u32</td><td>Unknown</td></tr>
+ <tr><td>0x4C</td><td>tech_boost_table</td><td>u32</td><td>Technique bonuses → [TechniqueBoost × 3]</td></tr>
+ <tr><td>0x50</td><td>unwrap_table</td><td>u32</td><td>Gift box contents</td></tr>
+ <tr><td>0x54</td><td>unsealable_table</td><td>u32</td><td>Unsealed weapon results</td></tr>
+ <tr><td>0x58</td><td>ranged_special_table</td><td>u32</td><td>Ranged special behaviour</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Base item structure <code>ItemBaseV4</code></h3>
+ <p>The first 12 bytes of every weapon, frame, unit, Mag and tool entry form this shared header:</p>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>id</td><td>u32</td><td>Item ID (also the name text string index)</td></tr>
+ <tr><td>0x04</td><td>type</td><td>u16</td><td>Model number (client .nj model ID)</td></tr>
+ <tr><td>0x06</td><td>skin</td><td>u16</td><td>Texture number</td></tr>
+ <tr><td>0x08</td><td>team_points</td><td>u32</td><td>Team point value</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Weapons <code>WeaponV4</code> (0x2C bytes)</h3>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>Base header (0x0C bytes)</td></tr>
+ <tr><td>0x0C</td><td>class_flags</td><td>u16</td><td>Equip-class bitmap for 12 classes (default 0x00FF, all enabled)</td></tr>
+ <tr><td>0x0E</td><td>atp_min</td><td>u16</td><td>Minimum base ATP</td></tr>
+ <tr><td>0x10</td><td>atp_max</td><td>u16</td><td>Maximum base ATP (actual value varies between min and max)</td></tr>
+ <tr><td>0x12</td><td>atp_required</td><td>u16</td><td>Minimum ATP required</td></tr>
+ <tr><td>0x14</td><td>mst_required</td><td>u16</td><td>Minimum MST required</td></tr>
+ <tr><td>0x16</td><td>ata_required</td><td>u16</td><td>Minimum ATA required</td></tr>
+ <tr><td>0x18</td><td>mst</td><td>u16</td><td>Weapon MST bonus</td></tr>
+ <tr><td>0x1A</td><td>max_grind</td><td>u8</td><td>Maximum grind (<code>+9</code> means 9)</td></tr>
+ <tr><td>0x1B</td><td>photon</td><td>u8</td><td>Photon type (melee/ranged/Technique)</td></tr>
+ <tr><td>0x1C</td><td>special</td><td>u8</td><td>Default special ID (index into special_data_table)</td></tr>
+ <tr><td>0x1D</td><td>ata</td><td>u8</td><td>ATA bonus</td></tr>
+ <tr><td>0x1E</td><td>stat_boost_entry_index</td><td>u8</td><td>Index into stat_boost_table</td></tr>
+ <tr><td>0x1F</td><td>projectile</td><td>u8</td><td>Ranged weapon projectile ID</td></tr>
+ <tr><td>0x20</td><td>trail1_x / y</td><td>i8×2</td><td>Weapon trail start offset</td></tr>
+ <tr><td>0x22</td><td>trail2_x / y</td><td>i8×2</td><td>Weapon trail end offset</td></tr>
+ <tr><td>0x24</td><td>color</td><td>i8</td><td>Colour index into photon_color_table</td></tr>
+ <tr><td>0x25</td><td>unknown_a1</td><td>u8×3</td><td>Unknown</td></tr>
+ <tr><td>0x2A</td><td>tech_boost</td><td>u8</td><td>Technique boost index into tech_boost_table</td></tr>
+ <tr><td>0x2B</td><td>behavior_flags</td><td>u8</td><td>Behaviour bits: <code>0x01</code> no combos / <code>0x08</code> no attributes</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Frames &amp; barriers <code>ArmorOrShieldV4</code> (0x20 bytes)</h3>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>Base header</td></tr>
+ <tr><td>0x0C</td><td>dfp</td><td>u16</td><td>Base DFP</td></tr>
+ <tr><td>0x0E</td><td>evp</td><td>u16</td><td>Base EVP</td></tr>
+ <tr><td>0x10</td><td>block_particle</td><td>u8</td><td>Block particle effect ID</td></tr>
+ <tr><td>0x11</td><td>block_effect</td><td>u8</td><td>Block effect ID</td></tr>
+ <tr><td>0x12</td><td>class_flags</td><td>u16</td><td>Eligible-class bitmap</td></tr>
+ <tr><td>0x14</td><td>required_level</td><td>u8</td><td>Required level</td></tr>
+ <tr><td>0x15</td><td>efr</td><td>u8</td><td>Fire resistance</td></tr>
+ <tr><td>0x16</td><td>eth</td><td>u8</td><td>Lightning resistance</td></tr>
+ <tr><td>0x17</td><td>eic</td><td>u8</td><td>Ice resistance</td></tr>
+ <tr><td>0x18</td><td>edk</td><td>u8</td><td>Dark resistance</td></tr>
+ <tr><td>0x19</td><td>elt</td><td>u8</td><td>Light resistance</td></tr>
+ <tr><td>0x1A</td><td>dfp_range</td><td>u8</td><td>Maximum additional DFP (+N limit)</td></tr>
+ <tr><td>0x1B</td><td>evp_range</td><td>u8</td><td>Maximum additional EVP</td></tr>
+ <tr><td>0x1C</td><td>stat_boost_entry_index</td><td>u8</td><td>stat_boost_table index</td></tr>
+ <tr><td>0x1D</td><td>tech_boost</td><td>u8</td><td>Technique bonus index (into tech_boost_table)</td></tr>
+ <tr><td>0x1E</td><td>flags_type</td><td>u8</td><td>Behaviour flags (frame 0x01; barrier 0x01/0x02/0x03, etc.)</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Units <code>UnitV4</code> (0x14 bytes)</h3>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>Base header</td></tr>
+ <tr><td>0x0C</td><td>stat</td><td>u16</td><td>Primary stat type (StatBoost codes 01–0F, e.g. 01=ATP)</td></tr>
+ <tr><td>0x0E</td><td>stat_amount</td><td>u16</td><td>Primary stat bonus value</td></tr>
+ <tr><td>0x10</td><td>modifier_amount</td><td>i16</td><td>Activation threshold or cooldown for units such as <span data-item-en="HP/Restorate"></span></td></tr>
+ <tr><td>0x12</td><td>unused</td><td>u8×2</td><td>Padding</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Mags <code>MagV4</code> (0x1C bytes)</h3>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>Base header</td></tr>
+ <tr><td>0x0C</td><td>feed_table</td><td>u16</td><td>Feeding response index into mag_feed_table</td></tr>
+ <tr><td>0x0E</td><td>photon_blast</td><td>u8</td><td>Default Photon Blast ID</td></tr>
+ <tr><td>0x0F</td><td>activation</td><td>u8</td><td>Base event activation probability</td></tr>
+ <tr><td>0x10</td><td>on_pb_full</td><td>u8</td><td>Event ID when PB is full</td></tr>
+ <tr><td>0x11</td><td>on_low_hp</td><td>u8</td><td>Event ID at low HP</td></tr>
+ <tr><td>0x12</td><td>on_death</td><td>u8</td><td>Event ID on death</td></tr>
+ <tr><td>0x13</td><td>on_boss</td><td>u8</td><td>Event ID on entering a boss room</td></tr>
+ <tr><td>0x14</td><td>on_pb_full_flag</td><td>u8</td><td>0–4 selects the probability formula in combination with synchro</td></tr>
+ <tr><td>0x15</td><td>on_low_hp_flag</td><td>u8</td><td>As above</td></tr>
+ <tr><td>0x16</td><td>on_death_flag</td><td>u8</td><td>As above</td></tr>
+ <tr><td>0x17</td><td>on_boss_flag</td><td>u8</td><td>As above</td></tr>
+ <tr><td>0x18</td><td>class_flags</td><td>u16</td><td>Eligible-class bitmap</td></tr>
+ <tr><td>0x1A</td><td>unused</td><td>u8×2</td><td>Padding</td></tr>
+ </tbody>
+ </table>
+ <p class="card">
+ Mag event chance: first convert synchro into <code>step_synchro</code> (tiers of 0/15/25/30/35…), then select the formula by flag: 
+ <code>flag=0</code> uses activation; <code>flag=1</code> uses activation + step_synchro; <code>flag=2</code> uses step_synchro…
+ </p>
+
+ <h3>Consumables <code>ToolV4</code> (0x18 bytes)</h3>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>base</td><td>ItemBaseV4</td><td>Base header</td></tr>
+ <tr><td>0x0C</td><td>amount</td><td>u16</td><td>Amount/effect value (HP restored for mates, Technique level for disks)</td></tr>
+ <tr><td>0x0E</td><td>tech</td><td>u16</td><td>Technique ID for Technique tools</td></tr>
+ <tr><td>0x10</td><td>cost</td><td>i32</td><td>Shop price</td></tr>
+ <tr><td>0x14</td><td>item_flags</td><td>u32</td><td>Bit flags: <code>0x01</code> usable / <code>0x08</code> android-usable / <code>0x10</code> usable in town / <code>0x20</code> usable in boss rooms / <code>0x40</code> usable in Challenge / <code>0x80</code> rare</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Special attack <code>Special</code> (4 bytes)</h3>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>type</td><td>u16</td><td>Special type ID (Charge/Spirit/Berserk/Hell…)</td></tr>
+ <tr><td>0x02</td><td>amount</td><td>u16</td><td>Special strength (chance, extra damage, etc.)</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Stat bonus <code>StatBoost</code> (6 bytes)</h3>
+ <p>Units, weapons and frames reference an entry via <code>stat_boost_entry_index</code> . Each record can hold two stat bonuses, but Sega changed the loop after the November 2000 DC build to read only one, so only the first is effective.</p>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>stats[0..1]</td><td>u8×2</td><td>Two stat type IDs (see below)</td></tr>
+ <tr><td>0x02</td><td>amounts[0..1]</td><td>u16×2</td><td>Corresponding bonus values</td></tr>
+ </tbody>
+ </table>
+ <p>Stat type IDs:</p>
+ <table>
+ <thead><tr><th>Value</th><th>Meaning</th><th>Value</th><th>Meaning</th></tr></thead>
+ <tbody>
+ <tr><td>0x01</td><td>ATP+</td><td>0x09</td><td>ATP−</td></tr>
+ <tr><td>0x02</td><td>ATA+</td><td>0x0A</td><td>ATA−</td></tr>
+ <tr><td>0x03</td><td>EVP+</td><td>0x0B</td><td>EVP−</td></tr>
+ <tr><td>0x04</td><td>DFP+</td><td>0x0C</td><td>DFP−</td></tr>
+ <tr><td>0x05</td><td>MST+</td><td>0x0D</td><td>MST−</td></tr>
+ <tr><td>0x06</td><td>HP+</td><td>0x0E</td><td>HP−</td></tr>
+ <tr><td>0x07</td><td>LCK+</td><td>0x0F</td><td>LCK−</td></tr>
+ <tr><td>0x08</td><td>All + (except HP)</td><td>0x10</td><td>All − (except HP)</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Combination recipe <code>ItemCombination</code> (0x10 bytes)</h3>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>used_item</td><td>u8×3</td><td>Used tool ID (data1[0..2])</td></tr>
+ <tr><td>0x03</td><td>equipped_item</td><td>u8×3</td><td>Equipped target item ID</td></tr>
+ <tr><td>0x06</td><td>result_item</td><td>u8×3</td><td>Resulting item ID</td></tr>
+ <tr><td>0x09</td><td>mag_level</td><td>u8</td><td>Required total Mag level</td></tr>
+ <tr><td>0x0A</td><td>grind</td><td>u8</td><td>Required target weapon grind</td></tr>
+ <tr><td>0x0B</td><td>level</td><td>u8</td><td>Required character level</td></tr>
+ <tr><td>0x0C</td><td>char_class</td><td>u8</td><td>Class restriction</td></tr>
+ <tr><td>0x0D</td><td>unused</td><td>u8×3</td><td>Padding</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Mag feeding result <code>MagFeedResult</code> (8 bytes)</h3>
+ <p>Each of the 8 feeding tables lists the 11 foods. Each cell is a MagFeedResult:</p>
+ <table>
+ <thead><tr><th>Offset</th><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr><td>0x00</td><td>def</td><td>i8</td><td>DEF change</td></tr>
+ <tr><td>0x01</td><td>pow</td><td>i8</td><td>POW change</td></tr>
+ <tr><td>0x02</td><td>dex</td><td>i8</td><td>DEX change</td></tr>
+ <tr><td>0x03</td><td>mind</td><td>i8</td><td>MIND change</td></tr>
+ <tr><td>0x04</td><td>iq</td><td>i8</td><td>IQ change</td></tr>
+ <tr><td>0x05</td><td>synchro</td><td>i8</td><td>Synchro change</td></tr>
+ <tr><td>0x06</td><td>unused</td><td>u8×2</td><td>Padding</td></tr>
+ </tbody>
+ </table>
+
+ <h2>Related pages</h2>
+ <ul>
+ <li><a href="/data/itempt.html">ItemPT — common drop rules</a>: item selection, bonuses and specials.</li>
+ <li><a href="/data/itemrt.html">ItemRT — rare drop table</a>: rare drop probabilities and item pools.</li>
+ <li><a href="/data/bb_items.html">Item code table</a>: complete /makeitem command reference.</li>
+ <li><a href="/data/weapon_special_reduction.html">Weapon special reduction</a>: reductions for specials on different weapons.</li>
+ </ul>
+</section>
+

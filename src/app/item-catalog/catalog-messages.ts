@@ -12,7 +12,7 @@ export const MESSAGES: Record<string, readonly [string, string]> = {
   '图片来源：原始模型渲染': ['Image: original model render', '画像：オリジナルモデルのレンダリング'],
   '道具图鉴': ['Item Database', 'アイテム図鑑'],
   '站点导航': ['Site navigation', 'サイトナビゲーション'],
-  '中英日名称对照': ['Name reference', '名称対照表'],
+  '物品名称对照': ['Item names', 'アイテム名対照表'],
   '查询武器、防具、玛古与道具的外观、属性和获取途径。': ['Explore equipment, Mags and items. Find their appearance, stats and acquisition details.', '武器・防具・マグ・アイテムの外観、性能、入手方法を調べる。'],
   '件道具': ['items', 'アイテム'], '6 个类别 · Ephinea 资料': ['6 categories · Ephinea', '6 カテゴリ · Ephinea'],
   '中 / EN / 日': ['ZH / EN / JA', '中 / EN / 日'],

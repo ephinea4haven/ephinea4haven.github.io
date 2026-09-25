@@ -1,0 +1,265 @@
+<section data-part="body">
+
+    <h1>特殊攻撃の発動率とV50Xユニット</h1>
+
+    <p>特殊攻撃の効果判定には、まず<strong>命中することが必要です</strong>（MISSでは効果判定を行いません）。</p>
+
+    <hr>
+
+    <h2>1. 闇耐性（EDK）に依存する即死系特殊攻撃</h2>
+
+    <p><strong>計算式：</strong></p>
+
+    <pre><code>
+（発動率 − 敵の闇耐性）× 補正
+</code></pre>
+
+    <p>即死系の基本発動率：</p>
+
+    <ul>
+        <li>Dim: 48%</li>
+        <li>Shadow: 66%</li>
+        <li>Dark: 78%</li>
+        <li>Hell: 93%</li>
+        <li>即死テクニック：100%</li>
+    </ul>
+
+    <p>アルティメットでは、アンドロイドのESP依存の特殊攻撃に追加で<strong>+30%の補正がかかります。</strong></p>
+
+    <hr>
+
+    <h2>2. 敵のESPに依存する特殊攻撃</h2>
+
+    <p><strong>計算式：</strong></p>
+
+    <pre><code>
+（アンドロイド補正 + 発動率 − 敵の特殊攻撃耐性）× 補正
+</code></pre>
+
+    <p>アンドロイド：アルティメットでは追加で+30%。</p>
+
+    <h3>1）混乱系（8秒間、重ね掛け可能）</h3>
+
+    <ul>
+        <li>Panic: 29%</li>
+        <li>Riot: 44%</li>
+        <li>Havoc: 60%</li>
+        <li>Chaos: 76%</li>
+    </ul>
+
+    <hr>
+
+    <h3>2）凍結系（4秒間、重ね掛け不可）</h3>
+
+    <ul>
+        <li>Ice: 32%</li>
+        <li>Frost: 48%</li>
+        <li>Freeze: 64%</li>
+        <li>Blizzard：<strong>min（発動率, 40）</strong></li>
+    </ul>
+
+    <hr>
+
+    <h3>3）麻痺系（6秒間、重ね掛け可能）</h3>
+
+    <ul>
+        <li>Bind: 32%</li>
+        <li>Hold: 48%</li>
+        <li>Seize: 64%</li>
+        <li>Arrest: 80%</li>
+    </ul>
+
+    <hr>
+
+    <h2>3. V50Xの効果（補正後に計算）</h2>
+
+    <p><code>V50X</code>は<strong>補正後の発動率</strong>に対して適用します。</p>
+
+    <h3><span data-item-en="V501"></span></h3>
+
+    <ul>
+        <li>即死系 × <strong>1.5</strong></li>
+        <li>混乱・凍結・麻痺：<strong>持続時間 × 1.5</strong></li>
+    </ul>
+
+    <h3><span data-item-en="V502"></span></h3>
+
+    <ul>
+        <li>即死系 × <strong>2</strong></li>
+        <li>混乱・凍結・麻痺：<strong>持続時間 × 1.5</strong></li>
+    </ul>
+
+    <hr>
+
+    <h2>4. 補正ルール（重要）</h2>
+
+    <h3>通常武器の補正</h3>
+
+    <ul>
+        <li>マシンガン・ショット・スライサー：<strong>特殊効果 = 元の値 × 1/3</strong></li>
+        <li>パルチザン・ソード・ダガー・ダブルセイバー・ツインソード・ランチャー：<strong>特殊効果 = 元の値 × 1/2</strong></li>
+    </ul>
+
+    <p>通常武器（16進コードが<span data-item-en="Photon Claw"></span>より前のもの）に補正がかかります：</p>
+
+    <ul>
+        <li>3段コンボの<strong>各段の動作</strong>で複数回の判定が行われる場合があります。</li>
+        <li>複数の対象に当たることによる追加補正はありません。</li>
+        <li><strong>ES武器と単体対象の武器はこの補正を受けません。</strong></li>
+    </ul>
+
+    <p>注：補正対象は通常武器系の特殊効果で、消費系の特殊攻撃ではありません。</p>
+
+    <hr>
+
+    <h2>5. デビル・デーモン系の発動率（基本50%）</h2>
+
+    <ul>
+        <li>Devil’s：HPを半分にする（残り1/2）</li>
+        <li>Demon’s：HPを1/4にする（残り1/4）</li>
+    </ul>
+
+    <p><strong>アンドロイドの場合（アルティメット+30%）：</strong></p>
+
+    <ul>
+        <li>Devil’s：HPが4/5残る</li>
+        <li>Demon’s：HPが11/20残る</li>
+    </ul>
+
+    <p>アルティメットでアンドロイドが減らすHPの割合：</p>
+
+    <ul>
+        <li>Devil’s：<strong>20%</strong></li>
+        <li>Demon’s：<strong>45%</strong></li>
+    </ul>
+
+    <p>混乱・凍結・麻痺・ヘル・デビル／デーモン系以外の特殊効果：</p>
+    <p><strong>命中時は100%発動</strong></p>
+
+    <hr>
+
+    <h2>6. 吸収系特殊攻撃</h2>
+
+    <h3>1）HP吸収（上限120 HP）</h3>
+
+    <ul>
+        <li>Draw: 5%</li>
+        <li>Drain: 9%</li>
+        <li>Fill: 13%</li>
+        <li>Gush: 17%</li>
+    </ul>
+
+    <hr>
+
+    <h3>2）TP吸収（上限100 TP）</h3>
+
+    <ul>
+        <li>Heart: 3%</li>
+        <li>Mind: 4%</li>
+        <li>Soul: 5%</li>
+        <li>Geist: 6%</li>
+    </ul>
+
+    <hr>
+
+    <h3>3）経験値吸収（上限80 EXP、アルティメットではアンドロイドに+30%）</h3>
+
+    <ul>
+        <li>Master's: 8%</li>
+        <li>Lord's: 10%</li>
+        <li>King's: 12%</li>
+    </ul>
+
+    <hr>
+
+    <h2>7. 炎属性ダメージ</h2>
+
+    <pre><code>
+基本ダメージ = （キャラクターレベル − 1）/ ? + ??
+最終ダメージ = 基本ダメージ × [1 − 敵の炎耐性 × 0.01]
+</code></pre>
+
+    <ul>
+        <li>Heat: レベル / 4 + 40</li>
+        <li>Fire: レベル / 3 + 60</li>
+        <li>Flame: レベル / 2 + 80</li>
+        <li>Burning: レベル + 100</li>
+    </ul>
+
+    <hr>
+
+    <h2>8. 凍結系発動率（計算式）</h2>
+
+    <pre><code>
+発動率 = 特殊効果の発動率 − 敵の特殊攻撃耐性（ESP）
+</code></pre>
+
+    <ul>
+        <li>Ice: 32%</li>
+        <li>Frost: 48%</li>
+        <li>Freeze: 64%</li>
+        <li>Blizzard: 80%</li>
+    </ul>
+
+    <hr>
+
+    <h2>9. 雷属性ダメージ</h2>
+
+    <pre><code>
+基本ダメージ = （キャラクターレベル − 1）/ ? + ??
+最終ダメージ = 基本ダメージ × [1 − 敵の雷耐性 × 0.01]
+</code></pre>
+
+    <ul>
+        <li>Shock: レベル / 4 + 40</li>
+        <li>Thunder: レベル / 3 + 60</li>
+        <li>Storm: レベル / 2 + 80</li>
+        <li>Tempest: レベル + 100</li>
+    </ul>
+
+    <hr>
+
+    <h2>10. 消費系特殊攻撃</h2>
+
+    <ul>
+        <li>Charge：判定ごとに200メセタ消費（不足時はMISS）。</li>
+        <li>Spirit：判定ごとに<strong>TPの20%</strong>を消費（TP&lt;10ならMISS）。</li>
+        <li>Berserk：判定ごとに<strong>HPの25%</strong>を消費（HP&lt;3ならMISS）。</li>
+    </ul>
+
+    <hr>
+
+    <h2>11. 固有特殊攻撃の武器（特殊攻撃と命中）</h2>
+
+    <h3>特殊攻撃にヘビーアタックの命中率を使用し、PBも増加する武器</h3>
+
+    <ul>
+        <li><span data-item-en="DARK FLOW"></span></li>
+        <li><span data-item-en="Vjaya"></span></li>
+        <li><span data-item-en="Windmill"></span></li>
+        <li><span data-item-en="Frozen Shooter"></span></li>
+        <li><span data-item-en="SNOW QUEEN"></span></li>
+    </ul>
+
+    <h3>波動攻撃（特殊攻撃は100%命中）</h3>
+
+    <ul>
+        <li><span data-item-en="Berdysh"></span>（近距離360°のノーマルアタック判定）</li>
+        <li><span data-item-en="TSUMIKIRI J-SWORD"></span>（遠距離360°のヘビーアタック判定）</li>
+    </ul>
+
+    <h3>テクニック系特殊攻撃（100%命中）</h3>
+
+    <p>炎：<span data-item-en="Caduceus"></span>、<span data-item-en="HILDEBEAR&#x27;S CANE"></span></p>
+    <p>氷：<span data-item-en="Technical Crozier"></span>、<span data-item-en="Hildeblue&#x27;s Cane"></span></p>
+    <p>雷：<span data-item-en="MAGICAL PIECE"></span>、<span data-item-en="The Sigh of a God"></span>、<span data-item-en="Maser Beam"></span>（<span data-item-en="Power Maser"></span>を含む）</p>
+    <p>その他：</p>
+
+    <ul>
+        <li><span data-item-en="Soul Banish"></span>（即死）</li>
+        <li><span data-item-en="Heaven Punisher"></span>（天罰、12回判定）</li>
+        <li>ジェルン／ザルアのES武器</li>
+    </ul>
+
+
+</section>

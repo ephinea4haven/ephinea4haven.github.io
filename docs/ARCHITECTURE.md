@@ -8,9 +8,10 @@ Haven PSOBB Wiki is a multilingual reference for PSOBB players worldwide, focuse
 on Ephinea and maintained by the Haven guild. Access is open to everyone,
 regardless of country, language or guild membership.
 
-The site supports English, Japanese and Chinese. Translation coverage varies by
-page; product copy must reflect this scope without presenting the site as a
-Chinese-only resource or promising complete translations of every page.
+The site supports English, Japanese and Chinese: every public page has all three
+versions. Names come only from the name authorities, so a name they do not yet
+translate (for example an item without a Japanese name) is shown in English;
+product copy must not claim more than that.
 
 ### Languages and URLs
 
@@ -23,13 +24,14 @@ Hugo, MDN):
   only when it is actually written in that language.
 - The URL is the only source of a page's language. Every page links its language
   versions with `<link rel="alternate" hreflang>` and a canonical URL on
-  `https://www.psohaven.com`, and sets `<html lang>` accordingly.
+  `https://www.psohaven.com`, and sets `<html lang>` accordingly. `SiteLanguage`
+  takes the URL at `ResolveEnd`, before the new page's components are created, so
+  components and prerendering read the right language from the start.
 - The language switch navigates to the same page's other language URL and
   remembers the choice (`haven.language`). Opening an unprefixed page with a
-  stored non-Chinese choice, or with `?lang=en|ja`, moves to that language's URL
-  when it exists; otherwise the Chinese page stays and states plainly that it is
-  only available in Chinese. Links inside a language version point to the same
-  language's pages where they exist.
+  stored non-Chinese choice moves to that language's URL. Links inside a language
+  version point to the same language's pages. GitHub Pages serves one `404.html`
+  for every missing URL, so the 404 page takes its text from the URL's language.
 
 ### Translation sources
 
@@ -47,6 +49,9 @@ Interface text and long-form text are kept apart, as is standard:
   page-local translations. Pages and translated documents name items with an
   empty `<span data-item-en="…"></span>` placeholder, which the build fills with
   the authority name in the page's language.
+  Lists that must keep the in-game English name (the banner trigger lists) are
+  paired per language after the regions are in place: `中文(English)`,
+  `日本語(English)`, or the English name alone.
 - Any attribute can come from a message key as `data-i18n-<attribute>="key"`
   (for example `<page-chrome data-i18n-title="…">`); the shared page chrome gets
   its back-link text from `common.backHome` and links to the reader's language.
@@ -74,7 +79,9 @@ public page, route and interaction. GitHub Pages serves the immutable `_site`
 artifact; it does not need server-side rewrites or a JavaScript backend.
 
 The current build inventory contains 1,268 prerendered Angular application
-hosts, including 1,045 item detail pages and 160 monster detail pages, and 45 year-specific event content fragments. `_site/build-manifest.json`
+hosts, including 1,045 item detail pages and 160 monster detail pages. The event
+archive has 45 year-specific source fragments, published in three languages as
+135 fragment resources. `_site/build-manifest.json`
 is the source of truth for this inventory and for the JavaScript budgets applied
 to each route.
 
@@ -225,8 +232,22 @@ Mag datasets; item names use the canonical translation authority. Missing images
 unresolved names and unknown item codes are explicit coverage states. See
 [the item catalog contract](ITEM_CATALOG.md) for counts, import steps and regression evidence.
 
-Seasonal event routes own a fixed year manifest and load committed yearly HTML
-fragments through root-relative URLs. The anniversary archive defaults to 2026
+All six event overviews and all 45 yearly fragments have English and Japanese
+editions, written as documents under `content/i18n/pages/{en,ja}/event/`. The
+content generator compiles every fragment once per language into
+`src/app/generated/event-fragments/`; the site build publishes them at
+`/event/<event>/<year>.html` and under `/en/` and `/ja/`. Each overview edition
+embeds its newest compiled fragment and builds its year navigation from the
+committed year files, so first-render and fetched content come from the same
+document. Fragment section links name the archive host, `?year=` and anchor, never
+the fragment resource.
+
+`SeasonalEventBehavior` and `EventArchiveBehavior` read the page language and
+fetch that language's fragments. Chinese fragments keep the English item names of
+their sources and pair them with the authority name at runtime (`中文 (English)`);
+translated fragments name items with authority placeholders.
+
+The anniversary archive defaults to 2026
 and presents the complete 2016–2026 manifest in a default-collapsed overlay
 drawer. Opening the drawer never changes the content column geometry; it closes
 through its toggle, backdrop, or Escape key. On narrow screens the collapsed
@@ -471,8 +492,8 @@ The homepage positions Haven as a multilingual Ephinea PSOBB wiki for players
 worldwide, maintained by the Haven guild and open to everyone. Chinese, English
 and Japanese controls translate navigation, onboarding, directory links, seasonal
 panels, RBR explanations, live status labels, accessibility labels, title and
-meta description. A visible notice states that translation coverage varies by
-page; this change does not translate every linked guide.
+meta description. A visible note states that every page has all three versions
+and that items without a Japanese authority name appear in English.
 
 `content/home-i18n.json` owns static homepage translations. During content
 creation, `scripts/home_i18n.mjs` annotates individual text nodes, preserving

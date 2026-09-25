@@ -136,6 +136,7 @@ async function copySiteSource() {
     await mkdir(path.dirname(destination), { recursive: true });
     await cp(source, destination);
   }
+  await cp(path.join(root, 'src/app/generated/event-fragments'), temporaryDirectory, { recursive: true });
 }
 
 async function buildAngularApplication() {
@@ -523,7 +524,7 @@ async function writeManifest(pages, angular) {
     coverage: {
       angularRoutes: angular.routes.length,
       angularHosts: angular.hosts,
-      fragmentResources: pages.filter((file) => /event\/(?:anniversary|christmas|easter|halloween|valentines)\/\d{4}\.html$/.test(relativeToRoot(file))).length,
+      fragmentResources: artifactFiles.filter(({ file }) => /^(?:(?:en|ja)\/)?event\/(?:anniversary|christmas|easter|halloween|valentines)\/\d{4}\.html$/.test(file)).length,
     },
     budgets,
     artifactFiles,

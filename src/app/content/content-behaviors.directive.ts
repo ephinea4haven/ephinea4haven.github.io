@@ -1,18 +1,6 @@
-import { afterRenderEffect, Directive, signal } from '@angular/core';
+import { afterRenderEffect, Directive, inject, signal } from '@angular/core';
 import { BrowserContentBehavior } from './browser-content-behavior.directive';
-
-@Directive({ standalone: true })
-export class BackToTopBehavior extends BrowserContentBehavior {
-  protected connect(): void {
-    const button = this.host.querySelector<HTMLElement>('#backToTop');
-    if (!button) return;
-
-    const update = () => button.classList.toggle('show', window.scrollY > 300);
-    this.listen(window, 'scroll', update);
-    this.listen(button, 'click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    update();
-  }
-}
+import { SiteLanguage } from '../shared/site-language.service';
 
 @Directive({ standalone: true })
 export class SeabedRouteBehavior extends BrowserContentBehavior {
@@ -45,7 +33,13 @@ export class SeabedRouteBehavior extends BrowserContentBehavior {
 
 @Directive({ standalone: true })
 export class ItemTableSearchBehavior extends BrowserContentBehavior {
+  private readonly site = inject(SiteLanguage);
   protected connect(): void {
+    const text = {
+      zh: { count: (n: number, total: number) => `找到 ${n} 条匹配结果（共 ${total} 条）`, more: '结果过多，请输入更精确的关键词', headers: ['代码', '名称'] },
+      en: { count: (n: number, total: number) => `Found ${n} matches (${total} entries)`, more: 'Too many results. Enter a more specific search.', headers: ['Code', 'Name'] },
+      ja: { count: (n: number, total: number) => `全${total}件中${n}件が一致`, more: '結果が多すぎます。検索語を絞り込んでください。', headers: ['コード', '名称'] },
+    }[this.site.language()];
     const input = this.host.querySelector<HTMLInputElement>('#searchBox');
     const count = this.host.querySelector<HTMLElement>('#searchCount');
     const results = this.host.querySelector<HTMLElement>('#searchResults');
@@ -62,15 +56,17 @@ export class ItemTableSearchBehavior extends BrowserContentBehavior {
       }
 
       const matches = rows.filter((row) => {
-        const matched = row.textContent?.toLocaleLowerCase().includes(query) ?? false;
+        // Match the shown name and the item's English identity.
+        const identities = Array.from(row.querySelectorAll<HTMLElement>('[data-item-en]'), (element) => element.dataset['itemEn']);
+        const matched = [row.textContent, ...identities].join(' ').toLocaleLowerCase().includes(query);
         row.hidden = !matched;
         return matched;
       });
-      count.textContent = `找到 ${matches.length} 条匹配结果（共 ${rows.length} 条）`;
+      count.textContent = text.count(matches.length, rows.length);
       if (matches.length > 50) {
         const note = document.createElement('p');
         note.className = 'search-results-note';
-        note.textContent = '结果过多，请输入更精确的关键词';
+        note.textContent = text.more;
         results.append(note);
         return;
       }
@@ -79,7 +75,7 @@ export class ItemTableSearchBehavior extends BrowserContentBehavior {
       const table = document.createElement('table');
       table.className = 'search-results-table';
       const head = table.createTHead().insertRow();
-      for (const label of ['代码', '名称']) {
+      for (const label of text.headers) {
         const cell = document.createElement('th');
         cell.textContent = label;
         head.append(cell);
@@ -100,7 +96,14 @@ export class ItemTableSearchBehavior extends BrowserContentBehavior {
 
 @Directive({ standalone: true })
 export class MonsterFilterBehavior extends BrowserContentBehavior {
+  private readonly site = inject(SiteLanguage);
   protected connect(): void {
+    const language = this.site.language();
+    const countText = {
+      zh: (visible: number, total: number) => `${visible} / ${total} 项`,
+      en: (visible: number, total: number) => `${visible} / ${total} entries`,
+      ja: (visible: number, total: number) => `全${total}件中${visible}件`,
+    }[language];
     const content = this.host.querySelector<HTMLElement>('.content-container');
     const input = this.host.querySelector<HTMLInputElement>('#monsterSearch');
     const count = this.host.querySelector<HTMLElement>('#monsterCount');
@@ -150,7 +153,7 @@ export class MonsterFilterBehavior extends BrowserContentBehavior {
         }
         heading.hidden = Boolean(query) && !hasVisibleEntry;
       }
-      count.textContent = `${visible} / ${entries.length} 项`;
+      count.textContent = countText(visible, entries.length);
     };
     this.listen(input, 'input', update);
     update();
@@ -201,6 +204,14 @@ export class ProfessionTabsBehavior extends BrowserContentBehavior {
 
 @Directive({ standalone: true })
 export class NotFoundRedirectBehavior extends BrowserContentBehavior {
+  private readonly site = inject(SiteLanguage);
+  /** GitHub Pages serves one 404 page for every missing URL; it speaks the URL's language. */
+  private static readonly text = {
+    zh: { title: '页面未找到 - PSO Haven', heading: '404 - 页面未找到', before: '您访问的页面不存在，', link: '返回首页' },
+    en: { title: 'Page not found - PSO Haven', heading: '404 - Page not found', before: 'The page you requested does not exist. ', link: 'Back to Home' },
+    ja: { title: 'ページが見つかりません - PSO Haven', heading: '404 - ページが見つかりません', before: 'お探しのページは存在しません。', link: 'ホームに戻る' },
+  };
+
   protected connect(): void {
     const dropChartsOrigin = 'https://dropcharts.psohaven.com';
     const pathTargets: Record<string, string> = {
@@ -217,12 +228,27 @@ export class NotFoundRedirectBehavior extends BrowserContentBehavior {
     const legacy = location.pathname.match(/^\/data\/droptable\/(bb|dc|ngc)(?:\/index\.html)?\/?$/);
     const target = pathTargets[location.pathname]
       ?? (legacy ? `${dropChartsOrigin}/${legacy[1]}/${location.search}${location.hash}` : null);
-    if (target) location.replace(target);
+    if (target) {
+      location.replace(target);
+      return;
+    }
+    const language = this.site.language();
+    const text = NotFoundRedirectBehavior.text[language];
+    const heading = this.host.querySelector('h1');
+    const message = this.host.querySelector('h1 + p');
+    if (!heading || !message) return;
+    document.title = text.title;
+    heading.textContent = text.heading;
+    const home = document.createElement('a');
+    home.href = language === 'zh' ? '/' : `/${language}/`;
+    home.textContent = text.link;
+    message.replaceChildren(text.before, home);
   }
 }
 
 @Directive({ standalone: true })
 export class SectionIdBehavior extends BrowserContentBehavior {
+  private readonly site = inject(SiteLanguage);
   private static readonly names = [
     'Viridia', 'Greenill', 'Skyly', 'Bluefull', 'Purplenum',
     'Pinkal', 'Redria', 'Oran', 'Yellowboze', 'Whitill',
@@ -261,11 +287,15 @@ export class SectionIdBehavior extends BrowserContentBehavior {
       }
       return value;
     };
+    const unavailable = { zh: '不适用', en: 'N/A', ja: '該当なし' }[this.site.language()];
     const setResult = (index: number, name: string | null) => {
       const text = this.host.querySelector<HTMLElement>(`#tf${index}`);
       const image = this.host.querySelector<HTMLImageElement>(`#img${index}`);
-      if (text) text.textContent = name ?? 'N/A';
-      if (image) image.src = `/assets/img/section/${name ?? 'Impossible'}.png`;
+      if (text) text.textContent = name ?? unavailable;
+      if (image) {
+        image.src = `/assets/img/section/${name ?? 'Impossible'}.png`;
+        image.alt = name ?? unavailable;
+      }
     };
     const update = () => {
       const value = input.value;
@@ -283,97 +313,6 @@ export class SectionIdBehavior extends BrowserContentBehavior {
   }
 }
 
-@Directive({ standalone: true })
-export class EventArchiveBehavior extends BrowserContentBehavior {
-  protected connect(): void {
-    const archive = this.host.querySelector<HTMLElement>('[data-event-archive]');
-    const yearLabel = this.host.querySelector<HTMLElement>('#eventYear');
-    const yearNav = this.host.querySelector<HTMLElement>('#yearNav');
-    const content = this.host.querySelector<HTMLElement>('#yearContent');
-    const preview = this.host.querySelector<HTMLElement>('#imagePreview');
-    const previewImage = preview?.querySelector<HTMLImageElement>('img');
-    const previewCaption = preview?.querySelector<HTMLElement>('p');
-    if (!archive || !yearLabel || !yearNav || !content || !preview || !previewImage || !previewCaption) return;
-
-    const eventName = archive.dataset['event'] ?? '';
-    const titleName = archive.dataset['titleName'] ?? '';
-    const years = (archive.dataset['years'] ?? '').split(',').map(Number).filter(Number.isFinite);
-    const defaultYear = Number(archive.dataset['defaultYear']);
-    const requested = Number(new URLSearchParams(location.search).get('year'));
-    const selected = years.includes(requested) ? requested : defaultYear;
-    document.title = `${selected} ${titleName} | Ephinea PSOBB`;
-    yearLabel.textContent = String(selected);
-    yearNav.replaceChildren(...years.map((year) => {
-      const element = document.createElement(year === selected ? 'span' : 'a');
-      element.textContent = String(year);
-      if (element instanceof HTMLAnchorElement) element.href = `?year=${year}`;
-      else { element.className = 'year-current'; element.setAttribute('aria-current', 'page'); }
-      return element;
-    }));
-
-    if (selected !== defaultYear) {
-      fetch(`./${eventName}/${selected}.html`, { cache: 'no-store' })
-        .then((response) => {
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          return response.text();
-        })
-        .then((html) => {
-          const parsed = new DOMParser().parseFromString(html, 'text/html');
-          parsed.querySelectorAll('script, style').forEach((element) => element.remove());
-          parsed.querySelectorAll<HTMLElement>('*').forEach((element) => {
-            for (const attribute of [...element.attributes]) {
-              if (attribute.name.startsWith('on')) element.removeAttribute(attribute.name);
-            }
-          });
-          content.replaceChildren(...Array.from(parsed.body.childNodes).map((node) => document.importNode(node, true)));
-        })
-        .catch(() => { content.textContent = `未能加载 ${selected} 年 ${titleName} 内容。`; });
-    }
-
-    let anchor: HTMLElement | null = null;
-    const close = () => {
-      preview.hidden = true;
-      previewImage.removeAttribute('src');
-      anchor = null;
-    };
-    const position = () => {
-      if (!anchor || preview.hidden) return;
-      const margin = 12;
-      const gap = 10;
-      const anchorRect = anchor.getBoundingClientRect();
-      const previewRect = preview.getBoundingClientRect();
-      let left = anchorRect.right + gap;
-      let top = anchorRect.top + (anchorRect.height - previewRect.height) / 2;
-      if (left + previewRect.width > innerWidth - margin) left = anchorRect.left - previewRect.width - gap;
-      if (left < margin) left = Math.min(
-        Math.max(margin, anchorRect.left + (anchorRect.width - previewRect.width) / 2),
-        innerWidth - previewRect.width - margin,
-      );
-      top = Math.max(margin, Math.min(top, innerHeight - previewRect.height - margin));
-      preview.style.left = `${Math.max(margin, left)}px`;
-      preview.style.top = `${top}px`;
-    };
-    this.listen(this.host, 'click', ((event: MouseEvent) => {
-      const target = event.target instanceof Element ? event.target : null;
-      const trigger = target?.closest<HTMLElement>('[data-preview-image]');
-      if (trigger) {
-        if (anchor === trigger && !preview.hidden) { close(); return; }
-        anchor = trigger;
-        previewImage.src = trigger.dataset['previewImage'] ?? '';
-        previewImage.alt = trigger.dataset['previewCaption'] ?? '';
-        previewCaption.textContent = trigger.dataset['previewCaption'] ?? '';
-        preview.hidden = false;
-        requestAnimationFrame(position);
-      } else if (target?.closest('.image-preview-close') || !target?.closest('.image-preview')) {
-        close();
-      }
-    }) as EventListener);
-    this.listen(previewImage, 'load', position);
-    this.listen(window, 'resize', close);
-  }
-}
-
-/** Protocol reference: newserv's documents, one tab at a time; each language version carries its own documents. */
 @Directive({ standalone: true })
 export class ProtocolReferenceBehavior extends BrowserContentBehavior {
   private readonly connected = signal(false);

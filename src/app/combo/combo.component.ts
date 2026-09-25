@@ -1,4 +1,5 @@
 import {
+  effect,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -7,7 +8,9 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Meta } from '@angular/platform-browser';
+import { SiteLanguage } from '../shared/site-language.service';
+import { comboText, comboItemName, comboSpecialName, comboMonsterName, type ComboTextKey } from './combo-i18n';
+import { Meta, Title } from '@angular/platform-browser';
 import { PageChromeComponent } from '../shared/page-chrome.component';
 import {
   barriers,
@@ -65,6 +68,26 @@ interface ComboRow {
 })
 export class ComboComponent implements OnInit {
   private readonly meta = inject(Meta);
+  readonly site = inject(SiteLanguage);
+  readonly language = this.site.language;
+
+  constructor() {
+    const title = inject(Title);
+    effect(() => {
+      const heading = this.t(this.isOpm() ? 'titleOpm' : 'titleMulti');
+      title.setTitle(heading + ' | Haven PSOBB Wiki');
+      this.meta.updateTag({ name: 'description', content: heading + ' — PSOBB' });
+    });
+  }
+
+  t(key: ComboTextKey): string { return comboText(key, this.language()); }
+  itemName(name: string): string { return comboItemName(name, this.language()); }
+  specialName(name: string): string { return comboSpecialName(name, this.language()); }
+  monsterName(name: string): string { return comboMonsterName(name, this.language()); }
+  get modeLink(): string {
+    return (this.language() === 'zh' ? '' : '/' + this.language())
+      + (this.isOpm() ? '/tools/cc.html' : '/tools/ccopm.html');
+  }
   private comboData!: ComboData;
 
   readonly data = input.required<ComboData>();
@@ -117,10 +140,6 @@ export class ComboComponent implements OnInit {
     this.frameNames = Object.keys(this.comboData.frames);
     this.updateClass();
     this.updateWeapon();
-    this.meta.updateTag({
-      name: 'description',
-      content: `PSOBB ${this.isOpm() ? 'one-person mode' : 'multiplayer'} Combo damage calculator`,
-    });
   }
 
   get barrierNames(): string[] {
@@ -165,7 +184,7 @@ export class ComboComponent implements OnInit {
     if (this.sortAscending === null) return rows;
     const direction = this.sortAscending ? 1 : -1;
     return rows.sort((left, right) => {
-      if (this.sortColumn === 'name') return direction * left.name.localeCompare(right.name);
+      if (this.sortColumn === 'name') return direction * this.monsterName(left.name).localeCompare(this.monsterName(right.name), this.language());
       if (this.sortColumn === 'damage') return direction * (left.percentDamage - right.percentDamage);
       return direction * (left.overallAccuracy - right.overallAccuracy);
     });
@@ -180,7 +199,13 @@ export class ComboComponent implements OnInit {
       this.selectedAttacks[2],
       result.animationFrameData,
     );
-    return `Total Frames: ${frames}${result.animationSource}`;
+    const source = {
+      ' (class specific animation)': 'classAnimation',
+      ' (female animation)': 'femaleAnimation',
+      ' (base animation)': 'baseAnimation',
+    } as const;
+    const key = source[result.animationSource as keyof typeof source];
+    return this.t('Total Frames') + ': ' + frames + (key ? this.t(key) : '');
   }
 
   updateClass(): void {

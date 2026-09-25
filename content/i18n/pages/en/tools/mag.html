@@ -1,0 +1,520 @@
+<section data-part="body">
+
+
+<section class="mag-section" data-mag-section aria-labelledby="chart">
+<p><a href="https://magfeeder.psohaven.com/">→ Mag simulator</a></p>
+
+<div class="mag-legend">
+  <div class="mag-legend__stats">
+    <span><b>Stat colours</b> (same in all three charts)</span>
+    <span class="stat--pow">POW Attack</span>
+    <span class="stat--dex">DEX Accuracy</span>
+    <span class="stat--mind">MIND Mental strength</span>
+    <span class="stat--def">DEF Defence</span>
+  </div>
+  <div>The class, Section ID and sex used for evolution are those of <b>the character who feeds the final item before evolution</b> — not necessarily the Mag’s owner.</div>
+  <div>The trigger rows at the bottom of each card show <b>event · effect · activation chance</b> (no row means no trigger for that event). Effects are <b>Invincibility</b> / <b>Resta</b> / <b>Shifta &amp; Deband</b>. The solid bar shows the base chance; the lighter section shows the maximum increase from Synchro.</div>
+  <div><b>Death triggers are disabled in Blue Burst</b>, so they are not listed here.</div>
+</div>
+
+<h2 id="chart" class="mag-anchor">Evolution chart</h2>
+
+<div class="mag-chart-area">
+<div class="mag-tabs" role="tablist" aria-label="Class" data-mag-tabs>
+  <button class="mag-tab" role="tab" id="hu" aria-controls="panel-hu" aria-selected="true">Hunters <span>HU</span></button>
+  <button class="mag-tab" role="tab" id="ra" aria-controls="panel-ra" aria-selected="false">Rangers <span>RA</span></button>
+  <button class="mag-tab" role="tab" id="fo" aria-controls="panel-fo" aria-selected="false">Forces <span>FO</span></button>
+</div>
+
+<div class="mag-picker" data-mag-colorpicker></div>
+
+<div id="panel-hu" role="tabpanel" aria-labelledby="hu" data-mag-chart="HU"></div>
+<div id="panel-ra" role="tabpanel" aria-labelledby="ra" data-mag-chart="RA" hidden></div>
+<div id="panel-fo" role="tabpanel" aria-labelledby="fo" data-mag-chart="FO" hidden></div>
+</div>
+</section>
+
+<section class="mag-section" data-mag-section aria-labelledby="recipe">
+<h2 id="recipe" class="mag-anchor">Feeding table</h2>
+
+<p>Each feeding uses the Mag’s current feeding table. The same Mag may use different tables at different stages.</p>
+
+<div class="mag-tabs mag-tabs--compact" role="tablist" aria-label="Feeding table" data-mag-tabs>
+  <button class="mag-tab" role="tab" id="recipe1" aria-controls="panel-recipe1" aria-selected="true">Table 1 <span>Initial</span></button>
+  <button class="mag-tab" role="tab" id="recipe2" aria-controls="panel-recipe2" aria-selected="false">Table 2 <span>Stage 1</span></button>
+  <button class="mag-tab" role="tab" id="recipe3" aria-controls="panel-recipe3" aria-selected="false">Table 3 <span>Stage 2</span></button>
+  <button class="mag-tab" role="tab" id="recipe4" aria-controls="panel-recipe4" aria-selected="false">Table 4 <span>Stage 2</span></button>
+  <button class="mag-tab" role="tab" id="recipe5" aria-controls="panel-recipe5" aria-selected="false">Table 5 <span>Stages 2–3</span></button>
+  <button class="mag-tab" role="tab" id="recipe6" aria-controls="panel-recipe6" aria-selected="false">Table 6 <span>Stages 3–4</span></button>
+  <button class="mag-tab" role="tab" id="recipe7" aria-controls="panel-recipe7" aria-selected="false">Table 7 <span>Stages 3–4</span></button>
+  <button class="mag-tab" role="tab" id="recipe8" aria-controls="panel-recipe8" aria-selected="false">Table 8 <span>Stage 4</span></button>
+</div>
+
+<div id="panel-recipe1" role="tabpanel" aria-labelledby="recipe1">
+<p class="mag-recipe__mags"><b>Stage 0:</b><span data-item-en="Mag"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="Feeding table 1" tabindex="0">
+<table data-feed-table="0">
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe2" role="tabpanel" aria-labelledby="recipe2" hidden>
+<p class="mag-recipe__mags"><b>Stage 1:</b><span data-item-en="Kalki"></span>, <span data-item-en="Varuna"></span>, <span data-item-en="Vritra"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="Feeding table 2" tabindex="0">
+<table data-feed-table="1">
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe3" role="tabpanel" aria-labelledby="recipe3" hidden>
+<p class="mag-recipe__mags"><b>Stage 2:</b><span data-item-en="Ashvinau"></span>, <span data-item-en="Namuci"></span>, <span data-item-en="Marutah"></span>, <span data-item-en="Rudra"></span>, <span data-item-en="Sumba"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="Feeding table 3" tabindex="0">
+<table data-feed-table="2">
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe4" role="tabpanel" aria-labelledby="recipe4" hidden>
+<p class="mag-recipe__mags"><b>Stage 2:</b><span data-item-en="Mitra"></span>, <span data-item-en="Tapas"></span>, <span data-item-en="Surya"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="Feeding table 4" tabindex="0">
+<table data-feed-table="3">
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe5" role="tabpanel" aria-labelledby="recipe5" hidden>
+<p class="mag-recipe__mags"><b>Stage 2:</b><span data-item-en="Vayu"></span><br><b>Stage 3:</b><span data-item-en="Apsaras"></span>, <span data-item-en="Bhirava"></span>, <span data-item-en="Kaitabha"></span>, <span data-item-en="Kama"></span>, <span data-item-en="Kumara"></span>, <span data-item-en="Ushasu"></span>, <span data-item-en="Varaha"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="Feeding table 5" tabindex="0">
+<table data-feed-table="4">
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe6" role="tabpanel" aria-labelledby="recipe6" hidden>
+<p class="mag-recipe__mags"><b>Stage 3:</b><span data-item-en="Durga"></span>, <span data-item-en="Garuda"></span>, <span data-item-en="Ila"></span>, <span data-item-en="Nandin"></span>, <span data-item-en="Ribhava"></span>, <span data-item-en="Sita"></span>, <span data-item-en="Soma"></span>, <span data-item-en="Yaksa"></span><br><b>Stage 4:</b><span data-item-en="Deva"></span>, <span data-item-en="Rukmin"></span>, <span data-item-en="Sato"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="Feeding table 6" tabindex="0">
+<table data-feed-table="5">
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe7" role="tabpanel" aria-labelledby="recipe7" hidden>
+<p class="mag-recipe__mags"><b>Stage 3:</b><span data-item-en="Andhaka"></span>, <span data-item-en="Bana"></span>, <span data-item-en="Kabanda"></span>, <span data-item-en="Madhu"></span>, <span data-item-en="Marica"></span>, <span data-item-en="Naga"></span>, <span data-item-en="Naraka"></span>, <span data-item-en="Ravana"></span><br><b>Stage 4:</b><span data-item-en="Bhima"></span>, <span data-item-en="Pushan"></span>, <span data-item-en="Rati"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="Feeding table 7" tabindex="0">
+<table data-feed-table="6">
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe8" role="tabpanel" aria-labelledby="recipe8" hidden>
+<p class="mag-recipe__mags"><b>Stage 4:</b>Cell Mags, <span data-item-en="Diwari"></span>, <span data-item-en="Nidra"></span>, <span data-item-en="Savitri"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="Feeding table 8" tabindex="0">
+<table data-feed-table="7">
+<thead><tr>
+<th>Item</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>Synchro</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+</section>
+
+<section class="mag-section" data-mag-section aria-labelledby="colors">
+<a id="ephinea_exclusive_mag_colors" class="mag-anchor"></a>
+<h2 id="colors" class="mag-anchor">Mag colours</h2>
+
+<h3>Standard colours</h3>
+
+<p>These 18 colours are available through <b>character creation</b> or <b>box drops</b> on the original Blue Burst servers. Click a hex value to copy it.</p>
+
+<div class="mag-colors">
+  <figure class="mag-color" style="--swatch: #FF3319">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_red-0.png" alt="Red Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Red<em>Red</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FF3319">#FF3319</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #3333FF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_blue-0.png" alt="Blue Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Blue<em>Blue</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#3333FF">#3333FF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #FFE619">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_yellow-0.png" alt="Yellow Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Yellow<em>Yellow</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FFE619">#FFE619</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #19FF19">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_green-0.png" alt="Green Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Green<em>Green</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#19FF19">#19FF19</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #CC19FF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_purple-0.png" alt="Purple Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Purple<em>Purple</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#CC19FF">#CC19FF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #191933">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_black-0.png" alt="Black Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Black<em>Black</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#191933">#191933</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #E6FFFF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_white-0.png" alt="White Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">White<em>White</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#E6FFFF">#E6FFFF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #19E6FF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_cyan-0.png" alt="Cyan Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Cyan<em>Cyan</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#19E6FF">#19E6FF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #804C33">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_brown-0.png" alt="Brown Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Brown<em>Brown</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#804C33">#804C33</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #FF6600">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_orange-0.png" alt="Orange Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Orange<em>Orange</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FF6600">#FF6600</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #808BF9">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_slate_blue-0.png" alt="Slate Blue Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Slate Blue<em>Slate Blue</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#808BF9">#808BF9</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #808000">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_olive-0.png" alt="Olive Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Olive<em>Olive</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#808000">#808000</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #00F0B6">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_turquoise-0.png" alt="Turquoise Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Turquoise<em>Turquoise</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#00F0B6">#00F0B6</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #CC1964">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_fuschia-0.png" alt="Fuchsia Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Fuchsia<em>Fuchsia</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#CC1964">#CC1964</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #7F7F7F">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_grey-0.png" alt="Gray Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Gray<em>Gray</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#7F7F7F">#7F7F7F</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #FEFED5">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_cream-0.png" alt="Cream Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Cream<em>Cream</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FEFED5">#FEFED5</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #FE7FC8">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_pink-0.png" alt="Pink Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Pink<em>Pink</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FE7FC8">#FE7FC8</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #007F52">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_dark_green-0.png" alt="Dark Green Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Dark Green<em>Dark Green</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#007F52">#007F52</button>
+    </figcaption>
+  </figure>
+</div>
+
+<h4>Costumes and starting Mag colours</h4>
+
+<p>At character creation, the starting Mag colour depends on the chosen class and costume coordinates. Coordinates use <b>row–column</b> notation: for example,  <code>2-1</code> means row 2, column 1 of the costume selector. If a cell lists several coordinates, any of them gives that colour.<code>—</code> means that class cannot get the colour at character creation, but it can still appear on Mags dropped from boxes.</p>
+
+<div class="mag-costume-table-wrap" role="region" aria-label="Costume and starting Mag colour table" tabindex="0">
+  <table class="mag-costume-table">
+    <thead>
+      <tr><th rowspan="2" scope="col">Colour</th><th rowspan="2" scope="col">Hex value</th><th colspan="4" scope="colgroup">Hunter</th><th colspan="4" scope="colgroup">Ranger</th><th colspan="4" scope="colgroup">Force</th></tr>
+      <tr><th scope="col">HUmar</th><th scope="col">HUnewearl</th><th scope="col">HUcast</th><th scope="col">HUcaseal</th><th scope="col">RAmar</th><th scope="col">RAmarl</th><th scope="col">RAcast</th><th scope="col">RAcaseal</th><th scope="col">FOmar</th><th scope="col">FOmarl</th><th scope="col">FOnewm</th><th scope="col">FOnewearl</th></tr>
+    </thead>
+    <tbody>
+      <tr data-mag-color="Red"><th scope="row"><span class="mag-costume-color" style="--swatch:#FF3319">Red<small>Red</small></span></th><td><code>#FF3319</code></td><td>2-1</td><td>1-1</td><td>1-1</td><td>1-1</td><td>1-1</td><td>1-1 · 2-1</td><td>1-1</td><td>1-8 · 2-1</td><td>1-1</td><td>1-1 · 2-1</td><td>1-8</td><td>1-1</td></tr>
+      <tr data-mag-color="Blue"><th scope="row"><span class="mag-costume-color" style="--swatch:#3333FF">Blue<small>Blue</small></span></th><td><code>#3333FF</code></td><td>1-2</td><td>1-2 · 2-2 · 2-9</td><td>1-2 · 1-8 · 3-2</td><td>1-2 · 2-2</td><td>1-2</td><td>2-2 · 2-8</td><td>1-2 · 2-2 · 2-8 · 3-3</td><td>2-2</td><td>1-2 · 2-8</td><td>1-2 · 1-9</td><td>1-2 · 2-2</td><td>1-2 · 2-2 · 2-9</td></tr>
+      <tr data-mag-color="Yellow"><th scope="row"><span class="mag-costume-color" style="--swatch:#FFE619">Yellow<small>Yellow</small></span></th><td><code>#FFE619</code></td><td>1-3</td><td>1-3 · 2-3</td><td>1-3 · 2-3</td><td>1-3 · 3-3</td><td>2-3</td><td>1-3 · 2-3</td><td>2-3</td><td>1-3 · 2-9 · 3-3</td><td>2-3</td><td>1-3 · 2-3</td><td>1-3 · 2-3</td><td>1-3</td></tr>
+      <tr data-mag-color="Green"><th scope="row"><span class="mag-costume-color" style="--swatch:#19FF19">Green<small>Green</small></span></th><td><code>#19FF19</code></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1-4</td><td>2-4</td><td>1-4</td></tr>
+      <tr data-mag-color="Purple"><th scope="row"><span class="mag-costume-color" style="--swatch:#CC19FF">Purple<small>Purple</small></span></th><td><code>#CC19FF</code></td><td>2-5</td><td>1-5 · 2-5</td><td>1-5 · 2-5 · 2-8</td><td>1-5 · 1-9 · 2-5</td><td>1-5 · 2-5</td><td>1-5</td><td>2-9</td><td>2-5 · 3-5</td><td>1-5</td><td>1-5 · 2-5</td><td>1-5 · 2-5 · 2-8</td><td>1-5 · 2-5</td></tr>
+      <tr data-mag-color="Black"><th scope="row"><span class="mag-costume-color" style="--swatch:#191933">Black<small>Black</small></span></th><td><code>#191933</code></td><td>1-6 · 1-9 · 2-6</td><td>1-6 · 2-6</td><td>2-6 · 3-6</td><td>1-6 · 2-6 · 2-8</td><td>1-6 · 1-9 · 2-6</td><td>1-6 · 2-6</td><td>1-6 · 3-6</td><td>1-6</td><td>1-6 · 2-6</td><td>1-6 · 2-6</td><td>1-6 · 2-6</td><td>1-6 · 1-9 · 2-6</td></tr>
+      <tr data-mag-color="White"><th scope="row"><span class="mag-costume-color" style="--swatch:#E6FFFF">White<small>White</small></span></th><td><code>#E6FFFF</code></td><td>1-7 · 2-7 · 2-9</td><td>1-7 · 2-7</td><td>1-7 · 2-7 · 3-7</td><td>—</td><td>1-7 · 2-7 · 2-8</td><td>1-7 · 2-7 · 2-9</td><td>1-7 · 1-8 · 2-7 · 3-7</td><td>—</td><td>1-7 · 2-7</td><td>1-7 · 2-7</td><td>1-7 · 2-7</td><td>1-7 · 2-7</td></tr>
+      <tr data-mag-color="Cyan"><th scope="row"><span class="mag-costume-color" style="--swatch:#19E6FF">Cyan<small>Cyan</small></span></th><td><code>#19E6FF</code></td><td>2-2</td><td>—</td><td>2-2</td><td>3-2</td><td>2-2</td><td>1-2</td><td>3-2</td><td>1-2 · 1-9 · 3-2</td><td>2-2</td><td>2-2</td><td>—</td><td>—</td></tr>
+      <tr data-mag-color="Brown"><th scope="row"><span class="mag-costume-color" style="--swatch:#804C33">Brown<small>Brown</small></span></th><td><code>#804C33</code></td><td>—</td><td>1-8</td><td>—</td><td>2-3</td><td>2-9</td><td>—</td><td>—</td><td>2-3</td><td>1-8</td><td>—</td><td>2-1</td><td>—</td></tr>
+      <tr data-mag-color="Orange"><th scope="row"><span class="mag-costume-color" style="--swatch:#FF6600">Orange<small>Orange</small></span></th><td><code>#FF6600</code></td><td>1-1</td><td>—</td><td>2-1</td><td>—</td><td>2-1</td><td>1-8</td><td>1-9 · 2-1</td><td>2-6</td><td>—</td><td>—</td><td>2-9</td><td>2-1</td></tr>
+      <tr data-mag-color="Slate Blue"><th scope="row"><span class="mag-costume-color" style="--swatch:#808BF9">Slate Blue<small>Slate Blue</small></span></th><td><code>#808BF9</code></td><td>1-5</td><td>—</td><td>—</td><td>1-8 · 3-5 · 3-6</td><td>—</td><td>—</td><td>1-5 · 2-5 · 3-5</td><td>1-5 · 1-7 · 3-1</td><td>1-9 · 2-5</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr data-mag-color="Olive"><th scope="row"><span class="mag-costume-color" style="--swatch:#808000">Olive<small>Olive</small></span></th><td><code>#808000</code></td><td>1-8 · 2-3</td><td>—</td><td>3-3</td><td>3-4</td><td>1-3</td><td>—</td><td>1-3</td><td>—</td><td>1-3 · 2-9</td><td>2-9</td><td>—</td><td>2-3</td></tr>
+      <tr data-mag-color="Turquoise"><th scope="row"><span class="mag-costume-color" style="--swatch:#00F0B6">Turquoise<small>Turquoise</small></span></th><td><code>#00F0B6</code></td><td>2-4</td><td>2-4</td><td>—</td><td>1-4</td><td>—</td><td>1-9</td><td>3-4</td><td>3-4</td><td>1-4</td><td>2-4</td><td>—</td><td>2-4</td></tr>
+      <tr data-mag-color="Fuchsia"><th scope="row"><span class="mag-costume-color" style="--swatch:#CC1964">Fuchsia<small>Fuchsia</small></span></th><td><code>#CC1964</code></td><td>—</td><td>2-1</td><td>3-1 · 3-5</td><td>2-1</td><td>—</td><td>2-5</td><td>3-1</td><td>2-8</td><td>2-1</td><td>—</td><td>1-1</td><td>—</td></tr>
+      <tr data-mag-color="Gray"><th scope="row"><span class="mag-costume-color" style="--swatch:#7F7F7F">Gray<small>Gray</small></span></th><td><code>#7F7F7F</code></td><td>2-8</td><td>—</td><td>1-6 · 1-9</td><td>—</td><td>—</td><td>—</td><td>2-6</td><td>3-6 · 3-7</td><td>—</td><td>—</td><td>—</td><td>2-8</td></tr>
+      <tr data-mag-color="Cream"><th scope="row"><span class="mag-costume-color" style="--swatch:#FEFED5">Cream<small>Cream</small></span></th><td><code>#FEFED5</code></td><td>—</td><td>—</td><td>—</td><td>1-7 · 2-7 · 3-7</td><td>1-8 · 2-7</td><td>—</td><td>—</td><td>2-7</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr data-mag-color="Pink"><th scope="row"><span class="mag-costume-color" style="--swatch:#FE7FC8">Pink<small>Pink</small></span></th><td><code>#FE7FC8</code></td><td>—</td><td>2-8</td><td>—</td><td>2-9 · 3-1</td><td>—</td><td>2-7</td><td>—</td><td>1-1</td><td>—</td><td>1-8 · 2-8</td><td>—</td><td>1-8</td></tr>
+      <tr data-mag-color="Dark Green"><th scope="row"><span class="mag-costume-color" style="--swatch:#007F52">Dark Green<small>Dark Green</small></span></th><td><code>#007F52</code></td><td>1-4</td><td>1-4 · 1-9</td><td>1-4 · 2-4 · 2-9 · 3-4</td><td>2-4</td><td>1-4 · 2-4</td><td>1-4 · 2-4</td><td>1-4 · 2-4</td><td>1-4 · 2-4</td><td>2-4</td><td>—</td><td>1-4 · 1-9</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="source-list">Costume coordinates are based on  <a href="https://wiki.pioneer2.net/w/Mags#Mag_colors" target="_blank" rel="noopener noreferrer">Ephinea Wiki: Mag colors</a> .</p>
+
+<h3>Ephinea-exclusive colours</h3>
+
+<p>The following 12 colours appear only on Mags from <b>box drops</b>. They were added to Ephinea on 6 March 2022. Click a hex value to copy it.</p>
+
+<div class="mag-colors">
+  <figure class="mag-color" style="--swatch: #7FFF00">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_chartreuse-0.png" alt="Chartreuse Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Chartreuse<em>Chartreuse</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#7FFF00">#7FFF00</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #007FFF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_azure-0.png" alt="Azure Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Azure<em>Azure</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#007FFF">#007FFF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #660066">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_royal_purple-0.png" alt="Royal Purple Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Royal Purple<em>Royal Purple</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#660066">#660066</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #F90505">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_ruby-0.png" alt="Ruby Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Ruby<em>Ruby</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#F90505">#F90505</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #0A0AF2">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_sapphire-0.png" alt="Sapphire Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Sapphire<em>Sapphire</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#0A0AF2">#0A0AF2</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #007F00">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_emerald-0.png" alt="Emerald Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Emerald<em>Emerald</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#007F00">#007F00</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #9F7E3A">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_gold-0.png" alt="Gold Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Gold<em>Gold</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#9F7E3A">#9F7E3A</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #8D9BA6">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_silver-0.png" alt="Silver Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Silver<em>Silver</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#8D9BA6">#8D9BA6</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #A0654E">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_bronze-0.png" alt="Bronze Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Bronze<em>Bronze</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#A0654E">#A0654E</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #7F337F">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_plum-0.png" alt="Plum Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Plum<em>Plum</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#7F337F">#7F337F</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #2B0757">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_violet-0.png" alt="Violet Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Violet<em>Violet</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#2B0757">#2B0757</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #F2A400">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_goldenrod-0.png" alt="Goldenrod Mag" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Goldenrod<em>Goldenrod</em></span>
+      <button class="mag-color__hex" data-copied-label="Copied" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#F2A400">#F2A400</button>
+    </figcaption>
+  </figure>
+</div>
+</section>
+
+<section class="mag-section" data-mag-section aria-labelledby="triggers">
+<h2 id="triggers" class="mag-anchor">Triggers and Synchro</h2>
+
+<p>A Mag’s support effects are governed by its <b>Trigger conditions</b>; their activation chance rises with <b>Synchro</b> and their strength depends on <b>IQ</b>.</p>
+
+<h3 id="trigger" class="mag-anchor">Trigger conditions</h3>
+
+<ul>
+<li>The 10% HP trigger can activate when a character loses more than 20% of their maximum HP in one frame and is left below 10% of maximum HP (for example, <span data-item-en="GAL WIND"></span>’s special costs 21%).</li>
+<li>The boss-room trigger is self-explanatory.</li>
+<li>The 100 PB trigger is self-explanatory.</li>
+</ul>
+
+<h3 id="sync" class="mag-anchor">Synchro</h3>
+
+<p>Synchro caps at 120% and drops by 5% each time the character dies. For its effect on Photon Blast power, see <a href="/tools/mechanics.html#pb-parameters">the mechanics page’s PB parameter reference</a>.</p>
+
+<p>Mag Synchro rules:</p>
+
+<ul>
+<li>+: base chance + tiered bonus</li>
+<li>−: tiered bonus only</li>
+<li>None: Synchro is ignored. If a Mag’s trigger effect has no +/−, this rule can be ignored; see <a href="https://wiki.pioneer2.net/index.php?title=Mags">Mags</a> )</li>
+</ul>
+
+<table>
+<thead><tr>
+<th>Synchro</th>
+<th>Chance bonus</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>0-30%</td>
+<td>+0%</td>
+</tr>
+<tr>
+<td>31-60%</td>
+<td>+15%</td>
+</tr>
+<tr>
+<td>61-80%</td>
+<td>+25%</td>
+</tr>
+<tr>
+<td>81-100%</td>
+<td>+30%</td>
+</tr>
+<tr>
+<td>101-120%</td>
+<td>+35%</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="iq" class="mag-anchor">IQ</h3>
+
+<p>IQ affects the Mag’s healing and support effects. For Photon Blast damage, Leilla healing, Mylla &amp; Youlla support levels and chain/donation examples, see <a href="/tools/mechanics.html#photon-blast">Game mechanics: Mag Photon Blasts (PB)</a>.</p>
+</section>
+</section>

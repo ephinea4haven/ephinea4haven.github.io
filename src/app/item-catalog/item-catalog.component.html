@@ -1,5 +1,5 @@
 <main class="catalog-shell" [attr.lang]="i18n.htmlLanguage()">
-  <nav class="masthead" [attr.aria-label]="i18n.t('站点导航')"><a [href]="i18n.link('/index.html')" class="brand"><span aria-hidden="true">◈</span> HAVEN <small>PSOBB</small></a><div class="masthead-actions"><a [href]="i18n.link('/data/en2chinese.html')">{{ i18n.t('中英日名称对照') }} <span aria-hidden="true">↗</span></a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)"/></div></nav>
+  <nav class="masthead" [attr.aria-label]="i18n.t('站点导航')"><a [href]="i18n.link('/index.html')" class="brand"><span aria-hidden="true">◈</span> HAVEN <small>PSOBB</small></a><div class="masthead-actions"><a [href]="i18n.link('/data/item-names.html')">{{ i18n.t('物品名称对照') }} <span aria-hidden="true">↗</span></a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)"/></div></nav>
   <section class="intro" aria-labelledby="catalog-title">
     <div><p class="eyebrow">EPHINEA / ITEM DATABASE</p><h1 id="catalog-title">{{ i18n.t('道具图鉴') }}</h1><p class="intro-text">{{ i18n.t('查询武器、防具、玛古与道具的外观、属性和获取途径。') }}</p></div>
     <div class="inventory-note"><strong>{{ items().length }}<span>{{ i18n.t('件道具') }}</span></strong><p>{{ i18n.t('6 个类别 · Ephinea 资料') }}</p></div>

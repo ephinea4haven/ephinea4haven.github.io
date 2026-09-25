@@ -12,16 +12,16 @@
 </head>
 
 <body>
-    <page-chrome title="玛古进化图谱"></page-chrome>
+    <page-chrome data-i18n-title="mag.title" title="玛古进化图谱"></page-chrome>
 
-    <nav class="mag-nav" aria-label="页面导航" data-section-nav>
-        <a href="#chart">进化图谱</a>
-        <a href="#recipe">喂食表</a>
-        <a href="#colors">玛古配色</a>
-        <a href="#triggers">触发与同步率</a>
+    <nav class="mag-nav" aria-label="页面导航" data-i18n-aria-label="mag.navigation" data-section-nav>
+        <a href="#chart" data-i18n="mag.chart">进化图谱</a>
+        <a href="#recipe" data-i18n="mag.feeding">喂食表</a>
+        <a href="#colors" data-i18n="mag.colours">玛古配色</a>
+        <a href="#triggers" data-i18n="mag.triggers">触发与同步率</a>
     </nav>
 
-    <div class="content-container">
+    <div class="content-container" data-part="body">
 
 <section class="mag-section" data-mag-section aria-labelledby="chart">
 <p><a href="https://magfeeder.psohaven.com/">→ 玛古模拟器</a></p>
@@ -73,7 +73,7 @@
 </div>
 
 <div id="panel-recipe1" role="tabpanel" aria-labelledby="recipe1">
-<p class="mag-recipe__mags"><b>阶段0:</b>玛古</p>
+<p class="mag-recipe__mags"><b>阶段0:</b><span data-item-en="Mag"></span></p>
 <div class="mag-feed-table-wrap" role="region" aria-label="喂食表 1" tabindex="0">
 <table data-feed-table="0">
 <thead><tr>
@@ -91,7 +91,7 @@
 </div>
 
 <div id="panel-recipe2" role="tabpanel" aria-labelledby="recipe2" hidden>
-<p class="mag-recipe__mags"><b>阶段1:</b>Kalki, Varuna, Vritra</p>
+<p class="mag-recipe__mags"><b>阶段1:</b><span data-item-en="Kalki"></span>, <span data-item-en="Varuna"></span>, <span data-item-en="Vritra"></span></p>
 <div class="mag-feed-table-wrap" role="region" aria-label="喂食表 2" tabindex="0">
 <table data-feed-table="1">
 <thead><tr>
@@ -109,7 +109,7 @@
 </div>
 
 <div id="panel-recipe3" role="tabpanel" aria-labelledby="recipe3" hidden>
-<p class="mag-recipe__mags"><b>阶段2:</b>Ashvinau, Namuci, Marutah, Rudra, Sumba</p>
+<p class="mag-recipe__mags"><b>阶段2:</b><span data-item-en="Ashvinau"></span>, <span data-item-en="Namuci"></span>, <span data-item-en="Marutah"></span>, <span data-item-en="Rudra"></span>, <span data-item-en="Sumba"></span></p>
 <div class="mag-feed-table-wrap" role="region" aria-label="喂食表 3" tabindex="0">
 <table data-feed-table="2">
 <thead><tr>
@@ -127,7 +127,7 @@
 </div>
 
 <div id="panel-recipe4" role="tabpanel" aria-labelledby="recipe4" hidden>
-<p class="mag-recipe__mags"><b>阶段2:</b>Mitra, Tapas, Surya</p>
+<p class="mag-recipe__mags"><b>阶段2:</b><span data-item-en="Mitra"></span>, <span data-item-en="Tapas"></span>, <span data-item-en="Surya"></span></p>
 <div class="mag-feed-table-wrap" role="region" aria-label="喂食表 4" tabindex="0">
 <table data-feed-table="3">
 <thead><tr>
@@ -145,7 +145,7 @@
 </div>
 
 <div id="panel-recipe5" role="tabpanel" aria-labelledby="recipe5" hidden>
-<p class="mag-recipe__mags"><b>阶段2:</b>Vayu<br><b>阶段3:</b>Apsaras, Bhirava, Kaitabha, Kama, Kumara, Ushasu, Varaha</p>
+<p class="mag-recipe__mags"><b>阶段2:</b><span data-item-en="Vayu"></span><br><b>阶段3:</b><span data-item-en="Apsaras"></span>, <span data-item-en="Bhirava"></span>, <span data-item-en="Kaitabha"></span>, <span data-item-en="Kama"></span>, <span data-item-en="Kumara"></span>, <span data-item-en="Ushasu"></span>, <span data-item-en="Varaha"></span></p>
 <div class="mag-feed-table-wrap" role="region" aria-label="喂食表 5" tabindex="0">
 <table data-feed-table="4">
 <thead><tr>
@@ -163,7 +163,7 @@
 </div>
 
 <div id="panel-recipe6" role="tabpanel" aria-labelledby="recipe6" hidden>
-<p class="mag-recipe__mags"><b>阶段3:</b>Durga, Garuda, Ila, Nandin, Ribhava, Sita, Soma, Yaksa<br><b>阶段4:</b>Deva, Rukmin, Sato</p>
+<p class="mag-recipe__mags"><b>阶段3:</b><span data-item-en="Durga"></span>, <span data-item-en="Garuda"></span>, <span data-item-en="Ila"></span>, <span data-item-en="Nandin"></span>, <span data-item-en="Ribhava"></span>, <span data-item-en="Sita"></span>, <span data-item-en="Soma"></span>, <span data-item-en="Yaksa"></span><br><b>阶段4:</b><span data-item-en="Deva"></span>, <span data-item-en="Rukmin"></span>, <span data-item-en="Sato"></span></p>
 <div class="mag-feed-table-wrap" role="region" aria-label="喂食表 6" tabindex="0">
 <table data-feed-table="5">
 <thead><tr>
@@ -181,7 +181,7 @@
 </div>
 
 <div id="panel-recipe7" role="tabpanel" aria-labelledby="recipe7" hidden>
-<p class="mag-recipe__mags"><b>阶段3:</b>Andhaka, Bana, Kabanda, Madhu, Marica, Naga, Naraka, Ravana<br><b>阶段4:</b>Bhima, Pushan, Rati</p>
+<p class="mag-recipe__mags"><b>阶段3:</b><span data-item-en="Andhaka"></span>, <span data-item-en="Bana"></span>, <span data-item-en="Kabanda"></span>, <span data-item-en="Madhu"></span>, <span data-item-en="Marica"></span>, <span data-item-en="Naga"></span>, <span data-item-en="Naraka"></span>, <span data-item-en="Ravana"></span><br><b>阶段4:</b><span data-item-en="Bhima"></span>, <span data-item-en="Pushan"></span>, <span data-item-en="Rati"></span></p>
 <div class="mag-feed-table-wrap" role="region" aria-label="喂食表 7" tabindex="0">
 <table data-feed-table="6">
 <thead><tr>
@@ -199,7 +199,7 @@
 </div>
 
 <div id="panel-recipe8" role="tabpanel" aria-labelledby="recipe8" hidden>
-<p class="mag-recipe__mags"><b>阶段4:</b>Cell Mags, Diwari, Nidra, Savitri</p>
+<p class="mag-recipe__mags"><b>阶段4:</b>Cell Mags, <span data-item-en="Diwari"></span>, <span data-item-en="Nidra"></span>, <span data-item-en="Savitri"></span></p>
 <div class="mag-feed-table-wrap" role="region" aria-label="喂食表 8" tabindex="0">
 <table data-feed-table="7">
 <thead><tr>
@@ -230,126 +230,126 @@
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_red-0.png" alt="Red 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Red<em>红</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#FF3319">#FF3319</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FF3319">#FF3319</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #3333FF">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_blue-0.png" alt="Blue 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Blue<em>蓝</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#3333FF">#3333FF</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#3333FF">#3333FF</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #FFE619">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_yellow-0.png" alt="Yellow 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Yellow<em>黄</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#FFE619">#FFE619</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FFE619">#FFE619</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #19FF19">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_green-0.png" alt="Green 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Green<em>绿</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#19FF19">#19FF19</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#19FF19">#19FF19</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #CC19FF">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_purple-0.png" alt="Purple 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Purple<em>紫</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#CC19FF">#CC19FF</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#CC19FF">#CC19FF</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #191933">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_black-0.png" alt="Black 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Black<em>黑</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#191933">#191933</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#191933">#191933</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #E6FFFF">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_white-0.png" alt="White 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">White<em>白</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#E6FFFF">#E6FFFF</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#E6FFFF">#E6FFFF</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #19E6FF">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_cyan-0.png" alt="Cyan 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Cyan<em>青</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#19E6FF">#19E6FF</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#19E6FF">#19E6FF</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #804C33">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_brown-0.png" alt="Brown 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Brown<em>棕</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#804C33">#804C33</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#804C33">#804C33</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #FF6600">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_orange-0.png" alt="Orange 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Orange<em>橙</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#FF6600">#FF6600</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FF6600">#FF6600</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #808BF9">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_slate_blue-0.png" alt="Slate Blue 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Slate Blue<em>灰蓝</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#808BF9">#808BF9</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#808BF9">#808BF9</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #808000">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_olive-0.png" alt="Olive 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Olive<em>橄榄绿</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#808000">#808000</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#808000">#808000</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #00F0B6">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_turquoise-0.png" alt="Turquoise 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Turquoise<em>绿松石</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#00F0B6">#00F0B6</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#00F0B6">#00F0B6</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #CC1964">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_fuschia-0.png" alt="Fuchsia 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Fuchsia<em>紫红</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#CC1964">#CC1964</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#CC1964">#CC1964</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #7F7F7F">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_grey-0.png" alt="Gray 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Gray<em>灰</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#7F7F7F">#7F7F7F</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#7F7F7F">#7F7F7F</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #FEFED5">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_cream-0.png" alt="Cream 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Cream<em>奶油白</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#FEFED5">#FEFED5</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FEFED5">#FEFED5</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #FE7FC8">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_pink-0.png" alt="Pink 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Pink<em>粉红</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#FE7FC8">#FE7FC8</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FE7FC8">#FE7FC8</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #007F52">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_dark_green-0.png" alt="Dark Green 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Dark Green<em>深绿</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#007F52">#007F52</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#007F52">#007F52</button>
     </figcaption>
   </figure>
 </div>
@@ -398,84 +398,84 @@
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_chartreuse-0.png" alt="Chartreuse 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Chartreuse<em>亮黄绿</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#7FFF00">#7FFF00</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#7FFF00">#7FFF00</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #007FFF">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_azure-0.png" alt="Azure 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Azure<em>天蓝</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#007FFF">#007FFF</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#007FFF">#007FFF</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #660066">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_royal_purple-0.png" alt="Royal Purple 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Royal Purple<em>皇家紫</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#660066">#660066</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#660066">#660066</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #F90505">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_ruby-0.png" alt="Ruby 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Ruby<em>鲜红</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#F90505">#F90505</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#F90505">#F90505</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #0A0AF2">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_sapphire-0.png" alt="Sapphire 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Sapphire<em>深宝蓝</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#0A0AF2">#0A0AF2</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#0A0AF2">#0A0AF2</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #007F00">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_emerald-0.png" alt="Emerald 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Emerald<em>翡翠绿</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#007F00">#007F00</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#007F00">#007F00</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #9F7E3A">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_gold-0.png" alt="Gold 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Gold<em>暗金</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#9F7E3A">#9F7E3A</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#9F7E3A">#9F7E3A</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #8D9BA6">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_silver-0.png" alt="Silver 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Silver<em>浅银灰</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#8D9BA6">#8D9BA6</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#8D9BA6">#8D9BA6</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #A0654E">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_bronze-0.png" alt="Bronze 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Bronze<em>青铜</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#A0654E">#A0654E</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#A0654E">#A0654E</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #7F337F">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_plum-0.png" alt="Plum 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Plum<em>李子紫</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#7F337F">#7F337F</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#7F337F">#7F337F</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #2B0757">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_violet-0.png" alt="Violet 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Violet<em>紫罗兰</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#2B0757">#2B0757</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#2B0757">#2B0757</button>
     </figcaption>
   </figure>
   <figure class="mag-color" style="--swatch: #F2A400">
     <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_goldenrod-0.png" alt="Goldenrod 配色的玛古" loading="lazy" width="205" height="162">
     <figcaption class="mag-color__meta">
       <span class="mag-color__name">Goldenrod<em>金黄</em></span>
-      <button class="mag-color__hex" type="button" data-copy="#F2A400">#F2A400</button>
+      <button class="mag-color__hex" data-copied-label="已复制" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#F2A400">#F2A400</button>
     </figcaption>
   </figure>
 </div>
@@ -489,7 +489,7 @@
 <h3 id="trigger" class="mag-anchor">激活条件</h3>
 
 <ul>
-<li>玛古10% HP可能触发条件: 角色在一帧内损失超过20%最大HP，并且扣血后当前HP低于10%最大HP（例如狮鹫羽毛EX为21%）。</li>
+<li>玛古10% HP可能触发条件: 角色在一帧内损失超过20%最大HP，并且扣血后当前HP低于10%最大HP（例如<span data-item-en="GAL WIND"></span>EX为21%）。</li>
 <li>Boss房激活无需解释</li>
 <li>100PB激活无需解释</li>
 </ul>
@@ -542,7 +542,7 @@
     </div>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" title="回到顶部">↑</button>
+    <button id="backToTop" title="回到顶部" data-i18n-title="mag.backTop">↑</button>
 
 </body>
 

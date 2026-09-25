@@ -1,6 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { computed, effect, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, ResolveEnd, Router } from '@angular/router';
 import published from '../generated/localized-pages.json';
 
 export type PageLanguage = 'zh' | 'en' | 'ja';
@@ -12,7 +12,6 @@ const STORAGE_KEY = 'haven.language';
 const ORIGIN = 'https://www.psohaven.com';
 const HREFLANG: Record<PageLanguage, string> = { zh: 'zh-CN', en: 'en', ja: 'ja' };
 const versions = published.versions as Record<'en' | 'ja', string[]>;
-const unprefixed = published.unprefixed as Record<string, PageLanguage>;
 const valid = (value: unknown): value is PageLanguage => PAGE_LANGUAGES.includes(value as PageLanguage);
 
 /** Split a URL into its language prefix and the unprefixed path. */
@@ -30,14 +29,13 @@ export function pageKey(path: string): string {
 /** Whether a page (by unprefixed path) is published in a language. */
 export function hasVersion(path: string, language: PageLanguage): boolean {
   const key = pageKey(path);
-  if (unprefixed[key]) return unprefixed[key] === language;
   if (language === 'zh') return true;
   return versions[language].some((candidate) => candidate.endsWith('/') ? key.startsWith(candidate) : key === candidate);
 }
 
-/** URL of a page (by unprefixed path) in a language; pages written in another language keep their URL. */
+/** URL of a page (by unprefixed path) in a language. */
 export function localizedPath(path: string, language: PageLanguage): string {
-  if (language === 'zh' || unprefixed[pageKey(path)]) return path;
+  if (language === 'zh') return path;
   return `/${language}${path === '/' ? '' : path}`;
 }
 
@@ -56,20 +54,14 @@ export class SiteLanguage {
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
   private readonly url = signal(this.router.url);
-  private readonly chosen = signal<PageLanguage | null>(null);
 
   private readonly location = computed(() => splitLanguage(this.url()));
   /** Unprefixed path of the current page. */
   readonly path = computed(() => this.location().path);
   /** Language the current page is written in. */
-  readonly language = computed<PageLanguage>(() => this.location().language ?? unprefixed[pageKey(this.path())] ?? 'zh');
+  readonly language = computed<PageLanguage>(() => this.location().language ?? 'zh');
   /** Languages the current page is published in. */
   readonly available = computed(() => PAGE_LANGUAGES.filter((language) => hasVersion(this.path(), language)));
-  /** The reader's chosen language, when this page is not available in it. */
-  readonly missing = computed(() => {
-    const chosen = this.chosen();
-    return chosen && chosen !== this.language() && !this.available().includes(chosen) ? chosen : null;
-  });
 
   constructor() {
     // The remembered language applies once the entry URL is known (after the first navigation).
@@ -80,6 +72,9 @@ export class SiteLanguage {
       this.applyRememberedLanguage();
     };
     this.router.events.subscribe((event) => {
+      // ResolveEnd precedes activation, so components created for the new page
+      // already read its language.
+      if (event instanceof ResolveEnd) this.url.set(event.urlAfterRedirects);
       if (!(event instanceof NavigationEnd)) return;
       this.url.set(event.urlAfterRedirects);
       enter();
@@ -105,7 +100,6 @@ export class SiteLanguage {
     let saved: string | null = null;
     try { saved = this.document.defaultView?.localStorage.getItem(STORAGE_KEY) ?? null; } catch { /* Optional. */ }
     if (!valid(saved)) return;
-    this.chosen.set(saved);
     if (!this.location().language && saved !== this.language() && hasVersion(this.path(), saved)) void this.go(saved);
   }
 
@@ -118,7 +112,6 @@ export class SiteLanguage {
   }
 
   private remember(language: PageLanguage): void {
-    this.chosen.set(language);
     try { this.document.defaultView?.localStorage.setItem(STORAGE_KEY, language); } catch { /* Optional. */ }
   }
 
