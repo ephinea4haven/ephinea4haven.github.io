@@ -1,37 +1,115 @@
-export function initializeRbr(root) {
+export function initializeRbr(root, language) {
     "use strict";
+
+    const TEXT = {
+        zh: {
+            areas: {
+                forest: "森林", caves: "洞窟", mines: "坑道", ruins: "遗迹",
+                crossArea: "跨区域", temple: "VR 神殿", spaceship: "VR 宇宙船",
+                cca: "中央管理区", seabed: "海底设施", tower: "控制塔",
+                crater: "陨石坑", desert: "地下沙漠",
+            },
+            status: { current: "本周当前", possible: "下周可能", unavailable: "本轮已用" },
+            questLabel: (abbreviation, name, status) => `${abbreviation} ${name}，${status}`,
+            episodeSummary: (current, possible, total) =>
+                `当前 ${current} · 可能 ${possible} · 共 ${total}`,
+            conflict: "数据冲突：Tracker 的当前任务与当前轮换模板不一致。请以游戏内 /rbr 为准。",
+            stale: (current, week, expected) =>
+                `Tracker 与当前任务模板一致（${current}），但模板周日期仍为 ${week}，本周应为 ${expected}。` +
+                "Wiki 正在等待人工更新；请暂时以游戏内 /rbr 为准。",
+            fresh: (current, week) => `Tracker、当前任务与周日期一致：${current}（${week}）。`,
+            generated: (date) => `；本站数据生成于 ${date}`,
+            locale: "zh-CN",
+            badge: "本周 RBR",
+            markerTitle: (abbreviation) => `本周 RBR：${abbreviation}`,
+            currentWeek: (quests, week) => `${quests}（${week}）`,
+            markerError: (message) => `本周 RBR 标记暂时无法显示（${message}）`,
+            loadError: (message) =>
+                `RBR Tracker 暂时无法读取（${message}）。请直接查看 Pioneer 2 Wiki 或在游戏内使用 /rbr。`,
+        },
+        en: {
+            areas: {
+                forest: "Forest", caves: "Caves", mines: "Mines", ruins: "Ruins",
+                crossArea: "Multi-area", temple: "VR Temple", spaceship: "VR Spaceship",
+                cca: "Central Control Area", seabed: "Seabed", tower: "Control Tower",
+                crater: "Crater", desert: "Subterranean Desert",
+            },
+            status: { current: "This week", possible: "Possible next week", unavailable: "Used this cycle" },
+            questLabel: (abbreviation, name, status) => `${abbreviation} ${name}, ${status}`,
+            episodeSummary: (current, possible, total) =>
+                `Current ${current} · Possible ${possible} · Total ${total}`,
+            conflict: "Data conflict: the Tracker's current quests do not match the current rotation template. Trust /rbr in game.",
+            stale: (current, week, expected) =>
+                `The Tracker matches the current quest template (${current}), but the template week is still ${week}; this week should be ${expected}. ` +
+                "The Wiki is waiting for a manual update; trust /rbr in game for now.",
+            fresh: (current, week) => `The Tracker, current quests and week date agree: ${current} (${week}).`,
+            generated: (date) => `; site data generated ${date}`,
+            locale: "en-GB",
+            badge: "This week's RBR",
+            markerTitle: (abbreviation) => `This week's RBR: ${abbreviation}`,
+            currentWeek: (quests, week) => `${quests} (${week})`,
+            markerError: (message) => `This week's RBR markers cannot be shown right now (${message})`,
+            loadError: (message) =>
+                `The RBR Tracker cannot be read right now (${message}). Check the Pioneer 2 Wiki or use /rbr in game.`,
+        },
+        ja: {
+            areas: {
+                forest: "森林", caves: "洞窟", mines: "坑道", ruins: "遺跡",
+                crossArea: "複数エリア", temple: "VR 神殿", spaceship: "VR 宇宙船",
+                cca: "セントラルコントロールエリア", seabed: "海底プラント", tower: "コントロールタワー",
+                crater: "クレーター", desert: "地下砂漠",
+            },
+            status: { current: "今週", possible: "来週の候補", unavailable: "今回の周で出題済み" },
+            questLabel: (abbreviation, name, status) => `${abbreviation} ${name}、${status}`,
+            episodeSummary: (current, possible, total) =>
+                `今週 ${current} · 候補 ${possible} · 全 ${total}`,
+            conflict: "データの矛盾：Tracker の今週のクエストが現在のローテーションテンプレートと一致しません。ゲーム内の /rbr を優先してください。",
+            stale: (current, week, expected) =>
+                `Tracker は現在のクエストテンプレート（${current}）と一致していますが、テンプレートの週は ${week} のままで、今週は ${expected} のはずです。` +
+                "Wiki は手動更新待ちです。当面はゲーム内の /rbr を優先してください。",
+            fresh: (current, week) => `Tracker・今週のクエスト・週の日付が一致しています：${current}（${week}）。`,
+            generated: (date) => `／本サイトのデータ生成：${date}`,
+            locale: "ja-JP",
+            badge: "今週の RBR",
+            markerTitle: (abbreviation) => `今週の RBR：${abbreviation}`,
+            currentWeek: (quests, week) => `${quests}（${week}）`,
+            markerError: (message) => `今週の RBR マーカーを表示できません（${message}）`,
+            loadError: (message) =>
+                `RBR Tracker を読み込めません（${message}）。Pioneer 2 Wiki を見るか、ゲーム内で /rbr を使ってください。`,
+        },
+    }[language];
 
     const EPISODE_LAYOUT = [
         {
             episode: 1,
             areas: [
-                { name: "森林", quests: ["MU1", "SU1", "EN1", "SR1", "LHS"] },
-                { name: "洞窟", quests: ["MU2", "SU2", "EN2", "SR2", "LIS"] },
-                { name: "坑道", quests: ["MU3", "SU3", "EN3", "SR3"] },
-                { name: "遗迹", quests: ["MU4", "SU4", "EN4", "SR4", "LHP"] },
-                { name: "跨区域", quests: ["AO1", "AO2", "SA1", "SA2"] },
+                { name: TEXT.areas.forest, quests: ["MU1", "SU1", "EN1", "SR1", "LHS"] },
+                { name: TEXT.areas.caves, quests: ["MU2", "SU2", "EN2", "SR2", "LIS"] },
+                { name: TEXT.areas.mines, quests: ["MU3", "SU3", "EN3", "SR3"] },
+                { name: TEXT.areas.ruins, quests: ["MU4", "SU4", "EN4", "SR4", "LHP"] },
+                { name: TEXT.areas.crossArea, quests: ["AO1", "AO2", "SA1", "SA2"] },
             ],
         },
         {
             episode: 2,
             areas: [
-                { name: "VR 神殿", quests: ["SU5", "PS1", "LSR"] },
-                { name: "VR 宇宙船", quests: ["SU6", "PS2", "LBA"] },
-                { name: "中央管理区", quests: ["PW1", "SU7", "PS3", "PS4"] },
-                { name: "海底设施", quests: ["PW3", "SU8", "PS5", "LDR"] },
-                { name: "控制塔", quests: ["PS6", "LCV", "TET", "TWT"] },
-                { name: "跨区域", quests: ["AO3", "AO4", "AO5"] },
+                { name: TEXT.areas.temple, quests: ["SU5", "PS1", "LSR"] },
+                { name: TEXT.areas.spaceship, quests: ["SU6", "PS2", "LBA"] },
+                { name: TEXT.areas.cca, quests: ["PW1", "SU7", "PS3", "PS4"] },
+                { name: TEXT.areas.seabed, quests: ["PW3", "SU8", "PS5", "LDR"] },
+                { name: TEXT.areas.tower, quests: ["PS6", "LCV", "TET", "TWT"] },
+                { name: TEXT.areas.crossArea, quests: ["AO3", "AO4", "AO5"] },
             ],
         },
         {
             episode: 4,
             areas: [
                 {
-                    name: "陨石坑",
+                    name: TEXT.areas.crater,
                     quests: ["WoL1", "WoL2", "NMU1", "NMU2", "SU10", "SU11"],
                 },
                 {
-                    name: "地下沙漠",
+                    name: TEXT.areas.desert,
                     quests: [
                         "WoL3",
                         "WoL4",
@@ -46,11 +124,7 @@ export function initializeRbr(root) {
             ],
         },
     ];
-    const STATUS_TEXT = {
-        current: "本周当前",
-        possible: "下周可能",
-        unavailable: "本轮已用",
-    };
+    const STATUS_TEXT = TEXT.status;
 
     const byId = (id) => root.querySelector(`#${id}`);
 
@@ -78,7 +152,7 @@ export function initializeRbr(root) {
         link.title = `${quest.name} · ${STATUS_TEXT[status]}`;
         link.setAttribute(
             "aria-label",
-            `${quest.abbreviation} ${quest.name}，${STATUS_TEXT[status]}`
+            TEXT.questLabel(quest.abbreviation, quest.name, STATUS_TEXT[status])
         );
         abbreviation.textContent = quest.abbreviation;
         link.append(abbreviation);
@@ -102,10 +176,11 @@ export function initializeRbr(root) {
             header.className = "rbr-episode-header";
             heading.textContent = `Episode ${layout.episode}`;
             summary.className = "rbr-episode-summary";
-            summary.textContent =
-                `当前 ${tracker.current[0]} · ` +
-                `可能 ${tracker.possible.length} · ` +
-                `共 ${data.eligibleCounts[String(layout.episode)]}`;
+            summary.textContent = TEXT.episodeSummary(
+                tracker.current[0],
+                tracker.possible.length,
+                data.eligibleCounts[String(layout.episode)]
+            );
             header.append(heading, summary);
             card.append(header);
 
@@ -174,24 +249,19 @@ export function initializeRbr(root) {
         status.className = "rbr-tracker-status";
         if (!consistent) {
             status.classList.add("is-error");
-            status.textContent =
-                "数据冲突：Tracker 的当前任务与当前轮换模板不一致。请以游戏内 /rbr 为准。";
+            status.textContent = TEXT.conflict;
         } else if (!dateFresh) {
             status.classList.add("is-warning");
-            status.textContent =
-                `Tracker 与当前任务模板一致（${current}），但模板周日期仍为 ` +
-                `${data.current.week}，本周应为 ${expectedWeek}。` +
-                "Wiki 正在等待人工更新；请暂时以游戏内 /rbr 为准。";
+            status.textContent = TEXT.stale(current, data.current.week, expectedWeek);
         } else {
             status.classList.add("is-ok");
-            status.textContent =
-                `Tracker、当前任务与周日期一致：${current}（${data.current.week}）。`;
+            status.textContent = TEXT.fresh(current, data.current.week);
         }
 
         status.append(document.createElement("br"), sourceLink);
         status.append(
             document.createTextNode(
-                `；本站数据生成于 ${new Date(data.generatedAt).toLocaleString("zh-CN")}`
+                TEXT.generated(new Date(data.generatedAt).toLocaleString(TEXT.locale))
             )
         );
     }
@@ -259,7 +329,7 @@ export function initializeRbr(root) {
             scan.className = "tier-current-scan";
             name.className = "tier-current-name";
             name.textContent = abbreviation;
-            marker.title = `本周 RBR：${abbreviation}`;
+            marker.title = TEXT.markerTitle(abbreviation);
             marker.style.setProperty("--marker-delay", `${index * 120}ms`);
             marker.style.left = `${(x / viewBoxWidth) * 100}%`;
             marker.style.top = `${(y / viewBoxHeight) * 100}%`;
@@ -271,8 +341,8 @@ export function initializeRbr(root) {
 
         const badge = document.createElement("span");
         const quests = document.createElement("strong");
-        badge.textContent = "本周 RBR";
-        quests.textContent = `${current.join(" · ")}（${data.current.week}）`;
+        badge.textContent = TEXT.badge;
+        quests.textContent = TEXT.currentWeek(current.join(" · "), data.current.week);
         summary.replaceChildren(badge, quests);
     }
 
@@ -300,7 +370,7 @@ export function initializeRbr(root) {
         renderTierHighlights(data).catch((error) => {
             const summary = byId("rbr-tier-current-summary");
             if (summary) {
-                summary.textContent = `本周 RBR 标记暂时无法显示（${error.message}）`;
+                summary.textContent = TEXT.markerError(error.message);
             }
         });
     }
@@ -308,8 +378,6 @@ export function initializeRbr(root) {
     loadTracker().catch((error) => {
         const status = byId("rbr-tracker-status");
         status.className = "rbr-tracker-status is-error";
-        status.textContent =
-            `RBR Tracker 暂时无法读取（${error.message}）。` +
-            "请直接查看 Pioneer 2 Wiki 或在游戏内使用 /rbr。";
+        status.textContent = TEXT.loadError(error.message);
     });
 }

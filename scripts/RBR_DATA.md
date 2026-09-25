@@ -298,6 +298,17 @@ once, with no omissions or duplicates:
 python3 -m unittest scripts/test_rbr_tiers.py
 ```
 
+`scripts/build_rbr_tier_charts.py` renders both tier charts from these tables in
+Chinese, English and Japanese, into `assets/img/guide/rbr/{zh,en,ja}/`. The
+guide's written tier notes live in `guide/rbr.html` (Chinese) and
+`content/i18n/pages/{en,ja}/guide/rbr.html`; when a tier or its notes change,
+regenerate the charts and update all three texts together:
+
+```bash
+python3 scripts/build_rbr_tier_charts.py
+python3 -m unittest scripts.test_rbr_tier_charts
+```
+
 The generator:
 
 1. Reads the `Ragol Boost Road` page through the MediaWiki API.

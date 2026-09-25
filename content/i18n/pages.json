@@ -234,21 +234,33 @@
     },
     "guide/acronym.html": {
       "title": {
-        "en": "Common abbreviations | Haven PSOBB Wiki",
+        "en": "Common Abbreviations | Haven PSOBB Wiki",
         "ja": "よく使う略語 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Common PSOBB abbreviations in chat, parties, combat and trading",
+        "ja": "PSOBB のチャット・パーティ・戦闘・取引でよく使う略語"
+      }
     },
     "guide/anguish.html": {
       "title": {
-        "en": "What is Anguish mode? | Haven PSOBB Wiki",
-        "ja": "Anguish モードとは | Haven PSOBB Wiki"
+        "en": "What Is Anguish Mode? | Haven PSOBB Wiki",
+        "ja": "苦痛（Anguish）モードとは？ | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Ephinea Anguish mode levels, enemy boosts and drop rewards",
+        "ja": "Ephinea の苦痛モードのレベル、敵の強化とドロップの報酬"
+      }
     },
     "guide/banners.html": {
       "title": {
@@ -276,30 +288,48 @@
     },
     "guide/command.html": {
       "title": {
-        "en": "Server commands | Haven PSOBB Wiki",
-        "ja": "サーバーコマンド | Haven PSOBB Wiki"
+        "en": "Server Commands | Haven PSOBB Wiki",
+        "ja": "サーバーのコマンド | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Ephinea in-game server commands",
+        "ja": "Ephinea のゲーム内のサーバーのコマンド"
+      }
     },
     "guide/crash.html": {
       "title": {
-        "en": "Configure Windows DEP | Haven PSOBB Wiki",
-        "ja": "Windows DEP の設定 | Haven PSOBB Wiki"
+        "en": "Fixing Crashes on Windows | Haven PSOBB Wiki",
+        "ja": "Windows での強制終了の対処 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Windows settings that stop PSOBB from crashing: DEP, compatibility, UAC and antivirus exclusions",
+        "ja": "PSOBB の強制終了を防ぐ Windows の設定：DEP・互換性・UAC・ウイルス対策の除外"
+      }
     },
     "guide/d3d.html": {
       "title": {
-        "en": "Post-processing effects compared | Haven PSOBB Wiki",
-        "ja": "ポストエフェクトの比較 | Haven PSOBB Wiki"
+        "en": "Rendering and Graphics API Guide | Haven PSOBB Wiki",
+        "ja": "描画とグラフィック API のガイド | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "How PSOBB reaches modern GPUs through D3D9, dgVoodoo and DXVK, and what Ephinea graphics settings do",
+        "ja": "PSOBB が D3D9・dgVoodoo・DXVK を通って現代の GPU に届く仕組みと、Ephinea の画面設定の働き"
+      }
     },
     "guide/discord.html": {
       "title": {
@@ -307,8 +337,14 @@
         "ja": "Discord | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Haven Discord invite",
+        "ja": "Haven の Discord への招待"
+      }
     },
     "guide/ep1ch.html": {
       "title": {
@@ -342,12 +378,18 @@
     },
     "guide/ephinea_rules.html": {
       "title": {
-        "en": "Game and forum rules | Haven PSOBB Wiki",
-        "ja": "ゲームとフォーラムの規約 | Haven PSOBB Wiki"
+        "en": "Game and Forum Rules | Haven PSOBB Wiki",
+        "ja": "ゲームと掲示板のルール | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Ephinea game server and forum rules",
+        "ja": "Ephinea のゲームサーバーと掲示板のルール"
+      }
     },
     "guide/ephinea.html": {
       "title": {
@@ -355,26 +397,44 @@
         "ja": "Ephinea について | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "What the Ephinea PSOBB server offers",
+        "ja": "Ephinea の PSOBB サーバーの特徴"
+      }
     },
     "guide/errorcode.html": {
       "title": {
-        "en": "Error codes | Haven PSOBB Wiki",
+        "en": "Error Codes | Haven PSOBB Wiki",
         "ja": "エラーコード一覧 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB error codes and what they mean",
+        "ja": "PSOBB のエラーコードとその意味"
+      }
     },
     "guide/ime.html": {
       "title": {
-        "en": "Input method setup | Haven PSOBB Wiki",
-        "ja": "IME の設定 | Haven PSOBB Wiki"
+        "en": "Input Method Setup | Haven PSOBB Wiki",
+        "ja": "入力メソッドの設定 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Turning on input method support in the Ephinea launcher",
+        "ja": "Ephinea のランチャーで入力メソッドを有効にする方法"
+      }
     },
     "guide/launcher.html": {
       "title": {
@@ -393,21 +453,33 @@
     },
     "guide/localized.html": {
       "title": {
-        "en": "Chinese client patch | Haven PSOBB Wiki",
+        "en": "Chinese Client Patch | Haven PSOBB Wiki",
         "ja": "中国語化パッチ | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Installing the Chinese client patch for PSOBB",
+        "ja": "PSOBB の中国語化パッチの入れ方"
+      }
     },
     "guide/npc.html": {
       "title": {
-        "en": "NPC profiles | Haven PSOBB Wiki",
-        "ja": "NPC 人物紹介 | Haven PSOBB Wiki"
+        "en": "NPC Guide | Haven PSOBB Wiki",
+        "ja": "NPC 人物録 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "The main NPCs of the PSO story and how they relate",
+        "ja": "PSO の物語の主な NPC とその関係"
+      }
     },
     "guide/rbr.html": {
       "title": {
@@ -415,26 +487,44 @@
         "ja": "Ragol Boost Road（RBR）おすすめクエスト | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Ephinea Ragol Boost Road (RBR) mechanics, quest tiers and non-RBR farming picks",
+        "ja": "Ephinea の Ragol Boost Road（RBR）の仕組み、クエスト Tier と非 RBR の周回おすすめ"
+      }
     },
     "guide/register.html": {
       "title": {
-        "en": "Account registration | Haven PSOBB Wiki",
+        "en": "Account Registration | Haven PSOBB Wiki",
         "ja": "アカウント登録 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Registering an Ephinea account",
+        "ja": "Ephinea のアカウントの登録方法"
+      }
     },
     "guide/saveaccount.html": {
       "title": {
-        "en": "Saving your account and password | Haven PSOBB Wiki",
-        "ja": "アカウントとパスワードの保存 | Haven PSOBB Wiki"
+        "en": "Saving Your Login | Haven PSOBB Wiki",
+        "ja": "ログイン情報の保存 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Saving your login ID and password in the Ephinea launcher",
+        "ja": "Ephinea のランチャーでログイン ID とパスワードを保存する方法"
+      }
     },
     "guide/seabed.html": {
       "title": {
@@ -447,12 +537,18 @@
     },
     "guide/timezone.html": {
       "title": {
-        "en": "Time zones and trading hours | Haven PSOBB Wiki",
-        "ja": "タイムゾーンと取引時間 | Haven PSOBB Wiki"
+        "en": "Time Zones and Trading | Haven PSOBB Wiki",
+        "ja": "タイムゾーンと取引の時間 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Time zones for arranging trades with players worldwide",
+        "ja": "世界中のプレイヤーと取引の時間を決めるためのタイムゾーン"
+      }
     },
     "guide/volopt.html": {
       "title": {

@@ -26,6 +26,27 @@ NON_RBR_ROWS = (
     ("RER", (("TE", "Whitill"), ("5-3", "Whitill"), ("PoD", "Purplenum"), ("MA4B", "Viridia"))),
 )
 
+# Chart text in each site language; everything else (quests, Section IDs, tiers) is language-neutral.
+LANGUAGES = ("zh", "en", "ja")
+CHART_TEXT = {
+    "zh": {
+        "title": "任务 Tier 表；任务格颜色和文字表示推荐 Section ID",
+        "legend": "格子颜色 = Section ID（与掉落表一致）",
+    },
+    "en": {
+        "title": "Quest tier chart; each quest cell's colour and label show the recommended Section ID",
+        "legend": "Cell colour = Section ID (same as the drop charts)",
+    },
+    "ja": {
+        "title": "クエストの Tier 表。クエストの枠の色と文字はおすすめのセクション ID",
+        "legend": "枠の色 = セクション ID（ドロップ表と同じ）",
+    },
+}
+CHARTS = (
+    (RBR_ROWS, "rbr-tier-section-colors.svg", 7, 967),
+    (NON_RBR_ROWS, "non-rbr-tier-section-colors.svg", 4, 1452),
+)
+
 TIER_COLORS = {
     "SS": "#FA625F",
     "S": "#FE8F29",
@@ -86,7 +107,9 @@ def build_chart(
     *,
     columns: int,
     width: int,
+    language: str,
 ) -> None:
+    words = CHART_TEXT[language]
     palette = load_section_palette()
     margin = 4
     legend_height = 112
@@ -100,9 +123,9 @@ def build_chart(
     height = int(margin * 2 + legend_height + sum(tier_row_counts) * cell_height)
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img">',
-        '<title>任务 Tier 表；任务格颜色和文字表示推荐 Section ID</title>',
+        f'<title>{html.escape(words["title"])}</title>',
         f'<rect width="{width}" height="{height}" fill="{background}"/>',
-        text_element(margin + 10, 28, "格子颜色 = Section ID（与掉落表一致）", size=18, fill="#FFFFFF", anchor="start"),
+        text_element(margin + 10, 28, words["legend"], size=18, fill="#FFFFFF", anchor="start"),
     ]
 
     legend_columns = 5
@@ -144,19 +167,10 @@ def build_chart(
 
 
 def main() -> None:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    build_chart(
-        RBR_ROWS,
-        OUTPUT_DIR / "rbr-tier-section-colors.svg",
-        columns=7,
-        width=967,
-    )
-    build_chart(
-        NON_RBR_ROWS,
-        OUTPUT_DIR / "non-rbr-tier-section-colors.svg",
-        columns=4,
-        width=1452,
-    )
+    for language in LANGUAGES:
+        (OUTPUT_DIR / language).mkdir(parents=True, exist_ok=True)
+        for rows, filename, columns, width in CHARTS:
+            build_chart(rows, OUTPUT_DIR / language / filename, columns=columns, width=width, language=language)
 
 
 if __name__ == "__main__":

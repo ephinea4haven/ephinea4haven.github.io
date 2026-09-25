@@ -1,0 +1,77 @@
+<!-- Japanese text for /guide/crash.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+        <h1>Windows の DEP を設定する</h1>
+
+<p><img src="/assets/img/screenshots/windows%20dep.jpg" alt="dep" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>1. デスクトップの  <strong>PC</strong>  のアイコンを右クリックし、 <strong>プロパティ</strong>。</p>
+<p>2. 開いた  <strong>システム</strong>  のウィンドウで  <strong>システムの詳細設定</strong>。</p>
+<p>3.  <strong>システムのプロパティ</strong> → <strong>詳細設定</strong> → <strong>パフォーマンス</strong>  の欄で  <strong>設定</strong>。</p>
+<p>4.  <strong>パフォーマンス オプション</strong>  で  <strong>データ実行防止</strong>  タブに切り替えます。</p>
+
+<p>ここでプロセッサーが DEP に対応しているか確認できます：</p>
+
+<ul>
+<li>対応していれば次のように表示されます：<strong>このコンピューターのプロセッサは、ハードウェアベースの DEP をサポートしています。</strong></li>
+<li>対応していなければ次のように表示されます：<strong>このコンピューターのプロセッサは、ハードウェアベースの DEP をサポートしていません。ただし、Windows は DEP ソフトウェアを使用して、一部の種類の攻撃を防ぐことができます。</strong></li>
+</ul>
+
+<hr>
+
+<h1>互換性を設定する</h1>
+
+<p><img src="/assets/img/screenshots/compat.png" alt="compat" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>1. ゲームのショートカットを右クリックし、 <strong>プロパティ</strong>。</p>
+<p>2.  <strong>互換性</strong>  タブに切り替えます。</p>
+<p>3.  <strong>Run this program in compatibility mode for:</strong></p>
+<p>4.  <strong>Windows XP (Service Pack 2)</strong>。</p>
+
+<hr>
+
+<h1>ランチャーの解像度を設定する</h1>
+
+<p><img src="/assets/img/screenshots/resolution.png" alt="resolution" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>最初の2つの手順の後もまだ落ちる場合は、 <strong>解像度</strong>。</p>
+<p>グラフィックカードとモニターに合った解像度を選んでください：</p>
+
+<p>> 高い解像度が必ず重いわけでも、低い解像度が必ず軽いわけでもありません。実際の様子で判断してください。</p>
+
+<hr>
+
+<h1>ユーザーアカウント制御（UAC）を設定する</h1>
+
+<p><img src="/assets/img/screenshots/uac.jpg" alt="uac" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>UAC を下の図の段階に設定すると、ほかのプログラムが保護の確認画面を出したときに</p>
+<p>PSOBB が描画を失って落ちることがなくなります。</p>
+
+<p><img src="/assets/img/screenshots/prompt.png" alt="prompt" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<hr>
+
+<h1>ゲームのフォルダーをウイルス対策ソフトの除外に追加する</h1>
+
+<p>ゲームの左下に  <code>DLL ERROR</code>  などと表示される場合は、次の手順に従ってください：</p>
+
+<p>1. スタートメニューで  <strong>sec</strong>  と入力し、</p>
+<p>   <img src="/assets/img/screenshots/sec.png" alt="sec" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>2.  <strong>ウイルスと脅威の防止</strong></p>
+<p>   <img src="/assets/img/screenshots/vp.png" alt="vp" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>3.  <strong>設定の管理</strong></p>
+<p>   <img src="/assets/img/screenshots/vpmanage.png" alt="vpmanage" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>4.  <strong>除外の追加または削除</strong></p>
+<p>   <img src="/assets/img/screenshots/vpexclusive.png" alt="vpexclusive" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>5.  <strong>ゲームのルートフォルダー</strong>  を除外に追加します</p>
+<p>   <img src="/assets/img/screenshots/vpexcludeephinea.png" alt="vpexcludeephinea" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+<p>   <img src="/assets/img/screenshots/vprootfolder.png" alt="vprootfolder" style="max-width: 100%; height: auto; margin: 10px 0;"></p>
+
+<p>これでゲームのフォルダーの除外の設定は完了です。</p>
+
+    </section>

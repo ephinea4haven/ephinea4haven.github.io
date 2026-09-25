@@ -759,6 +759,19 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   await expect(page.locator('.rbr-episode-card')).toHaveCount(3);
   await expect(page.locator('.rbr-quest-cell')).toHaveCount(58);
   await expect(page.locator('.tier-current-marker')).toHaveCount(3);
+
+  // Translated editions render the live tracker and the chart in their own language.
+  for (const [path, status, area, chart] of [
+    ['/en/guide/rbr.html', 'Tracker', 'Forest', '/assets/img/guide/rbr/en/'],
+    ['/ja/guide/rbr.html', 'Tracker', '森林', '/assets/img/guide/rbr/ja/'],
+  ]) {
+    await page.goto(path);
+    await expect(page.locator('#rbr-tracker-status')).toContainText(status);
+    await expect(page.locator('.rbr-area-name').first()).toHaveText(area);
+    await expect(page.locator('.rbr-quest-cell')).toHaveCount(58);
+    await expect(page.locator('#rbr-tier-chart')).toHaveAttribute('src', new RegExp(`^${chart}`));
+    await expect(page.locator('.tier-current-marker')).toHaveCount(3);
+  }
   expect(runtimeErrors).toEqual([]);
 });
 

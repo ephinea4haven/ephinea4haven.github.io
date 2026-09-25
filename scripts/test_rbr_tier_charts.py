@@ -13,47 +13,26 @@ class RbrTierChartTest(unittest.TestCase):
     """Keep checked-in charts synchronized with their data and palette."""
 
     def test_checked_in_charts_are_current(self) -> None:
-        cases = (
-            (
-                charts.RBR_ROWS,
-                "rbr-tier-section-colors.svg",
-                7,
-                967,
-            ),
-            (
-                charts.NON_RBR_ROWS,
-                "non-rbr-tier-section-colors.svg",
-                4,
-                1452,
-            ),
-        )
-
         with tempfile.TemporaryDirectory() as temp_dir:
-            for rows, filename, columns, width in cases:
-                generated = Path(temp_dir) / filename
-                charts.build_chart(
-                    rows,
-                    generated,
-                    columns=columns,
-                    width=width,
-                )
-                checked_in = charts.OUTPUT_DIR / filename
-                self.assertEqual(
-                    generated.read_text(encoding="utf-8"),
-                    checked_in.read_text(encoding="utf-8"),
-                    f"Regenerate {filename} with build_rbr_tier_charts.py",
-                )
+            for language in charts.LANGUAGES:
+                for rows, filename, columns, width in charts.CHARTS:
+                    generated = Path(temp_dir) / f"{language}-{filename}"
+                    charts.build_chart(rows, generated, columns=columns, width=width, language=language)
+                    checked_in = charts.OUTPUT_DIR / language / filename
+                    self.assertEqual(
+                        generated.read_text(encoding="utf-8"),
+                        checked_in.read_text(encoding="utf-8"),
+                        f"Regenerate {language}/{filename} with build_rbr_tier_charts.py",
+                    )
 
     def test_every_drop_table_color_is_embedded(self) -> None:
         palette = charts.load_section_palette()
-        for filename in (
-            "rbr-tier-section-colors.svg",
-            "non-rbr-tier-section-colors.svg",
-        ):
-            svg = (charts.OUTPUT_DIR / filename).read_text(encoding="utf-8")
-            for section_id, color in palette.items():
-                self.assertIn(section_id, svg)
-                self.assertIn(color, svg)
+        for language in charts.LANGUAGES:
+            for _, filename, _, _ in charts.CHARTS:
+                svg = (charts.OUTPUT_DIR / language / filename).read_text(encoding="utf-8")
+                for section_id, color in palette.items():
+                    self.assertIn(section_id, svg)
+                    self.assertIn(color, svg)
 
     def test_green_section_ids_match_source_articles(self) -> None:
         def section_id_for(rows, quest):

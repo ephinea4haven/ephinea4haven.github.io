@@ -1,0 +1,151 @@
+<!-- English text for /guide/command.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+        <h1>Server commands</h1>
+
+<p>On the Ephinea server you can type commands in game to customize your experience and use specific features.</p>
+
+<h2>Command list ##</h2>
+
+<p><strong>/lang x</strong>  </p>
+<p>Sets the quest language: 1 for English, 2 for Japanese.</p>
+
+<p><strong>/setname x</strong>  </p>
+<p>Sets the party name, up to 12 characters.</p>
+
+<p><strong>/setpass x</strong>  </p>
+<p>Sets the party password, up to 16 characters.</p>
+
+<p><strong>/partyinfo</strong>  </p>
+<p>Shows the current party’s information:</p>
+
+<ul>
+<li>Experience Rate</li>
+<li>Experience Share Settings</li>
+<li>Section ID</li>
+<li>Drop Style</li>
+<li>Drop Rate</li>
+<li>Rare Enemy Rate</li>
+</ul>
+
+<p><strong>/rbr</strong>  </p>
+<p>Shows a scrolling announcement at the top of the screen with this week’s RBR quests.</p>
+
+<p><strong>/luck</strong>  </p>
+<p>Shows your current character’s daily forecast luck level: Normal, Good, Lucky or Incredible.</p>
+
+<p><strong>/forecast</strong>  </p>
+<p>Shows today’s daily forecast conditions.</p>
+
+<p><strong>/noluck</strong>  </p>
+<p>Toggles whether your current character accepts the daily forecast’s rare drop rate bonus.</p>
+
+<p><strong>/purist</strong>  </p>
+<p>Typing <code>/purist</code> in game turns on <code>Sage mode</code>, which isn’t an account mode (like Normal or Sandbox).</p>
+<p><code>Ephinea</code>The server periodically gives players drop boosts; if you want the original drops, you can use <code>Sage mode</code>’s base drop mode.</p>
+<p>Note that during <code>Sage mode</code>, joining another room with a rare enemy drop boost still gives you that boost, but players who join your room get no drop boosts.</p>
+
+<p><strong>/bank</strong>  </p>
+<p>Switches characters and the shared bank while logged in. Note: there is only one shared bank, used by all 32 characters.</p>
+
+<p><strong>/lobby</strong>  </p>
+<p>Returns to the lobby.</p>
+
+<p><strong>/showwep</strong>  </p>
+<p>Whether to show <b>special weapon</b> pickup messages, including weapons in your inventory.</p>
+
+<p><strong>/matcount</strong>  </p>
+<p>Shows your current character’s material usage in the announcement bar at the top of the screen.</p>
+
+<p><strong>/matreset</strong></p>
+<p>Resets your current character’s material usage, <em>not including HP and TP Materials</em>,</p>
+<p>. Only usable in the lobby, and must be entered twice to confirm.</p>
+
+<p><strong>/killcount</strong></p>
+<p>Shows all your unsealing counts, including Lame d’Argent, Sealed J-Sword, Limiter, Swordsman Lore and others, in the announcement bar at the top of the screen.</p>
+
+<p><strong>/wipecmode</strong></p>
+<p>Clears your current character’s CH data.</p>
+
+<p><strong>/modname x</strong></p>
+<p>Changes your character’s name, up to 10 characters; the Section ID is not recalculated. No limit on use.</p>
+
+<p><strong>/modsecid x</strong></p>
+<p>Changes your character’s Section ID; usable once, before level 20.  </p>
+<p>Valid values of x:</p>
+
+<p>**VIRIDIA, GREENILL, SKYLY, BLUEFULL, PURPLENUM,  </p>
+<p>PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL**</p>
+
+<p><strong>/ping</strong>  </p>
+<p>Pings the server to check latency. Because of how PSO works, the minimum ping is 66ms.</p>
+
+<p><strong>/time</strong>  </p>
+<p>Shows the server’s current time (UTC; add 8 hours for China).</p>
+
+<p><strong>/sfx 0-10</strong>  </p>
+<p>Use /sfx 0-10 to adjust the sound effect volume.</p>
+
+<p><strong>/bgm 0-10</strong>  </p>
+<p>Use /bgm 0-10 to adjust the background music volume.</p>
+
+<p><strong>/cam</strong>  </p>
+<p>Turns PSO’s default camera behaviour on or off; when off, the left mouse button moves forward and the right mouse button looks around in place.</p>
+
+<p><strong>/map</strong>  </p>
+<p>Turns the large map in the centre of the screen on or off.</p>
+
+<p><strong>/gamefilter</strong>  </p>
+<p>Shows rooms you can join.</p>
+
+<p><strong>/slowburst</strong>  </p>
+<p>Enables loading screens for all players in the current room (room leader only).</p>
+
+<p><strong>/burstpref</strong>  </p>
+<p>Enables all loading screens for you in the lobby and in parties you create.</p>
+
+<p><strong>/mobhp</strong>  </p>
+<p>Turns enemy HP bars on or off.</p>
+
+<p><strong>/resetmobhp</strong>  </p>
+<p>Resets the enemy HP bar settings.</p>
+
+<p><strong>/mobhpfilled</strong>  </p>
+<p>Sets the colour of a full enemy HP bar.</p>
+
+<p><strong>/mobhpfilling</strong>  </p>
+<p>Sets the colour of an enemy’s remaining HP.</p>
+
+<p><strong>/mobhpdamage</strong>  </p>
+<p>Sets the colour of an enemy’s lost HP.</p>
+
+<p><strong>/starttimer x</strong>   </p>
+<p>Starts a simple timer immediately. “x” is an optional number of seconds; the timer counts down from x to 0, or counts up from 0 if not given.</p>
+
+<p><strong>/freezetimer</strong>  </p>
+<p>Stops the current timer. A stopped timer usually can’t be started again.</p>
+
+<p><strong>/killtimer</strong>  </p>
+<p>Destroys the current timer.</p>
+
+<p><strong>/revealtimer</strong></p>
+<p>Shows a timer that was accidentally hidden…</p>
+
+<p><strong>/registertimer x,y,z</strong>  </p>
+<p>Immediately creates a timer that waits for y to be set and stops automatically when z is set; if x is set, it counts down from x to 0.</p>
+
+<p><strong>/zonetimer x,y,z,r</strong>    </p>
+<p>Immediately starts a timer that waits for floor y area z to be cleared; if r is set, the timer waits for r to be set before counting; if x is set, it counts down from x to 0.</p>
+
+<p><strong>/pb</strong>  </p>
+<p>Sets your character’s PB to 100 (Sandbox)</p>
+
+<p><strong>/sd</strong>  </p>
+<p>Sets your character’s S/D level, up to 81 (Sandbox)</p>
+
+<p><strong>/sdall</strong>  </p>
+<p>The room leader sets the S/D level of everyone in the room, up to 81 (Sandbox)</p>
+
+<p><strong>/sethp</strong>  </p>
+<p>Sets your character’s HP (Sandbox)</p>
+    </section>

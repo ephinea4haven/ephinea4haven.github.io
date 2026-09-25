@@ -15,18 +15,18 @@ test('each language version is a separate prerendered URL with hreflang alternat
   // Directory pages use a trailing slash; a Chinese-only page lists no other versions.
   const protocol = await (await request.get('/ja/data/protocol/')).text();
   expect(protocol).toContain('<link rel="canonical" href="https://www.psohaven.com/ja/data/protocol/"');
-  const chineseOnly = await (await request.get('/guide/rbr.html')).text();
+  const chineseOnly = await (await request.get('/data/en2chinese.html')).text();
   expect(chineseOnly).not.toContain('hreflang="en"');
   expect(chineseOnly).not.toContain('hreflang="ja"');
-  expect((await request.get('/en/guide/rbr.html')).status()).toBe(404);
+  expect((await request.get('/en/data/en2chinese.html')).status()).toBe(404);
 });
 
 test('a chosen language opens the versions that exist and says when a page has none', async ({ page }) => {
-  await page.goto('/guide/rbr.html');
+  await page.goto('/data/en2chinese.html');
   await expect(bar(page)).toBeVisible();
   await bar(page).getByRole('button', { name: 'English', exact: true }).click();
   // A Chinese-only page stays where it is, stays Chinese, and says so in the reader's language.
-  await expect(page).toHaveURL(/\/guide\/rbr\.html$/);
+  await expect(page).toHaveURL(/\/data\/en2chinese\.html$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
   await expect(bar(page).getByRole('button', { name: '中文', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(bar(page).getByRole('status')).toHaveText('This page is currently available in Chinese only.');

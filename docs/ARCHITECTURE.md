@@ -63,8 +63,9 @@ Interface text and long-form text are kept apart, as is standard:
 language: keys, document regions, localized images and item names are resolved
 at build time, then links are made root-relative and pointed at the same
 language's version of each page that has one, so a published page contains only its own language and needs no
-runtime switching. The catalogs, homepage and status simulator use the same URL
-language through `SiteLanguage`.
+runtime switching. The catalogs, homepage, status simulator and RBR tracker use
+the same URL language through `SiteLanguage`; text their scripts write at runtime
+comes from per-language tables in that feature's code.
 
 ## System shape
 
@@ -442,8 +443,9 @@ The release gates cover:
   Chinese pages' own code plus headroom, so translating more pages does not
   count against the Chinese site;
 - Angular's initial-bundle budget (320 KB raw error, 315 KB warning), which
-  covers the framework, router, route table and the site-wide language state
-  that every page needs;
+  covers the framework, router, feature route table and the site-wide language
+  state that every page needs. Content pages (every language version) load their
+  route table lazily, so translating more pages doesn't grow the initial bundle;
 - Status calculation fixtures, exhaustive character/equipment compatibility and
   all material-plan presets;
 - Combo provenance, license and calculation-data integrity;
