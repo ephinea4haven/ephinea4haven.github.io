@@ -18,20 +18,36 @@ has started. Check an item only when its stated completion criteria are met.
   Complete this task when every public page has all three language versions
   reviewed for content parity and has passed language-switching and layout checks
   on desktop and mobile.
-- [ ] Complete the claim-level audit of archived PSO FRAME slot3 (Red-Wolf)
-  material. The [archive inventory and acquisition record](PSO_FRAME_ARCHIVE.md) (2026-09-16)
-  locates readable Wayback captures, records 61 HTML page addresses plus the
-  frame root and 217 image/icon addresses, and compares the major topics with
-  Haven. All 279 indexed files are now downloaded to the local archive;
-  38 additional internal references remain unavailable in the queried indexes.
-  Content-use decisions await maintainer review. Individual gameplay claims,
-  image content and BB applicability remain unverified.
-  Restore information only when it adds content missing from those
-  pages and its applicability to Ephinea PSOBB is verified. Complete this task
-  when every inventoried topic has a documented restore/skip decision and reason,
-  and every selected restoration has a destination link and has passed the
-  relevant content and localization checks. Unresolved source or applicability
-  questions must remain explicitly open.
+
+  Inventory (2026-09-25): 108 public pages, excluding per-item and per-monster
+  details. The homepage and the item, monster and cosmetics catalogs switch
+  languages; the Black Paper's Deal and prize-list pages are largely translated;
+  the EP1/EP2 challenge guides translate only map labels and the protocol
+  reference only a few English strings. The other 99 pages (about 106,000 Chinese
+  characters, plus script-generated UI text) are Chinese-only. Delivered in
+  phases, each released on its own:
+
+  - [x] Phase 1 (2026-09-25): one site-wide language model. Each language is a
+    separate prerendered URL (Chinese at the historical path, English and
+    Japanese under `/en/` and `/ja/`) with hreflang alternates; interface text
+    comes from keyed message files and long-form text from per-language
+    documents ([Languages and URLs](ARCHITECTURE.md#languages-and-urls)). A
+    remembered choice opens existing versions; pages without one stay put and
+    say so. Per-page coverage, titles and descriptions live in
+    `content/i18n/pages.json`.
+  - [x] Phase 2 (2026-09-25): finish the partially translated pages — the EP1
+    and EP2 challenge guides (text and redrawn maps, including the Area 23 warp
+    close-up), Black Paper's Deal, the prize list, the protocol reference (English
+    and Japanese), and the item and monster catalogs' mechanics, acquisition and
+    behaviour text in English and Japanese.
+  - [ ] Phase 3: main guides and tools (mechanics, class guide, post-processing
+    comparison, launcher, status simulator, Mag chart and others).
+  - [ ] Phase 4: data pages (price guide, monster farming guide, ItemPMT/PT/RT and
+    others).
+  - [ ] Phase 5: event archive (6 overviews and 45 yearly pages).
+  - [ ] Scope decisions: upstream English tools (Combo Calculator, Section ID
+    Finder), the Chinese patch and input-method guides, and the English–Chinese
+    item table.
 
 ## Maintenance Guidelines
 
@@ -87,7 +103,9 @@ the successful Pages workflow for the relevant commit; see
   hash-verified all 279 indexed files; checked image rendering on all 62 HTML
   pages and added a gallery of all 216 PNGs. Recorded 38 unavailable internal
   references and marked missing image positions. The source archive and ZIP
-  remain local; gameplay verification and content-use decisions remain open.
+  remain local. On 2026-09-25 the maintainer closed the follow-up claim-level
+  audit as done for now: no Red-Wolf content is restored, and individual
+  gameplay claims remain unverified.
 
 - [x] [Mechanics guide section G](../tools/mechanics.html#photon-blast)
   (2026-09-15): consolidated all six PBs' mechanics, usage guidance, illustrations

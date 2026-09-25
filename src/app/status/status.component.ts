@@ -2,14 +2,15 @@ import {
   afterNextRender,
   ChangeDetectionStrategy,
   Component,
+  computed,
+  effect,
   inject,
-  signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { PageChromeComponent } from '../shared/page-chrome.component';
-import characterDataJson from '../../../assets/js/chardata.json';
+import { SiteLanguage } from '../shared/site-language.service';
 import { ItemData } from './item-data.js';
 import { STATUS_ITEM_NAMES } from '../generated/i18n/status-items';
 import {
@@ -23,6 +24,8 @@ import {
 
 interface Option { readonly value: string; readonly label: string }
 interface StatRow extends StatBreakdown { readonly key: string; readonly label: string }
+/** An effect line: item names are translated at render time, other text is shown as is. */
+interface EffectLabel { readonly text: string; readonly item: boolean }
 type Language = 'zh' | 'en' | 'ja';
 
 const TEXT = {
@@ -33,6 +36,7 @@ const TEXT = {
     current: '当前', maximum: '上限', difference: '差值', valid: '可装备', invalid: '不可装备', rarity: '稀有度',
     effects: '特殊效果', noEffects: '无特殊效果', share: '当前配置链接', materialLimit: '能力药用量', magLevel: '玛古等级',
     fireResist: '火焰', iceResist: '冰冻', thunderResist: '雷电', darkResist: '暗黑', lightResist: '光明',
+    loadFailed: '角色能力数据暂时未能加载，请检查网络后重试。', retry: '重新加载',
   },
   en: {
     eyebrow: 'PSOBB character laboratory', title: 'Character Stat Simulator', character: 'Character', class: 'Class', level: 'Level',
@@ -41,6 +45,7 @@ const TEXT = {
     current: 'Current', maximum: 'Max', difference: 'Difference', valid: 'Equipable', invalid: 'Not equipable', rarity: 'Rarity',
     effects: 'Special effects', noEffects: 'No special effects', share: 'Link to this build', materialLimit: 'Material use', magLevel: 'Mag level',
     fireResist: 'Fire', iceResist: 'Ice', thunderResist: 'Thunder', darkResist: 'Dark', lightResist: 'Light',
+    loadFailed: 'The character stat data could not be loaded. Check your connection and try again.', retry: 'Reload',
   },
   ja: {
     eyebrow: 'PSOBB キャラクターラボ', title: 'キャラクターステータスシミュレーター', character: 'キャラクター', class: '職業', level: 'レベル',
@@ -49,6 +54,7 @@ const TEXT = {
     current: '現在', maximum: '上限', difference: '差分', valid: '装備可能', invalid: '装備不可', rarity: 'レア度',
     effects: '特殊効果', noEffects: '特殊効果なし', share: '現在の構成リンク', materialLimit: 'マテリアル使用量', magLevel: 'マグレベル',
     fireResist: '炎', iceResist: '氷', thunderResist: '雷', darkResist: '闇', lightResist: '光',
+    loadFailed: 'キャラクター能力データを読み込めませんでした。接続を確認して再度お試しください。', retry: '再読み込み',
   },
 } as const;
 
@@ -62,12 +68,14 @@ const TEXT = {
 export class StatusComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly meta = inject(Meta);
-  private readonly characterData = characterDataJson as unknown as CharacterData;
+  private readonly characterData = this.route.snapshot.data['characterData'] as CharacterData | null;
   private readonly itemData = new ItemData();
-  private readonly calculator = new StatusCalculator(this.itemData, this.characterData);
+  private readonly calculator = this.characterData ? new StatusCalculator(this.itemData, this.characterData) : null;
+  readonly dataFailed = !this.characterData;
 
   readonly levels = Array.from({ length: 200 }, (_, index) => index + 1);
-  readonly language = signal<Language>('zh');
+  private readonly site = inject(SiteLanguage);
+  readonly language = computed<Language>(() => this.site.language());
   classes: Option[] = [];
   armors: Option[] = [];
   shields: Option[] = [];
@@ -90,12 +98,16 @@ export class StatusComponent {
   units: [string, string, string, string] = ['-', '-', '-', '-'];
   result: StatusResult | null = null;
   statRows: StatRow[] = [];
-  effectLabels: string[] = [];
+  effectLabels: EffectLabel[] = [];
   shareUrl = '';
 
   constructor() {
+    const title = inject(Title);
+    effect(() => title.setTitle(`${this.t('title')} | ${this.language() === 'zh' ? 'Ephinea PSOBB' : 'Haven PSOBB Wiki'}`));
     this.meta.updateTag({ name: 'description', content: 'PSOBB 角色属性模拟器' });
-    this.classes = CHARACTER_CLASSES.map((value) => ({ value, label: this.characterData.clazz[value][0] }));
+    if (!this.characterData) return;
+    const characterData = this.characterData;
+    this.classes = CHARACTER_CLASSES.map((value) => ({ value, label: characterData.clazz[value][0] }));
     this.armors = this.options(this.itemData.armors);
     this.shields = this.options(this.itemData.shields);
     this.unitOptions = this.options(this.itemData.units);
@@ -150,6 +162,7 @@ export class StatusComponent {
   classChanged(): void { this.recalculate(); }
 
   recalculate(): void {
+    if (!this.calculator) return;
     this.result = this.calculator.calculate({
       characterClass: this.selectedClass,
       level: Number(this.level),
@@ -168,22 +181,24 @@ export class StatusComponent {
     this.shareUrl = this.buildShareUrl();
   }
 
-  private describeEffects(result: StatusResult): string[] {
+  private describeEffects(result: StatusResult): EffectLabel[] {
     const effects = result.effects;
-    const labels: string[] = [];
-    if (effects.nonBattleAtp) labels.push(`ATP ${effects.nonBattleAtp > 0 ? '+' : ''}${effects.nonBattleAtp}`);
-    if (effects.nonBattleAta) labels.push(`ATA ${effects.nonBattleAta > 0 ? '+' : ''}${effects.nonBattleAta}`);
-    if (effects.attackSpeed) labels.push(`Attack speed +${effects.attackSpeed}%`);
-    if (effects.techniqueSpeed) labels.push('Technique speed ×1.5');
-    if (effects.techniqueLevel) labels.push(`Technique level +${effects.techniqueLevel}`);
-    if (effects.smartlink) labels.push(this.itemName('Smartlink'));
-    if (effects.v50x) labels.push(this.itemName(effects.v50x === 2 ? 'V502' : 'V501'));
+    const labels: EffectLabel[] = [];
+    const text = (value: string) => labels.push({ text: value, item: false });
+    const item = (name: string) => labels.push({ text: name, item: true });
+    if (effects.nonBattleAtp) text(`ATP ${effects.nonBattleAtp > 0 ? '+' : ''}${effects.nonBattleAtp}`);
+    if (effects.nonBattleAta) text(`ATA ${effects.nonBattleAta > 0 ? '+' : ''}${effects.nonBattleAta}`);
+    if (effects.attackSpeed) text(`Attack speed +${effects.attackSpeed}%`);
+    if (effects.techniqueSpeed) text('Technique speed ×1.5');
+    if (effects.techniqueLevel) text(`Technique level +${effects.techniqueLevel}`);
+    if (effects.smartlink) item('Smartlink');
+    if (effects.v50x) item(effects.v50x === 2 ? 'V502' : 'V501');
     const booleans: readonly [boolean, string][] = [
       [effects.curePoison, 'Cure/Poison'], [effects.cureParalysis, 'Cure/Paralysis'],
       [effects.cureSlow, 'Cure/Slow'], [effects.cureConfuse, 'Cure/Confuse'],
       [effects.cureFreeze, 'Cure/Freeze'], [effects.cureShock, 'Cure/Shock'], [effects.trapVision, 'Trap Vision'],
     ];
-    for (const [active, label] of booleans) if (active) labels.push(this.itemName(label));
+    for (const [active, label] of booleans) if (active) item(label);
     return labels;
   }
 
@@ -202,6 +217,7 @@ export class StatusComponent {
   displayValue(row: StatRow, value: number): number { return row.key === 'ata' ? value / 10 : value; }
   currentClassName(): string { return this.classes.find((option) => option.value === this.selectedClass)?.label ?? this.selectedClass; }
 
+  retry(): void { location.reload(); }
   resetMag(): void { this.magDef = 5; this.magPow = 0; this.magDex = 0; this.magMind = 0; this.recalculate(); }
   resetMaterials(): void {
     this.matHP = 0; this.matTP = 0; this.matPow = 0; this.matDef = 0;
@@ -209,12 +225,6 @@ export class StatusComponent {
   }
   resetEquipment(): void { this.armor = '-'; this.shield = '-'; this.recalculate(); }
   resetUnits(): void { this.units = ['-', '-', '-', '-']; this.recalculate(); }
-  setLanguage(language: Language): void {
-    this.language.set(language);
-    if (this.result) this.effectLabels = this.describeEffects(this.result);
-    document.documentElement.lang = language === 'zh' ? 'zh-CN' : language;
-    document.title = `${this.t('title')} | Ephinea PSOBB`;
-  }
 
   itemName(name: string): string {
     if (name === '-' || this.language() !== 'zh') return name;

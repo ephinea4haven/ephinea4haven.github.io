@@ -3,13 +3,15 @@ import AxeBuilder from '@axe-core/playwright';
 import { readFileSync } from 'node:fs';
 
 const items = Object.values(JSON.parse(readFileSync('src/app/generated/item-catalog/details.server.json', 'utf8')));
+// A page's URL without its language prefix.
+const unprefixed = (href) => new URL(href).pathname.replace(/^\/(en|ja)(?=\/)/, '');
 const names = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
 
 test('confirmed Unitxt renames survive detail hydration and language switching', async ({ page }) => {
   for (const en of ['Thirteen', 'Game Magazine', 'TypeSA/SABER', 'D-Parts ver1.01']) {
     const item = items.find(candidate => candidate.en === en);
     expect(item, en).toBeDefined();
-    await page.goto(`/data/items/${item.id}.html?lang=zh`);
+    await page.goto(`/data/items/${item.id}.html`);
     await expect(page.locator('#item-title')).toHaveText(names[en].zh);
     await page.getByRole('button', { name: 'English', exact: true }).click();
     await expect(page.locator('#item-title')).toHaveText(en);
@@ -21,12 +23,13 @@ test('confirmed Unitxt renames survive detail hydration and language switching',
 });
 
 test('item list title stays localized after query-only navigation', async ({page}) => {
-  await page.goto('/data/items.html?lang=en');
+  await page.goto('/en/data/items.html');
   await expect(page).toHaveTitle(/Item Database/);
   await page.getByRole('searchbox').fill('Saber');
   await expect(page).toHaveURL(/q=Saber/);
   await expect(page).toHaveTitle(/Item Database/);
   await page.getByRole('button',{name:'日本語',exact:true}).click();
+  await expect(page).toHaveURL(/\/ja\/data\/items\.html\?q=Saber/);
   await page.getByRole('searchbox').fill('V101');
   await expect(page).toHaveURL(/q=V101/);
   await expect(page).toHaveTitle(/アイテム図鑑/);
@@ -34,16 +37,19 @@ test('item list title stays localized after query-only navigation', async ({page
 
 test('language changes preserve filters, sorting, pagination and authoritative names', async ({page}) => {
   await page.goto('/data/items.html?category=weapon&type=光剑&class=FOnewearl&sort=name&page=2');
-  const ids = await page.locator('.item-row').evaluateAll(rows => rows.map(r => new URL(r.href).pathname));
-  for (const [button,lang,title] of [['English','en','Item Database'],['日本語','ja','アイテム図鑑'],['中文','zh','道具图鉴']]) {
+  const ids = await page.locator('.item-row').evaluateAll(rows => rows.map(r => r.href));
+  for (const [button,lang,title,prefix] of [['English','en','Item Database','/en'],['日本語','ja','アイテム図鑑','/ja'],['中文','zh','道具图鉴','']]) {
     await page.getByRole('button',{name:button,exact:true}).click();
     await expect(page.locator('#catalog-title')).toHaveText(title);
-    const params = new URL(page.url()).searchParams;
-    expect(Object.fromEntries(params)).toEqual({category:'weapon',type:'光剑',class:'FOnewearl',sort:'name',page:'2',lang});
-    expect(await page.locator('.item-row').evaluateAll(rows => rows.map(r => new URL(r.href).pathname))).toEqual(ids);
+    const url = new URL(page.url());
+    expect(url.pathname).toBe(`${prefix}/data/items.html`);
+    expect(Object.fromEntries(url.searchParams)).toEqual({category:'weapon',type:'光剑',class:'FOnewearl',sort:'name',page:'2'});
+    const rows = await page.locator('.item-row').evaluateAll(rows => rows.map(r => r.href));
+    expect(rows.map(unprefixed)).toEqual(ids.map(unprefixed));
+    expect(rows.every(href => new URL(href).pathname.startsWith(`${prefix}/data/items/`))).toBe(true);
     await expect(page.locator('html')).toHaveAttribute('lang',lang === 'zh' ? 'zh-CN' : lang);
   }
-  await page.goto('/data/items.html?q=赤のセイバー&lang=ja');
+  await page.goto('/ja/data/items.html?q=赤のセイバー');
   await expect(page.locator('.identity strong')).toHaveText(names['Red Saber'].ja);
   await page.getByRole('button',{name:'English',exact:true}).click();
   await expect(page.locator('.identity strong')).toHaveText('Red Saber');
@@ -51,27 +57,33 @@ test('language changes preserve filters, sorting, pagination and authoritative n
   await expect(page.locator('.identity strong')).toHaveText(names['Red Saber'].zh);
 });
 
-test('detail language persists through return, refresh and explicit shared links', async ({page}) => {
+test('detail language persists through return, refresh and later visits', async ({page}) => {
   await page.goto('/data/items.html?category=weapon&q=Saber');
   await page.getByRole('button',{name:'日本語',exact:true}).click();
+  await expect(page.locator('#catalog-title')).toHaveText('アイテム図鑑');
   await page.locator('.item-row').first().click();
   await expect(page.locator('#item-title')).toHaveText('セイバー');
-  await expect(page.locator('#effects .source-language')).toHaveText('仕様の説明（中国語原文）');
-  await expect(page.locator('.effect-list.source-copy')).toHaveAttribute('lang','zh-CN');
+  // Mechanics text is written in each language, not shown as the Chinese original.
+  await expect(page.locator('#effects .effect-list')).toContainText('エクストラアタックはドロップやショップで生成された個々のアイテムで決まり');
+  await expect(page.locator('#availability .availability-text')).toHaveText('通常ドロップと武器屋。');
   await page.getByRole('button',{name:'English',exact:true}).click();
   await expect(page.locator('#item-title')).toHaveText('Saber');
   await page.getByRole('link',{name:'← Back to item list',exact:true}).click();
-  await expect(page).toHaveURL(/lang=en/);
+  await expect(page).toHaveURL(/\/en\/data\/items\.html\?/);
   await expect(page.getByRole('searchbox')).toHaveValue('Saber');
   await page.reload();
   await expect(page.locator('#catalog-title')).toHaveText('Item Database');
+  // The remembered language opens the English version of a Chinese URL.
   await page.goto('/data/items.html');
+  await expect(page).toHaveURL(/\/en\/data\/items\.html$/);
   await expect(page.locator('#catalog-title')).toHaveText('Item Database');
-  await page.goto('/data/items.html?lang=zh');
+  await page.getByRole('button',{name:'中文',exact:true}).click();
   await expect(page.locator('#catalog-title')).toHaveText('道具图鉴');
-  await page.goto('/data/items.html?lang=en&q=missing-item');
+  await page.goto('/data/items.html');
+  await expect(page.locator('#catalog-title')).toHaveText('道具图鉴');
+  await page.goto('/en/data/items.html?q=missing-item');
   await page.getByRole('button',{name:'Clear all filters'}).click();
-  await expect(page).toHaveURL(/items.html\?lang=en&category=weapon$/);
+  await expect(page).toHaveURL(/\/en\/data\/items\.html\?category=weapon$/);
   await expect(page.locator('.item-row')).toHaveCount(24);
 });
 
@@ -80,7 +92,7 @@ test('language works when browser preference storage is blocked', async ({page})
     Storage.prototype.getItem = () => { throw new DOMException('Blocked','SecurityError'); };
     Storage.prototype.setItem = () => { throw new DOMException('Blocked','SecurityError'); };
   });
-  await page.goto('/data/items/saber.html?lang=en');
+  await page.goto('/en/data/items/saber.html');
   await expect(page.locator('#item-title')).toHaveText('Saber');
   await page.getByRole('button',{name:'日本語',exact:true}).click();
   await expect(page.locator('#item-title')).toHaveText('セイバー');
@@ -93,21 +105,21 @@ test('language changes keep detail fragments without fetching detail data again'
   const requests=[];
   page.on('request',r => { if(r.url().includes('/assets/data/items/')) requests.push(r.url()); });
   await page.getByRole('button',{name:'English',exact:true}).click();
-  await expect(page).toHaveURL(/lang=en#attributes$/);
+  await expect(page).toHaveURL(/\/en\/data\/items\/soul-eater\.html#attributes$/);
   await expect(page.locator('#attributes')).toContainText('HP drain1 / 5 sec (while moving)');
   await expect(page).toHaveTitle(/SOUL EATER|Soul Eater/);
   expect(requests).toEqual([]);
-  await page.goto('/data/items/mag.html?lang=ja');
+  await page.goto('/ja/data/items/mag.html');
   await expect(page.locator('.feeding-table tbody tr').first().locator('td').first()).toHaveText('モノメイト');
-  await page.goto('/data/items/psycho-wand.html?lang=en');
+  await page.goto('/en/data/items/psycho-wand.html');
   await expect(page.locator('#effects')).toContainText('Rafoie');
   await expect(page.locator('#effects')).toContainText('+30% damage');
-  await page.goto('/data/items/es-saber.html?lang=ja');
+  await page.goto('/ja/data/items/es-saber.html');
   await expect(page.locator('.detail-overview')).toContainText('日本語名未確認 · 英語表記');
 });
 
 test('English detail request failures expose translated retry and return controls', async ({page}) => {
-  await page.goto('/data/items.html?category=unit&lang=en&q=V801');
+  await page.goto('/en/data/items.html?category=unit&q=V801');
   await page.route(/\/assets\/data\/items\/v801\.json\?v=[0-9a-f]{12}$/,route=>route.abort());
   // The prerendered list is unfiltered; wait for hydration to apply the query before clicking.
   await expect(page.locator('.item-row')).toHaveCount(1);
@@ -116,14 +128,14 @@ test('English detail request failures expose translated retry and return control
   await expect(page.getByRole('button',{name:'Retry'})).toBeVisible();
   await page.getByRole('link',{name:'Back to the database →'}).click();
   await expect(page.locator('#catalog-title')).toHaveText('Item Database');
-  await expect(page).toHaveURL(/lang=en/);
+  await expect(page).toHaveURL(/\/en\/data\/items\.html/);
 });
 
 for (const width of [390,820,1280]) {
   test(`English and Japanese layouts remain accessible at ${width}px`, async ({page}) => {
     await page.setViewportSize({width,height:900});
     for (const lang of ['en','ja']) for (const path of ['/data/items.html?category=unit','/data/items/nidra.html','/data/items/addslot.html']) {
-      await page.goto(`${path}${path.includes('?') ? '&' : '?'}lang=${lang}`);
+      await page.goto(`/${lang}${path}`);
       await expect(page.locator('main.catalog-shell')).toHaveAttribute('lang',lang);
       expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       if (path.includes('category=unit')) {
@@ -141,7 +153,7 @@ for (const width of [390,820,1280]) {
 
 test('reduced motion disables decorative row movement', async ({page}) => {
   await page.emulateMedia({reducedMotion:'reduce'});
-  await page.goto('/data/items.html?lang=en');
+  await page.goto('/en/data/items.html');
   await page.locator('.item-row').first().hover();
   expect(await page.locator('.row-arrow').first().evaluate(n => ({transition:getComputedStyle(n).transitionDuration,transform:getComputedStyle(n).transform}))).toEqual({transition:'0s',transform:'none'});
 });
@@ -241,9 +253,13 @@ test('HD details default to HD and switching changes both the image and its sour
   await expect(picture).toHaveAttribute('src', '/assets/img/items/wiki/29f6af4df3b08415.png');
   await expect(link).toHaveAttribute('href', '/assets/img/items/wiki/29f6af4df3b08415.png');
   await expect(page.locator('.item-figure figcaption')).toContainText('Ephinea Wiki');
-  // Keyboard interaction and language navigation keep the selected image.
+  // Another language is another page: it opens with the default HD image, and the keyboard switches it.
   await page.getByRole('button', {name:'English', exact:true}).click();
-  await expect(page.getByRole('button', {name:'Wiki image', exact:true})).toHaveAttribute('aria-pressed', 'true');
+  await expect(page).toHaveURL(/\/en\/data\/items\/saber\.html$/);
+  await expect(page.getByRole('button', {name:'HD image', exact:true})).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', {name:'Wiki image', exact:true}).focus();
+  await page.keyboard.press('Enter');
+  await expect(picture).toHaveAttribute('src', '/assets/img/items/wiki/29f6af4df3b08415.png');
   await page.getByRole('button', {name:'HD image', exact:true}).focus();
   await page.keyboard.press('Enter');
   await expect(picture).toHaveAttribute('src', '/assets/img/items/hd/items/saber.webp');
@@ -251,7 +267,7 @@ test('HD details default to HD and switching changes both the image and its sour
 });
 
 test('Mag details show the original-model render with its own source label', async ({page}) => {
-  await page.goto('/data/items/varuna.html?lang=zh');
+  await page.goto('/data/items/varuna.html');
   const picture = page.locator('.image-stage img');
   const caption = page.locator('.item-figure figcaption');
   await expect(picture).toHaveAttribute('src', '/assets/img/mag/default/Varuna.webp');
@@ -397,7 +413,7 @@ test('mobile filters expose image-only results with real local files', async ({p
 test('section links and related navigation update the scroll position', async ({page}) => {
   await page.setViewportSize({width:390,height:844});
   for (const lang of ['zh','en','ja']) {
-    await page.goto(`/data/items/lavis-cannon.html?lang=${lang}#effects`);
+    await page.goto(`${lang === 'zh' ? '' : `/${lang}`}/data/items/lavis-cannon.html#effects`);
     await expect.poll(()=>page.locator('#effects').evaluate(n=>Math.abs(n.getBoundingClientRect().top))).toBeLessThan(50);
     const link = page.locator('.related-items a').first();
     const target = new URL(await link.getAttribute('href'), page.url()).href;
@@ -434,7 +450,7 @@ test('cosmetics overview covers weapon hearts, ring paints and platings with wor
   const samba = page.locator('#heart-of-samba-maracas');
   await expect(samba).toContainText('桑巴沙锤');
   for (const weapon of ['dual-bird', 'guld-milla', 'manda60-vise', 'mille-marteaux']) {
-    await expect(samba.locator(`a[href="/data/items/${weapon}.html?lang=zh"]`)).toHaveCount(1);
+    await expect(samba.locator(`a[href="/data/items/${weapon}.html"]`)).toHaveCount(1);
   }
   await expect(page.locator('#heart-of-flamberge')).toContainText('蓝色');
   await expect(page.locator('#onyx-paint')).toContainText('漆黑色');
@@ -443,23 +459,23 @@ test('cosmetics overview covers weapon hearts, ring paints and platings with wor
   const requests = [];
   page.on('request', r => { if (r.url().includes('/assets/data/items/')) requests.push(new URL(r.url())); });
   await samba.getByRole('heading').getByRole('link').click();
-  await expect(page).toHaveURL(/\/data\/items\/heart-of-samba-maracas\.html\?lang=zh$/);
+  await expect(page).toHaveURL(/\/data\/items\/heart-of-samba-maracas\.html$/);
   await expect(page.locator('#item-title')).toHaveText(names['Heart of Samba Maracas'].zh);
   await expect(page.locator('#effects .cosmetic-links a')).toHaveText(['双翎', '伽尔德·米拉', 'M&A60 老虎钳', '米尔·马尔托'].map(name => new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))));
   expect(requests.map(url => url.pathname)).toEqual(['/assets/data/items/heart-of-samba-maracas.json']);
   expect(requests[0].searchParams.get('v')).toMatch(/^[0-9a-f]{12}$/);
   await page.getByRole('link', {name: '查看全部外观道具 →'}).click();
-  await expect(page).toHaveURL(/\/data\/cosmetics\.html\?lang=zh#weapon-hearts$/);
+  await expect(page).toHaveURL(/\/data\/cosmetics\.html#weapon-hearts$/);
 });
 
 test('equipment detail pages list the cosmetic items that apply to them', async ({page}) => {
-  await page.goto('/data/items/excalibur.html?lang=en');
+  await page.goto('/en/data/items/excalibur.html');
   const hearts = page.locator('#effects h3', {hasText: 'Available cosmetic items'}).locator('xpath=following-sibling::ul[1]/li');
   await expect(hearts).toHaveCount(5);
   await expect(hearts.first()).toContainText('Lollipop');
   await page.goto('/data/items/red-ring.html');
   await expect(page.locator('#effects h3', {hasText: '可用外观道具'}).locator('xpath=following-sibling::ul[1]/li')).toHaveCount(22);
-  await page.goto('/data/items/deep-plating.html?lang=ja');
+  await page.goto('/ja/data/items/deep-plating.html');
   await expect(page.locator('#effects')).toContainText('The Forge での交換に必要なアイテム');
   await expect(page.locator('#effects .cosmetic-links').last().locator('li')).toHaveCount(7);
   await expect(page.locator('#effects .cosmetic-links').last()).toContainText('× 10');
@@ -470,7 +486,7 @@ for (const width of [390, 1280]) {
   test(`cosmetics overview is accessible and fits at ${width}px`, async ({page}) => {
     await page.setViewportSize({width, height: 900});
     for (const lang of ['zh', 'en', 'ja']) {
-      await page.goto(`/data/cosmetics.html?lang=${lang}`);
+      await page.goto(`${lang === 'zh' ? '' : `/${lang}`}/data/cosmetics.html`);
       await expect(page.locator('main.catalog-shell')).toHaveAttribute('lang', lang === 'zh' ? 'zh-CN' : lang);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
       expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
@@ -491,7 +507,7 @@ test('monster detail requests carry the dataset version', async ({page}) => {
 
 test('primary item categories have no All option and reset keeps the selected category', async ({page}) => {
   for (const lang of ['zh','en','ja']) {
-    await page.goto(`/data/items.html?lang=${lang}`);
+    await page.goto(`${lang === 'zh' ? '' : `/${lang}`}/data/items.html`);
     await expect(page.locator('.category-tabs button')).toHaveCount(6);
     await expect(page.locator('.category-tabs button').first()).toHaveAttribute('aria-pressed','true');
     await expect(page.locator('.item-row').first()).toHaveAttribute('href',/category=weapon/);
@@ -499,12 +515,12 @@ test('primary item categories have no All option and reset keeps the selected ca
     await expect(page.locator('#class-filter option').first()).toHaveAttribute('value','');
     await expect(page.locator('#rarity-filter option').first()).toHaveAttribute('value','');
   }
-  await page.goto('/data/items.html?category=unit&q=nonexistent&lang=en');
+  await page.goto('/en/data/items.html?category=unit&q=nonexistent');
   await page.getByRole('button',{name:'Clear all filters',exact:true}).click();
   await expect(page).toHaveURL(/category=unit/);
   await expect(page.locator('.category-tabs button[aria-pressed="true"]')).toContainText('Units');
   await expect(page.getByRole('searchbox')).toHaveValue('');
-  await page.goto('/data/items/v801.html?lang=en');
+  await page.goto('/en/data/items/v801.html');
   await page.getByRole('link',{name:'← Back to item list',exact:true}).click();
   await expect(page).toHaveURL(/category=unit/);
   await page.reload();

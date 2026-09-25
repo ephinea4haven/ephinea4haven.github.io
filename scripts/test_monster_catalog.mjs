@@ -139,3 +139,11 @@ test('HD artwork keeps episode copies separate and binds only the pictured boss 
   for(const id of ['vol-opt-form-2','dark-falz-form-1','dark-falz-form-2','dark-falz-form-3','olga-flow-form-1','olga-flow-form-2','death-gunner','dolmolm','epsilon']) assert.ok(details[id].hdImage,id);
   for(const monster of index) assert.equal('hdImage' in monster,false,'HD assets stay out of the list bundle');
 });
+
+test('behaviour notes are written in every site language',()=>{
+  const han=/[㐀-鿿]/;
+  for(const [id,detail] of Object.entries(details)) for(const note of detail.notes){
+    for(const language of ['zh','en','ja']) assert.ok(typeof note[language]==='string' && note[language].trim(),`${id}: ${language}`);
+    assert.doesNotMatch(note.en,han,`${id}: ${note.en}`);
+  }
+});

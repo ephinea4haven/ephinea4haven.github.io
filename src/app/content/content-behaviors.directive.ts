@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { afterRenderEffect, Directive, signal } from '@angular/core';
 import { BrowserContentBehavior } from './browser-content-behavior.directive';
 
 @Directive({ standalone: true })
@@ -373,132 +373,65 @@ export class EventArchiveBehavior extends BrowserContentBehavior {
   }
 }
 
-@Directive({ standalone: true })
-export class LanguageSwitchBehavior extends BrowserContentBehavior {
-  protected connect(): void {
-    const supported = ['zh', 'en', 'ja'] as const;
-    type Language = typeof supported[number];
-    const host = this.host.querySelector<HTMLElement>('#langSwitch');
-    if (!host) return;
-    let saved: string | null = null;
-    try { saved = localStorage.getItem('siteLang'); } catch { /* storage may be disabled */ }
-    let language: Language = supported.includes(saved as Language) ? saved as Language : 'zh';
-    const apply = () => {
-      document.documentElement.lang = language === 'zh' ? 'zh-CN' : language;
-      for (const element of this.host.querySelectorAll<HTMLElement>('[data-i18n]')) {
-        const value = element.dataset[language] ?? element.dataset['en'] ?? '';
-        element.textContent = value;
-      }
-      for (const element of this.host.querySelectorAll<HTMLElement>('[data-lang-content]')) {
-        element.hidden = element.dataset['langContent'] !== language;
-      }
-      for (const image of this.host.querySelectorAll<HTMLImageElement>('img[data-i18n-src]')) {
-        const height = image.dataset[`${language}Height`];
-        if (height) image.height = Number(height);
-        const source = image.dataset[`${language}Src`];
-        if (source && image.getAttribute('src') !== source) image.src = source;
-        image.alt = image.dataset[`${language}Alt`] ?? image.dataset['enAlt'] ?? '';
-      }
-      for (const button of host.querySelectorAll<HTMLButtonElement>('[data-lang]')) {
-        button.classList.toggle('active', button.dataset['lang'] === language);
-        button.setAttribute('aria-pressed', String(button.dataset['lang'] === language));
-      }
-      const titleElement = this.host.querySelector<HTMLElement>('#pageTitle');
-      const title = titleElement?.textContent;
-      if (title) document.title = `${titleElement?.dataset['titlePrefix'] ?? ''}${title} — PSOBB Wiki`;
-    };
-    this.listen(host, 'click', ((event: MouseEvent) => {
-      const button = event.target instanceof Element
-        ? event.target.closest<HTMLButtonElement>('[data-lang]') : null;
-      const requested = button?.dataset['lang'];
-      if (!supported.includes(requested as Language)) return;
-      language = requested as Language;
-      try { localStorage.setItem('siteLang', language); } catch { /* storage may be disabled */ }
-      apply();
-    }) as EventListener);
-    apply();
-  }
-}
-
+/** Protocol reference: newserv's documents, one tab at a time; each language version carries its own documents. */
 @Directive({ standalone: true })
 export class ProtocolReferenceBehavior extends BrowserContentBehavior {
-  protected connect(): void {
-    const tabList = this.host.querySelector<HTMLElement>('#tab-list');
-    const sectionList = this.host.querySelector<HTMLElement>('#section-list');
-    const content = this.host.querySelector<HTMLElement>('#proto-content');
-    const languageHost = this.host.querySelector<HTMLElement>('#langSwitch');
-    if (!tabList || !sectionList || !content || !languageHost) return;
-    type Language = 'zh' | 'en';
-    let saved: string | null = null;
-    try { saved = localStorage.getItem('siteLang'); } catch { /* storage may be disabled */ }
-    let language: Language = saved === 'zh' ? 'zh' : 'en';
-    const validTabs = ['protocol', 'subcommands'];
-    const requestedHash = location.hash.slice(1);
-    let currentTab = validTabs.includes(requestedHash) ? requestedHash : validTabs[0];
+  private readonly connected = signal(false);
+  private readonly currentTab = signal('protocol');
 
+  constructor() {
+    super();
+    afterRenderEffect(() => {
+      const currentTab = this.currentTab();
+      if (this.connected()) this.render(currentTab);
+    });
+  }
+
+  private render(currentTab: string): void {
+    const tabList = this.host.querySelector<HTMLElement>('#tab-list')!;
+    const sectionList = this.host.querySelector<HTMLElement>('#section-list')!;
+    const content = this.host.querySelector<HTMLElement>('#proto-content')!;
+    for (const tab of tabList.querySelectorAll<HTMLElement>('[data-tab]')) {
+      tab.classList.toggle('active', tab.dataset['tab'] === currentTab);
+    }
+    const sections = Array.from(content.querySelectorAll<HTMLElement>('section[data-tab]'));
+    for (const section of sections) section.classList.toggle('active', section.dataset['tab'] === currentTab);
+    const active = sections.find((section) => section.classList.contains('active'));
+    if (!active) return;
     const slugify = (value: string) => value.toLocaleLowerCase()
       .replace(/[^\w\u4e00-\u9fff]+/g, '-').replace(/^-+|-+$/g, '');
-    const buildSectionList = (section: HTMLElement) => {
-      const list = document.createElement('ul');
-      for (const heading of section.querySelectorAll<HTMLElement>('h2')) {
-        heading.id ||= slugify(heading.textContent ?? '');
-        const item = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = `#${heading.id}`;
-        link.textContent = heading.textContent;
-        link.addEventListener('click', (event) => {
-          event.preventDefault();
-          heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          history.replaceState(null, '', `#${heading.id}`);
-        });
-        item.append(link); list.append(item);
-      }
-      sectionList.replaceChildren(list);
-    };
-    const render = () => {
-      document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
-      for (const element of this.host.querySelectorAll<HTMLElement>('[data-i18n]')) {
-        element.textContent = element.dataset[language] ?? element.dataset['en'] ?? '';
-      }
-      for (const element of this.host.querySelectorAll<HTMLElement>('[data-lang-content]')) {
-        element.hidden = element.dataset['langContent'] !== language;
-      }
-      for (const button of languageHost.querySelectorAll<HTMLButtonElement>('[data-lang]')) {
-        const active = button.dataset['lang'] === language;
-        button.classList.toggle('active', active);
-        button.setAttribute('aria-pressed', String(active));
-      }
-      for (const tab of tabList.querySelectorAll<HTMLElement>('[data-tab]')) {
-        tab.classList.toggle('active', tab.dataset['tab'] === currentTab);
-      }
-      const sections = Array.from(content.querySelectorAll<HTMLElement>('section[data-tab][data-lang]'));
-      for (const section of sections) {
-        section.classList.toggle('active', section.dataset['tab'] === currentTab && section.dataset['lang'] === language);
-      }
-      const active = sections.find((section) => section.classList.contains('active'));
-      if (active) buildSectionList(active);
-      const title = this.host.querySelector<HTMLElement>('#project_title')?.textContent;
-      if (title) document.title = `${title} | Ephinea PSOBB`;
-    };
-    this.listen(languageHost, 'click', ((event: MouseEvent) => {
-      const button = event.target instanceof Element
-        ? event.target.closest<HTMLButtonElement>('[data-lang]') : null;
-      const requested = button?.dataset['lang'];
-      if (requested !== 'zh' && requested !== 'en') return;
-      language = requested;
-      try { localStorage.setItem('siteLang', language); } catch { /* storage may be disabled */ }
-      render();
-    }) as EventListener);
+    const list = document.createElement('ul');
+    for (const heading of active.querySelectorAll<HTMLElement>('h2')) {
+      heading.id ||= slugify(heading.textContent ?? '');
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      link.href = `#${heading.id}`;
+      link.textContent = heading.textContent;
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', `#${heading.id}`);
+      });
+      item.append(link);
+      list.append(item);
+    }
+    sectionList.replaceChildren(list);
+  }
+
+  protected connect(): void {
+    const tabList = this.host.querySelector<HTMLElement>('#tab-list');
+    if (!tabList || !this.host.querySelector('#section-list') || !this.host.querySelector('#proto-content')) return;
+    const validTabs = ['protocol', 'subcommands'];
+    const requested = location.hash.slice(1);
+    if (validTabs.includes(requested)) this.currentTab.set(requested);
     this.listen(tabList, 'click', ((event: MouseEvent) => {
-      const tab = event.target instanceof Element
-        ? event.target.closest<HTMLElement>('[data-tab]') : null;
+      const tab = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-tab]') : null;
       if (!tab?.dataset['tab']) return;
       event.preventDefault();
-      currentTab = tab.dataset['tab'];
-      history.replaceState(null, '', `#${currentTab}`);
-      render();
+      this.currentTab.set(tab.dataset['tab']);
+      history.replaceState(null, '', `#${tab.dataset['tab']}`);
       window.scrollTo({ top: 0, behavior: 'instant' });
     }) as EventListener);
-    render();
+    this.connected.set(true);
   }
 }

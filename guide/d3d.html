@@ -303,17 +303,17 @@ PSOBB → D3D8 → Ephinea D3D9 → DXVK     → Vulkan → Vulkan 显卡驱动 
 
 <p>版本事实依据：<a href="https://www.pioneer2.net/community/threads/ephinea-launcher-3-5-0-and-dll-update-1-860-for-april-29th-2026-%E3%83%A9%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC%E3%81%8A%E3%82%88%E3%81%B3dll%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88-4-29.33093/" target="_blank" rel="noopener">Ephinea Launcher 3.5.0 / DLL 1.860 发布与后续热修帖</a>和 <a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">dgVoodoo 官方变更记录</a>。上游已有更新版本不代表 Ephinea 已内置；只有菜单列出的版本或正确放入 <code>dxdg</code> 的 Custom 文件会实际加载。</p>
 
-<h3 id="device-lost">截图中的 Device Lost：哪些路径有，哪些路径规避?</h3>
+<h3 id="device-lost">Device Lost 报错：哪些后端会出现，哪些能规避？</h3>
 
-<p>截图文字描述的是<strong>客户端收到设备丢失后，恢复/Reset 失败</strong>。它不是“dgVoodoo 2.79.3 专属错误”或“D3D12 专属错误”。必须先区分两类原因：</p>
+<p>这类报错表示<strong>客户端收到设备丢失后，恢复/Reset 失败</strong>。它不是“dgVoodoo 2.79.3 专属错误”或“D3D12 专属错误”。排查时先区分两类原因：</p>
 <ul>
-<li><strong>传统 D3D8/9 设备丢失：</strong>独占全屏失去焦点、Alt-Tab、UAC 安全桌面、锁屏、屏保或显示模式切换触发；这是 PSOBB 最典型的该弹窗来源。</li>
+<li><strong>传统 D3D8/9 设备丢失：</strong>独占全屏失去焦点、Alt-Tab、UAC 安全桌面、锁屏、屏保或显示模式切换触发；这是 PSOBB 出现此报错最常见的原因。</li>
 <li><strong>真实 GPU/驱动重置：</strong>Windows TDR、驱动崩溃、超频不稳、Overlay/注入冲突或翻译器 bug。D3D12 可表现为 Device Removed/Hung，Vulkan 可表现为 <code>VK_ERROR_DEVICE_LOST</code>；任何后端都无法保证免疫。</li>
 </ul>
 
 <div style="overflow-x:auto">
 <table>
-<thead><tr><th>后端与版本</th><th>Alt-Tab/UAC/锁屏型 Device Lost</th><th>对截图弹窗的判断</th><th>仍需注意</th></tr></thead>
+<thead><tr><th>后端与版本</th><th>Alt-Tab/UAC/锁屏型 Device Lost</th><th>出现此报错时的判断</th><th>仍需注意</th></tr></thead>
 <tbody>
 <tr><td><strong>D3D8</strong></td><td><strong>明确受影响</strong></td><td>高概率来源，尤其是经典全屏</td><td>关闭 Classic Fullscreen，避免显示模式切换</td></tr>
 <tr><td><strong>D3D9</strong></td><td><strong>明确受影响</strong></td><td>仍使用传统 D3D9 Device/Reset 语义</td><td>比 D3D8 多一层转换不等于解决设备丢失</td></tr>
@@ -329,7 +329,7 @@ PSOBB → D3D8 → Ephinea D3D9 → DXVK     → Vulkan → Vulkan 显卡驱动 
 
 <p>Ephinea 早期更新已经明确建议：要避开 UAC、锁屏、屏保等造成的传统 Device Lost，应使用 <a href="https://www.pioneer2.net/community/threads/game-update-for-august-17th-2022-8-17-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.23942/" target="_blank" rel="noopener">dgVoodoo D3D11/12，而不是 D3D9On12</a>。不过 dgVoodoo 当前<a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">官方说明</a>又对 NVIDIA 上的 D3D12 GPU Hang 发出强警告，所以“能规避传统 Device Lost”不等于“在所有 GPU 上都是最稳定后端”。DXVK 的默认行为可在其<a href="https://github.com/doitsujin/dxvk/blob/master/dxvk.conf" target="_blank" rel="noopener">官方配置说明</a>中核对。</p>
 
-<p><strong>对这张报错截图的实际判断：</strong>如果发生时选的是 D3D8、D3D9 或 D3D9On12，并且刚好 Alt-Tab、弹出 UAC、锁屏或切换显示模式，就是已知的传统设备丢失；优先改为 <strong>D3D11 2.87.1</strong>。如果当时已经是 dgVoodoo D3D11/12 或 Vulkan，这就不再是正常的焦点丢失行为，应检查可靠性监视器或 Windows Error Reporting 中的 <code>LiveKernelEvent 117/141</code>，以及系统日志中的显示驱动事件（常见为 <code>Display 4101</code>），再检查显卡驱动、超频和 Overlay。NVIDIA 优先复测 D3D11 2.87.1；AMD 若仅在 D3D11 出现纯色纹理异常，再受控测试 D3D12 2.87.1。</p>
+<p><strong>遇到此报错时的排查顺序：</strong>如果发生时选的是 D3D8、D3D9 或 D3D9On12，并且刚好 Alt-Tab、弹出 UAC、锁屏或切换显示模式，就是已知的传统设备丢失；优先改为 <strong>D3D11 2.87.1</strong>。如果当时已经是 dgVoodoo D3D11/12 或 Vulkan，这就不再是正常的焦点丢失行为，应检查可靠性监视器或 Windows Error Reporting 中的 <code>LiveKernelEvent 117/141</code>，以及系统日志中的显示驱动事件（常见为 <code>Display 4101</code>），再检查显卡驱动、超频和 Overlay。NVIDIA 优先复测 D3D11 2.87.1；AMD 若仅在 D3D11 出现纯色纹理异常，再受控测试 D3D12 2.87.1。</p>
 
 <h3>各后端含义</h3>
 

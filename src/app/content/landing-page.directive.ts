@@ -1,43 +1,19 @@
 import { afterRenderEffect, Directive, inject, signal } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { LanguagePreferenceService } from '../shared/language-preference.service';
 import { BrowserContentBehavior } from './browser-content-behavior.directive';
 
+/**
+ * Homepage live panels (RBR freshness, beat clock, Galatine, weekly boosts). Each
+ * language version is compiled at build; this only fills the values that change.
+ */
 @Directive({ standalone: true, providers: [LanguagePreferenceService] })
 export class LandingPageBehavior extends BrowserContentBehavior {
   private readonly i18n = inject(LanguagePreferenceService);
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
   private readonly ready = signal(false);
-  private labels: HTMLElement[] = [];
-  private accessibleLabels: HTMLElement[] = [];
-  private languageLinks: {anchor: HTMLAnchorElement; url: URL; home: boolean}[] = [];
   constructor() {
     super();
     afterRenderEffect(() => {
-      const language = this.i18n.language();
-      if (!this.ready()) return;
-      for (const element of this.labels) element.textContent = element.dataset[language]!;
-      for (const element of this.accessibleLabels) for (const attribute of ['aria-label', 'title', 'alt']) {
-        const value = element.getAttribute(`data-home-${attribute}-${language}`);
-        if (value !== null) element.setAttribute(attribute, value);
-      }
-      const controls = this.host.querySelector<HTMLElement>('#home-language')!;
-      for (const button of controls.querySelectorAll<HTMLElement>('[data-home-lang]')) button.setAttribute('aria-pressed', String(button.dataset['homeLang'] === language));
-      const suffix = language[0].toUpperCase() + language.slice(1);
-      this.title.setTitle(controls.dataset[`title${suffix}`]!);
-      this.meta.updateTag({name:'description',content:controls.dataset[`description${suffix}`]!});
-      for (const {anchor,url,home} of this.languageLinks) {
-        const localized = new URL(url);
-        localized.searchParams.set('lang',language);
-        // In-page links keep the current query and fragment navigation intact.
-        if (home) localized.search = new URL(window.location.href).search;
-        anchor.href = localized.href;
-      }
-      for (const element of this.host.querySelectorAll<HTMLElement>('[data-home-language-only]')) {
-        element.hidden = element.dataset['homeLanguageOnly'] !== language;
-      }
-      this.tick();
+      if (this.ready()) this.tick();
     });
   }
   private text(zh: string, en: string, ja: string): string {
@@ -130,15 +106,6 @@ export class LandingPageBehavior extends BrowserContentBehavior {
     if (next) next.textContent = this.text('下周轮替：', 'Next week: ', '来週：') + this.text(...LandingPageBehavior.buffs[(offset + 1) % 4]);
   }
   protected connect(): void {
-    this.labels = [...this.host.querySelectorAll<HTMLElement>('[data-home-i18n]')];
-    this.accessibleLabels = [...this.host.querySelectorAll<HTMLElement>('[data-home-aria-label-zh],[data-home-title-zh],[data-home-alt-zh]')];
-    const catalogs = new Set(['/data/items.html', '/data/enemies.html', '/data/cosmetics.html']);
-    for (const anchor of this.host.querySelectorAll<HTMLAnchorElement>('a[href]')) {
-      const url = new URL(anchor.href);
-      const local = url.origin === window.location.origin;
-      const home = local && ['/', '/index.html'].includes(url.pathname);
-      if (home || (local && catalogs.has(url.pathname)) || url.hostname === 'dropcharts.psohaven.com') this.languageLinks.push({anchor,url,home});
-    }
     this.listen(this.host.querySelector('#home-language')!, 'click', ((event: MouseEvent) => {
       const requested = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-home-lang]')?.dataset['homeLang'] : null;
       if (requested === 'zh' || requested === 'en' || requested === 'ja') void this.i18n.select(requested);
@@ -147,5 +114,4 @@ export class LandingPageBehavior extends BrowserContentBehavior {
     const timer = window.setInterval(() => this.tick(), 1000);
     this.destroyRef.onDestroy(() => window.clearInterval(timer));
   }
-
 }

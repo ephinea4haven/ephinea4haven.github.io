@@ -8,12 +8,59 @@ Haven PSOBB Wiki is a multilingual reference for PSOBB players worldwide, focuse
 on Ephinea and maintained by the Haven guild. Access is open to everyone,
 regardless of country, language or guild membership.
 
-The site supports English, Japanese and Chinese. Language selection and
-translation coverage are currently feature-specific: the item and monster
-catalogs and challenge maps provide multilingual content, while individual
-guides and source excerpts may remain in their authored language. Product copy
-must reflect this scope without presenting the site as a Chinese-only resource
-or promising complete translations of every page.
+The site supports English, Japanese and Chinese. Translation coverage varies by
+page; product copy must reflect this scope without presenting the site as a
+Chinese-only resource or promising complete translations of every page.
+
+### Languages and URLs
+
+Each language version of a page is a separate prerendered page at its own URL,
+following the established pattern of multilingual static sites (Docusaurus,
+Hugo, MDN):
+
+- Chinese keeps every existing URL (`/guide/ep1ch.html`); English and Japanese
+  live under `/en/` and `/ja/` (`/en/guide/ep1ch.html`). A page has a language URL
+  only when it is actually written in that language.
+- The URL is the only source of a page's language. Every page links its language
+  versions with `<link rel="alternate" hreflang>` and a canonical URL on
+  `https://www.psohaven.com`, and sets `<html lang>` accordingly.
+- The language switch navigates to the same page's other language URL and
+  remembers the choice (`haven.language`). Opening an unprefixed page with a
+  stored non-Chinese choice, or with `?lang=en|ja`, moves to that language's URL
+  when it exists; otherwise the Chinese page stays and states plainly that it is
+  only available in Chinese. Links inside a language version point to the same
+  language's pages where they exist.
+
+### Translation sources
+
+Interface text and long-form text are kept apart, as is standard:
+
+- Interface text (labels, buttons, navigation, notices, titles) lives in keyed
+  message files, `content/i18n/messages/{zh,en,ja}.json`. Pages reference keys
+  (`data-i18n="challenge.legend.mainRoute"`); feature code keeps its existing
+  keyed dictionaries (catalog, monster and homepage messages).
+- Long-form text is one document per language. A page's shared template marks
+  translatable regions with `data-part`; `content/i18n/pages/{en,ja}/<page>.html`
+  supplies each region for that language, so a translator works on the whole
+  document while the layout stays single-sourced.
+- Item and monster names always come from the name authorities, never from
+  page-local translations. Pages and translated documents name items with an
+  empty `<span data-item-en="…"></span>` placeholder, which the build fills with
+  the authority name in the page's language.
+- Localized images (`<img data-i18n-src>`) keep the Chinese file under a `/zh/`
+  directory with `/en/` and `/ja/` siblings; their `alt` comes from a message key
+  (`data-i18n-alt`, with `data-i18n-args`).
+- Catalog data text (item mechanics, acquisition and summaries; monster behaviour)
+  is resolved when the catalog data is generated: authored notes are stored as
+  `{ zh, en, ja }`, generated sentences use keyed `items.*` message templates, and
+  the detail JSON carries every language for the page to pick from.
+- `content/i18n/pages.json` lists each page's languages and translated titles.
+
+`scripts/generate_angular_content.mjs` compiles every page once per available
+language: keys, document regions, localized images and item names are resolved
+at build time, so a published page contains only its own language and needs no
+runtime switching. The catalogs, homepage and status simulator use the same URL
+language through `SiteLanguage`.
 
 ## System shape
 
@@ -383,7 +430,16 @@ The release gates cover:
 - Angular ownership of every public application host;
 - browser console, page and local-resource errors on every route;
 - representative behavior and WCAG A/AA checks;
-- per-chunk, per-route and aggregate gzip budgets;
+- per-chunk, per-route and aggregate gzip budgets, where a route counts every
+  script its page references (including the page chunks it preloads) and
+  everything those scripts import statically. The aggregate budget covers the
+  Chinese site and code shared by every edition; each translated edition (the
+  chunks only its /en/ or /ja/ routes load) has its own budget, sized to the
+  Chinese pages' own code plus headroom, so translating more pages does not
+  count against the Chinese site;
+- Angular's initial-bundle budget (320 KB raw error, 315 KB warning), which
+  covers the framework, router, route table and the site-wide language state
+  that every page needs;
 - Status calculation fixtures, exhaustive character/equipment compatibility and
   all material-plan presets;
 - Combo provenance, license and calculation-data integrity;
@@ -419,12 +475,11 @@ labels, including hidden event panels. Future event synchronization must supply
 matching English/Japanese homepage text before the build can pass. Galatine
 uses the existing generated item dictionary, not a page-local item-name alias.
 
-`LandingPageBehavior` uses the shared `LanguagePreferenceService`: explicit
-`?lang=zh|en|ja` overrides the saved `haven.catalog.language` preference, with
-Chinese as the default. Switching preserves query parameters and fragments;
-catalog and drop-chart links carry the selected language. Other guides retain
-their existing language behavior. Disabled storage does not prevent URL-based
-selection. RBR freshness, .beat labels and weekly boosts update in the selected
+`LandingPageBehavior` reads the site-wide language through
+`LanguagePreferenceService`. Switching preserves query parameters and fragments.
+Links to the external drop charts carry the selected language, which that site
+reads itself; site links need no parameter because the language is shared.
+Disabled storage does not prevent URL-based selection. RBR freshness, .beat labels and weekly boosts update in the selected
 language on every clock tick. Weekly boosts use Sunday 00:00 UTC, independent
 of the browser timezone, following the [Ephinea weekly boost rules](https://wiki.pioneer2.net/w/Weekly_boosts).
 Seasonal visibility continues to use its registered Pacific date boundaries.

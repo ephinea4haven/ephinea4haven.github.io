@@ -7,6 +7,7 @@ node_modules/
 dist/
 src/app/generated/
 assets/data/items/
+assets/data/item-index.json
 assets/data/monsters/
 _site/
 .site-build-*/

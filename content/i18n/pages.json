@@ -1,0 +1,574 @@
+{
+  "schemaVersion": 1,
+  "notes": [
+    "Route keys are paths without a leading slash; a directory index uses its directory (data/bdp).",
+    "languages lists the languages a page is written in; each non-Chinese language is published at /<language>/<path> with the title and description given here.",
+    "Pages rendered by Angular features (homepage, catalogs, status simulator) are listed in scripts/page_i18n.mjs (FEATURE_PAGES), not here.",
+    "Translated titles use the project name as the suffix; Chinese titles stay as authored in each page."
+  ],
+  "pages": {
+    "404.html": {
+      "title": {
+        "en": "Page not found | Haven PSOBB Wiki",
+        "ja": "ページが見つかりません | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/200.html": {
+      "title": {
+        "en": "Level 200 base stats | Haven PSOBB Wiki",
+        "ja": "Lv200 基礎ステータス | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/bb_items.html": {
+      "title": {
+        "en": "Item code table | Haven PSOBB Wiki",
+        "ja": "アイテムコード表 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/bdp": {
+      "title": {
+        "en": "Black Paper's Deal drop charts | Haven PSOBB Wiki",
+        "ja": "ブラックペーパーズディール ドロップ表 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB Black Paper's Deal drop charts",
+        "ja": "PSOBB ブラックペーパーズディールのドロップ表"
+      }
+    },
+    "data/en2chinese.html": {
+      "title": {
+        "en": "English–Chinese item names | Haven PSOBB Wiki",
+        "ja": "アイテム名 英中対照表 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/enemy_weapon_hit.html": {
+      "title": {
+        "en": "Adding Hit% to weapons | Haven PSOBB Wiki",
+        "ja": "武器への Hit% 付与 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/equipment_technique_boosts.html": {
+      "title": {
+        "en": "Equipment technique boosts | Haven PSOBB Wiki",
+        "ja": "装備のテクニック強化 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/gallons_roulette.html": {
+      "title": {
+        "en": "Gallon's shop roulette | Haven PSOBB Wiki",
+        "ja": "ギャロンの店のルーレット | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/itempmt.html": {
+      "title": {
+        "en": "ItemPMT item parameter table | Haven PSOBB Wiki",
+        "ja": "ItemPMT アイテムパラメータ表 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/itempt.html": {
+      "title": {
+        "en": "ItemPT common drop rules | Haven PSOBB Wiki",
+        "ja": "ItemPT 通常ドロップ規則 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/itemrt.html": {
+      "title": {
+        "en": "ItemRT rare drop table | Haven PSOBB Wiki",
+        "ja": "ItemRT レアドロップ表 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/monsters.html": {
+      "title": {
+        "en": "Monster farming guide | Haven PSOBB Wiki",
+        "ja": "エネミー周回ガイド | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/price_guide.html": {
+      "title": {
+        "en": "Price guide | Haven PSOBB Wiki",
+        "ja": "アイテム相場表 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/prizelist": {
+      "title": {
+        "en": "Coren's prize list | Haven PSOBB Wiki",
+        "ja": "コーレン賞品リスト | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB Coren's prize list",
+        "ja": "PSOBB コーレンの賞品リスト"
+      }
+    },
+    "data/protocol": {
+      "title": {
+        "en": "Protocol command reference | Haven PSOBB Wiki",
+        "ja": "プロトコルコマンド一覧 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB network protocol command reference — Protocol / Subcommand / Chat Command",
+        "ja": "PSOBB のネットワークプロトコルのコマンド一覧 — プロトコル／サブコマンド"
+      }
+    },
+    "data/quest.html": {
+      "title": {
+        "en": "Quest list | Haven PSOBB Wiki",
+        "ja": "クエスト一覧 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "data/weapon_special_reduction.html": {
+      "title": {
+        "en": "Weapon special attack modifiers | Haven PSOBB Wiki",
+        "ja": "武器特殊攻撃の補正 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "event/anniversary.html": {
+      "title": {
+        "en": "Anniversary events | Haven PSOBB Wiki",
+        "ja": "周年記念イベント | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "event/christmas.html": {
+      "title": {
+        "en": "Christmas events | Haven PSOBB Wiki",
+        "ja": "クリスマスイベント | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "event/easter.html": {
+      "title": {
+        "en": "Easter events | Haven PSOBB Wiki",
+        "ja": "イースターイベント | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "event/event.html": {
+      "title": {
+        "en": "Events | Haven PSOBB Wiki",
+        "ja": "イベント | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "event/halloween.html": {
+      "title": {
+        "en": "Halloween events | Haven PSOBB Wiki",
+        "ja": "ハロウィンイベント | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "event/valentines.html": {
+      "title": {
+        "en": "Valentine's events | Haven PSOBB Wiki",
+        "ja": "バレンタインイベント | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/acronym.html": {
+      "title": {
+        "en": "Common abbreviations | Haven PSOBB Wiki",
+        "ja": "よく使う略語 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/anguish.html": {
+      "title": {
+        "en": "What is Anguish mode? | Haven PSOBB Wiki",
+        "ja": "Anguish モードとは | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/banners.html": {
+      "title": {
+        "en": "Banners | Haven PSOBB Wiki",
+        "ja": "バナー | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/class-guide.html": {
+      "title": {
+        "en": "Class guide | Haven PSOBB Wiki",
+        "ja": "職業別ガイド | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/command.html": {
+      "title": {
+        "en": "Server commands | Haven PSOBB Wiki",
+        "ja": "サーバーコマンド | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/crash.html": {
+      "title": {
+        "en": "Configure Windows DEP | Haven PSOBB Wiki",
+        "ja": "Windows DEP の設定 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/d3d.html": {
+      "title": {
+        "en": "Post-processing effects compared | Haven PSOBB Wiki",
+        "ja": "ポストエフェクトの比較 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/discord.html": {
+      "title": {
+        "en": "Discord | Haven PSOBB Wiki",
+        "ja": "Discord | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/ep1ch.html": {
+      "title": {
+        "en": "Episode 1 Challenge Mode | Haven PSOBB Wiki",
+        "ja": "EP1 チャレンジモード | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB Episode 1 Challenge Mode guide",
+        "ja": "PSOBB EP1 チャレンジモード攻略"
+      }
+    },
+    "guide/ep2ch.html": {
+      "title": {
+        "en": "Episode 2 Challenge Mode | Haven PSOBB Wiki",
+        "ja": "EP2 チャレンジモード | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB Episode 2 Challenge Mode guide",
+        "ja": "PSOBB EP2 チャレンジモード攻略"
+      }
+    },
+    "guide/ephinea_rules.html": {
+      "title": {
+        "en": "Game and forum rules | Haven PSOBB Wiki",
+        "ja": "ゲームとフォーラムの規約 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/ephinea.html": {
+      "title": {
+        "en": "About Ephinea | Haven PSOBB Wiki",
+        "ja": "Ephinea について | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/errorcode.html": {
+      "title": {
+        "en": "Error codes | Haven PSOBB Wiki",
+        "ja": "エラーコード一覧 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/ime.html": {
+      "title": {
+        "en": "Input method setup | Haven PSOBB Wiki",
+        "ja": "IME の設定 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/launcher.html": {
+      "title": {
+        "en": "Launcher settings guide | Haven PSOBB Wiki",
+        "ja": "ランチャー設定ガイド | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/localized.html": {
+      "title": {
+        "en": "Chinese client patch | Haven PSOBB Wiki",
+        "ja": "中国語化パッチ | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/npc.html": {
+      "title": {
+        "en": "NPC profiles | Haven PSOBB Wiki",
+        "ja": "NPC 人物紹介 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/rbr.html": {
+      "title": {
+        "en": "Ragol Boost Road (RBR) quest picks | Haven PSOBB Wiki",
+        "ja": "Ragol Boost Road（RBR）おすすめクエスト | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/register.html": {
+      "title": {
+        "en": "Account registration | Haven PSOBB Wiki",
+        "ja": "アカウント登録 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/saveaccount.html": {
+      "title": {
+        "en": "Saving your account and password | Haven PSOBB Wiki",
+        "ja": "アカウントとパスワードの保存 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/seabed.html": {
+      "title": {
+        "en": "Seabed complete guide | Haven PSOBB Wiki",
+        "ja": "海底プラント完全攻略 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/timezone.html": {
+      "title": {
+        "en": "Time zones and trading hours | Haven PSOBB Wiki",
+        "ja": "タイムゾーンと取引時間 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "guide/volopt.html": {
+      "title": {
+        "en": "Vol Opt monitor damage bug | Haven PSOBB Wiki",
+        "ja": "ヴォル・オプト モニターのダメージバグ | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "tools/aim.html": {
+      "title": {
+        "en": "Aim rotation mechanics | Haven PSOBB Wiki",
+        "ja": "照準回転の仕組み | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "tools/aim2.html": {
+      "title": {
+        "en": "Aim rotation mechanics (revised) | Haven PSOBB Wiki",
+        "ja": "照準回転の仕組み（改訂版） | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "tools/cc.html": {
+      "title": {
+        "en": "Combo Calculator - PSOStats",
+        "ja": "Combo Calculator - PSOStats"
+      },
+      "languages": [
+        "en"
+      ]
+    },
+    "tools/ccopm.html": {
+      "title": {
+        "en": "Combo Calculator - PSOStats",
+        "ja": "Combo Calculator - PSOStats"
+      },
+      "languages": [
+        "en"
+      ]
+    },
+    "tools/chartable.html": {
+      "title": {
+        "en": "Character stats by level | Haven PSOBB Wiki",
+        "ja": "全レベル キャラクター能力表 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "tools/equipment.html": {
+      "title": {
+        "en": "Endgame equipment by class | Haven PSOBB Wiki",
+        "ja": "全職業 最終装備のおすすめ | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "tools/id.html": {
+      "title": {
+        "en": "\"Sif\" The Section ID Finder",
+        "ja": "\"Sif\" The Section ID Finder"
+      },
+      "languages": [
+        "en"
+      ]
+    },
+    "tools/mag.html": {
+      "title": {
+        "en": "Mag evolution chart | Haven PSOBB Wiki",
+        "ja": "マグ進化チャート | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "tools/materialplan.html": {
+      "title": {
+        "en": "Material allocation plans | Haven PSOBB Wiki",
+        "ja": "マテリアル配分プラン | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "tools/mechanics.html": {
+      "title": {
+        "en": "Game mechanics and damage formulas | Haven PSOBB Wiki",
+        "ja": "ゲームの仕組みとダメージ計算式 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "tools/status.html": {
+      "title": {
+        "en": "Character stat simulator | Haven PSOBB Wiki",
+        "ja": "キャラクターステータスシミュレーター | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh",
+        "en",
+        "ja"
+      ]
+    },
+    "tools/survial_hp.html": {
+      "title": {
+        "en": "Fixed damage values | Haven PSOBB Wiki",
+        "ja": "固定ダメージ一覧 | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    },
+    "tools/v50x.html": {
+      "title": {
+        "en": "EX activation rate and V50X units | Haven PSOBB Wiki",
+        "ja": "EX 発動率と V50X | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh"
+      ]
+    }
+  }
+}

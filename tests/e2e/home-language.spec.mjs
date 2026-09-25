@@ -3,6 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { readFileSync } from 'node:fs';
 const {current}=JSON.parse(readFileSync('data/rbr/source.json','utf8'));
 const week=new Date(`${current.week} 00:00:00 GMT`);
+const home=(lang)=>lang==='zh'?'/':`/${lang}/`;
 const authority=JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json','utf8'));
 
 for(const [lang,heading,title,galatine] of [
@@ -11,7 +12,7 @@ for(const [lang,heading,title,galatine] of [
   ['ja','世界中のプレイヤーのための多言語 Wiki','世界中のプレイヤー',authority.items.Galatine.ja],
 ]) test(`homepage supports direct ${lang} links and all text remains localized after ticks`,async({page})=>{
   await page.clock.install({time:new Date(week.getTime()+86400000)});
-  await page.goto(`/?lang=${lang}`);
+  await page.goto(home(lang));
   await expect(page.locator('.hero-title-sub')).toHaveText(heading);
   await expect(page).toHaveTitle(new RegExp(title));
   await expect(page.locator('html')).toHaveAttribute('lang',lang==='zh'?'zh-CN':lang);
@@ -28,7 +29,7 @@ for(const [lang,heading,title,galatine] of [
 });
 
 test('onboarding follows input language needs when switching languages',async({page})=>{
-  await page.goto('/?lang=zh');
+  await page.goto('/');
   const steps=page.locator('#start .step');
   const patch=page.locator('#chinese-patch-guide');
   for(const lang of ['zh','ja','en','zh']) {
@@ -44,31 +45,37 @@ test('onboarding follows input language needs when switching languages',async({p
   }
 });
 
-test('language selection survives reload, fragments, and catalog navigation',async({page})=>{
+test('language selection opens separate URLs and is remembered across pages',async({page})=>{
   await page.goto('/?campaign=test#directory');
   await page.getByRole('button',{name:'English',exact:true}).click();
-  await expect(page).toHaveURL(/campaign=test&lang=en#directory$/);
+  await expect(page).toHaveURL(/\/en\/?\?campaign=test#directory$/);
   await expect(page).toHaveTitle(/players worldwide/);
   await expect(page.locator('meta[name=description]')).toHaveAttribute('content',/Translation coverage varies/);
+  await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://www.psohaven.com/en/');
+  await expect(page.locator('link[rel=alternate][hreflang=ja]')).toHaveAttribute('href','https://www.psohaven.com/ja/');
   await page.reload();
   await expect(page.locator('.hero-title-sub')).toHaveText('A multilingual wiki for players worldwide');
   await page.getByRole('link',{name:'Getting started',exact:true}).first().click();
-  await expect(page).toHaveURL(/lang=en#start$/);
-  await page.getByRole('link',{name:'Bestiary',exact:true}).click();
-  await expect(page).toHaveURL(/enemies.html\?lang=en/);
-  await expect(page.locator('h1')).toHaveText('Bestiary');
-  await page.goto('/');
+  await expect(page).toHaveURL(/#start$/);
   await expect(page.locator('.hero-title-sub')).toHaveText('A multilingual wiki for players worldwide');
-  await page.goto('/?lang=ja');
+  // Links lead to the English version of pages that have one.
+  await page.getByRole('link',{name:'Bestiary',exact:true}).click();
+  await expect(page).toHaveURL(/\/en\/data\/enemies\.html/);
+  await expect(page.locator('h1')).toHaveText('Bestiary');
+  // The remembered choice opens the English version from a Chinese URL.
+  await page.goto('/');
+  await expect(page).toHaveURL(/\/en\/?$/);
+  await expect(page.locator('.hero-title-sub')).toHaveText('A multilingual wiki for players worldwide');
+  await page.goto('/ja/');
   await expect(page.locator('.hero-title-sub')).toHaveText('世界中のプレイヤーのための多言語 Wiki');
   const chart=page.locator('.tag-links a[href*="dropcharts.psohaven.com/bb/"]');
   await expect(chart).toHaveAttribute('href',/lang=ja/);
   await expect(chart).toHaveAttribute('href',/diff=Ultimate/);
 });
 
-test('language works without storage and invalid URL language uses the default',async({page})=>{
+test('language works without storage',async({page})=>{
   await page.addInitScript(()=>{Object.defineProperty(Storage.prototype,'getItem',{value:()=>{throw new Error('blocked');}});Object.defineProperty(Storage.prototype,'setItem',{value:()=>{throw new Error('blocked');}});});
-  await page.goto('/?lang=invalid');
+  await page.goto('/');
   await expect(page.locator('.hero-title-sub')).toHaveText('面向全球玩家的多语言维基');
   await page.getByRole('button',{name:'English',exact:true}).click();
   await expect(page.locator('.hero-title-sub')).toHaveText('A multilingual wiki for players worldwide');
@@ -78,7 +85,7 @@ test('language works without storage and invalid URL language uses the default',
 
 for(const date of ['2026-02-10T12:00:00Z','2026-04-01T12:00:00Z','2025-10-25T12:00:00Z','2026-01-01T12:00:00Z']) test(`seasonal content is translated at ${date}`,async({page})=>{
   await page.clock.setFixedTime(new Date(date));
-  await page.goto('/?lang=en');
+  await page.goto('/en/');
   const activity=page.locator('[data-current-activity]:visible');
   await expect(activity).toHaveCount(1);
   await expect(activity.locator('h2')).toContainText(/Ephinea/);
@@ -93,7 +100,7 @@ for(const timezoneId of ['Asia/Shanghai','America/Los_Angeles','Europe/London'])
  test.use({timezoneId});
  test('weekly data uses UTC and language updates do not change it',async({page})=>{
   await page.clock.install({time:new Date('2026-09-19T23:59:59Z')});
-  await page.goto('/?lang=en');
+  await page.goto('/en/');
   await expect(page.locator('#buf-current')).toContainText('(RER)');
   await page.clock.fastForward(2000);
   await expect(page.locator('#buf-current')).toContainText('(RDR)');
@@ -105,7 +112,7 @@ for(const timezoneId of ['Asia/Shanghai','America/Los_Angeles','Europe/London'])
 
 for(const width of [390,1280]) test(`all homepage languages fit and pass accessibility at ${width}`,async({page},testInfo)=>{
  await page.setViewportSize({width,height:900});
- await page.goto('/?lang=en');
+ await page.goto('/en/');
  for(const lang of ['en','ja','zh']) {
   await page.locator(`[data-home-lang=${lang}]`).click();
   await expect(page.locator(`[data-home-lang=${lang}]`)).toHaveAttribute('aria-pressed','true');

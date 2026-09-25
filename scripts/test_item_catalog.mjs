@@ -106,11 +106,15 @@ test('Japanese catalog names use exact authority or recorded Wiki evidence', () 
   const records = new Map(snapshot.records.map(r => [r.title, r]));
   for (const row of index) {
     const [id,en] = row;
-    assert.equal(row[12], authority[en]?.ja ? '' : clean(records.get(details[id].title)?.fields.jp), id);
+    // Column 12 is the Japanese name (authority first, then recorded Wiki evidence); column 13 the Chinese name.
+    assert.equal(row[12], authority[en]?.ja || clean(records.get(details[id].title)?.fields.jp), id);
+    assert.equal(row[13], authority[en]?.zh || en, id);
+    assert.equal(details[id].ja ?? '', row[12], id);
+    assert.equal(details[id].zh, row[13], id);
   }
   assert.equal(index.find(row => row[0] === 'saber')[12], 'セイバー');
   assert.equal(index.find(row => row[0] === 'monomate')[12], 'モノメイト');
-  assert.equal(index.filter(row => authority[row[1]]?.ja || row[12]).length, 817);
+  assert.equal(index.filter(row => row[12]).length, 817);
 });
 
 test('every inventory item has a unique route, exact authority identity or an explicit unresolved name', () => {
@@ -148,12 +152,12 @@ test('fields preserve PSOBB semantics instead of sample assumptions', () => {
   assert.ok(details['red-saber'].skins.length >= 4);
   assert.equal(details['psycho-wand'].boosts.length, 3);
   assert.equal(details['v101'].drops.find(d => d.sectionId === 'Greenill').rate, '1/2048');
-  assert.ok(details['bana'].effects.some(e => e.includes('DEF ≥ 45')));
+  assert.ok(details['bana'].effects.some(e => e.zh.includes('DEF ≥ 45')));
   assert.equal(stat('kama', 'PB 达到 100'), '无');
   assert.equal(details['seed-exchange-kit'].status, 'unavailable');
   assert.equal(stat('v502','即死特殊攻击成功率'), '×2');
   assert.equal(stat('v502','冰冻 / 感电 / 麻痹 / 混乱'), '×1.5');
-  assert.ok(details['cell-of-mag-213'].effects.some(e => e.includes('Viridia / Skyly')));
+  assert.ok(details['cell-of-mag-213'].effects.some(e => e.zh.includes('Viridia / Skyly')));
 });
 
 test('downloaded illustrations match the recorded original checksums', () => {
@@ -182,7 +186,7 @@ test('all 57 shop weapon models retain verified images and variable specials', (
     assert.ok(image, item.title);
     assert.equal(item.image, image.path, item.title);
     assert.equal(item.stats.find(s => s.label === '特殊攻击')?.value, '可变', item.title);
-    assert.match(item.availability, /武器商店/, item.title);
+    assert.match(item.availability.zh, /武器商店/, item.title);
   }
   assert.equal(details['dbs-saber'].stats.find(s => s.label === '特殊攻击')?.value, '无');
 });
@@ -193,12 +197,12 @@ test('all periodic and unit effect families retain direction, conditions and val
   for (const [id,seconds] of Object.entries(drains)) {
     assert.equal(stat(id,'HP 消耗'), `1 / ${seconds} 秒（移动时）`, id);
     assert.equal(stat(id,'HP 回复'), undefined, id);
-    assert.ok(details[id].effects.some(e=>e.includes(`每 ${seconds} 秒消耗 1 HP`)), id);
+    assert.ok(details[id].effects.some(e => e.zh.includes(`每 ${seconds} 秒消耗 1 HP`)), id);
   }
   for (const [id,speed] of Object.entries({'general-battle':5,'devil-battle':10,'god-battle':20,'heavenly-battle':40,v101:40})) assert.equal(stat(id,'攻击速度'), `+${speed}%`, id);
   for (const [id,level] of Object.entries({'wizard-technique':1,'devil-technique':2,'god-technique':3,'heavenly-technique':4})) assert.equal(stat(id,'魔法等级'), `+${level}`, id);
   for (const [id,label,seconds] of [['hp-restorate','HP 回复',14],['hp-generate','HP 回复',11],['hp-revival','HP 回复',8],['hp-resurrection','HP 回复',5],['tp-restorate','TP 回复',15],['tp-generate','TP 回复',13],['tp-revival','TP 回复',11],['tp-resurrection','TP 回复',9],['pb-amplifier','PB 回复',40],['pb-generate','PB 回复',35],['pb-create','PB 回复',23],['pb-increase','PB 回复',18],['revival-cuirass','HP 回复',5],['revival-garment','HP 回复',5],['red-ring','HP 回复',15],['red-ring','TP 回复',15],['gods-shield-kouryu','PB 回复',23]]) assert.equal(stat(id,label), `1 / ${seconds} 秒`, id);
-  assert.ok(details['proof-of-sword-saint'].effects.some(e=>e.includes('ATA 增加 30')));
+  assert.ok(details['proof-of-sword-saint'].effects.some(e => e.zh.includes('ATA 增加 30')));
 });
 
 test('all Mag feeding tables exactly reuse maintained simulation values', () => {
@@ -231,9 +235,9 @@ test('cosmetic items carry verified targets, results, sources and reversal rules
       assert.equal(details[weapon.id].category, 'weapon', item.title);
       assert.ok(details[weapon.id].cosmetics.some(c => c.item.id === item.id && c.skin.id === item.cosmetic.skin.id), `${weapon.id} lists ${item.id}`);
     }
-    assert.ok(item.effects.some(e => e.includes('中和剂') && e.includes('不会返还')), item.title);
-    assert.ok(item.effects.some(e => e.includes('磨数会被重置')), item.title);
-    assert.ok(!item.effects.some(e => e.includes('适用型号见来源说明')), item.title);
+    assert.ok(item.effects.some(e => e.zh.includes('中和剂') && e.zh.includes('不会返还')), item.title);
+    assert.ok(item.effects.some(e => e.zh.includes('磨数会被重置')), item.title);
+    assert.ok(!item.effects.some(e => e.zh.includes('适用型号见来源说明')), item.title);
   }
   // Rows the list page leaves incomplete are resolved by each heart's own page.
   assert.deepEqual(ids(details['heart-of-blade-dance'].cosmetic.targets), ['daylight-scar']);
@@ -243,8 +247,8 @@ test('cosmetic items carry verified targets, results, sources and reversal rules
   assert.deepEqual(details['heart-of-flamberge'].cosmetic.photonFilter, { color: '蓝色', weapons: [{ item: 'Excalibur', id: 'excalibur' }] });
   assert.equal(details['heart-of-dbs-saber'].cosmetic.photonFilter, null);
   assert.equal(list.photonFilter.length, 7);
-  assert.ok(details['heart-of-suppressed-gun'].effects.some(e => e.includes('第一次使用') && e.includes('第二次才移除外观')));
-  assert.ok(!details['heart-of-flamberge'].effects.some(e => e.includes('第一次使用')));
+  assert.ok(details['heart-of-suppressed-gun'].effects.some(e => e.zh.includes('第一次使用') && e.zh.includes('第二次才移除外观')));
+  assert.ok(!details['heart-of-flamberge'].effects.some(e => e.zh.includes('第一次使用')));
   assert.deepEqual(ids(details.excalibur.cosmetics.map(c => c.item)), ['heart-of-lollipop', 'heart-of-ancient-saber', 'heart-of-dbs-saber', 'heart-of-delsabers-buster', 'heart-of-flamberge']);
   assert.equal(details.saber.cosmetics.length, 0);
   assert.deepEqual(overview.hearts.map(h => h.group).filter((g, i, all) => all.indexOf(g) === i),
@@ -255,17 +259,17 @@ test('cosmetic items carry verified targets, results, sources and reversal rules
   assert.equal(rings.length, 23);
   for (const item of rings) {
     assert.deepEqual(ids(item.cosmetic.targets), ['red-ring'], item.title);
-    assert.ok(item.effects.some(e => e.includes('红色手镯')), item.title);
-    assert.ok(item.availability && !item.availability.startsWith('来源页面列出'), item.title);
+    assert.ok(item.effects.some(e => e.zh.includes('红色手镯')), item.title);
+    assert.ok(item.availability && !item.availability.zh.startsWith('来源页面列出'), item.title);
   }
   assert.equal(details['red-ring'].cosmetics.length, 22);
   assert.equal(details['blue-paint'].cosmetic.color, '蓝色');
   assert.equal(details['onyx-paint'].cosmetic.color, '漆黑色');
   for (const item of rings.filter(i => i.cosmetic.color)) assert.equal(`${item.cosmetic.color}涂料`, authority[item.en].zh, item.title);
-  assert.match(details['blue-paint'].availability, /圣诞活动期间开启 礼物/);
-  assert.match(details['onyx-paint'].availability, /99 个 周年纪念·白银徽章/);
+  assert.match(details['blue-paint'].availability.zh, /圣诞活动期间开启 礼物/);
+  assert.match(details['onyx-paint'].availability.zh, /99 个 周年纪念·白银徽章/);
   assert.ok(details['red-paint'].cosmetic.reverts);
-  assert.match(details['red-paint'].availability, /数量不限/);
+  assert.match(details['red-paint'].availability.zh, /数量不限/);
   assert.equal(details['red-paint'].image, details['red-ring'].image);
   assert.equal(details['angel-plating'].cosmetic.skin.id, 'angel-ring');
   assert.deepEqual(details['deep-plating'].cosmetic.trade.map(t => [t.id, t.quantity]),
@@ -278,6 +282,16 @@ test('cosmetic items carry verified targets, results, sources and reversal rules
   assert.deepEqual(derived, ['Delsaber set.gif', 'From The depth.gif']);
   for (const name of derived) assert.match(images[name].source, /\.gif$/);
   assert.equal(details.neutralizer.category, 'tool');
-  assert.match(details.neutralizer.availability, /The Forge/);
-  assert.ok(details.neutralizer.effects.some(e => e.includes('不会返还')));
+  assert.match(details.neutralizer.availability.zh, /The Forge/);
+  assert.ok(details.neutralizer.effects.some(e => e.zh.includes('不会返还')));
+});
+
+test('detail text is written in every site language', () => {
+  const han = /[㐀-鿿]/;
+  for (const detail of Object.values(details)) {
+    for (const text of [detail.summary, detail.availability, ...detail.effects]) {
+      for (const language of ['zh', 'en', 'ja']) assert.ok(typeof text[language] === 'string' && text[language].trim(), `${detail.title}: ${language}`);
+      assert.doesNotMatch(text.en, han, `${detail.title}: ${text.en}`);
+    }
+  }
 });

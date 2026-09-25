@@ -1,91 +1,246 @@
 {
   "Saber": {
-    "summary": "基础近战武器，特殊攻击随具体道具变化。",
+    "summary": {
+      "zh": "基础近战武器，特殊攻击随具体道具变化。",
+      "en": "A basic melee weapon; its special attack depends on the individual item.",
+      "ja": "基本的な近接武器。エクストラアタックは個々のアイテムによって異なります。"
+    },
     "effects": [
-      "特殊攻击由具体掉落或商店生成的道具决定，不是固定效果。"
+      {
+        "zh": "特殊攻击由具体掉落或商店生成的道具决定，不是固定效果。",
+        "en": "The special attack depends on the individual dropped or shop-generated item; it is not fixed.",
+        "ja": "エクストラアタックはドロップやショップで生成された個々のアイテムで決まり、固定ではありません。"
+      }
     ],
-    "availability": "普通掉落与武器商店。"
+    "availability": {
+      "zh": "普通掉落与武器商店。",
+      "en": "Common drops and the weapon shop.",
+      "ja": "通常ドロップと武器屋。"
+    }
   },
   "DB's Saber": {
-    "summary": "军用光剑的复制品，可与同系列铠甲、盾牌组成套装。",
+    "summary": {
+      "zh": "军用光剑的复制品，可与同系列铠甲、盾牌组成套装。",
+      "en": "A replica of a military saber; it forms a set with the matching frame and barrier.",
+      "ja": "軍用セイバーの複製品。同シリーズの鎧・盾とセットになります。"
+    },
     "effects": [
-      "同系列三件套全部装备时，武器 ATP、铠甲 DFP、盾牌 EVP 各增加 50%。"
+      {
+        "zh": "同系列三件套全部装备时，武器 ATP、铠甲 DFP、盾牌 EVP 各增加 50%。",
+        "en": "With all three pieces of the set equipped, the weapon’s ATP, the frame’s DFP and the barrier’s EVP each rise by 50%.",
+        "ja": "同シリーズの3点をすべて装備すると、武器の ATP、鎧の DFP、盾の EVP がそれぞれ 50% 上がります。"
+      }
     ],
-    "availability": "怪物与箱子掉落。"
+    "availability": {
+      "zh": "怪物与箱子掉落。",
+      "en": "Enemy and box drops.",
+      "ja": "エネミーと箱のドロップ。"
+    }
   },
   "Kaladbolg": {
-    "summary": "特殊攻击可使敌人冰冻。",
+    "summary": {
+      "zh": "特殊攻击可使敌人冰冻。",
+      "en": "Its special attack can freeze enemies.",
+      "ja": "エクストラアタックで敵を凍結させられます。"
+    },
     "effects": [
-      "特殊攻击可使敌人冰冻。"
+      {
+        "zh": "特殊攻击可使敌人冰冻。",
+        "en": "Its special attack can freeze enemies.",
+        "ja": "エクストラアタックで敵を凍結させられます。"
+      }
     ],
-    "availability": "怪物与箱子掉落。"
+    "availability": {
+      "zh": "怪物与箱子掉落。",
+      "en": "Enemy and box drops.",
+      "ja": "エネミーと箱のドロップ。"
+    }
   },
   "Durandal": {
-    "summary": "提供额外精神力，特殊攻击可夺取经验。",
+    "summary": {
+      "zh": "提供额外精神力，特殊攻击可夺取经验。",
+      "en": "Adds MST, and its special attack steals experience.",
+      "ja": "MST が上がり、エクストラアタックで経験値を奪えます。"
+    },
     "effects": [
-      "提供额外精神力，特殊攻击可夺取经验。"
+      {
+        "zh": "提供额外精神力，特殊攻击可夺取经验。",
+        "en": "Adds MST, and its special attack steals experience.",
+        "ja": "MST が上がり、エクストラアタックで経験値を奪えます。"
+      }
     ],
-    "availability": "怪物与箱子掉落。"
+    "availability": {
+      "zh": "怪物与箱子掉落。",
+      "en": "Enemy and box drops.",
+      "ja": "エネミーと箱のドロップ。"
+    }
   },
   "Ancient Saber": {
-    "summary": "古代遗迹出土的武器，特殊攻击可夺取经验。",
+    "summary": {
+      "zh": "古代遗迹出土的武器，特殊攻击可夺取经验。",
+      "en": "A weapon unearthed from ancient ruins; its special attack steals experience.",
+      "ja": "古代遺跡から出土した武器。エクストラアタックで経験値を奪えます。"
+    },
     "effects": [
-      "古代遗迹出土的武器，特殊攻击可夺取经验。"
+      {
+        "zh": "古代遗迹出土的武器，特殊攻击可夺取经验。",
+        "en": "A weapon unearthed from ancient ruins; its special attack steals experience.",
+        "ja": "古代遺跡から出土した武器。エクストラアタックで経験値を奪えます。"
+      }
     ],
-    "availability": "怪物掉落、黑页危险交易与科伦赌博。"
+    "availability": {
+      "zh": "怪物掉落、黑页危险交易与科伦赌博。",
+      "en": "Enemy drops, Black Paper’s Dangerous Deal and Coren.",
+      "ja": "エネミードロップ、Black Paper’s Dangerous Deal、コーレン。"
+    }
   },
   "Red Saber": {
-    "summary": "红色试制光剑，较高的最大磨数提供进一步的攻击力提升。",
+    "summary": {
+      "zh": "红色试制光剑，较高的最大磨数提供进一步的攻击力提升。",
+      "en": "A red prototype saber whose high max grind gives it extra attack power.",
+      "ja": "赤い試作セイバー。最大付加値が高く、攻撃力をさらに伸ばせます。"
+    },
     "effects": [
-      "红色试制光剑，较高的最大磨数提供进一步的攻击力提升。"
+      {
+        "zh": "红色试制光剑，较高的最大磨数提供进一步的攻击力提升。",
+        "en": "A red prototype saber whose high max grind gives it extra attack power.",
+        "ja": "赤い試作セイバー。最大付加値が高く、攻撃力をさらに伸ばせます。"
+      }
     ],
-    "availability": "怪物掉落。"
+    "availability": {
+      "zh": "怪物掉落。",
+      "en": "Enemy drops.",
+      "ja": "エネミードロップ。"
+    }
   },
   "Lavis Cannon": {
-    "summary": "消耗 HP 发射贯通光波的猎人专用武器。",
+    "summary": {
+      "zh": "消耗 HP 发射贯通光波的猎人专用武器。",
+      "en": "A Hunter-only weapon that spends HP to fire a piercing wave.",
+      "ja": "HP を消費して貫通する光波を放つハンター専用武器。"
+    },
     "effects": [
-      "特殊攻击消耗最大 HP 的 5%，发射贯通光波；伤害约为普通攻击的 0.56 倍。"
+      {
+        "zh": "特殊攻击消耗最大 HP 的 5%，发射贯通光波；伤害约为普通攻击的 0.56 倍。",
+        "en": "The special attack costs 5% of max HP and fires a piercing wave; damage is about 0.56× a normal attack.",
+        "ja": "エクストラアタックは最大 HP の 5% を消費して貫通する光波を放ちます。ダメージは通常攻撃の約 0.56 倍です。"
+      }
     ],
-    "availability": "怪物掉落与道具合成。"
+    "availability": {
+      "zh": "怪物掉落与道具合成。",
+      "en": "Enemy drops and item combination.",
+      "ja": "エネミードロップとアイテム合成。"
+    }
   },
   "Elysion": {
-    "summary": "以精神力作为装备门槛，特殊攻击释放 6 级火球术。",
+    "summary": {
+      "zh": "以精神力作为装备门槛，特殊攻击释放 6 级火球术。",
+      "en": "Requires MST to equip; its special attack casts level 6 {item:Foie}.",
+      "ja": "装備条件は MST。エクストラアタックでレベル 6 の{item:Foie}を放ちます。"
+    },
     "effects": [
-      "特殊攻击释放 6 级火球术。机器人无法装备，RAmar 的精神力上限也无法满足装备要求。"
+      {
+        "zh": "特殊攻击释放 6 级{item:Foie}。机器人无法装备，RAmar 的精神力上限也无法满足装备要求。",
+        "en": "The special attack casts level 6 {item:Foie}. Androids cannot equip it, and RAmar’s MST cap cannot meet the requirement.",
+        "ja": "エクストラアタックでレベル 6 の{item:Foie}を放ちます。アンドロイドは装備できず、RAmar の MST 上限でも装備条件を満たせません。"
+      }
     ],
-    "availability": "怪物掉落、黑页危险交易与科伦赌博。"
+    "availability": {
+      "zh": "怪物掉落、黑页危险交易与科伦赌博。",
+      "en": "Enemy drops, Black Paper’s Dangerous Deal and Coren.",
+      "ja": "エネミードロップ、Black Paper’s Dangerous Deal、コーレン。"
+    }
   },
   "Guard Wave": {
-    "summary": "附带波动外观效果的稀有铠甲。",
+    "summary": {
+      "zh": "附带波动外观效果的稀有铠甲。",
+      "en": "A rare frame with a wave visual effect.",
+      "ja": "波のような外観効果を持つレアな鎧。"
+    },
     "effects": [
-      "防御力与回避力存在个体差异，图鉴显示可取范围。",
-      "装备后具有波动外观效果。"
+      {
+        "zh": "防御力与回避力存在个体差异，图鉴显示可取范围。",
+        "en": "DFP and EVP vary per item; the catalog shows the possible range.",
+        "ja": "DFP と EVP には個体差があり、図鑑では取りうる範囲を表示しています。"
+      },
+      {
+        "zh": "装备后具有波动外观效果。",
+        "en": "Shows a wave visual effect when equipped.",
+        "ja": "装備すると波のような外観効果が付きます。"
+      }
     ],
-    "availability": "怪物掉落与科伦赌博。"
+    "availability": {
+      "zh": "怪物掉落与科伦赌博。",
+      "en": "Enemy drops and Coren.",
+      "ja": "エネミードロップとコーレン。"
+    }
   },
   "Red Ring": {
-    "summary": "兼具能力加成与多种抗性的高等级盾牌。",
+    "summary": {
+      "zh": "兼具能力加成与多种抗性的高等级盾牌。",
+      "en": "A high-level barrier with stat bonuses and many resistances.",
+      "ja": "能力補正と多くの耐性を兼ね備えた高性能の盾。"
+    },
     "effects": [
-      "每 15 秒恢复 1 HP 和 1 TP。",
-      "此处 DFP、EVP 范围已经包含各 +20 的加成，请勿重复计算。"
+      {
+        "zh": "每 15 秒恢复 1 HP 和 1 TP。",
+        "en": "Restores 1 HP and 1 TP every 15 seconds.",
+        "ja": "15 秒ごとに HP と TP が 1 ずつ回復します。"
+      },
+      {
+        "zh": "此处 DFP、EVP 范围已经包含各 +20 的加成，请勿重复计算。",
+        "en": "The DFP and EVP ranges here already include the +20 bonus to each; do not add it again.",
+        "ja": "ここでの DFP・EVP の範囲にはそれぞれ +20 の補正が含まれています。重ねて計算しないでください。"
+      }
     ],
-    "availability": "部分 Section ID 的 Ultimate 难度 Dark Falz 掉落；完整条件见来源。"
+    "availability": {
+      "zh": "部分 Section ID 的 Ultimate 难度 Dark Falz 掉落；完整条件见来源。",
+      "en": "Dropped by Dark Falz on Ultimate for some Section IDs; see the source for the full conditions.",
+      "ja": "一部のセクション ID で、アルティメットのダークファルスがドロップします。詳しい条件は出典を参照してください。"
+    }
   },
   "V101": {
-    "summary": "同时提升角色能力值与攻击速度的插件。",
+    "summary": {
+      "zh": "同时提升角色能力值与攻击速度的插件。",
+      "en": "A unit that raises both stats and attack speed.",
+      "ja": "能力値と攻撃速度をあわせて上げるユニット。"
+    },
     "effects": [
-      "攻击速度提升 40%。多个攻击速度加成不会叠加，只采用最高值。",
-      "ATP、DFP、MST、EVP、LCK 各增加 15，ATA 增加 1.5。"
+      {
+        "zh": "ATP、DFP、MST、EVP、LCK 各增加 15，ATA 增加 1.5。",
+        "en": "ATP, DFP, MST, EVP and LCK each +15, ATA +1.5.",
+        "ja": "ATP・DFP・MST・EVP・LCK がそれぞれ 15、ATA が 1.5 上がります。"
+      }
     ],
-    "availability": "怪物掉落与科伦赌博。"
+    "availability": {
+      "zh": "怪物掉落与科伦赌博。",
+      "en": "Enemy drops and Coren.",
+      "ja": "エネミードロップとコーレン。"
+    }
   },
   "V502": {
-    "summary": "提高部分武器特殊攻击的成功率。",
+    "summary": {
+      "zh": "提高部分武器特殊攻击的成功率。",
+      "en": "Raises the success rate of some weapon special attacks.",
+      "ja": "一部の武器のエクストラアタック成功率を上げます。"
+    },
     "effects": [
-      "对部分武器特殊攻击生效，不代表增加相同数值的命中力。",
-      "不提升 Devil’s、Demon’s 削减 HP 的特殊攻击，也不提升魔法造成的状态效果。"
+      {
+        "zh": "对部分武器特殊攻击生效，不代表增加相同数值的命中力。",
+        "en": "It works on some weapon special attacks; it does not add the same amount of ATA.",
+        "ja": "一部の武器のエクストラアタックに効果があり、同じ量の ATA が上がるわけではありません。"
+      },
+      {
+        "zh": "不提升 Devil’s、Demon’s 削减 HP 的特殊攻击，也不提升魔法造成的状态效果。",
+        "en": "It does not boost the HP-cutting Devil’s and Demon’s specials, or status effects from techniques.",
+        "ja": "Devil’s・Demon’s の HP を削るエクストラアタックや、テクニックによる状態異常には効果がありません。"
+      }
     ],
-    "availability": "怪物掉落与科伦赌博。",
+    "availability": {
+      "zh": "怪物掉落与科伦赌博。",
+      "en": "Enemy drops and Coren.",
+      "ja": "エネミードロップとコーレン。"
+    },
     "extraStats": [
       {
         "label": "即死特殊攻击成功率",
@@ -99,172 +254,324 @@
   },
   "Berdysh": {
     "effects": [
-      "特殊攻击消耗 PB 发出 360° 冲击波，启动至少需要 20 PB。冲击波必中，伤害相当于普通攻击；持续到 PB 耗尽。"
+      {
+        "zh": "特殊攻击消耗 PB 发出 360° 冲击波，启动至少需要 20 PB。冲击波必中，伤害相当于普通攻击；持续到 PB 耗尽。",
+        "en": "The special attack spends PB on a 360° shockwave and needs at least 20 PB to start. The shockwave always hits for normal-attack damage and lasts until PB runs out.",
+        "ja": "エクストラアタックは PB を消費して 360° の衝撃波を放ち、発動には 20 PB 以上が必要です。衝撃波は必中で、ダメージは通常攻撃と同じ。PB が尽きるまで続きます。"
+      }
     ]
   },
   "Double Cannon": {
     "effects": [
-      "特殊攻击向周围发出贯穿波，最多命中 4 个目标，每次消耗最大 HP 的 5%。伤害系数为普通攻击的约 0.56 倍。"
+      {
+        "zh": "特殊攻击向周围发出贯穿波，最多命中 4 个目标，每次消耗最大 HP 的 5%。伤害系数为普通攻击的约 0.56 倍。",
+        "en": "The special attack fires piercing waves around you, hitting up to 4 targets, at 5% of max HP each time. Damage is about 0.56× a normal attack.",
+        "ja": "エクストラアタックは周囲に貫通波を放ち、最大 4 体に命中します。1回ごとに最大 HP の 5% を消費し、ダメージは通常攻撃の約 0.56 倍です。"
+      }
     ]
   },
   "Dancing Hitogata": {
     "effects": [
-      "装备后纸人环绕角色，每 5 秒增加一个，最多 5 个。攻击会消耗积累的纸人并向外发射；第三段不会像通常卡片一样额外发射三枚。"
+      {
+        "zh": "装备后纸人环绕角色，每 5 秒增加一个，最多 5 个。攻击会消耗积累的纸人并向外发射；第三段不会像通常卡片一样额外发射三枚。",
+        "en": "While equipped, paper dolls circle you, one more every 5 seconds up to 5. Attacks launch the stored dolls outward; the third hit does not fire three extra cards like normal cards do.",
+        "ja": "装備すると人形が周囲を回り、5 秒ごとに1体、最大 5 体まで増えます。攻撃するとためた人形を放ちます。3段目で通常のカードのように3枚追加で放つことはありません。"
+      }
     ]
   },
   "Dark Flow": {
     "effects": [
-      "特殊攻击通常相当于重攻击。HP 低于最大值的 12.5% 时，改为向前发射五道能量波，沿用重攻击的伤害和命中系数，垂直范围无限。贴近敌人可让多道波命中同一目标。"
+      {
+        "zh": "特殊攻击通常相当于重攻击。HP 低于最大值的 12.5% 时，改为向前发射五道能量波，沿用重攻击的伤害和命中系数，垂直范围无限。贴近敌人可让多道波命中同一目标。",
+        "en": "The special attack is normally a heavy attack. Below 12.5% of max HP it instead fires five energy waves forward with heavy-attack damage and accuracy and unlimited vertical range. Standing close lets several waves hit the same target.",
+        "ja": "エクストラアタックは通常は強攻撃と同じです。HP が最大値の 12.5% 未満になると、前方に5本のエネルギー波を放ちます。ダメージと命中は強攻撃と同じで、垂直範囲は無限。敵に近づくと複数の波を同じ敵に当てられます。"
+      }
     ]
   },
   "Dark Meteor": {
     "effects": [
-      "特殊攻击发射贯穿墙壁、垂直范围无限的能量波，沿用重攻击的伤害与命中系数。每道波最多尝试命中 8 个独立判定框，同一判定框每道波只尝试一次；切换武器会终止剩余判定。"
+      {
+        "zh": "特殊攻击发射贯穿墙壁、垂直范围无限的能量波，沿用重攻击的伤害与命中系数。每道波最多尝试命中 8 个独立判定框，同一判定框每道波只尝试一次；切换武器会终止剩余判定。",
+        "en": "The special attack fires energy waves that pass through walls, with unlimited vertical range and heavy-attack damage and accuracy. Each wave tries to hit at most 8 separate hitboxes, and each hitbox only once per wave; switching weapons ends the remaining checks.",
+        "ja": "エクストラアタックは壁を貫通し、垂直範囲が無限のエネルギー波を放ちます。ダメージと命中は強攻撃と同じです。1本の波が判定する当たり判定は最大 8 個で、同じ当たり判定には1本につき1回だけです。武器を持ち替えると残りの判定は終わります。"
+      }
     ]
   },
   "ES Windmill": {
     "effects": [
-      "特殊攻击保留 Windmill 的蓄速发射机制。可追加的特殊效果限于 Jellen、Zalure、HP Revival 与 TP Revival。"
+      {
+        "zh": "特殊攻击保留 Windmill 的蓄速发射机制。可追加的特殊效果限于 Jellen、Zalure、HP Revival 与 TP Revival。",
+        "en": "The special attack keeps Windmill’s spin-up launch. The only specials that can be added are Jellen, Zalure, HP Revival and TP Revival.",
+        "ja": "エクストラアタックは Windmill と同じく回転をためて発射します。追加できる特殊効果は Jellen、Zalure、HP Revival、TP Revival に限られます。"
+      }
     ]
   },
   "ES Psychogun": {
     "effects": [
-      "可追加的特殊效果限于 D 级的 HP、TP 自动回复效果。"
+      {
+        "zh": "可追加的特殊效果限于 D 级的 HP、TP 自动回复效果。",
+        "en": "The only specials that can be added are the D-rank HP and TP regeneration effects.",
+        "ja": "追加できる特殊効果は D ランクの HP・TP 自動回復に限られます。"
+      }
     ]
   },
   "Girasole": {
     "effects": [
-      "特殊攻击向周围发出 360° 贯穿波，最多命中 4 个目标，每次消耗最大 HP 的 10%。"
+      {
+        "zh": "特殊攻击向周围发出 360° 贯穿波，最多命中 4 个目标，每次消耗最大 HP 的 10%。",
+        "en": "The special attack fires 360° piercing waves, hitting up to 4 targets, at 10% of max HP each time.",
+        "ja": "エクストラアタックは周囲 360° に貫通波を放ち、最大 4 体に命中します。1回ごとに最大 HP の 10% を消費します。"
+      }
     ]
   },
   "Gal Wind": {
     "effects": [
-      "特殊攻击发射贯穿波，每枚消耗最大 HP 的 7%，伤害与命中采用重攻击系数。第三段发射三枚，可消耗最大 HP 的 21%。"
+      {
+        "zh": "特殊攻击发射贯穿波，每枚消耗最大 HP 的 7%，伤害与命中采用重攻击系数。第三段发射三枚，可消耗最大 HP 的 21%。",
+        "en": "The special attack fires piercing waves at 7% of max HP each, with heavy-attack damage and accuracy. The third hit fires three, costing up to 21% of max HP.",
+        "ja": "エクストラアタックは貫通波を放ち、1発ごとに最大 HP の 7% を消費します。ダメージと命中は強攻撃と同じです。3段目は3発放つため、最大 HP の 21% を消費することがあります。"
+      }
     ]
   },
   "Heaven Punisher": {
     "effects": [
-      "Beat Time 的百位为偶数时，特殊攻击为 Divine Punishment；百位为奇数时，改为自动瞄准攻击，采用重攻击伤害与特殊攻击命中系数。可用 Divine Filter 或 Lock-on Filter 固定特殊攻击模式。"
+      {
+        "zh": "Beat Time 的百位为偶数时，特殊攻击为 Divine Punishment；百位为奇数时，改为自动瞄准攻击，采用重攻击伤害与特殊攻击命中系数。可用 {item:Divine Filter} 或 {item:Lock-on Filter} 固定特殊攻击模式。",
+        "en": "When the hundreds digit of Beat Time is even, the special attack is Divine Punishment; when it is odd, it becomes an auto-aimed attack with heavy-attack damage and special-attack accuracy. {item:Divine Filter} or {item:Lock-on Filter} fixes the special attack mode.",
+        "ja": "Beat Time の百の位が偶数のときエクストラアタックは天罰になり、奇数のときは強攻撃のダメージと EX の命中による自動照準攻撃になります。{item:Divine Filter} または {item:Lock-on Filter} でモードを固定できます。"
+      }
     ]
   },
   "Heaven Striker": {
     "effects": [
-      "普通与重攻击使用步枪射程。特殊攻击通常是具有散弹枪瞄准范围的 Berserk；装备 Striker Unit 且 Beat Time 百位为偶数时，特殊攻击变为 Divine Punishment。"
+      {
+        "zh": "普通与重攻击使用步枪射程。特殊攻击通常是具有散弹枪瞄准范围的 Berserk；装备 {item:Striker Unit} 且 Beat Time 百位为偶数时，特殊攻击变为 Divine Punishment。",
+        "en": "Normal and heavy attacks have rifle range. The special attack is normally Berserk with shot-type targeting; with {item:Striker Unit} equipped and an even hundreds digit of Beat Time, it becomes Divine Punishment.",
+        "ja": "通常攻撃と強攻撃はライフルの射程です。エクストラアタックは通常ショット型の照準範囲を持つ Berserk で、{item:Striker Unit} を装備し Beat Time の百の位が偶数のときは天罰になります。"
+      }
     ]
   },
   "Frozen Shooter": {
     "effects": [
-      "特殊攻击采用重攻击伤害与命中系数；命中可冰冻目标后，冰冻触发率为 100%。冰冻免疫目标不受影响。",
-      "连续装备满 2 分钟时，有 25% 概率使自身冰冻。卸下武器会重置计时。"
+      {
+        "zh": "特殊攻击采用重攻击伤害与命中系数；命中可冰冻目标后，冰冻触发率为 100%。冰冻免疫目标不受影响。",
+        "en": "The special attack uses heavy-attack damage and accuracy, and always freezes a target that can be frozen. Freeze-immune targets are unaffected.",
+        "ja": "エクストラアタックのダメージと命中は強攻撃と同じで、凍結可能な敵に当たると 100% 凍結させます。凍結無効の敵には効きません。"
+      },
+      {
+        "zh": "连续装备满 2 分钟时，有 25% 概率使自身冰冻。卸下武器会重置计时。",
+        "en": "After 2 minutes equipped without a break, there is a 25% chance to freeze yourself. Unequipping resets the timer.",
+        "ja": "2分間続けて装備すると、25% の確率で自分が凍結します。外すとタイマーはリセットされます。"
+      }
     ]
   },
   "Lavis Blade": {
     "effects": [
-      "特殊攻击每次发出两道贯穿波，每道消耗最大 HP 的 5%。可以通过取消后续动作只发射一道波。"
+      {
+        "zh": "特殊攻击每次发出两道贯穿波，每道消耗最大 HP 的 5%。可以通过取消后续动作只发射一道波。",
+        "en": "Each special attack fires two piercing waves, each costing 5% of max HP. Cancelling the follow-up fires only one.",
+        "ja": "エクストラアタックは1回で2本の貫通波を放ち、1本ごとに最大 HP の 5% を消費します。後の動作をキャンセルすると1本だけ放てます。"
+      }
     ]
   },
   "Izmaela": {
     "effects": [
-      "特殊攻击按攻击次数依次使用 Foie、Barta、Zonde、Grants。前三种魔法的等级在 5–15 之间随机，特殊攻击距离为 150。"
+      {
+        "zh": "特殊攻击按攻击次数依次使用 Foie、Barta、Zonde、Grants。前三种魔法的等级在 5–15 之间随机，特殊攻击距离为 150。",
+        "en": "Successive special attacks cast Foie, Barta, Zonde and Grants in turn. The first three are a random level from 5–15, and the special attack range is 150.",
+        "ja": "エクストラアタックは攻撃ごとに Foie、Barta、Zonde、Grants の順で発動します。最初の3つのレベルは 5–15 のランダムで、射程は 150 です。"
+      }
     ]
   },
   "Mille Marteaux": {
     "effects": [
-      "Beat Time 的百位为偶数时，特殊攻击为 Divine Punishment；百位为奇数时，改为自动瞄准攻击。Divine Punishment 每段只释放一次；可用滤镜固定特殊攻击模式。"
+      {
+        "zh": "Beat Time 的百位为偶数时，特殊攻击为 Divine Punishment；百位为奇数时，改为自动瞄准攻击。Divine Punishment 每段只释放一次；可用滤镜固定特殊攻击模式。",
+        "en": "When the hundreds digit of Beat Time is even, the special attack is Divine Punishment; when it is odd, it becomes an auto-aimed attack. Divine Punishment triggers once per hit; a filter can fix the special attack mode.",
+        "ja": "Beat Time の百の位が偶数のときエクストラアタックは天罰、奇数のときは自動照準攻撃になります。天罰は1段につき1回だけ発動し、フィルターでモードを固定できます。"
+      }
     ]
   },
   "Plantain Huge Fan": {
     "effects": [
-      "特殊攻击发射贯穿波，伤害低于普通攻击。"
+      {
+        "zh": "特殊攻击发射贯穿波，伤害低于普通攻击。",
+        "en": "The special attack fires a piercing wave that deals less than a normal attack.",
+        "ja": "エクストラアタックは貫通波を放ちますが、ダメージは通常攻撃より低くなります。"
+      }
     ]
   },
   "Raikiri": {
     "effects": [
-      "特殊攻击消耗最大 HP 的 7%，发射射程为 100 的贯穿波；伤害约为普通攻击的 0.97 倍。"
+      {
+        "zh": "特殊攻击消耗最大 HP 的 7%，发射射程为 100 的贯穿波；伤害约为普通攻击的 0.97 倍。",
+        "en": "The special attack costs 7% of max HP and fires a piercing wave with range 100; damage is about 0.97× a normal attack.",
+        "ja": "エクストラアタックは最大 HP の 7% を消費し、射程 100 の貫通波を放ちます。ダメージは通常攻撃の約 0.97 倍です。"
+      }
     ]
   },
   "Orotiagito": {
     "effects": [
-      "特殊攻击消耗最大 HP 的 7%，发射射程为 100 的贯穿波。伤害系数约为普通攻击的 1.94 倍。"
+      {
+        "zh": "特殊攻击消耗最大 HP 的 7%，发射射程为 100 的贯穿波。伤害系数约为普通攻击的 1.94 倍。",
+        "en": "The special attack costs 7% of max HP and fires a piercing wave with range 100. Damage is about 1.94× a normal attack.",
+        "ja": "エクストラアタックは最大 HP の 7% を消費し、射程 100 の貫通波を放ちます。ダメージは通常攻撃の約 1.94 倍です。"
+      }
     ]
   },
   "Psycho Wand": {
     "effects": [
-      "特殊攻击随机施放一种等级 11 的初级攻击魔法。",
-      "装备时魔法的 TP 消耗减半，同时扣除相当于原始 TP 消耗的 HP。与 Adept 同用时，服务端道具顺序会影响 HP 消耗；完整规则见来源。"
+      {
+        "zh": "特殊攻击随机施放一种等级 11 的初级攻击魔法。",
+        "en": "The special attack casts a random level 11 basic attack technique.",
+        "ja": "エクストラアタックはランダムにレベル 11 の初級攻撃テクニックを発動します。"
+      },
+      {
+        "zh": "装备时魔法的 TP 消耗减半，同时扣除相当于原始 TP 消耗的 HP。与 Adept 同用时，服务端道具顺序会影响 HP 消耗；完整规则见来源。",
+        "en": "While equipped, techniques cost half TP but also take HP equal to the original TP cost. With Adept, the server’s item order affects the HP cost; see the source for the full rules.",
+        "ja": "装備中はテクニックの TP 消費が半分になり、代わりに本来の TP 消費と同じ量の HP が減ります。Adept と併用すると、サーバーでのアイテムの順番が HP 消費に影響します。詳しいルールは出典を参照してください。"
+      }
     ]
   },
   "Plantain Fan": {
     "effects": [
-      "特殊攻击发射贯穿波，采用重攻击伤害与命中系数。"
+      {
+        "zh": "特殊攻击发射贯穿波，采用重攻击伤害与命中系数。",
+        "en": "The special attack fires a piercing wave with heavy-attack damage and accuracy.",
+        "ja": "エクストラアタックは貫通波を放ちます。ダメージと命中は強攻撃と同じです。"
+      }
     ]
   },
   "Snow Queen": {
     "effects": [
-      "特殊攻击采用重攻击伤害与命中系数，命中可冰冻目标后必定触发冰冻。弹道可以贯穿敌人，武器不能连段。",
-      "连续装备满 2 分钟时，有 25% 概率使自身冰冻，卸下会重置计时。"
+      {
+        "zh": "特殊攻击采用重攻击伤害与命中系数，命中可冰冻目标后必定触发冰冻。弹道可以贯穿敌人，武器不能连段。",
+        "en": "The special attack uses heavy-attack damage and accuracy, and always freezes a target that can be frozen. Shots pierce enemies, and the weapon cannot combo.",
+        "ja": "エクストラアタックのダメージと命中は強攻撃と同じで、凍結可能な敵に当たると必ず凍結させます。弾は敵を貫通し、この武器は連続攻撃ができません。"
+      },
+      {
+        "zh": "连续装备满 2 分钟时，有 25% 概率使自身冰冻，卸下会重置计时。",
+        "en": "After 2 minutes equipped without a break, there is a 25% chance to freeze yourself; unequipping resets the timer.",
+        "ja": "2分間続けて装備すると 25% の確率で自分が凍結し、外すとタイマーはリセットされます。"
+      }
     ]
   },
   "Tsumikiri J-Sword": {
     "effects": [
-      "特殊攻击消耗 PB 发出 360° 冲击波，启动至少需要 20 PB，采用重攻击伤害且必中。PB 不足时变为普通的重攻击判定。",
-      "由封印武器解封而来，最多只能保留两种武器属性。"
+      {
+        "zh": "特殊攻击消耗 PB 发出 360° 冲击波，启动至少需要 20 PB，采用重攻击伤害且必中。PB 不足时变为普通的重攻击判定。",
+        "en": "The special attack spends PB on a 360° shockwave; it needs at least 20 PB to start, uses heavy-attack damage and always hits. Without enough PB it is an ordinary heavy attack.",
+        "ja": "エクストラアタックは PB を消費して 360° の衝撃波を放ちます。発動には 20 PB 以上が必要で、ダメージは強攻撃と同じ、必中です。PB が足りないときは通常の強攻撃になります。"
+      },
+      {
+        "zh": "由封印武器解封而来，最多只能保留两种武器属性。",
+        "en": "It is unsealed from a sealed weapon and keeps at most two weapon attributes.",
+        "ja": "封印された武器を解放して入手し、残せる武器の属性は最大2種類です。"
+      }
     ]
   },
   "Twin Psychogun": {
     "effects": [
-      "特殊攻击发射单枚贯穿弹，采用特殊攻击命中系数；伤害约为普通攻击的 1.67 倍。"
+      {
+        "zh": "特殊攻击发射单枚贯穿弹，采用特殊攻击命中系数；伤害约为普通攻击的 1.67 倍。",
+        "en": "The special attack fires a single piercing shot with special-attack accuracy; damage is about 1.67× a normal attack.",
+        "ja": "エクストラアタックは貫通弾を1発放ちます。命中は EX と同じで、ダメージは通常攻撃の約 1.67 倍です。"
+      }
     ]
   },
   "Windmill": {
     "effects": [
-      "攻击会提高风车转速。转速足够时，特殊攻击可发射风车头，使用重攻击伤害与命中系数、散弹枪瞄准范围。卸下后转速会保留。"
+      {
+        "zh": "攻击会提高风车转速。转速足够时，特殊攻击可发射风车头，使用重攻击伤害与命中系数、散弹枪瞄准范围。卸下后转速会保留。",
+        "en": "Attacking spins up the windmill. Once it is fast enough, the special attack launches the windmill head with heavy-attack damage and accuracy and shot-type targeting. The spin is kept when unequipped.",
+        "ja": "攻撃すると風車の回転が上がります。十分に回ると、エクストラアタックで風車の頭を発射できます。ダメージと命中は強攻撃と同じで、照準範囲はショット型です。外しても回転は保たれます。"
+      }
     ]
   },
   "Vjaya": {
     "effects": [
-      "每次挥动特殊攻击都消耗 10,000 美塞塔，包括未命中任何目标的情况。伤害系数为 5.67，命中系数为重攻击的 0.7；同时具有击退和积累 PB 的效果。"
+      {
+        "zh": "每次挥动特殊攻击都消耗 10,000 美塞塔，包括未命中任何目标的情况。伤害系数为 5.67，命中系数为重攻击的 0.7；同时具有击退和积累 PB 的效果。",
+        "en": "Every special attack swing costs 10,000 Meseta, even if it hits nothing. Damage multiplier is 5.67 and accuracy is 0.7× a heavy attack; it also knocks back and builds PB.",
+        "ja": "エクストラアタックは振るたびに 10,000 メセタを消費し、何にも当たらなくても消費します。ダメージ倍率は 5.67、命中は強攻撃の 0.7 倍で、吹き飛ばしと PB の蓄積もあります。"
+      }
     ]
   },
   "Adept": {
     "effects": [
-      "魔法与 Spirit 特殊攻击的 TP 消耗降低 25%。多个 Adept 及其他 TP 减耗效果按乘法叠加。"
+      {
+        "zh": "魔法与 Spirit 特殊攻击的 TP 消耗降低 25%。多个 Adept 及其他 TP 减耗效果按乘法叠加。",
+        "en": "Techniques and the Spirit special cost 25% less TP. Multiple Adepts and other TP reductions stack multiplicatively.",
+        "ja": "テクニックと Spirit エクストラアタックの TP 消費が 25% 減ります。複数の Adept やほかの TP 軽減効果は乗算で重なります。"
+      }
     ]
   },
   "Divine Protection": {
     "effects": [
-      "仅在 Beat Time 百位为奇数时生效：LCK 加倍，EDK 与 ELT 各增加 20。"
+      {
+        "zh": "仅在 Beat Time 百位为奇数时生效：LCK 加倍，EDK 与 ELT 各增加 20。",
+        "en": "Only while the hundreds digit of Beat Time is odd: LCK is doubled, and EDK and ELT each +20.",
+        "ja": "Beat Time の百の位が奇数のときだけ有効：LCK が2倍になり、EDK と ELT がそれぞれ 20 上がります。"
+      }
     ]
   },
   "Friend Ring": {
     "effects": [
-      "ATP 加成等于队伍（Team）成员数的一半，DFP 加成等于持有公会卡数量的一半。"
+      {
+        "zh": "ATP 加成等于队伍（Team）成员数的一半，DFP 加成等于持有公会卡数量的一半。",
+        "en": "The ATP bonus is half the number of Team members, and the DFP bonus is half the number of guild cards held.",
+        "ja": "ATP の補正はチーム（Team）の人数の半分、DFP の補正は所持しているギルドカードの数の半分です。"
+      }
     ]
   },
   "Limiter": {
     "effects": [
-      "装备状态下累计 20,000 次击杀后，可从道具栏使用并解封为 Adept。"
+      {
+        "zh": "装备状态下累计 20,000 次击杀后，可从道具栏使用并解封为 Adept。",
+        "en": "After 20,000 kills while equipped, it can be used from the inventory to unseal into Adept.",
+        "ja": "装備した状態で 20,000 体倒すと、アイテム欄から使って Adept に封印解除できます。"
+      }
     ]
   },
   "Swordsman Lore": {
     "effects": [
-      "本身没有能力加成。装备状态下累计 20,000 次击杀后，可解封为 Proof of Sword-Saint。"
+      {
+        "zh": "本身没有能力加成。装备状态下累计 20,000 次击杀后，可解封为 Proof of Sword-Saint。",
+        "en": "It has no stat bonus of its own. After 20,000 kills while equipped, it unseals into Proof of Sword-Saint.",
+        "ja": "それ自体に能力補正はありません。装備した状態で 20,000 体倒すと Proof of Sword-Saint に封印解除できます。"
+      }
     ]
   },
   "Proof of Sword-Saint": {
     "effects": [
-      "与支持的武器同时装备时，ATA 增加 30、EVP 增加 60、DFP 降低 20；这些加成作用于总能力值，多个插件可以叠加。",
-      "仅支持指定型号，并非所有光剑、日本刀或双剑都能触发；适用武器清单见来源页面的 Eligibility 章节。"
+      {
+        "zh": "与支持的武器同时装备时，ATA 增加 30、EVP 增加 60、DFP 降低 20；这些加成作用于总能力值，多个插件可以叠加。",
+        "en": "Equipped with a supported weapon, it gives ATA +30, EVP +60 and DFP −20; these apply to total stats, and multiple units stack.",
+        "ja": "対応する武器と一緒に装備すると、ATA +30、EVP +60、DFP −20 になります。補正は合計の能力値にかかり、複数のユニットで重なります。"
+      },
+      {
+        "zh": "仅支持指定型号，并非所有光剑、日本刀或双剑都能触发；适用武器清单见来源页面的 Eligibility 章节。",
+        "en": "Only specific models are supported, not every saber, katana or twin sword; see the Eligibility section of the source page for the list.",
+        "ja": "対応するのは特定の武器だけで、すべてのセイバー・カタナ・ツインソードではありません。対応武器の一覧は出典ページの Eligibility を参照してください。"
+      }
     ]
   },
   "Yasakani Magatama": {
     "effects": [
-      "与 Kusanagi 同时装备时增加 30 ATA；未装备该武器时没有效果。"
+      {
+        "zh": "与 {item:Kusanagi} 同时装备时增加 30 ATA；未装备该武器时没有效果。",
+        "en": "Gives ATA +30 when equipped together with {item:Kusanagi}; without that weapon it has no effect.",
+        "ja": "{item:Kusanagi}と一緒に装備すると ATA が 30 上がります。その武器を装備していなければ効果はありません。"
+      }
     ]
   },
   "Smartlink": {
     "effects": [
-      "消除 Hunter 与 Force 使用远程攻击时的距离命中惩罚，也适用于投刃和卡片。不会直接增加面板 ATA。"
+      {
+        "zh": "消除 Hunter 与 Force 使用远程攻击时的距离命中惩罚，也适用于投刃和卡片。不会直接增加面板 ATA。",
+        "en": "Removes the distance accuracy penalty for Hunters and Forces using ranged attacks, including slicers and cards. It does not add displayed ATA.",
+        "ja": "ハンターとフォースが遠距離攻撃をするときの距離による命中ペナルティをなくします。スライサーとカードにも有効です。表示上の ATA は上がりません。"
+      }
     ],
     "extraStats": [
       {
@@ -275,7 +582,11 @@
   },
   "V801": {
     "effects": [
-      "缩短魔法的蓄力与施放动作；缩短量取决于魔法、等级、职业与武器。多个 V801 不叠加施法加速，MST 加成仍可叠加。"
+      {
+        "zh": "缩短魔法的蓄力与施放动作；缩短量取决于魔法、等级、职业与武器。多个 V801 不叠加施法加速，MST 加成仍可叠加。",
+        "en": "Shortens technique charge and cast animations; how much depends on the technique, level, class and weapon. Multiple V801s do not stack the casting speed-up, though their MST bonuses do.",
+        "ja": "テクニックのため動作と発動動作を短くします。短縮量はテクニック・レベル・職業・武器によって異なります。複数の V801 で発動速度の短縮は重なりませんが、MST の補正は重なります。"
+      }
     ],
     "extraStats": [
       {
@@ -286,7 +597,11 @@
   },
   "V501": {
     "effects": [
-      "提高冰冻、感电、麻痹、混乱与即死类武器特殊攻击的触发率 50%。不提高 Devil’s、Demon’s 的 HP 削减效果，也不影响魔法产生的异常状态。"
+      {
+        "zh": "提高冰冻、感电、麻痹、混乱与即死类武器特殊攻击的触发率 50%。不提高 Devil’s、Demon’s 的 HP 削减效果，也不影响魔法产生的异常状态。",
+        "en": "Raises the success rate of freeze, shock, paralysis, confusion and instant-death weapon specials by 50%. It does not boost the HP cuts of Devil’s and Demon’s, or status effects from techniques.",
+        "ja": "凍結・感電・麻痺・混乱・即死の武器エクストラアタックの成功率を 50% 上げます。Devil’s・Demon’s の HP を削る効果や、テクニックによる状態異常には影響しません。"
+      }
     ],
     "extraStats": [
       {
@@ -297,12 +612,20 @@
   },
   "Lame d'Argent": {
     "effects": [
-      "装备状态下累计 10,000 次击杀后，可解封为 Excalibur。无需磨满，武器属性会继承；最多保留两种武器属性。"
+      {
+        "zh": "装备状态下累计 10,000 次击杀后，可解封为 Excalibur。无需磨满，武器属性会继承；最多保留两种武器属性。",
+        "en": "After 10,000 kills while equipped, it unseals into Excalibur. It does not need to be fully ground, and its attributes carry over, up to two.",
+        "ja": "装備した状態で 10,000 体倒すと Excalibur に封印解除できます。付加値を最大にする必要はなく、武器の属性は最大2種類まで引き継がれます。"
+      }
     ]
   },
   "Monomate": {
     "effects": [
-      "恢复 70 HP。"
+      {
+        "zh": "恢复 70 HP。",
+        "en": "Restores 70 HP.",
+        "ja": "HP を 70 回復します。"
+      }
     ],
     "extraStats": [
       {
@@ -313,7 +636,11 @@
   },
   "Dimate": {
     "effects": [
-      "恢复 200 HP。"
+      {
+        "zh": "恢复 200 HP。",
+        "en": "Restores 200 HP.",
+        "ja": "HP を 200 回復します。"
+      }
     ],
     "extraStats": [
       {
@@ -324,7 +651,11 @@
   },
   "Trimate": {
     "effects": [
-      "完全恢复 HP。"
+      {
+        "zh": "完全恢复 HP。",
+        "en": "Fully restores HP.",
+        "ja": "HP を全回復します。"
+      }
     ],
     "extraStats": [
       {
@@ -335,7 +666,11 @@
   },
   "Monofluid": {
     "effects": [
-      "恢复 70 TP。"
+      {
+        "zh": "恢复 70 TP。",
+        "en": "Restores 70 TP.",
+        "ja": "TP を 70 回復します。"
+      }
     ],
     "extraStats": [
       {
@@ -346,7 +681,11 @@
   },
   "Difluid": {
     "effects": [
-      "恢复 200 TP。"
+      {
+        "zh": "恢复 200 TP。",
+        "en": "Restores 200 TP.",
+        "ja": "TP を 200 回復します。"
+      }
     ],
     "extraStats": [
       {
@@ -357,7 +696,11 @@
   },
   "Trifluid": {
     "effects": [
-      "完全恢复 TP。"
+      {
+        "zh": "完全恢复 TP。",
+        "en": "Fully restores TP.",
+        "ja": "TP を全回復します。"
+      }
     ],
     "extraStats": [
       {
@@ -368,58 +711,114 @@
   },
   "Antidote": {
     "effects": [
-      "解除中毒。"
+      {
+        "zh": "解除中毒。",
+        "en": "Cures poison.",
+        "ja": "毒を治します。"
+      }
     ]
   },
   "Antiparalysis": {
     "effects": [
-      "解除麻痹。"
+      {
+        "zh": "解除麻痹。",
+        "en": "Cures paralysis.",
+        "ja": "麻痺を治します。"
+      }
     ]
   },
   "Sol Atomizer": {
     "effects": [
-      "解除自身的异常状态。"
+      {
+        "zh": "解除自身的异常状态。",
+        "en": "Cures your own status ailments.",
+        "ja": "自分の状態異常を治します。"
+      }
     ]
   },
   "Moon Atomizer": {
     "effects": [
-      "复活一名附近倒下的队友。"
+      {
+        "zh": "复活一名附近倒下的队友。",
+        "en": "Revives one nearby fallen teammate.",
+        "ja": "近くで倒れている仲間を1人復活させます。"
+      }
     ]
   },
   "Star Atomizer": {
     "effects": [
-      "完全恢复自身及附近队友的 HP。"
+      {
+        "zh": "完全恢复自身及附近队友的 HP。",
+        "en": "Fully restores the HP of you and nearby teammates.",
+        "ja": "自分と近くの仲間の HP を全回復します。"
+      }
     ]
   },
   "Trap Vision": {
     "effects": [
-      "使附近隐藏的陷阱显现。"
+      {
+        "zh": "使附近隐藏的陷阱显现。",
+        "en": "Reveals nearby hidden traps.",
+        "ja": "近くの隠れたトラップを表示します。"
+      }
     ]
   },
   "Telepipe": {
     "effects": [
-      "建立往返 Pioneer 2 的传送门。"
+      {
+        "zh": "建立往返 Pioneer 2 的传送门。",
+        "en": "Opens a two-way portal to Pioneer 2.",
+        "ja": "パイオニア2 との往復用ゲートを作ります。"
+      }
     ]
   },
   "Photon Hoard": {
     "effects": [
-      "等值于 99 个 Photon Drop，可在 Gallon’s Shop 中双向兑换。"
+      {
+        "zh": "等值于 99 个 {item:Photon Drop}，可在 Gallon’s Shop 中双向兑换。",
+        "en": "Worth 99 {item:Photon Drop}, and can be exchanged both ways at Gallon’s Shop.",
+        "ja": "{item:Photon Drop} 99 個分の価値があり、Gallon’s Shop で相互に交換できます。"
+      }
     ]
   },
   "AddSlot": {
     "effects": [
-      "为铠甲增加一个插件槽，最多四个槽。"
+      {
+        "zh": "为铠甲增加一个插件槽，最多四个槽。",
+        "en": "Adds a unit slot to a frame, up to four slots.",
+        "ja": "鎧のユニットスロットを1つ増やします。最大 4 スロットです。"
+      }
     ]
   },
   "Neutralizer": {
-    "summary": "Ephinea 限定道具，用于移除武器之心外观及部分武器的特殊攻击滤镜。",
+    "summary": {
+      "zh": "Ephinea 限定道具，用于移除武器之心外观及部分武器的特殊攻击滤镜。",
+      "en": "An Ephinea-exclusive item that removes weapon heart skins and some weapons’ special-attack filters.",
+      "ja": "Ephinea 限定アイテム。武器の心による外観と、一部の武器のエクストラアタック用フィルターを外します。"
+    },
     "effects": [
-      "对已应用武器之心外观的武器使用，恢复为原本外观；已使用的武器之心不会返还。",
-      "也可以移除圣枪「天罚」或米尔·马尔托上的神罚滤镜、锁定滤镜效果。若武器同时带有外观和滤镜，第一次使用只移除滤镜效果，第二次才移除外观。"
+      {
+        "zh": "对已应用武器之心外观的武器使用，恢复为原本外观；已使用的武器之心不会返还。",
+        "en": "Used on a weapon with a weapon heart skin, it restores the original appearance; the used weapon heart is not returned.",
+        "ja": "武器の心で外観を変えた武器に使うと元の外観に戻ります。使った武器の心は戻りません。"
+      },
+      {
+        "zh": "也可以移除{item:Heaven Punisher}或米尔·马尔托上的{item:Divine Filter}、{item:Lock-on Filter}效果。若武器同时带有外观和滤镜，第一次使用只移除滤镜效果，第二次才移除外观。",
+        "en": "It also removes {item:Divine Filter} and {item:Lock-on Filter} from {item:Heaven Punisher} or Mille Marteaux. If the weapon has both a skin and a filter, the first use removes only the filter and the second removes the skin.",
+        "ja": "{item:Heaven Punisher}や Mille Marteaux の{item:Divine Filter}・{item:Lock-on Filter}の効果も外せます。外観とフィルターの両方がある場合、1回目はフィルターの効果だけを外し、2回目で外観が外れます。"
+      }
     ],
-    "availability": "可在任务 The Forge（寄存处附近的 RAmar）与 Seasons Shop（Guards Shop NPC）免费领取，数量不限。"
+    "availability": {
+      "zh": "可在任务 The Forge（寄存处附近的 RAmar）与 Seasons Shop（Guards Shop NPC）免费领取，数量不限。",
+      "en": "Free and unlimited from the quest The Forge (the RAmar near the bank) and the Seasons Shop (the Guards Shop NPC).",
+      "ja": "クエスト The Forge（倉庫近くの RAmar）と Seasons Shop（Guards Shop の NPC）で、無料で何個でも受け取れます。"
+    }
   },
   "Red Paint": {
-    "availability": "可在任务 The Forge（寄存处附近的 RAmar）与 Seasons Shop（Guards Shop NPC）免费领取，数量不限。"
+    "availability": {
+      "zh": "可在任务 The Forge（寄存处附近的 RAmar）与 Seasons Shop（Guards Shop NPC）免费领取，数量不限。",
+      "en": "Free and unlimited from the quest The Forge (the RAmar near the bank) and the Seasons Shop (the Guards Shop NPC).",
+      "ja": "クエスト The Forge（倉庫近くの RAmar）と Seasons Shop（Guards Shop の NPC）で、無料で何個でも受け取れます。"
+    }
   }
 }

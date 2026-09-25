@@ -1,14 +1,14 @@
 <main class="catalog-shell detail-shell cosmetics-shell" [attr.lang]="i18n.htmlLanguage()">
-  <nav class="masthead" [attr.aria-label]="i18n.t('站点导航')"><a href="/index.html" class="brand"><span aria-hidden="true">◈</span> HAVEN <small>PSOBB</small></a><div class="masthead-actions"><a routerLink="/data/items.html" [queryParams]="lang()">{{ i18n.t('← 返回道具列表') }}</a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)"/></div></nav>
-  <nav class="breadcrumbs" [attr.aria-label]="i18n.t('当前位置')"><a routerLink="/data/items.html" [queryParams]="lang()">{{ i18n.t('道具图鉴') }}</a><span aria-hidden="true">/</span><span>{{ i18n.t('外观道具') }}</span></nav>
+  <nav class="masthead" [attr.aria-label]="i18n.t('站点导航')"><a [href]="i18n.link('/index.html')" class="brand"><span aria-hidden="true">◈</span> HAVEN <small>PSOBB</small></a><div class="masthead-actions"><a [routerLink]="i18n.link('/data/items.html')">{{ i18n.t('← 返回道具列表') }}</a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)"/></div></nav>
+  <nav class="breadcrumbs" [attr.aria-label]="i18n.t('当前位置')"><a [routerLink]="i18n.link('/data/items.html')">{{ i18n.t('道具图鉴') }}</a><span aria-hidden="true">/</span><span>{{ i18n.t('外观道具') }}</span></nav>
   <section class="intro" aria-labelledby="cosmetics-title">
     <div><p class="eyebrow">EPHINEA / COSMETIC ITEMS</p><h1 id="cosmetics-title">{{ i18n.t('外观道具') }}</h1><p class="intro-text">{{ copy('只改变武器或红色手镯的外观，性能保持不变的 Ephinea 限定道具。') }}</p></div>
     <div class="inventory-note"><strong>{{ hearts.length + paints.length + platings.length }}<span>{{ i18n.t('件道具') }}</span></strong><p>{{ i18n.t('Ephinea 限定道具') }}</p></div>
   </section>
   <nav class="detail-nav" [attr.aria-label]="i18n.t('外观道具分类')">
-    <a routerLink="/data/cosmetics.html" [queryParams]="lang()" fragment="weapon-hearts">{{ i18n.t('武器之心') }} <small>{{ hearts.length }}</small></a>
-    <a routerLink="/data/cosmetics.html" [queryParams]="lang()" fragment="ring-paints">{{ i18n.t('戒指染色') }} <small>{{ paints.length }}</small></a>
-    <a routerLink="/data/cosmetics.html" [queryParams]="lang()" fragment="ring-platings">{{ i18n.t('戒指外观') }} <small>{{ platings.length }}</small></a>
+    <a [routerLink]="i18n.link('/data/cosmetics.html')" fragment="weapon-hearts">{{ i18n.t('武器之心') }} <small>{{ hearts.length }}</small></a>
+    <a [routerLink]="i18n.link('/data/cosmetics.html')" fragment="ring-paints">{{ i18n.t('戒指染色') }} <small>{{ paints.length }}</small></a>
+    <a [routerLink]="i18n.link('/data/cosmetics.html')" fragment="ring-platings">{{ i18n.t('戒指外观') }} <small>{{ platings.length }}</small></a>
   </nav>
 
   <section id="weapon-hearts" class="detail-section cosmetics-kind" aria-labelledby="weapon-hearts-title">
@@ -17,22 +17,22 @@
       <li>{{ copy('先装备适用武器，再在道具栏使用对应的武器之心。') }}</li>
       <li>{{ copy('武器外观改变，攻击力、特殊攻击等参数保持原武器；武器磨数会被重置。') }}</li>
       <li>{{ copy('武器名称后会加上 *，道具说明中显示“Skin: 外观名”。') }}</li>
-      <li>{{ copy('使用中和剂可恢复原本外观，但已使用的武器之心不会返还。中和剂可在任务 The Forge 与 Seasons Shop 免费领取。') }} <a [routerLink]="itemPath(neutralizer)" [queryParams]="lang()">{{ i18n.name(neutralizer) }} →</a></li>
+      <li>{{ copy('使用中和剂可恢复原本外观，但已使用的武器之心不会返还。中和剂可在任务 The Forge 与 Seasons Shop 免费领取。') }} <a [routerLink]="i18n.link(itemPath(neutralizer))">{{ i18n.name(neutralizer) }} →</a></li>
       <li>{{ copy('米尔·马尔托与圣枪「天罚」若同时带有外观和神罚滤镜或锁定滤镜，第一次使用中和剂只移除滤镜效果，第二次才移除外观。') }}</li>
-      <li>{{ copy('光子滤镜只对下表标注颜色的组合有效；每次使用消耗一个，并按固定顺序切换颜色。') }} <a [routerLink]="itemPath(photonFilter)" [queryParams]="lang()">{{ i18n.name(photonFilter) }} →</a></li>
+      <li>{{ copy('光子滤镜只对下表标注颜色的组合有效；每次使用消耗一个，并按固定顺序切换颜色。') }} <a [routerLink]="i18n.link(itemPath(photonFilter))">{{ i18n.name(photonFilter) }} →</a></li>
     </ol>
     @for (group of heartGroups; track group.id) {
       <h3 class="cosmetic-group" [id]="'weapon-hearts-' + group.id">{{ i18n.t(group.label) }}</h3>
       <div class="cosmetic-cards">
         @for (row of group.rows; track row.item) {
           <article class="cosmetic-card" [id]="row.item" [attr.aria-labelledby]="row.item + '-name'">
-            <a class="cosmetic-picture" [routerLink]="itemPath(row.picture)" [queryParams]="lang()" [attr.aria-label]="i18n.t('外观') + '：' + i18n.name(row.picture)"><item-image [item]="row.picture"/></a>
+            <a class="cosmetic-picture" [routerLink]="i18n.link(itemPath(row.picture))" [attr.aria-label]="i18n.t('外观') + '：' + i18n.name(row.picture)"><item-image [item]="row.picture"/></a>
             <div class="cosmetic-body">
-              <h4 [id]="row.item + '-name'"><a [routerLink]="itemPath(row.self)" [queryParams]="lang()">{{ i18n.name(row.self) }}</a></h4>
-              @if (row.skinItem; as skin) {<p class="cosmetic-result">{{ i18n.t('外观') }}<span class="arrow" aria-hidden="true"> → </span><a [routerLink]="itemPath(skin)" [queryParams]="lang()">{{ i18n.name(skin) }}</a></p>}
+              <h4 [id]="row.item + '-name'"><a [routerLink]="i18n.link(itemPath(row.self))">{{ i18n.name(row.self) }}</a></h4>
+              @if (row.skinItem; as skin) {<p class="cosmetic-result">{{ i18n.t('外观') }}<span class="arrow" aria-hidden="true"> → </span><a [routerLink]="i18n.link(itemPath(skin))">{{ i18n.name(skin) }}</a></p>}
               <dl>
-                <div><dt>{{ i18n.t('适用武器') }}</dt><dd><ul>@for (weapon of row.targetItems; track weapon.id) {<li><a [routerLink]="itemPath(weapon)" [queryParams]="lang()">{{ i18n.name(weapon) }}</a></li>}</ul></dd></div>
-                @if (row.photonFilter; as filter) {<div><dt>{{ i18n.t('光子滤镜初始颜色') }}</dt><dd><span class="swatch" [attr.data-color]="filter.color">{{ i18n.t(filter.color) }}</span> · @for (weapon of row.filterItems; track weapon.id; let last = $last) {<a [routerLink]="itemPath(weapon)" [queryParams]="lang()">{{ i18n.name(weapon) }}</a>@if (!last) {<span> / </span>}}</dd></div>}
+                <div><dt>{{ i18n.t('适用武器') }}</dt><dd><ul>@for (weapon of row.targetItems; track weapon.id) {<li><a [routerLink]="i18n.link(itemPath(weapon))">{{ i18n.name(weapon) }}</a></li>}</ul></dd></div>
+                @if (row.photonFilter; as filter) {<div><dt>{{ i18n.t('光子滤镜初始颜色') }}</dt><dd><span class="swatch" [attr.data-color]="filter.color">{{ i18n.t(filter.color) }}</span> · @for (weapon of row.filterItems; track weapon.id; let last = $last) {<a [routerLink]="i18n.link(itemPath(weapon))">{{ i18n.name(weapon) }}</a>@if (!last) {<span> / </span>}}</dd></div>}
                 <div><dt>{{ i18n.t('获取方式') }}</dt><dd><ul>@for (drop of row.drops; track $index) {<li>{{ i18n.value(drop[0]) }} · {{ drop[1] }} · {{ drop[4] ? i18n.t('箱子 · ') : '' }}{{ drop[2] }} · <strong>{{ i18n.value(drop[3]) }}</strong></li>}</ul></dd></div>
               </dl>
             </div>
@@ -45,19 +45,19 @@
   <section id="ring-paints" class="detail-section cosmetics-kind" aria-labelledby="ring-paints-title">
     <h2 id="ring-paints-title"><span>02</span>{{ i18n.t('戒指染色') }}</h2>
     <ol class="effect-list cosmetic-rules">
-      <li>{{ copy('装备红色手镯（原版或已染色）后在道具栏使用，只改变戒指颜色，性能与普通红色手镯相同。') }} <a [routerLink]="itemPath(redRing)" [queryParams]="lang()">{{ i18n.name(redRing) }} →</a></li>
-      <li>{{ copy('染色后名称后会加上 *。使用红色涂料可恢复原版外观，但已使用的涂料不会返还。') }} <a [routerLink]="itemPath(redPaint)" [queryParams]="lang()">{{ i18n.name(redPaint) }} →</a></li>
+      <li>{{ copy('装备红色手镯（原版或已染色）后在道具栏使用，只改变戒指颜色，性能与普通红色手镯相同。') }} <a [routerLink]="i18n.link(itemPath(redRing))">{{ i18n.name(redRing) }} →</a></li>
+      <li>{{ copy('染色后名称后会加上 *。使用红色涂料可恢复原版外观，但已使用的涂料不会返还。') }} <a [routerLink]="i18n.link(itemPath(redPaint))">{{ i18n.name(redPaint) }} →</a></li>
     </ol>
     <div class="cosmetic-cards portrait">
       @for (row of paints; track row.item) {
         <article class="cosmetic-card" [id]="row.item" [attr.aria-labelledby]="row.item + '-name'">
-          <a class="cosmetic-picture" [routerLink]="itemPath(row.self)" [queryParams]="lang()" [attr.aria-label]="i18n.name(row.self)"><item-image [item]="row.picture"/></a>
+          <a class="cosmetic-picture" [routerLink]="i18n.link(itemPath(row.self))" [attr.aria-label]="i18n.name(row.self)"><item-image [item]="row.picture"/></a>
           <div class="cosmetic-body">
-            <h4 [id]="row.item + '-name'"><a [routerLink]="itemPath(row.self)" [queryParams]="lang()">{{ i18n.name(row.self) }}</a></h4>
+            <h4 [id]="row.item + '-name'"><a [routerLink]="i18n.link(itemPath(row.self))">{{ i18n.name(row.self) }}</a></h4>
             <p class="cosmetic-result">@if (row.reverts) {<span>{{ i18n.t('恢复原版外观') }}</span>} @else {<span>{{ i18n.t('颜色') }}</span><span class="arrow" aria-hidden="true"> → </span><span>{{ i18n.t(row.color || '') }}</span>}</p>
             <dl><div><dt>{{ i18n.t('获取方式') }}</dt><dd>
-              @if (row.event && row.via) {<p>{{ i18n.t(eventLabel(row.event.event)) }} · <a [routerLink]="itemPath(row.via)" [queryParams]="lang()">{{ i18n.name(row.via) }}</a></p>}
-              @if (row.shop && row.currency) {<p>{{ row.shop.quest }} · <a [routerLink]="itemPath(row.currency)" [queryParams]="lang()">{{ i18n.name(row.currency) }}</a> × {{ row.shop.price }}</p>}
+              @if (row.event && row.via) {<p>{{ i18n.t(eventLabel(row.event.event)) }} · <a [routerLink]="i18n.link(itemPath(row.via))">{{ i18n.name(row.via) }}</a></p>}
+              @if (row.shop && row.currency) {<p>{{ row.shop.quest }} · <a [routerLink]="i18n.link(itemPath(row.currency))">{{ i18n.name(row.currency) }}</a> × {{ row.shop.price }}</p>}
               @if (row.freeQuests.length) {<p>{{ row.freeQuests.join(' / ') }} · {{ i18n.t('免费领取') }}</p>}
             </dd></div></dl>
           </div>
@@ -75,11 +75,11 @@
     <div class="cosmetic-cards portrait">
       @for (row of platings; track row.item) {
         <article class="cosmetic-card" [id]="row.item" [attr.aria-labelledby]="row.item + '-name'">
-          <a class="cosmetic-picture" [routerLink]="itemPath(row.self)" [queryParams]="lang()" [attr.aria-label]="i18n.name(row.self)"><item-image [item]="row.picture"/></a>
+          <a class="cosmetic-picture" [routerLink]="i18n.link(itemPath(row.self))" [attr.aria-label]="i18n.name(row.self)"><item-image [item]="row.picture"/></a>
           <div class="cosmetic-body">
-            <h4 [id]="row.item + '-name'"><a [routerLink]="itemPath(row.self)" [queryParams]="lang()">{{ i18n.name(row.self) }}</a></h4>
-            @if (row.skinItem; as skin) {<p class="cosmetic-result">{{ i18n.t('外观') }}<span class="arrow" aria-hidden="true"> → </span><a [routerLink]="itemPath(skin)" [queryParams]="lang()">{{ i18n.name(skin) }}</a></p>}
-            <dl><div><dt>{{ i18n.t('The Forge 交换所需道具') }}</dt><dd><ul>@for (part of row.tradeItems; track part.item.id) {<li><a [routerLink]="itemPath(part.item)" [queryParams]="lang()">{{ i18n.name(part.item) }}</a> × {{ part.quantity }}</li>}</ul></dd></div></dl>
+            <h4 [id]="row.item + '-name'"><a [routerLink]="i18n.link(itemPath(row.self))">{{ i18n.name(row.self) }}</a></h4>
+            @if (row.skinItem; as skin) {<p class="cosmetic-result">{{ i18n.t('外观') }}<span class="arrow" aria-hidden="true"> → </span><a [routerLink]="i18n.link(itemPath(skin))">{{ i18n.name(skin) }}</a></p>}
+            <dl><div><dt>{{ i18n.t('The Forge 交换所需道具') }}</dt><dd><ul>@for (part of row.tradeItems; track part.item.id) {<li><a [routerLink]="i18n.link(itemPath(part.item))">{{ i18n.name(part.item) }}</a> × {{ part.quantity }}</li>}</ul></dd></div></dl>
           </div>
         </article>
       }

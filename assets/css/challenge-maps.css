@@ -1,45 +1,3 @@
-.challenge-language {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    margin: 0 0 32px;
-    padding: 14px 18px;
-    border: 1px solid rgba(0, 212, 255, 0.25);
-    border-radius: 10px;
-    background: rgba(8, 25, 55, 0.72);
-}
-
-.challenge-language p { margin: 0; color: var(--text-secondary); }
-
-.challenge-language #langSwitch {
-    display: inline-flex;
-    flex: 0 0 auto;
-    overflow: hidden;
-    border: 1px solid rgba(0, 212, 255, 0.3);
-    border-radius: 999px;
-}
-
-.challenge-language .lang-btn {
-    min-width: 48px;
-    padding: 7px 12px;
-    border: 0;
-    border-right: 1px solid rgba(0, 212, 255, 0.2);
-    color: var(--text-secondary);
-    background: transparent;
-    cursor: pointer;
-    font: inherit;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.challenge-language .lang-btn:last-child { border-right: 0; }
-.challenge-language .lang-btn:hover { color: #d9f8ff; }
-.challenge-language .lang-btn.active {
-    color: #06152b;
-    background: linear-gradient(135deg, var(--accent), var(--accent-alt));
-}
-
 .challenge-legend {
     margin: -12px 0 36px;
     padding: 18px 20px;
@@ -92,10 +50,13 @@
 .legend-box { width: 16px; height: 14px; border: 2px solid #061329; border-radius: 4px; background: #2e9e4a; }
 .legend-dark { width: 24px; height: 14px; border: 2px solid #4fe3ff; border-radius: 3px; background: repeating-linear-gradient(45deg, #163f63 0 4px, #2b6f9a 4px 6px); }
 .legend-badge { width: 16px; height: 16px; border: 2px solid #061329; border-radius: 4px; background: #ff9f43; }
-.legend-icon { width: 16px; height: 16px; border-radius: 3px; background: linear-gradient(135deg, #00ae00 0 50%, #ffff00 50%); }
+/* EP2 mechanism icons are crops of the Wiki artwork used on the maps. */
+.challenge-legend .legend-artwork { width: 24px; height: 24px; flex: 0 0 auto; object-fit: contain; }
+/* Map callouts: a caption box with a dotted leader to its location. */
+.legend-callout { width: 26px; height: 14px; background: linear-gradient(90deg, #a9d8ed 0 2px, transparent 2px) 0 50% / 4px 1px repeat-x; position: relative; }
+.legend-callout::after { content: ""; position: absolute; right: 0; top: 0; width: 12px; height: 12px; border: 1px solid #a9d8ed8c; border-radius: 3px; background: #10263a; }
 
 @media (max-width: 600px) {
-    .challenge-language { align-items: flex-start; flex-direction: column; }
     .challenge-legend { margin-top: -16px; padding: 16px; }
 }
 
@@ -127,12 +88,6 @@
 .challenge-stats { display: flex; flex-shrink: 0; gap: 32px; }
 .challenge-stats > span { display: flex; flex-direction: column; gap: 4px; color: var(--guide-muted); font-size: 12px; }
 .challenge-stats b { color: hsl(210 35% 92%); font-size: 36px; font-weight: 500; line-height: 1.2; font-variant-numeric: tabular-nums; }
-.challenge-guide .challenge-language { padding: 16px 0; margin: 0; border: 0; border-top: 1px solid var(--guide-border); border-radius: 0; background: transparent; }
-.challenge-language small { display: block; font-size: 12px; color: var(--guide-muted); margin-top: 4px; }
-.challenge-guide .challenge-language p { font-size: 14px; margin: 0; }
-.challenge-guide .challenge-language #langSwitch { border-color: var(--guide-border); border-radius: 6px; }
-.challenge-guide .lang-btn { min-height: 44px; }
-.challenge-guide .lang-btn.active { background: hsl(190 75% 70%); }
 .challenge-stage-nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 8px; overflow-x: auto; padding: 12px 0; margin: 0 0 24px; background: hsl(218 48% 10% / .98); border-bottom: 1px solid var(--guide-border); scrollbar-width: thin; }
 .challenge-stage-nav a { display: grid; place-items: center; flex: 0 0 auto; min-width: 52px; min-height: 44px; padding: 8px 12px; border-radius: 6px; color: var(--guide-muted); font-size: 14px; font-weight: 600; }
 .challenge-stage-nav a:hover { background: var(--guide-raised); border-bottom-color: transparent; color: white; }
@@ -194,9 +149,6 @@
     .challenge-stats { gap: 32px; }
     .challenge-stats > span { flex-direction: row; align-items: baseline; gap: 8px; }
     .challenge-stats b { font-size: 24px; }
-    .challenge-guide .challenge-language { flex-direction: row; align-items: center; gap: 12px; }
-    .challenge-language small { max-width: 24ch; }
-    .challenge-guide .lang-btn { padding: 8px; min-width: 40px; }
     .challenge-stage-nav { gap: 4px; }
     .challenge-stage-nav a { min-width: 44px; padding: 8px; }
     .challenge-guide .challenge-principles { padding: 20px; }

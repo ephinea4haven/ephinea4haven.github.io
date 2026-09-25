@@ -827,7 +827,7 @@ def callout_svg(callout: dict, anchor: tuple[float, float], language: str) -> tu
     return leader, box
 
 
-def notes_panel(notes: list[tuple[int | None, str]], strings: dict, width: int, y: int) -> tuple[str, int]:
+def notes_panel(notes: list[tuple[int | dict | None, str]], strings: dict, width: int, y: int) -> tuple[str, int]:
     if not notes:
         return text(strings["sources"], width - 42, y + 24, size=12, fill="#8aabba", anchor="end"), 42
     columns = 2 if width >= 700 else 1
@@ -841,6 +841,11 @@ def notes_panel(notes: list[tuple[int | None, str]], strings: dict, width: int, 
         item_y = offsets[column]
         if number is None:
             items.append(f'<circle cx="{x + 14}" cy="{item_y - 1}" r="5" fill="#7fb8d8"/>')
+        elif isinstance(number, dict):
+            # A sample of the map's own artwork, cropped to the source box it came from.
+            left, top, box_width, box_height = number["box"]
+            items.append(f'<svg x="{x}" y="{item_y - 19}" width="28" height="28" '
+                         f'viewBox="{left:g} {top:g} {box_width:g} {box_height:g}">{number["art"]}</svg>')
         else:
             items.append(badge(number, x + 14, item_y - 5, size=28))
         items.append(wrapped_lines(note, x + 42, item_y, column_width - 54))
@@ -854,12 +859,13 @@ def notes_panel(notes: list[tuple[int | None, str]], strings: dict, width: int, 
 </g>''', height
 
 
-def panel_notes(area: dict, language: str, stage_note: str | None = None) -> list[tuple[int | None, str]]:
+def panel_notes(area: dict, language: str, stage_note: str | None = None) -> list[tuple[int | dict | None, str]]:
+    """General notes are text, or {"text", "icon": {"box", "art"}} to show the symbol they explain."""
     notes = area["notes"][language]
-    ordered: list[tuple[int | None, str]] = []
+    ordered: list[tuple[int | dict | None, str]] = []
     if stage_note:
         ordered.append((None, stage_note))
-    ordered.extend((None, note) for note in notes["general"])
+    ordered.extend((note["icon"], note["text"]) if isinstance(note, dict) else (None, note) for note in notes["general"])
     ordered.extend((index + 1, note) for index, note in enumerate(notes["numbered"]))
     return ordered
 

@@ -36,6 +36,10 @@ export function generateMonsterCatalog() {
   const names = readJson('content/monster-catalog/names.json');
   const hd = readJson('content/monster-catalog/hd-gallery.json').assignments;
   const notes = readJson('content/monster-catalog/notes.json');
+  // Behaviour notes are authored in every site language.
+  for (const [page, entries] of Object.entries(notes)) for (const entry of entries) {
+    for (const language of ['zh', 'en', 'ja']) if (typeof entry[language] !== 'string' || !entry[language].trim()) throw new Error(`Monster note for ${page} lacks ${language} text`);
+  }
   const mechanics = readJson('content/monster-catalog/mechanics.json');
   const conditions = readJson('content/monster-catalog/mechanic-conditions.json');
   for(const condition of conditions) {

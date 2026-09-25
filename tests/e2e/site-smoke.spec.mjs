@@ -209,7 +209,7 @@ for (const { route } of buildManifest.angular.routes) {
   });
 }
 
-test('challenge guides use localized redraws and remember the guidance language', async ({ page }) => {
+test('challenge guides publish each language at its own URL with localized redraws', async ({ page }) => {
   await page.goto('/guide/ep1ch.html');
   const firstMap = page.locator('.challenge-map img').first();
   await expect(firstMap).toHaveAttribute('src', /\/maps\/zh\/area_01\.svg$/);
@@ -218,28 +218,30 @@ test('challenge guides use localized redraws and remember the guidance language'
   await expect(page.locator('.challenge-legend')).toContainText('主路线');
   await expect(page.locator('.challenge-legend')).toContainText('传送点');
 
-  await page.getByRole('button', { name: 'EN', exact: true }).click();
+  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await expect(page).toHaveURL(/\/en\/guide\/ep1ch\.html$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(firstMap).toHaveAttribute('src', /\/maps\/en\/area_01\.svg$/);
-  const c2Maps = page.locator('.challenge-map img[data-i18n-src]');
-  await expect(c2Maps).toHaveCount(42);
-  await expect(c2Maps.first()).toHaveAttribute('src', /\/maps\/en\/area_01\.svg$/);
-  await expect(c2Maps.first()).toHaveAttribute('alt', 'EP1 Challenge Area 01 map');
+  await expect(firstMap).toHaveAttribute('alt', 'EP1 Challenge Area 01 map');
   await expect(page.locator('.challenge-legend')).toContainText('Main route');
-  await expect(page.locator('.challenge-language')).toContainText('Map language');
+  await expect(page.locator('#c1')).not.toContainText(/[\u3400-\u9fff]/);
+  await expect(page.locator('haven-language-bar').getByRole('status')).toHaveCount(0);
 
+  // The remembered language opens the English version of the next guide.
   await page.goto('/guide/ep2ch.html');
-  const ep2Maps = page.locator('.challenge-map img[data-i18n-src]');
+  await expect(page).toHaveURL(/\/en\/guide\/ep2ch\.html$/);
+  const ep2Maps = page.locator('.challenge-map img');
   await expect(ep2Maps.first()).toHaveAttribute('src', /\/maps\/en\/c1_area_01\.svg$/);
-  await expect(ep2Maps).toHaveCount(25);
   await expect(ep2Maps.first()).toHaveAttribute('alt', 'EP2 C1 Challenge Area 01 map');
   await expect(page.locator('.challenge-legend')).toContainText('Main route');
+  await expect(page.locator('main')).not.toContainText(/[\u3400-\u9fff]/);
 });
 
 for (const [stage, areas] of [[1, [1, 2]], [2, [4, 5, 6, 7, 8]], [3, [9, 10, 11, 12, 13]], [4, [14, 15, 16, 17, 18]], [5, [20, 21, 22, 23, 24]], [6, [25, 26, 27, 28, 29]], [7, [31, 32, 33, 34, 35]], [8, [36, 37, 38, 39, 40]], [9, [41, 42, 43, 44, 45]]]) {
 test(`C${stage} maps load all aligned areas in each guidance language on mobile`, async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/guide/ep1ch.html');
-  for (const [button, language] of [['中', 'zh'], ['EN', 'en'], ['日', 'ja']]) {
+  for (const [button, language] of [['中文', 'zh'], ['English', 'en'], ['日本語', 'ja']]) {
     await page.getByRole('button', { name: button, exact: true }).click();
     for (const area of areas) {
       const map = page.locator(`figure[aria-label="C${stage} · Area ${area}"] img`);
@@ -257,12 +259,11 @@ test(`C${stage} maps load all aligned areas in each guidance language on mobile`
 for (const [stage, areas] of [[1,[1,2,3,4,5,6]],[2,[8,9,10,11,12,13]],[3,[15,16,17,18,19]],[4,[21,22,23,24,25,26]],[5,[28,29]]]) {
   test(`EP2 C${stage} maps load aligned areas in all languages on mobile`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto('/guide/ep2ch.html');
-    for (const [button, language] of [['中','zh'],['EN','en'],['日','ja']]) {
-      await page.getByRole('button', { name: button, exact: true }).click();
+    for (const language of ['zh','en','ja']) {
+      await page.goto(`${language === 'zh' ? '' : `/${language}`}/guide/ep2ch.html`);
       for (const area of areas) {
         const file=`c${stage}_area_${String(area).padStart(2,'0')}.svg`;
-        const map=page.locator(`.challenge-map img[data-zh-src$="/${file}"]`);
+        const map=page.locator(`.challenge-map img[src$="/${language}/${file}"]`);
         await expect(map).toHaveAttribute('src', `/assets/img/challenge/ep2/maps/${language}/${file}`);
         await map.scrollIntoViewIfNeeded();
         await expect.poll(() => map.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
@@ -278,7 +279,7 @@ for (const episode of [1, 2]) {
   test(`EP${episode} guide navigates stages and inspects the selected localized map`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(`/guide/ep${episode}ch.html`);
-    await page.getByRole('button', { name: 'EN', exact: true }).click();
+    await page.getByRole('button', { name: 'English', exact: true }).click();
     const stageLink = page.locator('[data-stage-link="c3"]');
     await stageLink.click();
     await expect(page).toHaveURL(/#c3$/);
@@ -613,19 +614,19 @@ test('status simulator handles Angular inputs and resets', async ({ page }) => {
   await expect(page.locator('.resist-list dt')).toHaveText([
     'EFR火焰', 'EIC冰冻', 'ETH雷电', 'EDK暗黑', 'ELT光明',
   ]);
-  await page.getByRole('button', { name: 'EN', exact: true }).click();
+  await page.getByRole('button', { name: 'English', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Character Stat Simulator' })).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(page.locator('.resist-list dt')).toHaveText([
     'EFRFire', 'EICIce', 'ETHThunder', 'EDKDark', 'ELTLight',
   ]);
-  await page.getByRole('button', { name: '日', exact: true }).click();
+  await page.getByRole('button', { name: '日本語', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'キャラクターステータスシミュレーター' })).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('lang', 'ja');
   await expect(page.locator('.resist-list dt')).toHaveText([
     'EFR炎', 'EIC氷', 'ETH雷', 'EDK闇', 'ELT光',
   ]);
-  await page.getByRole('button', { name: '中', exact: true }).click();
+  await page.getByRole('button', { name: '中文', exact: true }).click();
   await expect(page.getByRole('heading', { name: '角色属性模拟器' })).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
   await page.locator('#class').selectOption('ramarl');
@@ -712,7 +713,7 @@ test('content images marked for versioning carry their content hash', async ({pa
     expect((await request.get(source)).ok()).toBe(true);
   }
   await page.goto('/');
-  await expect(page.getByRole('link',{name:'外观道具',exact:true})).toHaveAttribute('href',/\/data\/cosmetics\.html\?lang=zh$/);
+  await expect(page.getByRole('link',{name:'外观道具',exact:true})).toHaveAttribute('href','/data/cosmetics.html');
 });
 
 test('Angular content behaviors cover landing, search, filters, tabs, and RBR data', async ({ page }) => {
@@ -1291,7 +1292,7 @@ test('Angular multilingual data tables switch language without legacy globals', 
   await expect(db3069).toContainText('DB 之剑「3069·Chris 公司」');
   const nugBazooka = page.locator('[data-item-zh="NUG2000 火箭筒"]').first();
   await expect(nugBazooka).toHaveText('NUG2000 火箭筒');
-  await page.getByRole('button', { name: 'EN', exact: true }).click();
+  await page.getByRole('button', { name: 'English', exact: true }).click();
   await expect(nugBazooka).toHaveText('NUG2000-Bazooka');
   await expect(db3069).toContainText("DB's Saber (3069 Chris)");
   await expect(page.getByRole('group', { name: '中文道具译名字符宽度' })).toHaveCount(0);
@@ -1306,7 +1307,7 @@ test('Angular multilingual data tables switch language without legacy globals', 
   await page.goto('/data/prizelist/');
   await expect(page.locator('#pageTitle')).toHaveText("Coren's Prize List");
   await expect(page.locator('.day-head').first()).toContainText('Monday');
-  await page.getByRole('button', { name: '日', exact: true }).click();
+  await page.getByRole('button', { name: '日本語', exact: true }).click();
   await expect(page.locator('.day-head').first()).toContainText('月曜日');
 });
 
@@ -1434,7 +1435,7 @@ for (const path of ['/tools/cc.html', '/tools/ccopm.html']) {
 
 test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ page }) => {
   await page.goto('/data/protocol/');
-  await page.getByRole('button', { name: 'EN', exact: true }).click();
+  await page.getByRole('button', { name: 'English', exact: true }).click();
   await expect(page.locator('#project_title')).toHaveText('Protocol Reference');
   await page.locator('#tab-list [data-tab="subcommands"]').click();
   await expect(page.locator('#proto-content section.active')).toHaveAttribute('data-tab', 'subcommands');
@@ -1593,12 +1594,12 @@ test('status equipment names follow the authority through variants and language 
   await expect(page.locator('.effects')).toContainText('解除/麻痹');
   const share = await page.locator('.share-link a').getAttribute('href');
   const stats = await page.locator('.stat-table tbody').innerText();
-  for (const language of ['EN', '日', '中']) {
+  for (const language of ['English', '日本語', '中文']) {
     await page.getByRole('button', { name: language, exact: true }).click();
-    await expect(page.locator('#armor option:checked')).toHaveText(language === '中' ? '完美铠甲' : 'Perfect Frame');
-    await expect(page.locator('#unit2 option:checked')).toHaveText(language === '中' ? '骑士级/攻击++' : 'Knight/Power++');
-    await expect(page.locator('.equipment-report li').first()).toContainText(language === '中' ? '完美铠甲' : 'Perfect Frame');
-    await expect(page.locator('.effects')).toContainText(language === '中' ? '智能联结' : 'Smartlink');
+    await expect(page.locator('#armor option:checked')).toHaveText(language === '中文' ? '完美铠甲' : 'Perfect Frame');
+    await expect(page.locator('#unit2 option:checked')).toHaveText(language === '中文' ? '骑士级/攻击++' : 'Knight/Power++');
+    await expect(page.locator('.equipment-report li').first()).toContainText(language === '中文' ? '完美铠甲' : 'Perfect Frame');
+    await expect(page.locator('.effects')).toContainText(language === '中文' ? '智能联结' : 'Smartlink');
     await expect(page.locator('.share-link a')).toHaveAttribute('href', share);
     expect(await page.locator('.stat-table tbody').innerText()).toBe(stats);
   }

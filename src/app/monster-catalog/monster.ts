@@ -1,4 +1,5 @@
 import raw from '../generated/monster-catalog/index.json';
+import type { LocalizedText } from '../shared/site-language.service';
 import metadata from '../generated/monster-catalog/metadata.json';
 export type Names = {en:string;zh:string;ja:string};
 export interface Monster {
@@ -9,7 +10,7 @@ export interface Monster {
 export interface MechanicTable {section:string;anchor:string;caption:string;context:string[];headings:string[];difficulties:string[];axis:'all'|'difficulty'|'mode'|'difficulty-mode';rows:string[][]}
 export interface MonsterDetail {
   hdImage:string|null; ultimateHdImage:string|null;
-  id:string; stats:Record<string,(number|string)[]>; notes:string[]; tables:MechanicTable[];
+  id:string; stats:Record<string,(number|string)[]>; notes:LocalizedText[]; tables:MechanicTable[];
   drops:Record<string,{name:string;dar:string|null;cells:(Names & {rate:string;id:string|null})[][]}>;
   dropScope:string; source:string;sourceTitle:string;revision:number;checkedAt:string;imageSource:string|null;ultimateImageSource:string|null;
 }

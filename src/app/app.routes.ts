@@ -1,21 +1,32 @@
 import { Routes } from '@angular/router';
 import { contentRoutes } from './generated/content.routes';
 
-export const routes: Routes = [
-  { path:'data/enemies.html', loadComponent:()=>import('./monster-catalog/monster-catalog.component').then(m=>m.MonsterCatalogComponent) },
-  { path:'data/enemies/:monster', loadChildren:()=>import('./monster-catalog/monster-detail.routes').then(m=>m.monsterDetailRoutes) },
+/** Angular features that render every language from the URL (docs/ARCHITECTURE.md). */
+const featureRoutes = (prefix = ''): Routes => [
+  { path:`${prefix}data/enemies.html`, loadComponent:()=>import('./monster-catalog/monster-catalog.component').then(m=>m.MonsterCatalogComponent) },
+  { path:`${prefix}data/enemies/:monster`, loadChildren:()=>import('./monster-catalog/monster-detail.routes').then(m=>m.monsterDetailRoutes) },
   {
-    path: 'data/items.html',
-    loadComponent: () => import('./item-catalog/item-catalog.component').then(({ ItemCatalogComponent }) => ItemCatalogComponent),
+    path:`${prefix}data/items.html`,
+    loadChildren: () => import('./item-catalog/item-list.routes').then(m => m.itemListRoutes),
   },
   {
-    path: 'data/cosmetics.html',
+    path:`${prefix}data/cosmetics.html`,
     loadComponent: () => import('./item-catalog/cosmetics.component').then(({ CosmeticsComponent }) => CosmeticsComponent),
   },
   {
-    path: 'data/items/:item',
+    path:`${prefix}data/items/:item`,
     loadChildren: () => import('./item-catalog/item-detail.routes').then(m => m.itemDetailRoutes),
   },
+  {
+    path:`${prefix}tools/status.html`,
+    loadChildren: () => import('./status/status.routes').then(m => m.statusRoutes),
+  },
+];
+
+export const routes: Routes = [
+  ...featureRoutes(),
+  ...featureRoutes('en/'),
+  ...featureRoutes('ja/'),
   {
     path: 'data/en2chinese.html',
     title: '游戏物品中英对照 | Ephinea PSOBB',
@@ -30,14 +41,7 @@ export const routes: Routes = [
   {
     path: 'tools/chartable.html',
     title: '全等级人物能力表 - PSOBB Wiki',
-    loadComponent: () => import('./chartable/chartable.component')
-      .then(({ ChartableComponent }) => ChartableComponent),
-  },
-  {
-    path: 'tools/status.html',
-    title: '角色属性模拟器 | Ephinea PSOBB',
-    loadComponent: () => import('./status/status.component')
-      .then(({ StatusComponent }) => StatusComponent),
+    loadChildren: () => import('./chartable/chartable.routes').then(m => m.chartableRoutes),
   },
   {
     path: 'tools/cc.html',

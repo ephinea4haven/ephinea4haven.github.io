@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { parse, serialize } from 'parse5';
 import vm from 'node:vm';
 import { localizeHome } from './home_i18n.mjs';
+import { languagesFor, loadPageI18n, localizeBody, pageMetadata } from './page_i18n.mjs';
 import { marked } from 'marked';
 import { ItemData } from '../src/app/status/item-data.js';
 
@@ -30,16 +31,14 @@ const pageBehaviors = new Map([
   ['data/monsters.html', ['MonsterFilterBehavior', 'BackToTopBehavior']],
   ['data/quest.html', ['BackToTopBehavior']],
   ['guide/class-guide.html', ['ProfessionTabsBehavior']],
-  ['guide/ep1ch.html', ['LanguageSwitchBehavior', 'ChallengeGuideBehavior']],
-  ['guide/ep2ch.html', ['LanguageSwitchBehavior', 'ChallengeGuideBehavior']],
+  ['guide/ep1ch.html', ['ChallengeGuideBehavior']],
+  ['guide/ep2ch.html', ['ChallengeGuideBehavior']],
   ['guide/seabed.html', ['SeabedRouteBehavior']],
   ['tools/materialplan.html', ['BackToTopBehavior']],
   ['tools/id.html', ['SectionIdBehavior']],
   ['event/easter.html', ['EventArchiveBehavior']],
   ['event/halloween.html', ['EventArchiveBehavior']],
   ['event/valentines.html', ['EventArchiveBehavior']],
-  ['data/bdp/index.html', ['LanguageSwitchBehavior']],
-  ['data/prizelist/index.html', ['LanguageSwitchBehavior']],
   ['guide/volopt.html', ['VolOptBehavior']],
   ['guide/rbr.html', ['RbrBehavior']],
   ['tools/mag.html', ['MagBehavior']],
@@ -203,6 +202,9 @@ vm.runInNewContext(`${await readFile(path.join(root, 'assets/js/volopt_data.js')
   filename: 'assets/js/volopt_data.js', timeout: 1000,
 });
 await mkdir(path.join(root, 'src/app/generated/data'), { recursive: true });
+// Data fetched at runtime is addressed by content hash, so updates are never served stale.
+const characterDataHash = createHash('sha256').update(await readFile(path.join(root, 'assets/js/chardata.json'))).digest('hex').slice(0, 12);
+await writeFile(path.join(root, 'src/app/generated/data/versions.json'), `${JSON.stringify({ chardata: characterDataHash })}\n`);
 await writeFile(path.join(root, 'src/app/generated/data/volopt-data.ts'),
   `export const VOL_OPT_DATA = ${JSON.stringify(volOptSandbox.__VOL_OPT_DATA)} as const;\n`);
 const priceSandbox = {};
@@ -304,8 +306,10 @@ function replaceInnerHtml(source, replacements) {
   return source;
 }
 
+// Carries all three authority names, so pages with a language switch show the item
+// in the reader's language; Japanese falls back to the English identity.
 function canonicalItemMarkup(item) {
-  return `<span data-item-zh="${escapeHtml(item.zh)}">${visibleItemZh(item)}</span>`;
+  return `<span ${itemI18nAttributes({ zh: item.zh, en: item.en, ja: item.ja || item.en })}>${visibleItemZh(item)}</span>`;
 }
 
 function buildCanonicalItemConsumers(relative, source) {
@@ -350,25 +354,19 @@ function buildCanonicalItemConsumers(relative, source) {
   return replaceInnerHtml(source, replacements);
 }
 
-function languageButtons() {
-  return '<button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中</button><button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button><button type="button" class="lang-btn" data-lang="ja" aria-pressed="false">日</button>';
+/** An element's attributes for interface text from content/i18n/messages (resolved per language at build). */
+function messageAttributes(key) {
+  return `data-i18n="${key}"`;
+}
+
+function zhMessage(key) {
+  return escapeHtml(pageI18n.messages.zh[key]);
 }
 
 function buildBdpContent(source) {
-  const labels = {
-    title: { zh: '黑页危险交易掉落表', en: "Black Paper's Deal Drop Charts", ja: 'ブラックペーパーズディール ドロップ表' },
-    subtitle: { zh: "Black Paper's Deal Drop Charts", en: '', ja: "Black Paper's Deal Drop Charts" },
-    back: { zh: '← 返回首页', en: '← Back to Home', ja: '← ホームへ戻る' },
-    monster: { zh: '怪物', en: 'Enemy', ja: 'モンスター' },
-  };
-  const difficulties = [
-    { zh: '普通', en: 'Normal', ja: 'ノーマル' },
-    { zh: '苦难', en: 'Hard', ja: 'ハード' },
-    { zh: '极难', en: 'Very Hard', ja: 'ベリーハード' },
-    { zh: '极限', en: 'Ultimate', ja: 'アルティメット' },
-  ];
-  const head = [labels.monster, ...difficulties]
-    .map((label) => `<td><strong ${i18nAttributes(label)}>${escapeHtml(label.zh)}</strong></td>`).join('');
+  const difficulties = ['difficulty.normal', 'difficulty.hard', 'difficulty.veryHard', 'difficulty.ultimate'];
+  const head = ['bdp.enemy', ...difficulties]
+    .map((key) => `<td><strong ${messageAttributes(key)}>${zhMessage(key)}</strong></td>`).join('');
   const rows = bdpData.map((section, index) => {
     const label = itemI18n(section.label_id);
     const cells = section.columns.map((column) => `<td valign="top">${column.map((id) => {
@@ -378,38 +376,25 @@ function buildBdpContent(source) {
     return `<tr class="bdp-row bdp-row-${index}"><td class="monster-label"><strong ${itemI18nAttributes(label)}>${visibleItemZh(label)}</strong></td>${cells}</tr>`;
   }).join('');
   return source
-    .replace('<h1 id="pageTitle">黑页危险交易掉落表</h1>', `<h1 id="pageTitle" ${i18nAttributes(labels.title)}>${labels.title.zh}</h1>`)
-    .replace('<div id="pageSubtitle"></div>', `<div id="pageSubtitle" ${i18nAttributes(labels.subtitle)}>${labels.subtitle.zh}</div>`)
-    .replace('<div id="langSwitch"></div>', `<div id="langSwitch">${languageButtons()}</div>`)
-    .replace('<a href="/index.html" class="back-link">← 返回首页</a>', `<a href="/index.html" class="back-link" ${i18nAttributes(labels.back)}>${labels.back.zh}</a>`)
+    .replace('<h1 id="pageTitle">黑页危险交易掉落表</h1>', `<h1 id="pageTitle" ${messageAttributes('bdp.title')}>${zhMessage('bdp.title')}</h1>`)
+    .replace('<div id="pageSubtitle"></div>', `<div id="pageSubtitle" ${messageAttributes('bdp.subtitle')}>${zhMessage('bdp.subtitle')}</div>`)
+    .replace('<a href="/index.html" class="back-link">← 返回首页</a>', `<a href="/index.html" class="back-link" ${messageAttributes('common.backHome')}>${zhMessage('common.backHome')}</a>`)
     .replace('<div id="bdpContainer"></div>', `<div id="bdpContainer"><table class="bdp-table"><tbody><tr class="bdp-head">${head}</tr>${rows}</tbody></table></div>`);
 }
 
 function buildPrizeContent(source) {
-  const weekdays = {
-    monday: { zh: '星期一', en: 'Monday', ja: '月曜日' }, tuesday: { zh: '星期二', en: 'Tuesday', ja: '火曜日' },
-    wednesday: { zh: '星期三', en: 'Wednesday', ja: '水曜日' }, thursday: { zh: '星期四', en: 'Thursday', ja: '木曜日' },
-    friday: { zh: '星期五', en: 'Friday', ja: '金曜日' }, saturday: { zh: '星期六', en: 'Saturday', ja: '土曜日' },
-    sunday: { zh: '星期日', en: 'Sunday', ja: '日曜日' },
-  };
-  const title = { zh: '科伦赌博奖品列表', en: "Coren's Prize List", ja: 'コーレン賞品リスト' };
-  const subtitle = { zh: "Coren's Prize List", en: '', ja: "Coren's Prize List" };
-  const back = { zh: '← 返回首页', en: '← Back to Home', ja: '← ホームへ戻る' };
-  const nav = prizeData.map((day) => `<a href="#day-${day.key}" class="btn" ${i18nAttributes(weekdays[day.key])}>${weekdays[day.key].zh}</a>`).join('');
+  const nav = prizeData.map((day) => `<a href="#day-${day.key}" class="btn" ${messageAttributes(`weekday.${day.key}`)}>${zhMessage(`weekday.${day.key}`)}</a>`).join('');
   const tables = prizeData.map((day) => {
     const itemCells = day.columns.map((column) => `<td valign="top">${column.map((id) => {
       const item = itemI18n(id);
       return `<span ${itemI18nAttributes(item)}>${visibleItemZh(item)}</span>`;
     }).join('<br>')}</td>`).join('');
-    return `<section id="day-${day.key}" class="day-section"><table class="prize-table"><tbody><tr class="day-head"><td colspan="3" ${i18nAttributes(weekdays[day.key])}>${weekdays[day.key].zh}</td></tr><tr class="odds-head">${day.odds.map((odds) => `<td><strong>${escapeHtml(odds)}</strong></td>`).join('')}</tr><tr class="items-row">${itemCells}</tr></tbody></table></section>`;
+    return `<section id="day-${day.key}" class="day-section"><table class="prize-table"><tbody><tr class="day-head"><td colspan="3" ${messageAttributes(`weekday.${day.key}`)}>${zhMessage(`weekday.${day.key}`)}</td></tr><tr class="odds-head">${day.odds.map((odds) => `<td><strong>${escapeHtml(odds)}</strong></td>`).join('')}</tr><tr class="items-row">${itemCells}</tr></tbody></table></section>`;
   }).join('');
-  const notes = `<p id="note1"><span data-lang-content="zh">请记住，<strong>科伦遵守 UTC 时间（中国 UTC+8）</strong>，并且高额赌博更容易同时获得低额奖品。</span><span data-lang-content="en" hidden>Remember, <strong>Coren follows UTC time</strong>, and higher-tier gambling is more likely to drop lower-tier prizes alongside its own.</span><span data-lang-content="ja" hidden><strong>コーレンは UTC 時刻に従います</strong>。高額ギャンブルほど同時に低ランクの賞品が出やすくなります。</span></p><p id="note2"><span data-lang-content="zh"><strong>1,000</strong> — 第一列 4%<br><strong>10,000</strong> — 第一列 8%、第二列 4%<br><strong>100,000</strong> — 第一列 12%、第二列 8%、第三列 4%</span><span data-lang-content="en" hidden><strong>1,000</strong> — 4% for column 1<br><strong>10,000</strong> — 8% for column 1, 4% for column 2<br><strong>100,000</strong> — 12% for column 1, 8% for column 2, 4% for column 3</span><span data-lang-content="ja" hidden><strong>1,000</strong> — 1列目 4%<br><strong>10,000</strong> — 1列目 8%、2列目 4%<br><strong>100,000</strong> — 1列目 12%、2列目 8%、3列目 4%</span></p>`;
   return source
-    .replace('<h1 id="pageTitle">科伦赌博奖品列表</h1>', `<h1 id="pageTitle" ${i18nAttributes(title)}>${title.zh}</h1>`)
-    .replace('<div id="pageSubtitle"></div>', `<div id="pageSubtitle" ${i18nAttributes(subtitle)}>${subtitle.zh}</div>`)
-    .replace('<div id="langSwitch"></div>', `<div id="langSwitch">${languageButtons()}</div>`)
-    .replace('<a href="/index.html" class="back-link">← 返回首页</a>', `<a href="/index.html" class="back-link" ${i18nAttributes(back)}>${back.zh}</a>`)
-    .replace('<p id="note1"></p>\n        <p id="note2"></p>', notes)
+    .replace('<h1 id="pageTitle">科伦赌博奖品列表</h1>', `<h1 id="pageTitle" ${messageAttributes('prizes.title')}>${zhMessage('prizes.title')}</h1>`)
+    .replace('<div id="pageSubtitle"></div>', `<div id="pageSubtitle" ${messageAttributes('prizes.subtitle')}>${zhMessage('prizes.subtitle')}</div>`)
+    .replace('<a href="/index.html" class="back-link">← 返回首页</a>', `<a href="/index.html" class="back-link" ${messageAttributes('common.backHome')}>${zhMessage('common.backHome')}</a>`)
     .replace('<div id="dayNav"></div>', `<div id="dayNav">${nav}</div>`)
     .replace('<div id="tablesContainer"></div>', `<div id="tablesContainer">${tables}</div>`);
 }
@@ -453,27 +438,23 @@ function buildBannersContent(source) {
 
 async function buildProtocolContent(source) {
   const documents = [
-    { id: 'protocol', en: 'protocol-commands.md', zh: 'protocol-commands.zh.md', enLabel: 'Protocol', zhLabel: '协议命令', hint: 'Protocol' },
-    { id: 'subcommands', en: 'subcommands.md', zh: 'subcommands.zh.md', enLabel: 'Subcommands', zhLabel: '子命令', hint: '0x60/0x62' },
+    { id: 'protocol', en: 'protocol-commands.md', zh: 'protocol-commands.zh.md', ja: 'protocol-commands.ja.md', label: 'protocol.protocolTab', hint: 'Protocol' },
+    { id: 'subcommands', en: 'subcommands.md', zh: 'subcommands.zh.md', ja: 'subcommands.ja.md', label: 'protocol.subcommandsTab', hint: '0x60/0x62' },
   ];
   const sections = [];
   for (const document of documents) {
-    for (const language of ['zh', 'en']) {
+    for (const language of ['zh', 'en', 'ja']) {
       const markdown = await readFile(path.join(root, 'data/protocol', document[language]), 'utf8');
-      sections.push(`<section data-tab="${document.id}" data-lang="${language}"${document.id === 'protocol' && language === 'zh' ? ' class="active"' : ''}>${await marked.parse(markdown)}</section>`);
+      sections.push(`<section data-tab="${document.id}" data-lang-content="${language}"${document.id === 'protocol' ? ' class="active"' : ''}>${await marked.parse(markdown)}</section>`);
     }
   }
-  const tabs = documents.map((document) => `<a class="toc-tab${document.id === 'protocol' ? ' active' : ''}" href="#${document.id}" data-tab="${document.id}"><span data-i18n data-zh="${document.zhLabel}" data-en="${document.enLabel}">${document.zhLabel}</span><span style="float:right;color:#64748b;font-size:11px;font-weight:400">${document.hint}</span></a>`).join('');
-  const sourceNote = '<span data-lang-content="zh">本页内容整理自 <a href="https://github.com/fuzziqersoftware/newserv" target="_blank" rel="noopener noreferrer">newserv</a> 项目的 <code>docs/</code> 目录，覆盖 PSOBB 客户端与服务器之间的网络协议及游戏内子命令（0x60/0x62/0x6C/0x6D 载荷）两部分。操作码与处理函数名保持英文，以便与源码/抓包记录对照。</span><span data-lang-content="en" hidden>This page is compiled from the <code>docs/</code> directory of <a href="https://github.com/fuzziqersoftware/newserv" target="_blank" rel="noopener noreferrer">newserv</a>. It covers the PSOBB network protocol between the client and server and in-game subcommands (0x60/0x62/0x6C/0x6D payloads). Opcodes and handler names are kept in English to match source code and packet captures.</span>';
+  const tabs = documents.map((document) => `<a class="toc-tab${document.id === 'protocol' ? ' active' : ''}" href="#${document.id}" data-tab="${document.id}"><span ${messageAttributes(document.label)}>${zhMessage(document.label)}</span><span style="float:right;color:#64748b;font-size:11px;font-weight:400">${document.hint}</span></a>`).join('');
   return source
-    .replace('<h1 id="project_title">协议命令参考</h1>', '<h1 id="project_title" data-i18n data-zh="协议命令参考" data-en="Protocol Reference">协议命令参考</h1>')
-    .replace('<button type="button" class="lang-btn" data-lang="zh">中</button>', '<button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中</button>')
-    .replace('<button type="button" class="lang-btn" data-lang="en">EN</button>', '<button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>')
-    .replace('<a href="/index.html" class="back-link">← 返回首页</a>', '<a href="/index.html" class="back-link" data-i18n data-zh="← 返回首页" data-en="← Back to Home">← 返回首页</a>')
-    .replace('<div class="source-note" id="sourceNote"></div>', `<div class="source-note" id="sourceNote">${sourceNote}</div>`)
-    .replace('<h3 id="tocDocsHead">文档</h3>', '<h3 id="tocDocsHead" data-i18n data-zh="文档" data-en="Documents">文档</h3>')
+    .replace('<h1 id="project_title">协议命令参考</h1>', `<h1 id="project_title" ${messageAttributes('protocol.title')}>${zhMessage('protocol.title')}</h1>`)
+    .replace('<a href="/index.html" class="back-link">← 返回首页</a>', `<a href="/index.html" class="back-link" ${messageAttributes('common.backHome')}>${zhMessage('common.backHome')}</a>`)
+    .replace('<h3 id="tocDocsHead">文档</h3>', `<h3 id="tocDocsHead" ${messageAttributes('protocol.documents')}>${zhMessage('protocol.documents')}</h3>`)
     .replace('<div id="tab-list"></div>', `<div id="tab-list">${tabs}</div>`)
-    .replace('<h3 id="tocSectionsHead" style="margin-top: 20px;">章节</h3>', '<h3 id="tocSectionsHead" style="margin-top: 20px;" data-i18n data-zh="章节" data-en="Sections">章节</h3>')
+    .replace('<h3 id="tocSectionsHead" style="margin-top: 20px;">章节</h3>', `<h3 id="tocSectionsHead" style="margin-top: 20px;" ${messageAttributes('protocol.sections')}>${zhMessage('protocol.sections')}</h3>`)
     .replace('<div class="loading">正在加载文档…</div>', sections.join(''));
 }
 
@@ -509,7 +490,7 @@ async function applyBuildTimeContent(relative, source) {
       if (!tier || !/^#[0-9a-f]{6}$/i.test(color)) throw new Error(`Missing RBR recommendation: ${quest.abbreviation}`);
       return `<a class="home-rbr-quest" href="/guide/rbr.html" style="--section-color:${color}" data-tier="${escapeHtml(tier)}"><span class="home-rbr-episode">EPISODE 0${quest.episode}</span><strong>${escapeHtml(quest.abbreviation)}</strong><small>${escapeHtml(quest.name)}</small><div class="home-rbr-tags"><span class="home-rbr-tier">Tier ${escapeHtml(tier)}</span><span class="home-rbr-section"><img src="/assets/img/section/icon/${encodeURIComponent(section)}.png" alt="" width="28" height="28"><span data-home-i18n data-zh="推荐 ID" data-en="Recommended ID" data-ja="おすすめ ID">推荐 ID</span> · ${escapeHtml(section)}</span></div><b aria-hidden="true">↗</b></a>`;
     }).join('');
-    const withRbr = source.replace('<!-- home-language -->', '<div id="home-language" class="home-language" role="group" aria-label="Language / 言語 / 语言"><button type="button" data-home-lang="zh" lang="zh-CN" aria-pressed="true">中文</button><button type="button" data-home-lang="en" lang="en" aria-pressed="false">English</button><button type="button" data-home-lang="ja" lang="ja" aria-pressed="false">日本語</button></div>').replace('<!-- home-rbr -->', `<section class="home-rbr" id="rbr" data-rbr-week="${escapeHtml(data.current.week)}" aria-labelledby="home-rbr-title"><div class="home-rbr-heading"><div><p>RAGOL BOOST ROAD</p><h2 id="home-rbr-title" data-home-live>RBR 任务</h2></div><a href="/guide/rbr.html">任务详情与周回推荐 →</a></div><p class="home-rbr-status" data-home-live>记录周：${escapeHtml(data.current.week)} · UTC 周日轮替</p><div class="home-rbr-quests">${quests}</div><p class="home-rbr-note" data-home-i18n data-zh="颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）" data-en="Colors indicate recommended Section IDs · Tiers rate farming returns (${escapeHtml(ratings.asOf)}, unofficial)" data-ja="色はおすすめのセクション ID · Tier は周回効率の評価（${escapeHtml(ratings.asOf)}、非公式）">颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）</p></section>`);
+    const withRbr = source.replace('<!-- home-language -->', '<div id="home-language" class="home-language" role="group" aria-label="Language / 言語 / 语言"><button type="button" data-home-lang="zh" lang="zh-CN" aria-pressed="true">中文</button><button type="button" data-home-lang="en" lang="en" aria-pressed="false">English</button><button type="button" data-home-lang="ja" lang="ja" aria-pressed="false">日本語</button></div>').replace('<!-- home-rbr -->', `<section class="home-rbr" id="rbr" data-rbr-week="${escapeHtml(data.current.week)}" aria-labelledby="home-rbr-title"><div class="home-rbr-heading"><div><p>RAGOL BOOST ROAD</p><h2 id="home-rbr-title" data-home-live data-home-i18n data-zh="RBR 任务" data-en="RBR quests" data-ja="RBR クエスト">RBR 任务</h2></div><a href="/guide/rbr.html">任务详情与周回推荐 →</a></div><p class="home-rbr-status" data-home-live data-home-i18n data-zh="记录周：${escapeHtml(data.current.week)} · UTC 周日轮替" data-en="Recorded week: ${escapeHtml(data.current.week)} · Rotates on Sunday UTC" data-ja="記録週：${escapeHtml(data.current.week)} · UTC 日曜日に更新">记录周：${escapeHtml(data.current.week)} · UTC 周日轮替</p><div class="home-rbr-quests">${quests}</div><p class="home-rbr-note" data-home-i18n data-zh="颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）" data-en="Colors indicate recommended Section IDs · Tiers rate farming returns (${escapeHtml(ratings.asOf)}, unofficial)" data-ja="色はおすすめのセクション ID · Tier は周回効率の評価（${escapeHtml(ratings.asOf)}、非公式）">颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）</p></section>`);
     return localizeHome(withRbr, JSON.parse(await readFile(path.join(root, 'content/home-i18n.json'), 'utf8')));
   }
   if (relative === 'data/bdp/index.html') return buildBdpContent(source);
@@ -550,7 +531,7 @@ function removeScripts(node) {
   if (node.content) removeScripts(node.content);
 }
 
-function pageDetails(file, source, relative) {
+function pageDetails(file, source, relative, language) {
   const document = parse(source, { sourceCodeLocationInfo: true });
   let body;
   let title = '';
@@ -598,15 +579,38 @@ function pageDetails(file, source, relative) {
 
   removeScripts(body);
   makeRelativeUrlsRootRelative(body, relative);
+  let homeMetadata = null;
+  if (relative === 'index.html') {
+    // The homepage's language control carries its translated title and description;
+    // its pressed button and the drop chart site's ?lang follow this version's language.
+    visit(body, (node) => {
+      const attributes = new Map((node.attrs || []).map(({ name, value }) => [name, value]));
+      if (attributes.get('id') === 'home-language') {
+        homeMetadata = { title: attributes.get(`data-title-${language}`), description: attributes.get(`data-description-${language}`) };
+      }
+      for (const attribute of node.attrs || []) {
+        if (attribute.name === 'aria-pressed' && attributes.has('data-home-lang')) attribute.value = String(attributes.get('data-home-lang') === language);
+        if (attribute.name === 'href' && attribute.value.startsWith('https://dropcharts.psohaven.com/')) {
+          const url = new URL(attribute.value);
+          url.searchParams.set('lang', language);
+          attribute.value = url.href;
+        }
+      }
+    });
+  }
+  localizeBody(pageI18n, body, language, relative, {
+    itemName: (english, itemLanguage) => itemByEnglish(english, relative)[itemLanguage],
+  });
   stampAssetVersions(body, relative);
   const template = serialize(body).replaceAll(
     /\sonerror="this\.remove\(\)"/gi,
     ' (error)="$any($event.target).remove()"',
   ).replaceAll(hasAngularBehavior ? /\son[a-z]+="[^"]*"/gi : /\son(?:focus|blur)="[^"]*"/gi, '');
 
+  const metadata = homeMetadata ?? pageMetadata(pageI18n, relative, language, title, description);
   return {
-    title,
-    description,
+    title: metadata.title,
+    description: metadata.description,
     template: escapeAngularText(template.trim()),
     styles: inlineStyles.join('\n'),
     styleUrls: [...new Set(stylesheetFiles)],
@@ -625,16 +629,20 @@ const candidates = [
   )))).flat(),
 ].sort();
 
+const pageI18n = await loadPageI18n(root);
+await writeFile(path.join(root, 'src/app/generated/localized-pages.json'), `${JSON.stringify({ versions: pageI18n.localized, unprefixed: pageI18n.unprefixed })}\n`);
 const pages = [];
 for (const file of candidates) {
   const relative = path.relative(root, file).split(path.sep).join('/');
   if (explicitPages.has(relative) || ['data/items.html', 'data/cosmetics.html'].includes(relative) || relative.startsWith('data/items/')) continue;
   const source = await applyBuildTimeContent(relative, await readFile(file, 'utf8'));
-  const details = pageDetails(file, source, relative);
+  for (const language of languagesFor(pageI18n, relative)) {
+  const details = pageDetails(file, source, relative, language);
   if (!details) continue;
 
-  const className = classNameFor(relative);
-  const generatedFileName = fileNameFor(relative);
+  const suffix = language === 'zh' ? '' : `${language[0].toUpperCase()}${language.slice(1)}`;
+  const className = `${classNameFor(relative)}${suffix}`;
+  const generatedFileName = `${fileNameFor(relative)}${suffix ? `.${language}` : ''}`;
   const styleUrls = details.styleUrls.map((styleFile) => {
     const generatedFile = path.join(outputDirectory, `${generatedFileName}.ts`);
     let value = path.relative(path.dirname(generatedFile), styleFile).split(path.sep).join('/');
@@ -675,18 +683,20 @@ export class ${className} {
 }
 `;
   await writeFile(path.join(outputDirectory, `${generatedFileName}.ts`), component);
-  pages.push({ relative, title: details.title, className, generatedFileName });
+  pages.push({ relative, language, title: details.title, className, generatedFileName });
+  }
 }
+const routePath = (language, value) => (language === 'zh' ? value : `${language}${value ? `/${value}` : ''}`);
 
-const routeEntries = pages.map(({ relative, title, className, generatedFileName }) => `  {
-    path: ${JSON.stringify(canonicalRoute(relative))},
+const routeEntries = pages.map(({ relative, language, title, className, generatedFileName }) => `  {
+    path: ${JSON.stringify(routePath(language, canonicalRoute(relative)))},
     title: ${JSON.stringify(title)},
     loadComponent: () => import('./pages/${generatedFileName}').then(({ ${className} }) => ${className}),
   },`).join('\n');
 const indexAliases = pages.filter(({ relative }) => relative.endsWith('index.html')).map(({
-  relative, title, className, generatedFileName,
+  relative, language, title, className, generatedFileName,
 }) => `  {
-    path: ${JSON.stringify(relative)},
+    path: ${JSON.stringify(routePath(language, relative))},
     title: ${JSON.stringify(title)},
     loadComponent: () => import('./pages/${generatedFileName}').then(({ ${className} }) => ${className}),
   },`).join('\n');
@@ -703,11 +713,11 @@ ${pages.some(({ relative }) => relative === '404.html') ? `  {
 ];
 `);
 
-const serverEntries = pages.map(({ relative }) => (
-  `  { path: ${JSON.stringify(canonicalRoute(relative))}, renderMode: RenderMode.Prerender },`
+const serverEntries = pages.map(({ relative, language }) => (
+  `  { path: ${JSON.stringify(routePath(language, canonicalRoute(relative)))}, renderMode: RenderMode.Prerender },`
 )).join('\n');
 const indexAliasServerEntries = pages.filter(({ relative }) => relative.endsWith('index.html'))
-  .map(({ relative }) => `  { path: ${JSON.stringify(relative)}, renderMode: RenderMode.Client },`)
+  .map(({ relative, language }) => `  { path: ${JSON.stringify(routePath(language, relative))}, renderMode: RenderMode.Client },`)
   .join('\n');
 await writeFile(serverRouteFile, `import { RenderMode, ServerRoute } from '@angular/ssr';
 

@@ -1,5 +1,8 @@
 <page-chrome title="全等级人物能力表"></page-chrome>
 <main class="content-container tool-page chartable-page">
+  @if (!data) {
+    <p class="load-error" role="alert">能力数据暂时未能加载，请检查网络后重试。 <button type="button" (click)="retry()">重新加载</button></p>
+  } @else {
   <section class="class-picker" aria-labelledby="class-title">
     <div class="section-heading">
       <h2 id="class-title">选择职业</h2>
@@ -76,4 +79,5 @@
       }
     }
   </section>
+  }
 </main>

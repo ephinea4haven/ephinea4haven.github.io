@@ -147,7 +147,9 @@ Remaining work:
   destination. Do not transfer GC bugs, drop rates, offline rules or old event
   rewards by assumption.
 - Validate any actual additions under the site's terminology, localization and
-  page checks. The restoration task remains open in [TODO](TODO.md).
+  page checks. On 2026-09-25 the maintainer closed the restoration task for
+  now; it is no longer tracked in [TODO](TODO.md), and these steps apply only if
+  it is reopened.
 
 ## Retrieved primary pages
 
