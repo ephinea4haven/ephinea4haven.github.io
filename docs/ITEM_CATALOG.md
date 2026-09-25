@@ -32,22 +32,17 @@ URL, and returning from a detail page restores both the query and the scroll
 position. On phones the categories scroll horizontally, filters collapse, and
 entries show in a single column.
 
-A zh / EN / ja switch at the top right of both the list and detail pages changes
-the whole interface: titles, navigation, filters, status text, stat labels and
-structured values, item names, Mag food items and related items. Detailed
-mechanics and acquisition notes keep their original Chinese, and Wiki excerpts
-and set descriptions keep their original English; each is labeled with its
-language. Game identifiers such as classes, Section IDs, difficulties and
-monster or area names keep their source-data names.
-
-`lang=zh|en|ja` sets the language of a shared link and takes precedence over the
-browser preference. An explicit switch is saved to `haven.catalog.language`.
-Without a language parameter the saved preference is used, first visits default
-to Chinese, and the URL still switches languages when storage is unavailable.
-Static HTML is prerendered in Chinese; after hydration the URL or preference is
-applied, and the page title and `html.lang` are updated. Switching languages
-never clears filters, sorting, page number or the open detail section, and detail
-and back links carry the language.
+Every catalog page is prerendered in each language at its own URL: Chinese at
+`/data/items…`, English and Japanese under `/en/` and `/ja/` (see
+[Languages and URLs](ARCHITECTURE.md#languages-and-urls)). The zh / EN / ja switch
+opens the same page in another language and keeps filters, sorting, page number
+and the open detail section; links stay in the current language. Titles,
+navigation, filters, status text, stat labels and structured values, item names,
+Mag food items and related items are all localized. Mechanics notes, acquisition
+text and summaries are written in all three languages (below); only Wiki excerpts
+and set descriptions keep their original English, labeled as such. Game
+identifiers such as classes, Section IDs, difficulties and quest or shop names
+keep their source-data names.
 
 Japanese names come from the existing dictionary first. Missing ones are filled
 from the `jp` field in the same Wiki revision: 667 come from the dictionary and
@@ -84,8 +79,16 @@ as separate models.
   facts. It does not store or copy full Wiki articles. Supplementary English
   excerpts are limited to 25 words per page, and unique special attacks and common
   items also have Chinese notes.
-- `notes.json` holds Chinese mechanics notes verified against their context. Review
-  them again whenever the Wiki snapshot is updated. Base ATP does not use the
+- `notes.json` holds mechanics notes verified against their context, each written
+  in Chinese, English and Japanese (`{ zh, en, ja }`); item names inside a note are
+  `{item:English name}` placeholders filled from the name authority. Review them
+  again whenever the Wiki snapshot is updated.
+- Generated sentences (tool uses, Mag evolution and cells, cosmetics, periodic
+  effects, acquisition sources, summaries) come from keyed `items.*` templates in
+  `content/i18n/messages/{zh,en,ja}.json`, built by `scripts/localized_text.mjs`.
+  Detail JSON carries `summary`, `effects` and `availability` as `{ zh, en, ja }`.
+  Acquisition entries must be a known source, a kept proper name or a Wiki heading
+  that is not a source; anything else fails the build. Base ATP does not use the
   Wiki's fully-ground hint text, which may contain typos; it is calculated from the
   base range and grind.
 - Periodic effects keep their sign and the "while moving" condition, and HP cost
@@ -400,9 +403,14 @@ re-merged at their unchanged revisions.
 
 ## Pages and performance
 
-The search index is about 191 KB of raw JSON and is lazy-loaded with its feature
-route. Only Japanese names missing from the dictionary are added, to avoid
-bundling duplicates. The browser requests only the current item's JSON, while
+Pages carry only the item data they show. The item list fetches the searchable
+index (about 224 KB of raw JSON with each item's Chinese and Japanese names) as the
+versioned data file `assets/data/item-index.json`, cached independently of code
+releases and not bundled into script; prerendering reads the generated file
+through `ITEM_INDEX_LOADER`, and the index is not transferred through page HTML.
+Each detail file carries its related items and the localized names of the items
+it references, and the cosmetics overview carries the items it shows, so neither
+page needs the index or the full name table. The browser requests only the current item's JSON, while
 server prerendering reads the generated snapshot through a separately injected
 data loader. TransferState carries the current entry so a directly opened page
 hydrates without a duplicate request, and the full set of details never ships in
@@ -411,9 +419,12 @@ Forms for these simple inputs.
 
 Detail HTML is generated directly from the catalog list, so there are no thousand
 duplicate empty HTML source files to maintain. The build checks every generated
-detail page's references, hydration metadata and links. Existing JavaScript gzip
-budgets for the total, chunks and routes are unchanged, and a new 64 KB hydration
-data budget applies per page. Inline scripts not managed by Angular are still
+detail page's references, hydration metadata and links. A 64 KB hydration data
+budget applies per page. Since 2026-09-25, route budgets count statically imported
+chunks too; before the data split the list, detail and cosmetics routes measured
+185–188 KB against the 160 KB route budget; afterwards the list route is about
+122 KB, detail routes at most 123 KB and the cosmetics route 132 KB (gzip script,
+excluding the separately cached index data). Inline scripts not managed by Angular are still
 measured and validated separately.
 
 ## Verification

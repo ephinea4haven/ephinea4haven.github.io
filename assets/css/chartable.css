@@ -64,3 +64,13 @@
 @media (prefers-reduced-motion: reduce) {
   .chartable-page button { transition: none; }
 }
+
+/* Shown when the level data cannot be fetched. */
+.load-error {
+    margin: 32px 0;
+    padding: 16px 20px;
+    color: #fecaca;
+    border: 1px solid rgba(248, 113, 113, 0.5);
+    border-radius: 10px;
+    background: rgba(248, 113, 113, 0.1);
+}

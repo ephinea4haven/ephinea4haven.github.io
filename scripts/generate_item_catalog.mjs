@@ -4,6 +4,8 @@ import { createHash } from 'node:crypto';
 import { clean, range, slug, typeOf, TYPES, magTrigger, isCommonWeapon } from './item_catalog_model.mjs';
 import { collectMagTriggers, magCellRules } from './item_catalog_mag.mjs';
 import { selectHdImages } from './item_catalog_hd.mjs';
+import { createLocalizedText } from './localized_text.mjs';
+import { MESSAGES as CATALOG_MESSAGES } from '../src/app/item-catalog/catalog-messages.ts';
 
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const snapshot = read('content/item-catalog/wiki.json');
@@ -18,6 +20,7 @@ for (const name of magRenders) {
   if (!fs.existsSync(`assets/img/mag/default/${name}.webp`)) throw new Error(`Missing Mag render: ${name}`);
 }
 const notes = read('content/item-catalog/notes.json');
+const { text, join, same, localized } = createLocalizedText();
 const corrections = read('content/item-catalog/corrections.json');
 const sandbox = { window: {} };
 vm.runInNewContext(fs.readFileSync('assets/js/i18n/items_i18n.js', 'utf8'), sandbox);
@@ -41,35 +44,81 @@ function identity(title) {
   return matches.length === 1 ? matches[0] : title;
 }
 const display = title => names.get(identity(clean(title)))?.zh || clean(title);
+/** An item's authoritative name in each language (Japanese falls back to English). */
+const itemName = title => {
+  const entry = names.get(identity(clean(title)));
+  const en = entry?.en || clean(title);
+  return { zh: entry?.zh || en, en, ja: entry?.ja || en };
+};
+/** Catalog vocabulary (types, colors) shared with the catalog UI's dictionary. */
+const vocabulary = zh => {
+  const entry = CATALOG_MESSAGES[zh];
+  if (!entry) throw new Error(`Untranslated catalog term: ${zh}`);
+  return { zh, en: entry[0], ja: entry[1] };
+};
+/** Authored notes are { zh, en, ja }; {item:English name} placeholders take authoritative names. */
+const note = (value, context) => localized(language => {
+  if (typeof value?.[language] !== 'string') throw new Error(`${context}: missing ${language} note text`);
+  return value[language].replace(/\{item:([^}]+)\}/g, (_, title) => {
+    if (!names.has(identity(title))) throw new Error(`${context}: unknown item in note: ${title}`);
+    return itemName(title)[language];
+  });
+});
 function toolUses(title) {
   const raw = snapshot.indexes.Tools.rows.find(r => r[1].toLowerCase() === title.toLowerCase())?.[2];
   if (!raw) return [];
   return raw.split(/<br\s*\/?\s*>/i).flatMap(line => {
     const value = clean(line);
     let m;
-    if ((m = /^Makes (.+)$/.exec(value))) return [`可交给蒙塔古博士制成 ${display(m[1])}；需满足相关任务条件。`];
-    if ((m = /^Combines with (.+) to (?:make|create) (.+)$/.exec(value))) return [`与 ${display(m[1])} 合成为 ${display(m[2])}。使用前还需满足对应的等级、职业与磨数条件。`];
-    if ((m = /^Gives certain weapons the appearance of (.+)$/.exec(value))) return [`对适用武器使用后，外观变为 ${display(m[1])}，武器原有的参数不变。`];
-    if ((m = /^Adds (\d+) (base|max) (\w+)$/.exec(value))) return [`使用后增加 ${m[1]} ${m[3]}${m[2] === 'max' ? '上限' : '基础值'}。`];
-    if ((m = /^Adds (\d+) grind value to weapons$/.exec(value))) return [`增加当前装备武器 ${m[1]} 磨数。`];
+    if ((m = /^Makes (.+)$/.exec(value))) return [text('items.makes', { item: itemName(m[1]) })];
+    if ((m = /^Combines with (.+) to (?:make|create) (.+)$/.exec(value))) return [text('items.combines', { with: itemName(m[1]), result: itemName(m[2]) })];
+    if ((m = /^Gives certain weapons the appearance of (.+)$/.exec(value))) return [text('items.givesSkin', { skin: itemName(m[1]) })];
+    if ((m = /^Adds (\d+) (base|max) (\w+)$/.exec(value))) return [text(m[2] === 'max' ? 'items.addsMax' : 'items.addsBase', { amount: m[1], stat: m[3] })];
+    if ((m = /^Adds (\d+) grind value to weapons$/.exec(value))) return [text('items.addsGrind', { amount: m[1] })];
     return [];
   });
 }
+// Evolution conditions compare stats ("POW ≥ DEX"); only "highest" and "Others" are words.
+const magCondition = condition => {
+  const highest = /^(\w+) 最大$/.exec(condition);
+  if (highest) return text('items.magHighest', { stat: highest[1] });
+  return condition.includes('Others') ? localized(language => condition.replace('Others', text('items.magOthers')[language])) : same(condition);
+};
+const magConditions = conditions => join(conditions.map(magCondition), 'items.magOr');
 function evolutionRules(title) {
   const rules = [];
   for (const [job, stages] of Object.entries(magData.classes)) {
-    if (stages.stage1.name === title) rules.push(`等级 10，由 ${job} 职业喂养进化。`);
-    for (const mag of stages.stage2) if (mag.name === title) rules.push(`等级 35，由 ${display(mag.from)} 进化：${mag.cond.join(' 或 ')}。`);
+    if (stages.stage1.name === title) rules.push(text('items.magStage1', { job }));
+    for (const mag of stages.stage2) if (mag.name === title) rules.push(text('items.magStage2', { from: itemName(mag.from), conditions: magConditions(mag.cond) }));
     for (const group of ['A', 'B']) for (const mag of stages.stage3[group]) if (mag.name === title) {
-      rules.push(`等级 50 及之后每 5 级；${job} 职业，Section ID：${magData.meta.idGroups[group].join(' / ')}；${mag.cond.join(' 或 ')}。`);
+      rules.push(text('items.magStage3', { job, ids: magData.meta.idGroups[group].join(' / '), conditions: magConditions(mag.cond) }));
     }
-    for (const mag of stages.stage3.special || []) if (mag.name === title) rules.push(`等级 50 及之后每 5 级；FO 职业，DEF ≥ 45；${mag.cond.join(' 或 ').replace('Others', '其他属性')}。`);
+    for (const mag of stages.stage3.special || []) if (mag.name === title) rules.push(text('items.magStage3Special', { conditions: magConditions(mag.cond) }));
   }
-  if (rules.length) rules.push('第三阶段进化规则不适用于已经进入第四阶段的玛古。');
+  if (rules.length) rules.push(text('items.magStage4Excluded'));
   return rules;
 }
 const statLabels = { ATP: 'ATP · 攻击力', ATA: 'ATA · 命中力', DFP: 'DFP · 防御力', EVP: 'EVP · 回避力', MST: 'MST · 精神力', LCK: 'LCK · 运气', HP: 'HP', TP: 'TP', EFR: 'EFR · 火抗性', EIC: 'EIC · 冰抗性', ETH: 'ETH · 雷抗性', EDK: 'EDK · 暗抗性', ELT: 'ELT · 光抗性' };
-const acquisitionLabels = { 'enemy drops': '怪物掉落', 'common drops': '普通掉落', 'box drops': '箱子掉落', 'quest reward': '任务奖励', 'quest rewards': '任务奖励', 'events': '活动限定', event: '活动限定', evolution: '进化', combination: '合成', combinations: '合成', 'challenge mode': '挑战模式', 'wandering tekker': '科伦抽奖', paganini: 'Paganini 兑换', 'item present': 'Item Present 兑换' };
+// Wiki acquisition entries: generic sources are translated; shops, quests and deals keep
+// their in-game English names; Wiki section headings are not sources.
+const acquisitionSources = {
+  'enemy drops': 'items.sourceEnemyDrops', 'common drops': 'items.sourceCommonDrops', 'box drops': 'items.sourceBoxDrops',
+  'area drops': 'items.sourceAreaDrops', 'enemy parts': 'items.sourceEnemyParts',
+  'quest reward': 'items.sourceQuestReward', 'quest rewards': 'items.sourceQuestReward', events: 'items.sourceEvents', event: 'items.sourceEvents',
+  evolution: 'items.sourceEvolution', combination: 'items.sourceCombination', combinations: 'items.sourceCombination',
+  'challenge mode': 'items.sourceChallengeMode', 'wandering tekker': 'items.sourceTekker', paganini: 'items.sourcePaganini',
+  'item present': 'items.sourceItemPresent', 'item ticket': 'items.sourceItemTicket', unsealing: 'items.sourceUnsealing',
+  'character creation': 'items.sourceCharacterCreation', shop: 'items.sourceShop', 'tools shop': 'items.sourceToolShop', team: 'items.sourceTeam', 'sandbox mode': 'items.sourceSandbox',
+};
+const acquisitionNames = new Set(["Black Paper's Dangerous Deal", "Black Paper's Dangerous Deal 2", 'Anniversary Badge Shop', 'The Forge', 'The Egg Shop',
+  "Claire's Deal", "Claire's Deal 5", "Rappy's Holiday", 'To The Deepest Blue MA4 Venue', 'To The Deepest Blue -MA4 Venue-', "Gallon's Shop", 'Shopping District', 'Mag Cell']);
+const notSources = new Set(['trivia', 'usage', 'drop locations']);
+const acquisitionSource = value => {
+  const key = acquisitionSources[value.toLowerCase()];
+  if (key) return text(key);
+  if (acquisitionNames.has(value)) return same(value);
+  throw new Error(`Unclassified acquisition source: ${value}`);
+};
 const records = [...snapshot.records, {
   title: 'disk', revision: 0, fields: { type: 'Disk', stack: '1', class: '110011001111' },
   tables: [], drops: [], related: [], acquisition: ['Tools Shop', 'Enemy drops', 'Box drops'],
@@ -140,37 +189,38 @@ for (const entry of cosmeticByTitle.values()) {
     cosmeticsByTarget.set(target.item, [...(cosmeticsByTarget.get(target.item) || []), { item: entry.item, kind: entry.kind, skin: entry.skin, color: entry.color }]);
   }
 }
-const EVENTS = { 'Christmas event': '圣诞活动' };
+const EVENTS = { 'Christmas event': 'items.eventChristmas' };
+const weaponList = weapons => join(weapons.map(w => itemName(w.item)), 'items.weaponSeparator');
 function cosmeticRules(entry) {
-  const ring = display('Red Ring');
-  const redPaint = display('Red Paint');
+  const ring = itemName('Red Ring');
+  const neutralizer = itemName('Neutralizer');
   if (entry.kind === 'heart') {
     const rules = [
-      '先装备适用武器，再在道具栏使用本道具；适用武器见下方列表。',
-      `使用后武器磨数会被重置。武器名称后会加上 *，道具说明中显示“Skin: ${entry.skin.item}”。`,
-      `可以用 ${display('Neutralizer')} 将武器恢复为原本外观，但已使用的武器之心不会返还。`,
+      text('items.heartUse'),
+      text('items.heartReset', { skin: entry.skin.item }),
+      text('items.heartNeutralizer', { neutralizer }),
     ];
-    const filtered = entry.targets.filter(w => filterWeapons.includes(w.item)).map(w => display(w.item));
-    if (filtered.length) rules.push(`${filtered.join(' / ')} 若同时带有外观和 ${display('Divine Filter')} 或 ${display('Lock-on Filter')}，第一次使用 ${display('Neutralizer')} 只移除滤镜效果，第二次才移除外观。`);
-    if (entry.photonFilter) rules.push(`${entry.photonFilter.weapons.map(w => display(w.item)).join(' / ')} 应用 ${display(entry.skin.item)} 外观后，可以使用 ${display('Photon Filter')} 改变颜色：初始为${entry.photonFilter.color}，每次使用消耗一个 ${display('Photon Filter')}，按固定顺序切换到下一种颜色。其他组合使用无效。`);
+    const filtered = entry.targets.filter(w => filterWeapons.includes(w.item));
+    if (filtered.length) rules.push(text('items.heartFilterOrder', { weapons: weaponList(filtered), divine: itemName('Divine Filter'), lockon: itemName('Lock-on Filter'), neutralizer }));
+    if (entry.photonFilter) rules.push(text('items.heartPhotonFilter', { weapons: weaponList(entry.photonFilter.weapons), skin: itemName(entry.skin.item), filter: itemName('Photon Filter'), color: vocabulary(entry.photonFilter.color) }));
     return rules;
   }
-  if (entry.reverts) return [`对已染色或已更换外观的 ${ring}* 使用，恢复为原版 ${ring}。之前使用的涂料或镀层不会返还。`];
-  const common = `性能与普通 ${ring} 完全相同。可以用 ${redPaint} 恢复原版外观，但已使用的道具不会返还。`;
+  if (entry.reverts) return [text('items.ringRevert', { ring })];
+  const common = text('items.ringCommon', { ring, redPaint: itemName('Red Paint') });
   return entry.kind === 'paint'
-    ? [`装备 ${ring}（原版或已染色）后在道具栏使用，戒指颜色变为${entry.color}。`, `使用后名称后会加上 *。${common}`]
-    : [`装备 ${ring} 后在道具栏使用，外观变为 ${display(entry.skin.item)}。`, `使用后名称后会加上 *，道具说明中显示“Skin: ${entry.skin.item}”。${common}`];
+    ? [text('items.paintUse', { ring, color: vocabulary(entry.color) }), text('items.paintName', { common })]
+    : [text('items.platingUse', { ring, skin: itemName(entry.skin.item) }), text('items.platingName', { skin: entry.skin.item, common })];
 }
 function cosmeticAvailability(entry) {
   if (!entry || entry.kind === 'heart') return null;
   const sources = [];
   if (entry.event) {
     if (!EVENTS[entry.event.event]) throw new Error(`Untranslated cosmetic event: ${entry.item.item}: ${entry.event.event}`);
-    sources.push(`${EVENTS[entry.event.event]}期间开启 ${display(entry.event.via.item)} 时有较低几率获得。`);
+    sources.push(text('items.cosmeticEvent', { event: text(EVENTS[entry.event.event]), via: itemName(entry.event.via.item) }));
   }
-  if (entry.shop) sources.push(`在任务 ${entry.shop.quest} 中用 ${entry.shop.price} 个 ${display(entry.shop.currency.item)} 购买。`);
-  if (entry.trade.length) sources.push('只能在任务 The Forge 中向 Montague 交换获得，所需道具见下方列表。');
-  return sources.join('') || null;
+  if (entry.shop) sources.push(text('items.cosmeticShop', { quest: entry.shop.quest, price: entry.shop.price, currency: itemName(entry.shop.currency.item) }));
+  if (entry.trade.length) sources.push(text('items.cosmeticForge'));
+  return sources.length ? join(sources, 'items.sentenceSeparator') : null;
 }
 const details = {};
 const index = [];
@@ -201,7 +251,7 @@ for (const record of records) {
   for (const periodic of record.periodic || []) stats.push({label: `${periodic.stat} ${periodic.amount < 0 ? '消耗' : '回复'}`, value: `${Math.abs(periodic.amount)} / ${periodic.seconds} 秒${periodic.moving ? '（移动时）' : ''}`});
   if (record.techniqueLevels) stats.unshift({label: '魔法等级', value: `+${record.techniqueLevels}`});
   const cosmetic = cosmeticByTitle.get(title) || null;
-  const effects = [...(notes[title]?.effects || []), ...toolUses(title), ...(cosmetic ? cosmeticRules(cosmetic) : []), ...magCellRules(magCells[title], display, magData.meta.idGroups)];
+  const effects = [...(notes[title]?.effects || []).map(effect => note(effect, title)), ...toolUses(title), ...(cosmetic ? cosmeticRules(cosmetic) : []), ...magCellRules(magCells[title], { text, join, itemName }, magData.meta.idGroups)];
   const addStat = (label, value) => { if (value !== undefined && value !== '') stats.push({ label, value: String(value) }); };
   const atp = range(f.ATP);
   const grind = /^\d+$/.test(f.grind || '') ? +f.grind : null;
@@ -210,14 +260,14 @@ for (const record of records) {
     addStat('最大磨数', grind === null ? '来源未标注' : `+${grind}`);
     if (atp && grind !== null) addStat('最大磨数下 ATP', [...new Set(atp.map(n => n + grind * 2))].join('–'));
     addStat('特殊攻击', commonWeapon ? '可变' : /^See page$/i.test(f.special || '') ? '独有特殊攻击 · 见使用说明' : clean(f.special, true).replace(/^None$/, '无').replace(/^Varies$/, '可变'));
-    if (commonWeapon) effects.push('特殊攻击由具体掉落或商店生成的道具决定，不是固定效果。');
+    if (commonWeapon) effects.push(text('items.variableSpecial'));
     addStat('普通攻击目标数', clean(f.targets).replace(/^Varies$/, '随攻击方式变化') || '来源未标注');
     addStat('连段', record.noCombo ? '不可连段' : '可以连段');
     for (const [key, label] of Object.entries({ hdist: '水平距离', vdist: '垂直距离', hangle: '水平角度', vangle: '垂直角度', special_hdist: '特殊攻击水平距离', special_vdist: '特殊攻击垂直距离', special_hangle: '特殊攻击水平角度', special_vangle: '特殊攻击垂直角度' })) {
       if (f[key] !== undefined) addStat(label, clean(f[key], true) + (key.includes('angle') ? '°' : ''));
     }
-    if (record.noCombo) effects.push('这件武器不能进行连段攻击。');
-    if (record.tables.some(t => t.template === 'AddSpecial')) effects.push('ES 武器可在挑战模式取得，并通过 Paganini 追加特殊攻击；可选种类及费用见来源页面。');
+    if (record.noCombo) effects.push(text('items.noCombo'));
+    if (record.tables.some(t => t.template === 'AddSpecial')) effects.push(text('items.esWeapon'));
   }
   if (category === 'mag') {
     effects.push(...evolutionRules(title));
@@ -232,19 +282,22 @@ for (const record of records) {
     const feed = record.tables.find(t => t.template === 'MagFeedTable');
     if (feed) addStat('喂养表', `Table ${feed[1]}`);
     if (f.conditions) addStat('进化条件', clean(f.conditions, true));
-    if (f.conditions && f.evo === '4' && !f.cell) effects.push('自然第四阶段进化从等级 100 开始，之后每 10 级检查一次；必须仍是可继续进化的第三阶段玛古。');
-    if (f.cell) effects.push(`进化所用道具：${display(f.cell)}。具体等级、职业和属性条件见获取来源。`);
-    effects.push('玛古的 DEF / POW / DEX / MIND 由培养决定；外观形态不代表固定配点。低 HP 触发还要求单帧损失超过最大 HP 的 20%，并降至 10% 以下。');
+    if (f.conditions && f.evo === '4' && !f.cell) effects.push(text('items.magNaturalStage4'));
+    if (f.cell) effects.push(text('items.magCell', { cell: itemName(f.cell) }));
+    effects.push(text('items.magStats'));
   }
   if (f.stack) addStat('堆叠上限', f.stack);
-  for (const periodic of record.periodic || []) effects.push(`${periodic.moving ? '装备后移动时，' : '装备时，'}每 ${periodic.seconds} 秒${periodic.amount < 0 ? '消耗' : '恢复'} ${Math.abs(periodic.amount)} ${periodic.stat}。`);
-  if (record.attackSpeed) effects.push(`攻击速度提高 ${record.attackSpeed}%。攻击速度加成不叠加，仅生效最高值。`);
-  if (record.techniqueLevels) effects.push(`已学魔法等级提高 ${record.techniqueLevels} 级，不超过职业的魔法等级上限。`);
-  if (title.startsWith('Cure/')) effects.push(`装备时免疫${{Confuse:'混乱', Freeze:'冰冻', Paralysis:'麻痹', Poison:'中毒', Shock:'感电', Slow:'缓慢'}[title.split('/')[1]]}。`);
-  if (type === 'Grinder') effects.push('提升当前装备武器的磨数，每 1 磨数增加 2 ATP，不能超过武器磨数上限。');
-  if (type === 'Material') effects.push('用于提升角色能力。使用次数受职业与能力药种类的上限约束。');
-  if (type === 'Music Disk') effects.push('使用后更换当前区域的背景音乐，同区域玩家也会听到。属于一次性道具，使用者离开区域后恢复原有背景音乐。');
-  if (type === 'Disk') effects.push('魔法光盘按魔法种类和等级区分，学习时检查基础 MST 与职业限制。大多数魔法最高等级为 30；Anti 最高为 7，Ryuker 与 Reverser 无等级变化。机器人不能学习魔法。');
+  for (const periodic of record.periodic || []) {
+    const key = `items.periodic${periodic.amount < 0 ? 'Drain' : 'Recover'}${periodic.moving ? 'Moving' : ''}`;
+    effects.push(text(key, { seconds: periodic.seconds, amount: Math.abs(periodic.amount), stat: periodic.stat }));
+  }
+  if (record.attackSpeed) effects.push(text('items.attackSpeed', { percent: record.attackSpeed }));
+  if (record.techniqueLevels) effects.push(text('items.techniqueLevels', { levels: record.techniqueLevels }));
+  if (title.startsWith('Cure/')) effects.push(text('items.cureImmunity', { status: text(`items.status${title.split('/')[1]}`) }));
+  if (type === 'Grinder') effects.push(text('items.grinder'));
+  if (type === 'Material') effects.push(text('items.material'));
+  if (type === 'Music Disk') effects.push(text('items.musicDisk'));
+  if (type === 'Disk') effects.push(text('items.disk'));
   const boosts = record.tables.filter(t => t.template === 'TechBoostRow').map(t => ({ label: identity(clean(t[1])), value: clean(t[2], true).replace(/Damage/gi, '伤害').replace(/Range/gi, '范围') }));
   const sets = record.tables.filter(t => t.template === 'SetEffectRow').map(t => ({ item: clean(t[2]), id: itemIds.get(clean(t[2])) || null, effect: clean(t.effect || '', true) }));
   const skins = record.tables.filter(t => t.template === 'ReskinsRow').map(t => ({ item: clean(t[1]), id: itemIds.get(clean(t[1])) || null, code: clean(t[2]) }));
@@ -254,28 +307,58 @@ for (const record of records) {
   const image = images[imageName] || images[imageName[0]?.toUpperCase() + imageName.slice(1)]
     || images[appearanceName] || (cosmetic?.reverts ? images[clean(recordByTitle.get('Red Ring').fields.image).replaceAll('_', ' ')] : undefined);
   const source = record.source || `https://wiki.pioneer2.net/w/${encodeURIComponent(title.replaceAll(' ', '_'))}`;
-  const acquisition = record.acquisition.map(a => acquisitionLabels[a.toLowerCase()] || a);
-  if (commonWeapon) acquisition.push('武器商店（随角色等级刷新）');
-  const availability = notes[title]?.availability || cosmeticAvailability(cosmetic) || (status === 'obsolete' ? '已停用的历史道具，现已无法获取或使用。' : status === 'unavailable' ? '当前无法在 Ephinea 获取。' : acquisition.length ? `来源页面列出的获取途径：${[...new Set(acquisition)].join('、')}。` : '具体获取条件请查阅来源页面与掉落表。');
-  const summary = notes[title]?.summary || `${subtype}${isEquipment ? '装备' : ''}。${status === 'obsolete' ? '历史活动条目。' : status === 'unavailable' ? '当前无法获取。' : ''}`;
+  const acquisition = record.acquisition.filter(a => !notSources.has(a.toLowerCase())).map(acquisitionSource);
+  if (commonWeapon) acquisition.push(text('items.weaponShop'));
+  const distinctSources = [...new Map(acquisition.map(source => [source.zh, source])).values()];
+  const availability = notes[title]?.availability ? note(notes[title].availability, title) : cosmeticAvailability(cosmetic)
+    || text(status === 'obsolete' ? 'items.obsolete' : status === 'unavailable' ? 'items.unavailable' : distinctSources.length ? 'items.sources' : 'items.checkSources',
+      { sources: join(distinctSources, 'items.sourceSeparator') });
+  const summaryStatus = status === 'obsolete' ? ['items.summaryObsolete'] : status === 'unavailable' ? ['items.summaryUnavailable'] : [];
+  const summary = notes[title]?.summary ? note(notes[title].summary, title)
+    : join([text(isEquipment ? 'items.summaryEquipment' : 'items.summaryItem', { subtype: vocabulary(subtype) }), ...summaryStatus.map(key => text(key))], 'items.sentenceSeparator');
   const drops = record.drops.map(d => ({ kind: d.kind, sectionId: clean(d.id) || '来源未标注', difficulty: { N: 'Normal', H: 'Hard', VH: 'Very Hard', U: 'Ultimate' }[d.diff] || clean(d.diff), location: clean(d.location), area: clean(d.area), rate: clean(d.rate) || '普通掉落' }));
   const feedId = record.tables.find(t => t.template === 'MagFeedTable')?.[1];
   const feedTable = feedId === undefined ? null : sandbox.window.MAG_SIM.feedTables[feedId];
   if (feedId !== undefined && !feedTable) throw new Error(`Unknown feeding table: ${title}: ${feedId}`);
   const feeding = feedTable ? Object.entries(feedTable).map(([item, values]) => ({ item, values })) : [];
-  const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Set(effects)], boosts, sets, skins, cosmetic, cosmetics: cosmeticsByTarget.get(title) || [], feeding, drops, availability, source, revision: record.revision, checkedAt: record.checkedAt || snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
+  const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Map(effects.map(effect => [effect.zh, effect])).values()], boosts, sets, skins, cosmetic, cosmetics: cosmeticsByTarget.get(title) || [], feeding, drops, availability, source, revision: record.revision, checkedAt: record.checkedAt || snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
   const magRender = category === 'mag' && magRenders.has(title);
   if (magRender && hdImages.has(id)) throw new Error(`Mag has both a render and an HD gallery image: ${title}`);
   detail.hdImage = magRender ? `/assets/img/mag/default/${title}.webp` : hdImages.has(id) ? `/assets/img/items/hd/${hdImages.get(id)}` : null;
   detail.hdSource = magRender ? 'model-render' : hdImages.has(id) ? 'gallery' : null;
+  detail.zh = names.get(en)?.zh || en;
+  const ja = names.get(en)?.ja || clean(f.jp);
+  if (ja) detail.ja = ja;
+  detail.atpMax = atp?.[1] ?? null;
   if (magRender) magRenders.delete(title);
   details[id] = detail;
   // Compact tuples keep the searchable index small; detailed data is loaded per item.
-  index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), image?.path || null, code, status, title === en ? '' : title, atp?.[1] ?? null, names.get(en)?.ja ? '' : clean(f.jp)]);
+  index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), image?.path || null, code, status, title === en ? '' : title, atp?.[1] ?? null, detail.ja || '', detail.zh]);
 }
 if (magRenders.size) throw new Error(`Mag renders without a catalog Mag: ${[...magRenders].join(', ')}`);
 index.sort((a, b) => (a[8] || 'FFFFFF').localeCompare(b[8] || 'FFFFFF') || a[0].localeCompare(b[0]));
+// Each page ships only the item data it shows: a detail page carries its related
+// items and the localized names it references, so no page but the list needs the
+// whole index or the full name table.
+const card = id => { const d = details[id]; return { id, en: d.en, zh: d.zh, ...(d.ja ? { ja: d.ja } : {}), image: d.image }; };
+const itemByName = new Map();
+for (const [id] of index) for (const key of [details[id].en, details[id].title]) if (!itemByName.has(key)) itemByName.set(key, details[id]);
+const localizedName = text => {
+  const entry = itemByName.get(text) || names.get(text);
+  return entry ? { en: entry.en, zh: entry.zh || entry.en, ...(entry.ja ? { ja: entry.ja } : {}) } : null;
+};
+for (const detail of Object.values(details)) {
+  const texts = [
+    detail.cosmetic?.item.item, detail.cosmetic?.skin?.item, ...(detail.cosmetic?.targets ?? []).map(t => t.item),
+    ...(detail.cosmetic?.photonFilter?.weapons ?? []).map(w => w.item), ...(detail.cosmetic?.trade ?? []).map(t => t.item),
+    ...detail.cosmetics.flatMap(option => [option.item.item, option.skin?.item]),
+    ...detail.sets.map(set => set.item), ...detail.skins.map(skin => skin.item),
+    ...detail.feeding.map(feed => feed.item), ...detail.boosts.map(boost => boost.label),
+  ].filter(Boolean);
+  detail.names = Object.fromEntries([...new Set(texts)].map(text => [text, localizedName(text)]).filter(([, entry]) => entry));
+  detail.relatedItems = detail.related.map(card);
+}
 fs.mkdirSync('src/app/generated/item-catalog', { recursive: true });
 fs.rmSync('assets/data/items', { recursive: true, force: true });
 fs.mkdirSync('assets/data/items', { recursive: true });
@@ -305,6 +388,11 @@ const cosmeticsOverview = {
   paints: entries.filter(e => e.kind === 'paint').sort((a, b) => Number(!!b.reverts) - Number(!!a.reverts) || a.item.item.localeCompare(b.item.item, 'en')).map(overviewRow),
   platings: entries.filter(e => e.kind === 'plating').sort((a, b) => a.item.item.localeCompare(b.item.item, 'en')).map(overviewRow),
 };
+const cosmeticIds = new Set(['red-ring', 'red-paint', 'neutralizer', 'photon-filter']);
+for (const row of [...cosmeticsOverview.hearts, ...cosmeticsOverview.paints, ...cosmeticsOverview.platings]) {
+  for (const id of [row.item, row.skin, ...(row.targets ?? []), ...(row.photonFilter?.weapons ?? []), ...(row.trade ?? []).map(([id]) => id), row.shop?.currency, row.event?.via]) if (id) cosmeticIds.add(id);
+}
+cosmeticsOverview.items = Object.fromEntries([...cosmeticIds].sort().map(id => [id, card(id)]));
 fs.writeFileSync('src/app/generated/item-catalog/cosmetics.json', JSON.stringify(cosmeticsOverview));
 const detailHash = createHash('sha256');
 for (const [id, detail] of Object.entries(details).sort(([a], [b]) => a.localeCompare(b))) {
@@ -313,7 +401,11 @@ for (const [id, detail] of Object.entries(details).sort(([a], [b]) => a.localeCo
   detailHash.update(`${id}\n${json}\n`);
 }
 // The bundled version changes whenever any detail file changes, so browsers never reuse stale detail JSON.
-fs.writeFileSync('src/app/generated/item-catalog/version.json', JSON.stringify({ details: detailHash.digest('hex').slice(0, 12) }));
+// The searchable index is fetched as data by the item list, not bundled into its script.
+const indexJson = JSON.stringify(index);
+fs.writeFileSync('assets/data/item-index.json', indexJson);
+const indexHash = createHash('sha256').update(indexJson).digest('hex').slice(0, 12);
+fs.writeFileSync('src/app/generated/item-catalog/version.json', JSON.stringify({ details: detailHash.digest('hex').slice(0, 12), index: indexHash }));
 const report = { checkedAt: snapshot.checkedAt, items: index.length, categories: Object.fromEntries(['weapon','armor','shield','unit','mag','tool'].map(c => [c,Object.values(details).filter(d=>d.category===c).length])), withImages: index.filter(x => x[7]).length, unresolvedNames: unresolved, unknownCodes };
 fs.writeFileSync('content/item-catalog/coverage.json', JSON.stringify(report, null, 2) + '\n');
 console.log(`Generated ${index.length} item pages; ${report.withImages} with images. Index: ${fs.statSync('src/app/generated/item-catalog/index.json').size} bytes.`);

@@ -1,83 +1,774 @@
 {
-  "Dubwitch": ["空中状态只能被远程物理攻击命中，魔法无效；机兵倒地后控制器会下降。摧毁它会消灭同房间仍存活的关联机兵。", "自身不掉落物品、不提供经验，也不受 Machine 属性百分比增伤；数值不随难度或模式改变。"],
-  "Booma": ["接近警戒范围或受到攻击后，会直线靠近目标并进行近战。受击恢复较快，可能在连段前两击之间反击；注意攻击距离与硬直。"],
-  "Gobooma": ["进入警戒范围或受击后会直线追击。与同族一样，受击恢复较快，近战连段可能被反击打断。"],
-  "Gigobooma": ["发现目标后直线接近并近战攻击。连段前两击之间可能恢复并反击，应控制距离。"],
-  "Rag Rappy": ["靠近玩家后进行短距离啄击，攻击属于由 ATP 与目标 DFP 决定的物理伤害。", "HP 归零后会装死并给予经验；起身逃跑时再命中一次才触发掉落。远距离直接惊跑不会给予经验，也不会掉落活动专用物品。"],
-  "Al Rappy": ["稀有拉比。HP 归零后装死，逃跑时再次命中可获得掉落；从警戒范围外惊跑再攻击可以取得掉落，但没有经验。"],
-  "Savage Wolf": ["会绕向目标背后扑击，攻击后向外跳开。Ultimate 形态的攻击若造成伤害或推退，有 10% 概率附加缓慢。", "同组狼王死亡后，会在嚎叫动画中对自己施加 Lv.2 Zalure 和 Lv.2 Jellen，分别在第 28 帧及第 40 帧生效。"],
-  "Barbarous Wolf": ["会绕后扑击，并在攻击后跳开。Ultimate 形态的攻击若造成伤害或推退，有 10% 概率附加麻痹。"],
-  "Mothmant": ["飞行时无法被冻结。Ultimate 形态攻击造成伤害或推退时，有 5% 概率附加中毒。"],
-  "Monest": ["固定在原地生成 Mothmant，自身没有攻击。HP 归零后约需 380 帧（超过 12 秒）才完成死亡判定，任务波次可能因此延迟推进。"],
-  "Hildebear": ["远处可跳跃接近，落地带有伤害判定；也会使用 Foie，Ultimate 时改用 Gizonde。攻击其右侧比左侧更容易避开拳击范围。", "固伤表按区域区分；同名怪物在 EP1 和 EP2 的数值不能混用。"],
-  "Hildeblue": ["Hildebear 的稀有变体。远距离可跳跃攻击或使用 Gibarta；Ultimate 形态使用 Megid。对应区域与模式的 Megid 等级、免疫所需 EDK 见机制表。"],
-  "Dragon": ["近身踩踏、吐息、火球与钻地交替进行；死亡倒地动画也可能伤害玩家。", "HP 降至约 1/3 后转入钻地阶段。若已经进入倒地阶段，HP 会被维持在至少 1/3，需等起身吼叫后重新可攻击；一次伤害跨过倒地与吼叫阈值可以跳过倒地。"],
-  "Evil Shark": ["接近警戒范围或受击后，直线追向目标并进行近战。"],
-  "Pal Shark": ["接近警戒范围或受击后，直线追向目标并进行近战。"],
-  "Guil Shark": ["接近警戒范围或受击后，直线追向目标并进行近战。"],
-  "Grass Assassin": ["中距离吐丝；Normal 至 Very Hard 会限制移动，但仍可攻击、施法与使用道具。Ultimate 时改为冻结。", "受伤后可能吼叫再冲锋：吼叫时无敌，冲锋时可受伤；进入冲锋循环后不再使用其他攻击，直到被击倒。"],
-  "Poison Lily": ["固定位置发射毒弹，Ultimate 时使用 Megid；受击动作结束后有 30% 概率发出麻痹叫声。HP 低于 25% 时自毁并产生麻痹云。", "Ultimate 中，后生成的 Mil Lily 可能让同场 Ob Lily 使用其 Megid 等级；不能只按普通 Ob Lily 的 EDK 阈值判断安全。"],
-  "Nar Lily": ["稀有铃兰，Ultimate 时使用 Megid。受击恢复后有 30% 概率发出麻痹叫声。", "客户端共享铃兰的 Megid 等级，后生成的稀有铃兰可能提高同场普通铃兰的即死威胁。"],
-  "Nano Dragon": ["尽量保持距离；玩家接近时起飞换位，蓄力后发射追踪弹或光束。飞行时无法冻结。", "可以攻击其他怪物；击杀怪物后体型变大，但不会因此提高攻击力。"],
-  "Pofuilly Slime": ["液态移动时不可选中，通常仅伤害陷阱能伤害；接近玩家后立起并发射弹体或地面镰刃。受伤后通常返回液态。", "连段第三击、Gibarta 或 Rabarta 等条件可促使分裂；任务可将总数上限设置为 1 至 4。分裂体也可能成为稀有变体。", "生成点附近的伤害陷阱可命中隐藏控制实体，消灭它及其衍生体，仍可正常掉落。"],
-  "Pouilly Slime": ["稀有史莱姆。液态时不可选中，立起攻击后易重新缩回，适合使用单次高伤害攻击。", "在生成点附近引爆伤害陷阱可消灭控制实体及衍生体，仍可产生正常掉落。"],
-  "Pan Arms": ["从地下现身后交替发射近程锥形攻击与远程激光，攻击两次或受伤过多后分离。混乱、靠墙或处于攻击动作时无法分离。", "EP1 的合体形态 DFP 很高；魔法与特殊攻击仍可使用。EP2 的 DFP、EDK 条件不同，请按章节查看。"],
-  "Hidoom": ["Pan Arms 分离后的红色半体，会冲向目标并使用光子刃攻击，等另一半攻击结束后重新合体。"],
-  "Migium": ["Pan Arms 分离后的蓝色半体，会冲向目标，以光子刃施加 Jellen 和 Zalure，之后等待另一半重新合体。"],
-  "De Rol Le": ["头部与各体节起初都有独立护甲。破甲后，裸露头部承受的伤害全额计入主体 HP，其余裸露体节仅计入一半。Normal 至 Very Hard 的头部护甲有三个受击框，Ultimate 只有一个。", "攻击包括可破坏的地雷、弹幕、触手、落石与光束。弹幕可同时命中两发，触手属于可暴击攻击；不可把所有攻击一律按固伤理解。"],
-  "Gillchic": ["使用蓄力激光和两段拳击，拳击有 1/6 概率造成缓慢。Normal 至 Very Hard 受击必倒地；Ultimate 仅 20%，未倒地时攻击动作可能继续。", "激光连射上限由任务中的初始化参数决定；负值禁止开火，因此并非所有同名怪物都会发射激光。"],
-  "Dubchic": ["HP 耗尽后可重组并满血站起。摧毁控制器可消灭关联机兵；连续耗尽五次 HP 也能击杀。通过控制器击杀时，只有已被攻击或附加状态的机兵给予经验。", "Normal 至 Very Hard 受击必倒地，Ultimate 倒地概率为 20%；未倒地时可能继续攻击。"],
-  "Canadine": ["高空时以红色激光瞄准，再向锁定位置施放 Gizonde；低空时左右移动后近战。飞行时无法冻结，Ultimate 近战有 5% 概率使机器人触电。"],
-  "Canane": ["指挥环绕的 Canadine 分批发动攻击，然后逃离。若提前击杀指挥者，剩余护卫会追向附近目标并自爆。飞行时无法冻结。"],
-  "Sinow Beat": ["从高处落下，远处可跳跃接近；近身进行两轮双拳攻击后后跳。每轮第二拳若伤害或推退玩家，有 1/6 概率造成混乱。", "后跳后可制造分身；分身不造成伤害但有碰撞。真身肩灯为红色，命中真身可令分身消失。"],
-  "Sinow Gold": ["近战攻击后后跳并使用 Resta 治疗周围怪物。Ultimate 形态治疗后还会施放 Shifta 与 Deband。"],
-  "Garanz": ["追踪导弹可以伤害其他怪物和发射者自身，HP 越低齐射数量越多。低血量移动时还会留下地雷；多枚导弹同时命中可造成连续伤害。"],
-  "Vol Opt": ["两种形态均免疫 Jellen 与 Zalure。第一形态在屏幕与柱体间循环；第二形态的各攻击对应可破坏部件，破坏后停止使用对应攻击。", "第一形态屏幕向核心传递额外伤害时使用 (ATP − 核心 DFP) / 5，不计通常的 0.9 系数；Machine 属性参与 ATP，魔法威力与魔法增幅不参与这部分额外伤害。直接命中核心仍使用原攻击公式。", "Ultimate 禁锢攻击对多人模式造成 1480 固伤，单人模式为 640。被禁锢者不能自行行动，需要队友破坏禁锢体。"],
-  "Dimenian": ["进入警戒范围或受到攻击后，会直线接近目标并进行近战。"],
-  "La Dimenian": ["进入警戒范围或受到攻击后，会直线接近目标并进行近战。"],
-  "So Dimenian": ["进入警戒范围或受到攻击后，会直线接近目标并进行近战。"],
-  "Delsaber": ["远距离可跳斩，近身使用三连击。盾臂能连续格挡三次，随后失去光芒；再次以盾臂命中目标会恢复格挡。", "索敌优先级由任务初始化参数决定，并非总选最近玩家；常见编辑器默认参数为优先 Force。"],
-  "Claw": ["成群靠近，以喙攻击后缓慢退开。升降、攻击及受击后的短暂无敌时间较多，三段连击不一定能够全部命中。"],
-  "Bulclaw": ["由四只 Claw 与一只 Bulk 组成，抓咬成功一次或尝试两次后解体；全部存活时可重新合体。", "分离后的 Bulk 通常不主动攻击，但受击会反击，将目标 HP 降至 1。"],
-  "Dark Belra": ["远距离发射手臂、近身双臂攻击；手臂可穿透并伤害其他怪物。Ultimate 时原地快速连射，投射物有 10% 概率造成混乱。", "只有足够高的单次伤害才能使其硬直；正对目标的手臂弹道存在空隙，但站在其他玩家与怪物之间仍可能被击中。"],
-  "Dark Gunner": ["同组中红色核心标记的个体为 Death Gunner，标记会轮换。发光期间免疫物理攻击，冻结或麻痹可令其受到物理伤害。", "蓄力时打断普通个体只停止该个体攻击，打断红色核心可停止全组；一击直接击杀红色核心不具有相同效果。死亡判定约延迟 113 帧，冻结还会延后计时。"],
-  "Chaos Sorcerer": ["两枚 Bee 分别负责攻击与治疗；施法之间瞬移。本体不因受击中断施法，但破坏当前施法使用的 Bee 可中断，并令其消失。", "Normal 至 Very Hard 的攻击魔法随章节不同；Ultimate 改用 Grants 与 Megid。范围内存在 Ranger 时，会优先选择较大范围内最近的 Ranger。", "Ephinea 多人模式中，掉落放置在任务定义的生成点，以避免死亡点在不可达区域时丢失掉落。"],
-  "Chaos Bringer": ["冲锋在 Normal 至 Very Hard 有 1/3 概率造成混乱，Ultimate 时会卸下玩家武器。", "受击次数累积使身上光条从蓝变黄再变红，随后发动光束。发射前吸取周围玩家 TP；吸取成功会提高光束伤害，表中的两档数值需按此条件区分。"],
-  "Dark Falz": ["Normal 没有第三形态。第三形态的挥击和追踪光球为固伤，光球可两发同时命中；Rafoie、Rabarta 与 Grants 则受对应抗性减伤。", "第三形态闪光期间抵挡普通武器伤害，部分特殊攻击和魔法仍可伤害。半血后会夺取玩家灵魂，期间对本体造成的伤害也会传给该玩家。", "表格前一组为固伤，后一组为元素基础伤害；按攻击类型查阅。非 Ultimate 难度下，Boss 地图中的怪物 Megid 不生效，不能把表中等级直接等同于实际即死威胁。"],
-  "Love Rappy": ["EP2 的常驻稀有拉比，不仅在情人节出现。活动期间可被相应节日拉比替换。"],
-  "Egg Rappy": ["复活节活动期间替换 Love Rappy 的节日稀有变体。"],
-  "Hallo Rappy": ["万圣节活动期间替换 Love Rappy 的节日稀有变体。"],
-  "St Rappy": ["圣诞活动期间替换 Love Rappy 的节日稀有变体。"],
-  "Gol Dragon": ["免疫 Jellen 与 Zalure。吐息及扩散攻击的数值按难度、模式列于下方；元素攻击需结合相应抗性判断实际受伤。"],
-  "Gee": ["近战攻击造成伤害或推退时，有 25% 概率附加缓慢。"],
-  "Ul Gibbon": ["Ultimate 近战造成伤害或推退时，有 10% 概率附加缓慢。同组 Zol Gibbon 死亡后，会对自身施加 Lv.2.5 Shifta 与 Deband。"],
-  "Zol Gibbon": ["Ultimate 近战造成伤害或推退时，有 10% 概率附加麻痹。同组另一只 Zol Gibbon 死亡后，对自身施加 Lv.2 Shifta 与 Deband。"],
-  "Sinow Berill": ["第二段攻击造成伤害或推退时，有 1/6 概率附加混乱。"],
-  "Sinow Zoa": ["第二段攻击造成伤害或推退时，有 1/6 概率附加混乱。"],
-  "Gi Gue": ["小头目，不受武器对应种族属性百分比的增伤。飞行换位期间无法冻结。"],
-  "Gibbles": ["小头目，不受武器对应种族属性百分比增伤。索敌偏好由任务参数指定，常见编辑器默认优先男性角色。", "捶地动作前段在特定帧可先产生物理伤害，随后再产生固伤。玩家若只硬直而未倒地，后续固伤可能连续命中；不能仅根据表中的单次伤害评估风险。"],
-  "Mericarol": ["小头目，不受武器对应种族属性百分比增伤。Ultimate 的球状攻击属于直接即死，不能套用普通 Megid 的 EDK 防护判断。", "任务可将其设为 Mericarand，此时有 20% 概率变为 Merikle 或 Mericus，具体变体由怪物索引奇偶决定。"],
-  "Merikle": ["小头目，不受武器对应种族属性百分比增伤。Ultimate 球状攻击为直接即死；其他攻击伤害见对应难度与模式的表格。"],
-  "Mericus": ["小头目，不受武器对应种族属性百分比增伤。Ultimate 球状攻击为直接即死；不要将该攻击按可由普通 EDK 阈值免疫的 Megid 处理。"],
-  "Morfos": ["受到本地画面外不发射光束的 AI 问题影响；调整镜头可阻止它对本玩家开火，但对其他玩家仍可能攻击。近身攻击不因此失效。"],
-  "Deldepth": ["在圆盘与站立形态间切换，出生后的首次移动仍可受伤；后续圆盘形态条件不同。命中判定失败（Miss）也可触发起身。", "单人模式圆盘攻击角度参数为 0，会被 DFP 格挡；多人模式为 45 度，朝向决定实际可命中的扇区。Ultimate 站立攻击可使用 Megid。"],
-  "Del Lily": ["所有难度都会使用 Megid。受击恢复后有 30% 概率尖叫，将附近玩家 HP 设为 1；自毁喷发属于物理伤害，不能与尖叫混为同一伤害类型。"],
-  "Ill Gill": ["近距离会按目标距离、角度与状态选择镰击、定身或冲锋。HP 低于 25% 后持续冲锋；任务也可把它设为始终冲锋。", "紫色镰刃粒子表示即死特殊攻击，使用特殊攻击判定而非直接照搬 Megid 等级。对怪物的即死威力高于对玩家，混乱后可以击杀通常免疫即死的塔怪。", "冰属性特殊攻击成功后，还附加按 0.6 倍 ATP 计算的物理伤害。"],
-  "Epsilon": ["追踪激光停下后施放 Rafoie，循环四次后展开护卫并露出本体。Ultimate 多人模式的 Rafoie 基础伤害为 1465，受 EFR 减伤。", "护卫按红、蓝、黄、紫顺序轮换：火、冰、雷、暗。Ultimate 红蓝护卫可持续命中，黄色伤害达到倒地阈值时正常击倒，紫色为极高威力即死。", "下表护卫的元素伤害不是无视抗性的纯固伤；Ultimate 多人基础值为 322。"],
-  "Satellite Lizard": ["在同一房间内持续缓慢追向最近玩家，近身攻击为按难度变化的固伤。正面护盾会阻挡投射物并令其隐形、不可选中，直到接近目标；魔法通常绕过护盾。", "混乱后优先追击房间内最近的怪物，无其他怪物时才攻击玩家。移动缓慢可能导致整个混乱期间保持不可选中。"],
-  "Yowie": ["与 Satellite Lizard 共用正面投射物护盾机制，但属性与近身固伤更高。护盾触发后隐形并不可选中，直到接近目标。", "混乱时优先追击其他怪物，若追不上移动目标，可能长期保持不可选中。"],
-  "Zu": ["持续处于飞行状态，因此无法被冻结。可出现稀有变体 Pazuzu。"],
-  "Pazuzu": ["Zu 的稀有变体；陨石坑与沙漠的数值分开记录，不能只按名称合并伤害。"],
-  "Dorphon": ["免疫冻结，但可被麻痹。虽然体型与 HP 接近小头目，它仍正常受到武器 Native 属性百分比增伤。"],
-  "Dorphon Eclair": ["Dorphon 的稀有变体；固伤数值按难度、模式分别列出。"],
-  "Sand Rappy": ["可出现稀有变体 Del Rappy。陨石坑与沙漠的属性分开记录。"],
-  "Del Rappy": ["Sand Rappy 的稀有变体；陨石坑与沙漠分别使用对应数据。"],
-  "Merissa A": ["可出现稀有变体 Merissa AA。冲击等攻击的固伤按难度与模式分别列出。"],
-  "Merissa AA": ["Merissa A 的稀有变体；具体攻击与固伤见下方条件表。"],
-  "Girtablulu": ["小头目，不受武器对应种族属性百分比增伤，免疫冻结与混乱。", "双爪可同时产生两枚魔法弹体，极易造成表中单发数值的两倍伤害。蓝色冰属性魔法攻击不会使玩家倒地；不能依赖倒地无敌避免连击。"],
-  "Saint-Milion": ["击破有色 Spinner 可暴露尾部四枚结晶；红色开放时间最长，橙色次之，黄色最短。破坏全部尾部结晶后进入第二阶段。", "第二阶段围绕颈部结晶展开；在首个侧洞均衡压低四枚结晶的 HP，可减少后续洞穴往返。结晶破坏与主体阶段转换需分别判断。"],
-  "Shambertin": ["由任务指定出现的 Saint-Milion 替代形态，战斗基本机制相同。击破有色 Spinner 暴露尾部结晶，之后转入颈部结晶阶段。"],
-  "Kondrieu": ["Saint-Milion 与 Shambertin 的稀有替代形态；未计稀有怪加成时替代概率为 1/10。战斗阶段与结晶机制保持一致。"],
-  "Olga Flow": ["第二形态不受武器对应种族属性百分比的常规增伤。夺魂期间需找到随机选中的有效种族属性或魔法弱点，否则伤害转给被夺魂玩家。", "天罚、踩踏与能量波使用带 ±10% 波动的固定基础伤害。Ultimate 夺魂形态的天罚与能量波还乘 1.3。", "天罚以本体、Gael、Giel 分别判定：距离本体 150 单位内、存活伴体 100 单位内都可受击；同时进入多个来源范围时，伤害会叠加。"],
-  "Merillia": ["Wiki 已列出 Poison Bomb 攻击项目，但伤害栏尚未填写；这里保留未确认状态，不能据此认定该攻击为 0 伤害。"]
+  "Dubwitch": [
+    {
+      "zh": "空中状态只能被远程物理攻击命中，魔法无效；机兵倒地后控制器会下降。摧毁它会消灭同房间仍存活的关联机兵。",
+      "en": "In its airborne state only ranged physical attacks hit it, and techniques have no effect; the controller drops once its machines are knocked down. Destroying it destroys the linked machines still alive in the room.",
+      "ja": "空中にいる間は遠距離の物理攻撃しか当たらず、テクニックは効きません。機械兵が倒れるとコントローラーが下がってきます。破壊すると同じ部屋で生き残っている関連の機械兵も消滅します。"
+    },
+    {
+      "zh": "自身不掉落物品、不提供经验，也不受 Machine 属性百分比增伤；数值不随难度或模式改变。",
+      "en": "It drops nothing, gives no experience and takes no Machine percentage bonus; its stats do not change with difficulty or mode.",
+      "ja": "アイテムを落とさず経験値もなく、Machine 属性の％補正も受けません。能力値は難易度やモードで変わりません。"
+    }
+  ],
+  "Booma": [
+    {
+      "zh": "接近警戒范围或受到攻击后，会直线靠近目标并进行近战。受击恢复较快，可能在连段前两击之间反击；注意攻击距离与硬直。",
+      "en": "When a player enters its alert range or attacks it, it walks straight at the target and attacks in melee. It recovers quickly from hits and can counter between the first two hits of a combo; watch your distance and its hitstun.",
+      "ja": "警戒範囲に入るか攻撃を受けると、まっすぐ近づいて近接攻撃します。のけぞりからの回復が早く、連続攻撃の1段目と2段目の間に反撃してくることがあります。距離とのけぞりに注意してください。"
+    }
+  ],
+  "Gobooma": [
+    {
+      "zh": "进入警戒范围或受击后会直线追击。与同族一样，受击恢复较快，近战连段可能被反击打断。",
+      "en": "It chases in a straight line once you enter its alert range or hit it. Like its kin it recovers quickly from hits, so melee combos can be interrupted by a counter.",
+      "ja": "警戒範囲に入るか攻撃を受けると、まっすぐ追ってきます。同族と同じくのけぞりからの回復が早く、近接の連続攻撃を反撃で止められることがあります。"
+    }
+  ],
+  "Gigobooma": [
+    {
+      "zh": "发现目标后直线接近并近战攻击。连段前两击之间可能恢复并反击，应控制距离。",
+      "en": "Once it spots a target it closes in a straight line and attacks in melee. It can recover and counter between the first two hits of a combo, so keep control of the distance.",
+      "ja": "標的を見つけるとまっすぐ近づいて近接攻撃します。連続攻撃の1段目と2段目の間に回復して反撃することがあるので、距離を管理してください。"
+    }
+  ],
+  "Rag Rappy": [
+    {
+      "zh": "靠近玩家后进行短距离啄击，攻击属于由 ATP 与目标 DFP 决定的物理伤害。",
+      "en": "It pecks at close range once near a player; the attack is physical damage based on its ATP and the target’s DFP.",
+      "ja": "プレイヤーに近づくと近距離でつつきます。この攻撃は ATP と相手の DFP で決まる物理ダメージです。"
+    },
+    {
+      "zh": "HP 归零后会装死并给予经验；起身逃跑时再命中一次才触发掉落。远距离直接惊跑不会给予经验，也不会掉落活动专用物品。",
+      "en": "At 0 HP it plays dead and gives experience; you must hit it again as it gets up and flees to trigger the drop. Scaring it off from a distance gives no experience and no event-only items.",
+      "ja": "HP が 0 になると死んだふりをして経験値が入ります。起き上がって逃げるところにもう一度当てるとドロップします。遠くから直接逃がすと経験値もイベント専用アイテムも得られません。"
+    }
+  ],
+  "Al Rappy": [
+    {
+      "zh": "稀有拉比。HP 归零后装死，逃跑时再次命中可获得掉落；从警戒范围外惊跑再攻击可以取得掉落，但没有经验。",
+      "en": "A rare Rappy. At 0 HP it plays dead; hit it again as it flees to get the drop. Scaring it from outside its alert range and then attacking still gets the drop, but no experience.",
+      "ja": "レアなラッピー。HP が 0 になると死んだふりをし、逃げるところにもう一度当てるとドロップします。警戒範囲の外から逃がしてから攻撃してもドロップは得られますが、経験値はありません。"
+    }
+  ],
+  "Savage Wolf": [
+    {
+      "zh": "会绕向目标背后扑击，攻击后向外跳开。Ultimate 形态的攻击若造成伤害或推退，有 10% 概率附加缓慢。",
+      "en": "It circles behind its target to pounce, then leaps away after attacking. In Ultimate, an attack that damages or pushes back has a 10% chance to inflict Slow.",
+      "ja": "標的の背後に回り込んで飛びかかり、攻撃後に飛び退きます。アルティメットでは、ダメージかノックバックを与えた攻撃に 10% の確率でスロウが付きます。"
+    },
+    {
+      "zh": "同组狼王死亡后，会在嚎叫动画中对自己施加 Lv.2 Zalure 和 Lv.2 Jellen，分别在第 28 帧及第 40 帧生效。",
+      "en": "When the pack’s leader wolf dies, it casts Lv.2 Zalure and Lv.2 Jellen on itself during its howl, taking effect on frames 28 and 40.",
+      "ja": "群れのリーダーのウルフが倒れると、遠吠えの動作中に自分に Lv.2 のザルアとジェルンをかけます。それぞれ 28 フレーム目と 40 フレーム目に効果が出ます。"
+    }
+  ],
+  "Barbarous Wolf": [
+    {
+      "zh": "会绕后扑击，并在攻击后跳开。Ultimate 形态的攻击若造成伤害或推退，有 10% 概率附加麻痹。",
+      "en": "It circles behind to pounce and leaps away after attacking. In Ultimate, an attack that damages or pushes back has a 10% chance to inflict Paralysis.",
+      "ja": "背後に回って飛びかかり、攻撃後に飛び退きます。アルティメットでは、ダメージかノックバックを与えた攻撃に 10% の確率で麻痺が付きます。"
+    }
+  ],
+  "Mothmant": [
+    {
+      "zh": "飞行时无法被冻结。Ultimate 形态攻击造成伤害或推退时，有 5% 概率附加中毒。",
+      "en": "It cannot be frozen while flying. In Ultimate, an attack that damages or pushes back has a 5% chance to inflict Poison.",
+      "ja": "飛行中は凍結しません。アルティメットでは、ダメージかノックバックを与えた攻撃に 5% の確率で毒が付きます。"
+    }
+  ],
+  "Monest": [
+    {
+      "zh": "固定在原地生成 Mothmant，自身没有攻击。HP 归零后约需 380 帧（超过 12 秒）才完成死亡判定，任务波次可能因此延迟推进。",
+      "en": "It stays in place spawning Mothmants and has no attack of its own. After its HP reaches 0 it takes about 380 frames (over 12 seconds) to finish dying, which can delay quest waves.",
+      "ja": "その場でモスマントを生み出し続け、自分では攻撃しません。HP が 0 になってから死亡判定まで約 380 フレーム（12 秒以上）かかるため、クエストのウェーブの進行が遅れることがあります。"
+    }
+  ],
+  "Hildebear": [
+    {
+      "zh": "远处可跳跃接近，落地带有伤害判定；也会使用 Foie，Ultimate 时改用 Gizonde。攻击其右侧比左侧更容易避开拳击范围。",
+      "en": "From a distance it can leap in, with a damaging landing; it also casts Foie, or Gizonde in Ultimate. Attacking its right side makes its punches easier to avoid than its left.",
+      "ja": "遠くから跳んで近づくことがあり、着地にも攻撃判定があります。フォイエも使い、アルティメットではギゾンデになります。左側より右側から攻撃するほうがパンチを避けやすくなります。"
+    },
+    {
+      "zh": "固伤表按区域区分；同名怪物在 EP1 和 EP2 的数值不能混用。",
+      "en": "Its fixed-damage tables are per area; the EP1 and EP2 values for the same monster must not be mixed.",
+      "ja": "固定ダメージの表はエリアごとに分かれています。同じ名前でも EP1 と EP2 の数値を混ぜないでください。"
+    }
+  ],
+  "Hildeblue": [
+    {
+      "zh": "Hildebear 的稀有变体。远距离可跳跃攻击或使用 Gibarta；Ultimate 形态使用 Megid。对应区域与模式的 Megid 等级、免疫所需 EDK 见机制表。",
+      "en": "The rare variant of Hildebear. From a distance it can leap in or cast Gibarta; in Ultimate it uses Megid. See the mechanics tables for the Megid level and the EDK needed for immunity in each area and mode.",
+      "ja": "ヒルデベアのレア版。遠くからは跳びかかるかギバータを使い、アルティメットではメギドを使います。エリアとモードごとのメギドのレベルと、無効化に必要な EDK は仕様表を参照してください。"
+    }
+  ],
+  "Dragon": [
+    {
+      "zh": "近身踩踏、吐息、火球与钻地交替进行；死亡倒地动画也可能伤害玩家。",
+      "en": "It alternates stomps up close, breath, fireballs and burrowing; even its death collapse can damage players.",
+      "ja": "近くでの踏みつけ、ブレス、火球、地中潜りを交互に使います。倒れるときの動作でもプレイヤーがダメージを受けることがあります。"
+    },
+    {
+      "zh": "HP 降至约 1/3 后转入钻地阶段。若已经进入倒地阶段，HP 会被维持在至少 1/3，需等起身吼叫后重新可攻击；一次伤害跨过倒地与吼叫阈值可以跳过倒地。",
+      "en": "At about 1/3 HP it moves to its burrowing phase. If it has already entered its knocked-down phase, its HP is held at 1/3 or more until it gets up and roars; a single hit that crosses both the knockdown and roar thresholds skips the knockdown.",
+      "ja": "HP が約 1/3 になると地中に潜る段階に移ります。すでに倒れる段階に入っていると、起き上がって咆哮するまで HP は 1/3 以上に保たれます。1回のダメージで倒れる境目と咆哮の境目を両方越えると、倒れる段階を飛ばせます。"
+    }
+  ],
+  "Evil Shark": [
+    {
+      "zh": "接近警戒范围或受击后，直线追向目标并进行近战。",
+      "en": "When you enter its alert range or hit it, it charges straight at the target and attacks in melee.",
+      "ja": "警戒範囲に入るか攻撃を受けると、まっすぐ標的に向かって近接攻撃します。"
+    }
+  ],
+  "Pal Shark": [
+    {
+      "zh": "接近警戒范围或受击后，直线追向目标并进行近战。",
+      "en": "When you enter its alert range or hit it, it charges straight at the target and attacks in melee.",
+      "ja": "警戒範囲に入るか攻撃を受けると、まっすぐ標的に向かって近接攻撃します。"
+    }
+  ],
+  "Guil Shark": [
+    {
+      "zh": "接近警戒范围或受击后，直线追向目标并进行近战。",
+      "en": "When you enter its alert range or hit it, it charges straight at the target and attacks in melee.",
+      "ja": "警戒範囲に入るか攻撃を受けると、まっすぐ標的に向かって近接攻撃します。"
+    }
+  ],
+  "Grass Assassin": [
+    {
+      "zh": "中距离吐丝；Normal 至 Very Hard 会限制移动，但仍可攻击、施法与使用道具。Ultimate 时改为冻结。",
+      "en": "It spits web at mid range; on Normal to Very Hard this stops you moving, though you can still attack, cast techniques and use items. In Ultimate it freezes instead.",
+      "ja": "中距離から糸を吐きます。ノーマル～ベリーハードでは移動できなくなりますが、攻撃・テクニック・アイテムは使えます。アルティメットでは凍結になります。"
+    },
+    {
+      "zh": "受伤后可能吼叫再冲锋：吼叫时无敌，冲锋时可受伤；进入冲锋循环后不再使用其他攻击，直到被击倒。",
+      "en": "After taking damage it may roar and then charge: it is invincible while roaring but can be hurt while charging. Once in the charge loop it uses no other attacks until knocked down.",
+      "ja": "ダメージを受けると咆哮してから突進することがあります。咆哮中は無敵ですが、突進中はダメージが通ります。突進を繰り返す状態に入ると、倒れるまでほかの攻撃は使いません。"
+    }
+  ],
+  "Poison Lily": [
+    {
+      "zh": "固定位置发射毒弹，Ultimate 时使用 Megid；受击动作结束后有 30% 概率发出麻痹叫声。HP 低于 25% 时自毁并产生麻痹云。",
+      "en": "It fires poison shots from a fixed spot, and uses Megid in Ultimate. After its hit reaction it has a 30% chance to let out a paralysing cry. Below 25% HP it self-destructs in a cloud of paralysis.",
+      "ja": "その場から毒の弾を撃ち、アルティメットではメギドを使います。のけぞり終了後に 30% の確率で麻痺の叫びを上げます。HP が 25% 未満になると自爆して麻痺の雲を出します。"
+    },
+    {
+      "zh": "Ultimate 中，后生成的 Mil Lily 可能让同场 Ob Lily 使用其 Megid 等级；不能只按普通 Ob Lily 的 EDK 阈值判断安全。",
+      "en": "In Ultimate, a Mil Lily that spawns later can let the Ob Lilies in the same area use its Megid level; do not judge safety by the normal Ob Lily EDK threshold alone.",
+      "ja": "アルティメットでは、後から出現したミルリリーにより、同じ場所のオブリリーがそのメギドのレベルを使うことがあります。通常のオブリリーの EDK の目安だけで安全かどうか判断しないでください。"
+    }
+  ],
+  "Nar Lily": [
+    {
+      "zh": "稀有铃兰，Ultimate 时使用 Megid。受击恢复后有 30% 概率发出麻痹叫声。",
+      "en": "A rare lily that uses Megid in Ultimate. After recovering from a hit it has a 30% chance to let out a paralysing cry.",
+      "ja": "レアなリリー。アルティメットではメギドを使います。のけぞりから回復したあと 30% の確率で麻痺の叫びを上げます。"
+    },
+    {
+      "zh": "客户端共享铃兰的 Megid 等级，后生成的稀有铃兰可能提高同场普通铃兰的即死威胁。",
+      "en": "The client shares the lilies’ Megid level, so a rare lily that spawns later can raise the instant-kill threat of the normal lilies around it.",
+      "ja": "クライアントではリリーのメギドのレベルが共有されるため、後から出現したレアなリリーによって周囲の通常のリリーの即死の危険が上がることがあります。"
+    }
+  ],
+  "Nano Dragon": [
+    {
+      "zh": "尽量保持距离；玩家接近时起飞换位，蓄力后发射追踪弹或光束。飞行时无法冻结。",
+      "en": "Keep your distance: when a player closes in it takes off and repositions, then charges up and fires homing shots or a beam. It cannot be frozen while flying.",
+      "ja": "なるべく距離を取ってください。プレイヤーが近づくと飛び上がって位置を変え、力をためて追尾弾かビームを撃ちます。飛行中は凍結しません。"
+    },
+    {
+      "zh": "可以攻击其他怪物；击杀怪物后体型变大，但不会因此提高攻击力。",
+      "en": "It can attack other monsters; killing one makes it bigger, but does not raise its attack power.",
+      "ja": "ほかのモンスターを攻撃することがあり、倒すと体が大きくなりますが、攻撃力は上がりません。"
+    }
+  ],
+  "Pofuilly Slime": [
+    {
+      "zh": "液态移动时不可选中，通常仅伤害陷阱能伤害；接近玩家后立起并发射弹体或地面镰刃。受伤后通常返回液态。",
+      "en": "It cannot be targeted while moving as liquid, and usually only Damage Traps hurt it then; near a player it rises and fires projectiles or ground blades. After taking damage it usually returns to liquid.",
+      "ja": "液状で移動している間はターゲットできず、通常はダメージトラップしか効きません。プレイヤーに近づくと立ち上がって弾や地面を走る刃を放ちます。ダメージを受けるとたいてい液状に戻ります。"
+    },
+    {
+      "zh": "连段第三击、Gibarta 或 Rabarta 等条件可促使分裂；任务可将总数上限设置为 1 至 4。分裂体也可能成为稀有变体。",
+      "en": "The third hit of a combo, Gibarta or Rabarta, among other conditions, can make it split; a quest can cap the total at 1 to 4. Split copies can also be rare variants.",
+      "ja": "連続攻撃の3段目、ギバータ、ラバータなどの条件で分裂することがあり、クエストで総数の上限を 1～4 に設定できます。分裂体がレア版になることもあります。"
+    },
+    {
+      "zh": "生成点附近的伤害陷阱可命中隐藏控制实体，消灭它及其衍生体，仍可正常掉落。",
+      "en": "A Damage Trap near its spawn point can hit the hidden controlling entity, destroying it and everything it spawned, with normal drops.",
+      "ja": "出現地点の近くのダメージトラップは隠れた制御用の実体に当たり、それと派生体をまとめて消せます。ドロップは通常どおりです。"
+    }
+  ],
+  "Pouilly Slime": [
+    {
+      "zh": "稀有史莱姆。液态时不可选中，立起攻击后易重新缩回，适合使用单次高伤害攻击。",
+      "en": "A rare slime. It cannot be targeted as liquid and easily shrinks back after rising to attack, so single high-damage hits work best.",
+      "ja": "レアなスライム。液状の間はターゲットできず、立ち上がって攻撃した後すぐ縮むため、1回の高ダメージ攻撃が有効です。"
+    },
+    {
+      "zh": "在生成点附近引爆伤害陷阱可消灭控制实体及衍生体，仍可产生正常掉落。",
+      "en": "Setting off a Damage Trap near its spawn point destroys the controlling entity and its offspring, still with normal drops.",
+      "ja": "出現地点の近くでダメージトラップを起爆すると、制御用の実体と派生体を消せます。ドロップは通常どおり得られます。"
+    }
+  ],
+  "Pan Arms": [
+    {
+      "zh": "从地下现身后交替发射近程锥形攻击与远程激光，攻击两次或受伤过多后分离。混乱、靠墙或处于攻击动作时无法分离。",
+      "en": "It emerges from the ground and alternates a close cone attack with a long-range laser, and splits apart after attacking twice or taking enough damage. It cannot split while confused, against a wall or mid-attack.",
+      "ja": "地中から現れ、近距離の扇状攻撃と遠距離のレーザーを交互に使い、2回攻撃するかダメージを受けすぎると分離します。混乱中、壁際、攻撃動作中は分離できません。"
+    },
+    {
+      "zh": "EP1 的合体形态 DFP 很高；魔法与特殊攻击仍可使用。EP2 的 DFP、EDK 条件不同，请按章节查看。",
+      "en": "The combined form in EP1 has very high DFP; techniques and special attacks still work. The DFP and EDK conditions differ in EP2, so check each section.",
+      "ja": "EP1 の合体形態は DFP がとても高いですが、テクニックとエクストラアタックは効きます。EP2 では DFP と EDK の条件が異なるので、それぞれの項目を確認してください。"
+    }
+  ],
+  "Hidoom": [
+    {
+      "zh": "Pan Arms 分离后的红色半体，会冲向目标并使用光子刃攻击，等另一半攻击结束后重新合体。",
+      "en": "The red half after Pan Arms splits; it charges the target and attacks with a photon blade, then recombines once the other half finishes attacking.",
+      "ja": "パンアームズが分離した赤い半身。標的に突進してフォトンの刃で攻撃し、もう片方の攻撃が終わると再び合体します。"
+    }
+  ],
+  "Migium": [
+    {
+      "zh": "Pan Arms 分离后的蓝色半体，会冲向目标，以光子刃施加 Jellen 和 Zalure，之后等待另一半重新合体。",
+      "en": "The blue half after Pan Arms splits; it charges the target and casts Jellen and Zalure with its photon blade, then waits to recombine with the other half.",
+      "ja": "パンアームズが分離した青い半身。標的に突進し、フォトンの刃でジェルンとザルアをかけてから、もう片方と再び合体するのを待ちます。"
+    }
+  ],
+  "De Rol Le": [
+    {
+      "zh": "头部与各体节起初都有独立护甲。破甲后，裸露头部承受的伤害全额计入主体 HP，其余裸露体节仅计入一半。Normal 至 Very Hard 的头部护甲有三个受击框，Ultimate 只有一个。",
+      "en": "The head and each body segment start with their own armour. Once broken, damage to the exposed head counts in full toward its main HP, while other exposed segments count half. On Normal to Very Hard the head armour has three hitboxes; in Ultimate only one.",
+      "ja": "頭部と各体節は最初それぞれ装甲を持っています。装甲を壊すと、むき出しの頭部へのダメージは本体の HP に全額、ほかのむき出しの体節へのダメージは半分だけ入ります。ノーマル～ベリーハードの頭部装甲には当たり判定が3つあり、アルティメットでは1つだけです。"
+    },
+    {
+      "zh": "攻击包括可破坏的地雷、弹幕、触手、落石与光束。弹幕可同时命中两发，触手属于可暴击攻击；不可把所有攻击一律按固伤理解。",
+      "en": "Its attacks include destructible mines, barrages, tentacles, falling rocks and beams. Two barrage shots can hit at once, and tentacles can crit; not every attack should be treated as fixed damage.",
+      "ja": "攻撃には破壊できる機雷、弾幕、触手、落石、ビームがあります。弾幕は2発同時に当たることがあり、触手はクリティカルになる攻撃です。すべての攻撃を固定ダメージとみなさないでください。"
+    }
+  ],
+  "Gillchic": [
+    {
+      "zh": "使用蓄力激光和两段拳击，拳击有 1/6 概率造成缓慢。Normal 至 Very Hard 受击必倒地；Ultimate 仅 20%，未倒地时攻击动作可能继续。",
+      "en": "It uses a charged laser and a two-hit punch; the punch has a 1/6 chance to inflict Slow. On Normal to Very Hard every hit knocks it down; in Ultimate only 20% do, and it may keep attacking if not knocked down.",
+      "ja": "ためたレーザーと2連パンチを使い、パンチには 1/6 の確率でスロウが付きます。ノーマル～ベリーハードでは攻撃を当てると必ず倒れますが、アルティメットでは 20% だけで、倒れなかった場合は攻撃を続けることがあります。"
+    },
+    {
+      "zh": "激光连射上限由任务中的初始化参数决定；负值禁止开火，因此并非所有同名怪物都会发射激光。",
+      "en": "How many laser shots it can fire in a row is set by a quest initialisation parameter; a negative value stops it firing, so not every Gillchic fires lasers.",
+      "ja": "レーザーの連射数はクエストの初期化パラメータで決まり、負の値だと撃ちません。そのため同じ名前でもすべてがレーザーを撃つわけではありません。"
+    }
+  ],
+  "Dubchic": [
+    {
+      "zh": "HP 耗尽后可重组并满血站起。摧毁控制器可消灭关联机兵；连续耗尽五次 HP 也能击杀。通过控制器击杀时，只有已被攻击或附加状态的机兵给予经验。",
+      "en": "After its HP runs out it can reassemble and stand back up at full HP. Destroying the controller destroys its linked machines, and running its HP out five times also kills it. When killed through the controller, only machines that were attacked or given a status effect give experience.",
+      "ja": "HP が尽きても組み直して全快で起き上がることがあります。コントローラーを壊すと関連の機械兵が消滅し、HP を5回尽きさせても倒せます。コントローラー経由で倒した場合、攻撃したか状態異常を与えた機械兵だけが経験値をくれます。"
+    },
+    {
+      "zh": "Normal 至 Very Hard 受击必倒地，Ultimate 倒地概率为 20%；未倒地时可能继续攻击。",
+      "en": "On Normal to Very Hard every hit knocks it down; in Ultimate the chance is 20%, and it may keep attacking if not knocked down.",
+      "ja": "ノーマル～ベリーハードでは攻撃を当てると必ず倒れ、アルティメットでは 20% です。倒れなかった場合は攻撃を続けることがあります。"
+    }
+  ],
+  "Canadine": [
+    {
+      "zh": "高空时以红色激光瞄准，再向锁定位置施放 Gizonde；低空时左右移动后近战。飞行时无法冻结，Ultimate 近战有 5% 概率使机器人触电。",
+      "en": "High up it aims a red laser and then casts Gizonde at the locked spot; low down it strafes and attacks in melee. It cannot be frozen while flying, and its Ultimate melee has a 5% chance to shock Androids.",
+      "ja": "高い位置では赤いレーザーで狙ってから、その位置にギゾンデを放ちます。低い位置では左右に動いてから近接攻撃します。飛行中は凍結せず、アルティメットの近接攻撃は 5% の確率でアンドロイドを感電させます。"
+    }
+  ],
+  "Canane": [
+    {
+      "zh": "指挥环绕的 Canadine 分批发动攻击，然后逃离。若提前击杀指挥者，剩余护卫会追向附近目标并自爆。飞行时无法冻结。",
+      "en": "It commands the circling Canadines to attack in waves, then flees. If the commander is killed first, the remaining escorts chase nearby targets and self-destruct. It cannot be frozen while flying.",
+      "ja": "周りを回るカナディンに順番に攻撃させてから逃げます。指揮役を先に倒すと、残った護衛は近くの標的を追って自爆します。飛行中は凍結しません。"
+    }
+  ],
+  "Sinow Beat": [
+    {
+      "zh": "从高处落下，远处可跳跃接近；近身进行两轮双拳攻击后后跳。每轮第二拳若伤害或推退玩家，有 1/6 概率造成混乱。",
+      "en": "It drops from above and can leap in from a distance; up close it does two rounds of double punches, then jumps back. The second punch of each round has a 1/6 chance to inflict Confusion if it damages or pushes back a player.",
+      "ja": "上から降ってきて、遠くからは跳びかかってきます。近くでは両手のパンチを2回行ってから後ろに跳びます。各回の2発目がダメージかノックバックを与えると、1/6 の確率で混乱が付きます。"
+    },
+    {
+      "zh": "后跳后可制造分身；分身不造成伤害但有碰撞。真身肩灯为红色，命中真身可令分身消失。",
+      "en": "After jumping back it can make clones; clones deal no damage but have collision. The real one has red shoulder lights, and hitting it makes the clones vanish.",
+      "ja": "後ろに跳んだあと分身を作ることがあります。分身はダメージを与えませんが当たり判定があります。本体は肩のライトが赤く、本体に当てると分身は消えます。"
+    }
+  ],
+  "Sinow Gold": [
+    {
+      "zh": "近战攻击后后跳并使用 Resta 治疗周围怪物。Ultimate 形态治疗后还会施放 Shifta 与 Deband。",
+      "en": "After a melee attack it jumps back and uses Resta to heal nearby monsters. In Ultimate it also casts Shifta and Deband after healing.",
+      "ja": "近接攻撃のあと後ろに跳び、レスタで周りのモンスターを回復します。アルティメットでは回復のあとシフタとデバンドもかけます。"
+    }
+  ],
+  "Garanz": [
+    {
+      "zh": "追踪导弹可以伤害其他怪物和发射者自身，HP 越低齐射数量越多。低血量移动时还会留下地雷；多枚导弹同时命中可造成连续伤害。",
+      "en": "Its homing missiles can damage other monsters and itself, and the lower its HP the more missiles per volley. At low HP it also leaves mines as it moves; several missiles hitting at once deal repeated damage.",
+      "ja": "追尾ミサイルはほかのモンスターや自分にもダメージを与え、HP が低いほど一度に撃つ数が増えます。HP が低いと移動中に機雷も置いていきます。複数のミサイルが同時に当たると連続でダメージを受けます。"
+    }
+  ],
+  "Vol Opt": [
+    {
+      "zh": "两种形态均免疫 Jellen 与 Zalure。第一形态在屏幕与柱体间循环；第二形态的各攻击对应可破坏部件，破坏后停止使用对应攻击。",
+      "en": "Both forms are immune to Jellen and Zalure. The first form cycles between the screens and the pillars; in the second form each attack belongs to a destructible part, and breaking the part stops that attack.",
+      "ja": "どちらの形態もジェルンとザルアが効きません。第1形態はモニターと柱の間で行動を繰り返します。第2形態の各攻撃は破壊できる部位に対応しており、部位を壊すとその攻撃は使わなくなります。"
+    },
+    {
+      "zh": "第一形态屏幕向核心传递额外伤害时使用 (ATP − 核心 DFP) / 5，不计通常的 0.9 系数；Machine 属性参与 ATP，魔法威力与魔法增幅不参与这部分额外伤害。直接命中核心仍使用原攻击公式。",
+      "en": "When a first-form screen passes extra damage to the core, it uses (ATP − core DFP) / 5 without the usual 0.9 factor; Machine attribute counts toward ATP, but technique power and technique boosts do not count toward this extra damage. Hitting the core directly still uses the normal attack formula.",
+      "ja": "第1形態でモニターからコアに伝わる追加ダメージは (ATP − コアの DFP) / 5 で、通常の 0.9 倍の係数はかかりません。Machine 属性は ATP に含まれますが、テクニックの威力とテクニック補正はこの追加ダメージに含まれません。コアに直接当てた場合は通常の計算式です。"
+    },
+    {
+      "zh": "Ultimate 禁锢攻击对多人模式造成 1480 固伤，单人模式为 640。被禁锢者不能自行行动，需要队友破坏禁锢体。",
+      "en": "The Ultimate prison attack deals 1480 fixed damage in multiplayer and 640 in single-player. A trapped player cannot act and needs a teammate to break the prison.",
+      "ja": "アルティメットの捕獲攻撃はマルチプレイで 1480、ソロで 640 の固定ダメージです。捕まったプレイヤーは自分では動けず、仲間に檻を壊してもらう必要があります。"
+    }
+  ],
+  "Dimenian": [
+    {
+      "zh": "进入警戒范围或受到攻击后，会直线接近目标并进行近战。",
+      "en": "When you enter its alert range or attack it, it closes in a straight line and attacks in melee.",
+      "ja": "警戒範囲に入るか攻撃を受けると、まっすぐ近づいて近接攻撃します。"
+    }
+  ],
+  "La Dimenian": [
+    {
+      "zh": "进入警戒范围或受到攻击后，会直线接近目标并进行近战。",
+      "en": "When you enter its alert range or attack it, it closes in a straight line and attacks in melee.",
+      "ja": "警戒範囲に入るか攻撃を受けると、まっすぐ近づいて近接攻撃します。"
+    }
+  ],
+  "So Dimenian": [
+    {
+      "zh": "进入警戒范围或受到攻击后，会直线接近目标并进行近战。",
+      "en": "When you enter its alert range or attack it, it closes in a straight line and attacks in melee.",
+      "ja": "警戒範囲に入るか攻撃を受けると、まっすぐ近づいて近接攻撃します。"
+    }
+  ],
+  "Delsaber": [
+    {
+      "zh": "远距离可跳斩，近身使用三连击。盾臂能连续格挡三次，随后失去光芒；再次以盾臂命中目标会恢复格挡。",
+      "en": "It can leap-slash from a distance and uses a three-hit combo up close. Its shield arm can block three times in a row and then loses its glow; hitting a target with the shield arm again restores its blocking.",
+      "ja": "遠くからは跳び斬り、近くでは3連撃を使います。盾の腕は3回続けて防御すると光が消え、盾の腕で相手に攻撃を当てると防御が戻ります。"
+    },
+    {
+      "zh": "索敌优先级由任务初始化参数决定，并非总选最近玩家；常见编辑器默认参数为优先 Force。",
+      "en": "Its targeting priority is set by a quest initialisation parameter, so it does not always pick the nearest player; the common editor default prefers Forces.",
+      "ja": "標的の優先順位はクエストの初期化パラメータで決まるため、いつも最も近いプレイヤーを狙うわけではありません。よく使われるエディタの既定値ではフォースを優先します。"
+    }
+  ],
+  "Claw": [
+    {
+      "zh": "成群靠近，以喙攻击后缓慢退开。升降、攻击及受击后的短暂无敌时间较多，三段连击不一定能够全部命中。",
+      "en": "They approach in groups, peck and then back off slowly. They spend a lot of time rising, falling, attacking and in brief post-hit invincibility, so a three-hit combo may not land in full.",
+      "ja": "群れで近づき、くちばしで攻撃してからゆっくり離れます。上昇・下降・攻撃中や、被弾後の短い無敵時間が長いため、3連撃がすべて当たるとは限りません。"
+    }
+  ],
+  "Bulclaw": [
+    {
+      "zh": "由四只 Claw 与一只 Bulk 组成，抓咬成功一次或尝试两次后解体；全部存活时可重新合体。",
+      "en": "Made of four Claws and one Bulk, it breaks apart after one successful grab or two attempts; it can recombine while all are alive.",
+      "ja": "クロー4体とバルク1体でできており、つかみ攻撃が1回成功するか2回試みると分解します。全員が生きていれば再び合体できます。"
+    },
+    {
+      "zh": "分离后的 Bulk 通常不主动攻击，但受击会反击，将目标 HP 降至 1。",
+      "en": "Once split, the Bulk usually does not attack on its own, but counters when hit, dropping the target’s HP to 1.",
+      "ja": "分離したバルクは普段は自分から攻撃しませんが、攻撃を受けると反撃し、相手の HP を 1 にします。"
+    }
+  ],
+  "Dark Belra": [
+    {
+      "zh": "远距离发射手臂、近身双臂攻击；手臂可穿透并伤害其他怪物。Ultimate 时原地快速连射，投射物有 10% 概率造成混乱。",
+      "en": "It launches its arms from a distance and attacks with both arms up close; the arms pass through and can damage other monsters. In Ultimate it fires rapidly from where it stands, and the projectiles have a 10% chance to inflict Confusion.",
+      "ja": "遠くからは腕を飛ばし、近くでは両腕で攻撃します。腕は貫通してほかのモンスターにも当たります。アルティメットではその場で素早く連射し、弾に 10% の確率で混乱が付きます。"
+    },
+    {
+      "zh": "只有足够高的单次伤害才能使其硬直；正对目标的手臂弹道存在空隙，但站在其他玩家与怪物之间仍可能被击中。",
+      "en": "Only a high enough single hit makes it flinch; its arm shots have a gap straight in front of it, but standing between other players and monsters can still get you hit.",
+      "ja": "十分に大きな1回のダメージでなければのけぞりません。正面に向けた腕の弾道にはすき間がありますが、ほかのプレイヤーやモンスターの間に立っていると当たることがあります。"
+    }
+  ],
+  "Dark Gunner": [
+    {
+      "zh": "同组中红色核心标记的个体为 Death Gunner，标记会轮换。发光期间免疫物理攻击，冻结或麻痹可令其受到物理伤害。",
+      "en": "In each group, the one marked with a red core is the Death Gunner, and the mark rotates. While glowing they are immune to physical attacks; freezing or paralysing them lets physical damage through.",
+      "ja": "各グループで赤いコアの印が付いた個体がデスガンナーで、印は入れ替わります。光っている間は物理攻撃が効きませんが、凍結か麻痺させると物理ダメージが通ります。"
+    },
+    {
+      "zh": "蓄力时打断普通个体只停止该个体攻击，打断红色核心可停止全组；一击直接击杀红色核心不具有相同效果。死亡判定约延迟 113 帧，冻结还会延后计时。",
+      "en": "Interrupting a normal one while it charges stops only that one’s attack, while interrupting the red core stops the whole group; killing the red core in one hit does not have the same effect. Its death is delayed by about 113 frames, and freezing delays the timer further.",
+      "ja": "ため中に通常の個体を止めてもその個体の攻撃が止まるだけですが、赤いコアを止めるとグループ全体が止まります。赤いコアを一撃で倒しても同じ効果はありません。死亡判定は約 113 フレーム遅れ、凍結でさらに遅れます。"
+    }
+  ],
+  "Chaos Sorcerer": [
+    {
+      "zh": "两枚 Bee 分别负责攻击与治疗；施法之间瞬移。本体不因受击中断施法，但破坏当前施法使用的 Bee 可中断，并令其消失。",
+      "en": "Its two Bees handle attacking and healing, and it teleports between casts. Hitting the body does not interrupt its casting, but destroying the Bee used for the current cast interrupts it and makes that Bee disappear.",
+      "ja": "2つのビーが攻撃と回復を担当し、詠唱の合間に瞬間移動します。本体に当てても詠唱は止まりませんが、今の詠唱に使っているビーを壊すと詠唱が止まり、そのビーは消えます。"
+    },
+    {
+      "zh": "Normal 至 Very Hard 的攻击魔法随章节不同；Ultimate 改用 Grants 与 Megid。范围内存在 Ranger 时，会优先选择较大范围内最近的 Ranger。",
+      "en": "Its attack techniques on Normal to Very Hard differ by episode area; in Ultimate it uses Grants and Megid. With a Ranger in range, it prefers the nearest Ranger within a larger radius.",
+      "ja": "ノーマル～ベリーハードの攻撃テクニックは場所によって異なり、アルティメットではグランツとメギドを使います。範囲内にレンジャーがいると、広い範囲で最も近いレンジャーを優先して狙います。"
+    },
+    {
+      "zh": "Ephinea 多人模式中，掉落放置在任务定义的生成点，以避免死亡点在不可达区域时丢失掉落。",
+      "en": "In Ephinea multiplayer, its drop is placed at the spawn point the quest defines, so it is not lost when it dies somewhere unreachable.",
+      "ja": "Ephinea のマルチプレイでは、ドロップはクエストで決められた出現地点に置かれるため、届かない場所で倒れてもドロップは失われません。"
+    }
+  ],
+  "Chaos Bringer": [
+    {
+      "zh": "冲锋在 Normal 至 Very Hard 有 1/3 概率造成混乱，Ultimate 时会卸下玩家武器。",
+      "en": "Its charge has a 1/3 chance to inflict Confusion on Normal to Very Hard, and in Ultimate it knocks the player’s weapon off.",
+      "ja": "突進はノーマル～ベリーハードで 1/3 の確率で混乱を与え、アルティメットではプレイヤーの武器を外します。"
+    },
+    {
+      "zh": "受击次数累积使身上光条从蓝变黄再变红，随后发动光束。发射前吸取周围玩家 TP；吸取成功会提高光束伤害，表中的两档数值需按此条件区分。",
+      "en": "As hits accumulate, the light bars on its body go from blue to yellow to red, and then it fires its beam. Before firing it drains TP from nearby players; a successful drain raises the beam’s damage, which is what the two values in the table distinguish.",
+      "ja": "攻撃を受けるたびに体の光の帯が青→黄→赤と変わり、その後ビームを撃ちます。発射前に周りのプレイヤーの TP を吸い取り、吸い取れるとビームのダメージが上がります。表の2つの数値はこの条件で分かれています。"
+    }
+  ],
+  "Dark Falz": [
+    {
+      "zh": "Normal 没有第三形态。第三形态的挥击和追踪光球为固伤，光球可两发同时命中；Rafoie、Rabarta 与 Grants 则受对应抗性减伤。",
+      "en": "Normal has no third form. The third form’s swipes and homing orbs deal fixed damage, and two orbs can hit at once; Rafoie, Rabarta and Grants are reduced by the matching resistances.",
+      "ja": "ノーマルには第3形態がありません。第3形態のなぎ払いと追尾する光球は固定ダメージで、光球は2発同時に当たることがあります。ラフォイエ・ラバータ・グランツは対応する耐性で軽減されます。"
+    },
+    {
+      "zh": "第三形态闪光期间抵挡普通武器伤害，部分特殊攻击和魔法仍可伤害。半血后会夺取玩家灵魂，期间对本体造成的伤害也会传给该玩家。",
+      "en": "While flashing, the third form blocks normal weapon damage, but some special attacks and techniques still hurt it. Below half HP it steals a player’s soul, and damage dealt to the body during that time is passed on to that player.",
+      "ja": "第3形態が光っている間は通常の武器ダメージを防ぎますが、一部のエクストラアタックやテクニックは効きます。HP が半分を切るとプレイヤーの魂を奪い、その間に本体に与えたダメージはそのプレイヤーにも伝わります。"
+    },
+    {
+      "zh": "表格前一组为固伤，后一组为元素基础伤害；按攻击类型查阅。非 Ultimate 难度下，Boss 地图中的怪物 Megid 不生效，不能把表中等级直接等同于实际即死威胁。",
+      "en": "The first group in the tables is fixed damage and the second is base elemental damage; read them by attack type. Below Ultimate, Megid from monsters in the boss map does not take effect, so the levels in the table are not the same as the actual instant-kill threat.",
+      "ja": "表の前半は固定ダメージ、後半は属性の基本ダメージです。攻撃の種類ごとに見てください。アルティメット以外では、ボスマップにいるモンスターのメギドは効かないため、表のレベルをそのまま実際の即死の危険とみなさないでください。"
+    }
+  ],
+  "Love Rappy": [
+    {
+      "zh": "EP2 的常驻稀有拉比，不仅在情人节出现。活动期间可被相应节日拉比替换。",
+      "en": "The regular rare Rappy of EP2, not only seen on Valentine’s Day. During events it can be replaced by that holiday’s Rappy.",
+      "ja": "EP2 で常に出るレアなラッピーで、バレンタインだけに出るわけではありません。イベント中は、そのイベントのラッピーに置き換わることがあります。"
+    }
+  ],
+  "Egg Rappy": [
+    {
+      "zh": "复活节活动期间替换 Love Rappy 的节日稀有变体。",
+      "en": "The holiday rare variant that replaces Love Rappy during the Easter event.",
+      "ja": "イースターイベント中にラブ・ラッピーの代わりに出るイベント限定のレア版です。"
+    }
+  ],
+  "Hallo Rappy": [
+    {
+      "zh": "万圣节活动期间替换 Love Rappy 的节日稀有变体。",
+      "en": "The holiday rare variant that replaces Love Rappy during the Halloween event.",
+      "ja": "ハロウィンイベント中にラブ・ラッピーの代わりに出るイベント限定のレア版です。"
+    }
+  ],
+  "St Rappy": [
+    {
+      "zh": "圣诞活动期间替换 Love Rappy 的节日稀有变体。",
+      "en": "The holiday rare variant that replaces Love Rappy during the Christmas event.",
+      "ja": "クリスマスイベント中にラブ・ラッピーの代わりに出るイベント限定のレア版です。"
+    }
+  ],
+  "Gol Dragon": [
+    {
+      "zh": "免疫 Jellen 与 Zalure。吐息及扩散攻击的数值按难度、模式列于下方；元素攻击需结合相应抗性判断实际受伤。",
+      "en": "Immune to Jellen and Zalure. The values for its breath and spreading attacks are listed below by difficulty and mode; judge the actual damage from elemental attacks together with the matching resistance.",
+      "ja": "ジェルンとザルアが効きません。ブレスと拡散攻撃の数値は下に難易度とモードごとに載せています。属性攻撃の実際のダメージは対応する耐性とあわせて判断してください。"
+    }
+  ],
+  "Gee": [
+    {
+      "zh": "近战攻击造成伤害或推退时，有 25% 概率附加缓慢。",
+      "en": "A melee attack that damages or pushes back has a 25% chance to inflict Slow.",
+      "ja": "ダメージかノックバックを与えた近接攻撃に 25% の確率でスロウが付きます。"
+    }
+  ],
+  "Ul Gibbon": [
+    {
+      "zh": "Ultimate 近战造成伤害或推退时，有 10% 概率附加缓慢。同组 Zol Gibbon 死亡后，会对自身施加 Lv.2.5 Shifta 与 Deband。",
+      "en": "In Ultimate, a melee attack that damages or pushes back has a 10% chance to inflict Slow. When a Zol Gibbon in its group dies, it casts Lv.2.5 Shifta and Deband on itself.",
+      "ja": "アルティメットでは、ダメージかノックバックを与えた近接攻撃に 10% の確率でスロウが付きます。同じグループのゾル・ギボンが倒れると、自分に Lv.2.5 のシフタとデバンドをかけます。"
+    }
+  ],
+  "Zol Gibbon": [
+    {
+      "zh": "Ultimate 近战造成伤害或推退时，有 10% 概率附加麻痹。同组另一只 Zol Gibbon 死亡后，对自身施加 Lv.2 Shifta 与 Deband。",
+      "en": "In Ultimate, a melee attack that damages or pushes back has a 10% chance to inflict Paralysis. When the other Zol Gibbon in its group dies, it casts Lv.2 Shifta and Deband on itself.",
+      "ja": "アルティメットでは、ダメージかノックバックを与えた近接攻撃に 10% の確率で麻痺が付きます。同じグループのもう1体のゾル・ギボンが倒れると、自分に Lv.2 のシフタとデバンドをかけます。"
+    }
+  ],
+  "Sinow Berill": [
+    {
+      "zh": "第二段攻击造成伤害或推退时，有 1/6 概率附加混乱。",
+      "en": "Its second hit has a 1/6 chance to inflict Confusion if it damages or pushes back.",
+      "ja": "2段目の攻撃がダメージかノックバックを与えると、1/6 の確率で混乱が付きます。"
+    }
+  ],
+  "Sinow Zoa": [
+    {
+      "zh": "第二段攻击造成伤害或推退时，有 1/6 概率附加混乱。",
+      "en": "Its second hit has a 1/6 chance to inflict Confusion if it damages or pushes back.",
+      "ja": "2段目の攻撃がダメージかノックバックを与えると、1/6 の確率で混乱が付きます。"
+    }
+  ],
+  "Gi Gue": [
+    {
+      "zh": "小头目，不受武器对应种族属性百分比的增伤。飞行换位期间无法冻结。",
+      "en": "A mini-boss that takes no percentage bonus from weapon attributes against its type. It cannot be frozen while flying to reposition.",
+      "ja": "中ボスで、武器の種族属性の％補正を受けません。飛んで位置を変えている間は凍結しません。"
+    }
+  ],
+  "Gibbles": [
+    {
+      "zh": "小头目，不受武器对应种族属性百分比增伤。索敌偏好由任务参数指定，常见编辑器默认优先男性角色。",
+      "en": "A mini-boss that takes no percentage bonus from weapon attributes against its type. Its targeting preference is set by quest parameters; the common editor default prefers male characters.",
+      "ja": "中ボスで、武器の種族属性の％補正を受けません。狙う相手の優先はクエストのパラメータで決まり、よく使われるエディタの既定値では男性キャラクターを優先します。"
+    },
+    {
+      "zh": "捶地动作前段在特定帧可先产生物理伤害，随后再产生固伤。玩家若只硬直而未倒地，后续固伤可能连续命中；不能仅根据表中的单次伤害评估风险。",
+      "en": "Early in its ground-pound, on certain frames, it can deal physical damage first and then fixed damage. If a player only flinches without being knocked down, the fixed damage that follows can hit repeatedly; do not judge the risk from a single hit in the table.",
+      "ja": "地面を叩く動作の前半、特定のフレームで先に物理ダメージを与え、続いて固定ダメージを与えることがあります。プレイヤーが倒れずにのけぞるだけだと、続く固定ダメージが連続で当たることがあります。表の1回分のダメージだけで危険を判断しないでください。"
+    }
+  ],
+  "Mericarol": [
+    {
+      "zh": "小头目，不受武器对应种族属性百分比增伤。Ultimate 的球状攻击属于直接即死，不能套用普通 Megid 的 EDK 防护判断。",
+      "en": "A mini-boss that takes no percentage bonus from weapon attributes against its type. Its Ultimate orb attack is a direct instant kill, so the normal Megid EDK protection rules do not apply.",
+      "ja": "中ボスで、武器の種族属性の％補正を受けません。アルティメットの球の攻撃は直接の即死で、通常のメギドのような EDK による防御の判断は当てはまりません。"
+    },
+    {
+      "zh": "任务可将其设为 Mericarand，此时有 20% 概率变为 Merikle 或 Mericus，具体变体由怪物索引奇偶决定。",
+      "en": "A quest can set it as Mericarand, in which case there is a 20% chance it becomes a Merikle or Mericus, the variant decided by whether its monster index is odd or even.",
+      "ja": "クエストでメリカランドに設定すると、20% の確率でメリクルかメリキュスになります。どちらになるかはモンスター番号の偶奇で決まります。"
+    }
+  ],
+  "Merikle": [
+    {
+      "zh": "小头目，不受武器对应种族属性百分比增伤。Ultimate 球状攻击为直接即死；其他攻击伤害见对应难度与模式的表格。",
+      "en": "A mini-boss that takes no percentage bonus from weapon attributes against its type. Its Ultimate orb attack is a direct instant kill; see the tables for each difficulty and mode for its other attacks.",
+      "ja": "中ボスで、武器の種族属性の％補正を受けません。アルティメットの球の攻撃は直接の即死です。ほかの攻撃のダメージは難易度とモードごとの表を参照してください。"
+    }
+  ],
+  "Mericus": [
+    {
+      "zh": "小头目，不受武器对应种族属性百分比增伤。Ultimate 球状攻击为直接即死；不要将该攻击按可由普通 EDK 阈值免疫的 Megid 处理。",
+      "en": "A mini-boss that takes no percentage bonus from weapon attributes against its type. Its Ultimate orb attack is a direct instant kill; do not treat it as a Megid that a normal EDK threshold can make you immune to.",
+      "ja": "中ボスで、武器の種族属性の％補正を受けません。アルティメットの球の攻撃は直接の即死です。通常の EDK の目安で無効化できるメギドとして扱わないでください。"
+    }
+  ],
+  "Morfos": [
+    {
+      "zh": "受到本地画面外不发射光束的 AI 问题影响；调整镜头可阻止它对本玩家开火，但对其他玩家仍可能攻击。近身攻击不因此失效。",
+      "en": "It is affected by an AI quirk where it does not fire its beam while off your local screen; moving the camera can stop it firing at you, though it may still attack other players. Its close-range attacks are unaffected.",
+      "ja": "自分の画面の外にいるとビームを撃たないという AI の不具合の影響を受けます。カメラを動かすと自分への攻撃を防げますが、ほかのプレイヤーは攻撃されることがあります。近接攻撃はこの影響を受けません。"
+    }
+  ],
+  "Deldepth": [
+    {
+      "zh": "在圆盘与站立形态间切换，出生后的首次移动仍可受伤；后续圆盘形态条件不同。命中判定失败（Miss）也可触发起身。",
+      "en": "It switches between a disc form and a standing form, and can still be hurt during its first move after spawning; later disc forms follow different conditions. A missed hit check (Miss) can also make it stand up.",
+      "ja": "円盤形態と立った形態を切り替えます。出現後の最初の移動中はダメージが通りますが、その後の円盤形態では条件が異なります。攻撃が外れた判定（Miss）でも起き上がることがあります。"
+    },
+    {
+      "zh": "单人模式圆盘攻击角度参数为 0，会被 DFP 格挡；多人模式为 45 度，朝向决定实际可命中的扇区。Ultimate 站立攻击可使用 Megid。",
+      "en": "In single-player its disc attack’s angle parameter is 0, so DFP blocks it; in multiplayer it is 45 degrees, and its facing decides which sector it can actually hit. Its Ultimate standing attack can use Megid.",
+      "ja": "ソロでは円盤攻撃の角度パラメータが 0 のため DFP で防がれます。マルチプレイでは 45 度で、向きによって実際に当たる範囲が決まります。アルティメットでは立った形態の攻撃でメギドを使うことがあります。"
+    }
+  ],
+  "Del Lily": [
+    {
+      "zh": "所有难度都会使用 Megid。受击恢复后有 30% 概率尖叫，将附近玩家 HP 设为 1；自毁喷发属于物理伤害，不能与尖叫混为同一伤害类型。",
+      "en": "It uses Megid on every difficulty. After recovering from a hit it has a 30% chance to scream, setting nearby players’ HP to 1; its self-destruct burst is physical damage and is a different damage type from the scream.",
+      "ja": "すべての難易度でメギドを使います。のけぞりから回復したあと 30% の確率で叫び、近くのプレイヤーの HP を 1 にします。自爆の噴出は物理ダメージで、叫びとは別の種類のダメージです。"
+    }
+  ],
+  "Ill Gill": [
+    {
+      "zh": "近距离会按目标距离、角度与状态选择镰击、定身或冲锋。HP 低于 25% 后持续冲锋；任务也可把它设为始终冲锋。",
+      "en": "Up close it chooses between a scythe slash, a hold and a charge based on the target’s distance, angle and state. Below 25% HP it charges constantly; a quest can also set it to always charge.",
+      "ja": "近くでは標的の距離・角度・状態に応じて、鎌による斬撃、拘束、突進を使い分けます。HP が 25% 未満になると突進し続け、クエストで常に突進するよう設定することもできます。"
+    },
+    {
+      "zh": "紫色镰刃粒子表示即死特殊攻击，使用特殊攻击判定而非直接照搬 Megid 等级。对怪物的即死威力高于对玩家，混乱后可以击杀通常免疫即死的塔怪。",
+      "en": "Purple scythe particles mark its instant-kill special, which uses special-attack checks rather than a Megid level. It is more lethal to monsters than to players, and when confused it can kill the tower monsters that are normally immune to instant kills.",
+      "ja": "紫の鎌の粒子は即死のエクストラアタックの印で、メギドのレベルではなくエクストラアタックの判定を使います。プレイヤーよりモンスターに対して強い即死の威力があり、混乱すると通常は即死が効かない塔のモンスターも倒せます。"
+    },
+    {
+      "zh": "冰属性特殊攻击成功后，还附加按 0.6 倍 ATP 计算的物理伤害。",
+      "en": "When its ice special succeeds, it also adds physical damage calculated at 0.6× ATP.",
+      "ja": "氷属性のエクストラアタックが成功すると、ATP の 0.6 倍で計算した物理ダメージも加わります。"
+    }
+  ],
+  "Epsilon": [
+    {
+      "zh": "追踪激光停下后施放 Rafoie，循环四次后展开护卫并露出本体。Ultimate 多人模式的 Rafoie 基础伤害为 1465，受 EFR 减伤。",
+      "en": "After its homing laser stops it casts Rafoie, and after four cycles it deploys its guards and exposes its body. In Ultimate multiplayer its Rafoie base damage is 1465, reduced by EFR.",
+      "ja": "追尾レーザーが止まるとラフォイエを放ち、これを4回繰り返すと護衛を展開して本体が現れます。アルティメットのマルチプレイでのラフォイエの基本ダメージは 1465 で、EFR で軽減されます。"
+    },
+    {
+      "zh": "护卫按红、蓝、黄、紫顺序轮换：火、冰、雷、暗。Ultimate 红蓝护卫可持续命中，黄色伤害达到倒地阈值时正常击倒，紫色为极高威力即死。",
+      "en": "Its guards rotate red, blue, yellow, purple: fire, ice, lightning, dark. In Ultimate the red and blue guards can hit repeatedly, yellow knocks you down normally once it reaches the knockdown threshold, and purple is a very powerful instant kill.",
+      "ja": "護衛は赤・青・黄・紫の順に入れ替わり、それぞれ炎・氷・雷・闇です。アルティメットでは赤と青の護衛は続けて当たることがあり、黄はダメージが転倒の境目に達すると通常どおり倒され、紫は非常に強い即死です。"
+    },
+    {
+      "zh": "下表护卫的元素伤害不是无视抗性的纯固伤；Ultimate 多人基础值为 322。",
+      "en": "The guards’ elemental damage in the table below is not pure fixed damage that ignores resistances; the Ultimate multiplayer base value is 322.",
+      "ja": "下の表の護衛の属性ダメージは、耐性を無視する純粋な固定ダメージではありません。アルティメットのマルチプレイでの基本値は 322 です。"
+    }
+  ],
+  "Satellite Lizard": [
+    {
+      "zh": "在同一房间内持续缓慢追向最近玩家，近身攻击为按难度变化的固伤。正面护盾会阻挡投射物并令其隐形、不可选中，直到接近目标；魔法通常绕过护盾。",
+      "en": "It slowly keeps chasing the nearest player in the same room, and its close attack deals fixed damage that varies with difficulty. Its front shield blocks projectiles and makes it invisible and untargetable until it reaches its target; techniques usually get around the shield.",
+      "ja": "同じ部屋にいる最も近いプレイヤーをゆっくり追い続け、近接攻撃は難易度で変わる固定ダメージです。正面のシールドは弾を防ぎ、標的に近づくまで姿が消えてターゲットできなくなります。テクニックはたいていシールドの影響を受けません。"
+    },
+    {
+      "zh": "混乱后优先追击房间内最近的怪物，无其他怪物时才攻击玩家。移动缓慢可能导致整个混乱期间保持不可选中。",
+      "en": "When confused it chases the nearest monster in the room first, and only attacks players when there are no other monsters. Because it moves slowly it may stay untargetable for the whole confusion.",
+      "ja": "混乱すると部屋で最も近いモンスターを先に追い、ほかのモンスターがいないときだけプレイヤーを攻撃します。動きが遅いため、混乱している間ずっとターゲットできないままになることがあります。"
+    }
+  ],
+  "Yowie": [
+    {
+      "zh": "与 Satellite Lizard 共用正面投射物护盾机制，但属性与近身固伤更高。护盾触发后隐形并不可选中，直到接近目标。",
+      "en": "It shares the Satellite Lizard’s front projectile shield, with higher stats and higher close-range fixed damage. Once the shield triggers it turns invisible and untargetable until it reaches its target.",
+      "ja": "サテライト・リザードと同じ正面の弾を防ぐシールドを持ち、能力値と近接の固定ダメージはより高くなっています。シールドが働くと、標的に近づくまで姿が消えてターゲットできなくなります。"
+    },
+    {
+      "zh": "混乱时优先追击其他怪物，若追不上移动目标，可能长期保持不可选中。",
+      "en": "When confused it chases other monsters first, and if it cannot catch a moving target it may stay untargetable for a long time.",
+      "ja": "混乱するとほかのモンスターを先に追い、動く標的に追いつけないと長い間ターゲットできないままになることがあります。"
+    }
+  ],
+  "Zu": [
+    {
+      "zh": "持续处于飞行状态，因此无法被冻结。可出现稀有变体 Pazuzu。",
+      "en": "It is always flying, so it cannot be frozen. It can appear as its rare variant, Pazuzu.",
+      "ja": "常に飛んでいるため凍結しません。レア版のパズズが出ることがあります。"
+    }
+  ],
+  "Pazuzu": [
+    {
+      "zh": "Zu 的稀有变体；陨石坑与沙漠的数值分开记录，不能只按名称合并伤害。",
+      "en": "The rare variant of Zu; its Crater and Desert values are recorded separately, so do not merge its damage by name alone.",
+      "ja": "ズーのレア版。火口と砂漠の数値は別々に記録されているので、名前だけでダメージをまとめないでください。"
+    }
+  ],
+  "Dorphon": [
+    {
+      "zh": "免疫冻结，但可被麻痹。虽然体型与 HP 接近小头目，它仍正常受到武器 Native 属性百分比增伤。",
+      "en": "Immune to freezing but can be paralysed. Although its size and HP are close to a mini-boss, it still takes the normal percentage bonus from Native weapon attributes.",
+      "ja": "凍結は効きませんが麻痺は効きます。体の大きさと HP は中ボスに近いものの、武器の Native 属性の％補正は通常どおり受けます。"
+    }
+  ],
+  "Dorphon Eclair": [
+    {
+      "zh": "Dorphon 的稀有变体；固伤数值按难度、模式分别列出。",
+      "en": "The rare variant of Dorphon; its fixed-damage values are listed separately by difficulty and mode.",
+      "ja": "ドルフォンのレア版。固定ダメージの数値は難易度とモードごとに分けて載せています。"
+    }
+  ],
+  "Sand Rappy": [
+    {
+      "zh": "可出现稀有变体 Del Rappy。陨石坑与沙漠的属性分开记录。",
+      "en": "It can appear as its rare variant, Del Rappy. Its Crater and Desert stats are recorded separately.",
+      "ja": "レア版のデル・ラッピーが出ることがあります。火口と砂漠の能力値は別々に記録されています。"
+    }
+  ],
+  "Del Rappy": [
+    {
+      "zh": "Sand Rappy 的稀有变体；陨石坑与沙漠分别使用对应数据。",
+      "en": "The rare variant of Sand Rappy; the Crater and Desert each use their own data.",
+      "ja": "サンド・ラッピーのレア版。火口と砂漠ではそれぞれのデータを使います。"
+    }
+  ],
+  "Merissa A": [
+    {
+      "zh": "可出现稀有变体 Merissa AA。冲击等攻击的固伤按难度与模式分别列出。",
+      "en": "It can appear as its rare variant, Merissa AA. The fixed damage of its charge and other attacks is listed separately by difficulty and mode.",
+      "ja": "レア版のメリッサ・エー・エーが出ることがあります。突進などの攻撃の固定ダメージは難易度とモードごとに分けて載せています。"
+    }
+  ],
+  "Merissa AA": [
+    {
+      "zh": "Merissa A 的稀有变体；具体攻击与固伤见下方条件表。",
+      "en": "The rare variant of Merissa A; see the condition tables below for its attacks and fixed damage.",
+      "ja": "メリッサ・エーのレア版。攻撃と固定ダメージは下の条件別の表を参照してください。"
+    }
+  ],
+  "Girtablulu": [
+    {
+      "zh": "小头目，不受武器对应种族属性百分比增伤，免疫冻结与混乱。",
+      "en": "A mini-boss that takes no percentage bonus from weapon attributes against its type, and is immune to freezing and confusion.",
+      "ja": "中ボスで、武器の種族属性の％補正を受けず、凍結と混乱が効きません。"
+    },
+    {
+      "zh": "双爪可同时产生两枚魔法弹体，极易造成表中单发数值的两倍伤害。蓝色冰属性魔法攻击不会使玩家倒地；不能依赖倒地无敌避免连击。",
+      "en": "Its two claws can create two technique projectiles at once, so it easily deals double the single-shot values in the table. Its blue ice technique attack does not knock players down, so you cannot rely on knockdown invincibility to escape follow-up hits.",
+      "ja": "両方のはさみから同時に2つのテクニックの弾を出せるため、表の1発分の2倍のダメージを受けやすくなっています。青い氷属性のテクニック攻撃ではプレイヤーは倒れないので、転倒中の無敵で連続攻撃を避けることはできません。"
+    }
+  ],
+  "Saint-Milion": [
+    {
+      "zh": "击破有色 Spinner 可暴露尾部四枚结晶；红色开放时间最长，橙色次之，黄色最短。破坏全部尾部结晶后进入第二阶段。",
+      "en": "Breaking a coloured Spinner exposes the four crystals on its tail; red stays open longest, then orange, with yellow the shortest. Destroying all the tail crystals starts the second phase.",
+      "ja": "色のついたスピナーを壊すと尾の4つの結晶が現れます。赤が最も長く開き、次がオレンジ、黄が最も短くなります。尾の結晶をすべて壊すと第2段階に入ります。"
+    },
+    {
+      "zh": "第二阶段围绕颈部结晶展开；在首个侧洞均衡压低四枚结晶的 HP，可减少后续洞穴往返。结晶破坏与主体阶段转换需分别判断。",
+      "en": "The second phase centres on the neck crystals; wearing the four crystals down evenly at the first side cave cuts down later trips between caves. Crystal destruction and the body’s phase change have to be judged separately.",
+      "ja": "第2段階は首の結晶が中心です。最初の横穴で4つの結晶の HP を均等に削っておくと、その後の洞窟の往復を減らせます。結晶の破壊と本体の段階の切り替えは別々に判断してください。"
+    }
+  ],
+  "Shambertin": [
+    {
+      "zh": "由任务指定出现的 Saint-Milion 替代形态，战斗基本机制相同。击破有色 Spinner 暴露尾部结晶，之后转入颈部结晶阶段。",
+      "en": "An alternate form of Saint-Milion that a quest can specify, with essentially the same fight. Breaking a coloured Spinner exposes the tail crystals, followed by the neck crystal phase.",
+      "ja": "クエストで指定して出せるサンテミリオンの別形態で、戦い方は基本的に同じです。色のついたスピナーを壊すと尾の結晶が現れ、その後首の結晶の段階に移ります。"
+    }
+  ],
+  "Kondrieu": [
+    {
+      "zh": "Saint-Milion 与 Shambertin 的稀有替代形态；未计稀有怪加成时替代概率为 1/10。战斗阶段与结晶机制保持一致。",
+      "en": "The rare alternate form of Saint-Milion and Shambertin; without rare enemy boosts it replaces them 1 time in 10. Its fight phases and crystal mechanics are the same.",
+      "ja": "サンテミリオンとシャンベルタンのレアな別形態で、レアエネミー補正なしで 1/10 の確率で置き換わります。戦闘の段階と結晶の仕組みは同じです。"
+    }
+  ],
+  "Olga Flow": [
+    {
+      "zh": "第二形态不受武器对应种族属性百分比的常规增伤。夺魂期间需找到随机选中的有效种族属性或魔法弱点，否则伤害转给被夺魂玩家。",
+      "en": "Its second form does not take the usual percentage bonus from weapon attributes against its type. While it holds a stolen soul, you must find the randomly chosen effective type attribute or technique weakness, or the damage is passed on to the player whose soul was taken.",
+      "ja": "第2形態は、武器の種族属性の通常の％補正を受けません。魂を奪っている間は、ランダムに選ばれた有効な種族属性かテクニックの弱点を見つける必要があり、そうでなければダメージは魂を奪われたプレイヤーに伝わります。"
+    },
+    {
+      "zh": "天罚、踩踏与能量波使用带 ±10% 波动的固定基础伤害。Ultimate 夺魂形态的天罚与能量波还乘 1.3。",
+      "en": "Divine Punishment, the stomp and the energy wave use a fixed base damage with ±10% variance. In the Ultimate soul-stealing form, Divine Punishment and the energy wave are also multiplied by 1.3.",
+      "ja": "天罰、踏みつけ、エネルギー波は ±10% の幅がある固定の基本ダメージです。アルティメットの魂を奪う形態では、天罰とエネルギー波にさらに 1.3 倍がかかります。"
+    },
+    {
+      "zh": "天罚以本体、Gael、Giel 分别判定：距离本体 150 单位内、存活伴体 100 单位内都可受击；同时进入多个来源范围时，伤害会叠加。",
+      "en": "Divine Punishment is checked separately from the body, Gael and Giel: you can be hit within 150 units of the body or 100 units of a surviving companion, and damage stacks when you are in range of several sources at once.",
+      "ja": "天罰は本体、ガエル、ギエルからそれぞれ判定されます。本体から 150、生きている取り巻きから 100 の範囲内で当たり、複数の範囲に同時に入るとダメージが重なります。"
+    }
+  ],
+  "Merillia": [
+    {
+      "zh": "Wiki 已列出 Poison Bomb 攻击项目，但伤害栏尚未填写；这里保留未确认状态，不能据此认定该攻击为 0 伤害。",
+      "en": "The Wiki lists a Poison Bomb attack but its damage has not been filled in; it is kept as unconfirmed here, and should not be taken to mean the attack does 0 damage.",
+      "ja": "Wiki には Poison Bomb という攻撃が載っていますが、ダメージの欄はまだ空です。ここでは未確認のままにしており、この攻撃のダメージが 0 だという意味ではありません。"
+    }
+  ]
 }

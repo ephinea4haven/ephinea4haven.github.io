@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import data from '../generated/item-catalog/cosmetics.json';
 import types from '../generated/item-catalog/types.json';
-import { CatalogItem, ITEM_BY_ID, itemPath } from './catalog';
+import { ItemCard, itemPath } from './catalog';
 import { CatalogLanguageService } from './catalog-language.service';
 import { cosmeticsText } from './cosmetics-messages';
 import { CatalogLanguageComponent } from './catalog-language.component';
@@ -20,8 +20,9 @@ interface Row {
   drops?: [string, string, string, string, 'box'?][];
   group?: string;
 }
-const item = (id: string): CatalogItem => {
-  const found = ITEM_BY_ID.get(id);
+const cards = data.items as Record<string, ItemCard>;
+const item = (id: string): ItemCard => {
+  const found = cards[id];
   if (!found) throw new Error(`Cosmetics overview references a missing item: ${id}`);
   return found;
 };
@@ -69,7 +70,6 @@ export class CosmeticsComponent {
   readonly neutralizer = item('neutralizer');
   readonly photonFilter = item('photon-filter');
   readonly itemPath = itemPath;
-  readonly lang = computed(() => ({ lang: this.i18n.language() }));
   eventLabel(event: string): string { return EVENTS[event] || event; }
   copy(text: string): string { return cosmeticsText(text, this.i18n.language()); }
   constructor() {

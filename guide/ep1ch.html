@@ -16,83 +16,75 @@
 
 <main class="content-container challenge-guide" id="challenge-top">
     <div class="challenge-topline">
-        <a href="/index.html" class="challenge-home">← <span data-i18n data-zh="首页" data-en="Home" data-ja="ホーム">首页</span></a>
+        <a href="/index.html" class="challenge-home">← <span data-i18n="challenge.home">首页</span></a>
         <nav class="challenge-episodes" aria-label="Episode"><a href="/guide/ep1ch.html" aria-current="page">Episode 1</a><a href="/guide/ep2ch.html">Episode 2</a></nav>
     </div>
     <header class="challenge-hero">
         <div>
             <p class="challenge-eyebrow">PHANTASY STAR ONLINE · EPISODE 1</p>
-            <h1 id="pageTitle" data-title-prefix="EP1 · "><span data-i18n data-zh="挑战模式" data-en="Challenge Mode" data-ja="チャレンジモード">挑战模式</span></h1>
-            <p data-i18n data-zh="看清路线，分好任务，一起通关。" data-en="Know the route. Share the tasks. Clear together." data-ja="ルートを確認し、役割を分担して、全員でクリア。">看清路线，分好任务，一起通关。</p>
+            <h1 id="pageTitle" data-title-prefix="EP1 · "><span data-i18n="challenge.challengeMode">挑战模式</span></h1>
+            <p data-i18n="challenge.knowTheRouteShareThe">看清路线，分好任务，一起通关。</p>
         </div>
-        <div class="challenge-stats"><span><b>09</b><span data-i18n data-zh="关卡" data-en="Stages" data-ja="ステージ">关卡</span></span><span><b>42</b><span data-i18n data-zh="区域地图" data-en="Area maps" data-ja="エリアマップ">区域地图</span></span></div>
+        <div class="challenge-stats"><span><b>09</b><span data-i18n="challenge.stages">关卡</span></span><span><b>42</b><span data-i18n="challenge.areaMaps">区域地图</span></span></div>
     </header>
-    <div class="challenge-language">
-        <p><span data-i18n data-zh="地图语言" data-en="Map language" data-ja="マップ言語">地图语言</span><small><span data-i18n data-zh="路线、标注与图例同步切换；攻略正文为中文。" data-en="Switch routes, annotations and legends. Walkthrough text is in Chinese." data-ja="ルート・注記・凡例を切替。攻略本文は中国語です。">路线、标注与图例同步切换；攻略正文为中文。</span></small></p>
-        <div id="langSwitch" role="group" aria-label="地图语言">
-            <button type="button" class="lang-btn active" data-lang="zh" aria-pressed="true">中</button>
-            <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
-            <button type="button" class="lang-btn" data-lang="ja" aria-pressed="false">日</button>
-        </div>
-    </div>
     <nav class="challenge-stage-nav" aria-label="Stages">
-        <a href="#ep1-principles"><span data-i18n data-zh="准备" data-en="Prepare" data-ja="準備">准备</span></a>
+        <a href="#ep1-principles"><span data-i18n="challenge.prepare">准备</span></a>
         <a href="#c1" data-stage-link="c1">C1</a><a href="#c2" data-stage-link="c2">C2</a><a href="#c3" data-stage-link="c3">C3</a><a href="#c4" data-stage-link="c4">C4</a><a href="#c5" data-stage-link="c5">C5</a><a href="#c6" data-stage-link="c6">C6</a><a href="#c7" data-stage-link="c7">C7</a><a href="#c8" data-stage-link="c8">C8</a><a href="#c9" data-stage-link="c9">C9</a>
     </nav>
 
     <details class="challenge-legend">
-        <summary><span data-i18n data-zh="地图图例" data-en="Map legend" data-ja="マップ凡例">地图图例</span><span aria-hidden="true">＋</span></summary>
+        <summary><span data-i18n="challenge.mapLegend">地图图例</span><span aria-hidden="true">＋</span></summary>
         <ul>
-            <li><span class="legend-line legend-main" aria-hidden="true"></span><span data-i18n data-zh="主路线" data-en="Main route" data-ja="メインルート">主路线</span></li>
-            <li><span class="legend-line legend-split" aria-hidden="true"></span><span data-i18n data-zh="分队路线" data-en="Split route" data-ja="分担ルート">分队路线</span></li>
-            <li><span class="legend-line legend-solo" aria-hidden="true"></span><span data-i18n data-zh="单人路线" data-en="Solo route" data-ja="単独ルート">单人路线</span></li>
-            <li><span class="legend-line legend-optional" aria-hidden="true"></span><span data-i18n data-zh="可选回收" data-en="Optional pickup" data-ja="任意回収">可选回收</span></li>
-            <li><span class="legend-dot legend-start" aria-hidden="true"></span><span data-i18n data-zh="起点" data-en="Start" data-ja="スタート">起点</span></li>
-            <li><span class="legend-dot legend-exit" aria-hidden="true"></span><span data-i18n data-zh="出口 / 下一张地图" data-en="Exit / next map" data-ja="出口 / 次のマップ">出口 / 下一张地图</span></li>
-            <li><span class="legend-warp" aria-hidden="true"></span><span data-i18n data-zh="传送点（n → n′）" data-en="Warp (n → n′)" data-ja="ワープ（n → n′）">传送点（n → n′）</span></li>
-            <li><span class="legend-switch" aria-hidden="true"></span><span class="legend-door" aria-hidden="true"></span><span data-i18n data-zh="机关与门（同色联动）" data-en="Switch and door (same colour act together)" data-ja="スイッチと扉（同色が連動）">机关与门（同色联动）</span></li>
-            <li><span class="legend-trap" aria-hidden="true"></span><span data-i18n data-zh="陷阱 / 炮台" data-en="Trap / turret" data-ja="罠 / 砲台">陷阱 / 炮台</span></li>
-            <li><span class="legend-box" aria-hidden="true"></span><span data-i18n data-zh="箱子" data-en="Box" data-ja="箱">箱子</span></li>
-            <li><span class="legend-dark" aria-hidden="true"></span><span data-i18n data-zh="黑暗房" data-en="Dark room" data-ja="暗い部屋">黑暗房</span></li>
-            <li><span class="legend-badge" aria-hidden="true"></span><span data-i18n data-zh="编号提醒（见地图下方）" data-en="Numbered note (listed below the map)" data-ja="番号付きポイント（マップ下に説明）">编号提醒（见地图下方）</span></li>
+            <li><span class="legend-line legend-main" aria-hidden="true"></span><span data-i18n="challenge.mainRoute">主路线</span></li>
+            <li><span class="legend-line legend-split" aria-hidden="true"></span><span data-i18n="challenge.splitRoute">分队路线</span></li>
+            <li><span class="legend-line legend-solo" aria-hidden="true"></span><span data-i18n="challenge.soloRoute">单人路线</span></li>
+            <li><span class="legend-line legend-optional" aria-hidden="true"></span><span data-i18n="challenge.optionalPickup">可选回收</span></li>
+            <li><span class="legend-dot legend-start" aria-hidden="true"></span><span data-i18n="challenge.start">起点</span></li>
+            <li><span class="legend-dot legend-exit" aria-hidden="true"></span><span data-i18n="challenge.exitNextMap">出口 / 下一张地图</span></li>
+            <li><span class="legend-warp" aria-hidden="true"></span><span data-i18n="challenge.warpNN">传送点（n → n′）</span></li>
+            <li><span class="legend-switch" aria-hidden="true"></span><span class="legend-door" aria-hidden="true"></span><span data-i18n="challenge.switchAndDoorSameColour">机关与门（同色联动）</span></li>
+            <li><span class="legend-trap" aria-hidden="true"></span><span data-i18n="challenge.trapTurret">陷阱 / 炮台</span></li>
+            <li><span class="legend-box" aria-hidden="true"></span><span data-i18n="challenge.box">箱子</span></li>
+            <li><span class="legend-dark" aria-hidden="true"></span><span data-i18n="challenge.darkRoom">黑暗房</span></li>
+            <li><span class="legend-badge" aria-hidden="true"></span><span data-i18n="challenge.numberedNoteListedBelowThe">编号提醒（见地图下方）</span></li>
         </ul>
     </details>
 
     <section class="challenge-principles" aria-labelledby="ep1-principles">
-        <h2 id="ep1-principles">通关原则</h2>
-        <ul>
+        <h2 id="ep1-principles"><span data-i18n="challenge.clearPrinciples">通关原则</span></h2>
+        <div data-part="principles"><ul>
             <li><strong>避免伤害抵消：</strong>不要四人围攻同一只敌人。默认一人处理一个目标，强力武器持有者优先处理高 HP 敌人。</li>
             <li><strong>集中资源：</strong>POW/HP 素材、高属性武器、手臂插件和 MAG 应交给能最早达到装备门槛的队员，不要平均分配。</li>
             <li><strong>替身娃娃优先保障 FO：</strong>熟练队可让 FO 利用死亡回满 TP；普通通关则应先保证 Boss 战容错。</li>
             <li><strong>不熟机关时跟队：</strong>定时门、假开关和强制分队都会因误触浪费大量时间。优先看图上的编号和路线。</li>
             <li><strong>通关与 TA 分开处理：</strong>首次通关要回收关键武器、防具和娃娃；TA 才考虑忽略支路箱子、摸黑战斗或特殊捷径。</li>
         </ul>
-        <blockquote><p>本页整合历史 PSO World 地图、旧版 TA 攻略与现有中文资料。旧资料的阵容和目标时间仅作路线思路参考，不作为 Ephinea 队伍的硬性要求。</p></blockquote>
+        <blockquote><p>本页整合历史 PSO World 地图、旧版 TA 攻略与现有中文资料。旧资料的阵容和目标时间仅作路线思路参考，不作为 Ephinea 队伍的硬性要求。</p></blockquote></div>
     </section>
 
     <section class="challenge-stage" id="c1" aria-labelledby="c1-title">
-        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 01</p><h2 id="c1-title">C1 <span><span data-i18n data-zh="区域 01–02" data-en="Areas 01–02" data-ja="エリア 01–02">区域 01–02</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n data-zh="顶部" data-en="Top" data-ja="先頭">顶部</span></a></div>
+        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 01</p><h2 id="c1-title">C1 <span><span data-i18n="challenge.areas0102">区域 01–02</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n="challenge.top">顶部</span></a></div>
         <nav class="challenge-area-nav" aria-label="C1 areas"><a href="#area-1">Area 01</a><a href="#area-2">Area 02</a></nav>
-        <details class="challenge-tactics" open><summary><span data-i18n data-zh="本关攻略与分工" data-en="Stage strategy · Chinese" data-ja="攻略・役割分担（中国語）">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose"><p><strong>关卡目标：</strong>学会分配敌人、定时机关和龙战站位。尽量一人负责一只敌人，避免被包围或重复攻击同一目标。</p>
+        <details class="challenge-tactics" open><summary><span data-i18n="challenge.stageStrategyAndRoles">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose" data-part="c1"><p><strong>关卡目标：</strong>学会分配敌人、定时机关和龙战站位。尽量一人负责一只敌人，避免被包围或重复攻击同一目标。</p>
     <ul>
         <li>按地图编号分工开机关；等待定时门的队员不要离位。</li>
         <li>POW 素材优先集中给最有机会装备匕首或高属性武器的 HU。</li>
         <li><strong>龙战：</strong>三名近战分别处理头部和两条腿，FO 在地面用 Barta、飞行时用 Zonde。龙落地前离开其落点，没有娃娃时尤其注意。</li>
     </ul></div></details>
         <figure id="area-1" class="challenge-map" aria-label="C1 · Area 1">
-        <figcaption><span><small>C1</small> Area 01</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1122" data-en-height="1194" data-zh-height="1094" width="1000" height="1094" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_01.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_01.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_01.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_01.svg" data-zh-alt="EP1 挑战模式区域 01 地图" data-en-alt="EP1 Challenge Area 01 map" data-ja-alt="EP1 チャレンジ エリア01 マップ" alt="EP1 挑战模式区域 01 地图">
+        <figcaption><span><small>C1</small> Area 01</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1094" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_01.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=01" alt="EP1 挑战模式区域 01 地图">
     </figure>
     <figure id="area-2" class="challenge-map" aria-label="C1 · Area 2">
-        <figcaption><span><small>C1</small> Area 02</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1061" data-en-height="1085" data-zh-height="1047" width="1000" height="1047" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_02.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_02.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_02.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_02.svg" data-zh-alt="EP1 挑战模式区域 02 地图" data-en-alt="EP1 Challenge Area 02 map" data-ja-alt="EP1 チャレンジ エリア02 マップ" alt="EP1 挑战模式区域 02 地图">
+        <figcaption><span><small>C1</small> Area 02</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1047" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_02.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=02" alt="EP1 挑战模式区域 02 地图">
     </figure>
     </section>
 
     <section class="challenge-stage" id="c2" aria-labelledby="c2-title">
-        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 02</p><h2 id="c2-title">C2 <span><span data-i18n data-zh="区域 04–08" data-en="Areas 04–08" data-ja="エリア 04–08">区域 04–08</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n data-zh="顶部" data-en="Top" data-ja="先頭">顶部</span></a></div>
+        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 02</p><h2 id="c2-title">C2 <span><span data-i18n="challenge.areas0408">区域 04–08</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n="challenge.top">顶部</span></a></div>
         <nav class="challenge-area-nav" aria-label="C2 areas"><a href="#area-4">Area 04</a><a href="#area-5">Area 05</a><a href="#area-6">Area 06</a><a href="#area-7">Area 07</a><a href="#area-8">Area 08</a></nav>
-        <details class="challenge-tactics" open><summary><span data-i18n data-zh="本关攻略与分工" data-en="Stage strategy · Chinese" data-ja="攻略・役割分担（中国語）">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose"><p><strong>关卡目标：</strong>在低 ATA 阶段稳定控场，并把 FO 的 TP 转化为推进速度。</p>
+        <details class="challenge-tactics" open><summary><span data-i18n="challenge.stageStrategyAndRoles">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose" data-part="c2"><p><strong>关卡目标：</strong>在低 ATA 阶段稳定控场，并把 FO 的 TP 转化为推进速度。</p>
     <ul>
         <li>HU 初期优先使用保守连段，待命中稳定后再用 <code>NHH</code>；优先处理 Nano Dragon 与 Grass Assassin。</li>
         <li>花类和 Nano Dragon 在 FO 附近时交给 FO 单独处理，HU 不要用低伤害攻击触发伤害抵消。</li>
@@ -100,31 +92,31 @@
         <li>普通通关优先回收固定武器和防具；TA 队可只取高价值固定箱，其余支路跳过。</li>
     </ul></div></details>
         <figure id="area-4" class="challenge-map" aria-label="C2 · Area 4">
-        <figcaption><span><small>C2</small> Area 04</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="908" data-en-height="974" data-zh-height="910" width="1000" height="910" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_04.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_04.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_04.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_04.svg" data-zh-alt="EP1 挑战模式区域 04 地图" data-en-alt="EP1 Challenge Area 04 map" data-ja-alt="EP1 チャレンジ エリア04 マップ" alt="EP1 挑战模式区域 04 地图">
+        <figcaption><span><small>C2</small> Area 04</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="910" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_04.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=04" alt="EP1 挑战模式区域 04 地图">
     </figure>
     <figure id="area-5" class="challenge-map" aria-label="C2 · Area 5">
-        <figcaption><span><small>C2</small> Area 05</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="967" data-en-height="995" data-zh-height="967" width="1000" height="967" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_05.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_05.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_05.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_05.svg" data-zh-alt="EP1 挑战模式区域 05 地图" data-en-alt="EP1 Challenge Area 05 map" data-ja-alt="EP1 チャレンジ エリア05 マップ" alt="EP1 挑战模式区域 05 地图">
+        <figcaption><span><small>C2</small> Area 05</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="967" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_05.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=05" alt="EP1 挑战模式区域 05 地图">
     </figure>
     <figure id="area-6" class="challenge-map" aria-label="C2 · Area 6">
-        <figcaption><span><small>C2</small> Area 06</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="867" data-en-height="895" data-zh-height="867" width="1000" height="867" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_06.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_06.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_06.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_06.svg" data-zh-alt="EP1 挑战模式区域 06 地图" data-en-alt="EP1 Challenge Area 06 map" data-ja-alt="EP1 チャレンジ エリア06 マップ" alt="EP1 挑战模式区域 06 地图">
+        <figcaption><span><small>C2</small> Area 06</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="867" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_06.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=06" alt="EP1 挑战模式区域 06 地图">
     </figure>
     <figure id="area-7" class="challenge-map" aria-label="C2 · Area 7">
-        <figcaption><span><small>C2</small> Area 07</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="830" data-en-height="872" data-zh-height="816" width="1000" height="816" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_07.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_07.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_07.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_07.svg" data-zh-alt="EP1 挑战模式区域 07 地图" data-en-alt="EP1 Challenge Area 07 map" data-ja-alt="EP1 チャレンジ エリア07 マップ" alt="EP1 挑战模式区域 07 地图">
+        <figcaption><span><small>C2</small> Area 07</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="816" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_07.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=07" alt="EP1 挑战模式区域 07 地图">
     </figure>
     <figure id="area-8" class="challenge-map" aria-label="C2 · Area 8">
-        <figcaption><span><small>C2</small> Area 08</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="888" data-en-height="944" data-zh-height="888" width="1000" height="888" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_08.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_08.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_08.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_08.svg" data-zh-alt="EP1 挑战模式区域 08 地图" data-en-alt="EP1 Challenge Area 08 map" data-ja-alt="EP1 チャレンジ エリア08 マップ" alt="EP1 挑战模式区域 08 地图">
+        <figcaption><span><small>C2</small> Area 08</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="888" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_08.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=08" alt="EP1 挑战模式区域 08 地图">
     </figure>
     </section>
 
     <section class="challenge-stage" id="c3" aria-labelledby="c3-title">
-        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 03</p><h2 id="c3-title">C3 <span><span data-i18n data-zh="区域 09–13" data-en="Areas 09–13" data-ja="エリア 09–13">区域 09–13</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n data-zh="顶部" data-en="Top" data-ja="先頭">顶部</span></a></div>
+        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 03</p><h2 id="c3-title">C3 <span><span data-i18n="challenge.areas0913">区域 09–13</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n="challenge.top">顶部</span></a></div>
         <nav class="challenge-area-nav" aria-label="C3 areas"><a href="#area-9">Area 09</a><a href="#area-10">Area 10</a><a href="#area-11">Area 11</a><a href="#area-12">Area 12</a><a href="#area-13">Area 13</a></nav>
-        <details class="challenge-tactics" open><summary><span data-i18n data-zh="本关攻略与分工" data-en="Stage strategy · Chinese" data-ja="攻略・役割分担（中国語）">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose"><p><strong>关卡目标：</strong>熟悉大剑连段、史莱姆处理和多人机关。</p>
+        <details class="challenge-tactics" open><summary><span data-i18n="challenge.stageStrategyAndRoles">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose" data-part="c3"><p><strong>关卡目标：</strong>熟悉大剑连段、史莱姆处理和多人机关。</p>
     <ul>
         <li>HU 用大剑时以 <code>NNH</code> 为基准，背面或命中足够时再用 <code>NHH</code>。强力单手剑持有者优先处理史莱姆。</li>
         <li>攻击史莱姆时不要盲目打满三连，连续失误容易使其分裂，增加敌人数量。</li>
@@ -132,124 +124,124 @@
         <li>FO 从本关开始稳定维持 Shifta，但不要为了补辅助而脱离主队。</li>
     </ul></div></details>
         <figure id="area-9" class="challenge-map" aria-label="C3 · Area 9">
-        <figcaption><span><small>C3</small> Area 09</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="898" data-en-height="898" data-zh-height="864" width="1000" height="864" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_09.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_09.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_09.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_09.svg" data-zh-alt="EP1 挑战模式区域 09 地图" data-en-alt="EP1 Challenge Area 09 map" data-ja-alt="EP1 チャレンジ エリア09 マップ" alt="EP1 挑战模式区域 09 地图">
+        <figcaption><span><small>C3</small> Area 09</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="864" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_09.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=09" alt="EP1 挑战模式区域 09 地图">
     </figure>
     <figure id="area-10" class="challenge-map" aria-label="C3 · Area 10">
-        <figcaption><span><small>C3</small> Area 10</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="705" data-en-height="739" data-zh-height="705" width="1000" height="705" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_10.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_10.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_10.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_10.svg" data-zh-alt="EP1 挑战模式区域 10 地图" data-en-alt="EP1 Challenge Area 10 map" data-ja-alt="EP1 チャレンジ エリア10 マップ" alt="EP1 挑战模式区域 10 地图">
+        <figcaption><span><small>C3</small> Area 10</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="705" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_10.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=10" alt="EP1 挑战模式区域 10 地图">
     </figure>
     <figure id="area-11" class="challenge-map" aria-label="C3 · Area 11">
-        <figcaption><span><small>C3</small> Area 11</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1200" data-en-height="1200" data-zh-height="1200" width="1000" height="1200" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_11.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_11.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_11.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_11.svg" data-zh-alt="EP1 挑战模式区域 11 地图" data-en-alt="EP1 Challenge Area 11 map" data-ja-alt="EP1 チャレンジ エリア11 マップ" alt="EP1 挑战模式区域 11 地图">
+        <figcaption><span><small>C3</small> Area 11</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1200" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_11.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=11" alt="EP1 挑战模式区域 11 地图">
     </figure>
     <figure id="area-12" class="challenge-map" aria-label="C3 · Area 12">
-        <figcaption><span><small>C3</small> Area 12</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="768" data-en-height="768" data-zh-height="768" width="1000" height="768" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_12.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_12.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_12.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_12.svg" data-zh-alt="EP1 挑战模式区域 12 地图" data-en-alt="EP1 Challenge Area 12 map" data-ja-alt="EP1 チャレンジ エリア12 マップ" alt="EP1 挑战模式区域 12 地图">
+        <figcaption><span><small>C3</small> Area 12</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="768" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_12.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=12" alt="EP1 挑战模式区域 12 地图">
     </figure>
     <figure id="area-13" class="challenge-map" aria-label="C3 · Area 13">
-        <figcaption><span><small>C3</small> Area 13</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="896" data-en-height="914" data-zh-height="878" width="1000" height="878" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_13.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_13.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_13.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_13.svg" data-zh-alt="EP1 挑战模式区域 13 地图" data-en-alt="EP1 Challenge Area 13 map" data-ja-alt="EP1 チャレンジ エリア13 マップ" alt="EP1 挑战模式区域 13 地图">
+        <figcaption><span><small>C3</small> Area 13</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="878" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_13.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=13" alt="EP1 挑战模式区域 13 地图">
     </figure>
     </section>
 
     <section class="challenge-stage" id="c4" aria-labelledby="c4-title">
-        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 04</p><h2 id="c4-title">C4 <span><span data-i18n data-zh="区域 14–18" data-en="Areas 14–18" data-ja="エリア 14–18">区域 14–18</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n data-zh="顶部" data-en="Top" data-ja="先頭">顶部</span></a></div>
+        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 04</p><h2 id="c4-title">C4 <span><span data-i18n="challenge.areas1418">区域 14–18</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n="challenge.top">顶部</span></a></div>
         <nav class="challenge-area-nav" aria-label="C4 areas"><a href="#area-14">Area 14</a><a href="#area-15">Area 15</a><a href="#area-16">Area 16</a><a href="#area-17">Area 17</a><a href="#area-18">Area 18</a></nav>
-        <details class="challenge-tactics" open><summary><span data-i18n data-zh="本关攻略与分工" data-en="Stage strategy · Chinese" data-ja="攻略・役割分担（中国語）">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose"><p><strong>关卡目标：</strong>按图完成多路机关，并为 De Rol Le 准备可靠的大剑或高属性武器。</p>
+        <details class="challenge-tactics" open><summary><span data-i18n="challenge.stageStrategyAndRoles">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose" data-part="c4"><p><strong>关卡目标：</strong>按图完成多路机关，并为 De Rol Le 准备可靠的大剑或高属性武器。</p>
     <ul>
         <li>2:2 分队时，FO 与输出更强的 HU 同路；另一组优先完成机关，避免在支路恋战。</li>
         <li>有命中的 Dim/Shadow 武器可尝试处理 Pan Arms；否则由 FO 使用魔法，HU 不要用低伤害攻击干扰。</li>
         <li><strong>De Rol Le：</strong>队员在船上分散站位，避免同时承受一次攻击。Boss 位于船侧时可用大剑预判攻击；多余恢复品可放在易取位置共享。</li>
     </ul></div></details>
         <figure id="area-14" class="challenge-map" aria-label="C4 · Area 14">
-        <figcaption><span><small>C4</small> Area 14</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="986" data-en-height="1038" data-zh-height="986" width="1000" height="986" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_14.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_14.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_14.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_14.svg" data-zh-alt="EP1 挑战模式区域 14 地图" data-en-alt="EP1 Challenge Area 14 map" data-ja-alt="EP1 チャレンジ エリア14 マップ" alt="EP1 挑战模式区域 14 地图">
+        <figcaption><span><small>C4</small> Area 14</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="986" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_14.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=14" alt="EP1 挑战模式区域 14 地图">
     </figure>
     <figure id="area-15" class="challenge-map" aria-label="C4 · Area 15">
-        <figcaption><span><small>C4</small> Area 15</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="765" data-en-height="765" data-zh-height="765" width="1000" height="765" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_15.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_15.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_15.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_15.svg" data-zh-alt="EP1 挑战模式区域 15 地图" data-en-alt="EP1 Challenge Area 15 map" data-ja-alt="EP1 チャレンジ エリア15 マップ" alt="EP1 挑战模式区域 15 地图">
+        <figcaption><span><small>C4</small> Area 15</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="765" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_15.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=15" alt="EP1 挑战模式区域 15 地图">
     </figure>
     <figure id="area-16" class="challenge-map" aria-label="C4 · Area 16">
-        <figcaption><span><small>C4</small> Area 16</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1185" data-en-height="1185" data-zh-height="1185" width="1000" height="1185" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_16.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_16.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_16.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_16.svg" data-zh-alt="EP1 挑战模式区域 16 地图" data-en-alt="EP1 Challenge Area 16 map" data-ja-alt="EP1 チャレンジ エリア16 マップ" alt="EP1 挑战模式区域 16 地图">
+        <figcaption><span><small>C4</small> Area 16</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1185" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_16.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=16" alt="EP1 挑战模式区域 16 地图">
     </figure>
     <figure id="area-17" class="challenge-map" aria-label="C4 · Area 17">
-        <figcaption><span><small>C4</small> Area 17</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="786" data-en-height="822" data-zh-height="786" width="1000" height="786" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_17.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_17.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_17.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_17.svg" data-zh-alt="EP1 挑战模式区域 17 地图" data-en-alt="EP1 Challenge Area 17 map" data-ja-alt="EP1 チャレンジ エリア17 マップ" alt="EP1 挑战模式区域 17 地图">
+        <figcaption><span><small>C4</small> Area 17</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="786" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_17.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=17" alt="EP1 挑战模式区域 17 地图">
     </figure>
     <figure id="area-18" class="challenge-map" aria-label="C4 · Area 18">
-        <figcaption><span><small>C4</small> Area 18</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1235" data-en-height="1235" data-zh-height="1235" width="1000" height="1235" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_18.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_18.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_18.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_18.svg" data-zh-alt="EP1 挑战模式区域 18 地图" data-en-alt="EP1 Challenge Area 18 map" data-ja-alt="EP1 チャレンジ エリア18 マップ" alt="EP1 挑战模式区域 18 地图">
+        <figcaption><span><small>C4</small> Area 18</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1235" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_18.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=18" alt="EP1 挑战模式区域 18 地图">
     </figure>
     </section>
 
     <section class="challenge-stage" id="c5" aria-labelledby="c5-title">
-        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 05</p><h2 id="c5-title">C5 <span><span data-i18n data-zh="区域 20–24" data-en="Areas 20–24" data-ja="エリア 20–24">区域 20–24</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n data-zh="顶部" data-en="Top" data-ja="先頭">顶部</span></a></div>
+        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 05</p><h2 id="c5-title">C5 <span><span data-i18n="challenge.areas2024">区域 20–24</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n="challenge.top">顶部</span></a></div>
         <nav class="challenge-area-nav" aria-label="C5 areas"><a href="#area-20">Area 20</a><a href="#area-21">Area 21</a><a href="#area-22">Area 22</a><a href="#area-23">Area 23</a><a href="#area-24">Area 24</a></nav>
-        <details class="challenge-tactics" open><summary><span data-i18n data-zh="本关攻略与分工" data-en="Stage strategy · Chinese" data-ja="攻略・役割分担（中国語）">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose"><p><strong>关卡目标：</strong>开始适应矿区的高回避敌人、暗房和射击陷阱。</p>
+        <details class="challenge-tactics" open><summary><span data-i18n="challenge.stageStrategyAndRoles">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose" data-part="c5"><p><strong>关卡目标：</strong>开始适应矿区的高回避敌人、暗房和射击陷阱。</p>
     <ul>
         <li>Sinow Beat 优先冻结或集火，单人不要贪三连；高属性剑、Gizonde 和高 Hit 枪可明显提速。</li>
         <li>FO 优先处理 Sinow 与 Canadine，回收支路交给当前输出较低的 HU。</li>
         <li>普通通关建议开灯并清理射击陷阱；熟练 TA 队才在能控制伤害时摸黑推进。</li>
     </ul></div></details>
         <figure id="area-20" class="challenge-map" aria-label="C5 · Area 20">
-        <figcaption><span><small>C5</small> Area 20</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="680" data-en-height="716" data-zh-height="680" width="1000" height="680" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_20.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_20.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_20.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_20.svg" data-zh-alt="EP1 挑战模式区域 20 地图" data-en-alt="EP1 Challenge Area 20 map" data-ja-alt="EP1 チャレンジ エリア20 マップ" alt="EP1 挑战模式区域 20 地图">
+        <figcaption><span><small>C5</small> Area 20</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="680" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_20.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=20" alt="EP1 挑战模式区域 20 地图">
     </figure>
     <figure id="area-21" class="challenge-map" aria-label="C5 · Area 21">
-        <figcaption><span><small>C5</small> Area 21</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="460" data-en-height="478" data-zh-height="460" width="1000" height="460" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_21.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_21.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_21.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_21.svg" data-zh-alt="EP1 挑战模式区域 21 地图" data-en-alt="EP1 Challenge Area 21 map" data-ja-alt="EP1 チャレンジ エリア21 マップ" alt="EP1 挑战模式区域 21 地图">
+        <figcaption><span><small>C5</small> Area 21</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="460" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_21.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=21" alt="EP1 挑战模式区域 21 地图">
     </figure>
     <figure id="area-22" class="challenge-map" aria-label="C5 · Area 22">
-        <figcaption><span><small>C5</small> Area 22</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="622" data-en-height="622" data-zh-height="622" width="1000" height="622" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_22.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_22.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_22.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_22.svg" data-zh-alt="EP1 挑战模式区域 22 地图" data-en-alt="EP1 Challenge Area 22 map" data-ja-alt="EP1 チャレンジ エリア22 マップ" alt="EP1 挑战模式区域 22 地图">
+        <figcaption><span><small>C5</small> Area 22</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="622" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_22.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=22" alt="EP1 挑战模式区域 22 地图">
     </figure>
     <figure id="area-23" class="challenge-map" aria-label="C5 · Area 23">
-        <figcaption><span><small>C5</small> Area 23</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="740" data-en-height="740" data-zh-height="740" width="1000" height="740" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_23.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_23.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_23.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_23.svg" data-zh-alt="EP1 挑战模式区域 23 地图" data-en-alt="EP1 Challenge Area 23 map" data-ja-alt="EP1 チャレンジ エリア23 マップ" alt="EP1 挑战模式区域 23 地图">
+        <figcaption><span><small>C5</small> Area 23</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="740" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_23.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=23" alt="EP1 挑战模式区域 23 地图">
     </figure>
     <figure id="area-24" class="challenge-map" aria-label="C5 · Area 24">
-        <figcaption><span><small>C5</small> Area 24</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="680" data-en-height="698" data-zh-height="680" width="1000" height="680" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_24.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_24.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_24.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_24.svg" data-zh-alt="EP1 挑战模式区域 24 地图" data-en-alt="EP1 Challenge Area 24 map" data-ja-alt="EP1 チャレンジ エリア24 マップ" alt="EP1 挑战模式区域 24 地图">
+        <figcaption><span><small>C5</small> Area 24</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="680" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_24.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=24" alt="EP1 挑战模式区域 24 地图">
     </figure>
     </section>
 
     <section class="challenge-stage" id="c6" aria-labelledby="c6-title">
-        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 06</p><h2 id="c6-title">C6 <span><span data-i18n data-zh="区域 25–29" data-en="Areas 25–29" data-ja="エリア 25–29">区域 25–29</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n data-zh="顶部" data-en="Top" data-ja="先頭">顶部</span></a></div>
+        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 06</p><h2 id="c6-title">C6 <span><span data-i18n="challenge.areas2529">区域 25–29</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n="challenge.top">顶部</span></a></div>
         <nav class="challenge-area-nav" aria-label="C6 areas"><a href="#area-25">Area 25</a><a href="#area-26">Area 26</a><a href="#area-27">Area 27</a><a href="#area-28">Area 28</a><a href="#area-29">Area 29</a></nav>
-        <details class="challenge-tactics" open><summary><span data-i18n data-zh="本关攻略与分工" data-en="Stage strategy · Chinese" data-ja="攻略・役割分担（中国語）">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose"><p><strong>关卡目标：</strong>在药品可控的前提下稳定处理 Garanz，并协作完成 Area 28 的大型机关。</p>
+        <details class="challenge-tactics" open><summary><span data-i18n="challenge.stageStrategyAndRoles">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose" data-part="c6"><p><strong>关卡目标：</strong>在药品可控的前提下稳定处理 Garanz，并协作完成 Area 28 的大型机关。</p>
     <ul>
         <li>Garanz 优先冻结后从背后攻击；陷阱不足时不要长时间绕圈，保持队伍输出节奏。</li>
         <li>Area 28 由一人进入迷宫，其余三人按地图顺序踩机关；每人只负责相邻开关，不要交叉跑位。</li>
         <li><strong>Vol Opt：</strong>第一形态优先攻击红色柱体，不在屏幕上浪费输出。高属性机枪或枪交给命中足够的队员。</li>
     </ul></div></details>
         <figure id="area-25" class="challenge-map" aria-label="C6 · Area 25">
-        <figcaption><span><small>C6</small> Area 25</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="746" data-en-height="746" data-zh-height="746" width="1000" height="746" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_25.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_25.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_25.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_25.svg" data-zh-alt="EP1 挑战模式区域 25 地图" data-en-alt="EP1 Challenge Area 25 map" data-ja-alt="EP1 チャレンジ エリア25 マップ" alt="EP1 挑战模式区域 25 地图">
+        <figcaption><span><small>C6</small> Area 25</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="746" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_25.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=25" alt="EP1 挑战模式区域 25 地图">
     </figure>
     <figure id="area-26" class="challenge-map" aria-label="C6 · Area 26">
-        <figcaption><span><small>C6</small> Area 26</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="585" data-en-height="585" data-zh-height="585" width="1000" height="585" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_26.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_26.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_26.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_26.svg" data-zh-alt="EP1 挑战模式区域 26 地图" data-en-alt="EP1 Challenge Area 26 map" data-ja-alt="EP1 チャレンジ エリア26 マップ" alt="EP1 挑战模式区域 26 地图">
+        <figcaption><span><small>C6</small> Area 26</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="585" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_26.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=26" alt="EP1 挑战模式区域 26 地图">
     </figure>
     <figure id="area-27" class="challenge-map" aria-label="C6 · Area 27">
-        <figcaption><span><small>C6</small> Area 27</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="593" data-en-height="593" data-zh-height="593" width="1000" height="593" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_27.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_27.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_27.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_27.svg" data-zh-alt="EP1 挑战模式区域 27 地图" data-en-alt="EP1 Challenge Area 27 map" data-ja-alt="EP1 チャレンジ エリア27 マップ" alt="EP1 挑战模式区域 27 地图">
+        <figcaption><span><small>C6</small> Area 27</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="593" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_27.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=27" alt="EP1 挑战模式区域 27 地图">
     </figure>
     <figure id="area-28" class="challenge-map" aria-label="C6 · Area 28">
-        <figcaption><span><small>C6</small> Area 28</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="920" data-en-height="956" data-zh-height="920" width="1000" height="920" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_28.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_28.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_28.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_28.svg" data-zh-alt="EP1 挑战模式区域 28 地图" data-en-alt="EP1 Challenge Area 28 map" data-ja-alt="EP1 チャレンジ エリア28 マップ" alt="EP1 挑战模式区域 28 地图">
+        <figcaption><span><small>C6</small> Area 28</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="920" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_28.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=28" alt="EP1 挑战模式区域 28 地图">
     </figure>
     <figure id="area-29" class="challenge-map" aria-label="C6 · Area 29">
-        <figcaption><span><small>C6</small> Area 29</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="806" data-en-height="894" data-zh-height="840" width="1000" height="840" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_29.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_29.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_29.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_29.svg" data-zh-alt="EP1 挑战模式区域 29 地图" data-en-alt="EP1 Challenge Area 29 map" data-ja-alt="EP1 チャレンジ エリア29 マップ" alt="EP1 挑战模式区域 29 地图">
+        <figcaption><span><small>C6</small> Area 29</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="840" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_29.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=29" alt="EP1 挑战模式区域 29 地图">
     </figure>
     </section>
 
     <section class="challenge-stage" id="c7" aria-labelledby="c7-title">
-        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 07</p><h2 id="c7-title">C7 <span><span data-i18n data-zh="区域 31–35" data-en="Areas 31–35" data-ja="エリア 31–35">区域 31–35</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n data-zh="顶部" data-en="Top" data-ja="先頭">顶部</span></a></div>
+        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 07</p><h2 id="c7-title">C7 <span><span data-i18n="challenge.areas3135">区域 31–35</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n="challenge.top">顶部</span></a></div>
         <nav class="challenge-area-nav" aria-label="C7 areas"><a href="#area-31">Area 31</a><a href="#area-32">Area 32</a><a href="#area-33">Area 33</a><a href="#area-34">Area 34</a><a href="#area-35">Area 35</a></nav>
-        <details class="challenge-tactics" open><summary><span data-i18n data-zh="本关攻略与分工" data-en="Stage strategy · Chinese" data-ja="攻略・役割分担（中国語）">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose"><p><strong>关卡目标：</strong>废墟阶段的重点是危险目标优先级、暗房机关和 FO 的 TP 管理。</p>
+        <details class="challenge-tactics" open><summary><span data-i18n="challenge.stageStrategyAndRoles">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose" data-part="c7"><p><strong>关卡目标：</strong>废墟阶段的重点是危险目标优先级、暗房机关和 FO 的 TP 管理。</p>
     <ul>
         <li>优先处理 Chaos Sorcerer 和 Delsaber；HU 命中不足时使用稳定连段，Android 在多只 Delsaber 场合使用冰冻陷阱。</li>
         <li>FO 在 HU 武器未成型前主动处理 Delsaber 与 Dark Belra；HU 取得高属性武器后则一人负责一只 Belra。</li>
@@ -257,31 +249,31 @@
         <li><strong>机关分工：</strong>Area 34 按前进方向操作左、右、左、右四颗机关，并留人反复补按照明；Area 35 只派一人按左、左、右选择连续传送。</li>
     </ul></div></details>
         <figure id="area-31" class="challenge-map" aria-label="C7 · Area 31">
-        <figcaption><span><small>C7</small> Area 31</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="878" data-en-height="896" data-zh-height="878" width="1000" height="878" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_31.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_31.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_31.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_31.svg" data-zh-alt="EP1 挑战模式区域 31 地图" data-en-alt="EP1 Challenge Area 31 map" data-ja-alt="EP1 チャレンジ エリア31 マップ" alt="EP1 挑战模式区域 31 地图">
+        <figcaption><span><small>C7</small> Area 31</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="878" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_31.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=31" alt="EP1 挑战模式区域 31 地图">
     </figure>
     <figure id="area-32" class="challenge-map" aria-label="C7 · Area 32">
-        <figcaption><span><small>C7</small> Area 32</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="572" data-en-height="642" data-zh-height="606" width="1000" height="606" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_32.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_32.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_32.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_32.svg" data-zh-alt="EP1 挑战模式区域 32 地图" data-en-alt="EP1 Challenge Area 32 map" data-ja-alt="EP1 チャレンジ エリア32 マップ" alt="EP1 挑战模式区域 32 地图">
+        <figcaption><span><small>C7</small> Area 32</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="606" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_32.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=32" alt="EP1 挑战模式区域 32 地图">
     </figure>
     <figure id="area-33" class="challenge-map" aria-label="C7 · Area 33">
-        <figcaption><span><small>C7</small> Area 33</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="879" data-en-height="913" data-zh-height="879" width="1000" height="879" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_33.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_33.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_33.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_33.svg" data-zh-alt="EP1 挑战模式区域 33 地图" data-en-alt="EP1 Challenge Area 33 map" data-ja-alt="EP1 チャレンジ エリア33 マップ" alt="EP1 挑战模式区域 33 地图">
+        <figcaption><span><small>C7</small> Area 33</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="879" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_33.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=33" alt="EP1 挑战模式区域 33 地图">
     </figure>
     <figure id="area-34" class="challenge-map" aria-label="C7 · Area 34">
-        <figcaption><span><small>C7</small> Area 34</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="830" data-en-height="830" data-zh-height="830" width="1000" height="830" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_34.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_34.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_34.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_34.svg" data-zh-alt="EP1 挑战模式区域 34 地图" data-en-alt="EP1 Challenge Area 34 map" data-ja-alt="EP1 チャレンジ エリア34 マップ" alt="EP1 挑战模式区域 34 地图">
+        <figcaption><span><small>C7</small> Area 34</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="830" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_34.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=34" alt="EP1 挑战模式区域 34 地图">
     </figure>
     <figure id="area-35" class="challenge-map" aria-label="C7 · Area 35">
-        <figcaption><span><small>C7</small> Area 35</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="843" data-en-height="843" data-zh-height="843" width="1000" height="843" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_35.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_35.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_35.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_35.svg" data-zh-alt="EP1 挑战模式区域 35 地图" data-en-alt="EP1 Challenge Area 35 map" data-ja-alt="EP1 チャレンジ エリア35 マップ" alt="EP1 挑战模式区域 35 地图">
+        <figcaption><span><small>C7</small> Area 35</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="843" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_35.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=35" alt="EP1 挑战模式区域 35 地图">
     </figure>
     </section>
 
     <section class="challenge-stage" id="c8" aria-labelledby="c8-title">
-        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 08</p><h2 id="c8-title">C8 <span><span data-i18n data-zh="区域 36–40" data-en="Areas 36–40" data-ja="エリア 36–40">区域 36–40</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n data-zh="顶部" data-en="Top" data-ja="先頭">顶部</span></a></div>
+        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 08</p><h2 id="c8-title">C8 <span><span data-i18n="challenge.areas3640">区域 36–40</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n="challenge.top">顶部</span></a></div>
         <nav class="challenge-area-nav" aria-label="C8 areas"><a href="#area-36">Area 36</a><a href="#area-37">Area 37</a><a href="#area-38">Area 38</a><a href="#area-39">Area 39</a><a href="#area-40">Area 40</a></nav>
-        <details class="challenge-tactics" open><summary><span data-i18n data-zh="本关攻略与分工" data-en="Stage strategy · Chinese" data-ja="攻略・役割分担（中国語）">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose"><p><strong>关卡目标：</strong>区分可选捷径和必经武器门，并按图完成计时接力与 Area 40 分工。</p>
+        <details class="challenge-tactics" open><summary><span data-i18n="challenge.stageStrategyAndRoles">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose" data-part="c8"><p><strong>关卡目标：</strong>区分可选捷径和必经武器门，并按图完成计时接力与 Area 40 分工。</p>
     <ul>
         <li>Area 36 的可选捷径需要 4 把备用武器；Area 40 的必经门是两颗机关各放 4 把，共需 8 把，提前留好。</li>
         <li>Chaos Bringer 交给高输出队员单独处理；有高 Hit 枪时优先给 HUcaseal 或命中合格的角色。</li>
@@ -289,31 +281,31 @@
         <li>Area 38 必须先完成接力布置，再通知计时者启动；第二个计时机关会升起炮台，留守队员立即处理，保护跑者通过。</li>
     </ul></div></details>
         <figure id="area-36" class="challenge-map" aria-label="C8 · Area 36">
-        <figcaption><span><small>C8</small> Area 36</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1056" data-en-height="1056" data-zh-height="1056" width="1000" height="1056" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_36.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_36.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_36.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_36.svg" data-zh-alt="EP1 挑战模式区域 36 地图" data-en-alt="EP1 Challenge Area 36 map" data-ja-alt="EP1 チャレンジ エリア36 マップ" alt="EP1 挑战模式区域 36 地图">
+        <figcaption><span><small>C8</small> Area 36</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1056" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_36.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=36" alt="EP1 挑战模式区域 36 地图">
     </figure>
     <figure id="area-37" class="challenge-map" aria-label="C8 · Area 37">
-        <figcaption><span><small>C8</small> Area 37</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1145" data-en-height="1145" data-zh-height="1145" width="1000" height="1145" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_37.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_37.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_37.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_37.svg" data-zh-alt="EP1 挑战模式区域 37 地图" data-en-alt="EP1 Challenge Area 37 map" data-ja-alt="EP1 チャレンジ エリア37 マップ" alt="EP1 挑战模式区域 37 地图">
+        <figcaption><span><small>C8</small> Area 37</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1145" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_37.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=37" alt="EP1 挑战模式区域 37 地图">
     </figure>
     <figure id="area-38" class="challenge-map" aria-label="C8 · Area 38">
-        <figcaption><span><small>C8</small> Area 38</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="914" data-en-height="966" data-zh-height="914" width="1000" height="914" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_38.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_38.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_38.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_38.svg" data-zh-alt="EP1 挑战模式区域 38 地图" data-en-alt="EP1 Challenge Area 38 map" data-ja-alt="EP1 チャレンジ エリア38 マップ" alt="EP1 挑战模式区域 38 地图">
+        <figcaption><span><small>C8</small> Area 38</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="914" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_38.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=38" alt="EP1 挑战模式区域 38 地图">
     </figure>
     <figure id="area-39" class="challenge-map" aria-label="C8 · Area 39">
-        <figcaption><span><small>C8</small> Area 39</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="598" data-en-height="598" data-zh-height="598" width="1000" height="598" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_39.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_39.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_39.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_39.svg" data-zh-alt="EP1 挑战模式区域 39 地图" data-en-alt="EP1 Challenge Area 39 map" data-ja-alt="EP1 チャレンジ エリア39 マップ" alt="EP1 挑战模式区域 39 地图">
+        <figcaption><span><small>C8</small> Area 39</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="598" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_39.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=39" alt="EP1 挑战模式区域 39 地图">
     </figure>
     <figure id="area-40" class="challenge-map" aria-label="C8 · Area 40">
-        <figcaption><span><small>C8</small> Area 40</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1182" data-en-height="1218" data-zh-height="1182" width="1000" height="1182" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_40.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_40.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_40.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_40.svg" data-zh-alt="EP1 挑战模式区域 40 地图" data-en-alt="EP1 Challenge Area 40 map" data-ja-alt="EP1 チャレンジ エリア40 マップ" alt="EP1 挑战模式区域 40 地图">
+        <figcaption><span><small>C8</small> Area 40</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1182" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_40.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=40" alt="EP1 挑战模式区域 40 地图">
     </figure>
     </section>
 
     <section class="challenge-stage" id="c9" aria-labelledby="c9-title">
-        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 09</p><h2 id="c9-title">C9 <span><span data-i18n data-zh="区域 41–45" data-en="Areas 41–45" data-ja="エリア 41–45">区域 41–45</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n data-zh="顶部" data-en="Top" data-ja="先頭">顶部</span></a></div>
+        <div class="challenge-stage-heading"><div><p class="challenge-eyebrow">STAGE 09</p><h2 id="c9-title">C9 <span><span data-i18n="challenge.areas4145">区域 41–45</span></span></h2></div><a href="#challenge-top" class="challenge-top">↑ <span data-i18n="challenge.top">顶部</span></a></div>
         <nav class="challenge-area-nav" aria-label="C9 areas"><a href="#area-41">Area 41</a><a href="#area-42">Area 42</a><a href="#area-43">Area 43</a><a href="#area-44">Area 44</a><a href="#area-45">Area 45</a></nav>
-        <details class="challenge-tactics" open><summary><span data-i18n data-zh="本关攻略与分工" data-en="Stage strategy · Chinese" data-ja="攻略・役割分担（中国語）">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose"><p><strong>关卡目标：</strong>围绕 Dark Falz 准备 HP、娃娃和高属性武器，同时决定是否走 Area 45 资源捷径。</p>
+        <details class="challenge-tactics" open><summary><span data-i18n="challenge.stageStrategyAndRoles">本关攻略与分工</span><span aria-hidden="true">⌄</span></summary><div class="challenge-prose" data-part="c9"><p><strong>关卡目标：</strong>围绕 Dark Falz 准备 HP、娃娃和高属性武器，同时决定是否走 Area 45 资源捷径。</p>
     <ul>
         <li>废墟仍优先处理 Chaos Sorcerer、Delsaber 和 Dark Belra；拾取 Grants 后交给 FO。</li>
         <li>Area 41 暗房可由 FO 放下 MAG 压机关后回收资源。如计划走 Area 45 捷径，全程保留 8 件武器和 8 面盾。</li>
@@ -321,24 +313,24 @@
         <li><strong>Dark Falz：</strong>进场前确认 FO 的 HP 能承受关键攻击，全队保持分散并随时自行吃药。FO 维持 Shifta/Deband 与 Jellen/Zalure，有 Grants 时用于合适形态。</li>
     </ul></div></details>
         <figure id="area-41" class="challenge-map" aria-label="C9 · Area 41">
-        <figcaption><span><small>C9</small> Area 41</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1418" data-en-height="1500" data-zh-height="1418" width="1000" height="1418" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_41.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_41.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_41.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_41.svg" data-zh-alt="EP1 挑战模式区域 41 地图" data-en-alt="EP1 Challenge Area 41 map" data-ja-alt="EP1 チャレンジ エリア41 マップ" alt="EP1 挑战模式区域 41 地图">
+        <figcaption><span><small>C9</small> Area 41</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1418" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_41.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=41" alt="EP1 挑战模式区域 41 地图">
     </figure>
     <figure id="area-42" class="challenge-map" aria-label="C9 · Area 42">
-        <figcaption><span><small>C9</small> Area 42</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1343" data-en-height="1449" data-zh-height="1343" width="1000" height="1343" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_42.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_42.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_42.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_42.svg" data-zh-alt="EP1 挑战模式区域 42 地图" data-en-alt="EP1 Challenge Area 42 map" data-ja-alt="EP1 チャレンジ エリア42 マップ" alt="EP1 挑战模式区域 42 地图">
+        <figcaption><span><small>C9</small> Area 42</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1343" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_42.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=42" alt="EP1 挑战模式区域 42 地图">
     </figure>
     <figure id="area-43" class="challenge-map" aria-label="C9 · Area 43">
-        <figcaption><span><small>C9</small> Area 43</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1141" data-en-height="1217" data-zh-height="1141" width="1000" height="1141" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_43.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_43.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_43.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_43.svg" data-zh-alt="EP1 挑战模式区域 43 地图" data-en-alt="EP1 Challenge Area 43 map" data-ja-alt="EP1 チャレンジ エリア43 マップ" alt="EP1 挑战模式区域 43 地图">
+        <figcaption><span><small>C9</small> Area 43</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1141" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_43.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=43" alt="EP1 挑战模式区域 43 地图">
     </figure>
     <figure id="area-44" class="challenge-map" aria-label="C9 · Area 44">
-        <figcaption><span><small>C9</small> Area 44</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1260" data-en-height="1366" data-zh-height="1260" width="1000" height="1260" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_44.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_44.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_44.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_44.svg" data-zh-alt="EP1 挑战模式区域 44 地图" data-en-alt="EP1 Challenge Area 44 map" data-ja-alt="EP1 チャレンジ エリア44 マップ" alt="EP1 挑战模式区域 44 地图">
+        <figcaption><span><small>C9</small> Area 44</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1260" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_44.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=44" alt="EP1 挑战模式区域 44 地图">
     </figure>
     <figure id="area-45" class="challenge-map" aria-label="C9 · Area 45">
-        <figcaption><span><small>C9</small> Area 45</span><button type="button" data-map-open><span data-i18n data-zh="放大地图 ↗" data-en="Expand map ↗" data-ja="マップを拡大 ↗">放大地图 ↗</span></button></figcaption>
-        <img data-ja-height="1149" data-en-height="1245" data-zh-height="1135" width="1000" height="1135" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_45.svg" data-i18n-src data-zh-src="/assets/img/challenge/ep1/maps/zh/area_45.svg" data-en-src="/assets/img/challenge/ep1/maps/en/area_45.svg" data-ja-src="/assets/img/challenge/ep1/maps/ja/area_45.svg" data-zh-alt="EP1 挑战模式区域 45 地图" data-en-alt="EP1 Challenge Area 45 map" data-ja-alt="EP1 チャレンジ エリア45 マップ" alt="EP1 挑战模式区域 45 地图">
+        <figcaption><span><small>C9</small> Area 45</span><button type="button" data-map-open><span data-i18n="challenge.expandMap">放大地图 ↗</span></button></figcaption>
+        <img width="1000" height="1135" loading="lazy" decoding="async" src="/assets/img/challenge/ep1/maps/zh/area_45.svg" data-i18n-src data-i18n-alt="challenge.mapAlt" data-i18n-args="map=EP1;area=45" alt="EP1 挑战模式区域 45 地图">
     </figure>
     </section>
     <dialog class="challenge-viewer" aria-labelledby="map-viewer-title">
@@ -346,12 +338,12 @@
             <h2 id="map-viewer-title"></h2>
             <div class="challenge-viewer-controls">
                 <button type="button" data-map-zoom="out" aria-label="Zoom out">−</button>
-                <button type="button" data-map-zoom="fit"><span data-i18n data-zh="适应宽度" data-en="Fit width" data-ja="幅に合わせる">适应宽度</span></button>
+                <button type="button" data-map-zoom="fit"><span data-i18n="challenge.fitWidth">适应宽度</span></button>
                 <button type="button" data-map-zoom="in" aria-label="Zoom in">＋</button>
-                <button type="button" data-map-close><span data-i18n data-zh="关闭" data-en="Close" data-ja="閉じる">关闭</span> <kbd>Esc</kbd></button>
+                <button type="button" data-map-close><span data-i18n="challenge.close">关闭</span> <kbd>Esc</kbd></button>
             </div>
         </div>
-        <p class="challenge-viewer-hint"><span data-i18n data-zh="放大后可用鼠标拖动，或上下、左右滚动查看细节。" data-en="After zooming, drag with a mouse or scroll in any direction to inspect details." data-ja="拡大後はマウスでドラッグ、または上下左右にスクロールして確認できます。">放大后可用鼠标拖动，或上下、左右滚动查看细节。</span></p>
+        <p class="challenge-viewer-hint"><span data-i18n="challenge.afterZoomingDragWithA">放大后可用鼠标拖动，或上下、左右滚动查看细节。</span></p>
         <div class="challenge-viewer-canvas"><img alt=""></div>
     </dialog>
 </main>

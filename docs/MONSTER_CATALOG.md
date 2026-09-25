@@ -37,12 +37,12 @@ The catalog supports Chinese, English and Japanese name search, episode, area an
 type filters, HP sorting, 24-entry pages, and switching between four difficulties
 and multiplayer or single-player mode. The query is kept in the URL, and returning
 to the list restores the conditions. The interface and names are available in
-Chinese, English and Japanese and share the item catalog's language preference.
-Chinese mechanics summaries and English fact tables are each labeled with their
-source language. Unverified translations keep the English identifier.
+Chinese, English and Japanese, each prerendered at its own URL. Behaviour notes
+are written in all three languages; English fact tables are labeled as source
+English. Unverified translations keep the English identifier.
 
 Detail pages include stats, behavior and mechanics, conditional damage tables,
-ten-Section-ID rare drops and sources. 141 entries have Chinese mechanics notes and
+ten-Section-ID rare drops and sources. 141 entries have mechanics notes and
 109 have mechanics tables, drawn from notes on 81 source pages and 458 fact tables
 on 98 pages. Entries without notes say so explicitly; this is never taken to mean
 the monster has no special attacks. Blank or `???` table cells are never converted
@@ -63,8 +63,9 @@ images.
   [EP4](http://pso.ffsky.cn/ep4m1.htm) serve as cross-references; values from
   different versions never overwrite Ephinea's.
 - `mechanics.json` stores mechanics fact tables, section anchors, difficulty and
-  mode tab context, and source revisions. `notes.json` stores Chinese summaries
-  verified against the source context. The extractor expands merged rows and
+  mode tab context, and source revisions. `notes.json` stores summaries
+  verified against the source context, each written in Chinese, English and
+  Japanese (`{ zh, en, ja }`); the generator rejects a note missing a language. The extractor expands merged rows and
   columns, keeps short cell notes, and excludes history, strategy lists and
   unrelated embedded master tables.
 - Fixed damage must be read with its conditions, for example Chaos Bringer's TP

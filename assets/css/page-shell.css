@@ -1,5 +1,5 @@
 /* Shared shell for data-lookup pages (BDP, prize list) that use a
-   .wrap container + header + #pageTitle + #langSwitch + back-link.
+   .wrap container + header + #pageTitle + back-link.
    Loaded after unified-style.css; overrides unified's flex body layout. */
 
 /* body 背景由 unified-style.css 统一处理。这里仅覆盖 unified 的 flex 布局。 */
@@ -29,47 +29,6 @@ header {
     font-weight: 500;
     margin-top: 6px;
     letter-spacing: 0.5px;
-}
-
-#langSwitch {
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    transform: translateY(-50%);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-#langSwitch .lang-btn {
-    background: transparent;
-    color: #6a85a0;
-    border: none;
-    padding: 6px 14px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-    transition: color 0.25s ease, text-shadow 0.25s ease;
-    font-family: inherit;
-    letter-spacing: 0.8px;
-    position: relative;
-}
-
-#langSwitch .lang-btn + .lang-btn::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 30%;
-    bottom: 30%;
-    width: 1px;
-    background: rgba(159, 180, 200, 0.25);
-}
-
-#langSwitch .lang-btn:hover { color: #9fd4ff; }
-
-#langSwitch .lang-btn.active {
-    color: #00d4ff;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
 }
 
 .top-actions {
@@ -123,11 +82,4 @@ header {
 
 @media (max-width: 768px) {
     #pageTitle { font-size: 1.8em; }
-
-    #langSwitch {
-        position: static;
-        transform: none;
-        justify-content: center;
-        margin-top: 8px;
-    }
 }

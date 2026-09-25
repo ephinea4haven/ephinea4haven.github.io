@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, input, signal } from '@angular/core';
 import { CatalogLanguageService } from './catalog-language.service';
-import { CatalogItem } from './catalog';
+import { ItemCard } from './catalog';
 
 @Component({
   selector: 'item-image',
@@ -21,7 +21,7 @@ import { CatalogItem } from './catalog';
   `,
 })
 export class ItemImageComponent {
-  readonly item = input.required<CatalogItem>();
+  readonly item = input.required<ItemCard>();
   readonly failedUrl = signal<string | null>(null);
   readonly i18n = inject(CatalogLanguageService);
 }

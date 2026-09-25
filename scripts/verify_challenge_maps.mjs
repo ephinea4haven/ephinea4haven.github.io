@@ -72,7 +72,8 @@ for (const name of expectedEp1) {
   }
   for (const language of languages) {
     const relative = `/assets/img/challenge/ep1/maps/${language}/${stem}.svg`;
-    if (!ep1Page.includes(relative)) throw new Error(`EP1 page does not reference ${relative}`);
+    // The page names the Chinese map; the build swaps in each language's redraw.
+    if (language === 'zh' && !ep1Page.includes(relative)) throw new Error(`EP1 page does not reference ${relative}`);
     const svg = await readFile(path.join(root, relative), 'utf8');
     if (svg.includes('<image') || svg.includes('data:image/')) throw new Error(`${relative} embeds a raster source`);
     if (!svg.includes('PSO World') || !svg.includes('Sakura')) throw new Error(`${relative} is missing source attribution`);
@@ -93,7 +94,8 @@ for (const [sourceName, [stage, area, expectedSha1]] of expectedEp2) {
   const stem = `c${stage}_area_${String(area).padStart(2, '0')}`;
   for (const language of languages) {
     const relative = `/assets/img/challenge/ep2/maps/${language}/${stem}.svg`;
-    if (!ep2Page.includes(relative)) throw new Error(`EP2 page does not reference ${relative}`);
+    // The page names the Chinese map; the build swaps in each language's redraw.
+    if (language === 'zh' && !ep2Page.includes(relative)) throw new Error(`EP2 page does not reference ${relative}`);
     const localeDirectory = path.join(ep2MapsDirectory, language);
     const svg = await readFile(path.join(localeDirectory, `${stem}.svg`), 'utf8');
     if (!svg.includes('Ephinea Wiki') || !svg.includes('#071a31')) {

@@ -17552,33 +17552,97 @@
       "barrier-switch": "操作スイッチ"
     }
   },
-  "source_legend": {
-    "zh": [
-      "同色机关对应屏障",
-      "时钟：限时机关",
-      "灯泡：照明",
-      "绿色圆环：回复",
-      "彩色叉框：障壁 / 陷阱",
-      "箱内数字：物资数量",
-      "字母与撇号：配对传送"
-    ],
-    "en": [
-      "Matching colors: switches / fences",
-      "Clock: timed switch",
-      "Bulb: light control",
-      "Green ring: healing",
-      "Crossed squares: barriers / traps",
-      "Box numbers: supply counts",
-      "Letter / prime: warp pair"
-    ],
-    "ja": [
-      "同色：スイッチと柵",
-      "時計：時限スイッチ",
-      "電球：照明",
-      "緑の輪：回復",
-      "×枠：障壁・罠",
-      "箱内数字：物資の数",
-      "文字とプライム：対応ワープ"
-    ]
-  }
+  "legend": [
+    {
+      "id": "matching-colors",
+      "message": "challenge.legendMatchingColors",
+      "sample": {
+        "area": "3",
+        "box": [
+          784,
+          392,
+          30,
+          36
+        ]
+      }
+    },
+    {
+      "id": "timed-switch",
+      "message": "challenge.legendTimedSwitch",
+      "sample": {
+        "area": "10",
+        "box": [
+          982,
+          210,
+          40,
+          40
+        ]
+      }
+    },
+    {
+      "id": "light-switch",
+      "message": "challenge.legendLightSwitch",
+      "sample": {
+        "area": "10",
+        "box": [
+          597,
+          781,
+          26,
+          28
+        ]
+      }
+    },
+    {
+      "id": "healing",
+      "message": "challenge.legendHealing",
+      "sample": {
+        "area": "10",
+        "box": [
+          1153,
+          840,
+          42,
+          38
+        ]
+      }
+    },
+    {
+      "id": "barrier-trap",
+      "message": "challenge.legendBarrierTrap",
+      "sample": {
+        "area": "10",
+        "box": [
+          531,
+          330,
+          22,
+          22
+        ]
+      }
+    },
+    {
+      "id": "supply-box",
+      "message": "challenge.legendSupplyBox",
+      "sample": {
+        "area": "10",
+        "box": [
+          1145,
+          583,
+          36,
+          34
+        ]
+      }
+    },
+    {
+      "id": "warp-pair",
+      "message": "challenge.legendWarpPair",
+      "sample": {
+        "area": "10",
+        "box": [
+          1111,
+          215,
+          38,
+          34
+        ]
+      }
+    }
+  ]
 }

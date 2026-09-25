@@ -16,7 +16,7 @@
 
 ![26个Auto-warp及两个落点](assets/2c4-auto-warp/auto-warp-map.png)
 
-[SVG矢量放大图](../assets/img/challenge/ep2/auto-warp-map.svg) · [全部26点的坐标与对象ID](assets/2c4-auto-warp/auto-warp-points.json)
+[SVG矢量放大图](../assets/img/challenge/ep2/area-23-warps/zh/auto-warp-map.svg) · [全部26点的坐标与对象ID](assets/2c4-auto-warp/auto-warp-points.json)
 
 ### A/E、B/F 是什么意思？
 
@@ -151,7 +151,7 @@ SHA-256: b8b545b56484f3d63d80076b9f8b0ccd03b5133bf9a1ab34336c8684117610c2
 - [Ephinea Wiki：Stage 4 / Area 23](https://wiki.pioneer2.net/w/Episode_2:_Stage_4/Guide#Area_23)
 - 原攻略布局图：[本站保存的原攻略图](../assets/img/challenge/ep2/original/wiki/2ca23.png)。
 - 本地源码参考：`newserv/src/Map.cc`、`phantasmal-world/psolib/.../quest/ObjectType.kt`、`AreaRenderGeometry.kt`、`AreaCollisionGeometry.kt`。
-- 原始解码文本、地形绘图脚本、部署清单与刷怪报告保留在源项目本地的 `artifacts/2c4-auto-warp/`（不纳入版本控制）。本站同步的 PNG 和26点JSON位于 `docs/assets/2c4-auto-warp/`；攻略与本文共用的 SVG 已移至 `assets/img/challenge/ep2/auto-warp-map.svg`，随站点构建发布。
+- 原始解码文本、地形绘图脚本、部署清单与刷怪报告保留在源项目本地的 `artifacts/2c4-auto-warp/`（不纳入版本控制）。本站同步的 PNG 和26点JSON位于 `docs/assets/2c4-auto-warp/`；攻略与本文共用的 SVG 位于 `assets/img/challenge/ep2/area-23-warps/{zh,en,ja}/auto-warp-map.svg`（中文原图与英、日译版，图形一致、仅文字不同），随站点构建发布。
 
 ## 攻略维护入口
 

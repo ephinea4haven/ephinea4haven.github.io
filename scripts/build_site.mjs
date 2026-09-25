@@ -192,13 +192,17 @@ async function installAngularApplication(pages) {
   let hosts = 0;
   for (const route of prerenderedRoutes) {
     const relativeRoute = route.replace(/^\//, '');
-    const historicalPage = relativeRoute === ''
+    // English and Japanese versions live under /en/ and /ja/ and must correspond to
+    // a historical (Chinese) page; they are installed at their prefixed paths.
+    const [, prefix = '', baseRoute] = /^(?:(en|ja)(?:\/|$))?(.*)$/.exec(relativeRoute);
+    const basePage = baseRoute === ''
       ? 'index.html'
-      : (pageSet.has(relativeRoute) ? relativeRoute : `${relativeRoute}/index.html`);
-    if (!pageSet.has(historicalPage)) {
+      : (pageSet.has(baseRoute) ? baseRoute : `${baseRoute}/index.html`);
+    if (!pageSet.has(basePage)) {
       throw new Error(`Angular prerender route has no historical page: ${route}`);
     }
-    angularPages.add(historicalPage);
+    const historicalPage = prefix ? `${prefix}/${basePage}` : basePage;
+    if (!prefix) angularPages.add(basePage);
     const prerenderedPage = relativeRoute
       ? path.join(angularOutputDirectory, relativeRoute, 'index.html')
       : path.join(angularOutputDirectory, 'index.html');
@@ -235,19 +239,54 @@ async function installAngularApplication(pages) {
   })));
   const javascriptGzipBytes = chunks.reduce((total, chunk) => total + chunk.gzipBytes, 0);
   const gzipByFile = new Map(chunks.map((chunk) => [chunk.file, chunk.gzipBytes]));
-  const routes = routeAssets.map(({ route, files }) => ({
-    route,
-    files: [...new Set(files)].sort(),
-    gzipBytes: [...new Set(files)].reduce(
-      (total, file) => total + (gzipByFile.get(file) ?? 0),
-      0,
-    ),
-  }));
+  // A route loads its HTML-referenced scripts and everything they import
+  // statically; dynamic import() chunks load later and are budgeted per chunk.
+  const staticImports = new Map(await Promise.all(javascript.map(async (file) => {
+    const relative = toPosix(path.relative(temporaryDirectory, file));
+    const source = await readFile(file, 'utf8');
+    const imports = [...source.matchAll(/(?:\bfrom\s*|\bimport\s*)["']\.\/([^"']+\.js)["']/g)]
+      .map((match) => toPosix(path.join(path.dirname(relative), match[1])));
+    return [relative, imports];
+  })));
+  const closure = (entries) => {
+    const seen = new Set();
+    const pending = [...entries];
+    while (pending.length) {
+      const file = pending.pop();
+      if (seen.has(file)) continue;
+      seen.add(file);
+      pending.push(...(staticImports.get(file) ?? []));
+    }
+    return [...seen].sort();
+  };
+  const routes = routeAssets.map(({ route, files }) => {
+    const loaded = closure(files);
+    return {
+      route,
+      files: loaded,
+      gzipBytes: loaded.reduce((total, file) => total + (gzipByFile.get(file) ?? 0), 0),
+    };
+  });
+  // A chunk that only /en/ (or only /ja/) routes load belongs to that language's
+  // edition; everything else is shared by the Chinese pages and every edition.
+  const chunkLanguages = new Map();
+  for (const { route, files: loaded } of routes) {
+    const language = /^\/(en|ja)(?:\/|$)/.exec(route)?.[1] ?? 'zh';
+    for (const file of loaded) chunkLanguages.set(file, new Set([...(chunkLanguages.get(file) ?? []), language]));
+  }
+  const localizedJavaScriptGzipBytes = Object.fromEntries(['en', 'ja'].map((language) => [
+    language,
+    chunks.filter(({ file }) => {
+      const languages = chunkLanguages.get(file);
+      return languages?.size === 1 && languages.has(language);
+    }).reduce((total, chunk) => total + chunk.gzipBytes, 0),
+  ]));
   return {
     hosts,
     hostPages: [...angularPages].sort(),
     files: files.map((file) => toPosix(path.relative(temporaryDirectory, file))),
     javascriptGzipBytes,
+    localizedJavaScriptGzipBytes,
     chunks,
     routes,
   };
@@ -472,8 +511,12 @@ async function writeManifest(pages, angular) {
       };
     }),
   );
+  const localized = angular.localizedJavaScriptGzipBytes;
   const totals = {
-    publishedJavaScriptGzipBytes: excluded.publishedGzipBytes + angular.javascriptGzipBytes,
+    // The Chinese site and shared code; each translated edition is budgeted separately.
+    publishedJavaScriptGzipBytes: excluded.publishedGzipBytes + angular.javascriptGzipBytes
+      - Object.values(localized).reduce((total, bytes) => total + bytes, 0),
+    localizedJavaScriptGzipBytes: localized,
   };
   const manifest = {
     schemaVersion: 1,
@@ -503,6 +546,11 @@ function enforceBudgets(manifest) {
       `JavaScript gzip budget exceeded: ${manifest.totals.publishedJavaScriptGzipBytes} `
       + `> ${budgets.maxJavaScriptGzipBytes}`,
     );
+  }
+  for (const [language, bytes] of Object.entries(manifest.totals.localizedJavaScriptGzipBytes)) {
+    if (bytes > budgets.maxLocalizedJavaScriptGzipBytes) {
+      failures.push(`${language} edition JavaScript gzip budget exceeded: ${bytes} > ${budgets.maxLocalizedJavaScriptGzipBytes}`);
+    }
   }
   if (manifest.inline.bytes > budgets.maxInlineScriptBytes) {
     failures.push(
@@ -566,6 +614,10 @@ try {
   console.log(
     `Published JavaScript gzip budget: ${manifest.totals.publishedJavaScriptGzipBytes} `
     + `/ ${budgets.maxJavaScriptGzipBytes} bytes.`,
+  );
+  console.log(
+    `Translated editions JavaScript gzip budget: ${Object.entries(manifest.totals.localizedJavaScriptGzipBytes)
+      .map(([language, bytes]) => `${language} ${bytes}`).join(', ')} / ${budgets.maxLocalizedJavaScriptGzipBytes} bytes each.`,
   );
 } catch (error) {
   await rm(temporaryDirectory, { recursive: true, force: true });

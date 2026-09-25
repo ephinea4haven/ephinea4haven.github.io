@@ -31,7 +31,7 @@ export class MonsterCatalogComponent {
   readonly portraitImage=computed(()=>this.showingHd() ? this.hdImage()! : this.monster() ? this.image(this.monster()!) : null);
   readonly mode=computed(()=>this.params().get('mode')==='off' ? 'off':'on');
   readonly context=computed(()=>`${this.difficulty()}-${this.mode()}`);
-  readonly query=computed(()=>Object.fromEntries([...this.params().keys.map(k=>[k,this.params().get(k)]),['lang',this.i18n.language()],['ep',this.episode()]]));
+  readonly query=computed(()=>Object.fromEntries([...this.params().keys.map(k=>[k,this.params().get(k)]),['ep',this.episode()]]));
   readonly q=computed(()=>this.params().get('q') || '');
   readonly episode=computed(()=>['1','2','4'].includes(this.params().get('ep')||'') ? this.params().get('ep')! : String(this.monster()?.episode ?? 1));
   readonly area=computed(()=>this.areas().includes(this.params().get('area')||'') ? this.params().get('area')! : '');
@@ -71,7 +71,7 @@ export class MonsterCatalogComponent {
       if(navigated && key==='page') this.document.getElementById('monster-results')?.scrollIntoView({behavior:'instant',block:'start'});
     });
   }
-  clear():void {void this.router.navigate([],{relativeTo:this.route,queryParams:{lang:this.i18n.language(),ep:this.episode(),diff:this.difficulty(),mode:this.mode()},replaceUrl:true});}
+  clear():void {void this.router.navigate([],{relativeTo:this.route,queryParams:{ep:this.episode(),diff:this.difficulty(),mode:this.mode()},replaceUrl:true});}
   retry():void {this.document.defaultView?.location.reload();}
   constructor(){
     effect(()=>this.title.setTitle(`${this.monster()?this.name(this.monster()!)+' | ':''}${this.i18n.t('怪物图鉴')} · Ephinea PSOBB`));

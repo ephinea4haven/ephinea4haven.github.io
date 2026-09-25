@@ -232,47 +232,6 @@
 
         .source-note a { color: #00d4ff; }
 
-        header { position: relative; }
-
-        #langSwitch {
-            position: absolute;
-            top: 50%;
-            right: 8px;
-            transform: translateY(-50%);
-            display: inline-flex;
-            align-items: center;
-        }
-
-        #langSwitch .lang-btn {
-            background: transparent;
-            color: #6a85a0;
-            border: none;
-            padding: 6px 14px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            transition: color 0.25s ease, text-shadow 0.25s ease;
-            font-family: inherit;
-            letter-spacing: 0.8px;
-            position: relative;
-        }
-
-        #langSwitch .lang-btn + .lang-btn::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 30%;
-            bottom: 30%;
-            width: 1px;
-            background: rgba(159, 180, 200, 0.25);
-        }
-
-        #langSwitch .lang-btn:hover { color: #9fd4ff; }
-
-        #langSwitch .lang-btn.active {
-            color: #00d4ff;
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
-        }
 
         @media (max-width: 900px) {
             .proto-layout { grid-template-columns: 1fr; }
@@ -282,29 +241,17 @@
             }
         }
 
-        @media (max-width: 640px) {
-            #langSwitch {
-                position: static;
-                transform: none;
-                justify-content: center;
-                margin-top: 8px;
-            }
-        }
     </style>
 </head>
 <body>
 <header>
     <h1 id="project_title">协议命令参考</h1>
-    <div id="langSwitch">
-        <button type="button" class="lang-btn" data-lang="zh">中</button>
-        <button type="button" class="lang-btn" data-lang="en">EN</button>
-    </div>
 </header>
 
 <a href="/index.html" class="back-link">← 返回首页</a>
 
 <div class="content-container">
-    <div class="source-note" id="sourceNote"></div>
+    <div class="source-note" id="sourceNote" data-part="source">本页内容整理自 <a href="https://github.com/fuzziqersoftware/newserv" target="_blank" rel="noopener noreferrer">newserv</a> 项目的 <code>docs/</code> 目录，覆盖 PSOBB 客户端与服务器之间的网络协议及游戏内子命令（0x60/0x62/0x6C/0x6D 载荷）两部分。操作码与处理函数名保持英文，以便与源码/抓包记录对照。</div>
 
     <div class="proto-layout">
         <nav id="toc" aria-label="Table of Contents">

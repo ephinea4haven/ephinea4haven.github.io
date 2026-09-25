@@ -57,9 +57,11 @@ class ChallengeMapDataTest(unittest.TestCase):
 
     def test_areas_are_referenced_by_the_page(self) -> None:
         page = (ROOT / "guide/ep1ch.html").read_text(encoding="utf-8")
+        # The page names the Chinese map; the build swaps in each language's redraw.
         for area_id in EP1["areas"]:
+            self.assertIn(f"/assets/img/challenge/ep1/maps/zh/area_{int(area_id):02d}.svg", page)
             for language in LANGUAGES:
-                self.assertIn(f"/assets/img/challenge/ep1/maps/{language}/area_{int(area_id):02d}.svg", page)
+                self.assertTrue((ROOT / f"assets/img/challenge/ep1/maps/{language}/area_{int(area_id):02d}.svg").exists())
 
     def test_every_area_is_well_formed(self) -> None:
         for area_id, area in EP1["areas"].items():

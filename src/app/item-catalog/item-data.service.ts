@@ -2,10 +2,12 @@ import { inject, Injectable, InjectionToken, makeStateKey, TransferState } from 
 import { ItemDetail } from './catalog';
 import version from '../generated/item-catalog/version.json';
 
-export const ITEM_DETAIL_LOADER = new InjectionToken<(id: string) => Promise<ItemDetail>>('ITEM_DETAIL_LOADER', {
+/** Loads one item's detail; null when no such item exists. */
+export const ITEM_DETAIL_LOADER = new InjectionToken<(id: string) => Promise<ItemDetail | null>>('ITEM_DETAIL_LOADER', {
   providedIn: 'root',
   factory: () => async id => {
-    const response = await fetch(`/assets/data/items/${id}.json?v=${version.details}`);
+    const response = await fetch(`/assets/data/items/${encodeURIComponent(id)}.json?v=${version.details}`);
+    if (response.status === 404) return null;
     if (!response.ok) throw new Error(`Item request failed: ${response.status}`);
     return response.json();
   },
@@ -15,11 +17,12 @@ export class ItemDataService {
   private readonly transfer = inject(TransferState);
   private readonly loader = inject(ITEM_DETAIL_LOADER);
   private readonly cache = new Map<string, ItemDetail>();
-  async load(id: string): Promise<ItemDetail> {
+  async load(id: string): Promise<ItemDetail | null> {
     const key = makeStateKey<ItemDetail | null>(`item:${id}`);
     const cached = this.cache.get(id) || this.transfer.get(key, null);
     if (cached) { this.cache.set(id, cached); return cached; }
     const item = await this.loader(id);
+    if (!item) return null;
     if (item.id !== id) throw new Error('Item response identity mismatch');
     this.cache.set(id, item);
     this.transfer.set(key, item);

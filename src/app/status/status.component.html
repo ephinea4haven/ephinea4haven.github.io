@@ -1,12 +1,8 @@
 <page-chrome [title]="t('title')"></page-chrome>
 <main class="content-container status-shell">
-  <nav class="legacy-language" aria-label="语言">
-    <button type="button" [class.active]="language() === 'zh'" [attr.aria-pressed]="language() === 'zh'" (click)="setLanguage('zh')">中</button>
-    <button type="button" [class.active]="language() === 'en'" [attr.aria-pressed]="language() === 'en'" (click)="setLanguage('en')">EN</button>
-    <button type="button" [class.active]="language() === 'ja'" [attr.aria-pressed]="language() === 'ja'" (click)="setLanguage('ja')">日</button>
-  </nav>
-
-  @if (result; as result) {
+  @if (dataFailed) {
+    <p class="status-message error" role="alert">{{ t('loadFailed') }} <button type="button" (click)="retry()">{{ t('retry') }}</button></p>
+  } @else if (result; as result) {
     <div id="main" class="simulator-layout">
       <div class="boxcontainer character-column">
         <table><tbody><tr><th>{{ t('class') }}</th><td><select id="class" aria-label="Class" [(ngModel)]="selectedClass" (change)="classChanged()">@for (option of classes; track option.value) {<option [value]="option.value">{{ option.label }}</option>}</select></td></tr></tbody></table>
@@ -68,7 +64,7 @@
         <section><h3>{{ t('resists') }}</h3><dl class="resist-list"><div><dt><span class="resist-code">EFR</span><span class="resist-name">{{ t('fireResist') }}</span></dt><dd>{{ result.resists.fire }}</dd></div><div><dt><span class="resist-code">EIC</span><span class="resist-name">{{ t('iceResist') }}</span></dt><dd>{{ result.resists.ice }}</dd></div><div><dt><span class="resist-code">ETH</span><span class="resist-name">{{ t('thunderResist') }}</span></dt><dd>{{ result.resists.thunder }}</dd></div><div><dt><span class="resist-code">EDK</span><span class="resist-name">{{ t('darkResist') }}</span></dt><dd>{{ result.resists.dark }}</dd></div><div><dt><span class="resist-code">ELT</span><span class="resist-name">{{ t('lightResist') }}</span></dt><dd>{{ result.resists.light }}</dd></div></dl></section>
         <section><h3>{{ t('equipment') }}</h3><ul class="equipment-report">@for (item of [result.equipment.armor,result.equipment.shield,...result.equipment.units]; track $index) {<li [attr.data-equipment-code]="item.code" [class.invalid]="!item.equipable"><span>{{ itemName(item.name) }}</span><span>{{ item.stars ? '★'.repeat(item.stars) : '—' }} · {{ item.equipable ? t('valid') : t('invalid') }}</span></li>}</ul></section>
       </div>
-      <section class="effects"><h3>{{ t('effects') }}</h3>@if (effectLabels.length) {<ul>@for (effect of effectLabels; track effect) {<li>{{ effect }}</li>}</ul>} @else {<p>{{ t('noEffects') }}</p>}</section>
+      <section class="effects"><h3>{{ t('effects') }}</h3>@if (effectLabels.length) {<ul>@for (effect of effectLabels; track effect.text) {<li>{{ effect.item ? itemName(effect.text) : effect.text }}</li>}</ul>} @else {<p>{{ t('noEffects') }}</p>}</section>
       <p class="share-link"><span>{{ t('share') }}</span><a [href]="shareUrl">{{ currentClassName() }} · Lv. {{ level }} <span aria-hidden="true">→</span></a></p>
     </section>
   }

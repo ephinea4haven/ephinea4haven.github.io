@@ -10,8 +10,8 @@ import {
 } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { PageChromeComponent } from '../shared/page-chrome.component';
-import characterData from '../../../assets/js/chardata.json';
 
 type StatRow = readonly [number, number, number, number, number, number, number];
 type CharacterData = Record<string, { lv?: Record<string, StatRow> }>;
@@ -56,7 +56,8 @@ export class ChartableComponent {
   readonly quickLevels = [1, 50, 100, 150, 200];
   readonly requestedLevel = signal<number | null>(null);
   readonly highlightedLevel = signal<number | null>(null);
-  readonly data = characterData as unknown as CharacterData;
+  readonly data = inject(ActivatedRoute).snapshot.data['characterData'] as CharacterData | null;
+  retry(): void { location.reload(); }
 
   constructor() {
     this.meta.updateTag({ name: 'description', content: 'PSOBB 全等级人物能力表' });
@@ -67,7 +68,7 @@ export class ChartableComponent {
   }
 
   rowsFor(classId: string): readonly [string, StatRow][] {
-    return Object.entries(this.data[classId]?.lv ?? {});
+    return Object.entries(this.data?.[classId]?.lv ?? {});
   }
 
   selectClass(classId: string): void {
