@@ -1,17 +1,17 @@
-<page-chrome title="全等级人物能力表" back-text="← 返回首页"></page-chrome>
+<page-chrome [title]="text().title" [back-text]="text().backHome"></page-chrome>
 <main class="content-container tool-page chartable-page">
   @if (!data) {
-    <p class="load-error" role="alert">能力数据暂时未能加载，请检查网络后重试。 <button type="button" (click)="retry()">重新加载</button></p>
+    <p class="load-error" role="alert">{{ text().loadError }} <button type="button" (click)="retry()">{{ text().retry }}</button></p>
   } @else {
   <section class="class-picker" aria-labelledby="class-title">
     <div class="section-heading">
-      <h2 id="class-title">选择职业</h2>
-      <p>切换职业，查看 1–200 级能力值</p>
+      <h2 id="class-title">{{ text().choose }}</h2>
+      <p>{{ text().intro }}</p>
     </div>
-    <div class="class-tabs" role="tablist" aria-label="职业" (keydown)="onTabKeydown($event)">
+    <div class="class-tabs" role="tablist" [attr.aria-label]="text().class" (keydown)="onTabKeydown($event)">
       @for (group of groups; track group) {
         <div class="class-group" role="presentation">
-          <span class="group-label" aria-hidden="true">{{ group }}</span>
+          <span class="group-label" aria-hidden="true">{{ groupName(group) }}</span>
           <div class="group-tabs" role="presentation">
             @for (characterClass of classesIn(group); track characterClass.id) {
               <button type="button" role="tab" class="class-tab" [id]="'tab-' + characterClass.id"
@@ -19,7 +19,7 @@
                       [attr.tabindex]="selectedClass() === characterClass.id ? 0 : -1"
                       aria-controls="class-panel" (click)="selectClass(characterClass.id)">
                 <img [src]="'/assets/img/class/' + characterClass.code + '.png'" alt="" width="48" height="64">
-                <span class="class-label"><span class="class-code">{{ characterClass.code }}</span><span class="class-name">{{ characterClass.name }}</span></span>
+                <span class="class-label"><span class="class-code">{{ characterClass.code }}</span><span class="class-name">{{ className(characterClass) }}</span></span>
                 <span class="selected-mark" aria-hidden="true">✓</span>
               </button>
             }
@@ -32,36 +32,36 @@
   <section id="class-panel" role="tabpanel" [attr.aria-labelledby]="'tab-' + selectedClass()" tabindex="0">
     <div class="level-toolbar">
       <form class="jump-controls" (ngSubmit)="show()" novalidate>
-        <label for="levelInput">定位等级</label>
+        <label for="levelInput">{{ text().jumpLevel }}</label>
         <input id="levelInput" name="level" type="number" min="1" max="200" step="1" placeholder="1–200"
                [ngModel]="requestedLevel()" (ngModelChange)="requestedLevel.set($event); levelError.set('')"
                [attr.aria-invalid]="levelError() ? 'true' : null" aria-describedby="level-feedback">
-        <button type="submit" class="jump-btn">定位</button>
+        <button type="submit" class="jump-btn">{{ text().jump }}</button>
       </form>
-      <div class="quick-levels" aria-label="常用等级">
+      <div class="quick-levels" [attr.aria-label]="text().quick">
         @for (level of quickLevels; track level) {
           <button type="button" [attr.aria-pressed]="highlightedLevel() === level" (click)="jumpTo(level)">Lv. {{ level }}</button>
         }
       </div>
     </div>
-    <p id="level-feedback" class="level-feedback" [class.has-error]="levelError()" aria-live="polite">{{ levelError() || (highlightedLevel() ? '已定位 Lv. ' + highlightedLevel() + ' · 切换职业可比较同等级能力值' : '输入等级或选择常用等级，快速定位对应行') }}</p>
+    <p id="level-feedback" class="level-feedback" [class.has-error]="levelError()" aria-live="polite">{{ levelError() || (highlightedLevel() ? text().shown + highlightedLevel() + text().compare : text().hint) }}</p>
 
     @for (characterClass of classes; track characterClass.id) {
       @if (selectedClass() === characterClass.id) {
         <div class="table-heading">
-          <h2>{{ characterClass.code }} <span>{{ characterClass.name }}</span></h2>
-          <span>200 个等级</span>
+          <h2>{{ characterClass.code }} <span>{{ className(characterClass) }}</span></h2>
+          <span>{{ text().count }}</span>
         </div>
-        <p class="table-hint" id="table-hint">在表格内滚动查看全部等级；窄屏可左右滑动查看属性。</p>
-        <div class="table-container" role="region" [attr.aria-label]="characterClass.code + ' 全等级能力表'" aria-describedby="table-hint" tabindex="0">
+        <p class="table-hint" id="table-hint">{{ text().scroll }}</p>
+        <div class="table-container" role="region" [attr.aria-label]="characterClass.code + text().table" aria-describedby="table-hint" tabindex="0">
           <table #statTable [id]="characterClass.id">
-            <caption>{{ characterClass.code }}（{{ characterClass.name }}）1–200 级能力值</caption>
+            <caption>{{ characterClass.code }}{{ siteLanguage.language() === 'zh' ? '（' + className(characterClass) + '）' : ' ' }}{{ text().caption }}</caption>
             <thead>
               <tr>
-                <th scope="col">等级<span>Lv.</span></th><th scope="col">攻击力<span>ATP</span></th>
-                <th scope="col">防御力<span>DFP</span></th><th scope="col">精神力<span>MST</span></th>
-                <th scope="col">命中<span>ATA</span></th><th scope="col">回避力<span>EVP</span></th>
-                <th scope="col">运气<span>LCK</span></th><th scope="col">HP<span>&nbsp;</span></th>
+                <th scope="col">{{ text().level }}<span>Lv.</span></th><th scope="col">{{ text().atp }}<span>ATP</span></th>
+                <th scope="col">{{ text().dfp }}<span>DFP</span></th><th scope="col">{{ text().mst }}<span>MST</span></th>
+                <th scope="col">{{ text().ata }}<span>ATA</span></th><th scope="col">{{ text().evp }}<span>EVP</span></th>
+                <th scope="col">{{ text().lck }}<span>LCK</span></th><th scope="col">HP<span>&nbsp;</span></th>
               </tr>
             </thead>
             <tbody>

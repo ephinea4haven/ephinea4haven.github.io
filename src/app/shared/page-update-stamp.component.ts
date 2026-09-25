@@ -5,7 +5,7 @@ import { formatUtc8Timestamp } from './utc8-timestamp';
   selector: 'page-update-stamp',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <span>最后更新</span>
+    <span>{{ label() }}</span>
     <time [attr.datetime]="timestamp()">{{ localizedTimestamp() }}</time>
   `,
   styles: `
@@ -96,5 +96,7 @@ import { formatUtc8Timestamp } from './utc8-timestamp';
 })
 export class PageUpdateStampComponent {
   readonly timestamp = input.required<string>();
-  readonly localizedTimestamp = computed(() => formatUtc8Timestamp(this.timestamp()));
+  readonly language = input<'zh' | 'en' | 'ja'>('zh');
+  readonly label = computed(() => ({ zh: '最后更新', en: 'Last updated', ja: '最終更新' })[this.language()]);
+  readonly localizedTimestamp = computed(() => formatUtc8Timestamp(this.timestamp(), this.language()));
 }

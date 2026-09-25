@@ -19,11 +19,17 @@
     "data/200.html": {
       "title": {
         "en": "Level 200 base stats | Haven PSOBB Wiki",
-        "ja": "Lv200 基礎ステータス | Haven PSOBB Wiki"
+        "ja": "Lv200基礎ステータス | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Compare base stats for every PSOBB class at level 200.",
+        "ja": "PSOBBの各職業のLv200基礎ステータスを比較。"
+      }
     },
     "data/bb_items.html": {
       "title": {
@@ -31,8 +37,14 @@
         "ja": "アイテムコード表 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB item codes and a complete /makeitem command reference.",
+        "ja": "PSOBBのアイテムコードと/makeitemコマンドのリファレンス。"
+      }
     },
     "data/bdp": {
       "title": {
@@ -49,68 +61,110 @@
         "ja": "PSOBB ブラックペーパーズディールのドロップ表"
       }
     },
-    "data/en2chinese.html": {
-      "title": {
-        "en": "English–Chinese item names | Haven PSOBB Wiki",
-        "ja": "アイテム名 英中対照表 | Haven PSOBB Wiki"
-      },
-      "languages": [
-        "zh"
-      ]
-    },
     "data/enemy_weapon_hit.html": {
       "title": {
-        "en": "Adding Hit% to weapons | Haven PSOBB Wiki",
-        "ja": "武器への Hit% 付与 | Haven PSOBB Wiki"
+        "en": "Enemy weapon conversion and Hit upgrades | Haven PSOBB Wiki",
+        "ja": "エネミーパーツの加工とHit追加 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Convert PSOBB enemy parts into weapons and add up to 50% Hit with Dr. Montague.",
+        "ja": "エネミーパーツの加工とモンタギュー博士による最大50%のHit追加手順。"
+      }
     },
     "data/equipment_technique_boosts.html": {
       "title": {
-        "en": "Equipment technique boosts | Haven PSOBB Wiki",
-        "ja": "装備のテクニック強化 | Haven PSOBB Wiki"
+        "en": "Equipment Technique boosts | Haven PSOBB Wiki",
+        "ja": "装備によるテクニック補正 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB equipment bonuses to Technique damage, range and piercing.",
+        "ja": "PSOBBの装備によるテクニックのダメージ・範囲補正と貫通効果。"
+      }
     },
     "data/gallons_roulette.html": {
       "title": {
-        "en": "Gallon's shop roulette | Haven PSOBB Wiki",
-        "ja": "ギャロンの店のルーレット | Haven PSOBB Wiki"
+        "en": "Gallon’s Roulette | Haven PSOBB Wiki",
+        "ja": "ガロンズルーレット | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Gallon’s Roulette prizes, weapon probabilities and Hit percentages in PSOBB.",
+        "ja": "PSOBBのガロンズルーレットの景品、武器の抽選確率とHit属性値。"
+      }
+    },
+    "data/item-names.html": {
+      "title": {
+        "en": "Item names in Chinese, Japanese and English | Haven PSOBB Wiki",
+        "ja": "アイテム名対照表（中日英） | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Look up PSOBB item names side by side in Chinese, Japanese and English.",
+        "ja": "PSOBB のアイテム名を中国語・日本語・英語で並べて調べられます。"
+      }
     },
     "data/itempmt.html": {
       "title": {
         "en": "ItemPMT item parameter table | Haven PSOBB Wiki",
-        "ja": "ItemPMT アイテムパラメータ表 | Haven PSOBB Wiki"
+        "ja": "ItemPMTアイテムパラメータ表 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB item parameters, equipment requirements and ItemPMT binary structures.",
+        "ja": "PSOBBのアイテムパラメータ、装備条件とItemPMTのバイナリ構造。"
+      }
     },
     "data/itempt.html": {
       "title": {
         "en": "ItemPT common drop rules | Haven PSOBB Wiki",
-        "ja": "ItemPT 通常ドロップ規則 | Haven PSOBB Wiki"
+        "ja": "ItemPT通常ドロップ規則 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB common drops, weapon attributes and ItemPT data structures.",
+        "ja": "PSOBBの通常ドロップ、武器属性とItemPTのデータ構造。"
+      }
     },
     "data/itemrt.html": {
       "title": {
         "en": "ItemRT rare drop table | Haven PSOBB Wiki",
-        "ja": "ItemRT レアドロップ表 | Haven PSOBB Wiki"
+        "ja": "ItemRTレアドロップ表 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB ItemRT rare drop tables, probability encoding and data structures.",
+        "ja": "PSOBBのItemRTレアドロップ表、確率表現とデータ構造。"
+      }
     },
     "data/monsters.html": {
       "title": {
@@ -118,17 +172,29 @@
         "ja": "エネミー周回ガイド | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Ephinea PSOBB monster farming quests, routes and enemy counts.",
+        "ja": "Ephinea PSOBBのエネミー周回クエスト、ルートと出現数。"
+      }
     },
     "data/price_guide.html": {
       "title": {
-        "en": "Price guide | Haven PSOBB Wiki",
-        "ja": "アイテム相場表 | Haven PSOBB Wiki"
+        "en": "Item price guide | Haven PSOBB Wiki",
+        "ja": "アイテム価格ガイド | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Reference prices for items traded on Ephinea PSOBB.",
+        "ja": "Ephinea PSOBBで取引されるアイテムの参考価格。"
+      }
     },
     "data/prizelist": {
       "title": {
@@ -166,71 +232,119 @@
         "ja": "クエスト一覧 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Ephinea PSOBB quests grouped by episode and quest category.",
+        "ja": "Ephinea PSOBBのクエストをエピソードと分類別に掲載。"
+      }
     },
     "data/weapon_special_reduction.html": {
       "title": {
-        "en": "Weapon special attack modifiers | Haven PSOBB Wiki",
-        "ja": "武器特殊攻撃の補正 | Haven PSOBB Wiki"
+        "en": "Weapon special reduction | Haven PSOBB Wiki",
+        "ja": "エクストラアタックの減衰 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB weapon special reduction rules, multipliers and affected weapons.",
+        "ja": "PSOBBのエクストラアタック減衰のルール、倍率と対象武器。"
+      }
     },
     "event/anniversary.html": {
-      "title": {
-        "en": "Anniversary events | Haven PSOBB Wiki",
-        "ja": "周年記念イベント | Haven PSOBB Wiki"
-      },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "title": {
+        "en": "Anniversary event | Ephinea PSOBB",
+        "ja": "周年イベント | Ephinea PSOBB"
+      },
+      "description": {
+        "en": "Ephinea PSOBB anniversary event archive: rules, quests, rewards and yearly changes.",
+        "ja": "Ephinea PSOBBの周年イベントアーカイブ。ルール、クエスト、報酬、年ごとの変更を紹介。"
+      }
     },
     "event/christmas.html": {
-      "title": {
-        "en": "Christmas events | Haven PSOBB Wiki",
-        "ja": "クリスマスイベント | Haven PSOBB Wiki"
-      },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "title": {
+        "en": "Christmas event | Ephinea PSOBB",
+        "ja": "クリスマスイベント | Ephinea PSOBB"
+      },
+      "description": {
+        "en": "Ephinea PSOBB christmas event archive: rules, quests, rewards and yearly changes.",
+        "ja": "Ephinea PSOBBのクリスマスイベントアーカイブ。ルール、クエスト、報酬、年ごとの変更を紹介。"
+      }
     },
     "event/easter.html": {
-      "title": {
-        "en": "Easter events | Haven PSOBB Wiki",
-        "ja": "イースターイベント | Haven PSOBB Wiki"
-      },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "title": {
+        "en": "Easter event | Ephinea PSOBB",
+        "ja": "イースターイベント | Ephinea PSOBB"
+      },
+      "description": {
+        "en": "Ephinea PSOBB easter event archive: rules, quests, rewards and yearly changes.",
+        "ja": "Ephinea PSOBBのイースターイベントアーカイブ。ルール、クエスト、報酬、年ごとの変更を紹介。"
+      }
     },
     "event/event.html": {
-      "title": {
-        "en": "Events | Haven PSOBB Wiki",
-        "ja": "イベント | Haven PSOBB Wiki"
-      },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "title": {
+        "en": "Events | Ephinea PSOBB",
+        "ja": "イベント | Ephinea PSOBB"
+      },
+      "description": {
+        "en": "Ephinea PSOBB events archive: rules, quests, rewards and yearly changes.",
+        "ja": "Ephinea PSOBBのイベントアーカイブ。ルール、クエスト、報酬、年ごとの変更を紹介。"
+      }
     },
     "event/halloween.html": {
-      "title": {
-        "en": "Halloween events | Haven PSOBB Wiki",
-        "ja": "ハロウィンイベント | Haven PSOBB Wiki"
-      },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "title": {
+        "en": "Halloween event | Ephinea PSOBB",
+        "ja": "ハロウィンイベント | Ephinea PSOBB"
+      },
+      "description": {
+        "en": "Ephinea PSOBB halloween event archive: rules, quests, rewards and yearly changes.",
+        "ja": "Ephinea PSOBBのハロウィンイベントアーカイブ。ルール、クエスト、報酬、年ごとの変更を紹介。"
+      }
     },
     "event/valentines.html": {
-      "title": {
-        "en": "Valentine's events | Haven PSOBB Wiki",
-        "ja": "バレンタインイベント | Haven PSOBB Wiki"
-      },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "title": {
+        "en": "Valentine’s event | Ephinea PSOBB",
+        "ja": "バレンタインイベント | Ephinea PSOBB"
+      },
+      "description": {
+        "en": "Ephinea PSOBB valentine’s event archive: rules, quests, rewards and yearly changes.",
+        "ja": "Ephinea PSOBBのバレンタインイベントアーカイブ。ルール、クエスト、報酬、年ごとの変更を紹介。"
+      }
     },
     "guide/acronym.html": {
       "title": {
@@ -268,8 +382,14 @@
         "ja": "バナー | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Ephinea PSOBB banners: types, the rare drop trigger list and personal banners",
+        "ja": "Ephinea PSOBB のバナー：種類、レアドロップで告知される条件と個人向けのバナー"
+      }
     },
     "guide/class-guide.html": {
       "title": {
@@ -376,21 +496,6 @@
         "ja": "PSOBB EP2 チャレンジモード攻略"
       }
     },
-    "guide/ephinea_rules.html": {
-      "title": {
-        "en": "Game and Forum Rules | Haven PSOBB Wiki",
-        "ja": "ゲームと掲示板のルール | Haven PSOBB Wiki"
-      },
-      "languages": [
-        "zh",
-        "en",
-        "ja"
-      ],
-      "description": {
-        "en": "Ephinea game server and forum rules",
-        "ja": "Ephinea のゲームサーバーと掲示板のルール"
-      }
-    },
     "guide/ephinea.html": {
       "title": {
         "en": "About Ephinea | Haven PSOBB Wiki",
@@ -404,6 +509,21 @@
       "description": {
         "en": "What the Ephinea PSOBB server offers",
         "ja": "Ephinea の PSOBB サーバーの特徴"
+      }
+    },
+    "guide/ephinea_rules.html": {
+      "title": {
+        "en": "Game and Forum Rules | Haven PSOBB Wiki",
+        "ja": "ゲームと掲示板のルール | Haven PSOBB Wiki"
+      },
+      "languages": [
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Ephinea game server and forum rules",
+        "ja": "Ephinea のゲームサーバーと掲示板のルール"
       }
     },
     "guide/errorcode.html": {
@@ -532,8 +652,14 @@
         "ja": "海底プラント完全攻略 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB Seabed guide: 8 map variants, routes, enemy handling, equipment and pace tips",
+        "ja": "PSOBB 海底プラント完全攻略：8 種類のマップ、ルート、敵の処理、装備と効率のコツ"
+      }
     },
     "guide/timezone.html": {
       "title": {
@@ -553,92 +679,152 @@
     "guide/volopt.html": {
       "title": {
         "en": "Vol Opt monitor damage bug | Haven PSOBB Wiki",
-        "ja": "ヴォル・オプト モニターのダメージバグ | Haven PSOBB Wiki"
+        "ja": "ボルオプトのモニターダメージバグ | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB Vol Opt form 1 Monitor damage bug and the Gizonde stunlock strategy",
+        "ja": "PSOBB ボルオプト第 1 形態のモニターダメージバグとギゾンデのスタンロック戦略"
+      }
     },
     "tools/aim.html": {
       "title": {
-        "en": "Aim rotation mechanics | Haven PSOBB Wiki",
-        "ja": "照準回転の仕組み | Haven PSOBB Wiki"
+        "en": "🎯 Auto-facing in combos | Haven PSOBB Wiki",
+        "ja": "🎯 コンボ中の自動旋回 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "How auto-facing affects PSOBB combos, snap aim and palette cancelling.",
+        "ja": "PSOBBのコンボ中の自動旋回、スナップエイム、パレットキャンセルの解説。"
+      }
     },
     "tools/aim2.html": {
       "title": {
-        "en": "Aim rotation mechanics (revised) | Haven PSOBB Wiki",
-        "ja": "照準回転の仕組み（改訂版） | Haven PSOBB Wiki"
+        "en": "🎯 Auto-facing in combos (revised) | Haven PSOBB Wiki",
+        "ja": "🎯 コンボ中の自動旋回（改訂版） | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Revised PSOBB auto-facing mechanics, awaiting in-game verification.",
+        "ja": "PSOBBの自動旋回の改訂解説。ゲーム内での実測確認待ち。"
+      }
     },
     "tools/cc.html": {
-      "title": {
-        "en": "Combo Calculator - PSOStats",
-        "ja": "Combo Calculator - PSOStats"
-      },
       "languages": [
-        "en"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "title": {
+        "en": "Combo Calculator Multiplayer",
+        "ja": "コンボ計算機（マルチモード）"
+      },
+      "description": {
+        "en": "Calculate PSOBB combo damage and accuracy in multiplayer.",
+        "ja": "PSOBBのマルチモードでコンボのダメージと命中率を計算します。"
+      }
     },
     "tools/ccopm.html": {
-      "title": {
-        "en": "Combo Calculator - PSOStats",
-        "ja": "Combo Calculator - PSOStats"
-      },
       "languages": [
-        "en"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "title": {
+        "en": "Combo Calculator OPM",
+        "ja": "コンボ計算機（ソロモード）"
+      },
+      "description": {
+        "en": "Calculate PSOBB combo damage and accuracy in one-person mode.",
+        "ja": "PSOBBのソロモードでコンボのダメージと命中率を計算します。"
+      }
     },
     "tools/chartable.html": {
+      "languages": [
+        "zh",
+        "en",
+        "ja"
+      ],
       "title": {
         "en": "Character stats by level | Haven PSOBB Wiki",
-        "ja": "全レベル キャラクター能力表 | Haven PSOBB Wiki"
+        "ja": "レベル別キャラクター能力表 | Haven PSOBB Wiki"
       },
-      "languages": [
-        "zh"
-      ]
+      "description": {
+        "en": "PSOBB character stats for levels 1–200.",
+        "ja": "PSOBB全クラスのLv1〜200の能力値。"
+      }
     },
     "tools/equipment.html": {
       "title": {
-        "en": "Endgame equipment by class | Haven PSOBB Wiki",
-        "ja": "全職業 最終装備のおすすめ | Haven PSOBB Wiki"
+        "en": "Endgame equipment for every class | Haven PSOBB Wiki",
+        "ja": "全クラスの最終装備候補 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Recommended endgame weapons, frames, barriers and units for all twelve PSOBB classes.",
+        "ja": "PSOBB全12クラスの最終装備候補。武器・鎧・盾・ユニットを用途別に紹介。"
+      }
     },
     "tools/id.html": {
-      "title": {
-        "en": "\"Sif\" The Section ID Finder",
-        "ja": "\"Sif\" The Section ID Finder"
-      },
       "languages": [
-        "en"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "title": {
+        "en": "Section ID Finder | Haven PSOBB Wiki",
+        "ja": "セクション ID 検索 | Haven PSOBB Wiki"
+      },
+      "description": {
+        "en": "Find your PSO Section ID from your character name and class.",
+        "ja": "キャラクター名とクラスからPSOのセクションIDを調べます。"
+      }
     },
     "tools/mag.html": {
       "title": {
         "en": "Mag evolution chart | Haven PSOBB Wiki",
-        "ja": "マグ進化チャート | Haven PSOBB Wiki"
+        "ja": "マグ進化図 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB Mag evolution, feeding tables, colours and support triggers.",
+        "ja": "PSOBBのマグ進化、餌表、カラーと補助効果の発動条件。"
+      }
     },
     "tools/materialplan.html": {
       "title": {
-        "en": "Material allocation plans | Haven PSOBB Wiki",
-        "ja": "マテリアル配分プラン | Haven PSOBB Wiki"
+        "en": "Material plans | Haven PSOBB Wiki",
+        "ja": "マテリアル配分 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Material, Mag and equipment plans for all twelve PSOBB classes.",
+        "ja": "PSOBB全12クラスのマテリアル・マグ・装備の育成プラン。"
+      }
     },
     "tools/mechanics.html": {
       "title": {
@@ -668,21 +854,33 @@
     },
     "tools/survial_hp.html": {
       "title": {
-        "en": "Fixed damage values | Haven PSOBB Wiki",
+        "en": "Fixed damage reference | Haven PSOBB Wiki",
         "ja": "固定ダメージ一覧 | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "Ultimate enemy fixed and elemental damage in One Person and multiplayer modes.",
+        "ja": "アルティメットの一人用・通常モードにおけるエネミーの固定・属性ダメージ一覧。"
+      }
     },
     "tools/v50x.html": {
       "title": {
-        "en": "EX activation rate and V50X units | Haven PSOBB Wiki",
-        "ja": "EX 発動率と V50X | Haven PSOBB Wiki"
+        "en": "Special activation rates and V50X units | Haven PSOBB Wiki",
+        "ja": "特殊攻撃の発動率とV50Xユニット | Haven PSOBB Wiki"
       },
       "languages": [
-        "zh"
-      ]
+        "zh",
+        "en",
+        "ja"
+      ],
+      "description": {
+        "en": "PSOBB special activation rates, resistance, reductions and V50X unit effects.",
+        "ja": "PSOBBの特殊攻撃発動率、耐性、補正とV50Xユニットの効果。"
+      }
     }
   }
 }

@@ -1,0 +1,88 @@
+<!-- English text for /guide/volopt.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+
+        <h2>The Vol Opt form 1 Monitor damage bug</h2>
+
+        <div class="intro-note">
+            <p>Vol Opt's first form has a <strong>damage transfer bug</strong>: when you hit a Monitor with an attack technique (other than Megid) or a physical attack, the damage passes to the core in an unusual way. The transfer formula is:</p>
+            <p style="margin-top:8px"><code>Damage = (ATP - DFP) / 5</code></p>
+            <p style="margin-top:8px">In this formula:</p>
+            <ul style="margin-top:4px; margin-bottom:0">
+                <li>the weapon's <strong>Machine %</strong> counts towards effective ATP as usual;</li>
+                <li>the global 0.9 damage factor is <strong>not</strong> applied;</li>
+                <li>elemental resistance, cane boosts and technique power <strong>make no difference</strong>.</li>
+            </ul>
+            <p style="margin-top:12px">With this bug, equipping a high-ATP weapon and casting <strong>Gizonde</strong> to lock Vol Opt in place defeats the first form very efficiently. Each Gizonde hit causes a brief stun, so casting it repeatedly keeps the boss unable to act (<strong>Gizonde stunlock</strong>).</p>
+        </div>
+
+        <h3>Choosing a weapon</h3>
+        <p>The table covers several common weapon setups. It assumes the character's ATP is maxed and a <span data-item-en="Combat Gear"></span> (+35 ATP) is equipped:</p>
+        <ul data-item-translation-list>
+            <li><span class="weapon-sword">&#9876;</span> <strong data-item-name="Excalibur">Excalibur</strong> and <strong data-item-name="Galatine">Galatine</strong>: high-ATP swords, the most common choice</li>
+            <li><span class="weapon-fist">&#9733;</span> <strong data-item-name="Sacred Duster">Sacred Duster</strong> and <strong data-item-name="Angry Fist">Angry Fist</strong>: fist weapons; male characters' bare-handed casting animation is the fastest, making the stun rhythm easier to keep</li>
+            <li><span class="set-name">&#9670;</span> <strong data-item-name="Red Saber">Red Saber</strong> + <strong data-item-name="Crimson Coat">Crimson Coat</strong> (CC) and <strong data-item-name="Orotiagito">Orotiagito</strong> + <strong data-item-name="Samurai Armor">Samurai Armor</strong> (SA): set bonuses add extra ATP</li>
+            <li><span class="weapon-sword">&#9876;</span> <strong data-item-name="Vivienne">Vivienne</strong>: an option for FOnewearl</li>
+        </ul>
+
+        <hr>
+
+        <h2>Gizonde casts needed</h2>
+
+        <div class="tab-group">
+            <div class="tab-bar" id="mode-tabs">
+                <button class="active" data-mode="normal">Multiplayer room</button>
+                <button data-mode="one_person">One-person room</button>
+            </div>
+        </div>
+
+        <div class="tab-group">
+            <div class="tab-bar" id="class-tabs">
+                <button class="active" data-class="humar">HUmar</button>
+                <button data-class="hunewearl">HUnewearl</button>
+                <button data-class="ramar">RAmar</button>
+                <button data-class="ramarl">RAmarl</button>
+                <button data-class="fomar">FOmar</button>
+                <button data-class="fomarl">FOmarl</button>
+                <button data-class="fonewm">FOnewm</button>
+                <button data-class="fonewearl">FOnewearl</button>
+            </div>
+        </div>
+
+        <div class="tab-group">
+            <div class="tab-bar" id="shifta-tabs"></div>
+        </div>
+
+        <div style="overflow-x:auto;">
+            <table id="cast-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Weapon</th>
+                        <th colspan="19" style="color:#fbbf24;">Machine percentage [%]</th>
+                    </tr>
+                    <tr id="pct-header"></tr>
+                </thead>
+                <tbody id="cast-body"></tbody>
+            </table>
+        </div>
+
+        <p id="no-data-msg" style="display:none; color:#94a3b8; text-align:center; padding:20px 0;">
+            No data for this combination
+        </p>
+
+        <hr>
+
+        <h3>Notes</h3>
+        <ul>
+            <li><strong>Machine %</strong> is the weapon's Machine attribute percentage. It counts towards effective ATP, so it changes how much damage each Gizonde passes through the bug. The higher the percentage, the fewer casts you need.</li>
+            <li><strong>Shifta level</strong> (S3/S15/S20/S30) sets the physical attack bonus. Each class has a different maximum Shifta level it can learn on Ultimate.</li>
+            <li><strong>Normal</strong> is multiplayer-room data and <strong>One person</strong> is one-person-room data (enemy HP differs).</li>
+            <li>Because of latency, stunning the core can be unreliable online. Consider a fist weapon then, since male characters' bare-handed casting animation is the fastest of any character.</li>
+        </ul>
+
+        <div class="source-link">
+            Source: <a href="https://wiki.pioneer2.net/w/Vol_Opt" target="_blank">wiki.pioneer2.net/w/Vol_Opt</a>
+        </div>
+
+
+    </section>

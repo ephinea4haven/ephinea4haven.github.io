@@ -40,10 +40,10 @@ assert.match(standard, /Photon Drop\s+→ 光子微晶 PD/);
 
 for (const expected of [
   '<title>能力药配点 | Ephinea PSOBB</title>',
-  '<page-chrome title="能力药配点">',
+  '<page-chrome data-i18n-title="materialPlan.title" title="能力药配点">',
   '通用（以最少插件达到属性上限）',
   '<th rowspan="2">玛古</th>',
-  '<th>攻击力药</th>',
+  '<th><span data-item-en="Power Material"></span></th>',
   '<th><span data-item-en="Luck Material"></span></th>',
 ]) assert.ok(materialPlan.includes(expected), `material plan is missing ${JSON.stringify(expected)}`);
 

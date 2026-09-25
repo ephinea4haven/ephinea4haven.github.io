@@ -1,0 +1,88 @@
+<!-- Japanese text for /guide/volopt.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+
+        <h2>ボルオプト第 1 形態のモニターダメージバグ</h2>
+
+        <div class="intro-note">
+            <p>ボルオプト第 1 形態には<strong>ダメージ伝達のバグ</strong>があります。モニターに攻撃テクニック（メギドを除く）か物理攻撃を当てると、ダメージが通常とは違う形でコアに伝わります。伝達の式は次のとおりです：</p>
+            <p style="margin-top:8px"><code>ダメージ = (ATP - DFP) / 5</code></p>
+            <p style="margin-top:8px">この式では：</p>
+            <ul style="margin-top:4px; margin-bottom:0">
+                <li>武器の <strong>Machine %</strong> は通常どおり有効 ATP に加算されます</li>
+                <li>全体のダメージ係数 0.9 は<strong>適用されません</strong></li>
+                <li>属性耐性、杖のブースト、テクニックの威力は<strong>関係ありません</strong></li>
+            </ul>
+            <p style="margin-top:12px">このバグを利用し、ATP の高い武器を装備して<strong>ギゾンデ</strong>でボルオプトを足止めすると、第 1 形態を非常に効率よく倒せます。ギゾンデが当たるたびに短いのけぞり（スタン）が起きるので、繰り返し唱えればボスを動けない状態に保てます（<strong>ギゾンデのスタンロック</strong>）。</p>
+        </div>
+
+        <h3>武器の選び方</h3>
+        <p>表にはよく使われる武器の組み合わせを載せています。数値はキャラクターの ATP が最大で、<span data-item-en="Combat Gear"></span>（ATP +35）を装備している前提です：</p>
+        <ul data-item-translation-list>
+            <li><span class="weapon-sword">&#9876;</span> <strong data-item-name="Excalibur">Excalibur</strong>と<strong data-item-name="Galatine">Galatine</strong>：ATP の高い剣で、最もよく使われます</li>
+            <li><span class="weapon-fist">&#9733;</span> <strong data-item-name="Sacred Duster">Sacred Duster</strong>と<strong data-item-name="Angry Fist">Angry Fist</strong>：拳武器。男性キャラクターの素手の詠唱モーションが最も速く、スタンのリズムを保ちやすくなります</li>
+            <li><span class="set-name">&#9670;</span> <strong data-item-name="Red Saber">Red Saber</strong> + <strong data-item-name="Crimson Coat">Crimson Coat</strong>（CC）と <strong data-item-name="Orotiagito">Orotiagito</strong> + <strong data-item-name="Samurai Armor">Samurai Armor</strong>（SA）：セット効果で ATP が上乗せされます</li>
+            <li><span class="weapon-sword">&#9876;</span> <strong data-item-name="Vivienne">Vivienne</strong>：FOnewearl が使える選択肢です</li>
+        </ul>
+
+        <hr>
+
+        <h2>ギゾンデの詠唱回数表</h2>
+
+        <div class="tab-group">
+            <div class="tab-bar" id="mode-tabs">
+                <button class="active" data-mode="normal">マルチプレイの部屋</button>
+                <button data-mode="one_person">1 人用の部屋</button>
+            </div>
+        </div>
+
+        <div class="tab-group">
+            <div class="tab-bar" id="class-tabs">
+                <button class="active" data-class="humar">HUmar</button>
+                <button data-class="hunewearl">HUnewearl</button>
+                <button data-class="ramar">RAmar</button>
+                <button data-class="ramarl">RAmarl</button>
+                <button data-class="fomar">FOmar</button>
+                <button data-class="fomarl">FOmarl</button>
+                <button data-class="fonewm">FOnewm</button>
+                <button data-class="fonewearl">FOnewearl</button>
+            </div>
+        </div>
+
+        <div class="tab-group">
+            <div class="tab-bar" id="shifta-tabs"></div>
+        </div>
+
+        <div style="overflow-x:auto;">
+            <table id="cast-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2">武器</th>
+                        <th colspan="19" style="color:#fbbf24;">Machine の割合 [%]</th>
+                    </tr>
+                    <tr id="pct-header"></tr>
+                </thead>
+                <tbody id="cast-body"></tbody>
+            </table>
+        </div>
+
+        <p id="no-data-msg" style="display:none; color:#94a3b8; text-align:center; padding:20px 0;">
+            この組み合わせのデータはありません
+        </p>
+
+        <hr>
+
+        <h3>補足</h3>
+        <ul>
+            <li><strong>Machine %</strong> は武器の Machine 属性の割合で、有効 ATP に加算されるため、バグで伝わるギゾンデ 1 回あたりのダメージが変わります。割合が高いほど必要な詠唱回数は減ります。</li>
+            <li><strong>シフタのレベル</strong>（S3/S15/S20/S30）は物理攻撃力のボーナスを左右します。Ultimate で覚えられるシフタの最大レベルはクラスごとに違います。</li>
+            <li><strong>Normal</strong> はマルチプレイの部屋、<strong>One person</strong> は 1 人用の部屋のデータです（敵の HP が異なります）。</li>
+            <li>ラグのため、オンラインではコアの足止めが安定しないことがあります。その場合は拳武器を検討してください。男性キャラクターの素手の詠唱モーションは全キャラクターで最も速いためです。</li>
+        </ul>
+
+        <div class="source-link">
+            データの出典：<a href="https://wiki.pioneer2.net/w/Vol_Opt" target="_blank">wiki.pioneer2.net/w/Vol_Opt</a>
+        </div>
+
+
+    </section>

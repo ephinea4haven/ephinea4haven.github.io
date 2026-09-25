@@ -16,7 +16,7 @@
       data-title-name="Halloween 活动">
 <section class="archive-masthead"
          style="--masthead-image: url('/assets/img/event/halloween/lobby.webp')"
-         aria-labelledby="eventTitle">
+         aria-labelledby="eventTitle" data-part="content0">
     <div class="archive-masthead-main">
         <div class="archive-masthead-copy">
             <a class="archive-back" href="./event.html">返回活动页</a>
@@ -28,16 +28,16 @@
     <nav id="yearNav" class="archive-year-nav" aria-label="Halloween 活动年份"></nav>
 </section>
 
-<main>
+<main data-part="content1">
     <section class="archive-overview">
         <p class="archive-lead">
-            Halloween 是持续约两周的小型活动。服务器全图掉落 Halloween Cookie；
+            Halloween 是持续约两周的小型活动。服务器全图掉落 <span data-item-en="Halloween Cookie"></span>；
             每支队伍消耗 1 枚 Cookie，就能启动一场全年可选但需要门票的高密度 Halloween Quest。
         </p>
 
         <section class="archive-section">
             <div class="archive-section-header">
-                <div><span class="section-kicker">Cookie rates</span><h2>Halloween Cookie 基础掉率</h2></div>
+                <div><span class="section-kicker">Cookie rates</span><h2><span data-item-en="Halloween Cookie"></span> 基础掉率</h2></div>
                 <p>Cookie 不受普通掉率 boost 影响；活动期间 Halloween 分类任务自身提供 +20%。</p>
             </div>
             <div class="rate-grid">
@@ -86,13 +86,13 @@
 
         <section class="archive-section">
             <div class="archive-section-header">
-                <div><span class="section-kicker">Hallo Rappy</span><h2>Jack-O'-Lantern 奖池</h2></div>
+                <div><span class="section-kicker">Hallo Rappy</span><h2><span data-item-en="Jack-O'-Lantern"></span> 奖池</h2></div>
                 <p>VR Temple 的 Hallo Rappy 取代 Love Rappy，并会额外判定 Love Rappy 的稀有掉落。</p>
             </div>
             <div class="shop-columns">
-                <article class="shop-column"><strong>经典 Mag Cell</strong><ul><li>Cell of MAG 213</li><li>Cell of MAG 502</li><li>Heart of Chu Chu / Opa Opa / Kapu Kapu</li><li>Heart of Chao / Pian</li><li>Parts of RoboChao</li></ul></article>
-                <article class="shop-column"><strong>Ephinea Mag Kit</strong><ul><li>Mag Kit</li><li>Varuna Kit</li><li>Kalki Kit</li><li>Vritra Kit</li></ul></article>
-                <article class="shop-column"><strong>活动限制</strong><ul><li>Cookie：全图敌人掉落</li><li>Jack-O'-Lantern：Hallo Rappy 掉落</li><li>箱子与被吓跑的 Rappy 不掉 Cookie</li><li>Classic Ship 不含 Ephinea 原创 Mag Kit</li></ul></article>
+                <article class="shop-column"><strong>经典 Mag Cell</strong><ul><li><span data-item-en="Cell of MAG 213"></span></li><li><span data-item-en="Cell of MAG 502"></span></li><li><span data-item-en="Heart of Chu Chu"></span> / Opa Opa / <span data-item-en="KAPU KAPU"></span></li><li><span data-item-en="Heart of Chao"></span> / <span data-item-en="PIAN"></span></li><li><span data-item-en="Parts of RoboChao"></span></li></ul></article>
+                <article class="shop-column"><strong>Ephinea <span data-item-en="Mag Kit"></span></strong><ul><li><span data-item-en="Mag Kit"></span></li><li><span data-item-en="Varuna Kit"></span></li><li><span data-item-en="Kalki Kit"></span></li><li><span data-item-en="Vritra Kit"></span></li></ul></article>
+                <article class="shop-column"><strong>活动限制</strong><ul><li>Cookie：全图敌人掉落</li><li><span data-item-en="Jack-O'-Lantern"></span>：Hallo Rappy 掉落</li><li>箱子与被吓跑的 Rappy 不掉 Cookie</li><li>Classic Ship 不含 Ephinea 原创 <span data-item-en="Mag Kit"></span></li></ul></article>
             </div>
         </section>
 
@@ -120,7 +120,7 @@
     <section id="yearContent" class="archive-content"><p>载入中…</p></section>
 </main>
 
-<div id="imagePreview" class="image-preview" role="dialog" aria-label="图片预览" hidden>
+<div id="imagePreview" class="image-preview" role="dialog" aria-label="图片预览" data-i18n-aria-label="events.preview" hidden data-part="content2">
     <button type="button" class="image-preview-close" aria-label="关闭预览">×</button>
     <img alt=""><p></p>
 </div>

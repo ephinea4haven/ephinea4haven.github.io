@@ -51,7 +51,7 @@ test('language selection opens separate URLs and is remembered across pages',asy
   await page.getByRole('button',{name:'English',exact:true}).click();
   await expect(page).toHaveURL(/\/en\/?\?campaign=test#directory$/);
   await expect(page).toHaveTitle(/players worldwide/);
-  await expect(page.locator('meta[name=description]')).toHaveAttribute('content',/Translation coverage varies/);
+  await expect(page.locator('meta[name=description]')).toHaveAttribute('content',/tools in English, Japanese and Chinese\.$/);
   await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://www.psohaven.com/en/');
   await expect(page.locator('link[rel=alternate][hreflang=ja]')).toHaveAttribute('href','https://www.psohaven.com/ja/');
   await page.reload();

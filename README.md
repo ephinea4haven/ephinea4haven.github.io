@@ -11,8 +11,9 @@ The site covers onboarding and client setup, drop tables, quest and RBR rotation
 guides, seasonal events, item and monster catalogs, damage formulas, and
 character-planning tools such as the stat simulator and combo calculator.
 
-Language coverage varies by page and feature; support for three languages does
-not mean every guide or source excerpt has been translated into all three.
+Every public page has Chinese, English and Japanese versions. Item and monster
+names come from the shared name authority; a name it does not translate yet is
+shown in English.
 
 ## Architecture at a glance
 

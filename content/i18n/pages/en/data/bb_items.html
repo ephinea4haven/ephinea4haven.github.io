@@ -1,0 +1,1313 @@
+<section data-part="main">
+        <h1>BB Items — complete /makeitem command reference</h1>
+
+        <p>This guide explains how to create weapons, armour, tools, units, Techniques and other items in PSO with /makeitem.</p>
+
+        <!-- Search Box -->
+        <div style="margin: 20px 0; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+            <input type="text" id="searchBox" placeholder="Search by code or name..." aria-label="Search item codes" style="width: 100%; padding: 10px 15px; font-size: 16px; background: rgba(0,0,0,0.5); color: #e0e0e0; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; outline: none; box-sizing: border-box;">
+            <div id="searchCount" style="margin-top: 8px; font-size: 13px; color: #888;"></div>
+            <div id="searchResults"></div>
+        </div>
+
+        <div class="toc">
+            <h3>Quick navigation</h3>
+            <ul>
+                <li><a href="#weapons">Weapons</a></li>
+                <li><a href="#armors">Frames / barriers</a></li>
+                <li><a href="#mags">Mags</a></li>
+                <li><a href="#items">Tools</a></li>
+                <li><a href="#units">Units</a></li>
+                <li><a href="#techniques">Techniques</a></li>
+                <li><a href="#meseta">Meseta</a></li>
+                <li><a href="#weapon-values">Weapon codes</a></li>
+                <li><a href="#armor-values">Frame codes</a></li>
+                <li><a href="#shield-values">Barrier codes</a></li>
+                <li><a href="#item-values">Tool codes</a></li>
+                <li><a href="#unit-values">Unit codes</a></li>
+                <li><a href="#technique-values">Technique codes</a></li>
+            </ul>
+        </div>
+
+        <h2 id="weapons">Weapons</h2>
+
+        <pre><code>/makeitem VVVVVVGG,SS00PPPP,PPPPPPPP,,</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>V</strong></td>
+                    <td>Weapon ID (hexadecimal)</td>
+                </tr>
+                <tr>
+                    <td><strong>G</strong></td>
+                    <td>Grind (hexadecimal)</td>
+                </tr>
+                <tr>
+                    <td><strong>S</strong></td>
+                    <td>Weapon special</td>
+                </tr>
+                <tr>
+                    <td><strong>P</strong></td>
+                    <td>Weapon attributes (hexadecimal; do not exceed 127%)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Weapon specials</h3>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Special name</th>
+                    <th>Code</th>
+                    <th>Special name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>00</code></td><td>Unchanged / none</td><td><code>15</code></td><td>Seize</td></tr>
+                <tr><td><code>01</code></td><td>Draw</td><td><code>16</code></td><td>Arrest</td></tr>
+                <tr><td><code>02</code></td><td>Drain</td><td><code>17</code></td><td>Heat</td></tr>
+                <tr><td><code>03</code></td><td>Fill</td><td><code>18</code></td><td>Fire</td></tr>
+                <tr><td><code>04</code></td><td>Gush</td><td><code>19</code></td><td>Flame</td></tr>
+                <tr><td><code>05</code></td><td>Heart</td><td><code>1A</code></td><td>Burning</td></tr>
+                <tr><td><code>06</code></td><td>Mind</td><td><code>1B</code></td><td>Shock</td></tr>
+                <tr><td><code>07</code></td><td>Soul</td><td><code>1C</code></td><td>Thunder</td></tr>
+                <tr><td><code>08</code></td><td>Geist</td><td><code>1D</code></td><td>Storm</td></tr>
+                <tr><td><code>09</code></td><td>Master's</td><td><code>1E</code></td><td>Tempest</td></tr>
+                <tr><td><code>0A</code></td><td>Lord's</td><td><code>1F</code></td><td>Dim</td></tr>
+                <tr><td><code>0B</code></td><td>King's</td><td><code>20</code></td><td>Shadow</td></tr>
+                <tr><td><code>0C</code></td><td>Charge</td><td><code>21</code></td><td>Dark</td></tr>
+                <tr><td><code>0D</code></td><td>Spirit</td><td><code>22</code></td><td>Hell</td></tr>
+                <tr><td><code>0E</code></td><td>Berserk</td><td><code>23</code></td><td>Panic</td></tr>
+                <tr><td><code>0F</code></td><td>Ice</td><td><code>24</code></td><td>Riot</td></tr>
+                <tr><td><code>10</code></td><td>Frost</td><td><code>25</code></td><td>Havoc</td></tr>
+                <tr><td><code>11</code></td><td>Freeze</td><td><code>26</code></td><td>Chaos</td></tr>
+                <tr><td><code>12</code></td><td>Blizzard</td><td><code>27</code></td><td>Devil's</td></tr>
+                <tr><td><code>13</code></td><td>Bind</td><td><code>28</code></td><td>Demon's</td></tr>
+                <tr><td><code>14</code></td><td>Hold</td><td><code>50</code></td><td>Wrapped item (gift box)</td></tr>
+                <tr><td><code>FF</code></td><td>Wrapped &amp; untekked</td><td><code>AA</code></td><td>Untekked</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Weapon attributes</h3>
+
+        <p><strong>First byte of the four-digit attribute code (PSPS):</strong></p>
+        <ul>
+            <li><code>01</code> = Native (Forest)</li>
+            <li><code>02</code> = A.Beast (Caves)</li>
+            <li><code>03</code> = Machine (Mines)</li>
+            <li><code>04</code> = Dark (Ruins)</li>
+            <li><code>05</code> = Hit</li>
+        </ul>
+
+        <p><strong>Second byte of the four-digit attribute code (PSPS):</strong></p>
+        <ul>
+            <li><code>00</code> = 0% | <code>0A</code> = 10% | <code>14</code> = 20%</li>
+            <li><code>32</code> = 50% | <code>3C</code> = 60% | <code>64</code> = 100% | <code>7F</code> = 127%</li>
+        </ul>
+
+        <h3>ES / S-Rank specials</h3>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Special</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>01</code></td><td>Jellen</td><td>Lowers enemy ATP</td></tr>
+                <tr><td><code>02</code></td><td>Zalure</td><td>Lowers enemy DFP</td></tr>
+                <tr><td><code>05</code></td><td>Burning</td><td>Fire damage</td></tr>
+                <tr><td><code>06</code></td><td>Tempest</td><td>Lightning damage</td></tr>
+                <tr><td><code>07</code></td><td>Blizzard</td><td>Freeze</td></tr>
+                <tr><td><code>08</code></td><td>Arrest</td><td>Paralysis</td></tr>
+                <tr><td><code>09</code></td><td>Chaos</td><td>Confusion</td></tr>
+                <tr><td><code>10</code></td><td>Kings</td><td>Steals enemy EXP</td></tr>
+                <tr><td><code>0A</code></td><td>Hell</td><td>Instant kill</td></tr>
+                <tr><td><code>0B</code></td><td>Spirit</td><td>Spends 10% of total TP for double damage</td></tr>
+                <tr><td><code>0C</code></td><td>Berserk</td><td>Spends 10% of total HP for double damage</td></tr>
+                <tr><td><code>0D</code></td><td>Demon's</td><td>Reduces HP to one quarter</td></tr>
+                <tr><td><code>0E</code></td><td>Gush</td><td>Steals enemy HP</td></tr>
+                <tr><td><code>0F</code></td><td>Geist</td><td>Steals enemy TP</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2 id="armors">Frames / barriers</h2>
+
+        <pre><code>/makeitem VVVVVV00,000SDDDD,EEEE0000,,</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>V</strong></td><td>Frame ID (hexadecimal)</td></tr>
+                <tr><td><strong>S</strong></td><td>Number of slots</td></tr>
+                <tr><td><strong>D</strong></td><td>DFP bonus (must not exceed the maximum)</td></tr>
+                <tr><td><strong>E</strong></td><td>EVP bonus (must not exceed the maximum)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Frame slots</h3>
+        <ul>
+            <li><code>1</code> = 1 slot / <code>2</code> = 2 slots / <code>3</code> = 3 slots / <code>4</code> = 4 slots</li>
+        </ul>
+
+        <hr>
+
+        <h2 id="mags">Mags</h2>
+
+        <p>Use  <code>magmaker.exe</code></p>
+
+        <blockquote>
+            <strong>Example magmaker.exe output:</strong><br>
+            <code>78C80710</code><br>
+            <code>0A271DAF</code><br>
+            <code>257F0257</code><br>
+            <code>D3C83F02</code>
+        </blockquote>
+
+        <p>Enter in PSO:</p>
+        <pre><code>/makeitem 023FC8D3,57027F25,AF1D270A,78C80710</code></pre>
+
+        <hr>
+
+        <h2 id="items">Tools</h2>
+
+        <pre><code>/makeitem VVVVVV00,00AA0000,,,</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>V</strong></td><td>Tool ID (hexadecimal)</td></tr>
+                <tr><td><strong>A</strong></td><td>Quantity (hexadecimal)</td></tr>
+            </tbody>
+        </table>
+
+        <blockquote>
+            Note: set $setitem4 to 00000000, or use $resetitem before $setitem2 and $setitem3 to reset everything.
+        </blockquote>
+
+        <hr>
+
+        <h2 id="units">Units</h2>
+
+        <pre><code>/makeitem VVVVVV00,000000SS,SS000000</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>V</strong></td><td>Unit ID (hexadecimal)</td></tr>
+                <tr><td><strong>S</strong></td><td>Suffix (hexadecimal)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Unit suffixes</h3>
+        <ul>
+            <li><code>0100</code> = + | <code>0300</code> = ++ | <code>FFFF</code> = - | <code>FEFF</code> = --</li>
+        </ul>
+
+        <hr>
+
+        <h2 id="techniques">Techniques</h2>
+
+        <pre><code>/makeitem 0302LL00,VV000000,,,</code></pre>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>V</strong></td><td>Technique value</td></tr>
+                <tr><td><strong>L</strong></td><td>Technique level (hexadecimal)</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2 id="meseta">Meseta</h2>
+
+        <pre><code>/makeitem 04000000,,,VVVVVV00</code></pre>
+
+        <hr>
+
+        <!-- ==================== WEAPON VALUES ==================== -->
+        <h2 id="weapon-values">Complete weapon code list</h2>
+
+        <p>Use these weapon codes with the weapon format above to create weapons.</p>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Weapon name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>000100</code></td><td><span data-item-en="Saber"></span></td></tr>
+                <tr><td><code>000101</code></td><td><span data-item-en="Brand"></span></td></tr>
+                <tr><td><code>000102</code></td><td><span data-item-en="Buster"></span></td></tr>
+                <tr><td><code>000103</code></td><td><span data-item-en="Pallasch"></span></td></tr>
+                <tr><td><code>000104</code></td><td><span data-item-en="Gladius"></span></td></tr>
+                <tr><td><code>000105</code></td><td><span data-item-en="DB's Saber"></span></td></tr>
+                <tr><td><code>000106</code></td><td><span data-item-en="KALADGOLG"></span></td></tr>
+                <tr><td><code>000107</code></td><td><span data-item-en="Durandal"></span></td></tr>
+                <tr><td><code>000108</code></td><td><span data-item-en="Galatine"></span></td></tr>
+                <tr><td><code>000200</code></td><td><span data-item-en="Sword"></span></td></tr>
+                <tr><td><code>000201</code></td><td><span data-item-en="Gigush"></span></td></tr>
+                <tr><td><code>000202</code></td><td><span data-item-en="Breaker"></span></td></tr>
+                <tr><td><code>000203</code></td><td><span data-item-en="Claymore"></span></td></tr>
+                <tr><td><code>000204</code></td><td><span data-item-en="Calibur"></span></td></tr>
+                <tr><td><code>000205</code></td><td><span data-item-en="Flowen's Sword"></span></td></tr>
+                <tr><td><code>000206</code></td><td><span data-item-en="Last Survivor"></span></td></tr>
+                <tr><td><code>000207</code></td><td><span data-item-en="Dragon Slayer"></span></td></tr>
+                <tr><td><code>000300</code></td><td><span data-item-en="Dagger"></span></td></tr>
+                <tr><td><code>000301</code></td><td><span data-item-en="Knife"></span></td></tr>
+                <tr><td><code>000302</code></td><td><span data-item-en="Blade"></span></td></tr>
+                <tr><td><code>000303</code></td><td><span data-item-en="Edge"></span></td></tr>
+                <tr><td><code>000304</code></td><td><span data-item-en="Ripper"></span></td></tr>
+                <tr><td><code>000305</code></td><td><span data-item-en="Blade Dance"></span></td></tr>
+                <tr><td><code>000306</code></td><td><span data-item-en="Bloody Art"></span></td></tr>
+                <tr><td><code>000307</code></td><td><span data-item-en="Cross Scar"></span></td></tr>
+                <tr><td><code>000308</code></td><td><span data-item-en="Zero Divide"></span></td></tr>
+                <tr><td><code>000309</code></td><td>TWIN KAMUI*</td></tr>
+                <tr><td><code>000400</code></td><td><span data-item-en="Partisan"></span></td></tr>
+                <tr><td><code>000401</code></td><td><span data-item-en="Halbert"></span></td></tr>
+                <tr><td><code>000402</code></td><td><span data-item-en="Glaive"></span></td></tr>
+                <tr><td><code>000403</code></td><td><span data-item-en="Berdys"></span></td></tr>
+                <tr><td><code>000404</code></td><td><span data-item-en="Gungnir"></span></td></tr>
+                <tr><td><code>000405</code></td><td><span data-item-en="Brionac"></span></td></tr>
+                <tr><td><code>000406</code></td><td><span data-item-en="Vjaya"></span></td></tr>
+                <tr><td><code>000407</code></td><td><span data-item-en="Gae Bolg"></span></td></tr>
+                <tr><td><code>000408</code></td><td><span data-item-en="Asteron Belt"></span></td></tr>
+                <tr><td><code>000500</code></td><td><span data-item-en="Slicer"></span></td></tr>
+                <tr><td><code>000501</code></td><td><span data-item-en="Spinner"></span></td></tr>
+                <tr><td><code>000502</code></td><td><span data-item-en="Cutter"></span></td></tr>
+                <tr><td><code>000503</code></td><td><span data-item-en="Sawcer"></span></td></tr>
+                <tr><td><code>000504</code></td><td><span data-item-en="Diska"></span></td></tr>
+                <tr><td><code>000505</code></td><td><span data-item-en="Slicer of Assassin"></span></td></tr>
+                <tr><td><code>000506</code></td><td><span data-item-en="Diska of Liberator"></span></td></tr>
+                <tr><td><code>000507</code></td><td><span data-item-en="DISKA OF BRAVEMEN"></span></td></tr>
+                <tr><td><code>000508</code></td><td><span data-item-en="IZMAELA"></span></td></tr>
+                <tr><td><code>000600</code></td><td><span data-item-en="Handgun"></span></td></tr>
+                <tr><td><code>000601</code></td><td><span data-item-en="Autogun"></span></td></tr>
+                <tr><td><code>000602</code></td><td><span data-item-en="Lockgun"></span></td></tr>
+                <tr><td><code>000603</code></td><td><span data-item-en="Railgun"></span></td></tr>
+                <tr><td><code>000604</code></td><td><span data-item-en="Raygun"></span></td></tr>
+                <tr><td><code>000605</code></td><td><span data-item-en="Varista"></span></td></tr>
+                <tr><td><code>000606</code></td><td><span data-item-en="CUSTOM RAY Ver.00"></span></td></tr>
+                <tr><td><code>000607</code></td><td><span data-item-en="Bravace"></span></td></tr>
+                <tr><td><code>000608</code></td><td><span data-item-en="TENSION BLASTER"></span></td></tr>
+                <tr><td><code>000700</code></td><td><span data-item-en="Rifle"></span></td></tr>
+                <tr><td><code>000701</code></td><td><span data-item-en="Sniper"></span></td></tr>
+                <tr><td><code>000702</code></td><td><span data-item-en="Blaster"></span></td></tr>
+                <tr><td><code>000703</code></td><td><span data-item-en="Beam"></span></td></tr>
+                <tr><td><code>000704</code></td><td><span data-item-en="Laser"></span></td></tr>
+                <tr><td><code>000705</code></td><td>VISK'235W</td></tr>
+                <tr><td><code>000706</code></td><td>WALS'MK2</td></tr>
+                <tr><td><code>000707</code></td><td>JUSTY'23ST</td></tr>
+                <tr><td><code>000708</code></td><td><span data-item-en="Rianov 303SNR"></span>*</td></tr>
+                <tr><td><code>000709</code></td><td><span data-item-en="Rianov 303SNR-1"></span></td></tr>
+                <tr><td><code>00070A</code></td><td><span data-item-en="Rianov 303SNR-2"></span></td></tr>
+                <tr><td><code>00070B</code></td><td><span data-item-en="Rianov 303SNR-3"></span></td></tr>
+                <tr><td><code>00070C</code></td><td><span data-item-en="Rianov 303SNR-4"></span></td></tr>
+                <tr><td><code>00070D</code></td><td><span data-item-en="Rianov 303SNR-5"></span></td></tr>
+                <tr><td><code>000800</code></td><td><span data-item-en="Mechgun"></span></td></tr>
+                <tr><td><code>000801</code></td><td><span data-item-en="Assault"></span></td></tr>
+                <tr><td><code>000802</code></td><td><span data-item-en="Repeater"></span></td></tr>
+                <tr><td><code>000803</code></td><td><span data-item-en="Gatling"></span></td></tr>
+                <tr><td><code>000804</code></td><td><span data-item-en="Vulcan"></span></td></tr>
+                <tr><td><code>000805</code></td><td><span data-item-en="M&amp;A60 Vise"></span></td></tr>
+                <tr><td><code>000806</code></td><td><span data-item-en="H&amp;S25 Justice"></span></td></tr>
+                <tr><td><code>000807</code></td><td><span data-item-en="L&amp;K14 Combat"></span></td></tr>
+                <tr><td><code>000900</code></td><td><span data-item-en="Shot"></span></td></tr>
+                <tr><td><code>000901</code></td><td><span data-item-en="Spread"></span></td></tr>
+                <tr><td><code>000902</code></td><td><span data-item-en="Cannon"></span></td></tr>
+                <tr><td><code>000903</code></td><td><span data-item-en="Launcher"></span></td></tr>
+                <tr><td><code>000904</code></td><td><span data-item-en="Arms"></span></td></tr>
+                <tr><td><code>000905</code></td><td><span data-item-en="Crush Bullet"></span></td></tr>
+                <tr><td><code>000906</code></td><td><span data-item-en="Meteor Smash"></span></td></tr>
+                <tr><td><code>000907</code></td><td><span data-item-en="Final Impact"></span></td></tr>
+                <tr><td><code>000A00</code></td><td><span data-item-en="Cane"></span></td></tr>
+                <tr><td><code>000A01</code></td><td><span data-item-en="Stick"></span></td></tr>
+                <tr><td><code>000A02</code></td><td><span data-item-en="Mace"></span></td></tr>
+                <tr><td><code>000A03</code></td><td><span data-item-en="Club"></span></td></tr>
+                <tr><td><code>000A04</code></td><td><span data-item-en="Club of Laconium"></span></td></tr>
+                <tr><td><code>000A05</code></td><td><span data-item-en="Mace of Adaman"></span></td></tr>
+                <tr><td><code>000A06</code></td><td><span data-item-en="Club of Zumiuran"></span></td></tr>
+                <tr><td><code>000A07</code></td><td>LOLIPOP*</td></tr>
+                <tr><td><code>000B00</code></td><td><span data-item-en="Rod"></span></td></tr>
+                <tr><td><code>000B01</code></td><td><span data-item-en="Pole"></span></td></tr>
+                <tr><td><code>000B02</code></td><td><span data-item-en="Pillar"></span></td></tr>
+                <tr><td><code>000B03</code></td><td><span data-item-en="Striker"></span></td></tr>
+                <tr><td><code>000B04</code></td><td><span data-item-en="Battle Verge"></span></td></tr>
+                <tr><td><code>000B05</code></td><td><span data-item-en="Brave Hammer"></span></td></tr>
+                <tr><td><code>000B06</code></td><td><span data-item-en="Alive Aqhu"></span></td></tr>
+                <tr><td><code>000B07</code></td><td><span data-item-en="Valkyrie"></span>*</td></tr>
+                <tr><td><code>000C00</code></td><td><span data-item-en="Wand"></span></td></tr>
+                <tr><td><code>000C01</code></td><td><span data-item-en="Staff"></span></td></tr>
+                <tr><td><code>000C02</code></td><td><span data-item-en="Baton"></span></td></tr>
+                <tr><td><code>000C03</code></td><td><span data-item-en="Scepter"></span></td></tr>
+                <tr><td><code>000C04</code></td><td><span data-item-en="FIRE SCEPTER:AGNI"></span></td></tr>
+                <tr><td><code>000C05</code></td><td><span data-item-en="ICE STAFF:DAGON"></span></td></tr>
+                <tr><td><code>000C06</code></td><td><span data-item-en="STORM VAND:INDRA"></span></td></tr>
+                <tr><td><code>000C07</code></td><td><span data-item-en="EARTH WAND BROWNIE"></span></td></tr>
+                <tr><td><code>000D00</code></td><td><span data-item-en="Photon Claw"></span></td></tr>
+                <tr><td><code>000D01</code></td><td><span data-item-en="Silence Claw"></span></td></tr>
+                <tr><td><code>000D02</code></td><td><span data-item-en="Nei's Claw"></span></td></tr>
+                <tr><td><code>000D03</code></td><td><span data-item-en="Phoenix Claw"></span>*</td></tr>
+                <tr><td><code>000E00</code></td><td><span data-item-en="Double Saber"></span></td></tr>
+                <tr><td><code>000E01</code></td><td><span data-item-en="Stag Cutlery"></span></td></tr>
+                <tr><td><code>000E02</code></td><td><span data-item-en="Twin Brand"></span></td></tr>
+                <tr><td><code>000F00</code></td><td><span data-item-en="Brave Knuckle"></span></td></tr>
+                <tr><td><code>000F01</code></td><td><span data-item-en="Angry Fist"></span></td></tr>
+                <tr><td><code>000F02</code></td><td><span data-item-en="God Hand"></span></td></tr>
+                <tr><td><code>000F03</code></td><td><span data-item-en="SONIC KNUCKLE"></span></td></tr>
+                <tr><td><code>000F04</code></td><td><span data-item-en="Saber"></span></td></tr>
+                <tr><td><code>001000</code></td><td><span data-item-en="OROTIAGITO"></span></td></tr>
+                <tr><td><code>001001</code></td><td><span data-item-en="Agito (1975)"></span></td></tr>
+                <tr><td><code>001002</code></td><td><span data-item-en="Agito (1983)"></span></td></tr>
+                <tr><td><code>001003</code></td><td><span data-item-en="Agito (2001)"></span></td></tr>
+                <tr><td><code>001004</code></td><td><span data-item-en="Agito (1991)"></span></td></tr>
+                <tr><td><code>001005</code></td><td><span data-item-en="Agito (1977)"></span></td></tr>
+                <tr><td><code>001006</code></td><td><span data-item-en="Agito (1980)"></span></td></tr>
+                <tr><td><code>001007</code></td><td><span data-item-en="Raikiri"></span></td></tr>
+                <tr><td><code>001100</code></td><td><span data-item-en="SOUL EATER"></span></td></tr>
+                <tr><td><code>001101</code></td><td><span data-item-en="Soul Banish"></span></td></tr>
+                <tr><td><code>001200</code></td><td><span data-item-en="Spread Needle"></span></td></tr>
+                <tr><td><code>001300</code></td><td><span data-item-en="Holy Ray"></span></td></tr>
+                <tr><td><code>001400</code></td><td><span data-item-en="Inferno Bazooka"></span></td></tr>
+                <tr><td><code>001401</code></td><td><span data-item-en="Rambling May"></span>*</td></tr>
+                <tr><td><code>001402</code></td><td><span data-item-en="L&amp;K38 Combat"></span></td></tr>
+                <tr><td><code>001500</code></td><td><span data-item-en="Flame Visit"></span></td></tr>
+                <tr><td><code>001501</code></td><td><span data-item-en="BURNING VISIT"></span></td></tr>
+                <tr><td><code>001600</code></td><td><span data-item-en="AKIKO'S FRYING PAN"></span></td></tr>
+                <tr><td><code>001700</code></td><td><span data-item-en="SORCERER'S CANE"></span></td></tr>
+                <tr><td><code>001800</code></td><td><span data-item-en="S-BEAT'S BLADE"></span></td></tr>
+                <tr><td><code>001900</code></td><td><span data-item-en="P-ARMS'S BLADE"></span></td></tr>
+                <tr><td><code>001A00</code></td><td><span data-item-en="DELSABER'S BUSTER"></span></td></tr>
+                <tr><td><code>001B00</code></td><td><span data-item-en="BRINGER'S RIFLE"></span></td></tr>
+                <tr><td><code>001C00</code></td><td><span data-item-en="EGG BLASTER"></span></td></tr>
+                <tr><td><code>001D00</code></td><td><span data-item-en="Psycho Wand"></span></td></tr>
+                <tr><td><code>001E00</code></td><td><span data-item-en="Heaven Punisher"></span></td></tr>
+                <tr><td><code>001F00</code></td><td><span data-item-en="Lavis Cannon"></span></td></tr>
+                <tr><td><code>002000</code></td><td><span data-item-en="Victor Axe"></span></td></tr>
+                <tr><td><code>002001</code></td><td><span data-item-en="Laconium Axe"></span>*</td></tr>
+                <tr><td><code>002100</code></td><td><span data-item-en="Chain Sawd"></span></td></tr>
+                <tr><td><code>002200</code></td><td><span data-item-en="Caduceus"></span></td></tr>
+                <tr><td><code>002201</code></td><td><span data-item-en="MERCURIUS ROD"></span></td></tr>
+                <tr><td><code>002300</code></td><td><span data-item-en="Sting Tip"></span></td></tr>
+                <tr><td><code>002400</code></td><td><span data-item-en="MAGICAL PIECE"></span></td></tr>
+                <tr><td><code>002500</code></td><td><span data-item-en="Technical Crozier"></span></td></tr>
+                <tr><td><code>002600</code></td><td><span data-item-en="Suppressed Gun"></span></td></tr>
+                <tr><td><code>002700</code></td><td><span data-item-en="Ancient Saber"></span></td></tr>
+                <tr><td><code>002800</code></td><td><span data-item-en="HARISEN BATTLE FAN"></span></td></tr>
+                <tr><td><code>002900</code></td><td><span data-item-en="Yamigarasu"></span></td></tr>
+                <tr><td><code>002A00</code></td><td><span data-item-en="AKIKO'S WOK"></span></td></tr>
+                <tr><td><code>002B00</code></td><td><span data-item-en="TOY HAMMER"></span></td></tr>
+                <tr><td><code>002C00</code></td><td><span data-item-en="Elysion"></span></td></tr>
+                <tr><td><code>002D00</code></td><td><span data-item-en="Red Saber"></span></td></tr>
+                <tr><td><code>002E00</code></td><td><span data-item-en="Meteor Cudgel"></span></td></tr>
+                <tr><td><code>002F00</code></td><td><span data-item-en="Monkey King Bar"></span></td></tr>
+                <tr><td><code>002F01</code></td><td><span data-item-en="BLACK KING BAR"></span></td></tr>
+                <tr><td><code>003000</code></td><td><span data-item-en="DOUBLE CANNON"></span></td></tr>
+                <tr><td><code>003001</code></td><td><span data-item-en="Girasole"></span></td></tr>
+                <tr><td><code>003100</code></td><td><span data-item-en="HUGE BATTLE FAN"></span></td></tr>
+                <tr><td><code>003200</code></td><td><span data-item-en="TSUMIKIRI J-SWORD"></span></td></tr>
+                <tr><td><code>003300</code></td><td><span data-item-en="Sealed J-Sword"></span></td></tr>
+                <tr><td><code>003400</code></td><td><span data-item-en="Red Sword"></span></td></tr>
+                <tr><td><code>003500</code></td><td><span data-item-en="CRAZY TUNE"></span></td></tr>
+                <tr><td><code>003600</code></td><td><span data-item-en="Twin Chakram"></span></td></tr>
+                <tr><td><code>003700</code></td><td><span data-item-en="Wok of Akiko's Shop"></span></td></tr>
+                <tr><td><code>003800</code></td><td><span data-item-en="LAVIS BLADE"></span></td></tr>
+                <tr><td><code>003900</code></td><td><span data-item-en="Red Dagger"></span></td></tr>
+                <tr><td><code>003A00</code></td><td><span data-item-en="Madam's Parasol"></span></td></tr>
+                <tr><td><code>003B00</code></td><td><span data-item-en="Madam's Umbrella"></span></td></tr>
+                <tr><td><code>003C00</code></td><td><span data-item-en="Imperial Pick"></span></td></tr>
+                <tr><td><code>003D00</code></td><td><span data-item-en="Berdysh"></span></td></tr>
+                <tr><td><code>003E00</code></td><td><span data-item-en="Red Partisan"></span></td></tr>
+                <tr><td><code>003F00</code></td><td><span data-item-en="Flight Cutter"></span></td></tr>
+                <tr><td><code>004000</code></td><td><span data-item-en="Flight Fan"></span></td></tr>
+                <tr><td><code>004100</code></td><td><span data-item-en="Red Slicer"></span></td></tr>
+                <tr><td><code>004200</code></td><td><span data-item-en="HANDGUN:GULD"></span></td></tr>
+                <tr><td><code>004201</code></td><td><span data-item-en="Master Raven"></span></td></tr>
+                <tr><td><code>004300</code></td><td><span data-item-en="HANDGUN:MILLA"></span></td></tr>
+                <tr><td><code>004301</code></td><td><span data-item-en="Last Swan"></span></td></tr>
+                <tr><td><code>004400</code></td><td><span data-item-en="Red Handgun"></span></td></tr>
+                <tr><td><code>004500</code></td><td><span data-item-en="Frozen Shooter"></span></td></tr>
+                <tr><td><code>004501</code></td><td><span data-item-en="SNOW QUEEN"></span></td></tr>
+                <tr><td><code>004600</code></td><td><span data-item-en="Anti Android Rifle"></span></td></tr>
+                <tr><td><code>004700</code></td><td><span data-item-en="ROCKET PUNCH"></span></td></tr>
+                <tr><td><code>004800</code></td><td><span data-item-en="SAMBA MARACAS"></span></td></tr>
+                <tr><td><code>004900</code></td><td><span data-item-en="Twin Psychogun"></span></td></tr>
+                <tr><td><code>004A00</code></td><td><span data-item-en="DRILL LAUNCHER"></span></td></tr>
+                <tr><td><code>004B00</code></td><td><span data-item-en="GULD MILLA"></span></td></tr>
+                <tr><td><code>004B01</code></td><td><span data-item-en="Dual Bird*"></span></td></tr>
+                <tr><td><code>004C00</code></td><td><span data-item-en="Red Mechgun"></span></td></tr>
+                <tr><td><code>004D00</code></td><td><span data-item-en="BELRA CANNON"></span></td></tr>
+                <tr><td><code>004E00</code></td><td><span data-item-en="Panzer Faust"></span></td></tr>
+                <tr><td><code>004E01</code></td><td><span data-item-en="IRON FAUST"></span></td></tr>
+                <tr><td><code>004F00</code></td><td><span data-item-en="SUMMIT MOON"></span></td></tr>
+                <tr><td><code>005000</code></td><td><span data-item-en="Windmill"></span></td></tr>
+                <tr><td><code>005100</code></td><td><span data-item-en="Evil Curst"></span></td></tr>
+                <tr><td><code>005200</code></td><td><span data-item-en="FLOWER CANE"></span></td></tr>
+                <tr><td><code>005300</code></td><td><span data-item-en="HILDEBEAR'S CANE"></span></td></tr>
+                <tr><td><code>005400</code></td><td><span data-item-en="Hildeblue's Cane"></span></td></tr>
+                <tr><td><code>005500</code></td><td><span data-item-en="Rabbit Wand"></span></td></tr>
+                <tr><td><code>005600</code></td><td><span data-item-en="Plantain Leaf"></span></td></tr>
+                <tr><td><code>005601</code></td><td><span data-item-en="Fatsia"></span></td></tr>
+                <tr><td><code>005700</code></td><td><span data-item-en="Demonic Fork"></span></td></tr>
+                <tr><td><code>005800</code></td><td><span data-item-en="STRIKER OF CHAO"></span></td></tr>
+                <tr><td><code>005900</code></td><td><span data-item-en="BROOM"></span></td></tr>
+                <tr><td><code>005A00</code></td><td><span data-item-en="Prophets of Motav"></span></td></tr>
+                <tr><td><code>005B00</code></td><td><span data-item-en="The Sigh of a God"></span></td></tr>
+                <tr><td><code>005C00</code></td><td><span data-item-en="TWINKLE STAR"></span></td></tr>
+                <tr><td><code>005D00</code></td><td><span data-item-en="PLANTAIN FAN"></span></td></tr>
+                <tr><td><code>005E00</code></td><td><span data-item-en="Twin Blaze"></span></td></tr>
+                <tr><td><code>005F00</code></td><td><span data-item-en="MARINA'S BAG"></span></td></tr>
+                <tr><td><code>006000</code></td><td><span data-item-en="Dragon's Claw"></span></td></tr>
+                <tr><td><code>006100</code></td><td><span data-item-en="PANTHER'S CLAW"></span></td></tr>
+                <tr><td><code>006200</code></td><td><span data-item-en="S-RED'S BLADE"></span></td></tr>
+                <tr><td><code>006300</code></td><td><span data-item-en="PLANTAIN HUGE FAN"></span></td></tr>
+                <tr><td><code>006400</code></td><td><span data-item-en="CHAMELEON SCYTHE"></span></td></tr>
+                <tr><td><code>006500</code></td><td><span data-item-en="Yasminkov 3000R"></span></td></tr>
+                <tr><td><code>006600</code></td><td><span data-item-en="Ano Rifle"></span></td></tr>
+                <tr><td><code>006700</code></td><td><span data-item-en="BARANZ LAUNCHER"></span></td></tr>
+                <tr><td><code>006800</code></td><td><span data-item-en="Branch of Pakupaku"></span></td></tr>
+                <tr><td><code>006900</code></td><td><span data-item-en="Heart of Poumn"></span></td></tr>
+                <tr><td><code>006A00</code></td><td><span data-item-en="Yasminkov 2000H"></span></td></tr>
+                <tr><td><code>006B00</code></td><td><span data-item-en="Yasminkov 7000V"></span></td></tr>
+                <tr><td><code>006C00</code></td><td><span data-item-en="Yasminkov 9000M"></span></td></tr>
+                <tr><td><code>006D00</code></td><td><span data-item-en="Maser Beam"></span></td></tr>
+                <tr><td><code>006D01</code></td><td><span data-item-en="Power Maser"></span></td></tr>
+                <tr><td><code>006E00</code></td><td><span data-item-en="Saber"></span></td></tr>
+                <tr><td><code>006E01</code></td><td><span data-item-en="LOGiN"></span></td></tr>
+                <tr><td><code>006F00</code></td><td><span data-item-en="Flower Bouquet"></span></td></tr>
+                <tr><td><code>007000</code></td><td>(S Rank Weapon) SABER - FA</td></tr>
+                <tr><td><code>007100</code></td><td>(S Rank Weapon) SWORD - FA</td></tr>
+                <tr><td><code>007200</code></td><td>(S Rank Weapon) BLADE - C8</td></tr>
+                <tr><td><code>007300</code></td><td>(S Rank Weapon) PARTISAN - C8</td></tr>
+                <tr><td><code>007400</code></td><td>(S Rank Weapon) SLICER - 8C</td></tr>
+                <tr><td><code>007500</code></td><td>(S Rank Weapon) GUN - FA</td></tr>
+                <tr><td><code>007600</code></td><td>(S Rank Weapon) RIFLE - DC</td></tr>
+                <tr><td><code>007700</code></td><td>(S Rank Weapon) MECHGUN - 32</td></tr>
+                <tr><td><code>007800</code></td><td>(S Rank Weapon) SHOT - 7D</td></tr>
+                <tr><td><code>007900</code></td><td>(S Rank Weapon) CANE - 78</td></tr>
+                <tr><td><code>007A00</code></td><td>(S Rank Weapon) ROD - B4</td></tr>
+                <tr><td><code>007B00</code></td><td>(S Rank Weapon) WAND</td></tr>
+                <tr><td><code>007C00</code></td><td>(S Rank Weapon) TWIN</td></tr>
+                <tr><td><code>007D00</code></td><td>(S Rank Weapon) CLAW</td></tr>
+                <tr><td><code>007E00</code></td><td>(S Rank Weapon) BAZOOKA</td></tr>
+                <tr><td><code>007F00</code></td><td>(S Rank Weapon) NEEDLE</td></tr>
+                <tr><td><code>008000</code></td><td>(S Rank Weapon) SCYTHE</td></tr>
+                <tr><td><code>008100</code></td><td>(S Rank Weapon) HAMMER</td></tr>
+                <tr><td><code>008200</code></td><td>(S Rank Weapon) MOON</td></tr>
+                <tr><td><code>008300</code></td><td>(S Rank Weapon) PSYCHOGUN</td></tr>
+                <tr><td><code>008400</code></td><td>(S Rank Weapon) PUNCH</td></tr>
+                <tr><td><code>008500</code></td><td>(S Rank Weapon) WINDMILL</td></tr>
+                <tr><td><code>008600</code></td><td>(S Rank Weapon) HARISEN</td></tr>
+                <tr><td><code>008700</code></td><td>(S Rank Weapon) KATANA</td></tr>
+                <tr><td><code>008800</code></td><td>(S Rank Weapon) J-CUTTER</td></tr>
+                <tr><td><code>008900</code></td><td><span data-item-en="Musashi"></span></td></tr>
+                <tr><td><code>008901</code></td><td><span data-item-en="Yamato"></span></td></tr>
+                <tr><td><code>008902</code></td><td><span data-item-en="Asuka"></span></td></tr>
+                <tr><td><code>008903</code></td><td><span data-item-en="SANGE &amp; YASHA"></span></td></tr>
+                <tr><td><code>008A00</code></td><td><span data-item-en="Sange"></span></td></tr>
+                <tr><td><code>008A01</code></td><td><span data-item-en="Yasha"></span></td></tr>
+                <tr><td><code>008A02</code></td><td><span data-item-en="Kamui"></span></td></tr>
+                <tr><td><code>008B00</code></td><td><span data-item-en="Photon Launcher"></span></td></tr>
+                <tr><td><code>008B01</code></td><td><span data-item-en="Guilty Light"></span></td></tr>
+                <tr><td><code>008B02</code></td><td><span data-item-en="Red Scorpio"></span></td></tr>
+                <tr><td><code>008B03</code></td><td><span data-item-en="Phonon Maser"></span>*</td></tr>
+                <tr><td><code>008C00</code></td><td><span data-item-en="Talis"></span></td></tr>
+                <tr><td><code>008C01</code></td><td><span data-item-en="Mahu"></span></td></tr>
+                <tr><td><code>008C02</code></td><td><span data-item-en="Hitogata"></span></td></tr>
+                <tr><td><code>008C03</code></td><td><span data-item-en="DANCING HITOGATA"></span></td></tr>
+                <tr><td><code>008C04</code></td><td><span data-item-en="Kunai"></span></td></tr>
+                <tr><td><code>008D00</code></td><td><span data-item-en="NUG-2000 BAZOOKA"></span></td></tr>
+                <tr><td><code>008E00</code></td><td>S-BERILL'S HAND #0</td></tr>
+                <tr><td><code>008E01</code></td><td>S-BERILL'S HAND #1</td></tr>
+                <tr><td><code>008F00</code></td><td>FLOWEN'S SWORD AUW 3060</td></tr>
+                <tr><td><code>008F01</code></td><td>FLOWEN'S SWORD AUW 3064</td></tr>
+                <tr><td><code>008F02</code></td><td>FLOWEN'S SWORD AUW 3067</td></tr>
+                <tr><td><code>008F03</code></td><td>FLOWEN'S SWORD AUW 3073</td></tr>
+                <tr><td><code>008F04</code></td><td>FLOWEN'S SWORD AUW 3077</td></tr>
+                <tr><td><code>008F05</code></td><td>FLOWEN'S SWORD AUW 3082</td></tr>
+                <tr><td><code>008F06</code></td><td>FLOWEN'S SWORD AUW 3083</td></tr>
+                <tr><td><code>008F07</code></td><td>FLOWEN'S SWORD AUW 3084</td></tr>
+                <tr><td><code>008F08</code></td><td>FLOWEN'S SWORD AUW 3079</td></tr>
+                <tr><td><code>009000</code></td><td>DB'S SWORD AUW 3062</td></tr>
+                <tr><td><code>009001</code></td><td>DB'S SWORD AUW 3067</td></tr>
+                <tr><td><code>009002</code></td><td>DB'S SWORD AUW 3069</td></tr>
+                <tr><td><code>009003</code></td><td>DB'S SWORD AUW 3064</td></tr>
+                <tr><td><code>009004</code></td><td>DB'S SWORD AUW 3069</td></tr>
+                <tr><td><code>009005</code></td><td>DB'S SWORD AUW 3073</td></tr>
+                <tr><td><code>009006</code></td><td>DB'S SWORD AUW 3070</td></tr>
+                <tr><td><code>009007</code></td><td>DB'S SWORD AUW 3075</td></tr>
+                <tr><td><code>009008</code></td><td>DB'S SWORD AUW 3077</td></tr>
+                <tr><td><code>009100</code></td><td>GIGUE BAZOOKA</td></tr>
+                <tr><td><code>009200</code></td><td><span data-item-en="Guardianna"></span></td></tr>
+                <tr><td><code>009300</code></td><td><span data-item-en="Viridia Card"></span></td></tr>
+                <tr><td><code>009301</code></td><td><span data-item-en="Greenill Card"></span></td></tr>
+                <tr><td><code>009302</code></td><td><span data-item-en="Skyly Card"></span></td></tr>
+                <tr><td><code>009303</code></td><td><span data-item-en="Bluefull Card"></span></td></tr>
+                <tr><td><code>009304</code></td><td><span data-item-en="Purplenum Card"></span></td></tr>
+                <tr><td><code>009305</code></td><td><span data-item-en="Pinkal Card"></span></td></tr>
+                <tr><td><code>009306</code></td><td><span data-item-en="Redria Card"></span></td></tr>
+                <tr><td><code>009307</code></td><td><span data-item-en="Oran Card"></span></td></tr>
+                <tr><td><code>009308</code></td><td><span data-item-en="Yellowboze Card"></span></td></tr>
+                <tr><td><code>009309</code></td><td><span data-item-en="Whitill Card"></span></td></tr>
+                <tr><td><code>009400</code></td><td><span data-item-en="Morning Glory"></span></td></tr>
+                <tr><td><code>009500</code></td><td><span data-item-en="PARTISAN OF LIGHTING"></span></td></tr>
+                <tr><td><code>009600</code></td><td><span data-item-en="GAL WIND"></span></td></tr>
+                <tr><td><code>009700</code></td><td><span data-item-en="Zanba"></span></td></tr>
+                <tr><td><code>009800</code></td><td><span data-item-en="Rika's Claw"></span></td></tr>
+                <tr><td><code>009900</code></td><td><span data-item-en="Angel Harp"></span></td></tr>
+                <tr><td><code>009A00</code></td><td><span data-item-en="Demolition Comet"></span></td></tr>
+                <tr><td><code>009B00</code></td><td><span data-item-en="Nei's Claw"></span></td></tr>
+                <tr><td><code>009C00</code></td><td><span data-item-en="RAINBOW BATON"></span></td></tr>
+                <tr><td><code>009D00</code></td><td><span data-item-en="DARK FLOW"></span></td></tr>
+                <tr><td><code>009E00</code></td><td><span data-item-en="DARK METEOR"></span></td></tr>
+                <tr><td><code>009F00</code></td><td><span data-item-en="DARK BRIDGE"></span></td></tr>
+                <tr><td><code>00A000</code></td><td>G-ASSASIN'S SABERS</td></tr>
+                <tr><td><code>00A100</code></td><td><span data-item-en="RAPPY'S FAN"></span></td></tr>
+                <tr><td><code>00A200</code></td><td><span data-item-en="BOOMA'S CLAW"></span></td></tr>
+                <tr><td><code>00A201</code></td><td><span data-item-en="GOBOOMA'S CLAW"></span></td></tr>
+                <tr><td><code>00A202</code></td><td><span data-item-en="GIGOBOOMA'S CLAW"></span></td></tr>
+                <tr><td><code>00A300</code></td><td><span data-item-en="Ruby Bullet"></span></td></tr>
+                <tr><td><code>00A400</code></td><td><span data-item-en="AMORE ROSE"></span></td></tr>
+                <tr><td><code>00A500</code></td><td>(S Rank Weapon) SWORDS</td></tr>
+                <tr><td><code>00A600</code></td><td>(S Rank Weapon) LAUNCHER</td></tr>
+                <tr><td><code>00A700</code></td><td>(S Rank Weapon) CARD</td></tr>
+                <tr><td><code>00A800</code></td><td>(S Rank Weapon) KNUCKLE</td></tr>
+                <tr><td><code>00A900</code></td><td>(S Rank Weapon) AXE</td></tr>
+                <tr><td><code>00AA00</code></td><td><span data-item-en="Slicer of Fanatic"></span></td></tr>
+                <tr><td><code>00AB00</code></td><td><span data-item-en="Lame d'Argent"></span></td></tr>
+                <tr><td><code>00AC00</code></td><td><span data-item-en="EXCALIBUR"></span></td></tr>
+                <tr><td><code>00AD00</code></td><td><span data-item-en="Saber"></span></td></tr>
+                <tr><td><code>00AD01</code></td><td><span data-item-en="Saber"></span></td></tr>
+                <tr><td><code>00AD02</code></td><td><span data-item-en="Saber"></span></td></tr>
+                <tr><td><code>00AD03</code></td><td><span data-item-en="Rage de Feu"></span></td></tr>
+                <tr><td><code>00AE00</code></td><td><span data-item-en="DAISY CHAIN"></span></td></tr>
+                <tr><td><code>00AF00</code></td><td><span data-item-en="Ophelie Seize"></span></td></tr>
+                <tr><td><code>00B000</code></td><td><span data-item-en="MILLE MARTEAUX"></span></td></tr>
+                <tr><td><code>00B100</code></td><td><span data-item-en="LE COGNEUR"></span></td></tr>
+                <tr><td><code>00B200</code></td><td><span data-item-en="COMMANDER BLADE"></span></td></tr>
+                <tr><td><code>00B300</code></td><td><span data-item-en="Vivienne"></span></td></tr>
+                <tr><td><code>00B400</code></td><td><span data-item-en="Kusanagi"></span></td></tr>
+                <tr><td><code>00B500</code></td><td><span data-item-en="Sacred Duster"></span></td></tr>
+                <tr><td><code>00B600</code></td><td><span data-item-en="Guren"></span></td></tr>
+                <tr><td><code>00B700</code></td><td><span data-item-en="Shouren"></span></td></tr>
+                <tr><td><code>00B800</code></td><td><span data-item-en="JIZAI"></span></td></tr>
+                <tr><td><code>00B900</code></td><td><span data-item-en="Flamberge"></span></td></tr>
+                <tr><td><code>00BA00</code></td><td><span data-item-en="Yunchang"></span></td></tr>
+                <tr><td><code>00BB00</code></td><td><span data-item-en="Snake Spire"></span></td></tr>
+                <tr><td><code>00BC00</code></td><td><span data-item-en="Flapjack Flapper"></span></td></tr>
+                <tr><td><code>00BD00</code></td><td><span data-item-en="GETSUGASAN"></span></td></tr>
+                <tr><td><code>00BE00</code></td><td><span data-item-en="Maguwa"></span></td></tr>
+                <tr><td><code>00BF00</code></td><td><span data-item-en="Heaven Striker"></span></td></tr>
+                <tr><td><code>00C000</code></td><td><span data-item-en="Cannon Rouge"></span></td></tr>
+                <tr><td><code>00C100</code></td><td><span data-item-en="METEOR ROUGE"></span></td></tr>
+                <tr><td><code>00C200</code></td><td><span data-item-en="Solferino"></span></td></tr>
+                <tr><td><code>00C300</code></td><td><span data-item-en="Clio"></span></td></tr>
+                <tr><td><code>00C400</code></td><td><span data-item-en="Siren Glass Hammer"></span></td></tr>
+                <tr><td><code>00C500</code></td><td><span data-item-en="Glide Divine"></span></td></tr>
+                <tr><td><code>00C600</code></td><td><span data-item-en="SHICHISHITO"></span></td></tr>
+                <tr><td><code>00C700</code></td><td><span data-item-en="MURASAME"></span></td></tr>
+                <tr><td><code>00C800</code></td><td><span data-item-en="Daylight Scar"></span></td></tr>
+                <tr><td><code>00C900</code></td><td><span data-item-en="Decalog"></span></td></tr>
+                <tr><td><code>00CA00</code></td><td><span data-item-en="5TH ANNIV. BLADE"></span></td></tr>
+                <tr><td><code>00CB00</code></td><td><span data-item-en="PRINCIPAL'S GIFT PARASOL"></span></td></tr>
+                <tr><td><code>00CC00</code></td><td><span data-item-en="AKIKO'S CLEAVER"></span></td></tr>
+                <tr><td><code>00CD00</code></td><td><span data-item-en="Tanegashima"></span></td></tr>
+                <tr><td><code>00CE00</code></td><td><span data-item-en="TREE CLIPPERS"></span></td></tr>
+                <tr><td><code>00CF00</code></td><td><span data-item-en="NICE SHOT"></span></td></tr>
+                <tr><td><code>00D200</code></td><td><span data-item-en="Ano Bazooka"></span></td></tr>
+                <tr><td><code>00D300</code></td><td><span data-item-en="SYNTHESIZER"></span></td></tr>
+                <tr><td><code>00D400</code></td><td><span data-item-en="BAMBOO SPEAR"></span></td></tr>
+                <tr><td><code>00D500</code></td><td><span data-item-en="KAN'EI TSUHO"></span></td></tr>
+                <tr><td><code>00D600</code></td><td><span data-item-en="JITTE"></span></td></tr>
+                <tr><td><code>00D700</code></td><td><span data-item-en="BUTTERFLY NET"></span></td></tr>
+                <tr><td><code>00D800</code></td><td><span data-item-en="SYRINGE"></span></td></tr>
+                <tr><td><code>00D900</code></td><td><span data-item-en="BATTLEDORE"></span></td></tr>
+                <tr><td><code>00DA00</code></td><td><span data-item-en="RACKET"></span></td></tr>
+                <tr><td><code>00DB00</code></td><td><span data-item-en="HAMMER"></span></td></tr>
+                <tr><td><code>00DC00</code></td><td><span data-item-en="GREAT BOUQUET"></span></td></tr>
+                <tr><td><code>00DD00</code></td><td><span data-item-en="TypeSA/SABER"></span></td></tr>
+                <tr><td><code>00DE00</code></td><td><span data-item-en="TypeSL/Saber"></span></td></tr>
+                <tr><td><code>00DE01</code></td><td><span data-item-en="TypeSL/Slicer"></span></td></tr>
+                <tr><td><code>00DE02</code></td><td><span data-item-en="TypeSL/Claw"></span></td></tr>
+                <tr><td><code>00DE03</code></td><td><span data-item-en="TypeSL/Katana"></span></td></tr>
+                <tr><td><code>00DF00</code></td><td><span data-item-en="TypeJS/SABER"></span></td></tr>
+                <tr><td><code>00DF01</code></td><td><span data-item-en="TypeJS/SLICER"></span></td></tr>
+                <tr><td><code>00DF02</code></td><td><span data-item-en="TypeJS/J-SWORD"></span></td></tr>
+                <tr><td><code>00E000</code></td><td><span data-item-en="TypeSW/SWORD"></span></td></tr>
+                <tr><td><code>00E001</code></td><td><span data-item-en="TypeSW/SLICER"></span></td></tr>
+                <tr><td><code>00E002</code></td><td><span data-item-en="TypeSW/J-SWORD"></span></td></tr>
+                <tr><td><code>00E100</code></td><td><span data-item-en="TypeRO/SWORD"></span></td></tr>
+                <tr><td><code>00E101</code></td><td><span data-item-en="TypeRO/HALBERT"></span></td></tr>
+                <tr><td><code>00E102</code></td><td><span data-item-en="TypeRO/ROD"></span></td></tr>
+                <tr><td><code>00E200</code></td><td><span data-item-en="TypeBL/BLADE"></span></td></tr>
+                <tr><td><code>00E300</code></td><td><span data-item-en="TypeKN/BLADE"></span></td></tr>
+                <tr><td><code>00E301</code></td><td><span data-item-en="TypeKN/CLAW"></span></td></tr>
+                <tr><td><code>00E400</code></td><td><span data-item-en="TypeHA/HALBERT"></span></td></tr>
+                <tr><td><code>00E401</code></td><td><span data-item-en="TypeHA/ROD"></span></td></tr>
+                <tr><td><code>00E500</code></td><td><span data-item-en="TypeDS/D.SABER"></span></td></tr>
+                <tr><td><code>00E501</code></td><td><span data-item-en="TypeDS/ROD"></span></td></tr>
+                <tr><td><code>00E502</code></td><td>TypeDS</td></tr>
+                <tr><td><code>00E600</code></td><td><span data-item-en="TypeCL/CLAW"></span></td></tr>
+                <tr><td><code>00E700</code></td><td>TypeSS/SW</td></tr>
+                <tr><td><code>00E800</code></td><td><span data-item-en="TypeGU/HANDGUN"></span></td></tr>
+                <tr><td><code>00E801</code></td><td><span data-item-en="TypeGU/MECHGUN"></span></td></tr>
+                <tr><td><code>00E900</code></td><td><span data-item-en="TypeRI/RIFLE"></span></td></tr>
+                <tr><td><code>00EA00</code></td><td><span data-item-en="TypeME/MECHGUN"></span></td></tr>
+                <tr><td><code>00EB00</code></td><td><span data-item-en="TypeSH/SHOT"></span></td></tr>
+                <tr><td><code>00EC00</code></td><td><span data-item-en="TypeWA/WAND"></span></td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <!-- ==================== ARMOR VALUES ==================== -->
+        <h2 id="armor-values">Complete frame code list</h2>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Frame name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>010100</code></td><td><span data-item-en="Frame"></span></td></tr>
+                <tr><td><code>010101</code></td><td><span data-item-en="Armor"></span></td></tr>
+                <tr><td><code>010102</code></td><td><span data-item-en="Psy Armor"></span></td></tr>
+                <tr><td><code>010103</code></td><td><span data-item-en="Giga Frame"></span></td></tr>
+                <tr><td><code>010104</code></td><td><span data-item-en="Soul Frame"></span></td></tr>
+                <tr><td><code>010105</code></td><td><span data-item-en="Cross Armor"></span></td></tr>
+                <tr><td><code>010106</code></td><td><span data-item-en="Solid Frame"></span></td></tr>
+                <tr><td><code>010107</code></td><td><span data-item-en="Brave Armor"></span></td></tr>
+                <tr><td><code>010108</code></td><td><span data-item-en="Hyper Frame"></span></td></tr>
+                <tr><td><code>010109</code></td><td><span data-item-en="Grand Armor"></span></td></tr>
+                <tr><td><code>01010A</code></td><td><span data-item-en="Shock Frame"></span></td></tr>
+                <tr><td><code>01010B</code></td><td><span data-item-en="King's Frame"></span></td></tr>
+                <tr><td><code>01010C</code></td><td><span data-item-en="Dragon Frame"></span></td></tr>
+                <tr><td><code>01010D</code></td><td><span data-item-en="Absorb Armor"></span></td></tr>
+                <tr><td><code>01010E</code></td><td><span data-item-en="Protect Frame"></span></td></tr>
+                <tr><td><code>01010F</code></td><td><span data-item-en="General Armor"></span></td></tr>
+                <tr><td><code>010110</code></td><td><span data-item-en="Perfect Frame"></span></td></tr>
+                <tr><td><code>010111</code></td><td><span data-item-en="Valiant Frame"></span></td></tr>
+                <tr><td><code>010112</code></td><td><span data-item-en="Imperial Armor"></span></td></tr>
+                <tr><td><code>010113</code></td><td><span data-item-en="Holiness Armor"></span></td></tr>
+                <tr><td><code>010114</code></td><td><span data-item-en="Guardian Armor"></span></td></tr>
+                <tr><td><code>010115</code></td><td><span data-item-en="Divinity Armor"></span></td></tr>
+                <tr><td><code>010116</code></td><td><span data-item-en="Ultimate Frame"></span></td></tr>
+                <tr><td><code>010117</code></td><td><span data-item-en="Celestial Armor"></span></td></tr>
+                <tr><td><code>010118</code></td><td><span data-item-en="HUNTER FIELD"></span></td></tr>
+                <tr><td><code>010119</code></td><td><span data-item-en="RANGER FIELD"></span></td></tr>
+                <tr><td><code>01011A</code></td><td><span data-item-en="FORCE FIELD"></span></td></tr>
+                <tr><td><code>01011B</code></td><td><span data-item-en="Revival Garment"></span></td></tr>
+                <tr><td><code>01011C</code></td><td><span data-item-en="Spirit Garment"></span></td></tr>
+                <tr><td><code>01011D</code></td><td><span data-item-en="Stink Frame"></span></td></tr>
+                <tr><td><code>01011E</code></td><td><span data-item-en="D-Parts ver1.01"></span></td></tr>
+                <tr><td><code>01011F</code></td><td><span data-item-en="D-Parts ver2.10"></span></td></tr>
+                <tr><td><code>010120</code></td><td><span data-item-en="PARASITE WEAR:De Rol"></span></td></tr>
+                <tr><td><code>010121</code></td><td><span data-item-en="PARASITE WEAR:Nelgal"></span></td></tr>
+                <tr><td><code>010122</code></td><td><span data-item-en="PARASITE WEAR:Vajulla"></span></td></tr>
+                <tr><td><code>010123</code></td><td><span data-item-en="Sense Plate"></span></td></tr>
+                <tr><td><code>010124</code></td><td><span data-item-en="Graviton Plate"></span></td></tr>
+                <tr><td><code>010125</code></td><td><span data-item-en="Attribute Plate"></span></td></tr>
+                <tr><td><code>010126</code></td><td><span data-item-en="Flowen's Frame"></span></td></tr>
+                <tr><td><code>010127</code></td><td><span data-item-en="CUSTOM FRAME Ver.00"></span></td></tr>
+                <tr><td><code>010128</code></td><td><span data-item-en="DB's Armor"></span></td></tr>
+                <tr><td><code>010129</code></td><td><span data-item-en="Guard Wave"></span></td></tr>
+                <tr><td><code>01012A</code></td><td><span data-item-en="DF Field"></span></td></tr>
+                <tr><td><code>01012B</code></td><td><span data-item-en="Luminous Field"></span></td></tr>
+                <tr><td><code>01012C</code></td><td><span data-item-en="CHU CHU FEVER"></span></td></tr>
+                <tr><td><code>01012D</code></td><td><span data-item-en="LOVE HEART"></span></td></tr>
+                <tr><td><code>01012E</code></td><td><span data-item-en="Flame Garment"></span></td></tr>
+                <tr><td><code>01012F</code></td><td><span data-item-en="VIRUS ARMOR:Lafuteria"></span></td></tr>
+                <tr><td><code>010130</code></td><td><span data-item-en="Brightness Circle"></span></td></tr>
+                <tr><td><code>010131</code></td><td><span data-item-en="Aura Field"></span></td></tr>
+                <tr><td><code>010132</code></td><td><span data-item-en="Electro Frame"></span></td></tr>
+                <tr><td><code>010133</code></td><td><span data-item-en="Sacred Cloth"></span></td></tr>
+                <tr><td><code>010134</code></td><td><span data-item-en="Smoking Plate"></span></td></tr>
+                <tr><td><code>010135</code></td><td><span data-item-en="Star Cuirass"></span></td></tr>
+                <tr><td><code>010136</code></td><td><span data-item-en="Black Hound Cuirass"></span></td></tr>
+                <tr><td><code>010137</code></td><td><span data-item-en="Morning Prayer"></span></td></tr>
+                <tr><td><code>010138</code></td><td><span data-item-en="Black Odoshi Domaru"></span></td></tr>
+                <tr><td><code>010139</code></td><td><span data-item-en="Red Odoshi Domaru"></span></td></tr>
+                <tr><td><code>01013A</code></td><td><span data-item-en="Black Odoshi Red Nimaidou"></span></td></tr>
+                <tr><td><code>01013B</code></td><td><span data-item-en="Blue Odoshi Violet Nimaidou"></span></td></tr>
+                <tr><td><code>01013C</code></td><td>DIRTY LIFE JACKET</td></tr>
+                <tr><td><code>01013D</code></td><td><span data-item-en="Frame"></span></td></tr>
+                <tr><td><code>01013E</code></td><td><span data-item-en="Wedding Dress"></span></td></tr>
+                <tr><td><code>01013F</code></td><td><span data-item-en="Frame"></span></td></tr>
+                <tr><td><code>010140</code></td><td><span data-item-en="Red Coat"></span></td></tr>
+                <tr><td><code>010141</code></td><td><span data-item-en="Thirteen"></span></td></tr>
+                <tr><td><code>010142</code></td><td><span data-item-en="Mother Garb"></span></td></tr>
+                <tr><td><code>010143</code></td><td><span data-item-en="Mother Garb+"></span></td></tr>
+                <tr><td><code>010144</code></td><td><span data-item-en="Dress Plate"></span></td></tr>
+                <tr><td><code>010145</code></td><td><span data-item-en="SWEETHEART"></span></td></tr>
+                <tr><td><code>010146</code></td><td><span data-item-en="Ignition Cloak"></span></td></tr>
+                <tr><td><code>010147</code></td><td><span data-item-en="Congeal Cloak"></span></td></tr>
+                <tr><td><code>010148</code></td><td><span data-item-en="Tempest Cloak"></span></td></tr>
+                <tr><td><code>010149</code></td><td><span data-item-en="Cursed Cloak"></span></td></tr>
+                <tr><td><code>01014A</code></td><td><span data-item-en="Select Cloak"></span></td></tr>
+                <tr><td><code>01014B</code></td><td><span data-item-en="Spirit Cuirass"></span></td></tr>
+                <tr><td><code>01014C</code></td><td><span data-item-en="Revival Cuirass"></span></td></tr>
+                <tr><td><code>01014D</code></td><td><span data-item-en="Alliance Uniform"></span></td></tr>
+                <tr><td><code>01014E</code></td><td><span data-item-en="Officer Uniform"></span></td></tr>
+                <tr><td><code>01014F</code></td><td><span data-item-en="Commander Uniform"></span></td></tr>
+                <tr><td><code>010150</code></td><td><span data-item-en="Crimson Coat"></span></td></tr>
+                <tr><td><code>010151</code></td><td><span data-item-en="Infantry Gear"></span></td></tr>
+                <tr><td><code>010152</code></td><td><span data-item-en="Lieutenant Gear"></span></td></tr>
+                <tr><td><code>010153</code></td><td><span data-item-en="Infantry Mantle"></span></td></tr>
+                <tr><td><code>010154</code></td><td><span data-item-en="Lieutenant Mantle"></span></td></tr>
+                <tr><td><code>010155</code></td><td><span data-item-en="UNION FIELD"></span></td></tr>
+                <tr><td><code>010156</code></td><td><span data-item-en="SAMURAI ARMOR"></span>*</td></tr>
+                <tr><td><code>010157</code></td><td><span data-item-en="STEALTH SUIT"></span>*</td></tr>
+                <tr><td><code>010158</code></td><td>???? [Requires GOE]</td></tr>
+                <tr><td><code>010159</code></td><td>Knight/Power [Requires GOE]</td></tr>
+                <tr><td><code>01015A</code></td><td>Knight/Power [Requires GOE]</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <!-- ==================== SHIELD VALUES ==================== -->
+        <h2 id="shield-values">Complete barrier code list</h2>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Barrier name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>010200</code></td><td><span data-item-en="Barrier"></span></td></tr>
+                <tr><td><code>010201</code></td><td><span data-item-en="Shield"></span></td></tr>
+                <tr><td><code>010202</code></td><td><span data-item-en="Core Shield"></span></td></tr>
+                <tr><td><code>010203</code></td><td><span data-item-en="Giga Shield"></span></td></tr>
+                <tr><td><code>010204</code></td><td><span data-item-en="Soul Barrier"></span></td></tr>
+                <tr><td><code>010205</code></td><td><span data-item-en="Hard Shield"></span></td></tr>
+                <tr><td><code>010206</code></td><td><span data-item-en="Brave Barrier"></span></td></tr>
+                <tr><td><code>010207</code></td><td><span data-item-en="Solid Shield"></span></td></tr>
+                <tr><td><code>010208</code></td><td><span data-item-en="Flame Barrier"></span></td></tr>
+                <tr><td><code>010209</code></td><td><span data-item-en="Plasma Barrier"></span></td></tr>
+                <tr><td><code>01020A</code></td><td><span data-item-en="Freeze Barrier"></span></td></tr>
+                <tr><td><code>01020B</code></td><td><span data-item-en="Psychic Barrier"></span></td></tr>
+                <tr><td><code>01020C</code></td><td><span data-item-en="General Shield"></span></td></tr>
+                <tr><td><code>01020D</code></td><td><span data-item-en="Protect Barrier"></span></td></tr>
+                <tr><td><code>01020E</code></td><td><span data-item-en="Glorious Shield"></span></td></tr>
+                <tr><td><code>01020F</code></td><td><span data-item-en="Imperial Barrier"></span></td></tr>
+                <tr><td><code>010210</code></td><td><span data-item-en="Guardian Shield"></span></td></tr>
+                <tr><td><code>010211</code></td><td><span data-item-en="Divinity Barrier"></span></td></tr>
+                <tr><td><code>010212</code></td><td><span data-item-en="Ultimate Shield"></span></td></tr>
+                <tr><td><code>010213</code></td><td><span data-item-en="Spiritual Shield"></span></td></tr>
+                <tr><td><code>010214</code></td><td><span data-item-en="Celestial Shield"></span></td></tr>
+                <tr><td><code>010215</code></td><td><span data-item-en="Invisible Guard"></span></td></tr>
+                <tr><td><code>010216</code></td><td><span data-item-en="Sacred Guard"></span></td></tr>
+                <tr><td><code>010217</code></td><td><span data-item-en="S-Parts ver1.16"></span></td></tr>
+                <tr><td><code>010218</code></td><td><span data-item-en="S-Parts ver2.01"></span></td></tr>
+                <tr><td><code>010219</code></td><td><span data-item-en="Light Relief"></span></td></tr>
+                <tr><td><code>01021A</code></td><td><span data-item-en="SHIELD OF DELSABER"></span></td></tr>
+                <tr><td><code>01021B</code></td><td><span data-item-en="FORCE WALL"></span></td></tr>
+                <tr><td><code>01021C</code></td><td><span data-item-en="RANGER WALL"></span></td></tr>
+                <tr><td><code>01021D</code></td><td><span data-item-en="HUNTER WALL"></span></td></tr>
+                <tr><td><code>01021E</code></td><td><span data-item-en="Attribute Wall"></span></td></tr>
+                <tr><td><code>01021F</code></td><td><span data-item-en="Secret Gear"></span></td></tr>
+                <tr><td><code>010220</code></td><td><span data-item-en="Combat Gear"></span></td></tr>
+                <tr><td><code>010221</code></td><td><span data-item-en="Proto Regene Gear"></span></td></tr>
+                <tr><td><code>010222</code></td><td><span data-item-en="Regenerate Gear"></span></td></tr>
+                <tr><td><code>010223</code></td><td><span data-item-en="Regene Gear Adv."></span></td></tr>
+                <tr><td><code>010224</code></td><td><span data-item-en="Flowen's Shield"></span></td></tr>
+                <tr><td><code>010225</code></td><td><span data-item-en="CUSTOM BARRIER Ver.00"></span></td></tr>
+                <tr><td><code>010226</code></td><td><span data-item-en="DB's Shield"></span></td></tr>
+                <tr><td><code>010227</code></td><td><span data-item-en="Red Ring"></span></td></tr>
+                <tr><td><code>010228</code></td><td><span data-item-en="Tripolic Shield"></span></td></tr>
+                <tr><td><code>010229</code></td><td><span data-item-en="Standstill Shield"></span></td></tr>
+                <tr><td><code>01022A</code></td><td><span data-item-en="SAFETY HEART"></span></td></tr>
+                <tr><td><code>01022B</code></td><td><span data-item-en="Kasami Bracer"></span></td></tr>
+                <tr><td><code>01022C</code></td><td><span data-item-en="GODS SHIELD SUZAKU"></span></td></tr>
+                <tr><td><code>01022D</code></td><td><span data-item-en="GODS SHIELD GENBU"></span></td></tr>
+                <tr><td><code>01022E</code></td><td><span data-item-en="GODS SHIELD BYAKKO"></span></td></tr>
+                <tr><td><code>01022F</code></td><td><span data-item-en="GODS SHIELD SEIRYU"></span></td></tr>
+                <tr><td><code>010230</code></td><td><span data-item-en="Hunter's Shell"></span></td></tr>
+                <tr><td><code>010231</code></td><td>RIKO'S GLASSES*</td></tr>
+                <tr><td><code>010232</code></td><td>RIKO'S EARRING*</td></tr>
+                <tr><td><code>010235</code></td><td><span data-item-en="Secure Feet"></span></td></tr>
+                <tr><td><code>010238</code></td><td><span data-item-en="Barrier"></span></td></tr>
+                <tr><td><code>010239</code></td><td><span data-item-en="Barrier"></span></td></tr>
+                <tr><td><code>01023A</code></td><td><span data-item-en="RESTA MERGE"></span></td></tr>
+                <tr><td><code>01023B</code></td><td><span data-item-en="ANTI MERGE"></span></td></tr>
+                <tr><td><code>01023C</code></td><td><span data-item-en="SHIFTA MERGE"></span></td></tr>
+                <tr><td><code>01023D</code></td><td><span data-item-en="DEBAND MERGE"></span></td></tr>
+                <tr><td><code>01023E</code></td><td><span data-item-en="FOIE MERGE"></span></td></tr>
+                <tr><td><code>01023F</code></td><td><span data-item-en="GIFOIE MERGE"></span></td></tr>
+                <tr><td><code>010240</code></td><td><span data-item-en="RAFOIE MERGE"></span></td></tr>
+                <tr><td><code>010241</code></td><td><span data-item-en="RED MERGE"></span></td></tr>
+                <tr><td><code>010242</code></td><td><span data-item-en="BARTA MERGE"></span></td></tr>
+                <tr><td><code>010243</code></td><td><span data-item-en="GIBARTA MERGE"></span></td></tr>
+                <tr><td><code>010244</code></td><td><span data-item-en="RABARTA MERGE"></span></td></tr>
+                <tr><td><code>010245</code></td><td><span data-item-en="BLUE MERGE"></span></td></tr>
+                <tr><td><code>010246</code></td><td><span data-item-en="ZONDE MERGE"></span></td></tr>
+                <tr><td><code>010247</code></td><td><span data-item-en="GIZONDE MERGE"></span></td></tr>
+                <tr><td><code>010248</code></td><td><span data-item-en="RAZONDE MERGE"></span></td></tr>
+                <tr><td><code>010249</code></td><td><span data-item-en="YELLOW MERGE"></span></td></tr>
+                <tr><td><code>01024A</code></td><td><span data-item-en="Recovery Barrier"></span></td></tr>
+                <tr><td><code>01024B</code></td><td><span data-item-en="Assist Barrier"></span></td></tr>
+                <tr><td><code>01024C</code></td><td><span data-item-en="Red Barrier"></span></td></tr>
+                <tr><td><code>01024D</code></td><td><span data-item-en="Blue Barrier"></span></td></tr>
+                <tr><td><code>01024E</code></td><td><span data-item-en="Yellow Barrier"></span></td></tr>
+                <tr><td><code>01024F</code></td><td><span data-item-en="WEAPONS GOLD SHIELD"></span></td></tr>
+                <tr><td><code>010250</code></td><td><span data-item-en="BLACK GEAR"></span></td></tr>
+                <tr><td><code>010251</code></td><td><span data-item-en="WORKS GUARD"></span></td></tr>
+                <tr><td><code>010252</code></td><td><span data-item-en="RAGOL RING"></span></td></tr>
+                <tr><td><code>010253</code></td><td>BLUE RING (7 Colors)</td></tr>
+                <tr><td><code>010259</code></td><td><span data-item-en="BLUE RING"></span></td></tr>
+                <tr><td><code>01025F</code></td><td><span data-item-en="GREEN RING"></span></td></tr>
+                <tr><td><code>010266</code></td><td><span data-item-en="YELLOW RING"></span></td></tr>
+                <tr><td><code>01026C</code></td><td><span data-item-en="PURPLE RING"></span></td></tr>
+                <tr><td><code>010275</code></td><td><span data-item-en="WHITE RING"></span></td></tr>
+                <tr><td><code>010280</code></td><td><span data-item-en="Black Ring"></span></td></tr>
+                <tr><td><code>010283</code></td><td><span data-item-en="WEAPONS SILVER SHIELD"></span></td></tr>
+                <tr><td><code>010284</code></td><td><span data-item-en="WEAPONS COPPER SHIELD"></span></td></tr>
+                <tr><td><code>010285</code></td><td><span data-item-en="Gratia"></span></td></tr>
+                <tr><td><code>010286</code></td><td><span data-item-en="Tripolic Reflector"></span></td></tr>
+                <tr><td><code>010287</code></td><td><span data-item-en="Striker Plus"></span></td></tr>
+                <tr><td><code>010288</code></td><td><span data-item-en="Regenerate Gear B.P."></span></td></tr>
+                <tr><td><code>010289</code></td><td><span data-item-en="Rupika"></span></td></tr>
+                <tr><td><code>01028A</code></td><td><span data-item-en="Yata Mirror"></span></td></tr>
+                <tr><td><code>01028B</code></td><td><span data-item-en="Bunny Ears"></span></td></tr>
+                <tr><td><code>01028C</code></td><td><span data-item-en="Cat Ears"></span></td></tr>
+                <tr><td><code>01028D</code></td><td><span data-item-en="Three Seals"></span></td></tr>
+                <tr><td><code>01028F</code></td><td><span data-item-en="DF Shield"></span>*</td></tr>
+                <tr><td><code>010290</code></td><td><span data-item-en="FROM THE DEPTHS"></span></td></tr>
+                <tr><td><code>010291</code></td><td><span data-item-en="DE ROL LE SHIELD"></span>*</td></tr>
+                <tr><td><code>010292</code></td><td><span data-item-en="Honeycomb Reflector"></span>*</td></tr>
+                <tr><td><code>010293</code></td><td><span data-item-en="EPSIGUARD"></span></td></tr>
+                <tr><td><code>010294</code></td><td><span data-item-en="ANGEL RING"></span>*</td></tr>
+                <tr><td><code>010295</code></td><td><span data-item-en="UNION GUARD"></span>*</td></tr>
+                <tr><td><code>010296</code></td><td>[Blank]*</td></tr>
+                <tr><td><code>010297</code></td><td>UNION*</td></tr>
+                <tr><td><code>010298</code></td><td>BLACK SHIELD UNION GUARD*</td></tr>
+                <tr><td><code>010299</code></td><td><span data-item-en="Stink Shield"></span>*</td></tr>
+                <tr><td><code>01029A</code></td><td>BLACK*</td></tr>
+                <tr><td><code>01029B00</code></td><td>*Japanese Text* [GENPEI, Heightened, Your ID]</td></tr>
+                <tr><td><code>01029C00</code></td><td>*Japanese Text* [GENPEI, Greenil]</td></tr>
+                <tr><td><code>01029D00</code></td><td>*Japanese Text* [GENPEI, Skyly]</td></tr>
+                <tr><td><code>01029E00</code></td><td>*Japanese Text* [GENPEI, Blueful]</td></tr>
+                <tr><td><code>01029F00</code></td><td>*Japanese Text* [GENPEI, Purplenum]</td></tr>
+                <tr><td><code>0102A000</code></td><td>*Japanese Text* [GENPEI, Pinkal]</td></tr>
+                <tr><td><code>0102A100</code></td><td>*Japanese Text* [GENPEI, Redria]</td></tr>
+                <tr><td><code>0102A200</code></td><td>*Japanese Text* [GENPEI, Oran]</td></tr>
+                <tr><td><code>0102A300</code></td><td>*Japanese Text* [GENPEI, Yellowboze]</td></tr>
+                <tr><td><code>0102A400</code></td><td>*Japanese Text* [GENPEI, Whitill]</td></tr>
+                <tr><td><code>0102A500</code></td><td>Frame</td></tr>
+                <tr><td><code>0102A600</code></td><td>Frame</td></tr>
+                <tr><td><code>0102FF00</code></td><td>Frame</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <!-- ==================== ITEM VALUES ==================== -->
+        <h2 id="item-values">Complete tool code list</h2>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Tool name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>030000</code></td><td><span data-item-en="Monomate"></span></td></tr>
+                <tr><td><code>030001</code></td><td><span data-item-en="Dimate"></span></td></tr>
+                <tr><td><code>030002</code></td><td><span data-item-en="Trimate"></span></td></tr>
+                <tr><td><code>030100</code></td><td><span data-item-en="Monofluid"></span></td></tr>
+                <tr><td><code>030101</code></td><td><span data-item-en="Difluid"></span></td></tr>
+                <tr><td><code>030102</code></td><td><span data-item-en="Trifluid"></span></td></tr>
+                <tr><td><code>030200</code></td><td>Disk:Foie Lv.1</td></tr>
+                <tr><td><code>030300</code></td><td><span data-item-en="Sol Atomizer"></span></td></tr>
+                <tr><td><code>030400</code></td><td><span data-item-en="Moon Atomizer"></span></td></tr>
+                <tr><td><code>030500</code></td><td><span data-item-en="Star Atomizer"></span></td></tr>
+                <tr><td><code>030600</code></td><td><span data-item-en="Antidote"></span></td></tr>
+                <tr><td><code>030601</code></td><td><span data-item-en="Antiparalysis"></span></td></tr>
+                <tr><td><code>030602</code></td><td>???? (x1-x255)</td></tr>
+                <tr><td><code>030700</code></td><td><span data-item-en="Telepipe"></span></td></tr>
+                <tr><td><code>030800</code></td><td><span data-item-en="Trap Vision"></span></td></tr>
+                <tr><td><code>030900</code></td><td><span data-item-en="Scape Doll"></span></td></tr>
+                <tr><td><code>030A00</code></td><td><span data-item-en="Monogrinder"></span></td></tr>
+                <tr><td><code>030A01</code></td><td><span data-item-en="Digrinder"></span></td></tr>
+                <tr><td><code>030A02</code></td><td><span data-item-en="Trigrinder"></span></td></tr>
+                <tr><td><code>030A03</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>030B00</code></td><td><span data-item-en="Power Material"></span></td></tr>
+                <tr><td><code>030B01</code></td><td><span data-item-en="Mind Material"></span></td></tr>
+                <tr><td><code>030B02</code></td><td><span data-item-en="Evade Material"></span></td></tr>
+                <tr><td><code>030B03</code></td><td><span data-item-en="HP Material"></span></td></tr>
+                <tr><td><code>030B04</code></td><td><span data-item-en="TP Material"></span></td></tr>
+                <tr><td><code>030B05</code></td><td><span data-item-en="Def Material"></span></td></tr>
+                <tr><td><code>030B06</code></td><td><span data-item-en="Luck Material"></span></td></tr>
+                <tr><td><code>030B07</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>030C00</code></td><td><span data-item-en="Cell of MAG 502"></span></td></tr>
+                <tr><td><code>030C01</code></td><td><span data-item-en="Cell of MAG 213"></span></td></tr>
+                <tr><td><code>030C02</code></td><td><span data-item-en="Parts of RoboChao"></span></td></tr>
+                <tr><td><code>030C03</code></td><td><span data-item-en="Heart of Opa Opa"></span></td></tr>
+                <tr><td><code>030C04</code></td><td><span data-item-en="Heart of Pian"></span></td></tr>
+                <tr><td><code>030C05</code></td><td><span data-item-en="Heart of Chao"></span></td></tr>
+                <tr><td><code>030C06</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>030D00</code></td><td><span data-item-en="Sorcerer's Right Arm"></span></td></tr>
+                <tr><td><code>030D01</code></td><td><span data-item-en="S-beat's Arms"></span></td></tr>
+                <tr><td><code>030D02</code></td><td><span data-item-en="P-arm's Arms"></span></td></tr>
+                <tr><td><code>030D03</code></td><td><span data-item-en="Delsaber's Right Arm"></span></td></tr>
+                <tr><td><code>030D04</code></td><td><span data-item-en="C-bringer's Right Arm"></span></td></tr>
+                <tr><td><code>030D05</code></td><td><span data-item-en="Delsaber's Left Arm"></span></td></tr>
+                <tr><td><code>030D06</code></td><td><span data-item-en="S-red's Arms"></span></td></tr>
+                <tr><td><code>030D07</code></td><td><span data-item-en="Dragon's Claw"></span></td></tr>
+                <tr><td><code>030D08</code></td><td><span data-item-en="Hildebear's Head"></span></td></tr>
+                <tr><td><code>030D09</code></td><td><span data-item-en="Hildeblue's Head"></span></td></tr>
+                <tr><td><code>030D0A</code></td><td><span data-item-en="Parts of Baranz"></span></td></tr>
+                <tr><td><code>030D0B</code></td><td><span data-item-en="Belra's Right Arm"></span></td></tr>
+                <tr><td><code>030D0C</code></td><td><span data-item-en="GIGUE'S ARMS"></span></td></tr>
+                <tr><td><code>030D0D</code></td><td><span data-item-en="S-BERILL'S ARMS"></span></td></tr>
+                <tr><td><code>030D0E</code></td><td><span data-item-en="G-ASSASIN'S ARMS"></span></td></tr>
+                <tr><td><code>030D0F</code></td><td><span data-item-en="BOOMA'S RIGHT ARMS"></span></td></tr>
+                <tr><td><code>030D10</code></td><td><span data-item-en="GOBOOMA'S RIGHT ARMS"></span></td></tr>
+                <tr><td><code>030D11</code></td><td><span data-item-en="GIGOBOOMA'S RIGHT ARMS"></span></td></tr>
+                <tr><td><code>030D12</code></td><td><span data-item-en="GAL WIND"></span></td></tr>
+                <tr><td><code>030D13</code></td><td><span data-item-en="Rappy's Wing"></span></td></tr>
+                <tr><td><code>030D14</code></td><td><span data-item-en="Cladding of Epsilon"></span></td></tr>
+                <tr><td><code>030D15</code></td><td><span data-item-en="De Rol Le Shell"></span></td></tr>
+                <tr><td><code>030D16</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>030E00</code></td><td><span data-item-en="Berill Photon"></span></td></tr>
+                <tr><td><code>030E01</code></td><td><span data-item-en="PARASITIC GENE FLOW"></span></td></tr>
+                <tr><td><code>030E02</code></td><td><span data-item-en="MAGICSTONE IRITISTA"></span></td></tr>
+                <tr><td><code>030E03</code></td><td>BLUE BLACK STONE</td></tr>
+                <tr><td><code>030E04</code></td><td><span data-item-en="Syncesta"></span></td></tr>
+                <tr><td><code>030E05</code></td><td><span data-item-en="Magic Water"></span></td></tr>
+                <tr><td><code>030E06</code></td><td><span data-item-en="Parasitic cell Type D"></span></td></tr>
+                <tr><td><code>030E07</code></td><td><span data-item-en="Magic Rock Heart Key"></span></td></tr>
+                <tr><td><code>030E08</code></td><td><span data-item-en="MAGIC ROCK MOOLA"></span></td></tr>
+                <tr><td><code>030E09</code></td><td><span data-item-en="Star Amplifier"></span></td></tr>
+                <tr><td><code>030E0A</code></td><td><span data-item-en="Book of Hitogata"></span></td></tr>
+                <tr><td><code>030E0B</code></td><td><span data-item-en="Heart of Chu Chu"></span></td></tr>
+                <tr><td><code>030E0C</code></td><td><span data-item-en="Parts of Egg Blaster"></span></td></tr>
+                <tr><td><code>030E0D</code></td><td><span data-item-en="Heart of Angel"></span></td></tr>
+                <tr><td><code>030E0E</code></td><td><span data-item-en="Heart of Devil"></span></td></tr>
+                <tr><td><code>030E0F</code></td><td>KIT OF HAMBERGER</td></tr>
+                <tr><td><code>030E10</code></td><td><span data-item-en="Panther's Spirit"></span></td></tr>
+                <tr><td><code>030E11</code></td><td><span data-item-en="Kit of MARK3"></span></td></tr>
+                <tr><td><code>030E12</code></td><td><span data-item-en="Kit of MASTER SYSTEM"></span></td></tr>
+                <tr><td><code>030E13</code></td><td><span data-item-en="Kit of GENESIS"></span></td></tr>
+                <tr><td><code>030E14</code></td><td><span data-item-en="Kit of SEGA SATURN"></span></td></tr>
+                <tr><td><code>030E15</code></td><td><span data-item-en="Kit of DREAMCAST"></span></td></tr>
+                <tr><td><code>030E16</code></td><td>AMP. RESTA</td></tr>
+                <tr><td><code>030E17</code></td><td>AMP. ANTI</td></tr>
+                <tr><td><code>030E18</code></td><td>AMP. SHIFTA</td></tr>
+                <tr><td><code>030E19</code></td><td>AMP. DEBAND</td></tr>
+                <tr><td><code>030E1A</code></td><td><span data-item-en="Amplifier of Foie"></span></td></tr>
+                <tr><td><code>030E1B</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E1C</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E1D</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E1E</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E1F</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E20</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E21</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E22</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E23</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E24</code></td><td>AMP.</td></tr>
+                <tr><td><code>030E25</code></td><td>AMP. YELLOW</td></tr>
+                <tr><td><code>030E26</code></td><td>HEART OF KAPUKAPU</td></tr>
+                <tr><td><code>030E27</code></td><td><span data-item-en="Photon Booster"></span></td></tr>
+                <tr><td><code>030E28</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>030F00</code></td><td><span data-item-en="AddSlot"></span></td></tr>
+                <tr><td><code>030F01</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>031000</code></td><td><span data-item-en="Photon Drop"></span></td></tr>
+                <tr><td><code>031001</code></td><td><span data-item-en="Photon Sphere"></span></td></tr>
+                <tr><td><code>031002</code></td><td><span data-item-en="Photon Crystal"></span></td></tr>
+                <tr><td><code>031003</code></td><td>Secret Lottery Ticket</td></tr>
+                <tr><td><code>031004</code></td><td>(Blank Rare) x1</td></tr>
+                <tr><td><code>031005</code></td><td>???? x1</td></tr>
+                <tr><td><code>031100</code></td><td><span data-item-en="Book of Katana 1"></span></td></tr>
+                <tr><td><code>031101</code></td><td><span data-item-en="Book of Katana 2"></span></td></tr>
+                <tr><td><code>031102</code></td><td><span data-item-en="Book of Katana 3"></span></td></tr>
+                <tr><td><code>031103</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>031200</code></td><td><span data-item-en="Weapons Bronze Badge"></span></td></tr>
+                <tr><td><code>031201</code></td><td><span data-item-en="Weapons Silver Badge"></span></td></tr>
+                <tr><td><code>031202</code></td><td><span data-item-en="Weapons Gold Badge"></span></td></tr>
+                <tr><td><code>031203</code></td><td><span data-item-en="Weapons Crystal Badge"></span></td></tr>
+                <tr><td><code>031204</code></td><td><span data-item-en="Weapons Steel Badge"></span></td></tr>
+                <tr><td><code>031205</code></td><td><span data-item-en="Weapons Aluminum Badge"></span></td></tr>
+                <tr><td><code>031206</code></td><td><span data-item-en="Weapons Leather Badge"></span></td></tr>
+                <tr><td><code>031207</code></td><td><span data-item-en="Weapons Bone Badge"></span></td></tr>
+                <tr><td><code>031208</code></td><td>FoieLV.1Disk:</td></tr>
+                <tr><td><code>031209</code></td><td>(blank) [Unknown item]</td></tr>
+                <tr><td><code>03120A</code></td><td><span data-item-en="Valentine's Chocolate"></span></td></tr>
+                <tr><td><code>03120B</code></td><td>FoieLV.1Disk:</td></tr>
+                <tr><td><code>03120C</code></td><td>FoieLV.1Disk:</td></tr>
+                <tr><td><code>03120D</code></td><td>FoieLV.1Disk:</td></tr>
+                <tr><td><code>03120E</code></td><td>FoieLV.1Disk:</td></tr>
+                <tr><td><code>03120F</code></td><td>FoieLV.1Disk:</td></tr>
+                <tr><td><code>031210</code></td><td><span data-item-en="Flower Bouquet"></span></td></tr>
+                <tr><td><code>031211</code></td><td><span data-item-en="Cake"></span></td></tr>
+                <tr><td><code>031212</code></td><td><span data-item-en="Accessories"></span></td></tr>
+                <tr><td><code>031213</code></td><td><span data-item-en="Mr.Naka's Business Card"></span></td></tr>
+                <tr><td><code>031214</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>031300</code></td><td>PRESENT (Set ATT to FF for INVISI PRESENT, Att=COLOR)</td></tr>
+                <tr><td><code>031400</code></td><td><span data-item-en="Chocolate"></span></td></tr>
+                <tr><td><code>031401</code></td><td><span data-item-en="Candy"></span></td></tr>
+                <tr><td><code>031402</code></td><td><span data-item-en="Cake"></span></td></tr>
+                <tr><td><code>031403</code></td><td><span data-item-en="Silver Badge"></span></td></tr>
+                <tr><td><code>031404</code></td><td><span data-item-en="Gold Badge"></span></td></tr>
+                <tr><td><code>031405</code></td><td><span data-item-en="Crystal Badge"></span></td></tr>
+                <tr><td><code>031406</code></td><td>IRON BADGE</td></tr>
+                <tr><td><code>031407</code></td><td><span data-item-en="Aluminum Badge"></span></td></tr>
+                <tr><td><code>031408</code></td><td><span data-item-en="Leather Badge"></span></td></tr>
+                <tr><td><code>031409</code></td><td><span data-item-en="Bone Badge"></span></td></tr>
+                <tr><td><code>03140A</code></td><td>FoieLV.1Disk:</td></tr>
+                <tr><td><code>03140B</code></td><td>FoieLV.1Disk:</td></tr>
+                <tr><td><code>031500</code></td><td><span data-item-en="Christmas Present"></span></td></tr>
+                <tr><td><code>031501</code></td><td><span data-item-en="Easter Egg"></span></td></tr>
+                <tr><td><code>031502</code></td><td>Jack-O-Laturn</td></tr>
+                <tr><td><code>031503</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>031600</code></td><td>DISK VOL.1</td></tr>
+                <tr><td><code>031601</code></td><td>DISK VOL.2</td></tr>
+                <tr><td><code>031602</code></td><td>DISK VOL.3</td></tr>
+                <tr><td><code>031603</code></td><td>Disk: Foie Lv.1</td></tr>
+                <tr><td><code>031604</code></td><td>Disk: Foie LV.1</td></tr>
+                <tr><td><code>031605</code></td><td>DISK VOL.6</td></tr>
+                <tr><td><code>031606</code></td><td>DISK VOL.7</td></tr>
+                <tr><td><code>031607</code></td><td>DISK VOL.8</td></tr>
+                <tr><td><code>031608</code></td><td>DISK VOL.9</td></tr>
+                <tr><td><code>031609</code></td><td>DISK VOL.10</td></tr>
+                <tr><td><code>03160A</code></td><td>DISK VOL.11</td></tr>
+                <tr><td><code>03160B</code></td><td>DISK VOL.12</td></tr>
+                <tr><td><code>03160C</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>031700</code></td><td><span data-item-en="Hunters Report"></span></td></tr>
+                <tr><td><code>031701</code></td><td>HUNTERS REPORT RANK A</td></tr>
+                <tr><td><code>031702</code></td><td>HUNTERS REPORT RANK B</td></tr>
+                <tr><td><code>031703</code></td><td>HUNTERS REPORT RANK C</td></tr>
+                <tr><td><code>031704</code></td><td>HUNTERS REPORT RANK F</td></tr>
+                <tr><td><code>031705</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>031800</code></td><td><span data-item-en="Tablet"></span></td></tr>
+                <tr><td><code>031801</code></td><td>Disk: Foie Lv.1</td></tr>
+                <tr><td><code>031802</code></td><td><span data-item-en="Dragon Scale"></span></td></tr>
+                <tr><td><code>031803</code></td><td><span data-item-en="Heaven Striker Coat"></span></td></tr>
+                <tr><td><code>031804</code></td><td><span data-item-en="Pioneer Parts"></span></td></tr>
+                <tr><td><code>031805</code></td><td><span data-item-en="Amitie's Memo"></span></td></tr>
+                <tr><td><code>031806</code></td><td><span data-item-en="Heart of Morolian"></span></td></tr>
+                <tr><td><code>031807</code></td><td><span data-item-en="Rappy's Beak"></span></td></tr>
+                <tr><td><code>031808</code></td><td>FoieLV.1Disk:</td></tr>
+                <tr><td><code>031809</code></td><td><span data-item-en="D-Photon Core"></span></td></tr>
+                <tr><td><code>03180A</code></td><td><span data-item-en="Liberta Kit"></span></td></tr>
+                <tr><td><code>03180B</code></td><td>Cell of MAG 0503</td></tr>
+                <tr><td><code>03180C</code></td><td>Cell of MAG 0504</td></tr>
+                <tr><td><code>03180D</code></td><td>Cell of MAG 0505</td></tr>
+                <tr><td><code>03180F</code></td><td>Cell of MAG 0507</td></tr>
+                <tr><td><code>031810</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>031811</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>031812</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>031900</code></td><td><span data-item-en="Team Points 500"></span></td></tr>
+                <tr><td><code>031901</code></td><td><span data-item-en="Team Points 1000"></span></td></tr>
+                <tr><td><code>031902</code></td><td><span data-item-en="Team Points 5000"></span></td></tr>
+                <tr><td><code>031903</code></td><td><span data-item-en="Team Points 10000"></span></td></tr>
+                <tr><td><code>031904</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>032000</code></td><td><span data-item-en="????"></span></td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <!-- ==================== UNIT VALUES ==================== -->
+        <h2 id="unit-values">Complete unit code list</h2>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Unit name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>010300</code></td><td><span data-item-en="Knight/Power"></span></td></tr>
+                <tr><td><code>010301</code></td><td><span data-item-en="General/Power"></span></td></tr>
+                <tr><td><code>010302</code></td><td><span data-item-en="Ogre/Power"></span></td></tr>
+                <tr><td><code>010303</code></td><td><span data-item-en="God/Power"></span></td></tr>
+                <tr><td><code>010304</code></td><td><span data-item-en="Priest/Mind"></span></td></tr>
+                <tr><td><code>010305</code></td><td><span data-item-en="General/Mind"></span></td></tr>
+                <tr><td><code>010306</code></td><td><span data-item-en="Angel/Mind"></span></td></tr>
+                <tr><td><code>010307</code></td><td><span data-item-en="God/Mind"></span></td></tr>
+                <tr><td><code>010308</code></td><td><span data-item-en="Marksman/Arm"></span></td></tr>
+                <tr><td><code>010309</code></td><td><span data-item-en="General/Arm"></span></td></tr>
+                <tr><td><code>01030A</code></td><td><span data-item-en="Elf/Arm"></span></td></tr>
+                <tr><td><code>01030B</code></td><td><span data-item-en="God/Arm"></span></td></tr>
+                <tr><td><code>01030C</code></td><td><span data-item-en="Thief/Legs"></span></td></tr>
+                <tr><td><code>01030D</code></td><td><span data-item-en="General/Legs"></span></td></tr>
+                <tr><td><code>01030E</code></td><td><span data-item-en="Elf/Legs"></span></td></tr>
+                <tr><td><code>01030F</code></td><td><span data-item-en="God/Legs"></span></td></tr>
+                <tr><td><code>010310</code></td><td><span data-item-en="Digger/HP"></span></td></tr>
+                <tr><td><code>010311</code></td><td><span data-item-en="General/HP"></span></td></tr>
+                <tr><td><code>010312</code></td><td><span data-item-en="Dragon/HP"></span></td></tr>
+                <tr><td><code>010313</code></td><td><span data-item-en="God/HP"></span></td></tr>
+                <tr><td><code>010314</code></td><td><span data-item-en="Magician/TP"></span></td></tr>
+                <tr><td><code>010315</code></td><td><span data-item-en="General/TP"></span></td></tr>
+                <tr><td><code>010316</code></td><td><span data-item-en="Angel/TP"></span></td></tr>
+                <tr><td><code>010317</code></td><td><span data-item-en="God/TP"></span></td></tr>
+                <tr><td><code>010318</code></td><td><span data-item-en="Warrior/Body"></span></td></tr>
+                <tr><td><code>010319</code></td><td><span data-item-en="General/Body"></span></td></tr>
+                <tr><td><code>01031A</code></td><td><span data-item-en="Metal/Body"></span></td></tr>
+                <tr><td><code>01031B</code></td><td><span data-item-en="God/Body"></span></td></tr>
+                <tr><td><code>01031C</code></td><td><span data-item-en="Angel/Luck"></span></td></tr>
+                <tr><td><code>01031D</code></td><td><span data-item-en="God/Luck"></span></td></tr>
+                <tr><td><code>01031E</code></td><td><span data-item-en="Master/Ability"></span></td></tr>
+                <tr><td><code>01031F</code></td><td><span data-item-en="Hero/Ability"></span></td></tr>
+                <tr><td><code>010320</code></td><td><span data-item-en="God/Ability"></span></td></tr>
+                <tr><td><code>010321</code></td><td><span data-item-en="Resist/Fire"></span></td></tr>
+                <tr><td><code>010322</code></td><td><span data-item-en="Resist/Flame"></span></td></tr>
+                <tr><td><code>010323</code></td><td><span data-item-en="Resist/Burning"></span></td></tr>
+                <tr><td><code>010324</code></td><td><span data-item-en="Resist/Cold"></span></td></tr>
+                <tr><td><code>010325</code></td><td><span data-item-en="Resist/Freeze"></span></td></tr>
+                <tr><td><code>010326</code></td><td><span data-item-en="Resist/Blizzard"></span></td></tr>
+                <tr><td><code>010327</code></td><td><span data-item-en="Resist/Shock"></span></td></tr>
+                <tr><td><code>010328</code></td><td><span data-item-en="Resist/Thunder"></span></td></tr>
+                <tr><td><code>010329</code></td><td><span data-item-en="Resist/Storm"></span></td></tr>
+                <tr><td><code>01032A</code></td><td><span data-item-en="Resist/Light"></span></td></tr>
+                <tr><td><code>01032B</code></td><td><span data-item-en="Resist/Saint"></span></td></tr>
+                <tr><td><code>01032C</code></td><td><span data-item-en="Resist/Holy"></span></td></tr>
+                <tr><td><code>01032D</code></td><td><span data-item-en="Resist/Dark"></span></td></tr>
+                <tr><td><code>01032E</code></td><td><span data-item-en="Resist/Evil"></span></td></tr>
+                <tr><td><code>01032F</code></td><td><span data-item-en="Resist/Devil"></span></td></tr>
+                <tr><td><code>010330</code></td><td><span data-item-en="All/Resist"></span></td></tr>
+                <tr><td><code>010331</code></td><td><span data-item-en="Super/Resist"></span></td></tr>
+                <tr><td><code>010332</code></td><td><span data-item-en="Perfect/Resist"></span></td></tr>
+                <tr><td><code>010333</code></td><td><span data-item-en="HP/Restorate"></span></td></tr>
+                <tr><td><code>010334</code></td><td><span data-item-en="HP/Generate"></span></td></tr>
+                <tr><td><code>010335</code></td><td><span data-item-en="HP/Revival"></span></td></tr>
+                <tr><td><code>010336</code></td><td><span data-item-en="TP/Restorate"></span></td></tr>
+                <tr><td><code>010337</code></td><td><span data-item-en="TP/Generate"></span></td></tr>
+                <tr><td><code>010338</code></td><td><span data-item-en="TP/Revival"></span></td></tr>
+                <tr><td><code>010339</code></td><td><span data-item-en="PB/Amplifier"></span></td></tr>
+                <tr><td><code>01033A</code></td><td><span data-item-en="PB/Generate"></span></td></tr>
+                <tr><td><code>01033B</code></td><td><span data-item-en="PB/Create"></span></td></tr>
+                <tr><td><code>01033C</code></td><td><span data-item-en="Wizard/Technique"></span></td></tr>
+                <tr><td><code>01033D</code></td><td><span data-item-en="Devil/Technique"></span></td></tr>
+                <tr><td><code>01033E</code></td><td><span data-item-en="God/Technique"></span></td></tr>
+                <tr><td><code>01033F</code></td><td><span data-item-en="General/Battle"></span></td></tr>
+                <tr><td><code>010340</code></td><td><span data-item-en="Devil/Battle"></span></td></tr>
+                <tr><td><code>010341</code></td><td><span data-item-en="God/Battle"></span></td></tr>
+                <tr><td><code>010342</code></td><td><span data-item-en="Cure/Poison"></span></td></tr>
+                <tr><td><code>010343</code></td><td><span data-item-en="Cure/Paralysis"></span></td></tr>
+                <tr><td><code>010344</code></td><td><span data-item-en="Cure/Slow"></span></td></tr>
+                <tr><td><code>010345</code></td><td><span data-item-en="Cure/Confuse"></span></td></tr>
+                <tr><td><code>010346</code></td><td><span data-item-en="Cure/Freeze"></span></td></tr>
+                <tr><td><code>010347</code></td><td><span data-item-en="Cure/Shock"></span></td></tr>
+                <tr><td><code>010348</code></td><td><span data-item-en="Yasakani Magatama"></span></td></tr>
+                <tr><td><code>010349</code></td><td><span data-item-en="V101"></span></td></tr>
+                <tr><td><code>01034A</code></td><td><span data-item-en="V501"></span></td></tr>
+                <tr><td><code>01034B</code></td><td><span data-item-en="V502"></span></td></tr>
+                <tr><td><code>01034C</code></td><td><span data-item-en="V801"></span></td></tr>
+                <tr><td><code>01034D</code></td><td><span data-item-en="Limiter"></span></td></tr>
+                <tr><td><code>01034E</code></td><td><span data-item-en="ADEPT"></span></td></tr>
+                <tr><td><code>01034F</code></td><td><span data-item-en="Swordsman Lore"></span></td></tr>
+                <tr><td><code>010350</code></td><td><span data-item-en="PROOF OF SWORD-SAINT"></span></td></tr>
+                <tr><td><code>010351</code></td><td><span data-item-en="Smartlink"></span></td></tr>
+                <tr><td><code>010352</code></td><td><span data-item-en="Divine Protection"></span></td></tr>
+                <tr><td><code>010353</code></td><td><span data-item-en="Heavenly/Battle"></span></td></tr>
+                <tr><td><code>010354</code></td><td><span data-item-en="Heavenly/Power"></span></td></tr>
+                <tr><td><code>010355</code></td><td><span data-item-en="Heavenly/Mind"></span></td></tr>
+                <tr><td><code>010356</code></td><td><span data-item-en="Heavenly/Arms"></span>*</td></tr>
+                <tr><td><code>010357</code></td><td><span data-item-en="Heavenly/Legs"></span></td></tr>
+                <tr><td><code>010358</code></td><td><span data-item-en="Heavenly/Body"></span></td></tr>
+                <tr><td><code>010359</code></td><td><span data-item-en="Heavenly/Luck"></span></td></tr>
+                <tr><td><code>01035A</code></td><td><span data-item-en="Heavenly/Ability"></span></td></tr>
+                <tr><td><code>01035B</code></td><td><span data-item-en="Centurion/Ability"></span></td></tr>
+                <tr><td><code>01035C</code></td><td><span data-item-en="Friend Ring"></span></td></tr>
+                <tr><td><code>01035D</code></td><td><span data-item-en="Heavenly/HP"></span></td></tr>
+                <tr><td><code>01035E</code></td><td><span data-item-en="Heavenly/TP"></span></td></tr>
+                <tr><td><code>01035F</code></td><td><span data-item-en="Heavenly/Resist"></span></td></tr>
+                <tr><td><code>010360</code></td><td><span data-item-en="Heavenly/Technique"></span></td></tr>
+                <tr><td><code>010361</code></td><td><span data-item-en="HP/Resurrection"></span></td></tr>
+                <tr><td><code>010362</code></td><td><span data-item-en="TP/Resurrection"></span></td></tr>
+                <tr><td><code>010363</code></td><td><span data-item-en="PB/Increase"></span></td></tr>
+                <tr><td><code>010364</code></td><td><span data-item-en="????"></span></td></tr>
+                <tr><td><code>010365</code></td><td>Mag (Pal Rappy)</td></tr>
+                <tr><td><code>010366</code></td><td>Mag (Pal Rappy)</td></tr>
+                <tr><td><code>010367</code></td><td>Mag (Pal Rappy)</td></tr>
+                <tr><td><code>010368</code></td><td>Mag (Pal Rappy)</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <!-- ==================== TECHNIQUE VALUES ==================== -->
+        <h2 id="technique-values">Complete Technique code list</h2>
+
+        <table class="compact-table">
+            <thead>
+                <tr>
+                    <th>HEX</th>
+                    <th>Decimal</th>
+                    <th>Technique</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>00</code></td><td>00</td><td>Foie</td></tr>
+                <tr><td><code>01</code></td><td>01</td><td>Gifoie</td></tr>
+                <tr><td><code>02</code></td><td>02</td><td>Rafoie</td></tr>
+                <tr><td><code>03</code></td><td>03</td><td>Barta</td></tr>
+                <tr><td><code>04</code></td><td>04</td><td>Gibarta</td></tr>
+                <tr><td><code>05</code></td><td>05</td><td>Rabarta</td></tr>
+                <tr><td><code>06</code></td><td>06</td><td>Zonde</td></tr>
+                <tr><td><code>07</code></td><td>07</td><td>Gizonde</td></tr>
+                <tr><td><code>08</code></td><td>08</td><td>Razonde</td></tr>
+                <tr><td><code>09</code></td><td>09</td><td>Grants</td></tr>
+                <tr><td><code>0A</code></td><td>10</td><td>Deband</td></tr>
+                <tr><td><code>0B</code></td><td>11</td><td>Jellen</td></tr>
+                <tr><td><code>0C</code></td><td>12</td><td>Zalure</td></tr>
+                <tr><td><code>0D</code></td><td>13</td><td>Shifta</td></tr>
+                <tr><td><code>0E</code></td><td>14</td><td>Ryuker</td></tr>
+                <tr><td><code>0F</code></td><td>15</td><td>Resta</td></tr>
+                <tr><td><code>10</code></td><td>16</td><td>Anti</td></tr>
+                <tr><td><code>11</code></td><td>17</td><td>Reverser</td></tr>
+                <tr><td><code>12</code></td><td>18</td><td>Megid</td></tr>
+            </tbody>
+        </table>
+
+    
+
+
+
+
+
+</section>

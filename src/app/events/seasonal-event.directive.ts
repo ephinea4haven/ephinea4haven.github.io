@@ -1,5 +1,7 @@
 import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
 import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
+import { SiteLanguage, localizedPath, type PageLanguage } from '../shared/site-language.service';
+import { EVENT_TEXT } from './event-text';
 
 const AMBIGUOUS = new Set(['disk', 'heart', 'hit', 'mind', 'pioneer', 'rappy']);
 const ANNIVERSARY_LABELS = new Map([
@@ -34,6 +36,8 @@ const NPC_IMAGES = new Map<string, readonly [string, string]>([
 export class SeasonalEventBehavior {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly destroyRef = inject(DestroyRef);
+  private readonly siteLanguage = inject(SiteLanguage);
+  private language: PageLanguage = 'zh';
   private previewAnchor: HTMLElement | null = null;
 
   constructor() {
@@ -41,6 +45,7 @@ export class SeasonalEventBehavior {
   }
 
   private connect(): void {
+    this.language = this.siteLanguage.language();
     const masthead = this.host.querySelector<HTMLElement>('[data-seasonal-event]');
     const content = this.host.querySelector<HTMLElement>('#content');
     if (!masthead || !content) return;
@@ -49,7 +54,7 @@ export class SeasonalEventBehavior {
     const defaultYear = Number(masthead.dataset['defaultYear']);
     const requested = Number(new URLSearchParams(location.search).get('year'));
     const selected = years.includes(requested) ? requested : defaultYear;
-    const label = eventName === 'anniversary' ? '周年活动' : '圣诞活动';
+    const label = EVENT_TEXT[this.language][eventName === 'anniversary' ? 'anniversary' : 'christmas'];
     if (eventName === 'anniversary') {
       let hue = 188;
       if (selected <= 2018) hue = 38;
@@ -59,13 +64,13 @@ export class SeasonalEventBehavior {
       content.dataset['anniversaryYear'] = String(selected);
       this.setYearRailCollapsed(true);
     }
-    document.title = `${selected}${label} | Ephinea PSOBB`;
+    document.title = `${selected}${this.language === 'zh' ? '' : this.language === 'ja' ? '年' : ' '}${label} | Ephinea PSOBB`;
     this.host.querySelector<HTMLElement>('#project_year')!.textContent = String(selected);
     const nav = this.host.querySelector<HTMLElement>('#yearNav');
     nav?.replaceChildren(...years.map((year) => {
       const element = document.createElement(year === selected ? 'span' : 'a');
       element.textContent = String(year);
-      if (element instanceof HTMLAnchorElement) element.href = `/event/${eventName}.html?year=${year}`;
+      if (element instanceof HTMLAnchorElement) element.href = localizedPath(`/event/${eventName}.html?year=${year}`, this.language);
       else { element.className = 'year-current'; element.setAttribute('aria-current', 'page'); }
       return element;
     }));
@@ -84,7 +89,7 @@ export class SeasonalEventBehavior {
     };
     if (selected === defaultYear) finish();
     else {
-      fetch(`/event/${eventName}/${selected}.html`, { cache: 'no-store' })
+      fetch(localizedPath(`/event/${eventName}/${selected}.html`, this.language), { cache: 'no-store' })
         .then((response) => {
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           return response.text();
@@ -95,7 +100,7 @@ export class SeasonalEventBehavior {
           content.replaceChildren(...Array.from(parsed.body.childNodes).map((node) => document.importNode(node, true)));
           finish();
         })
-        .catch(() => { content.textContent = `未能加载 ${selected} 年${label}内容。`; });
+        .catch(() => { content.textContent = EVENT_TEXT[this.language].loadError(selected, label); });
     }
     const click = (event: Event) => this.handleClick(event);
     const keydown = (event: KeyboardEvent) => {
@@ -134,10 +139,11 @@ export class SeasonalEventBehavior {
 
   private localizeItems(container: HTMLElement | null, anniversary = false): void {
     if (!container) return;
+    if (this.language === 'en') return;
     const translations = Object.values(ITEM_TRANSLATIONS)
       .filter((item) => item.en && item.zh && item.en !== item.zh && !AMBIGUOUS.has(item.en.toLocaleLowerCase())
         && !(anniversary && ANNIVERSARY_LABELS.has(item.en)))
-      .map((item) => [item.en!, item.zh!] as const);
+      .map((item) => [item.en!, this.language === 'ja' ? (item.ja || item.en!) : item.zh!] as const);
     const source = container.textContent?.toLocaleLowerCase() ?? '';
     const seen = new Set<string>();
     const matches = translations.filter(([en]) => {
@@ -174,6 +180,11 @@ export class SeasonalEventBehavior {
         const translation = byExactName.get(english) ?? byName.get(english.toLocaleLowerCase());
         if (!translation) return match;
         const start = offset + prefix.length;
+        if (this.language === 'ja') {
+          fragment.append(text.slice(cursor, start), translation);
+          cursor = start + english.length;
+          return match;
+        }
         fragment.append(text.slice(cursor, start).replace(/([\u3400-\u9fff])\s+$/, '$1'));
         const wrapper = document.createElement('span');
         wrapper.className = 'item-bilingual';
@@ -197,6 +208,7 @@ export class SeasonalEventBehavior {
   }
 
   private localizeAnniversaryLabels(container: HTMLElement): void {
+    if (this.language !== 'zh') return;
     const pattern = new RegExp([...ANNIVERSARY_LABELS.keys()].sort((a, b) => b.length - a.length)
       .map((value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
@@ -216,7 +228,7 @@ export class SeasonalEventBehavior {
         || row.cells[0]?.textContent?.trim() === 'Bronze / Silver / Gold Shops')) continue;
       const header = table.tHead?.rows[0];
       if (!header) continue;
-      const imageHeader = document.createElement('th'); imageHeader.textContent = '外观';
+      const imageHeader = document.createElement('th'); imageHeader.textContent = EVENT_TEXT[this.language].appearance;
       header.insertBefore(imageHeader, header.cells[1] ?? null);
       for (const row of rows) {
         const label = row.cells[0]?.textContent?.trim() ?? '';
@@ -226,9 +238,10 @@ export class SeasonalEventBehavior {
         const cell = row.insertCell(1); cell.className = 'npc-image-cell';
         if (!images.length) { cell.textContent = '—'; cell.classList.add('npc-image-missing'); continue; }
         if (images.length > 1) cell.classList.add('npc-image-cell-multiple');
-        for (const [src, caption] of images) {
+        for (const [src, chineseCaption] of images) {
+          const caption = this.language === 'zh' ? chineseCaption : label;
           const button = document.createElement('button'); button.type = 'button'; button.className = 'npc-thumbnail-button';
-          button.dataset['image'] = src; button.dataset['caption'] = caption; button.setAttribute('aria-label', `查看 ${caption} 大图`);
+          button.dataset['image'] = src; button.dataset['caption'] = caption; button.setAttribute('aria-label', EVENT_TEXT[this.language].enlarge(caption));
           const image = document.createElement('img'); image.src = src; image.alt = caption; image.loading = 'lazy';
           button.append(image); cell.append(button);
         }
@@ -280,7 +293,7 @@ export class SeasonalEventBehavior {
     if (!shell || !toggle) return;
     shell.classList.toggle('is-year-rail-collapsed', collapsed);
     toggle.setAttribute('aria-expanded', String(!collapsed));
-    toggle.setAttribute('aria-label', collapsed ? '展开年份导航' : '收起年份导航');
+    toggle.setAttribute('aria-label', collapsed ? EVENT_TEXT[this.language].expand : EVENT_TEXT[this.language].collapse);
   }
 
   private showPreview(anchor: HTMLElement): void {

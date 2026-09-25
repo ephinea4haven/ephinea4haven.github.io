@@ -1,7 +1,7 @@
 {
   "Haven PSOBB Wiki：由 Haven 公会维护、面向全球玩家的 Ephinea 多语言维基，支持中文、英文和日文，提供新手入门、掉落表、任务攻略与计算工具。": {
-    "en": "Haven PSOBB Wiki: a multilingual Ephinea wiki for players worldwide, maintained by the Haven guild. Explore guides, drop charts and tools in English, Japanese and Chinese. Translation coverage varies by page.",
-    "ja": "Haven ギルドが運営する、世界中のプレイヤーのための Ephinea 多言語 Wiki。英語・日本語・中国語でガイド、ドロップ表、計算ツールを提供しています。翻訳の対応範囲はページごとに異なります。"
+    "en": "Haven PSOBB Wiki: a multilingual Ephinea wiki for players worldwide, maintained by the Haven guild. Explore guides, drop charts and tools in English, Japanese and Chinese.",
+    "ja": "Haven ギルドが運営する、世界中のプレイヤーのための Ephinea 多言語 Wiki。英語・日本語・中国語でガイド、ドロップ表、計算ツールを提供しています。"
   },
   "Haven PSOBB Wiki | 面向全球玩家的 Ephinea 多语言维基": {
     "en": "Haven PSOBB Wiki | A multilingual Ephinea wiki for players worldwide",
@@ -51,9 +51,9 @@
     "en": "For every PSOBB player, in English, Japanese and Chinese. Find Ephinea guides and data, from getting started to drop charts, farming routes and damage calculations.",
     "ja": "すべての PSOBB プレイヤーへ、英語・日本語・中国語で情報をお届けします。入門ガイドからドロップ表、周回ルート、ダメージ計算まで、Ephinea の攻略とデータを探せます。"
   },
-  "各页面的翻译覆盖不同，部分攻略目前仅有中文。": {
-    "en": "Translation coverage varies by page; some guides are currently available only in Chinese.",
-    "ja": "翻訳の対応範囲はページごとに異なり、中国語のみのガイドもあります。"
+  "所有页面均提供中文、英文、日文版本；名称表中暂无日文名的物品显示英文名。": {
+    "en": "Every page is available in Chinese, English and Japanese; items without a Japanese name in the name table appear in English.",
+    "ja": "すべてのページに中国語・英語・日本語版があります。名称表に日本語名がないアイテムは英語名で表示されます。"
   },
   "下载客户端": {
     "en": "Download the client",
@@ -359,10 +359,6 @@
     "en": "Item price guide",
     "ja": "アイテム価格ガイド"
   },
-  "中英文对照表": {
-    "en": "Chinese–English glossary",
-    "ja": "中国語・英語対照表"
-  },
   "物品代码表": {
     "en": "Item codes",
     "ja": "アイテムコード表"
@@ -562,5 +558,9 @@
   "设置显示选项，并启用 IME 以输入中文。": {
     "en": "Choose your language and display settings before playing.",
     "ja": "言語と画面の設定を確認し、日本語入力のために IME を有効にします。"
+  },
+  "物品名称对照": {
+    "en": "Item names",
+    "ja": "アイテム名対照表"
   }
 }

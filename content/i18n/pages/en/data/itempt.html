@@ -1,0 +1,402 @@
+<section data-part="main">
+ <p class="card">
+ <strong>ItemPT</strong> (Item Pattern Table) is PSO’s common-drop rule table. When an enemy or box drops a <strong>non-rare</strong>item, it determines the type, attributes, grind, special and Meseta amount. Rare drops are controlled by <a href="/data/itemrt.html">ItemRT</a> ; base item parameters such as ATP, ATA and level requirements come from 
+ <a href="/data/itempmt.html">ItemPMT</a> . ItemPT chooses what drops and the generated item’s variations.
+ </p>
+
+ <div class="nav-item-links">
+ <a href="#overview">Overview</a>
+ <a href="#tools">Consumables</a>
+ <a href="#fixed">Category-based drops</a>
+ <a href="#weapon-attrs">Weapon attribute generation</a>
+ <a href="#patterns">Pattern tables</a>
+ <a href="#percent">Attribute value probabilities</a>
+ <a href="#unid">Untekked weapons</a>
+ <a href="#meseta">Meseta</a>
+ <a href="#struct">Data structures</a>
+ </div>
+
+ <h2 id="overview">Overview</h2>
+ <p>A common-drop event follows roughly this sequence:</p>
+ <ol>
+ <li><strong>Check whether anything drops</strong>: each enemy type has a drop probability of 0–100%. This first check determines whether the event produces a drop.</li>
+ <li><strong>Choose the item category</strong>: use the item category table for the enemy/box area to select <code>Weapon</code>/<code>Frame</code>/<code>Barrier</code>/<code>Unit</code>/<code>Consumables</code>/<code>Meseta</code> .</li>
+ <li><strong>Choose the specific item</strong>: use the category’s subtable, such as the 26-entry consumable probability table or weapon type/subtype table.</li>
+ <li><strong>Generate additional properties</strong>: for weapons, determine grind (+0 to +9), attributes (Native / A.Beast / Machine / Dark / Hit) and special (Charge / Spirit / Berserk…).</li>
+ </ol>
+ <p>ItemPT stores subtables by <strong>difficulty × area</strong>, so item distributions differ between difficulties and areas. Familiar patterns such as Mechguns in Mines and high attributes in Ruins come from these tables.</p>
+
+ <h2 id="tools">Consumables (Tools)</h2>
+ <p>ItemPT’s consumable category contains the following <strong>26 common tools</strong> . Each area has its own 26-entry distribution to select the drop.</p>
+ <p><img src="/assets/img/icons/tool.png" alt="Tool drop weight table"></p>
+ <ul>
+ <li>Monomate <span data-item-en="Monomate"></span></li>
+ <li>Dimate <span data-item-en="Dimate"></span></li>
+ <li>Trimate <span data-item-en="Trimate"></span></li>
+ <li>Monofluid <span data-item-en="Monofluid"></span></li>
+ <li>Difluid <span data-item-en="Difluid"></span></li>
+ <li>Trifluid <span data-item-en="Trifluid"></span></li>
+ <li>Antidote <span data-item-en="Antidote"></span></li>
+ <li>Antiparalysis <span data-item-en="Antiparalysis"></span></li>
+ <li>Sol Atomizer <span data-item-en="Sol Atomizer"></span></li>
+ <li>Moon Atomizer <span data-item-en="Moon Atomizer"></span></li>
+ <li>Star Atomizer <span data-item-en="Star Atomizer"></span></li>
+ <li>Telepipe <span data-item-en="Telepipe"></span></li>
+ <li>Trap Vision <span data-item-en="Trap Vision"></span></li>
+ <li>Monogrinder <span data-item-en="Monogrinder"></span></li>
+ <li>Digrinder <span data-item-en="Digrinder"></span></li>
+ <li>Trigrinder <span data-item-en="Trigrinder"></span></li>
+ <li>Power Material <span data-item-en="Power Material"></span></li>
+ <li>Mind Material <span data-item-en="Mind Material"></span></li>
+ <li>Evade Material <span data-item-en="Evade Material"></span></li>
+ <li>HP Material <span data-item-en="HP Material"></span></li>
+ <li>TP Material <span data-item-en="TP Material"></span></li>
+ <li>Def Material <span data-item-en="Def Material"></span></li>
+ <li>Hit Material <span data-item-en="Hit Material"></span></li>
+ <li>Luck Material <span data-item-en="Luck Material"></span></li>
+ <li>Scape Doll <span data-item-en="Scape Doll"></span></li>
+ <li>Technique disk</li>
+ <li>Photon Drop <span data-item-en="Photon Drop"></span></li>
+ </ul>
+ <p class="card">
+ Technique disks use a second Technique × level table to choose the Technique and its level. High-level disks appear only in the corresponding areas and difficulties; for example, Lv30 Rafoie is described here as restricted to Ultimate Ruins.
+ </p>
+
+ <h2 id="fixed">Category-based common drops</h2>
+ <p>Besides consumables, ItemPT handles non-rare drops in these categories:</p>
+ <ul>
+ <li><strong>Weapon</strong> (Weapon): selected by type (sword/handgun/mechgun/shield/…) and subtype. The area determines the available subtype range.</li>
+ <li><strong>Frame</strong> (Armor / Frame): tier depends on area, the upgrade probability table and type bias.</li>
+ <li><strong>Barrier</strong> (Shield / Barrier): follows the frame rules.</li>
+ <li><strong>Unit</strong> (Unit): the area determines the maximum star rating (<code>unit_max_stars_table</code>).</li>
+ <li><strong>Empty</strong>: some area/enemy combinations specify no drop.</li>
+ </ul>
+ <p><img src="/assets/img/icons/set.png" alt="Enemy drop categories"></p>
+ <p class="card">
+ Base values for all common items, such as frame DFP/EVP and weapon ATP ranges, come from <a href="/data/itempmt.html">ItemPMT</a>; ItemPT only chooses which item drops.
+ </p>
+
+ <h2 id="weapon-attrs">Weapon attribute generation (Bonus)</h2>
+ <p>When ItemPT selects a <strong>common weapon</strong>, attribute generation determines its 0–3 bonuses.</p>
+ <h3>Generation order</h3>
+ <p>Attribute generation proceeds through <strong>area probability → pattern → attribute value</strong> :</p>
+ <ol>
+ <li><strong>Area probability</strong>: the area determines the chances of Native / A.Beast / Machine / Dark / Hit.</li>
+ <li><strong>Pattern</strong>: determines the number of attributes and each attribute’s tier.</li>
+ <li><strong>Attribute value</strong>: look up the pattern’s percentage table to obtain each bonus value, positive or negative.</li>
+ </ol>
+ <p>A common weapon can have at most <strong>three attributes</strong> (weapons limited to two attributes, such as <span data-item-en="Lame d'Argent"></span> / <span data-item-en="Sealed J-Sword"></span>, can have only two). If the same attribute is selected twice, the second becomes <code>None</code>, so three useful bonuses must all be different.</p>
+
+ <h3>Attribute probabilities by area</h3>
+ <h4>EP1</h4>
+ <p><img src="/assets/img/icons/ar1.png" alt="EP1 attribute probability by area"></p>
+ <h4>EP2</h4>
+ <p><img src="/assets/img/icons/ar2.png" alt="EP2 attribute probability by area"></p>
+ <h4>EP4</h4>
+ <p><img src="/assets/img/icons/ar3.png" alt="EP4 attribute probability by area"></p>
+ <p class="card">
+ <strong>Hit probability reference</strong>: the approximate Hit chances on U/VH/H/N are <strong>5% / 3% / 2% / 1%</strong>, concentrated in later areas such as Ruins.
+ </p>
+
+ <h2 id="patterns">Pattern tables</h2>
+ <p>A pattern is a triple <code>a b c</code> giving the tiers of the three attributes. Tier <code>N</code> means no attribute in that slot. Higher tiers yield higher base values; see <a href="#percent">Attribute value</a> for the corresponding percentages.</p>
+
+ <h3>Normal difficulty</h3>
+ <table>
+ <thead><tr><th>EP1 area</th><th>EP2 area</th><th>EP4 area</th><th>Pattern</th></tr></thead>
+ <tbody>
+ <tr><td>Forest 1</td><td>VR Temple Alpha</td><td>—</td><td>0 N N</td></tr>
+ <tr><td>Forest 2</td><td>VR Temple Beta</td><td>—</td><td>0 N N</td></tr>
+ <tr><td>Caves 1</td><td>VR Spaceship Alpha</td><td>Crater East</td><td>0 N N</td></tr>
+ <tr><td>Caves 2</td><td>VR Spaceship Beta</td><td>Crater West</td><td>1 0 N</td></tr>
+ <tr><td>Caves 3</td><td>Jungle North</td><td>Crater South</td><td>1 0 N</td></tr>
+ <tr><td>Mines 1</td><td>Jungle East</td><td>Crater North</td><td>1 0 N</td></tr>
+ <tr><td>Mines 2</td><td>Mountain</td><td>Crater Interior</td><td>1 0 N</td></tr>
+ <tr><td>Ruins 1</td><td>Seaside &amp; CCA</td><td>Desert 1</td><td>2 1 N</td></tr>
+ <tr><td>Ruins 2</td><td>Seabed Upper</td><td>Desert 2</td><td>2 1 N</td></tr>
+ <tr><td>Ruins 3</td><td>Seabed Lower &amp; Tower</td><td>Desert 3</td><td>2 1 0</td></tr>
+ <tr><td>Rare drops</td><td></td><td></td><td>5 5 5</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Hard difficulty</h3>
+ <table>
+ <thead><tr><th>EP1 area</th><th>EP2 area</th><th>EP4 area</th><th>Pattern</th></tr></thead>
+ <tbody>
+ <tr><td>Forest 1</td><td>VR Temple Alpha</td><td>—</td><td>1 0 N</td></tr>
+ <tr><td>Forest 2</td><td>VR Temple Beta</td><td>—</td><td>1 0 N</td></tr>
+ <tr><td>Caves 1</td><td>VR Spaceship Alpha</td><td>Crater East</td><td>1 1 N</td></tr>
+ <tr><td>Caves 2</td><td>VR Spaceship Beta</td><td>Crater West</td><td>2 1 N</td></tr>
+ <tr><td>Caves 3</td><td>Jungle North</td><td>Crater South</td><td>2 1 1</td></tr>
+ <tr><td>Mines 1</td><td>Jungle East</td><td>Crater North</td><td>2 1 1</td></tr>
+ <tr><td>Mines 2</td><td>Mountain</td><td>Crater Interior</td><td>2 2 1</td></tr>
+ <tr><td>Ruins 1</td><td>Seaside &amp; CCA</td><td>Desert 1</td><td>3 2 1</td></tr>
+ <tr><td>Ruins 2</td><td>Seabed Upper</td><td>Desert 2</td><td>3 2 1</td></tr>
+ <tr><td>Ruins 3</td><td>Seabed Lower &amp; Tower</td><td>Desert 3</td><td>3 3 2</td></tr>
+ <tr><td>Rare drops</td><td></td><td></td><td>5 5 5</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Very Hard difficulty</h3>
+ <table>
+ <thead><tr><th>EP1 area</th><th>EP2 area</th><th>EP4 area</th><th>Pattern</th></tr></thead>
+ <tbody>
+ <tr><td>Forest 1</td><td>VR Temple Alpha</td><td>—</td><td>2 1 1</td></tr>
+ <tr><td>Forest 2</td><td>VR Temple Beta</td><td>—</td><td>2 2 2</td></tr>
+ <tr><td>Caves 1</td><td>VR Spaceship Alpha</td><td>Crater East</td><td>2 2 2</td></tr>
+ <tr><td>Caves 2</td><td>VR Spaceship Beta</td><td>Crater West</td><td>3 2 2</td></tr>
+ <tr><td>Caves 3</td><td>Jungle North</td><td>Crater South</td><td>3 3 2</td></tr>
+ <tr><td>Mines 1</td><td>Jungle East</td><td>Crater North</td><td>3 3 3</td></tr>
+ <tr><td>Mines 2</td><td>Mountain</td><td>Crater Interior</td><td>3 3 3</td></tr>
+ <tr><td>Ruins 1</td><td>Seaside &amp; CCA</td><td>Desert 1</td><td>4 3 3</td></tr>
+ <tr><td>Ruins 2</td><td>Seabed Upper</td><td>Desert 2</td><td>4 4 3</td></tr>
+ <tr><td>Ruins 3</td><td>Seabed Lower &amp; Tower</td><td>Desert 3</td><td>4 4 4</td></tr>
+ <tr><td>Rare drops</td><td></td><td></td><td>5 5 5</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Ultimate difficulty</h3>
+ <table>
+ <thead><tr><th>EP1 area</th><th>EP2 area</th><th>EP4 area</th><th>Pattern</th></tr></thead>
+ <tbody>
+ <tr><td>Forest 1</td><td>VR Temple Alpha</td><td>—</td><td>2 1 0</td></tr>
+ <tr><td>Forest 2</td><td>VR Temple Beta</td><td>—</td><td>2 1 0</td></tr>
+ <tr><td>Caves 1</td><td>VR Spaceship Alpha</td><td>Crater East</td><td>2 2 1</td></tr>
+ <tr><td>Caves 2</td><td>VR Spaceship Beta</td><td>Crater West</td><td>3 2 1</td></tr>
+ <tr><td>Caves 3</td><td>Jungle North</td><td>Crater South</td><td>3 3 2</td></tr>
+ <tr><td>Mines 1</td><td>Jungle East</td><td>Crater North</td><td>3 3 2</td></tr>
+ <tr><td>Mines 2</td><td>Mountain</td><td>Crater Interior</td><td>3 3 3</td></tr>
+ <tr><td>Ruins 1</td><td>Seaside &amp; CCA</td><td>Desert 1</td><td>4 3 3</td></tr>
+ <tr><td>Ruins 2</td><td>Seabed Upper</td><td>Desert 2</td><td>4 4 3</td></tr>
+ <tr><td>Ruins 3</td><td>Seabed Lower &amp; Tower</td><td>Desert 3</td><td>4 4 4</td></tr>
+ <tr><td>Rare drops</td><td></td><td></td><td>5 5 5</td></tr>
+ </tbody>
+ </table>
+
+ <h2 id="percent">Attribute value probabilities</h2>
+ <ul>
+ <li>Normal mode uses <code>Pattern 0~4</code>, <code>Pattern 5</code> is reserved for <strong>Rare drops</strong>.</li>
+ <li>In Anguish, lower areas use <code>Pattern 3</code>, higher areas use <code>Pattern 4</code>, and rare drops still use <code>Pattern 5</code>.</li>
+ </ul>
+ <h4>Shared by EP1 / EP2 / EP4</h4>
+ <p><img src="/assets/img/icons/percent_patterns.jpg" alt="percent patterns"></p>
+
+ <h2 id="unid">Untekked common weapons and special information</h2>
+ <p>Characters with the Section IDs <strong>Viridia, Greenill, Skyly, Bluefull or Purplenum</strong> , and those with <strong>Pinkal, Redria, Oran, Yellowboze or Whitill</strong>, have an additional chance in some areas to find <strong>Untekked weapons</strong> (attributes and specials are revealed by the tekker). The two percentages in the “Untekked chance” column correspond to these groups: the first five IDs have a slightly higher chance.</p>
+
+ <h3>Normal difficulty</h3>
+ <table>
+ <thead><tr><th>EP1 area</th><th>EP2 area</th><th>EP4 area</th><th>Untekked chance</th><th>Maximum rarity</th></tr></thead>
+ <tbody>
+ <tr><td>Forest 1</td><td>VR Temple Alpha</td><td>—</td><td>None</td><td>N/A</td></tr>
+ <tr><td>Forest 2</td><td>VR Temple Beta</td><td>—</td><td>None</td><td>N/A</td></tr>
+ <tr><td>Caves 1</td><td>VR Spaceship Alpha</td><td>Crater East</td><td>17% / 17%</td><td>1★</td></tr>
+ <tr><td>Caves 2</td><td>VR Spaceship Beta</td><td>Crater West</td><td>18% / 17%</td><td>1★</td></tr>
+ <tr><td>Caves 3</td><td>Jungle North</td><td>Crater South</td><td>20% / 19%</td><td>1★</td></tr>
+ <tr><td>Mines 1</td><td>Jungle East</td><td>Crater North</td><td>19% / 18%</td><td>1★</td></tr>
+ <tr><td>Mines 2</td><td>Mountain</td><td>Crater Interior</td><td>20% / 20%</td><td>1★</td></tr>
+ <tr><td>Ruins 1</td><td>Seaside &amp; CCA</td><td>Desert 1</td><td>16% / 16%</td><td>2★</td></tr>
+ <tr><td>Ruins 2</td><td>Seabed Upper</td><td>Desert 2</td><td>18% / 17%</td><td>2★</td></tr>
+ <tr><td>Ruins 3</td><td>Seabed Lower &amp; Tower</td><td>Desert 3</td><td>20% / 19%</td><td>2★</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Hard difficulty</h3>
+ <table>
+ <thead><tr><th>EP1 area</th><th>EP2 area</th><th>EP4 area</th><th>Untekked chance</th><th>Maximum rarity</th></tr></thead>
+ <tbody>
+ <tr><td>Forest 1</td><td>VR Temple Alpha</td><td>—</td><td>21% / 20%</td><td>2★</td></tr>
+ <tr><td>Forest 2</td><td>VR Temple Beta</td><td>—</td><td>21% / 20%</td><td>2★</td></tr>
+ <tr><td>Caves 1</td><td>VR Spaceship Alpha</td><td>Crater East</td><td>17% / 17%</td><td>2★</td></tr>
+ <tr><td>Caves 2</td><td>VR Spaceship Beta</td><td>Crater West</td><td>18% / 18%</td><td>3★</td></tr>
+ <tr><td>Caves 3</td><td>Jungle North</td><td>Crater South</td><td>20% / 19%</td><td>2★</td></tr>
+ <tr><td>Mines 1</td><td>Jungle East</td><td>Crater North</td><td>19% / 19%</td><td>3★</td></tr>
+ <tr><td>Mines 2</td><td>Mountain</td><td>Crater Interior</td><td>24% / 23%</td><td>3★</td></tr>
+ <tr><td>Ruins 1</td><td>Seaside &amp; CCA</td><td>Desert 1</td><td>19% / 18%</td><td>3★</td></tr>
+ <tr><td>Ruins 2</td><td>Seabed Upper</td><td>Desert 2</td><td>19% / 18%</td><td>3★</td></tr>
+ <tr><td>Ruins 3</td><td>Seabed Lower &amp; Tower</td><td>Desert 3</td><td>19% / 18%</td><td>3★</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Very Hard difficulty</h3>
+ <table>
+ <thead><tr><th>EP1 area</th><th>EP2 area</th><th>EP4 area</th><th>Untekked chance</th><th>Maximum rarity</th></tr></thead>
+ <tbody>
+ <tr><td>Forest 1</td><td>VR Temple Alpha</td><td>—</td><td>21% / 21%</td><td>2★</td></tr>
+ <tr><td>Forest 2</td><td>VR Temple Beta</td><td>—</td><td>21% / 21%</td><td>3★</td></tr>
+ <tr><td>Caves 1</td><td>VR Spaceship Alpha</td><td>Crater East</td><td>22% / 22%</td><td>3★</td></tr>
+ <tr><td>Caves 2</td><td>VR Spaceship Beta</td><td>Crater West</td><td>21% / 21%</td><td>3★</td></tr>
+ <tr><td>Caves 3</td><td>Jungle North</td><td>Crater South</td><td>22% / 22%</td><td>4★</td></tr>
+ <tr><td>Mines 1</td><td>Jungle East</td><td>Crater North</td><td>22% / 22%</td><td>4★</td></tr>
+ <tr><td>Mines 2</td><td>Mountain</td><td>Crater Interior</td><td>22% / 22%</td><td>4★</td></tr>
+ <tr><td>Ruins 1</td><td>Seaside &amp; CCA</td><td>Desert 1</td><td>23% / 23%</td><td>4★</td></tr>
+ <tr><td>Ruins 2</td><td>Seabed Upper</td><td>Desert 2</td><td>23% / 23%</td><td>4★</td></tr>
+ <tr><td>Ruins 3</td><td>Seabed Lower &amp; Tower</td><td>Desert 3</td><td>23% / 23%</td><td>4★</td></tr>
+ </tbody>
+ </table>
+
+ <h3>Ultimate difficulty</h3>
+ <table>
+ <thead><tr><th>EP1 area</th><th>EP2 area</th><th>EP4 area</th><th>Untekked chance</th><th>Maximum rarity</th></tr></thead>
+ <tbody>
+ <tr><td>Forest 1</td><td>VR Temple Alpha</td><td>—</td><td>22% / 21%</td><td>4★</td></tr>
+ <tr><td>Forest 2</td><td>VR Temple Beta</td><td>—</td><td>22% / 21%</td><td>4★</td></tr>
+ <tr><td>Caves 1</td><td>VR Spaceship Alpha</td><td>Crater East</td><td>25% / 24%</td><td>4★</td></tr>
+ <tr><td>Caves 2</td><td>VR Spaceship Beta</td><td>Crater West</td><td>25% / 24%</td><td>4★</td></tr>
+ <tr><td>Caves 3</td><td>Jungle North</td><td>Crater South</td><td>25% / 24%</td><td>4★</td></tr>
+ <tr><td>Mines 1</td><td>Jungle East</td><td>Crater North</td><td>28% / 27%</td><td>4★</td></tr>
+ <tr><td>Mines 2</td><td>Mountain</td><td>Crater Interior</td><td>28% / 27%</td><td>4★</td></tr>
+ <tr><td>Ruins 1</td><td>Seaside &amp; CCA</td><td>Desert 1</td><td>28% / 27%</td><td>4★</td></tr>
+ <tr><td>Ruins 2</td><td>Seabed Upper</td><td>Desert 2</td><td>30% / 29%</td><td>4★</td></tr>
+ <tr><td>Ruins 3</td><td>Seabed Lower &amp; Tower</td><td>Desert 3</td><td>30% / 29%</td><td>4★</td></tr>
+ </tbody>
+ </table>
+
+ <h2 id="meseta">Meseta</h2>
+ <p>ItemPT also manages Meseta drops, using separate subtables:</p>
+ <ul>
+ <li>For <strong>enemies</strong>, the Meseta range depends on the enemy type, with a <code>min ~ max</code> interval sampled at random.</li>
+ <li>For <strong>boxes</strong>, the Meseta range depends on the area, each with its own <code>min ~ max</code>).</li>
+ <li>Meseta and item drops are separate decisions. An event yields an item, Meseta or nothing.</li>
+ </ul>
+
+ <h2 id="struct">Data structures</h2>
+ <p>The ItemPT binary format nests Episode × difficulty × area × variable parameters. Each difficulty/area subtable has the structure below. Index probability tables do not need to sum to 100: the game sums their entries and takes a random remainder, so they contain <strong>relative weights</strong>.</p>
+
+ <h3>Subtable fields</h3>
+ <table>
+ <thead><tr><th>Field</th><th>Type (size)</th><th>Description</th></tr></thead>
+ <tbody>
+ <tr>
+ <td><code>base_weapon_type_prob_table</code></td>
+ <td>u8[0x0C]</td>
+ <td>Common weapon type probabilities: 12 entries for the 12 basic types, <span data-item-en="Saber"></span> through <span data-item-en="Wand"></span>.</td>
+ </tr>
+ <tr>
+ <td><code>subtype_base_table</code></td>
+ <td>i8[0x0C]</td>
+ <td>Base subtype number for each weapon type. A negative value excludes the first N areas; a non-negative value allows all areas.</td>
+ </tr>
+ <tr>
+ <td><code>subtype_area_length_table</code></td>
+ <td>u8[0x0C]</td>
+ <td>Number of consecutive areas where each subtype appears. For example, <span data-item-en="Sword"></span> starting at −2 with length 4 appears in C1–M1, then switches to <span data-item-en="Gigush"></span>.</td>
+ </tr>
+ <tr>
+ <td><code>grind_prob_table</code></td>
+ <td>u8[9][4]</td>
+ <td>Grind probabilities, indexed by <code>[grind][area offset within subtype]</code> . The offset is the current area minus the subtype’s first area, clamped to 0–3.</td>
+ </tr>
+ <tr>
+ <td><code>armor_shield_type_index_prob_table</code></td>
+ <td>u8[0x05]</td>
+ <td>Frame/barrier upgrade probabilities. Final frame type = <code>max(area_norm + sample_from_this_table + bias − 3, 0)</code>.</td>
+ </tr>
+ <tr>
+ <td><code>armor_slot_count_prob_table</code></td>
+ <td>u8[0x05]</td>
+ <td>Frame slot probabilities. [77, 17, 5, 1, 0] means 77% for 0 slots, 17% for 1, 5% for 2, 1% for 3 and 0% for 4.</td>
+ </tr>
+ <tr>
+ <td><code>enemy_type_meseta_ranges</code></td>
+ <td>map⟨Enemy, Range⟨u16⟩⟩</td>
+ <td>Enemy Meseta min/max intervals, indexed by enemy type.</td>
+ </tr>
+ <tr>
+ <td><code>enemy_type_drop_probs</code></td>
+ <td>map⟨Enemy, u8⟩</td>
+ <td>Overall probability of an enemy dropping anything (0–100), separate from the rare check.</td>
+ </tr>
+ <tr>
+ <td><code>enemy_type_item_classes</code></td>
+ <td>map⟨Enemy, u8⟩</td>
+ <td>Enemy drop category: <code>00</code>=weapon / <code>01</code>=frame / <code>02</code>=barrier / <code>03</code>=unit / <code>04</code>=consumable / <code>05</code>=Meseta / other=empty.</td>
+ </tr>
+ <tr>
+ <td><code>box_meseta_ranges</code></td>
+ <td>Range⟨u16⟩[0x0A]</td>
+ <td>Box Meseta ranges indexed by area_norm (10 areas).</td>
+ </tr>
+ <tr>
+ <td><code>box_item_class_prob_table</code></td>
+ <td>u8[7][10]</td>
+ <td>Box item category probabilities, indexed by <code>[item_class][area_norm]</code> .</td>
+ </tr>
+ <tr>
+ <td><code>bonus_value_prob_table</code></td>
+ <td>u16[6][0x17]</td>
+ <td>Weapon bonus value probabilities. Dimension 1 is spec (0–5); dimension 2 is the value tier (−10% to +100% in 5% steps, 23 tiers).</td>
+ </tr>
+ <tr>
+ <td><code>nonrare_bonus_prob_spec</code></td>
+ <td>u8[3][10]</td>
+ <td>Non-rare weapon bonus spec lookup, indexed directly by <code>[bonus_index][area − 1]</code> (not a probability table).<code>0xFF</code> means no bonus in that slot. Rare weapons always use spec 5.</td>
+ </tr>
+ <tr>
+ <td><code>bonus_type_prob_table</code></td>
+ <td>u8[6][10]</td>
+ <td>Weapon bonus type probabilities. The six rows are <code>None / Native / A.Beast / Machine / Dark / Hit</code>; the ten columns are area − 1. Rare weapons replace area − 1 with a random value from <code>[0, 9]</code> .</td>
+ </tr>
+ <tr>
+ <td><code>special_mult</code></td>
+ <td>u8[0x0A]</td>
+ <td>Special generation parameter 1: a sampled value of 0 means no special. Otherwise draw <code>[0, special_mult]</code> and truncate to integer W. If W &gt; 3 there is no special; otherwise assign a (W + 1)-star special.</td>
+ </tr>
+ <tr>
+ <td><code>special_percent</code></td>
+ <td>u8[0x0A]</td>
+ <td>Overall chance of a special on a non-rare weapon, indexed by area − 1.</td>
+ </tr>
+ <tr>
+ <td><code>tool_class_prob_table</code></td>
+ <td>u16[0x1C][0x0A]</td>
+ <td>Consumable probability table: 28 types × 10 areas, showing where each consumable or material is most likely.</td>
+ </tr>
+ <tr>
+ <td><code>technique_index_prob_table</code></td>
+ <td>u8[0x13][0x0A]</td>
+ <td>Technique disk type probabilities: 19 Techniques × 10 areas.</td>
+ </tr>
+ <tr>
+ <td><code>technique_level_ranges</code></td>
+ <td>Range⟨u8⟩[0x13][0x0A]</td>
+ <td>Level range for each Technique in each area. For example, Rafoie reaches a maximum of Lv30 in Ultimate Ruins.</td>
+ </tr>
+ <tr>
+ <td><code>armor_or_shield_type_bias</code></td>
+ <td>u8</td>
+ <td>The bias term in the frame upgrade formula, used with <code>armor_shield_type_index_prob_table</code> .</td>
+ </tr>
+ <tr>
+ <td><code>unit_max_stars_table</code></td>
+ <td>u8[0x0A]</td>
+ <td>Maximum star rating of units dropped in each area.</td>
+ </tr>
+ </tbody>
+ </table>
+
+ <h3>Worked example</h3>
+ <p class="card">
+ Below is an EP1 Ultimate example of <code>bonus_type_prob_table</code> . Each row is a bonus type; columns are the ten areas F1–R3.
+ </p>
+ <table>
+ <thead><tr><th>bonus</th><th>F1</th><th>F2</th><th>C1</th><th>C2</th><th>C3</th><th>M1</th><th>M2</th><th>R1</th><th>R2</th><th>R3</th></tr></thead>
+ <tbody>
+ <tr><td>None</td><td>0x46</td><td>0x46</td><td>0x3F</td><td>0x3E</td><td>0x3E</td><td>0x3D</td><td>0x3C</td><td>0x3C</td><td>0x3A</td><td>0x3A</td></tr>
+ <tr><td>Native</td><td>0x14</td><td>0x14</td><td>0x0A</td><td>0x0A</td><td>0x09</td><td>0x02</td><td>0x02</td><td>0x04</td><td>0x05</td><td>0x05</td></tr>
+ <tr><td>A.Beast</td><td>0x0A</td><td>0x0A</td><td>0x12</td><td>0x11</td><td>0x11</td><td>0x09</td><td>0x09</td><td>0x08</td><td>0x08</td><td>0x08</td></tr>
+ <tr><td>Machine</td><td>0x00</td><td>0x00</td><td>0x09</td><td>0x0A</td><td>0x0B</td><td>0x13</td><td>0x12</td><td>0x08</td><td>0x09</td><td>0x09</td></tr>
+ <tr><td>Dark</td><td>0x00</td><td>0x00</td><td>0x00</td><td>0x01</td><td>0x01</td><td>0x08</td><td>0x0A</td><td>0x13</td><td>0x13</td><td>0x13</td></tr>
+ <tr><td>Hit</td><td>0x00</td><td>0x00</td><td>0x00</td><td>0x00</td><td>0x00</td><td>0x01</td><td>0x01</td><td>0x01</td><td>0x01</td><td>0x01</td></tr>
+ </tbody>
+ </table>
+ <p>Sum each column to get its total weight. None accounts for over 60%; A.Beast and Machine increase in Caves and Mines respectively, Dark is concentrated in Ruins, and Hit has only one weight point everywhere. This makes Hit particularly rare.</p>
+
+ <h2>Related pages</h2>
+ <ul>
+ <li><a href="/data/itempmt.html">ItemPMT — item parameter table</a>: base stats, level requirements and names.</li>
+ <li><a href="/data/itemrt.html">ItemRT — rare drop table</a>: rare drop probabilities and item pools.</li>
+ <li><a href="https://dropcharts.psohaven.com/bb/?diff=Ultimate">Drop charts</a>: look up drops by difficulty, enemy and ID.</li>
+ </ul>
+</section>
+

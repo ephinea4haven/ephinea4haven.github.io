@@ -9,6 +9,12 @@ test('formats a valid UTC+8 page-update timestamp', () => {
   );
 });
 
+test('formats the same archive snapshot in English and Japanese', () => {
+  assert.equal(formatUtc8Timestamp('2026-08-26T10:11+08:00', 'en'), '26 August 2026 10:11 (UTC+8)');
+  assert.equal(formatUtc8Timestamp('2026-08-26T10:11+08:00', 'ja'), '2026年8月26日 10:11（UTC+8）');
+  assert.equal(formatUtc8Timestamp('2024-02-29T00:00+08:00', 'en'), '29 February 2024 00:00 (UTC+8)');
+});
+
 test('rejects non-UTC+8 offsets and malformed calendar values', () => {
   for (const timestamp of [
     '2026-08-18T00:00-07:00',

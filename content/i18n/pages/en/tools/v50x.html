@@ -1,0 +1,265 @@
+<section data-part="body">
+
+    <h1>Special activation rates and V50X units</h1>
+
+    <p>Special attacks must first <strong>hit the target</strong> (a miss does not trigger an effect check).</p>
+
+    <hr>
+
+    <h2>1. Instant-kill specials based on dark resistance (EDK)</h2>
+
+    <p><strong>Formula:</strong></p>
+
+    <pre><code>
+(Activation rate − enemy EDK) × modifier
+</code></pre>
+
+    <p>Base instant-kill activation rates:</p>
+
+    <ul>
+        <li>Dim: 48%</li>
+        <li>Shadow: 66%</li>
+        <li>Dark: 78%</li>
+        <li>Hell: 93%</li>
+        <li>Instant-kill technique: 100%</li>
+    </ul>
+
+    <p>Androids receive an additional <strong>+30% bonus to ESP-based specials on Ultimate.</strong></p>
+
+    <hr>
+
+    <h2>2. Specials affected by enemy ESP</h2>
+
+    <p><strong>Formula:</strong></p>
+
+    <pre><code>
+(Android bonus + activation rate − enemy special resistance) × modifier
+</code></pre>
+
+    <p>Androids: an extra +30% on Ultimate.</p>
+
+    <h3>1) Confusion (8 seconds; can be reapplied)</h3>
+
+    <ul>
+        <li>Panic: 29%</li>
+        <li>Riot: 44%</li>
+        <li>Havoc: 60%</li>
+        <li>Chaos: 76%</li>
+    </ul>
+
+    <hr>
+
+    <h3>2) Freeze (4 seconds; cannot be reapplied while frozen)</h3>
+
+    <ul>
+        <li>Ice: 32%</li>
+        <li>Frost: 48%</li>
+        <li>Freeze: 64%</li>
+        <li>Blizzard: use <strong>min(activation rate, 40)</strong></li>
+    </ul>
+
+    <hr>
+
+    <h3>3) Paralysis (6 seconds; can be reapplied)</h3>
+
+    <ul>
+        <li>Bind: 32%</li>
+        <li>Hold: 48%</li>
+        <li>Seize: 64%</li>
+        <li>Arrest: 80%</li>
+    </ul>
+
+    <hr>
+
+    <h2>3. V50X effects (applied after the modifier)</h2>
+
+    <p><code>V50X</code> applies to the <strong>activation rate after the modifier</strong>.</p>
+
+    <h3><span data-item-en="V501"></span></h3>
+
+    <ul>
+        <li>Instant kill × <strong>1.5</strong></li>
+        <li>Confusion / freeze / paralysis: <strong>duration × 1.5</strong></li>
+    </ul>
+
+    <h3><span data-item-en="V502"></span></h3>
+
+    <ul>
+        <li>Instant kill × <strong>2</strong></li>
+        <li>Confusion / freeze / paralysis: <strong>duration × 1.5</strong></li>
+    </ul>
+
+    <hr>
+
+    <h2>4. Reduction rules (essential)</h2>
+
+    <h3>Common weapon reductions</h3>
+
+    <ul>
+        <li>Mechguns, shots and slicers: <strong>Special = original × 1/3</strong></li>
+        <li>Partisans, swords, daggers, double sabers, twin swords and launchers: <strong>Special = original × 1/2</strong></li>
+    </ul>
+
+    <p>Common weapons (those with hexadecimal codes before <span data-item-en="Photon Claw"></span>) receive reductions:</p>
+
+    <ul>
+        <li>Within a three-hit combo, <strong>each attack animation</strong> may perform multiple checks.</li>
+        <li>Hitting multiple targets incurs no additional reduction.</li>
+        <li><strong>ES weapons and single-target weapons are exempt from this reduction.</strong></li>
+    </ul>
+
+    <p>Note: these reductions affect common weapon specials, not sacrificial specials.</p>
+
+    <hr>
+
+    <h2>5. Devil’s / Demon’s activation rate (base 50%)</h2>
+
+    <ul>
+        <li>Devil’s: halves HP (1/2 remains)</li>
+        <li>Demon’s: reduces HP to a quarter (1/4 remains)</li>
+    </ul>
+
+    <p><strong>For androids (Ultimate +30%):</strong></p>
+
+    <ul>
+        <li>Devil’s: 4/5 HP remains</li>
+        <li>Demon’s: 11/20 HP remains</li>
+    </ul>
+
+    <p>Actual HP reduction for androids on Ultimate:</p>
+
+    <ul>
+        <li>Devil’s：<strong>20%</strong></li>
+        <li>Demon’s：<strong>45%</strong></li>
+    </ul>
+
+    <p>Other specials, excluding confusion, freeze, paralysis, Hell and Devil’s / Demon’s:</p>
+    <p><strong>On hit = 100% activation</strong></p>
+
+    <hr>
+
+    <h2>6. Stealing specials</h2>
+
+    <h3>1) HP steal (cap: 120 HP)</h3>
+
+    <ul>
+        <li>Draw: 5%</li>
+        <li>Drain: 9%</li>
+        <li>Fill: 13%</li>
+        <li>Gush: 17%</li>
+    </ul>
+
+    <hr>
+
+    <h3>2) TP steal (cap: 100 TP)</h3>
+
+    <ul>
+        <li>Heart: 3%</li>
+        <li>Mind: 4%</li>
+        <li>Soul: 5%</li>
+        <li>Geist: 6%</li>
+    </ul>
+
+    <hr>
+
+    <h3>3) EXP steal (cap: 80 EXP; androids +30% on Ultimate)</h3>
+
+    <ul>
+        <li>Master's: 8%</li>
+        <li>Lord's: 10%</li>
+        <li>King's: 12%</li>
+    </ul>
+
+    <hr>
+
+    <h2>7. Fire damage</h2>
+
+    <pre><code>
+Base damage = (character level − 1) / ? + ??
+Final damage = base damage × [1 − enemy EFR × 0.01]
+</code></pre>
+
+    <ul>
+        <li>Heat: level / 4 + 40</li>
+        <li>Fire: level / 3 + 60</li>
+        <li>Flame: level / 2 + 80</li>
+        <li>Burning: level + 100</li>
+    </ul>
+
+    <hr>
+
+    <h2>8. Freeze activation rate (formula)</h2>
+
+    <pre><code>
+Activation rate = special rate − enemy special resistance (ESP)
+</code></pre>
+
+    <ul>
+        <li>Ice: 32%</li>
+        <li>Frost: 48%</li>
+        <li>Freeze: 64%</li>
+        <li>Blizzard: 80%</li>
+    </ul>
+
+    <hr>
+
+    <h2>9. Lightning damage</h2>
+
+    <pre><code>
+Base damage = (character level − 1) / ? + ??
+Final damage = base damage × [1 − enemy ETH × 0.01]
+</code></pre>
+
+    <ul>
+        <li>Shock: level / 4 + 40</li>
+        <li>Thunder: level / 3 + 60</li>
+        <li>Storm: level / 2 + 80</li>
+        <li>Tempest: level + 100</li>
+    </ul>
+
+    <hr>
+
+    <h2>10. Sacrificial specials (damage at a cost)</h2>
+
+    <ul>
+        <li>Charge: costs 200 Meseta per check (MISS if insufficient).</li>
+        <li>Spirit: each check costs <strong>20% of TP</strong> (MISS if TP &lt; 10).</li>
+        <li>Berserk: each check costs <strong>25% of HP</strong> (MISS if HP &lt; 3).</li>
+    </ul>
+
+    <hr>
+
+    <h2>11. Unique weapons (specials and accuracy)</h2>
+
+    <h3>Specials use heavy-attack accuracy and can build PB</h3>
+
+    <ul>
+        <li><span data-item-en="DARK FLOW"></span></li>
+        <li><span data-item-en="Vjaya"></span></li>
+        <li><span data-item-en="Windmill"></span></li>
+        <li><span data-item-en="Frozen Shooter"></span></li>
+        <li><span data-item-en="SNOW QUEEN"></span></li>
+    </ul>
+
+    <h3>Wave attacks (100% special accuracy)</h3>
+
+    <ul>
+        <li><span data-item-en="Berdysh"></span> (close-range 360° normal-attack check)</li>
+        <li><span data-item-en="TSUMIKIRI J-SWORD"></span> (long-range 360° heavy-attack check)</li>
+    </ul>
+
+    <h3>Technique specials (100% accuracy)</h3>
+
+    <p>Fire: <span data-item-en="Caduceus"></span>、<span data-item-en="HILDEBEAR&#x27;S CANE"></span></p>
+    <p>Ice: <span data-item-en="Technical Crozier"></span>、<span data-item-en="Hildeblue&#x27;s Cane"></span></p>
+    <p>Lightning: <span data-item-en="MAGICAL PIECE"></span>、<span data-item-en="The Sigh of a God"></span>、<span data-item-en="Maser Beam"></span> (including <span data-item-en="Power Maser"></span>)</p>
+    <p>Other:</p>
+
+    <ul>
+        <li><span data-item-en="Soul Banish"></span> (instant kill)</li>
+        <li><span data-item-en="Heaven Punisher"></span> (Divine Punishment, 12 checks)</li>
+        <li>ES weapons with Jellen / Zalure</li>
+    </ul>
+
+
+</section>

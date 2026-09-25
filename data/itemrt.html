@@ -80,12 +80,12 @@
     </style>
 </head>
 <body>
-<page-chrome title="ItemRT 稀有掉落表"></page-chrome>
+<page-chrome data-i18n-title="itemrt.title" title="ItemRT 稀有掉落表"></page-chrome>
 
-<div class="content-container">
+<div class="content-container" data-part="main">
     <p class="card">
         <strong>ItemRT</strong>（Item Rare Table）是 PSO 的「稀有掉落表」。它决定了每种怪物、每种箱子在掉出<strong>稀有物品</strong>时，
-        会掉哪一件、概率多少。本页掉落表里看到的「Dragon Slayer 1/456」「Tyrell's Parasol 1/3660」这些具体数字，就是来自 ItemRT。
+        会掉哪一件、概率多少。本页掉落表里看到的「<span data-item-en="Dragon Slayer"></span> 1/456」「<span data-item-en="Tyrell's Parasol"></span> 1/3660」这些具体数字，就是来自 ItemRT。
         配合 <a href="/data/itempt.html">ItemPT</a>（掉不掉 / 掉什么大类） 和 <a href="/data/itempmt.html">ItemPMT</a>（物品本身的属性）三者一起，才构成 PSO 完整的掉落系统。
     </p>
 
@@ -104,7 +104,7 @@
     <p>在 PSO 的「掉落判定」流程里，稀有判定是<strong>独立于</strong>普通掉落的。一次怪物死亡或箱子破坏时，游戏会先做一次稀有判定：</p>
     <ol>
         <li>查 ItemRT 里这只怪物（或这种箱子）对应的稀有池。</li>
-        <li>对池子里每一个候选稀有物品，单独做一次「概率掷骰」。</li>
+        <li>按顺序对池子里的候选稀有物品逐个掷骰，一旦命中就停止（Sega 原版的做法；newserv 只掷一次随机数统一判定，见下文「完整掉落判定流程」）。</li>
         <li>如果任何一项骰中了，这次掉落就固定为该稀有物品，<strong>绕过 ItemPT 的普通流程</strong>。</li>
         <li>如果全部没中，再回到 ItemPT 的流程走普通掉落。</li>
     </ol>
@@ -131,7 +131,7 @@
                 <li>箱子稀有：按区域索引，拿到一个候选列表。</li>
             </ul>
         </li>
-        <li><strong>掷骰</strong>：对每个候选做一次 32 位整数随机，和候选的概率值比较。命中则此次稀有判定成功。</li>
+        <li><strong>掷骰</strong>：Sega 原版按顺序给每个候选各做一次 32 位整数随机，和该候选的概率值比较，命中即成功并停止；newserv 只做一次 32 位随机，依次减去各候选的概率，减到负数时命中。两种做法的差别见下文「完整掉落判定流程」。</li>
         <li><strong>命中后</strong>：该物品立刻被「构造」出来。如果是武器，还要根据当前区域走一遍 ItemPT 的 bonus/special 生成；如果是铠甲/盾，还要决定槽数；最后交给 <a href="/data/itempmt.html">ItemPMT</a> 填充名称和模型。</li>
     </ol>
 
@@ -156,9 +156,9 @@
     <h2 id="sectionid">Section ID 是怎么进来的</h2>
     <p>每个 PSOBB 角色都有一个固定的 Section ID（10 种颜色 ID），这个 ID 在角色创建时由名字的 hash 决定，一旦确定不可更改。Section ID 的作用是：</p>
     <ul>
-        <li>决定你这只角色在所有难度下访问的 ItemRT 子表。</li>
+        <li>决定本局游戏在所有难度下访问的 ItemRT 子表，使用的是创建房间的房主的 Section ID。</li>
         <li>不同 ID 的稀有池完全不同 — 某些稀有只在特定 ID 下能掉。</li>
-        <li>例如 <strong>Dark Flow</strong> 只在 <strong>Oran</strong> 玩家杀 Olga Flow 时有机会掉（U 难度）。</li>
+        <li>例如 <strong><span data-item-en="Parasitic Gene &quot;Flow&quot;"></span></strong> 在 <strong>Oran</strong> 玩家杀 Olga Flow 时有机会掉（U 难度）。</li>
     </ul>
     <p>这就是为什么 PSO 有「刷 ID」的文化：特定稀有物品必须用特定 ID 刷。可以用 <a href="/tools/id.html">Section ID 计算器</a> 反推能掉某件稀有的名字。</p>
 
@@ -174,7 +174,7 @@
     <ul>
         <li>按<strong>区域</strong>索引，每个区域可以有多个稀有候选</li>
         <li>通常一个区域有 1–30 个稀有候选，每个都有独立概率</li>
-        <li>游戏对整个候选列表<strong>逐一判定</strong>，每个都有机会命中</li>
+        <li>游戏对整个候选列表<strong>逐一判定</strong>，每个都有机会命中（判定方式见上文「掷骰」）</li>
         <li>正因为这个机制，高区的红盒（Ruins 3 / 遗迹3 / CCA / Tower / 地下沙漠3）才这么「富」</li>
     </ul>
 
@@ -205,7 +205,7 @@
         <thead><tr><th>偏移</th><th>字段</th><th>类型</th><th>说明</th></tr></thead>
         <tbody>
             <tr><td>0x00</td><td>probability</td><td>u8</td><td>压缩概率值（<code>SSSSS VVV</code> 位格式）。</td></tr>
-            <tr><td>0x01</td><td>item_code</td><td>u8×3</td><td>物品代码 <code>data1[0..2]</code>，例如 <code>00 01 00</code> 表示 Saber。</td></tr>
+            <tr><td>0x01</td><td>item_code</td><td>u8×3</td><td>物品代码 <code>data1[0..2]</code>，例如 <code>00 01 00</code> 表示 <span data-item-en="Saber"></span>。</td></tr>
         </tbody>
     </table>
 

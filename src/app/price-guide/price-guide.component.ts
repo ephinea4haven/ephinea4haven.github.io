@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
+import { SiteLanguage } from '../shared/site-language.service';
+import { PRICE_TEXT, JAPANESE_LABELS } from './price-guide.messages';
 import { FormsModule } from '@angular/forms';
 import { PRICE_DATA } from '../generated/data/price-data';
 import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
@@ -14,6 +17,11 @@ const SECTIONS = PRICE_DATA as readonly PriceSection[];
 const ITEM_NAMES = new Map(Object.values(ITEM_TRANSLATIONS)
   .filter((item) => item.en)
   .map((item) => [item.en!.toLocaleLowerCase(), item] as const));
+const JAPANESE_TOKENS = new Map(ITEM_TRANSLATIONS.map(item => [item.en, item.ja || item.en]));
+for (const [key, value] of Object.entries(JAPANESE_LABELS)) JAPANESE_TOKENS.set(key, value);
+const JAPANESE_PATTERN = new RegExp([...JAPANESE_TOKENS.keys()]
+  .sort((a, b) => b.length - a.length)
+  .map(token => token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'g');
 const SECTION_LABELS: Readonly<Record<string, string>> = {
   'Common weapons - Melee commons': '普通武器 - 近战', 'Common weapons - Ranged commons': '普通武器 - 远程',
   'Common weapons - Technique commons': '普通武器 - 魔法系武器', 'Common weapons - Combination commons': '普通武器 - 组合',
@@ -52,6 +60,12 @@ const HEADER_LABELS: Readonly<Record<string, string>> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PriceGuideComponent {
+  readonly site = inject(SiteLanguage);
+  readonly text = computed(() => PRICE_TEXT[this.site.language()]);
+  constructor() {
+    const meta = inject(Meta);
+    effect(() => meta.updateTag({ name: 'description', content: this.text().description }));
+  }
   readonly category = signal('all');
   readonly search = signal('');
   readonly categories = [...new Set(SECTIONS.map((section) => this.categoryFor(section.section)))];
@@ -71,15 +85,17 @@ export class PriceGuideComponent {
   readonly matchedRows = computed(() => this.visibleSections().reduce((total, section) => total + section.rows.length, 0));
 
   categoryFor(section: string): string { return section.includes(' - ') ? section.split(' - ')[0] : section; }
-  categoryLabel(category: string): string { return CATEGORY_LABELS[category] ?? category; }
-  sectionLabel(section: string): string { return SECTION_LABELS[section] ?? section; }
-  headerLabel(header: string): string { return HEADER_LABELS[header] ?? header; }
+  categoryLabel(category: string): string { return this.site.language() === 'zh' ? CATEGORY_LABELS[category] ?? category : this.label(category); }
+  sectionLabel(section: string): string { return this.site.language() === 'zh' ? SECTION_LABELS[section] ?? section : section.split(' - ').map(part => this.label(part)).join(' - '); }
+  headerLabel(header: string): string { return this.site.language() === 'zh' ? HEADER_LABELS[header] ?? header : this.label(header); }
   nameKey(headers: readonly string[]): string {
     return ['Item Name', 'Weapon Type', 'Item', 'Name'].find((key) => headers.includes(key)) ?? headers[0];
   }
   itemName(value: string | null | undefined): string {
-    const translation = value ? ITEM_NAMES.get(value.toLocaleLowerCase())?.zh : '';
-    return translation ?? '';
+    const language = this.site.language();
+    if (language === 'en') return '';
+    const item = value ? ITEM_TRANSLATIONS.find(item => item.en === value) ?? ITEM_NAMES.get(value.toLocaleLowerCase()) : undefined;
+    return item?.[language] ?? '';
   }
   cellClass(value: string | null | undefined): string {
     if (value == null || value === 'N/A') return 'val-na';
@@ -88,13 +104,30 @@ export class PriceGuideComponent {
   }
   cellText(value: string | null | undefined): string {
     if (value == null) return '-';
-    return value.toLocaleLowerCase().includes('inestimable') ? '无法估价' : value;
+    if (value.toLocaleLowerCase().includes('inestimable')) return this.text().inestimable;
+    return this.site.language() === 'ja' ? this.label(value) : value;
   }
   selectCategory(category: string): void { this.category.set(category); }
 
+  private label(value: string): string {
+    if (this.site.language() !== 'ja') return value;
+    if (JAPANESE_LABELS[value]) return JAPANESE_LABELS[value];
+    const item = ITEM_TRANSLATIONS.find(item => item.en === value) ?? ITEM_NAMES.get(value.toLocaleLowerCase());
+    if (item) return item.ja || item.en;
+    if (value.startsWith('ES ')) return value.split(/ (?=ES )/).map(name => {
+      const item = ITEM_TRANSLATIONS.find(item => item.en === name);
+      return item?.ja || name;
+    }).join(' / ');
+    if (value.startsWith('Reminder High Attributes')) return '高属性とは50以上です。' + this.label('Excalibur') + 'は、Native属性ならEP4のリザード、A.Beast属性ならデ・ロル・レ、Machine属性ならボルオプトの拘束などに使用されます。7～15 PDは属性値50未満の価格です。';
+    if (/^(See |Black Paint |Chartreuse Paint )/.test(value)) {
+      value = value.replace(JAPANESE_PATTERN, token => JAPANESE_TOKENS.get(token)!);
+    }
+    return value.replace(/^See /, '参照：').replace(/ & /g, '・').replace(/\(below\)/g, '（下記）').replace(/Level (\d+)/g, 'レベル$1').replace(/1 per (\d+)/g, '$1体につき1');
+  }
+
   private searchText(section: PriceSection, row: Readonly<Record<string, string | null | undefined>>): string {
     const name = row[this.nameKey(section.headers)];
-    const translation = name ? ITEM_NAMES.get(name.toLocaleLowerCase())?.zh ?? '' : '';
+    const translation = name ? ITEM_NAMES.get(name.toLocaleLowerCase()) ? Object.values(ITEM_NAMES.get(name.toLocaleLowerCase())!).join(' ') : '' : '';
     return this.normalizeSearch(`${Object.values(row).filter(Boolean).join(' ')} ${translation}`);
   }
 

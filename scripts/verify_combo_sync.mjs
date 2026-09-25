@@ -46,8 +46,8 @@ check('generated hashes match metadata',
     && hash(opmData) === metadata.generatedSha256.opmData
     && hash(license) === metadata.generatedSha256.license);
 check('both Combo routes use typed mode wrappers around the shared Angular component',
-  routes.includes("path: 'tools/cc.html'")
-    && routes.includes("path: 'tools/ccopm.html'")
+  routes.includes('path: `${prefix}tools/cc.html`')
+    && routes.includes('path: `${prefix}tools/ccopm.html`')
     && routes.includes('./combo/combo-multiplayer-page.component')
     && routes.includes('./combo/combo-opm-page.component')
     && multiplayerPage.includes("from './combo.component'")
@@ -61,6 +61,12 @@ check('both Combo routes use typed mode wrappers around the shared Angular compo
 check('Angular template preserves calculator controls',
   ['class-select', 'damage-header', 'native-btn', 'clear-btn', 'combo-calc-table']
     .every((id) => template.includes(`id="${id}"`)));
+const translations = await read('src/app/combo/combo-i18n.ts');
+check('translations belong to Haven and resolve authority names without rewriting upstream data',
+  translations.includes("from '../generated/i18n/items'")
+    && translations.includes("from '../../../content/monster-catalog/names.json'")
+    && template.includes('[value]="name"')
+    && template.includes('monsterName(row.name)'));
 check('Combo no longer declares Bootstrap', packageJson.devDependencies.bootstrap === undefined);
 
 if (failures) process.exitCode = 1;

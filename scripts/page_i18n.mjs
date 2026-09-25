@@ -11,7 +11,7 @@ export const LANGUAGES = ['zh', 'en', 'ja'];
 export const SITE_ORIGIN = 'https://www.psohaven.com';
 // Angular feature pages that render every language from the URL (their own
 // keyed dictionaries); a key ending in / covers a whole route family.
-export const FEATURE_PAGES = ['index.html', 'data/items.html', 'data/items/', 'data/cosmetics.html', 'data/enemies.html', 'data/enemies/', 'tools/status.html'];
+export const FEATURE_PAGES = ['index.html', 'data/items.html', 'data/items/', 'data/cosmetics.html', 'data/enemies.html', 'data/enemies/', 'tools/status.html', 'tools/chartable.html', 'tools/cc.html', 'tools/ccopm.html', 'data/price_guide.html', 'data/item-names.html'];
 
 /** Page key: no leading slash, directory indexes by directory, the homepage as index.html. */
 export function pageKey(relative) {
@@ -24,23 +24,17 @@ export async function loadPageI18n(root) {
   const messages = Object.fromEntries(await Promise.all(LANGUAGES.map(async (language) => [
     language, JSON.parse(await readFile(path.join(root, `content/i18n/messages/${language}.json`), 'utf8')),
   ])));
-  // The first listed language is the one at the historical (unprefixed) URL; only
-  // pages published in Chinese there get /en/ and /ja/ versions.
-  const prefixed = Object.entries(coverage).filter(([, page]) => (page.languages ?? ['zh'])[0] === 'zh');
   const localized = Object.fromEntries(LANGUAGES.filter((language) => language !== 'zh').map((language) => [
     language,
-    [...new Set([...FEATURE_PAGES, ...prefixed.filter(([, page]) => page.languages?.includes(language)).map(([key]) => key)])].sort(),
+    [...new Set([...FEATURE_PAGES, ...Object.entries(coverage).filter(([, page]) => page.languages?.includes(language)).map(([key]) => key)])].sort(),
   ]));
-  const unprefixed = Object.fromEntries(Object.entries(coverage)
-    .filter(([, page]) => (page.languages ?? ['zh'])[0] !== 'zh').map(([key, page]) => [key, page.languages[0]]));
-  return { root, coverage, messages, localized, unprefixed };
+  return { root, coverage, messages, localized };
 }
 
 /** Versions to build for a page: 'zh' is the unprefixed page, others are /<language>/ versions. */
 export function languagesFor(i18n, relative) {
   const key = pageKey(relative);
   if (FEATURE_PAGES.includes(key)) return LANGUAGES;
-  if (i18n.unprefixed[key]) return ['zh'];
   return ['zh', ...(i18n.coverage[key]?.languages ?? []).filter((language) => language !== 'zh')];
 }
 
@@ -143,8 +137,9 @@ export function localizeBody(i18n, body, language, relative, { itemName }) {
       // An empty element naming an item is a placeholder for its authoritative name.
       const item = attribute(child, 'data-item-en');
       if (item !== undefined && child.childNodes.length === 0) {
+        // The English identity stays on the element, as on Chinese pages, so
+        // searches and scripts can match an item in any edition.
         child.childNodes = [textNode(child, itemName(item, language))];
-        removeAttributes(child, ['data-item-en']);
       }
       // Localized images live in a /zh/ directory with /en/ and /ja/ siblings.
       if (child.tagName === 'img' && attribute(child, 'data-i18n-src') !== undefined) {

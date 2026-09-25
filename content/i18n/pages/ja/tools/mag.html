@@ -1,0 +1,520 @@
+<section data-part="body">
+
+
+<section class="mag-section" data-mag-section aria-labelledby="chart">
+<p><a href="https://magfeeder.psohaven.com/">→ マグシミュレーター</a></p>
+
+<div class="mag-legend">
+  <div class="mag-legend__stats">
+    <span><b>能力値の色分け</b>（3つの図で共通）</span>
+    <span class="stat--pow">POW 攻撃力</span>
+    <span class="stat--dex">DEX 命中力</span>
+    <span class="stat--mind">MIND 精神力</span>
+    <span class="stat--def">DEF 防御力</span>
+  </div>
+  <div>進化を決めるクラス・セクションID・性別は、<b>進化直前の最後のアイテムを与えたキャラクター</b>のものです。マグの持ち主とは限りません。</div>
+  <div>カード下部の発動表は<b>条件・効果・発動率</b>を示します（行がなければ、その条件では発動しません）。効果は<b>無敵</b> / <b>レスタ</b>／ <b>シフタ・デバンド</b>です。濃い部分は基本発動率、薄い部分はシンクロ率による最大加算分です。</div>
+  <div><b>Blue Burstでは死亡時の発動が無効</b>なため、この図には表示していません。</div>
+</div>
+
+<h2 id="chart" class="mag-anchor">進化図</h2>
+
+<div class="mag-chart-area">
+<div class="mag-tabs" role="tablist" aria-label="クラス" data-mag-tabs>
+  <button class="mag-tab" role="tab" id="hu" aria-controls="panel-hu" aria-selected="true">ハンター <span>Hunters</span></button>
+  <button class="mag-tab" role="tab" id="ra" aria-controls="panel-ra" aria-selected="false">レンジャー <span>Rangers</span></button>
+  <button class="mag-tab" role="tab" id="fo" aria-controls="panel-fo" aria-selected="false">フォース <span>Forces</span></button>
+</div>
+
+<div class="mag-picker" data-mag-colorpicker></div>
+
+<div id="panel-hu" role="tabpanel" aria-labelledby="hu" data-mag-chart="HU"></div>
+<div id="panel-ra" role="tabpanel" aria-labelledby="ra" data-mag-chart="RA" hidden></div>
+<div id="panel-fo" role="tabpanel" aria-labelledby="fo" data-mag-chart="FO" hidden></div>
+</div>
+</section>
+
+<section class="mag-section" data-mag-section aria-labelledby="recipe">
+<h2 id="recipe" class="mag-anchor">餌表</h2>
+
+<p>餌を与えるたびに、現在のマグに対応する餌表で計算します。同じマグでも進化段階によって表が変わる場合があります。</p>
+
+<div class="mag-tabs mag-tabs--compact" role="tablist" aria-label="餌表" data-mag-tabs>
+  <button class="mag-tab" role="tab" id="recipe1" aria-controls="panel-recipe1" aria-selected="true">表1 <span>初期</span></button>
+  <button class="mag-tab" role="tab" id="recipe2" aria-controls="panel-recipe2" aria-selected="false">表2 <span>第1段階</span></button>
+  <button class="mag-tab" role="tab" id="recipe3" aria-controls="panel-recipe3" aria-selected="false">表3 <span>第2段階</span></button>
+  <button class="mag-tab" role="tab" id="recipe4" aria-controls="panel-recipe4" aria-selected="false">表4 <span>第2段階</span></button>
+  <button class="mag-tab" role="tab" id="recipe5" aria-controls="panel-recipe5" aria-selected="false">表5 <span>第2・3段階</span></button>
+  <button class="mag-tab" role="tab" id="recipe6" aria-controls="panel-recipe6" aria-selected="false">表6 <span>第3・4段階</span></button>
+  <button class="mag-tab" role="tab" id="recipe7" aria-controls="panel-recipe7" aria-selected="false">表7 <span>第3・4段階</span></button>
+  <button class="mag-tab" role="tab" id="recipe8" aria-controls="panel-recipe8" aria-selected="false">表8 <span>第4段階</span></button>
+</div>
+
+<div id="panel-recipe1" role="tabpanel" aria-labelledby="recipe1">
+<p class="mag-recipe__mags"><b>第0段階：</b><span data-item-en="Mag"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="餌表 1" tabindex="0">
+<table data-feed-table="0">
+<thead><tr>
+<th>アイテム</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>シンクロ率</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe2" role="tabpanel" aria-labelledby="recipe2" hidden>
+<p class="mag-recipe__mags"><b>第1段階：</b><span data-item-en="Kalki"></span>, <span data-item-en="Varuna"></span>, <span data-item-en="Vritra"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="餌表 2" tabindex="0">
+<table data-feed-table="1">
+<thead><tr>
+<th>アイテム</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>シンクロ率</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe3" role="tabpanel" aria-labelledby="recipe3" hidden>
+<p class="mag-recipe__mags"><b>第2段階：</b><span data-item-en="Ashvinau"></span>, <span data-item-en="Namuci"></span>, <span data-item-en="Marutah"></span>, <span data-item-en="Rudra"></span>, <span data-item-en="Sumba"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="餌表 3" tabindex="0">
+<table data-feed-table="2">
+<thead><tr>
+<th>アイテム</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>シンクロ率</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe4" role="tabpanel" aria-labelledby="recipe4" hidden>
+<p class="mag-recipe__mags"><b>第2段階：</b><span data-item-en="Mitra"></span>, <span data-item-en="Tapas"></span>, <span data-item-en="Surya"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="餌表 4" tabindex="0">
+<table data-feed-table="3">
+<thead><tr>
+<th>アイテム</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>シンクロ率</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe5" role="tabpanel" aria-labelledby="recipe5" hidden>
+<p class="mag-recipe__mags"><b>第2段階：</b><span data-item-en="Vayu"></span><br><b>第3段階：</b><span data-item-en="Apsaras"></span>, <span data-item-en="Bhirava"></span>, <span data-item-en="Kaitabha"></span>, <span data-item-en="Kama"></span>, <span data-item-en="Kumara"></span>, <span data-item-en="Ushasu"></span>, <span data-item-en="Varaha"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="餌表 5" tabindex="0">
+<table data-feed-table="4">
+<thead><tr>
+<th>アイテム</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>シンクロ率</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe6" role="tabpanel" aria-labelledby="recipe6" hidden>
+<p class="mag-recipe__mags"><b>第3段階：</b><span data-item-en="Durga"></span>, <span data-item-en="Garuda"></span>, <span data-item-en="Ila"></span>, <span data-item-en="Nandin"></span>, <span data-item-en="Ribhava"></span>, <span data-item-en="Sita"></span>, <span data-item-en="Soma"></span>, <span data-item-en="Yaksa"></span><br><b>第4段階：</b><span data-item-en="Deva"></span>, <span data-item-en="Rukmin"></span>, <span data-item-en="Sato"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="餌表 6" tabindex="0">
+<table data-feed-table="5">
+<thead><tr>
+<th>アイテム</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>シンクロ率</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe7" role="tabpanel" aria-labelledby="recipe7" hidden>
+<p class="mag-recipe__mags"><b>第3段階：</b><span data-item-en="Andhaka"></span>, <span data-item-en="Bana"></span>, <span data-item-en="Kabanda"></span>, <span data-item-en="Madhu"></span>, <span data-item-en="Marica"></span>, <span data-item-en="Naga"></span>, <span data-item-en="Naraka"></span>, <span data-item-en="Ravana"></span><br><b>第4段階：</b><span data-item-en="Bhima"></span>, <span data-item-en="Pushan"></span>, <span data-item-en="Rati"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="餌表 7" tabindex="0">
+<table data-feed-table="6">
+<thead><tr>
+<th>アイテム</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>シンクロ率</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+
+<div id="panel-recipe8" role="tabpanel" aria-labelledby="recipe8" hidden>
+<p class="mag-recipe__mags"><b>第4段階：</b>マグ細胞で進化するマグ, <span data-item-en="Diwari"></span>, <span data-item-en="Nidra"></span>, <span data-item-en="Savitri"></span></p>
+<div class="mag-feed-table-wrap" role="region" aria-label="餌表 8" tabindex="0">
+<table data-feed-table="7">
+<thead><tr>
+<th>アイテム</th>
+<th>DEF</th>
+<th>POW</th>
+<th>DEX</th>
+<th>MIND</th>
+<th>シンクロ率</th>
+<th>IQ</th>
+</tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</div>
+</section>
+
+<section class="mag-section" data-mag-section aria-labelledby="colors">
+<a id="ephinea_exclusive_mag_colors" class="mag-anchor"></a>
+<h2 id="colors" class="mag-anchor">マグカラー</h2>
+
+<h3>通常カラー</h3>
+
+<p>以下の18色は<b>キャラクター作成</b>または<b>ボックスからのドロップ</b>で入手でき、オリジナルのBlue Burstでも存在します。カラーコードをクリックするとコピーできます。</p>
+
+<div class="mag-colors">
+  <figure class="mag-color" style="--swatch: #FF3319">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_red-0.png" alt="レッドのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Red<em>レッド</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FF3319">#FF3319</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #3333FF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_blue-0.png" alt="ブルーのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Blue<em>ブルー</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#3333FF">#3333FF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #FFE619">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_yellow-0.png" alt="イエローのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Yellow<em>イエロー</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FFE619">#FFE619</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #19FF19">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_green-0.png" alt="グリーンのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Green<em>グリーン</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#19FF19">#19FF19</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #CC19FF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_purple-0.png" alt="パープルのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Purple<em>パープル</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#CC19FF">#CC19FF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #191933">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_black-0.png" alt="ブラックのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Black<em>ブラック</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#191933">#191933</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #E6FFFF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_white-0.png" alt="ホワイトのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">White<em>ホワイト</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#E6FFFF">#E6FFFF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #19E6FF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_cyan-0.png" alt="シアンのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Cyan<em>シアン</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#19E6FF">#19E6FF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #804C33">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_brown-0.png" alt="ブラウンのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Brown<em>ブラウン</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#804C33">#804C33</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #FF6600">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_orange-0.png" alt="オレンジのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Orange<em>オレンジ</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FF6600">#FF6600</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #808BF9">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_slate_blue-0.png" alt="スレートブルーのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Slate Blue<em>スレートブルー</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#808BF9">#808BF9</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #808000">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_olive-0.png" alt="オリーブのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Olive<em>オリーブ</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#808000">#808000</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #00F0B6">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_turquoise-0.png" alt="ターコイズのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Turquoise<em>ターコイズ</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#00F0B6">#00F0B6</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #CC1964">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_fuschia-0.png" alt="フクシアのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Fuchsia<em>フクシア</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#CC1964">#CC1964</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #7F7F7F">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_grey-0.png" alt="グレーのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Gray<em>グレー</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#7F7F7F">#7F7F7F</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #FEFED5">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_cream-0.png" alt="クリームのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Cream<em>クリーム</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FEFED5">#FEFED5</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #FE7FC8">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_pink-0.png" alt="ピンクのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Pink<em>ピンク</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#FE7FC8">#FE7FC8</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #007F52">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_dark_green-0.png" alt="ダークグリーンのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Dark Green<em>ダークグリーン</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#007F52">#007F52</button>
+    </figcaption>
+  </figure>
+</div>
+
+<h4>コスチュームと初期マグカラー</h4>
+
+<p>キャラクター作成時の初期マグカラーは、クラスとコスチュームの座標で決まります。座標は<b>行－列</b>で表します。例えば <code>2-1</code> はコスチューム選択欄の2行目・1列目です。1つの欄に複数の座標がある場合は、どれを選んでもその色になります。<code>—</code> は、そのクラスではキャラクター作成時に選べない色です。ボックスからドロップするマグで入手できる場合があります。</p>
+
+<div class="mag-costume-table-wrap" role="region" aria-label="コスチュームと初期マグカラーの対応表" tabindex="0">
+  <table class="mag-costume-table">
+    <thead>
+      <tr><th rowspan="2" scope="col">色</th><th rowspan="2" scope="col">カラーコード</th><th colspan="4" scope="colgroup">Hunter</th><th colspan="4" scope="colgroup">Ranger</th><th colspan="4" scope="colgroup">Force</th></tr>
+      <tr><th scope="col">HUmar</th><th scope="col">HUnewearl</th><th scope="col">HUcast</th><th scope="col">HUcaseal</th><th scope="col">RAmar</th><th scope="col">RAmarl</th><th scope="col">RAcast</th><th scope="col">RAcaseal</th><th scope="col">FOmar</th><th scope="col">FOmarl</th><th scope="col">FOnewm</th><th scope="col">FOnewearl</th></tr>
+    </thead>
+    <tbody>
+      <tr data-mag-color="Red"><th scope="row"><span class="mag-costume-color" style="--swatch:#FF3319">Red<small>レッド</small></span></th><td><code>#FF3319</code></td><td>2-1</td><td>1-1</td><td>1-1</td><td>1-1</td><td>1-1</td><td>1-1 · 2-1</td><td>1-1</td><td>1-8 · 2-1</td><td>1-1</td><td>1-1 · 2-1</td><td>1-8</td><td>1-1</td></tr>
+      <tr data-mag-color="Blue"><th scope="row"><span class="mag-costume-color" style="--swatch:#3333FF">Blue<small>ブルー</small></span></th><td><code>#3333FF</code></td><td>1-2</td><td>1-2 · 2-2 · 2-9</td><td>1-2 · 1-8 · 3-2</td><td>1-2 · 2-2</td><td>1-2</td><td>2-2 · 2-8</td><td>1-2 · 2-2 · 2-8 · 3-3</td><td>2-2</td><td>1-2 · 2-8</td><td>1-2 · 1-9</td><td>1-2 · 2-2</td><td>1-2 · 2-2 · 2-9</td></tr>
+      <tr data-mag-color="Yellow"><th scope="row"><span class="mag-costume-color" style="--swatch:#FFE619">Yellow<small>イエロー</small></span></th><td><code>#FFE619</code></td><td>1-3</td><td>1-3 · 2-3</td><td>1-3 · 2-3</td><td>1-3 · 3-3</td><td>2-3</td><td>1-3 · 2-3</td><td>2-3</td><td>1-3 · 2-9 · 3-3</td><td>2-3</td><td>1-3 · 2-3</td><td>1-3 · 2-3</td><td>1-3</td></tr>
+      <tr data-mag-color="Green"><th scope="row"><span class="mag-costume-color" style="--swatch:#19FF19">Green<small>グリーン</small></span></th><td><code>#19FF19</code></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1-4</td><td>2-4</td><td>1-4</td></tr>
+      <tr data-mag-color="Purple"><th scope="row"><span class="mag-costume-color" style="--swatch:#CC19FF">Purple<small>パープル</small></span></th><td><code>#CC19FF</code></td><td>2-5</td><td>1-5 · 2-5</td><td>1-5 · 2-5 · 2-8</td><td>1-5 · 1-9 · 2-5</td><td>1-5 · 2-5</td><td>1-5</td><td>2-9</td><td>2-5 · 3-5</td><td>1-5</td><td>1-5 · 2-5</td><td>1-5 · 2-5 · 2-8</td><td>1-5 · 2-5</td></tr>
+      <tr data-mag-color="Black"><th scope="row"><span class="mag-costume-color" style="--swatch:#191933">Black<small>ブラック</small></span></th><td><code>#191933</code></td><td>1-6 · 1-9 · 2-6</td><td>1-6 · 2-6</td><td>2-6 · 3-6</td><td>1-6 · 2-6 · 2-8</td><td>1-6 · 1-9 · 2-6</td><td>1-6 · 2-6</td><td>1-6 · 3-6</td><td>1-6</td><td>1-6 · 2-6</td><td>1-6 · 2-6</td><td>1-6 · 2-6</td><td>1-6 · 1-9 · 2-6</td></tr>
+      <tr data-mag-color="White"><th scope="row"><span class="mag-costume-color" style="--swatch:#E6FFFF">White<small>ホワイト</small></span></th><td><code>#E6FFFF</code></td><td>1-7 · 2-7 · 2-9</td><td>1-7 · 2-7</td><td>1-7 · 2-7 · 3-7</td><td>—</td><td>1-7 · 2-7 · 2-8</td><td>1-7 · 2-7 · 2-9</td><td>1-7 · 1-8 · 2-7 · 3-7</td><td>—</td><td>1-7 · 2-7</td><td>1-7 · 2-7</td><td>1-7 · 2-7</td><td>1-7 · 2-7</td></tr>
+      <tr data-mag-color="Cyan"><th scope="row"><span class="mag-costume-color" style="--swatch:#19E6FF">Cyan<small>シアン</small></span></th><td><code>#19E6FF</code></td><td>2-2</td><td>—</td><td>2-2</td><td>3-2</td><td>2-2</td><td>1-2</td><td>3-2</td><td>1-2 · 1-9 · 3-2</td><td>2-2</td><td>2-2</td><td>—</td><td>—</td></tr>
+      <tr data-mag-color="Brown"><th scope="row"><span class="mag-costume-color" style="--swatch:#804C33">Brown<small>ブラウン</small></span></th><td><code>#804C33</code></td><td>—</td><td>1-8</td><td>—</td><td>2-3</td><td>2-9</td><td>—</td><td>—</td><td>2-3</td><td>1-8</td><td>—</td><td>2-1</td><td>—</td></tr>
+      <tr data-mag-color="Orange"><th scope="row"><span class="mag-costume-color" style="--swatch:#FF6600">Orange<small>オレンジ</small></span></th><td><code>#FF6600</code></td><td>1-1</td><td>—</td><td>2-1</td><td>—</td><td>2-1</td><td>1-8</td><td>1-9 · 2-1</td><td>2-6</td><td>—</td><td>—</td><td>2-9</td><td>2-1</td></tr>
+      <tr data-mag-color="Slate Blue"><th scope="row"><span class="mag-costume-color" style="--swatch:#808BF9">Slate Blue<small>スレートブルー</small></span></th><td><code>#808BF9</code></td><td>1-5</td><td>—</td><td>—</td><td>1-8 · 3-5 · 3-6</td><td>—</td><td>—</td><td>1-5 · 2-5 · 3-5</td><td>1-5 · 1-7 · 3-1</td><td>1-9 · 2-5</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr data-mag-color="Olive"><th scope="row"><span class="mag-costume-color" style="--swatch:#808000">Olive<small>オリーブ</small></span></th><td><code>#808000</code></td><td>1-8 · 2-3</td><td>—</td><td>3-3</td><td>3-4</td><td>1-3</td><td>—</td><td>1-3</td><td>—</td><td>1-3 · 2-9</td><td>2-9</td><td>—</td><td>2-3</td></tr>
+      <tr data-mag-color="Turquoise"><th scope="row"><span class="mag-costume-color" style="--swatch:#00F0B6">Turquoise<small>ターコイズ</small></span></th><td><code>#00F0B6</code></td><td>2-4</td><td>2-4</td><td>—</td><td>1-4</td><td>—</td><td>1-9</td><td>3-4</td><td>3-4</td><td>1-4</td><td>2-4</td><td>—</td><td>2-4</td></tr>
+      <tr data-mag-color="Fuchsia"><th scope="row"><span class="mag-costume-color" style="--swatch:#CC1964">Fuchsia<small>フクシア</small></span></th><td><code>#CC1964</code></td><td>—</td><td>2-1</td><td>3-1 · 3-5</td><td>2-1</td><td>—</td><td>2-5</td><td>3-1</td><td>2-8</td><td>2-1</td><td>—</td><td>1-1</td><td>—</td></tr>
+      <tr data-mag-color="Gray"><th scope="row"><span class="mag-costume-color" style="--swatch:#7F7F7F">Gray<small>グレー</small></span></th><td><code>#7F7F7F</code></td><td>2-8</td><td>—</td><td>1-6 · 1-9</td><td>—</td><td>—</td><td>—</td><td>2-6</td><td>3-6 · 3-7</td><td>—</td><td>—</td><td>—</td><td>2-8</td></tr>
+      <tr data-mag-color="Cream"><th scope="row"><span class="mag-costume-color" style="--swatch:#FEFED5">Cream<small>クリーム</small></span></th><td><code>#FEFED5</code></td><td>—</td><td>—</td><td>—</td><td>1-7 · 2-7 · 3-7</td><td>1-8 · 2-7</td><td>—</td><td>—</td><td>2-7</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr data-mag-color="Pink"><th scope="row"><span class="mag-costume-color" style="--swatch:#FE7FC8">Pink<small>ピンク</small></span></th><td><code>#FE7FC8</code></td><td>—</td><td>2-8</td><td>—</td><td>2-9 · 3-1</td><td>—</td><td>2-7</td><td>—</td><td>1-1</td><td>—</td><td>1-8 · 2-8</td><td>—</td><td>1-8</td></tr>
+      <tr data-mag-color="Dark Green"><th scope="row"><span class="mag-costume-color" style="--swatch:#007F52">Dark Green<small>ダークグリーン</small></span></th><td><code>#007F52</code></td><td>1-4</td><td>1-4 · 1-9</td><td>1-4 · 2-4 · 2-9 · 3-4</td><td>2-4</td><td>1-4 · 2-4</td><td>1-4 · 2-4</td><td>1-4 · 2-4</td><td>1-4 · 2-4</td><td>2-4</td><td>—</td><td>1-4 · 1-9</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="source-list">コスチュームの座標は <a href="https://wiki.pioneer2.net/w/Mags#Mag_colors" target="_blank" rel="noopener noreferrer">Ephinea Wiki：Mag colors</a> に基づいています。</p>
+
+<h3>Ephinea限定カラー</h3>
+
+<p>以下の12色は<b>ボックスからのドロップ</b>のマグにのみ出現します。2022年3月6日にEphineaへ追加されました。カラーコードをクリックするとコピーできます。</p>
+
+<div class="mag-colors">
+  <figure class="mag-color" style="--swatch: #7FFF00">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_chartreuse-0.png" alt="シャルトリューズのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Chartreuse<em>シャルトリューズ</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#7FFF00">#7FFF00</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #007FFF">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_azure-0.png" alt="アジュールのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Azure<em>アジュール</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#007FFF">#007FFF</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #660066">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_royal_purple-0.png" alt="ロイヤルパープルのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Royal Purple<em>ロイヤルパープル</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#660066">#660066</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #F90505">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_ruby-0.png" alt="ルビーのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Ruby<em>ルビー</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#F90505">#F90505</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #0A0AF2">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_sapphire-0.png" alt="サファイアのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Sapphire<em>サファイア</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#0A0AF2">#0A0AF2</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #007F00">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_emerald-0.png" alt="エメラルドのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Emerald<em>エメラルド</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#007F00">#007F00</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #9F7E3A">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_gold-0.png" alt="ゴールドのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Gold<em>ゴールド</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#9F7E3A">#9F7E3A</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #8D9BA6">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_silver-0.png" alt="シルバーのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Silver<em>シルバー</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#8D9BA6">#8D9BA6</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #A0654E">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_bronze-0.png" alt="ブロンズのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Bronze<em>ブロンズ</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#A0654E">#A0654E</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #7F337F">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_plum-0.png" alt="プラムのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Plum<em>プラム</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#7F337F">#7F337F</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #2B0757">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_violet-0.png" alt="バイオレットのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Violet<em>バイオレット</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#2B0757">#2B0757</button>
+    </figcaption>
+  </figure>
+  <figure class="mag-color" style="--swatch: #F2A400">
+    <img class="mag-color__shot" src="/assets/img/mag/colors/Mag_goldenrod-0.png" alt="ゴールデンロッドのマグ" loading="lazy" width="205" height="162">
+    <figcaption class="mag-color__meta">
+      <span class="mag-color__name">Goldenrod<em>ゴールデンロッド</em></span>
+      <button class="mag-color__hex" data-copied-label="コピーしました" data-i18n-data-copied-label="mag.copied" type="button" data-copy="#F2A400">#F2A400</button>
+    </figcaption>
+  </figure>
+</div>
+</section>
+
+<section class="mag-section" data-mag-section aria-labelledby="triggers">
+<h2 id="triggers" class="mag-anchor">発動条件とシンクロ率</h2>
+
+<p>マグの補助効果が発動するタイミングは<b>発動条件</b>で決まり、発動率は<b>シンクロ率</b>が高いほど上がり、効果の強さは<b>IQ</b>に影響されます。</p>
+
+<h3 id="trigger" class="mag-anchor">発動条件</h3>
+
+<ul>
+<li>HP10%の発動条件：1フレームで最大HPの20%を超えるHPを失い、ダメージ後のHPが最大HPの10%未満になること（例えば<span data-item-en="GAL WIND"></span>の特殊攻撃は21%消費）。</li>
+<li>ボス部屋での発動は説明不要です。</li>
+<li>PB100での発動は説明不要です。</li>
+</ul>
+
+<h3 id="sync" class="mag-anchor">シンクロ率</h3>
+
+<p>シンクロ率の上限は120%で、死亡するたびに5%下がります。フォトンブラストの威力への影響は、<a href="/tools/mechanics.html#pb-parameters">仕組みのページのPBパラメーター早見表</a>を参照してください。</p>
+
+<p>マグのシンクロ率のルール：</p>
+
+<ul>
+<li>+：基本値＋段階別加算</li>
+<li>−：段階別加算のみ</li>
+<li>記号なし：シンクロ率を無視します。効果に+/−がない場合、この項目は無視できます。参照：<a href="https://wiki.pioneer2.net/index.php?title=Mags">Mags</a> )</li>
+</ul>
+
+<table>
+<thead><tr>
+<th>シンクロ率</th>
+<th>発動率加算</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>0-30%</td>
+<td>+0%</td>
+</tr>
+<tr>
+<td>31-60%</td>
+<td>+15%</td>
+</tr>
+<tr>
+<td>61-80%</td>
+<td>+25%</td>
+</tr>
+<tr>
+<td>81-100%</td>
+<td>+30%</td>
+</tr>
+<tr>
+<td>101-120%</td>
+<td>+35%</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="iq" class="mag-anchor">IQ</h3>
+
+<p>IQはマグの回復・補助効果に影響します。フォトンブラストのダメージ、レイラの回復量、マイラ＆ユウラの補助レベル、チェイン・寄付の計算例は、<a href="/tools/mechanics.html#photon-blast">ゲームの仕組み：マグのフォトンブラスト（PB）</a>を参照してください。</p>
+</section>
+</section>

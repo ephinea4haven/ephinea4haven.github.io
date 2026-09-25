@@ -1,6 +1,7 @@
 import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
 import { VOL_OPT_DATA } from '../generated/data/volopt-data';
 import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
+import { SiteLanguage } from '../shared/site-language.service';
 
 type WeaponValues = Readonly<Record<string, Readonly<Record<string, number>>>>;
 type ShiftaValues = Readonly<Record<string, WeaponValues>>;
@@ -17,15 +18,14 @@ const DISPLAY: Readonly<Record<string, { readonly icon: string; readonly classNa
   'Orotiagito + Samurai Armor': { icon: '◆', className: 'set-name' },
   Vivienne: { icon: '⚔', className: 'weapon-sword' },
 };
-const ITEM_NAMES = new Map(Object.values(ITEM_TRANSLATIONS)
-  .filter((item) => item.en && item.zh)
-  .map((item) => [item.en!.toLocaleLowerCase(), item.zh!] as const));
 
 @Directive({ standalone: true })
 export class VolOptBehavior {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly destroyRef = inject(DestroyRef);
   private readonly data = VOL_OPT_DATA as ModeValues;
+  private readonly site = inject(SiteLanguage);
+  private itemNames = new Map<string, string>();
   private mode = 'normal';
   private playerClass = 'humar';
   private shifta: string | null = null;
@@ -35,6 +35,11 @@ export class VolOptBehavior {
   }
 
   private connect(): void {
+    // English names are shown as-is; other editions add the authority name in their language.
+    const language = this.site.language();
+    this.itemNames = new Map(language === 'en' ? [] : ITEM_TRANSLATIONS
+      .filter((item) => item[language])
+      .map((item) => [item.en.toLocaleLowerCase(), item[language]!] as const));
     this.localizeStaticItemNames();
     this.connectTabs('mode-tabs', (button) => { this.mode = button.dataset['mode'] ?? this.mode; });
     this.connectTabs('class-tabs', (button) => { this.playerClass = button.dataset['class'] ?? this.playerClass; });
@@ -114,7 +119,7 @@ export class VolOptBehavior {
       icon.textContent = display.icon ? `${display.icon} ` : '';
       label.append(icon, name);
       const itemNames = name.split(' + ');
-      const translations = itemNames.map((itemName) => ITEM_NAMES.get(itemName.toLocaleLowerCase()));
+      const translations = itemNames.map((itemName) => this.itemNames.get(itemName.toLocaleLowerCase()));
       const translation = translations.every((itemName): itemName is string => Boolean(itemName))
         ? translations.join(' + ') : '';
       if (translation) {
@@ -134,7 +139,7 @@ export class VolOptBehavior {
 
   private localizeStaticItemNames(): void {
     for (const element of this.host.querySelectorAll<HTMLElement>('[data-item-name]')) {
-      const translation = ITEM_NAMES.get((element.dataset['itemName'] ?? '').toLocaleLowerCase());
+      const translation = this.itemNames.get((element.dataset['itemName'] ?? '').toLocaleLowerCase());
       if (!translation) continue;
       const translatedName = document.createElement('span');
       translatedName.textContent = translation;
