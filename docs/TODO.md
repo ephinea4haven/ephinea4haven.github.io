@@ -73,6 +73,12 @@ has started. Check an item only when its stated completion criteria are met.
     A final code review restored the Time Attack player name "Sange" (it had been
     treated as the item of the same name) and replaced three half-translated
     Japanese names with their authority names.
+  - [x] Quest names (2026-09-25): data/quest.html shows every quest and counter
+    category in Chinese and Japanese, with the in-game English name beside each
+    quest. Sources: the QEdit quest directory, the Quest Text Overlay add-on's
+    Chinese names and Ephinea's Japanese announcements; the rest were translated
+    directly, one wording per series. The English page gives English
+    translations for the two quests whose original title is Japanese.
 
 - [x] Review source claims the translation passes flagged (2026-09-25, confirmed
   with the maintainer; fixed in all three languages). ItemRT: the Olga Flow
