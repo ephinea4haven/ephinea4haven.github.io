@@ -1,4 +1,4 @@
-<page-chrome [title]="t('title')"></page-chrome>
+<page-chrome [title]="t('title')" [back-text]="t('backHome')"></page-chrome>
 <main class="content-container status-shell">
   @if (dataFailed) {
     <p class="status-message error" role="alert">{{ t('loadFailed') }} <button type="button" (click)="retry()">{{ t('retry') }}</button></p>

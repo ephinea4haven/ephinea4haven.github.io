@@ -6,10 +6,14 @@ Production is built and deployed by `.github/workflows/pages.yml`.
 
 1. Pull requests run dependency audit, business tests, two reproducibility
    builds, and Playwright smoke tests.
-2. A `master` push runs the same gates and uploads `_site` as the Pages
+2. The `build` job hands its verified output (`_site` and `src/app/generated`)
+   to three parallel `browser-tests` shards (`playwright test --shard=N/3`), so
+   the browser suite tests that exact build and stays well inside each job's
+   20-minute limit as language versions add routes.
+3. A `master` push runs the same gates and uploads `_site` as the Pages
    artifact.
-3. The deploy job publishes that exact artifact. It does not check out or
-   rebuild the repository.
+4. The deploy job runs only after the build and every shard pass, and publishes
+   that exact artifact. It does not check out or rebuild the repository.
 
 The build job checks out the pinned item-name authority into `droptable/` and
 sets `DROPTABLE_I18N_AUTHORITY` for the entire job. Business tests and browser
@@ -180,8 +184,8 @@ check rollups; these are historical observations, not a current PR status check.
 GitHub Pages is configured to deploy through GitHub Actions. After a production
 run completes:
 
-1. Confirm both the `build` and `deploy` jobs succeeded for the expected
-   `master` commit.
+1. Confirm the `build`, all three `browser-tests` shards and `deploy` jobs
+   succeeded for the expected `master` commit.
 2. Verify `https://www.psohaven.com/`, `404.html`, the custom domain and HTTPS.
 3. Confirm a representative content route and each dedicated interactive tool
    load the content-hashed Angular assets without console or resource errors.

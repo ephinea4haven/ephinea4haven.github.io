@@ -1,0 +1,143 @@
+<!-- Japanese text for /guide/launcher.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+<p class="launcher-kicker">EPHINEA · LAUNCHER GUIDE</p>
+<h1>ランチャー設定ガイド</h1>
+<p class="launcher-lead">ゲームの起動からカメラの調整まで、ランチャーの実際のページ順に各スイッチを確認できます。コントロール名は英語のまま、横に説明を付けているので、画面を見ながら設定できます。</p>
+<p class="launcher-meta">Launcher v3.5.2 対応 · 確認日 2026-09-16 · 画像は Parallels Desktop 上の Windows 11 のネイティブのプログラム</p>
+<nav class="launcher-nav" aria-label="ランチャーの設定の章">
+<a href="#page1">01 · 画面・サウンド・インターフェース<span>OPTIONS 1ページ目</span></a>
+<a href="#page2">02 · 便利機能と画面効果<span>OPTIONS 2ページ目</span></a>
+<a href="#page3">03 · 通知・カメラ・文字<span>OPTIONS 3ページ目</span></a>
+<a href="#page4">04 · ゲームパッド・拾う操作・フォトンブラスト<span>OPTIONS 4ページ目</span></a>
+<a href="#page5">05 · メニュー操作とゲームの便利設定<span>OPTIONS 5ページ目</span></a>
+<a href="#more">06 · MORE：オリジナルの詳細設定<span>独立した詳細設定ウィンドウ</span></a>
+</nav>
+<aside class="launcher-note"><p><strong>操作方法：</strong>OPTIONS で設定を開き、NEXT PAGE／PREVIOUS PAGE でページを切り替えます。緑のスイッチはオン、灰色はオフです。灰色でもクリックできないとは限りません。画像はこのパソコンのその時点の設定で、おすすめの値ではありません。画像をクリックすると元のサイズで見られます。</p></aside>
+<section id="main-window"><h2>メイン画面と保存のしかた</h2>
+<figure><a href="/assets/img/launcher/main.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/main.png" width="1600" height="1200" alt="Windows 11 での Ephinea の英語版ランチャーのメイン画面"></a><figcaption>メイン画面：起動、お知らせ、言語／リソースの選択、設定への入口。</figcaption></figure>
+<table><thead><tr><th scope="col">コントロール</th><th scope="col">働き</th></tr></thead><tbody>
+<tr><td>START GAME</td><td>ゲームを起動します。アカウントのログインとキャラクターの選択はゲーム内で行います。</td></tr>
+<tr><td>ENGLISH / 日本語 / CUSTOM</td><td>言語リソースの更新のしかたを選びます。CUSTOM はカスタムのリソース用で、中国語の選択肢が内蔵されているわけではありません。画像の CUSTOM と英語の画面は同時に使えます。言語を切り替えると今の設定が保存され、更新の確認が行われるので、独自の翻訳を管理している場合は選んだリソースのモードを確認してください。</td></tr>
+<tr><td>OFFICIAL SITE / REGISTER / FAQ / DONATE</td><td>公式サイト、アカウント登録、よくある質問、寄付のページをそれぞれ開きます。</td></tr>
+<tr><td>CREDITS / QUIT</td><td>スタッフ一覧を表示／ランチャーを終了します。</td></tr>
+<tr><td>CHECK FOR UPDATES</td><td>クライアントの更新を再確認します。設定を元に戻すものではありません。</td></tr>
+<tr><td>MORE</td><td>先にランチャーの設定を保存してから、独立したオリジナルの詳細設定ウィンドウを開きます。</td></tr>
+<tr><td>REVERT</td><td>保存済みの設定を読み直し、まだ保存していない変更を取り消します。</td></tr>
+<tr><td>RESET ALL</td><td>今の多くの設定をプログラムが決めた初期値に戻します（この時点ではまだ保存されません）。言語の選択も English に、解像度も 1024×768 に戻ります。CUSTOM のリソースが必要なら、この後の保存や更新の前に言語の選択を確認してください。3.5.2 のリセットは後から追加された項目をすべては対象にしていないため、すべての設定を完全に消すものではありません。</td></tr>
+</tbody></table>
+<aside class="launcher-note"><p><strong>どうやって保存する？</strong>ランチャーには共通の Save ボタンがありません。START GAME・QUIT・MORE などの操作で設定が書き込まれ、OPTIONS をもう一度押してもパネルが閉じるだけです。変更を取り消したいときは、先に REVERT を使ってから保存される操作をしてください。MORE のウィンドウには専用の Save／Cancel があります。</p></aside>
+</section>
+<section id="page1">
+<p class="launcher-kicker">01 / OPTIONS</p><h2>画面・サウンド・インターフェース</h2><p>まずゲームのウィンドウと描画方法を決め、次にインターフェースの大きさとサウンドを調整します。</p>
+<figure><a href="/assets/img/launcher/page1.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page1.png" width="1600" height="1200" loading="lazy" alt="Ephinea の英語版のネイティブの画面：画面・サウンド・インターフェース"></a><figcaption>OPTIONS 1ページ目 · Windows 11 のネイティブの画面</figcaption></figure>
+<table><thead><tr><th scope="col">英語のコントロール / 意味</th><th scope="col">働きと注意点</th></tr></thead><tbody>
+<tr><td>Resolution<small>解像度</small></td><td>ゲーム画面の幅・高さ・縦横比を決めます。Custom で幅と高さを自由に入力できます。高い解像度はたいてい鮮明になりますが、描画の負荷も増えます。</td></tr>
+<tr><td>Windowed Mode<small>ウィンドウのモード</small></td><td>Fullscreen は排他的なフルスクリーン、Windowed は普通のウィンドウ、Virtual Fullscreen は枠のないフルスクリーンです。アプリを切り替えるときは、普通のウィンドウか枠のないフルスクリーンのほうが便利です。</td></tr>
+<tr><td>Rain/Laser Scale<small>雨・レーザーの線の拡大率</small></td><td>雨やレーザーなど線状のエフェクトの表示倍率を調整します。100% が基準で、攻撃のダメージや判定の範囲は変わりません。</td></tr>
+<tr><td>Direct3D API<small>描画のバックエンド</small></td><td>D3D8、D3D9、D3D9on12、dgVoodoo 経由の D3D11／12、DXVK 経由の Vulkan から選びます。括弧内は変換コンポーネントのバージョンで、Custom は自分で用意したコンポーネントを使います。互換性はドライバーと実行環境によって変わります。詳しくは<a href="/guide/d3d.html#backend">描画 API のガイド</a>。</td></tr>
+<tr><td>Anti-Aliasing<small>アンチエイリアス</small></td><td>None でオフ。MSAA は形状の輪郭を処理し、SSAA は内部の描画解像度を上げてから縮小し、SMAA は画像の輪郭を後処理し、HSAA は SSAA と MSAA を組み合わせます。+ SMAA の付いた項目は SMAA を追加します。高い設定ほど負荷はたいてい増えます。バックエンドごとの対応は<a href="/guide/d3d.html#aa">アンチエイリアスの説明</a>。</td></tr>
+<tr><td>Anisotropic Filtering<small>異方性フィルタリング</small></td><td>Disabled か 2×／4×／8×／16×。斜めに見える床や道などの表面のテクスチャを鮮明にします。</td></tr>
+<tr><td>BGM / SFX<small>BGM／効果音の音量</small></td><td>BGM と効果音を別々に 0～10 で調整します。0 で無音です。</td></tr>
+<tr><td>DISABLE SKIN SFX<small>外観専用の効果音をオフ</small></td><td>武器の外観（スキン）専用の効果音をオフにします。ゲームのすべての効果音をオフにするものではありません。</td></tr>
+<tr><td>HIGH RES HUD / HUD Scale<small>高解像度 HUD／インターフェースの倍率</small></td><td>高解像度 HUD を有効にすると HUD Scale が表示されます。値が大きいほど HUD は画面上で小さくなり、使える空間が増えます。高解像度のインターフェースのテクスチャを入れるものではありません。</td></tr>
+<tr><td>Damage Scale<small>ダメージの数字の倍率</small></td><td>ダメージの数字の表示の大きさだけを変え、実際のダメージは変わりません。</td></tr>
+<tr><td>NO MINIMAP SCALE<small>ミニマップの倍率補正をオフ</small></td><td>高解像度 HUD のミニマップの倍率補正をオフにします。この補正は、HUD の解像度が違っても同じ内部の視野範囲を表示し、アイコンの比率を調整するもので、ミニマップの枠全体の大きさを固定するものではありません。未探索の場所が見えるようにはなりません。参照：<a href="https://www.pioneer2.net/community/threads/dll-update-for-may-12th-2022-dllアップデート.23143/">元の拡大縮小の説明</a>と<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-may-22nd-at-00-00-utc-サーバメンテナンス完了.23197/">オプションのお知らせ</a>。</td></tr>
+<tr><td>IME<small>入力メソッドへの対応</small></td><td>中国語・日本語などの文字入力のため、クライアントの入力メソッド（IME）対応を有効にします。使える入力メソッドは実行環境によります。</td></tr>
+<tr><td>LOW PERFORMANCE<small>低負荷での実行</small></td><td>クライアントのメインループが CPU の時間をより積極的に譲るようにし、CPU の使用率を下げます。フレームのテンポに影響することがあります。通信の高速化でも、画質をまとめて下げるボタンでもありません。</td></tr>
+<tr><td>CLASSIC INTRO FMV<small>旧式のオープニングムービーの再生方法</small></td><td>オンにすると、キャラクター作成のオープニングに旧式の PAE ムービーと元のプレイヤーを使います。オフでは新しいムービーの再生方法を使います。ムービーを飛ばすものではありません。参照：<a href="https://www.pioneer2.net/community/threads/no-episode-2-end-credits-on-classic.24232/post-190564">2つの再生方法についての公式の説明</a>。</td></tr>
+</tbody></table>
+<p class="launcher-sources">補足の出典：<a href="https://www.pioneer2.net/community/threads/low-performance-mode.7323/">Low Performance についてのスタッフの説明</a>；<a href="https://www.pioneer2.net/community/threads/hd-ui-project-by-luthee-a-k-a-eleria.23410/page-3">HUD Scale と高解像度のインターフェースのテクスチャの違い</a>。</p>
+</section>
+<section id="page2">
+<p class="launcher-kicker">02 / OPTIONS</p><h2>便利機能と画面効果</h2><p>このページには倉庫の操作の項目と、後処理や dgVoodoo の設定があります。</p>
+<figure><a href="/assets/img/launcher/page2.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page2.png" width="1600" height="1200" loading="lazy" alt="Ephinea の英語版のネイティブの画面：便利機能と画面効果"></a><figcaption>OPTIONS 2ページ目 · Windows 11 のネイティブの画面</figcaption></figure>
+<table><thead><tr><th scope="col">英語のコントロール / 意味</th><th scope="col">働きと注意点</th></tr></thead><tbody>
+<tr><td>FAST STARTUP<small>クイックスタート</small></td><td>SEGA、Sonic Team などのロゴの画面を飛ばします。ランチャーの更新の確認は飛ばしません。</td></tr>
+<tr><td>CLEAN CAPTURE<small>きれいなスクリーンショット</small></td><td>ゲーム内蔵のスクリーンショットの取り方を変え、ゲームの画面のバッファから取り込んで、アドオンの重ね表示が写らないようにします。ゲームの HUD は自動では隠れません。</td></tr>
+<tr><td>MOTION BLUR<small>モーションブラー</small></td><td>ゲーム本来の残像の効果を切り替えます。</td></tr>
+<tr><td>RARE DROP SFX<small>レアドロップの通知音</small></td><td>レアアイテムがドロップしたときに音を鳴らします。ドロップ率は変わりません。</td></tr>
+<tr><td>BANK SHORTCUTS<small>倉庫の数字キー</small></td><td>倉庫の一覧で数字キー 1～0 を使ってすばやく移動します。キャラクターの倉庫を切り替えるコマンドではありません。</td></tr>
+<tr><td>LARGE BANK WINDOW<small>大きな倉庫のウィンドウ</small></td><td>倉庫の一覧を広げ、一度に多くの項目を表示します。</td></tr>
+<tr><td>BLOOM<small>ブルーム</small></td><td>明るい部分の周りに光のにじみを加えます。</td></tr>
+<tr><td>DEPTH OF FIELD<small>被写界深度</small></td><td>奥行きに応じて画面の一部をぼかし、手前と奥の見え方の鮮明さを変えます。</td></tr>
+<tr><td>CEL SHADING<small>セルシェーディング</small></td><td>輪郭を強め、アニメ風の画面にします。</td></tr>
+<tr><td>TONEMAPPING<small>トーンマッピング</small></td><td>画面の明るさ・コントラスト・色合いの表現を調整します。</td></tr>
+<tr><td>Ambient Occlusion<small>アンビエントオクルージョン</small></td><td>Disabled／Low／Medium／High。物の接する所や遮られた部分に陰影を加えます。後処理の効果と負荷は<a href="/guide/d3d.html#shaders">シェーダーの説明</a>。</td></tr>
+<tr><td>dgVoodoo Model<small>表示の方式</small></td><td>Auto、Discard、Sequential、Flip Discard、Flip Sequential はスワップチェーン／表示の方式で、画質の段階ではありません。dgVoodoo を使うときだけ意味があります。詳しくは<a href="/guide/d3d.html#swap">スワップチェーンの説明</a>。</td></tr>
+<tr><td>dgVoodoo VRAM<small>仮想ビデオメモリ</small></td><td>Auto か 64～4096 MB。dgVoodoo が古いゲームに見せるビデオメモリの量を設定します。グラフィックカードの物理メモリが増えるわけではありません。</td></tr>
+</tbody></table>
+<p class="launcher-sources">補足の出典：<a href="https://www.pioneer2.net/community/threads/game-update-for-august-2nd-2022.23773/post-186589">クイックスタートの更新情報</a>；<a href="https://www.pioneer2.net/community/threads/game-update-for-august-27th-2022-8-27-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.24114/">Clean Capture の更新情報</a>。</p>
+</section>
+<section id="page3">
+<p class="launcher-kicker">03 / OPTIONS</p><h2>通知・カメラ・文字</h2><p>カメラの操作は、自分のゲームパッドと操作の癖に合わせて設定できます。一部のコントロールは関連する機能を有効にしたときだけ表示されます。</p>
+<figure><a href="/assets/img/launcher/page3.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page3.png" width="1600" height="1200" loading="lazy" alt="Ephinea の英語版のネイティブの画面：通知・カメラ・文字"></a><figcaption>OPTIONS 3ページ目 · Windows 11 のネイティブの画面</figcaption></figure>
+<table><thead><tr><th scope="col">英語のコントロール / 意味</th><th scope="col">働きと注意点</th></tr></thead><tbody>
+<tr><td>SDJZ Icon<small>補助の状態アイコン</small></td><td>シフタ・デバンド・ジェルン・ザルアのアイコンの表示方法を切り替えます：Normal（通常）、Blink（点滅）、Fade（徐々に消える）。</td></tr>
+<tr><td>Mag Alert<small>マグのエサやりの通知</small></td><td>オンにすると、連れているマグにエサを与えられるようになったとき音を鳴らします。</td></tr>
+<tr><td>Mag Alert Delay<small>通知の間隔</small></td><td>2回の通知音の最短の間隔で、単位は秒、初期値は 30 です。マグのエサやりの待ち時間ではありません。</td></tr>
+<tr><td>Analog Camera Control<small>スティックでのカメラ操作</small></td><td>ゲームパッドの右スティックでカメラを動かせるようにします。</td></tr>
+<tr><td>Analog Sensitivity / INVERT<small>カメラの感度／反転</small></td><td>感度はスティックでカメラが回る速さで、INVERT は対応するカメラの方向を反転します。</td></tr>
+<tr><td>Camera Dead Zone<small>カメラのスティックのデッドゾーン</small></td><td>スティックの中心付近の小さな入力を無視し、カメラが勝手に動くのを防ぎます。大きすぎると操作できる範囲が狭くなります。</td></tr>
+<tr><td>ANALOG CAMERA KEYS / TURN LEFT / TURN RIGHT<small>キーボードでのカメラ操作</small></td><td>カメラを左右に回すキーボードのキーを有効にして指定します。関連するコントロールはカメラの項目と一緒に表示されます。</td></tr>
+<tr><td>Chase Cam<small>カメラの自動追従</small></td><td>Enabled は自動で追従、Disabled は自動追従をやめ、手動のカメラか正面に戻すキーを使います。Hybrid はスティックでカメラを操作している間だけ自動追従を止め、Toggle はスティックで操作した後は手動のままで、正面に戻すキーで追従に戻ります。</td></tr>
+<tr><td>Font Render Method<small>文字の描画方法</small></td><td>Hi-Res (Antialiased) はアンチエイリアスの高解像度の字形、Hi-Res (ClearType) は ClearType、Normal は通常の方式を使います。フォント自体は MORE で選びます。</td></tr>
+<tr><td>Font Resolution<small>字形の解像度</small></td><td>Auto か、字形をラスタライズする解像度を指定します。鮮明さとサンプリングに影響し、すべての文字をその数値の大きさにするのとは違います。</td></tr>
+<tr><td>NUMPAD SHORTCUTS<small>テンキーのショートカット</small></td><td>テンキーで対応する数字のショートカットを使えるようにします。</td></tr>
+<tr><td>Show Mob Drop<small>狙った敵のレアドロップの表示</small></td><td>Disabled でオフ、Drop Only はアイテムだけ、Drop (Current Rate) は現在の確率も、Drop (Current & Base Rate) は現在と基本の確率の両方を表示します。対象の情報の欄に表示され、確率はクライアントが計算するので丸めの差があることがあり、次のドロップの予測ではありません。</td></tr>
+<tr><td>ENHANCED MAP DRAW<small>描画範囲の拡張</small></td><td>より多くの背景の形状を描画できるようにし、本来の描画距離やカリングによる欠けを減らします。負荷が増えることがあります。ミニマップの探索や敵の出現とは関係ありません。</td></tr>
+</tbody></table>
+<p class="launcher-sources">補足の出典：<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-july-6th-2024.29028/">カメラのモード、マグの通知、フォントの更新情報</a>；<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-january-12th-2025-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E5%AE%8C%E4%BA%86-1-12.30249/">描画範囲と狙った敵のドロップ表示の説明</a>。</p>
+</section>
+<section id="page4">
+<p class="launcher-kicker">04 / OPTIONS</p><h2>ゲームパッド・拾う操作・フォトンブラスト</h2><p>誤って押しやすい拾う操作とフォトンブラストを、修飾キーを押している間だけ使える操作に移します。</p>
+<figure><a href="/assets/img/launcher/page4.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page4.png" width="1600" height="1200" loading="lazy" alt="Ephinea の英語版のネイティブの画面：ゲームパッド・拾う操作・フォトンブラスト"></a><figcaption>OPTIONS 4ページ目 · Windows 11 のネイティブの画面</figcaption></figure>
+<table><thead><tr><th scope="col">英語のコントロール / 意味</th><th scope="col">働きと注意点</th></tr></thead><tbody>
+<tr><td>AUTO DETECT ACTIVE GAMEPAD<small>今のゲームパッドを自動認識</small></td><td>最後に使ったゲームパッドを自動で使い、複数のコントローラーを切り替えるときに便利です。</td></tr>
+<tr><td>USE XINPUT FOR GAMEPAD<small>XInput を使う</small></td><td>XInput のゲームパッドのインターフェースに切り替え、対応するコントローラーの抜き差しやトリガーボタンに対応します。オンにすると下の3つの調整項目が表示されます。XInput 以外の機器はマッピングが必要なことがあります。</td></tr>
+<tr><td>Deadzone<small>スティックのデッドゾーン</small></td><td>スティックの中心付近の小さな入力を除きます。範囲は 0～75%。</td></tr>
+<tr><td>Axis Snapping<small>方向の吸着</small></td><td>水平や垂直に近い入力を、まっすぐの方向に入りやすくします。範囲は 0～50%。</td></tr>
+<tr><td>Trigger Threshold<small>トリガーのしきい値</small></td><td>トリガーをどこまで押したら入力とみなすか。範囲は 0～100%。</td></tr>
+<tr><td>Item Pickup and Photon Blast Usage<small>拾う操作／フォトンブラストの操作方法</small></td><td>Disabled は元の操作のままで、近くのアイテムでメインのアクションバーの中央が拾う操作に替わったり、フォトンブラストがたまるとサブのアクションバーを占めたりします。ほかの3つは、修飾キーを押している間だけ拾う操作、フォトンブラスト、またはその両方を使えるようにし、離すと元のアクションバーに戻ります。</td></tr>
+<tr><td>HOLD GAMEPAD BUTTON<small>ゲームパッドの修飾キー</small></td><td>ゲームパッドのボタンで上の操作を使えるようにします。ゲーム内の Options → Pad button config の一番下の項目でボタンを割り当てます。</td></tr>
+<tr><td>HOLD SHIFT KEY / HOLD ALT KEY / HOLD KEY<small>キーボードの修飾キー</small></td><td>Shift、Alt、または指定したキーを選びます。関連するコントロールは、拾う操作／フォトンブラストの制限を有効にすると表示されます。これらの項目で自動的に拾ったり、フォトンブラストを撃ったりはしません。</td></tr>
+</tbody></table>
+</section>
+<section id="page5">
+<p class="launcher-kicker">05 / OPTIONS</p><h2>メニュー操作とゲームの便利設定</h2><p>メニューの反応の速さ、ショートカットメニューの中身、実際にソロの戦闘に影響する項目を区別します。</p>
+<figure><a href="/assets/img/launcher/page5.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/page5.png" width="1600" height="1200" loading="lazy" alt="Ephinea の英語版のネイティブの画面：メニュー操作とゲームの便利設定"></a><figcaption>OPTIONS 5ページ目 · Windows 11 のネイティブの画面</figcaption></figure>
+<table><thead><tr><th scope="col">英語のコントロール / 意味</th><th scope="col">働きと注意点</th></tr></thead><tbody>
+<tr><td>Menu Scroll Repeat Delay<small>メニューの連続移動の開始の遅れ</small></td><td>方向を押し続けてから連続移動が始まるまでに待つフレーム数。初期値 6 フレーム、範囲 1～20 フレームで、30 FPS なら 6 フレームは約 0.2 秒です。</td></tr>
+<tr><td>Menu Scroll Repeat Interval<small>メニューの連続移動の間隔</small></td><td>連続移動が始まった後、何フレームごとに1回動くか。初期値 5 フレーム、範囲 1～20 フレームで、小さいほど速く動きます。</td></tr>
+<tr><td>Page Up and Page Down Behavior<small>メニューのページ送り</small></td><td>No Change は元の動作のまま、Auto は今見えている項目数ずつ、Fixed は指定した項目数（1～100）ずつページを送ります。主にアイテムや倉庫などの一覧に使います。</td></tr>
+<tr><td>QUICK MENU MATERIALS<small>ショートカットメニューにマテリアルを表示</small></td><td>マテリアルをショートカットメニューに加えて使いやすくします。チャレンジやバトルのクエストでの制限は変わりません。</td></tr>
+<tr><td>ONE PERSON I-FRAMES<small>ソロモードの被弾後の無敵時間</small></td><td>One Person モードで、昔のオフラインモードのような長めの被弾後の無敵時間を使います。オフにすると本来の BB の動作です。部屋の種類が One Person のときだけで、マルチプレイの部屋に1人しかいない場合は対象外です。</td></tr>
+<tr><td>QUICK MENU UNTEKKED WEAPONS<small>ショートカットメニューに未鑑定の武器を表示</small></td><td>未鑑定の武器もショートカットメニューに表示します。鑑定はしてくれません。</td></tr>
+<tr><td>SAVE PARTY INFO<small>部屋の情報を保存</small></td><td>作成した部屋の名前・パスワード・種類・難易度と、同じ名前の部屋に入るときのパスワードを覚えておきます。この機能は 2026-08-01 の更新で有効になり、以前の資料にある「中身のないスイッチ」という説明は古くなっています。</td></tr>
+</tbody></table>
+<p class="launcher-sources">補足の出典：<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-october-19th-2025-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E5%AE%8C%E4%BA%86-10-19.31884/">ページ送りとソロモードの更新情報</a>；<a href="https://www.pioneer2.net/community/threads/server-maintenance-completed-for-august-1st-2026-%E3%82%B5%E3%83%BC%E3%83%90%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9-%E5%AE%8C%E4%BA%86-8-2.33568/">部屋の情報の保存が有効になったお知らせ</a>。</p>
+</section>
+<section id="more">
+<p class="launcher-kicker">06 / MORE</p><h2>MORE：オリジナルの詳細設定</h2><p>MORE は独立した option.exe を開きます。ここではオリジナルのグラフィックの詳細、フォグ、サウンドのスイッチ、ゲームのフォントを管理します。</p>
+<figure><a href="/assets/img/launcher/more.png" target="_blank" rel="noopener"><img src="/assets/img/launcher/more.png" width="1192" height="570" loading="lazy" alt="Ephinea の英語版のネイティブの画面：MORE のオリジナルの詳細設定"></a><figcaption>MORE の詳細設定 · Windows 11 のネイティブの画面</figcaption></figure>
+<table><thead><tr><th scope="col">英語のコントロール / 意味</th><th scope="col">働きと注意点</th></tr></thead><tbody>
+<tr><td>Preset<small>グラフィックのプリセット</small></td><td>High end／Normal／Low end はオリジナルのグラフィックのいくつかの設定をまとめて変え、Custom は自分で組み合わせることを表します。Low end にはフレームスキップの設定も含まれるので、テクスチャの品質だけの話ではありません。</td></tr>
+<tr><td>Colors<small>色深度</small></td><td>16bit か 32bit。ゲームの出力の色深度を選びます。</td></tr>
+<tr><td>Wait V-Sync<small>垂直同期を待つ</small></td><td>画面の表示がディスプレイの同期を待つようにし、ティアリングを減らします。実際の動作は選んだバックエンドとドライバーにも左右されます。</td></tr>
+<tr><td>Word Wrap<small>自動改行</small></td><td>行末での文字の自動改行を切り替えます。</td></tr>
+<tr><td>Frame Skip / Auto Frame Skip<small>フレームスキップ／自動フレームスキップ</small></td><td>Frame Skip はスキップの段階を設定し（0～2、0 は意図的にスキップしない）、Auto Frame Skip は目標のテンポに追いつけないときに一部の描画を自動で飛ばします。</td></tr>
+<tr><td>Advanced Effect<small>オリジナルの高度な効果</small></td><td>オリジナルのクライアントの高度な画面効果を切り替えます。2ページ目の Bloom などの Ephinea の後処理とは別に管理されます。</td></tr>
+<tr><td>Low Res Texture<small>低解像度のテクスチャ</small></td><td>テクスチャの解像度を下げ、細部と引き換えに使うリソースを減らします。</td></tr>
+<tr><td>Shadow / Enemy / Map<small>影／敵／マップの詳細度</small></td><td>オリジナルの詳細度を切り替えます：Shadow 0～2、Enemy 0～1、Map 0～2。見た目の違いは場面とリソースによります。</td></tr>
+<tr><td>Clip Distance<small>描画距離</small></td><td>オリジナルの背景の描画距離を調整します。通常の段階は 0～2 で、それ以上は拡張の範囲になり、保存するとプログラムが危険を警告します。</td></tr>
+<tr><td>Fog Effect<small>フォグの方式</small></td><td>Vertex Fog は頂点ごと、Pixel Fog はピクセルごとに計算し、Emulation Fog はエミュレーションを使います。互換性と見た目は描画のバックエンドによります。</td></tr>
+<tr><td>Sound Effects / Background Music<small>効果音／BGM のスイッチ</small></td><td>効果音と BGM を別々にオン・オフします。1ページ目の音量のスライダーとあわせて最終的な音が決まります。</td></tr>
+<tr><td>Global Focus Sound<small>バックグラウンドのサウンド</small></td><td>ゲームのウィンドウが選ばれていなくても音を鳴らし続けます。</td></tr>
+<tr><td>Font<small>ゲームのフォント</small></td><td>Windows に入っているフォントから選びます。中国語の字形にどこまで対応するかはフォント次第で、使えるフォントと表示は Wine と Windows で違うことがあります。</td></tr>
+<tr><td>Save ID and Password<small>ログイン情報の保存</small></td><td>ゲームがログイン ID とパスワードを保存するかを切り替えます。詳しくは<a href="/guide/saveaccount.html">ゲームのアカウントの保存</a>。</td></tr>
+<tr><td>Hardware Log<small>ハードウェアの診断ログ</small></td><td>DirectX の診断ツールでハードウェアの情報のログを作り、互換性の問題を調べるのに使います。</td></tr>
+<tr><td>Save / Cancel<small>保存／キャンセル</small></td><td>Save でこのウィンドウの設定を書き込み、Cancel はこのウィンドウの保存していない変更を捨ててランチャーに戻ります。</td></tr>
+</tbody></table>
+</section>
+<section id="scope"><h2>バージョンと適用範囲</h2><p>このページは 3.5.2 の画面、プログラムの設定の読み書きの処理、公式の更新情報に基づいています。画像は Windows 本来の表示のまま、デスクトップの背景だけを切り取っています。Wine ではフォント、コントロールの見た目、使えるバックエンドが違うことがあります。ゲームの効果はクライアントの DLL、ドライバー、描画のバックエンドにも左右され、画像は各効果をゲーム内で1つずつ試したことを意味しません。</p><p>アンチエイリアスの選び方やバックエンドの互換性の確認は、続けて<a href="/guide/d3d.html">描画とグラフィック API のガイド</a>を読んでください。コントロール名は画面と照らし合わせやすいよう英語のままにしています。</p><p><a href="#main-window">メイン画面の説明に戻る ↑</a></p></section>
+</section>
