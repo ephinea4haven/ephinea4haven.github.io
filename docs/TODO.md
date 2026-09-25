@@ -9,7 +9,7 @@ documents.
 Unchecked items remain open; listing an item here does not mean implementation
 has started. Check an item only when its stated completion criteria are met.
 
-- [ ] Extend Chinese, English and Japanese support to every public site page,
+- [x] Extend Chinese, English and Japanese support to every public site page,
   including the homepage, guides, reference pages, tools and event archives.
   Cover navigation, page titles and metadata, body content and interactive UI;
   keep language selection consistent and preserve the selected language across
@@ -60,8 +60,19 @@ has started. Check an item only when its stated completion criteria are met.
     with per-language fragments, year navigation and archive controls. With no
     Chinese-only page left, the "only available in Chinese" notice was removed;
     the single GitHub Pages 404 page follows the URL's language.
-  - [ ] Final acceptance: review content parity page by page and check language
-    switching and layout on desktop and mobile, then check this item.
+  - [x] Final acceptance (2026-09-25): all 108 public pages (62 pages plus 45
+    event years and the 404 page) audited in zh/en/ja at 1280px and 390px:
+    every response 200 with the right `<html lang>` and hreflang set, no
+    script errors, identical heading/table/row/image/link counts across the
+    three languages, and no untranslated Chinese in English or Japanese text.
+    Phone overflow on 18 pages was fixed (content tables scroll within their
+    own width; page-specific fixes for Level 200, Black Paper's Deal, the
+    monster farming guide and ItemPT/PMT), and the Easter, Halloween and
+    Valentine's themes, lost when source `<body>` classes were dropped, now
+    reach the page host. Language switching is covered by the browser suite.
+    A final code review restored the Time Attack player name "Sange" (it had been
+    treated as the item of the same name) and replaced three half-translated
+    Japanese names with their authority names.
 
 - [x] Review source claims the translation passes flagged (2026-09-25, confirmed
   with the maintainer; fixed in all three languages). ItemRT: the Olga Flow

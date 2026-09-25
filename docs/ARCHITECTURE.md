@@ -72,6 +72,12 @@ runtime switching. The catalogs, homepage, status simulator and RBR tracker use
 the same URL language through `SiteLanguage`; text their scripts write at runtime
 comes from per-language tables in that feature's code.
 
+A content page's `<body>` is replaced by its Angular page component, so classes a
+source page puts on `<body>` (the event archive themes) are applied to that
+component's host element; page styles select them as `.theme-easter`, not
+`body.theme-easter`. On phones, content tables scroll within their own width
+instead of widening the page.
+
 ## System shape
 
 Ephinea4Haven is a statically deployed Angular application. Angular 22 owns every

@@ -129,6 +129,8 @@ td:first-child {
     }
 
     .container {
+        /* The page shell centers flex children; cap this intrinsic-width box. */
+        max-width: 100%;
         padding: 15px;
     }
 
