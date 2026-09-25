@@ -32,6 +32,7 @@ are build inputs and are not copied into the published artifact.
 | `plan_rbr_update.py` | Validate three abbreviations extracted from `/rbr`, render both candidate Wiki templates and a local projection, and preview them without publishing either target. |
 | `publish_rbr_update.py` | Authenticate from the ignored local credentials file and publish both RBR Wiki templates with conflict guards and post-edit verification. |
 | `build_rbr_tier_charts.py` | Build RBR tier SVGs. |
+| `make_class_banners.py` | Crop the supplied HD class banners to their panel and write framed and borderless WebP variants to `assets/img/class-banner/`. |
 
 Common verification:
 
@@ -56,6 +57,8 @@ python3 scripts/build_mag_data.py --offline mags.wiki \
 
 Python data builders use the standard library unless their own help text states
 otherwise. `download_wiki_mag_assets.py` uses Pillow for image validation.
+`make_class_banners.py` uses Pillow and NumPy; its WebP output is committed, so
+builds do not need the source archive.
 `import_challenge_source_maps.py` requires Poppler's `pdfimages` command and
 extracts the embedded Episode I map images without rendering or resampling.
 The imported PNG files are committed, so production builds do not require the
