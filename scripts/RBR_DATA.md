@@ -301,8 +301,11 @@ python3 -m unittest scripts/test_rbr_tiers.py
 `scripts/build_rbr_tier_charts.py` renders both tier charts from these tables in
 Chinese, English and Japanese, into `assets/img/guide/rbr/{zh,en,ja}/`. The
 guide's written tier notes live in `guide/rbr.html` (Chinese) and
-`content/i18n/pages/{en,ja}/guide/rbr.html`; when a tier or its notes change,
-regenerate the charts and update all three texts together:
+`content/i18n/pages/{en,ja}/guide/rbr.html`. All three name items with
+`<span data-item-en="…"></span>` placeholders, so each language shows the
+authority name; write the exact English name from `../droptable/i18n_names.json`
+and confirm it in the drop tables when the source uses a nickname. When a tier or
+its notes change, regenerate the charts and update all three texts together:
 
 ```bash
 python3 scripts/build_rbr_tier_charts.py

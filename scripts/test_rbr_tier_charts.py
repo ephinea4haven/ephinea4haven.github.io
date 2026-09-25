@@ -58,13 +58,13 @@ class RbrTierChartTest(unittest.TestCase):
     def test_green_section_ids_in_page_copy(self) -> None:
         page = (charts.ROOT / "guide/rbr.html").read_text(encoding="utf-8")
         expected_copy = (
-            "Heart of Daisy Chain（Viridia）",
-            "L&amp;K38 Combat（Viridia）",
-            "Heaven Striker（Greenill / Redria）",
-            "Greenill 可刷 Pyro Goran 的 Heaven Striker",
+            '<span data-item-en="Heart of Daisy Chain"></span>（Viridia）',
+            '<span data-item-en="L&amp;K38 Combat"></span>（Viridia）',
+            '<span data-item-en="Heaven Striker"></span>（Greenill / Redria）',
+            'Greenill 可刷 Pyro Goran 的<span data-item-en="Heaven Striker"></span>',
             "出现 Hildetorr 时换 Viridia",
-            "Viridia 可从 Dal Ra Lie 刷取 L&amp;K38 Combat",
-            "Viridia 刷 L&amp;K38 Combat",
+            'Viridia 可从 Dal Ra Lie 刷取 <span data-item-en="L&amp;K38 Combat"></span>',
+            'Viridia 刷 <span data-item-en="L&amp;K38 Combat"></span>',
             "Dark Falz；Viridia / Redria 有效",
         )
         for text in expected_copy:
