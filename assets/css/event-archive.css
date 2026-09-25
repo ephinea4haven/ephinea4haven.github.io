@@ -10,11 +10,11 @@
     --event-shadow: 0 18px 46px hsl(225 80% 4% / 0.28);
 }
 
-body.event-archive-page {
+.event-archive-page {
     color: var(--event-ink);
 }
 
-body.theme-valentines {
+.theme-valentines {
     --event-accent: hsl(343 92% 68%);
     --event-accent-2: hsl(286 76% 68%);
     --event-accent-soft: hsl(343 92% 68% / 0.14);
@@ -22,7 +22,7 @@ body.theme-valentines {
     --event-panel-strong: hsl(335 52% 8% / 0.97);
 }
 
-body.theme-easter {
+.theme-easter {
     --event-accent: hsl(151 70% 55%);
     --event-accent-2: hsl(48 96% 65%);
     --event-accent-soft: hsl(151 70% 55% / 0.14);
@@ -30,7 +30,7 @@ body.theme-easter {
     --event-panel-strong: hsl(172 55% 7% / 0.97);
 }
 
-body.theme-halloween {
+.theme-halloween {
     --event-accent: hsl(28 96% 60%);
     --event-accent-2: hsl(274 72% 68%);
     --event-accent-soft: hsl(28 96% 60% / 0.14);

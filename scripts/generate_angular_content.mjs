@@ -617,6 +617,8 @@ function pageDetails(file, source, relative, language) {
   const metadata = homeMetadata ?? pageMetadata(pageI18n, relative, language, title, description);
   return {
     title: metadata.title,
+    // Classes on the source <body> (page themes) belong to the page's host element.
+    hostClass: body.attrs?.find(({ name }) => name === 'class')?.value ?? '',
     description: metadata.description,
     template: escapeAngularText(template.trim()),
     styles: inlineStyles.join('\n'),
@@ -709,7 +711,8 @@ ${behaviorImport}
   imports: [${[usesPageChrome ? 'PageChromeComponent' : '', usesPageUpdateStamp ? 'PageUpdateStampComponent' : ''].filter(Boolean).join(', ')}],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  hostDirectives: [${behaviors.join(', ')}],
+  hostDirectives: [${behaviors.join(', ')}],${details.hostClass ? `
+  host: { class: ${JSON.stringify(details.hostClass)} },` : ''}
   template: ${JSON.stringify(details.template)},
   styles: [${JSON.stringify(details.styles)}],
   styleUrls: ${JSON.stringify(styleUrls)},

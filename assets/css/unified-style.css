@@ -439,8 +439,16 @@ page-chrome {
         font-size: 2em;
     }
 
+    /* Wide tables scroll within their own width instead of widening the page. */
+    .content-container table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
     .content-container {
         padding: 25px;
+        overflow-wrap: break-word;
     }
 
     body {
