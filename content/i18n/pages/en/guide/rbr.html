@@ -1,0 +1,436 @@
+<!-- English text for /guide/rbr.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+        <h1>RBR quests and non-RBR farming picks</h1>
+        <blockquote>
+            <p>This page condenses two quest tier articles by みどり into a quick reference. The ratings weigh farming items with market value, overall returns and run efficiency. They are the author's own judgement from experience, not an official server ranking.</p>
+        </blockquote>
+        <p>
+            <strong>How current this is:</strong> the RBR tiers follow the November 2025 date marked in the original; the non-RBR tiers date from May 2025.
+            Drop tables, quest revisions, prices and new routes can all change the rankings. Before choosing a quest, check the current
+            <a href="https://dropcharts.psohaven.com/bb/?lang=en&amp;diff=Ultimate">Ephinea drop charts</a>.
+        </p>
+        <h2>What RBR is</h2>
+        <p>
+            Ragol Boost Road (RBR) picks one quest each week from the candidate lists of Episodes 1, 2 and 4.
+            It rotates every Sunday at 00:00 UTC. Check it under <code>Statistics</code> at the lobby counter, or type
+            <code>/rbr</code> in game.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Party size</th>
+                    <th>DAR / RDR / EXP boost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1 player</td><td>+15% each</td></tr>
+                <tr><td>2 players</td><td>+20% each</td></tr>
+                <tr><td>3–4 players</td><td>+25% each</td></tr>
+            </tbody>
+        </table>
+        <ul>
+            <li>The RBR boost stacks with the weekly boosts, events and other boosts.</li>
+            <li>RBR itself <strong>does not raise the rare enemy rate (RER)</strong>.</li>
+            <li>Once a quest is on RBR, its normal time limit is removed.</li>
+            <li>Every candidate in an Episode is used once before the next cycle starts, so a quest can repeat two weeks in a row across a cycle boundary.</li>
+        </ul>
+        <p>
+            For the mechanics and the latest candidate list, the reference is
+            <a href="https://wiki.pioneer2.net/w/Ragol_Boost_Road" target="_blank" rel="noopener noreferrer">Pioneer 2 Wiki: Ragol Boost Road</a>.
+        </p>
+        <h2>This week's RBR and the candidate tracker</h2>
+        <p>
+            The table below lays out the Wiki's 58 eligible quests by Episode and area. Blue quests can still be drawn next week,
+            green marks this week's quests, and grey marks quests already used this cycle that cannot come up next week.
+            The Tracker is maintained by hand. This page checks it against the current rotation template, but <code>/rbr</code> in game is always the final authority.
+        </p>
+        <div id="rbr-tracker-status" class="rbr-tracker-status" role="status" aria-live="polite">
+            Loading the RBR Tracker…
+        </div>
+        <div class="rbr-tracker-legend" aria-label="Tracker colours">
+            <span><i class="is-current"></i>This week</span>
+            <span><i class="is-possible"></i>Possible next week</span>
+            <span><i class="is-unavailable"></i>Used this cycle</span>
+        </div>
+        <div id="rbr-tracker-episodes" class="rbr-tracker-episodes"></div>
+        <h2>How to use these tiers</h2>
+        <ul>
+            <li><strong>This week's RBR has an S or A quest:</strong> usually worth farming first.</li>
+            <li><strong>This week has only B or C:</strong> decide by the drop you want and your Section ID.</li>
+            <li><strong>This week's RBR doesn't suit you:</strong> farm the non-RBR MAE4 instead, or pick an S or A quest for the item you still need.</li>
+            <li><strong>RER weeks:</strong> RBR adds no extra RER, so switch to the rare-enemy routes further down.</li>
+        </ul>
+        <p>
+            The text below keeps the abbreviations used in the original; full weapon and quest names are in
+            <a href="/guide/acronym.html">Common Abbreviations</a>. Section IDs are
+            Viridia, Greenill, Skyly, Bluefull, Purplenum, Pinkal, Redria, Oran, Yellowboze and Whitill.
+        </p>
+        <h2>RBR candidate quest tiers</h2>
+        <p>
+            The ratings focus on how efficiently a quest farms high-value items. The author considers <strong>A and above worth running on purpose</strong>;
+            B–C suit a specific target, and D is usually not worth repeating for rare items.
+        </p>
+        <figure id="rbr-tier-figure" class="tier-figure tier-figure--portrait">
+            <div id="rbr-tier-current-summary" class="tier-current-summary" aria-live="polite">
+                Marking this week's RBR…
+            </div>
+            <div class="tier-chart-shell">
+                <img
+                    id="rbr-tier-chart"
+                    src="/assets/img/guide/rbr/en/rbr-tier-section-colors.svg?v"
+                    width="967"
+                    height="1264"
+                    loading="lazy"
+                    alt="RBR candidate quest tier chart with five tiers, S, A, B, C and D. Each quest cell uses the same Section ID colour as the drop charts and names the ID; this week's quests have a glowing border">
+                <div id="rbr-tier-current-overlay" class="tier-current-overlay" aria-hidden="true"></div>
+            </div>
+            <figcaption>
+                RBR tier chart (quest cells use exactly the drop charts' Section ID colours; a glowing frame marks this week's RBR)
+            </figcaption>
+        </figure>
+        <h3>S tier: worth farming whenever it comes up</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Main value</th>
+                    <th>Route / ID advice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>EN2</strong></td>
+                    <td>More than 150 Evil Shark, and <span data-item-en="Vjaya"></span> can also come from boxes; very efficient to run.</td>
+                    <td>Farm Area 1 only; a split party takes about 5 minutes a run.</td>
+                </tr>
+                <tr>
+                    <td><strong>SR3</strong></td>
+                    <td>72 Sinow Red since the revision, making it the top quest for <span data-item-en="Lame d&#x27;Argent"></span>, well ahead of PW2.</td>
+                    <td>Plan the route around the Sinow Red.</td>
+                </tr>
+                <tr>
+                    <td><strong>EN4</strong></td>
+                    <td>The final waves are good for Merlan, Del-D, Delsaber and Dark Belra.</td>
+                    <td>If you only want Del-D, stop after Area 1; especially good when you want a Dark-attribute HS.</td>
+                </tr>
+                <tr>
+                    <td><strong>PW1</strong></td>
+                    <td>100+ Gee, by far the best quest for DoB; a Lucky Coin on completion.</td>
+                    <td>Split into Coast and Jungle teams that clear at the same time.</td>
+                </tr>
+                <tr>
+                    <td><strong>PW3</strong></td>
+                    <td>The opening box room is excellent, with good odds of high-attribute common weapons, <span data-item-en="Yunchang"></span> and <span data-item-en="Psycho Wand"></span>; a Lucky Coin on completion.</td>
+                    <td>Run the boxes only, or clear the whole quest.</td>
+                </tr>
+                <tr>
+                    <td><strong>PS2</strong></td>
+                    <td>More than 600 enemies, with high EXP and PD returns; plenty of Chaos Sorcerer and Delsaber.</td>
+                    <td>Oran is excellent; each of the four players takes one of the four rooms in the α area.</td>
+                </tr>
+                <tr>
+                    <td><strong>LCV</strong></td>
+                    <td>Lots of Ill Gill, Mericarol and Delbiter; top-tier for <span data-item-en="V502"></span> and <span data-item-en="Heaven Punisher"></span>.</td>
+                    <td>Purplenum; use the Blessing devices for brief invincibility when you need it.</td>
+                </tr>
+                <tr>
+                    <td><strong>NMU4 / WoL4</strong></td>
+                    <td>Dense Pyro Goran, top-tier for <span data-item-en="Heaven Striker"></span>; good EXP and armour to sell as well.</td>
+                    <td>An FO, or a RA using Divine Punishment, can run it on Anguish 1.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>A tier: efficient quests for specific targets</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Main value</th>
+                    <th>Route / ID advice</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SU2</strong></td>
+                    <td>The branching map suits a split party and farms Evil Shark, Poison Lily and Pan Arms efficiently; Cave 3 can also give <span data-item-en="GIFOIE MERGE"></span> and a Lv.30 Gibarta.</td>
+                    <td>A practised party can finish in under 4 minutes.</td>
+                </tr>
+                <tr>
+                    <td><strong>MU2</strong></td>
+                    <td>About 70 Evil Shark before the midpoint; an efficient short run.</td>
+                    <td>Stop at the midpoint; about 3–4 minutes once you know the winding route.</td>
+                </tr>
+                <tr>
+                    <td><strong>SU3</strong></td>
+                    <td>79 Canadine, one of the best Mines quests for Charge Vulcan; also <span data-item-en="Yasminkov 9000M"></span>, <span data-item-en="Syncesta"></span> and <span data-item-en="Lame d&#x27;Argent"></span>.</td>
+                    <td>Decide whether to clear the whole map by the enemy you are after.</td>
+                </tr>
+                <tr>
+                    <td><strong>LHP</strong></td>
+                    <td>Splits 2:2 at the start; lots of the rarer Ruins enemies such as Bulclaw, Delsaber and Chaos Sorcerer.</td>
+                    <td>Skyly for <span data-item-en="Swordsman Lore"></span> / <span data-item-en="Calibur"></span>, or Whitill for <span data-item-en="Handgun: Guld"></span>; fairly difficult.</td>
+                </tr>
+                <tr>
+                    <td><strong>LBA</strong></td>
+                    <td>More Delsaber than PS2 and a high enemy count overall; also excellent for levelling on VH.</td>
+                    <td>Oran for <span data-item-en="Daylight Scar"></span>.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>B tier: worth it with a target in mind</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Suggested targets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>SR2</strong></td><td>Pan Arms appearance-change items (Skyly / Yellowboze).</td></tr>
+                <tr><td><strong>MU4</strong></td><td><span data-item-en="Heaven Striker"></span> (Bluefull).</td></tr>
+                <tr><td><strong>SA2</strong></td><td><span data-item-en="Heart of Tension Blaster"></span>, <span data-item-en="V101"></span>, <span data-item-en="Lame d&#x27;Argent"></span> (Yellowboze).</td></tr>
+                <tr><td><strong>SU6</strong></td><td><span data-item-en="Daylight Scar"></span> (Oran / Skyly), <span data-item-en="Guren"></span> (Skyly), PF (Redria; abbreviation kept from the original).</td></tr>
+                <tr><td><strong>SU7</strong></td><td><span data-item-en="Heaven Punisher"></span>, <span data-item-en="Sealed J-Sword"></span> (Skyly).</td></tr>
+                <tr><td><strong>SU8</strong></td><td><span data-item-en="Yunchang"></span>, <span data-item-en="Ano Rifle"></span> (Redria).</td></tr>
+                <tr><td><strong>WoL2</strong></td><td><span data-item-en="Slicer of Fanatic"></span> (Oran), <span data-item-en="Cannon Rouge"></span> (Redria), PF (Yellowboze).</td></tr>
+                <tr><td><strong>SU13 / SU14</strong></td><td><span data-item-en="Slicer of Fanatic"></span>, <span data-item-en="V801"></span>, <span data-item-en="Limiter"></span> (Pinkal).</td></tr>
+            </tbody>
+        </table>
+        <h3>C tier: narrow uses, or a better quest exists</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Suggested targets</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>LHS</strong></td><td><span data-item-en="Handgun: Milla"></span> (Whitill).</td></tr>
+                <tr><td><strong>MU1</strong></td><td><span data-item-en="Handgun: Milla"></span> (Whitill), <span data-item-en="Heart of Daisy Chain"></span> (Viridia).</td></tr>
+                <tr><td><strong>LIS</strong></td><td><span data-item-en="V101"></span>, <span data-item-en="Yasha"></span>, <span data-item-en="L&amp;K38 Combat"></span> (Viridia), <span data-item-en="Heart of TypeSS/Swords"></span> (Oran).</td></tr>
+                <tr><td><strong>MU3</strong></td><td>Charge Vulcan (Purplenum).</td></tr>
+                <tr><td><strong>EN3</strong></td><td><span data-item-en="V101"></span>, S-Parts (Oran).</td></tr>
+                <tr><td><strong>SU4 / SR4</strong></td><td><span data-item-en="Prophets of Motav"></span> (Oran).</td></tr>
+                <tr><td><strong>PS1 / LSR</strong></td><td><span data-item-en="Yasminkov 9000M"></span>, <span data-item-en="Heart of Suppressed Gun"></span> (Purplenum).</td></tr>
+                <tr><td><strong>PS3</strong></td><td><span data-item-en="Sealed J-Sword"></span>, <span data-item-en="Heaven Punisher"></span> (Skyly).</td></tr>
+                <tr><td><strong>PS4</strong></td><td><span data-item-en="Heaven Punisher"></span>, Charge Vulcan, Transvestite Plate (Purplenum).</td></tr>
+                <tr><td><strong>PS5</strong></td><td><span data-item-en="Heaven Striker"></span> (Whitill).</td></tr>
+                <tr><td><strong>PS6</strong></td><td><span data-item-en="Sealed J-Sword"></span> (Skyly).</td></tr>
+                <tr><td><strong>NMU2</strong></td><td><span data-item-en="Slicer of Fanatic"></span> (Oran).</td></tr>
+                <tr><td><strong>WoL3</strong></td><td><span data-item-en="Yasminkov 9000M"></span> (Purplenum), <span data-item-en="Slicer of Fanatic"></span> (Whitill).</td></tr>
+                <tr><td><strong>SU12</strong></td><td><span data-item-en="Heaven Striker"></span> (Greenill / Redria), <span data-item-en="Slicer of Fanatic"></span> and <span data-item-en="V801"></span> (Pinkal).</td></tr>
+            </tbody>
+        </table>
+        <h3>D tier: usually not worth repeating for rare items</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Main problem</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SU1 / EN1 / SR1 / SA1</strong></td>
+                    <td>The Forest pays poorly overall; Pinkal is an option if you want <span data-item-en="Heart of Angel Harp"></span>.</td>
+                </tr>
+                <tr>
+                    <td><strong>SU5</strong></td>
+                    <td>Getting lost in the Temple slows progress and the enemy count is unremarkable; CCC or MAE:VR usually does the job better.</td>
+                </tr>
+                <tr>
+                    <td><strong>LDR</strong></td>
+                    <td>Some enemies are immune to Hell, and double-ATP EX specials do nothing to the boss; if you develop a route, consider farming only the upper floor.</td>
+                </tr>
+                <tr>
+                    <td><strong>TET / TWT</strong></td>
+                    <td>Few enemies and long walks; only good for farming specific enemies from the opening.</td>
+                </tr>
+                <tr>
+                    <td><strong>SU10 / NMU1 / WoL1</strong></td>
+                    <td>Long walks in Crater East, and poor-quality common weapons.</td>
+                </tr>
+                <tr>
+                    <td><strong>SU11</strong></td>
+                    <td>The high Dorphon count doesn't turn into returns; it tends to be a worse MA4C.</td>
+                </tr>
+                <tr>
+                    <td><strong>NMU5 / WoL5</strong></td>
+                    <td>Subterranean Desert 3's quicksand and S-shaped passages are awkward, and the enemies are strong but not numerous; the risk outweighs the reward.</td>
+                </tr>
+                <tr>
+                    <td><strong>AO1–AO5</strong></td>
+                    <td>Most enemies spawn at random, so positions and counts are unreliable; not suited to targeted farming.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Non-RBR quest tiers</h2>
+        <p>
+            "Non-RBR" means quests outside the RBR candidate pool. This chart weighs overall farming efficiency, PD returns and rare items RBR rarely covers.
+            It uses a different scale, so <strong>an S here is not comparable with an RBR S above</strong>.
+        </p>
+        <figure class="tier-figure tier-figure--landscape">
+            <img
+                src="/assets/img/guide/rbr/en/non-rbr-tier-section-colors.svg?v"
+                width="1452"
+                height="536"
+                loading="lazy"
+                alt="Non-RBR quest tier chart with SS, S and A tiers plus picks for rare enemy rate boost weeks. Each quest cell uses the same Section ID colour as the drop charts and names the ID">
+            <figcaption>
+                Non-RBR tier chart (quest cells use exactly the drop charts' Section ID colours and also name the ID)
+            </figcaption>
+        </figure>
+        <h3>SS tier: the default when you don't know what to farm</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Why it's recommended</th>
+                    <th>Key points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>MAE4</strong><br>Maximum Attack E: Episode 4</td>
+                    <td>Packed enemy groups, high EXP and an MA4 Ticket on completion; Shambertin has a 1 in 10 chance to be Kondrieu.</td>
+                    <td>
+                        <span data-item-en="Galatine"></span>, which RBR rarely covers; Greenill farms <span data-item-en="Heaven Striker"></span> from Pyro Goran.
+                        Redria / Bluefull work when you skip the Crater route; when a rare boss appears, switch ID for enemies such as Melissa and Zu.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>S tier: items MAE4 rarely gives</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Main value</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>TS</strong><br>Twilight Sanctuary</td>
+                    <td>Jungle East plus the Control Tower; Purplenum farms <span data-item-en="V502"></span> and <span data-item-en="Heaven Punisher"></span>, and a practised party may out-earn LCV. The quest pays 75,000 Meseta, plus another 300,000 if nobody falls during the run.</td>
+                    <td>One of the hardest quests on the server; a full party is recommended. For a better chance at HP, aim to finish within 25:30.</td>
+                </tr>
+                <tr>
+                    <td><strong>MSB</strong><br>Run up to Gal Gryphon</td>
+                    <td>The fastest way to the Gal Gryphon fight, under 7 minutes with practice; the most efficient <span data-item-en="Galatine"></span> quest. Yellowboze can also farm <span data-item-en="L&amp;K38 Combat"></span> from Mericarol.</td>
+                    <td>The quest ends at once if only one player is left; when something important drops, have your teammates stay in the room first.</td>
+                </tr>
+                <tr>
+                    <td><strong>PW2</strong></td>
+                    <td>114 Ul Gibbon; Pinkal farms <span data-item-en="Lame d&#x27;Argent"></span>, with DoB, <span data-item-en="PRINCIPAL&#x27;S GIFT PARASOL"></span> and <span data-item-en="Vjaya"></span> on the side, and a Lucky Coin on completion.</td>
+                    <td>Few dangerous enemies and most can be handled with Hell; easy, with reliable returns.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>A tier: for specific rare items</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Why it's recommended</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>TTF</strong></td>
+                    <td>The EP1 boss rush and the most efficient <span data-item-en="Red Ring"></span> quest; Viridia can farm <span data-item-en="L&amp;K38 Combat"></span> from Dal Ra Lie. In RER weeks, Redria can farm <span data-item-en="Lavis Cannon"></span> from Pouilly Slime.</td>
+                </tr>
+                <tr>
+                    <td><strong>RT</strong></td>
+                    <td>The EP2 boss rush; Yellowboze is a unique choice that farms <span data-item-en="Galatine"></span> and PGF together. The regular enemies are easier than GDV, and a RA with <span data-item-en="Cannon Rouge"></span> does well in the Spaceship and the Gal Gryphon fight.</td>
+                </tr>
+                <tr>
+                    <td><strong>GDV</strong></td>
+                    <td>CCA, Seabed and the Control Tower plus Olga Flow; packed enemy groups and an MA4 Ticket. Purplenum can aim for <span data-item-en="V502"></span>, <span data-item-en="Heaven Punisher"></span> and PGF together; the recovery device at the midpoint lets you restock traps.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>RER-week routes</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Rare enemy targets and approach</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>TE</strong><br>Forest only</td>
+                    <td>52 Hildelt; once you confirm none is a Hildetorr, skip ahead. Whitill / Purplenum farm <span data-item-en="Frozen Shooter"></span>; a classic RER route.</td>
+                </tr>
+                <tr>
+                    <td><strong>5-3</strong><br>Government quest</td>
+                    <td>
+                        35 Ob Lily, a short route that allows joining mid-quest, so it suits ID switching.
+                        Start as Whitill for DoB; switch to Pinkal when a Mil Lily or Love Rappy appears, and to Viridia for a Hildetorr.
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>PoD</strong></td>
+                    <td>The fastest way to fight Shambertin, aiming for the rare boss Kondrieu, which can drop <span data-item-en="Heaven Striker"></span>, <span data-item-en="Lame d&#x27;Argent"></span>, <span data-item-en="Daylight Scar"></span> and <span data-item-en="Limiter"></span>. High returns, but you are gambling on both the rare boss and the drop.</td>
+                </tr>
+                <tr>
+                    <td><strong>MA4B</strong></td>
+                    <td>
+                        26 Zu, also good for finding Pazuzu. Pazuzu gives <span data-item-en="V801"></span> on Purplenum, <span data-item-en="L&amp;K38 Combat"></span> on Viridia,
+                        and <span data-item-en="Ophelie Seize"></span> on Bluefull / Whitill; with ID switching, Zu can also give <span data-item-en="V101"></span> or <span data-item-en="V801"></span>.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Other quests with a clear use</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Quest</th>
+                    <th>Use</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Simulator 2.0</strong></td><td>51 Dark Bringer; many traps and first-time surprises, but good for Oran / Redria runs once you know it.</td></tr>
+                <tr><td><strong>MA1C</strong></td><td>Lots of regular enemies plus Dark Falz; Viridia / Redria work well.</td></tr>
+                <tr><td><strong>GDVD</strong></td><td>Includes Gal Gryphon; the Spaceship has many Baranz, so Yellowboze can farm <span data-item-en="Daylight Scar"></span>, but it is fairly hard overall.</td></tr>
+                <tr><td><strong>MA2A</strong></td><td>Whitill farms DoB and <span data-item-en="Heaven Striker"></span> together; it passes through the lower Seabed, good for high-attribute common weapons.</td></tr>
+                <tr><td><strong>NMU3</strong></td><td>55 Pyro Goran; stopping at the 45 before the heat-wave room is usually more efficient. An FO or a Divine Punishment RA can run it on Anguish 1; Redria works well.</td></tr>
+            </tbody>
+        </table>
+        <h2>Data sources and automation</h2>
+        <p>
+            The objective RBR base data is generated automatically:
+            the <a href="/data/rbr/source.json">RBR source data JSON</a> holds the 58 candidate quests,
+            the Wiki revision, the current rotation, the Tracker state, Ultimate EXP, full enemy counts and notes on conditional counts.
+            The two hand-rated tier charts are stored separately as <a href="/data/rbr/tiers.json">tier data JSON</a>.
+        </p>
+        <ul>
+            <li><strong>Automatic:</strong> the candidate pool, boost rules, the Wiki's current rotation, quest EXP, enemy counts, drop-rate links and base expected values.</li>
+            <li><strong>Semi-automatic only:</strong> recommended IDs and PD value per run or per hour, which need current prices and measured run times.</li>
+            <li><strong>Still manual:</strong> the final tiers, because routes, party coordination, difficulty, failure risk and market liquidity cannot be read off the enemy tables.</li>
+        </ul>
+        <p>
+            <code>/rbr</code> in game is the authority on the server's actual rotation. The Wiki's current-week template can be fetched automatically
+            but may be updated late. The generator checks the date, the Tracker's coverage of all 58 quests, each Episode's current quest
+            and whether the Tracker agrees with the current-week template; if anything is off, it writes a warning instead of silently treating the data as current.
+        </p>
+        <h2>Sources</h2>
+        <ul>
+            <li>
+                みどり:
+                <a href="https://note.com/fine_yarrow878/n/nc42753d065c6?magazine_key=m2327647adbbf" target="_blank" rel="noopener noreferrer">RBR tier chart (dated 2025/11 in the original)</a>
+            </li>
+            <li>
+                みどり:
+                <a href="https://note.com/fine_yarrow878/n/n4fce02fd1a3a?magazine_key=m2327647adbbf" target="_blank" rel="noopener noreferrer">Non-RBR tier chart (2025/5)</a>
+            </li>
+            <li>
+                <a href="https://wiki.pioneer2.net/w/Ragol_Boost_Road" target="_blank" rel="noopener noreferrer">Ephinea PSO Wiki: Ragol Boost Road</a>
+                (mechanics and candidate quests)
+            </li>
+        </ul>
+
+    </section>

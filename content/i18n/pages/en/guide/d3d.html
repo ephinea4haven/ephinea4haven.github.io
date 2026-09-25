@@ -1,0 +1,914 @@
+<!-- English text for /guide/d3d.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+        <h1>PSOBB rendering and graphics API guide</h1>
+
+<p>Looking for a specific switch in the interface? Start with the <a href="/guide/launcher.html">launcher settings guide</a>, which has native English Windows screenshots and page-by-page explanations.</p>
+
+<p>Focused on PSOBB, this page explains how old Direct3D calls reach modern graphics cards through D3D9, dgVoodoo or DXVK, and what Ephinea’s graphics settings actually do. It is both a rendering explainer and a guide to choosing and troubleshooting the client backend. Covers:</p>
+<ul>
+<li><a href="#overview">Overview diagram</a></li>
+<li><a href="#backend">Rendering backend (D3D / Vulkan)</a></li>
+<li><a href="#api-comparison">D3D8 / D3D9 / 9on12 / 11 / 12 / Vulkan compared</a></li>
+<li><a href="#d3d12-vulkan">How D3D12 and Vulkan relate underneath</a></li>
+<li><a href="#versions">Translation layer versions Ephinea ships</a></li>
+<li><a href="#device-lost">Device Lost: versions and backend risks</a></li>
+<li><a href="#aa">Anti-aliasing</a></li>
+<li><a href="#af">Anisotropic filtering</a></li>
+<li><a href="#swap">dgVoodoo Model (swap chain mode)</a></li>
+<li><a href="#effects-pipeline">Where visual effects sit in the pipeline</a></li>
+<li><a href="#ao">Ambient occlusion</a></li>
+<li><a href="#extra">Extra (additional features)</a></li>
+<li><a href="#shaders">Shaders</a></li>
+<li><a href="#recommend">How to choose</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+
+<hr>
+
+<h2 id="overview">Overview diagram</h2>
+
+<p>One diagram showing how the settings depend on each other: <strong>The backend you choose decides which quality options below actually take effect</strong>.</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 800" role="img" aria-label="PSOBB rendering and display settings diagram" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/>
+    </marker>
+  </defs>
+  <style>
+    .lvl1{fill:rgba(0,212,255,0.12);stroke:#00d4ff;stroke-width:2}
+    .lvl2{fill:rgba(96,165,250,0.10);stroke:#60a5fa;stroke-width:2}
+    .lvl3{fill:rgba(167,139,250,0.10);stroke:#a78bfa;stroke-width:2}
+    .extra{fill:rgba(255,255,255,0.04);stroke:rgba(255,255,255,0.30);stroke-width:2;stroke-dasharray:6 4}
+    .t{fill:#e2e8f0;font-size:14px}
+    .th-cyan{fill:#00d4ff;font-size:16px;font-weight:700}
+    .th-blue{fill:#60a5fa;font-size:16px;font-weight:700}
+    .th-purple{fill:#a78bfa;font-size:16px;font-weight:700}
+    .th-mute{fill:#cbd5e1;font-size:14px;font-weight:700}
+    .tm{fill:#94a3b8;font-size:12px}
+    .arrow{stroke:#00d4ff;stroke-width:2;fill:none}
+  </style>
+
+  <!-- 引擎 -->
+  <rect class="lvl1" x="320" y="10" width="280" height="55" rx="10" ry="10"/>
+  <text class="th-cyan" x="460" y="35" text-anchor="middle">PSOBB engine</text>
+  <text class="tm" x="460" y="54" text-anchor="middle">Native Direct3D 8 calls</text>
+
+  <line class="arrow" x1="460" y1="65" x2="460" y2="93" marker-end="url(#arr)"/>
+
+  <!-- 后端选择 -->
+  <rect class="lvl1" x="280" y="98" width="360" height="55" rx="10" ry="10"/>
+  <text class="th-cyan" x="460" y="123" text-anchor="middle">Rendering backend</text>
+  <text class="tm" x="460" y="142" text-anchor="middle">This choice decides which options below take effect</text>
+
+  <!-- 分叉到两条路径 -->
+  <line class="arrow" x1="380" y1="153" x2="220" y2="183" marker-end="url(#arr)"/>
+  <line class="arrow" x1="540" y1="153" x2="700" y2="183" marker-end="url(#arr)"/>
+
+  <!-- 原生/系统兼容路径 -->
+  <rect class="lvl2" x="40" y="185" width="360" height="140" rx="10" ry="10"/>
+  <text class="th-blue" x="220" y="210" text-anchor="middle">Native / system compatibility paths</text>
+  <text class="t" x="60" y="237">• Direct3D 8 — no translation, original rendering</text>
+  <text class="t" x="60" y="260">• Direct3D 9 — Ephinea wraps D3D8 as D3D9</text>
+  <text class="t" x="60" y="283">• Direct3D 9on12 — Microsoft’s D3D9→D3D12</text>
+  <text class="tm" x="220" y="312" text-anchor="middle">Advanced AA from D3D9 up; D3D8 as the original baseline</text>
+
+  <!-- 翻译层路径 -->
+  <rect class="lvl2" x="520" y="185" width="360" height="140" rx="10" ry="10"/>
+  <text class="th-blue" x="700" y="210" text-anchor="middle">Translation layer paths</text>
+  <text class="t" x="540" y="237">• D3D 11 / 12 — D3D9 output through dgVoodoo</text>
+  <text class="t" x="540" y="260">• Vulkan — D3D9 output through DXVK</text>
+  <text class="t" x="540" y="283">• (Custom) — your own dll</text>
+  <text class="tm" x="700" y="312" text-anchor="middle">↓ mainly compatibility, presentation, driver path ↓</text>
+
+  <!-- 翻译层 → 画质选项 -->
+  <line class="arrow" x1="700" y1="325" x2="700" y2="348" marker-end="url(#arr)"/>
+
+  <!-- 画质选项面板 -->
+  <rect class="lvl3" x="520" y="350" width="360" height="180" rx="10" ry="10"/>
+  <text class="th-purple" x="700" y="375" text-anchor="middle">How backends relate to quality settings</text>
+  <text class="t" x="540" y="403">• Advanced AA — available from D3D9 up</text>
+  <text class="t" x="540" y="428">• dgVoodoo Model — swap chain (D3D11/12 only)</text>
+  <text class="t" x="540" y="453">• A backend alone won’t raise quality</text>
+  <text class="t" x="540" y="478">• Translation can alter fog, reflections, colour</text>
+  <text class="tm" x="700" y="510" text-anchor="middle">API version ≠ quality level</text>
+
+  <!-- 汇合: 原生路径 (向下再右拐到合流点) -->
+  <polyline class="arrow" points="220,325 220,605 460,605" />
+  <!-- 汇合: 翻译路径 (向下再左拐到合流点) -->
+  <polyline class="arrow" points="700,530 700,605 460,605" />
+  <!-- 合流点 -> 输出 -->
+  <line class="arrow" x1="460" y1="605" x2="460" y2="638" marker-end="url(#arr)"/>
+
+  <!-- 最终输出 -->
+  <rect class="lvl1" x="320" y="645" width="280" height="55" rx="10" ry="10"/>
+  <text class="th-cyan" x="460" y="678" text-anchor="middle">Final image → screen</text>
+
+  <!-- Extra 旁挂条 -->
+  <rect class="extra" x="40" y="730" width="840" height="60" rx="10" ry="10"/>
+  <text class="th-mute" x="60" y="755">Extra (independent of rendering · works on any backend)</text>
+  <text class="t" x="60" y="779">FAST STARTUP · CLEAN CAPTURE · MOTION BLUR · RARE DROP SFX · BANK SHORTCUTS · LARGE BANK WINDOW</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">Cyan = main flow · blue = backend branches · purple = backends vs quality settings · dashed = independent of rendering</figcaption>
+</figure>
+
+<p>Two things to take from the diagram: <strong>A higher API number doesn’t mean better quality</strong>; first and foremost it decides which runtime, wrapper and graphics driver the commands go through. Ephinea’s advanced anti-aliasing is available from  <strong>D3D9</strong>  up; D3D11/12 also use dgVoodoo and Vulkan uses DXVK; only  <strong>dgVoodoo Model</strong>  is strictly limited to the D3D11/12 paths.</p>
+
+<hr>
+
+<h2 id="backend">Rendering backend (D3D / Vulkan)</h2>
+
+<p>PSOBB’s engine natively only issues  <strong>Direct3D 8</strong>  commands. The launcher options don’t rewrite models, textures or scene lighting; they decide which <strong>compatibility layer, output API and graphics driver</strong> those commands pass through afterwards. Strictly speaking, the dropdown mixes native APIs, translation paths and wrapper output backends, rather than being a set of equal “renderers”.</p>
+
+<h3>First, get the rendering chain right</h3>
+
+<p>A modern backend doesn’t turn PSOBB into a native D3D11 or D3D12 game. The game still produces the same D3D8-era vertices, textures, fixed-function state and draw calls; the compatibility layer rewrites them into resources, state and shaders a later API understands, then hands them to the graphics driver.</p>
+
+<pre><code>PSOBB content and logic
+    ↓  D3D8 commands
+Ephinea compatibility/enhancement layer (D3D9 path, AA, AF, post-processing)
+    ├─ D3D9 ───────────────────────────────→ D3D9 driver
+    ├─ D3D9 → Microsoft D3D9On12 ─────────→ D3D12 driver
+    ├─ D3D9 → dgVoodoo ─→ D3D11 or D3D12 → matching driver
+    └─ D3D9 → DXVK ───────────────────────→ Vulkan driver</code></pre>
+
+<p>This also explains why the launcher’s custom files are  <code>dgVoodoo_d3d9.dll</code>  or  <code>dxvk_d3d9.dll</code>: the wrapper receives the D3D9 calls Ephinea outputs and passes them on to D3D11, D3D12 or Vulkan. Ephinea’s official  <a href="https://www.pioneer2.net/community/threads/ephinea-launcher-3-5-0-and-dll-update-1-860-for-april-29th-2026-%E3%83%A9%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC%E3%81%8A%E3%82%88%E3%81%B3dll%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88-4-29.33093/" target="_blank" rel="noopener">Launcher 3.5.0 release notes</a> also give these two file names and their versions.</p>
+
+<h3 id="api-comparison">D3D8 / D3D9 / 9on12 / 11 / 12 / Vulkan compared</h3>
+
+<p>First, three things to tell apart:<strong>D3D8/9/11/12 and Vulkan are graphics APIs; D3D9On12 is Microsoft’s mapping layer; dgVoodoo and DXVK are third-party translators.</strong>Ephinea’s dropdown combines these different layers into easy-to-pick “backends”.</p>
+
+<div style="overflow-x:auto">
+<table>
+<thead>
+<tr><th>Ephinea option</th><th>PSOBB-facing API</th><th>Middle layer</th><th>Final driver API</th><th>Abstraction level</th><th>Key characteristics</th></tr>
+</thead>
+<tbody>
+<tr><td>Direct3D 8</td><td>D3D8</td><td>None</td><td>D3D8</td><td>Legacy high-level</td><td>The original fixed-function pipeline; the shortest chain; incomplete advanced AA; traditional device-lost semantics</td></tr>
+<tr><td>Direct3D 9</td><td>D3D8</td><td>Ephinea D3D8→9</td><td>D3D9</td><td>Legacy high-level</td><td>Fixed function and shader models coexist; advanced AA available; still the D3D9 Reset/Device Lost model</td></tr>
+<tr><td>Direct3D 9on12</td><td>D3D8→D3D9</td><td>Microsoft D3D9On12</td><td>D3D12</td><td>D3D9 on top, D3D12 underneath</td><td>A system mapping layer; not dgVoodoo; keeps D3D9 device semantics on top</td></tr>
+<tr><td><strong>Direct3D 11</strong></td><td>D3D8→D3D9</td><td>dgVoodoo</td><td>D3D11</td><td>Modern high-level</td><td>The driver manages resource state, synchronization and much of the memory policy; usually the most compatible</td></tr>
+<tr><td>Direct3D 12</td><td>D3D8→D3D9</td><td>dgVoodoo</td><td>D3D12</td><td>Modern low-level</td><td>The translator explicitly manages commands, resource state, descriptors, synchronization and memory; fixed Flip presentation</td></tr>
+<tr><td>Vulkan</td><td>D3D8→D3D9</td><td>DXVK</td><td>Vulkan</td><td>Modern low-level</td><td>Same generation as D3D12 but a separate cross-platform API and driver stack; Windows isn’t an officially supported target for DXVK</td></tr>
+<tr><td>Custom</td><td>D3D8→D3D9</td><td>dgVoodoo / DXVK you provide</td><td>D3D11, D3D12 or Vulkan</td><td>Depends on the files</td><td>For verifying newer fixes or regressions; its behaviour can’t be judged from the name “Custom” alone</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>D3D8 to D3D9 is a gradual upgrade of the legacy API that keeps fixed function and the traditional device reset model; D3D11 wraps modern GPU features in a driver-managed high-level interface; D3D12 and Vulkan explicitly hand resource state, command submission and synchronization to the layer above.<strong>D3D9On12 only changes what is underneath D3D9; it doesn’t turn PSOBB or Ephinea’s front end into native D3D12.</strong></p>
+
+<h3>Quality: why it’s usually the same, but not guaranteed pixel for pixel</h3>
+
+<p><strong>An API doesn’t provide “D3D12-grade quality” by itself.</strong> Character polygon counts, texture resolution, materials, lighting formulas, shadows and effects are still decided by PSOBB. With identical output resolution, AA, AF, SSAO and shaders, D3D9, D3D11, D3D12 and Vulkan should produce very similar images.</p>
+
+<p>But the paths aren’t bit-exact replays. Wrappers have to emulate the D3D8/9 fixed-function pipeline and convert legacy formats and state into modern shaders and resources; these details can cause visible differences:</p>
+<ul>
+<li><strong>Sampling and filtering: </strong>texture coordinate precision, mipmap LOD, anisotropic filtering and half-pixel rules can make textures slightly sharper or softer.</li>
+<li><strong>Depth and blending: </strong>differences in depth buffer formats, comparison precision and Alpha Test/Blend emulation can show up as seams, flicker or wrong transparency ordering.</li>
+<li><strong>Fixed-function emulation: </strong>vertex fog, lighting, reflections and texture stages have to become shaders; wrapper bugs cause missing fog, wrong reflections or inconsistent colours.</li>
+<li><strong>Colour and presentation: </strong>gamma, colour space, scaling filters and how the swap chain is composed affect brightness, contrast or final sharpness.</li>
+</ul>
+
+<p>So when backends show obvious black blocks, wrong fog, missing reflections or an overall darker image, treat it as a <strong>compatibility difference or translation bug</strong>, not as an API’s normal “look”. The main value of switching backends is finding the most correct and stable implementation for your GPU, driver and window mode.</p>
+
+<h3>Why aren’t D3D9on12 and D3D12 the same thing?</h3>
+
+<p>Both end up calling the D3D12 driver, but <strong>the translator, the device model exposed above and presentation management all differ</strong>. “It ends up using D3D12” isn’t enough to judge how they behave.</p>
+
+<table>
+<thead>
+<tr><th>Comparison</th><th>Direct3D 9on12</th><th>Direct3D 12</th></tr>
+</thead>
+<tbody>
+<tr><td>Full path</td><td>D3D8 → Ephinea D3D9 → Microsoft D3D9On12 → D3D12</td><td>D3D8 → Ephinea D3D9 → dgVoodoo → D3D12</td></tr>
+<tr><td>Who translates</td><td>Windows’ D3D9On12 Mapping Layer</td><td>The third-party wrapper dgVoodoo2</td></tr>
+<tr><td>Semantics above</td><td>Still works by D3D9 device, resource and swap chain rules</td><td>dgVoodoo emulates D3D9 and manages D3D12 resources and synchronization itself</td></tr>
+<tr><td>Device loss</td><td>Keeps more of the traditional D3D9 behaviour; Ephinea has confirmed UAC, lock screens and similar can still trigger problems</td><td>dgVoodoo takes over the device and presentation, usually avoiding this kind of D3D8/9 Device Lost</td></tr>
+<tr><td>Swap chain</td><td>Decided by the D3D9 runtime and the mapping layer</td><td>dgVoodoo D3D12 always uses modern Flip Discard</td></tr>
+<tr><td>Anti-aliasing</td><td>Ephinea’s advanced AA is available; compatibility traits closer to D3D9</td><td>The same Ephinea AA is available; MSAA/HSAA reflection compatibility is usually better</td></tr>
+<tr><td>Main use</td><td>A system compatibility path, not a performance or quality upgrade</td><td>For dgVoodoo’s modern device management, presentation and compatibility fixes</td></tr>
+</tbody>
+</table>
+
+<p>So to avoid D3D8/9 Device Lost after Alt-Tab, the UAC secure desktop or a lock screen, choose a dgVoodoo path rather than D3D9On12; for troubleshooting, start with  <strong>Direct3D 11</strong>. Direct3D 12 also avoids traditional device loss, but weigh it by GPU vendor: it mainly suits as an alternative path for AMD’s D3D11 texture glitches and isn’t the default recommendation for NVIDIA. D3D9On12 only maps D3D9 workloads onto D3D12 and doesn’t get dgVoodoo’s compatibility strategies.</p>
+
+<h3>What’s actually different between D3D11 and D3D12?</h3>
+
+<p><strong>The short answer: </strong>both share dgVoodoo’s D3D9 front end, state translation and fixed-function emulation, and only diverge in the final layer of resource management, command submission, synchronization and presentation. So their features and expected quality are the same; D3D12 isn’t an enhanced-quality D3D11.</p>
+
+<table>
+<thead>
+<tr><th>Comparison</th><th>Direct3D 11</th><th>Direct3D 12</th></tr>
+</thead>
+<tbody>
+<tr><td>API abstraction</td><td>Modern high-level API; an immediate context receives draw commands</td><td>Modern low-level API; command lists are recorded and then submitted to a command queue</td></tr>
+<tr><td>Resource state</td><td>The driver tracks read/write hazards and state transitions</td><td>dgVoodoo explicitly inserts resource barriers</td></tr>
+<tr><td>Resource binding</td><td>Resources are bound through slots, with the driver keeping lots of implicit state</td><td>Binding is organized with descriptor heaps/tables and root signatures</td></tr>
+<tr><td>Synchronization</td><td>The driver handles most scheduling and hazard tracking</td><td>dgVoodoo synchronizes explicitly with queues, fences and similar objects</td></tr>
+<tr><td>Memory management</td><td>Residency and memory policy are mostly handled by the driver</td><td>dgVoodoo allocates heaps, places resources and controls residency more directly</td></tr>
+<tr><td>Pipeline state</td><td>State can be changed piece by piece and the driver combines it at run time</td><td>Most state is baked in advance into Pipeline State Objects</td></tr>
+<tr><td>Presentation</td><td>Can use traditional BitBlt or the modern Flip model</td><td>dgVoodoo uses  <strong>Flip Discard</strong>, presenting through a windowed swap chain even in fullscreen</td></tr>
+<tr><td>Failure model</td><td>Driver resets can report DXGI Device Removed/Reset</td><td>Command, synchronization or driver faults can report Device Removed/Hung; explicit management errors surface more easily</td></tr>
+<tr><td>Quality</td><td>Decided by resolution, AA, SSAO and shaders</td><td>Essentially the same as D3D11 with the same settings</td></tr>
+<tr><td>Performance</td><td>Usually stable enough for PSOBB</td><td>Can reduce CPU overhead or stutter on some machines, but a 30 FPS old game usually gains nothing across the board</td></tr>
+<tr><td>Compatibility</td><td>Wider hardware coverage; dgVoodoo’s official notes record that some AMD drivers may show broken textures as solid-colour polygons</td><td>Needs D3D12 support; dgVoodoo’s official notes currently warn clearly of GPU hangs on NVIDIA drivers, while AMD users can use it as an alternative for D3D11 texture problems</td></tr>
+<tr><td>Choose when</td><td>Try first by default; NVIDIA users should prefer it; also a good baseline for troubleshooting modern backends</td><td>Test mainly when the D3D11 path shows glitches on AMD, or when evidence points at the D3D11 backend</td></tr>
+</tbody>
+</table>
+
+<p>dgVoodoo author’s <a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">official notes</a> also don’t treat D3D12 as an unconditional upgrade: its automatic selection doesn’t default to D3D12 on x86/x64, and they record opposite compatibility results on specific NVIDIA and AMD drivers. So the more professional way to choose is <strong>to go by correct rendering and stable frame times, not by the API number</strong>.</p>
+
+<p><strong>The simplest order to choose in:</strong>try  <strong>Direct3D 11 (2.87.1)</strong> first; if the image and running are fine, there’s no need to switch. On AMD, if you see known D3D11 driver symptoms such as solid-colour polygons, try D3D12 of the same version, and turn off Radeon Anti-Lag if it crashes. On NVIDIA, don’t make dgVoodoo D3D12 your first troubleshooting path; keep D3D11 and then try an older dgVoodoo, D3D9 or Vulkan, changing only one variable at a time.</p>
+
+<h3 id="d3d12-vulkan">How D3D12 and Vulkan relate underneath</h3>
+
+<p><strong>D3D12 and Vulkan belong to the same generation of low-level graphics APIs, and their design ideas are very close.</strong> Both hand the application or translation layer much of the work the D3D11 driver used to do implicitly: recording GPU commands ahead of time, declaring resource states explicitly, organizing pipeline objects, binding descriptors and handling CPU/GPU synchronization. In the PSOBB setups on this page, that work is done not by the game but by dgVoodoo or DXVK.</p>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Comparison</th><th>Direct3D 12</th><th>Vulkan</th></tr></thead>
+<tbody>
+<tr><td>Standard and platforms</td><td>A Microsoft API for Windows / Xbox</td><td>A Khronos standard covering Windows / Linux / Android and more</td></tr>
+<tr><td>Runtime and presentation</td><td>D3D12 Runtime + DXGI Swap Chain</td><td>Vulkan Loader/ICD + Surface/Swapchain extensions</td></tr>
+<tr><td>Shader representation</td><td>Usually HLSL compiled to DXIL; older toolchains can also use DXBC</td><td>GLSL, HLSL and others compiled to SPIR-V</td></tr>
+<tr><td>Resource binding model</td><td>Root Signature + Descriptor Heap/Table</td><td>Pipeline Layout + Descriptor Set</td></tr>
+<tr><td>Resource state</td><td>Resource State + Resource Barrier</td><td>Access/Stage Mask + Pipeline Barrier + Image Layout</td></tr>
+<tr><td>Memory model</td><td>Heaps and resources, together with Windows residency management</td><td>Memory types/heaps with explicit binding, usually exposing more detail</td></tr>
+<tr><td>Synchronization objects</td><td>Centred on a monotonically increasing fence, which queues can signal/wait on and the CPU can wait for</td><td>Timeline semaphores are closest to D3D12 fences; fences and binary semaphores split host notification and queue dependencies</td></tr>
+<tr><td>Capability extension</td><td>Feature levels, interface versions and optional features</td><td>Core versions, extensions and feature chains</td></tr>
+<tr><td>PSOBB path</td><td>dgVoodoo receives D3D9 and outputs D3D12</td><td>DXVK receives D3D9 and outputs Vulkan</td></tr>
+<tr><td>Typical errors</td><td>DXGI_ERROR_DEVICE_REMOVED / HUNG / RESET</td><td>VK_ERROR_DEVICE_LOST</td></tr>
+</tbody>
+</table>
+</div>
+
+<div style="overflow-x:auto">
+<table>
+<thead>
+<tr><th>D3D12 concept</th><th>Vulkan counterpart</th><th>Underlying responsibility</th></tr>
+</thead>
+<tbody>
+<tr><td>Command List</td><td>Command Buffer</td><td>Record draw, copy and state-change commands first, then submit them to the GPU in batches</td></tr>
+<tr><td>Command Queue</td><td>Queue</td><td>Receive graphics, compute or copy work and decide the submission order</td></tr>
+<tr><td>Resource Barrier</td><td>Pipeline Barrier / Image Layout Transition</td><td>Declare when a resource switches between render target, texture or copy use</td></tr>
+<tr><td>Descriptor Heap / Table</td><td>Descriptor Pool / Set</td><td>Let shaders find textures, samplers and buffers</td></tr>
+<tr><td>Pipeline State Object</td><td>Graphics Pipeline</td><td>Combine shaders with rasterization, blending, depth and other state into an executable pipeline</td></tr>
+<tr><td>Fence</td><td>Timeline semaphores; fences / binary semaphores cover some cases</td><td>Coordinate progress between the CPU, GPU and different queues; the objects don’t map one to one</td></tr>
+<tr><td>Heap / Resource</td><td>Device Memory / Image / Buffer</td><td>Allocate video memory and place textures, vertices and render targets</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>The table above is <strong>an approximate mapping of responsibilities</strong>, not a one-to-one match of handles, lifetimes or synchronization semantics. For example, a D3D12 fence is an incrementing timeline object closest to a Vulkan timeline semaphore; a traditional Vulkan fence mainly tells the host one submission has finished, and binary semaphores are often used for dependencies between queues.</p>
+
+<p>Their main difference isn’t “high or low level” but ecosystem and interface conventions: D3D12 belongs to Microsoft’s Windows/Xbox graphics stack, with DXGI, HLSL/DXIL and the Windows driver model; Vulkan is defined by Khronos, runs across Windows, Linux and Android, usually uses SPIR-V, and has its own presentation and extension system. Vulkan tends to expose more explicit choices, but both require the layer above to manage resource lifetimes, synchronization and pipelines correctly.</p>
+
+<pre><code>PSOBB → D3D8 → Ephinea D3D9 → dgVoodoo → D3D12 → Windows graphics driver → GPU
+PSOBB → D3D8 → Ephinea D3D9 → DXVK     → Vulkan → Vulkan graphics driver  → GPU</code></pre>
+
+<p>So you can think of  <strong>dgVoodoo + D3D12</strong>  and  <strong>DXVK + Vulkan</strong>  as two similar modern low-level translation routes, but they aren’t equivalent. The two translators emulate D3D9 fixed function, shaders, old texture formats, depth buffers, swap chains and device loss differently; these implementation differences decide PSOBB’s correctness, stutter and stability far more than the API name. For a 30 FPS old game, low-level APIs’ theoretical throughput advantage usually doesn’t matter; prefer the path that renders correctly and stably.</p>
+
+<h3 id="versions">Translation layer versions Ephinea ships</h3>
+
+<p>The numbers in brackets aren’t “D3D minor versions” but the translators’ release versions. Multi-version selection arrived with Ephinea Launcher 3.5.0 and client DLL 1.860; the same release thread later shipped DLL 1.861 to fix stack corruption and 1.862 to fix wrongly triggered forced termination. So <strong>1.860 is the version that introduced the feature, not a version to pin</strong>; the client should always finish its in-game patching. The launcher/DLL chooses and loads the files; it isn’t a graphics API itself.</p>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Menu entry</th><th>Translator</th><th>Role in Ephinea</th><th>Known version differences</th></tr></thead>
+<tbody>
+<tr><td>D3D11 / D3D12 <strong>2.79.3</strong></td><td>dgVoodoo2 x86 D3D9</td><td>The older version shipped with the client before; still fine to use</td><td>2.79.3 explicitly fixes Ephinea PSOBB’s vertex fog compatibility and includes D3D8/9 device reset fixes; but the latter changelog entry targets another game, so it can’t be taken to mean all PSOBB device loss is gone</td></tr>
+<tr><td>D3D11 / D3D12 <strong>2.87.1</strong></td><td>dgVoodoo2 x86 D3D9</td><td>A newer optional version added in Launcher 3.5.0</td><td>Inherits 2.87’s D3D12 FL11 compatibility path and FL12+ zero-copy path; 2.87.1 fixes a D3D12 backend crash and improves pseudo-fullscreen and window-size behaviour; Ephinea says it may fix some D3D12 freezes</td></tr>
+<tr><td>Vulkan <strong>2.3.1</strong></td><td>DXVK x32 D3D9</td><td>The older version shipped with the client before; still fine to use</td><td>Suits configurations that are already stable; being older doesn’t make it worse than 2.7.1</td></tr>
+<tr><td>Vulkan <strong>2.7.1</strong></td><td>DXVK x32 D3D9</td><td>A newer optional version added in Launcher 3.5.0</td><td>Ephinea says updating DXVK can fix some Vulkan graphics glitches; it doesn’t promise to fix all crashes or Device Lost</td></tr>
+<tr><td>D3D11 / D3D12 / Vulkan <strong>Custom</strong></td><td>An x86/x32 D3D9 DLL you provide</td><td>For verifying newer or older upstream versions or specific fixes</td><td>Compatibility depends entirely on the files you place; “Custom” by itself doesn’t mean newer, faster or more stable</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Sources for the version facts: <a href="https://www.pioneer2.net/community/threads/ephinea-launcher-3-5-0-and-dll-update-1-860-for-april-29th-2026-%E3%83%A9%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC%E3%81%8A%E3%82%88%E3%81%B3dll%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88-4-29.33093/" target="_blank" rel="noopener">the Ephinea Launcher 3.5.0 / DLL 1.860 release and follow-up hotfix thread</a> and  <a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">dgVoodoo’s official changelog</a>. A newer upstream release doesn’t mean Ephinea has bundled it; only the versions listed in the menu, or Custom files correctly placed in  <code>dxdg</code> , are actually loaded.</p>
+
+<h3 id="device-lost">Device Lost errors: which backends get them, and which avoid them?</h3>
+
+<p>This error means the <strong>client got a device-lost event and then failed to recover (Reset failed)</strong>. It isn’t a “dgVoodoo 2.79.3 error” or a “D3D12 error”. When troubleshooting, first tell apart two kinds of cause:</p>
+<ul>
+<li><strong>Traditional D3D8/9 device loss: </strong>triggered by exclusive fullscreen losing focus, Alt-Tab, the UAC secure desktop, a lock screen, a screensaver or a display mode change; this is the most common cause of this error in PSOBB.</li>
+<li><strong>Real GPU/driver resets: </strong>Windows TDR, driver crashes, unstable overclocks, overlay/injection conflicts or translator bugs. D3D12 can show up as Device Removed/Hung and Vulkan as  <code>VK_ERROR_DEVICE_LOST</code>; no backend is guaranteed to be immune.</li>
+</ul>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Backend and version</th><th>Alt-Tab/UAC/lock-screen Device Lost</th><th>What the error means here</th><th>Also note</th></tr></thead>
+<tbody>
+<tr><td><strong>D3D8</strong></td><td><strong>Clearly affected</strong></td><td>A likely source, especially in classic fullscreen</td><td>Turn off Classic Fullscreen and avoid display mode changes</td></tr>
+<tr><td><strong>D3D9</strong></td><td><strong>Clearly affected</strong></td><td>Still uses traditional D3D9 Device/Reset semantics</td><td>One more conversion layer than D3D8 doesn’t solve device loss</td></tr>
+<tr><td><strong>D3D9On12</strong></td><td><strong>Clearly affected</strong></td><td>Ephinea explicitly says it can’t avoid Device Lost caused by UAC, lock screens and screensavers</td><td>D3D12 underneath but still D3D9 on top; don’t treat it as dgVoodoo D3D12</td></tr>
+<tr><td><strong>dgVoodoo D3D11 2.79.3 / 2.87.1</strong></td><td><strong>Usually avoided</strong></td><td>Not the expected path for traditional focus loss; if it still happens, suspect a driver reset or a dgVoodoo/overlay conflict</td><td>2.87.1 isn’t a “never crashes” version; some AMD drivers may still show texture glitches</td></tr>
+<tr><td><strong>dgVoodoo D3D12 2.79.3</strong></td><td><strong>Usually avoided</strong></td><td>Low risk of traditional Device Lost, but Ephinea has recorded D3D12 freezes for some users</td><td>dgVoodoo’s official notes currently warn clearly that NVIDIA drivers may hit D3D12 GPU hangs; not recommended as the first choice on NVIDIA</td></tr>
+<tr><td><strong>dgVoodoo D3D12 2.87.1</strong></td><td><strong>Usually avoided</strong></td><td>Better than 2.79.3 for checking the D3D12 freezes Ephinea has recorded, but still can’t withstand a real TDR</td><td>Includes specific D3D12 crash and fullscreen behaviour fixes; doesn’t mean NVIDIA GPU hangs are gone or that every hardware combination is fixed</td></tr>
+<tr><td><strong>DXVK Vulkan 2.3.1 / 2.7.1</strong></td><td><strong>By default usually doesn’t emulate focus loss</strong></td><td>DXVK defaults to  <code>d3d9.deviceLossOnFocusLoss = False</code>, so an Alt-Tab-type popup is usually not expected</td><td>The Vulkan driver can still return a real  <code>VK_ERROR_DEVICE_LOST</code>; DXVK doesn’t officially support native Windows</td></tr>
+<tr><td><strong>Custom</strong></td><td>Can’t judge in general</td><td>Record the actual DLL, version and configuration</td><td>Old configs can turn on DXVK’s focus-loss emulation; third-party builds may also change behaviour</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>An early Ephinea update already advised clearly: to avoid traditional Device Lost from UAC, lock screens, screensavers and similar, use  <a href="https://www.pioneer2.net/community/threads/game-update-for-august-17th-2022-8-17-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.23942/" target="_blank" rel="noopener">dgVoodoo D3D11/12, not D3D9On12</a>. But dgVoodoo’s current <a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">official notes</a> also strongly warn of D3D12 GPU hangs on NVIDIA, so “avoids traditional Device Lost” doesn’t mean “the most stable backend on every GPU”. DXVK’s default behaviour can be checked in its <a href="https://github.com/doitsujin/dxvk/blob/master/dxvk.conf" target="_blank" rel="noopener">official configuration notes</a>.</p>
+
+<p><strong>Troubleshooting order when you hit this error: </strong>if you were on D3D8, D3D9 or D3D9On12 and had just Alt-Tabbed, seen a UAC prompt, locked the screen or changed display mode, it’s the known traditional device loss; switch to  <strong>D3D11 2.87.1</strong>. If you were already on dgVoodoo D3D11/12 or Vulkan, it’s no longer normal focus-loss behaviour: check Reliability Monitor or Windows Error Reporting for  <code>LiveKernelEvent 117/141</code>, and the system log for display driver events (commonly  <code>Display 4101</code>), then check your graphics driver, overclocks and overlays. On NVIDIA, retest D3D11 2.87.1 first; on AMD, if solid-colour textures appear only on D3D11, then test D3D12 2.87.1 under controlled conditions.</p>
+
+<h3>What each backend means</h3>
+
+<h3>Direct3D 8</h3>
+<p>The game’s <strong>original rendering</strong>. Calls the system’s D3D8 directly with no translation layer; closest to the original 2003 behaviour.</p>
+<ul>
+<li>✅ The fewest variables; good for confirming the game itself runs properly</li>
+<li>⚠ On Win10/11 with high refresh rates and multiple monitors, prone to crashes, tearing and black screens after Alt-Tab</li>
+<li>⚠ Lacks the full advanced AA set of the D3D9-and-up paths; legacy Device Lost behaviour remains</li>
+</ul>
+
+<h3>Direct3D 9</h3>
+<p>A lightweight wrapper turns D3D8 calls into  <strong>D3D9</strong>. Tiny overhead, behaviour close to the original, slightly more stable than pure D3D8.</p>
+<ul>
+<li>✅ Broadly compatible; almost every card that supports D3D9 can run it</li>
+<li>✅ Supports Ephinea’s advanced AA options such as SSAA, SMAA, MSAA and HSAA</li>
+<li>⚠ Still depends on the quality of the system’s D3D9 driver</li>
+<li>⚠ The official changelog notes MSAA/HSAA may break some reflections on the D3D9 path; switch to SMAA or SSAA if you hit problems</li>
+</ul>
+
+<h3>Direct3D 9on12</h3>
+<p>Microsoft’s official  <strong>D3D9-on-D3D12</strong>  translation layer. D3D8 calls go through D3D9 first, then Windows’ built-in  <code>d3d9on12.dll</code>  translates them to D3D12 for the graphics card.</p>
+<ul>
+<li>✅ Lets the system map D3D9 workloads onto D3D12; mainly a platform compatibility path</li>
+<li>⚠ It keeps the behaviour of Ephinea’s D3D9 front end and isn’t dgVoodoo’s D3D12 mode</li>
+<li>⚠ Ephinea’s official testing notes it can still hit Device Lost after UAC, the secure desktop or a lock screen; not recommended as a first choice on ordinary PCs</li>
+</ul>
+
+<h3>Direct3D 11 (2.79.3 / 2.87.1)</h3>
+<p>Uses  <strong>dgVoodoo2</strong>  to take Ephinea’s D3D9 calls and output them to  <strong>D3D11</strong>. Legacy fixed-function state is emulated by the wrapper as modern GPU resources and shaders.</p>
+<ul>
+<li>✅ Avoids native D3D8/9 Device Lost problems; windowed mode, Alt-Tab and modern desktop composition are usually more reliable</li>
+<li>✅ You can choose between presentation models such as Auto, Discard and Flip</li>
+<li>📌 <strong>Try first by default</strong>: broad hardware coverage, and a sensible starting point for troubleshooting against D3D12</li>
+<li>📌 <strong>2.79.3</strong>  is the older stable version, <strong>2.87.1</strong>  the newer one, more complete but occasionally with new bugs</li>
+</ul>
+
+<h3>Direct3D 12 (2.79.3 / 2.87.1)</h3>
+<p>As above, but dgVoodoo2 outputs to the more modern  <strong>D3D12</strong>.</p>
+<ul>
+<li>✅ May lower CPU/driver overhead on some newer graphics card and driver combinations</li>
+<li>📌 <strong>Quality won’t be higher than D3D11</strong>, and PSOBB usually shows no obvious frame rate gain</li>
+<li>📌 Always presents with Flip Discard; the other “dgVoodoo Model” choices can’t turn it into the traditional BitBlt model</li>
+<li>⚠ dgVoodoo’s official notes currently warn clearly of D3D12 GPU hangs on NVIDIA drivers; not recommended as the first choice on NVIDIA</li>
+<li>⚠ On AMD, try D3D12 if D3D11 shows solid-colour polygons; if it crashes, turn off Radeon Anti-Lag and retest</li>
+</ul>
+
+<h3>Vulkan (2.3.1 / 2.7.1)</h3>
+<p>Uses  <strong>DXVK</strong> Translates Ephinea’s D3D9 calls to  <strong>Vulkan</strong>. It takes a different driver compilation, resource management and presentation path, useful for checking whether a problem exists only in the Direct3D driver stack.</p>
+<ul>
+<li>✅ On some hardware, can improve stutter or display errors specific to the D3D path</li>
+<li>⚠ Brief stutters may occur the first time Vulkan shaders/pipelines are created; how bad depends on the driver and DXVK version</li>
+<li>⚠ <a href="https://github.com/doitsujin/dxvk/wiki/Windows" target="_blank" rel="noopener">DXVK doesn’t officially support Windows</a>; screen recorders, overlays, RTSS and other injection software may also conflict with it</li>
+<li>📌 <strong>2.3.1</strong>  is the older stable version, <strong>2.7.1</strong>  is the newer version</li>
+</ul>
+
+<h3>Direct3D 11 / 12 / Vulkan (Custom)</h3>
+<p>Uses <strong>Your own custom</strong> dgVoodoo or DXVK version. Per Ephinea’s official convention, place an x86  <code>dxdg</code>  folder in the game directory with an x86  <code>dgVoodoo_d3d9.dll</code>  or x32  <code>dxvk_d3d9.dll</code>.</p>
+<ul>
+<li>You have to download and place the right version of the files yourself; for advanced users testing newer translation layers</li>
+<li>Placing the wrong files causes a black screen or crash at launch</li>
+</ul>
+
+<hr>
+
+<h2 id="aa">Anti-aliasing</h2>
+
+<p>Aliasing isn’t a single phenomenon. In PSOBB you’ll see at least three kinds: <strong>geometric aliasing</strong> on polygon edges, <strong>texture and alpha-test aliasing</strong> where distant fine textures and fences shimmer as the camera moves, and <strong>general undersampling</strong> from rendering at a low resolution and scaling up. Different AA algorithms target different things, so you can’t just compare the 2x/4x after the name.</p>
+
+<h3>Which layer implements AA?</h3>
+
+<p>Ephinea’s AA isn’t a quality feature that D3D11, D3D12 or Vulkan hands out automatically. The client implements it when creating render targets and processing the final image: MSAA changes the render target’s multisampling parameters; SSAA raises the internal render size and scales down; SMAA runs spatial post-processing after the scene is done. The Ephinea developers’ <a href="https://www.pioneer2.net/community/threads/game-update-for-august-17th-2022-8-17-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.23942/" target="_blank" rel="noopener">explanation</a> confirms this order too.</p>
+
+<table>
+<thead><tr><th>Backend</th><th>Advanced AA</th><th>Watch out for</th></tr></thead>
+<tbody>
+<tr><td>D3D8</td><td>Not a fully supported path</td><td>Best as an unenhanced original baseline</td></tr>
+<tr><td>D3D9</td><td><strong>Supported</strong></td><td>MSAA/HSAA may break reflections in some scenes</td></tr>
+<tr><td>D3D9on12</td><td><strong>Supported</strong></td><td>Inherits the D3D9 front end’s traits; not dgVoodoo D3D12</td></tr>
+<tr><td>D3D11 / D3D12</td><td><strong>Supported</strong></td><td>Through dgVoodoo, the official changelog shows better MSAA/HSAA reflection compatibility</td></tr>
+<tr><td>Vulkan</td><td><strong>Supported</strong></td><td>Ephinea still produces the AA result; DXVK translates the D3D9 workload to Vulkan</td></tr>
+</tbody>
+</table>
+
+<h3>Basic algorithms</h3>
+<ul>
+<li><strong>None</strong> — anti-aliasing off. Best performance, sharpest edges, but jagged.</li>
+<li><strong>MSAA 2x / 4x</strong> — Multi-Sample AA. Computes triangle coverage and depth/stencil results at several positions within a pixel, usually sharing one pixel shading result. It mainly smooths <strong>geometric outlines</strong> and is cheaper than SSAA, but it can’t fix shimmering inside textures or shader aliasing, and often does nothing for leaf/fence edges made by alpha testing. Microsoft’s  <a href="https://learn.microsoft.com/en-us/windows/win32/direct3d11/d3d10-graphics-programming-guide-rasterizer-stage-rules" target="_blank" rel="noopener">MSAA rasterization rules</a> also state clearly that it doesn’t remove surface aliasing.</li>
+<li><strong>SSAA 2x / 4x</strong> — Super-Sample AA. Ephinea renders the <strong>width and height each</strong> 2 or 4 times larger, then scales back to the output resolution with linear filtering. It improves geometric edges, texture detail and some transparent edges together, the most complete effect, but greatly increases pixel shading, video memory and bandwidth cost.</li>
+<li><strong>SMAA Low / Medium / High / Ultra</strong> — Subpixel Morphological AA. After the scene is finished, it searches colour/brightness edges for shapes and blends neighbouring pixels. Effective on geometric edges and some alpha-test edges at relatively low cost, but with no extra geometric or temporal samples it can’t truly recover sub-pixel detail or reliably remove texture shimmer as the camera moves. Higher quality widens the search and precision; the side effect is that fine text, the HUD or textures may look slightly soft.</li>
+<li><strong>HSAA 2x / 4x</strong> — Hybrid-Sampling AA. In Ephinea this means <strong>SSAA at a given factor + MSAA at the same factor</strong>, not a cheap compromise between the two. It raises both the internal resolution and the coverage samples per pixel; the quality ceiling is high, but it is also one of the heaviest options.</li>
+</ul>
+
+<h3>How big are the SSAA / HSAA factors really?</h3>
+
+<p>The factor applies both horizontally and vertically. With an output size of  <code>W × H</code>, SSAA Nx renders at  <code>(N·W) × (N·H)</code>, which is  <code>N²</code>  times the pixels. Don’t mistake SSAA 4x for rendering only 4 times the pixels.</p>
+
+<table>
+<thead><tr><th>1080p output example</th><th>Internal resolution</th><th>Internal pixels</th><th>Relative to 1080p</th></tr></thead>
+<tbody>
+<tr><td>No SSAA</td><td>1920 × 1080</td><td>about 2.07 million</td><td>1×</td></tr>
+<tr><td>SSAA 2x</td><td>3840 × 2160</td><td>about 8.29 million</td><td><strong>4× pixels</strong></td></tr>
+<tr><td>SSAA 4x</td><td>7680 × 4320</td><td>about 33.18 million</td><td><strong>16× pixels</strong></td></tr>
+</tbody>
+</table>
+
+<p>HSAA also adds MSAA samples on top of this high-resolution render target. For example, HSAA 4x can roughly be read as 16 times the pixel shading plus 4 coverage/depth samples; total time won’t be exactly 64 times, but render target, depth buffer, bandwidth and memory pressure can be very high. Even though PSOBB is old, 4K output with 4x may fail to start, drop frames or exhaust the VRAM the wrapper is configured with.</p>
+
+<h3>Why was 20-year-old hardware smooth, yet an RTX 4090 / 5090 can struggle at 4K max settings?</h3>
+
+<p>The two claims don’t contradict each other. Original PSOBB’s geometric complexity, shader complexity and 30 FPS cap are all low, and cards from 20 years ago met the design target at 640×480, 800×600 or 1024×768 without modern post-processing. The modern launcher lets you multiply the <strong>pixels, samples and full-screen passes per frame</strong> by several orders of magnitude; the game content is still old, but the work the GPU actually does is no longer a 2004 workload.</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 390" role="img" aria-labelledby="pixel-title pixel-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="pixel-title">Pixels per frame at different resolutions and SSAA settings, relative to 640×480</title>
+  <desc id="pixel-desc">640×480 is 1×, 1080p about 6.75×, 4K 27×, 4K SSAA 2x 108× and 4K SSAA 4x 432×.</desc>
+  <style>
+    .px-axis{stroke:#64748b;stroke-width:1.5}
+    .px-grid{stroke:#334155;stroke-width:1}
+    .px-bar{fill:rgba(0,212,255,.32);stroke:#00d4ff;stroke-width:1.5}
+    .px-extreme{fill:rgba(167,139,250,.36);stroke:#a78bfa;stroke-width:1.5}
+    .px-head{fill:#f8fafc;font-size:15px;font-weight:700}
+    .px-text{fill:#cbd5e1;font-size:13px}
+    .px-note{fill:#94a3b8;font-size:12px}
+  </style>
+  <text class="px-head" x="20" y="28">Per-frame pixel workload relative to 640×480 with no SSAA (log scale)</text>
+  <line class="px-axis" x1="220" y1="55" x2="220" y2="330"/>
+  <line class="px-grid" x1="220" y1="330" x2="880" y2="330"/>
+  <line class="px-grid" x1="385" y1="55" x2="385" y2="330"/>
+  <line class="px-grid" x1="550" y1="55" x2="550" y2="330"/>
+  <line class="px-grid" x1="715" y1="55" x2="715" y2="330"/>
+  <line class="px-grid" x1="880" y1="55" x2="880" y2="330"/>
+  <text class="px-note" x="220" y="350" text-anchor="middle">1×</text>
+  <text class="px-note" x="385" y="350" text-anchor="middle">about 4.6×</text>
+  <text class="px-note" x="550" y="350" text-anchor="middle">about 21×</text>
+  <text class="px-note" x="715" y="350" text-anchor="middle">about 95×</text>
+  <text class="px-note" x="880" y="350" text-anchor="middle">432×</text>
+
+  <text class="px-text" x="205" y="82" text-anchor="end">640×480</text>
+  <rect class="px-bar" x="220" y="64" width="10" height="25" rx="4"/>
+  <text class="px-text" x="240" y="82">1× · 0.31 MP</text>
+
+  <text class="px-text" x="205" y="137" text-anchor="end">1080p</text>
+  <rect class="px-bar" x="220" y="119" width="211" height="25" rx="4"/>
+  <text class="px-text" x="441" y="137">6.75× · 2.07 MP</text>
+
+  <text class="px-text" x="205" y="192" text-anchor="end">4K</text>
+  <rect class="px-bar" x="220" y="174" width="366" height="25" rx="4"/>
+  <text class="px-text" x="596" y="192">27× · 8.29 MP</text>
+
+  <text class="px-text" x="205" y="247" text-anchor="end">4K + SSAA 2x</text>
+  <rect class="px-extreme" x="220" y="229" width="521" height="25" rx="4"/>
+  <text class="px-text" x="751" y="247">108× · 33.18 MP</text>
+
+  <text class="px-text" x="205" y="302" text-anchor="end">4K + SSAA 4x</text>
+  <rect class="px-extreme" x="220" y="284" width="660" height="25" rx="4"/>
+  <text class="px-text" x="870" y="325" text-anchor="end">432× · 132.71 MP</text>
+
+  <text class="px-note" x="20" y="382">HSAA also adds MSAA coverage/depth samples at that resolution, so this pixel chart isn’t the whole story</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">In the same scene, 4K + SSAA 4x shades about 432 times the pixels of the original 640×480 each frame</figcaption>
+</figure>
+
+<h4>Resolution, D3D backend, AA and effects, one by one</h4>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Factor</th><th>How the load grows</th><th>Main pressure</th><th>Common misconception</th></tr></thead>
+<tbody>
+<tr><td>Output resolution</td><td>Proportional to width × height; 4K is 4 times the pixels of 1080p</td><td>Pixel shading, bandwidth, post-processing</td><td>A frame rate still locked at 30 doesn’t mean each frame can be arbitrarily expensive</td></tr>
+<tr><td>D3D8 / D3D9</td><td>A short chain with a very low raw load</td><td>Old drivers, Device Lost, CPU submission</td><td>“Smooth on old hardware” usually means lower resolutions and fewer enhancements</td></tr>
+<tr><td>D3D11 / D3D12</td><td>Adds Ephinea + dgVoodoo state translation and resource management</td><td>CPU overhead, synchronization, driver compatibility</td><td>D3D12 can improve some submission overhead, but can’t reduce SSAA pixels</td></tr>
+<tr><td>Vulkan</td><td>Adds Ephinea + DXVK translation and pipeline compilation</td><td>Shader compilation, driver, synchronization</td><td>A different API isn’t a free performance upgrade</td></tr>
+<tr><td>MSAA Nx</td><td>Adds coverage, depth/stencil and multisample storage; pixel shaders don’t necessarily run fully N times</td><td>ROPs, depth, bandwidth, video memory</td><td>Mainly handles geometric edges; not N times sharper across the whole image</td></tr>
+<tr><td>SSAA Nx</td><td>Width and height each × N, pixel count × N²</td><td>Pixel shaders, texture sampling, video memory, bandwidth</td><td>SSAA 4x is 16 times the pixels, not 4</td></tr>
+<tr><td>HSAA Nx</td><td>Nx MSAA samples on top of SSAA’s N² pixels</td><td>Nearly every GPU backend resource</td><td>It’s the extreme combination, not a cheap compromise</td></tr>
+<tr><td>AF 16x</td><td>More samples for textures on slopes</td><td>Texture units and bandwidth</td><td>Usually far lighter than SSAA, but custom textures may still add pressure</td></tr>
+<tr><td>SSAO / DoF</td><td>Several depth reads and neighbourhood samples per output pixel</td><td>Bandwidth, cache, shader math</td><td>Costlier at higher resolutions; High isn’t just a visual tier</td></tr>
+<tr><td>Bloom / SMAA / Tone</td><td>Adds one or more full-screen read, blur and blend passes</td><td>Bandwidth and pixel shaders</td><td>Each is cheap, but stacking several can still become a bottleneck</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>Estimating memory and sample counts at 4K max settings</h4>
+
+<p>4K output is 3840×2160, about 8.29 million pixels. With SSAA 4x the internal size becomes  <strong>15360×8640</strong>, about 132.7 million pixels. A single RGBA8 colour buffer takes about 531 MB and a 32-bit depth buffer another 531 MB; before counting resolve targets, Bloom/SSAO/DoF intermediate textures, wrapper caches and game textures, these two alone exceed 1 GB.</p>
+
+<p>Add HSAA 4x and the colour and depth targets must hold about 4 times the multisample data, so these two buffers alone could theoretically approach  <strong>4.25 GB</strong>. Each frame also shades about 132.7 million pixels and processes about 530.8 million coverage/depth samples, then resolves, scales down to 4K and runs several post-processing passes. This load is mainly limited by fill rate, memory bandwidth, cache and the wrapper’s implementation, and has little to do with how many triangles the models have.</p>
+
+<h4>How should you think about the RTX 4090 and RTX 5090?</h4>
+
+<p>The RTX 4090 has 24 GB of GDDR6X; the RTX 5090 goes up to 32 GB of GDDR7. NVIDIA’s official specs list memory bandwidth of about  <strong>1008 GB/s</strong>  and  <strong>1792 GB/s</strong>. So in bandwidth- and memory-heavy loads such as SSAA/HSAA and multiple full-screen passes, the 5090 usually has more headroom. See the  <a href="https://www.nvidia.com/en-gb/geforce/graphics-cards/50-series/rtx-5090/" target="_blank" rel="noopener">official NVIDIA 5090 vs 4090 spec comparison</a>.</p>
+
+<p>But this doesn’t mean the 5090 raises PSOBB frame rates in proportion to bandwidth. Ephinea is an old 32-bit program going through D3D8→D3D9→dgVoodoo/DXVK state translation; the bottleneck may be single-threaded CPU, synchronization, the driver, internal wrapper limits or allocating huge render targets. A 4090 at 4K + SSAA/HSAA 4x + SSAO High + several shaders <strong>may hit full load, drop below 30 FPS or crash when resource allocation fails</strong>; the 5090 is usually more comfortable, but isn’t guaranteed to make every extreme combination sensible either.</p>
+
+<p><strong>In practice: </strong>smooth old hardware shows it can carry the “original scene load”; a top card struggling shows the player has created hundreds of times the pixels, more samples and more full-screen passes. When judging performance, record the full combination rather than just saying “it’s a 20-year-old game” or only comparing D3D11 and D3D12.</p>
+
+<h3>Combinations (X + SMAA)</h3>
+<p>SMAA sits in the post-processing stage after the scene is finished, so it can keep working on high-contrast edges that remain after MSAA, SSAA or HSAA resolve/downsampling:</p>
+<ul>
+<li><strong>MSAA + SMAA</strong> — MSAA provides real geometric coverage samples and SMAA cleans up the remaining identifiable edges. Usually a well-balanced quality/cost combination.</li>
+<li><strong>SSAA + SMAA</strong> — SSAA first suppresses high-frequency detail and sub-pixel aliasing, then SMAA handles the remaining edges. High quality, but SMAA can’t offset SSAA’s huge pixel cost.</li>
+<li><strong>HSAA + SMAA</strong> — SSAA, MSAA and SMAA stacked together; an extreme option, not an everyday “compromise”.</li>
+</ul>
+
+<h3>Recommendations</h3>
+<table>
+<thead><tr><th>Need</th><th>Recommended</th></tr></thead>
+<tbody>
+<tr><td>Performance first / integrated graphics</td><td><strong>SMAA Medium/High</strong>; low cost and no increase in render resolution</td></tr>
+<tr><td>Balanced, general use</td><td><strong>SMAA Ultra</strong>  or  <strong>MSAA 2x + SMAA</strong></td></tr>
+<tr><td>Less texture shimmer / quality first</td><td><strong>SSAA 2x</strong>  or  <strong>SSAA 2x + SMAA</strong></td></tr>
+<tr><td>Reflection glitches on D3D9</td><td>Avoid MSAA/HSAA and use  <strong>SMAA Ultra</strong>  or  <strong>SSAA 2x</strong></td></tr>
+<tr><td>4K output</td><td>Start with  <strong>SMAA Ultra</strong>; there’s usually no need to add SSAA 4x</td></tr>
+<tr><td>Extreme screenshots / plenty of video memory</td><td><strong>SSAA 4x</strong>  or HSAA; test step by step rather than going straight to the maximum</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2 id="af">Anisotropic filtering</h2>
+
+<p>AF fixes <strong>textures blurring at oblique angles</strong>, not jagged model outlines. When a floor, wall or road stretches into the distance, the area of texture one screen pixel covers becomes a long strip rather than a square. Ordinary bilinear/trilinear filtering uses a roughly square sample footprint, tends to pick too low a mipmap and loses distant detail; AF adds samples along the long axis so textures on slopes stay sharper.</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 285" role="img" aria-labelledby="af-title af-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="af-title">Sample footprints of ordinary texture filtering versus anisotropic filtering</title>
+  <desc id="af-desc">A screen pixel on a floor in perspective maps to a long, narrow texture area. Ordinary filtering approximates it with a small square and blurs; anisotropic filtering uses several samples along the long axis.</desc>
+  <style>
+    .af-panel{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .af-grid{stroke:#64748b;stroke-width:1;opacity:.65}
+    .af-head{fill:#f8fafc;font-size:16px;font-weight:700}
+    .af-text{fill:#cbd5e1;font-size:14px}
+    .af-note{fill:#94a3b8;font-size:12px}
+    .af-foot{fill:rgba(0,212,255,.16);stroke:#00d4ff;stroke-width:2}
+    .af-sample{fill:#a78bfa;stroke:#ede9fe;stroke-width:1}
+  </style>
+  <rect class="af-panel" x="20" y="18" width="425" height="225" rx="10"/>
+  <rect class="af-panel" x="475" y="18" width="425" height="225" rx="10"/>
+  <text class="af-head" x="232" y="48" text-anchor="middle">Ordinary bilinear / trilinear</text>
+  <text class="af-head" x="687" y="48" text-anchor="middle">Anisotropic filtering</text>
+  <g class="af-grid">
+    <path d="M55 208 L180 70 M115 208 L215 70 M175 208 L250 70 M235 208 L285 70 M295 208 L320 70 M355 208 L355 70 M415 208 L390 70"/>
+    <path d="M55 208 H415 M75 180 H405 M95 154 H400 M117 130 H395 M140 108 H390 M163 88 H388 M180 70 H390"/>
+    <path d="M510 208 L635 70 M570 208 L670 70 M630 208 L705 70 M690 208 L740 70 M750 208 L775 70 M810 208 L810 70 M870 208 L845 70"/>
+    <path d="M510 208 H870 M530 180 H860 M550 154 H855 M572 130 H850 M595 108 H845 M618 88 H843 M635 70 H845"/>
+  </g>
+  <rect class="af-foot" x="203" y="129" width="60" height="60" rx="5"/>
+  <ellipse class="af-foot" cx="687" cy="157" rx="88" ry="22" transform="rotate(-15 687 157)"/>
+  <circle class="af-sample" cx="620" cy="175" r="6"/><circle class="af-sample" cx="648" cy="167" r="6"/>
+  <circle class="af-sample" cx="678" cy="159" r="6"/><circle class="af-sample" cx="708" cy="151" r="6"/>
+  <circle class="af-sample" cx="738" cy="143" r="6"/><circle class="af-sample" cx="765" cy="136" r="6"/>
+  <text class="af-text" x="232" y="229" text-anchor="middle">Square approximation → distant areas over-blur easily</text>
+  <text class="af-text" x="687" y="229" text-anchor="middle">Samples along the long axis → keeps detail on slopes</text>
+  <text class="af-note" x="20" y="272">AF handles the texture sample footprint; AA handles pixel coverage or final edges; neither replaces the other</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">The steeper the perspective, the narrower the footprint and the more AF helps</figcaption>
+</figure>
+
+<ul>
+<li><strong>2x / 4x:</strong>Improves oblique sharpness on floors and walls at lower cost; good for old GPUs or integrated graphics.</li>
+<li><strong>8x:</strong>Usually covers nearly all the visible benefit; a good general setting.</li>
+<li><strong>16x:</strong>Maximizes sharpness of oblique textures; on modern discrete cards the extra cost is usually small, but it still adds texture sampling and bandwidth load.</li>
+</ul>
+
+<h3>Why does AF sometimes make things shimmer more?</h3>
+
+<p>AF keeps more high-frequency texture detail. If original or modded textures lack proper mipmaps or contain heavy sharpening or fine lines, the sharper distance can also bring shimmer, moiré and visual noise. That isn’t necessarily a bug in AF: first drop 16x to 8x/4x, or use textures with proper mipmaps; SSAA can suppress this aliasing further.</p>
+
+<p><strong>Recommendation: </strong>with original textures and a modern GPU, start at  <strong>AF 16x</strong> ; if distant areas shimmer badly after installing custom HD textures, drop to 8x/4x and check the texture pack’s mipmaps. AF doesn’t remove jagged character outlines; you still need suitable AA.</p>
+
+<hr>
+
+<h2 id="swap">dgVoodoo Model (swap chain mode)</h2>
+
+<p>This setting only concerns the  <strong>dgVoodoo</strong>  path. It controls the DXGI swap chain’s Present model, i.e. how the finished back buffer is handed to the Windows desktop compositor or the display. It affects latency, window compatibility, Alt-Tab and capture, and <strong>doesn’t change the scene’s sampling quality</strong>.</p>
+
+<p><strong>Important limitation: </strong>these modes are mainly for D3D11 output. According to dgVoodoo’s official notes, D3D12 output must use  <strong>Flip Discard</strong>; even if the launcher still offers other choices, D3D12 can’t fall back to the traditional BitBlt swap chain.</p>
+
+<ul>
+<li><strong>Auto</strong> — chosen automatically by dgVoodoo based on the backend and window mode; the default recommendation.</li>
+<li><strong>Discard</strong> — the traditional BitBlt model, which <strong>discards</strong> the old frame when showing a new one. Best compatibility on Win 7 / old drivers, but can’t use Win10+ DWM optimizations.</li>
+<li><strong>Sequential</strong> — the traditional BitBlt model, but keeping previous frames. Rarely used.</li>
+<li><strong>Flip Discard</strong> — the modern Flip model + discarded buffer contents. Cuts unnecessary desktop copies and allows modern presentation optimizations; actual latency still depends on V-Sync, window mode, the driver queue and DWM scheduling.</li>
+<li><strong>Flip Sequential</strong> — the Flip model, but keeping old frames. Slightly more overhead than Flip Discard.</li>
+</ul>
+
+<p><strong>Recommendation: </strong></p>
+<ul>
+<li>For D3D11,  <strong>Auto</strong>  is fine in most cases; test the others one by one only if capture, Alt-Tab or window composition misbehaves</li>
+<li>If screen recorders can’t capture D3D11 after switching to Flip, change back to  <strong>Discard</strong></li>
+<li>If D3D12 has presentation or capture problems, changing Model usually won’t help; switch to  <strong>D3D11 + Auto/Discard</strong></li>
+</ul>
+
+<hr>
+
+<h2 id="effects-pipeline">Where visual effects sit in the pipeline</h2>
+
+<p>Below is a <strong>conceptual data-dependency diagram</strong> to show what each setting works on; it isn’t an exact step-by-step execution order in Ephinea’s source. The key difference: MSAA/SSAA/HSAA change how the scene is sampled, while SSAO, Bloom, DoF, Cel Shading, Tonemapping and SMAA all read an image or depth information that already exists.</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 390" role="img" aria-labelledby="fx-title fx-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="fx-title">Ephinea visual effects: conceptual pipeline</title>
+  <desc id="fx-desc">Starts from game geometry and textures, goes through rasterization and sampling-based anti-aliasing to produce colour and depth buffers, which then feed ambient occlusion, depth of field, bloom, cel shading, tone mapping and SMAA, and are finally presented by the swap chain.</desc>
+  <defs>
+    <marker id="fx-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/></marker>
+    <filter id="fx-soft"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>
+  <style>
+    .fx-box{fill:rgba(0,212,255,.08);stroke:#00d4ff;stroke-width:2}
+    .fx-post{fill:rgba(167,139,250,.10);stroke:#a78bfa;stroke-width:2}
+    .fx-buffer{fill:rgba(96,165,250,.10);stroke:#60a5fa;stroke-width:2}
+    .fx-line{stroke:#00d4ff;stroke-width:2;fill:none;marker-end:url(#fx-arr)}
+    .fx-text{fill:#e2e8f0;font-size:14px}
+    .fx-head{fill:#f8fafc;font-size:15px;font-weight:700}
+    .fx-note{fill:#94a3b8;font-size:12px}
+  </style>
+  <rect class="fx-box" x="20" y="128" width="145" height="78" rx="10"/>
+  <text class="fx-head" x="92" y="154" text-anchor="middle">Scene input</text>
+  <text class="fx-text" x="92" y="177" text-anchor="middle">Geometry · textures · lighting</text>
+  <text class="fx-note" x="92" y="196" text-anchor="middle">The backend adds no original detail</text>
+
+  <path class="fx-line" d="M165 167 H205"/>
+  <rect class="fx-box" x="210" y="112" width="180" height="110" rx="10"/>
+  <text class="fx-head" x="300" y="140" text-anchor="middle">Rasterization / scene sampling</text>
+  <text class="fx-text" x="300" y="164" text-anchor="middle">MSAA: coverage samples</text>
+  <text class="fx-text" x="300" y="186" text-anchor="middle">SSAA: larger internal size</text>
+  <text class="fx-text" x="300" y="208" text-anchor="middle">HSAA: both combined</text>
+
+  <path class="fx-line" d="M390 167 H430"/>
+  <rect class="fx-buffer" x="435" y="112" width="145" height="110" rx="10"/>
+  <text class="fx-head" x="507" y="140" text-anchor="middle">Scene buffers</text>
+  <text class="fx-text" x="507" y="168" text-anchor="middle">Color</text>
+  <text class="fx-text" x="507" y="192" text-anchor="middle">Depth</text>
+  <text class="fx-note" x="507" y="211" text-anchor="middle">Main inputs to post-processing</text>
+
+  <path class="fx-line" d="M507 112 V73 H630"/>
+  <rect class="fx-post" x="635" y="28" width="130" height="78" rx="10"/>
+  <text class="fx-head" x="700" y="55" text-anchor="middle">Depth-based</text>
+  <text class="fx-text" x="700" y="78" text-anchor="middle">SSAO · DoF</text>
+  <text class="fx-note" x="700" y="97" text-anchor="middle">Limited screen-space information</text>
+
+  <path class="fx-line" d="M580 167 H630"/>
+  <rect class="fx-post" x="635" y="128" width="130" height="78" rx="10"/>
+  <text class="fx-head" x="700" y="155" text-anchor="middle">Colour-based</text>
+  <text class="fx-text" x="700" y="178" text-anchor="middle">Bloom · Tone</text>
+  <text class="fx-note" x="700" y="197" text-anchor="middle">Brightness and colour remapping</text>
+
+  <path class="fx-line" d="M507 222 V273 H630"/>
+  <rect class="fx-post" x="635" y="234" width="130" height="78" rx="10"/>
+  <text class="fx-head" x="700" y="261" text-anchor="middle">Edge-based</text>
+  <text class="fx-text" x="700" y="284" text-anchor="middle">Cel · SMAA</text>
+  <text class="fx-note" x="700" y="303" text-anchor="middle">Edge detection and blending</text>
+
+  <path class="fx-line" d="M765 67 H795 V167 H820"/>
+  <path class="fx-line" d="M765 167 H820"/>
+  <path class="fx-line" d="M765 273 H795 V167 H820"/>
+  <rect class="fx-box" x="825" y="128" width="75" height="78" rx="10"/>
+  <text class="fx-head" x="862" y="155" text-anchor="middle">Presentation</text>
+  <text class="fx-text" x="862" y="178" text-anchor="middle">Swap</text>
+  <text class="fx-note" x="862" y="197" text-anchor="middle">To the screen</text>
+
+  <text class="fx-note" x="20" y="350">Sampling AA changes how the scene is generated · post-processing reads limited Color/Depth information · the swap chain only presents and doesn’t improve quality</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">Conceptual data flow: all “display settings”, but they happen at entirely different stages with different visible benefits and kinds of distortion</figcaption>
+</figure>
+
+<h3>Quick guide for ordinary players</h3>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Effect</th><th>Most visible change</th><th>Main cost / side effects</th><th>One-line advice</th></tr></thead>
+<tbody>
+<tr><td>SSAO</td><td>More contact shadow in corners, under feet and at object seams</td><td>Edge halos, noise; heavier on the GPU at higher resolutions</td><td>Medium if you like depth; off if you prefer the original</td></tr>
+<tr><td>Bloom</td><td>Soft glow around bright effects</td><td>Overexposure, greyish look, blurred detail</td><td>To taste; don’t treat it as HDR</td></tr>
+<tr><td>Depth of Field</td><td>Out-of-focus areas blur for a camera-like look</td><td>Harder to make out distant things; transparent objects/HUD edges may glitch</td><td>Off if combat clarity comes first</td></tr>
+<tr><td>Cel Shading</td><td>Stronger outlines, a more anime-like image</td><td>Fine detail edges may be misread or outlined too heavily</td><td>Purely aesthetic</td></tr>
+<tr><td>Tonemapping</td><td>Changes brightness, contrast and colour response</td><td>Crushed shadows or lost highlights</td><td>Turn it on alone first, and add Bloom once the colours suit you</td></tr>
+<tr><td>Motion Blur</td><td>Trails on movement and camera changes</td><td>Lower motion clarity, may cause motion sickness</td><td>Most players can turn it off</td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2 id="ao">Ambient occlusion</h2>
+
+<p>SSAO (Screen-Space Ambient Occlusion) is a <strong>screen-space approximation of contact occlusion</strong>. It reconstructs the spatial relationship of nearby surfaces from the current frame’s depth buffer (implementations may also use normals), and adds low-frequency darkening where light struggles to reach, such as corners, object seams and under characters’ feet.</p>
+
+<p><strong>It isn’t dynamic shadows or global illumination.</strong> Real shadows need to know the relationship between the light, the occluder and the surface being shadowed; SSAO only knows the limited depth information the camera currently sees, so it can only give the visual cue that objects feel more grounded and solid.</p>
+
+<ul>
+<li><strong>Disabled</strong> — off. Closest to the original look, best performance.</li>
+<li><strong>Low</strong> — suits low resolutions or limited hardware; sampling noise, banding or edge changes may be more visible.</li>
+<li><strong>Medium</strong> — a good balance of contact feel and cost; a sensible starting point for ordinary players.</li>
+<li><strong>High</strong> — higher sampling/processing quality; shadows are usually steadier and finer, but cost rises sharply with output resolution.</li>
+</ul>
+
+<h3>Limits advanced players should know</h3>
+<ul>
+<li><strong>Screen-edge leaks: </strong>when the sample area goes off screen there’s no scene data, so occlusion may suddenly fade or vanish.</li>
+<li><strong>Incomplete occlusion information: </strong>objects off camera or completely hidden behind the foreground aren’t in the current depth buffer and can’t contribute correct occlusion.</li>
+<li><strong>Halos at depth discontinuities: </strong>large depth jumps where foreground meets background can form unnatural dark or light edges.</li>
+<li><strong>Transparency and particles: </strong>transparent objects, effects and the HUD often don’t write depth like ordinary solids, so they may be left out or wrongly covered.</li>
+<li><strong>Relation to AA: </strong>SSAO/DoF need to read or resolve multisampled depth/colour buffers correctly. Ephinea’s 2022-09-06 update specifically fixed their combination with MSAA/HSAA, so if an old client has problems, update fully first.</li>
+</ul>
+
+<p><strong>Recommendation: </strong>Start with  <strong>Medium</strong> Watch characters’ feet, corners and screen edges; move up to High if there are no halos, noise or frame drops. Choose  <strong>Disabled</strong>.</p>
+
+<hr>
+
+<h2 id="extra">Extra (additional features)</h2>
+
+<p>These are experience switches Ephinea adds on top of the original, <strong>quality-of-life toggles</strong> unrelated to visual quality; green = on, grey = off.</p>
+
+<ul>
+<li><strong>FAST STARTUP</strong> — skips the SEGA / Sonic Team / SOFTDEC logo animations at startup and goes straight to the login screen.</li>
+<li><strong>CLEAN CAPTURE</strong> — makes the game’s built-in screenshots read a “clean” image from the scene render target, so later overlays such as Lua Addons aren’t included. It isn’t a switch for better recording quality; whether third-party recorders can capture still depends on the backend and swap chain.</li>
+<li><strong>MOTION BLUR</strong> — motion blur. Blends samples along the direction of motion or accumulates neighbouring frames to imitate motion trails during a shutter exposure. It makes low-frame-rate motion look more continuous, at the cost of detail and text legibility while moving; at PSOBB’s fixed 30 FPS the trails are especially noticeable, so turn it off if you value motion clarity or are prone to motion sickness.</li>
+<li><strong>RARE DROP SFX</strong> — rare drop sound. Plays an extra sound when a rare item drops, so you’re less likely to miss it while farming.</li>
+<li><strong>BANK SHORTCUTS</strong> — bank shortcut keys. When on, you can store/take items and turn pages quickly with the keyboard in the bank, a big efficiency gain.</li>
+<li><strong>LARGE BANK WINDOW</strong> — larger bank window. Shows more items at once and cuts down on page turning.</li>
+</ul>
+
+<p><strong>Screenshot compatibility: </strong>Ephinea’s developers state clearly that Clean Capture won’t include Addons, and D3D12’s built-in screenshots can’t capture Addons either. If you must capture add-on UI too, try D3D8/9 with Clean Capture off first, or a compatible Flip presentation mode under D3D11; you can also just use the system’s or OBS’s window capture.</p>
+
+<hr>
+
+<h2 id="shaders">Shaders</h2>
+
+<p>These are <strong>screen-space post-processing</strong> effects based on the final colour, depth or edge information; green = on, grey = off. They add no model or texture detail but reinterpret pixels that were already rendered. Stacking several effects stacks their costs and artefacts too, and the final look also depends on the order they run in.</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 430" role="img" aria-labelledby="shader-title shader-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="shader-title">Post-processing effects compared conceptually</title>
+  <desc id="shader-desc">Five abstract panels show ambient occlusion darkening contact areas, bloom spreading highlights, depth of field blurring the distance, cel shading strengthening outlines, and tone mapping remapping brightness.</desc>
+  <defs>
+    <filter id="blur-bg"><feGaussianBlur stdDeviation="7"/></filter>
+    <filter id="bloom-glow"><feGaussianBlur stdDeviation="12"/></filter>
+    <linearGradient id="tone-old" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#111827"/><stop offset=".55" stop-color="#64748b"/><stop offset="1" stop-color="#f8fafc"/></linearGradient>
+    <linearGradient id="tone-new" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#020617"/><stop offset=".55" stop-color="#0ea5e9"/><stop offset="1" stop-color="#fef08a"/></linearGradient>
+  </defs>
+  <style>
+    .s-panel{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .s-title{fill:#f8fafc;font-size:15px;font-weight:700}
+    .s-label{fill:#cbd5e1;font-size:13px}
+    .s-note{fill:#94a3b8;font-size:12px}
+    .s-object{fill:#60a5fa;stroke:#dbeafe;stroke-width:1.5}
+    .s-ground{stroke:#64748b;stroke-width:3}
+  </style>
+
+  <rect class="s-panel" x="10" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="96" y="61" text-anchor="middle">SSAO</text>
+  <line class="s-ground" x1="30" y1="273" x2="162" y2="273"/>
+  <ellipse cx="96" cy="267" rx="54" ry="14" fill="#020617" opacity=".60" filter="url(#blur-bg)"/>
+  <rect class="s-object" x="66" y="153" width="60" height="118" rx="8"/>
+  <text class="s-label" x="96" y="304" text-anchor="middle">Contact areas darken</text>
+  <text class="s-note" x="96" y="327" text-anchor="middle">More grounded and solid</text>
+
+  <rect class="s-panel" x="192" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="278" y="61" text-anchor="middle">Bloom</text>
+  <circle cx="278" cy="202" r="67" fill="#38bdf8" opacity=".30" filter="url(#bloom-glow)"/>
+  <circle cx="278" cy="202" r="40" fill="#7dd3fc" opacity=".65"/>
+  <circle cx="278" cy="202" r="18" fill="#f8fafc"/>
+  <text class="s-label" x="278" y="304" text-anchor="middle">Highlights spread outwards</text>
+  <text class="s-note" x="278" y="327" text-anchor="middle">Stronger sense of light, detail may blur</text>
+
+  <rect class="s-panel" x="374" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="460" y="61" text-anchor="middle">Depth of Field</text>
+  <g filter="url(#blur-bg)" opacity=".6">
+    <circle cx="417" cy="138" r="26" fill="#a78bfa"/>
+    <rect x="495" y="105" width="30" height="75" fill="#34d399"/>
+  </g>
+  <rect class="s-object" x="431" y="176" width="58" height="95" rx="8"/>
+  <text class="s-label" x="460" y="304" text-anchor="middle">Sharp focus, blurred distance</text>
+  <text class="s-note" x="460" y="327" text-anchor="middle">Camera feel at the cost of legibility</text>
+
+  <rect class="s-panel" x="556" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="642" y="61" text-anchor="middle">Cel Shading</text>
+  <path d="M600 263 L600 165 L642 105 L684 165 L684 263 Z" fill="#a78bfa" stroke="#020617" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M608 168 L642 119 L642 255 L608 255 Z" fill="#c4b5fd"/>
+  <text class="s-label" x="642" y="304" text-anchor="middle">Stronger outlines and light/dark zones</text>
+  <text class="s-note" x="642" y="327" text-anchor="middle">Emphasizes an animated look</text>
+
+  <rect class="s-panel" x="738" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="824" y="61" text-anchor="middle">Tonemapping</text>
+  <rect x="763" y="108" width="122" height="62" rx="5" fill="url(#tone-old)"/>
+  <path d="M824 184 V211" stroke="#00d4ff" stroke-width="2"/>
+  <path d="M816 203 L824 212 L832 203" fill="none" stroke="#00d4ff" stroke-width="2"/>
+  <rect x="763" y="224" width="122" height="62" rx="5" fill="url(#tone-new)"/>
+  <text class="s-label" x="824" y="315" text-anchor="middle">Remaps brightness and colour</text>
+  <text class="s-note" x="824" y="337" text-anchor="middle">Isn’t the same as adding HDR information</text>
+
+  <text class="s-note" x="10" y="394">Abstract illustrations, not game screenshots; they show the main visual cue each algorithm changes</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">Effect sketches: they change contact darkening, glow, focus, outlines or tone, not the API level</figcaption>
+</figure>
+
+<ul>
+<li><strong>BLOOM</strong> — bloom. A typical implementation extracts brighter pixels, blurs a lower-resolution brightness image several times and adds it back to the original. It imitates the feeling of strong light spreading in a lens or the eye and creates no new lighting. Too strong, and white HUD elements, technique effects and bright textures bleed into each other, looking overexposed or hazy.</li>
+<li><strong>DEPTH OF FIELD</strong> — depth of field. Estimates each pixel’s distance from the focal plane from the depth buffer (the Circle of Confusion) and blurs out-of-focus areas. PSOBB’s transparent effects, character names and HUD don’t necessarily have depth consistent with solid geometry, so edges may get halos, the foreground may pick up background colour, or text may blur.</li>
+<li><strong>CEL SHADING</strong> — cel shading. Strengthens outlines with brightness/depth/normal edge detection and may compress continuous shading, pushing forms towards a cel-animation look. It’s screen-space stylization, not a remake of character materials; small textures and high-contrast HUD elements may also be treated as outlines.</li>
+<li><strong>TONEMAPPING</strong> — tone mapping. Uses a non-linear curve to remap internal brightness to the display range, changing shadow compression, highlight roll-off, contrast and saturation. PSOBB isn’t a modern HDR renderer, so here it’s better understood as <strong>reshaping display tone and colour response</strong>, not generating HDR dynamic range out of nothing.</li>
+</ul>
+
+<h3>Stacking effects and troubleshooting</h3>
+<ul>
+<li><strong>One at a time: </strong>pick a stable backend and AA first, then turn on one shader at a time. Only then can you tell which one causes crashes, blurring, frame drops or colour problems.</li>
+<li><strong>Bloom + Tonemapping:</strong>If tone mapping lifts highlights or contrast, it changes the bright areas Bloom extracts; the combined result isn’t simply the sum of the two effects.</li>
+<li><strong>DoF / SSAO + MSAA:</strong>Both depend on depth resolve. Keep the client updated; if outline halos appear, lower AO and turn off DoF first, then change AA.</li>
+<li><strong>Several full-screen passes: </strong>post-processing usually runs per output pixel, and 4K has 4 times the pixels of 1080p. One cheap effect doesn’t mean several together are still cheap.</li>
+<li><strong>Vulkan / Wine:</strong>Shader compilation, depth formats and injected overlays make combinations more complex. If you hit crashes, turn all shaders off first, and bring them back once the backend is confirmed stable.</li>
+</ul>
+
+<p><strong>Original look and clarity first: </strong>all four off.<strong>Light modernization: </strong>turn on Tonemapping alone first, then add Bloom to taste.<strong>Anime style: </strong>turn on Cel Shading alone and check whether the outlines are clean.<strong>Screenshot atmosphere: </strong>try DoF + Bloom, but they aren’t recommended long-term when you need to spot enemies and drops at a distance.</p>
+
+<hr>
+
+<h2 id="recommend">How to choose</h2>
+
+<p>There’s no “absolute best” option; here are common ways to choose:</p>
+
+<h3>Rendering backend</h3>
+<table>
+<thead>
+<tr><th>Situation</th><th>Recommended</th></tr>
+</thead>
+<tbody>
+<tr><td>Don’t know what to pick / first time playing</td><td><strong>Direct3D 11 (2.87.1)</strong></td></tr>
+<tr><td>D3D11 works fine</td><td>Leave it; switching to D3D12 won’t raise base quality</td></tr>
+<tr><td>AMD: D3D11 shows texture errors such as solid-colour polygons</td><td>Try  <strong>Direct3D 12 (2.87.1)</strong>; turn off Radeon Anti-Lag if it crashes</td></tr>
+<tr><td>NVIDIA: D3D11 misbehaves</td><td>Try D3D11 2.79.3, D3D9 or Vulkan first; don’t make dgVoodoo D3D12 your first choice</td></tr>
+<tr><td>D3D12 freezes / GPU hangs / overlay conflicts</td><td>Go back to  <strong>Direct3D 11</strong>, and try 2.79.3 if needed</td></tr>
+<tr><td>Both D3D11 and D3D12 misbehave</td><td>Try  <strong>Direct3D 9</strong>; use Vulkan as a cross-check on a different driver path</td></tr>
+<tr><td>Device Lost after UAC, lock screen or Alt-Tab</td><td>Prefer  <strong>D3D11 2.87.1</strong>; don’t use D3D9On12 instead</td></tr>
+<tr><td>Just want to check the original game starts</td><td><strong>D3D8 + None AA + shaders off</strong></td></tr>
+<tr><td>Recording / streaming can’t capture the image</td><td><strong>D3D11 + Auto/Discard</strong>, and try window capture</td></tr>
+</tbody>
+</table>
+
+<h3>An easy setup (modern graphics card + balanced quality)</h3>
+<ul>
+<li>Rendering backend:  <strong>Direct3D 11 (2.87.1)</strong>  (D3D12 won’t add quality)</li>
+<li>Anti-aliasing:  <strong>SMAA Ultra</strong>  or  <strong>MSAA 2x + SMAA</strong></li>
+<li>dgVoodoo Model: <strong>Auto</strong></li>
+<li>Ambient occlusion:  <strong>High</strong></li>
+<li>Extra: all on (turn off MOTION BLUR unless you want the original feel)</li>
+<li>Shaders: <strong>BLOOM + TONEMAPPING</strong>, the rest to taste</li>
+</ul>
+
+<h3>A conservative setup (old hardware / compatibility first)</h3>
+<ul>
+<li>Rendering backend:  <strong>Direct3D 11 (2.79.3)</strong>  or  <strong>Direct3D 9</strong></li>
+<li>Anti-aliasing:  <strong>SMAA Medium</strong></li>
+<li>dgVoodoo Model: <strong>Auto</strong>  (if you get a black screen, switch to  <strong>Discard</strong>)</li>
+<li>Ambient occlusion:  <strong>Low</strong>  or  <strong>Disabled</strong></li>
+<li>Shaders: all off</li>
+</ul>
+
+<hr>
+
+<h2 id="faq">FAQ</h2>
+
+<p><strong>Q: The game shows a black screen or crashes after switching. What now?</strong><br>
+A: Reopen the launcher and switch back to a conservative option such as  <code>Direct3D 9</code>  or  <code>Direct3D 11 (2.79.3)</code> . Settings only affect rendering and won’t damage character data.</p>
+
+<p><strong>Q: Why are there two sets of version numbers (2.79.3 / 2.87.1)?</strong><br>
+A: Different dgVoodoo / DXVK versions have different fixes and regressions. The older one is kept as a fallback and the newer one is for trying out. If you hit a bug in the newer version, you can switch back to the older one for now.</p>
+
+<p><strong>Q: I changed options but the frame rate didn’t change?</strong><br>
+A: PSOBB’s native frame rate cap is 30 FPS, and the translation layer can’t break the game’s internal frame lock. Switching backends is mainly for <strong>stability</strong> and <strong>Compatibility</strong>, not higher frame rates.</p>
+
+<p><strong>Q: It still crashes, and it’s not about rendering?</strong><br>
+A: See  <a href="/guide/crash.html">About crashes</a>  and check system-level settings such as DEP, compatibility, UAC and antivirus exclusions.</p>
+
+<p><strong>Q: Why doesn’t anti-aliasing take effect / make any difference?</strong><br>
+A: Advanced AA is implemented by the Ephinea client in the render target and post-processing stages, not provided automatically by dgVoodoo / DXVK. The full advanced options are available from  <strong>D3D9</strong>  up; D3D8 isn’t suited as an advanced AA path. MSAA only handles geometric coverage edges, so texture interiors still shimmer; try SSAA to improve that, or SMAA if you just want cheap smoothing.</p>
+
+<p><strong>Q: D3D9on12 already uses D3D12, so why pick D3D12?</strong><br>
+A: D3D9on12 is Microsoft’s system compatibility layer that maps D3D9 commands onto D3D12, keeping the D3D9 device model on top; the launcher’s D3D12 has dgVoodoo take over D3D9 emulation, resource management and Flip presentation. They only share the final driver API; the translators and compatibility behaviour are completely different. To avoid traditional Device Lost, prefer dgVoodoo D3D11; consider D3D12 only when there are specific D3D11 texture glitches on AMD.</p>
+
+<p><strong>Q: Can D3D12 be thought of as Microsoft’s Vulkan?</strong><br>
+A: As an introductory analogy, yes: both are modern low-level APIs that explicitly manage commands, resource state, descriptors, pipelines and synchronization. But they aren’t the same API or wrappers of each other; D3D12 belongs to the Windows/Xbox ecosystem and Vulkan is a cross-platform standard. For PSOBB it’s more accurate to say dgVoodoo translates D3D9 to D3D12 and DXVK translates the same kind of workload to Vulkan.</p>
+
+<p><strong>Q: The image got blurry / the colours changed after turning on Shaders?</strong><br>
+A: That’s the nature of post-processing, not a bug. The most common culprits are  <strong>BLOOM</strong>  (blur) and  <strong>TONEMAPPING</strong>  (deeper, more saturated colours). Turn them off one by one to find the one you don’t like.</p>
+
+<p><strong>Q: How are CLEAN CAPTURE and dgVoodoo Model = Discard related?</strong><br>
+A: Both relate to whether recording / streaming can capture the image properly. Turn on  <strong>CLEAN CAPTURE</strong> first; if OBS still can’t capture under D3D11, switch Model from a Flip type back to  <strong>Discard</strong>. D3D12 always uses Flip Discard, so switch to D3D11 before testing Model.</p>
+
+    </section>

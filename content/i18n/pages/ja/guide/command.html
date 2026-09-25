@@ -1,0 +1,151 @@
+<!-- Japanese text for /guide/command.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+        <h1>サーバーのコマンド</h1>
+
+<p>Ephinea のサーバーでは、ゲーム内でコマンドを入力して遊び方を調整したり、特定の機能を使ったりできます。</p>
+
+<h2>コマンド一覧 ##</h2>
+
+<p><strong>/lang x</strong>  </p>
+<p>クエストの言語を設定します。1 は英語、2 は日本語。</p>
+
+<p><strong>/setname x</strong>  </p>
+<p>部屋（パーティ）の名前を設定します。最大 12 文字。</p>
+
+<p><strong>/setpass x</strong>  </p>
+<p>部屋（パーティ）のパスワードを設定します。最大 16 文字。</p>
+
+<p><strong>/partyinfo</strong>  </p>
+<p>今の部屋（パーティ）の情報を表示します：</p>
+
+<ul>
+<li>経験値の倍率（Experience Rate）</li>
+<li>経験値の共有の設定（Experience Share Settings）</li>
+<li>セクション ID（Section ID）</li>
+<li>ドロップの方式（Drop Style）</li>
+<li>ドロップ率（Drop Rate）</li>
+<li>レアエネミーの出現率（Rare Enemy Rate）</li>
+</ul>
+
+<p><strong>/rbr</strong>  </p>
+<p>画面の上に今週の RBR のクエストをスクロール表示します。</p>
+
+<p><strong>/luck</strong>  </p>
+<p>今のキャラクターの毎日の運勢のレベルを表示します：Normal（普通）、Good（良い）、Lucky（幸運）、Incredible（最高）。</p>
+
+<p><strong>/forecast</strong>  </p>
+<p>今日の運勢の条件を表示します。</p>
+
+<p><strong>/noluck</strong>  </p>
+<p>今のキャラクターが毎日の運勢のレアドロップ率の補正を受けるかを切り替えます。</p>
+
+<p><strong>/purist</strong>  </p>
+<p>ゲーム内で <code>/purist</code> と入力すると <code>賢者モード</code> になります。これはアカウントのモード（Normal、Sandbox）とは違います。</p>
+<p><code>Ephinea</code>サーバーは定期的にドロップの補正を行います。本来のドロップにしたいときは <code>賢者モード</code> の基本のドロップモードを使えます。</p>
+<p>なお、<code>賢者モード</code> の間でも、レアエネミーのドロップ補正がある別の部屋に入ればその補正を受けられますが、あなたの部屋に入った人はドロップの補正を一切受けられません。</p>
+
+<p><strong>/bank</strong>  </p>
+<p>ログイン中にキャラクターと共有倉庫を切り替えます。注意：共有倉庫は1つだけで、32 キャラクターすべてで共有します。</p>
+
+<p><strong>/lobby</strong>  </p>
+<p>ロビーに戻ります。</p>
+
+<p><strong>/showwep</strong>  </p>
+<p><b>特殊な武器の</b>拾った時のメッセージ（持ち物の武器の表示を含む）を表示するか切り替えます。</p>
+
+<p><strong>/matcount</strong>  </p>
+<p>今のキャラクターのマテリアルの使用状況を、画面上部のお知らせ欄に表示します。</p>
+
+<p><strong>/matreset</strong></p>
+<p>今のキャラクターのマテリアルの使用状況をリセットします（<em>HP と TP のマテリアルは除く</em>,</p>
+<p>）。ロビーでだけ使え、確認のため2回入力する必要があります。</p>
+
+<p><strong>/killcount</strong></p>
+<p>Lame d'Argent、Sealed J-Sword、Limiter、Swordsman Lore などの封印解除の数をすべて、画面上部のお知らせ欄に表示します。</p>
+
+<p><strong>/wipecmode</strong></p>
+<p>今のキャラクターの CH のデータを消去します。</p>
+
+<p><strong>/modname x</strong></p>
+<p>キャラクターの名前を変えます。最大 10 文字で、セクション ID は計算し直されません。回数の制限はありません。</p>
+
+<p><strong>/modsecid x</strong></p>
+<p>キャラクターのセクション ID を変えます。レベル 20 になる前に1回だけ使えます。  </p>
+<p>x に使える値：</p>
+
+<p>**VIRIDIA, GREENILL, SKYLY, BLUEFULL, PURPLENUM,  </p>
+<p>PINKAL, REDRIA, ORAN, YELLOWBOZE, and WHITILL**</p>
+
+<p><strong>/ping</strong>  </p>
+<p>サーバーに ping を送り、遅延を確認します。PSO の仕組みにより、最小の ping は 66ms です。</p>
+
+<p><strong>/time</strong>  </p>
+<p>サーバーの現在の時刻を表示します（協定世界時。日本は 9 時間を足します）。</p>
+
+<p><strong>/sfx 0-10</strong>  </p>
+<p>/sfx 0-10 で効果音の音量を調整します。</p>
+
+<p><strong>/bgm 0-10</strong>  </p>
+<p>/bgm 0-10 で BGM の音量を調整します。</p>
+
+<p><strong>/cam</strong>  </p>
+<p>PSO 標準のカメラの動きをオン・オフします。オフのときは左クリックで前進し、右クリックでその場から自由に見回します。</p>
+
+<p><strong>/map</strong>  </p>
+<p>画面中央の大きな地図をオン・オフします。</p>
+
+<p><strong>/gamefilter</strong>  </p>
+<p>入れる部屋を表示します。</p>
+
+<p><strong>/slowburst</strong>  </p>
+<p>今の部屋の全員にロード画面を有効にします（部屋のリーダーのみ）。</p>
+
+<p><strong>/burstpref</strong>  </p>
+<p>ロビーと自分が作ったパーティで、自分のロード画面をすべて有効にします。</p>
+
+<p><strong>/mobhp</strong>  </p>
+<p>敵の HP バーをオン・オフします。</p>
+
+<p><strong>/resetmobhp</strong>  </p>
+<p>敵の HP バーの設定をリセットします。</p>
+
+<p><strong>/mobhpfilled</strong>  </p>
+<p>敵の HP バーの満タンの部分の色を設定します。</p>
+
+<p><strong>/mobhpfilling</strong>  </p>
+<p>敵の残りの HP の部分の色を設定します。</p>
+
+<p><strong>/mobhpdamage</strong>  </p>
+<p>敵の減った HP の部分の色を設定します。</p>
+
+<p><strong>/starttimer x</strong>   </p>
+<p>簡単なタイマーをすぐに開始します。“x” は省略できる秒数で、指定すると x から 0 へ減り、指定しなければ 0 から増えます。</p>
+
+<p><strong>/freezetimer</strong>  </p>
+<p>今のタイマーを止めます。止めたタイマーは普通もう開始できません。</p>
+
+<p><strong>/killtimer</strong>  </p>
+<p>今のタイマーを破棄します。</p>
+
+<p><strong>/revealtimer</strong></p>
+<p>うっかり隠れてしまったタイマーを表示します……</p>
+
+<p><strong>/registertimer x,y,z</strong>  </p>
+<p>y が設定されるのを待つタイマーをすぐ作り、z が設定されると自動で止まります。x を指定すると x から 0 へカウントダウンします。</p>
+
+<p><strong>/zonetimer x,y,z,r</strong>    </p>
+<p>y 階の z エリアの掃除を待つタイマーをすぐ開始します。r を指定するとカウントの前に r の設定を待ち、x を指定すると x から 0 へカウントダウンします。</p>
+
+<p><strong>/pb</strong>  </p>
+<p>今のキャラクターの PB を 100 にします（サンドボックス）</p>
+
+<p><strong>/sd</strong>  </p>
+<p>今のキャラクターの S/D のレベルを設定します。最大 81（サンドボックス）</p>
+
+<p><strong>/sdall</strong>  </p>
+<p>部屋のリーダーが部屋の全員の S/D のレベルを設定します。最大 81（サンドボックス）</p>
+
+<p><strong>/sethp</strong>  </p>
+<p>キャラクターの HP を設定します（サンドボックス）</p>
+    </section>

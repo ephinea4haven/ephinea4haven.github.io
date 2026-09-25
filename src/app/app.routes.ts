@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { contentRoutes } from './generated/content.routes';
 
 /** Angular features that render every language from the URL (docs/ARCHITECTURE.md). */
 const featureRoutes = (prefix = ''): Routes => [
@@ -55,5 +54,7 @@ export const routes: Routes = [
     loadComponent: () => import('./combo/combo-opm-page.component')
       .then(({ ComboOpmPageComponent }) => ComboOpmPageComponent),
   },
-  ...contentRoutes,
+  // Content pages (every language version) load their route table lazily, so the
+  // initial bundle doesn't grow with each translated page.
+  { path: '', loadChildren: () => import('./generated/content.routes').then((m) => m.contentRoutes) },
 ];

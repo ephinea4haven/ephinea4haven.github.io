@@ -1,0 +1,914 @@
+<!-- Japanese text for /guide/d3d.html. Each section replaces the page region with the same data-part. -->
+
+<section data-part="guide">
+        <h1>PSOBB の描画とグラフィック API のガイド</h1>
+
+<p>画面で具体的なスイッチを探すなら、まず<a href="/guide/launcher.html">ランチャー設定ガイド</a>を見てください。Windows の英語版のネイティブの画面と、ページごとの説明があります。</p>
+
+<p>PSOBB を対象に、古い Direct3D の呼び出しが D3D9・dgVoodoo・DXVK を通って現代のグラフィックカードに届く仕組みと、Ephinea の画面設定が実際に何をするかを説明します。描画技術の解説であると同時に、クライアントのバックエンドの選び方と問題の調べ方のガイドでもあります。内容：</p>
+<ul>
+<li><a href="#overview">全体の関係図</a></li>
+<li><a href="#backend">描画のバックエンド（D3D／Vulkan）</a></li>
+<li><a href="#api-comparison">D3D8／D3D9／9on12／11／12／Vulkan の比較</a></li>
+<li><a href="#d3d12-vulkan">D3D12 と Vulkan の下での関係</a></li>
+<li><a href="#versions">Ephinea が提供する変換レイヤーのバージョン</a></li>
+<li><a href="#device-lost">Device Lost：バージョンとバックエンドの危険</a></li>
+<li><a href="#aa">アンチエイリアス（Anti-Aliasing）</a></li>
+<li><a href="#af">異方性フィルタリング（Anisotropic Filtering）</a></li>
+<li><a href="#swap">dgVoodoo Model（スワップチェーンの方式）</a></li>
+<li><a href="#effects-pipeline">画面効果が描画の流れのどこにあるか</a></li>
+<li><a href="#ao">アンビエントオクルージョン（Ambient Occlusion）</a></li>
+<li><a href="#extra">Extra（追加機能）</a></li>
+<li><a href="#shaders">シェーダー（Shaders）</a></li>
+<li><a href="#recommend">どう選ぶ？</a></li>
+<li><a href="#faq">よくある質問</a></li>
+</ul>
+
+<hr>
+
+<h2 id="overview">全体の関係図</h2>
+
+<p>各設定の依存関係が1枚でわかる図： <strong>選んだバックエンドによって、下の画質の設定のどれが実際に効くかが決まる</strong>。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 800" role="img" aria-label="PSOBB の描画と画面の設定の関係図" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/>
+    </marker>
+  </defs>
+  <style>
+    .lvl1{fill:rgba(0,212,255,0.12);stroke:#00d4ff;stroke-width:2}
+    .lvl2{fill:rgba(96,165,250,0.10);stroke:#60a5fa;stroke-width:2}
+    .lvl3{fill:rgba(167,139,250,0.10);stroke:#a78bfa;stroke-width:2}
+    .extra{fill:rgba(255,255,255,0.04);stroke:rgba(255,255,255,0.30);stroke-width:2;stroke-dasharray:6 4}
+    .t{fill:#e2e8f0;font-size:14px}
+    .th-cyan{fill:#00d4ff;font-size:16px;font-weight:700}
+    .th-blue{fill:#60a5fa;font-size:16px;font-weight:700}
+    .th-purple{fill:#a78bfa;font-size:16px;font-weight:700}
+    .th-mute{fill:#cbd5e1;font-size:14px;font-weight:700}
+    .tm{fill:#94a3b8;font-size:12px}
+    .arrow{stroke:#00d4ff;stroke-width:2;fill:none}
+  </style>
+
+  <!-- 引擎 -->
+  <rect class="lvl1" x="320" y="10" width="280" height="55" rx="10" ry="10"/>
+  <text class="th-cyan" x="460" y="35" text-anchor="middle">PSOBB のエンジン</text>
+  <text class="tm" x="460" y="54" text-anchor="middle">ネイティブの Direct3D 8 の呼び出し</text>
+
+  <line class="arrow" x1="460" y1="65" x2="460" y2="93" marker-end="url(#arr)"/>
+
+  <!-- 后端选择 -->
+  <rect class="lvl1" x="280" y="98" width="360" height="55" rx="10" ry="10"/>
+  <text class="th-cyan" x="460" y="123" text-anchor="middle">描画のバックエンド（Backend）</text>
+  <text class="tm" x="460" y="142" text-anchor="middle">ここでの選択で、下のどの設定が効くかが決まる</text>
+
+  <!-- 分叉到两条路径 -->
+  <line class="arrow" x1="380" y1="153" x2="220" y2="183" marker-end="url(#arr)"/>
+  <line class="arrow" x1="540" y1="153" x2="700" y2="183" marker-end="url(#arr)"/>
+
+  <!-- 原生/系统兼容路径 -->
+  <rect class="lvl2" x="40" y="185" width="360" height="140" rx="10" ry="10"/>
+  <text class="th-blue" x="220" y="210" text-anchor="middle">ネイティブ／システムの互換経路</text>
+  <text class="t" x="60" y="237">• Direct3D 8 — 変換なし、本来の描画</text>
+  <text class="t" x="60" y="260">• Direct3D 9 — Ephinea が D3D8 を D3D9 で包む</text>
+  <text class="t" x="60" y="283">• Direct3D 9on12 — Microsoft の D3D9→D3D12</text>
+  <text class="tm" x="220" y="312" text-anchor="middle">高度な AA は D3D9 以上。D3D8 は本来の基準</text>
+
+  <!-- 翻译层路径 -->
+  <rect class="lvl2" x="520" y="185" width="360" height="140" rx="10" ry="10"/>
+  <text class="th-blue" x="700" y="210" text-anchor="middle">変換レイヤーの経路</text>
+  <text class="t" x="540" y="237">• D3D 11／12 — D3D9 を dgVoodoo 経由で出力</text>
+  <text class="t" x="540" y="260">• Vulkan — D3D9 を DXVK 経由で出力</text>
+  <text class="t" x="540" y="283">•（Custom）— 自分で用意した dll</text>
+  <text class="tm" x="700" y="312" text-anchor="middle">↓ 主に互換性・表示方式・ドライバーの経路が変わる ↓</text>
+
+  <!-- 翻译层 → 画质选项 -->
+  <line class="arrow" x1="700" y1="325" x2="700" y2="348" marker-end="url(#arr)"/>
+
+  <!-- 画质选项面板 -->
+  <rect class="lvl3" x="520" y="350" width="360" height="180" rx="10" ry="10"/>
+  <text class="th-purple" x="700" y="375" text-anchor="middle">バックエンドと画質の設定の関係</text>
+  <text class="t" x="540" y="403">• 高度な AA — D3D9 以上で使える</text>
+  <text class="t" x="540" y="428">• dgVoodoo Model — スワップチェーン（D3D11／12 のみ）</text>
+  <text class="t" x="540" y="453">• 同じ解像度と AA では画質は上がらない</text>
+  <text class="t" x="540" y="478">• 変換の差でフォグ・反射・色が変わることも</text>
+  <text class="tm" x="700" y="510" text-anchor="middle">API のバージョン ≠ 画質の段階</text>
+
+  <!-- 汇合: 原生路径 (向下再右拐到合流点) -->
+  <polyline class="arrow" points="220,325 220,605 460,605" />
+  <!-- 汇合: 翻译路径 (向下再左拐到合流点) -->
+  <polyline class="arrow" points="700,530 700,605 460,605" />
+  <!-- 合流点 -> 输出 -->
+  <line class="arrow" x1="460" y1="605" x2="460" y2="638" marker-end="url(#arr)"/>
+
+  <!-- 最终输出 -->
+  <rect class="lvl1" x="320" y="645" width="280" height="55" rx="10" ry="10"/>
+  <text class="th-cyan" x="460" y="678" text-anchor="middle">最終的な画面 → 表示</text>
+
+  <!-- Extra 旁挂条 -->
+  <rect class="extra" x="40" y="730" width="840" height="60" rx="10" ry="10"/>
+  <text class="th-mute" x="60" y="755">Extra（描画と無関係 · どのバックエンドでも有効）</text>
+  <text class="t" x="60" y="779">FAST STARTUP · CLEAN CAPTURE · MOTION BLUR · RARE DROP SFX · BANK SHORTCUTS · LARGE BANK WINDOW</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">シアン＝主な流れ · 青＝バックエンドの分岐 · 紫＝バックエンドと画質の設定の関係 · 点線＝描画と無関係</figcaption>
+</figure>
+
+<p>図から覚えておきたい2つのこと： <strong>API の数字が大きいほど画質が高いわけではない</strong>。まず決まるのは、命令がどのランタイム・ラッパー・グラフィックドライバーを通るかです。Ephinea の高度なアンチエイリアスは  <strong>D3D9</strong>  以上で使えます。D3D11／12 はさらに dgVoodoo を、Vulkan は DXVK を使います。 <strong>dgVoodoo Model</strong>  だけは D3D11／12 の経路に限られます。</p>
+
+<hr>
+
+<h2 id="backend">描画のバックエンド（D3D／Vulkan）</h2>
+
+<p>PSOBB のエンジンが出すのは本来  <strong>Direct3D 8</strong>  の命令だけです。ランチャーの設定はモデル・テクスチャ・場面の光を書き換えるのではなく、その命令がその後どの<strong>互換レイヤー・出力の API・グラフィックドライバー</strong>を通るかを決めます。厳密には、このドロップダウンはネイティブの API・変換の経路・ラッパーの出力のバックエンドを混ぜたもので、同じ種類の「レンダラー」がいくつか並んでいるわけではありません。</p>
+
+<h3>まず描画の流れを正しく理解する</h3>
+
+<p>現代のバックエンドは PSOBB をネイティブの D3D11 や D3D12 のゲームに変えるわけではありません。ゲームは今も D3D8 時代と同じ頂点・テクスチャ・固定機能の状態・描画の命令を出し、互換レイヤーがそれを新しい API が理解できるリソース・状態・シェーダーに書き換えてから、グラフィックドライバーに渡します。</p>
+
+<pre><code>PSOBB の内容と処理
+    ↓  D3D8 の命令
+Ephinea の互換・強化レイヤー（D3D9 の経路、AA、AF、後処理）
+    ├─ D3D9 ───────────────────────────────→ D3D9 のドライバー
+    ├─ D3D9 → Microsoft D3D9On12 ─────────→ D3D12 のドライバー
+    ├─ D3D9 → dgVoodoo ─→ D3D11 か D3D12 → 対応するドライバー
+    └─ D3D9 → DXVK ───────────────────────→ Vulkan のドライバー</code></pre>
+
+<p>ランチャーのカスタムファイルが  <code>dgVoodoo_d3d9.dll</code>  か  <code>dxvk_d3d9.dll</code> である理由もこれで分かります。ラッパーは Ephinea が出す D3D9 の呼び出しを受け取り、D3D11・D3D12・Vulkan へ渡します。Ephinea の公式の <a href="https://www.pioneer2.net/community/threads/ephinea-launcher-3-5-0-and-dll-update-1-860-for-april-29th-2026-%E3%83%A9%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC%E3%81%8A%E3%82%88%E3%81%B3dll%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88-4-29.33093/" target="_blank" rel="noopener">Launcher 3.5.0 の更新情報</a>にも、この2つのファイル名とバージョンの関係が書かれています。</p>
+
+<h3 id="api-comparison">D3D8／D3D9／9on12／11／12／Vulkan の比較</h3>
+
+<p>まず区別すべき3つのこと：<strong>D3D8／9／11／12 と Vulkan はグラフィック API、D3D9On12 は Microsoft のマッピングレイヤー、dgVoodoo と DXVK はサードパーティの変換ツールです。</strong>Ephinea のドロップダウンは、これらの違う層を選びやすい「バックエンド」としてまとめたものです。</p>
+
+<div style="overflow-x:auto">
+<table>
+<thead>
+<tr><th>Ephinea の選択肢</th><th>PSOBB から見た API</th><th>中間のレイヤー</th><th>最終的なドライバーの API</th><th>抽象度</th><th>主な特徴</th></tr>
+</thead>
+<tbody>
+<tr><td>Direct3D 8</td><td>D3D8</td><td>なし</td><td>D3D8</td><td>旧式の高水準</td><td>本来の固定機能パイプライン。経路が最も短い。高度な AA は不完全。従来のデバイスロストの仕組み</td></tr>
+<tr><td>Direct3D 9</td><td>D3D8</td><td>Ephinea D3D8→9</td><td>D3D9</td><td>旧式の高水準</td><td>固定機能とシェーダーモデルが共存。高度な AA が使える。今も D3D9 の Reset／Device Lost の仕組み</td></tr>
+<tr><td>Direct3D 9on12</td><td>D3D8→D3D9</td><td>Microsoft D3D9On12</td><td>D3D12</td><td>上は D3D9、下は D3D12</td><td>システムのマッピングレイヤー。dgVoodoo ではない。上の D3D9 のデバイスの仕組みを保つ</td></tr>
+<tr><td><strong>Direct3D 11</strong></td><td>D3D8→D3D9</td><td>dgVoodoo</td><td>D3D11</td><td>現代の高水準</td><td>ドライバーがリソースの状態・同期・メモリの方針の多くを管理。互換性はたいてい最も高い</td></tr>
+<tr><td>Direct3D 12</td><td>D3D8→D3D9</td><td>dgVoodoo</td><td>D3D12</td><td>現代の低水準</td><td>変換ツールが命令・リソースの状態・ディスクリプター・同期・メモリを明示的に管理。表示は Flip 方式に固定</td></tr>
+<tr><td>Vulkan</td><td>D3D8→D3D9</td><td>DXVK</td><td>Vulkan</td><td>現代の低水準</td><td>D3D12 と同世代だが、別のクロスプラットフォームの API とドライバーの系統。Windows は DXVK の公式の対象ではない</td></tr>
+<tr><td>Custom</td><td>D3D8→D3D9</td><td>自分で用意した dgVoodoo／DXVK</td><td>D3D11、D3D12、または Vulkan</td><td>ファイルによる</td><td>新しい修正や不具合の確認用。「Custom」という名前だけでは動作を判断できない</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>D3D8 から D3D9 は旧式の API の段階的な改良で、固定機能と従来のデバイスのリセットの仕組みを保っています。D3D11 は現代の GPU の機能をドライバーが管理する高水準の仕組みで包み、D3D12 と Vulkan はリソースの状態・命令の送信・同期を明示的に上の層に任せます。<strong>D3D9On12 が変えるのは D3D9 の下の実装だけで、PSOBB や Ephinea の前段がネイティブの D3D12 になるわけではありません。</strong></p>
+
+<h3>画質：たいてい同じなのに、1ピクセル単位では保証されない理由</h3>
+
+<p><strong>API そのものが「D3D12 級の画質」を与えるわけではありません。</strong>キャラクターのポリゴン数、テクスチャの解像度、材質、光の計算式、影、エフェクトは今も PSOBB が決めます。出力の解像度・AA・AF・SSAO・シェーダーがまったく同じなら、D3D9・D3D11・D3D12・Vulkan の画面はとても近くなるはずです。</p>
+
+<p>ただし、各経路はビット単位で同じ再生ではありません。ラッパーは D3D8／9 の固定機能パイプラインを再現し、旧式の形式と状態を現代のシェーダーとリソースに変換する必要があり、次のような細部で見た目の違いが出ることがあります：</p>
+<ul>
+<li><strong>サンプリングとフィルタリング：</strong>テクスチャ座標の精度、ミップマップの LOD、異方性フィルタリング、半ピクセルの規則で、テクスチャの鮮明さが少し変わることがあります。</li>
+<li><strong>深度とブレンド：</strong>深度バッファの形式、比較の精度、Alpha Test／Blend の再現の違いで、つなぎ目・ちらつき・透明の順番の乱れが出ることがあります。</li>
+<li><strong>固定機能の再現：</strong>頂点フォグ・光・反射・テクスチャのステージはシェーダーに変換する必要があり、ラッパーの不具合でフォグが消える、反射がおかしい、色がずれるといったことが起きます。</li>
+<li><strong>色と表示：</strong>ガンマ、色空間、拡大縮小のフィルター、スワップチェーンの合成方法が、明るさ・コントラスト・最終的な鮮明さに影響します。</li>
+</ul>
+
+<p>そのため、バックエンドによって明らかな黒い塊、おかしなフォグ、反射の欠け、全体の暗さが出たときは、ある API の正常な「絵柄」ではなく、<strong>互換性の違いか変換の誤り</strong>として扱ってください。バックエンドを切り替える主な意味は、今の GPU・ドライバー・ウィンドウのモードで最も正しく安定した実装を見つけることです。</p>
+
+<h3>D3D9on12 と D3D12 はなぜ別物なのか？</h3>
+
+<p>どちらも最終的に D3D12 のドライバーを呼びますが、<strong>変換するもの、上に見せるデバイスの仕組み、表示の管理がすべて違います</strong>。「最後に D3D12 を使う」だけでは動作を判断できません。</p>
+
+<table>
+<thead>
+<tr><th>比較の項目</th><th>Direct3D 9on12</th><th>Direct3D 12</th></tr>
+</thead>
+<tbody>
+<tr><td>経路全体</td><td>D3D8 → Ephinea D3D9 → Microsoft D3D9On12 → D3D12</td><td>D3D8 → Ephinea D3D9 → dgVoodoo → D3D12</td></tr>
+<tr><td>変換するもの</td><td>Windows の D3D9On12 Mapping Layer</td><td>サードパーティのラッパー dgVoodoo2</td></tr>
+<tr><td>上の層の仕組み</td><td>今も D3D9 のデバイス・リソース・スワップチェーンの規則で動く</td><td>dgVoodoo が D3D9 を再現し、D3D12 のリソースと同期を自分で管理する</td></tr>
+<tr><td>デバイスロスト</td><td>従来の D3D9 の動作が多く残る。UAC やロック画面などでまだ問題が起きることを Ephinea が確認している</td><td>dgVoodoo がデバイスと表示を引き受けるので、この種の D3D8／9 の Device Lost はたいてい避けられる</td></tr>
+<tr><td>スワップチェーン</td><td>D3D9 のランタイムとマッピングレイヤーが決める</td><td>dgVoodoo の D3D12 は常に現代の Flip Discard を使う</td></tr>
+<tr><td>アンチエイリアス</td><td>Ephinea の高度な AA が使える。互換性の特徴は D3D9 に近い</td><td>同じ Ephinea の AA が使える。MSAA／HSAA の反射の互換性はたいていよい</td></tr>
+<tr><td>主な用途</td><td>システムの互換の経路で、性能や画質を上げる選択肢ではない</td><td>dgVoodoo の現代的なデバイス管理・表示・互換性の修正のため</td></tr>
+</tbody>
+</table>
+
+<p>そのため、Alt-Tab、UAC の安全なデスクトップ、ロック画面の後の D3D8／9 の Device Lost を避けるには、D3D9On12 ではなく dgVoodoo の経路を選んでください。問題を調べるときは、まず  <strong>Direct3D 11</strong> を使います。Direct3D 12 でも従来のデバイスロストは避けられますが、GPU のメーカーで判断してください。主に AMD の D3D11 のテクスチャの異常の代わりの経路に向いており、NVIDIA では標準のおすすめではありません。D3D9On12 は D3D9 の処理を D3D12 に当てはめるだけで、dgVoodoo の互換性の工夫は得られません。</p>
+
+<h3>D3D11 と D3D12 は実際どこが違う？</h3>
+
+<p><strong>結論：</strong>どちらも dgVoodoo の D3D9 の前段・状態の変換・固定機能の再現を共有し、最後のリソース管理・命令の送信・同期・表示の層だけが分かれています。そのため機能と期待できる画質は同じで、D3D12 は画質を上げた D3D11 ではありません。</p>
+
+<table>
+<thead>
+<tr><th>比較の項目</th><th>Direct3D 11</th><th>Direct3D 12</th></tr>
+</thead>
+<tbody>
+<tr><td>API の抽象度</td><td>現代の高水準の API。イミディエイトコンテキストが描画の命令を受け取る</td><td>現代の低水準の API。コマンドリストを記録してからコマンドキューへ送る</td></tr>
+<tr><td>リソースの状態</td><td>ドライバーが読み書きの衝突と状態の遷移を追跡する</td><td>dgVoodoo が明示的にリソースバリアを入れる</td></tr>
+<tr><td>リソースのバインド</td><td>スロットでリソースをバインドし、ドライバーが多くの暗黙の状態を保つ</td><td>ディスクリプターヒープ／テーブルとルートシグネチャでバインドを整理する</td></tr>
+<tr><td>同期</td><td>ドライバーがスケジュールと衝突の追跡の大部分を担う</td><td>dgVoodoo がキューやフェンスなどで明示的に同期する</td></tr>
+<tr><td>メモリの管理</td><td>常駐とメモリの方針は主にドライバーが扱う</td><td>dgVoodoo がより直接的にヒープを確保し、リソースを置き、常駐を管理する</td></tr>
+<tr><td>パイプラインの状態</td><td>状態を項目ごとに変えられ、ドライバーが実行時に組み合わせる</td><td>状態の大部分を事前にパイプラインステートオブジェクトにまとめる</td></tr>
+<tr><td>表示</td><td>従来の BitBlt か現代の Flip 方式を使える</td><td>dgVoodoo は  <strong>Flip Discard</strong> を使い、フルスクリーンでもウィンドウのスワップチェーンで表示する</td></tr>
+<tr><td>失敗の形</td><td>ドライバーのリセットで DXGI Device Removed／Reset が報告されることがある</td><td>命令・同期・ドライバーの異常で Device Removed／Hung が報告されることがあり、明示的な管理の誤りが表に出やすい</td></tr>
+<tr><td>画質</td><td>解像度・AA・SSAO・シェーダーで決まる</td><td>同じ設定なら D3D11 とほぼ同じ</td></tr>
+<tr><td>性能</td><td>PSOBB ではたいてい十分に安定</td><td>一部のパソコンで CPU の負荷やカクつきが減ることもあるが、30 FPS の古いゲームではたいてい全体的な利点はない</td></tr>
+<tr><td>互換性</td><td>対応するハードウェアが広い。一部の AMD のドライバーでテクスチャが単色のポリゴンになることがあると dgVoodoo の公式に記録されている</td><td>D3D12 への対応が必要。dgVoodoo の公式は現在 NVIDIA のドライバーでの GPU のハングをはっきり警告しており、AMD では D3D11 のテクスチャの問題の代わりの経路として使える</td></tr>
+<tr><td>選ぶ基準</td><td>まずはこれを試す。NVIDIA の人はこちらを優先。現代のバックエンドの問題を調べるときの基準にも向く</td><td>主に AMD の D3D11 の経路で表示がおかしいとき、または D3D11 のバックエンドが原因という根拠があるときに試す</td></tr>
+</tbody>
+</table>
+
+<p>dgVoodoo の作者の<a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">公式の説明</a>でも、D3D12 を無条件の上位版とは扱っていません。自動選択は x86／x64 で D3D12 を既定にせず、特定の NVIDIA と AMD のドライバーで互換性が逆になる結果も記録しています。そのため、より適切な選び方は<strong>API の数字の大小ではなく、正しい描画と安定したフレーム時間で判断すること</strong>。</p>
+
+<p><strong>最も簡単な選び方の順番：</strong>まず  <strong>Direct3D 11 (2.87.1)</strong> を試し、画面も動作も問題なければ替える必要はありません。AMD で単色のポリゴンなど D3D11 のドライバーの既知の症状が出たら、同じバージョンの D3D12 を試し、落ちるなら Radeon Anti-Lag をオフにします。NVIDIA では dgVoodoo の D3D12 を最初に試す経路にせず、D3D11 のままにして、古い dgVoodoo、D3D9、Vulkan を試します。変えるのは毎回1つだけにしてください。</p>
+
+<h3 id="d3d12-vulkan">D3D12 と Vulkan の下での関係</h3>
+
+<p><strong>D3D12 と Vulkan は同じ世代の低水準のグラフィック API で、設計の考え方はとても近いです。</strong>どちらも、以前は D3D11 のドライバーが暗黙に行っていた多くの仕事をアプリや変換レイヤーに任せます。GPU の命令を先に記録する、リソースの状態を明示する、パイプラインのオブジェクトをまとめる、ディスクリプターをバインドする、CPU と GPU の同期を扱う、といった仕事です。このページで扱う PSOBB の場合、それを担うのはゲーム本体ではなく dgVoodoo や DXVK です。</p>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>比較の項目</th><th>Direct3D 12</th><th>Vulkan</th></tr></thead>
+<tbody>
+<tr><td>規格と対応環境</td><td>Microsoft の API で、Windows／Xbox 向け</td><td>Khronos の規格で、Windows／Linux／Android などに対応</td></tr>
+<tr><td>ランタイムと表示</td><td>D3D12 Runtime + DXGI Swap Chain</td><td>Vulkan Loader／ICD + Surface／Swapchain の拡張</td></tr>
+<tr><td>シェーダーの形式</td><td>普通は HLSL を DXIL にコンパイル。古いツールでは DXBC も使える</td><td>GLSL や HLSL などを SPIR-V にコンパイル</td></tr>
+<tr><td>リソースのバインドの仕組み</td><td>Root Signature + Descriptor Heap/Table</td><td>Pipeline Layout + Descriptor Set</td></tr>
+<tr><td>リソースの状態</td><td>Resource State + Resource Barrier</td><td>Access/Stage Mask + Pipeline Barrier + Image Layout</td></tr>
+<tr><td>メモリの仕組み</td><td>ヒープとリソースに、Windows の常駐の管理を組み合わせる</td><td>メモリタイプ／ヒープと明示的なバインドで、細部がたいていより多く見える</td></tr>
+<tr><td>同期のオブジェクト</td><td>単調に増えるフェンスが中心で、キューの Signal／Wait と CPU の待機に使える</td><td>タイムラインセマフォが D3D12 のフェンスに最も近く、フェンスと二値セマフォがホストへの通知とキューの依存関係などを分担する</td></tr>
+<tr><td>機能の拡張</td><td>機能レベル、インターフェースのバージョン、任意の機能</td><td>コアのバージョン、拡張、機能のチェーン</td></tr>
+<tr><td>PSOBB の経路</td><td>dgVoodoo が D3D9 を受け取り D3D12 を出力</td><td>DXVK が D3D9 を受け取り Vulkan を出力</td></tr>
+<tr><td>典型的なエラー</td><td>DXGI_ERROR_DEVICE_REMOVED / HUNG / RESET</td><td>VK_ERROR_DEVICE_LOST</td></tr>
+</tbody>
+</table>
+</div>
+
+<div style="overflow-x:auto">
+<table>
+<thead>
+<tr><th>D3D12 の概念</th><th>Vulkan で対応する概念</th><th>下の層での役割</th></tr>
+</thead>
+<tbody>
+<tr><td>Command List</td><td>Command Buffer</td><td>描画・コピー・状態の切り替えの命令を先に記録し、まとめて GPU へ送る</td></tr>
+<tr><td>Command Queue</td><td>Queue</td><td>グラフィック・計算・コピーの仕事を受け取り、送る順番を決める</td></tr>
+<tr><td>Resource Barrier</td><td>Pipeline Barrier / Image Layout Transition</td><td>リソースがレンダーターゲット・テクスチャ・コピー用のどれに切り替わるかを宣言する</td></tr>
+<tr><td>Descriptor Heap / Table</td><td>Descriptor Pool / Set</td><td>シェーダーがテクスチャ・サンプラー・バッファーを見つけられるようにする</td></tr>
+<tr><td>Pipeline State Object</td><td>Graphics Pipeline</td><td>シェーダーとラスタライズ・ブレンド・深度などの状態を組み合わせ、実行できるパイプラインにする</td></tr>
+<tr><td>Fence</td><td>タイムラインセマフォ。フェンス／二値セマフォが一部の場面を分担</td><td>CPU・GPU・違うキューの間の進み具合を調整する。オブジェクトは1対1に対応しない</td></tr>
+<tr><td>Heap / Resource</td><td>Device Memory / Image / Buffer</td><td>ビデオメモリを確保し、テクスチャ・頂点・レンダーターゲットを置く</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>上の表は<strong>役割のおおまかな対応</strong>で、ハンドル・寿命・同期の仕組みが1対1に対応するわけではありません。たとえば D3D12 のフェンスは増えていくタイムラインのオブジェクトで、Vulkan のタイムラインセマフォに最も近いです。従来の Vulkan のフェンスは主に1回の送信の完了をホストに知らせるもので、二値セマフォはキューの間の依存関係によく使われます。</p>
+
+<p>主な違いは「高水準か低水準か」ではなく、エコシステムとインターフェースの決まりにあります。D3D12 は Microsoft の Windows／Xbox のグラフィックの系統に属し、DXGI・HLSL／DXIL・Windows のドライバーモデルを使います。Vulkan は Khronos が定め、Windows・Linux・Android で動き、普通は SPIR-V を使い、独自の表示と拡張の仕組みを持っています。Vulkan のほうが明示的な選択肢を多く見せる傾向がありますが、どちらも上の層がリソースの寿命・同期・パイプラインを正しく管理する必要があります。</p>
+
+<pre><code>PSOBB → D3D8 → Ephinea D3D9 → dgVoodoo → D3D12 → Windows のグラフィックドライバー → GPU
+PSOBB → D3D8 → Ephinea D3D9 → DXVK     → Vulkan → Vulkan のグラフィックドライバー  → GPU</code></pre>
+
+<p>そのため  <strong>dgVoodoo + D3D12</strong>  と  <strong>DXVK + Vulkan</strong>  は同じ種類の現代の低水準の変換の経路と考えられますが、同等ではありません。2つの変換ツールは、D3D9 の固定機能・シェーダー・古いテクスチャの形式・深度バッファー・スワップチェーン・デバイスロストの再現のしかたが違います。こうした実装の違いのほうが、API の名前よりも PSOBB の正しさ・カクつき・安定性を大きく左右します。30 FPS の古いゲームでは、低水準の API の理論上の処理能力の利点はたいてい重要ではなく、正しく安定して描画できる経路を優先してください。</p>
+
+<h3 id="versions">Ephinea が提供する変換レイヤーのバージョン</h3>
+
+<p>括弧内の数字は「D3D の小さなバージョン」ではなく、変換ツールのリリースのバージョンです。複数のバージョンを選べるようになったのは Ephinea Launcher 3.5.0 とクライアントの DLL 1.860 の組み合わせからで、同じリリースの投稿でその後 DLL 1.861 がスタックの破壊を、1.862 が誤って起きる強制終了を修正しました。つまり <strong>1.860 は機能が入ったバージョンであり、固定して使うべきバージョンではありません</strong>。クライアントは常にゲーム内のパッチを最後まで当ててください。ランチャー／DLL はファイルを選んで読み込むもので、それ自体はグラフィック API ではありません。</p>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>メニューの項目</th><th>変換ツール</th><th>Ephinea での位置づけ</th><th>既知のバージョンの違い</th></tr></thead>
+<tbody>
+<tr><td>D3D11 / D3D12 <strong>2.79.3</strong></td><td>dgVoodoo2 x86 D3D9</td><td>以前からクライアントに付いている旧版で、引き続き使える</td><td>2.79.3 は Ephinea の PSOBB の頂点フォグの互換性をはっきり修正し、D3D8／9 のデバイスのリセットの修正も含みます。ただし後者の更新記録は別のゲーム向けで、これを根拠に PSOBB のデバイスロストがすべてなくなったとは言えません</td></tr>
+<tr><td>D3D11 / D3D12 <strong>2.87.1</strong></td><td>dgVoodoo2 x86 D3D9</td><td>Launcher 3.5.0 で追加された新しい任意のバージョン</td><td>2.87 の D3D12 FL11 の互換の経路と FL12+ のゼロコピーの経路を引き継ぎます。2.87.1 は D3D12 のバックエンドの落ちる不具合を直し、疑似フルスクリーンとウィンドウの大きさの動作を改善しました。Ephinea は一部の D3D12 のフリーズが直る可能性があるとしています</td></tr>
+<tr><td>Vulkan <strong>2.3.1</strong></td><td>DXVK x32 D3D9</td><td>以前からクライアントに付いている旧版で、引き続き使える</td><td>すでに安定している設定に向く。古いからといって 2.7.1 より劣るとは限らない</td></tr>
+<tr><td>Vulkan <strong>2.7.1</strong></td><td>DXVK x32 D3D9</td><td>Launcher 3.5.0 で追加された新しい任意のバージョン</td><td>Ephinea は DXVK の更新で一部の Vulkan の表示の異常が直る可能性があるとしていますが、すべての落ちる不具合や Device Lost が直るとは約束していません</td></tr>
+<tr><td>D3D11 / D3D12 / Vulkan <strong>Custom</strong></td><td>自分で用意した x86／x32 の D3D9 の DLL</td><td>上流の新しい版・古い版・特定の修正の確認用</td><td>互換性は置いたファイル次第で、「Custom」自体は新しい・速い・安定しているという意味ではない</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>バージョンの事実の出典：<a href="https://www.pioneer2.net/community/threads/ephinea-launcher-3-5-0-and-dll-update-1-860-for-april-29th-2026-%E3%83%A9%E3%83%B3%E3%83%81%E3%83%A3%E3%83%BC%E3%81%8A%E3%82%88%E3%81%B3dll%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88-4-29.33093/" target="_blank" rel="noopener">Ephinea Launcher 3.5.0／DLL 1.860 のリリースとその後の修正の投稿</a>と <a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">dgVoodoo の公式の更新記録</a>。上流に新しい版があっても、Ephinea に入っているとは限りません。実際に読み込まれるのは、メニューにある版か、 <code>dxdg</code>  に正しく置いた Custom のファイルだけです。</p>
+
+<h3 id="device-lost">Device Lost のエラー：どのバックエンドで出て、どれで避けられるか？</h3>
+
+<p>このエラーは<strong>クライアントがデバイスロストを受けた後、復旧（Reset）に失敗した</strong>ことを表します。「dgVoodoo 2.79.3 専用のエラー」や「D3D12 専用のエラー」ではありません。調べるときは、まず2種類の原因を区別します：</p>
+<ul>
+<li><strong>従来の D3D8／9 のデバイスロスト：</strong>排他的なフルスクリーンがフォーカスを失う、Alt-Tab、UAC の安全なデスクトップ、ロック画面、スクリーンセーバー、画面のモードの切り替えで起きます。PSOBB でこのエラーが出る最も多い原因です。</li>
+<li><strong>本当の GPU／ドライバーのリセット：</strong>Windows の TDR、ドライバーの異常終了、不安定なオーバークロック、オーバーレイや注入の競合、変換ツールの不具合。D3D12 では Device Removed／Hung、Vulkan では  <code>VK_ERROR_DEVICE_LOST</code> として現れることがあり、どのバックエンドでも必ず防げるとは限りません。</li>
+</ul>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>バックエンドとバージョン</th><th>Alt-Tab／UAC／ロック画面による Device Lost</th><th>このエラーが出たときの判断</th><th>ほかの注意点</th></tr></thead>
+<tbody>
+<tr><td><strong>D3D8</strong></td><td><strong>はっきり影響を受ける</strong></td><td>起きやすい原因。特に従来のフルスクリーン</td><td>Classic Fullscreen をオフにし、画面のモードの切り替えを避ける</td></tr>
+<tr><td><strong>D3D9</strong></td><td><strong>はっきり影響を受ける</strong></td><td>今も従来の D3D9 の Device／Reset の仕組みを使う</td><td>D3D8 より変換が1段多いだけでは、デバイスロストは解決しない</td></tr>
+<tr><td><strong>D3D9On12</strong></td><td><strong>はっきり影響を受ける</strong></td><td>Ephinea は、UAC・ロック画面・スクリーンセーバーによる Device Lost を避けられないとはっきり説明している</td><td>下は D3D12 でも上は D3D9 のまま。dgVoodoo の D3D12 と混同しないこと</td></tr>
+<tr><td><strong>dgVoodoo D3D11 2.79.3 / 2.87.1</strong></td><td><strong>たいてい避けられる</strong></td><td>従来のフォーカスの喪失で起きるはずの経路ではない。それでも起きるなら、ドライバーのリセットか dgVoodoo／オーバーレイの競合を疑う</td><td>2.87.1 は「絶対に落ちない版」ではない。一部の AMD のドライバーではテクスチャの異常が出ることもある</td></tr>
+<tr><td><strong>dgVoodoo D3D12 2.79.3</strong></td><td><strong>たいてい避けられる</strong></td><td>従来の Device Lost の危険は低いが、一部の利用者で D3D12 のフリーズがあることを Ephinea が記録している</td><td>dgVoodoo の公式は現在、NVIDIA のドライバーで D3D12 の GPU のハングが起きうるとはっきり警告している。NVIDIA では第一候補にしないこと</td></tr>
+<tr><td><strong>dgVoodoo D3D12 2.87.1</strong></td><td><strong>たいてい避けられる</strong></td><td>Ephinea が記録した D3D12 のフリーズの確認には 2.79.3 より向くが、本当の TDR は防げない</td><td>特定の D3D12 の落ちる不具合とフルスクリーンの動作の修正を含むが、NVIDIA の GPU のハングがなくなったり、すべてのハードウェアの組み合わせが直ったりしたわけではない</td></tr>
+<tr><td><strong>DXVK Vulkan 2.3.1 / 2.7.1</strong></td><td><strong>初期設定ではたいていフォーカスの喪失を再現しない</strong></td><td>DXVK の初期設定は  <code>d3d9.deviceLossOnFocusLoss = False</code> なので、Alt-Tab のようなポップアップはたいてい起きないはず</td><td>Vulkan のドライバーは本当の  <code>VK_ERROR_DEVICE_LOST</code> を返すことがある。DXVK は Windows を公式にはサポートしていない</td></tr>
+<tr><td><strong>Custom</strong></td><td>一概には判断できない</td><td>実際の DLL・バージョン・設定を記録する必要がある</td><td>古い設定で DXVK のフォーカスの喪失の再現が有効になっていることがあり、サードパーティのビルドでも動作が変わることがある</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Ephinea の初期の更新ですでにはっきりと、UAC・ロック画面・スクリーンセーバーなどによる従来の Device Lost を避けるには  <a href="https://www.pioneer2.net/community/threads/game-update-for-august-17th-2022-8-17-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.23942/" target="_blank" rel="noopener">D3D9On12 ではなく dgVoodoo の D3D11／12</a> を使うよう勧めています。ただし dgVoodoo の現在の<a href="https://dgvoodoo2.dege.freeweb.hu/dgVoodoo2/ReadmeGeneral/" target="_blank" rel="noopener">公式の説明</a>は NVIDIA での D3D12 の GPU のハングを強く警告しているので、「従来の Device Lost を避けられる」ことは「どの GPU でも最も安定したバックエンド」という意味ではありません。DXVK の初期設定の動作は<a href="https://github.com/doitsujin/dxvk/blob/master/dxvk.conf" target="_blank" rel="noopener">公式の設定の説明</a>で確認できます。</p>
+
+<p><strong>このエラーが出たときの調べ方の順番：</strong>D3D8・D3D9・D3D9On12 を選んでいて、ちょうど Alt-Tab・UAC の表示・画面のロック・画面のモードの切り替えがあったなら、既知の従来のデバイスロストです。まず  <strong>D3D11 2.87.1</strong> に切り替えてください。すでに dgVoodoo の D3D11／12 か Vulkan だった場合、それは普通のフォーカスの喪失による動作ではありません。信頼性モニターか Windows エラー報告の  <code>LiveKernelEvent 117/141</code>、システムのログの画面のドライバーのイベント（よくあるのは  <code>Display 4101</code>）を確認し、グラフィックドライバー・オーバークロック・オーバーレイを調べます。NVIDIA ではまず D3D11 2.87.1 で試し直し、AMD で単色のテクスチャの異常が D3D11 だけで出るなら、条件をそろえて D3D12 2.87.1 を試します。</p>
+
+<h3>各バックエンドの意味</h3>
+
+<h3>Direct3D 8</h3>
+<p>ゲームの<strong>本来の描画</strong>です。変換レイヤーを通さず、システムの D3D8 を直接呼びます。2003年の本来の動作に最も近いです。</p>
+<ul>
+<li>✅ 変わる要素が最も少なく、ゲーム本体が正常に動くかの確認に向く</li>
+<li>⚠ Win10／11 で高リフレッシュレートや複数のモニターを使うと、落ちる・ティアリング・Alt-Tab 後の黒い画面が起きやすい</li>
+<li>⚠ D3D9 以上の経路にある高度な AA の組み合わせがそろっていない。従来の Device Lost の動作も残る</li>
+</ul>
+
+<h3>Direct3D 9</h3>
+<p>軽いラッパーで D3D8 の呼び出しを  <strong>D3D9</strong> に変えます。負荷はごくわずかで、動作は本来に近く、純粋な D3D8 より少し安定しています。</p>
+<ul>
+<li>✅ 互換性が広く、D3D9 に対応するほぼすべてのグラフィックカードで動く</li>
+<li>✅ Ephinea の SSAA・SMAA・MSAA・HSAA などの高度な AA に対応</li>
+<li>⚠ 今もシステムの D3D9 のドライバーの品質に左右される</li>
+<li>⚠ 公式の更新記録によると、D3D9 の経路では MSAA／HSAA で一部の反射が壊れることがある。問題が出たら SMAA か SSAA に替える</li>
+</ul>
+
+<h3>Direct3D 9on12</h3>
+<p>Microsoft の公式の  <strong>D3D9-on-D3D12</strong>  変換レイヤー。D3D8 の呼び出しをまず D3D9 に通し、次に Windows 内蔵の  <code>d3d9on12.dll</code>  が D3D12 に変換してグラフィックカードに送ります。</p>
+<ul>
+<li>✅ システムが D3D9 の処理を D3D12 に当てはめる。主にプラットフォームの互換の経路</li>
+<li>⚠ Ephinea の D3D9 の前段の動作をそのまま保ち、dgVoodoo の D3D12 モードではない</li>
+<li>⚠ Ephinea の公式のテストで、UAC・安全なデスクトップ・ロック画面の後に Device Lost が起きうるとされている。普通のパソコンでは優先して選ばないこと</li>
+</ul>
+
+<h3>Direct3D 11 (2.79.3 / 2.87.1)</h3>
+<p> <strong>dgVoodoo2</strong>  が Ephinea の D3D9 の呼び出しを受け取り、 <strong>D3D11</strong> に出力します。旧式の固定機能の状態は、ラッパーが現代の GPU のリソースとシェーダーとして再現します。</p>
+<ul>
+<li>✅ ネイティブの D3D8／9 の Device Lost の問題を避けられる。ウィンドウモード・Alt-Tab・現代のデスクトップの合成がたいていより安定</li>
+<li>✅ Auto・Discard・Flip などの表示方式を選べる</li>
+<li>📌 <strong>まずはこれを試す</strong>：対応するハードウェアが広く、D3D12 と比べて問題を調べるときの妥当な出発点</li>
+<li>📌 <strong>2.79.3</strong>  は古い安定版、<strong>2.87.1</strong>  は新しい版で、機能は多いがときどき新しい不具合がある</li>
+</ul>
+
+<h3>Direct3D 12 (2.79.3 / 2.87.1)</h3>
+<p>上と同じですが、dgVoodoo2 がより新しい  <strong>D3D12</strong>。</p>
+<ul>
+<li>✅ 一部の新しいグラフィックカードとドライバーの組み合わせで、CPU やドライバーの負荷が下がることがある</li>
+<li>📌 <strong>画質は D3D11 より高くならない</strong>。PSOBB ではたいていフレームレートの明らかな向上もない</li>
+<li>📌 常に Flip Discard で表示する。「dgVoodoo Model」のほかの選択肢でも従来の BitBlt 方式にはできない</li>
+<li>⚠ dgVoodoo の公式は現在、NVIDIA のドライバーでの D3D12 の GPU のハングをはっきり警告している。NVIDIA では第一候補にしないこと</li>
+<li>⚠ AMD で D3D11 に単色のポリゴンが出るなら D3D12 を試し、落ちるなら Radeon Anti-Lag をオフにして試し直す</li>
+</ul>
+
+<h3>Vulkan (2.3.1 / 2.7.1)</h3>
+<p> <strong>DXVK</strong> Ephinea の D3D9 の呼び出しを  <strong>Vulkan</strong> に変換します。ドライバーのコンパイル・リソース管理・表示が別の経路になるので、問題が Direct3D のドライバーの系統だけで起きているかの確認に向いています。</p>
+<ul>
+<li>✅ 一部のハードウェアでは、D3D の経路特有のカクつきや表示の誤りが改善することがある</li>
+<li>⚠ Vulkan のシェーダーやパイプラインを初めて作るときに短いカクつきが出ることがある。程度はドライバーと DXVK のバージョンによる</li>
+<li>⚠ <a href="https://github.com/doitsujin/dxvk/wiki/Windows" target="_blank" rel="noopener">DXVK は Windows を公式にはサポートしていない</a>。録画ソフト・オーバーレイ・RTSS などの注入するソフトと競合することもある</li>
+<li>📌 <strong>2.3.1</strong>  は古い安定版、<strong>2.7.1</strong>  は新しい版</li>
+</ul>
+
+<h3>Direct3D 11 / 12 / Vulkan (Custom)</h3>
+<p><strong>自分で用意した</strong> の dgVoodoo か DXVK のバージョン。Ephinea の公式の決まりに従い、ゲームのフォルダーの  <code>dxdg</code>  フォルダーに x86 の  <code>dgVoodoo_d3d9.dll</code>  か x32 の  <code>dxvk_d3d9.dll</code>。</p>
+<ul>
+<li>正しいバージョンのファイルを自分でダウンロードして置く必要があり、新しい変換レイヤーを試したい上級者向け</li>
+<li>間違ったファイルを置くと、起動時に黒い画面になったり落ちたりする</li>
+</ul>
+
+<hr>
+
+<h2 id="aa">アンチエイリアス（Anti-Aliasing）</h2>
+
+<p>ジャギーは1種類の現象ではありません。PSOBB では少なくとも3種類が見られます：ポリゴンの輪郭の<strong>形状のジャギー</strong>、遠くの細かいテクスチャや柵がカメラの動きでちらつく<strong>テクスチャとアルファテストのジャギー</strong>、そして低い解像度で描画して拡大したときの<strong>全体的なサンプリング不足</strong>です。AA の方式ごとに対象が違うので、名前の後の 2x／4x だけで比べることはできません。</p>
+
+<h3>AA はどの層が実装している？</h3>
+
+<p>Ephinea の AA は、D3D11・D3D12・Vulkan が自動で付けてくれる画質の機能ではありません。クライアントがレンダーターゲットを作るときと最終の画像を処理するときに実装しています。MSAA はレンダーターゲットのマルチサンプリングの設定を変え、SSAA は内部の描画サイズを上げてから縮小し、SMAA は場面を描き終えた後に空間の後処理をします。Ephinea の開発者による実装の<a href="https://www.pioneer2.net/community/threads/game-update-for-august-17th-2022-8-17-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88.23942/" target="_blank" rel="noopener">説明</a>でも、この順番がはっきり示されています。</p>
+
+<table>
+<thead><tr><th>バックエンド</th><th>高度な AA</th><th>注意点</th></tr></thead>
+<tbody>
+<tr><td>D3D8</td><td>完全に対応した経路ではない</td><td>強化なしの本来の基準として使うのが最適</td></tr>
+<tr><td>D3D9</td><td><strong>対応</strong></td><td>MSAA／HSAA で一部の場面の反射がおかしくなることがある</td></tr>
+<tr><td>D3D9on12</td><td><strong>対応</strong></td><td>D3D9 の前段の特徴を受け継ぐ。dgVoodoo の D3D12 ではない</td></tr>
+<tr><td>D3D11 / D3D12</td><td><strong>対応</strong></td><td>dgVoodoo を通すと、公式の更新記録では MSAA／HSAA の反射の互換性がよい</td></tr>
+<tr><td>Vulkan</td><td><strong>対応</strong></td><td>AA の結果を作るのは今も Ephinea で、DXVK は D3D9 の処理を Vulkan に変換する</td></tr>
+</tbody>
+</table>
+
+<h3>基本の方式</h3>
+<ul>
+<li><strong>None</strong> — アンチエイリアスなし。性能は最もよく、輪郭は最も鋭いがギザギザ。</li>
+<li><strong>MSAA 2x / 4x</strong> — Multi-Sample AA。1つのピクセルの中の複数の位置で三角形の覆い具合と深度／ステンシルの結果を計算し、ピクセルのシェーディングは普通1回分を共有します。主に<strong>形状の輪郭</strong>をなめらかにし、SSAA より軽いですが、テクスチャの内側のちらつきやシェーダーのジャギーは直せず、アルファテストで作られた葉や柵の輪郭にもたいてい効きません。Microsoft の <a href="https://learn.microsoft.com/en-us/windows/win32/direct3d11/d3d10-graphics-programming-guide-rasterizer-stage-rules" target="_blank" rel="noopener">MSAA のラスタライズの規則</a>でも、表面のジャギーは消えないとはっきり書かれています。</li>
+<li><strong>SSAA 2x / 4x</strong> — Super-Sample AA。Ephinea は<strong>幅と高さをそれぞれ</strong> 2倍か4倍にして描画し、線形のフィルターで出力の解像度に縮小します。形状の輪郭・テクスチャの細部・一部の透明な輪郭をまとめて改善でき、効果は最も広範囲ですが、ピクセルのシェーディング・ビデオメモリ・帯域の負荷が大きく増えます。</li>
+<li><strong>SMAA Low / Medium / High / Ultra</strong> — Subpixel Morphological AA。場面を描き終えた後、色や明るさの輪郭から形を探し、隣のピクセルと混ぜます。形状の輪郭と一部のアルファテストの輪郭に効き、負荷は比較的軽いですが、形状や時間の追加のサンプルがないので、ピクセルより細かい細部を本当に取り戻すことはできず、カメラの移動でのテクスチャのちらつきも確実には消せません。品質を上げるほど探す範囲と精度が上がり、副作用として細い文字・HUD・テクスチャが少しぼやけることがあります。</li>
+<li><strong>HSAA 2x / 4x</strong> — Hybrid-Sampling AA。Ephinea では<strong>同じ倍率の SSAA + 同じ倍率の MSAA</strong>のことで、2つの間の安い妥協案ではありません。内部の解像度とピクセルごとの覆いのサンプルを両方上げるので、画質の上限は高いですが、最も重い選択肢の1つでもあります。</li>
+</ul>
+
+<h3>SSAA／HSAA の倍率は実際どれくらい？</h3>
+
+<p>倍率は横と縦の両方にかかります。出力の大きさを  <code>W × H</code> とすると、SSAA Nx の内部の大きさは  <code>(N·W) × (N·H)</code> で、ピクセル数は  <code>N²</code>  倍です。SSAA 4x を「4倍のピクセルを描くだけ」と誤解しないでください。</p>
+
+<table>
+<thead><tr><th>1080p の出力の例</th><th>内部の解像度</th><th>内部のピクセル数</th><th>1080p との比</th></tr></thead>
+<tbody>
+<tr><td>SSAA なし</td><td>1920 × 1080</td><td>約 207 万</td><td>1×</td></tr>
+<tr><td>SSAA 2x</td><td>3840 × 2160</td><td>約 829 万</td><td><strong>4倍のピクセル</strong></td></tr>
+<tr><td>SSAA 4x</td><td>7680 × 4320</td><td>約 3318 万</td><td><strong>16倍のピクセル</strong></td></tr>
+</tbody>
+</table>
+
+<p>HSAA はこの高解像度のレンダーターゲットにさらに MSAA のサンプルを加えます。たとえば HSAA 4x は、おおよそ16倍のピクセルのシェーディングに4つの覆い／深度のサンプルを加えたものと考えられます。合計の時間がちょうど64倍になるわけではありませんが、レンダーターゲット・深度バッファー・帯域・ビデオメモリの負荷はとても高くなることがあります。PSOBB が古くても、4K 出力で 4x を使うと、起動に失敗したり、フレームが落ちたり、ラッパーに設定した VRAM を使い切ったりすることがあります。</p>
+
+<h3>20年前のハードウェアでなめらかだったのに、なぜ RTX 4090／5090 が 4K の最高設定で苦しむことがあるのか？</h3>
+
+<p>この2つは矛盾しません。本来の PSOBB は形状の複雑さ・シェーダーの複雑さ・30 FPS の上限がどれも低く、20年前のグラフィックカードでも 640×480、800×600、1024×768 で現代の後処理なしなら設計どおりに動きました。現代のランチャーでは、<strong>1フレームごとに処理するピクセル・サンプル・全画面のパス</strong>を何桁も増やせます。ゲームの中身は古いままでも、GPU が実際に行う仕事はもう 2004年の負荷ではありません。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 390" role="img" aria-labelledby="pixel-title pixel-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="pixel-title">解像度と SSAA の設定ごとの1フレームのピクセル量（640×480 との比）</title>
+  <desc id="pixel-desc">640×480 を1倍として、1080p は約6.75倍、4K は27倍、4K SSAA 2x は108倍、4K SSAA 4x は432倍。</desc>
+  <style>
+    .px-axis{stroke:#64748b;stroke-width:1.5}
+    .px-grid{stroke:#334155;stroke-width:1}
+    .px-bar{fill:rgba(0,212,255,.32);stroke:#00d4ff;stroke-width:1.5}
+    .px-extreme{fill:rgba(167,139,250,.36);stroke:#a78bfa;stroke-width:1.5}
+    .px-head{fill:#f8fafc;font-size:15px;font-weight:700}
+    .px-text{fill:#cbd5e1;font-size:13px}
+    .px-note{fill:#94a3b8;font-size:12px}
+  </style>
+  <text class="px-head" x="20" y="28">640×480・SSAA なしを基準にした1フレームのピクセルの作業量（対数の目盛り）</text>
+  <line class="px-axis" x1="220" y1="55" x2="220" y2="330"/>
+  <line class="px-grid" x1="220" y1="330" x2="880" y2="330"/>
+  <line class="px-grid" x1="385" y1="55" x2="385" y2="330"/>
+  <line class="px-grid" x1="550" y1="55" x2="550" y2="330"/>
+  <line class="px-grid" x1="715" y1="55" x2="715" y2="330"/>
+  <line class="px-grid" x1="880" y1="55" x2="880" y2="330"/>
+  <text class="px-note" x="220" y="350" text-anchor="middle">1×</text>
+  <text class="px-note" x="385" y="350" text-anchor="middle">約 4.6×</text>
+  <text class="px-note" x="550" y="350" text-anchor="middle">約 21×</text>
+  <text class="px-note" x="715" y="350" text-anchor="middle">約 95×</text>
+  <text class="px-note" x="880" y="350" text-anchor="middle">432×</text>
+
+  <text class="px-text" x="205" y="82" text-anchor="end">640×480</text>
+  <rect class="px-bar" x="220" y="64" width="10" height="25" rx="4"/>
+  <text class="px-text" x="240" y="82">1× · 0.31 MP</text>
+
+  <text class="px-text" x="205" y="137" text-anchor="end">1080p</text>
+  <rect class="px-bar" x="220" y="119" width="211" height="25" rx="4"/>
+  <text class="px-text" x="441" y="137">6.75× · 2.07 MP</text>
+
+  <text class="px-text" x="205" y="192" text-anchor="end">4K</text>
+  <rect class="px-bar" x="220" y="174" width="366" height="25" rx="4"/>
+  <text class="px-text" x="596" y="192">27× · 8.29 MP</text>
+
+  <text class="px-text" x="205" y="247" text-anchor="end">4K + SSAA 2x</text>
+  <rect class="px-extreme" x="220" y="229" width="521" height="25" rx="4"/>
+  <text class="px-text" x="751" y="247">108× · 33.18 MP</text>
+
+  <text class="px-text" x="205" y="302" text-anchor="end">4K + SSAA 4x</text>
+  <rect class="px-extreme" x="220" y="284" width="660" height="25" rx="4"/>
+  <text class="px-text" x="870" y="325" text-anchor="end">432× · 132.71 MP</text>
+
+  <text class="px-note" x="20" y="382">HSAA はその解像度にさらに MSAA の覆い／深度のサンプルを加えるので、このピクセル量の図だけでは判断できない</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">同じ場面でも、4K + SSAA 4x で1フレームに描くピクセルは本来の 640×480 の約432倍</figcaption>
+</figure>
+
+<h4>解像度・D3D のバックエンド・AA・効果を1つずつ見る</h4>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>要素</th><th>負荷の増え方</th><th>主な負荷</th><th>誤解しやすい点</th></tr></thead>
+<tbody>
+<tr><td>出力の解像度</td><td>幅×高さに比例。4K は 1080p の4倍のピクセル</td><td>ピクセルのシェーディング、帯域、後処理</td><td>フレームレートが30に固定でも、1フレームにいくらでも負荷をかけてよいわけではない</td></tr>
+<tr><td>D3D8 / D3D9</td><td>経路が短く、元の負荷はとても低い</td><td>古いドライバー、Device Lost、CPU の命令の送信</td><td>古いハードウェアでなめらかというのは、たいてい低い解像度と少ない強化のこと</td></tr>
+<tr><td>D3D11 / D3D12</td><td>Ephinea + dgVoodoo の状態の変換とリソース管理が加わる</td><td>CPU の負荷、同期、ドライバーの互換性</td><td>D3D12 で命令の送信の負荷は一部改善できるが、SSAA のピクセルは減らせない</td></tr>
+<tr><td>Vulkan</td><td>Ephinea + DXVK の変換とパイプラインのコンパイルが加わる</td><td>シェーダーのコンパイル、ドライバー、同期</td><td>API を替えるだけで性能がただで上がるわけではない</td></tr>
+<tr><td>MSAA Nx</td><td>覆い・深度／ステンシル・マルチサンプルの保存が増える。ピクセルシェーダーが N 回すべて実行されるとは限らない</td><td>ROP、深度、帯域、ビデオメモリ</td><td>主に形状の輪郭を処理し、画面全体が N 倍鮮明になるわけではない</td></tr>
+<tr><td>SSAA Nx</td><td>幅と高さがそれぞれ N 倍、ピクセル数は N² 倍</td><td>ピクセルシェーダー、テクスチャのサンプリング、ビデオメモリ、帯域</td><td>SSAA 4x は4倍ではなく16倍のピクセル</td></tr>
+<tr><td>HSAA Nx</td><td>SSAA の N² 倍のピクセルにさらに Nx の MSAA のサンプル</td><td>GPU のバックエンドのほぼすべてのリソース</td><td>最も重い組み合わせで、安い妥協案ではない</td></tr>
+<tr><td>AF 16x</td><td>斜めのテクスチャのサンプル数が増える</td><td>テクスチャユニットと帯域</td><td>たいてい SSAA よりずっと軽いが、カスタムのテクスチャで負荷が増えることもある</td></tr>
+<tr><td>SSAO / DoF</td><td>出力のピクセルごとに何度も深度を読み、周りをサンプリングする</td><td>帯域、キャッシュ、シェーダーの計算</td><td>解像度が高いほど重い。High は見た目の段階だけではない</td></tr>
+<tr><td>Bloom / SMAA / Tone</td><td>全画面の読み込み・ぼかし・合成のパスが1つ以上増える</td><td>帯域とピクセルシェーダー</td><td>1つずつは軽いが、いくつも重ねるとボトルネックになりうる</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>4K の最高設定でのビデオメモリとサンプル数の見積もり</h4>
+
+<p>4K の出力は 3840×2160 で約 829 万ピクセルです。SSAA 4x を使うと内部の大きさは  <strong>15360×8640</strong> になり、約 1億3270万ピクセルです。RGBA8 の色のバッファー1つで約 531 MB、32ビットの深度バッファー1つでも約 531 MB になります。resolve 用のターゲット、Bloom／SSAO／DoF の中間のテクスチャ、ラッパーのキャッシュ、ゲームのテクスチャを数えなくても、この2つだけで 1 GB を超えます。</p>
+
+<p>さらに HSAA 4x を使うと、色と深度のターゲットに約4倍のマルチサンプルのデータを保存する必要があり、この2つのバッファーだけでも理論上  <strong>4.25 GB</strong> 近くになりえます。1フレームごとに約 1億3270万ピクセルのシェーディングと約 5億3080万の覆い／深度のサンプルの処理をし、その後 resolve して 4K に縮小し、いくつもの後処理のパスを行います。この負荷を主に制限するのはフィルレート・メモリの帯域・キャッシュ・ラッパーの実装で、モデルの三角形の数とはあまり関係がありません。</p>
+
+<h4>RTX 4090 と RTX 5090 はどう考えればよい？</h4>
+
+<p>RTX 4090 は 24 GB の GDDR6X、RTX 5090 は 32 GB の GDDR7 に増えています。NVIDIA の公式の仕様ではメモリの帯域はそれぞれ約  <strong>1008 GB/s</strong> と <strong>1792 GB/s</strong> です。そのため SSAA／HSAA や複数の全画面のパスのように帯域とメモリの容量が重い負荷では、たいてい 5090 のほうが余裕があります。参照： <a href="https://www.nvidia.com/en-gb/geforce/graphics-cards/50-series/rtx-5090/" target="_blank" rel="noopener">NVIDIA の 5090 と 4090 の公式の仕様の比較</a>。</p>
+
+<p>ただし、5090 で PSOBB のフレームレートが帯域に比例して上がるわけではありません。Ephinea は32ビットの古いプログラムで、D3D8→D3D9→dgVoodoo／DXVK の状態の変換も通ります。ボトルネックは CPU の単一スレッド、同期、ドライバー、ラッパーの内部の上限、巨大なレンダーターゲットの確保にあることもあります。4090 は 4K + SSAA／HSAA 4x + SSAO High + 複数のシェーダーで<strong>負荷が100%になったり、30 FPS を下回ったり、リソースの確保に失敗して落ちたりすることがあります</strong>。5090 はたいていより余裕がありますが、どんな極端な組み合わせでも問題ないとは限りません。</p>
+
+<p><strong>実際の判断：</strong>古いハードウェアでなめらかなのは「本来の場面の負荷」をこなせるからで、最上位のグラフィックカードが苦しむのはプレイヤーが数百倍のピクセル、多くのサンプル、多くの全画面のパスを作り出しているからです。性能を判断するときは、「20年前のゲームだから」と言うだけや D3D11 と D3D12 を比べるだけでなく、組み合わせ全体を記録してください。</p>
+
+<h3>組み合わせ（X + SMAA）</h3>
+<p>SMAA は場面を描き終えた後の後処理の段階にあるので、MSAA・SSAA・HSAA の resolve や縮小の後に残った、コントラストの高い輪郭をさらに処理できます：</p>
+<ul>
+<li><strong>MSAA + SMAA</strong> — MSAA が本当の形状の覆いのサンプルを与え、SMAA が残った見分けられる輪郭を整えます。たいてい品質と負荷のバランスのよい組み合わせです。</li>
+<li><strong>SSAA + SMAA</strong> — SSAA が先に細かい細部とピクセルより細かいジャギーを抑え、SMAA が残った輪郭を処理します。品質は高いですが、SMAA では SSAA 自体の大きなピクセルの負荷は打ち消せません。</li>
+<li><strong>HSAA + SMAA</strong> — SSAA・MSAA・SMAA の3つを重ねる極端な選択肢で、普段使いの「妥協案」ではありません。</li>
+</ul>
+
+<h3>おすすめ</h3>
+<table>
+<thead><tr><th>目的</th><th>おすすめ</th></tr></thead>
+<tbody>
+<tr><td>性能優先／内蔵グラフィック</td><td><strong>SMAA Medium/High</strong>。負荷が低く、描画の解像度も上がらない</td></tr>
+<tr><td>バランスのよい汎用</td><td><strong>SMAA Ultra</strong>  か  <strong>MSAA 2x + SMAA</strong></td></tr>
+<tr><td>テクスチャのちらつきを減らす／画質優先</td><td><strong>SSAA 2x</strong>  か  <strong>SSAA 2x + SMAA</strong></td></tr>
+<tr><td>D3D9 での反射の異常</td><td>MSAA／HSAA を避けて  <strong>SMAA Ultra</strong>  か  <strong>SSAA 2x</strong></td></tr>
+<tr><td>4K の出力</td><td>まず  <strong>SMAA Ultra</strong>。たいてい SSAA 4x まで使う必要はない</td></tr>
+<tr><td>最高品質のスクリーンショット／ビデオメモリに余裕がある</td><td><strong>SSAA 4x</strong>  か HSAA。段階を追って試し、いきなり最大にしないこと</td></tr>
+</tbody>
+</table>
+
+<hr>
+
+<h2 id="af">異方性フィルタリング（Anisotropic Filtering）</h2>
+
+<p>AF が解決するのは<strong>斜めから見たテクスチャのぼやけ</strong>で、モデルの輪郭のジャギーではありません。床・壁・道が遠くへ伸びると、画面の1ピクセルがテクスチャの上で覆う範囲は正方形ではなく細長くなります。普通のバイリニア／トリリニアのフィルタリングはほぼ正方形の範囲でサンプリングするので、低すぎるミップマップを選んで遠くの細部を失いがちです。AF は長い方向にサンプルを増やし、斜めのテクスチャを鮮明に保ちます。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 285" role="img" aria-labelledby="af-title af-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="af-title">普通のテクスチャのフィルタリングと異方性フィルタリングのサンプリングの範囲の比較</title>
+  <desc id="af-desc">遠近法で描かれた地面の画面のピクセルは、テクスチャの上では細長い範囲になります。普通のフィルタリングは小さな正方形で近似してぼやけ、異方性フィルタリングは長い方向に複数のサンプルを使います。</desc>
+  <style>
+    .af-panel{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .af-grid{stroke:#64748b;stroke-width:1;opacity:.65}
+    .af-head{fill:#f8fafc;font-size:16px;font-weight:700}
+    .af-text{fill:#cbd5e1;font-size:14px}
+    .af-note{fill:#94a3b8;font-size:12px}
+    .af-foot{fill:rgba(0,212,255,.16);stroke:#00d4ff;stroke-width:2}
+    .af-sample{fill:#a78bfa;stroke:#ede9fe;stroke-width:1}
+  </style>
+  <rect class="af-panel" x="20" y="18" width="425" height="225" rx="10"/>
+  <rect class="af-panel" x="475" y="18" width="425" height="225" rx="10"/>
+  <text class="af-head" x="232" y="48" text-anchor="middle">普通のバイリニア／トリリニア</text>
+  <text class="af-head" x="687" y="48" text-anchor="middle">異方性フィルタリング</text>
+  <g class="af-grid">
+    <path d="M55 208 L180 70 M115 208 L215 70 M175 208 L250 70 M235 208 L285 70 M295 208 L320 70 M355 208 L355 70 M415 208 L390 70"/>
+    <path d="M55 208 H415 M75 180 H405 M95 154 H400 M117 130 H395 M140 108 H390 M163 88 H388 M180 70 H390"/>
+    <path d="M510 208 L635 70 M570 208 L670 70 M630 208 L705 70 M690 208 L740 70 M750 208 L775 70 M810 208 L810 70 M870 208 L845 70"/>
+    <path d="M510 208 H870 M530 180 H860 M550 154 H855 M572 130 H850 M595 108 H845 M618 88 H843 M635 70 H845"/>
+  </g>
+  <rect class="af-foot" x="203" y="129" width="60" height="60" rx="5"/>
+  <ellipse class="af-foot" cx="687" cy="157" rx="88" ry="22" transform="rotate(-15 687 157)"/>
+  <circle class="af-sample" cx="620" cy="175" r="6"/><circle class="af-sample" cx="648" cy="167" r="6"/>
+  <circle class="af-sample" cx="678" cy="159" r="6"/><circle class="af-sample" cx="708" cy="151" r="6"/>
+  <circle class="af-sample" cx="738" cy="143" r="6"/><circle class="af-sample" cx="765" cy="136" r="6"/>
+  <text class="af-text" x="232" y="229" text-anchor="middle">正方形で近似 → 遠くがぼやけすぎやすい</text>
+  <text class="af-text" x="687" y="229" text-anchor="middle">長い方向にサンプリング → 斜面の細部を保つ</text>
+  <text class="af-note" x="20" y="272">AF はテクスチャのサンプリングの範囲、AA はピクセルの覆いや最終の輪郭を処理し、互いの代わりにはならない</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">遠近の傾きが大きいほど範囲は細長くなり、AF の効果が大きい</figcaption>
+</figure>
+
+<ul>
+<li><strong>2x / 4x:</strong>少ない負荷で床や壁の斜めの鮮明さを改善します。古い GPU や内蔵グラフィックに向きます。</li>
+<li><strong>8x:</strong>たいてい目に見える効果のほとんどを得られ、汎用の設定に向きます。</li>
+<li><strong>16x:</strong>斜めのテクスチャの鮮明さを最大にします。現代の単体のグラフィックカードでは追加の負荷はたいてい小さいですが、テクスチャのサンプリングと帯域の負荷は増えます。</li>
+</ul>
+
+<h3>AF でかえってちらつくことがあるのはなぜ？</h3>
+
+<p>AF は細かいテクスチャの細部を多く残します。本来のテクスチャや Mod のテクスチャに正しいミップマップがなかったり、強すぎるシャープや細い線があったりすると、鮮明になった遠景でちらつき・モアレ・ノイズが出ることがあります。これは AF の実装の誤りとは限りません。まず 16x を 8x／4x に下げるか、正しいミップマップのあるテクスチャに替えてください。SSAA でもこのジャギーをさらに抑えられます。</p>
+
+<p><strong>おすすめ：</strong>本来のテクスチャと現代の GPU なら  <strong>AF 16x</strong>  から始めます。カスタムの高解像度テクスチャを入れた後に遠くが大きくちらつくなら、8x／4x に下げてテクスチャパックのミップマップを確認してください。AF でキャラクターの輪郭のジャギーは消えないので、合った AA も必要です。</p>
+
+<hr>
+
+<h2 id="swap">dgVoodoo Model（スワップチェーンの方式）</h2>
+
+<p>この設定は  <strong>dgVoodoo</strong>  の経路にだけ関係し、DXGI のスワップチェーンの Present の方式、つまり描き終えたバックバッファーを Windows のデスクトップの合成やディスプレイにどう渡すかを決めます。遅延・ウィンドウの互換性・Alt-Tab・画面の取り込みに影響しますが、<strong>場面そのもののサンプリングの画質は変わりません</strong>。</p>
+
+<p><strong>重要な制限：</strong>これらのモードは主に D3D11 の出力用です。dgVoodoo の公式の説明によると、D3D12 の出力は  <strong>Flip Discard</strong> を使う必要があり、ランチャーにほかの選択肢が残っていても、D3D12 を従来の BitBlt のスワップチェーンに戻すことはできません。</p>
+
+<ul>
+<li><strong>Auto</strong> — dgVoodoo がバックエンドとウィンドウのモードに応じて自動で選びます。初期設定のおすすめです。</li>
+<li><strong>Discard</strong> — 従来の BitBlt 方式で、新しいフレームを表示するときに古いフレームを<strong>捨てます</strong>。Win 7 や古いドライバーで互換性が最もよいですが、Win10 以降の DWM の最適化は使えません。</li>
+<li><strong>Sequential</strong> — 従来の BitBlt 方式ですが、前のフレームを残します。あまり使われません。</li>
+<li><strong>Flip Discard</strong> — 現代の Flip 方式 + バッファーの中身を捨てる。不要なデスクトップへのコピーを減らし、現代の表示の最適化を使えます。実際の遅延は V-Sync・ウィンドウのモード・ドライバーのキュー・DWM のスケジュールにも左右されます。</li>
+<li><strong>Flip Sequential</strong> — Flip 方式ですが、古いフレームを残します。Flip Discard より少し負荷が高いです。</li>
+</ul>
+
+<p><strong>おすすめ：</strong></p>
+<ul>
+<li>D3D11 ではたいてい  <strong>Auto</strong>  で十分です。画面の取り込み・Alt-Tab・ウィンドウの合成がおかしいときだけ、ほかを1つずつ試してください</li>
+<li>D3D11 で Flip に切り替えて録画ソフトが画面を取り込めなくなったら、 <strong>Discard</strong></li>
+<li>D3D12 で表示や取り込みに問題が出たら、Model を替えてもたいてい効果はありません。 <strong>D3D11 + Auto/Discard</strong></li>
+</ul>
+
+<hr>
+
+<h2 id="effects-pipeline">画面効果が描画の流れのどこにあるか</h2>
+
+<p>下は<strong>概念的なデータの依存関係の図</strong>で、各設定が何を処理するかを理解するためのものです。Ephinea のソースコードの厳密な実行の順番ではありません。最も大事な違いは、MSAA／SSAA／HSAA は場面のサンプリングのしかたを変えるのに対し、SSAO・Bloom・DoF・Cel Shading・Tonemapping・SMAA はすでにできた画像や深度の情報を読み取ることです。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 390" role="img" aria-labelledby="fx-title fx-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="fx-title">Ephinea の画面効果の概念的な流れ</title>
+  <desc id="fx-desc">ゲームの形状とテクスチャから始まり、ラスタライズとサンプリング型のアンチエイリアスで色と深度のバッファーを作り、それをアンビエントオクルージョン・被写界深度・ブルーム・セルシェーディング・トーンマッピング・SMAA が使い、最後にスワップチェーンで表示します。</desc>
+  <defs>
+    <marker id="fx-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/></marker>
+    <filter id="fx-soft"><feGaussianBlur stdDeviation="5"/></filter>
+  </defs>
+  <style>
+    .fx-box{fill:rgba(0,212,255,.08);stroke:#00d4ff;stroke-width:2}
+    .fx-post{fill:rgba(167,139,250,.10);stroke:#a78bfa;stroke-width:2}
+    .fx-buffer{fill:rgba(96,165,250,.10);stroke:#60a5fa;stroke-width:2}
+    .fx-line{stroke:#00d4ff;stroke-width:2;fill:none;marker-end:url(#fx-arr)}
+    .fx-text{fill:#e2e8f0;font-size:14px}
+    .fx-head{fill:#f8fafc;font-size:15px;font-weight:700}
+    .fx-note{fill:#94a3b8;font-size:12px}
+  </style>
+  <rect class="fx-box" x="20" y="128" width="145" height="78" rx="10"/>
+  <text class="fx-head" x="92" y="154" text-anchor="middle">場面の入力</text>
+  <text class="fx-text" x="92" y="177" text-anchor="middle">形状 · テクスチャ · 光</text>
+  <text class="fx-note" x="92" y="196" text-anchor="middle">バックエンドで元の細部は増えない</text>
+
+  <path class="fx-line" d="M165 167 H205"/>
+  <rect class="fx-box" x="210" y="112" width="180" height="110" rx="10"/>
+  <text class="fx-head" x="300" y="140" text-anchor="middle">ラスタライズ／場面のサンプリング</text>
+  <text class="fx-text" x="300" y="164" text-anchor="middle">MSAA：覆いのサンプル</text>
+  <text class="fx-text" x="300" y="186" text-anchor="middle">SSAA：内部の大きさを上げる</text>
+  <text class="fx-text" x="300" y="208" text-anchor="middle">HSAA：両方を重ねる</text>
+
+  <path class="fx-line" d="M390 167 H430"/>
+  <rect class="fx-buffer" x="435" y="112" width="145" height="110" rx="10"/>
+  <text class="fx-head" x="507" y="140" text-anchor="middle">場面のバッファー</text>
+  <text class="fx-text" x="507" y="168" text-anchor="middle">Color 色</text>
+  <text class="fx-text" x="507" y="192" text-anchor="middle">Depth 深度</text>
+  <text class="fx-note" x="507" y="211" text-anchor="middle">後処理の主な入力</text>
+
+  <path class="fx-line" d="M507 112 V73 H630"/>
+  <rect class="fx-post" x="635" y="28" width="130" height="78" rx="10"/>
+  <text class="fx-head" x="700" y="55" text-anchor="middle">深度を使う</text>
+  <text class="fx-text" x="700" y="78" text-anchor="middle">SSAO · DoF</text>
+  <text class="fx-note" x="700" y="97" text-anchor="middle">画面の範囲内の限られた情報</text>
+
+  <path class="fx-line" d="M580 167 H630"/>
+  <rect class="fx-post" x="635" y="128" width="130" height="78" rx="10"/>
+  <text class="fx-head" x="700" y="155" text-anchor="middle">色を使う</text>
+  <text class="fx-text" x="700" y="178" text-anchor="middle">Bloom · Tone</text>
+  <text class="fx-note" x="700" y="197" text-anchor="middle">明るさと色の変換</text>
+
+  <path class="fx-line" d="M507 222 V273 H630"/>
+  <rect class="fx-post" x="635" y="234" width="130" height="78" rx="10"/>
+  <text class="fx-head" x="700" y="261" text-anchor="middle">輪郭を使う</text>
+  <text class="fx-text" x="700" y="284" text-anchor="middle">Cel · SMAA</text>
+  <text class="fx-note" x="700" y="303" text-anchor="middle">輪郭の検出と合成</text>
+
+  <path class="fx-line" d="M765 67 H795 V167 H820"/>
+  <path class="fx-line" d="M765 167 H820"/>
+  <path class="fx-line" d="M765 273 H795 V167 H820"/>
+  <rect class="fx-box" x="825" y="128" width="75" height="78" rx="10"/>
+  <text class="fx-head" x="862" y="155" text-anchor="middle">表示</text>
+  <text class="fx-text" x="862" y="178" text-anchor="middle">Swap</text>
+  <text class="fx-note" x="862" y="197" text-anchor="middle">画面へ</text>
+
+  <text class="fx-note" x="20" y="350">サンプリング型の AA は場面の作り方を変える · 後処理は限られた色／深度の情報を読む · スワップチェーンは表示するだけで画質を上げない</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">概念的なデータの流れ：同じ「画面設定」でも、起きる段階・見た目の効果・ゆがみの種類はまったく違う</figcaption>
+</figure>
+
+<h3>普通のプレイヤー向けの早見表</h3>
+
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>効果</th><th>最も目立つ変化</th><th>主な負荷／副作用</th><th>ひとことアドバイス</th></tr></thead>
+<tbody>
+<tr><td>SSAO</td><td>壁の角・足元・物のつなぎ目に接触の影が増える</td><td>輪郭のにじみ、ノイズ。解像度が高いほど GPU の負荷が大きい</td><td>立体感が好きなら Medium、本来の見た目が好きならオフ</td></tr>
+<tr><td>Bloom</td><td>明るいエフェクトにやわらかい光のにじみ</td><td>白飛び、灰色がかる、細部のぼやけ</td><td>好みで。HDR とは思わないこと</td></tr>
+<tr><td>Depth of Field</td><td>ピントの外がぼけてカメラのような見た目になる</td><td>遠くが見分けにくくなる。透明な物や HUD の輪郭がおかしくなることがある</td><td>戦闘での見やすさを優先するならオフ</td></tr>
+<tr><td>Cel Shading</td><td>輪郭がはっきりし、アニメ風の画面になる</td><td>細かい輪郭を誤って検出したり、太く描きすぎたりすることがある</td><td>純粋に見た目の好み</td></tr>
+<tr><td>Tonemapping</td><td>明るさ・コントラスト・色の反応が変わる</td><td>暗い部分がつぶれる、明るい部分が飛ぶ</td><td>まず単独でオンにし、色が好みに合ったらブルームを加える</td></tr>
+<tr><td>Motion Blur</td><td>動きやカメラの変化で残像が出る</td><td>動きの鮮明さが下がり、酔いの原因になることもある</td><td>たいていのプレイヤーはオフでよい</td></tr>
+</tbody>
+</table>
+</div>
+
+<hr>
+
+<h2 id="ao">アンビエントオクルージョン（Ambient Occlusion）</h2>
+
+<p>SSAO（Screen-Space Ambient Occlusion）は<strong>画面の範囲内での接触の遮りの近似</strong>です。今のフレームの深度バッファー（実装によっては法線も）から近くの面の位置関係を復元し、壁の角・物のつなぎ目・キャラクターの足元など光が届きにくい場所をなだらかに暗くします。</p>
+
+<p><strong>動的な影でもグローバルイルミネーションでもありません。</strong>本当の影には、光源・遮る物・影を受ける面の関係が必要です。SSAO はカメラに今見えている限られた深度の情報しか知らないので、「物がより地面に接して立体的に見える」という見た目の手がかりしか与えられません。</p>
+
+<ul>
+<li><strong>Disabled</strong> — オフ。本来の見た目に最も近く、性能も最もよい。</li>
+<li><strong>Low</strong> — 低い解像度や性能の限られた機器に向きます。サンプリングのノイズ・縞・輪郭の変化が目立つことがあります。</li>
+<li><strong>Medium</strong> — 接触の感じと負荷のバランスがよく、普通のプレイヤーの出発点に向きます。</li>
+<li><strong>High</strong> — サンプリングと処理の品質を上げ、影はたいてい安定して細かくなりますが、負荷は出力の解像度とともに大きく増えます。</li>
+</ul>
+
+<h3>上級者が知っておきたい限界</h3>
+<ul>
+<li><strong>画面の端の漏れ：</strong>サンプリングの範囲が画面の外に出ると場面のデータがないので、遮りが急に薄くなったり消えたりすることがあります。</li>
+<li><strong>遮りの情報が不完全：</strong>カメラの外や手前の物に完全に隠れた物は今の深度バッファーになく、正しい遮りに寄与できません。</li>
+<li><strong>深度の段差でのにじみ：</strong>手前と奥の境目の大きな深度の差で、不自然な暗い縁や明るい縁ができることがあります。</li>
+<li><strong>透明な物とパーティクル：</strong>透明な物・エフェクト・HUD は普通の物体のように深度を書き込まないことが多く、対象から外れたり、誤って覆われたりすることがあります。</li>
+<li><strong>AA との関係：</strong>SSAO／DoF はマルチサンプルの深度／色のバッファーを正しく読むか resolve する必要があります。Ephinea の 2022-09-06 の更新でこれらと MSAA／HSAA の組み合わせが個別に修正されたので、古いクライアントで問題が出たらまず完全に更新してください。</li>
+</ul>
+
+<p><strong>おすすめ：</strong>まず  <strong>Medium</strong> キャラクターの足元・壁の角・画面の端を見て、にじみ・ノイズ・フレームの落ち込みがなければ High に上げます。本来の明るい雰囲気を保ちたいとき、敵の輪郭をはっきり見たいとき、シェーダーの落ちる不具合を調べているときは  <strong>Disabled</strong>。</p>
+
+<hr>
+
+<h2 id="extra">Extra（追加機能）</h2>
+
+<p>これは Ephinea が本来の上に追加した<strong>体験のためのスイッチ</strong>で、画質とは関係ありません。緑＝オン、灰色＝オフ。</p>
+
+<ul>
+<li><strong>FAST STARTUP</strong> — 起動時の SEGA／Sonic Team／SOFTDEC などのロゴのアニメーションを飛ばし、すぐログイン画面に入ります。</li>
+<li><strong>CLEAN CAPTURE</strong> — ゲーム内蔵のスクリーンショットが場面のレンダーターゲットから「きれいな」画像を取るので、Lua Addons など後から重ねたものが写りません。録画の画質を上げるスイッチではなく、サードパーティの録画ソフトが取り込めるかはバックエンドとスワップチェーンによります。</li>
+<li><strong>MOTION BLUR</strong> — モーションブラー。動きの方向のサンプルを混ぜたり、隣のフレームを重ねたりして、シャッターが開いている間の動きの軌跡をまねます。低いフレームレートの動きを連続的に見せられますが、動いている間の細部と文字の読みやすさが下がります。PSOBB は 30 FPS 固定なので残像が特に目立ち、動きの鮮明さを重視する人や酔いやすい人はオフにしてください。</li>
+<li><strong>RARE DROP SFX</strong> — レアドロップの通知音。レアアイテムが落ちると追加の音が鳴り、周回中に見落としにくくなります。</li>
+<li><strong>BANK SHORTCUTS</strong> — 倉庫のショートカットキー。オンにすると倉庫の画面でキーボードを使ってすばやく出し入れやページ送りができ、効率が大きく上がります。</li>
+<li><strong>LARGE BANK WINDOW</strong> — 倉庫のウィンドウを大きくします。一度に多くのアイテムを表示し、ページ送りを減らせます。</li>
+</ul>
+
+<p><strong>スクリーンショットの互換性：</strong>Ephinea の開発者は、Clean Capture ではアドオンが写らず、D3D12 の内蔵のスクリーンショットでもアドオンは取り込めないとはっきり説明しています。アドオンの UI も一緒に写したいなら、まず D3D8／9 で Clean Capture をオフにするか、D3D11 で互換性のある Flip の表示方式を試してください。システムや OBS のウィンドウの取り込みを使ってもかまいません。</p>
+
+<hr>
+
+<h2 id="shaders">シェーダー（Shaders）</h2>
+
+<p>これは最終的な色・深度・輪郭の情報を使う<strong>画面の範囲内の後処理</strong>で、緑＝オン、灰色＝オフ。モデルやテクスチャの細部を増やすのではなく、すでに描いたピクセルを解釈し直します。いくつも重ねると負荷とゆがみも重なり、最終的な見た目は実行の順番にも左右されます。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<svg viewBox="0 0 920 430" role="img" aria-labelledby="shader-title shader-desc" xmlns="http://www.w3.org/2000/svg"
+     style="width:100%;height:auto;max-width:920px;display:block;margin:0 auto;font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <title id="shader-title">後処理の効果の概念的な比較</title>
+  <desc id="shader-desc">5つの抽象的な図で、アンビエントオクルージョンが接触部分を暗くする、ブルームが明るい部分を広げる、被写界深度が遠くをぼかす、セルシェーディングが輪郭を強める、トーンマッピングが明るさを割り当て直す様子を示しています。</desc>
+  <defs>
+    <filter id="blur-bg"><feGaussianBlur stdDeviation="7"/></filter>
+    <filter id="bloom-glow"><feGaussianBlur stdDeviation="12"/></filter>
+    <linearGradient id="tone-old" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#111827"/><stop offset=".55" stop-color="#64748b"/><stop offset="1" stop-color="#f8fafc"/></linearGradient>
+    <linearGradient id="tone-new" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#020617"/><stop offset=".55" stop-color="#0ea5e9"/><stop offset="1" stop-color="#fef08a"/></linearGradient>
+  </defs>
+  <style>
+    .s-panel{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .s-title{fill:#f8fafc;font-size:15px;font-weight:700}
+    .s-label{fill:#cbd5e1;font-size:13px}
+    .s-note{fill:#94a3b8;font-size:12px}
+    .s-object{fill:#60a5fa;stroke:#dbeafe;stroke-width:1.5}
+    .s-ground{stroke:#64748b;stroke-width:3}
+  </style>
+
+  <rect class="s-panel" x="10" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="96" y="61" text-anchor="middle">SSAO</text>
+  <line class="s-ground" x1="30" y1="273" x2="162" y2="273"/>
+  <ellipse cx="96" cy="267" rx="54" ry="14" fill="#020617" opacity=".60" filter="url(#blur-bg)"/>
+  <rect class="s-object" x="66" y="153" width="60" height="118" rx="8"/>
+  <text class="s-label" x="96" y="304" text-anchor="middle">接触部分が暗くなる</text>
+  <text class="s-note" x="96" y="327" text-anchor="middle">地面への接地感と立体感が増す</text>
+
+  <rect class="s-panel" x="192" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="278" y="61" text-anchor="middle">Bloom</text>
+  <circle cx="278" cy="202" r="67" fill="#38bdf8" opacity=".30" filter="url(#bloom-glow)"/>
+  <circle cx="278" cy="202" r="40" fill="#7dd3fc" opacity=".65"/>
+  <circle cx="278" cy="202" r="18" fill="#f8fafc"/>
+  <text class="s-label" x="278" y="304" text-anchor="middle">明るい部分が外へ広がる</text>
+  <text class="s-note" x="278" y="327" text-anchor="middle">光の感じが強くなるが、細部がぼやけることも</text>
+
+  <rect class="s-panel" x="374" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="460" y="61" text-anchor="middle">Depth of Field</text>
+  <g filter="url(#blur-bg)" opacity=".6">
+    <circle cx="417" cy="138" r="26" fill="#a78bfa"/>
+    <rect x="495" y="105" width="30" height="75" fill="#34d399"/>
+  </g>
+  <rect class="s-object" x="431" y="176" width="58" height="95" rx="8"/>
+  <text class="s-label" x="460" y="304" text-anchor="middle">ピントは鮮明、遠くはぼける</text>
+  <text class="s-note" x="460" y="327" text-anchor="middle">カメラらしさと引き換えに見やすさが下がる</text>
+
+  <rect class="s-panel" x="556" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="642" y="61" text-anchor="middle">Cel Shading</text>
+  <path d="M600 263 L600 165 L642 105 L684 165 L684 263 Z" fill="#a78bfa" stroke="#020617" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M608 168 L642 119 L642 255 L608 255 Z" fill="#c4b5fd"/>
+  <text class="s-label" x="642" y="304" text-anchor="middle">輪郭と明暗の区分けが強まる</text>
+  <text class="s-note" x="642" y="327" text-anchor="middle">アニメ風の造形を強調する</text>
+
+  <rect class="s-panel" x="738" y="32" width="172" height="320" rx="10"/>
+  <text class="s-title" x="824" y="61" text-anchor="middle">Tonemapping</text>
+  <rect x="763" y="108" width="122" height="62" rx="5" fill="url(#tone-old)"/>
+  <path d="M824 184 V211" stroke="#00d4ff" stroke-width="2"/>
+  <path d="M816 203 L824 212 L832 203" fill="none" stroke="#00d4ff" stroke-width="2"/>
+  <rect x="763" y="224" width="122" height="62" rx="5" fill="url(#tone-new)"/>
+  <text class="s-label" x="824" y="315" text-anchor="middle">明るさと色を割り当て直す</text>
+  <text class="s-note" x="824" y="337" text-anchor="middle">HDR の情報が増えるわけではない</text>
+
+  <text class="s-note" x="10" y="394">抽象的な図でゲームの画面ではない。各方式が主に変える見た目の手がかりを示す</text>
+</svg>
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">効果の図：変わるのは接触の暗さ・光のにじみ・ピント・輪郭・色調で、API の段階ではない</figcaption>
+</figure>
+
+<ul>
+<li><strong>BLOOM</strong> — ブルーム。よくある実装では、明るいピクセルを取り出し、解像度を下げた明るさの画像を何度もぼかしてから元の画像に足します。レンズや目の中で強い光が広がる感じをまねるもので、新しい光を作るわけではありません。強すぎると白い HUD・テクニックのエフェクト・明るいテクスチャが互いににじみ、白飛びや霧がかかったように見えます。</li>
+<li><strong>DEPTH OF FIELD</strong> — 被写界深度。深度バッファーからピクセルとピント面の距離（Circle of Confusion）を見積もり、ピントの外をぼかします。PSOBB の透明なエフェクト・キャラクター名・HUD は、実際の形状と同じ深度を持つとは限らないので、輪郭ににじみが出たり、手前が奥の色に染まったり、文字がぼやけたりすることがあります。</li>
+<li><strong>CEL SHADING</strong> — セルシェーディング。明るさ・深度・法線の輪郭の検出で輪郭を強め、連続した明暗の段階を減らして、セル画のアニメに近い見た目にします。画面の範囲内の様式化で、キャラクターの材質を作り直すものではありません。細かいテクスチャやコントラストの高い HUD も輪郭と見なされることがあります。</li>
+<li><strong>TONEMAPPING</strong> — トーンマッピング。非線形の曲線で内部の明るさを表示の範囲に割り当て直し、暗い部分の圧縮・明るい部分のなだらかさ・コントラスト・彩度を変えます。PSOBB は現代の HDR の描画ではないので、ここでは<strong>表示の色調と色の反応の調整</strong>と考えるべきで、何もないところから HDR のダイナミックレンジを作るわけではありません。</li>
+</ul>
+
+<h3>効果の重ね方と問題の調べ方</h3>
+<ul>
+<li><strong>1つずつ有効にする：</strong>まず安定したバックエンドと AA を選び、それからシェーダーを1つずつオンにします。そうして初めて、落ちる・ぼやける・フレームが落ちる・色がおかしいの原因がどれか判断できます。</li>
+<li><strong>Bloom + Tonemapping:</strong>トーンマッピングで明るい部分やコントラストが上がると、ブルームが取り出す明るい領域も変わります。組み合わせた結果は2つの効果の単純な足し算ではありません。</li>
+<li><strong>DoF / SSAO + MSAA:</strong>どちらも深度の resolve に依存します。クライアントを最新に保ち、輪郭ににじみが出たら、まず AO を下げて DoF をオフにし、それから AA を替えます。</li>
+<li><strong>複数の全画面のパス：</strong>後処理はたいてい出力のピクセルごとに実行され、4K は 1080p の4倍のピクセルです。1つが軽いからといって、同時に使っても軽いとは限りません。</li>
+<li><strong>Vulkan / Wine:</strong>シェーダーのコンパイル、深度の形式、注入型のオーバーレイの組み合わせはより複雑です。落ちる不具合が出たら、まずシェーダーをすべてオフにし、バックエンドが安定しているのを確認してから戻します。</li>
+</ul>
+
+<p><strong>本来の見た目と見やすさ優先：</strong>4つともオフ。<strong>軽い現代化：</strong>まず Tonemapping だけをオンにし、好みでブルームを加えます。<strong>アニメ風：</strong>Cel Shading だけをオンにし、輪郭がきれいか確認します。<strong>スクリーンショットの雰囲気：</strong>DoF + Bloom を試してもよいですが、遠くの敵やドロップを見分ける必要があるときに使い続けるのはおすすめしません。</p>
+
+<hr>
+
+<h2 id="recommend">どう選ぶ？</h2>
+
+<p>「絶対の正解」はありません。よくある選び方を示します：</p>
+
+<h3>描画のバックエンド</h3>
+<table>
+<thead>
+<tr><th>場面</th><th>おすすめ</th></tr>
+</thead>
+<tbody>
+<tr><td>何を選べばよいか分からない／初めて遊ぶ</td><td><strong>Direct3D 11 (2.87.1)</strong></td></tr>
+<tr><td>D3D11 で問題ない</td><td>そのままにする。D3D12 に替えても基本の画質は上がらない</td></tr>
+<tr><td>AMD：D3D11 で単色のポリゴンなどのテクスチャの誤りが出る</td><td> <strong>Direct3D 12 (2.87.1)</strong> を試す。落ちるなら Radeon Anti-Lag をオフ</td></tr>
+<tr><td>NVIDIA：D3D11 がおかしい</td><td>まず D3D11 2.79.3・D3D9・Vulkan を試す。dgVoodoo の D3D12 を第一候補にしない</td></tr>
+<tr><td>D3D12 のフリーズ／GPU のハング／オーバーレイの競合</td><td> <strong>Direct3D 11</strong> に戻し、必要なら 2.79.3 を試す</td></tr>
+<tr><td>D3D11 と D3D12 の両方がおかしい</td><td> <strong>Direct3D 9</strong>。Vulkan で別のドライバーの経路として比べる</td></tr>
+<tr><td>UAC・ロック画面・Alt-Tab の後の Device Lost</td><td> <strong>D3D11 2.87.1</strong> を優先し、D3D9On12 で代用しない</td></tr>
+<tr><td>本来のゲームが起動するかだけ確かめたい</td><td><strong>D3D8 + AA なし + シェーダーをオフ</strong></td></tr>
+<tr><td>録画／配信で画面が取り込めない</td><td><strong>D3D11 + Auto/Discard</strong>。ウィンドウの取り込みも試す</td></tr>
+</tbody>
+</table>
+
+<h3>手軽な設定（現代のグラフィックカード + バランスのよい画質）</h3>
+<ul>
+<li>描画のバックエンド： <strong>Direct3D 11 (2.87.1)</strong> （D3D12 にしても画質は上がらない）</li>
+<li>アンチエイリアス： <strong>SMAA Ultra</strong>  か  <strong>MSAA 2x + SMAA</strong></li>
+<li>dgVoodoo Model: <strong>Auto</strong></li>
+<li>アンビエントオクルージョン： <strong>High</strong></li>
+<li>Extra：すべてオン（本来の雰囲気がほしい場合を除き MOTION BLUR はオフ）</li>
+<li>Shaders: <strong>BLOOM + TONEMAPPING</strong>、ほかは好みで</li>
+</ul>
+
+<h3>控えめな設定（古いハードウェア／互換性優先）</h3>
+<ul>
+<li>描画のバックエンド： <strong>Direct3D 11 (2.79.3)</strong>  か  <strong>Direct3D 9</strong></li>
+<li>アンチエイリアス： <strong>SMAA Medium</strong></li>
+<li>dgVoodoo Model: <strong>Auto</strong> （黒い画面なら  <strong>Discard</strong>)</li>
+<li>アンビエントオクルージョン： <strong>Low</strong>  か  <strong>Disabled</strong></li>
+<li>シェーダー：すべてオフ</li>
+</ul>
+
+<hr>
+
+<h2 id="faq">よくある質問</h2>
+
+<p><strong>Q：切り替えたらゲームが黒い画面になった／落ちた。どうすればいい？</strong><br>
+A：ランチャーを開き直し、 <code>Direct3D 9</code>  か  <code>Direct3D 11 (2.79.3)</code>  のような控えめな選択肢に戻せば大丈夫です。設定は描画にだけ影響し、キャラクターのデータが壊れることはありません。</p>
+
+<p><strong>Q：なぜバージョン番号が2つある（2.79.3／2.87.1）？</strong><br>
+A：dgVoodoo／DXVK のバージョンごとに、直った不具合と新しく出た不具合が違うからです。旧版は戻るための予備として残し、新版は試すためのものです。新版で不具合に当たったら、ひとまず旧版に戻せます。</p>
+
+<p><strong>Q：設定を変えたのにフレームレートが変わらない？</strong><br>
+A：PSOBB の本来のフレームレートの上限は 30 FPS で、変換レイヤーでもゲーム内部のフレームの固定は超えられません。バックエンドを替える主な目的は<strong>安定性</strong>と<strong>互換性</strong>で、高いフレームレートではありません。</p>
+
+<p><strong>Q：まだ落ちる。描画とは関係ない？</strong><br>
+A： <a href="/guide/crash.html">落ちる問題について</a> を参照し、DEP・互換性・UAC・ウイルス対策ソフトの除外などのシステムの設定を確認してください。</p>
+
+<p><strong>Q：アンチエイリアスを有効にしても効かない／違いがないのはなぜ？</strong><br>
+A：高度な AA は Ephinea のクライアントがレンダーターゲットと後処理の段階で実装しているもので、dgVoodoo／DXVK が自動で与えるものではありません。高度な選択肢がすべて使えるのは  <strong>D3D9</strong>  以上で、D3D8 は高度な AA の経路には向きません。MSAA は形状の輪郭だけを処理するので、テクスチャの内側はちらついたままです。それを改善したいなら SSAA を、軽くなめらかにしたいだけなら SMAA を試してください。</p>
+
+<p><strong>Q：D3D9on12 はすでに D3D12 を使っているのに、なぜ D3D12 を選ぶの？</strong><br>
+A：D3D9on12 は D3D9 の命令を D3D12 に当てはめる Microsoft のシステムの互換レイヤーで、上には D3D9 のデバイスの仕組みが残っています。ランチャーの D3D12 は、dgVoodoo が D3D9 の再現・リソース管理・Flip の表示を引き受けます。同じなのは最終的なドライバーの API だけで、変換するものと互換性の動作はまったく違います。従来の Device Lost を避けるなら dgVoodoo の D3D11 を優先し、AMD で特定の D3D11 のテクスチャの異常があるときだけ D3D12 を考えてください。</p>
+
+<p><strong>Q：D3D12 は Microsoft 版の Vulkan と考えていい？</strong><br>
+A：入門のたとえとしてなら構いません。どちらも命令・リソースの状態・ディスクリプター・パイプライン・同期を明示的に管理する現代の低水準の API です。ただし同じ API でも、互いのラッパーでもありません。D3D12 は Windows／Xbox のエコシステムに属し、Vulkan はクロスプラットフォームの規格です。PSOBB について正確に言えば、dgVoodoo は D3D9 を D3D12 に、DXVK は同じ種類の処理を Vulkan に変換しています。</p>
+
+<p><strong>Q：シェーダーをオンにしたら画面がぼやけた／色が変わった？</strong><br>
+A：それは後処理そのものの性質で、不具合ではありません。よくある原因は  <strong>BLOOM</strong> （ぼやけ）と  <strong>TONEMAPPING</strong> （色が濃く鮮やかになる）です。1つずつオフにして、気に入らないものを特定してください。</p>
+
+<p><strong>Q：CLEAN CAPTURE と dgVoodoo Model = Discard にはどんな関係がある？</strong><br>
+A：どちらも「録画／配信で画面を正しく取り込めるか」に関係します。まず  <strong>CLEAN CAPTURE</strong> をオンにし、D3D11 でも OBS が取り込めないなら、Model を Flip 系から  <strong>Discard</strong> に戻します。D3D12 は常に Flip Discard なので、Model を試すには D3D11 に替えてください。</p>
+
+    </section>
