@@ -35,6 +35,13 @@ export function generateMonsterCatalog() {
   const images = readJson('content/monster-catalog/images.json');
   const names = readJson('content/monster-catalog/names.json');
   const hd = readJson('content/monster-catalog/hd-gallery.json').assignments;
+  // Model renders (scripts/render_monster_models.py) bind each appearance to a portrait file.
+  const renderBindings = readJson('content/monster-catalog/model-renders.json').bindings;
+  const renderFiles = readJson('assets/img/monsters/render/manifest.json');
+  const renderPath = label => {
+    if (!renderFiles[label] || !fs.existsSync(`assets/img/monsters/render/${renderFiles[label].file}`)) throw new Error(`Missing monster render: ${label}`);
+    return `/assets/img/monsters/render/${renderFiles[label].file}`;
+  };
   const notes = readJson('content/monster-catalog/notes.json');
   // Behaviour notes are authored in every site language.
   for (const [page, entries] of Object.entries(notes)) for (const entry of entries) {
@@ -81,6 +88,9 @@ export function generateMonsterCatalog() {
       episode:record.episode, areas:record.areas, attribute:record.attribute,
       rare:rare.has(baseName(record.key)), boss, part,
       image:image?.path || null, ultimateImage:ultimateImage?.path || null,
+      // List rows show the model-render thumbnail when one exists; details keep the Wiki image as a source.
+      thumbnail:renderBindings[record.id] ? `/assets/img/monsters/render/thumbs/${renderFiles[renderBindings[record.id].normal].file}` : null,
+      ultimateThumbnail:renderBindings[record.id] ? `/assets/img/monsters/render/thumbs/${renderFiles[renderBindings[record.id].ultimate].file}` : null,
       values:Object.fromEntries(Object.entries(record.stats).map(([context,stats]) => [context,[stats[0],stats[13]]])),
     };
     index.push(summary);
@@ -102,8 +112,13 @@ export function generateMonsterCatalog() {
       revision:article.revision, checkedAt:snapshot.checkedAt,
       imageSource:image?.page || null, ultimateImageSource:ultimateImage?.page || null,
       hdImage:hd[record.id]?.normal || null, ultimateHdImage:hd[record.id]?.ultimate || null,
+      renderImage:renderBindings[record.id] ? renderPath(renderBindings[record.id].normal) : null,
+      ultimateRenderImage:renderBindings[record.id] ? renderPath(renderBindings[record.id].ultimate) : null,
+      // Extra poses of the same appearance, offered as further portrait sources.
+      renderAlternates:(renderBindings[record.id]?.alternates || []).map(alternate => ({image:renderPath(alternate.render),label:alternate.label})),
     };
   }
+  for (const id of Object.keys(renderBindings)) if (!details[id]) throw new Error(`Monster render bound to an unknown entry: ${id}`);
   const metadata = {checkedAt:snapshot.checkedAt,statKeys:snapshot.statKeys,sections:drops.data.sectionIds.map((name,i)=>({name,color:drops.data.sectionColors[i]})),dropSource:'https://github.com/warmonipa/dropcharts/blob/master/bb/data/en.js',dropSha256:drops.sha256};
   fs.mkdirSync('src/app/generated/monster-catalog',{recursive:true});
   fs.rmSync('assets/data/monsters',{recursive:true,force:true});

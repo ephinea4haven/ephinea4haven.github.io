@@ -8,6 +8,8 @@ import { MonsterLanguageService } from './monster-language.service';
 import { DIFFICULTIES, METADATA, MONSTERS, MONSTER_BY_ID, MechanicTable, Monster, REGION_OF, monsterPath, normalize } from './monster';
 import { MonsterResult } from './monster-detail.routes';
 import { MonsterImageComponent } from './monster-image.component';
+type PortraitSource='render'|`render-${number}`|'hd'|'wiki';
+
 @Component({
   selector:'haven-monster-catalog',imports:[RouterLink,CatalogLanguageComponent,MonsterImageComponent],providers:[MonsterLanguageService],
   templateUrl:'./monster-catalog.component.html',styleUrl:'./monster-catalog.component.css',changeDetection:ChangeDetectionStrategy.OnPush,
@@ -23,12 +25,20 @@ export class MonsterCatalogComponent {
   readonly monster=computed(()=>this.detail() ? MONSTER_BY_ID.get(this.detail()!.id)! : null);
   readonly difficulty=computed(()=>DIFFICULTIES.some(d=>d.id===this.params().get('diff')) ? this.params().get('diff')! : 'n');
   readonly hdImage=computed(()=>this.difficulty()==='u' ? this.detail()?.ultimateHdImage : this.detail()?.hdImage);
+  readonly renderImage=computed(()=>this.difficulty()==='u' ? this.detail()?.ultimateRenderImage : this.detail()?.renderImage);
+  // Portrait sources in order of preference: model render, HD gallery, Wiki screenshot.
+  readonly portraitSources=computed(()=>{
+    const m=this.monster();
+    const alternates=(this.detail()?.renderAlternates ?? []).map((alternate,index)=>[`render-${index}`,alternate.image] as const);
+    return ([['render',this.renderImage()],...alternates,['hd',this.hdImage()],['wiki',m ? this.image(m) : null]] as const)
+      .filter((source):source is readonly [PortraitSource,string]=>!!source[1]);
+  });
   readonly imageMode=linkedSignal({
     source:computed(()=>`${this.monster()?.id}:${this.difficulty()==='u' ? 'ultimate':'normal'}`),
-    computation:(): 'hd'|'wiki'=>'hd',
+    computation:(): PortraitSource=>'render',
   });
-  readonly showingHd=computed(()=>!!this.hdImage() && this.imageMode()==='hd');
-  readonly portraitImage=computed(()=>this.showingHd() ? this.hdImage()! : this.monster() ? this.image(this.monster()!) : null);
+  readonly portraitSource=computed(()=>this.portraitSources().find(([mode])=>mode===this.imageMode()) ?? this.portraitSources()[0]);
+  readonly portraitImage=computed(()=>this.portraitSource()?.[1] ?? null);
   readonly mode=computed(()=>this.params().get('mode')==='off' ? 'off':'on');
   readonly context=computed(()=>`${this.difficulty()}-${this.mode()}`);
   readonly query=computed(()=>Object.fromEntries([...this.params().keys.map(k=>[k,this.params().get(k)]),['ep',this.episode()]]));
@@ -58,18 +68,27 @@ export class MonsterCatalogComponent {
     if(t.axis==='mode') return t.context[0]===mode;
     return true;
   }) || []);
+  private readonly sourceLabels={render:'模型渲染',hd:'高清图片',wiki:'现有图片'} as const;
+  private readonly sourceCaptions={render:'图片来源：原始模型渲染',hd:'图片来源：高清图库',wiki:'图片来源：Ephinea Wiki'} as const;
+  sourceLabel(source:PortraitSource):string {
+    const alternate=source.startsWith('render-') ? this.detail()?.renderAlternates[Number(source.slice(7))] : undefined;
+    return alternate ? alternate.label[this.i18n.language()] : this.i18n.t(this.sourceLabels[source as 'render'|'hd'|'wiki']);
+  }
+  sourceCaption(source:PortraitSource):string {return this.i18n.t(this.sourceCaptions[source.startsWith('render') ? 'render' : source as 'hd'|'wiki']);}
   readonly count=MONSTERS.length;readonly metadata=METADATA;readonly difficulties=DIFFICULTIES;readonly path=monsterPath;
   readonly statLabels=['生命值','攻击力','防御力','精神力','命中','回避','运气','火抗性','冰抗性','雷抗性','暗抗性','光抗性','异常抗性','经验','DAR','普通掉落类型'];
   readonly sectionLabels=['深绿','黄绿','天蓝','蓝','紫','粉','红','橙','黄','白'];
   name(m:Monster):string {return this.i18n.name(this.difficulty()==='u'?m.ultimateNames:m.names);}
   image(m:Monster):string|null {return this.difficulty()==='u'?m.ultimateImage:m.image;}
+  thumbnail(m:Monster):string|null {return (this.difficulty()==='u'?m.ultimateThumbnail:m.thumbnail) ?? this.image(m);}
   tableContext(table:MechanicTable):string {
     const mode=this.i18n.t(table.context.at(-1)==='Normal'?'多人模式':'单人模式');
     return table.axis==='difficulty-mode' ? `${table.context[0]} / ${mode}` : table.axis==='mode' ? mode : table.context.join(' / ');
   }
   update(key:string,value:string):void {
     void this.router.navigate([],{relativeTo:this.route,queryParams:{[key]:value||null,...(key==='page'||this.result()?{}:{page:null}),...(key==='ep'?{area:null}:{})},queryParamsHandling:'merge',preserveFragment:true,replaceUrl:true}).then(navigated=>{
-      if(navigated && key==='page') this.document.getElementById('monster-results')?.scrollIntoView({behavior:'instant',block:'start'});
+      // Paging returns to the results heading, whose previous / next buttons stay in reach.
+      if(navigated && key==='page') this.document.getElementById('monster-results-heading')?.scrollIntoView({behavior:'instant',block:'start'});
     });
   }
   clear():void {void this.router.navigate([],{relativeTo:this.route,queryParams:{ep:this.episode(),diff:this.difficulty(),mode:this.mode()},replaceUrl:true});}

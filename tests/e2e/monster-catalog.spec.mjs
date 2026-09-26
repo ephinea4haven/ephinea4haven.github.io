@@ -84,6 +84,19 @@ test('monster pagination scrolls to the first new result',async({page})=>{
   await expect(page).toHaveURL(/page=2/);
   await expect(page.locator('.monster-row').first()).toBeInViewport();
 });
+test('the results heading pages like the bottom pager and stays in view',async({page})=>{
+  await page.goto('/en/data/enemies.html?q=a');
+  const steps=page.locator('.result-heading .page-steps');
+  await expect(steps).toContainText('1 / 2');
+  await steps.getByRole('button',{name:'Next',exact:true}).click();
+  await expect(page).toHaveURL(/page=2/);
+  await expect(steps).toContainText('2 / 2');
+  await expect(steps).toBeInViewport();
+  await steps.getByRole('button',{name:'Previous',exact:true}).click();
+  await expect(page).not.toHaveURL(/page=2/);
+  await page.goto('/en/data/enemies.html');
+  await expect(page.locator('.result-heading .page-steps')).toHaveCount(0);
+});
 test('Ultimate-only Megid tables never appear at lower difficulties',async({page})=>{
   for(const id of ['hildeblue-e1','hildeblue-e2','chaos-sorcerer-e1','chaos-sorcerer-e2','poison-lily-e1','nar-lily-e2','deldepth','zol-gibbon']) {
     await page.goto(`/en/data/enemies/${id}.html?diff=n`);
@@ -214,12 +227,17 @@ test('episode selection has no All option and auxiliary resets preserve the chap
   await page.reload();await expect(page.locator('.filters select').first()).toHaveValue('4');
 });
 
-test('HD portrait selection follows appearance and updates its full image link',async({page})=>{
+test('portrait selection defaults to the model render, follows appearance and updates its full image link',async({page})=>{
   await page.goto('/en/data/enemies/booma.html');
   const portrait=page.locator('.portrait');const img=portrait.locator('img');
-  await expect(img).toHaveAttribute('src',details.booma.hdImage);
-  await expect(portrait.getByRole('link',{name:'View full image ↗'})).toHaveAttribute('href',details.booma.hdImage);
+  await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','HD image','Wiki image']);
+  await expect(img).toHaveAttribute('src',details.booma.renderImage);
+  await expect(portrait).toContainText('Image source: original model render');
+  await expect(portrait.getByRole('link',{name:'View full image ↗'})).toHaveAttribute('href',details.booma.renderImage);
   await expect.poll(()=>img.evaluate(image=>image.naturalWidth)).toBeGreaterThan(0);
+  await portrait.getByRole('button',{name:'HD image',exact:true}).click();
+  await expect(img).toHaveAttribute('src',details.booma.hdImage);
+  await expect(portrait).toContainText('Image source: HD gallery');
   await portrait.getByRole('button',{name:'Wiki image',exact:true}).click();
   await expect(img).toHaveAttribute('src',/\/wiki\//);
   await expect(portrait).toContainText('Image source: Ephinea Wiki');
@@ -227,13 +245,25 @@ test('HD portrait selection follows appearance and updates its full image link',
   await expect(page.getByRole('button',{name:'Hard',exact:true})).toHaveAttribute('aria-pressed','true');
   await expect(img).toHaveAttribute('src',/\/wiki\//);
   await page.getByRole('button',{name:'Ultimate',exact:true}).click();
-  await expect(img).toHaveAttribute('src',details.booma.ultimateHdImage);
-  await expect(portrait.getByRole('link')).toHaveAttribute('href',details.booma.ultimateHdImage);
+  await expect(img).toHaveAttribute('src',details.booma.ultimateRenderImage);
+  expect(details.booma.ultimateRenderImage).not.toBe(details.booma.renderImage);
+  await expect(portrait.getByRole('link')).toHaveAttribute('href',details.booma.ultimateRenderImage);
   await page.getByRole('button',{name:'Normal',exact:true}).click();
-  await expect(img).toHaveAttribute('src',details.booma.hdImage);
+  await expect(img).toHaveAttribute('src',details.booma.renderImage);
 });
-test('missing and failed HD portraits retain usable Wiki images',async({page})=>{
-  await page.route('**/assets/img/monsters/hd/**',route=>route.abort());
+test('alternate model poses are offered after the main render',async({page})=>{
+  await page.goto('/en/data/enemies/olga-flow-form-1.html');
+  const portrait=page.locator('.portrait');const img=portrait.locator('img');
+  await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','Ground pose','HD image','Wiki image']);
+  await expect(img).toHaveAttribute('src',details['olga-flow-form-1'].renderImage);
+  await portrait.getByRole('button',{name:'Ground pose',exact:true}).click();
+  await expect(img).toHaveAttribute('src',details['olga-flow-form-1'].renderAlternates[0].image);
+  await expect(portrait).toContainText('Image source: original model render');
+  await page.goto('/data/enemies/olga-flow-form-1.html');
+  await expect(page.locator('.portrait .image-switch button')).toHaveText(['模型渲染','地面姿势','高清图片','现有图片']);
+});
+test('missing and failed portraits retain usable Wiki images',async({page})=>{
+  await page.route('**/assets/img/monsters/{render,hd}/**',route=>route.abort());
   await page.goto('/en/data/enemies/booma.html');
   await expect(page.locator('.portrait monster-image')).toContainText('Image unavailable');
   await page.getByRole('button',{name:'Wiki image',exact:true}).click();
@@ -251,14 +281,15 @@ test('monster lists request no HD artwork',async({page})=>{
   expect(hd).toEqual([]);
 });
 
-for(const mode of ['hd','wiki']) test(`a failed ${mode} portrait can be retried after changing image source`,async({page})=>{
+const portraitButtons={render:'Model render',hd:'HD image',wiki:'Wiki image'};
+for(const [mode,alternate] of [['render','hd'],['hd','wiki'],['wiki','render']]) test(`a failed ${mode} portrait can be retried after changing image source`,async({page})=>{
   const pattern=`**/assets/img/monsters/${mode}/**`;
   await page.route(pattern,route=>route.abort());
   await page.goto('/en/data/enemies/booma.html');
   const portrait=page.locator('.portrait');
-  const failedButton=mode==='hd'?'HD image':'Wiki image';
-  const alternateButton=mode==='hd'?'Wiki image':'HD image';
-  if(mode==='wiki') await portrait.getByRole('button',{name:failedButton,exact:true}).click();
+  const failedButton=portraitButtons[mode];
+  const alternateButton=portraitButtons[alternate];
+  if(mode!=='render') await portrait.getByRole('button',{name:failedButton,exact:true}).click();
   await expect(portrait.locator('monster-image')).toContainText('Image unavailable');
   await portrait.getByRole('button',{name:alternateButton,exact:true}).click();
   await expect.poll(()=>portrait.locator('img').evaluate(img=>img.naturalWidth)).toBeGreaterThan(0);
@@ -269,7 +300,7 @@ for(const mode of ['hd','wiki']) test(`a failed ${mode} portrait can be retried 
 });
 
 for(const view of ['detail','list']) test(`a failed normal portrait can load again after changing difficulty in the ${view}`,async({page})=>{
-  const normalImage=view==='detail'?details.booma.hdImage:JSON.parse(readFileSync('src/app/generated/monster-catalog/index.json')).find(m=>m.id==='booma').image;
+  const normalImage=view==='detail'?details.booma.renderImage:JSON.parse(readFileSync('src/app/generated/monster-catalog/index.json')).find(m=>m.id==='booma').thumbnail;
   const pattern=`**${normalImage}`;
   await page.route(pattern,route=>route.abort());
   await page.goto(view==='detail'?'/en/data/enemies/booma.html':'/en/data/enemies.html?q=Booma');

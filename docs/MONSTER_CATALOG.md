@@ -43,7 +43,7 @@ added from the drop list without borrowing their parent's stats. Dark Falz's thi
 phase has no Normal stats and shows as uncatalogued rather than zero.
 
 The catalog supports Chinese, English and Japanese name search, episode, area and
-type filters, HP sorting, 24-entry pages, and switching between four difficulties
+type filters, HP sorting, 24-entry pages (previous / next buttons with the page count sit in the results heading as well as below the list), and switching between four difficulties
 and multiplayer or single-player mode. Difficulty buttons use the client names:
 普通 / 困难 / 极难 / 极限 from the maintained Chinese localization (BB
 `unitxt_cs` agrees), ノーマル / ハード / ベリーハード / アルティメット from the
@@ -326,9 +326,22 @@ border and color dot colors match. The rating note shows `2025-11，非官方`
 (2025-11, unofficial). This check confirms page publication and display only; it
 did not re-evaluate tiers or change the in-game rotation.
 
+## 模型渲染头像
+
+2026-09-26 起，详情页默认显示由游戏模型渲染的头像，列表显示同一渲染的缩略图，覆盖 **155 / 160 个图鉴条目**，普通与 Ultimate 外观分别绑定（151 张渲染，含 1 张备选姿势）。游戏内 Ultimate 外观不同的，Ultimate 绑定各自的 Ultimate 皮肤或档案（如 Booma、Hildebear、Sinow、Sil Dragon、Dal Ra Lie、Vol Opt ver.2、Canune、Gee R/L）；其余复用普通外观。切换按钮依次为“模型渲染 / 高清图片 / 现有图片”，只列出该外观实际存在的来源，默认选第一个；图片说明随来源变化。列表缩略图为 160 px（`assets/img/monsters/render/thumbs/`，随难度切换），没有渲染图的条目仍用 Wiki 图片；详情页的“现有图片”始终是 Wiki 图。
+
+- 配置：`content/monster-catalog/model-renders.json`。`renders` 记录每张图的模型来源、动作与帧、机位、需要隐藏的特效外壳材质；`bindings` 把图鉴条目的普通 / Ultimate 外观绑定到渲染图。生成器在条目不存在或文件缺失时失败。
+- 模型来源有两种。`npc` 取本地 phantasmal-world（提交 `a8890d22`）已提取的 `assets/npcs`，按其 `EntityAssetLoader.entityTypeToPath` 解析，Ultimate 皮肤按 `UltimateSkins.kt`。`archive` + `model`（+ `motion`）直接读取 Ephinea 客户端数据：`data.gsl` 中的 BML 或散放的 `.bml`（`scripts/pso_archives.py` 负责 PRS、GSL 与 BML 解析）；没有自带贴图的条目使用同一档案的第一个贴图包。首领、部位与 Ultimate 档案（`_a` / `_ap`）以及 EP4 首领的分阶段待机动作均由此取得。
+- phantasmal-world 的部分资源命名有误，已改用客户端档案：其 Hidoom / Migium 实为出场地面物件（正确模型是 Pan Arms 档案 `bm7_s_paa_body` 的 `pal` / `par`），Canane 为另一模型（正确的是 `bm_ene_me1_mb`），挂在 MerissaA 名下的动作属于 Slime（`bm4_ps_ma_body`）。每次改动都应把渲染图与 Wiki / 高清图逐项对照。
+- 渲染：`npm run generate:monster-renders -- --harness-assets <phantasmal-world>/web/src/jsMain/resources/assets/npcs`（`scripts/render_monster_models.py`）先把档案条目提取到该目录的 `raw/`，再调用 `scripts/render_monster_models.mjs` 在无界面浏览器中驱动 phantasmal-world 的导出入口 `?npcBatch=1`（`window.__renderNpc`），用它自己的蒙皮与 NJM 动画转换摆姿势，分别在黑底与白底上渲染 2048 px；两图之差还原透明度，叠加发光材质保持半透明。结果裁切到模型、居中留边，输出 1024 px 与 160 px WebP，`manifest.json` 记录 SHA-256。该导出入口只存在于本机 phantasmal-world 工作副本，不属于其仓库；重新渲染前需在本机构建并以 `--harness` 指向它。
+- 姿势：默认用模型自己的待机动作（wait / stand / standby 等，Poison Lily 用张开的 `waito`）；EP4 首领一、二阶段分别用 `1st_standby` / `2nd_standby`。Spinner 用 `standby`：其动作类型 `0x2005` 的四元数旋转位于缩放之前，phantasmal-world 原解析顺序（缩放在前）会读错，本机导出入口的构建修正了这一顺序。没有动作的模型用绑定姿势，Hildeblue 借用 Hildebear、Gobooma / Gigobooma 借用 Booma 的同骨架动作。Hidoom 以前的地面物件、Merissa A / AA、Pouilly Slime 的环境反射外壳在导出中会画成不透明色块，按材质序号隐藏。
+- 档案贴图：没有自带贴图包的模型按编号引用同一档案的贴图包（默认第一个，可用 `texture` 指定、`textureOrder` 重排）。提取时把 XVRT 块首尾相接重新打包，因为部分档案的块带对齐填充，顺序读取 IFF 的解析器会只读到第一张贴图；同名的模型与动作（如 `fs_obj_hiraishin_a.nj` / `.njm`）分开索引。解码后的 DXT 贴图使用线性过滤（与游戏一致，避免放大后的像素块）。
+- 组合与特殊材质：`parts` 在同一场景中叠加多个模型（Olga Flow (Form 1) 的本体 `bssgc_pf01_body` 与腿 `bossgc_pf01_leg`，均用空中待机 `skywait`；该姿势按倒挂制作，`rotate` 绕 X 轴翻转 180° 后从 270° 方向取景，剑朝下，与高清图一致；地面待机 `grdwait` 绕 Z 轴翻转 180° 的正面姿势作为 `alternates` 保留，详情页以“地面姿势”按钮切换，列表缩略图只用主渲染）。Bee / Gee 的 `re4_b_bit` 是没有纹理坐标的环境映射模型，`plainMaps` + `planarUv` 按正面投影纹理坐标，显示其漩涡纹理。De Rol Le (Shell) 用头部骨盔 `boss2_b_helm_break`（与 Wiki 截图一致），Ultimate 取 `_a` 档案。
+- 未覆盖（5 个条目，保持高清图库或 Wiki 图片）：Vol Opt (Form 1)（参考图是整面墙）与 (Monitor)（屏幕上 Vol Opt 的脸是战斗中的实时画面，模型贴图只有文字）、De Rol Le (Mine)（候选模型与参考不符）、Nar Lily ×2（红色贴图未找到）。Death Gunner 目前与 Dark Gunner 使用同一贴图，客户端档案中没有找到其独立配色；Epsigard 使用 `re6_b_claw_body` 自带的红白贴图，比游戏截图多出白色区域。
+
 ## 高清怪物素材
 
-2026-09-20 首次接入维护者提供的 `ENEMY` 素材，共 **168 张**，覆盖 **131 / 160 个图鉴条目**的普通与 Ultimate 外观。同日接入 `BOSS 补完` 后，当前保留 **171 张**图片，覆盖 **134 / 160 个图鉴条目**。图片按原区域分别保留，EP1 / EP2 中内容相同的图片也使用各自的资源路径，不做跨章节去重。神殿目录附带的 Al Rappy / Pal Rappy 两张图仍完整保留，但 EP2 没有对应条目，不误绑到 Love Rappy 或节日拉比。列表继续使用原 Wiki 缩略图；详情页有高清图时默认显示高清，并提供 Wiki 图片切换、当前图片来源与原图链接。没有高清素材的形态继续显示 Wiki 图片。
+2026-09-20 首次接入维护者提供的 `ENEMY` 素材，共 **168 张**，覆盖 **131 / 160 个图鉴条目**的普通与 Ultimate 外观。同日接入 `BOSS 补完` 后，当前保留 **171 张**图片，覆盖 **134 / 160 个图鉴条目**。图片按原区域分别保留，EP1 / EP2 中内容相同的图片也使用各自的资源路径，不做跨章节去重。神殿目录附带的 Al Rappy / Pal Rappy 两张图仍完整保留，但 EP2 没有对应条目，不误绑到 Love Rappy 或节日拉比。列表继续使用原 Wiki 缩略图；详情页有高清图时提供高清与 Wiki 图片切换（有模型渲染时默认显示渲染图，见上节）、当前图片来源与原图链接。没有高清素材的形态继续显示 Wiki 图片。
 
 - 清单：`content/monster-catalog/hd-gallery.json`，记录原文件名、规范文件名、英文身份、原 PNG 尺寸 / 大小 / SHA-256、WebP 大小 / SHA-256，以及每个条目的普通 / Ultimate 绑定。
 - 资源：`assets/img/monsters/hd/<area>/`；首批 `ENEMY` 的 WebP 使用 `cwebp -q 85 -m 6 -resize 1024 0`，保留透明度，不重绘图片。原 PNG 宽度均不小于 1024；Boss 补完的转换工具见下方记录。

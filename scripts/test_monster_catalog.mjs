@@ -15,6 +15,7 @@ test('regenerating a reduced monster catalog removes retired detail assets',()=>
   const fixture=fs.mkdtempSync(path.join(os.tmpdir(),'monster-catalog-update-'));
   try {
     fs.cpSync('content/monster-catalog',path.join(fixture,'content/monster-catalog'),{recursive:true});
+    fs.cpSync('assets/img/monsters/render',path.join(fixture,'assets/img/monsters/render'),{recursive:true});
     fs.mkdirSync(path.join(fixture,'src/app/generated/item-catalog'),{recursive:true});
     fs.copyFileSync('src/app/generated/item-catalog/index.json',path.join(fixture,'src/app/generated/item-catalog/index.json'));
     const generate=()=>execFileSync(process.execPath,[path.resolve('scripts/generate_monster_catalog.mjs')],{
@@ -27,6 +28,10 @@ test('regenerating a reduced monster catalog removes retired detail assets',()=>
     const snapshot=JSON.parse(fs.readFileSync(snapshotFile,'utf8'));
     snapshot.records=snapshot.records.filter(record=>record.id!=='booma');
     fs.writeFileSync(snapshotFile,JSON.stringify(snapshot));
+    const rendersFile=path.join(fixture,'content/monster-catalog/model-renders.json');
+    const renders=JSON.parse(fs.readFileSync(rendersFile,'utf8'));
+    delete renders.bindings.booma;
+    fs.writeFileSync(rendersFile,JSON.stringify(renders));
     generate();
     assert.ok(!fs.existsSync(retired),'removed monster detail must not remain in the published asset tree');
     const index=JSON.parse(fs.readFileSync(path.join(fixture,'src/app/generated/monster-catalog/index.json'),'utf8'));
@@ -138,6 +143,44 @@ test('HD artwork keeps episode copies separate and binds only the pictured boss 
   for(const id of ['vol-opt-form-1','vol-opt-pillar','epsigard']) assert.equal(details[id].hdImage,null,id);
   for(const id of ['vol-opt-form-2','dark-falz-form-1','dark-falz-form-2','dark-falz-form-3','olga-flow-form-1','olga-flow-form-2','death-gunner','dolmolm','epsilon']) assert.ok(details[id].hdImage,id);
   for(const monster of index) assert.equal('hdImage' in monster,false,'HD assets stay out of the list bundle');
+});
+
+test('model renders are checksummed, bound to real entries and distinguish Ultimate skins',()=>{
+  const config=JSON.parse(fs.readFileSync('content/monster-catalog/model-renders.json'));
+  const manifest=JSON.parse(fs.readFileSync('assets/img/monsters/render/manifest.json'));
+  assert.deepEqual(Object.keys(manifest).sort(),Object.keys(config.renders).sort());
+  for(const [label,entry] of Object.entries(manifest)) {
+    const bytes=fs.readFileSync(`assets/img/monsters/render/${entry.file}`);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'),entry.sha256,label);
+    assert.equal(bytes.toString('ascii',8,12),'WEBP',label);
+    assert.ok(bytes.length<300_000,label);
+    const thumb=fs.readFileSync(`assets/img/monsters/render/thumbs/${entry.file}`);
+    assert.equal(createHash('sha256').update(thumb).digest('hex'),entry.thumbSha256,label);
+    assert.ok(thumb.length<20_000,label);
+  }
+  for(const [id,binding] of Object.entries(config.bindings)) {
+    assert.ok(details[id],id);
+    assert.equal(details[id].renderImage,`/assets/img/monsters/render/${manifest[binding.normal].file}`,id);
+    assert.equal(details[id].ultimateRenderImage,`/assets/img/monsters/render/${manifest[binding.ultimate].file}`,id);
+    // An Ultimate render is either the normal one or that model's own .ult skin.
+    assert.ok(binding.ultimate===binding.normal || binding.ultimate===`${binding.normal}.ult`,id);
+    assert.ok(config.renders[binding.normal],id);
+  }
+  assert.notEqual(details.booma.renderImage,details.booma.ultimateRenderImage);
+  assert.equal(details['savage-wolf-e1'].renderImage,details['savage-wolf-e1'].ultimateRenderImage);
+  assert.equal(Object.values(details).filter(detail=>detail.renderImage).length,155);
+  for(const id of ['vol-opt-form-1','vol-opt-monitor','de-rol-le-mine','nar-lily-e1','nar-lily-e2']) assert.equal(details[id].renderImage,null,id);
+  assert.equal(details['hidoom-e1'].renderImage,'/assets/img/monsters/render/Hidoom.webp');
+  assert.notEqual(details['saint-milion-phase-1'].renderImage,details['saint-milion-phase-2'].renderImage);
+  assert.notEqual(details.dragon.renderImage,details.dragon.ultimateRenderImage);
+  // Olga Flow (Form 1) keeps its ground pose as a second render on the detail page.
+  assert.deepEqual(details['olga-flow-form-1'].renderAlternates,[{image:'/assets/img/monsters/render/OlgaFlowForm1.ground.webp',label:{zh:'地面姿势',en:'Ground pose',ja:'地上の姿勢'}}]);
+  assert.equal(Object.values(details).filter(detail=>detail.renderAlternates.length).length,1);
+  for(const monster of index) {
+    assert.equal('renderImage' in monster,false,'Full-size renders stay out of the list bundle');
+    assert.equal(monster.thumbnail,details[monster.id].renderImage?.replace('/render/','/render/thumbs/') ?? null,monster.id);
+    assert.equal(monster.ultimateThumbnail,details[monster.id].ultimateRenderImage?.replace('/render/','/render/thumbs/') ?? null,monster.id);
+  }
 });
 
 test('behaviour notes are written in every site language',()=>{
