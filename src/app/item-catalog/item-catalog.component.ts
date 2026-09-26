@@ -38,9 +38,14 @@ export class ItemCatalogComponent {
   readonly category = computed(() => CATEGORIES.some(({ id }) => id === this.params().get('category')) ? this.params().get('category')! : 'weapon');
   readonly profession = computed(() => this.category() !== 'tool' && CLASSES.includes(this.params().get('class') ?? '') ? this.params().get('class')! : '');
   readonly rarity = computed(() => ['common', '9', '10', '11', '12', 'unknown'].includes(this.params().get('rarity') ?? '') ? this.params().get('rarity')! : '');
-  readonly subtypes = computed(() => [...new Set(this.items().filter(i => i.category === this.category()).map(i => i.subtype))]);
-  readonly subtype = computed(() => this.subtypes().includes(this.params().get('type') || '') ? this.params().get('type')! : '');
-  readonly status = computed(() => ['listed', 'obsolete', 'unavailable'].includes(this.params().get('status') || '') ? this.params().get('status')! : '');
+  // Subcategories follow Ephinea's weapon list: common and rare weapons by type, then the ES and TypeM series.
+  private readonly categoryItems = computed(() => this.items().filter(i => i.category === this.category()));
+  readonly typeGroups = computed(() => [...new Set(this.categoryItems().filter(i => i.group === i.subtype).map(i => i.group))]);
+  readonly seriesGroups = computed(() => [...new Set(this.categoryItems().filter(i => i.group !== i.subtype).map(i => i.group))]);
+  readonly subtypes = computed(() => [...this.typeGroups(), ...this.seriesGroups()]);
+  readonly groupCounts = computed(() => this.categoryItems().reduce((counts, i) => counts.set(i.group, (counts.get(i.group) ?? 0) + 1), new Map<string, number>()));
+  // Browsing always shows one subcategory, the category's first by default; a search covers the whole category.
+  readonly subtype = computed(() => this.subtypes().includes(this.params().get('type') || '') ? this.params().get('type')! : this.subtypes()[0]);
   readonly imagesOnly = computed(() => this.params().get('images') === '1');
   readonly sort = computed(() => {
     const value = this.params().get('sort') ?? 'catalog';
@@ -50,8 +55,7 @@ export class ItemCatalogComponent {
     const query = normalize(this.query());
     const items = this.items().filter((item) =>
       (item.category === this.category())
-      && (!this.subtype() || item.subtype === this.subtype())
-      && (!this.status() || item.status === this.status())
+      && (!!query || item.group === this.subtype())
       && (!this.profession() || item.category !== 'tool' && item.classes.includes(this.profession()))
       && (!this.rarity() || (this.rarity() === 'unknown' ? item.rarity === null : this.rarity() === 'common' ? item.rarity !== null && item.rarity < 9 : item.rarity === Number(this.rarity())))
       && (!this.imagesOnly() || !!item.image)
@@ -70,13 +74,11 @@ export class ItemCatalogComponent {
   readonly visible = computed(() => this.filtered().slice((this.page() - 1) * this.pageSize, this.page() * this.pageSize));
   readonly activeFilters = computed(() => [
     ...(this.query() ? [{ key: 'q', label: this.i18n.t('搜索：') + this.query() }] : []),
-    ...(this.subtype() ? [{ key: 'type', label: this.i18n.t(this.subtype()) }] : []),
-    ...(this.status() ? [{ key: 'status', label: this.status() === 'listed' ? this.i18n.t('现行目录') : this.i18n.status(this.status()) }] : []),
     ...(this.profession() ? [{ key: 'class', label: this.profession() }] : []),
     ...(this.rarity() ? [{ key: 'rarity', label: this.rarity() === 'unknown' ? this.i18n.t('未标星级') : this.rarity() === 'common' ? this.i18n.t('普通道具') : `${this.rarity()}★` }] : []),
     ...(this.imagesOnly() ? [{ key: 'images', label: this.i18n.t('有截图') }] : []),
   ]);
-  readonly listParams = computed<Params>(() => ({ q: this.query() || null, category: this.category(), type: this.subtype() || null, status: this.status() || null, class: this.profession() || null, rarity: this.rarity() || null, images: this.imagesOnly() ? '1' : null, sort: this.sort() === 'catalog' ? null : this.sort(), page: this.page() === 1 ? null : this.page() }));
+  readonly listParams = computed<Params>(() => ({ q: this.query() || null, category: this.category(), type: this.subtype(), class: this.profession() || null, rarity: this.rarity() || null, images: this.imagesOnly() ? '1' : null, sort: this.sort() === 'catalog' ? null : this.sort(), page: this.page() === 1 ? null : this.page() }));
 
   constructor() {
     effect(() => this.title.setTitle(`${this.i18n.t('道具图鉴')} | Ephinea PSOBB`));
@@ -92,7 +94,7 @@ export class ItemCatalogComponent {
   clear(): void { void this.router.navigate([], { relativeTo: this.route, queryParams: {category:this.category()}, replaceUrl: true }); }
   goToPage(page: number): void {
     page = Number.isSafeInteger(page) ? Math.max(1, Math.min(page, this.pageCount())) : 1;
-    void this.router.navigate([], { relativeTo: this.route, queryParams: { ...this.listParams(), page }, replaceUrl: true }).then(() => {
+    void this.router.navigate([], { relativeTo: this.route, queryParams: { ...this.listParams(), page: page === 1 ? null : page }, replaceUrl: true }).then(() => {
       this.document.getElementById('catalog-results')?.scrollIntoView({ block: 'start' });
     });
   }

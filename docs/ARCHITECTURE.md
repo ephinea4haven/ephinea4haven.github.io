@@ -130,7 +130,8 @@ but no scripts or inline event handlers; Angular owns behavior.
 
 The Mag evolution chart uses 46 original-texture renders in
 `assets/img/mag/default/` for its initial display and colour reset; the item
-catalog reuses the same files as the HD image of those Mags' detail pages. Each render
+catalog reuses the same files, plus 33 further renders of the remaining Mags, as
+the HD image of Mag detail pages. Each render
 has its own reference-matched camera and shared camera-relative lighting that
 keeps brightness close to the original textures; provenance, camera and lighting
 parameters and known outline differences are recorded in that directory. Colour

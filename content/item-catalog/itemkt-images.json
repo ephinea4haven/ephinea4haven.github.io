@@ -1,0 +1,32 @@
+{
+  "TypeRI/Rifle": {
+    "path": "/assets/img/items/itemkt/d74e3b44dc594b5e.png",
+    "sha1": "d74e3b44dc594b5e01eacdc9be0f9519d773c6fc",
+    "width": 320,
+    "height": 240,
+    "archive": "ItemKTep4.afs",
+    "archiveSha256": "6c203b495cf4a3e0d8b308ed1133f2eff7bcb504a2bb93a67bf86fba59d422a6",
+    "entries": [
+      146,
+      147,
+      148,
+      149,
+      150
+    ]
+  },
+  "TypeSH/Shot": {
+    "path": "/assets/img/items/itemkt/98d06950c06084e3.png",
+    "sha1": "98d06950c06084e3bf6d18afd34e8cac7bb2150a",
+    "width": 320,
+    "height": 240,
+    "archive": "ItemKTep4.afs",
+    "archiveSha256": "6c203b495cf4a3e0d8b308ed1133f2eff7bcb504a2bb93a67bf86fba59d422a6",
+    "entries": [
+      138,
+      139,
+      140,
+      141,
+      142
+    ]
+  }
+}

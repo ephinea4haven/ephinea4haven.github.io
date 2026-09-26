@@ -16,7 +16,7 @@
           <figcaption>
             @if (pictured.image) {
               <a [href]="pictured.image" target="_blank" rel="noopener">{{ i18n.t('查看原图 ↗') }}</a>
-              <span>{{ i18n.t(!showingHd() ? '图片来源：Ephinea Wiki' : entry.hdSource === 'model-render' ? '图片来源：原始模型渲染' : '图片来源：高清图库') }}</span>
+              <span>{{ i18n.t(!showingHd() ? (entry.imageOrigin === 'itemkt' ? '图片来源：游戏贴图（ItemKT）' : '图片来源：Ephinea Wiki') : entry.hdSource === 'model-render' ? '图片来源：原始模型渲染' : '图片来源：高清图库') }}</span>
             } @else {<span>{{ i18n.t('暂未收录此道具的游戏截图') }}</span>}
           </figcaption>
         }

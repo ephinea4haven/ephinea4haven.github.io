@@ -1764,6 +1764,1522 @@
           "height": 64
         }
       ]
+    },
+    {
+      "name": "Pitri",
+      "item_code": "pitri",
+      "model": {
+        "slot": 300,
+        "source": "ItemModelEp4.afs",
+        "sha256": "4bbe139a93350d783fe16979f377252543d257cc7c0a75839145039912a1ac48",
+        "size": 5440
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 36,
+        "model_body_size": 5176
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 324,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "c25d08ceb632bc1f1a70526caa182d6edcf99951a65397506b5a1c704eece7ba",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Preta",
+      "item_code": "preta",
+      "model": {
+        "slot": 305,
+        "source": "ItemModelEp4.afs",
+        "sha256": "add0dcf79fdfed04015b4edd42c7528ee24783474d256efa7f878de1e74eb824",
+        "size": 4768
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 15,
+        "model_body_size": 4536
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 329,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "0abe24001750d461ab3ae95670fb4685b8fd2854b718d6dd27c21adc72daea8f",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Churel",
+      "item_code": "churel",
+      "model": {
+        "slot": 310,
+        "source": "ItemModelEp4.afs",
+        "sha256": "8ddc453a5c9c664a82b648397141011a40a9ee2781a718f7a2f463a4d283488a",
+        "size": 6304
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 2,
+        "model_count": 1,
+        "relocation_count": 27,
+        "model_body_size": 6040
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 334,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "7a263f380141a86fcc55c5d89987a1c696416562645e1d4a184c3eedcba2e877",
+        "size": 2752
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "name": "Opa-Opa",
+      "item_code": "opa-opa",
+      "model": {
+        "slot": 312,
+        "source": "ItemModelEp4.afs",
+        "sha256": "cf13eda4dff730f9a1797d8ef51eb824b71fda52ba9e0fc178e45f75d524d515",
+        "size": 4768
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 22,
+        "model_body_size": 4536
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 336,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "a5c861b3c051f8e348153c445b517b742a8d7b88367d8311910916ad2db04c7e",
+        "size": 2176
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Pian",
+      "item_code": "pian",
+      "model": {
+        "slot": 313,
+        "source": "ItemModelEp4.afs",
+        "sha256": "ad6df1751f37d21a568251e03e30021f99ae301c6787d17cc701f670ef20d1bb",
+        "size": 20000
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 31,
+        "model_body_size": 19768
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 337,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "b675204731625ec0dfca971e334203dd14805cf1886665c80fa107ea6a288a14",
+        "size": 4224
+      },
+      "textures": [
+        {
+          "format": 7,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Chao",
+      "item_code": "chao",
+      "model": {
+        "slot": 314,
+        "source": "ItemModelEp4.afs",
+        "sha256": "36b1a6cc0763bb5d0f7af634c748eb78bbf246c9f2621a97a34017b2167569d6",
+        "size": 9088
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 31,
+        "model_body_size": 8856
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 338,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "805a2f4232bd8137965ed6da43e0d4d893fdf70ed662b7d0eff8f607e771457a",
+        "size": 2176
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Chu Chu",
+      "item_code": "chu-chu",
+      "model": {
+        "slot": 315,
+        "source": "ItemModelEp4.afs",
+        "sha256": "e681539efd58bb9c9a8143457cb4257406e48d94f00f0e303aa6b72b62a50cc4",
+        "size": 15968
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 3,
+        "model_count": 1,
+        "relocation_count": 19,
+        "model_body_size": 15672
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 339,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "06ee43444756b1f896f701dec040ae940259becd77fb1f7c792ef5a9fca5839a",
+        "size": 3328
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "name": "Kapu Kapu",
+      "item_code": "kapu-kapu",
+      "model": {
+        "slot": 316,
+        "source": "ItemModelEp4.afs",
+        "sha256": "533edfe24f2917897939bdfc81f9edec181f8bf6bcf316f4e651080cc633b39c",
+        "size": 26848
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 4,
+        "model_count": 1,
+        "relocation_count": 20,
+        "model_body_size": 26488
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 340,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "c3978dbdc3e7b8d77bd222be17ca3870326db63ed998229744100aa9af57e30b",
+        "size": 2368
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "name": "Devil's Wing",
+      "item_code": "devils-wing",
+      "model": {
+        "slot": 318,
+        "source": "ItemModelEp4.afs",
+        "sha256": "c4a28f229bf78e4d719bc4a8690b6f764de946ec3eb2df051f3c45b343d56ec7",
+        "size": 7264
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 2,
+        "relocation_count": 28,
+        "model_body_size": 6960
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 342,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "c15c64ea7b3ee21b0962a138e20fb1f81938b9dc3bc7cde59f5ea1966fc028f8",
+        "size": 2176
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Elenor",
+      "item_code": "elenor",
+      "model": {
+        "slot": 319,
+        "source": "ItemModelEp4.afs",
+        "sha256": "2f7f8e9cadb39cc9bf2cbeb28ed14d21831d42e6b5b43511a8c4e37162f7a196",
+        "size": 6880
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 2,
+        "relocation_count": 34,
+        "model_body_size": 6576
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 343,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "2fd46abea1e79f1df4b5d3fe51a0495e65c87e42d512e18ef75988835e312f9b",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Mark III",
+      "item_code": "mark-iii",
+      "model": {
+        "slot": 320,
+        "source": "ItemModelEp4.afs",
+        "sha256": "e194c2993e6620344c89ad31c57838295d8e82f44ecf367cf941667d696cb97b",
+        "size": 3936
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 8,
+        "model_body_size": 3704
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 344,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "afa84a62d364048ca8fde8b61e0b53a6e1ebe25d9d2646ceb4c53750b30af4c8",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Master System",
+      "item_code": "master-system",
+      "model": {
+        "slot": 321,
+        "source": "ItemModelEp4.afs",
+        "sha256": "017ffc26ae1a81d28ea524401b701f04e1b08fc488abdbb627297a6117ae90dd",
+        "size": 2464
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 15,
+        "model_body_size": 2232
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 345,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "250525492643377e0aeb53426fc95130eeeb73e28a1de1c102f1770b9f1b5eac",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Genesis",
+      "item_code": "genesis",
+      "model": {
+        "slot": 322,
+        "source": "ItemModelEp4.afs",
+        "sha256": "db6052d32c9ea749c1e52e633a84d290f5c032af4081652e445028d7eb6c7b17",
+        "size": 2816
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 15,
+        "model_body_size": 2584
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 346,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "612c727dc06d8939316042a88674cc1a4e6bded9e0bbb736a5da87b18689ef5e",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Sega Saturn",
+      "item_code": "sega-saturn",
+      "model": {
+        "slot": 323,
+        "source": "ItemModelEp4.afs",
+        "sha256": "ba68012706de1490214c45fbe1a191b8e3e03529162c61db47149469e2f8914c",
+        "size": 2400
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 15,
+        "model_body_size": 2168
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 347,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "4720acf3e5ad39cc5a0e674c2b950a27884d91ad01b5f5e734c55ff00c8fdf28",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Dreamcast",
+      "item_code": "dreamcast",
+      "model": {
+        "slot": 324,
+        "source": "ItemModelEp4.afs",
+        "sha256": "250dcc30ba363e6f9c2864a794242e239d7794ec0bc5ee563c1026d51c51144b",
+        "size": 2080
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 19,
+        "model_body_size": 1848
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 348,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "41e632bb92bcd713a5102788142dc5e70912b34c16ffbdd79565904eebbbf7ed",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Hamburger",
+      "item_code": "hamburger",
+      "model": {
+        "slot": 325,
+        "source": "ItemModelEp4.afs",
+        "sha256": "a76425ddbe94dc764575760dd0fd2ad67caa1ab3a3ab2ccb4f2f84acab48f716",
+        "size": 7424
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 20,
+        "model_body_size": 7192
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 349,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "44d23a0d089b49feaf040e7851a26f7c8a344cd63265868678ede47dcc320e29",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Panzer's Tail",
+      "item_code": "panzers-tail",
+      "model": {
+        "slot": 326,
+        "source": "ItemModelEp4.afs",
+        "sha256": "6b12da541e9cfa28dd96ef9771bdd4a657b0e40a5fbb5d4f2601a7d18146e65e",
+        "size": 3648
+      },
+      "inspection": {
+        "format": "nj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0",
+          "NMDM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 31,
+        "model_body_size": 2572
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 350,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "6390e3615c5158941ab038b1be5d55545c8cb1df51d2db9725e6dfa989b71a28",
+        "size": 2176
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Devil's Tail",
+      "item_code": "devils-tail",
+      "model": {
+        "slot": 327,
+        "source": "ItemModelEp4.afs",
+        "sha256": "69f6ff21a56338d5c0457082ec1895a580f1884729130b2f151d4bb02ed8d319",
+        "size": 3964
+      },
+      "inspection": {
+        "format": "nj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0",
+          "NMDM",
+          "POF0"
+        ],
+        "texture_count": 2,
+        "model_count": 1,
+        "relocation_count": 32,
+        "model_body_size": 2852
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 351,
+        "source": "ephinea/default/texture/File 351.prs",
+        "sha256": "6e087f434e3b773ab415b5c7e5019665575e584de04d3dddb13e0bc374d53e84",
+        "size": 2368
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        }
+      ]
+    },
+    {
+      "name": "Geung-si",
+      "item_code": "geung-si",
+      "model": {
+        "slot": 338,
+        "source": "ItemModelEp4.afs",
+        "sha256": "545f670f6cda9b602848873088e9d591caf57336ff3e9730a265f5a22a74d87e",
+        "size": 23168
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 92,
+        "model_body_size": 22840
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 362,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "66599ff2448fc901ee855962254e6de9db57c98d757213b626067700a3308888",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Sonic",
+      "item_code": "sonic",
+      "model": {
+        "slot": 339,
+        "source": "ephinea/default/model/File 339.prs",
+        "sha256": "b3998ae74dc047bd75abd0348da502a0cb269a6d81860fdcb389414277b803a6",
+        "size": 59190
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 8,
+        "model_body_size": 59108
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 363,
+        "source": "ephinea/default/texture/File 363.prs",
+        "sha256": "4d7f0958d42ba72c69e0bea4546162c883aeb534730b40597b1bdebc9307e1c9",
+        "size": 131200
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 512,
+          "height": 512
+        }
+      ]
+    },
+    {
+      "name": "Tellusis",
+      "item_code": "tellusis",
+      "model": {
+        "slot": 340,
+        "source": "ItemModelEp4.afs",
+        "sha256": "f4ed1bda173ccdb176f84aee754c879158a88d5e4abe0b6b885707ca86f02bf3",
+        "size": 9216
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 2,
+        "model_count": 1,
+        "relocation_count": 16,
+        "model_body_size": 8952
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 364,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "229d1279d1013fe6c131a18624e372c2b1cdab1e147703445ac893c7fa248c47",
+        "size": 10432
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        },
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Striker Unit",
+      "item_code": "striker-unit",
+      "model": {
+        "slot": 341,
+        "source": "ItemModelEp4.afs",
+        "sha256": "89136caa0319ee6e469b9f512c2f7627e1e4fa72ebe80a8928dd4acb3915216b",
+        "size": 23808
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 8,
+        "model_body_size": 23576
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 365,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "a29d0558068cf5a18dc3d16b57d8732c318c08879ba055c27267455991bef58a",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Pioneer",
+      "item_code": "pioneer",
+      "model": {
+        "slot": 342,
+        "source": "ItemModelEp4.afs",
+        "sha256": "d7737c5e3ca70341ee982a97bb6bc50ae1ba30e0b2467755e55fcc5a63480b2f",
+        "size": 59296
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 21,
+        "model_body_size": 59064
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 366,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "5c8f7811a2fdf53dd36bc9b3947c07a59422efbf7d87c6467fc826ee84cf927f",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Puyo",
+      "item_code": "puyo",
+      "model": {
+        "slot": 343,
+        "source": "ItemModelEp4.afs",
+        "sha256": "b11b521cb299193dea38439092ce9dcf6691ab46cca891464a21bc9bf7f4661f",
+        "size": 8608
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 2,
+        "model_count": 1,
+        "relocation_count": 16,
+        "model_body_size": 8344
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 367,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "368442c78dd878251f7d2cf4a9a58fbcc6dabca12be0f7acbf9c330eb1283905",
+        "size": 4288
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Moro",
+      "item_code": "moro",
+      "model": {
+        "slot": 344,
+        "source": "ItemModelEp4.afs",
+        "sha256": "3749d92187a01d84f175c2ef332f05500bddd3f85f870676a8a5e3c387ee87da",
+        "size": 7872
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 22,
+        "model_body_size": 7640
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 368,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "773bc45173814ba16e0768cbacac1a7731c63954b154f8b92ededcb1be1a89bc",
+        "size": 2176
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Rappy (Mag)",
+      "item_code": "rappy-mag",
+      "model": {
+        "slot": 345,
+        "source": "ItemModelEp4.afs",
+        "sha256": "1a6551f7dbb6d22479487f344d359877a1ed5c8e8d57109807d55fffe170e008",
+        "size": 24000
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 11,
+        "model_body_size": 23768
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 369,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "16ae926593acae28b9758206d1e13bd0a387ad4e44ee4993e32f612eddb1068f",
+        "size": 32896
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 256,
+          "height": 256
+        }
+      ]
+    },
+    {
+      "name": "Yahoo!",
+      "item_code": "yahoo",
+      "model": {
+        "slot": 346,
+        "source": "ItemModelEp4.afs",
+        "sha256": "2f01b5ed81419a0ebcf7d7d03d188aec694df505fcd12aaf2c96998d16ab4cf8",
+        "size": 6880
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 20,
+        "model_body_size": 6648
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 370,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "192b0808faad34b3a1081cebd7ac9d826a50b6b6918685043aa2580bbcb75ddd",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
+    },
+    {
+      "name": "Gael Giel",
+      "item_code": "gael-giel",
+      "model": {
+        "slot": 347,
+        "source": "ItemModelEp4.afs",
+        "sha256": "680c3eae5127152df704b9b7d5fd1714a1f7cb4e2fa518f864d1a907b6f14ce9",
+        "size": 13000
+      },
+      "inspection": {
+        "format": "nj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0",
+          "NMDM",
+          "POF0"
+        ],
+        "texture_count": 2,
+        "model_count": 1,
+        "relocation_count": 29,
+        "model_body_size": 9868
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 371,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "bfef08f27d59ecd3c01b9004630a34fc0f520a80a187a154dbf63b95696172b7",
+        "size": 11840
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "name": "Present*",
+      "item_code": "present-variant",
+      "model": {
+        "slot": 408,
+        "source": "ephinea/default/model/File 408.prs",
+        "sha256": "557208eb4405b4bf0ae9706e3bb1cab4cef125eec32591bf0eb35b9f6cfed6e1",
+        "size": 3616
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 20,
+        "model_count": 1,
+        "relocation_count": 39,
+        "model_body_size": 2616
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 457,
+        "source": "ephinea/default/texture/File 457.prs",
+        "sha256": "9a794fce7368ea51310a6ee0c13bb247c0392632d3eb44c7fcbad2d0d9adc816",
+        "size": 9440
+      },
+      "textures": [
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 8,
+          "height": 8
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Saraswati",
+      "item_code": "saraswati",
+      "model": {
+        "slot": 409,
+        "source": "ephinea/default/model/File 409.prs",
+        "sha256": "fb513a6aa1fa05effabfa1a8f294e0e37996baf986ac685150a96af7b19c9e8e",
+        "size": 3616
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 20,
+        "model_count": 1,
+        "relocation_count": 36,
+        "model_body_size": 2616
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 457,
+        "source": "ephinea/default/texture/File 457.prs",
+        "sha256": "9a794fce7368ea51310a6ee0c13bb247c0392632d3eb44c7fcbad2d0d9adc816",
+        "size": 9440
+      },
+      "textures": [
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 7,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 8,
+          "height": 8
+        },
+        {
+          "format": 6,
+          "width": 16,
+          "height": 16
+        },
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Angel's Wing",
+      "item_code": "angels-wing",
+      "model": {
+        "slot": 317,
+        "source": "ItemModelEp4.afs",
+        "sha256": "73edec8fe667a15bf21e944cb8748461f51a81aa8a1ef91156a188c849f71db2",
+        "size": 7264
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 2,
+        "relocation_count": 32,
+        "model_body_size": 6960
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 341,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "1272911f623e2b4e88f98535bbbcaa8a750b218963ad1e5cf51d4d7222fcb6a0",
+        "size": 2176
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        }
+      ]
+    },
+    {
+      "name": "Robochao",
+      "item_code": "robochao",
+      "model": {
+        "slot": 311,
+        "source": "ItemModelEp4.afs",
+        "sha256": "9acb233e17075e8aa3fd929a206d590641ecc5ccc1b35c254f2db9070837919a",
+        "size": 15168
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 3,
+        "model_count": 1,
+        "relocation_count": 32,
+        "model_body_size": 14872
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 335,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "5807cd01e2ed6f05ae1840c4031285922a30ff3660681a6474711875f7ddc54f",
+        "size": 3328
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 64,
+          "height": 64
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        },
+        {
+          "format": 6,
+          "width": 32,
+          "height": 32
+        }
+      ]
+    },
+    {
+      "name": "Soniti",
+      "item_code": "soniti",
+      "model": {
+        "slot": 304,
+        "source": "ItemModelEp4.afs",
+        "sha256": "cd271421b9258fd859e951ed90b2fe47f0d54921bf1ccc5a79cd5a486d18e71a",
+        "size": 6112
+      },
+      "inspection": {
+        "format": "xj",
+        "endianness": "little",
+        "chunks": [
+          "NJTL",
+          "POF0",
+          "NJCM",
+          "POF0"
+        ],
+        "texture_count": 1,
+        "model_count": 1,
+        "relocation_count": 32,
+        "model_body_size": 5848
+      },
+      "parser": "rigid",
+      "texture": {
+        "slot": 328,
+        "source": "ItemTextureEp4.afs",
+        "sha256": "234b7031c0c469e5ab2ecf83d7f58ee8f7b8111eed01cc6acbfbaf4916059650",
+        "size": 8320
+      },
+      "textures": [
+        {
+          "format": 6,
+          "width": 128,
+          "height": 128
+        }
+      ]
     }
   ],
   "cameras": {
@@ -2556,6 +4072,504 @@
         33.5,
         31.5
       ]
+    },
+    "Pitri": {
+      "yaw": 137.92001182347283,
+      "elevation": -3.9251901280992207,
+      "roll": 2.5702804354940065,
+      "silhouette_iou": 0.8782334384858044,
+      "pixels_per_unit": 13.831389658398244,
+      "projected_center": [
+        1.0112786729775374,
+        -0.12015779200912557
+      ],
+      "reference_center": [
+        33.0,
+        31.0
+      ]
+    },
+    "Preta": {
+      "yaw": 129.24344321280483,
+      "elevation": -12.361409170466018,
+      "roll": 1.6228401453437191,
+      "silhouette_iou": 0.8836307214895268,
+      "pixels_per_unit": 10.776006379870614,
+      "projected_center": [
+        0.2775983855191233,
+        -0.6103497460711231
+      ],
+      "reference_center": [
+        31.5,
+        31.5
+      ]
+    },
+    "Churel": {
+      "yaw": 47.22165768204882,
+      "elevation": 19.206855819805515,
+      "roll": 0.0007764060776094261,
+      "silhouette_iou": 0.9354568315171836,
+      "pixels_per_unit": 9.106807099401559,
+      "projected_center": [
+        1.6037546465734622,
+        -1.8870672758033176
+      ],
+      "reference_center": [
+        32.5,
+        32.0
+      ]
+    },
+    "Opa-Opa": {
+      "yaw": 74.10745119576839,
+      "elevation": 4.5466247876872785,
+      "roll": 0.3457897035634039,
+      "silhouette_iou": 0.9637526652452025,
+      "pixels_per_unit": 15.155585859390387,
+      "projected_center": [
+        0.5783641268507113,
+        -0.125240330057812
+      ],
+      "reference_center": [
+        31.5,
+        30.5
+      ]
+    },
+    "Pian": {
+      "yaw": 175.63787826357395,
+      "elevation": 31.115539939838833,
+      "roll": -0.40535508317702695,
+      "silhouette_iou": 0.835300730747611,
+      "pixels_per_unit": 13.763859198134654,
+      "projected_center": [
+        0.00983066752049111,
+        -0.6298015386105305
+      ],
+      "reference_center": [
+        31.5,
+        31.5
+      ]
+    },
+    "Chao": {
+      "yaw": 5.030990453314943,
+      "elevation": -8.836932980828799,
+      "roll": -5.427802438243495,
+      "silhouette_iou": 0.8794910179640718,
+      "pixels_per_unit": 14.528580001257502,
+      "projected_center": [
+        -0.025475292265361604,
+        -0.7404236436051944
+      ],
+      "reference_center": [
+        33.0,
+        31.5
+      ]
+    },
+    "Chu Chu": {
+      "yaw": 23.260012047320604,
+      "elevation": 4.390339180535964,
+      "roll": -0.16149410601941527,
+      "silhouette_iou": 0.9412861136999068,
+      "pixels_per_unit": 20.78319010442877,
+      "projected_center": [
+        0.030832224042876333,
+        -0.2450815187062706
+      ],
+      "reference_center": [
+        31.5,
+        31.5
+      ]
+    },
+    "Kapu Kapu": {
+      "yaw": 24.94776374862031,
+      "elevation": 43.431732884331275,
+      "roll": -2.0003342124752175,
+      "silhouette_iou": 0.8693633952254642,
+      "pixels_per_unit": 13.433818743455923,
+      "projected_center": [
+        -0.07101141040768044,
+        0.00992462510281289
+      ],
+      "reference_center": [
+        31.0,
+        32.5
+      ]
+    },
+    "Devil's Wing": {
+      "yaw": 9.153995596820517,
+      "elevation": -8.69038772681402,
+      "roll": 9.854373891325448,
+      "silhouette_iou": 0.5108910891089109,
+      "pixels_per_unit": 18.726151877728498,
+      "projected_center": [
+        0.7865391468428076,
+        -1.0448409321960859
+      ],
+      "reference_center": [
+        31.5,
+        30.5
+      ]
+    },
+    "Elenor": {
+      "yaw": -176.14099886554942,
+      "elevation": 52.4375406793753,
+      "roll": -23.491206538515,
+      "silhouette_iou": 0.5229709035222052,
+      "pixels_per_unit": 6.189780274540029,
+      "projected_center": [
+        1.2362545868701174,
+        2.2710445370466577
+      ],
+      "reference_center": [
+        31.5,
+        33.5
+      ]
+    },
+    "Mark III": {
+      "yaw": 44.34611318348018,
+      "elevation": 14.520627257128126,
+      "roll": -38.86873476883609,
+      "silhouette_iou": 0.864808362369338,
+      "pixels_per_unit": 9.90192008321023,
+      "projected_center": [
+        0.033665283238573096,
+        -0.0976686740716658
+      ],
+      "reference_center": [
+        31.5,
+        34.0
+      ]
+    },
+    "Master System": {
+      "yaw": 138.02263000953997,
+      "elevation": -3.4462933128494804,
+      "roll": -22.659703250547338,
+      "silhouette_iou": 0.8241308793456033,
+      "pixels_per_unit": 9.642905911478353,
+      "projected_center": [
+        0.09331513722074658,
+        -0.10247536552136005
+      ],
+      "reference_center": [
+        32.0,
+        34.5
+      ]
+    },
+    "Genesis": {
+      "yaw": 177.88393688557073,
+      "elevation": -24.705101691835317,
+      "roll": -18.658132231839954,
+      "silhouette_iou": 0.8534201954397395,
+      "pixels_per_unit": 11.600309584053717,
+      "projected_center": [
+        -0.056751004061911914,
+        -0.2913366250660251
+      ],
+      "reference_center": [
+        32.0,
+        33.5
+      ]
+    },
+    "Sega Saturn": {
+      "yaw": 158.0594612827937,
+      "elevation": -8.904625855205833,
+      "roll": -23.016451729214406,
+      "silhouette_iou": 0.8888342351205115,
+      "pixels_per_unit": 11.288187196164138,
+      "projected_center": [
+        -0.08409041488953717,
+        0.09767079162407333
+      ],
+      "reference_center": [
+        32.0,
+        33.0
+      ]
+    },
+    "Dreamcast": {
+      "yaw": 151.6126308648777,
+      "elevation": -15.212981701277364,
+      "roll": -25.414641162807023,
+      "silhouette_iou": 0.8487354085603113,
+      "pixels_per_unit": 14.253662841365802,
+      "projected_center": [
+        -0.253125277633776,
+        -0.3319829745935793
+      ],
+      "reference_center": [
+        31.5,
+        33.5
+      ]
+    },
+    "Hamburger": {
+      "yaw": -174.02595750775393,
+      "elevation": -1.5648576593975925,
+      "roll": 41.21300940894693,
+      "silhouette_iou": 0.7847619047619048,
+      "pixels_per_unit": 11.449913049325339,
+      "projected_center": [
+        -0.40582401405191826,
+        0.671190347814564
+      ],
+      "reference_center": [
+        31.0,
+        30.5
+      ]
+    },
+    "Panzer's Tail": {
+      "yaw": 105.53523348150958,
+      "elevation": -25.878867766618384,
+      "roll": -28.148432565556835,
+      "silhouette_iou": 0.7689075630252101,
+      "pixels_per_unit": 9.48030846117786,
+      "projected_center": [
+        2.324553345011207,
+        2.5397807250896034
+      ],
+      "reference_center": [
+        30.5,
+        31.5
+      ]
+    },
+    "Devil's Tail": {
+      "yaw": 39.84256946129982,
+      "elevation": 4.95993824941252,
+      "roll": -28.93012895277283,
+      "silhouette_iou": 0.8213256484149856,
+      "pixels_per_unit": 8.816485778255903,
+      "projected_center": [
+        1.9431058461498225,
+        2.9705486314535654
+      ],
+      "reference_center": [
+        28.0,
+        31.5
+      ]
+    },
+    "Geung-si": {
+      "yaw": 26.540844351991172,
+      "elevation": 6.50315086413074,
+      "roll": -0.20376495473744427,
+      "silhouette_iou": 0.8638461538461538,
+      "pixels_per_unit": 8.977758163021413,
+      "projected_center": [
+        -0.35096657613604254,
+        1.5668366027193381
+      ],
+      "reference_center": [
+        29.0,
+        31.0
+      ]
+    },
+    "Sonic": {
+      "yaw": 30.0,
+      "elevation": 10.0,
+      "roll": 0.0,
+      "silhouette_iou": null,
+      "pixels_per_unit": 11.481189557226902,
+      "projected_center": [
+        0.32252571784778494,
+        -0.44364644592232405
+      ],
+      "reference_center": [
+        31.5,
+        31.5
+      ],
+      "manual": true
+    },
+    "Tellusis": {
+      "yaw": 65.448606544165,
+      "elevation": 51.17471013779874,
+      "roll": 0.3987488607765888,
+      "silhouette_iou": 0.5573018991486575,
+      "pixels_per_unit": 13.457656346208957,
+      "projected_center": [
+        1.5724454608558311,
+        1.2033729693265212
+      ],
+      "reference_center": [
+        31.5,
+        31.5
+      ]
+    },
+    "Striker Unit": {
+      "yaw": -153.72254887070127,
+      "elevation": -17.415800905620642,
+      "roll": -6.307495440951875,
+      "silhouette_iou": 0.866635687732342,
+      "pixels_per_unit": 5.93344310243409,
+      "projected_center": [
+        -1.2414610824389254,
+        1.8510141757429834
+      ],
+      "reference_center": [
+        31.5,
+        31.0
+      ]
+    },
+    "Pioneer": {
+      "yaw": 95.86957566071058,
+      "elevation": -24.800610123583148,
+      "roll": -17.83831488876895,
+      "silhouette_iou": 0.6069221260815822,
+      "pixels_per_unit": 9.591354030484949,
+      "projected_center": [
+        -0.3167043455661014,
+        -0.031101525431579957
+      ],
+      "reference_center": [
+        32.0,
+        31.0
+      ]
+    },
+    "Puyo": {
+      "yaw": 12.683147249350249,
+      "elevation": 20.54975521226355,
+      "roll": 2.830302384184197,
+      "silhouette_iou": 0.9803082191780822,
+      "pixels_per_unit": 15.678636461513294,
+      "projected_center": [
+        0.010048223022360192,
+        -0.27303291383523787
+      ],
+      "reference_center": [
+        31.5,
+        31.5
+      ]
+    },
+    "Moro": {
+      "yaw": 25.900482091384383,
+      "elevation": 1.3071829239678685,
+      "roll": -0.36984208932249685,
+      "silhouette_iou": 0.8470394736842105,
+      "pixels_per_unit": 8.071238534063763,
+      "projected_center": [
+        -0.3326656788078294,
+        -3.2260709039785893
+      ],
+      "reference_center": [
+        29.0,
+        33.0
+      ]
+    },
+    "Rappy (Mag)": {
+      "yaw": 32.93727121720524,
+      "elevation": 5.339755209845059,
+      "roll": -2.7618554774562614,
+      "silhouette_iou": 0.8608058608058609,
+      "pixels_per_unit": 8.993479628666009,
+      "projected_center": [
+        0.14622426056112858,
+        -2.1209890076603974
+      ],
+      "reference_center": [
+        32.0,
+        31.5
+      ]
+    },
+    "Yahoo!": {
+      "yaw": 47.71508440813896,
+      "elevation": -15.33577843636295,
+      "roll": -1.7411015543139081,
+      "silhouette_iou": 0.9261083743842364,
+      "pixels_per_unit": 7.7248495783837585,
+      "projected_center": [
+        1.049701307791481,
+        0.713315668853685
+      ],
+      "reference_center": [
+        32.0,
+        30.0
+      ]
+    },
+    "Gael Giel": {
+      "yaw": 29.196345674978463,
+      "elevation": 38.229872507124824,
+      "roll": -11.094901120363454,
+      "silhouette_iou": 0.8504983388704319,
+      "pixels_per_unit": 6.551777120588971,
+      "projected_center": [
+        1.5575741092411532,
+        1.2185540940374553
+      ],
+      "reference_center": [
+        31.5,
+        34.5
+      ]
+    },
+    "Present*": {
+      "yaw": 45.0,
+      "elevation": 20.0,
+      "roll": 0.0,
+      "silhouette_iou": null,
+      "pixels_per_unit": 8.223013923499451,
+      "projected_center": [
+        -0.06103221912589807,
+        -0.7859423703191295
+      ],
+      "reference_center": [
+        31.5,
+        31.5
+      ],
+      "manual": true
+    },
+    "Saraswati": {
+      "yaw": 300.0,
+      "elevation": 10.0,
+      "roll": 0.0,
+      "silhouette_iou": null,
+      "pixels_per_unit": 5.962678974414107,
+      "projected_center": [
+        1.0157970401833012,
+        -1.8429245764104425
+      ],
+      "reference_center": [
+        31.5,
+        31.5
+      ],
+      "manual": true
+    },
+    "Angel's Wing": {
+      "yaw": 93.69045101004599,
+      "elevation": 28.13935135749447,
+      "roll": -38.60265302444405,
+      "silhouette_iou": 0.5953141640042598,
+      "pixels_per_unit": 13.031793243186888,
+      "projected_center": [
+        1.7719514315520055,
+        -1.8103346837486674
+      ],
+      "reference_center": [
+        31.0,
+        30.5
+      ]
+    },
+    "Robochao": {
+      "yaw": 141.2684759207794,
+      "elevation": 18.66852600540787,
+      "roll": 2.1623435134798163,
+      "silhouette_iou": 0.8087467362924282,
+      "pixels_per_unit": 13.319355358674612,
+      "projected_center": [
+        -0.3897742868408697,
+        -0.47499890480677465
+      ],
+      "reference_center": [
+        29.5,
+        31.0
+      ]
+    },
+    "Soniti": {
+      "yaw": 52.99216257485594,
+      "elevation": 2.4835917776967698,
+      "roll": 1.7160251208119015,
+      "silhouette_iou": 0.8323249783923942,
+      "pixels_per_unit": 10.957923085179607,
+      "projected_center": [
+        0.8043097201338238,
+        -0.531732466223301
+      ],
+      "reference_center": [
+        31.0,
+        31.5
+      ]
     }
   },
   "alignment_notes": {
@@ -2570,7 +4584,7 @@
       "Marica",
       "Rati"
     ],
-    "note": "轮廓匹配用于辅助调整相机；不能单凭评分判定姿态或资源版本。以下项仍有可见差异，未宣称完全一致。"
+    "note": "\u8f6e\u5ed3\u5339\u914d\u7528\u4e8e\u8f85\u52a9\u8c03\u6574\u76f8\u673a\uff1b\u4e0d\u80fd\u5355\u51ed\u8bc4\u5206\u5224\u5b9a\u59ff\u6001\u6216\u8d44\u6e90\u7248\u672c\u3002\u4ee5\u4e0b\u9879\u4ecd\u6709\u53ef\u89c1\u5dee\u5f02\uff0c\u672a\u5ba3\u79f0\u5b8c\u5168\u4e00\u81f4\u3002"
   },
   "png_sha256": {
     "Agastya.png": "cdf7aae63a32537977bf3b2322fab04157437841cccfb880e3b926c16b880cc8",
@@ -2618,7 +4632,40 @@
     "Varuna.png": "d4ee5a61227cb30769c89faddcb2dccc1fb438a6ecc28608081d858a1843795f",
     "Vayu.png": "df27a607a912217428fa6743de52e4f381ac7abe73f3bcb4a53ff56190dd37bb",
     "Vritra.png": "5592234bac43da49c7dfd5b038d611889d7e728393a3c67c432e5874817fa341",
-    "Yaksa.png": "4a5c619b571b854e0b0c17e8027adec350ff5f4feb5721bb7353778a41a61ac7"
+    "Yaksa.png": "4a5c619b571b854e0b0c17e8027adec350ff5f4feb5721bb7353778a41a61ac7",
+    "Pitri.png": "093eb37aba6ae23e334175a18c5058e5affede8a63ca0c6ed70cf79aa1bfc3ce",
+    "Preta.png": "4b5f1fc351b1965cf973efcf4b50bc1f0fc9df261cec2cbfaa044c2dd18e328a",
+    "Churel.png": "b1df14d83224366f2558ab331844df027c2a573cba1c63f4e07f9406626131e7",
+    "Opa-Opa.png": "c3f1834f335e07d71adc43377902654b5b15a83b54600ba5421e49029a0be9e3",
+    "Pian.png": "59c52e078aad65aa04e82aeae17326eac4fd514ee852010d4cb1c2eb095f326a",
+    "Chao.png": "bdee2cffe9a0275a8339789c070215a712816bdd6d83cd8f1e34dd1ae00891fc",
+    "Chu Chu.png": "123b6e349e1bdb972deb27723b72de14f2a67c991ea4df6f8dfd1368f53708ea",
+    "Kapu Kapu.png": "eb931a7f92e3909774de5201c9ebb4fdda477a4d8e0bb2c2cb9e35e0bf90b054",
+    "Devil's Wing.png": "23b66039b7b0d30bf715e58a667a9c55a3dcb109488612b868623ab006243761",
+    "Elenor.png": "3dc140f8a67ea38f56a673632acd02d5aadb28f97a5507be1b622d609108cce4",
+    "Mark III.png": "f01ba782d4bb28c419cd1d9ba39d99532e8b2e6742288032b1fac7f78119ba03",
+    "Master System.png": "df17f64f76aa0d152e1c6b4d748bb3c3b760e0ea3a6cc0c171e11e6fe0f8ca97",
+    "Genesis.png": "3f4da8faf8b1d27682c01e525b665bbc879857922d590017cec1694fcf121424",
+    "Sega Saturn.png": "baef09799aab203c2887d451ba57383b54eb60c9e26f3269571c4b9f7057d604",
+    "Dreamcast.png": "ef8974806a6e067dbc1a25ccff0bef74870e30210076a44eca08d2059f4566b6",
+    "Hamburger.png": "6905cd4a9948e9a0784270442582ea8c411cff54e108f39ffa99f10ff25cc9e6",
+    "Panzer's Tail.png": "75c03a9511101bce799868b22d700808d534705e8df1ef8279291017094f84f1",
+    "Devil's Tail.png": "1fd0066acc36cb13e0a9df812331e8466ece9a3f16c4487fa2e48392b5fe1d4f",
+    "Geung-si.png": "0e511bab7754b47134f8521ef78412eac8ae168c7c6cb7223cf508f75ad71c56",
+    "Sonic.png": "b12b80714bd0def2058809445be828ec6e9960fd57333b9003f1431c173b77a2",
+    "Tellusis.png": "13269843a69095644a2f1081f07d5c1c5701373e90b39fea84430a581b8f6189",
+    "Striker Unit.png": "ef29a75da071fc83dedc0dfb2aef69f8f5d773101938ae0ab051575cec91a6a5",
+    "Pioneer.png": "846a71cc17ae016ed541b3add16b496e32c1aa75178887e59dacb863eb806069",
+    "Puyo.png": "ddc1864c8e6d0e413689801da78073e85c6daf2cf931e52d321b41ca359b126d",
+    "Moro.png": "a95d2f7733362391dfc52947376592a92c64e637c1826c44665d81d6c253b91b",
+    "Rappy (Mag).png": "612676aba6336084dc829fcaa2cc49351d4b0e78fc78ae722f3bd40f9e015b51",
+    "Yahoo!.png": "1678a83818a4f250b02697f4acc35b7000fd13298bd71dbd1543ecbbf6840936",
+    "Gael Giel.png": "ec39567bcd2100bfbb0cbaa7ea4e828e80f46ba341b2eee76603889e1ce344bd",
+    "Present*.png": "ba83aecfed8f3d3507ce8220058204efcce21f8d1bfd8cc4667373fedc5d9f42",
+    "Saraswati.png": "311fc5a793509773e93d7eba5d1213cbd5822f1185744b065a17c936a659fe93",
+    "Angel's Wing.png": "da4fce2e4b2da27c0ca358eb9e5bc9d5ecc17c05f223e6e5f234ac0c12b0c2e5",
+    "Robochao.png": "d490561297c2a022d490ea8196d42ff42dbe65fd304c4af93b661a59d3ac5b0d",
+    "Soniti.png": "c6dc9f324cf2078ede26f14d647f8477a2986e2d200701c86dc47deac16964c9"
   },
   "webp_sha256": {
     "Agastya.webp": "204c2936dd64d96c6533f0791e8e1e1c6df9b1b48190bb7ce74cfe107d85f13c",
@@ -2666,7 +4713,40 @@
     "Varuna.webp": "75a7294a60e857c268dec6be1e545f8bc02b9bcaa7bda2ba80b62124de105f38",
     "Vayu.webp": "59f3f392529c961519cfa987b8a7cfe4f3115c27fe4592ed2d301670ca471cef",
     "Vritra.webp": "486aadb9b9c226aad594fe197a1f0092cfa38ba92b4679adc36ca2155c52871a",
-    "Yaksa.webp": "4dbba1926ef6d35ec08b31e1672500dab40f291d1468a7cfb0ca9c81eaad9444"
+    "Yaksa.webp": "4dbba1926ef6d35ec08b31e1672500dab40f291d1468a7cfb0ca9c81eaad9444",
+    "Pitri.webp": "9bfd052da543cc769cdaf26b2a62bfd7a3e8392afd42dc65f5e41bfb8639f4b5",
+    "Preta.webp": "570c1dab594496ce393434ce6ae7024a0ffdfa84ee813d493902fd20ca68508e",
+    "Churel.webp": "c88c54962f254634e4185209543a3569af5f7db09f7387be71b57e0d215c7b91",
+    "Opa-Opa.webp": "729b1b68c7aebf559c3d168895f84c82e33b926a22c2547f4c3607b3146595b3",
+    "Pian.webp": "d580dbaad6b51fe8ec9e4eee7efec242627251acff9cdd092cccb0294fc25e63",
+    "Chao.webp": "b1d02a491d5372f8b119490c670c7c3f9ec902af06f309ffb82a27d4b7306eca",
+    "Chu Chu.webp": "94f9b5559251ca7323ff7605f1bb271a105f6e7c90d1b970d95f07585f01fc10",
+    "Kapu Kapu.webp": "cceaca1c7c6349f83ae96b39cf0e5bcf5af3faa38952ec5bc3707a5b16a92289",
+    "Devil's Wing.webp": "a236a3619994429d2204cca0bccefc76cd0d8569194823ee94d8c9275d817435",
+    "Elenor.webp": "f6cdd1a0779065847a8d321edbd68dd4bd4e01fa71888152add138a4932c039b",
+    "Mark III.webp": "0cba22964fd51bedeacae008d76f55bf9f3cb4a7084870ba0396de58a5e00bda",
+    "Master System.webp": "ef92b08a7a615773ede70e33dadddb41052417149ecfcf7998518d0e345a44d4",
+    "Genesis.webp": "2feb7fc707f1e146744e681160491d33a6d356991762c031a48ee2b81a4b4e11",
+    "Sega Saturn.webp": "7e131236f756b1bac46075497b8957346784b11e5dabe20f3423e15028cf0694",
+    "Dreamcast.webp": "f343b8aae1c27ff6716f82f2f27999d6e005d7b38b932508b29e60dc3d178a31",
+    "Hamburger.webp": "133d7b7d0add828cad9eeabf659638cc312f7701fa68375976556f0ee77ec4e1",
+    "Panzer's Tail.webp": "8aeea4967b9df5d6894e0e5a88d1d868a23fd2c7ea3e37645bf8bb351c60a920",
+    "Devil's Tail.webp": "0651f6f1d7f4cf57d1a0face930dc63edd4d34d8d6dd38826ea49a3d6b70100f",
+    "Geung-si.webp": "ed24e98624b665638254f642b0f07a910e6255da2691fd3971db0fd38b0470e1",
+    "Sonic.webp": "a9b149560ad4b3eaf0e9f26c643adb89da2eecf009857b276d439613acca590a",
+    "Tellusis.webp": "9b15884e09d0d00cdd7c8d45096418b8d46550a37b03efa144fa87d33e185900",
+    "Striker Unit.webp": "483280ce7b638dd39a394319289b428386b1466dba857578e1044b2bff724a53",
+    "Pioneer.webp": "ebce6d45fa4c374f4e6b35ab3ce92757b0ef43f47e117ecc42030f60b1842010",
+    "Puyo.webp": "3018c97192c5d8fe0b678033303b3101d385ea04facdbac3ef44bb979cc60ed7",
+    "Moro.webp": "8a9dad9ad93849ca549d3f5f14c1741ee18c4367d5ec358da95195dc4986f5d4",
+    "Rappy (Mag).webp": "8b422eeb604cee619cc1a6392625fda7f5829d19723cf2f22a2b235a91ac5ffc",
+    "Yahoo!.webp": "56f28d65e80682fd01e64cf546199938eaf26c303d301b46ed0d64f421ca77bd",
+    "Gael Giel.webp": "39e1b43726a07005dc714cfc6785aaac535f8d03a89e93bdc5aa622aadd810f9",
+    "Present*.webp": "6afb1a7db17e0465919830ef45a3490ee5b9175bc0eaf4f03034606800810336",
+    "Saraswati.webp": "ac834ea2274e842587976bf37e71a26ff0d830ec1d4f484009f226e6fa0aa781",
+    "Angel's Wing.webp": "fa66ebbc53ee8b3bdf8f8a229e240dca0a8d83b51f13b16d321665cc3bac128e",
+    "Robochao.webp": "563ac1d2c744890c78c4e5f7b53dde0e695dcb7db6fe69e022dd5801e59a2663",
+    "Soniti.webp": "cf302135b3a0936fa01f60037ea2b24b675b84b59997e821523120006a48196f"
   },
   "lighting": {
     "renderer": "Blender 5.2.2 Cycles, 64 samples, Standard view transform, transparent film",
@@ -2688,5 +4768,25 @@
       }
     ],
     "note": "Camera-relative lighting replaces the three fixed studio area lights so rendered brightness stays close to the original texture brightness."
+  },
+  "aliases": {
+    "Mag*": "Mag",
+    "Varuna*": "Varuna",
+    "Kalki*": "Kalki",
+    "Vritra*": "Vritra"
+  },
+  "extra_sources": {
+    "note": "Models beyond the 46 chart Mags come from the Ephinea client: the AFS archives above plus per-slot override files in data/ephinea/default/{model,texture}/File N.prs, which replace or append slots. Cameras were fitted against the in-game 64px icons in ItemKTep4.afs (entry = skin for skins below 57, skin - 1 above); Sonic (icon predates the replacement model), Present* and Saraswati (no icon) use manually chosen views framed at the icon extent.",
+    "overrides": [
+      "ephinea/default/model/File 339.prs",
+      "ephinea/default/model/File 408.prs",
+      "ephinea/default/model/File 409.prs",
+      "ephinea/default/texture/File 351.prs",
+      "ephinea/default/texture/File 363.prs",
+      "ephinea/default/texture/File 457.prs"
+    ],
+    "no_model": [
+      "Stealth"
+    ]
   }
 }

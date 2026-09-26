@@ -47,12 +47,14 @@ const coverage = read('content/item-catalog/coverage.json');
 const snapshot = read('content/item-catalog/wiki.json');
 const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json').items;
 
-test('HD images are detail-only and leave Wiki images and list filters unchanged', () => {
+test('HD images are detail-only; list rows show Mag render thumbnails and otherwise the detail image', () => {
   const index = read('src/app/generated/item-catalog/index.json');
   assert.equal(items.filter(item => item.hdSource === 'gallery').length, 414);
-  assert.equal(items.filter(item => item.hdSource === 'model-render').length, 46);
-  assert.equal(items.filter(item => item.hdImage).length, 460);
-  assert.equal(index.filter(row => row[7]).length, 547);
+  // Every Mag with a model has a render (79 models + 4 variants sharing a model); Stealth has no model.
+  assert.equal(items.filter(item => item.hdSource === 'model-render').length, 83);
+  assert.deepEqual(items.filter(item => item.category === 'mag' && !item.hdImage).map(item => item.id), ['stealth']);
+  assert.equal(items.filter(item => item.hdImage).length, 497);
+  assert.equal(index.filter(row => row[7]).length, 549);
   assert.equal(details.saber.hdImage, '/assets/img/items/hd/items/saber.webp');
   assert.equal(details['typess-swords'].hdImage, '/assets/img/items/hd/items/typess-swords.webp');
   assert.equal(details['dress-plate'].image, null);
@@ -62,13 +64,20 @@ test('HD images are detail-only and leave Wiki images and list filters unchanged
   assert.equal(details.saber.hdSource, 'gallery');
   assert.equal(details.mag.hdImage, '/assets/img/mag/default/Mag.webp');
   assert.equal(details.varuna.hdSource, 'model-render');
-  assert.equal(details['chu-chu'].hdImage, null);
+  assert.equal(details['chu-chu'].hdImage, '/assets/img/mag/default/Chu Chu.webp');
+  assert.equal(details['mag-variant'].hdImage, details.mag.hdImage);
   for (const item of items) {
     assert.equal(item.hdSource === 'model-render', item.category === 'mag' && !!item.hdImage, item.id);
   }
   for (const row of index) {
-    assert.equal(row[7], details[row[0]].image);
+    const detail = details[row[0]];
+    assert.equal(row[7], detail.hdSource === 'model-render' ? detail.hdImage.replace('/default/', '/thumbs/') : detail.image, row[0]);
     assert.ok(!JSON.stringify(row).includes('/items/hd/'), row[0]);
+  }
+  for (const item of items.filter(item => item.hdSource === 'model-render')) {
+    const thumbnail = fs.readFileSync(item.hdImage.slice(1).replace('/default/', '/thumbs/'));
+    assert.equal(thumbnail.toString('ascii', 8, 12), 'WEBP', item.id);
+    assert.ok(thumbnail.length < 20_000, item.id);
   }
   for (const item of items.filter(item => item.hdImage)) {
     const image = fs.readFileSync(item.hdImage.slice(1));
@@ -169,6 +178,38 @@ test('downloaded illustrations match the recorded original checksums', () => {
     assert.equal(bytes.subarray(1,4).toString(), 'PNG');
   }
   for (const item of items) if (item.image) assert.ok(fs.existsSync('.' + item.image));
+});
+
+test('ES and TypeM weapons are listed as their own series and keep their weapon type', () => {
+  const index = read('src/app/generated/item-catalog/index.json');
+  const snapshot = read('content/item-catalog/wiki.json');
+  for (const [page, group] of [['ES weapons', 'ES 武器'], ['TypeM weapons', 'TypeM 武器']]) {
+    const titles = snapshot.indexes[page].rows.map(row => clean(row[1])).sort();
+    const rows = index.filter(row => row[14] === group);
+    assert.deepEqual(rows.map(row => details[row[0]].title).sort(), titles);
+    assert.equal(rows.length, 30);
+    for (const row of rows) assert.equal(details[row[0]].category, 'weapon', row[0]);
+  }
+  assert.equal(details['typeri-rifle'].type, 'Rifle');
+  assert.equal(index.find(row => row[0] === 'typeri-rifle')[14], 'TypeM 武器');
+  assert.equal(index.find(row => row[0] === 'saber')[14], '');
+});
+
+test('TypeM weapons without a Wiki file use checksummed ItemKT images', () => {
+  const images = read('content/item-catalog/itemkt-images.json');
+  assert.deepEqual(Object.keys(images).sort(), ['TypeRI/Rifle', 'TypeSH/Shot']);
+  for (const [title, image] of Object.entries(images)) {
+    const bytes = fs.readFileSync('.' + image.path);
+    assert.equal(createHash('sha1').update(bytes).digest('hex'), image.sha1, title);
+    assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], [image.width, image.height], title);
+    const item = items.find(item => item.title === title);
+    assert.equal(item.image, image.path, title);
+    assert.equal(item.imageOrigin, 'itemkt', title);
+    assert.equal(item.imagePage, null, title);
+  }
+  assert.equal(details['typeri-rifle'].hdImage, '/assets/img/items/hd/type/typeri-rifle.webp');
+  assert.equal(details['typegu-hand'].imageOrigin, 'wiki');
+  assert.equal(details['dress-plate'].imageOrigin, null);
 });
 
 test('all 57 shop weapon models retain verified images and variable specials', () => {
