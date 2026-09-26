@@ -3,7 +3,7 @@
   "project": "phantasmal-world",
   "commit": "a8890d22",
   "assets": "web/src/jsMain/resources/assets/npcs",
-  "note": "Model files resolved with EntityAssetLoader.entityTypeToPath; Ultimate skins from UltimateSkins.kt (NPCS_WITH_ULTIMATE_SKIN). Motions default to the model's own idle clip at frame 0; models without clips use their bind pose unless they borrow a sibling with the same skeleton. hide lists effect-shell material indices drawn opaque by the exporter. Renders with `archive` read models, textures and motions straight from the Ephinea client (data.gsl or loose .bml); these fix phantasmal-world assets that name the wrong model (Hidoom, Migium, Canane) and add bosses, parts and Ultimate skins it lacks. The harness build patches phantasmal-world's NJM parser so a quaternion element takes the rotation slot before scale (type 0x2005 motions such as the EP4 Spinners). Archive textures are repacked (XVRT chunks back to back) because padded chunks stop sequential IFF readers; decoded DXT textures use linear filtering like the game. Composite renders list extra models in `parts`; `plainMaps` + `planarUv` show an environment-mapped texture across a model without texture coordinates (Bee / Gee)."
+  "note": "Model files resolved with EntityAssetLoader.entityTypeToPath; Ultimate skins from UltimateSkins.kt (NPCS_WITH_ULTIMATE_SKIN). Motions default to the model's own idle clip at frame 0; models without clips use their bind pose unless they borrow a sibling with the same skeleton. hide lists effect-shell material indices drawn opaque by the exporter. Renders with `archive` read models, textures and motions straight from the Ephinea client (data.gsl or loose .bml); these fix phantasmal-world assets that name the wrong model (Hidoom, Migium, Canane) and add bosses, parts and Ultimate skins it lacks. The harness build patches phantasmal-world's NJM parser so a quaternion element takes the rotation slot before scale (type 0x2005 motions such as the EP4 Spinners). Archive textures are repacked (XVRT chunks back to back) because padded chunks stop sequential IFF readers; decoded DXT textures use linear filtering like the game. Composite renders list extra models in `parts`, and `attach` hangs a part on a numbered bone of the posed main model with its own motion frame (De Rol Le's tentacles); `plainMaps` + `planarUv` show an environment-mapped texture across a model without texture coordinates (Bee / Gee)."
  },
  "renders": {
   "AlRappy": {
@@ -89,6 +89,36 @@
    "archive": "bm_boss2_de_rol_le.bml",
    "model": "boss2_b_derorure_body",
    "motion": "forward_boss2_b_body",
+   "attach": [
+    {
+     "archive": "bm_boss2_de_rol_le.bml",
+     "model": "boss2_b_derorure_tentacle",
+     "motion": "tloop_boss2_b_tentacle",
+     "frame": 16,
+     "bone": 29
+    },
+    {
+     "archive": "bm_boss2_de_rol_le.bml",
+     "model": "boss2_b_derorure_tentacle",
+     "motion": "tloop_boss2_b_tentacle",
+     "frame": 16,
+     "bone": 30
+    },
+    {
+     "archive": "bm_boss2_de_rol_le.bml",
+     "model": "boss2_b_derorure_tentacle",
+     "motion": "tloop_boss2_b_tentacle",
+     "frame": 16,
+     "bone": 31
+    },
+    {
+     "archive": "bm_boss2_de_rol_le.bml",
+     "model": "boss2_b_derorure_tentacle",
+     "motion": "tloop_boss2_b_tentacle",
+     "frame": 16,
+     "bone": 32
+    }
+   ],
    "rotate": [
     -12,
     0,
@@ -464,6 +494,36 @@
    "archive": "bm_boss2_de_rol_le_a.bml",
    "model": "boss2_b_derorure_body",
    "motion": "forward_boss2_b_body",
+   "attach": [
+    {
+     "archive": "bm_boss2_de_rol_le_a.bml",
+     "model": "boss2_b_derorure_tentacle",
+     "motion": "tloop_boss2_b_tentacle",
+     "frame": 16,
+     "bone": 29
+    },
+    {
+     "archive": "bm_boss2_de_rol_le_a.bml",
+     "model": "boss2_b_derorure_tentacle",
+     "motion": "tloop_boss2_b_tentacle",
+     "frame": 16,
+     "bone": 30
+    },
+    {
+     "archive": "bm_boss2_de_rol_le_a.bml",
+     "model": "boss2_b_derorure_tentacle",
+     "motion": "tloop_boss2_b_tentacle",
+     "frame": 16,
+     "bone": 31
+    },
+    {
+     "archive": "bm_boss2_de_rol_le_a.bml",
+     "model": "boss2_b_derorure_tentacle",
+     "motion": "tloop_boss2_b_tentacle",
+     "frame": 16,
+     "bone": 32
+    }
+   ],
    "rotate": [
     -12,
     0,

@@ -75,7 +75,7 @@ def extract_archives(renders: dict, ephinea_data: Path, harness_assets: Path) ->
         return bundles[archive]
 
     def extract(render: dict) -> dict:
-        job = {key: value for key, value in render.items() if key not in ("archive", "model", "texture", "textureOrder", "parts")}
+        job = {key: value for key, value in render.items() if key not in ("archive", "model", "texture", "textureOrder", "parts", "attach")}
         if "archive" in render:
             entries = bundle(render["archive"])
             # Models and motions may share a base name (fs_obj_hiraishin_a.nj / .njm); index them apart.
@@ -103,6 +103,9 @@ def extract_archives(renders: dict, ephinea_data: Path, harness_assets: Path) ->
                 job["motion"] = f"raw/{stem}/{render['motion']}"
         if "parts" in render:
             job["parts"] = [extract(part) for part in render["parts"]]
+        # Attached parts carry the main model's bone index they follow (e.g. De Rol Le's tentacles).
+        if "attach" in render:
+            job["attach"] = [extract(part) for part in render["attach"]]
         return job
 
     return {label: extract(render) for label, render in renders.items()}
