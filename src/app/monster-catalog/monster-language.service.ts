@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LanguagePreferenceService } from '../shared/language-preference.service';
 import type { Names } from './monster';
 const messages: Record<string,[string,string]> = {
-  '图片版本':['Image version','画像の種類'], '高清图片':['HD image','高精細画像'], '现有图片':['Wiki image','Wiki 画像'],
+  '图片版本':['Image version','画像の種類'], '高清图片':['HD image','高精細画像'],
   '查看原图 ↗':['View full image ↗','元の画像を見る ↗'],
   '图片来源：高清图库':['Image source: HD gallery','画像出典：高精細ギャラリー'],
   '图片来源：Ephinea Wiki':['Image source: Ephinea Wiki','画像出典：Ephinea Wiki'],

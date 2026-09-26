@@ -189,14 +189,14 @@
       "asset": "/assets/img/monsters/hd/cave/govulmer-f9360b44e97f.webp"
     },
     {
-      "original": "CAVE/达尔·拉·利.png",
-      "source": "CAVE/达尔·拉·利.png",
+      "original": "66d029e46c901f02f639d54e2aae6508.png",
+      "source": "User-provided corrections/2026-09-26/CAVE/达尔·拉·利.png",
       "identity": "Dal Ral Lie",
-      "sha256": "0cdd3a463db44def64ff449cf10ef56d12548908b5f9ea64e5c6e6c684fa5892",
-      "bytes": 2635627,
-      "width": 2768,
-      "height": 1408,
-      "asset": "/assets/img/monsters/hd/cave/dal-ral-lie-0cdd3a463db4.webp"
+      "sha256": "0e34d4602b267cb5bc171516f461ce71254d01729b277c45fec9e6428f60f963",
+      "bytes": 1271873,
+      "width": 1888,
+      "height": 1312,
+      "asset": "/assets/img/monsters/hd/cave/dal-ral-lie-0e34d4602b26.webp"
     },
     {
       "original": "CCA/加尔狮鹫.png",
@@ -1811,9 +1811,9 @@
       "bytes": 71630
     },
     {
-      "path": "/assets/img/monsters/hd/cave/dal-ral-lie-0cdd3a463db4.webp",
-      "sha256": "a76d655d5c4782348c86f7014578f59e7c927531137e6a4b9bf176358782e132",
-      "bytes": 74604
+      "path": "/assets/img/monsters/hd/cave/dal-ral-lie-0e34d4602b26.webp",
+      "sha256": "449b33ad7b574e3946e34db61f34605eed2e0b9c97ab108b796a1e37980e9fbd",
+      "bytes": 97172
     },
     {
       "path": "/assets/img/monsters/hd/cca/gal-gryphon-1aedfe1b8b67.webp",
@@ -2650,7 +2650,7 @@
       "ultimate": "/assets/img/monsters/hd/cave/nano-dragon-8191e3061004.webp"
     },
     "de-rol-le": {
-      "ultimate": "/assets/img/monsters/hd/cave/dal-ral-lie-0cdd3a463db4.webp",
+      "ultimate": "/assets/img/monsters/hd/cave/dal-ral-lie-0e34d4602b26.webp",
       "normal": "/assets/img/monsters/hd/cave/de-rol-le-0cacea48de84.webp"
     },
     "gal-gryphon": {

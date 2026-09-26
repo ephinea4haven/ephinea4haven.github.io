@@ -26,12 +26,15 @@ export class MonsterCatalogComponent {
   readonly difficulty=computed(()=>DIFFICULTIES.some(d=>d.id===this.params().get('diff')) ? this.params().get('diff')! : 'n');
   readonly hdImage=computed(()=>this.difficulty()==='u' ? this.detail()?.ultimateHdImage : this.detail()?.hdImage);
   readonly renderImage=computed(()=>this.difficulty()==='u' ? this.detail()?.ultimateRenderImage : this.detail()?.renderImage);
-  // Portrait sources in order of preference: model render, HD gallery, Wiki screenshot.
+  // Portrait sources in order of preference: model render, HD gallery. The Wiki screenshot is
+  // offered only when neither exists, as the sole portrait.
   readonly portraitSources=computed(()=>{
     const m=this.monster();
     const alternates=(this.detail()?.renderAlternates ?? []).map((alternate,index)=>[`render-${index}`,alternate.image] as const);
-    return ([['render',this.renderImage()],...alternates,['hd',this.hdImage()],['wiki',m ? this.image(m) : null]] as const)
-      .filter((source):source is readonly [PortraitSource,string]=>!!source[1]);
+    const candidates:(readonly [PortraitSource,string|null|undefined])[]=[['render',this.renderImage()],...alternates,['hd',this.hdImage()]];
+    const sources=candidates.filter((source):source is readonly [PortraitSource,string]=>!!source[1]);
+    const wiki=m ? this.image(m) : null;
+    return sources.length || !wiki ? sources : [['wiki',wiki] as const];
   });
   readonly imageMode=linkedSignal({
     source:computed(()=>`${this.monster()?.id}:${this.difficulty()==='u' ? 'ultimate':'normal'}`),
@@ -68,11 +71,11 @@ export class MonsterCatalogComponent {
     if(t.axis==='mode') return t.context[0]===mode;
     return true;
   }) || []);
-  private readonly sourceLabels={render:'模型渲染',hd:'高清图片',wiki:'现有图片'} as const;
+  private readonly sourceLabels={render:'模型渲染',hd:'高清图片'} as const;
   private readonly sourceCaptions={render:'图片来源：原始模型渲染',hd:'图片来源：高清图库',wiki:'图片来源：Ephinea Wiki'} as const;
   sourceLabel(source:PortraitSource):string {
     const alternate=source.startsWith('render-') ? this.detail()?.renderAlternates[Number(source.slice(7))] : undefined;
-    return alternate ? alternate.label[this.i18n.language()] : this.i18n.t(this.sourceLabels[source as 'render'|'hd'|'wiki']);
+    return alternate ? alternate.label[this.i18n.language()] : this.i18n.t(this.sourceLabels[source as 'render'|'hd']);
   }
   sourceCaption(source:PortraitSource):string {return this.i18n.t(this.sourceCaptions[source.startsWith('render') ? 'render' : source as 'hd'|'wiki']);}
   readonly count=MONSTERS.length;readonly metadata=METADATA;readonly difficulties=DIFFICULTIES;readonly path=monsterPath;

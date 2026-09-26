@@ -230,7 +230,7 @@ test('episode selection has no All option and auxiliary resets preserve the chap
 test('portrait selection defaults to the model render, follows appearance and updates its full image link',async({page})=>{
   await page.goto('/en/data/enemies/booma.html');
   const portrait=page.locator('.portrait');const img=portrait.locator('img');
-  await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','HD image','Wiki image']);
+  await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','HD image']);
   await expect(img).toHaveAttribute('src',details.booma.renderImage);
   await expect(portrait).toContainText('Image source: original model render');
   await expect(portrait.getByRole('link',{name:'View full image ↗'})).toHaveAttribute('href',details.booma.renderImage);
@@ -238,12 +238,9 @@ test('portrait selection defaults to the model render, follows appearance and up
   await portrait.getByRole('button',{name:'HD image',exact:true}).click();
   await expect(img).toHaveAttribute('src',details.booma.hdImage);
   await expect(portrait).toContainText('Image source: HD gallery');
-  await portrait.getByRole('button',{name:'Wiki image',exact:true}).click();
-  await expect(img).toHaveAttribute('src',/\/wiki\//);
-  await expect(portrait).toContainText('Image source: Ephinea Wiki');
   await page.getByRole('button',{name:'Hard',exact:true}).click();
   await expect(page.getByRole('button',{name:'Hard',exact:true})).toHaveAttribute('aria-pressed','true');
-  await expect(img).toHaveAttribute('src',/\/wiki\//);
+  await expect(img).toHaveAttribute('src',details.booma.hdImage);
   await page.getByRole('button',{name:'Ultimate',exact:true}).click();
   await expect(img).toHaveAttribute('src',details.booma.ultimateRenderImage);
   expect(details.booma.ultimateRenderImage).not.toBe(details.booma.renderImage);
@@ -254,23 +251,22 @@ test('portrait selection defaults to the model render, follows appearance and up
 test('alternate model poses are offered after the main render',async({page})=>{
   await page.goto('/en/data/enemies/olga-flow-form-1.html');
   const portrait=page.locator('.portrait');const img=portrait.locator('img');
-  await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','Ground pose','HD image','Wiki image']);
+  await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','Ground pose','HD image']);
   await expect(img).toHaveAttribute('src',details['olga-flow-form-1'].renderImage);
   await portrait.getByRole('button',{name:'Ground pose',exact:true}).click();
   await expect(img).toHaveAttribute('src',details['olga-flow-form-1'].renderAlternates[0].image);
   await expect(portrait).toContainText('Image source: original model render');
   await page.goto('/data/enemies/olga-flow-form-1.html');
-  await expect(page.locator('.portrait .image-switch button')).toHaveText(['模型渲染','地面姿势','高清图片','现有图片']);
+  await expect(page.locator('.portrait .image-switch button')).toHaveText(['模型渲染','地面姿势','高清图片']);
 });
-test('missing and failed portraits retain usable Wiki images',async({page})=>{
-  await page.route('**/assets/img/monsters/{render,hd}/**',route=>route.abort());
+test('the Wiki image is only the portrait of entries without a render or HD image',async({page})=>{
   await page.goto('/en/data/enemies/booma.html');
-  await expect(page.locator('.portrait monster-image')).toContainText('Image unavailable');
-  await page.getByRole('button',{name:'Wiki image',exact:true}).click();
-  await expect.poll(()=>page.locator('.portrait img').evaluate(image=>image.naturalWidth)).toBeGreaterThan(0);
+  await expect(page.locator('.portrait .image-switch button')).toHaveText(['Model render','HD image']);
   await page.goto('/en/data/enemies/vol-opt-form-1.html');
   await expect(page.locator('.image-switch')).toHaveCount(0);
   await expect(page.locator('.portrait img')).toHaveAttribute('src',/\/wiki\//);
+  await expect(page.locator('.portrait')).toContainText('Image source: Ephinea Wiki');
+  await expect.poll(()=>page.locator('.portrait img').evaluate(image=>image.naturalWidth)).toBeGreaterThan(0);
 });
 test('monster lists request no HD artwork',async({page})=>{
   const hd=[];page.on('request',request=>{if(request.url().includes('/monsters/hd/'))hd.push(request.url());});
@@ -281,8 +277,8 @@ test('monster lists request no HD artwork',async({page})=>{
   expect(hd).toEqual([]);
 });
 
-const portraitButtons={render:'Model render',hd:'HD image',wiki:'Wiki image'};
-for(const [mode,alternate] of [['render','hd'],['hd','wiki'],['wiki','render']]) test(`a failed ${mode} portrait can be retried after changing image source`,async({page})=>{
+const portraitButtons={render:'Model render',hd:'HD image'};
+for(const [mode,alternate] of [['render','hd'],['hd','render']]) test(`a failed ${mode} portrait can be retried after changing image source`,async({page})=>{
   const pattern=`**/assets/img/monsters/${mode}/**`;
   await page.route(pattern,route=>route.abort());
   await page.goto('/en/data/enemies/booma.html');

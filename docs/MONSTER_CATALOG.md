@@ -66,6 +66,9 @@ records store the original URL, source page, dimensions and SHA-1, and identical
 bytes may share a local PNG. EP1 and EP2 appearances of the same monster may reuse
 an image, and uncatalogued appearances show a placeholder. None of these are KT
 images.
+Detail portraits offer only the model render (default) and the HD gallery image;
+a Wiki image is shown only as the sole portrait of an appearance that has neither,
+and list rows fall back to it when no render thumbnail exists.
 
 ## Data sources and limits
 
@@ -328,7 +331,7 @@ did not re-evaluate tiers or change the in-game rotation.
 
 ## 模型渲染头像
 
-2026-09-26 起，详情页默认显示由游戏模型渲染的头像，列表显示同一渲染的缩略图，覆盖 **155 / 160 个图鉴条目**，普通与 Ultimate 外观分别绑定（151 张渲染，含 1 张备选姿势）。游戏内 Ultimate 外观不同的，Ultimate 绑定各自的 Ultimate 皮肤或档案（如 Booma、Hildebear、Sinow、Sil Dragon、Dal Ra Lie、Vol Opt ver.2、Canune、Gee R/L）；其余复用普通外观。切换按钮依次为“模型渲染 / 高清图片 / 现有图片”，只列出该外观实际存在的来源，默认选第一个；图片说明随来源变化。列表缩略图为 160 px（`assets/img/monsters/render/thumbs/`，随难度切换），没有渲染图的条目仍用 Wiki 图片；详情页的“现有图片”始终是 Wiki 图。
+2026-09-26 起，详情页默认显示由游戏模型渲染的头像，列表显示同一渲染的缩略图，覆盖 **155 / 160 个图鉴条目**，普通与 Ultimate 外观分别绑定（151 张渲染，含 1 张备选姿势）。游戏内 Ultimate 外观不同的，Ultimate 绑定各自的 Ultimate 皮肤或档案（如 Booma、Hildebear、Sinow、Sil Dragon、Dal Ra Lie、Vol Opt ver.2、Canune、Gee R/L）；其余复用普通外观。切换按钮依次为“模型渲染 / 高清图片”（Olga Flow (Form 1) 另有“地面姿势”），只列出该外观实际存在的来源，默认选第一个；图片说明随来源变化。列表缩略图为 160 px（`assets/img/monsters/render/thumbs/`，随难度切换），没有渲染图的条目仍用 Wiki 图片。详情页不再提供 Wiki 截图入口：只有既无渲染图也无高清图的外观，才以 Wiki 图作为唯一头像，此时显示其图片来源链接。
 
 - 配置：`content/monster-catalog/model-renders.json`。`renders` 记录每张图的模型来源、动作与帧、机位、需要隐藏的特效外壳材质；`bindings` 把图鉴条目的普通 / Ultimate 外观绑定到渲染图。生成器在条目不存在或文件缺失时失败。
 - 模型来源有两种。`npc` 取本地 phantasmal-world（提交 `a8890d22`）已提取的 `assets/npcs`，按其 `EntityAssetLoader.entityTypeToPath` 解析，Ultimate 皮肤按 `UltimateSkins.kt`。`archive` + `model`（+ `motion`）直接读取 Ephinea 客户端数据：`data.gsl` 中的 BML 或散放的 `.bml`（`scripts/pso_archives.py` 负责 PRS、GSL 与 BML 解析）；没有自带贴图的条目使用同一档案的第一个贴图包。首领、部位与 Ultimate 档案（`_a` / `_ap`）以及 EP4 首领的分阶段待机动作均由此取得。
@@ -347,7 +350,7 @@ did not re-evaluate tiers or change the in-game rotation.
 - 资源：`assets/img/monsters/hd/<area>/`；首批 `ENEMY` 的 WebP 使用 `cwebp -q 85 -m 6 -resize 1024 0`，保留透明度，不重绘图片。原 PNG 宽度均不小于 1024；Boss 补完的转换工具见下方记录。
 - 文件名以 `content/monster-catalog/names.json` 中维护的怪物名称为准，不能用上游素材名称反向改写图鉴名称。修正歇／蝎字误写、旧译名、海底临时文件名，以及 `FROEST` 目录拼写。
 - 按画面确认首领形态：Vol Opt 两种难度素材仅绑定 Form 2；Dark Falz 的 Form 1、2、3 与 Olga Flow 的 Form 1、2 分别绑定各自图片。不把本体图自动用于柱子、屏幕、护盾或其他部位。EP4 三只首领的完整本体图用于各自两阶段，不用于 Spinner。
-- 高清字段仅写入详情 JSON，不进入列表索引。切换语言或普通难度之间的条件保留图片选择，切换怪物或普通 / Ultimate 外观组时恢复默认高清；加载失败后仍可手动切换 Wiki 图片；失败状态仅属于当前图片，网络恢复后切走再切回可重新加载。
+- 高清字段仅写入详情 JSON，不进入列表索引。切换语言或普通难度之间的条件保留图片选择，切换怪物或普通 / Ultimate 外观组时恢复默认高清；加载失败后可切换到另一个来源；失败状态仅属于当前图片，网络恢复后切走再切回可重新加载。
 
 更新流程：先按英文身份、章节和形态核对素材，再同步源文件名与清单，生成 WebP 并更新绑定；执行 `npm run test:monsters`、构建和怪物图鉴浏览器测试。新增图片不得凭中文相似名称自动绑定首领阶段或部位。
 
@@ -379,3 +382,10 @@ did not re-evaluate tiers or change the in-game rotation.
 - 本地怪物测试 10 / 10 通过，三张替换后的成品（含 Silence Claw）已逐张目视核对；生产构建通过，共 1,268 条路由、45 个活动片段。
 - 物品 / 怪物高清图相关浏览器测试 7 / 7 通过。
 - 维护者已验收并批准提交、推送至 master；线上部署结果以对应 Pages 工作流为准。
+
+
+### Dal Ral Lie 高清图替换（2026-09-26）
+
+- 使用维护者提供的 1888 × 1312 透明 PNG，替换 De Rol Le 条目 Ultimate 外观（Dal Ral Lie）的高清图；普通外观和模型渲染图不变。
+- 按图库规范用 Pillow Lanczos 等比缩放至 1024 × 712，WebP quality 85 / method 6，保留透明度，成品 97,172 字节。清单记录原附件名、规范来源路径 `User-provided corrections/2026-09-26/CAVE/达尔·拉·利.png`、尺寸、字节数和 SHA-256；旧 WebP 已移除，原 PNG 不随站点提交。
+- 当前仍为 171 张 WebP、134 个条目、268 个外观绑定。
