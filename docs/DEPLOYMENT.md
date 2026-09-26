@@ -67,6 +67,14 @@ three consecutive focused runs each.
 Publication is established by the successful Pages run for the pushed revision,
 not by the local preview or a passing local build alone.
 
+## September 26, 2026 handgun and shotgun terminology release
+
+The approved release publishes psobb-localization and droptable first, then Haven.
+Haven pins `warmonipa/dropcharts@085d0c2a36fded23924ed4e44ab1b1be3d02a968`, which
+contains the UN-12 光枪 names and droptable's banner-highlight and monster-area
+changes. The client resources changed, but no client package was built in this
+release.
+
 ## September 18, 2026 localization and drop-chart release
 
 The approved release publishes droptable first, then Haven. Haven pins

@@ -4,8 +4,8 @@ import { parseFragment } from 'parse5';
 export const TYPES = {
   Saber: ['weapon', '光剑'], Sword: ['weapon', '大剑'], Dagger: ['weapon', '双匕首'], Partisan: ['weapon', '长刀'],
   Slicer: ['weapon', '投刃'], 'Double Saber': ['weapon', '双头剑'], Claw: ['weapon', '爪'], Katana: ['weapon', '日本刀'],
-  'Twin Sword': ['weapon', '双剑'], Fist: ['weapon', '拳套'], Handgun: ['weapon', '手枪'], Rifle: ['weapon', '步枪'],
-  Mechgun: ['weapon', '机枪'], Shot: ['weapon', '散弹枪'], Launcher: ['weapon', '光子炮'], Bazooka: ['weapon', '火箭炮'],
+  'Twin Sword': ['weapon', '双剑'], Fist: ['weapon', '拳套'], Handgun: ['weapon', '光枪'], Rifle: ['weapon', '步枪'],
+  Mechgun: ['weapon', '机枪'], Shot: ['weapon', '霰弹枪'], Launcher: ['weapon', '光子炮'], Bazooka: ['weapon', '火箭炮'],
   Cane: ['weapon', '短杖'], Rod: ['weapon', '长杖'], Wand: ['weapon', '魔杖'], Card: ['weapon', '卡片'],
   Frame: ['armor', '铠甲'], Barrier: ['shield', '盾牌'], Unit: ['unit', '插件'], Mag: ['mag', '玛古'],
   Consumable: ['tool', '消耗品'], Grinder: ['tool', '打磨石'], Material: ['tool', '能力药'],
