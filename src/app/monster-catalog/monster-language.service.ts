@@ -6,6 +6,7 @@ const messages: Record<string,[string,string]> = {
   '查看原图 ↗':['View full image ↗','元の画像を見る ↗'],
   '图片来源：高清图库':['Image source: HD gallery','画像出典：高精細ギャラリー'],
   '图片来源：Ephinea Wiki':['Image source: Ephinea Wiki','画像出典：Ephinea Wiki'],
+  '模型渲染':['Model render','モデルレンダリング'], '翻页':['Pages','ページ送り'], '图片来源：原始模型渲染':['Image source: original model render','画像出典：オリジナルモデルのレンダリング'],
   '暂无此条件下的机制表格，请结合说明与来源阅读。':['No mechanic tables recorded for these conditions; see the notes and sources.','この条件の仕様表は未収録です。解説と出典を参照してください。'],
   '怪物图鉴':['Bestiary','エネミー図鑑'], '返回主页':['Home','ホーム'], '道具图鉴':['Item Database','アイテム図鑑'],
   '怪物周回指南':['Hunting Guide','周回ガイド'], '搜寻拉古奥尔的每一个威胁。':['Know what awaits on Ragol.','ラグオルの脅威を知る。'],

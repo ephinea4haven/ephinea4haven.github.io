@@ -1,0 +1,1292 @@
+{
+ "source": {
+  "project": "phantasmal-world",
+  "commit": "a8890d22",
+  "assets": "web/src/jsMain/resources/assets/npcs",
+  "note": "Model files resolved with EntityAssetLoader.entityTypeToPath; Ultimate skins from UltimateSkins.kt (NPCS_WITH_ULTIMATE_SKIN). Motions default to the model's own idle clip at frame 0; models without clips use their bind pose unless they borrow a sibling with the same skeleton. hide lists effect-shell material indices drawn opaque by the exporter. Renders with `archive` read models, textures and motions straight from the Ephinea client (data.gsl or loose .bml); these fix phantasmal-world assets that name the wrong model (Hidoom, Migium, Canane) and add bosses, parts and Ultimate skins it lacks. The harness build patches phantasmal-world's NJM parser so a quaternion element takes the rotation slot before scale (type 0x2005 motions such as the EP4 Spinners). Archive textures are repacked (XVRT chunks back to back) because padded chunks stop sequential IFF readers; decoded DXT textures use linear filtering like the game. Composite renders list extra models in `parts`; `plainMaps` + `planarUv` show an environment-mapped texture across a model without texture coordinates (Bee / Gee)."
+ },
+ "renders": {
+  "AlRappy": {
+   "npc": "AlRappy"
+  },
+  "Astark": {
+   "npc": "Astark",
+   "motion": "Astark_stand"
+  },
+  "BaBoota": {
+   "npc": "BaBoota"
+  },
+  "BarbaRay": {
+   "npc": "BarbaRay",
+   "motion": "BarbaRay_beamwait"
+  },
+  "BarbarousWolf": {
+   "npc": "BarbarousWolf"
+  },
+  "Booma": {
+   "npc": "Booma",
+   "motion": "Booma_mihari"
+  },
+  "Booma.ult": {
+   "npc": "Booma.ult",
+   "motion": "Booma_mihari"
+  },
+  "Boota": {
+   "npc": "Boota",
+   "motion": "Boota_mihari"
+  },
+  "Bulclaw": {
+   "npc": "Bulclaw"
+  },
+  "Bulk": {
+   "npc": "Bulk",
+   "motion": "Bulk_balwait"
+  },
+  "Canadine": {
+   "npc": "Canadine",
+   "motion": "Canadine_wait01"
+  },
+  "Canadine.ult": {
+   "npc": "Canadine.ult",
+   "motion": "Canadine_wait01"
+  },
+  "Canane": {
+   "archive": "bm_ene_me1_mb.bml",
+   "model": "me1_y_mb",
+   "motion": "wait01_me1_y_mb"
+  },
+  "ChaosBringer": {
+   "npc": "ChaosBringer",
+   "motion": "ChaosBringer_wait"
+  },
+  "ChaosBringer.ult": {
+   "npc": "ChaosBringer.ult",
+   "motion": "ChaosBringer_wait"
+  },
+  "ChaosSorcerer": {
+   "npc": "ChaosSorcerer",
+   "motion": "ChaosSorcerer_wait"
+  },
+  "ChaosSorcerer.ult": {
+   "npc": "ChaosSorcerer.ult",
+   "motion": "ChaosSorcerer_wait"
+  },
+  "Claw": {
+   "npc": "Claw"
+  },
+  "DarkBelra": {
+   "npc": "DarkBelra",
+   "motion": "DarkBelra_wait"
+  },
+  "DarkBelra.ult": {
+   "npc": "DarkBelra.ult",
+   "motion": "DarkBelra_wait"
+  },
+  "DarkGunner": {
+   "npc": "DarkGunner"
+  },
+  "DeRolLe": {
+   "archive": "bm_boss2_de_rol_le.bml",
+   "model": "boss2_b_derorure_body",
+   "motion": "beamwait_boss2_b_body"
+  },
+  "DeathGunner": {
+   "npc": "DeathGunner"
+  },
+  "DelLily": {
+   "npc": "DelLily"
+  },
+  "DelRappy": {
+   "npc": "DelRappy"
+  },
+  "Delbiter": {
+   "npc": "Delbiter",
+   "motion": "Delbiter_wait"
+  },
+  "Deldepth": {
+   "npc": "Deldepth",
+   "motion": "Deldepth_wait"
+  },
+  "Delsaber": {
+   "npc": "Delsaber",
+   "motion": "Delsaber_wait"
+  },
+  "Dimenian": {
+   "npc": "Dimenian"
+  },
+  "Dimenian.ult": {
+   "npc": "Dimenian.ult"
+  },
+  "Dolmdarl": {
+   "npc": "Dolmdarl"
+  },
+  "Dolmolm": {
+   "npc": "Dolmolm",
+   "motion": "Dolmolm_wait"
+  },
+  "Dorphon": {
+   "npc": "Dorphon",
+   "motion": "Dorphon_wait"
+  },
+  "DorphonEclair": {
+   "npc": "DorphonEclair"
+  },
+  "Dragon": {
+   "archive": "bm_boss1_dragon.bml",
+   "model": "boss1_s_nb_dragon",
+   "motion": "stand_boss1_s_nb_dragon"
+  },
+  "Dubchic": {
+   "npc": "Dubchic"
+  },
+  "Dubchic.ult": {
+   "npc": "Dubchic.ult"
+  },
+  "Dubswitch": {
+   "npc": "Dubswitch"
+  },
+  "EggRappy": {
+   "npc": "EggRappy",
+   "motion": "EggRappy_wait"
+  },
+  "Epsilon": {
+   "npc": "Epsilon"
+  },
+  "EvilShark": {
+   "npc": "EvilShark"
+  },
+  "EvilShark.ult": {
+   "npc": "EvilShark.ult"
+  },
+  "GalGryphon": {
+   "archive": "bm_boss5_gryphon.bml",
+   "model": "boss5_s_body",
+   "motion": "stand_boss5_s_body",
+   "yaw": 0,
+   "pitch": 10
+  },
+  "Garanz": {
+   "npc": "Garanz",
+   "motion": "Garanz_wait"
+  },
+  "Garanz.ult": {
+   "npc": "Garanz.ult",
+   "motion": "Garanz_wait"
+  },
+  "Gee": {
+   "npc": "Gee",
+   "motion": "Gee_wait"
+  },
+  "GiGue": {
+   "npc": "GiGue",
+   "motion": "GiGue_wait"
+  },
+  "Gibbles": {
+   "npc": "Gibbles",
+   "motion": "Gibbles_wait"
+  },
+  "Gigobooma": {
+   "npc": "Gigobooma",
+   "motion": "Booma_mihari"
+  },
+  "Gigobooma.ult": {
+   "npc": "Gigobooma.ult",
+   "motion": "Booma_mihari"
+  },
+  "Gilchic": {
+   "npc": "Gilchic",
+   "motion": "Gilchic_wait01"
+  },
+  "Gilchic.ult": {
+   "npc": "Gilchic.ult",
+   "motion": "Gilchic_wait01"
+  },
+  "Girtablulu": {
+   "npc": "Girtablulu",
+   "motion": "Girtablulu_wait"
+  },
+  "Gobooma": {
+   "npc": "Gobooma",
+   "motion": "Booma_mihari"
+  },
+  "Gobooma.ult": {
+   "npc": "Gobooma.ult",
+   "motion": "Booma_mihari"
+  },
+  "GolDragon": {
+   "archive": "bm_boss8_dragon.bml",
+   "model": "boss1_s_nb_dragon",
+   "motion": "stand_boss1_s_nb_dragon"
+  },
+  "Goran": {
+   "npc": "Goran",
+   "motion": "Goran_mihari"
+  },
+  "GoranDetonator": {
+   "npc": "GoranDetonator"
+  },
+  "GrassAssassin": {
+   "npc": "GrassAssassin",
+   "motion": "GrassAssassin_wait"
+  },
+  "GrassAssassin.ult": {
+   "npc": "GrassAssassin.ult",
+   "motion": "GrassAssassin_wait"
+  },
+  "GuilShark": {
+   "npc": "GuilShark"
+  },
+  "GuilShark.ult": {
+   "npc": "GuilShark.ult"
+  },
+  "HalloRappy": {
+   "npc": "HalloRappy",
+   "motion": "HalloRappy_wait"
+  },
+  "Hidoom": {
+   "archive": "bm7_s_paa_body.bml",
+   "model": "bm7_s_pal_body",
+   "motion": "wait_bm7_s_pal_body"
+  },
+  "Hildebear": {
+   "npc": "Hildebear",
+   "motion": "Hildebear_stand"
+  },
+  "Hildebear.ult": {
+   "npc": "Hildebear.ult",
+   "motion": "Hildebear_stand"
+  },
+  "Hildeblue": {
+   "npc": "Hildeblue",
+   "motion": "Hildebear_stand"
+  },
+  "Hildeblue.ult": {
+   "npc": "Hildeblue.ult",
+   "motion": "Hildebear_stand"
+  },
+  "IllGill": {
+   "npc": "IllGill",
+   "motion": "IllGill_wait"
+  },
+  "LaDimenian": {
+   "npc": "LaDimenian"
+  },
+  "LaDimenian.ult": {
+   "npc": "LaDimenian.ult"
+  },
+  "LoveRappy": {
+   "npc": "LoveRappy",
+   "motion": "LoveRappy_wait"
+  },
+  "Mericarol": {
+   "npc": "Mericarol"
+  },
+  "Mericus": {
+   "npc": "Mericus"
+  },
+  "Merikle": {
+   "npc": "Merikle",
+   "motion": "Merikle_wait"
+  },
+  "Merillia": {
+   "npc": "Merillia",
+   "motion": "Merillia_wait"
+  },
+  "Meriltas": {
+   "npc": "Meriltas"
+  },
+  "MerissaA": {
+   "npc": "MerissaA",
+   "hide": [
+    1
+   ]
+  },
+  "MerissaAA": {
+   "npc": "MerissaAA",
+   "hide": [
+    1
+   ]
+  },
+  "Migium": {
+   "archive": "bm7_s_paa_body.bml",
+   "model": "bm7_s_par_body",
+   "motion": "wait_bm7_s_par_body"
+  },
+  "Monest": {
+   "npc": "Monest"
+  },
+  "Morfos": {
+   "npc": "Morfos",
+   "motion": "Morfos_wait"
+  },
+  "Mothmant": {
+   "npc": "Mothmant",
+   "motion": "Mothmant_wait"
+  },
+  "Mothmant.ult": {
+   "npc": "Mothmant.ult",
+   "motion": "Mothmant_wait"
+  },
+  "NanoDragon": {
+   "npc": "NanoDragon",
+   "motion": "NanoDragon_wait"
+  },
+  "PalShark": {
+   "npc": "PalShark",
+   "motion": "PalShark_mihari"
+  },
+  "PalShark.ult": {
+   "npc": "PalShark.ult",
+   "motion": "PalShark_mihari"
+  },
+  "PanArms": {
+   "npc": "PanArms",
+   "motion": "PanArms_wait"
+  },
+  "Pazuzu": {
+   "npc": "Pazuzu"
+  },
+  "PofuillySlime": {
+   "npc": "PofuillySlime"
+  },
+  "PoisonLily": {
+   "archive": "bm_ene_re2_flower.bml",
+   "model": "re2_b_flower_root",
+   "motion": "waito_re2_b_root"
+  },
+  "PoisonLily.ult": {
+   "archive": "bm_ene_re2_flower_a.bml",
+   "model": "flower_root",
+   "motion": "waito_re2_b_root"
+  },
+  "PouillySlime": {
+   "npc": "PouillySlime",
+   "hide": [
+    1
+   ]
+  },
+  "PyroGoran": {
+   "npc": "PyroGoran"
+  },
+  "RagRappy": {
+   "npc": "RagRappy",
+   "motion": "RagRappy_wait"
+  },
+  "Recobox": {
+   "npc": "Recobox"
+  },
+  "Recon": {
+   "npc": "Recon",
+   "motion": "Recon_wait"
+  },
+  "SandRappy": {
+   "npc": "SandRappy",
+   "motion": "SandRappy_wait"
+  },
+  "SatelliteLizard": {
+   "npc": "SatelliteLizard"
+  },
+  "SavageWolf": {
+   "npc": "SavageWolf",
+   "motion": "SavageWolf_wait"
+  },
+  "SinowBeat": {
+   "npc": "SinowBeat"
+  },
+  "SinowBeat.ult": {
+   "npc": "SinowBeat.ult"
+  },
+  "SinowBerill": {
+   "npc": "SinowBerill"
+  },
+  "SinowGold": {
+   "npc": "SinowGold",
+   "motion": "SinowGold_wait"
+  },
+  "SinowGold.ult": {
+   "npc": "SinowGold.ult",
+   "motion": "SinowGold_wait"
+  },
+  "SinowSpigell": {
+   "npc": "SinowSpigell",
+   "motion": "SinowSpigell_wait"
+  },
+  "SinowZele": {
+   "npc": "SinowZele"
+  },
+  "SinowZoa": {
+   "npc": "SinowZoa",
+   "motion": "SinowZoa_wait"
+  },
+  "SoDimenian": {
+   "npc": "SoDimenian",
+   "motion": "SoDimenian_mihari"
+  },
+  "SoDimenian.ult": {
+   "npc": "SoDimenian.ult",
+   "motion": "SoDimenian_mihari"
+  },
+  "StRappy": {
+   "npc": "StRappy",
+   "motion": "StRappy_wait"
+  },
+  "UlGibbon": {
+   "npc": "UlGibbon",
+   "motion": "UlGibbon_wait"
+  },
+  "Yowie": {
+   "npc": "Yowie",
+   "motion": "Yowie_wait"
+  },
+  "ZeBoota": {
+   "npc": "ZeBoota"
+  },
+  "ZolGibbon": {
+   "npc": "ZolGibbon"
+  },
+  "Zu": {
+   "npc": "Zu",
+   "motion": "Zu_wait"
+  },
+  "Dragon.ult": {
+   "archive": "bm_boss1_dragon_a.bml",
+   "model": "boss1_s_nb_dragon",
+   "motion": "stand_boss1_s_nb_dragon"
+  },
+  "DeRolLe.ult": {
+   "archive": "bm_boss2_de_rol_le_a.bml",
+   "model": "boss2_b_derorure_body",
+   "motion": "beamwait_boss2_b_body"
+  },
+  "DeRolLeShell": {
+   "archive": "bm_boss2_de_rol_le.bml",
+   "model": "boss2_b_helm_break"
+  },
+  "DeRolLeShell.ult": {
+   "archive": "bm_boss2_de_rol_le_a.bml",
+   "model": "boss2_b_helm_break"
+  },
+  "VolOptForm2": {
+   "archive": "bm_boss3_volopt.bml",
+   "model": "me5p02_y_all",
+   "motion": "wait_me5p02_y_all"
+  },
+  "VolOptForm2.ult": {
+   "archive": "bm_boss3_volopt_ap.bml",
+   "model": "me5p02_y_all",
+   "motion": "wait_me5p02_y_all"
+  },
+  "VolOptPillar": {
+   "archive": "bm_boss3_volopt.bml",
+   "model": "me5p01_y_all",
+   "motion": "wait_me5p01_y_all"
+  },
+  "VolOptPillar.ult": {
+   "archive": "bm_boss3_volopt_ap.bml",
+   "model": "me5p01_y_all",
+   "motion": "wait_me5p01_y_all"
+  },
+  "VolOptPrison": {
+   "archive": "bm_boss3_volopt.bml",
+   "model": "me5p02_y_cage"
+  },
+  "VolOptPrison.ult": {
+   "archive": "bm_boss3_volopt_ap.bml",
+   "model": "me5p02_y_cage"
+  },
+  "DarkFalzForm1": {
+   "archive": "darkfalz_dat.bml",
+   "model": "df1_s_body",
+   "motion": "wait_df1_s_body"
+  },
+  "DarkFalzForm2": {
+   "archive": "darkfalz_dat.bml",
+   "model": "df2_s_body",
+   "motion": "wait_df2_s_body"
+  },
+  "DarkFalzForm3": {
+   "archive": "darkfalz_dat.bml",
+   "model": "df3_s_body",
+   "motion": "wait_df3_s_body"
+  },
+  "Darvant": {
+   "archive": "darkfalz_dat.bml",
+   "model": "df1_s_simobe"
+  },
+  "OlgaFlowForm2": {
+   "archive": "boss06_plotfalz_dat.bml",
+   "model": "bossgc_pf02_body",
+   "motion": "wait_bossgc_pf02_body"
+  },
+  "OlgaFlowMag": {
+   "archive": "boss06_plotfalz_dat.bml",
+   "model": "bossgc_pf_mag",
+   "motion": "wait_bossgc_pf_mag"
+  },
+  "Bee": {
+   "archive": "bm_ene_re4_sorcerer.bml",
+   "model": "re4_b_bit",
+   "plainMaps": true,
+   "planarUv": true,
+   "yaw": 25,
+   "pitch": 15
+  },
+  "Bee.ult": {
+   "archive": "bm_ene_re4_sorcerer_a.bml",
+   "model": "re4_b_bit",
+   "plainMaps": true,
+   "planarUv": true,
+   "yaw": 25,
+   "pitch": 15
+  },
+  "Canane.ult": {
+   "archive": "bm_ene_me1_mb_a.bml",
+   "model": "me1_y_mb",
+   "motion": "wait01_me1_y_mb"
+  },
+  "SaintMilion.phase1": {
+   "archive": "bm_ene_boss09.bml",
+   "model": "boss00_root",
+   "motion": "1st_standby_root"
+  },
+  "SaintMilion.phase2": {
+   "archive": "bm_ene_boss09.bml",
+   "model": "boss00_root",
+   "motion": "2nd_standby_root"
+  },
+  "SpinnerSaintMilion": {
+   "archive": "bm_ene_boss09_tentacle.bml",
+   "model": "shokushu_body00",
+   "yaw": 0,
+   "pitch": 30,
+   "motion": "standby_shokushu_body"
+  },
+  "Shambertin.phase1": {
+   "archive": "bm_ene_boss09.bml",
+   "model": "boss01_root",
+   "motion": "1st_standby_root"
+  },
+  "Shambertin.phase2": {
+   "archive": "bm_ene_boss09.bml",
+   "model": "boss01_root",
+   "motion": "2nd_standby_root"
+  },
+  "SpinnerShambertin": {
+   "archive": "bm_ene_boss09_tentacle.bml",
+   "model": "shokushu_body01",
+   "yaw": 0,
+   "pitch": 30,
+   "motion": "standby_shokushu_body"
+  },
+  "Kondrieu.phase1": {
+   "archive": "bm_ene_boss09.bml",
+   "model": "boss02_root",
+   "motion": "1st_standby_root"
+  },
+  "Kondrieu.phase2": {
+   "archive": "bm_ene_boss09.bml",
+   "model": "boss02_root",
+   "motion": "2nd_standby_root"
+  },
+  "SpinnerKondrieu": {
+   "archive": "bm_ene_boss09_tentacle.bml",
+   "model": "shokushu_body02",
+   "yaw": 0,
+   "pitch": 30,
+   "motion": "standby_shokushu_body"
+  },
+  "VolOptSpire": {
+   "archive": "bm_boss3_volopt.bml",
+   "model": "fs_obj_hiraishin_a"
+  },
+  "VolOptSpire.ult": {
+   "archive": "bm_boss3_volopt_ap.bml",
+   "model": "fs_obj_hiraishin_a"
+  },
+  "Epsigard": {
+   "archive": "bm_ene_epsilon.bml",
+   "model": "re6_b_claw_body",
+   "motion": "claw_wait_re6_b_claw_body"
+  },
+  "PigRay": {
+   "archive": "bm_boss7_crawfish.bml",
+   "model": "minibaru_body",
+   "motion": "wait_wait_body"
+  },
+  "UlRay": {
+   "archive": "bm_boss7_crawfish.bml",
+   "model": "minibaru_body_b",
+   "motion": "wait_wait_body"
+  },
+  "OlgaFlowForm1": {
+   "archive": "boss06_plotfalz_dat.bml",
+   "model": "bssgc_pf01_body",
+   "motion": "skywait_bssgc_pf01_body",
+   "parts": [
+    {
+     "archive": "boss06_plotfalz_dat.bml",
+     "model": "bossgc_pf01_leg",
+     "motion": "skywait_bossgc_pf01_leg"
+    }
+   ],
+   "rotate": [
+    180,
+    0,
+    0
+   ],
+   "yaw": 270,
+   "pitch": 10
+  },
+  "OlgaFlowForm1.ground": {
+   "archive": "boss06_plotfalz_dat.bml",
+   "model": "bssgc_pf01_body",
+   "motion": "grdwait_bssgc_pf01_body",
+   "parts": [
+    {
+     "archive": "boss06_plotfalz_dat.bml",
+     "model": "bossgc_pf01_leg",
+     "motion": "grdwait_bossgc_pf01_leg"
+    }
+   ],
+   "rotate": [
+    0,
+    0,
+    180
+   ],
+   "yaw": 0,
+   "pitch": -15
+  }
+ },
+ "bindings": {
+  "al-rappy": {
+   "normal": "AlRappy",
+   "ultimate": "AlRappy"
+  },
+  "astark": {
+   "normal": "Astark",
+   "ultimate": "Astark"
+  },
+  "ba-boota": {
+   "normal": "BaBoota",
+   "ultimate": "BaBoota"
+  },
+  "barba-ray": {
+   "normal": "BarbaRay",
+   "ultimate": "BarbaRay"
+  },
+  "barbarous-wolf-e1": {
+   "normal": "BarbarousWolf",
+   "ultimate": "BarbarousWolf"
+  },
+  "barbarous-wolf-e2": {
+   "normal": "BarbarousWolf",
+   "ultimate": "BarbarousWolf"
+  },
+  "booma": {
+   "normal": "Booma",
+   "ultimate": "Booma.ult"
+  },
+  "boota": {
+   "normal": "Boota",
+   "ultimate": "Boota"
+  },
+  "bulclaw": {
+   "normal": "Bulclaw",
+   "ultimate": "Bulclaw"
+  },
+  "bulk": {
+   "normal": "Bulk",
+   "ultimate": "Bulk"
+  },
+  "canadine": {
+   "normal": "Canadine",
+   "ultimate": "Canadine.ult"
+  },
+  "canadine-ring": {
+   "normal": "Canadine",
+   "ultimate": "Canadine.ult"
+  },
+  "canane": {
+   "normal": "Canane",
+   "ultimate": "Canane.ult"
+  },
+  "chaos-bringer": {
+   "normal": "ChaosBringer",
+   "ultimate": "ChaosBringer.ult"
+  },
+  "chaos-sorcerer-e1": {
+   "normal": "ChaosSorcerer",
+   "ultimate": "ChaosSorcerer.ult"
+  },
+  "chaos-sorcerer-e2": {
+   "normal": "ChaosSorcerer",
+   "ultimate": "ChaosSorcerer.ult"
+  },
+  "claw": {
+   "normal": "Claw",
+   "ultimate": "Claw"
+  },
+  "dark-belra-e1": {
+   "normal": "DarkBelra",
+   "ultimate": "DarkBelra.ult"
+  },
+  "dark-belra-e2": {
+   "normal": "DarkBelra",
+   "ultimate": "DarkBelra.ult"
+  },
+  "dark-gunner": {
+   "normal": "DarkGunner",
+   "ultimate": "DarkGunner"
+  },
+  "de-rol-le": {
+   "normal": "DeRolLe",
+   "ultimate": "DeRolLe.ult"
+  },
+  "death-gunner": {
+   "normal": "DeathGunner",
+   "ultimate": "DeathGunner"
+  },
+  "del-lily": {
+   "normal": "DelLily",
+   "ultimate": "DelLily"
+  },
+  "del-rappy-crater": {
+   "normal": "DelRappy",
+   "ultimate": "DelRappy"
+  },
+  "del-rappy-desert": {
+   "normal": "DelRappy",
+   "ultimate": "DelRappy"
+  },
+  "delbiter": {
+   "normal": "Delbiter",
+   "ultimate": "Delbiter"
+  },
+  "deldepth": {
+   "normal": "Deldepth",
+   "ultimate": "Deldepth"
+  },
+  "delsaber-e1": {
+   "normal": "Delsaber",
+   "ultimate": "Delsaber"
+  },
+  "delsaber-e2": {
+   "normal": "Delsaber",
+   "ultimate": "Delsaber"
+  },
+  "dimenian-e1": {
+   "normal": "Dimenian",
+   "ultimate": "Dimenian.ult"
+  },
+  "dimenian-e2": {
+   "normal": "Dimenian",
+   "ultimate": "Dimenian.ult"
+  },
+  "dolmdarl": {
+   "normal": "Dolmdarl",
+   "ultimate": "Dolmdarl"
+  },
+  "dolmolm": {
+   "normal": "Dolmolm",
+   "ultimate": "Dolmolm"
+  },
+  "dorphon": {
+   "normal": "Dorphon",
+   "ultimate": "Dorphon"
+  },
+  "dorphon-eclair": {
+   "normal": "DorphonEclair",
+   "ultimate": "DorphonEclair"
+  },
+  "dragon": {
+   "normal": "Dragon",
+   "ultimate": "Dragon.ult"
+  },
+  "dubchic-e1": {
+   "normal": "Dubchic",
+   "ultimate": "Dubchic.ult"
+  },
+  "dubchic-e2": {
+   "normal": "Dubchic",
+   "ultimate": "Dubchic.ult"
+  },
+  "dubwitch-e1": {
+   "normal": "Dubswitch",
+   "ultimate": "Dubswitch"
+  },
+  "dubwitch-e2": {
+   "normal": "Dubswitch",
+   "ultimate": "Dubswitch"
+  },
+  "egg-rappy": {
+   "normal": "EggRappy",
+   "ultimate": "EggRappy"
+  },
+  "epsilon": {
+   "normal": "Epsilon",
+   "ultimate": "Epsilon"
+  },
+  "evil-shark": {
+   "normal": "EvilShark",
+   "ultimate": "EvilShark.ult"
+  },
+  "gal-gryphon": {
+   "normal": "GalGryphon",
+   "ultimate": "GalGryphon"
+  },
+  "garanz-e1": {
+   "normal": "Garanz",
+   "ultimate": "Garanz.ult"
+  },
+  "garanz-e2": {
+   "normal": "Garanz",
+   "ultimate": "Garanz.ult"
+  },
+  "gee": {
+   "normal": "Gee",
+   "ultimate": "Gee"
+  },
+  "gi-gue": {
+   "normal": "GiGue",
+   "ultimate": "GiGue"
+  },
+  "gibbles": {
+   "normal": "Gibbles",
+   "ultimate": "Gibbles"
+  },
+  "gigobooma": {
+   "normal": "Gigobooma",
+   "ultimate": "Gigobooma.ult"
+  },
+  "gillchic-e1": {
+   "normal": "Gilchic",
+   "ultimate": "Gilchic.ult"
+  },
+  "gillchic-e2": {
+   "normal": "Gilchic",
+   "ultimate": "Gilchic.ult"
+  },
+  "girtablulu": {
+   "normal": "Girtablulu",
+   "ultimate": "Girtablulu"
+  },
+  "gobooma": {
+   "normal": "Gobooma",
+   "ultimate": "Gobooma.ult"
+  },
+  "gol-dragon": {
+   "normal": "GolDragon",
+   "ultimate": "GolDragon"
+  },
+  "goran": {
+   "normal": "Goran",
+   "ultimate": "Goran"
+  },
+  "goran-detonator": {
+   "normal": "GoranDetonator",
+   "ultimate": "GoranDetonator"
+  },
+  "grass-assassin-e1": {
+   "normal": "GrassAssassin",
+   "ultimate": "GrassAssassin.ult"
+  },
+  "grass-assassin-e2": {
+   "normal": "GrassAssassin",
+   "ultimate": "GrassAssassin.ult"
+  },
+  "guil-shark": {
+   "normal": "GuilShark",
+   "ultimate": "GuilShark.ult"
+  },
+  "hallo-rappy": {
+   "normal": "HalloRappy",
+   "ultimate": "HalloRappy"
+  },
+  "hidoom-e1": {
+   "normal": "Hidoom",
+   "ultimate": "Hidoom"
+  },
+  "hidoom-e2": {
+   "normal": "Hidoom",
+   "ultimate": "Hidoom"
+  },
+  "hildebear-e1": {
+   "normal": "Hildebear",
+   "ultimate": "Hildebear.ult"
+  },
+  "hildebear-e2": {
+   "normal": "Hildebear",
+   "ultimate": "Hildebear.ult"
+  },
+  "hildeblue-e1": {
+   "normal": "Hildeblue",
+   "ultimate": "Hildeblue.ult"
+  },
+  "hildeblue-e2": {
+   "normal": "Hildeblue",
+   "ultimate": "Hildeblue.ult"
+  },
+  "ill-gill": {
+   "normal": "IllGill",
+   "ultimate": "IllGill"
+  },
+  "kondrieu-phase-1": {
+   "normal": "Kondrieu.phase1",
+   "ultimate": "Kondrieu.phase1"
+  },
+  "kondrieu-phase-2": {
+   "normal": "Kondrieu.phase2",
+   "ultimate": "Kondrieu.phase2"
+  },
+  "la-dimenian-e1": {
+   "normal": "LaDimenian",
+   "ultimate": "LaDimenian.ult"
+  },
+  "la-dimenian-e2": {
+   "normal": "LaDimenian",
+   "ultimate": "LaDimenian.ult"
+  },
+  "love-rappy": {
+   "normal": "LoveRappy",
+   "ultimate": "LoveRappy"
+  },
+  "mericarol": {
+   "normal": "Mericarol",
+   "ultimate": "Mericarol"
+  },
+  "mericus": {
+   "normal": "Mericus",
+   "ultimate": "Mericus"
+  },
+  "merikle": {
+   "normal": "Merikle",
+   "ultimate": "Merikle"
+  },
+  "merillia": {
+   "normal": "Merillia",
+   "ultimate": "Merillia"
+  },
+  "meriltas": {
+   "normal": "Meriltas",
+   "ultimate": "Meriltas"
+  },
+  "merissa-a": {
+   "normal": "MerissaA",
+   "ultimate": "MerissaA"
+  },
+  "merissa-aa": {
+   "normal": "MerissaAA",
+   "ultimate": "MerissaAA"
+  },
+  "migium-e1": {
+   "normal": "Migium",
+   "ultimate": "Migium"
+  },
+  "migium-e2": {
+   "normal": "Migium",
+   "ultimate": "Migium"
+  },
+  "monest-e1": {
+   "normal": "Monest",
+   "ultimate": "Monest"
+  },
+  "monest-e2": {
+   "normal": "Monest",
+   "ultimate": "Monest"
+  },
+  "morfos": {
+   "normal": "Morfos",
+   "ultimate": "Morfos"
+  },
+  "mothmant-e1": {
+   "normal": "Mothmant",
+   "ultimate": "Mothmant.ult"
+  },
+  "mothmant-e2": {
+   "normal": "Mothmant",
+   "ultimate": "Mothmant.ult"
+  },
+  "nano-dragon": {
+   "normal": "NanoDragon",
+   "ultimate": "NanoDragon"
+  },
+  "pal-shark": {
+   "normal": "PalShark",
+   "ultimate": "PalShark.ult"
+  },
+  "pan-arms-e1": {
+   "normal": "PanArms",
+   "ultimate": "PanArms"
+  },
+  "pan-arms-e2": {
+   "normal": "PanArms",
+   "ultimate": "PanArms"
+  },
+  "pazuzu-crater": {
+   "normal": "Pazuzu",
+   "ultimate": "Pazuzu"
+  },
+  "pazuzu-desert": {
+   "normal": "Pazuzu",
+   "ultimate": "Pazuzu"
+  },
+  "pofuilly-slime": {
+   "normal": "PofuillySlime",
+   "ultimate": "PofuillySlime"
+  },
+  "poison-lily-e1": {
+   "normal": "PoisonLily",
+   "ultimate": "PoisonLily.ult"
+  },
+  "poison-lily-e2": {
+   "normal": "PoisonLily",
+   "ultimate": "PoisonLily.ult"
+  },
+  "pouilly-slime": {
+   "normal": "PouillySlime",
+   "ultimate": "PouillySlime"
+  },
+  "pyro-goran": {
+   "normal": "PyroGoran",
+   "ultimate": "PyroGoran"
+  },
+  "rag-rappy-e1": {
+   "normal": "RagRappy",
+   "ultimate": "RagRappy"
+  },
+  "rag-rappy-e2": {
+   "normal": "RagRappy",
+   "ultimate": "RagRappy"
+  },
+  "recobox": {
+   "normal": "Recobox",
+   "ultimate": "Recobox"
+  },
+  "recon": {
+   "normal": "Recon",
+   "ultimate": "Recon"
+  },
+  "saint-milion-phase-1": {
+   "normal": "SaintMilion.phase1",
+   "ultimate": "SaintMilion.phase1"
+  },
+  "saint-milion-phase-2": {
+   "normal": "SaintMilion.phase2",
+   "ultimate": "SaintMilion.phase2"
+  },
+  "sand-rappy-crater": {
+   "normal": "SandRappy",
+   "ultimate": "SandRappy"
+  },
+  "sand-rappy-desert": {
+   "normal": "SandRappy",
+   "ultimate": "SandRappy"
+  },
+  "satellite-lizard-crater": {
+   "normal": "SatelliteLizard",
+   "ultimate": "SatelliteLizard"
+  },
+  "satellite-lizard-desert": {
+   "normal": "SatelliteLizard",
+   "ultimate": "SatelliteLizard"
+  },
+  "savage-wolf-e1": {
+   "normal": "SavageWolf",
+   "ultimate": "SavageWolf"
+  },
+  "savage-wolf-e2": {
+   "normal": "SavageWolf",
+   "ultimate": "SavageWolf"
+  },
+  "shambertin-phase-1": {
+   "normal": "Shambertin.phase1",
+   "ultimate": "Shambertin.phase1"
+  },
+  "shambertin-phase-2": {
+   "normal": "Shambertin.phase2",
+   "ultimate": "Shambertin.phase2"
+  },
+  "sinow-beat": {
+   "normal": "SinowBeat",
+   "ultimate": "SinowBeat.ult"
+  },
+  "sinow-berill": {
+   "normal": "SinowBerill",
+   "ultimate": "SinowBerill"
+  },
+  "sinow-gold": {
+   "normal": "SinowGold",
+   "ultimate": "SinowGold.ult"
+  },
+  "sinow-spigell": {
+   "normal": "SinowSpigell",
+   "ultimate": "SinowSpigell"
+  },
+  "sinow-zele": {
+   "normal": "SinowZele",
+   "ultimate": "SinowZele"
+  },
+  "sinow-zoa": {
+   "normal": "SinowZoa",
+   "ultimate": "SinowZoa"
+  },
+  "so-dimenian-e1": {
+   "normal": "SoDimenian",
+   "ultimate": "SoDimenian.ult"
+  },
+  "so-dimenian-e2": {
+   "normal": "SoDimenian",
+   "ultimate": "SoDimenian.ult"
+  },
+  "st-rappy": {
+   "normal": "StRappy",
+   "ultimate": "StRappy"
+  },
+  "ul-gibbon": {
+   "normal": "UlGibbon",
+   "ultimate": "UlGibbon"
+  },
+  "yowie-crater": {
+   "normal": "Yowie",
+   "ultimate": "Yowie"
+  },
+  "yowie-desert": {
+   "normal": "Yowie",
+   "ultimate": "Yowie"
+  },
+  "ze-boota": {
+   "normal": "ZeBoota",
+   "ultimate": "ZeBoota"
+  },
+  "zol-gibbon": {
+   "normal": "ZolGibbon",
+   "ultimate": "ZolGibbon"
+  },
+  "zu-crater": {
+   "normal": "Zu",
+   "ultimate": "Zu"
+  },
+  "zu-desert": {
+   "normal": "Zu",
+   "ultimate": "Zu"
+  },
+  "de-rol-le-shell": {
+   "normal": "DeRolLeShell",
+   "ultimate": "DeRolLeShell.ult"
+  },
+  "vol-opt-form-2": {
+   "normal": "VolOptForm2",
+   "ultimate": "VolOptForm2.ult"
+  },
+  "vol-opt-pillar": {
+   "normal": "VolOptPillar",
+   "ultimate": "VolOptPillar.ult"
+  },
+  "vol-opt-prison": {
+   "normal": "VolOptPrison",
+   "ultimate": "VolOptPrison.ult"
+  },
+  "dark-falz-form-1": {
+   "normal": "DarkFalzForm1",
+   "ultimate": "DarkFalzForm1"
+  },
+  "dark-falz-form-2": {
+   "normal": "DarkFalzForm2",
+   "ultimate": "DarkFalzForm2"
+  },
+  "dark-falz-form-3": {
+   "normal": "DarkFalzForm3",
+   "ultimate": "DarkFalzForm3"
+  },
+  "darvant": {
+   "normal": "Darvant",
+   "ultimate": "Darvant"
+  },
+  "darvant-falz": {
+   "normal": "Darvant",
+   "ultimate": "Darvant"
+  },
+  "olga-flow-form-2": {
+   "normal": "OlgaFlowForm2",
+   "ultimate": "OlgaFlowForm2"
+  },
+  "gael": {
+   "normal": "OlgaFlowMag",
+   "ultimate": "OlgaFlowMag"
+  },
+  "giel": {
+   "normal": "OlgaFlowMag",
+   "ultimate": "OlgaFlowMag"
+  },
+  "bee-r-e1": {
+   "normal": "Bee",
+   "ultimate": "Bee.ult"
+  },
+  "bee-r-e2": {
+   "normal": "Bee",
+   "ultimate": "Bee.ult"
+  },
+  "bee-l-e1": {
+   "normal": "Bee",
+   "ultimate": "Bee.ult"
+  },
+  "bee-l-e2": {
+   "normal": "Bee",
+   "ultimate": "Bee.ult"
+  },
+  "spinner-saint-milion-1": {
+   "normal": "SpinnerSaintMilion",
+   "ultimate": "SpinnerSaintMilion"
+  },
+  "spinner-saint-milion-2": {
+   "normal": "SpinnerSaintMilion",
+   "ultimate": "SpinnerSaintMilion"
+  },
+  "spinner-shambertin-1": {
+   "normal": "SpinnerShambertin",
+   "ultimate": "SpinnerShambertin"
+  },
+  "spinner-shambertin-2": {
+   "normal": "SpinnerShambertin",
+   "ultimate": "SpinnerShambertin"
+  },
+  "spinner-kondrieu-1": {
+   "normal": "SpinnerKondrieu",
+   "ultimate": "SpinnerKondrieu"
+  },
+  "spinner-kondrieu-2": {
+   "normal": "SpinnerKondrieu",
+   "ultimate": "SpinnerKondrieu"
+  },
+  "vol-opt-spire": {
+   "normal": "VolOptSpire",
+   "ultimate": "VolOptSpire.ult"
+  },
+  "epsigard": {
+   "normal": "Epsigard",
+   "ultimate": "Epsigard"
+  },
+  "pig-ray": {
+   "normal": "PigRay",
+   "ultimate": "PigRay"
+  },
+  "ul-ray": {
+   "normal": "UlRay",
+   "ultimate": "UlRay"
+  },
+  "olga-flow-form-1": {
+   "normal": "OlgaFlowForm1",
+   "ultimate": "OlgaFlowForm1",
+   "alternates": [
+    {
+     "render": "OlgaFlowForm1.ground",
+     "label": {
+      "zh": "地面姿势",
+      "en": "Ground pose",
+      "ja": "地上の姿勢"
+     }
+    }
+   ]
+  }
+ }
+}

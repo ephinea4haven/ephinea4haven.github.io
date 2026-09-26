@@ -10,6 +10,7 @@
     "generate:challenge-maps": "python3 scripts/build_challenge_map_atlas.py",
     "generate:challenge-maps:ep2": "python3 scripts/build_ep2_challenge_map_atlas.py",
     "generate:seabed-maps": "python3 scripts/build_seabed_maps.py",
+    "generate:monster-renders": "python3 scripts/render_monster_models.py",
     "sync:combo": "node scripts/sync_combo_calculator.mjs",
     "sync:i18n": "python3 scripts/sync_item_i18n.py",
     "sync:anniversary": "node scripts/sync_anniversary_milestones.mjs",
