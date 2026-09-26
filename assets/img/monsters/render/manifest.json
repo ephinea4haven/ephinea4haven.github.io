@@ -591,13 +591,13 @@
   },
   "DeRolLeShell": {
     "file": "DeRolLeShell.webp",
-    "sha256": "1490b10e181c5644083f3a6706e5a8afd95476c56abac23832a88b5a7c53af81",
-    "thumbSha256": "7ef1b5e251b495a946b8dd228df6ebf1506d771fcf6271e509754163c19f3c4e"
+    "sha256": "3e7e481b22a7b20046c07e3ad192dabd2cbf6d30dab33ae1966ce2ceb5c7ead4",
+    "thumbSha256": "5541c7dea7e75d8325808fa06faabf34946213bf6f7b51f67ff394f9a192fff8"
   },
   "DeRolLeShell.ult": {
     "file": "DeRolLeShell-ult.webp",
-    "sha256": "40afc4200435850a39e9e369398b29ed0208dfac2ef920a686f44f970eaf0af4",
-    "thumbSha256": "328d6ad43a7b16fc745e527151bc9edbcc9a7e9f760f81aa589fb4ef5dd9da59"
+    "sha256": "d80f08e9d4c3ef09e04b94192434aa0d0f149732b8653caab4a0526bcb1aa9a3",
+    "thumbSha256": "0e6559e11348d83fce98dc5ee1bebc6c00b24eeb1498db60583fabdc46b273ce"
   },
   "VolOptForm2": {
     "file": "VolOptForm2.webp",

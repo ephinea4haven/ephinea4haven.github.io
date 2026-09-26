@@ -534,11 +534,25 @@
   },
   "DeRolLeShell": {
    "archive": "bm_boss2_de_rol_le.bml",
-   "model": "boss2_b_helm_break"
+   "model": "boss2_b_helm_break",
+   "rotate": [
+    -12,
+    0,
+    0
+   ],
+   "yaw": 45,
+   "pitch": 10
   },
   "DeRolLeShell.ult": {
    "archive": "bm_boss2_de_rol_le_a.bml",
-   "model": "boss2_b_helm_break"
+   "model": "boss2_b_helm_break",
+   "rotate": [
+    -12,
+    0,
+    0
+   ],
+   "yaw": 45,
+   "pitch": 10
   },
   "VolOptForm2": {
    "archive": "bm_boss3_volopt.bml",
