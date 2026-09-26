@@ -107,6 +107,8 @@ Photon Sphere  → 光子结晶 PS
 | `Technique` / `Techniques` (TP-consuming spell abilities) | 魔法 | The core client menus use 魔法, 魔法窗口 and 使用魔法. Do not generalize it to a real-world skill, and do not adopt the variant 术法 from isolated newer text. Specific names keep fixed translations such as 火球术. |
 | `Technique disk` / ` disk` (dynamic item name for learning a technique) | 魔法光盘 | The category uses the authority's `disk` entry, 魔法光盘. Specific technique names and level formats are checked against actual client text. Never write 法术盘, 技能盘 or 魔法书. |
 | `Grinder` (item or value that raises a weapon's grind) | 打磨石 / 磨数 | Item names use 小磨石 / 中磨石 / 大磨石. A weapon's `+N` value is written 磨数 in context and is never rendered as a crafting material. |
+| `Shot` / `shotgun` / `散弾銃` (the shotgun weapon family) | 霰弹枪 | The client and the authority use 霰弹枪 for the family, the S-Rank / ES `SHOT` category and every name such as 重型霰弹枪 or 军用霰弹枪. Both 霰弹枪 and the colloquial 散弹枪 are simplified Chinese; the standard term is used, and 散弹 is rejected by the client audit. |
+| `Handgun` / `small gun` / `pistol` / `短銃` (the handgun weapon family) | 光枪 | Confirmed September 26, 2026 for the whole family: 光枪「伽尔德」, 光枪「米拉」, 红色光枪 and the S-Rank / ES `GUN` category. Never write 小枪, 手枪 or 短枪. |
 | `Photon Drop` / `Photon Crystal` / `Photon Sphere` | 光子微晶 PD / 光子水晶 PC / 光子结晶 PS | Three distinct items whose names must match both the Chinese client and the drop-table authority. Never write the literal 光子水滴, and never mix up 水晶, 结晶 or the abbreviations. |
 
 The Chinese in this table only governs the corresponding PSOBB concept. In plain
@@ -256,3 +258,17 @@ Haven now pins droptable `fa878d073e4cb0d0d8d47ab4582d52f37f043e27` in
 `.github/workflows/pages.yml`. This revision includes the synchronized authority
 and the BB monster presentation changes. The Pages workflow must pass its full
 checks and deployment before production publication is considered complete.
+
+### 2026-09-26 UN-12 handgun and shotgun terms
+
+psobb-localization `e626ab877ad62f73480052f773348aae3cf8fef9` (UN-12) unifies the
+handgun family as 光枪 in 16 client entries after the maintainer confirmed each
+one. Droptable `085d0c2a36fded23924ed4e44ab1b1be3d02a968` regenerates the authority
+and adds the DC/NGC legacy spellings `HANDGUN:GULD` / `HANDGUN:MILLA` as aliases;
+the authority SHA-256 is `aec7cf48d60c6c221d797e259711166383fcda6c0d1c64ef5f63b8f1e1e4bae5`. Haven pins that revision and syncs the dictionary.
+
+Site-authored text that still said 散弹, 小枪 or 手枪 now says 霰弹枪 or 光枪: the
+item catalog's weapon-type labels and two behaviour notes, the acronym, Anguish,
+class, V50x, weapon-special and item-drop pages, and the tooling-only drop-chart
+snapshot. The same acronym row corrects the typo 金祭音速机器 to 金祭音速机枪.
+

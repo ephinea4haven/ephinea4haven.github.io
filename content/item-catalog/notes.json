@@ -345,7 +345,7 @@
   "Heaven Striker": {
     "effects": [
       {
-        "zh": "普通与重攻击使用步枪射程。特殊攻击通常是具有散弹枪瞄准范围的 Berserk；装备 {item:Striker Unit} 且 Beat Time 百位为偶数时，特殊攻击变为 Divine Punishment。",
+        "zh": "普通与重攻击使用步枪射程。特殊攻击通常是具有霰弹枪瞄准范围的 Berserk；装备 {item:Striker Unit} 且 Beat Time 百位为偶数时，特殊攻击变为 Divine Punishment。",
         "en": "Normal and heavy attacks have rifle range. The special attack is normally Berserk with shot-type targeting; with {item:Striker Unit} equipped and an even hundreds digit of Beat Time, it becomes Divine Punishment.",
         "ja": "通常攻撃と強攻撃はライフルの射程です。エクストラアタックは通常ショット型の照準範囲を持つ Berserk で、{item:Striker Unit} を装備し Beat Time の百の位が偶数のときは天罰になります。"
       }
@@ -482,7 +482,7 @@
   "Windmill": {
     "effects": [
       {
-        "zh": "攻击会提高风车转速。转速足够时，特殊攻击可发射风车头，使用重攻击伤害与命中系数、散弹枪瞄准范围。卸下后转速会保留。",
+        "zh": "攻击会提高风车转速。转速足够时，特殊攻击可发射风车头，使用重攻击伤害与命中系数、霰弹枪瞄准范围。卸下后转速会保留。",
         "en": "Attacking spins up the windmill. Once it is fast enough, the special attack launches the windmill head with heavy-attack damage and accuracy and shot-type targeting. The spin is kept when unequipped.",
         "ja": "攻撃すると風車の回転が上がります。十分に回ると、エクストラアタックで風車の頭を発射できます。ダメージと命中は強攻撃と同じで、照準範囲はショット型です。外しても回転は保たれます。"
       }
