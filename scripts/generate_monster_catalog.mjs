@@ -112,6 +112,7 @@ export function generateMonsterCatalog() {
       revision:article.revision, checkedAt:snapshot.checkedAt,
       imageSource:image?.page || null, ultimateImageSource:ultimateImage?.page || null,
       hdImage:hd[record.id]?.normal || null, ultimateHdImage:hd[record.id]?.ultimate || null,
+      hdAlternates:(hd[record.id]?.alternates || []).map(alternate => ({image:alternate.image,label:alternate.label})),
       renderImage:renderBindings[record.id] ? renderPath(renderBindings[record.id].normal) : null,
       ultimateRenderImage:renderBindings[record.id] ? renderPath(renderBindings[record.id].ultimate) : null,
       // Extra poses of the same appearance, offered as further portrait sources.

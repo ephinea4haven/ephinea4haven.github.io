@@ -251,13 +251,16 @@ test('portrait selection defaults to the model render, follows appearance and up
 test('alternate model poses are offered after the main render',async({page})=>{
   await page.goto('/en/data/enemies/olga-flow-form-1.html');
   const portrait=page.locator('.portrait');const img=portrait.locator('img');
-  await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','Ground pose','HD image']);
+  await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','Ground pose','HD image','HD ground pose']);
   await expect(img).toHaveAttribute('src',details['olga-flow-form-1'].renderImage);
   await portrait.getByRole('button',{name:'Ground pose',exact:true}).click();
   await expect(img).toHaveAttribute('src',details['olga-flow-form-1'].renderAlternates[0].image);
   await expect(portrait).toContainText('Image source: original model render');
+  await portrait.getByRole('button',{name:'HD ground pose',exact:true}).click();
+  await expect(img).toHaveAttribute('src',details['olga-flow-form-1'].hdAlternates[0].image);
+  await expect(portrait).toContainText('Image source: HD gallery');
   await page.goto('/data/enemies/olga-flow-form-1.html');
-  await expect(page.locator('.portrait .image-switch button')).toHaveText(['模型渲染','地面姿势','高清图片']);
+  await expect(page.locator('.portrait .image-switch button')).toHaveText(['模型渲染','地面姿势','高清图片','高清·地面姿势']);
 });
 test('the Wiki image is only the portrait of entries without a render or HD image',async({page})=>{
   await page.goto('/en/data/enemies/booma.html');

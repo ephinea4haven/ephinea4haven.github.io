@@ -1699,14 +1699,24 @@
       "asset": "/assets/img/monsters/hd/ruins/dark-falz-form-3-b929c7a55a17.webp"
     },
     {
-      "original": "BOSS 补完/Olga Flow(Form 1).png",
-      "source": "BOSS 补完/奥尔加·弗洛 (Form 1).png",
+      "original": "8c3f38e603ac6d29dce3be42dcc2b0e4.png",
+      "source": "User-provided corrections/2026-09-26/SEABED/空中姿势/奥尔加·弗洛 (Form 1).png",
       "identity": "Olga Flow (Form 1)",
-      "sha256": "a22462b30a249b37c1eb440da22a08f687832b381d09b698dd98e090e5616518",
-      "bytes": 13926851,
-      "width": 4511,
-      "height": 3989,
-      "asset": "/assets/img/monsters/hd/seabed/olga-flow-form-1-a22462b30a24.webp"
+      "sha256": "3d6b42a3306f9ab3619c337a767dad5aa0f28b3484531e0aeb2ef3aa2437f240",
+      "bytes": 1517781,
+      "width": 1216,
+      "height": 1952,
+      "asset": "/assets/img/monsters/hd/seabed/olga-flow-form-1-3d6b42a3306f.webp"
+    },
+    {
+      "original": "9c4b44e0dfe925e28a71d4828e1de49a.png",
+      "source": "User-provided corrections/2026-09-26/SEABED/地面姿势/奥尔加·弗洛 (Form 1).png",
+      "identity": "Olga Flow (Form 1)",
+      "sha256": "60306069f337e8ef7f020c60bfd2a9b80a2f1d24082ad140d2de6d9505b44ed1",
+      "bytes": 2016808,
+      "width": 1792,
+      "height": 1216,
+      "asset": "/assets/img/monsters/hd/seabed/olga-flow-form-1-60306069f337.webp"
     },
     {
       "original": "BOSS 补完/De Rol Le.png",
@@ -2566,9 +2576,14 @@
       "bytes": 144854
     },
     {
-      "path": "/assets/img/monsters/hd/seabed/olga-flow-form-1-a22462b30a24.webp",
-      "sha256": "57592c02a4c81c09cc38d512e9fc57c947873e2d5d653dec65d444a25c11421c",
-      "bytes": 156408
+      "path": "/assets/img/monsters/hd/seabed/olga-flow-form-1-3d6b42a3306f.webp",
+      "sha256": "2977f51f2e0438d97cd16a016c083ea4635ecdc8d0ceb7e9591e910baa27790e",
+      "bytes": 218342
+    },
+    {
+      "path": "/assets/img/monsters/hd/seabed/olga-flow-form-1-60306069f337.webp",
+      "sha256": "116fc6380a20be5d0f1ed6b971035856647e56eb6548be2887653d829a17b605",
+      "bytes": 159324
     },
     {
       "path": "/assets/img/monsters/hd/cave/de-rol-le-0cacea48de84.webp",
@@ -3110,8 +3125,18 @@
       "ultimate": "/assets/img/monsters/hd/ruins/dark-falz-form-3-b929c7a55a17.webp"
     },
     "olga-flow-form-1": {
-      "normal": "/assets/img/monsters/hd/seabed/olga-flow-form-1-a22462b30a24.webp",
-      "ultimate": "/assets/img/monsters/hd/seabed/olga-flow-form-1-a22462b30a24.webp"
+      "normal": "/assets/img/monsters/hd/seabed/olga-flow-form-1-3d6b42a3306f.webp",
+      "ultimate": "/assets/img/monsters/hd/seabed/olga-flow-form-1-3d6b42a3306f.webp",
+      "alternates": [
+        {
+          "image": "/assets/img/monsters/hd/seabed/olga-flow-form-1-60306069f337.webp",
+          "label": {
+            "zh": "高清·地面姿势",
+            "en": "HD ground pose",
+            "ja": "高精細・地上の姿勢"
+          }
+        }
+      ]
     }
   }
 }
