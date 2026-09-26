@@ -33,7 +33,7 @@ const pageBehaviors = new Map([
   ['guide/class-guide.html', ['ProfessionTabsBehavior']],
   ['guide/ep1ch.html', ['ChallengeGuideBehavior']],
   ['guide/ep2ch.html', ['ChallengeGuideBehavior']],
-  ['guide/seabed.html', ['SeabedRouteBehavior']],
+  ['guide/seabed.html', ['SeabedRouteBehavior', 'ChallengeGuideBehavior']],
   ['tools/materialplan.html', ['BackToTopBehavior']],
   ['tools/id.html', ['SectionIdBehavior']],
   ['event/easter.html', ['EventArchiveBehavior']],

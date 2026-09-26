@@ -395,6 +395,15 @@ provenance together so readers can distinguish general PSOBB mechanics from
 Ultima-specific equipment and timing recommendations. Angular explicitly owns
 the eight-route accordion after hydration, publishes a readiness contract, and
 keeps exactly one variant open for both pointer and keyboard activation.
+Its eight route maps are drawn the challenge-map way: `scripts/build_seabed_maps.py`
+measures each Ultima forum source (`assets/img/guide/seabed/S{U,L}-*.png`, kept as
+inputs) from its flat colours, traces the floor into polygon contours, and renders
+it with the shared `challenge_maps.render_area` into `assets/img/guide/seabed/maps/{zh,en,ja}/`.
+Routes, Start/exit terminals and paired warps are authored in
+`content/challenge-maps/seabed.json`; the generator validates them against the
+measured floor. The cards open in the challenge viewer (`ChallengeGuideBehavior`),
+and `SeabedMapTest` plus a viewer browser test cover data, language copies and
+geometry.
 
 The mechanics guide keeps its C/E explanatory figures in `tools/mechanics.html`
 with page-scoped styles in `assets/css/mechanics.css`. Semantic HTML, decorative

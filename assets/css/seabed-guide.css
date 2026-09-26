@@ -114,6 +114,21 @@
 }
 
 .map-image:hover img { transform: scale(1.015); }
+.map-image img { cursor: zoom-in; }
+
+/* Route maps open in the challenge-map viewer; its wrapper only carries the viewer's variables. */
+.seabed-guide .seabed-viewer { display: contents; }
+.map-actions { display: flex; align-items: center; gap: 14px; }
+.seabed-guide .map-actions button {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--seabed-cyan, #7fe8ff);
+    font: inherit;
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+}
 
 .map-meta {
     display: flex;

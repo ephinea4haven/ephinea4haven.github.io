@@ -211,8 +211,13 @@ npm run generate:challenge-maps -- --area 1 --area 2
 npm run generate:challenge-maps:ep2 -- --area 1
 ```
 
-Generated SVGs are committed under `assets/img/challenge/ep1/maps/` and
-`assets/img/challenge/ep2/maps/`, with `zh`, `en` and `ja` directories. The
+The Seabed guide's eight route maps use the same renderer
+(`npm run generate:seabed-maps`, optionally `-- --map SU-2-2`); they need numpy
+and scipy but not `potrace`.
+
+Generated SVGs are committed under `assets/img/challenge/ep1/maps/`,
+`assets/img/challenge/ep2/maps/` and `assets/img/guide/seabed/maps/`, with `zh`,
+`en` and `ja` directories. The
 normal site build consumes these files without regenerating them.
 
 Render selected maps as PNGs for review (the output directory is created):
