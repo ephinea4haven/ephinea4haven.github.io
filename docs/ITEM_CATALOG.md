@@ -1,8 +1,19 @@
 # Item Catalog
 
 The primary selector contains six categories with no All option and defaults to
-Weapons. Search stays within the selected category; clearing auxiliary filters
-preserves it. Auxiliary All options (type, class, rarity and status) remain.
+Weapons. The subcategory has no All option either: browsing shows one
+subcategory, the category's first by default (Sabers for Weapons). Weapon
+subcategories follow the Ephinea Wiki weapon list: common and rare weapons by
+type, then an option group for the ES and TypeM series. Series membership comes
+from the Wiki's `ES weapons` and `TypeM weapons` list pages (30 each) and is
+carried as the last column of the list index; those weapons appear only under
+their series in the list, while rows and detail pages keep their weapon type
+(TypeRI/Rifle is still a rifle). Each option shows its item count. A search
+covers the whole selected category, and the subcategory selector is disabled
+while a query is present. Clearing auxiliary filters keeps the category and
+returns to its first subcategory. Class and rarity keep their All options. There
+is no availability-status filter; obsolete and unobtainable entries keep their
+row badges.
 A directly opened detail page returns to its item's category when no originating
 category is specified.
 
@@ -12,11 +23,12 @@ The catalog lives at `/data/items.html`, with one detail page per item at
 ## Coverage and interface
 
 The snapshot contains 1,045 entries: 419 weapons, 88 frames, 107 barriers, 100
-units, 84 Mags and 247 other items. The list retains Wiki images for 547 entries,
-drawn from 478 PNG files totaling about 4.9 MB. Detail pages additionally offer
+units, 84 Mags and 247 other items. The list shows images for 549 entries: Wiki
+images for 547, drawn from 478 PNG files totaling about 4.9 MB, plus two TypeM
+weapons derived from the game's ItemKT textures. Detail pages additionally offer
 HD images for 414 entries from the HD gallery, 47 of which previously had no
-Wiki image, plus the Mag evolution chart's original-model renders for 46 Mags,
-bringing detail image coverage to 594 entries. The snapshot was taken on 2026-09-14;
+Wiki image, plus original-model renders for 83 of the 84 Mags (all but Stealth,
+which has no model), bringing detail image coverage to 594 entries. The snapshot was taken on 2026-09-14;
 the cosmetic item pages and 21 excerpt fixes were re-merged on 2026-09-15 at
 unchanged Wiki revisions, and those records carry their own check date.
 Independent models such as manufacturing year, manufacturer and genuine versus
@@ -25,9 +37,11 @@ Technique disks are catalogued as a single item family rather than counting each
 level again.
 
 Search accepts Chinese, English, Japanese and verified item codes. Filters cover
-category, subcategory, class, star rating, availability status and image presence.
-Results sort by name, rarity or maximum base ATP, show 24 items per page and
-support jumping to a page. Filters, sorting and page number are written to the
+category, subcategory, class, star rating and image presence.
+Results sort by name, rarity or maximum base ATP and show 24 items per page.
+Previous / next buttons with the page count sit in the results toolbar, and the
+full pager with page jump sits below the list; changing page scrolls to the top
+of the results, so the top buttons stay within reach. Filters, sorting and page number are written to the
 URL, and returning from a detail page restores both the query and the scroll
 position. On phones the categories scroll horizontally, filters collapse, and
 entries show in a single column.
@@ -121,8 +135,22 @@ as separate models.
   seven KT GIFs used by the MVP have been removed. `images.json` records the
   original URL, source page, dimensions and SHA-1. Original files are stored byte for byte, and missing
   images show an explicit placeholder. Models that share an appearance may share
-  one image. 416 of the 419 weapons have images; an entry without an image does
+  one image. 418 of the 419 weapons have images; an entry without an image does
   not mean no screenshot exists elsewhere.
+- TypeRI/Rifle and TypeSH/Shot name `TypeRI-Rifle.png` and `TypeSH-Shot.png` in
+  their Wiki infoboxes, but those files were never uploaded. Their list images
+  come from `scripts/derive_itemkt_images.py`, which reads BB `ItemKTep4.afs`
+  (SHA-256 checked) and applies the rule every TypeM image on the Wiki follows:
+  the base weapon's first colour variant, with the pixels that differ across its
+  five colour variants (the photon) replaced by their luminance. Reproducing
+  existing TypeM Wiki images with this rule matches 94–98% of pixels within ±3.
+  The result is enlarged 2× with Lanczos resampling. BB ItemPMT gives both the
+  base weapon's skin (Rifle 6, Shot 8); the archive entries (Rifle 146–150, Shot
+  138–142) were identified by comparing against the Wiki's Rifle and Shot images,
+  because skin numbers do not index ItemKT directly.
+  `content/item-catalog/itemkt-images.json` records the archive, entries and
+  output checksums, and details carry `imageOrigin: "itemkt"` so the caption
+  names the game texture rather than Ephinea Wiki.
 
 ## Updating the data
 
@@ -137,15 +165,32 @@ SHA-256 comparison reduces these to 553 unique assets; the manifest records the 
 dimensions, sizes and checksums.
 The detail generator consumes only verified direct `itemIds`: 408 optimized
 images cover 414 details. The `hdImage` field is emitted only in per-item detail
-data, leaving the searchable list's image paths and image-only filter unchanged.
-Details default to HD when available and offer HD / Wiki buttons when both images
-exist. Mag details reuse the 46 original-model renders in
+data; HD gallery images never appear in the searchable list.
+Details default to HD when available and offer HD / standard image buttons when both
+images exist; the standard image is the Wiki image, or the ItemKT image above. Mag details use the original-model renders in
 `assets/img/mag/default/` as their HD image (`hdSource: model-render`, captioned as
 an original model render rather than the HD gallery); the generator fails if a
-render has no matching catalog Mag or a Mag also has a gallery image. The other 38
-Mags keep only their Wiki image. The displayed source and full-size image link follow the selected image.
+render has no matching catalog Mag or a Mag also has a gallery image. The folder's
+manifest lists 79 rendered models: the Mag evolution chart's 46 plus 33 rendered
+on 2026-09-26 with the same pipeline. Its `aliases` let Mag*, Varuna*, Kalki*
+and Vritra*, which use exactly the same model and texture slots as their base
+Mags, reuse those renders. Stealth has no model and keeps only its Wiki image.
+The 33 additions come from the Ephinea client: its AFS archives plus the per-slot
+override files in `data/ephinea/default/{model,texture}/`, which replace Sonic's
+model and textures and append the Present* and Saraswati models. Their cameras
+were fitted to the in-game 64px Mag icons in `ItemKTep4.afs`, the same images the
+chart's 46 references came from; Sonic, whose icon predates Ephinea's model, and
+Present* and Saraswati, which have no icon, use chosen three-quarter views. The
+manifest's `extra_sources` records this, and the reproduction scripts
+(`extract-extra.py`, `build-extra.py`, `fit-extra.py`, `render-extra.py`,
+`publish-extra.py`) sit beside the originals in the local
+`artifacts/hd-gallery/mag-default/` workspace. The displayed source and full-size image link follow the selected image.
 Navigating to another item resets the choice to HD. Single-source details show
-their available image without a switch. Related-item thumbnails stay unchanged.
+their available image without a switch. List rows and related-item cards show
+the rendered Mags as thumbnails from `assets/img/mag/thumbs/`, made by
+`scripts/make_mag_thumbnails.py`: each render is trimmed to the model and fitted
+into a 256 × 192 WebP (about 4–14 KB). The generator fails if a thumbnail is
+missing. Every other list and card image is the item's standard detail image.
 
 On 2026-09-19 the maintainer supplied and identified the SOF image, bound to
 `slicer-of-fanatic`. The 1280 × 938 PNG is recorded as

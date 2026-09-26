@@ -3,6 +3,9 @@ import AxeBuilder from '@axe-core/playwright';
 import { readFileSync } from 'node:fs';
 
 const items = Object.values(JSON.parse(readFileSync('src/app/generated/item-catalog/details.server.json', 'utf8')));
+// Index rows carry the ES / TypeM series in column 14; series weapons are listed under their series, not their type.
+const series = new Map(JSON.parse(readFileSync('src/app/generated/item-catalog/index.json', 'utf8')).map(row => [row[0], row[14]]));
+const listedSabers = items.filter(item => item.type === 'Saber' && !series.get(item.id));
 // A page's URL without its language prefix.
 const unprefixed = (href) => new URL(href).pathname.replace(/^\/(en|ja)(?=\/)/, '');
 const names = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
@@ -257,13 +260,26 @@ test('HD details default to HD and switching changes both the image and its sour
   await page.getByRole('button', {name:'English', exact:true}).click();
   await expect(page).toHaveURL(/\/en\/data\/items\/saber\.html$/);
   await expect(page.getByRole('button', {name:'HD image', exact:true})).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', {name:'Wiki image', exact:true}).focus();
+  await page.getByRole('button', {name:'Standard image', exact:true}).focus();
   await page.keyboard.press('Enter');
   await expect(picture).toHaveAttribute('src', '/assets/img/items/wiki/29f6af4df3b08415.png');
   await page.getByRole('button', {name:'HD image', exact:true}).focus();
   await page.keyboard.press('Enter');
   await expect(picture).toHaveAttribute('src', '/assets/img/items/hd/items/saber.webp');
   await expect(page.locator('.item-figure figcaption')).toContainText('HD gallery');
+});
+
+test('TypeM details without a Wiki file show the ItemKT image with its own source label', async ({page}) => {
+  await page.goto('/data/items/typeri-rifle.html');
+  const picture = page.locator('.image-stage img');
+  const caption = page.locator('.item-figure figcaption');
+  await expect(picture).toHaveAttribute('src', '/assets/img/items/hd/type/typeri-rifle.webp');
+  await page.getByRole('button', {name:'现有图片', exact:true}).click();
+  await expect(picture).toHaveAttribute('src', '/assets/img/items/itemkt/d74e3b44dc594b5e.png');
+  await expect.poll(() => picture.evaluate(img => img.naturalWidth)).toBe(320);
+  await expect(caption).toContainText('图片来源：游戏贴图（ItemKT）');
+  await expect(caption).not.toContainText('Ephinea Wiki');
+  await expect(page.getByRole('link', {name:'图片原始页面 ↗'})).toHaveCount(0);
 });
 
 test('Mag details show the original-model render with its own source label', async ({page}) => {
@@ -298,7 +314,7 @@ test('HD images never load in the list and do not affect image-only filtering', 
 test('single-source and missing-image details have no unnecessary image switch', async ({page}) => {
   for (const [id, image] of [
     ['dress-plate', '/assets/img/items/hd/items/dress-plate.webp'],
-    ['chu-chu', items.find(item => item.id === 'chu-chu').image],
+    ['stealth', items.find(item => item.id === 'stealth').image],
     ['god-power', '/assets/img/items/no-image.webp'],
   ]) {
     await page.goto(`/data/items/${id}.html`);
@@ -331,16 +347,52 @@ test('related navigation resets the image selection for the next item', async ({
   await expect(page.getByRole('button', {name:'高清图片', exact:true})).toHaveAttribute('aria-pressed', 'true');
 });
 
+test('lists browse one subcategory, searches cover the category, and paging works from the top', async ({page}) => {
+  await page.goto('/data/items.html');
+  await expect(page.locator('#type-filter')).toHaveValue('光剑');
+  await expect(page.locator('.item-row')).toHaveCount(24);
+  const sabers = listedSabers.length;
+  await expect(page.locator('.result-toolbar strong')).toHaveText(String(sabers));
+  const steps = page.locator('.page-steps');
+  await expect(steps).toContainText(`1 / ${Math.ceil(sabers / 24)}`);
+  await steps.getByRole('button', {name:'下一页', exact:true}).click();
+  await expect(page).toHaveURL(/page=2/);
+  await expect(steps).toBeInViewport();
+  await steps.getByRole('button', {name:'上一页', exact:true}).click();
+  await expect(page).not.toHaveURL(/page=/);
+  await expect(page.locator('#type-filter optgroup')).toHaveCount(2);
+  await expect(page.locator('#type-filter option[value="光剑"]')).toHaveText(`光剑 (${sabers})`);
+  await page.locator('#type-filter').selectOption('TypeM 武器');
+  await expect(page.locator('.result-toolbar strong')).toHaveText('30');
+  await expect(page.locator('.item-row').first()).toContainText('TypeSA/Saber');
+  await page.locator('#type-filter').selectOption('ES 武器');
+  await expect(page.locator('.result-toolbar strong')).toHaveText('30');
+  await page.locator('#type-filter').selectOption('步枪');
+  await expect(page).toHaveURL(/type=%E6%AD%A5%E6%9E%AA|type=步枪/);
+  await expect(page.locator('.item-row').first()).toContainText('Rifle');
+  await expect(page.locator('.item-list')).not.toContainText('TypeRI/Rifle');
+  await page.getByRole('searchbox').fill('TypeSH');
+  await expect(page.locator('.item-row')).toHaveCount(1);
+  await expect(page.locator('.item-row')).toContainText('TypeSH/Shot');
+  await expect(page.locator('#type-filter')).toBeDisabled();
+  await expect(page.locator('.filters')).toContainText('搜索时不限细分类别。');
+  await page.getByRole('searchbox').fill('');
+  await expect(page.locator('#type-filter')).toBeEnabled();
+  await expect(page.locator('#type-filter')).toHaveValue('步枪');
+});
+
 test('pagination, jump input, and detail back navigation retain the list', async ({page}) => {
   await page.goto('/data/items.html?category=weapon');
-  await page.getByLabel('跳转页码').fill('3');
+  await page.getByLabel('跳转页码').fill('2');
   await page.getByLabel('跳转页码').press('Enter');
-  await expect(page).toHaveURL(/page=3/);
+  await expect(page).toHaveURL(/page=2/);
+  // Row links carry the list query, so this waits for page 2 to render before reading it.
+  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /page=2/);
   const first = await page.locator('.item-row').first().getAttribute('href');
   await page.locator('.item-row').first().click();
   await expect(page.locator('#item-title')).toBeVisible();
   await page.getByRole('link', {name:'← 返回道具列表',exact:true}).click();
-  await expect(page).toHaveURL(/page=3/);
+  await expect(page).toHaveURL(/page=2/);
   await expect(page.locator('.item-row').first()).toHaveAttribute('href',first);
 });
 
@@ -361,15 +413,15 @@ test('empty results and malformed pagination recover', async ({page}) => {
   await page.getByRole('button',{name:'清除全部条件'}).click();
   await expect(page.locator('.item-row')).toHaveCount(24);
   await page.goto('/data/items.html?page=9999');
-  const weapons = items.filter(item => item.category === 'weapon').length;
-  await expect(page.locator('.item-row')).toHaveCount(weapons % 24 || 24);
-  await expect(page.getByLabel('跳转页码')).toHaveValue(String(Math.ceil(weapons / 24)));
+  const sabers = listedSabers.length;
+  await expect(page.locator('.item-row')).toHaveCount(sabers % 24 || 24);
+  await expect(page.getByLabel('跳转页码')).toHaveValue(String(Math.ceil(sabers / 24)));
 });
 
 test('unknown rarity, historical items and unavailable items are explicit', async ({page}) => {
   await page.goto('/data/items.html?category=mag&rarity=unknown');
   await expect(page.locator('.item-row')).toHaveCount(24);
-  await page.goto('/data/items.html?status=unavailable&q=Star%20Song');
+  await page.goto('/data/items.html?q=Star%20Song');
   await expect(page.locator('.item-row')).toHaveCount(1);
   await expect(page.locator('.item-row')).toContainText('当前无法获取');
   await page.goto('/data/items/1st-anniv-bronze-badge.html');
@@ -405,7 +457,7 @@ test('mobile filters expose image-only results with real local files', async ({p
   await expect(page.locator('#catalog-filters')).toBeHidden();
   await page.getByRole('button',{name:'筛选条件'}).click();
   await page.getByLabel('只看有截图的道具').check();
-  await expect(page.locator('.result-toolbar')).toContainText(String(items.filter(item => item.category === 'weapon' && item.image).length));
+  await expect(page.locator('.result-toolbar')).toContainText(String(listedSabers.filter(item => item.image).length));
   await expect(page.locator('.item-row')).toHaveCount(24);
   expect(await page.locator('.item-row').first().locator('img').evaluate(img=>img.complete && img.naturalWidth > 0)).toBe(true);
 });
@@ -511,7 +563,9 @@ test('primary item categories have no All option and reset keeps the selected ca
     await expect(page.locator('.category-tabs button')).toHaveCount(6);
     await expect(page.locator('.category-tabs button').first()).toHaveAttribute('aria-pressed','true');
     await expect(page.locator('.item-row').first()).toHaveAttribute('href',/category=weapon/);
-    await expect(page.locator('#type-filter option').first()).toHaveAttribute('value','');
+    await expect(page.locator('#type-filter')).toHaveValue('光剑');
+    await expect(page.locator('#type-filter option[value=""]')).toHaveCount(0);
+    await expect(page.locator('#status-filter')).toHaveCount(0);
     await expect(page.locator('#class-filter option').first()).toHaveAttribute('value','');
     await expect(page.locator('#rarity-filter option').first()).toHaveAttribute('value','');
   }

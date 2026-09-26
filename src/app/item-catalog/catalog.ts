@@ -12,6 +12,8 @@ export interface ItemName { en: string; zh: string; ja?: string }
 export interface CatalogItem extends ItemCard {
   title: string;
   category: Category; type: string; subtype: string; rarity: number | null;
+  /** The list subcategory: the weapon series (ES, TypeM) when the Wiki lists one, otherwise the subtype. */
+  group: string;
   mask: string; classes: string[]; requirement: string; stats: Stat[];
   image: string | null; code: string | null; status: string; atpMax: number | null;
 }
@@ -22,7 +24,7 @@ export interface Cosmetic {
   trade: (ItemLink & { quantity: number })[];
 }
 export const COSMETICS_PATH = '/data/cosmetics.html';
-export interface ItemDetail extends Omit<CatalogItem, 'classes'> {
+export interface ItemDetail extends Omit<CatalogItem, 'classes' | 'group'> {
   hdImage: string | null;
   hdSource: 'gallery' | 'model-render' | null;
   id: string; en: string; title: string; summary: LocalizedText; stats: Stat[]; effects: LocalizedText[];
@@ -32,7 +34,7 @@ export interface ItemDetail extends Omit<CatalogItem, 'classes'> {
   feeding: { item: string; values: number[] }[];
   drops: { kind: string; sectionId: string; difficulty: string; location: string; area: string; rate: string }[];
   availability: LocalizedText; source: string; revision: number; checkedAt: string;
-  excerpts: string[]; imageSource: string | null; imagePage: string | null; related: string[];
+  excerpts: string[]; imageOrigin: 'wiki' | 'itemkt' | null; imageSource: string | null; imagePage: string | null; related: string[];
   relatedItems: ItemCard[];
   /** Localized names for the item names this page references (sets, skins, feeding, links). */
   names: Record<string, ItemName>;

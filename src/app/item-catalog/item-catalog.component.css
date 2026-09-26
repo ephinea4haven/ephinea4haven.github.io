@@ -24,6 +24,11 @@
 .category-tabs { overflow-x: auto; scrollbar-width: thin; scrollbar-color: #48647a #102035; }
 .category-tabs button { flex-shrink: 0; padding-inline: 14px; }
 .status-badge { display: inline-block; color: #e8c686; font-size: 10px; margin-top: 6px; border: 1px solid #685837; border-radius: 4px; padding: 2px 6px; }
+.result-toolbar { flex-wrap: wrap; }.result-toolbar > p { flex: 1; }
+.page-steps { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.page-steps button { width: 34px; height: 34px; border: 1px solid #3b5267; border-radius: 5px; color: var(--ink); background: #192d40; cursor: pointer; }
+.page-steps button:disabled { opacity: .35; cursor: default; }
+.filters select:disabled { opacity: .5; }
 .pagination input { width: 54px; height: 36px; padding: 4px; color: var(--ink); background: #142539; border: 1px solid #35495f; border-radius: 5px; text-align: center; }
 .row-stats strong { white-space: normal; overflow-wrap: anywhere; }
 @media(max-width:600px) { .category-tabs button { flex: 0 0 auto; }.pagination { flex-wrap: wrap; } }
