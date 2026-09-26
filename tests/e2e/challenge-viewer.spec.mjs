@@ -70,3 +70,19 @@ for (const episode of [1, 2]) {
     });
   }
 }
+
+test('Seabed route maps are localized vector maps that open in the shared viewer', async ({ page }) => {
+  for (const [prefix, language, open] of [['', 'zh', '放大地图 ↗'], ['/en', 'en', 'Expand map ↗'], ['/ja', 'ja', 'マップを拡大 ↗']]) {
+    await page.goto(`${prefix}/guide/seabed.html#maps`);
+    const card = page.locator('.map-card').nth(3);
+    await expect(card.locator('img')).toHaveAttribute('src', `/assets/img/guide/seabed/maps/${language}/SU-2-2.svg`);
+    await card.getByRole('button', { name: open, exact: true }).click();
+    const viewer = page.locator('.challenge-viewer');
+    await expect(viewer).toBeVisible();
+    await expect(viewer.locator('.challenge-viewer-canvas img')).toHaveAttribute('src', new RegExp(`/maps/${language}/SU-2-2\\.svg$`));
+    await expect.poll(() => viewer.locator('.challenge-viewer-canvas img').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    await page.keyboard.press('Escape');
+    await expect(viewer).toBeHidden();
+    await expect(card.getByRole('button', { name: open, exact: true })).toBeFocused();
+  }
+});

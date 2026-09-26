@@ -546,5 +546,58 @@ class EpisodeTwoAlignmentTest(unittest.TestCase):
                                 self.assertLessEqual(min(edge_distance(point,c,d) for c,d in edges),4,(n,point))
 
 
+
+SEABED = json.loads((ROOT / "content/challenge-maps/seabed.json").read_text(encoding="utf-8"))
+SEABED_MAPS = ROOT / "assets/img/guide/seabed"
+SEABED_PAGES = {"zh": ROOT / "guide/seabed.html", "en": ROOT / "content/i18n/pages/en/guide/seabed.html",
+                "ja": ROOT / "content/i18n/pages/ja/guide/seabed.html"}
+
+
+class SeabedMapTest(unittest.TestCase):
+    def test_all_eight_variants_are_well_formed(self) -> None:
+        self.assertEqual(sorted(SEABED["maps"]), sorted(f"S{layer}-{p}-{v}" for layer in "UL" for p in (1, 2) for v in (1, 2)))
+        self.assertEqual(set(SEABED["strings"]), LANGUAGES)
+        for strings in SEABED["strings"].values():
+            self.assertTrue(STRING_KEYS - {"area"} <= set(strings))
+            self.assertIn("Seabeds - The Full Guide", strings["sources"])
+        for name, area in SEABED["maps"].items():
+            width, height = png_size(SEABED_MAPS / area["source"])
+            self.assertEqual(set(area["title"]), LANGUAGES, name)
+            self.assertEqual(area["exit_kind"], "next" if name.startswith("SU") else "boss", name)
+            legs = area["routes"][0]["legs"]
+            self.assertEqual([route["role"] for route in area["routes"]], ["main"], name)
+            self.assertEqual(area["start"], legs[0][0], name)
+            self.assertEqual(area["exit"], legs[-1][-1], name)
+            for leg in legs:
+                for x, y in leg:
+                    self.assertTrue(0 <= x < width and 0 <= y < height, f"{name}: {x},{y}")
+            warps = [symbol for symbol in area["symbols"] if symbol["kind"] == "warp"]
+            pairs = {symbol["n"] for symbol in warps}
+            self.assertEqual(len(warps), 2 * len(pairs), name)
+            self.assertEqual(len(legs), len(pairs) + 1, name)
+            # Each leg ends on a warp and the next leaves from its partner, in pair order.
+            for number, (before, after) in enumerate(zip(legs, legs[1:]), start=1):
+                ends = {tuple(symbol["at"]): symbol["prime"] for symbol in warps if symbol["n"] == number}
+                self.assertEqual(ends.get(tuple(before[-1])), False, name)
+                self.assertEqual(ends.get(tuple(after[0])), True, name)
+
+    def test_every_language_page_shows_its_own_vector_maps(self) -> None:
+        floors = {}
+        for language, page in SEABED_PAGES.items():
+            html = page.read_text(encoding="utf-8")
+            self.assertEqual(html.count('class="map-card challenge-map"'), 8, language)
+            self.assertIn('class="challenge-viewer"', html, language)
+            self.assertNotIn("/assets/img/guide/seabed/S", html.replace("/assets/img/guide/seabed/maps/", ""), language)
+            for name, area in SEABED["maps"].items():
+                self.assertIn(f"/assets/img/guide/seabed/maps/{language}/{name}.svg", html, language)
+                svg = (SEABED_MAPS / "maps" / language / f"{name}.svg").read_text(encoding="utf-8")
+                root = ET.fromstring(svg)
+                self.assertEqual(root.find("{http://www.w3.org/2000/svg}title").text, area["title"][language])
+                self.assertNotIn("<image", svg)
+                floors.setdefault(name, set()).add(root.find(".//{http://www.w3.org/2000/svg}g[@id='seabed-" + name + "-floor']/{http://www.w3.org/2000/svg}path").get("d"))
+        for name, paths in floors.items():
+            self.assertEqual(len(paths), 1, f"{name}: languages disagree on floor geometry")
+
+
 if __name__ == "__main__":
     unittest.main()
