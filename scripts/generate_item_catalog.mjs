@@ -20,9 +20,12 @@ for (const file of new Set(hdImages.values())) {
 const magManifest = read('assets/img/mag/default/manifest.json');
 const magRenderNames = new Map([...magManifest.models.map(model => [model.name, model.name]), ...Object.entries(magManifest.aliases)]);
 const magRenders = new Set(magRenderNames.keys());
-for (const name of new Set(magRenderNames.values())) {
-  if (!fs.existsSync(`assets/img/mag/default/${name}.webp`)) throw new Error(`Missing Mag render: ${name}`);
-  if (!fs.existsSync(`assets/img/mag/thumbs/${name}.webp`)) throw new Error(`Missing Mag thumbnail: ${name}`);
+// Image files are named apart from Mag titles: CI artifact paths reject characters such as * (Present*).
+const magFiles = new Map(magManifest.models.map(model => [model.name, model.file]));
+for (const file of magFiles.values()) {
+  if (/["*:<>?|\\]/.test(file)) throw new Error(`Mag image file name is not artifact-safe: ${file}`);
+  if (!fs.existsSync(`assets/img/mag/default/${file}`)) throw new Error(`Missing Mag render: ${file}`);
+  if (!fs.existsSync(`assets/img/mag/thumbs/${file}`)) throw new Error(`Missing Mag thumbnail: ${file}`);
 }
 // List rows and item cards show a Mag's render thumbnail (scripts/make_mag_thumbnails.py); other items show their detail image.
 const thumbnails = new Map();
@@ -336,7 +339,7 @@ for (const record of records) {
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
   const magRender = category === 'mag' && magRenders.has(title);
   if (magRender && hdImages.has(id)) throw new Error(`Mag has both a render and an HD gallery image: ${title}`);
-  detail.hdImage = magRender ? `/assets/img/mag/default/${magRenderNames.get(title)}.webp` : hdImages.has(id) ? `/assets/img/items/hd/${hdImages.get(id)}` : null;
+  detail.hdImage = magRender ? `/assets/img/mag/default/${magFiles.get(magRenderNames.get(title))}` : hdImages.has(id) ? `/assets/img/items/hd/${hdImages.get(id)}` : null;
   detail.hdSource = magRender ? 'model-render' : hdImages.has(id) ? 'gallery' : null;
   detail.zh = names.get(en)?.zh || en;
   const ja = names.get(en)?.ja || clean(f.jp);
@@ -344,7 +347,7 @@ for (const record of records) {
   detail.atpMax = atp?.[1] ?? null;
   if (magRender) magRenders.delete(title);
   details[id] = detail;
-  thumbnails.set(id, magRender ? `/assets/img/mag/thumbs/${magRenderNames.get(title)}.webp` : detail.image);
+  thumbnails.set(id, magRender ? `/assets/img/mag/thumbs/${magFiles.get(magRenderNames.get(title))}` : detail.image);
   // Compact tuples keep the searchable index small; detailed data is loaded per item.
   index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), thumbnails.get(id), code, status, title === en ? '' : title, atp?.[1] ?? null, detail.ja || '', detail.zh, seriesGroups.get(title) || '']);
 }

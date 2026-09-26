@@ -29,15 +29,15 @@ def thumbnail(render: Image.Image) -> Image.Image:
 
 
 def main() -> None:
-    names = [model["name"] for model in json.loads((RENDERS / "manifest.json").read_text(encoding="utf-8"))["models"]]
+    files = [model["file"] for model in json.loads((RENDERS / "manifest.json").read_text(encoding="utf-8"))["models"]]
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for stale in OUT_DIR.glob("*.webp"):
-        if stale.stem not in names:
+        if stale.name not in files:
             stale.unlink()
-    for name in names:
-        with Image.open(RENDERS / f"{name}.webp") as render:
-            thumbnail(render.convert("RGBA")).save(OUT_DIR / f"{name}.webp", "WEBP", quality=85, method=6)
-    print(f"Made {len(names)} Mag thumbnails.")
+    for file in files:
+        with Image.open(RENDERS / file) as render:
+            thumbnail(render.convert("RGBA")).save(OUT_DIR / file, "WEBP", quality=85, method=6)
+    print(f"Made {len(files)} Mag thumbnails.")
 
 
 if __name__ == "__main__":

@@ -45,7 +45,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Agastya.webp"
     },
     {
       "name": "Andhaka",
@@ -81,7 +82,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Andhaka.webp"
     },
     {
       "name": "Apsaras",
@@ -127,7 +129,8 @@
           "width": 16,
           "height": 16
         }
-      ]
+      ],
+      "file": "Apsaras.webp"
     },
     {
       "name": "Ashvinau",
@@ -168,7 +171,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Ashvinau.webp"
     },
     {
       "name": "Bana",
@@ -204,7 +208,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Bana.webp"
     },
     {
       "name": "Bhima",
@@ -245,7 +250,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Bhima.webp"
     },
     {
       "name": "Bhirava",
@@ -281,7 +287,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Bhirava.webp"
     },
     {
       "name": "Deva",
@@ -317,7 +324,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Deva.webp"
     },
     {
       "name": "Diwari",
@@ -353,7 +361,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Diwari.webp"
     },
     {
       "name": "Durga",
@@ -389,7 +398,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Durga.webp"
     },
     {
       "name": "Garuda",
@@ -427,7 +437,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Garuda.webp"
     },
     {
       "name": "Ila",
@@ -463,7 +474,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Ila.webp"
     },
     {
       "name": "Kabanda",
@@ -499,7 +511,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Kabanda.webp"
     },
     {
       "name": "Kaitabha",
@@ -535,7 +548,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Kaitabha.webp"
     },
     {
       "name": "Kalki",
@@ -571,7 +585,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Kalki.webp"
     },
     {
       "name": "Kama",
@@ -612,7 +627,8 @@
           "width": 16,
           "height": 16
         }
-      ]
+      ],
+      "file": "Kama.webp"
     },
     {
       "name": "Kumara",
@@ -648,7 +664,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Kumara.webp"
     },
     {
       "name": "Madhu",
@@ -684,7 +701,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Madhu.webp"
     },
     {
       "name": "Mag",
@@ -725,7 +743,8 @@
           "width": 16,
           "height": 16
         }
-      ]
+      ],
+      "file": "Mag.webp"
     },
     {
       "name": "Marica",
@@ -766,7 +785,8 @@
           "width": 8,
           "height": 8
         }
-      ]
+      ],
+      "file": "Marica.webp"
     },
     {
       "name": "Marutah",
@@ -802,7 +822,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Marutah.webp"
     },
     {
       "name": "Mitra",
@@ -838,7 +859,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Mitra.webp"
     },
     {
       "name": "Naga",
@@ -881,7 +903,8 @@
           "width": 16,
           "height": 16
         }
-      ]
+      ],
+      "file": "Naga.webp"
     },
     {
       "name": "Namuci",
@@ -917,7 +940,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Namuci.webp"
     },
     {
       "name": "Nandin",
@@ -953,7 +977,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Nandin.webp"
     },
     {
       "name": "Naraka",
@@ -994,7 +1019,8 @@
           "width": 16,
           "height": 16
         }
-      ]
+      ],
+      "file": "Naraka.webp"
     },
     {
       "name": "Nidra",
@@ -1035,7 +1061,8 @@
           "width": 16,
           "height": 16
         }
-      ]
+      ],
+      "file": "Nidra.webp"
     },
     {
       "name": "Pushan",
@@ -1071,7 +1098,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Pushan.webp"
     },
     {
       "name": "Rati",
@@ -1107,7 +1135,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Rati.webp"
     },
     {
       "name": "Ravana",
@@ -1158,7 +1187,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Ravana.webp"
     },
     {
       "name": "Ribhava",
@@ -1194,7 +1224,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Ribhava.webp"
     },
     {
       "name": "Rudra",
@@ -1230,7 +1261,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Rudra.webp"
     },
     {
       "name": "Rukmin",
@@ -1266,7 +1298,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Rukmin.webp"
     },
     {
       "name": "Sato",
@@ -1304,7 +1337,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Sato.webp"
     },
     {
       "name": "Savitri",
@@ -1340,7 +1374,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Savitri.webp"
     },
     {
       "name": "Sita",
@@ -1391,7 +1426,8 @@
           "width": 32,
           "height": 32
         }
-      ]
+      ],
+      "file": "Sita.webp"
     },
     {
       "name": "Soma",
@@ -1427,7 +1463,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Soma.webp"
     },
     {
       "name": "Sumba",
@@ -1463,7 +1500,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Sumba.webp"
     },
     {
       "name": "Surya",
@@ -1499,7 +1537,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Surya.webp"
     },
     {
       "name": "Tapas",
@@ -1535,7 +1574,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Tapas.webp"
     },
     {
       "name": "Ushasu",
@@ -1571,7 +1611,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Ushasu.webp"
     },
     {
       "name": "Varaha",
@@ -1614,7 +1655,8 @@
           "width": 16,
           "height": 16
         }
-      ]
+      ],
+      "file": "Varaha.webp"
     },
     {
       "name": "Varuna",
@@ -1650,7 +1692,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Varuna.webp"
     },
     {
       "name": "Vayu",
@@ -1686,7 +1729,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Vayu.webp"
     },
     {
       "name": "Vritra",
@@ -1722,7 +1766,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Vritra.webp"
     },
     {
       "name": "Yaksa",
@@ -1763,7 +1808,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Yaksa.webp"
     },
     {
       "name": "Pitri",
@@ -1801,7 +1847,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Pitri.webp"
     },
     {
       "name": "Preta",
@@ -1839,7 +1886,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Preta.webp"
     },
     {
       "name": "Churel",
@@ -1882,7 +1930,8 @@
           "width": 32,
           "height": 32
         }
-      ]
+      ],
+      "file": "Churel.webp"
     },
     {
       "name": "Opa-Opa",
@@ -1920,7 +1969,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Opa-Opa.webp"
     },
     {
       "name": "Pian",
@@ -1958,7 +2008,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Pian.webp"
     },
     {
       "name": "Chao",
@@ -1996,7 +2047,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Chao.webp"
     },
     {
       "name": "Chu Chu",
@@ -2044,7 +2096,8 @@
           "width": 32,
           "height": 32
         }
-      ]
+      ],
+      "file": "Chu Chu.webp"
     },
     {
       "name": "Kapu Kapu",
@@ -2097,7 +2150,8 @@
           "width": 32,
           "height": 32
         }
-      ]
+      ],
+      "file": "Kapu Kapu.webp"
     },
     {
       "name": "Devil's Wing",
@@ -2137,7 +2191,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Devil's Wing.webp"
     },
     {
       "name": "Elenor",
@@ -2177,7 +2232,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Elenor.webp"
     },
     {
       "name": "Mark III",
@@ -2215,7 +2271,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Mark III.webp"
     },
     {
       "name": "Master System",
@@ -2253,7 +2310,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Master System.webp"
     },
     {
       "name": "Genesis",
@@ -2291,7 +2349,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Genesis.webp"
     },
     {
       "name": "Sega Saturn",
@@ -2329,7 +2388,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Sega Saturn.webp"
     },
     {
       "name": "Dreamcast",
@@ -2367,7 +2427,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Dreamcast.webp"
     },
     {
       "name": "Hamburger",
@@ -2405,7 +2466,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Hamburger.webp"
     },
     {
       "name": "Panzer's Tail",
@@ -2445,7 +2507,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Panzer's Tail.webp"
     },
     {
       "name": "Devil's Tail",
@@ -2490,7 +2553,8 @@
           "width": 16,
           "height": 16
         }
-      ]
+      ],
+      "file": "Devil's Tail.webp"
     },
     {
       "name": "Geung-si",
@@ -2528,7 +2592,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Geung-si.webp"
     },
     {
       "name": "Sonic",
@@ -2566,7 +2631,8 @@
           "width": 512,
           "height": 512
         }
-      ]
+      ],
+      "file": "Sonic.webp"
     },
     {
       "name": "Tellusis",
@@ -2609,7 +2675,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Tellusis.webp"
     },
     {
       "name": "Striker Unit",
@@ -2647,7 +2714,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Striker Unit.webp"
     },
     {
       "name": "Pioneer",
@@ -2685,7 +2753,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Pioneer.webp"
     },
     {
       "name": "Puyo",
@@ -2728,7 +2797,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Puyo.webp"
     },
     {
       "name": "Moro",
@@ -2766,7 +2836,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Moro.webp"
     },
     {
       "name": "Rappy (Mag)",
@@ -2804,7 +2875,8 @@
           "width": 256,
           "height": 256
         }
-      ]
+      ],
+      "file": "Rappy (Mag).webp"
     },
     {
       "name": "Yahoo!",
@@ -2842,7 +2914,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Yahoo!.webp"
     },
     {
       "name": "Gael Giel",
@@ -2887,7 +2960,8 @@
           "width": 32,
           "height": 32
         }
-      ]
+      ],
+      "file": "Gael Giel.webp"
     },
     {
       "name": "Present*",
@@ -3020,7 +3094,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Present-star.webp"
     },
     {
       "name": "Saraswati",
@@ -3153,7 +3228,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Saraswati.webp"
     },
     {
       "name": "Angel's Wing",
@@ -3193,7 +3269,8 @@
           "width": 64,
           "height": 64
         }
-      ]
+      ],
+      "file": "Angel's Wing.webp"
     },
     {
       "name": "Robochao",
@@ -3241,7 +3318,8 @@
           "width": 32,
           "height": 32
         }
-      ]
+      ],
+      "file": "Robochao.webp"
     },
     {
       "name": "Soniti",
@@ -3279,7 +3357,8 @@
           "width": 128,
           "height": 128
         }
-      ]
+      ],
+      "file": "Soniti.webp"
     }
   ],
   "cameras": {
@@ -4584,7 +4663,7 @@
       "Marica",
       "Rati"
     ],
-    "note": "\u8f6e\u5ed3\u5339\u914d\u7528\u4e8e\u8f85\u52a9\u8c03\u6574\u76f8\u673a\uff1b\u4e0d\u80fd\u5355\u51ed\u8bc4\u5206\u5224\u5b9a\u59ff\u6001\u6216\u8d44\u6e90\u7248\u672c\u3002\u4ee5\u4e0b\u9879\u4ecd\u6709\u53ef\u89c1\u5dee\u5f02\uff0c\u672a\u5ba3\u79f0\u5b8c\u5168\u4e00\u81f4\u3002"
+    "note": "轮廓匹配用于辅助调整相机；不能单凭评分判定姿态或资源版本。以下项仍有可见差异，未宣称完全一致。"
   },
   "png_sha256": {
     "Agastya.png": "cdf7aae63a32537977bf3b2322fab04157437841cccfb880e3b926c16b880cc8",
@@ -4661,7 +4740,7 @@
     "Rappy (Mag).png": "612676aba6336084dc829fcaa2cc49351d4b0e78fc78ae722f3bd40f9e015b51",
     "Yahoo!.png": "1678a83818a4f250b02697f4acc35b7000fd13298bd71dbd1543ecbbf6840936",
     "Gael Giel.png": "ec39567bcd2100bfbb0cbaa7ea4e828e80f46ba341b2eee76603889e1ce344bd",
-    "Present*.png": "ba83aecfed8f3d3507ce8220058204efcce21f8d1bfd8cc4667373fedc5d9f42",
+    "Present-star.png": "ba83aecfed8f3d3507ce8220058204efcce21f8d1bfd8cc4667373fedc5d9f42",
     "Saraswati.png": "311fc5a793509773e93d7eba5d1213cbd5822f1185744b065a17c936a659fe93",
     "Angel's Wing.png": "da4fce2e4b2da27c0ca358eb9e5bc9d5ecc17c05f223e6e5f234ac0c12b0c2e5",
     "Robochao.png": "d490561297c2a022d490ea8196d42ff42dbe65fd304c4af93b661a59d3ac5b0d",
@@ -4742,7 +4821,7 @@
     "Rappy (Mag).webp": "8b422eeb604cee619cc1a6392625fda7f5829d19723cf2f22a2b235a91ac5ffc",
     "Yahoo!.webp": "56f28d65e80682fd01e64cf546199938eaf26c303d301b46ed0d64f421ca77bd",
     "Gael Giel.webp": "39e1b43726a07005dc714cfc6785aaac535f8d03a89e93bdc5aa622aadd810f9",
-    "Present*.webp": "6afb1a7db17e0465919830ef45a3490ee5b9175bc0eaf4f03034606800810336",
+    "Present-star.webp": "6afb1a7db17e0465919830ef45a3490ee5b9175bc0eaf4f03034606800810336",
     "Saraswati.webp": "ac834ea2274e842587976bf37e71a26ff0d830ec1d4f484009f226e6fa0aa781",
     "Angel's Wing.webp": "fa66ebbc53ee8b3bdf8f8a229e240dca0a8d83b51f13b16d321665cc3bac128e",
     "Robochao.webp": "563ac1d2c744890c78c4e5f7b53dde0e695dcb7db6fe69e022dd5801e59a2663",

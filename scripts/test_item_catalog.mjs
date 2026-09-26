@@ -66,6 +66,8 @@ test('HD images are detail-only; list rows show Mag render thumbnails and otherw
   assert.equal(details.varuna.hdSource, 'model-render');
   assert.equal(details['chu-chu'].hdImage, '/assets/img/mag/default/Chu Chu.webp');
   assert.equal(details['mag-variant'].hdImage, details.mag.hdImage);
+  // Artifact uploads reject * in paths, so Present*'s images use a safe file name.
+  assert.equal(details['present-variant'].hdImage, '/assets/img/mag/default/Present-star.webp');
   for (const item of items) {
     assert.equal(item.hdSource === 'model-render', item.category === 'mag' && !!item.hdImage, item.id);
   }

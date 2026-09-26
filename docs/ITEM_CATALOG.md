@@ -190,7 +190,10 @@ their available image without a switch. List rows and related-item cards show
 the rendered Mags as thumbnails from `assets/img/mag/thumbs/`, made by
 `scripts/make_mag_thumbnails.py`: each render is trimmed to the model and fitted
 into a 256 × 192 WebP (about 4–14 KB). The generator fails if a thumbnail is
-missing. Every other list and card image is the item's standard detail image.
+missing. Each manifest model names its image `file` apart from the Mag title,
+because GitHub artifact uploads reject `*` and similar characters in paths:
+Present*'s render and thumbnail are `Present-star.webp`, and the generator fails
+on any Mag image file name containing `" * : < > ? | \`. Every other list and card image is the item's standard detail image.
 
 On 2026-09-19 the maintainer supplied and identified the SOF image, bound to
 `slicer-of-fanatic`. The 1280 × 938 PNG is recorded as
