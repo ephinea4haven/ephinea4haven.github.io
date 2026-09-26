@@ -8,7 +8,7 @@ import { MonsterLanguageService } from './monster-language.service';
 import { DIFFICULTIES, METADATA, MONSTERS, MONSTER_BY_ID, MechanicTable, Monster, REGION_OF, monsterPath, normalize } from './monster';
 import { MonsterResult } from './monster-detail.routes';
 import { MonsterImageComponent } from './monster-image.component';
-type PortraitSource='render'|`render-${number}`|'hd'|'wiki';
+type PortraitSource='render'|`render-${number}`|'hd'|`hd-${number}`|'wiki';
 
 @Component({
   selector:'haven-monster-catalog',imports:[RouterLink,CatalogLanguageComponent,MonsterImageComponent],providers:[MonsterLanguageService],
@@ -26,12 +26,13 @@ export class MonsterCatalogComponent {
   readonly difficulty=computed(()=>DIFFICULTIES.some(d=>d.id===this.params().get('diff')) ? this.params().get('diff')! : 'n');
   readonly hdImage=computed(()=>this.difficulty()==='u' ? this.detail()?.ultimateHdImage : this.detail()?.hdImage);
   readonly renderImage=computed(()=>this.difficulty()==='u' ? this.detail()?.ultimateRenderImage : this.detail()?.renderImage);
-  // Portrait sources in order of preference: model render, HD gallery. The Wiki screenshot is
-  // offered only when neither exists, as the sole portrait.
+  // Portrait sources in order of preference: model render, HD gallery, each followed by its
+  // alternate poses. The Wiki screenshot is offered only when neither exists, as the sole portrait.
   readonly portraitSources=computed(()=>{
     const m=this.monster();
-    const alternates=(this.detail()?.renderAlternates ?? []).map((alternate,index)=>[`render-${index}`,alternate.image] as const);
-    const candidates:(readonly [PortraitSource,string|null|undefined])[]=[['render',this.renderImage()],...alternates,['hd',this.hdImage()]];
+    const renderAlternates=(this.detail()?.renderAlternates ?? []).map((alternate,index)=>[`render-${index}`,alternate.image] as const);
+    const hdAlternates=(this.detail()?.hdAlternates ?? []).map((alternate,index)=>[`hd-${index}`,alternate.image] as const);
+    const candidates:(readonly [PortraitSource,string|null|undefined])[]=[['render',this.renderImage()],...renderAlternates,['hd',this.hdImage()],...hdAlternates];
     const sources=candidates.filter((source):source is readonly [PortraitSource,string]=>!!source[1]);
     const wiki=m ? this.image(m) : null;
     return sources.length || !wiki ? sources : [['wiki',wiki] as const];
@@ -74,10 +75,11 @@ export class MonsterCatalogComponent {
   private readonly sourceLabels={render:'模型渲染',hd:'高清图片'} as const;
   private readonly sourceCaptions={render:'图片来源：原始模型渲染',hd:'图片来源：高清图库',wiki:'图片来源：Ephinea Wiki'} as const;
   sourceLabel(source:PortraitSource):string {
-    const alternate=source.startsWith('render-') ? this.detail()?.renderAlternates[Number(source.slice(7))] : undefined;
+    const [kind,index]=source.split('-');
+    const alternate=index===undefined ? undefined : this.detail()?.[kind==='render' ? 'renderAlternates' : 'hdAlternates'][Number(index)];
     return alternate ? alternate.label[this.i18n.language()] : this.i18n.t(this.sourceLabels[source as 'render'|'hd']);
   }
-  sourceCaption(source:PortraitSource):string {return this.i18n.t(this.sourceCaptions[source.startsWith('render') ? 'render' : source as 'hd'|'wiki']);}
+  sourceCaption(source:PortraitSource):string {return this.i18n.t(this.sourceCaptions[source.split('-')[0] as 'render'|'hd'|'wiki']);}
   readonly count=MONSTERS.length;readonly metadata=METADATA;readonly difficulties=DIFFICULTIES;readonly path=monsterPath;
   readonly statLabels=['生命值','攻击力','防御力','精神力','命中','回避','运气','火抗性','冰抗性','雷抗性','暗抗性','光抗性','异常抗性','经验','DAR','普通掉落类型'];
   readonly sectionLabels=['深绿','黄绿','天蓝','蓝','紫','粉','红','橙','黄','白'];

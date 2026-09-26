@@ -118,9 +118,9 @@ test('names match authority and referenced assets exist',()=>{
 
 test('HD artwork keeps episode copies separate and binds only the pictured boss forms',()=>{
   const gallery=JSON.parse(fs.readFileSync('content/monster-catalog/hd-gallery.json'));
-  assert.equal(gallery.sources.length,171);
-  assert.equal(gallery.assets.length,171);
-  assert.equal(new Set(gallery.assets.map(a=>a.path)).size,171);
+  assert.equal(gallery.sources.length,172);
+  assert.equal(gallery.assets.length,172);
+  assert.equal(new Set(gallery.assets.map(a=>a.path)).size,172);
   for(const asset of gallery.assets) {
     const bytes=fs.readFileSync(asset.path.slice(1));
     assert.equal(bytes.length,asset.bytes);
@@ -128,7 +128,7 @@ test('HD artwork keeps episode copies separate and binds only the pictured boss 
   }
   for(const [id,assignment] of Object.entries(gallery.assignments)) {
     assert.ok(details[id],id);
-    for(const file of Object.values(assignment)) assert.ok(gallery.assets.some(a=>a.path===file),file);
+    for(const file of [assignment.normal,assignment.ultimate,...(assignment.alternates||[]).map(a=>a.image)]) assert.ok(gallery.assets.some(a=>a.path===file),file);
   }
   const galleryNames=JSON.parse(fs.readFileSync('content/monster-catalog/names.json'));
   for(const source of gallery.sources) {
@@ -143,6 +143,9 @@ test('HD artwork keeps episode copies separate and binds only the pictured boss 
   for(const id of ['vol-opt-form-1','vol-opt-pillar','epsigard']) assert.equal(details[id].hdImage,null,id);
   for(const id of ['vol-opt-form-2','dark-falz-form-1','dark-falz-form-2','dark-falz-form-3','olga-flow-form-1','olga-flow-form-2','death-gunner','dolmolm','epsilon']) assert.ok(details[id].hdImage,id);
   for(const monster of index) assert.equal('hdImage' in monster,false,'HD assets stay out of the list bundle');
+  // Olga Flow (Form 1) keeps its ground pose as a second HD image, like its model renders.
+  assert.deepEqual(details['olga-flow-form-1'].hdAlternates,[{image:'/assets/img/monsters/hd/seabed/olga-flow-form-1-60306069f337.webp',label:{zh:'高清·地面姿势',en:'HD ground pose',ja:'高精細・地上の姿勢'}}]);
+  assert.equal(Object.values(details).filter(detail=>detail.hdAlternates.length).length,1);
 });
 
 test('model renders are checksummed, bound to real entries and distinguish Ultimate skins',()=>{

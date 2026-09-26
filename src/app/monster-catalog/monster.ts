@@ -9,7 +9,7 @@ export interface Monster {
 }
 export interface MechanicTable {section:string;anchor:string;caption:string;context:string[];headings:string[];difficulties:string[];axis:'all'|'difficulty'|'mode'|'difficulty-mode';rows:string[][]}
 export interface MonsterDetail {
-  hdImage:string|null; ultimateHdImage:string|null; renderImage:string|null; ultimateRenderImage:string|null; renderAlternates:{image:string;label:LocalizedText}[];
+  hdImage:string|null; ultimateHdImage:string|null; renderImage:string|null; ultimateRenderImage:string|null; renderAlternates:{image:string;label:LocalizedText}[]; hdAlternates:{image:string;label:LocalizedText}[];
   id:string; stats:Record<string,(number|string)[]>; notes:LocalizedText[]; tables:MechanicTable[];
   drops:Record<string,{name:string;dar:string|null;cells:(Names & {rate:string;id:string|null})[][]}>;
   dropScope:string; source:string;sourceTitle:string;revision:number;checkedAt:string;imageSource:string|null;ultimateImageSource:string|null;
