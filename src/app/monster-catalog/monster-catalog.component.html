@@ -6,13 +6,13 @@
     <label class="search"><span aria-hidden="true">⌕</span><input type="search" [value]="q()" [placeholder]="i18n.t('搜索怪物名称或区域')" [attr.aria-label]="i18n.t('搜索怪物名称或区域')" (input)="update('q',$any($event.target).value)"></label>
     <div class="filters">
       <label>{{ i18n.t('章节') }}<select [value]="episode()" (change)="update('ep',$any($event.target).value)"><option value="1">EP1</option><option value="2">EP2</option><option value="4">EP4</option></select></label>
-      <label>{{ i18n.t('区域') }}<select [value]="area()" (change)="update('area',$any($event.target).value)"><option value="">{{ i18n.t('全部区域') }}</option>@for(a of areas();track a){<option [value]="a">{{ i18n.area(a) }}</option>}</select></label>
+      <label>{{ i18n.t('区域') }}<select [disabled]="!!q()" [value]="area()" (change)="update('area',$any($event.target).value)">@for(a of areas();track a){<option [value]="a" [selected]="a===area()">{{ i18n.area(a) }}</option>}</select>@if(q()){<small class="field-help">{{ i18n.t('搜索时不限区域。') }}</small>}</label>
       <label>{{ i18n.t('类型') }}<select [value]="kind()" (change)="update('kind',$any($event.target).value)"><option value="">{{ i18n.t('全部类型') }}</option><option value="regular">{{ i18n.t('普通怪物') }}</option><option value="rare">{{ i18n.t('稀有怪物') }}</option><option value="boss">{{ i18n.t('首领') }}</option><option value="part">{{ i18n.t('部位与召唤物') }}</option></select></label>
     </div>
   } @else {
     <a class="back" [routerLink]="i18n.link('/data/enemies.html')" [queryParams]="query()">← {{ i18n.t('返回列表') }}</a>
   }
-  <div class="context-controls"><div role="group" [attr.aria-label]="i18n.t('难度')">@for(d of difficulties;track d.id){<button type="button" [attr.aria-pressed]="difficulty()===d.id" (click)="update('diff',d.id)">{{ d.label }}</button>}</div><label>{{ i18n.t('模式') }}<select [attr.aria-label]="i18n.t('模式')" [value]="mode()" (change)="update('mode',$any($event.target).value)"><option value="on">{{ i18n.t('多人模式') }}</option><option value="off">{{ i18n.t('单人模式') }}</option></select></label></div>
+  <div class="context-controls"><div role="group" [attr.aria-label]="i18n.t('难度')">@for(d of difficulties;track d.id){<button type="button" [attr.aria-pressed]="difficulty()===d.id" (click)="update('diff',d.id)">{{ i18n.name(d.names) }}</button>}</div><label>{{ i18n.t('模式') }}<select [attr.aria-label]="i18n.t('模式')" [value]="mode()" (change)="update('mode',$any($event.target).value)"><option value="on">{{ i18n.t('多人模式') }}</option><option value="off">{{ i18n.t('单人模式') }}</option></select></label></div>
   @if (monster(); as m) {
     @if (detail(); as entry) {
       <section class="monster-hero"><figure class="portrait">

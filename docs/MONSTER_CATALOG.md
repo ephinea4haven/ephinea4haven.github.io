@@ -1,8 +1,17 @@
 # Monster Catalog
 
 The episode selector contains EP1, EP2 and EP4 with no All option and defaults
-to EP1. Search stays within the selected episode; clearing auxiliary filters
-preserves it. All areas and All types remain available. A directly opened detail
+to EP1. The area selector has no All option either: browsing shows one region,
+the episode's first by default (Forest for EP1). Regions gather the Wiki's
+finer areas (`REGION_OF` in `monster.ts`): numbered sub-areas and the boss room
+join their region, for example Forest with Under the Dome, Cave with Cave 1–3
+and Underground Channel, Seabed with the Test Subject Disposal Area, and
+Subterranean Desert with the Meteor Impact Site. Each region fits on one
+24-entry page (at most 24 monsters), and rows and details keep the specific
+area. A search covers every area of the
+selected episode, like the item catalog's search across subcategories, and the
+area selector is disabled while a query is present. Clearing auxiliary filters
+keeps the episode and returns to its first area. All types remains available. A directly opened detail
 page returns to its monster's episode when no originating episode is specified.
 
 The catalog lives at `/data/enemies.html`, with detail pages at
@@ -35,7 +44,11 @@ phase has no Normal stats and shows as uncatalogued rather than zero.
 
 The catalog supports Chinese, English and Japanese name search, episode, area and
 type filters, HP sorting, 24-entry pages, and switching between four difficulties
-and multiplayer or single-player mode. The query is kept in the URL, and returning
+and multiplayer or single-player mode. Difficulty buttons use the client names:
+普通 / 困难 / 极难 / 极限 from the maintained Chinese localization (BB
+`unitxt_cs` agrees), ノーマル / ハード / ベリーハード / アルティメット from the
+Japanese BB client, and Normal / Hard / Very Hard / Ultimate in English. The
+English labels remain the keys for matching Wiki source tables. The query is kept in the URL, and returning
 to the list restores the conditions. The interface and names are available in
 Chinese, English and Japanese, each prerendered at its own URL. Behaviour notes
 are written in all three languages; English fact tables are labeled as source
