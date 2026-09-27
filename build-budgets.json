@@ -2,7 +2,7 @@
   "maxJavaScriptGzipBytes": 1000000,
   "maxLocalizedJavaScriptGzipBytes": 700000,
   "maxAngularChunkGzipBytes": 85000,
-  "maxAngularRouteGzipBytes": 160000,
+  "maxAngularRouteGzipBytes": 170000,
   "maxInlineScriptBytes": 132000,
   "maxAngularHydrationBytesPerPage": 64000
 }

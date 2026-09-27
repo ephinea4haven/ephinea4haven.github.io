@@ -19,7 +19,7 @@ const text = node => node.nodeName === '#text' ? node.value : (node.childNodes ?
 test('legacy ES labels never bind to ordinary weapon identities', async () => {
   for (const prefix of ['', 'content/i18n/pages/en/', 'content/i18n/pages/ja/']) {
     const tree = parse(await readFile(path.join(root, `${prefix}data/bb_items.html`), 'utf8'));
-    const esCells = nodes(tree, n => n.tagName === 'td' && /S Rank Weapon|S武器/.test(text(n)));
+    const esCells = nodes(tree, n => n.tagName === 'td' && /^ES /.test(text(n)));
     assert.equal(esCells.length, 30);
     for (const cell of esCells) assert.equal(nodes(cell, n => attr(n, 'data-item-en') !== undefined).length, 0);
   }

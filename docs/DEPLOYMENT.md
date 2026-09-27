@@ -67,6 +67,14 @@ three consecutive focused runs each.
 Publication is established by the successful Pages run for the pushed revision,
 not by the local preview or a passing local build alone.
 
+## September 27, 2026 BB item code table release
+
+The BB item code table correction changes only Haven page content, one test and
+the per-route JavaScript budget (160 KB to 170 KB; the page is 167,171 gzip
+bytes). Local verification passed `npm test`, the production build (3,802
+prerendered hosts and 135 event fragment resources; 954,784 / 1,000,000
+JavaScript gzip bytes) and all 4,015 browser tests.
+
 ## September 27, 2026 badge alignment and status localization release
 
 The approved release publishes droptable first, then Haven. Haven pins
