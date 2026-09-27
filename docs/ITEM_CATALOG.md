@@ -154,17 +154,18 @@ as separate models.
 
 ## Updating the data
 
-### HD detail images and naming (updated 2026-09-24)
+### HD detail images and naming (updated 2026-09-27)
 
-`content/item-catalog/hd-gallery.json` accounts for 607 source images: the original
+`content/item-catalog/hd-gallery.json` accounts for 608 source images: the original
 606-image 高清图库 collection with four images replaced by the supplied 替换.zip
 artwork and 14 shield images replaced by the supplied 盾牌替换 collection,
-plus one subsequently supplied SOF image. Later individual corrections replace
-the Silence Claw, Gi Gue Bazooka and Red Dagger sources as recorded below.
-SHA-256 comparison reduces these to 553 unique assets; the manifest records the current source paths,
+plus one subsequently supplied SOF image and one TypeGU/Mechgun image. Later
+individual corrections replace the Silence Claw, Gi Gue Bazooka and Red Dagger
+sources as recorded below.
+SHA-256 comparison reduces these to 554 unique assets; the manifest records the current source paths,
 dimensions, sizes and checksums.
-The detail generator consumes only verified direct `itemIds`: 408 optimized
-images cover 414 details. The `hdImage` field is emitted only in per-item detail
+The detail generator consumes only verified direct `itemIds`: 409 optimized
+images cover 415 details. The `hdImage` field is emitted only in per-item detail
 data; HD gallery images never appear in the searchable list.
 Details default to HD when available and offer HD / standard image buttons when both
 images exist; the standard image is the Wiki image, or the ItemKT image above. Mag details use the original-model renders in
@@ -311,6 +312,20 @@ production build passed (1,268 routes and 45 event fragments). Browser tests
 were not rerun for this image-only replacement. The maintainer approved commit
 and push; deployment status is tracked separately by the Pages workflow.
 
+On 2026-09-27 the maintainer supplied an image explicitly identified as
+TypeGU/Mechgun, which previously had only the shared `MECHGUN 2` appearance
+asset and therefore no HD detail image. The new asset binds directly to
+`typegu-mechgun` only; the shared asset and TypeME/Mechgun are unchanged. The
+supplied PNG is 1280 × 938 (1,254,711 bytes); the published WebP is 1024 × 751
+(54,906 bytes), encoded with `cwebp -q 85 -m 6 -resize 1024 0`. For full
+regeneration, place it at
+`User-provided corrections/2026-09-27/885c1463a0e39ef70925e84808e3a744_720.png`
+in the assembled working copy; the source inventory becomes 608 files.
+Visual inspection of the encoded image and the detail page, all 26 item/gallery
+tests, the production build (3,802 hosts) and the full browser regression
+(4,015 tests) passed. The maintainer approved commit and push; deployment status
+is tracked separately by the Pages workflow.
+
 Also on 2026-09-24, Mag details gained HD images from the Mag evolution chart's
 46 original-model renders in `assets/img/mag/default/`, reused in place rather
 than copied into the HD gallery. The generator binds each render to the catalog
@@ -337,7 +352,7 @@ manifests or changed output bytes before writing any images, then removes retire
 WebPs from its owned destination directory. Regenerate the prepared gallery after
 changing the naming manifest; do not rename prepared files manually.
 They preserve aspect ratio at 1024-pixel width with lossy WebP quality 85,
-totaling 15,338,314 bytes. The detail frame displays them at up to 512 CSS pixels,
+totaling 15,393,220 bytes. The detail frame displays them at up to 512 CSS pixels,
 providing enough pixels for a 2× display at that size. This is optimized web
 artwork, not a lossless archival copy; enlarging it cannot retain the detail of
 the original roughly 5,000-pixel images. Downloaded originals are unchanged.

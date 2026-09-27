@@ -9134,6 +9134,25 @@
       ]
     },
     {
+      "file": "items/typegu-mechgun.webp",
+      "kind": "item",
+      "itemIds": [
+        "typegu-mechgun"
+      ],
+      "appearanceOf": [],
+      "variant": null,
+      "evidence": "Artwork supplied by the maintainer on 2026-09-27 explicitly for TypeGU/Mechgun; artwork visually reviewed. The shared TYPE WEAPON MECHGUN 2 asset remains an appearance of TypeGU/Mechgun and TypeME/Mechgun.",
+      "sources": [
+        {
+          "path": "User-provided corrections/2026-09-27/885c1463a0e39ef70925e84808e3a744_720.png",
+          "sha256": "17219d5960e79b924d215e65412cc1af92ebd4027bbd8c62b1ff0561d80887b6",
+          "bytes": 1254711,
+          "width": 1280,
+          "height": 938
+        }
+      ]
+    },
+    {
       "file": "items/tyrells-parasol.webp",
       "kind": "item",
       "itemIds": [

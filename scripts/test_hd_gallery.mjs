@@ -25,9 +25,9 @@ test('published HD images use only direct identities and resolve alternate views
 });
 
 test('HD naming accounts for the entire collection and merges only identical files', () => {
-  assert.equal(gallery.assets.length, 553);
+  assert.equal(gallery.assets.length, 554);
   const sources = gallery.assets.flatMap(asset => asset.sources);
-  assert.equal(sources.length, 607);
+  assert.equal(sources.length, 608);
   assert.equal(new Set(sources.map(source => source.path)).size, sources.length);
   assert.equal(new Set(gallery.assets.map(asset => asset.file)).size, gallery.assets.length);
   assert.equal(new Set(gallery.assets.map(asset => asset.sources[0].sha256)).size, gallery.assets.length);
