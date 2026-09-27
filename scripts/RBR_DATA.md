@@ -219,6 +219,32 @@ remote templates.
 - 55 RBR tests, the production build and both home RBR browser tests passed
   for the updated rotation.
 
+### 2026-09-27 update record
+
+- The maintainer provided an in-game `/rbr` screenshot confirming EP1
+  `Sweep-up Operation #3` (`SU3`), EP2 `The East Tower` (`TET`) and EP4
+  `Sweep-up Operation #12` (`SU12`).
+- The read-only planner found the current template still at revision `43613`
+  (September 20), while Tracker revision `43637` already matches the screenshot,
+  including the new EP2 cycle. Candidate validation and both MediaWiki render
+  previews passed.
+- The publisher updated the current template and read it back at
+  [revision 43639](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43639).
+  The already-correct
+  [Tracker revision 43637](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=43637)
+  required no edit.
+- The site snapshot was regenerated with `build_rbr_data.py --require-current`
+  from those verified revisions. Its September 27 rotation and Tracker match
+  the reviewed plan; all 58 quest records and the 5 existing random-spawn
+  warnings are unchanged.
+- 55 RBR tests, the production build and 4 relevant browser tests passed,
+  covering home cards, the UTC Sunday freshness boundary, versioned images,
+  and Tracker/current tier markers in Chinese, English and Japanese.
+- The maintainer accepted the local result and approved committing and pushing
+  this snapshot to `master` for publication. Wiki verification and local site
+  validation are complete; production publication is verified separately through
+  the matching `Verify and deploy Pages` run's build, browser tests and deploy jobs.
+
 ### 2026-09-14 home page release record
 
 - `548e78e` committed and released the home page tier, recommended ID and color
