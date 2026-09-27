@@ -89,11 +89,6 @@ has started. Check an item only when its stated completion criteria are met.
   4★ Gush area example (tiers from the Ephinea Wiki Weapons page, revision
   43341); 8 feeding tables × 11 foods. The 2026 anniversary guide's "Melan" is
   Merlan.
-- [ ] Correct the [BB item code table](../data/bb_items.html) against BB
-  ItemPMT. The 2008 source list shows placeholder text for real items, for
-  example `031208` (`FoieLV.1Disk:`, actually Letter of Appreciation),
-  `03120B`–`03120F`, `03140A` and `03140B`. Complete when every row matches the
-  item the BB ItemPMT names for its code, in all three languages.
 
 ## Maintenance Guidelines
 
@@ -121,6 +116,20 @@ acceptance evidence belongs in the linked records. Deployment status follows
 the successful Pages workflow for the relevant commit; see
 [production verification](DEPLOYMENT.md#production-verification).
 
+- [x] [BB item code table](../data/bb_items.html) corrected against item codes
+  (2026-09-27), in all three languages. Each code shows its Ephinea item: the
+  Ephinea Wiki's code first, then the Ephinea client's tool table (Disk
+  Vol.13–21, Gear and Ragol Plating), then BB ItemPMT with the BB English Unitxt.
+  168 rows were corrected (placeholders such as `FoieLV.1Disk:` and `AMP.`,
+  misspellings, legacy spellings, Ephinea renames such as Star Song and the
+  Rage de Foudre/Glace/d'Ame split, and official names for same-named items such
+  as ES weapons, Flowen's Sword (3060) and DB's Saber (3069 Chris/Torato)).
+  112 Ephinea items were added and 19 codes that exist in neither BB nor Ephinea
+  were removed. Variant groupings, usage notes and the source list's
+  undocumented `*` marks are kept. Names in the item authority are translated;
+  others (ES weapons, Nei's Claw (Replica), items without a Japanese name) stay
+  English. The per-route JavaScript budget rose from 160 KB to 170 KB for this
+  page.
 - [x] Weapons badge and Team Points names aligned by item code (2026-09-27):
   the droptable authority, the item dictionary and the BB item code table name
   both Weapons badge sets from BB ItemPMT and Unitxt, with BB Japanese names;

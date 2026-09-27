@@ -484,7 +484,9 @@ The release gates cover:
   Chinese site and code shared by every edition; each translated edition (the
   chunks only its /en/ or /ja/ routes load) has its own budget, sized to the
   Chinese pages' own code plus headroom, so translating more pages does not
-  count against the Chinese site;
+  count against the Chinese site. The per-route budget is 170 KB; the largest
+  route is the BB item code table (about 167 KB), whose static rows compile into
+  its page chunk;
 - Angular's initial-bundle budget (320 KB raw error, 315 KB warning), which
   covers the framework, router, feature route table and the site-wide language
   state that every page needs. Content pages (every language version) load their
