@@ -84,8 +84,10 @@ Ephinea4Haven is a statically deployed Angular application. Angular 22 owns ever
 public page, route and interaction. GitHub Pages serves the immutable `_site`
 artifact; it does not need server-side rewrites or a JavaScript backend.
 
-The current build inventory contains 1,268 prerendered Angular application
-hosts, including 1,045 item detail pages and 160 monster detail pages. The event
+The current build inventory contains 3,802 prerendered Angular application
+hosts: 1,268 Chinese pages and 1,267 each for English and Japanese (every page
+except the shared `404.html`). Each language includes 1,045 item detail pages and
+160 monster detail pages. The event
 archive has 45 year-specific source fragments, published in three languages as
 135 fragment resources. `_site/build-manifest.json`
 is the source of truth for this inventory and for the JavaScript budgets applied
@@ -433,9 +435,13 @@ a mobile-scrolling result table with a sticky stat column, displays canonical
 resistance codes with Chinese, English and Japanese labels, and exposes the
 current configuration through a serialized share link. Browser tests cover these
 language and interaction contracts in addition to the exhaustive domain checks.
-Chinese equipment options, result names and named item effects come from the
-canonical item dictionary at build time. Catalog unit modifiers remain attached
-to their translated base names; catalog codes and shared presets stay unchanged.
+Every label, accessibility name, effect line and the page description follow
+the page language. Equipment options, result names, named item effects and the
+material inputs' labels come from the canonical item dictionary at build time in
+Chinese and Japanese; a name the authority lacks in Japanese stays English.
+Catalog unit modifiers remain attached to their translated base names; catalog
+codes and presets stay unchanged. The share link keeps the page's language
+prefix, so a shared English or Japanese build opens in that language.
 All 47 material-plan links are parsed as calculator inputs and checked for known
 fields, numeric form, Mag and material limits, and class-compatible equipment.
 
@@ -527,9 +533,11 @@ language on every clock tick. Weekly boosts use Sunday 00:00 UTC, independent
 of the browser timezone, following the [Ephinea weekly boost rules](https://wiki.pioneer2.net/w/Weekly_boosts).
 Seasonal visibility continues to use its registered Pacific date boundaries.
 
-The static prerender remains Chinese; browser activation applies the requested
-or saved language. This first step does not add separately prerendered language
-routes or promise multilingual search indexing. `npm run test:home` checks the
+The homepage follows the site's language URLs ("Languages and URLs"): `/`,
+`/en/` and `/ja/` are separately prerendered in their own language, and a saved
+choice only redirects an unprefixed entry. The first step of this work (Chinese
+prerender, language applied at browser activation) has been replaced by that
+model. `npm run test:home` checks the
 translation annotation contract; homepage browser tests cover direct URLs,
 preferences, fragments, catalogs, unavailable storage, seasonal content, three
 timezones, and mobile/desktop accessibility in all three languages.
