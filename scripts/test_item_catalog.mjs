@@ -49,14 +49,15 @@ const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18
 
 test('HD images are detail-only; list rows show Mag render thumbnails and otherwise the detail image', () => {
   const index = read('src/app/generated/item-catalog/index.json');
-  assert.equal(items.filter(item => item.hdSource === 'gallery').length, 414);
+  assert.equal(items.filter(item => item.hdSource === 'gallery').length, 415);
   // Every Mag with a model has a render (79 models + 4 variants sharing a model); Stealth has no model.
   assert.equal(items.filter(item => item.hdSource === 'model-render').length, 83);
   assert.deepEqual(items.filter(item => item.category === 'mag' && !item.hdImage).map(item => item.id), ['stealth']);
-  assert.equal(items.filter(item => item.hdImage).length, 497);
+  assert.equal(items.filter(item => item.hdImage).length, 498);
   assert.equal(index.filter(row => row[7]).length, 549);
   assert.equal(details.saber.hdImage, '/assets/img/items/hd/items/saber.webp');
   assert.equal(details['typess-swords'].hdImage, '/assets/img/items/hd/items/typess-swords.webp');
+  assert.equal(details['typegu-mechgun'].hdImage, '/assets/img/items/hd/items/typegu-mechgun.webp');
   assert.equal(details['dress-plate'].image, null);
   assert.equal(details['dress-plate'].hdImage, '/assets/img/items/hd/items/dress-plate.webp');
   assert.equal(details['agito-1975'].hdImage, null);
