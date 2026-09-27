@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PageChromeComponent } from '../shared/page-chrome.component';
 import { SiteLanguage } from '../shared/site-language.service';
 import { ItemData } from './item-data.js';
-import { STATUS_ITEM_NAMES } from '../generated/i18n/status-items';
+import { STATUS_ITEM_NAMES, STATUS_MATERIAL_NAMES } from '../generated/i18n/status-items';
 import {
   CHARACTER_CLASSES,
   CharacterClass,
@@ -24,8 +24,8 @@ import {
 
 interface Option { readonly value: string; readonly label: string }
 interface StatRow extends StatBreakdown { readonly key: string; readonly label: string }
-/** An effect line: item names are translated at render time, other text is shown as is. */
-interface EffectLabel { readonly text: string; readonly item: boolean }
+/** An effect line, worded at render time: an item name, a labelled amount, or a stat change. */
+interface EffectLabel { readonly kind: 'item' | 'stat' | 'attackSpeed' | 'techniqueSpeed' | 'techniqueLevel'; readonly value: string }
 type Language = 'zh' | 'en' | 'ja';
 
 const TEXT = {
@@ -37,6 +37,9 @@ const TEXT = {
     effects: '特殊效果', noEffects: '无特殊效果', share: '当前配置链接', materialLimit: '能力药用量', magLevel: '玛古等级',
     fireResist: '火焰', iceResist: '冰冻', thunderResist: '雷电', darkResist: '暗黑', lightResist: '光明',
     loadFailed: '角色能力数据暂时未能加载，请检查网络后重试。', retry: '重新加载',
+    description: 'PSOBB 角色属性模拟器', stat: '属性', armor: '铠甲', shield: '盾牌', slot: '插件槽',
+    power: '攻击力', def: '防御力', mind: '精神力', evade: '回避力', luck: '运气', magPrefix: '玛古',
+    attackSpeed: '攻击速度', techniqueSpeed: '施法速度', techniqueLevel: '魔法等级',
   },
   en: {
     eyebrow: 'PSOBB character laboratory', title: 'Character Stat Simulator', backHome: '← Back to Home', character: 'Character', class: 'Class', level: 'Level',
@@ -46,6 +49,9 @@ const TEXT = {
     effects: 'Special effects', noEffects: 'No special effects', share: 'Link to this build', materialLimit: 'Material use', magLevel: 'Mag level',
     fireResist: 'Fire', iceResist: 'Ice', thunderResist: 'Thunder', darkResist: 'Dark', lightResist: 'Light',
     loadFailed: 'The character stat data could not be loaded. Check your connection and try again.', retry: 'Reload',
+    description: 'PSOBB character stat simulator', stat: 'Stat', armor: 'Armor', shield: 'Shield', slot: 'Slot',
+    power: 'Power', def: 'Def', mind: 'Mind', evade: 'Evade', luck: 'Luck', magPrefix: 'Mag',
+    attackSpeed: 'Attack speed', techniqueSpeed: 'Technique speed', techniqueLevel: 'Technique level',
   },
   ja: {
     eyebrow: 'PSOBB キャラクターラボ', title: 'キャラクターステータスシミュレーター', backHome: '← ホームへ戻る', character: 'キャラクター', class: '職業', level: 'レベル',
@@ -55,6 +61,9 @@ const TEXT = {
     effects: '特殊効果', noEffects: '特殊効果なし', share: '現在の構成リンク', materialLimit: 'マテリアル使用量', magLevel: 'マグレベル',
     fireResist: '炎', iceResist: '氷', thunderResist: '雷', darkResist: '闇', lightResist: '光',
     loadFailed: 'キャラクター能力データを読み込めませんでした。接続を確認して再度お試しください。', retry: '再読み込み',
+    description: 'PSOBB キャラクターステータスシミュレーター', stat: 'ステータス', armor: '鎧', shield: '盾', slot: 'スロット',
+    power: 'パワー', def: 'ディフェンス', mind: 'マインド', evade: 'イベイド', luck: 'ラック', magPrefix: 'マグ',
+    attackSpeed: '攻撃速度', techniqueSpeed: 'テクニック発動速度', techniqueLevel: 'テクニックレベル',
   },
 } as const;
 
@@ -99,12 +108,11 @@ export class StatusComponent {
   result: StatusResult | null = null;
   statRows: StatRow[] = [];
   effectLabels: EffectLabel[] = [];
-  shareUrl = '';
 
   constructor() {
     const title = inject(Title);
     effect(() => title.setTitle(`${this.t('title')} | ${this.language() === 'zh' ? 'Ephinea PSOBB' : 'Haven PSOBB Wiki'}`));
-    this.meta.updateTag({ name: 'description', content: 'PSOBB 角色属性模拟器' });
+    effect(() => this.meta.updateTag({ name: 'description', content: this.t('description') }));
     if (!this.characterData) return;
     const characterData = this.characterData;
     this.classes = CHARACTER_CLASSES.map((value) => ({ value, label: characterData.clazz[value][0] }));
@@ -178,19 +186,18 @@ export class StatusComponent {
     this.statRows = (['hp', 'tp', 'atp', 'dfp', 'mst', 'ata', 'evp', 'lck'] as const)
       .map((key) => ({ key, label: key.toUpperCase(), ...this.result!.stats[key] }));
     this.effectLabels = this.describeEffects(this.result);
-    this.shareUrl = this.buildShareUrl();
   }
 
   private describeEffects(result: StatusResult): EffectLabel[] {
     const effects = result.effects;
     const labels: EffectLabel[] = [];
-    const text = (value: string) => labels.push({ text: value, item: false });
-    const item = (name: string) => labels.push({ text: name, item: true });
-    if (effects.nonBattleAtp) text(`ATP ${effects.nonBattleAtp > 0 ? '+' : ''}${effects.nonBattleAtp}`);
-    if (effects.nonBattleAta) text(`ATA ${effects.nonBattleAta > 0 ? '+' : ''}${effects.nonBattleAta}`);
-    if (effects.attackSpeed) text(`Attack speed +${effects.attackSpeed}%`);
-    if (effects.techniqueSpeed) text('Technique speed ×1.5');
-    if (effects.techniqueLevel) text(`Technique level +${effects.techniqueLevel}`);
+    const item = (name: string) => labels.push({ kind: 'item', value: name });
+    const signed = (value: number) => `${value > 0 ? '+' : ''}${value}`;
+    if (effects.nonBattleAtp) labels.push({ kind: 'stat', value: `ATP ${signed(effects.nonBattleAtp)}` });
+    if (effects.nonBattleAta) labels.push({ kind: 'stat', value: `ATA ${signed(effects.nonBattleAta)}` });
+    if (effects.attackSpeed) labels.push({ kind: 'attackSpeed', value: `+${effects.attackSpeed}%` });
+    if (effects.techniqueSpeed) labels.push({ kind: 'techniqueSpeed', value: '×1.5' });
+    if (effects.techniqueLevel) labels.push({ kind: 'techniqueLevel', value: `+${effects.techniqueLevel}` });
     if (effects.smartlink) item('Smartlink');
     if (effects.v50x) item(effects.v50x === 2 ? 'V502' : 'V501');
     const booleans: readonly [boolean, string][] = [
@@ -202,8 +209,14 @@ export class StatusComponent {
     return labels;
   }
 
-  private buildShareUrl(): string {
-    const url = new URL('/tools/status.html', 'https://psohaven.invalid');
+  effectText(effect: EffectLabel): string {
+    if (effect.kind === 'item') return this.itemName(effect.value);
+    return effect.kind === 'stat' ? effect.value : `${this.t(effect.kind)} ${effect.value}`;
+  }
+
+  /** Link to this build in the page's language. */
+  shareUrl(): string {
+    const url = new URL(this.site.link('/tools/status.html'), 'https://psohaven.invalid');
     const entries: Record<string, string | number> = {
       c: this.selectedClass, lv: this.level, mdef: this.magDef, mpow: this.magPow, mdex: this.magDex, mmind: this.magMind,
       hp: this.matHP, tp: this.matTP, pow: this.matPow, def: this.matDef, mind: this.matMind, eva: this.matEva, lck: this.matLck,
@@ -227,11 +240,14 @@ export class StatusComponent {
   resetUnits(): void { this.units = ['-', '-', '-', '-']; this.recalculate(); }
 
   itemName(name: string): string {
-    if (name === '-' || this.language() !== 'zh') return name;
+    const language = this.language();
+    if (name === '-' || language === 'en') return name;
     const translated = STATUS_ITEM_NAMES[name];
     if (!translated) throw new Error(`Missing status item translation: ${name}`);
-    return translated;
+    return translated[language];
   }
+
+  materialName(key: keyof typeof STATUS_MATERIAL_NAMES): string { return STATUS_MATERIAL_NAMES[key][this.language()]; }
 
   t(key: keyof typeof TEXT.zh): string { return TEXT[this.language()][key]; }
 }

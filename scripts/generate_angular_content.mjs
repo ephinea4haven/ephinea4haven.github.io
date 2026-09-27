@@ -285,16 +285,24 @@ for (const kind of ['armors', 'shields', 'units']) {
     if (!base || name !== base + suffix) {
       throw new Error(`Status catalog has an invalid unit variant: ${code} ${name}`);
     }
-    statusItemNames[name] = itemByEnglish(base, `Status ${kind} ${code}`).zh + suffix;
+    const item = itemByEnglish(base, `Status ${kind} ${code}`);
+    statusItemNames[name] = { zh: item.zh + suffix, ja: item.ja + suffix };
   }
 }
 // Effects are named by the calculation domain independently of catalog casing.
 for (const name of ['Smartlink', 'V501', 'V502', 'Cure/Poison', 'Cure/Paralysis',
   'Cure/Slow', 'Cure/Confuse', 'Cure/Freeze', 'Cure/Shock', 'Trap Vision']) {
-  statusItemNames[name] = itemByEnglish(name, 'Status effect').zh;
+  const { zh, ja } = itemByEnglish(name, 'Status effect');
+  statusItemNames[name] = { zh, ja };
 }
+// Material inputs are labelled by the materials' own names.
+const statusMaterialNames = Object.fromEntries(Object.entries({
+  hp: 'HP Material', tp: 'TP Material', power: 'Power Material', def: 'Def Material',
+  mind: 'Mind Material', evade: 'Evade Material', luck: 'Luck Material',
+}).map(([key, name]) => [key, itemByEnglish(name, 'Status material')]));
 await writeFile(path.join(root, 'src/app/generated/i18n/status-items.ts'),
-  `export const STATUS_ITEM_NAMES: Readonly<Record<string, string>> = ${JSON.stringify(statusItemNames)};\n`);
+  `export const STATUS_ITEM_NAMES: Readonly<Record<string, { readonly zh: string; readonly ja: string }>> = ${JSON.stringify(statusItemNames)};\n`
+  + `export const STATUS_MATERIAL_NAMES = ${JSON.stringify(statusMaterialNames)} as const;\n`);
 
 function nodeText(node) {
   if (node.nodeName === '#text') return node.value || '';

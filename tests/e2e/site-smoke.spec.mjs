@@ -699,7 +699,7 @@ test('status simulator preserves material-plan presets and calculation diagnosti
   await expect(page.locator('[data-equipment-code="45"]')).toContainText('★★★★★★★★★★★');
   await expect(page.locator('.rarity .rare1').filter({ hasText: '★★★★★★★★★' }).first()).toHaveCSS('color', 'rgb(102, 153, 255)');
   await expect(page.locator('.rarity .rare2').filter({ hasText: '★★' }).first()).toHaveCSS('color', 'rgb(255, 102, 102)');
-  await expect(page.locator('.effects')).toContainText('Technique speed ×1.5');
+  await expect(page.locator('.effects')).toContainText('施法速度 ×1.5');
   await page.locator('#armor').selectOption('1a');
   await expect(page.locator('[data-equipment-code="1a"]')).toContainText('不可装备');
   await page.locator('#matPow').fill('999');
@@ -1610,6 +1610,12 @@ test('status equipment names follow the authority through variants and language 
     expect(candidates, name).toHaveLength(1);
     return candidates[0].zh;
   };
+  const names = {
+    English: { armor: 'Perfect Frame', unit: 'Knight/Power++', effect: 'Smartlink' },
+    日本語: { armor: 'パーフェクトフレーム', unit: 'ナイト/パワー++', effect: 'スマートリンク' },
+    中文: { armor: '完美铠甲', unit: '骑士级/攻击++', effect: '智能联结' },
+  };
+  const prefixes = { English: '/en', 日本語: '/ja', 中文: '' };
   await page.goto('/tools/status.html?armor=10&shield=10&unit1=10&unit2=00-5&unit3=51&unit4=43');
   await expect(page.locator('#armor')).toHaveValue('10');
   for (const [kind, selector] of [['armors', '#armor'], ['shields', '#shield'], ['units', '#unit1']]) {
@@ -1630,14 +1636,15 @@ test('status equipment names follow the authority through variants and language 
   await expect(page.locator('.effects')).toContainText('智能联结');
   await expect(page.locator('.effects')).toContainText('解除/麻痹');
   const share = await page.locator('.share-link a').getAttribute('href');
+  expect(share).toMatch(/^\/tools\/status\.html\?/);
   const stats = await page.locator('.stat-table tbody').innerText();
   for (const language of ['English', '日本語', '中文']) {
     await page.getByRole('button', { name: language, exact: true }).click();
-    await expect(page.locator('#armor option:checked')).toHaveText(language === '中文' ? '完美铠甲' : 'Perfect Frame');
-    await expect(page.locator('#unit2 option:checked')).toHaveText(language === '中文' ? '骑士级/攻击++' : 'Knight/Power++');
-    await expect(page.locator('.equipment-report li').first()).toContainText(language === '中文' ? '完美铠甲' : 'Perfect Frame');
-    await expect(page.locator('.effects')).toContainText(language === '中文' ? '智能联结' : 'Smartlink');
-    await expect(page.locator('.share-link a')).toHaveAttribute('href', share);
+    await expect(page.locator('#armor option:checked')).toHaveText(names[language].armor);
+    await expect(page.locator('#unit2 option:checked')).toHaveText(names[language].unit);
+    await expect(page.locator('.equipment-report li').first()).toContainText(names[language].armor);
+    await expect(page.locator('.effects')).toContainText(names[language].effect);
+    await expect(page.locator('.share-link a')).toHaveAttribute('href', prefixes[language] + share);
     expect(await page.locator('.stat-table tbody').innerText()).toBe(stats);
   }
   await page.goto(share);
@@ -1645,6 +1652,50 @@ test('status equipment names follow the authority through variants and language 
   await expect(page.locator('#unit2 option:checked')).toHaveText('骑士级/攻击++');
 });
 
+
+test('status labels, effects, description and share links follow the page language', async ({ browser }) => {
+  const expected = {
+    en: { lang: 'en', description: 'PSOBB character stat simulator', stat: 'Stat', power: 'Power', armor: 'Armor', slot: 'Slot 1', unit: 'Heavenly/Battle', speed: 'Attack speed +40%' },
+    ja: { lang: 'ja', description: 'PSOBB キャラクターステータスシミュレーター', stat: 'ステータス', power: 'パワー', armor: '鎧', slot: 'スロット 1', unit: 'ヘヴンリー/バトル', speed: '攻撃速度 +40%' },
+  };
+  // Material inputs are labelled by the authority names; a missing Japanese name stays English.
+  const materials = { matHP: 'HP Material', matTP: 'TP Material', matPow: 'Power Material', matDef: 'Def Material', matMind: 'Mind Material', matEva: 'Evade Material', matLck: 'Luck Material' };
+  const authority = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
+  for (const [language, text] of Object.entries(expected)) {
+    // A fresh context has no remembered language, as a reader opening a shared link.
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto(`/${language}/tools/status.html?unit1=53`);
+    await expect(page.locator('html')).toHaveAttribute('lang', text.lang);
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', text.description);
+    await expect(page.locator('.stat-table thead th').first()).toHaveText(text.stat);
+    await expect(page.locator('.materials-column tbody th').nth(2)).toHaveText(text.power);
+    for (const [id, name] of Object.entries(materials)) {
+      await expect(page.locator(`#${id}`)).toHaveAttribute('aria-label', language === 'ja' ? authority[name].ja ?? name : name);
+    }
+    await expect(page.locator('.equipment-column tbody th').first()).toHaveText(text.armor);
+    await expect(page.locator('.equipment-column tbody th').nth(2)).toHaveText(text.slot);
+    await expect(page.locator('#unit1 option:checked')).toHaveText(text.unit);
+    await expect(page.locator('.effects li').first()).toHaveText(text.speed);
+    const share = await page.locator('.share-link a').getAttribute('href');
+    expect(share).toMatch(new RegExp(`^/${language}/tools/status\\.html\\?.*unit1=53`));
+    await context.close();
+
+    const reader = await browser.newContext();
+    const shared = await reader.newPage();
+    await shared.goto(share);
+    await expect(shared).toHaveURL(new RegExp(`/${language}/tools/status\\.html\\?`));
+    await expect(shared.locator('html')).toHaveAttribute('lang', text.lang);
+    await expect(shared.locator('#unit1')).toHaveValue('53');
+    await reader.close();
+  }
+  const page = await browser.newPage();
+  await page.goto('/tools/status.html');
+  for (const [id, name] of Object.entries(materials)) {
+    await expect(page.locator(`#${id}`)).toHaveAttribute('aria-label', authority[name].zh);
+  }
+  await page.close();
+});
 
 test('complete item lookup includes current inactive aliases and removes retired entries', async ({ page }) => {
   const sandbox = { window: {} };
