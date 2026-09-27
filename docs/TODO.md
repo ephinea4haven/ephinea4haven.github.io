@@ -89,6 +89,11 @@ has started. Check an item only when its stated completion criteria are met.
   4★ Gush area example (tiers from the Ephinea Wiki Weapons page, revision
   43341); 8 feeding tables × 11 foods. The 2026 anniversary guide's "Melan" is
   Merlan.
+- [ ] Correct the [BB item code table](../data/bb_items.html) against BB
+  ItemPMT. The 2008 source list shows placeholder text for real items, for
+  example `031208` (`FoieLV.1Disk:`, actually Letter of Appreciation),
+  `03120B`–`03120F`, `03140A` and `03140B`. Complete when every row matches the
+  item the BB ItemPMT names for its code, in all three languages.
 
 ## Maintenance Guidelines
 
@@ -116,6 +121,17 @@ acceptance evidence belongs in the linked records. Deployment status follows
 the successful Pages workflow for the relevant commit; see
 [production verification](DEPLOYMENT.md#production-verification).
 
+- [x] Weapons badge and Team Points names aligned by item code (2026-09-27):
+  the droptable authority, the item dictionary and the BB item code table name
+  both Weapons badge sets from BB ItemPMT and Unitxt, with BB Japanese names;
+  anniversary badges stay separate
+  ([record](PSOBB_CHINESE_LOCALIZATION.md#2026-09-27-weapons-badges-and-team-points-by-item-code)).
+- [x] Status simulator localization review closed (2026-09-27): share links keep
+  the language, all labels, effects and the description follow the page, and
+  Japanese equipment and material names come from the authority
+  ([architecture](ARCHITECTURE.md)).
+- [x] TypeGU/Mechgun HD detail image (2026-09-27), supplied by the maintainer
+  ([record](ITEM_CATALOG.md)).
 - [x] [Mag evolution chart](../tools/mag.html) colour preview and Mag detail
   images (2026-09-24): the 46 original-model renders were brightened with
   camera-relative lighting. Colour picks now tint only the model nodes the game

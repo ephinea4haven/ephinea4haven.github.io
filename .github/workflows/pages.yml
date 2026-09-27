@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: warmonipa/dropcharts
-          ref: 085d0c2a36fded23924ed4e44ab1b1be3d02a968
+          ref: 91a9e0f03ed6beeea14247c01faef1b815969db9
           path: droptable
 
       - name: Set up Node.js
@@ -98,7 +98,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: warmonipa/dropcharts
-          ref: 085d0c2a36fded23924ed4e44ab1b1be3d02a968
+          ref: 91a9e0f03ed6beeea14247c01faef1b815969db9
           path: droptable
 
       - name: Set up Node.js

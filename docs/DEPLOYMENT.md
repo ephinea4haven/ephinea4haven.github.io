@@ -67,6 +67,20 @@ three consecutive focused runs each.
 Publication is established by the successful Pages run for the pushed revision,
 not by the local preview or a passing local build alone.
 
+## September 27, 2026 badge alignment and status localization release
+
+The approved release publishes droptable first, then Haven. Haven pins
+`warmonipa/dropcharts@91a9e0f03ed6beeea14247c01faef1b815969db9`, which aligns the
+Weapons badge and Team Points names by item code
+([record](PSOBB_CHINESE_LOCALIZATION.md#2026-09-27-weapons-badges-and-team-points-by-item-code)).
+psobb-localization and the client resources are unchanged. The Haven release
+also completes the status simulator localization review and adds the
+TypeGU/Mechgun HD image.
+
+Local verification passed droptable's `npm test` and Unitxt name check, Haven's
+`npm test`, the production build (3,802 prerendered hosts and 135 event fragment
+resources) and all 4,015 browser tests.
+
 ## September 26, 2026 handgun and shotgun terminology release
 
 The approved release publishes psobb-localization and droptable first, then Haven.

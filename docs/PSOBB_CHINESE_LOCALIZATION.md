@@ -272,3 +272,31 @@ item catalog's weapon-type labels and two behaviour notes, the acronym, Anguish,
 class, V50x, weapon-special and item-drop pages, and the tooling-only drop-chart
 snapshot. The same acronym row corrects the typo 金祭音速机器 to 金祭音速机枪.
 
+### 2026-09-27 Weapons badges and Team Points by item code
+
+Weapons badges are two item sets whose BB names are identical. The first set
+(v2 `030E07`–`030E0E`, v3/v4 `031200`–`031207`) was the Dreamcast Maximum
+Attack reward and uses Unitxt `1:47`–`1:54`; the second set exists from v3
+(`031403`–`031409`) and BB ItemPMT names it with `1:125`–`1:131`, which repeat the
+same English, Japanese and reviewed Chinese names. Neither set is obtainable on
+Ephinea. Ephinea's anniversary badges (`0310xx`) are a separate currency; the
+event-context rule above still applies to their short names.
+
+Droptable `91a9e0f03ed6beeea14247c01faef1b815969db9` aligns the authority with
+these codes (authority SHA-256
+`f3e6de3e8fb19c68488ac03d1a85315b38bc0043512ce882f37be117c6826c06`):
+
+- The eight `Weapons … Badge` names gain their BB Japanese names
+  (ウェポンズバッヂ銅 … 骨) from Unitxt `1:47`–`1:54`.
+- The v3 names Silver, Gold, Crystal, Iron, Aluminum, Leather and Bone Badge
+  and the historical `Steel Badge` (the former `1:128` label 铁制勋章) are aliases
+  of the Weapons names. `Bronze Badge` is removed: no item uses Unitxt `1:124`.
+- The legacy Bronze/Silver/Gold/Platinum Pen labels, which carried the former
+  `1:170`–`1:173` Chinese text verbatim, are aliases of Team Points 500–10000
+  (`031900`–`031903`).
+
+No client text changed; psobb-localization already names both badge sets
+WEAPONS …制徽章. Haven pins that revision and syncs the dictionary. The BB item
+code table (`data/bb_items.html`, all three languages) now references the BB
+name of each code at `031403`–`031409`, including `031406`, previously the raw
+v3 text `IRON BADGE`.
