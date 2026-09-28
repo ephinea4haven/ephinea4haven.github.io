@@ -16,6 +16,7 @@ import { fileURLToPath } from 'node:url';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { parse } from 'parse5';
+import { isAngularInlineScript } from './angular_inline_scripts.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputDirectory = path.join(root, '_site');
@@ -383,15 +384,6 @@ async function validateCssResources(errors) {
       }
     }
   }
-}
-
-function isAngularInlineScript(node, attributes) {
-  const id = attributes.get('id');
-  const type = attributes.get('type');
-  const source = node.childNodes?.map((child) => child.value || '').join('').trim() || '';
-  return (id === 'ng-state' && type === 'application/json')
-    || (id === 'ng-event-dispatch-contract' && type === 'text/javascript')
-    || (!id && /^window\.__jsaction_bootstrap\(document\.body,"ng",\[.*\],\[.*\]\);$/.test(source));
 }
 
 async function validateOutput(pages, angularPages) {

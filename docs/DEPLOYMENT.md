@@ -29,13 +29,53 @@ npx playwright install chromium
 npm run release:prepare
 ```
 
-The September 14 monster-catalog build reports 1,265 Angular hosts (including
-1,044 item and 160 monster detail pages) and 45 event content fragments.
+The September 28 build reports 3,802 prerendered Angular hosts and 135 event
+content fragments across the site's Chinese, English and Japanese editions.
 `_site/build-manifest.json` is the authoritative inventory. Artifact validation
 rejects non-Angular application hosts, retired runtimes, missing local resources,
 and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
+
+## September 28, 2026 dependency updates and artifact validation
+
+The maintainer approved integrating the updates on `master`, aligning the
+documentation, then committing and pushing:
+
+- [#26](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/26): all
+  eleven Angular framework/build packages move to 22.2.0.
+- [#28](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/28): marked
+  moves from 18.0.12 to 18.0.14. The older 18.0.13 PR #27 is already closed.
+
+The original Angular CI failure was reproduced locally. Its new Beasties
+critical-CSS activator was incorrectly rejected as `non-Angular script (inline)`.
+The shared script classifier now recognizes the exact generated body without
+relaxing the unknown-script gate or changing any budgets. Regression coverage
+uses the installed Angular optimizer and checks stylesheet activation in all
+three homepage languages.
+
+Local verification:
+
+- Locked Angular installation and dependency audit passed with zero
+  vulnerabilities; the subsequent marked update also audited cleanly.
+- Full business tests passed, including the new classifier regression, which
+  failed against the old rule and passed after the correction.
+- Two Angular production builds produced byte-identical manifests. The combined
+  marked update produced the same manifest and all 7,741 artifact file hashes.
+  There are 3,802 routes, 135 fragments and zero unrecognized inline-script
+  blocks. JavaScript gzip sizes are 955,173 / 1,000,000 bytes for Chinese/shared
+  code, with English 519,117 and Japanese 576,068 / 700,000 bytes each.
+- The full 4,018-test browser run passed 4,017 tests and exposed one asynchronous
+  dialog-close assertion. Instrumentation confirmed that the dialog hides and
+  restores focus before its queued `close` handler restores body scrolling.
+  The shared EP1/EP2 assertion now polls for the same required unlocked state;
+  both cases passed five repetitions each after the change.
+- After the marked update, all nine focused protocol, stylesheet-activation and
+  dialog-close browser checks passed. The complete browser suite must also pass
+  in the Pages workflow for the pushed revision.
+
+These are local validation results. The successful Pages run for the pushed
+revision establishes production publication; PR integration alone does not.
 
 ## September 20, 2026 homepage multilingual release
 

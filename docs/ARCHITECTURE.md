@@ -458,6 +458,16 @@ fields, numeric form, Mag and material limits, and class-compatible equipment.
    asset, operating-system metadata, or route/chunk budget violation;
 6. write a deterministic manifest and atomically publish `_site`.
 
+Generated HTML contains Angular hydration state, event replay scripts and the
+critical-CSS optimizer's deferred stylesheet activator. Angular 22.2.0 uses
+Beasties' `media-script` strategy: stylesheet links start with `media="print"`
+and `data-beasties-media`, and a generated inline script restores their intended
+media. `scripts/angular_inline_scripts.mjs` is shared by artifact validation and
+inline-script accounting. It recognizes this invariant activator body exactly;
+unknown or modified inline scripts and external lookalikes remain rejected.
+The regression runs the installed Angular optimizer, while browser checks verify
+stylesheet activation on the Chinese, English and Japanese homepages.
+
 Content sources never carry hand-maintained cache numbers. A root-relative asset
 URL written with a bare `?v` (for example `/assets/img/guide/rbr/chart.svg?v`) is
 stamped with the first 12 hex digits of the file's SHA-256 when content routes are
