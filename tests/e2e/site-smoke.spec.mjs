@@ -312,7 +312,8 @@ for (const episode of [1, 2]) {
     await page.keyboard.press('Escape');
     await expect(dialog).not.toBeVisible();
     await expect(opener).toBeFocused();
-    expect(await page.evaluate(() => document.body.style.overflow)).not.toBe('hidden');
+    // The dialog hides and restores focus before its queued close event unlocks scrolling.
+    await expect.poll(() => page.evaluate(() => document.body.style.overflow)).not.toBe('hidden');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   });
 }
