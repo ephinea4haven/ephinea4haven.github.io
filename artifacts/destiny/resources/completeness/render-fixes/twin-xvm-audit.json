@@ -1,0 +1,13 @@
+{
+  "sourcePrsSha256": "6fb869dd5586e0576089ff5558980eb8a3cc659f41e1813ff9f78eda380843f0",
+  "sourcePrsBytes": 25478,
+  "decodeStopReason": "input_end",
+  "sourceBytesConsumed": 25478,
+  "completeOpcodePrefixBytes": 32897,
+  "decodedPrefixSha256": "88cc010c94936b1c6075e2ca1990219cde7cdc2b4d8e3e2334aabc516bdbc90e",
+  "declaredXvrCount": 1,
+  "completeXvmBytes": 32896,
+  "completeXvmSha256": "b5ae61b49e9db2bafc4372f39d4998b4f6b982846da3cbbf97eceb3b0c774ed8",
+  "postContainerBytes": "40",
+  "interpretation": "The complete XVMH/XVRT declared container precedes the PRS input end without explicit stop opcode; no texture bytes were synthesized or changed"
+}

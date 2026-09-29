@@ -1,0 +1,168 @@
+{
+  "schema": "destiny-ring-source-render-v1",
+  "scope": "static_source_material_preview",
+  "note": "Source opaque faces and additive layers are retained without inferred alpha; runtime appearance is unverified.",
+  "render": {
+    "size": 800,
+    "samples": 32,
+    "renderer": {
+      "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/model-previews/render_textured.py",
+      "bytes": 16279,
+      "sha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814"
+    }
+  },
+  "archives": {
+    "model": {
+      "path": "/Users/wangzhen/study/bb-psov4/ref/destiny_psobb_assets/original/data/ItemModelEp4.afs",
+      "bytes": 3315712,
+      "sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56"
+    },
+    "texture": {
+      "path": "/Users/wangzhen/study/bb-psov4/ref/destiny_psobb_assets/original/data/ItemTextureEp4.afs",
+      "bytes": 5126144,
+      "sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308"
+    }
+  },
+  "items": [
+    {
+      "name": "RED RING",
+      "code": "010227",
+      "nameEvidence": "source_matched",
+      "runtimeVerified": false,
+      "modelSlot": 354,
+      "textureSlot": 378,
+      "modelPrs": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/model-previews/assets/model_354.prs",
+        "bytes": 724,
+        "sha256": "42907c2dabe6fd0283f6f6ab5a54f33aa42dfb72fc88358e1576128319163950"
+      },
+      "model": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/model-previews/assets/model_354.xj",
+        "bytes": 2400,
+        "sha256": "4777bc3dbf4419c700349e1484683a614bd28820642b1bb43d87cf0e958c0dcd"
+      },
+      "texturePrs": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/model-previews/assets/texture_378.prs",
+        "bytes": 699,
+        "sha256": "3cf4220332b3e85a6e9a9d7654d26779a1ff12c9fdd0311829ae094ad83eed9e"
+      },
+      "texture": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/model-previews/assets/texture_378.xvm",
+        "bytes": 832,
+        "sha256": "7f5c741d243a0e17f4941f2bbd900c07fc0f3d792f5ffca1e3d4e39f0ac8e2c9"
+      },
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/red-ring-experiment/red-ring-source.png",
+        "bytes": 447291,
+        "sha256": "aa0c0d2f9f4c1ce8a0ba642a9850d6017bfe710d6f1334788e386b32ee5e4888"
+      },
+      "visualQA": "passed",
+      "visualQANote": "Four source-material PNGs reviewed on 2026-09-29: complete geometry, transparent canvas, source opaque caps retained; Anti-Dark is bright white. Approval binds the image SHA-256 in this entry and does not assert game runtime appearance."
+    },
+    {
+      "name": "ANTI-DARK RING",
+      "code": "010273",
+      "nameEvidence": "unitxt_unique_multi_parameter_agree",
+      "runtimeVerified": false,
+      "modelSlot": 372,
+      "textureSlot": 396,
+      "modelPrs": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/model_372.prs",
+        "bytes": 723,
+        "sha256": "f0506ce28f2dd9761ea19ac68c7e682031b2beb7902bba14f14d941ca029380d"
+      },
+      "model": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/model_372.xj",
+        "bytes": 2400,
+        "sha256": "3aa08bee493898b0167f5816147a782724d82ea5d843b3afdc7ecb320f11a2d4"
+      },
+      "texturePrs": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/texture_396.prs",
+        "bytes": 681,
+        "sha256": "09019f263eab19fcacd879e68151a3a4d67ebc5f304bab7090493d80c64fb901"
+      },
+      "texture": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/texture_396.xvm",
+        "bytes": 832,
+        "sha256": "4c789e027e532809143f0d1985d8689e79854c44251cfc6a70ebf60d362186c9"
+      },
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/red-ring-experiment/anti-dark-ring-source.png",
+        "bytes": 204016,
+        "sha256": "46206070ecd095b79615258a1d0e53fcd844e9710da5e650da3640c8a010ff19"
+      },
+      "visualQA": "passed",
+      "visualQANote": "Four source-material PNGs reviewed on 2026-09-29: complete geometry, transparent canvas, source opaque caps retained; Anti-Dark is bright white. Approval binds the image SHA-256 in this entry and does not assert game runtime appearance."
+    },
+    {
+      "name": "ANTI-LIGHT RING",
+      "code": "01027B",
+      "nameEvidence": "unitxt_unique_multi_parameter_agree",
+      "runtimeVerified": false,
+      "modelSlot": 371,
+      "textureSlot": 395,
+      "modelPrs": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/model_371.prs",
+        "bytes": 723,
+        "sha256": "683837cabc11d01d5513f113f1508f6bee45b6b58c55a381555917d9634e235a"
+      },
+      "model": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/model_371.xj",
+        "bytes": 2400,
+        "sha256": "7f23e5aea4dc9390e61e070ea956f0c690555fb69eed3580ff16e26f123b7bf5"
+      },
+      "texturePrs": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/texture_395.prs",
+        "bytes": 663,
+        "sha256": "01a77363ba205315bc7931b8c70abb23e46d07130cc576699be9a336b58d1a00"
+      },
+      "texture": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/texture_395.xvm",
+        "bytes": 832,
+        "sha256": "bc6a8ad424f1a52ea35ba6deb6e9f1f4151fd8c9c0e2c13361e4e4bddd053958"
+      },
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/red-ring-experiment/anti-light-ring-source.png",
+        "bytes": 420569,
+        "sha256": "e8177af5454f7ce090d5a2f311d3969fc827da1d27635801a192a9c1cc57ed7a"
+      },
+      "visualQA": "passed",
+      "visualQANote": "Four source-material PNGs reviewed on 2026-09-29: complete geometry, transparent canvas, source opaque caps retained; Anti-Dark is bright white. Approval binds the image SHA-256 in this entry and does not assert game runtime appearance."
+    },
+    {
+      "name": "MOLTEN RING",
+      "code": "0102A9",
+      "nameEvidence": "unitxt_unique_multi_parameter_agree",
+      "runtimeVerified": false,
+      "modelSlot": 354,
+      "textureSlot": 474,
+      "modelPrs": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/model_354.prs",
+        "bytes": 724,
+        "sha256": "42907c2dabe6fd0283f6f6ab5a54f33aa42dfb72fc88358e1576128319163950"
+      },
+      "model": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/model_354.xj",
+        "bytes": 2400,
+        "sha256": "4777bc3dbf4419c700349e1484683a614bd28820642b1bb43d87cf0e958c0dcd"
+      },
+      "texturePrs": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/texture_474.prs",
+        "bytes": 746,
+        "sha256": "4d07e03d2d1fc8050c8faadc9d7b5cd9333d6c1c492b79b67e25e98ebb415e2a"
+      },
+      "texture": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/supplemental-render/assets/texture_474.xvm",
+        "bytes": 832,
+        "sha256": "f00424dd553d282093eb9ff5d46a714995741a32dd8069f7117bdfc47f8bddcd"
+      },
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/red-ring-experiment/molten-ring-source.png",
+        "bytes": 449193,
+        "sha256": "dfb9283a661b3162197e0659c3e75394000da2d323179f5f73d650053a2a2d9a"
+      },
+      "visualQA": "passed",
+      "visualQANote": "Four source-material PNGs reviewed on 2026-09-29: complete geometry, transparent canvas, source opaque caps retained; Anti-Dark is bright white. Approval binds the image SHA-256 in this entry and does not assert game runtime appearance."
+    }
+  ]
+}

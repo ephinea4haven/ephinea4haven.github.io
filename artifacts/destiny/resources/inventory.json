@@ -1,0 +1,28 @@
+{
+  "captured_on": "2026-09-28",
+  "client_root": "C:\\Program Files\\PSOBB Destiny",
+  "client_platform": "Windows 11 (Parallels)",
+  "files": [
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\ItemKT.afs", "copy": "originals/ItemKT.afs", "size": 2179072, "modified_local": "2004-12-27T08:07:26+08:00", "sha256": "497d84515052abf3d678efb6f795cc7a70065cb1f023ea117d12eab61001e902"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\ItemKTep4.afs", "copy": "originals/ItemKTep4.afs", "size": 2686976, "modified_local": "2017-06-14T13:01:30+08:00", "sha256": "a41e53c406a3335a3495f1369c203280953da386dc8fb317f96b03187dab53b1"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\ItemModel.afs", "copy": "originals/ItemModel.afs", "size": 1853440, "modified_local": "2004-12-27T08:07:28+08:00", "sha256": "9dea85ec4066172328a0468e0b1d40830451f82c350485095027568dc21cc7d5"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\ItemModelEp4.afs", "copy": "originals/ItemModelEp4.afs", "size": 3315712, "modified_local": "2020-04-30T04:02:40+08:00", "sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\ItemTexture.afs", "copy": "originals/ItemTexture.afs", "size": 2693120, "modified_local": "2004-12-27T08:07:28+08:00", "sha256": "5aaff38698e76f3547bcd415bda743ddfe013bd87bb41f6f1223a0fab4bb79b4"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\ItemTextureEp4.afs", "copy": "originals/ItemTextureEp4.afs", "size": 5126144, "modified_local": "2020-04-30T04:02:48+08:00", "sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\item.bml", "copy": "originals/item.bml", "size": 292507, "modified_local": "2020-04-30T04:02:34+08:00", "sha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\unitxt_j.prs", "copy": "originals/unitxt_j.prs", "size": 81304, "modified_local": "2020-04-30T04:02:50+08:00", "sha256": "5450305997989b0f8adbcc03700a6df21ae3b66c38e68922427ec9b560f4fbde"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\unitxt_shop_j.prs", "copy": "originals/unitxt_shop_j.prs", "size": 9830, "modified_local": "2008-11-07T08:07:02+08:00", "sha256": "fbc5bf76536986821398c3b56008cf6a9e0ad5816ff675c706fdd3d7e9dfe3f8"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\data\\unitxt_ws_j.prs", "copy": "originals/unitxt_ws_j.prs", "size": 20594, "modified_local": "2008-08-15T05:50:48+08:00", "sha256": "aa93d30baed0e0aaab461f80fcf293431220fcdf456ba3a854c478004942a3d2"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\addons\\solylib\\unitxt.lua", "copy": "originals/solylib_unitxt.lua", "size": 5259, "modified_local": "2026-04-13T10:03:52+08:00", "sha256": "8d74ab54185d0b5fe53da860bca1b0712fb0a546813d65d906ac6983c4e82a05"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\addons\\solylib\\items\\items_list.lua", "copy": "originals/items_list.lua", "size": 121054, "modified_local": "2026-04-13T10:03:52+08:00", "sha256": "86e1ed6fb387bd6eaaa190fd6e307eca86ba0b1d761416a3704eed0b32c90325"},
+    {"source": "C:\\Program Files\\PSOBB Destiny\\addons\\customdlls\\README", "copy": null, "size": 794, "modified_local": "2026-07-24T17:16:30+08:00", "sha256": "6777ab3ccde6421c2d29e52452ba6ced677d718f4c815b71b42de4113b7d9d8e"},
+    {"source": "/Users/wangzhen/study/psobb-sniffers/data/captures/param_dumps_destiny/ItemPMT.prs", "copy": "originals/ItemPMT.prs", "size": 26152, "modified_local": "2026-08-05T17:47:41+08:00", "sha256": "5104ab3a43d147b5c0894c66cb58a5304396a26069550b8de15560bf0a5bfbbd"}
+  ],
+  "item_pmt_probe": {
+    "tool": "/Users/wangzhen/.codex/skills/newserv-file-formats/scripts/pso_format_probe.py",
+    "candidate": "PRS stream candidate",
+    "confidence": "low",
+    "evidence": ["extension .prs", "PRS has no dependable magic; decompress and validate inner data"],
+    "next_step": "Confirm platform/version, then peel one layer with a version-aware parser."
+  }
+}

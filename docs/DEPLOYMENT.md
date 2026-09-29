@@ -37,6 +37,34 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## September 29, 2026 unpublished Destiny archive
+
+The maintainer approved organizing and pushing the Destiny research snapshot
+without opening a public entry. `artifacts/destiny/` now retains normalized
+data, source evidence, render scripts and a locally viewable preview. Raw client
+archives, executables, captured source pages, decoded assets, discarded forum
+images and machine-specific fixture symlinks are excluded from Git.
+
+The snapshot has 517 drop names: 271 item-specific/variant previews, including
+nine equipment particle previews without a character, and 246 explicitly
+labelled shared category images. This is not a claim of complete in-game item
+appearances. Item names remain English.
+
+The production build does not consume the archive. No public menu, Angular
+route or sitemap entry was added. The generated `_site` was checked for both
+Destiny files and entry URLs; none were present. A push still starts the normal
+Pages workflow for the existing site, but does not publish the research preview.
+
+Local archive verification passed: 15 portable viewer/gallery tests from a
+clean export of the Git index, 14 cross-version viewer tests against the sibling
+dropcharts checkout, and hashes of all original dependencies and images for the
+nine equipment effects. Portable checks are included in `npm test`; original
+client-resource validation remains a separate explicit local command.
+
+`npm run release:prepare` passed for this change: all business checks, the
+production build and all 4,018 Playwright browser tests (5.3 minutes). These are
+local results; the pushed commit must still pass the normal remote Pages gates.
+
 ## September 28, 2026 dependency updates and artifact validation
 
 The maintainer approved integrating the updates on `master`, aligning the

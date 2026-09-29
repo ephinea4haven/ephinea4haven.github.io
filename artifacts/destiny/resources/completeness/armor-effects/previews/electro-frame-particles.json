@@ -1,0 +1,86 @@
+{
+  "schema": "destiny-offline-type1-particle-preview-v1",
+  "source": {
+    "file": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+    "index": 262,
+    "name": "bm7_gattai",
+    "textureId": 750061,
+    "runtimeVerified": false
+  },
+  "preview": {
+    "seed": 20923,
+    "frame": 40,
+    "origin": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "uvCount": 16,
+    "effectNtFlags": 1,
+    "noCharacterModel": true,
+    "limitations": [
+      "Client global RNG consumption and entity pose are not reproduced.",
+      "Camera culling and parent movement are not reproduced."
+    ]
+  },
+  "emitted": 16,
+  "particles": [
+    {
+      "x": 0.4871826171875,
+      "y": 4.97900390625,
+      "z": -0.158447265625,
+      "scale": 0.22754575513285627,
+      "scaleX": 0.17196899803199314,
+      "scaleY": 0.2831225122337194,
+      "rgba": [
+        254,
+        0,
+        254,
+        254
+      ],
+      "angle": 60624,
+      "uvFrame": 5,
+      "bornFrame": 34,
+      "age": 0.8333333333333333,
+      "renderAge": 0.6666666666666666
+    },
+    {
+      "x": -1.1187744140625,
+      "y": 6.31591796875,
+      "z": -1.6356201171875,
+      "scale": 0.15517815695613218,
+      "scaleX": 0.14089766190870695,
+      "scaleY": 0.16945865200355742,
+      "rgba": [
+        254,
+        0,
+        254,
+        254
+      ],
+      "angle": 22050,
+      "uvFrame": 3,
+      "bornFrame": 36,
+      "age": 0.5,
+      "renderAge": 0.3333333333333333
+    },
+    {
+      "x": 1.15283203125,
+      "y": -0.1767578125,
+      "z": 0.7420654296875,
+      "scale": 0.11727419175231839,
+      "scaleX": 0.15002067597463653,
+      "scaleY": 0.08452770753000025,
+      "rgba": [
+        212,
+        201,
+        254,
+        254
+      ],
+      "angle": 24846,
+      "uvFrame": 1,
+      "bornFrame": 38,
+      "age": 0.16666666666666666,
+      "renderAge": 0.0
+    }
+  ]
+}

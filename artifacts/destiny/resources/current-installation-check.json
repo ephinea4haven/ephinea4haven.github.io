@@ -1,0 +1,25 @@
+{
+  "checkedOn": "2026-09-29",
+  "source": "Windows 11 / C:\\Program Files\\PSOBB Destiny\\data",
+  "scope": "Installed client plus common Desktop/Documents/Downloads/Games/PSOBB Destiny/OneDrive directories in Windows user profiles; local study asset copies. No newer Destiny pair found in this scope.",
+  "files": [
+    {
+      "name": "ItemModelEp4.afs",
+      "entries": 450,
+      "bytes": 3315712,
+      "sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56"
+    },
+    {
+      "name": "ItemTextureEp4.afs",
+      "entries": 546,
+      "bytes": 5126144,
+      "sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308"
+    },
+    {
+      "name": "data.gsl",
+      "bytes": 71782400,
+      "sha256": "043a6e96a04756ea9a373f2c9758d5ce7d1f90c6158b23b198e8f9942e74c229"
+    }
+  ],
+  "result": "Current installed files match retained Destiny copies byte-for-byte by SHA-256. Model indexes 450 and above and texture indexes 546 and above are unavailable in these AFS archives. This is a bounds finding, not a conclusion based on modification dates."
+}

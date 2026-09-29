@@ -553,3 +553,17 @@ model. `npm run test:home` checks the
 translation annotation contract; homepage browser tests cover direct URLs,
 preferences, fragments, catalogs, unavailable storage, seasonal content, three
 timezones, and mobile/desktop accessibility in all three languages.
+
+
+## Unpublished research previews
+
+`artifacts/destiny/` is a versioned research archive, not an application source
+tree. Its standalone dropcharts viewer has no Angular route, menu entry or
+sitemap entry. `build_site.mjs` copies only its explicit production roots, so
+this archive and its rendering scripts never enter `_site`. The existing
+no-page-script rule continues to apply to all public content sources.
+
+The committed snapshot supports local viewing and portable preview tests.
+Original client binaries, raw web captures, decoded resources and experimental
+render outputs remain ignored; their recorded hashes document the source of
+reviewed images. Regenerating every image requires those local inputs.

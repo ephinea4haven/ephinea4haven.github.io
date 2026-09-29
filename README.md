@@ -44,6 +44,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full design.
 | `tests/e2e/` | Playwright browser and accessibility tests |
 | `third_party/` | Licenses and provenance for synchronized upstream code |
 | `docs/` | Architecture, deployment records and domain contracts |
+| `artifacts/destiny/` | Versioned Destiny research preview; excluded from the public site build |
 
 ## Getting started
 
@@ -93,6 +94,7 @@ server, so rerun it after changing sources.
 | `npm run generate:challenge-maps:ep2` | Regenerate the Episode II SVG maps |
 | `npm run test:challenge-maps` | Check the EP1 map JSON structure |
 | `npm run test:launcher-guide` | Check launcher settings descriptions, native screenshots and guide links |
+| `npm run test:destiny` | Check the archived Destiny preview without client binary dependencies |
 
 [`scripts/README.md`](scripts/README.md) describes every generator and verifier.
 
@@ -153,3 +155,14 @@ The combo calculator is synchronized from
 MIT License; see [`third_party/psostats-combo/`](third_party/psostats-combo/).
 Game data and descriptions draw on the
 [Ephinea Wiki](https://wiki.pioneer2.net/).
+
+## Unpublished Destiny research
+
+The [Destiny archive](artifacts/destiny/README.md) contains normalized drop data,
+item provenance, rendering scripts and a locally viewable dropcharts-style
+preview. It has no public navigation entry or Angular route and is not copied
+into `_site`. Pushing the archive does not publish a Destiny page. The snapshot
+covers 517 drop names; 271 have item-specific or variant previews, including
+nine character-free equipment effect previews, and 246 retain explicitly
+labelled shared category images. Raw client binaries and rendering caches remain
+local. The preview currently uses English item names only.

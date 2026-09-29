@@ -71,3 +71,6 @@ Both challenge-map generators require the pinned Python packages in
 outputs are committed, so normal site builds do not run these generators.
 See [Challenge Map Redraw](../docs/CHALLENGE_MAP_REDRAW.md) for regeneration,
 PNG preview commands and the current migration scope.
+
+
+Destiny research scripts live separately in [`artifacts/destiny/`](../artifacts/destiny/README.md), outside the public-site build. `npm run test:destiny` is included in `npm test` and uses only committed preview inputs. `npm run test:destiny:upstream` additionally checks the copied viewer against the sibling dropcharts BB/DC/NGC fixtures. `node artifacts/destiny/verify-effect-sources.mjs` checks original local effect-resource hashes and requires the retained client resources.

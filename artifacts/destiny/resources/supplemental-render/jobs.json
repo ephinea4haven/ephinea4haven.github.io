@@ -1,0 +1,2235 @@
+{
+  "schema": "destiny-supplemental-render-jobs-v1",
+  "sources": {
+    "candidates": {
+      "path": "../../supplemental-jobs.json",
+      "sha256": "0d031fb8f1878d7267aeb2b1707278de3a1b21bf65190ce0154eeb593006d99b"
+    },
+    "renderer": {
+      "path": "../model-previews/render_textured.py",
+      "sha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814"
+    },
+    "modelAdapter": {
+      "path": "../model-previews/model_adapters.py",
+      "sha256": "0543d021958c309bcc79c608d1bbc97472eb7c02a0c3e7fe36fafcffeddf75e6"
+    },
+    "xvmNormalization": {
+      "path": "normalization-report.json",
+      "sha256": "a77c306e31ddfc77ee405d3ee62fd3245e43af68a20d248f91baef8aa4a33a27"
+    }
+  },
+  "selected": 50,
+  "jobs": [
+    {
+      "name": "AENSLAND",
+      "code": "002002",
+      "websiteRowIds": [
+        "weapon:004"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_263.xj",
+      "texture": "assets/texture_467.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 263,
+        "offset": 1771520,
+        "compressedPath": "assets/model_263.prs",
+        "compressedBytes": 13678,
+        "compressedSha256": "35cbb6a8530148bab4aa9c88af7d25f520a6be63353ac15bfaa5517c6eb83d6f",
+        "decodedPath": "assets/model_263.xj",
+        "decodedBytes": 36096,
+        "decodedSha256": "6494c041fba2d8740a7bf94451e27087001e73dd397b1e7005e027ed97b00f47",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 467,
+        "offset": 3534848,
+        "compressedPath": "assets/texture_467.prs",
+        "compressedBytes": 6164,
+        "compressedSha256": "8d6f62de88a0b1bc83ef4c1395740418f811bdf527b3540f0b6b398e3968570f",
+        "decodedPath": "assets/texture_467.xvm",
+        "decodedBytes": 12480,
+        "decodedSha256": "8283adb837009c6a3b350db2c34e10e909cfbe558fecc0d686d3fc6376d92329",
+        "textures": 2,
+        "formats": [
+          6,
+          7
+        ]
+      },
+      "output": "images/002002_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "ANCIENT PROPHECY",
+      "code": "00D006",
+      "websiteRowIds": [
+        "weapon:017"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_439.xj",
+      "texture": "assets/texture_521.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 439,
+        "offset": 3160064,
+        "compressedPath": "assets/model_439.prs",
+        "compressedBytes": 26892,
+        "compressedSha256": "b14ef1c58be00b79014805a71cbbb26fb78f3d105d4c016d7d49f2f0293ea81c",
+        "decodedPath": "assets/model_439.xj",
+        "decodedBytes": 69920,
+        "decodedSha256": "e01825178c2ee62aef651a1c6120880b02e0e5ba54842116f2f963eb8ad71b61",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 521,
+        "offset": 4710400,
+        "compressedPath": "assets/texture_521.prs",
+        "compressedBytes": 22304,
+        "compressedSha256": "3bf25e6eca49835dd2c53e07e64d3ef247bdbb93095f8a4eb75f1cf2c26cebcf",
+        "decodedPath": "assets/texture_521.xvm",
+        "decodedBytes": 43840,
+        "decodedSha256": "2789099605d1a5ee4bd52e9f6abd64a7c7324030882aa14ccd31ab5692be719f",
+        "textures": 1,
+        "formats": [
+          6
+        ],
+        "normalization": {
+          "report": "normalization-report.json",
+          "sourceDecodedSha256": "f97689a994a979ca7ee546bcf6e38560cab9c6d8f0efd92ef803f1d137b0632d",
+          "normalizedSha256": "2789099605d1a5ee4bd52e9f6abd64a7c7324030882aa14ccd31ab5692be719f",
+          "payloadSha256": [
+            "1006ab115299b62e98e6ac2e63af23f7227e47ace2b8abfcb0b33657964baea7"
+          ]
+        }
+      },
+      "output": "images/00D006_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "ANTI-DARK RING",
+      "code": "010273",
+      "websiteRowIds": [
+        "shield:110"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_372.xj",
+      "texture": "assets/texture_396.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 372,
+        "offset": 2275328,
+        "compressedPath": "assets/model_372.prs",
+        "compressedBytes": 723,
+        "compressedSha256": "f0506ce28f2dd9761ea19ac68c7e682031b2beb7902bba14f14d941ca029380d",
+        "decodedPath": "assets/model_372.xj",
+        "decodedBytes": 2400,
+        "decodedSha256": "3aa08bee493898b0167f5816147a782724d82ea5d843b3afdc7ecb320f11a2d4",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 396,
+        "offset": 2949120,
+        "compressedPath": "assets/texture_396.prs",
+        "compressedBytes": 681,
+        "compressedSha256": "09019f263eab19fcacd879e68151a3a4d67ebc5f304bab7090493d80c64fb901",
+        "decodedPath": "assets/texture_396.xvm",
+        "decodedBytes": 832,
+        "decodedSha256": "4c789e027e532809143f0d1985d8689e79854c44251cfc6a70ebf60d362186c9",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/010273_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "ANTI-LIGHT RING",
+      "code": "01027B",
+      "websiteRowIds": [
+        "shield:118"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_371.xj",
+      "texture": "assets/texture_395.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 371,
+        "offset": 2273280,
+        "compressedPath": "assets/model_371.prs",
+        "compressedBytes": 723,
+        "compressedSha256": "683837cabc11d01d5513f113f1508f6bee45b6b58c55a381555917d9634e235a",
+        "decodedPath": "assets/model_371.xj",
+        "decodedBytes": 2400,
+        "decodedSha256": "7f23e5aea4dc9390e61e070ea956f0c690555fb69eed3580ff16e26f123b7bf5",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 395,
+        "offset": 2947072,
+        "compressedPath": "assets/texture_395.prs",
+        "compressedBytes": 663,
+        "compressedSha256": "01a77363ba205315bc7931b8c70abb23e46d07130cc576699be9a336b58d1a00",
+        "decodedPath": "assets/texture_395.xvm",
+        "decodedBytes": 832,
+        "decodedSha256": "bc6a8ad424f1a52ea35ba6deb6e9f1f4151fd8c9c0e2c13361e4e4bddd053958",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/01027B_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "APOCALYPSE BOWGUN",
+      "code": "00090A",
+      "websiteRowIds": [
+        "weapon:024"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_441.xj",
+      "texture": "assets/texture_523.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 441,
+        "offset": 3227648,
+        "compressedPath": "assets/model_441.prs",
+        "compressedBytes": 18366,
+        "compressedSha256": "41b47ae87c1e526514607cd7a2e7bb5882dba5ebd9cb7b537e5467c6b8af29d0",
+        "decodedPath": "assets/model_441.xj",
+        "decodedBytes": 55808,
+        "decodedSha256": "ce1ec97154de497f0a69b350411538d8811a2e011e51d4172c416dc3caa5c612",
+        "sourceFormat": "xj",
+        "roots": 9
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 523,
+        "offset": 4761600,
+        "compressedPath": "assets/texture_523.prs",
+        "compressedBytes": 31306,
+        "compressedSha256": "471b02e0948a478f2363aad17920de0839810c336bd70b2d796743b3c2c5bf40",
+        "decodedPath": "assets/texture_523.xvm",
+        "decodedBytes": 35008,
+        "decodedSha256": "8dc0c2bb5015ba53276dbb25a60158552067b201a2539aa32150bc762fb93d7e",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/00090A_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "ARMAGEDDON",
+      "code": "004C03",
+      "websiteRowIds": [
+        "weapon:026"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_019.xj",
+      "texture": "assets/texture_477.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 19,
+        "offset": 595968,
+        "compressedPath": "assets/model_019.prs",
+        "compressedBytes": 3031,
+        "compressedSha256": "95e99b8218de077b3e0027b621386a06bf161730f229083317f5a2cce4dd9c2e",
+        "decodedPath": "assets/model_019.xj",
+        "decodedBytes": 9216,
+        "decodedSha256": "ff6ad45b1653789ec5dde66bf4567a0a4994ed91b03c555d63fa27542583b90f",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 477,
+        "offset": 3624960,
+        "compressedPath": "assets/texture_477.prs",
+        "compressedBytes": 5197,
+        "compressedSha256": "d34c3c1cccd9547346854623001d2def06abadf003859da3e312ab36e99e6c02",
+        "decodedPath": "assets/texture_477.xvm",
+        "decodedBytes": 8512,
+        "decodedSha256": "16df0f9d78fbd71e7fcaa4464ef31d09c2319329b34d1f00cb43cc41cf3ead31",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/004C03_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "BLUE PHANTOM FIELD",
+      "code": "0102A5",
+      "websiteRowIds": [
+        "shield:160"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_404.xj",
+      "texture": "assets/texture_469.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 404,
+        "offset": 2414592,
+        "compressedPath": "assets/model_404.prs",
+        "compressedBytes": 8924,
+        "compressedSha256": "269998fefd79b103488620cde399e29a01f2a895cd183b3bf7b6cb65f4c02d7a",
+        "decodedPath": "assets/model_404.xj",
+        "decodedBytes": 23296,
+        "decodedSha256": "6fb828e9ad83071ba09ae23c18f949c52eadba5c0f3a17f84109325ed55a29a9",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 469,
+        "offset": 3549184,
+        "compressedPath": "assets/texture_469.prs",
+        "compressedBytes": 5421,
+        "compressedSha256": "f9ad50999419d808e34b54c1dcfecf4266c4328ac2108217f64e08ef65250803",
+        "decodedPath": "assets/texture_469.xvm",
+        "decodedBytes": 10432,
+        "decodedSha256": "31894679d23a2e9734a00d5077e8327e01bf122ac629d620b45d9db1a7a12097",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/0102A5_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "BOONDOCK SAINTS",
+      "code": "000808",
+      "websiteRowIds": [
+        "weapon:055"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_126.xj",
+      "texture": "assets/texture_107.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 126,
+        "offset": 991232,
+        "compressedPath": "assets/model_126.prs",
+        "compressedBytes": 3811,
+        "compressedSha256": "42763175646fb5b2d3466aa06ee2bc92a1b57285ca9e422693f3559b94c12440",
+        "decodedPath": "assets/model_126.xj",
+        "decodedBytes": 14976,
+        "decodedSha256": "c45aec6215320138b40bcc69f3180c4a8a6a4f67b75091ab532b7c66e7425d44",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 107,
+        "offset": 1120256,
+        "compressedPath": "assets/texture_107.prs",
+        "compressedBytes": 5950,
+        "compressedSha256": "b997485aa0d16c3cb7829e9d61f83f6b5aec6b0fa1507064dbbcc7c5ee89502e",
+        "decodedPath": "assets/texture_107.xvm",
+        "decodedBytes": 8320,
+        "decodedSha256": "af9d4cdd7b0bc64bfcc4874d202e67daa823327707329575dddf8f8f81fc0bad",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/000808_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "CATACLYSM SHIELD",
+      "code": "0102AA",
+      "websiteRowIds": [
+        "shield:165"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_356.xj",
+      "texture": "assets/texture_475.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 356,
+        "offset": 2242560,
+        "compressedPath": "assets/model_356.prs",
+        "compressedBytes": 709,
+        "compressedSha256": "6af026a5473225d9dff0dc35089b38d2ad1e34a530122f101faeb643ad397db8",
+        "decodedPath": "assets/model_356.xj",
+        "decodedBytes": 2496,
+        "decodedSha256": "edd01fc7181c06bb29ce246f64e49daf2607db3ee455e38e2168ff2a80636d9b",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 475,
+        "offset": 3594240,
+        "compressedPath": "assets/texture_475.prs",
+        "compressedBytes": 27203,
+        "compressedSha256": "5247e77e2fc16d23bfc97257c97da90470cd2a003c20941a3f509771d6975492",
+        "decodedPath": "assets/texture_475.xvm",
+        "decodedBytes": 32896,
+        "decodedSha256": "b94a14590f72c07b7fc4ec425616f39a99885e7afb5ea17e165b04530f3384c3",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/0102AA_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "CLAW OF ELEMENTS",
+      "code": "00E302",
+      "websiteRowIds": [
+        "weapon:081"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_012.xj",
+      "texture": "assets/texture_294.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 12,
+        "offset": 569344,
+        "compressedPath": "assets/model_012.prs",
+        "compressedBytes": 2784,
+        "compressedSha256": "4d91aecd1eb4aacb206843b5ae739e67edff9f228dc68d78d07a3bccc086e978",
+        "decodedPath": "assets/model_012.xj",
+        "decodedBytes": 7744,
+        "decodedSha256": "a6732be36ab1b3fb16036e34caff55c0d7130021ad4118a7de71accee55dcdc8",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 294,
+        "offset": 2430976,
+        "compressedPath": "assets/texture_294.prs",
+        "compressedBytes": 2966,
+        "compressedSha256": "276ead1b1da2ad10e3edc6f7f7c844dccdccfe4da637ec98a0d00c1b5c38bdd7",
+        "decodedPath": "assets/texture_294.xvm",
+        "decodedBytes": 4288,
+        "decodedSha256": "1649966b12ce6f507d621d1866ec61d31312dad8e938c0f73c500429a16a28a3",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/00E302_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "CRYSTALLIZED WINGS",
+      "code": "0102D2",
+      "websiteRowIds": [
+        "shield:205"
+      ],
+      "evidenceTier": "website_parameter_unique_no_name",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_442.xj",
+      "texture": "assets/texture_385.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 442,
+        "offset": 3246080,
+        "compressedPath": "assets/model_442.prs",
+        "compressedBytes": 1092,
+        "compressedSha256": "6b95880b962391e1100d284372d6a52ed9f42f486991eb6aefba3d2906ea25d4",
+        "decodedPath": "assets/model_442.xj",
+        "decodedBytes": 2816,
+        "decodedSha256": "ea693b180d0b165e08db6b9ddb1f1b086a2b464f4d759cc6f58e3f24d0f806a3",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 385,
+        "offset": 2922496,
+        "compressedPath": "assets/texture_385.prs",
+        "compressedBytes": 2072,
+        "compressedSha256": "0fcf580cecc16206f435b6cc24e75d25f605f4168c9208b4e5b49c56f95fb6ae",
+        "decodedPath": "assets/texture_385.xvm",
+        "decodedBytes": 2176,
+        "decodedSha256": "646387fdedee12ff4fc2cabdbe1ed73d0b30c38308ddd591690cb196e564115b",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/0102D2_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "D-VIRUS LAUNCHER",
+      "code": "001405",
+      "websiteRowIds": [
+        "weapon:094"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_443.xj",
+      "texture": "assets/texture_525.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 443,
+        "offset": 3248128,
+        "compressedPath": "assets/model_443.prs",
+        "compressedBytes": 4170,
+        "compressedSha256": "82d4d4b41141ae4ba8db1307ddd769f292f5f5e38c79d498bd3292552f0f9270",
+        "decodedPath": "assets/model_443.xj",
+        "decodedBytes": 14208,
+        "decodedSha256": "78fb917b39f8ec9cae053aad067c5bf1e7760505bc2deafae5811cb187a2f6de",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 525,
+        "offset": 4812800,
+        "compressedPath": "assets/texture_525.prs",
+        "compressedBytes": 32942,
+        "compressedSha256": "92c036fe0482935f48810dd112dc3a0233c858e9e742f06d2a3d435699b508e2",
+        "decodedPath": "assets/texture_525.xvm",
+        "decodedBytes": 41152,
+        "decodedSha256": "e330f92fec9274833d3e5762e866b8ff32c5162fe3629fa377e83d3b52a1b9ce",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/001405_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "DEATH CANNON",
+      "code": "00A301",
+      "websiteRowIds": [
+        "weapon:113"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_072.xj",
+      "texture": "assets/texture_460.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 72,
+        "offset": 790528,
+        "compressedPath": "assets/model_072.prs",
+        "compressedBytes": 1799,
+        "compressedSha256": "55efe797e636180761d0844bd06eea28d378bddfd3dda1b87cc8d48c68caa77a",
+        "decodedPath": "assets/model_072.xj",
+        "decodedBytes": 5088,
+        "decodedSha256": "28ac5635f40bdc4a1d529bd13ce82397319b8689a901b92edaca69ce64dbf5b8",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 460,
+        "offset": 3477504,
+        "compressedPath": "assets/texture_460.prs",
+        "compressedBytes": 2311,
+        "compressedSha256": "4bfa835124c2d9e6a76a202333e3d6a1b423fb83a68e4af5af5512d8c31fe7e8",
+        "decodedPath": "assets/texture_460.xvm",
+        "decodedBytes": 2752,
+        "decodedSha256": "8e758da4cdb31bd04b188edd24612405ed82cb3f53de74ad7f8655a20e85292b",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/00A301_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "DEATH REAPER",
+      "code": "003E01",
+      "websiteRowIds": [
+        "weapon:114"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_016.xj",
+      "texture": "assets/texture_468.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 16,
+        "offset": 581632,
+        "compressedPath": "assets/model_016.prs",
+        "compressedBytes": 3229,
+        "compressedSha256": "8ceb669b9455192500d966e275ba063ea7bbd81574cfae4b6003b32f2749a59e",
+        "decodedPath": "assets/model_016.xj",
+        "decodedBytes": 10752,
+        "decodedSha256": "0104a2676d6b4e2b4a95cbfd9445fbba6aee0632bd6dbbe212f6b9bcfb852ab0",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 468,
+        "offset": 3543040,
+        "compressedPath": "assets/texture_468.prs",
+        "compressedBytes": 4687,
+        "compressedSha256": "4a2b96daa41c619f4f5ffeb84dc599bbd6e212489e20882ec53aa498c30a8461",
+        "decodedPath": "assets/texture_468.xvm",
+        "decodedBytes": 10624,
+        "decodedSha256": "fcc813243b11333fae2be3ba71fbada96d8bc47c47f83e66a3f437ffc61d3a30",
+        "textures": 3,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/003E01_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "DESERT EAGLE",
+      "code": "004901",
+      "websiteRowIds": [
+        "weapon:119"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_254.xj",
+      "texture": "assets/texture_461.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 254,
+        "offset": 1675264,
+        "compressedPath": "assets/model_254.prs",
+        "compressedBytes": 5236,
+        "compressedSha256": "cc68d92644f4671fb442aa50b81c16955fe56072849009cab719479732ee8c2d",
+        "decodedPath": "assets/model_254.xj",
+        "decodedBytes": 16736,
+        "decodedSha256": "765de59b825d1aa4fcff6e9b61c9bf1701c2585bbad7aa4515e32d45251a1482",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 461,
+        "offset": 3481600,
+        "compressedPath": "assets/texture_461.prs",
+        "compressedBytes": 27293,
+        "compressedSha256": "493dff877c731a8af7549e824eaf3accfe6dfc569f45b417ee1b514e46b64328",
+        "decodedPath": "assets/texture_461.xvm",
+        "decodedBytes": 33472,
+        "decodedSha256": "9c026473b499c0c6002bb923a5b011761271039d898df85264bed2e1822ab31c",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/004901_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "Dragon's Claw",
+      "code": "006000",
+      "websiteRowIds": [
+        "weapon:129"
+      ],
+      "evidenceTier": "website_parameter_unique_no_name",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_095.xj",
+      "texture": "assets/texture_095.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 95,
+        "offset": 880640,
+        "compressedPath": "assets/model_095.prs",
+        "compressedBytes": 3897,
+        "compressedSha256": "b7ad65efbea15680f0bdc7d34baa7cda48d529a2964e05a90a37fb9447d6e427",
+        "decodedPath": "assets/model_095.xj",
+        "decodedBytes": 9664,
+        "decodedSha256": "890828389a2457f3c73ef8f10cae8565cc14e83a5f69ef00437eff10195b04a1",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 95,
+        "offset": 1048576,
+        "compressedPath": "assets/texture_095.prs",
+        "compressedBytes": 3097,
+        "compressedSha256": "6609286e73d103915b941f4eccfa0d29104a6ee999c9bea203d2f9d920086e09",
+        "decodedPath": "assets/texture_095.xvm",
+        "decodedBytes": 4288,
+        "decodedSha256": "ed21979f0056c06e2178466558bf152ea50217478d9ce23ebe8c9c7aad0b970c",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/006000_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "ELEMENTAL SHIELD",
+      "code": "01029A",
+      "websiteRowIds": [
+        "shield:149"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_402.nj",
+      "texture": "assets/texture_466.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 402,
+        "offset": 2394112,
+        "compressedPath": "assets/model_402.prs",
+        "compressedBytes": 7682,
+        "compressedSha256": "c4f5ec5dff12573358aea1012ef0162f2066879a6e6dc5d1e4d55520d63513f9",
+        "decodedPath": "assets/model_402.nj",
+        "decodedBytes": 15860,
+        "decodedSha256": "39d4677ccb23a64a6e5f83e513b32aed3595f4f0ece8a0513d7f19c04bc328e0",
+        "sourceFormat": "nj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 466,
+        "offset": 3528704,
+        "compressedPath": "assets/texture_466.prs",
+        "compressedBytes": 5794,
+        "compressedSha256": "381fb9bf4922bdc08b789884dd9533d3ff67b44803d082548cee8128f4cf574c",
+        "decodedPath": "assets/texture_466.xvm",
+        "decodedBytes": 45440,
+        "decodedSha256": "1eb93ed8c69a5b62dea026d156bf9ef1a28ed05c8d3c8ccff5828d9127161820",
+        "textures": 3,
+        "formats": [
+          7
+        ],
+        "normalization": {
+          "report": "normalization-report.json",
+          "sourceDecodedSha256": "0f568e559d5cf51287dde1d03f3fe0eded19e42c6941e431960d88528e395a04",
+          "normalizedSha256": "1eb93ed8c69a5b62dea026d156bf9ef1a28ed05c8d3c8ccff5828d9127161820",
+          "payloadSha256": [
+            "bd5b915f9bba50a6d5e1d13e8518db6fdf780cb6c9d613e05d4460195c140a17",
+            "120d783070d6353878a60af3461e4c5f9a6ae7c9d634514f3abb69fd158691b5",
+            "9df3222673b2fada2ccf68bb7a2024a843f630aa8c6c3eae31ce2ff48b90c83d"
+          ]
+        }
+      },
+      "output": "images/01029A_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "ENERGY STORM",
+      "code": "0102A7",
+      "websiteRowIds": [
+        "shield:162"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_402.nj",
+      "texture": "assets/texture_471.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 402,
+        "offset": 2394112,
+        "compressedPath": "assets/model_402.prs",
+        "compressedBytes": 7682,
+        "compressedSha256": "c4f5ec5dff12573358aea1012ef0162f2066879a6e6dc5d1e4d55520d63513f9",
+        "decodedPath": "assets/model_402.nj",
+        "decodedBytes": 15860,
+        "decodedSha256": "39d4677ccb23a64a6e5f83e513b32aed3595f4f0ece8a0513d7f19c04bc328e0",
+        "sourceFormat": "nj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 471,
+        "offset": 3561472,
+        "compressedPath": "assets/texture_471.prs",
+        "compressedBytes": 5908,
+        "compressedSha256": "4319be7ed01383e577819810fa473f9a98a7d577fa7e147de1012e48757392da",
+        "decodedPath": "assets/texture_471.xvm",
+        "decodedBytes": 39936,
+        "decodedSha256": "f50c48f893678005ac2aede10689e1bb3767320217f06c7d4939c0d2b7ba2b85",
+        "textures": 3,
+        "formats": [
+          7
+        ],
+        "normalization": {
+          "report": "normalization-report.json",
+          "sourceDecodedSha256": "62f5d155cdc050018cab30ba9974567aa507426640e8bfcd9976a8dec81ae7f7",
+          "normalizedSha256": "f50c48f893678005ac2aede10689e1bb3767320217f06c7d4939c0d2b7ba2b85",
+          "payloadSha256": [
+            "bd5b915f9bba50a6d5e1d13e8518db6fdf780cb6c9d613e05d4460195c140a17",
+            "9781311eee57c31be160587024b620bf7e5c60cad1c38a429ed90d5db20e49c1",
+            "9df3222673b2fada2ccf68bb7a2024a843f630aa8c6c3eae31ce2ff48b90c83d"
+          ]
+        }
+      },
+      "output": "images/0102A7_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "ETERNAL NIGHT",
+      "code": "00030B",
+      "websiteRowIds": [
+        "weapon:137"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_421.xj",
+      "texture": "assets/texture_494.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 421,
+        "offset": 2758656,
+        "compressedPath": "assets/model_421.prs",
+        "compressedBytes": 6230,
+        "compressedSha256": "b332eb9386234d3131085bf05cb49f3357537cf4a7dcd76fedf1c8128af12c97",
+        "decodedPath": "assets/model_421.xj",
+        "decodedBytes": 24224,
+        "decodedSha256": "7682a72b134745a33fc2f6a2faac22ef75b026ef2958d7d0e490a924a1f587ff",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 494,
+        "offset": 4055040,
+        "compressedPath": "assets/texture_494.prs",
+        "compressedBytes": 12304,
+        "compressedSha256": "905448f8efdac3e58f8dc45776e3d44127a14098372c982778d160675bafc34f",
+        "decodedPath": "assets/texture_494.xvm",
+        "decodedBytes": 22016,
+        "decodedSha256": "5523ac0562e30141093c1880ad1d62418be256ef1f95111896754247e8823fa2",
+        "textures": 1,
+        "formats": [
+          7
+        ],
+        "normalization": {
+          "report": "normalization-report.json",
+          "sourceDecodedSha256": "bfe0d937ec009d735a40df3f6fe42d116a7d36cb53ea7c092ea3d58d0f4cf276",
+          "normalizedSha256": "5523ac0562e30141093c1880ad1d62418be256ef1f95111896754247e8823fa2",
+          "payloadSha256": [
+            "c8d4551a32e31abfae2d18da0d082792f5ecf3045e17bd144067e83f8f947c16"
+          ]
+        }
+      },
+      "output": "images/00030B_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "EXTERMINATOR",
+      "code": "000909",
+      "websiteRowIds": [
+        "weapon:140"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_136.xj",
+      "texture": "assets/texture_454.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 136,
+        "offset": 1038336,
+        "compressedPath": "assets/model_136.prs",
+        "compressedBytes": 3952,
+        "compressedSha256": "60fc8cdad676fac571a5cb7e54766d70f593ab029233d453cd3309cfb1661be2",
+        "decodedPath": "assets/model_136.xj",
+        "decodedBytes": 11936,
+        "decodedSha256": "ec38a490925645f049ba16cbe327f72af0ad33616b68624a337aff1a9b950782",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 454,
+        "offset": 3432448,
+        "compressedPath": "assets/texture_454.prs",
+        "compressedBytes": 4951,
+        "compressedSha256": "a90da3c5dbdc50e789ee1abf00b3cca4c46e23784bc4b0ef6874fda0ecd58c0e",
+        "decodedPath": "assets/texture_454.xvm",
+        "decodedBytes": 8320,
+        "decodedSha256": "a03347d030dd2b9465e14dc46d2803ea53cbd0247b5e0eb0afe293fbd20f8133",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/000909_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "FROSTBITE",
+      "code": "004502",
+      "websiteRowIds": [
+        "weapon:162"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_068.xj",
+      "texture": "assets/texture_458.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 68,
+        "offset": 776192,
+        "compressedPath": "assets/model_068.prs",
+        "compressedBytes": 2242,
+        "compressedSha256": "1d1942e970edf4d07d7191949adde73b0fda16cd53c3ed81010cf5592114ff92",
+        "decodedPath": "assets/model_068.xj",
+        "decodedBytes": 7040,
+        "decodedSha256": "d2c4d9be1d58b823846fa127bf020f5b3e5fa5a43294ac337afdb9f7dfa1a1ef",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 458,
+        "offset": 3461120,
+        "compressedPath": "assets/texture_458.prs",
+        "compressedBytes": 7241,
+        "compressedSha256": "83b2656221970932e8a30974097843ccc2ecfb9c492b98dfdab0a44c1db6b9d0",
+        "decodedPath": "assets/texture_458.xvm",
+        "decodedBytes": 8896,
+        "decodedSha256": "441f535062d550ee34c0d23a437f10952c7d3b076817259e81e109e77fd631de",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/004502_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "GODS SHIELD BYAKKO",
+      "code": "01022E",
+      "websiteRowIds": [
+        "shield:045"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_361.xj",
+      "texture": "assets/texture_383.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 361,
+        "offset": 2252800,
+        "compressedPath": "assets/model_361.prs",
+        "compressedBytes": 749,
+        "compressedSha256": "b198c73bacda90371662f1706c7e331ff90c9f9d998838b37ce434005e39b3cb",
+        "decodedPath": "assets/model_361.xj",
+        "decodedBytes": 1952,
+        "decodedSha256": "d7e65139a9a5f35afa7a2375f16530fc6440a37ebaa6af4db453adb61c997df6",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 383,
+        "offset": 2914304,
+        "compressedPath": "assets/texture_383.prs",
+        "compressedBytes": 2122,
+        "compressedSha256": "3c8251cab98a51cbac1266c1c81966731cde157f46dad67b4fa22966ad9aae6b",
+        "decodedPath": "assets/texture_383.xvm",
+        "decodedBytes": 2176,
+        "decodedSha256": "665ccd945a1da81360c4bc3a7c8a9acd0951ea9368d7ffcbb945d8310276f9cb",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/01022E_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "GODS SHIELD SUZAKU",
+      "code": "01022C",
+      "websiteRowIds": [
+        "shield:043"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_359.xj",
+      "texture": "assets/texture_383.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 359,
+        "offset": 2248704,
+        "compressedPath": "assets/model_359.prs",
+        "compressedBytes": 749,
+        "compressedSha256": "983102ce5f0c4a69f0a063fb0cac5b79445dbca073b69921395dbed3e1746dcd",
+        "decodedPath": "assets/model_359.xj",
+        "decodedBytes": 1952,
+        "decodedSha256": "6cd75797a635d9ad1aa59d822df3affa44cef6c2bb8f18a76fee63422fae1ac2",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 383,
+        "offset": 2914304,
+        "compressedPath": "assets/texture_383.prs",
+        "compressedBytes": 2122,
+        "compressedSha256": "3c8251cab98a51cbac1266c1c81966731cde157f46dad67b4fa22966ad9aae6b",
+        "decodedPath": "assets/texture_383.xvm",
+        "decodedBytes": 2176,
+        "decodedSha256": "665ccd945a1da81360c4bc3a7c8a9acd0951ea9368d7ffcbb945d8310276f9cb",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/01022C_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "GRAVE DIGGER",
+      "code": "001204",
+      "websiteRowIds": [
+        "weapon:182"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_139.xj",
+      "texture": "assets/texture_462.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 139,
+        "offset": 1054720,
+        "compressedPath": "assets/model_139.prs",
+        "compressedBytes": 6343,
+        "compressedSha256": "69bf80e7f187256c0eeb4953f2535f8ed0f5166b3ace26bb9e2e96cbdbc0458a",
+        "decodedPath": "assets/model_139.xj",
+        "decodedBytes": 19040,
+        "decodedSha256": "1030a0ebc6a9509cd63576c8ab613060eb286e0341c16d7220d0d94f714a0015",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 462,
+        "offset": 3510272,
+        "compressedPath": "assets/texture_462.prs",
+        "compressedBytes": 7096,
+        "compressedSha256": "0b4da85f464754e3d9989d3007402345fcc848a5aaa5456c510d99fdbdefb601",
+        "decodedPath": "assets/texture_462.xvm",
+        "decodedBytes": 8896,
+        "decodedSha256": "de521b2e4a0f0d507c420d9bb6cbc3c2985df70e3b77691e1e87fef5302c51ae",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/001204_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "GUSH NEEDLE",
+      "code": "001201",
+      "websiteRowIds": [
+        "weapon:191"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_017.xj",
+      "texture": "assets/texture_452.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 17,
+        "offset": 585728,
+        "compressedPath": "assets/model_017.prs",
+        "compressedBytes": 2907,
+        "compressedSha256": "9019a32df06d08ca75c946d9c01cb727fd0c072fab5f94a150f1149053aa234e",
+        "decodedPath": "assets/model_017.xj",
+        "decodedBytes": 7776,
+        "decodedSha256": "25ab675eab0685f505c97ad7a1975b14c2a3a16fad881767c96f4be9f2914757",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 452,
+        "offset": 3416064,
+        "compressedPath": "assets/texture_452.prs",
+        "compressedBytes": 8665,
+        "compressedSha256": "aa9f5d2b9e4c83314432d3531887fffea65bb124ef601b2a5004ef40e755f4d0",
+        "decodedPath": "assets/texture_452.xvm",
+        "decodedBytes": 11392,
+        "decodedSha256": "ad3469bc668c962fce1b5ae3916ac1395d783e9f794a9b98e59ea0615cf1b4d0",
+        "textures": 2,
+        "formats": [
+          6,
+          7
+        ],
+        "normalization": {
+          "report": "normalization-report.json",
+          "sourceDecodedSha256": "f60791354c9e63b6fe2041da07f6f033bba5d2c7963382cd6e7027f08c9deffa",
+          "normalizedSha256": "ad3469bc668c962fce1b5ae3916ac1395d783e9f794a9b98e59ea0615cf1b4d0",
+          "payloadSha256": [
+            "71e4b91eabd1c08848a4c827de2286b0d65c4c2dcdff8a41b9733b4e6d199e4d",
+            "75b0451b275b4131584ffdbc7bb67b53e994d040ffef1006ef11cb42cc18ab29"
+          ]
+        }
+      },
+      "output": "images/001201_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "INFERNO BLADE",
+      "code": "000208",
+      "websiteRowIds": [
+        "weapon:217"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_179.xj",
+      "texture": "assets/texture_445.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 179,
+        "offset": 1222656,
+        "compressedPath": "assets/model_179.prs",
+        "compressedBytes": 3849,
+        "compressedSha256": "1b94d8c887fbd4f91455c7b292a1ff16780a62614efd3492345636ea8a40656c",
+        "decodedPath": "assets/model_179.xj",
+        "decodedBytes": 12192,
+        "decodedSha256": "f4809abd987fa90a771246c28aa4b374dd53e0a9ecfdc5a63be416837aa9fdb1",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 445,
+        "offset": 3342336,
+        "compressedPath": "assets/texture_445.prs",
+        "compressedBytes": 15403,
+        "compressedSha256": "5bec807c28879cad8befcfcf459164aafd90e001aa924f8a920599c3c8f67fc7",
+        "decodedPath": "assets/texture_445.xvm",
+        "decodedBytes": 33088,
+        "decodedSha256": "3a1df84420af5198816c216c795d4894a42467fd440bdbe644c46240db174c39",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/000208_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "KITETSU",
+      "code": "00D003",
+      "websiteRowIds": [
+        "weapon:229"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_040.xj",
+      "texture": "assets/texture_463.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 40,
+        "offset": 675840,
+        "compressedPath": "assets/model_040.prs",
+        "compressedBytes": 1728,
+        "compressedSha256": "3c3c18487df04d4e5c98d97f61da3e3a16236d24f36adca4b46dd880a5385436",
+        "decodedPath": "assets/model_040.xj",
+        "decodedBytes": 5280,
+        "decodedSha256": "8ff7d12b6b0b3b1dfe250d9ed5b5ea9746bb40c367a0f198b9a0d46453dfa88c",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 463,
+        "offset": 3518464,
+        "compressedPath": "assets/texture_463.prs",
+        "compressedBytes": 2588,
+        "compressedSha256": "3b89f1c9387cacf51b2a38829c8162274723692b3230771be72e079aae1696f3",
+        "decodedPath": "assets/texture_463.xvm",
+        "decodedBytes": 2752,
+        "decodedSha256": "b7f7ff3fb836b3327be16875d46a1e87247a362e444f2d05572fd2cfe701898d",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/00D003_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "MITSUNARI",
+      "code": "00D002",
+      "websiteRowIds": [
+        "weapon:270"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_040.xj",
+      "texture": "assets/texture_464.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 40,
+        "offset": 675840,
+        "compressedPath": "assets/model_040.prs",
+        "compressedBytes": 1728,
+        "compressedSha256": "3c3c18487df04d4e5c98d97f61da3e3a16236d24f36adca4b46dd880a5385436",
+        "decodedPath": "assets/model_040.xj",
+        "decodedBytes": 5280,
+        "decodedSha256": "8ff7d12b6b0b3b1dfe250d9ed5b5ea9746bb40c367a0f198b9a0d46453dfa88c",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 464,
+        "offset": 3522560,
+        "compressedPath": "assets/texture_464.prs",
+        "compressedBytes": 2036,
+        "compressedSha256": "e3ffebe5d8d21ca792ad286579c90583ccf48877f2c9bc53aa10df9adbad7685",
+        "decodedPath": "assets/texture_464.xvm",
+        "decodedBytes": 2752,
+        "decodedSha256": "70c192467a1160f1256114db7743237b5d408b479e396c554eb7e3de678ac981",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/00D002_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "MOLTEN RING",
+      "code": "0102A9",
+      "websiteRowIds": [
+        "shield:164"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_354.xj",
+      "texture": "assets/texture_474.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 354,
+        "offset": 2238464,
+        "compressedPath": "assets/model_354.prs",
+        "compressedBytes": 724,
+        "compressedSha256": "42907c2dabe6fd0283f6f6ab5a54f33aa42dfb72fc88358e1576128319163950",
+        "decodedPath": "assets/model_354.xj",
+        "decodedBytes": 2400,
+        "decodedSha256": "4777bc3dbf4419c700349e1484683a614bd28820642b1bb43d87cf0e958c0dcd",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 474,
+        "offset": 3592192,
+        "compressedPath": "assets/texture_474.prs",
+        "compressedBytes": 746,
+        "compressedSha256": "4d07e03d2d1fc8050c8faadc9d7b5cd9333d6c1c492b79b67e25e98ebb415e2a",
+        "decodedPath": "assets/texture_474.xvm",
+        "decodedBytes": 832,
+        "decodedSha256": "f00424dd553d282093eb9ff5d46a714995741a32dd8069f7117bdfc47f8bddcd",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/0102A9_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "MORTAL RUIN",
+      "code": "00030D",
+      "websiteRowIds": [
+        "weapon:274"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_431.xj",
+      "texture": "assets/texture_511.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 431,
+        "offset": 3006464,
+        "compressedPath": "assets/model_431.prs",
+        "compressedBytes": 1895,
+        "compressedSha256": "551cf6c5917fc246910d2a1d843f113e4bdf4a0c30cd140b9e765a525cee727a",
+        "decodedPath": "assets/model_431.xj",
+        "decodedBytes": 3200,
+        "decodedSha256": "beeb1f63ab2cd9c73df4acc3b59dd6e57c84dcb7df0143f69e2e9e58cb514f89",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 511,
+        "offset": 4489216,
+        "compressedPath": "assets/texture_511.prs",
+        "compressedBytes": 15698,
+        "compressedSha256": "9c782281e9ad33b43cea005856e1fcce8dffc76d217b60a299130a770b341e33",
+        "decodedPath": "assets/texture_511.xvm",
+        "decodedBytes": 33472,
+        "decodedSha256": "4091c873eea8ca51a7b62fa76863773db44b4ceedcc48be1a30ec0d270b86707",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/00030D_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "MYSTIC SPIRIT",
+      "code": "004902",
+      "websiteRowIds": [
+        "weapon:277"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_128.xj",
+      "texture": "assets/texture_448.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 128,
+        "offset": 1001472,
+        "compressedPath": "assets/model_128.prs",
+        "compressedBytes": 2513,
+        "compressedSha256": "75eb07719001414ea35a165f9954cde4171f86760be8de8aaec8a3ec12649395",
+        "decodedPath": "assets/model_128.xj",
+        "decodedBytes": 7840,
+        "decodedSha256": "2ac1060ae26ede054df8571e3ec77b990befadb91add6bd94b3c63d28ac2358e",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 448,
+        "offset": 3366912,
+        "compressedPath": "assets/texture_448.prs",
+        "compressedBytes": 5836,
+        "compressedSha256": "f1aad6e62e7fe5360392780b7687e158d695721710bf43b824cc903e3bf933f4",
+        "decodedPath": "assets/texture_448.xvm",
+        "decodedBytes": 8320,
+        "decodedSha256": "6745be01f49f89686ed113bf094ce6decf8f3155104167931515f9599cd6d055",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/004902_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "NEI'S CLAW",
+      "code": "009B00",
+      "websiteRowIds": [
+        "weapon:280"
+      ],
+      "evidenceTier": "website_parameter_unique_no_name",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_193.xj",
+      "texture": "assets/texture_193.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 193,
+        "offset": 1280000,
+        "compressedPath": "assets/model_193.prs",
+        "compressedBytes": 3573,
+        "compressedSha256": "3bf50e9d74aa4557a272366ff3ce0ddfdb940ce912be540df769691ee86db782",
+        "decodedPath": "assets/model_193.xj",
+        "decodedBytes": 10784,
+        "decodedSha256": "a7636ce70e0828106e8f7b4e9a4bff1954a4c68463b1a8022615d98dc8a18170",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 193,
+        "offset": 1654784,
+        "compressedPath": "assets/texture_193.prs",
+        "compressedBytes": 6642,
+        "compressedSha256": "38616f00fe5b50ced0b49df3c07fd22f3b341cc4f4225e60f622296438c48bcd",
+        "decodedPath": "assets/texture_193.xvm",
+        "decodedBytes": 8320,
+        "decodedSha256": "18c25afecd080df3f55ea68558994cf1a10fd1b297419baee5f555c60b232451",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/009B00_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "OBLIVION",
+      "code": "009701",
+      "websiteRowIds": [
+        "weapon:285"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_410.xj",
+      "texture": "assets/texture_480.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 410,
+        "offset": 2512896,
+        "compressedPath": "assets/model_410.prs",
+        "compressedBytes": 22145,
+        "compressedSha256": "3b4af4186d44abdc8abfa4d0dc1a1367cc444accfce0418dbbc500523fef16bc",
+        "decodedPath": "assets/model_410.xj",
+        "decodedBytes": 70464,
+        "decodedSha256": "678f321c2e99fa945a4fc952bf2c7b18d2c6dd5e066c83cd64b6d453facd2640",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 480,
+        "offset": 3667968,
+        "compressedPath": "assets/texture_480.prs",
+        "compressedBytes": 48027,
+        "compressedSha256": "0436265dbd5da7129db388b3def6dbc5c28214a4a7c6053e9318f6f08a25ab71",
+        "decodedPath": "assets/texture_480.xvm",
+        "decodedBytes": 65664,
+        "decodedSha256": "fdd4ff291236b51c7db8a947309f39bbe1ea249c7c1a9ebe05de293b68afc68e",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/009701_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "PASSION HAZE",
+      "code": "004C02",
+      "websiteRowIds": [
+        "weapon:296"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_428.xj",
+      "texture": "assets/texture_508.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 428,
+        "offset": 2889728,
+        "compressedPath": "assets/model_428.prs",
+        "compressedBytes": 40742,
+        "compressedSha256": "c44f2e5cbc9d0b6e22800655ca8a2e58557671d0f2e35cd3dff312034b1659a8",
+        "decodedPath": "assets/model_428.xj",
+        "decodedBytes": 67488,
+        "decodedSha256": "42de866388707924c4998d754814235897ed5a4457b1a3d8de1062deceab4355",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 508,
+        "offset": 4392960,
+        "compressedPath": "assets/texture_508.prs",
+        "compressedBytes": 20136,
+        "compressedSha256": "e8da970994560d1a01bb65657b39c9b243dfdd864595555894d0f5d144dc6a41",
+        "decodedPath": "assets/texture_508.xvm",
+        "decodedBytes": 32896,
+        "decodedSha256": "83127d882235e35b0d34cf9817ba3c46811786b9b12a86cb9c7a84831ddef0c4",
+        "textures": 1,
+        "formats": [
+          6
+        ],
+        "normalization": {
+          "report": "normalization-report.json",
+          "sourceDecodedSha256": "4adeb1b396c127f9d491ad3c20b5420b828a1632f83472b8c8a5387c444aa77d",
+          "normalizedSha256": "83127d882235e35b0d34cf9817ba3c46811786b9b12a86cb9c7a84831ddef0c4",
+          "payloadSha256": [
+            "bd15e549552f20153c2bae115ab00dec394434dba955d3d3e3d0b82abd7cfe69"
+          ]
+        }
+      },
+      "output": "images/004C02_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending",
+      "primaryModelOnly": true,
+      "primaryModelOnlyEvidence": "model_428.xj root 0 has 2806 vertices; root 1 is a four-vertex quad spanning Y -15.73..-3.41 and expands the camera bounds beyond the weapon"
+    },
+    {
+      "name": "PHOENIX WINGS",
+      "code": "0102D3",
+      "websiteRowIds": [
+        "shield:206"
+      ],
+      "evidenceTier": "website_parameter_unique_no_name",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_442.xj",
+      "texture": "assets/texture_386.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 442,
+        "offset": 3246080,
+        "compressedPath": "assets/model_442.prs",
+        "compressedBytes": 1092,
+        "compressedSha256": "6b95880b962391e1100d284372d6a52ed9f42f486991eb6aefba3d2906ea25d4",
+        "decodedPath": "assets/model_442.xj",
+        "decodedBytes": 2816,
+        "decodedSha256": "ea693b180d0b165e08db6b9ddb1f1b086a2b464f4d759cc6f58e3f24d0f806a3",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 386,
+        "offset": 2926592,
+        "compressedPath": "assets/texture_386.prs",
+        "compressedBytes": 2159,
+        "compressedSha256": "d38bbe847faa72b8ff20c4503406964d1c78dda1fed95fb58485ac5bf327e96b",
+        "decodedPath": "assets/texture_386.xvm",
+        "decodedBytes": 2176,
+        "decodedSha256": "e03225ef853f491a22576863820e45050c31df553f59c81e47626225a375f540",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/0102D3_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "PLANET EATER",
+      "code": "008905",
+      "websiteRowIds": [
+        "weapon:304"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_252.xj",
+      "texture": "assets/texture_456.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 252,
+        "offset": 1624064,
+        "compressedPath": "assets/model_252.prs",
+        "compressedBytes": 39977,
+        "compressedSha256": "d0c124f572878bd7657a94488fc5dd109c9d983650df66cec3e3a96379d1c724",
+        "decodedPath": "assets/model_252.xj",
+        "decodedBytes": 111744,
+        "decodedSha256": "64f27c028bb896ab9901cee0e1be46b4bbb37f5c6228b3fb5fdc31a96d175bd4",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 456,
+        "offset": 3442688,
+        "compressedPath": "assets/texture_456.prs",
+        "compressedBytes": 11725,
+        "compressedSha256": "8a1f4b9376d040e35988dd96098504372aeceb4033655482674582c1ab967cfd",
+        "decodedPath": "assets/texture_456.xvm",
+        "decodedBytes": 16576,
+        "decodedSha256": "4473f791ffbfa74221ffe03b0d4cc68aba60e4ad351a6ad18934a112e5c356b6",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/008905_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "RAINBOW SHIELD",
+      "code": "0102A8",
+      "websiteRowIds": [
+        "shield:163"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_405.xj",
+      "texture": "assets/texture_472.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 405,
+        "offset": 2424832,
+        "compressedPath": "assets/model_405.prs",
+        "compressedBytes": 16938,
+        "compressedSha256": "c8fecb81b1451d9b450837aa5b1dd7a8aa1b8bf4f6e233a62d4c82bffd2f378b",
+        "decodedPath": "assets/model_405.xj",
+        "decodedBytes": 60352,
+        "decodedSha256": "f058123eddd86542225e87897302422dd78b5e0c292bca2369b4441c1d504757",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 472,
+        "offset": 3567616,
+        "compressedPath": "assets/texture_472.prs",
+        "compressedBytes": 10201,
+        "compressedSha256": "1c5a6a0a218fb27cab07bf8daf134fbc3fed44ef03e44f6bbce42b613996bfe0",
+        "decodedPath": "assets/texture_472.xvm",
+        "decodedBytes": 24960,
+        "decodedSha256": "abc35d65ea1c27d0ccf1d9d76eff118473083efaec00352ef205368bcda57cb7",
+        "textures": 5,
+        "formats": [
+          6,
+          7
+        ]
+      },
+      "output": "images/0102A8_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "RATHALOS GREATSWORD",
+      "code": "00020B",
+      "websiteRowIds": [
+        "weapon:323"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_440.xj",
+      "texture": "assets/texture_522.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 440,
+        "offset": 3188736,
+        "compressedPath": "assets/model_440.prs",
+        "compressedBytes": 38558,
+        "compressedSha256": "e4b60d45be1f2d63e90e5ba37808af78a261e60b8ad7123244e0e3bcec019fbd",
+        "decodedPath": "assets/model_440.xj",
+        "decodedBytes": 71072,
+        "decodedSha256": "2c18a0ed8474780b7cbb3e97bc1dd8148c6055495083c19804b3110f4dd74aa0",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 522,
+        "offset": 4732928,
+        "compressedPath": "assets/texture_522.prs",
+        "compressedBytes": 28519,
+        "compressedSha256": "72dfbcaf6822707a9916a7f74fe2d44b453edaa9ada5b2b4a05a85fc14c142ac",
+        "decodedPath": "assets/texture_522.xvm",
+        "decodedBytes": 32896,
+        "decodedSha256": "6df3d15989340e488c1af905e6dc048af6c052461ab3fd52ccac4b6f919f3dbe",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/00020B_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "RED PHANTOM FIELD",
+      "code": "0102A6",
+      "websiteRowIds": [
+        "shield:161"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_404.xj",
+      "texture": "assets/texture_470.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 404,
+        "offset": 2414592,
+        "compressedPath": "assets/model_404.prs",
+        "compressedBytes": 8924,
+        "compressedSha256": "269998fefd79b103488620cde399e29a01f2a895cd183b3bf7b6cb65f4c02d7a",
+        "decodedPath": "assets/model_404.xj",
+        "decodedBytes": 23296,
+        "decodedSha256": "6fb828e9ad83071ba09ae23c18f949c52eadba5c0f3a17f84109325ed55a29a9",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 470,
+        "offset": 3555328,
+        "compressedPath": "assets/texture_470.prs",
+        "compressedBytes": 5322,
+        "compressedSha256": "4b35010ddb28f6fef9cda026092c734a76b4a1e243dcb23f1bc1c3d003601126",
+        "decodedPath": "assets/texture_470.xvm",
+        "decodedBytes": 10432,
+        "decodedSha256": "cd047a6150e2826b608ddea1663435d0cd9b2f174c08ac7fd273885aea9f1212",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/0102A6_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "SOUL BITER",
+      "code": "009703",
+      "websiteRowIds": [
+        "weapon:382"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_412.xj",
+      "texture": "assets/texture_482.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 412,
+        "offset": 2560000,
+        "compressedPath": "assets/model_412.prs",
+        "compressedBytes": 29091,
+        "compressedSha256": "4e04d6cf5319ad3fd3017daf5056b79b369bc68461fad014c69b9f98344a5620",
+        "decodedPath": "assets/model_412.xj",
+        "decodedBytes": 69312,
+        "decodedSha256": "bc5cfd52cceaa213fc45275f06af0dcb2f4776120b3ad9be4cd4166bbe780e97",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 482,
+        "offset": 3741696,
+        "compressedPath": "assets/texture_482.prs",
+        "compressedBytes": 38734,
+        "compressedSha256": "ffe9dff16ada21fcf8d1c7e9a0783e4c485c59f5e7fa401b8eec11a17e57b157",
+        "decodedPath": "assets/texture_482.xvm",
+        "decodedBytes": 49408,
+        "decodedSha256": "864fe202ebd4ab78260f781b228a4d401416bf83bbf4d8ab615877396127e636",
+        "textures": 3,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/009703_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "SOUL DEVOURER",
+      "code": "003F01",
+      "websiteRowIds": [
+        "weapon:383"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_444.xj",
+      "texture": "assets/texture_526.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 444,
+        "offset": 3254272,
+        "compressedPath": "assets/model_444.prs",
+        "compressedBytes": 6374,
+        "compressedSha256": "efc3c794cf4b1af0281971ef3f1884d71ddfea41c3b71fa7fdf9e0d7cd8b45de",
+        "decodedPath": "assets/model_444.xj",
+        "decodedBytes": 19072,
+        "decodedSha256": "96c9e2bb41ec55b4bc119ded6f48ad2bf9efb5201089d1bcea35bb785b5978e4",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 526,
+        "offset": 4847616,
+        "compressedPath": "assets/texture_526.prs",
+        "compressedBytes": 11736,
+        "compressedSha256": "5a06b2b1ab41c08a4c34f59355da681b7bb81b6a1dc76b0b53d92231465ed885",
+        "decodedPath": "assets/texture_526.xvm",
+        "decodedBytes": 16576,
+        "decodedSha256": "ec205294c6ba94fd858955b0fd9ae81410414d21b5b1479b6d816782163957bb",
+        "textures": 2,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/003F01_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "SUBZERO",
+      "code": "001301",
+      "websiteRowIds": [
+        "weapon:397"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_018.xj",
+      "texture": "assets/texture_542.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 18,
+        "offset": 589824,
+        "compressedPath": "assets/model_018.prs",
+        "compressedBytes": 4189,
+        "compressedSha256": "a257540c15e587fa00558229bd24fdb39c2e39bfdd8d849d88ef812dda36e8a7",
+        "decodedPath": "assets/model_018.xj",
+        "decodedBytes": 11264,
+        "decodedSha256": "dbaa02b215a4e121d919e5201bfd42f0206829a60270679e936a29dc441ef9fa",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 542,
+        "offset": 5097472,
+        "compressedPath": "assets/texture_542.prs",
+        "compressedBytes": 7752,
+        "compressedSha256": "ff2f1867e769453df6050f1b762c844857066e588dccbd947fd6e8bd3d79147f",
+        "decodedPath": "assets/texture_542.xvm",
+        "decodedBytes": 24960,
+        "decodedSha256": "672c08eca24c111523148a1eac4ce53562d7c35a177712cd205a4ad7049d8c7f",
+        "textures": 3,
+        "formats": [
+          6,
+          7
+        ]
+      },
+      "output": "images/001301_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "TASTE OF AFFECTION",
+      "code": "004C04",
+      "websiteRowIds": [
+        "weapon:408"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_428.xj",
+      "texture": "assets/texture_507.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 428,
+        "offset": 2889728,
+        "compressedPath": "assets/model_428.prs",
+        "compressedBytes": 40742,
+        "compressedSha256": "c44f2e5cbc9d0b6e22800655ca8a2e58557671d0f2e35cd3dff312034b1659a8",
+        "decodedPath": "assets/model_428.xj",
+        "decodedBytes": 67488,
+        "decodedSha256": "42de866388707924c4998d754814235897ed5a4457b1a3d8de1062deceab4355",
+        "sourceFormat": "xj",
+        "roots": 2
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 507,
+        "offset": 4370432,
+        "compressedPath": "assets/texture_507.prs",
+        "compressedBytes": 20871,
+        "compressedSha256": "ab3185a9446f98160c1c3e555f5396374542d736289dd4be9ed8d9b82f4732dd",
+        "decodedPath": "assets/texture_507.xvm",
+        "decodedBytes": 32896,
+        "decodedSha256": "71a3a0c4ee2c1f25785954f50c5df31c81c64da4f9ddedfef8dc364a266da945",
+        "textures": 1,
+        "formats": [
+          6
+        ],
+        "normalization": {
+          "report": "normalization-report.json",
+          "sourceDecodedSha256": "a437c97d96f61ee71ed0aeef0bd9b8e9d7e14ab0c29cf9b25bf27dd48ec4e67d",
+          "normalizedSha256": "71a3a0c4ee2c1f25785954f50c5df31c81c64da4f9ddedfef8dc364a266da945",
+          "payloadSha256": [
+            "b86e40bd56e96cfd7f6c76c693b365cb8572169c71971945f020dbff6291a25f"
+          ]
+        }
+      },
+      "output": "images/004C04_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending",
+      "primaryModelOnly": true,
+      "primaryModelOnlyEvidence": "model_428.xj root 0 has 2806 vertices; root 1 is a four-vertex quad spanning Y -15.73..-3.41 and expands the camera bounds beyond the weapon"
+    },
+    {
+      "name": "TIGER'S FANG & DRAGON'S CLAW",
+      "code": "00B801",
+      "websiteRowIds": [
+        "weapon:413"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_156.xj",
+      "texture": "assets/texture_465.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 156,
+        "offset": 1138688,
+        "compressedPath": "assets/model_156.prs",
+        "compressedBytes": 1834,
+        "compressedSha256": "4f21c3e93ac350c0a5cd3a8ad2c795dfbd6c24294ed558146ca97fe03f923e83",
+        "decodedPath": "assets/model_156.xj",
+        "decodedBytes": 5888,
+        "decodedSha256": "8b8e1e334d566613212c45d031554472691e67e47c22c05520a2d7f13ef36d6e",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 465,
+        "offset": 3524608,
+        "compressedPath": "assets/texture_465.prs",
+        "compressedBytes": 2128,
+        "compressedSha256": "22681d9949efc593b7dcde332f9ca206913febf72f2a5ceef486129d5e317050",
+        "decodedPath": "assets/texture_465.xvm",
+        "decodedBytes": 2176,
+        "decodedSha256": "9b639bfa3ca9efe2fc1c2ed92f906b4aefde0528328e451eb0c8a4244ded75e0",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/00B801_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "TORMENTOR",
+      "code": "000908",
+      "websiteRowIds": [
+        "weapon:414"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_136.xj",
+      "texture": "assets/texture_453.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 136,
+        "offset": 1038336,
+        "compressedPath": "assets/model_136.prs",
+        "compressedBytes": 3952,
+        "compressedSha256": "60fc8cdad676fac571a5cb7e54766d70f593ab029233d453cd3309cfb1661be2",
+        "decodedPath": "assets/model_136.xj",
+        "decodedBytes": 11936,
+        "decodedSha256": "ec38a490925645f049ba16cbe327f72af0ad33616b68624a337aff1a9b950782",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 453,
+        "offset": 3426304,
+        "compressedPath": "assets/texture_453.prs",
+        "compressedBytes": 5216,
+        "compressedSha256": "433df1b4d026e14f201465a4ebc6a2cad31d2d40301545c89721bf4eb236aefb",
+        "decodedPath": "assets/texture_453.xvm",
+        "decodedBytes": 8320,
+        "decodedSha256": "fc0851b6e7bead4a8157e8fc1a87088b32d76f416663c5e9120ffd5673d9f0c0",
+        "textures": 1,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/000908_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    },
+    {
+      "name": "TWIN PALLASCH",
+      "code": "00D001",
+      "websiteRowIds": [
+        "weapon:425"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "model": "assets/model_013.xj",
+      "texture": "assets/texture_013.xvm",
+      "modelEvidence": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 13,
+        "offset": 573440,
+        "compressedPath": "assets/model_013.prs",
+        "compressedBytes": 2639,
+        "compressedSha256": "0e93443439348bbd2280021c4c1ce9acb677d3ae0765d84ff237a9df6b2c01e7",
+        "decodedPath": "assets/model_013.xj",
+        "decodedBytes": 11712,
+        "decodedSha256": "49ff3295deb5a47c167fad81703ce95244e3b891bfe3cd989ae09e4b929f7db8",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      "textureEvidence": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 13,
+        "offset": 595968,
+        "compressedPath": "assets/texture_013.prs",
+        "compressedBytes": 3521,
+        "compressedSha256": "4c009d67ad36fe917827b852538b41055110f298d7e094d69f39d5f03380e3b4",
+        "decodedPath": "assets/texture_013.xvm",
+        "decodedBytes": 6400,
+        "decodedSha256": "9c101ab0c1f022b7820b5c33f64b282c01a118dfec50ac5af41e1790f922595b",
+        "textures": 3,
+        "formats": [
+          6
+        ]
+      },
+      "output": "images/00D001_model.png",
+      "resourceVerified": true,
+      "visualQa": "pending"
+    }
+  ],
+  "excluded": [
+    {
+      "name": "JUDGEMENT BLADE",
+      "code": "00B802",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "NJCM pointer at 0x13ab4 targets 0xbec01a37, outside its 0x149d8-byte body"
+    },
+    {
+      "name": "LAST EMPEROR",
+      "code": "00030E",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "archive declares 2 XVRT chunks but 2 trailing bytes remain"
+    },
+    {
+      "name": "M&A85 FURY",
+      "code": "001403",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "NJCM pointer at 0x10c60 targets 0x2840284, outside its 0x115b8-byte body"
+    },
+    {
+      "name": "TWIN CYCLONE",
+      "code": "00030A",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "index out of range"
+    }
+  ]
+}

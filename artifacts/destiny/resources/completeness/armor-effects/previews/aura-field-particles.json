@@ -1,0 +1,158 @@
+{
+  "schema": "destiny-offline-type0-particle-preview-v1",
+  "source": {
+    "file": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+    "index": 225,
+    "name": "bm4_tamasii",
+    "textureId": 700460,
+    "runtimeVerified": false
+  },
+  "preview": {
+    "seed": 20923,
+    "frame": 40,
+    "origin": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "uvCount": 1,
+    "effectNtFlags": 1,
+    "frameBasis": "single emitter activation; not armor equip time or repeated helper cycle",
+    "noCharacterModel": true,
+    "limitations": [
+      "Client global RNG consumption and entity pose are not reproduced.",
+      "Armor helper activation/retrigger cycles and camera culling are not reproduced."
+    ]
+  },
+  "emitted": 20,
+  "particles": [
+    {
+      "x": -3.7305512743525027,
+      "y": 15.0,
+      "z": -2.5165430254125125,
+      "scale": 0.06166449624572259,
+      "rgba": [
+        0,
+        0,
+        0,
+        254
+      ],
+      "angle": 8025,
+      "uvFrame": 0,
+      "bornFrame": 24,
+      "age": 0.9999999999999999
+    },
+    {
+      "x": 3.370999497087562,
+      "y": 13.0,
+      "z": 1.9612148274520125,
+      "scale": 0.07614592484406542,
+      "rgba": [
+        0,
+        33,
+        33,
+        254
+      ],
+      "angle": 39138,
+      "uvFrame": 0,
+      "bornFrame": 26,
+      "age": 0.8666666666666666
+    },
+    {
+      "x": -3.1409023985421443,
+      "y": 11.0,
+      "z": -1.012290960293364,
+      "scale": 0.09402820461312464,
+      "rgba": [
+        0,
+        67,
+        67,
+        254
+      ],
+      "angle": 21657,
+      "uvFrame": 0,
+      "bornFrame": 28,
+      "age": 0.7333333333333333
+    },
+    {
+      "x": -1.4269554608661301,
+      "y": 9.0,
+      "z": -2.292116640151956,
+      "scale": 0.1161099990691977,
+      "rgba": [
+        0,
+        101,
+        101,
+        254
+      ],
+      "angle": 42547,
+      "uvFrame": 0,
+      "bornFrame": 30,
+      "age": 0.6
+    },
+    {
+      "x": -2.0949430952045263,
+      "y": 7.0,
+      "z": -0.14564950508050545,
+      "scale": 0.1433775316599772,
+      "rgba": [
+        0,
+        135,
+        135,
+        254
+      ],
+      "angle": 5541,
+      "uvFrame": 0,
+      "bornFrame": 32,
+      "age": 0.4666666666666666
+    },
+    {
+      "x": 0.6798066581816933,
+      "y": 5.0,
+      "z": 1.3371099753968543,
+      "scale": 0.1770486327594956,
+      "rgba": [
+        0,
+        169,
+        169,
+        254
+      ],
+      "angle": 30205,
+      "uvFrame": 0,
+      "bornFrame": 34,
+      "age": 0.3333333333333333
+    },
+    {
+      "x": 0.8998860581869741,
+      "y": 3.0,
+      "z": -0.014322941517978702,
+      "scale": 0.2186271307581508,
+      "rgba": [
+        0,
+        203,
+        203,
+        254
+      ],
+      "angle": 10636,
+      "uvFrame": 0,
+      "bornFrame": 36,
+      "age": 0.2
+    },
+    {
+      "x": 0.2958734461556736,
+      "y": 1.0,
+      "z": -0.04958740780201387,
+      "scale": 0.2699700164783003,
+      "rgba": [
+        158,
+        237,
+        237,
+        254
+      ],
+      "angle": 40371,
+      "uvFrame": 0,
+      "bornFrame": 38,
+      "age": 0.06666666666666667
+    }
+  ]
+}

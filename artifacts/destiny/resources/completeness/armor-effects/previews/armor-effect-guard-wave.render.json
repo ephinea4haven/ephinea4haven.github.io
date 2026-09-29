@@ -1,0 +1,51 @@
+{
+  "scope": "fixed-seed source-particle-effect preview; no player model; Destiny runtime unverified",
+  "simulation": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/guard-wave-particles.json",
+    "sha256": "8a2f638a5d08df7aaa287c0aaa5a79bcba0c402a952efea760a75fa552812cdb"
+  },
+  "texture": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/guard-wave-texture.png",
+    "sha256": "4fa8f18d125ea390ddaa9074b994defea1043f4e56965a6f4aca1527dcc19ff6"
+  },
+  "renderer": {
+    "type": 3,
+    "frames": 1,
+    "spriteHalfSize": [
+      32.0,
+      32.0
+    ],
+    "uvPointer": "0xa112cc",
+    "blend": {
+      "src": "SRCALPHA",
+      "dst": "ONE"
+    },
+    "cameraFacing": true
+  },
+  "canvas": [
+    800,
+    800
+  ],
+  "cameraEye": [
+    0.0,
+    6.489749662400516,
+    11.240579879032406
+  ],
+  "cameraTarget": [
+    0.0,
+    0.0,
+    3.735351739919679e-06
+  ],
+  "cameraPitchDegrees": 30.0,
+  "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
+  "focalPixels": 320.0,
+  "backgroundRgb": [
+    10,
+    13,
+    23
+  ],
+  "image": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-guard-wave.png",
+    "sha256": "5ab6f4cc5ada4040dfb055aaa4d619af6bf05df2b2a2ce1fdf6246bfb0aa6281"
+  }
+}

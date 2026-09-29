@@ -1,0 +1,662 @@
+{
+  "schema": "destiny-unresolved-weapon-name-candidates-v1",
+  "sources": {
+    "database": {
+      "path": "database.json",
+      "sha256": "dede95275fd419bce2fa65dd38c09d76cba5c329764a87a57806ac5fe5e5ec1d"
+    },
+    "pmt": {
+      "path": "pmt/records.json",
+      "sha256": "c9fef0eb88813b2f7590597af5eaf3fa369863d4700d5837313a95f9b23fc2aa"
+    },
+    "names": {
+      "path": "resources/item-names.json",
+      "sha256": "292fa16c2c119b16e4e7e1d8d7f8789c2f2f17c7358d72a48241aed5e856b06f"
+    }
+  },
+  "method": "Unique exact case-insensitive name in website and unresolved Unitxt candidate; six numeric weapon parameters match exactly.",
+  "runtime_verified": false,
+  "count": 16,
+  "matches": [
+    {
+      "name": "CHRISTMAS SPIRIT",
+      "code": "001404",
+      "pmt_id": 651,
+      "database_id": "weapon:079",
+      "candidate_index": 651,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 320,
+          "pmt": 320
+        },
+        {
+          "field": "ATP max",
+          "website": 350,
+          "pmt": 350
+        },
+        {
+          "field": "ATA",
+          "website": 40,
+          "pmt": 40
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATA",
+          "website": 185,
+          "pmt": 185
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "COMBUSTION CANNON",
+      "code": "001502",
+      "pmt_id": 631,
+      "database_id": "weapon:087",
+      "candidate_index": 631,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 720,
+          "pmt": 720
+        },
+        {
+          "field": "ATP max",
+          "website": 720,
+          "pmt": 720
+        },
+        {
+          "field": "ATA",
+          "website": 75,
+          "pmt": 75
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATA",
+          "website": 220,
+          "pmt": 220
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "DARK FALZ BUSTER",
+      "code": "008904",
+      "pmt_id": 610,
+      "database_id": "weapon:099",
+      "candidate_index": 610,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 900,
+          "pmt": 900
+        },
+        {
+          "field": "ATP max",
+          "website": 940,
+          "pmt": 940
+        },
+        {
+          "field": "ATA",
+          "website": 50,
+          "pmt": 50
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATP",
+          "website": 700,
+          "pmt": 700
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "DOUBLE FURY",
+      "code": "00D009",
+      "pmt_id": 678,
+      "database_id": "weapon:125",
+      "candidate_index": 678,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 1000,
+          "pmt": 1000
+        },
+        {
+          "field": "ATP max",
+          "website": 1000,
+          "pmt": 1000
+        },
+        {
+          "field": "ATA",
+          "website": 60,
+          "pmt": 60
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATP",
+          "website": 1200,
+          "pmt": 1200
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "DRAGON SWORD",
+      "code": "003201",
+      "pmt_id": 613,
+      "database_id": "weapon:128",
+      "candidate_index": 613,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 1000,
+          "pmt": 1000
+        },
+        {
+          "field": "ATP max",
+          "website": 1000,
+          "pmt": 1000
+        },
+        {
+          "field": "ATA",
+          "website": 35,
+          "pmt": 35
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATP",
+          "website": 1000,
+          "pmt": 1000
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "GLIDE DIVINE S",
+      "code": "00C501",
+      "pmt_id": 606,
+      "database_id": "weapon:178",
+      "candidate_index": 606,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 440,
+          "pmt": 440
+        },
+        {
+          "field": "ATP max",
+          "website": 440,
+          "pmt": 440
+        },
+        {
+          "field": "ATA",
+          "website": 34,
+          "pmt": 34
+        },
+        {
+          "field": "MST",
+          "website": 55,
+          "pmt": 55
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required MST",
+          "website": 900,
+          "pmt": 900
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "GLIDE DIVINE X",
+      "code": "00C502",
+      "pmt_id": 627,
+      "database_id": "weapon:179",
+      "candidate_index": 627,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 440,
+          "pmt": 440
+        },
+        {
+          "field": "ATP max",
+          "website": 440,
+          "pmt": 440
+        },
+        {
+          "field": "ATA",
+          "website": 34,
+          "pmt": 34
+        },
+        {
+          "field": "MST",
+          "website": 55,
+          "pmt": 55
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required MST",
+          "website": 900,
+          "pmt": 900
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "HELL STRIKER",
+      "code": "00BF01",
+      "pmt_id": 616,
+      "database_id": "weapon:205",
+      "candidate_index": 616,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 380,
+          "pmt": 380
+        },
+        {
+          "field": "ATP max",
+          "website": 380,
+          "pmt": 380
+        },
+        {
+          "field": "ATA",
+          "website": 60,
+          "pmt": 60
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATA",
+          "website": 120,
+          "pmt": 120
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "ICECREAM CONE",
+      "code": "003E02",
+      "pmt_id": 663,
+      "database_id": "weapon:213",
+      "candidate_index": 663,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 620,
+          "pmt": 620
+        },
+        {
+          "field": "ATP max",
+          "website": 650,
+          "pmt": 650
+        },
+        {
+          "field": "ATA",
+          "website": 43,
+          "pmt": 43
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATP",
+          "website": 580,
+          "pmt": 580
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "ILL GILL REAPER",
+      "code": "003E03",
+      "pmt_id": 691,
+      "database_id": "weapon:214",
+      "candidate_index": 691,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 900,
+          "pmt": 900
+        },
+        {
+          "field": "ATP max",
+          "website": 900,
+          "pmt": 900
+        },
+        {
+          "field": "ATA",
+          "website": 45,
+          "pmt": 45
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATP",
+          "website": 800,
+          "pmt": 800
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "LAVIS STORM",
+      "code": "00D008",
+      "pmt_id": 677,
+      "database_id": "weapon:246",
+      "candidate_index": 677,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 1000,
+          "pmt": 1000
+        },
+        {
+          "field": "ATP max",
+          "website": 1000,
+          "pmt": 1000
+        },
+        {
+          "field": "ATA",
+          "website": 60,
+          "pmt": 60
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATP",
+          "website": 1200,
+          "pmt": 1200
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "SKYFALL",
+      "code": "001D01",
+      "pmt_id": 634,
+      "database_id": "weapon:369",
+      "candidate_index": 634,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 430,
+          "pmt": 430
+        },
+        {
+          "field": "ATP max",
+          "website": 430,
+          "pmt": 430
+        },
+        {
+          "field": "ATA",
+          "website": 55,
+          "pmt": 55
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required MST",
+          "website": 1250,
+          "pmt": 1250
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "STORMRENDER",
+      "code": "00D005",
+      "pmt_id": 664,
+      "database_id": "weapon:394",
+      "candidate_index": 664,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 780,
+          "pmt": 780
+        },
+        {
+          "field": "ATP max",
+          "website": 780,
+          "pmt": 780
+        },
+        {
+          "field": "ATA",
+          "website": 42,
+          "pmt": 42
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATP",
+          "website": 900,
+          "pmt": 900
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "SWORD OF DESPAIR",
+      "code": "009702",
+      "pmt_id": 637,
+      "database_id": "weapon:402",
+      "candidate_index": 637,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 1160,
+          "pmt": 1160
+        },
+        {
+          "field": "ATP max",
+          "website": 1160,
+          "pmt": 1160
+        },
+        {
+          "field": "ATA",
+          "website": 50,
+          "pmt": 50
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATP",
+          "website": 1200,
+          "pmt": 1200
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "ULTIMATE DOUBLE CANNON",
+      "code": "00D000",
+      "pmt_id": 527,
+      "database_id": "weapon:461",
+      "candidate_index": 527,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 1000,
+          "pmt": 1000
+        },
+        {
+          "field": "ATP max",
+          "website": 1000,
+          "pmt": 1000
+        },
+        {
+          "field": "ATA",
+          "website": 60,
+          "pmt": 60
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required ATP",
+          "website": 1200,
+          "pmt": 1200
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    },
+    {
+      "name": "ZU'S PUNISHMENT",
+      "code": "009F01",
+      "pmt_id": 605,
+      "database_id": "weapon:489",
+      "candidate_index": 605,
+      "checked_parameters": [
+        {
+          "field": "ATP min",
+          "website": 465,
+          "pmt": 465
+        },
+        {
+          "field": "ATP max",
+          "website": 465,
+          "pmt": 465
+        },
+        {
+          "field": "ATA",
+          "website": 60,
+          "pmt": 60
+        },
+        {
+          "field": "MST",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Grind",
+          "website": 0,
+          "pmt": 0
+        },
+        {
+          "field": "Required MST",
+          "website": 1100,
+          "pmt": 1100
+        }
+      ],
+      "status": "website_parameter_correlated_candidate"
+    }
+  ]
+}

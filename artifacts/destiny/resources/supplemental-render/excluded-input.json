@@ -1,0 +1,71 @@
+{
+  "schema": "destiny-supplemental-original-exclusions-v1",
+  "items": [
+    {
+      "name": "ANCIENT PROPHECY",
+      "code": "00D006",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "XVRT 0 is not 64-byte aligned"
+    },
+    {
+      "name": "ELEMENTAL SHIELD",
+      "code": "01029A",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "XVRT 0 is not 64-byte aligned"
+    },
+    {
+      "name": "ENERGY STORM",
+      "code": "0102A7",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "XVRT 0 is not 64-byte aligned"
+    },
+    {
+      "name": "ETERNAL NIGHT",
+      "code": "00030B",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "XVRT 0 is not 64-byte aligned"
+    },
+    {
+      "name": "GUSH NEEDLE",
+      "code": "001201",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "XVRT 1 is not 64-byte aligned"
+    },
+    {
+      "name": "JUDGEMENT BLADE",
+      "code": "00B802",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "NJCM pointer at 0x13ab4 targets 0xbec01a37, outside its 0x149d8-byte body"
+    },
+    {
+      "name": "LAST EMPEROR",
+      "code": "00030E",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "archive declares 2 XVRT chunks but 2 trailing bytes remain"
+    },
+    {
+      "name": "M&A85 FURY",
+      "code": "001403",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "NJCM pointer at 0x10c60 targets 0x2840284, outside its 0x115b8-byte body"
+    },
+    {
+      "name": "PASSION HAZE",
+      "code": "004C02",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "archive declares 1 XVRT chunks but 2 trailing bytes remain"
+    },
+    {
+      "name": "TASTE OF AFFECTION",
+      "code": "004C04",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "archive declares 1 XVRT chunks but 1 trailing bytes remain"
+    },
+    {
+      "name": "TWIN CYCLONE",
+      "code": "00030A",
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "reason": "index out of range"
+    }
+  ]
+}

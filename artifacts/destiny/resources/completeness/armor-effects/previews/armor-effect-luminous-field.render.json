@@ -1,0 +1,51 @@
+{
+  "scope": "fixed-seed source-particle-effect preview; no player model; Destiny runtime unverified",
+  "simulation": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/luminous-field-particles.json",
+    "sha256": "b662c7be15c17b044224769c4415b3e78bac95555084bebf1581354823be370f"
+  },
+  "texture": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/luminous-field-texture.png",
+    "sha256": "932280052d8f1324b36a724ee2bb4590061805b659fa650b766fe8c628a59a04"
+  },
+  "renderer": {
+    "type": 3,
+    "frames": 1,
+    "spriteHalfSize": [
+      16.0,
+      16.0
+    ],
+    "uvPointer": "0xa112cc",
+    "blend": {
+      "src": "SRCALPHA",
+      "dst": "ONE"
+    },
+    "cameraFacing": true
+  },
+  "canvas": [
+    800,
+    800
+  ],
+  "cameraEye": [
+    -0.06563393930566619,
+    7.01321077095671,
+    12.154151847192693
+  ],
+  "cameraTarget": [
+    -0.06563393930566619,
+    0.0,
+    0.006914467706372385
+  ],
+  "cameraPitchDegrees": 30.0,
+  "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
+  "focalPixels": 320.0,
+  "backgroundRgb": [
+    10,
+    13,
+    23
+  ],
+  "image": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-luminous-field.png",
+    "sha256": "d97b0d27a35c9fb91da0dd1b74733c6a7b32a81192d073f54aefe43920634ab4"
+  }
+}

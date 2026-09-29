@@ -1,0 +1,797 @@
+{
+  "schema": "destiny-armor-effect-preview-v1",
+  "items": [
+    {
+      "name": "FLAME GARMENT",
+      "code": "01012E",
+      "scope": "offline_equipment_effect_preview",
+      "runtimeVerified": false,
+      "visualQa": "passed",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-flame-garment.png",
+        "sha256": "1eb2aa7c2e85ddee75b14a5940de3f4b3642e7f258b855b3cc083fd3812f59f2"
+      },
+      "seed": 20923,
+      "frame": 40,
+      "emitted": 23,
+      "visibleParticles": 21,
+      "cameraEye": [
+        -0.4250542486737352,
+        27.978152187887673,
+        19.83476405461173
+      ],
+      "cameraTarget": [
+        -0.4250542486737352,
+        16.217864990234375,
+        -0.5346508833255967
+      ],
+      "cameraPitchDegrees": 30.0,
+      "backgroundRgb": [
+        10,
+        13,
+        23
+      ],
+      "dependencies": [
+        {
+          "role": "particle_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+          "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+        },
+        {
+          "role": "texture_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/effect_nt.xvm",
+          "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+        },
+        {
+          "role": "stock_client",
+          "path": "/Users/wangzhen/study/PSOBB-Haven/Psobb.exe",
+          "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+        },
+        {
+          "role": "texture_extractor",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/extract_effect_textures.py",
+          "sha256": "dfb17ca721fd40998a5f0c982364bbad87c15ee22f81d8b28b73301c99b272e8"
+        },
+        {
+          "role": "texture_manifest",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/texture-manifest.json",
+          "sha256": "da251cdcf437e721ffacd04467e9a2dcd16e96b5fc7b78d2cf10b570dab4144d"
+        },
+        {
+          "role": "texture_png",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/flame-garment-texture.png",
+          "sha256": "8a7f6d5e7f70fa6c67caea61b02d174d91cad3b7e83731ac8efeb9f1ed1c7b09"
+        },
+        {
+          "role": "simulator",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/simulate_particles.py",
+          "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+        },
+        {
+          "role": "renderer",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_particle_preview.py",
+          "sha256": "a7d682326983cb0444c7cd44ee265b4790efb4f863df654edfcfb86447c46fdc"
+        },
+        {
+          "role": "render_batch",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_all_previews.py",
+          "sha256": "65efa75090787a36db1da05b248fdda9bb8a803b7f9ddf193d3ebb95c9b1e1f9"
+        },
+        {
+          "role": "simulation",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/flame-garment-particles.json",
+          "sha256": "ab9d2339f6e86e529aa5501e6283b3be75756dfa651dbf5679fedb29a5b9af49"
+        },
+        {
+          "role": "render_sidecar",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-flame-garment.render.json",
+          "sha256": "8c7a21d82d87ee84abf68b8fe5ca735c1fbf1edd401f33613bc8badfde8c2aa0"
+        }
+      ]
+    },
+    {
+      "name": "LUMINOUS FIELD",
+      "code": "01012B",
+      "scope": "offline_equipment_effect_preview",
+      "runtimeVerified": false,
+      "visualQa": "passed",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-luminous-field.png",
+        "sha256": "d97b0d27a35c9fb91da0dd1b74733c6a7b32a81192d073f54aefe43920634ab4"
+      },
+      "seed": 20923,
+      "frame": 40,
+      "emitted": 800,
+      "visibleParticles": 305,
+      "cameraEye": [
+        -0.06563393930566619,
+        7.01321077095671,
+        12.154151847192693
+      ],
+      "cameraTarget": [
+        -0.06563393930566619,
+        0.0,
+        0.006914467706372385
+      ],
+      "cameraPitchDegrees": 30.0,
+      "backgroundRgb": [
+        10,
+        13,
+        23
+      ],
+      "dependencies": [
+        {
+          "role": "particle_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+          "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+        },
+        {
+          "role": "texture_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/effect_nt.xvm",
+          "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+        },
+        {
+          "role": "stock_client",
+          "path": "/Users/wangzhen/study/PSOBB-Haven/Psobb.exe",
+          "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+        },
+        {
+          "role": "texture_extractor",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/extract_effect_textures.py",
+          "sha256": "dfb17ca721fd40998a5f0c982364bbad87c15ee22f81d8b28b73301c99b272e8"
+        },
+        {
+          "role": "texture_manifest",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/texture-manifest.json",
+          "sha256": "da251cdcf437e721ffacd04467e9a2dcd16e96b5fc7b78d2cf10b570dab4144d"
+        },
+        {
+          "role": "texture_png",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/luminous-field-texture.png",
+          "sha256": "932280052d8f1324b36a724ee2bb4590061805b659fa650b766fe8c628a59a04"
+        },
+        {
+          "role": "simulator",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/simulate_particles.py",
+          "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+        },
+        {
+          "role": "renderer",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_particle_preview.py",
+          "sha256": "a7d682326983cb0444c7cd44ee265b4790efb4f863df654edfcfb86447c46fdc"
+        },
+        {
+          "role": "render_batch",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_all_previews.py",
+          "sha256": "65efa75090787a36db1da05b248fdda9bb8a803b7f9ddf193d3ebb95c9b1e1f9"
+        },
+        {
+          "role": "simulation",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/luminous-field-particles.json",
+          "sha256": "b662c7be15c17b044224769c4415b3e78bac95555084bebf1581354823be370f"
+        },
+        {
+          "role": "render_sidecar",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-luminous-field.render.json",
+          "sha256": "d64aaa87da2c5b84ab7ed406b4be37106e1da8803a33f2264e6ba747e665c1fd"
+        }
+      ]
+    },
+    {
+      "name": "AURA FIELD",
+      "code": "010131",
+      "scope": "offline_equipment_effect_preview",
+      "runtimeVerified": false,
+      "visualQa": "passed",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-aura-field.png",
+        "sha256": "f3c3a3455ae0d5d1cd307a73843c30993e878e4df8371385c045c95fc686ad51"
+      },
+      "seed": 20923,
+      "frame": 40,
+      "emitted": 20,
+      "visibleParticles": 8,
+      "cameraEye": [
+        -0.1797758886324703,
+        12.81673725049314,
+        8.065169545583489
+      ],
+      "cameraTarget": [
+        -0.1797758886324703,
+        8.0,
+        -0.27766409898025
+      ],
+      "cameraPitchDegrees": 30.0,
+      "backgroundRgb": [
+        10,
+        13,
+        23
+      ],
+      "dependencies": [
+        {
+          "role": "particle_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+          "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+        },
+        {
+          "role": "texture_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/effect_nt.xvm",
+          "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+        },
+        {
+          "role": "stock_client",
+          "path": "/Users/wangzhen/study/PSOBB-Haven/Psobb.exe",
+          "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+        },
+        {
+          "role": "texture_extractor",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/extract_effect_textures.py",
+          "sha256": "dfb17ca721fd40998a5f0c982364bbad87c15ee22f81d8b28b73301c99b272e8"
+        },
+        {
+          "role": "texture_manifest",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/texture-manifest.json",
+          "sha256": "da251cdcf437e721ffacd04467e9a2dcd16e96b5fc7b78d2cf10b570dab4144d"
+        },
+        {
+          "role": "texture_png",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/aura-field-texture.png",
+          "sha256": "0ad5309dec28dff1aea3dcf8429f7bd8ed38ad65ef912f026f7f11899ed9a1af"
+        },
+        {
+          "role": "simulator",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/simulate_particles.py",
+          "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+        },
+        {
+          "role": "renderer",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_particle_preview.py",
+          "sha256": "a7d682326983cb0444c7cd44ee265b4790efb4f863df654edfcfb86447c46fdc"
+        },
+        {
+          "role": "render_batch",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_all_previews.py",
+          "sha256": "65efa75090787a36db1da05b248fdda9bb8a803b7f9ddf193d3ebb95c9b1e1f9"
+        },
+        {
+          "role": "simulation",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/aura-field-particles.json",
+          "sha256": "639ae4a0a152807dea63de30c6d243e6bd022b382ef9594d45ff00500339ca48"
+        },
+        {
+          "role": "render_sidecar",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-aura-field.render.json",
+          "sha256": "6e24f04e07fb093706d7ec095e78ec02a6296b567669a277a153d58928fbb918"
+        }
+      ]
+    },
+    {
+      "name": "GUARD WAVE",
+      "code": "010129",
+      "scope": "offline_equipment_effect_preview",
+      "runtimeVerified": false,
+      "visualQa": "passed",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-guard-wave.png",
+        "sha256": "5ab6f4cc5ada4040dfb055aaa4d619af6bf05df2b2a2ce1fdf6246bfb0aa6281"
+      },
+      "seed": 20923,
+      "frame": 40,
+      "emitted": 40,
+      "visibleParticles": 30,
+      "cameraEye": [
+        0.0,
+        6.489749662400516,
+        11.240579879032406
+      ],
+      "cameraTarget": [
+        0.0,
+        0.0,
+        3.735351739919679e-06
+      ],
+      "cameraPitchDegrees": 30.0,
+      "backgroundRgb": [
+        10,
+        13,
+        23
+      ],
+      "dependencies": [
+        {
+          "role": "particle_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+          "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+        },
+        {
+          "role": "texture_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/effect_nt.xvm",
+          "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+        },
+        {
+          "role": "stock_client",
+          "path": "/Users/wangzhen/study/PSOBB-Haven/Psobb.exe",
+          "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+        },
+        {
+          "role": "texture_extractor",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/extract_effect_textures.py",
+          "sha256": "dfb17ca721fd40998a5f0c982364bbad87c15ee22f81d8b28b73301c99b272e8"
+        },
+        {
+          "role": "texture_manifest",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/texture-manifest.json",
+          "sha256": "da251cdcf437e721ffacd04467e9a2dcd16e96b5fc7b78d2cf10b570dab4144d"
+        },
+        {
+          "role": "texture_png",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/guard-wave-texture.png",
+          "sha256": "4fa8f18d125ea390ddaa9074b994defea1043f4e56965a6f4aca1527dcc19ff6"
+        },
+        {
+          "role": "simulator",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/simulate_particles.py",
+          "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+        },
+        {
+          "role": "renderer",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_particle_preview.py",
+          "sha256": "a7d682326983cb0444c7cd44ee265b4790efb4f863df654edfcfb86447c46fdc"
+        },
+        {
+          "role": "render_batch",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_all_previews.py",
+          "sha256": "65efa75090787a36db1da05b248fdda9bb8a803b7f9ddf193d3ebb95c9b1e1f9"
+        },
+        {
+          "role": "simulation",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/guard-wave-particles.json",
+          "sha256": "8a2f638a5d08df7aaa287c0aaa5a79bcba0c402a952efea760a75fa552812cdb"
+        },
+        {
+          "role": "render_sidecar",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-guard-wave.render.json",
+          "sha256": "ecc41f73a7123135f4b0bb36858d071f08c7ed907ff466a55f58197550a60d37"
+        }
+      ]
+    },
+    {
+      "name": "DF FIELD",
+      "code": "01012A",
+      "scope": "offline_equipment_effect_preview",
+      "runtimeVerified": false,
+      "visualQa": "passed",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-df-field.png",
+        "sha256": "99268a3425af53776fb40b0a84ae1f0f9a3a6f33bcad2964b91420757e507976"
+      },
+      "seed": 20923,
+      "frame": 40,
+      "emitted": 40,
+      "visibleParticles": 10,
+      "cameraEye": [
+        0.0,
+        8.758229443864327,
+        15.064649497977138
+      ],
+      "cameraTarget": [
+        0.0,
+        0.06065000095986761,
+        0.0
+      ],
+      "cameraPitchDegrees": 30.0,
+      "backgroundRgb": [
+        10,
+        13,
+        23
+      ],
+      "dependencies": [
+        {
+          "role": "particle_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+          "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+        },
+        {
+          "role": "texture_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/effect_nt.xvm",
+          "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+        },
+        {
+          "role": "stock_client",
+          "path": "/Users/wangzhen/study/PSOBB-Haven/Psobb.exe",
+          "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+        },
+        {
+          "role": "texture_extractor",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/extract_effect_textures.py",
+          "sha256": "dfb17ca721fd40998a5f0c982364bbad87c15ee22f81d8b28b73301c99b272e8"
+        },
+        {
+          "role": "texture_manifest",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/texture-manifest.json",
+          "sha256": "da251cdcf437e721ffacd04467e9a2dcd16e96b5fc7b78d2cf10b570dab4144d"
+        },
+        {
+          "role": "texture_png",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/df-field-texture.png",
+          "sha256": "0ad5309dec28dff1aea3dcf8429f7bd8ed38ad65ef912f026f7f11899ed9a1af"
+        },
+        {
+          "role": "simulator",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/simulate_particles.py",
+          "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+        },
+        {
+          "role": "renderer",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_particle_preview.py",
+          "sha256": "a7d682326983cb0444c7cd44ee265b4790efb4f863df654edfcfb86447c46fdc"
+        },
+        {
+          "role": "render_batch",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_all_previews.py",
+          "sha256": "65efa75090787a36db1da05b248fdda9bb8a803b7f9ddf193d3ebb95c9b1e1f9"
+        },
+        {
+          "role": "simulation",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/df-field-particles.json",
+          "sha256": "2775e4b350bf95db67d1abb9490c1422c23e8a6ce112f2c2a27cd45110dc847e"
+        },
+        {
+          "role": "render_sidecar",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-df-field.render.json",
+          "sha256": "4f75957bc141c302f5120bd19e350f3aca78615515aa76ec2ff2feaade1f2ab6"
+        }
+      ]
+    },
+    {
+      "name": "BRIGHTNESS CIRCLE",
+      "code": "010130",
+      "scope": "offline_equipment_effect_preview",
+      "runtimeVerified": false,
+      "visualQa": "passed",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-brightness-circle.png",
+        "sha256": "b54eb31160a7dca746509e8e971bab8c0da002ac2fe6284aede65cff842a3597"
+      },
+      "seed": 20923,
+      "frame": 40,
+      "emitted": 38,
+      "visibleParticles": 16,
+      "cameraEye": [
+        -0.06868293030231243,
+        10.154656456071516,
+        15.504030633709512
+      ],
+      "cameraTarget": [
+        -0.06868293030231243,
+        0.9000000134110451,
+        -0.5255045315730724
+      ],
+      "cameraPitchDegrees": 30.0,
+      "backgroundRgb": [
+        10,
+        13,
+        23
+      ],
+      "dependencies": [
+        {
+          "role": "particle_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+          "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+        },
+        {
+          "role": "texture_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/effect_nt.xvm",
+          "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+        },
+        {
+          "role": "stock_client",
+          "path": "/Users/wangzhen/study/PSOBB-Haven/Psobb.exe",
+          "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+        },
+        {
+          "role": "texture_extractor",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/extract_effect_textures.py",
+          "sha256": "dfb17ca721fd40998a5f0c982364bbad87c15ee22f81d8b28b73301c99b272e8"
+        },
+        {
+          "role": "texture_manifest",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/texture-manifest.json",
+          "sha256": "da251cdcf437e721ffacd04467e9a2dcd16e96b5fc7b78d2cf10b570dab4144d"
+        },
+        {
+          "role": "texture_png",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/brightness-circle-texture.png",
+          "sha256": "932280052d8f1324b36a724ee2bb4590061805b659fa650b766fe8c628a59a04"
+        },
+        {
+          "role": "simulator",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/simulate_type1.py",
+          "sha256": "d18347ac53b44c6e484201ce1efbdfef27a95788a136ee11d7d6b518c56113ab"
+        },
+        {
+          "role": "renderer",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_particle_preview.py",
+          "sha256": "a7d682326983cb0444c7cd44ee265b4790efb4f863df654edfcfb86447c46fdc"
+        },
+        {
+          "role": "render_batch",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_all_previews.py",
+          "sha256": "65efa75090787a36db1da05b248fdda9bb8a803b7f9ddf193d3ebb95c9b1e1f9"
+        },
+        {
+          "role": "simulation",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/brightness-circle-particles.json",
+          "sha256": "5042212c96b124347dd78546849bf529f80800cc5317fe5733cd4c95b25df39b"
+        },
+        {
+          "role": "render_sidecar",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-brightness-circle.render.json",
+          "sha256": "59713a5424289adb82cad5269fb5b6b93ea5cc380f4330382a1cecd7ca2291a2"
+        }
+      ]
+    },
+    {
+      "name": "ELECTRO FRAME",
+      "code": "010132",
+      "scope": "offline_equipment_effect_preview",
+      "runtimeVerified": false,
+      "visualQa": "passed",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-electro-frame.png",
+        "sha256": "ab4c5250aa607ae5d55a0f7be9c6aac015ca95f839e5d63b86140da041d28c2e"
+      },
+      "seed": 20923,
+      "frame": 40,
+      "emitted": 16,
+      "visibleParticles": 3,
+      "cameraEye": [
+        0.01702880859375,
+        7.396857514738505,
+        7.048287034911005
+      ],
+      "cameraTarget": [
+        0.01702880859375,
+        3.069580078125,
+        -0.44677734375
+      ],
+      "cameraPitchDegrees": 30.0,
+      "backgroundRgb": [
+        10,
+        13,
+        23
+      ],
+      "dependencies": [
+        {
+          "role": "particle_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+          "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+        },
+        {
+          "role": "texture_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/effect_nt.xvm",
+          "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+        },
+        {
+          "role": "stock_client",
+          "path": "/Users/wangzhen/study/PSOBB-Haven/Psobb.exe",
+          "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+        },
+        {
+          "role": "texture_extractor",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/extract_effect_textures.py",
+          "sha256": "dfb17ca721fd40998a5f0c982364bbad87c15ee22f81d8b28b73301c99b272e8"
+        },
+        {
+          "role": "texture_manifest",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/texture-manifest.json",
+          "sha256": "da251cdcf437e721ffacd04467e9a2dcd16e96b5fc7b78d2cf10b570dab4144d"
+        },
+        {
+          "role": "texture_png",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/electro-frame-texture.png",
+          "sha256": "d7422d01163934405945e4bd77c6ce98514ab0b54ac12bd91bdb8e2cd083677e"
+        },
+        {
+          "role": "simulator",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/simulate_type1.py",
+          "sha256": "d18347ac53b44c6e484201ce1efbdfef27a95788a136ee11d7d6b518c56113ab"
+        },
+        {
+          "role": "renderer",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_particle_preview.py",
+          "sha256": "a7d682326983cb0444c7cd44ee265b4790efb4f863df654edfcfb86447c46fdc"
+        },
+        {
+          "role": "render_batch",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_all_previews.py",
+          "sha256": "65efa75090787a36db1da05b248fdda9bb8a803b7f9ddf193d3ebb95c9b1e1f9"
+        },
+        {
+          "role": "simulation",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/electro-frame-particles.json",
+          "sha256": "132abe06b0c1db6efcca490a5190fe678efb8f48348af305a4553538747acf32"
+        },
+        {
+          "role": "render_sidecar",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-electro-frame.render.json",
+          "sha256": "a406ee8578d7ee75502b8123df4cada8db05336b2552964c7c03c6757a255599"
+        }
+      ]
+    },
+    {
+      "name": "SACRED CLOTH",
+      "code": "010133",
+      "scope": "offline_equipment_effect_preview",
+      "runtimeVerified": false,
+      "visualQa": "passed",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-sacred-cloth.png",
+        "sha256": "440de607b3625ba6eaec1398a6f6bc1bf02810a42aae4bb4f093d643f745115c"
+      },
+      "seed": 20923,
+      "frame": 40,
+      "emitted": 20,
+      "visibleParticles": 15,
+      "cameraEye": [
+        0.5294691624005678,
+        5.381903105558856,
+        7.503709770805963
+      ],
+      "cameraTarget": [
+        0.5294691624005678,
+        1.0871895261831241,
+        0.06504764737120006
+      ],
+      "cameraPitchDegrees": 30.0,
+      "backgroundRgb": [
+        10,
+        13,
+        23
+      ],
+      "dependencies": [
+        {
+          "role": "particle_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+          "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+        },
+        {
+          "role": "texture_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/effect_nt.xvm",
+          "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+        },
+        {
+          "role": "stock_client",
+          "path": "/Users/wangzhen/study/PSOBB-Haven/Psobb.exe",
+          "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+        },
+        {
+          "role": "texture_extractor",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/extract_effect_textures.py",
+          "sha256": "dfb17ca721fd40998a5f0c982364bbad87c15ee22f81d8b28b73301c99b272e8"
+        },
+        {
+          "role": "texture_manifest",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/texture-manifest.json",
+          "sha256": "da251cdcf437e721ffacd04467e9a2dcd16e96b5fc7b78d2cf10b570dab4144d"
+        },
+        {
+          "role": "texture_png",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/sacred-cloth-texture.png",
+          "sha256": "ae3707976aa0170428682ac14f01dca9565cbe46a56e0fd8445a3c2d2e380e23"
+        },
+        {
+          "role": "simulator",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/simulate_type1.py",
+          "sha256": "d18347ac53b44c6e484201ce1efbdfef27a95788a136ee11d7d6b518c56113ab"
+        },
+        {
+          "role": "renderer",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_particle_preview.py",
+          "sha256": "a7d682326983cb0444c7cd44ee265b4790efb4f863df654edfcfb86447c46fdc"
+        },
+        {
+          "role": "render_batch",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_all_previews.py",
+          "sha256": "65efa75090787a36db1da05b248fdda9bb8a803b7f9ddf193d3ebb95c9b1e1f9"
+        },
+        {
+          "role": "simulation",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/sacred-cloth-particles.json",
+          "sha256": "1308982e05a54f592d45e5fd417d8563cf61068b1a6370ba253048040d837a3e"
+        },
+        {
+          "role": "render_sidecar",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-sacred-cloth.render.json",
+          "sha256": "73de17d462c731b9591d6d0ef1f4c2c36acf139d3b012bc953337e1989ea14bb"
+        }
+      ]
+    },
+    {
+      "name": "SMOKING PLATE",
+      "code": "010134",
+      "scope": "offline_equipment_effect_preview",
+      "runtimeVerified": false,
+      "visualQa": "passed",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-smoking-plate.png",
+        "sha256": "08d0b043350f18572c3cc1caa3acc84b64e69e289e628bc8c82fa50291c1a7ef"
+      },
+      "seed": 20923,
+      "frame": 40,
+      "emitted": 40,
+      "visibleParticles": 34,
+      "cameraEye": [
+        -0.13577411715032062,
+        8.236426024532033,
+        8.888684982465623
+      ],
+      "cameraTarget": [
+        -0.13577411715032062,
+        2.9402496776021962,
+        -0.2845615362613878
+      ],
+      "cameraPitchDegrees": 30.0,
+      "backgroundRgb": [
+        198,
+        202,
+        211
+      ],
+      "dependencies": [
+        {
+          "role": "particle_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+          "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+        },
+        {
+          "role": "texture_data",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/effect_nt.xvm",
+          "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+        },
+        {
+          "role": "stock_client",
+          "path": "/Users/wangzhen/study/PSOBB-Haven/Psobb.exe",
+          "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+        },
+        {
+          "role": "texture_extractor",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/extract_effect_textures.py",
+          "sha256": "dfb17ca721fd40998a5f0c982364bbad87c15ee22f81d8b28b73301c99b272e8"
+        },
+        {
+          "role": "texture_manifest",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/texture-manifest.json",
+          "sha256": "da251cdcf437e721ffacd04467e9a2dcd16e96b5fc7b78d2cf10b570dab4144d"
+        },
+        {
+          "role": "texture_png",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/smoking-plate-texture.png",
+          "sha256": "7a06f47810291b1411de3f2c52c5f68069933bf7e58253d114a4c7445ad6ec4c"
+        },
+        {
+          "role": "simulator",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/simulate_type1.py",
+          "sha256": "d18347ac53b44c6e484201ce1efbdfef27a95788a136ee11d7d6b518c56113ab"
+        },
+        {
+          "role": "renderer",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_particle_preview.py",
+          "sha256": "a7d682326983cb0444c7cd44ee265b4790efb4f863df654edfcfb86447c46fdc"
+        },
+        {
+          "role": "render_batch",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/render_all_previews.py",
+          "sha256": "65efa75090787a36db1da05b248fdda9bb8a803b7f9ddf193d3ebb95c9b1e1f9"
+        },
+        {
+          "role": "simulation",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/smoking-plate-particles.json",
+          "sha256": "60022dd9c357ffcb87b7f40c8f1cb57f065da2ea4479c17061107c6a35b8dda1"
+        },
+        {
+          "role": "render_sidecar",
+          "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-smoking-plate.render.json",
+          "sha256": "ecb506867d0eaa2092621b9abb914375edcc0583593d78ec7b9b9cf8c3b8991a"
+        }
+      ]
+    }
+  ]
+}

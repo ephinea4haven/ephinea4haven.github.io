@@ -1,0 +1,920 @@
+{
+  "schema": "destiny-model-preview-jobs-v1",
+  "jobs": [
+    {
+      "item": "BLACK GEAR",
+      "drop_names": [
+        "BLACK GEAR"
+      ],
+      "code": "010250",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 912,
+      "model_slot": 374,
+      "texture_slot": 398,
+      "model": "assets/model_374.xj",
+      "texture": "assets/texture_398.xvm",
+      "model_prs": "assets/model_374.prs",
+      "texture_prs": "assets/texture_398.prs",
+      "output": "../../dropcharts/destiny/images/010250_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "4e3a5883d3f04e25780d5ccf660d9f2709930afd08d7d8747c9998fbbabd2cf0",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "BRINGER'S RIFLE",
+      "drop_names": [
+        "BRINGER'S RIFLE"
+      ],
+      "code": "001B00",
+      "family": "weapon",
+      "source_status": "source_matched",
+      "pmt_id": 301,
+      "model_slot": 26,
+      "texture_slot": 26,
+      "model": "assets/model_026.xj",
+      "texture": "assets/texture_026.xvm",
+      "model_prs": "assets/model_026.prs",
+      "texture_prs": "assets/texture_026.prs",
+      "output": "../../dropcharts/destiny/images/001B00_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "0e089e456cccb8b3b4b953511680d1d2a0c8a5406067ba1a3d94a787b05cb0ee",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "CUSTOM BARRIER ver.OO",
+      "drop_names": [
+        "CUSTOM BARRIER ver.OO"
+      ],
+      "code": "010225",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 869,
+      "model_slot": 380,
+      "texture_slot": 404,
+      "model": "assets/model_380.xj",
+      "texture": "assets/texture_404.xvm",
+      "model_prs": "assets/model_380.prs",
+      "texture_prs": "assets/texture_404.prs",
+      "output": "../../dropcharts/destiny/images/010225_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "67ee5f1d028f2b16a4e373645cfe0c0ab3848ce57d94a8baeee12082b0f05a03",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "DB'S SHIELD",
+      "drop_names": [
+        "DB'S SHIELD"
+      ],
+      "code": "010226",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 870,
+      "model_slot": 378,
+      "texture_slot": 402,
+      "model": "assets/model_378.xj",
+      "texture": "assets/texture_402.xvm",
+      "model_prs": "assets/model_378.prs",
+      "texture_prs": "assets/texture_402.prs",
+      "output": "../../dropcharts/destiny/images/010226_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "1d92f71237771f63576ceda299532ee504975167cbf6855c7d7121011230b8c4",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "DF SHIELD",
+      "drop_names": [
+        "DF SHIELD"
+      ],
+      "code": "01028F",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 975,
+      "model_slot": 401,
+      "texture_slot": 425,
+      "model": "assets/model_401.xj",
+      "texture": "assets/texture_425.xvm",
+      "model_prs": "assets/model_401.prs",
+      "texture_prs": "assets/texture_425.prs",
+      "output": "../../dropcharts/destiny/images/01028F_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "73d5b75b9716e3a96f865e27453569816bcd0d8f064840eacf3f926288b4af8e",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "FLOWEN'S SHIELD",
+      "drop_names": [
+        "FLOWEN'S SHIELD"
+      ],
+      "code": "010224",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 868,
+      "model_slot": 377,
+      "texture_slot": 401,
+      "model": "assets/model_377.xj",
+      "texture": "assets/texture_401.xvm",
+      "model_prs": "assets/model_377.prs",
+      "texture_prs": "assets/texture_401.prs",
+      "output": "../../dropcharts/destiny/images/010224_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "922217cb494fba84eb984a4dfaba2a1e9ecf7562171d8c7d2c1f1e77f85b2849",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "GAL WIND",
+      "drop_names": [
+        "GAL WIND"
+      ],
+      "code": "009600",
+      "family": "weapon",
+      "source_status": "source_matched",
+      "pmt_id": 463,
+      "model_slot": 194,
+      "texture_slot": 194,
+      "model": "assets/model_194.xj",
+      "texture": "assets/texture_194.xvm",
+      "model_prs": "assets/model_194.prs",
+      "texture_prs": "assets/texture_194.prs",
+      "output": "../../dropcharts/destiny/images/009600_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "primary_model_only": true,
+      "visual_qa_image_sha256": "5632430c4d7f4d29450cf3d9d04473c55a0c6b3d0cacf1c891707c59f19e4236",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "GI GUE BAZOOKA",
+      "drop_names": [
+        "GI GUE BAZOOKA"
+      ],
+      "code": "009100",
+      "family": "weapon",
+      "source_status": "source_matched",
+      "pmt_id": 443,
+      "model_slot": 174,
+      "texture_slot": 174,
+      "model": "assets/model_174.xj",
+      "texture": "assets/texture_174.xvm",
+      "model_prs": "assets/model_174.prs",
+      "texture_prs": "assets/texture_174.prs",
+      "output": "../../dropcharts/destiny/images/009100_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "c81b307fac17fcfcc8f30997693a2e6e6c2b8c60e7b58e9540fa478ef68dd183",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "GRATIA",
+      "drop_names": [
+        "GRATIA"
+      ],
+      "code": "010285",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 965,
+      "model_slot": 391,
+      "texture_slot": 415,
+      "model": "assets/model_391.xj",
+      "texture": "assets/texture_415.xvm",
+      "model_prs": "assets/model_391.prs",
+      "texture_prs": "assets/texture_415.prs",
+      "output": "../../dropcharts/destiny/images/010285_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "7726dac68d0e9eaf0f1958528ba0c43ec70b1e9bca35dc343f179c87f9525e86",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "HONEYCOMB REFLECTOR",
+      "drop_names": [
+        "HONEYCOMB REFLECTOR"
+      ],
+      "code": "010292",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 978,
+      "model_slot": 404,
+      "texture_slot": 428,
+      "model": "assets/model_404.xj",
+      "texture": "assets/texture_428.xvm",
+      "model_prs": "assets/model_404.prs",
+      "texture_prs": "assets/texture_428.prs",
+      "output": "../../dropcharts/destiny/images/010292_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "a719cb1a903da3599fbe7d3d4026e819d3b3618c27fbd22e1305ce5d8a6c21a0",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "HUNTER'S SHELL",
+      "drop_names": [
+        "HUNTER'S SHELL"
+      ],
+      "code": "010230",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 880,
+      "model_slot": 363,
+      "texture_slot": 387,
+      "model": "assets/model_363.xj",
+      "texture": "assets/texture_387.xvm",
+      "model_prs": "assets/model_363.prs",
+      "texture_prs": "assets/texture_387.prs",
+      "output": "../../dropcharts/destiny/images/010230_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "2564a4aa525a592cb3a7b6b0b58cc393200510376a9d25d5850088d7fa16eaf1",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "IRON FAUST",
+      "drop_names": [
+        "IRON FAUST"
+      ],
+      "code": "004E01",
+      "family": "weapon",
+      "source_status": "source_matched",
+      "pmt_id": 483,
+      "model_slot": 77,
+      "texture_slot": 291,
+      "model": "assets/model_077.xj",
+      "texture": "assets/texture_291.xvm",
+      "model_prs": "assets/model_077.prs",
+      "texture_prs": "assets/texture_291.prs",
+      "output": "../../dropcharts/destiny/images/004E01_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "518318d5d92f2442923593fd4b73b63ebf45a5da39c07b2eaead1cd09c3b0a65",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "KASAMI BRACER",
+      "drop_names": [
+        "KASAMI BRACER"
+      ],
+      "code": "01022B",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 875,
+      "model_slot": 358,
+      "texture_slot": 382,
+      "model": "assets/model_358.xj",
+      "texture": "assets/texture_382.xvm",
+      "model_prs": "assets/model_358.prs",
+      "texture_prs": "assets/texture_382.prs",
+      "output": "../../dropcharts/destiny/images/01022B_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "ecc8dd78d460199049470701b8dc00979b87e324f53e4a23f3d4e0c5832d691e",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "OROTIAGITO",
+      "drop_names": [
+        "OROTIAGITO"
+      ],
+      "code": "001000",
+      "family": "weapon",
+      "source_status": "source_matched",
+      "pmt_id": 280,
+      "model_slot": 15,
+      "texture_slot": 15,
+      "model": "assets/model_015.xj",
+      "texture": "assets/texture_015.xvm",
+      "model_prs": "assets/model_015.prs",
+      "texture_prs": "assets/texture_015.prs",
+      "output": "../../dropcharts/destiny/images/001000_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "primary_model_only": true,
+      "visual_qa_image_sha256": "2ca5c36e69c358c474a629a4a677e563a0b3aaf8cfe1fab5efbb387b7870787a",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "P-ARMS'S BLADE",
+      "drop_names": [
+        "P-ARMS'S BLADE"
+      ],
+      "code": "001900",
+      "family": "weapon",
+      "source_status": "source_matched",
+      "pmt_id": 299,
+      "model_slot": 24,
+      "texture_slot": 24,
+      "model": "assets/model_024.xj",
+      "texture": "assets/texture_024.xvm",
+      "model_prs": "assets/model_024.prs",
+      "texture_prs": "assets/texture_024.prs",
+      "output": "../../dropcharts/destiny/images/001900_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "4a39ed4689df0064fd1036cdf3a7d217d7ee6c4d78a4b427618e5160a351b01e",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "RED RING",
+      "drop_names": [
+        "RED RING"
+      ],
+      "code": "010227",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 871,
+      "model_slot": 354,
+      "texture_slot": 378,
+      "model": "assets/model_354.xj",
+      "texture": "assets/texture_378.xvm",
+      "model_prs": "assets/model_354.prs",
+      "texture_prs": "assets/texture_378.prs",
+      "output": "../../dropcharts/destiny/images/010227_model.png",
+      "resource_verified": true,
+      "visual_qa": "rejected",
+      "visual_qa_reason": "Source DXT1 base texture and vertex colors are fully opaque; static render shows solid planes instead of a faithful translucent ring."
+    },
+    {
+      "item": "REGENERATE GEAR B.P.",
+      "drop_names": [
+        "REGENERATE GEAR B.P."
+      ],
+      "code": "010288",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 968,
+      "model_slot": 394,
+      "texture_slot": 418,
+      "model": "assets/model_394.xj",
+      "texture": "assets/texture_418.xvm",
+      "model_prs": "assets/model_394.prs",
+      "texture_prs": "assets/texture_418.prs",
+      "output": "../../dropcharts/destiny/images/010288_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "3231936253f80719a61760adbb71d3ef87de6d1fd2a76a51c473fac371e75865",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "RICO'S GLASSES",
+      "drop_names": [
+        "RICO'S GLASSES"
+      ],
+      "code": "010231",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 881,
+      "model_slot": 364,
+      "texture_slot": 388,
+      "model": "assets/model_364.xj",
+      "texture": "assets/texture_388.xvm",
+      "model_prs": "assets/model_364.prs",
+      "texture_prs": "assets/texture_388.prs",
+      "output": "../../dropcharts/destiny/images/010231_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "af3da2f60dd83e0379c6f2974c2630bb977bf4c32b6228624b8b69d977ecc920",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "RUPIKA",
+      "drop_names": [
+        "RUPIKA"
+      ],
+      "code": "010289",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 969,
+      "model_slot": 395,
+      "texture_slot": 419,
+      "model": "assets/model_395.xj",
+      "texture": "assets/texture_419.xvm",
+      "model_prs": "assets/model_395.prs",
+      "texture_prs": "assets/texture_419.prs",
+      "output": "../../dropcharts/destiny/images/010289_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "011d7454bf6bf044b5c085843922b867f10daf02867dd1852c298d21afb2ba6f",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "S-BERILL'S HANDS #0",
+      "drop_names": [
+        "S-BERILL'S HANDS #0"
+      ],
+      "code": "008E00",
+      "family": "weapon",
+      "source_status": "source_matched",
+      "pmt_id": 424,
+      "model_slot": 173,
+      "texture_slot": 173,
+      "model": "assets/model_173.xj",
+      "texture": "assets/texture_173.xvm",
+      "model_prs": "assets/model_173.prs",
+      "texture_prs": "assets/texture_173.prs",
+      "output": "../../dropcharts/destiny/images/008E00_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "3c6097cda09aa6e7eb13cecd7016174b1c570c61a4e1bf6356784bb4f509a828",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "SECURE FEET",
+      "drop_names": [
+        "SECURE FEET"
+      ],
+      "code": "010235",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 885,
+      "model_slot": 368,
+      "texture_slot": 392,
+      "model": "assets/model_368.xj",
+      "texture": "assets/texture_392.xvm",
+      "model_prs": "assets/model_368.prs",
+      "texture_prs": "assets/texture_392.prs",
+      "output": "../../dropcharts/destiny/images/010235_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "4d30ebc985d66e0638f5172899d739f81c491bfc7e7179109d5697a88ad69027",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "STANDSTILL SHIELD",
+      "drop_names": [
+        "STANDSTILL SHIELD"
+      ],
+      "code": "010229",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 873,
+      "model_slot": 356,
+      "texture_slot": 380,
+      "model": "assets/model_356.xj",
+      "texture": "assets/texture_380.xvm",
+      "model_prs": "assets/model_356.prs",
+      "texture_prs": "assets/texture_380.prs",
+      "output": "../../dropcharts/destiny/images/010229_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "e2517ed8b7f04dd5c99b364eaf9a4d57334f6e641f8c9a8ba93a86689917c3b9",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "STRIKER PLUS",
+      "drop_names": [
+        "STRIKER PLUS"
+      ],
+      "code": "010287",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 967,
+      "model_slot": 393,
+      "texture_slot": 417,
+      "model": "assets/model_393.xj",
+      "texture": "assets/texture_417.xvm",
+      "model_prs": "assets/model_393.prs",
+      "texture_prs": "assets/texture_417.prs",
+      "output": "../../dropcharts/destiny/images/010287_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "6474d19951ea589baa2b8b76566765ec7635747c1fe1fc914235d55188f344c3",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "THREE SEALS",
+      "drop_names": [
+        "THREE SEALS"
+      ],
+      "code": "01028D",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 973,
+      "model_slot": 399,
+      "texture_slot": 423,
+      "model": "assets/model_399.xj",
+      "texture": "assets/texture_423.xvm",
+      "model_prs": "assets/model_399.prs",
+      "texture_prs": "assets/texture_423.prs",
+      "output": "../../dropcharts/destiny/images/01028D_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "405ad18434116007bd39f525061a630cc8862987ee37c63a56ff0f91e547aa8b",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "TRIPOLIC REFLECTOR",
+      "drop_names": [
+        "TRIPOLIC REFLECTOR"
+      ],
+      "code": "010286",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 966,
+      "model_slot": 392,
+      "texture_slot": 416,
+      "model": "assets/model_392.xj",
+      "texture": "assets/texture_416.xvm",
+      "model_prs": "assets/model_392.prs",
+      "texture_prs": "assets/texture_416.prs",
+      "output": "../../dropcharts/destiny/images/010286_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "0260a16285ce9b39f241657be17ac144851df2818bc9313ad4a3acf8dd5dc202",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "TRIPOLIC SHIELD",
+      "drop_names": [
+        "TRIPOLIC SHIELD"
+      ],
+      "code": "010228",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 872,
+      "model_slot": 355,
+      "texture_slot": 379,
+      "model": "assets/model_355.xj",
+      "texture": "assets/texture_379.xvm",
+      "model_prs": "assets/model_355.prs",
+      "texture_prs": "assets/texture_379.prs",
+      "output": "../../dropcharts/destiny/images/010228_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "3efc5a60686b11392d5fd927bed504a868d8c294e4db9ece7b040bcd6aca3cec",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "YATA MIRROR",
+      "drop_names": [
+        "YATA MIRROR"
+      ],
+      "code": "01028A",
+      "family": "shield",
+      "source_status": "source_matched",
+      "pmt_id": 970,
+      "model_slot": 396,
+      "texture_slot": 420,
+      "model": "assets/model_396.xj",
+      "texture": "assets/texture_420.xvm",
+      "model_prs": "assets/model_396.prs",
+      "texture_prs": "assets/texture_420.prs",
+      "output": "../../dropcharts/destiny/images/01028A_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "8e50ff35096b0f8ce17c7219e194293672d3ff25953e0ce7af625c038247135a",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "COMBUSTION CANNON",
+      "drop_names": [
+        "COMBUSTION CANNON"
+      ],
+      "code": "001502",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 631,
+      "model_slot": 20,
+      "texture_slot": 478,
+      "model": "assets/model_020.xj",
+      "texture": "assets/texture_478.xvm",
+      "model_prs": "assets/model_020.prs",
+      "texture_prs": "assets/texture_478.prs",
+      "output": "../../dropcharts/destiny/images/001502_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "03a83bad3eb6c2ba95ecc4b603e6093e85967e4a87d054d491707b1a88bf0e0e",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "DRAGON SWORD",
+      "drop_names": [
+        "DRAGON SWORD"
+      ],
+      "code": "003201",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 613,
+      "model_slot": 49,
+      "texture_slot": 455,
+      "model": "assets/model_049.xj",
+      "texture": "assets/texture_455.xvm",
+      "model_prs": "assets/model_049.prs",
+      "texture_prs": "assets/texture_455.prs",
+      "output": "../../dropcharts/destiny/images/003201_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "a230d2c6e6fd36f4dc725497c45352942707bd286c2bd5b89d7850c8a7848927",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "GLIDE DIVINE S",
+      "drop_names": [
+        "GLIDE DIVINE S"
+      ],
+      "code": "00C501",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 606,
+      "model_slot": 226,
+      "texture_slot": 447,
+      "model": "assets/model_226.xj",
+      "texture": "assets/texture_447.xvm",
+      "model_prs": "assets/model_226.prs",
+      "texture_prs": "assets/texture_447.prs",
+      "output": "../../dropcharts/destiny/images/00C501_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "c07a7c3bf3985c25bba73cf191d4dfd9989c2adb8fdade1beb243022de47d6df",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "GLIDE DIVINE X",
+      "drop_names": [
+        "GLIDE DIVINE X"
+      ],
+      "code": "00C502",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 627,
+      "model_slot": 226,
+      "texture_slot": 476,
+      "model": "assets/model_226.xj",
+      "texture": "assets/texture_476.xvm",
+      "model_prs": "assets/model_226.prs",
+      "texture_prs": "assets/texture_476.prs",
+      "output": "../../dropcharts/destiny/images/00C502_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "45fd1a0ddaf0272d33d116099d64d092808b35fda3a85052889567e96c85086b",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "HELL STRIKER",
+      "drop_names": [
+        "HELL STRIKER"
+      ],
+      "code": "00BF01",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 616,
+      "model_slot": 220,
+      "texture_slot": 459,
+      "model": "assets/model_220.xj",
+      "texture": "assets/texture_459.xvm",
+      "model_prs": "assets/model_220.prs",
+      "texture_prs": "assets/texture_459.prs",
+      "output": "../../dropcharts/destiny/images/00BF01_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "a112c8cf11ae07817becb0293298a678baa1d65c61e82f59cfe57a48effae988",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "ILL GILL REAPER",
+      "drop_names": [
+        "ILL GILL REAPER"
+      ],
+      "code": "003E03",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 691,
+      "model_slot": 446,
+      "texture_slot": 539,
+      "model": "assets/model_446.xj",
+      "texture": "assets/texture_539.xvm",
+      "model_prs": "assets/model_446.prs",
+      "texture_prs": "assets/texture_539.prs",
+      "output": "../../dropcharts/destiny/images/003E03_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "d44262c9bf94def1393a74c03fd9089f026129d58d3434373c005c23132afc3f",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "SKYFALL",
+      "drop_names": [
+        "SKYFALL"
+      ],
+      "code": "001D01",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 634,
+      "model_slot": 422,
+      "texture_slot": 495,
+      "model": "assets/model_422.xj",
+      "texture": "assets/texture_495.xvm",
+      "model_prs": "assets/model_422.prs",
+      "texture_prs": "assets/texture_495.prs",
+      "output": "../../dropcharts/destiny/images/001D01_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "619a8ecee23f4fa72d64b46df812dd5cd8b849f1c960b31f20fc896229b4c9e7",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "STORMRENDER",
+      "drop_names": [
+        "STORMRENDER"
+      ],
+      "code": "00D005",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 664,
+      "model_slot": 432,
+      "texture_slot": 512,
+      "model": "assets/model_432.xj",
+      "texture": "assets/texture_512.xvm",
+      "model_prs": "assets/model_432.prs",
+      "texture_prs": "assets/texture_512.prs",
+      "output": "../../dropcharts/destiny/images/00D005_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "3dc1e1b705fc93f624e76be86e7918a7f620cd818bd91fc4a9784268b1b4bd73",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "SWORD OF DESPAIR",
+      "drop_names": [
+        "SWORD OF DESPAIR"
+      ],
+      "code": "009702",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 637,
+      "model_slot": 411,
+      "texture_slot": 481,
+      "model": "assets/model_411.xj",
+      "texture": "assets/texture_481.xvm",
+      "model_prs": "assets/model_411.prs",
+      "texture_prs": "assets/texture_481.prs",
+      "output": "../../dropcharts/destiny/images/009702_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "ed387aa39482182d8c108b45457560fd5b23525267910a715664eb33b801b5a9",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    },
+    {
+      "item": "ZU'S PUNISHMENT",
+      "drop_names": [
+        "ZU'S PUNISHMENT"
+      ],
+      "code": "009F01",
+      "family": "weapon",
+      "source_status": "website_parameter_correlated_candidate",
+      "pmt_id": 605,
+      "model_slot": 413,
+      "texture_slot": 485,
+      "model": "assets/model_413.xj",
+      "texture": "assets/texture_485.xvm",
+      "model_prs": "assets/model_413.prs",
+      "texture_prs": "assets/texture_485.prs",
+      "output": "../../dropcharts/destiny/images/009F01_model.png",
+      "resource_verified": true,
+      "visual_qa": "passed",
+      "visual_qa_image_sha256": "8e6e640a51f81746180413c8d7a45d36b2627b485675cf3185490993e20131b7",
+      "visual_qa_reason": "Recovery render reviewed on 2026-09-29 against the site background; source identity tier retained."
+    }
+  ],
+  "excluded": [
+    {
+      "name": "ATTRIBUTE WALL",
+      "code": "01021E",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "BLUE BARRIER",
+      "code": "01024D",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "COMBAT GEAR",
+      "code": "010220",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "INVISIBLE GUARD",
+      "code": "010215",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "LIGHT RELIEF",
+      "code": "010219",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "PROTO REGENE GEAR",
+      "code": "010221",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "RECOVERY BARRIER",
+      "code": "01024A",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "RED BARRIER",
+      "code": "01024C",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "REGENE GEAR ADV.",
+      "code": "010223",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "REGENERATE GEAR",
+      "code": "010222",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "S-PARTS ver1.16",
+      "code": "010217",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "S-PARTS ver2.01",
+      "code": "010218",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "SACRED GUARD",
+      "code": "010216",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "STINK SHIELD",
+      "code": "010299",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    },
+    {
+      "name": "YELLOW BARRIER",
+      "code": "01024E",
+      "source_status": "source_matched",
+      "family": "shield",
+      "model_slot": 65889,
+      "texture_slot": 65913,
+      "reason": "slot_out_of_range"
+    }
+  ]
+}

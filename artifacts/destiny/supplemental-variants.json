@@ -1,0 +1,431 @@
+{
+  "schema": "destiny-supplemental-same-name-images-v1",
+  "sources": {
+    "audit": "missing-image-audit.json",
+    "itemKt": "resources/itemkt-images/manifest.json"
+  },
+  "groups": [
+    {
+      "name": "DB'S SABER",
+      "presentation": "shared_exact_appearance",
+      "sharedImage": "000105_0087.png",
+      "evidence": "Exact model and texture AFS entry SHA-256 equality; ItemKT decoded PNG SHA-256 equality is checked separately. Website row matches use at least five exact PMT numeric fields.",
+      "codes": [
+        {
+          "code": "000105",
+          "pmtId": 182,
+          "itemKtEntry": 87,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:103"
+          ]
+        },
+        {
+          "code": "009000",
+          "pmtId": 434,
+          "itemKtEntry": 339,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:104"
+          ]
+        },
+        {
+          "code": "009001",
+          "pmtId": 435,
+          "itemKtEntry": 340,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:105"
+          ]
+        },
+        {
+          "code": "009002",
+          "pmtId": 436,
+          "itemKtEntry": 341,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:106"
+          ]
+        },
+        {
+          "code": "009003",
+          "pmtId": 437,
+          "itemKtEntry": 342,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:107"
+          ]
+        },
+        {
+          "code": "009004",
+          "pmtId": 438,
+          "itemKtEntry": 343,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:108"
+          ]
+        },
+        {
+          "code": "009005",
+          "pmtId": 439,
+          "itemKtEntry": 344,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:109"
+          ]
+        },
+        {
+          "code": "009006",
+          "pmtId": 440,
+          "itemKtEntry": 345,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:110"
+          ]
+        },
+        {
+          "code": "009007",
+          "pmtId": 441,
+          "itemKtEntry": 346,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:111"
+          ]
+        },
+        {
+          "code": "009008",
+          "pmtId": 442,
+          "itemKtEntry": 347,
+          "image": "000105_0087.png",
+          "imageSha256": "46fbed1b30ccc06b61f740328edfd68061a80aeb0d1211545a90d07eeb2a1a66",
+          "modelEntrySha256": "932441a36733580c6d4292a24d5cac7f45ab88bf85cf5bb5cdc0624a10a53dbe",
+          "textureEntrySha256": "17c4520beec16ca4b2f9384aa005deb74552ef21fc174bbb371327ebf07c9e9d",
+          "matchedWebsiteRows": [
+            "weapon:112"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FLOWEN'S SWORD",
+      "presentation": "shared_exact_appearance",
+      "sharedImage": "000205_0095.png",
+      "evidence": "Exact model and texture AFS entry SHA-256 equality; ItemKT decoded PNG SHA-256 equality is checked separately. Website row matches use at least five exact PMT numeric fields.",
+      "codes": [
+        {
+          "code": "000205",
+          "pmtId": 190,
+          "itemKtEntry": 95,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:150"
+          ]
+        },
+        {
+          "code": "008F00",
+          "pmtId": 425,
+          "itemKtEntry": 330,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:151"
+          ]
+        },
+        {
+          "code": "008F01",
+          "pmtId": 426,
+          "itemKtEntry": 331,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:152"
+          ]
+        },
+        {
+          "code": "008F02",
+          "pmtId": 427,
+          "itemKtEntry": 332,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:153"
+          ]
+        },
+        {
+          "code": "008F03",
+          "pmtId": 428,
+          "itemKtEntry": 333,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:154"
+          ]
+        },
+        {
+          "code": "008F04",
+          "pmtId": 429,
+          "itemKtEntry": 334,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:155"
+          ]
+        },
+        {
+          "code": "008F05",
+          "pmtId": 430,
+          "itemKtEntry": 335,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:156"
+          ]
+        },
+        {
+          "code": "008F06",
+          "pmtId": 431,
+          "itemKtEntry": 336,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:157"
+          ]
+        },
+        {
+          "code": "008F07",
+          "pmtId": 432,
+          "itemKtEntry": 337,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:158"
+          ]
+        },
+        {
+          "code": "008F08",
+          "pmtId": 433,
+          "itemKtEntry": 338,
+          "image": "000205_0095.png",
+          "imageSha256": "34491655e42fc5955c873a6d671b0f66a5499f59ab43ea7958bfec180d165b00",
+          "modelEntrySha256": "64d5864dbc0d7757d941f2d0f91f0ace810c3bc361f4581e169371982c4b424f",
+          "textureEntrySha256": "482e44c35f940f690bffbe3717feed92bb9db9bbe78854cd3320c51e87e2b728",
+          "matchedWebsiteRows": [
+            "weapon:159"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AGITO",
+      "presentation": "shared_exact_appearance",
+      "sharedImage": "001001_0186.png",
+      "evidence": "Exact model and texture AFS entry SHA-256 equality; ItemKT decoded PNG SHA-256 equality is checked separately. Website row matches use at least five exact PMT numeric fields.",
+      "codes": [
+        {
+          "code": "001001",
+          "pmtId": 281,
+          "itemKtEntry": 186,
+          "image": "001001_0186.png",
+          "imageSha256": "6bf4b83a5e39f911efa05ff9fb0ca8ef62ee410f1bb87cdbfaf47b69c7a2a845",
+          "modelEntrySha256": "0284c9220ad9e595a74a275f6fd203b210bdb4d63c9a867643c78de2cb843778",
+          "textureEntrySha256": "06a61629aa71e29a2cb5d6b99bd5c50bd1826c0d6d2cc09a0ecf411c88c44907",
+          "matchedWebsiteRows": [
+            "weapon:005"
+          ]
+        },
+        {
+          "code": "001002",
+          "pmtId": 282,
+          "itemKtEntry": 187,
+          "image": "001001_0186.png",
+          "imageSha256": "6bf4b83a5e39f911efa05ff9fb0ca8ef62ee410f1bb87cdbfaf47b69c7a2a845",
+          "modelEntrySha256": "0284c9220ad9e595a74a275f6fd203b210bdb4d63c9a867643c78de2cb843778",
+          "textureEntrySha256": "06a61629aa71e29a2cb5d6b99bd5c50bd1826c0d6d2cc09a0ecf411c88c44907",
+          "matchedWebsiteRows": [
+            "weapon:006"
+          ]
+        },
+        {
+          "code": "001003",
+          "pmtId": 283,
+          "itemKtEntry": 188,
+          "image": "001001_0186.png",
+          "imageSha256": "6bf4b83a5e39f911efa05ff9fb0ca8ef62ee410f1bb87cdbfaf47b69c7a2a845",
+          "modelEntrySha256": "0284c9220ad9e595a74a275f6fd203b210bdb4d63c9a867643c78de2cb843778",
+          "textureEntrySha256": "06a61629aa71e29a2cb5d6b99bd5c50bd1826c0d6d2cc09a0ecf411c88c44907",
+          "matchedWebsiteRows": [
+            "weapon:007"
+          ]
+        },
+        {
+          "code": "001004",
+          "pmtId": 284,
+          "itemKtEntry": 189,
+          "image": "001001_0186.png",
+          "imageSha256": "6bf4b83a5e39f911efa05ff9fb0ca8ef62ee410f1bb87cdbfaf47b69c7a2a845",
+          "modelEntrySha256": "0284c9220ad9e595a74a275f6fd203b210bdb4d63c9a867643c78de2cb843778",
+          "textureEntrySha256": "06a61629aa71e29a2cb5d6b99bd5c50bd1826c0d6d2cc09a0ecf411c88c44907",
+          "matchedWebsiteRows": [
+            "weapon:008"
+          ]
+        },
+        {
+          "code": "001005",
+          "pmtId": 285,
+          "itemKtEntry": 190,
+          "image": "001001_0186.png",
+          "imageSha256": "6bf4b83a5e39f911efa05ff9fb0ca8ef62ee410f1bb87cdbfaf47b69c7a2a845",
+          "modelEntrySha256": "0284c9220ad9e595a74a275f6fd203b210bdb4d63c9a867643c78de2cb843778",
+          "textureEntrySha256": "06a61629aa71e29a2cb5d6b99bd5c50bd1826c0d6d2cc09a0ecf411c88c44907",
+          "matchedWebsiteRows": [
+            "weapon:009"
+          ]
+        },
+        {
+          "code": "001006",
+          "pmtId": 286,
+          "itemKtEntry": 191,
+          "image": "001001_0186.png",
+          "imageSha256": "6bf4b83a5e39f911efa05ff9fb0ca8ef62ee410f1bb87cdbfaf47b69c7a2a845",
+          "modelEntrySha256": "0284c9220ad9e595a74a275f6fd203b210bdb4d63c9a867643c78de2cb843778",
+          "textureEntrySha256": "06a61629aa71e29a2cb5d6b99bd5c50bd1826c0d6d2cc09a0ecf411c88c44907",
+          "matchedWebsiteRows": [
+            "weapon:010"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "NEI'S CLAW",
+      "presentation": "show_code_variants",
+      "sharedImage": null,
+      "evidence": "Exact model and texture AFS entry SHA-256 equality; ItemKT decoded PNG SHA-256 equality is checked separately. Website row matches use at least five exact PMT numeric fields.",
+      "codes": [
+        {
+          "code": "000D02",
+          "pmtId": 272,
+          "itemKtEntry": 177,
+          "image": null,
+          "imageSha256": null,
+          "modelEntrySha256": "4d91aecd1eb4aacb206843b5ae739e67edff9f228dc68d78d07a3bccc086e978",
+          "textureEntrySha256": "3f52393c950365d07721a1b3b363f1f26d054962cf46b530b97855a90c18c1ef",
+          "matchedWebsiteRows": []
+        },
+        {
+          "code": "009B00",
+          "pmtId": 468,
+          "itemKtEntry": 373,
+          "image": "009B00_0373.png",
+          "imageSha256": "fa34ab29bd57d5dd164342816d38799420d9cfe856adec08acf47c7066bde66e",
+          "modelEntrySha256": "3bf50e9d74aa4557a272366ff3ce0ddfdb940ce912be540df769691ee86db782",
+          "textureEntrySha256": "38616f00fe5b50ced0b49df3c07fd22f3b341cc4f4225e60f622296438c48bcd",
+          "matchedWebsiteRows": [
+            "weapon:280"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "RAGE DE FEU",
+      "presentation": "shared_exact_appearance",
+      "sharedImage": "00AD00_0397.png",
+      "evidence": "Exact model and texture AFS entry SHA-256 equality; ItemKT decoded PNG SHA-256 equality is checked separately. Website row matches use at least five exact PMT numeric fields.",
+      "codes": [
+        {
+          "code": "00AD00",
+          "pmtId": 492,
+          "itemKtEntry": 397,
+          "image": "00AD00_0397.png",
+          "imageSha256": "c8d8378394b4f6d3a28c4087f8af4baa95840866d24ddfae538081c963133045",
+          "modelEntrySha256": "790f02df0a63a3a3fcc657745c8ca6d915ee349c7b20474244214e26454c171f",
+          "textureEntrySha256": "53a0dd9aaa126418cbf54c8dcce4ed83995853a8d3f57923e688c696c7d67d4c",
+          "matchedWebsiteRows": [
+            "weapon:317"
+          ]
+        },
+        {
+          "code": "00AD01",
+          "pmtId": 492,
+          "itemKtEntry": 397,
+          "image": "00AD00_0397.png",
+          "imageSha256": "c8d8378394b4f6d3a28c4087f8af4baa95840866d24ddfae538081c963133045",
+          "modelEntrySha256": "790f02df0a63a3a3fcc657745c8ca6d915ee349c7b20474244214e26454c171f",
+          "textureEntrySha256": "53a0dd9aaa126418cbf54c8dcce4ed83995853a8d3f57923e688c696c7d67d4c",
+          "matchedWebsiteRows": [
+            "weapon:317"
+          ]
+        },
+        {
+          "code": "00AD02",
+          "pmtId": 492,
+          "itemKtEntry": 397,
+          "image": "00AD00_0397.png",
+          "imageSha256": "c8d8378394b4f6d3a28c4087f8af4baa95840866d24ddfae538081c963133045",
+          "modelEntrySha256": "790f02df0a63a3a3fcc657745c8ca6d915ee349c7b20474244214e26454c171f",
+          "textureEntrySha256": "53a0dd9aaa126418cbf54c8dcce4ed83995853a8d3f57923e688c696c7d67d4c",
+          "matchedWebsiteRows": [
+            "weapon:317"
+          ]
+        },
+        {
+          "code": "00AD03",
+          "pmtId": 492,
+          "itemKtEntry": 397,
+          "image": "00AD00_0397.png",
+          "imageSha256": "c8d8378394b4f6d3a28c4087f8af4baa95840866d24ddfae538081c963133045",
+          "modelEntrySha256": "790f02df0a63a3a3fcc657745c8ca6d915ee349c7b20474244214e26454c171f",
+          "textureEntrySha256": "53a0dd9aaa126418cbf54c8dcce4ed83995853a8d3f57923e688c696c7d67d4c",
+          "matchedWebsiteRows": [
+            "weapon:317"
+          ]
+        }
+      ]
+    }
+  ]
+}

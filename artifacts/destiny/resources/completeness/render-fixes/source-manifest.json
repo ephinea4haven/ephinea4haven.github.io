@@ -1,0 +1,99 @@
+{
+  "items": [
+    {
+      "name": "JUDGEMENT BLADE",
+      "code": "00B802",
+      "source": {
+        "model": {
+          "archive": "ItemModelEp4.afs",
+          "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+          "slot": 409,
+          "compressedSha256": "5632cf145a322bb15921cb1e7f61d36e9c6ad711fdc1cd267cb6f65033bbf48a",
+          "compressedBytes": 30021,
+          "decodedSha256": "62b7c96297a9c12667a89e7843af9426691f015616e065cef45b0649d874ab15",
+          "decodedBytes": 84768
+        },
+        "texture": {
+          "archive": "ItemTextureEp4.afs",
+          "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+          "slot": 479,
+          "compressedSha256": "0969143659e2037fec0dcc4664f8e0a09155801d2dc5e06bcd267424e8c2f949",
+          "compressedBytes": 28178,
+          "decodedSha256": "73951996cb71e4e73e6141b8da8eda30f547d71a196c0dd9e6f474ba273ae4dc",
+          "decodedBytes": 32896
+        }
+      }
+    },
+    {
+      "name": "LAST EMPEROR",
+      "code": "00030E",
+      "source": {
+        "model": {
+          "archive": "ItemModelEp4.afs",
+          "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+          "slot": 258,
+          "compressedSha256": "5a7eacb01a07c25dd686cadb7ca291032027d6d272748b2008cf95dd84fdc787",
+          "compressedBytes": 10190,
+          "decodedSha256": "767ed715b683c9deacfde8f8c604b00e7403b25c4a5fc12d0de91723c39e8abb",
+          "decodedBytes": 13124
+        },
+        "texture": {
+          "archive": "ItemTextureEp4.afs",
+          "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+          "slot": 519,
+          "compressedSha256": "e92619774f052310b363661fcbb9dc7e46170448f43e15014c84fb5fd91f0692",
+          "compressedBytes": 43961,
+          "decodedSha256": "7db75fa1500f6ff6e19a7fb127b9dbec5fc6e279e27c0eb448ec371c5fec700f",
+          "decodedBytes": 82114
+        }
+      }
+    },
+    {
+      "name": "M&A85 FURY",
+      "code": "001403",
+      "source": {
+        "model": {
+          "archive": "ItemModelEp4.afs",
+          "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+          "slot": 416,
+          "compressedSha256": "6b1c63a8d195ea23164c8d863faf02a8c28e77cb2ecbe386129b8867605e51e1",
+          "compressedBytes": 27333,
+          "decodedSha256": "cde082d0f0adfb31e3e285627161e346e74de60aa8171867758ab18a3d61ffdc",
+          "decodedBytes": 71424
+        },
+        "texture": {
+          "archive": "ItemTextureEp4.afs",
+          "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+          "slot": 488,
+          "compressedSha256": "7ec115bd2c7985198d3257cd09e906ecf2deb18715424c5f79aa0380e6cefc4a",
+          "compressedBytes": 45124,
+          "decodedSha256": "0a67444638fa7af041626ad40df29558764f354e7019d1857ccfd3042426630e",
+          "decodedBytes": 65664
+        }
+      }
+    },
+    {
+      "name": "TWIN CYCLONE",
+      "code": "00030A",
+      "source": {
+        "model": {
+          "archive": "ItemModelEp4.afs",
+          "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+          "slot": 415,
+          "compressedSha256": "c3b62959b047c727c3516553a7554f8361552a9d05a943d8ce0d2664cb1256ed",
+          "compressedBytes": 18878,
+          "decodedSha256": "88a0fcdb9d0acbba11f67e4a17fb7d04935cbf31537383dcd686015ed6308d27",
+          "decodedBytes": 68416
+        },
+        "texture": {
+          "archive": "ItemTextureEp4.afs",
+          "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+          "slot": 487,
+          "compressedSha256": "6fb869dd5586e0576089ff5558980eb8a3cc659f41e1813ff9f78eda380843f0",
+          "compressedBytes": 25478,
+          "decodeError": "IndexError: index out of range"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3701 @@
+{
+  "total": 517,
+  "mapped": 516,
+  "individual": 270,
+  "category": 246,
+  "variantOnly": 1,
+  "effectCount": 9,
+  "previewCount": 271,
+  "missingPreviewCount": 246,
+  "missing": 0,
+  "items": [
+    {
+      "name": "A New Friend",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool (provisional)"
+    },
+    {
+      "name": "AddSlot",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "ADEPT",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Administrator's Core",
+      "image": "box-state-4.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · category unconfirmed"
+    },
+    {
+      "name": "AENSLAND",
+      "image": "002002_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "AGITO",
+      "image": "001001_0186.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client resource preview · identity unverified"
+    },
+    {
+      "name": "ALIVE AQHU",
+      "image": "000B06_0167.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ALLIANCE UNIFORM",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Amitie's Memo",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "ANCIENT PROPHECY",
+      "image": "00D006_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "ANCIENT SABER",
+      "image": "002700_0218.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ANGEL HARP",
+      "image": "009900_0371.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Angel/Luck",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Angel/Mind",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "ANGRY FIST",
+      "image": "000F01_0182.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ANO BAZOOKA",
+      "image": "00D200_0434.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ANO RIFLE",
+      "image": "006600_0281.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ANTI ANDROID RIFLE",
+      "image": "004600_0249.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ANTI-DARK RING",
+      "image": "anti-dark-ring-source.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity · Static source materials; in-game appearance unverified"
+    },
+    {
+      "name": "ANTI-LIGHT RING",
+      "image": "anti-light-ring-source.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity · Static source materials; in-game appearance unverified"
+    },
+    {
+      "name": "APOCALYPSE BOWGUN",
+      "image": "00090A_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "ARCHFIEND ARMOR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "ARMAGEDDON",
+      "image": "004C03_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "ASSIST BARRIER",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "ASTERON BELT",
+      "image": "000408_0452.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ASUKA",
+      "image": "008902_0319.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ATTRIBUTE PLATE",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "ATTRIBUTE WALL",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "AURA FIELD",
+      "image": "armor-effect-aura-field.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Equipment effect preview · no character · Destiny runtime unverified"
+    },
+    {
+      "name": "BATTLE VERGE",
+      "image": "000B04_0165.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "BEHEMOTH ARMOR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Belra's Right Arm",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "BERDYSH",
+      "image": "003D00_0240.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "BERSERK NEEDLE",
+      "image": "001208_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "BLACK GEAR",
+      "image": "010250_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "BLACK HOUND CUIRASS",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "BLACK ODOSHI DOMARU",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "BLACK ODOSHI RED NIMAIDOU",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "BLADE DANCE",
+      "image": "000305_0103.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "BLAST GARMENT",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Blizzard Garment",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "BLOODY ART",
+      "image": "000306_0104.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "BLUE BARRIER",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "Blue Crystal",
+      "image": "box-state-4.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · category unconfirmed"
+    },
+    {
+      "name": "BLUE ODOSHI VIOLET NIMAIDOU",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "BLUE PHANTOM FIELD",
+      "image": "0102A5_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "BLUEFULL CARD",
+      "image": "009303_0353.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Book of HITOGATA",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Booma's Right Arm",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "BOONDOCK SAINTS",
+      "image": "000808_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "BRANCH OF PAKUPAKU",
+      "image": "006800_0283.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "BRAVACE",
+      "image": "000607_0129.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "BRAVE HAMMER",
+      "image": "000B05_0166.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "BRAVE KNUCKLE",
+      "image": "000F00_0181.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "BRIGHTNESS CIRCLE",
+      "image": "armor-effect-brightness-circle.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Equipment effect preview · no character · Destiny runtime unverified"
+    },
+    {
+      "name": "BRINGER'S RIFLE",
+      "image": "001B00_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "BRIONAC",
+      "image": "000405_0111.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "BUSINESS JACKET",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "CADUCEUS",
+      "image": "002200_0210.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "CANNON ROUGE",
+      "image": "00C000_0416.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "CATACLYSM SHIELD",
+      "image": "0102AA_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Celestial Armor",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Centurion/Ability",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Centurion/Arms",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Centurion/Battle",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Centurion/Body",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Centurion/HP",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Centurion/Legs",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Centurion/Luck",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Centurion/Mind",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Centurion/Power",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "CHAIN SAWD",
+      "image": "002100_0209.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "CHAMELEON SCYTHE",
+      "image": "006400_0279.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Chaos Engine",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "CHAOS HALO",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "Christmas Present",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Cladding of Epsilon",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Cladding of Manipulator III",
+      "image": "box-state-4.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · category unconfirmed"
+    },
+    {
+      "name": "CLAW OF ELEMENTS",
+      "image": "00E302_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "CLIO",
+      "image": "00C300_0419.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "CLUB OF LACONIUM",
+      "image": "000A04_0158.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "CLUB OF ZUMIURAN",
+      "image": "000A06_0160.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "COMBAT GEAR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "COMBUSTION CANNON",
+      "image": "001502_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "COMMANDER UNIFORM",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "CONGEAL CLOAK",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "CRAZY TUNE",
+      "image": "003500_0232.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "CRIMSON COAT",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "CROSS SCAR",
+      "image": "000307_0105.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "CRUSH BULLET",
+      "image": "000905_0143.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "CRYSTALLIZED WINGS",
+      "image": "0102D2_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Cure/Confuse",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Cure/Freeze",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Cure/Paralysis",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Cure/Poison",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Cure/Shock",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Cure/Slow",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "CURSED CLOAK",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "CUSTOM BARRIER ver.OO",
+      "image": "010225_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "CUSTOM FRAME ver.OO",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "CUSTOM RAY ver.OO",
+      "image": "000606_0128.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "D-PARTS ver1.01",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "D-PARTS ver2.10",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "D-Photon Core",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "D-VIRUS ARMOR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "D-VIRUS LAUNCHER",
+      "image": "001405_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Dark Matter",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool (provisional)"
+    },
+    {
+      "name": "Darkness Photon Sphere",
+      "image": "box-state-4.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · category unconfirmed"
+    },
+    {
+      "name": "DAYLIGHT SCAR",
+      "image": "00C800_0424.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "DB'S ARMOR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "DB'S SABER",
+      "image": "000105_0087.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client resource preview · identity unverified"
+    },
+    {
+      "name": "DB'S SHIELD",
+      "image": "010226_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "De Rol Le Shell",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "DEATH CANNON",
+      "image": "00A301_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "DEATH REAPER",
+      "image": "003E01_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Def Material",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Delsaber's Left Arm",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Delsaber's Right Arm",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "DEMOLITION COMET",
+      "image": "009A00_0372.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "DEMONIC FORK",
+      "image": "005700_0266.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "DESERT EAGLE",
+      "image": "004901_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Devil/Battle",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Devil/Technique",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "DF FIELD",
+      "image": "armor-effect-df-field.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Equipment effect preview · no character · Destiny runtime unverified"
+    },
+    {
+      "name": "DF SHIELD",
+      "image": "01028F_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "Digrinder",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "DISKA OF BRAVEMAN",
+      "image": "000507_0121.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "DISKA OF LIBERATOR",
+      "image": "000506_0120.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "DIVINE BLADE",
+      "image": "box-state-0.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · weapon"
+    },
+    {
+      "name": "Divinity Armor",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "DOUBLE SABER",
+      "image": "000E00_0178.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Dr. Robotnik's Plan B",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool (provisional)"
+    },
+    {
+      "name": "Dragon Scale",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "DRAGON SLAYER",
+      "image": "000207_0097.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "DRAGON SWORD",
+      "image": "003201_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Dragon Tear",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool (provisional)"
+    },
+    {
+      "name": "Dragon's Claw",
+      "image": "006000_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Dragon/HP",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "DYNASTY ARMOR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Easter Egg",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "ELECTRO FRAME",
+      "image": "armor-effect-electro-frame.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Equipment effect preview · no character · Destiny runtime unverified"
+    },
+    {
+      "name": "ELEMENTAL SHIELD",
+      "image": "01029A_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "ELYSION",
+      "image": "002C00_0223.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ENERGY STORM",
+      "image": "0102A7_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "ETERNAL NIGHT",
+      "image": "00030B_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "ETHEREAL ARMOR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Evade Material",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "EVIL CURST",
+      "image": "005100_0260.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "EXCALIBUR",
+      "image": "00AC00_0396.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "EXTERMINATOR",
+      "image": "000909_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "FATSIA",
+      "image": "005601_0361.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "FINAL IMPACT",
+      "image": "000907_0145.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "FIRE SCEPTER:AGNI",
+      "image": "000C04_0172.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "FLAMBERGE",
+      "image": "00B900_0409.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "FLAME GARMENT",
+      "image": "armor-effect-flame-garment.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Equipment effect preview · no character · Destiny runtime unverified"
+    },
+    {
+      "name": "FLAME VISIT",
+      "image": "001500_0200.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "FLAPJACK FLAPPER",
+      "image": "00BC00_0412.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "FLIGHT CUTTER",
+      "image": "003F00_0242.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "FLIGHT FAN",
+      "image": "004000_0243.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "FLOWEN'S FRAME",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "FLOWEN'S SHIELD",
+      "image": "010224_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "FLOWEN'S SWORD",
+      "image": "000205_0095.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client resource preview · identity unverified"
+    },
+    {
+      "name": "FROSTBITE",
+      "image": "004502_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "FROZEN SHOOTER",
+      "image": "004500_0248.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "GAE BOLG",
+      "image": "000407_0113.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "GAL WIND",
+      "image": "009600_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "General/Arm",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "General/Legs",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "General/Mind",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "General/Power",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "GENESIS ARMOR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "GI GUE BAZOOKA",
+      "image": "009100_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "Gigobooma's Right Arm",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "GIRASOLE",
+      "image": "003001_0454.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "GLIDE DIVINE",
+      "image": "00C500_0421.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "GLIDE DIVINE S",
+      "image": "00C501_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "GLIDE DIVINE X",
+      "image": "00C502_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Gobooma's Right Arm",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "GOD HAND",
+      "image": "000F02_0183.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "God/Ability",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/Arm",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/Battle",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/Body",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/HP",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/Legs",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/Luck",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/Mind",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/Power",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/Technique",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "God/TP",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "GODS SHIELD BYAKKO",
+      "image": "01022E_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "GODS SHIELD SUZAKU",
+      "image": "01022C_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "GOLDEN HALO",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "Grass Assassin's Arms",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "GRATIA",
+      "image": "010285_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "GRAVE DIGGER",
+      "image": "001204_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "GRAVITON PLATE",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "GREENILL CARD",
+      "image": "009301_0351.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "GUARD WAVE",
+      "image": "armor-effect-guard-wave.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Equipment effect preview · no character · Destiny runtime unverified"
+    },
+    {
+      "name": "GUARDIANNA",
+      "image": "009200_0349.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "GUILTY LIGHT",
+      "image": "008B01_0323.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "GUREN",
+      "image": "00B600_0406.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "GUSH NEEDLE",
+      "image": "001201_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "H&S25 JUSTICE",
+      "image": "000806_0136.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Hallowed Jack-O-Lantern",
+      "image": "box-state-4.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · category unconfirmed"
+    },
+    {
+      "name": "HANDGUN:GULD",
+      "image": "004200_0245.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "HANDGUN:MILLA",
+      "image": "004300_0246.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Heart of Chu Chu",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Heart of Dark Chao",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool (provisional)"
+    },
+    {
+      "name": "Heart of Morolian",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "HEART OF POUMN",
+      "image": "006900_0284.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "HEAVEN PUNISHER",
+      "image": "001E00_0215.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "HEAVEN STRIKER",
+      "image": "00BF00_0415.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Heaven Striker Coat",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Heavenly/Ability",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Heavenly/Arms",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Heavenly/Battle",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Heavenly/Body",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Heavenly/HP",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Heavenly/Legs",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Heavenly/Luck",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Heavenly/Mind",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Heavenly/Power",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Heavenly/Resist",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "HELL STRIKER",
+      "image": "00BF01_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Hero/Ability",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Hildebear's Head",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Hildeblue's Head",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "HITOGATA",
+      "image": "008C02_0327.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "HOLY RAY",
+      "image": "001300_0198.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "HONEYCOMB REFLECTOR",
+      "image": "010292_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "HP Material",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "HP/Flow",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "HP/Restorate",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "HP/Revival",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "HUNTER'S SHELL",
+      "image": "010230_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "ICE STAFF:DAGON",
+      "image": "000C05_0173.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Ideya Cell",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool (provisional)"
+    },
+    {
+      "name": "IGNITION CLOAK",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "ILL GILL REAPER",
+      "image": "003E03_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Immortal/Ability",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Immortal/Arms",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Immortal/Battle",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Immortal/Body",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Immortal/HP",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Immortal/Legs",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Immortal/Luck",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Immortal/Mind",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Immortal/Power",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "IMPERIAL PICK",
+      "image": "003C00_0239.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Infernal Stone",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool (provisional)"
+    },
+    {
+      "name": "INFERNO BAZOOKA",
+      "image": "001400_0199.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "INFERNO BLADE",
+      "image": "000208_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "INVISIBLE GUARD",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "IRON FAUST",
+      "image": "004E01_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "IZMAELA",
+      "image": "000508_0465.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Jack-O'-Lantern",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "JUDGEMENT BLADE",
+      "image": "judgement-blade-candidate.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "JUSTY-23ST",
+      "image": "000707_0153.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "KALADBOLG",
+      "image": "000106_0088.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "KAMUI",
+      "image": "008A02_0363.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "KAN'EI TSUHO",
+      "image": "00D500_0437.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "KASAMI BRACER",
+      "image": "01022B_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "Kit of DREAMCAST",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Kit of GENESIS",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Kit of MARK3",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Kit of MASTER SYSTEM",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Kit of SEGA SATURN",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "KITETSU",
+      "image": "00D003_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "KROE'S SWEATER",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "KUNAI",
+      "image": "008C04_0466.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "KUSANAGI",
+      "image": "00B400_0404.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "L&K14 COMBAT",
+      "image": "000807_0137.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "L&K38 COMBAT",
+      "image": "001402_0461.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "LACONIUM AXE",
+      "image": "002001_0463.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "LAME D'ARGENT",
+      "image": "00AB00_0395.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "LAST EMPEROR",
+      "image": "last-emperor-candidate.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "LAST SURVIVOR",
+      "image": "000206_0096.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "LAST SWAN",
+      "image": "004301_0450.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "LAVIS CANNON",
+      "image": "001F00_0216.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "LE COGNEUR",
+      "image": "00B100_0401.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Liberta Kit",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "LIEUTENANT GEAR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "LIEUTENANT MANTLE",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "LIGHT RELIEF",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "LIMITER",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Luck Material",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "LUMINOUS FIELD",
+      "image": "armor-effect-luminous-field.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Equipment effect preview · no character · Destiny runtime unverified"
+    },
+    {
+      "name": "M&A60 VISE",
+      "image": "000805_0135.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "M&A85 FURY",
+      "image": "ma85-fury-candidate.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "MACE OF ADAMAN",
+      "image": "000A05_0159.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "MADAM'S UMBRELLA",
+      "image": "003B00_0238.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "magic rock \"Moola\"",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Magic Stone \"Iritista\"",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "MAGUWA",
+      "image": "00BE00_0414.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "MAHU",
+      "image": "008C01_0326.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "MASER BEAM",
+      "image": "006D00_0288.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "MASTER RAVEN",
+      "image": "004201_0449.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Master/Ability",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "METEOR CUDGEL",
+      "image": "002E00_0225.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "METEOR ROUGE",
+      "image": "00C100_0417.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "METEOR SMASH",
+      "image": "000906_0144.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Millennium Photon Core",
+      "image": "box-state-4.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · category unconfirmed"
+    },
+    {
+      "name": "Mind Material",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "MITSUNARI",
+      "image": "00D002_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Molten Garment",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "MOLTEN RING",
+      "image": "molten-ring-source.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity · Static source materials; in-game appearance unverified"
+    },
+    {
+      "name": "MONKEY KING BAR",
+      "image": "002F00_0226.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Monogrinder",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "MORNING GLORY",
+      "image": "009400_0366.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "MORNING PRAYER",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "MORTAL RUIN",
+      "image": "00030D_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "MOTHER GARB",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "MOTHER GARB+",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "MURASAME",
+      "image": "00C700_0423.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "MUSASHI",
+      "image": "008900_0317.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "MYSTIC SPIRIT",
+      "image": "004902_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "NEI'S CLAW",
+      "image": null,
+      "variants": [
+        {
+          "code": "000D02",
+          "pmtId": 272,
+          "itemKtEntry": 177,
+          "image": "000D02_model.png",
+          "imageSha256": "2990ecfedfeb0394cba0146a23e16f58ce0a566b3b8e12338ff3b44b6516a4a6",
+          "modelEntrySha256": "4d91aecd1eb4aacb206843b5ae739e67edff9f228dc68d78d07a3bccc086e978",
+          "textureEntrySha256": "3f52393c950365d07721a1b3b363f1f26d054962cf46b530b97855a90c18c1ef",
+          "matchedWebsiteRows": [],
+          "modelPreview": {
+            "schema": "destiny-nei-claw-code-variant-v1",
+            "name": "NEI'S CLAW",
+            "code": "000D02",
+            "variantOnly": true,
+            "unqualifiedDropMapping": false,
+            "nameStatus": "source_matched",
+            "websiteParameterRowMatchesOtherCode": "009B00",
+            "runtimeVerified": false,
+            "visualQa": "passed",
+            "sources": {
+              "pmtSha256": "c9fef0eb88813b2f7590597af5eaf3fa369863d4700d5837313a95f9b23fc2aa",
+              "namesSha256": "292fa16c2c119b16e4e7e1d8d7f8789c2f2f17c7358d72a48241aed5e856b06f",
+              "variantsSha256": "d7f16100db4f7dd5f1898453b5226d7d32c1dd1341328aca1199c42d5a4c9232",
+              "rendererSha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814",
+              "modelAdapterSha256": "0543d021958c309bcc79c608d1bbc97472eb7c02a0c3e7fe36fafcffeddf75e6",
+              "resources": [
+                {
+                  "kind": "model",
+                  "archive": "resources/originals/ItemModelEp4.afs",
+                  "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+                  "entry": 12,
+                  "prs": "model_012.prs",
+                  "prsSha256": "4d91aecd1eb4aacb206843b5ae739e67edff9f228dc68d78d07a3bccc086e978",
+                  "decoded": "model_012.xj",
+                  "decodedSha256": "a6732be36ab1b3fb16036e34caff55c0d7130021ad4118a7de71accee55dcdc8",
+                  "sourceFormat": "xj",
+                  "roots": 1
+                },
+                {
+                  "kind": "texture",
+                  "archive": "resources/originals/ItemTextureEp4.afs",
+                  "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+                  "entry": 273,
+                  "prs": "texture_273.prs",
+                  "prsSha256": "3f52393c950365d07721a1b3b363f1f26d054962cf46b530b97855a90c18c1ef",
+                  "decoded": "texture_273.xvm",
+                  "decodedSha256": "2592e7c40467ce437cac87adc24b8b8793c1769c7bc24eb5763c49d0d075a24a",
+                  "textures": 2
+                }
+              ]
+            },
+            "image": "000D02_model.png",
+            "imageSha256": "2990ecfedfeb0394cba0146a23e16f58ce0a566b3b8e12338ff3b44b6516a4a6",
+            "visualQaNote": "Recovery render reviewed on 2026-09-29: complete red claw blades, separate code variant."
+          }
+        },
+        {
+          "code": "009B00",
+          "pmtId": 468,
+          "itemKtEntry": 373,
+          "image": "009B00_0373.png",
+          "imageSha256": "fa34ab29bd57d5dd164342816d38799420d9cfe856adec08acf47c7066bde66e",
+          "modelEntrySha256": "3bf50e9d74aa4557a272366ff3ce0ddfdb940ce912be540df769691ee86db782",
+          "textureEntrySha256": "38616f00fe5b50ced0b49df3c07fd22f3b341cc4f4225e60f622296438c48bcd",
+          "matchedWebsiteRows": [
+            "weapon:280"
+          ]
+        }
+      ],
+      "imageKind": "variants",
+      "explanation": "Distinct variants; drop table does not identify the version."
+    },
+    {
+      "name": "NINJA SUIT",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "NUG2000-BAZOOKA",
+      "image": "008D00_0328.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "OBLIVION",
+      "image": "009701_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "OFFICER UNIFORM",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "OPHELIE SEIZE",
+      "image": "00AF00_0399.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ORAN CARD",
+      "image": "009307_0357.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Orb of Illusions",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool (provisional)"
+    },
+    {
+      "name": "OROTIAGITO",
+      "image": "001000_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "P-arm's Arms",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "P-ARMS'S BLADE",
+      "image": "001900_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "Pandora's Box",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool (provisional)"
+    },
+    {
+      "name": "PANZER FAUST",
+      "image": "004E00_0257.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "PARAGON FRAME",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Parasitic Armor 'Predator'",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Parasitic gene \"Flow\"",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Parts of Baranz",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Parts of EGG BLASTER",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "PASSION HAZE",
+      "image": "004C02_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "PB/Create",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "PB/Flow",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Perfect/Resist",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "PHOENIX CLAW",
+      "image": "000D03_0453.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "PHOENIX WINGS",
+      "image": "0102D3_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "Photon Booster",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "PHOTON CLAW",
+      "image": "000D00_0175.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Photon Crystal",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "PINKAL CARD",
+      "image": "009305_0355.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Pioneer Parts",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "PLANET EATER",
+      "image": "008905_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "PLANTAIN LEAF",
+      "image": "005600_0265.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Power Material",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "PRIMAL NEXUS",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Primal Photon Sphere",
+      "image": "box-state-4.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · category unconfirmed"
+    },
+    {
+      "name": "Proof of Sonic Team",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "PROPHETS OF MOTAV",
+      "image": "005A00_0269.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "PROTO REGENE GEAR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "PSYCHO WAND",
+      "image": "001D00_0214.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "PURPLENUM CARD",
+      "image": "009304_0354.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RABBIT WAND",
+      "image": "005500_0264.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RADIANT RING",
+      "image": "box-state-4.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · category unconfirmed"
+    },
+    {
+      "name": "RAGE DE FEU",
+      "image": "00AD00_0397.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client resource preview · identity unverified"
+    },
+    {
+      "name": "RAIKIRI",
+      "image": "001007_0469.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RAINBOW SHIELD",
+      "image": "0102A8_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "RAMBLING MAY",
+      "image": "001401_0446.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Rappy's Beak",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Rappy's Wing",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "RASTER SCOPE",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "RATHALOS GREATSWORD",
+      "image": "00020B_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "RECOVERY BARRIER",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "RED BARRIER",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "Red Crystal",
+      "image": "box-state-4.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · category unconfirmed"
+    },
+    {
+      "name": "RED DAGGER",
+      "image": "003900_0236.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RED HANDGUN",
+      "image": "004400_0247.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RED MECHGUN",
+      "image": "004C00_0255.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RED ODOSHI DOMARU",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "RED PARTISAN",
+      "image": "003E00_0241.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RED PHANTOM FIELD",
+      "image": "0102A6_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "RED RING",
+      "image": "red-ring-source.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · Static source materials; in-game appearance unverified"
+    },
+    {
+      "name": "RED SABER",
+      "image": "002D00_0224.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RED SCORPIO",
+      "image": "008B02_0324.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RED SLICER",
+      "image": "004100_0244.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RED SWORD",
+      "image": "003400_0231.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "REDRIA CARD",
+      "image": "009306_0356.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "REFLEX GEAR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "REGENE GEAR ADV.",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "REGENERATE GEAR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "REGENERATE GEAR B.P.",
+      "image": "010288_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "Resist/Fire",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Resist/Flame",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Resist/Freeze",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Resist/Light",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Resist/Thunder",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "REVIVAL CURIASS",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "REVIVAL GARMENT",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "RIANOV 303SNR-3",
+      "image": "00070B_0458.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RIANOV 303SNR-5",
+      "image": "00070D_0460.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RICO'S GLASSES",
+      "image": "010231_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "RIKA'S CLAW",
+      "image": "009800_0370.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RING OF FIRE",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "RUBY BULLET",
+      "image": "00A300_0383.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "RUPIKA",
+      "image": "010289_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "S-beat's Arms",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "S-BERILL'S HANDS #0",
+      "image": "008E00_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "S-PARTS ver1.16",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "S-PARTS ver2.01",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "S-RED'S BLADE",
+      "image": "006200_0277.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "SACRED CLOTH",
+      "image": "armor-effect-sacred-cloth.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Equipment effect preview · no character · Destiny runtime unverified"
+    },
+    {
+      "name": "SACRED DUSTER",
+      "image": "00B500_0405.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "SACRED GUARD",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "SAMURAI ARMOR",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "SANGE",
+      "image": "008A00_0320.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Scape Doll",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "SEALED J-SWORD",
+      "image": "003300_0230.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "SECURE FEET",
+      "image": "010235_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "SELECT CLOAK",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "SENSE PLATE",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "SHADOW CLOAK",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "SILENCE CLAW",
+      "image": "000D01_0176.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Sinow Berill's Arms",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "SKYFALL",
+      "image": "001D01_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "SKYLY CARD",
+      "image": "009302_0352.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "SLICER OF ASSASSIN",
+      "image": "000505_0119.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "SLICER OF FANATIC",
+      "image": "00AA00_0394.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "SMARTLINK",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "SMOKING PLATE",
+      "image": "armor-effect-smoking-plate.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Equipment effect preview · no character · Destiny runtime unverified"
+    },
+    {
+      "name": "SNAKE SPIRE",
+      "image": "00BB00_0411.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Sol Atomizer",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Sorcerer's Right Arm",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "SOUL BANISH",
+      "image": "001101_0196.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "SOUL BITER",
+      "image": "009703_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "SOUL DEVOURER",
+      "image": "003F01_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "SPIRIT CUIRASS",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "SPIRIT GARMENT",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "SPREAD NEEDLE",
+      "image": "001200_0197.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "STAG CUTLERY",
+      "image": "000E01_0179.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "STANDSTILL SHIELD",
+      "image": "010229_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "Star Amplifier",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Star Atomizer",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "STAR CUIRASS",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Star Eulogy",
+      "image": "box-state-0.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · weapon"
+    },
+    {
+      "name": "State/Maintenance",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "STING TIP",
+      "image": "002300_0211.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "STINK FRAME",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "STINK SHIELD",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "STORM WAND:INDRA",
+      "image": "000C06_0174.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "STORMRENDER",
+      "image": "00D005_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "STRIKER PLUS",
+      "image": "010287_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "SUBZERO",
+      "image": "001301_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "SUPPRESSED GUN",
+      "image": "002600_0217.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "SWORD OF DESPAIR",
+      "image": "009702_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "SWORDSMAN LORE",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Syncesta",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Tablet",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "TALIS",
+      "image": "008C00_0325.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "TANEGASHIMA",
+      "image": "00CD00_0429.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "TASTE OF AFFECTION",
+      "image": "004C04_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "TECHNICAL CROZIER",
+      "image": "002500_0213.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "TEMPEST CLOAK",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Tempest Garment",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "TENSION BLASTER",
+      "image": "000608_0467.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "THE SIGH OF A GOD",
+      "image": "005B00_0270.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "THIRTEEN",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "THREE SEALS",
+      "image": "01028D_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "TIGER'S FANG & DRAGON'S CLAW",
+      "image": "00B801_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "TORMENTOR",
+      "image": "000908_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "TP Material",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "TP/Flow",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "TP/Restorate",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "TP/Revival",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Trap/Search",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "Trigrinder",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "Trimate",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "TRIPOLIC REFLECTOR",
+      "image": "010286_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "TRIPOLIC SHIELD",
+      "image": "010228_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "TWIN BLAZE",
+      "image": "005E00_0273.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "TWIN BRAND",
+      "image": "000E02_0180.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "TWIN CHAKRAM",
+      "image": "003600_0233.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "TWIN CYCLONE",
+      "image": "twin-cyclone-candidate.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "TWIN PALLASCH",
+      "image": "00D001_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    },
+    {
+      "name": "TWIN PSYCHOGUN",
+      "image": "004900_0252.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "TWIN RIKA'S CLAW",
+      "image": "box-state-0.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · weapon"
+    },
+    {
+      "name": "TYRELL'S PARASOL",
+      "image": "00CB00_0427.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "Ultimate Frame",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "V101",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "V501",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "V502",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "V503",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "V801",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "V802",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "VALKYRIE",
+      "image": "000B07_0473.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "VARISTA",
+      "image": "000605_0127.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "VECTOR SCOPE",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "VENUS BOW",
+      "image": "box-state-0.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · weapon"
+    },
+    {
+      "name": "VICTOR AXE",
+      "image": "002000_0208.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "VIRIDIA CARD",
+      "image": "009300_0350.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "VISK-235W",
+      "image": "000705_0151.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "VIVIENNE",
+      "image": "00B300_0403.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "VJAYA",
+      "image": "000406_0112.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "WALS-MK2",
+      "image": "000706_0152.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "WEDDING DRESS",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "WHITILL CARD",
+      "image": "009309_0359.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "WINDMILL",
+      "image": "005000_0259.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "X-PARTS ver3.10",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · armor"
+    },
+    {
+      "name": "Yahoo!'s engine",
+      "image": "box-state-2.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · tool"
+    },
+    {
+      "name": "YAMATO",
+      "image": "008901_0318.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "YAMIGARASU",
+      "image": "002900_0220.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "YASAKANI MAGATAMA",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · unit"
+    },
+    {
+      "name": "YASHA",
+      "image": "008A01_0321.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "YASMINKOV 2000H",
+      "image": "006A00_0285.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "YASMINKOV 3000R",
+      "image": "006500_0280.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "YASMINKOV 7000V",
+      "image": "006B00_0286.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "YASMINKOV 9000M",
+      "image": "006C00_0287.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "YATA MIRROR",
+      "image": "01028A_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview"
+    },
+    {
+      "name": "YELLOW BARRIER",
+      "image": "box-state-1.png",
+      "variants": [],
+      "imageKind": "category",
+      "explanation": "Shared category image · shield"
+    },
+    {
+      "name": "YELLOWBOZE CARD",
+      "image": "009308_0358.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "YUNCHANG",
+      "image": "00BA00_0410.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ZANBA",
+      "image": "009700_0369.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ZERO DIVIDE",
+      "image": "000308_0448.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Client icon"
+    },
+    {
+      "name": "ZU'S PUNISHMENT",
+      "image": "009F01_model.png",
+      "variants": [],
+      "imageKind": "individual",
+      "explanation": "Model preview · candidate identity"
+    }
+  ]
+}
