@@ -2589,12 +2589,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "The source filenames for Booma's Claw and Gobooma's Claw are reversed: this brown-red claw matches the standard Booma's Claw thumbnail.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/BOOMA'S CLAW.png",
-          "sha256": "d75383969575542576795e7d28f24619bc409ea8c3c4588b3db72716eea549c9",
-          "bytes": 18031835,
+          "path": "WEAPON/EP1+2/GOBOOMA'S CLAW.png",
+          "sha256": "ca89ed66fd1c329702f6c2d19b16751f7e003b37c5753b7da8a22205af67e14d",
+          "bytes": 16354303,
           "width": 5444,
           "height": 3989
         }
@@ -4978,12 +4978,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "The source filenames for Booma's Claw and Gobooma's Claw are reversed: this yellow claw matches the standard Gobooma's Claw thumbnail.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/GOBOOMA'S CLAW.png",
-          "sha256": "ca89ed66fd1c329702f6c2d19b16751f7e003b37c5753b7da8a22205af67e14d",
-          "bytes": 16354303,
+          "path": "WEAPON/EP1+2/BOOMA'S CLAW.png",
+          "sha256": "d75383969575542576795e7d28f24619bc409ea8c3c4588b3db72716eea549c9",
+          "bytes": 18031835,
           "width": 5444,
           "height": 3989
         }
