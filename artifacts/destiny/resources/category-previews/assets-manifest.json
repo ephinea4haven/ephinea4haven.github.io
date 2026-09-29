@@ -1,0 +1,440 @@
+{
+  "schema": "destiny-ground-box-assets-v1",
+  "source": {
+    "file": "../originals/item.bml",
+    "sha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+    "entryCount": 35
+  },
+  "sharedTexture": {
+    "bmlEntry": 0,
+    "sourcePrsSha256": "aba4bbdb47bb3d776f8d4b29dcbf27cd2f6cecf744b355ddc6b9633a88cc0a5e",
+    "sourceDecodedSha256": "3d675a3d8e7a7a49a7dcb2b3db8693cb0496867f0953ab1676e562288a715fca",
+    "normalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+    "path": "assets/shared-textures.xvm",
+    "textures": 40,
+    "chunks": [
+      {
+        "index": 0,
+        "textureId": 502940,
+        "format": 7,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "bc03e67b9afb87bb110d9703e5d6b4a4684ba049825c9190d491505d22db9402",
+        "addedZeros": 0
+      },
+      {
+        "index": 1,
+        "textureId": 502941,
+        "format": 7,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "87d60d48b066c0d4282f76fcbbb25a5fd1e358a49aeb0230dbba3a8b1faa8f45",
+        "addedZeros": 0
+      },
+      {
+        "index": 2,
+        "textureId": 502942,
+        "format": 7,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "2612385faaaab0e34419a4d92767a59fab541de746bd9135c22ae555a1e6c9dd",
+        "addedZeros": 0
+      },
+      {
+        "index": 3,
+        "textureId": 502943,
+        "format": 7,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "1a1ee0329b2d87e2c6642b5f308b8466c77b67b29deb4466526bcaf0928c2022",
+        "addedZeros": 0
+      },
+      {
+        "index": 4,
+        "textureId": 502944,
+        "format": 7,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "992ce5db27fda18c3bc1d65eec6f29feb7ce305adcf0fa47fe839c75433a8e95",
+        "addedZeros": 0
+      },
+      {
+        "index": 5,
+        "textureId": 400321,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "99e5d714877daf4568e091e7ad6940dd8c1f0bf4da5b977a38a78db85dfa7e1c",
+        "addedZeros": 0
+      },
+      {
+        "index": 6,
+        "textureId": 400323,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "92e4ee0730a1c587b1888589a2ec3ed8da65a8a36b799531ca7e26e676e5ebb0",
+        "addedZeros": 0
+      },
+      {
+        "index": 7,
+        "textureId": 400324,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "e42b8091ce9a01b51286cc23dd95fee5f2a998f8447b902cbb336557d130b774",
+        "addedZeros": 0
+      },
+      {
+        "index": 8,
+        "textureId": 400322,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "039d58108d480ba2f0e6a37910a3cea3a5ad2e4eabc540168edf0900b13b50d1",
+        "addedZeros": 0
+      },
+      {
+        "index": 9,
+        "textureId": 508484,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "e05bca56d28685b7d6c879e7f7b5e1534056c55bcfb718f5eb581da07c6c4472",
+        "addedZeros": 0
+      },
+      {
+        "index": 10,
+        "textureId": 508485,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "a4e14e36413a364ef158006b1f6739194c2e4f194dec5753019920494739fad1",
+        "addedZeros": 0
+      },
+      {
+        "index": 11,
+        "textureId": 508486,
+        "format": 6,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "36204fdfeedf269b5edafdaf0a5459f1c38d51953747fe44230a882e6e1c1e3c",
+        "addedZeros": 0
+      },
+      {
+        "index": 12,
+        "textureId": 422363,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "8030bae1eabf02b689247c134f70ed64d41805695b397ef32d3324e69590cd8b",
+        "addedZeros": 0
+      },
+      {
+        "index": 13,
+        "textureId": 422362,
+        "format": 6,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "faeb1b8eba85b2a9b68a04dbd332779bd20f5915e28c0d49f82295b63174a9e3",
+        "addedZeros": 0
+      },
+      {
+        "index": 14,
+        "textureId": 422364,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "37630750bad96bac7d4b43422d0a9eadf4f9df98f0d6bcbe30c5cd9ea398388e",
+        "addedZeros": 0
+      },
+      {
+        "index": 15,
+        "textureId": 422360,
+        "format": 6,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "4e085848148491aded3e4526840b93506756b7a86d8867ac640650fa38a83a74",
+        "addedZeros": 0
+      },
+      {
+        "index": 16,
+        "textureId": 422361,
+        "format": 6,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "bcf2e1ce016e422fc2d61286248d2fb27b60fca344a72d3886dab9d82ce4af29",
+        "addedZeros": 0
+      },
+      {
+        "index": 17,
+        "textureId": 501001,
+        "format": 6,
+        "width": 8,
+        "height": 8,
+        "payloadSha256": "a3d455d4261edd10467071d581110c42c00ce882d18af6fb4415950dd7fe885a",
+        "addedZeros": 32
+      },
+      {
+        "index": 18,
+        "textureId": 501002,
+        "format": 6,
+        "width": 16,
+        "height": 16,
+        "payloadSha256": "cf776ff7fb550d420fc7049c6fa6f521c2b2e21f8e95779caad53897bd4254de",
+        "addedZeros": 0
+      },
+      {
+        "index": 19,
+        "textureId": 422288,
+        "format": 6,
+        "width": 64,
+        "height": 64,
+        "payloadSha256": "f47dd32718ef766f3c2b81bcce0662dcba2ee8d3ff13c66548941f93aff8eb4f",
+        "addedZeros": 0
+      },
+      {
+        "index": 20,
+        "textureId": 50331648,
+        "format": 6,
+        "width": 256,
+        "height": 256,
+        "payloadSha256": "ed1158f5e9ddf1df2ae51a595f7370e9db0bf297835f9bddb439a51b047d5981",
+        "addedZeros": 0
+      },
+      {
+        "index": 21,
+        "textureId": 50331649,
+        "format": 6,
+        "width": 256,
+        "height": 256,
+        "payloadSha256": "49a594c644941eb198c917caf6efcfe8e1d0d8a7ad048c2014eeb88d4276e93c",
+        "addedZeros": 0
+      },
+      {
+        "index": 22,
+        "textureId": 50331650,
+        "format": 6,
+        "width": 256,
+        "height": 256,
+        "payloadSha256": "f7630d3d92978f5f1b66014bf5653d62dcfc603b721ceeb23d5f17e837efeba0",
+        "addedZeros": 0
+      },
+      {
+        "index": 23,
+        "textureId": 50331651,
+        "format": 6,
+        "width": 256,
+        "height": 256,
+        "payloadSha256": "b679cfc2173b9a864c6620257ae1965c24f63c58760e81dc26e4496770afc9c6",
+        "addedZeros": 0
+      },
+      {
+        "index": 24,
+        "textureId": 50331652,
+        "format": 6,
+        "width": 256,
+        "height": 256,
+        "payloadSha256": "b67585b5b4f341d646e099c12706439313c5d2189192eff78949d42962e45327",
+        "addedZeros": 0
+      },
+      {
+        "index": 25,
+        "textureId": 50331653,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 26,
+        "textureId": 50331654,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 27,
+        "textureId": 50331655,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 28,
+        "textureId": 50331656,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 29,
+        "textureId": 50331657,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 30,
+        "textureId": 50331658,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 31,
+        "textureId": 50331659,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 32,
+        "textureId": 50331660,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 33,
+        "textureId": 50331661,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 34,
+        "textureId": 50331662,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 35,
+        "textureId": 50331663,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 36,
+        "textureId": 50331664,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 37,
+        "textureId": 50331665,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 38,
+        "textureId": 50331666,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      },
+      {
+        "index": 39,
+        "textureId": 50331667,
+        "format": 6,
+        "width": 32,
+        "height": 32,
+        "payloadSha256": "9026b849d039d50dcdcb6b9d37835b5fbe27f9f7c969c7bf5c7e1bcdf877445d",
+        "addedZeros": 0
+      }
+    ]
+  },
+  "models": [
+    {
+      "state": 0,
+      "bmlEntry": 2,
+      "bmlName": "ixm_box01.xj",
+      "sourcePrsSha256": "e8074555cbe6777f340931251229f21e3380b82bd47b0835b096435cc41d3383",
+      "decodedSha256": "4f4b195cddf984864e707deba8c8a6eba2a6dcc5fc878fac8012908f322cb6d0",
+      "model": "assets/box-state-0.xj",
+      "primitiveCount": 1,
+      "textureIndices": [
+        5
+      ]
+    },
+    {
+      "state": 1,
+      "bmlEntry": 3,
+      "bmlName": "ixm_box02.xj",
+      "sourcePrsSha256": "262075336eac963bc3960c6e7eaa439f9077fed621494f907267baa7405b86d7",
+      "decodedSha256": "cd2b2d4a47e8eecda256a10a07a11488c4271dd6ad6fb067c93eceddda2708b0",
+      "model": "assets/box-state-1.xj",
+      "primitiveCount": 1,
+      "textureIndices": [
+        6
+      ]
+    },
+    {
+      "state": 2,
+      "bmlEntry": 4,
+      "bmlName": "ixm_box03.xj",
+      "sourcePrsSha256": "4295e0bfc7e316e4f1d944f3feb5f698d37a4c26dfea530f52c8524dfa8eca50",
+      "decodedSha256": "1070ed73c4d537f8e3a395341edb42398bf2841c5975666bd1d954305353a982",
+      "model": "assets/box-state-2.xj",
+      "primitiveCount": 1,
+      "textureIndices": [
+        7
+      ]
+    },
+    {
+      "state": 3,
+      "bmlEntry": 5,
+      "bmlName": "ixm_box04.xj",
+      "sourcePrsSha256": "9959a279101112b190f2b670e7806f0c8be64097f0a8e12c1df29d738811e154",
+      "decodedSha256": "4e1f264bfb3fab6648d3638242558def469a60b067ded53bc2ba9999b13dcda7",
+      "model": "assets/box-state-3.xj",
+      "primitiveCount": 3,
+      "textureIndices": [
+        8
+      ]
+    },
+    {
+      "state": 4,
+      "bmlEntry": 6,
+      "bmlName": "ixm_box05.xj",
+      "sourcePrsSha256": "21dcf3e3890569ee8f7f7e3fa390713a23723905e4a545f1663cc576d3a3676e",
+      "decodedSha256": "8197eacd54431b1a86d1b5a136e205ab84ee9628006505c9eecc339185e781c1",
+      "model": "assets/box-state-4.xj",
+      "primitiveCount": 1,
+      "textureIndices": [
+        9
+      ]
+    }
+  ]
+}

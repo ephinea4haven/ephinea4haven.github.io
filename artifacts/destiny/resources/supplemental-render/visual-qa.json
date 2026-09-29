@@ -1,0 +1,328 @@
+{
+  "schema": "destiny-supplemental-visual-qa-v1",
+  "method": "Recovery renders reviewed on 2026-09-29 on the composited site-background contact sheet. Exact PNG hashes bind approval. Candidate identities and runtime effects remain unverified.",
+  "items": [
+    {
+      "name": "AENSLAND",
+      "code": "002002",
+      "status": "passed",
+      "imageSha256": "6f0bc47b9e1210c3c804afdef97559e5654e7c21a623eb7f9780e81f9b10f1fe",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "ANCIENT PROPHECY",
+      "code": "00D006",
+      "status": "passed",
+      "imageSha256": "b47e8a0ccc855204e6b4a9903259e160a045d4fa5fb39afb44c1b62f19269b47",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "ANTI-DARK RING",
+      "code": "010273",
+      "status": "rejected",
+      "imageSha256": "c5d7f60902a8cf6b4d91f3afc64d30db2c4179fe3ad0db3efb70b27b2a3e4766",
+      "reason": "Opaque static planes do not reproduce runtime ring effects."
+    },
+    {
+      "name": "ANTI-LIGHT RING",
+      "code": "01027B",
+      "status": "rejected",
+      "imageSha256": "0072e74fd916e20c79faa70689e4996b987a71b75fda577793f2eb3a34492cf9",
+      "reason": "Opaque static planes do not reproduce runtime ring effects."
+    },
+    {
+      "name": "APOCALYPSE BOWGUN",
+      "code": "00090A",
+      "status": "passed",
+      "imageSha256": "48e120915d28c2b9da16de8f4e1ba05fef49959369699702fcf8dd217dac9c3e",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "ARMAGEDDON",
+      "code": "004C03",
+      "status": "passed",
+      "imageSha256": "9b233af4b80895cfb1607f34b4cc0a603dbbea10344fa037e33dc6b5dd8d6ebd",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "BLUE PHANTOM FIELD",
+      "code": "0102A5",
+      "status": "passed",
+      "imageSha256": "b79e659687f806cbebdb4f7a546d6d4feeca578f7fdbf1b6b4a3a27824794f68",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "BOONDOCK SAINTS",
+      "code": "000808",
+      "status": "passed",
+      "imageSha256": "a99243b6980c360501689c6138e1b4c2330576d058771a6a8e37efe4c6af1931",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "CATACLYSM SHIELD",
+      "code": "0102AA",
+      "status": "passed",
+      "imageSha256": "3c81d3bfdb4c627c6a29a6aefdd9a67dd17069f0cb13e5f0881f242404562d3e",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "CLAW OF ELEMENTS",
+      "code": "00E302",
+      "status": "passed",
+      "imageSha256": "7dab863833ec4ec8c6da843c799ff400fd8f66f35d087df8a3d5131faa048b36",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "CRYSTALLIZED WINGS",
+      "code": "0102D2",
+      "status": "passed",
+      "imageSha256": "5f53f90bf585707604c76123eec86832dfb07b2fc7dd2c216a3c8eed0a6fba38",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "D-VIRUS LAUNCHER",
+      "code": "001405",
+      "status": "passed",
+      "imageSha256": "c1a24cc7580e0c664b5feb6ad3d609ef05e1515b619c37c40c5815d7913fc5e7",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "DEATH CANNON",
+      "code": "00A301",
+      "status": "passed",
+      "imageSha256": "7ad7a4742341338eb07feef39f1341588caffe89c31b4d4590c4114e7f5f537b",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "DEATH REAPER",
+      "code": "003E01",
+      "status": "passed",
+      "imageSha256": "ed9595e6365b5ea193fe0c19ff660fae0b78c37dbbcc42b2ab0f737cf3025139",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "DESERT EAGLE",
+      "code": "004901",
+      "status": "passed",
+      "imageSha256": "c73b32b46038eec560f5b15debdf342ea63b434b3988f698471148fde7dbd13d",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "Dragon's Claw",
+      "code": "006000",
+      "status": "passed",
+      "imageSha256": "12756b2f542d1f1738cc238c4d3a45c14d2325649aed65a206eba78da76ae756",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "ELEMENTAL SHIELD",
+      "code": "01029A",
+      "status": "passed",
+      "imageSha256": "f62730cbaa95e9e2575d30de23142198561c45c20cc1d4aabe185fbd781d2e29",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "ENERGY STORM",
+      "code": "0102A7",
+      "status": "passed",
+      "imageSha256": "79661488d47713f1cfc45c5bb547c983bd89dee27162d5fcdc343e1b60e1178b",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "ETERNAL NIGHT",
+      "code": "00030B",
+      "status": "passed",
+      "imageSha256": "96e1f8c095ba9e2840bd14f7485f1a96b86ccf852a763e23744f4c8f40353737",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "EXTERMINATOR",
+      "code": "000909",
+      "status": "passed",
+      "imageSha256": "d3845d6e8a66621a6ce988922db6290e8e5087eb422845ca455ab60b461ae716",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "FROSTBITE",
+      "code": "004502",
+      "status": "passed",
+      "imageSha256": "e4935cd2ed07f1a9dac5203f73b2539bdf4aefd4fce07d6cbea3782caa9c85f9",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "GODS SHIELD BYAKKO",
+      "code": "01022E",
+      "status": "passed",
+      "imageSha256": "c66055554ab4a588ce310770a3d449b6d53b9f035b113e9fb37b644a8c9554de",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "GODS SHIELD SUZAKU",
+      "code": "01022C",
+      "status": "passed",
+      "imageSha256": "2d10b38b0a1bedf19b94bf50cd6ecdf367386613b951337b746573acca9c76f8",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "GRAVE DIGGER",
+      "code": "001204",
+      "status": "passed",
+      "imageSha256": "2afc5fb53c7af48fc61aca2c26f31e1e3deca144efb24b633725c560fa370dbb",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "GUSH NEEDLE",
+      "code": "001201",
+      "status": "passed",
+      "imageSha256": "0e4d0d796a2db77ad8da42130f3dd91b5a8e83ca185419ded6d6662d26a21430",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "INFERNO BLADE",
+      "code": "000208",
+      "status": "passed",
+      "imageSha256": "0df82bed7c8cdd8624eff37c743ff665fa96db0f9912ebde4253cd4c1c15daf8",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "KITETSU",
+      "code": "00D003",
+      "status": "passed",
+      "imageSha256": "e96454250c24b1ed6056ff87d179f150f3a0f85d711c3551615b5abde56f1940",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "MITSUNARI",
+      "code": "00D002",
+      "status": "passed",
+      "imageSha256": "de88b51ec50d52fe59ab34e67c0815fbe19fca30df59aa9f38dffd869d98b85d",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "MOLTEN RING",
+      "code": "0102A9",
+      "status": "rejected",
+      "imageSha256": "095db59ca2c7579bdfbb5157a748f411fa85e7b7eae57a3e85b1d165eb2ed801",
+      "reason": "Opaque static planes do not reproduce runtime ring effects."
+    },
+    {
+      "name": "MORTAL RUIN",
+      "code": "00030D",
+      "status": "passed",
+      "imageSha256": "0338d1f42344c50bc7b22be01aa3c754eeaae768a1f51f2d44b28f7c0d7296a9",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "MYSTIC SPIRIT",
+      "code": "004902",
+      "status": "passed",
+      "imageSha256": "10ace08fa3601cee28a9abecd3acc821ca9f0a6e2cf7695a96d57345ba68633d",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "NEI'S CLAW",
+      "code": "009B00",
+      "status": "passed",
+      "imageSha256": "5ccccc725968f584442d04eeb970faa75f61324404baa1142ae91539f656fbfe",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "OBLIVION",
+      "code": "009701",
+      "status": "passed",
+      "imageSha256": "775b411b383bbe326dbb23707915764ed86f87d2413c0fefc9a214fa0bc7506d",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "PASSION HAZE",
+      "code": "004C02",
+      "status": "passed",
+      "imageSha256": "72f163aae3b31b87f7316bb581a36d64a46eb58e3a75b917869329d147ac4d4c",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "PHOENIX WINGS",
+      "code": "0102D3",
+      "status": "passed",
+      "imageSha256": "9ba74496495c1906401762a116b3c1ebdfc378afc911c558d2c460babb1dcf67",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "PLANET EATER",
+      "code": "008905",
+      "status": "passed",
+      "imageSha256": "b36c7e359b923c789eb72a4af301817f2cb93614f9b48d71b372aad164990a46",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "RAINBOW SHIELD",
+      "code": "0102A8",
+      "status": "passed",
+      "imageSha256": "a842c91e80b57d9abed85783c0edbbf7772776432f2a2fae36daaa101ed16dbc",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "RATHALOS GREATSWORD",
+      "code": "00020B",
+      "status": "passed",
+      "imageSha256": "58b8830a28300d7f79cb8ed0a5a0a6068dbde70c5471cc3bc98cb3d4db3c8d4f",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "RED PHANTOM FIELD",
+      "code": "0102A6",
+      "status": "passed",
+      "imageSha256": "fca1013a028ba88ddce94af3c19595a3767f6506ad11efb26b72996b8ec740c9",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "SOUL BITER",
+      "code": "009703",
+      "status": "passed",
+      "imageSha256": "e16724a5c84e55abe6a93363eee62559aae36dadd08d59031a50b59f7d11db3c",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "SOUL DEVOURER",
+      "code": "003F01",
+      "status": "passed",
+      "imageSha256": "297c87978139e8ba12fda93839860d1630ab1e1ec74d55d14b3fee2f67322dff",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "SUBZERO",
+      "code": "001301",
+      "status": "passed",
+      "imageSha256": "fe9f65b78223635a029ba745bf797b93efc381a85a01be453089d2bea981af55",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "TASTE OF AFFECTION",
+      "code": "004C04",
+      "status": "passed",
+      "imageSha256": "bb15ffc8ceedc9da9ba9a70899177bd69630e5d6fb8c9eea07c223fa88b346b0",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "TIGER'S FANG & DRAGON'S CLAW",
+      "code": "00B801",
+      "status": "passed",
+      "imageSha256": "391f98952382efc2de15737c1638edf45ef0b8e537bc2be3353d83c9ab42f975",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "TORMENTOR",
+      "code": "000908",
+      "status": "passed",
+      "imageSha256": "2b10a3c185717dafbaa1b6df568f679618ed8a311b07a5a7b7165765737c9206",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    },
+    {
+      "name": "TWIN PALLASCH",
+      "code": "00D001",
+      "status": "passed",
+      "imageSha256": "3aba5015ad580212adf70f7a20563fa5645e832c4c24a14d921359b68d16e619",
+      "reason": "Complete static preview reviewed on the site background; identity tier retained."
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "schema": "destiny-shared-ground-pickup-previews-v1",
+  "source": {
+    "destinyBml": "../originals/item.bml",
+    "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+    "assetsManifest": "assets-manifest.json",
+    "assetsManifestSha256": "80bedab86c259652074853eefe3e46a1b2f5c68e296e8ec52ac7cf55cc67e7a2",
+    "renderer": "../model-previews/render_textured.py",
+    "rendererSha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814",
+    "renderAdapter": "render_category.py",
+    "renderAdapterSha256": "d059f4bf91a917c044f6650bfaac0e627572c3db6ea8e0efacb36024c0c937b9"
+  },
+  "selectionEvidence": {
+    "scope": "original Blue Burst client logic plus exact Destiny item.bml resource",
+    "originalClientGhidraArchive": "/Users/wangzhen/study/original-psobb-client-source/ghidra_project/Psobb.exe.gzf",
+    "originalClientGhidraArchiveSha256": "587d12dde345cb17092d41d458b97c6755c971b5a155d9c9b8fdb5ca8e49e6b1",
+    "originalClientTableAddress": "0x0092BB88",
+    "originalClientTableBytes": "00 01 01 02 03",
+    "sourceFunctions": [
+      "SetItemState_005c3e3c",
+      "get_item_bml_data",
+      "render_item_box",
+      "is_rare_weapon"
+    ],
+    "baseGroupToState": {
+      "0": 0,
+      "1": 1,
+      "2": 1,
+      "3": 2,
+      "4": 3
+    },
+    "rareStarThreshold": 9,
+    "rareOverrideState": 4,
+    "destinyRuntimeSelectionVerified": false,
+    "note": "These are real shared Destiny box model/texture previews. Family images illustrate the base nonrare state; rare items use the red override in the original client. Unknown-family entries use the red client box as an unclassified specimen only, without claiming that this is their actual runtime box."
+  },
+  "rareOverride": {
+    "image": "box-state-4.png",
+    "imageSha256": "2d4e3f6856218989e8d32c90e1def41fe35d849f1cbcf85feb5368e2dd062cc0",
+    "caption": "Shared ground pickup model · rare override (original BB rule)"
+  },
+  "entries": [
+    {
+      "family": "weapon",
+      "image": "box-state-0.png",
+      "imageSha256": "2643eef6e3d4a652fb287d1e574da120dcb1c7aa7157bb9524a1ce59704ed1fc",
+      "imageSize": [
+        600,
+        600
+      ],
+      "visualQa": "passed",
+      "representation": "shared_ground_pickup_category",
+      "caption": "Shared ground pickup model · weapon base category",
+      "baseState": 0,
+      "selectionCondition": "nonrare_base_state",
+      "categoryConfirmed": true,
+      "runtimeVerifiedForDestiny": false,
+      "sourceEvidence": {
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 2,
+        "bmlName": "ixm_box01.xj",
+        "modelDecodedSha256": "4f4b195cddf984864e707deba8c8a6eba2a6dcc5fc878fac8012908f322cb6d0",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "original_bb_client_g_ItemStateTable_0092BB88"
+      }
+    },
+    {
+      "family": "armor",
+      "image": "box-state-1.png",
+      "imageSha256": "e07215d17ddce74d0307936b43787d8ad539bced9279c43265d47d55178c01bc",
+      "imageSize": [
+        600,
+        600
+      ],
+      "visualQa": "passed",
+      "representation": "shared_ground_pickup_category",
+      "caption": "Shared ground pickup model · armor base category",
+      "baseState": 1,
+      "selectionCondition": "nonrare_base_state",
+      "categoryConfirmed": true,
+      "runtimeVerifiedForDestiny": false,
+      "sourceEvidence": {
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 3,
+        "bmlName": "ixm_box02.xj",
+        "modelDecodedSha256": "cd2b2d4a47e8eecda256a10a07a11488c4271dd6ad6fb067c93eceddda2708b0",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "original_bb_client_g_ItemStateTable_0092BB88"
+      }
+    },
+    {
+      "family": "shield",
+      "image": "box-state-1.png",
+      "imageSha256": "e07215d17ddce74d0307936b43787d8ad539bced9279c43265d47d55178c01bc",
+      "imageSize": [
+        600,
+        600
+      ],
+      "visualQa": "passed",
+      "representation": "shared_ground_pickup_category",
+      "caption": "Shared ground pickup model · shield base category",
+      "baseState": 1,
+      "selectionCondition": "nonrare_base_state",
+      "categoryConfirmed": true,
+      "runtimeVerifiedForDestiny": false,
+      "sourceEvidence": {
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 3,
+        "bmlName": "ixm_box02.xj",
+        "modelDecodedSha256": "cd2b2d4a47e8eecda256a10a07a11488c4271dd6ad6fb067c93eceddda2708b0",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "original_bb_client_g_ItemStateTable_0092BB88"
+      }
+    },
+    {
+      "family": "unit",
+      "image": "box-state-1.png",
+      "imageSha256": "e07215d17ddce74d0307936b43787d8ad539bced9279c43265d47d55178c01bc",
+      "imageSize": [
+        600,
+        600
+      ],
+      "visualQa": "passed",
+      "representation": "shared_ground_pickup_category",
+      "caption": "Shared ground pickup model · unit base category",
+      "baseState": 1,
+      "selectionCondition": "nonrare_base_state",
+      "categoryConfirmed": true,
+      "runtimeVerifiedForDestiny": false,
+      "sourceEvidence": {
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 3,
+        "bmlName": "ixm_box02.xj",
+        "modelDecodedSha256": "cd2b2d4a47e8eecda256a10a07a11488c4271dd6ad6fb067c93eceddda2708b0",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "original_bb_client_g_ItemStateTable_0092BB88"
+      }
+    },
+    {
+      "family": "mag",
+      "image": "box-state-1.png",
+      "imageSha256": "e07215d17ddce74d0307936b43787d8ad539bced9279c43265d47d55178c01bc",
+      "imageSize": [
+        600,
+        600
+      ],
+      "visualQa": "passed",
+      "representation": "shared_ground_pickup_category",
+      "caption": "Shared ground pickup model · Mag base category",
+      "baseState": 1,
+      "selectionCondition": "nonrare_base_state",
+      "categoryConfirmed": true,
+      "runtimeVerifiedForDestiny": false,
+      "sourceEvidence": {
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 3,
+        "bmlName": "ixm_box02.xj",
+        "modelDecodedSha256": "cd2b2d4a47e8eecda256a10a07a11488c4271dd6ad6fb067c93eceddda2708b0",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "original_bb_client_g_ItemStateTable_0092BB88"
+      }
+    },
+    {
+      "family": "tool",
+      "image": "box-state-2.png",
+      "imageSha256": "7de75203ca74cb26ce9693b0fffbbdba015cde7e393e88fa24063435748be831",
+      "imageSize": [
+        600,
+        600
+      ],
+      "visualQa": "passed",
+      "representation": "shared_ground_pickup_category",
+      "caption": "Shared ground pickup model · tool base category",
+      "baseState": 2,
+      "selectionCondition": "nonrare_base_state",
+      "categoryConfirmed": true,
+      "runtimeVerifiedForDestiny": false,
+      "sourceEvidence": {
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 4,
+        "bmlName": "ixm_box03.xj",
+        "modelDecodedSha256": "1070ed73c4d537f8e3a395341edb42398bf2841c5975666bd1d954305353a982",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "original_bb_client_g_ItemStateTable_0092BB88"
+      }
+    },
+    {
+      "family": "meseta",
+      "image": "box-state-3.png",
+      "imageSha256": "75cabe45807ba820ec0cbeedcae47b3b36bd767cf5be19da2ada7dd0ad0a2332",
+      "imageSize": [
+        600,
+        600
+      ],
+      "visualQa": "passed",
+      "representation": "shared_ground_pickup_category",
+      "caption": "Shared ground pickup model · Meseta base category",
+      "baseState": 3,
+      "selectionCondition": "nonrare_base_state",
+      "categoryConfirmed": true,
+      "runtimeVerifiedForDestiny": false,
+      "sourceEvidence": {
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 5,
+        "bmlName": "ixm_box04.xj",
+        "modelDecodedSha256": "4e1f264bfb3fab6648d3638242558def469a60b067ded53bc2ba9999b13dcda7",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "original_bb_client_g_ItemStateTable_0092BB88"
+      }
+    },
+    {
+      "family": "unknown",
+      "image": "box-state-4.png",
+      "imageSha256": "2d4e3f6856218989e8d32c90e1def41fe35d849f1cbcf85feb5368e2dd062cc0",
+      "imageSize": [
+        600,
+        600
+      ],
+      "visualQa": "passed",
+      "representation": "shared_ground_pickup_category",
+      "caption": "Shared ground pickup model · category unconfirmed",
+      "baseState": 4,
+      "selectionCondition": "illustrative_category_unconfirmed",
+      "categoryConfirmed": false,
+      "runtimeVerifiedForDestiny": false,
+      "sourceEvidence": {
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 6,
+        "bmlName": "ixm_box05.xj",
+        "modelDecodedSha256": "8197eacd54431b1a86d1b5a136e205ab84ee9628006505c9eecc339185e781c1",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "none_unknown_category"
+      }
+    }
+  ]
+}

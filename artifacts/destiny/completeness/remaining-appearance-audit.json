@@ -1,0 +1,5841 @@
+{
+  "schema": "destiny-remaining-appearance-audit-v1",
+  "scope": "Entries in the current image manifest categoryPreviews, regardless of image mapping presence.",
+  "caveat": "A shared category preview does not establish that an item has no individual in-game appearance. Candidate names and parameter matches do not prove runtime identity.",
+  "sources": {
+    "imageManifest": {
+      "file": "../dropcharts/destiny/images/manifest.json",
+      "sha256": "d09d86c3fdd28983cb36f68b4b765e9df446d5ae4e0aaf3da59e3b7a2e1f02c4"
+    },
+    "families": {
+      "file": "item-families.json",
+      "sha256": "a68bfaa08a5cefc654edc11ccdbbe899b74261381ff1b791f463ff1ca2ca864d"
+    },
+    "catalog": {
+      "file": "../catalog.json",
+      "sha256": "8125d49a8e60458a10b07573b1d8f3cedf176cba1beeec3832779727b857b968"
+    },
+    "database": {
+      "file": "../database.json",
+      "sha256": "dede95275fd419bce2fa65dd38c09d76cba5c329764a87a57806ac5fe5e5ec1d"
+    },
+    "missingImageAudit": {
+      "file": "../missing-image-audit.json",
+      "sha256": "baba49bfd07b2ad3ed18bee87aeba621ba4b285b69d8f69587513f2919fa5d1c"
+    },
+    "supplementalJobs": {
+      "file": "../supplemental-jobs.json",
+      "sha256": "0d031fb8f1878d7267aeb2b1707278de3a1b21bf65190ce0154eeb593006d99b"
+    },
+    "supplementalVisualQa": {
+      "file": "../resources/supplemental-render/visual-qa.json",
+      "sha256": "fc98b05d13ad3f7185ac013dae7e23a38db8da920f0e2c62c23f849d4c071311"
+    },
+    "modelPreviewJobs": {
+      "file": "../resources/model-previews/jobs.json",
+      "sha256": "c90a5d4aa4f22ec3adfc069e536a8a774e65a9a4b40dc5f566332cf3f7c5492a"
+    },
+    "pmt": {
+      "file": "../pmt/records.json",
+      "sha256": "c9fef0eb88813b2f7590597af5eaf3fa369863d4700d5837313a95f9b23fc2aa"
+    },
+    "modelArchive": {
+      "file": "../resources/originals/ItemModelEp4.afs",
+      "sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56"
+    },
+    "textureArchive": {
+      "file": "../resources/originals/ItemTextureEp4.afs",
+      "sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308"
+    }
+  },
+  "archiveBoundaries": {
+    "model": {
+      "entries": 450,
+      "bytes": 3315712
+    },
+    "texture": {
+      "entries": 546,
+      "bytes": 5126144
+    }
+  },
+  "counts": {
+    "total": 246,
+    "family": {
+      "armor": 59,
+      "shield": 18,
+      "tool": 70,
+      "unit": 86,
+      "unknown": 9,
+      "weapon": 4
+    },
+    "nextStepStatus": {
+      "identity_unresolved": 9,
+      "no_itemkt_or_model_route": 215,
+      "resource_slot_unavailable": 22
+    }
+  },
+  "items": [
+    {
+      "name": "A New Friend",
+      "family": "tool",
+      "familyEvidenceTier": "unitxt_candidate_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "03180C",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 166
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "AddSlot",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030F00",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 114
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "ADEPT",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01034E",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1075
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Administrator's Core",
+      "family": "unknown",
+      "familyEvidenceTier": "unresolved",
+      "sharedCategoryImage": "box-state-4.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "identity_unresolved",
+      "nextStep": "Confirm the item family and code from independent client or runtime evidence."
+    },
+    {
+      "name": "ALLIANCE UNIFORM",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01014D",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 821
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Amitie's Memo",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031805",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 159
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Angel/Luck",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01031C",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1025
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Angel/Mind",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010306",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1003
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "ARCHFIEND ARMOR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01015D",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1132
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "ASSIST BARRIER",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01024A",
+          "evidenceTiers": [
+            "website_parameter_match"
+          ],
+          "family": "shield",
+          "pmtId": 906,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        },
+        {
+          "code": "01024B",
+          "evidenceTiers": [
+            "website_parameter_match"
+          ],
+          "family": "shield",
+          "pmtId": 907,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        },
+        {
+          "code": "01024C",
+          "evidenceTiers": [
+            "website_parameter_match"
+          ],
+          "family": "shield",
+          "pmtId": 908,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        },
+        {
+          "code": "01024D",
+          "evidenceTiers": [
+            "website_parameter_match"
+          ],
+          "family": "shield",
+          "pmtId": 909,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        },
+        {
+          "code": "01024E",
+          "evidenceTiers": [
+            "website_parameter_match"
+          ],
+          "family": "shield",
+          "pmtId": 910,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "ATTRIBUTE PLATE",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010125",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 781
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "ATTRIBUTE WALL",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01021E",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 862,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "BEHEMOTH ARMOR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01015F",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1134
+        },
+        {
+          "code": "010166",
+          "evidenceTiers": [
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1167
+        },
+        {
+          "code": "01016A",
+          "evidenceTiers": [
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1175
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Belra's Right Arm",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D0B",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 46
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "BLACK HOUND CUIRASS",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010136",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 798
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "BLACK ODOSHI DOMARU",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010138",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 800
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "BLACK ODOSHI RED NIMAIDOU",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01013A",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 802
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "BLAST GARMENT",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01016F",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "armor",
+          "pmtId": 1192
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "01016F",
+          "reason": "unsupported_family"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Blizzard Garment",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010118",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "armor",
+          "pmtId": 768
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "010118",
+          "reason": "unsupported_family"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "BLUE BARRIER",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01024D",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 909,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "Blue Crystal",
+      "family": "unknown",
+      "familyEvidenceTier": "unresolved",
+      "sharedCategoryImage": "box-state-4.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "identity_unresolved",
+      "nextStep": "Confirm the item family and code from independent client or runtime evidence."
+    },
+    {
+      "name": "BLUE ODOSHI VIOLET NIMAIDOU",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01013B",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 803
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Book of HITOGATA",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E0A",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 85
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Booma's Right Arm",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D0F",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 70
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "BUSINESS JACKET",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01015C",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1131
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Celestial Armor",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010117",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 767
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Centurion/Ability",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01035B",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1088
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Centurion/Arms",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010366",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1099
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Centurion/Battle",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010379",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1120
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Centurion/Body",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01036F",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1110
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Centurion/HP",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010370",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1111
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Centurion/Legs",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01036E",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1109
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Centurion/Luck",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010371",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1112
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Centurion/Mind",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010367",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1100
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Centurion/Power",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010365",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1098
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Chaos Engine",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "CHAOS HALO",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "0102CF",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "shield",
+          "pmtId": 1197,
+          "resource": {
+            "model": {
+              "index": 463,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 407,
+              "status": "present",
+              "offset": 2975744,
+              "size": 2085,
+              "compressedSha256": "1cffbd3d88d7ce3ef57a94b30d02e58acfe4252b496f157ef9d641bc4631ee52"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "0102CF",
+          "reason": "model_slot_out_of_range_or_empty"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "Christmas Present",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031500",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 134
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Cladding of Epsilon",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D14",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 175
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Cladding of Manipulator III",
+      "family": "unknown",
+      "familyEvidenceTier": "unresolved",
+      "sharedCategoryImage": "box-state-4.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "identity_unresolved",
+      "nextStep": "Confirm the item family and code from independent client or runtime evidence."
+    },
+    {
+      "name": "COMBAT GEAR",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010220",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 864,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "COMMANDER UNIFORM",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01014F",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 823
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "CONGEAL CLOAK",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010147",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 815
+        },
+        {
+          "code": "025200",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "mag",
+          "pmtId": 859
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "CRIMSON COAT",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010150",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 824
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Cure/Confuse",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010345",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1066
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Cure/Freeze",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010346",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1067
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Cure/Paralysis",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010343",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1064
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Cure/Poison",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010342",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1063
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Cure/Shock",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010347",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1068
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Cure/Slow",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010344",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1065
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "CURSED CLOAK",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010149",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 817
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "CUSTOM FRAME ver.OO",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010127",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 783
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "D-PARTS ver1.01",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01011E",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 774
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "D-PARTS ver2.10",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01011F",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 775
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "D-Photon Core",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031809",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 163
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "D-VIRUS ARMOR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010161",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1142
+        },
+        {
+          "code": "010169",
+          "evidenceTiers": [
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1174
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Dark Matter",
+      "family": "tool",
+      "familyEvidenceTier": "unitxt_candidate_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031801",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 155
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Darkness Photon Sphere",
+      "family": "unknown",
+      "familyEvidenceTier": "unresolved",
+      "sharedCategoryImage": "box-state-4.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "identity_unresolved",
+      "nextStep": "Confirm the item family and code from independent client or runtime evidence."
+    },
+    {
+      "name": "DB'S ARMOR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010128",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 784
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "De Rol Le Shell",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D15",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 176
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Def Material",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030B05",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 21
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Delsaber's Left Arm",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D05",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 37
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Delsaber's Right Arm",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D03",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 35
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Devil/Battle",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010340",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1061
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Devil/Technique",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01033D",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1058
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Digrinder",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030A01",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 14
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "DIVINE BLADE",
+      "family": "weapon",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-0.png",
+      "candidateCodes": [
+        {
+          "code": "00B803",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "weapon",
+          "pmtId": 644,
+          "resource": {
+            "model": {
+              "index": 464,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 573,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "00B803",
+          "reason": "model_slot_out_of_range_or_empty"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "Divinity Armor",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010115",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 765
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Dr. Robotnik's Plan B",
+      "family": "tool",
+      "familyEvidenceTier": "unitxt_candidate_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031213",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 66
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Dragon Scale",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031802",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 156
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Dragon Tear",
+      "family": "tool",
+      "familyEvidenceTier": "unitxt_candidate_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "03180F",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 169
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Dragon/HP",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010312",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1015
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "DYNASTY ARMOR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01015B",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1130
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Easter Egg",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031501",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 135
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "ETHEREAL ARMOR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010165",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1166
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Evade Material",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030B02",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 18
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "FLOWEN'S FRAME",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010126",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 782
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "General/Arm",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010309",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1006
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "General/Legs",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01030D",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1010
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "General/Mind",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010305",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1002
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "General/Power",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010301",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 998
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "GENESIS ARMOR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010159",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1102
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Gigobooma's Right Arm",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D11",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 72
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Gobooma's Right Arm",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D10",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 71
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/Ability",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010320",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1029
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/Arm",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01030B",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1008
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/Battle",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010341",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1062
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/Body",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01031B",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1024
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/HP",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010313",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1016
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/Legs",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01030F",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1012
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/Luck",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01031D",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1026
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/Mind",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010307",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1004
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/Power",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010303",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1000
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/Technique",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01033E",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1059
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "God/TP",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010317",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1020
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "GOLDEN HALO",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "0102CE",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "shield",
+          "pmtId": 1188,
+          "resource": {
+            "model": {
+              "index": 463,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 568,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "0102CE",
+          "reason": "model_slot_out_of_range_or_empty"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "Grass Assassin's Arms",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D0E",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 69
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "GRAVITON PLATE",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010124",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 780
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Hallowed Jack-O-Lantern",
+      "family": "unknown",
+      "familyEvidenceTier": "unresolved",
+      "sharedCategoryImage": "box-state-4.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "identity_unresolved",
+      "nextStep": "Confirm the item family and code from independent client or runtime evidence."
+    },
+    {
+      "name": "Heart of Chu Chu",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E0B",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 86
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heart of Dark Chao",
+      "family": "tool",
+      "familyEvidenceTier": "unitxt_candidate_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "03180D",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 167
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heart of Morolian",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031806",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 160
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heaven Striker Coat",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031803",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 157
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/Ability",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01035A",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1087
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/Arms",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010356",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1083
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/Battle",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010353",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1080
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/Body",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010358",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1085
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/HP",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01035D",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1090
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/Legs",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010357",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1084
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/Luck",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010359",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1086
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/Mind",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010355",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1082
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/Power",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010354",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1081
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Heavenly/Resist",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01035F",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1092
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Hero/Ability",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01031F",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1028
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Hildebear's Head",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D08",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 43
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Hildeblue's Head",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D09",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 44
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "HP Material",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030B03",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 19
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "HP/Flow",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01037B",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1122
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "HP/Restorate",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010333",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1048
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "HP/Revival",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010335",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1050
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Ideya Cell",
+      "family": "tool",
+      "familyEvidenceTier": "unitxt_candidate_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "03180B",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 165
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "IGNITION CLOAK",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010146",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 814
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Immortal/Ability",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01037D",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1124
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Immortal/Arms",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010373",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1114
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Immortal/Battle",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010364",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1097
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Immortal/Body",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010376",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1117
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Immortal/HP",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010377",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1118
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Immortal/Legs",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010375",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1116
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Immortal/Luck",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010378",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1119
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Immortal/Mind",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010374",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1115
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Immortal/Power",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010372",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1113
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Infernal Stone",
+      "family": "tool",
+      "familyEvidenceTier": "unitxt_candidate_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031409",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 131
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "INVISIBLE GUARD",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010215",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 853,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "Jack-O'-Lantern",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031502",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 136
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Kit of DREAMCAST",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E15",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 96
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Kit of GENESIS",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E13",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 94
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Kit of MARK3",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E11",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 92
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Kit of MASTER SYSTEM",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E12",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 93
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Kit of SEGA SATURN",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E14",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 95
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "KROE'S SWEATER",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01013D",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 805
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Liberta Kit",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "03180A",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 164
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "LIEUTENANT GEAR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010152",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 826
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "LIEUTENANT MANTLE",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010154",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 828
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "LIGHT RELIEF",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010219",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 857,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "LIMITER",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01034D",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1074
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Luck Material",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030B06",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 23
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "magic rock \"Moola\"",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E08",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 83
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Magic Stone \"Iritista\"",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E02",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 77
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Master/Ability",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01031E",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1027
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Millennium Photon Core",
+      "family": "unknown",
+      "familyEvidenceTier": "unresolved",
+      "sharedCategoryImage": "box-state-4.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "identity_unresolved",
+      "nextStep": "Confirm the item family and code from independent client or runtime evidence."
+    },
+    {
+      "name": "Mind Material",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030B01",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 17
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Molten Garment",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010119",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "armor",
+          "pmtId": 769
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "010119",
+          "reason": "unsupported_family"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Monogrinder",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030A00",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 13
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "MORNING PRAYER",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010137",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 799
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "MOTHER GARB",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010142",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 810
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "MOTHER GARB+",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010143",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 811
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "NINJA SUIT",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01015E",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1133
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "OFFICER UNIFORM",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01014E",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 822
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Orb of Illusions",
+      "family": "tool",
+      "familyEvidenceTier": "unitxt_candidate_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "03120C",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 59
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "P-arm's Arms",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D02",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 34
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Pandora's Box",
+      "family": "tool",
+      "familyEvidenceTier": "unitxt_candidate_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "03180E",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 168
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "PARAGON FRAME",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010168",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "armor",
+          "pmtId": 1173
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "010168",
+          "reason": "unsupported_family"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Parasitic Armor 'Predator'",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01016B",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "armor",
+          "pmtId": 1176
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "01016B",
+          "reason": "unsupported_family"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Parasitic gene \"Flow\"",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E01",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 76
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Parts of Baranz",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D0A",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 45
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Parts of EGG BLASTER",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E0C",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 87
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "PB/Create",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01033B",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1056
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "PB/Flow",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01037A",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1121
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Perfect/Resist",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010332",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1047
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Photon Booster",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E27",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 119
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Photon Crystal",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031002",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 117
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Pioneer Parts",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031804",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 158
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Power Material",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030B00",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 16
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "PRIMAL NEXUS",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010167",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "armor",
+          "pmtId": 1168
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "010167",
+          "reason": "unsupported_family"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Primal Photon Sphere",
+      "family": "unknown",
+      "familyEvidenceTier": "unresolved",
+      "sharedCategoryImage": "box-state-4.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "identity_unresolved",
+      "nextStep": "Confirm the item family and code from independent client or runtime evidence."
+    },
+    {
+      "name": "Proof of Sonic Team",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "03120E",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 61
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "PROTO REGENE GEAR",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010221",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 865,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "RADIANT RING",
+      "family": "unknown",
+      "familyEvidenceTier": "unresolved",
+      "sharedCategoryImage": "box-state-4.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "identity_unresolved",
+      "nextStep": "Confirm the item family and code from independent client or runtime evidence."
+    },
+    {
+      "name": "Rappy's Beak",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031807",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 161
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Rappy's Wing",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D13",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 74
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "RASTER SCOPE",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "RECOVERY BARRIER",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01024A",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 906,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "RED BARRIER",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01024C",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 908,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "Red Crystal",
+      "family": "unknown",
+      "familyEvidenceTier": "unresolved",
+      "sharedCategoryImage": "box-state-4.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "identity_unresolved",
+      "nextStep": "Confirm the item family and code from independent client or runtime evidence."
+    },
+    {
+      "name": "RED ODOSHI DOMARU",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010139",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 801
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "REFLEX GEAR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010158",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1101
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "REGENE GEAR ADV.",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010223",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 867,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "REGENERATE GEAR",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010222",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 866,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "Resist/Fire",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010321",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1030
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Resist/Flame",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010322",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1031
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Resist/Freeze",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010325",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1034
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Resist/Light",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01032A",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1039
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Resist/Thunder",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010328",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1037
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "REVIVAL CURIASS",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01014C",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 820
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "REVIVAL GARMENT",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01011B",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 771
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "RING OF FIRE",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010162",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1143
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "S-beat's Arms",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D01",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 33
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "S-PARTS ver1.16",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010217",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 855,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "S-PARTS ver2.01",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010218",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 856,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "SACRED GUARD",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010216",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 854,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "SAMURAI ARMOR",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010156",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 830
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Scape Doll",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030900",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 24
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "SELECT CLOAK",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01014A",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 818
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "SENSE PLATE",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010123",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 779
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "SHADOW CLOAK",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010163",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1144
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Sinow Berill's Arms",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D0D",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 68
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "SMARTLINK",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010351",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1078
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Sol Atomizer",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030300",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 8
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Sorcerer's Right Arm",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030D00",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 32
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "SPIRIT CUIRASS",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01014B",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 819
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "SPIRIT GARMENT",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01011C",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 772
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Star Amplifier",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E09",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 84
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Star Atomizer",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030500",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 10
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "STAR CUIRASS",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010135",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 797
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Star Eulogy",
+      "family": "weapon",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-0.png",
+      "candidateCodes": [
+        {
+          "code": "000F04",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "weapon",
+          "pmtId": 565,
+          "resource": {
+            "model": {
+              "index": 65535,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65535,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "State/Maintenance",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010368",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1103
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "STINK FRAME",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01011D",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 773
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "STINK SHIELD",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010299",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 985,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "SWORDSMAN LORE",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01034F",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1076
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Syncesta",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030E04",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 79
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Tablet",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031800",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 154
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "TEMPEST CLOAK",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010148",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 816
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Tempest Garment",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01011A",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "armor",
+          "pmtId": 770
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "01011A",
+          "reason": "unsupported_family"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "THIRTEEN",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010141",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 809
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "TP Material",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030B04",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 20
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "TP/Flow",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01037C",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1123
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "TP/Restorate",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010336",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1051
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "TP/Revival",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010338",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1053
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Trap/Search",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010369",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1104
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Trigrinder",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030A02",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 15
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Trimate",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "030002",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 2
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "TWIN RIKA'S CLAW",
+      "family": "weapon",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-0.png",
+      "candidateCodes": [
+        {
+          "code": "009801",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "weapon",
+          "pmtId": 699,
+          "resource": {
+            "model": {
+              "index": 456,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 192,
+              "status": "present",
+              "offset": 1646592,
+              "size": 6509,
+              "compressedSha256": "396cd239f0c6465eae53976afffa060603542cf32a25dff9ceed116863a7744a"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "009801",
+          "reason": "model_slot_out_of_range_or_empty"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "Ultimate Frame",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010116",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 766
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "V101",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010349",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1070
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "V501",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01034A",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1071
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "V502",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01034B",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1072
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "V503",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01037E",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1145
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "V801",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01034C",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1073
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "V802",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01036A",
+          "evidenceTiers": [
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1105
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "VECTOR SCOPE",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "VENUS BOW",
+      "family": "weapon",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-0.png",
+      "candidateCodes": [
+        {
+          "code": "001207",
+          "evidenceTiers": [
+            "website_parameter_match",
+            "website_parameter_unique_no_name"
+          ],
+          "family": "weapon",
+          "pmtId": 696,
+          "resource": {
+            "model": {
+              "index": 462,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 570,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [
+        {
+          "code": "001207",
+          "reason": "model_slot_out_of_range_or_empty"
+        }
+      ],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    },
+    {
+      "name": "WEDDING DRESS",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01013E",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "armor",
+          "pmtId": 806
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "X-PARTS ver3.10",
+      "family": "armor",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01015A",
+          "evidenceTiers": [
+            "unitxt_name_candidate",
+            "website_parameter_match"
+          ],
+          "family": "armor",
+          "pmtId": 1129
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "Yahoo!'s engine",
+      "family": "tool",
+      "familyEvidenceTier": "verified_client_name_category",
+      "sharedCategoryImage": "box-state-2.png",
+      "candidateCodes": [
+        {
+          "code": "031808",
+          "evidenceTiers": [
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "tool",
+          "pmtId": 162
+        }
+      ],
+      "previousRenderStatus": "no_unique_code",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "YASAKANI MAGATAMA",
+      "family": "unit",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "010348",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "unit",
+          "pmtId": 1069
+        }
+      ],
+      "previousRenderStatus": "unsupported_family",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "no_itemkt_or_model_route",
+      "nextStep": "Find an item-specific client visual source; the audited ItemKT and AFS model routes do not supply one."
+    },
+    {
+      "name": "YELLOW BARRIER",
+      "family": "shield",
+      "familyEvidenceTier": "website_database_category",
+      "sharedCategoryImage": "box-state-1.png",
+      "candidateCodes": [
+        {
+          "code": "01024E",
+          "evidenceTiers": [
+            "catalog_association",
+            "confirmed_client_name",
+            "unitxt_name_candidate"
+          ],
+          "family": "shield",
+          "pmtId": 910,
+          "resource": {
+            "model": {
+              "index": 65889,
+              "status": "out_of_range"
+            },
+            "texture": {
+              "index": 65913,
+              "status": "out_of_range"
+            }
+          }
+        }
+      ],
+      "previousRenderStatus": "slot_out_of_range",
+      "excludedCandidateReasons": [],
+      "rejectedPreviews": [],
+      "nextStepStatus": "resource_slot_unavailable",
+      "nextStep": "Locate a usable model and texture source for the candidate code before rendering."
+    }
+  ]
+}

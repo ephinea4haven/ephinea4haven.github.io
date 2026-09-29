@@ -1,0 +1,1246 @@
+{
+  "schema": "destiny-model-preview-assets-v1",
+  "assets": {
+    "model_374": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 374,
+      "entry_offset": 2279424,
+      "prs": {
+        "path": "assets/model_374.prs",
+        "bytes": 1628,
+        "sha256": "8362d63f5c6e23809612bf13282fbb737384f151df1e08c7d6a5909bff6f7e06"
+      },
+      "decoded": {
+        "path": "assets/model_374.xj",
+        "bytes": 4992,
+        "sha256": "d23230ba2babc484951edf38b2dcadbdabf1ff8c48c1c659e3ff73ac507c9bd3"
+      },
+      "signature": "NJTL"
+    },
+    "texture_398": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 398,
+      "entry_offset": 2955264,
+      "prs": {
+        "path": "assets/texture_398.prs",
+        "bytes": 1710,
+        "sha256": "b22ab6cd6e0e708a13a882e411d0ce0dc7e39d76ab7cb06737d60ea8d3758ad6"
+      },
+      "decoded": {
+        "path": "assets/texture_398.xvm",
+        "bytes": 2176,
+        "sha256": "6e8098cf72038d6bb554727ff03f89b148b859c3b3aaadeed439bb7e855a117e"
+      },
+      "signature": "XVMH"
+    },
+    "model_026": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 26,
+      "entry_offset": 622592,
+      "prs": {
+        "path": "assets/model_026.prs",
+        "bytes": 3704,
+        "sha256": "0cd95a70d445af4780109a6f19e8c5a8316055b110a6e316ed9513e54acd19bc"
+      },
+      "decoded": {
+        "path": "assets/model_026.xj",
+        "bytes": 9824,
+        "sha256": "5538f5c7b1113bc729a5cde9e4d56bb675016e63b02f69012e488634eb6b4112"
+      },
+      "signature": "NJTL"
+    },
+    "texture_026": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 26,
+      "entry_offset": 669696,
+      "prs": {
+        "path": "assets/texture_026.prs",
+        "bytes": 8231,
+        "sha256": "28c46851a0114618e785d62dfecbc9d7605a1712aef9dd13734ce20037881931"
+      },
+      "decoded": {
+        "path": "assets/texture_026.xvm",
+        "bytes": 8896,
+        "sha256": "96e4126a6e4879ab3aa45aa4c19997a93d23ba2eefe4891d539816f2ea3ba524"
+      },
+      "signature": "XVMH"
+    },
+    "model_380": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 380,
+      "entry_offset": 2293760,
+      "prs": {
+        "path": "assets/model_380.prs",
+        "bytes": 1993,
+        "sha256": "cfc9be828a39a2d3d54a79e5a46e4cfbb0035763aafaddc947ee4ed7384a13d0"
+      },
+      "decoded": {
+        "path": "assets/model_380.xj",
+        "bytes": 7328,
+        "sha256": "c38f59dc88fbb43ec2d762844d1f84de6bbeed027c35c742f17103775c727141"
+      },
+      "signature": "NJTL"
+    },
+    "texture_404": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 404,
+      "entry_offset": 2967552,
+      "prs": {
+        "path": "assets/texture_404.prs",
+        "bytes": 1948,
+        "sha256": "733c9a2bd12f82b42cc46e5d7081d5b670b6f0aa9a27e7ed7ef0e3690cfc50d8"
+      },
+      "decoded": {
+        "path": "assets/texture_404.xvm",
+        "bytes": 2176,
+        "sha256": "d0e6c463ce6b3b6e38ee50b362838afb2041f3810690e5c1163976bd2f77ae0f"
+      },
+      "signature": "XVMH"
+    },
+    "model_378": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 378,
+      "entry_offset": 2287616,
+      "prs": {
+        "path": "assets/model_378.prs",
+        "bytes": 2036,
+        "sha256": "f07b1ce60b0d56c2bf5b34a678894cc644f6cfc344bbee4f5a5d707630ec01a3"
+      },
+      "decoded": {
+        "path": "assets/model_378.xj",
+        "bytes": 5216,
+        "sha256": "a39b70d8d5bd8496842df1090d20587e7045e8f8b0467f4d90e9f605a2e3ec41"
+      },
+      "signature": "NJTL"
+    },
+    "texture_402": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 402,
+      "entry_offset": 2963456,
+      "prs": {
+        "path": "assets/texture_402.prs",
+        "bytes": 1753,
+        "sha256": "eb34b76ba310eaee180aa9cb5b9e45c5944437a8c3a8ba888fd62c611e9d7aba"
+      },
+      "decoded": {
+        "path": "assets/texture_402.xvm",
+        "bytes": 2176,
+        "sha256": "3742c1aa0088d9dc0ae4c9476bdaa739dac34abb2cbde4d24b2b1da22addaee6"
+      },
+      "signature": "XVMH"
+    },
+    "model_401": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 401,
+      "entry_offset": 2379776,
+      "prs": {
+        "path": "assets/model_401.prs",
+        "bytes": 12422,
+        "sha256": "cbbb83210aa4cfe53d7360a88a29fb5ff80893f8e6e120a3fe9c77b00a96477b"
+      },
+      "decoded": {
+        "path": "assets/model_401.xj",
+        "bytes": 30304,
+        "sha256": "34df7e4a695c236f94a14be676720d4bc8f848e12577dce29b7a8f46e32a8a62"
+      },
+      "signature": "NJTL"
+    },
+    "texture_425": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 425,
+      "entry_offset": 3090432,
+      "prs": {
+        "path": "assets/texture_425.prs",
+        "bytes": 10928,
+        "sha256": "b9eff559f57d6017a22608e47c49721cb661c86f45d291de0a867547497a84c7"
+      },
+      "decoded": {
+        "path": "assets/texture_425.xvm",
+        "bytes": 11840,
+        "sha256": "f5842647f60190f12900b6fe36e4a2df58034c72e508bd86b7737ede1c7824b4"
+      },
+      "signature": "XVMH"
+    },
+    "model_377": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 377,
+      "entry_offset": 2285568,
+      "prs": {
+        "path": "assets/model_377.prs",
+        "bytes": 1854,
+        "sha256": "4e31c283e3087381a34900acd619dc96266aad28c2d43debfcddba17452af131"
+      },
+      "decoded": {
+        "path": "assets/model_377.xj",
+        "bytes": 4800,
+        "sha256": "01906772457b73e822b2ca98c619bac85c464147cad30a562d1803b7d75de098"
+      },
+      "signature": "NJTL"
+    },
+    "texture_401": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 401,
+      "entry_offset": 2961408,
+      "prs": {
+        "path": "assets/texture_401.prs",
+        "bytes": 1546,
+        "sha256": "e4819798adcc93af554fa6886f9bb8c08d671a6add55654c65bd00666eb9965f"
+      },
+      "decoded": {
+        "path": "assets/texture_401.xvm",
+        "bytes": 2176,
+        "sha256": "a05b52fdaf4bc90ac683069248368342aeebce4544341237ddeb65c75cb0d6aa"
+      },
+      "signature": "XVMH"
+    },
+    "model_194": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 194,
+      "entry_offset": 1284096,
+      "prs": {
+        "path": "assets/model_194.prs",
+        "bytes": 1533,
+        "sha256": "9ad4e95df0492f30ae3c3d8c119ff86b74496f138f161a24e764c214d8f6982d"
+      },
+      "decoded": {
+        "path": "assets/model_194.xj",
+        "bytes": 4864,
+        "sha256": "8729644b7a6c49307033c14bd61b08dc88b7c874612e2ccf4c127a33254b87f1"
+      },
+      "signature": "NJTL"
+    },
+    "texture_194": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 194,
+      "entry_offset": 1662976,
+      "prs": {
+        "path": "assets/texture_194.prs",
+        "bytes": 6469,
+        "sha256": "ee49fb5e48270156dabba6c41bac5ecfe36aeb4c22419577e153e783453ace87"
+      },
+      "decoded": {
+        "path": "assets/texture_194.xvm",
+        "bytes": 8896,
+        "sha256": "0a9681e127b726d31003757654df94c489e726e321c430737bf2e437db073e6d"
+      },
+      "signature": "XVMH"
+    },
+    "model_174": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 174,
+      "entry_offset": 1206272,
+      "prs": {
+        "path": "assets/model_174.prs",
+        "bytes": 4432,
+        "sha256": "0a1b02e829de88050dd42830013861eca442bdf925069d053af3076f4e2d4e82"
+      },
+      "decoded": {
+        "path": "assets/model_174.xj",
+        "bytes": 15552,
+        "sha256": "4eec61319ee59acb7aeca0d54c927479da7a12178aa07980d8af601334e67f35"
+      },
+      "signature": "NJTL"
+    },
+    "texture_174": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 174,
+      "entry_offset": 1521664,
+      "prs": {
+        "path": "assets/texture_174.prs",
+        "bytes": 8662,
+        "sha256": "36b92755f4e7a8c263afd71b15731ca397a5ecb87d33e716d431cdb9ee07b1fc"
+      },
+      "decoded": {
+        "path": "assets/texture_174.xvm",
+        "bytes": 8896,
+        "sha256": "fcff2b3ad2c710f9863371b2205100fa67065fad14bdc8e55f059a65f77f4308"
+      },
+      "signature": "XVMH"
+    },
+    "model_391": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 391,
+      "entry_offset": 2316288,
+      "prs": {
+        "path": "assets/model_391.prs",
+        "bytes": 3477,
+        "sha256": "7051b666b11b0c830d030dc6ea03a31667b774f487c7d4ef2c934f811354d521"
+      },
+      "decoded": {
+        "path": "assets/model_391.xj",
+        "bytes": 13152,
+        "sha256": "8db50868d8eea28cbab78a6949dd5d18febd5fcd96e801268d9905d6afaa4a3f"
+      },
+      "signature": "NJTL"
+    },
+    "texture_415": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 415,
+      "entry_offset": 2994176,
+      "prs": {
+        "path": "assets/texture_415.prs",
+        "bytes": 7456,
+        "sha256": "ea94ab60c95b649fea4984fdded1820bc6bc8c9437fa4e05a7ba299301f19522"
+      },
+      "decoded": {
+        "path": "assets/texture_415.xvm",
+        "bytes": 10432,
+        "sha256": "ad64aa29756feae16dd73583a70f5cff4d6e1fdacb16833ffcd55ba02db60613"
+      },
+      "signature": "XVMH"
+    },
+    "model_404": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 404,
+      "entry_offset": 2414592,
+      "prs": {
+        "path": "assets/model_404.prs",
+        "bytes": 8924,
+        "sha256": "269998fefd79b103488620cde399e29a01f2a895cd183b3bf7b6cb65f4c02d7a"
+      },
+      "decoded": {
+        "path": "assets/model_404.xj",
+        "bytes": 23296,
+        "sha256": "6fb828e9ad83071ba09ae23c18f949c52eadba5c0f3a17f84109325ed55a29a9"
+      },
+      "signature": "NJTL"
+    },
+    "texture_428": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 428,
+      "entry_offset": 3145728,
+      "prs": {
+        "path": "assets/texture_428.prs",
+        "bytes": 12270,
+        "sha256": "ae2b3997cac40b7c050a8c13c5b14fa2afe9544b17c7054192ce6a34d7f174e8"
+      },
+      "decoded": {
+        "path": "assets/texture_428.xvm",
+        "bytes": 13888,
+        "sha256": "83586e2fd908778c37e7d6315f5d6f2a0963fc789c865903cb6953966e0e07e9"
+      },
+      "signature": "XVMH"
+    },
+    "model_363": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 363,
+      "entry_offset": 2256896,
+      "prs": {
+        "path": "assets/model_363.prs",
+        "bytes": 733,
+        "sha256": "deead0fb8cb8a4ff839b7a5a6efe673f33bb1e67f1e1af9f70de63d3a11812b0"
+      },
+      "decoded": {
+        "path": "assets/model_363.xj",
+        "bytes": 1888,
+        "sha256": "7488ac82247a5585ddc6879683152bd785e4865e3ee10f5156575beab8d5bc60"
+      },
+      "signature": "NJTL"
+    },
+    "texture_387": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 387,
+      "entry_offset": 2930688,
+      "prs": {
+        "path": "assets/texture_387.prs",
+        "bytes": 1712,
+        "sha256": "34ce2f9b7b831ce903e59f47754e6aac0b718022befe75f2bd9adf90f6c07eb8"
+      },
+      "decoded": {
+        "path": "assets/texture_387.xvm",
+        "bytes": 2176,
+        "sha256": "2a0638359b83bcb029a5ed49bea5606226dbc713fe48ba68f649b130f8c9b17f"
+      },
+      "signature": "XVMH"
+    },
+    "model_077": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 77,
+      "entry_offset": 813056,
+      "prs": {
+        "path": "assets/model_077.prs",
+        "bytes": 2660,
+        "sha256": "4d8ad5f77ab94b73090fa8ac849e56ac61419de1494556d69942532a91255dc5"
+      },
+      "decoded": {
+        "path": "assets/model_077.xj",
+        "bytes": 8384,
+        "sha256": "5ee5a81782fae64027559cd5eaebc7674782f9c78ab116b756acc9c0cc6ae057"
+      },
+      "signature": "NJTL"
+    },
+    "texture_291": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 291,
+      "entry_offset": 2410496,
+      "prs": {
+        "path": "assets/texture_291.prs",
+        "bytes": 6329,
+        "sha256": "06fee1ea56bc4eae44fceba3504245db28bd8b91ffcfb8f3f6aa5b24a2ff2fd3"
+      },
+      "decoded": {
+        "path": "assets/texture_291.xvm",
+        "bytes": 8320,
+        "sha256": "205242519fcf4128fe758ac473a3a9a7d78afbf02efa3c6d228a9f5517591177"
+      },
+      "signature": "XVMH"
+    },
+    "model_358": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 358,
+      "entry_offset": 2246656,
+      "prs": {
+        "path": "assets/model_358.prs",
+        "bytes": 774,
+        "sha256": "ad029bffce90142e0ae0947de6f112f3c0e57f3d68c0621aec2a38d05c647b54"
+      },
+      "decoded": {
+        "path": "assets/model_358.xj",
+        "bytes": 2112,
+        "sha256": "ec1b630984fde2b9fe6a3191f348c1aaa82652c644e890e344a80b2890dfd48d"
+      },
+      "signature": "NJTL"
+    },
+    "texture_382": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 382,
+      "entry_offset": 2906112,
+      "prs": {
+        "path": "assets/texture_382.prs",
+        "bytes": 6216,
+        "sha256": "8b0d5b7f8911bf9c82a9ebd3c5dd6d6c1ff9fd00884ffb0a756fbb5714502f4c"
+      },
+      "decoded": {
+        "path": "assets/texture_382.xvm",
+        "bytes": 8320,
+        "sha256": "845fb887c23903f73f716e57ffcf7b083a9af3434e2cb32eccec7d5986da31de"
+      },
+      "signature": "XVMH"
+    },
+    "model_015": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 15,
+      "entry_offset": 579584,
+      "prs": {
+        "path": "assets/model_015.prs",
+        "bytes": 2008,
+        "sha256": "0284c9220ad9e595a74a275f6fd203b210bdb4d63c9a867643c78de2cb843778"
+      },
+      "decoded": {
+        "path": "assets/model_015.xj",
+        "bytes": 6752,
+        "sha256": "067d4623de6f25be709a1b565536fa379e0ede9febb6bdd497efd8309e8e8a20"
+      },
+      "signature": "NJTL"
+    },
+    "texture_015": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 15,
+      "entry_offset": 602112,
+      "prs": {
+        "path": "assets/texture_015.prs",
+        "bytes": 2374,
+        "sha256": "594e0aa72fc4704a01d59f3b99f9e8308435d03f2a040e8a9593ae763afd49f6"
+      },
+      "decoded": {
+        "path": "assets/texture_015.xvm",
+        "bytes": 2752,
+        "sha256": "8e18cca4310cb37eb894689b25a36c084d7df5160c28b901984d072728abb7f4"
+      },
+      "signature": "XVMH"
+    },
+    "model_024": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 24,
+      "entry_offset": 614400,
+      "prs": {
+        "path": "assets/model_024.prs",
+        "bytes": 4071,
+        "sha256": "55f71dcaf47fcbfcd2c2103d2e92b6510edccb3a6251eb2bae31bb1f7533898d"
+      },
+      "decoded": {
+        "path": "assets/model_024.xj",
+        "bytes": 12416,
+        "sha256": "6405869a458eb5afa953d47575555b61eb53d6d6f65f9b5b319495324e70e9c6"
+      },
+      "signature": "NJTL"
+    },
+    "texture_024": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 24,
+      "entry_offset": 655360,
+      "prs": {
+        "path": "assets/texture_024.prs",
+        "bytes": 8457,
+        "sha256": "63718147bf9c22ac734e75ed26a296b9010fa90d124552a4ac2b53efca153681"
+      },
+      "decoded": {
+        "path": "assets/texture_024.xvm",
+        "bytes": 8320,
+        "sha256": "15e46a40cb9dd837a732815ba2020a478efedb632d01e033700adadeb94807b9"
+      },
+      "signature": "XVMH"
+    },
+    "model_354": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 354,
+      "entry_offset": 2238464,
+      "prs": {
+        "path": "assets/model_354.prs",
+        "bytes": 724,
+        "sha256": "42907c2dabe6fd0283f6f6ab5a54f33aa42dfb72fc88358e1576128319163950"
+      },
+      "decoded": {
+        "path": "assets/model_354.xj",
+        "bytes": 2400,
+        "sha256": "4777bc3dbf4419c700349e1484683a614bd28820642b1bb43d87cf0e958c0dcd"
+      },
+      "signature": "NJTL"
+    },
+    "texture_378": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 378,
+      "entry_offset": 2897920,
+      "prs": {
+        "path": "assets/texture_378.prs",
+        "bytes": 699,
+        "sha256": "3cf4220332b3e85a6e9a9d7654d26779a1ff12c9fdd0311829ae094ad83eed9e"
+      },
+      "decoded": {
+        "path": "assets/texture_378.xvm",
+        "bytes": 832,
+        "sha256": "7f5c741d243a0e17f4941f2bbd900c07fc0f3d792f5ffca1e3d4e39f0ac8e2c9"
+      },
+      "signature": "XVMH"
+    },
+    "model_394": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 394,
+      "entry_offset": 2334720,
+      "prs": {
+        "path": "assets/model_394.prs",
+        "bytes": 8494,
+        "sha256": "21b401eca17143f08f6f72e77b601a5de94fbfc41162905954f4fede056ebb60"
+      },
+      "decoded": {
+        "path": "assets/model_394.xj",
+        "bytes": 17888,
+        "sha256": "e098ce04fcae5c6f4804c5fc73bd059570f9544755efb58da47fab70819ef624"
+      },
+      "signature": "NJTL"
+    },
+    "texture_418": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 418,
+      "entry_offset": 3018752,
+      "prs": {
+        "path": "assets/texture_418.prs",
+        "bytes": 7303,
+        "sha256": "1028bbc3995ed2d9888415e8e0b1073216246da07c1a57b4d9ddabd4417d7e16"
+      },
+      "decoded": {
+        "path": "assets/texture_418.xvm",
+        "bytes": 10432,
+        "sha256": "92d5ed2425e7a724e3455acb225624091996cd3219f5ed973923f2b73e9351bf"
+      },
+      "signature": "XVMH"
+    },
+    "model_364": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 364,
+      "entry_offset": 2258944,
+      "prs": {
+        "path": "assets/model_364.prs",
+        "bytes": 548,
+        "sha256": "8820d538ed7ed3f7cd82eee0057a082e5bf370500140d06e0aff325835c733d8"
+      },
+      "decoded": {
+        "path": "assets/model_364.xj",
+        "bytes": 1056,
+        "sha256": "9732e548a588024573d4667b18e545b84eb0b9beae5dc745002ff013054d2a06"
+      },
+      "signature": "NJTL"
+    },
+    "texture_388": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 388,
+      "entry_offset": 2932736,
+      "prs": {
+        "path": "assets/texture_388.prs",
+        "bytes": 469,
+        "sha256": "6a5268c4716762e550c21f2ad3a018f7b7e61f6ff8bb447aa43915e4ee604aa3"
+      },
+      "decoded": {
+        "path": "assets/texture_388.xvm",
+        "bytes": 640,
+        "sha256": "2ecd6b197ab2958dd24ecb8b0812350fdaaccc2c110f0d8d8eb451c44e293b64"
+      },
+      "signature": "XVMH"
+    },
+    "model_395": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 395,
+      "entry_offset": 2344960,
+      "prs": {
+        "path": "assets/model_395.prs",
+        "bytes": 4841,
+        "sha256": "a725df7237a7cce3f0f49bdbae46cf95e3ff087656577fb50b0748a39e81c712"
+      },
+      "decoded": {
+        "path": "assets/model_395.xj",
+        "bytes": 13280,
+        "sha256": "63daa596bae0d1877b3124ebb980cf77f3beebf48fb1d9e9ad8c46477f241461"
+      },
+      "signature": "NJTL"
+    },
+    "texture_419": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 419,
+      "entry_offset": 3026944,
+      "prs": {
+        "path": "assets/texture_419.prs",
+        "bytes": 9803,
+        "sha256": "aa277f4d0ca963e0821185210e34acd41edc3726e1339771c6e6d9b4e26bd255"
+      },
+      "decoded": {
+        "path": "assets/texture_419.xvm",
+        "bytes": 12480,
+        "sha256": "e642c596e01173519622ec56bc2a48a1cefed16f1b3183f7eb5bf943cc72c3cd"
+      },
+      "signature": "XVMH"
+    },
+    "model_173": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 173,
+      "entry_offset": 1202176,
+      "prs": {
+        "path": "assets/model_173.prs",
+        "bytes": 2842,
+        "sha256": "87a275dc5c978af19eb3f69a03ea8dd2a3a157dcb3d1c6a98044ad6eb29ae9e8"
+      },
+      "decoded": {
+        "path": "assets/model_173.xj",
+        "bytes": 12256,
+        "sha256": "5986e64aa353d6e0eb97d77c17d8bad5dd3f3c728f8184a505136e746b74a121"
+      },
+      "signature": "NJTL"
+    },
+    "texture_173": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 173,
+      "entry_offset": 1513472,
+      "prs": {
+        "path": "assets/texture_173.prs",
+        "bytes": 6797,
+        "sha256": "60ba66953f236aabdcee5865dd2f5997d7dfa5a09334ccc8edd1896c3ed3929a"
+      },
+      "decoded": {
+        "path": "assets/texture_173.xvm",
+        "bytes": 8320,
+        "sha256": "c171dd12e940451f3c60ddbed1175a4d426dbef351be305aa0c5982163716311"
+      },
+      "signature": "XVMH"
+    },
+    "model_368": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 368,
+      "entry_offset": 2267136,
+      "prs": {
+        "path": "assets/model_368.prs",
+        "bytes": 794,
+        "sha256": "c35cdcd44f3dbcd49bb6fccbb70dd9573b7890cc0056dd229ea833587a8ab745"
+      },
+      "decoded": {
+        "path": "assets/model_368.xj",
+        "bytes": 2336,
+        "sha256": "0b9af97e906db3c85c0be740df8e9ce45035fcbea93f99e7e08da985b25fd265"
+      },
+      "signature": "NJTL"
+    },
+    "texture_392": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 392,
+      "entry_offset": 2940928,
+      "prs": {
+        "path": "assets/texture_392.prs",
+        "bytes": 1962,
+        "sha256": "2f98ef817e18af906fe0cac932bee172e9b30e0e7fb9c590743ec13042c0fa64"
+      },
+      "decoded": {
+        "path": "assets/texture_392.xvm",
+        "bytes": 2176,
+        "sha256": "7be42fd4d1875a607334486437fef4105b2653e12d0d0a5910bdbcf6e8a1190d"
+      },
+      "signature": "XVMH"
+    },
+    "model_356": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 356,
+      "entry_offset": 2242560,
+      "prs": {
+        "path": "assets/model_356.prs",
+        "bytes": 709,
+        "sha256": "6af026a5473225d9dff0dc35089b38d2ad1e34a530122f101faeb643ad397db8"
+      },
+      "decoded": {
+        "path": "assets/model_356.xj",
+        "bytes": 2496,
+        "sha256": "edd01fc7181c06bb29ce246f64e49daf2607db3ee455e38e2168ff2a80636d9b"
+      },
+      "signature": "NJTL"
+    },
+    "texture_380": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 380,
+      "entry_offset": 2902016,
+      "prs": {
+        "path": "assets/texture_380.prs",
+        "bytes": 1942,
+        "sha256": "7f0cd9ef857e76b817136178429889276724db61de6a82a17c7491e44b590853"
+      },
+      "decoded": {
+        "path": "assets/texture_380.xvm",
+        "bytes": 2176,
+        "sha256": "6cfdaa71ed6319870e1850457807937bf84a2d92d33f31f7065d8d1a2b1c9542"
+      },
+      "signature": "XVMH"
+    },
+    "model_393": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 393,
+      "entry_offset": 2324480,
+      "prs": {
+        "path": "assets/model_393.prs",
+        "bytes": 9833,
+        "sha256": "cd95202c7e40c3a7680dd4368c273296f609b299d95aa0db3199e4ea7fe3e6a2"
+      },
+      "decoded": {
+        "path": "assets/model_393.xj",
+        "bytes": 23744,
+        "sha256": "859aa907b72c5b48d458ddb00d393f5ee4b1692a27099978e62f9a8aee6c4802"
+      },
+      "signature": "NJTL"
+    },
+    "texture_417": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 417,
+      "entry_offset": 3010560,
+      "prs": {
+        "path": "assets/texture_417.prs",
+        "bytes": 6276,
+        "sha256": "1cc5fcbffdc2799f3234c2c17429d6a8359b9e4017103e4155df0eb4d35c18b0"
+      },
+      "decoded": {
+        "path": "assets/texture_417.xvm",
+        "bytes": 8320,
+        "sha256": "f194dd72c0d5a18220cef1cc241fd8a116906a5956640f1a86483770d0950267"
+      },
+      "signature": "XVMH"
+    },
+    "model_399": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 399,
+      "entry_offset": 2361344,
+      "prs": {
+        "path": "assets/model_399.prs",
+        "bytes": 7391,
+        "sha256": "73ea86a1ec3e7a0a79167c565989acb8548686ce5a1f94bb3f21dc0027fccb8a"
+      },
+      "decoded": {
+        "path": "assets/model_399.xj",
+        "bytes": 15172,
+        "sha256": "a5a538e07efb8922691304ca8fb1701ea0a0557c03d11953403b0d6dda2eb7b1"
+      },
+      "signature": "NJTL"
+    },
+    "texture_423": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 423,
+      "entry_offset": 3063808,
+      "prs": {
+        "path": "assets/texture_423.prs",
+        "bytes": 13101,
+        "sha256": "d877a7e19c70bc17d4da190ef35bf7c977998dc4e454859d9deee0f2ca437cb8"
+      },
+      "decoded": {
+        "path": "assets/texture_423.xvm",
+        "bytes": 16640,
+        "sha256": "121e6820d53adc20d8671983eafdebf56466aefb1d56b64e484cf5718c49c39b"
+      },
+      "signature": "XVMH"
+    },
+    "model_392": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 392,
+      "entry_offset": 2320384,
+      "prs": {
+        "path": "assets/model_392.prs",
+        "bytes": 2969,
+        "sha256": "557b91ff8e3866617bb08923b55c640adfe5fb69411a3ff58b5994823a013a69"
+      },
+      "decoded": {
+        "path": "assets/model_392.xj",
+        "bytes": 8768,
+        "sha256": "2ef912db208bfc8ab87df22d673a9fc28986440649c83c9b42b0cdeb26544d50"
+      },
+      "signature": "NJTL"
+    },
+    "texture_416": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 416,
+      "entry_offset": 3002368,
+      "prs": {
+        "path": "assets/texture_416.prs",
+        "bytes": 6444,
+        "sha256": "9416778c475ba711fa38217dbe6a455677712544f1fa3f570430c0151532e9da"
+      },
+      "decoded": {
+        "path": "assets/texture_416.xvm",
+        "bytes": 8320,
+        "sha256": "9fda969da80af836a70ca25d929b354867316b4ec211f76e3ba884308164f449"
+      },
+      "signature": "XVMH"
+    },
+    "model_355": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 355,
+      "entry_offset": 2240512,
+      "prs": {
+        "path": "assets/model_355.prs",
+        "bytes": 648,
+        "sha256": "b2f99c382162b25962b3c832959e5627adae0b04fac15a4842fa0ac302846f94"
+      },
+      "decoded": {
+        "path": "assets/model_355.xj",
+        "bytes": 1600,
+        "sha256": "8400b6339ab992ad133d3e7c75f0c74852bf443a6443d61fe43d36ea6a4855a3"
+      },
+      "signature": "NJTL"
+    },
+    "texture_379": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 379,
+      "entry_offset": 2899968,
+      "prs": {
+        "path": "assets/texture_379.prs",
+        "bytes": 1938,
+        "sha256": "4865450bdad4576c914f8916d8198c6e9adaca06dbd1025592072509708a5c2d"
+      },
+      "decoded": {
+        "path": "assets/texture_379.xvm",
+        "bytes": 2176,
+        "sha256": "5d4c267ebe286b3156d941ee2a1d0547c2b278fd177af92cd9396ab426ff0410"
+      },
+      "signature": "XVMH"
+    },
+    "model_396": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 396,
+      "entry_offset": 2351104,
+      "prs": {
+        "path": "assets/model_396.prs",
+        "bytes": 4042,
+        "sha256": "3a69923ad00717a48b96b9abaa4e1bd0edacbec7582c0e32022e1ff9e3be4433"
+      },
+      "decoded": {
+        "path": "assets/model_396.xj",
+        "bytes": 14496,
+        "sha256": "83222b980fd4ee9e648f4a2760c297fac10f8b2193323f26b0623b02e2c031c0"
+      },
+      "signature": "NJTL"
+    },
+    "texture_420": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 420,
+      "entry_offset": 3037184,
+      "prs": {
+        "path": "assets/texture_420.prs",
+        "bytes": 8972,
+        "sha256": "73ced82e3cd256148b0374f994d9adb215ad8aea5e1234a6e135696a080c4701"
+      },
+      "decoded": {
+        "path": "assets/texture_420.xvm",
+        "bytes": 24768,
+        "sha256": "c6e1272e752f3e787035f9ff47b5bf68b9ced3486dd27154d18b96acfd605934"
+      },
+      "signature": "XVMH"
+    },
+    "model_020": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 20,
+      "entry_offset": 600064,
+      "prs": {
+        "path": "assets/model_020.prs",
+        "bytes": 2492,
+        "sha256": "a955cb221dab515a0bfa7e1471800ef7771081fedb4ed3c05c85764310870fee"
+      },
+      "decoded": {
+        "path": "assets/model_020.xj",
+        "bytes": 7072,
+        "sha256": "31d2cd603249b8ba67fd38e428d4a29525e7c979310958af319d4763a5a086f0"
+      },
+      "signature": "NJTL"
+    },
+    "texture_478": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 478,
+      "entry_offset": 3631104,
+      "prs": {
+        "path": "assets/texture_478.prs",
+        "bytes": 6406,
+        "sha256": "037829eebd85ab3e66dbc18268c971893ca4a497270a22431450b7d78f08b2ec"
+      },
+      "decoded": {
+        "path": "assets/texture_478.xvm",
+        "bytes": 8320,
+        "sha256": "d43b25c263d1f4a7675d4057ac859b5fa4c089a2514d6741306002be1a6964d9"
+      },
+      "signature": "XVMH"
+    },
+    "model_049": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 49,
+      "entry_offset": 706560,
+      "prs": {
+        "path": "assets/model_049.prs",
+        "bytes": 3199,
+        "sha256": "d5e1f05bd2fc449a0631c734b377b36b648e5c8f76c414f338ae623f25ddba40"
+      },
+      "decoded": {
+        "path": "assets/model_049.xj",
+        "bytes": 9888,
+        "sha256": "9d97deb5334b501e666cfa8bdd94572616db2baa623346b364c86c34214007de"
+      },
+      "signature": "NJTL"
+    },
+    "texture_455": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 455,
+      "entry_offset": 3438592,
+      "prs": {
+        "path": "assets/texture_455.prs",
+        "bytes": 2574,
+        "sha256": "d1091348033d91165f9c932b7c38e418d3dc418d26b47792942a21fa0cd1aca3"
+      },
+      "decoded": {
+        "path": "assets/texture_455.xvm",
+        "bytes": 2752,
+        "sha256": "da7831bfe429813c071adbef3c384e1ef69a4a292a7ed8f79351103dc096adf2"
+      },
+      "signature": "XVMH"
+    },
+    "model_226": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 226,
+      "entry_offset": 1486848,
+      "prs": {
+        "path": "assets/model_226.prs",
+        "bytes": 6391,
+        "sha256": "318be757556dd4e215ff7c1aefb08f9f161ff1df2d113a2d19f59217a57de718"
+      },
+      "decoded": {
+        "path": "assets/model_226.xj",
+        "bytes": 16576,
+        "sha256": "c550314982bbc2c09b40367245a3eb7f24ed0506bb9f390326ef92855fcc493b"
+      },
+      "signature": "NJTL"
+    },
+    "texture_447": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 447,
+      "entry_offset": 3364864,
+      "prs": {
+        "path": "assets/texture_447.prs",
+        "bytes": 1992,
+        "sha256": "589fa4191b19113d0cf4c90f872672d34c0b34376b600ac2159e97f7b15d9e33"
+      },
+      "decoded": {
+        "path": "assets/texture_447.xvm",
+        "bytes": 2176,
+        "sha256": "bc08a13de091667dedd50a1381d1ea5ad8157fd85f5644f9e888feeaabbe5d8a"
+      },
+      "signature": "XVMH"
+    },
+    "texture_476": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 476,
+      "entry_offset": 3622912,
+      "prs": {
+        "path": "assets/texture_476.prs",
+        "bytes": 1907,
+        "sha256": "26ee1c4ec48816c7fb36489a0274f42082c9376655345d3d2e53abb351fe3986"
+      },
+      "decoded": {
+        "path": "assets/texture_476.xvm",
+        "bytes": 2176,
+        "sha256": "ae7266ae7fc019dd39b21b60568c287a01eec135bdc71a6f28beb874ec95a035"
+      },
+      "signature": "XVMH"
+    },
+    "model_220": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 220,
+      "entry_offset": 1439744,
+      "prs": {
+        "path": "assets/model_220.prs",
+        "bytes": 8007,
+        "sha256": "6afbd0f5555d489ed3c372754648017fe2e1493a4851ab4b0d072884161bfe82"
+      },
+      "decoded": {
+        "path": "assets/model_220.xj",
+        "bytes": 22176,
+        "sha256": "3f3769877b9487cf466e0f38e843286c2c0d4e710c8c3a3f4f8f62914f02f044"
+      },
+      "signature": "NJTL"
+    },
+    "texture_459": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 459,
+      "entry_offset": 3469312,
+      "prs": {
+        "path": "assets/texture_459.prs",
+        "bytes": 7315,
+        "sha256": "7e4ec46fb56c75bf53e2b2acff085c66d602a878d86bdbf62a4401a32e1923ee"
+      },
+      "decoded": {
+        "path": "assets/texture_459.xvm",
+        "bytes": 8320,
+        "sha256": "ebc462bc00962f448f99505c63c32c332ecf40d5d68d9d6497b28e0ebd8215a4"
+      },
+      "signature": "XVMH"
+    },
+    "model_446": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 446,
+      "entry_offset": 3276800,
+      "prs": {
+        "path": "assets/model_446.prs",
+        "bytes": 3136,
+        "sha256": "049127a6594288a31d32e5e43ab5f9c0c4952bb2ab528ba7eb72e852943e7c55"
+      },
+      "decoded": {
+        "path": "assets/model_446.xj",
+        "bytes": 11734,
+        "sha256": "ac5af2c751c96e6e3de98433bf32439edc8e3c00c3a55c761fbe909748a7a0a9"
+      },
+      "signature": "NJTL"
+    },
+    "texture_539": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 539,
+      "entry_offset": 5031936,
+      "prs": {
+        "path": "assets/texture_539.prs",
+        "bytes": 10103,
+        "sha256": "6bd82415d0d9b6197740cf99662d2e00924fed936d8db4849b681c3c98070399"
+      },
+      "decoded": {
+        "path": "assets/texture_539.xvm",
+        "bytes": 32960,
+        "sha256": "9e24d9a3298289eb4f877a7eada6fd9688ff2b87fc182163036d421fadf20016"
+      },
+      "signature": "XVMH"
+    },
+    "model_422": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 422,
+      "entry_offset": 2766848,
+      "prs": {
+        "path": "assets/model_422.prs",
+        "bytes": 37105,
+        "sha256": "f793a2dc6d70dda15aa9578557c5b42c85484198f44f7ebcb4eddb0ce62f4e24"
+      },
+      "decoded": {
+        "path": "assets/model_422.xj",
+        "bytes": 71680,
+        "sha256": "49b13cf8620fae0736423059965b7649312468e228f2d3bbfecfb795066deb9e"
+      },
+      "signature": "NJTL"
+    },
+    "texture_495": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 495,
+      "entry_offset": 4069376,
+      "prs": {
+        "path": "assets/texture_495.prs",
+        "bytes": 28713,
+        "sha256": "857d18a08eabf4ba66037e87f29d66978ae5f7e05d2b91095fd314de088a335b"
+      },
+      "decoded": {
+        "path": "assets/texture_495.xvm",
+        "bytes": 32896,
+        "sha256": "fa43924ae247d21a91091f20de9b02019935852dc5a0868d96860e99001693eb"
+      },
+      "signature": "XVMH"
+    },
+    "model_432": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 432,
+      "entry_offset": 3008512,
+      "prs": {
+        "path": "assets/model_432.prs",
+        "bytes": 29265,
+        "sha256": "2e0df0d2b0620f42ac7dc0f294cf36b7fdbf68da9a9751458e0fc19855a2c0c5"
+      },
+      "decoded": {
+        "path": "assets/model_432.xj",
+        "bytes": 71232,
+        "sha256": "fd633d2ccb8db4f02e1be2a7d081c13b1b26c3a89d5f2b2a3aba6f6ef9292563"
+      },
+      "signature": "NJTL"
+    },
+    "texture_512": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 512,
+      "entry_offset": 4505600,
+      "prs": {
+        "path": "assets/texture_512.prs",
+        "bytes": 48008,
+        "sha256": "65b15caaf4c7d4bc0f6e5ad9d51ca60956f29683c920dfb078f4405cc7b79210"
+      },
+      "decoded": {
+        "path": "assets/texture_512.xvm",
+        "bytes": 65664,
+        "sha256": "bb748d24f5ca4b8d04178ffe3fdc9dfd1844a1e5ff2a557c169e4372c67d1e2a"
+      },
+      "signature": "XVMH"
+    },
+    "model_411": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 411,
+      "entry_offset": 2535424,
+      "prs": {
+        "path": "assets/model_411.prs",
+        "bytes": 23453,
+        "sha256": "9bb77c9c1717ae5e7f23840a1940035e708c6b12a5813c3c402162a9aaca5268"
+      },
+      "decoded": {
+        "path": "assets/model_411.xj",
+        "bytes": 70368,
+        "sha256": "eed5d161a698a78743366aae1d3a2012ca72af2e063dc7d6a47638669e70162e"
+      },
+      "signature": "NJTL"
+    },
+    "texture_481": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 481,
+      "entry_offset": 3717120,
+      "prs": {
+        "path": "assets/texture_481.prs",
+        "bytes": 23167,
+        "sha256": "79cdd6ad4b333295c0a9d36c4e8b44b0223ff1d74f330b14a627986344d14bb3"
+      },
+      "decoded": {
+        "path": "assets/texture_481.xvm",
+        "bytes": 32896,
+        "sha256": "6f58c7a3caf9bac74369a066782c3b5bede7a3182e7946125a40894ccfe151da"
+      },
+      "signature": "XVMH"
+    },
+    "model_413": {
+      "archive": "originals/ItemModelEp4.afs",
+      "archive_sha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+      "entry": 413,
+      "entry_offset": 2590720,
+      "prs": {
+        "path": "assets/model_413.prs",
+        "bytes": 20115,
+        "sha256": "9e6cf620efee2f3358d352ede1ee3a4e683e1b80bd1e195178e3d9cd824510c7"
+      },
+      "decoded": {
+        "path": "assets/model_413.xj",
+        "bytes": 69440,
+        "sha256": "ad45e20586316bfffaad7df6946e46e8f5cfcafaacbf636dbaebd06e66d67a72"
+      },
+      "signature": "NJTL"
+    },
+    "texture_485": {
+      "archive": "originals/ItemTextureEp4.afs",
+      "archive_sha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+      "entry": 485,
+      "entry_offset": 3813376,
+      "prs": {
+        "path": "assets/texture_485.prs",
+        "bytes": 34392,
+        "sha256": "36b2458031a0bed44696f0046b3fc0b050c13ec69c6acf043568a7c6bd9a5c1c"
+      },
+      "decoded": {
+        "path": "assets/texture_485.xvm",
+        "bytes": 32896,
+        "sha256": "b8c268717cea4f76b364a219a9084a27bb767c72649cfce03c94773f1a4cae8e"
+      },
+      "signature": "XVMH"
+    }
+  }
+}

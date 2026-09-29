@@ -1,0 +1,143 @@
+{
+  "schema": "destiny-recovered-model-previews-v1",
+  "visualQaAuthority": "Root agent reviewed the composited site-background images for passed entries; pending entries are not approved for site mapping.",
+  "entries": [
+    {
+      "name": "JUDGEMENT BLADE",
+      "code": "00B802",
+      "path": "resources/completeness/render-fixes/judgement-blade-candidate.png",
+      "imageSha256": "05557156c9b790fad4eb7c04c5a9b65c56d3c5748316e8bfa3238e3ea09eabbf",
+      "visualQa": "passed",
+      "kind": "model_candidate",
+      "note": "Three complete source XJ root meshes; optional POF0 entries incorrectly point into vertex data. The local adapter checks every traversed model pointer.",
+      "source": {
+        "model": {
+          "archive": "ItemModelEp4.afs",
+          "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+          "slot": 409,
+          "compressedSha256": "5632cf145a322bb15921cb1e7f61d36e9c6ad711fdc1cd267cb6f65033bbf48a",
+          "compressedBytes": 30021,
+          "decodedSha256": "62b7c96297a9c12667a89e7843af9426691f015616e065cef45b0649d874ab15",
+          "decodedBytes": 84768
+        },
+        "texture": {
+          "archive": "ItemTextureEp4.afs",
+          "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+          "slot": 479,
+          "compressedSha256": "0969143659e2037fec0dcc4664f8e0a09155801d2dc5e06bcd267424e8c2f949",
+          "compressedBytes": 28178,
+          "decodedSha256": "73951996cb71e4e73e6141b8da8eda30f547d71a196c0dd9e6f474ba273ae4dc",
+          "decodedBytes": 32896
+        }
+      },
+      "runtimeVerified": false,
+      "renderScriptSha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814",
+      "renderAdapterSha256": "0543d021958c309bcc79c608d1bbc97472eb7c02a0c3e7fe36fafcffeddf75e6",
+      "localRendererSha256": "9e72ed0c00ebc337fb8c796634402448be01cca75c62faeb10635171b53b7259",
+      "structureAudit": "resources/completeness/render-fixes/inspect_models.py",
+      "visualQaNote": "Recovery render reviewed on 2026-09-29 on the site background; complete static model, runtime pose not asserted."
+    },
+    {
+      "name": "M&A85 FURY",
+      "code": "001403",
+      "path": "resources/completeness/render-fixes/ma85-fury-candidate.png",
+      "imageSha256": "f6f970845271436aa11ccbb54fd27b52dfc01ab41431633ef17ff346dbd5128c",
+      "visualQa": "passed",
+      "kind": "model_candidate",
+      "note": "Source XJ root forest parses fully; optional POF0 table mislabels two index-buffer fields as pointers. Local adapter bounds-checks every traversed graph pointer.",
+      "source": {
+        "model": {
+          "archive": "ItemModelEp4.afs",
+          "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+          "slot": 416,
+          "compressedSha256": "6b1c63a8d195ea23164c8d863faf02a8c28e77cb2ecbe386129b8867605e51e1",
+          "compressedBytes": 27333,
+          "decodedSha256": "cde082d0f0adfb31e3e285627161e346e74de60aa8171867758ab18a3d61ffdc",
+          "decodedBytes": 71424
+        },
+        "texture": {
+          "archive": "ItemTextureEp4.afs",
+          "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+          "slot": 488,
+          "compressedSha256": "7ec115bd2c7985198d3257cd09e906ecf2deb18715424c5f79aa0380e6cefc4a",
+          "compressedBytes": 45124,
+          "decodedSha256": "0a67444638fa7af041626ad40df29558764f354e7019d1857ccfd3042426630e",
+          "decodedBytes": 65664
+        }
+      },
+      "runtimeVerified": false,
+      "renderScriptSha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814",
+      "renderAdapterSha256": "0543d021958c309bcc79c608d1bbc97472eb7c02a0c3e7fe36fafcffeddf75e6",
+      "localRendererSha256": "9e72ed0c00ebc337fb8c796634402448be01cca75c62faeb10635171b53b7259",
+      "structureAudit": "resources/completeness/render-fixes/inspect_models.py",
+      "visualQaNote": "Recovery render reviewed on 2026-09-29 on the site background; complete static model, runtime pose not asserted."
+    },
+    {
+      "name": "LAST EMPEROR",
+      "code": "00030E",
+      "path": "resources/completeness/render-fixes/last-emperor-candidate.png",
+      "imageSha256": "017da2a85fd2891d7802dbd912069c5c359ece25b190622995d2c6bf5666b35f",
+      "visualQa": "passed",
+      "kind": "model_candidate",
+      "note": "Two declared XVRT chunks are complete; only ffff outside them is excluded for the strict renderer, consistent with pso-blender's count-based reader.",
+      "source": {
+        "model": {
+          "archive": "ItemModelEp4.afs",
+          "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+          "slot": 258,
+          "compressedSha256": "5a7eacb01a07c25dd686cadb7ca291032027d6d272748b2008cf95dd84fdc787",
+          "compressedBytes": 10190,
+          "decodedSha256": "767ed715b683c9deacfde8f8c604b00e7403b25c4a5fc12d0de91723c39e8abb",
+          "decodedBytes": 13124
+        },
+        "texture": {
+          "archive": "ItemTextureEp4.afs",
+          "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+          "slot": 519,
+          "compressedSha256": "e92619774f052310b363661fcbb9dc7e46170448f43e15014c84fb5fd91f0692",
+          "compressedBytes": 43961,
+          "decodedSha256": "7db75fa1500f6ff6e19a7fb127b9dbec5fc6e279e27c0eb448ec371c5fec700f",
+          "decodedBytes": 82114
+        }
+      },
+      "runtimeVerified": false,
+      "renderScriptSha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814",
+      "renderAdapterSha256": "0543d021958c309bcc79c608d1bbc97472eb7c02a0c3e7fe36fafcffeddf75e6",
+      "textureAudit": "resources/completeness/render-fixes/last-emperor-xvm-audit.json",
+      "visualQaNote": "Recovery render reviewed on 2026-09-29 on the site background; complete static model, runtime pose not asserted."
+    },
+    {
+      "name": "TWIN CYCLONE",
+      "code": "00030A",
+      "path": "resources/completeness/render-fixes/twin-cyclone-candidate.png",
+      "imageSha256": "a6d6c46a5eb3a1de140f5f0045a584fb9e5463588e5e6835964da3e4a08b3d3d",
+      "visualQa": "passed",
+      "kind": "model_candidate",
+      "note": "Source PRS ends without stop opcode after the one declared XVM/XVRT chunk is complete; no image bytes were synthesized.",
+      "source": {
+        "model": {
+          "archive": "ItemModelEp4.afs",
+          "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+          "slot": 415,
+          "compressedSha256": "c3b62959b047c727c3516553a7554f8361552a9d05a943d8ce0d2664cb1256ed",
+          "compressedBytes": 18878,
+          "decodedSha256": "88a0fcdb9d0acbba11f67e4a17fb7d04935cbf31537383dcd686015ed6308d27",
+          "decodedBytes": 68416
+        },
+        "texture": {
+          "archive": "ItemTextureEp4.afs",
+          "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+          "slot": 487,
+          "compressedSha256": "6fb869dd5586e0576089ff5558980eb8a3cc659f41e1813ff9f78eda380843f0",
+          "compressedBytes": 25478,
+          "decodeError": "IndexError: index out of range"
+        }
+      },
+      "runtimeVerified": false,
+      "renderScriptSha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814",
+      "renderAdapterSha256": "0543d021958c309bcc79c608d1bbc97472eb7c02a0c3e7fe36fafcffeddf75e6",
+      "textureAudit": "resources/completeness/render-fixes/twin-xvm-audit.json",
+      "visualQaNote": "Recovery render reviewed on 2026-09-29 on the site background; complete static model, runtime pose not asserted."
+    }
+  ]
+}

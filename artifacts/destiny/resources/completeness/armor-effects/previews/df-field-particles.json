@@ -1,0 +1,190 @@
+{
+  "schema": "destiny-offline-type0-particle-preview-v1",
+  "source": {
+    "file": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+    "index": 50,
+    "name": "anti_karadahika",
+    "textureId": 700460,
+    "runtimeVerified": false
+  },
+  "preview": {
+    "seed": 20923,
+    "frame": 40,
+    "origin": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "uvCount": 1,
+    "effectNtFlags": 1,
+    "frameBasis": "single emitter activation; not armor equip time or repeated helper cycle",
+    "noCharacterModel": true,
+    "limitations": [
+      "Client global RNG consumption and entity pose are not reproduced.",
+      "Armor helper activation/retrigger cycles and camera culling are not reproduced."
+    ]
+  },
+  "emitted": 40,
+  "particles": [
+    {
+      "x": 0.0,
+      "y": 0.11150000180350617,
+      "z": 0.0,
+      "scale": 0.8136724073438383,
+      "rgba": [
+        0,
+        0,
+        0,
+        254
+      ],
+      "angle": 45214,
+      "uvFrame": 0,
+      "bornFrame": 29,
+      "age": 0.9999999999999999
+    },
+    {
+      "x": 0.0,
+      "y": 0.09900000155903399,
+      "z": 0.0,
+      "scale": 0.774999871198994,
+      "rgba": [
+        3,
+        22,
+        5,
+        254
+      ],
+      "angle": 50672,
+      "uvFrame": 0,
+      "bornFrame": 30,
+      "age": 0.8999999999999999
+    },
+    {
+      "x": 0.0,
+      "y": 0.08680000132881105,
+      "z": 0.0,
+      "scale": 0.738165378274463,
+      "rgba": [
+        10,
+        45,
+        13,
+        254
+      ],
+      "angle": 36910,
+      "uvFrame": 0,
+      "bornFrame": 31,
+      "age": 0.7999999999999999
+    },
+    {
+      "x": 0.0,
+      "y": 0.07490000111283734,
+      "z": 0.0,
+      "scale": 0.7030815693428316,
+      "rgba": [
+        19,
+        68,
+        22,
+        254
+      ],
+      "angle": 2492,
+      "uvFrame": 0,
+      "bornFrame": 32,
+      "age": 0.7
+    },
+    {
+      "x": 0.0,
+      "y": 0.06330000091111287,
+      "z": 0.0,
+      "scale": 0.6696652372197557,
+      "rgba": [
+        30,
+        91,
+        32,
+        254
+      ],
+      "angle": 30980,
+      "uvFrame": 0,
+      "bornFrame": 33,
+      "age": 0.6
+    },
+    {
+      "x": 0.0,
+      "y": 0.05200000072363764,
+      "z": 0.0,
+      "scale": 0.6378371294240553,
+      "rgba": [
+        44,
+        114,
+        44,
+        254
+      ],
+      "angle": 1198,
+      "uvFrame": 0,
+      "bornFrame": 34,
+      "age": 0.5
+    },
+    {
+      "x": 0.0,
+      "y": 0.04100000055041164,
+      "z": 0.0,
+      "scale": 0.6075217602170572,
+      "rgba": [
+        60,
+        137,
+        57,
+        254
+      ],
+      "angle": 8946,
+      "uvFrame": 0,
+      "bornFrame": 35,
+      "age": 0.4
+    },
+    {
+      "x": 0.0,
+      "y": 0.030300000391434878,
+      "z": 0.0,
+      "scale": 0.5786472315754028,
+      "rgba": [
+        80,
+        160,
+        72,
+        254
+      ],
+      "angle": 50098,
+      "uvFrame": 0,
+      "bornFrame": 36,
+      "age": 0.30000000000000004
+    },
+    {
+      "x": 0.0,
+      "y": 0.01990000024670735,
+      "z": 0.0,
+      "scale": 0.551145062672731,
+      "rgba": [
+        101,
+        182,
+        89,
+        254
+      ],
+      "angle": 43868,
+      "uvFrame": 0,
+      "bornFrame": 37,
+      "age": 0.2
+    },
+    {
+      "x": 0.0,
+      "y": 0.009800000116229057,
+      "z": 0.0,
+      "scale": 0.5249500274658203,
+      "rgba": [
+        125,
+        205,
+        107,
+        254
+      ],
+      "angle": 53014,
+      "uvFrame": 0,
+      "bornFrame": 38,
+      "age": 0.1
+    }
+  ]
+}

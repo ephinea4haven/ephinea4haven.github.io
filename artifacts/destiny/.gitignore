@@ -1,0 +1,30 @@
+# Keep the reviewed preview and research text; raw client data stays local.
+*
+!*/
+!.gitignore
+!*.md
+!*.mjs
+!*.cjs
+!*.py
+!*.json
+!dropcharts/destiny/**
+!dropcharts/shared/i18n.js
+!dropcharts/shared/viewer.js
+!dropcharts/shared/style.css
+!dropcharts/shared/images/section-ids/*.png
+!dropcharts/LICENSE
+
+# Local captures, binaries, caches, and abandoned image-download experiments.
+source/
+resources/originals/
+resources/gsl-extracted/
+completeness/forum-extra/
+**/__pycache__/
+*.pyc
+.DS_Store
+
+# Existing local cross-version fixtures are never archived.
+dropcharts/bb
+dropcharts/dc
+dropcharts/ngc
+dropcharts/i18n_names.json

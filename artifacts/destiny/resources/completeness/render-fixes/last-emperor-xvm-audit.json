@@ -1,0 +1,21 @@
+{
+  "sourceSha256": "7db75fa1500f6ff6e19a7fb127b9dbec5fc6e279e27c0eb448ec371c5fec700f",
+  "strictInputSha256": "1d76dd4e118def8c2397dcbc8dc12bd3243f0b456f4cdb3e6e82343db4ad2107",
+  "declaredCount": 2,
+  "chunks": [
+    {
+      "index": 0,
+      "offset": 64,
+      "end": 65664,
+      "sha256": "8929caed7ebf3bde4487346f1c37ed13e28c7a45ceba7a5891691f75f6fa6f76"
+    },
+    {
+      "index": 1,
+      "offset": 65664,
+      "end": 82112,
+      "sha256": "8fc881a27a00b537cf07fbf7a0e78ceb5b05a555dadb67bc21535c7915f1d04d"
+    }
+  ],
+  "trailerOutsideDeclaredChunks": "ffff",
+  "interpretation": "pso-blender Xvm.read iterates xvr_count and ignores bytes after the last XVRT; no header or texture payload bytes changed"
+}

@@ -1,0 +1,528 @@
+{
+  "schema": "destiny-supplemental-excluded-structure-v1",
+  "items": [
+    {
+      "name": "ANCIENT PROPHECY",
+      "code": "00D006",
+      "previousReason": "XVRT 0 is not 64-byte aligned",
+      "model": {
+        "slot": 439,
+        "compressedSha256": "b14ef1c58be00b79014805a71cbbb26fb78f3d105d4c016d7d49f2f0293ea81c",
+        "decodedLength": 69920,
+        "decodedSha256": "e01825178c2ee62aef651a1c6120880b02e0e5ba54842116f2f963eb8ad71b61",
+        "headerHex": "4e4a544c980000000800000003000000"
+      },
+      "texture": {
+        "slot": 521,
+        "compressedSha256": "3bf25e6eca49835dd2c53e07e64d3ef247bdbb93095f8a4eb75f1cf2c26cebcf",
+        "length": 43820,
+        "sha256": "f97689a994a979ca7ee546bcf6e38560cab9c6d8f0efd92ef803f1d137b0632d",
+        "header": "58564d48380000000100000000000000",
+        "tailHex": "89a9f9c94108cf5a00806a9ad79cc418715a575d4f6b8310b5b5457b8c5a0000",
+        "headerBodySize": 56,
+        "declaredCount": 1,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 43818,
+            "startAligned64": true,
+            "endAligned64": false,
+            "bodySize": 43746,
+            "payloadSize": 43690,
+            "format": 6,
+            "textureId": 33554572,
+            "width": 256,
+            "height": 256,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": "0000"
+      }
+    },
+    {
+      "name": "ELEMENTAL SHIELD",
+      "code": "01029A",
+      "previousReason": "XVRT 0 is not 64-byte aligned",
+      "model": {
+        "slot": 402,
+        "compressedSha256": "c4f5ec5dff12573358aea1012ef0162f2066879a6e6dc5d1e4d55520d63513f9",
+        "decodedLength": 15860,
+        "decodedSha256": "39d4677ccb23a64a6e5f83e513b32aed3595f4f0ece8a0513d7f19c04bc328e0",
+        "headerHex": "4e4a544c7c0000000800000003000000"
+      },
+      "texture": {
+        "slot": 466,
+        "compressedSha256": "381fb9bf4922bdc08b789884dd9533d3ff67b44803d082548cee8128f4cf574c",
+        "length": 45308,
+        "sha256": "0f568e559d5cf51287dde1d03f3fe0eded19e42c6941e431960d88528e395a04",
+        "header": "58564d48380000000300000000000000",
+        "tailHex": "00000000fffffeff000000000000000000000000ffff00000000000000000000",
+        "headerBodySize": 56,
+        "declaredCount": 3,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 21972,
+            "startAligned64": true,
+            "endAligned64": false,
+            "bodySize": 21900,
+            "payloadSize": 21844,
+            "format": 7,
+            "textureId": 33554468,
+            "width": 128,
+            "height": 128,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          },
+          {
+            "index": 1,
+            "offset": 21972,
+            "end": 43880,
+            "startAligned64": false,
+            "endAligned64": false,
+            "bodySize": 21900,
+            "payloadSize": 21844,
+            "format": 7,
+            "textureId": 33554469,
+            "width": 128,
+            "height": 128,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          },
+          {
+            "index": 2,
+            "offset": 43880,
+            "end": 45308,
+            "startAligned64": false,
+            "endAligned64": false,
+            "bodySize": 1420,
+            "payloadSize": 1364,
+            "format": 7,
+            "textureId": 33554470,
+            "width": 32,
+            "height": 32,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": ""
+      }
+    },
+    {
+      "name": "ENERGY STORM",
+      "code": "0102A7",
+      "previousReason": "XVRT 0 is not 64-byte aligned",
+      "model": {
+        "slot": 402,
+        "compressedSha256": "c4f5ec5dff12573358aea1012ef0162f2066879a6e6dc5d1e4d55520d63513f9",
+        "decodedLength": 15860,
+        "decodedSha256": "39d4677ccb23a64a6e5f83e513b32aed3595f4f0ece8a0513d7f19c04bc328e0",
+        "headerHex": "4e4a544c7c0000000800000003000000"
+      },
+      "texture": {
+        "slot": 471,
+        "compressedSha256": "4319be7ed01383e577819810fa473f9a98a7d577fa7e147de1012e48757392da",
+        "length": 39848,
+        "sha256": "62f5d155cdc050018cab30ba9974567aa507426640e8bfcd9976a8dec81ae7f7",
+        "header": "58564d48380000000300000000000000",
+        "tailHex": "00000000fffffeff000000000000000000000000ffff00000000000000000000",
+        "headerBodySize": 56,
+        "declaredCount": 3,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 21972,
+            "startAligned64": true,
+            "endAligned64": false,
+            "bodySize": 21900,
+            "payloadSize": 21844,
+            "format": 7,
+            "textureId": 33554480,
+            "width": 128,
+            "height": 128,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          },
+          {
+            "index": 1,
+            "offset": 21972,
+            "end": 38420,
+            "startAligned64": false,
+            "endAligned64": false,
+            "bodySize": 16440,
+            "payloadSize": 16384,
+            "format": 7,
+            "textureId": 33554481,
+            "width": 128,
+            "height": 128,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          },
+          {
+            "index": 2,
+            "offset": 38420,
+            "end": 39848,
+            "startAligned64": false,
+            "endAligned64": false,
+            "bodySize": 1420,
+            "payloadSize": 1364,
+            "format": 7,
+            "textureId": 33554482,
+            "width": 32,
+            "height": 32,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": ""
+      }
+    },
+    {
+      "name": "ETERNAL NIGHT",
+      "code": "00030B",
+      "previousReason": "XVRT 0 is not 64-byte aligned",
+      "model": {
+        "slot": 421,
+        "compressedSha256": "b332eb9386234d3131085bf05cb49f3357537cf4a7dcd76fedf1c8128af12c97",
+        "decodedLength": 24224,
+        "decodedSha256": "7682a72b134745a33fc2f6a2faac22ef75b026ef2958d7d0e490a924a1f587ff",
+        "headerHex": "4e4a544c980000000800000003000000"
+      },
+      "texture": {
+        "slot": 494,
+        "compressedSha256": "905448f8efdac3e58f8dc45776e3d44127a14098372c982778d160675bafc34f",
+        "length": 21974,
+        "sha256": "bfe0d937ec009d735a40df3f6fe42d116a7d36cb53ea7c092ea3d58d0f4cf276",
+        "header": "58564d48380000000100000000000000",
+        "tailHex": "ffffa59b2a620a0f0505ffffffffffffffff8a8b88490404243cff00ff000000",
+        "headerBodySize": 56,
+        "declaredCount": 1,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 21972,
+            "startAligned64": true,
+            "endAligned64": false,
+            "bodySize": 21900,
+            "payloadSize": 21844,
+            "format": 7,
+            "textureId": 33554535,
+            "width": 128,
+            "height": 128,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": "0000"
+      }
+    },
+    {
+      "name": "GUSH NEEDLE",
+      "code": "001201",
+      "previousReason": "XVRT 1 is not 64-byte aligned",
+      "model": {
+        "slot": 17,
+        "compressedSha256": "9019a32df06d08ca75c946d9c01cb727fd0c072fab5f94a150f1149053aa234e",
+        "decodedLength": 7776,
+        "decodedSha256": "25ab675eab0685f505c97ad7a1975b14c2a3a16fad881767c96f4be9f2914757",
+        "headerHex": "4e4a544c780000000800000002000000"
+      },
+      "texture": {
+        "slot": 452,
+        "compressedSha256": "aa9f5d2b9e4c83314432d3531887fffea65bb124ef601b2a5004ef40e755f4d0",
+        "length": 11370,
+        "sha256": "f60791354c9e63b6fe2041da07f6f033bba5d2c7963382cd6e7027f08c9deffa",
+        "header": "58564d48380000000200000000000000",
+        "tailHex": "a418ba5f5f70336442102fb5ffa82e54e728507aefefcd4227215b6b41aa4b3a",
+        "headerBodySize": 56,
+        "declaredCount": 2,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 384,
+            "startAligned64": true,
+            "endAligned64": true,
+            "bodySize": 312,
+            "payloadSize": 256,
+            "format": 7,
+            "textureId": 33554445,
+            "width": 16,
+            "height": 16,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          },
+          {
+            "index": 1,
+            "offset": 384,
+            "end": 11370,
+            "startAligned64": true,
+            "endAligned64": false,
+            "bodySize": 10978,
+            "payloadSize": 10922,
+            "format": 6,
+            "textureId": 33554446,
+            "width": 128,
+            "height": 128,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": ""
+      }
+    },
+    {
+      "name": "JUDGEMENT BLADE",
+      "code": "00B802",
+      "previousReason": "NJCM pointer at 0x13ab4 targets 0xbec01a37, outside its 0x149d8-byte body",
+      "model": {
+        "slot": 409,
+        "compressedSha256": "5632cf145a322bb15921cb1e7f61d36e9c6ad711fdc1cd267cb6f65033bbf48a",
+        "decodedLength": 84768,
+        "decodedSha256": "62b7c96297a9c12667a89e7843af9426691f015616e065cef45b0649d874ab15",
+        "headerHex": "4e4a544c980000000800000003000000"
+      },
+      "texture": {
+        "slot": 479,
+        "compressedSha256": "0969143659e2037fec0dcc4664f8e0a09155801d2dc5e06bcd267424e8c2f949",
+        "length": 32896,
+        "sha256": "73951996cb71e4e73e6141b8da8eda30f547d71a196c0dd9e6f474ba273ae4dc",
+        "header": "58564d48380000000100000000000000",
+        "tailHex": "0000010000000000000001000000000000000100000000000000010000000000",
+        "headerBodySize": 56,
+        "declaredCount": 1,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 32896,
+            "startAligned64": true,
+            "endAligned64": true,
+            "bodySize": 32824,
+            "payloadSize": 32768,
+            "format": 6,
+            "textureId": 33554504,
+            "width": 256,
+            "height": 256,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": ""
+      }
+    },
+    {
+      "name": "LAST EMPEROR",
+      "code": "00030E",
+      "previousReason": "archive declares 2 XVRT chunks but 2 trailing bytes remain",
+      "model": {
+        "slot": 258,
+        "compressedSha256": "5a7eacb01a07c25dd686cadb7ca291032027d6d272748b2008cf95dd84fdc787",
+        "decodedLength": 13124,
+        "decodedSha256": "767ed715b683c9deacfde8f8c604b00e7403b25c4a5fc12d0de91723c39e8abb",
+        "headerHex": "4e4a544c4c0000000800000002000000"
+      },
+      "texture": {
+        "slot": 519,
+        "compressedSha256": "e92619774f052310b363661fcbb9dc7e46170448f43e15014c84fb5fd91f0692",
+        "length": 82114,
+        "sha256": "7db75fa1500f6ff6e19a7fb127b9dbec5fc6e279e27c0eb448ec371c5fec700f",
+        "header": "58564d48380000000200000000000000",
+        "tailHex": "ffffffffffff70f5d1ed222aafbfffffffffffffffff0ff590ed2bbfbfd7ffff",
+        "headerBodySize": 56,
+        "declaredCount": 2,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 65664,
+            "startAligned64": true,
+            "endAligned64": true,
+            "bodySize": 65592,
+            "payloadSize": 65536,
+            "format": 7,
+            "textureId": 33554569,
+            "width": 256,
+            "height": 256,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          },
+          {
+            "index": 1,
+            "offset": 65664,
+            "end": 82112,
+            "startAligned64": true,
+            "endAligned64": true,
+            "bodySize": 16440,
+            "payloadSize": 16384,
+            "format": 7,
+            "textureId": 33554570,
+            "width": 128,
+            "height": 128,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": "ffff"
+      }
+    },
+    {
+      "name": "M&A85 FURY",
+      "code": "001403",
+      "previousReason": "NJCM pointer at 0x10c60 targets 0x2840284, outside its 0x115b8-byte body",
+      "model": {
+        "slot": 416,
+        "compressedSha256": "6b1c63a8d195ea23164c8d863faf02a8c28e77cb2ecbe386129b8867605e51e1",
+        "decodedLength": 71424,
+        "decodedSha256": "cde082d0f0adfb31e3e285627161e346e74de60aa8171867758ab18a3d61ffdc",
+        "headerHex": "4e4a544c980000000800000003000000"
+      },
+      "texture": {
+        "slot": 488,
+        "compressedSha256": "7ec115bd2c7985198d3257cd09e906ecf2deb18715424c5f79aa0380e6cefc4a",
+        "length": 65664,
+        "sha256": "0a67444638fa7af041626ad40df29558764f354e7019d1857ccfd3042426630e",
+        "header": "58564d48380000000100000000000000",
+        "tailHex": "863145290b0202558631a210000000aa8631a210000000aa084245293f3f1fd5",
+        "headerBodySize": 56,
+        "declaredCount": 1,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 65664,
+            "startAligned64": true,
+            "endAligned64": true,
+            "bodySize": 65592,
+            "payloadSize": 65536,
+            "format": 6,
+            "textureId": 33554526,
+            "width": 256,
+            "height": 512,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": ""
+      }
+    },
+    {
+      "name": "PASSION HAZE",
+      "code": "004C02",
+      "previousReason": "archive declares 1 XVRT chunks but 2 trailing bytes remain",
+      "model": {
+        "slot": 428,
+        "compressedSha256": "c44f2e5cbc9d0b6e22800655ca8a2e58557671d0f2e35cd3dff312034b1659a8",
+        "decodedLength": 67488,
+        "decodedSha256": "42de866388707924c4998d754814235897ed5a4457b1a3d8de1062deceab4355",
+        "headerHex": "4e4a544c980000000800000003000000"
+      },
+      "texture": {
+        "slot": 508,
+        "compressedSha256": "e8da970994560d1a01bb65657b39c9b243dfdd864595555894d0f5d144dc6a41",
+        "length": 32898,
+        "sha256": "4adeb1b396c127f9d491ad3c20b5420b828a1632f83472b8c8a5387c444aa77d",
+        "header": "58564d48380000000100000000000000",
+        "tailHex": "5484000000aa7063f273000000557063f273000000557063f273000000550000",
+        "headerBodySize": 56,
+        "declaredCount": 1,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 32896,
+            "startAligned64": true,
+            "endAligned64": true,
+            "bodySize": 32824,
+            "payloadSize": 32768,
+            "format": 6,
+            "textureId": 33554549,
+            "width": 256,
+            "height": 256,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": "0000"
+      }
+    },
+    {
+      "name": "TASTE OF AFFECTION",
+      "code": "004C04",
+      "previousReason": "archive declares 1 XVRT chunks but 1 trailing bytes remain",
+      "model": {
+        "slot": 428,
+        "compressedSha256": "c44f2e5cbc9d0b6e22800655ca8a2e58557671d0f2e35cd3dff312034b1659a8",
+        "decodedLength": 67488,
+        "decodedSha256": "42de866388707924c4998d754814235897ed5a4457b1a3d8de1062deceab4355",
+        "headerHex": "4e4a544c980000000800000003000000"
+      },
+      "texture": {
+        "slot": 507,
+        "compressedSha256": "ab3185a9446f98160c1c3e555f5396374542d736289dd4be9ed8d9b82f4732dd",
+        "length": 32897,
+        "sha256": "a437c97d96f61ee71ed0aeef0bd9b8e9d7e14ab0c29cf9b25bf27dd48ec4e67d",
+        "header": "58564d48380000000100000000000000",
+        "tailHex": "852d4cffffffaa9495af5c555555ff9495af5c555555ff9495af5c555555ff00",
+        "headerBodySize": 56,
+        "declaredCount": 1,
+        "entries": [
+          {
+            "index": 0,
+            "offset": 64,
+            "end": 32896,
+            "startAligned64": true,
+            "endAligned64": true,
+            "bodySize": 32824,
+            "payloadSize": 32768,
+            "format": 6,
+            "textureId": 33554548,
+            "width": 256,
+            "height": 256,
+            "paddingBytes": 0,
+            "paddingHex": "",
+            "boundsValid": true
+          }
+        ],
+        "trailingHex": "00"
+      }
+    },
+    {
+      "name": "TWIN CYCLONE",
+      "code": "00030A",
+      "previousReason": "index out of range",
+      "model": {
+        "slot": 415,
+        "compressedSha256": "c3b62959b047c727c3516553a7554f8361552a9d05a943d8ce0d2664cb1256ed",
+        "decodedLength": 68416,
+        "decodedSha256": "88a0fcdb9d0acbba11f67e4a17fb7d04935cbf31537383dcd686015ed6308d27",
+        "headerHex": "4e4a544c980000000800000003000000"
+      },
+      "texture": {
+        "slot": 487,
+        "compressedSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "decompressionError": "IndexError: index out of range"
+      }
+    }
+  ]
+}

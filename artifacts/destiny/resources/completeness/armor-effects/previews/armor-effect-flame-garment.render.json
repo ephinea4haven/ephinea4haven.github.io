@@ -1,0 +1,51 @@
+{
+  "scope": "fixed-seed source-particle-effect preview; no player model; Destiny runtime unverified",
+  "simulation": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/flame-garment-particles.json",
+    "sha256": "ab9d2339f6e86e529aa5501e6283b3be75756dfa651dbf5679fedb29a5b9af49"
+  },
+  "texture": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/flame-garment-texture.png",
+    "sha256": "8a7f6d5e7f70fa6c67caea61b02d174d91cad3b7e83731ac8efeb9f1ed1c7b09"
+  },
+  "renderer": {
+    "type": 3,
+    "frames": 16,
+    "spriteHalfSize": [
+      16.0,
+      16.0
+    ],
+    "uvPointer": "0xaaed20",
+    "blend": {
+      "src": "SRCALPHA",
+      "dst": "ONE"
+    },
+    "cameraFacing": true
+  },
+  "canvas": [
+    800,
+    800
+  ],
+  "cameraEye": [
+    -0.4250542486737352,
+    27.978152187887673,
+    19.83476405461173
+  ],
+  "cameraTarget": [
+    -0.4250542486737352,
+    16.217864990234375,
+    -0.5346508833255967
+  ],
+  "cameraPitchDegrees": 30.0,
+  "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
+  "focalPixels": 320.0,
+  "backgroundRgb": [
+    10,
+    13,
+    23
+  ],
+  "image": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-flame-garment.png",
+    "sha256": "1eb2aa7c2e85ddee75b14a5940de3f4b3642e7f258b855b3cc083fd3812f59f2"
+  }
+}

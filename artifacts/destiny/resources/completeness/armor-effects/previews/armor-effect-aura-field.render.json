@@ -1,0 +1,51 @@
+{
+  "scope": "fixed-seed source-particle-effect preview; no player model; Destiny runtime unverified",
+  "simulation": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/aura-field-particles.json",
+    "sha256": "639ae4a0a152807dea63de30c6d243e6bd022b382ef9594d45ff00500339ca48"
+  },
+  "texture": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/aura-field-texture.png",
+    "sha256": "0ad5309dec28dff1aea3dcf8429f7bd8ed38ad65ef912f026f7f11899ed9a1af"
+  },
+  "renderer": {
+    "type": 4,
+    "frames": 1,
+    "spriteHalfSize": [
+      16.0,
+      16.0
+    ],
+    "uvPointer": "0xa112cc",
+    "blend": {
+      "src": "SRCALPHA",
+      "dst": "ONE"
+    },
+    "cameraFacing": true
+  },
+  "canvas": [
+    800,
+    800
+  ],
+  "cameraEye": [
+    -0.1797758886324703,
+    12.81673725049314,
+    8.065169545583489
+  ],
+  "cameraTarget": [
+    -0.1797758886324703,
+    8.0,
+    -0.27766409898025
+  ],
+  "cameraPitchDegrees": 30.0,
+  "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
+  "focalPixels": 320.0,
+  "backgroundRgb": [
+    10,
+    13,
+    23
+  ],
+  "image": {
+    "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-aura-field.png",
+    "sha256": "f3c3a3455ae0d5d1cd307a73843c30993e878e4df8371385c045c95fc686ad51"
+  }
+}

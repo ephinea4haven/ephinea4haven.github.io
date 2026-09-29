@@ -1,0 +1,153 @@
+{
+  "schema": "destiny-catalog-coverage-v1",
+  "sourceTiming": {
+    "pmtCaptureModifiedLocal": "2026-08-05T17:47:41+08:00",
+    "unitxtFileModifiedLocal": "2020-04-30T04:02:50+08:00",
+    "websiteSnapshotDate": "2026-09-28",
+    "note": "The local English Unitxt file is older than the PMT capture; discrepancies alone do not establish when or why data changed."
+  },
+  "websiteRows": 1022,
+  "sourceMatchedPmtRecords": 940,
+  "unresolvedPmtNames": 816,
+  "distinctDropNames": 517,
+  "dropAssociationStatuses": {
+    "name_only": 21,
+    "parameter_conflict": 1,
+    "parameter_consistent": 298,
+    "unresolved": 197
+  },
+  "websiteAssociationStatuses": {
+    "name_only": 32,
+    "parameter_conflict": 3,
+    "parameter_consistent": 668,
+    "unresolved": 319
+  },
+  "unresolvedDropReasons": {
+    "missing_pmt_name": 131,
+    "missing_website_record": 79,
+    "multiple_website_records": 3,
+    "multiple_pmt_codes": 3
+  },
+  "dropParameterConflicts": [
+    {
+      "name": "V801",
+      "code": "01034C",
+      "databaseId": "unit:012",
+      "fields": [
+        {
+          "field": "Stat Amount",
+          "websiteValue": 5,
+          "pmtValue": 0,
+          "agrees": false
+        }
+      ]
+    }
+  ],
+  "websiteParameterConflicts": [
+    {
+      "name": "WEAPONS GOLD SHIELD",
+      "code": "01024F",
+      "databaseId": "shield:074",
+      "fields": [
+        {
+          "field": "min-DFP",
+          "websiteValue": 41,
+          "pmtValue": 100,
+          "agrees": false
+        },
+        {
+          "field": "max-DFP",
+          "websiteValue": 41,
+          "pmtValue": 150,
+          "agrees": false
+        },
+        {
+          "field": "min-EVP",
+          "websiteValue": 100,
+          "pmtValue": 250,
+          "agrees": false
+        },
+        {
+          "field": "max-EVP",
+          "websiteValue": 100,
+          "pmtValue": 300,
+          "agrees": false
+        },
+        {
+          "field": "EFR",
+          "websiteValue": 0,
+          "pmtValue": 25,
+          "agrees": false
+        },
+        {
+          "field": "ETH",
+          "websiteValue": 0,
+          "pmtValue": 50,
+          "agrees": false
+        },
+        {
+          "field": "EIC",
+          "websiteValue": 0,
+          "pmtValue": 25,
+          "agrees": false
+        },
+        {
+          "field": "EDK",
+          "websiteValue": 0,
+          "pmtValue": 50,
+          "agrees": false
+        }
+      ]
+    },
+    {
+      "name": "WEAPONS SILVER SHIELD",
+      "code": "010283",
+      "databaseId": "shield:126",
+      "fields": [
+        {
+          "field": "min-DFP",
+          "websiteValue": 35,
+          "pmtValue": 125,
+          "agrees": false
+        },
+        {
+          "field": "max-DFP",
+          "websiteValue": 35,
+          "pmtValue": 175,
+          "agrees": false
+        },
+        {
+          "field": "min-EVP",
+          "websiteValue": 50,
+          "pmtValue": 175,
+          "agrees": false
+        },
+        {
+          "field": "max-EVP",
+          "websiteValue": 50,
+          "pmtValue": 225,
+          "agrees": false
+        }
+      ]
+    },
+    {
+      "name": "V801",
+      "code": "01034C",
+      "databaseId": "unit:012",
+      "fields": [
+        {
+          "field": "Stat Amount",
+          "websiteValue": 5,
+          "pmtValue": 0,
+          "agrees": false
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Candidate codes are from the Destiny PMT and English names independently matched to installed-client Solylib code comments; other PMT names remain unresolved.",
+    "An unresolved name remains unresolved even if one candidate looks plausible.",
+    "Parameter conflicts preserve both the website value and the PMT value and do not assert which source is newer or correct.",
+    "Website fields, including Description and Notes, remain unchanged in database.json."
+  ]
+}

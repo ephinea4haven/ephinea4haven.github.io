@@ -1,0 +1,210 @@
+{
+  "valid": true,
+  "sources": [
+    {
+      "file": "source/drops-normal.html",
+      "bytes": 117664,
+      "sha256": "2ad2e1b6e79bde078459b2ec640737c4c6d489fcfd29e9e4d0ad09b0c4f7b3f0"
+    },
+    {
+      "file": "source/drops-hard.html",
+      "bytes": 118481,
+      "sha256": "11ff9e2c749e557e54995f5f9e14bc86b922221bf6b732f9a95c2cf3a4cc3271"
+    },
+    {
+      "file": "source/drops-very-hard.html",
+      "bytes": 119219,
+      "sha256": "f9208b01fb99f7a152673d38b4b155d78a02c7c94dd6c561b82f0731dee587eb"
+    },
+    {
+      "file": "source/drops-ultimate.html",
+      "bytes": 134040,
+      "sha256": "f84042048b6b31dea01a8c22a76ecde24640b18d4122b6cd63195ac02e0e9953"
+    }
+  ],
+  "expectedRows": {
+    "normal": {
+      "1": 45,
+      "2": 53,
+      "4": 21
+    },
+    "hard": {
+      "1": 45,
+      "2": 53,
+      "4": 21
+    },
+    "very-hard": {
+      "1": 45,
+      "2": 53,
+      "4": 21
+    },
+    "ultimate": {
+      "1": 51,
+      "2": 65,
+      "4": 21
+    }
+  },
+  "tables": [
+    {
+      "difficulty": "normal",
+      "episode": 1,
+      "rows": 45,
+      "cells": 450,
+      "noItem": 87,
+      "itemWithRate": 353,
+      "itemWithoutRate": 10,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 10
+    },
+    {
+      "difficulty": "normal",
+      "episode": 2,
+      "rows": 53,
+      "cells": 530,
+      "noItem": 79,
+      "itemWithRate": 441,
+      "itemWithoutRate": 10,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 10
+    },
+    {
+      "difficulty": "normal",
+      "episode": 4,
+      "rows": 21,
+      "cells": 210,
+      "noItem": 60,
+      "itemWithRate": 150,
+      "itemWithoutRate": 0,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 0
+    },
+    {
+      "difficulty": "hard",
+      "episode": 1,
+      "rows": 45,
+      "cells": 450,
+      "noItem": 40,
+      "itemWithRate": 400,
+      "itemWithoutRate": 10,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 10
+    },
+    {
+      "difficulty": "hard",
+      "episode": 2,
+      "rows": 53,
+      "cells": 530,
+      "noItem": 30,
+      "itemWithRate": 490,
+      "itemWithoutRate": 10,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 10
+    },
+    {
+      "difficulty": "hard",
+      "episode": 4,
+      "rows": 21,
+      "cells": 210,
+      "noItem": 0,
+      "itemWithRate": 210,
+      "itemWithoutRate": 0,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 0
+    },
+    {
+      "difficulty": "very-hard",
+      "episode": 1,
+      "rows": 45,
+      "cells": 450,
+      "noItem": 40,
+      "itemWithRate": 410,
+      "itemWithoutRate": 0,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 0
+    },
+    {
+      "difficulty": "very-hard",
+      "episode": 2,
+      "rows": 53,
+      "cells": 530,
+      "noItem": 30,
+      "itemWithRate": 500,
+      "itemWithoutRate": 0,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 0
+    },
+    {
+      "difficulty": "very-hard",
+      "episode": 4,
+      "rows": 21,
+      "cells": 210,
+      "noItem": 0,
+      "itemWithRate": 210,
+      "itemWithoutRate": 0,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 0
+    },
+    {
+      "difficulty": "ultimate",
+      "episode": 1,
+      "rows": 51,
+      "cells": 510,
+      "noItem": 30,
+      "itemWithRate": 480,
+      "itemWithoutRate": 0,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 0
+    },
+    {
+      "difficulty": "ultimate",
+      "episode": 2,
+      "rows": 65,
+      "cells": 650,
+      "noItem": 12,
+      "itemWithRate": 638,
+      "itemWithoutRate": 0,
+      "unknownRate": 10,
+      "unknownDar": 1,
+      "darZeroWithItem": 0
+    },
+    {
+      "difficulty": "ultimate",
+      "episode": 4,
+      "rows": 21,
+      "cells": 210,
+      "noItem": 0,
+      "itemWithRate": 210,
+      "itemWithoutRate": 0,
+      "unknownRate": 0,
+      "unknownDar": 0,
+      "darZeroWithItem": 0
+    }
+  ],
+  "totals": {
+    "tables": 12,
+    "rows": 494,
+    "cells": 4940,
+    "noItem": 408,
+    "itemWithRate": 4492,
+    "itemWithoutRate": 40,
+    "unknownRate": 10,
+    "unknownDar": 1,
+    "darZeroWithItem": 40
+  },
+  "notes": [
+    "The source rate string is preserved verbatim; missing rates remain null.",
+    "DAR describes the monster row and is not substituted for a missing rare-drop rate.",
+    "The source contains unknown DAR/rate markers (???), preserved as raw strings.",
+    "No Item is an explicit empty drop cell; item names are unlinked source text."
+  ]
+}

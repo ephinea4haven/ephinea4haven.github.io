@@ -1,0 +1,280 @@
+{
+  "schema": "destiny-supplemental-xvm-normalization-v1",
+  "source": "Destiny ItemTextureEp4.afs; exact compressed slot hashes from supplemental-jobs.json",
+  "method": "Parse bounded XVMH/XVRT IFF chunks; preserve all texture metadata and pixel payload bytes; append only zero alignment bytes inside XVRT chunks and discard at most two all-zero terminal bytes; verify result with xvm_inspect.parse_xvm.",
+  "recovered": [
+    {
+      "name": "ANCIENT PROPHECY",
+      "code": "00D006",
+      "modelSlot": 439,
+      "textureSlot": 521,
+      "sourceCompressedSha256": "3bf25e6eca49835dd2c53e07e64d3ef247bdbb93095f8a4eb75f1cf2c26cebcf",
+      "sourceDecodedSha256": "f97689a994a979ca7ee546bcf6e38560cab9c6d8f0efd92ef803f1d137b0632d",
+      "normalizedSha256": "2789099605d1a5ee4bd52e9f6abd64a7c7324030882aa14ccd31ab5692be719f",
+      "normalizedPath": "normalized/texture_521.xvm",
+      "removedZeroTrailerHex": "0000",
+      "chunks": [
+        {
+          "index": 0,
+          "originalOffset": 64,
+          "originalEnd": 43818,
+          "originalBodySize": 43746,
+          "normalizedBodySize": 43768,
+          "payloadSize": 43690,
+          "payloadSha256": "1006ab115299b62e98e6ac2e63af23f7227e47ace2b8abfcb0b33657964baea7",
+          "format": 6,
+          "width": 256,
+          "height": 256,
+          "addedAlignmentZeros": 22
+        }
+      ]
+    },
+    {
+      "name": "ELEMENTAL SHIELD",
+      "code": "01029A",
+      "modelSlot": 402,
+      "textureSlot": 466,
+      "sourceCompressedSha256": "381fb9bf4922bdc08b789884dd9533d3ff67b44803d082548cee8128f4cf574c",
+      "sourceDecodedSha256": "0f568e559d5cf51287dde1d03f3fe0eded19e42c6941e431960d88528e395a04",
+      "normalizedSha256": "1eb93ed8c69a5b62dea026d156bf9ef1a28ed05c8d3c8ccff5828d9127161820",
+      "normalizedPath": "normalized/texture_466.xvm",
+      "removedZeroTrailerHex": "",
+      "chunks": [
+        {
+          "index": 0,
+          "originalOffset": 64,
+          "originalEnd": 21972,
+          "originalBodySize": 21900,
+          "normalizedBodySize": 21944,
+          "payloadSize": 21844,
+          "payloadSha256": "bd5b915f9bba50a6d5e1d13e8518db6fdf780cb6c9d613e05d4460195c140a17",
+          "format": 7,
+          "width": 128,
+          "height": 128,
+          "addedAlignmentZeros": 44
+        },
+        {
+          "index": 1,
+          "originalOffset": 21972,
+          "originalEnd": 43880,
+          "originalBodySize": 21900,
+          "normalizedBodySize": 21944,
+          "payloadSize": 21844,
+          "payloadSha256": "120d783070d6353878a60af3461e4c5f9a6ae7c9d634514f3abb69fd158691b5",
+          "format": 7,
+          "width": 128,
+          "height": 128,
+          "addedAlignmentZeros": 44
+        },
+        {
+          "index": 2,
+          "originalOffset": 43880,
+          "originalEnd": 45308,
+          "originalBodySize": 1420,
+          "normalizedBodySize": 1464,
+          "payloadSize": 1364,
+          "payloadSha256": "9df3222673b2fada2ccf68bb7a2024a843f630aa8c6c3eae31ce2ff48b90c83d",
+          "format": 7,
+          "width": 32,
+          "height": 32,
+          "addedAlignmentZeros": 44
+        }
+      ]
+    },
+    {
+      "name": "ENERGY STORM",
+      "code": "0102A7",
+      "modelSlot": 402,
+      "textureSlot": 471,
+      "sourceCompressedSha256": "4319be7ed01383e577819810fa473f9a98a7d577fa7e147de1012e48757392da",
+      "sourceDecodedSha256": "62f5d155cdc050018cab30ba9974567aa507426640e8bfcd9976a8dec81ae7f7",
+      "normalizedSha256": "f50c48f893678005ac2aede10689e1bb3767320217f06c7d4939c0d2b7ba2b85",
+      "normalizedPath": "normalized/texture_471.xvm",
+      "removedZeroTrailerHex": "",
+      "chunks": [
+        {
+          "index": 0,
+          "originalOffset": 64,
+          "originalEnd": 21972,
+          "originalBodySize": 21900,
+          "normalizedBodySize": 21944,
+          "payloadSize": 21844,
+          "payloadSha256": "bd5b915f9bba50a6d5e1d13e8518db6fdf780cb6c9d613e05d4460195c140a17",
+          "format": 7,
+          "width": 128,
+          "height": 128,
+          "addedAlignmentZeros": 44
+        },
+        {
+          "index": 1,
+          "originalOffset": 21972,
+          "originalEnd": 38420,
+          "originalBodySize": 16440,
+          "normalizedBodySize": 16440,
+          "payloadSize": 16384,
+          "payloadSha256": "9781311eee57c31be160587024b620bf7e5c60cad1c38a429ed90d5db20e49c1",
+          "format": 7,
+          "width": 128,
+          "height": 128,
+          "addedAlignmentZeros": 0
+        },
+        {
+          "index": 2,
+          "originalOffset": 38420,
+          "originalEnd": 39848,
+          "originalBodySize": 1420,
+          "normalizedBodySize": 1464,
+          "payloadSize": 1364,
+          "payloadSha256": "9df3222673b2fada2ccf68bb7a2024a843f630aa8c6c3eae31ce2ff48b90c83d",
+          "format": 7,
+          "width": 32,
+          "height": 32,
+          "addedAlignmentZeros": 44
+        }
+      ]
+    },
+    {
+      "name": "ETERNAL NIGHT",
+      "code": "00030B",
+      "modelSlot": 421,
+      "textureSlot": 494,
+      "sourceCompressedSha256": "905448f8efdac3e58f8dc45776e3d44127a14098372c982778d160675bafc34f",
+      "sourceDecodedSha256": "bfe0d937ec009d735a40df3f6fe42d116a7d36cb53ea7c092ea3d58d0f4cf276",
+      "normalizedSha256": "5523ac0562e30141093c1880ad1d62418be256ef1f95111896754247e8823fa2",
+      "normalizedPath": "normalized/texture_494.xvm",
+      "removedZeroTrailerHex": "0000",
+      "chunks": [
+        {
+          "index": 0,
+          "originalOffset": 64,
+          "originalEnd": 21972,
+          "originalBodySize": 21900,
+          "normalizedBodySize": 21944,
+          "payloadSize": 21844,
+          "payloadSha256": "c8d4551a32e31abfae2d18da0d082792f5ecf3045e17bd144067e83f8f947c16",
+          "format": 7,
+          "width": 128,
+          "height": 128,
+          "addedAlignmentZeros": 44
+        }
+      ]
+    },
+    {
+      "name": "GUSH NEEDLE",
+      "code": "001201",
+      "modelSlot": 17,
+      "textureSlot": 452,
+      "sourceCompressedSha256": "aa9f5d2b9e4c83314432d3531887fffea65bb124ef601b2a5004ef40e755f4d0",
+      "sourceDecodedSha256": "f60791354c9e63b6fe2041da07f6f033bba5d2c7963382cd6e7027f08c9deffa",
+      "normalizedSha256": "ad3469bc668c962fce1b5ae3916ac1395d783e9f794a9b98e59ea0615cf1b4d0",
+      "normalizedPath": "normalized/texture_452.xvm",
+      "removedZeroTrailerHex": "",
+      "chunks": [
+        {
+          "index": 0,
+          "originalOffset": 64,
+          "originalEnd": 384,
+          "originalBodySize": 312,
+          "normalizedBodySize": 312,
+          "payloadSize": 256,
+          "payloadSha256": "71e4b91eabd1c08848a4c827de2286b0d65c4c2dcdff8a41b9733b4e6d199e4d",
+          "format": 7,
+          "width": 16,
+          "height": 16,
+          "addedAlignmentZeros": 0
+        },
+        {
+          "index": 1,
+          "originalOffset": 384,
+          "originalEnd": 11370,
+          "originalBodySize": 10978,
+          "normalizedBodySize": 11000,
+          "payloadSize": 10922,
+          "payloadSha256": "75b0451b275b4131584ffdbc7bb67b53e994d040ffef1006ef11cb42cc18ab29",
+          "format": 6,
+          "width": 128,
+          "height": 128,
+          "addedAlignmentZeros": 22
+        }
+      ]
+    },
+    {
+      "name": "PASSION HAZE",
+      "code": "004C02",
+      "modelSlot": 428,
+      "textureSlot": 508,
+      "sourceCompressedSha256": "e8da970994560d1a01bb65657b39c9b243dfdd864595555894d0f5d144dc6a41",
+      "sourceDecodedSha256": "4adeb1b396c127f9d491ad3c20b5420b828a1632f83472b8c8a5387c444aa77d",
+      "normalizedSha256": "83127d882235e35b0d34cf9817ba3c46811786b9b12a86cb9c7a84831ddef0c4",
+      "normalizedPath": "normalized/texture_508.xvm",
+      "removedZeroTrailerHex": "0000",
+      "chunks": [
+        {
+          "index": 0,
+          "originalOffset": 64,
+          "originalEnd": 32896,
+          "originalBodySize": 32824,
+          "normalizedBodySize": 32824,
+          "payloadSize": 32768,
+          "payloadSha256": "bd15e549552f20153c2bae115ab00dec394434dba955d3d3e3d0b82abd7cfe69",
+          "format": 6,
+          "width": 256,
+          "height": 256,
+          "addedAlignmentZeros": 0
+        }
+      ]
+    },
+    {
+      "name": "TASTE OF AFFECTION",
+      "code": "004C04",
+      "modelSlot": 428,
+      "textureSlot": 507,
+      "sourceCompressedSha256": "ab3185a9446f98160c1c3e555f5396374542d736289dd4be9ed8d9b82f4732dd",
+      "sourceDecodedSha256": "a437c97d96f61ee71ed0aeef0bd9b8e9d7e14ab0c29cf9b25bf27dd48ec4e67d",
+      "normalizedSha256": "71a3a0c4ee2c1f25785954f50c5df31c81c64da4f9ddedfef8dc364a266da945",
+      "normalizedPath": "normalized/texture_507.xvm",
+      "removedZeroTrailerHex": "00",
+      "chunks": [
+        {
+          "index": 0,
+          "originalOffset": 64,
+          "originalEnd": 32896,
+          "originalBodySize": 32824,
+          "normalizedBodySize": 32824,
+          "payloadSize": 32768,
+          "payloadSha256": "b86e40bd56e96cfd7f6c76c693b365cb8572169c71971945f020dbff6291a25f",
+          "format": 6,
+          "width": 256,
+          "height": 256,
+          "addedAlignmentZeros": 0
+        }
+      ]
+    }
+  ],
+  "rejected": [
+    {
+      "name": "JUDGEMENT BLADE",
+      "code": "00B802",
+      "previousReason": "NJCM pointer at 0x13ab4 targets 0xbec01a37, outside its 0x149d8-byte body",
+      "reason": "model parse failure remains"
+    },
+    {
+      "name": "LAST EMPEROR",
+      "code": "00030E",
+      "previousReason": "archive declares 2 XVRT chunks but 2 trailing bytes remain",
+      "reason": "nonzero or >2-byte trailer: ffff"
+    },
+    {
+      "name": "M&A85 FURY",
+      "code": "001403",
+      "previousReason": "NJCM pointer at 0x10c60 targets 0x2840284, outside its 0x115b8-byte body",
+      "reason": "model parse failure remains"
+    },
+    {
+      "name": "TWIN CYCLONE",
+      "code": "00030A",
+      "previousReason": "index out of range",
+      "reason": "index out of range"
+    }
+  ]
+}

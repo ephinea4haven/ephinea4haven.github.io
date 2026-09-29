@@ -1,0 +1,46 @@
+{
+  "schema": "destiny-nei-claw-code-variant-v1",
+  "name": "NEI'S CLAW",
+  "code": "000D02",
+  "variantOnly": true,
+  "unqualifiedDropMapping": false,
+  "nameStatus": "source_matched",
+  "websiteParameterRowMatchesOtherCode": "009B00",
+  "runtimeVerified": false,
+  "visualQa": "passed",
+  "sources": {
+    "pmtSha256": "c9fef0eb88813b2f7590597af5eaf3fa369863d4700d5837313a95f9b23fc2aa",
+    "namesSha256": "292fa16c2c119b16e4e7e1d8d7f8789c2f2f17c7358d72a48241aed5e856b06f",
+    "variantsSha256": "d7f16100db4f7dd5f1898453b5226d7d32c1dd1341328aca1199c42d5a4c9232",
+    "rendererSha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814",
+    "modelAdapterSha256": "0543d021958c309bcc79c608d1bbc97472eb7c02a0c3e7fe36fafcffeddf75e6",
+    "resources": [
+      {
+        "kind": "model",
+        "archive": "resources/originals/ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 12,
+        "prs": "model_012.prs",
+        "prsSha256": "4d91aecd1eb4aacb206843b5ae739e67edff9f228dc68d78d07a3bccc086e978",
+        "decoded": "model_012.xj",
+        "decodedSha256": "a6732be36ab1b3fb16036e34caff55c0d7130021ad4118a7de71accee55dcdc8",
+        "sourceFormat": "xj",
+        "roots": 1
+      },
+      {
+        "kind": "texture",
+        "archive": "resources/originals/ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 273,
+        "prs": "texture_273.prs",
+        "prsSha256": "3f52393c950365d07721a1b3b363f1f26d054962cf46b530b97855a90c18c1ef",
+        "decoded": "texture_273.xvm",
+        "decodedSha256": "2592e7c40467ce437cac87adc24b8b8793c1769c7bc24eb5763c49d0d075a24a",
+        "textures": 2
+      }
+    ]
+  },
+  "image": "000D02_model.png",
+  "imageSha256": "2990ecfedfeb0394cba0146a23e16f58ce0a566b3b8e12338ff3b44b6516a4a6",
+  "visualQaNote": "Recovery render reviewed on 2026-09-29: complete red claw blades, separate code variant."
+}

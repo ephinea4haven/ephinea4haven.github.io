@@ -1,0 +1,66 @@
+{
+  "schema": "destiny-berserk-needle-image-candidate-v1",
+  "name": "BERSERK NEEDLE",
+  "code": "001208",
+  "family": "weapon",
+  "identityEvidence": "Unique PMT special 14/Berserk among four codes matching all six website numeric weapon fields; source Unitxt text is a placeholder, so runtime name is not confirmed.",
+  "runtimeVerified": false,
+  "visualQa": "passed",
+  "candidateCodes": [
+    {
+      "code": "001201",
+      "special": 4
+    },
+    {
+      "code": "001202",
+      "special": 34
+    },
+    {
+      "code": "001203",
+      "special": 22
+    },
+    {
+      "code": "001208",
+      "special": 14
+    }
+  ],
+  "sources": {
+    "auditSha256": "baba49bfd07b2ad3ed18bee87aeba621ba4b285b69d8f69587513f2919fa5d1c",
+    "pmtSha256": "c9fef0eb88813b2f7590597af5eaf3fa369863d4700d5837313a95f9b23fc2aa",
+    "websiteSha256": "dede95275fd419bce2fa65dd38c09d76cba5c329764a87a57806ac5fe5e5ec1d",
+    "newservSpecialSource": "/Users/wangzhen/study/newserv/src/ItemNameIndex.cc",
+    "newservSpecialSourceSha256": "69e345869815c4ddc05586c6b2a1e8d9fb2a1b34974231a06099d61ab9c5363b",
+    "rendererSha256": "02f51fc37d6a491b03849eaf8d1d6edc3d6bf2bbfb5412c8b6cf46c65b638814",
+    "modelAdapterSha256": "0543d021958c309bcc79c608d1bbc97472eb7c02a0c3e7fe36fafcffeddf75e6",
+    "resources": [
+      {
+        "kind": "model",
+        "archive": "resources/originals/ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 17,
+        "offset": 585728,
+        "compressed": "model_017.prs",
+        "compressedSha256": "9019a32df06d08ca75c946d9c01cb727fd0c072fab5f94a150f1149053aa234e",
+        "decoded": "model_017.xj",
+        "decodedSha256": "25ab675eab0685f505c97ad7a1975b14c2a3a16fad881767c96f4be9f2914757",
+        "format": "xj",
+        "roots": 2
+      },
+      {
+        "kind": "texture",
+        "archive": "resources/originals/ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 406,
+        "offset": 2971648,
+        "compressed": "texture_406.prs",
+        "compressedSha256": "5b7f09e151d05fbf25e4df15fb4c40a6477da7893d3604941e6e88ace57dfe85",
+        "decoded": "texture_406.xvm",
+        "decodedSha256": "81f6339a0fbff76ba6134252128a3881fdb33529f33d86302639a1a577a3587b",
+        "textures": 2
+      }
+    ]
+  },
+  "image": "001208_model.png",
+  "imageSha256": "4d507ddab18c3e9ddc4e821398c1bc0aecf12bddec97fb8f39c0f50b999b7bb4",
+  "visualQaNote": "Recovery render reviewed on 2026-09-29; source identity remains a parameter/special candidate."
+}

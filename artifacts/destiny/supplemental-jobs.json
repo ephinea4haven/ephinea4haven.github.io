@@ -1,0 +1,1810 @@
+{
+  "schema": "destiny-supplemental-model-candidates-v1",
+  "sources": {
+    "audit": "missing-image-audit.json",
+    "previousJobs": "resources/model-previews/jobs.json"
+  },
+  "method": "In-range, nonempty AFS model/texture pairs only. Name and parameter evidence tiers are retained; bytes have not yet been PRS-decoded or visually checked. No candidate is a confirmed runtime name.",
+  "count": 57,
+  "counts": {
+    "new": 50,
+    "previousRejected": 1,
+    "excluded": 12
+  },
+  "candidates": [
+    {
+      "name": "AENSLAND",
+      "code": "002002",
+      "websiteRowIds": [
+        "weapon:004"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 263,
+        "offset": 1771520,
+        "bytes": 13678,
+        "sha256": "35cbb6a8530148bab4aa9c88af7d25f520a6be63353ac15bfaa5517c6eb83d6f"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 467,
+        "offset": 3534848,
+        "bytes": 6164,
+        "sha256": "8d6f62de88a0b1bc83ef4c1395740418f811bdf527b3540f0b6b398e3968570f"
+      },
+      "output": "002002_model.png"
+    },
+    {
+      "name": "ANCIENT PROPHECY",
+      "code": "00D006",
+      "websiteRowIds": [
+        "weapon:017"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 439,
+        "offset": 3160064,
+        "bytes": 26892,
+        "sha256": "b14ef1c58be00b79014805a71cbbb26fb78f3d105d4c016d7d49f2f0293ea81c"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 521,
+        "offset": 4710400,
+        "bytes": 22304,
+        "sha256": "3bf25e6eca49835dd2c53e07e64d3ef247bdbb93095f8a4eb75f1cf2c26cebcf"
+      },
+      "output": "00D006_model.png"
+    },
+    {
+      "name": "ANTI-DARK RING",
+      "code": "010273",
+      "websiteRowIds": [
+        "shield:110"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 372,
+        "offset": 2275328,
+        "bytes": 723,
+        "sha256": "f0506ce28f2dd9761ea19ac68c7e682031b2beb7902bba14f14d941ca029380d"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 396,
+        "offset": 2949120,
+        "bytes": 681,
+        "sha256": "09019f263eab19fcacd879e68151a3a4d67ebc5f304bab7090493d80c64fb901"
+      },
+      "output": "010273_model.png"
+    },
+    {
+      "name": "ANTI-LIGHT RING",
+      "code": "01027B",
+      "websiteRowIds": [
+        "shield:118"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 371,
+        "offset": 2273280,
+        "bytes": 723,
+        "sha256": "683837cabc11d01d5513f113f1508f6bee45b6b58c55a381555917d9634e235a"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 395,
+        "offset": 2947072,
+        "bytes": 663,
+        "sha256": "01a77363ba205315bc7931b8c70abb23e46d07130cc576699be9a336b58d1a00"
+      },
+      "output": "01027B_model.png"
+    },
+    {
+      "name": "APOCALYPSE BOWGUN",
+      "code": "00090A",
+      "websiteRowIds": [
+        "weapon:024"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 441,
+        "offset": 3227648,
+        "bytes": 18366,
+        "sha256": "41b47ae87c1e526514607cd7a2e7bb5882dba5ebd9cb7b537e5467c6b8af29d0"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 523,
+        "offset": 4761600,
+        "bytes": 31306,
+        "sha256": "471b02e0948a478f2363aad17920de0839810c336bd70b2d796743b3c2c5bf40"
+      },
+      "output": "00090A_model.png"
+    },
+    {
+      "name": "ARMAGEDDON",
+      "code": "004C03",
+      "websiteRowIds": [
+        "weapon:026"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 19,
+        "offset": 595968,
+        "bytes": 3031,
+        "sha256": "95e99b8218de077b3e0027b621386a06bf161730f229083317f5a2cce4dd9c2e"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 477,
+        "offset": 3624960,
+        "bytes": 5197,
+        "sha256": "d34c3c1cccd9547346854623001d2def06abadf003859da3e312ab36e99e6c02"
+      },
+      "output": "004C03_model.png"
+    },
+    {
+      "name": "BLUE PHANTOM FIELD",
+      "code": "0102A5",
+      "websiteRowIds": [
+        "shield:160"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 404,
+        "offset": 2414592,
+        "bytes": 8924,
+        "sha256": "269998fefd79b103488620cde399e29a01f2a895cd183b3bf7b6cb65f4c02d7a"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 469,
+        "offset": 3549184,
+        "bytes": 5421,
+        "sha256": "f9ad50999419d808e34b54c1dcfecf4266c4328ac2108217f64e08ef65250803"
+      },
+      "output": "0102A5_model.png"
+    },
+    {
+      "name": "BOONDOCK SAINTS",
+      "code": "000808",
+      "websiteRowIds": [
+        "weapon:055"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 126,
+        "offset": 991232,
+        "bytes": 3811,
+        "sha256": "42763175646fb5b2d3466aa06ee2bc92a1b57285ca9e422693f3559b94c12440"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 107,
+        "offset": 1120256,
+        "bytes": 5950,
+        "sha256": "b997485aa0d16c3cb7829e9d61f83f6b5aec6b0fa1507064dbbcc7c5ee89502e"
+      },
+      "output": "000808_model.png"
+    },
+    {
+      "name": "CATACLYSM SHIELD",
+      "code": "0102AA",
+      "websiteRowIds": [
+        "shield:165"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 356,
+        "offset": 2242560,
+        "bytes": 709,
+        "sha256": "6af026a5473225d9dff0dc35089b38d2ad1e34a530122f101faeb643ad397db8"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 475,
+        "offset": 3594240,
+        "bytes": 27203,
+        "sha256": "5247e77e2fc16d23bfc97257c97da90470cd2a003c20941a3f509771d6975492"
+      },
+      "output": "0102AA_model.png"
+    },
+    {
+      "name": "CLAW OF ELEMENTS",
+      "code": "00E302",
+      "websiteRowIds": [
+        "weapon:081"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 12,
+        "offset": 569344,
+        "bytes": 2784,
+        "sha256": "4d91aecd1eb4aacb206843b5ae739e67edff9f228dc68d78d07a3bccc086e978"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 294,
+        "offset": 2430976,
+        "bytes": 2966,
+        "sha256": "276ead1b1da2ad10e3edc6f7f7c844dccdccfe4da637ec98a0d00c1b5c38bdd7"
+      },
+      "output": "00E302_model.png"
+    },
+    {
+      "name": "CRYSTALLIZED WINGS",
+      "code": "0102D2",
+      "websiteRowIds": [
+        "shield:205"
+      ],
+      "evidenceTier": "website_parameter_unique_no_name",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 442,
+        "offset": 3246080,
+        "bytes": 1092,
+        "sha256": "6b95880b962391e1100d284372d6a52ed9f42f486991eb6aefba3d2906ea25d4"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 385,
+        "offset": 2922496,
+        "bytes": 2072,
+        "sha256": "0fcf580cecc16206f435b6cc24e75d25f605f4168c9208b4e5b49c56f95fb6ae"
+      },
+      "output": "0102D2_model.png"
+    },
+    {
+      "name": "CUSTOM BARRIER ver.OO",
+      "code": "010225",
+      "websiteRowIds": [
+        "shield:036"
+      ],
+      "evidenceTier": "source_matched",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": "pending",
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 380,
+        "offset": 2293760,
+        "bytes": 1993,
+        "sha256": "cfc9be828a39a2d3d54a79e5a46e4cfbb0035763aafaddc947ee4ed7384a13d0"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 404,
+        "offset": 2967552,
+        "bytes": 1948,
+        "sha256": "733c9a2bd12f82b42cc46e5d7081d5b670b6f0aa9a27e7ed7ef0e3690cfc50d8"
+      },
+      "output": "010225_model.png"
+    },
+    {
+      "name": "D-VIRUS LAUNCHER",
+      "code": "001405",
+      "websiteRowIds": [
+        "weapon:094"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 443,
+        "offset": 3248128,
+        "bytes": 4170,
+        "sha256": "82d4d4b41141ae4ba8db1307ddd769f292f5f5e38c79d498bd3292552f0f9270"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 525,
+        "offset": 4812800,
+        "bytes": 32942,
+        "sha256": "92c036fe0482935f48810dd112dc3a0233c858e9e742f06d2a3d435699b508e2"
+      },
+      "output": "001405_model.png"
+    },
+    {
+      "name": "DEATH CANNON",
+      "code": "00A301",
+      "websiteRowIds": [
+        "weapon:113"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 72,
+        "offset": 790528,
+        "bytes": 1799,
+        "sha256": "55efe797e636180761d0844bd06eea28d378bddfd3dda1b87cc8d48c68caa77a"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 460,
+        "offset": 3477504,
+        "bytes": 2311,
+        "sha256": "4bfa835124c2d9e6a76a202333e3d6a1b423fb83a68e4af5af5512d8c31fe7e8"
+      },
+      "output": "00A301_model.png"
+    },
+    {
+      "name": "DEATH REAPER",
+      "code": "003E01",
+      "websiteRowIds": [
+        "weapon:114"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 16,
+        "offset": 581632,
+        "bytes": 3229,
+        "sha256": "8ceb669b9455192500d966e275ba063ea7bbd81574cfae4b6003b32f2749a59e"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 468,
+        "offset": 3543040,
+        "bytes": 4687,
+        "sha256": "4a2b96daa41c619f4f5ffeb84dc599bbd6e212489e20882ec53aa498c30a8461"
+      },
+      "output": "003E01_model.png"
+    },
+    {
+      "name": "DESERT EAGLE",
+      "code": "004901",
+      "websiteRowIds": [
+        "weapon:119"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 254,
+        "offset": 1675264,
+        "bytes": 5236,
+        "sha256": "cc68d92644f4671fb442aa50b81c16955fe56072849009cab719479732ee8c2d"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 461,
+        "offset": 3481600,
+        "bytes": 27293,
+        "sha256": "493dff877c731a8af7549e824eaf3accfe6dfc569f45b417ee1b514e46b64328"
+      },
+      "output": "004901_model.png"
+    },
+    {
+      "name": "Dragon's Claw",
+      "code": "006000",
+      "websiteRowIds": [
+        "weapon:129"
+      ],
+      "evidenceTier": "website_parameter_unique_no_name",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 95,
+        "offset": 880640,
+        "bytes": 3897,
+        "sha256": "b7ad65efbea15680f0bdc7d34baa7cda48d529a2964e05a90a37fb9447d6e427"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 95,
+        "offset": 1048576,
+        "bytes": 3097,
+        "sha256": "6609286e73d103915b941f4eccfa0d29104a6ee999c9bea203d2f9d920086e09"
+      },
+      "output": "006000_model.png"
+    },
+    {
+      "name": "ELEMENTAL SHIELD",
+      "code": "01029A",
+      "websiteRowIds": [
+        "shield:149"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 402,
+        "offset": 2394112,
+        "bytes": 7682,
+        "sha256": "c4f5ec5dff12573358aea1012ef0162f2066879a6e6dc5d1e4d55520d63513f9"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 466,
+        "offset": 3528704,
+        "bytes": 5794,
+        "sha256": "381fb9bf4922bdc08b789884dd9533d3ff67b44803d082548cee8128f4cf574c"
+      },
+      "output": "01029A_model.png"
+    },
+    {
+      "name": "ENERGY STORM",
+      "code": "0102A7",
+      "websiteRowIds": [
+        "shield:162"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 402,
+        "offset": 2394112,
+        "bytes": 7682,
+        "sha256": "c4f5ec5dff12573358aea1012ef0162f2066879a6e6dc5d1e4d55520d63513f9"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 471,
+        "offset": 3561472,
+        "bytes": 5908,
+        "sha256": "4319be7ed01383e577819810fa473f9a98a7d577fa7e147de1012e48757392da"
+      },
+      "output": "0102A7_model.png"
+    },
+    {
+      "name": "ETERNAL NIGHT",
+      "code": "00030B",
+      "websiteRowIds": [
+        "weapon:137"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 421,
+        "offset": 2758656,
+        "bytes": 6230,
+        "sha256": "b332eb9386234d3131085bf05cb49f3357537cf4a7dcd76fedf1c8128af12c97"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 494,
+        "offset": 4055040,
+        "bytes": 12304,
+        "sha256": "905448f8efdac3e58f8dc45776e3d44127a14098372c982778d160675bafc34f"
+      },
+      "output": "00030B_model.png"
+    },
+    {
+      "name": "EXTERMINATOR",
+      "code": "000909",
+      "websiteRowIds": [
+        "weapon:140"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 136,
+        "offset": 1038336,
+        "bytes": 3952,
+        "sha256": "60fc8cdad676fac571a5cb7e54766d70f593ab029233d453cd3309cfb1661be2"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 454,
+        "offset": 3432448,
+        "bytes": 4951,
+        "sha256": "a90da3c5dbdc50e789ee1abf00b3cca4c46e23784bc4b0ef6874fda0ecd58c0e"
+      },
+      "output": "000909_model.png"
+    },
+    {
+      "name": "FROSTBITE",
+      "code": "004502",
+      "websiteRowIds": [
+        "weapon:162"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 68,
+        "offset": 776192,
+        "bytes": 2242,
+        "sha256": "1d1942e970edf4d07d7191949adde73b0fda16cd53c3ed81010cf5592114ff92"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 458,
+        "offset": 3461120,
+        "bytes": 7241,
+        "sha256": "83b2656221970932e8a30974097843ccc2ecfb9c492b98dfdab0a44c1db6b9d0"
+      },
+      "output": "004502_model.png"
+    },
+    {
+      "name": "GAL WIND",
+      "code": "009600",
+      "websiteRowIds": [
+        "weapon:166"
+      ],
+      "evidenceTier": "source_matched",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": "pending",
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 194,
+        "offset": 1284096,
+        "bytes": 1533,
+        "sha256": "9ad4e95df0492f30ae3c3d8c119ff86b74496f138f161a24e764c214d8f6982d"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 194,
+        "offset": 1662976,
+        "bytes": 6469,
+        "sha256": "ee49fb5e48270156dabba6c41bac5ecfe36aeb4c22419577e153e783453ace87"
+      },
+      "output": "009600_model.png"
+    },
+    {
+      "name": "GODS SHIELD BYAKKO",
+      "code": "01022E",
+      "websiteRowIds": [
+        "shield:045"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 361,
+        "offset": 2252800,
+        "bytes": 749,
+        "sha256": "b198c73bacda90371662f1706c7e331ff90c9f9d998838b37ce434005e39b3cb"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 383,
+        "offset": 2914304,
+        "bytes": 2122,
+        "sha256": "3c8251cab98a51cbac1266c1c81966731cde157f46dad67b4fa22966ad9aae6b"
+      },
+      "output": "01022E_model.png"
+    },
+    {
+      "name": "GODS SHIELD SUZAKU",
+      "code": "01022C",
+      "websiteRowIds": [
+        "shield:043"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 359,
+        "offset": 2248704,
+        "bytes": 749,
+        "sha256": "983102ce5f0c4a69f0a063fb0cac5b79445dbca073b69921395dbed3e1746dcd"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 383,
+        "offset": 2914304,
+        "bytes": 2122,
+        "sha256": "3c8251cab98a51cbac1266c1c81966731cde157f46dad67b4fa22966ad9aae6b"
+      },
+      "output": "01022C_model.png"
+    },
+    {
+      "name": "GRAVE DIGGER",
+      "code": "001204",
+      "websiteRowIds": [
+        "weapon:182"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 139,
+        "offset": 1054720,
+        "bytes": 6343,
+        "sha256": "69bf80e7f187256c0eeb4953f2535f8ed0f5166b3ace26bb9e2e96cbdbc0458a"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 462,
+        "offset": 3510272,
+        "bytes": 7096,
+        "sha256": "0b4da85f464754e3d9989d3007402345fcc848a5aaa5456c510d99fdbdefb601"
+      },
+      "output": "001204_model.png"
+    },
+    {
+      "name": "GUSH NEEDLE",
+      "code": "001201",
+      "websiteRowIds": [
+        "weapon:191"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 17,
+        "offset": 585728,
+        "bytes": 2907,
+        "sha256": "9019a32df06d08ca75c946d9c01cb727fd0c072fab5f94a150f1149053aa234e"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 452,
+        "offset": 3416064,
+        "bytes": 8665,
+        "sha256": "aa9f5d2b9e4c83314432d3531887fffea65bb124ef601b2a5004ef40e755f4d0"
+      },
+      "output": "001201_model.png"
+    },
+    {
+      "name": "HONEYCOMB REFLECTOR",
+      "code": "010292",
+      "websiteRowIds": [
+        "shield:141"
+      ],
+      "evidenceTier": "source_matched",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": "pending",
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 404,
+        "offset": 2414592,
+        "bytes": 8924,
+        "sha256": "269998fefd79b103488620cde399e29a01f2a895cd183b3bf7b6cb65f4c02d7a"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 428,
+        "offset": 3145728,
+        "bytes": 12270,
+        "sha256": "ae2b3997cac40b7c050a8c13c5b14fa2afe9544b17c7054192ce6a34d7f174e8"
+      },
+      "output": "010292_model.png"
+    },
+    {
+      "name": "INFERNO BLADE",
+      "code": "000208",
+      "websiteRowIds": [
+        "weapon:217"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 179,
+        "offset": 1222656,
+        "bytes": 3849,
+        "sha256": "1b94d8c887fbd4f91455c7b292a1ff16780a62614efd3492345636ea8a40656c"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 445,
+        "offset": 3342336,
+        "bytes": 15403,
+        "sha256": "5bec807c28879cad8befcfcf459164aafd90e001aa924f8a920599c3c8f67fc7"
+      },
+      "output": "000208_model.png"
+    },
+    {
+      "name": "JUDGEMENT BLADE",
+      "code": "00B802",
+      "websiteRowIds": [
+        "weapon:223"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 409,
+        "offset": 2482176,
+        "bytes": 30021,
+        "sha256": "5632cf145a322bb15921cb1e7f61d36e9c6ad711fdc1cd267cb6f65033bbf48a"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 479,
+        "offset": 3639296,
+        "bytes": 28178,
+        "sha256": "0969143659e2037fec0dcc4664f8e0a09155801d2dc5e06bcd267424e8c2f949"
+      },
+      "output": "00B802_model.png"
+    },
+    {
+      "name": "KITETSU",
+      "code": "00D003",
+      "websiteRowIds": [
+        "weapon:229"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 40,
+        "offset": 675840,
+        "bytes": 1728,
+        "sha256": "3c3c18487df04d4e5c98d97f61da3e3a16236d24f36adca4b46dd880a5385436"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 463,
+        "offset": 3518464,
+        "bytes": 2588,
+        "sha256": "3b89f1c9387cacf51b2a38829c8162274723692b3230771be72e079aae1696f3"
+      },
+      "output": "00D003_model.png"
+    },
+    {
+      "name": "LAST EMPEROR",
+      "code": "00030E",
+      "websiteRowIds": [
+        "weapon:239"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 258,
+        "offset": 1714176,
+        "bytes": 10190,
+        "sha256": "5a7eacb01a07c25dd686cadb7ca291032027d6d272748b2008cf95dd84fdc787"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 519,
+        "offset": 4651008,
+        "bytes": 43961,
+        "sha256": "e92619774f052310b363661fcbb9dc7e46170448f43e15014c84fb5fd91f0692"
+      },
+      "output": "00030E_model.png"
+    },
+    {
+      "name": "M&A85 FURY",
+      "code": "001403",
+      "websiteRowIds": [
+        "weapon:252"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 416,
+        "offset": 2650112,
+        "bytes": 27333,
+        "sha256": "6b1c63a8d195ea23164c8d863faf02a8c28e77cb2ecbe386129b8867605e51e1"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 488,
+        "offset": 3880960,
+        "bytes": 45124,
+        "sha256": "7ec115bd2c7985198d3257cd09e906ecf2deb18715424c5f79aa0380e6cefc4a"
+      },
+      "output": "001403_model.png"
+    },
+    {
+      "name": "MITSUNARI",
+      "code": "00D002",
+      "websiteRowIds": [
+        "weapon:270"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 40,
+        "offset": 675840,
+        "bytes": 1728,
+        "sha256": "3c3c18487df04d4e5c98d97f61da3e3a16236d24f36adca4b46dd880a5385436"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 464,
+        "offset": 3522560,
+        "bytes": 2036,
+        "sha256": "e3ffebe5d8d21ca792ad286579c90583ccf48877f2c9bc53aa10df9adbad7685"
+      },
+      "output": "00D002_model.png"
+    },
+    {
+      "name": "MOLTEN RING",
+      "code": "0102A9",
+      "websiteRowIds": [
+        "shield:164"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 354,
+        "offset": 2238464,
+        "bytes": 724,
+        "sha256": "42907c2dabe6fd0283f6f6ab5a54f33aa42dfb72fc88358e1576128319163950"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 474,
+        "offset": 3592192,
+        "bytes": 746,
+        "sha256": "4d07e03d2d1fc8050c8faadc9d7b5cd9333d6c1c492b79b67e25e98ebb415e2a"
+      },
+      "output": "0102A9_model.png"
+    },
+    {
+      "name": "MORTAL RUIN",
+      "code": "00030D",
+      "websiteRowIds": [
+        "weapon:274"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 431,
+        "offset": 3006464,
+        "bytes": 1895,
+        "sha256": "551cf6c5917fc246910d2a1d843f113e4bdf4a0c30cd140b9e765a525cee727a"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 511,
+        "offset": 4489216,
+        "bytes": 15698,
+        "sha256": "9c782281e9ad33b43cea005856e1fcce8dffc76d217b60a299130a770b341e33"
+      },
+      "output": "00030D_model.png"
+    },
+    {
+      "name": "MYSTIC SPIRIT",
+      "code": "004902",
+      "websiteRowIds": [
+        "weapon:277"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 128,
+        "offset": 1001472,
+        "bytes": 2513,
+        "sha256": "75eb07719001414ea35a165f9954cde4171f86760be8de8aaec8a3ec12649395"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 448,
+        "offset": 3366912,
+        "bytes": 5836,
+        "sha256": "f1aad6e62e7fe5360392780b7687e158d695721710bf43b824cc903e3bf933f4"
+      },
+      "output": "004902_model.png"
+    },
+    {
+      "name": "NEI'S CLAW",
+      "code": "009B00",
+      "websiteRowIds": [
+        "weapon:280"
+      ],
+      "evidenceTier": "website_parameter_unique_no_name",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 193,
+        "offset": 1280000,
+        "bytes": 3573,
+        "sha256": "3bf50e9d74aa4557a272366ff3ce0ddfdb940ce912be540df769691ee86db782"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 193,
+        "offset": 1654784,
+        "bytes": 6642,
+        "sha256": "38616f00fe5b50ced0b49df3c07fd22f3b341cc4f4225e60f622296438c48bcd"
+      },
+      "output": "009B00_model.png"
+    },
+    {
+      "name": "OBLIVION",
+      "code": "009701",
+      "websiteRowIds": [
+        "weapon:285"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 410,
+        "offset": 2512896,
+        "bytes": 22145,
+        "sha256": "3b4af4186d44abdc8abfa4d0dc1a1367cc444accfce0418dbbc500523fef16bc"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 480,
+        "offset": 3667968,
+        "bytes": 48027,
+        "sha256": "0436265dbd5da7129db388b3def6dbc5c28214a4a7c6053e9318f6f08a25ab71"
+      },
+      "output": "009701_model.png"
+    },
+    {
+      "name": "OROTIAGITO",
+      "code": "001000",
+      "websiteRowIds": [
+        "weapon:288"
+      ],
+      "evidenceTier": "source_matched",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": "pending",
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 15,
+        "offset": 579584,
+        "bytes": 2008,
+        "sha256": "0284c9220ad9e595a74a275f6fd203b210bdb4d63c9a867643c78de2cb843778"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 15,
+        "offset": 602112,
+        "bytes": 2374,
+        "sha256": "594e0aa72fc4704a01d59f3b99f9e8308435d03f2a040e8a9593ae763afd49f6"
+      },
+      "output": "001000_model.png"
+    },
+    {
+      "name": "PASSION HAZE",
+      "code": "004C02",
+      "websiteRowIds": [
+        "weapon:296"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 428,
+        "offset": 2889728,
+        "bytes": 40742,
+        "sha256": "c44f2e5cbc9d0b6e22800655ca8a2e58557671d0f2e35cd3dff312034b1659a8"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 508,
+        "offset": 4392960,
+        "bytes": 20136,
+        "sha256": "e8da970994560d1a01bb65657b39c9b243dfdd864595555894d0f5d144dc6a41"
+      },
+      "output": "004C02_model.png"
+    },
+    {
+      "name": "PHOENIX WINGS",
+      "code": "0102D3",
+      "websiteRowIds": [
+        "shield:206"
+      ],
+      "evidenceTier": "website_parameter_unique_no_name",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 442,
+        "offset": 3246080,
+        "bytes": 1092,
+        "sha256": "6b95880b962391e1100d284372d6a52ed9f42f486991eb6aefba3d2906ea25d4"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 386,
+        "offset": 2926592,
+        "bytes": 2159,
+        "sha256": "d38bbe847faa72b8ff20c4503406964d1c78dda1fed95fb58485ac5bf327e96b"
+      },
+      "output": "0102D3_model.png"
+    },
+    {
+      "name": "PLANET EATER",
+      "code": "008905",
+      "websiteRowIds": [
+        "weapon:304"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 252,
+        "offset": 1624064,
+        "bytes": 39977,
+        "sha256": "d0c124f572878bd7657a94488fc5dd109c9d983650df66cec3e3a96379d1c724"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 456,
+        "offset": 3442688,
+        "bytes": 11725,
+        "sha256": "8a1f4b9376d040e35988dd96098504372aeceb4033655482674582c1ab967cfd"
+      },
+      "output": "008905_model.png"
+    },
+    {
+      "name": "RAINBOW SHIELD",
+      "code": "0102A8",
+      "websiteRowIds": [
+        "shield:163"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 405,
+        "offset": 2424832,
+        "bytes": 16938,
+        "sha256": "c8fecb81b1451d9b450837aa5b1dd7a8aa1b8bf4f6e233a62d4c82bffd2f378b"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 472,
+        "offset": 3567616,
+        "bytes": 10201,
+        "sha256": "1c5a6a0a218fb27cab07bf8daf134fbc3fed44ef03e44f6bbce42b613996bfe0"
+      },
+      "output": "0102A8_model.png"
+    },
+    {
+      "name": "RATHALOS GREATSWORD",
+      "code": "00020B",
+      "websiteRowIds": [
+        "weapon:323"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 440,
+        "offset": 3188736,
+        "bytes": 38558,
+        "sha256": "e4b60d45be1f2d63e90e5ba37808af78a261e60b8ad7123244e0e3bcec019fbd"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 522,
+        "offset": 4732928,
+        "bytes": 28519,
+        "sha256": "72dfbcaf6822707a9916a7f74fe2d44b453edaa9ada5b2b4a05a85fc14c142ac"
+      },
+      "output": "00020B_model.png"
+    },
+    {
+      "name": "RED PHANTOM FIELD",
+      "code": "0102A6",
+      "websiteRowIds": [
+        "shield:161"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 404,
+        "offset": 2414592,
+        "bytes": 8924,
+        "sha256": "269998fefd79b103488620cde399e29a01f2a895cd183b3bf7b6cb65f4c02d7a"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 470,
+        "offset": 3555328,
+        "bytes": 5322,
+        "sha256": "4b35010ddb28f6fef9cda026092c734a76b4a1e243dcb23f1bc1c3d003601126"
+      },
+      "output": "0102A6_model.png"
+    },
+    {
+      "name": "RED RING",
+      "code": "010227",
+      "websiteRowIds": [
+        "shield:038"
+      ],
+      "evidenceTier": "source_matched",
+      "checkedParameters": 9,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": "rejected",
+      "previousVisualQaReason": "Source DXT1 base texture and vertex colors are fully opaque; static render shows solid planes instead of a faithful translucent ring.",
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 354,
+        "offset": 2238464,
+        "bytes": 724,
+        "sha256": "42907c2dabe6fd0283f6f6ab5a54f33aa42dfb72fc88358e1576128319163950"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 378,
+        "offset": 2897920,
+        "bytes": 699,
+        "sha256": "3cf4220332b3e85a6e9a9d7654d26779a1ff12c9fdd0311829ae094ad83eed9e"
+      },
+      "output": "010227_model.png"
+    },
+    {
+      "name": "SKYFALL",
+      "code": "001D01",
+      "websiteRowIds": [
+        "weapon:369"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": "pending",
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 422,
+        "offset": 2766848,
+        "bytes": 37105,
+        "sha256": "f793a2dc6d70dda15aa9578557c5b42c85484198f44f7ebcb4eddb0ce62f4e24"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 495,
+        "offset": 4069376,
+        "bytes": 28713,
+        "sha256": "857d18a08eabf4ba66037e87f29d66978ae5f7e05d2b91095fd314de088a335b"
+      },
+      "output": "001D01_model.png"
+    },
+    {
+      "name": "SOUL BITER",
+      "code": "009703",
+      "websiteRowIds": [
+        "weapon:382"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 412,
+        "offset": 2560000,
+        "bytes": 29091,
+        "sha256": "4e04d6cf5319ad3fd3017daf5056b79b369bc68461fad014c69b9f98344a5620"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 482,
+        "offset": 3741696,
+        "bytes": 38734,
+        "sha256": "ffe9dff16ada21fcf8d1c7e9a0783e4c485c59f5e7fa401b8eec11a17e57b157"
+      },
+      "output": "009703_model.png"
+    },
+    {
+      "name": "SOUL DEVOURER",
+      "code": "003F01",
+      "websiteRowIds": [
+        "weapon:383"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 444,
+        "offset": 3254272,
+        "bytes": 6374,
+        "sha256": "efc3c794cf4b1af0281971ef3f1884d71ddfea41c3b71fa7fdf9e0d7cd8b45de"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 526,
+        "offset": 4847616,
+        "bytes": 11736,
+        "sha256": "5a06b2b1ab41c08a4c34f59355da681b7bb81b6a1dc76b0b53d92231465ed885"
+      },
+      "output": "003F01_model.png"
+    },
+    {
+      "name": "STORMRENDER",
+      "code": "00D005",
+      "websiteRowIds": [
+        "weapon:394"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": "pending",
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 432,
+        "offset": 3008512,
+        "bytes": 29265,
+        "sha256": "2e0df0d2b0620f42ac7dc0f294cf36b7fdbf68da9a9751458e0fc19855a2c0c5"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 512,
+        "offset": 4505600,
+        "bytes": 48008,
+        "sha256": "65b15caaf4c7d4bc0f6e5ad9d51ca60956f29683c920dfb078f4405cc7b79210"
+      },
+      "output": "00D005_model.png"
+    },
+    {
+      "name": "SUBZERO",
+      "code": "001301",
+      "websiteRowIds": [
+        "weapon:397"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 18,
+        "offset": 589824,
+        "bytes": 4189,
+        "sha256": "a257540c15e587fa00558229bd24fdb39c2e39bfdd8d849d88ef812dda36e8a7"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 542,
+        "offset": 5097472,
+        "bytes": 7752,
+        "sha256": "ff2f1867e769453df6050f1b762c844857066e588dccbd947fd6e8bd3d79147f"
+      },
+      "output": "001301_model.png"
+    },
+    {
+      "name": "TASTE OF AFFECTION",
+      "code": "004C04",
+      "websiteRowIds": [
+        "weapon:408"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 428,
+        "offset": 2889728,
+        "bytes": 40742,
+        "sha256": "c44f2e5cbc9d0b6e22800655ca8a2e58557671d0f2e35cd3dff312034b1659a8"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 507,
+        "offset": 4370432,
+        "bytes": 20871,
+        "sha256": "ab3185a9446f98160c1c3e555f5396374542d736289dd4be9ed8d9b82f4732dd"
+      },
+      "output": "004C04_model.png"
+    },
+    {
+      "name": "TIGER'S FANG & DRAGON'S CLAW",
+      "code": "00B801",
+      "websiteRowIds": [
+        "weapon:413"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 156,
+        "offset": 1138688,
+        "bytes": 1834,
+        "sha256": "4f21c3e93ac350c0a5cd3a8ad2c795dfbd6c24294ed558146ca97fe03f923e83"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 465,
+        "offset": 3524608,
+        "bytes": 2128,
+        "sha256": "22681d9949efc593b7dcde332f9ca206913febf72f2a5ceef486129d5e317050"
+      },
+      "output": "00B801_model.png"
+    },
+    {
+      "name": "TORMENTOR",
+      "code": "000908",
+      "websiteRowIds": [
+        "weapon:414"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 136,
+        "offset": 1038336,
+        "bytes": 3952,
+        "sha256": "60fc8cdad676fac571a5cb7e54766d70f593ab029233d453cd3309cfb1661be2"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 453,
+        "offset": 3426304,
+        "bytes": 5216,
+        "sha256": "433df1b4d026e14f201465a4ebc6a2cad31d2d40301545c89721bf4eb236aefb"
+      },
+      "output": "000908_model.png"
+    },
+    {
+      "name": "TWIN CYCLONE",
+      "code": "00030A",
+      "websiteRowIds": [
+        "weapon:422"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 415,
+        "offset": 2629632,
+        "bytes": 18878,
+        "sha256": "c3b62959b047c727c3516553a7554f8361552a9d05a943d8ce0d2664cb1256ed"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 487,
+        "offset": 3854336,
+        "bytes": 25478,
+        "sha256": "6fb869dd5586e0576089ff5558980eb8a3cc659f41e1813ff9f78eda380843f0"
+      },
+      "output": "00030A_model.png"
+    },
+    {
+      "name": "TWIN PALLASCH",
+      "code": "00D001",
+      "websiteRowIds": [
+        "weapon:425"
+      ],
+      "evidenceTier": "unitxt_unique_multi_parameter_agree",
+      "checkedParameters": 6,
+      "parameterConflicts": [],
+      "runtimeVerified": false,
+      "previousVisualQa": null,
+      "previousVisualQaReason": null,
+      "model": {
+        "archive": "ItemModelEp4.afs",
+        "archiveSha256": "c180877c4b0e446da7f973bd5b5f9dd05eb942d86cad4c4d6e7b1d1d538a1e56",
+        "entry": 13,
+        "offset": 573440,
+        "bytes": 2639,
+        "sha256": "0e93443439348bbd2280021c4c1ce9acb677d3ae0765d84ff237a9df6b2c01e7"
+      },
+      "texture": {
+        "archive": "ItemTextureEp4.afs",
+        "archiveSha256": "f489fe5bec6284101a95f26dfe4dc7f588dce71a1ce90546af3e8290684a9308",
+        "entry": 13,
+        "offset": 595968,
+        "bytes": 3521,
+        "sha256": "4c009d67ad36fe917827b852538b41055110f298d7e094d69f39d5f03380e3b4"
+      },
+      "output": "00D001_model.png"
+    }
+  ],
+  "excluded": [
+    {
+      "name": "BLAST GARMENT",
+      "code": "01016F",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "unsupported_family"
+    },
+    {
+      "name": "Blizzard Garment",
+      "code": "010118",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "unsupported_family"
+    },
+    {
+      "name": "CHAOS HALO",
+      "code": "0102CF",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "model_slot_out_of_range_or_empty",
+      "modelSlot": 463,
+      "textureSlot": 407
+    },
+    {
+      "name": "DIVINE BLADE",
+      "code": "00B803",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "model_slot_out_of_range_or_empty",
+      "modelSlot": 464,
+      "textureSlot": 573
+    },
+    {
+      "name": "GOLDEN HALO",
+      "code": "0102CE",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "model_slot_out_of_range_or_empty",
+      "modelSlot": 463,
+      "textureSlot": 568
+    },
+    {
+      "name": "Molten Garment",
+      "code": "010119",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "unsupported_family"
+    },
+    {
+      "name": "PARAGON FRAME",
+      "code": "010168",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "unsupported_family"
+    },
+    {
+      "name": "Parasitic Armor 'Predator'",
+      "code": "01016B",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "unsupported_family"
+    },
+    {
+      "name": "PRIMAL NEXUS",
+      "code": "010167",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "unsupported_family"
+    },
+    {
+      "name": "Tempest Garment",
+      "code": "01011A",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "unsupported_family"
+    },
+    {
+      "name": "TWIN RIKA'S CLAW",
+      "code": "009801",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "model_slot_out_of_range_or_empty",
+      "modelSlot": 456,
+      "textureSlot": 192
+    },
+    {
+      "name": "VENUS BOW",
+      "code": "001207",
+      "evidenceTier": "website_parameter_unique_no_name",
+      "reason": "model_slot_out_of_range_or_empty",
+      "modelSlot": 462,
+      "textureSlot": 570
+    }
+  ]
+}
