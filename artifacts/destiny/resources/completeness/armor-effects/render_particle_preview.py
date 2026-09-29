@@ -16,8 +16,6 @@ SOURCE_MANIFEST = HERE / "texture-manifest.json"
 FRAME_SIZE = 800
 FOCAL_PIXELS = 320.0
 CAMERA_PITCH_DEGREES = 30.0
-ADDITIVE_BACKGROUND = (10, 13, 23)
-ALPHA_BACKGROUND = (198, 202, 211)
 
 
 def sha256(path: Path) -> str:
@@ -82,11 +80,26 @@ def draw_sprite(canvas: np.ndarray, texture: Image.Image, particle: dict, render
     rgb = source[..., :3] * np.array([red, green, blue], dtype=np.float32)
     destination = canvas[clamped_top:bottom, clamped_left:right]
     if renderer["blend"]["dst"] == "ONE":
-        destination += rgb * factor
+        destination[..., :3] += rgb * factor
     elif renderer["blend"]["dst"] == "INVSRCALPHA":
-        destination[:] = rgb * factor + destination * (1 - factor)
+        destination[..., :3] = rgb * factor + destination[..., :3] * (1 - factor)
+        destination[..., 3:4] = factor + destination[..., 3:4] * (1 - factor)
     else:
         raise ValueError(f"Unsupported blend mode: {renderer['blend']}")
+
+
+def encode_rgba(canvas: np.ndarray, additive: bool) -> np.ndarray:
+    """Encode premultiplied particles without baking in a viewing background.
+
+    Additive RGB is radiance: alpha=max(RGB) allows lossless representation of
+    its clamped premultiplied colour in ordinary RGBA. Display with plus-lighter.
+    Ordinary alpha preserves the accumulated source-over coverage, including
+    black particles whose alpha must never be inferred from brightness.
+    """
+    rgb = np.clip(canvas[..., :3], 0, 255)
+    alpha = np.max(rgb, axis=2, keepdims=True) / 255 if additive else canvas[..., 3:4]
+    straight = np.divide(rgb, alpha, out=np.zeros_like(rgb), where=alpha > 0)
+    return np.rint(np.clip(np.concatenate((straight, alpha * 255), axis=2), 0, 255)).astype(np.uint8)
 
 
 def main() -> None:
@@ -100,9 +113,7 @@ def main() -> None:
     texture = Image.open(match["image"]["path"]).convert("RGBA")
     renderer = match["stockRenderer"]
     camera = choose_camera(simulation["particles"], renderer)
-    background = ALPHA_BACKGROUND if renderer["blend"]["dst"] == "INVSRCALPHA" else ADDITIVE_BACKGROUND
-    canvas = np.empty((FRAME_SIZE, FRAME_SIZE, 3), dtype=np.float32)
-    canvas[:] = background
+    canvas = np.zeros((FRAME_SIZE, FRAME_SIZE, 4), dtype=np.float32)
     for particle in simulation["particles"]:
         frame = int(particle["uvFrame"])
         if renderer["frames"] == 16:
@@ -114,7 +125,8 @@ def main() -> None:
             source = texture
         draw_sprite(canvas, source, particle, renderer, camera)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    Image.fromarray(np.clip(canvas, 0, 255).astype(np.uint8), "RGB").save(args.output)
+    additive = renderer["blend"]["dst"] == "ONE"
+    Image.fromarray(encode_rgba(canvas, additive), "RGBA").save(args.output)
     record = {
         "scope": "fixed-seed source-particle-effect preview; no player model; Destiny runtime unverified",
         "simulation": {"path": str(args.simulation), "sha256": sha256(args.simulation)},
@@ -126,7 +138,8 @@ def main() -> None:
         "cameraPitchDegrees": CAMERA_PITCH_DEGREES,
         "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
         "focalPixels": FOCAL_PIXELS,
-        "backgroundRgb": background,
+        "transparentBackground": True,
+        "displayBlend": "additive" if additive else "normal",
         "image": {"path": str(args.output), "sha256": sha256(args.output)},
     }
     args.output.with_suffix(".render.json").write_text(json.dumps(record, indent=2) + "\n")

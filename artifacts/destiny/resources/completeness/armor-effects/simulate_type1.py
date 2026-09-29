@@ -132,7 +132,8 @@ def color(particle: Particle, effect: dict, nt_flags: int) -> list[int]:
 
 
 def simulate(effect: dict, seed: int, frame_count: int,
-             origin: tuple[float, float, float], uv_count: int, nt_flags: int) -> dict:
+             origin: tuple[float, float, float], uv_count: int, nt_flags: int,
+             *, one_shot: bool = False) -> dict:
     rng = ClientRandom(seed)
     particles: list[Particle] = []
     accumulated = 0.0
@@ -141,12 +142,18 @@ def simulate(effect: dict, seed: int, frame_count: int,
     emitted = 0
     for frame in range(frame_count):
         particles = [p for p in particles if advance(p, effect, uv_count)]
+        # create_particle_effect sets +0x34=1: update_particle_effect destroys
+        # that emitter after its first update, while its spawned particles live on.
+        if one_shot and frame > 0:
+            continue
         if effect["creat"] == 0.0:
             rate = effect["number"]
         else:
             phase = (phase + phase_step) & 0xFFFF
             rate = abs(math.sin(phase * math.tau / ANGLE_UNITS)) * effect["number"]
         accumulated += rate
+        if one_shot:
+            accumulated = max(1.0, accumulated)
         while accumulated >= 1.0:
             accumulated -= 1.0
             particles.append(spawn(effect, origin, rng, frame, uv_count))
@@ -159,6 +166,7 @@ def simulate(effect: dict, seed: int, frame_count: int,
                    "runtimeVerified": False},
         "preview": {"seed": seed, "frame": frame_count, "origin": list(origin),
                     "uvCount": uv_count, "effectNtFlags": nt_flags,
+                    "emitterMode": "burst" if one_shot else "continuous",
                     "noCharacterModel": True,
                     "limitations": ["Client global RNG consumption and entity pose are not reproduced.",
                                     "Camera culling and parent movement are not reproduced."]},
@@ -184,11 +192,13 @@ def main() -> None:
     parser.add_argument("--uv-count", type=int, default=1)
     parser.add_argument("--nt-flags", type=lambda value: int(value, 0), default=1)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--one-shot", action="store_true")
     args = parser.parse_args()
     if args.frame <= 0 or args.uv_count <= 0:
         parser.error("--frame and --uv-count must be positive")
     record = read_effect(EFFECTS[args.effect] if args.effect else args.particle_id)
-    result = simulate(record, args.seed, args.frame, tuple(args.origin), args.uv_count, args.nt_flags)
+    result = simulate(record, args.seed, args.frame, tuple(args.origin), args.uv_count, args.nt_flags,
+                      one_shot=args.one_shot)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n")
     print(json.dumps({"index": record["index"], "emitted": result["emitted"],

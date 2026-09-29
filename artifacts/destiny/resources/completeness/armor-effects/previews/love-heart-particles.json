@@ -1,0 +1,106 @@
+{
+  "schema": "destiny-offline-type1-particle-preview-v1",
+  "source": {
+    "file": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/gsl-extracted/particleentry.dat",
+    "index": 446,
+    "name": "heart01",
+    "textureId": 750801,
+    "runtimeVerified": false
+  },
+  "preview": {
+    "seed": 20923,
+    "frame": 20,
+    "origin": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "uvCount": 1,
+    "effectNtFlags": 1,
+    "emitterMode": "burst",
+    "noCharacterModel": true,
+    "limitations": [
+      "Client global RNG consumption and entity pose are not reproduced.",
+      "Camera culling and parent movement are not reproduced."
+    ]
+  },
+  "emitted": 4,
+  "particles": [
+    {
+      "x": -8.4808487641348,
+      "y": 5.70000022649765,
+      "z": 1.7949793288530587,
+      "scale": 0.13714991560660383,
+      "scaleX": 0.12859178828918044,
+      "scaleY": 0.14570804292402725,
+      "rgba": [
+        254,
+        254,
+        254,
+        254
+      ],
+      "angle": 22030,
+      "uvFrame": 0,
+      "bornFrame": 0,
+      "age": 0.6333333333333333,
+      "renderAge": 0.6
+    },
+    {
+      "x": 11.623681653435984,
+      "y": 5.70000022649765,
+      "z": 0.05751825619417161,
+      "scale": 0.1184044061044405,
+      "scaleX": 0.11510390726027872,
+      "scaleY": 0.12170490494860228,
+      "rgba": [
+        254,
+        254,
+        254,
+        254
+      ],
+      "angle": 33646,
+      "uvFrame": 0,
+      "bornFrame": 0,
+      "age": 0.6333333333333333,
+      "renderAge": 0.6
+    },
+    {
+      "x": 6.53376302508348,
+      "y": 5.70000022649765,
+      "z": 3.8651449052672167,
+      "scale": 0.07761700289990481,
+      "scaleX": 0.07497806497785078,
+      "scaleY": 0.08025594082195883,
+      "rgba": [
+        254,
+        254,
+        254,
+        254
+      ],
+      "angle": 50468,
+      "uvFrame": 0,
+      "bornFrame": 0,
+      "age": 0.6333333333333333,
+      "renderAge": 0.6
+    },
+    {
+      "x": 1.2193858449431483,
+      "y": 5.70000022649765,
+      "z": 0.0703959868054698,
+      "scale": 0.08377096691003552,
+      "scaleX": 0.08661510522600852,
+      "scaleY": 0.08092682859406251,
+      "rgba": [
+        254,
+        254,
+        254,
+        254
+      ],
+      "angle": 58062,
+      "uvFrame": 0,
+      "bornFrame": 0,
+      "age": 0.6333333333333333,
+      "renderAge": 0.6
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import { inject, Injectable, InjectionToken } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import types from '../generated/item-catalog/types.json';
 import version from '../generated/item-catalog/version.json';
-import { CatalogItem, Category, classesOf } from './catalog';
+import { CatalogItem, Category, ImageKind, ImageBlend, classesOf } from './catalog';
 
 /**
  * The full searchable index, used only by the item list. It is fetched as a
@@ -10,7 +10,7 @@ import { CatalogItem, Category, classesOf } from './catalog';
  * prerendering reads the generated file directly (app.config.server.ts). It is
  * deliberately not transferred through the page HTML.
  */
-export type IndexRow = [string, string, keyof typeof types, number | null, string, string, [string, string][], string | null, string | null, string, string, number | null, string, string, string];
+export type IndexRow = [string, string, keyof typeof types, number | null, string, string, [string, string][], string | null, string | null, string, string, number | null, string, string, string, ImageKind, ImageBlend];
 
 export const ITEM_INDEX_LOADER = new InjectionToken<() => Promise<IndexRow[]>>('ITEM_INDEX_LOADER', {
   providedIn: 'root',
@@ -22,11 +22,11 @@ export const ITEM_INDEX_LOADER = new InjectionToken<() => Promise<IndexRow[]>>('
 });
 
 export function catalogItems(rows: IndexRow[]): CatalogItem[] {
-  return rows.map(([id, en, type, rarity, mask, requirement, stats, image, code, status, alias, atpMax, ja, zh, series]) => ({
+  return rows.map(([id, en, type, rarity, mask, requirement, stats, image, code, status, alias, atpMax, ja, zh, series, imageKind, imageBlend]) => ({
     id, en, title: alias || en, zh, ja: ja || undefined,
     type, subtype: types[type][1], group: series || types[type][1], category: types[type][0] as Category,
     rarity, mask, classes: classesOf(mask), requirement,
-    stats: stats.map(([label, value]) => ({ label, value })), image, code, status, atpMax,
+    stats: stats.map(([label, value]) => ({ label, value })), image, imageKind, imageBlend, code, status, atpMax,
   }));
 }
 

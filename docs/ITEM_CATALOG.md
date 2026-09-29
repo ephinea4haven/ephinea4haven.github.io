@@ -22,13 +22,57 @@ The catalog lives at `/data/items.html`, with one detail page per item at
 
 ## Coverage and interface
 
+List names use the BB drop chart's three visual styles, with catalog tiers
+evaluated in this order:
+
+- Top tier: named BB banners without Hit conditions, plus the seven verified
+  catalog additions below. Names use animated rainbow text at weight 900.
+- Rare: at least 9 stars, a named Hit-conditional BB banner, or an explicitly
+  verified rare tool (currently AddSlot). Names use gold `#f0cf83` at weight 700.
+  Banner rules provide auxiliary evidence when star rarity is unavailable.
+- Common: other items use ordinary text at weight 400. Unknown star rarity alone
+  does not establish rarity.
+
+Acquisition method does not automatically promote an item to top tier. Rare
+combination and enemy-part results remain gold unless they meet the top-tier
+rule. Only the primary name is highlighted; the secondary-language name remains
+muted. Conditional banners expose the minimum untekked Hit in a localized title
+and the row's accessible description; other gold items say “Rare item”.
+Reduced-motion preferences stop the rainbow animation.
+
+`npm run sync:item-highlights` snapshots the maintained sibling drop chart's
+`tools/banner_rules.py` and corresponding CSS into
+`content/item-catalog/banner-highlights.json` and `item-highlights.css`.
+The 98 exact English titles all resolve to catalog items, independent of the
+display language. Normal builds use the checked-in snapshot; the sibling
+repository is needed only to refresh it. Classic-only Agito (1975), technique
+disks and the general 90-Hit rule are excluded from banner eligibility, matching
+the BB chart's policy. Agito (1975) still qualifies for gold through its rarity.
+Verified rare tools are synchronized from the equipment manifest's red boxes.
+
+The catalog additionally gives verified unsealed results the top-tier rainbow
+style: Tsumikiri J-Sword, Excalibur, Adept and Proof of Sword-Saint. Synchronization
+derives the unsealed entries in `topTierItems` from the maintained Wiki snapshot's `Unsealing`
+acquisition category, rather than propagating styles through arbitrary related
+items. Their localized hint says “Unsealed item · top tier”; they are not added
+to the banner list and do not inherit a sealed weapon's Hit condition.
+The same catalog-only top-tier mapping includes Dark Flow, Dark Meteor and
+Dark Bridge, with a separate localized “Combined item · top tier” hint. Their
+snapshot records confirm synthesis with Parasitic Gene "Flow". This explicit
+classification does not promote every combination result or its base weapons.
+Master Raven, Last Swan, Dual Bird, Guld Milla, Mille Marteaux, Baranz Launcher,
+Maser Beam and Power Maser qualify as rare and use gold. Neither a shared source
+category nor similar spelling promotes items automatically. Catalog-only
+top-tier classifications do not add banner eligibility.
+
 The snapshot contains 1,045 entries: 419 weapons, 88 frames, 107 barriers, 100
-units, 84 Mags and 247 other items. The list shows images for 549 entries: Wiki
-images for 547, drawn from 478 PNG files totaling about 4.9 MB, plus two TypeM
-weapons derived from the game's ItemKT textures. Detail pages additionally offer
-HD images for 414 entries from the HD gallery, 47 of which previously had no
-Wiki image, plus original-model renders for 83 of the 84 Mags (all but Stealth,
-which has no model), bringing detail image coverage to 594 entries. The snapshot was taken on 2026-09-14;
+units, 84 Mags and 247 other items. The list shows images for 835 entries,
+including category illustrations for 228 armor/shield/unit entries without an
+individual preview. All 295 armor/shield/unit records have an image; the
+appearance-only filter excludes the shared boxes. See [equipment image rules and
+evidence](EQUIPMENT_IMAGES.md). Detail pages additionally offer HD images for
+415 entries from the HD gallery, plus original-model renders for 83 of the 84
+Mags (all but Stealth, which has no model). The snapshot was taken on 2026-09-14;
 the cosmetic item pages and 21 excerpt fixes were re-merged on 2026-09-15 at
 unchanged Wiki revisions, and those records carry their own check date.
 Independent models such as manufacturing year, manufacturer and genuine versus
@@ -126,7 +170,7 @@ as separate models.
   catalog" does not promise that an event or NPC supplies an item at any given
   time. Drop rates are the baseline values of the cited revision and exclude live
   multipliers.
-- List and related-item images come from Ephinea Wiki: item infoboxes, plus the in-game
+- Wiki-sourced list and related-item images come from item infoboxes, plus the in-game
   screenshot on each ring paint and plating page, which shows a Red Ring after
   use. Red Paint shows the original Red Ring. Deep Plating and Delsaber Plating
   have only multi-megabyte animated GIFs on the Wiki, so they use the first frame
@@ -134,7 +178,7 @@ as separate models.
   SHA-1 and frame under `derivedFrom`. The
   seven KT GIFs used by the MVP have been removed. `images.json` records the
   original URL, source page, dimensions and SHA-1. Original files are stored byte for byte, and missing
-  images show an explicit placeholder. Models that share an appearance may share
+  equipment images use the selection rules above; other missing images show an explicit placeholder. Models that share an appearance may share
   one image. 418 of the 419 weapons have images; an entry without an image does
   not mean no screenshot exists elsewhere.
 - TypeRI/Rifle and TypeSH/Shot name `TypeRI-Rifle.png` and `TypeSH-Shot.png` in
@@ -173,9 +217,11 @@ failed before the correction and passed afterward; all 27 item tests and the
 production build passed (3,802 routes, 135 event fragments).
 The detail generator consumes only verified direct `itemIds`: 409 optimized
 images cover 415 details. The `hdImage` field is emitted only in per-item detail
-data; HD gallery images never appear in the searchable list.
-Details default to HD when available and offer HD / standard image buttons when both
-images exist; the standard image is the Wiki image, or the ItemKT image above. Mag details use the original-model renders in
+data; the searchable list uses small equipment thumbnails instead of full-size HD files.
+Equipment effects are the default detail view; other details default to HD when
+available. Details offer HD / standard image buttons when two
+distinct images exist. Standard images can be Wiki/ItemKT images or the equipment
+previews described above. Mag details use the original-model renders in
 `assets/img/mag/default/` as their HD image (`hdSource: model-render`, captioned as
 an original model render rather than the HD gallery); the generator fails if a
 render has no matching catalog Mag or a Mag also has a gallery image. The folder's
@@ -193,7 +239,7 @@ manifest's `extra_sources` records this, and the reproduction scripts
 (`extract-extra.py`, `build-extra.py`, `fit-extra.py`, `render-extra.py`,
 `publish-extra.py`) sit beside the originals in the local
 `artifacts/hd-gallery/mag-default/` workspace. The displayed source and full-size image link follow the selected image.
-Navigating to another item resets the choice to HD. Single-source details show
+Navigating to another item resets to that item's default view. Single-source details show
 their available image without a switch. List rows and related-item cards show
 the rendered Mags as thumbnails from `assets/img/mag/thumbs/`, made by
 `scripts/make_mag_thumbnails.py`: each render is trimmed to the model and fitted
@@ -201,7 +247,9 @@ into a 256 × 192 WebP (about 4–14 KB). The generator fails if a thumbnail is
 missing. Each manifest model names its image `file` apart from the Mag title,
 because GitHub artifact uploads reject `*` and similar characters in paths:
 Present*'s render and thumbnail are `Present-star.webp`, and the generator fails
-on any Mag image file name containing `" * : < > ? | \`. Every other list and card image is the item's standard detail image.
+on any Mag image file name containing `" * : < > ? | \`. Armor and shields use
+their equipment thumbnails when available; other list and card images use the
+item's standard detail image.
 
 On 2026-09-19 the maintainer supplied and identified the SOF image, bound to
 `slicer-of-fanatic`. The 1280 × 938 PNG is recorded as

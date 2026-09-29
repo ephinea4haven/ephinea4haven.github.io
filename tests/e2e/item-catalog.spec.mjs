@@ -40,6 +40,8 @@ test('item list title stays localized after query-only navigation', async ({page
 
 test('language changes preserve filters, sorting, pagination and authoritative names', async ({page}) => {
   await page.goto('/data/items.html?category=weapon&type=光剑&class=FOnewearl&sort=name&page=2');
+  // Capture the filtered second page after hydration, not the prerendered first page.
+  await expect(page.locator('.page-steps')).toContainText('2 /');
   const ids = await page.locator('.item-row').evaluateAll(rows => rows.map(r => r.href));
   for (const [button,lang,title,prefix] of [['English','en','Item Database','/en'],['日本語','ja','アイテム図鑑','/ja'],['中文','zh','道具图鉴','']]) {
     await page.getByRole('button',{name:button,exact:true}).click();
@@ -88,6 +90,126 @@ test('detail language persists through return, refresh and later visits', async 
   await page.getByRole('button',{name:'Clear all filters'}).click();
   await expect(page).toHaveURL(/\/en\/data\/items\.html\?category=weapon$/);
   await expect(page.locator('.item-row')).toHaveCount(24);
+});
+
+test('list names match ordinary, gold and rainbow BB drop-chart styles', async ({page}, testInfo) => {
+  for (const [id, query, weight, kind] of [
+    ['saber', 'Saber', '400', 'ordinary'],
+    ['galatine', 'Galatine', '700', 'gold'],
+    ['lavis-cannon', 'Lavis Cannon', '900', 'rainbow'],
+    ['agito-1975', 'Agito (1975)', '700', 'gold'],
+  ]) {
+    await page.goto(`/data/items.html?category=weapon&q=${encodeURIComponent(query)}`);
+    const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
+    const name = row.locator('.identity strong');
+    await expect(name).toHaveClass(/item-name/);
+    await expect(name).toHaveCSS('font-weight', weight);
+    if (kind === 'gold') {
+      await expect(name).toHaveCSS('color', 'rgb(240, 207, 131)');
+      const hint = id === 'galatine' ? '公告条件：未鉴定 Hit ≥ 20%。' : '稀有道具';
+      await expect(name).toHaveAttribute('title', hint);
+      await expect(row).toHaveAttribute('aria-description', hint);
+    } else if (kind === 'rainbow') {
+      await expect(name).toHaveCSS('background-size', '300% auto');
+      await expect(name).toHaveCSS('animation-duration', '4s');
+      await expect(name).toHaveAttribute('title', '公告道具 · 无 Hit 要求');
+      await page.emulateMedia({reducedMotion:'reduce'});
+      await expect(name).toHaveCSS('animation-name', 'none');
+    } else {
+      await expect(name).not.toHaveClass(/ss-rare-item|rare-item/);
+      await expect(name).not.toHaveAttribute('title');
+    }
+  }
+  await page.goto('/data/items.html');
+  await expect(page.locator('.ss-rare-item').first()).toBeVisible();
+  await expect(page.locator('.rare-item').first()).toBeVisible();
+  await page.locator('.item-row[href*="/delsabers-buster.html"]').evaluate(el => el.scrollIntoView({block:'center'}));
+  await page.screenshot({path:testInfo.outputPath('name-tiers-desktop.png')});
+  await page.setViewportSize({width:390,height:844});
+  await page.locator('.item-row[href*="/delsabers-buster.html"]').evaluate(el => el.scrollIntoView({block:'center'}));
+  await page.screenshot({path:testInfo.outputPath('name-tiers-mobile.png')});
+  for (const [lang, hint] of [['English', 'Banner condition: untekked Hit ≥ 20%.'], ['日本語', 'ドロップ告知条件：未鑑定 Hit ≥ 20%。']]) {
+    await page.getByRole('button', {name:lang,exact:true}).click();
+    await expect(page.locator('.item-row[href*="/galatine.html"] .item-name')).toHaveAttribute('title', hint);
+  }
+});
+
+test('all unsealed results use top-tier names independently of banner eligibility', async ({page}, testInfo) => {
+  for (const [id, title, category] of [
+    ['tsumikiri-j-sword', 'Tsumikiri J-Sword', 'weapon'],
+    ['excalibur', 'Excalibur', 'weapon'],
+    ['adept', 'Adept', 'unit'],
+    ['proof-of-sword-saint', 'Proof of Sword-Saint', 'unit'],
+  ]) {
+    await page.goto(`/data/items.html?category=${category}&q=${encodeURIComponent(title)}`);
+    await page.getByRole('button', {name:'中文',exact:true}).click();
+    const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
+    const name = row.locator('.item-name');
+    await expect(name).toHaveClass(/ss-rare-item/);
+    await expect(name).not.toHaveClass(/(?:^|\s)rare-item(?:\s|$)/);
+    await expect(name).toHaveCSS('font-weight', '900');
+    await expect(name).toHaveAttribute('title', '解封成品 · 顶级');
+    await expect(row).toHaveAttribute('aria-description', '解封成品 · 顶级');
+    for (const [language, hint] of [['English','Unsealed item · top tier'], ['日本語','封印解除後のアイテム · 最上位']]) {
+      await page.getByRole('button', {name:language,exact:true}).click();
+      await expect(name).toHaveClass(/ss-rare-item/);
+      await expect(name).toHaveAttribute('title', hint);
+    }
+  }
+  await page.goto('/data/items.html?category=weapon&q=Excalibur');
+  await page.getByRole('button', {name:'中文',exact:true}).click();
+  await expect(page.locator('.ss-rare-item')).toHaveCount(1);
+  await page.screenshot({path:testInfo.outputPath('unsealed-top-tier.png')});
+});
+
+test('the three Dark weapons use top-tier names with crafting labels', async ({page}, testInfo) => {
+  await page.goto('/data/items.html?category=weapon&q=Dark');
+  for (const [language, hint] of [['中文','合成成品 · 顶级'], ['English','Combined item · top tier'], ['日本語','合成後のアイテム · 最上位']]) {
+    await page.getByRole('button', {name:language,exact:true}).click();
+    for (const id of ['dark-flow','dark-meteor','dark-bridge']) {
+      const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
+      const name = row.locator('.item-name');
+      await expect(name).toHaveClass(/ss-rare-item/);
+      await expect(name).not.toHaveClass(/(?:^|\s)rare-item(?:\s|$)/);
+      await expect(name).toHaveCSS('font-weight', '900');
+      await expect(name).toHaveAttribute('title', hint);
+      await expect(row).toHaveAttribute('aria-description', hint);
+    }
+  }
+  await page.getByRole('button', {name:'中文',exact:true}).click();
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.locator('.item-row').first().scrollIntoViewIfNeeded();
+  await page.screenshot({path:testInfo.outputPath('dark-weapons.png')});
+});
+
+test('rare weapons and converted results stay gold without automatic top-tier promotion', async ({page}, testInfo) => {
+  for (const [id, title] of [
+    ['master-raven','Master Raven'], ['last-swan','Last Swan'],
+    ['dual-bird','Dual Bird'], ['guld-milla','Guld Milla'],
+    ['mille-marteaux','Mille Marteaux'], ['baranz-launcher','Baranz Launcher'],
+    ['maser-beam','Maser Beam'], ['power-maser','Power Maser'],
+    ['boomas-claw', "Booma's Claw"], ['double-cannon','Double Cannon'],
+  ]) {
+    await page.goto(`/data/items.html?category=weapon&q=${encodeURIComponent(title)}`);
+    const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
+    const name = row.locator('.item-name');
+    for (const [language, hint] of [['中文','稀有道具'], ['English','Rare item'], ['日本語','レアアイテム']]) {
+      await page.getByRole('button', {name:language,exact:true}).click();
+      await expect(name).toHaveClass(/(?:^|\s)rare-item(?:\s|$)/);
+      await expect(name).not.toHaveClass(/ss-rare-item/);
+      await expect(name).toHaveCSS('font-weight', '700');
+      await expect(name).toHaveCSS('color', 'rgb(240, 207, 131)');
+      await expect(name).toHaveAttribute('title', hint);
+      await expect(row).toHaveAttribute('aria-description', hint);
+    }
+  }
+  await page.getByRole('button', {name:'中文',exact:true}).click();
+  await page.goto('/data/items.html?category=weapon&q=Maser');
+  await expect(page.locator('.item-row')).toHaveCount(3);
+  for (const id of ['maser-beam', 'power-maser', 'phonon-maser']) {
+    await expect(page.locator(`.item-row[href*="/items/${id}.html"] .item-name`)).toHaveClass(/(?:^|\s)rare-item(?:\s|$)/);
+  }
+  await page.screenshot({path:testInfo.outputPath('rare-maser-weapons.png')});
 });
 
 test('language works when browser preference storage is blocked', async ({page}) => {
@@ -297,7 +419,7 @@ test('Mag details show the original-model render with its own source label', asy
   await expect(caption).toContainText('original model render');
 });
 
-test('HD images never load in the list and do not affect image-only filtering', async ({page}) => {
+test('lists load small equipment thumbnails and appearance filtering excludes category boxes', async ({page}) => {
   const hdRequests = [];
   page.on('request', request => { if (request.url().includes('/assets/img/items/hd/')) hdRequests.push(request.url()); });
   await page.goto('/data/items.html?q=Saber');
@@ -305,22 +427,181 @@ test('HD images never load in the list and do not affect image-only filtering', 
   await page.locator('.category-tabs button').nth(1).click();
   await page.getByRole('searchbox').fill('Dress Plate');
   await expect(page.locator('.item-row')).toHaveCount(1);
-  await expect(page.locator('.item-row img')).toHaveAttribute('src', '/assets/img/items/no-image.webp');
-  await page.getByLabel('只看有截图的道具').check();
+  await expect(page.locator('.item-row img')).toHaveAttribute('src', '/assets/img/items/equipment/thumbs/dress-plate.webp');
+  await page.getByLabel('只看有外观图的道具').check();
+  await expect(page.locator('.item-row')).toHaveCount(1);
+  await page.getByRole('searchbox').fill('Hunter Field');
   await expect(page.locator('.item-row')).toHaveCount(0);
+  await page.getByLabel('只看有外观图的道具').uncheck();
+  await expect(page.locator('.item-row img')).toHaveAttribute('src', '/assets/img/items/equipment/box-red.webp');
   expect(hdRequests).toEqual([]);
 });
 
 test('single-source and missing-image details have no unnecessary image switch', async ({page}) => {
   for (const [id, image] of [
-    ['dress-plate', '/assets/img/items/hd/items/dress-plate.webp'],
+    ['smoking-plate', '/assets/img/items/equipment/smoking-plate.webp'],
     ['stealth', items.find(item => item.id === 'stealth').image],
-    ['god-power', '/assets/img/items/no-image.webp'],
+    ['god-power', '/assets/img/items/equipment/box-red.webp'],
   ]) {
     await page.goto(`/data/items/${id}.html`);
     await expect(page.locator('.image-stage img')).toHaveAttribute('src', image);
     await expect(page.locator('.image-switch')).toHaveCount(0);
     await expect.poll(() => page.locator('.image-stage img').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+  }
+});
+
+test('equipment previews show effects, models and rarity boxes across list and detail routes', async ({page}, testInfo) => {
+  for (const [id, query, category, suffix, kind] of [
+    ['aura-field', 'Aura Field', 'armor', 'thumbs/aura-field.webp', '效果预览'],
+    ['secure-feet', 'Secure Feet', 'shield', 'thumbs/secure-feet.webp', '模型预览'],
+    ['hunter-field', 'Hunter Field', 'armor', 'box-red.webp', '类别示意图'],
+    ['celestial-armor', 'Celestial Armor', 'armor', 'box-blue.webp', '类别示意图'],
+    ['god-power', 'God/Power', 'unit', 'box-red.webp', '类别示意图'],
+    ['angel-luck', 'Angel/Luck', 'unit', 'box-blue.webp', '类别示意图'],
+    ['cure-confuse', 'Cure/Confuse', 'unit', 'box-red.webp', '类别示意图'],
+    ['addslot', 'AddSlot', 'tool', 'box-red.webp', '类别示意图'],
+  ]) {
+    await page.goto(`/data/items.html?category=${category}&q=${encodeURIComponent(query)}`);
+    const image = page.locator('.item-row img');
+    await expect(image).toHaveCount(1);
+    await expect(image).toHaveAttribute('src', `/assets/img/items/equipment/${suffix}`);
+    await expect(image).toHaveAttribute('alt', new RegExp(kind));
+    await expect.poll(() => image.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    await page.locator('.item-row').click();
+    await expect(page).toHaveURL(new RegExp(`/items/${id}\\.html`));
+    await expect(page.locator('.image-stage img')).toHaveAttribute('alt', new RegExp(kind));
+    await expect.poll(() => page.locator('.image-stage img').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    if (kind === '类别示意图') await expect(page.locator('.item-figure')).toContainText('非装备外观');
+    if (kind === '效果预览') await expect(page.locator('.item-figure')).toContainText('离线效果预览');
+    if (id === 'addslot') {
+      await page.screenshot({path: testInfo.outputPath('addslot-desktop.png')});
+      await page.setViewportSize({width:390, height:844});
+      await page.screenshot({path: testInfo.outputPath('addslot-mobile.png')});
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    }
+  }
+});
+
+test('equipment preview descriptions are localized and a broken preview stays a load error', async ({page}) => {
+  for (const [language, text] of [['en', 'Offline effect preview'], ['ja', 'オフラインのエフェクトプレビュー']]) {
+    await page.goto(`/${language}/data/items/aura-field.html`);
+    await expect(page.locator('.item-figure figcaption')).toContainText(text);
+  }
+  await page.route('**/assets/img/items/equipment/aura-field.webp', route => route.abort());
+  await page.goto('/data/items/aura-field.html');
+  await expect(page.locator('.image-stage')).toContainText('图片加载失败');
+  await expect(page.locator('.image-stage img')).toHaveAttribute('src', '/assets/img/items/no-image.webp');
+});
+
+test('Smoking Plate preserves transparent background and black smoke in list and detail images', async ({page}, testInfo) => {
+  for (const [url, selector] of [
+    ['/data/items.html?category=armor&q=Smoking%20Plate', '.item-row img'],
+    ['/data/items/smoking-plate.html', '.image-stage img'],
+  ]) {
+    await page.goto(url);
+    const image = page.locator(selector);
+    await expect(image).toHaveAttribute('alt', /效果预览/);
+    await expect.poll(() => image.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    const pixels = await image.evaluate(img => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+      const context = canvas.getContext('2d');
+      context.drawImage(img, 0, 0);
+      return { background: [...context.getImageData(0, 0, 1, 1).data],
+        smoke: [...context.getImageData(canvas.width / 2, canvas.height / 2, 1, 1).data] };
+    });
+    expect(pixels.background[3]).toBe(0);
+    expect(pixels.smoke.slice(0, 3).every(channel => channel < 25)).toBe(true);
+    expect(pixels.smoke[3]).toBeGreaterThan(0);
+    await expect(image).toHaveCSS('mix-blend-mode', 'normal');
+    await expect(image.locator('..')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+    await expect(image.locator('..')).toHaveCSS('box-shadow', 'none');
+  }
+  await page.screenshot({ path: testInfo.outputPath('smoking-plate-desktop.png') });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator('.image-stage img')).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({ path: testInfo.outputPath('smoking-plate-mobile.png') });
+});
+
+test('Stealth Suit shows a transparent character illustration in lists and details', async ({page}, testInfo) => {
+  for (const [url, selector] of [
+    ['/data/items.html?category=armor&q=Stealth%20Suit', '.item-row img'],
+    ['/data/items/stealth-suit.html', '.image-stage img'],
+  ]) {
+    await page.goto(url);
+    const image = page.locator(selector);
+    await expect(image).toHaveCount(1);
+    await expect(image).toHaveAttribute('alt', /隐身效果示意/);
+    await expect(image).toHaveCSS('opacity', '0.35');
+    await expect(image.locator('..')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+    await expect(image.locator('..')).toHaveCSS('box-shadow', 'none');
+    await expect.poll(() => image.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    const alpha = await image.evaluate(img => {
+      const canvas = document.createElement('canvas'); canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+      const context = canvas.getContext('2d'); context.drawImage(img, 0, 0);
+      const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+      return {corner: pixels[3], visible: pixels.filter((v, i) => i % 4 === 3 && v > 0).length};
+    });
+    expect(alpha.corner).toBe(0);
+    expect(alpha.visible).toBeGreaterThan(100);
+  }
+  await expect(page.locator('figcaption')).toContainText('角色透明度仅用于说明');
+  await page.screenshot({path: testInfo.outputPath('stealth-suit-desktop.png')});
+  await page.getByRole('button', {name:'高清图片', exact:true}).click();
+  await expect(page.locator('.image-stage img')).toHaveAttribute('src', '/assets/img/items/hd/items/stealth-suit.webp');
+  await expect(page.locator('.image-stage img')).toHaveCSS('opacity', '1');
+  await page.getByRole('button', {name:'隐身效果示意', exact:true}).click();
+  await expect(page.locator('.image-stage img')).toHaveCSS('opacity', '0.35');
+  await page.setViewportSize({width:390, height:844});
+  await page.screenshot({path: testInfo.outputPath('stealth-suit-mobile.png')});
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
+test('all particle previews retain alpha in full images and thumbnails', async ({page}) => {
+  const effects = items.filter(item => item.imageKind === 'effect');
+  expect(effects).toHaveLength(13);
+  await page.goto('/data/items/aura-field.html');
+  for (const item of effects) {
+    for (const src of [item.image, item.image.replace('/equipment/', '/equipment/thumbs/')]) {
+      const pixels = await page.evaluate(async src => {
+        const image = new Image(); image.src = src; await image.decode();
+        const canvas = document.createElement('canvas');
+        canvas.width = image.naturalWidth; canvas.height = image.naturalHeight;
+        const context = canvas.getContext('2d'); context.drawImage(image, 0, 0);
+        const data = context.getImageData(0, 0, canvas.width, canvas.height).data;
+        let visible = 0, translucent = 0;
+        for (let i = 3; i < data.length; i += 4) {
+          if (data[i] > 0) visible++;
+          if (data[i] > 0 && data[i] < 255) translucent++;
+        }
+        return {corner: data[3], visible, translucent};
+      }, src);
+      expect(pixels.corner, src).toBe(0);
+      expect(pixels.visible, src).toBeGreaterThan(0);
+      expect(pixels.translucent, src).toBeGreaterThan(0);
+    }
+    await page.goto(`/data/items/${item.id}.html`);
+    await expect(page.locator('.image-stage img')).toHaveCSS('mix-blend-mode', item.imageBlend === 'additive' ? 'plus-lighter' : 'normal');
+    await expect(page.locator('.image-stage item-image')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+    await expect(page.locator('.image-stage item-image')).toHaveCSS('box-shadow', 'none');
+  }
+});
+
+test('Wedding Dress and Dress Plate default to particles and keep HD as an optional view', async ({page}, testInfo) => {
+  for (const id of ['wedding-dress', 'dress-plate']) {
+    await page.goto(`/data/items/${id}.html`);
+    const image = page.locator('.image-stage img');
+    await expect(image).toHaveAttribute('src', `/assets/img/items/equipment/${id}.webp`);
+    await expect(image).toHaveAttribute('alt', /效果预览/);
+    await expect(image).toHaveCSS('mix-blend-mode', 'plus-lighter');
+    await expect.poll(() => image.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+    await page.screenshot({path: testInfo.outputPath(`${id}.png`)});
+    await page.getByRole('button', {name:'高清图片', exact:true}).click();
+    await expect(image).toHaveAttribute('src', `/assets/img/items/hd/items/${id}.webp`);
+    await expect(image).toHaveCSS('mix-blend-mode', 'normal');
+    await page.getByRole('button', {name:'效果预览', exact:true}).click();
+    await expect(image).toHaveAttribute('src', `/assets/img/items/equipment/${id}.webp`);
   }
 });
 
@@ -456,7 +737,7 @@ test('mobile filters expose image-only results with real local files', async ({p
   await page.goto('/data/items.html');
   await expect(page.locator('#catalog-filters')).toBeHidden();
   await page.getByRole('button',{name:'筛选条件'}).click();
-  await page.getByLabel('只看有截图的道具').check();
+  await page.getByLabel('只看有外观图的道具').check();
   await expect(page.locator('.result-toolbar')).toContainText(String(listedSabers.filter(item => item.image).length));
   await expect(page.locator('.item-row')).toHaveCount(24);
   expect(await page.locator('.item-row').first().locator('img').evaluate(img=>img.complete && img.naturalWidth > 0)).toBe(true);

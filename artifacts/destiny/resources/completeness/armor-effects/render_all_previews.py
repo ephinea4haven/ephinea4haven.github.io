@@ -1,4 +1,4 @@
-"""Regenerate the nine client-source armor effect previews and provenance."""
+"""Regenerate the verified client-source armor effect previews and provenance."""
 
 from __future__ import annotations
 
@@ -41,11 +41,14 @@ def main() -> None:
         simulator = SIMULATOR_0 if particle_type == 0 else SIMULATOR_1
         renderer = source["stockRenderer"]
         nt_flags = 2 if renderer["blend"]["dst"] == "INVSRCALPHA" else 1
+        burst = source["emitterMode"] == "burst"
+        frame = 20 if burst else FRAME
         subprocess.run([
             sys.executable, str(simulator), "--particle-id", hex(source["particleId"]),
-            "--seed", SEED, "--frame", str(FRAME),
+            "--seed", SEED, "--frame", str(frame),
             "--uv-count", str(renderer["frames"]), "--nt-flags", str(nt_flags),
             "--output", str(simulation_file),
+            *(["--one-shot"] if burst else []),
         ], check=True)
         subprocess.run([
             sys.executable, str(RENDERER), str(simulation_file),
@@ -63,13 +66,15 @@ def main() -> None:
             "visualQa": "passed",
             "image": {"path": str(image_file), "sha256": sha256(image_file)},
             "seed": int(SEED, 0),
-            "frame": FRAME,
+            "frame": frame,
+            "emitterMode": source["emitterMode"],
             "emitted": simulation["emitted"],
             "visibleParticles": len(simulation["particles"]),
             "cameraEye": render["cameraEye"],
             "cameraTarget": render["cameraTarget"],
             "cameraPitchDegrees": render["cameraPitchDegrees"],
-            "backgroundRgb": render["backgroundRgb"],
+            "transparentBackground": render["transparentBackground"],
+            "displayBlend": render["displayBlend"],
             "dependencies": [
                 dependency("particle_data", Path(sources["particleSource"]["path"])),
                 dependency("texture_data", Path(sources["textureSource"]["path"])),

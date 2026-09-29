@@ -29,6 +29,7 @@
   var DATA_MAP = {};
   var IMG_VARIANTS = null;
   var IMG_INFO = null;
+  var IMG_BLEND = null;
   var IMG_MAP = null;  // item name -> image filename
 
   // Area (layer) groupings within each episode, in canonical order.
@@ -97,7 +98,7 @@
   function initTooltip() {
     var destinyTip = CFG.version === 'destiny';
     var tip = document.createElement(destinyTip ? 'div' : 'img');
-    if (destinyTip) { tip.style.width = '180px'; tip.style.height = 'auto'; }
+    if (destinyTip) { tip.style.width = '180px'; tip.style.height = 'auto'; tip.style.isolation = 'isolate'; }
     tip.id = 'item-tooltip';
     document.body.appendChild(tip);
     var rateTip = document.createElement('div');
@@ -142,7 +143,7 @@
             if (destinyTip) {
               var previews = option.querySelectorAll('.item-tooltip-img, .monster-tooltip-img');
               tip.innerHTML = Array.prototype.map.call(previews, function (preview) {
-                return '<div style="text-align:center"><img src="' + escapeHtml(preview.src) + '" alt="" style="width:100%;height:140px;object-fit:contain"><div style="font-size:11px;line-height:1.4;color:#aab8ce">' + escapeHtml(preview.dataset.caption || '') + '</div></div>';
+                return '<div style="text-align:center"><img src="' + escapeHtml(preview.src) + '" alt="" style="width:100%;height:140px;object-fit:contain;mix-blend-mode:' + (preview.dataset.blend === 'additive' ? 'plus-lighter' : 'normal') + '"><div style="font-size:11px;line-height:1.4;color:#aab8ce">' + escapeHtml(preview.dataset.caption || '') + '</div></div>';
               }).join('');
             } else { tip.src = img.src; }
             lastCell = option;
@@ -589,7 +590,7 @@
                   html += '<a href="images.html" title="Shared category image; individual appearance unavailable" aria-label="Shared category image" style="color:#aab8ce;font-size:10px;margin-left:3px">◇</a>';
                 }
                 var imageBase = CFG.version === 'destiny' ? 'images/' : '../shared/images/';
-                html += '<img class="item-tooltip-img" src="' + imageBase + encodeURIComponent(imgFile) + '" data-caption="' + escapeHtml(CFG.version === 'destiny' && IMG_INFO ? IMG_INFO[drop.item] || '' : '') + '" alt="" loading="lazy">';
+                html += '<img class="item-tooltip-img" src="' + imageBase + encodeURIComponent(imgFile) + '" data-blend="' + (IMG_BLEND && IMG_BLEND[drop.item] === 'additive' ? 'additive' : 'normal') + '" data-caption="' + escapeHtml(CFG.version === 'destiny' && IMG_INFO ? IMG_INFO[drop.item] || '' : '') + '" alt="" loading="lazy">';
               }
               if (!imgFile && CFG.version === 'destiny' && IMG_VARIANTS && IMG_VARIANTS[drop.item] && IMG_VARIANTS[drop.item].some(function (variant) { return variant.image; })) {
                 html += '<a href="images.html" aria-label="Distinct item variants" title="Drop name has multiple appearances" style="font-size:10px;margin-left:3px">↔</a>';
@@ -671,8 +672,9 @@
             try {
               var coverage = JSON.parse(infoRequest.responseText);
               IMG_INFO = {};
+              IMG_BLEND = {};
               IMG_VARIANTS = {};
-              coverage.items.forEach(function (item) { IMG_INFO[item.name] = item.explanation; IMG_VARIANTS[item.name] = item.variants || []; });
+              coverage.items.forEach(function (item) { IMG_INFO[item.name] = item.explanation; IMG_BLEND[item.name] = item.imageBlend; IMG_VARIANTS[item.name] = item.variants || []; });
               IMG_MAP = JSON.parse(xhr.responseText);
             } catch (e) { return; }
             render();

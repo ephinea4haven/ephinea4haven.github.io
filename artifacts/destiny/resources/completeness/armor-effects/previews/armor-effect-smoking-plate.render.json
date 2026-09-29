@@ -2,7 +2,7 @@
   "scope": "fixed-seed source-particle-effect preview; no player model; Destiny runtime unverified",
   "simulation": {
     "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/smoking-plate-particles.json",
-    "sha256": "60022dd9c357ffcb87b7f40c8f1cb57f065da2ea4479c17061107c6a35b8dda1"
+    "sha256": "e4cce909649a0ad4759a438cd6ec7cd80f7a9729f31e9567f038725ab5530ce8"
   },
   "texture": {
     "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/smoking-plate-texture.png",
@@ -39,13 +39,10 @@
   "cameraPitchDegrees": 30.0,
   "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
   "focalPixels": 320.0,
-  "backgroundRgb": [
-    198,
-    202,
-    211
-  ],
+  "transparentBackground": true,
+  "displayBlend": "normal",
   "image": {
     "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-smoking-plate.png",
-    "sha256": "08d0b043350f18572c3cc1caa3acc84b64e69e289e628bc8c82fa50291c1a7ef"
+    "sha256": "eb8b2303a9cc9e0ef5856ad2713ea96638c6e8b2ed4b6c930810f679c4908076"
   }
 }

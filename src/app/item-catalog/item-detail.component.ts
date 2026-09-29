@@ -30,13 +30,21 @@ export class ItemDetailComponent {
   readonly item = computed(() => { const detail = this.result().detail; return detail ? { ...detail, classes: classesOf(detail.mask) } : null; });
   readonly related = computed(() => this.item()?.relatedItems ?? []);
   readonly imageMode = linkedSignal({
-    source: () => this.item()?.id,
-    computation: (): 'hd' | 'wiki' => 'hd',
+    source: () => this.item(),
+    computation: (item): 'hd' | 'wiki' => item?.imageKind === 'effect' || item?.imageKind === 'illustration' ? 'wiki' : 'hd',
   });
   readonly showingHd = computed(() => !!this.item()?.hdImage && this.imageMode() === 'hd');
   readonly picturedItem = computed(() => {
     const item = this.item();
-    return item ? { ...item, image: this.showingHd() ? item.hdImage : item.image } : null;
+    return item ? { ...item, image: this.showingHd() ? item.hdImage : item.image,
+      imageBlend: this.showingHd() ? 'normal' as const : item.imageBlend,
+      imageKind: this.showingHd() ? (item.hdSource === 'model-render' ? 'model' as const : 'screenshot' as const) : item.imageKind } : null;
+  });
+  readonly imageCaption = computed(() => {
+    const item = this.item();
+    const origin = this.showingHd() ? item?.hdSource : item?.imageOrigin;
+    return ({ 'model-render': '图片来源：原始模型渲染', gallery: '图片来源：高清图库', itemkt: '图片来源：游戏贴图（ItemKT）',
+      'effect-render': '离线效果预览 · 不含角色模型', 'effect-illustration': '隐身效果示意 · 角色透明度仅用于说明', 'pickup-box': '类别示意图 · 非装备外观', wiki: '图片来源：Ephinea Wiki' })[origin || 'wiki'];
   });
   readonly classes = CLASSES;
   readonly itemPath = itemPath;

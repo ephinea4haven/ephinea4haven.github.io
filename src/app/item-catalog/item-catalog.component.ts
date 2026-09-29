@@ -2,20 +2,22 @@ import { DOCUMENT } from '@angular/common';
 import { afterNextRender, ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Params, Router, RouterLink } from '@angular/router';
-import { CATEGORIES, CLASSES, itemPath, normalize } from './catalog';
+import { CATEGORIES, CLASSES, CatalogItem, itemPath, normalize } from './catalog';
+import { itemNameTier } from './item-name-tier';
 import { IndexResult } from './catalog-index';
 import { CatalogNavigation } from './catalog-navigation.service';
 import { Title } from '@angular/platform-browser';
 import { CatalogLanguageService } from './catalog-language.service';
 import { CatalogLanguageComponent } from './catalog-language.component';
 import { ItemImageComponent } from './item-image.component';
+import highlights from '../../../content/item-catalog/banner-highlights.json';
 
 @Component({
   selector: 'haven-item-catalog',
   imports: [RouterLink, ItemImageComponent, CatalogLanguageComponent],
   providers: [CatalogLanguageService],
   templateUrl: './item-catalog.component.html',
-  styleUrls: ['./item-catalog.component.css', './catalog-visual.css'],
+  styleUrls: ['./item-catalog.component.css', './catalog-visual.css', './item-highlights.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemCatalogComponent {
@@ -33,6 +35,21 @@ export class ItemCatalogComponent {
   readonly items = computed(() => this.index().items);
   readonly failed = computed(() => this.index().failed);
   readonly itemPath = itemPath;
+  readonly bannerHits: Readonly<Record<string, number>> = highlights.minimumUntekkedHit;
+  readonly topTierItems: Readonly<Record<string, string>> = highlights.topTierItems;
+  private readonly tierLabels: Readonly<Record<string, string>> = {
+    unsealed: '解封成品 · 顶级', crafted: '合成成品 · 顶级',
+  };
+  readonly nameTier = (item: CatalogItem) => itemNameTier(item, highlights);
+  nameHint(item: CatalogItem): string {
+    const title = item.title;
+    const reason = this.topTierItems[title];
+    if (reason) return this.i18n.t(this.tierLabels[reason]);
+    const hit = this.bannerHits[title];
+    if (hit === undefined) return this.nameTier(item) === 'rare' ? this.i18n.t('稀有道具') : '';
+    return hit === 0 ? this.i18n.t('公告道具 · 无 Hit 要求')
+      : this.i18n.t('公告条件：未鉴定 Hit ≥ {hit}%。').replace('{hit}', String(hit));
+  }
   readonly filtersOpen = signal(false);
   readonly query = computed(() => this.params().get('q') ?? '');
   readonly category = computed(() => CATEGORIES.some(({ id }) => id === this.params().get('category')) ? this.params().get('category')! : 'weapon');
@@ -58,7 +75,7 @@ export class ItemCatalogComponent {
       && (!!query || item.group === this.subtype())
       && (!this.profession() || item.category !== 'tool' && item.classes.includes(this.profession()))
       && (!this.rarity() || (this.rarity() === 'unknown' ? item.rarity === null : this.rarity() === 'common' ? item.rarity !== null && item.rarity < 9 : item.rarity === Number(this.rarity())))
-      && (!this.imagesOnly() || !!item.image)
+      && (!this.imagesOnly() || (!!item.image && item.imageKind !== 'box'))
       && (!query || normalize(`${item.en} ${item.title} ${item.zh} ${item.ja ?? ''} ${item.code ?? ''}`).includes(query)));
     if (this.sort() === 'name') items.sort((a, b) => a.en.localeCompare(b.en, 'en'));
     if (this.sort() === 'rarity') items.sort((a, b) => (b.rarity ?? -1) - (a.rarity ?? -1));
@@ -76,7 +93,7 @@ export class ItemCatalogComponent {
     ...(this.query() ? [{ key: 'q', label: this.i18n.t('搜索：') + this.query() }] : []),
     ...(this.profession() ? [{ key: 'class', label: this.profession() }] : []),
     ...(this.rarity() ? [{ key: 'rarity', label: this.rarity() === 'unknown' ? this.i18n.t('未标星级') : this.rarity() === 'common' ? this.i18n.t('普通道具') : `${this.rarity()}★` }] : []),
-    ...(this.imagesOnly() ? [{ key: 'images', label: this.i18n.t('有截图') }] : []),
+    ...(this.imagesOnly() ? [{ key: 'images', label: this.i18n.t('有外观图') }] : []),
   ]);
   readonly listParams = computed<Params>(() => ({ q: this.query() || null, category: this.category(), type: this.subtype(), class: this.profession() || null, rarity: this.rarity() || null, images: this.imagesOnly() ? '1' : null, sort: this.sort() === 'catalog' ? null : this.sort(), page: this.page() === 1 ? null : this.page() }));
 
