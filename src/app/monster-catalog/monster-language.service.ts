@@ -13,6 +13,7 @@ const messages: Record<string,[string,string]> = {
   '按章节、难度与模式查看属性、行为机制和掉落。':['Explore stats, mechanics and drops by episode, difficulty and mode.','エピソード・難易度・モード別に能力値、行動、ドロップを確認。'],
   '搜索怪物名称或区域':['Search enemies or areas','エネミー名・エリアを検索'], '搜索时不限区域。':['Search covers every area.','検索中はすべてのエリアが対象です。'],
   '全部类型':['All types','全種類'], '普通怪物':['Regular enemies','通常エネミー'], '稀有怪物':['Rare enemies','レアエネミー'], '首领':['Bosses','ボス'], '部位与召唤物':['Parts & summons','部位・召喚体'],
+  '精英怪物':['Elite enemies','強敵'], '精英':['Elite','強敵'],
   '章节':['Episode','エピソード'], '区域':['Area','エリア'], '类型':['Type','種類'], '难度':['Difficulty','難易度'], '模式':['Mode','モード'],
   '多人模式':['Multiplayer','通常モード'], '单人模式':['One Person','一人用モード'], '怪物':['Enemies','エネミー'], '属性':['Attribute','属性'],
   '没有匹配的怪物':['No matching enemies','一致するエネミーがありません'], '清除筛选':['Clear filters','絞り込みを解除'],
