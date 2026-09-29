@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-09-22",
-  "source": "User-provided ENEMY gallery, BOSS 补完 supplement and 2026-09-22 corrections",
+  "checkedAt": "2026-09-29",
+  "source": "User-provided ENEMY gallery, BOSS 补完 supplement and corrections through 2026-09-29",
   "normalization": {
     "format": "webp",
     "quality": 85,
@@ -499,14 +499,14 @@
       "asset": "/assets/img/monsters/hd/desert/goran-detonator-3dccd4c68a9d.webp"
     },
     {
-      "original": "DESERT/暗黑狂刀魔.png",
-      "source": "DESERT/暗黑狂刀魔.png",
+      "original": "17f15ea7cc9bc9f12d6824d645798e73_720.png",
+      "source": "User-provided corrections/2026-09-29/DESERT/暗黑狂刀魔.png",
       "identity": "Pyro Goran",
-      "sha256": "1aa529057c5af8f0df65d6e71fdafe77cfa0b492c8eaf50fe2ae7c3e42480536",
-      "bytes": 3268177,
-      "width": 1888,
-      "height": 2304,
-      "asset": "/assets/img/monsters/hd/desert/pyro-goran-1aa529057c5a.webp"
+      "sha256": "e2b0da8f31e238df2cd05e04a728b605e143908a37f83c2f3b2776f7b6002bec",
+      "bytes": 939777,
+      "width": 1280,
+      "height": 1280,
+      "asset": "/assets/img/monsters/hd/desert/pyro-goran-e2b0da8f31e2.webp"
     },
     {
       "original": "DESERT/暗黑魔眼巨花.png",
@@ -1976,9 +1976,9 @@
       "bytes": 104304
     },
     {
-      "path": "/assets/img/monsters/hd/desert/pyro-goran-1aa529057c5a.webp",
-      "sha256": "d9880ff09858b158bbb70a9169becbdee471d727feaca3dcd8a054c2f37e3db0",
-      "bytes": 159682
+      "path": "/assets/img/monsters/hd/desert/pyro-goran-e2b0da8f31e2.webp",
+      "sha256": "5e3432665544a17678358e206d44a53d7c1cc586bdd8c25a4b544bd49d04e532",
+      "bytes": 121370
     },
     {
       "path": "/assets/img/monsters/hd/desert/girtablulu-724b9fb59897.webp",
@@ -2817,8 +2817,8 @@
       "ultimate": "/assets/img/monsters/hd/desert/goran-detonator-3dccd4c68a9d.webp"
     },
     "pyro-goran": {
-      "normal": "/assets/img/monsters/hd/desert/pyro-goran-1aa529057c5a.webp",
-      "ultimate": "/assets/img/monsters/hd/desert/pyro-goran-1aa529057c5a.webp"
+      "normal": "/assets/img/monsters/hd/desert/pyro-goran-e2b0da8f31e2.webp",
+      "ultimate": "/assets/img/monsters/hd/desert/pyro-goran-e2b0da8f31e2.webp"
     },
     "girtablulu": {
       "normal": "/assets/img/monsters/hd/desert/girtablulu-724b9fb59897.webp",

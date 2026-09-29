@@ -154,7 +154,7 @@ as separate models.
 
 ## Updating the data
 
-### HD detail images and naming (updated 2026-09-27)
+### HD detail images and naming (updated 2026-09-29)
 
 `content/item-catalog/hd-gallery.json` accounts for 608 source images: the original
 606-image 高清图库 collection with four images replaced by the supplied 替换.zip
@@ -164,6 +164,13 @@ individual corrections replace the Silence Claw, Gi Gue Bazooka and Red Dagger
 sources as recorded below.
 SHA-256 comparison reduces these to 554 unique assets; the manifest records the current source paths,
 dimensions, sizes and checksums.
+On 2026-09-29, visual comparison against the standard item thumbnails confirmed
+that the original Booma's Claw and Gobooma's Claw HD source filenames were
+reversed. Their published WebPs and manifest source bindings were exchanged:
+Booma's Claw is brown-red, Gobooma's Claw is yellow. Gigobooma's Claw remains
+purple. The source inventory and HD image counts are unchanged. The regression
+failed before the correction and passed afterward; all 27 item tests and the
+production build passed (3,802 routes, 135 event fragments).
 The detail generator consumes only verified direct `itemIds`: 409 optimized
 images cover 415 details. The `hdImage` field is emitted only in per-item detail
 data; HD gallery images never appear in the searchable list.

@@ -397,3 +397,9 @@ did not re-evaluate tiers or change the in-game rotation.
 - 清单的外观绑定新增 `alternates`（图片与三语标签），生成器写入详情 `hdAlternates`，详情页按钮依次为“模型渲染 / 地面姿势 / 高清图片 / 高清·地面姿势”。
 - 按图库规范缩放至宽 1024（1024 × 1644、1024 × 695），WebP quality 85 / method 6，保留透明度，分别为 218,342 和 159,324 字节；来源路径按姿势记为 `User-provided corrections/2026-09-26/SEABED/空中姿势|地面姿势/奥尔加·弗洛 (Form 1).png`。旧 WebP 已移除。
 - 当前为 172 张 WebP、134 个条目、268 个外观绑定及 1 张备选姿势。
+
+### Pyro Goran 高清图替换（2026-09-29）
+
+- 使用维护者提供的 1280 × 1280 透明 PNG 替换 Pyro Goran 普通 / Ultimate 共用的高清图。按图库规范以 Lanczos 缩放至 1024 × 1024，WebP quality 85 / method 6，保留透明度，成品 121,370 字节。
+- 清单同步附件名、来源路径 `User-provided corrections/2026-09-29/DESERT/暗黑狂刀魔.png`、尺寸、字节数、SHA-256 和两个外观绑定；旧 WebP 已移除，原附件不随站点提交。图库覆盖数量不变。
+- 本地验收：怪物测试 12 / 12 通过，成品已目视核对，生产构建通过（3,802 条路由、135 个活动片段）；构建产物的两种外观均绑定新图，旧资源已移除。维护者已批准本次图片修正提交并推送；线上部署以对应 Pages 工作流结果为准。
