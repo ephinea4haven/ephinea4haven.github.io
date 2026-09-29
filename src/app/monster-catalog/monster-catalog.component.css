@@ -12,7 +12,13 @@
 .monster-row h2{font-size:16px;line-height:1.5;margin:0;overflow-wrap:anywhere}
 .english{font-size:11px;color:var(--muted);margin:0;overflow-wrap:anywhere}
 .monster-kind{display:inline-block;font-size:11px;color:var(--muted);margin-top:4px}
-.rare{color:#f4d393!important}
+.monster-kind+.monster-kind{margin-left:8px}
+.rare,.elite{color:#f0cf83}
+.monster-name{font-weight:400}
+.monster-name.rare-name,.monster-name.elite-name{color:#f0cf83;font-weight:700}
+.monster-name.boss-name{font-weight:900;background:linear-gradient(90deg,#ff0000,#ffff00,#00ff00,#00ffff,#0066ff,#ff00ff,#ff0000);background-size:300%;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(1px 0 0 #000e) drop-shadow(-1px 0 0 #000e) drop-shadow(0 1px 0 #000e) drop-shadow(0 -1px 0 #000e) drop-shadow(0 0 5px #ffffff8c);animation:monsterRainbow 4s linear infinite}
+@keyframes monsterRainbow{from{background-position:0%}to{background-position:300%}}
+@media(prefers-reduced-motion:reduce){.monster-name.boss-name{animation:none;background-position:50% 50%}}
 .monster-location,.monster-attribute{font-size:12px;color:var(--muted);margin:0;overflow-wrap:anywhere}
 .monster-location span{display:block;font-size:11px}
 .monster-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0;text-align:right;font-variant-numeric:tabular-nums}

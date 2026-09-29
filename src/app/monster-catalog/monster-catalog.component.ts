@@ -50,12 +50,12 @@ export class MonsterCatalogComponent {
   readonly episode=computed(()=>['1','2','4'].includes(this.params().get('ep')||'') ? this.params().get('ep')! : String(this.monster()?.episode ?? 1));
   // Browsing shows one region, the episode's first by default; a search covers the whole episode.
   readonly area=computed(()=>this.areas().includes(this.params().get('area')||'') ? this.params().get('area')! : this.areas()[0]);
-  readonly kind=computed(()=>['rare','boss','part','regular'].includes(this.params().get('kind')||'') ? this.params().get('kind')! : '');
+  readonly kind=computed(()=>['rare','elite','boss','part','regular'].includes(this.params().get('kind')||'') ? this.params().get('kind')! : '');
   readonly sort=computed(()=>this.params().get('sort')==='hp'?'hp':'');
   readonly areas=computed(()=>[...new Set(MONSTERS.filter(m=>m.episode===Number(this.episode())).flatMap(m=>m.areas.map(a=>REGION_OF.get(a)!)))]);
   readonly filtered=computed(()=>{
     const q=normalize(this.q()); const kind=this.kind();
-    const list=MONSTERS.filter(m=>(m.episode===Number(this.episode())) && (!!q || m.areas.some(a=>REGION_OF.get(a)===this.area())) && (!kind || (kind==='regular' ? !m.rare&&!m.boss&&!m.part : m[kind as 'rare'|'boss'|'part'])) && (!q || normalize([...Object.values(m.names),...Object.values(m.ultimateNames),...m.areas.flatMap(a=>[a,this.i18n.area(a,'zh'),this.i18n.area(a,'ja')])].join(' ')).includes(q)));
+    const list=MONSTERS.filter(m=>(m.episode===Number(this.episode())) && (!!q || m.areas.some(a=>REGION_OF.get(a)===this.area())) && (!kind || (kind==='regular' ? !m.rare&&!m.elite&&!m.boss&&!m.part : m[kind as 'rare'|'elite'|'boss'|'part'])) && (!q || normalize([...Object.values(m.names),...Object.values(m.ultimateNames),...m.areas.flatMap(a=>[a,this.i18n.area(a,'zh'),this.i18n.area(a,'ja')])].join(' ')).includes(q)));
     return this.sort()==='hp' ? list.sort((a,b)=>(b.values[this.context()]?.[0]??-1)-(a.values[this.context()]?.[0]??-1)) : list;
   });
   readonly pages=computed(()=>Math.max(1,Math.ceil(this.filtered().length/24)));

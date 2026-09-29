@@ -70,6 +70,15 @@ export function generateMonsterCatalog() {
   const imageFor = name => images[name] || images[name.replace(' (E2)',' (E1)')] || images[baseName(name)] || null;
   const rare = new Set(['Al Rappy','Hildeblue','Nar Lily','Pouilly Slime','Love Rappy','Egg Rappy','Hallo Rappy','St Rappy','Del Rappy','Pazuzu','Merissa AA','Dorphon Eclair','Kondrieu']);
   const bosses = new Set(['Dragon','De Rol Le','Vol Opt','Dark Falz','Barba Ray','Gol Dragon','Gal Gryphon','Olga Flow','Saint-Milion','Shambertin','Kondrieu']);
+  // Editorial browsing group, not an in-game rarity or stat threshold.
+  // Exact base identities cover their Ultimate, episode and area variants.
+  const elites = new Set([
+    'Hildebear','Grass Assassin','Nano Dragon','Pan Arms','Sinow Beat','Sinow Gold',
+    'Garanz','Delsaber','Dark Belra','Chaos Sorcerer','Chaos Bringer',
+    'Sinow Berill','Sinow Spigell','Mericarol','Merikle','Mericus','Gibbles','Gi Gue',
+    'Morfos','Sinow Zoa','Sinow Zele','Deldepth','Delbiter','Ill Gill','Del Lily','Epsilon',
+    'Astark','Dorphon','Zu','Goran Detonator','Girtablulu',
+  ]);
   const index = [], details = {};
   // These droppable enemies are absent from the Wiki full-stat table. Preserve
   // their identities and drops without borrowing another enemy's numeric stats.
@@ -87,6 +96,7 @@ export function generateMonsterCatalog() {
       id:record.id, names:localize(record.key,record.ja), ultimateNames:localize(record.ultimate,record.ultimateJa),
       episode:record.episode, areas:record.areas, attribute:record.attribute,
       rare:rare.has(baseName(record.key)), boss, part,
+      elite:!boss && !part && !rare.has(baseName(record.key)) && elites.has(baseName(record.key)),
       image:image?.path || null, ultimateImage:ultimateImage?.path || null,
       // List rows show the model-render thumbnail when one exists; details keep the Wiki image as a source.
       thumbnail:renderBindings[record.id] ? `/assets/img/monsters/render/thumbs/${renderFiles[renderBindings[record.id].normal].file}` : null,

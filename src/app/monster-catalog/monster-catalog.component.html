@@ -7,7 +7,7 @@
     <div class="filters">
       <label>{{ i18n.t('章节') }}<select [value]="episode()" (change)="update('ep',$any($event.target).value)"><option value="1">EP1</option><option value="2">EP2</option><option value="4">EP4</option></select></label>
       <label>{{ i18n.t('区域') }}<select [disabled]="!!q()" [value]="area()" (change)="update('area',$any($event.target).value)">@for(a of areas();track a){<option [value]="a" [selected]="a===area()">{{ i18n.area(a) }}</option>}</select>@if(q()){<small class="field-help">{{ i18n.t('搜索时不限区域。') }}</small>}</label>
-      <label>{{ i18n.t('类型') }}<select [value]="kind()" (change)="update('kind',$any($event.target).value)"><option value="">{{ i18n.t('全部类型') }}</option><option value="regular">{{ i18n.t('普通怪物') }}</option><option value="rare">{{ i18n.t('稀有怪物') }}</option><option value="boss">{{ i18n.t('首领') }}</option><option value="part">{{ i18n.t('部位与召唤物') }}</option></select></label>
+      <label>{{ i18n.t('类型') }}<select [value]="kind()" (change)="update('kind',$any($event.target).value)"><option value="">{{ i18n.t('全部类型') }}</option><option value="regular">{{ i18n.t('普通怪物') }}</option><option value="elite">{{ i18n.t('精英怪物') }}</option><option value="rare">{{ i18n.t('稀有怪物') }}</option><option value="boss">{{ i18n.t('首领') }}</option><option value="part">{{ i18n.t('部位与召唤物') }}</option></select></label>
     </div>
   } @else {
     <a class="back" [routerLink]="i18n.link('/data/enemies.html')" [queryParams]="query()">← {{ i18n.t('返回列表') }}</a>
@@ -31,7 +31,7 @@
           }
           <small>EP {{ m.episode }} / {{ m.attribute }}</small>
         </figcaption>
-      </figure><div><p class="eyebrow">FIELD RECORD / {{ m.id }}</p><h1>{{ name(m) }}</h1><p class="english" lang="en">{{ difficulty()==='u'?m.ultimateNames.en:m.names.en }}</p><p class="area-line">@for(a of m.areas;track a){<span>{{ i18n.area(a) }}</span>}</p><div class="tags">@if(m.rare){<span class="rare">{{ i18n.t('稀有') }}</span>}@if(m.boss){<span>{{ i18n.t('首领') }}</span>}@if(m.part){<span>{{ i18n.t('部位') }}</span>}</div><div class="hero-values"><div><small>HP</small><strong>{{ stats()?.[0] ?? '—' }}</strong></div><div><small>ATP</small><strong>{{ stats()?.[1] ?? '—' }}</strong></div><div><small>XP</small><strong>{{ stats()?.[13] ?? '—' }}</strong></div></div></div></section>
+      </figure><div><p class="eyebrow">FIELD RECORD / {{ m.id }}</p><h1 class="monster-name" [class.elite-name]="m.elite" [class.rare-name]="m.rare && !m.boss" [class.boss-name]="m.boss">{{ name(m) }}</h1><p class="english" lang="en">{{ difficulty()==='u'?m.ultimateNames.en:m.names.en }}</p><p class="area-line">@for(a of m.areas;track a){<span>{{ i18n.area(a) }}</span>}</p><div class="tags">@if(m.elite){<span class="elite">{{ i18n.t('精英') }}</span>}@if(m.rare){<span class="rare">{{ i18n.t('稀有') }}</span>}@if(m.boss){<span>{{ i18n.t('首领') }}</span>}@if(m.part){<span>{{ i18n.t('部位') }}</span>}</div><div class="hero-values"><div><small>HP</small><strong>{{ stats()?.[0] ?? '—' }}</strong></div><div><small>ATP</small><strong>{{ stats()?.[1] ?? '—' }}</strong></div><div><small>XP</small><strong>{{ stats()?.[13] ?? '—' }}</strong></div></div></div></section>
       <nav class="section-nav"><a [routerLink]="[]" [queryParams]="query()" fragment="stats">01 {{ i18n.t('基础属性') }}</a><a [routerLink]="[]" [queryParams]="query()" fragment="behavior">02 {{ i18n.t('行为与特殊机制') }}</a><a [routerLink]="[]" [queryParams]="query()" fragment="attacks">03 {{ i18n.t('攻击与机制数据') }}</a><a [routerLink]="[]" [queryParams]="query()" fragment="drops">04 {{ i18n.t('稀有掉落') }}</a></nav>
       <section id="stats" class="detail-section"><h2><span>01</span>{{ i18n.t('基础属性') }}</h2>@if(stats();as values){<dl class="stats-grid">@for(value of values;track $index){<div><dt>{{ metadata.statKeys[$index].toUpperCase() }} <small>{{ i18n.t(statLabels[$index]) }}</small></dt><dd>{{ value }}{{ $index===14?'%':'' }}</dd></div>}</dl>}@else{<p class="muted">{{ i18n.t('暂无此难度与模式的属性记录') }}</p>}</section>
       <section id="behavior" class="detail-section"><h2><span>02</span>{{ i18n.t('行为与特殊机制') }}</h2>@if(entry.notes.length){<ul class="behavior-notes">@for(note of entry.notes;track note.zh){<li>{{ i18n.localized(note) }}</li>}</ul>}@else{<p class="muted">{{ i18n.t('行为说明尚未收录，可查阅来源页面。') }}</p>}<a [href]="entry.source" target="_blank" rel="noopener">Ephinea Wiki ↗</a></section>
@@ -49,9 +49,9 @@
           <a [routerLink]="i18n.link(path(m))" [queryParams]="query()" class="monster-row">
             <monster-image [src]="thumbnail(m)" [name]="name(m)" [unavailable]="i18n.t('图片暂缺')" />
             <div class="monster-identity">
-              <h2>{{ name(m) }}</h2>
+              <h2 class="monster-name" [class.elite-name]="m.elite" [class.rare-name]="m.rare && !m.boss" [class.boss-name]="m.boss">{{ name(m) }}</h2>
               <p class="english" lang="en">{{ difficulty()==='u'?m.ultimateNames.en:m.names.en }}</p>
-              @if(m.rare){<span class="monster-kind rare">{{ i18n.t('稀有') }}</span>}@else if(m.boss){<span class="monster-kind">{{ i18n.t('首领') }}</span>}@else if(m.part){<span class="monster-kind">{{ i18n.t('部位') }}</span>}
+              @if(m.elite){<span class="monster-kind elite">{{ i18n.t('精英') }}</span>}@if(m.rare){<span class="monster-kind rare">{{ i18n.t('稀有') }}</span>}@if(m.boss){<span class="monster-kind">{{ i18n.t('首领') }}</span>}@if(m.part){<span class="monster-kind">{{ i18n.t('部位') }}</span>}
             </div>
             <p class="monster-location"><span>EP{{ m.episode }}</span>{{ i18n.area(m.areas[0] || '') }}</p>
             <p class="monster-attribute">{{ m.attribute }}</p>

@@ -11,6 +11,21 @@ execFileSync(process.execPath,['scripts/generate_item_catalog.mjs']);
 const {index,details,metadata}=generateMonsterCatalog();
 const authorityPath=process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json';
 const dropData=readDropData(path.join(path.dirname(authorityPath),'bb/data/en.js')).data;
+test('elite browsing identities cover variants without promoting rares, bosses or summons',()=>{
+  for (const id of ['hildebear-e1','hildebear-e2','ill-gill','delbiter','sinow-beat','sinow-zele','mericarol','dorphon','zu-crater','zu-desert','girtablulu']) {
+    assert.equal(index.find(m=>m.id===id).elite,true,id);
+  }
+  for (const id of ['booma','hildeblue-e1','pazuzu-crater','dorphon-eclair','dragon','kondrieu-phase-1','bee-r-e1','epsigard','gael','hidoom-e1']) {
+    assert.equal(index.find(m=>m.id===id).elite,false,id);
+  }
+  for (const monster of index) {
+    assert.equal(typeof monster.elite,'boolean');
+    if (monster.elite) assert.ok(!monster.rare && !monster.boss && !monster.part,monster.id);
+  }
+  assert.equal(index.find(m=>m.id==='hildebear-e1').ultimateNames.en,'Hildelt');
+  const kondrieu=index.find(m=>m.id==='kondrieu-phase-1');
+  assert.ok(kondrieu.rare && kondrieu.boss,'rare bosses retain both identities');
+});
 test('regenerating a reduced monster catalog removes retired detail assets',()=>{
   const fixture=fs.mkdtempSync(path.join(os.tmpdir(),'monster-catalog-update-'));
   try {

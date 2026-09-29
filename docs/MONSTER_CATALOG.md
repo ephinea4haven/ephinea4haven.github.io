@@ -20,6 +20,43 @@ guide, and the two pages link to each other.
 
 ## Coverage and use
 
+### Name highlights and elite browsing
+
+List names use ordinary weight 400, gold `#f0cf83` at weight 700 for rare
+variants and elite enemies, and the item catalog's rainbow style at weight 900
+for bosses. Detail headings use the same gold/rainbow distinction. Secondary
+English names remain muted, and visible type labels distinguish rare enemies
+from elites. Reduced-motion preferences disable the rainbow animation.
+Boss classification includes the existing boss phases and body-part records;
+independent summons retain their own classification. Kondrieu keeps both rare
+and boss labels, with boss styling taking precedence.
+
+“Elite” is an editorial browsing group, not an official game rarity, a drop-rate
+rule or a threshold inferred from HP. The exact base-name list lives in
+`scripts/generate_monster_catalog.mjs` and covers:
+
+- Hildebear, Grass Assassin, Nano Dragon, Pan Arms, Sinow Beat, Sinow Gold,
+  Garanz, Delsaber, Dark Belra, Chaos Sorcerer, Chaos Bringer.
+- Sinow Berill, Sinow Spigell, Mericarol, Merikle, Mericus, Gibbles, Gi Gue,
+  Morfos, Sinow Zoa, Sinow Zele, Deldepth, Delbiter, Ill Gill, Del Lily, Epsilon.
+- Astark, Dorphon, Zu, Goran Detonator, Girtablulu.
+
+The 31 base identities cover 39 catalog records, including episode/area copies;
+the group also applies to each identity's Ultimate form.
+Rare variants, bosses, body parts and summons are not automatically included.
+The elite filter composes with the episode, region, search, language, difficulty
+and mode controls. The regular-enemy filter excludes elites as well as rares,
+bosses and parts. No combat values, spawn rates or drop rates change.
+
+Validation on 2026-09-29: 13 monster data/image tests passed, plus all 32 monster
+browser scenarios (30 initial passes and two corrected scenarios rerun). The
+new checks cover actual computed name styles, list/detail consistency, rare
+boss labels, reduced motion, trilingual elite filtering and Ultimate identity.
+Desktop and 390px screenshots were inspected. Production build (3,802 routes),
+Angular ownership and Chinese localization checks passed. The maintainer accepted
+the result and authorized commit and push on 2026-09-29. This acceptance record
+does not by itself confirm a successful site deployment.
+
 The [monster name reference by episode and area](MONSTER_NAMES_BY_AREA.md)
 lists Chinese, English and Japanese names, with Ultimate names alongside the
 Normal–Very Hard names. It covers all 160 catalog records in 12 regional groups;

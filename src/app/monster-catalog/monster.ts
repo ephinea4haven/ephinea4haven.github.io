@@ -4,7 +4,7 @@ import metadata from '../generated/monster-catalog/metadata.json';
 export type Names = {en:string;zh:string;ja:string};
 export interface Monster {
   id:string; names:Names; ultimateNames:Names; episode:number; areas:string[]; attribute:string;
-  rare:boolean; boss:boolean; part:boolean; image:string|null; ultimateImage:string|null; thumbnail:string|null; ultimateThumbnail:string|null;
+  rare:boolean; elite:boolean; boss:boolean; part:boolean; image:string|null; ultimateImage:string|null; thumbnail:string|null; ultimateThumbnail:string|null;
   values:Record<string,number[]|undefined>;
 }
 export interface MechanicTable {section:string;anchor:string;caption:string;context:string[];headings:string[];difficulties:string[];axis:'all'|'difficulty'|'mode'|'difficulty-mode';rows:string[][]}

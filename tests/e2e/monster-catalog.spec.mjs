@@ -8,6 +8,59 @@ const details=JSON.parse(readFileSync('src/app/generated/monster-catalog/details
 const monsters=JSON.parse(readFileSync('src/app/generated/monster-catalog/index.json','utf8'));
 // Browsing shows one region; EP1 opens on Forest, which includes the Dragon's room.
 const forest=monsters.filter(m=>m.episode===1&&m.areas.some(a=>['Forest','Under the Dome'].includes(a))).length;
+test('monster highlights distinguish regular, rare, elite and boss names in lists and details',async({page},testInfo)=>{
+  for(const [id,ep,query,kind,weight] of [
+    ['booma',1,'Booma','', '400'], ['hildeblue-e1',1,'Hildeblue','rare-name','700'],
+    ['ill-gill',2,'Ill Gill','elite-name','700'], ['delbiter',2,'Delbiter','elite-name','700'],
+    ['dragon',1,'Dragon','boss-name','900'], ['kondrieu-phase-1',4,'Kondrieu','boss-name','900'],
+  ]) {
+    await page.goto(`/data/enemies.html?ep=${ep}&q=${encodeURIComponent(query)}`);
+    const row=page.locator(`.monster-row[href*="/enemies/${id}.html"]`);
+    const name=row.locator('.monster-name');
+    await expect(name).toHaveCSS('font-weight',weight);
+    if(kind) await expect(name).toHaveClass(new RegExp(kind));
+    else await expect(name).not.toHaveClass(/rare-name|elite-name|boss-name/);
+    if(kind==='elite-name'||kind==='rare-name') await expect(name).toHaveCSS('color','rgb(240, 207, 131)');
+    await row.click();
+    const heading=page.locator('.monster-hero .monster-name');
+    if(kind) await expect(heading).toHaveClass(new RegExp(kind));
+    if(kind==='boss-name') {
+      await expect(heading).toHaveCSS('animation-duration','4s');
+      await page.emulateMedia({reducedMotion:'reduce'});
+      await expect(heading).toHaveCSS('animation-name','none');
+      await page.emulateMedia({reducedMotion:'no-preference'});
+    }
+    if(id==='kondrieu-phase-1') {
+      await expect(page.locator('.tags')).toContainText('稀有');
+      await expect(page.locator('.tags')).toContainText('首领');
+    }
+  }
+  await page.goto('/data/enemies.html');
+  await expect(page.locator('.monster-row .elite-name')).toHaveCount(1);
+  await page.locator('.monster-row[href*="/hildebear-e1.html"]').evaluate(el=>el.scrollIntoView({block:'center'}));
+  await page.screenshot({path:testInfo.outputPath('monster-highlights-desktop.png')});
+  await page.setViewportSize({width:390,height:844});
+  await page.locator('.monster-row[href*="/hildebear-e1.html"]').evaluate(el=>el.scrollIntoView({block:'center'}));
+  await page.screenshot({path:testInfo.outputPath('monster-highlights-mobile.png')});
+});
+
+test('elite filtering preserves language and Ultimate identity and excludes ordinary enemies',async({page})=>{
+  await page.goto('/data/enemies.html?ep=1&kind=elite');
+  await expect(page.locator('.monster-row')).toHaveCount(1);
+  for(const [language,label] of [['中文','精英'],['English','Elite'],['日本語','強敵']]) {
+    await page.getByRole('button',{name:language,exact:true}).click();
+    await expect(page.locator('.monster-row .monster-kind')).toHaveText(label);
+    await expect(page.locator('.monster-row h2')).toHaveClass(/elite-name/);
+    await expect(page).toHaveURL(/kind=elite/);
+  }
+  await page.getByRole('button',{name:'アルティメット',exact:true}).click();
+  await expect(page.locator('.monster-row .english')).toHaveText('Hildelt');
+  await page.reload();
+  await expect(page.locator('.monster-row h2')).toHaveClass(/elite-name/);
+  await page.getByRole('combobox',{name:'種類',exact:true}).selectOption('regular');
+  await expect(page.locator('.monster-row')).toHaveCount(forest-4);
+  await expect(page.locator('.monster-row .elite-name,.monster-row .rare-name,.monster-row .boss-name')).toHaveCount(0);
+});
 test('monster area search results are independent of the interface language',async({page})=>{
   for(const [term,ep] of [['森林','1'],['地下砂漠','4'],['遺跡 2','1']]) {
     await page.goto(`${term==='森林'?'':'/ja'}/data/enemies.html?ep=${ep}&q=${encodeURIComponent(term)}`);
