@@ -4,12 +4,19 @@ import { createHash } from 'node:crypto';
 import { clean, range, slug, typeOf, TYPES, magTrigger, isCommonWeapon } from './item_catalog_model.mjs';
 import { collectMagTriggers, magCellRules } from './item_catalog_mag.mjs';
 import { selectHdImages } from './item_catalog_hd.mjs';
+import { equipmentImage } from './item_catalog_images.mjs';
 import { createLocalizedText } from './localized_text.mjs';
 import { MESSAGES as CATALOG_MESSAGES } from '../src/app/item-catalog/catalog-messages.ts';
 
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const snapshot = read('content/item-catalog/wiki.json');
 const images = read('content/item-catalog/images.json');
+const equipmentImages = read('content/item-catalog/equipment-images.json');
+for (const image of [...Object.values(equipmentImages.entries), ...Object.values(equipmentImages.boxes)]) {
+  for (const [file, hash] of [[image.path, image.sha256], ...(image.thumbnail ? [[image.thumbnail, image.thumbnailSha256]] : [])]) {
+    if (createHash('sha256').update(fs.readFileSync(file.slice(1))).digest('hex') !== hash) throw new Error(`Equipment image checksum mismatch: ${file}`);
+  }
+}
 // TypeM weapons whose Wiki file was never uploaded use an image derived from the game's ItemKT texture.
 const itemKtImages = read('content/item-catalog/itemkt-images.json');
 const hdImages = selectHdImages(read('content/item-catalog/hd-gallery.json'));
@@ -27,7 +34,7 @@ for (const file of magFiles.values()) {
   if (!fs.existsSync(`assets/img/mag/default/${file}`)) throw new Error(`Missing Mag render: ${file}`);
   if (!fs.existsSync(`assets/img/mag/thumbs/${file}`)) throw new Error(`Missing Mag thumbnail: ${file}`);
 }
-// List rows and item cards show a Mag's render thumbnail (scripts/make_mag_thumbnails.py); other items show their detail image.
+// Lists and related cards share Mag/equipment thumbnails; other items use their detail image.
 const thumbnails = new Map();
 const notes = read('content/item-catalog/notes.json');
 const { text, join, same, localized } = createLocalizedText();
@@ -319,7 +326,8 @@ for (const record of records) {
   const appearanceName = record.cosmetic ? (record.cosmetic.appearance || '') : '';
   const wikiImage = images[imageName] || images[imageName[0]?.toUpperCase() + imageName.slice(1)]
     || images[appearanceName] || (cosmetic?.reverts ? images[clean(recordByTitle.get('Red Ring').fields.image).replaceAll('_', ' ')] : undefined);
-  const image = wikiImage || itemKtImages[title];
+  const equipmentPreview = equipmentImage({ category, code, rarity, wikiImage }, equipmentImages);
+  const image = equipmentPreview || wikiImage || itemKtImages[title];
   const source = record.source || `https://wiki.pioneer2.net/w/${encodeURIComponent(title.replaceAll(' ', '_'))}`;
   const acquisition = record.acquisition.filter(a => !notSources.has(a.toLowerCase())).map(acquisitionSource);
   if (commonWeapon) acquisition.push(text('items.weaponShop'));
@@ -337,6 +345,9 @@ for (const record of records) {
   const feeding = feedTable ? Object.entries(feedTable).map(([item, values]) => ({ item, values })) : [];
   const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Map(effects.map(effect => [effect.zh, effect])).values()], boosts, sets, skins, cosmetic, cosmetics: cosmeticsByTarget.get(title) || [], feeding, drops, availability, source, revision: record.revision, checkedAt: record.checkedAt || snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageOrigin: wikiImage ? 'wiki' : image ? 'itemkt' : null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
+  detail.imageKind = equipmentPreview?.kind || (image ? 'screenshot' : null);
+  detail.imageBlend = equipmentPreview?.blend || 'normal';
+  if (equipmentPreview) detail.imageOrigin = equipmentPreview.origin;
   const magRender = category === 'mag' && magRenders.has(title);
   if (magRender && hdImages.has(id)) throw new Error(`Mag has both a render and an HD gallery image: ${title}`);
   detail.hdImage = magRender ? `/assets/img/mag/default/${magFiles.get(magRenderNames.get(title))}` : hdImages.has(id) ? `/assets/img/items/hd/${hdImages.get(id)}` : null;
@@ -347,9 +358,9 @@ for (const record of records) {
   detail.atpMax = atp?.[1] ?? null;
   if (magRender) magRenders.delete(title);
   details[id] = detail;
-  thumbnails.set(id, magRender ? `/assets/img/mag/thumbs/${magFiles.get(magRenderNames.get(title))}` : detail.image);
+  thumbnails.set(id, magRender ? `/assets/img/mag/thumbs/${magFiles.get(magRenderNames.get(title))}` : equipmentPreview?.thumbnail || detail.image);
   // Compact tuples keep the searchable index small; detailed data is loaded per item.
-  index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), thumbnails.get(id), code, status, title === en ? '' : title, atp?.[1] ?? null, detail.ja || '', detail.zh, seriesGroups.get(title) || '']);
+  index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), thumbnails.get(id), code, status, title === en ? '' : title, atp?.[1] ?? null, detail.ja || '', detail.zh, seriesGroups.get(title) || '', magRender ? 'model' : detail.imageKind, detail.imageBlend]);
 }
 if (magRenders.size) throw new Error(`Mag renders without a catalog Mag: ${[...magRenders].join(', ')}`);
 for (const title of seriesGroups.keys()) if (!recordByTitle.has(title)) throw new Error(`Series item without a catalog record: ${title}`);
@@ -357,7 +368,7 @@ index.sort((a, b) => (a[8] || 'FFFFFF').localeCompare(b[8] || 'FFFFFF') || a[0].
 // Each page ships only the item data it shows: a detail page carries its related
 // items and the localized names it references, so no page but the list needs the
 // whole index or the full name table.
-const card = id => { const d = details[id]; return { id, en: d.en, zh: d.zh, ...(d.ja ? { ja: d.ja } : {}), image: thumbnails.get(id) }; };
+const card = id => { const d = details[id]; return { id, en: d.en, zh: d.zh, ...(d.ja ? { ja: d.ja } : {}), image: thumbnails.get(id), imageKind: d.hdSource === 'model-render' ? 'model' : d.imageKind, imageBlend: d.imageBlend }; };
 const itemByName = new Map();
 for (const [id] of index) for (const key of [details[id].en, details[id].title]) if (!itemByName.has(key)) itemByName.set(key, details[id]);
 const localizedName = text => {

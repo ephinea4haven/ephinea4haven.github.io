@@ -39,13 +39,10 @@
   "cameraPitchDegrees": 30.0,
   "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
   "focalPixels": 320.0,
-  "backgroundRgb": [
-    10,
-    13,
-    23
-  ],
+  "transparentBackground": true,
+  "displayBlend": "additive",
   "image": {
     "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-flame-garment.png",
-    "sha256": "1eb2aa7c2e85ddee75b14a5940de3f4b3642e7f258b855b3cc083fd3812f59f2"
+    "sha256": "5915094ff87f1a5cbe9c718b947fda35ea026a30664e2665b08e917d8a242e56"
   }
 }

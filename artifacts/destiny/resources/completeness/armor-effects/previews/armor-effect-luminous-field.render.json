@@ -39,13 +39,10 @@
   "cameraPitchDegrees": 30.0,
   "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
   "focalPixels": 320.0,
-  "backgroundRgb": [
-    10,
-    13,
-    23
-  ],
+  "transparentBackground": true,
+  "displayBlend": "additive",
   "image": {
     "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-luminous-field.png",
-    "sha256": "d97b0d27a35c9fb91da0dd1b74733c6a7b32a81192d073f54aefe43920634ab4"
+    "sha256": "2fc54d8559d3c84485f5f2efe720fe2aecbc0db8da868047b6600a3dcd824356"
   }
 }

@@ -1,0 +1,1379 @@
+{
+  "entries": {
+    "010294": {
+      "title": "Angel Ring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/angel-ring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/angel-ring.webp",
+      "sha256": "06eefe239802f3f278e1b759e23ca34114a20a9c205786c8bbc0d80683dce7ac",
+      "thumbnailSha256": "57fe09b4724c4ad76e17e85bafcf8a971ca815ce588bb5958d1a9e6b82ece3e0",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/angel-ring.webp",
+        "inputSha256": "06eefe239802f3f278e1b759e23ca34114a20a9c205786c8bbc0d80683dce7ac"
+      }
+    },
+    "01023B": {
+      "title": "Anti Merge",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/anti-merge.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/anti-merge.webp",
+      "sha256": "bc6725fed8aa17068ee10af51ee527e054521aeea2e1eb4b29d08077ae839324",
+      "thumbnailSha256": "ab355090bd34a354e0bde9dcd24c36cb733dc1a44af1c853abe72d9b5d13e798",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/anti-merge.webp",
+        "inputSha256": "bc6725fed8aa17068ee10af51ee527e054521aeea2e1eb4b29d08077ae839324"
+      }
+    },
+    "010242": {
+      "title": "Barta Merge",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/barta-merge.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/barta-merge.webp",
+      "sha256": "b44803a5133a85e5bef51c8513c43b575931ece9fec782bb66b714d9798eee79",
+      "thumbnailSha256": "b6d2b32e1a9a03ef06f59403a8ea16ad39efa8a2f0b10246341bd20884c4d4a4",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/barta-merge.webp",
+        "inputSha256": "b44803a5133a85e5bef51c8513c43b575931ece9fec782bb66b714d9798eee79"
+      }
+    },
+    "010250": {
+      "title": "Black Gear",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/black-gear.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/black-gear.webp",
+      "sha256": "205db9b9725b01fb0bae78569c6fc021a985e1b9deb941b9cabcf6bc6e008365",
+      "thumbnailSha256": "20c0228b611ca94ad436a331fa1711c2d1cb39937c19cf3cb7679c5c118e93c3",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/black-gear.webp",
+        "inputSha256": "205db9b9725b01fb0bae78569c6fc021a985e1b9deb941b9cabcf6bc6e008365"
+      }
+    },
+    "010280": {
+      "title": "Black Ring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/black-ring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/black-ring.webp",
+      "sha256": "874ffa63ba33b9dc43cd4036133c808ecc33661c3fb52444a7a768eaad1d2edf",
+      "thumbnailSha256": "4760443d2e128cd6e35af4e0103334bc2bdcdc0f1c2c3b20d792fc45937c13e2",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/black-ring.webp",
+        "inputSha256": "874ffa63ba33b9dc43cd4036133c808ecc33661c3fb52444a7a768eaad1d2edf"
+      }
+    },
+    "010259": {
+      "title": "Blue Ring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/blue-ring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/blue-ring.webp",
+      "sha256": "3e6b2eb17b8bfaff20e4216d5b6bcc22ab03663554cf9ad4b34d3f9823d92e15",
+      "thumbnailSha256": "4c0193fa722a8bf646ab60d18d9f16d4f0ee6d6491ce69fcda3f8ed587137974",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/blue-ring.webp",
+        "inputSha256": "3e6b2eb17b8bfaff20e4216d5b6bcc22ab03663554cf9ad4b34d3f9823d92e15"
+      }
+    },
+    "01028B": {
+      "title": "Bunny Ears",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/bunny-ears.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/bunny-ears.webp",
+      "sha256": "6497783ae5fe2cc84f9a671338c759b73b839abbffe2e0f6d433a8b4533c0c44",
+      "thumbnailSha256": "668efee7fee067f87aeef0119ba90891493dc6ad4718c59100da0515dd644622",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/bunny-ears.webp",
+        "inputSha256": "6497783ae5fe2cc84f9a671338c759b73b839abbffe2e0f6d433a8b4533c0c44"
+      }
+    },
+    "01028C": {
+      "title": "Cat Ears",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/cat-ears.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/cat-ears.webp",
+      "sha256": "2e6bd7a8e002b8f48f6aa7b931a9915f3cbb112ab2989f04aba0f548f8bfd1b3",
+      "thumbnailSha256": "00d4d8ac763428d3fecf30fde4b309cbbfc0dd747b63ecc9d48a0861e2bf1eed",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/cat-ears.webp",
+        "inputSha256": "2e6bd7a8e002b8f48f6aa7b931a9915f3cbb112ab2989f04aba0f548f8bfd1b3"
+      }
+    },
+    "010225": {
+      "title": "Custom Barrier ver.OO",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/custom-barrier-ver-oo.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/custom-barrier-ver-oo.webp",
+      "sha256": "bb57c176c0b86695cd0769bef3543f45bf2c828d5a5c10664c3799b1f2039901",
+      "thumbnailSha256": "f0d5974a53e0cdf9f864b52a54702a70a2c4823afd853305dccd95f85b58ba81",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/custom-barrier-ver-oo.webp",
+        "inputSha256": "bb57c176c0b86695cd0769bef3543f45bf2c828d5a5c10664c3799b1f2039901"
+      }
+    },
+    "010226": {
+      "title": "DB's Shield",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/dbs-shield.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/dbs-shield.webp",
+      "sha256": "b309e855f2cdbe0b88e43dd951294300215ce6cf2e6135f4c4969200029038c9",
+      "thumbnailSha256": "fc2303964cec8411412c243322c1ac1cd8d711040b8e53e5b056953c2a40648e",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/dbs-shield.webp",
+        "inputSha256": "b309e855f2cdbe0b88e43dd951294300215ce6cf2e6135f4c4969200029038c9"
+      }
+    },
+    "010291": {
+      "title": "De Rol Le Shield",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/de-rol-le-shield.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/de-rol-le-shield.webp",
+      "sha256": "f625488f4f191f5c194e5979a5ed9b81554a09d358f9bdd0481c01d63d0728ce",
+      "thumbnailSha256": "503f3aff805f4f794331559ef300ca6188c3d19b4ded56879dfc5788fe440570",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/de-rol-le-shield.webp",
+        "inputSha256": "f625488f4f191f5c194e5979a5ed9b81554a09d358f9bdd0481c01d63d0728ce"
+      }
+    },
+    "01023D": {
+      "title": "Deband Merge",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/deband-merge.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/deband-merge.webp",
+      "sha256": "03c09e45447a4f83d9ac6fafb10bd8a20b457e12b832bf99ce684295f3ca86e2",
+      "thumbnailSha256": "3ec0faecada40b8b03a3ff06237ec35eb8b37fa80e5cbc155ac961a23cb9a57f",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/deband-merge.webp",
+        "inputSha256": "03c09e45447a4f83d9ac6fafb10bd8a20b457e12b832bf99ce684295f3ca86e2"
+      }
+    },
+    "01028F": {
+      "title": "DF Shield",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/df-shield.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/df-shield.webp",
+      "sha256": "af5f8881740fcc3739114976f55e6565bfd6dbd7fbd9a5a2e355c788d4603505",
+      "thumbnailSha256": "99f5f084cf6b83462e20268354956061a7685b2d6d69fb5f284a7449af27c6d9",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/df-shield.webp",
+        "inputSha256": "af5f8881740fcc3739114976f55e6565bfd6dbd7fbd9a5a2e355c788d4603505"
+      }
+    },
+    "010144": {
+      "title": "Dress Plate",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/dress-plate.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/dress-plate.webp",
+      "sha256": "6231583457cf051db86ec19c4e6882e4d2d020c0aa94808210638b6f71f86bde",
+      "thumbnailSha256": "230efb07a35cf20c951c782195f92881ef0c5bd2c2fde03e15846f8bad8a3f7a",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-dress-plate.render.json",
+            "sha256": "ab588f8fbb5b5b95847febfce91aa026adba28660f5aa6868cdcbe1f040046df"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-dress-plate.png",
+        "inputSha256": "dedf291ec7ae56522d545d794d513d6c01440d1682e6e748ed0d9d6676233053"
+      },
+      "blend": "additive"
+    },
+    "010293": {
+      "title": "Epsiguard",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/epsiguard.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/epsiguard.webp",
+      "sha256": "9ae4a68a6d37ba72922979d689910d13b93325a77b44dd15690014ed18378e56",
+      "thumbnailSha256": "097c2ef75603fcefd948f6dde4555349379faa07ceacd70b6caa08bf6ec375d6",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/epsiguard.webp",
+        "inputSha256": "9ae4a68a6d37ba72922979d689910d13b93325a77b44dd15690014ed18378e56"
+      }
+    },
+    "010224": {
+      "title": "Flowen's Shield",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/flowens-shield.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/flowens-shield.webp",
+      "sha256": "580514fe6981ed9a940e7db5c21d541efdd2979a49613c24a770bc020de132cb",
+      "thumbnailSha256": "4e2bcdb832cc439e6860ef7b7ca54e128abb87d9c3bed7e8accda5ffee92fc1a",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/flowens-shield.webp",
+        "inputSha256": "580514fe6981ed9a940e7db5c21d541efdd2979a49613c24a770bc020de132cb"
+      }
+    },
+    "01023E": {
+      "title": "Foie Merge",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/foie-merge.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/foie-merge.webp",
+      "sha256": "2a6d830d225f54030ae6d4ce59004e5f53736a6ddfb508cb913e5bd282581e99",
+      "thumbnailSha256": "b4bc17e7b8e7df2bb947768a1f0540d14aa45bda311f262d9ed83f657f7d04ef",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/foie-merge.webp",
+        "inputSha256": "2a6d830d225f54030ae6d4ce59004e5f53736a6ddfb508cb913e5bd282581e99"
+      }
+    },
+    "010290": {
+      "title": "From the Depths",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/from-the-depths.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/from-the-depths.webp",
+      "sha256": "d21482325fb255303ea5dfd876bb3bd422bca7d654b23cba5b1084847f016ce0",
+      "thumbnailSha256": "902ecfd436fc394e6b6608ec797450b0d85398dfaa035f8f43d4ab6dbb3c0a64",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/from-the-depths.webp",
+        "inputSha256": "d21482325fb255303ea5dfd876bb3bd422bca7d654b23cba5b1084847f016ce0"
+      }
+    },
+    "01029B": {
+      "title": "Genpei",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/genpei.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/genpei.webp",
+      "sha256": "e84df4e162282cc062fc5b9273fafa3d66508a0cf5a0ef03acccad37eacf0ec9",
+      "thumbnailSha256": "defc3dd07c6e033dbf41e06dc54be647e353d468130431c515af4d202384fbb4",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/genpei.webp",
+        "inputSha256": "e84df4e162282cc062fc5b9273fafa3d66508a0cf5a0ef03acccad37eacf0ec9"
+      }
+    },
+    "01022E": {
+      "title": "Gods Shield \"Byakko\"",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/gods-shield-byakko.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/gods-shield-byakko.webp",
+      "sha256": "f5e88a6e10e43b6b70c6d603957878278bec203d2c00f59caccfad60b935bf7b",
+      "thumbnailSha256": "10c680282c67921746674bf9336808f5a0b64f92a57586a554578c437a8c1586",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/gods-shield-byakko.webp",
+        "inputSha256": "f5e88a6e10e43b6b70c6d603957878278bec203d2c00f59caccfad60b935bf7b"
+      }
+    },
+    "01022D": {
+      "title": "Gods Shield \"Genbu\"",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/gods-shield-genbu.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/gods-shield-genbu.webp",
+      "sha256": "16f69174eaa69e3c625bb797498ab54d6232f594cb08be1b460f623b886a94fc",
+      "thumbnailSha256": "74b71b6cfabc0240464e51413234049ba7e3420d9d1e6814642da0422927950c",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/gods-shield-genbu.webp",
+        "inputSha256": "16f69174eaa69e3c625bb797498ab54d6232f594cb08be1b460f623b886a94fc"
+      }
+    },
+    "01028E": {
+      "title": "Gods Shield \"Kouryu\"",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/gods-shield-kouryu.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/gods-shield-kouryu.webp",
+      "sha256": "be4ea57593d258da24dda2bdf396115c53933a48ac1a0fed5d5756ab13895ef2",
+      "thumbnailSha256": "18e821ced9251656cc5285416fb2290a7976e02cd9be28759e11c44b6a038631",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/gods-shield-kouryu.webp",
+        "inputSha256": "be4ea57593d258da24dda2bdf396115c53933a48ac1a0fed5d5756ab13895ef2"
+      }
+    },
+    "01022F": {
+      "title": "Gods Shield \"Seiryu\"",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/gods-shield-seiryu.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/gods-shield-seiryu.webp",
+      "sha256": "9a4f41b5e8380ca274637b3a28fa6f96d7620026429b8149536c06576acf70b6",
+      "thumbnailSha256": "09e381db5d18d410b0aef728ad0aa397e9ac99cfc50be5dd48a675268923b3c5",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/gods-shield-seiryu.webp",
+        "inputSha256": "9a4f41b5e8380ca274637b3a28fa6f96d7620026429b8149536c06576acf70b6"
+      }
+    },
+    "01022C": {
+      "title": "Gods Shield \"Suzaku\"",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/gods-shield-suzaku.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/gods-shield-suzaku.webp",
+      "sha256": "3a304c978466e960c194548e8ddda663e5f3b14f46f2edc8879a6237f4c1876f",
+      "thumbnailSha256": "3e58dc749e4eb926d6e1d5fcbc0f980082a4a3e9d2c726950f650bf9181f27e7",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/gods-shield-suzaku.webp",
+        "inputSha256": "3a304c978466e960c194548e8ddda663e5f3b14f46f2edc8879a6237f4c1876f"
+      }
+    },
+    "010285": {
+      "title": "Gratia",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/gratia.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/gratia.webp",
+      "sha256": "ff5013be100e21b255018a23ac19fd20f984bdcd92f3b474a09846a74acc9627",
+      "thumbnailSha256": "fc23763cf6e7e3bbff31127f750e935e3afa593aaf142dc8a9e5dc700ae8e250",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/gratia.webp",
+        "inputSha256": "ff5013be100e21b255018a23ac19fd20f984bdcd92f3b474a09846a74acc9627"
+      }
+    },
+    "01025F": {
+      "title": "Green Ring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/green-ring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/green-ring.webp",
+      "sha256": "62193e4930097213b1c84a2c4536602024ab385e41c0f7ea30adcd28e388dc3c",
+      "thumbnailSha256": "cd743332edb58ecef19d479d098e7631d75ee4ddf577066cd265637a43e897d6",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/green-ring.webp",
+        "inputSha256": "62193e4930097213b1c84a2c4536602024ab385e41c0f7ea30adcd28e388dc3c"
+      }
+    },
+    "010292": {
+      "title": "Honeycomb Reflector",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/honeycomb-reflector.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/honeycomb-reflector.webp",
+      "sha256": "22d9ed7ee97d69d2ac2f24fccd581ca0638500457bd29a29ed5bdc95bee50b67",
+      "thumbnailSha256": "ca8b4186a9042fbe6f889c0f070f3a199e47145c406722f3b06e888ea506b40d",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/honeycomb-reflector.webp",
+        "inputSha256": "22d9ed7ee97d69d2ac2f24fccd581ca0638500457bd29a29ed5bdc95bee50b67"
+      }
+    },
+    "01022B": {
+      "title": "Kasami Bracer",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/kasami-bracer.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/kasami-bracer.webp",
+      "sha256": "5003068ca30942583fff5659d1b18cc24d77d5417e6548a6fe6d34b3e4a2a39e",
+      "thumbnailSha256": "c57bf525251b0e9147e2c52247d6815bfcd5b5bb62d2d8521399a02dc05524ee",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/kasami-bracer.webp",
+        "inputSha256": "5003068ca30942583fff5659d1b18cc24d77d5417e6548a6fe6d34b3e4a2a39e"
+      }
+    },
+    "01026C": {
+      "title": "Purple Ring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/purple-ring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/purple-ring.webp",
+      "sha256": "03607948bed06303e6bf3e651044c536eefa365d3ce98c183fb4c938b7abc1a2",
+      "thumbnailSha256": "3418d844ec097f99eb9939af1934b18acdc62086b82e4c809993feab5481795c",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/purple-ring.webp",
+        "inputSha256": "03607948bed06303e6bf3e651044c536eefa365d3ce98c183fb4c938b7abc1a2"
+      }
+    },
+    "010252": {
+      "title": "Ragol Ring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/ragol-ring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/ragol-ring.webp",
+      "sha256": "1e9c32c033fe6ff9595bf3cddf711a466bd816261723ca5a33ffa7126250dfec",
+      "thumbnailSha256": "9550696f1b5c447f1295b02780f2551be049b5d276c5b7153204f68dae7d7a87",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/ragol-ring.webp",
+        "inputSha256": "1e9c32c033fe6ff9595bf3cddf711a466bd816261723ca5a33ffa7126250dfec"
+      }
+    },
+    "010227": {
+      "title": "Red Ring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/red-ring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/red-ring.webp",
+      "sha256": "1250af89bc0c0ffbaa30bfdb7270a6fecc008b84c88084614142ff47ccc8dc9a",
+      "thumbnailSha256": "cf846dc755708248471e516a76fc0321219f5ed048d4f22d3b8dc43bdc9edffd",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/red-ring.webp",
+        "inputSha256": "1250af89bc0c0ffbaa30bfdb7270a6fecc008b84c88084614142ff47ccc8dc9a"
+      }
+    },
+    "010288": {
+      "title": "Regenerate Gear B.P.",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/regenerate-gear-b-p.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/regenerate-gear-b-p.webp",
+      "sha256": "1e1ab222dcb8da1c5a38034f8ff28854feeb610725e11fe470f5385b38cee0e2",
+      "thumbnailSha256": "16b4f25c9200dfdf8cfb8f048f8830e57a3d7e07d51798f2fa1e5b44f71222ad",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/regenerate-gear-b-p.webp",
+        "inputSha256": "1e1ab222dcb8da1c5a38034f8ff28854feeb610725e11fe470f5385b38cee0e2"
+      }
+    },
+    "010232": {
+      "title": "Rico's Earring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/ricos-earring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/ricos-earring.webp",
+      "sha256": "4e4876fc11a11c922dd90ab3273d04e3934800015b5266dc97332faa016284f1",
+      "thumbnailSha256": "2951b9bebd92ed04ea54cad31418230539657efc8308f78c82beed1b17289443",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/ricos-earring.webp",
+        "inputSha256": "4e4876fc11a11c922dd90ab3273d04e3934800015b5266dc97332faa016284f1"
+      }
+    },
+    "010231": {
+      "title": "Rico's Glasses",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/ricos-glasses.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/ricos-glasses.webp",
+      "sha256": "b1792f5be1ea45cc328b17fec2c9c3d95c7efc0d73e5a92703d5dfc3c97ea809",
+      "thumbnailSha256": "21d45506e857c7d740848b20aacd1c93b35afe37731d278b646bf3f58a2ed38a",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/ricos-glasses.webp",
+        "inputSha256": "b1792f5be1ea45cc328b17fec2c9c3d95c7efc0d73e5a92703d5dfc3c97ea809"
+      }
+    },
+    "010289": {
+      "title": "Rupika",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/rupika.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/rupika.webp",
+      "sha256": "2a989799b01ef4b2e5b4875e0088faeea53fd577b1395a6c607c28ce02dd7eed",
+      "thumbnailSha256": "0d64309611385db9ce71b4f0a33564e1e621b8c1dcc47c93da7614aac65033d6",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/rupika.webp",
+        "inputSha256": "2a989799b01ef4b2e5b4875e0088faeea53fd577b1395a6c607c28ce02dd7eed"
+      }
+    },
+    "01022A": {
+      "title": "Safety Heart",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/safety-heart.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/safety-heart.webp",
+      "sha256": "8f3c76948232a83eb8fe089b72769e348709f4a81accdde16202095014d524db",
+      "thumbnailSha256": "6b9d58719a5a3ddb40b89d28107855c29b8b1b1ff255c41f4ffe7eef0d33220b",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/safety-heart.webp",
+        "inputSha256": "8f3c76948232a83eb8fe089b72769e348709f4a81accdde16202095014d524db"
+      }
+    },
+    "01021A": {
+      "title": "Shield of Delsaber",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/shield-of-delsaber.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/shield-of-delsaber.webp",
+      "sha256": "b7aa7abff6319710bd431a149e7cd4cf92fa48552d6d76cb39d272edea5015bd",
+      "thumbnailSha256": "6abed296cf12f325034660b3024da8bb016cab155826542bb28647e31462c6ab",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/shield-of-delsaber.webp",
+        "inputSha256": "b7aa7abff6319710bd431a149e7cd4cf92fa48552d6d76cb39d272edea5015bd"
+      }
+    },
+    "01023C": {
+      "title": "Shifta Merge",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/shifta-merge.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/shifta-merge.webp",
+      "sha256": "736bea953fc1ec55bfe902af0ffcba59fef4410e6783cc363abf9e1914937fad",
+      "thumbnailSha256": "e3c7011f9bb7dd2171b671e087a5f98617e78dbdcd77f004eaea9f77847a3c77",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/shifta-merge.webp",
+        "inputSha256": "736bea953fc1ec55bfe902af0ffcba59fef4410e6783cc363abf9e1914937fad"
+      }
+    },
+    "010229": {
+      "title": "Standstill Shield",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/standstill-shield.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/standstill-shield.webp",
+      "sha256": "7177d1c5ae7cbdb969276ec0931e1c8f446be0143f393ddf97ac765003b80989",
+      "thumbnailSha256": "7ce33085b5dc233e42089532c00c608c82219fb219c79f65ccd1c9b124d8b714",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/standstill-shield.webp",
+        "inputSha256": "7177d1c5ae7cbdb969276ec0931e1c8f446be0143f393ddf97ac765003b80989"
+      }
+    },
+    "010157": {
+      "title": "Stealth Suit",
+      "kind": "illustration",
+      "origin": "effect-illustration",
+      "path": "/assets/img/items/equipment/stealth-suit.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/stealth-suit.webp",
+      "sha256": "6d7aab5f9ca3b9ab1143011151aed502f97ce0d4efe353561e426ccf9a5c7565",
+      "thumbnailSha256": "6d7aab5f9ca3b9ab1143011151aed502f97ce0d4efe353561e426ccf9a5c7565",
+      "evidence": {
+        "method": "Existing character art displayed at 35% opacity; illustrative, not a runtime render.",
+        "input": "assets/img/class/FOnewearl.png",
+        "inputSha256": "04bb0a3e9f4548e47b9065e241197a6b7abf8a716b6120c5bd862427a426300d"
+      }
+    },
+    "010287": {
+      "title": "Striker Plus",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/striker-plus.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/striker-plus.webp",
+      "sha256": "b9be0f60537bf30dbcc7183678a03faaf8e538d3a39b97a2eef20cdfea52c28c",
+      "thumbnailSha256": "0ffe80441fa3a41d8b9d145fdb2286af67050ed207065ec5b737010994047700",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/striker-plus.webp",
+        "inputSha256": "b9be0f60537bf30dbcc7183678a03faaf8e538d3a39b97a2eef20cdfea52c28c"
+      }
+    },
+    "01028D": {
+      "title": "Three Seals",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/three-seals.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/three-seals.webp",
+      "sha256": "0add5d6ada3517e0121735aeeeeb86e3de4e5129366ef01f89753c93d79e02f7",
+      "thumbnailSha256": "f458e0780961f707c8475be6712f9144884f1943a69b2e6245e83ee3fe8a7809",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/three-seals.webp",
+        "inputSha256": "0add5d6ada3517e0121735aeeeeb86e3de4e5129366ef01f89753c93d79e02f7"
+      }
+    },
+    "010286": {
+      "title": "Tripolic Reflector",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/tripolic-reflector.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/tripolic-reflector.webp",
+      "sha256": "1f1fe734b96ae44163a591eb1bb256485b732920373bb2f3cdf5792ab2cdb6cd",
+      "thumbnailSha256": "cf8e580c80705a731870c747e375a599c1d230ee69fe984e07e859e76aa659d6",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/tripolic-reflector.webp",
+        "inputSha256": "1f1fe734b96ae44163a591eb1bb256485b732920373bb2f3cdf5792ab2cdb6cd"
+      }
+    },
+    "010228": {
+      "title": "Tripolic Shield",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/tripolic-shield.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/tripolic-shield.webp",
+      "sha256": "5d8062e70720dee2117eef503e6451e9fbb2708d49561adbeb309afd1be4469b",
+      "thumbnailSha256": "7904fb4e23c9aef42b6499b564675ac419c68b1f1dec85d211a2769d9114cde6",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/tripolic-shield.webp",
+        "inputSha256": "5d8062e70720dee2117eef503e6451e9fbb2708d49561adbeb309afd1be4469b"
+      }
+    },
+    "010295": {
+      "title": "Union Guard",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/union-guard.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/union-guard.webp",
+      "sha256": "9470b9f74342900f05230532513c71248d5ff5873d8a0313031f674800b3ee29",
+      "thumbnailSha256": "f1b5dadf0d36cbbd0a24fce0c4c9f1e61c72c85020a06d60d455e59d8bbf7729",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/union-guard.webp",
+        "inputSha256": "9470b9f74342900f05230532513c71248d5ff5873d8a0313031f674800b3ee29"
+      }
+    },
+    "010284": {
+      "title": "Weapons Copper Shield",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/weapons-copper-shield.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/weapons-copper-shield.webp",
+      "sha256": "38fdaf53184d873fe726c420cbb1081c26fcfe084cf2b85a01e9196a0a15e85f",
+      "thumbnailSha256": "5c7488329828ae8f1d72b8d68805bbdf7dad8472dd3412438764790c24e0e352",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/weapons-copper-shield.webp",
+        "inputSha256": "38fdaf53184d873fe726c420cbb1081c26fcfe084cf2b85a01e9196a0a15e85f"
+      }
+    },
+    "01024F": {
+      "title": "Weapons Gold Shield",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/weapons-gold-shield.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/weapons-gold-shield.webp",
+      "sha256": "fa7ec41ff9e3cca759d674f6bab3483712e254928c9d4e283ac530a187f6cc3b",
+      "thumbnailSha256": "f8e871e3039bf06892a90b27b276406d062f0966e89bac55dca9483f8a8ba00c",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/weapons-gold-shield.webp",
+        "inputSha256": "fa7ec41ff9e3cca759d674f6bab3483712e254928c9d4e283ac530a187f6cc3b"
+      }
+    },
+    "010283": {
+      "title": "Weapons Silver Shield",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/weapons-silver-shield.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/weapons-silver-shield.webp",
+      "sha256": "0ba0d54fbb47dc2c1888313724bbff4c08cc0f914117a9b99b70d69b58640f08",
+      "thumbnailSha256": "9dde062c9729117c16fe951ce66f3f1789be9502ae59e0e269245a910c85c06e",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/weapons-silver-shield.webp",
+        "inputSha256": "0ba0d54fbb47dc2c1888313724bbff4c08cc0f914117a9b99b70d69b58640f08"
+      }
+    },
+    "01013E": {
+      "title": "Wedding Dress",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/wedding-dress.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/wedding-dress.webp",
+      "sha256": "6b9f9b9abc73c8f5099680df09ec95698269a17464a80d7e1279ea76a7cf172d",
+      "thumbnailSha256": "adb7f7402745ff8acdfcee2e02ba86cdc4714846554227f9d601c31a58902bfc",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-wedding-dress.render.json",
+            "sha256": "cdf625c9d66d6ad996e6f21f16eac72cc4476fcf5486b190ede28a0e2eb5d806"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-wedding-dress.png",
+        "inputSha256": "3f7fc1070f87fe7fb3bb2e755a4d16519257e23eb81872641bc0930162a1a3b9"
+      },
+      "blend": "additive"
+    },
+    "010275": {
+      "title": "White Ring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/white-ring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/white-ring.webp",
+      "sha256": "c6b0883a1276416359acf92f5ee259d68289be2476e25ce58d532ae3f5874bc4",
+      "thumbnailSha256": "885509fdaf3a0784878ed06e87a7f84d18c62966070b237230cb44a51d5a6147",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/white-ring.webp",
+        "inputSha256": "c6b0883a1276416359acf92f5ee259d68289be2476e25ce58d532ae3f5874bc4"
+      }
+    },
+    "010251": {
+      "title": "Works Guard",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/works-guard.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/works-guard.webp",
+      "sha256": "006058d712d68bc60121b601f059aed9030e61aece79d756985630cf742d6e86",
+      "thumbnailSha256": "91a367bb02c48e4557960c83cf5005e264046c4cc32a5458f29aa9d46b2e6436",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/works-guard.webp",
+        "inputSha256": "006058d712d68bc60121b601f059aed9030e61aece79d756985630cf742d6e86"
+      }
+    },
+    "01028A": {
+      "title": "Yata Mirror",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/yata-mirror.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/yata-mirror.webp",
+      "sha256": "ef6cf58a81c49b6cb2a8ef7908f64d130b5a57f7ceda99451fcbdc734f7e5df9",
+      "thumbnailSha256": "6477ce20e80c387cd14352f61d9d1d8adaa8b379e0d9211311ca9f3277b0d990",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/yata-mirror.webp",
+        "inputSha256": "ef6cf58a81c49b6cb2a8ef7908f64d130b5a57f7ceda99451fcbdc734f7e5df9"
+      }
+    },
+    "010266": {
+      "title": "Yellow Ring",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/yellow-ring.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/yellow-ring.webp",
+      "sha256": "7c2d4a3dd53c6fa33ea4d7ae0215cee736050bb98c371d66fd1ac2c93f0057c9",
+      "thumbnailSha256": "271d1ab517d314df14028a6f012c86bb35418f33b4b3e6c298c9834419a670bb",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/yellow-ring.webp",
+        "inputSha256": "7c2d4a3dd53c6fa33ea4d7ae0215cee736050bb98c371d66fd1ac2c93f0057c9"
+      }
+    },
+    "010246": {
+      "title": "Zonde Merge",
+      "kind": "screenshot",
+      "origin": "gallery",
+      "path": "/assets/img/items/hd/items/zonde-merge.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/zonde-merge.webp",
+      "sha256": "72cd313faa9a471658ab77d3672d7cb10378efa7596f5bbacaca773ba73fa1f9",
+      "thumbnailSha256": "5cb8be42e5bd7d2dfafc2a26e01463cab35c4c272c18814c2da4a8447eb1d3dc",
+      "evidence": {
+        "manifest": "content/item-catalog/hd-gallery.json",
+        "input": "assets/img/items/hd/items/zonde-merge.webp",
+        "inputSha256": "72cd313faa9a471658ab77d3672d7cb10378efa7596f5bbacaca773ba73fa1f9"
+      }
+    },
+    "01012E": {
+      "title": "Flame Garment",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/flame-garment.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/flame-garment.webp",
+      "sha256": "4f8d21d23708a69f79c8de078cf266d7a5ee12a233983ac76e8aeeb49a6091a9",
+      "thumbnailSha256": "cf9267d70940fc8984dad0924152e222eb4c09f3096b08f40c44846d876444b0",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-flame-garment.render.json",
+            "sha256": "28a641cf13ea98be35c11decdbea99ed9e08d2abdc995a7b1e2ff654ef548322"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-flame-garment.png",
+        "inputSha256": "5915094ff87f1a5cbe9c718b947fda35ea026a30664e2665b08e917d8a242e56"
+      },
+      "blend": "additive"
+    },
+    "01012B": {
+      "title": "Luminous Field",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/luminous-field.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/luminous-field.webp",
+      "sha256": "28ef64ce04985fa066044cbe789761fe63878513bd01cd9777dccabbd04ab588",
+      "thumbnailSha256": "74f39f77857cab4d1f60d49e09bc1c1eeae9d99e5f29539e02c1b4fa5c21b547",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-luminous-field.render.json",
+            "sha256": "5657a315d3ad7f3db202050c813a18d204c9857189e55cf98c48cc1a9cffc975"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-luminous-field.png",
+        "inputSha256": "2fc54d8559d3c84485f5f2efe720fe2aecbc0db8da868047b6600a3dcd824356"
+      },
+      "blend": "additive"
+    },
+    "010131": {
+      "title": "Aura Field",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/aura-field.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/aura-field.webp",
+      "sha256": "690a433e17b3cfc7461f6741df0e459b942420ea643643657345172602295638",
+      "thumbnailSha256": "3d3bc92c637f85028180482cc17ad194e430a5159395f2fdf1f0213e549a5124",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-aura-field.render.json",
+            "sha256": "483ac9c96bf0ead48b07e72fcfe6a1c778dfacc0869ea9b5d2af0ed3dd8e209a"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-aura-field.png",
+        "inputSha256": "2823711589411f2a548bb25d33a2257f6857c49eedc620e823fd954c7cc8404f"
+      },
+      "blend": "additive"
+    },
+    "010129": {
+      "title": "Guard Wave",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/guard-wave.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/guard-wave.webp",
+      "sha256": "f86e72f2ff93ffa6ec536ea5b268079e382c50eb22ad2ceed0e8bad8f240f01e",
+      "thumbnailSha256": "1732410a86a0856d570dcb22b2789fc9b063b7ea381e9428834de559bbe13ede",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-guard-wave.render.json",
+            "sha256": "ad855936fdd2380f4b58e1bfef14749867ec04b78a7751389654cad71570d8ac"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-guard-wave.png",
+        "inputSha256": "60d52b0ad180a9f190377a2e47e5d306eaad6c87c28f12e796580f5331243ad3"
+      },
+      "blend": "additive"
+    },
+    "01012A": {
+      "title": "DF Field",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/df-field.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/df-field.webp",
+      "sha256": "8f914cf9e59bfe92b28380619fea83286f1f9e7aa28ed9b676cd2f2c61ff8814",
+      "thumbnailSha256": "21569feece89c18fb9217448138789df8ead9f1785ea9a69f981081cc8e7b792",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-df-field.render.json",
+            "sha256": "0e2e9c4615dff792393986928cef753f89b1db4e4ed0f690baae7f6fe103a310"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-df-field.png",
+        "inputSha256": "b86163f5e1c689068cff90be8e951010884f996f66886d4a26633f6f960cddeb"
+      },
+      "blend": "additive"
+    },
+    "010130": {
+      "title": "Brightness Circle",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/brightness-circle.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/brightness-circle.webp",
+      "sha256": "d76cac085eff8e4b26ac20922135af54acd64f62a4bd0f9fabd72991f31a7578",
+      "thumbnailSha256": "34163d979fa2adfa51d496fc9ceb34fa87918485def902d9ab65be67073d3d9b",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-brightness-circle.render.json",
+            "sha256": "4185c3fd8c27efb0661259e92d787aa175c8801e67486d03d7c7f553eeabcb11"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-brightness-circle.png",
+        "inputSha256": "475c86d4ec9e36aba015fa826fc66273f5a516c4b2439c6ad62b1565a4c3712d"
+      },
+      "blend": "additive"
+    },
+    "010132": {
+      "title": "Electro Frame",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/electro-frame.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/electro-frame.webp",
+      "sha256": "92dd9de00b1d79d6fc7145ab417d15b6a73547606869626f4bdcbadb30359e96",
+      "thumbnailSha256": "8b8def86f40e1e31e0bd8411ed894e3b2079f721f13f6f14c2d725a9e9dd2e56",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-electro-frame.render.json",
+            "sha256": "594b8bfab84299327fb54c287283886052bea7bf8910cc8ffeef89c572bb8df6"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-electro-frame.png",
+        "inputSha256": "affb862e095dbb18430aa1ecbcedfac49c1447dad336c15cb62fe7905b2d93ff"
+      },
+      "blend": "additive"
+    },
+    "010133": {
+      "title": "Sacred Cloth",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/sacred-cloth.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/sacred-cloth.webp",
+      "sha256": "6b9f9b9abc73c8f5099680df09ec95698269a17464a80d7e1279ea76a7cf172d",
+      "thumbnailSha256": "adb7f7402745ff8acdfcee2e02ba86cdc4714846554227f9d601c31a58902bfc",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-sacred-cloth.render.json",
+            "sha256": "8d1582ebb759182192b01dfc12787ed46fdd0cee5fdbb865373d42f1bded9ad7"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-sacred-cloth.png",
+        "inputSha256": "3f7fc1070f87fe7fb3bb2e755a4d16519257e23eb81872641bc0930162a1a3b9"
+      },
+      "blend": "additive"
+    },
+    "010134": {
+      "title": "Smoking Plate",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/smoking-plate.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/smoking-plate.webp",
+      "sha256": "7d2d34041ee1191b7732b9d14c5126b363f941e541ef8230b47fa7393fc26419",
+      "thumbnailSha256": "87c3f17b63145a44c0ed2d611c8e75db2a66fafe22e326e09def257862a3dc52",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-smoking-plate.render.json",
+            "sha256": "121ea739d2237b9f69e0dbaac8f992cf4aca2ce69ee0cb8f5a707ebf49a9118c"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-smoking-plate.png",
+        "inputSha256": "eb8b2303a9cc9e0ef5856ad2713ea96638c6e8b2ed4b6c930810f679c4908076"
+      },
+      "blend": "normal"
+    },
+    "01012D": {
+      "title": "Love Heart",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/love-heart.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/love-heart.webp",
+      "sha256": "6231583457cf051db86ec19c4e6882e4d2d020c0aa94808210638b6f71f86bde",
+      "thumbnailSha256": "230efb07a35cf20c951c782195f92881ef0c5bd2c2fde03e15846f8bad8a3f7a",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-love-heart.render.json",
+            "sha256": "d35e868faf5c889b53111e83ddce1fbc262b19157eb950a164f35586c2a54d07"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-love-heart.png",
+        "inputSha256": "dedf291ec7ae56522d545d794d513d6c01440d1682e6e748ed0d9d6676233053"
+      },
+      "blend": "additive"
+    },
+    "010145": {
+      "title": "Sweetheart",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/sweetheart.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/sweetheart.webp",
+      "sha256": "6231583457cf051db86ec19c4e6882e4d2d020c0aa94808210638b6f71f86bde",
+      "thumbnailSha256": "230efb07a35cf20c951c782195f92881ef0c5bd2c2fde03e15846f8bad8a3f7a",
+      "evidence": {
+        "manifest": "artifacts/destiny/resources/completeness/armor-effects/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "armor-effect-sweetheart.render.json",
+            "sha256": "eae441bcd63007faf4cd7eea72dc08e5be100b6ea01ac0b4324b03a0e0bbaf3f"
+          }
+        ],
+        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-sweetheart.png",
+        "inputSha256": "dedf291ec7ae56522d545d794d513d6c01440d1682e6e748ed0d9d6676233053"
+      },
+      "blend": "additive"
+    },
+    "010235": {
+      "title": "Secure Feet",
+      "kind": "model",
+      "origin": "model-render",
+      "path": "/assets/img/items/equipment/secure-feet.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/secure-feet.webp",
+      "sha256": "b04f44270594f4be4f84f4fc1e224a32e1c5e428f40254d25dcbba209098aa46",
+      "thumbnailSha256": "36570bf4d747bedaf035019602fcad3c46f253474ed4a85910443d2b99bd94c4",
+      "evidence": {
+        "manifest": "artifacts/destiny/dropcharts/destiny/images/manifest.json",
+        "modelSlot": 368,
+        "textureSlot": 392,
+        "modelEntrySha256": "c35cdcd44f3dbcd49bb6fccbb70dd9573b7890cc0056dd229ea833587a8ab745",
+        "textureEntrySha256": "2f98ef817e18af906fe0cac932bee172e9b30e0e7fb9c590743ec13042c0fa64",
+        "reference": {
+          "file": "../bb-psov4/ref/custom_item_assets/reference/vanilla-item-model-texture.tsv",
+          "sha256": "f8f9980ea548f65c1dbc8d0df71bdf74804b141973bd2a69dcff64cfe4cad4cd",
+          "item": {
+            "item_code": "010235",
+            "item_id": "781",
+            "category": "shield",
+            "item_name": "SECURE FEET",
+            "pmt_type": "14",
+            "pmt_skin": "14",
+            "model": "368",
+            "texture": "392"
+          }
+        },
+        "runtimeVerified": false,
+        "input": "artifacts/destiny/dropcharts/destiny/images/010235_model.png",
+        "inputSha256": "4d30ebc985d66e0638f5172899d739f81c491bfc7e7179109d5697a88ad69027"
+      }
+    }
+  },
+  "boxes": {
+    "blue": {
+      "path": "/assets/img/items/equipment/box-blue.webp",
+      "kind": "box",
+      "origin": "pickup-box",
+      "sha256": "fb6d85f2cd7e8420653d698e1764f44229fbfc564fe5e2bb42e8f165f8f5f872",
+      "evidence": {
+        "input": "artifacts/destiny/resources/category-previews/box-state-1.png",
+        "inputSha256": "e07215d17ddce74d0307936b43787d8ad539bced9279c43265d47d55178c01bc",
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 3,
+        "bmlName": "ixm_box02.xj",
+        "modelDecodedSha256": "cd2b2d4a47e8eecda256a10a07a11488c4271dd6ad6fb067c93eceddda2708b0",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "original_bb_client_g_ItemStateTable_0092BB88"
+      }
+    },
+    "red": {
+      "path": "/assets/img/items/equipment/box-red.webp",
+      "kind": "box",
+      "origin": "pickup-box",
+      "sha256": "63d30fc5b40b4a6f6ad8fddd951fe3c7a9327b6dabec1a7aa1a569b1f2df3214",
+      "evidence": {
+        "input": "artifacts/destiny/resources/category-previews/box-state-4.png",
+        "inputSha256": "2d4e3f6856218989e8d32c90e1def41fe35d849f1cbcf85feb5368e2dd062cc0",
+        "destinyBmlSha256": "195aad4d282ce5569aecb9e6639cf8daaa6730b4ff9add637709c43677c96a1e",
+        "bmlEntry": 6,
+        "bmlName": "ixm_box05.xj",
+        "modelDecodedSha256": "8197eacd54431b1a86d1b5a136e205ab84ee9628006505c9eecc339185e781c1",
+        "sharedTextureNormalizedSha256": "56c07e94a23362fcf02ec4e2c372aa5ec75c2d619a7bd68639ac085f3702448e",
+        "engineRule": "none_unknown_category"
+      }
+    }
+  },
+  "toolBoxes": {
+    "030F00": {
+      "color": "red",
+      "title": "AddSlot",
+      "source": "https://wiki.pioneer2.net/w/AddSlot",
+      "reason": "Verified rare tool; shared category illustration, not individual artwork."
+    }
+  }
+}

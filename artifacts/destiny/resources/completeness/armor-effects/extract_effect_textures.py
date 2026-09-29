@@ -1,4 +1,4 @@
-"""Extract the exact client particle textures selected by three armor effects."""
+"""Extract client particle textures selected by verified armor effect paths."""
 
 from __future__ import annotations
 
@@ -34,6 +34,10 @@ ARMORS = (
     ("ELECTRO FRAME", "010132", 0x106, "electro-frame"),
     ("SACRED CLOTH", "010133", 0x192, "sacred-cloth"),
     ("SMOKING PLATE", "010134", 0x1BC, "smoking-plate"),
+    ("WEDDING DRESS", "01013E", 0x192, "wedding-dress"),
+    ("DRESS PLATE", "010144", 0x1BE, "dress-plate"),
+    ("LOVE HEART", "01012D", 0x1BE, "love-heart"),
+    ("SWEETHEART", "010145", 0x1BE, "sweetheart"),
 )
 
 
@@ -61,6 +65,9 @@ def main() -> None:
     entries = parse_xvm(texture_data).entries
     stock_client = pefile.PE(str(STOCK_CLIENT))
     stock_data = STOCK_CLIENT.read_bytes()
+    # ArmorFrameParticleEffectInit's 0x3E branch reads this particle/cycle pair.
+    wedding_offset = stock_client.get_offset_from_rva(0x92D1A4 - stock_client.OPTIONAL_HEADER.ImageBase)
+    assert struct.unpack_from("<II", stock_data, wedding_offset) == (0x192, 2)
     by_id = {entry.texture_id: (index, entry) for index, entry in enumerate(entries)}
     assert len(by_id) == len(entries)
     manifest = {
@@ -89,6 +96,10 @@ def main() -> None:
             "ELECTRO FRAME": (4, 16, 16.0),
             "SACRED CLOTH": (4, 1, 16.0),
             "SMOKING PLATE": (3, 16, 16.0),
+            "WEDDING DRESS": (4, 1, 16.0),
+            "DRESS PLATE": (3, 1, 16.0),
+            "LOVE HEART": (3, 1, 16.0),
+            "SWEETHEART": (3, 1, 16.0),
         }
         assert (renderer_type, frame_count, width) == expected[name] and width == height
         assert entry.format in (6, 7, 8)
@@ -101,6 +112,7 @@ def main() -> None:
             "particleId": particle_id,
             "particleName": record[:16].split(b"\0", 1)[0].decode("ascii"),
             "particleType": struct.unpack_from("<i", record, 16)[0],
+            "emitterMode": "burst" if particle_id == 0x1BE else "continuous",
             "textureId": texture_id,
             "xvmIndex": index,
             "xvmFormat": entry.format,

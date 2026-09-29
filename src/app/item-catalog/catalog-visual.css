@@ -81,6 +81,7 @@
 .image-stage::before { left: 16px; top: 16px; border-left: 2px solid; border-top: 2px solid; color: #7de5dc; }
 .image-stage::after { right: 16px; bottom: 16px; border-right: 2px solid; border-bottom: 2px solid; color: #7de5dc; }
 .image-stage item-image { position: relative; z-index: 1; border-radius: 6px; box-shadow: 0 14px 35px #0007, 0 0 26px #6ed7d41a; }
+.identity item-image.particle, .image-stage item-image.particle, .related-items item-image.particle { box-shadow: none; z-index: auto; }
 .detail-overview h1 { font-size: clamp(28px,3vw,38px); font-weight: 700; letter-spacing: -.02em; }
 .hero-stats { gap: 12px; border: 0; }
 .hero-stats > div { padding: 16px; background: linear-gradient(130deg,#23475370,#1b30404d); border-left: 2px solid #72d4cd; border-radius: 0 8px 8px 0; min-width: 0; }

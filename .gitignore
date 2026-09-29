@@ -18,6 +18,7 @@ playwright-report/
 test-results/
 artifacts/hd-gallery/
 artifacts/redwolf-archive/
+artifacts/equipment-acceptance/
 .secrets/ephinea-wiki.json
 
 # The global ignore file excludes docs/. Re-include only maintained project docs.
@@ -41,6 +42,7 @@ docs/assets/2c4-auto-warp/*
 !docs/SOP_COMBO_CALCULATOR_SYNC.md
 !docs/TODO.md
 !docs/ITEM_CATALOG.md
+!docs/EQUIPMENT_IMAGES.md
 !docs/MONSTER_CATALOG.md
 !docs/MONSTER_NAMES_BY_AREA.md
 !docs/MECHANICS_VISUAL_EVIDENCE.md

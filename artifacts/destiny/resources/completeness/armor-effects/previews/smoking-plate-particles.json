@@ -17,6 +17,7 @@
     ],
     "uvCount": 16,
     "effectNtFlags": 2,
+    "emitterMode": "continuous",
     "noCharacterModel": true,
     "limitations": [
       "Client global RNG consumption and entity pose are not reproduced.",

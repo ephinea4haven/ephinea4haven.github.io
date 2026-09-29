@@ -6,6 +6,8 @@ import { execFileSync } from 'node:child_process';
 import { clean, range, slug, magTrigger } from './item_catalog_model.mjs';
 import { templates } from './item_catalog_wiki.mjs';
 import { extractMechanics } from './item_catalog_mechanics.mjs';
+import { itemNameTier } from '../src/app/item-catalog/item-name-tier.ts';
+import { equipmentImage } from './item_catalog_images.mjs';
 import vm from 'node:vm';
 import { MESSAGES, catalogText, catalogValue } from '../src/app/item-catalog/catalog-messages.ts';
 import { COSMETICS_MESSAGES } from '../src/app/item-catalog/cosmetics-messages.ts';
@@ -47,18 +49,19 @@ const coverage = read('content/item-catalog/coverage.json');
 const snapshot = read('content/item-catalog/wiki.json');
 const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json').items;
 
-test('HD images are detail-only; list rows show Mag render thumbnails and otherwise the detail image', () => {
+test('lists use equipment and Mag thumbnails while details retain full-size images', () => {
   const index = read('src/app/generated/item-catalog/index.json');
+  const equipment = read('content/item-catalog/equipment-images.json');
   assert.equal(items.filter(item => item.hdSource === 'gallery').length, 415);
   // Every Mag with a model has a render (79 models + 4 variants sharing a model); Stealth has no model.
   assert.equal(items.filter(item => item.hdSource === 'model-render').length, 83);
   assert.deepEqual(items.filter(item => item.category === 'mag' && !item.hdImage).map(item => item.id), ['stealth']);
   assert.equal(items.filter(item => item.hdImage).length, 498);
-  assert.equal(index.filter(row => row[7]).length, 549);
+  assert.equal(index.filter(row => row[7]).length, 835);
   assert.equal(details.saber.hdImage, '/assets/img/items/hd/items/saber.webp');
   assert.equal(details['typess-swords'].hdImage, '/assets/img/items/hd/items/typess-swords.webp');
   assert.equal(details['typegu-mechgun'].hdImage, '/assets/img/items/hd/items/typegu-mechgun.webp');
-  assert.equal(details['dress-plate'].image, null);
+  assert.equal(details['dress-plate'].image, '/assets/img/items/equipment/dress-plate.webp');
   assert.equal(details['dress-plate'].hdImage, '/assets/img/items/hd/items/dress-plate.webp');
   assert.equal(details['agito-1975'].hdImage, null);
   assert.equal(details['typebl-blade'].hdImage, null);
@@ -74,7 +77,9 @@ test('HD images are detail-only; list rows show Mag render thumbnails and otherw
   }
   for (const row of index) {
     const detail = details[row[0]];
-    assert.equal(row[7], detail.hdSource === 'model-render' ? detail.hdImage.replace('/default/', '/thumbs/') : detail.image, row[0]);
+    const preview = equipment.entries[detail.code];
+    const thumbnail = preview && (preview.kind === 'effect' || preview.kind === 'illustration' || preview.origin === 'gallery' || detail.imageOrigin === 'model-render') ? preview.thumbnail : detail.image;
+    assert.equal(row[7], detail.hdSource === 'model-render' ? detail.hdImage.replace('/default/', '/thumbs/') : thumbnail, row[0]);
     assert.ok(!JSON.stringify(row).includes('/items/hd/'), row[0]);
   }
   for (const item of items.filter(item => item.hdSource === 'model-render')) {
@@ -88,6 +93,145 @@ test('HD images are detail-only; list rows show Mag render thumbnails and otherw
     assert.equal(image.toString('ascii', 8, 12), 'WEBP', item.id);
     assert.ok(image.length < 250_000, item.id);
   }
+});
+
+test('equipment previews cover every armor, shield and unit with honest image kinds', () => {
+  const manifest = read('content/item-catalog/equipment-images.json');
+  const index = read('src/app/generated/item-catalog/index.json');
+  const scoped = items.filter(item => ['armor', 'shield', 'unit'].includes(item.category));
+  assert.equal(scoped.length, 295);
+  for (const item of scoped) {
+    assert.ok(item.image, item.id);
+    assert.notEqual(item.image, '/assets/img/items/no-image.webp');
+    const row = index.find(row => row[0] === item.id);
+    assert.equal(row[15], item.imageKind);
+    if (item.imageKind === 'box') {
+      assert.equal(item.image, manifest.boxes[item.rarity >= 9 ? 'red' : 'blue'].path, item.id);
+    }
+  }
+  assert.equal(details.frame.image, manifest.boxes.blue.path);
+  assert.equal(details['hunter-field'].image, manifest.boxes.red.path); // 9★, low equip level
+  assert.equal(details['celestial-armor'].image, manifest.boxes.blue.path); // 8★, high equip level
+  assert.equal(details['red-barrier'].image, manifest.boxes.red.path);
+  assert.equal(details['god-power'].image, manifest.boxes.red.path);
+  assert.equal(details.addslot.image, manifest.boxes.red.path);
+  assert.equal(details.addslot.imageKind, 'box');
+  assert.equal(details.addslot.rarity, null); // A rare-tool illustration does not invent a star count.
+  assert.equal(details['aura-field'].imageKind, 'effect');
+  assert.equal(details['secure-feet'].imageKind, 'model');
+  assert.equal(details['red-ring'].imageKind, 'screenshot');
+  assert.equal(details['stealth-suit'].imageKind, 'illustration');
+  assert.equal(details['stealth-suit'].imageOrigin, 'effect-illustration');
+  assert.equal(details['stealth-suit'].imageBlend, 'normal');
+  assert.notEqual(details['stealth-suit'].image, details['stealth-suit'].hdImage);
+  for (const entry of Object.values(manifest.entries)) {
+    if (entry.kind === 'effect') {
+      assert.equal(entry.evidence.transparentBackground, true, entry.title);
+      assert.equal(entry.blend, entry.title === 'Smoking Plate' ? 'normal' : 'additive', entry.title);
+    }
+    const item = items.find(item => item.code && manifest.entries[item.code] === entry);
+    assert.ok(item && item.title === entry.title, entry.title);
+    for (const [file, expected] of [[entry.path, entry.sha256], [entry.thumbnail, entry.thumbnailSha256]]) {
+      const bytes = fs.readFileSync(file.slice(1));
+      assert.equal(createHash('sha256').update(bytes).digest('hex'), expected);
+      assert.equal(bytes.toString('ascii', 8, 12), 'WEBP');
+      if (file === entry.thumbnail) assert.ok(bytes.length < 25_000, file);
+    }
+  }
+  for (const item of items) for (const related of item.relatedItems) {
+    const row = index.find(row => row[0] === related.id);
+    assert.equal(related.image, row[7], related.id);
+    assert.equal(related.imageKind, row[15], related.id);
+    assert.equal(related.imageBlend, row[16], related.id);
+  }
+  for (const id of ['dress-plate', 'wedding-dress', 'love-heart', 'sweetheart']) {
+    assert.equal(details[id].imageKind, 'effect', id);
+    assert.equal(details[id].imageBlend, 'additive', id);
+  }
+});
+
+test('equipment selection respects effects, screenshots, models and the 8/9-star boundary', () => {
+  const blue = { path: 'blue', kind: 'box' }, red = { path: 'red', kind: 'box' };
+  const preview = { path: 'effect', kind: 'effect' };
+  const manifest = { boxes: { blue, red }, entries: { '010131': preview }, toolBoxes: { '030F00': {color: 'red'} } };
+  const item = { category: 'armor', code: '010131', rarity: 11, wikiImage: { path: 'wiki' } };
+  assert.equal(equipmentImage(item, manifest), preview);
+  preview.kind = 'model';
+  assert.equal(equipmentImage(item, manifest).path, 'wiki');
+  assert.equal(equipmentImage({ ...item, wikiImage: null }, manifest), preview);
+  for (const category of ['armor', 'shield', 'unit']) {
+    for (const [rarity, expected] of [[0, blue], [8, blue], [9, red], [12, red]]) {
+      assert.equal(equipmentImage({ category, code: 'unmapped', rarity }, manifest), expected);
+    }
+  }
+  assert.equal(equipmentImage({ ...item, category: 'unit' }, manifest), red);
+  assert.equal(equipmentImage({ ...item, category: 'weapon' }, manifest), null);
+  assert.equal(equipmentImage({category:'tool', code:'030F00', rarity:null}, manifest), red);
+  assert.equal(equipmentImage({category:'tool', code:'unmapped', rarity:null}, manifest), null);
+  assert.throws(() => equipmentImage({ category: 'armor', code: 'unknown', rarity: null }, manifest), /Missing equipment rarity/);
+});
+
+test('list banner highlights use exact BB identities and keep Hit conditions', () => {
+  const highlights = read('content/item-catalog/banner-highlights.json');
+  const hits = highlights.minimumUntekkedHit;
+  assert.equal(Object.keys(hits).length, 98);
+  const unsealed = Object.keys(highlights.topTierItems).filter(title => highlights.topTierItems[title] === 'unsealed');
+  const crafted = Object.keys(highlights.topTierItems).filter(title => highlights.topTierItems[title] === 'crafted');
+  assert.deepEqual(crafted, ['Dark Bridge', 'Dark Flow', 'Dark Meteor']);
+  assert.equal(Object.keys(highlights.topTierItems).length, 7);
+  assert.deepEqual(highlights.rareItems, ['AddSlot']);
+  for (const title of crafted) {
+    const record = read('content/item-catalog/wiki.json').records.find(record => record.title === title);
+    assert.ok(record.acquisition.includes('Combination'));
+    assert.ok(record.related.includes('Parasitic Gene "Flow"'));
+    assert.equal(hits[title], undefined);
+  }
+  for (const title of ['Master Raven', 'Last Swan', 'Dual Bird', 'Guld Milla', 'Mille Marteaux', 'Baranz Launcher', 'Maser Beam', 'Power Maser']) {
+    assert.equal(highlights.topTierItems[title], undefined, title);
+    assert.equal(itemNameTier(items.find(item => item.title === title), highlights), 'rare', title);
+  }
+  for (const title of ['Sword', 'Shot', 'Rod', 'Double Cannon']) assert.equal(highlights.topTierItems[title], undefined);
+  assert.deepEqual(unsealed, ['Adept', 'Excalibur', 'Proof of Sword-Saint', 'Tsumikiri J-Sword']);
+  assert.deepEqual(unsealed, read('content/item-catalog/wiki.json').records
+    .filter(record => record.acquisition.includes('Unsealing')).map(record => record.title).sort());
+  for (const title of unsealed) {
+    assert.equal(items.filter(item => item.title === title).length, 1, title);
+    assert.equal(hits[title], undefined, 'Unsealed styling must not invent banner eligibility');
+  }
+  for (const [title, hit] of Object.entries(hits)) {
+    assert.equal(items.filter(item => item.title === title).length, 1, title);
+    assert.ok([0, 20, 30, 40, 50].includes(hit), title);
+  }
+  assert.equal(hits['Lavis Cannon'], 0);
+  assert.equal(hits['Red Ring'], 0);
+  assert.equal(hits['Galatine'], 20);
+  assert.equal(hits['Frozen Shooter'], 30);
+  assert.equal(hits['Spread Needle'], 40);
+  assert.equal(hits['Red Sword'], 50);
+  for (const title of ['Saber', 'Agito (1975)', 'Heart of Poumn', 'Technique Disk']) {
+    assert.equal(hits[title], undefined, title);
+  }
+});
+
+test('name tiers distinguish rarity from top-tier membership and use banners as auxiliary evidence', () => {
+  const policy = read('content/item-catalog/banner-highlights.json');
+  for (const item of items) {
+    const top = policy.topTierItems[item.title] || policy.minimumUntekkedHit[item.title] === 0;
+    if (top) assert.equal(itemNameTier(item, policy), 'top', item.title);
+    else if (item.rarity >= 9) assert.equal(itemNameTier(item, policy), 'rare', item.title);
+  }
+  for (const record of read('content/item-catalog/wiki.json').records.filter(record => record.acquisition.some(kind => ['Combination', 'Enemy Parts'].includes(kind)))) {
+    const item = items.find(item => item.title === record.title);
+    assert.notEqual(itemNameTier(item, policy), 'common', item.title);
+  }
+  for (const [rarity, expected] of [[8, 'common'], [9, 'rare'], [12, 'rare'], [null, 'common']]) {
+    assert.equal(itemNameTier({title:'Unlisted item', rarity}, policy), expected);
+  }
+  assert.equal(itemNameTier({title:'Galatine', rarity:null}, policy), 'rare');
+  assert.equal(itemNameTier({title:'Lavis Cannon', rarity:null}, policy), 'top');
+  assert.equal(itemNameTier(details.addslot, policy), 'rare');
+  for (const id of ['sword', 'shot', 'rod']) assert.equal(itemNameTier(details[id], policy), 'common');
+  for (const id of ['boomas-claw', 'double-cannon', 'maser-beam']) assert.equal(itemNameTier(details[id], policy), 'rare');
 });
 
 test('catalog UI and structured stats have complete English and Japanese messages', () => {
@@ -212,7 +356,7 @@ test('TypeM weapons without a Wiki file use checksummed ItemKT images', () => {
   }
   assert.equal(details['typeri-rifle'].hdImage, '/assets/img/items/hd/type/typeri-rifle.webp');
   assert.equal(details['typegu-hand'].imageOrigin, 'wiki');
-  assert.equal(details['dress-plate'].imageOrigin, null);
+  assert.equal(details['dress-plate'].imageOrigin, 'effect-render');
 });
 
 test('all 57 shop weapon models retain verified images and variable specials', () => {

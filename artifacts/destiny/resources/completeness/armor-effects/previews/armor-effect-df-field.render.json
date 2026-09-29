@@ -39,13 +39,10 @@
   "cameraPitchDegrees": 30.0,
   "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
   "focalPixels": 320.0,
-  "backgroundRgb": [
-    10,
-    13,
-    23
-  ],
+  "transparentBackground": true,
+  "displayBlend": "additive",
   "image": {
     "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-df-field.png",
-    "sha256": "99268a3425af53776fb40b0a84ae1f0f9a3a6f33bcad2964b91420757e507976"
+    "sha256": "b86163f5e1c689068cff90be8e951010884f996f66886d4a26633f6f960cddeb"
   }
 }

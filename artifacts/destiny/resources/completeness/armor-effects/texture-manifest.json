@@ -26,6 +26,7 @@
       "particleId": 34,
       "particleName": "gifeio_hatudou",
       "particleType": 0,
+      "emitterMode": "continuous",
       "textureId": 750071,
       "xvmIndex": 42,
       "xvmFormat": 6,
@@ -60,6 +61,7 @@
       "particleId": 283,
       "particleName": "core_hamon",
       "particleType": 0,
+      "emitterMode": "continuous",
       "textureId": 700531,
       "xvmIndex": 9,
       "xvmFormat": 7,
@@ -94,6 +96,7 @@
       "particleId": 225,
       "particleName": "bm4_tamasii",
       "particleType": 0,
+      "emitterMode": "continuous",
       "textureId": 700460,
       "xvmIndex": 5,
       "xvmFormat": 6,
@@ -128,6 +131,7 @@
       "particleId": 224,
       "particleName": "bm4_nodam",
       "particleType": 0,
+      "emitterMode": "continuous",
       "textureId": 700511,
       "xvmIndex": 35,
       "xvmFormat": 6,
@@ -162,6 +166,7 @@
       "particleId": 50,
       "particleName": "anti_karadahika",
       "particleType": 0,
+      "emitterMode": "continuous",
       "textureId": 700460,
       "xvmIndex": 5,
       "xvmFormat": 6,
@@ -196,6 +201,7 @@
       "particleId": 176,
       "particleName": "gate_circle",
       "particleType": 1,
+      "emitterMode": "continuous",
       "textureId": 700531,
       "xvmIndex": 9,
       "xvmFormat": 7,
@@ -230,6 +236,7 @@
       "particleId": 262,
       "particleName": "bm7_gattai",
       "particleType": 1,
+      "emitterMode": "continuous",
       "textureId": 750061,
       "xvmIndex": 47,
       "xvmFormat": 6,
@@ -264,6 +271,7 @@
       "particleId": 402,
       "particleName": "barta_lv1kira",
       "particleType": 1,
+      "emitterMode": "continuous",
       "textureId": 700431,
       "xvmIndex": 21,
       "xvmFormat": 6,
@@ -298,6 +306,7 @@
       "particleId": 444,
       "particleName": "gsmoke",
       "particleType": 1,
+      "emitterMode": "continuous",
       "textureId": 700201,
       "xvmIndex": 41,
       "xvmFormat": 7,
@@ -324,6 +333,146 @@
       "image": {
         "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/smoking-plate-texture.png",
         "sha256": "7a06f47810291b1411de3f2c52c5f68069933bf7e58253d114a4c7445ad6ec4c"
+      }
+    },
+    {
+      "name": "WEDDING DRESS",
+      "code": "01013E",
+      "particleId": 402,
+      "particleName": "barta_lv1kira",
+      "particleType": 1,
+      "emitterMode": "continuous",
+      "textureId": 700431,
+      "xvmIndex": 21,
+      "xvmFormat": 6,
+      "dimensions": [
+        32,
+        32
+      ],
+      "stockRenderer": {
+        "type": 4,
+        "frames": 1,
+        "spriteHalfSize": [
+          16.0,
+          16.0
+        ],
+        "uvPointer": "0xa112cc",
+        "blend": {
+          "src": "SRCALPHA",
+          "dst": "ONE"
+        },
+        "cameraFacing": true
+      },
+      "particleRecordSha256": "d8af744b68481b0b8f965794f9449ca706b306934de59726fdcf1f7fad09d130",
+      "texturePayloadSha256": "edaab4b66fe9b8e45a6a44d71df4f34e6fd0be02ecfb19545fd7e90a181851ae",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/wedding-dress-texture.png",
+        "sha256": "ae3707976aa0170428682ac14f01dca9565cbe46a56e0fd8445a3c2d2e380e23"
+      }
+    },
+    {
+      "name": "DRESS PLATE",
+      "code": "010144",
+      "particleId": 446,
+      "particleName": "heart01",
+      "particleType": 1,
+      "emitterMode": "burst",
+      "textureId": 750801,
+      "xvmIndex": 52,
+      "xvmFormat": 6,
+      "dimensions": [
+        32,
+        32
+      ],
+      "stockRenderer": {
+        "type": 3,
+        "frames": 1,
+        "spriteHalfSize": [
+          16.0,
+          16.0
+        ],
+        "uvPointer": "0xa112cc",
+        "blend": {
+          "src": "SRCALPHA",
+          "dst": "ONE"
+        },
+        "cameraFacing": true
+      },
+      "particleRecordSha256": "05cdfdb53e4039f8c6fe0170950415b514f39c5082cf4a1d25c7997b298dbce7",
+      "texturePayloadSha256": "404957f75c63cdc32e977d7b52a4592fddd15c4ab03f62b64e22864d2329bbcf",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/dress-plate-texture.png",
+        "sha256": "49325a65e0dac4350509ac96db1e72109a764cf4c5eeae6ca408808e1c2241e1"
+      }
+    },
+    {
+      "name": "LOVE HEART",
+      "code": "01012D",
+      "particleId": 446,
+      "particleName": "heart01",
+      "particleType": 1,
+      "emitterMode": "burst",
+      "textureId": 750801,
+      "xvmIndex": 52,
+      "xvmFormat": 6,
+      "dimensions": [
+        32,
+        32
+      ],
+      "stockRenderer": {
+        "type": 3,
+        "frames": 1,
+        "spriteHalfSize": [
+          16.0,
+          16.0
+        ],
+        "uvPointer": "0xa112cc",
+        "blend": {
+          "src": "SRCALPHA",
+          "dst": "ONE"
+        },
+        "cameraFacing": true
+      },
+      "particleRecordSha256": "05cdfdb53e4039f8c6fe0170950415b514f39c5082cf4a1d25c7997b298dbce7",
+      "texturePayloadSha256": "404957f75c63cdc32e977d7b52a4592fddd15c4ab03f62b64e22864d2329bbcf",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/love-heart-texture.png",
+        "sha256": "49325a65e0dac4350509ac96db1e72109a764cf4c5eeae6ca408808e1c2241e1"
+      }
+    },
+    {
+      "name": "SWEETHEART",
+      "code": "010145",
+      "particleId": 446,
+      "particleName": "heart01",
+      "particleType": 1,
+      "emitterMode": "burst",
+      "textureId": 750801,
+      "xvmIndex": 52,
+      "xvmFormat": 6,
+      "dimensions": [
+        32,
+        32
+      ],
+      "stockRenderer": {
+        "type": 3,
+        "frames": 1,
+        "spriteHalfSize": [
+          16.0,
+          16.0
+        ],
+        "uvPointer": "0xa112cc",
+        "blend": {
+          "src": "SRCALPHA",
+          "dst": "ONE"
+        },
+        "cameraFacing": true
+      },
+      "particleRecordSha256": "05cdfdb53e4039f8c6fe0170950415b514f39c5082cf4a1d25c7997b298dbce7",
+      "texturePayloadSha256": "404957f75c63cdc32e977d7b52a4592fddd15c4ab03f62b64e22864d2329bbcf",
+      "image": {
+        "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/sweetheart-texture.png",
+        "sha256": "49325a65e0dac4350509ac96db1e72109a764cf4c5eeae6ca408808e1c2241e1"
       }
     }
   ]

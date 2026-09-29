@@ -6,7 +6,9 @@ import type { LocalizedText } from '../shared/site-language.service';
 export type Category = 'weapon' | 'armor' | 'shield' | 'unit' | 'mag' | 'tool';
 export interface Stat { label: string; value: string }
 /** What a card or link needs to show an item. */
-export interface ItemCard { id: string; en: string; zh: string; ja?: string; image: string | null }
+export type ImageKind = 'screenshot' | 'model' | 'effect' | 'illustration' | 'box' | null;
+export type ImageBlend = 'normal' | 'additive';
+export interface ItemCard { id: string; en: string; zh: string; ja?: string; image: string | null; imageKind: ImageKind; imageBlend: ImageBlend }
 /** A referenced item name, localized by the build. */
 export interface ItemName { en: string; zh: string; ja?: string }
 export interface CatalogItem extends ItemCard {
@@ -34,7 +36,7 @@ export interface ItemDetail extends Omit<CatalogItem, 'classes' | 'group'> {
   feeding: { item: string; values: number[] }[];
   drops: { kind: string; sectionId: string; difficulty: string; location: string; area: string; rate: string }[];
   availability: LocalizedText; source: string; revision: number; checkedAt: string;
-  excerpts: string[]; imageOrigin: 'wiki' | 'itemkt' | null; imageSource: string | null; imagePage: string | null; related: string[];
+  excerpts: string[]; imageOrigin: 'wiki' | 'itemkt' | 'gallery' | 'model-render' | 'effect-render' | 'effect-illustration' | 'pickup-box' | null; imageSource: string | null; imagePage: string | null; related: string[];
   relatedItems: ItemCard[];
   /** Localized names for the item names this page references (sets, skins, feeding, links). */
   names: Record<string, ItemName>;

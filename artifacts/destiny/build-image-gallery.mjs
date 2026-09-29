@@ -35,13 +35,14 @@ const allItems = catalog.dropItems.toSorted((a,b) => a.name.localeCompare(b.name
 const individualCount = entries.length - categoryByName.size;
 const previewCount = individualCount + variantNames.size;
 const missingPreviewCount = allItems.length - previewCount;
-const coverage = allItems.map(({name}) => ({name, image: mapping[name] || null, variants: variantByName.get(name)?.codes || [], imageKind: categoryByName.has(name) ? 'category' : variantNames.has(name) ? 'variants' : mapping[name] ? 'individual' : 'missing', explanation: variantNames.has(name) ? 'Distinct variants; drop table does not identify the version.' : explanation(name)}));
+const coverage = allItems.map(({name}) => ({name, image: mapping[name] || null, imageBlend: effectByName.get(name)?.displayBlend || 'normal', variants: variantByName.get(name)?.codes || [], imageKind: categoryByName.has(name) ? 'category' : variantNames.has(name) ? 'variants' : mapping[name] ? 'individual' : 'missing', explanation: variantNames.has(name) ? 'Distinct variants; drop table does not identify the version.' : explanation(name)}));
 await writeFile(join(root, 'images/coverage.json'), JSON.stringify({total: allItems.length, mapped: entries.length, individual: individualCount, category: categoryByName.size, variantOnly: variantNames.size, effectCount: effectByName.size, previewCount, missingPreviewCount, missing: allItems.length - entries.length - variantNames.size, items: coverage}, null, 2) + '\n');
 const cards = allItems.map(({name}) => {
   const file = mapping[name];
   const model = modelByName.get(name);
   const status = categoryByName.has(name) ? 'category' : !file ? (variantNames.has(name) ? 'variant' : 'missing') : (model && model.sourceStatus !== 'source_matched') || (additionalByName.get(name)?.kind === 'model_candidate' && additionalByName.get(name)?.identityStatus !== 'source_matched') ? 'candidate' : 'available';
-  let media = file ? `<a href="images/${encodeURIComponent(file)}" target="_blank" rel="noopener"><img src="images/${encodeURIComponent(file)}" alt="${escape(name)}" loading="lazy"></a>` : '<div class="no-image">No verified image</div>';
+  const effectStyle = effectByName.has(name) ? ` style="background:transparent;mix-blend-mode:${effectByName.get(name).displayBlend === 'additive' ? 'plus-lighter' : 'normal'}"` : '';
+  let media = file ? `<a href="images/${encodeURIComponent(file)}" target="_blank" rel="noopener"><img src="images/${encodeURIComponent(file)}" alt="${escape(name)}" loading="lazy"${effectStyle}></a>` : '<div class="no-image">No verified image</div>';
   const variant = (manifest.variants || []).find(item => item.name === name);
   if (variant && !file) {
     media = variant.codes.map(code => `<div>${code.image ? `<a href="images/${encodeURIComponent(code.image)}" target="_blank" rel="noopener"><img src="images/${encodeURIComponent(code.image)}" alt="${escape(name)} ${code.code}" loading="lazy"></a>` : '<div class="no-image">No verified image</div>'}<small>Variant ${escape(code.code)}</small></div>`).join('');

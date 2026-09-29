@@ -2,7 +2,7 @@
   "scope": "fixed-seed source-particle-effect preview; no player model; Destiny runtime unverified",
   "simulation": {
     "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/electro-frame-particles.json",
-    "sha256": "132abe06b0c1db6efcca490a5190fe678efb8f48348af305a4553538747acf32"
+    "sha256": "a0d82e2686288413d393ff288c1676ed5431ff1bd010c6f01db9a451682f326d"
   },
   "texture": {
     "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/electro-frame-texture.png",
@@ -39,13 +39,10 @@
   "cameraPitchDegrees": 30.0,
   "cameraRule": "camera pitched down 30 degrees and centered on particle bounds; minimum distance 8 and enough distance to fit rotated sprite bounds within 340 px",
   "focalPixels": 320.0,
-  "backgroundRgb": [
-    10,
-    13,
-    23
-  ],
+  "transparentBackground": true,
+  "displayBlend": "additive",
   "image": {
     "path": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-electro-frame.png",
-    "sha256": "ab4c5250aa607ae5d55a0f7be9c6aac015ca95f839e5d63b86140da041d28c2e"
+    "sha256": "affb862e095dbb18430aa1ecbcedfac49c1447dad336c15cb62fe7905b2d93ff"
   }
 }
