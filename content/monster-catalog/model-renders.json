@@ -365,8 +365,7 @@
    "motion": "Mothmant_wait"
   },
   "NanoDragon": {
-   "npc": "NanoDragon",
-   "motion": "NanoDragon_wait"
+    "npc": "NanoDragon"
   },
   "PalShark": {
    "npc": "PalShark",
@@ -482,8 +481,7 @@
    "npc": "ZolGibbon"
   },
   "Zu": {
-   "npc": "Zu",
-   "motion": "Zu_wait"
+    "npc": "Zu"
   },
   "Dragon.ult": {
    "archive": "bm_boss1_dragon_a.bml",

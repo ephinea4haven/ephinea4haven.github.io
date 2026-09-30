@@ -3430,7 +3430,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/4"
           },
           {
-            "name": "数码冰龙/数码冰龙",
+            "name": "戈尔龙/戈尔龙",
             "drops": [
               {
                 "item": "星之粉",
@@ -11271,7 +11271,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/4"
           },
           {
-            "name": "数码冰龙/数码冰龙",
+            "name": "戈尔龙/戈尔龙",
             "drops": [
               {
                 "item": "勇者之拳",
@@ -19733,7 +19733,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/4"
           },
           {
-            "name": "数码冰龙/数码冰龙",
+            "name": "戈尔龙/戈尔龙",
             "drops": [
               {
                 "item": "罪恶之光",
@@ -28806,7 +28806,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/4"
           },
           {
-            "name": "数码冰龙/数码冰龙",
+            "name": "戈尔龙/戈尔龙",
             "drops": [
               {
                 "item": "上帝之手",

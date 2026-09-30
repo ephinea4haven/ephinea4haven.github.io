@@ -421,8 +421,8 @@
   },
   "NanoDragon": {
     "file": "NanoDragon.webp",
-    "sha256": "f8198b23bdcfbcb21809c9f9d182ab43d6453a0a25f7876b239a8c1495b826c1",
-    "thumbSha256": "65aad0617e0f584b8d76c201d7cc73c716fb1f084bfd398b01e228a7f33ab3d3"
+    "sha256": "22a70b485c6af3be5510ff1639fa35dd5c5ea0326bbf6791bc96eb5c7e41f38d",
+    "thumbSha256": "27dafa3f82e599c350c13c570e9db8bcc02e5858837c04ca810d0131cb158c2c"
   },
   "PalShark": {
     "file": "PalShark.webp",
@@ -576,8 +576,8 @@
   },
   "Zu": {
     "file": "Zu.webp",
-    "sha256": "66d1ee162afe96802ff9bc1de9d684b88fed99e8456f43788b898a978c66a8f7",
-    "thumbSha256": "1949c4a4bb8e3603d121dde8785dc640e97fd37d80018140a788088ac766c366"
+    "sha256": "22e8e93b3b22416f245ab0aa03316a893fccbe83e086ccffd48416c460cdc60a",
+    "thumbSha256": "a6c90cec02bd694da276cdf456eb2c9412728ffa72f1a3ba86314788bed1c28c"
   },
   "Dragon.ult": {
     "file": "Dragon-ult.webp",

@@ -140,7 +140,7 @@
 | [混沌法师 / Chaos Sorcerer / カオスソーサラー](https://www.psohaven.com/data/enemies/chaos-sorcerer-e2.html) | 毁灭法师 / Gran Sorcerer / グランソーサラー | 普通怪 | VR Spaceship Beta |
 | [暗之水晶 / Bee R / ビーアル](https://www.psohaven.com/data/enemies/bee-r-e2.html) | 暗之水晶 / Gee R / ジーアル | 阶段／部件／附属单位 | VR Spaceship Beta |
 | [圣之水晶 / Bee L / ビーエル](https://www.psohaven.com/data/enemies/bee-l-e2.html) | 圣之水晶 / Gee L / ジーエル | 阶段／部件／附属单位 | VR Spaceship Beta |
-| [数码冰龙 / Gol Dragon / ゴル　ドラゴン](https://www.psohaven.com/data/enemies/gol-dragon.html) | 同左 | Boss | VR Spaceship Final |
+| [戈尔龙 / Gol Dragon / ゴル　ドラゴン](https://www.psohaven.com/data/enemies/gol-dragon.html) | 同左 | Boss | VR Spaceship Final |
 
 ### 中央管理区 / Central Control Area
 
