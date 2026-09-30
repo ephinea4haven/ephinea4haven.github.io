@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="description" content="PSOBB Pioneer 1 / Pioneer 2 主要 NPC 人物志与关系图">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NPC 人物志 | Ephinea PSOBB</title>
-    <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
-    <style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="PSOBB EP1、EP2、EP4 人物志：剧情人物、单人任务委托人、常见服务 NPC 与人物关系。">
+<title>NPC 人物志 | Haven PSOBB Wiki</title>
+<link rel="stylesheet" href="/assets/css/unified-style.css">
+<style>
         .intro-note {
             background: rgba(0, 212, 255, 0.06);
             border: 1px solid rgba(0, 212, 255, 0.15);
@@ -293,593 +291,353 @@
             .npc-grid { grid-template-columns: 1fr; }
             .relation-box pre { font-size: 11.5px; }
         }
-    </style>
+
+.npc-guide [hidden] { display: none !important; }
+.npc-guide :is(a,button,input,select,summary):focus-visible { outline: 3px solid #fbbf24; outline-offset: 4px; }
+.npc-guide :is(section,article,#npc-directory) { scroll-margin-top: 100px; }
+.npc-directory-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0; }
+.npc-directory-nav a { display: block; padding: 8px 12px; border: 1px solid #34485f; border-radius: 8px; font-size: 14px; text-decoration: none; background: #132034; }
+.npc-directory-nav a:hover { background: #203b52; }
+.npc-toolbar { display: flex; align-items: end; flex-wrap: wrap; gap: 16px; padding: 20px; background: #111d2e; border-radius: 12px; }
+.npc-toolbar label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+.npc-search-field { flex: 1 1 320px; }
+.npc-toolbar :is(input,select,button) { min-height: 44px; color: var(--npc-ink); background: #0a1423; border: 1px solid #53677e; border-radius: 6px; padding: 10px 12px; font: inherit; font-size: 14px; }
+.npc-toolbar input { width: 100%; box-sizing: border-box; }
+.npc-toolbar input::placeholder { color: var(--npc-muted); }
+.npc-toolbar button { cursor: pointer; background: #20354d; }
+#npc-count { margin: 0; flex-basis: 100%; color: var(--npc-muted); font-size: 14px; }
+#npc-empty { padding: 32px 20px; border: 1px dashed #53677e; border-radius: 12px; }
+.npc-references { margin-top: auto; padding-top: 12px; border-top: 1px solid #304259; font-size: 13px; line-height: 1.7; }
+.npc-references summary { cursor: pointer; color: var(--npc-accent); padding: 4px 0; }
+.npc-references ul { padding-left: 20px; margin: 8px 0 0; }
+.npc-references li { margin: 4px 0; }
+.npc-guide { --npc-accent:#7dd3fc; --npc-ink:#e2e8f0; --npc-muted:#94a3b8; }
+.npc-guide a { color:#7dd3fc; }
+.npc-guide .npc-name { margin:0; font-size:15.5px; line-height:1.35; color:#e2e8f0; }
+.npc-guide .npc-role { margin:4px 0; font-size:12px; color:#94a3b8; text-align:left; }
+.npc-guide .npc-desc { margin:8px 0 12px; font-size:13px; line-height:1.65; color:#cbd5e1; text-align:left; }
+.npc-card-heading { margin:0; text-align:left; }
+.npc-episodes { display:flex; flex-wrap:wrap; gap:4px; margin:6px 0!important; }
+.npc-episodes span { padding:1px 7px; border-radius:10px; background:rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.2); color:#7dd3fc; font-size:11px; }
+.npc-section-heading p { font-size:13px; color:#94a3b8; margin:4px 0; }
+.npc-back { margin-left:auto; flex-shrink:0; font-size:12px; }
+.npc-card:target { border-color:#7dd3fc; }
+.npc-reading-note { font-size:13px; }
+.npc-sources { margin-top:24px; font-size:13px; }
+.npc-relations { margin-top:20px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.npc-relations h3 { font-size:15px; }
+.npc-relations li { font-size:13px; }
+.npc-story > summary { color:#fcd34d; cursor:pointer; font-weight:600; padding:16px 0; }
+.npc-story article { margin:0; padding:6px 0 14px 16px; }
+.npc-story .timeline-entry h3 { margin:0 0 6px; font-size:15px; color:#60a5fa; }
+.npc-story p { margin:0 0 8px; font-size:13.5px; line-height:1.65; }
+.npc-portrait-link { display:block; flex-shrink:0; }
+.npc-avatar img { object-position:var(--portrait-position,center top); }
+@media(max-width:640px) { .npc-grid,.npc-relations { grid-template-columns:1fr; } .faction-head { flex-wrap:wrap; } .npc-toolbar { padding:14px; } .npc-toolbar > div:not(.npc-search-field) { flex:1; } .npc-toolbar select { width:100%; } .npc-avatar { width:64px; height:64px; flex-basis:64px; } }
+@media(prefers-reduced-motion:reduce) { .npc-card { transition:none; } .npc-card:hover { transform:none; } }
+.npc-image-note { color:#94a3b8; font-size:12px; line-height:1.6; }
+.npc-avatar img { object-fit:cover; }
+.npc-guide .npc-name .en { color:#94a3b8; }
+</style>
 </head>
-
 <body>
-    <page-chrome title="NPC 人物志" data-i18n-title="npc.title"></page-chrome>
-
-    <div class="content-container" data-part="guide">
-
-        <div class="intro-note">
-            <p>本页整理 PSO（PSO2 之前）主线涉及的主要 NPC，按阵营分组，并给出他们之间的关系脉络。</p>
-            <p style="margin-top:8px"><strong>世界观速览：</strong>母星 <em>Coral</em> 濒临崩溃，人类派出移民船 <strong>Pioneer 1</strong> 登陆 <em>Ragol</em> 先遣探查。随后 <strong>Pioneer 2</strong> 载约 3 万殖民者启程，但在接收到 Pioneer 1 「成功着陆」的信号后不久，地面发生了<strong>巨大爆炸</strong>，一切通讯中断。Pioneer 2 在 Ragol 轨道展开调查任务，这就是玩家所扮演的 Hunter 们的舞台。</p>
-        </div>
-
-        <!-- ═══ 政府 ═══ -->
-        <section class="faction-block">
-            <div class="faction-head">
-                <h2>🏛️ Pioneer 2 政府</h2>
-                <span class="tag">GOVERNMENT</span>
-            </div>
-            <div class="npc-grid">
-
-                <div class="npc-card">
-                    <div class="npc-avatar gov">
-                        <span>CT</span>
-                        <img src="/assets/img/npc/tyrell.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">主席 柯林·泰瑞尔（Colin Tyrell）<span class="en">Principal / Governor</span></div>
-                        <div class="npc-meta"><span class="chip">人类男</span><span class="chip acc">最高首长</span></div>
-                        <div class="npc-desc">Pioneer 2 的行政与军事最高负责人，正直、严厉、深受殖民者爱戴。丧偶，为唯一的女儿 <strong>Red Ring Rico</strong> 日夜忧心。与 <strong>Flowen</strong> 是多年挚友。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar gov">
-                        <span>IR</span>
-                        <img src="/assets/img/npc/irene.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">艾琳（Irene）<span class="en">Tyrell&apos;s Secretary</span></div>
-                        <div class="npc-meta"><span class="chip">人类女</span><span class="chip">秘书</span></div>
-                        <div class="npc-desc">主席府秘书，Ep1 前期由她替 Tyrell 发布任务、向 Hunter 透露「主席的女儿在 Pioneer 1 上」这一情报。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar gov">
-                        <span>NM</span>
-                        <img src="/assets/img/npc/natasha.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">娜塔莎·米拉萝丝（Natasha Milarose）<span class="en">Lab General Chief</span></div>
-                        <div class="npc-meta"><span class="chip">人类女</span><span class="chip acc">Lab 首席</span></div>
-                        <div class="npc-desc">Pioneer 2 中央研究所总负责人。Ep2 主线任务的派发者；Ep4 中对 <strong>Paganini</strong> 的研究方向持批评态度。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar gov">
-                        <span>PG</span>
-                        <img src="/assets/img/npc/paganini.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">帕加尼尼（Paganini）<span class="en">Crater Research Lead</span></div>
-                        <div class="npc-meta"><span class="chip">人类</span><span class="chip alt">Ep4 研究员</span></div>
-                        <div class="npc-desc">Ep4 在陨石坑展开研究的首席科学家。对玩家身份守口如瓶，研究项目引起上级 Natasha 的强烈不满。</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ═══ Pioneer 1 英雄 ═══ -->
-        <section class="faction-block">
-            <div class="faction-head">
-                <h2>🗡️ Pioneer 1 英雄</h2>
-                <span class="tag">HEROES OF PIONEER 1</span>
-            </div>
-            <div class="npc-grid">
-
-                <div class="npc-card">
-                    <div class="npc-avatar hero">
-                        <span>RR</span>
-                        <img src="/assets/img/npc/rico.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">红环莉可（Red Ring Rico；本名 Rico Tyrell）<span class="en">HUnewearl · Pioneer 1 Hero</span></div>
-                        <div class="npc-meta"><span class="chip">HUnewearl</span><span class="chip acc">主席之女</span><span class="chip warn">Ep1 BOSS 宿主</span></div>
-                        <div class="npc-desc">传奇猎人兼科学家，因左手标志性的红色臂环得名「红环 Rico」。<strong>Tyrell</strong> 的女儿、<strong>Flowen</strong> 的徒弟——她的 <em>Red Ring / Red</em> 系列装备均为师父所赠。Ragol 大爆炸后留下多段全息记录，最终被 <strong>Dark Falz</strong> 附身成为 Ep1 的最终 BOSS；玩家击败 DF 后她的灵魂才得以解脱。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar hero">
-                        <span>HF</span>
-                        <img src="/assets/img/npc/flowen.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">希斯克利夫·弗洛文（Heathcliff Flowen）<span class="en">Pioneer 1 Deputy Commander</span></div>
-                        <div class="npc-meta"><span class="chip">人类男</span><span class="chip acc">副司令</span><span class="chip warn">Ep2 BOSS 本体</span></div>
-                        <div class="npc-desc">Pioneer 1 军队副司令，剑圣，Rico 的师父，与 <strong>Tyrell</strong> 是老友。身上的 <em>Flowen&apos;s Sword</em> 是他的代表武器。在与 Rico 并肩作战时感染 Flow 寄生基因；Ep2 中他的躯体被研究者强行与 <strong>D-Photon Core</strong> 融合，异变为 Episode 2 的最终 BOSS <strong>Olga Flow</strong>。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar hero">
-                        <span>EN</span>
-                        <img src="/assets/img/npc/endu.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">恩杜（Endu）<span class="en">Fusion of Rico &amp; Flowen</span></div>
-                        <div class="npc-meta"><span class="chip alt">Ep3 桥梁</span></div>
-                        <div class="npc-desc">Rico 与 Flowen 的意识在迫使 Dark Falz 与 Olga Flow 共鸣时「融合」所生的新生命，象征两大寄生体的被封印，并为 Episode 3 的剧情衔接奠基。</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ═══ 科学家 ═══ -->
-        <section class="faction-block">
-            <div class="faction-head">
-                <h2>🔬 科学家与 Lab</h2>
-                <span class="tag">SCIENTISTS</span>
-            </div>
-            <div class="npc-grid">
-
-                <div class="npc-card">
-                    <div class="npc-avatar scientist">
-                        <span>OH</span>
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">奥斯托·海尔博士（Dr. Osto Hyle）<span class="en">Pioneer 1 Lab Chief</span></div>
-                        <div class="npc-meta"><span class="chip">人类男</span><span class="chip acc">Pioneer 1 首席</span></div>
-                        <div class="npc-desc">遗传工程与电学权威，Pioneer 1 研究团队首席。与 <strong>Montague</strong> 共同开发玛古并发起「<strong>MOTHER 计划</strong>」。痴迷 Ragol 的未知生命（D 因子），在出发前秘密向 Coral 母星回报，前往 Ragol 后下落不明。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar scientist">
-                        <span>JM</span>
-                        <img src="/assets/img/npc/montague.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">吉恩·卡洛·蒙塔古博士（Dr. Jean Carlo Montague）<span class="en">FOnewm · Eccentric Scientist</span></div>
-                        <div class="npc-meta"><span class="chip">FOnewm</span><span class="chip alt">MOTHER 计划</span></div>
-                        <div class="npc-desc">Pioneer 2 天才科学家，生物力学与光子工程权威。态度古怪但并非恶人。<strong>Osto</strong> 的搭档，<strong>Elenor</strong> 的创造者；Osto 随 Pioneer 1 离开后，他大幅改动了 MOTHER 计划的方向。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar scientist">
-                        <span>EC</span>
-                        <img src="/assets/img/npc/elenor.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">艾尔诺亚·卡缪（Elenor Camuel）<span class="en">RAcaseal · Montague&apos;s Creation</span></div>
-                        <div class="npc-meta"><span class="chip">RAcaseal</span><span class="chip alt">Mag 语通译</span></div>
-                        <div class="npc-desc">由 Montague 一手打造的女性机器人，天赋异禀能理解玛古的「话语」。忠于创造者，但内心渴望脱离实验室，拥有真正的朋友与普通人生。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar scientist">
-                        <span>CA</span>
-                        <img src="/assets/img/npc/calus.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">卡鲁斯（Calus）<span class="en">Central Control Tower AI</span></div>
-                        <div class="npc-meta"><span class="chip alt">AI</span><span class="chip warn">失控</span></div>
-                        <div class="npc-desc">寄居在中央控制塔的人工智能。玩家与 Elly 协助其构筑实体时发生异常，Calus 开始向未知生命体方向进化；任务中 <strong>Kireek</strong> 反常地加入玩家一侧以求终止其失控。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar scientist">
-                        <span>AB</span>
-                        <img src="/assets/img/npc/alicia.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">艾莉西亚·巴兹（Alicia Baz）<span class="en">FOmarl · Lab Assistant</span></div>
-                        <div class="npc-meta"><span class="chip">FOmarl</span></div>
-                        <div class="npc-desc">实验室研究助理。对政府分配的室内研究感到厌倦，辞职后立志亲身走进 Ragol 研究本土生物。</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ═══ Black Paper ═══ -->
-        <section class="faction-block">
-            <div class="faction-head">
-                <h2>🕶️ Black Paper 暗部</h2>
-                <span class="tag">BLACK PAPER</span>
-            </div>
-            <div class="intro-note" style="margin-bottom:16px">表面上是 Pioneer 2 恶名昭著的地下犯罪组织，实际上是政府直属的秘密暗杀部门。</div>
-            <div class="npc-grid">
-
-                <div class="npc-card">
-                    <div class="npc-avatar bp">
-                        <span>KR</span>
-                        <img src="/assets/img/npc/kireek.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">基里克（Kireek）<span class="en">HUcast · &quot;Black Hound&quot;</span></div>
-                        <div class="npc-meta"><span class="chip">HUcast</span><span class="chip warn">处刑人</span></div>
-                        <div class="npc-desc">Black Paper 高层执行者，人称「黑犬」。冷酷、纯逻辑派，爱剑 <em>Soul Eater</em>。在 Calus 事件中罕见地与玩家并肩作战。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar bp">
-                        <span>SU</span>
-                        <img src="/assets/img/npc/sue.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">苏（Sue）<span class="en">HUnewearl · Mole inside Black Paper</span></div>
-                        <div class="npc-meta"><span class="chip">HUnewearl</span><span class="chip alt">潜伏调查</span></div>
-                        <div class="npc-desc">常与 Kireek 搭档，但她加入 Black Paper 的真正动机是挖掘 <strong>MOTHER 计划</strong>的真相。感性、重义气，是 Kireek 冷硬逻辑的反面映照。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar bp">
-                        <span>TB</span>
-                        <img src="/assets/img/npc/tobokke.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">托波克（Tobokke）/ 通兹拉（Tonzlar）/ 盖基加斯基（Gekigasky）<span class="en">Black Paper Operatives</span></div>
-                        <div class="npc-meta"><span class="chip">HUmar / RAmar</span></div>
-                        <div class="npc-desc">在「Black Paper」任务线中出现的其他成员，主要承担执行与对抗玩家的戏份。</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ═══ Hunter's Guild 与独立 NPC ═══ -->
-        <section class="faction-block">
-            <div class="faction-head">
-                <h2>🏹 Hunter&apos;s Guild 与独立 NPC</h2>
-                <span class="tag">GUILD &amp; WANDERERS</span>
-            </div>
-            <div class="npc-grid">
-
-                <div class="npc-card">
-                    <div class="npc-avatar guild">
-                        <span>NR</span>
-                        <img src="/assets/img/npc/nol.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">诺尔·莉奈尔（Nol Rinale）<span class="en">HUnewearl · Journalist</span></div>
-                        <div class="npc-meta"><span class="chip">HUnewearl</span><span class="chip alt">记者</span></div>
-                        <div class="npc-desc">Ep1 任务《Journalistic Pursuit》中追查 Ragol 真相的女记者；Ep2 回归，在 Lab 担任 Natasha 麾下的临时研究员，替她发布 Ep2 主线任务。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar guild">
-                        <span>MM</span>
-                        <img src="/assets/img/npc/momoka.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">莫莫卡（Momoka）<span class="en">Ep4 Story NPC</span></div>
-                        <div class="npc-meta"><span class="chip">女</span><span class="chip alt">Ep4 派发者</span></div>
-                        <div class="npc-desc">Blue Burst 独占 Episode 4 的主线发布人。陨石坠落后，由她将陨石坑的任务交给 Hunter。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar guild">
-                        <span>AS</span>
-                        <img src="/assets/img/npc/ash.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">阿修（Ash）<span class="en">HUmar · Rookie Hunter</span></div>
-                        <div class="npc-meta"><span class="chip">HUmar</span></div>
-                        <div class="npc-desc">刚出道的菜鸟 Hunter。在「Battle Training」中被玩家搭救，之后任务也多由他那位有钱舅舅替他善后。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar guild">
-                        <span>BR</span>
-                        <img src="/assets/img/npc/bernie.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">伯尼（Bernie）<span class="en">RAmar · Pioneer 1 Investigator</span></div>
-                        <div class="npc-meta"><span class="chip">RAmar</span><span class="chip warn">殉职</span></div>
-                        <div class="npc-desc">调查 Pioneer 1 遗迹的自由调查员，与剑客 <strong>Zoke Miyama</strong> 结伴深入 Ruins，双双被怪物吞噬。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar guild">
-                        <span>ZM</span>
-                        <img src="/assets/img/npc/zoke.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">佐克·美山（Zoke Miyama）<span class="en">The Great Sword</span></div>
-                        <div class="npc-meta"><span class="chip">剑客</span><span class="chip warn">重伤</span></div>
-                        <div class="npc-desc">人称「大剑客」的浪人剑士，RAcaseal <strong>希诺</strong> 的主人。《Seek my Master》中被希诺在 Ruins 深处找到时已奄奄一息。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar guild">
-                        <span>SH</span>
-                        <img src="/assets/img/npc/shino.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">希诺（Shino）<span class="en">RAcaseal</span></div>
-                        <div class="npc-meta"><span class="chip">RAcaseal</span></div>
-                        <div class="npc-desc">为寻找失踪的主人 Zoke Miyama 请求 Hunter&apos;s Guild 协助的女性机器人。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar guild">
-                        <span>RP</span>
-                        <img src="/assets/img/npc/rupika.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">鲁毕卡（Rupika）<span class="en">FOnewearl · Survivor</span></div>
-                        <div class="npc-meta"><span class="chip">FOnewearl</span></div>
-                        <div class="npc-desc">《Gran Squall》中被玩家救下的幸存者，是所有 FOnewearl 模板 NPC 里唯一有正式名字的角色。</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ═══ 终极威胁 ═══ -->
-        <section class="faction-block">
-            <div class="faction-head">
-                <h2>👹 终极威胁</h2>
-                <span class="tag">ULTIMATE THREATS</span>
-            </div>
-            <div class="npc-grid">
-
-                <div class="npc-card">
-                    <div class="npc-avatar boss">
-                        <span>DF</span>
-                        <img src="/assets/img/npc/darkfalz.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">暗黑佛 / 黑暗法尔兹（Dark Falz）<span class="en">God of Darkness</span></div>
-                        <div class="npc-meta"><span class="chip warn">Ep1 终 BOSS</span></div>
-                        <div class="npc-desc">Pioneer 1 解封 Ragol 三根封印之柱时觉醒的暗之神，附身在被寄生的 Rico 身上。拥有自复活能力。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar boss">
-                        <span>OF</span>
-                        <img src="/assets/img/npc/olga.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">奥尔加·弗洛（Olga Flow）<span class="en">D-Photon Core Hybrid</span></div>
-                        <div class="npc-meta"><span class="chip warn">Ep2 终 BOSS</span></div>
-                        <div class="npc-desc">Flowen 被 Flow 基因感染后的躯体，与研究人员强行植入的 D-Photon Core 融合成的巨兽，被封存在海底深渊。</div>
-                    </div>
-                </div>
-
-                <div class="npc-card">
-                    <div class="npc-avatar boss">
-                        <span>MT</span>
-                        <img src="/assets/img/npc/mother.webp" alt="">
-                    </div>
-                    <div class="npc-body">
-                        <div class="npc-name">三位一体母神（Mother Trinity）<span class="en">Coral Lunar AI</span></div>
-                        <div class="npc-meta"><span class="chip alt">远景设定</span></div>
-                        <div class="npc-desc">Coral 卫星 Arca 上的人工智能。在 Pioneer 计划彻底失败后被母星启动，最终判定人类为「行星之害」，向 Coral 投放热核灾难——这也是 Phantasy Star 后续作品废土世界的起点。</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <hr>
-
-        <!-- ═══ 关系图（单图） ═══ -->
-        <h2 style="color:#00d4ff;margin-top:28px">🕸️ 核心关系脉络</h2>
-        <div class="rel-wrap">
-            <svg class="rel-svg" viewBox="0 0 1400 960" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <defs>
-                    <linearGradient id="gradGov" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stop-color="#b45309"/><stop offset="100%" stop-color="#831843"/>
-                    </linearGradient>
-                    <linearGradient id="gradHero" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stop-color="#be185d"/><stop offset="100%" stop-color="#7f1d1d"/>
-                    </linearGradient>
-                    <linearGradient id="gradSci" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stop-color="#6d28d9"/><stop offset="100%" stop-color="#3730a3"/>
-                    </linearGradient>
-                    <linearGradient id="gradBp" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stop-color="#18181b"/><stop offset="100%" stop-color="#581c87"/>
-                    </linearGradient>
-                    <linearGradient id="gradGuild" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stop-color="#0d9488"/><stop offset="100%" stop-color="#1d4ed8"/>
-                    </linearGradient>
-                    <linearGradient id="gradBoss" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stop-color="#991b1b"/><stop offset="100%" stop-color="#0f172a"/>
-                    </linearGradient>
-                    <linearGradient id="gradAlt" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#1e3a8a"/>
-                    </linearGradient>
-
-                    <marker id="arrow-default" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#7dd3fc"/>
-                    </marker>
-                    <marker id="arrow-hostile" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#f87171"/>
-                    </marker>
-                    <marker id="arrow-fusion" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#a78bfa"/>
-                    </marker>
-                    <marker id="arrow-covert" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#c084fc"/>
-                    </marker>
-                    <marker id="arrow-mentor" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#fde68a"/>
-                    </marker>
-
-                    <!-- NPC 头像 pattern（circle 用 fill=url(#pat-slug)） -->
-                    <pattern id="pat-tyrell"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/tyrell.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-natasha"  width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/natasha.webp"  width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-rico"     width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/rico.webp"     width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-flowen"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/flowen.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-endu"     width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/endu.webp"     width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-montague" width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/montague.webp" width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-elenor"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/elenor.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-alicia"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/alicia.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-kireek"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/kireek.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-sue"      width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/sue.webp"      width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-darkfalz" width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/darkfalz.webp" width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-olga"     width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/olga.webp"     width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-mother"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/mother.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-nol"      width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/nol.webp"      width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-bernie"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/bernie.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-shino"    width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/shino.webp"    width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-rupika"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/rupika.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-momoka"   width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/momoka.webp"   width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-calus"    width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/calus.webp"    width="1" height="1" preserveAspectRatio="xMidYMid slice"/></pattern>
-                    <pattern id="pat-zoke"     width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/zoke.webp"     width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-ash"      width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/ash.webp"      width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-tobokke"  width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/tobokke.webp"  width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-paganini" width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/paganini.webp" width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                    <pattern id="pat-irene"    width="1" height="1" patternContentUnits="objectBoundingBox"><image href="/assets/img/npc/irene.webp"    width="1" height="1" preserveAspectRatio="xMidYMin slice"/></pattern>
-                </defs>
-
-                <!-- ─── 边（先画，位于节点下方） ─── -->
-                <!-- 家族/友谊 -->
-                <g class="edge family"><path d="M 325 80 L 550 80"/><text x="437" y="70">老友</text></g>
-                <g class="edge family"><path d="M 316 102 Q 360 170 438 220"/><text x="335" y="160">父女</text></g>
-                <g class="edge family"><path d="M 267 91 Q 200 115 150 140"/><text x="200" y="105">辅佐</text></g>
-
-                <!-- 师承 -->
-                <g class="edge mentor"><path d="M 562 104 Q 520 170 480 218"/><text x="535" y="160">师徒</text></g>
-                <g class="edge mentor"><path d="M 840 730 L 940 730"/><text x="890" y="718">师徒</text></g>
-
-                <!-- 敌对/感染 -->
-                <g class="edge hostile"><path d="M 437 260 Q 390 310 337 352" marker-end="url(#arrow-hostile)"/><text x="355" y="312">被附身</text></g>
-                <g class="edge hostile"><path d="M 580 110 Q 620 240 580 340" marker-end="url(#arrow-hostile)"/><text x="620" y="230">被改造</text></g>
-
-                <!-- 融合 -->
-                <g class="edge fusion"><path d="M 329 393 Q 370 450 420 508" marker-end="url(#arrow-fusion)"/><text x="340" y="460">融合</text></g>
-                <g class="edge fusion"><path d="M 560 393 Q 520 450 460 508" marker-end="url(#arrow-fusion)"/><text x="555" y="460">融合</text></g>
-                <text x="440" y="485" fill="#a78bfa" font-size="11" text-anchor="middle" style="paint-order:stroke;stroke:#05070f;stroke-width:3px">意识融合</text>
-
-                <!-- 工作/指派 -->
-                <g class="edge work"><path d="M 830 80 L 950 80" marker-end="url(#arrow-default)"/><text x="890" y="70">搭档·MOTHER</text></g>
-                <g class="edge work"><path d="M 1010 80 L 1235 80" marker-end="url(#arrow-default)"/><text x="1122" y="70">造物</text></g>
-                <g class="edge work"><path d="M 1005 100 Q 1100 165 1238 210"/><text x="1130" y="158">同事</text></g>
-                <g class="edge work"><path d="M 130 322 L 130 378"/><text x="165" y="354">上下级</text></g>
-                <g class="edge work"><path d="M 105 305 Q 110 500 175 672" marker-end="url(#arrow-default)"/><text x="85" y="500">指派</text></g>
-                <g class="edge work"><path d="M 155 305 Q 230 500 325 672" marker-end="url(#arrow-default)"/><text x="218" y="500">指派</text></g>
-
-                <!-- Black Paper -->
-                <g class="edge work"><path d="M 930 390 L 1050 390"/><text x="990" y="378">搭档·理念对立</text></g>
-                <g class="edge covert"><path d="M 1071 362 Q 1080 240 989 109" marker-end="url(#arrow-covert)"/><text x="1120" y="235">暗查 MOTHER</text></g>
-                <g class="edge covert"><path d="M 870 400 Q 500 470 165 410" marker-end="url(#arrow-covert)"/><text x="500" y="460">幕后雇主 ⟵ 政府</text></g>
-
-                <!-- Calus / Kireek -->
-                <g class="edge hostile"><path d="M 1230 372 Q 1100 430 930 388" marker-end="url(#arrow-hostile)"/><text x="1080" y="425">失控·介入</text></g>
-
-                <!-- Pioneer 1 失联 -->
-                <g class="edge covert"><path d="M 800 110 L 770 220" marker-end="url(#arrow-covert)"/><text x="800" y="175">Pioneer 1 失联</text></g>
-
-                <!-- 公会/独立 -->
-                <g class="edge work"><path d="M 680 730 L 780 730"/><text x="730" y="718">调查搭档</text></g>
-                <g class="edge family"><path d="M 500 730 Q 525 780 540 818"/><text x="555" y="778">亲戚</text></g>
-                <g class="edge covert"><path d="M 1100 730 Q 900 860 740 878" marker-end="url(#arrow-covert)"/><text x="960" y="855">被救援 ← Hunter（玩家）</text></g>
-
-                <!-- Mother Trinity far arrow -->
-                <g class="edge hostile"><path d="M 680 885 Q 400 820 290 400" marker-end="url(#arrow-hostile)" stroke-dasharray="4 4"/><text x="400" y="810">远景：毁灭文明</text></g>
-
-                <!-- ─── 节点（头像圆 + 外环 + 下方名字） ─── -->
-                <!-- GOV -->
-                <g class="node gov"><circle class="av-bg" cx="295" cy="80" r="30" fill="url(#pat-tyrell)"/><circle class="av-ring" cx="295" cy="80" r="30"/><text class="label" x="295" y="130"><tspan x="295">柯林·泰瑞尔</tspan><tspan class="label-en" x="295" dy="15">（Colin Tyrell）</tspan></text></g>
-                <g class="node gov"><circle class="av-bg" cx="120" cy="150" r="30" fill="url(#pat-irene)"/><circle class="av-ring" cx="120" cy="150" r="30"/><text class="label" x="120" y="200"><tspan x="120">艾琳</tspan><tspan class="label-en" x="120" dy="15">（Irene）</tspan></text></g>
-                <g class="node gov"><circle class="av-bg" cx="130" cy="290" r="30" fill="url(#pat-natasha)"/><circle class="av-ring" cx="130" cy="290" r="30"/><text class="label" x="130" y="340"><tspan x="130">娜塔莎</tspan><tspan class="label-en" x="130" dy="15">（Natasha）</tspan></text></g>
-                <g class="node gov"><circle class="av-bg" cx="130" cy="410" r="30" fill="url(#pat-paganini)"/><circle class="av-ring" cx="130" cy="410" r="30"/><text class="label" x="130" y="460"><tspan x="130">帕加尼尼</tspan><tspan class="label-en" x="130" dy="15">（Paganini）</tspan></text></g>
-
-                <!-- HERO -->
-                <g class="node hero"><circle class="av-bg" cx="580" cy="80" r="30" fill="url(#pat-flowen)"/><circle class="av-ring" cx="580" cy="80" r="30"/><text class="label" x="580" y="130"><tspan x="580">弗洛文</tspan><tspan class="label-en" x="580" dy="15">（Flowen）</tspan></text></g>
-                <g class="node hero"><circle class="av-bg" cx="460" cy="240" r="30" fill="url(#pat-rico)"/><circle class="av-ring" cx="460" cy="240" r="30"/><text class="label" x="460" y="290"><tspan x="460">红环莉可</tspan><tspan class="label-en" x="460" dy="15">（Red Ring Rico）</tspan></text></g>
-                <g class="node alt"><circle class="av-bg" cx="440" cy="530" r="30" fill="url(#pat-endu)"/><circle class="av-ring" cx="440" cy="530" r="30"/><text class="label" x="440" y="580"><tspan x="440">恩杜</tspan><tspan class="label-en" x="440" dy="15">（Endu）</tspan></text></g>
-
-                <!-- BOSS -->
-                <g class="node boss"><circle class="av-bg" cx="310" cy="370" r="30" fill="url(#pat-darkfalz)"/><circle class="av-ring" cx="310" cy="370" r="30"/><text class="label" x="310" y="420" style="font-size:11px"><tspan x="310">暗黑佛 / 黑暗法尔兹</tspan><tspan class="label-en" x="310" dy="15">（Dark Falz）</tspan></text></g>
-                <g class="node boss"><circle class="av-bg" cx="580" cy="370" r="30" fill="url(#pat-olga)"/><circle class="av-ring" cx="580" cy="370" r="30"/><text class="label" x="580" y="420"><tspan x="580">奥尔加·弗洛</tspan><tspan class="label-en" x="580" dy="15">（Olga Flow）</tspan></text></g>
-                <g class="node boss"><circle class="av-bg" cx="710" cy="885" r="30" fill="url(#pat-mother)"/><circle class="av-ring" cx="710" cy="885" r="30"/><text class="label" x="710" y="929"><tspan x="710">三位一体母神</tspan><tspan class="label-en" x="710" dy="15">（Mother Trinity）</tspan></text></g>
-
-                <!-- SCIENTISTS -->
-                <g class="node sci"><circle class="av-bg" cx="800" cy="80" r="30" fill="url(#gradSci)"/><circle class="av-ring" cx="800" cy="80" r="30"/><text class="initials" x="800" y="80">OH</text><text class="label" x="800" y="130"><tspan x="800">奥斯托博士</tspan><tspan class="label-en" x="800" dy="15">（Dr. Osto）</tspan></text></g>
-                <g class="node sci"><circle class="av-bg" cx="980" cy="80" r="30" fill="url(#pat-montague)"/><circle class="av-ring" cx="980" cy="80" r="30"/><text class="label" x="980" y="130"><tspan x="980">蒙塔古博士</tspan><tspan class="label-en" x="980" dy="15">（Dr. Montague）</tspan></text></g>
-                <g class="node sci"><circle class="av-bg" cx="1265" cy="80" r="30" fill="url(#pat-elenor)"/><circle class="av-ring" cx="1265" cy="80" r="30"/><text class="label" x="1265" y="130"><tspan x="1265">艾尔诺亚</tspan><tspan class="label-en" x="1265" dy="15">（Elenor）</tspan></text></g>
-                <g class="node sci"><circle class="av-bg" cx="1265" cy="220" r="30" fill="url(#pat-alicia)"/><circle class="av-ring" cx="1265" cy="220" r="30"/><text class="label" x="1265" y="270"><tspan x="1265">艾莉西亚·巴兹</tspan><tspan class="label-en" x="1265" dy="15">（Alicia Baz）</tspan></text></g>
-                <g class="node alt"><circle class="av-bg" cx="1260" cy="370" r="30" fill="url(#pat-calus)"/><circle class="av-ring" cx="1260" cy="370" r="30"/><text class="label" x="1260" y="420"><tspan x="1260">卡鲁斯</tspan><tspan class="label-en" x="1260" dy="15">（Calus）</tspan></text></g>
-
-                <!-- BLACK PAPER -->
-                <g class="node bp"><circle class="av-bg" cx="900" cy="390" r="30" fill="url(#pat-kireek)"/><circle class="av-ring" cx="900" cy="390" r="30"/><text class="label" x="900" y="440"><tspan x="900">基里克</tspan><tspan class="label-en" x="900" dy="15">（Kireek）</tspan></text></g>
-                <g class="node bp"><circle class="av-bg" cx="1080" cy="390" r="30" fill="url(#pat-sue)"/><circle class="av-ring" cx="1080" cy="390" r="30"/><text class="label" x="1080" y="440"><tspan x="1080">苏</tspan><tspan class="label-en" x="1080" dy="15">（Sue）</tspan></text></g>
-                <g class="node bp"><circle class="av-bg" cx="930" cy="500" r="28" fill="url(#pat-tobokke)"/><circle class="av-ring" cx="930" cy="500" r="28"/><text class="label" x="930" y="546" style="font-size:12px"><tspan x="930">托波克 / 通兹拉</tspan><tspan class="label-en" x="930" dy="15">（Tobokke / Tonzlar）</tspan></text></g>
-
-                <!-- GUILD bottom row -->
-                <g class="node guild"><circle class="av-bg" cx="200" cy="700" r="30" fill="url(#pat-nol)"/><circle class="av-ring" cx="200" cy="700" r="30"/><text class="label" x="200" y="750"><tspan x="200">诺尔·莉奈尔</tspan><tspan class="label-en" x="200" dy="15">（Nol Rinale）</tspan></text></g>
-                <g class="node guild"><circle class="av-bg" cx="350" cy="700" r="30" fill="url(#pat-momoka)"/><circle class="av-ring" cx="350" cy="700" r="30"/><text class="label" x="350" y="750"><tspan x="350">莫莫卡</tspan><tspan class="label-en" x="350" dy="15">（Momoka）</tspan></text></g>
-                <g class="node guild"><circle class="av-bg" cx="500" cy="700" r="30" fill="url(#pat-ash)"/><circle class="av-ring" cx="500" cy="700" r="30"/><text class="label" x="500" y="750"><tspan x="500">阿修</tspan><tspan class="label-en" x="500" dy="15">（Ash）</tspan></text></g>
-                <g class="node guild"><circle class="av-bg" cx="650" cy="730" r="30" fill="url(#pat-bernie)"/><circle class="av-ring" cx="650" cy="730" r="30"/><text class="label" x="650" y="780"><tspan x="650">伯尼</tspan><tspan class="label-en" x="650" dy="15">（Bernie）</tspan></text></g>
-                <g class="node guild"><circle class="av-bg" cx="810" cy="730" r="30" fill="url(#pat-zoke)"/><circle class="av-ring" cx="810" cy="730" r="30"/><text class="label" x="810" y="780"><tspan x="810">佐克·美山</tspan><tspan class="label-en" x="810" dy="15">（Zoke Miyama）</tspan></text></g>
-                <g class="node guild"><circle class="av-bg" cx="970" cy="730" r="30" fill="url(#pat-shino)"/><circle class="av-ring" cx="970" cy="730" r="30"/><text class="label" x="970" y="780"><tspan x="970">希诺</tspan><tspan class="label-en" x="970" dy="15">（Shino）</tspan></text></g>
-                <g class="node guild"><circle class="av-bg" cx="1130" cy="700" r="30" fill="url(#pat-rupika)"/><circle class="av-ring" cx="1130" cy="700" r="30"/><text class="label" x="1130" y="750"><tspan x="1130">鲁毕卡</tspan><tspan class="label-en" x="1130" dy="15">（Rupika）</tspan></text></g>
-
-                <!-- 富舅舅 -->
-                <g class="node muted"><circle class="av-bg" cx="550" cy="840" r="24" fill="#334155"/><circle class="av-ring" cx="550" cy="840" r="24" style="stroke-width:1.5"/><text class="initials" x="550" y="840" style="font-size:13px">叔</text><text class="label" x="550" y="880" style="font-size:12px">富舅舅</text></g>
-            </svg>
-
-            <div class="rel-legend">
-                <span class="chip"><span class="sw family"></span>家族 / 挚友</span>
-                <span class="chip"><span class="sw mentor"></span>师承</span>
-                <span class="chip"><span class="sw"></span>工作 / 指派</span>
-                <span class="chip"><span class="sw hostile"></span>感染 / 敌对</span>
-                <span class="chip"><span class="sw fusion"></span>融合 / 继承</span>
-                <span class="chip"><span class="sw covert"></span>暗中 / 失联</span>
-            </div>
-        </div>
-
-        <!-- ═══ 时间线 ═══ -->
-        <h2 style="color:#00d4ff;margin-top:32px">🕰️ 剧情时间线</h2>
-        <div class="timeline">
-            <div class="timeline-entry">
-                <h4>Pioneer 1 着陆</h4>
-                <p>Pioneer 1 先遣队登陆 Ragol，发回「成功着陆」信号后不久发生巨大爆炸，通讯中断。Rico、Flowen、Osto、Bernie、Zoke 等人都随该船前往。</p>
-            </div>
-            <div class="timeline-entry">
-                <h4>Episode 1 · Forest → Ruins</h4>
-                <p>Pioneer 2 抵达 Ragol 轨道，派 Hunter 下地调查。玩家一路追随 Rico 留下的全息记录揭开真相：她在解封封印之柱时被 <strong>Dark Falz</strong> 附身。Hunter 击败 DF，Rico 灵魂解脱。</p>
-            </div>
-            <div class="timeline-entry">
-                <h4>Episode 2 · VR → Seabed</h4>
-                <p>Natasha 派出 Nol 引导，玩家深入 Pioneer 1 遗弃的海底实验室，查到 Flowen 被植入 D-Photon Core 异变为 <strong>Olga Flow</strong>。最终 Rico 与 Flowen 的意识融合迫使两大寄生体共鸣，诞生新生命 <strong>Endu</strong>。</p>
-            </div>
-            <div class="timeline-entry">
-                <h4>Episode 4 · Crater → Subterranean Desert</h4>
-                <p>一颗陨石坠落 Ragol 表面形成陨石坑。Momoka 召集 Hunter 调查，科学家 Paganini 暗中推进的研究与 Natasha 的态度形成冲突，揭示政府对「新型生命」一贯的失控倾向。</p>
-            </div>
-            <div class="timeline-entry">
-                <h4>Episode 3（C.A.R.D.）· Blue Star Memories</h4>
-                <p>Episode 3 以卡牌战役形式续写故事，Endu、Break 等角色承接 Ep1/Ep2 的遗产。</p>
-            </div>
-            <div class="timeline-entry">
-                <h4>远景：Mother Trinity 之灾</h4>
-                <p>Pioneer 计划失败后，Coral 政府启用月球 AI Mother Trinity；它认定人类为星球之害，对 Coral 投下热核打击——这一事件成为整个 Phantasy Star 世界观的转折。</p>
-            </div>
-        </div>
-
-        <div class="source-link">
-            资料来源综合：
-            <a href="https://phantasystar.fandom.com/wiki/Rico_Tyrell" target="_blank">Phantasy Star Wiki</a> ·
-            <a href="http://www.pscave.com/pspages/pso/psonpcs.html" target="_blank">Phantasy Star Cave</a> ·
-            <a href="https://www.pioneer2.net/community/threads/phantasy-star-online-lore-and-story.10015/" target="_blank">Pioneer2 Lore Thread</a> ·
-            <a href="https://tvtropes.org/pmwiki/pmwiki.php/Characters/PhantasyStarOnline" target="_blank">TV Tropes</a>
-        </div>
-
-    </div>
-
+<page-chrome title="NPC 人物志" data-i18n-title="npc.title"></page-chrome>
+<div class="content-container" data-part="guide"><div class="npc-guide" id="npc-directory" data-npc-guide>
+ <div class="intro-note"><p>收录 PSOBB 的 EP1、EP2、EP4 主要剧情人物、代表性单人任务委托人与常见服务 NPC。不是所有路人、活动角色或自制任务 NPC 的完整名录。</p><p class="npc-reading-note">基本介绍含任务背景；结局与核心真相集中在页末的折叠区。 <a href="#story">前往剧情区 →</a></p></div>
+ <nav class="npc-directory-nav" aria-label="按故事线浏览"><a href="#office">政府与研究所窗口</a><a href="#heroes">英雄与装备名的来历</a><a href="#hunters">同行猎人与调查者</a><a href="#research">研究者、机器人与 AI</a><a href="#blackpaper">Black Paper 与失踪猎人事件</a><a href="#works">WORKS 与陨石坑调查</a><a href="#citizens">单人任务的委托人与市民</a><a href="#services">商人与常见服务 NPC</a><a href="#relationships">人物关系速览</a></nav>
+ <div class="npc-toolbar"><div class="npc-search-field"><label for="npc-search">搜索人物、任务或装备</label><input id="npc-search" type="search" placeholder="试试 DB、Donoph、Elly、Soul of Steel…" autocomplete="off"></div><div><label for="npc-episode">出场章节</label><select id="npc-episode"><option value="">全部章节</option><option value="1">Episode I</option><option value="2">Episode II</option><option value="4">Episode IV</option></select></div><button type="button" id="npc-reset">清除筛选</button><p id="npc-count" role="status" aria-live="polite">48 个条目</p></div>
+ <p id="npc-empty" hidden>没有匹配人物。试试英文名，或清除章节筛选。</p>
+ <section id="office" class="faction-block npc-section" data-npc-group><div class="faction-head npc-section-heading"><span aria-hidden="true">🏛️</span><div><h2>政府与研究所窗口</h2><p>从接任务的人开始认识 Pioneer 2。</p></div><a class="npc-back" href="#npc-directory">回到目录 ↑</a></div><div class="npc-grid"><article class="npc-card" id="npc-tyrell" data-npc-card data-episodes="1 4" data-search="柯林·泰瑞尔（Colin Tyrell） Colin Tyrell コリン・タイレル（Colin Tyrell）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/tyrell-model.webp" alt="" width="900" height="900" loading="lazy" style="width:100%;height:100%;left:0;top:0;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">柯林·泰瑞尔（Colin Tyrell）</h3><p class="npc-role">Pioneer 2 主席</p><p class="npc-episodes"><span>EP1</span><span>EP4</span></p></div>
+  <p class="npc-desc">Pioneer 2 的负责人，也是 Rico 的父亲。派遣猎人调查 Ragol 与 Pioneer 1 失联事件；在职责之外，也一直惦记女儿的下落。</p><p class="npc-image-note">本地游戏原始模型与贴图渲染。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/forest.shtml">Episode I · Forest</a></li><li><a href="/assets/img/npc/model-renders.json">模型素材来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-irene" data-npc-card data-episodes="1 4" data-search="艾琳（Irene） Irene アイリーン（Irene）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/irene.webp" alt="" width="640" height="480" loading="lazy" style="width:412.903%;height:309.677%;left:-151.613%;top:-22.581%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">艾琳（Irene）</h3><p class="npc-role">主席秘书</p><p class="npc-episodes"><span>EP1</span><span>EP4</span></p></div>
+  <p class="npc-desc">在主席府协助 Tyrell，向猎人传达调查信息。Blue Burst 的政府任务受理由 Momoka 负责，两人的职能应分开看。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/forest.shtml">Episode I · Forest</a></li><li><a href="https://wiki.pioneer2.net/w/Government">Government</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-momoka" data-npc-card data-episodes="1 4" data-search="莫莫卡（Momoka） Momoka モモカ（Momoka）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/momoka.webp" alt="" width="800" height="450" loading="lazy" style="width:551.724%;height:310.345%;left:-210.345%;top:-41.379%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">莫莫卡（Momoka）</h3><p class="npc-role">EP1／EP4 政府任务受理</p><p class="npc-episodes"><span>EP1</span><span>EP4</span></p></div>
+  <p class="npc-desc">Blue Burst 中位于主席府的任务受理人。EP1 和 EP4 的政府任务都从她这里开始，并非只负责陨石坑篇。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://wiki.pioneer2.net/w/Government">Government</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-natasha" data-npc-card data-episodes="2" data-search="娜塔莎·米拉萝丝（Natasha Milarose） Natasha Milarose ナターシャ・ミラローズ（Natasha Milarose）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/natasha.png" alt="" width="800" height="450" loading="lazy" style="width:500.000%;height:281.250%;left:-198.750%;top:-109.375%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">娜塔莎·米拉萝丝（Natasha Milarose）</h3><p class="npc-role">Pioneer 2 研究所负责人</p><p class="npc-episodes"><span>EP2</span></p></div>
+  <p class="npc-desc">负责研究所的调查行动。先安排猎人接受 VR 测试，再派遣合格者追查 Flowen 的通讯与 Gal Da Val 岛上的研究设施。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/temple.shtml">Episode II · VR Temple</a></li><li><a href="https://www.pscave.com/pso/script/seabed.shtml">Episode II · Seabed</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Natasha_milarose_ep2.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-nol" data-npc-card data-episodes="1 2" data-search="诺尔·莉奈尔（Nol Rinale） Nol Rinale ノル・リネイル（Nol Rinale）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/nol.png" alt="" width="800" height="450" loading="lazy" style="width:410.256%;height:230.769%;left:-153.846%;top:-38.462%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">诺尔·莉奈尔（Nol Rinale）</h3><p class="npc-role">记者／EP2 政府任务受理</p><p class="npc-episodes"><span>EP1</span><span>EP2</span></p></div>
+  <p class="npc-desc">在 Journalistic Pursuit 中随玩家调查 Ragol 的记者。Blue Burst 中，她也是研究所的 EP2 政府任务受理人；通讯支援员 Elly 是另一位人物。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/journalisticpursuit.shtml">Journalistic Pursuit</a></li><li><a href="https://wiki.pioneer2.net/w/Government">Government</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Nolep2.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-elly" data-npc-card data-episodes="1 2" data-search="Elly Person Elly Person エリ・パーソン（Elly Person）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/elly.png" alt="" width="800" height="450" loading="lazy" style="width:500.000%;height:281.250%;left:-203.125%;top:-100.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Elly Person</h3><p class="npc-role">FOnewearl／研究所通讯员</p><p class="npc-episodes"><span>EP1</span><span>EP2</span></p></div>
+  <p class="npc-desc">为寻找失联的通信朋友 Calus，在 Knowing One’s Heart 中请玩家护送她进入矿坑。EP2 中成为玩家的通讯支援员，也是 Seat of the Heart 的核心人物。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/knowingonesheart.shtml">Knowing One's Heart</a></li><li><a href="https://www.pscave.com/pso/script/seatoftheheart.shtml">Seat of the Heart</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Ellyep2.png">图片来源</a></li></ul></details>
+  </div>
+</article></div></section>
+<section id="heroes" class="faction-block npc-section" data-npc-group><div class="faction-head npc-section-heading"><span aria-hidden="true">🗡️</span><div><h2>英雄与装备名的来历</h2><p>DB 与 Flowen 都能追溯到具体的人物。</p></div><a class="npc-back" href="#npc-directory">回到目录 ↑</a></div><div class="npc-grid"><article class="npc-card" id="npc-rico" data-npc-card data-episodes="1 2" data-search="红环莉可（Red Ring Rico） Red Ring Rico レッドリング・リコ（Red Ring Rico）">
+  <div class="npc-avatar hero" aria-hidden="true"><img src="/assets/img/npc/rico-model.webp" alt="" width="900" height="900" loading="lazy" style="width:100%;height:100%;left:0;top:0;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">红环莉可（Red Ring Rico）</h3><p class="npc-role">Rico Tyrell／猎人与研究者</p><p class="npc-episodes"><span>EP1</span><span>EP2</span></p></div>
+  <p class="npc-desc">Tyrell 的女儿，也是 Flowen 的学生。她在 Ragol 留下的记录贯穿 EP1，从原生生物的异常一路追查到遗迹；结局见下方剧透区。</p><p class="npc-image-note">本地游戏原始模型与贴图渲染。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/ruins.shtml">Episode I · Ruins</a></li><li><a href="https://phantasystar.fandom.com/wiki/Heathcliff_Flowen">Heathcliff Flowen</a></li><li><a href="/assets/img/npc/model-renders.json">模型素材来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-flowen" data-npc-card data-episodes="1 2" data-search="希斯克利夫·弗洛文（Heathcliff Flowen） Heathcliff Flowen ヒースクリフ・フロウウェン（Heathcliff Flowen）">
+  <div class="npc-avatar hero" aria-hidden="true"><img src="/assets/img/npc/flowen-model.webp" alt="" width="900" height="900" loading="lazy" style="width:100%;height:100%;left:0;top:0;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">希斯克利夫·弗洛文（Heathcliff Flowen）</h3><p class="npc-role">Pioneer 1 军队副司令</p><p class="npc-episodes"><span>EP1</span><span>EP2</span></p></div>
+  <p class="npc-desc">Rico 的剑术老师，也是 Donoph 的旧友。EP2 围绕他的消息展开调查。<span data-item-en="Flowen's Sword"></span> 以他为名，玩家获得的该系列武器是复制品。</p><p class="npc-image-note">本地游戏原始模型与贴图渲染。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/seabed.shtml">Episode II · Seabed</a></li><li><a href="https://phantasystar.fandom.com/wiki/Heathcliff_Flowen">Heathcliff Flowen</a></li><li><a href="https://wiki.pioneer2.net/w/Flowen's_Sword">Flowen's Sword</a></li><li><a href="/assets/img/npc/model-renders.json">模型素材来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-donoph" data-npc-card data-episodes="1" data-search="Donoph Baz Donoph Baz ドノフ・バズ（Donoph Baz）">
+  <div class="npc-avatar hero" aria-hidden="true"><img src="/assets/img/npc/donoph.png" alt="" width="418" height="389" loading="lazy" style="width:334.400%;height:311.200%;left:-216.000%;top:-28.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Donoph Baz</h3><p class="npc-role">HUmar／一万只讨伐的老猎人</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">The Retired Hunter 的委托人：已讨伐 9,901 只怪物，请玩家陪他完成最后 99 只。<span data-item-en="DB's Saber"></span> 的 DB 来自 Donoph Baz 的姓名首字母；任务中他实际使用的是 <span data-item-en="Zanba"></span>。他也是 Alicia 的养父。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/theretiredhunter.shtml">The Retired Hunter</a></li><li><a href="https://phantasystar.fandom.com/wiki/Donoph_Baz">Donoph Baz</a></li><li><a href="https://wiki.pioneer2.net/w/DB's_Saber">DB's Saber</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Pso_donoph_with_zanba.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-zoke" data-npc-card data-episodes="1" data-search="佐克·美山（Zoke Miyama） Zoke Miyama ゾーク・ミヤマ（Zoke Miyama）">
+  <div class="npc-avatar hero" aria-hidden="true"><img src="/assets/img/npc/zoke-model.webp" alt="" width="900" height="900" loading="lazy" style="width:100%;height:100%;left:0;top:0;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">佐克·美山（Zoke Miyama）</h3><p class="npc-role">传说中的剑客</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">与 Flowen、Donoph 有旧交的剑客，也是 Shino 追寻的主人。Seek my Master 通过他的武器与足迹，展开寻找失踪主人的故事。</p><p class="npc-image-note">按任务使用的角色模板，以本地游戏模型与贴图渲染。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/seekmymaster.shtml">Seek my Master</a></li><li><a href="https://phantasystar.fandom.com/wiki/Donoph_Baz">Donoph Baz</a></li><li><a href="/assets/img/npc/model-renders.json">模型素材来源</a></li></ul></details>
+  </div>
+</article></div></section>
+<section id="hunters" class="faction-block npc-section" data-npc-group><div class="faction-head npc-section-heading"><span aria-hidden="true">🤝</span><div><h2>同行猎人与调查者</h2><p>同一个人物可能跨任务、跨章节再次出现。</p></div><a class="npc-back" href="#npc-directory">回到目录 ↑</a></div><div class="npc-grid"><article class="npc-card" id="npc-ash" data-npc-card data-episodes="1 4" data-search="阿修（Ash） Ash アッシュ（Ash）">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/ash.jpg" alt="" width="1024" height="768" loading="lazy" style="width:682.667%;height:512.000%;left:-393.333%;top:-260.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">阿修（Ash）</h3><p class="npc-role">HUmar／成长中的猎人</p><p class="npc-episodes"><span>EP1</span><span>EP4</span></p></div>
+  <p class="npc-desc">在 Battle Training 中由玩家与 Kireek 救下的年轻猎人，后来在 From the Depths 与 EP4 再次登场。早期任务的委托人是他的亲属 Zidd。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/battletraining.shtml">Battle Training</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2316&amp;op=viewarticle">9-7: Sacred Ground</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-bernie" data-npc-card data-episodes="1 4" data-search="伯尼（Bernie） Bernie バーニィ（Bernie）">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/bernie.jpg" alt="" width="1024" height="768" loading="lazy" style="width:487.619%;height:365.714%;left:-180.952%;top:-97.619%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">伯尼（Bernie）</h3><p class="npc-role">RAmar／调查者</p><p class="npc-episodes"><span>EP1</span><span>EP4</span></p></div>
+  <p class="npc-desc">在 Gran Squall 中与玩家寻找幸存者 Rupika，也在多条任务分支里追查军方与研究计划。他在 EP4 仍会出现，不能把某条 EP1 分支中的受伤情节当作统一的死亡结局。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/gransquall.shtml">Gran Squall</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2316&amp;op=viewarticle">9-7: Sacred Ground</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-alicia" data-npc-card data-episodes="1" data-search="艾莉西亚·巴兹（Alicia Baz） Alicia Baz アリシア・バズ（Alicia Baz）">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/alicia.jpg" alt="" width="720" height="480" loading="lazy" style="width:553.846%;height:369.231%;left:-165.385%;top:-157.692%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">艾莉西亚·巴兹（Alicia Baz）</h3><p class="npc-role">FOmarl／原生生物研究者</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Native Research 与 Forest of Sorrow 的研究者，逐渐选择亲自走进 Ragol 观察生物。曾由 Flowen 照顾，后来成为 Donoph 的养女；The Retired Hunter 的对话补充了这段关系。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/forestofsorrow.shtml">Forest of Sorrow</a></li><li><a href="https://www.pscave.com/pso/script/theretiredhunter.shtml">The Retired Hunter</a></li><li><a href="https://phantasystar.fandom.com/wiki/Donoph_Baz">Donoph Baz</a></li><li><a href="https://garudo.ni-3.net/Entry/801/">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-shino" data-npc-card data-episodes="1" data-search="希诺（Shino） Shino シノ（Shino）">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/shino.jpg" alt="" width="1024" height="768" loading="lazy" style="width:706.207%;height:529.655%;left:-493.103%;top:-206.897%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">希诺（Shino）</h3><p class="npc-role">RAcaseal／寻找主人的同行者</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Seek my Master 的委托人与同行者。为寻找主人 Zoke，跟随玩家深入遗迹；她与 Zoke 的关系是这条任务的核心。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/seekmymaster.shtml">Seek my Master</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article></div></section>
+<section id="research" class="faction-block npc-section" data-npc-group><div class="faction-head npc-section-heading"><span aria-hidden="true">🔬</span><div><h2>研究者、机器人与 AI</h2><p>从 Osto 的资料到 Elenor、Ult 与 Calus 的故事。</p></div><a class="npc-back" href="#npc-directory">回到目录 ↑</a></div><div class="npc-grid"><article class="npc-card" id="npc-montague" data-npc-card data-episodes="1 4" data-search="吉恩·卡洛·蒙塔古博士（Dr. Jean Carlo Montague） Dr. Jean Carlo Montague ジャン・カルロ・モンタギュー博士（Dr. Jean Carlo Montague）">
+  <div class="npc-avatar scientist" aria-hidden="true"><img src="/assets/img/npc/montague.jpg" alt="" width="1024" height="768" loading="lazy" style="width:731.429%;height:548.571%;left:-453.571%;top:-214.286%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">吉恩·卡洛·蒙塔古博士（Dr. Jean Carlo Montague）</h3><p class="npc-role">FOnewm／生物技术研究者</p><p class="npc-episodes"><span>EP1</span><span>EP4</span></p></div>
+  <p class="npc-desc">Elenor 与 Ult 的制造者，Soul of Steel 的关键人物。在相关任务条件满足后，也为玩家把敌人身体部件加工成武器；Claire’s Deal 5 中还有敌人武器 Hit 强化服务。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/soulofsteel.shtml">Soul of Steel</a></li><li><a href="https://www.pscave.com/pso/script/unsealeddoor.shtml">Unsealed Door</a></li><li><a href="https://wiki.pioneer2.net/w/Claire's_Deal_5">Claire's Deal 5</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-elenor" data-npc-card data-episodes="1 4" data-search="艾尔诺亚·卡缪（Elenor Camuel） Elenor Camuel エルノア・カミュエル（Elenor Camuel）">
+  <div class="npc-avatar scientist" aria-hidden="true"><img src="/assets/img/npc/elenor.jpg" alt="" width="1024" height="768" loading="lazy" style="width:975.238%;height:731.429%;left:-414.286%;top:-288.571%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">艾尔诺亚·卡缪（Elenor Camuel）</h3><p class="npc-role">RAcaseal／Montague 的造物</p><p class="npc-episodes"><span>EP1</span><span>EP4</span></p></div>
+  <p class="npc-desc">在 Magnitude of Metal 与 Doc’s Secret Plan 中陪伴玩家。Soul of Steel 进一步展现她与姐姐 Ult、Montague，以及玛古之间的联系；EP4 中也继续登场。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/soulofsteel.shtml">Soul of Steel</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2316&amp;op=viewarticle">9-7: Sacred Ground</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-ult" data-npc-card data-episodes="1" data-search="Ult Ult ウルト（Ult）">
+  <div class="npc-avatar scientist" aria-hidden="true"><img src="/assets/img/npc/ult-model.webp" alt="" width="900" height="900" loading="lazy" style="width:100%;height:100%;left:0;top:0;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Ult</h3><p class="npc-role">Elenor 的姐姐／实验型机器人</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Montague 制造的早期型号，也是 Soul of Steel 的营救对象。她渴望摆脱实验室生活，卷入 WORKS 行动与异常光子引发的事件。</p><p class="npc-image-note">按任务使用的角色模板，以本地游戏模型与贴图渲染。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/soulofsteel.shtml">Soul of Steel</a></li><li><a href="/assets/img/npc/model-renders.json">模型素材来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-osto" data-npc-card data-episodes="1 2" data-search="奥斯托·海尔博士（Dr. Osto Hyle） Dr. Osto Hyle オスト・ハイル博士（Dr. Osto Hyle）">
+  <div class="npc-avatar npc-record" aria-hidden="true"><span>▤</span></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">奥斯托·海尔博士（Dr. Osto Hyle）</h3><p class="npc-role">Pioneer 1 的研究者</p><p class="npc-episodes"><span>EP1</span><span>EP2</span></p></div>
+  <p class="npc-desc">主要通过研究记录被玩家认识的科学家。Dr. Osto’s Research 与 Unsealed Door 追查他的资料和实验体，EP2 的海底记录进一步揭示研究设施中的实验。</p><p class="npc-image-note">已核对 Dr. Osto’s Research 与 Unsealed Door 的本地任务文件；内容指向研究记录，未确认本人模型。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/unsealeddoor.shtml">Unsealed Door</a></li><li><a href="https://www.pscave.com/pso/script/seabed.shtml">Episode II · Seabed</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Osto_hyle_composite_entry_pso_ep1and2_materials.png">设定资料扫描页</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-mome" data-npc-card data-episodes="1" data-search="Mome Mome Mome">
+  <div class="npc-avatar scientist" aria-hidden="true"><img src="/assets/img/npc/mome.png" alt="" width="163" height="315" loading="lazy" style="width:106.536%;height:205.882%;left:-3.268%;top:-0.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Mome</h3><p class="npc-role">研究者／Unsealed Door 同行者</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">委托调查 Osto 资料的研究者之一。在 Unsealed Door 中换上作战装备，要求亲眼见到记录中的实验体 Beta772，由玩家护送前往。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/unsealeddoor.shtml">Unsealed Door</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Mome.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-calus" data-npc-card data-episodes="1 2" data-search="卡鲁斯（Calus） Calus / Cal カル・ス（Calus / Cal）">
+  <div class="npc-avatar scientist" aria-hidden="true"><img src="/assets/img/npc/calus.webp" alt="" width="345" height="173" loading="lazy" style="width:199.422%;height:100.000%;left:-49.133%;top:-0.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">卡鲁斯（Calus）</h3><p class="npc-role">人工智能／Elly 的通信朋友</p><p class="npc-episodes"><span>EP1</span><span>EP2</span></p></div>
+  <p class="npc-desc">Elly 一直通信的对象，真实身份是人工智能。Knowing One’s Heart 与 Seat of the Heart 延续了这段关系；EP2 研究所的 Cal 系统还承担资料分析和通讯支援。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/knowingonesheart.shtml">Knowing One's Heart</a></li><li><a href="https://www.pscave.com/pso/script/seatoftheheart.shtml">Seat of the Heart</a></li></ul></details>
+  </div>
+</article></div></section>
+<section id="blackpaper" class="faction-block npc-section" data-npc-group><div class="faction-head npc-section-heading"><span aria-hidden="true">🕶️</span><div><h2>Black Paper 与失踪猎人事件</h2><p>按事件归组，不代表每个人都是组织成员。</p></div><a class="npc-back" href="#npc-directory">回到目录 ↑</a></div><div class="npc-grid"><article class="npc-card" id="npc-kireek" data-npc-card data-episodes="1 2 4" data-search="基里克（Kireek） Kireek キリーク（Kireek）">
+  <div class="npc-avatar bp" aria-hidden="true"><img src="/assets/img/npc/kireek.jpg" alt="" width="1024" height="768" loading="lazy" style="width:568.889%;height:426.667%;left:-216.667%;top:-186.111%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">基里克（Kireek）</h3><p class="npc-role">HUcast／Black Hound</p><p class="npc-episodes"><span>EP1</span><span>EP2</span><span>EP4</span></p></div>
+  <p class="npc-desc">Battle Training 中教玩家战斗的老手，武器是<span data-item-en="SOUL EATER"></span>。他的 Black Paper 身份及与玩家的敌友关系随任务路线展开；不能把一条路线的结局套到所有章节。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/battletraining.shtml">Battle Training</a></li><li><a href="https://www.pscave.com/pso/script/seatoftheheart.shtml">Seat of the Heart</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2316&amp;op=viewarticle">9-7: Sacred Ground</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-sue" data-npc-card data-episodes="1 2 4" data-search="苏（Sue） Sue スゥ（Sue）">
+  <div class="npc-avatar bp" aria-hidden="true"><img src="/assets/img/npc/sue.jpg" alt="" width="720" height="480" loading="lazy" style="width:800.000%;height:533.333%;left:-422.222%;top:-255.556%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">苏（Sue）</h3><p class="npc-role">HUnewearl／Black Paper 相关人物</p><p class="npc-episodes"><span>EP1</span><span>EP2</span><span>EP4</span></p></div>
+  <p class="npc-desc">在 Dr. Osto’s Research 中与玩家同行。是否告诉她名字会影响后续支线；Soul of Steel、Seat of the Heart 和 EP4 又展示了她在研究与军方冲突中的行动。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/drostosresearch.shtml">Dr. Osto's Research</a></li><li><a href="https://www.pscave.com/pso/script/soulofsteel.shtml">Soul of Steel</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2316&amp;op=viewarticle">9-7: Sacred Ground</a></li><li><a href="https://garudo.ni-3.net/Entry/786/">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-kroe" data-npc-card data-episodes="1" data-search="Kroe Waynes Kroe Waynes Kroe Waynes">
+  <div class="npc-avatar bp" aria-hidden="true"><img src="/assets/img/npc/kroe-model.webp" alt="" width="900" height="900" loading="lazy" style="width:100%;height:100%;left:0;top:0;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Kroe Waynes</h3><p class="npc-role">寻找姐姐的猎人</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Waterfall Tears 的委托人，为寻找双胞胎姐姐 Anna 求助。Black Paper 中，她利用姐妹相似的外貌潜入对方身边，与玩家配合追查失踪猎人。</p><p class="npc-image-note">按任务使用的角色模板，以本地游戏模型与贴图渲染。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/waterfalltears.shtml">Waterfall Tears</a></li><li><a href="https://www.pscave.com/pso/script/blackpaper.shtml">Black Paper</a></li><li><a href="/assets/img/npc/model-renders.json">模型素材来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-anna" data-npc-card data-episodes="1" data-search="Anna Waynes Anna Waynes Anna Waynes">
+  <div class="npc-avatar bp" aria-hidden="true"><img src="/assets/img/npc/anna-model.webp" alt="" width="900" height="900" loading="lazy" style="width:100%;height:100%;left:0;top:0;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Anna Waynes</h3><p class="npc-role">Kroe 的双胞胎姐姐</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Waterfall Tears 中失踪的猎人。她被卷入抢夺猎人装备的交易，成为玩家寻找失踪者、追查 Black Paper 的突破口。</p><p class="npc-image-note">按任务使用的角色模板，以本地游戏模型与贴图渲染。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/waterfalltears.shtml">Waterfall Tears</a></li><li><a href="/assets/img/npc/model-renders.json">模型素材来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-tobokke" data-npc-card data-episodes="1" data-search="托波克（Tobokke） Tobokke Tobokke">
+  <div class="npc-avatar bp" aria-hidden="true"><img src="/assets/img/npc/tobokke.webp" alt="" width="206" height="333" loading="lazy" style="width:147.143%;height:237.857%;left:-10.714%;top:-67.857%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">托波克（Tobokke）</h3><p class="npc-role">Black Paper 成员</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Black Paper 任务中阻拦玩家的成员。与 Tonzlar 分别出场。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/waterfalltears.shtml">Waterfall Tears</a></li><li><a href="https://www.pscave.com/pso/script/blackpaper.shtml">Black Paper</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-tonzlar" data-npc-card data-episodes="1" data-search="通兹拉（Tonzlar） Tonzlar Tonzlar">
+  <div class="npc-avatar bp" aria-hidden="true"><img src="/assets/img/npc/tonzlar.png" alt="" width="206" height="333" loading="lazy" style="width:128.750%;height:208.125%;left:-9.375%;top:-43.750%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">通兹拉（Tonzlar）</h3><p class="npc-role">Black Paper 成员</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Black Paper 任务中阻拦玩家的成员。与 Tobokke 分别出场。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/waterfalltears.shtml">Waterfall Tears</a></li><li><a href="https://www.pscave.com/pso/script/blackpaper.shtml">Black Paper</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Tonzlar.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-gekigasky" data-npc-card data-episodes="1" data-search="盖基加斯基（Gekigasky） Gekigasky Gekigasky">
+  <div class="npc-avatar bp" aria-hidden="true"><img src="/assets/img/npc/gekigasky.png" alt="" width="192" height="458" loading="lazy" style="width:116.364%;height:277.576%;left:-12.121%;top:-36.364%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">盖基加斯基（Gekigasky）</h3><p class="npc-role">Black Paper 成员</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">在 Waterfall Tears 开头与 Anna 一同袭击玩家，也出现在 Black Paper 的调查过程中。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/waterfalltears.shtml">Waterfall Tears</a></li><li><a href="https://www.pscave.com/pso/script/blackpaper.shtml">Black Paper</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Gekigasky.png">图片来源</a></li></ul></details>
+  </div>
+</article></div></section>
+<section id="works" class="faction-block npc-section" data-npc-group><div class="faction-head npc-section-heading"><span aria-hidden="true">🛡️</span><div><h2>WORKS 与陨石坑调查</h2><p>EP4 让许多旧人物与新的军方角色相遇。</p></div><a class="npc-back" href="#npc-directory">回到目录 ↑</a></div><div class="npc-grid"><article class="npc-card" id="npc-rupika" data-npc-card data-episodes="1 4" data-search="鲁毕卡（Rupika） Rupika ルピカ（Rupika）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/rupika.jpg" alt="" width="1024" height="768" loading="lazy" style="width:409.600%;height:307.200%;left:-150.000%;top:-110.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">鲁毕卡（Rupika）</h3><p class="npc-role">FOnewearl／EP4 关键人物</p><p class="npc-episodes"><span>EP1</span><span>EP4</span></p></div>
+  <p class="npc-desc">Gran Squall 中由玩家与 Bernie 找到的幸存者。EP4 中再次成为寻找与保护的对象，她与 WORKS 的行动相连；不是只在早期任务露面的配角。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/gransquall.shtml">Gran Squall</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2315&amp;op=viewarticle">9-6: The Chosen (2/2)</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2316&amp;op=viewarticle">9-7: Sacred Ground</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-leo" data-npc-card data-episodes="2 4" data-search="Leo Grahart Leo Grahart レオ・グラハート（Leo Grahart）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/leo.png" alt="" width="664" height="402" loading="lazy" style="width:214.194%;height:129.677%;left:-29.032%;top:-0.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Leo Grahart</h3><p class="npc-role">WORKS／军方人物</p><p class="npc-episodes"><span>EP2</span><span>EP4</span></p></div>
+  <p class="npc-desc">与 WORKS 密切相关的军方人物，也是 Karen 的父亲。EP4 的调查逐步把玩家引向他与 Rupika；Respective Tomorrow 中也能见到他。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/respectivetomorrow.shtml">Respective Tomorrow</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2316&amp;op=viewarticle">9-7: Sacred Ground</a></li><li><a href="https://phantasystar.net/ファンタシースターオンラインの登場人物">PSO character reference</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Leo_grahart_face.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-karen" data-npc-card data-episodes="2 4" data-search="Karen Grahart Karen Grahart カレン・グラハート（Karen Grahart）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/karen.jpg" alt="" width="1024" height="768" loading="lazy" style="width:853.333%;height:640.000%;left:-287.500%;top:-229.167%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Karen Grahart</h3><p class="npc-role">RAmarl／WORKS</p><p class="npc-episodes"><span>EP2</span><span>EP4</span></p></div>
+  <p class="npc-desc">Leo 的女儿，与 Gilliam 一同行动。Seat of the Heart 与 EP4 都有她的身影；在 9-6 中还能向玩家提供通行口令。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/seatoftheheart.shtml">Seat of the Heart</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2315&amp;op=viewarticle">9-6: The Chosen (2/2)</a></li><li><a href="https://phantasystar.net/ファンタシースターオンラインの登場人物">PSO character reference</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-gilliam" data-npc-card data-episodes="1 2 4" data-search="Gilliam Gilliam ギリアム（Gilliam）">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/gilliam.jpg" alt="" width="1024" height="768" loading="lazy" style="width:393.846%;height:295.385%;left:-86.538%;top:-111.538%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Gilliam</h3><p class="npc-role">RAcast／WORKS</p><p class="npc-episodes"><span>EP1</span><span>EP2</span><span>EP4</span></p></div>
+  <p class="npc-desc">与 Karen 同行的机器人，早期任务文本也有 Gillium 的拼写。EP4 中参与 WORKS 行动，9-7 的场景展示了他与 Kireek 的冲突。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/addictingfood.shtml">Addicting Food</a></li><li><a href="https://www.pscave.com/pso/script/seatoftheheart.shtml">Seat of the Heart</a></li><li><a href="https://www.pso-world.com/sections.php?artid=2316&amp;op=viewarticle">9-7: Sacred Ground</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-sakon-ukon" data-npc-card data-episodes="1" data-search="Sakon / Ukon Sakon / Ukon Sakon / Ukon">
+  <div class="npc-avatar gov" aria-hidden="true"><img src="/assets/img/npc/sakon-ukon.jpg" alt="" width="720" height="480" loading="lazy" style="width:923.077%;height:615.385%;left:-380.769%;top:-241.026%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Sakon / Ukon</h3><p class="npc-role">Soul of Steel 的 WORKS 士兵</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">在 Soul of Steel 中封锁行动区域的两名士兵。Sakon 多次与 Montague 一行对峙；Ukon 则把守玩家需要通过的路口。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/soulofsteel.shtml">Soul of Steel</a></li><li><a href="https://garudo.ni-3.net/Entry/803/">图片来源</a>（图为 Sakon）</li></ul></details>
+  </div>
+</article></div></section>
+<section id="citizens" class="faction-block npc-section" data-npc-group><div class="faction-head npc-section-heading"><span aria-hidden="true">📜</span><div><h2>单人任务的委托人与市民</h2><p>小任务也构成了 Pioneer 2 的生活。</p></div><a class="npc-back" href="#npc-directory">回到目录 ↑</a></div><div class="npc-grid"><article class="npc-card" id="npc-zidd" data-npc-card data-episodes="1" data-search="Zidd Zidd Zidd">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/zidd.png" alt="" width="981" height="988" loading="lazy" style="width:490.500%;height:494.000%;left:-120.000%;top:-205.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Zidd</h3><p class="npc-role">Battle Training 委托人</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">派 Ash 前往 Ragol 调查，失去联系后再雇佣玩家与 Kireek 救援。他明确说 Ash 是自己的亲属；英文任务文本使用 cousin。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/battletraining.shtml">Battle Training</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Pso_battletrainingmain.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-racton" data-npc-card data-episodes="1" data-search="Racton Racton Racton">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/racton.png" alt="" width="152" height="325" loading="lazy" style="width:126.667%;height:270.833%;left:-16.667%;top:-8.333%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Racton</h3><p class="npc-role">抢先圈地的地主</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Claiming a Stake 中擅自跑到 Ragol 圈地的人。他的儿子委托玩家带他回来，而他还坚持先回收留在森林的三个标记胶囊。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/claimingastake.shtml">Claiming a Stake</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Racton.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-guls" data-npc-card data-episodes="1" data-search="Dr. Guls Dr. Guls Dr. Guls">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/guls.png" alt="" width="747" height="586" loading="lazy" style="width:339.545%;height:266.364%;left:-206.818%;top:-134.091%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Dr. Guls</h3><p class="npc-role">沉迷 Rappy 的生物学家</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">The Fake in Yellow 的失踪研究者。为了近距离观察 Rappy，他穿上伪装混入群体，助手只好请猎人把他找回来。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/thefakeinyellow.shtml">The Fake in Yellow</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Fakeyellowquest.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-trekka" data-npc-card data-episodes="1" data-search="Trekka Trekka Trekka">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/trekka.jpg" alt="" width="720" height="480" loading="lazy" style="width:720.000%;height:480.000%;left:-267.000%;top:-200.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Trekka</h3><p class="npc-role">寻找甜食的委托人</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Addicting Food 的委托人。无法随意吃到甜食的她，请玩家前往 Ragol 寻找蛋糕，由此遇到在洞窟开店的 Naura 三姐妹。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/addictingfood.shtml">Addicting Food</a></li><li><a href="https://garudo.ni-3.net/Entry/767/">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-cicil" data-npc-card data-episodes="1" data-search="Cicil Cicil Cicil">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/cicil.png" alt="" width="179" height="290" loading="lazy" style="width:132.593%;height:214.815%;left:-14.815%;top:-0.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Cicil</h3><p class="npc-role">The Lost Bride 同行者</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">准备与 Albert 结婚的委托人。她希望通过在洞窟中行走恢复体形，请玩家保护自己，避免因受伤而使用恢复道具。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/thelostbride.shtml">The Lost Bride</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Cicil1.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-albert" data-npc-card data-episodes="1" data-search="Albert Albert Albert">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/albert.jpg" alt="" width="720" height="480" loading="lazy" style="width:720.000%;height:480.000%;left:-182.000%;top:-167.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Albert</h3><p class="npc-role">Cicil 的未婚夫</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">The Lost Bride 中留在 Pioneer 2 等待 Cicil 的男子。他对未婚妻的理想化想象，也是她迟迟不愿回去见他的原因之一。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/thelostbride.shtml">The Lost Bride</a></li><li><a href="https://garudo.ni-3.net/Entry/769/">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-matha" data-npc-card data-episodes="1" data-search="Matha Grave Matha Grave Matha Grave">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/matha.png" alt="" width="121" height="270" loading="lazy" style="width:115.238%;height:257.143%;left:-9.524%;top:-0.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Matha Grave</h3><p class="npc-role">寻找管家的女孩</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">The Grave’s Butler 的委托人。父母是科学家，平日照顾她的 Blant 如同家人；她与玩家一起追踪管家留下的记录。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/thegravesbutler.shtml">The Grave's Butler</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Matha_grave.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-blant" data-npc-card data-episodes="1" data-search="Blant Blant Blant">
+  <div class="npc-avatar npc-record" aria-hidden="true"><span>▤</span></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Blant</h3><p class="npc-role">Grave 家的管家／前 Ranger</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">为保护 Matha 而独自调查 Ragol 的管家。玩家通过 The Grave’s Butler 中的留言了解他的行动，以及他对移民计划的疑虑。</p><p class="npc-image-note">已核对 The Grave’s Butler 的本地任务文件；通过留言胶囊了解其经历，未确认本人模型。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/thegravesbutler.shtml">The Grave's Butler</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-lionel" data-npc-card data-episodes="1" data-search="Lionel Lionel Lionel">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/lionel.png" alt="" width="179" height="421" loading="lazy" style="width:102.286%;height:240.571%;left:-0.000%;top:-0.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Lionel</h3><p class="npc-role">被拆散的机器人</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Letter from Lionel 中向玩家求助的机器人。需要根据留言找回分散的身体部件，任务也触及机器人部件的黑市交易。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/letterfromlionel.shtml">Letter from Lionel</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Lionel.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-gizel" data-npc-card data-episodes="1" data-search="吉泽尔（Gizel） Gizel Gizel">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/gizel.jpg" alt="" width="720" height="480" loading="lazy" style="width:1058.824%;height:705.882%;left:-420.588%;top:-294.118%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">吉泽尔（Gizel）</h3><p class="npc-role">热衷购买武器的丈夫</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">The Value of Money 中沉迷买武器的男子。他的妻子雇佣玩家劝阻他，让他考虑家庭开支，而不是只看武器的吸引力。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/thevalueofmoney.shtml">The Value of Money</a></li><li><a href="https://garudo.ni-3.net/Entry/771/">图片来源</a></li></ul></details>
+  </div>
+</article></div></section>
+<section id="services" class="faction-block npc-section" data-npc-group><div class="faction-head npc-section-heading"><span aria-hidden="true">🛒</span><div><h2>商人与常见服务 NPC</h2><p>人物身份与兑换规则分开查阅。</p></div><a class="npc-back" href="#npc-directory">回到目录 ↑</a></div><div class="npc-grid"><article class="npc-card" id="npc-gallon" data-npc-card data-episodes="2" data-search="Gallon Gallon Gallon">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/gallon.png" alt="" width="164" height="337" loading="lazy" style="width:100.000%;height:205.488%;left:-0.000%;top:-0.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Gallon</h3><p class="npc-role">商店经营者</p><p class="npc-episodes"><span>EP2</span></p></div>
+  <p class="npc-desc">Gallon’s Shop 的店主。该任务内有多种商店服务；Paganini 的兑换则由 Hopkins 引见，不能把这些 NPC 当成同一个商人。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://wiki.pioneer2.net/w/Gallon's_Shop">Gallon's Shop</a></li><li><a href="https://phantasystar.fandom.com/wiki/File:Pso_generiman3.png">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-paganini" data-npc-card data-episodes="2" data-search="帕加尼尼（Paganini） Paganini パガニーニ（Paganini）">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/paganini.webp" alt="" width="240" height="210" loading="lazy" style="width:252.632%;height:221.053%;left:-0.000%;top:-52.632%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">帕加尼尼（Paganini）</h3><p class="npc-role">研究资料收集者／兑换服务</p><p class="npc-episodes"><span>EP2</span></p></div>
+  <p class="npc-desc">Hopkins 的父亲。在 Gallon’s Shop 中提供<span data-item-en="Photon Drop"></span>兑换；收集东西塔的研究资料还与武器服务解锁有关。主要出场线索是商店和控制塔任务。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://wiki.pioneer2.net/w/Gallon's_Shop">Gallon's Shop</a></li><li><a href="https://www.pscave.com/pso/script/thewesttower.shtml">The West Tower</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-hopkins" data-npc-card data-episodes="1 2" data-search="Hopkins Hopkins Hopkins">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/hopkins.jpg" alt="" width="1024" height="768" loading="lazy" style="width:787.692%;height:590.769%;left:-423.077%;top:-242.308%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Hopkins</h3><p class="npc-role">遗失武器的委托人／Paganini 之子</p><p class="npc-episodes"><span>EP1</span><span>EP2</span></p></div>
+  <p class="npc-desc">Lost 系列任务中经常请玩家找回武器的人。在 Gallon’s Shop 和控制塔任务里，又负责把玩家介绍给父亲 Paganini。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/lostheatsword.shtml">Lost HEAT SWORD</a></li><li><a href="https://wiki.pioneer2.net/w/Gallon's_Shop">Gallon's Shop</a></li><li><a href="https://www.pscave.com/pso/script/thewesttower.shtml">The West Tower</a></li><li><a href="https://sageoshow.blog.fc2.com/blog-entry-580.html">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-coren" data-npc-card data-episodes="1 2 4" data-search="Coren Coren Coren">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/coren-model.webp" alt="" width="900" height="900" loading="lazy" style="width:100%;height:100%;left:0;top:0;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Coren</h3><p class="npc-role">流浪鉴定师</p><p class="npc-episodes"><span>EP1</span><span>EP2</span><span>EP4</span></p></div>
+  <p class="npc-desc">流浪鉴定师（Wandering Tekker），在商店区外用美塞塔抽取随机物品，服务不同于柜台的装备鉴定。外观采用房间 Section ID 对应的鉴定师模型；图片仅为一种外观示例。Ephinea 的奖池随 UTC 星期与投入金额变化，单人模式不出现。</p><p class="npc-image-note">本地鉴定师模型渲染，仅展示一种外观。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://wiki.pioneer2.net/w/Coren">Coren</a></li><li><a href="/assets/img/npc/model-renders.json">模型素材来源</a></li><li><a href="https://www.pioneer2.net/community/threads/coren-bugged-p2-p4.972/post-10033">外观与 Section ID：管理员说明</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-claire" data-npc-card data-episodes="4" data-search="Claire Claire Claire">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/claire.jpg" alt="" width="960" height="768" loading="lazy" style="width:800.000%;height:640.000%;left:-295.833%;top:-285.833%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Claire</h3><p class="npc-role">EP4 物品交换商人</p><p class="npc-episodes"><span>EP4</span></p></div>
+  <p class="npc-desc">Claire’s Deal 5 的委托人。按指定组合收取物品并给予交换奖励；同一任务里的 Montague 提供另一项独立服务。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://wiki.pioneer2.net/w/Claire's_Deal_5">Claire's Deal 5</a></li><li><a href="https://www.4gamer.net/games/019/G001924/20061128165313/">图片来源</a></li></ul></details>
+  </div>
+</article>
+<article class="npc-card" id="npc-naura" data-npc-card data-episodes="1" data-search="Naura 三姐妹（Naura sisters） Naura sisters ナウラ三姉妹（Naura sisters）">
+  <div class="npc-avatar guild" aria-hidden="true"><img src="/assets/img/npc/naura.jpg" alt="" width="720" height="480" loading="lazy" style="width:720.000%;height:480.000%;left:-377.000%;top:-245.000%;max-width:none"></div>
+  <div class="npc-body"><div class="npc-card-heading"><h3 class="npc-name">Naura 三姐妹（Naura sisters）</h3><p class="npc-role">洞窟里的蛋糕店</p><p class="npc-episodes"><span>EP1</span></p></div>
+  <p class="npc-desc">Addicting Food 中在洞窟深处经营蛋糕店的三姐妹。她们坚持这里的温度和湿度适合烘焙，即使附近遍布怪物也不肯搬走。</p><details class="npc-references"><summary>出场与资料</summary><ul><li><a href="https://www.pscave.com/pso/script/addictingfood.shtml">Addicting Food</a></li><li><a href="https://garudo.ni-3.net/Entry/767/">图片来源</a>（三姐妹之一）</li></ul></details>
+  </div>
+</article></div></section>
+ <section id="relationships" class="npc-section" data-npc-extra><div class="npc-section-heading"><h2>人物关系速览</h2><p>沿着关系找到相关人物；这里的分组不是势力归属表。</p></div><div class="rel-wrap" tabindex="0" role="region" aria-label="人物关系图，可横向滚动"><svg class="rel-svg" viewBox="0 0 1200 960" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="npc-graph-title"><title id="npc-graph-title">主要人物关系；点击头像查看人物介绍</title><rect x="10" y="5" width="580" height="305" rx="12" fill="#0e182a" stroke="#253b50"/><text x="30" y="32" fill="#7dd3fc" font-size="15">英雄与家人</text><rect x="610" y="5" width="580" height="305" rx="12" fill="#0e182a" stroke="#253b50"/><text x="630" y="32" fill="#7dd3fc" font-size="15">制造者与姐妹机器人</text><rect x="10" y="325" width="580" height="305" rx="12" fill="#0e182a" stroke="#253b50"/><text x="30" y="352" fill="#7dd3fc" font-size="15">研究所与通讯</text><rect x="610" y="325" width="580" height="305" rx="12" fill="#0e182a" stroke="#253b50"/><text x="630" y="352" fill="#7dd3fc" font-size="15">WORKS</text><rect x="10" y="645" width="580" height="305" rx="12" fill="#0e182a" stroke="#253b50"/><text x="30" y="672" fill="#7dd3fc" font-size="15">任务中的亲属与伙伴</text><rect x="610" y="645" width="580" height="305" rx="12" fill="#0e182a" stroke="#253b50"/><text x="630" y="672" fill="#7dd3fc" font-size="15">商人与家人</text><g class="edge family"><path d="M90,127 L90,178"/><text x="165" y="156.5">父女</text></g><g class="edge mentor"><path d="M245.76242285281648,109.32669955194618 L124.2375771471835,195.67330044805382"/><text x="185" y="144.5">师徒</text></g><g class="edge work"><path d="M322,85 L443,85"/><text x="382.5" y="77">旧友</text></g><g class="edge family"><path d="M485,127 L485,178"/><text x="560" y="156.5">养父女</text></g><g class="edge work"><path d="M869.2604530738834,113.6195781725914 L785.7395469261166,191.3804218274086"/><text x="827.5" y="144.5">制造者</text></g><g class="edge work"><path d="M930.7395469261166,113.6195781725914 L1014.2604530738834,191.3804218274086"/><text x="972.5" y="144.5">制造者</text></g><g class="edge work"><path d="M132,405 L238,405"/><text x="185" y="397">调查支援</text></g><g class="edge work"><path d="M322,405 L443,405"/><text x="382.5" y="397">通信朋友</text></g><g class="edge family"><path d="M755,447 L755,498"/><text x="830" y="476.5">父女</text></g><g class="edge work"><path d="M797,540 L1003,540"/><text x="900" y="532">同行</text></g><g class="edge family"><path d="M132,715 L288,715"/><text x="210" y="707">双胞胎姐妹</text></g><g class="edge work"><path d="M132,860 L288,860"/><text x="210" y="852">主人与机器人</text></g><g class="edge family"><path d="M797,765 L1003,765"/><text x="900" y="757">父子</text></g><a class="node gov" href="#npc-tyrell" aria-label="Tyrell"><circle class="av-bg" cx="90" cy="85" r="40" fill="#172b43"/><defs><pattern id="graph-tyrell-portrait" width="1" height="1" viewBox="0 0 900 900"><image href="/assets/img/npc/tyrell-model.webp" width="900" height="900" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="90" cy="85" r="38" fill="url(#graph-tyrell-portrait)"/><circle class="av-ring" cx="90" cy="85" r="40"/><text class="label" x="90" y="145">Tyrell</text></a><a class="node hero" href="#npc-rico" aria-label="Rico"><circle class="av-bg" cx="90" cy="220" r="40" fill="#172b43"/><defs><pattern id="graph-rico-portrait" width="1" height="1" viewBox="0 0 900 900"><image href="/assets/img/npc/rico-model.webp" width="900" height="900" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="90" cy="220" r="38" fill="url(#graph-rico-portrait)"/><circle class="av-ring" cx="90" cy="220" r="40"/><text class="label" x="90" y="280">Rico</text></a><a class="node hero" href="#npc-flowen" aria-label="Flowen"><circle class="av-bg" cx="280" cy="85" r="40" fill="#172b43"/><defs><pattern id="graph-flowen-portrait" width="1" height="1" viewBox="0 0 900 900"><image href="/assets/img/npc/flowen-model.webp" width="900" height="900" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="280" cy="85" r="38" fill="url(#graph-flowen-portrait)"/><circle class="av-ring" cx="280" cy="85" r="40"/><text class="label" x="280" y="145">Flowen</text></a><a class="node hero" href="#npc-donoph" aria-label="Donoph Baz"><circle class="av-bg" cx="485" cy="85" r="40" fill="#172b43"/><defs><pattern id="graph-donoph-portrait" width="1" height="1" viewBox="270 35 125 125"><image href="/assets/img/npc/donoph.png" width="418" height="389" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="485" cy="85" r="38" fill="url(#graph-donoph-portrait)"/><circle class="av-ring" cx="485" cy="85" r="40"/><text class="label" x="485" y="145">Donoph Baz</text></a><a class="node guild" href="#npc-alicia" aria-label="Alicia"><circle class="av-bg" cx="485" cy="220" r="40" fill="#172b43"/><defs><pattern id="graph-alicia-portrait" width="1" height="1" viewBox="215 205 130 130"><image href="/assets/img/npc/alicia.jpg" width="720" height="480" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="485" cy="220" r="38" fill="url(#graph-alicia-portrait)"/><circle class="av-ring" cx="485" cy="220" r="40"/><text class="label" x="485" y="280">Alicia</text></a><a class="node sci" href="#npc-montague" aria-label="Montague"><circle class="av-bg" cx="900" cy="85" r="40" fill="#172b43"/><defs><pattern id="graph-montague-portrait" width="1" height="1" viewBox="635 300 140 140"><image href="/assets/img/npc/montague.jpg" width="1024" height="768" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="900" cy="85" r="38" fill="url(#graph-montague-portrait)"/><circle class="av-ring" cx="900" cy="85" r="40"/><text class="label" x="900" y="145">Montague</text></a><a class="node sci" href="#npc-elenor" aria-label="Elenor"><circle class="av-bg" cx="755" cy="220" r="40" fill="#172b43"/><defs><pattern id="graph-elenor-portrait" width="1" height="1" viewBox="435 303 105 105"><image href="/assets/img/npc/elenor.jpg" width="1024" height="768" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="755" cy="220" r="38" fill="url(#graph-elenor-portrait)"/><circle class="av-ring" cx="755" cy="220" r="40"/><text class="label" x="755" y="280">Elenor</text></a><a class="node sci" href="#npc-ult" aria-label="Ult"><circle class="av-bg" cx="1045" cy="220" r="40" fill="#172b43"/><defs><pattern id="graph-ult-portrait" width="1" height="1" viewBox="0 0 900 900"><image href="/assets/img/npc/ult-model.webp" width="900" height="900" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="1045" cy="220" r="38" fill="url(#graph-ult-portrait)"/><circle class="av-ring" cx="1045" cy="220" r="40"/><text class="label" x="1045" y="280">Ult</text></a><a class="node gov" href="#npc-natasha" aria-label="Natasha"><circle class="av-bg" cx="90" cy="405" r="40" fill="#172b43"/><defs><pattern id="graph-natasha-portrait" width="1" height="1" viewBox="318 175 160 160"><image href="/assets/img/npc/natasha.png" width="800" height="450" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="90" cy="405" r="38" fill="url(#graph-natasha-portrait)"/><circle class="av-ring" cx="90" cy="405" r="40"/><text class="label" x="90" y="465">Natasha</text></a><a class="node sci" href="#npc-elly" aria-label="Elly"><circle class="av-bg" cx="280" cy="405" r="40" fill="#172b43"/><defs><pattern id="graph-elly-portrait" width="1" height="1" viewBox="325 160 160 160"><image href="/assets/img/npc/elly.png" width="800" height="450" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="280" cy="405" r="38" fill="url(#graph-elly-portrait)"/><circle class="av-ring" cx="280" cy="405" r="40"/><text class="label" x="280" y="465">Elly</text></a><a class="node sci" href="#npc-calus" aria-label="Calus"><circle class="av-bg" cx="485" cy="405" r="40" fill="#172b43"/><defs><pattern id="graph-calus-portrait" width="1" height="1" viewBox="85 0 173 173"><image href="/assets/img/npc/calus.webp" width="345" height="173" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="485" cy="405" r="38" fill="url(#graph-calus-portrait)"/><circle class="av-ring" cx="485" cy="405" r="40"/><text class="label" x="485" y="465">Calus</text></a><a class="node gov" href="#npc-leo" aria-label="Leo"><circle class="av-bg" cx="755" cy="405" r="40" fill="#172b43"/><defs><pattern id="graph-leo-portrait" width="1" height="1" viewBox="90 0 310 310"><image href="/assets/img/npc/leo.png" width="664" height="402" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="755" cy="405" r="38" fill="url(#graph-leo-portrait)"/><circle class="av-ring" cx="755" cy="405" r="40"/><text class="label" x="755" y="465">Leo</text></a><a class="node gov" href="#npc-karen" aria-label="Karen"><circle class="av-bg" cx="755" cy="540" r="40" fill="#172b43"/><defs><pattern id="graph-karen-portrait" width="1" height="1" viewBox="345 275 120 120"><image href="/assets/img/npc/karen.jpg" width="1024" height="768" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="755" cy="540" r="38" fill="url(#graph-karen-portrait)"/><circle class="av-ring" cx="755" cy="540" r="40"/><text class="label" x="755" y="600">Karen</text></a><a class="node gov" href="#npc-gilliam" aria-label="Gilliam"><circle class="av-bg" cx="1045" cy="540" r="40" fill="#172b43"/><defs><pattern id="graph-gilliam-portrait" width="1" height="1" viewBox="225 290 260 260"><image href="/assets/img/npc/gilliam.jpg" width="1024" height="768" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="1045" cy="540" r="38" fill="url(#graph-gilliam-portrait)"/><circle class="av-ring" cx="1045" cy="540" r="40"/><text class="label" x="1045" y="600">Gilliam</text></a><a class="node guild" href="#npc-kroe" aria-label="Kroe"><circle class="av-bg" cx="90" cy="715" r="40" fill="#172b43"/><defs><pattern id="graph-kroe-portrait" width="1" height="1" viewBox="0 0 900 900"><image href="/assets/img/npc/kroe-model.webp" width="900" height="900" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="90" cy="715" r="38" fill="url(#graph-kroe-portrait)"/><circle class="av-ring" cx="90" cy="715" r="40"/><text class="label" x="90" y="775">Kroe</text></a><a class="node guild" href="#npc-anna" aria-label="Anna"><circle class="av-bg" cx="330" cy="715" r="40" fill="#172b43"/><defs><pattern id="graph-anna-portrait" width="1" height="1" viewBox="0 0 900 900"><image href="/assets/img/npc/anna-model.webp" width="900" height="900" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="330" cy="715" r="38" fill="url(#graph-anna-portrait)"/><circle class="av-ring" cx="330" cy="715" r="40"/><text class="label" x="330" y="775">Anna</text></a><a class="node hero" href="#npc-zoke" aria-label="Zoke"><circle class="av-bg" cx="90" cy="860" r="40" fill="#172b43"/><defs><pattern id="graph-zoke-portrait" width="1" height="1" viewBox="0 0 900 900"><image href="/assets/img/npc/zoke-model.webp" width="900" height="900" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="90" cy="860" r="38" fill="url(#graph-zoke-portrait)"/><circle class="av-ring" cx="90" cy="860" r="40"/><text class="label" x="90" y="920">Zoke</text></a><a class="node guild" href="#npc-shino" aria-label="Shino"><circle class="av-bg" cx="330" cy="860" r="40" fill="#172b43"/><defs><pattern id="graph-shino-portrait" width="1" height="1" viewBox="715 300 145 145"><image href="/assets/img/npc/shino.jpg" width="1024" height="768" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="330" cy="860" r="38" fill="url(#graph-shino-portrait)"/><circle class="av-ring" cx="330" cy="860" r="40"/><text class="label" x="330" y="920">Shino</text></a><a class="node guild" href="#npc-paganini" aria-label="Paganini"><circle class="av-bg" cx="755" cy="765" r="40" fill="#172b43"/><defs><pattern id="graph-paganini-portrait" width="1" height="1" viewBox="0 50 95 95"><image href="/assets/img/npc/paganini.webp" width="240" height="210" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="755" cy="765" r="38" fill="url(#graph-paganini-portrait)"/><circle class="av-ring" cx="755" cy="765" r="40"/><text class="label" x="755" y="825">Paganini</text></a><a class="node guild" href="#npc-hopkins" aria-label="Hopkins"><circle class="av-bg" cx="1045" cy="765" r="40" fill="#172b43"/><defs><pattern id="graph-hopkins-portrait" width="1" height="1" viewBox="550 315 130 130"><image href="/assets/img/npc/hopkins.jpg" width="1024" height="768" preserveAspectRatio="xMidYMin slice"/></pattern></defs><circle cx="1045" cy="765" r="38" fill="url(#graph-hopkins-portrait)"/><circle class="av-ring" cx="1045" cy="765" r="40"/><text class="label" x="1045" y="825">Hopkins</text></a></svg><div class="rel-legend"><span class="chip"><span class="sw family"></span>亲属</span><span class="chip"><span class="sw mentor"></span>师徒</span><span class="chip"><span class="sw work"></span>任务与工作关系</span></div></div><div class="npc-relations"><article><h3>英雄与家人</h3><ul><li><a href="#npc-tyrell">Tyrell</a> → <a href="#npc-rico">Rico</a> · 父女<br><a href="#npc-flowen">Flowen</a> → <a href="#npc-rico">Rico</a> · 师徒</li><li><a href="#npc-flowen">Flowen</a> ↔ <a href="#npc-donoph">Donoph Baz</a> · 旧友<br><a href="#npc-donoph">Donoph</a> → <a href="#npc-alicia">Alicia</a> · 养父女</li><li><a href="#npc-zoke">Zoke</a> ↔ <a href="#npc-shino">Shino</a> · 主人与追寻他的机器人</li></ul></article><article><h3>研究所与造物</h3><ul><li><a href="#npc-natasha">Natasha</a> → <a href="#npc-elly">Elly</a> · 调查指挥与通讯支援<br><a href="#npc-elly">Elly</a> ↔ <a href="#npc-calus">Calus</a> · 通信朋友</li><li><a href="#npc-montague">Montague</a> → <a href="#npc-elenor">Elenor</a> + <a href="#npc-ult">Ult</a> · 制造者与姐妹机器人</li></ul></article><article><h3>任务中的搭档与亲属</h3><ul><li><a href="#npc-kroe">Kroe</a> ↔ <a href="#npc-anna">Anna</a> · 双胞胎姐妹<br><a href="#npc-leo">Leo</a> → <a href="#npc-karen">Karen</a> · 父女</li><li><a href="#npc-karen">Karen</a> ↔ <a href="#npc-gilliam">Gilliam</a> · 同行<br><a href="#npc-paganini">Paganini</a> → <a href="#npc-hopkins">Hopkins</a> · 父子</li></ul></article></div></section>
+ <section id="story" class="npc-section" data-npc-extra><details class="npc-story"><summary>剧情真相与阅读顺序（含剧透）</summary><div class="timeline"><p>Pioneer 1 先行登陆 Ragol。Pioneer 2 抵达后，地表发生巨大爆炸，双方通讯中断。猎人们受托调查失联的先遣队、异常生物与隐藏的研究设施。</p><article class="timeline-entry"><h3>EP1 · Rico / Dark Falz</h3><p>EP1 的调查跟随 Rico 的记录进入遗迹，最终揭示她成为 Dark Falz 的宿主。把战斗画面与后续作品的灵魂故事分开看，不把 EP3 的解释提前写成 EP1 当场发生的结局。</p><a href="https://www.pscave.com/pso/script/ruins.shtml">Episode I · Ruins</a></article><article class="timeline-entry"><h3>EP2 · Flowen / Olga Flow</h3><p>Flowen 的身体受到 D 细胞侵蚀，研究人员又将人工智能 Olga 用于实验，最终形成 Olga Flow。Olga 是负责研究设施的人工智能之一。先读 EP2 的岛屿与海底记录，再补 Seat of the Heart 的 Elly／Calus 支线。</p><a href="https://www.pscave.com/pso/script/seabed.shtml">Episode II · Seabed</a></article><article class="timeline-entry"><h3>EP4 · WORKS / Rupika</h3><p>从 9-1 到 9-8 的政府任务追查失联研究队、陨石与 Rupika。Ash、Bernie、Sue、Kireek、Montague 和 Elenor 等人再度出现，Karen、Gilliam 与 Leo 也进入这条故事线。部分对话或场景有触发条件，不能用一次流程代替所有分支。</p><a href="https://www.pso-world.com/sections.php?artid=2316&amp;op=viewarticle">9-7: Sacred Ground</a></article><article class="timeline-entry" id="ep3"><h3>EP3 延伸阅读</h3><p>Blue Star Memories 是衔接 EP3 的任务，登场人物包括 Break、Orland 与 Nef。Endu 的身世涉及 EP3 对 Rico、Flowen 的后续解释，因此放在延伸阅读，而不列作 Blue Burst 的常驻 NPC。</p><a href="https://www.pscave.com/pso/script/bluestarmemories.shtml">Blue Star Memories</a> · <a href="https://phantasystar.fandom.com/wiki/Endu">Endu · Episode III</a></article></div></details></section>
+ <footer class="npc-sources" data-npc-extra><h2>关于收录与来源</h2><p>任务对话优先采用 Phantasy Star Cave 的游戏文本转录；Blue Burst 的任务受理与服务机制以 Ephinea Wiki 为准。人物卡中的链接可继续查阅出处。已有中文名保留英文身份；尚未核实中文译名的人物暂用英文名。</p><a href="https://www.pscave.com/pso/script/">PSO Script Archive</a> · <a href="https://wiki.pioneer2.net/w/Government">Ephinea · Government</a></footer>
+ </div></div>
 </body>
 </html>

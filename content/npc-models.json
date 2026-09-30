@@ -1,0 +1,342 @@
+{
+  "jobs": [
+    {
+      "id": "flowen",
+      "parts": [
+        {
+          "model": "plTbdy00.nj",
+          "archive": "plTtex.afs",
+          "slots": [
+            6,
+            1,
+            2,
+            0,
+            3
+          ]
+        },
+        {
+          "model": "plThed00.nj",
+          "archive": "plTtex.afs",
+          "slots": [
+            5,
+            4
+          ],
+          "position": [
+            0,
+            17,
+            0
+          ]
+        },
+        {
+          "model": "plThai00.nj",
+          "archive": "plTtex.afs",
+          "slots": [
+            null,
+            null,
+            null,
+            5
+          ],
+          "position": [
+            0,
+            17,
+            0
+          ]
+        }
+      ],
+      "section_id": 0
+    },
+    {
+      "id": "rico",
+      "parts": [
+        {
+          "model": "plXbdy00.nj",
+          "archive": "plXtex.afs",
+          "slots": [
+            3,
+            0,
+            1
+          ]
+        },
+        {
+          "model": "plXhed00.nj",
+          "archive": "plXtex.afs",
+          "slots": [
+            1,
+            2
+          ],
+          "position": [
+            0,
+            14.5,
+            0
+          ]
+        }
+      ],
+      "section_id": 0
+    },
+    {
+      "id": "ult",
+      "template": 50,
+      "template_name": "ULT",
+      "class": 5,
+      "section_id": 5,
+      "parts": [
+        {
+          "model": "plFbdy00.nj",
+          "archive": "plFtex.afs",
+          "slots": [
+            380,
+            357,
+            35,
+            36,
+            37
+          ]
+        },
+        {
+          "model": "plFhed02.nj",
+          "archive": "plFtex.afs",
+          "slots": [
+            265,
+            264,
+            266
+          ],
+          "attach_bone": 59
+        }
+      ],
+      "proportions": [
+        0.16925638914108276,
+        0.17125439643859863
+      ],
+      "class_height": 0.5,
+      "appearance": {
+        "costume": 0,
+        "skin": 7,
+        "face": 0,
+        "head": 2,
+        "hair": 0,
+        "hair_red": 0,
+        "hair_green": 0,
+        "hair_blue": 0
+      }
+    },
+    {
+      "id": "zoke",
+      "template": 34,
+      "template_name": "ZOKE",
+      "class": 3,
+      "section_id": 3,
+      "parts": [
+        {
+          "model": "plDbdy00.nj",
+          "archive": "plDtex.afs",
+          "slots": [
+            200,
+            41,
+            40,
+            36,
+            37,
+            38,
+            39,
+            35
+          ]
+        },
+        {
+          "model": "plDhed00.nj",
+          "archive": "plDtex.afs",
+          "slots": [
+            136,
+            137
+          ],
+          "attach_bone": 59
+        },
+        {
+          "model": "plDhai01.nj",
+          "archive": "plDtex.afs",
+          "slots": [
+            167,
+            168,
+            169,
+            170
+          ],
+          "attach_bone": 59,
+          "tint": [
+            0.8823529411764706,
+            0.9411764705882353,
+            0.8431372549019608
+          ]
+        },
+        {
+          "model": "plDcap01.nj",
+          "archive": "plDtex.afs",
+          "slots": [
+            37,
+            38,
+            39,
+            40
+          ],
+          "attach_bone": 59
+        }
+      ],
+      "proportions": [
+        0.33472415804862976,
+        0.02486424893140793
+      ],
+      "class_height": 0,
+      "appearance": {
+        "costume": 5,
+        "skin": 1,
+        "face": 1,
+        "head": 0,
+        "hair": 1,
+        "hair_red": 225,
+        "hair_green": 240,
+        "hair_blue": 215
+      }
+    },
+    {
+      "id": "kroe",
+      "template": 30,
+      "template_name": "KROE",
+      "class": 1,
+      "section_id": 5,
+      "parts": [
+        {
+          "model": "plBbdy00.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            304,
+            79,
+            80,
+            81,
+            91,
+            277,
+            287,
+            287
+          ]
+        },
+        {
+          "model": "plBhed00.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            235,
+            247
+          ],
+          "attach_bone": 59
+        },
+        {
+          "model": "plBhai05.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            268,
+            269,
+            270,
+            271
+          ],
+          "attach_bone": 59,
+          "tint": [
+            0.8,
+            1.0,
+            0.6666666666666666
+          ]
+        }
+      ],
+      "proportions": [
+        0.28949764370918274,
+        0.587506890296936
+      ],
+      "class_height": 0.5,
+      "appearance": {
+        "costume": 6,
+        "skin": 0,
+        "face": 2,
+        "head": 0,
+        "hair": 5,
+        "hair_red": 204,
+        "hair_green": 255,
+        "hair_blue": 170
+      }
+    },
+    {
+      "id": "anna",
+      "template": 20,
+      "template_name": "ANNA",
+      "class": 1,
+      "section_id": 6,
+      "parts": [
+        {
+          "model": "plBbdy00.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            305,
+            79,
+            80,
+            81,
+            91,
+            277,
+            287,
+            287
+          ]
+        },
+        {
+          "model": "plBhed00.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            235,
+            247
+          ],
+          "attach_bone": 59
+        },
+        {
+          "model": "plBhai02.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            263,
+            264,
+            265,
+            266
+          ],
+          "attach_bone": 59,
+          "tint": [
+            0.803921568627451,
+            1.0,
+            0.5843137254901961
+          ]
+        }
+      ],
+      "proportions": [
+        0.3091794550418854,
+        0.6076987385749817
+      ],
+      "class_height": 0.5,
+      "appearance": {
+        "costume": 6,
+        "skin": 0,
+        "face": 2,
+        "head": 0,
+        "hair": 2,
+        "hair_red": 205,
+        "hair_green": 255,
+        "hair_blue": 149
+      }
+    },
+    {
+      "id": "tyrell",
+      "parts": [
+        {
+          "model": "tyrell.nj",
+          "bml": "bm_n_soutoku_i_body.bml",
+          "entry": 0
+        }
+      ]
+    },
+    {
+      "id": "coren",
+      "parts": [
+        {
+          "model": "coren.nj",
+          "bml": "bm_n_kanteib_i_body.bml",
+          "entry": 0
+        }
+      ]
+    }
+  ]
+}

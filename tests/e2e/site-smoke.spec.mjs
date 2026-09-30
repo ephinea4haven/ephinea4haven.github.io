@@ -375,31 +375,17 @@ test('Seabed route variants use an exclusive full-width accordion', async ({ pag
   await expect(page.locator('#equipment')).toContainText('Frozen Shooter');
 });
 
-test('NPC guide keeps card and relationship names bilingual', async ({ page }) => {
+test('NPC guide connects equipment names to sourced character profiles', async ({ page }) => {
   await page.goto('/guide/npc.html');
-
-  const bilingualName = /[\u3400-\u9fff].*（[^）]*[A-Za-z][^）]*）/;
-  const cardNames = await page.locator('.npc-name').evaluateAll((elements) => (
-    elements.map((element) => element.firstChild?.textContent.trim() || '')
-  ));
-  expect(cardNames).toHaveLength(25);
-  for (const name of cardNames) expect(name).toMatch(bilingualName);
-  expect(cardNames).toContain('暗黑佛 / 黑暗法尔兹（Dark Falz）');
-
-  const graphNames = await page.locator('.rel-svg .node:not(.muted) > text.label')
-    .evaluateAll((elements) => elements.map((element) => ({
-      name: element.textContent.trim(),
-      lines: element.querySelectorAll('tspan').length,
-      english: element.querySelector('.label-en')?.textContent.trim() || '',
-    })));
-  expect(graphNames).toHaveLength(25);
-  for (const { name, lines, english } of graphNames) {
-    expect(name).toMatch(bilingualName);
-    expect(lines).toBe(2);
-    expect(english).toMatch(/^（.*[A-Za-z].*）$/);
-  }
-  expect(graphNames.map(({ name }) => name))
-    .toContain('暗黑佛 / 黑暗法尔兹（Dark Falz）');
+  await expect(page.locator('[data-npc-guide]')).toHaveAttribute('data-npc-guide', 'ready');
+  await expect(page.locator('#npc-donoph')).toContainText('Donoph Baz');
+  await expect(page.locator('#npc-donoph')).toContainText('DB 之剑');
+  await expect(page.locator('#npc-flowen')).toContainText('弗洛文大剑');
+  await expect(page.locator('#npc-shino .npc-name')).toHaveText('希诺（Shino）');
+  await expect(page.locator('#npc-gizel .npc-name')).toHaveText('吉泽尔（Gizel）');
+  await page.locator('#relationships a[href$="#npc-donoph"]').first().click();
+  await expect(page).toHaveURL(/#npc-donoph$/);
+  await expect(page.locator('#npc-donoph')).toBeInViewport();
 });
 
 for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {

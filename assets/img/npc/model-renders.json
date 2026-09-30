@@ -1,0 +1,468 @@
+{
+  "renderer": "Blender 5.2.2 Cycles, 64 samples, Standard view transform, transparent film",
+  "camera": {
+    "projection": "orthographic",
+    "direction": "front, eye-level",
+    "square_pixels": true
+  },
+  "inputs": {
+    "npcplayerchar.dat": "72415b07c30e62cb414ead02c3e49a046462a9500de6012db48f58c77ddd31ca",
+    "data.gsl": "043a6e96a04756ea9a373f2c9758d5ce7d1f90c6158b23b198e8f9942e74c229",
+    "plTbdy00.nj": "8b3a180f3047e464b9a5bcf3f59fbc5e305214a34e9d4331702cea5fb4316b87",
+    "plTtex.afs": "d63d81214964ade1647d7516d6c158339fbbd582692021333ef21ce69286d6e4",
+    "plThed00.nj": "2de6d43ea7e947e3c9c59789d266ffa88e41d11c7ae2cb1627b8152f5bda945e",
+    "plThai00.nj": "b6c9a305d3fcb0a17a9ac5ecb16dbc2205cb29c3fc6bd7d50aa21e4e6dba03a4",
+    "plXbdy00.nj": "a388b6564b82b67d40d3f7d1761a926a6a230e30d805c823a66270c5c9fd2840",
+    "plXtex.afs": "b268682eaf818b8b6697dbe4725b4ab02b603537a60b762b297e6eee6518733e",
+    "plXhed00.nj": "d2f21244dd62499c2c0290f2dacd21d1964891965af231f98605eb55b2c896ac",
+    "plFbdy00.nj": "a11cd99befa1cb2b966fb5b3c6b574cc4535a3a2ad202036aeb96c3100d1dcd3",
+    "plFtex.afs": "c83e1c2a316618608a21f4cb33361e20b1a3c2164db62e325abf922b713d6a24",
+    "plFhed02.nj": "fcd1f9c1dd35fc64462158efd19cc7a52cc2f39f2b2f6f80acdcc931e7b9c750",
+    "plDbdy00.nj": "7dab5f90e82fcd8d500f7f0e0f57bc4fcea1b4dbc5953b7710d6658cd95fc770",
+    "plDtex.afs": "1ef20a57f9677e842bedfdf09841d96806804bb98d6ab49dcebc31d91b5198e9",
+    "plDhed00.nj": "ea8ca956006ad9193a458f831ee42f13ecb564ab134bf140e4fb5934113646d3",
+    "plDhai01.nj": "5f60e11bc75ebc31cdd31972d0e10d30dbe7cd9938934309a461786d565f70a3",
+    "plDcap01.nj": "3f7adef7dabb8c4032a25c9ac9aecf72b497d0d75b77669307a4eb990ddfa871",
+    "plBbdy00.nj": "318cb564e352375ffbf9c8656d521c8d3c60a2d4e5d1d522ab20c24051d77c15",
+    "plBtex.afs": "d3a524e2b78673c4b05c695bad1cbef40cc72573fa980136200de05849af2843",
+    "plBhed00.nj": "70a543a87753d8164c3c5fa39c342811145728f1d67c0057236ad5dfddbdbd4e",
+    "plBhai05.nj": "457e6c48640b1b76e70d01927b3087a9f81ef844ddcec23122f1d89f1cf92379",
+    "plBhai02.nj": "90d0f44023aaaed95cab4b95f23334ea784329665543f351255122e11e8f0dec",
+    "data.gsl/bm_n_soutoku_i_body.bml/n_soutoku_i_body.nj": "622df7530d1a21f54734e6700f22bea7af7ed9dc567b85fb58c67f00409cef8f",
+    "data.gsl/bm_n_soutoku_i_body.bml/textures": "f6143e511ef3ccf207e0cc12dd11a0986b8899ed25f04e955c3e9a8a0b8a1cc7",
+    "data.gsl/bm_n_kanteib_i_body.bml/n_kanteib_i_body_1.nj": "f746f59adad4dca423b38f80a80007cb98ac0ecc28ba152e581ff8fff480a8d6",
+    "data.gsl/bm_n_kanteib_i_body.bml/textures": "851de54c738c0eee448d2aeed7935dd8c693a0fd20b9b2662060de8891385bc8"
+  },
+  "characters": {
+    "flowen": {
+      "id": "flowen",
+      "parts": [
+        {
+          "model": "plTbdy00.nj",
+          "archive": "plTtex.afs",
+          "slots": [
+            6,
+            1,
+            2,
+            0,
+            3
+          ]
+        },
+        {
+          "model": "plThed00.nj",
+          "archive": "plTtex.afs",
+          "slots": [
+            5,
+            4
+          ],
+          "position": [
+            0,
+            17,
+            0
+          ]
+        },
+        {
+          "model": "plThai00.nj",
+          "archive": "plTtex.afs",
+          "slots": [
+            null,
+            null,
+            null,
+            5
+          ],
+          "position": [
+            0,
+            17,
+            0
+          ]
+        }
+      ],
+      "section_id": 0
+    },
+    "rico": {
+      "id": "rico",
+      "parts": [
+        {
+          "model": "plXbdy00.nj",
+          "archive": "plXtex.afs",
+          "slots": [
+            3,
+            0,
+            1
+          ]
+        },
+        {
+          "model": "plXhed00.nj",
+          "archive": "plXtex.afs",
+          "slots": [
+            1,
+            2
+          ],
+          "position": [
+            0,
+            14.5,
+            0
+          ]
+        }
+      ],
+      "section_id": 0
+    },
+    "ult": {
+      "id": "ult",
+      "template": 50,
+      "template_name": "ULT",
+      "class": 5,
+      "section_id": 5,
+      "parts": [
+        {
+          "model": "plFbdy00.nj",
+          "archive": "plFtex.afs",
+          "slots": [
+            380,
+            357,
+            35,
+            36,
+            37
+          ]
+        },
+        {
+          "model": "plFhed02.nj",
+          "archive": "plFtex.afs",
+          "slots": [
+            265,
+            264,
+            266
+          ],
+          "attach_bone": 59
+        }
+      ],
+      "proportions": [
+        0.16925638914108276,
+        0.17125439643859863
+      ],
+      "class_height": 0.5,
+      "appearance": {
+        "costume": 0,
+        "skin": 7,
+        "face": 0,
+        "head": 2,
+        "hair": 0,
+        "hair_red": 0,
+        "hair_green": 0,
+        "hair_blue": 0
+      }
+    },
+    "zoke": {
+      "id": "zoke",
+      "template": 34,
+      "template_name": "ZOKE",
+      "class": 3,
+      "section_id": 3,
+      "parts": [
+        {
+          "model": "plDbdy00.nj",
+          "archive": "plDtex.afs",
+          "slots": [
+            200,
+            41,
+            40,
+            36,
+            37,
+            38,
+            39,
+            35
+          ]
+        },
+        {
+          "model": "plDhed00.nj",
+          "archive": "plDtex.afs",
+          "slots": [
+            136,
+            137
+          ],
+          "attach_bone": 59
+        },
+        {
+          "model": "plDhai01.nj",
+          "archive": "plDtex.afs",
+          "slots": [
+            167,
+            168,
+            169,
+            170
+          ],
+          "attach_bone": 59,
+          "tint": [
+            0.8823529411764706,
+            0.9411764705882353,
+            0.8431372549019608
+          ]
+        },
+        {
+          "model": "plDcap01.nj",
+          "archive": "plDtex.afs",
+          "slots": [
+            37,
+            38,
+            39,
+            40
+          ],
+          "attach_bone": 59
+        }
+      ],
+      "proportions": [
+        0.33472415804862976,
+        0.02486424893140793
+      ],
+      "class_height": 0,
+      "appearance": {
+        "costume": 5,
+        "skin": 1,
+        "face": 1,
+        "head": 0,
+        "hair": 1,
+        "hair_red": 225,
+        "hair_green": 240,
+        "hair_blue": 215
+      }
+    },
+    "kroe": {
+      "id": "kroe",
+      "template": 30,
+      "template_name": "KROE",
+      "class": 1,
+      "section_id": 5,
+      "parts": [
+        {
+          "model": "plBbdy00.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            304,
+            79,
+            80,
+            81,
+            91,
+            277,
+            287,
+            287
+          ]
+        },
+        {
+          "model": "plBhed00.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            235,
+            247
+          ],
+          "attach_bone": 59
+        },
+        {
+          "model": "plBhai05.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            268,
+            269,
+            270,
+            271
+          ],
+          "attach_bone": 59,
+          "tint": [
+            0.8,
+            1.0,
+            0.6666666666666666
+          ]
+        }
+      ],
+      "proportions": [
+        0.28949764370918274,
+        0.587506890296936
+      ],
+      "class_height": 0.5,
+      "appearance": {
+        "costume": 6,
+        "skin": 0,
+        "face": 2,
+        "head": 0,
+        "hair": 5,
+        "hair_red": 204,
+        "hair_green": 255,
+        "hair_blue": 170
+      }
+    },
+    "anna": {
+      "id": "anna",
+      "template": 20,
+      "template_name": "ANNA",
+      "class": 1,
+      "section_id": 6,
+      "parts": [
+        {
+          "model": "plBbdy00.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            305,
+            79,
+            80,
+            81,
+            91,
+            277,
+            287,
+            287
+          ]
+        },
+        {
+          "model": "plBhed00.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            235,
+            247
+          ],
+          "attach_bone": 59
+        },
+        {
+          "model": "plBhai02.nj",
+          "archive": "plBtex.afs",
+          "slots": [
+            263,
+            264,
+            265,
+            266
+          ],
+          "attach_bone": 59,
+          "tint": [
+            0.803921568627451,
+            1.0,
+            0.5843137254901961
+          ]
+        }
+      ],
+      "proportions": [
+        0.3091794550418854,
+        0.6076987385749817
+      ],
+      "class_height": 0.5,
+      "appearance": {
+        "costume": 6,
+        "skin": 0,
+        "face": 2,
+        "head": 0,
+        "hair": 2,
+        "hair_red": 205,
+        "hair_green": 255,
+        "hair_blue": 149
+      }
+    },
+    "tyrell": {
+      "id": "tyrell",
+      "parts": [
+        {
+          "model": "tyrell.nj",
+          "bml": "bm_n_soutoku_i_body.bml",
+          "entry": 0
+        }
+      ]
+    },
+    "coren": {
+      "id": "coren",
+      "parts": [
+        {
+          "model": "coren.nj",
+          "bml": "bm_n_kanteib_i_body.bml",
+          "entry": 0
+        }
+      ]
+    }
+  },
+  "outputs": {
+    "flowen": {
+      "file": "flowen-model.webp",
+      "width": 900,
+      "height": 900,
+      "sha256": "f2c6e6d8318f03c89d1fe505a269698b34bcc730983a8350a26ae9908fe88aca"
+    },
+    "rico": {
+      "file": "rico-model.webp",
+      "width": 900,
+      "height": 900,
+      "sha256": "c2e3d70676ca1626fd4787e43486187cad1d08762355b4c92654fce7b171b08f"
+    },
+    "ult": {
+      "file": "ult-model.webp",
+      "width": 900,
+      "height": 900,
+      "sha256": "c7c66f644cae36eecbb241a700f0ff92aa4e4ef77737414603438b7b0748ce9c"
+    },
+    "zoke": {
+      "file": "zoke-model.webp",
+      "width": 900,
+      "height": 900,
+      "sha256": "8b9a28bbcd08e972cc217a09b449400b56589559a4d6077e3ec27c52db0e690d"
+    },
+    "kroe": {
+      "file": "kroe-model.webp",
+      "width": 900,
+      "height": 900,
+      "sha256": "38ca8775c1598f6dfba2e3bb7a628d2b0b3ab9b3d550f6f4e5c0e6db16d0715f"
+    },
+    "anna": {
+      "file": "anna-model.webp",
+      "width": 900,
+      "height": 900,
+      "sha256": "8994bd4b60dc80c56e60a1d4cdb15b3e9a2864153a2b75b723b2f7a87e549aa3"
+    },
+    "tyrell": {
+      "file": "tyrell-model.webp",
+      "width": 900,
+      "height": 900,
+      "sha256": "94aab37e016c87e6d81da94666d7e70c224ab006d34230e80d4b2e750d81b468"
+    },
+    "coren": {
+      "file": "coren-model.webp",
+      "width": 900,
+      "height": 900,
+      "sha256": "8d3871ccdc9ff4ed7780d9ad5c040dd8417706a8644563905c1ad15a75d47840"
+    }
+  },
+  "quests": [
+    {
+      "quest": "Waterfall Tears [BB-E].qst",
+      "sha256": "2f8c880bb6fb609adad3e00d5721974deb70c7b7e9ee08c4f85a00182385e14e",
+      "bin_sha256": "4fe19bc31834bc216df07cce4b16ddd186b247173e9c363edb51304c0e5fd3fd",
+      "dat_sha256": "d95e1cb6452fc7295ceb4d89618bec8bea7c28e4a80592b1da4429360a661fd2",
+      "npc_evidence": "Kroe template 30: BIN 0x00B2/0x00BE"
+    },
+    {
+      "quest": "Seek my Master [BB-E].qst",
+      "sha256": "8b49795936709ee362c08aa547a5dd0a6c5c6c34bc6b74bc47731b825d07fb65",
+      "bin_sha256": "0ac2dd6013159a57e8cd3eff0bc8355599fd75ed027bd954c87973ea590359d8",
+      "dat_sha256": "e149ba3876bbd00c4898aa1c3cb6ef0d7d72e363aa023c816d59ba98935dcb9e",
+      "npc_evidence": "Zoke template 34: BIN 0x01A4/0x01B0 and 0x42E0/0x42E6"
+    },
+    {
+      "quest": "The Grave's Butler [BB-E].qst",
+      "sha256": "18115eda2735018303411a913ef47eeb41da41902648b504814b2ba0da9c2786",
+      "bin_sha256": "fca2a60cd527f0d97f34405b30ea008599260175e77d8f98ef6f6d49e60a145a",
+      "dat_sha256": "50f5b31ae7b17e274a32e877e0bef93208c6b5e8640457664e16ad43b62b0b8c"
+    },
+    {
+      "quest": "Dr. Osto's Research [BB-E].qst",
+      "sha256": "1af92a51fc00bd026e2010f1ed3e54fe66af4b284d5b9f7e2e541f701c1bc30a",
+      "bin_sha256": "a6574753fe37bd388b24536045bb75cc224c62250f04a023235830039cf3aa55",
+      "dat_sha256": "2b4a9e60823c1ca94cd73be895160629caf3076f0011cda4d17b46fa388120f3"
+    },
+    {
+      "quest": "Unsealed Door [BB-E].qst",
+      "sha256": "6d46947cb0e0fb990b0e49cdd2d8d6e293c4d0bdde9d2394f6207e785ff9595b",
+      "bin_sha256": "a17c7d51945062f4b02ff15565d7bfced1ae945ac434ce36d79927a10945bcaf",
+      "dat_sha256": "988aa519fd89dca616e978c3dcc141083d504125f80f1c1161354673970a9d48"
+    },
+    {
+      "quest": "Soul of Steel [BB-E].qst",
+      "sha256": "7434a1c99b3eff16ac3616b6c9d5dad1f50383612feaa5424cfe54b4b1917ff0",
+      "bin_sha256": "58575d6d4ece9bf1546fc8a36bae45f1c700c7fd0637a6ab1ff262867c802b69",
+      "dat_sha256": "99ec79f85c8066631aa1f7671999a8487fba002226e82416e9dad48c20438a90",
+      "npc_evidence": "Template 50: BIN 0x111F/0x1125 and 0x1534/0x153A"
+    }
+  ],
+  "limits": "Resource previews with studio lighting and base poses, not in-engine quest screenshots. Coren is one tekker appearance example. Template proportions follow QEdit preview equations."
+}
