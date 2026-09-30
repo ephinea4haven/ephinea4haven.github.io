@@ -8,6 +8,18 @@ const details=JSON.parse(readFileSync('src/app/generated/monster-catalog/details
 const monsters=JSON.parse(readFileSync('src/app/generated/monster-catalog/index.json','utf8'));
 // Browsing shows one region; EP1 opens on Forest, which includes the Dragon's room.
 const forest=monsters.filter(m=>m.episode===1&&m.areas.some(a=>['Forest','Under the Dome'].includes(a))).length;
+test('Gol Dragon uses the confirmed Chinese name across search, detail and language changes',async({page})=>{
+  await page.goto('/data/enemies.html?ep=2&q='+encodeURIComponent('戈尔龙'));
+  const row=page.locator('.monster-row[href*="/enemies/gol-dragon.html"]');
+  await expect(row.locator('.monster-name')).toHaveText('戈尔龙');
+  await row.click();
+  for(const [language,name] of [['English','Gol Dragon'],['日本語','ゴル　ドラゴン'],['中文','戈尔龙']]) {
+    await page.getByRole('button',{name:language,exact:true}).click();
+    await expect(page.locator('.monster-hero .monster-name')).toHaveText(name);
+  }
+  await page.reload();
+  await expect(page.locator('.monster-hero .monster-name')).toHaveText('戈尔龙');
+});
 test('monster highlights distinguish regular, rare, elite and boss names in lists and details',async({page},testInfo)=>{
   for(const [id,ep,query,kind,weight] of [
     ['booma',1,'Booma','', '400'], ['hildeblue-e1',1,'Hildeblue','rare-name','700'],

@@ -15376,7 +15376,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "25%"
           },
           {
-            "name": "数码冰龙",
+            "name": "戈尔龙",
             "drops": [
               {
                 "item": "上帝之手",

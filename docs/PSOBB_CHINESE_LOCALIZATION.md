@@ -300,3 +300,25 @@ WEAPONS …制徽章. Haven pins that revision and syncs the dictionary. The BB 
 code table (`data/bb_items.html`, all three languages) now references the BB
 name of each code at `031403`–`031409`, including `031406`, previously the raw
 v3 text `IRON BADGE`.
+
+### 2026-09-30 UN-13 Gol Dragon synchronization
+
+The user confirmed `Gol Dragon / ゴル　ドラゴン → 戈尔龙`. Local Unitxt
+slots `2:76` and `4:76` feed the regenerated droptable authority and Haven's
+`npm run sync:i18n`. The Chinese resource SHA-256 is
+`c857d313ceb9fbfff0f4664aef28f3842567bebcdd64ea8a1ea05988388631ac`;
+the authority SHA-256 is
+`e189c94e97e587d816269e4b0612ebdf7ee989791d9250332d8fcc6639009dc5`.
+
+The catalog, authored monster heading, area-name list and archived drop-chart
+labels use the confirmed name. The HD gallery's normalized source name changes;
+its original filename remains as provenance. Laconium item names are unchanged.
+
+Local verification passed the Unitxt gate, droptable's `verify:localization`,
+Haven's `npm test`, production build (3,802 routes), and all 33 monster-catalog
+browser tests, including Chinese search, language switching and reload.
+The user accepted the local result and authorized committing and pushing.
+Published sources are psobb-localization `3ae0bc9b0b509ce22c260f3f46041fda84b5c8f2` and
+droptable `99fd1eac50a5877c653010be80b37e8aa02e2da9`; both CI jobs pin this droptable revision.
+The same handoff includes the accepted Zu / Nano Dragon spread-wing renders.
+Pages deployment is verified separately after push. In-game display remains unverified.
