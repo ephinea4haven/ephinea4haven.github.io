@@ -31,6 +31,7 @@ const pageBehaviors = new Map([
   ['data/monsters.html', ['MonsterFilterBehavior', 'BackToTopBehavior']],
   ['data/quest.html', ['BackToTopBehavior']],
   ['guide/class-guide.html', ['ProfessionTabsBehavior']],
+  ['guide/npc.html', ['NpcGuideBehavior']],
   ['guide/ep1ch.html', ['ChallengeGuideBehavior']],
   ['guide/ep2ch.html', ['ChallengeGuideBehavior']],
   ['guide/seabed.html', ['SeabedRouteBehavior', 'ChallengeGuideBehavior']],
@@ -48,6 +49,7 @@ const pageBehaviors = new Map([
 ]);
 const behaviorModules = new Map([
   ['ChallengeGuideBehavior', '../../content/challenge-guide.directive'],
+  ['NpcGuideBehavior', '../../content/npc-guide.directive'],
   ['BackToTopBehavior', '../../content/back-to-top.directive'],
   ['EventArchiveBehavior', '../../events/event-archive.directive'],
   ['LandingPageBehavior', '../../content/landing-page.directive'],
@@ -520,7 +522,7 @@ function pageDetails(file, source, relative, language) {
 
   visit(document, (node) => {
     if (node.tagName === 'body') body = node;
-    if (node.tagName === 'title') title = textBetween(source, node).trim();
+    if (node.tagName === 'title' && node.namespaceURI === 'http://www.w3.org/1999/xhtml') title = textBetween(source, node).trim();
     const attributes = new Map((node.attrs || []).map(({ name, value }) => [name, value]));
     if (node.tagName === 'meta' && attributes.get('name')?.toLowerCase() === 'description') {
       description = attributes.get('content') || '';

@@ -1,0 +1,41 @@
+[
+  {
+    "quest": "Waterfall Tears [BB-E].qst",
+    "sha256": "2f8c880bb6fb609adad3e00d5721974deb70c7b7e9ee08c4f85a00182385e14e",
+    "bin_sha256": "4fe19bc31834bc216df07cce4b16ddd186b247173e9c363edb51304c0e5fd3fd",
+    "dat_sha256": "d95e1cb6452fc7295ceb4d89618bec8bea7c28e4a80592b1da4429360a661fd2",
+    "npc_evidence": "Kroe template 30: BIN 0x00B2/0x00BE"
+  },
+  {
+    "quest": "Seek my Master [BB-E].qst",
+    "sha256": "8b49795936709ee362c08aa547a5dd0a6c5c6c34bc6b74bc47731b825d07fb65",
+    "bin_sha256": "0ac2dd6013159a57e8cd3eff0bc8355599fd75ed027bd954c87973ea590359d8",
+    "dat_sha256": "e149ba3876bbd00c4898aa1c3cb6ef0d7d72e363aa023c816d59ba98935dcb9e",
+    "npc_evidence": "Zoke template 34: BIN 0x01A4/0x01B0 and 0x42E0/0x42E6"
+  },
+  {
+    "quest": "The Grave's Butler [BB-E].qst",
+    "sha256": "18115eda2735018303411a913ef47eeb41da41902648b504814b2ba0da9c2786",
+    "bin_sha256": "fca2a60cd527f0d97f34405b30ea008599260175e77d8f98ef6f6d49e60a145a",
+    "dat_sha256": "50f5b31ae7b17e274a32e877e0bef93208c6b5e8640457664e16ad43b62b0b8c"
+  },
+  {
+    "quest": "Dr. Osto's Research [BB-E].qst",
+    "sha256": "1af92a51fc00bd026e2010f1ed3e54fe66af4b284d5b9f7e2e541f701c1bc30a",
+    "bin_sha256": "a6574753fe37bd388b24536045bb75cc224c62250f04a023235830039cf3aa55",
+    "dat_sha256": "2b4a9e60823c1ca94cd73be895160629caf3076f0011cda4d17b46fa388120f3"
+  },
+  {
+    "quest": "Unsealed Door [BB-E].qst",
+    "sha256": "6d46947cb0e0fb990b0e49cdd2d8d6e293c4d0bdde9d2394f6207e785ff9595b",
+    "bin_sha256": "a17c7d51945062f4b02ff15565d7bfced1ae945ac434ce36d79927a10945bcaf",
+    "dat_sha256": "988aa519fd89dca616e978c3dcc141083d504125f80f1c1161354673970a9d48"
+  },
+  {
+    "quest": "Soul of Steel [BB-E].qst",
+    "sha256": "7434a1c99b3eff16ac3616b6c9d5dad1f50383612feaa5424cfe54b4b1917ff0",
+    "bin_sha256": "58575d6d4ece9bf1546fc8a36bae45f1c700c7fd0637a6ab1ff262867c802b69",
+    "dat_sha256": "99ec79f85c8066631aa1f7671999a8487fba002226e82416e9dad48c20438a90",
+    "npc_evidence": "Template 50: BIN 0x111F/0x1125 and 0x1534/0x153A"
+  }
+]

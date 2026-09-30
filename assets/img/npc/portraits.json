@@ -1,0 +1,551 @@
+[
+  {
+    "id": "donoph",
+    "file": "assets/img/npc/donoph.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Pso_donoph_with_zanba.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/4/4c/Pso_donoph_with_zanba.png/revision/latest?cb=20190212032834",
+    "width": 418,
+    "height": 389,
+    "crop": [
+      270,
+      35,
+      125
+    ]
+  },
+  {
+    "id": "elly",
+    "file": "assets/img/npc/elly.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Ellyep2.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/c/c1/Ellyep2.png/revision/latest?cb=20131107201146",
+    "width": 800,
+    "height": 450,
+    "crop": [
+      325,
+      160,
+      160
+    ]
+  },
+  {
+    "id": "ult",
+    "file": "assets/img/npc/ult-model.webp",
+    "source": "/assets/img/npc/model-renders.json",
+    "original": "local-client:see-model-renders.json",
+    "width": 900,
+    "height": 900,
+    "crop": [
+      0,
+      0,
+      900
+    ],
+    "kind": "local-model-render",
+    "scene": "Rendered from local game assets using the quest character template."
+  },
+  {
+    "id": "mome",
+    "file": "assets/img/npc/mome.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Mome.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/c/c4/Mome.png/revision/latest?cb=20131208055356",
+    "width": 163,
+    "height": 315,
+    "crop": [
+      5,
+      0,
+      153
+    ]
+  },
+  {
+    "id": "leo",
+    "file": "assets/img/npc/leo.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Leo_grahart_face.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/2/27/Leo_grahart_face.png/revision/latest?cb=20131202215656",
+    "width": 664,
+    "height": 402,
+    "crop": [
+      90,
+      0,
+      310
+    ]
+  },
+  {
+    "id": "cicil",
+    "file": "assets/img/npc/cicil.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Cicil1.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/2/2d/Cicil1.png/revision/latest?cb=20131208054955",
+    "width": 179,
+    "height": 290,
+    "crop": [
+      20,
+      0,
+      135
+    ]
+  },
+  {
+    "id": "matha",
+    "file": "assets/img/npc/matha.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Matha_grave.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/2/21/Matha_grave.png/revision/latest?cb=20131208055330",
+    "width": 121,
+    "height": 270,
+    "crop": [
+      10,
+      0,
+      105
+    ]
+  },
+  {
+    "id": "racton",
+    "file": "assets/img/npc/racton.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Racton.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/8/80/Racton.png/revision/latest?cb=20131208060002",
+    "width": 152,
+    "height": 325,
+    "crop": [
+      20,
+      10,
+      120
+    ]
+  },
+  {
+    "id": "tonzlar",
+    "file": "assets/img/npc/tonzlar.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Tonzlar.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/c/c9/Tonzlar.png/revision/latest?cb=20140215072712",
+    "width": 206,
+    "height": 333,
+    "crop": [
+      15,
+      70,
+      160
+    ]
+  },
+  {
+    "id": "gekigasky",
+    "file": "assets/img/npc/gekigasky.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Gekigasky.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/a/a7/Gekigasky.png/revision/latest?cb=20140215072748",
+    "width": 192,
+    "height": 458,
+    "crop": [
+      20,
+      60,
+      165
+    ]
+  },
+  {
+    "id": "lionel",
+    "file": "assets/img/npc/lionel.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Lionel.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/b/be/Lionel.png/revision/latest?cb=20131208055301",
+    "width": 179,
+    "height": 421,
+    "crop": [
+      0,
+      0,
+      175
+    ]
+  },
+  {
+    "id": "zidd",
+    "file": "assets/img/npc/zidd.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Pso_battletrainingmain.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/0/06/Pso_battletrainingmain.png/revision/latest?cb=20200502075740",
+    "width": 981,
+    "height": 988,
+    "crop": [
+      240,
+      410,
+      200
+    ]
+  },
+  {
+    "id": "guls",
+    "file": "assets/img/npc/guls.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Fakeyellowquest.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/0/09/Fakeyellowquest.png/revision/latest?cb=20140216064845",
+    "width": 747,
+    "height": 586,
+    "crop": [
+      455,
+      295,
+      220
+    ]
+  },
+  {
+    "id": "gallon",
+    "file": "assets/img/npc/gallon.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Pso_generiman3.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/b/be/Pso_generiman3.png/revision/latest?cb=20131208055841",
+    "width": 164,
+    "height": 337,
+    "crop": [
+      0,
+      0,
+      164
+    ]
+  },
+  {
+    "id": "claire",
+    "file": "assets/img/npc/claire.jpg",
+    "source": "https://www.4gamer.net/games/019/G001924/20061128165313/",
+    "original": "https://www.4gamer.net/news/image/2006.11/20061128165313_2big.jpg",
+    "width": 960,
+    "height": 768,
+    "crop": [
+      355,
+      343,
+      120
+    ]
+  },
+  {
+    "id": "naura",
+    "file": "assets/img/npc/naura.jpg",
+    "source": "https://garudo.ni-3.net/Entry/767/",
+    "original": "https://nblog.cnobi.jp/v1/blog/user/b44f2dea3169fd8d30770aad9b8dee7e/1304215120",
+    "width": 720,
+    "height": 480,
+    "crop": [
+      377,
+      245,
+      100
+    ]
+  },
+  {
+    "id": "trekka",
+    "file": "assets/img/npc/trekka.jpg",
+    "source": "https://garudo.ni-3.net/Entry/767/",
+    "original": "https://nblog.cnobi.jp/v1/blog/user/b44f2dea3169fd8d30770aad9b8dee7e/1304215280",
+    "width": 720,
+    "height": 480,
+    "crop": [
+      267,
+      200,
+      100
+    ]
+  },
+  {
+    "id": "sakon-ukon",
+    "file": "assets/img/npc/sakon-ukon.jpg",
+    "source": "https://garudo.ni-3.net/Entry/803/",
+    "original": "https://nblog.cnobi.jp/v1/blog/user/b44f2dea3169fd8d30770aad9b8dee7e/1306130045",
+    "width": 720,
+    "height": 480,
+    "crop": [
+      297,
+      188,
+      78
+    ]
+  },
+  {
+    "id": "kroe",
+    "file": "assets/img/npc/kroe-model.webp",
+    "source": "/assets/img/npc/model-renders.json",
+    "original": "local-client:see-model-renders.json",
+    "width": 900,
+    "height": 900,
+    "crop": [
+      0,
+      0,
+      900
+    ],
+    "kind": "local-model-render",
+    "scene": "Rendered from local game assets using the quest character template."
+  },
+  {
+    "id": "anna",
+    "file": "assets/img/npc/anna-model.webp",
+    "source": "/assets/img/npc/model-renders.json",
+    "original": "local-client:see-model-renders.json",
+    "width": 900,
+    "height": 900,
+    "crop": [
+      0,
+      0,
+      900
+    ],
+    "kind": "local-model-render",
+    "scene": "Rendered from local game assets using the quest character template."
+  },
+  {
+    "id": "gizel",
+    "file": "assets/img/npc/gizel.jpg",
+    "source": "https://garudo.ni-3.net/Entry/771/",
+    "original": "https://nblog.cnobi.jp/v1/blog/user/b44f2dea3169fd8d30770aad9b8dee7e/1304556696",
+    "width": 720,
+    "height": 480,
+    "crop": [
+      286,
+      200,
+      68
+    ]
+  },
+  {
+    "id": "albert",
+    "file": "assets/img/npc/albert.jpg",
+    "source": "https://garudo.ni-3.net/Entry/769/",
+    "original": "https://nblog.cnobi.jp/v1/blog/user/b44f2dea3169fd8d30770aad9b8dee7e/1304353912",
+    "width": 720,
+    "height": 480,
+    "crop": [
+      182,
+      167,
+      100
+    ]
+  },
+  {
+    "id": "karen",
+    "file": "assets/img/npc/karen.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-93.fc2.com/s/a/g/sageoshow/PSO1_041.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      345,
+      275,
+      120
+    ]
+  },
+  {
+    "id": "gilliam",
+    "file": "assets/img/npc/gilliam.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-93.fc2.com/s/a/g/sageoshow/PSO1_039.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      225,
+      290,
+      260
+    ]
+  },
+  {
+    "id": "hopkins",
+    "file": "assets/img/npc/hopkins.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-88.fc2.com/s/a/g/sageoshow/PSO1_017.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      550,
+      315,
+      130
+    ]
+  },
+  {
+    "id": "coren",
+    "file": "assets/img/npc/coren-model.webp",
+    "source": "/assets/img/npc/model-renders.json",
+    "original": "local-client:see-model-renders.json",
+    "width": 900,
+    "height": 900,
+    "crop": [
+      0,
+      0,
+      900
+    ],
+    "kind": "local-model-render",
+    "scene": "Rendered from a local tekker model; one appearance example."
+  },
+  {
+    "id": "tyrell",
+    "file": "assets/img/npc/tyrell-model.webp",
+    "source": "/assets/img/npc/model-renders.json",
+    "original": "local-client:see-model-renders.json",
+    "width": 900,
+    "height": 900,
+    "crop": [
+      0,
+      0,
+      900
+    ],
+    "kind": "local-model-render",
+    "scene": "Rendered from the original local game model and textures."
+  },
+  {
+    "id": "natasha",
+    "file": "assets/img/npc/natasha.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Natasha_milarose_ep2.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/8/8d/Natasha_milarose_ep2.png/revision/latest?cb=20131208055604",
+    "width": 800,
+    "height": 450,
+    "crop": [
+      318,
+      175,
+      160
+    ]
+  },
+  {
+    "id": "nol",
+    "file": "assets/img/npc/nol.png",
+    "source": "https://phantasystar.fandom.com/wiki/File:Nolep2.png",
+    "original": "https://static.wikia.nocookie.net/phantasystar/images/e/e2/Nolep2.png/revision/latest?cb=20131104075203",
+    "width": 800,
+    "height": 450,
+    "crop": [
+      300,
+      75,
+      195
+    ]
+  },
+  {
+    "id": "rico",
+    "file": "assets/img/npc/rico-model.webp",
+    "source": "/assets/img/npc/model-renders.json",
+    "original": "local-client:see-model-renders.json",
+    "width": 900,
+    "height": 900,
+    "crop": [
+      0,
+      0,
+      900
+    ],
+    "kind": "local-model-render",
+    "scene": "Rendered from the original local game model and textures."
+  },
+  {
+    "id": "flowen",
+    "file": "assets/img/npc/flowen-model.webp",
+    "source": "/assets/img/npc/model-renders.json",
+    "original": "local-client:see-model-renders.json",
+    "width": 900,
+    "height": 900,
+    "crop": [
+      0,
+      0,
+      900
+    ],
+    "kind": "local-model-render",
+    "scene": "Rendered from the original local game model and textures."
+  },
+  {
+    "id": "zoke",
+    "file": "assets/img/npc/zoke-model.webp",
+    "source": "/assets/img/npc/model-renders.json",
+    "original": "local-client:see-model-renders.json",
+    "width": 900,
+    "height": 900,
+    "crop": [
+      0,
+      0,
+      900
+    ],
+    "kind": "local-model-render",
+    "scene": "Rendered from local game assets using the quest character template."
+  },
+  {
+    "id": "ash",
+    "file": "assets/img/npc/ash.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-88.fc2.com/s/a/g/sageoshow/PSO1_005.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      590,
+      390,
+      150
+    ]
+  },
+  {
+    "id": "bernie",
+    "file": "assets/img/npc/bernie.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-88.fc2.com/s/a/g/sageoshow/PSO1_020.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      380,
+      205,
+      210
+    ]
+  },
+  {
+    "id": "alicia",
+    "file": "assets/img/npc/alicia.jpg",
+    "source": "https://garudo.ni-3.net/Entry/801/",
+    "original": "https://nblog.cnobi.jp/v1/blog/user/b44f2dea3169fd8d30770aad9b8dee7e/1306027005",
+    "width": 720,
+    "height": 480,
+    "crop": [
+      215,
+      205,
+      130
+    ]
+  },
+  {
+    "id": "shino",
+    "file": "assets/img/npc/shino.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-88.fc2.com/s/a/g/sageoshow/PSO1_019.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      715,
+      300,
+      145
+    ]
+  },
+  {
+    "id": "montague",
+    "file": "assets/img/npc/montague.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-88.fc2.com/s/a/g/sageoshow/PSO1_032.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      635,
+      300,
+      140
+    ]
+  },
+  {
+    "id": "elenor",
+    "file": "assets/img/npc/elenor.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-88.fc2.com/s/a/g/sageoshow/PSO1_031.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      435,
+      303,
+      105
+    ]
+  },
+  {
+    "id": "sue",
+    "file": "assets/img/npc/sue.jpg",
+    "source": "https://garudo.ni-3.net/Entry/786/",
+    "original": "https://nblog.cnobi.jp/v1/blog/user/b44f2dea3169fd8d30770aad9b8dee7e/1305418532",
+    "width": 720,
+    "height": 480,
+    "crop": [
+      380,
+      230,
+      90
+    ]
+  },
+  {
+    "id": "kireek",
+    "file": "assets/img/npc/kireek.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-88.fc2.com/s/a/g/sageoshow/PSO1_011.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      390,
+      335,
+      180
+    ]
+  },
+  {
+    "id": "rupika",
+    "file": "assets/img/npc/rupika.jpg",
+    "source": "https://sageoshow.blog.fc2.com/blog-entry-580.html",
+    "original": "https://blog-imgs-93.fc2.com/s/a/g/sageoshow/PSO1_037.jpg",
+    "width": 1024,
+    "height": 768,
+    "crop": [
+      375,
+      275,
+      250
+    ]
+  }
+]
