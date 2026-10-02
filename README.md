@@ -72,11 +72,28 @@ parent/
 ```bash
 npm ci
 npx playwright install chromium   # browser tests and map preview rendering
-npm run dev                       # build, then serve _site at http://127.0.0.1:5173
+npm run dev                       # watch and serve at http://127.0.0.1:5173
 ```
 
-`npm run dev` performs a full production build rather than running a watch
-server, so rerun it after changing sources.
+`npm run dev` generates the Angular content and data, then starts the official
+Angular development server with on-demand server rendering and automatic browser
+updates. Angular source edits rebuild directly. Authored HTML, translations,
+catalog data, static assets and generator helpers also regenerate their dependent
+content automatically, including the sibling drop-table inputs above. Generated
+outputs are excluded from the generator watcher to prevent rebuild loops.
+
+Search indexes rebuild in the background from the current development server's
+pages. The terminal reports when search is ready; if a search is attempted before
+the first index is ready, retry after that message. Indexing does not block page
+editing, and a new source change cancels an outdated indexing run. Development
+does not read or overwrite the production `_site` artifact.
+
+Generation and compilation errors remain visible in the terminal; save a
+correction to resume automatic updates. Press `Ctrl+C` to stop the server and
+watchers. Use `npm run dev -- --port 5174` for another port. Restart the command
+after changing dependencies, Angular configuration or the development runner.
+Use `npm run build` followed by `npm run preview` to validate the exact production
+output and budgets.
 
 ## Common tasks
 
@@ -86,6 +103,11 @@ server, so rerun it after changing sources.
 | `npm run preview` | Serve the existing `_site` at `http://127.0.0.1:4173` |
 | `npm test` | Run data, localization, architecture and domain checks |
 | `npm run test:e2e` | Run the Playwright suite against the production build |
+| `npm run test:dev` | Check development watching, rebuild coordination and generated-file safety |
+| `npm run test:dev:integration` | Test automatic browser/search updates, error recovery and shutdown on port 5175 |
+| `npm run test:search` | Check search extraction, language scope and indexing |
+| `npm run test:performance` | Check real browser requests and page resource budgets |
+| `npm run generate:home-backgrounds` | Regenerate responsive homepage backgrounds |
 | `npm run release:prepare` | Run all checks, the build and the browser suite in sequence |
 | `npm run sync:i18n` | Regenerate site item names from the drop-table authority |
 | `npm run sync:combo` | Refresh the combo calculator from its pinned upstream |
@@ -97,6 +119,10 @@ server, so rerun it after changing sources.
 | `npm run test:destiny` | Check the archived Destiny preview without client binary dependencies |
 
 [`scripts/README.md`](scripts/README.md) describes every generator and verifier.
+
+Run `test:dev:integration` separately from builds or other development sessions.
+It temporarily edits source fixtures, restores them in `finally`, and regenerates
+clean outputs before exiting; its evidence is saved under `.angular/dev-validation/`.
 
 ## Deployment
 

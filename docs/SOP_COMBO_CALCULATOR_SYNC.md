@@ -36,6 +36,14 @@ is written into synchronized snapshots or the generated engine.
 Both modes are prerendered at the historical Chinese URL and the `/en/` and
 `/ja/` URLs, and read the page language from `SiteLanguage`.
 
+The Angular component also owns its query-string state through the shared
+`ToolUrlState` service. Hydration completes before URL values restore the form.
+Edits replace the current history entry; reloads and navigation restore the
+equipment, numeric inputs, attack choices, selected enemies and sorting. Language
+and multiplayer/one-person-mode links carry the current configuration, with
+values validated against the destination mode. This presentation state does not
+change the synchronized calculation rules or datasets.
+
 ## Compatibility boundary
 
 Here, compatibility means routine data and calculation-rule updates can continue
@@ -93,6 +101,12 @@ restoring jQuery, Bootstrap, or Vue, or adding compatibility layers.
 - The production artifact contains no jQuery, Bootstrap, or Vue runtime.
 - All four enemy types, class switching, Shifta, sorting, removal, clearing, and
   mobile layout continue to work.
+- Commander Blade, Smartlink and the other boolean options remain compact native
+  checkboxes with clickable labels; shared number/select styles must not size
+  them as full-width fields.
+- Edits survive reload and language/mode navigation. Numeric fields can be
+  cleared and retyped without a preset resetting the active input; restoring an
+  external URL or using browser history restores that URL's configuration.
 - Pages have no console errors, local-resource errors, or automated WCAG A/AA
   audit errors.
 - Build budgets and determinism checks pass.

@@ -1,3 +1,4 @@
+import { generatedFiles } from "./generated_files.mjs";
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { createHash } from 'node:crypto';
@@ -7,6 +8,8 @@ import { selectHdImages } from './item_catalog_hd.mjs';
 import { equipmentImage } from './item_catalog_images.mjs';
 import { createLocalizedText } from './localized_text.mjs';
 import { MESSAGES as CATALOG_MESSAGES } from '../src/app/item-catalog/catalog-messages.ts';
+
+const outputFiles = generatedFiles();
 
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const snapshot = read('content/item-catalog/wiki.json');
@@ -387,11 +390,11 @@ for (const detail of Object.values(details)) {
   detail.relatedItems = detail.related.map(card);
 }
 fs.mkdirSync('src/app/generated/item-catalog', { recursive: true });
-fs.rmSync('assets/data/items', { recursive: true, force: true });
+outputFiles.clean('assets/data/items');
 fs.mkdirSync('assets/data/items', { recursive: true });
-fs.writeFileSync('src/app/generated/item-catalog/index.json', JSON.stringify(index));
-fs.writeFileSync('src/app/generated/item-catalog/details.server.json', JSON.stringify(details));
-fs.writeFileSync('src/app/generated/item-catalog/types.json', JSON.stringify(TYPES));
+outputFiles.write('src/app/generated/item-catalog/index.json', JSON.stringify(index));
+outputFiles.write('src/app/generated/item-catalog/details.server.json', JSON.stringify(details));
+outputFiles.write('src/app/generated/item-catalog/types.json', JSON.stringify(TYPES));
 // The overview groups hearts like the Wiki list: by the shared type of their compatible weapons.
 // Only non-empty facts are emitted; the overview ships inside its route bundle.
 const compact = row => Object.fromEntries(Object.entries(row).filter(([, value]) => value !== null && value !== false && !(Array.isArray(value) && !value.length)));
@@ -420,19 +423,20 @@ for (const row of [...cosmeticsOverview.hearts, ...cosmeticsOverview.paints, ...
   for (const id of [row.item, row.skin, ...(row.targets ?? []), ...(row.photonFilter?.weapons ?? []), ...(row.trade ?? []).map(([id]) => id), row.shop?.currency, row.event?.via]) if (id) cosmeticIds.add(id);
 }
 cosmeticsOverview.items = Object.fromEntries([...cosmeticIds].sort().map(id => [id, card(id)]));
-fs.writeFileSync('src/app/generated/item-catalog/cosmetics.json', JSON.stringify(cosmeticsOverview));
+outputFiles.write('src/app/generated/item-catalog/cosmetics.json', JSON.stringify(cosmeticsOverview));
 const detailHash = createHash('sha256');
 for (const [id, detail] of Object.entries(details).sort(([a], [b]) => a.localeCompare(b))) {
   const json = JSON.stringify(detail);
-  fs.writeFileSync(`assets/data/items/${id}.json`, json);
+  outputFiles.write(`assets/data/items/${id}.json`, json);
   detailHash.update(`${id}\n${json}\n`);
 }
 // The bundled version changes whenever any detail file changes, so browsers never reuse stale detail JSON.
 // The searchable index is fetched as data by the item list, not bundled into its script.
 const indexJson = JSON.stringify(index);
-fs.writeFileSync('assets/data/item-index.json', indexJson);
+outputFiles.write('assets/data/item-index.json', indexJson);
 const indexHash = createHash('sha256').update(indexJson).digest('hex').slice(0, 12);
-fs.writeFileSync('src/app/generated/item-catalog/version.json', JSON.stringify({ details: detailHash.digest('hex').slice(0, 12), index: indexHash }));
+outputFiles.write('src/app/generated/item-catalog/version.json', JSON.stringify({ details: detailHash.digest('hex').slice(0, 12), index: indexHash }));
 const report = { checkedAt: snapshot.checkedAt, items: index.length, categories: Object.fromEntries(['weapon','armor','shield','unit','mag','tool'].map(c => [c,Object.values(details).filter(d=>d.category===c).length])), withImages: index.filter(x => x[7]).length, unresolvedNames: unresolved, unknownCodes };
-fs.writeFileSync('content/item-catalog/coverage.json', JSON.stringify(report, null, 2) + '\n');
+outputFiles.write('content/item-catalog/coverage.json', JSON.stringify(report, null, 2) + '\n');
+outputFiles.commit();
 console.log(`Generated ${index.length} item pages; ${report.withImages} with images. Index: ${fs.statSync('src/app/generated/item-catalog/index.json').size} bytes.`);

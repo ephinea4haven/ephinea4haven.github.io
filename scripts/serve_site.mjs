@@ -82,5 +82,5 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, host, () => {
-  console.log(`Serving ${directory} at http://${host}:${port}/`);
+  console.log(`Serving ${directory} at http://${host}:${server.address().port}/`);
 });

@@ -1,5 +1,4 @@
 import {
-  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -8,9 +7,10 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { PageChromeComponent } from '../shared/page-chrome.component';
 import { SiteLanguage } from '../shared/site-language.service';
+import { toolChoice, toolNumber, ToolQuery, toolQueryString, ToolUrlState } from '../shared/tool-url-state';
 import { ItemData } from './item-data.js';
 import { STATUS_ITEM_NAMES, STATUS_MATERIAL_NAMES } from '../generated/i18n/status-items';
 import {
@@ -70,12 +70,14 @@ const TEXT = {
 @Component({
   selector: 'haven-status',
   imports: [FormsModule, PageChromeComponent],
+  providers: [ToolUrlState],
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.css', './status-layout.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusComponent {
   private readonly route = inject(ActivatedRoute);
+  private readonly urlState = inject(ToolUrlState);
   private readonly meta = inject(Meta);
   private readonly characterData = this.route.snapshot.data['characterData'] as CharacterData | null;
   private readonly itemData = new ItemData();
@@ -119,10 +121,10 @@ export class StatusComponent {
     this.armors = this.options(this.itemData.armors);
     this.shields = this.options(this.itemData.shields);
     this.unitOptions = this.options(this.itemData.units);
-    this.recalculate();
-    afterNextRender(() => {
-      this.applyPreset();
-      this.recalculate();
+    this.recalculate(false);
+    this.urlState.connect((params) => {
+      this.applyPreset(params);
+      this.recalculate(false);
     });
   }
 
@@ -132,44 +134,29 @@ export class StatusComponent {
       .sort((left, right) => left.label.localeCompare(right.label))];
   }
 
-  private applyPreset(): void {
-    const params = this.route.snapshot.queryParamMap;
-    const requestedClass = params.get('c');
-    if (requestedClass && CHARACTER_CLASSES.includes(requestedClass as CharacterClass)) {
-      this.selectedClass = requestedClass as CharacterClass;
-    }
-    this.level = this.presetNumber('lv', this.level, 1, 200);
-    this.magDef = this.presetNumber('mdef', this.magDef);
-    this.magPow = this.presetNumber('mpow', this.magPow);
-    this.magDex = this.presetNumber('mdex', this.magDex);
-    this.magMind = this.presetNumber('mmind', this.magMind);
-    this.matHP = this.presetNumber('hp', this.matHP);
-    this.matTP = this.presetNumber('tp', this.matTP);
-    this.matPow = this.presetNumber('pow', this.matPow);
-    this.matDef = this.presetNumber('def', this.matDef);
-    this.matMind = this.presetNumber('mind', this.matMind);
-    this.matEva = this.presetNumber('eva', this.matEva);
-    this.matLck = this.presetNumber('lck', this.matLck);
-    this.armor = this.presetItem('armor', this.itemData?.armors, this.armor);
-    this.shield = this.presetItem('shield', this.itemData?.shields, this.shield);
-    this.units = [0, 1, 2, 3].map((index) => this.presetItem(`unit${index + 1}`, this.itemData?.units, '-')) as [string, string, string, string];
-  }
-
-  private presetNumber(name: string, fallback: number, minimum = 0, maximum = 999): number {
-    const raw = this.route.snapshot.queryParamMap.get(name);
-    if (raw === null || raw.trim() === '') return fallback;
-    const value = Number(raw);
-    return Number.isInteger(value) && value >= minimum && value <= maximum ? value : fallback;
-  }
-
-  private presetItem(name: string, items: Readonly<Record<string, unknown>> | undefined, fallback: string): string {
-    const value = this.route.snapshot.queryParamMap.get(name);
-    return value && items?.[value] ? value : fallback;
+  private applyPreset(params: ParamMap): void {
+    this.selectedClass = toolChoice(params, 'c', CHARACTER_CLASSES, 'humar');
+    this.level = toolNumber(params, 'lv', 200, 1, 200);
+    this.magDef = toolNumber(params, 'mdef', 5);
+    this.magPow = toolNumber(params, 'mpow', 0);
+    this.magDex = toolNumber(params, 'mdex', 0);
+    this.magMind = toolNumber(params, 'mmind', 0);
+    this.matHP = toolNumber(params, 'hp', 0);
+    this.matTP = toolNumber(params, 'tp', 0);
+    this.matPow = toolNumber(params, 'pow', 0);
+    this.matDef = toolNumber(params, 'def', 0);
+    this.matMind = toolNumber(params, 'mind', 0);
+    this.matEva = toolNumber(params, 'eva', 0);
+    this.matLck = toolNumber(params, 'lck', 0);
+    this.armor = toolChoice(params, 'armor', this.armors.map((option) => option.value), '-');
+    this.shield = toolChoice(params, 'shield', this.shields.map((option) => option.value), '-');
+    const unitCodes = this.unitOptions.map((option) => option.value);
+    this.units = [1, 2, 3, 4].map((index) => toolChoice(params, `unit${index}`, unitCodes, '-')) as typeof this.units;
   }
 
   classChanged(): void { this.recalculate(); }
 
-  recalculate(): void {
+  recalculate(save = true): void {
     if (!this.calculator) return;
     this.result = this.calculator.calculate({
       characterClass: this.selectedClass,
@@ -186,6 +173,7 @@ export class StatusComponent {
     this.statRows = (['hp', 'tp', 'atp', 'dfp', 'mst', 'ata', 'evp', 'lck'] as const)
       .map((key) => ({ key, label: key.toUpperCase(), ...this.result!.stats[key] }));
     this.effectLabels = this.describeEffects(this.result);
+    if (save) this.urlState.write(this.query());
   }
 
   private describeEffects(result: StatusResult): EffectLabel[] {
@@ -216,15 +204,17 @@ export class StatusComponent {
 
   /** Link to this build in the page's language. */
   shareUrl(): string {
-    const url = new URL(this.site.link('/tools/status.html'), 'https://psohaven.invalid');
-    const entries: Record<string, string | number> = {
+    return `${this.site.link('/tools/status.html')}?${toolQueryString(this.query())}`;
+  }
+
+  private query(): ToolQuery {
+    const entries: ToolQuery = {
       c: this.selectedClass, lv: this.level, mdef: this.magDef, mpow: this.magPow, mdex: this.magDex, mmind: this.magMind,
       hp: this.matHP, tp: this.matTP, pow: this.matPow, def: this.matDef, mind: this.matMind, eva: this.matEva, lck: this.matLck,
       armor: this.armor, shield: this.shield,
     };
     this.units.forEach((unit, index) => { entries[`unit${index + 1}`] = unit; });
-    for (const [key, value] of Object.entries(entries)) url.searchParams.set(key, String(value));
-    return `${url.pathname}${url.search}`;
+    return entries;
   }
 
   displayValue(row: StatRow, value: number): number { return row.key === 'ata' ? value / 10 : value; }

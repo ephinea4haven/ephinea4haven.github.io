@@ -1,4 +1,5 @@
-import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { generatedFiles } from "./generated_files.mjs";
+import { mkdir, readFile, readdir } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
@@ -9,6 +10,9 @@ import { localizeHome } from './home_i18n.mjs';
 import { languagesFor, loadPageI18n, localizeBody, localizeLinks, pageMetadata } from './page_i18n.mjs';
 import { marked } from 'marked';
 import { ItemData } from '../src/app/status/item-data.js';
+
+const outputFiles = generatedFiles();
+const writeFile = (file, content) => outputFiles.write(file, content);
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputDirectory = path.join(root, 'src', 'app', 'generated', 'pages');
@@ -636,7 +640,7 @@ function pageDetails(file, source, relative, language) {
   };
 }
 
-await rm(outputDirectory, { recursive: true, force: true });
+outputFiles.clean(outputDirectory);
 await mkdir(outputDirectory, { recursive: true });
 
 const candidates = [
@@ -652,7 +656,7 @@ const pageI18n = await loadPageI18n(root);
 const eventYears = new Map();
 const eventFragments = new Map();
 const fragmentDirectory = path.join(root, 'src/app/generated/event-fragments');
-await rm(fragmentDirectory, { recursive: true, force: true });
+outputFiles.clean(fragmentDirectory);
 for (const eventName of ['anniversary', 'christmas', 'easter', 'halloween', 'valentines']) {
   const files = (await readdir(path.join(root, 'event', eventName))).filter((file) => /^\d{4}\.html$/.test(file)).sort().reverse();
   eventYears.set(eventName, files.map((file) => Number(file.slice(0, 4))));
@@ -781,4 +785,5 @@ ${pages.some(({ relative }) => relative === '404.html') ? `  { path: '**', rende
 ];
 `);
 
+outputFiles.commit();
 console.log(`Generated ${pages.length} Angular content routes.`);

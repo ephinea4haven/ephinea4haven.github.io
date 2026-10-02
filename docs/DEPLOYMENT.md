@@ -37,6 +37,49 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 2, 2026 search, development and bug-fix release
+
+The maintainer authorized documentation alignment, commit, push and deployment.
+The publication record is the matching commit's successful **Verify and deploy
+Pages** workflow, including its build, three browser-test shards and deploy job.
+Local verification alone does not establish publication.
+
+The release keeps the existing homepage layout and adds or corrects:
+
+- Homepage navigation remains reachable on narrow screens, including keyboard
+  focus after resizing; long Japanese directory tags no longer widen the page.
+- Combo and Status configurations follow their URLs through edits, reloads and
+  language navigation. Combo also retains supported state when changing modes.
+- Commander Blade and Smartlink share a compact, wrapping checkbox row instead
+  of occupying separate full-size form-grid cells. Both modes use the same fix.
+- The uncropped homepage background now uses 130,106-byte mobile and
+  217,020-byte desktop WebP assets instead of the 659,858-byte source image.
+  The source is kept outside the published assets.
+- `npm run dev` provides Angular automatic updates, content regeneration and
+  background search indexing, with recovery after corrected generation errors.
+- Pagefind site search loads its dialog on opening and its runtime/index on a
+  query. It searches the current language edition, supports maintained aliases
+  and archived event years, and keeps the existing floating page controls usable.
+- Resource budgets cover cold homepage loads, responsive image selection and
+  deferred search downloads. Build-time normalization of Pagefind's unordered
+  filter encoding preserves result membership and deterministic output; the
+  pinned format is checked before normalization.
+
+Local evidence before the maintainer's final Combo checkbox review: `npm test`
+passed, the full browser suite passed 4,119 tests, and the subsequent search and
+performance verification passed all 42 cases. Independent browser comparison
+confirmed identical results for all six categories in each language before and
+after index normalization. The development integration check also verified
+source updates, error recovery, search refresh and complete shutdown.
+
+The final checkbox regression first failed against the old artifact's stretched
+label width. After the fix, all 47 focused browser checks passed: 18 checkbox
+cases (three languages, two modes, 320/390/1440px), 11 calculator-state cases and
+18 homepage-performance cases. Desktop and mobile screenshots were also reviewed.
+Two final production builds produced byte-identical manifests; the artifact has
+3,802 prerendered routes and 135 event fragment resources. Published JavaScript
+gzip totals 994,752 bytes against the 1,000,000-byte budget.
+
 ## September 29, 2026 unpublished Destiny archive
 
 The maintainer approved organizing and pushing the Destiny research snapshot

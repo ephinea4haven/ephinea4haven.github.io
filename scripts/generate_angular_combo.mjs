@@ -1,11 +1,15 @@
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { generatedFiles } from "./generated_files.mjs";
+import { mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
+const outputFiles = generatedFiles();
+const writeFile = (file, content) => outputFiles.write(file, content);
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'src', 'app', 'generated', 'combo');
-await rm(output, { recursive: true, force: true });
+outputFiles.clean(output);
 await mkdir(output, { recursive: true });
 
 for (const mode of ['multi', 'opm']) {
@@ -98,4 +102,5 @@ await writeFile(
   path.join(output, 'engine.ts'),
   `// @ts-nocheck -- generated from the pinned upstream calculation source\n${engine}`,
 );
+outputFiles.commit();
 console.log('Generated Angular Combo data and calculation modules.');
