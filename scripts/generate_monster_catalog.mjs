@@ -1,3 +1,4 @@
+import { generatedFiles } from "./generated_files.mjs";
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
@@ -31,6 +32,7 @@ export function contextualTables(tables,conditions=[]) {
     : tables.some(other => other.anchor === table.anchor && other.context.length === 1 && ['Hard','Very Hard','Ultimate'].includes(other.context[0])) ? 'difficulty' : 'mode'}));
 }
 export function generateMonsterCatalog() {
+  const outputFiles = generatedFiles();
   const snapshot = readJson('content/monster-catalog/wiki.json');
   const images = readJson('content/monster-catalog/images.json');
   const names = readJson('content/monster-catalog/names.json');
@@ -132,17 +134,18 @@ export function generateMonsterCatalog() {
   for (const id of Object.keys(renderBindings)) if (!details[id]) throw new Error(`Monster render bound to an unknown entry: ${id}`);
   const metadata = {checkedAt:snapshot.checkedAt,statKeys:snapshot.statKeys,sections:drops.data.sectionIds.map((name,i)=>({name,color:drops.data.sectionColors[i]})),dropSource:'https://github.com/warmonipa/dropcharts/blob/master/bb/data/en.js',dropSha256:drops.sha256};
   fs.mkdirSync('src/app/generated/monster-catalog',{recursive:true});
-  fs.rmSync('assets/data/monsters',{recursive:true,force:true});
+  outputFiles.clean('assets/data/monsters');
   fs.mkdirSync('assets/data/monsters',{recursive:true});
-  for (const [name,data] of Object.entries({index,'details.server':details,metadata})) fs.writeFileSync(`src/app/generated/monster-catalog/${name}.json`,JSON.stringify(data));
+  for (const [name,data] of Object.entries({index,'details.server':details,metadata})) outputFiles.write(`src/app/generated/monster-catalog/${name}.json`,JSON.stringify(data));
   const detailHash=createHash('sha256');
   for (const [id,data] of Object.entries(details).sort(([a],[b])=>a.localeCompare(b))) {
     const json=JSON.stringify(data);
-    fs.writeFileSync(`assets/data/monsters/${id}.json`,json);
+    outputFiles.write(`assets/data/monsters/${id}.json`,json);
     detailHash.update(`${id}\n${json}\n`);
   }
   // Bundled with the catalog so any detail change busts cached monster JSON.
-  fs.writeFileSync('src/app/generated/monster-catalog/version.json',JSON.stringify({details:detailHash.digest('hex').slice(0,12)}));
+  outputFiles.write('src/app/generated/monster-catalog/version.json',JSON.stringify({details:detailHash.digest('hex').slice(0,12)}));
+  outputFiles.commit();
   console.log(`Generated ${index.length} monster pages from Wiki facts and droptable ${drops.sha256.slice(0,12)}.`);
   return {index,details,metadata};
 }

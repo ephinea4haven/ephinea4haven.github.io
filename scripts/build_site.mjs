@@ -17,6 +17,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { parse } from 'parse5';
 import { isAngularInlineScript } from './angular_inline_scripts.mjs';
+import { buildSearch } from './build_search.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputDirectory = path.join(root, '_site');
@@ -491,7 +492,7 @@ async function excludedStats() {
   };
 }
 
-async function writeManifest(pages, angular) {
+async function writeManifest(pages, angular, search) {
   const inline = await inlineScriptStats(pages);
   const excluded = await excludedStats();
   const artifactFiles = await Promise.all(
@@ -507,7 +508,7 @@ async function writeManifest(pages, angular) {
   const localized = angular.localizedJavaScriptGzipBytes;
   const totals = {
     // The Chinese site and shared code; each translated edition is budgeted separately.
-    publishedJavaScriptGzipBytes: excluded.publishedGzipBytes + angular.javascriptGzipBytes
+    publishedJavaScriptGzipBytes: excluded.publishedGzipBytes + angular.javascriptGzipBytes + search.javascriptGzipBytes
       - Object.values(localized).reduce((total, bytes) => total + bytes, 0),
     localizedJavaScriptGzipBytes: localized,
   };
@@ -524,6 +525,7 @@ async function writeManifest(pages, angular) {
     inline,
     excluded,
     angular,
+    search,
   };
   await writeFile(
     path.join(temporaryDirectory, 'build-manifest.json'),
@@ -595,8 +597,9 @@ try {
   await copySiteSource();
   const pages = await discoverPages();
   const { hostPages, ...angular } = await installAngularApplication(pages);
+  const search = await buildSearch({ directory: temporaryDirectory, routes: angular.routes.map(({ route }) => route) });
   await validateOutput(pages, new Set(hostPages));
-  const manifest = await writeManifest(pages, angular);
+  const manifest = await writeManifest(pages, angular, search);
   enforceBudgets(manifest);
   await publishAtomically();
 

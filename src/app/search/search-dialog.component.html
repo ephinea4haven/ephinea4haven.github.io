@@ -1,0 +1,27 @@
+<dialog #dialog (close)="closed()" (keydown.escape)="$event.preventDefault(); close()" aria-labelledby="site-search-title" class="search-dialog" data-testid="site-search-dialog">
+  <div class="search-heading"><h2 id="site-search-title">{{ copy().title }}</h2><button type="button" class="close-search" (click)="close()" [attr.aria-label]="copy().close">×</button></div>
+  <form role="search" (submit)="$event.preventDefault(); search()">
+    <label for="site-search-query">{{ copy().input }}</label>
+    <input #queryInput id="site-search-query" type="search" autocomplete="off" spellcheck="false" maxlength="150" [placeholder]="copy().placeholder" [value]="query()" (input)="onInput($event)" aria-describedby="site-search-hint"/>
+    <div class="search-filter"><label for="site-search-category">{{ copy().category }}</label><select id="site-search-category" [value]="category()" (change)="onCategory($event)"><option value="">{{ copy().all }}</option>@for (category of categories; track category) {<option [value]="category">{{ copy()[category] }}</option>}</select></div>
+  </form>
+  <p id="site-search-hint" class="search-hint">{{ copy().hint }}</p>
+  <div role="status" aria-live="polite" aria-atomic="true" class="search-status">
+    @if (state() === 'loading') { {{ copy().loading }} }
+    @if (state() === 'results') {
+      @if (total()) { {{ total() }} {{ copy().results }} · {{ copy().showing }} {{ results().length }} }
+      @else { {{ copy().empty }} }
+    }
+    @if (state() === 'error') { {{ copy().error }} }
+  </div>
+  @if (state() === 'error') {<button class="search-retry" type="button" (click)="search()">{{ copy().retry }}</button>}
+  <ol #resultList class="search-results" [attr.aria-busy]="state() === 'loading'" data-testid="site-search-results">
+    @for (result of results(); track result.url) {
+      <li><div class="result-topline"><span class="result-category">{{ categoryLabel(result) }}</span></div><a class="result-title" [href]="result.url" (click)="close()">{{ result.meta.title }}</a><p class="result-excerpt">@for (part of result.excerpt; track $index) {@if (part.highlighted) {<mark>{{ part.text }}</mark>} @else {{{ part.text }}}}</p>
+        @for (section of sections(result); track section.url) {<div class="section-result"><a [href]="section.url" (click)="close()">{{ section.title }}</a><p class="result-excerpt">@for (part of section.excerpt; track $index) {@if (part.highlighted) {<mark>{{ part.text }}</mark>} @else {{{ part.text }}}}</p></div>}
+      </li>
+    }
+  </ol>
+  @if (results().length && results().length < total()) {<button class="search-more" type="button" (click)="more()" [attr.aria-disabled]="state() === 'loading'">{{ copy().more }}</button>}
+  <p class="keyboard-hint">{{ copy().keyboard }}</p>
+</dialog>

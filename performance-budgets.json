@@ -1,0 +1,17 @@
+{
+  "home": {
+    "maxJavaScriptBytes": 430000,
+    "maxRequests": 18,
+    "mobile": {
+      "maxBackgroundBytes": 145000,
+      "maxTotalBodyBytes": 710000
+    },
+    "desktop": {
+      "maxBackgroundBytes": 240000,
+      "maxTotalBodyBytes": 800000
+    }
+  },
+  "search": {
+    "maxFirstQueryBodyBytes": 260000
+  }
+}

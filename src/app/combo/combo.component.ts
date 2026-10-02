@@ -8,10 +8,12 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ParamMap } from '@angular/router';
 import { SiteLanguage } from '../shared/site-language.service';
 import { comboText, comboItemName, comboSpecialName, comboMonsterName, type ComboTextKey } from './combo-i18n';
 import { Meta, Title } from '@angular/platform-browser';
 import { PageChromeComponent } from '../shared/page-chrome.component';
+import { toolChoice, toolNumber, ToolQuery, toolQueryString, ToolUrlState } from '../shared/tool-url-state';
 import {
   barriers,
   createMonsterRow,
@@ -59,6 +61,7 @@ interface ComboRow {
 @Component({
   selector: 'haven-combo',
   imports: [FormsModule, PageChromeComponent],
+  providers: [ToolUrlState],
   templateUrl: './combo.component.html',
   styleUrl: './combo.component.css',
   host: {
@@ -68,6 +71,7 @@ interface ComboRow {
 })
 export class ComboComponent implements OnInit {
   private readonly meta = inject(Meta);
+  private readonly urlState = inject(ToolUrlState);
   readonly site = inject(SiteLanguage);
   readonly language = this.site.language;
 
@@ -78,6 +82,7 @@ export class ComboComponent implements OnInit {
       title.setTitle(heading + ' | Haven PSOBB Wiki');
       this.meta.updateTag({ name: 'description', content: heading + ' — PSOBB' });
     });
+    this.urlState.connect((params) => this.restore(params));
   }
 
   t(key: ComboTextKey): string { return comboText(key, this.language()); }
@@ -86,7 +91,8 @@ export class ComboComponent implements OnInit {
   monsterName(name: string): string { return comboMonsterName(name, this.language()); }
   get modeLink(): string {
     return (this.language() === 'zh' ? '' : '/' + this.language())
-      + (this.isOpm() ? '/tools/cc.html' : '/tools/ccopm.html');
+      + (this.isOpm() ? '/tools/cc.html' : '/tools/ccopm.html')
+      + '?' + toolQueryString(this.query());
   }
   private comboData!: ComboData;
 
@@ -141,6 +147,68 @@ export class ComboComponent implements OnInit {
     this.updateClass();
     this.updateWeapon();
   }
+
+  private restore(params: ParamMap): void {
+    this.selectedClass = toolChoice(params, 'class', this.classes, 'HUcast');
+    this.selectedFrame = toolChoice(params, 'frame', this.frameNames, 'None');
+    this.selectedBarrier = toolChoice(params, 'barrier', this.barrierNames, 'Red Ring');
+    this.selectedUnit = toolChoice(params, 'unit', this.units, 'NONE');
+    this.selectedWeaponName = toolChoice(params, 'weapon', this.weaponNames, 'Unarmed');
+    this.commanderBlade = params.get('commanderBlade') === '1';
+    this.smartlink = params.get('smartlink') !== '0';
+    this.ataGlitch = params.get('ataGlitch') === '1';
+    this.autoCombo = params.get('autoCombo') === '1';
+    this.frozen = params.get('frozen') === '1';
+    this.paralyzed = params.get('paralyzed') === '1';
+    this.maxDamage = params.get('maxDamage') === '1';
+    // Apply equipment presets first; explicit edits in the URL override their derived values.
+    this.updateClass();
+    this.updateWeapon();
+    this.special = toolChoice(params, 'special', this.specials(), this.special);
+    // These fields support custom stat experiments; preserve finite edits without adding game-rule caps.
+    const number = (key: string, preset: number) => toolNumber(params, key, preset,
+      -Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER, false);
+    this.hit = number('hit', this.hit);
+    this.sphere = number('sphere', this.sphere);
+    this.updateEquipment();
+    this.classMinAtp = number('classMinAtp', this.classMinAtp);
+    this.classMaxAtp = number('classMaxAtp', this.classMaxAtp);
+    this.minAtp = number('minAtp', this.minAtp);
+    this.maxAtp = number('maxAtp', this.maxAtp);
+    this.ata = number('ata', this.ata);
+    this.shifta = number('shifta', 0);
+    this.zalure = number('zalure', 0);
+    for (const index of [0, 1, 2] as const) {
+      this.selectedAttacks[index] = toolChoice(params, `attack${index + 1}`, this.attacks, this.selectedAttacks[index]);
+      this.selectedHits[index] = this.selectedAttacks[index] === 'NONE' ? 0
+        : toolNumber(params, `hits${index + 1}`, this.selectedHits[index] || 1, 1, 10);
+    }
+    this.selectedEnemies = [...new Set(params.getAll('enemy'))]
+      .filter((name) => Object.hasOwn(this.comboData.enemies, name))
+      .map((name) => this.comboData.enemies[name]);
+    this.sortColumn = toolChoice(params, 'sort', ['', 'name', 'damage', 'accuracy'], '');
+    this.sortAscending = this.sortColumn && params.get('order') === 'asc' ? true
+      : this.sortColumn && params.get('order') === 'desc' ? false : null;
+  }
+
+  private query(): ToolQuery {
+    return {
+      class: this.selectedClass, frame: this.selectedFrame, barrier: this.selectedBarrier,
+      unit: this.selectedUnit, weapon: this.selectedWeaponName, special: this.special,
+      classMinAtp: this.classMinAtp, classMaxAtp: this.classMaxAtp, ata: this.ata,
+      shifta: this.shifta, zalure: this.zalure, sphere: this.sphere, hit: this.hit,
+      minAtp: this.minAtp, maxAtp: this.maxAtp, commanderBlade: Number(this.commanderBlade),
+      smartlink: Number(this.smartlink), ataGlitch: Number(this.ataGlitch), autoCombo: Number(this.autoCombo),
+      frozen: Number(this.frozen), paralyzed: Number(this.paralyzed), maxDamage: Number(this.maxDamage),
+      attack1: this.selectedAttacks[0], attack2: this.selectedAttacks[1], attack3: this.selectedAttacks[2],
+      hits1: this.selectedHits[0], hits2: this.selectedHits[1], hits3: this.selectedHits[2],
+      enemy: this.selectedEnemies.map((enemy) => enemy.name),
+      sort: this.sortAscending === null ? '' : this.sortColumn,
+      order: this.sortAscending === null ? '' : this.sortAscending ? 'asc' : 'desc',
+    };
+  }
+
+  saveState(): void { this.urlState.write(this.query()); }
 
   get barrierNames(): string[] {
     return Object.keys(barriers);
@@ -265,14 +333,17 @@ export class ComboComponent implements OnInit {
     for (const enemy of Object.values(this.comboData.enemies)) {
       if (enemy.type === type && !existing.has(enemy)) this.selectedEnemies.push(enemy);
     }
+    this.saveState();
   }
 
   clearEnemies(): void {
     this.selectedEnemies = [];
+    this.saveState();
   }
 
   removeEnemy(enemy: ComboEnemy): void {
     this.selectedEnemies = this.selectedEnemies.filter((candidate) => candidate !== enemy);
+    this.saveState();
   }
 
   sort(column: string): void {
@@ -286,6 +357,7 @@ export class ComboComponent implements OnInit {
     } else {
       this.sortAscending = null;
     }
+    this.saveState();
   }
 
   sortLabel(column: string, label: string): string {

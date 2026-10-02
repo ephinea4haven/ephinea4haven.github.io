@@ -106,6 +106,17 @@ export class LandingPageBehavior extends BrowserContentBehavior {
     if (next) next.textContent = this.text('下周轮替：', 'Next week: ', '来週：') + this.text(...LandingPageBehavior.buffs[(offset + 1) % 4]);
   }
   protected connect(): void {
+    const navigation = this.host.querySelector<HTMLElement>('.topbar-links')!;
+    const revealFocusedLink = () => {
+      const link = this.host.ownerDocument.activeElement;
+      if (link instanceof HTMLAnchorElement && navigation.contains(link)) {
+        link.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
+    };
+    this.listen(navigation, 'focusin', revealFocusedLink);
+    const navigationResize = new ResizeObserver(revealFocusedLink);
+    navigationResize.observe(navigation);
+    this.destroyRef.onDestroy(() => navigationResize.disconnect());
     this.listen(this.host.querySelector('#home-language')!, 'click', ((event: MouseEvent) => {
       const requested = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-home-lang]')?.dataset['homeLang'] : null;
       if (requested === 'zh' || requested === 'en' || requested === 'ja') void this.i18n.select(requested);

@@ -15,7 +15,9 @@ function generate(t, engine) {
   t.after(() => fs.rmSync(fixture, { recursive: true, force: true }));
   fs.mkdirSync(path.join(fixture, 'scripts'));
   fs.mkdirSync(path.join(fixture, 'assets/js'), { recursive: true });
-  fs.copyFileSync(path.join(root, 'scripts/generate_angular_combo.mjs'), path.join(fixture, 'scripts/generate_angular_combo.mjs'));
+  for (const script of ['generate_angular_combo.mjs', 'generated_files.mjs']) {
+    fs.copyFileSync(path.join(root, 'scripts', script), path.join(fixture, 'scripts', script));
+  }
   for (const mode of ['multi', 'opm']) {
     fs.copyFileSync(path.join(root, `assets/js/combo_calc_${mode}_data.js`), path.join(fixture, `assets/js/combo_calc_${mode}_data.js`));
   }

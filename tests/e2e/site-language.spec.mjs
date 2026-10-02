@@ -106,12 +106,19 @@ for (const language of ['zh', 'en', 'ja']) {
       await page.locator('#native-btn').click();
       await expect(page.locator('#combo-calc-table tbody tr').first()).toBeVisible();
       await expect(page.locator('#combo-calc-table')).not.toContainText(/NaN|undefined/);
-      await expect(page.locator('.combo-toolbar a')).toHaveAttribute('href', prefix + '/tools/' + (mode === 'cc' ? 'ccopm' : 'cc') + '.html');
+      const modeLink = new URL(await page.locator('.combo-toolbar a').getAttribute('href'), page.url());
+      expect(modeLink.pathname).toBe(prefix + '/tools/' + (mode === 'cc' ? 'ccopm' : 'cc') + '.html');
+      expect(modeLink.searchParams.get('weapon')).toBe('Dark Flow');
+      expect(modeLink.searchParams.getAll('enemy')).toHaveLength(41);
       await page.locator('.enemy-chips button').first().click();
       await page.locator('#clear-btn').click();
       await expect(page.locator('#combo-calc-table tbody tr')).toHaveCount(0);
       await page.reload();
-      await expect(page.locator('#attack1 option:checked')).toHaveText(attack);
+      await expect(page.locator('.weapon-picker')).toHaveValue('Dark Flow');
+      await expect(page.locator('#attack1')).toHaveValue('SPECIAL');
+      await expect(page.locator('#attack2')).toHaveValue('NONE');
+      await expect(page.locator('#hits2 option:checked')).toHaveText('0');
+      await expect(page.locator('#combo-calc-table tbody tr')).toHaveCount(0);
       expect(errors).toEqual([]);
     });
   }

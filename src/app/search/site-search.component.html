@@ -1,0 +1,4 @@
+<button #trigger type="button" (click)="open(trigger)" [attr.aria-label]="failed() ? copy().reload : copy().label" aria-haspopup="dialog" [attr.aria-expanded]="opened()" [attr.aria-busy]="loading()" data-testid="site-search-trigger">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><span>{{ failed() ? copy().reload : copy().label }}</span>
+</button>
+<p role="alert" [hidden]="!failed()">{{ copy().error }}</p>

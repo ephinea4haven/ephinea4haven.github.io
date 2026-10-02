@@ -7,6 +7,11 @@ are build inputs and are not copied into the published artifact.
 | Script | Responsibility |
 |---|---|
 | `build_site.mjs` | Generate, prerender, validate and atomically publish `_site`. |
+| `build_search.mjs` | Index rendered pages, maintained item aliases and archived event years for language-scoped Pagefind search. |
+| `dev_site.mjs` | Run Angular development serving, source watching, content regeneration and background search indexing. |
+| `dev_inputs.mjs`, `dev_search.mjs` | Define watched dependencies and coordinate index rebuilds after successful generation and compilation. |
+| `generated_files.mjs` | Publish complete generated files atomically, preserve unchanged timestamps and remove obsolete outputs after replacements exist. |
+| `generate_home_backgrounds.mjs` | Encode the uncropped homepage background into mobile and desktop WebP assets. Requires `cwebp` for regeneration only. |
 | `generate_angular_content.mjs` | Convert content sources and datasets into lazy Angular routes, and stamp bare `?v` asset URLs with a content hash. |
 | `import_item_catalog.mjs` | Import a MediaWiki page and image export into the item catalog snapshot; `--merge` refreshes only the exported pages and images. |
 | `generate_item_catalog.mjs` | Build the item search index, per-item detail JSON with its dataset version, and the cosmetic items overview. |
@@ -42,6 +47,24 @@ npm run build
 npm run test:e2e
 npm run release:prepare
 ```
+
+`npm run test:performance` runs the browser resource checks against the production
+artifact. It checks Chinese, English and Japanese homepages at mobile/desktop
+sizes, DPR 1/2 and the 860px background breakpoint. `performance-budgets.json`
+limits actual loaded JavaScript (including module preloads and lazy route
+chunks), uncompressed response bodies, request counts and background size.
+Pagefind runtime and index assets must not load before a query. The search browser suite also limits
+the first item query to 260 KB of search resources in each language and checks
+that repeating it reuses the loaded index. The tests attach resource inventories
+and encoded byte counts; they deliberately avoid machine-dependent speed scores.
+These checks also run as part of the normal Playwright suite in CI.
+
+To regenerate the homepage backgrounds, install the WebP tools and run
+`npm run generate:home-backgrounds`. The original, uncropped 2880×1614 image is
+kept at `content/site-images/lobby-overlook.webp`, outside the deployed assets.
+The generator uses `cwebp -q 55 -m 6` to produce 1440px and 2160px wide WebP files.
+The existing background position, overlays and opacity remain unchanged. Only
+the generated images are deployed; normal builds require no image encoder.
 
 For Combo ownership and synchronization rules, see
 [`SOP_COMBO_CALCULATOR_SYNC.md`](../docs/SOP_COMBO_CALCULATOR_SYNC.md).

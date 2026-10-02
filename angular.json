@@ -24,8 +24,7 @@
             "outputHashing": "all",
             "optimization": true,
             "sourceMap": false,
-            "extractLicenses": true
-            ,
+            "extractLicenses": true,
             "outputMode": "static",
             "budgets": [
               {
@@ -41,9 +40,74 @@
             ]
           },
           "configurations": {
-            "production": {}
+            "production": {},
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "outputHashing": "none",
+              "budgets": [],
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "assets",
+                  "output": "assets"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "data",
+                  "output": "data",
+                  "ignore": [
+                    "**/*.html",
+                    "droptable/**"
+                  ]
+                },
+                {
+                  "glob": "**/*",
+                  "input": "event",
+                  "output": "event",
+                  "ignore": [
+                    "**/*.html"
+                  ]
+                },
+                {
+                  "glob": "**/*",
+                  "input": "guide",
+                  "output": "guide",
+                  "ignore": [
+                    "**/*.html"
+                  ]
+                },
+                {
+                  "glob": "**/*",
+                  "input": "tools",
+                  "output": "tools",
+                  "ignore": [
+                    "**/*.html"
+                  ]
+                },
+                {
+                  "glob": "**/*",
+                  "input": "src/app/generated/event-fragments",
+                  "output": "/"
+                },
+                {
+                  "glob": "LICENSE",
+                  "input": "third_party/psostats-combo",
+                  "output": "third_party/psostats-combo"
+                }
+              ]
+            }
           },
           "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "options": {
+            "buildTarget": "haven-tools:build:development",
+            "host": "127.0.0.1",
+            "port": 5173
+          }
         }
       }
     }

@@ -1,0 +1,5 @@
+:host{position:fixed;z-index:1001;right:20px;bottom:calc(100px + env(safe-area-inset-bottom));display:block}
+button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 14px;border:1px solid #00d4ff80;border-radius:24px;background:#0c1838;color:#e2e8f0;font:inherit;font-size:14px;cursor:pointer;box-shadow:0 4px 16px #0004}
+button:hover{border-color:#00d4ff}button:focus-visible{outline:2px solid #00d4ff;outline-offset:3px}svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+p{max-width:240px;padding:10px;border:1px solid #00d4ff80;border-radius:8px;background:#0c1838;color:#e2e8f0;font-size:14px}
+@media(max-width:600px){button{width:44px;padding:10px}button span{display:none}}

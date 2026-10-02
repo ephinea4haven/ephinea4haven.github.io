@@ -1,5 +1,5 @@
 <page-chrome [title]="t(isOpm() ? 'titleOpm' : 'titleMulti')" [back-text]="t('back')"></page-chrome>
-<main class="content-container tool-page combo-shell">
+<main class="content-container tool-page combo-shell" (input)="saveState()" (change)="saveState()">
   <div class="tool-toolbar combo-toolbar">
     <p class="tool-kicker">{{ t('kicker') }}</p>
     <a class="tool-action" [href]="modeLink">
@@ -9,11 +9,13 @@
 
     <section class="tool-section control-card" aria-labelledby="character-heading">
       <h2 id="character-heading">{{ t('Character') }}</h2>
-      <div class="control-grid">
+      <div class="checks">
         <label class="check"><input id="commanderBlade" type="checkbox"
           [(ngModel)]="commanderBlade" (change)="updateEquipment()"> {{ itemName('Commander Blade') }}</label>
         <label class="check"><input id="smartlinkInput" type="checkbox"
           [(ngModel)]="smartlink"> {{ itemName('Smartlink') }}</label>
+      </div>
+      <div class="control-grid">
         <label>{{ t('Class') }}<select id="class-select" [(ngModel)]="selectedClass"
           (change)="updateClass()">@for (name of classes; track name) {<option [value]="name">{{ name }}</option>}</select></label>
         <label>{{ t('Frame') }}<select id="frame-select" [(ngModel)]="selectedFrame"

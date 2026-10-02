@@ -1,6 +1,6 @@
 # Architecture
 
-> Last updated: 2026-09-16
+> Last updated: 2026-10-02
 
 ## Audience and languages
 
@@ -118,6 +118,7 @@ but no scripts or inline event handlers; Angular owns behavior.
 - `src/app/`: bootstrap, routing and application features.
 - `src/app/content/`: shared behaviors for content-oriented routes.
 - `src/app/shared/`: the Angular page shell and common presentation.
+- `src/app/search/`: the lazy site-search dialog and Pagefind engine adapter.
 - `src/app/combo/`, `status/`, `chartable/`, `price-guide/`: dedicated tools.
 - `src/app/events/`, `data/`, `mag/`, `rbr/`: specialized interactive content.
 - `src/app/item-catalog/`: item search, filters, detail loading, scoped zh/en/ja
@@ -150,6 +151,23 @@ its target, so section, class-tab and feeding-table deep links keep working.
 `data/droptable/` is a tooling-only snapshot and is excluded from publication.
 The current drop-table product is hosted independently at
 `dropcharts.psohaven.com`.
+
+Site search uses [Pagefind](https://pagefind.app/docs/) to index the rendered
+language editions during the production build. `scripts/build_search.mjs` owns
+index extraction; its indexing copy excludes navigation and other repeated
+chrome without modifying published HTML or hydration data. Item aliases come
+from the generated authority names and maintained acronym guide. Historical
+activity content is indexed at its real host URL with `?year=YYYY`, rather than
+linking to a raw HTML fragment. The Angular dialog and Pagefind assets load on
+demand; an empty search dialog does not download the index. Results stay in the
+current page language, while item queries can use names from any supported
+language. No search server or external search service is required.
+
+The build normalizes Pagefind 1.5.2's [unordered filter encoding](https://github.com/Pagefind/pagefind/blob/v1.5.2/pagefind/src/index/mod.rs#L405)
+using the standard CBOR codec in `build_search.mjs`, preserving filter membership
+and updating content-addressed references. Version and tuple-schema checks fail
+the build if an upgrade changes this boundary. Keeping this step in the watched
+indexing module also lets development rebuilds load its current implementation.
 
 The sibling `droptable/i18n_names.json` file is the sole Chinese item-name authority.
 The catalog uses its Japanese names first and supplements missing Japanese names
@@ -445,6 +463,13 @@ prefix, so a shared English or Japanese build opens in that language.
 All 47 material-plan links are parsed as calculator inputs and checked for known
 fields, numeric form, Mag and material limits, and class-compatible equipment.
 
+Combo and Status share `ToolUrlState` for URL persistence. Each component validates
+and restores its query parameters after hydration; edits replace the current
+history entry without overwriting an in-progress field edit. Language changes,
+reloads and back/forward navigation restore the configuration. Combo mode links
+retain the configuration while using the destination mode's enemy data. Query
+values use validated equipment keys and finite numbers, never executable markup.
+
 ## Build and release
 
 `npm run build` performs the following transaction:
@@ -454,9 +479,10 @@ fields, numeric form, Mag and material limits, and class-compatible equipment.
 3. copy the maintained static-resource trees into a temporary directory while
    excluding build-only inputs, retired trees and operating-system metadata;
 4. install every prerendered route at its historical path;
-5. reject any unexpected non-Angular HTML host, missing resource, retired runtime
+5. generate the language-specific Pagefind indexes, including archived event years;
+6. reject any unexpected non-Angular HTML host, missing resource, retired runtime
    asset, operating-system metadata, or route/chunk budget violation;
-6. write a deterministic manifest and atomically publish `_site`.
+7. write a deterministic manifest and atomically publish `_site`.
 
 Generated HTML contains Angular hydration state, event replay scripts and the
 critical-CSS optimizer's deferred stylesheet activator. Angular 22.2.0 uses
@@ -488,6 +514,8 @@ The release gates cover:
 - Angular ownership of every public application host;
 - browser console, page and local-resource errors on every route;
 - representative behavior and WCAG A/AA checks;
+- cold-browser homepage resource budgets in three languages, including responsive
+  background selection, loaded JavaScript, request counts and deferred search assets;
 - per-chunk, per-route and aggregate gzip budgets, where a route counts every
   script its page references (including the page chunks it preloads) and
   everything those scripts import statically. The aggregate budget covers the
