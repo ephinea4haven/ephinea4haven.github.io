@@ -8,6 +8,7 @@ import { gunzipSync, gzipSync } from 'node:zlib';
 import { parse, parseFragment, serialize } from 'parse5';
 import * as pagefind from 'pagefind';
 import { generatedFiles } from './generated_files.mjs';
+import { minify } from 'terser';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ignoredTags = new Set(['script', 'style', 'link', 'nav', 'footer', 'button', 'select', 'input', 'textarea', 'dialog', 'haven-site-search', 'haven-language-bar', 'catalog-language']);
@@ -245,6 +246,17 @@ export async function buildSearchFromDocuments({ documents, outputDirectory }) {
       .sort((left, right) => Number(left.path === 'pagefind-entry.json') - Number(right.path === 'pagefind-entry.json') || left.path.localeCompare(right.path));
     const generated = generatedFiles();
     for (const file of output) {
+      if (file.path.endsWith('.js')) {
+        // Keep worker execution and error diagnostics; omit verbose upstream advisory logs.
+        const result = await minify(Buffer.from(file.content).toString('utf8'), {
+          module: file.path === 'pagefind.js',
+          toplevel: true,
+          compress: { passes: 3, drop_console: ['log', 'debug', 'info', 'warn'] },
+          mangle: true,
+          format: { comments: 'some' },
+        });
+        file.content = Buffer.from(result.code);
+      }
       const destination = path.join(outputDirectory, file.path);
       // Pagefind's language map comes from a HashMap; stabilize its JSON key order for the artifact manifest.
       const content = file.path.endsWith('.json')

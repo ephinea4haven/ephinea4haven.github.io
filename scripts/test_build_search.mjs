@@ -102,6 +102,7 @@ test('Pagefind builds all categories reproducibly with authoritative aliases in 
     const report = await buildSearch({ directory, routes });
     assert.equal(report.pages, 18);
     assert.ok(report.javascriptGzipBytes > 0);
+    assert.ok(report.javascriptGzipBytes <= 19500, 'minified search runtime and worker stay within 19.5 KB gzip');
     const outputDirectory = path.join(directory, 'assets/search');
     const files = await readdir(outputDirectory);
     assert.ok(files.includes('pagefind.js'));

@@ -76,9 +76,18 @@ The final checkbox regression first failed against the old artifact's stretched
 label width. After the fix, all 47 focused browser checks passed: 18 checkbox
 cases (three languages, two modes, 320/390/1440px), 11 calculator-state cases and
 18 homepage-performance cases. Desktop and mobile screenshots were also reviewed.
-Two final production builds produced byte-identical manifests; the artifact has
+Before the CI correction below, two production builds produced byte-identical manifests; the artifact has
 3,802 prerendered routes and 135 event fragment resources. Published JavaScript
-gzip totals 994,752 bytes against the 1,000,000-byte budget.
+gzip initially measured 994,752 bytes on the local Node 26 installation. The
+first CI attempt rejected the same files at 1,005,707 bytes under Node 24's
+compression library; deployment did not run. Local release builds now require
+Node 24 (`nvm use`), matching CI. Terser minifies both Pagefind scripts while
+preserving the worker and error diagnostics. The corrected Node 24 build measures
+999,645 bytes against the unchanged 1,000,000-byte budget, and a new 19.5 KB gzip
+regression limit covers the search scripts themselves.
+The corrected production artifact passed all 60 focused browser cases (search,
+homepage performance and Combo options); the seven search generation checks also
+passed, including repeated output and modification-time comparisons.
 
 ## September 29, 2026 unpublished Destiny archive
 
