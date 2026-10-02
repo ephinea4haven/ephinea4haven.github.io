@@ -2,6 +2,9 @@
   "name": "ephinea4haven",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=24.13.1 <25"
+  },
   "scripts": {
     "dev": "node scripts/dev_site.mjs",
     "build": "node scripts/build_site.mjs",
@@ -63,6 +66,7 @@
     "pagefind": "1.5.2",
     "parse5": "8.0.1",
     "rxjs": "7.8.2",
+    "terser": "5.51.2",
     "typescript": "6.0.3"
   }
 }

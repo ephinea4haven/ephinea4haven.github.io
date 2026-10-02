@@ -163,6 +163,12 @@ demand; an empty search dialog does not download the index. Results stay in the
 current page language, while item queries can use names from any supported
 language. No search server or external search service is required.
 
+Terser minifies the emitted Pagefind runtime and worker. It removes informational
+and advisory console messages while retaining `console.error`, worker execution
+and the application's error/retry behavior. Both scripts together have a 19.5 KB
+gzip regression limit. Production builds require Node.js 24 to match CI's
+compression measurements; use `.nvmrc` instead of the system Node installation.
+
 The build normalizes Pagefind 1.5.2's [unordered filter encoding](https://github.com/Pagefind/pagefind/blob/v1.5.2/pagefind/src/index/mod.rs#L405)
 using the standard CBOR codec in `build_search.mjs`, preserving filter membership
 and updating content-addressed references. Version and tuple-schema checks fail

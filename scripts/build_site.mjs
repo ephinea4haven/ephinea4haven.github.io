@@ -19,6 +19,10 @@ import { parse } from 'parse5';
 import { isAngularInlineScript } from './angular_inline_scripts.mjs';
 import { buildSearch } from './build_search.mjs';
 
+if (process.versions.node.split('.')[0] !== '24') {
+  throw new Error('Production builds require Node.js 24, matching CI. Run nvm use before building.');
+}
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outputDirectory = path.join(root, '_site');
 const temporaryDirectory = path.join(root, `.site-build-${process.pid}`);

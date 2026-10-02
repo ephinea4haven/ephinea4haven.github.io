@@ -50,7 +50,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full design.
 
 ### Prerequisites
 
-- Node.js 24 and npm
+- Node.js 24 and npm (`nvm use` reads the repository's `.nvmrc`)
 - Python 3, for the data generators and their tests
 - To regenerate challenge maps only: the [`potrace`](https://potrace.sourceforge.net)
   binary on `PATH`, `pip install -r scripts/requirements-maps.txt`, and
@@ -70,6 +70,7 @@ parent/
 ### Install and run
 
 ```bash
+nvm use                          # use the same Node.js major as CI
 npm ci
 npx playwright install chromium   # browser tests and map preview rendering
 npm run dev                       # watch and serve at http://127.0.0.1:5173
