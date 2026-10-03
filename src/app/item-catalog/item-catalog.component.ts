@@ -17,7 +17,7 @@ import highlights from '../../../content/item-catalog/banner-highlights.json';
   imports: [RouterLink, ItemImageComponent, CatalogLanguageComponent],
   providers: [CatalogLanguageService],
   templateUrl: './item-catalog.component.html',
-  styleUrls: ['./item-catalog.component.css', './catalog-visual.css', './item-highlights.css'],
+  styleUrls: ['./item-catalog.component.css', './catalog-visual.css', './item-highlights.css', './item-list-names.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemCatalogComponent {
@@ -89,6 +89,11 @@ export class ItemCatalogComponent {
     return Number.isSafeInteger(value) ? Math.max(1, Math.min(value, this.pageCount())) : 1;
   });
   readonly visible = computed(() => this.filtered().slice((this.page() - 1) * this.pageSize, this.page() * this.pageSize));
+  readonly secondaryLanguages = computed(() => [
+    { key: 'en' as const, label: 'EN' },
+    { key: 'ja' as const, label: '日' },
+    { key: 'zh' as const, label: '中' },
+  ].filter(language => language.key !== this.i18n.language()));
   readonly activeFilters = computed(() => [
     ...(this.query() ? [{ key: 'q', label: this.i18n.t('搜索：') + this.query() }] : []),
     ...(this.profession() ? [{ key: 'class', label: this.profession() }] : []),

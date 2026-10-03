@@ -4,11 +4,11 @@
     <nav class="breadcrumbs" [attr.aria-label]="i18n.t('当前位置')"><a [routerLink]="i18n.link('/data/items.html')" [queryParams]="queryParams()">{{ i18n.t('道具图鉴') }}</a><span aria-hidden="true">/</span><a [routerLink]="i18n.link('/data/items.html')" [queryParams]="{category: entry.category}">{{ i18n.category(entry.category) }}</a><span aria-hidden="true">/</span><span>{{ i18n.name(entry) }}</span></nav>
     <section class="detail-hero" aria-labelledby="item-title">
       <figure class="item-figure">
-        <div class="figure-top"><span>{{ i18n.t(picturedItem()?.imageKind === 'box' ? '类别示意图' : picturedItem()?.imageKind === 'illustration' ? '隐身效果示意' : picturedItem()?.imageKind === 'effect' ? '效果预览' : '游戏内外观') }}</span><span>{{ i18n.category(entry.category) }}</span></div>
+        <div class="figure-top"><span>{{ i18n.t(imageKindLabel(picturedItem()?.imageKind ?? null, '游戏内外观')) }}</span><span>{{ i18n.category(entry.category) }}</span></div>
         @if (entry.hdImage && entry.image && entry.hdImage !== entry.image) {
           <div class="image-switch" role="group" [attr.aria-label]="i18n.t('图片版本')">
             <button type="button" [attr.aria-pressed]="showingHd()" (click)="imageMode.set('hd')">{{ i18n.t('高清图片') }}</button>
-            <button type="button" [attr.aria-pressed]="!showingHd()" (click)="imageMode.set('wiki')">{{ i18n.t(entry.imageKind === 'illustration' ? '隐身效果示意' : entry.imageKind === 'effect' ? '效果预览' : '现有图片') }}</button>
+            <button type="button" [attr.aria-pressed]="!showingHd()" (click)="imageMode.set('wiki')">{{ i18n.t(imageKindLabel(entry.imageKind, '现有图片')) }}</button>
           </div>
         }
         @if (picturedItem(); as pictured) {

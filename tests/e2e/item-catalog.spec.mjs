@@ -10,6 +10,86 @@ const listedSabers = items.filter(item => item.type === 'Saber' && !series.get(i
 const unprefixed = (href) => new URL(href).pathname.replace(/^\/(en|ja)(?=\/)/, '');
 const names = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
 
+test('list shows all three item names with the active language first on desktop and mobile', async ({page}, testInfo) => {
+  const item = items.find(item => item.id === 'manda60-vise');
+  for (const width of [1440, 390, 320]) {
+    await page.setViewportSize({width, height: 1000});
+    await page.goto('/en/data/items.html?q=M%26A60');
+    for (const [button, language] of [['English', 'en'], ['中文', 'zh'], ['日本語', 'ja']]) {
+      await page.getByRole('button', {name: button, exact: true}).click();
+      const identity = page.locator('.item-row .identity');
+      await expect(identity.locator('.item-name')).toHaveText(item[language]);
+      await expect(identity.locator('.translated-name')).toHaveCount(2);
+      for (const other of ['en', 'zh', 'ja'].filter(key => key !== language)) {
+        await expect(identity.locator(`.translated-name > [lang="${other}"]`)).toHaveText(item[other]);
+      }
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+      if (width !== 320 && language === 'en') {
+        await page.locator('.item-table').screenshot({path: testInfo.outputPath(`three-names-${width}.png`)});
+      }
+    }
+  }
+  const unverified = items.find(item => !item.ja && item.category === 'weapon');
+  await page.goto(`/en/data/items.html?q=${unverified.code}`);
+  await page.getByRole('button', {name: 'English', exact: true}).click();
+  await expect(page.locator('.translated-name > span:last-child').filter({hasText: 'Name unverified'})).toHaveCount(1);
+  for (const id of ['blue-odoshi-violet-nimaidou', 'heart-of-partisan-of-lightning']) {
+    const longName = items.find(item => item.id === id);
+    await page.goto(`/en/data/items.html?category=${longName.category}&q=${longName.code}`);
+    await expect(page.locator('.item-name')).toHaveText(longName.en);
+    await expect(page.locator('.translated-name')).toHaveCount(2);
+    expect(await page.locator('.item-names').evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+});
+
+test('paired Mechgun images contain two complete silhouettes and appear in lists and details', async ({page}, testInfo) => {
+  const ids = ['mechgun', 'assault', 'repeater', 'gatling', 'vulcan', 'es-mechgun', 'typeme-mechgun'];
+  await page.goto('/en/data/items.html?type=机枪');
+  for (const id of ids) {
+    const item = items.find(item => item.id === id);
+    await page.goto(`/en/data/items.html?q=${item.code}`);
+    const thumbnail = page.locator(`.item-row[href*="/${id}.html"] item-image img`);
+    await expect(thumbnail).toHaveAttribute('src', `/assets/img/items/models/thumbs/${id}.webp`);
+    await expect(thumbnail).toHaveAttribute('alt', /Model preview/);
+    await page.goto(`/en/data/items/${id}.html`);
+    const picture = page.locator('.image-stage img');
+    await expect(picture).toHaveAttribute('src', `/assets/img/items/models/${id}.webp`);
+    await expect(page.locator('figcaption')).toContainText('Image: original model render');
+    // Count substantial disconnected alpha regions. The old single-gun files
+    // have one silhouette; metadata alone cannot establish a paired image.
+    for (const source of [`/assets/img/items/models/${id}.webp`, `/assets/img/items/models/thumbs/${id}.webp`]) {
+      const result = await page.evaluate(async source => {
+        const image = new Image(); image.src = source; await image.decode();
+        const canvas = document.createElement('canvas');
+        const w = canvas.width = image.naturalWidth, h = canvas.height = image.naturalHeight;
+        const context = canvas.getContext('2d'); context.drawImage(image, 0, 0);
+        const data = context.getImageData(0, 0, w, h).data;
+        const visited = new Uint8Array(w * h), components = [];
+        let clipped = false;
+        for (let i = 0; i < w * h; i++) {
+          if (data[i * 4 + 3] < 128 || visited[i]) continue;
+          const stack = [i]; visited[i] = 1; let count = 0;
+          while (stack.length) {
+            const p = stack.pop(), x = p % w, y = Math.floor(p / w); count++;
+            if (x === 0 || y === 0 || x === w - 1 || y === h - 1) clipped = true;
+            for (const q of [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1]) {
+              if (q >= 0 && !visited[q] && data[q * 4 + 3] >= 128) { visited[q] = 1; stack.push(q); }
+            }
+          }
+          if (count > w * h * 0.03) components.push(count);
+        }
+        return {components: components.length, clipped, ratio: w / h, cornerAlpha: data[3]};
+      }, source);
+      expect(result, source).toEqual({components: 2, clipped: false, ratio: 4 / 3, cornerAlpha: 0});
+    }
+  }
+  await page.setViewportSize({width: 1440, height: 1200});
+  await page.goto('/en/data/items.html?type=机枪');
+  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /mechgun\.html/);
+  await page.locator('.item-table').screenshot({path: testInfo.outputPath('mechgun-list.png')});
+});
+
 test('confirmed Unitxt renames survive detail hydration and language switching', async ({ page }) => {
   for (const en of ['Thirteen', 'Game Magazine', 'TypeSA/SABER', 'D-Parts ver1.01']) {
     const item = items.find(candidate => candidate.en === en);
@@ -316,10 +396,11 @@ test('subtype, class, rarity and base ATP sorting compose', async ({page}) => {
   await page.getByLabel('星级', {exact:true}).selectOption('10');
   await page.getByLabel('排序', {exact:true}).selectOption('atp');
   await expect(page.locator('.item-row')).toHaveCount(13);
-  await expect(page.locator('.item-row').first()).toContainText('Commander Blade');
-  await expect(page.locator('.item-row').last()).toContainText("DB's Saber (3070)");
-  await expect(page.locator('.item-list')).toContainText('Elysion');
-  await expect(page.locator('.item-list')).not.toContainText('Ancient Saber');
+  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /\/commander-blade\.html\?/);
+  await expect(page.locator('.item-row').first().locator('[lang="en"]')).toHaveText('COMMANDER BLADE');
+  await expect(page.locator('.item-row').last()).toHaveAttribute('href', /\/dbs-saber-3070\.html\?/);
+  await expect(page.locator('.item-row[href*="/elysion.html?"]')).toHaveCount(1);
+  await expect(page.locator('.item-row[href*="/ancient-saber.html?"]')).toHaveCount(0);
 });
 
 test('equipment class filters exclude consumables and reset on the tools category', async ({page}) => {
@@ -645,16 +726,18 @@ test('lists browse one subcategory, searches cover the category, and paging work
   await expect(page.locator('#type-filter option[value="光剑"]')).toHaveText(`光剑 (${sabers})`);
   await page.locator('#type-filter').selectOption('TypeM 武器');
   await expect(page.locator('.result-toolbar strong')).toHaveText('30');
-  await expect(page.locator('.item-row').first()).toContainText('TypeSA/Saber');
+  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /\/typesa-saber\.html\?/);
+  await expect(page.locator('.item-row').first().locator('[lang="en"]')).toHaveText('TypeSA/SABER');
   await page.locator('#type-filter').selectOption('ES 武器');
   await expect(page.locator('.result-toolbar strong')).toHaveText('30');
   await page.locator('#type-filter').selectOption('步枪');
   await expect(page).toHaveURL(/type=%E6%AD%A5%E6%9E%AA|type=步枪/);
   await expect(page.locator('.item-row').first()).toContainText('Rifle');
-  await expect(page.locator('.item-list')).not.toContainText('TypeRI/Rifle');
+  await expect(page.locator('.item-row[href*="/typeri-rifle.html?"]')).toHaveCount(0);
   await page.getByRole('searchbox').fill('TypeSH');
   await expect(page.locator('.item-row')).toHaveCount(1);
-  await expect(page.locator('.item-row')).toContainText('TypeSH/Shot');
+  await expect(page.locator('.item-row')).toHaveAttribute('href', /\/typesh-shot\.html\?/);
+  await expect(page.locator('.item-row [lang="en"]')).toHaveText('TypeSH/SHOT');
   await expect(page.locator('#type-filter')).toBeDisabled();
   await expect(page.locator('.filters')).toContainText('搜索时不限细分类别。');
   await page.getByRole('searchbox').fill('');

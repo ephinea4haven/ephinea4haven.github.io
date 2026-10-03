@@ -1,0 +1,10 @@
+.item-names { padding-block: 12px; }
+.name-translations { display: grid; gap: 3px; margin-top: 6px; }
+.translated-name { display: grid; grid-template-columns: 20px minmax(0, 1fr); align-items: baseline; gap: 6px; color: var(--muted); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+.name-language { color: #8fa7bb; font-size: 9px; letter-spacing: .04em; }
+.item-names .source-language { margin: 6px 0 0; }
+@media(max-width: 600px) {
+  .identity { grid-column: 1 / -1; }
+  .item-names { padding-block: 0; }
+  .item-kind { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; }
+}

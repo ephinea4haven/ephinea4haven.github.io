@@ -18,6 +18,7 @@ playwright-report/
 test-results/
 artifacts/hd-gallery/
 artifacts/npc-models/
+artifacts/mechgun-renders/
 artifacts/redwolf-archive/
 artifacts/equipment-acceptance/
 .secrets/ephinea-wiki.json

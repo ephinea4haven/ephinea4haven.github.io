@@ -35,10 +35,33 @@ evaluated in this order:
 
 Acquisition method does not automatically promote an item to top tier. Rare
 combination and enemy-part results remain gold unless they meet the top-tier
-rule. Only the primary name is highlighted; the secondary-language name remains
+rule. Only the primary name is highlighted; the secondary-language names remain
 muted. Conditional banners expose the minimum untekked Hit in a localized title
 and the row's accessible description; other gold items say “Rare item”.
 Reduced-motion preferences stop the rainbow animation.
+
+List rows show all three available item names: the current language is the
+primary name, followed by the other two in muted text with EN / 日 / 中 labels.
+Names come from the same maintained catalog fields used for search and details.
+An unverified Japanese name is labelled explicitly instead of presenting English
+as a verified Japanese translation. On phones the image and names span the row,
+with category, rarity and stats below; long names wrap without truncation.
+
+The five common Mechguns, ES Mechgun and TypeME/Mechgun use paired original-model
+previews in lists, related cards and the default detail view. The checked-in
+`model-images.json` supplies exact item-code bindings and image checksums; see
+[the rendering procedure](PSO_LOCAL_MODEL_RENDERING.md#机枪双持预览2026-10-03).
+
+Local validation on 2026-10-03 passed the full `npm test` suite (including 32
+item/gallery tests), all 55 catalog browser
+cases (two old Wiki-title assertions were updated to exact item routes and
+authoritative English names, then rechecked), localization/architecture checks,
+and the production build with 3,802 routes. Desktop and mobile previews were
+visually reviewed. The maintainer accepted the seven paired previews and all
+three primary-language layouts, then authorized documentation alignment,
+commit and push on 2026-10-03. Production publication is established separately
+by the matching successful Pages workflow; see the
+[release record](DEPLOYMENT.md#october-3-2026-paired-mechguns-and-three-language-item-names).
 
 `npm run sync:item-highlights` snapshots the maintained sibling drop chart's
 `tools/banner_rules.py` and corresponding CSS into
