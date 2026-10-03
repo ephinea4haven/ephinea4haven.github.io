@@ -221,14 +221,14 @@ as separate models.
 
 ## Updating the data
 
-### HD detail images and naming (updated 2026-09-29)
+### HD detail images and naming (updated 2026-10-03)
 
 `content/item-catalog/hd-gallery.json` accounts for 608 source images: the original
 606-image 高清图库 collection with four images replaced by the supplied 替换.zip
 artwork and 14 shield images replaced by the supplied 盾牌替换 collection,
 plus one subsequently supplied SOF image and one TypeGU/Mechgun image. Later
-individual corrections replace the Silence Claw, Gi Gue Bazooka and Red Dagger
-sources as recorded below.
+individual corrections replace the Silence Claw, Gi Gue Bazooka, Red Dagger
+and three Booma-family claw sources as recorded below.
 SHA-256 comparison reduces these to 554 unique assets; the manifest records the current source paths,
 dimensions, sizes and checksums.
 On 2026-09-29, visual comparison against the standard item thumbnails confirmed
@@ -238,6 +238,39 @@ Booma's Claw is brown-red, Gobooma's Claw is yellow. Gigobooma's Claw remains
 purple. The source inventory and HD image counts are unchanged. The regression
 failed before the correction and passed afterward; all 27 item tests and the
 production build passed (3,802 routes, 135 event fragments).
+
+On 2026-10-03 the maintainer supplied three replacement images and explicitly
+identified them, in order, as Booma's Claw (brown), Gobooma's Claw (gold) and
+Gigobooma's Claw (purple). The three canonical HD paths remain
+`items/boomas-claw.webp`, `items/goboomas-claw.webp` and
+`items/gigoboomas-claw.webp`. Each supplied PNG is 1280 × 938; encoding with
+`cwebp -q 85 -m 6 -resize 1024 0` produces 1024 × 751 WebPs of 37,278,
+38,644 and 36,248 bytes respectively. The manifest and identity regression
+record the new source and published checksums. Standard thumbnails and item
+names are unchanged.
+
+For full regeneration, remove the three old `WEAPON/EP1+2/` sources named
+`BOOMA'S CLAW.png`, `GOBOOMA'S CLAW.png` and `GIGOBOOMA'S CLAW.png` from the
+assembled working copy. Place the new files under
+`User-provided corrections/2026-10-03/` using these exact bindings:
+
+| Item | Supplied source filename |
+| --- | --- |
+| Booma's Claw | `4ec9aec551130f34bc0c62c4c64712b8.png` |
+| Gobooma's Claw | `da606bc27414598e7a276102e7aabef3.png` |
+| Gigobooma's Claw | `fa3bbcf2d994d956587ade19ef6e2542.png` |
+
+These are replacements; the source inventory and HD image counts are unchanged.
+Local `npm run release:prepare` passed the complete business-test suite, the
+production build (3,802 routes and 135 fragments), and all 4,139 browser tests.
+Additional checks verified the exact served image bytes and HD/standard switch
+on all nine item/language detail pages. The encoded artwork and English detail
+previews were visually reviewed, and an independent source/identity review
+found no remaining issues.
+The maintainer accepted the previews and authorized documentation alignment,
+commit and push on 2026-10-03. Publication is tracked by the matching Pages run
+in the [release record](DEPLOYMENT.md#october-3-2026-booma-family-claw-hd-artwork).
+
 The detail generator consumes only verified direct `itemIds`: 409 optimized
 images cover 415 details. The `hdImage` field is emitted only in per-item detail
 data; the searchable list uses small equipment thumbnails instead of full-size HD files.
@@ -430,7 +463,7 @@ manifests or changed output bytes before writing any images, then removes retire
 WebPs from its owned destination directory. Regenerate the prepared gallery after
 changing the naming manifest; do not rename prepared files manually.
 They preserve aspect ratio at 1024-pixel width with lossy WebP quality 85,
-totaling 15,393,220 bytes. The detail frame displays them at up to 512 CSS pixels,
+totaling 15,358,468 bytes. The detail frame displays them at up to 512 CSS pixels,
 providing enough pixels for a 2× display at that size. This is optimized web
 artwork, not a lossless archival copy; enlarging it cannot retain the detail of
 the original roughly 5,000-pixel images. Downloaded originals are unchanged.

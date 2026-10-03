@@ -37,6 +37,27 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 3, 2026 Booma-family claw HD artwork
+
+The maintainer supplied and identified replacement HD artwork for Booma's Claw
+(brown), Gobooma's Claw (gold) and Gigobooma's Claw (purple), reviewed the detail
+previews, and authorized documentation alignment, commit and push on 2026-10-03.
+The three canonical WebPs, source provenance and identity checksums were updated.
+The [item catalog record](ITEM_CATALOG.md#hd-detail-images-and-naming-updated-2026-10-03)
+documents the exact source bindings and regeneration procedure.
+
+Local `npm run release:prepare` passed all business tests, the production build
+(3,802 routes, 135 fragments and 999,893 / 1,000,000 JavaScript gzip bytes), and
+all 4,139 browser tests before push. Additional browser checks verified the
+served image bytes, successful image decoding and HD/standard switching on all
+nine item/language detail pages. Visual inspection and independent review passed.
+The published HD inventory remains 409 images for 415 item details, totaling
+15,358,468 bytes. Item names, standard thumbnails and application code are unchanged.
+
+Acceptance and push authorization are complete. Publication is confirmed by the
+matching revision's successful build, all three browser-test shards and Pages
+deploy job; local validation alone does not establish deployment.
+
 ## October 3, 2026 paired Mechguns and three-language item names
 
 The maintainer reviewed and accepted the desktop/mobile item list, the ES and
@@ -82,7 +103,11 @@ from the manual calculation. The original exact reload comparison remains.
 Related snapshots now wait for sorted/selected Combo rows and updated Status
 stat cells. No production code, calculation, timeout or retry setting changed.
 All 11 state tests passed five consecutive repetitions with two workers
-(55/55). Publication still requires the follow-up revision's complete Pages run.
+(55/55), followed by the complete local browser suite (4,139/4,139).
+The follow-up `6480bd1` passed the build, all three browser-test shards and Pages
+deployment in [run 37091667935](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/37091667935).
+Live checks confirmed all seven paired Mechgun thumbnails matched the committed
+bytes and all three language editions displayed primary and secondary item names.
 
 ## October 2, 2026 search, development and bug-fix release
 

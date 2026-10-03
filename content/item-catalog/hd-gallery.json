@@ -2589,14 +2589,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "The source filenames for Booma's Claw and Gobooma's Claw are reversed: this brown-red claw matches the standard Booma's Claw thumbnail.",
+      "evidence": "Maintainer supplied and explicitly identified this brown claw artwork on 2026-10-03; replaces the previous gallery image for this exact item.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/GOBOOMA'S CLAW.png",
-          "sha256": "ca89ed66fd1c329702f6c2d19b16751f7e003b37c5753b7da8a22205af67e14d",
-          "bytes": 16354303,
-          "width": 5444,
-          "height": 3989
+          "path": "User-provided corrections/2026-10-03/4ec9aec551130f34bc0c62c4c64712b8.png",
+          "sha256": "df7749e3a362471ce4759c4aa3be8184a8ca369dd95cc64d579423282e654cf5",
+          "bytes": 1268374,
+          "width": 1280,
+          "height": 938
         }
       ]
     },
@@ -4864,14 +4864,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Source English name or documented typo aligned to the catalog identity; artwork visually reviewed.",
+      "evidence": "Maintainer supplied and explicitly identified this purple claw artwork on 2026-10-03; replaces the previous gallery image for this exact item.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/GIGOBOOMA'S CLAW.png",
-          "sha256": "f5807d60d101b2bf0102a8fe7c44fdb17ffb9f3b6d990a3e51219975fd2274ce",
-          "bytes": 20476995,
-          "width": 5444,
-          "height": 3989
+          "path": "User-provided corrections/2026-10-03/fa3bbcf2d994d956587ade19ef6e2542.png",
+          "sha256": "39c2954cded60b3b0e3737d45992bd45b4641cb25ed6b2a99ebb1d77b0ce29da",
+          "bytes": 1329789,
+          "width": 1280,
+          "height": 938
         }
       ]
     },
@@ -4978,14 +4978,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "The source filenames for Booma's Claw and Gobooma's Claw are reversed: this yellow claw matches the standard Gobooma's Claw thumbnail.",
+      "evidence": "Maintainer supplied and explicitly identified this gold claw artwork on 2026-10-03; replaces the previous gallery image for this exact item.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/BOOMA'S CLAW.png",
-          "sha256": "d75383969575542576795e7d28f24619bc409ea8c3c4588b3db72716eea549c9",
-          "bytes": 18031835,
-          "width": 5444,
-          "height": 3989
+          "path": "User-provided corrections/2026-10-03/da606bc27414598e7a276102e7aabef3.png",
+          "sha256": "054f8224d17675ef39ad470d1336e55ea12f9ed78ec92cde70ce54ad5a3cae55",
+          "bytes": 1250265,
+          "width": 1280,
+          "height": 938
         }
       ]
     },
