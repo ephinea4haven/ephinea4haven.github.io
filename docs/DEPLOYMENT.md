@@ -68,6 +68,22 @@ normal **Verify and deploy Pages** workflow; production publication is confirmed
 only when that revision's build, all three browser shards and deploy job pass.
 The local screenshots and passing local build do not establish deployment.
 
+The first publication attempt, [run 37090294678](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/37090294678)
+for `21a7995`, passed the build and browser shards 1 and 2. Shard 3 passed
+1,377 tests but failed the two Combo state-restoration cases, so deployment was
+correctly skipped. The same failure was reproduced locally: after enabling Auto
+Combo, the test observed the updated URL and captured the still-rendered manual
+results before Angular painted the automatic results. The trace confirmed that
+the supposed automatic baseline exactly matched the previous manual baseline.
+
+The follow-up waits for all automatic-combo row labels and disabled attack
+controls before recording the baseline, and asserts that those results differ
+from the manual calculation. The original exact reload comparison remains.
+Related snapshots now wait for sorted/selected Combo rows and updated Status
+stat cells. No production code, calculation, timeout or retry setting changed.
+All 11 state tests passed five consecutive repetitions with two workers
+(55/55). Publication still requires the follow-up revision's complete Pages run.
+
 ## October 2, 2026 search, development and bug-fix release
 
 The maintainer authorized documentation alignment, commit, push and deployment.

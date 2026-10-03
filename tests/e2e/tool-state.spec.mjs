@@ -85,6 +85,8 @@ for (const mode of ['cc', 'ccopm']) {
     await page.locator('#native-btn').click();
     await page.locator('.enemy-chips button').first().click();
     await page.locator('#damage-header button').click();
+    await expect(page.locator('#damage-header')).toContainText('▲');
+    await expect(page.locator('#combo-calc-table tbody tr')).toHaveCount(40);
     const values = await comboValues(page);
     const numbers = await comboNumbers(page);
     expect(numbers).toHaveLength(40);
@@ -108,7 +110,12 @@ for (const mode of ['cc', 'ccopm']) {
     await expect.poll(() => comboNumbers(page)).toEqual(numbers);
     await page.locator('#autoCombo').check();
     await expect(page).toHaveURL(/autoCombo=1/);
+    // The URL can update before Angular renders the automatic combo results.
+    await expect(page.locator('#attack1')).toBeDisabled();
+    await expect(page.locator('#combo-calc-table tbody th')).toHaveText(
+      numbers.map(() => /\([NHS.]{3} \d+f\)$/));
     const autoNumbers = await comboNumbers(page);
+    expect(autoNumbers).not.toEqual(numbers);
     await page.reload();
     await expect(page.locator('#autoCombo')).toBeChecked();
     await expect(page.locator('#attack1')).toBeDisabled();
@@ -122,6 +129,7 @@ test('Combo mode changes preserve inputs and selection while using the target en
   await page.locator('#class-select').selectOption('RAmar');
   await page.locator('.weapon-picker').selectOption('Dark Flow');
   await page.locator('#native-btn').click();
+  await expect(page.locator('#combo-calc-table tbody tr')).toHaveCount(41);
   const values = await comboValues(page);
   const multiplayerNumbers = await comboNumbers(page);
   await page.locator('.combo-toolbar a').click();
@@ -139,6 +147,8 @@ test('Status persists all build inputs, results, share links and resets', async 
   await expect(page.locator('#class')).toHaveValue('ramarl');
   await page.locator('#magPow').fill('110');
   await page.locator('#matLck').fill('12');
+  await expect(page.locator('.stat-table [data-stat="atp"] td').nth(2)).toHaveText('220');
+  await expect(page.locator('.stat-table [data-stat="lck"] td').nth(1)).toHaveText('24');
   const values = await statusValues(page);
   const numbers = await page.locator('.stat-table tbody').innerText();
   await expect(page).toHaveURL(/mpow=110/);
