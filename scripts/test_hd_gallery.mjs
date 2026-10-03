@@ -12,11 +12,11 @@ const records = new Map(read('content/item-catalog/wiki.json').records.map(recor
 const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json').items;
 const from = source => gallery.assets.find(asset => asset.sources.some(entry => entry.path === source));
 
-test('Booma-family claw HD artwork matches the verified standard thumbnails', () => {
+test('Booma-family claw HD artwork matches the maintainer-supplied identities', () => {
   for (const [id, sourcePath, sourceSha256, publishedSha256] of [
-    ['boomas-claw', "WEAPON/EP1+2/GOBOOMA'S CLAW.png", 'ca89ed66fd1c329702f6c2d19b16751f7e003b37c5753b7da8a22205af67e14d', 'f7b25fcf3297c3ebbfee7f3441610335d9465ecac396fd9a4ec16f4e1a095627'],
-    ['goboomas-claw', "WEAPON/EP1+2/BOOMA'S CLAW.png", 'd75383969575542576795e7d28f24619bc409ea8c3c4588b3db72716eea549c9', '34e3a7e04c80e7661eebf48f2d99af9b57c67862c1171ca2f296f9cbb226ae9f'],
-    ['gigoboomas-claw', "WEAPON/EP1+2/GIGOBOOMA'S CLAW.png", 'f5807d60d101b2bf0102a8fe7c44fdb17ffb9f3b6d990a3e51219975fd2274ce', 'b1c574b783fab121ce4a39e088562371855f9b85d4cc493b26207b1cf9a6f36c'],
+    ['boomas-claw', 'User-provided corrections/2026-10-03/4ec9aec551130f34bc0c62c4c64712b8.png', 'df7749e3a362471ce4759c4aa3be8184a8ca369dd95cc64d579423282e654cf5', '22ba1d0c79be83fc61594f78fa2b8a19824bab9f5110a9628afedba79ee84593'],
+    ['goboomas-claw', 'User-provided corrections/2026-10-03/da606bc27414598e7a276102e7aabef3.png', '054f8224d17675ef39ad470d1336e55ea12f9ed78ec92cde70ce54ad5a3cae55', '1f54307d5f7b32e001605a698dc8183786866a8e50cef0923359095503ae3c01'],
+    ['gigoboomas-claw', 'User-provided corrections/2026-10-03/fa3bbcf2d994d956587ade19ef6e2542.png', '39c2954cded60b3b0e3737d45992bd45b4641cb25ed6b2a99ebb1d77b0ce29da', '707d3b1e2d2ab81c563369680be23ba0ebe97f8c6e3c236fe10e98be3c2659c8'],
   ]) {
     const file = `items/${id}.webp`;
     const asset = gallery.assets.find(asset => asset.file === file);
