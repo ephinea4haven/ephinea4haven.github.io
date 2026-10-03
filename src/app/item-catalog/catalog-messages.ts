@@ -2,6 +2,7 @@ export type CatalogLanguage = 'zh' | 'en' | 'ja';
 
 // UI copy is separate from source-language mechanics and authoritative item names.
 export const MESSAGES: Record<string, readonly [string, string]> = {
+  '名称未核实': ['Name unverified', '名称未確認'],
   '日文名未核实 · 显示英文': ['Japanese name unverified · English shown', '日本語名未確認 · 英語表記'],
   '套装说明（英文原文）': ['Set notes (English)', 'セット効果の説明（英語原文）'],
   '游戏内外观': ['IN-GAME VIEW', 'ゲーム内の外観'],

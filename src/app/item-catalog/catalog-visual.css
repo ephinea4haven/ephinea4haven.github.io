@@ -66,7 +66,6 @@
 .item-row[data-rarity='rare'] { border-left-color: #b79a534a; }
 .item-row[data-rarity='rare']:hover { border-left-color: #f2cc78; }
 .identity strong { font-size: 15px; }
-.english { letter-spacing: .2px; }
 .identity item-image { box-shadow: 0 4px 14px #0006, 0 0 0 1px #8cdde50c; }
 .rarity.rare { color: #f5d18d; text-shadow: 0 0 16px #ecb84a30; }
 .row-stats strong { color: #c0efe9; }

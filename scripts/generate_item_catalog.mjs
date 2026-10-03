@@ -15,9 +15,10 @@ const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const snapshot = read('content/item-catalog/wiki.json');
 const images = read('content/item-catalog/images.json');
 const equipmentImages = read('content/item-catalog/equipment-images.json');
-for (const image of [...Object.values(equipmentImages.entries), ...Object.values(equipmentImages.boxes)]) {
+const modelImages = read('content/item-catalog/model-images.json').entries;
+for (const image of [...Object.values(equipmentImages.entries), ...Object.values(equipmentImages.boxes), ...Object.values(modelImages)]) {
   for (const [file, hash] of [[image.path, image.sha256], ...(image.thumbnail ? [[image.thumbnail, image.thumbnailSha256]] : [])]) {
-    if (createHash('sha256').update(fs.readFileSync(file.slice(1))).digest('hex') !== hash) throw new Error(`Equipment image checksum mismatch: ${file}`);
+    if (createHash('sha256').update(fs.readFileSync(file.slice(1))).digest('hex') !== hash) throw new Error(`Item image checksum mismatch: ${file}`);
   }
 }
 // TypeM weapons whose Wiki file was never uploaded use an image derived from the game's ItemKT texture.
@@ -329,8 +330,9 @@ for (const record of records) {
   const appearanceName = record.cosmetic ? (record.cosmetic.appearance || '') : '';
   const wikiImage = images[imageName] || images[imageName[0]?.toUpperCase() + imageName.slice(1)]
     || images[appearanceName] || (cosmetic?.reverts ? images[clean(recordByTitle.get('Red Ring').fields.image).replaceAll('_', ' ')] : undefined);
-  const equipmentPreview = equipmentImage({ category, code, rarity, wikiImage }, equipmentImages);
-  const image = equipmentPreview || wikiImage || itemKtImages[title];
+  const preview = modelImages[code] || equipmentImage({ category, code, rarity, wikiImage }, equipmentImages);
+  if (modelImages[code] && modelImages[code].id !== id) throw new Error(`Model image identity mismatch: ${code}`);
+  const image = preview || wikiImage || itemKtImages[title];
   const source = record.source || `https://wiki.pioneer2.net/w/${encodeURIComponent(title.replaceAll(' ', '_'))}`;
   const acquisition = record.acquisition.filter(a => !notSources.has(a.toLowerCase())).map(acquisitionSource);
   if (commonWeapon) acquisition.push(text('items.weaponShop'));
@@ -348,9 +350,9 @@ for (const record of records) {
   const feeding = feedTable ? Object.entries(feedTable).map(([item, values]) => ({ item, values })) : [];
   const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Map(effects.map(effect => [effect.zh, effect])).values()], boosts, sets, skins, cosmetic, cosmetics: cosmeticsByTarget.get(title) || [], feeding, drops, availability, source, revision: record.revision, checkedAt: record.checkedAt || snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageOrigin: wikiImage ? 'wiki' : image ? 'itemkt' : null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
-  detail.imageKind = equipmentPreview?.kind || (image ? 'screenshot' : null);
-  detail.imageBlend = equipmentPreview?.blend || 'normal';
-  if (equipmentPreview) detail.imageOrigin = equipmentPreview.origin;
+  detail.imageKind = preview?.kind || (image ? 'screenshot' : null);
+  detail.imageBlend = preview?.blend || 'normal';
+  if (preview) detail.imageOrigin = preview.origin;
   const magRender = category === 'mag' && magRenders.has(title);
   if (magRender && hdImages.has(id)) throw new Error(`Mag has both a render and an HD gallery image: ${title}`);
   detail.hdImage = magRender ? `/assets/img/mag/default/${magFiles.get(magRenderNames.get(title))}` : hdImages.has(id) ? `/assets/img/items/hd/${hdImages.get(id)}` : null;
@@ -361,7 +363,7 @@ for (const record of records) {
   detail.atpMax = atp?.[1] ?? null;
   if (magRender) magRenders.delete(title);
   details[id] = detail;
-  thumbnails.set(id, magRender ? `/assets/img/mag/thumbs/${magFiles.get(magRenderNames.get(title))}` : equipmentPreview?.thumbnail || detail.image);
+  thumbnails.set(id, magRender ? `/assets/img/mag/thumbs/${magFiles.get(magRenderNames.get(title))}` : preview?.thumbnail || detail.image);
   // Compact tuples keep the searchable index small; detailed data is loaded per item.
   index.push([id, en, type, rarity, mask, requirement, stats.slice(0, 2).map(s => [s.label, s.value]), thumbnails.get(id), code, status, title === en ? '' : title, atp?.[1] ?? null, detail.ja || '', detail.zh, seriesGroups.get(title) || '', magRender ? 'model' : detail.imageKind, detail.imageBlend]);
 }

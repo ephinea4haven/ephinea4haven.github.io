@@ -8,6 +8,9 @@ export interface Stat { label: string; value: string }
 /** What a card or link needs to show an item. */
 export type ImageKind = 'screenshot' | 'model' | 'effect' | 'illustration' | 'box' | null;
 export type ImageBlend = 'normal' | 'additive';
+export function imageKindLabel(kind: ImageKind, screenshotLabel = '游戏截图'): string {
+  return ({ model: '模型预览', effect: '效果预览', illustration: '隐身效果示意', box: '类别示意图', screenshot: screenshotLabel })[kind || 'screenshot'];
+}
 export interface ItemCard { id: string; en: string; zh: string; ja?: string; image: string | null; imageKind: ImageKind; imageBlend: ImageBlend }
 /** A referenced item name, localized by the build. */
 export interface ItemName { en: string; zh: string; ja?: string }

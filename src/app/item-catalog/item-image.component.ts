@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { CatalogLanguageService } from './catalog-language.service';
-import { ItemCard } from './catalog';
+import { imageKindLabel, ItemCard } from './catalog';
 
 @Component({
   selector: 'item-image',
@@ -24,7 +24,7 @@ import { ItemCard } from './catalog';
 })
 export class ItemImageComponent {
   readonly item = input.required<ItemCard>();
-  readonly imageLabel = computed(() => ({ screenshot: '游戏截图', model: '模型预览', effect: '效果预览', illustration: '隐身效果示意', box: '类别示意图' })[this.item().imageKind || 'screenshot']);
+  readonly imageLabel = computed(() => imageKindLabel(this.item().imageKind));
   readonly failedUrl = signal<string | null>(null);
   readonly i18n = inject(CatalogLanguageService);
 }

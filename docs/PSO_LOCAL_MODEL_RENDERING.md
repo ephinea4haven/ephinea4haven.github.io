@@ -10,6 +10,7 @@
 | 资源 | 已验证流程 | 范围与限制 |
 |---|---|---|
 | Mag | `artifacts/hd-gallery/mag-default/README.md` 和同目录脚本 | 本地 AFS/PRS 模型、贴图，XJ/NJ，79 个模型；部分使用内嵌动画。脚本在本机保留，未入 Git |
+| 机枪 | `scripts/render_mechgun_models.py` → `scripts/import_mechgun_models.mjs` | 普通五阶、ES Mechgun、TypeME/Mechgun 的双枪预览；原始模型和贴图、静态光子颜色、离线展示构图 |
 | NPC | `content/npc-models.json` → 下列三个脚本 | 已验证 Flowen、Rico、Ult、Zoke、Kroe、Anna、Tyrell、Coren 示例；不代表任意 NPC 或所有 NJ chunk 均受支持 |
 | 怪物 | `scripts/render_monster_models.py` / `.mjs` | 现有另一条渲染入口，依赖其浏览器渲染环境；需要时先核对环境和资产版本，不把它误称为 Blender 渲染 |
 
@@ -81,3 +82,23 @@ rtk proxy npx playwright test tests/e2e/npc-guide.spec.mjs tests/e2e/site-smoke.
 - 网站回归检查人物卡片与 SVG 同源、自然尺寸与声明尺寸一致、全部头像显示比例不变，以及检索、语言切换、移动端和可访问性。
 - 用浏览器看最终卡片和关系图。高分辨率正方形渲染不会增加原始低分辨率纹理的细节；不要用 AI 重画来伪造更细的游戏素材。
 - 没有确定人物模型时，报告已查的版本、任务和资源范围，保留明确标注的资料条目。不要把“未找到”扩大为“所有版本都不存在”。
+
+## 机枪双持预览（2026-10-03）
+
+`000800`–`000804`、`007700`、`00EA00` 原先使用 Wiki 的单枪素材，列表和标准图片没有呈现双持外观。修复使用两个完整模型实例，分别取侧面与前侧角度。模型与贴图均为 `ItemModelEp4.afs` / `ItemTextureEp4.afs` 的槽位 7；提取脚本验证 PSOBB-Haven 与本机 Ephinea 的压缩成员字节一致，并核对 vanilla 槽位表与 Ephinea PMT 的 `Type/Skin/WeaponKind`。
+
+光子颜色取 `newserv/tools/param_dumps_ephinea/ItemPMT.prs` 的 `PhotonColors`，索引依次为 0、1、2、3、4、17、20。静态预览使用 `UnknownA2` 色相阶段并转换到 Blender 的线性颜色空间，不复刻客户端脉动、场景光照或角色持枪姿势。XJ 枪体第二个三角条带继承第一个条带的纹理 0；光子导轨是最后一个独立、无纹理子节点。TypeGU/Mechgun 不在本次修改范围。
+
+```sh
+rtk proxy /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python-exit-code 1 --python scripts/render_mechgun_models.py
+# 检查 artifacts/mechgun-renders/ 下七张 PNG 后再导入网站素材。
+rtk node scripts/import_mechgun_models.mjs
+rtk node scripts/generate_item_catalog.mjs
+rtk npm run test:items
+```
+
+渲染复用工作站已有的 `artifacts/destiny/resources/model-previews/render_textured.py` 及其解析器，不将这条有限的机枪路径当作通用武器渲染器。源文件、模型、纹理、PMT、渲染器和产物哈希，以及双实例位置、镜头和采样参数，保存在 `content/item-catalog/model-images.json`。完整图为 1024×768 透明 WebP，列表及关联卡片使用 256×192 缩略图。普通构建仅依赖提交的清单和 WebP；详情默认显示模型预览，原有高清图库仍可切换查看。
+
+浏览器回归按 alpha 连通区域检查七套完整图和缩略图均有两个独立枪体、透明边角及完整留白，并检查列表、详情的图片路径与来源标注。
+
+维护者于 2026-10-03 验收普通五阶机枪、ES Mechgun 和 TypeME/Mechgun 的双枪预览，并在验收三语名称布局后授权对齐文档、提交和推送。本地验证通过完整 `npm test`（含 32 项道具/图库测试）、55 项道具图鉴浏览器用例、名称一致性与 Angular 架构检查，以及生产构建。验收与推送授权不等于已经上线；发布状态以对应提交的 Pages 工作流为准，见 [发布记录](DEPLOYMENT.md#october-3-2026-paired-mechguns-and-three-language-item-names)。

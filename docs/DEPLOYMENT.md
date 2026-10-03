@@ -37,6 +37,37 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 3, 2026 paired Mechguns and three-language item names
+
+The maintainer reviewed and accepted the desktop/mobile item list, the ES and
+TypeME previews, and the Chinese-, English- and Japanese-primary layouts, then
+authorized documentation alignment, commit and push on 2026-10-03.
+
+- Mechgun, Assault, Repeater, Gatling, Vulcan, ES Mechgun and TypeME/Mechgun
+  use paired original-model previews with their verified photon colors. Lists
+  and related cards use small thumbnails; details default to the model preview
+  and retain the existing optional HD view where available.
+- Item lists show the current language's name first, with the other two below
+  it. Names come from maintained catalog data, and missing Japanese names remain
+  explicitly unverified. Long names wrap on phones.
+- Only the list loads the new name-layout styles. No dependency or build-budget
+  increase was required. Normal site builds use the checked-in WebPs and source
+  manifest; game assets and Blender are needed only to regenerate the renders.
+
+Local verification passed the full `npm test` suite (including 32 item/gallery
+tests), all 55 catalog browser cases, the name-authority and Angular ownership
+checks, and the production build:
+3,802 routes, 135 fragments and 999,893 / 1,000,000 published JavaScript gzip
+bytes under Node 24. The browser checks verify two separate complete gun
+silhouettes in all fourteen images, three-language switching, long names and
+mobile layouts. Two older filter assertions were updated from Wiki title casing
+to exact item routes and authoritative English names, then rechecked.
+
+Acceptance and push authorization are complete. A push to `master` starts the
+normal **Verify and deploy Pages** workflow; production publication is confirmed
+only when that revision's build, all three browser shards and deploy job pass.
+The local screenshots and passing local build do not establish deployment.
+
 ## October 2, 2026 search, development and bug-fix release
 
 The maintainer authorized documentation alignment, commit, push and deployment.

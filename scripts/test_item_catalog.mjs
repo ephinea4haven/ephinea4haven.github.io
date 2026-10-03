@@ -52,6 +52,7 @@ const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18
 test('lists use equipment and Mag thumbnails while details retain full-size images', () => {
   const index = read('src/app/generated/item-catalog/index.json');
   const equipment = read('content/item-catalog/equipment-images.json');
+  const models = read('content/item-catalog/model-images.json').entries;
   assert.equal(items.filter(item => item.hdSource === 'gallery').length, 415);
   // Every Mag with a model has a render (79 models + 4 variants sharing a model); Stealth has no model.
   assert.equal(items.filter(item => item.hdSource === 'model-render').length, 83);
@@ -77,7 +78,7 @@ test('lists use equipment and Mag thumbnails while details retain full-size imag
   }
   for (const row of index) {
     const detail = details[row[0]];
-    const preview = equipment.entries[detail.code];
+    const preview = models[detail.code] || equipment.entries[detail.code];
     const thumbnail = preview && (preview.kind === 'effect' || preview.kind === 'illustration' || preview.origin === 'gallery' || detail.imageOrigin === 'model-render') ? preview.thumbnail : detail.image;
     assert.equal(row[7], detail.hdSource === 'model-render' ? detail.hdImage.replace('/default/', '/thumbs/') : thumbnail, row[0]);
     assert.ok(!JSON.stringify(row).includes('/items/hd/'), row[0]);
@@ -359,6 +360,31 @@ test('TypeM weapons without a Wiki file use checksummed ItemKT images', () => {
   assert.equal(details['dress-plate'].imageOrigin, 'effect-render');
 });
 
+test('all seven paired Mechguns use model previews in details, lists and related cards', () => {
+  const index = read('src/app/generated/item-catalog/index.json');
+  const models = read('content/item-catalog/model-images.json').entries;
+  assert.deepEqual(Object.keys(models).sort(), ['000800', '000801', '000802', '000803', '000804', '007700', '00EA00']);
+  for (const id of ['mechgun', 'assault', 'repeater', 'gatling', 'vulcan', 'es-mechgun', 'typeme-mechgun']) {
+    const item = details[id];
+    assert.equal(item.imageKind, 'model', id);
+    assert.equal(item.imageOrigin, 'model-render', id);
+    assert.equal(item.image, `/assets/img/items/models/${id}.webp`, id);
+    assert.equal(index.find(row => row[0] === id)[7], `/assets/img/items/models/thumbs/${id}.webp`, id);
+    assert.equal(index.find(row => row[0] === id)[15], 'model', id);
+    const model = models[item.code];
+    assert.equal(model.evidence.recipe.instances, 2, id);
+    assert.equal(model.evidence.model.ephineaEntryMatches, true, id);
+    assert.equal(model.evidence.texture.ephineaEntryMatches, true, id);
+    for (const [file, expected] of [[model.path, model.sha256], [model.thumbnail, model.thumbnailSha256]]) {
+      const bytes = fs.readFileSync(file.slice(1));
+      assert.equal(createHash('sha256').update(bytes).digest('hex'), expected, file);
+      assert.equal(bytes.toString('ascii', 8, 12), 'WEBP', file);
+      if (file === model.thumbnail) assert.ok(bytes.length < 20_000, file);
+    }
+  }
+  assert.equal(details['typegu-mechgun'].imageOrigin, 'wiki');
+});
+
 test('all 57 shop weapon models retain verified images and variable specials', () => {
   const expected = [];
   for (let family = 1; family <= 12; family++) for (let tier = 0; tier < (family <= 9 ? 5 : 4); tier++) {
@@ -372,7 +398,8 @@ test('all 57 shop weapon models retain verified images and variable specials', (
     const images = read('content/item-catalog/images.json');
     const image = Object.entries(images).find(([name]) => name.toLowerCase() === record.fields.image.replaceAll('_',' ').toLowerCase())?.[1];
     assert.ok(image, item.title);
-    assert.equal(item.image, image.path, item.title);
+    const model = read('content/item-catalog/model-images.json').entries[code];
+    assert.equal(item.image, model?.path || image.path, item.title);
     assert.equal(item.stats.find(s => s.label === '特殊攻击')?.value, '可变', item.title);
     assert.match(item.availability.zh, /武器商店/, item.title);
   }

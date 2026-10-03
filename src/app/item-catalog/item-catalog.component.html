@@ -28,7 +28,14 @@
         <div class="item-table"><div class="list-head" aria-hidden="true"><span>{{ i18n.t('道具 / ITEM') }}</span><span>{{ i18n.t('类别 · 星级') }}</span><span>{{ i18n.t(category() === 'weapon' ? '基础属性' : '核心属性') }}</span><span>{{ i18n.t('装备 / 使用') }}</span><span></span></div>
         <ul class="item-list">@for (item of visible(); track item.id) {
           <li><a class="item-row" [attr.aria-description]="nameHint(item) || null" [attr.data-rarity]="(item.rarity ?? 0) >= 9 ? 'rare' : 'common'" [routerLink]="i18n.link(itemPath(item))" [queryParams]="listParams()" (click)="rememberScroll()">
-            <div class="identity"><item-image [item]="item"/><div><strong class="item-name" [class.ss-rare-item]="nameTier(item) === 'top'" [class.rare-item]="nameTier(item) === 'rare'" [attr.title]="nameHint(item) || null">{{ i18n.name(item) }}</strong><span class="english" [attr.lang]="i18n.language() === 'en' ? 'ja' : 'en'">{{ i18n.language() === 'en' ? item.ja : item.title }}</span>@if (i18n.language() === 'ja' && !item.ja) {<span class="source-language">{{ i18n.t('日文名未核实 · 显示英文') }}</span>}@if (i18n.status(item.status)) {<span class="status-badge">{{ i18n.status(item.status) }}</span>}</div></div>
+            <div class="identity"><item-image [item]="item"/><div class="item-names">
+              <strong class="item-name" [attr.lang]="i18n.language() === 'ja' && !item.ja ? 'en' : i18n.htmlLanguage()" [class.ss-rare-item]="nameTier(item) === 'top'" [class.rare-item]="nameTier(item) === 'rare'" [attr.title]="nameHint(item) || null">{{ i18n.name(item) }}</strong>
+              <div class="name-translations">@for (language of secondaryLanguages(); track language.key) {
+                <span class="translated-name"><span class="name-language" aria-hidden="true">{{ language.label }}</span><span [attr.lang]="item[language.key] ? language.key : i18n.htmlLanguage()">{{ item[language.key] || i18n.t('名称未核实') }}</span></span>
+              }</div>
+              @if (i18n.language() === 'ja' && !item.ja) {<span class="source-language">{{ i18n.t('日文名未核实 · 显示英文') }}</span>}
+              @if (i18n.status(item.status)) {<span class="status-badge">{{ i18n.status(item.status) }}</span>}
+            </div></div>
             <div class="item-kind"><span>{{ i18n.t(item.subtype) }}</span><span class="rarity" [class.rare]="(item.rarity ?? 0) >= 9">{{ item.rarity ?? '—' }}<span aria-hidden="true">★</span><span class="sr-only">{{ i18n.t('星') }}</span></span></div>
             <div class="row-stats">@for (stat of item.stats.slice(0, 2); track stat.label) {<div><span>{{ i18n.t(stat.label).split(' · ')[0] }}</span><strong>{{ i18n.value(stat.value) }}</strong></div>}</div>
             <div class="requirement"><span class="mobile-label">{{ i18n.t('装备 / 使用') }} </span>{{ i18n.value(item.requirement) }}</div><span class="row-arrow" aria-hidden="true">↗</span>

@@ -3,7 +3,7 @@ import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, effect
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CATEGORIES, CLASSES, classesOf, itemPath, COSMETICS_PATH, ItemDetail } from './catalog';
+import { CATEGORIES, CLASSES, classesOf, itemPath, COSMETICS_PATH, imageKindLabel, ItemDetail } from './catalog';
 import type { DetailResult } from './item-detail.routes';
 import { CatalogLanguageService } from './catalog-language.service';
 import { CatalogLanguageComponent } from './catalog-language.component';
@@ -18,6 +18,7 @@ import { ItemImageComponent } from './item-image.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemDetailComponent {
+  readonly imageKindLabel = imageKindLabel;
   readonly i18n = inject(CatalogLanguageService);
   private readonly route = inject(ActivatedRoute);
   private readonly title = inject(Title);
@@ -31,7 +32,7 @@ export class ItemDetailComponent {
   readonly related = computed(() => this.item()?.relatedItems ?? []);
   readonly imageMode = linkedSignal({
     source: () => this.item(),
-    computation: (item): 'hd' | 'wiki' => item?.imageKind === 'effect' || item?.imageKind === 'illustration' ? 'wiki' : 'hd',
+    computation: (item): 'hd' | 'wiki' => item && ['model', 'effect', 'illustration'].includes(item.imageKind || '') ? 'wiki' : 'hd',
   });
   readonly showingHd = computed(() => !!this.item()?.hdImage && this.imageMode() === 'hd');
   readonly picturedItem = computed(() => {
