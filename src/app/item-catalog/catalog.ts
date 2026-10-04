@@ -38,8 +38,10 @@ export interface ItemDetail extends Omit<CatalogItem, 'classes' | 'group'> {
   cosmetic: Cosmetic | null; cosmetics: { item: ItemLink; kind: Cosmetic['kind']; skin: ItemLink | null; color: string | null }[];
   feeding: { item: string; values: number[] }[];
   drops: { kind: string; sectionId: string; difficulty: string; location: string; area: string; rate: string }[];
-  availability: LocalizedText; source: string; revision: number; checkedAt: string;
-  excerpts: string[]; imageOrigin: 'wiki' | 'itemkt' | 'gallery' | 'model-render' | 'effect-render' | 'effect-illustration' | 'pickup-box' | null; imageSource: string | null; imagePage: string | null; related: string[];
+  availability: LocalizedText;
+  acquisitionGuide: { steps: LocalizedText[]; sources: { label: string; url: string }[]; checkedAt: string } | null;
+  source: string; revision: number; checkedAt: string;
+  excerpts: string[]; imageOrigin: 'wiki' | 'itemkt' | 'gallery' | 'model-render' | 'effect-render' | 'block-effect-render' | 'effect-illustration' | 'pickup-box' | null; imageSource: string | null; imagePage: string | null; related: string[];
   relatedItems: ItemCard[];
   /** Localized names for the item names this page references (sets, skins, feeding, links). */
   names: Record<string, ItemName>;

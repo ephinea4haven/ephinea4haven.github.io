@@ -2,6 +2,8 @@ export type CatalogLanguage = 'zh' | 'en' | 'ja';
 
 // UI copy is separate from source-language mechanics and authoritative item names.
 export const MESSAGES: Record<string, readonly [string, string]> = {
+  '任务获取步骤': ['Quest walkthrough', 'クエスト入手手順'],
+  '攻略来源': ['Walkthrough sources', '攻略の出典'],
   '名称未核实': ['Name unverified', '名称未確認'],
   '日文名未核实 · 显示英文': ['Japanese name unverified · English shown', '日本語名未確認 · 英語表記'],
   '套装说明（英文原文）': ['Set notes (English)', 'セット効果の説明（英語原文）'],
@@ -98,6 +100,7 @@ export const MESSAGES: Record<string, readonly [string, string]> = {
   '隐身效果示意 · 角色透明度仅用于说明': ['Stealth illustration · character opacity is illustrative', '透明化のイメージ · キャラクターの透明度は説明用です'],
   '类别示意图': ['Category illustration', 'カテゴリー参考画像'],
   '离线效果预览 · 不含角色模型': ['Offline effect preview · character model omitted', 'オフラインのエフェクトプレビュー · キャラクターモデルなし'],
+  '格挡效果预览 · 非常驻装备模型': ['Block effect preview · not a persistent equipment model', 'ガード時のエフェクトプレビュー · 常時表示の装備モデルではありません'],
   '类别示意图 · 非装备外观': ['Category illustration · not the equipped appearance', 'カテゴリー参考画像 · 装備時の外観ではありません'],
   '光剑': ['Saber', 'セイバー'], '大剑': ['Sword', 'ソード'], '双匕首': ['Dagger', 'ダガー'], '长刀': ['Partisan', 'パルチザン'],
   '投刃': ['Slicer', 'スライサー'], '双头剑': ['Double Saber', 'ダブルセイバー'], '爪': ['Claw', 'クロー'], '日本刀': ['Katana', 'カタナ'],

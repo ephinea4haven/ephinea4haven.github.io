@@ -73,13 +73,14 @@ test('numbered weapon identities distinguish ordinary, TYPE and ES models and ph
     '009': 'sword', '013': 'calibur', '017': 'dagger', '021': 'ripper',
     '022': 'blade-dance', '049': 'mechgun', '050': 'assault', '051': 'repeater',
     '052': 'gatling', '053': 'vulcan', '180': 'yasminkov-3000r',
-    '183': 'branch-of-pakupaku', '184': 'heart-of-poumn',
+    '183': 'branch-of-pakupaku',
     '196': 'photon-launcher', '197': 'guilty-light', '198': 'red-scorpio',
     '204': 'viridia-card', '207': 'bluefull-card', '210': 'redria-card', '211': 'oran-card',
   })) {
     assert.ok(from(`WEAPON/EP1+2/${number}.png`).itemIds.includes(id), `${number}: ${id}`);
   }
   assert.ok(from('WEAPON/EP4/229.png').itemIds.includes('daisy-chain'));
+  assert.deepEqual(from('User-provided corrections/2026-10-04/6e3f515e9c37d4de6d18e71ab0ed8b3f_720.png').itemIds, ['heart-of-poumn']);
   assert.ok(from('WEAPON/EP4/289.png').itemIds.includes('izmaela'));
   assert.ok(from('WEAPON/EP4/290.png').itemIds.includes('kunai'));
   assert.ok(from("WEAPON/EP1+2/NEL'S CLAW.png").itemIds.includes('neis-claw-replica'));

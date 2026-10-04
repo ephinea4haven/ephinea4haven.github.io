@@ -47,8 +47,8 @@
 .related-items strong { display: block; font-size: 13px; font-weight: 500; }
 .related-items div > span { display: block; font-size: 11px; color: var(--muted); margin-top: 5px; }
 .related-items a > span:last-child { margin-left: auto; color: #93c9c9; }
-@media(max-width:600px) { .detail-hero { grid-template-columns: 1fr; gap: 24px; }.image-stage { min-height: 210px; }.detail-overview h1 { font-size: 27px; }.detail-layout { grid-template-columns: 1fr; gap: 0; }.attribute-grid { grid-template-columns: 1fr 1fr; }.attribute-grid > div { flex-direction: column; align-items: flex-start; gap: 8px; }.detail-sidebar { display: grid; grid-template-columns: 1fr; }.class-grid { grid-template-columns: repeat(3,1fr); }.related-items { grid-template-columns: 1fr; }.hero-stats strong { font-size: 26px; } }
 @media(max-width:800px) { .detail-hero { gap: 24px; }.detail-layout { grid-template-columns: minmax(0,1fr) 220px; gap: 24px; }.attribute-grid { grid-template-columns: 1fr; }.detail-overview h1 { font-size: 25px; } }
+@media(max-width:600px) { .detail-hero { grid-template-columns: 1fr; gap: 24px; }.image-stage { min-height: 210px; }.detail-overview h1 { font-size: 27px; }.detail-layout { grid-template-columns: 1fr; gap: 0; }.attribute-grid { grid-template-columns: 1fr 1fr; }.attribute-grid > div { flex-direction: column; align-items: flex-start; gap: 8px; }.detail-sidebar { display: grid; grid-template-columns: 1fr; }.class-grid { grid-template-columns: repeat(3,1fr); }.related-items { grid-template-columns: 1fr; }.hero-stats strong { font-size: 26px; } }
 :host { min-width: 0; }
 .detail-layout > *, .detail-hero > * { min-width: 0; }
 .detail-overview, .attribute-grid, .related-items { overflow-wrap: anywhere; }
@@ -64,3 +64,7 @@
 .drop-table td:last-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .cosmetic-facts > div:only-child { grid-column: 1 / -1; }
 .cosmetic-links li a { text-decoration: underline; text-underline-offset: 3px; }
+.acquisition-guide { line-height: 1.9; overflow-wrap: anywhere; }
+.acquisition-guide ol { padding-left: 1.6em; }
+.acquisition-guide li { padding-left: .3em; margin-bottom: 1em; }
+.acquisition-guide li::marker { color: #8ed7d3; font-weight: 700; }

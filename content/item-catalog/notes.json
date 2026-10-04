@@ -820,5 +820,198 @@
       "en": "Free and unlimited from the quest The Forge (the RAmar near the bank) and the Seasons Shop (the Guards Shop NPC).",
       "ja": "クエスト The Forge（倉庫近くの RAmar）と Seasons Shop（Guards Shop の NPC）で、無料で何個でも受け取れます。"
     }
+  },
+  "Akiko's Frying Pan": {
+    "availability": {
+      "zh": "完成 WEAPON 成员认可支线，最后在 Secret Delivery 向 Akiko 领取。",
+      "en": "Earn the WEAPON members’ approvals, then collect the reward from Akiko in Secret Delivery.",
+      "ja": "WEAPON メンバーの承認を集め、Secret Delivery で Akiko から受け取ります。"
+    },
+    "acquisitionGuide": {
+      "checkedAt": "2026-10-04",
+      "steps": [
+        {
+          "zh": "创建 One Person（单人）房间，在猎人公会选择 Side Story。任务进度按难度分别记录，整条路线保持同一难度；对话完成后再到柜台结算。已完成的任务若变灰，需完成该难度其余单人支线，才能重新接取。",
+          "en": "Use One Person mode and the Hunter’s Guild Side Story menu. Keep the quest chain on one difficulty; progress is difficulty-specific. Finish required conversations before claiming the quest reward. To replay greyed-out quests, finish the remaining Side Story quests on that difficulty.",
+          "ja": "One Person モードでハンターズギルドの Side Story を選びます。進行状況は難易度別なので、同じ難易度で進めてください。必要な会話を済ませてから報酬を受け取ります。クリア済みクエストが選べない場合は、その難易度の残りのサイドストーリーをクリアすると再受注できます。"
+        },
+        {
+          "zh": "先进入 Secret Delivery，在先锋 2 总督传送点附近找穿紫蓝色衣服的男子。两次提问均选择“!!”，取得第一个认可，然后完成任务。",
+          "en": "Start Secret Delivery. Near the Principal’s teleporter on Pioneer 2, speak to the man in purple/blue and answer “!!” twice. Obtain his approval and clear the quest.",
+          "ja": "まず Secret Delivery を開始。パイオニア2の総督への転送装置付近にいる紫・青の服の男性に話しかけ、2回とも「!!」を選びます。承認を得てクエストをクリアします。"
+        },
+        {
+          "zh": "接着收集另外四个认可，顺序不限：The Value of Money（医疗中心外的男子）、Gran Squall（商店外、银行附近的女子）、The Lost Bride（银行附近的卫兵）和 Claiming a Stake（医疗中心外的小孩）。每次都要与 WEAPON 成员对话并完成任务。",
+          "en": "Collect four more approvals in any order: The Value of Money (man outside the medical center), Gran Squall (woman near the bank), The Lost Bride (guard near the bank), and Claiming a Stake (child outside the medical center). Talk to the WEAPON member and clear each quest.",
+          "ja": "残り4人の承認は順不同です。The Value of Money（メディカルセンター外の男性）、Gran Squall（銀行付近の女性）、The Lost Bride（銀行付近の衛兵）、Claiming a Stake（メディカルセンター外の子供）で、各メンバーと話してからクリアします。"
+        },
+        {
+          "zh": "集齐五个认可后，重新进入 Secret Delivery，先找最初的男子，再找商店／银行附近的妻子 Akiko。她是 WEAPON 的首领，会交给你 {item:AKIKO'S FRYING PAN}。",
+          "en": "Return to Secret Delivery with all five approvals. Speak to the original man, then his wife Akiko near the shops/bank. She leads WEAPON and gives you {item:AKIKO'S FRYING PAN}.",
+          "ja": "5人の承認を集めたら Secret Delivery を再受注。最初の男性、続いてショップ・銀行付近の妻 Akiko に話しかけます。WEAPON のボスである彼女から {item:AKIKO'S FRYING PAN} を受け取れます。"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ephinea Wiki · Akiko’s Frying Pan",
+          "url": "https://wiki.pioneer2.net/w/Akiko%27s_Frying_Pan"
+        },
+        {
+          "label": "PSO-World · Quest Weapons",
+          "url": "https://www.pso-world.com/sections.php?artid=1237&op=viewarticle"
+        },
+        {
+          "label": "Speedrun.com · quest route",
+          "url": "https://www.speedrun.com/pso/guides/9ethd"
+        },
+        {
+          "label": "Ephinea · Side Story / replay",
+          "url": "https://www.pioneer2.net/community/threads/quick-question-quick-answer.306/page-212"
+        }
+      ]
+    }
+  },
+  "Soul Eater": {
+    "availability": {
+      "zh": "单人剧情路线在 From the Depths 击败 Kireek 后获得。另可在 Anniversary Badge Shop 开放相应兑换时，以 5 个{item:Anniv. Bronze Badge}兑换；活动兑换与下面的剧情路线独立。",
+      "en": "Defeat Kireek in From the Depths after the One Person quest chain. A separate option is the Anniversary Badge Shop’s offer for 5 {item:Anniv. Bronze Badge} when that exchange is available.",
+      "ja": "One Person の連続クエストを進め、From the Depths で Kireek を倒すと入手できます。別途、Anniversary Badge Shop の交換が利用可能なときは{item:Anniv. Bronze Badge}5個でも交換できます。"
+    },
+    "acquisitionGuide": {
+      "checkedAt": "2026-10-04",
+      "steps": [
+        {
+          "zh": "创建 One Person（单人）房间，在猎人公会选择 Side Story。任务进度按难度分别记录，整条路线保持同一难度；对话完成后再到柜台结算。已完成的任务若变灰，需完成该难度其余单人支线，才能重新接取。",
+          "en": "Use One Person mode and the Hunter’s Guild Side Story menu. Keep the quest chain on one difficulty; progress is difficulty-specific. Finish required conversations before claiming the quest reward. To replay greyed-out quests, finish the remaining Side Story quests on that difficulty.",
+          "ja": "One Person モードでハンターズギルドの Side Story を選びます。進行状況は難易度別なので、同じ難易度で進めてください。必要な会話を済ませてから報酬を受け取ります。クリア済みクエストが選べない場合は、その難易度の残りのサイドストーリーをクリアすると再受注できます。"
+        },
+        {
+          "zh": "关键分支：首次完成 Dr. Osto's Research 时，不要告诉 Sue 你的名字。告诉名字会进入 {item:RAGOL RING} 的剧情分支；重玩任务不会让你重新选择已记录的分支，需要在其他难度另走这条路线。",
+          "en": "At the first clear of Dr. Osto's Research, refuse to give Sue your name. Giving it selects the {item:RAGOL RING} storyline instead. Replaying does not reset this saved choice; use another difficulty for the other route.",
+          "ja": "Dr. Osto's Research の初回クリア時、Sue に名前を教えないでください。教えると {item:RAGOL RING} のルートになります。再受注しても記録済みの選択は戻らないため、別ルートは別の難易度で進めます。"
+        },
+        {
+          "zh": "Unsealed Door：在矿洞 2 接近终点的位置找到 Sue，与她交谈后再完成任务。",
+          "en": "Unsealed Door: find Sue near the end of Mine 2 and speak to her before clearing.",
+          "ja": "Unsealed Door：坑道2の終盤にいる Sue と話してからクリアします。"
+        },
+        {
+          "zh": "Waterfall Tears：击败 Anna 后不要立刻结算，继续到她所在位置的北面寻找 Kireek，击败他后再完成任务。",
+          "en": "Waterfall Tears: after defeating Anna, continue north past her location to find and defeat Kireek before turning in the quest.",
+          "ja": "Waterfall Tears：Anna を倒したらすぐ報告せず、その先の北側にいる Kireek を探して倒します。"
+        },
+        {
+          "zh": "Black Paper：在洞窟 1 的黑暗房间内再次找到并击败 Kireek，然后完成任务。",
+          "en": "Black Paper: defeat Kireek again in the dark room in Cave 1, then clear the quest.",
+          "ja": "Black Paper：洞窟1の暗い部屋で再び Kireek を倒してからクリアします。"
+        },
+        {
+          "zh": "From the Depths：完成遗迹 3 的护送，让 Ash 离队寻找幸存者。不要领取柜台报酬；返回遗迹 2，找到并第三次击败 Kireek，领取 {item:SOUL EATER} 后再结束任务。",
+          "en": "From the Depths: finish the Ruins 3 escort so Ash leaves to seek survivors. Before claiming the guild reward, return to Ruins 2, defeat Kireek a third time, and collect {item:SOUL EATER}.",
+          "ja": "From the Depths：遺跡3での護衛を終え、Ash が生存者を探しに離れたら、ギルド報酬を受け取る前に遺跡2へ戻ります。Kireek を3度目に倒し、{item:SOUL EATER} を受け取ってから終了します。"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ephinea Wiki · Soul Eater",
+          "url": "https://wiki.pioneer2.net/w/Soul_Eater"
+        },
+        {
+          "label": "Speedrun.com · quest route",
+          "url": "https://www.speedrun.com/pso/guides/9ethd"
+        },
+        {
+          "label": "PSO-World · Sue branch",
+          "url": "https://www.pso-world.com/forums/archive/index.php/t-145146.html"
+        },
+        {
+          "label": "Ephinea · Side Story / replay",
+          "url": "https://www.pioneer2.net/community/threads/quick-question-quick-answer.306/page-212"
+        }
+      ]
+    }
+  },
+  "Ragol Ring": {
+    "availability": {
+      "zh": "完成 Sue 剧情分支，再走 Seat of the Heart 的 Kireek 路线，由结尾海滩上的 Elly 交付。装备它死亡时会消耗手镯并复活；不要把它当作永久的复活装备。",
+      "en": "Complete the Sue storyline and the Kireek route in Seat of the Heart; Elly awards the ring at the beach ending. Dying while wearing it consumes the ring to revive you.",
+      "ja": "Sue のストーリーを進め、Seat of the Heart の Kireek ルートを完了すると、最後の海岸で Elly から受け取れます。装備中に死亡すると、復活と引き換えにリングが消滅します。"
+    },
+    "acquisitionGuide": {
+      "checkedAt": "2026-10-04",
+      "steps": [
+        {
+          "zh": "创建 One Person（单人）房间，在猎人公会选择 Side Story。任务进度按难度分别记录，整条路线保持同一难度；对话完成后再到柜台结算。已完成的任务若变灰，需完成该难度其余单人支线，才能重新接取。",
+          "en": "Use One Person mode and the Hunter’s Guild Side Story menu. Keep the quest chain on one difficulty; progress is difficulty-specific. Finish required conversations before claiming the quest reward. To replay greyed-out quests, finish the remaining Side Story quests on that difficulty.",
+          "ja": "One Person モードでハンターズギルドの Side Story を選びます。進行状況は難易度別なので、同じ難易度で進めてください。必要な会話を済ませてから報酬を受け取ります。クリア済みクエストが選べない場合は、その難易度の残りのサイドストーリーをクリアすると再受注できます。"
+        },
+        {
+          "zh": "Dr. Osto's Research：首次完成时告诉 Sue 你的名字。这与 {item:SOUL EATER} 的拒绝分支相反，已记录的选择不能靠重玩改写；想拿两件剧情奖励，应在不同难度分别规划。",
+          "en": "Dr. Osto's Research: give Sue your name on the first clear. This is the opposite of the {item:SOUL EATER} choice; replays do not overwrite it. Plan the two story rewards on separate difficulties.",
+          "ja": "Dr. Osto's Research：初回クリア時に Sue に名前を教えます。{item:SOUL EATER} とは逆の選択で、再受注しても変更できません。両方のストーリー報酬を狙う場合は難易度を分けます。"
+        },
+        {
+          "zh": "Unsealed Door：先与 Bernie 交谈，再找 Sue；之后回到矿洞 2 起点附近，把 Sue 告诉你的事情转告 Bernie，再完成任务。",
+          "en": "Unsealed Door: speak to Bernie, then Sue, then return to Bernie near the start of Mine 2 and share what Sue told you. Clear the quest.",
+          "ja": "Unsealed Door：Bernie、Sue の順に話し、坑道2の入口付近の Bernie に戻って Sue の話を伝えてからクリアします。"
+        },
+        {
+          "zh": "Waterfall Tears：在先锋 2 向 Sue 打听 Black Paper，之后在洞窟找到 Bernie，并表示想了解更多，再完成任务。",
+          "en": "Waterfall Tears: ask Sue on Pioneer 2 about Black Paper, then find Bernie in the caves and express interest in learning more before clearing.",
+          "ja": "Waterfall Tears：パイオニア2で Sue に Black Paper のことを聞き、洞窟の Bernie にさらに知りたい意思を伝えてからクリアします。"
+        },
+        {
+          "zh": "Black Paper：在先锋 2 向 Sue 询问她的目的（What is your purpose?），再与洞窟中的 Bernie 交谈并完成任务。Soul of Steel 的额外结局可补充剧情，但不是领取手镯的必做条件。",
+          "en": "Black Paper: ask Sue on Pioneer 2 about her purpose, then speak with Bernie in the caves and clear. The extra Soul of Steel ending adds story context but is not required for this reward.",
+          "ja": "Black Paper：パイオニア2で Sue の目的を尋ね、洞窟の Bernie と話してクリアします。Soul of Steel の追加エンディングは物語の補足であり、リング入手の必須条件ではありません。"
+        },
+        {
+          "zh": "在相同难度进入 EP2 的 Seat of the Heart。对话时答应帮助；争夺 ID 时先拒绝交出，随后再交出；继续时选择进入传送点及出发；Elly 向下看时选择责备她，随后跳下，并表示会尽力。不要连续按键跳过选择。",
+          "en": "Enter EP2 Seat of the Heart on the same difficulty. Agree to help; when challenged over the ID, refuse first, then hand it over. Enter the teleporter and agree to proceed. When Elly looks down, scold her, jump down, and offer to do what you can. Read choices carefully.",
+          "ja": "同じ難易度で EP2 の Seat of the Heart を開始。協力を申し出て、ID は最初に渡すのを断り、その後に渡します。転送装置に入り、先へ進みます。Elly が下を見た場面では叱り、飛び降り、できる限り協力する意思を示します。選択肢を連打しないでください。"
+        },
+        {
+          "zh": "确认剧情分支成功：中央管理区应出现 Sue 和 Kireek，进入控制塔时由 Kireek 替代 Elly 同行。若仍是 Elly，不要把普通通关当成手镯路线已完成。",
+          "en": "Check the route: Sue and Kireek should appear in Central Control Area, and Kireek must replace Elly for the tower. An ordinary clear with Elly is not the ring route.",
+          "ja": "ルート確認：中央管理区に Sue と Kireek が現れ、塔では Elly の代わりに Kireek が同行します。Elly と通常クリアするだけではリングのルートになりません。"
+        },
+        {
+          "zh": "控制塔只破坏正确终端，不要把全部终端打掉。沿途五组终端的攻略定位依次为：中间、最尽头（上方）、右边第二个、入口第一个（凹处）、左侧中间。先对照下方地图／攻略来源确认位置，再攻击；打错会影响奖励条件。",
+          "en": "Destroy only the correct tower terminals. The five groups along the route are described as: center; far end (top); second on the right; first in the alcove; middle on the left. Check the linked map/guide before attacking; destroying every terminal forfeits the reward condition.",
+          "ja": "塔では正しい端末だけを破壊します。進行順の5組は、中央、最奥（上側）、右の2番目、最初のくぼみ内、左側中央です。攻撃前に下記のマップ・攻略で位置を確認してください。すべて壊すと報酬条件を満たせません。"
+        },
+        {
+          "zh": "完成塔顶剧情到达夜间海滩后，先通过传送点到高台与 Sue、Kireek 交谈，再找 Elly 领取 {item:RAGOL RING}。领取前不要直接返回先锋 2。",
+          "en": "After the tower ending, use the beach warp to visit Sue and Kireek on the raised platform first. Then speak to Elly for {item:RAGOL RING}, before returning to Pioneer 2.",
+          "ja": "塔のイベント後、夜の海岸でまずワープを使って高台の Sue と Kireek に話しかけます。その後 Elly から {item:RAGOL RING} を受け取り、パイオニア2に戻ります。"
+        }
+      ],
+      "sources": [
+        {
+          "label": "Ephinea Wiki · Ragol Ring",
+          "url": "https://wiki.pioneer2.net/w/Ragol_Ring"
+        },
+        {
+          "label": "Ephinea · Sue / Kireek walkthrough",
+          "url": "https://www.pioneer2.net/community/goto/post?id=89958"
+        },
+        {
+          "label": "Ephinea Wiki · Seat of the Heart maps",
+          "url": "https://wiki.pioneer2.net/w/Seat_of_the_Heart#Quest_Maps"
+        },
+        {
+          "label": "PSO-World · Sue branch",
+          "url": "https://www.pso-world.com/forums/archive/index.php/t-145146.html"
+        },
+        {
+          "label": "Ephinea · tower terminal failure",
+          "url": "https://www.pioneer2.net/community/threads/seat-of-the-heart-questions.27584/"
+        },
+        {
+          "label": "Ephinea · Side Story / replay",
+          "url": "https://www.pioneer2.net/community/threads/quick-question-quick-answer.306/page-212"
+        }
+      ]
+    }
   }
 }

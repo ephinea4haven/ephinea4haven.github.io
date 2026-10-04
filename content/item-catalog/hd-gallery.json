@@ -5423,14 +5423,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Visual comparison with local Wiki image; manual correction of similarity candidate using shape, photon color or Section ID emblem.",
+      "evidence": "Replacement image explicitly identified as Heart of Poumn by the maintainer on 2026-10-04.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/184.png",
-          "sha256": "641fc6c9a546970df481e01ce0d6fbe521462f669ad0c23d9d276f15fe466675",
-          "bytes": 10682841,
-          "width": 5444,
-          "height": 3989
+          "path": "User-provided corrections/2026-10-04/6e3f515e9c37d4de6d18e71ab0ed8b3f_720.png",
+          "sha256": "70ba3aa0a8ea46299f7a106e00f9fa86bf5aff522d9a021b200e40fdba0386a8",
+          "bytes": 1009132,
+          "width": 1280,
+          "height": 938
         }
       ]
     },
@@ -6731,14 +6731,14 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Visual comparison with local Wiki image; shape and color reviewed against the candidate.",
+      "evidence": "Replacement image explicitly identified as Panther's Claw by the maintainer on 2026-10-04.",
       "sources": [
         {
-          "path": "WEAPON/EP1+2/176.png",
-          "sha256": "9b98b03c4b530edb875693c5a396b8a470495c985323b620d188f0e9d94b93a5",
-          "bytes": 23222896,
-          "width": 5444,
-          "height": 3989
+          "path": "User-provided corrections/2026-10-04/d13177b3b85ce905e3617b0d44cb4269_720.png",
+          "sha256": "ca970d9ea637fbc661d973ff53bd6833f986f51124f9db24ec34da1aac8e58f8",
+          "bytes": 1482911,
+          "width": 1280,
+          "height": 938
         }
       ]
     },
@@ -8095,12 +8095,12 @@
       ],
       "appearanceOf": [],
       "variant": null,
-      "evidence": "Maintainer explicitly identified the supplied replacement as Silence Claw, correcting the initial S-Rank Claw label. Green-photon artwork supplied on 2026-09-22.",
+      "evidence": "Replacement image explicitly identified as Silence Claw by the maintainer on 2026-10-04; supersedes the 2026-09-22 supplied artwork.",
       "sources": [
         {
-          "path": "User-provided corrections/2026-09-22/ed763d830550db0a304d405f18a03b50_720.png",
-          "sha256": "8b87b82e5aecaff75e04de718da87eb9c9c658d1313107c57c4c5229297ac0d3",
-          "bytes": 618181,
+          "path": "User-provided corrections/2026-10-04/a174d31c3414166ee0b65bff31734042_720.png",
+          "sha256": "3123b12217ec7cc32c8edecc976260e8680c0302e5a0a30a360dde41582f6890",
+          "bytes": 476177,
           "width": 1280,
           "height": 938
         }

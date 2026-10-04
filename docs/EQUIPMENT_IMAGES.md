@@ -6,7 +6,8 @@ Destiny exports, leaving 285 of 295 equipment records without a list image.
 
 ## Selection rules
 
-`scripts/item_catalog_images.mjs` selects the image at generation time:
+`scripts/generate_item_catalog.mjs` first selects an explicit model/shield
+preview; `scripts/item_catalog_images.mjs` handles the remaining equipment:
 
 1. Units use category boxes, with the same 9★ rarity boundary as other equipment.
 2. Armor and shields use a reviewed effect preview when available; character
@@ -36,12 +37,41 @@ boxes and includes screenshots, models and effect previews.
 
 ## Assets and evidence
 
+The 2026-10-04 update covers all 107 shields, including all 16 Technique
+Merges, through
+`content/item-catalog/shield-images.json`. `scripts/render_shield_models.py`
+records PMT/reference mappings and verifies each compressed model and texture
+entry against the installed Ephinea client. The renderer normalizes XJ's
+on-disk BGRA vertex colors and encodes additive surfaces with explicit coverage.
+`scripts/import_shield_models.mjs` imports 65 model previews and 42 block-effect
+bindings. Model rendering suppresses back faces and separates coincident
+environment overlays by 0.01% of model extent so the ray tracer retains the base
+texture beneath the reflection pass. The separation is recorded in the recipe.
+Lists and details share these previews; existing HD alternatives remain available.
+The five Technique Barriers use a separately labelled block-effect preview,
+not an equipped-model claim. The inspected PMT/reference mappings contain no
+independent persistent model for these five items; this is resource evidence,
+not an in-game verification or a claim that they have no visible appearance.
+Their PMT BlockEffect 6 maps through
+`itemshieldentry.dat` to particle `0x1D1` and texture `700533`. The source files
+match the extracted `PSOBB-Haven/data/data.gsl` entries. The fixed-seed preview
+omits player/bone positioning and is not a runtime screenshot. Its renderer is
+`scripts/render_shield_effects.py`; hashes and the sampled frame are recorded in
+the image manifest. The other model-less slots use the same traced block-effect
+path, covering 22 distinct effect records. Group 18 additionally includes the
+type-2 attraction streaks traced through client functions 0051145C, 0051095C and
+00511004. Previews omit character pose and runtime animation. The maintainer
+authorized commit and push on 2026-10-04 after reviewing the local result and
+the distinction between persistent models and block effects.
+
 `content/item-catalog/equipment-images.json` records exact item codes, titles,
 image kinds, full-size images, thumbnails, checksums and source evidence.
 The normal site build needs only that checked-in manifest and its local images;
 it does not depend on a client installation or ignored Destiny artifacts.
 
-- 51 equipment entries use existing HD gallery images with 256px-wide WebP thumbnails.
+- The original equipment manifest contains 51 HD gallery bindings with 256px-wide
+  thumbnails. Shield bindings are now superseded by the shield manifest above;
+  the detail-page HD gallery remains available as an alternative.
 - Stealth Suit uses the site's transparent FOnewearl character art displayed at
   35% CSS opacity, labelled as a stealth illustration in all three languages.
   This illustrates character transparency; it is not a particle render or a
@@ -62,9 +92,9 @@ it does not depend on a client installation or ignored Destiny artifacts.
   use `0x1BE`. Their source audit records the equip paths and the heart effect's
   conditional one-shot emission. Wedding Dress and Dress Plate default to the
   effect preview; their previously imported HD gallery images remain optional.
-- Secure Feet uses a reviewed model render. Its model/texture slots match the
-  vanilla item reference, and both compressed AFS entries match the reference
-  BB client's bytes. Existing Wiki/gallery shield pictures take precedence.
+- Secure Feet now uses the shield manifest's reviewed model render, with the
+  same original-resource identity checks as the other 64 shield models.
+  Explicit shield previews take precedence over Wiki/gallery pictures.
 - Blue and red boxes use the reviewed Destiny pickup-model renders. Their
   provenance remains labelled as shared illustrations.
 
@@ -81,6 +111,24 @@ The importer also requires `cwebp` and the existing vanilla reference at
 `../bb-psov4/ref/custom_item_assets/reference/vanilla-item-model-texture.tsv`.
 It checks source hashes and model identity before accepting a render.
 
+Shield regeneration additionally uses the workstation renderer and particle
+helpers described in [the local rendering SOP](PSO_LOCAL_MODEL_RENDERING.md),
+the installed Ephinea client for AFS entry comparison, Blender, Pillow, NumPy
+and pefile. Raw extracted resources and intermediate PNGs stay in ignored
+`artifacts/shield-renders/`; only the WebPs and evidence manifest are site inputs.
+
+```sh
+rtk proxy /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python-exit-code 1 --python scripts/render_shield_models.py
+rtk proxy python3 scripts/render_shield_effects.py
+rtk node scripts/import_shield_models.mjs
+rtk node scripts/generate_item_catalog.mjs
+```
+
+The effect script requires the `/tmp/haven-equipment-gsl/` extraction above.
+Its sampled frame is measured from the first block burst, not from equipping.
+Neither an absent Wiki screenshot nor an empty independent model slot is used
+as a claim that an item has no visible appearance or effect.
+
 ## Acceptance scope
 
 All 295 armor/shield/unit records now have a list image:
@@ -88,7 +136,7 @@ All 295 armor/shield/unit records now have a list image:
 | Category | Screenshot | Effect | Illustration | Model | Box |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Armor | 0 | 13 | 1 | 0 | 74 |
-| Shield | 52 | 0 | 0 | 1 | 54 |
+| Shield | 0 | 42 | 0 | 65 | 0 |
 | Unit | 0 | 0 | 0 | 0 | 100 |
 
 The 100 units comprise 52 rare red boxes and 48 nonrare blue boxes. List rows,
@@ -105,8 +153,9 @@ boxes and gold text share the 9★ boundary, while Banner rules supplement name
 classification and do not change the image selection.
 
 The transparency regression fails against the former opaque Smoking Plate
-image (corner alpha 255 instead of 0). Browser coverage checks all 26 particle
-images, the normal/additive display modes, and the WD/DP image switches.
+image (corner alpha 255 instead of 0). Browser coverage checks full-size and
+thumbnail transparency for all 55 armor/shield effect bindings, the
+normal/additive display modes, and the WD/DP image switches.
 Source-render tests also check black-smoke alpha, additive compositing against
 two backgrounds, and the heart burst's emission and lifetime:
 
@@ -125,3 +174,14 @@ Stealth Suit's list/detail alpha, CSS opacity, backdrop removal and HD switch
 also pass browser regression coverage; desktop/mobile screenshots were inspected.
 The maintainer accepted the result and authorized commit and push on 2026-09-29.
 This acceptance record does not by itself confirm a successful site deployment.
+
+Local validation on 2026-10-04 passed the full business suite, dependency audit
+(zero vulnerabilities), two production builds with identical build manifests
+(3,802 routes), and all 4,157 browser tests. Shield regressions cover all 16 Merges,
+the five Technique Barriers, the restored Red Ring appearance, the copper shield
+emblem and the ring silhouette. The complete model/effect contact sheets were
+visually reviewed. Final desktop screenshots of Foie Merge, Red Barrier and
+Yellow Ring, the three replacement HD images, and the mobile Ragol Ring guide
+were also inspected. The maintainer authorized commit and push on 2026-10-04.
+These local results and publication authorization do not themselves claim
+remote CI success or successful deployment.

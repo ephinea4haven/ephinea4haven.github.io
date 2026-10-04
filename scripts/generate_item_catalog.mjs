@@ -15,7 +15,8 @@ const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const snapshot = read('content/item-catalog/wiki.json');
 const images = read('content/item-catalog/images.json');
 const equipmentImages = read('content/item-catalog/equipment-images.json');
-const modelImages = read('content/item-catalog/model-images.json').entries;
+const modelImages = { ...read('content/item-catalog/model-images.json').entries,
+  ...read('content/item-catalog/shield-images.json').entries };
 for (const image of [...Object.values(equipmentImages.entries), ...Object.values(equipmentImages.boxes), ...Object.values(modelImages)]) {
   for (const [file, hash] of [[image.path, image.sha256], ...(image.thumbnail ? [[image.thumbnail, image.thumbnailSha256]] : [])]) {
     if (createHash('sha256').update(fs.readFileSync(file.slice(1))).digest('hex') !== hash) throw new Error(`Item image checksum mismatch: ${file}`);
@@ -330,7 +331,8 @@ for (const record of records) {
   const appearanceName = record.cosmetic ? (record.cosmetic.appearance || '') : '';
   const wikiImage = images[imageName] || images[imageName[0]?.toUpperCase() + imageName.slice(1)]
     || images[appearanceName] || (cosmetic?.reverts ? images[clean(recordByTitle.get('Red Ring').fields.image).replaceAll('_', ' ')] : undefined);
-  const preview = modelImages[code] || equipmentImage({ category, code, rarity, wikiImage }, equipmentImages);
+  const restoredModel = cosmetic?.reverts ? modelImages[recordByTitle.get('Red Ring').fields.hex.toUpperCase()] : null;
+  const preview = modelImages[code] || restoredModel || equipmentImage({ category, code, rarity, wikiImage }, equipmentImages);
   if (modelImages[code] && modelImages[code].id !== id) throw new Error(`Model image identity mismatch: ${code}`);
   const image = preview || wikiImage || itemKtImages[title];
   const source = record.source || `https://wiki.pioneer2.net/w/${encodeURIComponent(title.replaceAll(' ', '_'))}`;
@@ -350,6 +352,12 @@ for (const record of records) {
   const feeding = feedTable ? Object.entries(feedTable).map(([item, values]) => ({ item, values })) : [];
   const detail = { id, en, title, type, subtype, category, code, rarity, mask, status, requirement, stats, summary, effects: [...new Map(effects.map(effect => [effect.zh, effect])).values()], boosts, sets, skins, cosmetic, cosmetics: cosmeticsByTarget.get(title) || [], feeding, drops, availability, source, revision: record.revision, checkedAt: record.checkedAt || snapshot.checkedAt, excerpts: record.excerpts, image: image?.path || null, imageOrigin: wikiImage ? 'wiki' : image ? 'itemkt' : null, imageSource: image?.source || null, imagePage: image?.page || null, related: record.related.map(t => itemIds.get(t)).filter(x => x && x !== id).slice(0, 6) };
   if (details[id]) throw new Error(`Duplicate item slug: ${id}`);
+  const guide = notes[title]?.acquisitionGuide;
+  detail.acquisitionGuide = guide ? {
+    steps: guide.steps.map(step => note(step, title)),
+    sources: guide.sources,
+    checkedAt: guide.checkedAt,
+  } : null;
   detail.imageKind = preview?.kind || (image ? 'screenshot' : null);
   detail.imageBlend = preview?.blend || 'normal';
   if (preview) detail.imageOrigin = preview.origin;

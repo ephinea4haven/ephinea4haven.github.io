@@ -150,6 +150,59 @@ Special attacks are marked as variable and the weapon shop is added as an
 acquisition source. Random combinations of special attack and Hit are not listed
 as separate models.
 
+## Quest reward walkthroughs (2026-10-04)
+
+Akiko's Frying Pan, Soul Eater and Ragol Ring now have authored Chinese, English
+and Japanese acquisition steps in `notes.json` (`acquisitionGuide`). The generator
+resolves item placeholders through the name authority and emits the ordered steps,
+source links and a separate guide check date in each detail JSON. The detail page
+renders them directly under **Acquisition**, including during prerendering; the
+Wiki snapshot date continues to describe the original stat/excerpt snapshot.
+
+Previously the importer retained acquisition headings such as `Quest Reward`,
+but not multi-quest instructions. Generated availability text therefore named only
+the source category, and the UI had no ordered walkthrough field. The new field
+keeps curated quest instructions separate from the factual Wiki snapshot and
+ordinary drop tables. Other items do not claim walkthrough coverage.
+
+The guides cover WEAPON's five approvals and the return to Akiko; Soul Eater's
+refusal to tell Sue a name and three Kireek fights; and Ragol Ring's opposite Sue
+branch, conversations with Bernie, Seat of the Heart choices, correct terminals
+and the beach handover. The anniversary exchange is a separate, availability-
+qualified alternative for Soul Eater. Names remain authoritative; quest/NPC
+identifiers retain English to match the source and avoid invented translations.
+
+Evidence: the three linked Ephinea item articles, the Ephinea
+[Sue/Kireek walkthrough](https://www.pioneer2.net/community/goto/post?id=89958),
+[terminal failure report](https://www.pioneer2.net/community/threads/seat-of-the-heart-questions.27584/),
+[quest replay clarification](https://www.pioneer2.net/community/threads/quick-question-quick-answer.306/page-212),
+PSO-World's [quest weapon route](https://www.pso-world.com/sections.php?artid=1237&op=viewarticle)
+and [branch discussion](https://www.pso-world.com/forums/archive/index.php/t-145146.html),
+and the [quest route's NPC locations](https://www.speedrun.com/pso/guides/9ethd).
+Legacy console guides are used only for corroborated quest actions, not for
+server unlock requirements. In particular, the obsolete government-quest gate is
+not prescribed: Ephinea's administrator confirmed its removal in
+[January 2016](https://www.pioneer2.net/community/threads/quick-question-quick-answer.306/page-30).
+These are source-checked walkthroughs, not a claim of a fresh in-game playthrough.
+
+Regression coverage checks the opposite name choices, quest sequence, independent
+anniversary exchange, final handovers, source URLs and all three translations.
+Browser coverage exercises the three guides, language changes, reload, mobile
+overflow and accessibility. The new Frying Pan browser case reproduced the missing
+walkthrough against the previous production build before testing the fix.
+Screenshot review also exposed a pre-existing breakpoint-order defect: the tablet
+two-column layout overrode the phone one-column layout, leaving long prose in a
+narrow strip despite passing overflow checks. The phone rule now follows the
+tablet rule; the guide tests additionally require at least 300 px of text-column
+width in a 390 px viewport.
+
+Final combined local verification passed the full business suite, all 4,157
+browser tests and two identical production builds (3,802 routes; gzip JavaScript
+1,001,462 / 1,003,000 bytes). The dependency audit found zero vulnerabilities.
+The 390 px Ragol Ring screenshot was reviewed after the breakpoint fix.
+The maintainer reviewed the local result and authorized commit and push on
+2026-10-04. This authorization is not a remote CI or deployment success record.
+
 ## Sources and limits
 
 - The item list is cross-checked against the Ephinea Wiki category indexes and
@@ -384,7 +437,28 @@ The existing Wiki images and list thumbnails are unchanged.
 Local validation passed all 23 item tests, the production build and three HD
 browser checks. All 14 generated detail bindings match the reviewed manifest.
 
-On 2026-09-22 the maintainer supplied a replacement for Silence Claw and
+On 2026-10-04 the maintainer supplied a replacement explicitly identified as
+Heart of Poumn. It replaces only `items/heart-of-poumn.webp`. The source PNG is
+1280 × 938 (1,009,132 bytes); the WebP is 1024 × 751 (34,604 bytes), encoded
+with `cwebp -q 85 -m 6 -resize 1024 0`. For full regeneration, replace
+`WEAPON/EP1+2/184.png` in the assembled working copy with
+`User-provided corrections/2026-10-04/6e3f515e9c37d4de6d18e71ab0ed8b3f_720.png`.
+The manifest records the source checksum and dimensions. The maintainer
+authorized commit and push on 2026-10-04 after local review.
+
+Also on 2026-10-04, maintainer-labelled replacements updated Silence Claw and
+Panther's Claw. Each binds only to its exact item, using the same WebP recipe
+and 1024 × 751 output size. Silence Claw's source is 476,177 bytes and its WebP
+20,608 bytes; Panther's Claw's source is 1,482,911 bytes and its WebP 39,170 bytes.
+For regeneration, replace the previous Silence Claw source listed below with
+`User-provided corrections/2026-10-04/a174d31c3414166ee0b65bff31734042_720.png`,
+and replace `WEAPON/EP1+2/176.png` with
+`User-provided corrections/2026-10-04/d13177b3b85ce905e3617b0d44cb4269_720.png`.
+The manifest retains exact checksums and dimensions. Both were included in the
+maintainer's 2026-10-04 authorization to commit and push.
+
+Historical source, superseded by the 2026-10-04 replacement above:
+on 2026-09-22 the maintainer supplied a replacement for Silence Claw and
 explicitly corrected the initial S-Rank Claw label. The green-photon image is
 bound to Silence Claw only; the ES Claw asset is unchanged. The supplied PNG is
 1280 × 938 and the published WebP is 1024 × 750 (30,492 bytes), encoded with

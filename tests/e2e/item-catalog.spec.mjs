@@ -10,6 +10,31 @@ const listedSabers = items.filter(item => item.type === 'Saber' && !series.get(i
 const unprefixed = (href) => new URL(href).pathname.replace(/^\/(en|ja)(?=\/)/, '');
 const names = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
 
+for (const [id, count] of [['akikos-frying-pan', 4], ['soul-eater', 6], ['ragol-ring', 9]]) {
+  test(`quest acquisition guide ${id} survives language changes and mobile reload`, async ({page}) => {
+    await page.setViewportSize({width: 390, height: 844});
+    await page.goto(`/data/items/${id}.html#availability`);
+    const guide = page.locator('#availability .acquisition-guide');
+    for (const [button, heading, first] of [
+      ['中文', '任务获取步骤', '创建 One Person'],
+      ['English', 'Quest walkthrough', 'Use One Person mode'],
+      ['日本語', 'クエスト入手手順', 'One Person モード'],
+    ]) {
+      await page.getByRole('button', {name: button, exact: true}).click();
+      await expect(guide.getByRole('heading', {name: heading, exact: true})).toBeVisible();
+      await expect(guide.locator('ol > li')).toHaveCount(count);
+      await expect(guide.locator('li').first()).toContainText(first);
+      await expect(guide.locator('a').first()).toHaveAttribute('href', /^https:\/\/wiki\.pioneer2\.net\//);
+      await page.reload();
+      await expect(guide.locator('li').first()).toContainText(first);
+      expect((await guide.boundingBox()).width).toBeGreaterThanOrEqual(300);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    }
+    const results = await new AxeBuilder({page}).include('#availability').analyze();
+    expect(results.violations).toEqual([]);
+  });
+}
+
 test('list shows all three item names with the active language first on desktop and mobile', async ({page}, testInfo) => {
   const item = items.find(item => item.id === 'manda60-vise');
   for (const width of [1440, 390, 320]) {
@@ -44,6 +69,68 @@ test('list shows all three item names with the active language first on desktop 
     expect(await page.locator('.item-names').evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
+});
+
+test('all technique merges display model previews in lists and details', async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  for (const item of items.filter(item => item.category === 'shield' && item.id.endsWith('-merge'))) {
+    await page.goto(`/en/data/items.html?category=shield&q=${item.code}`);
+    const thumbnail = page.locator(`.item-row[href*="/${item.id}.html"] item-image img`);
+    await expect(thumbnail).toHaveAttribute('src', `/assets/img/items/shields/thumbs/${item.id}.webp`);
+    await page.goto(`/en/data/items/${item.id}.html`);
+    const picture = page.locator('.image-stage img');
+    await expect(picture).toHaveAttribute('src', `/assets/img/items/shields/${item.id}.webp`);
+    await expect(picture).toBeVisible();
+    await expect(page.locator('figcaption')).toContainText('Image: original model render');
+    expect(await picture.evaluate(img => img.complete && img.naturalWidth === 900)).toBe(true);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+});
+
+test('technique barriers identify their block preview separately from equipped models', async ({page}) => {
+  for (const id of ['assist-barrier', 'recovery-barrier', 'red-barrier', 'blue-barrier', 'yellow-barrier']) {
+    await page.goto(`/en/data/items/${id}.html`);
+    await expect(page.locator('.image-stage img')).toHaveAttribute('src', '/assets/img/items/shields/block-effect-6.webp');
+    await expect(page.locator('figcaption')).toContainText('Block effect preview');
+    await expect(page.locator('.image-stage img')).toHaveCSS('mix-blend-mode', 'plus-lighter');
+  }
+});
+
+test('shield renders retain the copper emblem and a connected ring silhouette', async ({page}) => {
+  await page.goto('/en/data/items/red-ring.html');
+  const result = await page.evaluate(async () => {
+    const read = async src => {
+      const image = new Image(); image.src = src; await image.decode();
+      const canvas = document.createElement('canvas'); canvas.width = canvas.height = 180;
+      const context = canvas.getContext('2d'); context.drawImage(image, 0, 0, 180, 180);
+      return context.getImageData(0, 0, 180, 180).data;
+    };
+    const copper = await read('/assets/img/items/shields/weapons-copper-shield.webp');
+    let visible = 0, warm = 0;
+    for (let i = 0; i < copper.length; i += 4) if (copper[i + 3] > 100) {
+      visible++; if (copper[i] > copper[i + 2] * 1.2) warm++;
+    }
+    const ring = await read('/assets/img/items/shields/red-ring.webp');
+    const seen = new Set(); let largest = 0, total = 0;
+    for (let i = 0; i < 180 * 180; i++) {
+      if (ring[i * 4 + 3] <= 100) continue;
+      total++;
+      if (seen.has(i)) continue;
+      const stack = [i]; seen.add(i); let count = 0;
+      while (stack.length) {
+        const p = stack.pop(); count++;
+        for (const q of [p - 180, p + 180, ...(p % 180 ? [p - 1] : []), ...(p % 180 < 179 ? [p + 1] : [])]) {
+          if (q >= 0 && q < 180 * 180 && !seen.has(q) && ring[q * 4 + 3] > 100) {seen.add(q); stack.push(q);}
+        }
+      }
+      largest = Math.max(largest, count);
+    }
+    return {warmFraction: warm / visible, ringConnectedFraction: largest / total, visible, total};
+  });
+  expect(result.visible).toBeGreaterThan(1000);
+  expect(result.warmFraction).toBeGreaterThan(0.25);
+  expect(result.total).toBeGreaterThan(1000);
+  expect(result.ringConnectedFraction).toBeGreaterThan(0.95);
 });
 
 test('paired Mechgun images contain two complete silhouettes and appear in lists and details', async ({page}, testInfo) => {
@@ -549,7 +636,7 @@ test('equipment previews show effects, models and rarity boxes across list and d
     await page.goto(`/data/items.html?category=${category}&q=${encodeURIComponent(query)}`);
     const image = page.locator('.item-row img');
     await expect(image).toHaveCount(1);
-    await expect(image).toHaveAttribute('src', `/assets/img/items/equipment/${suffix}`);
+    await expect(image).toHaveAttribute('src', `/assets/img/items/${category === 'shield' ? 'shields' : 'equipment'}/${suffix}`);
     await expect(image).toHaveAttribute('alt', new RegExp(kind));
     await expect.poll(() => image.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
     await page.locator('.item-row').click();
@@ -646,10 +733,10 @@ test('Stealth Suit shows a transparent character illustration in lists and detai
 
 test('all particle previews retain alpha in full images and thumbnails', async ({page}) => {
   const effects = items.filter(item => item.imageKind === 'effect');
-  expect(effects).toHaveLength(13);
+  expect(effects).toHaveLength(55);
   await page.goto('/data/items/aura-field.html');
   for (const item of effects) {
-    for (const src of [item.image, item.image.replace('/equipment/', '/equipment/thumbs/')]) {
+    for (const src of [item.image, item.image.replace(/\/(equipment|shields)\//, '/$1/thumbs/')]) {
       const pixels = await page.evaluate(async src => {
         const image = new Image(); image.src = src; await image.decode();
         const canvas = document.createElement('canvas');

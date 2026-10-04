@@ -45,7 +45,7 @@ export class ItemDetailComponent {
     const item = this.item();
     const origin = this.showingHd() ? item?.hdSource : item?.imageOrigin;
     return ({ 'model-render': '图片来源：原始模型渲染', gallery: '图片来源：高清图库', itemkt: '图片来源：游戏贴图（ItemKT）',
-      'effect-render': '离线效果预览 · 不含角色模型', 'effect-illustration': '隐身效果示意 · 角色透明度仅用于说明', 'pickup-box': '类别示意图 · 非装备外观', wiki: '图片来源：Ephinea Wiki' })[origin || 'wiki'];
+      'effect-render': '离线效果预览 · 不含角色模型', 'block-effect-render': '格挡效果预览 · 非常驻装备模型', 'effect-illustration': '隐身效果示意 · 角色透明度仅用于说明', 'pickup-box': '类别示意图 · 非装备外观', wiki: '图片来源：Ephinea Wiki' })[origin || 'wiki'];
   });
   readonly classes = CLASSES;
   readonly itemPath = itemPath;

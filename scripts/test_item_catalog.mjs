@@ -52,7 +52,8 @@ const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18
 test('lists use equipment and Mag thumbnails while details retain full-size images', () => {
   const index = read('src/app/generated/item-catalog/index.json');
   const equipment = read('content/item-catalog/equipment-images.json');
-  const models = read('content/item-catalog/model-images.json').entries;
+  const models = {...read('content/item-catalog/model-images.json').entries,
+    ...read('content/item-catalog/shield-images.json').entries};
   assert.equal(items.filter(item => item.hdSource === 'gallery').length, 415);
   // Every Mag with a model has a render (79 models + 4 variants sharing a model); Stealth has no model.
   assert.equal(items.filter(item => item.hdSource === 'model-render').length, 83);
@@ -78,7 +79,7 @@ test('lists use equipment and Mag thumbnails while details retain full-size imag
   }
   for (const row of index) {
     const detail = details[row[0]];
-    const preview = models[detail.code] || equipment.entries[detail.code];
+    const preview = models[detail.code] || (detail.cosmetic?.reverts ? models[details['red-ring'].code] : null) || equipment.entries[detail.code];
     const thumbnail = preview && (preview.kind === 'effect' || preview.kind === 'illustration' || preview.origin === 'gallery' || detail.imageOrigin === 'model-render') ? preview.thumbnail : detail.image;
     assert.equal(row[7], detail.hdSource === 'model-render' ? detail.hdImage.replace('/default/', '/thumbs/') : thumbnail, row[0]);
     assert.ok(!JSON.stringify(row).includes('/items/hd/'), row[0]);
@@ -93,6 +94,53 @@ test('lists use equipment and Mag thumbnails while details retain full-size imag
     assert.equal(image.toString('ascii', 0, 4), 'RIFF', item.id);
     assert.equal(image.toString('ascii', 8, 12), 'WEBP', item.id);
     assert.ok(image.length < 250_000, item.id);
+  }
+});
+
+test('all sixteen technique merges use their own reviewed model in lists and details', () => {
+  const models = read('content/item-catalog/shield-images.json').entries;
+  const merges = items.filter(item => item.category === 'shield' && item.id.endsWith('-merge'));
+  assert.equal(merges.length, 16);
+  for (const item of merges) {
+    const model = models[item.code];
+    assert.equal(model.id, item.id);
+    assert.equal(item.imageKind, 'model', item.id);
+    assert.equal(item.image, model.path, item.id);
+    assert.equal(model.evidence.model.ephineaEntryMatches, true);
+    assert.equal(model.evidence.texture.ephineaEntryMatches, true);
+    for (const [file, checksum] of [[model.path, model.sha256], [model.thumbnail, model.thumbnailSha256]]) {
+      assert.equal(createHash('sha256').update(fs.readFileSync(file.slice(1))).digest('hex'), checksum);
+    }
+  }
+  assert.ok(details['foie-merge'].hdImage, 'Existing HD alternative remains available');
+});
+
+test('all shields have checksummed model or block-effect previews with exact identities', () => {
+  const manifest = read('content/item-catalog/shield-images.json').entries;
+  const shields = items.filter(item => item.category === 'shield');
+  assert.equal(Object.keys(manifest).length, 107);
+  assert.equal(shields.filter(item => item.imageKind === 'model').length, 65);
+  assert.equal(shields.filter(item => item.imageKind === 'effect').length, 42);
+  for (const item of shields) {
+    const entry = manifest[item.code];
+    assert.equal(entry.id, item.id);
+    assert.equal(entry.title, item.title);
+    assert.equal(item.image, entry.path);
+    assert.equal(item.imageKind, entry.kind);
+    assert.equal(entry.evidence.runtimeVerified, false);
+    if (entry.kind === 'effect') {
+      assert.equal(item.imageOrigin, 'block-effect-render');
+      assert.ok(entry.evidence.particleIds.length);
+      assert.equal(entry.evidence.transparentBackground, true);
+    } else {
+      assert.equal(entry.evidence.model.ephineaEntryMatches, true);
+      assert.equal(entry.evidence.texture.ephineaEntryMatches, true);
+    }
+    for (const [file, checksum] of [[entry.path, entry.sha256], [entry.thumbnail, entry.thumbnailSha256]]) {
+      const data = fs.readFileSync(file.slice(1));
+      assert.equal(createHash('sha256').update(data).digest('hex'), checksum);
+      assert.equal(data.toString('ascii', 8, 12), 'WEBP');
+    }
   }
 });
 
@@ -113,14 +161,18 @@ test('equipment previews cover every armor, shield and unit with honest image ki
   assert.equal(details.frame.image, manifest.boxes.blue.path);
   assert.equal(details['hunter-field'].image, manifest.boxes.red.path); // 9★, low equip level
   assert.equal(details['celestial-armor'].image, manifest.boxes.blue.path); // 8★, high equip level
-  assert.equal(details['red-barrier'].image, manifest.boxes.red.path);
+  for (const id of ['red-barrier', 'blue-barrier', 'yellow-barrier', 'assist-barrier', 'recovery-barrier']) {
+    assert.equal(details[id].imageKind, 'effect');
+    assert.equal(details[id].imageOrigin, 'block-effect-render');
+    assert.equal(details[id].imageBlend, 'additive');
+  }
   assert.equal(details['god-power'].image, manifest.boxes.red.path);
   assert.equal(details.addslot.image, manifest.boxes.red.path);
   assert.equal(details.addslot.imageKind, 'box');
   assert.equal(details.addslot.rarity, null); // A rare-tool illustration does not invent a star count.
   assert.equal(details['aura-field'].imageKind, 'effect');
   assert.equal(details['secure-feet'].imageKind, 'model');
-  assert.equal(details['red-ring'].imageKind, 'screenshot');
+  assert.equal(details['red-ring'].imageKind, 'model');
   assert.equal(details['stealth-suit'].imageKind, 'illustration');
   assert.equal(details['stealth-suit'].imageOrigin, 'effect-illustration');
   assert.equal(details['stealth-suit'].imageBlend, 'normal');
@@ -504,9 +556,42 @@ test('cosmetic items carry verified targets, results, sources and reversal rules
 test('detail text is written in every site language', () => {
   const han = /[㐀-鿿]/;
   for (const detail of Object.values(details)) {
-    for (const text of [detail.summary, detail.availability, ...detail.effects]) {
+    for (const text of [detail.summary, detail.availability, ...detail.effects, ...(detail.acquisitionGuide?.steps || [])]) {
       for (const language of ['zh', 'en', 'ja']) assert.ok(typeof text[language] === 'string' && text[language].trim(), `${detail.title}: ${language}`);
       assert.doesNotMatch(text.en, han, `${detail.title}: ${text.en}`);
     }
   }
+});
+
+test('quest reward guides retain prerequisites, mutually exclusive branches and the final handover', () => {
+  const expected = { 'akikos-frying-pan': 4, 'soul-eater': 6, 'ragol-ring': 9 };
+  assert.deepEqual(items.filter(i => i.acquisitionGuide).map(i => i.id).sort(), Object.keys(expected).sort());
+  for (const [id, count] of Object.entries(expected)) {
+    const guide = details[id].acquisitionGuide;
+    assert.equal(guide.steps.length, count, id);
+    assert.match(guide.checkedAt, /^\d{4}-\d{2}-\d{2}$/);
+    assert.ok(guide.sources.length >= 2);
+    for (const source of guide.sources) {
+      assert.equal(new URL(source.url).protocol, 'https:');
+      assert.ok(source.label.trim());
+    }
+    for (const step of guide.steps) for (const lang of ['zh', 'en', 'ja']) {
+      assert.ok(step[lang].trim());
+      assert.doesNotMatch(step[lang], /\{item:|undefined/);
+    }
+  }
+  const pan = details['akikos-frying-pan'].acquisitionGuide.steps;
+  for (const quest of ['Secret Delivery', 'The Value of Money', 'Gran Squall', 'The Lost Bride', 'Claiming a Stake']) {
+    assert.ok(pan.some(step => step.en.includes(quest)), quest);
+  }
+  assert.match(pan.at(-1).zh, /秋子婶婶的平底锅/);
+  const soul = details['soul-eater'].acquisitionGuide.steps;
+  const ring = details['ragol-ring'].acquisitionGuide.steps;
+  assert.match(soul[1].en, /refuse to give Sue your name/);
+  assert.match(ring[1].en, /give Sue your name/);
+  assert.match(soul.at(-1).en, /Ruins 2.*third time/);
+  assert.match(details['soul-eater'].availability.zh, /5 个周年纪念·青铜徽章/);
+  assert.match(ring[7].en, /only the correct tower terminals/);
+  assert.match(ring.at(-1).en, /Sue and Kireek.*first.*Elly/);
+  assert.match(details['ragol-ring'].availability.en, /consumes the ring/);
 });
