@@ -239,3 +239,28 @@ local validation only; maintainer acceptance and publication remain pending.
 Maintainer acceptance (2026-10-04): the maintainer reviewed the local results
 and approved this batch for commit and push. The pending statements above record
 the pre-acceptance state; deployment is determined by the release workflow.
+
+## Confirmed armor selection rule (2026-10-04)
+
+The maintainer confirmed that armor without an individual model or assigned
+particle preview should use the existing blue/red category box, not an empty
+image state or a borrowed shield particle. Dedicated models/effects retain
+priority; 9★ and above use a red box, lower rarities use blue. A box is explicitly
+labelled as a category illustration, not an equipped appearance.
+
+The reviewed coverage is 15 dedicated particle previews, one Stealth Suit
+illustration and 72 category boxes. The [particle-path investigation](ARMOR_PARTICLE_AUDIT.md)
+records all 88 identities, the 15 bindings (12 distinct particle IDs), the
+reviewed helper paths and remaining runtime limitations. Missing-model fields
+alone are not treated as proof of missing particles. The rejected shared
+particle and empty-state alternatives are removed.
+
+The maintainer accepted this rule and explicitly authorized documentation alignment,
+commit and push on 2026-10-04. This follow-up records the investigation; site
+selection code and images match the already deployed `6d8503b` implementation.
+The former shared-particle and empty-state proposals are not part of this release.
+
+Pre-push verification passed the full business suite, a zero-vulnerability
+dependency audit, two identical production build manifests (3,802 routes / 135
+fragments), and all 4,159 browser tests. Publication is authorized; deployment
+success is determined by the workflow for the resulting commit.

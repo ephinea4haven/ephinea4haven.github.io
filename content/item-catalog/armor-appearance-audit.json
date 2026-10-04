@@ -4,7 +4,7 @@
     "file": "../newserv/tools/param_dumps_ephinea/ItemPMT.prs",
     "sha256": "33b6243f8fde94a0bc1b299ca9a7277ff759aeaca1465f8c0caa7950205dc689"
   },
-  "scope": "PMT model selectors and verified particle paths; no in-game appearance verification. Empty selectors do not rule out scripted effects.",
+  "scope": "All 88 catalog armors checked against PMT selectors, stock-client equip/update/particle dispatch and Ephinea Wiki Frames. No runtime captures; absent Wiki AE cells are not treated as No.",
   "entries": [
     {
       "code": "010100",
@@ -13,7 +13,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010101",
@@ -22,7 +26,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010102",
@@ -31,7 +39,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010103",
@@ -40,7 +52,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010104",
@@ -49,7 +65,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010105",
@@ -58,7 +78,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010106",
@@ -67,7 +91,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010107",
@@ -76,7 +104,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010108",
@@ -85,7 +117,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010109",
@@ -94,7 +130,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01010A",
@@ -103,7 +143,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01010B",
@@ -112,7 +156,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01010C",
@@ -121,7 +169,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01010D",
@@ -130,7 +182,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01010E",
@@ -139,7 +195,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01010F",
@@ -148,7 +208,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010110",
@@ -157,7 +221,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010111",
@@ -166,7 +234,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010112",
@@ -175,7 +247,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010113",
@@ -184,7 +260,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010114",
@@ -193,7 +273,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010115",
@@ -202,7 +286,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010116",
@@ -211,7 +299,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010117",
@@ -220,7 +312,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-common-frames",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010118",
@@ -229,7 +325,11 @@
       "skin": 65535,
       "flagsType": 1,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010119",
@@ -238,7 +338,11 @@
       "skin": 65535,
       "flagsType": 1,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01011A",
@@ -247,7 +351,11 @@
       "skin": 65535,
       "flagsType": 1,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01011B",
@@ -256,7 +364,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01011C",
@@ -265,7 +377,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01011D",
@@ -274,7 +390,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01011E",
@@ -283,7 +403,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01011F",
@@ -292,7 +416,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010120",
@@ -301,7 +429,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010121",
@@ -310,7 +442,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010122",
@@ -319,7 +455,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010123",
@@ -328,7 +468,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010124",
@@ -337,7 +481,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010125",
@@ -346,7 +494,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010126",
@@ -355,7 +507,11 @@
       "skin": 65535,
       "flagsType": 1,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010127",
@@ -364,7 +520,11 @@
       "skin": 65535,
       "flagsType": 1,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010128",
@@ -373,7 +533,11 @@
       "skin": 65535,
       "flagsType": 1,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010129",
@@ -382,7 +546,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "01012A",
@@ -391,7 +559,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "01012B",
@@ -400,7 +572,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "01012C",
@@ -409,7 +585,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "01012D",
@@ -418,7 +598,11 @@
       "skin": 65535,
       "flagsType": 1,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "01012E",
@@ -427,7 +611,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "01012F",
@@ -436,7 +624,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "010130",
@@ -445,7 +637,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "010131",
@@ -454,7 +650,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "010132",
@@ -463,7 +663,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "010133",
@@ -472,7 +676,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "010134",
@@ -481,7 +689,11 @@
       "skin": 65535,
       "flagsType": 2,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "010135",
@@ -490,7 +702,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010136",
@@ -499,7 +715,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010137",
@@ -508,7 +728,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010138",
@@ -517,7 +741,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010139",
@@ -526,7 +754,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01013A",
@@ -535,7 +767,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01013B",
@@ -544,7 +780,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01013C",
@@ -553,7 +793,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01013D",
@@ -562,7 +806,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01013E",
@@ -571,7 +819,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "01013F",
@@ -580,7 +832,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010140",
@@ -589,7 +845,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010141",
@@ -598,7 +858,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010142",
@@ -607,7 +871,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010143",
@@ -616,7 +884,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010144",
@@ -625,7 +897,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "010145",
@@ -634,7 +910,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "particle-effect",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "particle",
+      "evidence": "client-particle-dispatch",
+      "modelMapped": false,
+      "particleMapped": true
     },
     {
       "code": "010146",
@@ -643,7 +923,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010147",
@@ -652,7 +936,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010148",
@@ -661,7 +949,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010149",
@@ -670,7 +962,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01014A",
@@ -679,7 +975,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01014B",
@@ -688,7 +988,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01014C",
@@ -697,7 +1001,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01014D",
@@ -706,7 +1014,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01014E",
@@ -715,7 +1027,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "01014F",
@@ -724,7 +1040,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010150",
@@ -733,7 +1053,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010151",
@@ -742,7 +1066,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010152",
@@ -751,7 +1079,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010153",
@@ -760,7 +1092,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010154",
@@ -769,7 +1105,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010155",
@@ -778,7 +1118,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "none",
+      "evidence": "wiki-ae-no",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010156",
@@ -787,7 +1131,11 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "category-box",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "no-mapped-effect",
+      "evidence": "client-equip-update-no-visual-branch",
+      "modelMapped": false,
+      "particleMapped": false
     },
     {
       "code": "010157",
@@ -796,7 +1144,28 @@
       "skin": 65535,
       "flagsType": 0,
       "preview": "transparency-illustration",
-      "runtimeVerified": false
+      "runtimeVerified": false,
+      "appearance": "transparency",
+      "evidence": "client-stealth-dispatch",
+      "modelMapped": false,
+      "particleMapped": false
     }
-  ]
+  ],
+  "appearanceSources": {
+    "wiki": {
+      "url": "https://wiki.pioneer2.net/w/Frames",
+      "checkedAt": "2026-10-04"
+    },
+    "client": {
+      "file": "../bb-psov4/ref/original-psobb-client-source/src/Psobb.exe-05112026.c",
+      "sha256": "7d6fdae3cbc3398fe8a901f09c2fb85966cba9d798b089742bffe6e62930d54f",
+      "functions": [
+        "init_item_armor_frame",
+        "on_equip_armor",
+        "unknown_check_armor_effects",
+        "ArmorFrameParticleEffectInit",
+        "InitializeWeaponAttackProperties_005e0828"
+      ]
+    }
+  }
 }
