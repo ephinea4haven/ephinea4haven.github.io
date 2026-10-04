@@ -15,6 +15,7 @@ test('list shows all three item names with the active language first on desktop 
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({width, height: 1000});
     await page.goto('/en/data/items.html?q=M%26A60');
+    await expect(page.locator('.item-row')).toHaveCount(1);
     for (const [button, language] of [['English', 'en'], ['中文', 'zh'], ['日本語', 'ja']]) {
       await page.getByRole('button', {name: button, exact: true}).click();
       const identity = page.locator('.item-row .identity');
@@ -36,6 +37,8 @@ test('list shows all three item names with the active language first on desktop 
   for (const id of ['blue-odoshi-violet-nimaidou', 'heart-of-partisan-of-lightning']) {
     const longName = items.find(item => item.id === id);
     await page.goto(`/en/data/items.html?category=${longName.category}&q=${longName.code}`);
+    // The static page has 24 rows until the index loads and URL filters apply.
+    await expect(page.locator('.item-row')).toHaveCount(1);
     await expect(page.locator('.item-name')).toHaveText(longName.en);
     await expect(page.locator('.translated-name')).toHaveCount(2);
     expect(await page.locator('.item-names').evaluate(element => element.scrollWidth <= element.clientWidth)).toBe(true);
@@ -135,6 +138,7 @@ test('language changes preserve filters, sorting, pagination and authoritative n
     await expect(page.locator('html')).toHaveAttribute('lang',lang === 'zh' ? 'zh-CN' : lang);
   }
   await page.goto('/ja/data/items.html?q=赤のセイバー');
+  await expect(page.locator('.item-row')).toHaveCount(1);
   await expect(page.locator('.identity strong')).toHaveText(names['Red Saber'].ja);
   await page.getByRole('button',{name:'English',exact:true}).click();
   await expect(page.locator('.identity strong')).toHaveText('Red Saber');
@@ -581,6 +585,7 @@ test('Smoking Plate preserves transparent background and black smoke in list and
   ]) {
     await page.goto(url);
     const image = page.locator(selector);
+    await expect(image).toHaveCount(1);
     await expect(image).toHaveAttribute('alt', /效果预览/);
     await expect.poll(() => image.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
     const pixels = await image.evaluate(img => {

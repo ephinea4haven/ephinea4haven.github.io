@@ -34,6 +34,7 @@
 
 - This is a single-maintainer repository.
 - Work directly on `master` by default. Complete local changes and validation, then leave them for the user's acceptance review.
+- Before an approved release push, complete the full local business tests, dependency audit, production build, reproducible-build comparison and full browser test suite. Run the checks against the final changes; targeted tests alone are not release validation, and CI must not be the first full validation pass. Fix and verify local failures before pushing, and group the validated release changes into one push.
 - Do not push to `origin/master` or deploy until the user explicitly approves after reviewing the result. Do not treat completion of tests as approval to publish.
 - Do not create feature branches or pull requests unless the user explicitly requests them.
 - Do not add AI attribution to commits or pull requests. Omit `Co-Authored-By` trailers, "Generated with" footers and any other assistant or tool signature.
