@@ -135,7 +135,7 @@ All 295 armor/shield/unit records now have a list image:
 
 | Category | Screenshot | Effect | Illustration | Model | Box |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Armor | 0 | 13 | 1 | 0 | 74 |
+| Armor | 0 | 15 | 1 | 0 | 72 |
 | Shield | 0 | 42 | 0 | 65 | 0 |
 | Unit | 0 | 0 | 0 | 0 | 100 |
 
@@ -154,7 +154,7 @@ classification and do not change the image selection.
 
 The transparency regression fails against the former opaque Smoking Plate
 image (corner alpha 255 instead of 0). Browser coverage checks full-size and
-thumbnail transparency for all 55 armor/shield effect bindings, the
+thumbnail transparency for all 57 armor/shield effect bindings, the
 normal/additive display modes, and the WD/DP image switches.
 Source-render tests also check black-smoke alpha, additive compositing against
 two backgrounds, and the heart burst's emission and lifetime:
@@ -185,3 +185,57 @@ Yellow Ring, the three replacement HD images, and the mobile Ragol Ring guide
 were also inspected. The maintainer authorized commit and push on 2026-10-04.
 These local results and publication authorization do not themselves claim
 remote CI success or successful deployment.
+
+## Additional armor audit (2026-10-04, pending acceptance)
+
+`content/item-catalog/armor-appearance-audit.json` records all 88 armor identities,
+PMT Type/Skin selectors, FlagsType and current preview coverage. All Type/Skin
+selectors are `0xFFFF`; this rules out a mapped standalone equipment model in
+this PMT, not scripted visual effects or every possible runtime appearance.
+The remaining 72 category illustrations must not be described as proof of no
+appearance. Stealth Suit retains its explicitly labelled transparency illustration.
+
+The previous thirteen-effect inventory omitted Chu Chu Fever and Virus Armor:
+Lafuteria. Both have FlagsType 2, like the established particle-effect armors.
+The stock selector at `005E0FE8` indexes table `0092D1C4` by group minus `0x29`:
+group `0x2C` selects particle `0x17D` (`chu_chu`, texture `760251`), and group
+`0x2F` selects `0x6B` (`rafute`, texture `750461`). The Wiki independently
+describes aesthetic effects for [Chu Chu Fever](https://wiki.pioneer2.net/w/Chu_Chu_Fever)
+and [Lafuteria](https://wiki.pioneer2.net/w/Virus_Armor:_Lafuteria).
+
+`scripts/render_missing_armor_effects.py` reuses the audited type-0 simulation
+with seed `0x51BB`, frame 40 and origin zero. Chu Chu uses ordinary source-alpha
+blending and a single texture frame; Lafuteria uses additive blending and a
+16-frame atlas. The PNGs were visually inspected before marking the offline
+manifest's `visualQa` as `passed` for import. These are body-free previews of
+one emitter; player pose, global RNG, helper retrigger cycles and runtime camera
+culling are not reproduced. Site captions retain the offline-preview wording.
+
+Regenerate with the workstation dependencies described above:
+
+```sh
+rtk proxy python3 scripts/render_missing_armor_effects.py
+# Inspect both PNGs in artifacts/armor-renders/, then mark visualQa passed.
+rtk node scripts/import_equipment_images.mjs ../PSOBB-Haven /tmp/haven-equipment-gsl
+rtk node scripts/generate_item_catalog.mjs
+```
+
+The two new previews bring armor coverage to 15 particle previews, one
+transparency illustration and 72 category boxes. They have not yet been accepted
+for commit or publication.
+
+Local verification for this addition passed the full business suite, 37 item
+tests, three particle compositor regressions, all 62 catalog browser tests and
+the 3,802-route production build. Both final detail pages were visually inspected;
+mobile regression covers list thumbnails, the appearance filter, detail image,
+blend mode, offline caption and overflow. No commit or publication is authorized
+for this subsequent armor addition yet.
+
+The final combined armor / Dark Falz validation passed all 4,159 browser tests,
+the full business suite and a zero-vulnerability dependency audit. Two production
+build manifests were identical (3,802 routes and 135 event fragments). This is
+local validation only; maintainer acceptance and publication remain pending.
+
+Maintainer acceptance (2026-10-04): the maintainer reviewed the local results
+and approved this batch for commit and push. The pending statements above record
+the pre-acceptance state; deployment is determined by the release workflow.

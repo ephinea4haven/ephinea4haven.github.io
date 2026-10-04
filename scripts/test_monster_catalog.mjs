@@ -163,6 +163,25 @@ test('HD artwork keeps episode copies separate and binds only the pictured boss 
   assert.equal(Object.values(details).filter(detail=>detail.hdAlternates.length).length,1);
 });
 
+test('Dark Falz renders retain complete assemblies and original wing material evidence',()=>{
+  const config=JSON.parse(fs.readFileSync('content/monster-catalog/model-renders.json'));
+  const manifest=JSON.parse(fs.readFileSync('assets/img/monsters/render/manifest.json'));
+  const expected={DarkFalzForm1:['df1_s_body','df1_s_waist','df1_s_dodai','df1_s_da_heada','df1_s_db_heada','df1_s_dc_heada'],
+    DarkFalzForm2:['df2_s_body','df2_s_dodai1'],DarkFalzForm3:['df3_s_body','df3_s_wing','df3_s_wing']};
+  for(const [label,parts] of Object.entries(expected)) {
+    const evidence=manifest[label].evidence;
+    assert.deepEqual(evidence.parts.map(p=>p.model),parts,label);
+    assert.deepEqual(evidence.recipe,config.renders[label]);
+    assert.equal(evidence.runtimeVerified,false);
+    for(const part of evidence.parts) assert.ok(part.triangles>0);
+    for(const [field,file] of [['rendererSha256','scripts/render_dark_falz_models.py'],['meshParserSha256','scripts/render_npc_models.py'],['motionParserSha256','scripts/pso_motion_frame.py']]) {
+      assert.equal(evidence[field],createHash('sha256').update(fs.readFileSync(file)).digest('hex'));
+    }
+  }
+  assert.ok(manifest.DarkFalzForm2.evidence.parts[0].environmentPrimitives>0);
+  assert.deepEqual(manifest.DarkFalzForm3.evidence.parts.map(p=>p.motion),['wait_df3_s_body','wait_df3_s_wing','wait_df3_s1_wing']);
+});
+
 test('model renders are checksummed, bound to real entries and distinguish Ultimate skins',()=>{
   const config=JSON.parse(fs.readFileSync('content/monster-catalog/model-renders.json'));
   const manifest=JSON.parse(fs.readFileSync('assets/img/monsters/render/manifest.json'));

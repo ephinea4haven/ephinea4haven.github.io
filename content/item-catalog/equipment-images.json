@@ -211,6 +211,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_type1.py",
+            "sha256": "b175d20bd2f3f2bbaba2cdc093ca9dc30cc7dbb3df6349fe47e698981cba8554"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -221,7 +226,7 @@
             "sha256": "ab588f8fbb5b5b95847febfce91aa026adba28660f5aa6868cdcbe1f040046df"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-dress-plate.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-dress-plate.png",
         "inputSha256": "dedf291ec7ae56522d545d794d513d6c01440d1682e6e748ed0d9d6676233053"
       },
       "blend": "additive"
@@ -731,6 +736,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_type1.py",
+            "sha256": "b175d20bd2f3f2bbaba2cdc093ca9dc30cc7dbb3df6349fe47e698981cba8554"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -741,7 +751,7 @@
             "sha256": "cdf625c9d66d6ad996e6f21f16eac72cc4476fcf5486b190ede28a0e2eb5d806"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-wedding-dress.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-wedding-dress.png",
         "inputSha256": "3f7fc1070f87fe7fb3bb2e755a4d16519257e23eb81872641bc0930162a1a3b9"
       },
       "blend": "additive"
@@ -845,6 +855,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_particles.py",
+            "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -855,7 +870,7 @@
             "sha256": "28a641cf13ea98be35c11decdbea99ed9e08d2abdc995a7b1e2ff654ef548322"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-flame-garment.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-flame-garment.png",
         "inputSha256": "5915094ff87f1a5cbe9c718b947fda35ea026a30664e2665b08e917d8a242e56"
       },
       "blend": "additive"
@@ -889,6 +904,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_particles.py",
+            "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -899,7 +919,7 @@
             "sha256": "5657a315d3ad7f3db202050c813a18d204c9857189e55cf98c48cc1a9cffc975"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-luminous-field.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-luminous-field.png",
         "inputSha256": "2fc54d8559d3c84485f5f2efe720fe2aecbc0db8da868047b6600a3dcd824356"
       },
       "blend": "additive"
@@ -933,6 +953,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_particles.py",
+            "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -943,7 +968,7 @@
             "sha256": "483ac9c96bf0ead48b07e72fcfe6a1c778dfacc0869ea9b5d2af0ed3dd8e209a"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-aura-field.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-aura-field.png",
         "inputSha256": "2823711589411f2a548bb25d33a2257f6857c49eedc620e823fd954c7cc8404f"
       },
       "blend": "additive"
@@ -977,6 +1002,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_particles.py",
+            "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -987,7 +1017,7 @@
             "sha256": "ad855936fdd2380f4b58e1bfef14749867ec04b78a7751389654cad71570d8ac"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-guard-wave.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-guard-wave.png",
         "inputSha256": "60d52b0ad180a9f190377a2e47e5d306eaad6c87c28f12e796580f5331243ad3"
       },
       "blend": "additive"
@@ -1021,6 +1051,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_particles.py",
+            "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -1031,7 +1066,7 @@
             "sha256": "0e2e9c4615dff792393986928cef753f89b1db4e4ed0f690baae7f6fe103a310"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-df-field.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-df-field.png",
         "inputSha256": "b86163f5e1c689068cff90be8e951010884f996f66886d4a26633f6f960cddeb"
       },
       "blend": "additive"
@@ -1065,6 +1100,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_type1.py",
+            "sha256": "b175d20bd2f3f2bbaba2cdc093ca9dc30cc7dbb3df6349fe47e698981cba8554"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -1075,7 +1115,7 @@
             "sha256": "4185c3fd8c27efb0661259e92d787aa175c8801e67486d03d7c7f553eeabcb11"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-brightness-circle.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-brightness-circle.png",
         "inputSha256": "475c86d4ec9e36aba015fa826fc66273f5a516c4b2439c6ad62b1565a4c3712d"
       },
       "blend": "additive"
@@ -1109,6 +1149,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_type1.py",
+            "sha256": "b175d20bd2f3f2bbaba2cdc093ca9dc30cc7dbb3df6349fe47e698981cba8554"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -1119,7 +1164,7 @@
             "sha256": "594b8bfab84299327fb54c287283886052bea7bf8910cc8ffeef89c572bb8df6"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-electro-frame.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-electro-frame.png",
         "inputSha256": "affb862e095dbb18430aa1ecbcedfac49c1447dad336c15cb62fe7905b2d93ff"
       },
       "blend": "additive"
@@ -1153,6 +1198,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_type1.py",
+            "sha256": "b175d20bd2f3f2bbaba2cdc093ca9dc30cc7dbb3df6349fe47e698981cba8554"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -1163,7 +1213,7 @@
             "sha256": "8d1582ebb759182192b01dfc12787ed46fdd0cee5fdbb865373d42f1bded9ad7"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-sacred-cloth.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-sacred-cloth.png",
         "inputSha256": "3f7fc1070f87fe7fb3bb2e755a4d16519257e23eb81872641bc0930162a1a3b9"
       },
       "blend": "additive"
@@ -1197,6 +1247,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_type1.py",
+            "sha256": "b175d20bd2f3f2bbaba2cdc093ca9dc30cc7dbb3df6349fe47e698981cba8554"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -1207,7 +1262,7 @@
             "sha256": "121ea739d2237b9f69e0dbaac8f992cf4aca2ce69ee0cb8f5a707ebf49a9118c"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-smoking-plate.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-smoking-plate.png",
         "inputSha256": "eb8b2303a9cc9e0ef5856ad2713ea96638c6e8b2ed4b6c930810f679c4908076"
       },
       "blend": "normal"
@@ -1241,6 +1296,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_type1.py",
+            "sha256": "b175d20bd2f3f2bbaba2cdc093ca9dc30cc7dbb3df6349fe47e698981cba8554"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -1251,7 +1311,7 @@
             "sha256": "d35e868faf5c889b53111e83ddce1fbc262b19157eb950a164f35586c2a54d07"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-love-heart.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-love-heart.png",
         "inputSha256": "dedf291ec7ae56522d545d794d513d6c01440d1682e6e748ed0d9d6676233053"
       },
       "blend": "additive"
@@ -1285,6 +1345,11 @@
             "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
           },
           {
+            "role": "simulator",
+            "file": "simulate_type1.py",
+            "sha256": "b175d20bd2f3f2bbaba2cdc093ca9dc30cc7dbb3df6349fe47e698981cba8554"
+          },
+          {
             "role": "renderer",
             "file": "render_particle_preview.py",
             "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
@@ -1295,8 +1360,116 @@
             "sha256": "eae441bcd63007faf4cd7eea72dc08e5be100b6ea01ac0b4324b03a0e0bbaf3f"
           }
         ],
-        "input": "artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-sweetheart.png",
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/destiny/resources/completeness/armor-effects/previews/armor-effect-sweetheart.png",
         "inputSha256": "dedf291ec7ae56522d545d794d513d6c01440d1682e6e748ed0d9d6676233053"
+      },
+      "blend": "additive"
+    },
+    "01012C": {
+      "title": "Chu Chu Fever",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/chu-chu-fever.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/chu-chu-fever.webp",
+      "sha256": "034f49aaa87cbdfef9e1535917661ab97389cc74f09a9bae1fbf45591187336e",
+      "thumbnailSha256": "79a5ea83d012e6428e17883a601e86325ba5f34abdbb125fd21a19113f989457",
+      "evidence": {
+        "manifest": "artifacts/armor-renders/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_missing_armor_effects.py",
+            "sha256": "68df4eab98414c2e45026a7eefe2eafece051538964e753f643319b1d7a53ea8"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "chu-chu-fever.json",
+            "sha256": "58ce3072c431e935d4389dcbd4560ccff8b3f9aa32b11af4fe7de97d593c9d92"
+          },
+          {
+            "role": "simulator",
+            "file": "simulate_particles.py",
+            "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+          },
+          {
+            "role": "sprite_renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          }
+        ],
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/armor-renders/chu-chu-fever.png",
+        "inputSha256": "85df1f5c6c043b0f57434f448369c950d115b2fe97c3e96c44a7ea73e3714f4b"
+      },
+      "blend": "normal"
+    },
+    "01012F": {
+      "title": "Virus Armor: Lafuteria",
+      "kind": "effect",
+      "origin": "effect-render",
+      "path": "/assets/img/items/equipment/virus-armor-lafuteria.webp",
+      "thumbnail": "/assets/img/items/equipment/thumbs/virus-armor-lafuteria.webp",
+      "sha256": "d11d474df79b3a2e2571f9ead14f58b1d11d70d8689bca2ab87bc6defef38073",
+      "thumbnailSha256": "1f3bb60a62ce138c553c62c84e6f661c1112ddcc0e27ab9b4e9254acdbf325ac",
+      "evidence": {
+        "manifest": "artifacts/armor-renders/render-manifest.json",
+        "runtimeVerified": false,
+        "transparentBackground": true,
+        "dependencies": [
+          {
+            "role": "particle_data",
+            "file": "particleentry.dat",
+            "sha256": "72da95d3e2771ffb6d8037e6d255c75260ada295309de981ce7cc149c60a7a5e"
+          },
+          {
+            "role": "texture_data",
+            "file": "effect_nt.xvm",
+            "sha256": "8fa85d0b2c696afdec44d28c12b7844d037c7073506637f3b1f8b0da9f7f3b75"
+          },
+          {
+            "role": "stock_client",
+            "file": "Psobb.exe",
+            "sha256": "211eea328f2f0f3ad88d5033c77704da72fcb9892f9f5c03b93e0def08faa78c"
+          },
+          {
+            "role": "renderer",
+            "file": "render_missing_armor_effects.py",
+            "sha256": "68df4eab98414c2e45026a7eefe2eafece051538964e753f643319b1d7a53ea8"
+          },
+          {
+            "role": "render_sidecar",
+            "file": "virus-armor-lafuteria.json",
+            "sha256": "7a6d09562032926034290e786ddbe3db4907e436449140d41c81c4fc1a40503b"
+          },
+          {
+            "role": "simulator",
+            "file": "simulate_particles.py",
+            "sha256": "83a3ada3b8706f67c8bc1f7f2c10c18ab7f1cce40b4d8ff68dfc589fb1b1065a"
+          },
+          {
+            "role": "sprite_renderer",
+            "file": "render_particle_preview.py",
+            "sha256": "c23a7c651293094913cebf9d434738666c1b94a39bc88c1230e45855bfb39e94"
+          }
+        ],
+        "input": "/Users/wangzhen/study/ephinea4haven.github.io/artifacts/armor-renders/virus-armor-lafuteria.png",
+        "inputSha256": "d411317175e4a1d5290ade67fb8e6d6c6877ee1dca8932e0c4e7ae353f4df4d0"
       },
       "blend": "additive"
     },

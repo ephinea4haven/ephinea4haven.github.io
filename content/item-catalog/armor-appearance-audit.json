@@ -1,0 +1,802 @@
+{
+  "checkedAt": "2026-10-04",
+  "source": {
+    "file": "../newserv/tools/param_dumps_ephinea/ItemPMT.prs",
+    "sha256": "33b6243f8fde94a0bc1b299ca9a7277ff759aeaca1465f8c0caa7950205dc689"
+  },
+  "scope": "PMT model selectors and verified particle paths; no in-game appearance verification. Empty selectors do not rule out scripted effects.",
+  "entries": [
+    {
+      "code": "010100",
+      "title": "Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010101",
+      "title": "Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010102",
+      "title": "Psy Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010103",
+      "title": "Giga Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010104",
+      "title": "Soul Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010105",
+      "title": "Cross Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010106",
+      "title": "Solid Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010107",
+      "title": "Brave Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010108",
+      "title": "Hyper Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010109",
+      "title": "Grand Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01010A",
+      "title": "Shock Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01010B",
+      "title": "King's Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01010C",
+      "title": "Dragon Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01010D",
+      "title": "Absorb Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01010E",
+      "title": "Protect Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01010F",
+      "title": "General Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010110",
+      "title": "Perfect Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010111",
+      "title": "Valiant Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010112",
+      "title": "Imperial Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010113",
+      "title": "Holiness Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010114",
+      "title": "Guardian Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010115",
+      "title": "Divinity Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010116",
+      "title": "Ultimate Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010117",
+      "title": "Celestial Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010118",
+      "title": "Hunter Field",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 1,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010119",
+      "title": "Ranger Field",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 1,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01011A",
+      "title": "Force Field",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 1,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01011B",
+      "title": "Revival Garment",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01011C",
+      "title": "Spirit Garment",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01011D",
+      "title": "Stink Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01011E",
+      "title": "D-Parts ver1.01",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01011F",
+      "title": "D-Parts ver2.10",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010120",
+      "title": "Parasite Wear: De Rol",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010121",
+      "title": "Parasite Wear: Nelgal",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010122",
+      "title": "Parasite Wear: Vajulla",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010123",
+      "title": "Sense Plate",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010124",
+      "title": "Graviton Plate",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010125",
+      "title": "Attribute Plate",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010126",
+      "title": "Flowen's Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 1,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010127",
+      "title": "Custom Frame ver.OO",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 1,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010128",
+      "title": "DB's Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 1,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010129",
+      "title": "Guard Wave",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01012A",
+      "title": "DF Field",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01012B",
+      "title": "Luminous Field",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01012C",
+      "title": "Chu Chu Fever",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01012D",
+      "title": "Love Heart",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 1,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01012E",
+      "title": "Flame Garment",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01012F",
+      "title": "Virus Armor: Lafuteria",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010130",
+      "title": "Brightness Circle",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010131",
+      "title": "Aura Field",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010132",
+      "title": "Electro Frame",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010133",
+      "title": "Sacred Cloth",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010134",
+      "title": "Smoking Plate",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 2,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010135",
+      "title": "Star Cuirass",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010136",
+      "title": "Black Hound Cuirass",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010137",
+      "title": "Morning Prayer",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010138",
+      "title": "Black Odoshi Domaru",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010139",
+      "title": "Red Odoshi Domaru",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01013A",
+      "title": "Black Odoshi Red Nimaidou",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01013B",
+      "title": "Blue Odoshi Violet Nimaidou",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01013C",
+      "title": "Dirty Lifejacket",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01013D",
+      "title": "Kroe's Sweater",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01013E",
+      "title": "Wedding Dress",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01013F",
+      "title": "Sonic Team Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010140",
+      "title": "Red Coat",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010141",
+      "title": "Thirteen",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010142",
+      "title": "Mother Garb",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010143",
+      "title": "Mother Garb+",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010144",
+      "title": "Dress Plate",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010145",
+      "title": "Sweetheart",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "particle-effect",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010146",
+      "title": "Ignition Cloak",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010147",
+      "title": "Congeal Cloak",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010148",
+      "title": "Tempest Cloak",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010149",
+      "title": "Cursed Cloak",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01014A",
+      "title": "Select Cloak",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01014B",
+      "title": "Spirit Cuirass",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01014C",
+      "title": "Revival Cuirass",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01014D",
+      "title": "Alliance Uniform",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01014E",
+      "title": "Officer Uniform",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "01014F",
+      "title": "Commander Uniform",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010150",
+      "title": "Crimson Coat",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010151",
+      "title": "Infantry Gear",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010152",
+      "title": "Lieutenant Gear",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010153",
+      "title": "Infantry Mantle",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010154",
+      "title": "Lieutenant Mantle",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010155",
+      "title": "Union Field",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010156",
+      "title": "Samurai Armor",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "category-box",
+      "runtimeVerified": false
+    },
+    {
+      "code": "010157",
+      "title": "Stealth Suit",
+      "type": 65535,
+      "skin": 65535,
+      "flagsType": 0,
+      "preview": "transparency-illustration",
+      "runtimeVerified": false
+    }
+  ]
+}

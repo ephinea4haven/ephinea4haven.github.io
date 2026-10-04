@@ -33,7 +33,7 @@
     "test:home": "node --test scripts/test_home_i18n.mjs",
     "test:destiny": "node --test artifacts/destiny/dropcharts/tests/viewer.test.cjs artifacts/destiny/dropcharts/tests/gallery.test.cjs artifacts/destiny/dropcharts/tests/gallery-build.test.cjs",
     "test:destiny:upstream": "node --test artifacts/destiny/dropcharts/tests/test_viewer.cjs",
-    "test:npc": "node --test scripts/test_npc_guide.mjs",
+    "test:npc": "node --test scripts/test_npc_guide.mjs && python3 -m unittest scripts.test_pso_motion_frame",
     "test:search": "node --test scripts/test_build_search.mjs",
     "test:dev": "node --test scripts/test_dev_site.mjs scripts/test_dev_search.mjs scripts/test_generated_files.mjs scripts/test_dev_proxy.mjs",
     "test:performance": "playwright test tests/e2e/site-performance.spec.mjs",

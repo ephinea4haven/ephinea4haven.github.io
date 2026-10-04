@@ -374,7 +374,7 @@ did not re-evaluate tiers or change the in-game rotation.
 - 配置：`content/monster-catalog/model-renders.json`。`renders` 记录每张图的模型来源、动作与帧、机位、需要隐藏的特效外壳材质；`bindings` 把图鉴条目的普通 / Ultimate 外观绑定到渲染图。生成器在条目不存在或文件缺失时失败。
 - 模型来源有两种。`npc` 取本地 phantasmal-world（提交 `a8890d22`）已提取的 `assets/npcs`，按其 `EntityAssetLoader.entityTypeToPath` 解析，Ultimate 皮肤按 `UltimateSkins.kt`。`archive` + `model`（+ `motion`）直接读取 Ephinea 客户端数据：`data.gsl` 中的 BML 或散放的 `.bml`（`scripts/pso_archives.py` 负责 PRS、GSL 与 BML 解析）；没有自带贴图的条目使用同一档案的第一个贴图包。首领、部位与 Ultimate 档案（`_a` / `_ap`）以及 EP4 首领的分阶段待机动作均由此取得。
 - phantasmal-world 的部分资源命名有误，已改用客户端档案：其 Hidoom / Migium 实为出场地面物件（正确模型是 Pan Arms 档案 `bm7_s_paa_body` 的 `pal` / `par`），Canane 为另一模型（正确的是 `bm_ene_me1_mb`），挂在 MerissaA 名下的动作属于 Slime（`bm4_ps_ma_body`）。每次改动都应把渲染图与 Wiki / 高清图逐项对照。
-- 渲染：`npm run generate:monster-renders -- --harness-assets <phantasmal-world>/web/src/jsMain/resources/assets/npcs`（`scripts/render_monster_models.py`）先把档案条目提取到该目录的 `raw/`，再调用 `scripts/render_monster_models.mjs` 在无界面浏览器中驱动 phantasmal-world 的导出入口 `?npcBatch=1`（`window.__renderNpc`），用它自己的蒙皮与 NJM 动画转换摆姿势，分别在黑底与白底上渲染 2048 px；两图之差还原透明度，叠加发光材质保持半透明。结果裁切到模型、居中留边，输出 1024 px 与 160 px WebP，`manifest.json` 记录 SHA-256。该导出入口只存在于本机 phantasmal-world 工作副本，不属于其仓库；重新渲染前需在本机构建并以 `--harness` 指向它。
+- 常规怪物渲染：`npm run generate:monster-renders -- --harness-assets <phantasmal-world>/web/src/jsMain/resources/assets/npcs`（`scripts/render_monster_models.py`）先把档案条目提取到该目录的 `raw/`，再调用 `scripts/render_monster_models.mjs` 在无界面浏览器中驱动 phantasmal-world 的导出入口 `?npcBatch=1`（`window.__renderNpc`），用它自己的蒙皮与 NJM 动画转换摆姿势，分别在黑底与白底上渲染 2048 px；两图之差还原透明度，叠加发光材质保持半透明。结果裁切到模型、居中留边，输出 1024 px 与 160 px WebP，`manifest.json` 记录 SHA-256。该导出入口只存在于本机 phantasmal-world 工作副本，不属于其仓库；重新渲染前需在本机构建并以 `--harness` 指向它。Dark Falz 三个形态改用下述 Blender 完整装配路径，批量入口按清单中的 `renderer` 分派，不再用只含本体的旧配方覆盖它们。
 - 姿势：默认用模型自己的待机动作（wait / stand / standby 等，Poison Lily 用张开的 `waito`）；EP4 首领一、二阶段分别用 `1st_standby` / `2nd_standby`。De Rol Le（含 Ultimate）用前进动作 `forward` 第 0 帧的伸展身体，模型绕 X 轴抬头 12°，从头部斜前方 45° 取景，与维护者提供的参考图一致。颈部 4 根触手是独立模型 `boss2_b_derorure_tentacle`，游戏运行时挂到本体头部骨骼下的 4 个空节点（骨骼 29–32）；`attach` 按骨骼编号把部件挂到摆好姿势的本体上，触手用自身摆动动作 `tloop` 第 16 帧（向后上方伸展）。Spinner 用 `standby`：其动作类型 `0x2005` 的四元数旋转位于缩放之前，phantasmal-world 原解析顺序（缩放在前）会读错，本机导出入口的构建修正了这一顺序。没有动作的模型用绑定姿势，Hildeblue 借用 Hildebear、Gobooma / Gigobooma 借用 Booma 的同骨架动作。Hidoom 以前的地面物件、Merissa A / AA、Pouilly Slime 的环境反射外壳在导出中会画成不透明色块，按材质序号隐藏。
 - 2026-09-30 姿态对齐：Zu 与 Nano Dragon 去掉 `wait` 动作，沿用 Pazuzu 的原始展翅姿势和默认机位（yaw 35°、pitch 12°）。原待机第 0 帧会让两翼竖起遮挡身体；本次用各自模型重新生成 1024 px 头像、160 px 缩略图及校验清单。Zu 的 Crater / Desert、普通 / Ultimate 共用同一外观，全部同步；Nano Dragon 的两组难度也共用此姿势。模型、贴图与高清参考图未改。 本地生产构建、13 项怪物数据/图片检查、33 项图鉴浏览器测试通过，并目视检查 Zu 两区域、Pazuzu 与 Nano Dragon 的 Ultimate 页面；未部署。
 - 档案贴图：没有自带贴图包的模型按编号引用同一档案的贴图包（默认第一个，可用 `texture` 指定、`textureOrder` 重排）。提取时把 XVRT 块首尾相接重新打包，因为部分档案的块带对齐填充，顺序读取 IFF 的解析器会只读到第一张贴图；同名的模型与动作（如 `fs_obj_hiraishin_a.nj` / `.njm`）分开索引。解码后的 DXT 贴图使用线性过滤（与游戏一致，避免放大后的像素块）。
@@ -445,3 +445,47 @@ did not re-evaluate tiers or change the in-game rotation.
 ### 2026-09-30 姿态验收交接
 
 维护者打开本地 Zu、Pazuzu 对照及 Nano Dragon 页面验收后，已要求对齐文档、提交推送。头像和缩略图的校验清单通过，生产构建及 33 项图鉴浏览器测试通过。本次与戈尔龙名称同步一并提交；前述未部署为本地验证时状态，线上结果以本次 Pages 工作流为准。
+
+### 2026-10-04 Dark Falz 完整装配修正（待验收）
+
+旧清单仅加载三个形态各自的 `*_s_body`，遗漏独立模型；二形态翼膜的
+环境映射面缺少对应纹理坐标处理，黑白背景还原后成为大片半透明青色。
+旧图可见像素中约 39.6% 满足青色块回归条件（alpha ≥ 20、R < 100、G/B > 190）。
+
+改用 `scripts/render_dark_falz_models.py` 读取原始 `darkfalz_dat.bml`：
+
+- 一形态：本体、腰部、底座及 `da/db/dc_heada` 三个头，共六个组件；保留各模型原始根变换。
+- 二形态：本体及 `df2_s_dodai1` 腹部，共两个组件；翼膜读取原始环境映射标记，用视空间法线生成 UV，保留原始多色纹理，不涂色、不重绘。
+- 三形态：本体与两个 `df3_s_wing` 实例；分别使用 `wait_df3_s_body`、`wait_df3_s_wing`、`wait_df3_s1_wing` 第零帧，原始动作给出左右翼的位置与展开角度。
+
+复用 NPC 的加权 NJ 网格解析，并修正两个此前未覆盖的边界：材质字节按
+小端 BGRA 读取；未引用的零权重缓存项不应阻断整个腹部，若绘制指令确实
+引用未解析项则仍失败。保留环境映射与混合状态供渲染器使用。
+`scripts/pso_motion_frame.py` 仅采样精确零帧，拒绝缺失零帧、未知轨道与骨骼数不符，
+不伪造插值。模型/材质回归在 Blender 中运行，动作回归加入 `npm test`。
+
+图像为 1024 px 透明原始资源预览，缩略图 160 px。一、二形态是资源绑定姿态，
+三形态是原始待机动作零帧；固定灯光与静态环境映射不等同于游戏运行时的
+完整着色、动画、灵魂效果或场景反射。图片清单记录每个部件、动作、源档案、
+渲染器、解析器与产物的校验值；全身检查图、源贴图留在忽略目录
+`artifacts/dark-falz-renders/`。
+
+```sh
+rtk proxy /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python-exit-code 1 --python scripts/test_npc_model_geometry.py
+rtk proxy python3 -m unittest scripts.test_pso_motion_frame
+rtk proxy /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python-exit-code 1 --python scripts/render_dark_falz_models.py
+# 目视检查三个形态后导入站点资源。
+rtk node scripts/import_dark_falz_models.mjs
+rtk node scripts/generate_monster_catalog.mjs
+```
+
+三个形态共 11 个组件的检查图已逐一目视核对，三形态展开翼部按投影包围盒
+重新居中，避免裁边。后续提交和推送仍需维护者验收；本节不是发布记录。
+
+最终组合验证：完整业务测试通过，依赖审计为零漏洞；生产构建生成 3,802 条
+路由和 135 个活动片段，两次构建的产物清单完全一致；全站浏览器测试
+4,159 / 4,159 通过。三个极限难度详情页已逐一截图目视检查，新增手机端
+回归覆盖图片加载、完整边界及二形态青色翼膜缺陷。本批尚未提交或推送。
+
+维护者验收（2026-10-04）：维护者已确认本轮结果，批准提交与推送。上文待验收
+描述为验收前状态；线上部署以本次提交对应的工作流结果为准。

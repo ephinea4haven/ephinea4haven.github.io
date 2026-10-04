@@ -581,19 +581,32 @@
    "model": "me5p02_y_cage"
   },
   "DarkFalzForm1": {
+   "renderer": "blender-dark-falz",
    "archive": "darkfalz_dat.bml",
    "model": "df1_s_body",
-   "motion": "wait_df1_s_body"
+   "parts": [
+    {"model": "df1_s_waist"},
+    {"model": "df1_s_dodai"},
+    {"model": "df1_s_da_heada"},
+    {"model": "df1_s_db_heada"},
+    {"model": "df1_s_dc_heada"}
+   ]
   },
   "DarkFalzForm2": {
+   "renderer": "blender-dark-falz",
    "archive": "darkfalz_dat.bml",
    "model": "df2_s_body",
-   "motion": "wait_df2_s_body"
+   "parts": [{"model": "df2_s_dodai1"}]
   },
   "DarkFalzForm3": {
+   "renderer": "blender-dark-falz",
    "archive": "darkfalz_dat.bml",
    "model": "df3_s_body",
-   "motion": "wait_df3_s_body"
+   "motion": "wait_df3_s_body",
+   "parts": [
+    {"model": "df3_s_wing", "motion": "wait_df3_s_wing"},
+    {"model": "df3_s_wing", "motion": "wait_df3_s1_wing"}
+   ]
   },
   "Darvant": {
    "archive": "darkfalz_dat.bml",

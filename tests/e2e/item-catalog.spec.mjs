@@ -731,9 +731,26 @@ test('Stealth Suit shows a transparent character illustration in lists and detai
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
+test('new armor particle previews replace boxes in mobile lists and detail pages', async ({page}) => {
+  await page.setViewportSize({width: 390, height: 844});
+  for (const [id, code, blend] of [['chu-chu-fever', '01012C', 'normal'], ['virus-armor-lafuteria', '01012F', 'plus-lighter']]) {
+    await page.goto(`/data/items.html?category=armor&q=${code}`);
+    await expect(page.locator('.item-row')).toHaveCount(1);
+    await expect(page.locator('.item-row img')).toHaveAttribute('src', `/assets/img/items/equipment/thumbs/${id}.webp`);
+    await page.locator('.mobile-filter').click();
+    await page.getByLabel('只看有外观图的道具').check();
+    await expect(page.locator('.item-row')).toHaveCount(1);
+    await page.goto(`/data/items/${id}.html`);
+    await expect(page.locator('.image-stage img')).toHaveAttribute('src', `/assets/img/items/equipment/${id}.webp`);
+    await expect(page.locator('.image-stage img')).toHaveCSS('mix-blend-mode', blend);
+    await expect(page.locator('figcaption')).toContainText('离线效果预览');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+});
+
 test('all particle previews retain alpha in full images and thumbnails', async ({page}) => {
   const effects = items.filter(item => item.imageKind === 'effect');
-  expect(effects).toHaveLength(55);
+  expect(effects).toHaveLength(57);
   await page.goto('/data/items/aura-field.html');
   for (const item of effects) {
     for (const src of [item.image, item.image.replace(/\/(equipment|shields)\//, '/$1/thumbs/')]) {

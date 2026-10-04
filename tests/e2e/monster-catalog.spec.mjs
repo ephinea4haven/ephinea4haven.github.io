@@ -296,6 +296,32 @@ test('episode selection has no All option and auxiliary resets preserve the chap
   await page.reload();await expect(page.locator('.filters select').first()).toHaveValue('4');
 });
 
+test('complete Dark Falz previews load on Ultimate pages without cyan wings or clipped geometry',async({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  for(const form of [1,2,3]) {
+    await page.goto(`/data/enemies/dark-falz-form-${form}.html?diff=u&area=Ruins&ep=1`);
+    const img=page.locator('.portrait img');
+    await expect(img).toHaveAttribute('src',`/assets/img/monsters/render/DarkFalzForm${form}.webp`);
+    const pixels=await img.evaluate(async image=>{
+      await image.decode();
+      const canvas=document.createElement('canvas');canvas.width=canvas.height=1024;
+      const ctx=canvas.getContext('2d');ctx.drawImage(image,0,0);
+      const data=ctx.getImageData(0,0,1024,1024).data;
+      let opaque=0,cyan=0,edge=0;
+      for(let i=0;i<1024*1024;i++) {
+        const a=data[i*4+3];if(a<20)continue;
+        opaque++;if(data[i*4]<100 && data[i*4+1]>190 && data[i*4+2]>190)cyan++;
+        const x=i%1024,y=Math.floor(i/1024);if(x<8||x>=1016||y<8||y>=1016)edge++;
+      }
+      return {width:image.naturalWidth,opaque,cyanFraction:cyan/opaque,edge};
+    });
+    expect(pixels.width).toBe(1024);expect(pixels.opaque).toBeGreaterThan(50000);
+    expect(pixels.edge).toBe(0);
+    if(form===2) expect(pixels.cyanFraction).toBeLessThan(.05);
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  }
+});
+
 test('portrait selection defaults to the model render, follows appearance and updates its full image link',async({page})=>{
   await page.goto('/en/data/enemies/booma.html');
   const portrait=page.locator('.portrait');const img=portrait.locator('img');

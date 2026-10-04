@@ -39,8 +39,10 @@ def read_polygons(reader, offset, cache, polygon_cache):
             offset += 4
         elif 16 <= kind <= 31:
             if kind & 1:
-                a,r,g,b = reader.data[offset+4:offset+8]
+                b,g,r,a = reader.data[offset+4:offset+8]
                 material.diffuse = (r,g,b,a)
+            material.source_blend = (attr >> 3) & 7
+            material.destination_blend = attr & 7
             offset += 4 + reader.u16(offset+2)*2
         elif 64 <= kind <= 75:
             size=reader.u16(offset+2); header=reader.u16(offset+4); cur=offset+6
@@ -49,11 +51,26 @@ def read_polygons(reader, offset, cache, polygon_cache):
                 primitive.material=copy.deepcopy(material)
                 primitive.material.use_alpha=bool(attr&8)
                 primitive.material.double_sided=bool(attr&16)
+                primitive.material.native_states['nj'] = {'environment': bool(attr&64)}
                 result.append(primitive)
             assert cur <= offset+4+size*2
             offset += 4+size*2
         else:
             raise ValueError(f'Unsupported polygon chunk {kind:#x}')
+
+def resolve_weighted_vertices(accum):
+    cache = {}
+    for idx, slots in accum.items():
+        total = sum(v[2] for v in slots.values())
+        # Zero-weight cache entries are not drawable vertices. A polygon that
+        # actually references one must still fail in the strip reader.
+        if total == 0:
+            continue
+        pos = sum((p*w for p,n,w in slots.values()), Vector()) / total
+        nor = sum((n*w for p,n,w in slots.values() if n is not None), Vector())
+        cache[idx] = Vertex(tuple(pos), tuple(nor.normalized()) if nor.length else None)
+    return cache
+
 
 def weighted_model(data):
     # NPC meshes reuse indices between limbs. Resolve each polygon draw against
@@ -88,13 +105,7 @@ def weighted_model(data):
                     assert cur==end,(cur,end)
                     vp=end
                 if pp:
-                    cache = {}
-                    for idx, slots in accum.items():
-                        total = sum(v[2] for v in slots.values())
-                        assert total > 0
-                        pos = sum((p*w for p,n,w in slots.values()), Vector()) / total
-                        nor = sum((n*w for p,n,w in slots.values() if n is not None), Vector())
-                        cache[idx] = Vertex(tuple(pos), tuple(nor.normalized()) if nor.length else None)
+                    cache = resolve_weighted_vertices(accum)
                     result.extend((p, Matrix.Identity(4)) for p in read_polygons(reader,pp,cache,polygon_cache))
             child,sib=struct.unpack_from('<2I',body,off+44)
             if child and not flags&16:nodes(child,world)
@@ -124,13 +135,13 @@ def material(name,p):
             m.node_tree.links.new(tex.outputs['Alpha'],bs.inputs['Alpha'])
     return m
 
-def model_object(name,primitives):
+def model_object(name,primitives,material_factory=material):
     verts=[];faces=[];uv=[];face_mats=[];mats=[];normals=[]
     for p,m in primitives:
         base=len(verts);verts.extend(tuple(C@m@Vector(v.position)) for v in p.vertices);uv.extend(v.uv or (0,0) for v in p.vertices)
         nm=(C@m).to_3x3().inverted().transposed()
         normals.extend(tuple((nm@Vector(v.normal)).normalized()) if v.normal else (0,0,0) for v in p.vertices)
-        mats.append(material(f'{name}_{len(mats)}',p));n=len(p.vertices)
+        mats.append(material_factory(f'{name}_{len(mats)}',p));n=len(p.vertices)
         if p.topology=='triangle_strip':
             triangles=[(i-2,i-1,i) if (i%2==0)!=p.reversed else (i-1,i-2,i) for i in range(2,n)]
         elif p.topology=='triangle_fan':triangles=[(0,i-1,i) for i in range(2,n)]
@@ -225,4 +236,3 @@ if __name__ == '__main__':
     for job in json.loads((BASE/'render-jobs.json').read_text()):
         if selected is None or job['id'] in selected:
             render_character(job)
-

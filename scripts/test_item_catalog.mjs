@@ -144,6 +144,32 @@ test('all shields have checksummed model or block-effect previews with exact ide
   }
 });
 
+test('omitted armor effects replace boxes with verified particle previews', () => {
+  for (const [id, blend] of [['chu-chu-fever', 'normal'], ['virus-armor-lafuteria', 'additive']]) {
+    const item = details[id];
+    assert.equal(item.imageKind, 'effect', id);
+    assert.equal(item.imageBlend, blend, id);
+    assert.equal(item.image, `/assets/img/items/equipment/${id}.webp`);
+    assert.equal(item.imageOrigin, 'effect-render');
+  }
+  assert.equal(items.filter(item => item.category === 'armor' && item.imageKind === 'effect').length, 15);
+});
+
+test('armor audit covers every catalog identity and distinguishes unresolved appearance from models', () => {
+  const audit=read('content/item-catalog/armor-appearance-audit.json');
+  const armors=items.filter(item=>item.category==='armor');
+  assert.equal(audit.entries.length,armors.length);
+  assert.equal(new Set(audit.entries.map(entry=>entry.code)).size,armors.length);
+  for(const entry of audit.entries) {
+    const item=armors.find(item=>item.code===entry.code);
+    assert.equal(item?.title,entry.title);
+    assert.equal(entry.runtimeVerified,false);
+    assert.equal(entry.type,65535);assert.equal(entry.skin,65535);
+    assert.equal(item.imageKind,{'particle-effect':'effect','transparency-illustration':'illustration','category-box':'box'}[entry.preview]);
+    if(entry.flagsType===2) assert.equal(entry.preview,'particle-effect',entry.title);
+  }
+});
+
 test('equipment previews cover every armor, shield and unit with honest image kinds', () => {
   const manifest = read('content/item-catalog/equipment-images.json');
   const index = read('src/app/generated/item-catalog/index.json');
@@ -180,7 +206,7 @@ test('equipment previews cover every armor, shield and unit with honest image ki
   for (const entry of Object.values(manifest.entries)) {
     if (entry.kind === 'effect') {
       assert.equal(entry.evidence.transparentBackground, true, entry.title);
-      assert.equal(entry.blend, entry.title === 'Smoking Plate' ? 'normal' : 'additive', entry.title);
+      assert.equal(entry.blend, ['Smoking Plate', 'Chu Chu Fever'].includes(entry.title) ? 'normal' : 'additive', entry.title);
     }
     const item = items.find(item => item.code && manifest.entries[item.code] === entry);
     assert.ok(item && item.title === entry.title, entry.title);

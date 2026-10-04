@@ -631,18 +631,241 @@
   },
   "DarkFalzForm1": {
     "file": "DarkFalzForm1.webp",
-    "sha256": "10797b7e22f4ba3277d49b6b667b8dbd8107c91d32e4aedfb40be9e89a32c64d",
-    "thumbSha256": "09e81d5fa161150181bc4fb52a05282863ab98eb193c46ec56810c2ff69be8f4"
+    "sha256": "59d9cb13b048dc5e3eceb101d663dc462cf3b4234cd6ecbd6613450186d079b5",
+    "thumbSha256": "ddcbe46e24de35180f866623408cd5521c2590a84777bf9d952891c55630fa5d",
+    "evidence": {
+      "archive": "darkfalz_dat.bml",
+      "archiveSha256": "5d2cb7e3137dfb6a2b18644ac2ed56f1475bc7314963133cd6ffebbd15c38468",
+      "parts": [
+        {
+          "model": "df1_s_body",
+          "modelSha256": "ab27ab414b2ba8bc498811efc947490f501fdf7899aecf1ad02348266514c1f1",
+          "motion": null,
+          "frame": null,
+          "motionSha256": null,
+          "textureSha256": "5f9e2ead45a95ceb2b279207f42c134cc49313b6fab9b1628eda33f052905a4f",
+          "triangles": 2112,
+          "bones": 96,
+          "environmentPrimitives": 0
+        },
+        {
+          "model": "df1_s_waist",
+          "modelSha256": "dde0e074c16aca5ac958db2cb5ea35203618412a110d6d2664b8a0fc0fb74b45",
+          "motion": null,
+          "frame": null,
+          "motionSha256": null,
+          "textureSha256": "e422aa7ff7229e502ded238c12d2330cce1b7330537e99db672c4216a6ec191c",
+          "triangles": 386,
+          "bones": 21,
+          "environmentPrimitives": 0
+        },
+        {
+          "model": "df1_s_dodai",
+          "modelSha256": "06303f8f3545efaa7a8e2dedb2b5001f224679d49feebf6a1c74669cea116532",
+          "motion": null,
+          "frame": null,
+          "motionSha256": null,
+          "textureSha256": "4253ceaf672cb9711554ea909122004bc8a476aafba118ccae30d726a38cd7c8",
+          "triangles": 292,
+          "bones": 29,
+          "environmentPrimitives": 0
+        },
+        {
+          "model": "df1_s_da_heada",
+          "modelSha256": "a614034163aac7a16ef63ac0dd025f6b4ec9f2dd6ae6ebd9ebbfe26a4b586219",
+          "motion": null,
+          "frame": null,
+          "motionSha256": null,
+          "textureSha256": "b707c5ee85516b62b634efb09aad83a01e3b8c919cc25869fe8f2155307ab57e",
+          "triangles": 818,
+          "bones": 64,
+          "environmentPrimitives": 0
+        },
+        {
+          "model": "df1_s_db_heada",
+          "modelSha256": "13e24a3677395ff15ff2d3945762540710bbd9fd54dcc95ef05930b878a779c3",
+          "motion": null,
+          "frame": null,
+          "motionSha256": null,
+          "textureSha256": "b707c5ee85516b62b634efb09aad83a01e3b8c919cc25869fe8f2155307ab57e",
+          "triangles": 818,
+          "bones": 64,
+          "environmentPrimitives": 0
+        },
+        {
+          "model": "df1_s_dc_heada",
+          "modelSha256": "82c4bb97e707ddc90d7b510b54c6c2f67f30a2a692da86d7d929d62a5ae43ef2",
+          "motion": null,
+          "frame": null,
+          "motionSha256": null,
+          "textureSha256": "b707c5ee85516b62b634efb09aad83a01e3b8c919cc25869fe8f2155307ab57e",
+          "triangles": 818,
+          "bones": 64,
+          "environmentPrimitives": 0
+        }
+      ],
+      "pose": "source bind transforms",
+      "runtimeVerified": false,
+      "rendererSha256": "3e1e918b86c216c1b51c50b5d4065ccdae45991c929c77df8d4bc0fcd9d24ed0",
+      "meshParserSha256": "18bd0a7fa999f05b3cb0b83d9118a1160a2084fc45ed2df584d72d35ab20aa40",
+      "motionParserSha256": "4244213df2f60b80d3b3aa350100a52fbcdd79e027978dd766ad91c06a20ba4f",
+      "recipe": {
+        "renderer": "blender-dark-falz",
+        "archive": "darkfalz_dat.bml",
+        "model": "df1_s_body",
+        "parts": [
+          {
+            "model": "df1_s_waist"
+          },
+          {
+            "model": "df1_s_dodai"
+          },
+          {
+            "model": "df1_s_da_heada"
+          },
+          {
+            "model": "df1_s_db_heada"
+          },
+          {
+            "model": "df1_s_dc_heada"
+          }
+        ]
+      },
+      "camera": [
+        198.5550994873047,
+        -992.7752685546875,
+        335.7547607421875
+      ],
+      "orthoScale": 368.9828796386719,
+      "imageSha256": "9e7975b23daeb03969cfb10a94bafd9558de94326f2396a29a39df2fdeac1763"
+    }
   },
   "DarkFalzForm2": {
     "file": "DarkFalzForm2.webp",
-    "sha256": "49deea05706fdda4fd9561a6eb1761c109a3b20d3ff47db32db58929e80ca5bb",
-    "thumbSha256": "9b16c31703c0e32d7a6055c7eb018a663a646600033a7807150db58f11d0cacf"
+    "sha256": "96b3cae41f52333021c7c4f233c1a7610626b9e2a9f615cf5ebd26bc5cef5f0f",
+    "thumbSha256": "07c28563aff1206d2b0008831f4d6014a1beb508c51739e323359f2cd78b08a8",
+    "evidence": {
+      "archive": "darkfalz_dat.bml",
+      "archiveSha256": "5d2cb7e3137dfb6a2b18644ac2ed56f1475bc7314963133cd6ffebbd15c38468",
+      "parts": [
+        {
+          "model": "df2_s_body",
+          "modelSha256": "fff2f5bb855b336f988a948f9a4a76b5fb81fc24348fd79be6cd1ab0acbbe574",
+          "motion": null,
+          "frame": null,
+          "motionSha256": null,
+          "textureSha256": "9f1616f99d032e32d27180ac728bda83e2d4b622d4c65d7a976770c43a5d579e",
+          "triangles": 3910,
+          "bones": 108,
+          "environmentPrimitives": 12
+        },
+        {
+          "model": "df2_s_dodai1",
+          "modelSha256": "e42fe2a12c9ba8679a41c6fde58f6e36ba6f25ea0253bb466df89ca137d2a5de",
+          "motion": null,
+          "frame": null,
+          "motionSha256": null,
+          "textureSha256": "d445b12170b664cc5977a81a2d6a38d9d261e16daf5ee84d0b4c725152ba15aa",
+          "triangles": 1120,
+          "bones": 45,
+          "environmentPrimitives": 0
+        }
+      ],
+      "pose": "source bind transforms",
+      "runtimeVerified": false,
+      "rendererSha256": "3e1e918b86c216c1b51c50b5d4065ccdae45991c929c77df8d4bc0fcd9d24ed0",
+      "meshParserSha256": "18bd0a7fa999f05b3cb0b83d9118a1160a2084fc45ed2df584d72d35ab20aa40",
+      "motionParserSha256": "4244213df2f60b80d3b3aa350100a52fbcdd79e027978dd766ad91c06a20ba4f",
+      "recipe": {
+        "renderer": "blender-dark-falz",
+        "archive": "darkfalz_dat.bml",
+        "model": "df2_s_body",
+        "parts": [
+          {
+            "model": "df2_s_dodai1"
+          }
+        ]
+      },
+      "camera": [
+        183.8221435546875,
+        -893.6469116210938,
+        305.0074462890625
+      ],
+      "orthoScale": 330.6106262207031,
+      "imageSha256": "4b9cb4282e85b5c7dce1d8c314890e8f39c30010c969ec9d412f6795c5a39176"
+    }
   },
   "DarkFalzForm3": {
     "file": "DarkFalzForm3.webp",
-    "sha256": "87a6176b91d6f72ab4e1b4237d88205933382724089cad6132b89b9cb395f2d6",
-    "thumbSha256": "6985d927a809fc74f1f2d5d081d50a4b46a927940c916a653b8f14c5ee406579"
+    "sha256": "aab61e2649734b3bc191dde89926376e16261a23ab514677276c70fea7b96e81",
+    "thumbSha256": "1bea9e646d9b194d985afe2990f1407f2acc9db8c717a6f0ee2a6b1838cb0a10",
+    "evidence": {
+      "archive": "darkfalz_dat.bml",
+      "archiveSha256": "5d2cb7e3137dfb6a2b18644ac2ed56f1475bc7314963133cd6ffebbd15c38468",
+      "parts": [
+        {
+          "model": "df3_s_body",
+          "modelSha256": "522fca604ea63991f1188f700cb8279e476c4be1b610ccfa2c10147c61c7a705",
+          "motion": "wait_df3_s_body",
+          "frame": 0,
+          "motionSha256": "e79c3aa3878fd892dc57ad5351a9355c0ec6400a48c875f18f8bf48efc486db9",
+          "textureSha256": "56e9e8f863ad913fdf39bbaf5fcf236e94db5971a56e458d75ff493044d473a8",
+          "triangles": 2221,
+          "bones": 77,
+          "environmentPrimitives": 0
+        },
+        {
+          "model": "df3_s_wing",
+          "modelSha256": "dcc1707f6a57785caf25bfa9b9207f9c8f1986408db09ebd5077e095d9b2b7a3",
+          "motion": "wait_df3_s_wing",
+          "frame": 0,
+          "motionSha256": "1e00b4379230529a2239541204303df02ce7d7c540b70a16566d1e5ad8f84c48",
+          "textureSha256": "625c70f1e0c5e72f6ec291a2a297b992b41898eba25874dc3405038f22387abb",
+          "triangles": 323,
+          "bones": 16,
+          "environmentPrimitives": 10
+        },
+        {
+          "model": "df3_s_wing",
+          "modelSha256": "dcc1707f6a57785caf25bfa9b9207f9c8f1986408db09ebd5077e095d9b2b7a3",
+          "motion": "wait_df3_s1_wing",
+          "frame": 0,
+          "motionSha256": "677e49898f37fadf1670716cc25c1865aec147d8c5d5d76e13eccf47c14e11e4",
+          "textureSha256": "625c70f1e0c5e72f6ec291a2a297b992b41898eba25874dc3405038f22387abb",
+          "triangles": 323,
+          "bones": 16,
+          "environmentPrimitives": 10
+        }
+      ],
+      "pose": "exact source wait frame zero",
+      "runtimeVerified": false,
+      "rendererSha256": "3e1e918b86c216c1b51c50b5d4065ccdae45991c929c77df8d4bc0fcd9d24ed0",
+      "meshParserSha256": "18bd0a7fa999f05b3cb0b83d9118a1160a2084fc45ed2df584d72d35ab20aa40",
+      "motionParserSha256": "4244213df2f60b80d3b3aa350100a52fbcdd79e027978dd766ad91c06a20ba4f",
+      "recipe": {
+        "renderer": "blender-dark-falz",
+        "archive": "darkfalz_dat.bml",
+        "model": "df3_s_body",
+        "motion": "wait_df3_s_body",
+        "parts": [
+          {
+            "model": "df3_s_wing",
+            "motion": "wait_df3_s_wing"
+          },
+          {
+            "model": "df3_s_wing",
+            "motion": "wait_df3_s1_wing"
+          }
+        ]
+      },
+      "camera": [
+        259.1402893066406,
+        -1085.1258544921875,
+        201.7118682861328
+      ],
+      "orthoScale": 345.0849304199219,
+      "imageSha256": "25c46100da3d28619de264dcd84597ee6652612e3a4be8e903566cd64d4a23c4"
+    }
   },
   "Darvant": {
     "file": "Darvant.webp",

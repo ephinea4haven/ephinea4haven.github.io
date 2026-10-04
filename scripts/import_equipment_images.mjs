@@ -46,8 +46,9 @@ for (const record of records) {
   if (file) add(record, `assets/img/items/hd/${file}`, 'screenshot', 'gallery',
     { manifest: 'content/item-catalog/hd-gallery.json' }, `/assets/img/items/hd/${file}`);
 }
-const effects = read(`${destiny}/resources/completeness/armor-effects/render-manifest.json`);
-for (const effect of effects.items) {
+const effectManifests = [`${destiny}/resources/completeness/armor-effects/render-manifest.json`,
+  'artifacts/armor-renders/render-manifest.json'];
+for (const manifest of effectManifests) for (const effect of read(manifest).items) {
   const record = records.find(r => r.fields.hex.toUpperCase() === effect.code);
   assert(record && record.title.toUpperCase() === effect.name && effect.visualQa === 'passed');
   for (const role of ['particle_data', 'texture_data', 'stock_client']) {
@@ -55,13 +56,13 @@ for (const effect of effects.items) {
     const reference = role === 'stock_client' ? path.join(client, 'Psobb.exe') : path.join(gsl, path.basename(dependency.path));
     assert.equal(hash(reference), dependency.sha256, `${effect.name}: ${role} differs from reference BB`);
   }
-  const input = `${destiny}/resources/completeness/armor-effects/previews/${path.basename(effect.image.path)}`;
+  const input = effect.image.path;
   assert.equal(hash(input), effect.image.sha256);
   assert.equal(effect.transparentBackground, true);
   assert(['normal', 'additive'].includes(effect.displayBlend));
-  add(record, input, 'effect', 'effect-render', { manifest: `${destiny}/resources/completeness/armor-effects/render-manifest.json`,
+  add(record, input, 'effect', 'effect-render', { manifest,
     runtimeVerified: false, transparentBackground: true,
-    dependencies: effect.dependencies.filter(d => ['particle_data', 'texture_data', 'stock_client', 'renderer', 'render_sidecar'].includes(d.role))
+    dependencies: effect.dependencies.filter(d => ['particle_data', 'texture_data', 'stock_client', 'renderer', 'render_sidecar', 'simulator', 'sprite_renderer'].includes(d.role))
       .map(d => ({ role: d.role, file: path.basename(d.path), sha256: d.sha256 })) });
   entries[effect.code].blend = effect.displayBlend;
 }

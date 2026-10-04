@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from render_npc_models import Reader, Vertex, read_polygons
+from render_npc_models import Reader, Vertex, read_polygons, resolve_weighted_vertices, Vector
 
 # Store a polygon list, then draw it twice with different current vertex caches.
 # A character limb may reuse these indices after an earlier limb has been drawn.
@@ -27,3 +27,25 @@ except AssertionError:
 else:
     raise AssertionError('Missing polygon cache must fail, not silently omit geometry')
 print('NPC polygon-cache regressions passed')
+
+# NJ material words are BGRA in a little-endian stream, not ARGB bytes.
+raw = struct.pack('<HH4B', 0x0911, 2, 10, 20, 30, 40)
+raw += struct.pack('<8H', 0x4840, 5, 1, 3, 0, 1, 2, 0xFF)
+p = read_polygons(Reader(raw, '<'), 0, first, {})[0]
+assert p.material.diffuse == (30, 20, 10, 40)
+assert p.material.source_blend == p.material.destination_blend == 1
+assert p.material.native_states['nj']['environment']
+
+# Unused zero-weight scratch slots occur in Falz's separate abdomen. They must
+# not prevent drawing other vertices; using an unresolved slot must still fail.
+slots = {0: {0: (Vector((1, 2, 3)), None, 0)},
+         1: {0: (Vector((1, 2, 3)), None, .25), 1: (Vector((5, 6, 7)), None, .75)}}
+resolved = resolve_weighted_vertices(slots)
+assert 0 not in resolved and resolved[1].position == (4, 5, 6)
+try:
+    read_polygons(reader, 22, resolved, polygon_cache)
+except ValueError:
+    pass
+else:
+    raise AssertionError('Referenced zero-weight slots must fail')
+print('NJ material and zero-weight cache regressions passed')

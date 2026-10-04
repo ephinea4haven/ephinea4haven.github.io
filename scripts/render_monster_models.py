@@ -117,6 +117,7 @@ def main() -> None:
     parser.add_argument("--render", action="append", help="render only this label (repeatable)")
     parser.add_argument("--ephinea-data", type=Path, default=Path("/Applications/EphineaPSO.app/Contents/SharedSupport/prefix/drive_c/EphineaPSO/data"))
     parser.add_argument("--harness-assets", type=Path, help="the harness's assets/npcs directory, for archive renders")
+    parser.add_argument("--blender", default="/Applications/Blender.app/Contents/MacOS/Blender")
     args = parser.parse_args()
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     renders = {label: job for label, job in config["renders"].items() if not args.render or label in args.render}
@@ -126,6 +127,16 @@ def main() -> None:
         raise SystemExit(f"Bindings name undefined renders: {sorted(missing)}")
     if unused := set(config["renders"]) - used:
         raise SystemExit(f"Renders bound to no catalog entry: {sorted(unused)}")
+
+    blender_renders = [label for label, job in renders.items() if job.get('renderer') == 'blender-dark-falz']
+    if blender_renders:
+        subprocess.run([args.blender, '--background', '--factory-startup', '--python-exit-code', '1',
+                        '--python', str(ROOT / 'scripts/render_dark_falz_models.py'), '--',
+                        '--ephinea-data', str(args.ephinea_data), *blender_renders], check=True)
+        subprocess.run(['node', str(ROOT / 'scripts/import_dark_falz_models.mjs'), *blender_renders], check=True)
+        renders = {label: job for label, job in renders.items() if label not in blender_renders}
+        if not renders:
+            return
 
     (OUTPUT / "thumbs").mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="monster-renders-") as directory:
@@ -147,9 +158,11 @@ def main() -> None:
             if stale.name not in {file_name(label) for label in config["renders"]}:
                 stale.unlink()
     digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
-    manifest = {label: {"file": file_name(label), "sha256": digest(OUTPUT / file_name(label)),
+    previous = json.loads((OUTPUT / 'manifest.json').read_text())
+    manifest = {label: previous[label] if render.get('renderer') == 'blender-dark-falz' else
+                       {"file": file_name(label), "sha256": digest(OUTPUT / file_name(label)),
                         "thumbSha256": digest(OUTPUT / "thumbs" / file_name(label))}
-                for label in config["renders"]}
+                for label, render in config["renders"].items()}
     (OUTPUT / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 
 
