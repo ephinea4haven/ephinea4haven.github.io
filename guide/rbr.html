@@ -9,18 +9,26 @@
     <title>Ragol Boost Road（RBR）任务推荐 | Ephinea PSOBB</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/unified-style.css">
     <style>
+        .rbr-section-id {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25em;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .rbr-section-id img {
+            width: 22px;
+            height: 22px;
+            margin: 0;
+            border-radius: 0;
+            flex: none;
+        }
+
         .tier-figure {
             margin: 24px auto 32px;
             text-align: center;
-        }
-
-        .tier-figure--portrait {
             width: 100%;
-            max-width: none;
-        }
-
-        .tier-figure--landscape {
-            max-width: 920px;
         }
 
         .tier-current-summary {
@@ -575,7 +583,7 @@
             B–C 适合有明确目标时刷，D 通常不适合以稀有物品为目的反复周回。
         </p>
 
-        <figure id="rbr-tier-figure" class="tier-figure tier-figure--portrait">
+        <figure id="rbr-tier-figure" class="tier-figure">
             <div id="rbr-tier-current-summary" class="tier-current-summary" aria-live="polite">
                 正在标记本周 RBR……
             </div>
@@ -584,7 +592,7 @@
                     id="rbr-tier-chart"
                     src="/assets/img/guide/rbr/zh/rbr-tier-section-colors.svg?v"
                     width="967"
-                    height="1264"
+                    height="1152"
                     loading="lazy"
                     alt="RBR 候选任务 Tier 表：S、A、B、C、D 五档；每个任务格使用与掉落表相同的 Section ID 颜色，并标出 ID 名称；本周任务由发光边框标记">
                 <div id="rbr-tier-current-overlay" class="tier-current-overlay" aria-hidden="true"></div>
@@ -606,42 +614,42 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>EN2</strong></td>
+                    <td id="rbr-quest-EN2"><strong>EN2</strong></td>
                     <td>超过 150 只 Evil Shark，<span data-item-en="Vjaya"></span>还可从箱子获取，周回效率极高。</td>
                     <td>只刷 Area 1；多人分路约 5 分钟一轮。</td>
                 </tr>
                 <tr>
-                    <td><strong>SR3</strong></td>
+                    <td id="rbr-quest-SR3"><strong>SR3</strong></td>
                     <td>改版后有 72 只 Sinow Red，<span data-item-en="Lame d&#x27;Argent"></span>效率为全任务顶级，明显高于 PW2。</td>
                     <td>以 Sinow Red 为核心规划路线。</td>
                 </tr>
                 <tr>
-                    <td><strong>EN4</strong></td>
+                    <td id="rbr-quest-EN4"><strong>EN4</strong></td>
                     <td>末段怪潮适合刷 Merlan、Del-D、Delsaber 和 Dark Belra。</td>
                     <td>只刷 Del-D 时可在 Area 1 收工；想要 D 属性 HS 时尤其合适。</td>
                 </tr>
                 <tr>
-                    <td><strong>PW1</strong></td>
+                    <td id="rbr-quest-PW1"><strong>PW1</strong></td>
                     <td>100 只以上 Gee，DoB 效率遥遥领先；完成后还有 Lucky Coin。</td>
                     <td>海岸与密林分队同时推进。</td>
                 </tr>
                 <tr>
-                    <td><strong>PW3</strong></td>
+                    <td id="rbr-quest-PW3"><strong>PW3</strong></td>
                     <td>开场箱房非常优秀，高属性普通武器、<span data-item-en="Yunchang"></span>和<span data-item-en="Psycho Wand"></span>的期待值很高；完成后有 Lucky Coin。</td>
                     <td>可以只做箱跑，也可完整周回。</td>
                 </tr>
                 <tr>
-                    <td><strong>PS2</strong></td>
+                    <td id="rbr-quest-PS2"><strong>PS2</strong></td>
                     <td>超过 600 只敌人，EXP 与 PD 收益高；Chaos Sorcerer 和 Delsaber 很多。</td>
                     <td>Oran 极佳；α 区四个房间由四人各自负责。</td>
                 </tr>
                 <tr>
-                    <td><strong>LCV</strong></td>
+                    <td id="rbr-quest-LCV"><strong>LCV</strong></td>
                     <td>Ill Gill、Mericarol、Delbiter 较多，<span data-item-en="V502"></span> 与<span data-item-en="Heaven Punisher"></span>效率顶级。</td>
                     <td>Purplenum；利用 Blessing 装置在需要时取得短暂无敌。</td>
                 </tr>
                 <tr>
-                    <td><strong>NMU4 / WoL4</strong></td>
+                    <td id="rbr-quest-NMU4"><span id="rbr-quest-WoL4"></span><strong>NMU4 / WoL4</strong></td>
                     <td>Pyro Goran 密集，<span data-item-en="Heaven Striker"></span>效率顶级；EXP 与出售防具的收益也高。</td>
                     <td>FO 或使用 Divine Punishment 的 RA 可开 Anguish 1 周回。</td>
                 </tr>
@@ -660,27 +668,27 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>SU2</strong></td>
+                    <td id="rbr-quest-SU2"><strong>SU2</strong></td>
                     <td>地图分支适合多人分工，可高效刷 Evil Shark、Poison Lily 和 Pan Arms；洞窟 3 还能找<span data-item-en="Amplifier of Gifoie"></span>与 Lv.30 Gibarta。</td>
                     <td>熟练队伍可压到 4 分钟以内。</td>
                 </tr>
                 <tr>
-                    <td><strong>MU2</strong></td>
+                    <td id="rbr-quest-MU2"><strong>MU2</strong></td>
                     <td>中段前约 70 只 Evil Shark，短跑效率高。</td>
                     <td>在中段收工；熟悉复杂路线后约 3–4 分钟。</td>
                 </tr>
                 <tr>
-                    <td><strong>SU3</strong></td>
+                    <td id="rbr-quest-SU3"><strong>SU3</strong></td>
                     <td>79 只 Canadine，是坑道刷 Charge Vulcan 的最佳候选之一；也可刷<span data-item-en="Yasminkov 9000M"></span>、<span data-item-en="Syncesta"></span>和<span data-item-en="Lame d&#x27;Argent"></span>。</td>
                     <td>按目标敌人决定是否完整清图。</td>
                 </tr>
                 <tr>
-                    <td><strong>LHP</strong></td>
+                    <td id="rbr-quest-LHP"><strong>LHP</strong></td>
                     <td>开场 2:2 分队；Bulclaw、Delsaber、Chaos Sorcerer 等较少见的遗迹敌人很多。</td>
                     <td>Skyly 刷<span data-item-en="Swordsman Lore"></span> / <span data-item-en="Calibur"></span>，或 Whitill 刷<span data-item-en="Handgun: Guld"></span>；难度较高。</td>
                 </tr>
                 <tr>
-                    <td><strong>LBA</strong></td>
+                    <td id="rbr-quest-LBA"><strong>LBA</strong></td>
                     <td>Delsaber 比 PS2 更多，整体敌量也高，VH 练级同样优秀。</td>
                     <td>Oran 刷<span data-item-en="Daylight Scar"></span>。</td>
                 </tr>
@@ -697,14 +705,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td><strong>SR2</strong></td><td>Pan Arms 相关外观变更道具（Skyly / Yellowboze）。</td></tr>
-                <tr><td><strong>MU4</strong></td><td><span data-item-en="Heaven Striker"></span>（Bluefull）。</td></tr>
-                <tr><td><strong>SA2</strong></td><td><span data-item-en="Heart of Tension Blaster"></span>、<span data-item-en="V101"></span>、<span data-item-en="Lame d&#x27;Argent"></span>（Yellowboze）。</td></tr>
-                <tr><td><strong>SU6</strong></td><td><span data-item-en="Daylight Scar"></span>（Oran / Skyly）、<span data-item-en="Guren"></span>（Skyly）、PF（Redria，沿用原文缩写）。</td></tr>
-                <tr><td><strong>SU7</strong></td><td><span data-item-en="Heaven Punisher"></span>、<span data-item-en="Sealed J-Sword"></span>（Skyly）。</td></tr>
-                <tr><td><strong>SU8</strong></td><td><span data-item-en="Yunchang"></span>、<span data-item-en="Ano Rifle"></span>（Redria）。</td></tr>
-                <tr><td><strong>WoL2</strong></td><td><span data-item-en="Slicer of Fanatic"></span>（Oran）、<span data-item-en="Cannon Rouge"></span>（Redria）、PF（Yellowboze）。</td></tr>
-                <tr><td><strong>SU13 / SU14</strong></td><td><span data-item-en="Slicer of Fanatic"></span>、<span data-item-en="V801"></span>、<span data-item-en="Limiter"></span>（Pinkal）。</td></tr>
+                <tr><td id="rbr-quest-SR2"><strong>SR2</strong></td><td>Pan Arms 相关外观变更道具（Skyly / Yellowboze）。</td></tr>
+                <tr><td id="rbr-quest-MU4"><strong>MU4</strong></td><td><span data-item-en="Heaven Striker"></span>（Bluefull）。</td></tr>
+                <tr><td id="rbr-quest-SA2"><strong>SA2</strong></td><td><span data-item-en="Heart of Tension Blaster"></span>、<span data-item-en="V101"></span>、<span data-item-en="Lame d&#x27;Argent"></span>（Yellowboze）。</td></tr>
+                <tr><td id="rbr-quest-SU6"><strong>SU6</strong></td><td><span data-item-en="Daylight Scar"></span>（Oran / Skyly）、<span data-item-en="Guren"></span>（Skyly）、PF（Redria，沿用原文缩写）。</td></tr>
+                <tr><td id="rbr-quest-SU7"><strong>SU7</strong></td><td><span data-item-en="Heaven Punisher"></span>、<span data-item-en="Sealed J-Sword"></span>（Skyly）。</td></tr>
+                <tr><td id="rbr-quest-SU8"><strong>SU8</strong></td><td><span data-item-en="Yunchang"></span>、<span data-item-en="Ano Rifle"></span>（Redria）。</td></tr>
+                <tr><td id="rbr-quest-WoL2"><strong>WoL2</strong></td><td><span data-item-en="Slicer of Fanatic"></span>（Oran）、<span data-item-en="Cannon Rouge"></span>（Redria）、PF（Yellowboze）。</td></tr>
+                <tr><td id="rbr-quest-SU13"><span id="rbr-quest-SU14"></span><strong>SU13 / SU14</strong></td><td><span data-item-en="Slicer of Fanatic"></span>、<span data-item-en="V801"></span>、<span data-item-en="Limiter"></span>（Pinkal）。</td></tr>
             </tbody>
         </table>
 
@@ -718,20 +726,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td><strong>LHS</strong></td><td><span data-item-en="Handgun: Milla"></span>（Whitill）。</td></tr>
-                <tr><td><strong>MU1</strong></td><td><span data-item-en="Handgun: Milla"></span>（Whitill）、<span data-item-en="Heart of Daisy Chain"></span>（Viridia）。</td></tr>
-                <tr><td><strong>LIS</strong></td><td><span data-item-en="V101"></span>、<span data-item-en="Yasha"></span>、<span data-item-en="L&amp;K38 Combat"></span>（Viridia）、<span data-item-en="Heart of TypeSS/Swords"></span>（Oran）。</td></tr>
-                <tr><td><strong>MU3</strong></td><td>Charge Vulcan（Purplenum）。</td></tr>
-                <tr><td><strong>EN3</strong></td><td><span data-item-en="V101"></span>、S-Parts（Oran）。</td></tr>
-                <tr><td><strong>SU4 / SR4</strong></td><td><span data-item-en="Prophets of Motav"></span>（Oran）。</td></tr>
-                <tr><td><strong>PS1 / LSR</strong></td><td><span data-item-en="Yasminkov 9000M"></span>、<span data-item-en="Heart of Suppressed Gun"></span>（Purplenum）。</td></tr>
-                <tr><td><strong>PS3</strong></td><td><span data-item-en="Sealed J-Sword"></span>、<span data-item-en="Heaven Punisher"></span>（Skyly）。</td></tr>
-                <tr><td><strong>PS4</strong></td><td><span data-item-en="Heaven Punisher"></span>、Charge Vulcan、Transvestite Plate（Purplenum）。</td></tr>
-                <tr><td><strong>PS5</strong></td><td><span data-item-en="Heaven Striker"></span>（Whitill）。</td></tr>
-                <tr><td><strong>PS6</strong></td><td><span data-item-en="Sealed J-Sword"></span>（Skyly）。</td></tr>
-                <tr><td><strong>NMU2</strong></td><td><span data-item-en="Slicer of Fanatic"></span>（Oran）。</td></tr>
-                <tr><td><strong>WoL3</strong></td><td><span data-item-en="Yasminkov 9000M"></span>（Purplenum）、<span data-item-en="Slicer of Fanatic"></span>（Whitill）。</td></tr>
-                <tr><td><strong>SU12</strong></td><td><span data-item-en="Heaven Striker"></span>（Greenill / Redria）、<span data-item-en="Slicer of Fanatic"></span>与 <span data-item-en="V801"></span>（Pinkal）。</td></tr>
+                <tr><td id="rbr-quest-LHS"><strong>LHS</strong></td><td><span data-item-en="Handgun: Milla"></span>（Whitill）。</td></tr>
+                <tr><td id="rbr-quest-MU1"><strong>MU1</strong></td><td><span data-item-en="Handgun: Milla"></span>（Whitill）、<span data-item-en="Heart of Daisy Chain"></span>（Viridia）。</td></tr>
+                <tr><td id="rbr-quest-LIS"><strong>LIS</strong></td><td><span data-item-en="V101"></span>、<span data-item-en="Yasha"></span>、<span data-item-en="L&amp;K38 Combat"></span>（Viridia）、<span data-item-en="Heart of TypeSS/Swords"></span>（Oran）。</td></tr>
+                <tr><td id="rbr-quest-MU3"><strong>MU3</strong></td><td>Charge Vulcan（Purplenum）。</td></tr>
+                <tr><td id="rbr-quest-EN3"><strong>EN3</strong></td><td><span data-item-en="V101"></span>、S-Parts（Oran）。</td></tr>
+                <tr><td id="rbr-quest-SU4"><span id="rbr-quest-SR4"></span><strong>SU4 / SR4</strong></td><td><span data-item-en="Prophets of Motav"></span>（Oran）。</td></tr>
+                <tr><td id="rbr-quest-PS1"><span id="rbr-quest-LSR"></span><strong>PS1 / LSR</strong></td><td><span data-item-en="Yasminkov 9000M"></span>、<span data-item-en="Heart of Suppressed Gun"></span>（Purplenum）。</td></tr>
+                <tr><td id="rbr-quest-PS3"><strong>PS3</strong></td><td><span data-item-en="Sealed J-Sword"></span>、<span data-item-en="Heaven Punisher"></span>（Skyly）。</td></tr>
+                <tr><td id="rbr-quest-PS4"><strong>PS4</strong></td><td><span data-item-en="Heaven Punisher"></span>、Charge Vulcan、Transvestite Plate（Purplenum）。</td></tr>
+                <tr><td id="rbr-quest-PS5"><strong>PS5</strong></td><td><span data-item-en="Heaven Striker"></span>（Whitill）。</td></tr>
+                <tr><td id="rbr-quest-PS6"><strong>PS6</strong></td><td><span data-item-en="Sealed J-Sword"></span>（Skyly）。</td></tr>
+                <tr><td id="rbr-quest-NMU2"><strong>NMU2</strong></td><td><span data-item-en="Slicer of Fanatic"></span>（Oran）。</td></tr>
+                <tr><td id="rbr-quest-WoL3"><strong>WoL3</strong></td><td><span data-item-en="Yasminkov 9000M"></span>（Purplenum）、<span data-item-en="Slicer of Fanatic"></span>（Whitill）。</td></tr>
+                <tr><td id="rbr-quest-SU12"><strong>SU12</strong></td><td><span data-item-en="Heaven Striker"></span>（Greenill / Redria）、<span data-item-en="Slicer of Fanatic"></span>与 <span data-item-en="V801"></span>（Pinkal）。</td></tr>
             </tbody>
         </table>
 
@@ -746,35 +754,35 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>SU1 / EN1 / SR1 / SA1</strong></td>
+                    <td id="rbr-quest-SU1"><span id="rbr-quest-EN1"></span><span id="rbr-quest-SR1"></span><span id="rbr-quest-SA1"></span><strong>SU1 / EN1 / SR1 / SA1</strong></td>
                     <td>森林整体收益较低；若想刷<span data-item-en="Heart of Angel Harp"></span>，Pinkal 尚可考虑。</td>
                 </tr>
                 <tr>
-                    <td><strong>SU5</strong></td>
+                    <td id="rbr-quest-SU5"><strong>SU5</strong></td>
                     <td>神殿迷路拖慢推进，敌量也不突出，通常可由 CCC 或 MAE:VR 替代。</td>
                 </tr>
                 <tr>
-                    <td><strong>LDR</strong></td>
+                    <td id="rbr-quest-LDR"><strong>LDR</strong></td>
                     <td>部分敌人免疫 Hell，双倍 ATP 类 EX 对 Boss 无效；若要开发路线，可考虑只刷上层。</td>
                 </tr>
                 <tr>
-                    <td><strong>TET / TWT</strong></td>
+                    <td id="rbr-quest-TET"><span id="rbr-quest-TWT"></span><strong>TET / TWT</strong></td>
                     <td>敌人少、移动长；只适合利用开场刷特定敌人。</td>
                 </tr>
                 <tr>
-                    <td><strong>SU10 / NMU1 / WoL1</strong></td>
+                    <td id="rbr-quest-SU10"><span id="rbr-quest-NMU1"></span><span id="rbr-quest-WoL1"></span><strong>SU10 / NMU1 / WoL1</strong></td>
                     <td>陨石坑东移动距离长，普通武器质量也较差。</td>
                 </tr>
                 <tr>
-                    <td><strong>SU11</strong></td>
+                    <td id="rbr-quest-SU11"><strong>SU11</strong></td>
                     <td>Dorphon 数量优势没有转化为收益，容易成为 MA4C 的下位替代。</td>
                 </tr>
                 <tr>
-                    <td><strong>NMU5 / WoL5</strong></td>
+                    <td id="rbr-quest-NMU5"><span id="rbr-quest-WoL5"></span><strong>NMU5 / WoL5</strong></td>
                     <td>地下沙漠 3 的流沙和 S 形通道难走，敌人强而数量不算多，风险与收益不匹配。</td>
                 </tr>
                 <tr>
-                    <td><strong>AO1–AO5</strong></td>
+                    <td id="rbr-quest-AO1"><span id="rbr-quest-AO2"></span><span id="rbr-quest-AO3"></span><span id="rbr-quest-AO4"></span><span id="rbr-quest-AO5"></span><strong>AO1–AO5</strong></td>
                     <td>大部分敌人为随机刷出，位置和数量不稳定，不适合精确刷取。</td>
                 </tr>
             </tbody>
@@ -787,11 +795,11 @@
             它采用不同的评价尺度，<strong>不能把这里的 S 直接与上面的 RBR S 横向比较</strong>。
         </p>
 
-        <figure class="tier-figure tier-figure--landscape">
+        <figure class="tier-figure">
             <img
                 src="/assets/img/guide/rbr/zh/non-rbr-tier-section-colors.svg?v"
-                width="1452"
-                height="536"
+                width="967"
+                height="424"
                 loading="lazy"
                 alt="非 RBR 任务 Tier 表：SS、S、A，以及稀有怪率加成周推荐任务；每个任务格使用与掉落表相同的 Section ID 颜色，并标出 ID 名称">
             <figcaption>

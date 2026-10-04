@@ -31,20 +31,17 @@ LANGUAGES = ("zh", "en", "ja")
 CHART_TEXT = {
     "zh": {
         "title": "任务 Tier 表；任务格颜色和文字表示推荐 Section ID",
-        "legend": "格子颜色 = Section ID（与掉落表一致）",
     },
     "en": {
         "title": "Quest tier chart; each quest cell's colour and label show the recommended Section ID",
-        "legend": "Cell colour = Section ID (same as the drop charts)",
     },
     "ja": {
         "title": "クエストの Tier 表。クエストの枠の色と文字はおすすめのセクション ID",
-        "legend": "枠の色 = セクション ID（ドロップ表と同じ）",
     },
 }
 CHARTS = (
-    (RBR_ROWS, "rbr-tier-section-colors.svg", 7, 967),
-    (NON_RBR_ROWS, "non-rbr-tier-section-colors.svg", 4, 1452),
+    (RBR_ROWS, "rbr-tier-section-colors.svg"),
+    (NON_RBR_ROWS, "non-rbr-tier-section-colors.svg"),
 )
 
 TIER_COLORS = {
@@ -105,40 +102,28 @@ def build_chart(
     rows: tuple[tuple[str, tuple[tuple[str, str], ...]], ...],
     output: Path,
     *,
-    columns: int,
-    width: int,
     language: str,
 ) -> None:
     words = CHART_TEXT[language]
     palette = load_section_palette()
     margin = 4
-    legend_height = 112
-    tier_width = 150 if width < 1100 else 240
+    width = 967
+    columns = 7
+    tier_width = 150
     cell_width = (width - tier_width - margin * 2) / columns
     cell_height = 104
     background = "#1E2E46"
     grid = "#08101D"
 
     tier_row_counts = [max(1, (len(items) + columns - 1) // columns) for _, items in rows]
-    height = int(margin * 2 + legend_height + sum(tier_row_counts) * cell_height)
+    height = int(margin * 2 + sum(tier_row_counts) * cell_height)
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img">',
         f'<title>{html.escape(words["title"])}</title>',
         f'<rect width="{width}" height="{height}" fill="{background}"/>',
-        text_element(margin + 10, 28, words["legend"], size=18, fill="#FFFFFF", anchor="start"),
     ]
 
-    legend_columns = 5
-    legend_cell_width = (width - margin * 2) / legend_columns
-    for index, (section_id, color) in enumerate(palette.items()):
-        column = index % legend_columns
-        row = index // legend_columns
-        x = margin + column * legend_cell_width
-        y = 40 + row * 32
-        parts.append(f'<rect x="{x:g}" y="{y}" width="{legend_cell_width:g}" height="28" fill="{color}" stroke="{grid}" stroke-width="2"/>')
-        parts.append(text_element(x + legend_cell_width / 2, y + 20, section_id, size=14, fill=contrast_text(color)))
-
-    y = legend_height
+    y = margin
     for (tier, items), row_count in zip(rows, tier_row_counts, strict=True):
         tier_height = row_count * cell_height
         tier_color = TIER_COLORS[tier]
@@ -146,20 +131,16 @@ def build_chart(
         tier_size = 54 if len(tier) <= 2 else 34
         parts.append(text_element(margin + tier_width / 2, y + tier_height / 2 + tier_size / 3, tier, size=tier_size, fill="#000000", weight=800))
 
-        for index in range(row_count * columns):
+        for index, (quest, section_id) in enumerate(items):
             column = index % columns
             row = index // columns
             cell_x = margin + tier_width + column * cell_width
             cell_y = y + row * cell_height
-            if index < len(items):
-                quest, section_id = items[index]
-                color = palette[section_id]
-                foreground = contrast_text(color)
-                parts.append(f'<rect x="{cell_x:g}" y="{cell_y:g}" width="{cell_width:g}" height="{cell_height}" fill="{color}" stroke="{grid}" stroke-width="4"/>')
-                parts.append(text_element(cell_x + cell_width / 2, cell_y + 47, quest, size=27, fill=foreground, weight=800))
-                parts.append(text_element(cell_x + cell_width / 2, cell_y + 76, section_id, size=14, fill=foreground, weight=600))
-            else:
-                parts.append(f'<rect x="{cell_x:g}" y="{cell_y:g}" width="{cell_width:g}" height="{cell_height}" fill="{background}" stroke="{grid}" stroke-width="4"/>')
+            color = palette[section_id]
+            foreground = contrast_text(color)
+            parts.append(f'<rect x="{cell_x:g}" y="{cell_y:g}" width="{cell_width:g}" height="{cell_height}" fill="{color}" stroke="{grid}" stroke-width="4"/>')
+            parts.append(text_element(cell_x + cell_width / 2, cell_y + 47, quest, size=27, fill=foreground, weight=800))
+            parts.append(text_element(cell_x + cell_width / 2, cell_y + 76, section_id, size=14, fill=foreground, weight=600))
         y += tier_height
 
     parts.append("</svg>")
@@ -169,8 +150,8 @@ def build_chart(
 def main() -> None:
     for language in LANGUAGES:
         (OUTPUT_DIR / language).mkdir(parents=True, exist_ok=True)
-        for rows, filename, columns, width in CHARTS:
-            build_chart(rows, OUTPUT_DIR / language / filename, columns=columns, width=width, language=language)
+        for rows, filename in CHARTS:
+            build_chart(rows, OUTPUT_DIR / language / filename, language=language)
 
 
 if __name__ == "__main__":

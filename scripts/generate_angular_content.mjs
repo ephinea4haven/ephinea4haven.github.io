@@ -495,7 +495,7 @@ async function applyBuildTimeContent(relative, source) {
       const section = ratings.recommendedSectionIds[quest.abbreviation];
       const color = sectionColors[sectionIds.indexOf(section)];
       if (!tier || !/^#[0-9a-f]{6}$/i.test(color)) throw new Error(`Missing RBR recommendation: ${quest.abbreviation}`);
-      return `<a class="home-rbr-quest" href="/guide/rbr.html" style="--section-color:${color}" data-tier="${escapeHtml(tier)}"><span class="home-rbr-episode">EPISODE 0${quest.episode}</span><strong>${escapeHtml(quest.abbreviation)}</strong><small>${escapeHtml(quest.name)}</small><div class="home-rbr-tags"><span class="home-rbr-tier">Tier ${escapeHtml(tier)}</span><span class="home-rbr-section"><img src="/assets/img/section/icon/${encodeURIComponent(section)}.png" alt="" width="28" height="28"><span data-home-i18n data-zh="推荐 ID" data-en="Recommended ID" data-ja="おすすめ ID">推荐 ID</span> · ${escapeHtml(section)}</span></div><b aria-hidden="true">↗</b></a>`;
+      return `<a class="home-rbr-quest" href="/guide/rbr.html#rbr-quest-${encodeURIComponent(quest.abbreviation)}" style="--section-color:${color}" data-tier="${escapeHtml(tier)}"><span class="home-rbr-episode">EPISODE 0${quest.episode}</span><strong>${escapeHtml(quest.abbreviation)}</strong><small>${escapeHtml(quest.name)}</small><div class="home-rbr-tags"><span class="home-rbr-tier">Tier ${escapeHtml(tier)}</span><span class="home-rbr-section"><img src="/assets/img/section/icon/${encodeURIComponent(section)}.png" alt="" width="28" height="28"><span data-home-i18n data-zh="推荐 ID" data-en="Recommended ID" data-ja="おすすめ ID">推荐 ID</span> · ${escapeHtml(section)}</span></div><b aria-hidden="true">↗</b></a>`;
     }).join('');
     const withRbr = source.replace('<!-- home-language -->', '<div id="home-language" class="home-language" role="group" aria-label="Language / 言語 / 语言"><button type="button" data-home-lang="zh" lang="zh-CN" aria-pressed="true">中文</button><button type="button" data-home-lang="en" lang="en" aria-pressed="false">English</button><button type="button" data-home-lang="ja" lang="ja" aria-pressed="false">日本語</button></div>').replace('<!-- home-rbr -->', `<section class="home-rbr" id="rbr" data-rbr-week="${escapeHtml(data.current.week)}" aria-labelledby="home-rbr-title"><div class="home-rbr-heading"><div><p>RAGOL BOOST ROAD</p><h2 id="home-rbr-title" data-home-live data-home-i18n data-zh="RBR 任务" data-en="RBR quests" data-ja="RBR クエスト">RBR 任务</h2></div><a href="/guide/rbr.html">任务详情与周回推荐 →</a></div><p class="home-rbr-status" data-home-live data-home-i18n data-zh="记录周：${escapeHtml(data.current.week)} · UTC 周日轮替" data-en="Recorded week: ${escapeHtml(data.current.week)} · Rotates on Sunday UTC" data-ja="記録週：${escapeHtml(data.current.week)} · UTC 日曜日に更新">记录周：${escapeHtml(data.current.week)} · UTC 周日轮替</p><div class="home-rbr-quests">${quests}</div><p class="home-rbr-note" data-home-i18n data-zh="颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）" data-en="Colors indicate recommended Section IDs · Tiers rate farming returns (${escapeHtml(ratings.asOf)}, unofficial)" data-ja="色はおすすめのセクション ID · Tier は周回効率の評価（${escapeHtml(ratings.asOf)}、非公式）">颜色表示推荐 Section ID · Tier 为周回收益评级（${escapeHtml(ratings.asOf)}，非官方）</p></section>`);
     return localizeHome(withRbr, JSON.parse(await readFile(path.join(root, 'content/home-i18n.json'), 'utf8')));
@@ -592,6 +592,23 @@ function pageDetails(file, source, relative, language) {
     itemName: (english, itemLanguage) => itemByEnglish(english, relative)[itemLanguage],
   });
   if (relative === 'guide/banners.html') localizeBannerItems(body, language);
+  if (relative === 'guide/rbr.html') {
+    const dropSource = readFileSync(path.join(root, 'data/droptable/bb/data/zh.js'), 'utf8');
+    const names = JSON.parse(dropSource.match(/"sectionIds"\s*:\s*(\[[^\]]+\])/)[1]);
+    const pattern = new RegExp(`\\b(${names.join('|')})\\b`, 'g');
+    const textNodes = [];
+    visit(body, node => {
+      if (node.nodeName === '#text' && !['style', 'script'].includes(node.parentNode?.tagName)) textNodes.push(node);
+    });
+    for (const node of textNodes) {
+      const decorated = escapeHtml(node.value).replace(pattern, name => `<span class="rbr-section-id"><img src="/assets/img/section/icon/${name}.png" alt="" width="22" height="22">${name}</span>`);
+      if (decorated === escapeHtml(node.value)) continue;
+      const children = parseFragment(decorated).childNodes;
+      const parent = node.parentNode;
+      for (const child of children) child.parentNode = parent;
+      parent.childNodes.splice(parent.childNodes.indexOf(node), 1, ...children);
+    }
+  }
   // Regions replace the overview before the selected edition's default year is
   // inserted. The same compiled fragment is published for later year requests.
   const eventName = /^event\/(anniversary|christmas|easter|halloween|valentines)\.html$/.exec(relative)?.[1];

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from scripts import build_rbr_tier_charts as charts
@@ -12,12 +13,31 @@ from scripts import build_rbr_tier_charts as charts
 class RbrTierChartTest(unittest.TestCase):
     """Keep checked-in charts synchronized with their data and palette."""
 
+    def test_charts_contain_only_tiers_and_quest_labels(self) -> None:
+        namespace = {"svg": "http://www.w3.org/2000/svg"}
+        for language in charts.LANGUAGES:
+            for rows, filename in charts.CHARTS:
+                root = ET.parse(charts.OUTPUT_DIR / language / filename).getroot()
+                self.assertEqual(root.findall(".//svg:image", namespace), [])
+                self.assertEqual(root.findall(".//svg:use", namespace), [])
+                # One background, one label per tier, and only occupied quest cells.
+                self.assertEqual(
+                    len(root.findall("svg:rect", namespace)),
+                    1 + len(rows) + sum(len(entries) for _, entries in rows),
+                )
+                expected = []
+                for tier, entries in rows:
+                    expected.append(tier)
+                    for quest, section_id in entries:
+                        expected.extend((quest, section_id))
+                self.assertEqual([node.text for node in root.findall("svg:text", namespace)], expected)
+
     def test_checked_in_charts_are_current(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             for language in charts.LANGUAGES:
-                for rows, filename, columns, width in charts.CHARTS:
+                for rows, filename in charts.CHARTS:
                     generated = Path(temp_dir) / f"{language}-{filename}"
-                    charts.build_chart(rows, generated, columns=columns, width=width, language=language)
+                    charts.build_chart(rows, generated, language=language)
                     checked_in = charts.OUTPUT_DIR / language / filename
                     self.assertEqual(
                         generated.read_text(encoding="utf-8"),
@@ -25,12 +45,13 @@ class RbrTierChartTest(unittest.TestCase):
                         f"Regenerate {language}/{filename} with build_rbr_tier_charts.py",
                     )
 
-    def test_every_drop_table_color_is_embedded(self) -> None:
+    def test_quest_section_colors_match_drop_table(self) -> None:
         palette = charts.load_section_palette()
         for language in charts.LANGUAGES:
-            for _, filename, _, _ in charts.CHARTS:
+            for rows, filename in charts.CHARTS:
                 svg = (charts.OUTPUT_DIR / language / filename).read_text(encoding="utf-8")
-                for section_id, color in palette.items():
+                for section_id in {section_id for _, entries in rows for _, section_id in entries}:
+                    color = palette[section_id]
                     self.assertIn(section_id, svg)
                     self.assertIn(color, svg)
 

@@ -138,6 +138,10 @@ test('monster sections stay on the detail route and retain language and conditio
   await expect(page).toHaveURL(/mode=off.*#behavior$/);
   await page.reload();
   await expect.poll(()=>page.locator('#behavior').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(60);
+  await expect.poll(()=>page.evaluate(()=>history.scrollRestoration)).toBe('manual');
+  await page.locator('a.back').click();
+  await expect(page).toHaveURL(/\/ja\/data\/enemies.html\?/);
+  await expect.poll(()=>page.evaluate(()=>history.scrollRestoration)).toBe('auto');
 });
 test('monster direct section links scroll to the requested content',async({page})=>{
   await page.goto('/en/data/enemies/chaos-bringer.html?diff=u#attacks');

@@ -100,9 +100,16 @@ export class MonsterCatalogComponent {
   retry():void {this.document.defaultView?.location.reload();}
   constructor(){
     effect(()=>this.title.setTitle(`${this.monster()?this.name(this.monster()!)+' | ':''}${this.i18n.t('怪物图鉴')} · Ephinea PSOBB`));
-    afterRenderEffect(()=>{
+    afterRenderEffect(onCleanup=>{
       if(!this.monster()) return;
       const fragment=this.fragment();
+      const history=this.document.defaultView?.history;
+      if(fragment && history) {
+        // A reload can restore the old position after our anchor scroll finishes.
+        history.scrollRestoration='manual';
+        // The history entry keeps 'manual' across reloads; restore the site's default.
+        onCleanup(()=>{history.scrollRestoration='auto';});
+      }
       if(fragment) this.document.getElementById(fragment)?.scrollIntoView({behavior:'instant'});
       else this.document.defaultView?.scrollTo({top:0,behavior:'instant'});
     });

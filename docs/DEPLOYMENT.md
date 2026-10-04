@@ -37,6 +37,45 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 4, 2026 RBR navigation and tier-chart presentation
+
+The maintainer reviewed the local previews and authorized documentation alignment,
+commit and push on 2026-10-04. The accepted result includes:
+
+- Home RBR cards open the corresponding recommendation row in Chinese, English
+  or Japanese. All 58 candidates have anchors, including grouped recommendations;
+  positioning accounts for asynchronous Tracker rendering and request failures.
+- Section ID names in the guide's prose have the existing game icons alongside
+  them. The two charts retain colored cells and ID names, without icons or a
+  ten-color legend.
+- Both charts use one seven-column layout with matching displayed widths, cell
+  sizes and type sizes. Unused positions have no visible grid cells. Only this
+  week's RBR quests receive the current-rotation highlight.
+
+The published JavaScript gzip ceiling changes from 1,000,000 to 1,003,000 bytes
+to accommodate the compiled anchors and inline Section ID labels in this release.
+The language, individual chunk, route, inline-script and hydration ceilings remain
+unchanged. No dependency or weekly rotation data changes are included.
+
+Release gates are the complete local business suite, dependency audit at the
+`low` threshold, two production builds with identical `build-manifest.json`, and
+the full browser suite. Targeted checks also cover translated/mobile geometry,
+Section ID icon loading, grouped anchors, reloads and failed Tracker requests.
+Publication is established only by the matching commit's successful build, all
+three browser-test shards and Pages deploy job in **Verify and deploy Pages**.
+The [RBR maintenance documentation](../scripts/RBR_DATA.md) records ownership and
+regeneration details.
+
+The first full local browser pass exposed an existing monster-detail reload race:
+4,145 tests passed, but a language/condition/anchor case failed. Instrumented
+repetitions confirmed that the component first reached the requested section,
+then browser history restoration moved it back to the pre-reload position after
+`pageshow`. Anchored monster details now own scroll restoration while active and
+restore automatic browser scrolling on cleanup, including after a reload. The original scroll assertion
+is retained, with additional checks for restoration ownership and returning to
+the list. This release includes that correction so the known failure is resolved
+before publication rather than deferred to CI.
+
 ## October 3, 2026 Booma-family claw HD artwork
 
 The maintainer supplied and identified replacement HD artwork for Booma's Claw

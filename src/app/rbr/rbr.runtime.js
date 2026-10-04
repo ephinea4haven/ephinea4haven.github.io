@@ -367,7 +367,7 @@ export function initializeRbr(root, language) {
         );
         renderSourceStatus(data);
         renderTracker(data, questsByAbbreviation);
-        renderTierHighlights(data).catch((error) => {
+        await renderTierHighlights(data).catch((error) => {
             const summary = byId("rbr-tier-current-summary");
             if (summary) {
                 summary.textContent = TEXT.markerError(error.message);
@@ -379,5 +379,12 @@ export function initializeRbr(root, language) {
         const status = byId("rbr-tracker-status");
         status.className = "rbr-tracker-status is-error";
         status.textContent = TEXT.loadError(error.message);
+    }).finally(() => {
+        // The asynchronous tracker changes the height above the recommendation rows.
+        const fragment = location.hash.slice(1);
+        if (fragment.startsWith("rbr-quest-") && root.isConnected) {
+            const target = byId(CSS.escape(fragment));
+            target?.closest("tr")?.scrollIntoView({ block: "center", behavior: "instant" });
+        }
     });
 }

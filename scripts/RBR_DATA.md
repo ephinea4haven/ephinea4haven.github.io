@@ -16,13 +16,18 @@ automatically as they are.
 The home page RBR cards and the detail page's tier chart share the ratings and
 `recommendedSectionIds` in `data/rbr/tiers.json`, and their colors come from the
 site's BB drop table palette. The home page shows the recommended color through a
-colored top border, a color dot and the ID name, along with the tier and rating
+colored top border, a Section ID icon and the ID name, along with the tier and rating
 date, and makes clear the rating is an unofficial farming value assessment. The
 rotation is still read from `data/rbr/source.json`, so the current quests, colors
 and ratings are never hard-coded in the page. After the sync script writes a new
 rotation, `npm run build` updates both the home page cards and the detail page
 data. The sync script itself does not commit or deploy; changes reach production
 only after they are committed, pushed and published through Pages.
+
+Each home card links to `/guide/rbr.html#rbr-quest-<abbreviation>` in the current
+language. All 58 candidates have a recommendation-row anchor, including quests
+that share a row. The page positions the requested row after the asynchronous
+Tracker and current-week highlights finish, including when the Tracker fails.
 
 ## Data chain
 
@@ -437,8 +442,13 @@ python3 -m unittest scripts/test_rbr_tiers.py
 ```
 
 `scripts/build_rbr_tier_charts.py` renders both tier charts from these tables in
-Chinese, English and Japanese, into `assets/img/guide/rbr/{zh,en,ja}/`. The
-guide's written tier notes live in `guide/rbr.html` (Chinese) and
+Chinese, English and Japanese, into `assets/img/guide/rbr/{zh,en,ja}/`.
+Charts show colored quest cells and Section ID names without a top legend or
+Section ID icons. Unused grid positions remain plain background, without cell borders.
+Both charts share the same seven-column grid, cell dimensions, type sizes and
+full-width page layout. The Angular content generator pairs Section ID names in
+all three editions' prose with the existing `assets/img/section/icon/` PNGs.
+The guide's written tier notes live in `guide/rbr.html` (Chinese) and
 `content/i18n/pages/{en,ja}/guide/rbr.html`. All three name items with
 `<span data-item-en="…"></span>` placeholders, so each language shows the
 authority name; write the exact English name from `../droptable/i18n_names.json`
