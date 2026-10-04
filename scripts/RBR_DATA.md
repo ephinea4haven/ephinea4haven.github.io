@@ -352,15 +352,54 @@ verification and returns `already-current`, without fetching a CSRF token or
 making an empty edit. Credentials are never written to output, Git, command-line
 arguments or cookie files.
 
-Template source verification does not prove that public pages have refreshed.
-After every weekly publication, including `already-current`, also verify the
-rendered `Main Page`, `Ragol Boost Road` article and both templates. Check the
-home page's week and three quests, and compare all 58 rendered Tracker states
-with the reviewed plan. If a page still shows old data, send a POST to the
-MediaWiki API with `action=purge` for these four titles, reload their ordinary
-public URLs and repeat the checks. The publisher does not currently perform
-these rendered-page checks or cache purges, so this remains a required manual
-verification step. Do not make an empty template edit to refresh a stale page.
+### Public Wiki cache refresh SOP
+
+Run this check after every weekly publication, including `already-current` and
+runs where one template required no edit. The publisher verifies template source,
+but does not check public-page rendering or purge caches. A correct source revision
+can therefore coexist with an old rendered rotation, as observed on October 4.
+
+1. Confirm that both template sources match the validated weekly plan. If the
+   source is wrong, complete the normal publishing flow first; purging does not
+   change Wikitext or repair an incorrect rotation.
+2. Open the four ordinary public pages below and check their rendered content.
+   On each Tracker, compare all 58 quest states with the plan, including the new
+   current quests, previous quests and any Episode cycle reset. Orange (`#741`)
+   means current, dark blue (`#123`) means possible, and no highlight means
+   already selected this cycle. Account for the separate color-key cells.
+
+   | Page | Required result |
+   | --- | --- |
+   | [Main Page](https://wiki.pioneer2.net/w/Main_Page) | RBR panel has the confirmed UTC Sunday date and three quests |
+   | [Ragol Boost Road](https://wiki.pioneer2.net/w/Ragol_Boost_Road) | Embedded Tracker matches all planned states |
+   | [RagolBoostRoad](https://wiki.pioneer2.net/w/Template:RagolBoostRoad) | Confirmed week and three quests |
+   | [RagolBoostRoadTracker](https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker) | Tracker matches all planned states |
+
+3. If source and display differ, purge all four pages through a POST request:
+
+   ```bash
+   curl --fail --silent --show-error \
+     --request POST 'https://wiki.pioneer2.net/api.php' \
+     --data-urlencode 'action=purge' \
+     --data-urlencode 'titles=Main Page|Ragol Boost Road|Template:RagolBoostRoad|Template:RagolBoostRoadTracker' \
+     --data-urlencode 'format=json' \
+     --data-urlencode 'formatversion=2'
+   ```
+
+   Check that the response lists all four titles with `purged: true` and no API
+   error; HTTP 200 alone is not confirmation. No Wiki password is needed for this
+   cache refresh. For a manual single-page purge, append `?action=purge` to its
+   ordinary URL, then submit the confirmation form; for example,
+   [purge the RBR article](https://wiki.pioneer2.net/w/Ragol_Boost_Road?action=purge).
+   See the [MediaWiki purge manual](https://www.mediawiki.org/wiki/Manual:Purge).
+4. Reload the ordinary public URLs and repeat step 2. A successful purge response
+   alone is not the acceptance check. Browser refresh alone may retain an old
+   server-rendered page. Do not make an empty template edit to refresh a cache.
+5. Record the source revisions, any stale display observed, purge outcome and
+   rendered-page verification in the weekly update record. Keep Wiki verification,
+   local site validation and the subsequent site deployment as separate milestones.
+
+## Tier data and chart maintenance
 
 The two manually curated tier tables are stored in `data/rbr/tiers.json`. An
 integrity test confirms that each of the 58 RBR candidate quests appears exactly
