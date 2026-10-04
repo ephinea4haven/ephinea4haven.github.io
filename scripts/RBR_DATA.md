@@ -280,6 +280,19 @@ remote templates.
   and local site validation are complete. Production publication is verified
   separately through the matching `Verify and deploy Pages` run's build, browser
   tests and deploy jobs, followed by a check of the live site's rotation.
+- [The first completed release run](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/37169356363)
+  passed the build and two browser shards, but deployment was skipped because an
+  item-list test treated the 24 prerendered rows as a single filtered result before
+  the asynchronous item index finished loading. Delaying the index response
+  reproduced the failure. The affected single-result tests now wait for the
+  expected result count before checking names and images, retaining every original
+  content assertion.
+- Before pushing that test correction, the complete local business suite passed,
+  the dependency audit reported zero vulnerabilities, and two production builds
+  produced identical manifests. All 4,139 local browser tests passed with four
+  workers and no retries in 5.4 minutes. The three affected tests also passed nine
+  runs with a delayed index response. `AGENTS.md` now requires full local release
+  validation before an approved push, so CI is not the first complete test pass.
 
 ### 2026-09-14 home page release record
 
