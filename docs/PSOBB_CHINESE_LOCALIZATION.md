@@ -150,6 +150,12 @@ Chinese transliteration and keep the English name for disambiguation.
 
 ## Consistency requirements
 
+For the price guide, [the data and localization contract](PRICE_GUIDE.md) requires
+whole-identity references and explicit separation of weapon categories from item
+names. Ordinary labels and compound cells use the same localization path as
+single values. Missing authority translations remain complete English identifiers;
+substring replacement must never produce partly translated item names.
+
 - The browser title, page header title and main entry links for a page must
   express the same name. An entry link may be shortened for space but must not
   switch to a different concept.

@@ -6,7 +6,11 @@ import { BrowserContentBehavior } from './browser-content-behavior.directive';
  * Homepage live panels (RBR freshness, beat clock, Galatine, weekly boosts). Each
  * language version is compiled at build; this only fills the values that change.
  */
-@Directive({ standalone: true, providers: [LanguagePreferenceService] })
+@Directive({
+  standalone: true,
+  providers: [LanguagePreferenceService],
+  host: { '(click)': 'selectLanguage($event)' },
+})
 export class LandingPageBehavior extends BrowserContentBehavior {
   private readonly i18n = inject(LanguagePreferenceService);
   private readonly ready = signal(false);
@@ -18,6 +22,13 @@ export class LandingPageBehavior extends BrowserContentBehavior {
   }
   private text(zh: string, en: string, ja: string): string {
     return this.i18n.language() === 'zh' ? zh : this.i18n.language() === 'en' ? en : ja;
+  }
+
+  // Angular serializes this binding for hydration event replay. A native listener
+  // installed in connect() would lose clicks made while the page is loading.
+  protected selectLanguage(event: MouseEvent): void {
+    const requested = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-home-lang]')?.dataset['homeLang'] : null;
+    if (requested === 'zh' || requested === 'en' || requested === 'ja') void this.i18n.select(requested);
   }
 
   private static readonly galatineRanges: ReadonlyArray<readonly [number, number, string, string]> = [
@@ -117,10 +128,6 @@ export class LandingPageBehavior extends BrowserContentBehavior {
     const navigationResize = new ResizeObserver(revealFocusedLink);
     navigationResize.observe(navigation);
     this.destroyRef.onDestroy(() => navigationResize.disconnect());
-    this.listen(this.host.querySelector('#home-language')!, 'click', ((event: MouseEvent) => {
-      const requested = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-home-lang]')?.dataset['homeLang'] : null;
-      if (requested === 'zh' || requested === 'en' || requested === 'ja') void this.i18n.select(requested);
-    }) as EventListener);
     this.ready.set(true);
     const timer = window.setInterval(() => this.tick(), 1000);
     this.destroyRef.onDestroy(() => window.clearInterval(timer));

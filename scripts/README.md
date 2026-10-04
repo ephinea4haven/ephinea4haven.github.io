@@ -30,7 +30,8 @@ are build inputs and are not copied into the published artifact.
 | `sync_combo_calculator.mjs` | Synchronize verified PSOStats rules, data, license and provenance. |
 | `sync_anniversary_milestones.mjs` | Synchronize the official 2026 milestone snapshot, shared UTC+8 timestamp and eight boost dimensions, and report when the final threshold and all rewards are complete. |
 | `scrape_gizonde.py` | Generate Vol Opt data from the Ephinea Wiki. |
-| `scrape_price_guide.py` | Generate price-guide data from the Ephinea Wiki. |
+| `scrape_price_guide.py` | Extract price-guide tables with distinct column keys, including empty and repeated headers; exclude Wiki navigation boxes. |
+| `test_scrape_price_guide.py`, `test_price_guide_i18n.mjs` | Check extraction, whole-identity translation and full snapshot coverage; `npm run test:price-guide` runs before Angular generation in CI. |
 | `build_mag_data.py` | Generate Mag evolution and feeding data. |
 | `download_wiki_mag_assets.py` | Download and validate the Mag color-reference images. |
 | `build_rbr_data.py` | Build an RBR diagnostic snapshot from Wiki data; `--require-current` rejects a stale or inconsistent Wiki mirror. |
@@ -70,6 +71,8 @@ For Combo ownership and synchronization rules, see
 [`SOP_COMBO_CALCULATOR_SYNC.md`](../docs/SOP_COMBO_CALCULATOR_SYNC.md).
 For RBR source ownership and the manual weekly validation flow, see
 [`RBR_DATA.md`](RBR_DATA.md).
+For price snapshot ownership, column semantics and translation boundaries, see
+[`Price guide data and localization`](../docs/PRICE_GUIDE.md).
 
 The Mag builder can operate on offline wiki fixtures:
 

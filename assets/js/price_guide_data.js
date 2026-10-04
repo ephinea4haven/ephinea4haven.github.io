@@ -1,5 +1,5 @@
 // Auto-generated from wiki.pioneer2.net/w/Price_guide
-// Run: python3 scripts/scrape_price_guide.py > data/price_guide_data.js
+// Run: python3 scripts/scrape_price_guide.py > assets/js/price_guide_data.js
 var PRICE_DATA = [
   {
     "section": "Common weapons - Melee commons",
@@ -6615,7 +6615,8 @@ var PRICE_DATA = [
       "85%",
       "90%",
       "95%",
-      "100%"
+      "100%",
+      "Unlabeled column 21"
     ],
     "data": [
       {
@@ -6837,7 +6838,7 @@ var PRICE_DATA = [
         "90%": "6050",
         "95%": "Inestimable",
         "100%": "Inestimable",
-        "col20": null
+        "Unlabeled column 21": null
       },
       {
         "Item Name": "Maser Beam",
@@ -8252,7 +8253,8 @@ var PRICE_DATA = [
       "85%",
       "90%",
       "95%",
-      "100%"
+      "100%",
+      "Unlabeled column 21"
     ],
     "data": [
       {
@@ -8452,7 +8454,7 @@ var PRICE_DATA = [
         "90%": "Inestimable",
         "95%": "Inestimable",
         "100%": "Inestimable",
-        "col20": "Inestimable"
+        "Unlabeled column 21": "Inestimable"
       },
       {
         "Item Name": "Mahu",
@@ -8704,13 +8706,14 @@ var PRICE_DATA = [
       "Episode 1 Weapons",
       "Price",
       "Episode 2 Weapons",
-      "Price"
+      "Price [2]"
     ],
     "data": [
       {
         "Episode 1 Weapons": "ES Blade ES Cane ES Claw ES Gun ES Mechgun ES Partisan ES Rifle ES Rod ES Saber ES Shot ES Slicer ES Sword ES Twin ES Wand",
-        "Price": "25",
-        "Episode 2 Weapons": "ES Axe ES Bazooka ES Cards ES Harisen ES Hammer ES J-Cutter ES Katana ES Knuckle ES Launcher ES Moon ES Needle ES Psychogun ES Punch ES Scythe ES Swords ES Windmill"
+        "Price": "35",
+        "Episode 2 Weapons": "ES Axe ES Bazooka ES Cards ES Harisen ES Hammer ES J-Cutter ES Katana ES Knuckle ES Launcher ES Moon ES Needle ES Psychogun ES Punch ES Scythe ES Swords ES Windmill",
+        "Price [2]": "25"
       }
     ]
   },
@@ -9277,19 +9280,20 @@ var PRICE_DATA = [
   {
     "section": "Frames",
     "headers": [
+      "Item Name",
       "1-3 slots",
       "4 slots"
     ],
     "data": [
       {
-        "col0": "Common frames",
         "1-3 slots": "0",
-        "4 slots": "0.5-1"
+        "4 slots": "0.5-1",
+        "Item Name": "Common frames"
       },
       {
-        "col0": "Common armors",
         "1-3 slots": "0",
-        "4 slots": "0.5-1"
+        "4 slots": "0.5-1",
+        "Item Name": "Common armors"
       }
     ]
   },
@@ -11384,13 +11388,14 @@ var PRICE_DATA = [
       "Old Paints",
       "Price",
       "New Paints",
-      "Price"
+      "Price [2]"
     ],
     "data": [
       {
         "Old Paints": "Black Paint Blue Paint Green Paint Purple Paint Yellow Paint White Paint",
-        "Price": "5",
-        "New Paints": "Chartreuse Paint Cyan Paint Onyx Paint Orange Paint Rose Paint Ultramarine Paint Violet Paint"
+        "Price": "2-3",
+        "New Paints": "Chartreuse Paint Cyan Paint Onyx Paint Orange Paint Rose Paint Ultramarine Paint Violet Paint",
+        "Price [2]": "5"
       }
     ]
   },
@@ -11916,50 +11921,6 @@ var PRICE_DATA = [
         "Item Name": "Swordsman Lore",
         "Per Kills": "1 per 2000",
         "Total": "10"
-      }
-    ]
-  },
-  {
-    "section": "Services - Instant unsealing",
-    "headers": [
-      "Guides"
-    ],
-    "data": [
-      {
-        "Guides": "Basics",
-        "col1": "Classes • Game modes • Mags (Feeding tables • Photon Blasts • Simple Mag guide) • Monsters • Quests • Section IDs • Stats • Status effects • Teams • Techniques • Tekking • Tools • Weapons"
-      },
-      {
-        "Guides": "Classes",
-        "col1": "Class comparison • Hunter • HUmar • HUnewearl • HUcast • HUcaseal • Ranger • RAmar • RAmarl • RAcast • RAcaseal • FOmar • FOmarl • FOnewm • FOnewearl"
-      },
-      {
-        "Guides": "Items",
-        "col1": "Adding ES/S-Rank weapon specials • Adding Hit to enemy weapons • Common weapon ATA comparison • Increasing weapon attributes • Sealed items (Unsealing)"
-      },
-      {
-        "Guides": "Hunting",
-        "col1": "Combo kill • Common weapons (EN4 Claw reset) • Drop charts (Level 30 techniques) • Item boxes (Box run) • Leveling guide"
-      },
-      {
-        "Guides": "Lists",
-        "col1": "Combo-locked weapons • Fixed-damage attacks • Quest rewards • Reduced-special weapons • Set effects"
-      },
-      {
-        "Guides": "Mechanics",
-        "col1": "Accuracy glitch • Beat time • Game mechanics (Frame data) • Item drops • Ledge drop • Weapon drop tables"
-      },
-      {
-        "Guides": "Challenge",
-        "col1": "Challenge • Episode 1: Stage 1 • Episode 2: Stage 1 • Episode 2: Stage 2 • Episode 2: Stage 3 • Episode 2: Stage 4 • Episode 2: Stage 5"
-      },
-      {
-        "Guides": "Ephinea",
-        "col1": "Anguish • Banners • Chat commands • Coren • Daily forecast • Events • Price guide • Ragol Boost Road • Server rules • Weekly boosts"
-      },
-      {
-        "Guides": "Other",
-        "col1": "Custom files (Skins) • Mapitem.txt • Music replacement • Terminology"
       }
     ]
   }

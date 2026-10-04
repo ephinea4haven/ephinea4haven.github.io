@@ -10,7 +10,7 @@ const [agents, standard, materialPlan, priceGuide, mechanics, commandGuide, auth
   read('AGENTS.md'),
   read('docs/PSOBB_CHINESE_LOCALIZATION.md'),
   read('tools/materialplan.html'),
-  read('src/app/price-guide/price-guide.component.ts'),
+  read('src/app/price-guide/price-guide.messages.ts'),
   read('tools/mechanics.html'),
   read('guide/command.html'),
   Promise.all([

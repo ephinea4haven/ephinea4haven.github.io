@@ -35,6 +35,7 @@ class WikiTableExtractor(HTMLParser):
         self.last_h2 = ""
         self.last_h3 = ""
         self.table_depth = 0
+        self.is_navigation_table = False
 
     def _current_title(self):
         parts = [p for p in [self.last_h2, self.last_h3] if p]
@@ -55,6 +56,7 @@ class WikiTableExtractor(HTMLParser):
         elif tag == "table":
             self.table_depth += 1
             if self.table_depth == 1:
+                self.is_navigation_table = 'navbox' in a.get('class', '').split()
                 self.in_table = True
                 self.grid = []
                 self.grid_meta = set()
@@ -89,7 +91,7 @@ class WikiTableExtractor(HTMLParser):
         elif tag == "table":
             if self.table_depth == 1 and self.in_table:
                 self.in_table = False
-                if self.grid:
+                if self.grid and not self.is_navigation_table:
                     self.tables.append((self._current_title(), self.grid))
             self.table_depth = max(0, self.table_depth - 1)
         elif tag in ("th", "td") and self.in_cell and self.table_depth == 1:
@@ -239,6 +241,15 @@ def process_table(title, grid):
             if half > 0 and words[:half] == words[half:]:
                 col_headers[ci] = " ".join(words[:half])
 
+    # Every physical column needs a distinct key, even when its display header
+    # is blank or repeated. The renderer removes only the occurrence suffix.
+    occurrences = {}
+    for ci, header in enumerate(col_headers):
+        header = header or ('Item Name' if ci == 0 else f'Unlabeled column {ci + 1}')
+        occurrences[header] = occurrences.get(header, 0) + 1
+        count = occurrences[header]
+        col_headers[ci] = header if count == 1 else f'{header} [{count}]'
+
     # Extract data
     items = []
     for ri in data_rows:
@@ -247,7 +258,7 @@ def process_table(title, grid):
             cell = expanded[ri][ci]
             if cell is None:
                 continue
-            header = col_headers[ci] if col_headers[ci] else f"col{ci}"
+            header = col_headers[ci]
             text = cell["text"]
             # Skip if this is a span copy and we already have the value
             if cell.get("is_span") and header in row_data:
@@ -265,7 +276,7 @@ def process_table(title, grid):
 
     return {
         "section": title,
-        "headers": [h for h in col_headers if h],
+        "headers": col_headers,
         "data": items,
     }
 
@@ -296,7 +307,7 @@ def main():
 
     # Output as JS
     print("// Auto-generated from wiki.pioneer2.net/w/Price_guide")
-    print("// Run: python3 scripts/scrape_price_guide.py > data/price_guide_data.js")
+    print("// Run: python3 scripts/scrape_price_guide.py > assets/js/price_guide_data.js")
     print("var PRICE_DATA = " + json.dumps(sections, ensure_ascii=False, indent=2) + ";")
 
     total_items = sum(len(s["data"]) for s in sections)

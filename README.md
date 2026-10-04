@@ -103,13 +103,14 @@ output and budgets.
 | `npm run build` | Generate, prerender, validate and atomically publish `_site` |
 | `npm run preview` | Serve the existing `_site` at `http://127.0.0.1:4173` |
 | `npm test` | Run data, localization, architecture and domain checks |
+| `npm run test:price-guide` | Check price extraction, distinct columns and three-language text coverage |
 | `npm run test:e2e` | Run the Playwright suite against the production build |
 | `npm run test:dev` | Check development watching, rebuild coordination and generated-file safety |
 | `npm run test:dev:integration` | Test automatic browser/search updates, error recovery and shutdown on port 5175 |
 | `npm run test:search` | Check search extraction, language scope and indexing |
 | `npm run test:performance` | Check real browser requests and page resource budgets |
 | `npm run generate:home-backgrounds` | Regenerate responsive homepage backgrounds |
-| `npm run release:prepare` | Run all checks, the build and the browser suite in sequence |
+| `npm run release:prepare` | Run business tests, one build and the browser suite; release audit and reproducibility checks are additional gates |
 | `npm run sync:i18n` | Regenerate site item names from the drop-table authority |
 | `npm run sync:combo` | Refresh the combo calculator from its pinned upstream |
 | `npm run sync:anniversary` | Refresh the anniversary milestone snapshot |

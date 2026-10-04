@@ -1384,6 +1384,106 @@ test('Angular price guide filters categories and bilingual item names', async ({
   await expect(page.locator('#price-content .price-section')).toHaveCount(2);
 });
 
+test('Angular price guide aligns all three editions without losing columns or prices', async ({ page }) => {
+  const source = {};
+  vm.runInNewContext(readFileSync('assets/js/price_guide_data.js', 'utf8'), source);
+  for (const language of ['zh', 'en', 'ja']) {
+    await page.goto(`${language === 'zh' ? '' : `/${language}`}/data/price_guide.html`);
+    const tables = await page.locator('.price-table').evaluateAll(tables => tables.map(table => ({
+      headers: [...table.querySelectorAll('th')].map(cell => cell.textContent),
+      rows: [...table.querySelectorAll('tbody tr:not(.price-note-row)')].map(row => [...row.querySelectorAll('td')].map(cell => cell.textContent)),
+    })));
+    expect(tables).toHaveLength(source.PRICE_DATA.length);
+    for (const [index, section] of source.PRICE_DATA.entries()) {
+      expect(tables[index].headers).toHaveLength(section.headers.length);
+      expect(tables[index].rows).toHaveLength(section.data.length);
+      for (const [rowIndex, row] of section.data.entries()) {
+        expect(tables[index].rows[rowIndex]).toHaveLength(section.headers.length);
+        for (const [columnIndex, header] of section.headers.entries()) {
+          const value = row[header];
+          if (value == null || !/[a-z]/i.test(value) || value === 'N/A') {
+            expect(tables[index].rows[rowIndex][columnIndex].trim()).toBe(value ?? '-');
+          }
+        }
+      }
+    }
+    const frames = tables[source.PRICE_DATA.findIndex(s => s.section === 'Frames')];
+    expect(frames.rows.map(row => row[0].trim())).toEqual(language === 'zh'
+      ? ['普通铠甲（Frame）', '普通铠甲（Armor）']
+      : language === 'ja' ? ['コモンフレーム', 'コモンアーマー'] : ['Common frames', 'Common armors']);
+    const es = tables[source.PRICE_DATA.findIndex(s => s.headers.includes('Episode 1 Weapons'))];
+    expect([es.rows[0][1].trim(), es.rows[0][3].trim()]).toEqual(['35', '25']);
+    const paints = tables[source.PRICE_DATA.findIndex(s => s.headers.includes('Old Paints'))];
+    expect([paints.rows[0][1].trim(), paints.rows[0][3].trim()]).toEqual(['2-3', '5']);
+  }
+});
+
+test('Angular price guide localizes complete identities, categories and compound cells', async ({ page }) => {
+  await page.goto('/data/price_guide.html');
+  const content = page.locator('#price-content');
+  await expect(content).not.toContainText('Level 15');
+  await expect(content).toContainText('等级 15');
+  await expect(content).toContainText('200 级满属性配点');
+  await expect(content).toContainText('每 1000 次击杀 1 PD');
+  await expect(content).toContainText('火球术、冻气术、闪电术');
+  const combination = page.locator('.price-section').filter({ has: page.getByRole('heading', { name: '普通武器 - 组合', exact: true }) });
+  await expect(combination.locator('tbody tr').first().locator('td').first()).toHaveText('大剑');
+  await page.locator('#price-search').fill('冻气术');
+  await expect(content).toContainText('火球术、冻气术、闪电术');
+  await page.locator('#price-search').fill('');
+  await page.getByRole('button', { name: '日本語', exact: true }).click();
+  await expect(content).not.toContainText('Love ハート');
+  await expect(content).not.toContainText('マグic');
+  await expect(content).toContainText('参照：レア鎧（ラブハート）・合成素材（Magic Rock "Heart Key"）');
+  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await expect(content).toContainText('See Rare frames (Love Heart) & Combination items (Magic Rock "Heart Key")');
+  await page.getByRole('button', { name: '中文', exact: true }).click();
+  await page.reload();
+  await expect(content).toContainText('200 级满属性配点');
+});
+
+test('Angular price guide translates cross-references and preserves their targets', async ({ page }) => {
+  await page.goto('/data/price_guide.html');
+  const cells = page.locator('#price-content td');
+  for (const reference of [
+    '参见：光剑（王者之剑）',
+    '参见：普通武器 - 组合（大剑）',
+    '参见：双匕首（森隐雷藏拳套 0型）及合成素材（森隐雷藏光子）',
+    '参见：腥臭盾（见下方）及合成素材（迪·洛尔·雷之壳）',
+    '参见：上方备注',
+    '参见：The Forge 及所需素材',
+    '0（参见“RL”备注）',
+  ]) await expect(cells.filter({ hasText: reference }).first()).toBeVisible();
+  await expect(cells.filter({ hasText: /\bsee\b/i })).toHaveCount(0);
+  await expect(cells.filter({ hasText: /参见：.*(?:Combination|Sabers|Daggers|Rods|Swords|Slicers|Handguns|Shots|Canes|Wands|Cards|Rare frames|below|note above)/ })).toHaveCount(0);
+  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await expect(cells.filter({ hasText: 'See Sabers (Excalibur)' }).first()).toBeVisible();
+  await page.getByRole('button', { name: '日本語', exact: true }).click();
+  await expect(cells.filter({ hasText: '参照：セイバー' }).first()).toBeVisible();
+  await page.getByRole('button', { name: '中文', exact: true }).click();
+  await expect(cells.filter({ hasText: '参见：光剑（王者之剑）' }).first()).toBeVisible();
+});
+
+test('Angular price guide localizes the attribute note across language switches', async ({ page }) => {
+  await page.goto('/data/price_guide.html');
+  const note = page.locator('.price-note-row');
+  await expect(note).toHaveCount(1);
+  await expect(note).toContainText('高属性指属性值达到 50 或以上');
+  await expect(note).toContainText('王者之剑（Excalibur）');
+  await expect(note).toContainText('7–15 PD 的价格区间适用于属性值低于 50');
+  await expect(note).not.toContainText('Reminder High Attributes');
+  await page.locator('#price-search').fill('Excalibur');
+  await expect(note).toHaveCount(1);
+  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await expect(note).toContainText('Reminder High Attributes are 50+');
+  await page.getByRole('button', { name: '日本語', exact: true }).click();
+  await expect(note).toContainText('高属性とは50以上です');
+  await page.getByRole('button', { name: '中文', exact: true }).click();
+  await expect(note).toContainText('高属性指属性值达到 50 或以上');
+  await page.reload();
+  await expect(note).toContainText('高属性指属性值达到 50 或以上');
+});
+
 test('Angular price guide hydrates the prerendered DOM in place', async ({ page }) => {
   await page.addInitScript(() => {
     const probe = { main: null, removed: false };

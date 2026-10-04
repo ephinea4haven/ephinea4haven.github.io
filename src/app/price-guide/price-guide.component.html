@@ -19,7 +19,7 @@
       <section class="price-section"><h3>{{ sectionLabel(section.section) }}</h3><div class="table-scroll"><table class="price-table">
         <thead><tr>@for (header of section.headers; track header) {<th>{{ headerLabel(header) }}</th>}</tr></thead>
         <tbody>@for (row of section.rows; track $index) {
-          <tr>@for (header of section.headers; track header) {<td><span [class]="cellClass(row[header])">{{ cellText(row[header]) }}</span>@if (site.language() === 'zh' && header === nameKey(section.headers) && itemName(row[header])) { <small>{{ itemName(row[header]) }}</small>}</td>}</tr>
+          <tr>@for (header of section.headers; track header) {<td><span [class]="cellClass(row[header])">{{ cellText(row[header]) }}</span>@if (itemName(row[header])) { <small>{{ itemName(row[header]) }}</small>}</td>}</tr>
           @if (row['_note']) {<tr class="price-note-row"><td [attr.colspan]="section.headers.length">{{ cellText(row['_note']) }}</td></tr>}
         }</tbody>
       </table></div></section>

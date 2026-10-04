@@ -120,6 +120,8 @@ but no scripts or inline event handlers; Angular owns behavior.
 - `src/app/shared/`: the Angular page shell and common presentation.
 - `src/app/search/`: the lazy site-search dialog and Pagefind engine adapter.
 - `src/app/combo/`, `status/`, `chartable/`, `price-guide/`: dedicated tools.
+  The [price-guide data contract](PRICE_GUIDE.md) covers distinct source columns,
+  shared three-language rendering and full-identity item lookup.
 - `src/app/events/`, `data/`, `mag/`, `rbr/`: specialized interactive content.
 - `src/app/item-catalog/`: item search, filters, detail loading, scoped zh/en/ja
   UI state and presentation; source-language mechanics remain explicitly labeled.
@@ -507,8 +509,9 @@ generated; a missing file or a manual `?v=N` fails generation. Stylesheets linke
 from content sources are compiled into hashed Angular bundles and need no marker.
 
 `npm run release:prepare` runs source/data checks, the production build and the
-Playwright suite. CI additionally performs `npm ci`, dependency audit and a
-second byte-identical build before deploying the exact tested artifact.
+Playwright suite. An approved local release additionally requires dependency
+audit and a second byte-identical build before push. CI repeats those gates with
+`npm ci` before deploying the exact tested artifact; see [Deployment](DEPLOYMENT.md).
 
 The release gates cover:
 

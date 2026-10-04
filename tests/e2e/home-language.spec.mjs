@@ -46,6 +46,26 @@ test('onboarding follows input language needs when switching languages',async({p
   }
 });
 
+test('homepage replays language choices made before hydration in every edition', async ({ page }) => {
+  for (const [from, to] of [['zh', 'en'], ['en', 'ja'], ['ja', 'zh']]) {
+    let releaseScripts;
+    const scriptsReady = new Promise(resolve => { releaseScripts = resolve; });
+    const holdScripts = async route => { await scriptsReady; await route.continue(); };
+    await page.route('**/assets/angular/*.js', holdScripts);
+    try {
+      await page.goto(`${home(from)}?campaign=early#directory`, { waitUntil: 'commit' });
+      await page.locator(`[data-home-lang=${to}]`).click();
+      // The server-rendered control must accept the click while Angular is still loading.
+      releaseScripts();
+      await expect(page).toHaveURL(new RegExp(`/${to === 'zh' ? '' : `${to}/?`}\\?campaign=early#directory$`));
+      await expect(page.locator(`[data-home-lang=${to}]`)).toHaveAttribute('aria-pressed', 'true');
+    } finally {
+      releaseScripts();
+      await page.unroute('**/assets/angular/*.js', holdScripts);
+    }
+  }
+});
+
 test('language selection opens separate URLs and is remembered across pages',async({page})=>{
   await page.goto('/?campaign=test#directory');
   await page.getByRole('button',{name:'English',exact:true}).click();

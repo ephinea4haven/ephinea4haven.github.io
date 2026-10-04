@@ -26,7 +26,13 @@ Local release verification:
 ```bash
 npm ci
 npx playwright install chromium
-npm run release:prepare
+npm audit --audit-level=low
+npm test
+npm run build
+cp _site/build-manifest.json /tmp/haven-release-build-manifest.json
+npm run build
+cmp /tmp/haven-release-build-manifest.json _site/build-manifest.json
+npm run test:e2e
 ```
 
 The September 28 build reports 3,802 prerendered Angular hosts and 135 event
@@ -36,6 +42,48 @@ rejects non-Angular application hosts, retired runtimes, missing local resources
 and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
+
+## October 4, 2026 price-guide internationalization
+
+The maintainer accepted the repair and authorized documentation alignment,
+commit and push on 2026-10-04, with verification of the matching CI run.
+
+The price guide now shares whole-identity translation across Chinese and Japanese,
+keeps categories separate from item identities, and translates ordinary and
+compound cells. Extraction preserves blank and duplicate header columns, restores
+the independently priced ES weapon and paint groups, and excludes the Wiki
+navigation box. Each edition contains 62 tables and 851 body rows, including the
+attribute note. Item names without authority translations remain complete English
+identifiers. This is not a full market-price refresh.
+
+The [maintenance and repair record](PRICE_GUIDE.md) documents source ownership,
+translation boundaries and regressions. `npm run test:price-guide` is included in
+the business gate and reads committed inputs so it can run before Angular
+generation on a clean CI checkout.
+
+Publication requires the complete local business suite, dependency audit at the
+`low` threshold, matching manifests from two production builds, and the full
+browser suite. CI then repeats its locked-install/build gates, all three browser
+shards and Pages deployment for the pushed revision. Acceptance is complete;
+deployment is not established by local tests alone.
+
+The first full local browser pass found an existing homepage hydration race:
+4,149 tests passed, but an English-language click made during startup was lost.
+A deterministic regression delays Angular scripts and clicks each edition's
+server-rendered language selector before hydration. The selector now uses an
+Angular host event binding, which participates in event replay, rather than a
+native listener installed after rendering. The original navigation assertion is
+unchanged. This correction is included in the release and requires another full
+local verification pass before push.
+The delayed-script regression and original cross-page test both passed ten
+repetitions (20 runs) with the fix.
+
+Final local release validation passed: locked installation, zero vulnerabilities
+at the `low` audit threshold, the full business suite, identical manifests from
+two successful production builds, and all 4,151 browser tests. The final build
+contains 3,802 routes and 135 event fragments, with 1,000,969 / 1,003,000 bytes of
+published JavaScript gzip. A post-documentation build must match that same
+manifest; deployment remains verified by the pushed revision's CI result.
 
 ## October 4, 2026 RBR navigation and tier-chart presentation
 
