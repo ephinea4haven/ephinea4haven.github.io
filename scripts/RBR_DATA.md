@@ -375,23 +375,37 @@ can therefore coexist with an old rendered rotation, as observed on October 4.
    | [RagolBoostRoad](https://wiki.pioneer2.net/w/Template:RagolBoostRoad) | Confirmed week and three quests |
    | [RagolBoostRoadTracker](https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker) | Tracker matches all planned states |
 
-3. If source and display differ, purge all four pages through a POST request:
+3. If source and display differ, purge all four pages. In a browser, append
+   `?action=purge` to each ordinary URL, then submit its confirmation form; for
+   example, [purge the RBR article](https://wiki.pioneer2.net/w/Ragol_Boost_Road?action=purge).
+   See the [MediaWiki purge manual](https://www.mediawiki.org/wiki/Manual:Purge).
+   To refresh all four together, open an ordinary `wiki.pioneer2.net` page first,
+   then run this verified request in that page's browser console or browser
+   automation context:
 
-   ```bash
-   curl --fail --silent --show-error \
-     --request POST 'https://wiki.pioneer2.net/api.php' \
-     --data-urlencode 'action=purge' \
-     --data-urlencode 'titles=Main Page|Ragol Boost Road|Template:RagolBoostRoad|Template:RagolBoostRoadTracker' \
-     --data-urlencode 'format=json' \
-     --data-urlencode 'formatversion=2'
+   ```javascript
+   const titles = [
+     'Main Page', 'Ragol Boost Road',
+     'Template:RagolBoostRoad', 'Template:RagolBoostRoadTracker',
+   ];
+   const response = await fetch('/api.php', {
+     method: 'POST',
+     body: new URLSearchParams({
+       action: 'purge', titles: titles.join('|'), format: 'json', formatversion: '2',
+     }),
+   });
+   const result = await response.json();
+   if (!response.ok || result.error || !titles.every(title =>
+     result.purge?.some(page => page.title === title && page.purged === true))) {
+     throw new Error(JSON.stringify(result));
+   }
+   console.log(result);
    ```
 
    Check that the response lists all four titles with `purged: true` and no API
    error; HTTP 200 alone is not confirmation. No Wiki password is needed for this
-   cache refresh. For a manual single-page purge, append `?action=purge` to its
-   ordinary URL, then submit the confirmation form; for example,
-   [purge the RBR article](https://wiki.pioneer2.net/w/Ragol_Boost_Road?action=purge).
-   See the [MediaWiki purge manual](https://www.mediawiki.org/wiki/Manual:Purge).
+   cache refresh. This browser path was verified on October 4; direct `curl`
+   requests received Cloudflare HTTP 403 in the same environment.
 4. Reload the ordinary public URLs and repeat step 2. A successful purge response
    alone is not the acceptance check. Browser refresh alone may retain an old
    server-rendered page. Do not make an empty template edit to refresh a cache.
