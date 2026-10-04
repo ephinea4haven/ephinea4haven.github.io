@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-27T01:07:23.004461+00:00",
+  "generatedAt": "2026-10-04T01:33:55.164215+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,12 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 43639
+      "revision": 43659
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 43637
+      "revision": 43657
     }
   },
   "boosts": {
@@ -38,28 +38,28 @@
     "4": 14
   },
   "current": {
-    "week": "27 September 2026",
+    "week": "04 October 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Sweep-up Operation 3",
-        "name": "Sweep-up Operation #3",
-        "abbreviation": "SU3"
+        "page": "Mop-up Operation 1",
+        "name": "Mop-up Operation #1",
+        "abbreviation": "MU1"
       },
       {
         "episode": 2,
-        "page": "The East Tower",
-        "name": "The East Tower",
-        "abbreviation": "TET"
+        "page": "Lost CHARGE VULCAN",
+        "name": "Lost CHARGE VULCAN",
+        "abbreviation": "LCV"
       },
       {
         "episode": 4,
-        "page": "Sweep-up Operation 12",
-        "name": "Sweep-up Operation #12",
-        "abbreviation": "SU12"
+        "page": "New Mop-Up Operation 4",
+        "name": "New Mop-Up Operation #4",
+        "abbreviation": "NMU4"
       }
     ],
-    "expectedWeek": "27 September 2026",
+    "expectedWeek": "04 October 2026",
     "isFresh": true
   },
   "tracker": {
@@ -71,14 +71,13 @@
     "byEpisode": {
       "1": {
         "possible": [
-          "MU1",
           "SU4",
           "AO1",
           "LIS",
           "LHP"
         ],
         "current": [
-          "SU3"
+          "MU1"
         ],
         "unavailable": [
           "MU2",
@@ -86,6 +85,7 @@
           "MU4",
           "SU1",
           "SU2",
+          "SU3",
           "EN1",
           "EN2",
           "EN3",
@@ -120,25 +120,25 @@
           "LSR",
           "LBA",
           "LDR",
-          "LCV",
           "TWT"
         ],
         "current": [
-          "TET"
+          "LCV"
         ],
-        "unavailable": []
+        "unavailable": [
+          "TET"
+        ]
       },
       "4": {
         "possible": [
           "WoL1",
           "WoL3",
           "NMU2",
-          "NMU4",
           "SU10",
           "SU14"
         ],
         "current": [
-          "SU12"
+          "NMU4"
         ],
         "unavailable": [
           "WoL2",
@@ -147,6 +147,7 @@
           "NMU1",
           "NMU5",
           "SU11",
+          "SU12",
           "SU13"
         ]
       }

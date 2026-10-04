@@ -245,6 +245,42 @@ remote templates.
   validation are complete; production publication is verified separately through
   the matching `Verify and deploy Pages` run's build, browser tests and deploy jobs.
 
+### 2026-10-04 update record
+
+- The maintainer provided an in-game `/rbr` screenshot confirming EP1
+  `Mop-up Operation #1` (`MU1`), EP2 `Lost CHARGE VULCAN` (`LCV`) and EP4
+  `New Mop-Up Operation #4` (`NMU4`).
+- The read-only planner found the current template still at revision `43639`
+  (September 27), while Tracker revision `43657` already matches the screenshot.
+  Candidate validation and both MediaWiki render previews passed.
+- The publisher updated the current template and read it back at
+  [revision 43659](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43659).
+  The already-correct
+  [Tracker revision 43657](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=43657)
+  required no edit.
+- The site snapshot was regenerated with `build_rbr_data.py --require-current`
+  from those verified revisions. Its October 4 rotation and Tracker match the
+  reviewed plan exactly; all 58 quest records, boost rules and the 5 existing
+  random-spawn warnings are unchanged.
+- 55 RBR tests, the production build and 5 browser tests passed, covering home
+  cards, the UTC Sunday freshness boundary, versioned images, Tracker/current
+  tier markers in Chinese, English and Japanese, and lookup/Section ID interactions.
+- After the maintainer reported that the public `Ragol Boost Road` article still
+  showed the old rotation, browser inspection confirmed cached orange highlights
+  on `SU3`, `TET` and `SU12`, despite Tracker revision `43657` containing the
+  correct state. The article transcludes `RagolBoostRoadTracker`; checking template
+  source alone had missed the stale rendered page.
+- MediaWiki `action=purge` refreshed the article, `Main Page` and both templates.
+  A fresh browser load of the article then matched all 58 planned Tracker states,
+  including current `MU1`, `LCV`, `NMU4` and the three previous quests becoming
+  unavailable. The Wiki home page and both rendered templates were also verified.
+  No additional content edit or revision was needed.
+- The maintainer accepted the result and approved committing and pushing this
+  snapshot to `master` for publication. Wiki source and rendered-page verification
+  and local site validation are complete. Production publication is verified
+  separately through the matching `Verify and deploy Pages` run's build, browser
+  tests and deploy jobs, followed by a check of the live site's rotation.
+
 ### 2026-09-14 home page release record
 
 - `548e78e` committed and released the home page tier, recommended ID and color
@@ -315,6 +351,16 @@ templates are already in the target state, it completes login and read
 verification and returns `already-current`, without fetching a CSRF token or
 making an empty edit. Credentials are never written to output, Git, command-line
 arguments or cookie files.
+
+Template source verification does not prove that public pages have refreshed.
+After every weekly publication, including `already-current`, also verify the
+rendered `Main Page`, `Ragol Boost Road` article and both templates. Check the
+home page's week and three quests, and compare all 58 rendered Tracker states
+with the reviewed plan. If a page still shows old data, send a POST to the
+MediaWiki API with `action=purge` for these four titles, reload their ordinary
+public URLs and repeat the checks. The publisher does not currently perform
+these rendered-page checks or cache purges, so this remains a required manual
+verification step. Do not make an empty template edit to refresh a stale page.
 
 The two manually curated tier tables are stored in `data/rbr/tiers.json`. An
 integrity test confirms that each of the 58 RBR candidate quests appears exactly
