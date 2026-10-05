@@ -4074,7 +4074,7 @@ window.DROP_DATA_ZH = {
             ]
           },
           {
-            "name": "伊普西龙",
+            "name": "厄普西隆",
             "drops": [
               {
                 "item": "将军级/命中",
@@ -8170,7 +8170,7 @@ window.DROP_DATA_ZH = {
             ]
           },
           {
-            "name": "伊普西龙",
+            "name": "厄普西隆",
             "drops": [
               {
                 "item": "陨石枪",
@@ -12266,7 +12266,7 @@ window.DROP_DATA_ZH = {
             ]
           },
           {
-            "name": "伊普西龙",
+            "name": "厄普西隆",
             "drops": [
               {
                 "item": "战斗长刀",
@@ -16537,7 +16537,7 @@ window.DROP_DATA_ZH = {
             ]
           },
           {
-            "name": "伊普西龙",
+            "name": "厄普西隆",
             "drops": [
               {
                 "item": "最后的冲击",

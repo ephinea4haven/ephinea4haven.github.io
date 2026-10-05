@@ -192,8 +192,8 @@
 | [暗黑麒麟 / Delbiter / デルバイツァ](https://www.psohaven.com/data/enemies/delbiter.html) | 同左 | 普通怪 | Control Tower |
 | [暗铃兰 / Del Lily / デルリリー](https://www.psohaven.com/data/enemies/del-lily.html) | 同左 | 普通怪 | Control Tower |
 | [恶镰死神 / Ill Gill / イルギル](https://www.psohaven.com/data/enemies/ill-gill.html) | 同左 | 普通怪 | Control Tower |
-| [伊普西龙 / Epsilon / イプシロン](https://www.psohaven.com/data/enemies/epsilon.html) | 同左 | 普通怪 | Control Tower |
-| [伊普西龙之盾 / Epsigard / イプシガード](https://www.psohaven.com/data/enemies/epsigard.html) | 同左 | 阶段／部件／附属单位 | Control Tower |
+| [厄普西隆 / Epsilon / イプシロン](https://www.psohaven.com/data/enemies/epsilon.html) | 同左 | 普通怪 | Control Tower |
+| [厄普西隆之盾 / Epsigard / イプシガード](https://www.psohaven.com/data/enemies/epsigard.html) | 同左 | 阶段／部件／附属单位 | Control Tower |
 
 ## Episode 4
 

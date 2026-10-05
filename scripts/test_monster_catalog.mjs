@@ -11,6 +11,13 @@ execFileSync(process.execPath,['scripts/generate_item_catalog.mjs']);
 const {index,details,metadata}=generateMonsterCatalog();
 const authorityPath=process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json';
 const dropData=readDropData(path.join(path.dirname(authorityPath),'bb/data/en.js')).data;
+test('Epsilon and its shield retain the confirmed Chinese stem in both difficulty names',()=>{
+  for (const [id, name] of [['epsilon','厄普西隆'],['epsigard','厄普西隆之盾']]) {
+    const monster=index.find(m=>m.id===id);
+    assert.equal(monster.names.zh,name);
+    assert.equal(monster.ultimateNames.zh,name);
+  }
+});
 test('elite browsing identities cover variants without promoting rares, bosses or summons',()=>{
   for (const id of ['hildebear-e1','hildebear-e2','ill-gill','delbiter','sinow-beat','sinow-zele','mericarol','dorphon','zu-crater','zu-desert','girtablulu']) {
     assert.equal(index.find(m=>m.id===id).elite,true,id);

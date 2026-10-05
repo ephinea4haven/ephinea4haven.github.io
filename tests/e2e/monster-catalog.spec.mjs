@@ -8,6 +8,23 @@ const details=JSON.parse(readFileSync('src/app/generated/monster-catalog/details
 const monsters=JSON.parse(readFileSync('src/app/generated/monster-catalog/index.json','utf8'));
 // Browsing shows one region; EP1 opens on Forest, which includes the Dragon's room.
 const forest=monsters.filter(m=>m.episode===1&&m.areas.some(a=>['Forest','Under the Dome'].includes(a))).length;
+for (const [id, chinese, english, japanese] of [
+  ['epsilon', '厄普西隆', 'Epsilon', 'イプシロン'],
+  ['epsigard', '厄普西隆之盾', 'Epsigard', 'イプシガード'],
+]) {
+  test(`${english} uses the confirmed name in search, detail and language changes`, async ({page}) => {
+    await page.goto('/data/enemies.html?ep=2&q=' + encodeURIComponent(chinese));
+    const row = page.locator(`.monster-row[href*="/enemies/${id}.html"]`);
+    await expect(row.locator('.monster-name')).toHaveText(chinese);
+    await row.click();
+    for (const [language, name] of [['English', english], ['日本語', japanese], ['中文', chinese]]) {
+      await page.getByRole('button', {name: language, exact: true}).click();
+      await expect(page.locator('.monster-hero .monster-name')).toHaveText(name);
+    }
+    await page.reload();
+    await expect(page.locator('.monster-hero .monster-name')).toHaveText(chinese);
+  });
+}
 test('Gol Dragon uses the confirmed Chinese name across search, detail and language changes',async({page})=>{
   await page.goto('/data/enemies.html?ep=2&q='+encodeURIComponent('戈尔龙'));
   const row=page.locator('.monster-row[href*="/enemies/gol-dragon.html"]');

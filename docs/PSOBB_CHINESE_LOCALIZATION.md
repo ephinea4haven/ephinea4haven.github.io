@@ -328,3 +328,37 @@ Published sources are psobb-localization `3ae0bc9b0b509ce22c260f3f46041fda84b5c8
 droptable `99fd1eac50a5877c653010be80b37e8aa02e2da9`; both CI jobs pin this droptable revision.
 The same handoff includes the accepted Zu / Nano Dragon spread-wing renders.
 Pages deployment is verified separately after push. In-game display remains unverified.
+
+### 2026-10-05 UN-14 Epsilon family synchronization
+
+The user confirmed `Epsilon → 厄普西隆` globally. Cladding of Epsilon is
+`厄普西隆外壳`, Epsigard / Epsiguard / EPSIGUARD is `厄普西隆之盾`,
+and Epsilon Plating is `厄普西隆之盾镀层`. The historical PSOBB name
+is independently attested by [FFSky](https://www.ffsky.com/article/bc5739_a15069.aspx);
+the user decision governs the maintained stem and existing compact suffixes.
+
+The upstream resource changes 12 indexes, including monster/part names, item
+names, descriptions and skin/crafting references. Shop/WS have no matching
+entries. Chinese Unitxt SHA-256:
+`50a70ef17a4e198ddb5820a67cbd335700863245a8e2970d60e318af2c115a45`.
+Authority SHA-256: `8040718807801581546fec996d7594236dc2d32da3f3e6092e3ad6dbd54cf4da`.
+
+`npm run sync:i18n` regenerates the site dictionary and monster names from
+the local authority. Authored area names, normalized gallery provenance and
+archived BB/NGC drop labels use the same stem; original asset provenance is
+preserved. Browser regressions cover the enemy, shield part, cladding, shield
+and plating through language switching and reload.
+
+Final local checks passed: `npm test`, `npm run build` (3,802 routes), and
+`npx playwright test tests/e2e/monster-catalog.spec.mjs tests/e2e/item-catalog.spec.mjs`
+(101 passed). Both built sites contain no obsolete Epsilon names. Fresh review
+and semantic comparison found no unrelated data changes. Upstream Unitxt's
+complete local gate and droptable's `verify:localization` and build also pass.
+Historical baseline columns and regression counterexamples retain old spellings
+as evidence. The user accepted this result and authorized documentation alignment,
+commit and push on 2026-10-05. The source is psobb-localization
+`cfeb6cacde0080c57af93d18e247b8c3e1bf2f1f`; both CI jobs pin droptable
+`8b9d4ce361a07f0c191e10ec9db66b7986c89303`. The release requires the full local browser
+suite, dependency audit and reproducible build comparison before push; its
+validation record is in `docs/DEPLOYMENT.md`. Pages publication is verified
+separately. In-game display and localization installer packaging remain unverified.

@@ -4533,7 +4533,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "伊普西龙/伊普西龙",
+            "name": "厄普西隆/厄普西隆",
             "drops": [
               {
                 "item": "将军级/命中",
@@ -12374,7 +12374,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "伊普西龙/伊普西龙",
+            "name": "厄普西隆/厄普西隆",
             "drops": [
               {
                 "item": "陨石枪",
@@ -20836,7 +20836,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "伊普西龙/伊普西龙",
+            "name": "厄普西隆/厄普西隆",
             "drops": [
               {
                 "item": "战斗长刀",
@@ -29927,10 +29927,10 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "伊普西龙/伊普西龙",
+            "name": "厄普西隆/厄普西隆",
             "drops": [
               {
-                "item": "伊普西龙的装甲",
+                "item": "厄普西隆外壳",
                 "rate": "1/213.3"
               },
               {
@@ -29942,7 +29942,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1/1050.3"
               },
               {
-                "item": "伊普西龙的装甲",
+                "item": "厄普西隆外壳",
                 "rate": "1/213.3"
               },
               {
@@ -29954,7 +29954,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1/1050.3"
               },
               {
-                "item": "伊普西龙的装甲",
+                "item": "厄普西隆外壳",
                 "rate": "1/213.3"
               },
               {
@@ -29962,7 +29962,7 @@ window.DROP_DATA_ZH = {
                 "rate": "1/1050.3"
               },
               {
-                "item": "伊普西龙的装甲",
+                "item": "厄普西隆外壳",
                 "rate": "1/213.3"
               },
               {

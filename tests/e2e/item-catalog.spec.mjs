@@ -10,6 +10,23 @@ const listedSabers = items.filter(item => item.type === 'Saber' && !series.get(i
 const unprefixed = (href) => new URL(href).pathname.replace(/^\/(en|ja)(?=\/)/, '');
 const names = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
 
+for (const [id, english, chinese] of [
+  ['cladding-of-epsilon', 'Cladding of Epsilon', '厄普西隆外壳'],
+  ['epsiguard', 'EPSIGUARD', '厄普西隆之盾'],
+  ['epsilon-plating', 'Epsilon Plating', '厄普西隆之盾镀层'],
+]) {
+  test(`${english} preserves the confirmed Epsilon name after hydration and reload`, async ({page}) => {
+    await page.goto(`/data/items/${id}.html`);
+    await expect(page.locator('#item-title')).toHaveText(chinese);
+    await page.getByRole('button', {name: 'English', exact: true}).click();
+    await expect(page.locator('#item-title')).toHaveText(english);
+    await page.getByRole('button', {name: '中文', exact: true}).click();
+    await expect(page.locator('#item-title')).toHaveText(chinese);
+    await page.reload();
+    await expect(page.locator('#item-title')).toHaveText(chinese);
+  });
+}
+
 for (const [id, count] of [['akikos-frying-pan', 4], ['soul-eater', 6], ['ragol-ring', 9]]) {
   test(`quest acquisition guide ${id} survives language changes and mobile reload`, async ({page}) => {
     await page.setViewportSize({width: 390, height: 844});

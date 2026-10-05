@@ -43,6 +43,34 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 5, 2026 Epsilon translation alignment
+
+The maintainer accepted the cross-project rename and authorized documentation,
+commit and push. Epsilon and its related monster part, cladding, shield and
+plating use the confirmed Chinese stem `厄普西隆`. English identities, game
+mechanics, drop rates and source image bytes are preserved. Historical baseline
+columns and negative test inputs retain the old spelling as evidence.
+
+The source chain is psobb-localization
+`cfeb6cacde0080c57af93d18e247b8c3e1bf2f1f` → droptable
+`8b9d4ce361a07f0c191e10ec9db66b7986c89303` → Haven. Both CI authority checkouts pin that
+exact dropchart revision. Monster, item and dictionary tests cover the actual
+source keys, including the separate `Epsigard` part and `EPSIGUARD` equipment.
+The Unitxt gate and dropchart full tests/build passed; all 101 local item and
+monster browser tests passed before release preparation.
+
+Full local release validation passed: `npm ci`, zero vulnerabilities from
+`npm audit --audit-level=low`, `npm test`, two production builds with identical
+manifests, and all **4,164** browser tests (four workers, no retries, 5.7 minutes).
+The production build has 3,802 routes and 135 fragments. Build-manifest SHA-256:
+`c5b34e7b5578bfac58f7b0d3c283fa1ca1703a5eac256aeb993e8256db3fa25c`.
+The documentation-only finalization must preserve that same build manifest.
+Sandboxed process/port restrictions interrupted initial tool invocations; the
+successful build and browser gates ran with the required execution permissions.
+No test expectations or release requirements were relaxed.
+No Pages deployment is claimed until the matching pushed workflow succeeds.
+In-game rendering and localization installer packaging are separate work.
+
 ## October 4, 2026 price-guide internationalization
 
 The maintainer accepted the repair and authorized documentation alignment,
