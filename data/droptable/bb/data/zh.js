@@ -5261,7 +5261,7 @@ window.DROP_DATA_ZH = {
             ]
           },
           {
-            "name": "媚影沙魔·Ａ",
+            "name": "媚影沙魔·A",
             "drops": [
               {
                 "item": "",
@@ -5306,7 +5306,7 @@ window.DROP_DATA_ZH = {
             ]
           },
           {
-            "name": "媚影沙魔·ＡＡ",
+            "name": "媚影沙魔·AA",
             "drops": [
               {
                 "item": "光子水晶ＰＣ",
@@ -13112,7 +13112,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/3.0"
           },
           {
-            "name": "媚影沙魔·Ａ",
+            "name": "媚影沙魔·A",
             "drops": [
               {
                 "item": "光子爪",
@@ -13158,7 +13158,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/3.7"
           },
           {
-            "name": "媚影沙魔·ＡＡ",
+            "name": "媚影沙魔·AA",
             "drops": [
               {
                 "item": "光子水晶ＰＣ",
@@ -21574,7 +21574,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "媚影沙魔·Ａ",
+            "name": "媚影沙魔·A",
             "drops": [
               {
                 "item": "天堂级/回避",
@@ -21620,7 +21620,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/3.7"
           },
           {
-            "name": "媚影沙魔·ＡＡ",
+            "name": "媚影沙魔·AA",
             "drops": [
               {
                 "item": "神冰铁",
@@ -30665,7 +30665,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/2.9"
           },
           {
-            "name": "媚影沙魔·Ａ",
+            "name": "媚影沙魔·A",
             "drops": [
               {
                 "item": "最后的冲击",
@@ -30711,7 +30711,7 @@ window.DROP_DATA_ZH = {
             "dropRate": "1/3.7"
           },
           {
-            "name": "媚影沙魔·ＡＡ",
+            "name": "媚影沙魔·AA",
             "drops": [
               {
                 "item": "妖精之怒",

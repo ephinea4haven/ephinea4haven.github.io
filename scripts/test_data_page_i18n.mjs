@@ -16,6 +16,33 @@ function nodes(tree, predicate) {
 const attr = (node, name) => node.attrs?.find(a => a.name === name)?.value;
 const text = node => node.nodeName === '#text' ? node.value : (node.childNodes ?? []).map(text).join('');
 
+test('Chinese quest titles match the approved BB and Overlay names by English identity', async () => {
+  const { titles, aliases } = JSON.parse(await readFile(path.join(root, 'content/quest-names.json'), 'utf8'));
+  const expected = english => {
+    const key = english.toLowerCase();
+    assert.ok(titles[aliases[key] ?? key], `Missing quest authority: ${english}`);
+    return titles[aliases[key] ?? key];
+  };
+  const questTree = parse(await readFile(path.join(root, 'data/quest.html'), 'utf8'));
+  const entries = nodes(questTree, n => n.tagName === 'li' && nodes(n, c => attr(c, 'class') === 'quest-en').length);
+  assert.equal(entries.length, 265);
+  for (const entry of entries) {
+    const english = text(nodes(entry, n => attr(n, 'class') === 'quest-en')[0]).slice(1, -1);
+    const chinese = text(entry).slice(0, -(english.length + 2)).trim().replace(/ \(CS\)$/, '');
+    assert.equal(chinese, expected(english), english);
+  }
+  const monsterTree = parse(await readFile(path.join(root, 'data/monsters.html'), 'utf8'));
+  let count = 0;
+  for (const entry of nodes(monsterTree, n => n.tagName === 'li')) {
+    const match = text(entry).match(/^(\[[^\]]+\] )(.+?)（/);
+    if (!match) continue;
+    // Some approved titles themselves contain full-width parentheses.
+    assert.ok(text(entry).startsWith(`${match[1]}${match[2]}（${expected(match[2])}）`), match[2]);
+    count++;
+  }
+  assert.equal(count, 665);
+});
+
 test('ordinary weapon specials show the same three-language names as S-Ranks', async () => {
   for (const prefix of ['', 'content/i18n/pages/en/', 'content/i18n/pages/ja/']) {
     const tree = parse(await readFile(path.join(root, prefix, 'data/bb_items.html'), 'utf8'));

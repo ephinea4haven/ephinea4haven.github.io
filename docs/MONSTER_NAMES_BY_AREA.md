@@ -225,8 +225,8 @@
 | [暗黑刀魔 / Goran / ゴラン](https://www.psohaven.com/data/enemies/goran.html) | 同左 | 普通怪 | Subterranean Desert |
 | [暗黑狂刀魔 / Pyro Goran / ピロ・ゴラン](https://www.psohaven.com/data/enemies/pyro-goran.html) | 同左 | 普通怪 | Subterranean Desert |
 | [暗黑巨魔王 / Goran Detonator / ゴラン・デトナータ](https://www.psohaven.com/data/enemies/goran-detonator.html) | 同左 | 普通怪 | Subterranean Desert |
-| [媚影沙魔·Ａ / Merissa A / メリッサ・エー](https://www.psohaven.com/data/enemies/merissa-a.html) | 同左 | 普通怪 | Subterranean Desert |
-| [媚影沙魔·ＡＡ / Merissa AA / メリッサ・エー・エー](https://www.psohaven.com/data/enemies/merissa-aa.html) | 同左 | 稀有 | Subterranean Desert |
+| [媚影沙魔·A / Merissa A / メリッサ・エー](https://www.psohaven.com/data/enemies/merissa-a.html) | 同左 | 普通怪 | Subterranean Desert |
+| [媚影沙魔·AA / Merissa AA / メリッサ・エー・エー](https://www.psohaven.com/data/enemies/merissa-aa.html) | 同左 | 稀有 | Subterranean Desert |
 | [巨型火犀鸟 (Desert) / Zu (Desert) / ズー (Desert)](https://www.psohaven.com/data/enemies/zu-desert.html) | 同左 | 普通怪 | Subterranean Desert |
 | [变异羚角鸟 (Desert) / Pazuzu (Desert) / パズズ (Desert)](https://www.psohaven.com/data/enemies/pazuzu-desert.html) | 同左 | 稀有 | Subterranean Desert |
 | [暗黑魔眼巨花 / Girtablulu / ギルタブリル](https://www.psohaven.com/data/enemies/girtablulu.html) | 同左 | 普通怪 | Subterranean Desert |

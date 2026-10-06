@@ -116,6 +116,30 @@ narration, words such as `material` (texture, raw material), `unit` (measurement
 or organizational unit) and `shield` (a boss energy barrier) must be translated
 by their actual meaning. Unconditional global replacement is forbidden.
 
+## Quest titles: 2026-10-06 alignment
+
+Chinese quest titles follow the maintainer's approved Japanese-original naming
+decisions, recorded in `content/quest-names.json`. This snapshot combines BB Shop
+Unitxt group 14 from psobb-localization `bca68c1` with the Quest Text Overlay
+reference dictionary and PO quest-name fields from psobb-addons `6b34eb6`.
+The explicit English aliases cover numbering punctuation and Cave/Caves; they do
+not merge distinct quests. English and Japanese site text remain unchanged.
+
+Black Paper is 黑色密令, Maximum Attack is 极限攻击, and Waterfall Tears is
+不归的瀑布. Quest-list and monster-farming references are checked against the
+snapshot by English identity in `scripts/test_data_page_i18n.mjs`.
+
+The upstream item dictionary also contains a non-item label, `Black Paper’s Deal 2`.
+`npm run sync:i18n` takes that label's Chinese title from the quest snapshot:
+黑色密令的更危险交易. Actual item names still follow the drop-table authority;
+the equipment named From the Depths remains 深渊来客. Never replace that item
+name with the identically named quest's 来自深渊之物.
+
+Item authority moved with this alignment: both CI jobs now pin droptable
+`39b6a8601d9da0cf88e87cf41b6ab5c56318c9bc` (generated from psobb-localization
+`b6a3a93126842640378ff9c60db0a57a6b46e007`: half-width Latin letters and digits in
+Chinese names such as 媚影沙魔·A, and Game Magazine = FAMI通).
+
 ## Confirmed NPC names
 
 Confirm an NPC's English client identity first, then use the Japanese client text

@@ -54,6 +54,9 @@ class SyncItemTranslationsTest(unittest.TestCase):
 
     def test_structured_rewards_resolve_current_authority(self) -> None:
         dictionary = build_site_dictionary(load_authority(DEFAULT_AUTHORITY))
+        self.assertEqual(dictionary["black_paper_s_deal_2"]["zh"], "黑色密令的更危险交易")
+        # From the Depths is also an equipment identity, not a quest label here.
+        self.assertEqual(dictionary["from_the_depths"]["zh"], "深渊来客")
         for relative in ("data/bdp/data.js", "data/prizelist/data.js"):
             source = (REPO / relative).read_text(encoding="utf-8")
             sections = json.loads(source.split("=", 1)[1].strip().removesuffix(";"))

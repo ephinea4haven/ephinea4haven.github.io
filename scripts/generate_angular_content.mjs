@@ -394,7 +394,7 @@ function buildBdpContent(source) {
     return `<tr class="bdp-row bdp-row-${index}"><td class="monster-label"><strong ${itemI18nAttributes(label)}>${visibleItemZh(label)}</strong></td>${cells}</tr>`;
   }).join('');
   return source
-    .replace('<h1 id="pageTitle">黑页危险交易掉落表</h1>', `<h1 id="pageTitle" ${messageAttributes('bdp.title')}>${zhMessage('bdp.title')}</h1>`)
+    .replace('<h1 id="pageTitle">黑色密令的危险交易掉落表</h1>', `<h1 id="pageTitle" ${messageAttributes('bdp.title')}>${zhMessage('bdp.title')}</h1>`)
     .replace('<div id="pageSubtitle"></div>', `<div id="pageSubtitle" ${messageAttributes('bdp.subtitle')}>${zhMessage('bdp.subtitle')}</div>`)
     .replace('<a href="/index.html" class="back-link">← 返回首页</a>', `<a href="/index.html" class="back-link" ${messageAttributes('common.backHome')}>${zhMessage('common.backHome')}</a>`)
     .replace('<div id="bdpContainer"></div>', `<div id="bdpContainer"><table class="bdp-table"><tbody><tr class="bdp-head">${head}</tr>${rows}</tbody></table></div>`);
