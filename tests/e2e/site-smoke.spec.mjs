@@ -112,7 +112,7 @@ test('data-driven tools avoid asynchronous loading placeholders', () => {
 });
 
 for (const pageCase of pages) {
-  test(`${pageCase.name} loads the production artifact cleanly`, async ({ page }) => {
+  test(`${pageCase.name} loads the production artifact cleanly`, { tag: '@smoke' }, async ({ page }) => {
     const runtimeErrors = [];
     const failedResources = [];
 
@@ -595,7 +595,7 @@ test('shared page chrome aligns titles and back links with page content', async 
   }
 });
 
-test('status simulator handles Angular inputs and resets', async ({ page }) => {
+test('status simulator handles Angular inputs and resets', { tag: '@smoke' }, async ({ page }) => {
   const runtimeErrors = [];
   page.on('pageerror', (error) => runtimeErrors.push(error.message));
   page.on('console', (message) => {

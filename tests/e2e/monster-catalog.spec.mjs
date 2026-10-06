@@ -17,6 +17,7 @@ for (const [id, chinese, english, japanese] of [
     const row = page.locator(`.monster-row[href*="/enemies/${id}.html"]`);
     await expect(row.locator('.monster-name')).toHaveText(chinese);
     await row.click();
+    await expect(page.locator('.monster-hero .monster-name')).toHaveText(chinese);
     for (const [language, name] of [['English', english], ['日本語', japanese], ['中文', chinese]]) {
       await page.getByRole('button', {name: language, exact: true}).click();
       await expect(page.locator('.monster-hero .monster-name')).toHaveText(name);
@@ -30,6 +31,7 @@ test('Gol Dragon uses the confirmed Chinese name across search, detail and langu
   const row=page.locator('.monster-row[href*="/enemies/gol-dragon.html"]');
   await expect(row.locator('.monster-name')).toHaveText('戈尔龙');
   await row.click();
+  await expect(page.locator('.monster-hero .monster-name')).toHaveText('戈尔龙');
   for(const [language,name] of [['English','Gol Dragon'],['日本語','ゴル　ドラゴン'],['中文','戈尔龙']]) {
     await page.getByRole('button',{name:language,exact:true}).click();
     await expect(page.locator('.monster-hero .monster-name')).toHaveText(name);

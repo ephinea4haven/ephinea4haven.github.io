@@ -49,6 +49,11 @@ npm run test:e2e
 npm run release:prepare
 ```
 
+`release:prepare` runs the complete pre-push gate through `prepare_release.mjs`: a
+locked install, audit, browser installation, business tests, two matching builds,
+the CI smoke selection and all browser tests. Stop the preview on port 4173 first.
+Any failed stage stops the command; browser tests use CI isolation and zero retries.
+
 `npm run test:performance` runs the browser resource checks against the production
 artifact. It checks Chinese, English and Japanese homepages at mobile/desktop
 sizes, DPR 1/2 and the 860px background breakpoint. `performance-budgets.json`

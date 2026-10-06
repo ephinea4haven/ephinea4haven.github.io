@@ -4,36 +4,54 @@
 
 Production is built and deployed by `.github/workflows/pages.yml`.
 
-1. Pull requests run dependency audit, business tests, two reproducibility
-   builds, and Playwright smoke tests.
-2. The `build` job hands its verified output (`_site` and `src/app/generated`)
-   to three parallel `browser-tests` shards (`playwright test --shard=N/3`), so
-   the browser suite tests that exact build and stays well inside each job's
-   20-minute limit as language versions add routes.
-3. A `master` push runs the same gates and uploads `_site` as the Pages
-   artifact.
-4. The deploy job runs only after the build and every shard pass, and publishes
-   that exact artifact. It does not check out or rebuild the repository.
+1. Before an approved push, run the complete local release verification below,
+   including the full Playwright suite against the production build. Record the
+   result for the final release changes and obtain maintainer acceptance.
+2. Pull requests and `master` pushes run a locked dependency install, dependency
+   audit, business tests, one production build and `npm run test:e2e:smoke`
+   with two workers. The smoke gate selects existing tests tagged `@smoke`:
+   three-language homepages and search, language navigation and reload,
+   representative page/resource loading, and status calculator interaction.
+3. A `master` push uploads `_site` only after the smoke gate passes. The deploy
+   job publishes that exact artifact without checking out or rebuilding it.
+4. Run **Full verification** (`.github/workflows/full-verification.yml`) manually
+   for independent CI verification. It runs business tests, dependency audit,
+   two reproducible builds and all browser tests across three parallel shards
+   against the same build. It never deploys and is available for independent verification or
+   investigating runner-specific failures. Full local verification is required
+   for every release, including framework, routing and build changes.
+
+Full browser testing remains mandatory locally before an approved push. The
+release CI smoke gate catches critical failures in its clean environment while
+avoiding the full route sweep on every content release. The independent full
+workflow is manual, not a scheduled task or an automatic deployment dependency;
+it does not replace or defer any local pre-push check.
 
 The build job checks out the pinned item-name authority into `droptable/` and
-sets `DROPTABLE_I18N_AUTHORITY` for the entire job. Business tests and browser
-tests must read the same checked-out authority; setting this variable only on
-the business-test step leaves browser tests looking for the local sibling path
-`../droptable/i18n_names.json`, which does not exist in CI.
+sets `DROPTABLE_I18N_AUTHORITY` for the entire job. Local business and browser
+tests use `../droptable/i18n_names.json` by default; set
+`DROPTABLE_I18N_AUTHORITY` to an absolute file path when using another checkout.
 
-Local release verification:
+Local release verification (stop any preview server on port 4173 first):
 
 ```bash
-npm ci
-npx playwright install chromium
-npm audit --audit-level=low
-npm test
-npm run build
-cp _site/build-manifest.json /tmp/haven-release-build-manifest.json
-npm run build
-cmp /tmp/haven-release-build-manifest.json _site/build-manifest.json
-npm run test:e2e
+npm run release:prepare
 ```
+
+This command performs a locked `npm ci`, dependency audit at the `low` threshold,
+Chromium/system-dependency installation, all business tests, two builds and an
+exact build-manifest comparison, the release CI smoke command with two workers,
+and the full browser suite with four workers. Any failure stops the sequence.
+Both browser stages set `CI=true` and disable retries, rejecting focused tests
+and requiring a fresh production preview server. The full suite includes every
+smoke case; the explicit smoke pass also verifies the CI selection command.
+
+The local quality gate must be a superset of CI on the final release changes.
+Do not push first and use CI as the first complete validation pass. GitHub
+permissions, artifact upload and Pages deployment can only be verified remotely.
+Local OS coverage does not prove Linux runner equivalence, which is why CI keeps
+its own quality checks. If the configured npm registry needs overriding, use
+`npm_config_registry=https://registry.npmjs.org npm run release:prepare`.
 
 The September 28 build reports 3,802 prerendered Angular hosts and 135 event
 content fragments across the site's Chinese, English and Japanese editions.
@@ -42,6 +60,33 @@ rejects non-Angular application hosts, retired runtimes, missing local resources
 and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
+
+## October 6, 2026 release CI split
+
+The release workflow now builds once and gates upload on 20 existing browser
+cases selected by `@smoke`; the full 4,170-case suite remains unchanged in scope.
+`npm run release:prepare` now executes every local quality gate in one command,
+including the exact smoke selection and stricter zero-retry browser checks.
+
+Final verification of that complete command passed: locked installation, zero
+vulnerabilities at the low threshold, all business tests, identical production
+build manifests, all 20 smoke cases and all **4,170 browser cases** (four workers,
+zero retries, 6.0 minutes). These are local results, not GitHub runner timings.
+Build manifest SHA-256:
+`042b59f2b90f2bbb8815b526c0600f5a8777c4729697efeee1cd4a36fa42d218`.
+
+The first full pass exposed a race in the monster-name navigation tests: the
+language button could still belong to the list while the detail route loaded.
+Trace evidence confirmed the interrupted navigation. Epsilon, Epsigard and Gol
+Dragon tests now assert the original detail name before switching languages;
+three repeated passes (nine cases) and the final complete run passed. No retry,
+timeout or expected result was weakened. Controlled release-script checks also
+confirmed that command failure and differing build manifests abort later stages.
+
+YAML and dependency checks confirmed that smoke precedes Pages upload and that
+the manual full workflow retains reproducibility and three shards without a
+deploy job. Final review found no remaining in-scope issue. Documentation-only
+finalization is outside the production build inputs.
 
 ## October 6, 2026 weapon-special explanations
 

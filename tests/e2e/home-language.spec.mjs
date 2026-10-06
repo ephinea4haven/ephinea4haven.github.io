@@ -10,7 +10,7 @@ for(const [lang,heading,title,galatine] of [
   ['zh','面向全球玩家的多语言维基','面向全球玩家',authority.items.Galatine.zh],
   ['en','A multilingual wiki for players worldwide','players worldwide','Galatine'],
   ['ja','世界中のプレイヤーのための多言語 Wiki','世界中のプレイヤー',authority.items.Galatine.ja],
-]) test(`homepage supports direct ${lang} links and all text remains localized after ticks`,async({page})=>{
+]) test(`homepage supports direct ${lang} links and all text remains localized after ticks`, { tag: '@smoke' },async({page})=>{
   await page.clock.install({time:new Date(week.getTime()+86400000)});
   await page.goto(home(lang));
   await expect(page.locator('.hero-title-sub')).toHaveText(heading);
@@ -66,7 +66,7 @@ test('homepage replays language choices made before hydration in every edition',
   }
 });
 
-test('language selection opens separate URLs and is remembered across pages',async({page})=>{
+test('language selection opens separate URLs and is remembered across pages', { tag: '@smoke' },async({page})=>{
   await page.goto('/?campaign=test#directory');
   await page.getByRole('button',{name:'English',exact:true}).click();
   await expect(page).toHaveURL(/\/en\/?\?campaign=test#directory$/);

@@ -525,10 +525,16 @@ stamped with the first 12 hex digits of the file's SHA-256 when content routes a
 generated; a missing file or a manual `?v=N` fails generation. Stylesheets linked
 from content sources are compiled into hashed Angular bundles and need no marker.
 
-`npm run release:prepare` runs source/data checks, the production build and the
-Playwright suite. An approved local release additionally requires dependency
-audit and a second byte-identical build before push. CI repeats those gates with
-`npm ci` before deploying the exact tested artifact; see [Deployment](DEPLOYMENT.md).
+`npm run release:prepare` is the complete local release gate: locked install,
+dependency audit, Chromium installation, business tests, two identical build
+manifests, the same smoke command as release CI, and the full browser suite.
+Browser checks use CI isolation and zero retries; stop any preview on port 4173
+before running. CI runs the same install, audit and business checks, one build
+and the tagged smoke suite before deploying that exact artifact. A separate
+manual full-verification workflow repeats reproducibility and the full browser
+suite for independent diagnosis. Local verification must cover every CI quality
+check on the final changes; GitHub permissions, artifact upload and deployment
+remain CI-only operations. See [Deployment](DEPLOYMENT.md).
 
 The release gates cover:
 

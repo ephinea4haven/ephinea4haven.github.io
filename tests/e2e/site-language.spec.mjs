@@ -19,7 +19,7 @@ test('each language version is a separate prerendered URL with hreflang alternat
   for (const hreflang of ['zh-CN', 'en', 'ja', 'x-default']) expect(events).toContain(`hreflang="${hreflang}"`);
 });
 
-test('a chosen language opens that version of this and later pages', async ({ page }) => {
+test('a chosen language opens that version of this and later pages', { tag: '@smoke' }, async ({ page }) => {
   await page.goto('/event/event.html');
   await expect(bar(page)).toBeVisible();
   await bar(page).getByRole('button', { name: 'English', exact: true }).click();

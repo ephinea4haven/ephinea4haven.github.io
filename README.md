@@ -110,7 +110,7 @@ output and budgets.
 | `npm run test:search` | Check search extraction, language scope and indexing |
 | `npm run test:performance` | Check real browser requests and page resource budgets |
 | `npm run generate:home-backgrounds` | Regenerate responsive homepage backgrounds |
-| `npm run release:prepare` | Run business tests, one build and the browser suite; release audit and reproducibility checks are additional gates |
+| `npm run release:prepare` | Run locked installation, audit, business tests, two reproducible builds, CI smoke tests and the full browser suite |
 | `npm run sync:i18n` | Regenerate site item names from the drop-table authority |
 | `npm run sync:combo` | Refresh the combo calculator from its pinned upstream |
 | `npm run sync:anniversary` | Refresh the anniversary milestone snapshot |

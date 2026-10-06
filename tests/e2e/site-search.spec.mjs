@@ -16,7 +16,7 @@ const query = async (page, value, category = '') => {
 };
 
 for (const [language, prefix] of [['zh', ''], ['en', '/en'], ['ja', '/ja']]) {
-  test(`global search uses authoritative names and abbreviations in ${language}`, async ({ page }) => {
+  test(`global search uses authoritative names and abbreviations in ${language}`, { tag: '@smoke' }, async ({ page }) => {
     await page.goto(`${prefix}/`);
     await open(page);
     const results = page.getByTestId('site-search-results');
