@@ -15,6 +15,7 @@
   <a href="#hp-drain"><span>F</span>HP を消費する武器</a>
   <a href="#photon-blast"><span>G</span>PB の効果とダメージ</a>
   <a href="#mag-triggers"><span>H</span>マグのイベント</a>
+  <a href="#weapon-specials"><span>I</span>特殊効果</a>
 </nav>
 <p class="mechanics-illustration-note">このページは Ephinea PSOBB の主な数値の計算式をまとめたものです。特に記載がない限り、式と数値は <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">Ephinea Wiki の Game mechanics ページ</a>をもとにしています。最終ダメージは四捨五入ではなく切り捨てです。計算結果が 100.92 なら、実際のダメージは 100 になります。</p>
 
@@ -92,7 +93,7 @@
 </tbody>
 </table>
 <ul>
-<li>HP 吸収系のエクストラアタックは、与えたダメージと同じ量の HP を吸収します。</li>
+<li>HP 吸収系は ×0.67 の物理ダメージに加え、吸収量と同じダメージを与えます。吸収量には特殊効果の段階・難易度上限・減衰が適用されます（<a href="#weapon-specials">I 節</a>）。</li>
 <li>Vjaya のエクストラアタックは1回ごとに 10,000 メセタを消費し、命中は強攻撃として計算されます。</li>
 </ul>
 
@@ -112,7 +113,7 @@
 <section data-part="accuracy">
 <h2 id="accuracy">B：プレイヤーの攻撃の命中計算</h2>
 
-<p>この章ではプレイヤーが攻撃側、エネミーが防御側です。プレイヤーの ATA とエネミーの EVP で命中が決まり、命中したら A 章の物理ダメージの計算に進みます。テクニックには命中判定がなく、相手に触れれば必ず効果が出ます。</p>
+<p>この章ではプレイヤーが攻撃側、エネミーが防御側です。プレイヤーの ATA とエネミーの EVP で命中が決まり、物理ダメージは A 章、特殊効果は <a href="#weapon-specials">I 章</a>のルールで計算します。テクニックには命中判定がなく、相手に触れれば必ず効果が出ます。</p>
 
 <figure class="mechanics-figure" aria-labelledby="combo-caption">
   <figcaption id="combo-caption"><span class="mechanics-eyebrow">図解・連続攻撃の命中</span><strong>同じ強攻撃でも、後の段ほど当たりやすい</strong><span>例：合計 ATA 200、エネミーの EVP 500、状態異常なし、近接攻撃。3本の棒は同じ 0–100% の目盛りです。</span></figcaption>
@@ -797,4 +798,33 @@
 <h4>独立型</h4>
 <p><code>発動率 = シンクロ率による上乗せ</code></p>
 <p>たとえば  <span data-item-en="Sato"></span>  の 100 PB の無敵イベントは 0-35% で、シンクロ率 61-80% では発動率は 25% だけ、シンクロ率 30% 以下ではまったく発動しません。</p>
+</section>
+
+<section data-part="weapon-specials">
+<h2 id="weapon-specials">I: エクストラアタック (Weapon Specials)</h2>
+<p>通常の特殊効果を持つエクストラアタックはまず <a href="#accuracy">ATA／EVP による命中判定</a>を行い、その後に効果量や発動率を計算します。命中しても凍結・麻痺・即死が必ず成功するわけではありません。代償型には追加の発動判定がありません。各段階の数値、コードと中英日名称は<a href="/data/bb_items.html#weapon-specials">通常の特殊効果一覧</a>と<a href="/data/bb_items.html#s-rank-specials">S-Rank の特殊効果一覧</a>を参照してください。</p>
+<h3 id="special-effects">効果と計算の基準</h3>
+<table>
+<thead><tr><th>種類</th><th>効果と制限</th></tr></thead>
+<tbody>
+<tr><td>代償型：Charge / Spirit / Berserk</td><td>チャージは 200 メセタ、スピリットは現在 TP の 20%、バーサークは現在 HP の 25% を消費します。物理ダメージ倍率はすべて ×3.33（強攻撃は ×1.89）です。Spirit は TP が 10 未満だと効果を発揮しません。</td></tr>
+<tr><td>HP／TP／EXP 吸収</td><td>Gush は敵 HP の 17%、Geist は自分の最大 TP の 6%、King's は敵撃破時の EXP の 12% が基準です。Normal／Hard／Very Hard／Ultimate の1回の上限は HP 30／60／90／120、TP 25／50／75／100、EXP 20／40／60／80。同じ敵から吸収できる EXP の合計は、その敵の撃破 EXP までです。</td></tr>
+<tr><td>HP 削減：Devil's / Demon's</td><td>敵の現在 HP を 50%／75% 削ります。その割合が残るという意味ではありません。命中後の発動率は 50%。ボスには無効です。</td></tr>
+<tr><td>凍結／麻痺／混乱</td><td>特殊効果の段階、敵 ESP、効果減衰とユニットで発動率が決まります。Blizzard／Arrest の基礎威力は 80、Chaos は 76 であり、最終成功率ではありません。耐性により無効な敵には効きません。</td></tr>
+<tr><td>即死：Hell 系</td><td>ESP ではなく敵 EDK を使用します。Hell の基礎威力は 93。ボスには無効です。</td></tr>
+<tr><td>炎／雷</td><td>ダメージはキャラクターレベル、特殊効果の段階、敵 EFR／ETH で決まり、ATP の物理ダメージ式は使いません。雷は感電が有効な Machine 系の敵を感電させる場合もあります。</td></tr>
+</tbody>
+</table>
+<h3 id="special-modifiers">効果減衰・種族・難易度の補正</h3>
+<ul>
+<li>減衰係数 r は減衰なしなら 1。減衰対象のソード・ダガー・パルチザンは 0.5、スライサー・マシンガン・ショットは 0.33 です。武器種だけで判断せず、個別の武器を確認してください。吸収系は難易度上限の適用後に r を掛け、HP 削減系は削る割合に r を掛けます。状態異常・即死系は発動率が減衰します。代償型と属性ダメージは減衰しません。</li>
+<li>Ultimate のアンドロイドは HP／EXP 吸収、凍結・麻痺・混乱の基礎威力に 30 ポイント加算。逆に Devil's／Demon's の HP 削減率は 20%／45% に下がります。すべての特殊効果が一律に 30% 強くなるわけではありません。</li>
+<li>麻痺／混乱の発動率 = (威力 − ESP) × r × ユニット倍率。凍結の発動率 = min((威力 − ESP) × r, 40) × ユニット倍率。結果は % として扱います。Ephinea の凍結上限は全難易度で 40%（オリジナル版 Ultimate は 20%）で、ユニット倍率より先に適用します。</li>
+<li>即死の発動率 = (威力 − EDK) × r × ユニット倍率。V501 は ×1.5、V502 は ×2。凍結・麻痺・混乱では両方とも ×1.5 です。両者は重複せず、ATA の命中率も上げません。確率は 0～100% の範囲内で、無効な敵には効きません。</li>
+<li>計算例：EDK 40 の敵に減衰なし・補助ユニットなしの Hell を当てると、命中後の発動率は 93 − 40 = 53%。減衰するソードなら 26.5% です。前者で攻撃命中率が 80% の場合、1回の試行で即死する確率は 80% × 53% = 42.4% です。</li>
+</ul>
+<h3 id="special-corrections">S-Rank の違いと説明の訂正</h3>
+<p>S-Rank（ES）は武器種による減衰を受けません。通常の特殊効果には耐性・無効化、種族と難易度のルールが適用されます。命中判定は効果によって異なり、<a href="https://wiki.pioneer2.net/w/Ranger_guide">ES Zalure は ATA の命中判定を行いません</a>が、攻撃が対象に接触する必要はあります。Jellen／Zalure は Lv.21、HP Revival／TP Revival は自動回復です。アンドロイドは Spirit、Geist、TP Revival 付きの ES 武器を装備できません。</p>
+<p>今回の照合による訂正：Spirit は現在 TP の 20%、Berserk は現在 HP の 25% を消費し、<a href="#hp-drain">F 節の最大 HP を基準とする消費</a>とは異なります。Demon's は HP を 75% 削減（Ultimate のアンドロイドは 45%）。HP 吸収系は ×0.67 の物理ダメージに加えて吸収量と同じダメージを与えるため、回復量は総ダメージと同じではありません。</p>
+<p>出典：Ephinea Wiki の <a href="https://wiki.pioneer2.net/w/Weapons#Special_attacks">特殊攻撃と減衰</a>、<a href="https://wiki.pioneer2.net/w/Spirit">Spirit</a>、<a href="https://wiki.pioneer2.net/w/Berserk">Berserk</a>、<a href="https://wiki.pioneer2.net/w/Gush">Gush</a>、<a href="https://wiki.pioneer2.net/w/Blizzard">Blizzard</a>、<a href="https://wiki.pioneer2.net/w/Hell">Hell</a>、<a href="https://wiki.pioneer2.net/w/Demon%27s">Demon's</a>、<a href="https://wiki.pioneer2.net/w/ES_weapons#Adding_specials">ES の特殊効果</a>。以上は通常の難易度ルールです。Anguish ではさらに敵 EDK／ESP が上がり、状態異常の持続時間と HP 削減効果が減少します。</p>
 </section>

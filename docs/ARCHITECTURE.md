@@ -444,6 +444,23 @@ accessibility. [The mechanics illustration record](MECHANICS_VISUAL_EVIDENCE.md)
 lists the sources, verification results and review history for these figures,
 including where the page's threshold wording differs from the Wiki summary.
 
+Weapon-special code/name lookup lives in the three authored `data/bb_items.html`
+editions. Each ordinary or ES row has a code, a shared Chinese/English/Japanese
+name and an edition-specific effect description. Ordinary rows hold one identity
+per row so the existing two-column search projection cannot lose a second pair.
+Heading IDs and self-links provide shareable section targets. Canonical item-only
+cells put `data-item-en` on the `td`; the existing generator and localizer resolve
+the same authority without an extra placeholder span. Browser tests compare all
+945 such cells per edition against the authority, including the CI environment
+path, and exercise item and multilingual special search.
+
+`tools/mechanics.html#weapon-specials` owns the explanatory companion: effects,
+activation versus accuracy, reduction, Ultimate android and unit modifiers,
+S-Rank exceptions and correction notes. Its three editions link to the code
+lookup; tests cover numerical rules, Zalure's accuracy exception, difficulty caps,
+localized links, anchors and mobile overflow. Source evidence and review findings
+are recorded in [the mechanics evidence record](MECHANICS_VISUAL_EVIDENCE.md#october-6-2026-weapon-special-alignment-review).
+
 Build-input JavaScript datasets are never copied to `_site`. Generators evaluate
 or normalize them into Angular modules. The PSOStats Combo snapshot remains an
 audited upstream boundary. Its Angular generator normalizes source line endings

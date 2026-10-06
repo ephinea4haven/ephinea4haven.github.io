@@ -31,6 +31,7 @@
   <a href="#hp-drain"><span>F</span>消耗自身 HP</a>
   <a href="#photon-blast"><span>G</span>PB 技能与伤害</a>
   <a href="#mag-triggers"><span>H</span>玛古事件</a>
+  <a href="#weapon-specials"><span>I</span>武器特殊属性</a>
 </nav>
 <p class="mechanics-illustration-note">本页汇总 Ephinea PSOBB 的核心数值公式。除另有注明外，公式与数值均整理自 <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">Ephinea Wiki 的 Game mechanics 页面</a>。游戏对最终伤害只做截断，不做四舍五入：计算结果为 100.92 时，实际伤害为 100。</p>
 
@@ -108,7 +109,7 @@
 </tbody>
 </table>
 <ul>
-<li>HP 吸取类特殊攻击吸取的 HP 等于其造成的伤害。</li>
+<li>HP 吸取类特殊攻击在 ×0.67 物理伤害之外，还附加等于吸取量的伤害；吸取量另受效果等级、难度上限与武器衰减限制，见 <a href="#weapon-specials">I 节</a>。</li>
 <li>Vjaya 每次特殊攻击消耗 10,000 Meseta，命中率按重攻击计算。</li>
 </ul>
 
@@ -128,7 +129,7 @@
 <section data-part="accuracy">
 <h2 id="accuracy">B: 玩家攻击敌人的命中计算</h2>
 
-<p>本节以玩家为攻击方、敌人为防守方。玩家的 ATA 与敌人的 EVP 决定攻击是否命中；命中后再进入 A 节的物理伤害计算。魔法不进行命中判定，只要接触到目标就必定生效。</p>
+<p>本节以玩家为攻击方、敌人为防守方。玩家的 ATA 与敌人的 EVP 决定攻击是否命中；物理伤害按 A 节计算，特殊效果另按 <a href="#weapon-specials">I 节</a>判定。魔法不进行命中判定，只要接触到目标就必定生效。</p>
 
 <figure class="mechanics-figure" aria-labelledby="combo-caption">
   <figcaption id="combo-caption"><span class="mechanics-eyebrow">连击命中图解</span><strong>同样是重攻击，放在后段更容易命中</strong><span>算例：总 ATA 200，敌人 EVP 500、无异常状态，近战攻击。三条横条共用 0–100% 刻度。</span></figcaption>
@@ -813,6 +814,35 @@
 <h4>独立型</h4>
 <p><code>触发率 = 同步率加成</code></p>
 <p>例如 <span data-item-en="Sato"></span> 的 100 PB 无敌事件为 0-35%：同步率 61-80% 时触发率只有 25%，同步率不超过 30% 时完全不会触发。</p>
+</section>
+
+<section data-part="weapon-specials">
+<h2 id="weapon-specials">I: 武器特殊属性 (Weapon Specials)</h2>
+<p>普通特殊攻击先过 <a href="#accuracy">ATA／EVP 命中判定</a>，再计算效果；命中不保证异常或即死成功。牺牲型无额外发动判定。中英日名称、各档数值与代码见<a href="/data/bb_items.html#weapon-specials">普通特殊属性表</a>及<a href="/data/bb_items.html#s-rank-specials">S-Rank 特殊属性表</a>。</p>
+<h3 id="special-effects">效果与计算基准</h3>
+<table>
+<thead><tr><th>类型</th><th>效果与限制</th></tr></thead>
+<tbody>
+<tr><td>牺牲型：Charge / Spirit / Berserk</td><td>金祭消耗 200 Meseta，灵祭消耗当前 TP 的 20%，血祭消耗当前 HP 的 25%；均为 ×3.33 物理伤害（重攻击 ×1.89）。Spirit 要求至少 10 TP。</td></tr>
+<tr><td>HP／TP／EXP 吸取</td><td>Gush 按敌人 HP 的 17%，Geist 按自身最大 TP 的 6%，King's 按敌人击杀 EXP 的 12% 计算；再应用难度上限与衰减。Normal／Hard／Very Hard／Ultimate 每次上限：HP 30／60／90／120，TP 25／50／75／100，EXP 20／40／60／80；同一敌人累计吸取 EXP 不超过其击杀 EXP。</td></tr>
+<tr><td>HP 削减：Devil's / Demon's</td><td>削去敌人当前 HP 的 50%／75%；命中后仍有 50% 发动率。Boss 免疫。</td></tr>
+<tr><td>冰冻／麻痹／混乱</td><td>基础强度：Blizzard／Arrest 为 80，Chaos 为 76；须计入 ESP、衰减与装备倍率，不是最终成功率。</td></tr>
+<tr><td>即死：Hell 系</td><td>Hell 基础强度 93，使用敌人 EDK；Boss 免疫。</td></tr>
+<tr><td>火焰／雷电</td><td>伤害按角色等级、特殊属性等级与敌人 EFR／ETH 计算，不使用 ATP。</td></tr>
+</tbody>
+</table>
+<h3 id="special-modifiers">衰减、种族与难度修正</h3>
+<ul>
+<li>衰减系数 r：无衰减为 1；适用衰减的大剑／匕首／长刀为 0.5，投刃／机枪／散弹枪为 0.33，须查具体武器。吸取量在难度上限后乘 r，削血比例直接乘 r；牺牲型与元素伤害不衰减。</li>
+<li>Ultimate 机器人：HP／EXP 吸取与冰冻／麻痹／混乱强度加 30 个百分点；Devil's／Demon's 削血比例降为 20%／45%。</li>
+<li>麻痹／混乱发动率 = (强度 − ESP) × r × 装备倍率；冰冻 = min((强度 − ESP) × r, 40) × 装备倍率。结果单位为 %。Ephinea 冰冻上限均为 40%（原版 Ultimate 为 20%），先取上限再乘装备倍率。</li>
+<li>即死发动率 = (强度 − EDK) × r × 装备倍率。V501／V502 对即死分别为 ×1.5／×2，对上述异常均为 ×1.5；不叠加，不增加 ATA。概率限于 0–100%，免疫仍有效。</li>
+<li>算例：无装备加成的 Hell 对 EDK 40，命中后发动率为 93 − 40 = 53%，衰减大剑为 26.5%。前者若命中率 80%，每次攻击即死概率为 80% × 53% = 42.4%。</li>
+</ul>
+<h3 id="special-corrections">S-Rank 区别与描述修正</h3>
+<p>S-Rank（ES）无武器类型衰减；普通效果的抗性／免疫、种族与难度规则仍适用。命中判定须区分效果：<a href="https://wiki.pioneer2.net/w/Ranger_guide">ES Zalure 不做 ATA 命中判定</a>，攻击仍须接触目标。Jellen／Zalure 均为 Lv.21，HP／TP Revival 为被动恢复；机器人不能装备 Spirit、Geist、TP Revival 的 ES 武器。</p>
+<p>修正要点：上述 Spirit／Berserk 消耗以当前值为准，区别于 <a href="#hp-drain">F 节的最大 HP 消耗</a>；Demon's 的百分比是削去量；HP 吸取附加伤害 = 吸取量，总伤害还包括 ×0.67 物理伤害。</p>
+<p>依据：Ephinea Wiki 的 <a href="https://wiki.pioneer2.net/w/Weapons#Special_attacks">特殊攻击与衰减</a>、<a href="https://wiki.pioneer2.net/w/Spirit">Spirit</a>、<a href="https://wiki.pioneer2.net/w/Berserk">Berserk</a>、<a href="https://wiki.pioneer2.net/w/Gush">Gush</a>、<a href="https://wiki.pioneer2.net/w/Blizzard">Blizzard</a>、<a href="https://wiki.pioneer2.net/w/Hell">Hell</a>、<a href="https://wiki.pioneer2.net/w/Demon%27s">Demon's</a> 与 <a href="https://wiki.pioneer2.net/w/ES_weapons#Adding_specials">ES 特殊属性</a>。Anguish 还会提高 EDK／ESP、缩短异常时间、削弱削血。</p>
 </section>
 
     </div>

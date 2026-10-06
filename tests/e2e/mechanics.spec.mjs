@@ -42,6 +42,7 @@ test('mechanics diagrams remain readable and keyboard accessible', async ({ page
     ['C 回避与 Guard', 'incoming-physical'], ['D 魔法伤害', 'technique-damage'],
     ['E 击倒阈值', 'knockdown'], ['F 消耗自身 HP', 'hp-drain'],
     ['G PB 技能与伤害', 'photon-blast'], ['H 玛古事件', 'mag-triggers'],
+    ['I 武器特殊属性', 'weapon-specials'],
   ];
   await expect(navigation.getByRole('link')).toHaveCount(chapters.length);
   for (const [name, id] of chapters) {
@@ -215,3 +216,33 @@ test('PB donation rules and Twins levels distinguish source facts from worked ex
     await example.screenshot({ path: test.info().outputPath(`pb-levels-mobile-${width}.png`) });
   }
 });
+
+for (const prefix of ['', '/en', '/ja']) {
+  test(`weapon specials explain effects, modifiers and corrections in ${prefix || 'zh'}`, async ({ page }) => {
+    await page.goto(`${prefix}/tools/mechanics.html`);
+    await page.locator(`.mechanics-nav a[href="${prefix}/tools/mechanics.html#weapon-specials"]`).click();
+    await expect(page.locator('#weapon-specials')).toBeInViewport();
+    const section = page.locator('section[data-part="weapon-specials"]');
+    await expect(section.locator('tbody tr')).toHaveCount(6);
+    await expect(section.locator('a[href="https://wiki.pioneer2.net/w/Ranger_guide"]')).toContainText(/Zalure.*不做 ATA 命中判定|Zalure has no ATA accuracy check|Zalure は ATA の命中判定を行いません/);
+    for (const caps of [/30[／/]60[／/]90[／/]120/, /25[／/]50[／/]75[／/]100/, /20[／/]40[／/]60[／/]80/]) {
+      await expect(section.locator('table')).toContainText(caps);
+    }
+    for (const value of ['200', '20%', '25%', '3.33', '1.89', '17%', '6%', '12%', '50%', '75%']) {
+      await expect(section.locator('table')).toContainText(value);
+    }
+    for (const value of ['0.5', '0.33', '20%', '45%', 'V501', 'V502', '26.5%', '42.4%', 'Lv.21', '0.67']) {
+      await expect(section).toContainText(value);
+    }
+    await expect(page.locator('section[data-part="physical-damage"] ul').filter({ hasText: '0.67' })).toHaveCount(1);
+    for (const anchor of ['weapon-specials', 's-rank-specials']) {
+      await expect(section.locator(`a[href="${prefix}/data/bb_items.html#${anchor}"]`)).toHaveCount(1);
+    }
+    for (const id of ['special-effects', 'special-modifiers', 'special-corrections']) {
+      await page.goto(`${prefix}/tools/mechanics.html#${id}`);
+      await expect(page.locator('#' + id)).toBeInViewport();
+    }
+    await page.setViewportSize({ width: 320, height: 900 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(320);
+  });
+}

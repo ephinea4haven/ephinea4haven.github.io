@@ -43,6 +43,36 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 6, 2026 weapon-special explanations
+
+The maintainer reviewed the local BB-item and mechanics previews, then requested
+review, documentation alignment, commit and push. Ordinary and ES special tables
+now include Chinese/English/Japanese names and descriptions; section anchors and
+mechanics section I cover effect activation, reduction, Ultimate android rules,
+unit modifiers and corrections. Existing HP-drain wording is corrected, and ES
+Zalure is explicitly exempted from the ordinary ATA check.
+
+The [review ledger](MECHANICS_VISUAL_EVIDENCE.md#october-6-2026-weapon-special-alignment-review)
+records source checks, the CI authority-path correction and regression evidence.
+Item-only cells retain their exact canonical identities with less markup; no
+build budget is raised. The release also updates transitive `source-map-js` from
+1.2.1 to 1.2.2 to clear GHSA-68fv-2mgg-jv7q within existing dependency ranges.
+
+Final local validation passed: locked installation, zero vulnerabilities at the
+`low` audit threshold, the complete business suite, two byte-identical build
+manifests, and all **4,170** browser tests (four workers, no retries). The browser
+suite uses an explicit `DROPTABLE_I18N_AUTHORITY` path, matching CI's contract.
+Build output: 3,802 routes / 135 fragments, published JavaScript gzip
+999,675 / 1,003,000 bytes. Manifest SHA-256:
+`042b59f2b90f2bbb8815b526c0600f5a8777c4729697efeee1cd4a36fa42d218`.
+All four review findings are fixed; the final review verdict is PASS. The local
+browser server needed permission to listen on its loopback port. No assertion,
+release gate or budget was relaxed. Documentation-only finalization is outside
+the published build input directories.
+
+Commit and push are authorized. Publication is established only by the matching
+pushed revision's successful Pages workflow.
+
 ## October 5, 2026 Epsilon translation alignment
 
 The maintainer accepted the cross-project rename and authorized documentation,

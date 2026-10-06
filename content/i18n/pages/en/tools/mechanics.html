@@ -15,6 +15,7 @@
   <a href="#hp-drain"><span>F</span>Weapons that cost HP</a>
   <a href="#photon-blast"><span>G</span>Photon Blasts</a>
   <a href="#mag-triggers"><span>H</span>Mag events</a>
+  <a href="#weapon-specials"><span>I</span>Weapon Specials</a>
 </nav>
 <p class="mechanics-illustration-note">This page summarizes the core formulas of Ephinea PSOBB. Unless noted otherwise, formulas and values come from  <a href="https://wiki.pioneer2.net/w/Game_mechanics" target="_blank" rel="noopener">the Ephinea Wiki’s Game mechanics page</a>. The game truncates final damage rather than rounding it: a result of 100.92 deals 100.</p>
 
@@ -92,7 +93,7 @@
 </tbody>
 </table>
 <ul>
-<li>HP-drain specials drain HP equal to the damage they deal.</li>
+<li>HP-drain specials deal ×0.67 physical damage plus damage equal to HP drained. The drain amount depends on special tier, difficulty cap and reduction; see <a href="#weapon-specials">section I</a>.</li>
 <li>Each Vjaya special attack costs 10,000 Meseta, and its accuracy is calculated as a heavy attack.</li>
 </ul>
 
@@ -112,7 +113,7 @@
 <section data-part="accuracy">
 <h2 id="accuracy">B: Hit calculation when players attack enemies</h2>
 
-<p>In this section the player attacks and the enemy defends. The player’s ATA and the enemy’s EVP decide whether an attack hits; a hit then goes on to the physical damage calculation in Section A. Techniques have no hit check: they always take effect when they touch the target.</p>
+<p>In this section the player attacks and the enemy defends. The player’s ATA and the enemy’s EVP decide whether an attack hits; physical damage uses Section A, while special effects follow <a href="#weapon-specials">Section I</a>. Techniques have no hit check: they always take effect when they touch the target.</p>
 
 <figure class="mechanics-figure" aria-labelledby="combo-caption">
   <figcaption id="combo-caption"><span class="mechanics-eyebrow">Combo accuracy, illustrated</span><strong>The same heavy attack hits more easily later in the combo</strong><span>Example: 200 total ATA against 500 EVP, no status effects, melee. All three bars share a 0–100% scale.</span></figcaption>
@@ -797,4 +798,33 @@
 <h4>Independent</h4>
 <p><code>Trigger rate = Synchro bonus</code></p>
 <p>For example,  <span data-item-en="Sato"></span> ’s 100 PB invincibility event is 0–35%: at 61–80% Synchro the rate is only 25%, and at 30% Synchro or less it never triggers.</p>
+</section>
+
+<section data-part="weapon-specials">
+<h2 id="weapon-specials">I: Weapon Specials</h2>
+<p>An ordinary special first passes the <a href="#accuracy">ATA/EVP accuracy check</a>, then resolves its effect or activation chance. A hit does not guarantee freeze, paralysis or instant death; sacrificial specials have no additional activation roll. See the <a href="/data/bb_items.html#weapon-specials">ordinary specials table</a> and <a href="/data/bb_items.html#s-rank-specials">S-Rank specials table</a> for Chinese, English and Japanese names, tier values and codes.</p>
+<h3 id="special-effects">Effects and calculation bases</h3>
+<table>
+<thead><tr><th>Type</th><th>Effect and limits</th></tr></thead>
+<tbody>
+<tr><td>Sacrificial: Charge / Spirit / Berserk</td><td>Charge costs 200 Meseta; Spirit costs 20% of current TP; Berserk costs 25% of current HP. All use a ×3.33 physical damage multiplier, compared with ×1.89 for Heavy. Spirit does not function below 10 TP.</td></tr>
+<tr><td>HP / TP / EXP drain</td><td>Gush uses 17% of enemy HP; Geist uses 6% of the player's maximum TP; King's uses 12% of the enemy's kill EXP. Per-activation caps for Normal / Hard / Very Hard / Ultimate are HP 30/60/90/120, TP 25/50/75/100 and EXP 20/40/60/80. Total EXP stolen from one enemy cannot exceed its kill EXP.</td></tr>
+<tr><td>HP cut: Devil's / Demon's</td><td>Removes 50% / 75% of the enemy's current HP, rather than leaving that percentage. After hitting, activation still has a 50% chance. Bosses are immune.</td></tr>
+<tr><td>Freeze / paralysis / confusion</td><td>Activation depends on special tier, enemy ESP, reduction and units. Blizzard / Arrest have base power 80; Chaos has 76. These are not final success rates. Immune targets remain unaffected.</td></tr>
+<tr><td>Instant kill: Hell series</td><td>Uses enemy EDK, not ESP. Hell has base power 93. Bosses are immune.</td></tr>
+<tr><td>Fire / lightning</td><td>Damage uses character level, special tier and enemy EFR / ETH, rather than the ATP physical damage formula. Lightning can also shock susceptible Machine enemies.</td></tr>
+</tbody>
+</table>
+<h3 id="special-modifiers">Reduction, race and difficulty modifiers</h3>
+<ul>
+<li>Reduction factor r is 1 for unreduced specials, 0.5 for eligible Swords, Daggers and Partisans, and 0.33 for eligible Slicers, Mechguns and Shots. Check the individual weapon; type alone is insufficient. Drains apply r after the difficulty cap; HP cuts multiply the removed proportion by r; status and instant-kill specials reduce activation chance. Sacrificial and elemental damage are exempt.</li>
+<li>Androids on Ultimate add 30 percentage points to base HP/EXP drain, freeze, paralysis and confusion power. Devil's / Demon's instead fall to 20% / 45% HP removal. This is not a universal 30% boost.</li>
+<li>Paralysis / confusion chance = (power − ESP) × r × unit boost. Freeze chance = min((power − ESP) × r, 40) × unit boost. Read results as percentages. Ephinea's freeze cap is 40% on every difficulty, versus 20% on vanilla Ultimate; the cap applies before the unit boost.</li>
+<li>Instant-kill chance = (power − EDK) × r × unit boost. V501 gives ×1.5 and V502 ×2; both give ×1.5 for freeze, paralysis and confusion. They do not stack or increase ATA accuracy. Probabilities stay within 0–100%, and immunity still applies.</li>
+<li>Example: unreduced Hell against 40 EDK has a 93 − 40 = 53% activation chance after hitting without a boosting unit; a reduced Sword gives 26.5%. With 80% attack accuracy, the first case kills on 80% × 53% = 42.4% of attempts.</li>
+</ul>
+<h3 id="special-corrections">S-Rank differences and corrected descriptions</h3>
+<p>S-Rank (ES) specials ignore weapon-type reduction; ordinary effects retain their resistance/immunity, race and difficulty rules. Accuracy depends on the effect: <a href="https://wiki.pioneer2.net/w/Ranger_guide">ES Zalure has no ATA accuracy check</a>, though the attack must still contact its target. Jellen / Zalure are Lv.21; HP Revival / TP Revival are passive recovery. Androids cannot equip ES weapons with Spirit, Geist or TP Revival.</p>
+<p>Corrections from this check: Spirit costs 20% of current TP and Berserk 25% of current HP, distinct from the <a href="#hp-drain">maximum-HP costs in section F</a>. Demon's removes 75%, or 45% for androids on Ultimate. HP-drain specials add damage equal to the drained amount on top of ×0.67 physical damage; recovery does not equal total damage.</p>
+<p>Sources: Ephinea Wiki's <a href="https://wiki.pioneer2.net/w/Weapons#Special_attacks">special attacks and reduction</a>, <a href="https://wiki.pioneer2.net/w/Spirit">Spirit</a>, <a href="https://wiki.pioneer2.net/w/Berserk">Berserk</a>, <a href="https://wiki.pioneer2.net/w/Gush">Gush</a>, <a href="https://wiki.pioneer2.net/w/Blizzard">Blizzard</a>, <a href="https://wiki.pioneer2.net/w/Hell">Hell</a>, <a href="https://wiki.pioneer2.net/w/Demon%27s">Demon's</a> and <a href="https://wiki.pioneer2.net/w/ES_weapons#Adding_specials">ES specials</a>. These are standard difficulty rules; Anguish additionally raises enemy EDK/ESP, shortens status durations and weakens HP cuts.</p>
 </section>

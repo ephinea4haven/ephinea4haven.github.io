@@ -313,3 +313,94 @@ rtk git diff --check
 - This version was committed directly to `master` and pushed to `origin/master`.
   The Git commit history matches this delivery, and actual deployment status
   follows the Pages workflow result for that commit.
+
+
+## October 6, 2026 weapon-special alignment review
+
+### Contract and scope
+
+The accepted change aligns ordinary and ES weapon specials with Ephinea Wiki,
+provides Chinese/English/Japanese names and edition-specific explanations,
+adds BB-item section anchors, and explains activation, reduction and corrections
+in mechanics section I. The user authorized documentation, commit and push after
+review. Game-client execution and unrelated mechanics are outside this review.
+
+| Requirement | Owner and downstream checks |
+| --- | --- |
+| Ordinary codes 00–28 and flags; ES codes 01–10 | Three `bb_items.html` sources; data-page tests; three-edition browser search |
+| Canonical item names with simpler cells | `data-item-en` → canonical-item generator → page localization → row search; 945 names per edition compared with authority |
+| Effects, modifiers and corrections | Three `mechanics.html` sources; Wiki individual special pages; mechanics browser cases |
+| Navigation and phone layout | Heading IDs, localized links and reloads; 320px checks; existing mechanics accessibility suite |
+| Release | Full business tests, low-threshold dependency audit, two identical build manifests and full browser suite |
+
+### Finding ledger
+
+| ID | Severity / status | Evidence, impact and correction |
+| --- | --- | --- |
+| WS-01 | Blocking / Fixed | `tests/e2e/bb-items.spec.mjs:3` ignores `DROPTABLE_I18N_AUTHORITY`; CI checks out the dictionary at a different path. Use the existing environment contract and exercise that path. |
+| WS-02 | Should-fix / Fixed | Mechanics section I generalizes ATA checks to all ES specials. Wiki Ranger guide explicitly says Zalure Shot has no accuracy check. Bound the general rule to ordinary specials and document this exception in all editions. |
+| WS-03 | Should-fix / Fixed | Chinese mechanics directs readers to a specials table for all difficulty caps, but that table only states the TP caps. Put HP/TP/EXP caps and the cumulative EXP limit beside the Chinese explanation, matching English/Japanese. |
+| WS-04 | Blocking / Fixed | Release audit reports GHSA-68fv-2mgg-jv7q in transitive `source-map-js@1.2.1`. Update only that dependency to patched 1.2.2 within existing parent ranges; rerun locked install and all gates. |
+
+Sources rechecked: [Weapons](https://wiki.pioneer2.net/w/Weapons),
+[ES weapons](https://wiki.pioneer2.net/w/ES_weapons),
+[Game mechanics](https://wiki.pioneer2.net/w/Game_mechanics),
+[Spirit](https://wiki.pioneer2.net/w/Spirit),
+[Berserk](https://wiki.pioneer2.net/w/Berserk),
+[Demon's](https://wiki.pioneer2.net/w/Demon%27s),
+[Gush](https://wiki.pioneer2.net/w/Gush),
+[Geist](https://wiki.pioneer2.net/w/Geist),
+[King's](https://wiki.pioneer2.net/w/King%27s),
+[Blizzard](https://wiki.pioneer2.net/w/Blizzard),
+[Hell](https://wiki.pioneer2.net/w/Hell) and
+[Ranger guide](https://wiki.pioneer2.net/w/Ranger_guide).
+The source-map advisory and fixed version are recorded in the
+[upstream advisory](https://github.com/advisories/GHSA-68fv-2mgg-jv7q).
+
+Stopping conditions: every finding closed with verification, no new actionable
+finding in a fresh full-scope pass, and all release gates passed against final
+product changes. Local validation and remote publication are recorded separately.
+
+### Repair verification and fresh review
+
+- WS-01: the full browser run uses a copied dictionary via
+  `DROPTABLE_I18N_AUTHORITY=/tmp/haven-ws-i18n-authority.json`. All three BB-item
+  cases pass, including 945 canonical-name comparisons per edition, English item
+  identity search, multilingual special search, section navigation and reloads.
+  Other browser consumers already honor the same environment contract.
+- WS-02/03: before rebuilding, the new Zalure assertions failed against all three
+  previous rendered editions. After rebuilding, all three cases pass, including
+  the HP/TP/EXP cap sequences, 320px overflow and correction anchors. Ordinary
+  attack rules no longer make universal claims about ES effects.
+- WS-04: `npm update source-map-js --ignore-scripts` changed only its lock entry
+  to 1.2.2; parent dependency ranges already permit it. A fresh `npm ci` and
+  `npm audit --audit-level=low` pass with zero vulnerabilities. The local registry
+  hostname failed DNS resolution; successful installation used the official
+  `https://registry.npmjs.org` explicitly without changing repository configuration.
+- Full `npm test` passes after the repairs and locked install. Two subsequent
+  `npm run build` runs produce identical manifests (`cmp` exit 0): 3,802 routes,
+  135 fragments, published JavaScript gzip 999,675 / 1,003,000 bytes, English
+  527,956 and Japanese 584,557 / 700,000 bytes each. Manifest SHA-256:
+  `042b59f2b90f2bbb8815b526c0600f5a8777c4729697efeee1cd4a36fa42d218`.
+- Fresh source review traced the full modified table markup through
+  `buildCanonicalItemConsumers`, `localizeBody`, Angular output and row search.
+  Removing only the documented wrapper/heading changes from the diff leaves
+  the catalog codes, names, order and content identical in all three editions.
+  All six page sources have unique IDs and resolved local anchors; HTML,
+  localization and diff-integrity gates pass. No additional actionable finding
+  remains in the reviewed content, runtime consumers or regression changes.
+- Documentation lives outside the published build input directories; finalizing
+  this record does not change the verified site artifact. This is a Wiki/source
+  alignment review, not an in-game execution test. Publication follows the
+  pushed commit's Pages workflow.
+
+
+Final release verdict: **PASS**. WS-01 through WS-04 are Fixed; no Blocking or
+Should-fix finding remains. The full browser suite passed **4,170 / 4,170** tests
+with four workers and no retries, against the byte-identical production output.
+A sandbox loopback-port denial occurred before tests started; the successful run
+used the necessary execution permission, without altering tests. The business,
+audit, reproducibility, browser and diff-integrity gates all pass. Documentation
+alignment is complete and the user's conditional commit/push authorization is
+satisfied. In-game validation is not claimed; remote deployment is separate from
+local release verification.
