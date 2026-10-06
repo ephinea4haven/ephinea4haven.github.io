@@ -129,10 +129,12 @@ clean outputs before exiting; its evidence is saved under `.angular/dev-validati
 ## Deployment
 
 Every push to `master` runs the **Verify and deploy Pages** workflow. It installs
-locked dependencies, audits them, runs the business tests, builds the site twice
-to confirm the output is reproducible, runs the browser suite, and only then
-deploys the exact artifact it tested. Pull requests run the same checks without
-deploying.
+locked dependencies, audits them, runs the business tests, builds the site once,
+and runs 20 critical browser smoke cases before deploying that exact artifact.
+Pull requests run the same checks without deploying. Before every approved push,
+`npm run release:prepare` must pass locally: it covers all CI quality checks,
+two reproducible builds and the full browser suite. The manual **Full
+verification** workflow provides independent full CI verification without deploying.
 
 Release history and verification notes are kept in
 [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md).

@@ -596,8 +596,9 @@ check rollups; these are historical observations, not a current PR status check.
 GitHub Pages is configured to deploy through GitHub Actions. After a production
 run completes:
 
-1. Confirm the `build`, all three `browser-tests` shards and `deploy` jobs
-   succeeded for the expected `master` commit.
+1. Confirm the `build` job (including `Run release smoke tests`) and `deploy`
+   succeeded for the expected `master` commit. The three full-suite shards belong
+   to the separate manual **Full verification** workflow, not this release run.
 2. Verify `https://www.psohaven.com/`, `404.html`, the custom domain and HTTPS.
 3. Confirm a representative content route and each dedicated interactive tool
    load the content-hashed Angular assets without console or resource errors.
