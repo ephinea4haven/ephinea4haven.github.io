@@ -61,6 +61,51 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 6, 2026 Angular 22.2.1 review (PR #29)
+
+Scope: upgrade the 11 direct Angular packages from 22.2.0 to 22.2.1 together,
+including their four matching Angular tooling dependencies. TypeScript, RxJS,
+dependency overrides, application behavior, route coverage and performance
+budgets remain unchanged. The PR changes only the manifest and lockfile; local
+review also aligns the declared Node floor with the installed toolchain.
+
+Review evidence: [Angular release notes](https://github.com/angular/angular/releases/tag/v22.2.1)
+and [CLI release notes](https://github.com/angular/angular-cli/releases/tag/v22.2.1).
+The patch affects compiler expression handling, routing, SSR and development
+watching, so acceptance includes the production release gate and the separate
+local development integration test.
+
+| Requirement | Verification | Status |
+| --- | --- | --- |
+| Consistent dependency versions and supported peers | Manifest/lock diff, locked install, dependency tree | Passed |
+| No new dependency vulnerability | Low-threshold npm audit | Passed |
+| Production behavior, localization and budgets unchanged | Business suite, two matching builds, 20 smoke and 4,170 full browser cases | Passed |
+| Development watching, SSR and search still work | `npm run test:dev:integration` | Passed |
+| Preserve cleaned history | PR merge base is current master; no historical Claude attribution in its added commit | Verified |
+
+Finding PR29-01 (Should-fix / Fixed): `package.json` and the lockfile declared
+Node `>=24.13.1 <25`, but Angular and its tooling require `^24.15.0` on Node 24.
+The previous declaration admitted unsupported installations. Both manifests and
+README now specify Node 24.15.0 or newer within 24. A semver subset check failed
+before the correction and passed afterward; all executable validation uses
+Node 24.15.0. A final `npm ci --engine-strict` also passed with zero vulnerabilities.
+
+Final review verdict: **PASS**, with no open findings. `npm run release:prepare`
+passed all business tests, audit, two identical build manifests, all 20 smoke
+cases (7.6 seconds) and all 4,170 browser cases (7.0 minutes, four workers, zero
+retries). `npm ls --all` reported no dependency-tree problems. The additional
+`npm run test:dev:integration` passed template refresh, generated-content error
+recovery, fresh search indexing, source restoration and both server shutdowns.
+Only the two dependency files, Node prerequisite wording and this review record
+remain changed; the test's temporary application edits were fully restored.
+
+Build output: 3,802 prerendered routes / 135 fragments; shared JavaScript gzip
+999,141 / 1,003,000 bytes, English 527,936 and Japanese 584,539 / 700,000 each.
+Manifest SHA-256:
+`95fcf836eb6b2fea05bd952965e940bc6df6b43ee580d162a95ff2c33e1a53a6`.
+Local validation covers the merged dependency tree. Publication still requires
+the matching master revision's successful Pages workflow.
+
 ## October 6, 2026 release CI split
 
 The release workflow now builds once and gates upload on 20 existing browser

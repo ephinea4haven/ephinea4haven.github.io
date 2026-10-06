@@ -50,7 +50,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full design.
 
 ### Prerequisites
 
-- Node.js 24 and npm (`nvm use` reads the repository's `.nvmrc`)
+- Node.js 24.15.0 or newer within Node 24, and npm (`nvm use` reads the repository's `.nvmrc`)
 - Python 3, for the data generators and their tests
 - To regenerate challenge maps only: the [`potrace`](https://potrace.sourceforge.net)
   binary on `PATH`, `pip install -r scripts/requirements-maps.txt`, and
