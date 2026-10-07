@@ -8,12 +8,14 @@ and Chinese.
 **Live site:** [www.psohaven.com](https://www.psohaven.com)
 
 The site covers onboarding and client setup, drop tables, quest and RBR rotation
-guides, seasonal events, item and monster catalogs, damage formulas, and
+guides, seasonal events, item and monster catalogs, an Episode III card
+catalog, damage formulas, and
 character-planning tools such as the stat simulator and combo calculator.
 
 Every public page has Chinese, English and Japanese versions. Item and monster
 names come from the shared name authority; a name it does not translate yet is
-shown in English.
+shown in English. Episode III card names and card text are English and
+Japanese only; the Chinese edition shows them in English.
 
 ## Architecture at a glance
 
@@ -161,7 +163,8 @@ Engineering principles and repository workflow are defined in
 
 - [Architecture](docs/ARCHITECTURE.md)
 - [Angular migration record](docs/ANGULAR_MIGRATION.md)
-- [Item catalog](docs/ITEM_CATALOG.md) and [monster catalog](docs/MONSTER_CATALOG.md)
+- [Item catalog](docs/ITEM_CATALOG.md), [monster catalog](docs/MONSTER_CATALOG.md)
+  and [Episode III card catalog](docs/EP3_CARD_CATALOG.md)
 - [Mechanics guide illustrations and review record](docs/MECHANICS_VISUAL_EVIDENCE.md)
 - [Launcher settings guide](guide/launcher.html) and [native screenshot evidence and review record](docs/EPHINEA_LAUNCHER_EVIDENCE.md)
 - [Challenge-map implementation, generation and remaining work](docs/CHALLENGE_MAP_REDRAW.md)

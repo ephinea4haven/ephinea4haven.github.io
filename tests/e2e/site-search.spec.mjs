@@ -10,6 +10,9 @@ const open = async page => {
   await expect(page.locator('#site-search-query')).toBeFocused();
 };
 const query = async (page, value, category = '') => {
+  // Clear first: changing category with the previous term can legitimately fire
+  // its 180 ms debounce before the next Playwright action under browser load.
+  await page.locator('#site-search-query').fill('');
   await page.locator('#site-search-category').selectOption(category);
   await page.locator('#site-search-query').fill(value);
   await expect(page.getByTestId('site-search-results')).toHaveAttribute('aria-busy', 'false', { timeout: 20000 });

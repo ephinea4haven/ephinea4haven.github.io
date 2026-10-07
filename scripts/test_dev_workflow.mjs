@@ -80,7 +80,7 @@ try {
    catch(error) { if (error.message === 'Search asset server remained open after stop') throw error; }
    mark('Search asset server closed after shutdown');
  }
- for (const generator of ['generate_item_catalog', 'generate_monster_catalog', 'generate_angular_combo', 'generate_angular_content']) {
+ for (const generator of ['generate_item_catalog', 'generate_monster_catalog', 'generate_ep3_card_catalog', 'generate_angular_combo', 'generate_angular_content']) {
    const result = spawnSync(process.execPath, [`scripts/${generator}.mjs`], { cwd: root, stdio: 'pipe' });
    if (result.status !== 0) throw new Error(`Could not restore generated files: ${result.stderr}`);
  }

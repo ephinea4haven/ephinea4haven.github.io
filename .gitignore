@@ -9,6 +9,7 @@ src/app/generated/
 assets/data/items/
 assets/data/item-index.json
 assets/data/monsters/
+assets/data/ep3-cards/
 _site/
 .site-build-*/
 .site-backup-*/
@@ -50,6 +51,7 @@ docs/assets/2c4-auto-warp/*
 !docs/EQUIPMENT_IMAGES.md
 !docs/ARMOR_PARTICLE_AUDIT.md
 !docs/MONSTER_CATALOG.md
+!docs/EP3_CARD_CATALOG.md
 !docs/NPC_GUIDE.md
 !docs/PRICE_GUIDE.md
 !docs/PSO_LOCAL_MODEL_RENDERING.md

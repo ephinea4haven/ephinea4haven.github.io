@@ -1,3 +1,6 @@
+import { EP3_CARD_LOADER } from './ep3-card-catalog/ep3-card-data.service';
+import ep3Details from './generated/ep3-card-catalog/details.server.json';
+import type { CardDetail } from './ep3-card-catalog/card';
 import { mergeApplicationConfig } from '@angular/core';
 import { provideServerRendering, withRoutes } from '@angular/ssr';
 import { appConfig } from './app.config';
@@ -15,7 +18,7 @@ import monsterDetails from './generated/monster-catalog/details.server.json';
 import type { MonsterDetail } from './monster-catalog/monster';
 
 export const serverConfig = mergeApplicationConfig(appConfig, {
-  providers: [provideServerRendering(withRoutes(serverRoutes)), {
+  providers: [provideServerRendering(withRoutes(serverRoutes)), {provide:EP3_CARD_LOADER,useValue:async(id:string)=>(ep3Details as unknown as Record<string,CardDetail>)[id]}, {
     provide: ITEM_DETAIL_LOADER,
     useValue: async (id: string) => (details as Record<string, ItemDetail>)[id] ?? null,
   }, {

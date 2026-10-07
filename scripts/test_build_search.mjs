@@ -12,9 +12,9 @@ test('canonical standalone routes exclude error documents, duplicate aliases and
   assert.deepEqual(searchRoutes([
     '/', '/index.html', '/en', '/en/', '/ja/index.html',
     '/data/protocol', '/data/protocol/', '/data/protocol/index.html',
-    '/404.html', '/en/404.html', '/event/christmas/2025.html', '/ja/event/easter/2024.html',
+    '/404.html', '/en/404.html', '/ja/404.html', '/data/ep3-cards/404.html', '/en/data/ep3-cards/404.html', '/event/christmas/2025.html', '/ja/event/easter/2024.html',
     '/event/christmas', '/tools/cc.html',
-  ]), ['/', '/data/protocol/', '/en/', '/event/christmas/', '/ja/', '/tools/cc.html']);
+  ]), ['/', '/data/ep3-cards/404.html', '/data/protocol/', '/en/', '/en/data/ep3-cards/404.html', '/event/christmas/', '/ja/', '/tools/cc.html']);
 });
 
 test('historical event records use localized host URLs, accurate years, and no default-year duplicate', () => {
@@ -83,24 +83,25 @@ test('Pagefind builds all categories reproducibly with authoritative aliases in 
   const directory = await mkdtemp(path.join(tmpdir(), 'haven-search-'));
   try {
     const routes = [];
+    const ep3Root = (await readFile('src/app/ep3-card-catalog/ep3-card-catalog.component.html', 'utf8')).match(/<main[^>]*>/)[0];
     for (const [prefix, language, title] of [['', 'zh-CN', '王者之剑'], ['/en', 'en', 'EXCALIBUR'], ['/ja', 'ja', 'エクスキャリバー']]) {
       const route = `${prefix}/data/items/excalibur.html`;
       routes.push(route);
       const filename = path.join(directory, route);
       await mkdir(path.dirname(filename), { recursive: true });
       await writeFile(filename, `<html lang="${language}"><body><h1>${title}</h1><p>Fixture content</p></body></html>`);
-      for (const categoryRoute of ['/data/enemies/booma.html', '/guide/example.html', '/tools/example.html', '/event/example.html', '/data/quest.html']) {
+      for (const categoryRoute of ['/data/ep3-cards/29.html', '/data/ep3-cards/404.html', '/data/enemies/booma.html', '/guide/example.html', '/tools/example.html', '/event/example.html', '/data/quest.html']) {
         const url = `${prefix}${categoryRoute}`;
         routes.push(url);
         const categoryFile = path.join(directory, url);
         await mkdir(path.dirname(categoryFile), { recursive: true });
-        await writeFile(categoryFile, `<html lang="${language}"><body><h1>${searchCategory(url)}</h1>
+        await writeFile(categoryFile, `<html lang="${language}"><body>${url.includes("/ep3-cards/") ? ep3Root : "<main>"}<h1>${searchCategory(url)}</h1>
           <p data-pagefind-filter="edition:classic">Shared fixture content</p>
-          <p data-pagefind-filter="edition:custom">Multiple values on the same page</p></body></html>`);
+          <p data-pagefind-filter="edition:custom">Multiple values on the same page</p></main></body></html>`);
       }
     }
     const report = await buildSearch({ directory, routes });
-    assert.equal(report.pages, 18);
+    assert.equal(report.pages, 24);
     assert.ok(report.javascriptGzipBytes > 0);
     assert.ok(report.javascriptGzipBytes <= 19500, 'minified search runtime and worker stay within 19.5 KB gzip');
     const outputDirectory = path.join(directory, 'assets/search');
@@ -110,7 +111,7 @@ test('Pagefind builds all categories reproducibly with authoritative aliases in 
     assert.ok(files.includes('pagefind-entry.json'));
     assert.ok(!files.some(filename => filename.includes('-ui') || filename.includes('-highlight')));
     const fragmentFiles = (await readdir(path.join(outputDirectory, 'fragment'))).sort();
-    assert.equal(fragmentFiles.length, 18);
+    assert.equal(fragmentFiles.length, 24);
     const fragments = await Promise.all(fragmentFiles.map(async filename => {
       const content = gunzipSync(await readFile(path.join(outputDirectory, 'fragment', filename))).toString();
       return JSON.parse(content.replace(/^pagefind_dcd/, ''));
@@ -119,6 +120,10 @@ test('Pagefind builds all categories reproducibly with authoritative aliases in 
       if (fragment.url.endsWith('/excalibur.html')) {
         const normalized = fragment.content.replaceAll('\u200b', '');
         for (const name of ['EXCALIBUR', '王者之剑', 'エクスキャリバー', 'Excal']) assert.ok(normalized.includes(name), `${fragment.url} missing ${name}`);
+      }
+      if (fragment.url.endsWith('/ep3-cards/29.html')) {
+        const normalized = fragment.content.replaceAll('\u200b', '');
+        for (const name of ["Hildebear's Cane+", 'ヒルデベアケイン＋', 'BEARS CANE +']) assert.ok(normalized.includes(name), `${fragment.url} missing ${name}`);
       }
       assert.deepEqual(fragment.filters.category, [searchCategory(fragment.url)]);
     }

@@ -90,6 +90,12 @@ has started. Check an item only when its stated completion criteria are met.
   43341); 8 feeding tables × 11 foods. The 2026 anniversary guide's "Melan" is
   Merlan.
 
+- [ ] Episode III card text errata. newserv's `notes/ep3-card-corrections.txt`
+  (community-sourced from THG Discord) lists about 25 cards whose in-game text
+  is wrong. Decide how to attribute the community source, then show the
+  corrections on the affected card detail pages in all three languages. See
+  the backlog in the [Episode III card catalog](EP3_CARD_CATALOG.md).
+
 ## Maintenance Guidelines
 
 These are ongoing maintenance requirements, not pending tasks. Apply them when

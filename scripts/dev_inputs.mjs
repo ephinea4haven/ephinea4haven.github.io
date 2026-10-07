@@ -5,13 +5,14 @@ import ts from 'typescript';
 export const generators = [
   'scripts/generate_item_catalog.mjs',
   'scripts/generate_monster_catalog.mjs',
+  'scripts/generate_ep3_card_catalog.mjs',
   'scripts/generate_angular_combo.mjs',
   'scripts/generate_angular_content.mjs',
 ];
 
 export const ignoredOutputs = [
   '.git', 'node_modules', '.angular', 'dist', '_site', 'artifacts',
-  'src/app/generated', 'assets/data/items', 'assets/data/monsters',
+  'src/app/generated', 'assets/data/items', 'assets/data/monsters', 'assets/data/ep3-cards',
   'assets/data/item-index.json', 'content/item-catalog/coverage.json',
   'test-results', 'playwright-report', '.site-build-*', '.site-backup-*',
 ];
@@ -83,14 +84,15 @@ export function featurePaths(source) {
 }
 
 export async function devRoutes(root) {
-  const [features, content, catalog, monsters] = await Promise.all([
+  const [features, content, catalog, monsters, ep3Cards] = await Promise.all([
     readFile(path.join(root, 'src/app/app.routes.server.ts'), 'utf8'),
     readFile(path.join(root, 'src/app/generated/content.routes.server.ts'), 'utf8'),
     readFile(path.join(root, 'src/app/generated/item-catalog/index.json'), 'utf8').then(JSON.parse),
     readFile(path.join(root, 'src/app/generated/monster-catalog/index.json'), 'utf8').then(JSON.parse),
+    readFile(path.join(root, 'src/app/generated/ep3-card-catalog/index.json'), 'utf8').then(JSON.parse),
   ]);
   const routes = new Set();
-  const parameters = { item: catalog.map(row => `${row[0]}.html`), monster: monsters.map(row => `${row.id}.html`) };
+  const parameters = { card: ep3Cards.map(row => `${row.id}.html`), item: catalog.map(row => `${row[0]}.html`), monster: monsters.map(row => `${row.id}.html`) };
   for (const feature of featurePaths(features)) {
     const parameter = /:([\w]+)/.exec(feature)?.[1];
     if (parameter && !parameters[parameter]) throw new Error(`Unknown dev route parameter: ${parameter}`);

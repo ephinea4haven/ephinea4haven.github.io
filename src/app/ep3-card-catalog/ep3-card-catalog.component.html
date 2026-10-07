@@ -1,0 +1,85 @@
+<main class="catalog" [attr.lang]="i18n.htmlLanguage()">
+  <header class="masthead"><a class="brand" [routerLink]="i18n.link('/data/ep3-cards.html')">PSO HAVEN <small>C.A.R.D. ARCHIVE</small></a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)" /></header>
+  <nav class="utility"><a [href]="i18n.link('/')">{{ i18n.t('home') }}</a><a [routerLink]="i18n.link('/data/items.html')">{{ i18n.t('items') }}</a><a [routerLink]="i18n.link('/data/enemies.html')">{{ i18n.t('monsters') }}</a></nav>
+  @if (i18n.language()==='zh') {<p class="notice translation-notice">{{ i18n.t('untranslated') }}</p>}
+  @if(detail();as card){
+    <a class="back" [routerLink]="i18n.link('/data/ep3-cards.html')" [queryParams]="query()">← {{ i18n.t('back') }}</a>
+    <section class="card-hero">
+      <figure class="portrait" [class.medium-only]="!card.images?.large"><monster-image [src]="art()?.path ?? null" [name]="name(card)" [unavailable]="i18n.t('missing')" /></figure>
+      <div><p class="eyebrow">{{ i18n.t('id') }} {{ card.id }} · {{ card.rank }}</p><h1 [attr.lang]="language()">{{ name(card) }}</h1><p class="secondary" [attr.lang]="otherLanguage()">{{ card.names[otherLanguage()] }}</p><p>{{ i18n.t(card.type) }} · {{ i18n.t(card.class) }}</p></div>
+    </section>
+    <dl class="stats-grid">
+      @for(key of statKeys;track key){<div><dt>{{ key.toUpperCase() }}</dt><dd [attr.data-stat]="key">{{ stat(card[key]) }}</dd></div>}
+      <div><dt>{{ i18n.t('self_cost') }}</dt><dd>{{ card.cost.self }}</dd></div><div><dt>{{ i18n.t('allyCost') }}</dt><dd>{{ card.cost.ally }}</dd></div>
+      <div><dt>{{ i18n.t('target_mode') }}</dt><dd>{{ i18n.t(card.targetMode) }}</dd></div>
+      @if(card.type==='ASSIST'){<div><dt>{{ i18n.t('duration') }}</dt><dd>{{ duration(card.assistTurns) }}</dd></div>}
+    </dl>
+    @if(card.cannotMove){<p class="restriction">{{ i18n.t('cannotMove') }}</p>}@if(card.cannotAttack){<p class="restriction">{{ i18n.t('cannotAttack') }}</p>}
+    <section class="detail-section"><h2>{{ i18n.t('range') }}</h2>
+      @if(card.range.entireField){<p>{{ i18n.t('entireField') }}</p>}@else{
+        <div class="range-grid" role="img" [attr.aria-label]="i18n.t('range')+' · '+i18n.t('origin')">
+          @for(row of card.range.grid;track $index;let y=$index){@for(active of row;track $index;let x=$index){<span [class.active]="active" [class.origin]="y===4 && x===2" [attr.data-active]="active">{{ y===4 && x===2?'↑':active?'●':'' }}</span>}}
+        </div><p class="muted">↑ {{ i18n.t('origin') }}</p>
+      }
+    </section>
+    @if(text();as text){<section class="detail-section card-text" [attr.lang]="language()">
+      <div class="header-lines">@for(line of text.header;track $index){<p>{{ line }}</p>}</div>
+      @for(tag of text.tags;track $index){<article class="card-tag" [attr.data-kind]="tag.kind"><p class="eyebrow" [attr.lang]="i18n.htmlLanguage()">{{ i18n.t(tag.kind) }}</p><h2>{{ tag.name }}</h2><p class="tag-body">{{ tag.body }}</p></article>}
+    </section>}
+    @if(card.diff.length){<section class="detail-section differences"><h2>{{ i18n.t('diff') }}</h2><p>{{ i18n.t('onlineNotice') }}</p>
+      @if(effectChanged()){<p class="notice effect-notice">{{ i18n.t('effectNotice') }}</p>}
+      @if(valueDiffs().length){<div class="table-scroll"><table><thead><tr><th>{{ i18n.t('field') }}</th><th>{{ i18n.t('online') }}</th><th>{{ i18n.t('disc') }}</th></tr></thead><tbody>
+        @for(diff of valueDiffs();track diff.field){<tr [attr.data-diff-field]="diff.field"><th scope="row">{{ statKeys.includes($any(diff.field))?diff.field.toUpperCase():i18n.t(diff.field) }}</th><td><pre>{{ difference(diff.field,diff.online) }}</pre></td><td><pre>{{ difference(diff.field,diff.disc) }}</pre></td></tr>}
+      </tbody></table></div>}
+      @for(slot of effectDiffs();track slot.slot){<div class="table-scroll"><table [attr.data-effect-slot]="slot.slot">
+        <caption>{{ i18n.t('effects') }} {{ slot.slot }}</caption>
+        <thead><tr><th>{{ i18n.t('field') }}</th><th>{{ i18n.t('online') }}</th><th>{{ i18n.t('disc') }}</th></tr></thead>
+        <tbody>@for(value of slot.fields;track value.field){<tr [attr.data-effect-field]="value.field" [attr.data-changed]="value.changed" [class.changed]="value.changed">
+          <th scope="row">{{ value.field==='type'?i18n.t('effectType'):value.field.startsWith('arg')?i18n.t('argument')+' '+value.field.slice(3):i18n.t(value.field) }}{{ value.changed?' *':'' }}</th>
+          <td>{{ value.online }}</td><td>{{ value.disc }}</td>
+        </tr>}</tbody>
+      </table></div>}
+    </section>}
+    <nav class="pagination card-neighbors">
+      @if(neighbors().previous;as previous){<a [routerLink]="i18n.link(path(previous.id))" [queryParams]="query()">← {{ i18n.t('previous') }} · {{ name(previous) }}</a>}
+      @if(neighbors().next;as next){<a [routerLink]="i18n.link(path(next.id))" [queryParams]="query()">{{ i18n.t('next') }} · {{ name(next) }} →</a>}
+    </nav>
+  }@else if(result()){
+    <section class="empty"><h1>{{ i18n.t(result()?.failed?'failed':'notFound') }}</h1>@if(result()?.failed){<button (click)="retry()">{{ i18n.t('retry') }}</button>}<a [routerLink]="i18n.link('/data/ep3-cards.html')" [queryParams]="query()">{{ i18n.t('back') }}</a></section>
+  }@else{
+    <section class="intro"><div><p class="eyebrow">EPISODE III · C.A.R.D. REVOLUTION</p><h1>{{ i18n.t('title') }}</h1><p class="muted">English / 日本語 · GPSE8P · Online</p></div><strong class="archive-count">700</strong></section>
+    <label class="search">{{ i18n.t('search') }}<input type="search" [value]="filters().q" (input)="update('q',$any($event.target).value)" /></label>
+
+    <nav class="category-tabs" [attr.aria-label]="i18n.t('type')">
+      @for(entry of list().counts;track entry.type){<button type="button" [class.selected]="list().type===entry.type" [attr.aria-pressed]="list().type===entry.type" (click)="update('type',entry.type)">{{ tabLabel(entry.type) }}<span class="count">{{ entry.count }}</span></button>}
+    </nav>
+    <div class="catalog-layout">
+      <button class="mobile-filter" type="button" [attr.aria-expanded]="filtersOpen()" aria-controls="catalog-filters" (click)="filtersOpen.set(!filtersOpen())">{{ i18n.t('filters') }} <span>{{ filtersOpen()?'−':'+' }}</span></button>
+      <aside id="catalog-filters" class="filters" [class.mobile-open]="filtersOpen()" [attr.aria-label]="i18n.t('filters')">
+        <div class="filter-heading"><h2>{{ i18n.t('filters') }}</h2><button class="text-button" (click)="clear()">{{ i18n.t('reset') }}</button></div>
+        <label for="card-class">{{ i18n.t('subcategory') }}</label><select id="card-class" [disabled]="!!list().q.trim()" [value]="list().class" (change)="update('class',$any($event.target).value)">@for(entry of list().classes;track entry.value){<option [value]="entry.value" [selected]="entry.value===list().class">{{ i18n.t(entry.value) }} ({{ entry.count }})</option>}</select>
+        @if(list().q.trim()){<p class="field-help">{{ i18n.t('searchHelp') }}</p>}
+        <label for="card-rank">{{ i18n.t('rank') }}</label><select id="card-rank" [value]="list().rank" (change)="update('rank',$any($event.target).value)"><option value="" [selected]="!list().rank">{{ i18n.t('allRanks') }}</option>@for(rank of list().ranks;track rank){<option [value]="rank" [selected]="rank===list().rank">{{ rank }}</option>}</select>
+        <label class="show-all"><input type="checkbox" [checked]="filters().all" (change)="update('all',$any($event.target).checked?'1':'')" />{{ i18n.t('all') }}</label>
+      </aside>
+      <section id="card-results" class="results" [attr.aria-label]="i18n.t('title')">
+        <div class="result-toolbar">
+          <p class="result-count" aria-live="polite">{{ tabLabel(list().type) }} <strong>{{ filtered().length }}</strong></p>
+          <div class="sort-control"><label for="card-sort">{{ i18n.t('sort') }}</label><select id="card-sort" [value]="list().sort" (change)="update('sort',$any($event.target).value)">@for(sort of sorts;track sort){<option [value]="sort" [selected]="sort===list().sort">{{ columnLabel(sort) }}</option>}</select></div>
+          <nav class="page-steps"><button [disabled]="page()===1" (click)="goToPage(page()-1)" [attr.aria-label]="i18n.t('previousPage')">←</button><span>{{ page() }} / {{ pages() }}</span><button [disabled]="page()===pages()" (click)="goToPage(page()+1)" [attr.aria-label]="i18n.t('nextPage')">→</button></nav>
+        </div>
+        <div class="table-scroll" tabindex="0" [attr.aria-label]="i18n.t('title')"><table class="card-table">
+          <thead><tr><th scope="col">{{ i18n.t('card') }}</th><th scope="col">{{ i18n.t('rank') }}</th>@for(key of columns();track key){<th scope="col">{{ columnLabel(key) }}</th>}</tr></thead>
+          <tbody>@for(card of visible();track card.id){<tr>
+            <th scope="row"><a class="card-row" [routerLink]="i18n.link(path(card.id))" [queryParams]="query()"><monster-image [src]="card.thumbnail" [name]="name(card)" [unavailable]="i18n.t('missing')" /><div class="identity"><small>#{{ card.id }}</small><h2 [attr.lang]="language()">{{ name(card) }}</h2><p class="secondary" [attr.lang]="otherLanguage()">{{ card.names[otherLanguage()] }}</p></div></a></th>
+            <td>{{ card.rank }}</td>@for(key of columns();track key){<td>{{ cell(card,key) }}</td>}
+          </tr>}@empty{<tr><td class="empty" [attr.colspan]="columns().length+2">{{ i18n.t('empty') }}</td></tr>}</tbody>
+        </table></div>
+        @if(visible().length){
+          <div class="pagination"><span>{{ i18n.pageRange((page() - 1) * pageSize + 1, (page() - 1) * pageSize + visible().length, filtered().length) }}</span><div><button type="button" [disabled]="page() === 1" (click)="goToPage(page() - 1)" [attr.aria-label]="i18n.t('previousPage')">←</button><label class="sr-only" for="page-jump">{{ i18n.t('pageJump') }}</label><input id="page-jump" type="number" min="1" [max]="pages()" [value]="page()" #pageJump (change)="goToPage(pageJump.valueAsNumber)" (keydown.enter)="goToPage(pageJump.valueAsNumber)"><span>/ {{ pages() }}</span><button type="button" [disabled]="page() === pages()" (click)="goToPage(page() + 1)" [attr.aria-label]="i18n.t('nextPage')">→</button></div></div>
+        }
+      </section>
+    </div>
+  }
+  <footer>PSO HAVEN / C.A.R.D. ARCHIVE · GPSE8P</footer>
+</main>

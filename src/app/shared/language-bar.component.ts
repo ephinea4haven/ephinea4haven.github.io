@@ -3,7 +3,7 @@ import { PAGE_LANGUAGES, PageLanguage, pageKey, SiteLanguage } from './site-lang
 
 const SHORT: Record<PageLanguage, string> = { zh: '中', en: 'EN', ja: '日' };
 /** Pages that render their own language switcher (homepage and catalogs). */
-const OWN_SWITCHER = ['index.html', 'data/items.html', 'data/items/', 'data/cosmetics.html', 'data/enemies.html', 'data/enemies/'];
+const OWN_SWITCHER = ['index.html', 'data/items.html', 'data/items/', 'data/cosmetics.html', 'data/enemies.html', 'data/enemies/', 'data/ep3-cards.html', 'data/ep3-cards/'];
 /** A language's name written in another language, e.g. "Chinese" or "中国語". */
 const nameIn = (reader: PageLanguage, language: PageLanguage) =>
   new Intl.DisplayNames([reader], { type: 'language' }).of(language) ?? language;

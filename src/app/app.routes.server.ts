@@ -1,3 +1,4 @@
+import ep3Cards from './generated/ep3-card-catalog/index.json';
 import { RenderMode, ServerRoute } from '@angular/ssr';
 import { contentServerRoutes } from './generated/content.routes.server';
 import catalog from './generated/item-catalog/index.json';
@@ -8,6 +9,8 @@ const featureServerRoutes = (prefix: string): ServerRoute[] => [
   { path: `${prefix}data/item-names.html`, renderMode: RenderMode.Prerender },
   { path: `${prefix}tools/chartable.html`, renderMode: RenderMode.Prerender },
   {path:`${prefix}data/enemies.html`,renderMode:RenderMode.Prerender},
+  {path:`${prefix}data/ep3-cards.html`,renderMode:RenderMode.Prerender},
+  {path:`${prefix}data/ep3-cards/:card`,renderMode:RenderMode.Prerender,getPrerenderParams:async()=>ep3Cards.map(c=>({card:`${c.id}.html`}))},
   {path:`${prefix}data/enemies/:monster`,renderMode:RenderMode.Prerender,getPrerenderParams:async()=>monsters.map(m=>({monster:`${m.id}.html`}))},
   { path: `${prefix}data/items.html`, renderMode: RenderMode.Prerender },
   { path: `${prefix}data/cosmetics.html`, renderMode: RenderMode.Prerender },

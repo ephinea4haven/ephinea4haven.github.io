@@ -9,7 +9,7 @@
     "dev": "node scripts/dev_site.mjs",
     "build": "node scripts/build_site.mjs",
     "preview": "node scripts/serve_site.mjs _site 4173",
-    "generate:angular": "node scripts/generate_item_catalog.mjs && node scripts/generate_monster_catalog.mjs && node scripts/generate_angular_combo.mjs && node scripts/generate_angular_content.mjs",
+    "generate:angular": "node scripts/generate_item_catalog.mjs && node scripts/generate_monster_catalog.mjs && node scripts/generate_ep3_card_catalog.mjs && node scripts/generate_angular_combo.mjs && node scripts/generate_angular_content.mjs",
     "generate:challenge-maps": "python3 scripts/build_challenge_map_atlas.py",
     "generate:challenge-maps:ep2": "python3 scripts/build_ep2_challenge_map_atlas.py",
     "generate:seabed-maps": "python3 scripts/build_seabed_maps.py",
@@ -24,8 +24,9 @@
     "test:graphics-guide": "node scripts/verify_graphics_api_guide.mjs",
     "test:launcher-guide": "node --test scripts/test_launcher_guide.mjs",
     "test:challenge-maps": "python3 -m unittest scripts.test_challenge_maps",
+    "test:ep3-cards": "python3 -m unittest scripts.test_build_ep3_card_data",
     "test:rbr": "python3 -m unittest scripts.test_build_rbr_data scripts.test_plan_rbr_update scripts.test_publish_rbr_update scripts.test_rbr_tiers scripts.test_rbr_tier_charts",
-    "test": "npm run test:npc && npm run test:price-guide && npm run test:i18n && npm run test:anniversary-sync && npm run test:timestamps && npm run test:graphics-guide && npm run test:launcher-guide && npm run test:rbr && node scripts/verify_angular_architecture.mjs && npm run test:challenge-maps && node scripts/verify_challenge_maps.mjs && node scripts/verify_status_domain.mjs && node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs && node --test scripts/test_generate_angular_combo.mjs && node scripts/verify_zh_localization.mjs && npm run test:items && npm run test:monsters && npm run test:home && node --test scripts/test_tool_i18n.mjs scripts/test_upstream_tools_i18n.mjs scripts/test_data_page_i18n.mjs scripts/test_event_i18n.mjs && node --test scripts/test_angular_inline_scripts.mjs && npm run test:destiny && npm run test:search && npm run test:dev",
+    "test": "npm run test:npc && npm run test:price-guide && npm run test:i18n && npm run test:anniversary-sync && npm run test:timestamps && npm run test:graphics-guide && npm run test:launcher-guide && npm run test:rbr && npm run test:ep3-cards && npm run test:ep3-catalog && node scripts/verify_angular_architecture.mjs && npm run test:challenge-maps && node scripts/verify_challenge_maps.mjs && node scripts/verify_status_domain.mjs && node scripts/verify_mag_data.mjs && node scripts/verify_mag_sim_data.mjs && node scripts/verify_combo_sync.mjs && node --test scripts/test_generate_angular_combo.mjs && node scripts/verify_zh_localization.mjs && npm run test:items && npm run test:monsters && npm run test:home && node --test scripts/test_tool_i18n.mjs scripts/test_upstream_tools_i18n.mjs scripts/test_data_page_i18n.mjs scripts/test_event_i18n.mjs && node --test scripts/test_angular_inline_scripts.mjs && npm run test:destiny && npm run test:search && npm run test:dev",
     "test:e2e": "playwright test",
     "test:e2e:smoke": "playwright test --grep @smoke",
     "release:prepare": "node scripts/prepare_release.mjs",
@@ -40,7 +41,8 @@
     "test:performance": "playwright test tests/e2e/site-performance.spec.mjs",
     "generate:home-backgrounds": "node scripts/generate_home_backgrounds.mjs",
     "test:dev:integration": "node scripts/test_dev_workflow.mjs",
-    "test:price-guide": "python3 -m unittest scripts.test_scrape_price_guide && node --test scripts/test_price_guide_i18n.mjs"
+    "test:price-guide": "python3 -m unittest scripts.test_scrape_price_guide && node --test scripts/test_price_guide_i18n.mjs",
+    "test:ep3-catalog": "node --experimental-strip-types --test scripts/test_ep3_card_catalog.mjs"
   },
   "overrides": {
     "@angular/cli": {

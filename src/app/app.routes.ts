@@ -20,6 +20,8 @@ const featureRoutes = (prefix = ''): Routes => [
     path: `${prefix}tools/chartable.html`,
     loadChildren: () => import('./chartable/chartable.routes').then(m => m.chartableRoutes),
   },
+  { path:`${prefix}data/ep3-cards.html`, loadComponent:()=>import('./ep3-card-catalog/ep3-card-catalog.component').then(m=>m.Ep3CardCatalogComponent) },
+  { path:`${prefix}data/ep3-cards/:card`, loadChildren:()=>import('./ep3-card-catalog/ep3-card-detail.routes').then(m=>m.ep3CardDetailRoutes) },
   { path:`${prefix}data/enemies.html`, loadComponent:()=>import('./monster-catalog/monster-catalog.component').then(m=>m.MonsterCatalogComponent) },
   { path:`${prefix}data/enemies/:monster`, loadChildren:()=>import('./monster-catalog/monster-detail.routes').then(m=>m.monsterDetailRoutes) },
   {

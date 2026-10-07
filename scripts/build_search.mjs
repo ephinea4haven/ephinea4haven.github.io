@@ -1,3 +1,4 @@
+import { cardAliases } from './generate_ep3_card_catalog.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { decode, encode } from 'cborg';
@@ -105,7 +106,7 @@ export function searchRoutes(routes) {
   return [...new Set(routes.flatMap(route => {
     const parsed = new URL(route, 'https://www.psohaven.com');
     let pathname = parsed.pathname.replace(/\/index\.html$/, '/');
-    if (/\/(?:404\.html|event\/(?:anniversary|christmas|easter|halloween|valentines)\/\d{4}\.html)$/.test(pathname)) return [];
+    if (/^\/(?:en\/|ja\/)?(?:404\.html|event\/(?:anniversary|christmas|easter|halloween|valentines)\/\d{4}\.html)$/.test(pathname)) return [];
     if (!/\.[a-z]+$/i.test(pathname) && !pathname.endsWith('/')) pathname += '/';
     return [`${pathname}${parsed.search}`];
   }))].sort();
@@ -195,10 +196,11 @@ export function searchDocument(html, route, aliases = []) {
 }
 
 async function searchAliases() {
-  const [items, monsters, glossary] = await Promise.all([
+  const [items, monsters, glossary, ep3Cards] = await Promise.all([
     readFile(path.join(root, 'src/app/generated/item-catalog/index.json'), 'utf8').then(JSON.parse),
     readFile(path.join(root, 'src/app/generated/monster-catalog/index.json'), 'utf8').then(JSON.parse),
     readFile(path.join(root, 'guide/acronym.html'), 'utf8'),
+    readFile(path.join(root, 'src/app/generated/ep3-card-catalog/index.json'), 'utf8').then(JSON.parse),
   ]);
   const abbreviations = glossaryAliases(glossary);
   const aliases = new Map(items.map(row => [
@@ -209,6 +211,7 @@ async function searchAliases() {
     const names = [...Object.values(monster.names), ...Object.values(monster.ultimateNames ?? {})];
     aliases.set(`/data/enemies/${monster.id}.html`, [...new Set([...names, ...names.flatMap(name => abbreviations.get(key(name)) ?? [])])]);
   }
+  for (const card of ep3Cards) aliases.set(`/data/ep3-cards/${card.id}.html`, cardAliases(card));
   return aliases;
 }
 

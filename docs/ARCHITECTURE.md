@@ -84,10 +84,10 @@ Ephinea4Haven is a statically deployed Angular application. Angular 22 owns ever
 public page, route and interaction. GitHub Pages serves the immutable `_site`
 artifact; it does not need server-side rewrites or a JavaScript backend.
 
-The current build inventory contains 3,802 prerendered Angular application
-hosts: 1,268 Chinese pages and 1,267 each for English and Japanese (every page
+The current build inventory contains 5,905 prerendered Angular application
+hosts: 1,969 Chinese pages and 1,968 each for English and Japanese (every page
 except the shared `404.html`). Each language includes 1,045 item detail pages and
-160 monster detail pages. The event
+160 monster detail pages, and 700 Episode III card detail pages. The event
 archive has 45 year-specific source fragments, published in three languages as
 135 fragment resources. `_site/build-manifest.json`
 is the source of truth for this inventory and for the JavaScript budgets applied
@@ -627,3 +627,23 @@ The committed snapshot supports local viewing and portable preview tests.
 Original client binaries, raw web captures, decoded resources and experimental
 render outputs remain ignored; their recorded hashes document the source of
 reviewed images. Regenerating every image requires those local inputs.
+
+
+## Episode III card catalog
+
+`src/app/ep3-card-catalog/` owns `/data/ep3-cards.html` and
+`/data/ep3-cards/{id}.html`, each with English and Japanese route variants.
+The 700-card snapshot in `content/ep3-card-catalog/cards.json` is extracted locally
+from pinned GPSE8P game inputs. Build and CI need only that snapshot and committed
+WebPs. `generate_ep3_card_catalog.mjs` uses the atomic `generatedFiles()` writer
+for its lightweight index, server-only details, version hash and individual
+`assets/data/ep3-cards/{id}.json` files. Obsolete detail assets are removed only
+after replacements are ready. SSR supplies a server loader and TransferState;
+browser navigation fetches one versioned card at a time. The browser never
+imports the entire bilingual text snapshot.
+
+Card names and explanations are English/Japanese; Chinese UI uses only the
+maintainer-confirmed terms in `EP3_CARD_CATALOG.md` and explicitly notes the
+untranslated card content. This feature does not assign Chinese PSOBB item names.
+Search aliases include both game languages and the original English table name.
+Card 404 is a valid catalog entry, independent of the site's root error page.

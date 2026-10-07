@@ -228,3 +228,17 @@ for (const file of htmlFiles) {
 if (violations.length) throw new Error(`HTML bypasses Angular ownership:\n${violations.join('\n')}`);
 
 console.log(`Angular ownership verified across ${htmlFiles.length} HTML sources; retired runtimes are absent.`);
+
+// EP3 owns its routes and client data; full card text must remain server-only.
+const ep3Routes = await readFile(path.join(root, 'src/app/app.routes.ts'), 'utf8');
+const ep3Server = await readFile(path.join(root, 'src/app/app.routes.server.ts'), 'utf8');
+if (!ep3Routes.includes('data/ep3-cards.html') || !ep3Routes.includes('data/ep3-cards/:card')
+    || !ep3Server.includes('ep3Cards.map(c=>({card:`${c.id}.html`}))')) {
+  throw new Error('EP3 list and every card require Angular route and prerender ownership');
+}
+for (const file of angularSources.filter(file => file.includes('/ep3-card-catalog/'))) {
+  const source = await readFile(file, 'utf8');
+  if (source.includes('details.server.json') || source.includes('content/ep3-card-catalog/cards.json')) {
+    throw new Error('EP3 client code must load individual card details, not the complete snapshot');
+  }
+}

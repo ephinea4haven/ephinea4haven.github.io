@@ -11,7 +11,7 @@ export const LANGUAGES = ['zh', 'en', 'ja'];
 export const SITE_ORIGIN = 'https://www.psohaven.com';
 // Angular feature pages that render every language from the URL (their own
 // keyed dictionaries); a key ending in / covers a whole route family.
-export const FEATURE_PAGES = ['index.html', 'data/items.html', 'data/items/', 'data/cosmetics.html', 'data/enemies.html', 'data/enemies/', 'tools/status.html', 'tools/chartable.html', 'tools/cc.html', 'tools/ccopm.html', 'data/price_guide.html', 'data/item-names.html'];
+export const FEATURE_PAGES = ['index.html', 'data/items.html', 'data/items/', 'data/cosmetics.html', 'data/enemies.html', 'data/enemies/', 'data/ep3-cards.html', 'data/ep3-cards/', 'tools/status.html', 'tools/chartable.html', 'tools/cc.html', 'tools/ccopm.html', 'data/price_guide.html', 'data/item-names.html'];
 
 /** Page key: no leading slash, directory indexes by directory, the homepage as index.html. */
 export function pageKey(relative) {

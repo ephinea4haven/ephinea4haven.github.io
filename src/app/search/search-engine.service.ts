@@ -44,7 +44,8 @@ export class SearchEngine {
         this.language = language;
       }
       try {
-        const response = await engine.search(term, category ? { filters: { category } } : {});
+        // Canonicalize fullwidth game-name symbols before Pagefind tokenizes them.
+        const response = await engine.search(term.normalize('NFKC'), category ? { filters: { category } } : {});
         const documents = await Promise.all(response.results.slice(0, limit).map(result => result.data()));
         const results = documents.map(result => ({
           url: result.url, meta: result.meta, filters: result.filters,

@@ -95,3 +95,11 @@ for (const term of forbidden) {
 }
 
 console.log('PSOBB Chinese localization contract verified.');
+
+const ep3Messages = await read('src/app/ep3-card-catalog/ep3-card.messages.ts');
+assert.ok(ep3Messages.includes('卡牌名称与说明暂未翻译为中文，当前显示英文。'));
+const ep3Snapshot = JSON.parse(await read('content/ep3-card-catalog/cards.json'));
+for (const card of ep3Snapshot.cards) {
+  assert.deepEqual(Object.keys(card.names).sort(), ['en', 'ja'], 'EP3 names are English/Japanese only');
+  assert.deepEqual(Object.keys(card.text).sort(), ['en', 'ja'], 'EP3 text is English/Japanese only');
+}
