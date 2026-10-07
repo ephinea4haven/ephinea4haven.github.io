@@ -24,6 +24,13 @@ for (const expected of [
   '优先使用 <strong>D3D11 2.87.1</strong>；不要用 D3D9On12 代替',
   'LiveKernelEvent 117/141',
   'Display 4101',
+  'id="uv"',
+  '<li><a href="#uv">UV 坐标 (纹理坐标)</a></li>',
+  'Direct3D 约定:UV (0, 0) 在纹理左上角',
+  'id="uv-spaces"',
+  'id="uv-conversions"',
+  'NDC ↔ 屏幕 UV',
+  '/assets/img/guide/uv-spaces.svg',
 ]) {
   assert.ok(guide.includes(expected), `graphics API guide is missing ${JSON.stringify(expected)}`);
 }

@@ -15,6 +15,7 @@
 <li><a href="#device-lost">Device Lost: versions and backend risks</a></li>
 <li><a href="#aa">Anti-aliasing</a></li>
 <li><a href="#af">Anisotropic filtering</a></li>
+<li><a href="#uv">UV coordinates (texture coordinates)</a></li>
 <li><a href="#swap">dgVoodoo Model (swap chain mode)</a></li>
 <li><a href="#effects-pipeline">Where visual effects sit in the pipeline</a></li>
 <li><a href="#ao">Ambient occlusion</a></li>
@@ -589,6 +590,147 @@ PSOBB → D3D8 → Ephinea D3D9 → DXVK     → Vulkan → Vulkan graphics driv
 <p>AF keeps more high-frequency texture detail. If original or modded textures lack proper mipmaps or contain heavy sharpening or fine lines, the sharper distance can also bring shimmer, moiré and visual noise. That isn’t necessarily a bug in AF: first drop 16x to 8x/4x, or use textures with proper mipmaps; SSAA can suppress this aliasing further.</p>
 
 <p><strong>Recommendation: </strong>with original textures and a modern GPU, start at  <strong>AF 16x</strong> ; if distant areas shimmer badly after installing custom HD textures, drop to 8x/4x and check the texture pack’s mipmaps. AF doesn’t remove jagged character outlines; you still need suitable AA.</p>
+
+<hr>
+
+<h2 id="uv">UV coordinates (texture coordinates)</h2>
+
+<p>The AF section above talks about “the area of texture one screen pixel covers”; that area is measured in UV coordinates. A model uses <strong>XYZ</strong> to give each vertex its position in 3D space; a texture is a 2D image, and <strong>UV</strong> says which point of that image a vertex takes. U is horizontal and V is vertical. The letters U and V are used only because X, Y and Z already name positions in space.</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-mapping.svg" width="920" height="310" loading="lazy" alt="The XYZ coordinates of the four vertices A, B, C and D on a cube face, matched to the UV coordinates of the same points on the texture" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">Direct3D convention: UV (0, 0) is the top-left of the texture and V grows downward</figcaption>
+</figure>
+
+<p>Each vertex carries both sets at once. For the vertices A, B, C and D on the cube’s front face, XYZ gives their position in space and UV says which corner of the image each one takes. When the GPU draws the face, every pixel inside it interpolates its own UV from the three vertices of its triangle and reads the colour there, so the whole image ends up “stuck” onto the face.</p>
+
+<h3 id="uv-vs-xyz">How XYZ and UV relate</h3>
+
+<table>
+<thead><tr><th></th><th>XYZ</th><th>UV</th></tr></thead>
+<tbody>
+<tr><td>What it describes</td><td>Where the vertex is in 3D space</td><td>Where the vertex falls on the texture image</td></tr>
+<tr><td>Dimensions</td><td>3</td><td>2</td></tr>
+<tr><td>Range</td><td>World units, any size</td><td>Relative to the whole image, usually 0–1; outside that, the addressing mode decides</td></tr>
+<tr><td>What changes it</td><td>Moving, rotating or scaling the model; skeletal animation</td><td>UV unwrapping when the model is made; UV animation at run time</td></tr>
+<tr><td>What you see when it changes</td><td>The model moves or deforms</td><td>The model stays still and the surface pattern moves</td></tr>
+<tr><td>How rendering uses it</td><td>Goes through the model → world → camera → screen transforms to decide where it is drawn</td><td>Skips those transforms and is only interpolated, to read colours from the texture</td></tr>
+</tbody>
+</table>
+
+<p>Both sets live in the same vertex but do not affect each other. When a character walks, turns or swings a weapon, XYZ changes every frame while UV stays the same, so the pattern on their clothes stays in place. Change only UV and the model does not move at all, yet the pattern on its surface does.</p>
+
+<h3 id="uv-spaces">From model to screen: the coordinate spaces</h3>
+
+<p>There is more than one XYZ. On its way from the model file to the screen a vertex passes through several coordinate spaces in turn; UV takes a separate path and only meets them at the screen pixel.</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-spaces.svg" width="920" height="280" loading="lazy" alt="The transform chain from model, world, view and clip space through NDC to the screen, with texture UV joining at the screen pixel via texels" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">Top row: the matrix chain for vertex XYZ; bottom row: UV skips the matrices and only joins in to fetch the colour of a screen pixel</figcaption>
+</figure>
+
+<table>
+<thead><tr><th>Space</th><th>Origin and range</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td>Model space (local)</td><td>The model’s own centre, units chosen when modelling</td><td>The vertex XYZ stored in the model file</td></tr>
+<tr><td>World space</td><td>The origin of the whole scene</td><td>The world matrix places the model in the map: position, facing, size</td></tr>
+<tr><td>View space (camera)</td><td>The camera’s position, axes following the camera</td><td>The view matrix rewrites everything as seen from the camera</td></tr>
+<tr><td>Clip space</td><td>Four values x, y, z, w</td><td>The projection matrix adds perspective; anything off screen is clipped here</td></tr>
+<tr><td>Normalised device coordinates (NDC)</td><td>x and y from −1 to 1; z from 0 to 1 in Direct3D</td><td>Dividing by w; this is where distant things get smaller. z is used for the depth test</td></tr>
+<tr><td>Screen space</td><td>Window pixels, origin at the top left</td><td>The viewport transform decides which pixel it lands on</td></tr>
+<tr><td>Texture space (UV)</td><td>0 to 1, relative to the whole image</td><td>The texture coordinates stored on the vertex</td></tr>
+<tr><td>Texels</td><td>0 to the image width / height</td><td>UV times the image size: where the colour is actually read</td></tr>
+</tbody>
+</table>
+
+<p>Every step on the top row is a matrix multiply or a division, recomputed whenever the model moves; the UV row never goes through those matrices. The two paths meet at the screen pixel: once rasterisation knows which triangle a pixel belongs to, it interpolates that pixel’s UV from the three vertices and reads the colour from the texture. The interpolation has to be perspective-corrected with w, or textures on slanted surfaces bend; the texture wobble in early PS1 games came from skipping this step.</p>
+
+<h3 id="uv-conversions">What UV is compared with, and what it converts to and from</h3>
+
+<p>UV’s most direct counterpart is <strong>model-space XYZ</strong>: both are stored on the vertex and fixed when the model is made, one describing the shape and the other how the texture wraps around it. World, view and projection coordinates are all computed from XYZ through matrices, and UV takes no part in that chain. The conversions it does take part in are these:</p>
+
+<table>
+<thead><tr><th>Conversion</th><th>Direction</th><th>How</th><th>Used for</th></tr></thead>
+<tbody>
+<tr><td>Model surface ↔ UV</td><td>Both ways, triangle by triangle</td><td>UV unwrapping fixes the vertices; inside a triangle barycentric coordinates interpolate, and in reverse a UV finds its point on the surface</td><td>Modelling, baking light maps</td></tr>
+<tr><td>UV ↔ texels</td><td>Both ways</td><td>x = u × width, y = v × height; in reverse u = x ÷ width</td><td>Sampling, making and replacing textures</td></tr>
+<tr><td>Screen pixel → UV</td><td>One way</td><td>Rasterisation interpolates (perspective-corrected); the UV difference between neighbouring pixels picks the mipmap level and the AF direction</td><td>Shading every pixel</td></tr>
+<tr><td>UV → UV</td><td>One way</td><td>Texture transform: add an offset (scrolling), scale (number of repeats), rotate</td><td>UV animation</td></tr>
+<tr><td>NDC ↔ screen UV</td><td>Both ways</td><td>u = (x + 1) ÷ 2, v = (1 − y) ÷ 2 (Direct3D)</td><td>Post-processing reads the whole frame as a texture: AO, SMAA, blur</td></tr>
+<tr><td>UV → tangent space</td><td>One way</td><td>The directions in which U and V grow on the surface become the tangent and bitangent; with the normal they form a local frame</td><td>Normal maps</td></tr>
+</tbody>
+</table>
+
+<h3 id="uv-unwrap">Where UV comes from: UV unwrapping</h3>
+
+<p>UV is set when the model is made. The artist cuts the model’s surface open along seams and flattens it onto the image; this is UV unwrapping, much like unfolding a cardboard box flat before printing on it. The layout decides which part of the image lands on which face.</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-unwrap.svg" width="920" height="336" loading="lazy" alt="The six faces of a cube cut open and flattened into a cross-shaped layout on the texture" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">Left: the three visible faces of the cube; right: where the six faces sit on the texture</figcaption>
+</figure>
+
+<p>The two sides of a seam are often far apart on the image, so a poor unwrap shows broken patterns or colour jumps along seams. Several faces can also point their UV at the same area of the image and share one pattern, which saves texture space.</p>
+
+<h3 id="uv-texels">UV and texture pixels</h3>
+
+<p>UV is a fraction of the whole image, not a pixel number. To find the actual pixel (texel), multiply UV by the image size:</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-texels.svg" width="920" height="366" loading="lazy" alt="The pixel that UV (0.5625, 0.3125) falls on in an 8×8 texture grid, and its pixel coordinate at other resolutions" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">Pixel coordinate = UV × image size; one set of UV works at any resolution</figcaption>
+</figure>
+
+<p>So one set of UV works at any resolution: swap a 256×256 texture for a 1024×1024 one and u = 0.5625 still lands in the same place, only with finer pixels there. When UV falls between pixels, texture filtering (bilinear, trilinear and the AF above) decides how nearby pixels are blended.</p>
+
+<h3 id="uv-addressing">Beyond 0–1: addressing modes</h3>
+
+<p>UV is not limited to 0–1. What is read outside that range depends on the texture’s address mode. The figure shows four common modes for UV from 0 to 2:</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-addressing.svg" width="920" height="286" loading="lazy" alt="Wrap, Mirror, Clamp and Border addressing for UV from 0 to 2" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">The top-left cell is the original 0–1 image; the other three show what is read when UV passes 1</figcaption>
+</figure>
+
+<ul>
+<li><strong>Wrap (repeat):</strong> only the fractional part counts, so 1.25 is 0.25. Large repeating surfaces such as floors, walls and grass use it, letting one small image cover a whole area.</li>
+<li><strong>Mirror:</strong> flips at every whole number, so seams are symmetric; useful when the repetition should be less obvious.</li>
+<li><strong>Clamp:</strong> everything outside takes the outermost ring of pixels, stretching the edge. Used for images that must not repeat, such as interface elements or single decals.</li>
+<li><strong>Border:</strong> everything outside is filled with one fixed colour.</li>
+</ul>
+
+<h3 id="uv-scroll">UV scrolling</h3>
+
+<p>Changing only UV and never XYZ makes a pattern flow across a still model: add a small offset to U or V every frame.</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-scroll.svg" width="920" height="236" loading="lazy" alt="Over three frames the model stays still while the texture stripes move right with the U offset" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">The dashed line is the frame-0 position; the yellow stripe moves right with U each frame while the vertices stay put</figcaption>
+</figure>
+
+<p>With Wrap addressing, the pattern does not break when the offset passes 1 and loops seamlessly. Flowing water, waterfalls, lava, light bands sliding across screens and the energy patterns on transporters are usually made this way: the model itself does not move, so the effect costs almost nothing in geometry.</p>
+
+<h3 id="uv-mods">What this means for texture replacements</h3>
+
+<p>UV is stored in the model; the image is only what gets sampled. So when replacing textures (an HD texture pack, for example):</p>
+
+<ul>
+<li><strong>Resolution can go up freely.</strong> UV is a fraction, so going from 256 to 1024 keeps every position and only adds detail.</li>
+<li><strong>The layout must match the original.</strong> The model’s UV has not changed, so moving any part of the image puts it in the wrong place: a face on the back, misaligned text, stray colours along seams.</li>
+<li><strong>Keep the aspect ratio.</strong> UV reads the image proportionally, so changing the aspect ratio stretches the pattern.</li>
+<li><strong>Leave a margin at the edges.</strong> Higher-resolution textures show neighbouring areas along UV seams more easily; the usual fix is to extend each area a few pixels past its edge.</li>
+</ul>
+
+<h3 id="uv-faq">FAQ</h3>
+
+<dl>
+<dt>Why is a texture stretched or warped?</dt>
+<dd>Usually one face was squashed on the image during UV unwrapping, or a replacement texture changed the aspect ratio. It is not a graphics card or backend problem, and switching backends will not change it.</dd>
+<dt>Why do distant floor patterns shimmer?</dt>
+<dd>One screen pixel covers too many texture pixels in UV space. This is about mipmaps and AF; see <a href="#af">anisotropic filtering</a> above.</dd>
+<dt>Why is UV sometimes called ST?</dt>
+<dd>Just a different name: OpenGL tends to use S and T for texture coordinates, meaning the same as U and V. Also, in Direct3D UV (0, 0) is the top-left of the image and V grows downward; in OpenGL the origin is the bottom left and V grows upward.</dd>
+</dl>
 
 <hr>
 

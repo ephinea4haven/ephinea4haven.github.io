@@ -447,8 +447,8 @@
         "ja"
       ],
       "description": {
-        "en": "How PSOBB reaches modern GPUs through D3D9, dgVoodoo and DXVK, and what Ephinea graphics settings do",
-        "ja": "PSOBB が D3D9・dgVoodoo・DXVK を通って現代の GPU に届く仕組みと、Ephinea の画面設定の働き"
+        "en": "How PSOBB reaches modern GPUs through D3D9, dgVoodoo and DXVK, what Ephinea graphics settings do, and how UV texture coordinates work",
+        "ja": "PSOBB が D3D9・dgVoodoo・DXVK を通って現代の GPU に届く仕組み、Ephinea の画面設定の働き、UV テクスチャ座標の考え方"
       }
     },
     "guide/discord.html": {

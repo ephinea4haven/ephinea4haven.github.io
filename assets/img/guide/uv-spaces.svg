@@ -1,0 +1,63 @@
+<svg viewBox="0 0 920 280" width="920" height="280" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <defs>
+    <pattern id="ck" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect width="25" height="25" fill="#1e3a5f"/><rect width="12.5" height="12.5" fill="#2563eb"/>
+      <rect x="12.5" y="12.5" width="12.5" height="12.5" fill="#2563eb"/>
+    </pattern>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/>
+    </marker>
+  </defs>
+  <style>
+    .p{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .h{fill:#f8fafc;font-size:16px;font-weight:700}
+    .t{fill:#cbd5e1;font-size:13px}
+    .m{fill:#94a3b8;font-size:12px}
+    .e{fill:none;stroke:#e2e8f0;stroke-width:2}
+    .l{fill:#ede9fe;font-size:13px;font-weight:700}
+    .pt{fill:#a78bfa;stroke:#ede9fe;stroke-width:1.5}
+    .r{fill:#fbbf24;font-weight:800}
+    .ar{stroke:#00d4ff;stroke-width:2;fill:none}
+    .xr{stroke:#f87171;stroke-width:2.5}.xg{stroke:#4ade80;stroke-width:2.5}.xb{stroke:#60a5fa;stroke-width:2.5}
+  </style>
+  <rect x="20" y="40" width="120" height="70" rx="8" fill="rgba(0,212,255,.10)" stroke="#00d4ff" stroke-width="2"/>
+  <text class="h" x="80.0" y="70" text-anchor="middle">Model</text>
+  <text class="t" x="80.0" y="93" text-anchor="middle">x, y, z</text>
+  <line class="ar" x1="142" y1="75" x2="170" y2="75" marker-end="url(#ah)"/>
+  <text class="m" x="156.0" y="30" text-anchor="middle">World</text>
+  <rect x="172" y="40" width="120" height="70" rx="8" fill="rgba(0,212,255,.10)" stroke="#00d4ff" stroke-width="2"/>
+  <text class="h" x="232.0" y="70" text-anchor="middle">World</text>
+  <text class="t" x="232.0" y="93" text-anchor="middle">x, y, z</text>
+  <line class="ar" x1="294" y1="75" x2="322" y2="75" marker-end="url(#ah)"/>
+  <text class="m" x="308.0" y="30" text-anchor="middle">View</text>
+  <rect x="324" y="40" width="120" height="70" rx="8" fill="rgba(0,212,255,.10)" stroke="#00d4ff" stroke-width="2"/>
+  <text class="h" x="384.0" y="70" text-anchor="middle">View</text>
+  <text class="t" x="384.0" y="93" text-anchor="middle">x, y, z</text>
+  <line class="ar" x1="446" y1="75" x2="474" y2="75" marker-end="url(#ah)"/>
+  <text class="m" x="460.0" y="30" text-anchor="middle">Projection</text>
+  <rect x="476" y="40" width="120" height="70" rx="8" fill="rgba(0,212,255,.10)" stroke="#00d4ff" stroke-width="2"/>
+  <text class="h" x="536.0" y="70" text-anchor="middle">Clip</text>
+  <text class="t" x="536.0" y="93" text-anchor="middle">x, y, z, w</text>
+  <line class="ar" x1="598" y1="75" x2="626" y2="75" marker-end="url(#ah)"/>
+  <text class="m" x="612.0" y="30" text-anchor="middle">÷ w</text>
+  <rect x="628" y="40" width="120" height="70" rx="8" fill="rgba(0,212,255,.10)" stroke="#00d4ff" stroke-width="2"/>
+  <text class="h" x="688.0" y="70" text-anchor="middle">NDC</text>
+  <text class="t" x="688.0" y="93" text-anchor="middle">−1 … 1</text>
+  <line class="ar" x1="750" y1="75" x2="778" y2="75" marker-end="url(#ah)"/>
+  <text class="m" x="764.0" y="30" text-anchor="middle">Viewport</text>
+  <rect x="780" y="40" width="120" height="70" rx="8" fill="rgba(0,212,255,.10)" stroke="#00d4ff" stroke-width="2"/>
+  <text class="h" x="840.0" y="70" text-anchor="middle">Screen</text>
+  <text class="t" x="840.0" y="93" text-anchor="middle">pixels</text>
+  <rect x="20" y="190" width="120" height="70" rx="8" fill="rgba(167,139,250,.12)" stroke="#a78bfa" stroke-width="2"/>
+  <text class="h" x="80.0" y="220" text-anchor="middle">Texture</text>
+  <text class="t" x="80.0" y="243" text-anchor="middle">u, v (0 … 1)</text>
+  <rect x="324" y="190" width="120" height="70" rx="8" fill="rgba(167,139,250,.12)" stroke="#a78bfa" stroke-width="2"/>
+  <text class="h" x="384.0" y="220" text-anchor="middle">Texel</text>
+  <text class="t" x="384.0" y="243" text-anchor="middle">pixels</text>
+  <line class="ar" x1="142" y1="225" x2="322" y2="225" marker-end="url(#ah)"/>
+  <text class="m" x="232.0" y="215" text-anchor="middle">× size</text>
+  <polyline class="ar" points="446,225 840.0,225 840.0,114" marker-end="url(#ah)"/>
+  <text class="m" x="642.0" y="215" text-anchor="middle">filter → colour</text>
+  <line x1="80.0" y1="112" x2="80.0" y2="186" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text class="m" x="88.0" y="155">vertex</text>
+</svg>

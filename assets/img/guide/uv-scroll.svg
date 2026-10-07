@@ -1,0 +1,58 @@
+<svg viewBox="0 0 920 236" width="920" height="236" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <defs>
+    <pattern id="ck" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect width="25" height="25" fill="#1e3a5f"/><rect width="12.5" height="12.5" fill="#2563eb"/>
+      <rect x="12.5" y="12.5" width="12.5" height="12.5" fill="#2563eb"/>
+    </pattern>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/>
+    </marker>
+    <pattern id="fl0" width="66" height="108" patternUnits="userSpaceOnUse" patternTransform="translate(70 64)">
+      <rect width="66" height="108" fill="#0c4a6e"/><rect x="8" width="14" height="108" fill="#38bdf8" opacity=".6"/>
+      <rect x="38" width="10" height="108" fill="#38bdf8" opacity=".35"/>
+    </pattern>
+    <pattern id="fl1" width="66" height="108" patternUnits="userSpaceOnUse" patternTransform="translate(392 64)">
+      <rect width="66" height="108" fill="#0c4a6e"/><rect x="8" width="14" height="108" fill="#38bdf8" opacity=".6"/>
+      <rect x="38" width="10" height="108" fill="#38bdf8" opacity=".35"/>
+    </pattern>
+    <pattern id="fl2" width="66" height="108" patternUnits="userSpaceOnUse" patternTransform="translate(714 64)">
+      <rect width="66" height="108" fill="#0c4a6e"/><rect x="8" width="14" height="108" fill="#38bdf8" opacity=".6"/>
+      <rect x="38" width="10" height="108" fill="#38bdf8" opacity=".35"/>
+    </pattern>
+  </defs>
+  <style>
+    .p{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .h{fill:#f8fafc;font-size:16px;font-weight:700}
+    .t{fill:#cbd5e1;font-size:13px}
+    .m{fill:#94a3b8;font-size:12px}
+    .e{fill:none;stroke:#e2e8f0;stroke-width:2}
+    .l{fill:#ede9fe;font-size:13px;font-weight:700}
+    .pt{fill:#a78bfa;stroke:#ede9fe;stroke-width:1.5}
+    .r{fill:#fbbf24;font-weight:800}
+    .ar{stroke:#00d4ff;stroke-width:2;fill:none}
+    .xr{stroke:#f87171;stroke-width:2.5}.xg{stroke:#4ade80;stroke-width:2.5}.xb{stroke:#60a5fa;stroke-width:2.5}
+  </style>
+  <rect class="p" x="20" y="18" width="280" height="200" rx="10"/>
+  <text class="h" x="160" y="46" text-anchor="middle">t = 0</text>
+  <rect x="70" y="64" width="180" height="108" fill="url(#fl0)"/>
+  <rect x="144" y="64" width="14" height="108" fill="#fbbf24"/>
+  <line x1="151" y1="58" x2="151" y2="178" stroke="#f8fafc" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <rect class="e" x="70" y="64" width="180" height="108"/>
+  <text class="t" x="160" y="200" text-anchor="middle">U + 0</text>
+  <rect class="p" x="320" y="18" width="280" height="200" rx="10"/>
+  <text class="h" x="460" y="46" text-anchor="middle">t = 1</text>
+  <rect x="370" y="64" width="180" height="108" fill="url(#fl1)"/>
+  <rect x="466" y="64" width="14" height="108" fill="#fbbf24"/>
+  <line x1="451" y1="58" x2="451" y2="178" stroke="#f8fafc" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <rect class="e" x="370" y="64" width="180" height="108"/>
+  <text class="t" x="460" y="200" text-anchor="middle">U + Δu</text>
+  <rect class="p" x="620" y="18" width="280" height="200" rx="10"/>
+  <text class="h" x="760" y="46" text-anchor="middle">t = 2</text>
+  <rect x="670" y="64" width="180" height="108" fill="url(#fl2)"/>
+  <rect x="788" y="64" width="14" height="108" fill="#fbbf24"/>
+  <line x1="751" y1="58" x2="751" y2="178" stroke="#f8fafc" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <rect class="e" x="670" y="64" width="180" height="108"/>
+  <text class="t" x="760" y="200" text-anchor="middle">U + 2Δu</text>
+  <line class="ar" x1="302" y1="118" x2="318" y2="118" marker-end="url(#ah)"/>
+  <line class="ar" x1="602" y1="118" x2="618" y2="118" marker-end="url(#ah)"/>
+</svg>

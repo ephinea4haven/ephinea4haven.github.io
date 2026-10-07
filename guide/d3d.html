@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="PSOBB 渲染与图形 API 指南：D3D8/9/11/12、Vulkan、dgVoodoo、DXVK、抗锯齿与后处理">
+    <meta name="description" content="PSOBB 渲染与图形 API 指南：D3D8/9/11/12、Vulkan、dgVoodoo、DXVK、抗锯齿、后处理与 UV 纹理坐标">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>渲染与图形 API 指南 | Ephinea PSOBB</title>
@@ -28,6 +28,7 @@
 <li><a href="#device-lost">Device Lost 版本与后端风险</a></li>
 <li><a href="#aa">抗锯齿 (Anti-Aliasing)</a></li>
 <li><a href="#af">各向异性过滤 (Anisotropic Filtering)</a></li>
+<li><a href="#uv">UV 坐标 (纹理坐标)</a></li>
 <li><a href="#swap">dgVoodoo Model (交换链模式)</a></li>
 <li><a href="#effects-pipeline">画面效果在渲染管线中的位置</a></li>
 <li><a href="#ao">环境光遮蔽 (Ambient Occlusion)</a></li>
@@ -602,6 +603,147 @@ PSOBB → D3D8 → Ephinea D3D9 → DXVK     → Vulkan → Vulkan 显卡驱动 
 <p>AF 会保留更多高频纹理细节。如果原版或 Mod 纹理缺少正确的 mipmap、含有过强锐化/细线,更清晰的远景也可能带来闪烁、摩尔纹和视觉噪声。此时问题不一定是 AF 实现错误:先把 16x 降到 8x/4x,或换用包含正确 mipmap 的纹理;SSAA 也能进一步压制这种走样。</p>
 
 <p><strong>建议:</strong>原版纹理和现代 GPU 可从 <strong>AF 16x</strong> 开始;若使用自定义高清纹理后远处明显闪烁,降到 8x/4x 并检查纹理包 mipmap。AF 不会消除角色轮廓锯齿,仍需搭配合适的 AA。</p>
+
+<hr>
+
+<h2 id="uv">UV 坐标 (纹理坐标)</h2>
+
+<p>上面讲 AF 时说"一个屏幕像素在纹理上覆盖的区域",这个区域就是用 UV 坐标量的。模型在三维空间里用 <strong>XYZ</strong> 描述每个顶点的位置;纹理是一张二维图片,用 <strong>UV</strong> 描述"这个顶点取图片上的哪一点"。U 是横向,V 是纵向。之所以换用 U、V 两个字母,只是因为 X、Y、Z 已经用来表示空间位置。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-mapping.svg" width="920" height="310" loading="lazy" alt="立方体正面 A、B、C、D 四个顶点的 XYZ 坐标,与纹理图片上同名点的 UV 坐标一一对应" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">Direct3D 约定:UV (0, 0) 在纹理左上角,V 向下增加</figcaption>
+</figure>
+
+<p>每个顶点同时带着两组坐标。图中立方体正面的 A、B、C、D 四个顶点,XYZ 说明它们在空间里的位置,UV 说明它们各自对应图片的哪个角。GPU 画这个面时,对面内每个像素按三个顶点的 UV 插值出自己的 UV,再到纹理上取颜色,于是整张图片被"贴"到了这个面上。</p>
+
+<h3 id="uv-vs-xyz">XYZ 与 UV 的关系</h3>
+
+<table>
+<thead><tr><th></th><th>XYZ</th><th>UV</th></tr></thead>
+<tbody>
+<tr><td>描述什么</td><td>顶点在三维空间中的位置</td><td>顶点对应纹理图片上的位置</td></tr>
+<tr><td>维度</td><td>3</td><td>2</td></tr>
+<tr><td>范围</td><td>世界单位,大小任意</td><td>相对整张图片,通常 0–1;超出时由寻址模式处理</td></tr>
+<tr><td>谁来改变</td><td>移动、旋转、缩放模型,骨骼动画</td><td>建模时的 UV 展开,运行时的 UV 动画</td></tr>
+<tr><td>改了会看到</td><td>模型在动或变形</td><td>模型不动,表面图案在动</td></tr>
+<tr><td>渲染时怎么用</td><td>经"模型→世界→相机→屏幕"的矩阵变换,决定画在屏幕哪里</td><td>不经这些变换,原样插值,只用来到纹理里取颜色</td></tr>
+</tbody>
+</table>
+
+<p>两组坐标存在同一个顶点里,但互不影响。所以角色走动、转身、挥武器时,XYZ 每帧都在变,UV 不变,衣服上的花纹始终贴在原处;反过来只改 UV,模型纹丝不动,表面的图案却会移动。</p>
+
+<h3 id="uv-spaces">从模型到屏幕:各个坐标系</h3>
+
+<p>XYZ 其实不止一套。一个顶点从模型文件走到屏幕,要依次经过好几个坐标系;UV 走的是另一条路,最后在屏幕像素上和它们汇合。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-spaces.svg" width="920" height="280" loading="lazy" alt="模型、世界、相机、裁剪、NDC、屏幕各坐标系的变换链,以及纹理 UV 经纹理像素在屏幕像素处汇合" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">上行:顶点 XYZ 的矩阵变换链;下行:UV 不经矩阵,只在屏幕像素处参与取色</figcaption>
+</figure>
+
+<table>
+<thead><tr><th>坐标系</th><th>原点与范围</th><th>作用</th></tr></thead>
+<tbody>
+<tr><td>模型空间 (Model / Local)</td><td>模型自己的中心,单位由建模决定</td><td>模型文件里存的顶点 XYZ</td></tr>
+<tr><td>世界空间 (World)</td><td>整个场景的原点</td><td>世界矩阵把模型摆进地图:位置、朝向、大小</td></tr>
+<tr><td>相机空间 (View)</td><td>相机所在位置,轴向跟着相机</td><td>观察矩阵把一切改写成"从相机看过去"的坐标</td></tr>
+<tr><td>裁剪空间 (Clip)</td><td>四维 x, y, z, w</td><td>投影矩阵加入透视;画面外的部分在这里被裁掉</td></tr>
+<tr><td>标准化设备坐标 (NDC)</td><td>x、y 为 −1 到 1;z 在 Direct3D 中为 0 到 1</td><td>除以 w 得到,近大远小在这一步形成;z 用于深度测试</td></tr>
+<tr><td>屏幕空间 (Screen)</td><td>窗口像素,左上角为原点</td><td>视口变换,决定落在哪个像素</td></tr>
+<tr><td>纹理空间 (UV)</td><td>0 到 1,相对整张图片</td><td>顶点上存的纹理坐标</td></tr>
+<tr><td>纹理像素 (Texel)</td><td>0 到图片宽 / 高</td><td>UV 乘以图片尺寸,真正读取颜色的位置</td></tr>
+</tbody>
+</table>
+
+<p>上面一行的每一步都是矩阵乘法或除法,模型一动就全部重算;UV 那一行不经过这些矩阵。两条线在屏幕像素处汇合:光栅化确定某个像素属于哪个三角形后,用三个顶点的 UV 插值出这个像素的 UV,再去纹理里取颜色。插值时要按 w 做透视校正,否则斜面上的纹理会弯折,早期 PS1 游戏里纹理随视角扭动就是缺了这一步。</p>
+
+<h3 id="uv-conversions">UV 和谁对比,和谁互相转换</h3>
+
+<p>UV 最直接的对照对象是<strong>模型空间的 XYZ</strong>:两者都存在顶点里,都在建模时定下,一个描述形状,一个描述贴图怎样包在形状上。世界、相机、投影这些坐标都是由 XYZ 经矩阵算出来的,UV 不参与这条矩阵链。它真正参与的转换是下面这些:</p>
+
+<table>
+<thead><tr><th>转换</th><th>方向</th><th>怎么算</th><th>用在哪</th></tr></thead>
+<tbody>
+<tr><td>模型表面 ↔ UV</td><td>双向,每个三角形各自对应</td><td>UV 展开定下顶点的对应;三角形内部按重心坐标插值,反过来也能由 UV 找回表面上的点</td><td>建模、烘焙光照贴图</td></tr>
+<tr><td>UV ↔ 纹理像素</td><td>双向</td><td>x = u × 宽,y = v × 高;反过来 u = x ÷ 宽</td><td>采样、制作和替换贴图</td></tr>
+<tr><td>屏幕像素 → UV</td><td>单向</td><td>光栅化插值 (透视校正);相邻像素的 UV 差值决定 mipmap 等级和 AF 方向</td><td>每个像素着色</td></tr>
+<tr><td>UV → UV</td><td>单向</td><td>纹理变换:加偏移 (滚动)、缩放 (重复次数)、旋转</td><td>UV 动画</td></tr>
+<tr><td>NDC ↔ 屏幕 UV</td><td>双向</td><td>u = (x + 1) ÷ 2,v = (1 − y) ÷ 2 (Direct3D)</td><td>后处理把整个画面当作一张纹理来读,例如 AO、SMAA、模糊</td></tr>
+<tr><td>UV → 切线空间</td><td>单向</td><td>表面上 U、V 增大的方向作为切线和副切线,加上法线组成局部坐标系</td><td>法线贴图</td></tr>
+</tbody>
+</table>
+
+<h3 id="uv-unwrap">UV 从哪来:UV 展开</h3>
+
+<p>UV 是建模时定下的。美术把模型表面沿着接缝"剪开、铺平"放到图片上,这一步叫 UV 展开 (UV unwrapping),就像把纸盒拆开摊平再印图案。展开后的布局决定了图片的哪一块印到模型的哪一面。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-unwrap.svg" width="920" height="336" loading="lazy" alt="立方体的六个面被剪开铺平,成为纹理图片上的十字形布局" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">左:立方体看得到的三个面;右:六个面在纹理上的位置</figcaption>
+</figure>
+
+<p>接缝两侧在图片上往往不相邻,所以展开得不好时,接缝处会出现图案断开或颜色跳变。几块面的 UV 也可以指向图片的同一块区域,从而共用一份图案,节省纹理空间。</p>
+
+<h3 id="uv-texels">UV 与贴图像素</h3>
+
+<p>UV 是相对整张图片的比例,不是像素编号。要找到具体像素 (texel),用 UV 乘以图片尺寸即可:</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-texels.svg" width="920" height="366" loading="lazy" alt="8×8 纹理网格上 UV (0.5625, 0.3125) 对应的像素,以及不同分辨率下的像素坐标" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">像素坐标 = UV × 图片尺寸;同一组 UV 适用于任何分辨率</figcaption>
+</figure>
+
+<p>因此同一组 UV 适用于任何分辨率:把 256×256 的贴图换成 1024×1024,u = 0.5625 仍然落在同一位置,只是那里的像素更细。UV 落在两个像素之间时,纹理过滤 (双线性、三线性以及上面的 AF) 决定怎样混合附近的像素。</p>
+
+<h3 id="uv-addressing">超出 0–1:寻址模式</h3>
+
+<p>UV 并不限于 0–1。超出时取哪里,由纹理的寻址模式 (Address Mode) 决定。下图是 UV 从 0 到 2 时四种常见模式的结果:</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-addressing.svg" width="920" height="286" loading="lazy" alt="UV 从 0 到 2 时 Wrap、Mirror、Clamp、Border 四种寻址模式的效果" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">左上格子是 0–1 的原图,其余三格是 UV 超出 1 时的取值</figcaption>
+</figure>
+
+<ul>
+<li><strong>Wrap (重复):</strong>只看小数部分,1.25 等于 0.25。地板、墙面、草地这种大面积重复的图案用它,一张小图就能铺满整片地面。</li>
+<li><strong>Mirror (镜像):</strong>每过一个整数翻转一次,接缝处左右对称,适合不想让重复太明显的图案。</li>
+<li><strong>Clamp (夹取):</strong>超出部分一律取边缘那一圈像素,把边缘拉长。用于不该重复的图,例如界面元素或单张贴花。</li>
+<li><strong>Border (边框色):</strong>超出部分填一个固定颜色。</li>
+</ul>
+
+<h3 id="uv-scroll">UV 滚动</h3>
+
+<p>只改 UV、不改 XYZ,就能让图案在静止的模型上流动:每帧给 U 或 V 加一个小偏移。</p>
+
+<figure style="margin:24px 0;text-align:center">
+<img src="/assets/img/guide/uv-scroll.svg" width="920" height="236" loading="lazy" alt="三个连续帧中模型不动,纹理条纹随 U 偏移向右移动" style="width:100%;height:auto;max-width:920px">
+<figcaption style="color:#94a3b8;font-size:13px;margin-top:8px">虚线是第 0 帧的位置;黄条每帧随 U 偏移右移,模型顶点不变</figcaption>
+</figure>
+
+<p>配合 Wrap 寻址,偏移累加超过 1 也不会断,图案无缝循环。水流、瀑布、岩浆、屏幕上滚动的光带、传送装置的能量纹路,这类效果通常就是这样做的:模型本身没动,几乎没有额外的几何开销。</p>
+
+<h3 id="uv-mods">和贴图替换的关系</h3>
+
+<p>UV 写在模型里,图片只是被采样的对象。所以替换贴图 (例如高清材质包) 时:</p>
+
+<ul>
+<li><strong>分辨率可以随意提高。</strong>UV 是比例,256 换成 1024 后位置不变,只是更清晰。</li>
+<li><strong>布局必须和原图一致。</strong>模型的 UV 没变,图片上每一块的位置一变,就会贴错:脸跑到背上、文字错位、接缝处出现杂色。</li>
+<li><strong>宽高比最好保持。</strong>UV 按比例取图,宽高比改变时图案会被拉伸。</li>
+<li><strong>边缘要留余量。</strong>高分辨率贴图更容易在 UV 接缝处露出相邻区域的颜色,一般把各块边缘向外多铺几个像素。</li>
+</ul>
+
+<h3 id="uv-faq">常见问题</h3>
+
+<dl>
+<dt>贴图出现拉伸、扭曲?</dt>
+<dd>通常是 UV 展开时某个面在图片上被压扁了,或替换贴图改了宽高比。这不是显卡或后端的问题,换渲染后端也不会改变。</dd>
+<dt>远处地板花纹闪烁?</dt>
+<dd>这是 UV 空间里一个屏幕像素覆盖了太多纹理像素造成的,和 mipmap、AF 有关,见上文 <a href="#af">各向异性过滤</a>。</dd>
+<dt>UV 为什么有时写成 ST?</dt>
+<dd>只是叫法不同。OpenGL 习惯用 S、T 表示纹理坐标,含义与 U、V 相同。另外 Direct3D 的 UV 原点 (0, 0) 在图片左上角,V 向下增加;OpenGL 的原点在左下角,V 向上增加。</dd>
+</dl>
 
 <hr>
 

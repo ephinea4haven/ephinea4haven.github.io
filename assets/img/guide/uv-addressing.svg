@@ -1,0 +1,100 @@
+<svg viewBox="0 0 920 286" width="920" height="286" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <defs>
+    <pattern id="ck" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect width="25" height="25" fill="#1e3a5f"/><rect width="12.5" height="12.5" fill="#2563eb"/>
+      <rect x="12.5" y="12.5" width="12.5" height="12.5" fill="#2563eb"/>
+    </pattern>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/>
+    </marker>
+  </defs>
+  <style>
+    .p{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .h{fill:#f8fafc;font-size:16px;font-weight:700}
+    .t{fill:#cbd5e1;font-size:13px}
+    .m{fill:#94a3b8;font-size:12px}
+    .e{fill:none;stroke:#e2e8f0;stroke-width:2}
+    .l{fill:#ede9fe;font-size:13px;font-weight:700}
+    .pt{fill:#a78bfa;stroke:#ede9fe;stroke-width:1.5}
+    .r{fill:#fbbf24;font-weight:800}
+    .ar{stroke:#00d4ff;stroke-width:2;fill:none}
+    .xr{stroke:#f87171;stroke-width:2.5}.xg{stroke:#4ade80;stroke-width:2.5}.xb{stroke:#60a5fa;stroke-width:2.5}
+  </style>
+  <rect class="p" x="20" y="18" width="205" height="250" rx="10"/>
+  <text class="h" x="122" y="46" text-anchor="middle">Wrap</text>
+  <rect x="52" y="64" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="92.0" y="124.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="52" y="64" width="80" height="80"/>
+  <rect x="132" y="64" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="172.0" y="124.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="132" y="64" width="80" height="80"/>
+  <rect x="52" y="144" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="92.0" y="204.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="52" y="144" width="80" height="80"/>
+  <rect x="132" y="144" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="172.0" y="204.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="132" y="144" width="80" height="80"/>
+  <text class="m" x="52" y="244" text-anchor="middle">0</text>
+  <text class="m" x="132" y="244" text-anchor="middle">1</text>
+  <text class="m" x="212" y="244" text-anchor="middle">2</text>
+  <rect class="p" x="245" y="18" width="205" height="250" rx="10"/>
+  <text class="h" x="347" y="46" text-anchor="middle">Mirror</text>
+  <rect x="277" y="64" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="317.0" y="124.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="277" y="64" width="80" height="80"/>
+  <g transform="translate(437 64) scale(-1 1)">
+  <rect x="0" y="0" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="40.0" y="60.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="0" y="0" width="80" height="80"/>
+  </g>
+  <g transform="translate(277 224) scale(1 -1)">
+  <rect x="0" y="0" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="40.0" y="60.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="0" y="0" width="80" height="80"/>
+  </g>
+  <g transform="translate(437 224) scale(-1 -1)">
+  <rect x="0" y="0" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="40.0" y="60.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="0" y="0" width="80" height="80"/>
+  </g>
+  <text class="m" x="277" y="244" text-anchor="middle">0</text>
+  <text class="m" x="357" y="244" text-anchor="middle">1</text>
+  <text class="m" x="437" y="244" text-anchor="middle">2</text>
+  <rect class="p" x="470" y="18" width="205" height="250" rx="10"/>
+  <text class="h" x="572" y="46" text-anchor="middle">Clamp</text>
+  <rect x="502" y="64" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="542.0" y="124.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="502" y="64" width="80" height="80"/>
+  <rect x="582" y="64" width="80" height="80" fill="#1e3a5f"/>
+  <rect x="582" y="70.25" width="80" height="6.25" fill="#2563eb"/>
+  <rect x="582" y="82.75" width="80" height="6.25" fill="#2563eb"/>
+  <rect x="582" y="95.25" width="80" height="6.25" fill="#2563eb"/>
+  <rect x="582" y="107.75" width="80" height="6.25" fill="#2563eb"/>
+  <rect x="582" y="120.25" width="80" height="6.25" fill="#2563eb"/>
+  <rect x="582" y="132.75" width="80" height="6.25" fill="#2563eb"/>
+  <rect class="e" x="582" y="64" width="80" height="80" style="stroke-dasharray:4 3"/>
+  <rect x="502" y="144" width="80" height="80" fill="#1e3a5f"/>
+  <rect x="508.25" y="144" width="6.25" height="80" fill="#2563eb"/>
+  <rect x="520.75" y="144" width="6.25" height="80" fill="#2563eb"/>
+  <rect x="533.25" y="144" width="6.25" height="80" fill="#2563eb"/>
+  <rect x="545.75" y="144" width="6.25" height="80" fill="#2563eb"/>
+  <rect x="558.25" y="144" width="6.25" height="80" fill="#2563eb"/>
+  <rect x="570.75" y="144" width="6.25" height="80" fill="#2563eb"/>
+  <rect class="e" x="502" y="144" width="80" height="80" style="stroke-dasharray:4 3"/>
+  <rect x="582" y="144" width="80" height="80" fill="#1e3a5f"/>
+  <rect class="e" x="582" y="144" width="80" height="80" style="stroke-dasharray:4 3"/>
+  <text class="m" x="502" y="244" text-anchor="middle">0</text>
+  <text class="m" x="582" y="244" text-anchor="middle">1</text>
+  <text class="m" x="662" y="244" text-anchor="middle">2</text>
+  <rect class="p" x="695" y="18" width="205" height="250" rx="10"/>
+  <text class="h" x="797" y="46" text-anchor="middle">Border</text>
+  <rect x="727" y="64" width="80" height="80" fill="url(#ck)"/>
+  <text class="r" x="767.0" y="124.8" text-anchor="middle" style="font-size:56px">R</text>
+  <rect class="e" x="727" y="64" width="80" height="80"/>
+  <rect x="807" y="64" width="80" height="80" fill="#475569" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4 3"/>
+  <rect x="727" y="144" width="80" height="80" fill="#475569" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4 3"/>
+  <rect x="807" y="144" width="80" height="80" fill="#475569" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4 3"/>
+  <text class="m" x="727" y="244" text-anchor="middle">0</text>
+  <text class="m" x="807" y="244" text-anchor="middle">1</text>
+  <text class="m" x="887" y="244" text-anchor="middle">2</text>
+</svg>

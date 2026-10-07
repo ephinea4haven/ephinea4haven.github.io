@@ -1,0 +1,54 @@
+<svg viewBox="0 0 920 310" width="920" height="310" xmlns="http://www.w3.org/2000/svg" style="font-family:system-ui,-apple-system,'Segoe UI',sans-serif">
+  <defs>
+    <pattern id="ck" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect width="25" height="25" fill="#1e3a5f"/><rect width="12.5" height="12.5" fill="#2563eb"/>
+      <rect x="12.5" y="12.5" width="12.5" height="12.5" fill="#2563eb"/>
+    </pattern>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#00d4ff"/>
+    </marker>
+  </defs>
+  <style>
+    .p{fill:rgba(96,165,250,.06);stroke:rgba(148,163,184,.55);stroke-width:1.5}
+    .h{fill:#f8fafc;font-size:16px;font-weight:700}
+    .t{fill:#cbd5e1;font-size:13px}
+    .m{fill:#94a3b8;font-size:12px}
+    .e{fill:none;stroke:#e2e8f0;stroke-width:2}
+    .l{fill:#ede9fe;font-size:13px;font-weight:700}
+    .pt{fill:#a78bfa;stroke:#ede9fe;stroke-width:1.5}
+    .r{fill:#fbbf24;font-weight:800}
+    .ar{stroke:#00d4ff;stroke-width:2;fill:none}
+    .xr{stroke:#f87171;stroke-width:2.5}.xg{stroke:#4ade80;stroke-width:2.5}.xb{stroke:#60a5fa;stroke-width:2.5}
+  </style>
+  <rect class="p" x="20" y="18" width="425" height="270" rx="10"/>
+  <rect class="p" x="475" y="18" width="425" height="270" rx="10"/>
+  <text class="h" x="232" y="46" text-anchor="middle">XYZ</text>
+  <text class="h" x="687" y="46" text-anchor="middle">UV</text>
+  <polygon points="120,110 260,110 320,70 180,70" fill="rgba(148,163,184,.18)" stroke="#e2e8f0" stroke-width="2"/>
+  <polygon points="260,110 320,70 320,210 260,250" fill="rgba(148,163,184,.18)" stroke="#e2e8f0" stroke-width="2"/>
+  <rect x="120" y="110" width="140" height="140" fill="url(#ck)"/>
+  <text class="r" x="190.0" y="216.4" text-anchor="middle" style="font-size:100px">R</text>
+  <rect class="e" x="120" y="110" width="140" height="140"/>
+  <circle class="pt" cx="120" cy="250" r="6"/><circle class="pt" cx="260" cy="250" r="6"/>
+  <circle class="pt" cx="260" cy="110" r="6"/><circle class="pt" cx="120" cy="110" r="6"/>
+  <text class="l" x="112" y="272" text-anchor="end">A (0, 0, 1)</text>
+  <text class="l" x="236" y="272" text-anchor="end">B (1, 0, 1)</text>
+  <text class="l" x="236" y="100" text-anchor="end">C (1, 1, 1)</text>
+  <text class="l" x="112" y="100" text-anchor="end">D (0, 1, 1)</text>
+  <line class="xr" x1="350" y1="255" x2="390" y2="255"/><text class="t" x="396" y="259">X</text>
+  <line class="xg" x1="350" y1="255" x2="350" y2="215"/><text class="t" x="345" y="208">Y</text>
+  <line class="xb" x1="350" y1="255" x2="326" y2="274"/><text class="t" x="312" y="284">Z</text>
+  <rect x="590" y="80" width="170" height="170" fill="url(#ck)"/>
+  <text class="r" x="675.0" y="209.2" text-anchor="middle" style="font-size:120px">R</text>
+  <rect class="e" x="590" y="80" width="170" height="170"/>
+  <circle class="pt" cx="590" cy="250" r="6"/><circle class="pt" cx="760" cy="250" r="6"/>
+  <circle class="pt" cx="760" cy="80" r="6"/><circle class="pt" cx="590" cy="80" r="6"/>
+  <text class="l" x="598" y="272">A (0, 1)</text>
+  <text class="l" x="768" y="272">B (1, 1)</text>
+  <text class="l" x="768" y="72">C (1, 0)</text>
+  <text class="l" x="598" y="72">D (0, 0)</text>
+  <line class="xr" x1="805" y1="120" x2="845" y2="120"/><text class="t" x="851" y="124">U</text>
+  <line class="xg" x1="805" y1="120" x2="805" y2="160"/><text class="t" x="800" y="176">V</text>
+  <path d="M266,256 C390,312 500,312 586,256" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+  <path d="M266,104 C390,28 500,28 586,76" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="5 4" fill="none"/>
+</svg>
