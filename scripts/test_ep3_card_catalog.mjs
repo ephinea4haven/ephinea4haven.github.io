@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
@@ -8,6 +9,8 @@ import { searchDocument, searchRoutes } from './build_search.mjs';
 import { cardList, cardColumns, cardTypes, cardRanks, formatStat, filterCards, changedEffectSlots, formatRawDifference } from '../src/app/ep3-card-catalog/card.ts';
 import { messages } from '../src/app/ep3-card-catalog/ep3-card.messages.ts';
 const { index, details }=generateEp3CardCatalog();
+// Route registration reads generated inputs that a clean checkout does not have yet.
+for (const generator of ['generate_item_catalog','generate_monster_catalog','generate_angular_content']) execFileSync(process.execPath,[`scripts/${generator}.mjs`]);
 const source=JSON.parse(fs.readFileSync('content/ep3-card-catalog/cards.json','utf8'));
 test('lightweight index, individual details and artwork preserve the complete source',()=>{
   assert.equal(index.length,700);assert.equal(index.filter(c=>!c.hidden).length,662);

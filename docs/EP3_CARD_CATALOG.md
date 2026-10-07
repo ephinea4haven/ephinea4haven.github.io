@@ -890,3 +890,9 @@ the 1,040,000-byte published JavaScript cap and authorized commit and push on
 install, 0 vulnerabilities, full business tests, production build, reproducible
 build comparison, 21 smoke scenarios and 6,304 browser tests. This acceptance
 record does not by itself confirm a successful site deployment.
+
+The first Pages run for this release failed in `npm test` because the route
+registration test read generated files a clean checkout lacks; nothing was
+deployed. The test now generates those inputs itself, and the release gate
+clears ignored generated outputs first. See `docs/DEPLOYMENT.md`
+(October 7, 2026 clean-checkout test dependency).

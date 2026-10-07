@@ -525,7 +525,9 @@ stamped with the first 12 hex digits of the file's SHA-256 when content routes a
 generated; a missing file or a manual `?v=N` fails generation. Stylesheets linked
 from content sources are compiled into hashed Angular bundles and need no marker.
 
-`npm run release:prepare` is the complete local release gate: locked install,
+`npm run release:prepare` is the complete local release gate: it first clears
+ignored generated outputs so tests start from the same state as a clean CI
+checkout, then runs locked install,
 dependency audit, Chromium installation, business tests, two identical build
 manifests, the same smoke command as release CI, and the full browser suite.
 Browser checks use CI isolation and zero retries; stop any preview on port 4173

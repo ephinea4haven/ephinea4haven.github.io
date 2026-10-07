@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { readFileSync, rmSync } from 'node:fs';
 
 // Keep the local gate a superset of both CI workflows. A failed command throws
 // immediately, so later stages cannot turn a failed release into a success.
@@ -8,6 +8,11 @@ function npm(...args) {
   execFileSync('npm', args, { stdio: 'inherit' });
 }
 
+// CI tests a clean checkout. Remove ignored generated outputs so a test that
+// depends on a previous local build fails here first.
+for (const output of ['src/app/generated', 'assets/data/items', 'assets/data/item-index.json', 'assets/data/monsters', 'assets/data/ep3-cards']) {
+  rmSync(output, { recursive: true, force: true });
+}
 npm('ci');
 npm('audit', '--audit-level=low');
 npm('exec', '--', 'playwright', 'install', '--with-deps', 'chromium');

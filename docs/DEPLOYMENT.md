@@ -38,7 +38,10 @@ Local release verification (stop any preview server on port 4173 first):
 npm run release:prepare
 ```
 
-This command performs a locked `npm ci`, dependency audit at the `low` threshold,
+This command first removes the ignored generated outputs (`src/app/generated`,
+`assets/data/items`, `assets/data/item-index.json`, `assets/data/monsters`,
+`assets/data/ep3-cards`) so business tests start from the same state as a clean
+CI checkout. It then performs a locked `npm ci`, dependency audit at the `low` threshold,
 Chromium/system-dependency installation, all business tests, two builds and an
 exact build-manifest comparison, the release CI smoke command with two workers,
 and the full browser suite with four workers. Any failure stops the sequence.
@@ -894,3 +897,19 @@ Emergency rollback:
 Every rollback still passes the same build and test gates. Never copy files
 directly into the deployed site. Manual runs from non-`master` refs verify the
 artifact but are intentionally not allowed to deploy production.
+
+## October 7, 2026 clean-checkout test dependency
+
+The Pages run for `18bb3cc` (Episode III card catalog) failed in `npm test`
+before building, so nothing was deployed. `test_ep3_card_catalog.mjs` checked
+route registration through `devRoutes`, which reads
+`src/app/generated/content.routes.server.ts` and the item and monster catalog
+indexes. CI tests a clean checkout before any build, so those ignored files did
+not exist. The local gate passed because files from earlier local builds were
+still present.
+
+The test now runs the item, monster and content generators before checking
+routes. `release:prepare` removes the ignored generated outputs before `npm ci`,
+so a test that depends on an earlier local build fails locally first. From that
+clean state, `npm run release:prepare` passed: 0 vulnerabilities, all business
+tests, reproducible build comparison, 21 smoke scenarios and 6,304 browser tests.
