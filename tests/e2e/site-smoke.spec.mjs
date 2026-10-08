@@ -1302,7 +1302,7 @@ test('Angular multilingual data tables switch language without legacy globals', 
   await page.goto('/data/bdp/');
   await expect.poll(() => page.locator('.bdp-row').count()).toBeGreaterThan(0);
   const db3069 = page.locator('.bdp-row-2 td').nth(1);
-  await expect(db3069).toContainText('DB 之剑「3069·Chris 公司」');
+  await expect(db3069).toContainText('DB 之剑「3069·Chris」');
   const nugBazooka = page.locator('[data-item-zh="NUG2000 火箭筒"]').first();
   await expect(nugBazooka).toHaveText('NUG2000 火箭筒');
   await page.getByRole('button', { name: 'English', exact: true }).click();
