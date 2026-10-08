@@ -36,6 +36,23 @@ class SyncItemTranslationsTest(unittest.TestCase):
         self.assertIsNotNone(checkout)
         self.assertRegex(checkout.group(1), r"\A[0-9a-f]{40}\Z")
 
+    def test_local_authority_is_the_pinned_revision(self) -> None:
+        """Local runs must verify against the same dropcharts commit CI checks out."""
+        import subprocess
+
+        pins = set()
+        for name in ("pages.yml", "full-verification.yml"):
+            workflow = (REPO / ".github" / "workflows" / name).read_text(encoding="utf-8")
+            pins.update(re.findall(r"repository: warmonipa/dropcharts\s+ref: ([0-9a-f]{40})", workflow))
+        self.assertEqual(len(pins), 1, f"workflows pin different dropcharts revisions: {pins}")
+        head = subprocess.run(
+            ["git", "-C", str(DEFAULT_AUTHORITY.parent), "rev-parse", "HEAD"],
+            capture_output=True, text=True,
+        )
+        self.assertEqual(head.returncode, 0, "authority checkout is not a git repository")
+        self.assertEqual(head.stdout.strip(), pins.pop(),
+                         "local dropcharts checkout differs from the pinned CI revision")
+
     def test_checked_in_dictionary_matches_authority(self) -> None:
         authority_bytes = DEFAULT_AUTHORITY.read_bytes()
         authority = load_authority(DEFAULT_AUTHORITY)

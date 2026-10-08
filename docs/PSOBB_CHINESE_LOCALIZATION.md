@@ -136,9 +136,12 @@ the equipment named From the Depths remains 深渊来客. Never replace that ite
 name with the identically named quest's 来自深渊之物.
 
 Item authority moved with this alignment: both CI jobs now pin droptable
-`39b6a8601d9da0cf88e87cf41b6ab5c56318c9bc` (generated from psobb-localization
-`b6a3a93126842640378ff9c60db0a57a6b46e007`: half-width Latin letters and digits in
-Chinese names such as 媚影沙魔·A, and Game Magazine = FAMI通).
+`ea3e83e798f45b0a67f5b1c6360724418f20513b` (generated from psobb-localization
+`5f96ee4`: half-width Latin letters and digits in Chinese names such as 媚影沙魔·A,
+Game Magazine = FAMI通, and DB 之剑「3069·Chris」/「3069·Torato」 without 公司).
+Move every pin together with the regenerated dictionary: the local authority checkout
+must be the pinned commit (`test_local_authority_is_the_pinned_revision`), otherwise
+local verification passes against newer data while CI fails.
 
 ## Confirmed NPC names
 
