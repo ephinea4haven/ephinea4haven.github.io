@@ -627,7 +627,12 @@ function pageDetails(file, source, relative, language) {
         }
       }
       if (attrs.get('id') === 'content' || attrs.get('id') === 'yearContent') {
-        node.childNodes = parseFragment(eventFragments.get(`${language}/event/${eventName}/${years[0]}.html`)).childNodes;
+        const fragment = eventFragments.get(`${language}/event/${eventName}/${years[0]}.html`);
+        // Query-string archive selection happens in the browser. Keep the default
+        // edition inert until then, including before Angular connects on slow devices.
+        // Use regular DOM children so Angular can hydrate the prerendered tree.
+        // Native template contents live in a separate DocumentFragment in browsers.
+        node.childNodes = parseFragment(`<div data-event-default hidden inert>${fragment}</div>`).childNodes;
       }
       if (attrs.get('id') === 'yearNav') {
         node.childNodes = parseFragment(years.map((year) => year === years[0]

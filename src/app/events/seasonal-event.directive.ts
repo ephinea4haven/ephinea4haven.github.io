@@ -54,6 +54,8 @@ export class SeasonalEventBehavior {
     const defaultYear = Number(masthead.dataset['defaultYear']);
     const requested = Number(new URLSearchParams(location.search).get('year'));
     const selected = years.includes(requested) ? requested : defaultYear;
+    const defaultContent = content.querySelector<HTMLElement>('[data-event-default]')!;
+    content.replaceChildren(...(selected === defaultYear ? Array.from(defaultContent.childNodes) : []));
     const label = EVENT_TEXT[this.language][eventName === 'anniversary' ? 'anniversary' : 'christmas'];
     if (eventName === 'anniversary') {
       let hue = 188;

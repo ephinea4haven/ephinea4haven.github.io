@@ -64,6 +64,68 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 9, 2026 item-authority and event-archive release
+
+Finding DEPLOY-2026-10-08-01 — Fixed in local commit `6867d5aa`; full release
+verification passed. Pages run `37794642762` for `05b34405` failed during
+`test_checked_in_dictionary_matches_authority`, before build or deployment.
+The checked-in dictionary was generated from dropcharts `ea3e83e`, while the
+workflows still checked out `39b6a86`. Local tests used the newer sibling
+checkout and therefore missed the CI mismatch.
+
+The repair updates all three authority checkouts across `pages.yml` and
+`full-verification.yml` to `ea3e83e798f45b0a67f5b1c6360724418f20513b`.
+The regression requires a single workflow revision and requires the local
+authority checkout to match it; the existing byte-for-byte dictionary test
+continues to check the generated result. Replaying that test with the old
+revision's `i18n_names.json` reproduced the exact CI hash mismatch; all nine
+translation tests passed against the pinned revision.
+
+On this workstation the sibling checkout is named `dropcharts`, so use the
+documented override when verifying:
+
+```bash
+DROPTABLE_I18N_AUTHORITY=/Users/wangzhen/study/dropcharts/i18n_names.json npm run release:prepare
+```
+
+Finding DEPLOY-2026-10-09-02 — Fixed; full release verification passed. Both production
+builds matched, but the event-archive smoke test failed. Its trace records
+Angular `NG0502`: the existing event change embeds default content in a native
+`template`, whose children the browser places in `template.content` rather than
+the DOM child tree expected by hydration. Initialization stops before the title
+and default edition are activated. Both event directives share this mechanism.
+The correction uses a hidden, inert regular DOM wrapper, preserving the hidden
+default edition before year selection and allowing hydration to traverse it.
+Tests cover generated wrappers, pre-JavaScript rendering in all three languages,
+default/invalid years, delayed archive responses and failed archive loads.
+All four event generation tests and all 21 focused browser cases passed with
+the correction, including the original failing smoke case. Angular's installed
+`locateNextRNode` implementation confirms that hydration walks `firstChild`,
+matching the observed native-template failure. See Angular's
+[NG0502 description](https://angular.dev/errors/NG0502).
+
+Final `release:prepare` passed with Node 24.15.0 and the pinned authority:
+locked installation, zero vulnerabilities at the `low` audit threshold, all
+business tests, two byte-identical production build manifests, all 21 release
+smoke cases and all **6,324 browser tests** (four workers, zero retries,
+9.0 minutes). The output contains 5,905 routes and 135 event fragments;
+published JavaScript gzip is 1,044,507 / 1,050,000 bytes. Manifest SHA-256:
+`7f130924d0fa083ef66bd123ca392400aecc13451dcd5c1c9fa51512d92dbaf1`.
+`sync:i18n -- --check` also verified item, monster and Mag names against the
+authority. Fresh review and `git diff --check` found no remaining in-scope
+issue. Documentation-only finalization is outside the production build inputs.
+The dependency audit and build/browser processes required execution outside
+the sandbox; no quality gate, assertion or performance budget was relaxed.
+
+The maintainer accepted the result on October 9 and explicitly authorized
+documentation alignment, commit and push. The release includes the authority
+revision repair and event-year selection changes: default content stays hidden
+until browser selection, default or invalid years use the embedded edition,
+and historical-year loading or failure never exposes the default edition.
+The final documentation update records that accepted behavior and does not
+change the validated production inputs. Publication is established separately
+by the matching revision's successful Pages workflow.
+
 ## October 6, 2026 Angular 22.2.1 review (PR #29)
 
 Scope: upgrade the 11 direct Angular packages from 22.2.0 to 22.2.1 together,

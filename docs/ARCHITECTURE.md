@@ -272,10 +272,16 @@ editions, written as documents under `content/i18n/pages/{en,ja}/event/`. The
 content generator compiles every fragment once per language into
 `src/app/generated/event-fragments/`; the site build publishes them at
 `/event/<event>/<year>.html` and under `/en/` and `/ja/`. Each overview edition
-embeds its newest compiled fragment and builds its year navigation from the
-committed year files, so first-render and fetched content come from the same
-document. Fragment section links name the archive host, `?year=` and anchor, never
-the fragment resource.
+embeds its newest compiled fragment in a hidden, inert regular DOM wrapper and
+builds its year navigation from the committed year files. After hydration, the
+browser selects the requested year: default or invalid years activate the
+embedded edition without a fetch; historical years remove it before fetching
+their fragment. The default edition stays hidden even before JavaScript starts,
+and a failed historical request shows only the selected year's error. Regular
+DOM children preserve Angular's hydration tree; native `template` contents do
+not. Embedded and fetched content come from the same compiled documents.
+Fragment section links name the archive host, `?year=` and anchor, never the
+fragment resource.
 
 `SeasonalEventBehavior` and `EventArchiveBehavior` read the page language and
 fetch that language's fragments. Chinese fragments keep the English item names of

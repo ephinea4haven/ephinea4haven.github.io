@@ -14,13 +14,33 @@ const years = events.flatMap((event) => readdirSync(path.join(root, 'event', eve
   .filter((file) => /^\d{4}\.html$/.test(file)).map((file) => `event/${event}/${file}`));
 function nodes(html) {
   const result = [];
-  const visit = (node) => { result.push(node); for (const child of node.childNodes ?? []) visit(child); };
+  const visit = (node) => {
+    result.push(node);
+    for (const child of node.childNodes ?? []) visit(child);
+  };
   visit(parseFragment(html));
   return result;
 }
 const attribute = (node, name) => node.attrs?.find((entry) => entry.name === name)?.value;
 const ids = (html) => nodes(html).map((node) => attribute(node, 'id')).filter(Boolean).sort();
 const visible = (html) => nodes(html).filter((node) => node.nodeName === '#text').map((node) => node.value).join('');
+
+test('every event edition keeps default-year content inert until browser year selection', () => {
+  for (const language of ['zh', 'en', 'ja']) {
+    for (const event of events) {
+      const file = read(`src/app/generated/pages/event__${event}${language === 'zh' ? '' : `.${language}`}.ts`);
+      const template = JSON.parse(file.match(/  template: (".*"),\n/)[1]);
+      const container = nodes(template).find((node) => ['content', 'yearContent'].includes(attribute(node, 'id')));
+      const children = container.childNodes.filter((node) => node.nodeName !== '#text' || node.value.trim());
+      assert.equal(children.length, 1, `${language}/${event}: only the inert default edition`);
+      assert.equal(children[0].tagName, 'div', `${language}/${event}: hydratable default-year DOM`);
+      assert.equal(attribute(children[0], 'data-event-default'), '');
+      assert.equal(attribute(children[0], 'hidden'), '');
+      assert.equal(attribute(children[0], 'inert'), '');
+      assert.ok(children[0].childNodes.length > 0);
+    }
+  }
+});
 
 test('all 45 event years compile in English and Japanese with their anchors and interactions intact', () => {
   assert.equal(years.length, 45);

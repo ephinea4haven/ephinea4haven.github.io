@@ -24,6 +24,8 @@ export class EventArchiveBehavior extends BrowserContentBehavior {
     const defaultYear = Number(archive.dataset['defaultYear']);
     const requested = Number(new URLSearchParams(location.search).get('year'));
     const selected = years.includes(requested) ? requested : defaultYear;
+    const defaultContent = content.querySelector<HTMLElement>('[data-event-default]')!;
+    content.replaceChildren(...(selected === defaultYear ? Array.from(defaultContent.childNodes) : []));
     document.title = `${selected} ${titleName} | Ephinea PSOBB`;
     yearLabel.textContent = String(selected);
     yearNav.replaceChildren(...years.map((year) => {

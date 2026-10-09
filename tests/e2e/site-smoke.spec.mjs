@@ -1136,6 +1136,87 @@ test('2026 anniversary navigation contains only primary guide sections', async (
   }
 });
 
+for (const language of ['', '/en', '/ja']) {
+  for (const [event, year] of [['anniversary', 2025], ['christmas', 2024], ['easter', 2024], ['halloween', 2024], ['valentines', 2024]]) {
+    test(`${language || '/zh'} ${event} archive never exposes the default year while loading`, async ({ page }) => {
+      let release;
+      const pending = new Promise((resolve) => { release = resolve; });
+      let requested;
+      const requestStarted = new Promise((resolve) => { requested = resolve; });
+      await page.route(`**${language}/event/${event}/${year}.html`, async (route) => {
+        requested();
+        await pending;
+        await route.continue();
+      });
+      try {
+        await page.goto(`${language}/event/${event}.html?year=${year}`);
+        await requestStarted;
+        await expect(page.locator('#project_year, #eventYear')).toHaveText(String(year));
+        // Hold the response open so waiting cannot conceal stale default-year content.
+        expect(await page.locator('#content, #yearContent').innerText()).toBe('');
+        expect(await page.locator('#content a, #content h2, #content h3, #yearContent a, #yearContent h2, #yearContent h3').count()).toBe(0);
+      } finally {
+        release();
+      }
+      await expect(page.locator('#content h2, #yearContent h2').first()).toBeVisible();
+      if (event === 'anniversary') {
+        await expect(page.locator('#anniv-changes')).toBeVisible();
+        await expect(page.locator('#anniv-2026-changes')).toHaveCount(0);
+      } else {
+        await expect(page.locator('#content h2, #yearContent h2').first()).toContainText('2024');
+      }
+    });
+  }
+}
+
+test('event default editions stay hidden before JavaScript starts', async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  try {
+    for (const language of ['', '/en', '/ja']) {
+      for (const event of ['anniversary', 'christmas', 'easter', 'halloween', 'valentines']) {
+        await page.goto(`http://127.0.0.1:4173${language}/event/${event}.html?year=2024`);
+        const edition = page.locator('[data-event-default]');
+        await expect(edition).toHaveCount(1);
+        await expect(edition).toBeHidden();
+        expect(await edition.locator('h2, h3').count()).toBeGreaterThan(0);
+        expect(await page.locator('#content, #yearContent').innerText()).toBe('');
+      }
+    }
+  } finally {
+    await context.close();
+  }
+});
+
+test('event defaults and invalid years activate the embedded edition without fetching an archive', async ({ page }) => {
+  const requests = [];
+  await page.route(/\/event\/[a-z]+\/\d{4}\.html$/, async (route) => {
+    requests.push(route.request().url());
+    await route.abort();
+  });
+  for (const event of ['anniversary', 'christmas', 'easter', 'halloween', 'valentines']) {
+    for (const query of ['', '?year=invalid', '?year=1900']) {
+      await page.goto(`/en/event/${event}.html${query}`);
+      const masthead = page.locator('[data-event]');
+      const year = await masthead.getAttribute('data-default-year');
+      await expect(page.locator('#content h2, #yearContent h2').first()).toBeVisible();
+      await expect(page.locator('#project_year, #eventYear')).toHaveText(year);
+      await expect(page.locator('#yearNav [aria-current="page"]')).toHaveText(year);
+    }
+  }
+  expect(requests).toEqual([]);
+});
+
+for (const [event, year] of [['anniversary', 2025], ['christmas', 2024], ['easter', 2024]]) {
+  test(`${event} failed archive load leaves only the selected year's error`, async ({ page }) => {
+    await page.route(`**/en/event/${event}/${year}.html`, (route) => route.fulfill({ status: 503, body: '' }));
+    await page.goto(`/en/event/${event}.html?year=${year}`);
+    const content = page.locator('#content, #yearContent');
+    await expect(content).toHaveText(`Could not load the ${year} ${event} event archive.`);
+    await expect(content.locator('a, h2, h3, template')).toHaveCount(0);
+  });
+}
+
 test('2025 anniversary section navigation stays on the selected archive year', async ({ page }) => {
   await page.goto('/event/anniversary.html?year=2025');
   const nav = page.locator('.anniv-2025 .section-nav');
