@@ -138,6 +138,10 @@ npm run test:rbr
 npm run build
 ```
 
+The production build and browser tests read the item-name authority. When the
+sibling checkout is not `../droptable`, set `DROPTABLE_I18N_AUTHORITY` to its
+`i18n_names.json`, as described in `docs/DEPLOYMENT.md`.
+
 When the mirror date is stale or the Tracker is inconsistent, `--require-current`
 prints `RBR rotation pending` and exits with status 0 without writing files, so the
 exit code alone does not prove a sync happened. When the local snapshot already
@@ -298,6 +302,36 @@ remote templates.
   workers and no retries in 5.4 minutes. The three affected tests also passed nine
   runs with a delayed index response. `AGENTS.md` now requires full local release
   validation before an approved push, so CI is not the first complete test pass.
+
+### 2026-10-11 update record
+
+- The maintainer provided an in-game `/rbr` screenshot confirming EP1
+  `Lost ICE SPINNER` (`LIS`), EP2 `Anomalous Ordeal #3` (`AO3`) and EP4
+  `War of Limits 1` (`WoL1`).
+- The read-only planner found the current template still at revision `43659`
+  (October 4), while Tracker revision `43679` already matches the screenshot.
+  Candidate validation and both MediaWiki render previews passed.
+- The publisher updated the current template and read it back at
+  [revision 43680](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43680).
+  The already-correct
+  [Tracker revision 43679](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=43679)
+  required no edit.
+- The rendered `Main Page` still showed the October 4 rotation after
+  publication; the article and both templates already rendered correctly. The
+  browser API purge returned `purged: true` for all four titles. A fresh load
+  then showed the October 11 date and three quests on the home page and current
+  template, and all 58 Tracker states on the article and Tracker template matched
+  the plan.
+- The site snapshot was regenerated with `build_rbr_data.py --require-current`
+  from those verified revisions. Its October 11 rotation and Tracker match the
+  reviewed plan. The Wiki had also edited `Endless Nightmare 3` (revision
+  `42632` to `43672`), so EN3's objective enemy counts changed from 311 to 292;
+  the other 57 quest records, ratings and the 5 random-spawn warnings are
+  unchanged.
+- 56 RBR tests and the production build passed. The local item-name authority
+  is the `../dropcharts` checkout at the CI-pinned `ea3e83e`, supplied through
+  `DROPTABLE_I18N_AUTHORITY`. The home RBR, RBR Section ID and site smoke
+  browser suites passed all 6,023 tests.
 
 ### 2026-09-14 home page release record
 
