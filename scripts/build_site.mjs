@@ -29,7 +29,7 @@ const temporaryDirectory = path.join(root, `.site-build-${process.pid}`);
 const backupDirectory = path.join(root, `.site-backup-${process.pid}`);
 const budgets = JSON.parse(await readFile(path.join(root, 'build-budgets.json'), 'utf8'));
 
-const rootFiles = ['index.html', '404.html', 'CNAME'];
+const rootFiles = ['index.html', '404.html', 'CNAME', 'favicon.ico', 'apple-touch-icon.png'];
 const siteDirectories = ['assets', 'data', 'event', 'guide', 'tools'];
 const publishedFiles = [path.join(root, 'third_party', 'psostats-combo', 'LICENSE')];
 const excludedTrees = [path.join(root, 'data', 'droptable')];

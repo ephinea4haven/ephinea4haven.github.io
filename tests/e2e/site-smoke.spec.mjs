@@ -111,6 +111,17 @@ test('data-driven tools avoid asynchronous loading placeholders', () => {
   expect(comboOpmHtml).not.toContain('Loading calculator data');
 });
 
+test('site icons are declared and served from the site root', { tag: '@smoke' }, async ({ page, request }) => {
+  await page.goto('/en/guide/rbr.html');
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.ico');
+  await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', '/apple-touch-icon.png');
+  for (const [path, contentType] of [['/favicon.ico', 'image/'], ['/apple-touch-icon.png', 'image/png']]) {
+    const response = await request.get(path);
+    expect(response.ok(), path).toBe(true);
+    expect(response.headers()['content-type'], path).toContain(contentType);
+  }
+});
+
 for (const pageCase of pages) {
   test(`${pageCase.name} loads the production artifact cleanly`, { tag: '@smoke' }, async ({ page }) => {
     const runtimeErrors = [];
