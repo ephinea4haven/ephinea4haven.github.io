@@ -51,8 +51,8 @@
     "@hono/node-server": "2.1.0"
   },
   "devDependencies": {
-    "@angular/build": "22.2.1",
-    "@angular/cli": "22.2.1",
+    "@angular/build": "22.2.2",
+    "@angular/cli": "22.2.2",
     "@angular/common": "22.2.1",
     "@angular/compiler": "22.2.1",
     "@angular/compiler-cli": "22.2.1",
@@ -61,7 +61,7 @@
     "@angular/platform-browser": "22.2.1",
     "@angular/platform-server": "22.2.1",
     "@angular/router": "22.2.1",
-    "@angular/ssr": "22.2.1",
+    "@angular/ssr": "22.2.2",
     "@axe-core/playwright": "4.13.0",
     "@parcel/watcher": "2.6.0",
     "@playwright/test": "1.63.0",
