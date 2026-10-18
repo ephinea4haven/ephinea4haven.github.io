@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-11T00:24:10.736332+00:00",
+  "generatedAt": "2026-10-18T01:36:05.212099+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,12 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 43680
+      "revision": 43706
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 43679
+      "revision": 43698
     }
   },
   "boosts": {
@@ -38,28 +38,28 @@
     "4": 14
   },
   "current": {
-    "week": "11 October 2026",
+    "week": "18 October 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Lost ICE SPINNER",
-        "name": "Lost ICE SPINNER",
-        "abbreviation": "LIS"
+        "page": "Sweep-up Operation 4",
+        "name": "Sweep-up Operation #4",
+        "abbreviation": "SU4"
       },
       {
         "episode": 2,
-        "page": "Anomalous Ordeal 3",
-        "name": "Anomalous Ordeal #3",
-        "abbreviation": "AO3"
+        "page": "Sweep-up Operation 8",
+        "name": "Sweep-up Operation #8",
+        "abbreviation": "SU8"
       },
       {
         "episode": 4,
-        "page": "War of Limits 1",
-        "name": "War of Limits 1",
-        "abbreviation": "WoL1"
+        "page": "Sweep-up Operation 10",
+        "name": "Sweep-up Operation #10",
+        "abbreviation": "SU10"
       }
     ],
-    "expectedWeek": "11 October 2026",
+    "expectedWeek": "18 October 2026",
     "isFresh": true
   },
   "tracker": {
@@ -71,12 +71,11 @@
     "byEpisode": {
       "1": {
         "possible": [
-          "SU4",
           "AO1",
           "LHP"
         ],
         "current": [
-          "LIS"
+          "SU4"
         ],
         "unavailable": [
           "MU1",
@@ -97,7 +96,8 @@
           "SR4",
           "SA1",
           "SA2",
-          "LHS"
+          "LHS",
+          "LIS"
         ]
       },
       "2": {
@@ -107,7 +107,6 @@
           "SU5",
           "SU6",
           "SU7",
-          "SU8",
           "PS1",
           "PS2",
           "PS3",
@@ -122,9 +121,10 @@
           "TWT"
         ],
         "current": [
-          "AO3"
+          "SU8"
         ],
         "unavailable": [
+          "AO3",
           "LCV",
           "TET"
         ]
@@ -133,13 +133,13 @@
         "possible": [
           "WoL3",
           "NMU2",
-          "SU10",
           "SU14"
         ],
         "current": [
-          "WoL1"
+          "SU10"
         ],
         "unavailable": [
+          "WoL1",
           "WoL2",
           "WoL4",
           "WoL5",

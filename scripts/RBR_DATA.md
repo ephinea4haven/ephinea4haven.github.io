@@ -333,6 +333,40 @@ remote templates.
   `DROPTABLE_I18N_AUTHORITY`. The home RBR, RBR Section ID and site smoke
   browser suites passed all 6,023 tests.
 
+### 2026-10-18 update record
+
+- The maintainer provided an in-game `/rbr` screenshot confirming EP1
+  `Sweep-up Operation #4` (`SU4`), EP2 `Sweep-up Operation #8` (`SU8`) and EP4
+  `Sweep-up Operation #10` (`SU10`). The planner validated the October 18
+  rotation, Tracker state and both MediaWiki render previews.
+- The publisher updated the current template from revision `43680` and verified
+  [revision 43706](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43706).
+  The already-correct
+  [Tracker revision 43698](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=43698)
+  required no edit.
+- The public Wiki home page still displayed the October 11 rotation. The browser
+  API purge returned `purged: true` for the home page, RBR article and both
+  templates. Fresh loads then confirmed the October 18 date and three quests on
+  the home page and current template; all 58 rendered Tracker states on both the
+  article and Tracker template matched the validated plan.
+- The site snapshot was regenerated with `build_rbr_data.py --require-current`
+  from the verified revisions. The rotation and Tracker are consistent; all 58
+  quest records, boost rules and 5 existing random-spawn warnings are unchanged.
+- 56 RBR tests, the production build and 14 relevant browser tests passed,
+  covering home cards, the UTC Sunday boundary, recommendation anchors and
+  Tracker failure handling, Section ID icons and RBR routes in all three
+  languages, versioned images and current Tracker/tier markers. The build used
+  `../dropcharts/i18n_names.json` through `DROPTABLE_I18N_AUTHORITY`.
+- The maintainer accepted the local result and explicitly approved aligning the
+  documentation, committing, pushing and deploying this update. Wiki verification
+  and local snapshot validation are complete. Publication follows the full local
+  `npm run release:prepare` gate; the matching Pages workflow and live rotation
+  are verified separately after the release push.
+- The full local release gate passed: locked dependency installation, zero
+  dependency vulnerabilities, all business tests, two identical production build
+  manifests, CI smoke selection and all 6,325 browser tests with zero retries
+  (9.6 minutes for the full browser suite).
+
 ### 2026-09-14 home page release record
 
 - `548e78e` committed and released the home page tier, recommended ID and color
