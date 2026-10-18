@@ -62,7 +62,7 @@
     "@angular/platform-server": "22.2.1",
     "@angular/router": "22.2.1",
     "@angular/ssr": "22.2.1",
-    "@axe-core/playwright": "4.13.0",
+    "@axe-core/playwright": "4.14.0",
     "@parcel/watcher": "2.6.0",
     "@playwright/test": "1.63.0",
     "cborg": "6.1.3",
