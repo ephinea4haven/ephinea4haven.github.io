@@ -1756,7 +1756,7 @@ for (const redirectCase of legacyDropChartRedirects) {
 
 
 test('authored item names stay aligned across guides and tools', async ({ page }) => {
-  const authority = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
+  const authority = JSON.parse(readFileSync(process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json', 'utf8')).items;
   for (const route of ['/', '/data/itempt.html', '/data/itempmt.html', '/guide/acronym.html',
     '/guide/class-guide.html', '/tools/materialplan.html', '/tools/mechanics.html',
     '/tools/v50x.html', '/tools/equipment.html', '/data/gallons_roulette.html']) {
@@ -1839,7 +1839,7 @@ test('status labels, effects, description and share links follow the page langua
   };
   // Material inputs are labelled by the authority names; a missing Japanese name stays English.
   const materials = { matHP: 'HP Material', matTP: 'TP Material', matPow: 'Power Material', matDef: 'Def Material', matMind: 'Mind Material', matEva: 'Evade Material', matLck: 'Luck Material' };
-  const authority = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
+  const authority = JSON.parse(readFileSync(process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json', 'utf8')).items;
   for (const [language, text] of Object.entries(expected)) {
     // A fresh context has no remembered language, as a reader opening a shared link.
     const context = await browser.newContext();

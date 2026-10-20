@@ -9,7 +9,7 @@ import { switchCases } from './monster_catalog_model.mjs';
 import { cellDrops, findDropRow, generateMonsterCatalog, readDropData } from './generate_monster_catalog.mjs';
 execFileSync(process.execPath,['scripts/generate_item_catalog.mjs']);
 const {index,details,metadata}=generateMonsterCatalog();
-const authorityPath=process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json';
+const authorityPath=process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json';
 const dropData=readDropData(path.join(path.dirname(authorityPath),'bb/data/en.js')).data;
 test('Epsilon and its shield retain the confirmed Chinese stem in both difficulty names',()=>{
   for (const [id, name] of [['epsilon','厄普西隆'],['epsigard','厄普西隆之盾']]) {
@@ -41,7 +41,7 @@ test('regenerating a reduced monster catalog removes retired detail assets',()=>
     fs.mkdirSync(path.join(fixture,'src/app/generated/item-catalog'),{recursive:true});
     fs.copyFileSync('src/app/generated/item-catalog/index.json',path.join(fixture,'src/app/generated/item-catalog/index.json'));
     const generate=()=>execFileSync(process.execPath,[path.resolve('scripts/generate_monster_catalog.mjs')],{
-      cwd:fixture,env:{...process.env,DROPTABLE_I18N_AUTHORITY:path.resolve(authorityPath)},
+      cwd:fixture,env:{...process.env,DROPCHARTS_I18N_AUTHORITY:path.resolve(authorityPath)},
     });
     generate();
     const retired=path.join(fixture,'assets/data/monsters/booma.json');
@@ -71,7 +71,7 @@ test('all 158 stat contexts preserve episode, mode, difficulty and absent phases
   assert.equal(details['bulk'].stats['n-on'],undefined);
   assert.equal(Object.values(details).reduce((n,d)=>n+Object.keys(d.stats).length,0),1262);
 });
-test('all ten colors and every drop cell come from droptable, including independent multi drops',()=>{
+test('all ten colors and every drop cell come from dropcharts, including independent multi drops',()=>{
   assert.deepEqual(metadata.sections.map(s=>s.name),dropData.sectionIds);
   assert.deepEqual(metadata.sections.map(s=>s.color),dropData.sectionColors);
   for(const [difficulty,key] of Object.entries({Normal:'n',Hard:'h','Very Hard':'vh',Ultimate:'u'})) {

@@ -237,7 +237,7 @@ structural tests and asset verifier need no `potrace`, numpy or scipy.
 
 - The business checks passed individually. RBR's 55 tests ran under WSL
   because its mode-600 credentials test requires Unix file permissions.
-- Validation used the raw authority files from CI's pinned droptable commit
+- Validation used the raw authority files from CI's pinned dropcharts commit
   `8fbbde4fe3a65819067f6037da7a8d6562e8956a`. Windows CRLF conversion changes
   byte hashes; the Combo source fixtures likewise used their original LF
   bytes for hash verification.

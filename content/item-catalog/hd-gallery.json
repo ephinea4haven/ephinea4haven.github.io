@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "sourceCollection": "高清图库",
   "reviewedOn": "2026-09-19",
-  "identityAuthority": "../droptable/i18n_names.json",
+  "identityAuthority": "../dropcharts/i18n_names.json",
   "notes": [
     "Normalized output names; source files are preserved.",
     "itemIds are direct equipment identities; appearanceOf describes shared art or visual ancestry, not equivalent equipment.",

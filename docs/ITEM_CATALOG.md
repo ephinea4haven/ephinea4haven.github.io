@@ -234,7 +234,7 @@ The maintainer reviewed the local result and authorized commit and push on
   verified `mag-evolution.js` and `mag-sim-data.js`, so the catalog and the
   training tool never diverge into two rule sets.
 - Chinese display names come from the generated `ITEM_TRANSLATIONS`, and
-  `../droptable/i18n_names.json` remains the sole authority. Thirty ES weapons and
+  `../dropcharts/i18n_names.json` remains the sole authority. Thirty ES weapons and
   the Nei's Claw replica have no reliable independent name and stay in English;
   they never borrow the translation of a same-named ordinary weapon or the genuine
   item.
@@ -369,7 +369,7 @@ through the detail page's image switch.
 Output names use the catalog's stable English item IDs. `itemIds` are direct
 equipment identities, while `appearanceOf` records a shared model or a visual
 variant without claiming it is the same game item. Chinese names in the local
-review page are read from `../droptable/i18n_names.json`, never invented from
+review page are read from `../dropcharts/i18n_names.json`, never invented from
 filenames. ES names and Nei's Claw (Replica) retain the existing catalog English
 where the authority lacks that exact entry.
 

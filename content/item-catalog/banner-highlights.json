@@ -1,5 +1,5 @@
 {
-  "source": "../droptable/tools/banner_rules.py",
+  "source": "../dropcharts/tools/banner_rules.py",
   "rulesSha256": "e386afb58311089b3265cbf38f4227f647ba2e48b05c807fcbde4636fc414f8e",
   "styleSha256": "d0e95841f33d93fd68320b272cd4b5f651b0fcc6a7ccc8082cbf117b6b51a972",
   "minimumUntekkedHit": {

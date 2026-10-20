@@ -72,7 +72,7 @@ rtk npm run test:destiny:upstream
 
 最近记录的 viewer/gallery 测试共 29 项；恢复后的检查见 [RECOVERY.md](RECOVERY.md)。
 `test:destiny` 检查可移植的图库与 Destiny viewer；`test:destiny:upstream` 检查 BB/DC/NGC 回归，
-直接读取相邻 `../droptable` 仓库的测试 fixtures，因此需要该仓库在场。不保存指向个人机器绝对路径的软链接。
+直接读取相邻 `../dropcharts` 仓库的测试 fixtures，因此需要该仓库在场。不保存指向个人机器绝对路径的软链接。
 完整的护甲特效来源哈希校验可运行 `rtk node artifacts/destiny/verify-effect-sources.mjs`，需要本地原始客户端资源。
 
 ## 图片

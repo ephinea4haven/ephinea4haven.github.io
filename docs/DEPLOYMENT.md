@@ -27,10 +27,10 @@ avoiding the full route sweep on every content release. The independent full
 workflow is manual, not a scheduled task or an automatic deployment dependency;
 it does not replace or defer any local pre-push check.
 
-The build job checks out the pinned item-name authority into `droptable/` and
-sets `DROPTABLE_I18N_AUTHORITY` for the entire job. Local business and browser
-tests use `../droptable/i18n_names.json` by default; set
-`DROPTABLE_I18N_AUTHORITY` to an absolute file path when using another checkout.
+The build job checks out the pinned item-name authority into `dropcharts/` and
+sets `DROPCHARTS_I18N_AUTHORITY` for the entire job. Local business and browser
+tests use `../dropcharts/i18n_names.json` by default; set
+`DROPCHARTS_I18N_AUTHORITY` to an absolute file path when using another checkout.
 
 Local release verification (stop any preview server on port 4173 first):
 
@@ -85,7 +85,7 @@ On this workstation the sibling checkout is named `dropcharts`, so use the
 documented override when verifying:
 
 ```bash
-DROPTABLE_I18N_AUTHORITY=/Users/wangzhen/study/dropcharts/i18n_names.json npm run release:prepare
+DROPCHARTS_I18N_AUTHORITY=/Users/wangzhen/study/dropcharts/i18n_names.json npm run release:prepare
 ```
 
 Finding DEPLOY-2026-10-09-02 — Fixed; full release verification passed. Both production
@@ -216,7 +216,7 @@ build budget is raised. The release also updates transitive `source-map-js` from
 Final local validation passed: locked installation, zero vulnerabilities at the
 `low` audit threshold, the complete business suite, two byte-identical build
 manifests, and all **4,170** browser tests (four workers, no retries). The browser
-suite uses an explicit `DROPTABLE_I18N_AUTHORITY` path, matching CI's contract.
+suite uses an explicit `DROPCHARTS_I18N_AUTHORITY` path, matching CI's contract.
 Build output: 3,802 routes / 135 fragments, published JavaScript gzip
 999,675 / 1,003,000 bytes. Manifest SHA-256:
 `042b59f2b90f2bbb8815b526c0600f5a8777c4729697efeee1cd4a36fa42d218`.
@@ -237,7 +237,7 @@ mechanics, drop rates and source image bytes are preserved. Historical baseline
 columns and negative test inputs retain the old spelling as evidence.
 
 The source chain is psobb-localization
-`cfeb6cacde0080c57af93d18e247b8c3e1bf2f1f` → droptable
+`cfeb6cacde0080c57af93d18e247b8c3e1bf2f1f` → dropcharts
 `8b9d4ce361a07f0c191e10ec9db66b7986c89303` → Haven. Both CI authority checkouts pin that
 exact dropchart revision. Monster, item and dictionary tests cover the actual
 source keys, including the separate `Epsigard` part and `EPSIGUARD` equipment.
@@ -569,7 +569,7 @@ JavaScript gzip bytes) and all 4,015 browser tests.
 
 ## September 27, 2026 badge alignment and status localization release
 
-The approved release publishes droptable first, then Haven. Haven pins
+The approved release publishes dropcharts first, then Haven. Haven pins
 `warmonipa/dropcharts@91a9e0f03ed6beeea14247c01faef1b815969db9`, which aligns the
 Weapons badge and Team Points names by item code
 ([record](PSOBB_CHINESE_LOCALIZATION.md#2026-09-27-weapons-badges-and-team-points-by-item-code)).
@@ -577,31 +577,31 @@ psobb-localization and the client resources are unchanged. The Haven release
 also completes the status simulator localization review and adds the
 TypeGU/Mechgun HD image.
 
-Local verification passed droptable's `npm test` and Unitxt name check, Haven's
+Local verification passed dropcharts's `npm test` and Unitxt name check, Haven's
 `npm test`, the production build (3,802 prerendered hosts and 135 event fragment
 resources) and all 4,015 browser tests.
 
 ## September 26, 2026 handgun and shotgun terminology release
 
-The approved release publishes psobb-localization and droptable first, then Haven.
+The approved release publishes psobb-localization and dropcharts first, then Haven.
 Haven pins `warmonipa/dropcharts@085d0c2a36fded23924ed4e44ab1b1be3d02a968`, which
-contains the UN-12 光枪 names and droptable's banner-highlight and monster-area
+contains the UN-12 光枪 names and dropcharts's banner-highlight and monster-area
 changes. The client resources changed, but no client package was built in this
 release.
 
 ## September 18, 2026 localization and drop-chart release
 
-The approved release publishes droptable first, then Haven. Haven pins
+The approved release publishes dropcharts first, then Haven. Haven pins
 `warmonipa/dropcharts@fa878d073e4cb0d0d8d47ab4582d52f37f043e27`; both repositories
 use the same confirmed UN-10/UN-11 Chinese names. The client localization resources
 are unchanged and require no repackaging.
 
-Droptable publishes Normal/Ultimate monster names and portraits, monster/item
+dropcharts publishes Normal/Ultimate monster names and portraits, monster/item
 links to Haven, readable typography and URL-preserved table context. Haven
 publishes the updated item dictionary and regenerated consumers. Bulk and Death
 Gunner still use documented portrait placeholders.
 
-Local verification passed droptable's 69 tests and actual Unitxt check, Haven's
+Local verification passed dropcharts's 69 tests and actual Unitxt check, Haven's
 business tests and build, and 64 focused browser tests. These local checks do not
 replace the full Pages gates. Verify each repository's build and deploy jobs for
 the pushed commit, then check the live BB assets and Haven item detail pages.

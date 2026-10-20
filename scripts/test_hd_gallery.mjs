@@ -9,7 +9,7 @@ import { selectHdImages } from './item_catalog_hd.mjs';
 const read = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const gallery = read('content/item-catalog/hd-gallery.json');
 const records = new Map(read('content/item-catalog/wiki.json').records.map(record => [slug(record.title), record]));
-const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json').items;
+const authority = read(process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json').items;
 const from = source => gallery.assets.find(asset => asset.sources.some(entry => entry.path === source));
 
 test('Booma-family claw HD artwork matches the maintainer-supplied identities', () => {

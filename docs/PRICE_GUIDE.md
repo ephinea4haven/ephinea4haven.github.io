@@ -13,7 +13,7 @@ depends on the authority; this does not claim every item has three translations.
 - Presentation: `src/app/price-guide/price-guide.component.*` handles rendering,
   filtering and language state; `price-guide.messages.ts` owns the labels and
   whole-identity localization shared by both translated editions.
-- Item names: `../droptable/i18n_names.json` is authoritative. Run
+- Item names: `../dropcharts/i18n_names.json` is authoritative. Run
   `npm run sync:i18n`; never add page-local item translations. Exact identity
   matching wins; case-insensitive matching is accepted only when unambiguous.
 - Category labels are distinct from item identities. In particular, `Swords`

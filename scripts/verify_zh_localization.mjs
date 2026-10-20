@@ -34,7 +34,7 @@ const [agents, standard, materialPlan, priceGuide, mechanics, commandGuide, auth
 ]);
 
 assert.match(agents, /Treat PSOBB as the mandatory context for every translation/);
-assert.match(agents, /\.\.\/droptable\/i18n_names\.json/);
+assert.match(agents, /\.\.\/dropcharts\/i18n_names\.json/);
 assert.match(standard, /Site item names must match the drop-table authority/);
 assert.match(standard, /Photon Drop\s+→ 光子微晶 PD/);
 

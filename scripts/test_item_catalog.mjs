@@ -47,7 +47,7 @@ const details = read('src/app/generated/item-catalog/details.server.json');
 const items = Object.values(details);
 const coverage = read('content/item-catalog/coverage.json');
 const snapshot = read('content/item-catalog/wiki.json');
-const authority = read(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json').items;
+const authority = read(process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json').items;
 
 test('lists use equipment and Mag thumbnails while details retain full-size images', () => {
   const index = read('src/app/generated/item-catalog/index.json');

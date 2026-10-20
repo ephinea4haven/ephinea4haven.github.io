@@ -5,7 +5,7 @@ from pathlib import Path
 import runpy
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT.parent / "droptable"
+SOURCE = ROOT.parent / "dropcharts"
 rules_path = SOURCE / "tools/banner_rules.py"
 style_path = SOURCE / "shared/style.css"
 rules = runpy.run_path(str(rules_path))
@@ -17,7 +17,7 @@ top_tier = {**dict.fromkeys(unsealed, "unsealed"), **dict.fromkeys(
 )}
 equipment = json.loads((ROOT / "content/item-catalog/equipment-images.json").read_text())
 snapshot = {
-    "source": "../droptable/tools/banner_rules.py",
+    "source": "../dropcharts/tools/banner_rules.py",
     "rulesSha256": hashlib.sha256(rules_path.read_bytes()).hexdigest(),
     "styleSha256": hashlib.sha256(style_path.read_bytes()).hexdigest(),
     "minimumUntekkedHit": dict(sorted(names.items())),

@@ -53,5 +53,5 @@ preview and do not change the existing site.
 
 Run portable Destiny viewer and gallery checks with `rtk npm run test:destiny`.
 For BB/DC/NGC regression checks, run `rtk npm run test:destiny:upstream` with
-the sibling `../droptable` checkout present; the tests read its fixtures directly.
+the sibling `../dropcharts` checkout present; the tests read its fixtures directly.
 No personal absolute-path symlinks are part of the preview package.

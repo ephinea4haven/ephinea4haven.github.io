@@ -139,7 +139,7 @@ npm run build
 ```
 
 The production build and browser tests read the item-name authority. When the
-sibling checkout is not `../droptable`, set `DROPTABLE_I18N_AUTHORITY` to its
+sibling checkout is not `../dropcharts`, set `DROPCHARTS_I18N_AUTHORITY` to its
 `i18n_names.json`, as described in `docs/DEPLOYMENT.md`.
 
 When the mirror date is stale or the Tracker is inconsistent, `--require-current`
@@ -330,7 +330,7 @@ remote templates.
   unchanged.
 - 56 RBR tests and the production build passed. The local item-name authority
   is the `../dropcharts` checkout at the CI-pinned `ea3e83e`, supplied through
-  `DROPTABLE_I18N_AUTHORITY`. The home RBR, RBR Section ID and site smoke
+  `DROPCHARTS_I18N_AUTHORITY`. The home RBR, RBR Section ID and site smoke
   browser suites passed all 6,023 tests.
 
 ### 2026-10-18 update record
@@ -356,7 +356,7 @@ remote templates.
   covering home cards, the UTC Sunday boundary, recommendation anchors and
   Tracker failure handling, Section ID icons and RBR routes in all three
   languages, versioned images and current Tracker/tier markers. The build used
-  `../dropcharts/i18n_names.json` through `DROPTABLE_I18N_AUTHORITY`.
+  `../dropcharts/i18n_names.json` through `DROPCHARTS_I18N_AUTHORITY`.
 - The maintainer accepted the local result and explicitly approved aligning the
   documentation, committing, pushing and deploying this update. Wiki verification
   and local snapshot validation are complete. Publication follows the full local
@@ -519,7 +519,7 @@ all three editions' prose with the existing `assets/img/section/icon/` PNGs.
 The guide's written tier notes live in `guide/rbr.html` (Chinese) and
 `content/i18n/pages/{en,ja}/guide/rbr.html`. All three name items with
 `<span data-item-en="…"></span>` placeholders, so each language shows the
-authority name; write the exact English name from `../droptable/i18n_names.json`
+authority name; write the exact English name from `../dropcharts/i18n_names.json`
 and confirm it in the drop tables when the source uses a nickname. When a tier or
 its notes change, regenerate the charts and update all three texts together:
 

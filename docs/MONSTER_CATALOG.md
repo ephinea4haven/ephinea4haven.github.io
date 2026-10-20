@@ -140,9 +140,9 @@ and list rows fall back to it when no render thumbnail exists.
   fails. The six Megid tables used only on Ultimate currently do not appear on
   lower difficulties; Del Lily's all-difficulty Megid is not given that
   restriction.
-- **Rare drops are read directly from upstream `droptable/bb/data/en.js`.** The
-  path is resolved from the directory containing `DROPTABLE_I18N_AUTHORITY`,
-  defaulting to `../droptable/`. The build parses the upstream JSON data section
+- **Rare drops are read directly from upstream `dropcharts/bb/data/en.js`.** The
+  path is resolved from the directory containing `DROPCHARTS_I18N_AUTHORITY`,
+  defaulting to `../dropcharts/`. The build parses the upstream JSON data section
   without executing the script, and pages keep no copy of rates or the
   ten-Section-ID mapping. CI pins `warmonipa/dropcharts` at commit
   `8fbbde4fe3a65819067f6037da7a8d6562e8956a`; update that pin whenever upstream
@@ -260,7 +260,7 @@ unchanged.
 | How to obtain rare items | Item detail pages show acquisition notes, Wiki drop conditions and revisions. Data tests check specific rates such as V101. |
 | Full trilingual interface | Interface and name switching for items and monsters, query preservation, source-language labels, and phone and desktop overflow and accessibility regressions passed. |
 | Monster stats, behavior and conditional mechanics | A 160-entry catalog with 1,262 stat records. RF2 added body-text difficulty restrictions and boss phases, and uncatalogued content keeps an explicit empty state. |
-| Ten-Section-ID drops from droptable | Drop rows for every difficulty and episode, color order, per-cell rates, multiple items and item detail links match upstream, and CI uses the same pinned version. |
+| Ten-Section-ID drops from dropcharts | Drop rows for every difficulty and episode, color order, per-cell rates, multiple items and item detail links match upstream, and CI uses the same pinned version. |
 | Home page RBR and detail link | Home page quests come from `data/rbr/source.json` and open the detail page. The UTC Sunday week-rollover notice regression passed. |
 | PB calculation and weapon heart TODOs | `docs/TODO.md` records each scope and the designated Wiki sources without claiming they are implemented. |
 

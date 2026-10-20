@@ -64,7 +64,7 @@ The final Chinese must still read the way Chinese PSOBB players speak.
 
 ## Item names and drop-table alignment
 
-`../droptable/i18n_names.json` is the sole authority for Chinese and English item
+`../dropcharts/i18n_names.json` is the sole authority for Chinese and English item
 names on this site. Follow this workflow for every weapon, frame, barrier, unit,
 Mag, technique disk, consumable, event item or currency name:
 
@@ -77,7 +77,7 @@ Mag, technique disk, consumable, event item or currency name:
    name.
 4. When the authority lacks an item or a translation looks wrong, verify it first
    against the same-version Chinese and English Unitxt, the ItemPMT index or the
-   actual in-game consumer, then change `../droptable/i18n_names.json`.
+   actual in-game consumer, then change `../dropcharts/i18n_names.json`.
 5. After committing the authority change, pin `.github/workflows/pages.yml` to
    that authority commit, run `npm run sync:i18n`, commit the regenerated site
    output and run `npm run test:i18n`.
@@ -135,7 +135,7 @@ The upstream item dictionary also contains a non-item label, `Black Paper’s De
 the equipment named From the Depths remains 深渊来客. Never replace that item
 name with the identically named quest's 来自深渊之物.
 
-Item authority moved with this alignment: both CI jobs now pin droptable
+Item authority moved with this alignment: both CI jobs now pin dropcharts
 `ea3e83e798f45b0a67f5b1c6360724418f20513b` (generated from psobb-localization
 `5f96ee4`: half-width Latin letters and digits in Chinese names such as 媚影沙魔·A,
 Game Magazine = FAMI通, and DB 之剑「3069·Chris」/「3069·Torato」 without 公司).
@@ -223,7 +223,7 @@ The source chain for this pass:
 - localization: `5a679c5e2f9857f54b83a9b8b415931ac172324e`. The SHA-256 of the
   main Chinese table is
   `720cfd525b5645198d89661ea71c628696df6e024e4a03ef4db75bf1110cf401`.
-- droptable: `8fbbde4fe3a65819067f6037da7a8d6562e8956a`, pinned in the site CI.
+- dropcharts: `8fbbde4fe3a65819067f6037da7a8d6562e8956a`, pinned in the site CI.
   The authority's SHA-256 is
   `cbb4b89da0cfb213494edba99eccc2aabc7c1660bf5b52022b6575ee82c753ed`, with 1,566
   entries. That commit adds handover documentation; its dictionary content is
@@ -258,7 +258,7 @@ generated data were committed to master in `cc835f4`.
 
 ### 2026-09-10 release verification addendum
 
-The CI variable `DROPTABLE_I18N_AUTHORITY` was originally passed only to the
+The CI variable `DROPCHARTS_I18N_AUTHORITY` was originally passed only to the
 business tests, so the browser tests could not find the checked-out dictionary.
 `f4f9f18` moved the variable up to the whole build job, and both test suites now
 use the same pinned authority. After the dependency audit blocker was cleared and
@@ -272,22 +272,22 @@ earlier count of 122 is kept as the September 9 local verification record. See t
 ### 2026-09-18 UN-10 / UN-11 synchronization
 
 The confirmed Unitxt decisions in psobb-localization
-`a0081273bb4f523b1c2d7f73613d4a462ed1caa9` are synchronized through droptable
+`a0081273bb4f523b1c2d7f73613d4a462ed1caa9` are synchronized through dropcharts
 into the site dictionary: 46 authority entries changed. The authority SHA-256 is
 `761980abc3d3658ed20a148a112e9f0b820a2351b6b8f035f7f121ef51aebc98`.
 The upstream Chinese resource SHA-256 is
 `681f4a69785d2a976ac115d2611c6ee81d08790ec3888aa17b69b8f1d487f75c`.
-No upstream resource change is required. See droptable's
+No upstream resource change is required. See dropcharts's
 `docs/unitxt-alignment-review.md` for the source and regression record.
 
-Local verification passed droptable's `npm run verify:localization`, Haven's
+Local verification passed dropcharts's `npm run verify:localization`, Haven's
 `npm test` and build (1,268 prerendered routes), and 64 focused browser tests
 covering items, monsters, mechanics, authored item references and status equipment.
 The added rename regression verifies Chinese detail hydration, English switching,
 return to Chinese and reload for magazine, armor, TypeM and parts identities.
 
 The maintainer approved separate commits, pushes and deployment on September 18.
-Haven now pins droptable `fa878d073e4cb0d0d8d47ab4582d52f37f043e27` in
+Haven now pins dropcharts `fa878d073e4cb0d0d8d47ab4582d52f37f043e27` in
 `.github/workflows/pages.yml`. This revision includes the synchronized authority
 and the BB monster presentation changes. The Pages workflow must pass its full
 checks and deployment before production publication is considered complete.
@@ -296,7 +296,7 @@ checks and deployment before production publication is considered complete.
 
 psobb-localization `e626ab877ad62f73480052f773348aae3cf8fef9` (UN-12) unifies the
 handgun family as 光枪 in 16 client entries after the maintainer confirmed each
-one. Droptable `085d0c2a36fded23924ed4e44ab1b1be3d02a968` regenerates the authority
+one. dropcharts `085d0c2a36fded23924ed4e44ab1b1be3d02a968` regenerates the authority
 and adds the DC/NGC legacy spellings `HANDGUN:GULD` / `HANDGUN:MILLA` as aliases;
 the authority SHA-256 is `aec7cf48d60c6c221d797e259711166383fcda6c0d1c64ef5f63b8f1e1e4bae5`. Haven pins that revision and syncs the dictionary.
 
@@ -315,7 +315,7 @@ same English, Japanese and reviewed Chinese names. Neither set is obtainable on
 Ephinea. Ephinea's anniversary badges (`0310xx`) are a separate currency; the
 event-context rule above still applies to their short names.
 
-Droptable `91a9e0f03ed6beeea14247c01faef1b815969db9` aligns the authority with
+dropcharts `91a9e0f03ed6beeea14247c01faef1b815969db9` aligns the authority with
 these codes (authority SHA-256
 `f3e6de3e8fb19c68488ac03d1a85315b38bc0043512ce882f37be117c6826c06`):
 
@@ -337,7 +337,7 @@ v3 text `IRON BADGE`.
 ### 2026-09-30 UN-13 Gol Dragon synchronization
 
 The user confirmed `Gol Dragon / ゴル　ドラゴン → 戈尔龙`. Local Unitxt
-slots `2:76` and `4:76` feed the regenerated droptable authority and Haven's
+slots `2:76` and `4:76` feed the regenerated dropcharts authority and Haven's
 `npm run sync:i18n`. The Chinese resource SHA-256 is
 `c857d313ceb9fbfff0f4664aef28f3842567bebcdd64ea8a1ea05988388631ac`;
 the authority SHA-256 is
@@ -347,12 +347,12 @@ The catalog, authored monster heading, area-name list and archived drop-chart
 labels use the confirmed name. The HD gallery's normalized source name changes;
 its original filename remains as provenance. Laconium item names are unchanged.
 
-Local verification passed the Unitxt gate, droptable's `verify:localization`,
+Local verification passed the Unitxt gate, dropcharts's `verify:localization`,
 Haven's `npm test`, production build (3,802 routes), and all 33 monster-catalog
 browser tests, including Chinese search, language switching and reload.
 The user accepted the local result and authorized committing and pushing.
 Published sources are psobb-localization `3ae0bc9b0b509ce22c260f3f46041fda84b5c8f2` and
-droptable `99fd1eac50a5877c653010be80b37e8aa02e2da9`; both CI jobs pin this droptable revision.
+dropcharts `99fd1eac50a5877c653010be80b37e8aa02e2da9`; both CI jobs pin this dropcharts revision.
 The same handoff includes the accepted Zu / Nano Dragon spread-wing renders.
 Pages deployment is verified separately after push. In-game display remains unverified.
 
@@ -380,11 +380,11 @@ Final local checks passed: `npm test`, `npm run build` (3,802 routes), and
 `npx playwright test tests/e2e/monster-catalog.spec.mjs tests/e2e/item-catalog.spec.mjs`
 (101 passed). Both built sites contain no obsolete Epsilon names. Fresh review
 and semantic comparison found no unrelated data changes. Upstream Unitxt's
-complete local gate and droptable's `verify:localization` and build also pass.
+complete local gate and dropcharts's `verify:localization` and build also pass.
 Historical baseline columns and regression counterexamples retain old spellings
 as evidence. The user accepted this result and authorized documentation alignment,
 commit and push on 2026-10-05. The source is psobb-localization
-`cfeb6cacde0080c57af93d18e247b8c3e1bf2f1f`; both CI jobs pin droptable
+`cfeb6cacde0080c57af93d18e247b8c3e1bf2f1f`; both CI jobs pin dropcharts
 `8b9d4ce361a07f0c191e10ec9db66b7986c89303`. The release requires the full local browser
 suite, dependency audit and reproducible build comparison before push; its
 validation record is in `docs/DEPLOYMENT.md`. Pages publication is verified

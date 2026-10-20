@@ -5,9 +5,9 @@ import {fileURLToPath} from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const input = JSON.parse(fs.readFileSync(path.join(here, 'drops.json'), 'utf8'));
-const bbSource = fs.readFileSync(path.join(here, '../../../droptable/bb/data/en.js'), 'utf8');
+const bbSource = fs.readFileSync(path.join(here, '../../../dropcharts/bb/data/en.js'), 'utf8');
 const context = {window: {}};
-vm.runInNewContext(bbSource, context, {filename: 'droptable/bb/data/en.js'});
+vm.runInNewContext(bbSource, context, {filename: 'dropcharts/bb/data/en.js'});
 const sectionColors = Array.from(context.window.DROP_DATA_EN.sectionColors);
 const sectionIds = Array.from(input.sectionIds);
 const expectedIds = Array.from(context.window.DROP_DATA_EN.sectionIds);

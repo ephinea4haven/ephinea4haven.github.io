@@ -59,12 +59,12 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full design.
   `npx playwright install chromium` for `scripts/render_challenge_maps.mjs`
 - A checkout of [`warmonipa/dropcharts`](https://github.com/warmonipa/dropcharts)
   next to this repository. Its `i18n_names.json` is the sole authority for Chinese
-  item names. To use a different location, set `DROPTABLE_I18N_AUTHORITY` to the
+  item names. To use a different location, set `DROPCHARTS_I18N_AUTHORITY` to the
   file's path.
 
 ```text
 parent/
-├── droptable/                     # warmonipa/dropcharts
+├── dropcharts/                     # warmonipa/dropcharts
 │   └── i18n_names.json
 └── ephinea4haven.github.io/       # this repository
 ```

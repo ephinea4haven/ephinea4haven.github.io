@@ -177,7 +177,7 @@ and updating content-addressed references. Version and tuple-schema checks fail
 the build if an upgrade changes this boundary. Keeping this step in the watched
 indexing module also lets development rebuilds load its current implementation.
 
-The sibling `droptable/i18n_names.json` file is the sole Chinese item-name authority.
+The sibling `dropcharts/i18n_names.json` file is the sole Chinese item-name authority.
 The catalog uses its Japanese names first and supplements missing Japanese names
 with the committed Wiki `jp` fields; unverified names remain visibly English.
 CI checks out a pinned `warmonipa/dropcharts` commit and fails if the checked-in

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
-const authority = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
+const authority = JSON.parse(readFileSync(process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json', 'utf8')).items;
 
 for (const prefix of ['', '/en', '/ja']) {
   test(`BB items ${prefix || '/zh'}: multilingual specials and section links`, async ({ page }) => {

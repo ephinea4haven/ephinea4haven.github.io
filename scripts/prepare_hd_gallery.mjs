@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const run = promisify(execFile);
 const manifest = JSON.parse(await fs.readFile(path.join(root, 'content/item-catalog/hd-gallery.json'), 'utf8'));
-const authority = JSON.parse(await fs.readFile(process.env.DROPTABLE_I18N_AUTHORITY || path.join(root, '../droptable/i18n_names.json'), 'utf8')).items;
+const authority = JSON.parse(await fs.readFile(process.env.DROPCHARTS_I18N_AUTHORITY || path.join(root, '../dropcharts/i18n_names.json'), 'utf8')).items;
 const [first, second] = process.argv.slice(2);
 const checking = first === '--check';
 const sourceRoot = path.resolve(checking ? second || '' : first || '');

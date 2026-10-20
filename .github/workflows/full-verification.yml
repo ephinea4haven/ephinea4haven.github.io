@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      DROPTABLE_I18N_AUTHORITY: ${{ github.workspace }}/droptable/i18n_names.json
+      DROPCHARTS_I18N_AUTHORITY: ${{ github.workspace }}/dropcharts/i18n_names.json
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -25,7 +25,7 @@ jobs:
         with:
           repository: warmonipa/dropcharts
           ref: ea3e83e798f45b0a67f5b1c6360724418f20513b
-          path: droptable
+          path: dropcharts
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -71,7 +71,7 @@ jobs:
       matrix:
         shard: [1, 2, 3]
     env:
-      DROPTABLE_I18N_AUTHORITY: ${{ github.workspace }}/droptable/i18n_names.json
+      DROPCHARTS_I18N_AUTHORITY: ${{ github.workspace }}/dropcharts/i18n_names.json
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -81,7 +81,7 @@ jobs:
         with:
           repository: warmonipa/dropcharts
           ref: ea3e83e798f45b0a67f5b1c6360724418f20513b
-          path: droptable
+          path: dropcharts
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0

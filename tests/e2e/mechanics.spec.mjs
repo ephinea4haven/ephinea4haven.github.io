@@ -5,7 +5,7 @@ import { parse } from 'parse5';
 
 test('mechanics authored item references use exact authority keys', () => {
   const authority = JSON.parse(readFileSync(
-    process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8',
+    process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json', 'utf8',
   )).items;
   const document = parse(readFileSync('tools/mechanics.html', 'utf8'));
   const names = [];

@@ -31,7 +31,7 @@ see the [final acceptance record](CHALLENGE_MAP_REDRAW.md#acceptance-and-review-
 - PSO-World was not serving a usable live walkthrough during this pass.
   Previously present combat advice remains identified as historical advice;
   it does not count as a fresh independent confirmation.
-- Item identities were checked against `../droptable/i18n_names.json` and
+- Item identities were checked against `../dropcharts/i18n_names.json` and
   `npm run sync:i18n`. Item labels keep the English identity and authoritative
   Chinese name. Where the authority has no Japanese name, the English identifier
   remains instead of inventing a translation.

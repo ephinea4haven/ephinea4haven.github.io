@@ -9,6 +9,6 @@ The ISC notice is retained in [LICENSE](LICENSE).
 
 Only Destiny preview assets and the Section ID artwork are retained here;
 stock-server item pictures and machine-specific fixture symlinks are excluded.
-The optional cross-version tests read their data from a sibling `droptable`
+The optional cross-version tests read their data from a sibling `dropcharts`
 checkout. The copied JavaScript and CSS are isolated research assets, not
 public Angular application code.

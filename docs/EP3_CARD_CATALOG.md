@@ -406,7 +406,7 @@ new Japanese sentence came from the game.
 
 Only these confirmed terms may be used as Chinese product strings.
 Unverified proper terms retain English. Before later Chinese Item-card names are
-introduced, resolve the exact English identity in `../droptable/i18n_names.json`
+introduced, resolve the exact English identity in `../dropcharts/i18n_names.json`
 and regenerate with `npm run sync:i18n`; never use this table as an item dictionary.
 
 Additional list UI approved in the 2026-10-07 redesign request (existing catalog

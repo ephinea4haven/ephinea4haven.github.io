@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
-const upstream = path.resolve(__dirname, '../../../../../droptable');
+const upstream = path.resolve(__dirname, '../../../../../dropcharts');
 function viewer(version = 'bb', query = '') {
   const nodes = new Map();
   const element = () => ({innerHTML: '', value: '', children: [], style: {setProperty() {}}, dataset: {}, appendChild(child) {this.children.push(child);}});

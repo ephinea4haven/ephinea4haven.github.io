@@ -8,7 +8,7 @@ const series = new Map(JSON.parse(readFileSync('src/app/generated/item-catalog/i
 const listedSabers = items.filter(item => item.type === 'Saber' && !series.get(item.id));
 // A page's URL without its language prefix.
 const unprefixed = (href) => new URL(href).pathname.replace(/^\/(en|ja)(?=\/)/, '');
-const names = JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json', 'utf8')).items;
+const names = JSON.parse(readFileSync(process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json', 'utf8')).items;
 
 for (const [id, english, chinese] of [
   ['cladding-of-epsilon', 'Cladding of Epsilon', '厄普西隆外壳'],

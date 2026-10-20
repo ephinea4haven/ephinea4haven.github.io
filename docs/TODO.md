@@ -137,7 +137,7 @@ the successful Pages workflow for the relevant commit; see
   English. The per-route JavaScript budget rose from 160 KB to 170 KB for this
   page.
 - [x] Weapons badge and Team Points names aligned by item code (2026-09-27):
-  the droptable authority, the item dictionary and the BB item code table name
+  the dropcharts authority, the item dictionary and the BB item code table name
   both Weapons badge sets from BB ItemPMT and Unitxt, with BB Japanese names;
   anniversary badges stay separate
   ([record](PSOBB_CHINESE_LOCALIZATION.md#2026-09-27-weapons-badges-and-team-points-by-item-code)).
@@ -185,7 +185,7 @@ the successful Pages workflow for the relevant commit; see
   [mechanics guide review record](MECHANICS_VISUAL_EVIDENCE.md#user-acceptance-and-push-authorization).
 - [x] [Monster catalog](MONSTER_CATALOG.md): a trilingual interface
   and names, difficulty and mode stats, and behavior and conditional mechanics
-  tables. Ten-Section-ID drops are generated directly from droptable.
+  tables. Ten-Section-ID drops are generated directly from dropcharts.
 - [x] The home page shows the RBR quests from `data/rbr/source.json` and links to
   the detail page. A record not updated after the UTC Sunday rollover is clearly
   marked as pending. Cards show the tier, recommended Section ID and matching color
@@ -207,7 +207,7 @@ the successful Pages workflow for the relevant commit; see
   Bootstrap and Vue retired from the application and production artifact.
 - [x] Banner reference page based on the Ephinea Wiki banner documentation.
 - [x] Canonical item-translation pipeline generated from the sole
-  `droptable/i18n_names.json` authority, preserving Unitxt mixed-width names
+  `dropcharts/i18n_names.json` authority, preserving Unitxt mixed-width names
   without a halfwidth/fullwidth selector.
 - [x] Ephinea equipment-based Technique boost reference covering weapons,
   frames and barriers through the canonical translation catalog.

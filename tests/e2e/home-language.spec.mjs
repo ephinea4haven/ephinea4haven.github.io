@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 const {current}=JSON.parse(readFileSync('data/rbr/source.json','utf8'));
 const week=new Date(`${current.week} 00:00:00 GMT`);
 const home=(lang)=>lang==='zh'?'/':`/${lang}/`;
-const authority=JSON.parse(readFileSync(process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json','utf8'));
+const authority=JSON.parse(readFileSync(process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json','utf8'));
 
 for(const [lang,heading,title,galatine] of [
   ['zh','面向全球玩家的多语言维基','面向全球玩家',authority.items.Galatine.zh],

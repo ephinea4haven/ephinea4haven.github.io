@@ -337,7 +337,7 @@ review. Game-client execution and unrelated mechanics are outside this review.
 
 | ID | Severity / status | Evidence, impact and correction |
 | --- | --- | --- |
-| WS-01 | Blocking / Fixed | `tests/e2e/bb-items.spec.mjs:3` ignores `DROPTABLE_I18N_AUTHORITY`; CI checks out the dictionary at a different path. Use the existing environment contract and exercise that path. |
+| WS-01 | Blocking / Fixed | `tests/e2e/bb-items.spec.mjs:3` ignores `DROPCHARTS_I18N_AUTHORITY`; CI checks out the dictionary at a different path. Use the existing environment contract and exercise that path. |
 | WS-02 | Should-fix / Fixed | Mechanics section I generalizes ATA checks to all ES specials. Wiki Ranger guide explicitly says Zalure Shot has no accuracy check. Bound the general rule to ordinary specials and document this exception in all editions. |
 | WS-03 | Should-fix / Fixed | Chinese mechanics directs readers to a specials table for all difficulty caps, but that table only states the TP caps. Put HP/TP/EXP caps and the cumulative EXP limit beside the Chinese explanation, matching English/Japanese. |
 | WS-04 | Blocking / Fixed | Release audit reports GHSA-68fv-2mgg-jv7q in transitive `source-map-js@1.2.1`. Update only that dependency to patched 1.2.2 within existing parent ranges; rerun locked install and all gates. |
@@ -364,7 +364,7 @@ product changes. Local validation and remote publication are recorded separately
 ### Repair verification and fresh review
 
 - WS-01: the full browser run uses a copied dictionary via
-  `DROPTABLE_I18N_AUTHORITY=/tmp/haven-ws-i18n-authority.json`. All three BB-item
+  `DROPCHARTS_I18N_AUTHORITY=/tmp/haven-ws-i18n-authority.json`. All three BB-item
   cases pass, including 945 canonical-name comparisons per edition, English item
   identity search, multilingual special search, section navigation and reloads.
   Other browser consumers already honor the same environment contract.

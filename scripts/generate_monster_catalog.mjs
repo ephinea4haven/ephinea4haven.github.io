@@ -9,7 +9,7 @@ export const readJson = file => JSON.parse(fs.readFileSync(file,'utf8'));
 export function readDropData(file) {
   const source = fs.readFileSync(file,'utf8');
   const match = /window\.DROP_DATA_EN\s*=\s*(\{[\s\S]*\});\s*$/.exec(source);
-  if (!match) throw new Error(`Invalid droptable source: ${file}`);
+  if (!match) throw new Error(`Invalid dropcharts source: ${file}`);
   return {data:JSON.parse(match[1]), sha256:createHash('sha256').update(source).digest('hex')};
 }
 const aliases = {'Gillchic':'Gilchic','Gillchich':'Gilchich','Dal Ra Lie':'Dal Ral Lie','Hallo Rappy':'Halo Rappy','St Rappy':'St. Rappy','Saint-Milion':'Saint Million'};
@@ -55,7 +55,7 @@ export function generateMonsterCatalog() {
     const article=mechanics.find(page=>page.title===condition.page);
     if(!article || article.revision!==condition.revision || !article.tables.some(table=>table.anchor===condition.anchor)) throw new Error(`Review outdated mechanic condition: ${condition.page} #${condition.anchor}`);
   }
-  const authorityPath = process.env.DROPTABLE_I18N_AUTHORITY || '../droptable/i18n_names.json';
+  const authorityPath = process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json';
   const authority = readJson(authorityPath);
   const dropFile = path.join(path.dirname(authorityPath),'bb/data/en.js');
   const drops = readDropData(dropFile);
@@ -146,7 +146,7 @@ export function generateMonsterCatalog() {
   // Bundled with the catalog so any detail change busts cached monster JSON.
   outputFiles.write('src/app/generated/monster-catalog/version.json',JSON.stringify({details:detailHash.digest('hex').slice(0,12)}));
   outputFiles.commit();
-  console.log(`Generated ${index.length} monster pages from Wiki facts and droptable ${drops.sha256.slice(0,12)}.`);
+  console.log(`Generated ${index.length} monster pages from Wiki facts and dropcharts ${drops.sha256.slice(0,12)}.`);
   return {index,details,metadata};
 }
 if (process.argv[1] === fileURLToPath(import.meta.url)) generateMonsterCatalog();
