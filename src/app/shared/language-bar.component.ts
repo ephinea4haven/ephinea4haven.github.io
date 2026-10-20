@@ -2,11 +2,10 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { PAGE_LANGUAGES, PageLanguage, pageKey, SiteLanguage } from './site-language.service';
 
 const SHORT: Record<PageLanguage, string> = { zh: '中', en: 'EN', ja: '日' };
+/** Accessible names start with the visible short label (WCAG 2.5.3 Label in Name). */
+const LABEL: Record<PageLanguage, string> = { zh: '中文', en: 'EN (English)', ja: '日本語' };
 /** Pages that render their own language switcher (homepage and catalogs). */
 const OWN_SWITCHER = ['index.html', 'data/items.html', 'data/items/', 'data/cosmetics.html', 'data/enemies.html', 'data/enemies/', 'data/ep3-cards.html', 'data/ep3-cards/'];
-/** A language's name written in another language, e.g. "Chinese" or "中国語". */
-const nameIn = (reader: PageLanguage, language: PageLanguage) =>
-  new Intl.DisplayNames([reader], { type: 'language' }).of(language) ?? language;
 
 /** Site-wide language switch. Each language is a separate URL. */
 @Component({
@@ -17,7 +16,7 @@ const nameIn = (reader: PageLanguage, language: PageLanguage) =>
     <div class="bar">
       <div role="group" aria-label="语言 / Language / 言語">
         @for (option of languages; track option) {
-          <button type="button" [lang]="option" [attr.aria-label]="nameIn(option, option)"
+          <button type="button" [lang]="option" [attr.aria-label]="label[option]"
             [attr.aria-pressed]="site.language() === option" (click)="site.select(option)">{{ short[option] }}</button>
         }
       </div>
@@ -38,7 +37,7 @@ export class LanguageBarComponent {
   protected readonly site = inject(SiteLanguage);
   protected readonly languages = PAGE_LANGUAGES;
   protected readonly short = SHORT;
-  protected readonly nameIn = nameIn;
+  protected readonly label = LABEL;
 
   protected readonly hidden = computed(() => {
     const key = pageKey(this.site.path());

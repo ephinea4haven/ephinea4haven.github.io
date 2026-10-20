@@ -18,7 +18,7 @@ for (const [id, chinese, english, japanese] of [
     await expect(row.locator('.monster-name')).toHaveText(chinese);
     await row.click();
     await expect(page.locator('.monster-hero .monster-name')).toHaveText(chinese);
-    for (const [language, name] of [['English', english], ['日本語', japanese], ['中文', chinese]]) {
+    for (const [language, name] of [['EN (English)', english], ['日本語', japanese], ['中文', chinese]]) {
       await page.getByRole('button', {name: language, exact: true}).click();
       await expect(page.locator('.monster-hero .monster-name')).toHaveText(name);
     }
@@ -32,7 +32,7 @@ test('Gol Dragon uses the confirmed Chinese name across search, detail and langu
   await expect(row.locator('.monster-name')).toHaveText('戈尔龙');
   await row.click();
   await expect(page.locator('.monster-hero .monster-name')).toHaveText('戈尔龙');
-  for(const [language,name] of [['English','Gol Dragon'],['日本語','ゴル　ドラゴン'],['中文','戈尔龙']]) {
+  for(const [language,name] of [['EN (English)','Gol Dragon'],['日本語','ゴル　ドラゴン'],['中文','戈尔龙']]) {
     await page.getByRole('button',{name:language,exact:true}).click();
     await expect(page.locator('.monster-hero .monster-name')).toHaveText(name);
   }
@@ -78,7 +78,7 @@ test('monster highlights distinguish regular, rare, elite and boss names in list
 test('elite filtering preserves language and Ultimate identity and excludes ordinary enemies',async({page})=>{
   await page.goto('/data/enemies.html?ep=1&kind=elite');
   await expect(page.locator('.monster-row')).toHaveCount(1);
-  for(const [language,label] of [['中文','精英'],['English','Elite'],['日本語','強敵']]) {
+  for(const [language,label] of [['中文','精英'],['EN (English)','Elite'],['日本語','強敵']]) {
     await page.getByRole('button',{name:language,exact:true}).click();
     await expect(page.locator('.monster-row .monster-kind')).toHaveText(label);
     await expect(page.locator('.monster-row h2')).toHaveClass(/elite-name/);
@@ -98,7 +98,7 @@ test('monster area search results are independent of the interface language',asy
     await expect(page.getByRole('searchbox')).toHaveValue(term);
     const paths=(await page.locator('.monster-row').evaluateAll(rows=>rows.map(row=>row.href))).map(unprefixed);
     expect(paths.length).toBeGreaterThan(0);
-    for(const [language,prefix] of [['English','/en'],['日本語','/ja'],['中文','']]) {
+    for(const [language,prefix] of [['EN (English)','/en'],['日本語','/ja'],['中文','']]) {
       await page.getByRole('button',{name:language,exact:true}).click();
       await expect(page).toHaveURL(new RegExp(`127\\.0\\.0\\.1:\\d+${prefix}/data/enemies\\.html\\?`));
       await expect(page.getByRole('searchbox')).toHaveValue(term);
@@ -216,7 +216,7 @@ test('monster search, context and trilingual names survive detail and return',as
   await page.getByRole('link',{name:'← 一覧に戻る',exact:true}).click();
   await expect(page.getByRole('searchbox')).toHaveValue('Booma');
   await expect(page).toHaveURL(/mode=off/);
-  await page.getByRole('button',{name:'English',exact:true}).click();
+  await page.getByRole('button',{name:'EN (English)',exact:true}).click();
   await expect(page.locator('h1')).toHaveText('Bestiary');
 });
 test('all section colors display source drop probabilities and item links',async({page})=>{

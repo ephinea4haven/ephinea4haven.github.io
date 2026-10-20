@@ -43,7 +43,7 @@ for (const [prefix,lang] of [['','zh-CN'],['/en','en'],['/ja','ja']]) {
 test('NPC guide keeps localized names and hash targets after language changes and reload', async ({ page }) => {
   await page.goto('/guide/npc.html#npc-donoph');
   await ready(page);
-  for (const [language,prefix,itemName] of [['English','/en',"DB's Saber"],['日本語','/ja','ＤＢの剣'],['中文','','DB 之剑']]) {
+  for (const [language,prefix,itemName] of [['EN (English)','/en',"DB's Saber"],['日本語','/ja','ＤＢの剣'],['中文','','DB 之剑']]) {
     await page.getByRole('button',{name:language,exact:true}).click();
     await ready(page);
     await expect(page).toHaveURL(new RegExp(`${prefix}/guide/npc\\.html#npc-donoph$`));

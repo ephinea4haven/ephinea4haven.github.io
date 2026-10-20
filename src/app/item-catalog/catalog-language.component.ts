@@ -20,5 +20,5 @@ import { PageLanguage } from '../shared/language-preference.service';
 export class CatalogLanguageComponent {
   readonly language = input.required<PageLanguage>();
   readonly selected = output<PageLanguage>();
-  readonly options = [{id:'zh',label:'中文',short:'中'},{id:'en',label:'English',short:'EN'},{id:'ja',label:'日本語',short:'日'}] as const;
+  readonly options = [{id:'zh',label:'中文',short:'中'},{id:'en',label:'EN (English)',short:'EN'},{id:'ja',label:'日本語',short:'日'}] as const;
 }

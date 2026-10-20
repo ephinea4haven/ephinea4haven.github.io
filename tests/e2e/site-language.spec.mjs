@@ -22,10 +22,10 @@ test('each language version is a separate prerendered URL with hreflang alternat
 test('a chosen language opens that version of this and later pages', { tag: '@smoke' }, async ({ page }) => {
   await page.goto('/event/event.html');
   await expect(bar(page)).toBeVisible();
-  await bar(page).getByRole('button', { name: 'English', exact: true }).click();
+  await bar(page).getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(page).toHaveURL(/\/en\/event\/event\.html$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(bar(page).getByRole('button', { name: 'English', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(bar(page).getByRole('button', { name: 'EN (English)', exact: true })).toHaveAttribute('aria-pressed', 'true');
 
   await page.goto('/data/items.html');
   await expect(page).toHaveURL(/\/en\/data\/items\.html$/);
@@ -56,7 +56,7 @@ test('Section ID Finder has Chinese, English and Japanese URLs', async ({ page }
   await page.goto('/tools/id.html');
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
   await expect(page.locator('#name')).toHaveAttribute('placeholder', '角色名');
-  await bar(page).getByRole('button', { name: 'English', exact: true }).click();
+  await bar(page).getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(page).toHaveURL(/\/en\/tools\/id\.html$/);
   await expect(page.locator('#name')).toHaveAttribute('placeholder', 'Name');
   await page.locator('#name').fill('Haven');

@@ -47,7 +47,7 @@ test('Combo preserves the reproduced RAmar configuration through language change
   await page.locator('#ataInput').fill('234');
   await page.locator('#native-btn').click();
   await expect(page.locator('#combo-calc-table tbody tr')).toHaveCount(41);
-  await languageButton(page, 'English').click();
+  await languageButton(page, 'EN (English)').click();
   await expect(page).toHaveURL(/\/en\/tools\/cc\.html(?:\?|$)/);
   await expect(page.locator('#class-select')).toHaveValue('RAmar');
   await expect(page.locator('#ataInput')).toHaveValue('234');
@@ -211,7 +211,7 @@ test('Status preserves the reproduced RAmarl level through language changes', as
   await page.goto('/tools/status.html');
   await page.locator('#class').selectOption('ramarl');
   await page.locator('#lv').selectOption({ label: '100' });
-  await languageButton(page, 'English').click();
+  await languageButton(page, 'EN (English)').click();
   await expect(page).toHaveURL(/\/en\/tools\/status\.html(?:\?|$)/);
   await expect(page.locator('#class')).toHaveValue('ramarl');
   await expect(page.locator('#lv option:checked')).toHaveText('100');

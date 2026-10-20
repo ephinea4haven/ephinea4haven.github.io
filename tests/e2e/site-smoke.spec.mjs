@@ -229,7 +229,7 @@ test('challenge guides publish each language at its own URL with localized redra
   await expect(page.locator('.challenge-legend')).toContainText('主路线');
   await expect(page.locator('.challenge-legend')).toContainText('传送点');
 
-  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(page).toHaveURL(/\/en\/guide\/ep1ch\.html$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(firstMap).toHaveAttribute('src', /\/maps\/en\/area_01\.svg$/);
@@ -252,7 +252,7 @@ for (const [stage, areas] of [[1, [1, 2]], [2, [4, 5, 6, 7, 8]], [3, [9, 10, 11,
 test(`C${stage} maps load all aligned areas in each guidance language on mobile`, async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/guide/ep1ch.html');
-  for (const [button, language] of [['中文', 'zh'], ['English', 'en'], ['日本語', 'ja']]) {
+  for (const [button, language] of [['中文', 'zh'], ['EN (English)', 'en'], ['日本語', 'ja']]) {
     await page.getByRole('button', { name: button, exact: true }).click();
     for (const area of areas) {
       const map = page.locator(`figure[aria-label="C${stage} · Area ${area}"] img`);
@@ -290,7 +290,7 @@ for (const episode of [1, 2]) {
   test(`EP${episode} guide navigates stages and inspects the selected localized map`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(`/guide/ep${episode}ch.html`);
-    await page.getByRole('button', { name: 'English', exact: true }).click();
+    await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
     const stageLink = page.locator('[data-stage-link="c3"]');
     await stageLink.click();
     await expect(page).toHaveURL(/#c3$/);
@@ -618,7 +618,7 @@ test('status simulator handles Angular inputs and resets', { tag: '@smoke' }, as
   await expect(page.locator('.resist-list dt')).toHaveText([
     'EFR火焰', 'EIC冰冻', 'ETH雷电', 'EDK暗黑', 'ELT光明',
   ]);
-  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Character Stat Simulator' })).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(page.locator('.resist-list dt')).toHaveText([
@@ -1397,7 +1397,7 @@ test('Angular multilingual data tables switch language without legacy globals', 
   await expect(db3069).toContainText('DB 之剑「3069·Chris」');
   const nugBazooka = page.locator('[data-item-zh="NUG2000 火箭筒"]').first();
   await expect(nugBazooka).toHaveText('NUG2000 火箭筒');
-  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(nugBazooka).toHaveText('NUG2000-Bazooka');
   await expect(db3069).toContainText("DB's Saber (3069 Chris)");
   await expect(page.getByRole('group', { name: '中文道具译名字符宽度' })).toHaveCount(0);
@@ -1527,7 +1527,7 @@ test('Angular price guide localizes complete identities, categories and compound
   await expect(content).not.toContainText('Love ハート');
   await expect(content).not.toContainText('マグic');
   await expect(content).toContainText('参照：レア鎧（ラブハート）・合成素材（Magic Rock "Heart Key"）');
-  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(content).toContainText('See Rare frames (Love Heart) & Combination items (Magic Rock "Heart Key")');
   await page.getByRole('button', { name: '中文', exact: true }).click();
   await page.reload();
@@ -1548,7 +1548,7 @@ test('Angular price guide translates cross-references and preserves their target
   ]) await expect(cells.filter({ hasText: reference }).first()).toBeVisible();
   await expect(cells.filter({ hasText: /\bsee\b/i })).toHaveCount(0);
   await expect(cells.filter({ hasText: /参见：.*(?:Combination|Sabers|Daggers|Rods|Swords|Slicers|Handguns|Shots|Canes|Wands|Cards|Rare frames|below|note above)/ })).toHaveCount(0);
-  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(cells.filter({ hasText: 'See Sabers (Excalibur)' }).first()).toBeVisible();
   await page.getByRole('button', { name: '日本語', exact: true }).click();
   await expect(cells.filter({ hasText: '参照：セイバー' }).first()).toBeVisible();
@@ -1566,7 +1566,7 @@ test('Angular price guide localizes the attribute note across language switches'
   await expect(note).not.toContainText('Reminder High Attributes');
   await page.locator('#price-search').fill('Excalibur');
   await expect(note).toHaveCount(1);
-  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(note).toContainText('Reminder High Attributes are 50+');
   await page.getByRole('button', { name: '日本語', exact: true }).click();
   await expect(note).toContainText('高属性とは50以上です');
@@ -1640,7 +1640,7 @@ for (const path of ['/tools/cc.html', '/tools/ccopm.html']) {
 
 test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ page }) => {
   await page.goto('/data/protocol/');
-  await page.getByRole('button', { name: 'English', exact: true }).click();
+  await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(page.locator('#project_title')).toHaveText('Protocol Reference');
   await page.locator('#tab-list [data-tab="subcommands"]').click();
   await expect(page.locator('#proto-content section.active')).toHaveAttribute('data-tab', 'subcommands');
@@ -1790,11 +1790,11 @@ test('status equipment names follow the authority through variants and language 
     return candidates[0].zh;
   };
   const names = {
-    English: { armor: 'Perfect Frame', unit: 'Knight/Power++', effect: 'Smartlink' },
+    'EN (English)': { armor: 'Perfect Frame', unit: 'Knight/Power++', effect: 'Smartlink' },
     日本語: { armor: 'パーフェクトフレーム', unit: 'ナイト/パワー++', effect: 'スマートリンク' },
     中文: { armor: '完美铠甲', unit: '骑士级/攻击++', effect: '智能联结' },
   };
-  const prefixes = { English: '/en', 日本語: '/ja', 中文: '' };
+  const prefixes = { 'EN (English)': '/en', 日本語: '/ja', 中文: '' };
   await page.goto('/tools/status.html?armor=10&shield=10&unit1=10&unit2=00-5&unit3=51&unit4=43');
   await expect(page.locator('#armor')).toHaveValue('10');
   for (const [kind, selector] of [['armors', '#armor'], ['shields', '#shield'], ['units', '#unit1']]) {
@@ -1817,7 +1817,7 @@ test('status equipment names follow the authority through variants and language 
   const share = await page.locator('.share-link a').getAttribute('href');
   expect(share).toMatch(/^\/tools\/status\.html\?/);
   const stats = await page.locator('.stat-table tbody').innerText();
-  for (const language of ['English', '日本語', '中文']) {
+  for (const language of ['EN (English)', '日本語', '中文']) {
     await page.getByRole('button', { name: language, exact: true }).click();
     await expect(page.locator('#armor option:checked')).toHaveText(names[language].armor);
     await expect(page.locator('#unit2 option:checked')).toHaveText(names[language].unit);

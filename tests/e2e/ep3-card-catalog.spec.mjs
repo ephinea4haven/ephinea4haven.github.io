@@ -12,7 +12,7 @@ test('@smoke EP3 browsing retains filters and language through details',async({p
   await expect(page.locator('.translation-notice')).toContainText('卡牌名称与说明暂未翻译为中文');
   await page.getByRole('checkbox').check();
   await expect(page.locator('.category-tabs button .count')).toHaveText(['39','39','259','120','168','75']);
-  await page.getByRole('button',{name:'English',exact:true}).click();
+  await page.getByRole('button',{name:'EN (English)',exact:true}).click();
   await page.getByLabel('Name search',{exact:true}).fill('BEARS CANE +');
   await expect(page.locator('.card-row')).toHaveCount(1);
   await page.locator('.card-row').click();

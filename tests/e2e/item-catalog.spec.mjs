@@ -18,7 +18,7 @@ for (const [id, english, chinese] of [
   test(`${english} preserves the confirmed Epsilon name after hydration and reload`, async ({page}) => {
     await page.goto(`/data/items/${id}.html`);
     await expect(page.locator('#item-title')).toHaveText(chinese);
-    await page.getByRole('button', {name: 'English', exact: true}).click();
+    await page.getByRole('button', {name: 'EN (English)', exact: true}).click();
     await expect(page.locator('#item-title')).toHaveText(english);
     await page.getByRole('button', {name: '中文', exact: true}).click();
     await expect(page.locator('#item-title')).toHaveText(chinese);
@@ -34,7 +34,7 @@ for (const [id, count] of [['akikos-frying-pan', 4], ['soul-eater', 6], ['ragol-
     const guide = page.locator('#availability .acquisition-guide');
     for (const [button, heading, first] of [
       ['中文', '任务获取步骤', '创建 One Person'],
-      ['English', 'Quest walkthrough', 'Use One Person mode'],
+      ['EN (English)', 'Quest walkthrough', 'Use One Person mode'],
       ['日本語', 'クエスト入手手順', 'One Person モード'],
     ]) {
       await page.getByRole('button', {name: button, exact: true}).click();
@@ -58,7 +58,7 @@ test('list shows all three item names with the active language first on desktop 
     await page.setViewportSize({width, height: 1000});
     await page.goto('/en/data/items.html?q=M%26A60');
     await expect(page.locator('.item-row')).toHaveCount(1);
-    for (const [button, language] of [['English', 'en'], ['中文', 'zh'], ['日本語', 'ja']]) {
+    for (const [button, language] of [['EN (English)', 'en'], ['中文', 'zh'], ['日本語', 'ja']]) {
       await page.getByRole('button', {name: button, exact: true}).click();
       const identity = page.locator('.item-row .identity');
       await expect(identity.locator('.item-name')).toHaveText(item[language]);
@@ -74,7 +74,7 @@ test('list shows all three item names with the active language first on desktop 
   }
   const unverified = items.find(item => !item.ja && item.category === 'weapon');
   await page.goto(`/en/data/items.html?q=${unverified.code}`);
-  await page.getByRole('button', {name: 'English', exact: true}).click();
+  await page.getByRole('button', {name: 'EN (English)', exact: true}).click();
   await expect(page.locator('.translated-name > span:last-child').filter({hasText: 'Name unverified'})).toHaveCount(1);
   for (const id of ['blue-odoshi-violet-nimaidou', 'heart-of-partisan-of-lightning']) {
     const longName = items.find(item => item.id === id);
@@ -203,7 +203,7 @@ test('confirmed Unitxt renames survive detail hydration and language switching',
     expect(item, en).toBeDefined();
     await page.goto(`/data/items/${item.id}.html`);
     await expect(page.locator('#item-title')).toHaveText(names[en].zh);
-    await page.getByRole('button', { name: 'English', exact: true }).click();
+    await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
     await expect(page.locator('#item-title')).toHaveText(en);
     await page.getByRole('button', { name: '中文', exact: true }).click();
     await expect(page.locator('#item-title')).toHaveText(names[en].zh);
@@ -230,7 +230,7 @@ test('language changes preserve filters, sorting, pagination and authoritative n
   // Capture the filtered second page after hydration, not the prerendered first page.
   await expect(page.locator('.page-steps')).toContainText('2 /');
   const ids = await page.locator('.item-row').evaluateAll(rows => rows.map(r => r.href));
-  for (const [button,lang,title,prefix] of [['English','en','Item Database','/en'],['日本語','ja','アイテム図鑑','/ja'],['中文','zh','道具图鉴','']]) {
+  for (const [button,lang,title,prefix] of [['EN (English)','en','Item Database','/en'],['日本語','ja','アイテム図鑑','/ja'],['中文','zh','道具图鉴','']]) {
     await page.getByRole('button',{name:button,exact:true}).click();
     await expect(page.locator('#catalog-title')).toHaveText(title);
     const url = new URL(page.url());
@@ -244,7 +244,7 @@ test('language changes preserve filters, sorting, pagination and authoritative n
   await page.goto('/ja/data/items.html?q=赤のセイバー');
   await expect(page.locator('.item-row')).toHaveCount(1);
   await expect(page.locator('.identity strong')).toHaveText(names['Red Saber'].ja);
-  await page.getByRole('button',{name:'English',exact:true}).click();
+  await page.getByRole('button',{name:'EN (English)',exact:true}).click();
   await expect(page.locator('.identity strong')).toHaveText('Red Saber');
   await page.getByRole('button',{name:'中文',exact:true}).click();
   await expect(page.locator('.identity strong')).toHaveText(names['Red Saber'].zh);
@@ -259,7 +259,7 @@ test('detail language persists through return, refresh and later visits', async 
   // Mechanics text is written in each language, not shown as the Chinese original.
   await expect(page.locator('#effects .effect-list')).toContainText('エクストラアタックはドロップやショップで生成された個々のアイテムで決まり');
   await expect(page.locator('#availability .availability-text')).toHaveText('通常ドロップと武器屋。');
-  await page.getByRole('button',{name:'English',exact:true}).click();
+  await page.getByRole('button',{name:'EN (English)',exact:true}).click();
   await expect(page.locator('#item-title')).toHaveText('Saber');
   await page.getByRole('link',{name:'← Back to item list',exact:true}).click();
   await expect(page).toHaveURL(/\/en\/data\/items\.html\?/);
@@ -316,7 +316,7 @@ test('list names match ordinary, gold and rainbow BB drop-chart styles', async (
   await page.setViewportSize({width:390,height:844});
   await page.locator('.item-row[href*="/delsabers-buster.html"]').evaluate(el => el.scrollIntoView({block:'center'}));
   await page.screenshot({path:testInfo.outputPath('name-tiers-mobile.png')});
-  for (const [lang, hint] of [['English', 'Banner condition: untekked Hit ≥ 20%.'], ['日本語', 'ドロップ告知条件：未鑑定 Hit ≥ 20%。']]) {
+  for (const [lang, hint] of [['EN (English)', 'Banner condition: untekked Hit ≥ 20%.'], ['日本語', 'ドロップ告知条件：未鑑定 Hit ≥ 20%。']]) {
     await page.getByRole('button', {name:lang,exact:true}).click();
     await expect(page.locator('.item-row[href*="/galatine.html"] .item-name')).toHaveAttribute('title', hint);
   }
@@ -338,7 +338,7 @@ test('all unsealed results use top-tier names independently of banner eligibilit
     await expect(name).toHaveCSS('font-weight', '900');
     await expect(name).toHaveAttribute('title', '解封成品 · 顶级');
     await expect(row).toHaveAttribute('aria-description', '解封成品 · 顶级');
-    for (const [language, hint] of [['English','Unsealed item · top tier'], ['日本語','封印解除後のアイテム · 最上位']]) {
+    for (const [language, hint] of [['EN (English)','Unsealed item · top tier'], ['日本語','封印解除後のアイテム · 最上位']]) {
       await page.getByRole('button', {name:language,exact:true}).click();
       await expect(name).toHaveClass(/ss-rare-item/);
       await expect(name).toHaveAttribute('title', hint);
@@ -352,7 +352,7 @@ test('all unsealed results use top-tier names independently of banner eligibilit
 
 test('the three Dark weapons use top-tier names with crafting labels', async ({page}, testInfo) => {
   await page.goto('/data/items.html?category=weapon&q=Dark');
-  for (const [language, hint] of [['中文','合成成品 · 顶级'], ['English','Combined item · top tier'], ['日本語','合成後のアイテム · 最上位']]) {
+  for (const [language, hint] of [['中文','合成成品 · 顶级'], ['EN (English)','Combined item · top tier'], ['日本語','合成後のアイテム · 最上位']]) {
     await page.getByRole('button', {name:language,exact:true}).click();
     for (const id of ['dark-flow','dark-meteor','dark-bridge']) {
       const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
@@ -381,7 +381,7 @@ test('rare weapons and converted results stay gold without automatic top-tier pr
     await page.goto(`/data/items.html?category=weapon&q=${encodeURIComponent(title)}`);
     const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
     const name = row.locator('.item-name');
-    for (const [language, hint] of [['中文','稀有道具'], ['English','Rare item'], ['日本語','レアアイテム']]) {
+    for (const [language, hint] of [['中文','稀有道具'], ['EN (English)','Rare item'], ['日本語','レアアイテム']]) {
       await page.getByRole('button', {name:language,exact:true}).click();
       await expect(name).toHaveClass(/(?:^|\s)rare-item(?:\s|$)/);
       await expect(name).not.toHaveClass(/ss-rare-item/);
@@ -417,7 +417,7 @@ test('language changes keep detail fragments without fetching detail data again'
   await page.goto('/data/items/soul-eater.html#attributes');
   const requests=[];
   page.on('request',r => { if(r.url().includes('/assets/data/items/')) requests.push(r.url()); });
-  await page.getByRole('button',{name:'English',exact:true}).click();
+  await page.getByRole('button',{name:'EN (English)',exact:true}).click();
   await expect(page).toHaveURL(/\/en\/data\/items\/soul-eater\.html#attributes$/);
   await expect(page.locator('#attributes')).toContainText('HP drain1 / 5 sec (while moving)');
   await expect(page).toHaveTitle(/SOUL EATER|Soul Eater/);
@@ -568,7 +568,7 @@ test('HD details default to HD and switching changes both the image and its sour
   await expect(link).toHaveAttribute('href', '/assets/img/items/wiki/29f6af4df3b08415.png');
   await expect(page.locator('.item-figure figcaption')).toContainText('Ephinea Wiki');
   // Another language is another page: it opens with the default HD image, and the keyboard switches it.
-  await page.getByRole('button', {name:'English', exact:true}).click();
+  await page.getByRole('button', {name:'EN (English)', exact:true}).click();
   await expect(page).toHaveURL(/\/en\/data\/items\/saber\.html$/);
   await expect(page.getByRole('button', {name:'HD image', exact:true})).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', {name:'Standard image', exact:true}).focus();
@@ -603,7 +603,7 @@ test('Mag details show the original-model render with its own source label', asy
   await page.getByRole('button', {name:'现有图片', exact:true}).click();
   await expect(picture).toHaveAttribute('src', '/assets/img/items/wiki/3e69aa39006afee6.png');
   await expect(caption).toContainText('Ephinea Wiki');
-  await page.getByRole('button', {name:'English', exact:true}).click();
+  await page.getByRole('button', {name:'EN (English)', exact:true}).click();
   await page.getByRole('button', {name:'HD image', exact:true}).click();
   await expect(caption).toContainText('original model render');
 });
