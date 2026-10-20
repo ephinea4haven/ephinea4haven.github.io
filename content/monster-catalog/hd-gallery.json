@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-09-29",
-  "source": "User-provided ENEMY gallery, BOSS 补完 supplement and corrections through 2026-09-29",
+  "checkedAt": "2026-10-20",
+  "source": "User-provided ENEMY gallery, BOSS 补完 supplement and corrections through 2026-10-20",
   "normalization": {
     "format": "webp",
     "quality": 85,
@@ -1659,14 +1659,14 @@
       "asset": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp"
     },
     {
-      "original": "TOWER/恶镰死神.png",
-      "source": "TOWER/恶镰死神.png",
+      "original": "9a38a6b61cf97e4b1d8ac6294743dc0d_720.png",
+      "source": "User-provided corrections/2026-10-20/TOWER/恶镰死神.png",
       "identity": "Ill Gill",
-      "sha256": "5c11457d7fc74d302e60311b0f635ffe59f067990e233694671b2cb1144fba8d",
-      "bytes": 1574670,
-      "width": 2208,
-      "height": 2080,
-      "asset": "/assets/img/monsters/hd/tower/ill-gill-5c11457d7fc7.webp"
+      "sha256": "3e58985a5d128ed6c6c3daefaff5a3723a4c14fa031b5f51554130d0de6012b4",
+      "bytes": 484426,
+      "width": 1280,
+      "height": 1280,
+      "asset": "/assets/img/monsters/hd/tower/ill-gill-3e58985a5d12.webp"
     },
     {
       "original": "TOWER/暗铃兰.png",
@@ -2551,9 +2551,9 @@
       "bytes": 56978
     },
     {
-      "path": "/assets/img/monsters/hd/tower/ill-gill-5c11457d7fc7.webp",
-      "sha256": "83157dd31cdfb22084bc963c8913a44c5ecea2e59afbd9595d6f33dad487c79e",
-      "bytes": 68960
+      "path": "/assets/img/monsters/hd/tower/ill-gill-3e58985a5d12.webp",
+      "sha256": "3c183a3fb300479013055a27f3f44a50f0dc224d445946829999422dbb8d2e2e",
+      "bytes": 75152
     },
     {
       "path": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp",
@@ -3105,8 +3105,8 @@
       "ultimate": "/assets/img/monsters/hd/temple/love-rappy-a7a4c370d916.webp"
     },
     "ill-gill": {
-      "normal": "/assets/img/monsters/hd/tower/ill-gill-5c11457d7fc7.webp",
-      "ultimate": "/assets/img/monsters/hd/tower/ill-gill-5c11457d7fc7.webp"
+      "normal": "/assets/img/monsters/hd/tower/ill-gill-3e58985a5d12.webp",
+      "ultimate": "/assets/img/monsters/hd/tower/ill-gill-3e58985a5d12.webp"
     },
     "epsilon": {
       "normal": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp",
