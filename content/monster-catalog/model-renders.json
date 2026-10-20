@@ -302,8 +302,12 @@
    "motion": "Hildebear_stand"
   },
   "IllGill": {
-   "npc": "IllGill",
-   "motion": "IllGill_wait"
+   "renderer": "blender",
+   "archive": "bm_ene_ill_gill.bml",
+   "model": "darkand_body",
+   "motion": "walk_darkand_body",
+   "yaw": -20,
+   "pitch": 5
   },
   "LaDimenian": {
    "npc": "LaDimenian"
@@ -581,7 +585,7 @@
    "model": "me5p02_y_cage"
   },
   "DarkFalzForm1": {
-   "renderer": "blender-dark-falz",
+   "renderer": "blender",
    "archive": "darkfalz_dat.bml",
    "model": "df1_s_body",
    "parts": [
@@ -593,13 +597,13 @@
    ]
   },
   "DarkFalzForm2": {
-   "renderer": "blender-dark-falz",
+   "renderer": "blender",
    "archive": "darkfalz_dat.bml",
    "model": "df2_s_body",
    "parts": [{"model": "df2_s_dodai1"}]
   },
   "DarkFalzForm3": {
-   "renderer": "blender-dark-falz",
+   "renderer": "blender",
    "archive": "darkfalz_dat.bml",
    "model": "df3_s_body",
    "motion": "wait_df3_s_body",

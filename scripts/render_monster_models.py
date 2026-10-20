@@ -128,12 +128,12 @@ def main() -> None:
     if unused := set(config["renders"]) - used:
         raise SystemExit(f"Renders bound to no catalog entry: {sorted(unused)}")
 
-    blender_renders = [label for label, job in renders.items() if job.get('renderer') == 'blender-dark-falz']
+    blender_renders = [label for label, job in renders.items() if job.get('renderer') == 'blender']
     if blender_renders:
         subprocess.run([args.blender, '--background', '--factory-startup', '--python-exit-code', '1',
-                        '--python', str(ROOT / 'scripts/render_dark_falz_models.py'), '--',
+                        '--python', str(ROOT / 'scripts/render_blender_models.py'), '--',
                         '--ephinea-data', str(args.ephinea_data), *blender_renders], check=True)
-        subprocess.run(['node', str(ROOT / 'scripts/import_dark_falz_models.mjs'), *blender_renders], check=True)
+        subprocess.run(['node', str(ROOT / 'scripts/import_blender_models.mjs'), *blender_renders], check=True)
         renders = {label: job for label, job in renders.items() if label not in blender_renders}
         if not renders:
             return
@@ -159,7 +159,7 @@ def main() -> None:
                 stale.unlink()
     digest = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
     previous = json.loads((OUTPUT / 'manifest.json').read_text())
-    manifest = {label: previous[label] if render.get('renderer') == 'blender-dark-falz' else
+    manifest = {label: previous[label] if render.get('renderer') == 'blender' else
                        {"file": file_name(label), "sha256": digest(OUTPUT / file_name(label)),
                         "thumbSha256": digest(OUTPUT / "thumbs" / file_name(label))}
                 for label, render in config["renders"].items()}

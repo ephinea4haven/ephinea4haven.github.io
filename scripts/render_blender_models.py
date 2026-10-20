@@ -1,8 +1,11 @@
-"""Render complete Dark Falz assemblies from the original BB archive in Blender.
+"""Render monster models from original BB archives in Blender (renders with `renderer: blender`).
 
-Uses source bind poses or exact wait-frame-zero keys, not a runtime replay.
-Run Blender with --python-exit-code 1 --python scripts/render_dark_falz_models.py.
+Uses source bind poses or exact motion-frame-zero keys, not a runtime replay.
+Optional `yaw` / `pitch` (degrees) turn the camera around the model's vertical axis
+and above it; yaw 0 faces the model's front.
+Run Blender with --python-exit-code 1 --python scripts/render_blender_models.py.
 """
+import math
 from pathlib import Path
 import argparse
 import hashlib
@@ -10,6 +13,7 @@ import json
 import sys
 
 import bpy
+import numpy as np
 from mathutils import Vector
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,13 +25,24 @@ import render_textured as textures
 from pso_archives import bml_entries, gsl_files, pack_xvm
 from pso_motion_frame import apply_frame_zero
 
-OUT = ROOT / 'artifacts/dark-falz-renders'
+OUT = ROOT / 'artifacts/blender-renders'
 CLIENT = Path('/Applications/EphineaPSO.app/Contents/SharedSupport/prefix/drive_c/EphineaPSO/data')
 CONFIG = ROOT / 'content/monster-catalog/model-renders.json'
 
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def upright(images):
+    """Store decoded rows bottom-up as Blender expects; the NJ mesh import maps UVs as (u, 1 - v)."""
+    for image in images:
+        width, height = image.size
+        pixels = np.empty(width * height * 4, dtype=np.float32)
+        image.pixels.foreach_get(pixels)
+        image.pixels.foreach_set(pixels.reshape(height, width * 4)[::-1].ravel())
+        image.pack()
+    return images
 
 
 def material_factory(images):
@@ -52,7 +67,8 @@ def material_factory(images):
             camera.convert_from, camera.convert_to = 'WORLD', 'CAMERA'
             links.new(geometry.outputs['Normal'], camera.inputs[0])
             scale = nodes.new('ShaderNodeVectorMath'); scale.operation = 'MULTIPLY'
-            scale.inputs[1].default_value = (.5, -.5, 0)
+            # Upright images: an upward normal samples the texture's top row.
+            scale.inputs[1].default_value = (.5, .5, 0)
             links.new(camera.outputs[0], scale.inputs[0])
             bias = nodes.new('ShaderNodeVectorMath'); bias.operation = 'ADD'
             bias.inputs[1].default_value = (.5, .5, 0)
@@ -62,7 +78,18 @@ def material_factory(images):
             assert all(v.uv is not None for v in primitive.vertices), name
         links.new(image.outputs['Color'], bsdf.inputs['Base Color'])
         links.new(image.outputs['Color'], bsdf.inputs['Emission Color'])
-        if source.use_alpha:
+        if source.destination_blend == 1:
+            # Additive glow (destination factor ONE): emit the texture with coverage from its value (max channel).
+            emission = nodes.new('ShaderNodeEmission')
+            links.new(image.outputs['Color'], emission.inputs['Color'])
+            coverage = nodes.new('ShaderNodeSeparateColor'); coverage.mode = 'HSV'
+            links.new(image.outputs['Color'], coverage.inputs['Color'])
+            mix = nodes.new('ShaderNodeMixShader')
+            links.new(coverage.outputs['Blue'], mix.inputs['Fac'])
+            links.new(nodes.new('ShaderNodeBsdfTransparent').outputs[0], mix.inputs[1])
+            links.new(emission.outputs[0], mix.inputs[2])
+            links.new(mix.outputs[0], nodes.get('Material Output').inputs['Surface'])
+        elif source.use_alpha:
             links.new(image.outputs['Alpha'], bsdf.inputs['Alpha'])
         return mat
     return material
@@ -74,19 +101,27 @@ def main():
     parser.add_argument('labels', nargs='*')
     args = parser.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
     OUT.mkdir(parents=True, exist_ok=True)
-    loose = args.ephinea_data / 'darkfalz_dat.bml'
-    archive = loose.read_bytes() if loose.exists() else gsl_files(args.ephinea_data / 'data.gsl')['darkfalz_dat.bml']
-    entries = {name: (body, texture) for name, body, texture in bml_entries(archive)}
+    gsl = None
+
+    def read_archive(name):
+        nonlocal gsl
+        loose = args.ephinea_data / name
+        if loose.exists():
+            return loose.read_bytes()
+        gsl = gsl or gsl_files(args.ephinea_data / 'data.gsl')
+        return gsl[name]
+
     renders = json.loads(CONFIG.read_text())['renders']
     selected = set(args.labels) if args.labels else None
-    known = {label for label, job in renders.items() if job.get('renderer') == 'blender-dark-falz'}
+    known = {label for label, job in renders.items() if job.get('renderer') == 'blender'}
     if selected and selected - known:
-        raise ValueError(f'Unknown Dark Falz render: {selected - known}')
+        raise ValueError(f'Unknown Blender render: {selected - known}')
     for label, job in renders.items():
-        if job.get('renderer') != 'blender-dark-falz' or selected is not None and label not in selected:
+        if job.get('renderer') != 'blender' or selected is not None and label not in selected:
             continue
-        assert job['archive'] == 'darkfalz_dat.bml'
-        parts = [job, *job['parts']]
+        archive = read_archive(job['archive'])
+        entries = {name: (body, texture) for name, body, texture in bml_entries(archive)}
+        parts = [job, *job.get('parts', [])]
         bpy.ops.wm.read_factory_settings(use_empty=True)
         evidence = []
         for component in parts:
@@ -95,7 +130,7 @@ def main():
             assert texture, part
             path = OUT / (part + '.xvm')
             path.write_bytes(pack_xvm(texture))
-            images = textures.decode_textures(path)
+            images = upright(textures.decode_textures(path))
             motion_name = component.get('motion')
             posed_body = body
             if motion_name:
@@ -123,7 +158,12 @@ def main():
         scene.world = bpy.data.worlds.new('World'); scene.world.color = (.8, .8, .8)
         camera = bpy.data.objects.new('Camera', bpy.data.cameras.new('Camera'))
         scene.collection.objects.link(camera); scene.camera = camera
-        camera.location = center + Vector((.6, -3, .65)) * size
+        if 'yaw' in job:
+            yaw, pitch = math.radians(job['yaw']), math.radians(job.get('pitch', 0))
+            direction = Vector((math.sin(yaw) * math.cos(pitch), -math.cos(yaw) * math.cos(pitch), math.sin(pitch)))
+            camera.location = center + direction * 3.1 * size
+        else:
+            camera.location = center + Vector((.6, -3, .65)) * size
         camera.rotation_euler = (center-camera.location).to_track_quat('-Z', 'Y').to_euler()
         camera.data.type = 'ORTHO'; camera.data.clip_end = size * 100
         bpy.context.view_layer.update()
@@ -137,8 +177,8 @@ def main():
             light.rotation_euler = (-Vector(direction)).to_track_quat('-Z', 'Y').to_euler()
         output = OUT / (label + '.png'); scene.render.filepath = str(output)
         bpy.ops.render.render(write_still=True)
-        record = {'archive': 'darkfalz_dat.bml', 'archiveSha256': digest(archive), 'parts': evidence,
-                  'pose': 'exact source wait frame zero' if label == 'DarkFalzForm3' else 'source bind transforms',
+        record = {'archive': job['archive'], 'archiveSha256': digest(archive), 'parts': evidence,
+                  'pose': 'exact source motion frame zero' if job.get('motion') else 'source bind transforms',
                   'runtimeVerified': False,
                   'rendererSha256': digest(Path(__file__).read_bytes()),
                   'meshParserSha256': digest(Path(meshes.__file__).read_bytes()),

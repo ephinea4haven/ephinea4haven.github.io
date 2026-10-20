@@ -341,8 +341,45 @@
   },
   "IllGill": {
     "file": "IllGill.webp",
-    "sha256": "086c080643613be701bdbde22d17345d2817b7d8a9d4d5e5e5c67c572c55ee87",
-    "thumbSha256": "0af24677e10ade66df27fa3479537ca270b4993ae29dcbef58433a915d2f34f7"
+    "sha256": "5d204d36ba933e3c5e70b49acf420c5388ef32b6bed16d314928236125beb4ad",
+    "thumbSha256": "6c1b71f4c0ff52b4e150912e4881a30ee04c06b13436643d460dcc13a1f5509d",
+    "evidence": {
+      "archive": "bm_ene_ill_gill.bml",
+      "archiveSha256": "eb38e75dddc973da8047e131b330885ca4348a903465ec4b6772b6d296ed235f",
+      "parts": [
+        {
+          "model": "darkand_body",
+          "modelSha256": "71ecbbe2c27481081bb70896595287022b4ed38749040b4acd36f0f104d407ff",
+          "motion": "walk_darkand_body",
+          "frame": 0,
+          "motionSha256": "12fde69399f71053468d7e19768d797aafb0d569e88ce449025f351e5f5c56d4",
+          "textureSha256": "3de5fbd4c8275163837c983f27d99e531b6a6d15e92e85218e965e2415601e33",
+          "triangles": 986,
+          "bones": 67,
+          "environmentPrimitives": 0
+        }
+      ],
+      "pose": "exact source motion frame zero",
+      "runtimeVerified": false,
+      "rendererSha256": "bd96bfe46416cc4135024d4eea5da47c6baac2f1062ab0ebd9fc3ad9edd2508a",
+      "meshParserSha256": "18bd0a7fa999f05b3cb0b83d9118a1160a2084fc45ed2df584d72d35ab20aa40",
+      "motionParserSha256": "4244213df2f60b80d3b3aa350100a52fbcdd79e027978dd766ad91c06a20ba4f",
+      "recipe": {
+        "renderer": "blender",
+        "archive": "bm_ene_ill_gill.bml",
+        "model": "darkand_body",
+        "motion": "walk_darkand_body",
+        "yaw": -20,
+        "pitch": 5
+      },
+      "camera": [
+        -27.923458099365234,
+        -92.81010437011719,
+        19.602766036987305
+      ],
+      "orthoScale": 38.76209259033203,
+      "imageSha256": "90899aa0282170c6bdf864c22189d114af6264062cd177f5ed3d227fdd06a378"
+    }
   },
   "LaDimenian": {
     "file": "LaDimenian.webp",
@@ -631,8 +668,8 @@
   },
   "DarkFalzForm1": {
     "file": "DarkFalzForm1.webp",
-    "sha256": "59d9cb13b048dc5e3eceb101d663dc462cf3b4234cd6ecbd6613450186d079b5",
-    "thumbSha256": "ddcbe46e24de35180f866623408cd5521c2590a84777bf9d952891c55630fa5d",
+    "sha256": "3acb274f8a86e4392af054b80fc85915060b326b29966cd61a6c9b791c50339c",
+    "thumbSha256": "1b687e10ad582d6fcea963facb2092e1d0ad20c86d47a34d060f98498d29fb58",
     "evidence": {
       "archive": "darkfalz_dat.bml",
       "archiveSha256": "5d2cb7e3137dfb6a2b18644ac2ed56f1475bc7314963133cd6ffebbd15c38468",
@@ -706,11 +743,11 @@
       ],
       "pose": "source bind transforms",
       "runtimeVerified": false,
-      "rendererSha256": "3e1e918b86c216c1b51c50b5d4065ccdae45991c929c77df8d4bc0fcd9d24ed0",
+      "rendererSha256": "bd96bfe46416cc4135024d4eea5da47c6baac2f1062ab0ebd9fc3ad9edd2508a",
       "meshParserSha256": "18bd0a7fa999f05b3cb0b83d9118a1160a2084fc45ed2df584d72d35ab20aa40",
       "motionParserSha256": "4244213df2f60b80d3b3aa350100a52fbcdd79e027978dd766ad91c06a20ba4f",
       "recipe": {
-        "renderer": "blender-dark-falz",
+        "renderer": "blender",
         "archive": "darkfalz_dat.bml",
         "model": "df1_s_body",
         "parts": [
@@ -737,13 +774,13 @@
         335.7547607421875
       ],
       "orthoScale": 368.9828796386719,
-      "imageSha256": "9e7975b23daeb03969cfb10a94bafd9558de94326f2396a29a39df2fdeac1763"
+      "imageSha256": "56c58bf249dd655f0917b2a29d7dc60c3419877af7a47481a95a06a658e467d0"
     }
   },
   "DarkFalzForm2": {
     "file": "DarkFalzForm2.webp",
-    "sha256": "96b3cae41f52333021c7c4f233c1a7610626b9e2a9f615cf5ebd26bc5cef5f0f",
-    "thumbSha256": "07c28563aff1206d2b0008831f4d6014a1beb508c51739e323359f2cd78b08a8",
+    "sha256": "d35596e842c3da8184c4b2362f4fd60eb81c2ab04a6f138b64377da032728a4c",
+    "thumbSha256": "13e029e517af8f658cdb83775c19a1d9076da22ece1fb2de6d16ceba0395981e",
     "evidence": {
       "archive": "darkfalz_dat.bml",
       "archiveSha256": "5d2cb7e3137dfb6a2b18644ac2ed56f1475bc7314963133cd6ffebbd15c38468",
@@ -773,11 +810,11 @@
       ],
       "pose": "source bind transforms",
       "runtimeVerified": false,
-      "rendererSha256": "3e1e918b86c216c1b51c50b5d4065ccdae45991c929c77df8d4bc0fcd9d24ed0",
+      "rendererSha256": "bd96bfe46416cc4135024d4eea5da47c6baac2f1062ab0ebd9fc3ad9edd2508a",
       "meshParserSha256": "18bd0a7fa999f05b3cb0b83d9118a1160a2084fc45ed2df584d72d35ab20aa40",
       "motionParserSha256": "4244213df2f60b80d3b3aa350100a52fbcdd79e027978dd766ad91c06a20ba4f",
       "recipe": {
-        "renderer": "blender-dark-falz",
+        "renderer": "blender",
         "archive": "darkfalz_dat.bml",
         "model": "df2_s_body",
         "parts": [
@@ -792,13 +829,13 @@
         305.0074462890625
       ],
       "orthoScale": 330.6106262207031,
-      "imageSha256": "4b9cb4282e85b5c7dce1d8c314890e8f39c30010c969ec9d412f6795c5a39176"
+      "imageSha256": "5cef327fe0e6ab7bb96ad5f09fa9c1133f9a73d0844aa46d3d4e33aaf7372f48"
     }
   },
   "DarkFalzForm3": {
     "file": "DarkFalzForm3.webp",
-    "sha256": "aab61e2649734b3bc191dde89926376e16261a23ab514677276c70fea7b96e81",
-    "thumbSha256": "1bea9e646d9b194d985afe2990f1407f2acc9db8c717a6f0ee2a6b1838cb0a10",
+    "sha256": "ab10adeb2ace2e86bc6ac5dd958f4fe2d68f618c771da3d73918c3582129f9ad",
+    "thumbSha256": "86f67bb6433753db095ee00e922074c15cc5460addc3d96a6600cb21002bb19e",
     "evidence": {
       "archive": "darkfalz_dat.bml",
       "archiveSha256": "5d2cb7e3137dfb6a2b18644ac2ed56f1475bc7314963133cd6ffebbd15c38468",
@@ -837,13 +874,13 @@
           "environmentPrimitives": 10
         }
       ],
-      "pose": "exact source wait frame zero",
+      "pose": "exact source motion frame zero",
       "runtimeVerified": false,
-      "rendererSha256": "3e1e918b86c216c1b51c50b5d4065ccdae45991c929c77df8d4bc0fcd9d24ed0",
+      "rendererSha256": "bd96bfe46416cc4135024d4eea5da47c6baac2f1062ab0ebd9fc3ad9edd2508a",
       "meshParserSha256": "18bd0a7fa999f05b3cb0b83d9118a1160a2084fc45ed2df584d72d35ab20aa40",
       "motionParserSha256": "4244213df2f60b80d3b3aa350100a52fbcdd79e027978dd766ad91c06a20ba4f",
       "recipe": {
-        "renderer": "blender-dark-falz",
+        "renderer": "blender",
         "archive": "darkfalz_dat.bml",
         "model": "df3_s_body",
         "motion": "wait_df3_s_body",
@@ -864,7 +901,7 @@
         201.7118682861328
       ],
       "orthoScale": 345.0849304199219,
-      "imageSha256": "25c46100da3d28619de264dcd84597ee6652612e3a4be8e903566cd64d4a23c4"
+      "imageSha256": "3c4acd3ba0d67c5de8bbc13883718ad25dcbc3762ba429f88a30deff6d35b187"
     }
   },
   "Darvant": {

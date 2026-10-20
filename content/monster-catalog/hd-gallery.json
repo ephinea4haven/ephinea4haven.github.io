@@ -1659,14 +1659,14 @@
       "asset": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp"
     },
     {
-      "original": "9a38a6b61cf97e4b1d8ac6294743dc0d_720.png",
+      "original": "28e9aa8f6edee90311630de5beaa60ab_720.png",
       "source": "User-provided corrections/2026-10-20/TOWER/恶镰死神.png",
       "identity": "Ill Gill",
-      "sha256": "3e58985a5d128ed6c6c3daefaff5a3723a4c14fa031b5f51554130d0de6012b4",
-      "bytes": 484426,
+      "sha256": "bee89816831718ae42cb33595455e6b30f34e37c543b670a00451f9ff0a08cb9",
+      "bytes": 445822,
       "width": 1280,
-      "height": 1280,
-      "asset": "/assets/img/monsters/hd/tower/ill-gill-3e58985a5d12.webp"
+      "height": 1107,
+      "asset": "/assets/img/monsters/hd/tower/ill-gill-bee898168317.webp"
     },
     {
       "original": "TOWER/暗铃兰.png",
@@ -2551,9 +2551,9 @@
       "bytes": 56978
     },
     {
-      "path": "/assets/img/monsters/hd/tower/ill-gill-3e58985a5d12.webp",
-      "sha256": "3c183a3fb300479013055a27f3f44a50f0dc224d445946829999422dbb8d2e2e",
-      "bytes": 75152
+      "path": "/assets/img/monsters/hd/tower/ill-gill-bee898168317.webp",
+      "sha256": "c1d4e8b48600bbf77c420eee05fed6d438639a7eb101018e993b2b3aea32b8d0",
+      "bytes": 69824
     },
     {
       "path": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp",
@@ -3105,8 +3105,8 @@
       "ultimate": "/assets/img/monsters/hd/temple/love-rappy-a7a4c370d916.webp"
     },
     "ill-gill": {
-      "normal": "/assets/img/monsters/hd/tower/ill-gill-3e58985a5d12.webp",
-      "ultimate": "/assets/img/monsters/hd/tower/ill-gill-3e58985a5d12.webp"
+      "normal": "/assets/img/monsters/hd/tower/ill-gill-bee898168317.webp",
+      "ultimate": "/assets/img/monsters/hd/tower/ill-gill-bee898168317.webp"
     },
     "epsilon": {
       "normal": "/assets/img/monsters/hd/tower/epsilon-7fd0b3cfedfa.webp",

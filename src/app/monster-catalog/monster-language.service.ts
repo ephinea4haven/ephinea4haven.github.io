@@ -24,7 +24,7 @@ const messages: Record<string,[string,string]> = {
   '数值需结合攻击类型、抗性、部位及触发条件阅读；未填写不代表 0。':['Read values with their damage type, resistances, part and trigger conditions. Blank does not mean zero.','攻撃の種類・耐性・部位・発動条件を併せて確認してください。未記載は 0 を意味しません。'],
   '此条目未关联独立的稀有掉落记录。':['No independent rare-drop row is linked to this entry.','この項目に独立したレアドロップは登録されていません。'],
   '以下为首领击破奖励，不是各部位分别掉落。':['These are boss-clear drops, not separate drops from each part.','以下はボス撃破時のドロップです。各部位の個別ドロップではありません。'],
-  '掉落概率来自 droptable，为每次击杀的基础 DR，已包含 DAR；不要再次相乘。未计活动及队伍加成。':['Rates come from droptable: base per-kill DR already includes DAR. Do not multiply again. Event and party boosts are excluded.','確率は droptable の基本 DR（撃破ごと）で、DAR を含みます。再度掛け合わせないでください。イベント・パーティ補正は含みません。'],
+  '掉落概率来自 dropcharts，为每次击杀的基础 DR，已包含 DAR；不要再次相乘。未计活动及队伍加成。':['Rates come from dropcharts: base per-kill DR already includes DAR. Do not multiply again. Event and party boosts are excluded.','確率は dropcharts の基本 DR（撃破ごと）で、DAR を含みます。再度掛け合わせないでください。イベント・パーティ補正は含みません。'],
   '没有稀有掉落':['No rare drop','レアドロップなし'], '打开掉落表':['Open drop chart','ドロップ表を開く'], '核对日期':['Checked','確認日'], '图片来源':['Image source','画像の出典'],
   '返回并重试':['Reload and retry','再読み込み'], '资料暂时无法加载':['Unable to load data','データを読み込めません'], '未找到怪物':['Enemy not found','エネミーが見つかりません'],
   '森林':['Forest','森'], '洞窟':['Cave','洞窟'], '坑道':['Mine','坑道'], '遗迹':['Ruins','遺跡'],

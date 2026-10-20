@@ -374,7 +374,7 @@ did not re-evaluate tiers or change the in-game rotation.
 - 配置：`content/monster-catalog/model-renders.json`。`renders` 记录每张图的模型来源、动作与帧、机位、需要隐藏的特效外壳材质；`bindings` 把图鉴条目的普通 / Ultimate 外观绑定到渲染图。生成器在条目不存在或文件缺失时失败。
 - 模型来源有两种。`npc` 取本地 phantasmal-world（提交 `a8890d22`）已提取的 `assets/npcs`，按其 `EntityAssetLoader.entityTypeToPath` 解析，Ultimate 皮肤按 `UltimateSkins.kt`。`archive` + `model`（+ `motion`）直接读取 Ephinea 客户端数据：`data.gsl` 中的 BML 或散放的 `.bml`（`scripts/pso_archives.py` 负责 PRS、GSL 与 BML 解析）；没有自带贴图的条目使用同一档案的第一个贴图包。首领、部位与 Ultimate 档案（`_a` / `_ap`）以及 EP4 首领的分阶段待机动作均由此取得。
 - phantasmal-world 的部分资源命名有误，已改用客户端档案：其 Hidoom / Migium 实为出场地面物件（正确模型是 Pan Arms 档案 `bm7_s_paa_body` 的 `pal` / `par`），Canane 为另一模型（正确的是 `bm_ene_me1_mb`），挂在 MerissaA 名下的动作属于 Slime（`bm4_ps_ma_body`）。每次改动都应把渲染图与 Wiki / 高清图逐项对照。
-- 常规怪物渲染：`npm run generate:monster-renders -- --harness-assets <phantasmal-world>/web/src/jsMain/resources/assets/npcs`（`scripts/render_monster_models.py`）先把档案条目提取到该目录的 `raw/`，再调用 `scripts/render_monster_models.mjs` 在无界面浏览器中驱动 phantasmal-world 的导出入口 `?npcBatch=1`（`window.__renderNpc`），用它自己的蒙皮与 NJM 动画转换摆姿势，分别在黑底与白底上渲染 2048 px；两图之差还原透明度，叠加发光材质保持半透明。结果裁切到模型、居中留边，输出 1024 px 与 160 px WebP，`manifest.json` 记录 SHA-256。该导出入口只存在于本机 phantasmal-world 工作副本，不属于其仓库；重新渲染前需在本机构建并以 `--harness` 指向它。Dark Falz 三个形态改用下述 Blender 完整装配路径，批量入口按清单中的 `renderer` 分派，不再用只含本体的旧配方覆盖它们。
+- 常规怪物渲染：`npm run generate:monster-renders -- --harness-assets <phantasmal-world>/web/src/jsMain/resources/assets/npcs`（`scripts/render_monster_models.py`）先把档案条目提取到该目录的 `raw/`，再调用 `scripts/render_monster_models.mjs` 在无界面浏览器中驱动 phantasmal-world 的导出入口 `?npcBatch=1`（`window.__renderNpc`），用它自己的蒙皮与 NJM 动画转换摆姿势，分别在黑底与白底上渲染 2048 px；两图之差还原透明度，叠加发光材质保持半透明。结果裁切到模型、居中留边，输出 1024 px 与 160 px WebP，`manifest.json` 记录 SHA-256。该导出入口只存在于本机 phantasmal-world 工作副本，不属于其仓库；重新渲染前需在本机构建并以 `--harness` 指向它。该工作副本已不在本机；Dark Falz 三个形态与 Ill Gill 改用下述 Blender 路径（`renderer: "blender"`），批量入口按清单中的 `renderer` 分派，不再用旧配方覆盖它们。
 - 姿势：默认用模型自己的待机动作（wait / stand / standby 等，Poison Lily 用张开的 `waito`）；EP4 首领一、二阶段分别用 `1st_standby` / `2nd_standby`。De Rol Le（含 Ultimate）用前进动作 `forward` 第 0 帧的伸展身体，模型绕 X 轴抬头 12°，从头部斜前方 45° 取景，与维护者提供的参考图一致。颈部 4 根触手是独立模型 `boss2_b_derorure_tentacle`，游戏运行时挂到本体头部骨骼下的 4 个空节点（骨骼 29–32）；`attach` 按骨骼编号把部件挂到摆好姿势的本体上，触手用自身摆动动作 `tloop` 第 16 帧（向后上方伸展）。Spinner 用 `standby`：其动作类型 `0x2005` 的四元数旋转位于缩放之前，phantasmal-world 原解析顺序（缩放在前）会读错，本机导出入口的构建修正了这一顺序。没有动作的模型用绑定姿势，Hildeblue 借用 Hildebear、Gobooma / Gigobooma 借用 Booma 的同骨架动作。Hidoom 以前的地面物件、Merissa A / AA、Pouilly Slime 的环境反射外壳在导出中会画成不透明色块，按材质序号隐藏。
 - 2026-09-30 姿态对齐：Zu 与 Nano Dragon 去掉 `wait` 动作，沿用 Pazuzu 的原始展翅姿势和默认机位（yaw 35°、pitch 12°）。原待机第 0 帧会让两翼竖起遮挡身体；本次用各自模型重新生成 1024 px 头像、160 px 缩略图及校验清单。Zu 的 Crater / Desert、普通 / Ultimate 共用同一外观，全部同步；Nano Dragon 的两组难度也共用此姿势。模型、贴图与高清参考图未改。 本地生产构建、13 项怪物数据/图片检查、33 项图鉴浏览器测试通过，并目视检查 Zu 两区域、Pazuzu 与 Nano Dragon 的 Ultimate 页面；未部署。
 - 档案贴图：没有自带贴图包的模型按编号引用同一档案的贴图包（默认第一个，可用 `texture` 指定、`textureOrder` 重排）。提取时把 XVRT 块首尾相接重新打包，因为部分档案的块带对齐填充，顺序读取 IFF 的解析器会只读到第一张贴图；同名的模型与动作（如 `fs_obj_hiraishin_a.nj` / `.njm`）分开索引。解码后的 DXT 贴图使用线性过滤（与游戏一致，避免放大后的像素块）。
@@ -452,7 +452,7 @@ did not re-evaluate tiers or change the in-game rotation.
 环境映射面缺少对应纹理坐标处理，黑白背景还原后成为大片半透明青色。
 旧图可见像素中约 39.6% 满足青色块回归条件（alpha ≥ 20、R < 100、G/B > 190）。
 
-改用 `scripts/render_dark_falz_models.py` 读取原始 `darkfalz_dat.bml`：
+改用 `scripts/render_blender_models.py` 读取原始 `darkfalz_dat.bml`：
 
 - 一形态：本体、腰部、底座及 `da/db/dc_heada` 三个头，共六个组件；保留各模型原始根变换。
 - 二形态：本体及 `df2_s_dodai1` 腹部，共两个组件；翼膜读取原始环境映射标记，用视空间法线生成 UV，保留原始多色纹理，不涂色、不重绘。
@@ -468,14 +468,14 @@ did not re-evaluate tiers or change the in-game rotation.
 三形态是原始待机动作零帧；固定灯光与静态环境映射不等同于游戏运行时的
 完整着色、动画、灵魂效果或场景反射。图片清单记录每个部件、动作、源档案、
 渲染器、解析器与产物的校验值；全身检查图、源贴图留在忽略目录
-`artifacts/dark-falz-renders/`。
+`artifacts/blender-renders/`。
 
 ```sh
 rtk proxy /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python-exit-code 1 --python scripts/test_npc_model_geometry.py
 rtk proxy python3 -m unittest scripts.test_pso_motion_frame
-rtk proxy /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python-exit-code 1 --python scripts/render_dark_falz_models.py
+rtk proxy /Applications/Blender.app/Contents/MacOS/Blender --background --factory-startup --python-exit-code 1 --python scripts/render_blender_models.py
 # 目视检查三个形态后导入站点资源。
-rtk node scripts/import_dark_falz_models.mjs
+rtk node scripts/import_blender_models.mjs
 rtk node scripts/generate_monster_catalog.mjs
 ```
 
@@ -495,3 +495,12 @@ rtk node scripts/generate_monster_catalog.mjs
 - 使用维护者提供的 1280 × 1280 透明 PNG 替换 Ill Gill 普通 / Ultimate 共用的高清图（原紫色刃版本换为粉红色刃版本）。按图库规范以 Lanczos 缩放至 1024 × 1024，WebP quality 85 / method 6，保留透明度，成品 75,152 字节。
 - 清单同步附件名、来源路径 `User-provided corrections/2026-10-20/TOWER/恶镰死神.png`、尺寸、字节数、SHA-256 和两个外观绑定；旧 WebP 已移除，原附件不随站点提交。图库覆盖数量不变。
 - 本地验收：怪物测试 15 / 15 通过，成品已目视核对；最终 `release:prepare` 的生产构建、冒烟测试及怪物图鉴浏览器测试通过（发布结果见 `docs/DEPLOYMENT.md` 2026-10-20 记录）。维护者已批准提交推送；线上部署以对应 Pages 工作流结果为准。
+
+### Ill Gill 视角重绘与高清图更新（2026-10-20）
+
+- 高清图：维护者再次提供 1280 × 1107 透明 PNG（附件 `28e9aa8f6edee90311630de5beaa60ab_720.png`），按图库规范 Lanczos 等比缩放至 1024 × 886，WebP quality 85 / method 6，保留透明度，成品 69,824 字节；清单同步附件名、尺寸、字节数、SHA-256 与两个外观绑定，旧 WebP 已移除。
+- 模型渲染：原图为 phantasmal-world 默认机位的侧身视角。改为参照新高清图的姿势与视角：读取客户端档案 `bm_ene_ill_gill.bml` 的 `darkand_body` 与行走动作 `walk_darkand_body` 第零帧，机位 `yaw -20`、`pitch 5`（yaw 0 为模型正面，负值转向模型右侧）。待机动作 `wait` 第零帧为半蹲持镰，镰柄过陡，yaw −70°～20° 均无法对上高清图；`walk` 第零帧直立、镰柄由左下斜向右上，与高清图一致。phantasmal-world 导出入口已不在本机，因此 Ill Gill 改走 Blender 路径。
+- Blender 渲染脚本由 `render_dark_falz_models.py` / `import_dark_falz_models.mjs` 泛化为 `render_blender_models.py` / `import_blender_models.mjs`，`renderer` 值改为 `blender`，检查图目录改为 `artifacts/blender-renders/`：按配方读取任意客户端档案，支持可选 `yaw` / `pitch`；目标混合为 ONE 的加色材质（Ill Gill 的刃）以贴图颜色自发光、按颜色最大分量取覆盖率。
+- 修正贴图方向：`decode_textures` 的解码行序与 XJ 路径直接使用 V 坐标相配，而 NJ 网格导入按 `(u, 1 - v)` 写 UV，二者混用会使贴图上下颠倒（Ill Gill 的刃只采到黑色区域）。脚本现将解码贴图按 Blender 自下而上的行序存放；环境映射的视空间法线 UV 同步改为 `(.5, .5)` 缩放，保持法线朝上仍采样贴图顶行，采样结果与修正前相同。Dark Falz 三个形态因此一并重新渲染，机位和装配未变：二形态骨架由红转金，与高清图一致；二、三形态的翼膜由偏绿变为偏白的彩虹色，仍比高清图淡，三形态翼膜反而不如旧图接近高清图。静态环境映射无法还原游戏中的流动彩虹效果；维护者已验收并保留新图。
+- 测试：Blender 渲染证据测试覆盖全部 `renderer: blender` 配方（Dark Falz 三个形态与 Ill Gill），校验部件、配方与渲染器 / 解析器校验值。
+- 本地验证：怪物测试 15 / 15、高清图库测试、`test_pso_motion_frame` 与 Blender 网格几何测试通过；四张新渲染已与高清图逐一目视对照，维护者已在本地预览验收（2026-10-20）。

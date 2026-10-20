@@ -1,4 +1,4 @@
-// Import visually reviewed complete Dark Falz assemblies; normal builds use WebP assets.
+// Import visually reviewed Blender renders (renderer: blender); normal builds use WebP assets.
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
@@ -11,12 +11,12 @@ const manifestPath = 'assets/img/monsters/render/manifest.json';
 const manifest = read(manifestPath);
 const selected = process.argv.slice(2);
 for (const [label, recipe] of Object.entries(config.renders)) {
-  if (recipe.renderer !== 'blender-dark-falz' || selected.length && !selected.includes(label)) continue;
-  const input = `artifacts/dark-falz-renders/${label}.png`;
-  const evidence = read(`artifacts/dark-falz-renders/${label}.json`);
+  if (recipe.renderer !== 'blender' || selected.length && !selected.includes(label)) continue;
+  const input = `artifacts/blender-renders/${label}.png`;
+  const evidence = read(`artifacts/blender-renders/${label}.json`);
   assert.deepEqual(evidence.recipe, recipe);
   assert.equal(evidence.imageSha256, hash(input));
-  for (const [field, file] of [['rendererSha256', 'scripts/render_dark_falz_models.py'],
+  for (const [field, file] of [['rendererSha256', 'scripts/render_blender_models.py'],
     ['meshParserSha256', 'scripts/render_npc_models.py'], ['motionParserSha256', 'scripts/pso_motion_frame.py']]) {
     assert.equal(evidence[field], hash(file));
   }

@@ -64,6 +64,35 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 20, 2026 Ill Gill render, HD artwork and dropcharts wording
+
+The maintainer reviewed the local preview and approved aligning the
+documentation, committing and pushing.
+
+- Ill Gill's HD image is replaced again with the maintainer's 1280 × 1107 PNG
+  (1024 × 886 WebP). Its model render is redrawn from the client archive
+  `bm_ene_ill_gill.bml` at walk frame zero, yaw −20° and pitch 5°, matching the
+  HD image's pose and viewpoint instead of the old side view.
+- The Dark Falz-only Blender renderer is generalized to
+  `scripts/render_blender_models.py` / `scripts/import_blender_models.mjs`
+  (`renderer: "blender"`), with per-recipe archives, optional yaw/pitch and
+  additive glow materials. Decoded textures were stored upside down for the NJ
+  mesh import; the fix re-renders all three Dark Falz forms, whose second-form
+  frame is now gold as in the HD art, while the wing membranes remain paler than
+  the HD images. See `docs/MONSTER_CATALOG.md`.
+- The monster detail page's rare-drop note (Chinese, English and Japanese) and
+  source link now say `dropcharts` instead of `droptable`. The in-repository
+  `data/droptable/` snapshot and the legacy `/droptable/` redirects keep their
+  names.
+
+Local verification of the final changes with `npm run release:prepare` (install
+run with `npm_config_audit=false`, as in the previous release; the separate
+`npm audit` step ran): zero vulnerabilities, all business tests passed, two
+identical production builds of 5,905 prerendered routes and 135 event
+fragments (gzip 1,044,719 / 1,050,000 bytes; English 533,725 and Japanese
+590,786 / 700,000), 22 of 22 smoke cases and 6,325 of 6,325 browser cases. The
+Pages workflow for the pushed revision establishes production publication.
+
 ## October 20, 2026 dependency updates, dropcharts rename and Ill Gill artwork
 
 The maintainer asked for the open Dependabot PRs to be handled on `master` and
