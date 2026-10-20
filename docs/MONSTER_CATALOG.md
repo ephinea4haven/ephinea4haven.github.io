@@ -494,3 +494,4 @@ rtk node scripts/generate_monster_catalog.mjs
 
 - 使用维护者提供的 1280 × 1280 透明 PNG 替换 Ill Gill 普通 / Ultimate 共用的高清图（原紫色刃版本换为粉红色刃版本）。按图库规范以 Lanczos 缩放至 1024 × 1024，WebP quality 85 / method 6，保留透明度，成品 75,152 字节。
 - 清单同步附件名、来源路径 `User-provided corrections/2026-10-20/TOWER/恶镰死神.png`、尺寸、字节数、SHA-256 和两个外观绑定；旧 WebP 已移除，原附件不随站点提交。图库覆盖数量不变。
+- 本地验收：怪物测试 15 / 15 通过，成品已目视核对；最终 `release:prepare` 的生产构建、冒烟测试及怪物图鉴浏览器测试通过（发布结果见 `docs/DEPLOYMENT.md` 2026-10-20 记录）。维护者已批准提交推送；线上部署以对应 Pages 工作流结果为准。

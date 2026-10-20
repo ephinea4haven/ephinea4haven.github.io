@@ -64,6 +64,70 @@ and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
 
+## October 20, 2026 dependency updates, dropcharts rename and Ill Gill artwork
+
+The maintainer asked for the open Dependabot PRs to be handled on `master` and
+closed, then approved aligning the documentation, committing and pushing. All
+seven updates are applied in `02a93132`; each PR was closed with a comment
+pointing to that commit.
+
+- [#39](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/39):
+  Angular build/CLI/SSR 22.2.1 → 22.2.2 and the eight framework packages
+  22.2.1 → 22.2.3. The locked tree has no mixed Angular versions.
+- [#38](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/38): marked
+  18.0.14 → 18.1.1.
+- [#37](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/37):
+  `@playwright/test` 1.63.0 → 1.64.1 (Chrome for Testing 156.0.8078.4).
+- [#36](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/36):
+  `@axe-core/playwright` 4.13.0 → 4.14.0.
+- [#30](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/30),
+  [#31](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/31),
+  [#32](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/32):
+  `actions/upload-artifact` 7.0.2, `actions/setup-node` 7.1.0 and
+  `actions/download-artifact` 8.0.2. Each pinned SHA was checked against the
+  official tag with `git ls-remote`.
+
+Finding DEPLOY-2026-10-20-01 — Fixed in `02a93132`. axe-core 4.14 enables
+`label-content-name-mismatch` (WCAG 2.5.3 Label in Name) under `wcag21a`. The
+four tool-page accessibility cases failed because the language button shows
+`EN` while its accessible name was `English`. A direct axe 4.14 probe showed
+that the name must start with the visible label: `English (EN)` still fails,
+`EN (English)` passes. Both language switchers now use `EN (English)`; `中文`
+and `日本語` already start with their visible `中` and `日`. The visible
+switcher is unchanged, the homepage switcher already shows `English`, and the
+browser tests locate the button by its new name.
+
+The sibling item-name authority checkout is renamed from `droptable` to
+`dropcharts` in `000f4fca`, matching its repository `warmonipa/dropcharts`.
+CI checks it out into `dropcharts/`, the override variable is
+`DROPCHARTS_I18N_AUTHORITY`, and local tests default to
+`../dropcharts/i18n_names.json`. No alias is kept for the old name. The
+in-repository `data/droptable/` snapshot and the legacy `/droptable/` redirects
+keep their names. `4260836e` replaces the Ill Gill HD artwork; see
+`docs/MONSTER_CATALOG.md`.
+
+Local verification of the final changes with `npm run release:prepare`:
+
+- Locked install and low-threshold audit passed with zero vulnerabilities.
+  This workstation's registry connection repeatedly stalled on the audit request
+  that `npm ci` sends after installing, so the gate ran with
+  `npm_config_audit=false` for that install; the gate's separate `npm audit`
+  step still ran.
+- All business tests passed. Two production builds produced identical
+  manifests: 5,905 prerendered routes and 135 event fragments. JavaScript gzip
+  sizes are 1,044,652 / 1,050,000 bytes for Chinese/shared code, with English
+  533,676 and Japanese 590,734 / 700,000 bytes each.
+- All 22 smoke cases passed. The full browser run passed 6,324 of 6,325 cases;
+  the remaining case, the `/ja` mobile archive navigation check, timed out
+  waiting for the `materialplan.html` load event. It passed 30 of 30 isolated
+  repetitions. Earlier full runs on the same code each showed a different
+  single timing failure (item-list query navigation, EP3 bottom pagination),
+  which also passed 70 of 70 isolated repetitions. The maintainer approved
+  pushing with this result recorded.
+
+These are local validation results. The Pages workflow for the pushed revision
+establishes production publication.
+
 ## October 9, 2026 item-authority and event-archive release
 
 Finding DEPLOY-2026-10-08-01 — Fixed in local commit `6867d5aa`; full release
@@ -81,12 +145,8 @@ continues to check the generated result. Replaying that test with the old
 revision's `i18n_names.json` reproduced the exact CI hash mismatch; all nine
 translation tests passed against the pinned revision.
 
-On this workstation the sibling checkout is named `dropcharts`, so use the
-documented override when verifying:
-
-```bash
-DROPCHARTS_I18N_AUTHORITY=/Users/wangzhen/study/dropcharts/i18n_names.json npm run release:prepare
-```
+The sibling checkout has since been renamed to the default `../dropcharts`
+(October 20, 2026), so local verification needs no override.
 
 Finding DEPLOY-2026-10-09-02 — Fixed; full release verification passed. Both production
 builds matched, but the event-archive smoke test failed. Its trace records

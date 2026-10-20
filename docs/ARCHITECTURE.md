@@ -32,6 +32,8 @@ Hugo, MDN):
   stored non-Chinese choice moves to that language's URL. Links inside a language
   version point to the same language's pages. GitHub Pages serves one `404.html`
   for every missing URL, so the 404 page takes its text from the URL's language.
+  The switch buttons show `中` / `EN` / `日`; their accessible names start with
+  that visible label (`中文`, `EN (English)`, `日本語`) to satisfy WCAG 2.5.3.
 
 ### Translation sources
 
