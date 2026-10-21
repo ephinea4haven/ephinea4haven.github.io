@@ -389,3 +389,11 @@ commit and push on 2026-10-05. The source is psobb-localization
 suite, dependency audit and reproducible build comparison before push; its
 validation record is in `docs/DEPLOYMENT.md`. Pages publication is verified
 separately. In-game display and localization installer packaging remain unverified.
+
+### 2026-10-21 Sol Atomizer synchronization
+
+Sol Atomizer is 日之粉 (maintainer decision 2026-10-21, replacing 阳之粉), from
+psobb-localization `09f83c8` through dropcharts `c491ab277a6f81f72152fe9e550be12a7e1650bd`. Both CI jobs pin that
+dropcharts commit; `npm run sync:i18n` changed only this dictionary entry. The
+tooling snapshot `data/droptable/{bb,ngc}/data/zh.js` takes the same rename and
+nothing else.
