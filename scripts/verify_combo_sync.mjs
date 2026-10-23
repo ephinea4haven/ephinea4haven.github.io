@@ -46,8 +46,8 @@ check('generated hashes match metadata',
     && hash(opmData) === metadata.generatedSha256.opmData
     && hash(license) === metadata.generatedSha256.license);
 check('both Combo routes use typed mode wrappers around the shared Angular component',
-  routes.includes('path: `${prefix}tools/cc.html`')
-    && routes.includes('path: `${prefix}tools/ccopm.html`')
+  routes.includes('path: `${prefix}combo-calculator`')
+    && routes.includes('path: `${prefix}combo-calculator/one-person`')
     && routes.includes('./combo/combo-multiplayer-page.component')
     && routes.includes('./combo/combo-opm-page.component')
     && multiplayerPage.includes("from './combo.component'")

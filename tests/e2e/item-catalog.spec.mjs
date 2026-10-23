@@ -16,7 +16,7 @@ for (const [id, english, chinese] of [
   ['epsilon-plating', 'Epsilon Plating', '厄普西隆之盾镀层'],
 ]) {
   test(`${english} preserves the confirmed Epsilon name after hydration and reload`, async ({page}) => {
-    await page.goto(`/data/items/${id}.html`);
+    await page.goto(`/items/${id}/`);
     await expect(page.locator('#item-title')).toHaveText(chinese);
     await page.getByRole('button', {name: 'EN (English)', exact: true}).click();
     await expect(page.locator('#item-title')).toHaveText(english);
@@ -30,7 +30,7 @@ for (const [id, english, chinese] of [
 for (const [id, count] of [['akikos-frying-pan', 4], ['soul-eater', 6], ['ragol-ring', 9]]) {
   test(`quest acquisition guide ${id} survives language changes and mobile reload`, async ({page}) => {
     await page.setViewportSize({width: 390, height: 844});
-    await page.goto(`/data/items/${id}.html#availability`);
+    await page.goto(`/items/${id}/#availability`);
     const guide = page.locator('#availability .acquisition-guide');
     for (const [button, heading, first] of [
       ['中文', '任务获取步骤', '创建 One Person'],
@@ -56,7 +56,7 @@ test('list shows all three item names with the active language first on desktop 
   const item = items.find(item => item.id === 'manda60-vise');
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({width, height: 1000});
-    await page.goto('/en/data/items.html?q=M%26A60');
+    await page.goto('/en/items/?q=M%26A60');
     await expect(page.locator('.item-row')).toHaveCount(1);
     for (const [button, language] of [['EN (English)', 'en'], ['中文', 'zh'], ['日本語', 'ja']]) {
       await page.getByRole('button', {name: button, exact: true}).click();
@@ -73,12 +73,12 @@ test('list shows all three item names with the active language first on desktop 
     }
   }
   const unverified = items.find(item => !item.ja && item.category === 'weapon');
-  await page.goto(`/en/data/items.html?q=${unverified.code}`);
+  await page.goto(`/en/items/?q=${unverified.code}`);
   await page.getByRole('button', {name: 'EN (English)', exact: true}).click();
   await expect(page.locator('.translated-name > span:last-child').filter({hasText: 'Name unverified'})).toHaveCount(1);
   for (const id of ['blue-odoshi-violet-nimaidou', 'heart-of-partisan-of-lightning']) {
     const longName = items.find(item => item.id === id);
-    await page.goto(`/en/data/items.html?category=${longName.category}&q=${longName.code}`);
+    await page.goto(`/en/items/?category=${longName.category}&q=${longName.code}`);
     // The static page has 24 rows until the index loads and URL filters apply.
     await expect(page.locator('.item-row')).toHaveCount(1);
     await expect(page.locator('.item-name')).toHaveText(longName.en);
@@ -91,10 +91,10 @@ test('list shows all three item names with the active language first on desktop 
 test('all technique merges display model previews in lists and details', async ({page}) => {
   await page.setViewportSize({width: 390, height: 844});
   for (const item of items.filter(item => item.category === 'shield' && item.id.endsWith('-merge'))) {
-    await page.goto(`/en/data/items.html?category=shield&q=${item.code}`);
-    const thumbnail = page.locator(`.item-row[href*="/${item.id}.html"] item-image img`);
+    await page.goto(`/en/items/?category=shield&q=${item.code}`);
+    const thumbnail = page.locator(`.item-row[href*="/${item.id}/"] item-image img`);
     await expect(thumbnail).toHaveAttribute('src', `/assets/img/items/shields/thumbs/${item.id}.webp`);
-    await page.goto(`/en/data/items/${item.id}.html`);
+    await page.goto(`/en/items/${item.id}/`);
     const picture = page.locator('.image-stage img');
     await expect(picture).toHaveAttribute('src', `/assets/img/items/shields/${item.id}.webp`);
     await expect(picture).toBeVisible();
@@ -106,7 +106,7 @@ test('all technique merges display model previews in lists and details', async (
 
 test('technique barriers identify their block preview separately from equipped models', async ({page}) => {
   for (const id of ['assist-barrier', 'recovery-barrier', 'red-barrier', 'blue-barrier', 'yellow-barrier']) {
-    await page.goto(`/en/data/items/${id}.html`);
+    await page.goto(`/en/items/${id}/`);
     await expect(page.locator('.image-stage img')).toHaveAttribute('src', '/assets/img/items/shields/block-effect-6.webp');
     await expect(page.locator('figcaption')).toContainText('Block effect preview');
     await expect(page.locator('.image-stage img')).toHaveCSS('mix-blend-mode', 'plus-lighter');
@@ -114,7 +114,7 @@ test('technique barriers identify their block preview separately from equipped m
 });
 
 test('shield renders retain the copper emblem and a connected ring silhouette', async ({page}) => {
-  await page.goto('/en/data/items/red-ring.html');
+  await page.goto('/en/items/red-ring/');
   const result = await page.evaluate(async () => {
     const read = async src => {
       const image = new Image(); image.src = src; await image.decode();
@@ -152,14 +152,14 @@ test('shield renders retain the copper emblem and a connected ring silhouette', 
 
 test('paired Mechgun images contain two complete silhouettes and appear in lists and details', async ({page}, testInfo) => {
   const ids = ['mechgun', 'assault', 'repeater', 'gatling', 'vulcan', 'es-mechgun', 'typeme-mechgun'];
-  await page.goto('/en/data/items.html?type=机枪');
+  await page.goto('/en/items/?type=机枪');
   for (const id of ids) {
     const item = items.find(item => item.id === id);
-    await page.goto(`/en/data/items.html?q=${item.code}`);
-    const thumbnail = page.locator(`.item-row[href*="/${id}.html"] item-image img`);
+    await page.goto(`/en/items/?q=${item.code}`);
+    const thumbnail = page.locator(`.item-row[href*="/${id}/"] item-image img`);
     await expect(thumbnail).toHaveAttribute('src', `/assets/img/items/models/thumbs/${id}.webp`);
     await expect(thumbnail).toHaveAttribute('alt', /Model preview/);
-    await page.goto(`/en/data/items/${id}.html`);
+    await page.goto(`/en/items/${id}/`);
     const picture = page.locator('.image-stage img');
     await expect(picture).toHaveAttribute('src', `/assets/img/items/models/${id}.webp`);
     await expect(page.locator('figcaption')).toContainText('Image: original model render');
@@ -192,8 +192,8 @@ test('paired Mechgun images contain two complete silhouettes and appear in lists
     }
   }
   await page.setViewportSize({width: 1440, height: 1200});
-  await page.goto('/en/data/items.html?type=机枪');
-  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /mechgun\.html/);
+  await page.goto('/en/items/?type=机枪');
+  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /mechgun\//);
   await page.locator('.item-table').screenshot({path: testInfo.outputPath('mechgun-list.png')});
 });
 
@@ -201,7 +201,7 @@ test('confirmed Unitxt renames survive detail hydration and language switching',
   for (const en of ['Thirteen', 'Game Magazine', 'TypeSA/SABER', 'D-Parts ver1.01']) {
     const item = items.find(candidate => candidate.en === en);
     expect(item, en).toBeDefined();
-    await page.goto(`/data/items/${item.id}.html`);
+    await page.goto(`/items/${item.id}/`);
     await expect(page.locator('#item-title')).toHaveText(names[en].zh);
     await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
     await expect(page.locator('#item-title')).toHaveText(en);
@@ -213,20 +213,20 @@ test('confirmed Unitxt renames survive detail hydration and language switching',
 });
 
 test('item list title stays localized after query-only navigation', async ({page}) => {
-  await page.goto('/en/data/items.html');
+  await page.goto('/en/items/');
   await expect(page).toHaveTitle(/Item Database/);
   await page.getByRole('searchbox').fill('Saber');
   await expect(page).toHaveURL(/q=Saber/);
   await expect(page).toHaveTitle(/Item Database/);
   await page.getByRole('button',{name:'日本語',exact:true}).click();
-  await expect(page).toHaveURL(/\/ja\/data\/items\.html\?q=Saber/);
+  await expect(page).toHaveURL(/\/ja\/items\/\?q=Saber/);
   await page.getByRole('searchbox').fill('V101');
   await expect(page).toHaveURL(/q=V101/);
   await expect(page).toHaveTitle(/アイテム図鑑/);
 });
 
 test('language changes preserve filters, sorting, pagination and authoritative names', async ({page}) => {
-  await page.goto('/data/items.html?category=weapon&type=光剑&class=FOnewearl&sort=name&page=2');
+  await page.goto('/items/?category=weapon&type=光剑&class=FOnewearl&sort=name&page=2');
   // Capture the filtered second page after hydration, not the prerendered first page.
   await expect(page.locator('.page-steps')).toContainText('2 /');
   const ids = await page.locator('.item-row').evaluateAll(rows => rows.map(r => r.href));
@@ -234,14 +234,14 @@ test('language changes preserve filters, sorting, pagination and authoritative n
     await page.getByRole('button',{name:button,exact:true}).click();
     await expect(page.locator('#catalog-title')).toHaveText(title);
     const url = new URL(page.url());
-    expect(url.pathname).toBe(`${prefix}/data/items.html`);
+    expect(url.pathname).toBe(`${prefix}/items/`);
     expect(Object.fromEntries(url.searchParams)).toEqual({category:'weapon',type:'光剑',class:'FOnewearl',sort:'name',page:'2'});
     const rows = await page.locator('.item-row').evaluateAll(rows => rows.map(r => r.href));
     expect(rows.map(unprefixed)).toEqual(ids.map(unprefixed));
-    expect(rows.every(href => new URL(href).pathname.startsWith(`${prefix}/data/items/`))).toBe(true);
+    expect(rows.every(href => new URL(href).pathname.startsWith(`${prefix}/items/`))).toBe(true);
     await expect(page.locator('html')).toHaveAttribute('lang',lang === 'zh' ? 'zh-CN' : lang);
   }
-  await page.goto('/ja/data/items.html?q=赤のセイバー');
+  await page.goto('/ja/items/?q=赤のセイバー');
   await expect(page.locator('.item-row')).toHaveCount(1);
   await expect(page.locator('.identity strong')).toHaveText(names['Red Saber'].ja);
   await page.getByRole('button',{name:'EN (English)',exact:true}).click();
@@ -251,7 +251,7 @@ test('language changes preserve filters, sorting, pagination and authoritative n
 });
 
 test('detail language persists through return, refresh and later visits', async ({page}) => {
-  await page.goto('/data/items.html?category=weapon&q=Saber');
+  await page.goto('/items/?category=weapon&q=Saber');
   await page.getByRole('button',{name:'日本語',exact:true}).click();
   await expect(page.locator('#catalog-title')).toHaveText('アイテム図鑑');
   await page.locator('.item-row').first().click();
@@ -262,21 +262,21 @@ test('detail language persists through return, refresh and later visits', async 
   await page.getByRole('button',{name:'EN (English)',exact:true}).click();
   await expect(page.locator('#item-title')).toHaveText('Saber');
   await page.getByRole('link',{name:'← Back to item list',exact:true}).click();
-  await expect(page).toHaveURL(/\/en\/data\/items\.html\?/);
+  await expect(page).toHaveURL(/\/en\/items\/\?/);
   await expect(page.getByRole('searchbox')).toHaveValue('Saber');
   await page.reload();
   await expect(page.locator('#catalog-title')).toHaveText('Item Database');
   // The remembered language opens the English version of a Chinese URL.
-  await page.goto('/data/items.html');
-  await expect(page).toHaveURL(/\/en\/data\/items\.html$/);
+  await page.goto('/items/');
+  await expect(page).toHaveURL(/\/en\/items\/$/);
   await expect(page.locator('#catalog-title')).toHaveText('Item Database');
   await page.getByRole('button',{name:'中文',exact:true}).click();
   await expect(page.locator('#catalog-title')).toHaveText('道具图鉴');
-  await page.goto('/data/items.html');
+  await page.goto('/items/');
   await expect(page.locator('#catalog-title')).toHaveText('道具图鉴');
-  await page.goto('/en/data/items.html?q=missing-item');
+  await page.goto('/en/items/?q=missing-item');
   await page.getByRole('button',{name:'Clear all filters'}).click();
-  await expect(page).toHaveURL(/\/en\/data\/items\.html\?category=weapon$/);
+  await expect(page).toHaveURL(/\/en\/items\/\?category=weapon$/);
   await expect(page.locator('.item-row')).toHaveCount(24);
 });
 
@@ -287,8 +287,8 @@ test('list names match ordinary, gold and rainbow BB drop-chart styles', async (
     ['lavis-cannon', 'Lavis Cannon', '900', 'rainbow'],
     ['agito-1975', 'Agito (1975)', '700', 'gold'],
   ]) {
-    await page.goto(`/data/items.html?category=weapon&q=${encodeURIComponent(query)}`);
-    const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
+    await page.goto(`/items/?category=weapon&q=${encodeURIComponent(query)}`);
+    const row = page.locator(`.item-row[href*="/items/${id}/"]`);
     const name = row.locator('.identity strong');
     await expect(name).toHaveClass(/item-name/);
     await expect(name).toHaveCSS('font-weight', weight);
@@ -308,17 +308,17 @@ test('list names match ordinary, gold and rainbow BB drop-chart styles', async (
       await expect(name).not.toHaveAttribute('title');
     }
   }
-  await page.goto('/data/items.html');
+  await page.goto('/items/');
   await expect(page.locator('.ss-rare-item').first()).toBeVisible();
   await expect(page.locator('.rare-item').first()).toBeVisible();
-  await page.locator('.item-row[href*="/delsabers-buster.html"]').evaluate(el => el.scrollIntoView({block:'center'}));
+  await page.locator('.item-row[href*="/delsabers-buster/"]').evaluate(el => el.scrollIntoView({block:'center'}));
   await page.screenshot({path:testInfo.outputPath('name-tiers-desktop.png')});
   await page.setViewportSize({width:390,height:844});
-  await page.locator('.item-row[href*="/delsabers-buster.html"]').evaluate(el => el.scrollIntoView({block:'center'}));
+  await page.locator('.item-row[href*="/delsabers-buster/"]').evaluate(el => el.scrollIntoView({block:'center'}));
   await page.screenshot({path:testInfo.outputPath('name-tiers-mobile.png')});
   for (const [lang, hint] of [['EN (English)', 'Banner condition: untekked Hit ≥ 20%.'], ['日本語', 'ドロップ告知条件：未鑑定 Hit ≥ 20%。']]) {
     await page.getByRole('button', {name:lang,exact:true}).click();
-    await expect(page.locator('.item-row[href*="/galatine.html"] .item-name')).toHaveAttribute('title', hint);
+    await expect(page.locator('.item-row[href*="/galatine/"] .item-name')).toHaveAttribute('title', hint);
   }
 });
 
@@ -329,9 +329,9 @@ test('all unsealed results use top-tier names independently of banner eligibilit
     ['adept', 'Adept', 'unit'],
     ['proof-of-sword-saint', 'Proof of Sword-Saint', 'unit'],
   ]) {
-    await page.goto(`/data/items.html?category=${category}&q=${encodeURIComponent(title)}`);
+    await page.goto(`/items/?category=${category}&q=${encodeURIComponent(title)}`);
     await page.getByRole('button', {name:'中文',exact:true}).click();
-    const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
+    const row = page.locator(`.item-row[href*="/items/${id}/"]`);
     const name = row.locator('.item-name');
     await expect(name).toHaveClass(/ss-rare-item/);
     await expect(name).not.toHaveClass(/(?:^|\s)rare-item(?:\s|$)/);
@@ -344,18 +344,18 @@ test('all unsealed results use top-tier names independently of banner eligibilit
       await expect(name).toHaveAttribute('title', hint);
     }
   }
-  await page.goto('/data/items.html?category=weapon&q=Excalibur');
+  await page.goto('/items/?category=weapon&q=Excalibur');
   await page.getByRole('button', {name:'中文',exact:true}).click();
   await expect(page.locator('.ss-rare-item')).toHaveCount(1);
   await page.screenshot({path:testInfo.outputPath('unsealed-top-tier.png')});
 });
 
 test('the three Dark weapons use top-tier names with crafting labels', async ({page}, testInfo) => {
-  await page.goto('/data/items.html?category=weapon&q=Dark');
+  await page.goto('/items/?category=weapon&q=Dark');
   for (const [language, hint] of [['中文','合成成品 · 顶级'], ['EN (English)','Combined item · top tier'], ['日本語','合成後のアイテム · 最上位']]) {
     await page.getByRole('button', {name:language,exact:true}).click();
     for (const id of ['dark-flow','dark-meteor','dark-bridge']) {
-      const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
+      const row = page.locator(`.item-row[href*="/items/${id}/"]`);
       const name = row.locator('.item-name');
       await expect(name).toHaveClass(/ss-rare-item/);
       await expect(name).not.toHaveClass(/(?:^|\s)rare-item(?:\s|$)/);
@@ -378,8 +378,8 @@ test('rare weapons and converted results stay gold without automatic top-tier pr
     ['maser-beam','Maser Beam'], ['power-maser','Power Maser'],
     ['boomas-claw', "Booma's Claw"], ['double-cannon','Double Cannon'],
   ]) {
-    await page.goto(`/data/items.html?category=weapon&q=${encodeURIComponent(title)}`);
-    const row = page.locator(`.item-row[href*="/items/${id}.html"]`);
+    await page.goto(`/items/?category=weapon&q=${encodeURIComponent(title)}`);
+    const row = page.locator(`.item-row[href*="/items/${id}/"]`);
     const name = row.locator('.item-name');
     for (const [language, hint] of [['中文','稀有道具'], ['EN (English)','Rare item'], ['日本語','レアアイテム']]) {
       await page.getByRole('button', {name:language,exact:true}).click();
@@ -392,10 +392,10 @@ test('rare weapons and converted results stay gold without automatic top-tier pr
     }
   }
   await page.getByRole('button', {name:'中文',exact:true}).click();
-  await page.goto('/data/items.html?category=weapon&q=Maser');
+  await page.goto('/items/?category=weapon&q=Maser');
   await expect(page.locator('.item-row')).toHaveCount(3);
   for (const id of ['maser-beam', 'power-maser', 'phonon-maser']) {
-    await expect(page.locator(`.item-row[href*="/items/${id}.html"] .item-name`)).toHaveClass(/(?:^|\s)rare-item(?:\s|$)/);
+    await expect(page.locator(`.item-row[href*="/items/${id}/"] .item-name`)).toHaveClass(/(?:^|\s)rare-item(?:\s|$)/);
   }
   await page.screenshot({path:testInfo.outputPath('rare-maser-weapons.png')});
 });
@@ -405,7 +405,7 @@ test('language works when browser preference storage is blocked', async ({page})
     Storage.prototype.getItem = () => { throw new DOMException('Blocked','SecurityError'); };
     Storage.prototype.setItem = () => { throw new DOMException('Blocked','SecurityError'); };
   });
-  await page.goto('/en/data/items/saber.html');
+  await page.goto('/en/items/saber/');
   await expect(page.locator('#item-title')).toHaveText('Saber');
   await page.getByRole('button',{name:'日本語',exact:true}).click();
   await expect(page.locator('#item-title')).toHaveText('セイバー');
@@ -414,25 +414,25 @@ test('language works when browser preference storage is blocked', async ({page})
 });
 
 test('language changes keep detail fragments without fetching detail data again', async ({page}) => {
-  await page.goto('/data/items/soul-eater.html#attributes');
+  await page.goto('/items/soul-eater/#attributes');
   const requests=[];
   page.on('request',r => { if(r.url().includes('/assets/data/items/')) requests.push(r.url()); });
   await page.getByRole('button',{name:'EN (English)',exact:true}).click();
-  await expect(page).toHaveURL(/\/en\/data\/items\/soul-eater\.html#attributes$/);
+  await expect(page).toHaveURL(/\/en\/items\/soul-eater\/#attributes$/);
   await expect(page.locator('#attributes')).toContainText('HP drain1 / 5 sec (while moving)');
   await expect(page).toHaveTitle(/SOUL EATER|Soul Eater/);
   expect(requests).toEqual([]);
-  await page.goto('/ja/data/items/mag.html');
+  await page.goto('/ja/items/mag/');
   await expect(page.locator('.feeding-table tbody tr').first().locator('td').first()).toHaveText('モノメイト');
-  await page.goto('/en/data/items/psycho-wand.html');
+  await page.goto('/en/items/psycho-wand/');
   await expect(page.locator('#effects')).toContainText('Rafoie');
   await expect(page.locator('#effects')).toContainText('+30% damage');
-  await page.goto('/ja/data/items/es-saber.html');
+  await page.goto('/ja/items/es-saber/');
   await expect(page.locator('.detail-overview')).toContainText('日本語名未確認 · 英語表記');
 });
 
 test('English detail request failures expose translated retry and return controls', async ({page}) => {
-  await page.goto('/en/data/items.html?category=unit&q=V801');
+  await page.goto('/en/items/?category=unit&q=V801');
   await page.route(/\/assets\/data\/items\/v801\.json\?v=[0-9a-f]{12}$/,route=>route.abort());
   // The prerendered list is unfiltered; wait for hydration to apply the query before clicking.
   await expect(page.locator('.item-row')).toHaveCount(1);
@@ -441,13 +441,13 @@ test('English detail request failures expose translated retry and return control
   await expect(page.getByRole('button',{name:'Retry'})).toBeVisible();
   await page.getByRole('link',{name:'Back to the database →'}).click();
   await expect(page.locator('#catalog-title')).toHaveText('Item Database');
-  await expect(page).toHaveURL(/\/en\/data\/items\.html/);
+  await expect(page).toHaveURL(/\/en\/items\//);
 });
 
 for (const width of [390,820,1280]) {
   test(`English and Japanese layouts remain accessible at ${width}px`, async ({page}) => {
     await page.setViewportSize({width,height:900});
-    for (const lang of ['en','ja']) for (const path of ['/data/items.html?category=unit','/data/items/nidra.html','/data/items/addslot.html']) {
+    for (const lang of ['en','ja']) for (const path of ['/items/?category=unit','/items/nidra/','/items/addslot/']) {
       await page.goto(`/${lang}${path}`);
       await expect(page.locator('main.catalog-shell')).toHaveAttribute('lang',lang);
       expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -466,7 +466,7 @@ for (const width of [390,820,1280]) {
 
 test('reduced motion disables decorative row movement', async ({page}) => {
   await page.emulateMedia({reducedMotion:'reduce'});
-  await page.goto('/en/data/items.html');
+  await page.goto('/en/items/');
   await page.locator('.item-row').first().hover();
   expect(await page.locator('.row-arrow').first().evaluate(n => ({transition:getComputedStyle(n).transitionDuration,transform:getComputedStyle(n).transform}))).toEqual({transition:'0s',transform:'none'});
 });
@@ -474,7 +474,7 @@ test('reduced motion disables decorative row movement', async ({page}) => {
 test('the full inventory is prerendered with bounded per-item hydration data', () => {
   expect(items).toHaveLength(1045);
   for (const item of items) {
-    const html = readFileSync(`_site/data/items/${item.id}.html`, 'utf8');
+    const html = readFileSync(`_site/items/${item.id}/index.html`, 'utf8');
     expect(html).toContain('id="item-title"');
     expect(html).toContain((names[item.en]?.zh || item.en).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;'));
     expect(html).toContain(item.source.replaceAll('&', '&amp;'));
@@ -487,7 +487,7 @@ test('the full inventory is prerendered with bounded per-item hydration data', (
 });
 
 test('Chinese, English, Japanese and code search survive reload', async ({page}) => {
-  await page.goto('/data/items.html');
+  await page.goto('/items/');
   for (const query of ['红色光剑', 'red saber', '赤のセイバー', '002D00']) {
     await page.getByRole('searchbox').fill(query);
     await expect(page.locator('.item-row')).toHaveCount(1);
@@ -498,21 +498,21 @@ test('Chinese, English, Japanese and code search survive reload', async ({page})
 });
 
 test('subtype, class, rarity and base ATP sorting compose', async ({page}) => {
-  await page.goto('/data/items.html?category=weapon');
+  await page.goto('/items/?category=weapon');
   await page.getByLabel('细分类别', {exact:true}).selectOption('光剑');
   await page.getByLabel('可装备职业', {exact:true}).selectOption('FOnewearl');
   await page.getByLabel('星级', {exact:true}).selectOption('10');
   await page.getByLabel('排序', {exact:true}).selectOption('atp');
   await expect(page.locator('.item-row')).toHaveCount(13);
-  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /\/commander-blade\.html\?/);
+  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /\/commander-blade\/\?/);
   await expect(page.locator('.item-row').first().locator('[lang="en"]')).toHaveText('COMMANDER BLADE');
-  await expect(page.locator('.item-row').last()).toHaveAttribute('href', /\/dbs-saber-3070\.html\?/);
-  await expect(page.locator('.item-row[href*="/elysion.html?"]')).toHaveCount(1);
-  await expect(page.locator('.item-row[href*="/ancient-saber.html?"]')).toHaveCount(0);
+  await expect(page.locator('.item-row').last()).toHaveAttribute('href', /\/dbs-saber-3070\/\?/);
+  await expect(page.locator('.item-row[href*="/elysion/?"]')).toHaveCount(1);
+  await expect(page.locator('.item-row[href*="/ancient-saber/?"]')).toHaveCount(0);
 });
 
 test('equipment class filters exclude consumables and reset on the tools category', async ({page}) => {
-  await page.goto('/data/items.html?class=HUmar&q=Monomate');
+  await page.goto('/items/?class=HUmar&q=Monomate');
   await expect(page.locator('.item-row')).toHaveCount(0);
   await page.getByRole('button', {name: /其他道具 247/}).click();
   await expect(page.locator('.item-row')).toHaveCount(1);
@@ -520,7 +520,7 @@ test('equipment class filters exclude consumables and reset on the tools categor
 });
 
 test('tool category URLs ignore an incompatible equipment class on entry and reload', async ({page}) => {
-  await page.goto('/data/items.html?category=tool&class=HUmar&q=Monomate');
+  await page.goto('/items/?category=tool&class=HUmar&q=Monomate');
   for (let pass=0;pass<2;pass++) {
     await expect(page.locator('.item-row')).toHaveCount(1);
     await expect(page.getByLabel('可装备职业', {exact:true})).toHaveValue('');
@@ -531,13 +531,13 @@ test('tool category URLs ignore an incompatible equipment class on entry and rel
 });
 
 test('corrected periodic effects, shop specials and Mag feeding values render', async ({page}) => {
-  await page.goto('/data/items/soul-eater.html');
+  await page.goto('/items/soul-eater/');
   await expect(page.locator('#attributes')).toContainText('HP 消耗1 / 5 秒（移动时）');
   await expect(page.locator('#attributes')).not.toContainText('HP 回复');
-  await page.goto('/data/items/vulcan.html');
+  await page.goto('/items/vulcan/');
   await expect(page.locator('#attributes')).toContainText('特殊攻击可变');
   await expect(page.locator('#availability')).toContainText('武器商店');
-  await page.goto('/data/items/mag.html');
+  await page.goto('/items/mag/');
   await expect(page.locator('.feeding-table tbody tr')).toHaveCount(11);
   await expect(page.locator('.feeding-table tbody tr').first()).toContainText('小HP回复液');
   await expect(page.locator('.feeding-table tbody tr').first().locator('td')).toHaveText(['小HP回复液','+5','+40','+5','0','+3','+3']);
@@ -545,7 +545,7 @@ test('corrected periodic effects, shop specials and Mag feeding values render', 
 
 test('an existing image that fails to load is not presented as a missing screenshot', async ({page}) => {
   await page.route('**/assets/img/items/wiki/29f6af4df3b08415.png',route=>route.abort());
-  await page.goto('/data/items/saber.html');
+  await page.goto('/items/saber/');
   await page.getByRole('button', {name:'现有图片', exact:true}).click();
   await expect(page.locator('.image-stage')).toContainText('图片加载失败');
   await expect(page.locator('.image-stage')).not.toContainText('暂无截图');
@@ -555,7 +555,7 @@ test('an existing image that fails to load is not presented as a missing screens
 test('HD details default to HD and switching changes both the image and its source link', async ({page}) => {
   const requested = [];
   page.on('request', request => requested.push(new URL(request.url()).pathname));
-  await page.goto('/data/items/saber.html');
+  await page.goto('/items/saber/');
   const picture = page.locator('.image-stage img');
   const link = page.locator('.item-figure figcaption a');
   await expect(picture).toHaveAttribute('src', '/assets/img/items/hd/items/saber.webp');
@@ -569,7 +569,7 @@ test('HD details default to HD and switching changes both the image and its sour
   await expect(page.locator('.item-figure figcaption')).toContainText('Ephinea Wiki');
   // Another language is another page: it opens with the default HD image, and the keyboard switches it.
   await page.getByRole('button', {name:'EN (English)', exact:true}).click();
-  await expect(page).toHaveURL(/\/en\/data\/items\/saber\.html$/);
+  await expect(page).toHaveURL(/\/en\/items\/saber\/$/);
   await expect(page.getByRole('button', {name:'HD image', exact:true})).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', {name:'Standard image', exact:true}).focus();
   await page.keyboard.press('Enter');
@@ -581,7 +581,7 @@ test('HD details default to HD and switching changes both the image and its sour
 });
 
 test('TypeM details without a Wiki file show the ItemKT image with its own source label', async ({page}) => {
-  await page.goto('/data/items/typeri-rifle.html');
+  await page.goto('/items/typeri-rifle/');
   const picture = page.locator('.image-stage img');
   const caption = page.locator('.item-figure figcaption');
   await expect(picture).toHaveAttribute('src', '/assets/img/items/hd/type/typeri-rifle.webp');
@@ -594,7 +594,7 @@ test('TypeM details without a Wiki file show the ItemKT image with its own sourc
 });
 
 test('Mag details show the original-model render with its own source label', async ({page}) => {
-  await page.goto('/data/items/varuna.html');
+  await page.goto('/items/varuna/');
   const picture = page.locator('.image-stage img');
   const caption = page.locator('.item-figure figcaption');
   await expect(picture).toHaveAttribute('src', '/assets/img/mag/default/Varuna.webp');
@@ -611,7 +611,7 @@ test('Mag details show the original-model render with its own source label', asy
 test('lists load small equipment thumbnails and appearance filtering excludes category boxes', async ({page}) => {
   const hdRequests = [];
   page.on('request', request => { if (request.url().includes('/assets/img/items/hd/')) hdRequests.push(request.url()); });
-  await page.goto('/data/items.html?q=Saber');
+  await page.goto('/items/?q=Saber');
   await expect(page.locator('.item-row').first().locator('img')).toHaveAttribute('src', '/assets/img/items/wiki/29f6af4df3b08415.png');
   await page.locator('.category-tabs button').nth(1).click();
   await page.getByRole('searchbox').fill('Dress Plate');
@@ -632,7 +632,7 @@ test('single-source and missing-image details have no unnecessary image switch',
     ['stealth', items.find(item => item.id === 'stealth').image],
     ['god-power', '/assets/img/items/equipment/box-red.webp'],
   ]) {
-    await page.goto(`/data/items/${id}.html`);
+    await page.goto(`/items/${id}/`);
     await expect(page.locator('.image-stage img')).toHaveAttribute('src', image);
     await expect(page.locator('.image-switch')).toHaveCount(0);
     await expect.poll(() => page.locator('.image-stage img').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
@@ -650,14 +650,14 @@ test('equipment previews show effects, models and rarity boxes across list and d
     ['cure-confuse', 'Cure/Confuse', 'unit', 'box-red.webp', '类别示意图'],
     ['addslot', 'AddSlot', 'tool', 'box-red.webp', '类别示意图'],
   ]) {
-    await page.goto(`/data/items.html?category=${category}&q=${encodeURIComponent(query)}`);
+    await page.goto(`/items/?category=${category}&q=${encodeURIComponent(query)}`);
     const image = page.locator('.item-row img');
     await expect(image).toHaveCount(1);
     await expect(image).toHaveAttribute('src', `/assets/img/items/${category === 'shield' ? 'shields' : 'equipment'}/${suffix}`);
     await expect(image).toHaveAttribute('alt', new RegExp(kind));
     await expect.poll(() => image.evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
     await page.locator('.item-row').click();
-    await expect(page).toHaveURL(new RegExp(`/items/${id}\\.html`));
+    await expect(page).toHaveURL(new RegExp(`/items/${id}/`));
     await expect(page.locator('.image-stage img')).toHaveAttribute('alt', new RegExp(kind));
     await expect.poll(() => page.locator('.image-stage img').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
     if (kind === '类别示意图') await expect(page.locator('.item-figure')).toContainText('非装备外观');
@@ -673,19 +673,19 @@ test('equipment previews show effects, models and rarity boxes across list and d
 
 test('equipment preview descriptions are localized and a broken preview stays a load error', async ({page}) => {
   for (const [language, text] of [['en', 'Offline effect preview'], ['ja', 'オフラインのエフェクトプレビュー']]) {
-    await page.goto(`/${language}/data/items/aura-field.html`);
+    await page.goto(`/${language}/items/aura-field/`);
     await expect(page.locator('.item-figure figcaption')).toContainText(text);
   }
   await page.route('**/assets/img/items/equipment/aura-field.webp', route => route.abort());
-  await page.goto('/data/items/aura-field.html');
+  await page.goto('/items/aura-field/');
   await expect(page.locator('.image-stage')).toContainText('图片加载失败');
   await expect(page.locator('.image-stage img')).toHaveAttribute('src', '/assets/img/items/no-image.webp');
 });
 
 test('Smoking Plate preserves transparent background and black smoke in list and detail images', async ({page}, testInfo) => {
   for (const [url, selector] of [
-    ['/data/items.html?category=armor&q=Smoking%20Plate', '.item-row img'],
-    ['/data/items/smoking-plate.html', '.image-stage img'],
+    ['/items/?category=armor&q=Smoking%20Plate', '.item-row img'],
+    ['/items/smoking-plate/', '.image-stage img'],
   ]) {
     await page.goto(url);
     const image = page.locator(selector);
@@ -716,8 +716,8 @@ test('Smoking Plate preserves transparent background and black smoke in list and
 
 test('Stealth Suit shows a transparent character illustration in lists and details', async ({page}, testInfo) => {
   for (const [url, selector] of [
-    ['/data/items.html?category=armor&q=Stealth%20Suit', '.item-row img'],
-    ['/data/items/stealth-suit.html', '.image-stage img'],
+    ['/items/?category=armor&q=Stealth%20Suit', '.item-row img'],
+    ['/items/stealth-suit/', '.image-stage img'],
   ]) {
     await page.goto(url);
     const image = page.locator(selector);
@@ -751,13 +751,13 @@ test('Stealth Suit shows a transparent character illustration in lists and detai
 test('new armor particle previews replace boxes in mobile lists and detail pages', async ({page}) => {
   await page.setViewportSize({width: 390, height: 844});
   for (const [id, code, blend] of [['chu-chu-fever', '01012C', 'normal'], ['virus-armor-lafuteria', '01012F', 'plus-lighter']]) {
-    await page.goto(`/data/items.html?category=armor&q=${code}`);
+    await page.goto(`/items/?category=armor&q=${code}`);
     await expect(page.locator('.item-row')).toHaveCount(1);
     await expect(page.locator('.item-row img')).toHaveAttribute('src', `/assets/img/items/equipment/thumbs/${id}.webp`);
     await page.locator('.mobile-filter').click();
     await page.getByLabel('只看有外观图的道具').check();
     await expect(page.locator('.item-row')).toHaveCount(1);
-    await page.goto(`/data/items/${id}.html`);
+    await page.goto(`/items/${id}/`);
     await expect(page.locator('.image-stage img')).toHaveAttribute('src', `/assets/img/items/equipment/${id}.webp`);
     await expect(page.locator('.image-stage img')).toHaveCSS('mix-blend-mode', blend);
     await expect(page.locator('figcaption')).toContainText('离线效果预览');
@@ -768,7 +768,7 @@ test('new armor particle previews replace boxes in mobile lists and detail pages
 test('all particle previews retain alpha in full images and thumbnails', async ({page}) => {
   const effects = items.filter(item => item.imageKind === 'effect');
   expect(effects).toHaveLength(57);
-  await page.goto('/data/items/aura-field.html');
+  await page.goto('/items/aura-field/');
   for (const item of effects) {
     for (const src of [item.image, item.image.replace(/\/(equipment|shields)\//, '/$1/thumbs/')]) {
       const pixels = await page.evaluate(async src => {
@@ -788,7 +788,7 @@ test('all particle previews retain alpha in full images and thumbnails', async (
       expect(pixels.visible, src).toBeGreaterThan(0);
       expect(pixels.translucent, src).toBeGreaterThan(0);
     }
-    await page.goto(`/data/items/${item.id}.html`);
+    await page.goto(`/items/${item.id}/`);
     await expect(page.locator('.image-stage img')).toHaveCSS('mix-blend-mode', item.imageBlend === 'additive' ? 'plus-lighter' : 'normal');
     await expect(page.locator('.image-stage item-image')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
     await expect(page.locator('.image-stage item-image')).toHaveCSS('box-shadow', 'none');
@@ -797,7 +797,7 @@ test('all particle previews retain alpha in full images and thumbnails', async (
 
 test('Wedding Dress and Dress Plate default to particles and keep HD as an optional view', async ({page}, testInfo) => {
   for (const id of ['wedding-dress', 'dress-plate']) {
-    await page.goto(`/data/items/${id}.html`);
+    await page.goto(`/items/${id}/`);
     const image = page.locator('.image-stage img');
     await expect(image).toHaveAttribute('src', `/assets/img/items/equipment/${id}.webp`);
     await expect(image).toHaveAttribute('alt', /效果预览/);
@@ -814,7 +814,7 @@ test('Wedding Dress and Dress Plate default to particles and keep HD as an optio
 
 test('a failed HD image remains switchable to the existing Wiki image', async ({page}) => {
   await page.route('**/assets/img/items/hd/items/saber.webp', route => route.abort());
-  await page.goto('/data/items/saber.html');
+  await page.goto('/items/saber/');
   await expect(page.locator('.image-stage')).toContainText('图片加载失败');
   await expect(page.locator('.image-stage img')).toHaveAttribute('src', '/assets/img/items/no-image.webp');
   await page.getByRole('button', {name:'现有图片', exact:true}).click();
@@ -824,10 +824,10 @@ test('a failed HD image remains switchable to the existing Wiki image', async ({
 });
 
 test('related navigation resets the image selection for the next item', async ({page}) => {
-  await page.goto('/data/items/lavis-cannon.html');
+  await page.goto('/items/lavis-cannon/');
   await page.getByRole('button', {name:'现有图片', exact:true}).click();
   const related = page.locator('.related-items a').first();
-  const targetId = (await related.getAttribute('href')).match(/\/items\/([^/?]+)\.html/)[1];
+  const targetId = (await related.getAttribute('href')).match(/\/items\/([^/?]+)\//)[1];
   const target = items.find(item => item.id === targetId);
   expect(target.hdImage).toBeTruthy();
   await related.click();
@@ -836,7 +836,7 @@ test('related navigation resets the image selection for the next item', async ({
 });
 
 test('lists browse one subcategory, searches cover the category, and paging works from the top', async ({page}) => {
-  await page.goto('/data/items.html');
+  await page.goto('/items/');
   await expect(page.locator('#type-filter')).toHaveValue('光剑');
   await expect(page.locator('.item-row')).toHaveCount(24);
   const sabers = listedSabers.length;
@@ -852,17 +852,17 @@ test('lists browse one subcategory, searches cover the category, and paging work
   await expect(page.locator('#type-filter option[value="光剑"]')).toHaveText(`光剑 (${sabers})`);
   await page.locator('#type-filter').selectOption('TypeM 武器');
   await expect(page.locator('.result-toolbar strong')).toHaveText('30');
-  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /\/typesa-saber\.html\?/);
+  await expect(page.locator('.item-row').first()).toHaveAttribute('href', /\/typesa-saber\/\?/);
   await expect(page.locator('.item-row').first().locator('[lang="en"]')).toHaveText('TypeSA/SABER');
   await page.locator('#type-filter').selectOption('ES 武器');
   await expect(page.locator('.result-toolbar strong')).toHaveText('30');
   await page.locator('#type-filter').selectOption('步枪');
   await expect(page).toHaveURL(/type=%E6%AD%A5%E6%9E%AA|type=步枪/);
   await expect(page.locator('.item-row').first()).toContainText('Rifle');
-  await expect(page.locator('.item-row[href*="/typeri-rifle.html?"]')).toHaveCount(0);
+  await expect(page.locator('.item-row[href*="/typeri-rifle/?"]')).toHaveCount(0);
   await page.getByRole('searchbox').fill('TypeSH');
   await expect(page.locator('.item-row')).toHaveCount(1);
-  await expect(page.locator('.item-row')).toHaveAttribute('href', /\/typesh-shot\.html\?/);
+  await expect(page.locator('.item-row')).toHaveAttribute('href', /\/typesh-shot\/\?/);
   await expect(page.locator('.item-row [lang="en"]')).toHaveText('TypeSH/SHOT');
   await expect(page.locator('#type-filter')).toBeDisabled();
   await expect(page.locator('.filters')).toContainText('搜索时不限细分类别。');
@@ -872,7 +872,7 @@ test('lists browse one subcategory, searches cover the category, and paging work
 });
 
 test('pagination, jump input, and detail back navigation retain the list', async ({page}) => {
-  await page.goto('/data/items.html?category=weapon');
+  await page.goto('/items/?category=weapon');
   await page.getByLabel('跳转页码').fill('2');
   await page.getByLabel('跳转页码').press('Enter');
   await expect(page).toHaveURL(/page=2/);
@@ -887,52 +887,52 @@ test('pagination, jump input, and detail back navigation retain the list', async
 });
 
 test('base stats, grinding, targets and replica identities stay distinct', async ({page}) => {
-  await page.goto('/data/items/dbs-saber.html');
+  await page.goto('/items/dbs-saber/');
   await expect(page.locator('#attributes')).toContainText('288–338');
   await expect(page.locator('#attributes')).not.toContainText('288–328');
-  await page.goto('/data/items/sword.html');
+  await page.goto('/items/sword/');
   await expect(page.locator('#attributes')).toContainText('普通攻击目标数10');
-  await page.goto('/data/items/neis-claw-replica.html');
+  await page.goto('/items/neis-claw-replica/');
   await expect(page.locator('#item-title')).toHaveText("Nei's Claw (Replica)");
   await expect(page.locator('.source-section')).toContainText('000D02');
 });
 
 test('empty results and malformed pagination recover', async ({page}) => {
-  await page.goto('/data/items.html?q=not-a-real-item&page=Infinity');
+  await page.goto('/items/?q=not-a-real-item&page=Infinity');
   await expect(page.getByRole('heading',{name:'没有找到匹配的道具'})).toBeVisible();
   await page.getByRole('button',{name:'清除全部条件'}).click();
   await expect(page.locator('.item-row')).toHaveCount(24);
-  await page.goto('/data/items.html?page=9999');
+  await page.goto('/items/?page=9999');
   const sabers = listedSabers.length;
   await expect(page.locator('.item-row')).toHaveCount(sabers % 24 || 24);
   await expect(page.getByLabel('跳转页码')).toHaveValue(String(Math.ceil(sabers / 24)));
 });
 
 test('unknown rarity, historical items and unavailable items are explicit', async ({page}) => {
-  await page.goto('/data/items.html?category=mag&rarity=unknown');
+  await page.goto('/items/?category=mag&rarity=unknown');
   await expect(page.locator('.item-row')).toHaveCount(24);
-  await page.goto('/data/items.html?q=Star%20Song');
+  await page.goto('/items/?q=Star%20Song');
   await expect(page.locator('.item-row')).toHaveCount(1);
   await expect(page.locator('.item-row')).toContainText('当前无法获取');
-  await page.goto('/data/items/1st-anniv-bronze-badge.html');
+  await page.goto('/items/1st-anniv-bronze-badge/');
   await expect(page.locator('.detail-overview')).toContainText('历史道具');
 });
 
 test('Mag and item-specific details render supported mechanics', async ({page}) => {
-  await page.goto('/data/items/sato.html');
+  await page.goto('/items/sato/');
   await expect(page.locator('#attributes')).toContainText('0–35%');
   await expect(page.locator('#attributes')).toContainText('PSOBB 不启用死亡触发');
-  await page.goto('/data/items/psycho-wand.html');
+  await page.goto('/items/psycho-wand/');
   await expect(page.locator('#effects')).toContainText('魔法加成');
   await expect(page.locator('#effects')).toContainText('TP 消耗减半');
-  await page.goto('/data/items/v101.html');
+  await page.goto('/items/v101/');
   await expect(page.locator('.drop-table')).toContainText('1/2048');
 });
 
 for (const width of [390,820,1280]) {
   test(`list and long details pass accessibility and overflow checks at ${width}px`, async ({page}) => {
     await page.setViewportSize({width,height:900});
-    for (const path of ['/data/items.html','/data/items/nidra.html','/data/items/addslot.html','/data/items/saber.html']) {
+    for (const path of ['/items/','/items/nidra/','/items/addslot/','/items/saber/']) {
       await page.goto(path);
       await expect(page.getByRole('heading',{level:1})).toBeVisible();
       expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -943,7 +943,7 @@ for (const width of [390,820,1280]) {
 
 test('mobile filters expose image-only results with real local files', async ({page}) => {
   await page.setViewportSize({width:390,height:844});
-  await page.goto('/data/items.html');
+  await page.goto('/items/');
   await expect(page.locator('#catalog-filters')).toBeHidden();
   await page.getByRole('button',{name:'筛选条件'}).click();
   await page.getByLabel('只看有外观图的道具').check();
@@ -955,7 +955,7 @@ test('mobile filters expose image-only results with real local files', async ({p
 test('section links and related navigation update the scroll position', async ({page}) => {
   await page.setViewportSize({width:390,height:844});
   for (const lang of ['zh','en','ja']) {
-    await page.goto(`${lang === 'zh' ? '' : `/${lang}`}/data/items/lavis-cannon.html#effects`);
+    await page.goto(`${lang === 'zh' ? '' : `/${lang}`}/items/lavis-cannon/#effects`);
     await expect.poll(()=>page.locator('#effects').evaluate(n=>Math.abs(n.getBoundingClientRect().top))).toBeLessThan(50);
     const link = page.locator('.related-items a').first();
     const target = new URL(await link.getAttribute('href'), page.url()).href;
@@ -969,7 +969,7 @@ test('section links and related navigation update the scroll position', async ({
 test('details load on demand and a failed request has an explicit retry state', async ({page}) => {
   const requests = [];
   page.on('request',r=>{if(r.url().includes('/assets/data/items/'))requests.push(r.url());});
-  await page.goto('/data/items.html?category=unit&q=V801');
+  await page.goto('/items/?category=unit&q=V801');
   expect(requests).toEqual([]);
   await page.route(/\/assets\/data\/items\/v801\.json\?v=[0-9a-f]{12}$/,route=>route.abort());
   await expect(page.locator('.item-row')).toHaveCount(1);
@@ -984,7 +984,7 @@ test('details load on demand and a failed request has an explicit retry state', 
 
 test('cosmetics overview covers weapon hearts, ring paints and platings with working links', async ({page}) => {
   const overview = JSON.parse(readFileSync('src/app/generated/item-catalog/cosmetics.json', 'utf8'));
-  await page.goto('/data/cosmetics.html');
+  await page.goto('/cosmetics/');
   await expect(page.locator('#cosmetics-title')).toHaveText('外观道具');
   await expect(page.locator('#weapon-hearts .cosmetic-card')).toHaveCount(overview.hearts.length);
   await expect(page.locator('#ring-paints .cosmetic-card')).toHaveCount(overview.paints.length);
@@ -992,7 +992,7 @@ test('cosmetics overview covers weapon hearts, ring paints and platings with wor
   const samba = page.locator('#heart-of-samba-maracas');
   await expect(samba).toContainText('桑巴沙锤');
   for (const weapon of ['dual-bird', 'guld-milla', 'manda60-vise', 'mille-marteaux']) {
-    await expect(samba.locator(`a[href="/data/items/${weapon}.html"]`)).toHaveCount(1);
+    await expect(samba.locator(`a[href="/items/${weapon}/"]`)).toHaveCount(1);
   }
   await expect(page.locator('#heart-of-flamberge')).toContainText('蓝色');
   await expect(page.locator('#onyx-paint')).toContainText('漆黑色');
@@ -1001,23 +1001,23 @@ test('cosmetics overview covers weapon hearts, ring paints and platings with wor
   const requests = [];
   page.on('request', r => { if (r.url().includes('/assets/data/items/')) requests.push(new URL(r.url())); });
   await samba.getByRole('heading').getByRole('link').click();
-  await expect(page).toHaveURL(/\/data\/items\/heart-of-samba-maracas\.html$/);
+  await expect(page).toHaveURL(/\/items\/heart-of-samba-maracas\/$/);
   await expect(page.locator('#item-title')).toHaveText(names['Heart of Samba Maracas'].zh);
   await expect(page.locator('#effects .cosmetic-links a')).toHaveText(['双翎', '伽尔德·米拉', 'M&A60 老虎钳', '米尔·马尔托'].map(name => new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))));
   expect(requests.map(url => url.pathname)).toEqual(['/assets/data/items/heart-of-samba-maracas.json']);
   expect(requests[0].searchParams.get('v')).toMatch(/^[0-9a-f]{12}$/);
   await page.getByRole('link', {name: '查看全部外观道具 →'}).click();
-  await expect(page).toHaveURL(/\/data\/cosmetics\.html#weapon-hearts$/);
+  await expect(page).toHaveURL(/\/cosmetics\/#weapon-hearts$/);
 });
 
 test('equipment detail pages list the cosmetic items that apply to them', async ({page}) => {
-  await page.goto('/en/data/items/excalibur.html');
+  await page.goto('/en/items/excalibur/');
   const hearts = page.locator('#effects h3', {hasText: 'Available cosmetic items'}).locator('xpath=following-sibling::ul[1]/li');
   await expect(hearts).toHaveCount(5);
   await expect(hearts.first()).toContainText('Lollipop');
-  await page.goto('/data/items/red-ring.html');
+  await page.goto('/items/red-ring/');
   await expect(page.locator('#effects h3', {hasText: '可用外观道具'}).locator('xpath=following-sibling::ul[1]/li')).toHaveCount(22);
-  await page.goto('/ja/data/items/deep-plating.html');
+  await page.goto('/ja/items/deep-plating/');
   await expect(page.locator('#effects')).toContainText('The Forge での交換に必要なアイテム');
   await expect(page.locator('#effects .cosmetic-links').last().locator('li')).toHaveCount(7);
   await expect(page.locator('#effects .cosmetic-links').last()).toContainText('× 10');
@@ -1028,7 +1028,7 @@ for (const width of [390, 1280]) {
   test(`cosmetics overview is accessible and fits at ${width}px`, async ({page}) => {
     await page.setViewportSize({width, height: 900});
     for (const lang of ['zh', 'en', 'ja']) {
-      await page.goto(`${lang === 'zh' ? '' : `/${lang}`}/data/cosmetics.html`);
+      await page.goto(`${lang === 'zh' ? '' : `/${lang}`}/cosmetics/`);
       await expect(page.locator('main.catalog-shell')).toHaveAttribute('lang', lang === 'zh' ? 'zh-CN' : lang);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
       expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
@@ -1040,8 +1040,8 @@ for (const width of [390, 1280]) {
 test('monster detail requests carry the dataset version', async ({page}) => {
   const requests = [];
   page.on('request', r => { if (r.url().includes('/assets/data/monsters/')) requests.push(new URL(r.url())); });
-  await page.goto('/data/enemies.html');
-  await page.locator('a[href*="/data/enemies/"]').first().click();
+  await page.goto('/enemies/');
+  await page.locator('a[href*="/enemies/"]').first().click();
   await expect.poll(() => requests.length).toBe(1);
   expect(requests[0].searchParams.get('v')).toMatch(/^[0-9a-f]{12}$/);
 });
@@ -1049,7 +1049,7 @@ test('monster detail requests carry the dataset version', async ({page}) => {
 
 test('primary item categories have no All option and reset keeps the selected category', async ({page}) => {
   for (const lang of ['zh','en','ja']) {
-    await page.goto(`${lang === 'zh' ? '' : `/${lang}`}/data/items.html`);
+    await page.goto(`${lang === 'zh' ? '' : `/${lang}`}/items/`);
     await expect(page.locator('.category-tabs button')).toHaveCount(6);
     await expect(page.locator('.category-tabs button').first()).toHaveAttribute('aria-pressed','true');
     await expect(page.locator('.item-row').first()).toHaveAttribute('href',/category=weapon/);
@@ -1059,12 +1059,12 @@ test('primary item categories have no All option and reset keeps the selected ca
     await expect(page.locator('#class-filter option').first()).toHaveAttribute('value','');
     await expect(page.locator('#rarity-filter option').first()).toHaveAttribute('value','');
   }
-  await page.goto('/en/data/items.html?category=unit&q=nonexistent');
+  await page.goto('/en/items/?category=unit&q=nonexistent');
   await page.getByRole('button',{name:'Clear all filters',exact:true}).click();
   await expect(page).toHaveURL(/category=unit/);
   await expect(page.locator('.category-tabs button[aria-pressed="true"]')).toContainText('Units');
   await expect(page.getByRole('searchbox')).toHaveValue('');
-  await page.goto('/en/data/items/v801.html');
+  await page.goto('/en/items/v801/');
   await page.getByRole('link',{name:'← Back to item list',exact:true}).click();
   await expect(page).toHaveURL(/category=unit/);
   await page.reload();

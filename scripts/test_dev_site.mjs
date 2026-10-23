@@ -29,11 +29,11 @@ test('development watches authored data and imported generator helpers, excludin
 test('development search uses canonical authored routes and all catalog entries in each language', async () => {
   const routes = await devRoutes(root);
   for (const prefix of ['', '/en', '/ja']) {
-    for (const route of ['/tools/cc.html', '/tools/status.html', '/data/items/saber.html', '/data/enemies/booma.html']) {
+    for (const route of ['/combo-calculator/', '/character-stats/', '/items/saber/', '/enemies/booma/']) {
       assert.ok(routes.includes(`${prefix}${route}`), `${prefix}${route}`);
     }
   }
-  assert.ok(routes.includes('/') && routes.includes('/en') && routes.includes('/ja'));
+  assert.ok(routes.includes('/') && routes.includes('/en/') && routes.includes('/ja/'));
   assert.ok(!routes.some(route => route.includes(':') || route.includes('*') || route === '/en/index.html'));
   assert.equal(routes.length, new Set(routes).size);
 });

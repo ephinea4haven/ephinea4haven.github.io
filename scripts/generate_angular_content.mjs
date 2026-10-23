@@ -1,4 +1,6 @@
 import { generatedFiles } from "./generated_files.mjs";
+import { contentRoute, publicHref, publicPageKey, isPageHref } from './public_routes.mjs';
+import externalSystems from '../content/external-systems.json' with { type: 'json' };
 import { mkdir, readFile, readdir } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -30,7 +32,7 @@ const explicitPages = new Set([
 ]);
 const pageBehaviors = new Map([
   ['index.html', ['LandingPageBehavior']],
-  ['404.html', ['NotFoundRedirectBehavior']],
+  ['404.html', ['NotFoundBehavior']],
   ['data/bb_items.html', ['ItemTableSearchBehavior']],
   ['data/monsters.html', ['MonsterFilterBehavior', 'BackToTopBehavior']],
   ['data/quest.html', ['BackToTopBehavior']],
@@ -91,8 +93,46 @@ function fileNameFor(relative) {
 }
 
 function canonicalRoute(relative) {
-  if (relative === 'index.html') return '';
-  return relative.endsWith('/index.html') ? relative.slice(0, -'/index.html'.length) : relative;
+  return contentRoute(relative);
+}
+
+function compileExternalLinks(body, language) {
+  visit(body, node => {
+    const system = node.attrs?.find(attribute => attribute.name === 'data-external-system');
+    if (!system) return;
+    if (!Object.hasOwn(externalSystems, system.value)) throw new Error(`Unknown external system: ${system.value}`);
+    const href = node.attrs.find(attribute => attribute.name === 'href');
+    if (!href || !href.value.startsWith('/') || href.value.startsWith('//')) throw new Error(`External system link requires a root-relative path: ${system.value}`);
+    const url = new URL(href.value, externalSystems[system.value]);
+    if (system.value === 'dropCharts') url.searchParams.set('lang', language);
+    href.value = url.href;
+    node.attrs = node.attrs.filter(attribute => attribute !== system);
+  });
+}
+
+function compilePageLinks(body, angular = true) {
+  visit(body, node => {
+    for (const attribute of node.attrs ?? []) {
+      if (['href', 'back-href'].includes(attribute.name)) attribute.value = publicHref(attribute.value);
+    }
+    if (!angular || node.tagName !== 'a' || node.attrs.some(a => ['download', 'target'].includes(a.name))) return;
+    const href = node.attrs.find(a => a.name === 'href');
+    // An empty fragment is the browser's native "back to top" action. Router
+    // treats it as the current URL and intentionally skips that navigation.
+    if (!href || href.value.endsWith('#') || !isPageHref(href.value)) return;
+    const url = new URL(href.value, 'https://www.psohaven.com');
+    href.name = 'routerLink';
+    href.value = url.pathname;
+    if (url.search) {
+      const params = {};
+      for (const key of new Set(url.searchParams.keys())) {
+        const values = url.searchParams.getAll(key);
+        params[key] = values.length === 1 ? values[0] : values;
+      }
+      node.attrs.push({ name: '[queryParams]', value: JSON.stringify(params) });
+    }
+    if (url.hash) node.attrs.push({ name: 'fragment', value: decodeURIComponent(url.hash.slice(1)) });
+  });
 }
 
 function makeRelativeUrlsRootRelative(body, relative) {
@@ -104,7 +144,9 @@ function makeRelativeUrlsRootRelative(body, relative) {
           || attribute.value.startsWith('/')
           || /^[a-z][a-z0-9+.-]*:/i.test(attribute.value)) continue;
       const resolved = new URL(attribute.value, pageUrl);
-      attribute.value = `${resolved.pathname}${resolved.search}${resolved.hash}`;
+      // URL.hash is empty for both no fragment and a bare '#'; href preserves
+      // the distinction required by native scroll-to-top links.
+      attribute.value = resolved.href.slice(resolved.origin.length);
     }
   });
 }
@@ -572,11 +614,6 @@ function pageDetails(file, source, relative, language) {
       }
       for (const attribute of node.attrs || []) {
         if (attribute.name === 'aria-pressed' && attributes.has('data-home-lang')) attribute.value = String(attributes.get('data-home-lang') === language);
-        if (attribute.name === 'href' && attribute.value.startsWith('https://dropcharts.psohaven.com/')) {
-          const url = new URL(attribute.value);
-          url.searchParams.set('lang', language);
-          attribute.value = url.href;
-        }
       }
     });
   }
@@ -614,7 +651,6 @@ function pageDetails(file, source, relative, language) {
   const eventName = /^event\/(anniversary|christmas|easter|halloween|valentines)\.html$/.exec(relative)?.[1];
   if (eventName) {
     const years = eventYears.get(eventName);
-    const prefix = language === 'zh' ? '' : `/${language}`;
     visit(body, (node) => {
       const attrs = new Map((node.attrs ?? []).map(({ name, value }) => [name, value]));
       if ((attrs.get('class') ?? '').split(' ').some((name) => name === 'event-masthead' || name === 'archive-masthead')) {
@@ -635,15 +671,15 @@ function pageDetails(file, source, relative, language) {
         node.childNodes = parseFragment(`<div data-event-default hidden inert>${fragment}</div>`).childNodes;
       }
       if (attrs.get('id') === 'yearNav') {
-        node.childNodes = parseFragment(years.map((year) => year === years[0]
-          ? `<span class="year-current" aria-current="page">${year}</span>`
-          : `<a href="${prefix}/event/${eventName}.html?year=${year}">${year}</a>`).join('')).childNodes;
+        node.childNodes = parseFragment('<event-year-nav [years]="[' + years.join(',') + ']" event="' + eventName + '"></event-year-nav>').childNodes;
       }
     });
   }
   // Translated regions are in place; make every link root-relative, then point it at this language.
+  compileExternalLinks(body, language);
   makeRelativeUrlsRootRelative(body, relative);
   localizeLinks(pageI18n, body, language);
+  compilePageLinks(body);
   stampAssetVersions(body, relative);
   const template = serialize(body).replaceAll(
     /\sonerror="this\.remove\(\)"/gi,
@@ -696,11 +732,11 @@ for (const eventName of ['anniversary', 'christmas', 'easter', 'halloween', 'val
         const href = node.attrs?.find((attribute) => attribute.name === 'href');
         if (href?.value.startsWith('#')) href.value = `/event/${eventName}.html?year=${file.slice(0, 4)}${href.value}`;
       });
+      compileExternalLinks(body, language);
       makeRelativeUrlsRootRelative(body, relative);
       localizeLinks(pageI18n, body, language);
-      // Keep the historical Chinese fragment's bytes apart from item placeholders.
-      const html = language === 'zh' ? source.replace(/ data-part="content\d+"/g, '').replace(/<span data-item-en="([^"]+)"><\/span>/g,
-        (_, name) => escapeHtml(itemByEnglish(name.replaceAll('&quot;', '"').replaceAll('&amp;', '&'), relative).zh)) : serialize(body);
+      compilePageLinks(body, false);
+      const html = serialize(body);
       eventFragments.set(`${language}/${relative}`, html);
       const destination = path.join(fragmentDirectory, language === 'zh' ? relative : `${language}/${relative}`);
       await mkdir(path.dirname(destination), { recursive: true });
@@ -708,7 +744,7 @@ for (const eventName of ['anniversary', 'christmas', 'easter', 'halloween', 'val
     }
   }
 }
-await writeFile(path.join(root, 'src/app/generated/localized-pages.json'), `${JSON.stringify({ versions: pageI18n.localized })}\n`);
+await writeFile(path.join(root, 'src/app/generated/localized-pages.json'), `${JSON.stringify({ versions: Object.fromEntries(Object.entries(pageI18n.localized).map(([language, pages]) => [language, pages.map(publicPageKey)])) })}\n`);
 const pages = [];
 for (const file of candidates) {
   const relative = path.relative(root, file).split(path.sep).join('/');
@@ -727,6 +763,8 @@ for (const file of candidates) {
     if (!value.startsWith('.')) value = `./${value}`;
     return value;
   });
+  const usesRouterLink = details.template.includes('routerLink=');
+  const usesEventNav = details.template.includes('<event-year-nav');
   const usesPageChrome = details.template.includes('<page-chrome');
   const usesPageUpdateStamp = details.template.includes('<page-update-stamp');
   const behaviors = pageBehaviors.get(relative) || [];
@@ -738,26 +776,27 @@ for (const file of candidates) {
     .join('\n');
   const component = `import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+${usesRouterLink ? "import { RouterLink } from '@angular/router';" : ''}
+${usesEventNav ? "import { EventYearNavComponent } from '../../events/event-year-nav.component';" : ''}
+${usesEventNav ? "import { FragmentNavigationDirective } from '../../shared/fragment-navigation.directive';" : ''}
 ${usesPageChrome ? "import { PageChromeComponent } from '../../shared/page-chrome.component';" : ''}
 ${usesPageUpdateStamp ? "import { PageUpdateStampComponent } from '../../shared/page-update-stamp.component';" : ''}
 ${behaviorImport}
 
 @Component({
   selector: 'haven-content-page',
-  imports: [${[usesPageChrome ? 'PageChromeComponent' : '', usesPageUpdateStamp ? 'PageUpdateStampComponent' : ''].filter(Boolean).join(', ')}],
+  imports: [${[usesRouterLink ? 'RouterLink' : '', usesEventNav ? 'EventYearNavComponent' : '', usesPageChrome ? 'PageChromeComponent' : '', usesPageUpdateStamp ? 'PageUpdateStampComponent' : ''].filter(Boolean).join(', ')}],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  hostDirectives: [${behaviors.join(', ')}],${details.hostClass ? `
+  hostDirectives: [${[...(usesEventNav ? ['FragmentNavigationDirective'] : []), ...behaviors].join(', ')}],${details.hostClass ? `
   host: { class: ${JSON.stringify(details.hostClass)} },` : ''}
   template: ${JSON.stringify(details.template)},
   styles: [${JSON.stringify(details.styles)}],
   styleUrls: ${JSON.stringify(styleUrls)},
 })
 export class ${className} {
-  private readonly meta = inject(Meta);
-
   constructor() {
-    this.meta.updateTag({ name: 'description', content: ${JSON.stringify(details.description)} });
+    inject(Meta).updateTag({ name: 'description', content: ${JSON.stringify(details.description)} });
   }
 }
 `;
@@ -767,23 +806,24 @@ export class ${className} {
 }
 const routePath = (language, value) => (language === 'zh' ? value : `${language}${value ? `/${value}` : ''}`);
 
+function routeTitle(relative, title, language) {
+  const event = /^event\/(anniversary|christmas|easter|halloween|valentines)\.html$/.exec(relative)?.[1];
+  if (!event) return JSON.stringify(title);
+  const years = eventYears.get(event);
+  const separator = ['anniversary', 'christmas'].includes(event) ? (language === 'zh' ? '' : language === 'ja' ? '年' : ' ') : ' ';
+  return '(route) => { const years = ' + JSON.stringify(years) + '; const year = Number(route.queryParamMap.get("year")); return (years.includes(year) ? year : years[0]) + ' + JSON.stringify(separator + title) + '; }';
+}
+
 const routeEntries = pages.map(({ relative, language, title, className, generatedFileName }) => `  {
     path: ${JSON.stringify(routePath(language, canonicalRoute(relative)))},
-    title: ${JSON.stringify(title)},
-    loadComponent: () => import('./pages/${generatedFileName}').then(({ ${className} }) => ${className}),
-  },`).join('\n');
-const indexAliases = pages.filter(({ relative }) => relative.endsWith('index.html')).map(({
-  relative, language, title, className, generatedFileName,
-}) => `  {
-    path: ${JSON.stringify(routePath(language, relative))},
-    title: ${JSON.stringify(title)},
+    title: ${routeTitle(relative, title, language)},
+    ${relative.startsWith('event/') ? "runGuardsAndResolvers: 'paramsOrQueryParamsChange'," : ''}
     loadComponent: () => import('./pages/${generatedFileName}').then(({ ${className} }) => ${className}),
   },`).join('\n');
 await writeFile(routeFile, `import { Routes } from '@angular/router';
 
 export const contentRoutes: Routes = [
 ${routeEntries}
-${indexAliases}
 ${pages.some(({ relative }) => relative === '404.html') ? `  {
     path: '**',
     title: '页面未找到 - PSO Haven',
@@ -795,14 +835,10 @@ ${pages.some(({ relative }) => relative === '404.html') ? `  {
 const serverEntries = pages.map(({ relative, language }) => (
   `  { path: ${JSON.stringify(routePath(language, canonicalRoute(relative)))}, renderMode: RenderMode.Prerender },`
 )).join('\n');
-const indexAliasServerEntries = pages.filter(({ relative }) => relative.endsWith('index.html'))
-  .map(({ relative, language }) => `  { path: ${JSON.stringify(routePath(language, relative))}, renderMode: RenderMode.Client },`)
-  .join('\n');
 await writeFile(serverRouteFile, `import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const contentServerRoutes: ServerRoute[] = [
 ${serverEntries}
-${indexAliasServerEntries}
 ${pages.some(({ relative }) => relative === '404.html') ? `  { path: '**', renderMode: RenderMode.Client },` : ''}
 ];
 `);

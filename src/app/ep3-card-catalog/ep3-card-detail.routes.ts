@@ -7,7 +7,7 @@ export interface CardResult {detail:CardDetail|null;failed:boolean}
 const ids=new Set(index.map(card=>String(card.id)));
 const resolve:ResolveFn<CardResult> = async route => {
   const service=inject(Ep3CardDataService);
-  const id=(route.paramMap.get('card') || '').replace(/\.html$/,'');
+  const id=(route.paramMap.get('card') || '');
   if (!ids.has(id)) return {detail:null,failed:false};
   try {return {detail:await service.load(id),failed:false};} catch {return {detail:null,failed:true};}
 };

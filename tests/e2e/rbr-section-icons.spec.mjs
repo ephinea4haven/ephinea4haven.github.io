@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 for (const prefix of ['', '/en', '/ja']) {
   test(`RBR Section IDs pair names with icons in ${prefix || 'zh'}`, async ({page}) => {
     if (prefix === '/ja') await page.setViewportSize({width:390,height:850});
-    await page.goto(`${prefix}/guide/rbr.html#rbr-quest-MU1`);
+    await page.goto(`${prefix}/rbr/#rbr-quest-MU1`);
     const badges = page.locator('.rbr-section-id');
     expect(await badges.count()).toBeGreaterThan(60);
     await expect.poll(() => badges.evaluateAll(elements => elements.every(element => {

@@ -455,7 +455,7 @@ The card tests pass within that run; no unrelated server code was changed.
 
 ## Phase 2 implementation and acceptance record
 
-The catalog lives at `/data/ep3-cards.html` and `/data/ep3-cards/{id}.html`, with
+The catalog lives at `/cards/` and `/cards/{id}/`, with
 `/en/` and `/ja/` counterparts. The redesigned list uses six category tabs,
 a class/rank sidebar, a count/sort/pagination toolbar and category-specific
 table columns. Pages contain 24 cards. The available pool expands from 662 to
@@ -707,7 +707,7 @@ Nothing was committed, pushed or deployed.
 3. **Chinese UI:** six Chinese message entries had English values; the utility
    nav also omitted sibling catalogs. They now use the exact maintainer-confirmed
    strings recorded above, with the monster catalog's utility link pattern:
-   home `/`, items `/data/items.html`, bestiary `/data/enemies.html`, each localized
+   home `/`, items `/items/`, bestiary `/enemies/`, each localized
    by the existing language service. Node tests assert all six exact translations;
    browser tests cover utility links, orientation, absent artwork and load failure.
 4. **Stat grid:** seven fields occupied a four-column grid whose background

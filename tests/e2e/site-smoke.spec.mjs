@@ -15,7 +15,7 @@ const pages = [
   },
   {
     name: 'status simulator',
-    path: '/tools/status.html',
+    path: '/character-stats/',
     title: /角色属性模拟器/,
     heading: '角色属性模拟器',
     readySelector: '#class option',
@@ -24,20 +24,20 @@ const pages = [
   },
   {
     name: 'character table',
-    path: '/tools/chartable.html',
+    path: '/character-growth/',
     title: /全等级人物能力表/,
     heading: '全等级人物能力表',
     noLegacyRuntime: true,
   },
   {
     name: 'mag chart',
-    path: '/tools/mag.html',
+    path: '/mags/',
     title: /玛古进化图谱/,
     heading: '玛古进化图谱',
   },
   {
     name: 'multiplayer combo calculator',
-    path: '/tools/cc.html',
+    path: '/combo-calculator/',
     title: /连击伤害计算器/,
     heading: '连击伤害计算器（多人模式）',
     readySelector: '.enemy-picker',
@@ -46,7 +46,7 @@ const pages = [
   },
   {
     name: 'OPM combo calculator',
-    path: '/tools/ccopm.html',
+    path: '/combo-calculator/one-person/',
     title: /连击伤害计算器/,
     heading: '连击伤害计算器（单人模式）',
     readySelector: '.enemy-picker',
@@ -55,7 +55,7 @@ const pages = [
   },
   {
     name: 'event archive',
-    path: '/event/christmas.html?year=2025',
+    path: '/events/christmas/?year=2025',
     title: /2025圣诞活动/,
     heading: 'CHRISTMAS 2025',
     readySelector: '#content',
@@ -63,7 +63,7 @@ const pages = [
   },
   {
     name: 'price guide',
-    path: '/data/price_guide.html',
+    path: '/prices/',
     title: /物品价格参考/,
     heading: '物品价格参考',
     readySelector: '#price-content .price-section',
@@ -71,7 +71,7 @@ const pages = [
   },
   {
     name: 'NPC guide',
-    path: '/guide/npc.html',
+    path: '/npcs/',
     title: /NPC 人物志/,
     heading: 'NPC 人物志',
     readySelector: '.npc-card',
@@ -79,7 +79,7 @@ const pages = [
   },
   {
     name: 'banner guide',
-    path: '/guide/banners.html',
+    path: '/rare-drop-banners/',
     title: /Banner 顶部公告/,
     heading: 'Banner 顶部公告',
     readySelector: 'main table tbody tr',
@@ -95,10 +95,10 @@ const pages = [
 ];
 
 test('data-driven tools avoid asynchronous loading placeholders', () => {
-  const statusHtml = readFileSync('_site/tools/status.html', 'utf8');
-  const chartableHtml = readFileSync('_site/tools/chartable.html', 'utf8');
-  const comboHtml = readFileSync('_site/tools/cc.html', 'utf8');
-  const comboOpmHtml = readFileSync('_site/tools/ccopm.html', 'utf8');
+  const statusHtml = readFileSync('_site/character-stats/index.html', 'utf8');
+  const chartableHtml = readFileSync('_site/character-growth/index.html', 'utf8');
+  const comboHtml = readFileSync('_site/combo-calculator/index.html', 'utf8');
+  const comboOpmHtml = readFileSync('_site/combo-calculator/one-person/index.html', 'utf8');
 
   expect(statusHtml).toContain('class="stat-table"');
   expect(statusHtml).not.toContain('正在加载人物数据');
@@ -112,7 +112,7 @@ test('data-driven tools avoid asynchronous loading placeholders', () => {
 });
 
 test('site icons are declared and served from the site root', { tag: '@smoke' }, async ({ page, request }) => {
-  await page.goto('/en/guide/rbr.html');
+  await page.goto('/en/rbr/');
   await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.ico');
   await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', '/apple-touch-icon.png');
   for (const [path, contentType] of [['/favicon.ico', 'image/'], ['/apple-touch-icon.png', 'image/png']]) {
@@ -221,7 +221,7 @@ for (const { route } of buildManifest.angular.routes) {
 }
 
 test('challenge guides publish each language at its own URL with localized redraws', async ({ page }) => {
-  await page.goto('/guide/ep1ch.html');
+  await page.goto('/challenge/episode-1/');
   const firstMap = page.locator('.challenge-map img').first();
   await expect(firstMap).toHaveAttribute('src', /\/maps\/zh\/area_01\.svg$/);
   await expect(page.locator('.challenge-map img')).toHaveCount(42);
@@ -230,7 +230,7 @@ test('challenge guides publish each language at its own URL with localized redra
   await expect(page.locator('.challenge-legend')).toContainText('传送点');
 
   await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
-  await expect(page).toHaveURL(/\/en\/guide\/ep1ch\.html$/);
+  await expect(page).toHaveURL(/\/en\/challenge\/episode-1\/$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(firstMap).toHaveAttribute('src', /\/maps\/en\/area_01\.svg$/);
   await expect(firstMap).toHaveAttribute('alt', 'EP1 Challenge Area 01 map');
@@ -239,8 +239,8 @@ test('challenge guides publish each language at its own URL with localized redra
   await expect(page.locator('haven-language-bar').getByRole('status')).toHaveCount(0);
 
   // The remembered language opens the English version of the next guide.
-  await page.goto('/guide/ep2ch.html');
-  await expect(page).toHaveURL(/\/en\/guide\/ep2ch\.html$/);
+  await page.goto('/challenge/episode-2/');
+  await expect(page).toHaveURL(/\/en\/challenge\/episode-2\/$/);
   const ep2Maps = page.locator('.challenge-map img');
   await expect(ep2Maps.first()).toHaveAttribute('src', /\/maps\/en\/c1_area_01\.svg$/);
   await expect(ep2Maps.first()).toHaveAttribute('alt', 'EP2 C1 Challenge Area 01 map');
@@ -251,7 +251,7 @@ test('challenge guides publish each language at its own URL with localized redra
 for (const [stage, areas] of [[1, [1, 2]], [2, [4, 5, 6, 7, 8]], [3, [9, 10, 11, 12, 13]], [4, [14, 15, 16, 17, 18]], [5, [20, 21, 22, 23, 24]], [6, [25, 26, 27, 28, 29]], [7, [31, 32, 33, 34, 35]], [8, [36, 37, 38, 39, 40]], [9, [41, 42, 43, 44, 45]]]) {
 test(`C${stage} maps load all aligned areas in each guidance language on mobile`, async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/guide/ep1ch.html');
+  await page.goto('/challenge/episode-1/');
   for (const [button, language] of [['中文', 'zh'], ['EN (English)', 'en'], ['日本語', 'ja']]) {
     await page.getByRole('button', { name: button, exact: true }).click();
     for (const area of areas) {
@@ -271,7 +271,7 @@ for (const [stage, areas] of [[1,[1,2,3,4,5,6]],[2,[8,9,10,11,12,13]],[3,[15,16,
   test(`EP2 C${stage} maps load aligned areas in all languages on mobile`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     for (const language of ['zh','en','ja']) {
-      await page.goto(`${language === 'zh' ? '' : `/${language}`}/guide/ep2ch.html`);
+      await page.goto(`${language === 'zh' ? '' : `/${language}`}/challenge/episode-2/`);
       for (const area of areas) {
         const file=`c${stage}_area_${String(area).padStart(2,'0')}.svg`;
         const map=page.locator(`.challenge-map img[src$="/${language}/${file}"]`);
@@ -289,7 +289,7 @@ for (const [stage, areas] of [[1,[1,2,3,4,5,6]],[2,[8,9,10,11,12,13]],[3,[15,16,
 for (const episode of [1, 2]) {
   test(`EP${episode} guide navigates stages and inspects the selected localized map`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto(`/guide/ep${episode}ch.html`);
+    await page.goto(`/challenge/episode-${episode}/`);
     await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
     const stageLink = page.locator('[data-stage-link="c3"]');
     await stageLink.click();
@@ -333,8 +333,8 @@ test('challenge and Seabed guides keep their complete map inventories usable on 
   await page.setViewportSize({ width: 390, height: 844 });
 
   for (const [path, expectedMaps] of [
-    ['/guide/ep1ch.html', 42],
-    ['/guide/ep2ch.html', 26], // 25 area maps plus the Area 23 warp detail.
+    ['/challenge/episode-1/', 42],
+    ['/challenge/episode-2/', 26], // 25 area maps plus the Area 23 warp detail.
   ]) {
     await page.goto(path);
     await expect(page.locator('.challenge-map img')).toHaveCount(expectedMaps);
@@ -343,7 +343,7 @@ test('challenge and Seabed guides keep their complete map inventories usable on 
     )).toBe(true);
   }
 
-  await page.goto('/guide/seabed.html');
+  await page.goto('/areas/seabed/');
   await expect(page.locator('.map-card')).toHaveCount(8);
   await expect(page.locator('.map-card img')).toHaveCount(8);
   await expect(page.locator('.map-meta a')).toHaveCount(8);
@@ -360,7 +360,7 @@ test('challenge and Seabed guides keep their complete map inventories usable on 
 });
 
 test('Seabed route variants use an exclusive full-width accordion', async ({ page }) => {
-  await page.goto('/guide/seabed.html#routes');
+  await page.goto('/areas/seabed/#routes');
   const routeNotes = page.locator('[data-seabed-routes]');
   const variants = routeNotes.locator('details');
   await expect(routeNotes).toHaveAttribute('data-seabed-routes', 'ready');
@@ -379,7 +379,7 @@ test('Seabed route variants use an exclusive full-width accordion', async ({ pag
     element.getBoundingClientRect().width / element.parentElement.getBoundingClientRect().width
   ))).toBeGreaterThan(0.98);
 
-  await page.goto('/en/guide/seabed.html#routes');
+  await page.goto('/en/areas/seabed/#routes');
   await expect(page.locator('[data-seabed-routes]')).toHaveAttribute('data-seabed-routes', 'ready');
   await page.locator('[data-seabed-routes] details').nth(1).locator('summary').click();
   await expect(page.locator('[data-seabed-routes] details').nth(1)).toContainText('before the second one attacks');
@@ -387,7 +387,7 @@ test('Seabed route variants use an exclusive full-width accordion', async ({ pag
 });
 
 test('NPC guide connects equipment names to sourced character profiles', async ({ page }) => {
-  await page.goto('/guide/npc.html');
+  await page.goto('/npcs/');
   await expect(page.locator('[data-npc-guide]')).toHaveAttribute('data-npc-guide', 'ready');
   await expect(page.locator('#npc-donoph')).toContainText('Donoph Baz');
   await expect(page.locator('#npc-donoph')).toContainText('DB 之剑');
@@ -399,7 +399,7 @@ test('NPC guide connects equipment names to sourced character profiles', async (
   await expect(page.locator('#npc-donoph')).toBeInViewport();
 });
 
-for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
+for (const calculatorPath of ['/combo-calculator/', '/combo-calculator/one-person/']) {
   test(`${calculatorPath} exercises calculator controls and enemy groups`, async ({ page }) => {
     const runtimeErrors = [];
     page.on('pageerror', (error) => runtimeErrors.push(error.message));
@@ -480,14 +480,14 @@ for (const calculatorPath of ['/tools/cc.html', '/tools/ccopm.html']) {
 }
 
 for (const accessibilityPath of [
-  '/tools/cc.html',
-  '/tools/ccopm.html',
-  '/tools/status.html',
-  '/tools/chartable.html',
+  '/combo-calculator/',
+  '/combo-calculator/one-person/',
+  '/character-stats/',
+  '/character-growth/',
 ]) {
   test(`${accessibilityPath} has no WCAG A/AA accessibility violations`, async ({ page }) => {
     await page.goto(accessibilityPath);
-    if (accessibilityPath.includes('/cc')) {
+    if (accessibilityPath.startsWith('/combo-calculator/')) {
       await page.locator('#native-btn').click();
       await expect.poll(() => page.locator('#combo-calc-table tbody tr').count())
         .toBeGreaterThan(0);
@@ -497,7 +497,7 @@ for (const accessibilityPath of [
       await removeEnemyButton.click();
       await expect(page.locator('#combo-calc-table tbody tr'))
         .toHaveCount(rowsBeforeRemoval - 1);
-    } else if (accessibilityPath.endsWith('/status.html')) {
+    } else if (accessibilityPath.endsWith('/character-stats/')) {
       await page.locator('#class').selectOption('ramarl');
       await page.locator('#lv').selectOption('100');
     } else {
@@ -535,15 +535,15 @@ test('landing activity spotlight has no WCAG A/AA accessibility violations', asy
 
 for (const { path, selectors } of [
   {
-    path: '/guide/ep1ch.html',
+    path: '/challenge/episode-1/',
     selectors: ['.challenge-guide'],
   },
   {
-    path: '/guide/ep2ch.html',
+    path: '/challenge/episode-2/',
     selectors: ['.challenge-guide'],
   },
   {
-    path: '/guide/seabed.html',
+    path: '/areas/seabed/',
     selectors: ['.seabed-hero', '.source-note', '.map-card:first-of-type', '.equipment-table-wrap'],
   },
 ]) {
@@ -567,9 +567,9 @@ test('Angular route hosts keep representative page content centered', async ({ p
   await page.setViewportSize({ width: 1512, height: 900 });
   for (const [path, selector] of [
     ['/', '.container'],
-    ['/event/anniversary.html?year=2025', '.anniversary-page-shell'],
-    ['/guide/banners.html', '.content-container'],
-    ['/tools/status.html', '.content-container'],
+    ['/events/anniversary/?year=2025', '.anniversary-page-shell'],
+    ['/rare-drop-banners/', '.content-container'],
+    ['/character-stats/', '.content-container'],
   ]) {
     await page.goto(path);
     const box = await page.locator(selector).first().boundingBox();
@@ -582,9 +582,9 @@ test('Angular route hosts keep representative page content centered', async ({ p
 test('shared page chrome aligns titles and back links with page content', async ({ page }) => {
   await page.setViewportSize({ width: 1512, height: 900 });
   for (const path of [
-    '/data/enemy_weapon_hit.html',
-    '/guide/banners.html',
-    '/tools/status.html',
+    '/enemy-weapons/hit/',
+    '/rare-drop-banners/',
+    '/character-stats/',
   ]) {
     await page.goto(path);
     const centers = await page.locator('body').evaluate(() => {
@@ -613,7 +613,7 @@ test('status simulator handles Angular inputs and resets', { tag: '@smoke' }, as
     if (message.type() === 'error') runtimeErrors.push(message.text());
   });
 
-  await page.goto('/tools/status.html');
+  await page.goto('/character-stats/');
   await expect.poll(() => page.locator('#class option').count()).toBeGreaterThan(2);
   await expect(page.locator('.resist-list dt')).toHaveText([
     'EFR火焰', 'EIC冰冻', 'ETH雷电', 'EDK暗黑', 'ELT光明',
@@ -666,8 +666,8 @@ test('status simulator preserves material-plan presets and calculation diagnosti
     if (message.type() === 'error') runtimeErrors.push(message.text());
   });
 
-  await page.goto('/tools/materialplan.html');
-  const preset = await page.locator('a[href^="/tools/status.html?"]').first().getAttribute('href');
+  await page.goto('/material-planning/');
+  const preset = await page.locator('a[href^="/character-stats/?"]').first().getAttribute('href');
   expect(preset).toBeTruthy();
   await page.goto(preset);
   await expect(page.locator('#class')).toHaveValue('humar');
@@ -680,7 +680,7 @@ test('status simulator preserves material-plan presets and calculation diagnosti
   await expect(page.locator('.stat-table tbody tr')).toHaveCount(8);
   await expect(page.locator('.share-link a')).toHaveAttribute('href', /c=humar.*mpow=147/);
 
-  await page.goto('/tools/materialplan.html');
+  await page.goto('/material-planning/');
   const fomarPreset = await page.locator('a[href*="c=fomar"][href*="mmind=32"]').getAttribute('href');
   expect(fomarPreset).toBeTruthy();
   await page.goto(fomarPreset);
@@ -688,7 +688,7 @@ test('status simulator preserves material-plan presets and calculation diagnosti
   await expect(page.locator('#matHP')).toHaveValue('125');
   await expect(page.locator('#matTP')).toHaveValue('125');
 
-  await page.goto('/tools/status.html?c=ramarl&lv=150&mdef=5&mpow=100&mdex=45&mmind=50&hp=20&tp=10&pow=50&def=25&mind=30&eva=15&lck=10&armor=45&shield=2a&unit1=5b&unit2=5d&unit3=4c&unit4=51');
+  await page.goto('/character-stats/?c=ramarl&lv=150&mdef=5&mpow=100&mdex=45&mmind=50&hp=20&tp=10&pow=50&def=25&mind=30&eva=15&lck=10&armor=45&shield=2a&unit1=5b&unit2=5d&unit3=4c&unit4=51');
   const expectedCurrent = { hp: '1098', tp: '969', atp: '907', dfp: '378', mst: '800', ata: '213.9', evp: '700', lck: '60' };
   for (const [stat, value] of Object.entries(expectedCurrent)) {
     await expect(page.locator(`[data-stat="${stat}"] td`).nth(5)).toHaveText(value);
@@ -703,13 +703,13 @@ test('status simulator preserves material-plan presets and calculation diagnosti
   await page.locator('#matPow').fill('999');
   await expect(page.locator('.limit-badges .over-limit')).toContainText('能力药用量');
 
-  await page.goto('/tools/status.html?c=hucast&lv=123&tp=13&unit1=5e');
+  await page.goto('/character-stats/?c=hucast&lv=123&tp=13&unit1=5e');
   await expect(page.locator('[data-stat="tp"] td').nth(5)).toHaveText('0');
   expect(runtimeErrors).toEqual([]);
 });
 
 test('content images marked for versioning carry their content hash', async ({page, request}) => {
-  await page.goto('/guide/rbr.html');
+  await page.goto('/rbr/');
   const sources = await page.locator('img[src*="section-colors.svg"]').evaluateAll(images => images.map(image => image.getAttribute('src')));
   expect(sources).toHaveLength(2);
   for (const source of sources) {
@@ -717,7 +717,7 @@ test('content images marked for versioning carry their content hash', async ({pa
     expect((await request.get(source)).ok()).toBe(true);
   }
   await page.goto('/');
-  await expect(page.getByRole('link',{name:'外观道具',exact:true})).toHaveAttribute('href','/data/cosmetics.html');
+  await expect(page.getByRole('link',{name:'外观道具',exact:true})).toHaveAttribute('href','/cosmetics/');
 });
 
 test('Angular content behaviors cover landing, search, filters, tabs, and RBR data', async ({ page }) => {
@@ -729,7 +729,7 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
 
   await page.goto('/');
   await expect(page.locator('[data-current-activity="anniversary-2026"]')).toHaveCount(0);
-  await expect(page.locator('[data-holiday="anniversary-2026"]')).toHaveAttribute('href', '/event/anniversary.html?year=2026');
+  await expect(page.locator('[data-holiday="anniversary-2026"]')).toHaveAttribute('href', '/events/anniversary/?year=2026');
   await expect(page.locator('#swatchTime')).toHaveText(/^@\d{3}\.\d{2}$/);
   await expect(page.locator('#swatchTime')).toHaveAttribute('data-period', /divine|normal/);
   await expect(page.locator('#galatine-atp')).toContainText('ATP');
@@ -737,19 +737,19 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   await expect(page.locator('[data-current-activity]')).toHaveCount(4);
   await expect(page.locator('[data-current-activity]:visible')).toHaveCount(0);
 
-  await page.goto('/data/bb_items.html');
+  await page.goto('/item-codes/');
   await page.locator('#searchBox').fill('Heavenly/Battle');
   await expect(page.locator('#searchCount')).toContainText(/找到 [1-9]\d* 条/);
   await expect(page.locator('#searchResults .search-results-table tbody tr')).toHaveCount(1);
 
-  await page.goto('/data/monsters.html');
+  await page.goto('/enemy-hunting/');
   const total = await page.locator('.monster-entry').count();
   expect(total).toBeGreaterThan(20);
   await page.locator('#monsterSearch').fill('Booma');
   await expect(page.locator('#monsterCount')).toContainText(new RegExp(`/ ${total} 项`));
   expect(await page.locator('.monster-entry:visible').count()).toBeLessThan(total);
 
-  await page.goto('/guide/class-guide.html');
+  await page.goto('/classes/');
   await page.locator('#tab-ranger').click();
   await expect(page.locator('#ranger')).toBeVisible();
   await expect(page.locator('#hunter')).toBeHidden();
@@ -758,7 +758,7 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
   await expect(page.locator('#force')).toBeVisible();
   await expect(page.locator('#tab-force')).toBeFocused();
 
-  await page.goto('/guide/rbr.html');
+  await page.goto('/rbr/');
   await expect(page.locator('#rbr-tracker-status')).toContainText('Tracker');
   await expect(page.locator('.rbr-episode-card')).toHaveCount(3);
   await expect(page.locator('.rbr-quest-cell')).toHaveCount(58);
@@ -766,8 +766,8 @@ test('Angular content behaviors cover landing, search, filters, tabs, and RBR da
 
   // Translated editions render the live tracker and the chart in their own language.
   for (const [path, status, area, chart] of [
-    ['/en/guide/rbr.html', 'Tracker', 'Forest', '/assets/img/guide/rbr/en/'],
-    ['/ja/guide/rbr.html', 'Tracker', '森林', '/assets/img/guide/rbr/ja/'],
+    ['/en/rbr/', 'Tracker', 'Forest', '/assets/img/guide/rbr/en/'],
+    ['/ja/rbr/', 'Tracker', '森林', '/assets/img/guide/rbr/ja/'],
   ]) {
     await page.goto(path);
     await expect(page.locator('#rbr-tracker-status')).toContainText(status);
@@ -786,7 +786,7 @@ test('character table supports icon tabs, level validation, keyboard navigation,
     if (message.type() === 'error') runtimeErrors.push(message.text());
   });
 
-  await page.goto('/tools/chartable.html');
+  await page.goto('/character-growth/');
   await expect(page.locator('#humar tbody tr')).toHaveCount(200);
   await expect(page.getByRole('tab')).toHaveCount(12);
 
@@ -836,23 +836,23 @@ test('character table supports icon tabs, level validation, keyboard navigation,
 });
 
 test('content-page relative links resolve within their source directory', async ({ page }) => {
-  await page.goto('/tools/materialplan.html');
-  await page.locator('.class-nav a[href="/tools/materialplan.html#racast"]').click();
-  await expect(page).toHaveURL(/\/tools\/materialplan\.html#racast$/);
+  await page.goto('/material-planning/');
+  await page.locator('.class-nav a[href="/material-planning/#racast"]').click();
+  await expect(page).toHaveURL(/\/material-planning\/#racast$/);
   await expect(page.locator('#racast')).toBeInViewport();
 
-  await page.goto('/tools/equipment.html');
+  await page.goto('/equipment-recommendations/');
   for (const id of ['fonewearl', 'humar', 'fonewm']) {
-    await page.locator(`.class-nav a[href="/tools/equipment.html#${id}"]`).click();
-    await expect(page).toHaveURL(new RegExp(`/tools/equipment.html#${id}$`));
+    await page.locator(`.class-nav a[href="/equipment-recommendations/#${id}"]`).click();
+    await expect(page).toHaveURL(new RegExp(`/equipment-recommendations/#${id}$`));
     await expect(page.locator(`#${id}`)).toBeInViewport();
   }
 
-  await page.goto('/event/event.html');
-  await page.locator('a[href="/event/christmas.html?year=2025"]').first().click();
-  await expect(page).toHaveURL(/\/event\/christmas\.html\?year=2025$/);
+  await page.goto('/events/');
+  await page.locator('a[href="/events/christmas/?year=2025"]').first().click();
+  await expect(page).toHaveURL(/\/events\/christmas\/\?year=2025$/);
 
-  await page.goto('/guide/register.html');
+  await page.goto('/getting-started/');
   await expect(page.getByRole('link', { name: 'HeaderEditor-4.1.1.xpi' }))
     .toHaveAttribute('href', '/assets/plugin/HeaderEditor-4.1.1.xpi');
 });
@@ -864,7 +864,7 @@ test('Combo Calculator remains usable at a mobile viewport', async ({ page }) =>
     if (message.type() === 'error') runtimeErrors.push(message.text());
   });
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/tools/cc.html');
+  await page.goto('/combo-calculator/');
 
   await expect(page.getByRole('heading', { name: '连击伤害计算器（多人模式）' })).toBeVisible();
   await expect(page.locator('#class-select')).toBeVisible();
@@ -883,7 +883,7 @@ test('Combo Calculator remains usable at a mobile viewport', async ({ page }) =>
 
 test('anniversary feature cards keep bilingual item names visible', async ({ page }) => {
   await page.setViewportSize({ width: 457, height: 800 });
-  await page.goto('/event/anniversary.html?year=2025');
+  await page.goto('/events/anniversary/?year=2025');
 
   const card = page.locator('.anniv-2025 .feature-card').filter({ hasText: 'Sonic Doll' });
   await expect(card).toContainText(
@@ -900,15 +900,15 @@ test('anniversary feature cards keep bilingual item names visible', async ({ pag
 });
 
 test('anniversary archive returns to the event overview', async ({ page }) => {
-  await page.goto('/event/anniversary.html?year=2026');
+  await page.goto('/events/anniversary/?year=2026');
   await page.getByRole('link', { name: '返回活动页' }).click();
 
-  await expect(page).toHaveURL(/\/event\/event\.html$/);
+  await expect(page).toHaveURL(/\/events\/$/);
   await expect(page.getByRole('heading', { name: '周年活动', exact: true })).toBeVisible();
 });
 
 test('anniversary visual system has no WCAG A/AA accessibility violations', async ({ page }) => {
-  await page.goto('/event/anniversary.html?year=2026');
+  await page.goto('/events/anniversary/?year=2026');
   await expect(page.locator('#anniv-2026-shop')).toBeVisible();
   const results = await new AxeBuilder({ page })
     .include('.event-masthead')
@@ -924,12 +924,12 @@ test('anniversary visual system has no WCAG A/AA accessibility violations', asyn
 
 test('anniversary archive uses a full-page timeline workspace', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/event/anniversary.html?year=2026');
+  await page.goto('/events/anniversary/?year=2026');
   const workspace = page.locator('.anniversary-workspace');
   const rail = page.locator('.anniversary-year-rail');
   await expect(workspace).toBeVisible();
   await expect(rail).toBeVisible();
-  await expect(rail.locator('#yearNav > *')).toHaveCount(11);
+  await expect(rail.locator('#yearNav event-year-nav > *')).toHaveCount(11);
   await expect.poll(() => workspace.evaluate((element) => getComputedStyle(element).display)).toBe('block');
   await expect.poll(() => page.locator('.anniversary-year-rail-layer').evaluate(
     (element) => getComputedStyle(element).position,
@@ -1009,7 +1009,7 @@ test('anniversary archive uses a full-page timeline workspace', async ({ page })
 });
 
 test('anniversary archive defaults to the announced 2026 event and keeps 2025 available', async ({ page }) => {
-  await page.goto('/event/anniversary.html');
+  await page.goto('/events/anniversary/');
 
   await expect(page.locator('#project_year')).toHaveText('2026');
   await expect(page.locator('#yearNav .year-current')).toHaveText('2026');
@@ -1090,7 +1090,7 @@ test('PSOStats quest data belongs to its archived anniversary year', async ({ pa
   ];
 
   for (const { year, total, highlight, taRows, leader, taTime } of archives) {
-    await page.goto(`/event/anniversary.html?year=${year}`);
+    await page.goto(`/events/anniversary/?year=${year}`);
     const questStats = page.locator(`[data-quest-stats-year="${year}"]`);
     await expect(questStats.locator('tbody tr')).toHaveCount(11);
     await expect(page.locator('#content')).toContainText(total);
@@ -1102,20 +1102,20 @@ test('PSOStats quest data belongs to its archived anniversary year', async ({ pa
     await expect(page.locator(`a[href="https://psostats.com/anniv${year}"]`)).toBeVisible();
   }
 
-  await page.goto('/event/anniversary.html?year=2023');
+  await page.goto('/events/anniversary/?year=2023');
   await expect(page.locator('[data-ta-ranking-year="2023"] tbody tr').filter({ hasText: '43:17' })).toHaveCount(2);
-  await page.goto('/event/anniversary.html?year=2025');
+  await page.goto('/events/anniversary/?year=2025');
   await expect(page.locator('[data-ta-ranking-year="2025"] tbody tr').filter({ hasText: '40:55' })).toHaveCount(2);
 
   for (const year of [2024, 2026]) {
-    await page.goto(`/event/anniversary.html?year=${year}`);
+    await page.goto(`/events/anniversary/?year=${year}`);
     await expect(page.locator('[data-quest-stats-year]')).toHaveCount(0);
     await expect(page.locator('[data-ta-ranking-year]')).toHaveCount(0);
     await expect(page.locator(`a[href="https://psostats.com/anniv${year}"]`)).toHaveCount(0);
   }
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/event/anniversary.html?year=2025');
+  await page.goto('/events/anniversary/?year=2025');
   const statsWrap = page.locator('[data-quest-stats-year="2025"]').locator('xpath=..');
   const rankingWrap = page.locator('[data-ta-ranking-year="2025"]').locator('xpath=..');
   expect(await statsWrap.evaluate((element) => element.scrollWidth > element.clientWidth)).toBe(true);
@@ -1124,7 +1124,7 @@ test('PSOStats quest data belongs to its archived anniversary year', async ({ pa
 });
 
 test('2026 anniversary navigation contains only primary guide sections', async ({ page }) => {
-  await page.goto('/event/anniversary.html?year=2026');
+  await page.goto('/events/anniversary/?year=2026');
   const nav = page.locator('.anniv-2026 .section-nav');
   await expect(nav.locator('a')).toHaveCount(6);
   expect(await nav.locator('a').allTextContents()).toEqual([
@@ -1142,7 +1142,7 @@ test('2026 anniversary navigation contains only primary guide sections', async (
     const href = await link.getAttribute('href');
     const hash = new URL(href, 'http://localhost').hash;
     await link.click();
-    await expect(page).toHaveURL(new RegExp(`/event/anniversary\\.html\\?year=2026${hash}$`));
+    await expect(page).toHaveURL(new RegExp(`/events/anniversary/\\?year=2026${hash}$`));
     await expect(page.locator(hash)).toBeVisible();
   }
 });
@@ -1160,7 +1160,7 @@ for (const language of ['', '/en', '/ja']) {
         await route.continue();
       });
       try {
-        await page.goto(`${language}/event/${event}.html?year=${year}`);
+        await page.goto(`${language}/events/${event}/?year=${year}`);
         await requestStarted;
         await expect(page.locator('#project_year, #eventYear')).toHaveText(String(year));
         // Hold the response open so waiting cannot conceal stale default-year content.
@@ -1186,7 +1186,7 @@ test('event default editions stay hidden before JavaScript starts', async ({ bro
   try {
     for (const language of ['', '/en', '/ja']) {
       for (const event of ['anniversary', 'christmas', 'easter', 'halloween', 'valentines']) {
-        await page.goto(`http://127.0.0.1:4173${language}/event/${event}.html?year=2024`);
+        await page.goto(`http://127.0.0.1:4173${language}/events/${event}/?year=2024`);
         const edition = page.locator('[data-event-default]');
         await expect(edition).toHaveCount(1);
         await expect(edition).toBeHidden();
@@ -1207,7 +1207,7 @@ test('event defaults and invalid years activate the embedded edition without fet
   });
   for (const event of ['anniversary', 'christmas', 'easter', 'halloween', 'valentines']) {
     for (const query of ['', '?year=invalid', '?year=1900']) {
-      await page.goto(`/en/event/${event}.html${query}`);
+      await page.goto(`/en/events/${event}/${query}`);
       const masthead = page.locator('[data-event]');
       const year = await masthead.getAttribute('data-default-year');
       await expect(page.locator('#content h2, #yearContent h2').first()).toBeVisible();
@@ -1221,7 +1221,7 @@ test('event defaults and invalid years activate the embedded edition without fet
 for (const [event, year] of [['anniversary', 2025], ['christmas', 2024], ['easter', 2024]]) {
   test(`${event} failed archive load leaves only the selected year's error`, async ({ page }) => {
     await page.route(`**/en/event/${event}/${year}.html`, (route) => route.fulfill({ status: 503, body: '' }));
-    await page.goto(`/en/event/${event}.html?year=${year}`);
+    await page.goto(`/en/events/${event}/?year=${year}`);
     const content = page.locator('#content, #yearContent');
     await expect(content).toHaveText(`Could not load the ${year} ${event} event archive.`);
     await expect(content.locator('a, h2, h3, template')).toHaveCount(0);
@@ -1229,7 +1229,7 @@ for (const [event, year] of [['anniversary', 2025], ['christmas', 2024], ['easte
 }
 
 test('2025 anniversary section navigation stays on the selected archive year', async ({ page }) => {
-  await page.goto('/event/anniversary.html?year=2025');
+  await page.goto('/events/anniversary/?year=2025');
   const nav = page.locator('.anniv-2025 .section-nav');
   await expect(nav.locator('a')).toHaveCount(6);
 
@@ -1237,7 +1237,7 @@ test('2025 anniversary section navigation stays on the selected archive year', a
     const href = await link.getAttribute('href');
     const hash = new URL(href, 'http://localhost').hash;
     await link.click();
-    await expect(page).toHaveURL(new RegExp(`/event/anniversary\\.html\\?year=2025${hash}$`));
+    await expect(page).toHaveURL(new RegExp(`/events/anniversary/\\?year=2025${hash}$`));
     await expect(page.locator(hash)).toBeVisible();
   }
 });
@@ -1257,7 +1257,7 @@ test('anniversary years expose complete localized milestone contracts', async ({
     { year: 2016, total: '最终突破 450 万', rows: 20, first: ['5 万', 'Resting at the Beach'], last: ['600 万', 'Photon Sphere'] },
   ];
   for (const { year, total, rows, first, last } of expected) {
-    await page.goto(`/event/anniversary.html?year=${year}`);
+    await page.goto(`/events/anniversary/?year=${year}`);
     await expect(page.locator(`#anniv-${year}-milestones`)).toBeVisible();
     await expect(page.locator('#content')).toContainText(total);
     const milestoneRows = page.locator(`.milestone-table[data-milestone-year="${year}"] tbody tr`);
@@ -1271,7 +1271,7 @@ test('anniversary years expose complete localized milestone contracts', async ({
 
 test('historical anniversary years share the modern archive presentation', async ({ page }) => {
   for (const year of [2016, 2020, 2024]) {
-    await page.goto(`/event/anniversary.html?year=${year}`);
+    await page.goto(`/events/anniversary/?year=${year}`);
     const content = page.locator('#content');
     await expect(content).toHaveClass(/anniv-legacy/);
     await expect(content.locator('.year-hero')).toBeVisible();
@@ -1300,10 +1300,10 @@ for (const fontSize of [16, 15.5, 16.5]) {
     await page.addInitScript((size) => {
       document.addEventListener('DOMContentLoaded', () => { document.documentElement.style.fontSize = `${size}px`; }, {once:true});
     }, fontSize);
-    await page.goto('/event/event.html');
-    await page.locator('a[href="/event/anniversary.html?year=2017#anniv-2017-milestones"]').click();
+    await page.goto('/events/');
+    await page.locator('a[href="/events/anniversary/?year=2017#anniv-2017-milestones"]').click();
 
-    await expect(page).toHaveURL(/\/event\/anniversary\.html\?year=2017#anniv-2017-milestones$/);
+    await expect(page).toHaveURL(/\/events\/anniversary\/\?year=2017#anniv-2017-milestones$/);
     const anchor = page.locator('#anniv-2017-milestones');
     await expect(anchor).toBeVisible();
     // Scroll offsets are rounded to CSS pixels while layout coordinates retain fractions.
@@ -1313,7 +1313,7 @@ for (const fontSize of [16, 15.5, 16.5]) {
 }
 
 test('banner item lists pair the page language with the in-game English name', async ({ page }) => {
-  await page.goto('/guide/banners.html');
+  await page.goto('/rare-drop-banners/');
 
   const names = page.locator('.item-list .item-bilingual');
   await expect.poll(() => names.count()).toBeGreaterThan(80);
@@ -1331,15 +1331,15 @@ test('banner item lists pair the page language with the in-game English name', a
     [...name.children].map((part) => part.className)
   ))).toEqual(['item-local', 'item-en']);
 
-  await page.goto('/ja/guide/banners.html');
+  await page.goto('/ja/rare-drop-banners/');
   await expect(page.locator('.weapon-table').filter({ hasText: 'Lavis Cannon' })).toContainText('ラヴィス＝カノン(Lavis Cannon)');
-  await page.goto('/en/guide/banners.html');
+  await page.goto('/en/rare-drop-banners/');
   await expect(page.locator('.item-list .item-bilingual')).toHaveCount(0);
   await expect(page.locator('.weapon-table').first()).toContainText('Lavis Cannon');
 });
 
 test('banner weapon Hit groups match the Ephinea Wiki table spans', async ({ page }) => {
-  await page.goto('/guide/banners.html');
+  await page.goto('/rare-drop-banners/');
 
   const groups = await page.locator('.weapon-table').evaluateAll((tables) => tables.map((table) => (
     Object.fromEntries([...table.tBodies[0].rows].map((row) => [
@@ -1360,7 +1360,7 @@ test('banner weapon Hit groups match the Ephinea Wiki table spans', async ({ pag
 });
 
 test('Angular content behaviors preserve lookup and Section ID interactions', async ({ page }) => {
-  await page.goto('/data/item-names.html');
+  await page.goto('/item-names/');
   const lookupRows = page.locator('#lookup tr');
   await expect.poll(() => lookupRows.count()).toBeGreaterThan(500);
   await page.locator('#search-input').fill('V502');
@@ -1374,7 +1374,7 @@ test('Angular content behaviors preserve lookup and Section ID interactions', as
   await expect(page.locator('#lookup tr:visible')).toHaveCount(1);
   await expect(page.getByRole('button', { name: /半角|全角/ })).toHaveCount(0);
 
-  await page.goto('/tools/id.html');
+  await page.goto('/section-id/');
   await page.setViewportSize({ width: 1512, height: 900 });
   const nameBox = await page.locator('#name').boundingBox();
   const blueBurstBox = await page.locator('#BB').boundingBox();
@@ -1391,7 +1391,7 @@ test('Angular content behaviors preserve lookup and Section ID interactions', as
 });
 
 test('Angular multilingual data tables switch language without legacy globals', async ({ page }) => {
-  await page.goto('/data/bdp/');
+  await page.goto('/quests/black-paper-deal/');
   await expect.poll(() => page.locator('.bdp-row').count()).toBeGreaterThan(0);
   const db3069 = page.locator('.bdp-row-2 td').nth(1);
   await expect(db3069).toContainText('DB 之剑「3069·Chris」');
@@ -1409,7 +1409,7 @@ test('Angular multilingual data tables switch language without legacy globals', 
     vue: typeof window.Vue,
   }))).toEqual({ jquery: 'undefined', bootstrap: 'undefined', vue: 'undefined' });
 
-  await page.goto('/data/prizelist/');
+  await page.goto('/quests/corens-prizes/');
   await expect(page.locator('#pageTitle')).toHaveText("Coren's Prize List");
   await expect(page.locator('.day-head').first()).toContainText('Monday');
   await page.getByRole('button', { name: '日本語', exact: true }).click();
@@ -1417,7 +1417,7 @@ test('Angular multilingual data tables switch language without legacy globals', 
 });
 
 test('canonical item pages preserve authoritative Unitxt mixed-width names', async ({ page }) => {
-  await page.goto('/data/weapon_special_reduction.html');
+  await page.goto('/mechanics/special-reduction/');
   const justice = page.locator('[data-item-zh="H&S25 正义制裁"]');
   await expect(justice).toHaveText('H&S25 正义制裁');
   await expect(page.locator('[data-item-zh="突刺匕首"]')).toHaveText('突刺匕首');
@@ -1425,10 +1425,10 @@ test('canonical item pages preserve authoritative Unitxt mixed-width names', asy
   await expect(page.getByText('暗杀者的投刃', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: /半角|全角/ })).toHaveCount(0);
 
-  await page.goto('/data/enemy_weapon_hit.html');
+  await page.goto('/enemy-weapons/hit/');
   await expect(page.locator('[data-item-zh="森隐雷藏拳套 0型"]')).toHaveText('森隐雷藏拳套 0型');
 
-  await page.goto('/data/equipment_technique_boosts.html');
+  await page.goto('/techniques/equipment-boosts/');
   await expect(page.getByRole('heading', { name: '装备魔法增幅', exact: true }).first()).toBeVisible();
   await expect(page.locator('[data-item-zh="冰杖「达贡」"]')).toHaveText('冰杖「达贡」');
   const caduceusRow = page.locator('tr', { has: page.locator('[data-item-en="Caduceus"]') });
@@ -1448,7 +1448,7 @@ test('canonical item pages preserve authoritative Unitxt mixed-width names', asy
 });
 
 test('Angular price guide filters categories and bilingual item names', async ({ page }) => {
-  await page.goto('/data/price_guide.html');
+  await page.goto('/prices/');
   const sections = page.locator('#price-content .price-section');
   await expect.poll(() => sections.count()).toBeGreaterThan(20);
   await expect(page.locator('.price-notice')).toContainText('PD（Photon Drop / 光子微晶）');
@@ -1480,7 +1480,7 @@ test('Angular price guide aligns all three editions without losing columns or pr
   const source = {};
   vm.runInNewContext(readFileSync('assets/js/price_guide_data.js', 'utf8'), source);
   for (const language of ['zh', 'en', 'ja']) {
-    await page.goto(`${language === 'zh' ? '' : `/${language}`}/data/price_guide.html`);
+    await page.goto(`${language === 'zh' ? '' : `/${language}`}/prices/`);
     const tables = await page.locator('.price-table').evaluateAll(tables => tables.map(table => ({
       headers: [...table.querySelectorAll('th')].map(cell => cell.textContent),
       rows: [...table.querySelectorAll('tbody tr:not(.price-note-row)')].map(row => [...row.querySelectorAll('td')].map(cell => cell.textContent)),
@@ -1511,7 +1511,7 @@ test('Angular price guide aligns all three editions without losing columns or pr
 });
 
 test('Angular price guide localizes complete identities, categories and compound cells', async ({ page }) => {
-  await page.goto('/data/price_guide.html');
+  await page.goto('/prices/');
   const content = page.locator('#price-content');
   await expect(content).not.toContainText('Level 15');
   await expect(content).toContainText('等级 15');
@@ -1535,7 +1535,7 @@ test('Angular price guide localizes complete identities, categories and compound
 });
 
 test('Angular price guide translates cross-references and preserves their targets', async ({ page }) => {
-  await page.goto('/data/price_guide.html');
+  await page.goto('/prices/');
   const cells = page.locator('#price-content td');
   for (const reference of [
     '参见：光剑（王者之剑）',
@@ -1557,7 +1557,7 @@ test('Angular price guide translates cross-references and preserves their target
 });
 
 test('Angular price guide localizes the attribute note across language switches', async ({ page }) => {
-  await page.goto('/data/price_guide.html');
+  await page.goto('/prices/');
   const note = page.locator('.price-note-row');
   await expect(note).toHaveCount(1);
   await expect(note).toContainText('高属性指属性值达到 50 或以上');
@@ -1598,7 +1598,7 @@ test('Angular price guide hydrates the prerendered DOM in place', async ({ page 
     }).observe(document, { childList: true, subtree: true });
   });
 
-  await page.goto('/data/price_guide.html');
+  await page.goto('/prices/');
   await expect(page.locator('#price-search')).toBeVisible();
   await expect.poll(() => page.evaluate(() => ({
     captured: Boolean(window.__hydrationProbe.main),
@@ -1606,7 +1606,7 @@ test('Angular price guide hydrates the prerendered DOM in place', async ({ page 
   }))).toEqual({ captured: true, removed: false });
 });
 
-for (const path of ['/tools/cc.html', '/tools/ccopm.html']) {
+for (const path of ['/combo-calculator/', '/combo-calculator/one-person/']) {
   test(`${path} hydrates its mode-specific prerendered calculator in place`, async ({ page }) => {
     await page.addInitScript(() => {
       const probe = { main: null, removed: false };
@@ -1639,7 +1639,7 @@ for (const path of ['/tools/cc.html', '/tools/ccopm.html']) {
 }
 
 test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ page }) => {
-  await page.goto('/data/protocol/');
+  await page.goto('/reference/protocol/');
   await page.getByRole('button', { name: 'EN (English)', exact: true }).click();
   await expect(page.locator('#project_title')).toHaveText('Protocol Reference');
   await page.locator('#tab-list [data-tab="subcommands"]').click();
@@ -1649,7 +1649,7 @@ test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ 
   await page.getByRole('button', { name: '中文', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'zh-CN');
 
-  await page.goto('/guide/volopt.html');
+  await page.goto('/bosses/vol-opt/');
   await expect(page.locator('[data-item-name="Excalibur"]')).toContainText('Excalibur 王者之剑');
   const firstRow = page.locator('#cast-body tr').first();
   await expect(firstRow).toBeVisible();
@@ -1665,14 +1665,14 @@ test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ 
   await expect(page.locator('#shifta-tabs button').last()).toHaveClass(/active/);
 
   // English shows the English name alone; Japanese adds the authority name.
-  await page.goto('/en/guide/volopt.html');
+  await page.goto('/en/bosses/vol-opt/');
   await expect(page.locator('[data-item-name="Galatine"]')).toHaveText('Galatine');
   await expect(page.locator('#cast-body tr').first()).toBeVisible();
-  await page.goto('/ja/guide/volopt.html');
+  await page.goto('/ja/bosses/vol-opt/');
   await expect(page.locator('[data-item-name="Galatine"]')).toHaveText('Galatine ガラティーン');
   await expect(page.locator('#cast-body')).toContainText('ガラティーン');
 
-  await page.goto('/tools/mag.html');
+  await page.goto('/mags/');
   await expect.poll(() => page.locator('#panel-hu .mag-card').count()).toBeGreaterThan(5);
   // The section nav shows one section at a time; deep links pick the section.
   const sectionNav = page.getByRole('navigation', { name: '页面导航' });
@@ -1688,7 +1688,7 @@ test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ 
   await page.getByRole('tab', { name: /枪手/ }).click();
   await expect(page.locator('#panel-ra')).toBeVisible();
   await expect(page.locator('#panel-hu')).toBeHidden();
-  await page.goto('/tools/mag.html#recipe5');
+  await page.goto('/mags/#recipe5');
   await expect(page.locator('#panel-recipe5')).toBeVisible();
   await expect(page.locator('#chart')).toBeHidden();
   await page.getByRole('tab', { name: /表2/ }).click();
@@ -1697,12 +1697,12 @@ test('Angular protocol, Vol Opt, and Mag controls remain interactive', async ({ 
 });
 
 test('Angular event archive prerenders the default year and loads requested years', async ({ page }) => {
-  await page.goto('/event/easter.html');
+  await page.goto('/events/easter/');
   await expect(page.locator('#eventYear')).toHaveText('2026');
   await expect(page.locator('#yearContent')).not.toContainText('载入中');
   await expect(page.locator('#yearContent')).toContainText('2026');
 
-  await page.goto('/event/easter.html?year=2025');
+  await page.goto('/events/easter/?year=2025');
   await expect(page.locator('#eventYear')).toHaveText('2025');
   await expect(page.locator('#yearContent')).toContainText('2025');
   await page.locator('[data-preview-image]').first().click();
@@ -1717,55 +1717,26 @@ test('Combo Calculator license is included in the production artifact', async ({
   await expect(response.text()).resolves.toContain('Copyright (c) 2021 phelix-');
 });
 
-test('legacy Mag simulator URL redirects to the standalone site', async ({ page }) => {
-  await page.route('https://magfeeder.psohaven.com/**', (route) => route.fulfill({
-    contentType: 'text/html',
-    body: '<!doctype html><title>Mag Feeder redirect target</title>',
-  }));
-
-  await page.goto('/tools/mag-sim.html?mode=planner#target');
-
-  await expect(page).toHaveURL('https://magfeeder.psohaven.com/?mode=planner#target');
+test('retired external-system URLs remain real 404s without client redirects', async ({ page }) => {
+  for (const url of ['/tools/mag-sim.html?mode=planner#target', '/droptable/cn/CUltimate.html', '/data/droptable/ngc/index.html?lang=zh&diff=Ultimate']) {
+    const response = await page.goto(url);
+    expect(response.status()).toBe(404);
+    await expect(page.locator('h1')).toContainText('404');
+    await expect(page).toHaveURL(new URL(url.replace('/index.html', '/'), 'http://127.0.0.1:4173').href);
+  }
 });
-
-const legacyDropChartRedirects = [
-  {
-    name: 'legacy language page',
-    path: '/droptable/cn/CUltimate.html',
-    target: 'https://dropcharts.psohaven.com/bb/?lang=zh&diff=Ultimate',
-  },
-  {
-    name: 'former embedded chart',
-    path: '/data/droptable/ngc/index.html?lang=zh&diff=Ultimate',
-    target: 'https://dropcharts.psohaven.com/ngc/?lang=zh&diff=Ultimate',
-  },
-];
-
-for (const redirectCase of legacyDropChartRedirects) {
-  test(`${redirectCase.name} redirects to the independent site`, async ({ page }) => {
-    await page.route('https://dropcharts.psohaven.com/**', (route) => route.fulfill({
-      contentType: 'text/html',
-      body: '<!doctype html><title>Drop Charts redirect target</title>',
-    }));
-
-    await page.goto(redirectCase.path);
-
-    await expect(page).toHaveURL(redirectCase.target);
-  });
-}
-
 
 test('authored item names stay aligned across guides and tools', async ({ page }) => {
   const authority = JSON.parse(readFileSync(process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json', 'utf8')).items;
-  for (const route of ['/', '/data/itempt.html', '/data/itempmt.html', '/guide/acronym.html',
-    '/guide/class-guide.html', '/tools/materialplan.html', '/tools/mechanics.html',
-    '/tools/v50x.html', '/tools/equipment.html', '/data/gallons_roulette.html']) {
+  for (const route of ['/', '/reference/item-pt/', '/reference/item-pmt/', '/glossary/',
+    '/classes/', '/material-planning/', '/mechanics/',
+    '/mechanics/special-activation/', '/equipment-recommendations/', '/quests/gallons-roulette/']) {
     await page.goto(route);
     const names = await page.locator('[data-item-en]').evaluateAll((nodes) => nodes.map((node) => ({
       en: node.getAttribute('data-item-en'), zh: node.querySelector('[data-item-zh]')?.textContent,
     })));
     expect(names.length, route).toBeGreaterThan(0);
-    if (route === '/tools/equipment.html') {
+    if (route === '/equipment-recommendations/') {
       for (const [en, count] of [["DARK FLOW", 4], ["Master Raven", 2], ["L&K38 Combat", 2],
         ["S-BEAT'S BLADE", 5], ["Tyrell's Parasol", 6]]) {
         expect(names.filter((item) => item.en === en), en).toHaveLength(count);
@@ -1795,7 +1766,7 @@ test('status equipment names follow the authority through variants and language 
     中文: { armor: '完美铠甲', unit: '骑士级/攻击++', effect: '智能联结' },
   };
   const prefixes = { 'EN (English)': '/en', 日本語: '/ja', 中文: '' };
-  await page.goto('/tools/status.html?armor=10&shield=10&unit1=10&unit2=00-5&unit3=51&unit4=43');
+  await page.goto('/character-stats/?armor=10&shield=10&unit1=10&unit2=00-5&unit3=51&unit4=43');
   await expect(page.locator('#armor')).toHaveValue('10');
   for (const [kind, selector] of [['armors', '#armor'], ['shields', '#shield'], ['units', '#unit1']]) {
     const actual = await page.locator(`${selector} option`).evaluateAll((options) => Object.fromEntries(
@@ -1810,12 +1781,12 @@ test('status equipment names follow the authority through variants and language 
     expect(actual, kind).toEqual(expected);
   }
   await expect(page.locator('.equipment-report li span:first-child')).toHaveText([
-    '完美铠甲', '守护盾', '矿工级/HP', '骑士级/攻击++', '智能联结', '解除/麻痹',
+    '完美铠甲', '守护盾', '矿工级/HP', '骑士级/攻击++', '智能联结', '治愈/麻痹',
   ]);
   await expect(page.locator('.effects')).toContainText('智能联结');
-  await expect(page.locator('.effects')).toContainText('解除/麻痹');
+  await expect(page.locator('.effects')).toContainText('治愈/麻痹');
   const share = await page.locator('.share-link a').getAttribute('href');
-  expect(share).toMatch(/^\/tools\/status\.html\?/);
+  expect(share).toMatch(/^\/character-stats\/\?/);
   const stats = await page.locator('.stat-table tbody').innerText();
   for (const language of ['EN (English)', '日本語', '中文']) {
     await page.getByRole('button', { name: language, exact: true }).click();
@@ -1844,7 +1815,7 @@ test('status labels, effects, description and share links follow the page langua
     // A fresh context has no remembered language, as a reader opening a shared link.
     const context = await browser.newContext();
     const page = await context.newPage();
-    await page.goto(`/${language}/tools/status.html?unit1=53`);
+    await page.goto(`/${language}/character-stats/?unit1=53`);
     await expect(page.locator('html')).toHaveAttribute('lang', text.lang);
     await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', text.description);
     await expect(page.locator('.stat-table thead th').first()).toHaveText(text.stat);
@@ -1857,19 +1828,19 @@ test('status labels, effects, description and share links follow the page langua
     await expect(page.locator('#unit1 option:checked')).toHaveText(text.unit);
     await expect(page.locator('.effects li').first()).toHaveText(text.speed);
     const share = await page.locator('.share-link a').getAttribute('href');
-    expect(share).toMatch(new RegExp(`^/${language}/tools/status\\.html\\?.*unit1=53`));
+    expect(share).toMatch(new RegExp(`^/${language}/character-stats/\\?.*unit1=53`));
     await context.close();
 
     const reader = await browser.newContext();
     const shared = await reader.newPage();
     await shared.goto(share);
-    await expect(shared).toHaveURL(new RegExp(`/${language}/tools/status\\.html\\?`));
+    await expect(shared).toHaveURL(new RegExp(`/${language}/character-stats/\\?`));
     await expect(shared.locator('html')).toHaveAttribute('lang', text.lang);
     await expect(shared.locator('#unit1')).toHaveValue('53');
     await reader.close();
   }
   const page = await browser.newPage();
-  await page.goto('/tools/status.html');
+  await page.goto('/character-stats/');
   for (const [id, name] of Object.entries(materials)) {
     await expect(page.locator(`#${id}`)).toHaveAttribute('aria-label', authority[name].zh);
   }
@@ -1880,7 +1851,7 @@ test('complete item lookup includes current inactive aliases and removes retired
   const sandbox = { window: {} };
   vm.runInNewContext(readFileSync('assets/js/i18n/items_i18n.js', 'utf8'), sandbox);
   const expected = Object.fromEntries(Object.values(sandbox.window.ITEMS_I18N).map(({ en, zh }) => [en, zh]));
-  await page.goto('/data/item-names.html');
+  await page.goto('/item-names/');
   const actual = await page.locator('#lookup tr').evaluateAll((rows) => Object.fromEntries(
     rows.map((row) => [row.cells[2].textContent, row.cells[0].textContent]),
   ));
@@ -1889,16 +1860,16 @@ test('complete item lookup includes current inactive aliases and removes retired
   expect(actual['Book of KATANA1']).toBe('四天书「壹」');
   expect(actual['MARK3']).toBe('MARK3');
   expect(actual['Claw']).toBe('光子爪');
-  expect(actual['キュア/ポイズン']).toBe('解除/中毒');
+  expect(actual['キュア/ポイズン']).toBe('治愈/中毒');
   expect(actual['アギト(1977))']).toBeUndefined();
 });
 
 test('anniversary currency and interactive item replies keep their event context', async ({ page }) => {
-  await page.goto('/event/anniversary.html?year=2022');
+  await page.goto('/events/anniversary/?year=2022');
   await expect(page.locator('.year-callout').filter({ hasText: 'Scavenger' })).toContainText('银牌');
   await expect(page.locator('.year-callout').filter({ hasText: 'Scavenger' })).not.toContainText('WEAPONS');
   await expect(page.locator('.year-callout').filter({ hasText: 'Scavenger' })).not.toContainText('银制勋章');
-  await page.goto('/event/anniversary.html?year=2025');
+  await page.goto('/events/anniversary/?year=2025');
   const option = page.locator('[data-quest-response="Power Material：1 Silver Badge"]');
   const panel = option.locator('xpath=ancestor::*[contains(@class,"quest-menu-panel")][1]');
   await option.click();
@@ -1911,12 +1882,12 @@ test('anniversary currency and interactive item replies keep their event context
 
 
 test('seasonal archives preserve exact case-sensitive weapon identities', async ({ page }) => {
-  await page.goto('/event/anniversary.html?year=2025');
+  await page.goto('/events/anniversary/?year=2025');
   const hammer = page.locator('.item-bilingual').filter({
     has: page.locator('.item-en', { hasText: /^\s*\(Hammer\)$/ }),
   }).first();
   await expect(hammer.locator('.item-zh')).toHaveText('铁锤');
-  await page.goto('/event/christmas.html?year=2017');
+  await page.goto('/events/christmas/?year=2017');
   const launcher = page.locator('.item-bilingual').filter({
     has: page.locator('.item-en', { hasText: /^\s*\(Launcher\)$/ }),
   }).first();

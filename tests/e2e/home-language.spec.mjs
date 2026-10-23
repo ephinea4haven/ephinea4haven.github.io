@@ -36,13 +36,13 @@ test('onboarding follows input language needs when switching languages',async({p
     await page.locator(`[data-home-lang=${lang}]`).click();
     await expect(steps).toHaveCount(3);
     // The launcher guide has every language version, so the link follows the homepage's language.
-    await expect(steps.nth(2)).toHaveAttribute('href',lang==='zh'?'/guide/launcher.html':`/${lang}/guide/launcher.html`);
+    await expect(steps.nth(2)).toHaveAttribute('href',lang==='zh'?'/help/launcher/':`/${lang}/help/launcher/`);
     if(lang==='en') await expect(steps.nth(2)).not.toContainText('IME');
     else await expect(steps.nth(2)).toContainText('IME');
     if(lang==='zh') await expect(patch).toBeVisible();
     else await expect(patch).toBeHidden();
-    await expect(page.locator('a[href="/guide/localized.html"]:visible')).toHaveCount(lang==='zh'?2:0);
-    await expect(page.locator('#start a[href="/guide/ime.html"]')).toHaveCount(0);
+    await expect(page.locator('a[href="/help/localization/"]:visible')).toHaveCount(lang==='zh'?2:0);
+    await expect(page.locator('#start a[href="/help/text-input/"]')).toHaveCount(0);
   }
 });
 
@@ -81,7 +81,7 @@ test('language selection opens separate URLs and is remembered across pages', { 
   await expect(page.locator('.hero-title-sub')).toHaveText('A multilingual wiki for players worldwide');
   // Links lead to the English version of pages that have one.
   await page.getByRole('link',{name:'Bestiary',exact:true}).click();
-  await expect(page).toHaveURL(/\/en\/data\/enemies\.html/);
+  await expect(page).toHaveURL(/\/en\/enemies\//);
   await expect(page.locator('h1')).toHaveText('Bestiary');
   // The remembered choice opens the English version from a Chinese URL.
   await page.goto('/');

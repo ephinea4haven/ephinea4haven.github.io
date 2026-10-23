@@ -147,7 +147,7 @@ SHA-256: b8b545b56484f3d63d80076b9f8b0ccd03b5133bf9a1ab34336c8684117610c2
 
 ## 参考与本地复核材料
 
-- [PSOHaven EP2 C4攻略](https://www.psohaven.com/guide/ep2ch.html#c4)
+- [PSOHaven EP2 C4攻略](https://www.psohaven.com/challenge/episode-2/#c4)
 - [Ephinea Wiki：Stage 4 / Area 23](https://wiki.pioneer2.net/w/Episode_2:_Stage_4/Guide#Area_23)
 - 原攻略布局图：[本站保存的原攻略图](../assets/img/challenge/ep2/original/wiki/2ca23.png)。
 - 本地源码参考：`newserv/src/Map.cc`、`phantasmal-world/psolib/.../quest/ObjectType.kt`、`AreaRenderGeometry.kt`、`AreaCollisionGeometry.kt`。

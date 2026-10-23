@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { generatedFiles } from './generated_files.mjs';
 
 export const cardRoutes = cards => ['', 'en/', 'ja/'].flatMap(prefix => [
-  `/${prefix}data/ep3-cards.html`, ...cards.map(card => `/${prefix}data/ep3-cards/${card.id}.html`),
+  `/${prefix}cards/`, ...cards.map(card => `/${prefix}cards/${card.id}/`),
 ]);
 // Pagefind 1.5.2 queries segment CJK words, then remove NFD combining marks.
 // Index matching search tokens too: game names contain voiced kana and fullwidth

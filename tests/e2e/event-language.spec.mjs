@@ -8,23 +8,23 @@ for (const language of ['en', 'ja']) {
       ['valentines', 2016, '#yearContent'],
     ]) {
       const response = page.waitForResponse((entry) => entry.url().endsWith(`/${language}/event/${event}/${year}.html`));
-      await page.goto(`/${language}/event/${event}.html?year=${year}`);
+      await page.goto(`/${language}/events/${event}/?year=${year}`);
       expect((await response).ok()).toBe(true);
       await expect(page.locator('#yearNav [aria-current="page"]')).toHaveText(String(year));
       await expect(page.locator(target)).toContainText(String(year));
       await expect(page.locator('html')).toHaveAttribute('lang', language);
       expect(await page.locator('#yearNav a').evaluateAll((links) => links.map((link) => link.getAttribute('href'))))
-        .toEqual(expect.arrayContaining([expect.stringMatching(new RegExp(`^/${language}/event/${event}\\.html\\?year=`))]));
+        .toEqual(expect.arrayContaining([expect.stringMatching(new RegExp(`^/${language}/events/${event}/\\?year=`))]));
       if (language === 'en') expect(await page.locator(target).innerText()).not.toMatch(/\p{Script=Han}/u);
     }
   });
 
   test(`${language} archive failure and repeated shop replies stay in the selected language`, async ({ page }) => {
     await page.route(`**/${language}/event/easter/2016.html`, (route) => route.abort());
-    await page.goto(`/${language}/event/easter.html?year=2016`);
+    await page.goto(`/${language}/events/easter/?year=2016`);
     await expect(page.locator('#yearContent')).toHaveText(language === 'en'
       ? 'Could not load the 2016 easter event archive.' : '2016年のイースターイベントを読み込めませんでした。');
-    await page.goto(`/${language}/event/anniversary.html?year=2025`);
+    await page.goto(`/${language}/events/anniversary/?year=2025`);
     const option = page.locator('[data-quest-response^="Soul Eater"]');
     await expect(option).toBeVisible();
     await option.click();

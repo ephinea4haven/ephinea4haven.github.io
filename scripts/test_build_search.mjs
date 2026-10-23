@@ -1,40 +1,80 @@
+import { pageRoutes, routeDocument } from './public_routes.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { test } from 'node:test';
-import { mkdtemp, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, readdir, rm, stat, writeFile, symlink } from 'node:fs/promises';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { gunzipSync } from 'node:zlib';
 import { decode } from 'cborg';
 import { archiveEntries, buildSearch, glossaryAliases, searchCategory, searchDocument, searchRoutes } from './build_search.mjs';
 
+test('dev module reload reads changed route categories without restarting Node', async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'haven-route-reload-'));
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  try {
+    await mkdir(path.join(directory, 'scripts'));
+    await mkdir(path.join(directory, 'content'));
+    await symlink(path.join(root, 'node_modules'), path.join(directory, 'node_modules'));
+    const source = await readFile(new URL('./build_search.mjs', import.meta.url), 'utf8');
+    for (const [, dependency] of source.matchAll(/from '\.\/([^']+)'/g)) {
+      await symlink(path.join(root, 'scripts', dependency), path.join(directory, 'scripts', dependency));
+    }
+    const registry = path.join(directory, 'content/page-routes.json');
+    await writeFile(registry, JSON.stringify(pageRoutes));
+    const module = path.join(directory, 'scripts/build_search.mjs');
+    await writeFile(module, source);
+    const first = await import(`${pathToFileURL(module)}?dev=1`);
+    assert.equal(first.searchCategory('/glossary/'), 'guides');
+    await writeFile(registry, JSON.stringify({ ...pageRoutes, 'guide/acronym.html': 'new-glossary', 'tools/mag.html': 'new-mags' }));
+    const second = await import(`${pathToFileURL(module)}?dev=2`);
+    for (const prefix of ['', '/en', '/ja']) {
+      assert.equal(second.searchCategory(`${prefix}/new-glossary/`), 'guides');
+      assert.equal(second.searchCategory(`${prefix}/new-mags/`), 'tools');
+      assert.equal(second.searchCategory(`${prefix}/glossary/`), 'reference');
+    }
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
 test('canonical standalone routes exclude error documents, duplicate aliases and event fragments', () => {
   assert.deepEqual(searchRoutes([
     '/', '/index.html', '/en', '/en/', '/ja/index.html',
-    '/data/protocol', '/data/protocol/', '/data/protocol/index.html',
-    '/404.html', '/en/404.html', '/ja/404.html', '/data/ep3-cards/404.html', '/en/data/ep3-cards/404.html', '/event/christmas/2025.html', '/ja/event/easter/2024.html',
-    '/event/christmas', '/tools/cc.html',
-  ]), ['/', '/data/ep3-cards/404.html', '/data/protocol/', '/en/', '/en/data/ep3-cards/404.html', '/event/christmas/', '/ja/', '/tools/cc.html']);
+    '/reference/protocol', '/reference/protocol/', '/reference/protocol/index.html',
+    '/404.html', '/en/404.html', '/ja/404.html', '/cards/404/', '/en/cards/404/', '/event/christmas/2025.html', '/ja/event/easter/2024.html',
+    '/events/christmas', '/combo-calculator/',
+  ]), ['/', '/cards/404/', '/combo-calculator/', '/en/', '/en/cards/404/', '/events/christmas/', '/ja/', '/reference/protocol/']);
 });
 
 test('historical event records use localized host URLs, accurate years, and no default-year duplicate', () => {
   const html = `<html lang="ja"><body><h1>2025年クリスマス</h1>
     <section data-seasonal-event data-event="christmas" data-default-year="2025" data-years="2025,2024,2023"></section></body></html>`;
-  assert.deepEqual(archiveEntries(html, '/ja/event/christmas.html'), [
-    { url: '/ja/event/christmas.html?year=2023', language: 'ja', title: '2023年クリスマス', fragment: '/ja/event/christmas/2023.html' },
-    { url: '/ja/event/christmas.html?year=2024', language: 'ja', title: '2024年クリスマス', fragment: '/ja/event/christmas/2024.html' },
+  assert.deepEqual(archiveEntries(html, '/ja/events/christmas/'), [
+    { url: '/ja/events/christmas/?year=2023', language: 'ja', title: '2023年クリスマス', fragment: '/ja/event/christmas/2023.html' },
+    { url: '/ja/events/christmas/?year=2024', language: 'ja', title: '2024年クリスマス', fragment: '/ja/event/christmas/2024.html' },
   ]);
-  assert.deepEqual(searchRoutes(['/ja/event/christmas.html?year=2023', '/ja/event/christmas/2023.html']), ['/ja/event/christmas.html?year=2023']);
+  assert.deepEqual(searchRoutes(['/ja/events/christmas/?year=2023', '/ja/event/christmas/2023.html']), ['/ja/events/christmas/?year=2023']);
 });
 
 test('search categories distinguish tools and long-form mechanics across languages', () => {
   for (const language of ['', '/en', '/ja']) {
-    assert.equal(searchCategory(`${language}/data/items/excalibur.html`), 'items');
-    assert.equal(searchCategory(`${language}/data/enemies/booma.html`), 'enemies');
-    assert.equal(searchCategory(`${language}/tools/mechanics.html`), 'guides');
-    assert.equal(searchCategory(`${language}/tools/cc.html`), 'tools');
-    assert.equal(searchCategory(`${language}/event/christmas/`), 'events');
-    assert.equal(searchCategory(`${language}/data/quest.html`), 'reference');
+    assert.equal(searchCategory(`${language}/items/excalibur/`), 'items');
+    assert.equal(searchCategory(`${language}/enemies/booma/`), 'enemies');
+    assert.equal(searchCategory(`${language}/mechanics/`), 'guides');
+    assert.equal(searchCategory(`${language}/combo-calculator/`), 'tools');
+    assert.equal(searchCategory(`${language}/events/christmas/`), 'events');
+    assert.equal(searchCategory(`${language}/quests/`), 'reference');
+  }
+});
+
+test('semantic URLs preserve every authored guide and tool category', () => {
+  for (const [source, route] of Object.entries(pageRoutes)) {
+    const category = source.startsWith('guide/') || source === 'tools/mechanics.html' ? 'guides'
+      : source.startsWith('tools/') ? 'tools' : undefined;
+    if (!category) continue;
+    for (const language of ['', '/en', '/ja']) assert.equal(searchCategory(`${language}/${route}/`), category, source);
   }
 });
 
@@ -59,7 +99,7 @@ test('index copies retain content and real section targets without UI boilerplat
     <footer>footer boilerplate</footer><script id="ng-state">private hydration marker</script>
     <div class="related-section">unrelated item name</div>
   </body></html>`;
-  const output = searchDocument(source, '/tools/mechanics.html', ['EXCALIBUR', '王者之剑', 'エクスキャリバー']);
+  const output = searchDocument(source, '/mechanics/', ['EXCALIBUR', '王者之剑', 'エクスキャリバー']);
   assert.match(output, /<h1 data-pagefind-meta="title">Mechanics/);
   assert.match(output, /<h2 id="damage">Damage/);
   assert.match(output, /data-pagefind-filter="category:guides"/);
@@ -73,7 +113,7 @@ test('only the first section heading inherits its actual section anchor', () => 
   const output = searchDocument(`<html lang="en"><body><h1>Guide</h1>
     <main id="main"><h2>Do not link to the page container</h2></main>
     <section id="real-section"><h2>Section title</h2><h3>Another heading</h3></section>
-  </body></html>`, '/guide/example.html');
+  </body></html>`, '/challenge/episode-1/');
   assert.match(output, /<h2 id="real-section">Section title/);
   assert.match(output, /<h2>Do not link/);
   assert.match(output, /<h3>Another heading/);
@@ -85,17 +125,17 @@ test('Pagefind builds all categories reproducibly with authoritative aliases in 
     const routes = [];
     const ep3Root = (await readFile('src/app/ep3-card-catalog/ep3-card-catalog.component.html', 'utf8')).match(/<main[^>]*>/)[0];
     for (const [prefix, language, title] of [['', 'zh-CN', '王者之剑'], ['/en', 'en', 'EXCALIBUR'], ['/ja', 'ja', 'エクスキャリバー']]) {
-      const route = `${prefix}/data/items/excalibur.html`;
+      const route = `${prefix}/items/excalibur/`;
       routes.push(route);
-      const filename = path.join(directory, route);
+      const filename = path.join(directory, routeDocument(route));
       await mkdir(path.dirname(filename), { recursive: true });
       await writeFile(filename, `<html lang="${language}"><body><h1>${title}</h1><p>Fixture content</p></body></html>`);
-      for (const categoryRoute of ['/data/ep3-cards/29.html', '/data/ep3-cards/404.html', '/data/enemies/booma.html', '/guide/example.html', '/tools/example.html', '/event/example.html', '/data/quest.html']) {
+      for (const categoryRoute of ['/cards/29/', '/cards/404/', '/enemies/booma/', '/challenge/episode-1/', '/combo-calculator/', '/events/example/', '/quests/']) {
         const url = `${prefix}${categoryRoute}`;
         routes.push(url);
-        const categoryFile = path.join(directory, url);
+        const categoryFile = path.join(directory, routeDocument(url));
         await mkdir(path.dirname(categoryFile), { recursive: true });
-        await writeFile(categoryFile, `<html lang="${language}"><body>${url.includes("/ep3-cards/") ? ep3Root : "<main>"}<h1>${searchCategory(url)}</h1>
+        await writeFile(categoryFile, `<html lang="${language}"><body>${url.includes("/cards/") ? ep3Root : "<main>"}<h1>${searchCategory(url)}</h1>
           <p data-pagefind-filter="edition:classic">Shared fixture content</p>
           <p data-pagefind-filter="edition:custom">Multiple values on the same page</p></main></body></html>`);
       }
@@ -117,11 +157,11 @@ test('Pagefind builds all categories reproducibly with authoritative aliases in 
       return JSON.parse(content.replace(/^pagefind_dcd/, ''));
     }));
     for (const fragment of fragments) {
-      if (fragment.url.endsWith('/excalibur.html')) {
+      if (fragment.url.endsWith('/excalibur/')) {
         const normalized = fragment.content.replaceAll('\u200b', '');
         for (const name of ['EXCALIBUR', '王者之剑', 'エクスキャリバー', 'Excal']) assert.ok(normalized.includes(name), `${fragment.url} missing ${name}`);
       }
-      if (fragment.url.endsWith('/ep3-cards/29.html')) {
+      if (fragment.url.endsWith('/cards/29/')) {
         const normalized = fragment.content.replaceAll('\u200b', '');
         for (const name of ["Hildebear's Cane+", 'ヒルデベアケイン＋', 'BEARS CANE +']) assert.ok(normalized.includes(name), `${fragment.url} missing ${name}`);
       }
@@ -145,7 +185,7 @@ test('Pagefind builds all categories reproducibly with authoritative aliases in 
         for (const [value, ids] of filter[1]) {
           const actual = ids.map(id => pageUrls[id]).sort();
           const expected = pageUrls.filter(url => name === 'category'
-            ? searchCategory(url) === value : !url.endsWith('/excalibur.html')).sort();
+            ? searchCategory(url) === value : !url.endsWith('/excalibur/')).sort();
           assert.deepEqual(actual, expected, `${name}:${value} preserves its result membership`);
         }
       }

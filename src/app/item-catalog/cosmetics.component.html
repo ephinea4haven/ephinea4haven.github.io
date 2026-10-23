@@ -1,14 +1,14 @@
 <main class="catalog-shell detail-shell cosmetics-shell" [attr.lang]="i18n.htmlLanguage()">
-  <nav class="masthead" [attr.aria-label]="i18n.t('站点导航')"><a [href]="i18n.link('/index.html')" class="brand"><span aria-hidden="true">◈</span> HAVEN <small>PSOBB</small></a><div class="masthead-actions"><a [routerLink]="i18n.link('/data/items.html')">{{ i18n.t('← 返回道具列表') }}</a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)"/></div></nav>
-  <nav class="breadcrumbs" [attr.aria-label]="i18n.t('当前位置')"><a [routerLink]="i18n.link('/data/items.html')">{{ i18n.t('道具图鉴') }}</a><span aria-hidden="true">/</span><span>{{ i18n.t('外观道具') }}</span></nav>
+  <nav class="masthead" [attr.aria-label]="i18n.t('站点导航')"><a [routerLink]="i18n.link('/')" class="brand"><span aria-hidden="true">◈</span> HAVEN <small>PSOBB</small></a><div class="masthead-actions"><a [routerLink]="i18n.link('/items/')">{{ i18n.t('← 返回道具列表') }}</a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)"/></div></nav>
+  <nav class="breadcrumbs" [attr.aria-label]="i18n.t('当前位置')"><a [routerLink]="i18n.link('/items/')">{{ i18n.t('道具图鉴') }}</a><span aria-hidden="true">/</span><span>{{ i18n.t('外观道具') }}</span></nav>
   <section class="intro" aria-labelledby="cosmetics-title">
     <div><p class="eyebrow">EPHINEA / COSMETIC ITEMS</p><h1 id="cosmetics-title">{{ i18n.t('外观道具') }}</h1><p class="intro-text">{{ copy('只改变武器或红色手镯的外观，性能保持不变的 Ephinea 限定道具。') }}</p></div>
     <div class="inventory-note"><strong>{{ hearts.length + paints.length + platings.length }}<span>{{ i18n.t('件道具') }}</span></strong><p>{{ i18n.t('Ephinea 限定道具') }}</p></div>
   </section>
   <nav class="detail-nav" [attr.aria-label]="i18n.t('外观道具分类')">
-    <a [routerLink]="i18n.link('/data/cosmetics.html')" fragment="weapon-hearts">{{ i18n.t('武器之心') }} <small>{{ hearts.length }}</small></a>
-    <a [routerLink]="i18n.link('/data/cosmetics.html')" fragment="ring-paints">{{ i18n.t('戒指染色') }} <small>{{ paints.length }}</small></a>
-    <a [routerLink]="i18n.link('/data/cosmetics.html')" fragment="ring-platings">{{ i18n.t('戒指外观') }} <small>{{ platings.length }}</small></a>
+    <a [routerLink]="i18n.link('/cosmetics/')" fragment="weapon-hearts">{{ i18n.t('武器之心') }} <small>{{ hearts.length }}</small></a>
+    <a [routerLink]="i18n.link('/cosmetics/')" fragment="ring-paints">{{ i18n.t('戒指染色') }} <small>{{ paints.length }}</small></a>
+    <a [routerLink]="i18n.link('/cosmetics/')" fragment="ring-platings">{{ i18n.t('戒指外观') }} <small>{{ platings.length }}</small></a>
   </nav>
 
   <section id="weapon-hearts" class="detail-section cosmetics-kind" aria-labelledby="weapon-hearts-title">

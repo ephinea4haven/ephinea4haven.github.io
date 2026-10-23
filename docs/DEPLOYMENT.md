@@ -56,13 +56,66 @@ Local OS coverage does not prove Linux runner equivalence, which is why CI keeps
 its own quality checks. If the configured npm registry needs overriding, use
 `npm_config_registry=https://registry.npmjs.org npm run release:prepare`.
 
-The September 28 build reports 3,802 prerendered Angular hosts and 135 event
+The current build reports 5,905 prerendered Angular hosts and 135 event
 content fragments across the site's Chinese, English and Japanese editions.
 `_site/build-manifest.json` is the authoritative inventory. Artifact validation
 rejects non-Angular application hosts, retired runtimes, missing local resources,
 and operating-system metadata before `_site` is published atomically. The source
 test gate separately rejects malformed HTML, unresolved relative content links
 and invalid material-plan presets.
+
+## October 24, 2026 semantic Angular routes
+
+Public pages use semantic directory URLs, with Chinese at the root and English
+and Japanese under `/en/` and `/ja/`. `content/page-routes.json` owns authored-page
+routes; feature components own their Angular routes. Source `.html` filenames
+remain build inputs and have no published compatibility aliases.
+
+GitHub Pages serves each route from its prerendered `index.html`: direct entry
+and refresh work without rewrite rules. A missing route returns HTTP 404.
+Angular navigation preserves query parameters, fragments and history behavior;
+event-year changes update the active page without reloading the application.
+
+`content/external-systems.json` centralizes Drop Charts, the quest editor and
+Mag Feeder origins. Links remain direct cross-site anchors. The old 404 redirect
+dispatcher is removed. Earlier dated release records below describe their own
+historical behavior, not the current route contract.
+
+Development validation covers live route edits and search category refresh.
+`npm run test:dev:integration` passed, and the deliberate invalid-input failure
+verified byte-for-byte source restoration and shutdown of both servers. These
+tests mutate fixtures and run separately from the release gate.
+
+This release also incorporates [Dependabot #40](https://github.com/ephinea4haven/ephinea4haven.github.io/pull/40):
+Pillow 12.3.0 → 13.0.0 in `scripts/requirements-maps.txt`. Image tooling requires
+Python 3.11+; the project does not use the APIs removed in
+[Pillow 13](https://pillow.readthedocs.io/en/stable/releasenotes/13.0.0.html).
+An independent Python 3.14 environment supplies Pillow 13 for release validation.
+
+The release audit exposed Vite advisories affecting the Angular builder's pinned
+8.3.0. A scoped `@angular/build` override selects Vite 8.3.3, the patched release
+listed by the [upstream advisory](https://github.com/advisories/GHSA-9jrq-w75r-8gcw).
+The lockfile includes its required Rolldown dependency update. Angular framework
+versions are unchanged, and the release audit remains enforced at `low`.
+
+`npm run release:prepare` passed with the upgraded dependencies: locked install,
+zero audit vulnerabilities, all business tests, two identical production manifests,
+22/22 CI smoke cases and 6,337/6,337 browser cases (8.7 minutes, no retries).
+The artifact contains 5,905 prerendered routes and 135 event fragments; JavaScript
+gzip totals 1,049,641 / 1,050,000 bytes, with English 534,413 and Japanese 591,714
+/ 700,000 each. The isolated Pillow 13 map/card test run passed 46/46 cases.
+
+After the Vite upgrade, two development integration attempts timed out waiting
+for a template HMR update. A browser/WebSocket diagnostic run and a subsequent
+unchanged normal run both completed successfully, including route edits and
+cleanup. No HMR workaround, timeout increase or relaxed assertion was introduced.
+This intermittent development-only observation is retained for follow-up if it
+recurs; the production browser suite passed without retries.
+
+The maintainer authorized final review, documentation alignment, commit, push
+and deployment. Publication is established by the Pages workflow for the pushed
+revision, followed by live-site verification; local checks alone do not establish
+deployment.
 
 ## October 20, 2026 Ill Gill render, HD artwork and dropcharts wording
 

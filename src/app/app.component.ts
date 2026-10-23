@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { NavigationScroll } from './shared/navigation-scroll.service';
 import { RouterOutlet } from '@angular/router';
 import { LanguageBarComponent } from './shared/language-bar.component';
 import { SiteSearchComponent } from './search/site-search.component';
@@ -9,4 +10,6 @@ import { SiteSearchComponent } from './search/site-search.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<haven-language-bar /><router-outlet /><haven-site-search />',
 })
-export class AppComponent {}
+export class AppComponent {
+  private readonly scroll = inject(NavigationScroll);
+}

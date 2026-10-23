@@ -22,7 +22,7 @@ export function filterCards(cards:CardSummary[], filters:{type:string;class:stri
     && (!filters.rank || card.rank===filters.rank)
     && (!q || [card.names.en,card.names.ja,card.tableName.en].some(name=>normalize(name).includes(q))));
 }
-export const cardPath = (id:number) => `/data/ep3-cards/${id}.html`;
+export const cardPath = (id:number) => `/cards/${id}/`;
 
 export const effectFields = ['type','expr','when','arg1','arg2','arg3'] as const;
 export type CardEffect = Record<typeof effectFields[number]|'effectNum'|'applyCriterion'|'nameIndex',string|number>;

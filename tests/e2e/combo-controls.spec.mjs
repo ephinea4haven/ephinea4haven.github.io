@@ -5,7 +5,7 @@ for (const language of ['', '/en', '/ja']) {
     for (const width of [320, 390, 1440]) {
       test(`Combo options stay compact and clickable: ${language || 'zh'} ${mode} ${width}px`, async ({ page }) => {
         await page.setViewportSize({ width, height: 1000 });
-        await page.goto(`${language}/tools/${mode}.html`);
+        await page.goto(`${language}/${mode === 'cc' ? 'combo-calculator' : 'combo-calculator/one-person'}/`);
         await page.evaluate(() => document.fonts.ready);
 
         // Checkbox labels must size to their contents, not stretch to a form-grid cell.

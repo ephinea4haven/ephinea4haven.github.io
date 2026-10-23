@@ -15,12 +15,10 @@ product copy must not claim more than that.
 
 ### Languages and URLs
 
-Each language version of a page is a separate prerendered page at its own URL,
-following the established pattern of multilingual static sites (Docusaurus,
-Hugo, MDN):
+Each published language version has its own Angular route and prerendered entry:
 
-- Chinese keeps every existing URL (`/guide/ep1ch.html`); English and Japanese
-  live under `/en/` and `/ja/` (`/en/guide/ep1ch.html`). A page has a language URL
+- Chinese uses unprefixed semantic routes (`/challenge/episode-1/`); English and Japanese
+  live under `/en/` and `/ja/` (`/en/challenge/episode-1/`). A page has a language URL
   only when it is actually written in that language.
 - The URL is the only source of a page's language. Every page links its language
   versions with `<link rel="alternate" hreflang>` and a canonical URL on
@@ -95,11 +93,35 @@ archive has 45 year-specific source fragments, published in three languages as
 is the source of truth for this inventory and for the JavaScript budgets applied
 to each route.
 
-The historical URLs are part of the product contract. The Angular build
-prerenders routes and `scripts/build_site.mjs` installs each result at its
-existing `.html` path. Directory-index aliases remain available where they
-already existed. Year-specific event HTML files are content fragments loaded by
-their Angular event route, not independent application hosts.
+Public URLs describe content and features (`/items/`, `/enemies/`, `/character-stats/`).
+`content/page-routes.json` explicitly assigns routes to authored content identities;
+source filenames remain build inputs. Feature components use Angular lazy routes.
+The content generator compiles internal page links to `RouterLink`, preserving
+query parameters and fragments. Source references are resolved during compilation;
+there is no runtime translation of old source URLs or legacy page route registry.
+Search, language coverage and publication consume the public route contract.
+
+`content/external-systems.json` owns the origins of Drop Charts, the quest editor,
+and Mag Feeder. Authored anchors identify their system with `data-external-system`
+and keep its path/query in `href`; compilation resolves the final absolute URL
+and applies the page language to Drop Charts. Angular catalog templates consume
+the same registry. These remain native cross-site links, including their existing
+new-tab behavior; they are not local redirect routes. Retired system URLs return
+404 instead of using the error page as a redirect dispatcher.
+
+`scripts/build_site.mjs` installs prerendered routes as `<route>/index.html`,
+independently of source location. Old standalone source HTML is not copied to the
+artifact. Year-specific event HTML remains fetched content, not a page route.
+
+GitHub Pages behavior was checked with GET requests on 2026-10-23: an existing
+directory without a trailing slash returns 301 to the slash URL and preserves
+queries; both the directory URL and explicit `index.html` return 200. Missing
+paths return the custom `404.html` body with HTTP 404, not an SPA 200 fallback.
+Every valid public page therefore has a prerendered entry. `PublicUrlSerializer`
+keeps Angular-generated URLs consistent with the host's slash convention; explicit
+index-document visits normalize through Angular. The preview server reproduces
+directory redirects and missing-path status codes. The root deployment uses
+`<base href="/">`; changing the deployment base is outside this contract.
 
 There is one browser runtime:
 
@@ -206,7 +228,7 @@ replacing the response text.
 
 ## Content and application routes
 
-`/guide/launcher.html` documents Ephinea Launcher 3.5.2 in Chinese with English
+`/help/launcher/` documents Ephinea Launcher 3.5.2 in Chinese with English
 control labels. It is a passive content route with scoped styles in
 `assets/css/launcher-guide.css` and seven native Windows screenshots in
 `assets/img/launcher/`. The home directory and graphics API guide link to it.
@@ -232,17 +254,30 @@ their source document and emits root-relative URLs. Generated content is rejecte
 if an unresolved relative link remains, so a local section jump cannot be
 reinterpreted as a navigation to the home route.
 
+Internal page links compile to `RouterLink`; fragments and query parameters stay
+separate from the route path. Content behaviors that reveal tabs or hidden sections
+subscribe to `ActivatedRoute.fragment`, since Router navigation does not emit a
+native `hashchange`. Subscriptions and Mag observers are disposed with the page.
+Event years subscribe to query parameters, cancel superseded fetches, and reset
+year-specific content and layout before rendering the next selection.
+
+`PublicUrlSerializer` normalizes incoming directory slashes and emits canonical
+trailing-slash URLs. `NavigationScroll` consumes Router scroll events after render:
+native anchor scrolling honors CSS offsets, browser history restores positions,
+and query-only changes preserve scroll. The item list owns its remembered position.
+Initial hydration restores the requested anchor after the application stabilizes.
+
 Dedicated components are preferred when state changes the rendered model, such
 as Combo, status, character tables and prices. Scoped directives are used for
 stable document-like content whose interaction is naturally DOM-local, such as
 tabs, filters and event previews.
 
-`/data/equipment_technique_boosts.html` is the canonical equipment-based
+`/techniques/equipment-boosts/` is the canonical equipment-based
 Technique boost reference. Its weapon, frame and barrier rows follow the Ephinea
 Wiki source, while every displayed equipment name resolves through
 `items_i18n.js`.
 
-`/data/items.html` is the full item catalog; `/data/items/{slug}.html` is the
+`/items/` is the full item catalog; `/items/{slug}/` is the
 individual detail route. `scripts/generate_item_catalog.mjs` derives a compact
 search index, server-only details and ignored `assets/data/items/*.json` from
 committed facts. The build generates detail hosts directly from that inventory,
@@ -255,7 +290,7 @@ Detail JSON requests append `?v=` with a hash of the whole generated detail set
 change is never served from a stale browser cache; the monster catalog does the
 same with its own version file.
 
-`/data/cosmetics.html` presents weapon hearts, ring paints and ring platings from
+`/cosmetics/` presents weapon hearts, ring paints and ring platings from
 one generated dataset. The generator validates every heart's compatibility against
 the Weapon hearts list page, resolves all targets, results and trade items to
 catalog entries, and fails the build on unknown items, colors or events. Page-only
@@ -276,7 +311,8 @@ content generator compiles every fragment once per language into
 `/event/<event>/<year>.html` and under `/en/` and `/ja/`. Each overview edition
 embeds its newest compiled fragment in a hidden, inert regular DOM wrapper and
 builds its year navigation from the committed year files. After hydration, the
-browser selects the requested year: default or invalid years activate the
+Angular year navigation and content react to query changes and browser history.
+Superseded fetches are aborted and cannot replace a later selection. Default or invalid years activate the
 embedded edition without a fetch; historical years remove it before fetching
 their fragment. The default edition stays hidden even before JavaScript starts,
 and a failed historical request shows only the selected year's error. Regular
@@ -284,6 +320,12 @@ DOM children preserve Angular's hydration tree; native `template` contents do
 not. Embedded and fetched content come from the same compiled documents.
 Fragment section links name the archive host, `?year=` and anchor, never the
 fragment resource.
+
+`EventYearNavComponent` owns year links. Fetched fragment links are handled only
+inside marked fragment containers by `FragmentNavigationDirective`, preserving
+native modified clicks, targets and downloads. Router title resolvers own the
+selected-year title. Window listeners and observers created by the Mag page are
+released when its Angular directive is destroyed.
 
 `SeasonalEventBehavior` and `EventArchiveBehavior` read the page language and
 fetch that language's fragments. Chinese fragments keep the English item names of
@@ -583,9 +625,17 @@ npm ci
 npm test
 npm run build
 npm run test:e2e
+npm run test:dev:integration
 npm run dev
 npm run preview
 ```
+
+Development search reloads its indexing module after generation and compilation;
+that module reads `content/page-routes.json` directly so Node's dependency cache
+cannot retain obsolete categories after a route edit. The development integration
+test verifies live route changes with the tools filter, source restoration and
+server shutdown. Run it separately from builds: it temporarily edits authored
+inputs, snapshots them before starting, and restores them even on failure.
 
 Use current stable, non-prerelease dependencies and commit exact direct versions.
 Dependency updates are accepted only after the complete release gate passes.
@@ -641,8 +691,8 @@ reviewed images. Regenerating every image requires those local inputs.
 
 ## Episode III card catalog
 
-`src/app/ep3-card-catalog/` owns `/data/ep3-cards.html` and
-`/data/ep3-cards/{id}.html`, each with English and Japanese route variants.
+`src/app/ep3-card-catalog/` owns `/cards/` and
+`/cards/{id}/`, each with English and Japanese route variants.
 The 700-card snapshot in `content/ep3-card-catalog/cards.json` is extracted locally
 from pinned GPSE8P game inputs. Build and CI need only that snapshot and committed
 WebPs. `generate_ep3_card_catalog.mjs` uses the atomic `generatedFiles()` writer

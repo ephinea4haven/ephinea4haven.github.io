@@ -3,6 +3,13 @@
 > Decision date: 2026-08-09
 > Status: completed, release-validated and deployed from `master` (2026-08-10)
 
+This is the historical August migration record. The October 24 semantic-route
+change supersedes its URL-preservation and external-redirect descriptions:
+Angular now owns semantic directory URLs, source filenames remain build inputs,
+and external systems use centrally maintained direct links. See
+[the current architecture](ARCHITECTURE.md) and
+[the deployment runbook](DEPLOYMENT.md) for the current contract.
+
 ## Outcome
 
 Angular 22 owns the complete public site: the landing page, error page, guides,

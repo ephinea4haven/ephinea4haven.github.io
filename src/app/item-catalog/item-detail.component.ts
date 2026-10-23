@@ -1,3 +1,4 @@
+import externalSystems from '../../../content/external-systems.json';
 import { DOCUMENT } from '@angular/common';
 import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, effect, inject, linkedSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -18,6 +19,7 @@ import { ItemImageComponent } from './item-image.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemDetailComponent {
+  readonly externalSystems = externalSystems;
   readonly imageKindLabel = imageKindLabel;
   readonly i18n = inject(CatalogLanguageService);
   private readonly route = inject(ActivatedRoute);

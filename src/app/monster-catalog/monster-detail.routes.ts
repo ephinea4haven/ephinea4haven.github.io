@@ -5,7 +5,7 @@ import { MonsterDataService } from './monster-data.service';
 export interface MonsterResult {detail:MonsterDetail|null;failed:boolean}
 const resolve:ResolveFn<MonsterResult> = async route => {
   const service = inject(MonsterDataService);
-  const id = (route.paramMap.get('monster') || '').replace(/\.html$/,'');
+  const id = (route.paramMap.get('monster') || '');
   if (!MONSTER_BY_ID.has(id)) return {detail:null,failed:false};
   try {return {detail:await service.load(id),failed:false};} catch {return {detail:null,failed:true};}
 };

@@ -92,7 +92,7 @@ export async function devRoutes(root) {
     readFile(path.join(root, 'src/app/generated/ep3-card-catalog/index.json'), 'utf8').then(JSON.parse),
   ]);
   const routes = new Set();
-  const parameters = { card: ep3Cards.map(row => `${row.id}.html`), item: catalog.map(row => `${row[0]}.html`), monster: monsters.map(row => `${row.id}.html`) };
+  const parameters = { card: ep3Cards.map(row => `${row.id}`), item: catalog.map(row => `${row[0]}`), monster: monsters.map(row => `${row.id}`) };
   for (const feature of featurePaths(features)) {
     const parameter = /:([\w]+)/.exec(feature)?.[1];
     if (parameter && !parameters[parameter]) throw new Error(`Unknown dev route parameter: ${parameter}`);
@@ -111,5 +111,5 @@ export async function devRoutes(root) {
     ts.forEachChild(node, visit);
   }
   visit(sourceTree(content));
-  return [...routes].sort();
+  return [...routes].map(route => route.endsWith('/') || route.endsWith('.html') ? route : route + '/').sort();
 }

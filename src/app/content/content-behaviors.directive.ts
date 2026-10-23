@@ -1,6 +1,8 @@
-import { afterRenderEffect, Directive, inject, signal } from '@angular/core';
+import { afterRenderEffect, Directive, inject, Injector, signal } from '@angular/core';
 import { BrowserContentBehavior } from './browser-content-behavior.directive';
 import { SiteLanguage } from '../shared/site-language.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Directive({ standalone: true })
 export class SeabedRouteBehavior extends BrowserContentBehavior {
@@ -162,6 +164,8 @@ export class MonsterFilterBehavior extends BrowserContentBehavior {
 
 @Directive({ standalone: true })
 export class ProfessionTabsBehavior extends BrowserContentBehavior {
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   protected connect(): void {
     const names = ['hunter', 'ranger', 'force'];
     const tabs = Array.from(this.host.querySelectorAll<HTMLElement>('[data-profession]'));
@@ -175,10 +179,10 @@ export class ProfessionTabsBehavior extends BrowserContentBehavior {
         tab.tabIndex = active ? 0 : -1;
       }
       for (const panel of panels) panel.hidden = panel.id !== name;
-      if (updateUrl) history.replaceState(null, '', `#${name}`);
+      if (updateUrl) void this.router.navigate([], { relativeTo: this.route, fragment: name, queryParamsHandling: 'preserve', replaceUrl: true });
     };
     const activateFromHash = () => {
-      const hash = location.hash.slice(1);
+      const hash = this.route.snapshot.fragment ?? '';
       const target = hash ? this.host.querySelector<HTMLElement>(`#${CSS.escape(hash)}`) : null;
       const panel = target?.closest<HTMLElement>('.profession-panel');
       activate(panel?.id ?? hash, false);
@@ -197,14 +201,14 @@ export class ProfessionTabsBehavior extends BrowserContentBehavior {
         next.focus();
       }) as EventListener);
     });
-    this.listen(window, 'hashchange', activateFromHash);
-    activateFromHash();
+    this.route.fragment.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(activateFromHash);
   }
 }
 
 @Directive({ standalone: true })
-export class NotFoundRedirectBehavior extends BrowserContentBehavior {
+export class NotFoundBehavior extends BrowserContentBehavior {
   private readonly site = inject(SiteLanguage);
+  private readonly injector = inject(Injector);
   /** GitHub Pages serves one 404 page for every missing URL; it speaks the URL's language. */
   private static readonly text = {
     zh: { title: '页面未找到 - PSO Haven', heading: '404 - 页面未找到', before: '您访问的页面不存在，', link: '返回首页' },
@@ -213,36 +217,19 @@ export class NotFoundRedirectBehavior extends BrowserContentBehavior {
   };
 
   protected connect(): void {
-    const dropChartsOrigin = 'https://dropcharts.psohaven.com';
-    const pathTargets: Record<string, string> = {
-      '/tools/mag-sim.html': `https://magfeeder.psohaven.com/${location.search}${location.hash}`,
-      '/droptable/cn/CNormal.html': `${dropChartsOrigin}/bb/?lang=zh&diff=Normal`,
-      '/droptable/cn/CHard.html': `${dropChartsOrigin}/bb/?lang=zh&diff=Hard`,
-      '/droptable/cn/CVeryHard.html': `${dropChartsOrigin}/bb/?lang=zh&diff=VeryHard`,
-      '/droptable/cn/CUltimate.html': `${dropChartsOrigin}/bb/?lang=zh&diff=Ultimate`,
-      '/droptable/en/Normal.html': `${dropChartsOrigin}/bb/?lang=en&diff=Normal`,
-      '/droptable/en/Hard.html': `${dropChartsOrigin}/bb/?lang=en&diff=Hard`,
-      '/droptable/en/VeryHard.html': `${dropChartsOrigin}/bb/?lang=en&diff=VeryHard`,
-      '/droptable/en/Ultimate.html': `${dropChartsOrigin}/bb/?lang=en&diff=Ultimate`,
-    };
-    const legacy = location.pathname.match(/^\/data\/droptable\/(bb|dc|ngc)(?:\/index\.html)?\/?$/);
-    const target = pathTargets[location.pathname]
-      ?? (legacy ? `${dropChartsOrigin}/${legacy[1]}/${location.search}${location.hash}` : null);
-    if (target) {
-      location.replace(target);
-      return;
-    }
-    const language = this.site.language();
-    const text = NotFoundRedirectBehavior.text[language];
-    const heading = this.host.querySelector('h1');
-    const message = this.host.querySelector('h1 + p');
-    if (!heading || !message) return;
-    document.title = text.title;
-    heading.textContent = text.heading;
-    const home = document.createElement('a');
-    home.href = language === 'zh' ? '/' : `/${language}/`;
-    home.textContent = text.link;
-    message.replaceChildren(text.before, home);
+    afterRenderEffect(() => {
+      const language = this.site.language();
+      const text = NotFoundBehavior.text[language];
+      const heading = this.host.querySelector('h1');
+      const message = this.host.querySelector('h1 + p');
+      if (!heading || !message) return;
+      document.title = text.title;
+      heading.textContent = text.heading;
+      const home = document.createElement('a');
+      home.href = language === 'zh' ? '/' : `/${language}/`;
+      home.textContent = text.link;
+      message.replaceChildren(text.before, home);
+    }, { injector: this.injector });
   }
 }
 

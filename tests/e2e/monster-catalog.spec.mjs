@@ -13,8 +13,8 @@ for (const [id, chinese, english, japanese] of [
   ['epsigard', '厄普西隆之盾', 'Epsigard', 'イプシガード'],
 ]) {
   test(`${english} uses the confirmed name in search, detail and language changes`, async ({page}) => {
-    await page.goto('/data/enemies.html?ep=2&q=' + encodeURIComponent(chinese));
-    const row = page.locator(`.monster-row[href*="/enemies/${id}.html"]`);
+    await page.goto('/enemies/?ep=2&q=' + encodeURIComponent(chinese));
+    const row = page.locator(`.monster-row[href*="/enemies/${id}/"]`);
     await expect(row.locator('.monster-name')).toHaveText(chinese);
     await row.click();
     await expect(page.locator('.monster-hero .monster-name')).toHaveText(chinese);
@@ -27,8 +27,8 @@ for (const [id, chinese, english, japanese] of [
   });
 }
 test('Gol Dragon uses the confirmed Chinese name across search, detail and language changes',async({page})=>{
-  await page.goto('/data/enemies.html?ep=2&q='+encodeURIComponent('戈尔龙'));
-  const row=page.locator('.monster-row[href*="/enemies/gol-dragon.html"]');
+  await page.goto('/enemies/?ep=2&q='+encodeURIComponent('戈尔龙'));
+  const row=page.locator('.monster-row[href*="/enemies/gol-dragon/"]');
   await expect(row.locator('.monster-name')).toHaveText('戈尔龙');
   await row.click();
   await expect(page.locator('.monster-hero .monster-name')).toHaveText('戈尔龙');
@@ -45,8 +45,8 @@ test('monster highlights distinguish regular, rare, elite and boss names in list
     ['ill-gill',2,'Ill Gill','elite-name','700'], ['delbiter',2,'Delbiter','elite-name','700'],
     ['dragon',1,'Dragon','boss-name','900'], ['kondrieu-phase-1',4,'Kondrieu','boss-name','900'],
   ]) {
-    await page.goto(`/data/enemies.html?ep=${ep}&q=${encodeURIComponent(query)}`);
-    const row=page.locator(`.monster-row[href*="/enemies/${id}.html"]`);
+    await page.goto(`/enemies/?ep=${ep}&q=${encodeURIComponent(query)}`);
+    const row=page.locator(`.monster-row[href*="/enemies/${id}/"]`);
     const name=row.locator('.monster-name');
     await expect(name).toHaveCSS('font-weight',weight);
     if(kind) await expect(name).toHaveClass(new RegExp(kind));
@@ -66,17 +66,17 @@ test('monster highlights distinguish regular, rare, elite and boss names in list
       await expect(page.locator('.tags')).toContainText('首领');
     }
   }
-  await page.goto('/data/enemies.html');
+  await page.goto('/enemies/');
   await expect(page.locator('.monster-row .elite-name')).toHaveCount(1);
-  await page.locator('.monster-row[href*="/hildebear-e1.html"]').evaluate(el=>el.scrollIntoView({block:'center'}));
+  await page.locator('.monster-row[href*="/hildebear-e1/"]').evaluate(el=>el.scrollIntoView({block:'center'}));
   await page.screenshot({path:testInfo.outputPath('monster-highlights-desktop.png')});
   await page.setViewportSize({width:390,height:844});
-  await page.locator('.monster-row[href*="/hildebear-e1.html"]').evaluate(el=>el.scrollIntoView({block:'center'}));
+  await page.locator('.monster-row[href*="/hildebear-e1/"]').evaluate(el=>el.scrollIntoView({block:'center'}));
   await page.screenshot({path:testInfo.outputPath('monster-highlights-mobile.png')});
 });
 
 test('elite filtering preserves language and Ultimate identity and excludes ordinary enemies',async({page})=>{
-  await page.goto('/data/enemies.html?ep=1&kind=elite');
+  await page.goto('/enemies/?ep=1&kind=elite');
   await expect(page.locator('.monster-row')).toHaveCount(1);
   for(const [language,label] of [['中文','精英'],['EN (English)','Elite'],['日本語','強敵']]) {
     await page.getByRole('button',{name:language,exact:true}).click();
@@ -94,13 +94,13 @@ test('elite filtering preserves language and Ultimate identity and excludes ordi
 });
 test('monster area search results are independent of the interface language',async({page})=>{
   for(const [term,ep] of [['森林','1'],['地下砂漠','4'],['遺跡 2','1']]) {
-    await page.goto(`${term==='森林'?'':'/ja'}/data/enemies.html?ep=${ep}&q=${encodeURIComponent(term)}`);
+    await page.goto(`${term==='森林'?'':'/ja'}/enemies/?ep=${ep}&q=${encodeURIComponent(term)}`);
     await expect(page.getByRole('searchbox')).toHaveValue(term);
     const paths=(await page.locator('.monster-row').evaluateAll(rows=>rows.map(row=>row.href))).map(unprefixed);
     expect(paths.length).toBeGreaterThan(0);
     for(const [language,prefix] of [['EN (English)','/en'],['日本語','/ja'],['中文','']]) {
       await page.getByRole('button',{name:language,exact:true}).click();
-      await expect(page).toHaveURL(new RegExp(`127\\.0\\.0\\.1:\\d+${prefix}/data/enemies\\.html\\?`));
+      await expect(page).toHaveURL(new RegExp(`127\\.0\\.0\\.1:\\d+${prefix}/enemies/\\?`));
       await expect(page.getByRole('searchbox')).toHaveValue(term);
       await expect(page.locator('.monster-row')).toHaveCount(paths.length);
       expect((await page.locator('.monster-row').evaluateAll(rows=>rows.map(row=>row.href))).map(unprefixed)).toEqual(paths);
@@ -111,7 +111,7 @@ test('monster area search results are independent of the interface language',asy
 });
 
 test('monster detail context changes preserve the originating list page',async({page})=>{
-  await page.goto('/en/data/enemies.html?ep=1&q=a&page=2');
+  await page.goto('/en/enemies/?ep=1&q=a&page=2');
   const first=await page.locator('.monster-row').first().getAttribute('href');
   await page.locator('.monster-row').first().click();
   await page.locator('.section-nav a[href$="#stats"]').click();
@@ -130,27 +130,27 @@ test('monster detail context changes preserve the originating list page',async({
 });
 
 test('monster list title stays localized after query-only navigation',async({page})=>{
-  await page.goto('/en/data/enemies.html');
+  await page.goto('/en/enemies/');
   await expect(page).toHaveTitle(/Bestiary/);
   await page.getByRole('searchbox').fill('Booma');
   await expect(page).toHaveURL(/q=Booma/);
   await expect(page).toHaveTitle(/Bestiary/);
   await page.getByRole('button',{name:'日本語',exact:true}).click();
-  await expect(page).toHaveURL(/\/ja\/data\/enemies\.html\?q=Booma$/);
+  await expect(page).toHaveURL(/\/ja\/enemies\/\?q=Booma$/);
   await page.getByRole('button',{name:'アルティメット',exact:true}).click();
   await expect(page).toHaveURL(/diff=u/);
   await expect(page).toHaveTitle(/エネミー図鑑/);
 });
 
 test('monster sections stay on the detail route and retain language and conditions',async({page})=>{
-  await page.goto('/en/data/enemies/chaos-bringer.html?diff=u&mode=on');
+  await page.goto('/en/enemies/chaos-bringer/?diff=u&mode=on');
   for(const section of ['drops','stats','attacks','behavior']) {
     await page.locator(`.section-nav a[fragment="${section}"], .section-nav a[href$="#${section}"]`).click();
-    await expect(page).toHaveURL(new RegExp(`/data/enemies/chaos-bringer.html\\?.*#${section}$`));
+    await expect(page).toHaveURL(new RegExp(`/enemies/chaos-bringer/\\?.*#${section}$`));
     await expect.poll(()=>page.locator(`#${section}`).evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(60);
   }
   await page.getByRole('button',{name:'日本語',exact:true}).click();
-  await expect(page).toHaveURL(/\/ja\/data\/enemies\/chaos-bringer\.html\?.*#behavior$/);
+  await expect(page).toHaveURL(/\/ja\/enemies\/chaos-bringer\/\?.*#behavior$/);
   await page.getByRole('button',{name:'ハード',exact:true}).click();
   await expect(page).toHaveURL(/diff=h.*#behavior$/);
   await page.getByLabel('モード',{exact:true}).selectOption('off');
@@ -159,21 +159,21 @@ test('monster sections stay on the detail route and retain language and conditio
   await expect.poll(()=>page.locator('#behavior').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(60);
   await expect.poll(()=>page.evaluate(()=>history.scrollRestoration)).toBe('manual');
   await page.locator('a.back').click();
-  await expect(page).toHaveURL(/\/ja\/data\/enemies.html\?/);
+  await expect(page).toHaveURL(/\/ja\/enemies\/\?/);
   await expect.poll(()=>page.evaluate(()=>history.scrollRestoration)).toBe('auto');
 });
 test('monster direct section links scroll to the requested content',async({page})=>{
-  await page.goto('/en/data/enemies/chaos-bringer.html?diff=u#attacks');
+  await page.goto('/en/enemies/chaos-bringer/?diff=u#attacks');
   await expect.poll(()=>page.locator('#attacks').evaluate(el=>Math.abs(el.getBoundingClientRect().top))).toBeLessThan(60);
 });
 test('monster pagination scrolls to the first new result',async({page})=>{
-  await page.goto('/en/data/enemies.html?q=a');
+  await page.goto('/en/enemies/?q=a');
   await page.getByRole('button',{name:'Next →',exact:true}).click();
   await expect(page).toHaveURL(/page=2/);
   await expect(page.locator('.monster-row').first()).toBeInViewport();
 });
 test('the results heading pages like the bottom pager and stays in view',async({page})=>{
-  await page.goto('/en/data/enemies.html?q=a');
+  await page.goto('/en/enemies/?q=a');
   const steps=page.locator('.result-heading .page-steps');
   await expect(steps).toContainText('1 / 2');
   await steps.getByRole('button',{name:'Next',exact:true}).click();
@@ -182,27 +182,27 @@ test('the results heading pages like the bottom pager and stays in view',async({
   await expect(steps).toBeInViewport();
   await steps.getByRole('button',{name:'Previous',exact:true}).click();
   await expect(page).not.toHaveURL(/page=2/);
-  await page.goto('/en/data/enemies.html');
+  await page.goto('/en/enemies/');
   await expect(page.locator('.result-heading .page-steps')).toHaveCount(0);
 });
 test('Ultimate-only Megid tables never appear at lower difficulties',async({page})=>{
   for(const id of ['hildeblue-e1','hildeblue-e2','chaos-sorcerer-e1','chaos-sorcerer-e2','poison-lily-e1','nar-lily-e2','deldepth','zol-gibbon']) {
-    await page.goto(`/en/data/enemies/${id}.html?diff=n`);
+    await page.goto(`/en/enemies/${id}/?diff=n`);
     await expect(page.locator('.mechanic-table').filter({has:page.getByRole('heading',{name:/^Megid level/})})).toHaveCount(0);
     await page.getByRole('button',{name:'Ultimate',exact:true}).click();
     await expect(page.locator('.mechanic-table').filter({has:page.getByRole('heading',{name:/^Megid level/})})).toHaveCount(1);
   }
-  await page.goto('/en/data/enemies/del-lily.html?diff=n');
+  await page.goto('/en/enemies/del-lily/?diff=n');
   await expect(page.locator('.mechanic-table').filter({has:page.getByRole('heading',{name:/^Megid level/})})).toHaveCount(1);
 });
 test('shared boss mechanics preserve source phase and trigger threshold',async({page})=>{
-  await page.goto('/en/data/enemies/olga-flow-form-1.html');
+  await page.goto('/en/enemies/olga-flow-form-1/');
   await expect(page.locator('#attacks')).toContainText('Behavior/Mechanics (Second phase)');
   await expect(page.locator('#attacks')).toContainText('Divine Punishment damage threshold');
   await expect(page.locator('#attacks')).toContainText('1280');
 });
 test('monster search, context and trilingual names survive detail and return',async({page})=>{
-  await page.goto('/data/enemies.html?q=Booma&diff=n&mode=on');
+  await page.goto('/enemies/?q=Booma&diff=n&mode=on');
   await page.getByRole('button',{name:'日本語',exact:true}).click();
   await expect(page.locator('h1')).toHaveText('エネミー図鑑');
   await page.locator('.monster-row').filter({has:page.getByRole('heading',{name:'ブーマ',exact:true})}).click();
@@ -220,33 +220,33 @@ test('monster search, context and trilingual names survive detail and return',as
   await expect(page.locator('h1')).toHaveText('Bestiary');
 });
 test('all section colors display source drop probabilities and item links',async({page})=>{
-  await page.goto('/en/data/enemies/booma.html?diff=u');
+  await page.goto('/en/enemies/booma/?diff=u');
   await expect(page.locator('.drop-card')).toHaveCount(10);
   for(let i=0;i<10;i++) await expect(page.locator('.drop-card').nth(i).locator('.rate')).toHaveText(details.booma.drops.u.cells[i].map(d=>d.rate));
   await expect(page.locator('#drops')).toContainText('already includes DAR');
   await page.locator('.drop-card a').first().click();
-  await expect(page).toHaveURL(/\/en\/data\/items\//);
+  await expect(page).toHaveURL(/\/en\/items\//);
   await expect(page.locator('html')).toHaveAttribute('lang','en');
 });
 test('damage facts retain mode conditions and unknowns, with behaviour notes in the page language',async({page})=>{
-  await page.goto('/en/data/enemies/chaos-bringer.html?diff=u');
+  await page.goto('/en/enemies/chaos-bringer/?diff=u');
   await expect(page.locator('#attacks')).toContainText('700 or 1400');
   await expect(page.locator('.behavior-notes')).toContainText('knocks the player’s weapon off');
   await page.getByLabel('Mode',{exact:true}).selectOption('off');
   await expect(page.locator('#attacks')).toContainText('490 or 980');
   await expect(page.locator('#attacks')).not.toContainText('700 or 1400');
-  await page.goto('/en/data/enemies/merillia.html?diff=u');
+  await page.goto('/en/enemies/merillia/?diff=u');
   await expect(page.locator('.unknown')).toContainText('Not specified by source');
 });
 test('missing stat phases and absent rows do not become zero values',async({page})=>{
-  await page.goto('/en/data/enemies/dark-falz-form-3.html?diff=n');
+  await page.goto('/en/enemies/dark-falz-form-3/?diff=n');
   await expect(page.locator('#stats')).toContainText('No stats recorded');
   await expect(page.locator('#drops')).toContainText('boss-clear drops');
-  await page.goto('/en/data/enemies/bee-r-e1.html');
+  await page.goto('/en/enemies/bee-r-e1/');
   await expect(page.locator('#drops')).toContainText('No independent rare-drop row');
 });
 test('single-axis boss damage tabs select difficulty, not mode',async({page})=>{
-  await page.goto('/en/data/enemies/kondrieu-phase-1.html?diff=u&mode=off');
+  await page.goto('/en/enemies/kondrieu-phase-1/?diff=u&mode=off');
   await expect(page.locator('.mechanic-table')).toHaveCount(1);
   await expect(page.locator('#attacks')).toContainText('440');
   await page.getByRole('button',{name:'Normal',exact:true}).click();
@@ -255,14 +255,14 @@ test('single-axis boss damage tabs select difficulty, not mode',async({page})=>{
 });
 test('empty search and image failure remain usable',async({page})=>{
   await page.route('**/assets/img/monsters/**',route=>route.abort());
-  await page.goto('/en/data/enemies.html?q=nonexistent');
+  await page.goto('/en/enemies/?q=nonexistent');
   await expect(page.locator('.empty')).toContainText('No matching enemies');
   await page.getByRole('button',{name:'Clear filters'}).click();
   await expect(page.locator('.monster-row')).toHaveCount(forest);
   await expect(page.locator('monster-image').first()).toContainText('Image unavailable');
 });
 test('source table extractor keeps nested difficulty, row spans, notes and empty numbers',async({page})=>{
-  await page.goto('/data/enemies.html');
+  await page.goto('/enemies/');
   const source='<div class="mw-parser-output"><h2><span class="mw-headline">Behavior/Mechanics</span></h2><h3><span class="mw-headline" id="fixed">Fixed damage</span></h3><div class="tabbertab" title="Ultimate"><div class="tabbertab" title="One Person"><table class="wikitable"><tr><th>Area</th><th>Attack</th><th>Damage</th></tr><tr><td rowspan="2">Forest</td><td><span title="Landing">Jump</span></td><td>5</td></tr><tr><td>Unknown</td><td></td></tr></table></div></div></div>';
   const value=await page.evaluate(({source,fn})=>{const extract=(0,eval)('('+fn+')');return extract(new DOMParser().parseFromString(source,'text/html'));},{source,fn:extractMechanicTables.toString()});
   expect(value[0].context).toEqual(['Ultimate','One Person']);
@@ -271,7 +271,7 @@ test('source table extractor keeps nested difficulty, row spans, notes and empty
   expect(value[0].headings).toEqual(['Behavior/Mechanics','Fixed damage']);
 });
 test('source table extractor retains an attack usage table and its phase ancestors',async({page})=>{
-  await page.goto('/data/enemies.html');
+  await page.goto('/enemies/');
   const html='<div class="mw-parser-output"><h2><span class="mw-headline">Behavior/Mechanics (Second phase)</span></h2><h3><span class="mw-headline">Divine Punishment</span></h3><h4><span class="mw-headline" id="Usage">Usage</span></h4><table class="wikitable"><caption>Damage threshold</caption><tr><th>Difficulty</th><th>Threshold</th></tr><tr><td>Ultimate</td><td>750</td></tr></table></div>';
   const value=await page.evaluate(({html,fn})=>(0,eval)('('+fn+')')(new DOMParser().parseFromString(html,'text/html')),{html,fn:extractMechanicTables.toString()});
   expect(value).toHaveLength(1);
@@ -280,7 +280,7 @@ test('source table extractor retains an attack usage table and its phase ancesto
 });
 for(const width of [390,1280]) test(`monster pages fit viewport and pass accessibility at ${width}`,async({page})=>{
   await page.setViewportSize({width,height:900});
-  for(const url of ['/ja/data/enemies.html','/en/data/enemies/olga-flow-form-2.html?diff=u']){
+  for(const url of ['/ja/enemies/','/en/enemies/olga-flow-form-2/?diff=u']){
     await page.goto(url);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
     expect(await page.locator('monster-image img').evaluateAll(images=>images.every(image=>image.getBoundingClientRect().bottom<=image.parentElement.getBoundingClientRect().bottom+1))).toBe(true);
@@ -292,7 +292,7 @@ for(const width of [390,1280]) test(`monster pages fit viewport and pass accessi
 
 test('episode selection has no All option and auxiliary resets preserve the chapter',async({page})=>{
   for(const lang of ['zh','en','ja']) {
-    await page.goto(`${lang==='zh'?'':`/${lang}`}/data/enemies.html`);
+    await page.goto(`${lang==='zh'?'':`/${lang}`}/enemies/`);
     const episode=page.locator('.filters select').nth(0);
     await expect(episode).toHaveValue('1');
     await expect(episode.locator('option')).toHaveText(['EP1','EP2','EP4']);
@@ -302,14 +302,14 @@ test('episode selection has no All option and auxiliary resets preserve the chap
     const chapters=await page.locator('.monster-location span').allTextContents();
     expect(chapters.length).toBeGreaterThan(0);expect(chapters.every(x=>x==='EP1')).toBe(true);
   }
-  await page.goto('/en/data/enemies.html?ep=4&q=nonexistent');
+  await page.goto('/en/enemies/?ep=4&q=nonexistent');
   await page.getByRole('button',{name:'Clear filters',exact:true}).click();
   await expect(page.locator('.filters select').first()).toHaveValue('4');
   await expect(page.getByRole('searchbox')).toHaveValue('');
   await page.locator('.monster-row').first().click();
   await page.getByRole('link',{name:'← Back to list',exact:true}).click();
   await expect(page.locator('.filters select').first()).toHaveValue('4');
-  await page.goto('/en/data/enemies/boota.html');
+  await page.goto('/en/enemies/boota/');
   await page.getByRole('link',{name:'← Back to list',exact:true}).click();
   await expect(page.locator('.filters select').first()).toHaveValue('4');
   await page.reload();await expect(page.locator('.filters select').first()).toHaveValue('4');
@@ -318,7 +318,7 @@ test('episode selection has no All option and auxiliary resets preserve the chap
 test('complete Dark Falz previews load on Ultimate pages without cyan wings or clipped geometry',async({page})=>{
   await page.setViewportSize({width:390,height:844});
   for(const form of [1,2,3]) {
-    await page.goto(`/data/enemies/dark-falz-form-${form}.html?diff=u&area=Ruins&ep=1`);
+    await page.goto(`/enemies/dark-falz-form-${form}/?diff=u&area=Ruins&ep=1`);
     const img=page.locator('.portrait img');
     await expect(img).toHaveAttribute('src',`/assets/img/monsters/render/DarkFalzForm${form}.webp`);
     const pixels=await img.evaluate(async image=>{
@@ -342,7 +342,7 @@ test('complete Dark Falz previews load on Ultimate pages without cyan wings or c
 });
 
 test('portrait selection defaults to the model render, follows appearance and updates its full image link',async({page})=>{
-  await page.goto('/en/data/enemies/booma.html');
+  await page.goto('/en/enemies/booma/');
   const portrait=page.locator('.portrait');const img=portrait.locator('img');
   await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','HD image']);
   await expect(img).toHaveAttribute('src',details.booma.renderImage);
@@ -363,7 +363,7 @@ test('portrait selection defaults to the model render, follows appearance and up
   await expect(img).toHaveAttribute('src',details.booma.renderImage);
 });
 test('alternate model poses are offered after the main render',async({page})=>{
-  await page.goto('/en/data/enemies/olga-flow-form-1.html');
+  await page.goto('/en/enemies/olga-flow-form-1/');
   const portrait=page.locator('.portrait');const img=portrait.locator('img');
   await expect(portrait.locator('.image-switch button')).toHaveText(['Model render','Ground pose','HD image','HD ground pose']);
   await expect(img).toHaveAttribute('src',details['olga-flow-form-1'].renderImage);
@@ -373,13 +373,13 @@ test('alternate model poses are offered after the main render',async({page})=>{
   await portrait.getByRole('button',{name:'HD ground pose',exact:true}).click();
   await expect(img).toHaveAttribute('src',details['olga-flow-form-1'].hdAlternates[0].image);
   await expect(portrait).toContainText('Image source: HD gallery');
-  await page.goto('/data/enemies/olga-flow-form-1.html');
+  await page.goto('/enemies/olga-flow-form-1/');
   await expect(page.locator('.portrait .image-switch button')).toHaveText(['模型渲染','地面姿势','高清图片','高清·地面姿势']);
 });
 test('the Wiki image is only the portrait of entries without a render or HD image',async({page})=>{
-  await page.goto('/en/data/enemies/booma.html');
+  await page.goto('/en/enemies/booma/');
   await expect(page.locator('.portrait .image-switch button')).toHaveText(['Model render','HD image']);
-  await page.goto('/en/data/enemies/vol-opt-form-1.html');
+  await page.goto('/en/enemies/vol-opt-form-1/');
   await expect(page.locator('.image-switch')).toHaveCount(0);
   await expect(page.locator('.portrait img')).toHaveAttribute('src',/\/wiki\//);
   await expect(page.locator('.portrait')).toContainText('Image source: Ephinea Wiki');
@@ -387,7 +387,7 @@ test('the Wiki image is only the portrait of entries without a render or HD imag
 });
 test('monster lists request no HD artwork',async({page})=>{
   const hd=[];page.on('request',request=>{if(request.url().includes('/monsters/hd/'))hd.push(request.url());});
-  await page.goto('/en/data/enemies.html');
+  await page.goto('/en/enemies/');
   await expect(page.locator('.monster-row')).toHaveCount(forest);
   await page.getByRole('button',{name:'Ultimate',exact:true}).click();
   await expect(page).toHaveURL(/diff=u/);
@@ -398,7 +398,7 @@ const portraitButtons={render:'Model render',hd:'HD image'};
 for(const [mode,alternate] of [['render','hd'],['hd','render']]) test(`a failed ${mode} portrait can be retried after changing image source`,async({page})=>{
   const pattern=`**/assets/img/monsters/${mode}/**`;
   await page.route(pattern,route=>route.abort());
-  await page.goto('/en/data/enemies/booma.html');
+  await page.goto('/en/enemies/booma/');
   const portrait=page.locator('.portrait');
   const failedButton=portraitButtons[mode];
   const alternateButton=portraitButtons[alternate];
@@ -416,8 +416,8 @@ for(const view of ['detail','list']) test(`a failed normal portrait can load aga
   const normalImage=view==='detail'?details.booma.renderImage:JSON.parse(readFileSync('src/app/generated/monster-catalog/index.json')).find(m=>m.id==='booma').thumbnail;
   const pattern=`**${normalImage}`;
   await page.route(pattern,route=>route.abort());
-  await page.goto(view==='detail'?'/en/data/enemies/booma.html':'/en/data/enemies.html?q=Booma');
-  const portrait=page.locator(view==='detail'?'.portrait':'.monster-row[href*="/booma.html"]');
+  await page.goto(view==='detail'?'/en/enemies/booma/':'/en/enemies/?q=Booma');
+  const portrait=page.locator(view==='detail'?'.portrait':'.monster-row[href*="/booma/"]');
   await expect(portrait.locator('monster-image')).toContainText('Image unavailable');
   await page.getByRole('button',{name:'Ultimate',exact:true}).click();
   await expect(portrait.locator('img')).not.toHaveAttribute('src',normalImage);
@@ -430,14 +430,14 @@ for(const view of ['detail','list']) test(`a failed normal portrait can load aga
 
 test('difficulty buttons use client names and lists browse one area while searches span the episode',async({page})=>{
   for(const [prefix,names,area] of [['',['普通','困难','极难','极限'],'森林'],['/en',['Normal','Hard','Very Hard','Ultimate'],'Forest'],['/ja',['ノーマル','ハード','ベリーハード','アルティメット'],'森']]) {
-    await page.goto(`${prefix}/data/enemies.html`);
+    await page.goto(`${prefix}/enemies/`);
     await expect(page.locator('.context-controls button')).toHaveText(names);
     const areaSelect=page.locator('.filters select').nth(1);
     await expect(areaSelect).toHaveValue('Forest');
     await expect(areaSelect.locator('option:checked')).toHaveText(area);
     await expect(page.locator('.monster-row')).toHaveCount(forest);
   }
-  await page.goto('/data/enemies.html');
+  await page.goto('/enemies/');
   await page.getByRole('button',{name:'极限',exact:true}).click();
   await expect(page).toHaveURL(/diff=u/);
   await page.locator('.filters select').nth(1).selectOption('Mine');
@@ -452,13 +452,13 @@ test('difficulty buttons use client names and lists browse one area while search
 
 test('each episode\'s regions together list every monster on a single page',async({page})=>{
   for(const ep of [1,2,4]) {
-    await page.goto(`/en/data/enemies.html?ep=${ep}`);
+    await page.goto(`/en/enemies/?ep=${ep}`);
     const regions=await page.locator('.filters select').nth(1).locator('option').evaluateAll(options=>options.map(o=>o.value));
     const seen=new Set();
     for(const region of regions) {
-      await page.goto(`/en/data/enemies.html?ep=${ep}&area=${encodeURIComponent(region)}`);
+      await page.goto(`/en/enemies/?ep=${ep}&area=${encodeURIComponent(region)}`);
       await expect(page.locator('.pagination span')).toHaveText('1 / 1');
-      for(const href of await page.locator('.monster-row').evaluateAll(rows=>rows.map(r=>r.getAttribute('href'))))seen.add(href.split('?')[0].split('/').pop().replace('.html',''));
+      for(const href of await page.locator('.monster-row').evaluateAll(rows=>rows.map(r=>r.getAttribute('href'))))seen.add(href.split('?')[0].split('/').filter(Boolean).pop());
     }
     expect([...seen].sort()).toEqual(monsters.filter(m=>m.episode===ep).map(m=>m.id).sort());
   }

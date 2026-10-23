@@ -4,7 +4,7 @@ const authority = JSON.parse(readFileSync(process.env.DROPCHARTS_I18N_AUTHORITY 
 
 for (const prefix of ['', '/en', '/ja']) {
   test(`BB items ${prefix || '/zh'}: multilingual specials and section links`, async ({ page }) => {
-    await page.goto(`${prefix}/data/bb_items.html`);
+    await page.goto(`${prefix}/item-codes/`);
     const itemCells = await page.locator('td[data-item-en]').evaluateAll(cells => cells.map(cell => ({ name: cell.dataset.itemEn, text: cell.textContent })));
     expect(itemCells).toHaveLength(945);
     const language = prefix.slice(1) || 'zh';

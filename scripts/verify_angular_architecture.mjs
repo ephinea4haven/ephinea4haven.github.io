@@ -232,8 +232,8 @@ console.log(`Angular ownership verified across ${htmlFiles.length} HTML sources;
 // EP3 owns its routes and client data; full card text must remain server-only.
 const ep3Routes = await readFile(path.join(root, 'src/app/app.routes.ts'), 'utf8');
 const ep3Server = await readFile(path.join(root, 'src/app/app.routes.server.ts'), 'utf8');
-if (!ep3Routes.includes('data/ep3-cards.html') || !ep3Routes.includes('data/ep3-cards/:card')
-    || !ep3Server.includes('ep3Cards.map(c=>({card:`${c.id}.html`}))')) {
+if (!ep3Routes.includes('${prefix}cards') || !ep3Routes.includes('cards/:card')
+    || !ep3Server.includes('ep3Cards.map(c=>({card:`${c.id}`}))')) {
   throw new Error('EP3 list and every card require Angular route and prerender ownership');
 }
 for (const file of angularSources.filter(file => file.includes('/ep3-card-catalog/'))) {

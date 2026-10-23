@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { PageChromeComponent } from '../shared/page-chrome.component';
 import { SiteLanguage } from '../shared/site-language.service';
 import { toolChoice, toolNumber, ToolQuery, toolQueryString, ToolUrlState } from '../shared/tool-url-state';
@@ -69,13 +69,14 @@ const TEXT = {
 
 @Component({
   selector: 'haven-status',
-  imports: [FormsModule, PageChromeComponent],
+  imports: [RouterLink, FormsModule, PageChromeComponent],
   providers: [ToolUrlState],
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.css', './status-layout.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusComponent {
+  protected readonly linkRouter = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly urlState = inject(ToolUrlState);
   private readonly meta = inject(Meta);
@@ -204,7 +205,7 @@ export class StatusComponent {
 
   /** Link to this build in the page's language. */
   shareUrl(): string {
-    return `${this.site.link('/tools/status.html')}?${toolQueryString(this.query())}`;
+    return `${this.site.link('/character-stats/')}?${toolQueryString(this.query())}`;
   }
 
   private query(): ToolQuery {

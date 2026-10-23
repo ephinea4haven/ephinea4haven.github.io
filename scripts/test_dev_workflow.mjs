@@ -13,15 +13,20 @@ let log = '';
 const started = Date.now();
 const milestones = [];
 const mark = message => { milestones.push({ seconds: (Date.now()-started)/1000, message }); console.log(message); };
+const template = root+'/src/app/combo/combo.component.html';
+const content = root+'/tools/materialplan.html';
+const translations = root+'/content/home-i18n.json';
+const routeRegistry = root+'/content/page-routes.json';
+// Validate every filesystem input before starting processes or modifying sources.
+const originals = new Map(await Promise.all([template, content, translations, routeRegistry]
+  .map(async file => [file, await readFile(file, 'utf8')])));
+const restore = file => writeFile(file, originals.get(file));
 const child = spawn(process.execPath, ['scripts/dev_site.mjs', '--port', '5175'], { cwd: root, stdio: ['ignore','pipe','pipe'] });
 for (const stream of [child.stdout, child.stderr]) stream.on('data', chunk => { log += chunk; void appendFile(report, chunk); });
 const waitFor = async (predicate, label, timeout=120000) => {
  const deadline=Date.now()+timeout;
  while(!predicate()) { if(Date.now()>deadline) throw new Error(`Timed out: ${label}`); if(child.exitCode!==null) throw new Error(`Dev exited ${child.exitCode}: ${log.slice(-2000)}`); await new Promise(resolve=>setTimeout(resolve,100)); }
 };
-const template = root+'/src/app/combo/combo.component.html';
-const content = root+'/tools/materialplan.html';
-const translations = root+'/content/home-i18n.json';
 const angularToken = ' data-dev-probe="angular-refresh"';
 const contentToken = '<p data-dev-probe="generated-refresh">DevFreshIndexProbeoctober</p>';
 const invalidToken = '\nDEV_INVALID_JSON_PROBE\n';
@@ -31,7 +36,7 @@ try {
  await waitFor(()=>log.includes('Local:'),'development server'); mark('Development server ready');
  browser=await chromium.launch();
  const page=await browser.newPage();
- await page.goto('http://127.0.0.1:5175/tools/cc.html');
+ await page.goto('http://127.0.0.1:5175/combo-calculator/');
  await expect(page.locator('#class-select')).toHaveValue('HUcast');
  const original=await readFile(template,'utf8');
  await writeFile(template,original.replace('<main ',`<main${angularToken} `));
@@ -39,11 +44,12 @@ try {
  mark('Angular template edit automatically appeared in existing browser page');
  await remove(template,angularToken);
  await expect(page.locator('[data-dev-probe="angular-refresh"]')).toHaveCount(0,{timeout:60000});
- await page.goto('http://127.0.0.1:5175/tools/materialplan.html');
+ await page.goto('http://127.0.0.1:5175/material-planning/');
  const beforeFailure=log.length;
  await writeFile(translations,(await readFile(translations,'utf8'))+invalidToken);
  await waitFor(()=>log.slice(beforeFailure).includes('[dev] Generation failed:'),'generation failure');
  mark('Invalid generation input reported without stopping the dev process');
+ if (process.argv.includes('--fail-after-invalid-input')) throw new Error('Injected failure after invalid generation input');
  const beforeRecovery=log.length;
  await writeFile(content,(await readFile(content,'utf8')).replace('<h2 id="方案">',`${contentToken}<h2 id="方案">`));
  await remove(translations,invalidToken);
@@ -52,37 +58,69 @@ try {
  await waitFor(()=>log.slice(beforeRecovery).includes('[dev] Search ready:'),'fresh search index',180000);
  await page.locator('haven-site-search button').first().click();
  await page.locator('#site-search-query').fill('DevFreshIndexProbeoctober');
- await expect(page.locator('.search-results .result-title[href*="/tools/materialplan.html"]')).toBeVisible({timeout:30000});
+ await expect(page.locator('.search-results .result-title[href*="/material-planning/"]')).toBeVisible({timeout:30000});
  const matches = await page.locator('.search-results .result-title').evaluateAll(links => links.map(link => link.getAttribute('href')));
  await page.keyboard.press('Escape');
  if(/Could not resolve|Cannot find module|Events were dropped/.test(log))throw new Error('Development output contained an unexpected compiler/watcher failure');
  mark('Regenerated search index contains the newly edited page text: '+JSON.stringify(matches));
+ // Keep the same dev process alive while changing the route registry.
+ await page.goto('http://127.0.0.1:5175/');
+ const beforeRouteChange=log.length;
+ const routes=JSON.parse(originals.get(routeRegistry));
+ routes['tools/materialplan.html']='material-planning-review';
+ await writeFile(routeRegistry,JSON.stringify(routes,null,2)+'\n');
+ await waitFor(()=>log.slice(beforeRouteChange).includes('[dev] Search ready:'),'search after route change',180000);
+ await page.reload();
+ await page.locator('haven-site-search button').first().click();
+ await page.locator('#site-search-category').selectOption('tools');
+ await page.locator('#site-search-query').fill('DevFreshIndexProbeoctober');
+ await expect(page.locator('.search-results .result-title[href*="/material-planning-review/"]')).toBeVisible({timeout:30000});
+ mark('Route registry edit refreshed the tools category without restarting the development server');
+ await page.keyboard.press('Escape');
+ const beforeRouteRestore=log.length;
+ await restore(routeRegistry);
+ await waitFor(()=>log.slice(beforeRouteRestore).includes('[dev] Search ready:'),'search after restoring route',180000);
+ await page.goto('http://127.0.0.1:5175/material-planning/');
  const beforeRestore=log.length;
  await remove(content,contentToken);
  await expect(page.locator('[data-dev-probe="generated-refresh"]')).toHaveCount(0,{timeout:90000});
  await waitFor(()=>log.slice(beforeRestore).includes('[dev] Content generated;'),'restored generation');
  mark('Temporary source edits restored and browser refreshed again');
 } finally {
- await remove(template,angularToken);
- await remove(content,contentToken);
- await remove(translations,invalidToken);
- if(browser)await browser.close();
- const stopped=child.exitCode!==null?Promise.resolve():once(child,'exit');
- child.kill('SIGINT');
- let shutdownTimer; try { await Promise.race([stopped,new Promise((_,reject)=>{shutdownTimer=setTimeout(()=>reject(new Error('Dev shutdown timed out')),15000);})]); } finally {clearTimeout(shutdownTimer);}
- mark('SIGINT stopped development process with exit code '+child.exitCode);
- try { await fetch('http://127.0.0.1:5175',{signal:AbortSignal.timeout(1000)});throw new Error('Port5175 still open after stop'); }
- catch(error){if(error.message==='Port5175 still open after stop')throw error;}
- mark('Port5175 closed after shutdown');
- const assetOrigin = /Search assets served at (http:\/\/127\.0\.0\.1:\d+)/.exec(log)?.[1];
- if (assetOrigin) {
-   try { await fetch(`${assetOrigin}/assets/search/pagefind.js`, {signal:AbortSignal.timeout(1000)}); throw new Error('Search asset server remained open after stop'); }
-   catch(error) { if (error.message === 'Search asset server remained open after stop') throw error; }
-   mark('Search asset server closed after shutdown');
+ // Cleanup steps must all run even if another restoration or shutdown fails.
+ const errors = [];
+ const attempt = async action => { try { await action(); } catch (error) { errors.push(error); } };
+ await attempt(async () => { if (browser) await browser.close(); });
+ await attempt(async () => {
+   const stopped=child.exitCode!==null?Promise.resolve():once(child,'exit');
+   child.kill('SIGINT');
+   let shutdownTimer;
+   try {
+     await Promise.race([stopped,new Promise((_,reject)=>{shutdownTimer=setTimeout(()=>reject(new Error('Dev shutdown timed out')),15000);})]);
+   } finally { clearTimeout(shutdownTimer); }
+   mark('SIGINT stopped development process with exit code '+child.exitCode);
+ });
+ const restored = await Promise.allSettled([...originals.keys()].map(restore));
+ errors.push(...restored.filter(result=>result.status==='rejected').map(result=>result.reason));
+ await attempt(async () => {
+   for (const [file, original] of originals) {
+     if (await readFile(file,'utf8') !== original) throw new Error('Source restoration mismatch: '+file);
+   }
+   mark('All edited sources restored byte-for-byte');
+ });
+ for (const origin of ['http://127.0.0.1:5175', /Search assets served at (http:\/\/127\.0\.0\.1:\d+)/.exec(log)?.[1]].filter(Boolean)) {
+   await attempt(async () => {
+     try { await fetch(origin,{signal:AbortSignal.timeout(1000)}); }
+     catch { mark('Server closed: '+origin); return; }
+     throw new Error('Server remained open after stop: '+origin);
+   });
  }
  for (const generator of ['generate_item_catalog', 'generate_monster_catalog', 'generate_ep3_card_catalog', 'generate_angular_combo', 'generate_angular_content']) {
-   const result = spawnSync(process.execPath, [`scripts/${generator}.mjs`], { cwd: root, stdio: 'pipe' });
-   if (result.status !== 0) throw new Error(`Could not restore generated files: ${result.stderr}`);
+   await attempt(async () => {
+     const result=spawnSync(process.execPath,[`scripts/${generator}.mjs`],{cwd:root,stdio:'pipe'});
+     if(result.status!==0)throw new Error('Could not restore generated files: '+result.stderr);
+   });
  }
- await writeFile(`${artifact}.json`,JSON.stringify({milestones,exitCode:child.exitCode},null,2));
+ await writeFile(`${artifact}.json`,JSON.stringify({milestones,exitCode:child.exitCode,cleanupErrors:errors.map(error=>error.message)},null,2));
+ if(errors.length)throw new AggregateError(errors,'Development integration cleanup failed');
 }

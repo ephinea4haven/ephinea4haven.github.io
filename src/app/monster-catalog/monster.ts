@@ -33,5 +33,5 @@ const REGION_AREAS: Record<string,string[]> = {
   'Seabed':['Seabed','Test Subject Disposal Area'], 'Crater':['Crater'], 'Subterranean Desert':['Subterranean Desert','Meteor Impact Site'],
 };
 export const REGION_OF = new Map(Object.entries(REGION_AREAS).flatMap(([region,areas]) => areas.map(area => [area,region] as const)));
-export const monsterPath = (monster:Monster) => `/data/enemies/${monster.id}.html`;
+export const monsterPath = (monster:Monster) => `/enemies/${monster.id}/`;
 export const normalize = (value:string) => value.normalize('NFKC').toLowerCase().trim();

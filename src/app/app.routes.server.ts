@@ -5,19 +5,19 @@ import catalog from './generated/item-catalog/index.json';
 import monsters from './generated/monster-catalog/index.json';
 
 const featureServerRoutes = (prefix: string): ServerRoute[] => [
-  { path: `${prefix}data/price_guide.html`, renderMode: RenderMode.Prerender },
-  { path: `${prefix}data/item-names.html`, renderMode: RenderMode.Prerender },
-  { path: `${prefix}tools/chartable.html`, renderMode: RenderMode.Prerender },
-  {path:`${prefix}data/enemies.html`,renderMode:RenderMode.Prerender},
-  {path:`${prefix}data/ep3-cards.html`,renderMode:RenderMode.Prerender},
-  {path:`${prefix}data/ep3-cards/:card`,renderMode:RenderMode.Prerender,getPrerenderParams:async()=>ep3Cards.map(c=>({card:`${c.id}.html`}))},
-  {path:`${prefix}data/enemies/:monster`,renderMode:RenderMode.Prerender,getPrerenderParams:async()=>monsters.map(m=>({monster:`${m.id}.html`}))},
-  { path: `${prefix}data/items.html`, renderMode: RenderMode.Prerender },
-  { path: `${prefix}data/cosmetics.html`, renderMode: RenderMode.Prerender },
-  { path: `${prefix}data/items/:item`, renderMode: RenderMode.Prerender, getPrerenderParams: async () => catalog.map(row => ({ item: `${row[0]}.html` })) },
-  { path: `${prefix}tools/status.html`, renderMode: RenderMode.Prerender },
-  { path: `${prefix}tools/cc.html`, renderMode: RenderMode.Prerender },
-  { path: `${prefix}tools/ccopm.html`, renderMode: RenderMode.Prerender },
+  { path: `${prefix}prices`, renderMode: RenderMode.Prerender },
+  { path: `${prefix}item-names`, renderMode: RenderMode.Prerender },
+  { path: `${prefix}character-growth`, renderMode: RenderMode.Prerender },
+  {path:`${prefix}enemies`,renderMode:RenderMode.Prerender},
+  {path:`${prefix}cards`,renderMode:RenderMode.Prerender},
+  {path:`${prefix}cards/:card`,renderMode:RenderMode.Prerender,getPrerenderParams:async()=>ep3Cards.map(c=>({card:`${c.id}`}))},
+  {path:`${prefix}enemies/:monster`,renderMode:RenderMode.Prerender,getPrerenderParams:async()=>monsters.map(m=>({monster:`${m.id}`}))},
+  { path: `${prefix}items`, renderMode: RenderMode.Prerender },
+  { path: `${prefix}cosmetics`, renderMode: RenderMode.Prerender },
+  { path: `${prefix}items/:item`, renderMode: RenderMode.Prerender, getPrerenderParams: async () => catalog.map(row => ({ item: `${row[0]}` })) },
+  { path: `${prefix}character-stats`, renderMode: RenderMode.Prerender },
+  { path: `${prefix}combo-calculator`, renderMode: RenderMode.Prerender },
+  { path: `${prefix}combo-calculator/one-person`, renderMode: RenderMode.Prerender },
 ];
 
 export const serverRoutes: ServerRoute[] = [

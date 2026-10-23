@@ -59,6 +59,13 @@ const server = createServer(async (request, response) => {
   let file = await resolveRequest(url.pathname);
   let statusCode = 200;
 
+  // GitHub Pages redirects a directory request before serving its index.
+  if (file && path.basename(file) === 'index.html' && !url.pathname.endsWith('/') && !url.pathname.endsWith('/index.html')) {
+    response.writeHead(301, { Location: `${url.pathname}/${url.search}` });
+    response.end();
+    return;
+  }
+
   if (!file) {
     file = path.join(directory, '404.html');
     statusCode = 404;

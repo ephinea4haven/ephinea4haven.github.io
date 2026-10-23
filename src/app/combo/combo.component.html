@@ -2,7 +2,7 @@
 <main class="content-container tool-page combo-shell" (input)="saveState()" (change)="saveState()">
   <div class="tool-toolbar combo-toolbar">
     <p class="tool-kicker">{{ t('kicker') }}</p>
-    <a class="tool-action" [href]="modeLink">
+    <a class="tool-action" [routerLink]="linkRouter.parseUrl(modeLink)">
       {{ t(isOpm() ? 'switchMulti' : 'switchOpm') }}
     </a>
   </div>

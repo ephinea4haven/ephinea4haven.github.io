@@ -1,3 +1,4 @@
+import externalSystems from '../../../content/external-systems.json';
 import { DOCUMENT } from '@angular/common';
 import { afterRenderEffect, ChangeDetectionStrategy, Component, computed, effect, inject, linkedSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -15,6 +16,7 @@ type PortraitSource='render'|`render-${number}`|'hd'|`hd-${number}`|'wiki';
   templateUrl:'./monster-catalog.component.html',styleUrl:'./monster-catalog.component.css',changeDetection:ChangeDetectionStrategy.OnPush,
 })
 export class MonsterCatalogComponent {
+  readonly externalSystems = externalSystems;
   readonly i18n=inject(MonsterLanguageService);
   private readonly route=inject(ActivatedRoute);private readonly router=inject(Router);private readonly document=inject(DOCUMENT);private readonly title=inject(Title);
   private readonly params=toSignal(this.route.queryParamMap,{initialValue:this.route.snapshot.queryParamMap});

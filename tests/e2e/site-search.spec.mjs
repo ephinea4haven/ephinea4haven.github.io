@@ -25,14 +25,14 @@ for (const [language, prefix] of [['zh', ''], ['en', '/en'], ['ja', '/ja']]) {
     const results = page.getByTestId('site-search-results');
     for (const name of ['EXCALIBUR', '王者之剑', 'エクスキャリバー', 'Excal']) {
       await query(page, name, 'items');
-      await expect(results.locator(`a.result-title[href="${prefix}/data/items/excalibur.html"]`)).toBeVisible();
+      await expect(results.locator(`a.result-title[href="${prefix}/items/excalibur/"]`)).toBeVisible();
     }
     for (const [name, identities] of [['RM', ['resta-merge']], ['SML', ['swordsman-lore']], ['RS', ['red-sword', 'red-saber']]]) {
       await query(page, name, 'items');
-      for (const identity of identities) await expect(results.locator(`a.result-title[href="${prefix}/data/items/${identity}.html"]`)).toBeVisible();
+      for (const identity of identities) await expect(results.locator(`a.result-title[href="${prefix}/items/${identity}/"]`)).toBeVisible();
     }
     await query(page, 'Rag Rappy', 'enemies');
-    await expect(results.locator(`a.result-title[href="${prefix}/data/enemies/rag-rappy-e1.html"]`)).toBeVisible();
+    await expect(results.locator(`a.result-title[href="${prefix}/enemies/rag-rappy-e1/"]`)).toBeVisible();
     const urls = await results.locator('a.result-title').evaluateAll(nodes => nodes.map(node => node.getAttribute('href')));
     expect(urls.every(url => language === 'zh' ? !/^\/(en|ja)\//.test(url) : url.startsWith(`${prefix}/`))).toBe(true);
   });
@@ -54,7 +54,7 @@ for (const [language, prefix, indexLanguage] of [['zh', '', 'zh-cn'], ['en', '/e
     await open(page);
     expect(requests).toEqual([]);
     await query(page, 'Excal', 'items');
-    await expect(page.locator(`a.result-title[href="${prefix}/data/items/excalibur.html"]`)).toBeVisible();
+    await expect(page.locator(`a.result-title[href="${prefix}/items/excalibur/"]`)).toBeVisible();
     const shards = requests.filter(url => /\.(?:pf_meta|pf_index|pf_filter|pf_fragment)$/.test(url));
     expect(shards.length).toBeGreaterThan(0);
     expect(shards.every(url => url.split('/').pop().replace(/^pagefind\./, '').startsWith(`${indexLanguage}_`))).toBe(true);
@@ -67,11 +67,11 @@ for (const [language, prefix, indexLanguage] of [['zh', '', 'zh-cn'], ['en', '/e
     const previous = [...requests];
     await page.keyboard.press('Escape');
     await open(page);
-    await expect(page.locator(`a.result-title[href="${prefix}/data/items/excalibur.html"]`)).toBeVisible();
+    await expect(page.locator(`a.result-title[href="${prefix}/items/excalibur/"]`)).toBeVisible();
     expect(requests).toEqual(previous);
     await query(page, '');
     await query(page, 'Excal', 'items');
-    await expect(page.locator(`a.result-title[href="${prefix}/data/items/excalibur.html"]`)).toBeVisible();
+    await expect(page.locator(`a.result-title[href="${prefix}/items/excalibur/"]`)).toBeVisible();
     expect(requests).toEqual(previous);
   });
 }
@@ -83,7 +83,7 @@ test('search loads on demand, links to real sections, handles no results and res
   await open(page);
   expect(requests).toEqual([]);
   await query(page, 'Pvar', 'guides');
-  const section = page.getByTestId('site-search-results').locator('a[href^="/tools/mechanics.html#"]').first();
+  const section = page.getByTestId('site-search-results').locator('a[href^="/mechanics/#"]').first();
   await expect(section).toBeVisible();
   const destination = await section.getAttribute('href');
   expect(requests.some(url => url.includes('/assets/search/pagefind.js'))).toBe(true);
@@ -102,14 +102,14 @@ test('search reinitializes after in-app language navigation', async ({ page }) =
   await page.goto('/');
   await open(page);
   await query(page, 'Excal', 'items');
-  await expect(page.locator('a.result-title[href="/data/items/excalibur.html"]')).toBeVisible();
+  await expect(page.locator('a.result-title[href="/items/excalibur/"]')).toBeVisible();
   await page.keyboard.press('Escape');
   await page.locator('[data-home-lang="en"]').click();
   await open(page);
   await expect(page.locator('#site-search-query')).toHaveValue('');
   await query(page, 'Excal', 'items');
-  await expect(page.locator('a.result-title[href="/en/data/items/excalibur.html"]')).toBeVisible();
-  await expect(page.locator('a.result-title[href="/data/items/excalibur.html"]')).toHaveCount(0);
+  await expect(page.locator('a.result-title[href="/en/items/excalibur/"]')).toBeVisible();
+  await expect(page.locator('a.result-title[href="/items/excalibur/"]')).toHaveCount(0);
 });
 
 test('search reports a failed download and retries without reloading the page', async ({ page }) => {
@@ -120,7 +120,7 @@ test('search reports a failed download and retries without reloading the page', 
   await expect(page.getByTestId('site-search-dialog').getByRole('status')).toContainText('Search could not load');
   await page.unroute('**/assets/search/pagefind.js*');
   await page.getByRole('button', { name: 'Retry search', exact: true }).click();
-  await expect(page.locator('a.result-title[href="/en/data/items/excalibur.html"]')).toBeVisible({ timeout: 20000 });
+  await expect(page.locator('a.result-title[href="/en/items/excalibur/"]')).toBeVisible({ timeout: 20000 });
 });
 
 test('a failed dialog module offers a working page reload recovery', async ({ page }) => {
@@ -135,7 +135,7 @@ test('a failed dialog module offers a working page reload recovery', async ({ pa
   ]);
   await open(page);
   await query(page, 'Excal', 'items');
-  await expect(page.locator('a.result-title[href="/en/data/items/excalibur.html"]')).toBeVisible();
+  await expect(page.locator('a.result-title[href="/en/items/excalibur/"]')).toBeVisible();
 });
 
 test('a superseded search cannot replace newer results', async ({ page }) => {
@@ -154,7 +154,7 @@ test('a superseded search cannot replace newer results', async ({ page }) => {
     await page.evaluate(() => {
       window.searchRaceStale = false;
       new MutationObserver(() => {
-        if (document.querySelector('a.result-title[href="/en/data/items/excalibur.html"]')) window.searchRaceStale = true;
+        if (document.querySelector('a.result-title[href="/en/items/excalibur/"]')) window.searchRaceStale = true;
       }).observe(document.querySelector('[data-testid="site-search-results"]'), { childList: true, subtree: true });
     });
     // Unquoted Pagefind terms can match shorter indexed prefixes; this exact phrase is absent.
@@ -168,7 +168,7 @@ test('a superseded search cannot replace newer results', async ({ page }) => {
 
 test('mobile search dialog fits the viewport and exposes accessible controls', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/en/tools/cc.html');
+  await page.goto('/en/combo-calculator/');
   await open(page);
   await query(page, 'Excal', 'items');
   const dialog = page.getByTestId('site-search-dialog');
@@ -181,10 +181,10 @@ test('mobile search dialog fits the viewport and exposes accessible controls', a
 });
 
 test('selecting a section on the current page closes the modal before following its anchor', async ({ page }) => {
-  await page.goto('/tools/mechanics.html');
+  await page.goto('/mechanics/');
   await open(page);
   await query(page, 'Pvar', 'guides');
-  const section = page.getByTestId('site-search-results').locator('a[href^="/tools/mechanics.html#"]').first();
+  const section = page.getByTestId('site-search-results').locator('a[href^="/mechanics/#"]').first();
   const destination = await section.getAttribute('href');
   await section.click();
   await expect(page.getByTestId('site-search-dialog')).not.toBeVisible();
@@ -196,7 +196,7 @@ for (const prefix of ['', '/en', '/ja']) test(`historical event search links to 
   await page.goto(`${prefix}/`);
   await open(page);
   await query(page, 'Christmas 2015', 'events');
-  const result = page.locator(`a.result-title[href="${prefix}/event/christmas.html?year=2015"]`);
+  const result = page.locator(`a.result-title[href="${prefix}/events/christmas/?year=2015"]`);
   await expect(result).toBeVisible();
   const loaded = page.waitForResponse(response => response.url().endsWith(`${prefix}/event/christmas/2015.html`) && response.ok());
   await result.click();
@@ -218,12 +218,12 @@ test('excerpts render only text and fixed marks without executing or fetching em
   const resources = [];
   page.on('request', request => { if (request.url().includes('search-excerpt-probe')) resources.push(request.url()); });
   const result = {
-    url: '/en/tools/mechanics.html', meta: { title: 'Safety fixture' }, filters: { category: ['guides'] },
+    url: '/en/mechanics/', meta: { title: 'Safety fixture' }, filters: { category: ['guides'] },
     excerpt: 'A &amp; B <mark>日 &lt;月&gt; <em>nested</em></mark> &lt;mark&gt;literal&lt;/mark&gt; '
       + '<img src="/search-excerpt-probe-image" onerror="window.searchExcerptInjected=true">'
       + '<iframe src="/search-excerpt-probe-frame"></iframe><script>window.searchExcerptInjected=true</script>'
       + '<svg onload="window.searchExcerptInjected=true"><text>safe text</text></svg>',
-    sub_results: [{ title: 'Section', url: '/en/tools/mechanics.html#physical-damage', excerpt: '&quot;quoted&quot; <mark>&#x65e5;</mark>' }],
+    sub_results: [{ title: 'Section', url: '/en/mechanics/#physical-damage', excerpt: '&quot;quoted&quot; <mark>&#x65e5;</mark>' }],
   };
   await page.route('**/assets/search/pagefind.js*', route => route.fulfill({
     contentType: 'text/javascript',
@@ -256,7 +256,7 @@ test('loading more results moves keyboard focus to the first newly displayed res
 
 for (const width of [320, 390]) test(`search entry remains operable beside existing controls at ${width}px`, async ({ page }) => {
   await page.setViewportSize({ width, height: 844 });
-  for (const route of ['/', '/tools/mechanics.html', '/data/items.html', '/data/enemies.html']) {
+  for (const route of ['/', '/mechanics/', '/items/', '/enemies/']) {
     await page.goto(route);
     await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
     const trigger = page.getByTestId('site-search-trigger');
@@ -278,7 +278,7 @@ for (const width of [320, 390]) test(`search entry remains operable beside exist
 for (const prefix of ['', '/en', '/ja']) test(`mobile archive navigation and floating controls stay clickable in ${prefix || 'zh'}`, async ({ page }) => {
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 844 });
-    await page.goto(`${prefix}/event/anniversary.html`);
+    await page.goto(`${prefix}/events/anniversary/`);
     const trigger = page.getByTestId('site-search-trigger');
     const years = page.locator('[data-year-rail-toggle]');
     await expect(years).toHaveAttribute('aria-expanded', 'false');
@@ -289,7 +289,7 @@ for (const prefix of ['', '/en', '/ja']) test(`mobile archive navigation and flo
     await expect(trigger).toBeFocused();
     await years.click();
     await expect(years).toHaveAttribute('aria-expanded', 'false');
-    for (const [route, selector] of [['/tools/materialplan.html', '#backToTop'], ['/data/bdp/', '.back-to-top']]) {
+    for (const [route, selector] of [['/material-planning/', '#backToTop'], ['/quests/black-paper-deal/', '.back-to-top']]) {
       await page.goto(`${prefix}${route}`);
       // Opening and closing the real dialog also establishes that browser behavior has hydrated.
       await open(page);

@@ -5,7 +5,7 @@ const SHORT: Record<PageLanguage, string> = { zh: '中', en: 'EN', ja: '日' };
 /** Accessible names start with the visible short label (WCAG 2.5.3 Label in Name). */
 const LABEL: Record<PageLanguage, string> = { zh: '中文', en: 'EN (English)', ja: '日本語' };
 /** Pages that render their own language switcher (homepage and catalogs). */
-const OWN_SWITCHER = ['index.html', 'data/items.html', 'data/items/', 'data/cosmetics.html', 'data/enemies.html', 'data/enemies/', 'data/ep3-cards.html', 'data/ep3-cards/'];
+const OWN_SWITCHER = ['index.html', 'items', 'items/', 'cosmetics', 'enemies', 'enemies/', 'cards', 'cards/'];
 
 /** Site-wide language switch. Each language is a separate URL. */
 @Component({

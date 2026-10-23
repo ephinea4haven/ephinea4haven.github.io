@@ -17,8 +17,8 @@
   @if (state() === 'error') {<button class="search-retry" type="button" (click)="search()">{{ copy().retry }}</button>}
   <ol #resultList class="search-results" [attr.aria-busy]="state() === 'loading'" data-testid="site-search-results">
     @for (result of results(); track result.url) {
-      <li><div class="result-topline"><span class="result-category">{{ categoryLabel(result) }}</span></div><a class="result-title" [href]="result.url" (click)="close()">{{ result.meta.title }}</a><p class="result-excerpt">@for (part of result.excerpt; track $index) {@if (part.highlighted) {<mark>{{ part.text }}</mark>} @else {{{ part.text }}}}</p>
-        @for (section of sections(result); track section.url) {<div class="section-result"><a [href]="section.url" (click)="close()">{{ section.title }}</a><p class="result-excerpt">@for (part of section.excerpt; track $index) {@if (part.highlighted) {<mark>{{ part.text }}</mark>} @else {{{ part.text }}}}</p></div>}
+      <li><div class="result-topline"><span class="result-category">{{ categoryLabel(result) }}</span></div><a class="result-title" [routerLink]="linkRouter.parseUrl(result.url)" (click)="close()">{{ result.meta.title }}</a><p class="result-excerpt">@for (part of result.excerpt; track $index) {@if (part.highlighted) {<mark>{{ part.text }}</mark>} @else {{{ part.text }}}}</p>
+        @for (section of sections(result); track section.url) {<div class="section-result"><a [routerLink]="linkRouter.parseUrl(section.url)" (click)="close()">{{ section.title }}</a><p class="result-excerpt">@for (part of section.excerpt; track $index) {@if (part.highlighted) {<mark>{{ part.text }}</mark>} @else {{{ part.text }}}}</p></div>}
       </li>
     }
   </ol>

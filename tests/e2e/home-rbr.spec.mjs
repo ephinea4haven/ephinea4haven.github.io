@@ -14,7 +14,7 @@ test('home renders source RBR quests and opens the RBR detail page',async({page}
   await expect(panel.locator('.home-rbr-quest')).toHaveCount(data.current.quests.length);
   for(const [index,quest] of data.current.quests.entries()){
     await expect(panel.locator('.home-rbr-quest').nth(index)).toContainText(quest.name);
-    await expect(panel.locator('.home-rbr-quest').nth(index)).toHaveAttribute('href',`/guide/rbr.html#rbr-quest-${quest.abbreviation}`);
+    await expect(panel.locator('.home-rbr-quest').nth(index)).toHaveAttribute('href',`/rbr/#rbr-quest-${quest.abbreviation}`);
     const card=panel.locator('.home-rbr-quest').nth(index);
     const tier=Object.entries(ratings.tiers).find(([,quests])=>quests.includes(quest.abbreviation))[0];
     const section=ratings.recommendedSectionIds[quest.abbreviation];
@@ -30,7 +30,7 @@ test('home renders source RBR quests and opens the RBR detail page',async({page}
   }
   await expect(panel.locator('.home-rbr-note')).toContainText(ratings.asOf);
   await panel.locator('.home-rbr-quest').first().click();
-  await expect(page).toHaveURL(new RegExp(`/guide/rbr.html#rbr-quest-${data.current.quests[0].abbreviation}$`));
+  await expect(page).toHaveURL(new RegExp(`/rbr/#rbr-quest-${data.current.quests[0].abbreviation}$`));
   await expect(page.locator('#rbr-tracker-episodes')).toContainText(data.current.quests[0].abbreviation);
 });
 test('home marks stale rotations across the UTC Sunday boundary',async({page})=>{
@@ -55,7 +55,7 @@ for (const prefix of ['', '/en', '/ja']) {
       await page.goto(`${prefix}/`);
       const card = page.locator('.home-rbr-quest').filter({has: page.locator('strong', {hasText: new RegExp(`^${quest.abbreviation}$`)})});
       await card.click();
-      await expect(page).toHaveURL(new RegExp(`${prefix}/guide/rbr.html#rbr-quest-${quest.abbreviation}$`));
+      await expect(page).toHaveURL(new RegExp(`${prefix}/rbr/#rbr-quest-${quest.abbreviation}$`));
       const row = page.locator(`tr:has(#rbr-quest-${quest.abbreviation})`);
       await expect(row).toBeInViewport();
       await expect(page.locator('.rbr-quest-cell')).toHaveCount(58);
@@ -69,7 +69,7 @@ for (const prefix of ['', '/en', '/ja']) {
     await page.reload();
     await expect(page.locator(`tr:has(#rbr-quest-${data.current.quests.at(-1).abbreviation})`)).toBeInViewport();
     for (const abbreviation of ['WoL4', 'AO3', 'EN1']) {
-      await page.goto(`${prefix}/guide/rbr.html#rbr-quest-${abbreviation}`);
+      await page.goto(`${prefix}/rbr/#rbr-quest-${abbreviation}`);
       await expect(page.locator(`tr:has(#rbr-quest-${abbreviation})`)).toBeInViewport();
     }
   });
@@ -77,7 +77,7 @@ for (const prefix of ['', '/en', '/ja']) {
 
 test('RBR recommendations remain reachable when the tracker request fails', async ({page}) => {
   await page.route('**/data/rbr/source.json', route => route.fulfill({status:503,body:'Unavailable'}));
-  await page.goto('/guide/rbr.html#rbr-quest-MU1');
+  await page.goto('/rbr/#rbr-quest-MU1');
   await expect(page.locator('#rbr-tracker-status')).toHaveClass(/is-error/);
   await expect(page.locator('tr:has(#rbr-quest-MU1)')).toBeInViewport();
 });

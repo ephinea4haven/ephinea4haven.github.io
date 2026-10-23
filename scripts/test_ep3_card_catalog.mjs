@@ -58,20 +58,20 @@ test('filters compose, search every name independently of language, and keep hid
 test('all 3 list and 2100 detail routes are registered for prerender and development search',async()=>{
   const routes=cardRoutes(index),registered=await devRoutes(path.resolve('.'));
   assert.equal(routes.length,2103);assert.equal(new Set(routes).size,2103);
-  assert.equal(routes.filter(r=>r.endsWith('/ep3-cards.html')).length,3);
+  assert.equal(routes.filter(r=>r.endsWith('/cards/')).length,3);
   for(const route of routes) assert.ok(registered.includes(route),route);
   assert.deepEqual(searchRoutes(routes).sort(),routes.sort());
 });
 test('search documents carry English, Japanese and table aliases in all editions',()=>{
   for(const card of index) for(const prefix of ['', '/en', '/ja']) {
-    const url=`${prefix}/data/ep3-cards/${card.id}.html`;
+    const url=`${prefix}/cards/${card.id}/`;
     const html=searchDocument(`<html><body><h1>Card ${card.id}</h1></body></html>`,url,cardAliases(card));
     for(const alias of cardAliases(card)) assert.ok(html.includes(alias.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')),`${url}: ${alias}`);
   }
   const template=fs.readFileSync('src/app/ep3-card-catalog/ep3-card-catalog.component.html','utf8');
   assert.ok(!template.includes('data-pagefind-body'), 'catalog must use the shared indexing body so appended aliases are indexed');
   const builder=fs.readFileSync('scripts/build_search.mjs','utf8');
-  assert.match(builder,/aliases.set\(`\/data\/ep3-cards\/\$\{card.id\}.html`, cardAliases\(card\)\)/);
+  assert.match(builder,/aliases.set\(`\/cards\/\$\{card.id\}\/`, cardAliases\(card\)\)/);
 });
 test('Chinese labels come only from the maintainer-approved terminology; all used enums have labels',()=>{
   const doc=fs.readFileSync('docs/EP3_CARD_CATALOG.md','utf8').split('## Chinese terminology')[1].split('## Tests')[0];

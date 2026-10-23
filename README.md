@@ -22,8 +22,9 @@ Japanese only; the Chinese edition shows them in English.
 - **Angular 22, statically deployed.** Every public page is an Angular route,
   prerendered at build time and served from GitHub Pages. There is no backend and
   no server-side rewriting.
-- **Stable URLs.** Historical `.html` paths are part of the product contract; the
-  build installs each prerendered route at its original location.
+- **Semantic routes.** Angular owns URLs such as `/items/` and `/character-stats/`.
+  `content/page-routes.json` maps authored content to public routes; GitHub Pages
+  serves each prerendered `<route>/index.html`. Old source URLs have no aliases.
 - **Content as HTML sources.** Guides and reference pages live as plain HTML under
   `guide/`, `data/`, `event/` and `tools/`. They contain markup and styles only;
   all behavior is owned by Angular.
@@ -53,7 +54,7 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full design.
 ### Prerequisites
 
 - Node.js 24.15.0 or newer within Node 24, and npm (`nvm use` reads the repository's `.nvmrc`)
-- Python 3, for the data generators and their tests
+- Python 3.11 or newer, for the data generators and their tests (Pillow 13 requires 3.11+)
 - To regenerate challenge maps only: the [`potrace`](https://potrace.sourceforge.net)
   binary on `PATH`, `pip install -r scripts/requirements-maps.txt`, and
   `npx playwright install chromium` for `scripts/render_challenge_maps.mjs`
@@ -125,8 +126,12 @@ output and budgets.
 [`scripts/README.md`](scripts/README.md) describes every generator and verifier.
 
 Run `test:dev:integration` separately from builds or other development sessions.
-It temporarily edits source fixtures, restores them in `finally`, and regenerates
-clean outputs before exiting; its evidence is saved under `.angular/dev-validation/`.
+It snapshots source fixtures before starting, verifies browser/search refresh
+including route edits, restores every fixture independently in `finally`, and
+regenerates clean outputs; its evidence is saved under `.angular/dev-validation/`.
+`npm run test:dev:integration -- --fail-after-invalid-input` deliberately exits
+with an injected error after testing invalid input; its cleanup must still restore
+all source bytes and stop both servers.
 
 ## Deployment
 

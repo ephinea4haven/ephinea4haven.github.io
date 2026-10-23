@@ -1,7 +1,7 @@
 import { afterNextRender, afterRenderEffect, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, Injector, computed, effect, inject, input, output, signal, untracked, viewChild } from '@angular/core';
 import { SiteLanguage } from '../shared/site-language.service';
 import { SearchEngine, type SearchResult } from './search-engine.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 
 const COPY = {
   zh: { trigger: '搜索全站', title: '搜索 Haven', close: '关闭搜索', input: '搜索内容', placeholder: '道具、怪物、任务、机制…', hint: '搜索当前语言的页面，也可使用道具的中英日名称与常用缩写。', category: '内容类型', all: '全部内容', items: '道具', enemies: '怪物', guides: '攻略', tools: '工具', events: '活动', reference: '资料与任务', loading: '正在搜索…', empty: '没有找到相关内容，请尝试其他名称或减少关键词。', error: '搜索暂时无法加载，请检查网络后重试。', retry: '重试搜索', more: '显示更多', results: '个结果', showing: '已显示', keyboard: '按 Esc 关闭' },
@@ -12,12 +12,15 @@ type SearchState = 'idle' | 'loading' | 'results' | 'error';
 
 @Component({
   selector: 'haven-search-dialog',
+  imports: [RouterLink],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { 'data-pagefind-ignore': '' },
 })
 export class SearchDialogComponent {
+  protected readonly linkRouter = inject(Router);
+
   readonly opened = input(false);
   readonly dismissed = output<void>();
   private readonly site = inject(SiteLanguage);

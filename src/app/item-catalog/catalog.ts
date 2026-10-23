@@ -28,7 +28,7 @@ export interface Cosmetic {
   photonFilter: { color: string; weapons: ItemLink[] } | null;
   trade: (ItemLink & { quantity: number })[];
 }
-export const COSMETICS_PATH = '/data/cosmetics.html';
+export const COSMETICS_PATH = '/cosmetics/';
 export interface ItemDetail extends Omit<CatalogItem, 'classes' | 'group'> {
   hdImage: string | null;
   hdSource: 'gallery' | 'model-render' | null;
@@ -58,7 +58,7 @@ export const CLASSES = ['HUmar', 'HUnewearl', 'HUcast', 'HUcaseal', 'RAmar', 'RA
 export function categoryLabel(id: string): string {
   return CATEGORIES.find((category) => category.id === id)?.label ?? '武器';
 }
-export function itemPath(item: Pick<CatalogItem, 'id'>): string { return `/data/items/${item.id}.html`; }
+export function itemPath(item: Pick<CatalogItem, 'id'>): string { return `/items/${item.id}/`; }
 export function normalize(value: string): string { return value.normalize('NFKC').toLocaleLowerCase().trim(); }
 export function classesOf(mask: string): string[] { return CLASSES.filter((_, i) => mask[i] === '1'); }
 export function localizedItemName(value: ItemName | string, language: 'zh' | 'en' | 'ja', names: Readonly<Record<string, ItemName>> = {}): string {

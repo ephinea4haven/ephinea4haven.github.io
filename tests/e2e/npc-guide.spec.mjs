@@ -8,7 +8,7 @@ for (const [prefix,lang] of [['','zh-CN'],['/en','en'],['/ja','ja']]) {
   test(`NPC guide ${lang}: search, episode intersections, empty state and section navigation`, async ({ page }) => {
     const errors=[];
     page.on('pageerror', error=>errors.push(error.message));
-    await page.goto(`${prefix}/guide/npc.html`);
+    await page.goto(`${prefix}/npcs/`);
     await ready(page);
     await expect(page.locator('html')).toHaveAttribute('lang',lang);
     await expect(page.locator(visible)).toHaveCount(48);
@@ -41,12 +41,12 @@ for (const [prefix,lang] of [['','zh-CN'],['/en','en'],['/ja','ja']]) {
 }
 
 test('NPC guide keeps localized names and hash targets after language changes and reload', async ({ page }) => {
-  await page.goto('/guide/npc.html#npc-donoph');
+  await page.goto('/npcs/#npc-donoph');
   await ready(page);
   for (const [language,prefix,itemName] of [['EN (English)','/en',"DB's Saber"],['日本語','/ja','ＤＢの剣'],['中文','','DB 之剑']]) {
     await page.getByRole('button',{name:language,exact:true}).click();
     await ready(page);
-    await expect(page).toHaveURL(new RegExp(`${prefix}/guide/npc\\.html#npc-donoph$`));
+    await expect(page).toHaveURL(new RegExp(`${prefix}/npcs/#npc-donoph$`));
     await expect(page.locator('#npc-donoph')).toContainText(itemName);
     await expect(page.locator('#npc-donoph')).toBeInViewport();
     await page.reload();
@@ -57,7 +57,7 @@ test('NPC guide keeps localized names and hash targets after language changes an
 
 test('NPC guide mobile has readable cards, working disclosures and no overflow', async ({ page }) => {
   await page.setViewportSize({width:390,height:844});
-  await page.goto('/guide/npc.html');
+  await page.goto('/npcs/');
   await ready(page);
   await page.locator('#npc-search').fill("DB's Saber");
   await expect(page.locator(visible)).toHaveCount(1);
@@ -77,7 +77,7 @@ test('NPC guide mobile has readable cards, working disclosures and no overflow',
 
 test('NPC guide restores portrait cards and a navigable visual relationship diagram', async ({ page }) => {
   await page.setViewportSize({width:1440,height:1000});
-  await page.goto('/guide/npc.html');
+  await page.goto('/npcs/');
   await ready(page);
   await expect(page.locator('.npc-avatar img')).toHaveCount(46);
   for (const image of await page.locator('.npc-avatar img').all()) {

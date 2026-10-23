@@ -18,6 +18,7 @@ import { promisify } from 'node:util';
 import { parse } from 'parse5';
 import { isAngularInlineScript } from './angular_inline_scripts.mjs';
 import { buildSearch } from './build_search.mjs';
+import { contentRoute, routeDocument } from './public_routes.mjs';
 
 if (process.versions.node.split('.')[0] !== '24') {
   throw new Error('Production builds require Node.js 24, matching CI. Run nvm use before building.');
@@ -120,7 +121,7 @@ async function copySiteSource() {
 
   for (const filename of rootFiles) {
     const source = path.join(root, filename);
-    if (await exists(source)) {
+    if (!filename.endsWith('.html') && await exists(source)) {
       await cp(source, path.join(temporaryDirectory, filename));
     }
   }
@@ -131,6 +132,7 @@ async function copySiteSource() {
       recursive: true,
       filter(file) {
         return !excludedTrees.some((tree) => isInside(file, tree))
+          && !file.endsWith('.html')
           && !unpublishedBuildInputs.has(file)
           && path.basename(file) !== '.DS_Store';
       },
@@ -201,21 +203,24 @@ async function installAngularApplication(pages) {
     pageSet.add(host);
     if (!pages.some(page=>relativeToRoot(page)===host)) pages.push(path.join(root,host));
   }
+  const standalone = [...pageSet].filter(page => !/^event\/[^/]+\/\d{4}\.html$/.test(page));
+  const sourceByRoute = new Map(standalone.map(page => {
+    const detail = /^data\/(items|enemies|ep3-cards)\/([^/]+)\.html$/.exec(page);
+    return [detail ? `${detail[1] === 'ep3-cards' ? 'cards' : detail[1]}/${detail[2]}` : contentRoute(page), page];
+  }));
+  if (sourceByRoute.size !== standalone.length) throw new Error('Duplicate public route');
   const angularPages = new Set();
+  const outputPages = [];
   let hosts = 0;
   for (const route of prerenderedRoutes) {
     const relativeRoute = route.replace(/^\//, '');
-    // English and Japanese versions live under /en/ and /ja/ and must correspond to
-    // a historical (Chinese) page; they are installed at their prefixed paths.
+    // Coverage is checked against content identities; installation follows Angular URLs.
     const [, prefix = '', baseRoute] = /^(?:(en|ja)(?:\/|$))?(.*)$/.exec(relativeRoute);
-    const basePage = baseRoute === ''
-      ? 'index.html'
-      : (pageSet.has(baseRoute) ? baseRoute : `${baseRoute}/index.html`);
-    if (!pageSet.has(basePage)) {
-      throw new Error(`Angular prerender route has no historical page: ${route}`);
-    }
-    const historicalPage = prefix ? `${prefix}/${basePage}` : basePage;
+    const basePage = sourceByRoute.get(baseRoute);
+    if (!basePage) throw new Error(`Angular route has no content identity: ${route}`);
+    const publishedPage = routeDocument(route);
     if (!prefix) angularPages.add(basePage);
+    outputPages.push(path.join(root, publishedPage));
     const prerenderedPage = relativeRoute
       ? path.join(angularOutputDirectory, relativeRoute, 'index.html')
       : path.join(angularOutputDirectory, 'index.html');
@@ -229,8 +234,8 @@ async function installAngularApplication(pages) {
       files: [...html.matchAll(/(?:src|href)="\/assets\/angular\/([^"?]+\.js)/g)]
         .map((match) => `assets/angular/${match[1]}`),
     });
-    await mkdir(path.dirname(path.join(temporaryDirectory, historicalPage)), { recursive: true });
-    await writeFile(path.join(temporaryDirectory, historicalPage), html);
+    await mkdir(path.dirname(path.join(temporaryDirectory, publishedPage)), { recursive: true });
+    await writeFile(path.join(temporaryDirectory, publishedPage), html);
     hosts += 1;
   }
 
@@ -244,6 +249,9 @@ async function installAngularApplication(pages) {
     throw new Error('Angular build has no HTML host document');
   }
 
+  const fragmentPages = (await walk(temporaryDirectory)).filter(file => /event\/[^/]+\/\d{4}\.html$/.test(file))
+    .map(file => path.join(root, path.relative(temporaryDirectory, file)));
+  pages.splice(0, pages.length, ...outputPages, ...fragmentPages);
   const files = (await walk(destination)).sort();
   const javascript = files.filter((file) => file.endsWith('.js'));
   const chunks = await Promise.all(javascript.map(async (file) => ({
@@ -296,7 +304,7 @@ async function installAngularApplication(pages) {
   ]));
   return {
     hosts,
-    hostPages: [...angularPages].sort(),
+    hostPages: outputPages.map(relativeToRoot).sort(),
     files: files.map((file) => toPosix(path.relative(temporaryDirectory, file))),
     javascriptGzipBytes,
     localizedJavaScriptGzipBytes,

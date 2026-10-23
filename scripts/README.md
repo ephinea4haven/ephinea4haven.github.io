@@ -7,6 +7,7 @@ are build inputs and are not copied into the published artifact.
 | Script | Responsibility |
 |---|---|
 | `build_site.mjs` | Generate, prerender, validate and atomically publish `_site`. |
+| `public_routes.mjs` | Resolve authored source references through `content/page-routes.json` and map public routes to directory-index documents. External origins are maintained separately in `content/external-systems.json`. |
 | `build_search.mjs` | Index rendered pages, maintained item aliases and archived event years for language-scoped Pagefind search. |
 | `dev_site.mjs` | Run Angular development serving, source watching, content regeneration and background search indexing. |
 | `dev_inputs.mjs`, `dev_search.mjs` | Define watched dependencies and coordinate index rebuilds after successful generation and compilation. |

@@ -14,8 +14,8 @@ area selector is disabled while a query is present. Clearing auxiliary filters
 keeps the episode and returns to its first area. All types remains available. A directly opened detail
 page returns to its monster's episode when no originating episode is specified.
 
-The catalog lives at `/data/enemies.html`, with detail pages at
-`/data/enemies/{id}.html`. The original `/data/monsters.html` remains the farming
+The catalog lives at `/enemies/`, with detail pages at
+`/enemies/{id}/`. `/enemy-hunting/` is the separate farming
 guide, and the two pages link to each other.
 
 ## Coverage and use
@@ -200,7 +200,7 @@ requests a single entry on demand instead of bundling every detail into the clie
 ## Home page RBR
 
 At build time the home page generates quest cards for three episodes from
-`current.quests` in `data/rbr/source.json`, and each card opens `/guide/rbr.html`.
+`current.quests` in `data/rbr/source.json`, and each card opens `/rbr/`.
 Quest names and the rotation week have no copy in the page, so updating the RBR
 data and rebuilding also updates the home page. The browser decides whether the
 record belongs to the current week by the UTC Sunday. If a new week starts

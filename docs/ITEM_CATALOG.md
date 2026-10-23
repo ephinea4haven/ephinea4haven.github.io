@@ -17,8 +17,8 @@ row badges.
 A directly opened detail page returns to its item's category when no originating
 category is specified.
 
-The catalog lives at `/data/items.html`, with one detail page per item at
-`/data/items/{slug}.html`. It extends the approved MVP layout into a full catalog covering all six categories.
+The catalog lives at `/items/`, with one detail page per item at
+`/items/{slug}/`. It extends the approved MVP layout into a full catalog covering all six categories.
 
 ## Coverage and interface
 
@@ -609,7 +609,7 @@ identical content offline.
 
 ## Cosmetic items
 
-`/data/cosmetics.html` (外观道具 on the home page) covers every Ephinea item that
+`/cosmetics/` (外观道具 on the home page) covers every Ephinea item that
 changes appearance without changing performance. Each item's detail page carries
 the same structured facts, and each weapon or the Red Ring lists the cosmetics
 that apply to it.

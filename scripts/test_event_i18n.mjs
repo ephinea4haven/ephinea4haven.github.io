@@ -81,9 +81,12 @@ test('each translated overview embeds its own default-year fragment and language
       for (const id of ids(fragment)) assert.ok(ids(template).includes(id), `${language}/${event}: ${id}`);
       const firstHeading = nodes(fragment).find((node) => ['h2', 'h3'].includes(node.tagName));
       assert.ok(visible(template).includes(visibleFromNode(firstHeading)), `${language}/${event}: default content`);
-      const links = parsed.map((node) => attribute(node, 'href')).filter((href) => href?.includes(`${event}.html?year=`));
-      assert.ok(links.length > 0);
-      assert.ok(links.every((href) => href.startsWith(`/${language}/event/`)));
+      const nav = parsed.find(node => node.tagName === 'event-year-nav');
+      assert.ok(nav, 'year navigation must be an Angular component');
+      assert.equal(attribute(nav, 'event'), event);
+      assert.deepEqual(JSON.parse(attribute(nav, '[years]')), attribute(masthead, 'data-years').split(',').map(Number));
+      const links = parsed.map(node => attribute(node, 'routerlink')).filter(href => href?.includes(`/events/${event}/`));
+      assert.ok(links.every(href => href.startsWith(`/${language}/events/`)));
       if (language === 'en') assert.doesNotMatch(visible(template), /\p{Script=Han}/u);
     }
   }

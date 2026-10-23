@@ -20,7 +20,7 @@ test('mechanics authored item references use exact authority keys', () => {
 });
 
 test('mechanics diagrams remain readable and keyboard accessible', async ({ page }) => {
-  await page.goto('/tools/mechanics.html#incoming-physical');
+  await page.goto('/mechanics/#incoming-physical');
   await expect(page.getByRole('banner')).toHaveCount(1);
   const diagrams = page.locator('.mechanics-flow, .mechanics-outcome, .mechanics-threshold, .mechanics-figure, .mechanics-pb-card');
   await expect(diagrams).toHaveCount(20);
@@ -48,7 +48,7 @@ test('mechanics diagrams remain readable and keyboard accessible', async ({ page
   for (const [name, id] of chapters) {
     const link = navigation.getByRole('link', { name, exact: true });
     const target = '#' + id;
-    await expect(link).toHaveAttribute('href', '/tools/mechanics.html' + target);
+    await expect(link).toHaveAttribute('href', '/mechanics/' + target);
     await link.focus();
     await page.keyboard.press('Enter');
     expect(new URL(page.url()).hash).toBe(target);
@@ -123,16 +123,16 @@ test('mechanics diagrams remain readable and keyboard accessible', async ({ page
 
 test('Mag and acronym PB entries open the canonical mechanics section', async ({ page }) => {
   for (const [source, name, target] of [
-    ['/tools/mag.html#sync', '机制页的 PB 参数速查', 'pb-parameters'],
-    ['/tools/mag.html#iq', '游戏机制：玛古光子爆裂（PB）', 'photon-blast'],
-    ['/guide/acronym.html#pb', '游戏机制：玛古光子爆裂（PB）', 'photon-blast'],
+    ['/mags/#sync', '机制页的 PB 参数速查', 'pb-parameters'],
+    ['/mags/#iq', '游戏机制：玛古光子爆裂（PB）', 'photon-blast'],
+    ['/glossary/#pb', '游戏机制：玛古光子爆裂（PB）', 'photon-blast'],
   ]) {
     await page.goto(source);
     const link = page.getByRole('link', { name, exact: true });
-    await expect(link).toHaveAttribute('href', '/tools/mechanics.html#' + target);
+    await expect(link).toHaveAttribute('href', '/mechanics/#' + target);
     await link.focus();
     await page.keyboard.press('Enter');
-    await expect(page).toHaveURL('/tools/mechanics.html#' + target);
+    await expect(page).toHaveURL('/mechanics/#' + target);
     await expect(page.locator('#' + target)).toBeInViewport();
     await page.goBack();
     await expect(page).toHaveURL(source);
@@ -140,7 +140,7 @@ test('Mag and acronym PB entries open the canonical mechanics section', async ({
 });
 
 test('each PB explains its role, stat scaling and limits beside its illustration', async ({ page }) => {
-  await page.goto('/tools/mechanics.html#pb-analysis');
+  await page.goto('/mechanics/#pb-analysis');
   const navigation = page.getByRole('navigation', { name: '六种 PB 技能分析' });
   await expect(navigation.getByRole('link')).toHaveCount(6);
   for (const [id, effect, scaling, limitation] of [
@@ -151,7 +151,7 @@ test('each PB explains its role, stat scaling and limits beside its illustration
     ['leilla', /恢复 HP/, /IQ.*MST/, /不解除异常状态，也不复活/],
     ['mylla-youlla', /Shifta.*Deband/, /IQ.*Q.*N/, /复活的玩家.*不会获得.*Shifta/],
   ]) {
-    const link = navigation.locator(`a[href="/tools/mechanics.html#pb-${id}"]`);
+    const link = navigation.locator(`a[href="/mechanics/#pb-${id}"]`);
     await link.focus();
     await page.keyboard.press('Enter');
     await expect(page.locator('#pb-' + id)).toBeInViewport();
@@ -166,7 +166,7 @@ test('each PB explains its role, stat scaling and limits beside its illustration
 });
 
 test('PB donation rules and Twins levels distinguish source facts from worked examples', async ({ page }) => {
-  await page.goto('/tools/mechanics.html#pb-chain');
+  await page.goto('/mechanics/#pb-chain');
   const rules = page.locator('#pb-chain + ul');
   await expect(rules).toContainText('同房间');
   await expect(rules).toContainText('首个 PB 的起手动画结束前');
@@ -219,8 +219,8 @@ test('PB donation rules and Twins levels distinguish source facts from worked ex
 
 for (const prefix of ['', '/en', '/ja']) {
   test(`weapon specials explain effects, modifiers and corrections in ${prefix || 'zh'}`, async ({ page }) => {
-    await page.goto(`${prefix}/tools/mechanics.html`);
-    await page.locator(`.mechanics-nav a[href="${prefix}/tools/mechanics.html#weapon-specials"]`).click();
+    await page.goto(`${prefix}/mechanics/`);
+    await page.locator(`.mechanics-nav a[href="${prefix}/mechanics/#weapon-specials"]`).click();
     await expect(page.locator('#weapon-specials')).toBeInViewport();
     const section = page.locator('section[data-part="weapon-specials"]');
     await expect(section.locator('tbody tr')).toHaveCount(6);
@@ -236,10 +236,10 @@ for (const prefix of ['', '/en', '/ja']) {
     }
     await expect(page.locator('section[data-part="physical-damage"] ul').filter({ hasText: '0.67' })).toHaveCount(1);
     for (const anchor of ['weapon-specials', 's-rank-specials']) {
-      await expect(section.locator(`a[href="${prefix}/data/bb_items.html#${anchor}"]`)).toHaveCount(1);
+      await expect(section.locator(`a[href="${prefix}/item-codes/#${anchor}"]`)).toHaveCount(1);
     }
     for (const id of ['special-effects', 'special-modifiers', 'special-corrections']) {
-      await page.goto(`${prefix}/tools/mechanics.html#${id}`);
+      await page.goto(`${prefix}/mechanics/#${id}`);
       await expect(page.locator('#' + id)).toBeInViewport();
     }
     await page.setViewportSize({ width: 320, height: 900 });

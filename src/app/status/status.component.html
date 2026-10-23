@@ -65,7 +65,7 @@
         <section><h3>{{ t('equipment') }}</h3><ul class="equipment-report">@for (item of [result.equipment.armor,result.equipment.shield,...result.equipment.units]; track $index) {<li [attr.data-equipment-code]="item.code" [class.invalid]="!item.equipable"><span>{{ itemName(item.name) }}</span><span>{{ item.stars ? '★'.repeat(item.stars) : '—' }} · {{ item.equipable ? t('valid') : t('invalid') }}</span></li>}</ul></section>
       </div>
       <section class="effects"><h3>{{ t('effects') }}</h3>@if (effectLabels.length) {<ul>@for (effect of effectLabels; track effect.kind + effect.value) {<li>{{ effectText(effect) }}</li>}</ul>} @else {<p>{{ t('noEffects') }}</p>}</section>
-      <p class="share-link"><span>{{ t('share') }}</span><a [href]="shareUrl()">{{ currentClassName() }} · Lv. {{ level }} <span aria-hidden="true">→</span></a></p>
+      <p class="share-link"><span>{{ t('share') }}</span><a [routerLink]="linkRouter.parseUrl(shareUrl())">{{ currentClassName() }} · Lv. {{ level }} <span aria-hidden="true">→</span></a></p>
     </section>
   }
 </main>

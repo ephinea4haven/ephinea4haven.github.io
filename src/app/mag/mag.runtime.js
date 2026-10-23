@@ -6,7 +6,8 @@
  */
 import { MAG_TEXT } from './mag-text.js';
 
-export function initializeMag(root, evolution, simulation, language, items) {
+export function initializeMag(root, evolution, simulation, language, items, signal) {
+    const fragmentListeners = [];
     const text = MAG_TEXT[language];
     const names = new Map(items.map((item) => [item.en, item]));
     const itemName = (name) => language === 'en' ? name : names.get(name)?.[language] || name;
@@ -465,8 +466,9 @@ export function initializeMag(root, evolution, simulation, language, items) {
     }
 
     let wireRaf = 0;
+    signal.addEventListener('abort', () => cancelAnimationFrame(wireRaf), { once: true });
     function redrawWires() {
-        if (wireRaf) return;
+        if (signal.aborted || wireRaf) return;
         wireRaf = requestAnimationFrame(() => {
             wireRaf = 0;
             root.querySelectorAll('.mag-chart').forEach(drawWires);
@@ -524,7 +526,7 @@ export function initializeMag(root, evolution, simulation, language, items) {
             else if (initial) select(tabs[0].id, false);
         }
 
-        window.addEventListener('hashchange', () => fromHash(false));
+        fragmentListeners.push(() => fromHash(!location.hash));
         fromHash(true);
     }
 
@@ -537,7 +539,7 @@ export function initializeMag(root, evolution, simulation, language, items) {
 
     function initSectionNav(nav) {
         const sections = [...root.querySelectorAll('[data-mag-section]')];
-        // The build rewrites in-page hrefs to /tools/mag.html#…, so match by hash.
+        // Match the fragment independently of the page's language prefix.
         const links = [...nav.querySelectorAll('a')].filter((a) => a.hash);
         if (!sections.length) return;
         const sectionOf = (el) => el && sections.find((section) => section.contains(el));
@@ -561,7 +563,7 @@ export function initializeMag(root, evolution, simulation, language, items) {
             if (section) show(section, target);
         }
 
-        window.addEventListener('hashchange', () => fromHash(false));
+        fragmentListeners.push(() => fromHash(!location.hash));
         fromHash(true);
     }
 
@@ -597,8 +599,9 @@ export function initializeMag(root, evolution, simulation, language, items) {
 
     function initCopy(btn) {
         let timer;
+        signal.addEventListener('abort', () => clearTimeout(timer), { once: true });
         btn.addEventListener('click', async () => {
-            if (!(await copyText(btn.dataset.copy))) return;
+            if (!(await copyText(btn.dataset.copy)) || signal.aborted) return;
             btn.dataset.copied = '1';
             clearTimeout(timer);
             timer = setTimeout(() => { delete btn.dataset.copied; }, 1200);
@@ -699,10 +702,12 @@ export function initializeMag(root, evolution, simulation, language, items) {
             if (typeof ResizeObserver === 'function') {
                 const ro = new ResizeObserver(() => redrawWires());
                 charts.forEach((c) => ro.observe(c));
+                signal.addEventListener('abort', () => ro.disconnect(), { once: true });
             }
-            window.addEventListener('resize', redrawWires);
-            window.addEventListener('load', redrawWires);
+            window.addEventListener('resize', redrawWires, { signal });
+            window.addEventListener('load', redrawWires, { signal });
             if (document.fonts && document.fonts.ready) document.fonts.ready.then(redrawWires);
         }
     }
+    return () => fragmentListeners.forEach(listener => listener());
 }

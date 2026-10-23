@@ -82,7 +82,7 @@ for (const language of languages) {
       await expectTargetBelowHeader(page, 'directory');
       await expectNoPageOverflow(page);
       if (language === 'ja' && width === 320) {
-        const longLink = page.locator('.tag-links a[href="/ja/data/bdp/"]');
+        const longLink = page.locator('.tag-links a[href="/ja/quests/black-paper-deal/"]');
         await expect(longLink).toHaveText('ブラックペーパーズディールのドロップ');
         expect(await longLink.evaluate((node) => {
           const link = node.getBoundingClientRect();

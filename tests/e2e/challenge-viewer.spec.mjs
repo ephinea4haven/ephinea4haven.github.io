@@ -4,7 +4,7 @@ for (const episode of [1, 2]) {
   for (const width of [390, 1440]) {
     test(`EP${episode} map captions span their figure at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
-      await page.goto(`/guide/ep${episode}ch.html`);
+      await page.goto(`/challenge/episode-${episode}/`);
       const misaligned = await page.locator('.challenge-map').evaluateAll(figures => figures.flatMap(figure => {
         const caption = figure.querySelector('figcaption');
         const button = caption.querySelector('[data-map-open]');
@@ -23,7 +23,7 @@ for (const episode of [1, 2]) {
 
     test(`EP${episode} viewer preserves its focal point and supports drag at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
-      await page.goto(`/guide/ep${episode}ch.html`);
+      await page.goto(`/challenge/episode-${episode}/`);
       await page.locator('[data-map-open]').first().click();
       const dialog = page.getByRole('dialog');
       const canvas = dialog.locator('.challenge-viewer-canvas');
@@ -73,7 +73,7 @@ for (const episode of [1, 2]) {
 
 test('Seabed route maps are localized vector maps that open in the shared viewer', async ({ page }) => {
   for (const [prefix, language, open] of [['', 'zh', '放大地图 ↗'], ['/en', 'en', 'Expand map ↗'], ['/ja', 'ja', 'マップを拡大 ↗']]) {
-    await page.goto(`${prefix}/guide/seabed.html#maps`);
+    await page.goto(`${prefix}/areas/seabed/#maps`);
     const card = page.locator('.map-card').nth(3);
     await expect(card.locator('img')).toHaveAttribute('src', `/assets/img/guide/seabed/maps/${language}/SU-2-2.svg`);
     await card.getByRole('button', { name: open, exact: true }).click();

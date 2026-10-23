@@ -1,9 +1,9 @@
 <main class="catalog" [attr.lang]="i18n.htmlLanguage()">
-  <header class="masthead"><a class="brand" [routerLink]="i18n.link('/data/ep3-cards.html')">PSO HAVEN <small>C.A.R.D. ARCHIVE</small></a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)" /></header>
-  <nav class="utility"><a [href]="i18n.link('/')">{{ i18n.t('home') }}</a><a [routerLink]="i18n.link('/data/items.html')">{{ i18n.t('items') }}</a><a [routerLink]="i18n.link('/data/enemies.html')">{{ i18n.t('monsters') }}</a></nav>
+  <header class="masthead"><a class="brand" [routerLink]="i18n.link('/cards/')">PSO HAVEN <small>C.A.R.D. ARCHIVE</small></a><catalog-language [language]="i18n.language()" (selected)="i18n.select($event)" /></header>
+  <nav class="utility"><a [routerLink]="i18n.link('/')">{{ i18n.t('home') }}</a><a [routerLink]="i18n.link('/items/')">{{ i18n.t('items') }}</a><a [routerLink]="i18n.link('/enemies/')">{{ i18n.t('monsters') }}</a></nav>
   @if (i18n.language()==='zh') {<p class="notice translation-notice">{{ i18n.t('untranslated') }}</p>}
   @if(detail();as card){
-    <a class="back" [routerLink]="i18n.link('/data/ep3-cards.html')" [queryParams]="query()">← {{ i18n.t('back') }}</a>
+    <a class="back" [routerLink]="i18n.link('/cards/')" [queryParams]="query()">← {{ i18n.t('back') }}</a>
     <section class="card-hero">
       <figure class="portrait" [class.medium-only]="!card.images?.large"><monster-image [src]="art()?.path ?? null" [name]="name(card)" [unavailable]="i18n.t('missing')" /></figure>
       <div><p class="eyebrow">{{ i18n.t('id') }} {{ card.id }} · {{ card.rank }}</p><h1 [attr.lang]="language()">{{ name(card) }}</h1><p class="secondary" [attr.lang]="otherLanguage()">{{ card.names[otherLanguage()] }}</p><p>{{ i18n.t(card.type) }} · {{ i18n.t(card.class) }}</p></div>
@@ -45,7 +45,7 @@
       @if(neighbors().next;as next){<a [routerLink]="i18n.link(path(next.id))" [queryParams]="query()">{{ i18n.t('next') }} · {{ name(next) }} →</a>}
     </nav>
   }@else if(result()){
-    <section class="empty"><h1>{{ i18n.t(result()?.failed?'failed':'notFound') }}</h1>@if(result()?.failed){<button (click)="retry()">{{ i18n.t('retry') }}</button>}<a [routerLink]="i18n.link('/data/ep3-cards.html')" [queryParams]="query()">{{ i18n.t('back') }}</a></section>
+    <section class="empty"><h1>{{ i18n.t(result()?.failed?'failed':'notFound') }}</h1>@if(result()?.failed){<button (click)="retry()">{{ i18n.t('retry') }}</button>}<a [routerLink]="i18n.link('/cards/')" [queryParams]="query()">{{ i18n.t('back') }}</a></section>
   }@else{
     <section class="intro"><div><p class="eyebrow">EPISODE III · C.A.R.D. REVOLUTION</p><h1>{{ i18n.t('title') }}</h1><p class="muted">English / 日本語 · GPSE8P · Online</p></div><strong class="archive-count">700</strong></section>
     <label class="search">{{ i18n.t('search') }}<input type="search" [value]="filters().q" (input)="update('q',$any($event.target).value)" /></label>

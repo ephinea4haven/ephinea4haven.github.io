@@ -90,7 +90,7 @@ for (const language of ['zh', 'en', 'ja']) {
           selector === '[data-mag-colorpicker]' ? [picker] : [];
       },
     };
-    initializeMag(host, context.window.MAG_EVOLUTION, context.window.MAG_SIM, language, items);
+    initializeMag(host, context.window.MAG_EVOLUTION, context.window.MAG_SIM, language, items, new AbortController().signal);
     const rendered = charts.map(c => c.innerHTML).join('') + feeds.map(f => f.tbody.innerHTML).join('') + picker.innerHTML;
     assert.ok(charts.every(c => c.innerHTML.includes('mag-grid--lv100')));
     assert.ok(feeds.every(f => (f.tbody.innerHTML.match(/<tr>/g) || []).length === context.window.MAG_SIM.itemOrder.length));

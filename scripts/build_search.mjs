@@ -1,3 +1,5 @@
+import { routeDocument } from './public_routes.mjs';
+import { readFileSync } from 'node:fs';
 import { cardAliases } from './generate_ep3_card_catalog.mjs';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
@@ -114,7 +116,7 @@ export function searchRoutes(routes) {
 
 /** Historical content is a year on its host page, never a standalone fragment URL. */
 export function archiveEntries(html, url) {
-  const host = /^(\/(?:en|ja))?\/event\/(anniversary|christmas|easter|halloween|valentines)\.html$/.exec(url);
+  const host = /^(\/(?:en|ja))?\/events\/(anniversary|christmas|easter|halloween|valentines)\/$/.exec(url);
   if (!host) return [];
   let marker;
   let title;
@@ -136,13 +138,20 @@ export function archiveEntries(html, url) {
   }));
 }
 
+// Dev reloads this module for each index build. Read the registry here rather
+// than importing JSON through a cached dependency of that fresh module.
+const sourceByPublicRoute = new Map(Object.entries(JSON.parse(
+  readFileSync(new URL('../content/page-routes.json', import.meta.url), 'utf8'),
+)).map(([source, route]) => [`/${route}/`, source]));
+
 export function searchCategory(route) {
   const plain = route.replace(/^\/(?:en|ja)(?=\/)/, '');
-  if (/^\/data\/(?:items(?:\/|\.html)|cosmetics\.html)/.test(plain)) return 'items';
-  if (/^\/data\/enemies(?:\/|\.html)/.test(plain)) return 'enemies';
-  if (plain.startsWith('/guide/') || plain === '/tools/mechanics.html') return 'guides';
-  if (plain.startsWith('/tools/')) return 'tools';
-  if (plain.startsWith('/event/')) return 'events';
+  if (/^\/(?:items|cosmetics)(?:\/|$)/.test(plain)) return 'items';
+  if (/^\/enemies(?:\/|$)/.test(plain)) return 'enemies';
+  const source = sourceByPublicRoute.get(plain);
+  if (source?.startsWith('guide/') || source === 'tools/mechanics.html') return 'guides';
+  if (source?.startsWith('tools/')) return 'tools';
+  if (plain.startsWith('/events/')) return 'events';
   return 'reference';
 }
 
@@ -204,14 +213,14 @@ async function searchAliases() {
   ]);
   const abbreviations = glossaryAliases(glossary);
   const aliases = new Map(items.map(row => [
-    `/data/items/${row[0]}.html`,
+    `/items/${row[0]}/`,
     [...new Set([row[1], row[10], row[12], row[13], ...(abbreviations.get(key(row[1])) ?? []), ...(abbreviations.get(key(row[10])) ?? [])].filter(Boolean))],
   ]));
   for (const monster of monsters) {
     const names = [...Object.values(monster.names), ...Object.values(monster.ultimateNames ?? {})];
-    aliases.set(`/data/enemies/${monster.id}.html`, [...new Set([...names, ...names.flatMap(name => abbreviations.get(key(name)) ?? [])])]);
+    aliases.set(`/enemies/${monster.id}/`, [...new Set([...names, ...names.flatMap(name => abbreviations.get(key(name)) ?? [])])]);
   }
-  for (const card of ep3Cards) aliases.set(`/data/ep3-cards/${card.id}.html`, cardAliases(card));
+  for (const card of ep3Cards) aliases.set(`/cards/${card.id}/`, cardAliases(card));
   return aliases;
 }
 
@@ -284,7 +293,7 @@ export async function buildSearchFromDocuments({ documents, outputDirectory }) {
 export async function buildSearch({ directory, routes }) {
   async function* documents() {
     for (const url of searchRoutes(routes)) {
-      const filename = path.join(directory, url.endsWith('/') ? `${url}index.html` : url);
+      const filename = path.join(directory, routeDocument(url));
       yield { url, html: await readFile(filename, 'utf8') };
     }
   }

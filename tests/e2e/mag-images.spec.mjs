@@ -51,7 +51,7 @@ function compareWithSnapshot(image, maskUrl) {
 }
 
 test('Mag chart tints only the colour-node mask of the rendered default', async ({ page }) => {
-  await page.goto('/tools/mag.html');
+  await page.goto('/mags/');
   const image = page.locator('.mag-card__sprite[data-mag="Varuna"]').first();
   await image.scrollIntoViewIfNeeded();
   await expect.poll(() => image.evaluate(img => img.naturalWidth)).toBe(900);

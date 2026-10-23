@@ -23,7 +23,7 @@ export function splitLanguage(url: string): { language: PageLanguage | null; pat
 
 /** Page key: no leading slash, directory indexes by directory, the homepage as index.html. */
 export function pageKey(path: string): string {
-  return path.replace(/^\/+/, '').replace(/\/(index\.html)?$/, '').replace(/^index\.html$/, '') || 'index.html';
+  return path.split(/[?#]/)[0].replace(/^\/+|\/+$/g, '') || 'index.html';
 }
 
 /** Whether a page (by unprefixed path) is published in a language. */
@@ -36,7 +36,7 @@ export function hasVersion(path: string, language: PageLanguage): boolean {
 /** URL of a page (by unprefixed path) in a language. */
 export function localizedPath(path: string, language: PageLanguage): string {
   if (language === 'zh') return path;
-  return `/${language}${path === '/' ? '' : path}`;
+  return `/${language}${path}`;
 }
 
 /** Published URL: directory pages (data/protocol) are served with a trailing slash. */

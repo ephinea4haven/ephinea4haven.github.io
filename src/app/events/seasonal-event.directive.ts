@@ -1,3 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { map, distinctUntilChanged } from 'rxjs';
 import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
 import { ITEM_TRANSLATIONS } from '../generated/i18n/items';
 import { SiteLanguage, localizedPath, type PageLanguage } from '../shared/site-language.service';
@@ -36,6 +39,7 @@ const NPC_IMAGES = new Map<string, readonly [string, string]>([
 export class SeasonalEventBehavior {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly destroyRef = inject(DestroyRef);
+  private readonly route = inject(ActivatedRoute);
   private readonly siteLanguage = inject(SiteLanguage);
   private language: PageLanguage = 'zh';
   private previewAnchor: HTMLElement | null = null;
@@ -52,58 +56,63 @@ export class SeasonalEventBehavior {
     const eventName = masthead.dataset['event'] ?? '';
     const years = (masthead.dataset['years'] ?? '').split(',').map(Number).filter(Number.isFinite);
     const defaultYear = Number(masthead.dataset['defaultYear']);
-    const requested = Number(new URLSearchParams(location.search).get('year'));
-    const selected = years.includes(requested) ? requested : defaultYear;
-    const defaultContent = content.querySelector<HTMLElement>('[data-event-default]')!;
-    content.replaceChildren(...(selected === defaultYear ? Array.from(defaultContent.childNodes) : []));
-    const label = EVENT_TEXT[this.language][eventName === 'anniversary' ? 'anniversary' : 'christmas'];
-    if (eventName === 'anniversary') {
-      let hue = 188;
-      if (selected <= 2018) hue = 38;
-      else if (selected <= 2021) hue = 272;
-      else if (selected === 2025) hue = 43;
-      this.host.style.setProperty('--anniv-year-hue', String(hue));
-      content.dataset['anniversaryYear'] = String(selected);
-      this.setYearRailCollapsed(true);
-    }
-    document.title = `${selected}${this.language === 'zh' ? '' : this.language === 'ja' ? '年' : ' '}${label} | Ephinea PSOBB`;
-    this.host.querySelector<HTMLElement>('#project_year')!.textContent = String(selected);
-    const nav = this.host.querySelector<HTMLElement>('#yearNav');
-    nav?.replaceChildren(...years.map((year) => {
-      const element = document.createElement(year === selected ? 'span' : 'a');
-      element.textContent = String(year);
-      if (element instanceof HTMLAnchorElement) element.href = localizedPath(`/event/${eventName}.html?year=${year}`, this.language);
-      else { element.className = 'year-current'; element.setAttribute('aria-current', 'page'); }
-      return element;
-    }));
-
-    const finish = () => {
+    const defaultContent = content.querySelector<HTMLElement>('[data-event-default]')!.cloneNode(true) as HTMLElement;
+    content.dataset['routerFragment'] = '';
+    let pending: AbortController | undefined;
+    this.destroyRef.onDestroy(() => pending?.abort());
+    const render = (selected: number) => {
+      this.closePreview();
+      pending?.abort();
+      const request = pending = new AbortController();
+      content.classList.remove('anniv-legacy');
+      content.replaceChildren(...(selected === defaultYear ? Array.from(defaultContent.cloneNode(true).childNodes) : []));
+      const label = EVENT_TEXT[this.language][eventName === 'anniversary' ? 'anniversary' : 'christmas'];
       if (eventName === 'anniversary') {
-        this.normalizeAnniversaryLayout(content);
-        this.markAnniversaryLabels(content);
-        this.decorateNpcTables(content);
+        let hue = 188;
+        if (selected <= 2018) hue = 38;
+        else if (selected <= 2021) hue = 272;
+        else if (selected === 2025) hue = 43;
+        this.host.style.setProperty('--anniv-year-hue', String(hue));
+        content.dataset['anniversaryYear'] = String(selected);
+        this.setYearRailCollapsed(true);
       }
-      this.localizeItems(content, eventName === 'anniversary');
-      if (eventName === 'christmas') this.localizeItems(this.host.querySelector<HTMLElement>('.christmas-overview'));
-      if (eventName === 'anniversary') this.localizeAnniversaryLabels(content);
-      const anchor = location.hash ? this.host.querySelector<HTMLElement>(location.hash) : null;
-      anchor?.scrollIntoView();
+      this.host.querySelector<HTMLElement>('#project_year')!.textContent = String(selected);
+
+
+      const finish = () => {
+        if (eventName === 'anniversary') {
+          this.normalizeAnniversaryLayout(content);
+          this.markAnniversaryLabels(content);
+          this.decorateNpcTables(content);
+        }
+        this.localizeItems(content, eventName === 'anniversary');
+        if (eventName === 'christmas') this.localizeItems(this.host.querySelector<HTMLElement>('.christmas-overview'));
+        if (eventName === 'anniversary') this.localizeAnniversaryLabels(content);
+        const anchor = document.getElementById(this.route.snapshot.fragment ?? '');
+        anchor?.scrollIntoView();
+      };
+      if (selected === defaultYear) finish();
+      else {
+        fetch(localizedPath(`/event/${eventName}/${selected}.html`, this.language), { cache: 'no-store', signal: request.signal })
+          .then((response) => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.text();
+          })
+          .then((html) => {
+            if (request.signal.aborted) return;
+            const parsed = new DOMParser().parseFromString(html, 'text/html');
+            parsed.querySelectorAll('script, style').forEach((element) => element.remove());
+            content.replaceChildren(...Array.from(parsed.body.childNodes).map((node) => document.importNode(node, true)));
+            finish();
+          })
+          .catch(() => { if (request.signal.aborted) return; content.textContent = EVENT_TEXT[this.language].loadError(selected, label); });
+      }
     };
-    if (selected === defaultYear) finish();
-    else {
-      fetch(localizedPath(`/event/${eventName}/${selected}.html`, this.language), { cache: 'no-store' })
-        .then((response) => {
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          return response.text();
-        })
-        .then((html) => {
-          const parsed = new DOMParser().parseFromString(html, 'text/html');
-          parsed.querySelectorAll('script, style').forEach((element) => element.remove());
-          content.replaceChildren(...Array.from(parsed.body.childNodes).map((node) => document.importNode(node, true)));
-          finish();
-        })
-        .catch(() => { content.textContent = EVENT_TEXT[this.language].loadError(selected, label); });
-    }
+    this.route.queryParamMap.pipe(
+      map(params => { const requested = Number(params.get('year')); return years.includes(requested) ? requested : defaultYear; }),
+      distinctUntilChanged(), takeUntilDestroyed(this.destroyRef),
+    ).subscribe(render);
+
     const click = (event: Event) => this.handleClick(event);
     const keydown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') this.setYearRailCollapsed(true);

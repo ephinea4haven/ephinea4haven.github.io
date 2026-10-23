@@ -13,8 +13,8 @@ const statusValues = (page) => page.locator('haven-status').evaluate((root) => [
 
 test('clearing a numeric input allows retyping without restoring defaults mid-edit', async ({ page }) => {
   for (const [path, input, key] of [
-    ['/en/tools/cc.html', '#ataInput', 'ata'],
-    ['/en/tools/status.html', '#magDef', 'mdef'],
+    ['/en/combo-calculator/', '#ataInput', 'ata'],
+    ['/en/character-stats/', '#magDef', 'mdef'],
   ]) {
     await page.goto(path);
     const control = page.locator(input);
@@ -30,25 +30,25 @@ test('clearing a numeric input allows retyping without restoring defaults mid-ed
 });
 
 test('editing Hit immediately before a language change preserves equipment-derived ATA', async ({ page }) => {
-  await page.goto('/en/tools/cc.html');
+  await page.goto('/en/combo-calculator/');
   await page.locator('.weapon-picker').selectOption('Dark Flow');
   await page.locator('#hitInput').fill('45');
   // The language click blurs Hit and runs its equipment recalculation.
   await selectLanguage(page, 'ja');
-  await expect.poll(() => new URL(page.url()).pathname).toBe('/ja/tools/cc.html');
+  await expect.poll(() => new URL(page.url()).pathname).toBe('/ja/combo-calculator/');
   await expect(page.locator('#hitInput')).toHaveValue('45');
   await expect(page.locator('#ataInput')).toHaveValue('306');
   await expect.poll(() => new URL(page.url()).searchParams.get('ata')).toBe('306');
 });
 
 test('Combo preserves the reproduced RAmar configuration through language changes', async ({ page }) => {
-  await page.goto('/tools/cc.html');
+  await page.goto('/combo-calculator/');
   await page.locator('#class-select').selectOption('RAmar');
   await page.locator('#ataInput').fill('234');
   await page.locator('#native-btn').click();
   await expect(page.locator('#combo-calc-table tbody tr')).toHaveCount(41);
   await languageButton(page, 'EN (English)').click();
-  await expect(page).toHaveURL(/\/en\/tools\/cc\.html(?:\?|$)/);
+  await expect(page).toHaveURL(/\/en\/combo-calculator\/(?:\?|$)/);
   await expect(page.locator('#class-select')).toHaveValue('RAmar');
   await expect(page.locator('#ataInput')).toHaveValue('234');
   await expect(page.locator('#combo-calc-table tbody tr')).toHaveCount(41);
@@ -58,7 +58,7 @@ for (const mode of ['cc', 'ccopm']) {
   test(`${mode} restores every control, selection and numeric result across languages and reload`, async ({ page }) => {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    await page.goto(`/en/tools/${mode}.html`);
+    await page.goto(`/en/${mode === 'cc' ? 'combo-calculator' : 'combo-calculator/one-person'}/`);
     await page.locator('#class-select').selectOption('RAmarl');
     await page.locator('.weapon-picker').selectOption('Dark Flow');
     await page.locator('#frame-select').selectOption('Crimson Coat');
@@ -93,7 +93,7 @@ for (const mode of ['cc', 'ccopm']) {
     await expect(page).toHaveURL(/ata=234.5/);
     for (const [language, prefix] of [['ja', '/ja'], ['zh', ''], ['en', '/en']]) {
       await selectLanguage(page, language);
-      await expect.poll(() => new URL(page.url()).pathname).toBe(`${prefix}/tools/${mode}.html`);
+      await expect.poll(() => new URL(page.url()).pathname).toBe(`${prefix}/${mode === 'cc' ? 'combo-calculator' : 'combo-calculator/one-person'}/`);
       await expect.poll(() => comboValues(page)).toEqual(values);
       await expect.poll(() => comboNumbers(page)).toEqual(numbers);
       await expect(page.locator('#damage-header')).toContainText('▲');
@@ -125,7 +125,7 @@ for (const mode of ['cc', 'ccopm']) {
 }
 
 test('Combo mode changes preserve inputs and selection while using the target enemy stats', async ({ page }) => {
-  await page.goto('/en/tools/cc.html');
+  await page.goto('/en/combo-calculator/');
   await page.locator('#class-select').selectOption('RAmar');
   await page.locator('.weapon-picker').selectOption('Dark Flow');
   await page.locator('#native-btn').click();
@@ -133,17 +133,17 @@ test('Combo mode changes preserve inputs and selection while using the target en
   const values = await comboValues(page);
   const multiplayerNumbers = await comboNumbers(page);
   await page.locator('.combo-toolbar a').click();
-  await expect(page).toHaveURL(/\/en\/tools\/ccopm\.html\?/);
+  await expect(page).toHaveURL(/\/en\/combo-calculator\/one-person\/\?/);
   await expect.poll(() => comboValues(page)).toEqual(values);
   await expect(page.locator('#combo-calc-table tbody tr')).toHaveCount(41);
   await expect.poll(() => comboNumbers(page)).not.toEqual(multiplayerNumbers);
   await page.goBack();
-  await expect(page).toHaveURL(/\/en\/tools\/cc\.html\?/);
+  await expect(page).toHaveURL(/\/en\/combo-calculator\/\?/);
   await expect.poll(() => comboNumbers(page)).toEqual(multiplayerNumbers);
 });
 
 test('Status persists all build inputs, results, share links and resets', async ({ page }) => {
-  await page.goto('/en/tools/status.html?c=ramarl&lv=100&mdef=5&mpow=100&mdex=45&mmind=50&hp=20&tp=10&pow=50&def=25&mind=30&eva=15&lck=10&armor=45&shield=2a&unit1=5b&unit2=5d&unit3=4c&unit4=51');
+  await page.goto('/en/character-stats/?c=ramarl&lv=100&mdef=5&mpow=100&mdex=45&mmind=50&hp=20&tp=10&pow=50&def=25&mind=30&eva=15&lck=10&armor=45&shield=2a&unit1=5b&unit2=5d&unit3=4c&unit4=51');
   await expect(page.locator('#class')).toHaveValue('ramarl');
   await page.locator('#magPow').fill('110');
   await page.locator('#matLck').fill('12');
@@ -154,11 +154,11 @@ test('Status persists all build inputs, results, share links and resets', async 
   await expect(page).toHaveURL(/mpow=110/);
   for (const [language, prefix] of [['ja', '/ja'], ['zh', ''], ['en', '/en']]) {
     await selectLanguage(page, language);
-    await expect.poll(() => new URL(page.url()).pathname).toBe(`${prefix}/tools/status.html`);
+    await expect.poll(() => new URL(page.url()).pathname).toBe(`${prefix}/character-stats/`);
     await expect.poll(() => statusValues(page)).toEqual(values);
     await expect.poll(() => page.locator('.stat-table tbody').innerText()).toBe(numbers);
     const share = new URL(await page.locator('.share-link a').getAttribute('href'), page.url());
-    expect(share.pathname).toBe(`${prefix}/tools/status.html`);
+    expect(share.pathname).toBe(`${prefix}/character-stats/`);
     expect(share.searchParams.get('mpow')).toBe('110');
     expect(share.searchParams.get('lck')).toBe('12');
   }
@@ -181,7 +181,7 @@ for (const mode of ['cc', 'ccopm']) {
   test(`${mode} rejects invalid query values and normalizes absent attack hits`, async ({ page }) => {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    await page.goto(`/en/tools/${mode}.html?class=constructor&weapon=missing&frame=__proto__&barrier=missing&unit=missing&ata=Infinity&shifta=-Infinity&hit=NaN&attack1=bad&attack2=NONE&hits2=9&attack3=HEAVY&hits3=0&enemy=constructor&enemy=Bartle&enemy=Bartle&sort=bad&order=asc`);
+    await page.goto(`/en/${mode === 'cc' ? 'combo-calculator' : 'combo-calculator/one-person'}/?class=constructor&weapon=missing&frame=__proto__&barrier=missing&unit=missing&ata=Infinity&shifta=-Infinity&hit=NaN&attack1=bad&attack2=NONE&hits2=9&attack3=HEAVY&hits3=0&enemy=constructor&enemy=Bartle&enemy=Bartle&sort=bad&order=asc`);
     await expect(page.locator('#class-select')).toHaveValue('HUcast');
     await expect(page.locator('.weapon-picker')).toHaveValue('Unarmed');
     await expect(page.locator('#ataInput')).toHaveValue('211');
@@ -198,7 +198,7 @@ for (const mode of ['cc', 'ccopm']) {
 }
 
 test('Status rejects invalid class, numeric and equipment query values', async ({ page }) => {
-  await page.goto('/en/tools/status.html?c=constructor&lv=201&mdef=-1&mpow=1000&mdex=1.5&mmind=Infinity&hp=NaN&armor=constructor&shield=__proto__&unit1=missing');
+  await page.goto('/en/character-stats/?c=constructor&lv=201&mdef=-1&mpow=1000&mdex=1.5&mmind=Infinity&hp=NaN&armor=constructor&shield=__proto__&unit1=missing');
   await expect(page.locator('#class')).toHaveValue('humar');
   await expect(page.locator('#lv option:checked')).toHaveText('200');
   await expect(page.locator('#magDef')).toHaveValue('5');
@@ -208,11 +208,11 @@ test('Status rejects invalid class, numeric and equipment query values', async (
 });
 
 test('Status preserves the reproduced RAmarl level through language changes', async ({ page }) => {
-  await page.goto('/tools/status.html');
+  await page.goto('/character-stats/');
   await page.locator('#class').selectOption('ramarl');
   await page.locator('#lv').selectOption({ label: '100' });
   await languageButton(page, 'EN (English)').click();
-  await expect(page).toHaveURL(/\/en\/tools\/status\.html(?:\?|$)/);
+  await expect(page).toHaveURL(/\/en\/character-stats\/(?:\?|$)/);
   await expect(page.locator('#class')).toHaveValue('ramarl');
   await expect(page.locator('#lv option:checked')).toHaveText('100');
 });

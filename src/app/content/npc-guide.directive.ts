@@ -1,9 +1,12 @@
 import { Directive, inject } from '@angular/core';
 import { BrowserContentBehavior } from './browser-content-behavior.directive';
 import { SiteLanguage } from '../shared/site-language.service';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Directive({ standalone: true })
 export class NpcGuideBehavior extends BrowserContentBehavior {
+  private readonly route = inject(ActivatedRoute);
   private readonly site = inject(SiteLanguage);
 
   protected connect(): void {
@@ -69,17 +72,17 @@ export class NpcGuideBehavior extends BrowserContentBehavior {
       }
     });
     const revealHash = () => {
-      if (!window.location.hash) return;
+      const fragment = this.route.snapshot.fragment;
+      if (!fragment) return;
       clear();
       const target = Array.from(guide.querySelectorAll<HTMLElement>('[id]'))
-        .find((element) => `#${encodeURIComponent(element.id)}` === window.location.hash);
+        .find((element) => element.id === fragment);
       const details = target?.closest<HTMLDetailsElement>('.npc-story');
       if (details) details.open = true;
       target?.scrollIntoView({ block: 'start', behavior: 'instant' });
     };
-    this.listen(window, 'hashchange', revealHash);
     update();
-    revealHash();
+    this.route.fragment.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(revealHash);
     guide.dataset['npcGuide'] = 'ready';
   }
 }

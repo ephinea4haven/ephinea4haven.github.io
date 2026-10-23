@@ -8,7 +8,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ParamMap } from '@angular/router';
+import { ParamMap, Router, RouterLink } from '@angular/router';
 import { SiteLanguage } from '../shared/site-language.service';
 import { comboText, comboItemName, comboSpecialName, comboMonsterName, type ComboTextKey } from './combo-i18n';
 import { Meta, Title } from '@angular/platform-browser';
@@ -60,7 +60,7 @@ interface ComboRow {
 
 @Component({
   selector: 'haven-combo',
-  imports: [FormsModule, PageChromeComponent],
+  imports: [RouterLink, FormsModule, PageChromeComponent],
   providers: [ToolUrlState],
   templateUrl: './combo.component.html',
   styleUrl: './combo.component.css',
@@ -70,6 +70,8 @@ interface ComboRow {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ComboComponent implements OnInit {
+  protected readonly linkRouter = inject(Router);
+
   private readonly meta = inject(Meta);
   private readonly urlState = inject(ToolUrlState);
   readonly site = inject(SiteLanguage);
@@ -91,7 +93,7 @@ export class ComboComponent implements OnInit {
   monsterName(name: string): string { return comboMonsterName(name, this.language()); }
   get modeLink(): string {
     return (this.language() === 'zh' ? '' : '/' + this.language())
-      + (this.isOpm() ? '/tools/cc.html' : '/tools/ccopm.html')
+      + (this.isOpm() ? '/combo-calculator/' : '/combo-calculator/one-person/')
       + '?' + toolQueryString(this.query());
   }
   private comboData!: ComboData;
