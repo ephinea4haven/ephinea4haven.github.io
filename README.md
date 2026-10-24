@@ -193,14 +193,3 @@ The combo calculator is synchronized from
 MIT License; see [`third_party/psostats-combo/`](third_party/psostats-combo/).
 Game data and descriptions draw on the
 [Ephinea Wiki](https://wiki.pioneer2.net/).
-
-## Unpublished Destiny research
-
-The [Destiny archive](artifacts/destiny/README.md) contains normalized drop data,
-item provenance, rendering scripts and a locally viewable dropcharts-style
-preview. It has no public navigation entry or Angular route and is not copied
-into `_site`. Pushing the archive does not publish a Destiny page. The snapshot
-covers 517 drop names; 271 have item-specific or variant previews, including
-nine character-free equipment effect previews, and 246 retain explicitly
-labelled shared category images. Raw client binaries and rendering caches remain
-local. The preview currently uses English item names only.

@@ -42,8 +42,8 @@ test('every event edition keeps default-year content inert until browser year se
   }
 });
 
-test('all 45 event years compile in English and Japanese with their anchors and interactions intact', () => {
-  assert.equal(years.length, 45);
+test('all 46 event years compile in English and Japanese with their anchors and interactions intact', () => {
+  assert.equal(years.length, 46);
   for (const relative of years) {
     const original = read(relative);
     for (const language of ['en', 'ja']) {

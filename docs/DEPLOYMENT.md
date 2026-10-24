@@ -1,5 +1,88 @@
 # Deployment runbook
 
+## October 24, 2026 Halloween page — accepted for release
+
+The 2026 Halloween archive adds Chinese, English and Japanese editions based on
+the official announcement (thread 34332, post 261153), with the existing 2025
+layout and Wiki baseline rules. It becomes the default archive edition and is
+linked from the event directory. The announcement timestamp is October 24 in
+UTC+8; no end date has been announced. The maintainer accepted the reviewed
+result and explicitly authorized documentation alignment, commit and push on
+October 24, 2026.
+
+The default annual fragment is compiled into its archive page's JavaScript.
+After removing duplicated baseline rules already present in the overview,
+Chinese/shared JavaScript gzip measures 1,051,425 bytes, including the inherited
+multiplayer Classic drops exception and deposit sound/notification behavior. The aggregate ceiling
+increases from 1,050,000 to 1,052,000 bytes to accommodate this authored content.
+Per-route, per-chunk, translated-edition, inline-script and hydration limits are
+unchanged. The complete local release gate passed before the approved push.
+
+Local acceptance checks passed: production build (5,905 routes, 138 localized
+event fragments), event i18n tests (4), item-name sync tests (9), data-page i18n
+tests (39), Chinese localization verification, and the focused archive browser
+suite (9). Browser inspection confirmed the 2026 default and Chinese/English/
+Japanese content, including the Classic drops exception. The complete release validation result is recorded below; remote deployment
+is verified separately after push.
+
+## October 24, 2026 event drop clarification — accepted for release
+
+The 2025 and 2026 Anniversary badge cards now explicitly mark exact base rates
+as undisclosed and state that all badge types retain their base rates from 2017;
+Anniversary-specific boosts apply separately. The archive overview embeds the
+2026 edition. Chinese, English and Japanese are aligned. The Halloween rate
+section identifies its existing Cookie rates and explains the shared party-drop
+mechanism introduced in 2026, including separate rare-drop rolls, bank deposits
+and the multiplayer Classic drops exception.
+
+Evidence: Ender's 2026 Anniversary post #27 states that each badge type's rate
+has been the same since 2017:
+https://www.pioneer2.net/community/threads/11th-anniversary-event-thread.33612/post-256616
+The exact-rate disclosure status is documented at
+https://wiki.pioneer2.net/w/Anniversary_event . This research provenance stays in
+maintainer documentation; player-facing content presents the conclusions.
+
+Follow-up research inspected the 2016–2026 official event threads (51 pages,
+905 posts), including annual first-post spoiler content. Matt's 2018 reply #39
+states that the previous year's rates were copied, but he did not remember the
+numbers and could not locate them in staff-forum records:
+https://www.pioneer2.net/community/threads/3rd-anniversary-event-thread.11345/page-2#post-103914
+The 2016 maintenance announcement disclosed Platinum's change from 1/250,000 to
+1/500,000; that historical figure is not asserted as the current rate. No current
+complete official numeric badge table was found in the inspected threads.
+
+Following maintainer review, Halloween retains the established Cookie base rates
+and explicitly describes their 2026 party-wide roll: each eligible monster makes
+one roll for the party; when a Cookie drop is rolled, each player receives one.
+The overview, 2026 fragment and all three languages use this wording instead of
+ambiguous “success” phrasing. This follows the announced mechanism change and
+absence of an announced base-probability change; it is not a new 2026 numeric
+rate table published by the operator.
+
+Validation passed: event i18n tests (4), Chinese localization verification,
+generated-card content checks and production build (5,905 routes, 138 event
+fragments). Shared JavaScript gzip is 1,051,425 / 1,052,000 bytes; English is
+535,953 and Japanese 593,467 / 700,000 bytes each. The maintainer also requested
+removal of the “Unpublished Destiny research” section from the root README;
+the heading and paragraph have been removed.
+
+Complete `npm run release:prepare` passed on the final application and dependency
+changes: locked install, zero-vulnerability audit at the low threshold, browser
+installation, all business tests, two production builds with identical manifests,
+22 CI smoke tests (8.6 seconds) and all 6,337 browser tests (9.7 minutes, four
+workers, zero retries). The approved release can now be committed and pushed;
+GitHub Actions and production deployment remain separate post-push checks.
+
+## October 24, 2026 release-gate dependency fixes
+
+The required audit blocked the initial release gate with three findings:
+`fast-uri` 3.1.8 (moderate) and `zod` 4.6.5 plus its pinned Angular CLI parent
+(high). Angular CLI is updated from 22.2.2 to 22.2.4, whose declared dependency
+is patched Zod 4.6.6; the compatible transitive fast-uri lock advances to 3.1.9.
+No audit exclusions or new dependency overrides were introduced. The resulting
+install reports zero vulnerabilities. These patch updates are included in the
+full release verification before pushing the accepted event content.
+
 ## Release path
 
 Production is built and deployed by `.github/workflows/pages.yml`.
