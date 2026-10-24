@@ -1,5 +1,24 @@
 # Deployment runbook
 
+## October 24, 2026 README and artifact directory cleanup
+
+The maintainer requested removal of the root README's Further reading section
+and QQ contact sentence. The general welcome remains. `artifacts/ue/.gitkeep`
+adds a tracked UE directory beside `artifacts/destiny`; GitHub can now display
+`artifacts` as a parent directory instead of compacting its sole tracked child.
+No site page, navigation entry or published resource is added by this placeholder.
+The maintainer authorized documentation alignment, commit and push. Complete
+`npm run release:prepare` passed before this push: locked dependency install,
+zero-vulnerability audit, all business tests, two identical production manifests,
+22 smoke tests (7.6 seconds) and 6,337 browser tests (9.3 minutes, four workers,
+zero retries). The build remains at 5,905 routes and 138 event fragments, with
+shared JavaScript gzip at 1,051,425 / 1,052,000 bytes.
+
+The preceding event release, commit `e2cd9f70`, was pushed and deployed successfully
+in [Pages run 40070029836](https://github.com/ephinea4haven/ephinea4haven.github.io/actions/runs/40070029836).
+Production HTML was checked for the updated Cookie party-drop wording and the
+Anniversary base-rate clarification.
+
 ## October 24, 2026 Halloween page — accepted for release
 
 The 2026 Halloween archive adds Chinese, English and Japanese editions based on

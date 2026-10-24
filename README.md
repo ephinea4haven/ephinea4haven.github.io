@@ -164,24 +164,10 @@ Release history and verification notes are kept in
 Engineering principles and repository workflow are defined in
 [`AGENTS.md`](AGENTS.md).
 
-## Further reading
-
-- [Architecture](docs/ARCHITECTURE.md)
-- [Angular migration record](docs/ANGULAR_MIGRATION.md)
-- [Item catalog](docs/ITEM_CATALOG.md), [monster catalog](docs/MONSTER_CATALOG.md)
-  and [Episode III card catalog](docs/EP3_CARD_CATALOG.md)
-- [Mechanics guide illustrations and review record](docs/MECHANICS_VISUAL_EVIDENCE.md)
-- [Launcher settings guide](guide/launcher.html) and [native screenshot evidence and review record](docs/EPHINEA_LAUNCHER_EVIDENCE.md)
-- [Challenge-map implementation, generation and remaining work](docs/CHALLENGE_MAP_REDRAW.md)
-- [Combo calculator synchronization](docs/SOP_COMBO_CALCULATOR_SYNC.md)
-- [RBR data workflow](scripts/RBR_DATA.md)
-- [Roadmap](docs/TODO.md)
-
 ## Community
 
 Players from every country and community are welcome. Guild membership is not
-required to use the wiki. To connect with Haven, join the guild's QQ group:
-**956652396**.
+required to use the wiki.
 
 ## Acknowledgements
 
