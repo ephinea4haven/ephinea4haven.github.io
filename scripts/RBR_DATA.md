@@ -367,6 +367,41 @@ remote templates.
   manifests, CI smoke selection and all 6,325 browser tests with zero retries
   (9.6 minutes for the full browser suite).
 
+### 2026-10-25 update record
+
+- The maintainer provided an in-game `/rbr` screenshot confirming EP1
+  `Anomalous Ordeal #1` (`AO1`), EP2 `Phantasmal World #3` (`PW3`) and EP4
+  `New Mop-Up Operation #2` (`NMU2`). The planner validated the October 25
+  rotation, Tracker state and both MediaWiki render previews.
+- The publisher updated the current template from revision `43706` and verified
+  [revision 43745](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43745).
+  The already-correct
+  [Tracker revision 43744](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=43744)
+  required no edit.
+- After publication, the public Wiki home page still displayed October 18.
+  The normal browser purge confirmation forms were submitted for the home page,
+  RBR article and both templates. The refreshed home page and current template
+  show October 25 and the confirmed quests; all 58 rendered Tracker states on
+  both the article and Tracker template match the plan.
+- The site snapshot was regenerated with `build_rbr_data.py --require-current`
+  from the verified revisions. Its rotation and complete Tracker match the plan;
+  all 58 quest records, boost rules and 5 random-spawn warnings are unchanged.
+- The maintainer accepted the local result and explicitly approved aligning the
+  documentation, committing and pushing this update. Wiki verification and the
+  local snapshot update are complete. Publication follows the full local
+  `npm run release:prepare` gate; the matching Pages workflow and live rotation
+  are verified separately after the release push.
+- 56 RBR tests, the production build and 14 relevant browser tests passed,
+  covering home cards, the UTC Sunday boundary, recommendation anchors and
+  Tracker failure handling, Section ID icons and RBR routes in all three
+  languages, versioned images and current Tracker/tier markers. The build used
+  `../dropcharts/i18n_names.json` through `DROPCHARTS_I18N_AUTHORITY`.
+
+- The full local release gate passed: locked dependency installation, zero
+  dependency vulnerabilities, all business tests, two identical production build
+  manifests, 22 CI smoke tests and all 6,337 browser tests with zero retries
+  (8.4 minutes for the full browser suite).
+
 ### 2026-09-14 home page release record
 
 - `548e78e` committed and released the home page tier, recommended ID and color
