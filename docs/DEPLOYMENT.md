@@ -1,5 +1,24 @@
 # Deployment runbook
 
+## October 28, 2026 Chinese Ultimate bookmark
+
+The maintainer explicitly authorized compatibility for the single historical
+`/droptable/cn/CUltimate.html` URL and requested commit, push and deployment.
+The production builder copies its static HTML document through `publishedFiles`,
+which also verifies the published bytes against the source. GitHub Pages serves
+HTTP 200; HTML refresh navigates to
+`https://dropcharts.psohaven.com/blue-burst/?lang=zh&diff=Ultimate` without requiring
+JavaScript. A canonical URL and visible destination link accompany the refresh.
+No other retired route is restored, and Angular routing is unchanged.
+
+The regression covers both JavaScript-enabled and disabled browsers, intercepting
+only the destination to keep the test independent of the external service. Both
+cases failed with HTTP 404 against the previous build. The existing tests still
+require other retired external-system URLs to return 404.
+Local release validation uses the same pinned dropcharts authority as CI:
+`511d3ead56b059c6a64b0274cd34e11d1794886b`, in an isolated checkout selected with
+`DROPCHARTS_I18N_AUTHORITY`; the current sibling checkout is newer.
+
 ## October 24, 2026 README and artifact directory cleanup
 
 The maintainer requested removal of the root README's Further reading section

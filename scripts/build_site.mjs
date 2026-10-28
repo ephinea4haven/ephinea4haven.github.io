@@ -32,7 +32,10 @@ const budgets = JSON.parse(await readFile(path.join(root, 'build-budgets.json'),
 
 const rootFiles = ['index.html', '404.html', 'CNAME', 'favicon.ico', 'apple-touch-icon.png'];
 const siteDirectories = ['assets', 'data', 'event', 'guide', 'tools'];
-const publishedFiles = [path.join(root, 'third_party', 'psostats-combo', 'LICENSE')];
+const publishedFiles = [
+  path.join(root, 'third_party', 'psostats-combo', 'LICENSE'),
+  path.join(root, 'droptable', 'cn', 'CUltimate.html'),
+];
 const excludedTrees = [path.join(root, 'data', 'droptable')];
 const excludedFiles = new Set([
   path.join(root, 'assets', 'js', 'combo_calc.js'),

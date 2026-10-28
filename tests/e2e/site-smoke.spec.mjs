@@ -1718,7 +1718,7 @@ test('Combo Calculator license is included in the production artifact', async ({
 });
 
 test('retired external-system URLs remain real 404s without client redirects', async ({ page }) => {
-  for (const url of ['/tools/mag-sim.html?mode=planner#target', '/droptable/cn/CUltimate.html', '/data/droptable/ngc/index.html?lang=zh&diff=Ultimate']) {
+  for (const url of ['/tools/mag-sim.html?mode=planner#target', '/data/droptable/ngc/index.html?lang=zh&diff=Ultimate']) {
     const response = await page.goto(url);
     expect(response.status()).toBe(404);
     await expect(page.locator('h1')).toContainText('404');
@@ -1893,3 +1893,22 @@ test('seasonal archives preserve exact case-sensitive weapon identities', async 
   }).first();
   await expect(launcher.locator('.item-zh')).toHaveText('强袭霰弹枪');
 });
+
+for (const javaScriptEnabled of [true, false]) {
+  test(`@smoke Chinese Ultimate bookmark redirects with JavaScript ${javaScriptEnabled}`, async ({ browser, request }) => {
+    const target = "https://dropcharts.psohaven.com/blue-burst/?lang=zh&diff=Ultimate";
+    const response = await request.get("/droptable/cn/CUltimate.html");
+    expect(response.status()).toBe(200);
+    expect(await response.text()).toContain("lang=zh&amp;diff=Ultimate");
+    const context = await browser.newContext({ javaScriptEnabled });
+    try {
+      await context.route(target, route => route.fulfill({ contentType: "text/html", body: "<h1>Drop charts</h1>" }));
+      const page = await context.newPage();
+      await page.goto("http://127.0.0.1:4173/droptable/cn/CUltimate.html");
+      await expect(page).toHaveURL(target);
+      await expect(page.locator("h1")).toHaveText("Drop charts");
+    } finally {
+      await context.close();
+    }
+  });
+}
