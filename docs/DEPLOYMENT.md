@@ -1,5 +1,15 @@
 # Deployment runbook
 
+## November 1, 2026 dropcharts pin
+
+The November 1 release gate failed because the sibling `../dropcharts` checkout
+had moved to `f8b2d5bffebccff2432966716cb29c545eab12e9` while CI still pinned
+`511d3ead56b059c6a64b0274cd34e11d1794886b`. That commit migrates the drop charts
+to Angular; `i18n_names.json`, `bb/data` and `tools/banner_rules.py` are identical
+across the two revisions, and only the old `bb/index.html` page is removed under
+`bb`. Both workflows now pin `f8b2d5b`, so the default sibling checkout again
+matches CI and no isolated checkout is needed.
+
 ## October 28, 2026 Chinese Ultimate bookmark
 
 The maintainer explicitly authorized compatibility for the single historical

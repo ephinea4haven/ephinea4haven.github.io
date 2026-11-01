@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-25T01:05:36.722993+00:00",
+  "generatedAt": "2026-11-01T01:32:02.118836+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,12 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 43745
+      "revision": 43979
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 43744
+      "revision": 43977
     }
   },
   "boosts": {
@@ -38,28 +38,28 @@
     "4": 14
   },
   "current": {
-    "week": "25 October 2026",
+    "week": "01 November 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Anomalous Ordeal 1",
-        "name": "Anomalous Ordeal #1",
-        "abbreviation": "AO1"
+        "page": "Lost HELL PALLASCH",
+        "name": "Lost HELL PALLASCH",
+        "abbreviation": "LHP"
       },
       {
         "episode": 2,
-        "page": "Phantasmal World 3",
-        "name": "Phantasmal World #3",
-        "abbreviation": "PW3"
+        "page": "The West Tower",
+        "name": "The West Tower",
+        "abbreviation": "TWT"
       },
       {
         "episode": 4,
-        "page": "New Mop-Up Operation 2",
-        "name": "New Mop-Up Operation #2",
-        "abbreviation": "NMU2"
+        "page": "War of Limits 3",
+        "name": "War of Limits 3",
+        "abbreviation": "WoL3"
       }
     ],
-    "expectedWeek": "25 October 2026",
+    "expectedWeek": "01 November 2026",
     "isFresh": true
   },
   "tracker": {
@@ -70,11 +70,9 @@
     },
     "byEpisode": {
       "1": {
-        "possible": [
-          "LHP"
-        ],
+        "possible": [],
         "current": [
-          "AO1"
+          "LHP"
         ],
         "unavailable": [
           "MU1",
@@ -89,6 +87,7 @@
           "EN2",
           "EN3",
           "EN4",
+          "AO1",
           "AO2",
           "SR1",
           "SR2",
@@ -116,13 +115,13 @@
           "AO5",
           "LSR",
           "LBA",
-          "LDR",
-          "TWT"
+          "LDR"
         ],
         "current": [
-          "PW3"
+          "TWT"
         ],
         "unavailable": [
+          "PW3",
           "SU8",
           "AO3",
           "LCV",
@@ -131,11 +130,10 @@
       },
       "4": {
         "possible": [
-          "WoL3",
           "SU14"
         ],
         "current": [
-          "NMU2"
+          "WoL3"
         ],
         "unavailable": [
           "WoL1",
@@ -143,6 +141,7 @@
           "WoL4",
           "WoL5",
           "NMU1",
+          "NMU2",
           "NMU4",
           "NMU5",
           "SU10",

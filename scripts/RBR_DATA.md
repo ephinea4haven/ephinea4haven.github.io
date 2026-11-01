@@ -402,6 +402,44 @@ remote templates.
   manifests, 22 CI smoke tests and all 6,337 browser tests with zero retries
   (8.4 minutes for the full browser suite).
 
+### 2026-11-01 update record
+
+- The maintainer provided an in-game `/rbr` screenshot confirming EP1
+  `Lost HELL PALLASCH` (`LHP`), EP2 `The West Tower` (`TWT`) and EP4
+  `War of Limits 3` (`WoL3`). The planner validated the November 1 rotation,
+  Tracker state and both MediaWiki render previews.
+- The publisher updated the current template from revision `43745` and verified
+  [revision 43979](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=43979).
+  The already-correct
+  [Tracker revision 43977](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=43977)
+  required no edit.
+- After publication, the public Wiki home page still displayed the October 25
+  quests; the article and both templates already rendered correctly. The browser
+  API purge returned `purged: true` for all four titles. Fresh loads then
+  confirmed the November 1 date and three quests on the home page and current
+  template; all 58 rendered Tracker states on both the article and Tracker
+  template match the plan.
+- EP1 has no remaining possible quests this cycle; its reset belongs to the next
+  weekly transition. EP4 has only `SU14` remaining.
+- The site snapshot was regenerated with `build_rbr_data.py --require-current`
+  from the verified revisions. Its rotation and complete Tracker match the plan;
+  all 58 quest records, boost rules and 5 random-spawn warnings are unchanged.
+- 56 RBR tests, the production build and 20 relevant browser tests passed,
+  covering home cards, RBR Section ID icons, RBR routes in all three languages,
+  and RBR data and lookup interactions. The build used
+  `../dropcharts/i18n_names.json` through `DROPCHARTS_I18N_AUTHORITY`.
+- The first release gate failed `test_local_authority_is_the_pinned_revision`:
+  the sibling checkout was one commit ahead of the CI pin. This release also
+  moves the pin to `f8b2d5b`; see `docs/DEPLOYMENT.md`.
+- The maintainer accepted the local result and explicitly approved deploying this
+  update. Wiki verification and the local snapshot update are complete.
+  Publication follows the full local `npm run release:prepare` gate; the matching
+  Pages workflow and live rotation are verified separately after the release push.
+- The full local release gate passed with the updated pin: locked dependency
+  installation, zero dependency vulnerabilities, all business tests, two identical
+  production build manifests, 24 CI smoke tests and all 6,339 browser tests with
+  zero retries (9.9 minutes for the full browser suite).
+
 ### 2026-09-14 home page release record
 
 - `548e78e` committed and released the home page tier, recommended ID and color
