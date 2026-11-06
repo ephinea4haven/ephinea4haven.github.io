@@ -66,12 +66,12 @@
 | [蓝机忍 / Sinow Beat / シノワビート](https://www.psohaven.com/data/enemies/sinow-beat.html) | 紫机忍 / Sinow Blue / シノワブルー | 普通怪 | Mine |
 | [金机忍 / Sinow Gold / シノワゴールド](https://www.psohaven.com/data/enemies/sinow-gold.html) | 红机忍 / Sinow Red / シノワレッド | 普通怪 | Mine |
 | [机甲堡垒 / Garanz / ギャランゾ](https://www.psohaven.com/data/enemies/garanz-e1.html) | 机甲堡垒·改 / Baranz / バランゾ | 普通怪 | Mine |
-| [波鲁欧普 (Form 1) / Vol Opt (Form 1) / ボルオプト (Form 1)](https://www.psohaven.com/data/enemies/vol-opt-form-1.html) | 波鲁欧普 ver.2 (Form 1) / Vol Opt ver. 2 (Form 1) / ボルオプト ver.2 (Form 1) | Boss；阶段／部件／附属单位 | Monitor Room |
-| [波鲁欧普 (Pillar) / Vol Opt (Pillar) / ボルオプト (Pillar)](https://www.psohaven.com/data/enemies/vol-opt-pillar.html) | 波鲁欧普 ver.2 (Pillar) / Vol Opt ver. 2 (Pillar) / ボルオプト ver.2 (Pillar) | Boss；阶段／部件／附属单位 | Monitor Room |
-| [波鲁欧普 (Monitor) / Vol Opt (Monitor) / ボルオプト (Monitor)](https://www.psohaven.com/data/enemies/vol-opt-monitor.html) | 波鲁欧普 ver.2 (Monitor) / Vol Opt ver. 2 (Monitor) / ボルオプト ver.2 (Monitor) | Boss；阶段／部件／附属单位 | Monitor Room |
-| [波鲁欧普 (Spire) / Vol Opt (Spire) / ボルオプト (Spire)](https://www.psohaven.com/data/enemies/vol-opt-spire.html) | 波鲁欧普 ver.2 (Spire) / Vol Opt ver. 2 (Spire) / ボルオプト ver.2 (Spire) | Boss；阶段／部件／附属单位 | Monitor Room |
-| [波鲁欧普 (Form 2) / Vol Opt (Form 2) / ボルオプト (Form 2)](https://www.psohaven.com/data/enemies/vol-opt-form-2.html) | 波鲁欧普 ver.2 (Form 2) / Vol Opt ver. 2 (Form 2) / ボルオプト ver.2 (Form 2) | Boss；阶段／部件／附属单位 | Monitor Room |
-| [波鲁欧普 (Prison) / Vol Opt (Prison) / ボルオプト (Prison)](https://www.psohaven.com/data/enemies/vol-opt-prison.html) | 波鲁欧普 ver.2 (Prison) / Vol Opt ver. 2 (Prison) / ボルオプト ver.2 (Prison) | Boss；阶段／部件／附属单位 | Monitor Room |
+| [波鲁欧普 (Form 1) / Vol Opt (Form 1) / ボルオプト (Form 1)](https://www.psohaven.com/data/enemies/vol-opt-form-1.html) | 波鲁欧普 Ver.2 (Form 1) / Vol Opt ver. 2 (Form 1) / ボルオプト ver.2 (Form 1) | Boss；阶段／部件／附属单位 | Monitor Room |
+| [波鲁欧普 (Pillar) / Vol Opt (Pillar) / ボルオプト (Pillar)](https://www.psohaven.com/data/enemies/vol-opt-pillar.html) | 波鲁欧普 Ver.2 (Pillar) / Vol Opt ver. 2 (Pillar) / ボルオプト ver.2 (Pillar) | Boss；阶段／部件／附属单位 | Monitor Room |
+| [波鲁欧普 (Monitor) / Vol Opt (Monitor) / ボルオプト (Monitor)](https://www.psohaven.com/data/enemies/vol-opt-monitor.html) | 波鲁欧普 Ver.2 (Monitor) / Vol Opt ver. 2 (Monitor) / ボルオプト ver.2 (Monitor) | Boss；阶段／部件／附属单位 | Monitor Room |
+| [波鲁欧普 (Spire) / Vol Opt (Spire) / ボルオプト (Spire)](https://www.psohaven.com/data/enemies/vol-opt-spire.html) | 波鲁欧普 Ver.2 (Spire) / Vol Opt ver. 2 (Spire) / ボルオプト ver.2 (Spire) | Boss；阶段／部件／附属单位 | Monitor Room |
+| [波鲁欧普 (Form 2) / Vol Opt (Form 2) / ボルオプト (Form 2)](https://www.psohaven.com/data/enemies/vol-opt-form-2.html) | 波鲁欧普 Ver.2 (Form 2) / Vol Opt ver. 2 (Form 2) / ボルオプト ver.2 (Form 2) | Boss；阶段／部件／附属单位 | Monitor Room |
+| [波鲁欧普 (Prison) / Vol Opt (Prison) / ボルオプト (Prison)](https://www.psohaven.com/data/enemies/vol-opt-prison.html) | 波鲁欧普 Ver.2 (Prison) / Vol Opt ver. 2 (Prison) / ボルオプト ver.2 (Prison) | Boss；阶段／部件／附属单位 | Monitor Room |
 
 ### 遗迹 / Ruins
 

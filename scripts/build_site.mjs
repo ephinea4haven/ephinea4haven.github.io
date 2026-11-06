@@ -32,11 +32,13 @@ const budgets = JSON.parse(await readFile(path.join(root, 'build-budgets.json'),
 
 const rootFiles = ['index.html', '404.html', 'CNAME', 'favicon.ico', 'apple-touch-icon.png'];
 const siteDirectories = ['assets', 'data', 'event', 'guide', 'tools'];
+// Each source is published at its output path. The output keeps the externally
+// delivered bookmark URL; the source lives under redirects/.
 const publishedFiles = [
-  path.join(root, 'third_party', 'psostats-combo', 'LICENSE'),
-  path.join(root, 'droptable', 'cn', 'CUltimate.html'),
+  { source: path.join(root, 'third_party', 'psostats-combo', 'LICENSE'), output: 'third_party/psostats-combo/LICENSE' },
+  { source: path.join(root, 'redirects', 'dropcharts-cn-ultimate.html'), output: 'droptable/cn/CUltimate.html' },
 ];
-const excludedTrees = [path.join(root, 'data', 'droptable')];
+const excludedTrees = [path.join(root, 'data', 'dropcharts')];
 const excludedFiles = new Set([
   path.join(root, 'assets', 'js', 'combo_calc.js'),
   path.join(root, 'assets', 'js', 'combo_calc_multi_data.js'),
@@ -142,8 +144,8 @@ async function copySiteSource() {
     });
   }
 
-  for (const source of publishedFiles) {
-    const destination = path.join(temporaryDirectory, path.relative(root, source));
+  for (const { source, output } of publishedFiles) {
+    const destination = path.join(temporaryDirectory, output);
     await mkdir(path.dirname(destination), { recursive: true });
     await cp(source, destination);
   }
@@ -450,12 +452,12 @@ async function validateOutput(pages, angularPages) {
     if (path.basename(file) === '.DS_Store') errors.push(`operating-system metadata leaked into artifact: ${relative}`);
   }
 
-  for (const source of publishedFiles) {
-    const output = path.join(temporaryDirectory, path.relative(root, source));
-    if (!(await exists(output))) {
-      errors.push(`required published file is missing: ${relativeToRoot(source)}`);
-    } else if (sha256(await readFile(output)) !== sha256(await readFile(source))) {
-      errors.push(`required published file changed: ${relativeToRoot(source)}`);
+  for (const { source, output } of publishedFiles) {
+    const published = path.join(temporaryDirectory, output);
+    if (!(await exists(published))) {
+      errors.push(`required published file is missing: ${output}`);
+    } else if (sha256(await readFile(published)) !== sha256(await readFile(source))) {
+      errors.push(`required published file changed: ${output} (source ${relativeToRoot(source)})`);
     }
   }
 

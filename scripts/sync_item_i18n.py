@@ -56,11 +56,6 @@ def build_site_dictionary(items: dict[str, dict[str, str]]) -> dict[str, dict[st
             item_id = f"{base}_{suffix}"
             suffix += 1
         entry = {"en": english, "zh": translations["zh"]}
-        # This upstream dictionary record labels a quest, not an item. Its
-        # Chinese title follows the reviewed BB / Quest Text Overlay authority.
-        if english == "Black Paper’s Deal 2":
-            quests = json.loads((REPO / "content" / "quest-names.json").read_text(encoding="utf-8"))
-            entry["zh"] = quests["titles"]["black paper's dangerous deal 2"]
         if japanese := translations.get("ja"):
             entry["ja"] = japanese
         result[item_id] = entry

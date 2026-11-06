@@ -107,7 +107,7 @@
 .stat--def { color: var(--def); }
 
 /* ---------- sticky section nav ----------
- * Page-local; .nav-container is shared with data/droptable/index.html and must
+ * Page-local; .nav-container is shared with data/dropcharts/index.html and must
  * not change. The chart and recipe tab bars already expose their own children,
  * so this nav lists only the six real page sections.
  */

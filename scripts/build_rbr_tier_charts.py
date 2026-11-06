@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DROP_DATA = ROOT / "data/droptable/bb/data/zh.js"
+DROP_DATA = ROOT / "data/dropcharts/bb/data/zh.js"
 OUTPUT_DIR = ROOT / "assets/img/guide/rbr"
 
 RBR_DATA = json.loads((ROOT / "data/rbr/tiers.json").read_text(encoding="utf-8"))["rbr"]

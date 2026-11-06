@@ -644,7 +644,7 @@ the probability of at least one drop is:
 P(at least one per run) = 1 - (1 - p)^n
 ```
 
-The next stage can join `source.json` with `data/droptable/bb/data/en.js` to
+The next stage can join `source.json` with `data/dropcharts/bb/data/en.js` to
 generate, for each quest and Section ID:
 
 - the drop probability of each rare item per run;

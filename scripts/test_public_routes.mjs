@@ -9,7 +9,7 @@ test('explicit public routes cover every authored page and never collide', async
     return (await Promise.all((await readdir(dir, { withFileTypes: true })).map(e => e.isDirectory() ? walk(`${dir}/${e.name}`) : [`${dir}/${e.name}`]))).flat();
   }
   const pages = (await Promise.all(['data', 'guide', 'tools', 'event'].map(walk))).flat()
-    .filter(p => p.endsWith('.html') && !p.startsWith('data/droptable/') && !/^event\/[^/]+\/\d{4}\.html$/.test(p));
+    .filter(p => p.endsWith('.html') && !p.startsWith('data/dropcharts/') && !/^event\/[^/]+\/\d{4}\.html$/.test(p));
   for (const page of ['index.html', '404.html', ...pages]) assert.ok(Object.hasOwn(pageRoutes, page), page);
   assert.equal(new Set(Object.values(pageRoutes)).size, Object.keys(pageRoutes).length);
   for (const route of Object.values(pageRoutes)) {

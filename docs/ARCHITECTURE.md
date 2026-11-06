@@ -173,11 +173,16 @@ its target, so section, class-tab and feeding-table deep links keep working.
 - `scripts/`: data generation, upstream synchronization, architecture checks and
   deterministic release construction.
 - `third_party/`: licenses and provenance for synchronized upstream material.
+- `redirects/`: static redirect documents for externally delivered URLs; each
+  is published at its URL path through `publishedFiles` in `scripts/build_site.mjs`.
 
-`data/droptable/` is a tooling-only snapshot and is excluded from publication.
+`data/dropcharts/` is a tooling-only snapshot and is excluded from publication.
 The current drop-table product is hosted independently at
 `dropcharts.psohaven.com`. The single bookmarked URL
-`/droptable/cn/CUltimate.html` is published as a static HTML refresh redirect to
+`/droptable/cn/CUltimate.html` must stay unchanged because it is the only
+externally delivered drop-table URL; other versions' addresses follow the
+current paths. Its source is `redirects/dropcharts-cn-ultimate.html`, published at
+that URL as a static HTML refresh redirect to
 `https://dropcharts.psohaven.com/blue-burst/?lang=zh&diff=Ultimate`; it works
 without JavaScript. Other retired drop-table paths remain unpublished.
 

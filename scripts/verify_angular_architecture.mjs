@@ -203,7 +203,7 @@ const htmlFiles = [
   path.join(root, 'index.html'),
   path.join(root, '404.html'),
   ...(await Promise.all(pageRoots.map((directory) => walk(path.join(root, directory))))).flat(),
-].filter((file) => file.endsWith('.html') && !file.startsWith(path.join(root, 'data', 'droptable')));
+].filter((file) => file.endsWith('.html') && !file.startsWith(path.join(root, 'data', 'dropcharts')));
 
 const violations = [];
 for (const file of htmlFiles) {

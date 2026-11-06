@@ -529,7 +529,7 @@ async function applyBuildTimeContent(relative, source) {
   if (relative === 'index.html') {
     const data = JSON.parse(await readFile(path.join(root, 'data/rbr/source.json'), 'utf8'));
     const { rbr: ratings } = JSON.parse(await readFile(path.join(root, 'data/rbr/tiers.json'), 'utf8'));
-    const dropSource = await readFile(path.join(root, 'data/droptable/bb/data/zh.js'), 'utf8');
+    const dropSource = await readFile(path.join(root, 'data/dropcharts/bb/data/zh.js'), 'utf8');
     const sectionIds = JSON.parse(dropSource.match(/"sectionIds"\s*:\s*(\[[^\]]+\])/)[1]);
     const sectionColors = JSON.parse(dropSource.match(/"sectionColors"\s*:\s*(\[[^\]]+\])/)[1]);
     const quests = data.current.quests.map(quest => {
@@ -630,7 +630,7 @@ function pageDetails(file, source, relative, language) {
   });
   if (relative === 'guide/banners.html') localizeBannerItems(body, language);
   if (relative === 'guide/rbr.html') {
-    const dropSource = readFileSync(path.join(root, 'data/droptable/bb/data/zh.js'), 'utf8');
+    const dropSource = readFileSync(path.join(root, 'data/dropcharts/bb/data/zh.js'), 'utf8');
     const names = JSON.parse(dropSource.match(/"sectionIds"\s*:\s*(\[[^\]]+\])/)[1]);
     const pattern = new RegExp(`\\b(${names.join('|')})\\b`, 'g');
     const textNodes = [];
@@ -706,7 +706,7 @@ const candidates = [
   ...(await Promise.all(roots.map(async (directory) => (
   (await walk(path.join(root, directory)))
     .filter((file) => file.endsWith('.html'))
-    .filter((file) => !file.startsWith(path.join(root, 'data', 'droptable')))
+    .filter((file) => !file.startsWith(path.join(root, 'data', 'dropcharts')))
   )))).flat(),
 ].sort();
 

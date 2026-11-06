@@ -1,5 +1,31 @@
 # Deployment runbook
 
+## November 6, 2026 droptable name removal, Ver names and dropcharts pin
+
+Repository paths no longer use the old `droptable` name. The tooling-only
+snapshot moves from `data/droptable/` to `data/dropcharts/`, and every build,
+test and generator input follows it. The Chinese Ultimate bookmark's source
+moves to `redirects/dropcharts-cn-ultimate.html`; `publishedFiles` now maps
+each source to its output path, so the externally delivered URL
+`/droptable/cn/CUltimate.html` and its published bytes are unchanged. Only that
+BB bookmark was delivered externally, so it is the only remaining `droptable`
+URL. Other versions' old addresses are not kept: the smoke test no longer checks
+`/data/droptable/ngc/index.html` and instead requires the renamed snapshot path
+`/data/dropcharts/ngc/index.html` to return 404. The upstream `DropTableHead`
+template tokens parsed by `import_item_catalog.mjs` are source-data names.
+
+Both workflows now pin dropcharts `c878e57249242f21a1232916a68bde6b36e15920`,
+which capitalizes every Chinese version marker (`Ver`) and stores the reviewed
+quest title 黑色密令的更危险交易 for `Black Paper’s Deal 2`. `sync_item_i18n.py`
+drops its site-side override for that record and mirrors the authority exactly;
+the sync test still requires the title to match `content/quest-names.json`. See
+`docs/PSOBB_CHINESE_LOCALIZATION.md`.
+
+Local verification of the final changes with `npm run release:prepare` passed:
+0 vulnerabilities, all business tests, two reproducible production builds
+(5,905 prerendered routes, 138 event fragments), 24 smoke scenarios and 6,339
+browser tests, with the sibling dropcharts checkout at the pinned commit.
+
 ## November 1, 2026 dropcharts pin
 
 The November 1 release gate failed because the sibling `../dropcharts` checkout

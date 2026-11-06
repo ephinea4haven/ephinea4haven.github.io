@@ -130,8 +130,10 @@ Black Paper is 黑色密令, Maximum Attack is 极限攻击, and Waterfall Tears
 snapshot by English identity in `scripts/test_data_page_i18n.mjs`.
 
 The upstream item dictionary also contains a non-item label, `Black Paper’s Deal 2`.
-`npm run sync:i18n` takes that label's Chinese title from the quest snapshot:
-黑色密令的更危险交易. Actual item names still follow the drop-table authority;
+Since 2026-11-06 dropcharts itself stores its reviewed quest title,
+黑色密令的更危险交易, so `npm run sync:i18n` mirrors it without a site-side
+override; the sync test still requires it to equal the quest snapshot. Actual
+item names still follow the drop-table authority;
 the equipment named From the Depths remains 深渊来客. Never replace that item
 name with the identically named quest's 来自深渊之物.
 
@@ -395,5 +397,15 @@ separately. In-game display and localization installer packaging remain unverifi
 Sol Atomizer is 日之粉 (maintainer decision 2026-10-21, replacing 阳之粉), from
 psobb-localization `09f83c8` through dropcharts `c491ab277a6f81f72152fe9e550be12a7e1650bd`. Both CI jobs pin that
 dropcharts commit; `npm run sync:i18n` changed only this dictionary entry. The
-tooling snapshot `data/droptable/{bb,ngc}/data/zh.js` takes the same rename and
+tooling snapshot `data/dropcharts/{bb,ngc}/data/zh.js` takes the same rename and
 nothing else.
+
+Every Chinese version marker is capitalized `Ver` (maintainer decision 2026-11-06):
+军用光枪 Ver.OO, 军用铠 Ver.OO, 军用盾 Ver.OO and 波鲁欧普 Ver.2, from
+psobb-localization `8219912bb296a874bc93e35c10f896155cde7d62` through dropcharts
+`c878e57249242f21a1232916a68bde6b36e15920`. Both CI jobs pin that dropcharts
+commit. The same dropcharts commit stores `Black Paper’s Deal 2` as its reviewed
+quest title 黑色密令的更危险交易, so `npm run sync:i18n` no longer overrides it.
+`docs/MONSTER_NAMES_BY_AREA.md` and the derived HD-gallery file name take the
+`Ver` spelling. The tooling snapshot keeps its older item cells; the site reads
+only its Section ID names and colors.

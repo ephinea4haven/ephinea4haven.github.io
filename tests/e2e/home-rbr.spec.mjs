@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 const data=JSON.parse(readFileSync('data/rbr/source.json','utf8'));
 const {rbr:ratings}=JSON.parse(readFileSync('data/rbr/tiers.json','utf8'));
-const paletteSource=readFileSync('data/droptable/bb/data/zh.js','utf8');
+const paletteSource=readFileSync('data/dropcharts/bb/data/zh.js','utf8');
 const sectionIds=JSON.parse(paletteSource.match(/"sectionIds"\s*:\s*(\[[^\]]+\])/)[1]);
 const sectionColors=JSON.parse(paletteSource.match(/"sectionColors"\s*:\s*(\[[^\]]+\])/)[1]);
 const sunday=new Date(`${data.current.week} 00:00:00 GMT`);

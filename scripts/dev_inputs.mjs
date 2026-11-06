@@ -51,7 +51,7 @@ export function isSearchInput(file, modules) {
 export async function externalGenerationInputs(root) {
   const authority = path.resolve(root, process.env.DROPCHARTS_I18N_AUTHORITY || '../dropcharts/i18n_names.json');
   const inputs = [authority, path.join(path.dirname(authority), 'bb/data/en.js'),
-    path.resolve(root, 'data/droptable/bb/data/zh.js')];
+    path.resolve(root, 'data/dropcharts/bb/data/zh.js')];
   // Resolve symlinks so native watchers receive changes made in the sibling
   // drop-table repository as well as edits through this repository's link.
   const { realpath } = await import('node:fs/promises');

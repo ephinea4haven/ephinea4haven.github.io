@@ -1718,7 +1718,8 @@ test('Combo Calculator license is included in the production artifact', async ({
 });
 
 test('retired external-system URLs remain real 404s without client redirects', async ({ page }) => {
-  for (const url of ['/tools/mag-sim.html?mode=planner#target', '/data/droptable/ngc/index.html?lang=zh&diff=Ultimate']) {
+  // The drop-chart URL is the tooling-only snapshot, which is never published.
+  for (const url of ['/tools/mag-sim.html?mode=planner#target', '/data/dropcharts/ngc/index.html?lang=zh&diff=Ultimate']) {
     const response = await page.goto(url);
     expect(response.status()).toBe(404);
     await expect(page.locator('h1')).toContainText('404');
