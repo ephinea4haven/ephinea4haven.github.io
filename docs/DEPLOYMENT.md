@@ -14,9 +14,10 @@ URL. Other versions' old addresses are not kept: the smoke test no longer checks
 `/data/dropcharts/ngc/index.html` to return 404. The upstream `DropTableHead`
 template tokens parsed by `import_item_catalog.mjs` are source-data names.
 
-Both workflows now pin dropcharts `c878e57249242f21a1232916a68bde6b36e15920`,
+Both workflows now pin dropcharts `e34d1274bbd565c7a57f0ffc7cadbfae849ba1ca`,
 which capitalizes every Chinese version marker (`Ver`) and stores the reviewed
-quest title 黑色密令的更危险交易 for `Black Paper’s Deal 2`. `sync_item_i18n.py`
+quest title 黑色密令的更危险交易 for `Black Paper’s Deal 2`, and names Caduceus 卡杜修斯杖
+(psobb-localization `2af6765`). `sync_item_i18n.py`
 drops its site-side override for that record and mirrors the authority exactly;
 the sync test still requires the title to match `content/quest-names.json`. See
 `docs/PSOBB_CHINESE_LOCALIZATION.md`.

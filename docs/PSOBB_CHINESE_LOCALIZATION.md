@@ -256,7 +256,8 @@ The later naming-policy discussion did not change `Caduceus → 赫尔墨斯杖`
 `Excalibur → 王者之剑` or `Glide Divine → 澄蓝之杖「神游」`. The site keeps the
 authoritative translations. A passing sync review is not a re-review of every
 translation and does not replace in-game display verification. The docs, code and
-generated data were committed to master in `cc835f4`.
+generated data were committed to master in `cc835f4`. (2026-11-07: psobb-localization `2af6765` later unified
+Caduceus as 卡杜修斯杖; the site mirrors it through dropcharts `e34d1274`.)
 
 ### 2026-09-10 release verification addendum
 
@@ -403,9 +404,10 @@ nothing else.
 Every Chinese version marker is capitalized `Ver` (maintainer decision 2026-11-06):
 军用光枪 Ver.OO, 军用铠 Ver.OO, 军用盾 Ver.OO and 波鲁欧普 Ver.2, from
 psobb-localization `8219912bb296a874bc93e35c10f896155cde7d62` through dropcharts
-`c878e57249242f21a1232916a68bde6b36e15920`. Both CI jobs pin that dropcharts
+`e34d1274bbd565c7a57f0ffc7cadbfae849ba1ca`. Both CI jobs pin that dropcharts
 commit. The same dropcharts commit stores `Black Paper’s Deal 2` as its reviewed
-quest title 黑色密令的更危险交易, so `npm run sync:i18n` no longer overrides it.
+quest title 黑色密令的更危险交易, so `npm run sync:i18n` no longer overrides it. It also names Caduceus
+卡杜修斯杖 (psobb-localization `2af676500d92032237d5f26a2934bdbeef919b0d`, 2026-11-07).
 `docs/MONSTER_NAMES_BY_AREA.md` and the derived HD-gallery file name take the
 `Ver` spelling. The tooling snapshot keeps its older item cells; the site reads
 only its Section ID names and colors.
