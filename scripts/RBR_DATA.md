@@ -440,6 +440,40 @@ remote templates.
   production build manifests, 24 CI smoke tests and all 6,339 browser tests with
   zero retries (9.9 minutes for the full browser suite).
 
+### 2026-11-08 update record
+
+- The maintainer supplied this week's quest list: EP1 `Scarlet Realm #4`
+  (`SR4`), EP2 `Phantasmal World #1` (`PW1`) and EP4
+  `Sweep-up Operation #14` (`SU14`). The planner validated the November 8
+  rotation, Tracker transition and both MediaWiki render previews.
+- The publisher updated and read back both templates:
+  [current rotation revision 44090](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=44090)
+  and [Tracker revision 44091](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=44091).
+  EP1 starts a new cycle with 22 possible quests remaining; EP4 has no remaining
+  possible quests, so its reset belongs to the next weekly transition.
+- The public home page and RBR article still displayed the previous rotation
+  after publication. The browser API purge returned `purged: true` for the home
+  page, article and both templates. Fresh requests confirmed November 8 and the
+  three quests on the home page and current template; all 58 rendered Tracker
+  states on both the article and Tracker template match the validated plan.
+- The site snapshot was regenerated with `build_rbr_data.py --require-current`
+  from the verified revisions. All 58 quests' objective data, boost rules and
+  5 random-spawn warnings are unchanged; LHP's source revision advanced from
+  `42643` to `43980` without changing its extracted data.
+- 56 RBR tests, the production build and 14 relevant browser tests passed,
+  covering home cards, the UTC Sunday boundary, recommendation anchors and
+  Tracker failure handling, Section ID icons, RBR routes in all three languages,
+  versioned images and Tracker/current tier markers. The build used
+  `../dropcharts/i18n_names.json` through `DROPCHARTS_I18N_AUTHORITY`.
+- The maintainer accepted the local result and explicitly approved deployment.
+  Wiki publication and rendered-page verification are complete. Site publication
+  follows the full local `npm run release:prepare` gate; the matching Pages
+  workflow and live rotation are verified separately after the release push.
+- The full local release gate passed: locked dependency installation, zero
+  dependency vulnerabilities, all business tests, two identical production build
+  manifests, 24 CI smoke tests and all 6,339 browser tests with zero retries
+  (8.2 minutes for the full browser suite).
+
 ### 2026-09-14 home page release record
 
 - `548e78e` committed and released the home page tier, recommended ID and color
