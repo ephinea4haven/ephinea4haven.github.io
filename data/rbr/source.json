@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-08T00:04:17.025175+00:00",
+  "generatedAt": "2026-11-15T00:30:27.667127+00:00",
   "sources": {
     "candidatePool": {
       "url": "https://wiki.pioneer2.net/w/Ragol_Boost_Road",
@@ -10,12 +10,12 @@
     "currentRotation": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoad",
       "pageId": 5184,
-      "revision": 44090
+      "revision": 44126
     },
     "tracker": {
       "url": "https://wiki.pioneer2.net/w/Template:RagolBoostRoadTracker",
       "pageId": 9413,
-      "revision": 44091
+      "revision": 44127
     }
   },
   "boosts": {
@@ -38,28 +38,28 @@
     "4": 14
   },
   "current": {
-    "week": "08 November 2026",
+    "week": "15 November 2026",
     "quests": [
       {
         "episode": 1,
-        "page": "Scarlet Realm 4",
-        "name": "Scarlet Realm #4",
-        "abbreviation": "SR4"
+        "page": "Mop-up Operation 1",
+        "name": "Mop-up Operation #1",
+        "abbreviation": "MU1"
       },
       {
         "episode": 2,
-        "page": "Phantasmal World 1",
-        "name": "Phantasmal World #1",
-        "abbreviation": "PW1"
+        "page": "Anomalous Ordeal 4",
+        "name": "Anomalous Ordeal #4",
+        "abbreviation": "AO4"
       },
       {
         "episode": 4,
-        "page": "Sweep-up Operation 14",
-        "name": "Sweep-up Operation #14",
-        "abbreviation": "SU14"
+        "page": "Sweep-up Operation 11",
+        "name": "Sweep-up Operation #11",
+        "abbreviation": "SU11"
       }
     ],
-    "expectedWeek": "08 November 2026",
+    "expectedWeek": "15 November 2026",
     "isFresh": true
   },
   "tracker": {
@@ -71,7 +71,6 @@
     "byEpisode": {
       "1": {
         "possible": [
-          "MU1",
           "MU2",
           "MU3",
           "MU4",
@@ -95,9 +94,11 @@
           "LHP"
         ],
         "current": [
-          "SR4"
+          "MU1"
         ],
-        "unavailable": []
+        "unavailable": [
+          "SR4"
+        ]
       },
       "2": {
         "possible": [
@@ -110,16 +111,16 @@
           "PS4",
           "PS5",
           "PS6",
-          "AO4",
           "AO5",
           "LSR",
           "LBA",
           "LDR"
         ],
         "current": [
-          "PW1"
+          "AO4"
         ],
         "unavailable": [
+          "PW1",
           "PW3",
           "SU8",
           "AO3",
@@ -129,11 +130,7 @@
         ]
       },
       "4": {
-        "possible": [],
-        "current": [
-          "SU14"
-        ],
-        "unavailable": [
+        "possible": [
           "WoL1",
           "WoL2",
           "WoL3",
@@ -144,10 +141,14 @@
           "NMU4",
           "NMU5",
           "SU10",
-          "SU11",
           "SU12",
-          "SU13"
-        ]
+          "SU13",
+          "SU14"
+        ],
+        "current": [
+          "SU11"
+        ],
+        "unavailable": []
       }
     },
     "isConsistentWithCurrentTemplate": true
@@ -1316,13 +1317,13 @@
       "page": "The West Tower",
       "name": "The West Tower",
       "wikiUrl": "https://wiki.pioneer2.net/w/The_West_Tower",
-      "wikiRevision": 42664,
+      "wikiRevision": 44094,
       "category": "Tower",
       "ultimateExperience": 123469,
       "ultimateExperienceRaw": null,
       "enemyCountStatus": "available",
       "enemyCountNote": null,
-      "totalEnemies": 319,
+      "totalEnemies": 318,
       "enemyCounts": {
         "Del Lily": 9,
         "Delbiter": 14,
@@ -1339,7 +1340,7 @@
         "Recobox": 36,
         "Recon": 198,
         "Sinow Zele": 6,
-        "Sinow Zoa": 7
+        "Sinow Zoa": 6
       },
       "enemyCountVariants": {}
     },

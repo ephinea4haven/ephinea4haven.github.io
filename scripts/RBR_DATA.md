@@ -474,6 +474,39 @@ remote templates.
   manifests, 24 CI smoke tests and all 6,339 browser tests with zero retries
   (8.2 minutes for the full browser suite).
 
+### 2026-11-15 update record
+
+- The maintainer supplied this week's quest list: `Mop-up Operation #1`,
+  `Anomalous Ordeal #4` and `Sweep-up Operation #11`. The candidate pool maps
+  them to EP1 `MU1`, EP2 `AO4` and EP4 `SU11`; the planner validated the
+  November 15 rotation, Tracker transition and both MediaWiki render previews.
+- The publisher updated and read back both templates:
+  [current rotation revision 44126](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=44126)
+  and [Tracker revision 44127](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=44127).
+  EP4 reset as planned: its previous cycle was exhausted, so SU11 is current and
+  the other 13 EP4 quests are possible again. EP1 and EP2 continue their cycles.
+- Before the purge, the public home page still displayed the November 8 rotation
+  alongside the new date. The browser API purge returned `purged: true` for the
+  home page, article and both templates. Fresh requests then confirmed November
+  15 and the three quests on the home page and current template; all 58 rendered
+  Tracker states on both the article and Tracker template match the validated plan.
+- The site snapshot was regenerated with `build_rbr_data.py --require-current`
+  from the verified revisions (current rotation 44126, Tracker 44127). Quest
+  data is unchanged except The West Tower, whose Wiki revision advanced from
+  `42664` to `44094` and whose extracted Enemy Counts changed (Sinow Zoa 7 to 6,
+  total 319 to 318).
+- 56 RBR tests, the production build and 58 relevant browser tests passed
+  (home RBR cards and failure handling, Section ID icons, RBR routes in all three
+  languages, and home language and navigation). The build used
+  `../dropcharts/i18n_names.json` through `DROPCHARTS_I18N_AUTHORITY`.
+- Milestones: Wiki published and verified; site locally updated; site not yet
+  deployed, pending the maintainer's acceptance review.
+- The maintainer accepted the result and approved deployment.
+- The full local release gate passed: locked dependency installation, zero
+  dependency vulnerabilities, all business tests, two identical production build
+  manifests, 24 CI smoke tests and all 6,339 browser tests with zero retries
+  (14.8 minutes for the full browser suite, 20.9 minutes for the whole gate).
+
 ### 2026-09-14 home page release record
 
 - `548e78e` committed and released the home page tier, recommended ID and color
