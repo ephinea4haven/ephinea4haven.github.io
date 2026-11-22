@@ -62,7 +62,7 @@
     "cborg": "6.2.1",
     "marked": "18.1.3",
     "pagefind": "1.5.2",
-    "parse5": "8.1.0",
+    "parse5": "8.1.1",
     "rxjs": "7.8.2",
     "terser": "5.51.2",
     "typescript": "6.0.3"
