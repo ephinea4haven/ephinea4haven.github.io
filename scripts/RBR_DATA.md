@@ -507,6 +507,34 @@ remote templates.
   manifests, 24 CI smoke tests and all 6,339 browser tests with zero retries
   (14.8 minutes for the full browser suite, 20.9 minutes for the whole gate).
 
+### 2026-11-22 update record
+
+- The maintainer supplied this week's quest list: `Lost HELL PALLASCH`,
+  `Sweep-up Operation #6` and `War of Limits 4`. The candidate pool maps them to
+  EP1 `LHP`, EP2 `SU6` and EP4 `WoL4`; the planner validated the November 22
+  rotation, the Tracker state (`resume-current`) and both MediaWiki render previews.
+- The publisher updated and read back the current template:
+  [current rotation revision 44328](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoad&oldid=44328).
+  The already-correct
+  [Tracker revision 44326](https://wiki.pioneer2.net/index.php?title=Template:RagolBoostRoadTracker&oldid=44326)
+  required no edit. The first publisher attempt failed with `assertuserfailed`
+  (login not accepted) and succeeded unchanged on retry.
+- Before the purge, the public home page still displayed the November 15 rotation
+  alongside the new date. The browser API purge returned `purged: true` for the
+  home page, article and both templates. Fresh requests then confirmed November 22
+  and the three quests on the home page and current template; the article and
+  Tracker template show LHP, SU6 and WoL4 as current and 44 possible quests,
+  matching the plan (EP1 20, EP2 12, EP4 12).
+- The site snapshot was regenerated with `build_rbr_data.py --require-current`
+  from the verified revisions (current rotation 44328, Tracker 44326). Only the
+  rotation, Tracker and source revisions changed.
+- 56 RBR tests, the production build and 54 relevant browser tests passed
+  (home RBR cards and failure handling, Section ID icons, home language and
+  navigation). The build used `../dropcharts/i18n_names.json` through
+  `DROPCHARTS_I18N_AUTHORITY`.
+- Milestones: Wiki published and verified; site locally updated; site not yet
+  deployed, pending the maintainer's acceptance review.
+
 ### 2026-09-14 home page release record
 
 - `548e78e` committed and released the home page tier, recommended ID and color
