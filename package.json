@@ -44,34 +44,25 @@
     "test:price-guide": "python3 -m unittest scripts.test_scrape_price_guide && node --test scripts/test_price_guide_i18n.mjs",
     "test:ep3-catalog": "node --experimental-strip-types --test scripts/test_ep3_card_catalog.mjs"
   },
-  "overrides": {
-    "@angular/build": {
-      "vite": "8.3.3"
-    },
-    "@angular/cli": {
-      "@modelcontextprotocol/sdk": "1.30.0"
-    },
-    "@hono/node-server": "2.1.0"
-  },
   "devDependencies": {
-    "@angular/build": "22.2.2",
-    "@angular/cli": "22.2.4",
-    "@angular/common": "22.2.3",
-    "@angular/compiler": "22.2.3",
-    "@angular/compiler-cli": "22.2.3",
-    "@angular/core": "22.2.3",
-    "@angular/forms": "22.2.3",
-    "@angular/platform-browser": "22.2.3",
-    "@angular/platform-server": "22.2.3",
-    "@angular/router": "22.2.3",
-    "@angular/ssr": "22.2.2",
+    "@angular/build": "22.2.7",
+    "@angular/cli": "22.2.7",
+    "@angular/common": "22.2.6",
+    "@angular/compiler": "22.2.6",
+    "@angular/compiler-cli": "22.2.6",
+    "@angular/core": "22.2.6",
+    "@angular/forms": "22.2.6",
+    "@angular/platform-browser": "22.2.6",
+    "@angular/platform-server": "22.2.6",
+    "@angular/router": "22.2.6",
+    "@angular/ssr": "22.2.7",
     "@axe-core/playwright": "4.14.0",
     "@parcel/watcher": "2.6.0",
     "@playwright/test": "1.64.1",
-    "cborg": "6.1.3",
-    "marked": "18.1.1",
+    "cborg": "6.2.1",
+    "marked": "18.1.3",
     "pagefind": "1.5.2",
-    "parse5": "8.0.1",
+    "parse5": "8.1.0",
     "rxjs": "7.8.2",
     "terser": "5.51.2",
     "typescript": "6.0.3"
