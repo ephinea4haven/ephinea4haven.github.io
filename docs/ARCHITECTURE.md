@@ -209,6 +209,51 @@ and updating content-addressed references. Version and tuple-schema checks fail
 the build if an upgrade changes this boundary. Keeping this step in the watched
 indexing module also lets development rebuilds load its current implementation.
 
+#### Pagefind version pin
+
+Pagefind is pinned at 1.5.2. Dependabot PR #49 (1.6.0) was closed on 2026-11-22;
+as of that date npm `latest` is 1.6.0 and there is no upstream fix.
+
+Symptom with 1.6.0: in the `/ja` edition, searching katakana such as ヒルデベアケイン,
+ヒルデ or ヒルデベアケイン+ returns no results. The Playwright test "global search
+includes EP3 aliases" (`tests/e2e/ep3-card-catalog.spec.mjs`) fails for `/ja` and
+passes for `/zh` and `/en`.
+
+Root cause:
+
+- 1.6.0 replaced charabia with ICU4X for CJK segmentation
+  ([release notes](https://github.com/Pagefind/pagefind/releases/tag/v1.6.0), PR #1383).
+- ICU4X does not split katakana, so Pagefind indexes every katakana suffix
+  (`katakana_suffixes()` in `pagefind/src/fossick/splitting.rs`). ヒルデベアケイン is
+  indexed as ヒルデベアケイン, ルデベアケイン, デベアケイン, ベアケイン, ケイン and so on.
+- The browser splits the query with `Intl.Segmenter('ja')` into ヒル / デ / ベア / ケイ / ン
+  and ANDs the fragments.
+- For a prefix fragment such as デ, `request_indexes` in `pagefind_web/src/lib.rs` loads
+  only the chunk whose range strictly contains the term. デベアケイン sits in the next
+  chunk, which is never loaded, so the AND fails.
+- This chunk-selection logic is unchanged since 1.5.2; the suffix explosion in 1.6.0
+  exposes it. Preloading the neighbouring chunk makes the query succeed, and so does a
+  single-chunk index. Related upstream issues: #1351 (open: prefix fallback only
+  consults loaded chunks) and #1237 (closed: index/query segmentation mismatch).
+
+The proper upstream fix is for prefix queries to load every chunk whose range
+intersects [term, term + U+FFFF).
+
+Rejected project-side workarounds: inserting spaces or zero-width characters
+pollutes titles and excerpts; `PAGEFIND_UNSTABLE_INDEX_CHUNK_SIZE` is unstable and
+does not fix the cause; client-side chunk preloading is fragile.
+
+Upgrade checklist once upstream fixes it:
+
+- Bump `package.json` and the version guard in `scripts/build_search.mjs`.
+- Remove `canonicalPagefindFiles`. 1.6.0 sorts filter names, values and chunk terms
+  itself, and its meta tuple layout changed, so the existing schema assertion on
+  `meta[1]` fails.
+- The 19.5 KB search runtime cap in `scripts/test_build_search.mjs` was exceeded by
+  41 bytes with 1.6.0. Re-measure it and adjust with justification.
+- Confirm the `/ja` katakana Playwright test passes.
+- Confirm build reproducibility through `npm run release:prepare`.
+
 The sibling `dropcharts/i18n_names.json` file is the sole Chinese item-name authority.
 The catalog uses its Japanese names first and supplements missing Japanese names
 with the committed Wiki `jp` fields; unverified names remain visibly English.

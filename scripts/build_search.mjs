@@ -22,6 +22,7 @@ const key = text => text.normalize('NFKC').toLowerCase().trim();
 const escape = text => text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
 const ordered = value => Array.isArray(value) ? value.map(ordered)
   : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map(key => [key, ordered(value[key])])) : value;
+// Pinned: 1.6.0 breaks /ja katakana search. See "Pagefind version pin" in docs/ARCHITECTURE.md.
 const version = '1.5.2';
 const prefix = Buffer.from('pagefind_dcd');
 const strings = values => Array.isArray(values) && values.every(value => typeof value === 'string');
